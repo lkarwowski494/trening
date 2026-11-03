@@ -1,5 +1,6 @@
 /* Runda 72 — testy z audytu tematycznego T4 (trwałość/porzucony trening, wymiana danych). Nazwy części testów opisują scenariusz dawnego błędu; asercje sprawdzają poprawne zachowanie. */
 import fc from 'fast-check';
+import { propRuns } from './prop-seed'; /* ZB-029 T2: skala liczby przypadków (tests/prop-seed.js) */
 import * as store from '@/lib/store';
 import { seedState } from '@/lib/seed';
 import { fresh } from './helpers';
@@ -59,7 +60,7 @@ test('migrate is idempotent through JSON (export→import is a no-op)', async ()
     const a = strip(store.migrate(JSON.parse(JSON.stringify(raw))));
     const b = strip(store.migrate(JSON.parse(JSON.stringify(a))));
     expect(b).toEqual(a);
-  }), { numRuns: 3000 });
+  }), { numRuns: propRuns(3000) });
 });
 
 test('fala 2 (M3 / TST-03): poprawne wartości nowych pól przechodzą przez migrate bez zmian, złe — usunięte', async () => {

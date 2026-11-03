@@ -1,6 +1,7 @@
 /* Runda 72 — testy z audytu T6 (regresje po zmianach rundy 72). */
 /* Runda 72 — testy z audytu tematycznego T4 (trwałość/porzucony trening, wymiana danych). Nazwy części testów opisują scenariusz dawnego błędu; asercje sprawdzają poprawne zachowanie. */
 import fc from 'fast-check';
+import { propRuns } from './prop-seed'; /* ZB-029 T2: skala liczby przypadków (tests/prop-seed.js) */
 import * as store from '@/lib/store';
 import { seedState } from '@/lib/seed';
 import { fresh } from './helpers';
@@ -32,5 +33,5 @@ test('C migrate idempotent incl. bodyWeightKg (fixed bw values >= 0.005)', async
     const b = strip(store.migrate(JSON.parse(JSON.stringify(a))));
     const tiny = JSON.stringify(a).includes('"bodyWeightKg":0,') || JSON.stringify(a).includes('"bodyWeightKg":0}');
     if (!tiny) expect(b).toEqual(a);
-  }), { numRuns: 3000 });
+  }), { numRuns: propRuns(3000) });
 });

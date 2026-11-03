@@ -4,6 +4,7 @@
  * zawsze muszą być prawdziwe. Błąd → fast-check zmniejsza sekwencję do najkrótszej, która go odtwarza.
  */
 import fc from 'fast-check';
+import { propRuns } from './prop-seed'; /* ZB-029 T2: skala liczby przypadków (tests/prop-seed.js) */
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as units from '@/lib/units';
@@ -205,14 +206,14 @@ describe('niezmienniki — jednostki', () => {
       fc.assert(fc.property(fc.integer({ min: -20000, max: 30000 }), n => {
         const lb = n / 10; const kg = units.wIn(lb) as number;
         expect(onGrid(kg)).toBe(true); const shown = units.wOut(kg); expect(units.wIn(shown)).toBe(kg);
-      }), { numRuns: 3000 });
+      }), { numRuns: propRuns(3000) });
     } finally { units.applyUnit('kg'); }
   });
   test('kg: wpis zaokrąglony do 0,01, połówki symetrycznie od zera', () => {
     fc.assert(fc.property(fc.double({ min: -1e5, max: 1e5, noNaN: true }), x => {
       const kg = units.wIn(x) as number; expect(onGrid(kg)).toBe(true); expect(Math.abs(kg - x)).toBeLessThanOrEqual(0.005 + 1e-9);
       expect(units.wIn(-x)).toBe(kg === 0 ? 0 : -kg);
-    }), { numRuns: 3000 });
+    }), { numRuns: propRuns(3000) });
   });
 });
 
