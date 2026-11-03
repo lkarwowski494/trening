@@ -22,8 +22,12 @@ export function ksztaltToru(pts: [number, number][]): { odchylenie: number; zawr
   let zawrocenia = 0, sg = 0; for (let i = 1; i < pts.length; i++) { const d = pts[i][0] - pts[i - 1][0]; if (Math.abs(d) < 0.05) continue; const s = Math.sign(d); if (sg && s !== sg) zawrocenia++; sg = s; }
   return { odchylenie, zawrocenia };
 }
-const tor = (k: string, v: View) => ksztaltToru(Array.from({ length: 25 }, (_, i) => frameAt(figureSpec(k)!, i / 24).info.load).filter(Boolean).map(p => proj(p!, v) as [number, number]));
-const ok = (t: { odchylenie: number; zawrocenia: number }) => t.odchylenie <= PROG.odchylenie && t.zawrocenia <= PROG.zawrocenia;
+/* rodziny z danych póz (curl) podają ślad w info.trail (W1: ślad = chwyt), nie info.load */
+const tor = (k: string, v: View) => ksztaltToru(Array.from({ length: 25 }, (_, i) => { const f = frameAt(figureSpec(k)!, i / 24); return f.info.load ?? f.info.trail; }).filter(Boolean).map(p => proj(p!, v) as [number, number]));
+/* Ruch po łuku wokół stawu (curl, 03.11.2026): chwyt kreśli łuk o promieniu przedramienia (ok. 15–24 cm odchylenia od cięciwy — fizycznie poprawne), więc próg 4 cm (tor prostoliniowy gryfu) go nie dotyczy;
+   dla łuku obowiązuje: najwyżej jedna zmiana kierunku w poziomie (bez „S”) i odchylenie ≤ PROG_LUK cm (ochrona przed ucieczką toru). Do potwierdzenia przez recenzenta niezależnego razem z arkuszem śladu. */
+const LUKOWE = new Set(['curl']); const PROG_LUK = 30; const FAM = assignAll() as Record<string, string>;
+const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string) => (k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
 
 describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => {
   test('miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze', () => {
@@ -32,7 +36,7 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
     expect(ok(ksztaltToru([[6, 20], [7, 40], [7.7, 60], [6.5, 80]]))).toBe(true);
   });
   test('każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem', () => {
-    const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t))
+    const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t, t.k))
       .map(t => `${t.k}|${t.v}: ${t.odchylenie.toFixed(1)} cm, ${t.zawrocenia} zawr.`);
     expect(zle).toEqual([]);
   });
@@ -40,7 +44,7 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
     const keys = new Set(CASES.map(([k, v]) => `${k}|${v}`));
     for (const [id, powod] of Object.entries(WYJATKI)) {
       expect([id, keys.has(id)]).toEqual([id, true]); expect(powod.length).toBeGreaterThan(20);
-      const [k, v] = id.split('|') as [string, View]; expect([id, ok(tor(k, v))]).toEqual([id, false]);
+      const [k, v] = id.split('|') as [string, View]; expect([id, ok(tor(k, v), k)]).toEqual([id, false]);
     }
   });
   test('martwe ciągi ze sztangą (skan 28.10.2026: 11 ćwiczeń z torem „S”) nie mają wyjątku', () => {
