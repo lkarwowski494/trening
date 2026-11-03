@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 356 | 356 | 0 |
 | TEKST | 1082 | 1082 | 0 |
-| LOGIKA | 1137 | 1137 | 0 |
+| LOGIKA | 1138 | 1138 | 0 |
 | WYMIAR | 166 | 166 | 0 |
 
 ## EKRAN
@@ -2307,6 +2307,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.__resetForTests | lib/state/core.ts | tests/07-jakosc-002-recovery-cfg.test.ts, tests/app.tsx, tests/audit-0.10-data-ui.test.tsx +31 |
 | store.parseBootGuard | lib/state/crashguard.ts | tests/crash-guard.test.ts |
 | store.decideBoot | lib/state/crashguard.ts | tests/crash-guard.test.ts |
+| store.startedInBackground | lib/state/crashguard.ts | tests/zk07-pierwszy-start.test.tsx |
 | store.dbDirectory | lib/state/db.ts | tests/audit-backlog-r75.test.tsx |
 | store.copyKv | lib/state/db.ts | tests/audit-backlog-r75.test.tsx, tests/db-real-sqlite.test.ts |
 | store.effortScale | lib/state/effort.ts | tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats.test.ts, tests/audit-k1-bl-mer.test.tsx +5 |
