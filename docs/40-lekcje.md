@@ -45,7 +45,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 
 - **Co się stało:** E2E 41538603321 (33 34) padło na scenariuszu 34 bez ponowienia; podsumowanie: „padł (bez ponowienia)”. Krok „Aktualizacja” biegnie pod `bash -e`, a zapis `faza …; rc=$?` kończył krok przy pierwszej porażce, zanim doszło do ponowienia (tester-e2e, log joba 125614181951).
 - **Przyczyna źródłowa:** ponowienie dodano bez testu, który wykonuje wiersze sterujące workflowu w tej samej powłoce (`bash -e`); testy pliku workflowu sprawdzały tekst, nie zachowanie przy porażce; pierwsza porażka pary 33–34 po tej zmianie pojawiła się dopiero teraz.
-- **Akcje:** (1) w toku — poprawka `rc=0; faza … || rc=$?` + test `tests/e2e-ios-ponowienie-aktualizacji.test.ts` (gałąź `e2e/s33-poprawka`, 1377483a; scalenie po przebiegu dowodowym, L-001); (2) otwarte — przegląd pozostałych kroków `e2e-ios.yml` i `nightly.yml` z ponowieniem pod `bash -e` tym samym testem (programista, linia 1.1).
+- **Akcje:** (1) zrobione 03.11.2026 — poprawka `rc=0; faza … || rc=$?` + test `tests/e2e-ios-ponowienie-aktualizacji.test.ts`; przebieg dowodowy e2e-ios 41559860892 i tests.yml 41559846797 zielone, scalone skryptem (8755b2a6); (2) otwarte — przegląd pozostałych kroków `e2e-ios.yml` i `nightly.yml` z ponowieniem pod `bash -e` tym samym testem (programista, linia 1.1).
 - **Zakres:** systemowa — każda logika ponowienia/obsługi błędu w krokach CI pod `bash -e` może być martwa. Opcje dla właściciela: A — strażnik: każdy krok workflowu z ponowieniem ma test wykonujący jego wiersze sterujące ze stubami (wzór z akcji 1); B — tylko akcja (2) jednorazowo. Rekomendacja A.
 
 ## L-095 (02.11.2026, koordynator 1.1) — zlecenie przeliczeń szczebli, które już były zrobione; badacze bez powłoki
