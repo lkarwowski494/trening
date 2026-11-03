@@ -6,7 +6,7 @@
  * Rodzaje (docs/20): dane (karty, źródła), logika (≥ 2 niezależne organizacje szczebla ≤ 4), niezmienniki (szczebel 5 poza danymi, brak kolizji id między rwaniem a podrzutem),
  * języki (PL i EN w słownikach, reszta czeka na przekład — zestaw-przekladu-2026-11-03-p2-wskazowki.json), regresja (cue-sets: własne karty, pominięte zostają ogólne).
  * Ocena realności: błąd „karta techniki podnoszenia/skoków z jednego źródła, ze źródła marketingowego albo z zestawu ogólnego niepasującego do ruchu” — realny (treść w aplikacji i na stronie z ćwiczeniami);
- * karty po recenzji niezależnej (bramka 4, L-047; wpisy 03.11.2026): 35 wyświetlanych, Hang Clean „do poprawy” i ukryta do ponownej recenzji po poprawce (tests/karty-recenzja.test.tsx).
+ * karty po recenzji niezależnej (bramka 4, L-047; wpisy 03.11.2026): 36 wyświetlanych (Hang Clean po rundzie 2, 03.11.2026; tests/karty-recenzja.test.tsx).
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -18,7 +18,7 @@ const root = path.join(__dirname, '..');
 const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
 const pl: Record<string, string> = json('lib/cues/text/pl.json'), en: Record<string, string> = json('lib/cues/text/en.json');
 const sets = json('lib/figures/v2/cue-sets.json').items as Record<string, { b: string }>;
-const REC = json('docs/research/figury-recenzja.json') as { zestawy: Record<string, unknown>; karty: Record<string, { werdykt: string; autor: string; recenzent: string }> };
+const REC = json('docs/research/figury-recenzja.json') as { zestawy: Record<string, unknown>; karty: Record<string, { werdykt: string; autor: string; recenzent: string; kto: string }> };
 
 describe('P2 moc: karty własne', () => {
   test('36 ćwiczeń ma komplet ustawienie + ruch w pełnych danych i w runtime (widoczne albo ukryte do recenzji); nie są w otwartych; 23 niepełne są na liście partial', () => {
@@ -75,13 +75,22 @@ describe('P2 moc: źródła i reguły szczebli', () => {
 });
 
 describe('P2 moc: bramka 4 i poprawki po recenzjach (03.11.2026)', () => {
-  test('35 kart ma recenzję niezależną (wyświetlane), Hang Clean „do poprawy” zostaje ukryta do ponownej recenzji po poprawce (decyzja koordynatora 03.11.2026)', () => {
-    const DO_POPRAWY = 'Hang Clean';
+  test('36 kart ma recenzję niezależną (wyświetlane) — Hang Clean po rundzie 2 recenzji (koordynator 03.11.2026)', () => {
     for (const k of P2.cwiczenia) {
       const rec = REC.karty[k];
-      expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, k === DO_POPRAWY ? 'do poprawy' : 'wyswietlana', true]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual(k === DO_POPRAWY ? [k, true, false] : [k, false, true]);
+      expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, 'wyswietlana', true]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]);
     }
+  });
+
+  test('runda 2 (03.11.2026): karty ze zmienioną treścią po rundzie 1 mają w zapisie recenzji rundę 2, nie tylko przepisany skrót', () => {
+    const ZMIENIONE = ['Power Snatch', 'Power Jerk', 'Hang Snatch', 'Thruster (hantle)', 'Kettlebell Thruster', 'Sled Push'];
+    for (const k of ZMIENIONE) expect([k, /runda 2/.test(REC.karty[k].kto)]).toEqual([k, true]);
+  });
+
+  test('Power Snatch (runda 2, 03.11.2026): po skróceniu zdania zaimek nie wskazuje podłogi — „wejdź pod sztangę”', () => {
+    expect(pl['olympic.snatchPowerMove']).toMatch(/wejdź pod sztangę/);
+    expect(pl['olympic.snatchPowerMove']).not.toMatch(/pod nią/);
   });
 
   test('Hang Clean: zwis nad kolanami bez zdania „gdy sztanga minie kolana” — olympic.hangExtend zamiast olympic.extend (źródła zostają na karcie)', () => {

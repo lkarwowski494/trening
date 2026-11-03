@@ -15,39 +15,39 @@
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 531,
     "jezyk.en.kompletne": 531,
-    "jezyk.cs.kompletne": 506,
-    "jezyk.sk.kompletne": 506,
-    "jezyk.hu.kompletne": 506,
-    "jezyk.ro.kompletne": 506,
-    "jezyk.bg.kompletne": 506,
-    "jezyk.hr.kompletne": 506,
-    "jezyk.sl.kompletne": 506,
-    "jezyk.sr.kompletne": 506,
-    "jezyk.lt.kompletne": 506,
-    "jezyk.lv.kompletne": 506,
-    "jezyk.et.kompletne": 506,
-    "jezyk.uk.kompletne": 506,
-    "jezyk.es.kompletne": 506,
-    "jezyk.es-419.kompletne": 506,
-    "jezyk.pt.kompletne": 506,
-    "jezyk.pt-BR.kompletne": 506,
-    "jezyk.de.kompletne": 506,
-    "jezyk.fr.kompletne": 506,
-    "jezyk.it.kompletne": 506,
-    "jezyk.nl.kompletne": 506,
-    "jezyk.sv.kompletne": 506,
-    "jezyk.da.kompletne": 506,
-    "jezyk.nb.kompletne": 506,
-    "jezyk.fi.kompletne": 506,
-    "jezyk.tr.kompletne": 506,
-    "jezyk.el.kompletne": 506,
-    "jezyk.id.kompletne": 506,
-    "jezyk.ms.kompletne": 506,
-    "jezyk.vi.kompletne": 506,
-    "jezyk.ru.kompletne": 506,
-    "jezyk.ja.kompletne": 506,
-    "jezyk.ko.kompletne": 506,
-    "jezyk.zh-Hant.kompletne": 506
+    "jezyk.cs.kompletne": 505,
+    "jezyk.sk.kompletne": 505,
+    "jezyk.hu.kompletne": 505,
+    "jezyk.ro.kompletne": 505,
+    "jezyk.bg.kompletne": 505,
+    "jezyk.hr.kompletne": 505,
+    "jezyk.sl.kompletne": 505,
+    "jezyk.sr.kompletne": 505,
+    "jezyk.lt.kompletne": 505,
+    "jezyk.lv.kompletne": 505,
+    "jezyk.et.kompletne": 505,
+    "jezyk.uk.kompletne": 505,
+    "jezyk.es.kompletne": 505,
+    "jezyk.es-419.kompletne": 505,
+    "jezyk.pt.kompletne": 505,
+    "jezyk.pt-BR.kompletne": 505,
+    "jezyk.de.kompletne": 505,
+    "jezyk.fr.kompletne": 505,
+    "jezyk.it.kompletne": 505,
+    "jezyk.nl.kompletne": 505,
+    "jezyk.sv.kompletne": 505,
+    "jezyk.da.kompletne": 505,
+    "jezyk.nb.kompletne": 505,
+    "jezyk.fi.kompletne": 505,
+    "jezyk.tr.kompletne": 505,
+    "jezyk.el.kompletne": 505,
+    "jezyk.id.kompletne": 505,
+    "jezyk.ms.kompletne": 505,
+    "jezyk.vi.kompletne": 505,
+    "jezyk.ru.kompletne": 505,
+    "jezyk.ja.kompletne": 505,
+    "jezyk.ko.kompletne": 505,
+    "jezyk.zh-Hant.kompletne": 505
   },
   "rekord": {
     "figura.v2": 98,
@@ -148,135 +148,135 @@
       "data": "02.11.2026"
     },
     "jezyk.cs.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.sk.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.hu.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.ro.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.bg.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.hr.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.sl.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.sr.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.lt.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.lv.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.et.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.uk.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.es.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.es-419.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.pt.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.pt-BR.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.de.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.fr.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.it.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.nl.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.sv.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.da.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.nb.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.fi.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.tr.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.el.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.id.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.ms.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.vi.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.ru.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.ja.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.ko.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     },
     "jezyk.zh-Hant.kompletne": {
-      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "powod": "karty 36 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (runda 2 03.11.2026 dołączyła Hang Clean), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 26 (531 → 505)",
       "data": "03.11.2026"
     }
   }
