@@ -92,5 +92,5 @@ export const { migrate } = migrateMod;
 export const { applyPrefs, setModule } = settingsMod;
 export const { init, sanitizeDraftObj, readRawData, readRecovery, readPreMigrate, markBootStable, onStateReplaced, replaceState, resetAll } = bootMod;
 export const { getBackupStat, noteBackup } = backupStatMod;
-export const { CRASH_LOOP_THRESHOLD, BOOT_STABLE_MS, BOOT_GUARD_KEY, parseBootGuard, decideBoot } = crashMod;
+export const { CRASH_LOOP_THRESHOLD, BOOT_STABLE_MS, startedInBackground, BOOT_GUARD_KEY, parseBootGuard, decideBoot } = crashMod;
 export type { WExercise } from './seed';

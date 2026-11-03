@@ -17,13 +17,13 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 53 | 7,5% |
 | Bez figury w aplikacji | 557 | 78,7% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 437 | 61,7% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 65 | 9,2% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 95 | 13,4% |
 | Animowany błąd | 92 | 13% |
-| Własne wskazówki (źródłowe) | 137 | 19,4% |
-| — z czego z częstymi błędami | 66 | 9,3% |
+| Własne wskazówki (źródłowe) | 167 | 23,6% |
+| — z czego z częstymi błędami | 76 | 10,7% |
 | Zestaw ogólny wskazówek wzorca ruchu | 77 | 10,9% |
-| Bez tekstu wskazówek | 494 | 69,8% |
-| Częste błędy (własne albo zestaw ogólny) | 143 | 20,2% |
+| Bez tekstu wskazówek | 464 | 65,5% |
+| Częste błędy (własne albo zestaw ogólny) | 153 | 21,6% |
 | Role mięśni | 508 | 71,8% |
 | **Pełna karta** | 90 | 12,7% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 98 | 13,8% |
@@ -40,10 +40,10 @@ Cel osiągnięty: **nie** (10 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| wskazówki (własne lub zestaw ogólny) | 640 | 214 | 426 |
-| częste błędy (tekst) | 557 | 143 | 414 |
-| komplet tekstów karty: pl | 671 | 541 | 130 |
-| komplet tekstów karty: en | 671 | 541 | 130 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 244 | 396 |
+| częste błędy (tekst) | 557 | 153 | 404 |
+| komplet tekstów karty: pl | 671 | 571 | 100 |
+| komplet tekstów karty: en | 671 | 571 | 100 |
 | komplet tekstów karty: cs | 531 | 505 | 26 |
 | komplet tekstów karty: sk | 531 | 505 | 26 |
 | komplet tekstów karty: hu | 531 | 505 | 26 |
@@ -85,7 +85,7 @@ Cel osiągnięty: **nie** (10 z 47 liczb).
 | `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
 | `curl` | do zrobienia | 36 | 0 | 36 | 5 | 6 | 0 | 30 | 0 | 0 |
-| `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 0 | 0 | 36 | 0 | 0 |
+| `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
 | `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 31 | 32 |
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
 | `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
@@ -95,7 +95,7 @@ Cel osiągnięty: **nie** (10 z 47 liczb).
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
-| `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 0 | 0 | 22 | 0 | 0 |
+| `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 2 | 0 | 18 | 0 | 0 |
 | `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 2 | 0 | 17 | 0 | 0 |
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 6 | 0 | 13 | 0 | 0 |
@@ -108,11 +108,11 @@ Cel osiągnięty: **nie** (10 z 47 liczb).
 | `row` | do zrobienia | 13 | 0 | 12 | 6 | 6 | 0 | 7 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 3 | 0 | 8 | 0 | 0 |
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 3 | 0 | 7 | 0 | 0 |
-| `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 0 | 0 | 10 | 0 | 0 |
+| `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 8 | 0 | 2 | 0 | 0 |
 | `strongman` | do zrobienia | 10 | 0 | 1 | 0 | 0 | 0 | 10 | 0 | 0 |
 | `hip_abd_add` | do zrobienia | 8 | 0 | 6 | 0 | 0 | 0 | 8 | 0 | 0 |
 | `leg_machine` | do zrobienia | 8 | 0 | 6 | 2 | 2 | 0 | 6 | 0 | 0 |
-| `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 0 | 0 | 8 | 0 | 0 |
+| `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 3 | 0 | 5 | 0 | 0 |
 | `shrug` | do zrobienia | 8 | 0 | 8 | 2 | 2 | 0 | 6 | 0 | 0 |
 | `carry` | do zrobienia | 7 | 0 | 7 | 0 | 2 | 0 | 5 | 0 | 0 |
 | `glute_floor` | do zrobienia | 7 | 0 | 7 | 0 | 0 | 0 | 7 | 0 | 0 |
@@ -128,45 +128,45 @@ Cel osiągnięty: **nie** (10 z 47 liczb).
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **541**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **571**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 541 | 0 | 0 | 0 |
-| en | 541 | 0 | 0 | 0 |
-| cs | 505 | 36 | 143 | 0 |
-| sk | 505 | 36 | 143 | 0 |
-| hu | 505 | 36 | 143 | 0 |
-| ro | 505 | 36 | 143 | 0 |
-| bg | 505 | 36 | 143 | 0 |
-| hr | 505 | 36 | 143 | 0 |
-| sl | 505 | 36 | 143 | 0 |
-| sr | 505 | 36 | 143 | 0 |
-| lt | 505 | 36 | 143 | 0 |
-| lv | 505 | 36 | 143 | 0 |
-| et | 505 | 36 | 143 | 0 |
-| uk | 505 | 36 | 143 | 0 |
-| es | 505 | 36 | 143 | 0 |
-| es-419 | 505 | 36 | 143 | 0 |
-| pt | 505 | 36 | 143 | 0 |
-| pt-BR | 505 | 36 | 143 | 0 |
-| de | 505 | 36 | 143 | 0 |
-| fr | 505 | 36 | 143 | 0 |
-| it | 505 | 36 | 143 | 0 |
-| nl | 505 | 36 | 143 | 0 |
-| sv | 505 | 36 | 143 | 0 |
-| da | 505 | 36 | 143 | 0 |
-| nb | 505 | 36 | 143 | 0 |
-| fi | 505 | 36 | 143 | 0 |
-| tr | 505 | 36 | 143 | 0 |
-| el | 505 | 36 | 143 | 0 |
-| id | 505 | 36 | 143 | 0 |
-| ms | 505 | 36 | 143 | 0 |
-| vi | 505 | 36 | 143 | 0 |
-| ru | 505 | 36 | 143 | 0 |
-| ja | 505 | 36 | 143 | 0 |
-| ko | 505 | 36 | 143 | 0 |
-| zh-Hant | 505 | 36 | 143 | 0 |
+| pl | 571 | 0 | 0 | 0 |
+| en | 571 | 0 | 0 | 0 |
+| cs | 505 | 66 | 228 | 0 |
+| sk | 505 | 66 | 228 | 0 |
+| hu | 505 | 66 | 228 | 0 |
+| ro | 505 | 66 | 228 | 0 |
+| bg | 505 | 66 | 228 | 0 |
+| hr | 505 | 66 | 228 | 0 |
+| sl | 505 | 66 | 228 | 0 |
+| sr | 505 | 66 | 228 | 0 |
+| lt | 505 | 66 | 228 | 0 |
+| lv | 505 | 66 | 228 | 0 |
+| et | 505 | 66 | 228 | 0 |
+| uk | 505 | 66 | 228 | 0 |
+| es | 505 | 66 | 228 | 0 |
+| es-419 | 505 | 66 | 228 | 0 |
+| pt | 505 | 66 | 228 | 0 |
+| pt-BR | 505 | 66 | 228 | 0 |
+| de | 505 | 66 | 228 | 0 |
+| fr | 505 | 66 | 228 | 0 |
+| it | 505 | 66 | 228 | 0 |
+| nl | 505 | 66 | 228 | 0 |
+| sv | 505 | 66 | 228 | 0 |
+| da | 505 | 66 | 228 | 0 |
+| nb | 505 | 66 | 228 | 0 |
+| fi | 505 | 66 | 228 | 0 |
+| tr | 505 | 66 | 228 | 0 |
+| el | 505 | 66 | 228 | 0 |
+| id | 505 | 66 | 228 | 0 |
+| ms | 505 | 66 | 228 | 0 |
+| vi | 505 | 66 | 228 | 0 |
+| ru | 505 | 66 | 228 | 0 |
+| ja | 505 | 66 | 228 | 0 |
+| ko | 505 | 66 | 228 | 0 |
+| zh-Hant | 505 | 66 | 228 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
@@ -180,6 +180,6 @@ Pełnych kart: 90. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy 
 | 0 | 90 |
 | 1 | 4 |
 | 2 | 42 |
-| 3 | 64 |
-| 4 | 335 |
-| 5 | 173 |
+| 3 | 74 |
+| 4 | 355 |
+| 5 | 143 |

@@ -2514,155 +2514,6 @@
    }
   },
   {
-   "id": "ciezar",
-   "pl": "ciężar",
-   "znaczenie": "obciążenie podnoszone w serii (kg/lb); NIE masa ciała",
-   "kanon": "ciężar",
-   "wykrywaj": "ciężar",
-   "jezyki": {
-    "pl": {
-     "zalecany": "ciężar",
-     "pewnosc": "srednia"
-    },
-    "en": {
-     "zalecany": "weight",
-     "pewnosc": "srednia"
-    },
-    "cs": {
-     "zalecany": "váha",
-     "pewnosc": "srednia"
-    },
-    "sk": {
-     "zalecany": "váha",
-     "pewnosc": "srednia"
-    },
-    "hu": {
-     "zalecany": "súly",
-     "pewnosc": "srednia"
-    },
-    "ro": {
-     "zalecany": "greutate",
-     "pewnosc": "srednia"
-    },
-    "bg": {
-     "zalecany": "тежест",
-     "pewnosc": "srednia"
-    },
-    "hr": {
-     "zalecany": "težina",
-     "pewnosc": "srednia"
-    },
-    "sl": {
-     "zalecany": "teža",
-     "pewnosc": "srednia"
-    },
-    "sr": {
-     "zalecany": "тежина",
-     "pewnosc": "srednia"
-    },
-    "lt": {
-     "zalecany": "svoris",
-     "pewnosc": "srednia"
-    },
-    "lv": {
-     "zalecany": "svars",
-     "pewnosc": "srednia"
-    },
-    "et": {
-     "zalecany": "raskus",
-     "pewnosc": "srednia"
-    },
-    "uk": {
-     "zalecany": "вага",
-     "pewnosc": "srednia"
-    },
-    "es": {
-     "zalecany": "peso",
-     "pewnosc": "srednia"
-    },
-    "es-419": {
-     "zalecany": "peso",
-     "pewnosc": "srednia"
-    },
-    "pt": {
-     "zalecany": "peso",
-     "pewnosc": "srednia"
-    },
-    "pt-BR": {
-     "zalecany": "peso",
-     "pewnosc": "srednia"
-    },
-    "de": {
-     "zalecany": "Gewicht",
-     "pewnosc": "srednia"
-    },
-    "fr": {
-     "zalecany": "charge",
-     "pewnosc": "srednia"
-    },
-    "it": {
-     "zalecany": "peso",
-     "pewnosc": "srednia"
-    },
-    "nl": {
-     "zalecany": "gewicht",
-     "pewnosc": "srednia"
-    },
-    "sv": {
-     "zalecany": "vikt",
-     "pewnosc": "srednia"
-    },
-    "da": {
-     "zalecany": "vægt",
-     "pewnosc": "srednia"
-    },
-    "nb": {
-     "zalecany": "vekt",
-     "pewnosc": "srednia"
-    },
-    "fi": {
-     "zalecany": "paino",
-     "pewnosc": "srednia"
-    },
-    "tr": {
-     "zalecany": "ağırlık",
-     "pewnosc": "srednia"
-    },
-    "el": {
-     "zalecany": "βάρος",
-     "pewnosc": "srednia"
-    },
-    "id": {
-     "zalecany": "beban",
-     "pewnosc": "srednia"
-    },
-    "ms": {
-     "zalecany": "beban",
-     "pewnosc": "srednia"
-    },
-    "vi": {
-     "zalecany": "mức tạ",
-     "pewnosc": "srednia"
-    },
-    "ru": {
-     "zalecany": "вес",
-     "pewnosc": "srednia"
-    },
-    "ja": {
-     "zalecany": "重量",
-     "pewnosc": "srednia"
-    },
-    "ko": {
-     "zalecany": "무게",
-     "pewnosc": "srednia"
-    },
-    "zh-Hant": {
-     "zalecany": "重量",
-     "pewnosc": "srednia"
-    }
-   }
-  },
-  {
    "id": "masa_ciala",
    "pl": "masa ciała",
    "znaczenie": "waga użytkownika (pomiary); także ćwiczenia z masą ciała",
@@ -10337,7 +10188,12 @@
    "jezyki": {
     "el": {
      "zalecany": "bench press",
-     "zakazane": [{"wzorzec": "πιέσεις\\s+πάγκου", "powod": "„πιέσεις πάγκου” to kalka; w el zalecane bench press, tak mówi się na siłowni"}],
+     "zakazane": [
+      {
+       "wzorzec": "πιέσεις\\s+πάγκου",
+       "powod": "„πιέσεις πάγκου” to kalka; w el zalecane bench press, tak mówi się na siłowni"
+      }
+     ],
      "pewnosc": "srednia"
     }
    }
@@ -10354,7 +10210,12 @@
    "jezyki": {
     "el": {
      "zalecany": "deadlift",
-     "zakazane": [{"wzorzec": "(?<![\\p{L}])(άρσεις|νεκρή\\s+άρση)(?![\\p{L}])", "powod": "„άρσεις” to ogólne podnoszenia, „νεκρή άρση” to kalka; w el zalecane deadlift"}],
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(άρσεις|νεκρή\\s+άρση)(?![\\p{L}])",
+       "powod": "„άρσεις” to ogólne podnoszenia, „νεκρή άρση” to kalka; w el zalecane deadlift"
+      }
+     ],
      "pewnosc": "srednia"
     }
    }
@@ -10362,14 +10223,21 @@
   {
    "id": "telefon_es419",
    "pl": "telefon (urządzenie użytkownika)",
-   "tylko": ["es-419"],
+   "tylko": [
+    "es-419"
+   ],
    "znaczenie": "telefon użytkownika; w es-419 potocznie „celular” (jak w aplikacji na telefonie), w es zostaje „teléfono”",
    "kanon": null,
    "wykrywaj": "(?<![\\p{L}])telefon(ie|em|u|y|owi|ów|ach)?(?![\\p{L}])",
    "jezyki": {
     "es-419": {
      "zalecany": "celular",
-     "zakazane": [{"wzorzec": "teléfono", "powod": "w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026)"}],
+     "zakazane": [
+      {
+       "wzorzec": "teléfono",
+       "powod": "w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026)"
+      }
+     ],
      "pewnosc": "srednia"
     }
    }
@@ -10377,39 +10245,76 @@
   {
    "id": "rysunek_zdanie",
    "pl": "rysunek (w zdaniu pod rysunkiem ćwiczenia: „Rysunek pokazuje ruch w jedną stronę…”)",
-   "tylko": ["ja", "hu", "lt", "sv", "vi", "ms"],
+   "tylko": [
+    "ja",
+    "hu",
+    "lt",
+    "sv",
+    "vi",
+    "ms"
+   ],
    "znaczenie": "rysunek techniki ćwiczenia w zdaniu opisującym, co pokazuje (recenzja lokalizacji 02.11.2026, pull_up C); słowo ma być takie samo jak w pozostałych podpisach rysunku w tym języku; w ms „Animasi” (rysunek jest animowany, jak w opisie sklepu), nie „lukisan” (obraz malowany)",
    "kanon": null,
    "wykrywaj": "^Rysunek pokazuje",
    "jezyki": {
     "ja": {
      "zalecany": "図",
-     "zakazane": [{"wzorzec": "イラスト", "powod": "w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki"}],
+     "zakazane": [
+      {
+       "wzorzec": "イラスト",
+       "powod": "w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "hu": {
      "zalecany": "rajz",
-     "zakazane": [{"wzorzec": "(?<![\\p{L}])ábra", "powod": "w pozostałych podpisach rysunku ćwiczenia plik hu używa „rajz”; „ábra” to wykres / rycina w publikacji"}],
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])ábra",
+       "powod": "w pozostałych podpisach rysunku ćwiczenia plik hu używa „rajz”; „ábra” to wykres / rycina w publikacji"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "lt": {
      "zalecany": "piešinys",
-     "zakazane": [{"wzorzec": "brėžin", "powod": "w pozostałych podpisach rysunku ćwiczenia plik lt używa „piešinys”; „brėžinys” to rysunek techniczny / kreślarski"}],
+     "zakazane": [
+      {
+       "wzorzec": "brėžin",
+       "powod": "w pozostałych podpisach rysunku ćwiczenia plik lt używa „piešinys”; „brėžinys” to rysunek techniczny / kreślarski"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "sv": {
      "zalecany": "teckning",
-     "zakazane": [{"wzorzec": "(?<![\\p{L}])bild", "powod": "w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek"}],
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])bild",
+       "powod": "w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "vi": {
      "zalecany": "hình minh họa",
-     "zakazane": [{"wzorzec": "hình vẽ", "powod": "w pozostałych podpisach rysunku ćwiczenia plik vi używa „hình minh họa”"}],
+     "zakazane": [
+      {
+       "wzorzec": "hình vẽ",
+       "powod": "w pozostałych podpisach rysunku ćwiczenia plik vi używa „hình minh họa”"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "ms": {
      "zalecany": "animasi",
-     "zakazane": [{"wzorzec": "lukisan", "powod": "rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja"}],
+     "zakazane": [
+      {
+       "wzorzec": "lukisan",
+       "powod": "rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja"
+      }
+     ],
      "pewnosc": "srednia"
     }
    }
@@ -10417,14 +10322,23 @@
   {
    "id": "nastepne_powtorzenie",
    "pl": "następne powtórzenie (w zdaniu pod rysunkiem ćwiczenia: „w kolejnym powtórzeniu…”)",
-   "tylko": ["ko", "zh-Hant", "ja"],
+   "tylko": [
+    "ko",
+    "zh-Hant",
+    "ja"
+   ],
    "znaczenie": "kolejne powtórzenie w tej samej serii (nie „następnym razem”, nie „następna liczba”); recenzja lokalizacji 02.11.2026, pull_up C",
    "kanon": null,
    "wykrywaj": "w kolejnym powtórzeniu",
    "jezyki": {
     "ko": {
      "zalecany": "다음 반복",
-     "zakazane": [{"wzorzec": "다음 횟수", "powod": "„횟수” to liczba razy (dosłownie „następna liczba”), nie kolejne powtórzenie; w słowniku powtórzenie to „반복”"}],
+     "zakazane": [
+      {
+       "wzorzec": "다음 횟수",
+       "powod": "„횟수” to liczba razy (dosłownie „następna liczba”), nie kolejne powtórzenie; w słowniku powtórzenie to „반복”"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "zh-Hant": {
@@ -10573,6 +10487,261 @@
       }
      ],
      "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "ciezar",
+   "pl": "ciężar",
+   "znaczenie": "obciążenie podnoszone w serii (kg/lb); NIE masa ciała",
+   "kanon": "ciężar",
+   "wykrywaj": "ciężar",
+   "jezyki": {
+    "pl": {
+     "zalecany": "ciężar",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(przenieś|przenoś|przenosz\\w*|przeniesienie)\\s+ciężar\\w*(?![\\p{L}])|ciężar\\w*\\s+ciała",
+       "powod": "w aplikacji „ciężar” to obciążenie na sztandze/hantlach, nie masa ciała; przeniesienie masy ciała opisz innym słowem (np. „pochyl się do ściany”)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "weight",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])shift(ing)?\\s+(your\\s+)?weight(?![\\p{L}])",
+       "powod": "w aplikacji „weight” to obciążenie, nie masa ciała; przeniesienie masy ciała opisz ruchem („lean toward the wall”)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "váha",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "váha",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "súly",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "greutate",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "тежест",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "težina",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "teža",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "тежина",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "svoris",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "svars",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "raskus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "вага",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Gewicht",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "charge",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "gewicht",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "vikt",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "vægt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "vekt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "paino",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "ağırlık",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "βάρος",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "beban",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "beban",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "mức tạ",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "вес",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "重量",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "무게",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "重量",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "tasma_rozciaganie",
+   "pl": "taśma (do rozciągania)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "taśma lub pasek do rozciągania, ręcznik; NIE pas obciążeniowy (w aplikacji „pas” to sprzęt). Dotyczy wskazówek mobilności; pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów)",
+   "kanon": null,
+   "wykrywaj": "taśm|(?<![\\p{L}])pas(a|em|ie|y|ów)?(?![\\p{L}])",
+   "wyklucz": "wysokości pasa|w pasie|na pasie",
+   "jezyki": {
+    "pl": {
+     "zalecany": "taśma",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])pas(a|em|ie|y|ów)?(?![\\p{L}])",
+       "powod": "w aplikacji „pas” to pas obciążeniowy; do rozciągania mówi się „taśma”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "strap",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(belt|sash)s?(?![\\p{L}])",
+       "powod": "„belt” to pas obciążeniowy; do rozciągania „strap”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "krazenia",
+   "pl": "krążenia (stawów)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "ruch koliste w stawie (stopa, ramiona, nadgarstki), tak jak mówi się na sali: „krążenia”; NIE „zataczanie kół”",
+   "kanon": null,
+   "wykrywaj": "krąż|zataczaj|(?<![\\p{L}])koła(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "krążenia",
+     "zakazane": [
+      {
+       "wzorzec": "zataczaj|(?<![\\p{L}])koła(?![\\p{L}])",
+       "powod": "na sali mówi się „krążenia / krąż”, nie „zataczaj koła”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "circle",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "podwijanie_miednicy",
+   "pl": "podwijanie miednicy",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "cofanie miednicy pod siebie (zaokrąglenie dołu pleców); potocznie „podwijać miednicę”, jak w hang.ribs",
+   "kanon": null,
+   "wykrywaj": "podwij\\w*\\s+miednic|odchylani\\w*\\s+miednicy|tyłopochyl",
+   "jezyki": {
+    "pl": {
+     "zalecany": "podwijać miednicę",
+     "zakazane": [
+      {
+       "wzorzec": "odchylani\\w*\\s+miednicy|tyłopochyl",
+       "powod": "język podręcznika; w siłowni mówi się „podwijać miednicę”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "tuck your pelvis",
+     "zakazane": [
+      {
+       "wzorzec": "posterior\\s+pelvic\\s+tilt|tilt(ing)?\\s+(your\\s+)?pelvis\\s+back",
+       "powod": "język podręcznika; potocznie „tuck your pelvis”"
+      }
+     ],
+     "pewnosc": "srednia"
     }
    }
   }

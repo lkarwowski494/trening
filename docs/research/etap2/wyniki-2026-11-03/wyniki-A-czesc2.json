@@ -1,0 +1,52 @@
+[
+{"nr": 1, "cwiczenie": "Lower Back Curl", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/lower-back-curl/ (404)", "WebSearch maniacmuscle.com: prone back extension floor", "WebSearch R/F/S: wznosy/prostowanie tułowia w leżeniu przodem"], "odrzucone": [{"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/147/unoszenie-tulowia-w-lezeniu-przodem", "powod": "unosi tułów i nogi jednocześnie — inny ruch"}]},
+{"nr": 2, "cwiczenie": "Reverse Hyperextension", "stan": "brak (1 z 3)", "zdania": [], "zrodla_czesciowe": [{"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/unoszenie-nog-na-lawce-poziomej", "cytat": "Pozycja leżąca przodem na ławce poziomej, biodra wysunięte poza ławkę."}], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/reverse-hyperextension/ (404)", "WebSearch maniacmuscle.com: reverse hyperextension machine", "WebSearch R/S: unoszenie nóg leżąc przodem, biodra poza ławką"]},
+{"nr": 3, "cwiczenie": "Weighted Ball Hyperextension", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 5 domen: prostowanie tułowia na piłce gimnastycznej leżąc przodem"]},
+{"nr": 4, "cwiczenie": "Carioca Quick Step", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 5 domen: carioca krok skrzyżny bokiem"]},
+{"nr": 5, "cwiczenie": "Fast Skipping", "stan": "brak", "zdania": [], "uwaga": "serwisy opisują skip A (= High Knees); krok-podskok w przód nieopisany", "sprawdzone_bez_wyniku": ["WebSearch 5 domen: skip A bieganie w miejscu"]},
+{"nr": 6, "cwiczenie": "High Knees", "stan": "2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Stań prosto, plecy wyprostowane, ręce ugięte w łokciach.", "en": "Stand tall with a straight back and your elbows bent.", "uwaga": "nie wdrażać przed 3. źródłem", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/skip-a-w-miejscu-z-rekami-pracujacymi/", "cytat": "Pilnuj, żeby brzuch był napięty, a plecy proste!"},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/587/bieg-z-wysokim-unoszeniem-kolan-skip-a", "cytat": "Wzrok skieruj przed siebie (nie patrz na nogi), plecy wyprostowane, ramiona ugięte."}]}],
+ "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/high-knees/ (404)", "WebSearch maniacmuscle.com: high knees run in place", "F https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/bieg-w-miejscu-kolana-wysoko — tylko ruch, bez ustawienia"]},
+{"nr": 7, "cwiczenie": "Jumping Jacks", "stan": "2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Stań prosto, ręce wzdłuż tułowia.", "en": "Stand tall with your arms by your sides.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/pajacyki", "cytat": "Pozycja wyjściowa stojąca, z ramionami wzdłuż tułowia."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/jumping-jacks/", "cytat": "Stań z kończynami górnymi wzdłuż ciała."}]},
+ {"rola": "move", "pl": "Podskocz, rozstawiając nogi na boki i unosząc ręce bokiem nad głowę, potem przeskokiem wróć.", "en": "Jump your feet out to the sides as you raise your arms overhead, then jump back.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/pajacyki", "cytat": "Ćwiczenie polega na wykonywaniu przeskoków nogami na boki wraz z uniesieniem ramion bokiem."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/jumping-jacks/", "cytat": "Na wdechu wykonaj dynamiczny podskok, odwodząc nogi w stawach biodrowych", "uwaga": "fragment zdania; liczba szerokości pominięta"}]},
+ {"rola": "mis", "pl": "Ciężkie, głośne lądowanie.", "en": "Landing heavily and loudly.", "wniosek": ["wniosek", "<id move>"], "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/jumping-jacks/", "cytat": "W trakcie ćwiczenia unikaj mocnego stawiania stóp na ziemi. Przeskoki wykonuj lekko i możliwie cicho."}]}],
+ "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/jumping-jacks/ (404)", "WebSearch potreningu.pl + atlas.kulturystyka.pl: pajacyki — tylko wzmianki w artykułach"]},
+{"nr": 8, "cwiczenie": "Ski Erg", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 5 domen: ski erg ergometr narciarski"]},
+{"nr": 9, "cwiczenie": "Stair Climber", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 5 domen: stepper schody stair climber — tylko step-up i bieg po schodach"]},
+{"nr": 10, "cwiczenie": "Treadmill Walking", "stan": "brak (1 z 3)", "zdania": [], "zrodla_czesciowe": [{"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/738/bieznia-66kmh-6-pod-gore", "cytat": "Trzymaj się środkowej części pasa."}, {"serwis": "F", "url": "https://www.fabrykasily.pl/treningi/marsz-rekreacyjny-chod-sportowy-i-nordic-walking", "cytat": "proste (tzn. równoległe) stawianie stóp", "uwaga": "marsz w terenie, nie bieżnia — decyzja recenzenta"}]},
+{"nr": 11, "cwiczenie": "Butt-Ups", "stan": "brak", "zdania": [], "odrzucone": [{"serwis": "M", "url": "https://maniacmuscle.com/plank-to-pike/", "powod": "podpór na dłoniach, nie na przedramionach"}, {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/pike-trx", "powod": "stopy w taśmach TRX"}]},
+{"nr": 12, "cwiczenie": "Cable Reverse Crunch", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "zdania": [
+ {"rola": "setup", "pl": "Połóż się na plecach, ręce wzdłuż tułowia, nogi ugięte w kolanach i uniesione nad podłogę.", "en": "Lie on your back, arms by your sides, knees bent and feet off the floor.", "uproszczenie": "źródła wersji bez linki (Reverse Crunch); zaczepienie linki — [OTWARTE]", "zrodla_jak": "Reverse Crunch (nr 76)"}]},
+{"nr": 13, "cwiczenie": "Cable Seated Crunch", "stan": "brak (1 z 3)", "zdania": [], "zrodla_czesciowe": [{"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/309/sklony-tulowia-z-linka-wyciagu-siedzac", "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"}], "odrzucone": [{"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/spiecia-brzucha-z-linkami-wyciagu-gornego", "powod": "klęk przodem do wyciągu — inna pozycja"}]},
+{"nr": 14, "cwiczenie": "Cocoons", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 5 domen", "WebSearch maniacmuscle.com: cocoon crunch"]},
+{"nr": 15, "cwiczenie": "Crunch - Hands Overhead", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 5 domen: spięcia z rękami nad głową — S 316 inny ruch, atlas.kulturystyka pełny siad"]},
+{"nr": 16, "cwiczenie": "Crunch - Legs On Exercise Ball", "stan": "brak (1 z 3)", "zdania": [], "zrodla_czesciowe": [{"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-brzuch/spiecia-brzucha-z-nogami-opartymi", "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"}], "sprawdzone_bez_wyniku": ["WebSearch maniacmuscle.com + centrumrespo.pl: crunch legs on stability ball"]},
+{"nr": 17, "cwiczenie": "Decline Crunch", "stan": "2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce skośnej głową w dół, stopy zaprzyj pod wałkami, dłonie przy skroniach albo skrzyżowane na klatce.", "en": "Lie on a decline bench, head down, feet hooked under the pads, hands by your temples or crossed on your chest.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/decline-crunch/", "cytat": "Place your feet under the pads so your lower body stays stable without excessive pulling."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/310/sklony-w-lezeniu-glowa-w-dol", "cytat": "Nogi zaprzyj o poduszki znajdujące się na końcu ławki."}]}]},
+{"nr": 18, "cwiczenie": "Decline Oblique Crunch", "stan": "brak", "zdania": []},
+{"nr": 19, "cwiczenie": "Decline Reverse Crunch", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/decline-reverse-crunch/ (404)", "WebSearch R/F/S: odwrotne spięcia na ławce skośnej"]},
+{"nr": 20, "cwiczenie": "Dragon Flag", "stan": "brak (1 z 3)", "zdania": [], "zrodla_czesciowe": [{"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/street-workout/dragon-flag-samo-opuszczanie", "cytat": "Nie doprowadzaj do wyginania się kręgosłupa w odcinku lędźwiowym."}], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/dragon-flag/ (404)", "WebSearch centrumrespo.pl, potreningu.pl, maniacmuscle.com: dragon flag"]},
+{"nr": 76, "cwiczenie": "Reverse Crunch", "stan": "komplet 3 — praktyka (setup, mis)", "zdania": [
+ {"rola": "setup", "pl": "Połóż się na plecach, ręce wzdłuż tułowia, nogi ugięte w kolanach i uniesione nad podłogę.", "en": "Lie on your back, arms by your sides, knees bent and feet off the floor.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/reverse-crunch/", "cytat": "Ramiona ułóż wzdłuż ciała."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy", "cytat": "Kończyny dolne uniesione z podłoża, ugięte w kolanach."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/reverse-crunch/", "cytat": "Bend your knees: Bring your knees to roughly 90 degrees and lift your feet off the floor."}]},
+ {"rola": "mis", "pl": "Zarzucanie nóg z rozpędu zamiast podwijania miednicy.", "en": "Swinging your legs up with momentum instead of curling your pelvis.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/reverse-crunch/", "cytat": "Kontroluj ruch, nie używaj rozpędu."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy", "cytat": "Postaraj się aby ruch wykonać przez mocną pracę mięśni brzucha, a nie poprzez dynamiczny ruch nogami."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/reverse-crunch/", "cytat": "Think 'curl the pelvis,' not 'throw the legs': This keeps the abs as the main driver."}]},
+ {"rola": "mis", "pl": "Opadanie biodrami bez kontroli.", "en": "Dropping your hips without control.", "wniosek": ["wniosek", "<id move>"], "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/reverse-crunch/", "cytat": "Lower slowly: The eccentric phase is where many people lose tension."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy", "cytat": "Następnie powoli powróć do pozycji początkowej."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/reverse-crunch/", "cytat": "Kontroluj ruch, nie używaj rozpędu."}]}]}
+]

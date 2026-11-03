@@ -9,7 +9,7 @@ import { AppState } from 'react-native';
 import * as Font from 'expo-font';
 import * as store from '@/lib/store';
 import { t } from '@/lib/i18n';
-import { BOOT_GUARD_KEY, BOOT_STABLE_MS } from '@/lib/state/crashguard';
+import { BOOT_GUARD_KEY, BOOT_STABLE_MS, startedInBackground } from '@/lib/state/crashguard';
 import { BOOT_PHASE_KEY, parseBootPhase, describeBootPhase } from '@/lib/state/bootphase';
 import { fresh, seedState } from './helpers';
 import { renderApp, flushAll, screen } from './app';
@@ -73,6 +73,30 @@ describe('ZK-07: wyjście do tła przed końcem ładowania to nie awaria', () =>
       expect(screen.getByText(SAFE())).toBeTruthy(); for (const h of handlers) h('background'); await flushAll(BOOT_STABLE_MS + 100);
       expect(guardInDb()).toEqual({ starts: 2 });
     } finally { AppState.addEventListener = orig; }
+  });
+});
+
+/* R-11-03 (decyzja techniczna koordynatora 03.11.2026): system uruchamia proces w tle (po instalacji, odświeżanie), zamraża go i zabija przed „kamieniem” (setTimeout nie
+ * biegnie, AppState się nie zmienia) — to nie awaria. Start z AppState.currentState === 'background' zaznacza stabilność od razu. Zwykły start iOS to 'inactive'/'active'
+ * (lib/intro.ts) i nie jest zwolniony — prawdziwa pętla awarii przy aktywnym starcie nadal jest wykrywana. */
+describe('R-11-03: start w tle (zamrożony, zabity przed „kamieniem”) nie jest awarią', () => {
+  const withState = async (state: string, fn: () => Promise<void>) => {
+    const d = Object.getOwnPropertyDescriptor(AppState, 'currentState'); Object.defineProperty(AppState, 'currentState', { value: state, configurable: true, writable: true });
+    try { await fn(); } finally { if (d) Object.defineProperty(AppState, 'currentState', d); else delete (AppState as any).currentState; }
+  };
+  test.each([['background', true], ['active', false], ['inactive', false], ['unknown', false], [undefined, false], [null, false]])('startedInBackground(%p) = %p', (st, want) => { expect(startedInBackground(st as string | undefined)).toBe(want); });
+  test('ekran: start w tle, proces zabity przed „kamieniem” (czas stoi) — licznik 0; kolejny start nie jest awaryjny', async () => {
+    await withState('background', async () => { await renderApp({ saved: seedState('pl'), navTimers: false }); await flushAll(20); expect(guardInDb()).toEqual({ starts: 0 }); });
+    await renderApp({ saved: seedState('pl'), navTimers: false, kv: { [BOOT_GUARD_KEY]: JSON.stringify({ starts: 0 }) } }); await flushAll(50);
+    expect(screen.queryByText(SAFE())).toBeNull(); expect(store.isReadyForTests()).toBe(true);
+  });
+  test('ekran: start w tle po poprzednim niedokończonym starcie (licznik 1) — zapisany tryb awaryjny nie jest maskowany (jak przy wyjściu do tła)', async () => {
+    await withState('background', async () => { await renderApp({ saved: seedState('pl'), navTimers: false, kv: { [BOOT_GUARD_KEY]: JSON.stringify({ starts: 1 }) } }); await flushAll(50); expect(screen.getByText(SAFE())).toBeTruthy(); });
+  });
+  test('ekran: start aktywny zabity przed „kamieniem” nadal liczy się jako awaria (licznik 1) i drugi taki start jest awaryjny', async () => {
+    await withState('active', async () => { await renderApp({ saved: seedState('pl'), navTimers: false }); await flushAll(20); expect(guardInDb()).toEqual({ starts: 1 }); });
+    await renderApp({ saved: seedState('pl'), navTimers: false, kv: { [BOOT_GUARD_KEY]: JSON.stringify({ starts: 1 }) } }); await flushAll(50);
+    expect(screen.getByText(SAFE())).toBeTruthy();
   });
 });
 

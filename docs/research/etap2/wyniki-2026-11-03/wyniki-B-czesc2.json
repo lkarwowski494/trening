@@ -1,0 +1,84 @@
+[
+{"cwiczenie": "Cable Fly", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "cfly.mis.sway (nowe)", "pl": "Kołysanie tułowiem zamiast pracy samych rąk.", "en": "Swinging your torso instead of moving just your arms.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-wykorzystaniem-wyciagow-cable-crossover", "cytat": "Nie kołysz tułowiem."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 13", "cytat": "Należy unikać dodatkowych ruchów tułowia- pracują tylko ramiona i klatka"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/rozpietki-na-bramie/", "cytat": "Praca ma się odbywać w stawach ramiennych, a kręgosłup ma być ustawiony neutralnie."}]}]},
+{"cwiczenie": "Chest Fly (hantle)", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "dfly.mis.fast (nowe)", "pl": "Szybki, bujany ruch zamiast kontrolowanego.", "en": "Fast, swinging reps instead of controlled ones.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-fly-flat-bench/", "cytat": "Momentum removes tension and increases risk."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 7", "cytat": "Należy stosować umiarkowane tempo wykonania ćwiczenia-pośpiech najczęściej powoduje błędy w technice"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/rozpietki/", "cytat": "Skup się na jakości ruchu i kontroli tempa."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-hantlami-na-lawce-plaskiej", "cytat": "powolnym ruchem rozłóż wyprostowane ramiona"}]}]},
+{"cwiczenie": "Cable Fly (low to high)", "stan": "komplet — praktyka (zastrzeżenie: S322 ≈ F3, recenzent ocenia kopię; jeśli kopia → 2 z 3)", "zdania": [
+ {"rola": "setup", "id": "cfly.low.setup (nowe)", "pl": "Stań pośrodku między dolnymi wyciągami, ręce rozłożone nisko, łokcie lekko ugięte.", "en": "Stand centred between two low pulleys, arms out low, elbows slightly bent.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-low-fly-low-to-high-cable-fly/", "cytat": "Stand centered between the columns with a staggered stance for balance."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/klatka-piersiowa/rozpietki-z-wykorzystaniem-wyciagu-dolnego", "cytat": "Ramiona rozłożone i lekko zgięte w łokciach. Rączki wyciągu dolnego w dłoniach."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/322/krzyzowanierozpietki-linek-wyciagu-dolnego", "cytat": "Stań w lekkim rozkroku pomiędzy linkami wyciągów dolnych."}]},
+ {"rola": "move", "id": "cfly.low.move (nowe)", "pl": "Prowadź uchwyty łukiem w górę i do środka, aż spotkają się na wysokości klatki; wróć powoli.", "en": "Sweep the handles up and in until they meet at chest height; return slowly.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-low-fly-low-to-high-cable-fly/", "cytat": "Move the handles in a wide arc from low & wide to upward toward upper-chest level."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/klatka-piersiowa/rozpietki-z-wykorzystaniem-wyciagu-dolnego", "cytat": "przyciągnij do siebie ramiona, tak aby rączki wyciągu spotkały się ze sobą na wysokości klatki piersiowej."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/322/krzyzowanierozpietki-linek-wyciagu-dolnego", "cytat": "Weź głęboki wdech i przyciągnij do siebie ramiona tak, aby rączki wyciągów znalazły się na wysokości klatki piersiowej."}]}]},
+{"cwiczenie": "Cable Fly (high to low)", "stan": "1 z 3 (+ częściowe) — otwarte", "zdania": [], "znalezione": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/323/krzyzowanierozpietki-linek-wyciagu-gornego", "cytat": "Stań w lekkim rozkroku pomiędzy linkami wyciągów górnych."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 13", "cytat": "Chwytamy rączki wyciągów i ściągamy je do wewnątrz w dół"},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/treningi/trzymaj-linie-czyli-cwiczenia-na-wyciagu", "cytat": "Przyciąganie linek z góry zaangażuje mocniej dolną część mięśnia piersiowego", "uwaga": "tylko wzmianka, bez opisu ustawienia"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/rozpietki-na-bramie/", "cytat": "Linki powinny znajdować się na tym samym poziomie, ale mogą być ułożone nieco wyżej lub niżej.", "uwaga": "wersja pozioma"}],
+ "odrzucone": [{"serwis": "M", "url": "https://maniacmuscle.com/cable-decline-fly-high-to-low-cable-fly/", "powod": "na ławce ujemnej — inna pozycja ciała"}]},
+{"cwiczenie": "Flat Bench Cable Fly", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "rozpiętki z hantlami na ławce płaskiej (R, F, S) + M wprost z linkami", "roznica": "linki zamiast hantli", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce płaskiej między dolnymi wyciągami; uchwyty nad klatką, łokcie lekko ugięte.", "en": "Lie on a flat bench between two low pulleys; handles over your chest, elbows slightly bent.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-lying-fly-flat-bench-cable-fly/", "cytat": "Hands start above the chest with soft elbows", "uwaga": "liczbę kąta pomijam"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/rozpietki/", "cytat": "Stawy łokciowe trzymaj lekko zgięte, ramiona powinny być ustawione prostopadle do tułowia."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-hantlami-na-lawce-plaskiej", "cytat": "Połóż się na ławce płaskiej."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 7", "cytat": "Ćwiczenie rozpoczynamy z ramionami wyprostowanymi-prostopadłymi do podłoża"}]},
+ {"rola": "move", "pl": "Rozłóż ręce szerokim łukiem na boki, aż poczujesz rozciąganie w klatce; wróć tym samym torem.", "en": "Open your arms wide to the sides until you feel a stretch in your chest; return along the same arc.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/rozpietki/", "cytat": "powoli opuść hantle, prowadząc ramiona szeroko."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-hantlami-na-lawce-plaskiej", "cytat": "aż poczujesz rozciąganie w klatce piersiowej."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-lying-fly-flat-bench-cable-fly/", "cytat": "Stop when you feel a strong chest stretch while the shoulders remain stable (no anterior shoulder pinch)."}]},
+ {"rola": "mis", "pl": "Zginanie łokci w trakcie — rozpiętki zamieniają się w wyciskanie.", "en": "Bending your elbows more as you go, turning the fly into a press.", "zrodla": [
+  ["wniosek", "<setup Flat Bench Cable Fly>"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-fly-flat-bench/", "cytat": "Don’t let elbows straighten or bend more during the rep."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/rozpietki/", "cytat": "Stawy łokciowe trzymaj lekko zgięte"}]}]},
+{"cwiczenie": "Incline Cable Fly", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "rozpiętki z hantlami na ławce skośnej (R, F; S poz. 8 nieczytana dosłownie) + M wprost z linkami", "roznica": "linki zamiast hantli", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce skośnej między wyciągami; uchwyty nad klatką, łokcie lekko ugięte.", "en": "Lie on an incline bench between the pulleys; handles over your chest, elbows slightly bent.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-incline-fly/", "cytat": "Place pulleys around mid-chest to shoulder height."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/incline-bench-chest-fly/", "cytat": "Połóż się na plecach na ławce skośnej", "uwaga": "kąt pomijam"},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-hantlami-na-lawce-dodatniej", "cytat": "Ramiona ustaw na szerokość barków, prostopadle do podłogi."}]},
+ {"rola": "move", "pl": "Rozłóż ręce szerokim łukiem na boki i wróć tym samym torem, kąt w łokciach bez zmian.", "en": "Open your arms wide to the sides and return along the same arc, keeping your elbow angle the same.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-incline-fly/", "cytat": "Sweep your hands in a wide arc up and in, keeping the elbow angle mostly constant."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/incline-bench-chest-fly/", "cytat": "Po uzyskaniu pełnego zakresu ruchu wróć tym samym torem do pozycji wyjściowej."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-hantlami-na-lawce-dodatniej", "cytat": "Zacznij unosić sztangielki z powrotem do pozycji wyjściowej,", "uwaga": "rozkładanie ramion — streszczenie, cytat do sprawdzenia"}]},
+ {"rola": "mis", "pl": "Zginanie łokci w trakcie — rozpiętki zamieniają się w wyciskanie.", "en": "Bending your elbows more as you go, turning the fly into a press.", "zrodla": [
+  ["wniosek", "<move Incline Cable Fly>"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-incline-fly/", "cytat": "Elbows bend too much and triceps/front delts take over."}]}]},
+{"cwiczenie": "Single Arm Cable Fly", "stan": "komplet – uproszczenie (jednorącz), do potwierdzenia przez recenzenta", "uproszczenie": {"baza": "Cable Fly stojąc (R rozpietki-na-bramie, F cable-crossover, S klatka.asp poz. 13, M standing mid)", "roznica": "jedna ręka", "ruch_stawow": "ten sam (ocena badacza); wysokość wyciągu wg figury"}, "zrodla_jak": "Cable Fly (cues.json) + wyniki-B-czesc2.md (R2, F2, S1, M1)", "zdania": [
+ {"rola": "setup", "pl": "Stań bokiem do wyciągu, uchwyt w ręce bliżej wyciągu, łokieć lekko ugięty, tułów prosto.", "en": "Stand side-on to the pulley, handle in the near hand, elbow slightly bent, torso upright."},
+ {"rola": "move", "pl": "Prowadź rękę łukiem przed siebie do środka klatki; wróć powoli.", "en": "Sweep your arm in an arc across to the middle of your chest; return slowly."},
+ {"rola": "mis", "pl": "Skręcanie albo kołysanie tułowiem.", "en": "Twisting or swinging your torso.", "zrodla": [["wniosek", "<setup Single Arm Cable Fly>"], {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/rozpietki-z-wykorzystaniem-wyciagow-cable-crossover", "cytat": "Nie kołysz tułowiem."}, {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 13", "cytat": "Należy unikać dodatkowych ruchów tułowia- pracują tylko ramiona i klatka"}]}]},
+{"cwiczenie": "One-Arm Flat Bench Dumbbell Fly", "stan": "komplet – uproszczenie (jednorącz), do potwierdzenia przez recenzenta", "uproszczenie": {"baza": "rozpiętki z hantlami na ławce płaskiej (R, F, S poz. 7, M)", "roznica": "jedna ręka; przytrzymanie ławki wolną ręką — wniosek badacza", "ruch_stawow": "ten sam"}, "zrodla_jak": "Flat Bench Cable Fly (R, F, S) + M https://maniacmuscle.com/dumbbell-fly-flat-bench/", "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce płaskiej, hantel w jednej ręce nad klatką, łokieć lekko ugięty; drugą ręką przytrzymaj się ławki.", "en": "Lie on a flat bench, one dumbbell over your chest, elbow slightly bent; hold the bench with your free hand."},
+ {"rola": "move", "pl": "Opuść hantel szerokim łukiem w bok, aż poczujesz rozciąganie; wróć tym samym torem.", "en": "Lower the dumbbell out to the side in a wide arc until you feel a stretch; return along the same arc."},
+ {"rola": "mis", "pl": "Szybki, bujany ruch zamiast kontrolowanego.", "en": "Fast, swinging reps instead of controlled ones.", "zrodla_jak": "Chest Fly (hantle) mis"}]},
+{"cwiczenie": "Decline Dumbbell Fly", "stan": "2 z 3", "znalezione": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/330/rozpietki-ze-sztangielkami-lezac-na-lawce-ujemnej", "cytat": "Połóż się stabilnie na ławce ujemnej"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-decline-fly/", "cytat": "Elbows bend too much and the movement becomes a dumbbell press."}],
+ "zdania_kandydaci": ["setup: Połóż się stabilnie na ławce ujemnej, hantle nad klatką, łokcie lekko ugięte.", "move: Rozłóż ręce łukiem na boki i wróć tym samym torem.", "mis: Zginanie łokci — przejście w wyciskanie."],
+ "sprawdzone_bez_wyniku": ["R: kategoria klatka str. 1–5", "F: WebSearch 'rozpiętki ławka skośna głową w dół ujemna hantle' — tylko wyciskanie głową w dół"]},
+{"cwiczenie": "Bent-Arm Barbell Pullover", "stan": "setup, move: komplet – uproszczenie (część wspólna); mis: 2 z 3", "uproszczenie": {"baza": "pullover z hantlem na ławce (R, S)", "roznica": "sztanga zamiast hantla", "ruch_stawow": "ten sam; S przeczy stałemu kątowi łokci"}, "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce płaskiej, stopy na podłodze; sztanga nad klatką, łokcie ugięte.", "en": "Lie on a flat bench, feet on the floor; bar over your chest, elbows bent.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/barbell-bent-arm-pullover/", "cytat": "Lie flat on a bench: Position your upper back, head, and hips securely on the bench with both feet planted on the floor."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/dumbbell-chest-pullover/", "cytat": "Połóż się na plecach na ławce płaskiej."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/326/przenoszenie-hantli-za-glowe", "cytat": "Połóż się stabilnie na ławce poziomej."}]},
+ {"rola": "move", "pl": "Przenieś sztangę łukiem za głowę i wróć nad klatkę.", "en": "Lower the bar in an arc behind your head and bring it back over your chest.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/barbell-bent-arm-pullover/", "cytat": "Move the bar backward and down behind your head in a controlled semicircle, keeping the elbows fixed."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/dumbbell-chest-pullover/", "cytat": "Nie zmieniaj kąta zgięcia stawów łokciowych."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/326/przenoszenie-hantli-za-glowe", "cytat": "W trakcie przenoszenia sztangielki łokcie powinny maksymalnie rozchodzić się na zewnątrz.", "uwaga": "S przeczy stałemu kątowi łokci — do zdania tylko część wspólna"}]},
+ {"rola": "mis", "stan": "2 z 3", "pl": "Zmiana kąta w łokciach — ruch zamienia się w wyciskanie.", "en": "Changing your elbow angle so it turns into a press.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/barbell-bent-arm-pullover/", "cytat": "Do not turn it into a press: Maintain the same elbow bend instead of finishing the rep by pressing the bar upward."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/dumbbell-chest-pullover/", "cytat": "Nie zmieniaj kąta zgięcia stawów łokciowych."}]}]},
+{"cwiczenie": "Around The Worlds", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/?s=around+the+world (tylko https://maniacmuscle.com/lying-around-the-world/ — na podłodze, bez ciężaru)", "R, F, S, potreningu: WebSearch '\"around the world\" hantle leżąc na ławce półkole'"]},
+{"cwiczenie": "Crucifix", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/?s=crucifix (0)", "R, F, potreningu: WebSearch 'crucifix trzymanie ciężarów w bok na prostych rękach strongman' — tylko wzmianka w planie strongman"]},
+{"cwiczenie": "Front Raise And Pullover", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/?s=front+raise+pullover (0)", "R kategoria klatka str. 1–5", "S klatka.asp"]},
+{"cwiczenie": "Machine Pullover", "stan": "brak (1 z 3, M nieczytane)", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/?s=pullover+machine (lever-pullover — nieczytana)", "R, F, S, potreningu: WebSearch 'pullover na maszynie przenoszenie ramion maszyna siedząc'"]},
+{"cwiczenie": "Wide-Grip Decline Barbell Pullover", "stan": "brak (1 z 3)", "zdania": [], "sprawdzone_bez_wyniku": ["https://maniacmuscle.com/?s=barbell+pullover (barbell-decline-pullover — nieczytana)", "R, F, S: tylko pullover hantlem na ławce płaskiej albo w poprzek ławki — kąt ławki zmienia pozycję ciała"]}
+]

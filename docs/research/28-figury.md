@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (67)
+## Bez figury — lista otwarta (97)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1023,5 +1023,35 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Sled Push | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Thruster (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Kettlebell Thruster | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Foam Roll: Quadriceps | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Foam Roll: Hamstrings | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Calves-SMR | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Iliotibial Tract-SMR | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Latissimus Dorsi-SMR | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Piriformis-SMR | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Rhomboids-SMR | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Foot-SMR | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| External Rotation with Band | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| External Rotation (hantel) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Internal Rotation with Band | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Supine Figure-Four Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Butterfly Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Side-Lying Quad Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Cat-Cow | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Child's Pose | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Supine Spinal Twist | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| The Straddle | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Peroneals Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Posterior Tibialis Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Wall Calf Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Standing Soleus And Achilles Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Cross-Body Shoulder Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Overhead Triceps Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Side Neck Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Chest And Front Of Shoulder Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Chin To Chest Stretch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Arm Circles | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Ankle Circles | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Wrist Circles | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 
 Poza tym bez figury: 22 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.

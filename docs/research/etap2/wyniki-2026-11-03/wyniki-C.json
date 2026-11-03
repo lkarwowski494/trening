@@ -1,0 +1,76 @@
+[
+ {"cwiczenie": "Hip Abduction", "stan": "częściowo (setup 2 z 3; move komplet 3 warunkowo — R uproszczenie wariantu sprzętu; mis wniosek)", "zdania": [
+  {"rola": "setup", "id": "hab.setup", "pl": "Usiądź w maszynie, oprzyj plecy, nogi przyłóż do poduszek i złap za uchwyty.", "en": "Sit in the machine with your back on the pad, legs against the pads, and hold the handles.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie", "cytat": "Usiądź i oprzyj plecy na maszynie."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a", "cytat": "Zaprzyj nogi o poduszki maszyny."}]},
+  {"rola": "move", "id": "hab.move", "pl": "Rozsuń nogi na boki, przytrzymaj chwilę na końcu i powoli wróć.", "en": "Push your legs apart, hold briefly at the end, then return slowly.", "stan": "komplet 3 – praktyka, warunkowo (R = uproszczenie)", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie", "cytat": "W końcowym momencie utrzymaj pozycję przez sekundę."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a", "cytat": "W momencie maksymalnego napięcia mięśni przytrzymaj ruch"},
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/seated-hip-abduction-with-mini-band/", "cytat": "Przytrzymaj końcowy zakres ruchu, a następnie wróć do pozycji wyjściowej, kontrolując napięcie gumy."}]},
+  {"rola": "mis", "id": "mis.jerk", "pl": "(istniejące)", "en": "(existing)", "stan": "wniosek – praktyka", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "hab.move"},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie", "cytat": "Unikaj gwałtownych ruchów powodujących zanik napięcia w mięśniach."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a", "cytat": "Ruch powinien być płynny."}]}]},
+ {"cwiczenie": "Nordic Curl", "stan": "komplet (mis: wniosek – praktyka)", "zdania": [
+  {"rola": "mis", "id": "nordic.mis.hips", "pl": "Zginanie w biodrach — pupa ucieka do tyłu.", "en": "Bending at the hips — your butt drifts back.", "stan": "wniosek – praktyka", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "nordic.hips"},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/zuraw", "cytat": "Podczas wykonywania ćwiczenia pilnuj, aby ciało powyżej kolan zachowało pozycję wyprostowaną."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/nordic-hamstring-curl/", "cytat": "Keep the hips locked: Avoid sitting back, hinging at the hips, or bending the spine to make the movement easier."}]},
+  {"rola": "mis", "id": "nordic.mis.fast", "pl": "Opadanie za szybko, bez hamowania.", "en": "Dropping too fast instead of braking.", "stan": "wniosek – praktyka", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "nordic.move"},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/zuraw", "cytat": "Nie śpiesz się podczas wykonywania tego ćwiczenia, zbyt szybkie wykonanie jest błędem technicznym."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/nordic-hamstring-curl/", "cytat": "Do not drop quickly just to complete more reps."}]}]},
+ {"cwiczenie": "Sissy Squat", "stan": "komplet 3 – praktyka", "zdania": [
+  {"rola": "setup", "id": "sissy.setup", "pl": "Stań prosto i przytrzymaj się jedną ręką ściany albo stojaka.", "en": "Stand tall and hold a wall or rack with one hand.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/syzyfki-z-asekuracja", "cytat": "Ręka spoczywa na ścianie lub innej stabilnej podporze."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/bodyweight-sissy-squat/", "cytat": "Hold a wall, rack, suspension strap, or sturdy object if balance limits your control."},
+   {"serwis": "S", "url": "https://atlas.kulturystyka.pl/nogi.asp", "cytat": "Drugą ręką podpieramy się dla zachowania równowagi czegoś stabilnego."}]},
+  {"rola": "move", "id": "sissy.move", "pl": "Wypychaj kolana do przodu i odchylaj tułów do tyłu, biodra cały czas wyprostowane; wróć, prostując kolana.", "en": "Drive your knees forward and lean back, keeping your hips straight the whole time; come back up by straightening your knees.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/syzyfki-z-asekuracja", "cytat": "Cały czas utrzymuj biodra w pełnym wyproście."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/bodyweight-sissy-squat/", "cytat": "Begin the rep by allowing the knees to move forward while the torso leans backward."},
+   {"serwis": "S", "url": "https://atlas.kulturystyka.pl/nogi.asp", "cytat": "Ćwiczenie polega na wykonaniu przysiadu z jednoczesnym mocnym odchyleniem tułowia do tyłu i wspięciem na palce stóp"}]},
+  {"rola": "mis", "id": "sissy.mis.hips", "pl": "Siadanie biodrami do tyłu jak w zwykłym przysiadzie.", "en": "Sitting the hips back like in a regular squat.", "stan": "wniosek – praktyka", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "sissy.move"},
+   {"serwis": "M", "url": "https://maniacmuscle.com/bodyweight-sissy-squat/", "cytat": "The hips should not shoot backward."}]}]},
+ {"cwiczenie": "Seated Calf Raise", "stan": "komplet 3 – praktyka, warunkowo (R = uproszczenie: sztanga zamiast maszyny)", "zdania": [
+  {"rola": "setup", "id": "calf.seated", "pl": "Usiądź w maszynie, kolana pod poduszkami, przednią część stóp oprzyj na platformie, pięty niżej.", "en": "Sit in the machine with your knees under the pads and the balls of your feet on the platform, heels hanging lower.", "stan": "komplet 3 warunkowo", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/cwiczenia/na-lydki/wspiecia-na-palcach-siedzac-na-maszynie", "cytat": "Oprzyj przednią część stopy na platformie."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/375/wspiecia-na-palce-siedzac-na-maszynie", "cytat": "Ugięte nogi w stawach kolanowych zaprzyj o poduszki. 1/3 stopy umieść na podkładce urządzenia."},
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/seated-barbell-calf-raise/", "cytat": "Przyjmij pozycję siedzącą ze sztangą opartą na udach, tuż nad stawami kolanowymi."}]},
+  {"rola": "mis", "id": "calf.mis.partial", "pl": "(istniejące)", "en": "(existing)", "stan": "wniosek – praktyka", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "calf.move"}]}]},
+ {"cwiczenie": "Łydki na stopniu", "stan": "komplet (mis: wniosek – praktyka)", "zdania": [
+  {"rola": "mis", "id": "calf.mis.partial", "pl": "(istniejące)", "en": "(existing)", "stan": "wniosek – praktyka", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "calf.move"}]}]},
+ {"cwiczenie": "Donkey Calf Raise", "stan": "brak", "zdania": [], "sprawdzone": ["https://centrumrespo.pl/atlas/kategoria/lydki/ (str. 1-2)", "https://fabrykasily.pl/cwiczenia/na-lydki", "https://maniacmuscle.com/category/legs/calves/", "https://maniacmuscle.com/?s=tibialis"], "jest": ["S: https://atlas.kulturystyka.pl/nogi.asp (łydki poz. 3)", "S: https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/227/osle-wspiecia"]},
+ {"cwiczenie": "Smith Machine Reverse Calf Raise", "stan": "brak", "zdania": [], "sprawdzone": ["https://centrumrespo.pl/atlas/kategoria/lydki/ (str. 1-2)", "https://fabrykasily.pl/cwiczenia/na-lydki", "https://maniacmuscle.com/category/legs/calves/", "https://maniacmuscle.com/?s=tibialis"], "jest": ["S: https://atlas.kulturystyka.pl/nogi.asp (łydki poz. 6, nieczytane szczegółowo)"]},
+ {"cwiczenie": "Sumo Deadlift", "stan": "komplet 3 – praktyka", "zdania": [
+  {"rola": "mis", "id": "sumo.mis.kneesIn", "pl": "Kolana uciekające do środka.", "en": "Knees caving in.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/martwy-ciag-sumo/", "cytat": "Koślawe ustawienie kończyn dolnych (kolana układają się w literę x)"},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/martwy-ciag-sumo", "cytat": "Utrzymuj zgięte kolana nad stopami, pilnuj, aby nie były skierowane do środka."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/barbell-sumo-deadlift/", "cytat": "Keep the knees out: Letting the knees cave inward reduces hip power"}]}]},
+ {"cwiczenie": "Leg Curl", "stan": "komplet 3 – praktyka", "zdania": [
+  {"rola": "setup", "id": "lcurl.setup", "pl": "Usiądź w maszynie, plecy oparte o oparcie, nogi wyprostowane, wałek nisko na łydkach.", "en": "Sit in the machine with your back against the pad, legs straight, roller low on your calves.", "stan": "komplet 3 – praktyka (wałek: F, M)", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/cwiczenia/dwuglowe-uda/zginanie-nog-na-maszynie-siedzac-seated", "cytat": "Kończyny dolne wyprostowane, wałek maszyny znajduje się kilka centymetrów poniżej łydek."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/401/uginanie-podudzi-na-maszynie-siedzac", "cytat": "Plecy stabilnie przylegają do oparcia."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/seated-lever-leg-curl/", "cytat": "Place the lower roller just above the heels or around the lower calf, depending on the machine design."}]},
+  {"rola": "mis", "id": "lcurl.mis.back", "pl": "Odrywanie pleców od oparcia.", "en": "Lifting your back off the pad.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/cwiczenia/dwuglowe-uda/zginanie-nog-na-maszynie-siedzac-seated", "cytat": "Nie odrywaj pleców od oparcia."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/401/uginanie-podudzi-na-maszynie-siedzac", "cytat": "Nie odrywaj pleców od oparcia."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/seated-lever-leg-curl/", "cytat": "Keep your back against the pad and your hips pressed down into the seat."}]}]},
+ {"cwiczenie": "Leg Extension", "stan": "komplet 3 – praktyka", "zdania": [
+  {"rola": "setup", "id": "lext.setup", "pl": "Usiądź w maszynie, plecy oparte o oparcie, wałek tuż nad kostkami; trzymaj uchwyty.", "en": "Sit in the machine with your back against the pad and the roller just above your ankles; hold the handles.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/cwiczenia/czworoglowe-uda/wyprosty-kolan-na-maszynie-siedzac", "cytat": "Dłonie z boku na uchwytach maszyny. / Plecy cały czas przylegają do oparcia maszyny."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/386/prostowanie-nog-w-siadzie", "cytat": "Plecy stabilnie przylegają do oparcia."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/lever-seated-leg-extension/", "cytat": "Place the pad just above the ankles, not on the shins or feet."}]},
+  {"rola": "mis", "id": "lext.mis.snap", "pl": "Gwałtowne prostowanie kolan aż do przeprostu.", "en": "Snapping your knees into a hard lockout.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/cwiczenia/czworoglowe-uda/wyprosty-kolan-na-maszynie-siedzac", "cytat": "Nie wykonuj przeprostu w kolanach."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/386/prostowanie-nog-w-siadzie", "cytat": "Unikaj przeprostu w kolanach."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/lever-seated-leg-extension/", "cytat": "Avoid hard knee snapping: Reach extension smoothly without forcing lockout."}]}]},
+ {"cwiczenie": "Lying Leg Curl", "stan": "komplet (mis: wniosek – praktyka)", "zdania": [
+  {"rola": "mis", "id": "llc.mis.hips", "pl": "Odrywanie bioder od ławki.", "en": "Hips lifting off the bench.", "stan": "wniosek – praktyka", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "llc.hips"},
+   {"serwis": "S", "url": "https://atlas.kulturystyka.pl/nogi.asp", "cytat": "Ważne jest, by nie odrywać bioder od powierzchni ławki podczas ćwiczenia."}]}]},
+ {"cwiczenie": "Step Up", "stan": "komplet (mis: wniosek – praktyka)", "zdania": [
+  {"rola": "mis", "id": "stepup.mis.toes", "pl": "Stawianie na podwyższeniu samych palców zamiast całej stopy.", "en": "Stepping up on your toes instead of the whole foot.", "stan": "wniosek – praktyka", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "stepup.move"},
+   {"serwis": "S", "url": "https://atlas.kulturystyka.pl/nogi.asp", "cytat": "nogę na ławce stawiamy całą powierzchnią stopy (nie samymi palcami)."}]}]}
+]

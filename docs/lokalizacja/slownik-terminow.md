@@ -24,7 +24,6 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `powtorzenie` | powtórzenie | jedno pełne wykonanie ruchu w serii (ang. rep) |
 | `zakres_powtorzen` | zakres powtórzeń | przedział liczby powtórzeń w serii (np. 8–12); NIE przerwa i NIE zakres ruchu |
 | `zakres_ruchu` | zakres ruchu | amplituda ruchu w ćwiczeniu (ang. range of motion); NIE zakres powtórzeń |
-| `ciezar` | ciężar | obciążenie podnoszone w serii (kg/lb); NIE masa ciała |
 | `masa_ciala` | masa ciała | waga użytkownika (pomiary); także ćwiczenia z masą ciała |
 | `dociazenie` | dociążenie | dodatkowy ciężar do masy ciała (pas, kamizelka) |
 | `do_upadku` | do upadku | seria wykonywana do niemożności kolejnego powtórzenia (oznaczenie F) |
@@ -86,6 +85,10 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `szerokosc_stop` | stopy na szerokość bioder do barków | zakres szerokości ustawienia stóp: jedna forma we wszystkich wskazówkach („na szerokość bioder do barków”, jak w gob.stance i dl.feet); po angielsku „hip- to shoulder-width” |
 | `core_en` | napnij tułów / brzuch (core) | napięcie tułowia przed ruchem; po angielsku na siłowni „core” (nie podręcznikowe „trunk”). Dotyczy wskazówek techniki; pozostałe języki wg przekładu z PL/EN |
 | `jak_do_en` | jak do … (kalka „like for a …”) | polskie „jak do wyskoku / do przysiadu / do martwego ciągu” po angielsku to „like a squat”, „set up like a deadlift”, „jumping stance” — nie kalka „like for a …” |
+| `ciezar` | ciężar | obciążenie podnoszone w serii (kg/lb); NIE masa ciała |
+| `tasma_rozciaganie` | taśma (do rozciągania) | taśma lub pasek do rozciągania, ręcznik; NIE pas obciążeniowy (w aplikacji „pas” to sprzęt). Dotyczy wskazówek mobilności; pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów) |
+| `krazenia` | krążenia (stawów) | ruch koliste w stawie (stopa, ramiona, nadgarstki), tak jak mówi się na sali: „krążenia”; NIE „zataczanie kół” |
+| `podwijanie_miednicy` | podwijanie miednicy | cofanie miednicy pod siebie (zaokrąglenie dołu pleców); potocznie „podwijać miednicę”, jak w hang.ribs |
 
 ## Terminy zalecane (rdzeń)
 
@@ -136,10 +139,17 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pl` | `nozyce` | wykrok | pozycja split w dwuboju to „nożyce”; „wykrok” to osobne ćwiczenie (lunge) i myli się z pozycją przyjęcia sztangi |
 | `pl` | `rack_kettlebell` | pozycj\w*\s+rack\|(?<![\p{L}])rack(?![\p{L}])\|w\s+pozycji\s+przy\s+barku | pozycję kettlebelli opisuj jednym brzmieniem „oparte przy barkach” (bez „pozycja rack” i „w pozycji przy barku”) |
 | `pl` | `szerokosc_stop` | między\s+szerokością\|mniej\s+więcej\s+od\s+szerokości\|bioder\s+a\s+barków\|do\s+szerokości\s+barków | zakres szerokości stóp zapisuj jedną formą „na szerokość bioder do barków” |
+| `pl` | `ciezar` | (?<![\p{L}])(przenieś\|przenoś\|przenosz\w*\|przeniesienie)\s+ciężar\w*(?![\p{L}])\|ciężar\w*\s+ciała | w aplikacji „ciężar” to obciążenie na sztandze/hantlach, nie masa ciała; przeniesienie masy ciała opisz innym słowem (np. „pochyl się do ściany”) |
+| `pl` | `tasma_rozciaganie` | (?<![\p{L}])pas(a\|em\|ie\|y\|ów)?(?![\p{L}]) | w aplikacji „pas” to pas obciążeniowy; do rozciągania mówi się „taśma” |
+| `pl` | `krazenia` | zataczaj\|(?<![\p{L}])koła(?![\p{L}]) | na sali mówi się „krążenia / krąż”, nie „zataczaj koła” |
+| `pl` | `podwijanie_miednicy` | odchylani\w*\s+miednicy\|tyłopochyl | język podręcznika; w siłowni mówi się „podwijać miednicę” |
 | `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
 | `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
 | `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
 | `en` | `jak_do_en` | like\s+for\s+(a\|an\|the)\s | kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift” |
+| `en` | `ciezar` | (?<![\p{L}])shift(ing)?\s+(your\s+)?weight(?![\p{L}]) | w aplikacji „weight” to obciążenie, nie masa ciała; przeniesienie masy ciała opisz ruchem („lean toward the wall”) |
+| `en` | `tasma_rozciaganie` | (?<![\p{L}])(belt\|sash)s?(?![\p{L}]) | „belt” to pas obciążeniowy; do rozciągania „strap” |
+| `en` | `podwijanie_miednicy` | posterior\s+pelvic\s+tilt\|tilt(ing)?\s+(your\s+)?pelvis\s+back | język podręcznika; potocznie „tuck your pelvis” |
 | `cs` | `przerwa` | přestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |

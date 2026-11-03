@@ -10,6 +10,7 @@ import { assignAll, FAMILIES, VARIANTS } from '@/lib/figures/v2';
 import { CUE_SETS, CUE_POLICY, CUE_REQUIRES, CUE_NOT_IN_FAMILY, cueSelection, cueTextGaps, generalCueNote } from '@/lib/figures/v2/cueSets';
 import { applyLang, t } from '@/lib/i18n';
 import P2_MOC from './fixtures/cues-p2-moc.json';
+import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
 
 const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
 const EN: Record<string, string> = require('@/lib/cues/text/en.json');
@@ -20,7 +21,7 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
   test('709 ćwiczeń: 102 własne + 36 z partii P2 (G3 moc, 03.11.2026; w tym 2 przeniesione z „open”: Jerk Balance, Medicine Ball Chest Pass) = 138 własnych, 504 ogólne (wariant A), 67 otwartych (grafika bez tekstu); własne = dokładnie ćwiczenia z lib/cues/data.json', () => {
     expect(Object.keys(CUE_SETS.items).sort()).toEqual([...KEYS].sort());
     const n = (b: string) => Object.values(CUE_SETS.items).filter(e => e.b === b).length;
-    expect([n('own'), n('general'), n('open')]).toEqual([102 + P2_MOC.cwiczenia.length, 538 - (P2_MOC.cwiczenia.length - 2), 69 - 2]);
+    expect([n('own'), n('general'), n('open')]).toEqual([102 + P1_MOBILNOSC.cwiczenia.length + P2_MOC.cwiczenia.length, 538 - P1_MOBILNOSC.cwiczenia.length - (P2_MOC.cwiczenia.length - 2), 69 - 2]);
     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   /* OTWARTE (27.10.2026, badacz): zdanie o rzucie z nóg (mb.legs) nie pasuje do slamu — zdanie zastępcze do ustalenia; do tego czasu zestaw bez zaleceń (docs/16) */

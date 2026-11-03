@@ -1414,16 +1414,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Ankle Circles": {
-   "rodzina": "mobility",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Arm Circles": {
-   "rodzina": "mobility",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Arnold Press": {
    "rodzina": "ohp",
    "sprawdzenie": "rotacja dłoni w Arnoldzie nie jest opisana — zdania dotyczą tylko wyciskania nad głowę",
@@ -1664,11 +1654,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Butterfly Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": "NASM static-butterfly-stretch — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Cable Crunch": {
    "rodzina": "cableCrunch",
    "sprawdzenie": null,
@@ -1809,20 +1794,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Calves-SMR": {
-   "rodzina": "smr",
-   "sprawdzenie": "NASM foam-roll-calves — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Car Drivers": {
    "rodzina": "raiseFront",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-08-korekty"
-  },
-  "Cat-Cow": {
-   "rodzina": "mobility",
-   "sprawdzenie": "ACE #15 Cat-Cow — możliwe źródło bezpośrednie",
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Chain Handle Extension": {
    "rodzina": "triLying",
@@ -1834,11 +1809,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Chest And Front Of Shoulder Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Chest Dip": {
    "rodzina": "dip",
    "sprawdzenie": "zakres i ruch łokci jak przy dipach na ławce (analogia); bez zdań o pochyleniu tułowia (jedno źródło, docs/33)",
@@ -1847,16 +1817,6 @@
   "Chest Stretch on Stability Ball": {
    "rodzina": "stretch",
    "sprawdzenie": "NASM static-latissimus-dorsi-ball-stretch — pokrewne",
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Child's Pose": {
-   "rodzina": "stretch",
-   "sprawdzenie": "NASM childs-pose i ACE #227 — możliwe źródła bezpośrednie",
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Chin To Chest Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": "szyja — NHS Neck stretch (powoli, w wygodnym zakresie); bez porad zdrowotnych",
    "plik": "wskazowki-cwiczenia-07"
   },
   "Clamshell": {
@@ -1928,11 +1888,6 @@
    "rodzina": "crunch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Cross-Body Shoulder Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Crossover Reverse Lunge": {
    "rodzina": "mobility",
@@ -2159,20 +2114,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "External Rotation (hantel)": {
-   "rodzina": "rotCuff",
-   "sprawdzenie": "ISSA opisuje wersję leżąc z ciężarem",
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "External Rotation (linki)": {
    "rodzina": "rotCuff",
    "sprawdzenie": "ACE #352 opisuje wersję z linką — bezpośrednio",
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "External Rotation with Band": {
-   "rodzina": "rotCuff",
-   "sprawdzenie": "ISSA opisuje wersję z gumą",
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Farmer's Walk (Farmers Handles)": {
    "rodzina": "carry",
@@ -2213,21 +2158,6 @@
    "rodzina": "bench",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Foam Roll: Hamstrings": {
-   "rodzina": "smr",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Foam Roll: Quadriceps": {
-   "rodzina": "smr",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Foot-SMR": {
-   "rodzina": "smr",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Frog Hops": {
    "rodzina": "jump",
@@ -2349,11 +2279,6 @@
    "sprawdzenie": "leżenie na plecach z lędźwiami przy podłodze — jak dead bug (analogia); bez plank.noSag (inna pozycja)",
    "plik": "wskazowki-cwiczenia-01"
   },
-  "Iliotibial Tract-SMR": {
-   "rodzina": "smr",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Inchworm": {
    "rodzina": "mobility",
    "sprawdzenie": "ACE #254 Inchworms — możliwe źródło bezpośrednie",
@@ -2408,11 +2333,6 @@
    "rodzina": "stretch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Internal Rotation with Band": {
-   "rodzina": "rotCuff",
-   "sprawdzenie": "ISSA: „Resistance band internal rotation” — bezpośrednie; ACE #351",
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Iron Crosses (Stretch)": {
    "rodzina": "mobility",
@@ -2573,11 +2493,6 @@
    "rodzina": "lunge",
    "sprawdzenie": "bez lunge.torso — w wykroku bocznym tułów się pochyla",
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Latissimus Dorsi-SMR": {
-   "rodzina": "smr",
-   "sprawdzenie": "NASM foam-roll-latissimus-dorsi — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Leg Curl (hantel)": {
    "rodzina": "legCurl",
@@ -2889,11 +2804,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Overhead Triceps Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Pallof Press With Rotation": {
    "rodzina": "rotation",
    "sprawdzenie": "bez pallof.noTwist — tu rotacja jest celem",
@@ -2908,11 +2818,6 @@
    "rodzina": "squatMachine",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Peroneals Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Peroneals-SMR": {
    "rodzina": "smr",
@@ -2929,11 +2834,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Piriformis-SMR": {
-   "rodzina": "smr",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Plank Shoulder Taps": {
    "rodzina": "plank",
    "sprawdzenie": null,
@@ -2948,11 +2848,6 @@
    "rodzina": "pushup",
    "sprawdzenie": "NASM plyometric-push-up (sitemap) — możliwe źródło bezpośrednie",
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Posterior Tibialis Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Preacher Curl (EZ)": {
    "rodzina": "curl",
@@ -3084,11 +2979,6 @@
    "sprawdzenie": "ISSA: wersja odwrotna — przedramiona oparte",
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Rhomboids-SMR": {
-   "rodzina": "smr",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Rickshaw Carry": {
    "rodzina": "carry",
    "sprawdzenie": null,
@@ -3219,11 +3109,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
-  "Side Neck Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": "NHS Neck stretch — bezpośrednie (ruch powolny, w wygodnym zakresie)",
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Side Standing Long Jump": {
    "rodzina": "jump",
    "sprawdzenie": null,
@@ -3238,11 +3123,6 @@
    "rodzina": "vpull",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Side-Lying Quad Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Single Arm Cable Chest Press": {
    "rodzina": "cablePress",
@@ -3644,11 +3524,6 @@
    "sprawdzenie": "ACE #331 Standing Crunch — bezpośrednie",
    "plik": "wskazowki-cwiczenia-08-korekty"
   },
-  "Standing Soleus And Achilles Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Standing Toe Touches": {
    "rodzina": "stretch",
    "sprawdzenie": null,
@@ -3694,17 +3569,7 @@
    "sprawdzenie": "leżenie przodem, unoszenie tułowia — bez zdań „bez wyginania”, tylko „nie na siłę”",
    "plik": "wskazowki-cwiczenia-08-korekty"
   },
-  "Supine Figure-Four Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Supine Hamstring Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Supine Spinal Twist": {
    "rodzina": "stretch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
@@ -3733,11 +3598,6 @@
    "rodzina": "bench",
    "sprawdzenie": "łokcie celowo na boki — bez cgbp/elbowsMid",
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "The Straddle": {
-   "rodzina": "stretch",
-   "sprawdzenie": "ACE #212 Seated Side-Straddle Stretch — pokrewne",
-   "plik": "wskazowki-cwiczenia-07"
   },
   "Toe Touchers": {
    "rodzina": "crunch",
@@ -3824,11 +3684,6 @@
    "sprawdzenie": "ACE #242 V-ups — bezpośrednie",
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Wall Calf Stretch": {
-   "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Wall Lat Stretch": {
    "rodzina": "stretch",
    "sprawdzenie": null,
@@ -3870,11 +3725,6 @@
    "plik": "wskazowki-cwiczenia-04"
   },
   "World's Greatest Stretch": {
-   "rodzina": "mobility",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Wrist Circles": {
    "rodzina": "mobility",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"

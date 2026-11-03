@@ -1,0 +1,5398 @@
+[
+ {
+  "cwiczenie": "Bird Dog",
+  "rodzina": "core_floor",
+  "obowiazkowe": true,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "High Cable Curl",
+  "rodzina": "curl",
+  "obowiazkowe": true,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Triceps Dip",
+  "rodzina": "dip",
+  "obowiazkowe": true,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "blok warunkowy (decyzja koordynatora o szczeblu)",
+  "gdzie": [
+   "obowiazkowe-1-1:docs/research/wskazowki-obowiazkowe-1-1/mieszane.md:177"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": true,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Hip Abduction",
+  "rodzina": "hip_abd_add",
+  "obowiazkowe": true,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "blok warunkowy (decyzja koordynatora o szczeblu)",
+  "gdzie": [
+   "obowiazkowe-1-1:docs/research/wskazowki-obowiazkowe-1-1/mieszane.md:177"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": true,
+  "wyjatek": [
+   "brak źródła techniki (data/zrodla/cues.json open): wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Nordic Curl",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": true,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Sissy Squat",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": true,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "blok warunkowy (decyzja koordynatora o szczeblu)",
+  "gdzie": [
+   "obowiazkowe-1-1:docs/research/wskazowki-obowiazkowe-1-1/mieszane.md:177"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": true,
+  "wyjatek": [
+   "brak źródła techniki (data/zrodla/cues.json open): brak źródeł (docs/research/33)"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Inverted Row",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": true,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Meadows Row",
+  "rodzina": "row",
+  "obowiazkowe": true,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/obowiazkowe-1-1:docs/research/wskazowki-obowiazkowe-1-1/mieszane.md:177"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Medicine Ball Slam",
+  "rodzina": "sled_throw",
+  "obowiazkowe": true,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Back Extension",
+  "rodzina": "back_extension",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Lower Back Curl",
+  "rodzina": "back_extension",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/back_extension.md:33",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/back_extension.md:21"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Reverse Hyperextension",
+  "rodzina": "back_extension",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/back_extension.md:33",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/back_extension.md:21"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Weighted Ball Hyperextension",
+  "rodzina": "back_extension",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Band Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Barbell Guillotine Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Board Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Chain Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Close Grip Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Close-Grip Dumbbell Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Decline Close-Grip Bench To Skull Crusher",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "One-Arm Kettlebell Floor Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Reverse Band Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Reverse Grip Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Smith Machine Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Smith Machine Decline Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Smith Machine Incline Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Squeeze Press (hantle)",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Wide-Grip Barbell Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Incline Cable Chest Press",
+  "rodzina": "cable_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Single Arm Cable Chest Press",
+  "rodzina": "cable_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Wyciskanie na linkach (stojąc)",
+  "rodzina": "cable_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Kneeling High Pulley Row",
+  "rodzina": "cable_row",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Leverage High Row",
+  "rodzina": "cable_row",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sled Row",
+  "rodzina": "cable_row",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Donkey Calf Raise",
+  "rodzina": "calf_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Seated Calf Raise",
+  "rodzina": "calf_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Smith Machine Reverse Calf Raise",
+  "rodzina": "calf_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Łydki na stopniu",
+  "rodzina": "calf_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Assault Bike",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ustawienie",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "brak źródła techniki (data/zrodla/cues.json open): czy rower stacjonarny to wariant roweru powietrznego z ruchomymi rączkami (jak kąt ławki) — pytanie otwarte; dokumentacj"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Bieg",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json",
+   "badania/g6-przyciaganie:docs/research/wskazowki-fala-w1/cardio.md:383",
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Burpees",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json",
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Carioca Quick Step",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Fast Skipping",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "High Knees",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Incline Walk (bieżnia)",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json",
+   "badania/g6-przyciaganie:docs/research/wskazowki-fala-w1/cardio.md:383"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Jumping Jacks",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Rower",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json",
+   "badania/g6-przyciaganie:docs/research/wskazowki-fala-w1/cardio.md:383",
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Ski Erg",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Stair Climber",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ustawienie",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Treadmill Walking",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/cardio.md:36"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Double Kettlebell Front Rack Carry",
+  "rodzina": "carry",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Rickshaw Carry",
+  "rodzina": "carry",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Around The Worlds",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Bent-Arm Barbell Pullover",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Cable Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Cable Fly (high to low)",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Cable Fly (low to high)",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy",
+  "gdzie": [
+   "badania/w2-pchanie:docs/research/wskazowki-fala-w2/chest_fly-cz1.md:37"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Chest Fly (hantle)",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Crucifix",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Decline Dumbbell Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Flat Bench Cable Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Front Raise And Pullover",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Incline Cable Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Machine Pullover",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "One-Arm Flat Bench Dumbbell Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Single Arm Cable Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Wide-Grip Decline Barbell Pullover",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Leverage Decline Chest Press",
+  "rodzina": "chest_press_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Leverage Incline Chest Press",
+  "rodzina": "chest_press_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Machine Shoulder Press",
+  "rodzina": "chest_press_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Smith Machine Shoulder Press",
+  "rodzina": "chest_press_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Bicycle Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ustawienie",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/core_floor-1.md:40",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-1.md:34"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Butt-Ups",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Cable Reverse Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/core_floor-2.md:29",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-2.md:28"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Cable Seated Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Cocoons",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Crunch - Hands Overhead",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-3.md:28"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Crunch - Legs On Exercise Ball",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-3.md:28"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Decline Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/core_floor-1.md:40",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-1.md:34"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Decline Oblique Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Decline Reverse Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/core_floor-2.md:29",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-2.md:28"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Dragon Flag",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Frog Sit-Ups",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "GHD Sit Up",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie"
+  ],
+  "co_jest": "sekcje ze źródłami: bledy, ruch",
+  "gdzie": [
+   "badania/g1-core:docs/research/wskazowki-fala-w1/core_floor-1.md:40",
+   "badania/w2-core:docs/research/wskazowki-fala-w2/core_floor-1.md:34"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Janda Sit-Up",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Kneeling Cable Crunch With Alternating Oblique Twists",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Leg Pull-In",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Lying Leg Raise",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Oblique Crunches - On The Floor",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Otis-Up",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Press Sit-Up",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Reverse Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Seated Flat Bench Leg Pull-In",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Side Jackknife",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Smith Machine Hip Raise",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Stability Ball Knee Tuck",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Standing Rope Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Toe Touchers",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Weighted Sit-Ups - With Bands",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Bent Press",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Bosu Ball Cable Crunch With Side Bends",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Cable Judo Flip",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Medicine Ball Full Twist",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "One-Arm High-Pulley Cable Side Bends",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Pallof Press",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Russian Twist",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Seated Barbell Twist",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Spell Caster",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Weighted Ball Side Bend",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Cable Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Lying Cable Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Lying Close-Grip Bar Curl On High Pulley",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Lying Supine Dumbbell Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Preacher Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Seated Close-Grip Concentration Barbell Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Standing Concentration Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Standing Inner-Biceps Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Barbell Front Raise to Overhead",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Barbell Incline Shoulder Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Cable Lateral Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Cable Reverse Fly",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Cable Seated Lateral Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Cable Y Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Car Drivers",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dumbbell Front Raise to Overhead",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dumbbell Incline Shoulder Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dumbbell One-Arm Upright Row",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Front Incline Dumbbell Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Front Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Kettlebell Halo with Overhead Extension",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Lateral Raise (hantle)",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Machine Lateral Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "One-Arm Cable Rear Lateral Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "One-Arm Incline Lateral Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Reverse Fly (hantle)",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Reverse Pec Deck",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Single Dumbbell Front Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sled Reverse Flye",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Smith Incline Shoulder Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Smith Machine One-Arm Upright Row",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Smith Machine Upright Row",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Straight Raises on Incline Bench",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Upright Row (linki)",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Y Raise (hantle)",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dip Machine",
+  "rodzina": "dip",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Triceps Dips (ławka)",
+  "rodzina": "dip",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Foot-SMR",
+  "rodzina": "foam_roll",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json",
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/foam_roll.md:31"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Behind-the-Back Barbell Wrist Curl",
+  "rodzina": "forearm",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dumbbell Lying Pronation",
+  "rodzina": "forearm",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dumbbell Lying Supination",
+  "rodzina": "forearm",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Reverse Plate Curls",
+  "rodzina": "forearm",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Machine Glute Kickback",
+  "rodzina": "glute_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Prone Flutter Kicks",
+  "rodzina": "glute_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Band Good Morning",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Cable Pull Through",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Deadlift with Bands",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Deadlift with Chains",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Good Morning off Pins",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Leverage Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "One-Arm Side Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Rack Pull",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Rack Pull with Bands",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Reverse Band Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Reverse Band Sumo Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Rickshaw Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Single Arm RDL (hantel/linka)",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Snatch Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Sumo Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Sumo Deadlift with Bands",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Sumo Deadlift with Chains",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Cable Hip Abduction",
+  "rodzina": "hip_abd_add",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Hip Flexion with Band",
+  "rodzina": "hip_abd_add",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Monster Walk",
+  "rodzina": "hip_abd_add",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Frog Pump",
+  "rodzina": "hip_bridge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "London Bridges",
+  "rodzina": "hip_bridge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Stability Ball Hip Bridge",
+  "rodzina": "hip_bridge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Bottoms-Up Clean From The Hang Position",
+  "rodzina": "kb_ballistic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Dumbbell Clean",
+  "rodzina": "kb_ballistic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Kettlebell Pirate Ships",
+  "rodzina": "kb_ballistic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Kettlebell Sumo High Pull",
+  "rodzina": "kb_ballistic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Kettlebell Swing",
+  "rodzina": "kb_ballistic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "One-Arm Kettlebell Split Jerk",
+  "rodzina": "kb_ballistic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Kneeling Squat",
+  "rodzina": "kneeling_hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Seated Good Mornings",
+  "rodzina": "kneeling_hinge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Leg Curl",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Leg Curl (hantel)",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Leg Extension",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Lying Leg Curl",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Reverse Nordic",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Standing Cable Leg Curl",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Standing Leg Curl",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Belt Squat Machine",
+  "rodzina": "leg_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Lying Machine Squat",
+  "rodzina": "leg_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Pendulum Squat",
+  "rodzina": "leg_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Single Leg Press",
+  "rodzina": "leg_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Smith Machine Leg Press",
+  "rodzina": "leg_machine",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Barbell Side Split Squat",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Cossack Squat",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Crossover Reverse Lunge",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Curtsy Lunge",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/w2-ramiona:docs/research/wskazowki-fala-w2/lunge.md:41"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Elevated Back Lunge",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Lunge Pass Through",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Pistol Squat",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Single-Leg High Box Squat",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Slider Reverse Lunge",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Smith Machine Pistol Squat",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Split Squat (linki)",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Step Up",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Suspended Split Squat",
+  "rodzina": "lunge",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Downward Facing Balance",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Intermediate Groin Stretch",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Kneeling Forearm Stretch",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Middle Back Stretch",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_floor-tulow.md:26"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Runner's Stretch",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ustawienie",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_floor-nogi.md:32"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Side Lying Groin Stretch",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Supine Figure-Four Stretch",
+  "rodzina": "mobility_floor",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json",
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_floor-nogi.md:32"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Chest Stretch on Stability Ball",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Dynamic Back Stretch",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Dynamic Chest Stretch",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-dynamiczne.md:51"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Groiners",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Hip Circles (Prone)",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Iron Crosses (Stretch)",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Knee Circles",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Leg Swings (Side-to-Side)",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-dynamiczne.md:51"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Lying Leg Crossover Swings",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "One Knee To Chest",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-statyczne-2.md:27"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Round The World Shoulder Stretch",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Shoulder Circles",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-dynamiczne-uzupelnienie.md:32",
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-dynamiczne.md:51",
+   "badania/w2-mobilnosc:docs/research/wskazowki-fala-w2/mobility_stand-dynamiczne-b.md:35"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Standing Elevated Quad Stretch",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-statyczne.md:35"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Standing Pelvic Tilt",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Torso Rotation",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "badania/g2-mobilnosc:docs/research/wskazowki-fala-w1/mobility_stand-dynamiczne.md:51",
+   "badania/w2-mobilnosc:docs/research/wskazowki-fala-w2/mobility_stand-dynamiczne-a.md:29"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Lying Neck Extension (talerz)",
+  "rodzina": "neck",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Lying Neck Flexion (talerz)",
+  "rodzina": "neck",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Neck Harness Extension",
+  "rodzina": "neck",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Clean Shrug",
+  "rodzina": "olympic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Rack Delivery",
+  "rodzina": "olympic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Snatch Shrug",
+  "rodzina": "olympic",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Bradford Press",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Double Kettlebell Press",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Kettlebell Arnold Press",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Landmine Linear Jammer",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Push Press",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Push Press - Behind the Neck",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Seated Cable Shoulder Press",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "See-Saw Press (Alternating Side Press)",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Single-Arm Linear Jammer",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Standing Barbell Press Behind Neck",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Wyciskanie nad głowę (linki)",
+  "rodzina": "overhead_press",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Alternate Leg Diagonal Bound",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Bench Jump",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Box Skip",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Double Leg Butt Kick",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Dumbbell Seated Box Jump",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Frog Hops",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Kneeling Jump Squat",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Lateral Box Jump",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Side Hop-Sprint",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Side Standing Long Jump",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Side to Side Box Shuffle",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Single Leg Butt Kick",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Single-Leg Hop Progression",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Single-Leg Stride Jump",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Star Jump",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Gironda Sternum Chins",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Gorilla Chin/Crunch",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Mixed Grip Chin",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Muscle Up",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "One Arm Chin-Up",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Side To Side Chins",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Wide-Grip Rear Pull-Up",
+  "rodzina": "pull_up",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Full Range-Of-Motion Lat Pulldown",
+  "rodzina": "pulldown",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Barbell Rollout from Bench",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Clock Push-Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Copenhagen Plank",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Diamond Push Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": [
+   "bez animacji (lib/cues/data.json open)"
+  ],
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Drop Push",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Incline Push Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Incline Push-Up Close-Grip",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Incline Push-Up Depth Jump",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Incline Push-Up Reverse Grip",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Isometric Wipers",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Mountain Climbers",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Plank Shoulder Taps",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Plyo Kettlebell Push-Ups",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Plyo Push-Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Push Up to Side Plank",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Push-Ups With Feet On A Stability Ball",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Single-Arm Push-Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Standing Barbell Rollout",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Reverse Flyes With External Rotation",
+  "rodzina": "rotator_cuff",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "A — tułów, mobilność, cardio"
+ },
+ {
+  "cwiczenie": "Barbell Rear Delt Row",
+  "rodzina": "row",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Calf-Machine Shoulder Shrug",
+  "rodzina": "shrug",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Middle Back Shrug",
+  "rodzina": "shrug",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "One-Arm Medicine Ball Slam",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sled Drag (Harness)",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sled Forward Drag with Press",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sled Overhead Backward Walk",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sledgehammer Swings",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Spider Crawl",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Supine One-Arm Overhead Throw",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Supine Two-Arm Overhead Throw",
+  "rodzina": "sled_throw",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Band Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Box Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": [
+   "brak źródła techniki (data/zrodla/cues.json open): wspólna tylko jedna wskazówka (siad na skrzyni bez odbicia); szeroki rozstaw i pionowe piszczele — jedno źródło (docs/re"
+  ],
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Box Squat with Bands",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Box Squat with Chains",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Cable Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Dip Belt Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Landmine Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "One-Arm Overhead Kettlebell Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Reverse Band Box Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Reverse Band Power Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Smith Machine Squat",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Sumo Squat (hantel)",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "zestaw ogólny rodziny (zrecenzowany, nie źródła ćwiczenia)",
+  "gdzie": [],
+  "zestaw_ogolny": true,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Wall Sit",
+  "rodzina": "squat",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "C — nogi, biodra, skoki"
+ },
+ {
+  "cwiczenie": "Circus Bell",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Conan's Wheel",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Jefferson Squat",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Keg Load",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Log Lift",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/strongman.md:24"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Power Stairs",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Sandbag Load",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Tire Flip",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch",
+  "gdzie": [
+   "badania/w2-przyciaganie:docs/research/wskazowki-fala-w2/strongman.md:24"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "D — barki, ramiona, przyciąganie, moc"
+ },
+ {
+  "cwiczenie": "Body-Up",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Bodyweight Triceps Extension",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Cable Overhead Extension",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Chain Handle Extension",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Overhead Triceps Extension (hantel)",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Skullcrusher (EZ)",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Sled Overhead Triceps Extension",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "ustawienie",
+   "ruch",
+   "bledy"
+  ],
+  "co_jest": "brak źródeł w repo i w blokach do wdrożenia gałęzi badań (dane częściowe mogą być w plikach — opis tekstowy)",
+  "gdzie": [],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ },
+ {
+  "cwiczenie": "Triceps Pushdown",
+  "rodzina": "triceps",
+  "obowiazkowe": false,
+  "brakuje": [
+   "bledy"
+  ],
+  "co_jest": "sekcje ze źródłami: ruch, ustawienie",
+  "gdzie": [
+   "integracja-1-1:data/zrodla/cues.json"
+  ],
+  "zestaw_ogolny": false,
+  "warunkowe": false,
+  "wyjatek": null,
+  "paczka": "B — pchanie i triceps"
+ }
+]
