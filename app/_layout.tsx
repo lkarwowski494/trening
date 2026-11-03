@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Pressable } from 'react-native';
 import { Text } from '@/components/AppText';
-import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS, getPersistError, useTick } from '@/lib/store';
+import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, startedInBackground, STALE_AUTO_MS, getPersistError, useTick } from '@/lib/store';
 import { Alert } from 'react-native';
 import { okButton } from '@/lib/confirm';
 import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup';
@@ -42,7 +42,7 @@ export default function RootLayout() {
     setAutoSavedNotice(t('Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), h: STALE_AUTO_MS / 3600e3 /* próg z jednego miejsca (lib/state/finish.ts) */, e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })); };
   /* `retry` — „Spróbuj ponownie” na ekranie błędu: strażnik pętli awarii liczy ten start od zera (M1-audytor-generalny-003) */
   const start = (retry = false) => { setErr(null); setDiag(undefined); Promise.all([init({ guard: true, retry }), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => { setDiag(typeof e?.bootDiag === 'string' ? e.bootDiag : undefined); setErr(e instanceof Error ? e.message : String(e)); }); };
-  useEffect(() => { start(); }, []);
+  useEffect(() => { start(); if (startedInBackground(AppState.currentState)) markBootStable().catch(() => {}); /* R-11-03: start w tle (zamrożony, zabity przed „kamieniem”) to nie awaria; po start(), bo init() zeruje znacznik nowego startu — zapisze licznik 0 */ }, []);
   useEffect(() => initA11yPrefs(), []); /* M1-024: „Pogrubiony tekst” z ustawień iOS (odczyt i nasłuch) */
   /* M1-audytor-generalny-003: „kamień” strażnika pętli awarii — pierwszy ekran działa BOOT_STABLE_MS po starcie (albo aplikacja idzie do tła). Wyjątek przy rysowaniu
    * odmontowuje ten komponent (ErrorBoundary niżej), więc licznik nie jest zerowany, a ponowna awaria prowadzi do ekranu awaryjnego. */

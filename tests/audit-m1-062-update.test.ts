@@ -26,9 +26,9 @@ esac
 `); chmodSync(join(bin, 'gh'), 0o755);
   return { bin, log, d };
 }
-const run = (tags: string[], shas: Record<string, string>, sha = 'cur') => {
+const run = (tags: string[], shas: Record<string, string>, sha = 'cur', ver?: string) => {
   const g = fakeGh(tags, shas); const out = join(g.d, 'out'); const gho = join(g.d, 'gho');
-  const r = spawnSync('bash', [SCRIPT, 'o/r', sha, out], { encoding: 'utf8', env: { ...process.env, PATH: `${g.bin}:${process.env.PATH}`, GITHUB_OUTPUT: gho } });
+  const r = spawnSync('bash', [SCRIPT, 'o/r', sha, out, ...(ver ? [ver] : [])], { encoding: 'utf8', env: { ...process.env, PATH: `${g.bin}:${process.env.PATH}`, GITHUB_OUTPUT: gho } });
   return { rc: r.status, out: r.stdout + r.stderr, file: existsSync(join(out, 'Trening-sim.zip')) ? readFileSync(join(out, 'Trening-sim.zip'), 'utf8').trim() : null, gho: existsSync(gho) ? readFileSync(gho, 'utf8') : '' };
 };
 
@@ -49,6 +49,28 @@ describe('M1-062: poprzednia-wersja.sh — poprzednia wersja z pliku wydania', (
     const r = run(['v0.20.0-b1020'], { 'v0.20.0-b1020': 'cur' });
     expect(r.rc).toBe(1); expect(r.out).toContain('::error::');
   });
+});
+
+describe('R-11-03 (03.11.2026): poprzednia-wersja.sh — wydanie nie nowsze niż bieżąca wersja', () => {
+  const shas = { 'v1.0.1-b1100': 'a', 'v1.0.0-b1090': 'b', 'v0.20.0-b1020': 'c' };
+  test('bieżąca 1.0.0: pomija 1.0.1 (obniżenie wersji) i bierze 1.0.0 z innego commitu', () => {
+    const r = run(['v1.0.1-b1100', 'v1.0.0-b1090', 'v0.20.0-b1020'], shas, 'cur', '1.0.0');
+    expect(r.rc).toBe(0); expect(r.file).toBe('zip:v1.0.0-b1090'); expect(r.out).toContain('Pomijam v1.0.1-b1100');
+  });
+  test('bez bieżącej wersji (stare wywołanie): zachowanie jak dotąd — najnowsze wydanie', () => {
+    expect(run(['v1.0.1-b1100', 'v1.0.0-b1090'], shas).file).toBe('zip:v1.0.1-b1100');
+  });
+  test('1.0.0 jest z tego samego commitu: bierze starszą, nie 1.0.1', () => {
+    const r = run(['v1.0.1-b1100', 'v1.0.0-b1090', 'v0.20.0-b1020'], { ...shas, 'v1.0.0-b1090': 'cur' }, 'cur', '1.0.0');
+    expect(r.file).toBe('zip:v0.20.0-b1020');
+  });
+  test('porównanie numeryczne (1.10.0 > 1.9.0), nie tekstowe', () => {
+    expect(run(['v1.10.0-b1', 'v1.9.0-b1'], { 'v1.10.0-b1': 'a', 'v1.9.0-b1': 'b' }, 'cur', '1.9.5').file).toBe('zip:v1.9.0-b1');
+  });
+  test('same wydania nowsze niż bieżąca wersja → porażka z komunikatem', () => {
+    const r = run(['v1.0.1-b1100'], shas, 'cur', '1.0.0'); expect(r.rc).toBe(1); expect(r.out).toContain('::error::');
+  });
+  test('workflow przekazuje wersję z package.json', () => { expect(e2e).toMatch(/poprzednia-wersja\.sh "\$GITHUB_REPOSITORY" "\$GITHUB_SHA" poprzednia-wersja "\$\(node -p "require\('\.\/package\.json'\)\.version"\)"/); });
 });
 
 describe('M1-062: e2e-ios.yml — brak poprzedniej wersji nie jest zielonym pominięciem', () => {
