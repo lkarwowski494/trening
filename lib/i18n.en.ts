@@ -1095,7 +1095,7 @@ export const EN: Record<string, string> = {
   /* głos: metry i czas słowami (restCue.speech); „metra” = forma przy ułamku (CLDR) */
   'metr|metry|metrów': 'metre|metres', 'metra': 'metres', 'sekunda|sekundy|sekund': 'second|seconds', 'godzina|godziny|godzin': 'hour|hours',
   'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility).',
-  'Telefon używa podstawowego głosu. Lepszy głos pobierzesz w Ustawieniach iOS (Dostępność), najlepiej przez Wi-Fi.': 'This phone is using a basic voice. You can download a better one in iOS Settings (Accessibility), preferably over Wi-Fi.',
+  'Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).': 'This phone is using a basic voice. Get a better one in iOS Settings (Accessibility).',
   /* ⓘ — teksty objaśniające pod ikoną (docs/32 wzorzec 27; 14.10.2026): do przeglądu tłumacza */
   'Więcej informacji: {name}': 'More information: {name}', 'Pokazuje objaśnienie pod nagłówkiem.': 'Shows the explanation under the heading.',
   'Tydzień deload (D na wykresach).': 'Deload week (D on the charts).', 'D — tydzień deload': 'D — deload week',

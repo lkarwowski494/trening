@@ -49,7 +49,7 @@ export default function SettingsScreen() {
         <Segmented testID="voice-mode" label={t('Zapowiedzi głosowe')} options={VOICE_SETTINGS.map(v => [v, voiceSettingLabel(v)] as [VoiceSetting, string])} value={voiceSetting(s)} onChange={setVoiceSetting} />
       </Field>
       <Btn title={t('Posłuchaj przykładu')} small onPress={() => { sampleVoice().catch(() => {}); }} />
-      {voiceHint !== null ? <Muted testID={`voice-hint-${voiceHint}`} style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{voiceHint === 'missing' ? t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).') : t('Telefon używa podstawowego głosu. Lepszy głos pobierzesz w Ustawieniach iOS (Dostępność), najlepiej przez Wi-Fi.')}</Muted> : null}
+      {voiceHint !== null ? <Muted testID={`voice-hint-${voiceHint}`} style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{voiceHint === 'missing' ? t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).') : t('Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).')}</Muted> : null}
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>

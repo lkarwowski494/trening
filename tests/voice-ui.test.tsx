@@ -62,7 +62,7 @@ test('brak głosu dla języka w telefonie: wskazówka z instrukcją pobrania (pr
   V().hasVoice = false; await boot(); expect(screen.getByText('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).')).toBeTruthy();
   expect(screen.getByText('Posłuchaj przykładu')).toBeTruthy();
 });
-const BETTER = 'Telefon używa podstawowego głosu. Lepszy głos pobierzesz w Ustawieniach iOS (Dostępność), najlepiej przez Wi-Fi.';
+const BETTER = 'Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).';
 test.each([[1, true], [2, false], [3, false]])('ZB-039 (03.11.2026): jakość najlepszego głosu %i → wskazówka „lepszy głos” widoczna: %s (tylko gdy jest sam głos podstawowy)', async (q, shown) => {
   V().quality = q; await boot();
   expect(!!screen.queryByText(BETTER)).toBe(shown); expect(!!screen.queryByTestId('voice-hint-better')).toBe(shown);
@@ -72,7 +72,7 @@ test('ZB-039: brak głosu → tylko wskazówka „brak głosu”, bez „lepszy 
   V().hasVoice = false; await boot(); expect(screen.getByTestId('voice-hint-missing')).toBeTruthy(); expect(screen.queryByText(BETTER)).toBeNull();
 });
 test('ZB-039 EN: wskazówka „lepszy głos” po angielsku, bez ścieżki spoza przeczytanej strony Apple (Settings → Accessibility)', async () => {
-  V().quality = 1; await boot('en'); expect(screen.getByText('This phone is using a basic voice. You can download a better one in iOS Settings (Accessibility), preferably over Wi-Fi.')).toBeTruthy();
+  V().quality = 1; await boot('en'); expect(screen.getByText('This phone is using a basic voice. Get a better one in iOS Settings (Accessibility).')).toBeTruthy();
 });
 test('EN: etykiety, wskazówka i przykład po angielsku', async () => {
   V().hasVoice = false; await boot('en'); expect(screen.getByText('Voice announcements')).toBeTruthy(); expect(['off', 'headphones', 'speaker'].map(k => sel(k).props.accessibilityLabel)).toEqual(['Off', 'In headphones', 'Also through the speaker']); expect(screen.getByText('Listen to an example')).toBeTruthy();
