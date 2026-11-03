@@ -66,6 +66,24 @@ describe('W8: Zottman Curl i Zottman Preacher Curl — wyjątek bez rysunku (dec
   });
 });
 
+describe('H1 (recenzja r3, 03.11.2026, WYSOKIE): chwyt młotkowy — hantel rysowany poprzecznie niezależnie od obrotu przedramienia (draw.ts:426–433)', () => {
+  const HAMMER = ['Hammer Curl', 'Cross Body Hammer Curl', 'Incline Hammer Curl', 'Preacher Hammer Dumbbell Curl'];
+  const rec = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/research/figury-recenzja.json'), 'utf8')).v2.curl;
+  const fam = fs.readFileSync(path.join(__dirname, '../lib/figures/v2/families.ts'), 'utf8');
+  const poseData = fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poseData.ts'), 'utf8');
+  const draw = fs.readFileSync(path.join(__dirname, '../lib/figures/v2/draw.ts'), 'utf8');
+  test('wpis recenzji r3 opisuje wadę H1 i 4 ćwiczenia; autor ≠ recenzent', () => {
+    expect(rec.werdykt).toBe('wyswietlana'); expect(rec.autor).not.toBe(rec.recenzent);
+    for (const k of HAMMER) expect([k, rec.uwagi.includes(k)]).toEqual([k, true]);
+    expect(rec.uwagi).toMatch(/H1 \(WYSOKIE\)/);
+  });
+  test('rodzina curl nie jest podłączona (planned, bez pliku póz w poseData), dopóki hantel nie zależy od obrotu przedramienia i 4 hammer nie przejdą ponownej recenzji', () => {
+    const podlaczona = /id: 'curl', status: 'ready'/.test(fam) || /curl: \(\) => require\('\.\/poses\/curl\.json'\)/.test(poseData);
+    const naprawione = /obrotPrzedramienia/.test(draw) || /rot\b/.test(draw.slice(draw.indexOf("case 'dumbbell'"), draw.indexOf("case 'handle'")));
+    expect([podlaczona, podlaczona ? naprawione : true]).toEqual([podlaczona, true]);
+  });
+});
+
 describe('N1: Concentration Curl (hantle) — wolna ręka przy udzie, łokieć w dół', () => {
   test('wolna ręka L: łokieć poniżej barku o ≥ 15 cm w całym ruchu', () => {
     for (const u of [0, 0.5, 1]) { const A = keyframeFrame(CURL['Concentration Curl (hantle)'], u).sk.arms.L; expect(A.shoulder[1] - A.elbow[1]).toBeGreaterThanOrEqual(15); }

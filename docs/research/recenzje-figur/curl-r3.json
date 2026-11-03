@@ -1,0 +1,485 @@
+{
+ "data": "2026-11-03",
+ "galaz": "figury/curl @ a2ed2b85 (bez W1/W2)",
+ "arkusze": "/home/user/arkusze-curl/arkusze-r3/",
+ "cwiczenia": {
+  "Barbell Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 12,9° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor gryfu: łuk wokół łokcia, gryf przy udach w u=0 (odstęp 2,8 cm)"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Barbell-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Barbell-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "EZ Bar Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 16,0° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "talerze z dala od końca gryfu = W2 (partia wspólna, nie oceniane)"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/EZ-Bar-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/EZ-Bar-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Reverse Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 12,9° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "nachwyt, łuk do 123°"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Reverse-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Reverse-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Drag Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W3 naprawione: gryf przy przodzie tułowia (odstęp 1,5-2,6 cm, tor pionowy na arkuszu), łokcie cofają się do x=-19 cm (dryf 25 cm, cecha ćwiczenia)"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Drag-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Drag-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Biceps Curl (hantle)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 7,1° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Biceps-Curl-hantle-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Biceps-Curl-hantle-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Hammer Curl": {
+   "werdykt": "do poprawy",
+   "uwagi": [
+    "H1 (WYSOKIE): hantel rysowany zawsze poprzecznie (draw.ts:426-433 nie uwzględnia obrotPrzedramienia) - przy chwycie neutralnym (karta curl.hammerSetup „dłonie zwrócone do ciała”) rysunek pokazuje ułożenie hantla jak przy podchwycie/nachwycie",
+    "W4: zgięcie łokcia w u=0 7,1° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "WYSOKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Hammer-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Hammer-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Standing Dumbbell Reverse Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 7,1° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "nachwyt - poprzeczny hantel zgodny",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Standing-Dumbbell-Reverse-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Standing-Dumbbell-Reverse-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Standing Inner-Biceps Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W6 naprawione: łokcie przy bokach (odwiedzenie 0-5°), przedramiona i hantle na zewnątrz (front u=0/0,5/1) - zgodne z note katalogu",
+    "W4: zgięcie łokcia w u=0 13,2° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Standing-Inner-Biceps-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Standing-Inner-Biceps-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Cross Body Hammer Curl": {
+   "werdykt": "do poprawy",
+   "uwagi": [
+    "H1 (WYSOKIE): hantel rysowany zawsze poprzecznie (draw.ts:426-433 nie uwzględnia obrotPrzedramienia) - przy chwycie neutralnym (karta curl.hammerSetup „dłonie zwrócone do ciała”) rysunek pokazuje ułożenie hantla jak przy podchwycie/nachwycie (front u=1: hantel poprzecznie przy klatce)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "WYSOKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Cross-Body-Hammer-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Cross-Body-Hammer-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Cable Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 12,9° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "linka wolna od ciała (min 8,8 cm)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Cable-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Cable-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Reverse Cable Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 12,9° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Reverse-Cable-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Reverse-Cable-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Hammer Curl (linki)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 10,7° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "lina: chwyt zwęża się 21->12 cm",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Hammer-Curl-linki-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Hammer-Curl-linki-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Standing One-Arm Cable Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 6,8° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Standing-One-Arm-Cable-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Standing-One-Arm-Cable-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Cable Curl (dwie linki)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W4: zgięcie łokcia w u=0 7,1° - widoczne jako lekkie ugięcie, akceptowalne (NISKIE, nie blokuje)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Cable-Curl-dwie-linki-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Cable-Curl-dwie-linki-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Incline Curl (hantle)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "bez zmian względem r1; łuk 5-127°, ramię za linią tułowia",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Incline-Curl-hantle-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Incline-Curl-hantle-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Incline Hammer Curl": {
+   "werdykt": "do poprawy",
+   "uwagi": [
+    "H1 (WYSOKIE): hantel rysowany zawsze poprzecznie (draw.ts:426-433 nie uwzględnia obrotPrzedramienia) - przy chwycie neutralnym (karta curl.hammerSetup „dłonie zwrócone do ciała”) rysunek pokazuje ułożenie hantla jak przy podchwycie/nachwycie",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "WYSOKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Incline-Hammer-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Incline-Hammer-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Lying Supine Dumbbell Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "zr 27->31: hantle obok ławki (front u=0), zgięcie ku głowie",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Lying-Supine-Dumbbell-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Lying-Supine-Dumbbell-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "High Cable Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "bez zmian; linka w widoku z boku rzutuje się na głowę (3D: z boku, min odstęp 19,7 cm)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/High-Cable-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/High-Cable-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Bayesian Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "bez zmian; linka mija biodro (min 1,8 cm), łokieć za tułowiem",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Bayesian-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Bayesian-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Concentration Curl (hantle)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "N1 naprawione: wolna ręka łokieć w dół/na bok, dłoń na udzie",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Concentration-Curl-hantle-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Concentration-Curl-hantle-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Seated Close-Grip Concentration Barbell Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "f2 34->24: dół zgięcie 13°; N2 (gryf łamany przy nazwie Barbell) pominięte przez autora - NISKIE, backlog; talerze = W2"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Seated-Close-Grip-Concentration-Barbell-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Seated-Close-Grip-Concentration-Barbell-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Standing Concentration Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "zgięcie dół 16,1°, druga dłoń na udzie",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Standing-Concentration-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Standing-Concentration-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Lying Close-Grip Bar Curl On High Pulley": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W7 naprawione: przedramię zgina się ku głowie (a 112->218°), dłonie w u=1 nad czubkiem głowy (ok. 7 cm od głowy), łokcie nieruchome (dryf 2 cm), linka wolna od ciała (min 8,6 cm)"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Lying-Close-Grip-Bar-Curl-On-High-Pulley-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Lying-Close-Grip-Bar-Curl-On-High-Pulley-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Lying Cable Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "bez zmian; stopy do bloczka, zgięcie ku głowie"
+   ],
+   "waznosc": null,
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Lying-Cable-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Lying-Cable-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Barbell Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,7 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Barbell-Preacher-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Barbell-Preacher-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Preacher Curl (EZ)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,1 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "talerze = W2"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Preacher-Curl-EZ-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Preacher-Curl-EZ-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Reverse EZ-Bar Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,0 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "talerze = W2"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Reverse-EZ-Bar-Preacher-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Reverse-EZ-Bar-Preacher-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,8 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Preacher-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Preacher-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Preacher Hammer Dumbbell Curl": {
+   "werdykt": "do poprawy",
+   "uwagi": [
+    "H1 (WYSOKIE): hantel rysowany zawsze poprzecznie (draw.ts:426-433 nie uwzględnia obrotPrzedramienia) - przy chwycie neutralnym (karta curl.hammerSetup „dłonie zwrócone do ciała”) rysunek pokazuje ułożenie hantla jak przy podchwycie/nachwycie",
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,8 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "WYSOKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Preacher-Hammer-Dumbbell-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Preacher-Hammer-Dumbbell-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Cable Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,7 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "linka wolna (min 18,5 cm)"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Cable-Preacher-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Cable-Preacher-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Machine Biceps Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,7 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "dźwignia: oś z boku na wysokości łokcia, koniec w dłoni (długość 37,4 cm stała, sprawdzone u=0/0,5/1)",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Machine-Biceps-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Machine-Biceps-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "One Arm Dumbbell Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "W5 naprawione: ramię leży na podpórce na całej długości (side u=0/0,5/1); NISKIE: między klatkami kluczowymi (u 0,05-0,15 i 0,3-0,45 itd.) ramię wnika w podpórkę do 1,8 cm (interpolacja; test r2 sprawdza tylko u=0/0,5/1)",
+    "druga ręka zwisa wolno",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/One-Arm-Dumbbell-Preacher-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/One-Arm-Dumbbell-Preacher-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Spider Curl": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "bez zmian; N3 (opis nóg w figury-sens.json) pominięte - NISKIE, backlog",
+    "tor ciężaru na arkuszu = miednica (W1 poza tą gałęzią, partia wspólna) - tor oceniony z położeń dłoni w kadrach i liczbowo; L-050 spełnione dopiero po scaleniu W1 i ponownym arkuszu"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Spider-Curl-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Spider-Curl-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  },
+  "Spider Curl (sztanga)": {
+   "werdykt": "wyswietlana",
+   "uwagi": [
+    "bez zmian; czysty łuk śladu; talerze = W2; N3 - NISKIE"
+   ],
+   "waznosc": "NISKIE",
+   "slad": {
+    "side": "/home/user/arkusze-curl/arkusze-r3/Spider-Curl-sztanga-side.png",
+    "front": "/home/user/arkusze-curl/arkusze-r3/Spider-Curl-sztanga-front.png"
+   },
+   "recenzent": "audytor (koordynator 1.1, 03.11.2026)",
+   "autor": "programista curl"
+  }
+ }
+}
