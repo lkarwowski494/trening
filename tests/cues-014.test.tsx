@@ -11,6 +11,7 @@ import { figureFor } from '@/lib/figures';
 import { ExerciseCues } from '@/components/ExerciseCues';
 import { applyLang, t } from '@/lib/i18n';
 import { fresh } from './helpers';
+import P2_MOC from './fixtures/cues-p2-moc.json';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
@@ -29,7 +30,7 @@ describe('0.14.0 wskazówki: dane', () => {
   test('20 nowych ćwiczeń ma wskazówki, nie jest już „otwartych”; łącznie 102', () => {
     expect(NEW.length).toBe(20);
     for (const k of NEW) { expect([k, !!CUE_DATA.exercises[k], CUE_DATA.open.includes(k)]).toEqual([k, true, false]); expect(cuesFor(lib(k), 'pl')).not.toBeNull(); }
-    expect(Object.keys(CUE_DATA.exercises).length + CUE_DATA.hidden.length).toBe(102); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
+    expect(Object.keys(CUE_DATA.exercises).filter(k => !P2_MOC.cwiczenia.includes(k)).length + CUE_DATA.hidden.filter(k => !P2_MOC.cwiczenia.includes(k)).length).toBe(102); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   test('otwarte zostają otwarte (powód ≥ 20 znaków, bez wskazówek) — nic spornego nie wdrożono', () => {
     expect(STILL_OPEN.length).toBe(22);
@@ -40,7 +41,7 @@ describe('0.14.0 wskazówki: dane', () => {
     expect(partial.length).toBeGreaterThan(0);
     /* + trzy wykroki po usunięciu zdań o kolanie (decyzja właściciela 1a, 28.10.2026, M1-audytor-generalny-038) — karta niepełna świadomie */
     const PO_1A = ['Lunges (hantle)', 'Walking Lunges', 'Reverse Lunge'];
-    for (const k of partial) { expect([...NEW, ...PO_1A]).toContain(k); const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
+    for (const k of partial) { expect([...NEW, ...PO_1A, ...P2_MOC.partial]).toContain(k); if (P2_MOC.partial.includes(k)) continue; /* karty P2 ukryte do recenzji — kompletność: tests/zrodla-pelne-cues-p2-moc.test.ts */ const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
     for (const [k, x] of Object.entries(CUE_DATA.exercises)) if (!partial.includes(k)) expect([k, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2]).toEqual([k, true, true, true]);
     for (const k of ['Machine Shoulder Press', 'Nordic Curl', 'Pallof Press']) expect(partial).not.toContain(k);
   });

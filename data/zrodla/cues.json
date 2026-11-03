@@ -216,6 +216,81 @@
    "level": 4,
    "kind": "site",
    "warunkowo": "artykuł z autorem z kwalifikacjami w biogramie, datą i redakcją wydawcy; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)"
+  },
+  "Rogue Fitness": {
+   "name": "Rogue Fitness — Movement Library producenta sztang i hantli (roguefitness.com/theindex); liczona tylko dla własnego rodzaju sprzętu",
+   "level": 4,
+   "kind": "maker"
+  },
+  "CrossFit": {
+   "name": "CrossFit — Essentials (crossfit.com; organizacja certyfikująca trenerów)",
+   "level": 4,
+   "kind": "org"
+  },
+  "Catalyst Athletics": {
+   "name": "Catalyst Athletics — Olympic Weightlifting Exercise Library (catalystathletics.com)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Experience Life": {
+   "name": "Experience Life (magazyn Life Time) — liczony tylko artykuł autora z kwalifikacjami (A. Heffernan, CSCS)",
+   "level": 4,
+   "kind": "site"
+  },
+  "IronMind": {
+   "name": "IronMind — artykuły „Jim Schmitz on the Lifts” (liczone tylko z autorem J. Schmitz i datą, także pośrednią z IronMind News)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Torokhtiy": {
+   "name": "Torokhtiy Weightlifting — artykuły techniki z autorem O. Torokhtiy (olimpijczyk, PhD nauk o sporcie) i datą; strony sklepu i programów — nie źródło",
+   "level": 4,
+   "kind": "site"
+  },
+  "Suchomel i in. (J Hum Kinet 2019)": {
+   "name": "Suchomel, McKeever, Sijuwade, Carpenter, McMahon, Loturco, Comfort — badanie, J Hum Kinet 2019 (użyty tylko opis wykonania)",
+   "level": 3,
+   "kind": "study"
+  },
+  "inSPORTline": {
+   "name": "inSPORTline — instrukcja zestawu skrzyń plyometrycznych (producent sprzętu)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "REP Fitness": {
+   "name": "REP Fitness — blog Training (producent sprzętu, m.in. piłek do wall ball, 2026)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "RFL": {
+   "name": "Rugby Football League — karta ćwiczenia „Med Ball Chest Throw” (federacja, szkolenie trenerów)",
+   "level": 4,
+   "kind": "org"
+  },
+  "World Athletics": {
+   "name": "World Athletics — Kids' Athletics, Teaching athletics (federacja, materiały szkoleniowe)",
+   "level": 4,
+   "kind": "org"
+  },
+  "Manske, Reiman (Wichita State University, Duke University)": {
+   "name": "Manske, Reiman — przegląd testów funkcjonalnych, Sports Health 2013",
+   "level": 3,
+   "kind": "study"
+  },
+  "EliteFTS": {
+   "name": "EliteFTS — artykuły szkoleniowe (producent sanek do ciągnięcia i pchania, autorzy-trenerzy)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "Torque Fitness": {
+   "name": "Torque Fitness — Ultimate TANK Training Guide (producent sanek do pchania i ciągnięcia)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "StrongFirst": {
+   "name": "StrongFirst — standardy i artykuły szkoły instruktorów kettlebell (strongfirst.com)",
+   "level": 4,
+   "kind": "org"
   }
  },
  "sources": {
@@ -1709,6 +1784,510 @@
    "url": "https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row",
    "level": 5,
    "strona": "odczyt 02.11.2026: podpis „By Harry Bullmore” (staff writer; biogram bez kwalifikacji trenerskich), aktualizacja 23.03.2023 — brak autora z kwalifikacjami → 5; do potwierdzenia przez badacza"
+  },
+  "ace-116": {
+   "org": "ACE",
+   "title": "Squat Jumps (#116)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/",
+   "level": 4
+  },
+  "ace-177": {
+   "org": "ACE",
+   "title": "Forward Linear Jumps (#177)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+   "level": 4
+  },
+  "ace-178": {
+   "org": "ACE",
+   "title": "Overhead Medicine Ball Throws (#178)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/",
+   "level": 4
+  },
+  "ace-180": {
+   "org": "ACE",
+   "title": "Tuck Jump (#180)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/",
+   "level": 4
+  },
+  "ace-246": {
+   "org": "ACE",
+   "title": "Alternate Leg Push-off (#246)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/246/alternate-leg-push-off/",
+   "level": 4
+  },
+  "ace-264": {
+   "org": "ACE",
+   "title": "Medicine Ball Lunge to Chest Pass (#264)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/",
+   "level": 4
+  },
+  "ace-357": {
+   "org": "ACE",
+   "title": "Squat to Overhead Press (#357)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/",
+   "level": 4
+  },
+  "ace-385": {
+   "org": "ACE",
+   "title": "Push-jerk (#385; kettlebells)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/",
+   "level": 4
+  },
+  "ace-5386-adv-kb": {
+   "org": "ACE",
+   "title": "Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015)",
+   "url": "https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/",
+   "level": 4
+  },
+  "barbend-blocks-vs-hang": {
+   "org": "BarBend",
+   "title": "Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2)",
+   "url": "https://barbend.com/weightlifting-blocks-vs-hang/",
+   "level": 4
+  },
+  "barbend-clean": {
+   "org": "BarBend",
+   "title": "How to Do the Clean… (akt. 19.11.2024)",
+   "url": "https://barbend.com/how-to-do-the-clean/",
+   "level": 4
+  },
+  "barbend-clean-pull": {
+   "org": "BarBend",
+   "title": "Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024)",
+   "url": "https://barbend.com/clean-pull-guide/",
+   "level": 4
+  },
+  "barbend-db-snatch": {
+   "org": "BarBend",
+   "title": "Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024)",
+   "url": "https://barbend.com/dumbbell-snatch/",
+   "level": 4
+  },
+  "barbend-fix-your-snatch": {
+   "org": "BarBend",
+   "title": "Need to Fix Your Snatch? (R. Stefan, USAW-L1)",
+   "url": "https://barbend.com/fix-your-snatch/",
+   "level": 4
+  },
+  "barbend-hang-clean": {
+   "org": "BarBend",
+   "title": "How to Do a Hang Clean (akt. 19.12.2023)",
+   "url": "https://barbend.com/hang-clean/",
+   "level": 4
+  },
+  "barbend-hang-lifts": {
+   "org": "BarBend",
+   "title": "What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2)",
+   "url": "https://barbend.com/what-are-hang-lifts-in-weightlifting/",
+   "level": 4
+  },
+  "barbend-jerk-dip": {
+   "org": "BarBend",
+   "title": "Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023)",
+   "url": "https://barbend.com/jerk-dip-technique-benefits/",
+   "level": 4
+  },
+  "barbend-jerk-exercises": {
+   "org": "BarBend",
+   "title": "Exercises to Strengthen Your Jerk (R. Stefan, akt. 01.07.2024)",
+   "url": "https://barbend.com/exercises-to-strengthen-jerk",
+   "level": 4
+  },
+  "barbend-kb-clean": {
+   "org": "BarBend",
+   "title": "Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)",
+   "url": "https://barbend.com/kettlebell-clean/",
+   "level": 4
+  },
+  "barbend-kb-jerk-vs-pp": {
+   "org": "BarBend",
+   "title": "Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)",
+   "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+   "level": 4
+  },
+  "barbend-muscle-snatch": {
+   "org": "BarBend",
+   "title": "Muscle Snatch (C. Trieu, 2024)",
+   "url": "https://barbend.com/muscle-snatch/",
+   "level": 4
+  },
+  "barbend-power-clean": {
+   "org": "BarBend",
+   "title": "The Power Clean Exercise: How To… (akt. 25.03.2024)",
+   "url": "https://barbend.com/power-clean/",
+   "level": 4
+  },
+  "barbend-power-snatch": {
+   "org": "BarBend",
+   "title": "Power Snatch (R. Stefan, USAW-L1)",
+   "url": "https://barbend.com/power-snatch/",
+   "level": 4
+  },
+  "barbend-sled-push": {
+   "org": "BarBend",
+   "title": "How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024)",
+   "url": "https://barbend.com/sled-push/",
+   "level": 4
+  },
+  "barbend-snatch-balance": {
+   "org": "BarBend",
+   "title": "Snatch Balance (M. Dewar, CSCS)",
+   "url": "https://barbend.com/snatch-balance/",
+   "level": 4
+  },
+  "catalyst-193": {
+   "org": "Catalyst Athletics",
+   "title": "Jerk Balance (Exercise Library #193)",
+   "url": "https://catalystathletics.com/exercise/193/Jerk-Balance/",
+   "level": 4
+  },
+  "catalyst-194": {
+   "org": "Catalyst Athletics",
+   "title": "Jerk Dip Squat (Exercise Library #194)",
+   "url": "https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/",
+   "level": 4
+  },
+  "catalyst-207": {
+   "org": "Catalyst Athletics",
+   "title": "Block Snatch (#207)",
+   "url": "https://catalystathletics.com/exercise/207/Block-Snatch/",
+   "level": 4
+  },
+  "catalyst-211": {
+   "org": "Catalyst Athletics",
+   "title": "Split Clean",
+   "url": "https://www.catalystathletics.com/exercise/211/Split-Clean/",
+   "level": 4
+  },
+  "catalyst-353": {
+   "org": "Catalyst Athletics",
+   "title": "Back Squat Jump (#353)",
+   "url": "https://catalystathletics.com/exercise/353/Back-Squat-Jump/",
+   "level": 4
+  },
+  "catalyst-379": {
+   "org": "Catalyst Athletics",
+   "title": "Block Clean",
+   "url": "https://www.catalystathletics.com/exercise/379/Block-Clean/",
+   "level": 4
+  },
+  "catalyst-380": {
+   "org": "Catalyst Athletics",
+   "title": "Block Power Clean",
+   "url": "https://www.catalystathletics.com/exercise/380/Block-Power-Clean/",
+   "level": 4
+  },
+  "catalyst-549": {
+   "org": "Catalyst Athletics",
+   "title": "Broad Jump (#549)",
+   "url": "https://www.catalystathletics.com/exercise/549/Broad-Jump/",
+   "level": 4
+  },
+  "catalyst-555": {
+   "org": "Catalyst Athletics",
+   "title": "Squat Vertical Jump (#555)",
+   "url": "https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/",
+   "level": 4
+  },
+  "catalyst-558": {
+   "org": "Catalyst Athletics",
+   "title": "Tuck Jump (#558)",
+   "url": "https://catalystathletics.com/exercise/558/Tuck-Jump/",
+   "level": 4
+  },
+  "catalyst-58": {
+   "org": "Catalyst Athletics",
+   "title": "Snatch (#58)",
+   "url": "https://www.catalystathletics.com/exercise/58/Snatch/",
+   "level": 4
+  },
+  "catalyst-59": {
+   "org": "Catalyst Athletics",
+   "title": "Clean",
+   "url": "https://www.catalystathletics.com/exercise/59/Clean/",
+   "level": 4
+  },
+  "catalyst-60": {
+   "org": "Catalyst Athletics",
+   "title": "Split Jerk (Exercise Library #60)",
+   "url": "https://catalystathletics.com/exercise/60/Split-Jerk",
+   "level": 4
+  },
+  "catalyst-61": {
+   "org": "Catalyst Athletics",
+   "title": "Power Snatch (#61)",
+   "url": "https://www.catalystathletics.com/exercise/61/",
+   "level": 4
+  },
+  "catalyst-62": {
+   "org": "Catalyst Athletics",
+   "title": "Hang Power Snatch (#62)",
+   "url": "https://www.catalystathletics.com/exercise/62/Hang-Power-Snatch/",
+   "level": 4
+  },
+  "catalyst-67": {
+   "org": "Catalyst Athletics",
+   "title": "Power Clean",
+   "url": "https://www.catalystathletics.com/exercise/67/Power-Clean/",
+   "level": 4
+  },
+  "catalyst-68": {
+   "org": "Catalyst Athletics",
+   "title": "Hang Clean",
+   "url": "https://www.catalystathletics.com/exercise/68/Hang-Clean/",
+   "level": 4
+  },
+  "catalyst-72": {
+   "org": "Catalyst Athletics",
+   "title": "Power Jerk (Exercise Library #72)",
+   "url": "https://catalystathletics.com/exercise/72/Power-Jerk/",
+   "level": 4
+  },
+  "catalyst-75": {
+   "org": "Catalyst Athletics",
+   "title": "Squat Jerk (Exercise Library #75)",
+   "url": "https://catalystathletics.com/exercise/75/Squat-Jerk/",
+   "level": 4
+  },
+  "catalyst-76": {
+   "org": "Catalyst Athletics",
+   "title": "Clean & Jerk",
+   "url": "https://www.catalystathletics.com/exercise/76/Clean-Jerk/",
+   "level": 4
+  },
+  "catalyst-80": {
+   "org": "Catalyst Athletics",
+   "title": "Snatch Balance (#80)",
+   "url": "https://www.catalystathletics.com/exercise/80/Snatch-Balance/",
+   "level": 4
+  },
+  "catalyst-96": {
+   "org": "Catalyst Athletics",
+   "title": "Muscle Snatch (#96)",
+   "url": "https://www.catalystathletics.com/exercise/96/Muscle-Snatch/",
+   "level": 4
+  },
+  "catalyst-97": {
+   "org": "Catalyst Athletics",
+   "title": "Snatch Pull (#97)",
+   "url": "https://www.catalystathletics.com/exercise/97/Snatch-Pull/",
+   "level": 4
+  },
+  "catalyst-98": {
+   "org": "Catalyst Athletics",
+   "title": "Clean Pull",
+   "url": "https://www.catalystathletics.com/exercise/98/Clean-Pull/",
+   "level": 4
+  },
+  "catalyst-art-1904": {
+   "org": "Catalyst Athletics",
+   "title": "Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution",
+   "url": "https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/",
+   "level": 4
+  },
+  "catalyst-art-2076": {
+   "org": "Catalyst Athletics",
+   "title": "Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017)",
+   "url": "https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making",
+   "level": 4
+  },
+  "catalyst-pm-815": {
+   "org": "Catalyst Athletics",
+   "title": "Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch",
+   "url": "https://performancemenu.com/article/815/Greg-Everett",
+   "level": 4
+  },
+  "catalyst-video-1499": {
+   "org": "Catalyst Athletics",
+   "title": "How To Stop Swinging Snatch & Clean Pulls (wideo z opisem)",
+   "url": "https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls",
+   "level": 4
+  },
+  "catalyst-video-1539": {
+   "org": "Catalyst Athletics",
+   "title": "Arm Bend In Snatch & Clean Pulls? (wideo z opisem)",
+   "url": "https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/",
+   "level": 4
+  },
+  "cf-dkb-pp-jerk": {
+   "org": "CrossFit",
+   "title": "Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)",
+   "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+   "level": 4
+  },
+  "crossfit-cj": {
+   "org": "CrossFit",
+   "title": "The Clean and Jerk (Essentials, 21.01.2020)",
+   "url": "https://www.crossfit.com/essentials/the-clean-and-jerk",
+   "level": 4
+  },
+  "crossfit-jerk": {
+   "org": "CrossFit",
+   "title": "Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)",
+   "url": "https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk",
+   "level": 4
+  },
+  "crossfit-snatch-forward": {
+   "org": "CrossFit",
+   "title": "O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)",
+   "url": "https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch",
+   "level": 4
+  },
+  "crossfit-thruster": {
+   "org": "CrossFit",
+   "title": "The Thruster (Essentials, 12.04.2019)",
+   "url": "https://www.crossfit.com/essentials/the-thruster",
+   "level": 4
+  },
+  "crossfit-wall-ball": {
+   "org": "CrossFit",
+   "title": "The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning",
+   "url": "https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon",
+   "level": 4
+  },
+  "elitefts-shove": {
+   "org": "EliteFTS",
+   "title": "Shove It! Top Pushing Moves (D. Balzarini, 05.07.2011)",
+   "url": "https://elitefts.com/blogs/training/shove-it-top-pushing-moves",
+   "level": 4
+  },
+  "experiencelife-power-clean": {
+   "org": "Experience Life",
+   "title": "How to Power Clean (A. Heffernan, CSCS, 20.05.2019)",
+   "url": "https://experiencelife.lifetime.life/article/learn-to-power-clean/",
+   "level": 4
+  },
+  "insportline-qt1005": {
+   "org": "inSPORTline",
+   "title": "Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises”",
+   "url": "https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf",
+   "level": 4
+  },
+  "ironmind-split": {
+   "org": "IronMind",
+   "title": "Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada)",
+   "url": "https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/",
+   "level": 4
+  },
+  "lifetime-thruster": {
+   "org": "Experience Life",
+   "title": "How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)",
+   "url": "https://experiencelife.lifetime.life/article/how-to-do-the-thruster/",
+   "level": 4
+  },
+  "nasm-squat-jump": {
+   "org": "NASM",
+   "title": "Squat Jump",
+   "url": "https://www.nasm.org/resource-center/exercise-library/squat-jump",
+   "level": 4
+  },
+  "nasm-tuck-jump": {
+   "org": "NASM",
+   "title": "Tuck Jump",
+   "url": "https://www.nasm.org/resource-center/exercise-library/tuck-jump",
+   "level": 4
+  },
+  "pmc-3658404": {
+   "org": "Manske, Reiman (Wichita State University, Duke University)",
+   "title": "Functional Performance Testing for Power and Return to Sports, Sports Health 2013 (Trunk Power Tests)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/",
+   "level": 3
+  },
+  "pmc-6724584": {
+   "org": "Suchomel i in. (J Hum Kinet 2019)",
+   "title": "The Effect of Load Placement on the Power Production Characteristics of Three Lower Extremity Jumping Exercises (J Hum Kinet 2019)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/",
+   "level": 3
+  },
+  "rep-sled-push": {
+   "org": "REP Fitness",
+   "title": "Sled Push Technique Guide (2026)",
+   "url": "https://repfitness.com/blogs/training/sled-push-technique",
+   "level": 4
+  },
+  "rep-wall-balls": {
+   "org": "REP Fitness",
+   "title": "How to Improve Your Wall Balls",
+   "url": "https://uk.repfitness.com/blogs/training/wall-balls",
+   "level": 4
+  },
+  "rfl-mb-chest-throw": {
+   "org": "RFL",
+   "title": "Med Ball Chest Throw (karta PDF z oceną 1–5)",
+   "url": "https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf",
+   "level": 4
+  },
+  "rogue-alt-db-snatch": {
+   "org": "Rogue Fitness",
+   "title": "Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution)",
+   "url": "https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch",
+   "level": 4
+  },
+  "rogue-clean-pull": {
+   "org": "Rogue Fitness",
+   "title": "Movement Demo — Clean Pull",
+   "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull",
+   "level": 4
+  },
+  "rogue-hang-power-snatch": {
+   "org": "Rogue Fitness",
+   "title": "Movement Demo — Hang Power Snatch",
+   "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch",
+   "level": 4
+  },
+  "rogue-hang-squat-clean": {
+   "org": "Rogue Fitness",
+   "title": "Movement Demo — Hang Squat Clean",
+   "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean",
+   "level": 4
+  },
+  "rogue-hang-squat-snatch": {
+   "org": "Rogue Fitness",
+   "title": "Movement Demo — Hang Squat Snatch",
+   "url": "https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch",
+   "level": 4
+  },
+  "rogue-snatch-pull": {
+   "org": "Rogue Fitness",
+   "title": "Movement Demo — Snatch Pull (2025)",
+   "url": "https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull",
+   "level": 4
+  },
+  "sf-go-ballistic-jerk": {
+   "org": "StrongFirst",
+   "title": "Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)",
+   "url": "https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/",
+   "level": 4
+  },
+  "torokhtiy-barbell-squat-jump": {
+   "org": "Torokhtiy",
+   "title": "Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024)",
+   "url": "https://torokhtiy.com/blogs/guides/barbell-squat-jump",
+   "level": 4
+  },
+  "torokhtiy-snatch-balance": {
+   "org": "Torokhtiy",
+   "title": "Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026)",
+   "url": "https://store.torokhtiy.com/blogs/exercises/snatch-balance",
+   "level": 4
+  },
+  "torque-utg-2024": {
+   "org": "Torque Fitness",
+   "title": "Ultimate TANK Training Guide (2024, PDF; kopia u dystrybutora)",
+   "url": "https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf",
+   "level": 4
+  },
+  "wa-backward-overhead-throw": {
+   "org": "World Athletics",
+   "title": "Backward overhead throw (Kids' Athletics, poziom 3)",
+   "url": "https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw",
+   "level": 4
+  },
+  "wa-overarm-throw": {
+   "org": "World Athletics",
+   "title": "Overarm throw (Kids' Athletics)",
+   "url": "https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw",
+   "level": 4
   }
  },
  "exercises": {
@@ -8989,6 +9568,2963 @@
    "move": [],
    "tips": [],
    "mistakes": []
+  },
+  "Snatch (hantel)": {
+   "setup": [
+    {
+     "c": "kbb.dbSnatchSetup",
+     "s": [
+      [
+       "barbend-db-snatch",
+       "Step 1: Squat Down (dumbbell directly below you; deadlift-like start, chest up; back flat)"
+      ],
+      [
+       "rogue-alt-db-snatch",
+       "Set Up (dumbbell between your feet; hinge, one hand on the dumbbell in a deadlift set up; flat back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbb.dbSnatchMove",
+     "s": [
+      [
+       "barbend-db-snatch",
+       "Step 2–3 (forcefully extend your body; guide it vertically; extend the arm from underneath; elbow locked out)"
+      ],
+      [
+       "rogue-alt-db-snatch",
+       "Execution (drive the floor away; extend hips and knees, shrug; pull and punch the dumbbell overhead)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "kbb.dbArmLate",
+     "s": [
+      [
+       "barbend-db-snatch",
+       "Common Mistakes: Pulling With Your Arms (arm relaxed, legs and hips do the work in the first half)"
+      ],
+      [
+       "rogue-alt-db-snatch",
+       "Execution (Only use the arm after extending the hips and knees)"
+      ]
+     ]
+    },
+    {
+     "c": "kbb.lockout",
+     "s": [
+      [
+       "barbend-db-snatch",
+       "Step 3–4 (elbow is locked out; keeping your loaded arm locked out)"
+      ],
+      [
+       "rogue-alt-db-snatch",
+       "Execution (Arm locked out)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Double Kettlebell Clean": {
+   "setup": [
+    {
+     "c": "kbb.dblStance",
+     "s": [
+      [
+       "ace-5386-adv-kb",
+       "Double Kettlebell Swing (feet wider than hip-width apart; neutral spine as the bells go back between the legs)"
+      ],
+      [
+       "barbend-kb-clean",
+       "Double Kettlebell Clean (you'll need a wider stance to hike both bells between your legs)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbb.dblCleanMove",
+     "s": [
+      [
+       "ace-5386-adv-kb",
+       "Double Kettlebell Clean (after hip extension pull the kettlebell in at the hip, rotate around the wrist, finish in the rack on arm and chest)"
+      ],
+      [
+       "barbend-kb-clean",
+       "Double Kettlebell Clean (same form as the single-arm clean, one bell in each hand) + Steps 2–4"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Double Kettlebell Jerk": {
+   "setup": [
+    {
+     "c": "kbj.rack",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "The Rack (elbows directly over the hips; no space between arms and torso)"
+      ],
+      [
+       "sf-go-ballistic-jerk",
+       "kettlebell jerk, krok 1 (pair of kettlebells; elbow close to the ribs)"
+      ],
+      [
+       "ace-385",
+       "opis (elbows close to the rib cage) (wariant: podrzut nożycowy)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbj.move",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Jerk, kroki 1–5"
+      ],
+      [
+       "sf-go-ballistic-jerk",
+       "kettlebell jerk, kroki 2–5 (one arm or both)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "Kettlebell Jerk"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "kbb.wrist",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "The Rack (straight or just slightly flexed)"
+      ],
+      [
+       "sf-go-ballistic-jerk",
+       "kettlebell jerk, krok 1 (straight wrists)"
+      ]
+     ]
+    },
+    {
+     "c": "kbb.dip",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Jerk, krok 2 (dip slightly, torso upright)"
+      ],
+      [
+       "sf-go-ballistic-jerk",
+       "kettlebell jerk, krok 2 (dip straight down)"
+      ]
+     ]
+    },
+    {
+     "c": "kbj.fullExt",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Jerk (extend the hips completely before the second dip)"
+      ],
+      [
+       "sf-go-ballistic-jerk",
+       "kettlebell jerk, krok 3 (bells stay in the rack until hips and knees fully extend)"
+      ]
+     ]
+    },
+    {
+     "c": "kbj.lockFirst",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Jerk („drop and lock”; then extend the knees)"
+      ],
+      [
+       "sf-go-ballistic-jerk",
+       "kettlebell jerk, kroki 4–5"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Power Clean": {
+   "setup": [
+    {
+     "c": "olympic.feet",
+     "s": [
+      [
+       "catalyst-67",
+       "akapit Setup (feet about hip-width, toes turned out)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 1 (hip-width stance, feet pointed out slightly)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-67",
+       "akapit Setup (trunk braced, back extended)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 2 (Flatten your back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-67",
+       "akapit First pull (push through the whole foot); Setup (arms straight)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 3 (pushing down into the floor)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.extend",
+     "s": [
+      [
+       "catalyst-67",
+       "akapit First pull (after the knees: drive legs, extend hips aggressively)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "3. The Second Pull (thrust hips forward, straighten knees)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.under",
+     "s": [
+      [
+       "catalyst-67",
+       "akapity Second pull / Receiving (elbows up and out; spin elbows around the bar into rack)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 5 (flip your elbows around, front rack)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "4. The Catch (rotate elbows forward and under, fronts of the shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.catchHigh",
+     "s": [
+      [
+       "catalyst-67",
+       "akapit Receiving (partial squat, brake hard, stay above parallel)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 5 (legs slightly bent)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "4. The Catch (quarter- to half-squat)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-67",
+       "akapit First pull (bar close to the body)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "3. The Second Pull (keep the bar close to the body)"
+      ]
+     ]
+    },
+    {
+     "c": "oly.legs",
+     "s": [
+      [
+       "barbend-power-clean",
+       "Common Mistakes: Using Your Arms"
+      ],
+      [
+       "experiencelife-power-clean",
+       "2. The Transition (arms straight) + Common Mistakes: Pulling with the arms"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "barbend-power-clean",
+       "Common Mistakes: Using Your Arms"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bending the arms too early"
+      ]
+     ]
+    },
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bar drifting away from the body"
+      ],
+      [
+       "barbend-clean",
+       "Common Mistakes: Kicking the Bar (bazowy ruch: zarzut)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Clean": {
+   "setup": [
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit Setup (trunk braced, back extended)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 2 (bazowy ruch: power clean — ten sam ciąg wg catalyst-67)"
+      ],
+      [
+       "crossfit-cj",
+       "Setup Position (back flat; shoulders slightly in front of the bar)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit First pull (legs push through the whole foot); Setup (arms straight)"
+      ],
+      [
+       "barbend-clean",
+       "Push, Hard (pushing into the floor with your legs)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.extend",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit First pull (keep driving, extend hips forcefully)"
+      ],
+      [
+       "barbend-clean",
+       "Extend Up (mid to high-thigh, triple extension)"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — Second Pull (from mid-thigh, fully extend hips and legs)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.under",
+     "s": [
+      [
+       "catalyst-59",
+       "akapity Third pull / Receive (elbows spin around the bar to rack)"
+      ],
+      [
+       "barbend-clean",
+       "Flip and Rack"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — Third Pull (elbows high, bar racked on the shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.catchLow",
+     "s": [
+      [
+       "catalyst-59",
+       "akapity Third pull / Recovery (squat under; drive up immediately)"
+      ],
+      [
+       "barbend-clean",
+       "Flip and Rack (drop under, catch, stand up)"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — Third Pull (finish in a front squat and stand up)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit Second pull (bar close to the body)"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — First/Second Pull (bar close to the body)"
+      ]
+     ]
+    },
+    {
+     "c": "oly.legs",
+     "s": [
+      [
+       "barbend-clean",
+       "Common Mistakes: Trying to „Muscle It”"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Pulling with the arms (bazowy ruch: power clean)"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — Second Pull (arms long)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "barbend-clean",
+       "Common Mistakes: Kicking the Bar"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bar drifting away (bazowy ruch: power clean)"
+      ],
+      [
+       "crossfit-cj",
+       "Common Faults: Incomplete first pull (bar drifts from the body)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "barbend-clean",
+       "Common Mistakes: Trying to „Muscle It”"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bending the arms too early (bazowy ruch: power clean)"
+      ],
+      [
+       "crossfit-cj",
+       "Common Faults: Pulling early on the clean (arms bend before full hip and knee extension)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hang Clean": {
+   "setup": [
+    {
+     "c": "olympic.hangStart",
+     "s": [
+      [
+       "catalyst-68",
+       "akapit Starting hang position (stand the bar up, lower under control to the hang; high-hang/knee: shoulder above or slightly in front of the bar)"
+      ],
+      [
+       "rogue-hang-squat-clean",
+       "Hang Position (just above the knees, hips back, flat back, shoulders on top or just in front)"
+      ],
+      [
+       "barbend-hang-clean",
+       "FAQ Step 2 (hinge until the bar is past your knees)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-68",
+       "akapit How the lift begins (drive through the floor with the legs)"
+      ],
+      [
+       "rogue-hang-squat-clean",
+       "Execution (leg drive, arms remaining straight)"
+      ],
+      [
+       "barbend-hang-clean",
+       "Step 2 (push your feet into the floor)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.extend",
+     "s": [
+      [
+       "catalyst-68",
+       "akapit How the lift begins (hips extend forcefully)"
+      ],
+      [
+       "rogue-hang-squat-clean",
+       "Execution (explosively extend hips and knees)"
+      ],
+      [
+       "barbend-hang-clean",
+       "Step 3 (drive your hips forward)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.under",
+     "s": [
+      [
+       "catalyst-68",
+       "akapit Elbows and rack (spin the elbows around the bar)"
+      ],
+      [
+       "rogue-hang-squat-clean",
+       "Execution (fast elbows, under and around the bar)"
+      ],
+      [
+       "barbend-hang-clean",
+       "Step 3–4 (high elbows, front rack)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.catchLow",
+     "s": [
+      [
+       "catalyst-68",
+       "akapit Receive (squat under, drive up immediately)"
+      ],
+      [
+       "rogue-hang-squat-clean",
+       "Receiving (full-depth squat)"
+      ],
+      [
+       "barbend-hang-clean",
+       "Step 4 (drop into a deep squat)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-68",
+       "akapit How the lift begins (bar close to the body)"
+      ],
+      [
+       "rogue-hang-squat-clean",
+       "Execution (keep the bar close)"
+      ],
+      [
+       "barbend-hang-clean",
+       "FAQ Step 3 (keeping it close to your body)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bending the arms too early (bazowy ruch: zarzut z ziemi)"
+      ],
+      [
+       "barbend-clean",
+       "Common Mistakes: Trying to „Muscle It” (bazowy ruch: zarzut z ziemi)"
+      ]
+     ]
+    },
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bar drifting away (bazowy ruch)"
+      ],
+      [
+       "barbend-clean",
+       "Common Mistakes: Kicking the Bar (bazowy ruch)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Block Clean": {
+   "setup": [
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-379",
+       "akapit Setup and pull (brace the trunk; same position as a clean at that height)"
+      ],
+      [
+       "barbend-clean",
+       "Setup (bazowy ruch: zarzut z ziemi)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-379",
+       "akapit Setup and pull (drive through the floor with the legs)"
+      ],
+      [
+       "barbend-clean",
+       "Push, Hard (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.extend",
+     "s": [
+      [
+       "catalyst-379",
+       "akapit Setup and pull (fully extend the hips)"
+      ],
+      [
+       "barbend-clean",
+       "Extend Up (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.under",
+     "s": [
+      [
+       "catalyst-379",
+       "akapit Receive (spin the elbows around the bar)"
+      ],
+      [
+       "barbend-clean",
+       "Flip and Rack (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.catchLow",
+     "s": [
+      [
+       "catalyst-379",
+       "akapity Receive / Recovery (squat under; drive back up immediately)"
+      ],
+      [
+       "barbend-clean",
+       "Flip and Rack (bazowy ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "barbend-clean",
+       "Common Mistakes: Trying to „Muscle It” (bazowy ruch)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bending the arms too early (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "barbend-clean",
+       "Common Mistakes: Kicking the Bar (bazowy ruch)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bar drifting away (bazowy ruch)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Block Power Clean": {
+   "setup": [
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-380",
+       "akapit Setup (same position as at that point of a power clean from the floor)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 2 (bazowy ruch: power clean z ziemi)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-380",
+       "akapit Pull (drive through the whole foot)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 3 (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.under",
+     "s": [
+      [
+       "catalyst-380",
+       "akapit Receive depth (elbows up and out, spin into the rack)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 5 (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.catchHigh",
+     "s": [
+      [
+       "catalyst-380",
+       "akapit Receive depth (brake hard, stay above parallel)"
+      ],
+      [
+       "barbend-power-clean",
+       "Step 5 (legs slightly bent; bazowy ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-380",
+       "akapit Pull (keeping the bar as close as possible)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "3. The Second Pull (bazowy ruch)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "barbend-power-clean",
+       "Common Mistakes: Using Your Arms (bazowy ruch)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bending the arms too early (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bar drifting away (bazowy ruch)"
+      ],
+      [
+       "barbend-clean",
+       "Common Mistakes: Kicking the Bar (bazowy ruch)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Split Clean": {
+   "setup": [
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit Setup (bazowy ruch: catalyst-211 odsyła do mechaniki zarzutu)"
+      ],
+      [
+       "barbend-clean",
+       "Setup (bazowy ruch)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit First pull (bazowy ruch)"
+      ],
+      [
+       "barbend-clean",
+       "Push, Hard (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.extend",
+     "s": [
+      [
+       "catalyst-59",
+       "akapit First pull (bazowy ruch)"
+      ],
+      [
+       "barbend-clean",
+       "Extend Up (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.splitCatch",
+     "s": [
+      [
+       "catalyst-211",
+       "akapit Execution (squat clean mechanics, under in a split position)"
+      ],
+      [
+       "ironmind-split",
+       "akapit o split clean (pulled just as for a power or squat lift; front leg forward, back leg backward)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "barbend-clean",
+       "Common Mistakes: Trying to „Muscle It” (bazowy ruch)"
+      ],
+      [
+       "experiencelife-power-clean",
+       "Common Mistakes: Bending the arms too early (bazowy ruch)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Clean and Jerk": {
+   "setup": [
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-76",
+       "akapit Clean (braced back)"
+      ],
+      [
+       "crossfit-cj",
+       "Setup Position (back flat)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.legsFirst",
+     "s": [
+      [
+       "catalyst-76",
+       "akapit Clean (push with the legs through the whole foot)"
+      ],
+      [
+       "barbend-clean",
+       "Push, Hard (bazowy ruch: zarzut)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.extend",
+     "s": [
+      [
+       "crossfit-cj",
+       "Clean — Second Pull (from mid-thigh, fully extend hips and legs)"
+      ],
+      [
+       "barbend-clean",
+       "Extend Up (bazowy ruch: zarzut)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.under",
+     "s": [
+      [
+       "catalyst-76",
+       "akapit Transition and rack (spin the elbows around the bar)"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — Third Pull (elbows high, bar racked on the shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.catchLow",
+     "s": [
+      [
+       "catalyst-76",
+       "akapit Transition and rack (receiving squat, then stand)"
+      ],
+      [
+       "crossfit-cj",
+       "Clean — Third Pull (finish in a front squat and stand up)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.splitMove",
+     "s": [
+      [
+       "catalyst-76",
+       "część jerk (dip, drive straight back up with the legs, push the bar up, move the feet into the split as you punch the elbows)"
+      ],
+      [
+       "crossfit-cj",
+       "Jerk — Dip / Drive / Split-Receive (arms push under the bar, feet into a split, arms locked out)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "crossfit-cj",
+       "Clean — First/Second Pull (bar close to the body)"
+      ],
+      [
+       "catalyst-59",
+       "akapit Second pull (bazowy ruch: zarzut)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.dip",
+     "s": [
+      [
+       "catalyst-76",
+       "część jerk („Dip by bending at the knees only with the trunk vertical”)"
+      ],
+      [
+       "crossfit-cj",
+       "Jerk — Dip (hips and shoulders travel straight down, torso vertical)"
+      ]
+     ]
+    },
+    {
+     "c": "pp.legs",
+     "s": [
+      [
+       "catalyst-76",
+       "część jerk („As you finish the extension of the legs, push the bar up…”)"
+      ],
+      [
+       "crossfit-cj",
+       "Jerk — Drive (aggressively extends the hips and knees), potem Split/Receive (arms push under)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.feetHands",
+     "s": [
+      [
+       "catalyst-76",
+       "część jerk (move the feet into the split as you punch the elbows)"
+      ],
+      [
+       "crossfit-cj",
+       "Jerk — Split/Receive (arms locked out at the time the feet hit the floor)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "crossfit-cj",
+       "Common Faults: Pulling early on the clean"
+      ],
+      [
+       "barbend-clean",
+       "Common Mistakes: Trying to „Muscle It” (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "crossfit-cj",
+       "Common Faults: Incomplete first pull (bar drifts from the body)"
+      ],
+      [
+       "barbend-clean",
+       "Common Mistakes: Kicking the Bar (bazowy ruch)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.forward",
+     "s": [
+      [
+       "catalyst-76",
+       "część jerk (drive straight back up)"
+      ],
+      [
+       "crossfit-jerk",
+       "Common Faults — Fault #2 (drives the barbell out front; bazowy ruch: podrzut)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Clean Pull": {
+   "setup": [
+    {
+     "c": "olympic.setupBack",
+     "s": [
+      [
+       "catalyst-98",
+       "akapit Setup (trunk braced, back extended)"
+      ],
+      [
+       "rogue-clean-pull",
+       "Start Position (flat back)"
+      ],
+      [
+       "barbend-clean-pull",
+       "Step 1 — Set Up (low, braced starting posture)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.triple",
+     "s": [
+      [
+       "catalyst-98",
+       "akapity Extension / Heels and top position (extend roughly vertically, heels rise naturally)"
+      ],
+      [
+       "rogue-clean-pull",
+       "Execution (explode through hips, knees, and ankles)"
+      ],
+      [
+       "barbend-clean-pull",
+       "Step 3 — Get Tall (extend hips and legs, then shrug)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "olympic.mis.arms",
+     "s": [
+      [
+       "barbend-clean-pull",
+       "Common Clean Pull Mistakes: Using Your Arms (only shrug once you've fully extended)"
+      ],
+      [
+       "rogue-clean-pull",
+       "Execution (bez ciągnięcia rękami — wg notatki z sesji 1)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Split Jerk": {
+   "setup": [
+    {
+     "c": "olympic.jerkSetup",
+     "s": [
+      [
+       "catalyst-60",
+       "opis (heels approximately hip-width; jerk rack position)"
+      ],
+      [
+       "crossfit-jerk",
+       "Split Jerk — setup (jumping/jerk position, hip-width; shelf of the shoulders)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.splitMove",
+     "s": [
+      [
+       "catalyst-60",
+       "opis (dip, drive, push the bar up, move the feet into the split, punch the elbows)"
+      ],
+      [
+       "crossfit-jerk",
+       "Split Jerk — receive (punches body into a lunge)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "olympic.dip",
+     "s": [
+      [
+       "catalyst-60",
+       "opis (bending at the knees only with the trunk vertical)"
+      ],
+      [
+       "crossfit-jerk",
+       "Split Jerk — dip (straight, smooth, and short)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.forward",
+     "s": [
+      [
+       "crossfit-jerk",
+       "Common Faults — Fault #2 (drives the barbell out front)"
+      ],
+      [
+       "catalyst-60",
+       "opis (drive straight back up)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Power Jerk": {
+   "setup": [
+    {
+     "c": "olympic.jerkSetup",
+     "s": [
+      [
+       "catalyst-72",
+       "opis (heels hip-width; jerk rack position)"
+      ],
+      [
+       "crossfit-jerk",
+       "Push (Power) Jerk — feet from hip width"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.powerMove",
+     "s": [
+      [
+       "catalyst-72",
+       "opis (feet into squat stance; partial squat above parallel)"
+      ],
+      [
+       "crossfit-jerk",
+       "Push (Power) Jerk — feet hip→shoulder width; parallel or above parallel squat"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "olympic.dip",
+     "s": [
+      [
+       "catalyst-72",
+       "opis (knees only, trunk vertical)"
+      ],
+      [
+       "crossfit-jerk",
+       "dip — opis wspólny dla stylów (straight, smooth, short)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.forward",
+     "s": [
+      [
+       "crossfit-jerk",
+       "Common Faults — Fault #2"
+      ],
+      [
+       "catalyst-72",
+       "opis (drive straight back up)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Squat Jerk": {
+   "setup": [
+    {
+     "c": "olympic.jerkSetup",
+     "s": [
+      [
+       "catalyst-75",
+       "opis (heels hip-width; jerk rack position)"
+      ],
+      [
+       "crossfit-jerk",
+       "setup — jumping/jerk position, hip-width (opis wspólny dla stylów)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.squatMove",
+     "s": [
+      [
+       "catalyst-75",
+       "opis (punch the elbows overhead, drive yourself down into a squat; recover with the bar overhead)"
+      ],
+      [
+       "crossfit-jerk",
+       "Squat Jerk — receive (full-depth squat) and recovery (overhead squat)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "olympic.dip",
+     "s": [
+      [
+       "catalyst-75",
+       "opis (knees only, trunk vertical)"
+      ],
+      [
+       "crossfit-jerk",
+       "dip — opis wspólny dla stylów"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.recover",
+     "s": [
+      [
+       "catalyst-75",
+       "opis (recover into a standing position with the bar overhead)"
+      ],
+      [
+       "crossfit-jerk",
+       "Squat Jerk — recovery (overhead squat)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.forward",
+     "s": [
+      [
+       "crossfit-jerk",
+       "Common Faults — Fault #2 (wspólne dla stylów)"
+      ],
+      [
+       "catalyst-75",
+       "opis (drive straight back up)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Jerk Dip Squat": {
+   "setup": [
+    {
+     "c": "olympic.dipBrace",
+     "s": [
+      [
+       "catalyst-194",
+       "opis („Brace your trunk as you would for a jerk”)"
+      ],
+      [
+       "barbend-jerk-dip",
+       "Bracing (fill core and chest with a deep breath, push it against the abdominal wall)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.dipSquat",
+     "s": [
+      [
+       "catalyst-194",
+       "opis (dip as for a jerk but at a controlled speed; change direction at a controlled speed; stand again naturally) + Notes (no drive or speed)"
+      ],
+      [
+       "barbend-jerk-dip",
+       "opis odmian (jerk dip squat: „slower and more controlled movement than the jerk dip in an actual jerk”; wybicie dodaje dopiero odmiana „jerk drive”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "olympic.mis.dipRushed",
+     "s": [
+      [
+       "barbend-jerk-dip",
+       "wstęp (rushed dips that force the lifter to shift out of position)"
+      ],
+      [
+       "catalyst-194",
+       "opis (controlled speed regardless of your normal dip tempo; tension throughout legs and hips)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Jerk Balance": {
+   "setup": [
+    {
+     "c": "olympic.balanceSetup",
+     "s": [
+      [
+       "catalyst-193",
+       "opis (jerk rack position; step about a foot-length back with the front foot into a partial split)"
+      ],
+      [
+       "barbend-jerk-exercises",
+       "Jerk Balance (jerk split stance slightly „shorter” than where you'd receive the bar; bar in the front rack)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.balanceMove",
+     "s": [
+      [
+       "catalyst-193",
+       "opis (dip straight down, drive straight up, punch the bar overhead, step the front foot forward into the full split)"
+      ],
+      [
+       "barbend-jerk-exercises",
+       "Jerk Balance (dip and drive from the shortened split; catch overhead while sliding the front leg out)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Barbell Snatch": {
+   "setup": [
+    {
+     "c": "olympic.setup",
+     "s": [
+      [
+       "catalyst-58",
+       "opis wykonania, start (snatch-width grip; back extended; shoulder joint above the bar)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Step 1 Set Your Start (wide snatch grip; back tight) i Step 2 (shoulders over the bar) — wariant power"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.snatchMove",
+     "s": [
+      [
+       "catalyst-58",
+       "opis wykonania (push with the legs; extend the hips; pull elbows up and out; squat under; stand once secure)"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Extension, Receive (full depth overhead squat, locked out arms) — wariant: ze zwisu"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-58",
+       "opis wykonania (keeping the bar as close to the body as possible)"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Arms (high elbows to keep the bar close to the body) — wariant: ze zwisu (uproszczenie)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Muscles Worked › Upper & Lower Back (keep the bar tight to your body) — wariant power (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "oly.legs",
+     "s": [
+      [
+       "catalyst-58",
+       "start (arms relaxed and straight) i ciąg (push with the legs)"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Extension (leg drive and the arms remaining straight) — wariant: ze zwisu (uproszczenie)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Step 2 (arms should remain straight as you pull) — wariant power (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.overBar",
+     "s": [
+      [
+       "barbend-fix-your-snatch",
+       "pkt 2 Not Staying Over the Bar"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Extension (shoulders and chest stay over the bar for as long as possible) — wariant: ze zwisu"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.away",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "First Pull: The bar separates from the body; Second Pull: Hips are banging into the bar"
+      ],
+      [
+       "catalyst-art-2076",
+       "pkt 1 Forward Imbalance in the Pull, pkt 2 Bumping the Bar Off the Hips"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.armsEarly",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull: Early Arm Pull"
+      ],
+      [
+       "catalyst-art-1904",
+       "Why It's a Problem"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.softLockout",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Third Pull: Lazy lockout"
+      ],
+      [
+       "barbend-fix-your-snatch",
+       "pkt 4 A Loose Catch"
+      ]
+     ]
+    }
+   ]
+  },
+  "Power Snatch": {
+   "setup": [
+    {
+     "c": "olympic.setup",
+     "s": [
+      [
+       "barbend-power-snatch",
+       "Step 1 Set Your Start, Step 2 Pull Into the Hip (shoulders over the bar)"
+      ],
+      [
+       "catalyst-58",
+       "start — rwanie ogólnie (uproszczenie: ten sam start)"
+      ],
+      [
+       "catalyst-61",
+       "opis wykonania (set the starting position tightly)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.snatchPowerMove",
+     "s": [
+      [
+       "catalyst-61",
+       "opis wykonania (extend the hips; pull elbows up and out; remain above a parallel squat)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Steps 2–4 (hip crease above knee in the catch)"
+      ],
+      [
+       "rogue-hang-power-snatch",
+       "Receive (hip crease higher than the top of the knees) — wariant: ze zwisu"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-61",
+       "opis wykonania (bar as close to the body as possible)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Muscles Worked › Upper & Lower Back (keep the bar tight to your body)"
+      ]
+     ]
+    },
+    {
+     "c": "oly.legs",
+     "s": [
+      [
+       "barbend-power-snatch",
+       "Step 2 (arms should remain straight as you pull)"
+      ],
+      [
+       "rogue-hang-power-snatch",
+       "Extension (leg drive, arms remaining straight) — wariant: ze zwisu"
+      ],
+      [
+       "catalyst-61",
+       "opis wykonania (push with the legs)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.overBar",
+     "s": [
+      [
+       "barbend-power-snatch",
+       "Step 2 (shoulders vertically over the bar)"
+      ],
+      [
+       "rogue-hang-power-snatch",
+       "Extension (shoulders and chest over the bar as long as possible) — wariant: ze zwisu"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.away",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "First/Second Pull — rwanie ogólnie (uproszczenie)"
+      ],
+      [
+       "catalyst-art-2076",
+       "pkt 1–2 — rwanie i zarzut ogólnie (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.armsEarly",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull: Early Arm Pull — rwanie ogólnie (uproszczenie)"
+      ],
+      [
+       "catalyst-art-1904",
+       "Why It's a Problem — rwanie i zarzut ogólnie (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.softLockout",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Third Pull: Lazy lockout (uproszczenie)"
+      ],
+      [
+       "barbend-fix-your-snatch",
+       "pkt 4 A Loose Catch (uproszczenie)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hang Snatch": {
+   "setup": [
+    {
+     "c": "olympic.hangSetup",
+     "s": [
+      [
+       "catalyst-62",
+       "opis wykonania (deadlift the bar to standing; lower under control to the hang) — wariant power"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Hang Position (hips pushed back; flat back; shoulders on top or just in front of the bar)"
+      ],
+      [
+       "barbend-hang-lifts",
+       "What Is the Hang Position (bar suspended; lowered by hinging at the hips)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.snatchMove",
+     "s": [
+      [
+       "rogue-hang-squat-snatch",
+       "Extension, Pull Under, Receive (full depth overhead squat), Lockout"
+      ],
+      [
+       "catalyst-58",
+       "opis wykonania — rwanie ogólnie (uproszczenie: inny start)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "rogue-hang-squat-snatch",
+       "Arms (high elbows to keep the bar close to the body)"
+      ],
+      [
+       "catalyst-62",
+       "opis wykonania (bar as close to the body as possible)"
+      ]
+     ]
+    },
+    {
+     "c": "oly.legs",
+     "s": [
+      [
+       "rogue-hang-squat-snatch",
+       "Extension (leg drive and the arms remaining straight)"
+      ],
+      [
+       "barbend-hang-lifts",
+       "legs extend fully before your arms do any work (hang muscle snatch — wariant)"
+      ],
+      [
+       "catalyst-58",
+       "rwanie ogólnie"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.overBar",
+     "s": [
+      [
+       "rogue-hang-squat-snatch",
+       "Extension"
+      ],
+      [
+       "barbend-fix-your-snatch",
+       "pkt 2 — rwanie ogólnie"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.away",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull: Hips banging into the bar (uproszczenie)"
+      ],
+      [
+       "catalyst-art-2076",
+       "pkt 2 Bumping the Bar Off the Hips (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.armsEarly",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull: Early Arm Pull (uproszczenie)"
+      ],
+      [
+       "catalyst-art-1904",
+       "Why It's a Problem (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.softLockout",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Third Pull: Lazy lockout (uproszczenie)"
+      ],
+      [
+       "barbend-fix-your-snatch",
+       "pkt 4 A Loose Catch (uproszczenie)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Snatch Pull": {
+   "setup": [
+    {
+     "c": "olympic.setup",
+     "s": [
+      [
+       "catalyst-97",
+       "opis (set the snatch starting position tightly; arms relaxed)"
+      ],
+      [
+       "rogue-snatch-pull",
+       "Setup (snatch grip) i Extension (chest and shoulders over the bar); Common cues (flat back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.pullMove",
+     "s": [
+      [
+       "catalyst-97",
+       "opis (push with the legs; extend the entire body; shrug up and back)"
+      ],
+      [
+       "rogue-snatch-pull",
+       "First Pull, Extension (triple extension), Shrug (finish with a powerful shrug)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-97",
+       "opis (keep the bar as close to the legs as possible; at no point should it move away)"
+      ],
+      [
+       "rogue-snatch-pull",
+       "First Pull (keeping the bar close to the legs)"
+      ]
+     ]
+    },
+    {
+     "c": "oly.legs",
+     "s": [
+      [
+       "catalyst-97",
+       "opis (arms relaxed and stretched long; push with the legs)"
+      ],
+      [
+       "rogue-snatch-pull",
+       "Bar Close and Arms Straight; Do NOT pull with the arms"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.armsEarly",
+     "s": [
+      [
+       "catalyst-video-1539",
+       "opis wideo (ciągi: rozpocząć pracę rąk dopiero po wyproście nóg i bioder)"
+      ],
+      [
+       "rogue-snatch-pull",
+       "Shrug (Do NOT pull with the arms — this isn't a high pull)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.away",
+     "s": [
+      [
+       "catalyst-video-1499",
+       "opis wideo (ciągi: sztanga odbija od ciała po kontakcie z biodrami; 5 przyczyn)"
+      ],
+      [
+       "crossfit-snatch-forward",
+       "First Pull / Second Pull — fazy ciągu rwania (uproszczenie)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Muscle Snatch": {
+   "setup": [
+    {
+     "c": "olympic.setup",
+     "s": [
+      [
+       "catalyst-96",
+       "opis (set your snatch starting position) — uproszczenie: start jak w rwaniu"
+      ],
+      [
+       "barbend-muscle-snatch",
+       "Setup (snatch starting position; shoulders over or slightly ahead of the bar)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.msMove",
+     "s": [
+      [
+       "catalyst-96",
+       "opis (extend close to vertically; pull elbows up and out; turn the bar over; legs tight pushing into the floor)"
+      ],
+      [
+       "barbend-muscle-snatch",
+       "Second Pull, Turnover, Lockout (without re-bending your legs)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-96",
+       "opis (bar as close to the body as possible)"
+      ],
+      [
+       "barbend-muscle-snatch",
+       "Bar Close"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.leanBack",
+     "s": [
+      [
+       "catalyst-96",
+       "opis (extend close to vertically rather than leaning the trunk farther back)"
+      ],
+      [
+       "barbend-muscle-snatch",
+       "Common Mistakes: Going Too Heavy (lean back too far)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Snatch Balance": {
+   "setup": [
+    {
+     "c": "olympic.sbSetup",
+     "s": [
+      [
+       "catalyst-80",
+       "opis (barbell behind your neck with a snatch-width grip)"
+      ],
+      [
+       "barbend-snatch-balance",
+       "Step 1 Set Up (on the back, hands in the snatch grip)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.sbMove",
+     "s": [
+      [
+       "catalyst-80",
+       "opis (bend the knees; drive up; move feet into receiving stance; squat into the bottom of an overhead squat; stand)"
+      ],
+      [
+       "barbend-snatch-balance",
+       "Step 2 Press and Dip, Step 3 Receive the Bar, Then Stand"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "olympic.sbPush",
+     "s": [
+      [
+       "catalyst-80",
+       "opis (punch the arms aggressively up into the bar)"
+      ],
+      [
+       "barbend-snatch-balance",
+       "Step 3 (reach the arms into the barbell) i wskazówki (pushing up and into it)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.slowDrop",
+     "s": [
+      [
+       "torokhtiy-snatch-balance",
+       "Common Mistakes: Lack of Speed in the Drop"
+      ],
+      [
+       "catalyst-80",
+       "opis (drop under „as quickly as possible” — błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.standEarly",
+     "s": [
+      [
+       "torokhtiy-snatch-balance",
+       "Common Mistakes: Rushing the Stand Up"
+      ],
+      [
+       "catalyst-80",
+       "opis („Making sure it’s stable and secure, stand again with the bar overhead.” — błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Block Snatch": {
+   "setup": [
+    {
+     "c": "olympic.blockSetup",
+     "s": [
+      [
+       "catalyst-207",
+       "opis (most commonly the bar starting at knee height)"
+      ],
+      [
+       "barbend-blocks-vs-hang",
+       "knee-height blocks (stronger position than the floor)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.setup",
+     "s": [
+      [
+       "catalyst-207",
+       "opis (same position as in a snatch with the bar at that height)"
+      ],
+      [
+       "catalyst-58",
+       "start — rwanie ogólnie"
+      ],
+      [
+       "barbend-power-snatch",
+       "Step 1–2 — wariant power z podłogi (uproszczenie: inny start)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.snatchMove",
+     "s": [
+      [
+       "catalyst-207",
+       "opis (push with the legs; extend; pull elbows up and out; squat under; fix overhead; stand)"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Extension, Pull Under, Receive — wariant ze zwisu (uproszczenie: inny start)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-207",
+       "opis (bar as close to the body as possible)"
+      ],
+      [
+       "rogue-hang-squat-snatch",
+       "Arms (high elbows to keep the bar close) — wariant ze zwisu (uproszczenie)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.away",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull (uproszczenie)"
+      ],
+      [
+       "catalyst-art-2076",
+       "pkt 2 (uproszczenie)"
+      ]
+     ]
+    },
+    {
+     "c": "olympic.mis.armsEarly",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull: Early Arm Pull (uproszczenie)"
+      ],
+      [
+       "catalyst-art-1904",
+       "Why It's a Problem (uproszczenie)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Split Snatch": {
+   "setup": [
+    {
+     "c": "olympic.setup",
+     "s": [
+      [
+       "catalyst-58",
+       "start — rwanie ogólnie (uproszczenie: ten sam start)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Step 1–2 — wariant power (uproszczenie)"
+      ],
+      [
+       "ironmind-split",
+       "ciąg „just as you would for a power or squat lift” (uproszczenie: start jak w rwaniu)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "olympic.snatchSplitMove",
+     "s": [
+      [
+       "ironmind-split",
+       "opis rwania i zarzutu w nożycach (ciąg jak w rwaniu; jedna noga ok. 1 stopy do przodu, druga ok. 2 stóp do tyłu; szybkie nogi i ręce; powrót do stania)"
+      ],
+      [
+       "catalyst-pm-815",
+       "odpowiedź o split snatch („a single-leg squat with the other foot behind you”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "oly.close",
+     "s": [
+      [
+       "catalyst-58",
+       "rwanie ogólnie (uproszczenie)"
+      ],
+      [
+       "barbend-power-snatch",
+       "Muscles Worked › Upper & Lower Back — wariant power (uproszczenie)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "olympic.mis.armsEarly",
+     "s": [
+      [
+       "crossfit-snatch-forward",
+       "Second Pull: Early Arm Pull — rwanie ogólnie (uproszczenie)"
+      ],
+      [
+       "catalyst-art-1904",
+       "Why It's a Problem — rwanie ogólnie (uproszczenie)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Jump Squat": {
+   "setup": [
+    {
+     "c": "lunge.stand",
+     "s": [
+      [
+       "ace-116",
+       "Step 1 (feet hip-width apart)"
+      ],
+      [
+       "nasm-squat-jump",
+       "Step 1: Setup (feet hip-width apart)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plyo.dip",
+     "s": [
+      [
+       "ace-116",
+       "Step 2 (push hips back and bend at the knees)"
+      ],
+      [
+       "nasm-squat-jump",
+       "Step 2: Brace/Position (quarter-squat or half-squat)"
+      ],
+      [
+       "catalyst-555",
+       "Instructions (squat … into the bottom)"
+      ]
+     ]
+    },
+    {
+     "c": "plyo.extend",
+     "s": [
+      [
+       "ace-116",
+       "Step 3 (extending ankles, knees and hips)"
+      ],
+      [
+       "nasm-squat-jump",
+       "Step 3: Execute/Drive"
+      ],
+      [
+       "catalyst-555",
+       "Instructions (drive into a maximal vertical jump)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "jump.land",
+     "s": [
+      [
+       "ace-116",
+       "Step 5 (land softly; don't lock out the knees)"
+      ],
+      [
+       "nasm-squat-jump",
+       "Step 4: Return/Descent (land softly … bent knees)"
+      ],
+      [
+       "catalyst-555",
+       "Instructions (absorb the landing … bending the knees and hips)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "jump.mis.stiff",
+     "s": [
+      [
+       "nasm-squat-jump",
+       "Common Mistakes, pkt 1 (landing with straight or minimally bent knees)"
+      ],
+      [
+       "ace-116",
+       "Step 5 (don't lock out your knees)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Tuck Jump": {
+   "setup": [
+    {
+     "c": "lunge.stand",
+     "s": [
+      [
+       "ace-180",
+       "Step 1 (feet about hip-width apart)"
+      ],
+      [
+       "nasm-tuck-jump",
+       "Step 1: Setup (feet hip-width apart)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "jump.drive",
+     "s": [
+      [
+       "ace-180",
+       "Step 3; wskazówka końcowa (arms forward and up)"
+      ],
+      [
+       "nasm-tuck-jump",
+       "Step 3: Execute/Drive (extend hips, knees, ankles while swinging arms upward)"
+      ],
+      [
+       "catalyst-558",
+       "opis (swing the arms forward and up, push against the ground)"
+      ]
+     ]
+    },
+    {
+     "c": "plyo.tuck",
+     "s": [
+      [
+       "ace-180",
+       "Step 3 (pull your knees toward your chest)"
+      ],
+      [
+       "nasm-tuck-jump",
+       "Step 3: Execute/Drive (drive your knees toward your chest)"
+      ],
+      [
+       "catalyst-558",
+       "opis (pull the knees up as high as possible)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "jump.land",
+     "s": [
+      [
+       "ace-180",
+       "Step 4 (land softly; don't lock knees)"
+      ],
+      [
+       "nasm-tuck-jump",
+       "Step 4: Return/Descent (land softly … bent knees)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "jump.mis.stiff",
+     "s": [
+      [
+       "nasm-tuck-jump",
+       "Common Mistakes, pkt 1"
+      ],
+      [
+       "ace-180",
+       "Step 4 (don't lock your knees or quads)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Weighted Jump Squat": {
+   "setup": [
+    {
+     "c": "plyo.wjsBarBack",
+     "s": [
+      [
+       "catalyst-353",
+       "Instructions, pkt 1 (bar in back squat position, held tightly against the body)"
+      ],
+      [
+       "pmc-6724584",
+       "Methods, Procedures (external load on the upper back, similar to a back squat)"
+      ],
+      [
+       "torokhtiy-barbell-squat-jump",
+       "technika (bar on the shoulders behind the neck, like a back squat)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plyo.wjsMove",
+     "s": [
+      [
+       "catalyst-353",
+       "Instructions, pkt 2 (drive up … maximal vertical jump)"
+      ],
+      [
+       "pmc-6724584",
+       "Methods, Procedures (rapid countermovement, then jump as high as possible)"
+      ],
+      [
+       "torokhtiy-barbell-squat-jump",
+       "technika (jump as high as possible)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "jump.land",
+     "s": [
+      [
+       "catalyst-353",
+       "Instructions, pkt 4 (absorb the landing)"
+      ],
+      [
+       "ace-116",
+       "Step 5 (wariant: bez obciążenia)"
+      ],
+      [
+       "nasm-squat-jump",
+       "Step 4: Return/Descent (wariant: bez obciążenia)"
+      ],
+      [
+       "torokhtiy-barbell-squat-jump",
+       "technika (land on soft knees)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "jump.mis.stiff",
+     "s": [
+      [
+       "nasm-squat-jump",
+       "Common Mistakes, pkt 1 (wariant: bez obciążenia)"
+      ],
+      [
+       "ace-116",
+       "Step 5 (wariant: bez obciążenia)"
+      ],
+      [
+       "torokhtiy-barbell-squat-jump",
+       "technika (land on soft knees) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Broad Jump": {
+   "setup": [
+    {
+     "c": "plyo.broadLoad",
+     "s": [
+      [
+       "ace-177",
+       "Step 2: Downward Phase (push hips back; arms behind you)"
+      ],
+      [
+       "catalyst-549",
+       "Instructions, pkt 1 (bend knees and hips, swing arms back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plyo.broadDrive",
+     "s": [
+      [
+       "ace-177",
+       "Step 3: Jumping Movement (drive forward and up; arms overhead)"
+      ],
+      [
+       "catalyst-549",
+       "opis i pkt 2 (swing arms forward, push hard; as far forward as possible)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plyo.broadLand",
+     "s": [
+      [
+       "ace-177",
+       "Step 4–6 (legs forward; bend knees and hips to absorb)"
+      ],
+      [
+       "catalyst-549",
+       "Instructions, pkt 3 (reach feet forward, absorb by bending knees and hips)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "jump.mis.stiff",
+     "s": [
+      [
+       "ace-177",
+       "Step 6 (lądowanie na prostych kolanach)"
+      ],
+      [
+       "catalyst-549",
+       "Instructions, pkt 3 (absorb the landing by bending the knees and hips) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Alternate Leg Push-Off": {
+   "setup": [
+    {
+     "c": "plyo.pushoff.setup",
+     "s": [
+      [
+       "ace-246",
+       "Step 1"
+      ],
+      [
+       "insportline-qt1005",
+       "s. 3, ALTERNATING PUSH-OFF (pierwsza pozycja), Start"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plyo.altPushoff.move",
+     "s": [
+      [
+       "ace-246",
+       "Step 2–3"
+      ],
+      [
+       "insportline-qt1005",
+       "s. 3, ALTERNATING PUSH-OFF (pierwsza pozycja), Action"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Wall Ball": {
+   "setup": [
+    {
+     "c": "wb.setup",
+     "s": [
+      [
+       "rep-wall-balls",
+       "opis ruchu („holding the ball at your chest”)"
+      ],
+      [
+       "crossfit-wall-ball",
+       "THE WALL-BALL SHOT („Keep the ball low to the chest.”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "wb.move",
+     "s": [
+      [
+       "rep-wall-balls",
+       "wypowiedź trenerki („squat and as soon as you open your hips, throw the ball”)"
+      ],
+      [
+       "crossfit-wall-ball",
+       "THE WALL-BALL SHOT (przysiad na początku każdego powtórzenia, wyrzut w cel; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "wb.mis.shallow",
+     "s": [
+      [
+       "crossfit-wall-ball",
+       "THE WALL-BALL SHOT („…it is very common to see poor squat depth in this exercise.”)"
+      ],
+      [
+       "rep-wall-balls",
+       "częste błędy (za płytki przysiad; „Quarter squats won't provide the full benefit”)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Medicine Ball Chest Pass": {
+   "setup": [
+    {
+     "c": "mbcp.setup",
+     "s": [
+      [
+       "ace-264",
+       "krok 1, Starting position (przodem do partnera, piłka na wysokości klatki; parafraza; wariant: z wykrokiem)"
+      ],
+      [
+       "rfl-mb-chest-throw",
+       "Directions, punkty 1–2 („Stand with feet shoulder-width apart and hands behind the ball.”, piłka przyciągnięta do klatki; wariant: rzut na odległość z lekkiego przysiadu)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "mbcp.move",
+     "s": [
+      [
+       "ace-264",
+       "krok 2 (wypchnięcie piłki od klatki do partnera; parafraza; wariant: z wykrokiem)"
+      ],
+      [
+       "rfl-mb-chest-throw",
+       "Directions, punkt 3 („…extend your elbows to push ball away from body.”; wariant: rzut na odległość)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Backward Medicine Ball Throw": {
+   "setup": [
+    {
+     "c": "bmbt.setup",
+     "s": [
+      [
+       "pmc-3658404",
+       "Trunk Power Tests → Backward Overhead Medicine Ball Throw, ryc. 2 („The athlete holds a medicine ball with arms straight in front of the body”)"
+      ],
+      [
+       "wa-backward-overhead-throw",
+       "opis pod tytułem (tyłem do linii, piłka oburącz na długość ramion; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bmbt.move",
+     "s": [
+      [
+       "pmc-3658404",
+       "jw. (ruch zamachowy w dół w biodrach i kolanach, potem „extending forcefully backward to throw the ball over the head”)"
+      ],
+      [
+       "wa-backward-overhead-throw",
+       "opis pod tytułem (przysiad, szybki wyprost nóg, rzut nad głową w tył; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Standing Two-Arm Overhead Throw": {
+   "setup": [
+    {
+     "c": "soht.setup",
+     "s": [
+      [
+       "ace-178",
+       "Preparation i krok 1 (przodem do partnera, piłka oburącz; parafraza)"
+      ],
+      [
+       "wa-overarm-throw",
+       "Description („…hold the medicine ball with both hands behind the head”; przodem do kierunku rzutu)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "soht.move",
+     "s": [
+      [
+       "ace-178",
+       "krok 2–3 (piłka nad głowę i za głowę, potem ręce mocno w przód nad głową; parafraza)"
+      ],
+      [
+       "wa-overarm-throw",
+       "Description („They throw the medicine ball over the head as far as possible…”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-178",
+       "krok 1–2 („contract and brace the abdominals…”; brzuch napięty także przy zamachu)"
+      ],
+      [
+       "wa-overarm-throw",
+       "Coaching points („…keep their trunk muscles tense the whole time…”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Sled Push": {
+   "setup": [
+    {
+     "c": "sled.pushGrip",
+     "s": [
+      [
+       "rep-sled-push",
+       "Choose Your Hand Position (wysokie uchwyty na prostych rękach albo niższe; parafraza)"
+      ],
+      [
+       "barbend-sled-push",
+       "How to Do the Sled Push, krok 2 („Place the hands about halfway down the sled handles.”)"
+      ],
+      [
+       "torque-utg-2024",
+       "s. 40, Push, Instructions 1 („Grasp handles with both hands…”)"
+      ],
+      [
+       "elitefts-shove",
+       "Prowler („…grab the handles, get in a proper forward lean position, and get pushing.”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sled.legs",
+     "s": [
+      [
+       "rep-sled-push",
+       "Take Short, Quick Steps („Don't push with your arms since they are not nearly as strong as your legs.”)"
+      ],
+      [
+       "barbend-sled-push",
+       "krok 3 („…begin aggressively driving forward with your legs.”; odpychanie przodem stopy)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sled.lean",
+     "s": [
+      [
+       "rep-sled-push",
+       "Get Low and Lean In (pochylenie ok. 45°; parafraza)"
+      ],
+      [
+       "barbend-sled-push",
+       "krok 2 (pochylenie w przód, plecy płasko, blisko równolegle do podłoża; parafraza)"
+      ],
+      [
+       "elitefts-shove",
+       "Prowler („get in a proper forward lean position”)"
+      ]
+     ]
+    },
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "rep-sled-push",
+       "Get Low and Lean In (plecy płaskie) oraz Avoid These Common Mistakes (bez zaokrąglania lędźwi; parafraza)"
+      ],
+      [
+       "barbend-sled-push",
+       "krok 2 („…lean forward so your back is flat…” — parafraza w odpowiedzi strony)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Thruster (hantle)": {
+   "setup": [
+    {
+     "c": "thruster.dbSetup",
+     "s": [
+      [
+       "ace-357",
+       "opis (dumbbells in front of each shoulder)"
+      ],
+      [
+       "lifetime-thruster",
+       "Instructions 1 (weight at shoulder height, feet about hip width)"
+      ],
+      [
+       "crossfit-thruster",
+       "How to Perform — Set-up (roughly shoulder-width stance; wariant: sztanga, hantle w sekcji wariantów)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "thruster.move",
+     "s": [
+      [
+       "ace-357",
+       "opis (lower into a squat; stand up and at the same time press overhead; return to the shoulders)"
+      ],
+      [
+       "lifetime-thruster",
+       "Instructions 2–4 (press overhead as you rise; lower to shoulder height)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "ace-357",
+       "opis (push back into the hips; push both legs into the ground to stand up)"
+      ],
+      [
+       "crossfit-thruster",
+       "Front Squat (pushing hips back and down; heels remain down; wariant: sztanga)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "thruster.depth",
+     "s": [
+      [
+       "ace-357",
+       "opis (hips below the knees)"
+      ],
+      [
+       "lifetime-thruster",
+       "Form Cues — bottom of squat (parallel or below)"
+      ],
+      [
+       "crossfit-thruster",
+       "Front Squat (lower than the knees; wariant: sztanga)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.back",
+     "s": [
+      [
+       "ace-357",
+       "opis (keep the back straight)"
+      ],
+      [
+       "lifetime-thruster",
+       "Instructions 2; Form Cues (chest up, spine neutral)"
+      ]
+     ]
+    },
+    {
+     "c": "thruster.fullExt",
+     "s": [
+      [
+       "lifetime-thruster",
+       "Instructions 3 (fully extend through your arms, hips, and knees)"
+      ],
+      [
+       "crossfit-thruster",
+       "Finish Position (hips, knees, and arms fully extended; wariant: sztanga)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "crossfit-thruster",
+       "Common Mistakes — Front Squat and Shoulder Press Mechanics (heels lifting)"
+      ],
+      [
+       "lifetime-thruster",
+       "Form Cues — feet (keep your heels down)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Thruster": {
+   "setup": [
+    {
+     "c": "thruster.kbSetup",
+     "s": [
+      [
+       "lifetime-thruster",
+       "Equipment-Specific Versions — Kettlebell (front rack, shoulder height); Instructions 1 (feet about hip width)"
+      ],
+      [
+       "crossfit-thruster",
+       "Dumbbell or Kettlebell Thruster (two kettlebells); Set-up (roughly shoulder-width stance)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "thruster.move",
+     "s": [
+      [
+       "lifetime-thruster",
+       "Kettlebell (press the kettlebells straight overhead as you rise); Instructions 4"
+      ],
+      [
+       "crossfit-thruster",
+       "How to Perform; Dumbbell or Kettlebell Thruster"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "thruster.depth",
+     "s": [
+      [
+       "lifetime-thruster",
+       "Form Cues — bottom of squat"
+      ],
+      [
+       "crossfit-thruster",
+       "Front Squat (lower than the knees)"
+      ]
+     ]
+    },
+    {
+     "c": "thruster.fullExt",
+     "s": [
+      [
+       "lifetime-thruster",
+       "Instructions 3"
+      ],
+      [
+       "crossfit-thruster",
+       "Finish Position"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.tall",
+     "s": [
+      [
+       "lifetime-thruster",
+       "Kettlebell (straight overhead); Form Cues — core (upright chest)"
+      ],
+      [
+       "crossfit-thruster",
+       "Overhead Press (press in a straight line to the finish position)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "crossfit-thruster",
+       "Common Mistakes — Front Squat and Shoulder Press Mechanics"
+      ],
+      [
+       "lifetime-thruster",
+       "Form Cues — feet"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -9035,7 +12571,30 @@
   "Wyciskanie na linkach (stojąc)",
   "Lunges (hantle)",
   "Walking Lunges",
-  "Reverse Lunge"
+  "Reverse Lunge",
+  "Double Kettlebell Clean",
+  "Hang Clean",
+  "Block Clean",
+  "Block Power Clean",
+  "Split Clean",
+  "Clean Pull",
+  "Split Jerk",
+  "Power Jerk",
+  "Jerk Dip Squat",
+  "Jerk Balance",
+  "Muscle Snatch",
+  "Snatch Balance",
+  "Block Snatch",
+  "Split Snatch",
+  "Jump Squat",
+  "Tuck Jump",
+  "Weighted Jump Squat",
+  "Broad Jump",
+  "Alternate Leg Push-Off",
+  "Wall Ball",
+  "Medicine Ball Chest Pass",
+  "Backward Medicine Ball Throw",
+  "Standing Two-Arm Overhead Throw"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {
