@@ -1,0 +1,480 @@
+{
+ "_opis": "Zdania wskazówek techniki z partii P2 integracji badań (G3 moc: olympic, kb_ballistic, plyo, sled_throw, thruster; linia 1.1, 03.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+ "data": "2026-11-03",
+ "klucze": [
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.dbSnatchSetup",
+   "pl": "Postaw hantel między stopami; zejdź jak do martwego ciągu — plecy proste, klatka uniesiona — i chwyć go jedną ręką.",
+   "en": "Place the dumbbell between your feet; set up like a deadlift — flat back, chest up — and grab it with one hand."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.dbSnatchMove",
+   "pl": "Odepchnij podłogę nogami, mocno wyprostuj biodra i kolana, a potem poprowadź hantel w górę i wypchnij go nad głowę.",
+   "en": "Push the floor away, extend hard through your hips and knees, then guide the dumbbell up and punch it overhead."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.dbArmLate",
+   "pl": "Ręka włącza się dopiero po wyproście bioder i kolan — wcześniej tylko luźno trzyma hantel.",
+   "en": "Your arm only kicks in after your hips and knees straighten — until then it just holds the dumbbell loosely."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.lockout",
+   "pl": "Na górze zablokuj łokieć — ręka prosta nad głową.",
+   "en": "At the top, lock your elbow — arm straight overhead."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.dblStance",
+   "pl": "Stań szerzej niż na szerokość bioder, żeby oba kettlebelle przeszły między nogami.",
+   "en": "Stand wider than hip-width so both bells fit between your legs."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.dblCleanMove",
+   "pl": "Zrób zamach oboma kettlebellami jak przy swingu; po wyproście bioder przyciągnij je blisko ciała i oprzyj przy barkach.",
+   "en": "Swing both bells back between your legs, then as your hips finish, pull them in close and end in the rack at your chest."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbj.rack",
+   "pl": "Kettlebelle oparte przy barkach, łokcie przy tułowiu.",
+   "en": "Kettlebells racked at your shoulders, elbows tucked in."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbj.move",
+   "pl": "Krótko ugnij nogi i wybij kettlebelle w górę, od razu zejdź pod nie drugim ugięciem na prostych rękach i wstań.",
+   "en": "Dip and drive the bells up, drop straight into a second dip under them with locked arms, then stand up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.wrist",
+   "pl": "Nadgarstki trzymaj prosto.",
+   "en": "Keep your wrists straight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbb.dip",
+   "pl": "Ugięcie nóg krótkie, tułów zostaje pionowo.",
+   "en": "Keep the dip short and your torso upright."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbj.fullExt",
+   "pl": "Najpierw do końca wyprostuj nogi i biodra, dopiero potem schodź pod ciężar.",
+   "en": "Finish extending your legs and hips before you drop under the weight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbj.lockFirst",
+   "pl": "Zablokuj łokcie nad głową już w drugim ugięciu — dopiero potem wstań.",
+   "en": "Lock out your arms in the second dip — only then stand up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.feet",
+   "pl": "Stopy na szerokość bioder do barków, palce lekko na zewnątrz.",
+   "en": "Feet hip- to shoulder-width apart, toes turned slightly out."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.setupBack",
+   "pl": "Na starcie plecy proste, tułów mocno napięty.",
+   "en": "Start with a flat back and your core braced hard."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.legsFirst",
+   "pl": "Zacznij od pchania nogami w podłogę — ręce zostają proste.",
+   "en": "Start by pushing the floor away with your legs — arms stay straight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.extend",
+   "pl": "Gdy sztanga minie kolana, mocno wyprostuj biodra i nogi.",
+   "en": "Once the bar passes your knees, drive your hips and legs to full extension."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.under",
+   "pl": "Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków.",
+   "en": "After the extension, whip your elbows around the bar and catch it on the front of your shoulders."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.catchHigh",
+   "pl": "Sztangę przyjmij w płytkim przysiadzie.",
+   "en": "Catch the bar in a partial squat."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.arms",
+   "pl": "Ciągnięcie rękami, zanim nogi i biodra skończą wyprost.",
+   "en": "Pulling with your arms before your legs and hips finish the extension."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.catchLow",
+   "pl": "Sztangę przyjmij w pełnym przysiadzie i od razu wstań.",
+   "en": "Catch the bar in a full squat and stand right up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.hangStart",
+   "pl": "Wstań ze sztangą i opuść ją tuż nad kolana: biodra w tył, plecy proste, barki nad sztangą lub lekko przed nią.",
+   "en": "Stand up with the bar, then lower it to just above your knees: hips back, back flat, shoulders over or slightly ahead of the bar."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.splitCatch",
+   "pl": "Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w nożycach — jedna stopa w przód, druga w tył.",
+   "en": "Pull like a regular clean, but catch the bar in a split — one foot forward, one back."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.splitMove",
+   "pl": "Krótko ugnij kolana, wybij sztangę nogami i wskocz pod nią w nożyce; złap ją na prostych rękach.",
+   "en": "Dip, drive hard with your legs and, as you push the bar overhead, jump your feet into a split; catch it on straight arms."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.dip",
+   "pl": "Krótkie ugięcie, prosto w dół — tułów zostaje pionowo.",
+   "en": "Keep the dip short and straight — bend the knees, torso stays upright."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.feetHands",
+   "pl": "Stopy lądują w tej samej chwili, w której ręce prostują się nad głową.",
+   "en": "Your feet land at the same moment your arms lock out overhead."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.forward",
+   "pl": "Wybijanie sztangi w przód zamiast prosto w górę.",
+   "en": "Driving the bar forward instead of straight up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.triple",
+   "pl": "Na górze pełny wyprost: biodra, kolana i kostki.",
+   "en": "Finish tall: hips, knees and ankles fully extended."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.jerkSetup",
+   "pl": "Sztanga oparta z przodu barków, stopy jak do wyskoku — mniej więcej na szerokość bioder.",
+   "en": "Bar resting on the front of your shoulders, feet in your jumping stance — about hip-width."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.powerMove",
+   "pl": "Krótko ugnij kolana, wybij sztangę nogami i wejdź pod nią na nieco szerszych stopach; złap ją na prostych rękach w płytkim przysiadzie, nie niżej niż do równoległego ud.",
+   "en": "Dip, drive the bar up with your legs and punch under it, feet moving a bit wider; catch it on straight arms in a partial squat, no lower than thighs parallel."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.squatMove",
+   "pl": "Krótko ugnij kolana, wybij sztangę nogami i zejdź pod nią do pełnego przysiadu; złap ją na prostych rękach i wstań.",
+   "en": "Dip at the knees, drive hard with your legs and, as you push the bar overhead, drop under it into a full squat; catch it on straight arms and stand up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.recover",
+   "pl": "Wstań ze sztangą wciąż nad głową i dopiero wtedy ją opuść.",
+   "en": "Stand up with the bar still overhead, and only then lower it."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.dipBrace",
+   "pl": "Zanim ugniesz kolana, mocno napnij tułów.",
+   "en": "Brace your core hard before you bend your knees."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.dipSquat",
+   "pl": "Ugnij kolana jak przed podrzutem, ale wolno i pod kontrolą, potem spokojnie wstań — bez wybijania sztangi.",
+   "en": "Dip like you would for a jerk, but slow and controlled, then stand back up smoothly — don't drive the bar up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.dipRushed",
+   "pl": "Zbyt szybkie ugięcie, po którym wypadasz z pozycji.",
+   "en": "Rushing the dip and getting pulled out of position."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.balanceSetup",
+   "pl": "Sztanga oparta z przodu barków, stopy w krótkich nożycach — przednia stopa bliżej niż zwykle.",
+   "en": "Bar resting on the front of your shoulders, feet in a short split — front foot closer in than in your full split."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.balanceMove",
+   "pl": "Krótko ugnij kolana, wybij sztangę nad głowę i jednocześnie wysuń przednią stopę do pełnych nożyc.",
+   "en": "Dip, drive up and, as you push the bar overhead, step the front foot out into your full split."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.setup",
+   "pl": "Szeroki chwyt, plecy proste i napięte, barki nad sztangą.",
+   "en": "Wide grip, back flat and tight, shoulders over the bar."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.snatchMove",
+   "pl": "Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i wciągnij się pod nią — złap ją na prostych rękach w pełnym przysiadzie, potem wstań.",
+   "en": "Drive the floor away with your legs, extend hard at the hips and pull yourself under — catch the bar on straight arms in a full squat, then stand up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.overBar",
+   "pl": "Barki nad sztangą jak najdłużej — nie odchylaj się za wcześnie.",
+   "en": "Keep your shoulders over the bar as long as you can — don't lean back too early."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.away",
+   "pl": "Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami.",
+   "en": "The bar drifts away from you — in the pull or off your hips."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.softLockout",
+   "pl": "Ugięte łokcie nad głową — sztanga spycha cię w dół.",
+   "en": "Soft elbows overhead — the bar pushes you down."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.snatchPowerMove",
+   "pl": "Odepchnij się nogami od podłogi, dynamicznie się wyprostuj i wejdź pod sztangę — złap ją na prostych rękach wyżej niż w przysiadzie równoległym, biodra nad kolanami.",
+   "en": "Drive with your legs, extend hard at the hips and get under the bar — catch it on straight arms above a parallel squat, hips above knees."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.hangSetup",
+   "pl": "Wstań ze sztangą, potem opuść ją do zwisu, cofając biodra — plecy proste, barki nad sztangą.",
+   "en": "Stand up with the bar, then lower it to the hang by pushing your hips back — back flat, shoulders over the bar."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.pullMove",
+   "pl": "Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i zakończ mocnym wzruszeniem barków — bez wchodzenia pod sztangę.",
+   "en": "Drive the bar up with your legs, extend hard at the hips and finish with a strong shrug — don't drop under the bar."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.msMove",
+   "pl": "Wyprostuj się dynamicznie, potem ciągnij łokcie w górę i na boki, a następnie wypchnij sztangę nad głowę — bez ponownego uginania kolan.",
+   "en": "Extend hard, then pull your elbows up and out and turn the bar over and press it out overhead — no rebend of the knees."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.leanBack",
+   "pl": "Mocne odchylanie tułowia w tył na górze ruchu.",
+   "en": "Leaning way back at the top."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.sbSetup",
+   "pl": "Sztanga na górze pleców, za karkiem; chwyt jak do rwania.",
+   "en": "Bar on your upper back, behind your neck, with a snatch grip."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.sbMove",
+   "pl": "Krótko ugnij kolana, wybij sztangę z pleców i wejdź pod nią, przestawiając stopy do przysiadu; złap ją na prostych rękach w dole przysiadu i wstań.",
+   "en": "Dip a little, drive the bar off your back and drop under it, moving your feet into your squat stance; catch it on straight arms at the bottom and stand up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.sbPush",
+   "pl": "Schodząc pod sztangę, mocno pchaj ją rękami w górę.",
+   "en": "As you drop under, punch your arms up into the bar."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.slowDrop",
+   "pl": "Zbyt wolne zejście pod sztangę.",
+   "en": "Dropping under the bar too slowly."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.mis.standEarly",
+   "pl": "Wstawanie, zanim sztanga jest stabilna nad głową.",
+   "en": "Standing up before the bar is stable overhead."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.blockSetup",
+   "pl": "Sztanga na blokach, zwykle na wysokości kolan.",
+   "en": "Bar on blocks, usually at knee height."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.snatchSplitMove",
+   "pl": "Ciągnij jak w rwaniu, potem szybko wejdź pod sztangę w nożyce: jedna stopa do przodu, druga do tyłu — i wstań ze sztangą nad głową.",
+   "en": "Pull like a snatch, then drop under the bar fast into a split — one foot forward, the other back — and stand up with the bar overhead."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.dip",
+   "pl": "Ugnij kolana i cofnij biodra do przysiadu.",
+   "en": "Bend your knees and push your hips back into a squat."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.extend",
+   "pl": "Wybij się dynamicznie, prostując jednocześnie biodra, kolana i kostki.",
+   "en": "Jump explosively, straightening your hips, knees and ankles together."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.tuck",
+   "pl": "W powietrzu przyciągnij kolana do klatki.",
+   "en": "In the air, pull your knees up to your chest."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.wjsBarBack",
+   "pl": "Sztanga na górze pleców, jak do przysiadu.",
+   "en": "Bar on your upper back, like a back squat."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.wjsMove",
+   "pl": "Zejdź do przysiadu i wybij się w górę jak najmocniej.",
+   "en": "Squat down and jump up as hard as you can."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.broadLoad",
+   "pl": "Ugnij kolana, cofnij biodra i zrób zamach rękami w tył.",
+   "en": "Bend your knees and push your hips back, swinging your arms back."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.broadDrive",
+   "pl": "Zamach rąk w przód i mocne wybicie nogami — w przód i w górę, jak najdalej.",
+   "en": "Swing your arms forward and drive hard with your legs, forward and up — as far as you can."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.broadLand",
+   "pl": "W locie wysuń stopy przed siebie i wyląduj na obu, uginając kolana i biodra.",
+   "en": "In the air, reach your feet forward and land on both, bending your knees and hips."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.pushoff.setup",
+   "pl": "Stań przodem do skrzyni: jedna stopa na skrzyni, druga na podłodze.",
+   "en": "Face the box with one foot on top and the other on the floor."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "plyo.altPushoff.move",
+   "pl": "Odepchnij się nogą ze skrzyni w górę, w powietrzu zmień nogi i wyląduj drugą stopą na skrzyni.",
+   "en": "Drive up off the foot on the box, switch legs in the air and land with the other foot on the box."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "wb.setup",
+   "pl": "Stań przodem do ściany, piłkę trzymaj oburącz przy klatce.",
+   "en": "Face the wall and hold the ball with both hands at your chest."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "wb.move",
+   "pl": "Zejdź do przysiadu, a wstając, jednym ruchem wyrzuć piłkę w górę, w cel na ścianie.",
+   "en": "Squat down, then as you stand, throw the ball up to the target on the wall in one motion."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "wb.mis.shallow",
+   "pl": "Za płytki przysiad.",
+   "en": "Squatting too shallow."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "mbcp.setup",
+   "pl": "Stań przodem do celu, piłka oburącz przy klatce.",
+   "en": "Face your target, ball in both hands at your chest."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "mbcp.move",
+   "pl": "Mocno wypchnij piłkę od klatki prosto przed siebie.",
+   "en": "Push the ball hard from your chest straight ahead."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "bmbt.setup",
+   "pl": "Stań tyłem do kierunku rzutu, piłka oburącz na prostych rękach przed sobą.",
+   "en": "Stand facing away from your target, ball in both hands, arms straight in front of you."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "bmbt.move",
+   "pl": "Ugnij biodra i kolana, opuszczając piłkę, potem dynamicznie się wyprostuj i przerzuć ją nad głową za siebie.",
+   "en": "Bend your hips and knees as you lower the ball, then drive up hard and throw it back over your head."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "soht.setup",
+   "pl": "Stań przodem do celu, piłka oburącz.",
+   "en": "Face your target, ball in both hands."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "soht.move",
+   "pl": "Unieś piłkę nad głowę i trochę za nią, potem mocno rzuć ją przed siebie.",
+   "en": "Bring the ball overhead and slightly behind your head, then throw it hard forward."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "sled.pushGrip",
+   "pl": "Stań za sankami i chwyć pionowe uchwyty.",
+   "en": "Stand behind the sled and grab the posts."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "thruster.dbSetup",
+   "pl": "Hantle przy barkach, stopy na szerokość bioder do barków.",
+   "en": "Dumbbells at your shoulders, feet hip- to shoulder-width apart."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "thruster.move",
+   "pl": "Zejdź do przysiadu z ciężarem przy barkach, a wstając, jednym ruchem wypchnij go nad głowę; potem opuść z powrotem do barków.",
+   "en": "Squat down with the weight at your shoulders and, as you stand, push it overhead in one move; then bring it back down to your shoulders."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "thruster.depth",
+   "pl": "Zejdź co najmniej do równoległego ud.",
+   "en": "Go down to at least thighs parallel."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "thruster.fullExt",
+   "pl": "Na górze biodra, kolana i ręce są wyprostowane.",
+   "en": "At the top, hips, knees and arms are fully straight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "thruster.kbSetup",
+   "pl": "Kettlebelle oparte przy barkach, stopy na szerokość bioder do barków.",
+   "en": "Kettlebells racked at your shoulders, feet hip- to shoulder-width apart."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "olympic.hangExtend",
+   "pl": "Ze zwisu mocno wyprostuj biodra i nogi.",
+   "en": "From the hang, drive your hips and legs to full extension."
+  }
+ ]
+}

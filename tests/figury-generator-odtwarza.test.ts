@@ -31,6 +31,7 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   shrug: ['Middle Back Shrug'],
   thruster: ['Clean and Press'],
 };
+
 const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw'];
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {

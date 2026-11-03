@@ -63,6 +63,21 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | BarBend | BarBend — Exercise Guides (barbend.com; autor CSCS, weryfikacja NASM-CPT i USAW-L2) | 4 | serwis specjalistyczny |
 | Breaking Muscle | Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny) — szczebel 5 (decyzja 02.11.2026: bez autora i kwalifikacji, serwis/dostawca; nie liczy się do pary) | 5 | serwis specjalistyczny |
 | Coach | Coach (coachweb.com) — How To, ekspert z akredytacją NSCA | 4 (warunkowo 4: artykuł z autorem z kwalifikacjami w biogramie, datą i redakcją wydawcy; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)) | serwis specjalistyczny |
+| Rogue Fitness | Rogue Fitness — Movement Library producenta sztang i hantli (roguefitness.com/theindex); liczona tylko dla własnego rodzaju sprzętu | 4 | producent sprzętu |
+| CrossFit | CrossFit — Essentials (crossfit.com; organizacja certyfikująca trenerów) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| Catalyst Athletics | Catalyst Athletics — Olympic Weightlifting Exercise Library (catalystathletics.com) | 4 | serwis specjalistyczny |
+| Experience Life | Experience Life (magazyn Life Time) — liczony tylko artykuł autora z kwalifikacjami (A. Heffernan, CSCS) | 4 | serwis specjalistyczny |
+| IronMind | IronMind — artykuły „Jim Schmitz on the Lifts” (liczone tylko z autorem J. Schmitz i datą, także pośrednią z IronMind News) | 4 | serwis specjalistyczny |
+| Torokhtiy | Torokhtiy Weightlifting — artykuły techniki z autorem O. Torokhtiy (olimpijczyk, PhD nauk o sporcie) i datą; strony sklepu i programów — nie źródło | 4 | serwis specjalistyczny |
+| Suchomel i in. (J Hum Kinet 2019) | Suchomel, McKeever, Sijuwade, Carpenter, McMahon, Loturco, Comfort — badanie, J Hum Kinet 2019 (użyty tylko opis wykonania) | 3 | badanie (czasopismo recenzowane) |
+| inSPORTline | inSPORTline — instrukcja zestawu skrzyń plyometrycznych (producent sprzętu) | 4 | producent sprzętu |
+| REP Fitness | REP Fitness — blog Training (producent sprzętu, m.in. piłek do wall ball, 2026) | 4 | producent sprzętu |
+| RFL | Rugby Football League — karta ćwiczenia „Med Ball Chest Throw” (federacja, szkolenie trenerów) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| World Athletics | World Athletics — Kids' Athletics, Teaching athletics (federacja, materiały szkoleniowe) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| Manske, Reiman (Wichita State University, Duke University) | Manske, Reiman — przegląd testów funkcjonalnych, Sports Health 2013 | 3 | badanie (czasopismo recenzowane) |
+| EliteFTS | EliteFTS — artykuły szkoleniowe (producent sanek do ciągnięcia i pchania, autorzy-trenerzy) | 4 | producent sprzętu |
+| Torque Fitness | Torque Fitness — Ultimate TANK Training Guide (producent sanek do pchania i ciągnięcia) | 4 | producent sprzętu |
+| StrongFirst | StrongFirst — standardy i artykuły szkoły instruktorów kettlebell (strongfirst.com) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
 | AAOS | AAOS (OrthoInfo) | 4 | serwis specjalistyczny |
 | Arthritis Foundation | Arthritis Foundation | 4 | serwis specjalistyczny |
 | WebMD Ignite | WebMD Ignite (Healthwise, StayWell, Krames) — materiały dla pacjentów na stronach placówek medycznych, z datą | 4 | serwis specjalistyczny |
@@ -93,9 +108,9 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 132; zdań (z powtórzeniami między ćwiczeniami): 571; unikalnych zdań: 397; źródeł: 288.
+- Ćwiczenia ze wskazówkami: 168; zdań (z powtórzeniami między ćwiczeniami): 758; unikalnych zdań: 483; źródeł: 372.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 43 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 66 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles.
 
 ## Otwarte — bez wskazówek
 
@@ -1784,6 +1799,640 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 - Ustaw siodełko tak, by w najniższym położeniu pedału noga była prawie prosta — kolano lekko ugięte, nie zablokowane. — Concept2: [Setting Up the BikeErg](https://www.concept2.nl/en/node/8909) („With the ball of your foot on the pedal, your leg should maintain a slight bend at maximum extension.”); HSS: [A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020)](https://www.hss.edu/health-library/move-better/set-up-exercise-bike) (Seat height („It shouldn't be locked out, just bending noticeably.”)); Bini, Hume, Croft (Auckland University of Technology): [Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC)](https://europepmc.org/article/MED/21615188) (abstrakt (kąt zgięcia kolana przy wyprostowanej nodze; parafraza)) `bike.seat`
 - Na pedale opieraj przednią część stopy. — Concept2: [Setting Up the BikeErg](https://www.concept2.nl/en/node/8909) (przednia część stopy na pedale); HSS: [A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020)](https://www.hss.edu/health-library/move-better/set-up-exercise-bike) (Foot position (śródstopie nad pedałem; parafraza)) `bike.foot`
 
+### Snatch (hantel)
+
+**Ustawienie**
+
+- Postaw hantel między stopami; zejdź jak do martwego ciągu — plecy proste, klatka uniesiona — i chwyć go jedną ręką. — BarBend: [Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024)](https://barbend.com/dumbbell-snatch/) (Step 1: Squat Down (dumbbell directly below you; deadlift-like start, chest up; back flat)); Rogue Fitness: [Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch) (Set Up (dumbbell between your feet; hinge, one hand on the dumbbell in a deadlift set up; flat back)) `kbb.dbSnatchSetup`
+
+**Ruch**
+
+- Odepchnij podłogę nogami, mocno wyprostuj biodra i kolana, a potem poprowadź hantel w górę i wypchnij go nad głowę. — BarBend: [Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024)](https://barbend.com/dumbbell-snatch/) (Step 2–3 (forcefully extend your body; guide it vertically; extend the arm from underneath; elbow locked out)); Rogue Fitness: [Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch) (Execution (drive the floor away; extend hips and knees, shrug; pull and punch the dumbbell overhead)) `kbb.dbSnatchMove`
+
+**Wskazówki**
+
+- Ręka włącza się dopiero po wyproście bioder i kolan — wcześniej tylko luźno trzyma hantel. — BarBend: [Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024)](https://barbend.com/dumbbell-snatch/) (Common Mistakes: Pulling With Your Arms (arm relaxed, legs and hips do the work in the first half)); Rogue Fitness: [Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch) (Execution (Only use the arm after extending the hips and knees)) `kbb.dbArmLate`
+- Na górze zablokuj łokieć — ręka prosta nad głową. — BarBend: [Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024)](https://barbend.com/dumbbell-snatch/) (Step 3–4 (elbow is locked out; keeping your loaded arm locked out)); Rogue Fitness: [Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch) (Execution (Arm locked out)) `kbb.lockout`
+
+### Double Kettlebell Clean
+
+**Ustawienie**
+
+- Stań szerzej niż na szerokość bioder, żeby oba kettlebelle przeszły między nogami. — ACE: [Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015)](https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/) (Double Kettlebell Swing (feet wider than hip-width apart; neutral spine as the bells go back between the legs)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Double Kettlebell Clean (you'll need a wider stance to hike both bells between your legs)) `kbb.dblStance`
+
+**Ruch**
+
+- Zrób zamach oboma kettlebellami jak przy swingu; po wyproście bioder przyciągnij je blisko ciała i oprzyj przy barkach. — ACE: [Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015)](https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/) (Double Kettlebell Clean (after hip extension pull the kettlebell in at the hip, rotate around the wrist, finish in the rack on arm and chest)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Double Kettlebell Clean (same form as the single-arm clean, one bell in each hand) + Steps 2–4) `kbb.dblCleanMove`
+
+### Double Kettlebell Jerk
+
+**Ustawienie**
+
+- Kettlebelle oparte przy barkach, łokcie przy tułowiu. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (The Rack (elbows directly over the hips; no space between arms and torso)); StrongFirst: [Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)](https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/) (kettlebell jerk, krok 1 (pair of kettlebells; elbow close to the ribs)); ACE: [Push-jerk (#385; kettlebells)](https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/) (opis (elbows close to the rib cage) (wariant: podrzut nożycowy)) `kbj.rack`
+
+**Ruch**
+
+- Krótko ugnij nogi i wybij kettlebelle w górę, od razu zejdź pod nie drugim ugięciem na prostych rękach i wstań. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Jerk, kroki 1–5); StrongFirst: [Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)](https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/) (kettlebell jerk, kroki 2–5 (one arm or both)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (Kettlebell Jerk) `kbj.move`
+
+**Wskazówki**
+
+- Nadgarstki trzymaj prosto. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (The Rack (straight or just slightly flexed)); StrongFirst: [Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)](https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/) (kettlebell jerk, krok 1 (straight wrists)) `kbb.wrist`
+- Ugięcie nóg krótkie, tułów zostaje pionowo. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Jerk, krok 2 (dip slightly, torso upright)); StrongFirst: [Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)](https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/) (kettlebell jerk, krok 2 (dip straight down)) `kbb.dip`
+- Najpierw do końca wyprostuj nogi i biodra, dopiero potem schodź pod ciężar. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Jerk (extend the hips completely before the second dip)); StrongFirst: [Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)](https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/) (kettlebell jerk, krok 3 (bells stay in the rack until hips and knees fully extend)) `kbj.fullExt`
+- Zablokuj łokcie nad głową już w drugim ugięciu — dopiero potem wstań. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Jerk („drop and lock”; then extend the knees)); StrongFirst: [Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)](https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/) (kettlebell jerk, kroki 4–5) `kbj.lockFirst`
+
+### Power Clean
+
+**Ustawienie**
+
+- Stopy na szerokość bioder do barków, palce lekko na zewnątrz. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapit Setup (feet about hip-width, toes turned out)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 1 (hip-width stance, feet pointed out slightly)) `olympic.feet`
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapit Setup (trunk braced, back extended)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 2 (Flatten your back)) `olympic.setupBack`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapit First pull (push through the whole foot); Setup (arms straight)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 3 (pushing down into the floor)) `olympic.legsFirst`
+- Gdy sztanga minie kolana, mocno wyprostuj biodra i nogi. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapit First pull (after the knees: drive legs, extend hips aggressively)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (3. The Second Pull (thrust hips forward, straighten knees)) `olympic.extend`
+- Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapity Second pull / Receiving (elbows up and out; spin elbows around the bar into rack)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 5 (flip your elbows around, front rack)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (4. The Catch (rotate elbows forward and under, fronts of the shoulders)) `olympic.under`
+- Sztangę przyjmij w płytkim przysiadzie. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapit Receiving (partial squat, brake hard, stay above parallel)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 5 (legs slightly bent)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (4. The Catch (quarter- to half-squat)) `olympic.catchHigh`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Power Clean](https://www.catalystathletics.com/exercise/67/Power-Clean/) (akapit First pull (bar close to the body)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (3. The Second Pull (keep the bar close to the body)) `oly.close`
+- Ręce proste jak najdłużej — sztangę wybijają nogi i biodra. — BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Common Mistakes: Using Your Arms); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (2. The Transition (arms straight) + Common Mistakes: Pulling with the arms) `oly.legs`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Common Mistakes: Using Your Arms); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bending the arms too early) `olympic.mis.arms`
+- Sztanga odjeżdża od ciała. — Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bar drifting away from the body); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Kicking the Bar (bazowy ruch: zarzut)) `mis.barAway`
+
+### Clean
+
+**Ustawienie**
+
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit Setup (trunk braced, back extended)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 2 (bazowy ruch: power clean — ten sam ciąg wg catalyst-67)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Setup Position (back flat; shoulders slightly in front of the bar)) `olympic.setupBack`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit First pull (legs push through the whole foot); Setup (arms straight)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Push, Hard (pushing into the floor with your legs)) `olympic.legsFirst`
+- Gdy sztanga minie kolana, mocno wyprostuj biodra i nogi. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit First pull (keep driving, extend hips forcefully)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Extend Up (mid to high-thigh, triple extension)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — Second Pull (from mid-thigh, fully extend hips and legs)) `olympic.extend`
+- Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapity Third pull / Receive (elbows spin around the bar to rack)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Flip and Rack); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — Third Pull (elbows high, bar racked on the shoulders)) `olympic.under`
+- Sztangę przyjmij w pełnym przysiadzie i od razu wstań. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapity Third pull / Recovery (squat under; drive up immediately)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Flip and Rack (drop under, catch, stand up)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — Third Pull (finish in a front squat and stand up)) `olympic.catchLow`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit Second pull (bar close to the body)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — First/Second Pull (bar close to the body)) `oly.close`
+- Ręce proste jak najdłużej — sztangę wybijają nogi i biodra. — BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Trying to „Muscle It”); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Pulling with the arms (bazowy ruch: power clean)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — Second Pull (arms long)) `oly.legs`
+
+**Czego unikać**
+
+- Sztanga odjeżdża od ciała. — BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Kicking the Bar); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bar drifting away (bazowy ruch: power clean)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Common Faults: Incomplete first pull (bar drifts from the body)) `mis.barAway`
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Trying to „Muscle It”); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bending the arms too early (bazowy ruch: power clean)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Common Faults: Pulling early on the clean (arms bend before full hip and knee extension)) `olympic.mis.arms`
+
+### Hang Clean
+
+**Ustawienie**
+
+- Wstań ze sztangą i opuść ją tuż nad kolana: biodra w tył, plecy proste, barki nad sztangą lub lekko przed nią. — Catalyst Athletics: [Hang Clean](https://www.catalystathletics.com/exercise/68/Hang-Clean/) (akapit Starting hang position (stand the bar up, lower under control to the hang; high-hang/knee: shoulder above or slightly in front of the bar)); Rogue Fitness: [Movement Demo — Hang Squat Clean](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean) (Hang Position (just above the knees, hips back, flat back, shoulders on top or just in front)); BarBend: [How to Do a Hang Clean (akt. 19.12.2023)](https://barbend.com/hang-clean/) (FAQ Step 2 (hinge until the bar is past your knees)) `olympic.hangStart`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Hang Clean](https://www.catalystathletics.com/exercise/68/Hang-Clean/) (akapit How the lift begins (drive through the floor with the legs)); Rogue Fitness: [Movement Demo — Hang Squat Clean](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean) (Execution (leg drive, arms remaining straight)); BarBend: [How to Do a Hang Clean (akt. 19.12.2023)](https://barbend.com/hang-clean/) (Step 2 (push your feet into the floor)) `olympic.legsFirst`
+- Ze zwisu mocno wyprostuj biodra i nogi. — Catalyst Athletics: [Hang Clean](https://www.catalystathletics.com/exercise/68/Hang-Clean/) (akapit How the lift begins (hips extend forcefully)); Rogue Fitness: [Movement Demo — Hang Squat Clean](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean) (Execution (explosively extend hips and knees)); BarBend: [How to Do a Hang Clean (akt. 19.12.2023)](https://barbend.com/hang-clean/) (Step 3 (drive your hips forward)) `olympic.hangExtend`
+- Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków. — Catalyst Athletics: [Hang Clean](https://www.catalystathletics.com/exercise/68/Hang-Clean/) (akapit Elbows and rack (spin the elbows around the bar)); Rogue Fitness: [Movement Demo — Hang Squat Clean](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean) (Execution (fast elbows, under and around the bar)); BarBend: [How to Do a Hang Clean (akt. 19.12.2023)](https://barbend.com/hang-clean/) (Step 3–4 (high elbows, front rack)) `olympic.under`
+- Sztangę przyjmij w pełnym przysiadzie i od razu wstań. — Catalyst Athletics: [Hang Clean](https://www.catalystathletics.com/exercise/68/Hang-Clean/) (akapit Receive (squat under, drive up immediately)); Rogue Fitness: [Movement Demo — Hang Squat Clean](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean) (Receiving (full-depth squat)); BarBend: [How to Do a Hang Clean (akt. 19.12.2023)](https://barbend.com/hang-clean/) (Step 4 (drop into a deep squat)) `olympic.catchLow`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Hang Clean](https://www.catalystathletics.com/exercise/68/Hang-Clean/) (akapit How the lift begins (bar close to the body)); Rogue Fitness: [Movement Demo — Hang Squat Clean](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean) (Execution (keep the bar close)); BarBend: [How to Do a Hang Clean (akt. 19.12.2023)](https://barbend.com/hang-clean/) (FAQ Step 3 (keeping it close to your body)) `oly.close`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bending the arms too early (bazowy ruch: zarzut z ziemi)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Trying to „Muscle It” (bazowy ruch: zarzut z ziemi)) `olympic.mis.arms`
+- Sztanga odjeżdża od ciała. — Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bar drifting away (bazowy ruch)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Kicking the Bar (bazowy ruch)) `mis.barAway`
+
+### Block Clean
+
+**Ustawienie**
+
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Block Clean](https://www.catalystathletics.com/exercise/379/Block-Clean/) (akapit Setup and pull (brace the trunk; same position as a clean at that height)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Setup (bazowy ruch: zarzut z ziemi)) `olympic.setupBack`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Block Clean](https://www.catalystathletics.com/exercise/379/Block-Clean/) (akapit Setup and pull (drive through the floor with the legs)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Push, Hard (bazowy ruch)) `olympic.legsFirst`
+- Gdy sztanga minie kolana, mocno wyprostuj biodra i nogi. — Catalyst Athletics: [Block Clean](https://www.catalystathletics.com/exercise/379/Block-Clean/) (akapit Setup and pull (fully extend the hips)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Extend Up (bazowy ruch)) `olympic.extend`
+- Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków. — Catalyst Athletics: [Block Clean](https://www.catalystathletics.com/exercise/379/Block-Clean/) (akapit Receive (spin the elbows around the bar)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Flip and Rack (bazowy ruch)) `olympic.under`
+- Sztangę przyjmij w pełnym przysiadzie i od razu wstań. — Catalyst Athletics: [Block Clean](https://www.catalystathletics.com/exercise/379/Block-Clean/) (akapity Receive / Recovery (squat under; drive back up immediately)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Flip and Rack (bazowy ruch)) `olympic.catchLow`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Trying to „Muscle It” (bazowy ruch)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bending the arms too early (bazowy ruch)) `olympic.mis.arms`
+- Sztanga odjeżdża od ciała. — BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Kicking the Bar (bazowy ruch)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bar drifting away (bazowy ruch)) `mis.barAway`
+
+### Block Power Clean
+
+**Ustawienie**
+
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Block Power Clean](https://www.catalystathletics.com/exercise/380/Block-Power-Clean/) (akapit Setup (same position as at that point of a power clean from the floor)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 2 (bazowy ruch: power clean z ziemi)) `olympic.setupBack`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Block Power Clean](https://www.catalystathletics.com/exercise/380/Block-Power-Clean/) (akapit Pull (drive through the whole foot)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 3 (bazowy ruch)) `olympic.legsFirst`
+- Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków. — Catalyst Athletics: [Block Power Clean](https://www.catalystathletics.com/exercise/380/Block-Power-Clean/) (akapit Receive depth (elbows up and out, spin into the rack)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 5 (bazowy ruch)) `olympic.under`
+- Sztangę przyjmij w płytkim przysiadzie. — Catalyst Athletics: [Block Power Clean](https://www.catalystathletics.com/exercise/380/Block-Power-Clean/) (akapit Receive depth (brake hard, stay above parallel)); BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Step 5 (legs slightly bent; bazowy ruch)) `olympic.catchHigh`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Block Power Clean](https://www.catalystathletics.com/exercise/380/Block-Power-Clean/) (akapit Pull (keeping the bar as close as possible)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (3. The Second Pull (bazowy ruch)) `oly.close`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — BarBend: [The Power Clean Exercise: How To… (akt. 25.03.2024)](https://barbend.com/power-clean/) (Common Mistakes: Using Your Arms (bazowy ruch)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bending the arms too early (bazowy ruch)) `olympic.mis.arms`
+- Sztanga odjeżdża od ciała. — Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bar drifting away (bazowy ruch)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Kicking the Bar (bazowy ruch)) `mis.barAway`
+
+### Split Clean
+
+**Ustawienie**
+
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit Setup (bazowy ruch: catalyst-211 odsyła do mechaniki zarzutu)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Setup (bazowy ruch)) `olympic.setupBack`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit First pull (bazowy ruch)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Push, Hard (bazowy ruch)) `olympic.legsFirst`
+- Gdy sztanga minie kolana, mocno wyprostuj biodra i nogi. — Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit First pull (bazowy ruch)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Extend Up (bazowy ruch)) `olympic.extend`
+- Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w nożycach — jedna stopa w przód, druga w tył. — Catalyst Athletics: [Split Clean](https://www.catalystathletics.com/exercise/211/Split-Clean/) (akapit Execution (squat clean mechanics, under in a split position)); IronMind: [Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada)](https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/) (akapit o split clean (pulled just as for a power or squat lift; front leg forward, back leg backward)) `olympic.splitCatch`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Trying to „Muscle It” (bazowy ruch)); Experience Life: [How to Power Clean (A. Heffernan, CSCS, 20.05.2019)](https://experiencelife.lifetime.life/article/learn-to-power-clean/) (Common Mistakes: Bending the arms too early (bazowy ruch)) `olympic.mis.arms`
+
+### Clean and Jerk
+
+**Ustawienie**
+
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (akapit Clean (braced back)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Setup Position (back flat)) `olympic.setupBack`
+
+**Ruch**
+
+- Zacznij od pchania nogami w podłogę — ręce zostają proste. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (akapit Clean (push with the legs through the whole foot)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Push, Hard (bazowy ruch: zarzut)) `olympic.legsFirst`
+- Gdy sztanga minie kolana, mocno wyprostuj biodra i nogi. — CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — Second Pull (from mid-thigh, fully extend hips and legs)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Extend Up (bazowy ruch: zarzut)) `olympic.extend`
+- Po wyproście szybko przerzuć łokcie do przodu pod sztangą i przyjmij ją na przód barków. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (akapit Transition and rack (spin the elbows around the bar)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — Third Pull (elbows high, bar racked on the shoulders)) `olympic.under`
+- Krótko ugnij kolana, wybij sztangę nogami i wskocz pod nią w nożyce; złap ją na prostych rękach. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (część jerk (dip, drive straight back up with the legs, push the bar up, move the feet into the split as you punch the elbows)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Jerk — Dip / Drive / Split-Receive (arms push under the bar, feet into a split, arms locked out)) `olympic.splitMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Clean — First/Second Pull (bar close to the body)); Catalyst Athletics: [Clean](https://www.catalystathletics.com/exercise/59/Clean/) (akapit Second pull (bazowy ruch: zarzut)) `oly.close`
+- Krótkie ugięcie, prosto w dół — tułów zostaje pionowo. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (część jerk („Dip by bending at the knees only with the trunk vertical”)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Jerk — Dip (hips and shoulders travel straight down, torso vertical)) `olympic.dip`
+- Siła wybicia idzie z nóg i bioder — ręce kończą ruch. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (część jerk („As you finish the extension of the legs, push the bar up…”)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Jerk — Drive (aggressively extends the hips and knees), potem Split/Receive (arms push under)) `pp.legs`
+- Stopy lądują w tej samej chwili, w której ręce prostują się nad głową. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (część jerk (move the feet into the split as you punch the elbows)); CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Jerk — Split/Receive (arms locked out at the time the feet hit the floor)) `olympic.feetHands`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Common Faults: Pulling early on the clean); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Trying to „Muscle It” (bazowy ruch)) `olympic.mis.arms`
+- Sztanga odjeżdża od ciała. — CrossFit: [The Clean and Jerk (Essentials, 21.01.2020)](https://www.crossfit.com/essentials/the-clean-and-jerk) (Common Faults: Incomplete first pull (bar drifts from the body)); BarBend: [How to Do the Clean… (akt. 19.11.2024)](https://barbend.com/how-to-do-the-clean/) (Common Mistakes: Kicking the Bar (bazowy ruch)) `mis.barAway`
+- Wybijanie sztangi w przód zamiast prosto w górę. — Catalyst Athletics: [Clean & Jerk](https://www.catalystathletics.com/exercise/76/Clean-Jerk/) (część jerk (drive straight back up)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Common Faults — Fault #2 (drives the barbell out front; bazowy ruch: podrzut)) `olympic.mis.forward`
+
+### Clean Pull
+
+**Ustawienie**
+
+- Na starcie plecy proste, tułów mocno napięty. — Catalyst Athletics: [Clean Pull](https://www.catalystathletics.com/exercise/98/Clean-Pull/) (akapit Setup (trunk braced, back extended)); Rogue Fitness: [Movement Demo — Clean Pull](https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull) (Start Position (flat back)); BarBend: [Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024)](https://barbend.com/clean-pull-guide/) (Step 1 — Set Up (low, braced starting posture)) `olympic.setupBack`
+
+**Ruch**
+
+- Na górze pełny wyprost: biodra, kolana i kostki. — Catalyst Athletics: [Clean Pull](https://www.catalystathletics.com/exercise/98/Clean-Pull/) (akapity Extension / Heels and top position (extend roughly vertically, heels rise naturally)); Rogue Fitness: [Movement Demo — Clean Pull](https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull) (Execution (explode through hips, knees, and ankles)); BarBend: [Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024)](https://barbend.com/clean-pull-guide/) (Step 3 — Get Tall (extend hips and legs, then shrug)) `olympic.triple`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — BarBend: [Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024)](https://barbend.com/clean-pull-guide/) (Common Clean Pull Mistakes: Using Your Arms (only shrug once you've fully extended)); Rogue Fitness: [Movement Demo — Clean Pull](https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull) (Execution (bez ciągnięcia rękami — wg notatki z sesji 1)) `olympic.mis.arms`
+
+### Split Jerk
+
+**Ustawienie**
+
+- Sztanga oparta z przodu barków, stopy jak do wyskoku — mniej więcej na szerokość bioder. — Catalyst Athletics: [Split Jerk (Exercise Library #60)](https://catalystathletics.com/exercise/60/Split-Jerk) (opis (heels approximately hip-width; jerk rack position)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Split Jerk — setup (jumping/jerk position, hip-width; shelf of the shoulders)) `olympic.jerkSetup`
+
+**Ruch**
+
+- Krótko ugnij kolana, wybij sztangę nogami i wskocz pod nią w nożyce; złap ją na prostych rękach. — Catalyst Athletics: [Split Jerk (Exercise Library #60)](https://catalystathletics.com/exercise/60/Split-Jerk) (opis (dip, drive, push the bar up, move the feet into the split, punch the elbows)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Split Jerk — receive (punches body into a lunge)) `olympic.splitMove`
+
+**Wskazówki**
+
+- Krótkie ugięcie, prosto w dół — tułów zostaje pionowo. — Catalyst Athletics: [Split Jerk (Exercise Library #60)](https://catalystathletics.com/exercise/60/Split-Jerk) (opis (bending at the knees only with the trunk vertical)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Split Jerk — dip (straight, smooth, and short)) `olympic.dip`
+
+**Czego unikać**
+
+- Wybijanie sztangi w przód zamiast prosto w górę. — CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Common Faults — Fault #2 (drives the barbell out front)); Catalyst Athletics: [Split Jerk (Exercise Library #60)](https://catalystathletics.com/exercise/60/Split-Jerk) (opis (drive straight back up)) `olympic.mis.forward`
+
+### Power Jerk
+
+**Ustawienie**
+
+- Sztanga oparta z przodu barków, stopy jak do wyskoku — mniej więcej na szerokość bioder. — Catalyst Athletics: [Power Jerk (Exercise Library #72)](https://catalystathletics.com/exercise/72/Power-Jerk/) (opis (heels hip-width; jerk rack position)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Push (Power) Jerk — feet from hip width) `olympic.jerkSetup`
+
+**Ruch**
+
+- Krótko ugnij kolana, wybij sztangę nogami i wejdź pod nią na nieco szerszych stopach; złap ją na prostych rękach w płytkim przysiadzie, nie niżej niż do równoległego ud. — Catalyst Athletics: [Power Jerk (Exercise Library #72)](https://catalystathletics.com/exercise/72/Power-Jerk/) (opis (feet into squat stance; partial squat above parallel)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Push (Power) Jerk — feet hip→shoulder width; parallel or above parallel squat) `olympic.powerMove`
+
+**Wskazówki**
+
+- Krótkie ugięcie, prosto w dół — tułów zostaje pionowo. — Catalyst Athletics: [Power Jerk (Exercise Library #72)](https://catalystathletics.com/exercise/72/Power-Jerk/) (opis (knees only, trunk vertical)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (dip — opis wspólny dla stylów (straight, smooth, short)) `olympic.dip`
+
+**Czego unikać**
+
+- Wybijanie sztangi w przód zamiast prosto w górę. — CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Common Faults — Fault #2); Catalyst Athletics: [Power Jerk (Exercise Library #72)](https://catalystathletics.com/exercise/72/Power-Jerk/) (opis (drive straight back up)) `olympic.mis.forward`
+
+### Squat Jerk
+
+**Ustawienie**
+
+- Sztanga oparta z przodu barków, stopy jak do wyskoku — mniej więcej na szerokość bioder. — Catalyst Athletics: [Squat Jerk (Exercise Library #75)](https://catalystathletics.com/exercise/75/Squat-Jerk/) (opis (heels hip-width; jerk rack position)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (setup — jumping/jerk position, hip-width (opis wspólny dla stylów)) `olympic.jerkSetup`
+
+**Ruch**
+
+- Krótko ugnij kolana, wybij sztangę nogami i zejdź pod nią do pełnego przysiadu; złap ją na prostych rękach i wstań. — Catalyst Athletics: [Squat Jerk (Exercise Library #75)](https://catalystathletics.com/exercise/75/Squat-Jerk/) (opis (punch the elbows overhead, drive yourself down into a squat; recover with the bar overhead)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Squat Jerk — receive (full-depth squat) and recovery (overhead squat)) `olympic.squatMove`
+
+**Wskazówki**
+
+- Krótkie ugięcie, prosto w dół — tułów zostaje pionowo. — Catalyst Athletics: [Squat Jerk (Exercise Library #75)](https://catalystathletics.com/exercise/75/Squat-Jerk/) (opis (knees only, trunk vertical)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (dip — opis wspólny dla stylów) `olympic.dip`
+- Wstań ze sztangą wciąż nad głową i dopiero wtedy ją opuść. — Catalyst Athletics: [Squat Jerk (Exercise Library #75)](https://catalystathletics.com/exercise/75/Squat-Jerk/) (opis (recover into a standing position with the bar overhead)); CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Squat Jerk — recovery (overhead squat)) `olympic.recover`
+
+**Czego unikać**
+
+- Wybijanie sztangi w przód zamiast prosto w górę. — CrossFit: [Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)](https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk) (Common Faults — Fault #2 (wspólne dla stylów)); Catalyst Athletics: [Squat Jerk (Exercise Library #75)](https://catalystathletics.com/exercise/75/Squat-Jerk/) (opis (drive straight back up)) `olympic.mis.forward`
+
+### Jerk Dip Squat
+
+**Ustawienie**
+
+- Zanim ugniesz kolana, mocno napnij tułów. — Catalyst Athletics: [Jerk Dip Squat (Exercise Library #194)](https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/) (opis („Brace your trunk as you would for a jerk”)); BarBend: [Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023)](https://barbend.com/jerk-dip-technique-benefits/) (Bracing (fill core and chest with a deep breath, push it against the abdominal wall)) `olympic.dipBrace`
+
+**Ruch**
+
+- Ugnij kolana jak przed podrzutem, ale wolno i pod kontrolą, potem spokojnie wstań — bez wybijania sztangi. — Catalyst Athletics: [Jerk Dip Squat (Exercise Library #194)](https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/) (opis (dip as for a jerk but at a controlled speed; change direction at a controlled speed; stand again naturally) + Notes (no drive or speed)); BarBend: [Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023)](https://barbend.com/jerk-dip-technique-benefits/) (opis odmian (jerk dip squat: „slower and more controlled movement than the jerk dip in an actual jerk”; wybicie dodaje dopiero odmiana „jerk drive”)) `olympic.dipSquat`
+
+**Czego unikać**
+
+- Zbyt szybkie ugięcie, po którym wypadasz z pozycji. — BarBend: [Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023)](https://barbend.com/jerk-dip-technique-benefits/) (wstęp (rushed dips that force the lifter to shift out of position)); Catalyst Athletics: [Jerk Dip Squat (Exercise Library #194)](https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/) (opis (controlled speed regardless of your normal dip tempo; tension throughout legs and hips)) `olympic.mis.dipRushed`
+
+### Jerk Balance
+
+**Ustawienie**
+
+- Sztanga oparta z przodu barków, stopy w krótkich nożycach — przednia stopa bliżej niż zwykle. — Catalyst Athletics: [Jerk Balance (Exercise Library #193)](https://catalystathletics.com/exercise/193/Jerk-Balance/) (opis (jerk rack position; step about a foot-length back with the front foot into a partial split)); BarBend: [Exercises to Strengthen Your Jerk (R. Stefan, akt. 01.07.2024)](https://barbend.com/exercises-to-strengthen-jerk) (Jerk Balance (jerk split stance slightly „shorter” than where you'd receive the bar; bar in the front rack)) `olympic.balanceSetup`
+
+**Ruch**
+
+- Krótko ugnij kolana, wybij sztangę nad głowę i jednocześnie wysuń przednią stopę do pełnych nożyc. — Catalyst Athletics: [Jerk Balance (Exercise Library #193)](https://catalystathletics.com/exercise/193/Jerk-Balance/) (opis (dip straight down, drive straight up, punch the bar overhead, step the front foot forward into the full split)); BarBend: [Exercises to Strengthen Your Jerk (R. Stefan, akt. 01.07.2024)](https://barbend.com/exercises-to-strengthen-jerk) (Jerk Balance (dip and drive from the shortened split; catch overhead while sliding the front leg out)) `olympic.balanceMove`
+
+### Barbell Snatch
+
+**Ustawienie**
+
+- Szeroki chwyt, plecy proste i napięte, barki nad sztangą. — Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (opis wykonania, start (snatch-width grip; back extended; shoulder joint above the bar)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 1 Set Your Start (wide snatch grip; back tight) i Step 2 (shoulders over the bar) — wariant power) `olympic.setup`
+
+**Ruch**
+
+- Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i wciągnij się pod nią — złap ją na prostych rękach w pełnym przysiadzie, potem wstań. — Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (opis wykonania (push with the legs; extend the hips; pull elbows up and out; squat under; stand once secure)); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension, Receive (full depth overhead squat, locked out arms) — wariant: ze zwisu) `olympic.snatchMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (opis wykonania (keeping the bar as close to the body as possible)); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Arms (high elbows to keep the bar close to the body) — wariant: ze zwisu (uproszczenie)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Muscles Worked › Upper & Lower Back (keep the bar tight to your body) — wariant power (uproszczenie)) `oly.close`
+- Ręce proste jak najdłużej — sztangę wybijają nogi i biodra. — Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (start (arms relaxed and straight) i ciąg (push with the legs)); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension (leg drive and the arms remaining straight) — wariant: ze zwisu (uproszczenie)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 2 (arms should remain straight as you pull) — wariant power (uproszczenie)) `oly.legs`
+- Barki nad sztangą jak najdłużej — nie odchylaj się za wcześnie. — BarBend: [Need to Fix Your Snatch? (R. Stefan, USAW-L1)](https://barbend.com/fix-your-snatch/) (pkt 2 Not Staying Over the Bar); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension (shoulders and chest stay over the bar for as long as possible) — wariant: ze zwisu) `olympic.overBar`
+
+**Czego unikać**
+
+- Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (First Pull: The bar separates from the body; Second Pull: Hips are banging into the bar); Catalyst Athletics: [Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017)](https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making) (pkt 1 Forward Imbalance in the Pull, pkt 2 Bumping the Bar Off the Hips) `olympic.mis.away`
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull: Early Arm Pull); Catalyst Athletics: [Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution](https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/) (Why It's a Problem) `olympic.mis.arms`
+- Ugięte łokcie nad głową — sztanga spycha cię w dół. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Third Pull: Lazy lockout); BarBend: [Need to Fix Your Snatch? (R. Stefan, USAW-L1)](https://barbend.com/fix-your-snatch/) (pkt 4 A Loose Catch) `olympic.mis.softLockout`
+
+### Power Snatch
+
+**Ustawienie**
+
+- Szeroki chwyt, plecy proste i napięte, barki nad sztangą. — BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 1 Set Your Start, Step 2 Pull Into the Hip (shoulders over the bar)); Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (start — rwanie ogólnie (uproszczenie: ten sam start)); Catalyst Athletics: [Power Snatch (#61)](https://www.catalystathletics.com/exercise/61/) (opis wykonania (set the starting position tightly)) `olympic.setup`
+
+**Ruch**
+
+- Odepchnij się nogami od podłogi, dynamicznie się wyprostuj i wejdź pod sztangę — złap ją na prostych rękach wyżej niż w przysiadzie równoległym, biodra nad kolanami. — Catalyst Athletics: [Power Snatch (#61)](https://www.catalystathletics.com/exercise/61/) (opis wykonania (extend the hips; pull elbows up and out; remain above a parallel squat)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Steps 2–4 (hip crease above knee in the catch)); Rogue Fitness: [Movement Demo — Hang Power Snatch](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch) (Receive (hip crease higher than the top of the knees) — wariant: ze zwisu) `olympic.snatchPowerMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Power Snatch (#61)](https://www.catalystathletics.com/exercise/61/) (opis wykonania (bar as close to the body as possible)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Muscles Worked › Upper & Lower Back (keep the bar tight to your body)) `oly.close`
+- Ręce proste jak najdłużej — sztangę wybijają nogi i biodra. — BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 2 (arms should remain straight as you pull)); Rogue Fitness: [Movement Demo — Hang Power Snatch](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch) (Extension (leg drive, arms remaining straight) — wariant: ze zwisu); Catalyst Athletics: [Power Snatch (#61)](https://www.catalystathletics.com/exercise/61/) (opis wykonania (push with the legs)) `oly.legs`
+- Barki nad sztangą jak najdłużej — nie odchylaj się za wcześnie. — BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 2 (shoulders vertically over the bar)); Rogue Fitness: [Movement Demo — Hang Power Snatch](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch) (Extension (shoulders and chest over the bar as long as possible) — wariant: ze zwisu) `olympic.overBar`
+
+**Czego unikać**
+
+- Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (First/Second Pull — rwanie ogólnie (uproszczenie)); Catalyst Athletics: [Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017)](https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making) (pkt 1–2 — rwanie i zarzut ogólnie (uproszczenie)) `olympic.mis.away`
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull: Early Arm Pull — rwanie ogólnie (uproszczenie)); Catalyst Athletics: [Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution](https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/) (Why It's a Problem — rwanie i zarzut ogólnie (uproszczenie)) `olympic.mis.arms`
+- Ugięte łokcie nad głową — sztanga spycha cię w dół. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Third Pull: Lazy lockout (uproszczenie)); BarBend: [Need to Fix Your Snatch? (R. Stefan, USAW-L1)](https://barbend.com/fix-your-snatch/) (pkt 4 A Loose Catch (uproszczenie)) `olympic.mis.softLockout`
+
+### Hang Snatch
+
+**Ustawienie**
+
+- Wstań ze sztangą, potem opuść ją do zwisu, cofając biodra — plecy proste, barki nad sztangą. — Catalyst Athletics: [Hang Power Snatch (#62)](https://www.catalystathletics.com/exercise/62/Hang-Power-Snatch/) (opis wykonania (deadlift the bar to standing; lower under control to the hang) — wariant power); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Hang Position (hips pushed back; flat back; shoulders on top or just in front of the bar)); BarBend: [What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2)](https://barbend.com/what-are-hang-lifts-in-weightlifting/) (What Is the Hang Position (bar suspended; lowered by hinging at the hips)) `olympic.hangSetup`
+
+**Ruch**
+
+- Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i wciągnij się pod nią — złap ją na prostych rękach w pełnym przysiadzie, potem wstań. — Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension, Pull Under, Receive (full depth overhead squat), Lockout); Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (opis wykonania — rwanie ogólnie (uproszczenie: inny start)) `olympic.snatchMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Arms (high elbows to keep the bar close to the body)); Catalyst Athletics: [Hang Power Snatch (#62)](https://www.catalystathletics.com/exercise/62/Hang-Power-Snatch/) (opis wykonania (bar as close to the body as possible)) `oly.close`
+- Ręce proste jak najdłużej — sztangę wybijają nogi i biodra. — Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension (leg drive and the arms remaining straight)); BarBend: [What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2)](https://barbend.com/what-are-hang-lifts-in-weightlifting/) (legs extend fully before your arms do any work (hang muscle snatch — wariant)); Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (rwanie ogólnie) `oly.legs`
+- Barki nad sztangą jak najdłużej — nie odchylaj się za wcześnie. — Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension); BarBend: [Need to Fix Your Snatch? (R. Stefan, USAW-L1)](https://barbend.com/fix-your-snatch/) (pkt 2 — rwanie ogólnie) `olympic.overBar`
+
+**Czego unikać**
+
+- Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull: Hips banging into the bar (uproszczenie)); Catalyst Athletics: [Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017)](https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making) (pkt 2 Bumping the Bar Off the Hips (uproszczenie)) `olympic.mis.away`
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull: Early Arm Pull (uproszczenie)); Catalyst Athletics: [Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution](https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/) (Why It's a Problem (uproszczenie)) `olympic.mis.arms`
+- Ugięte łokcie nad głową — sztanga spycha cię w dół. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Third Pull: Lazy lockout (uproszczenie)); BarBend: [Need to Fix Your Snatch? (R. Stefan, USAW-L1)](https://barbend.com/fix-your-snatch/) (pkt 4 A Loose Catch (uproszczenie)) `olympic.mis.softLockout`
+
+### Snatch Pull
+
+**Ustawienie**
+
+- Szeroki chwyt, plecy proste i napięte, barki nad sztangą. — Catalyst Athletics: [Snatch Pull (#97)](https://www.catalystathletics.com/exercise/97/Snatch-Pull/) (opis (set the snatch starting position tightly; arms relaxed)); Rogue Fitness: [Movement Demo — Snatch Pull (2025)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull) (Setup (snatch grip) i Extension (chest and shoulders over the bar); Common cues (flat back)) `olympic.setup`
+
+**Ruch**
+
+- Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i zakończ mocnym wzruszeniem barków — bez wchodzenia pod sztangę. — Catalyst Athletics: [Snatch Pull (#97)](https://www.catalystathletics.com/exercise/97/Snatch-Pull/) (opis (push with the legs; extend the entire body; shrug up and back)); Rogue Fitness: [Movement Demo — Snatch Pull (2025)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull) (First Pull, Extension (triple extension), Shrug (finish with a powerful shrug)) `olympic.pullMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Snatch Pull (#97)](https://www.catalystathletics.com/exercise/97/Snatch-Pull/) (opis (keep the bar as close to the legs as possible; at no point should it move away)); Rogue Fitness: [Movement Demo — Snatch Pull (2025)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull) (First Pull (keeping the bar close to the legs)) `oly.close`
+- Ręce proste jak najdłużej — sztangę wybijają nogi i biodra. — Catalyst Athletics: [Snatch Pull (#97)](https://www.catalystathletics.com/exercise/97/Snatch-Pull/) (opis (arms relaxed and stretched long; push with the legs)); Rogue Fitness: [Movement Demo — Snatch Pull (2025)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull) (Bar Close and Arms Straight; Do NOT pull with the arms) `oly.legs`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — Catalyst Athletics: [Arm Bend In Snatch & Clean Pulls? (wideo z opisem)](https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/) (opis wideo (ciągi: rozpocząć pracę rąk dopiero po wyproście nóg i bioder)); Rogue Fitness: [Movement Demo — Snatch Pull (2025)](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull) (Shrug (Do NOT pull with the arms — this isn't a high pull)) `olympic.mis.arms`
+- Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami. — Catalyst Athletics: [How To Stop Swinging Snatch & Clean Pulls (wideo z opisem)](https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls) (opis wideo (ciągi: sztanga odbija od ciała po kontakcie z biodrami; 5 przyczyn)); CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (First Pull / Second Pull — fazy ciągu rwania (uproszczenie)) `olympic.mis.away`
+
+### Muscle Snatch
+
+**Ustawienie**
+
+- Szeroki chwyt, plecy proste i napięte, barki nad sztangą. — Catalyst Athletics: [Muscle Snatch (#96)](https://www.catalystathletics.com/exercise/96/Muscle-Snatch/) (opis (set your snatch starting position) — uproszczenie: start jak w rwaniu); BarBend: [Muscle Snatch (C. Trieu, 2024)](https://barbend.com/muscle-snatch/) (Setup (snatch starting position; shoulders over or slightly ahead of the bar)) `olympic.setup`
+
+**Ruch**
+
+- Wyprostuj się dynamicznie, potem ciągnij łokcie w górę i na boki, a następnie wypchnij sztangę nad głowę — bez ponownego uginania kolan. — Catalyst Athletics: [Muscle Snatch (#96)](https://www.catalystathletics.com/exercise/96/Muscle-Snatch/) (opis (extend close to vertically; pull elbows up and out; turn the bar over; legs tight pushing into the floor)); BarBend: [Muscle Snatch (C. Trieu, 2024)](https://barbend.com/muscle-snatch/) (Second Pull, Turnover, Lockout (without re-bending your legs)) `olympic.msMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Muscle Snatch (#96)](https://www.catalystathletics.com/exercise/96/Muscle-Snatch/) (opis (bar as close to the body as possible)); BarBend: [Muscle Snatch (C. Trieu, 2024)](https://barbend.com/muscle-snatch/) (Bar Close) `oly.close`
+
+**Czego unikać**
+
+- Mocne odchylanie tułowia w tył na górze ruchu. — Catalyst Athletics: [Muscle Snatch (#96)](https://www.catalystathletics.com/exercise/96/Muscle-Snatch/) (opis (extend close to vertically rather than leaning the trunk farther back)); BarBend: [Muscle Snatch (C. Trieu, 2024)](https://barbend.com/muscle-snatch/) (Common Mistakes: Going Too Heavy (lean back too far)) `olympic.mis.leanBack`
+
+### Snatch Balance
+
+**Ustawienie**
+
+- Sztanga na górze pleców, za karkiem; chwyt jak do rwania. — Catalyst Athletics: [Snatch Balance (#80)](https://www.catalystathletics.com/exercise/80/Snatch-Balance/) (opis (barbell behind your neck with a snatch-width grip)); BarBend: [Snatch Balance (M. Dewar, CSCS)](https://barbend.com/snatch-balance/) (Step 1 Set Up (on the back, hands in the snatch grip)) `olympic.sbSetup`
+
+**Ruch**
+
+- Krótko ugnij kolana, wybij sztangę z pleców i wejdź pod nią, przestawiając stopy do przysiadu; złap ją na prostych rękach w dole przysiadu i wstań. — Catalyst Athletics: [Snatch Balance (#80)](https://www.catalystathletics.com/exercise/80/Snatch-Balance/) (opis (bend the knees; drive up; move feet into receiving stance; squat into the bottom of an overhead squat; stand)); BarBend: [Snatch Balance (M. Dewar, CSCS)](https://barbend.com/snatch-balance/) (Step 2 Press and Dip, Step 3 Receive the Bar, Then Stand) `olympic.sbMove`
+
+**Wskazówki**
+
+- Schodząc pod sztangę, mocno pchaj ją rękami w górę. — Catalyst Athletics: [Snatch Balance (#80)](https://www.catalystathletics.com/exercise/80/Snatch-Balance/) (opis (punch the arms aggressively up into the bar)); BarBend: [Snatch Balance (M. Dewar, CSCS)](https://barbend.com/snatch-balance/) (Step 3 (reach the arms into the barbell) i wskazówki (pushing up and into it)) `olympic.sbPush`
+
+**Czego unikać**
+
+- Zbyt wolne zejście pod sztangę. — Torokhtiy: [Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026)](https://store.torokhtiy.com/blogs/exercises/snatch-balance) (Common Mistakes: Lack of Speed in the Drop); Catalyst Athletics: [Snatch Balance (#80)](https://www.catalystathletics.com/exercise/80/Snatch-Balance/) (opis (drop under „as quickly as possible” — błąd = zaprzeczenie standardu)) `olympic.mis.slowDrop`
+- Wstawanie, zanim sztanga jest stabilna nad głową. — Torokhtiy: [Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026)](https://store.torokhtiy.com/blogs/exercises/snatch-balance) (Common Mistakes: Rushing the Stand Up); Catalyst Athletics: [Snatch Balance (#80)](https://www.catalystathletics.com/exercise/80/Snatch-Balance/) (opis („Making sure it’s stable and secure, stand again with the bar overhead.” — błąd = zaprzeczenie standardu)) `olympic.mis.standEarly`
+
+### Block Snatch
+
+**Ustawienie**
+
+- Sztanga na blokach, zwykle na wysokości kolan. — Catalyst Athletics: [Block Snatch (#207)](https://catalystathletics.com/exercise/207/Block-Snatch/) (opis (most commonly the bar starting at knee height)); BarBend: [Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2)](https://barbend.com/weightlifting-blocks-vs-hang/) (knee-height blocks (stronger position than the floor)) `olympic.blockSetup`
+- Szeroki chwyt, plecy proste i napięte, barki nad sztangą. — Catalyst Athletics: [Block Snatch (#207)](https://catalystathletics.com/exercise/207/Block-Snatch/) (opis (same position as in a snatch with the bar at that height)); Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (start — rwanie ogólnie); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 1–2 — wariant power z podłogi (uproszczenie: inny start)) `olympic.setup`
+
+**Ruch**
+
+- Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i wciągnij się pod nią — złap ją na prostych rękach w pełnym przysiadzie, potem wstań. — Catalyst Athletics: [Block Snatch (#207)](https://catalystathletics.com/exercise/207/Block-Snatch/) (opis (push with the legs; extend; pull elbows up and out; squat under; fix overhead; stand)); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Extension, Pull Under, Receive — wariant ze zwisu (uproszczenie: inny start)) `olympic.snatchMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Block Snatch (#207)](https://catalystathletics.com/exercise/207/Block-Snatch/) (opis (bar as close to the body as possible)); Rogue Fitness: [Movement Demo — Hang Squat Snatch](https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch) (Arms (high elbows to keep the bar close) — wariant ze zwisu (uproszczenie)) `oly.close`
+
+**Czego unikać**
+
+- Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull (uproszczenie)); Catalyst Athletics: [Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017)](https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making) (pkt 2 (uproszczenie)) `olympic.mis.away`
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull: Early Arm Pull (uproszczenie)); Catalyst Athletics: [Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution](https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/) (Why It's a Problem (uproszczenie)) `olympic.mis.arms`
+
+### Split Snatch
+
+**Ustawienie**
+
+- Szeroki chwyt, plecy proste i napięte, barki nad sztangą. — Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (start — rwanie ogólnie (uproszczenie: ten sam start)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Step 1–2 — wariant power (uproszczenie)); IronMind: [Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada)](https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/) (ciąg „just as you would for a power or squat lift” (uproszczenie: start jak w rwaniu)) `olympic.setup`
+
+**Ruch**
+
+- Ciągnij jak w rwaniu, potem szybko wejdź pod sztangę w nożyce: jedna stopa do przodu, druga do tyłu — i wstań ze sztangą nad głową. — IronMind: [Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada)](https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/) (opis rwania i zarzutu w nożycach (ciąg jak w rwaniu; jedna noga ok. 1 stopy do przodu, druga ok. 2 stóp do tyłu; szybkie nogi i ręce; powrót do stania)); Catalyst Athletics: [Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch](https://performancemenu.com/article/815/Greg-Everett) (odpowiedź o split snatch („a single-leg squat with the other foot behind you”)) `olympic.snatchSplitMove`
+
+**Wskazówki**
+
+- Sztanga blisko ciała przez cały ciąg. — Catalyst Athletics: [Snatch (#58)](https://www.catalystathletics.com/exercise/58/Snatch/) (rwanie ogólnie (uproszczenie)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Muscles Worked › Upper & Lower Back — wariant power (uproszczenie)) `oly.close`
+
+**Czego unikać**
+
+- Ciągnięcie rękami, zanim nogi i biodra skończą wyprost. — CrossFit: [O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)](https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch) (Second Pull: Early Arm Pull — rwanie ogólnie (uproszczenie)); Catalyst Athletics: [Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution](https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/) (Why It's a Problem — rwanie ogólnie (uproszczenie)) `olympic.mis.arms`
+
+### Jump Squat
+
+**Ustawienie**
+
+- Stań prosto, stopy mniej więcej na szerokość bioder. — ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 1 (feet hip-width apart)); NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Step 1: Setup (feet hip-width apart)) `lunge.stand`
+
+**Ruch**
+
+- Ugnij kolana i cofnij biodra do przysiadu. — ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 2 (push hips back and bend at the knees)); NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Step 2: Brace/Position (quarter-squat or half-squat)); Catalyst Athletics: [Squat Vertical Jump (#555)](https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/) (Instructions (squat … into the bottom)) `plyo.dip`
+- Wybij się dynamicznie, prostując jednocześnie biodra, kolana i kostki. — ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 3 (extending ankles, knees and hips)); NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Step 3: Execute/Drive); Catalyst Athletics: [Squat Vertical Jump (#555)](https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/) (Instructions (drive into a maximal vertical jump)) `plyo.extend`
+
+**Wskazówki**
+
+- Ląduj miękko, na ugiętych kolanach. — ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 5 (land softly; don't lock out the knees)); NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Step 4: Return/Descent (land softly … bent knees)); Catalyst Athletics: [Squat Vertical Jump (#555)](https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/) (Instructions (absorb the landing … bending the knees and hips)) `jump.land`
+
+**Czego unikać**
+
+- Lądowanie na sztywnych nogach. — NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Common Mistakes, pkt 1 (landing with straight or minimally bent knees)); ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 5 (don't lock out your knees)) `jump.mis.stiff`
+
+### Tuck Jump
+
+**Ustawienie**
+
+- Stań prosto, stopy mniej więcej na szerokość bioder. — ACE: [Tuck Jump (#180)](https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/) (Step 1 (feet about hip-width apart)); NASM: [Tuck Jump](https://www.nasm.org/resource-center/exercise-library/tuck-jump) (Step 1: Setup (feet hip-width apart)) `lunge.stand`
+
+**Ruch**
+
+- Wybij się, prostując biodra, kolana i kostki, z zamachem rąk. — ACE: [Tuck Jump (#180)](https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/) (Step 3; wskazówka końcowa (arms forward and up)); NASM: [Tuck Jump](https://www.nasm.org/resource-center/exercise-library/tuck-jump) (Step 3: Execute/Drive (extend hips, knees, ankles while swinging arms upward)); Catalyst Athletics: [Tuck Jump (#558)](https://catalystathletics.com/exercise/558/Tuck-Jump/) (opis (swing the arms forward and up, push against the ground)) `jump.drive`
+- W powietrzu przyciągnij kolana do klatki. — ACE: [Tuck Jump (#180)](https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/) (Step 3 (pull your knees toward your chest)); NASM: [Tuck Jump](https://www.nasm.org/resource-center/exercise-library/tuck-jump) (Step 3: Execute/Drive (drive your knees toward your chest)); Catalyst Athletics: [Tuck Jump (#558)](https://catalystathletics.com/exercise/558/Tuck-Jump/) (opis (pull the knees up as high as possible)) `plyo.tuck`
+
+**Wskazówki**
+
+- Ląduj miękko, na ugiętych kolanach. — ACE: [Tuck Jump (#180)](https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/) (Step 4 (land softly; don't lock knees)); NASM: [Tuck Jump](https://www.nasm.org/resource-center/exercise-library/tuck-jump) (Step 4: Return/Descent (land softly … bent knees)) `jump.land`
+
+**Czego unikać**
+
+- Lądowanie na sztywnych nogach. — NASM: [Tuck Jump](https://www.nasm.org/resource-center/exercise-library/tuck-jump) (Common Mistakes, pkt 1); ACE: [Tuck Jump (#180)](https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/) (Step 4 (don't lock your knees or quads)) `jump.mis.stiff`
+
+### Weighted Jump Squat
+
+**Ustawienie**
+
+- Sztanga na górze pleców, jak do przysiadu. — Catalyst Athletics: [Back Squat Jump (#353)](https://catalystathletics.com/exercise/353/Back-Squat-Jump/) (Instructions, pkt 1 (bar in back squat position, held tightly against the body)); Suchomel i in. (J Hum Kinet 2019): [The Effect of Load Placement on the Power Production Characteristics of Three Lower Extremity Jumping Exercises (J Hum Kinet 2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/) (Methods, Procedures (external load on the upper back, similar to a back squat)); Torokhtiy: [Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024)](https://torokhtiy.com/blogs/guides/barbell-squat-jump) (technika (bar on the shoulders behind the neck, like a back squat)) `plyo.wjsBarBack`
+
+**Ruch**
+
+- Zejdź do przysiadu i wybij się w górę jak najmocniej. — Catalyst Athletics: [Back Squat Jump (#353)](https://catalystathletics.com/exercise/353/Back-Squat-Jump/) (Instructions, pkt 2 (drive up … maximal vertical jump)); Suchomel i in. (J Hum Kinet 2019): [The Effect of Load Placement on the Power Production Characteristics of Three Lower Extremity Jumping Exercises (J Hum Kinet 2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/) (Methods, Procedures (rapid countermovement, then jump as high as possible)); Torokhtiy: [Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024)](https://torokhtiy.com/blogs/guides/barbell-squat-jump) (technika (jump as high as possible)) `plyo.wjsMove`
+
+**Wskazówki**
+
+- Ląduj miękko, na ugiętych kolanach. — Catalyst Athletics: [Back Squat Jump (#353)](https://catalystathletics.com/exercise/353/Back-Squat-Jump/) (Instructions, pkt 4 (absorb the landing)); ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 5 (wariant: bez obciążenia)); NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Step 4: Return/Descent (wariant: bez obciążenia)); Torokhtiy: [Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024)](https://torokhtiy.com/blogs/guides/barbell-squat-jump) (technika (land on soft knees)) `jump.land`
+
+**Czego unikać**
+
+- Lądowanie na sztywnych nogach. — NASM: [Squat Jump](https://www.nasm.org/resource-center/exercise-library/squat-jump) (Common Mistakes, pkt 1 (wariant: bez obciążenia)); ACE: [Squat Jumps (#116)](https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/) (Step 5 (wariant: bez obciążenia)); Torokhtiy: [Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024)](https://torokhtiy.com/blogs/guides/barbell-squat-jump) (technika (land on soft knees) — błąd = zaprzeczenie standardu) `jump.mis.stiff`
+
+### Broad Jump
+
+**Ustawienie**
+
+- Ugnij kolana, cofnij biodra i zrób zamach rękami w tył. — ACE: [Forward Linear Jumps (#177)](https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/) (Step 2: Downward Phase (push hips back; arms behind you)); Catalyst Athletics: [Broad Jump (#549)](https://www.catalystathletics.com/exercise/549/Broad-Jump/) (Instructions, pkt 1 (bend knees and hips, swing arms back)) `plyo.broadLoad`
+
+**Ruch**
+
+- Zamach rąk w przód i mocne wybicie nogami — w przód i w górę, jak najdalej. — ACE: [Forward Linear Jumps (#177)](https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/) (Step 3: Jumping Movement (drive forward and up; arms overhead)); Catalyst Athletics: [Broad Jump (#549)](https://www.catalystathletics.com/exercise/549/Broad-Jump/) (opis i pkt 2 (swing arms forward, push hard; as far forward as possible)) `plyo.broadDrive`
+
+**Wskazówki**
+
+- W locie wysuń stopy przed siebie i wyląduj na obu, uginając kolana i biodra. — ACE: [Forward Linear Jumps (#177)](https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/) (Step 4–6 (legs forward; bend knees and hips to absorb)); Catalyst Athletics: [Broad Jump (#549)](https://www.catalystathletics.com/exercise/549/Broad-Jump/) (Instructions, pkt 3 (reach feet forward, absorb by bending knees and hips)) `plyo.broadLand`
+
+**Czego unikać**
+
+- Lądowanie na sztywnych nogach. — ACE: [Forward Linear Jumps (#177)](https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/) (Step 6 (lądowanie na prostych kolanach)); Catalyst Athletics: [Broad Jump (#549)](https://www.catalystathletics.com/exercise/549/Broad-Jump/) (Instructions, pkt 3 (absorb the landing by bending the knees and hips) — błąd = zaprzeczenie standardu) `jump.mis.stiff`
+
+### Alternate Leg Push-Off
+
+**Ustawienie**
+
+- Stań przodem do skrzyni: jedna stopa na skrzyni, druga na podłodze. — ACE: [Alternate Leg Push-off (#246)](https://www.acefitness.org/resources/everyone/exercise-library/246/alternate-leg-push-off/) (Step 1); inSPORTline: [Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises”](https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf) (s. 3, ALTERNATING PUSH-OFF (pierwsza pozycja), Start) `plyo.pushoff.setup`
+
+**Ruch**
+
+- Odepchnij się nogą ze skrzyni w górę, w powietrzu zmień nogi i wyląduj drugą stopą na skrzyni. — ACE: [Alternate Leg Push-off (#246)](https://www.acefitness.org/resources/everyone/exercise-library/246/alternate-leg-push-off/) (Step 2–3); inSPORTline: [Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises”](https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf) (s. 3, ALTERNATING PUSH-OFF (pierwsza pozycja), Action) `plyo.altPushoff.move`
+
+### Wall Ball
+
+**Ustawienie**
+
+- Stań przodem do ściany, piłkę trzymaj oburącz przy klatce. — REP Fitness: [How to Improve Your Wall Balls](https://uk.repfitness.com/blogs/training/wall-balls) (opis ruchu („holding the ball at your chest”)); CrossFit: [The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning](https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon) (THE WALL-BALL SHOT („Keep the ball low to the chest.”)) `wb.setup`
+
+**Ruch**
+
+- Zejdź do przysiadu, a wstając, jednym ruchem wyrzuć piłkę w górę, w cel na ścianie. — REP Fitness: [How to Improve Your Wall Balls](https://uk.repfitness.com/blogs/training/wall-balls) (wypowiedź trenerki („squat and as soon as you open your hips, throw the ball”)); CrossFit: [The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning](https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon) (THE WALL-BALL SHOT (przysiad na początku każdego powtórzenia, wyrzut w cel; parafraza)) `wb.move`
+
+**Czego unikać**
+
+- Za płytki przysiad. — CrossFit: [The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning](https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon) (THE WALL-BALL SHOT („…it is very common to see poor squat depth in this exercise.”)); REP Fitness: [How to Improve Your Wall Balls](https://uk.repfitness.com/blogs/training/wall-balls) (częste błędy (za płytki przysiad; „Quarter squats won't provide the full benefit”)) `wb.mis.shallow`
+
+### Medicine Ball Chest Pass
+
+**Ustawienie**
+
+- Stań przodem do celu, piłka oburącz przy klatce. — ACE: [Medicine Ball Lunge to Chest Pass (#264)](https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/) (krok 1, Starting position (przodem do partnera, piłka na wysokości klatki; parafraza; wariant: z wykrokiem)); RFL: [Med Ball Chest Throw (karta PDF z oceną 1–5)](https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf) (Directions, punkty 1–2 („Stand with feet shoulder-width apart and hands behind the ball.”, piłka przyciągnięta do klatki; wariant: rzut na odległość z lekkiego przysiadu)) `mbcp.setup`
+
+**Ruch**
+
+- Mocno wypchnij piłkę od klatki prosto przed siebie. — ACE: [Medicine Ball Lunge to Chest Pass (#264)](https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/) (krok 2 (wypchnięcie piłki od klatki do partnera; parafraza; wariant: z wykrokiem)); RFL: [Med Ball Chest Throw (karta PDF z oceną 1–5)](https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf) (Directions, punkt 3 („…extend your elbows to push ball away from body.”; wariant: rzut na odległość)) `mbcp.move`
+
+### Backward Medicine Ball Throw
+
+**Ustawienie**
+
+- Stań tyłem do kierunku rzutu, piłka oburącz na prostych rękach przed sobą. — Manske, Reiman (Wichita State University, Duke University): [Functional Performance Testing for Power and Return to Sports, Sports Health 2013 (Trunk Power Tests)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/) (Trunk Power Tests → Backward Overhead Medicine Ball Throw, ryc. 2 („The athlete holds a medicine ball with arms straight in front of the body”)); World Athletics: [Backward overhead throw (Kids' Athletics, poziom 3)](https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw) (opis pod tytułem (tyłem do linii, piłka oburącz na długość ramion; parafraza)) `bmbt.setup`
+
+**Ruch**
+
+- Ugnij biodra i kolana, opuszczając piłkę, potem dynamicznie się wyprostuj i przerzuć ją nad głową za siebie. — Manske, Reiman (Wichita State University, Duke University): [Functional Performance Testing for Power and Return to Sports, Sports Health 2013 (Trunk Power Tests)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/) (jw. (ruch zamachowy w dół w biodrach i kolanach, potem „extending forcefully backward to throw the ball over the head”)); World Athletics: [Backward overhead throw (Kids' Athletics, poziom 3)](https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw) (opis pod tytułem (przysiad, szybki wyprost nóg, rzut nad głową w tył; parafraza)) `bmbt.move`
+
+### Standing Two-Arm Overhead Throw
+
+**Ustawienie**
+
+- Stań przodem do celu, piłka oburącz. — ACE: [Overhead Medicine Ball Throws (#178)](https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/) (Preparation i krok 1 (przodem do partnera, piłka oburącz; parafraza)); World Athletics: [Overarm throw (Kids' Athletics)](https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw) (Description („…hold the medicine ball with both hands behind the head”; przodem do kierunku rzutu)) `soht.setup`
+
+**Ruch**
+
+- Unieś piłkę nad głowę i trochę za nią, potem mocno rzuć ją przed siebie. — ACE: [Overhead Medicine Ball Throws (#178)](https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/) (krok 2–3 (piłka nad głowę i za głowę, potem ręce mocno w przód nad głową; parafraza)); World Athletics: [Overarm throw (Kids' Athletics)](https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw) (Description („They throw the medicine ball over the head as far as possible…”)) `soht.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — ACE: [Overhead Medicine Ball Throws (#178)](https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/) (krok 1–2 („contract and brace the abdominals…”; brzuch napięty także przy zamachu)); World Athletics: [Overarm throw (Kids' Athletics)](https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw) (Coaching points („…keep their trunk muscles tense the whole time…”)) `plank.brace`
+
+### Sled Push
+
+**Ustawienie**
+
+- Stań za sankami i chwyć pionowe uchwyty. — REP Fitness: [Sled Push Technique Guide (2026)](https://repfitness.com/blogs/training/sled-push-technique) (Choose Your Hand Position (wysokie uchwyty na prostych rękach albo niższe; parafraza)); BarBend: [How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024)](https://barbend.com/sled-push/) (How to Do the Sled Push, krok 2 („Place the hands about halfway down the sled handles.”)); Torque Fitness: [Ultimate TANK Training Guide (2024, PDF; kopia u dystrybutora)](https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf) (s. 40, Push, Instructions 1 („Grasp handles with both hands…”)); EliteFTS: [Shove It! Top Pushing Moves (D. Balzarini, 05.07.2011)](https://elitefts.com/blogs/training/shove-it-top-pushing-moves) (Prowler („…grab the handles, get in a proper forward lean position, and get pushing.”)) `sled.pushGrip`
+
+**Ruch**
+
+- Pracuj nogami — odpychaj się od podłoża przy każdym kroku. — REP Fitness: [Sled Push Technique Guide (2026)](https://repfitness.com/blogs/training/sled-push-technique) (Take Short, Quick Steps („Don't push with your arms since they are not nearly as strong as your legs.”)); BarBend: [How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024)](https://barbend.com/sled-push/) (krok 3 („…begin aggressively driving forward with your legs.”; odpychanie przodem stopy)) `sled.legs`
+
+**Wskazówki**
+
+- Pochyl się w przód. — REP Fitness: [Sled Push Technique Guide (2026)](https://repfitness.com/blogs/training/sled-push-technique) (Get Low and Lean In (pochylenie ok. 45°; parafraza)); BarBend: [How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024)](https://barbend.com/sled-push/) (krok 2 (pochylenie w przód, plecy płasko, blisko równolegle do podłoża; parafraza)); EliteFTS: [Shove It! Top Pushing Moves (D. Balzarini, 05.07.2011)](https://elitefts.com/blogs/training/shove-it-top-pushing-moves) (Prowler („get in a proper forward lean position”)) `sled.lean`
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — REP Fitness: [Sled Push Technique Guide (2026)](https://repfitness.com/blogs/training/sled-push-technique) (Get Low and Lean In (plecy płaskie) oraz Avoid These Common Mistakes (bez zaokrąglania lędźwi; parafraza)); BarBend: [How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024)](https://barbend.com/sled-push/) (krok 2 („…lean forward so your back is flat…” — parafraza w odpowiedzi strony)) `hinge.back`
+
+### Thruster (hantle)
+
+**Ustawienie**
+
+- Hantle przy barkach, stopy na szerokość bioder do barków. — ACE: [Squat to Overhead Press (#357)](https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/) (opis (dumbbells in front of each shoulder)); Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Instructions 1 (weight at shoulder height, feet about hip width)); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (How to Perform — Set-up (roughly shoulder-width stance; wariant: sztanga, hantle w sekcji wariantów)) `thruster.dbSetup`
+
+**Ruch**
+
+- Zejdź do przysiadu z ciężarem przy barkach, a wstając, jednym ruchem wypchnij go nad głowę; potem opuść z powrotem do barków. — ACE: [Squat to Overhead Press (#357)](https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/) (opis (lower into a squat; stand up and at the same time press overhead; return to the shoulders)); Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Instructions 2–4 (press overhead as you rise; lower to shoulder height)) `thruster.move`
+- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — ACE: [Squat to Overhead Press (#357)](https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/) (opis (push back into the hips; push both legs into the ground to stand up)); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Front Squat (pushing hips back and down; heels remain down; wariant: sztanga)) `sq.down`
+
+**Wskazówki**
+
+- Zejdź co najmniej do równoległego ud. — ACE: [Squat to Overhead Press (#357)](https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/) (opis (hips below the knees)); Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Form Cues — bottom of squat (parallel or below)); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Front Squat (lower than the knees; wariant: sztanga)) `thruster.depth`
+- Plecy proste, klatka uniesiona. — ACE: [Squat to Overhead Press (#357)](https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/) (opis (keep the back straight)); Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Instructions 2; Form Cues (chest up, spine neutral)) `sq.back`
+- Na górze biodra, kolana i ręce są wyprostowane. — Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Instructions 3 (fully extend through your arms, hips, and knees)); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Finish Position (hips, knees, and arms fully extended; wariant: sztanga)) `thruster.fullExt`
+
+**Czego unikać**
+
+- Odrywanie pięt od podłogi. — CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Common Mistakes — Front Squat and Shoulder Press Mechanics (heels lifting)); Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Form Cues — feet (keep your heels down)) `sq.mis.heels`
+
+### Kettlebell Thruster
+
+**Ustawienie**
+
+- Kettlebelle oparte przy barkach, stopy na szerokość bioder do barków. — Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Equipment-Specific Versions — Kettlebell (front rack, shoulder height); Instructions 1 (feet about hip width)); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Dumbbell or Kettlebell Thruster (two kettlebells); Set-up (roughly shoulder-width stance)) `thruster.kbSetup`
+
+**Ruch**
+
+- Zejdź do przysiadu z ciężarem przy barkach, a wstając, jednym ruchem wypchnij go nad głowę; potem opuść z powrotem do barków. — Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Kettlebell (press the kettlebells straight overhead as you rise); Instructions 4); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (How to Perform; Dumbbell or Kettlebell Thruster) `thruster.move`
+
+**Wskazówki**
+
+- Zejdź co najmniej do równoległego ud. — Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Form Cues — bottom of squat); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Front Squat (lower than the knees)) `thruster.depth`
+- Na górze biodra, kolana i ręce są wyprostowane. — Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Instructions 3); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Finish Position) `thruster.fullExt`
+- Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę. — Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Kettlebell (straight overhead); Form Cues — core (upright chest)); CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Overhead Press (press in a straight line to the finish position)) `ohp.tall`
+
+**Czego unikać**
+
+- Odrywanie pięt od podłogi. — CrossFit: [The Thruster (Essentials, 12.04.2019)](https://www.crossfit.com/essentials/the-thruster) (Common Mistakes — Front Squat and Shoulder Press Mechanics); Experience Life: [How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024)](https://experiencelife.lifetime.life/article/how-to-do-the-thruster/) (Form Cues — feet) `sq.mis.heels`
+
 ### Foam Roll: Quadriceps
 
 **Ustawienie**
@@ -2226,6 +2875,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-10 | ACE | Hammer Curl (#10) | https://www.acefitness.org/resources/everyone/exercise-library/10/hammer-curl/ | — |
 | ace-11 | ACE | Back Squat (#11) | https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/ | — |
 | ace-115 | ACE | Box Jumps (#115) | https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | — |
+| ace-116 | ACE | Squat Jumps (#116) | https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/ | — |
 | ace-12 | ACE | Bent Over Row (#12) | https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | — |
 | ace-126 | ACE | Single Arm Row (#126) | https://www.acefitness.org/resources/everyone/exercise-library/126/single-arm-row/ | — |
 | ace-131 | ACE | Prone (Lying) Hamstrings Curl (#131) | https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/ | — |
@@ -2242,6 +2892,9 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-165 | ACE | Seated Cable Press (#165) | https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/ | — |
 | ace-168 | ACE | Seated Row (#168) | https://www.acefitness.org/resources/everyone/exercise-library/168/seated-row/ | — |
 | ace-174 | ACE | Overhead Triceps Stretch (#174) | https://www.acefitness.org/resources/everyone/exercise-library/174/ | — |
+| ace-177 | ACE | Forward Linear Jumps (#177) | https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/ | — |
+| ace-178 | ACE | Overhead Medicine Ball Throws (#178) | https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/ | — |
+| ace-180 | ACE | Tuck Jump (#180) | https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/ | — |
 | ace-182 | ACE | Overhead Slams (#182) | https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/ | — |
 | ace-185 | ACE | Triceps Pushdowns (#185) | https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/ | — |
 | ace-186 | ACE | Seated Shoulder Press (#186) | https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/ | — |
@@ -2258,9 +2911,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-22 | ACE | Front Squat (#22) | https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | — |
 | ace-227 | ACE | Childs Pose (#227) | https://www.acefitness.org/resources/everyone/exercise-library/227/childs-pose/ | — |
 | ace-24 | ACE | Push Press (#24) | https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/ | — |
+| ace-246 | ACE | Alternate Leg Push-off (#246) | https://www.acefitness.org/resources/everyone/exercise-library/246/alternate-leg-push-off/ | — |
 | ace-25 | ACE | Incline Chest Press (#25) | https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | — |
 | ace-258 | ACE | Mountain Climbers (#258) | https://www.acefitness.org/resources/everyone/exercise-library/258/mountain-climbers/ | — |
 | ace-26 | ACE | Lateral Raise (#26) | https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/ | — |
+| ace-264 | ACE | Medicine Ball Lunge to Chest Pass (#264) | https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/ | — |
 | ace-28 | ACE | Step Up (#28) | https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/ | — |
 | ace-294 | ACE | Calf Raise (#294) | https://www.acefitness.org/resources/everyone/exercise-library/294/calf-raise/ | — |
 | ace-303 | ACE | Side Plank (#303) | https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | — |
@@ -2279,6 +2934,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-338 | ACE | Single-arm Chest Press (#338) | https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/ | — |
 | ace-34 | ACE | Incline Reverse Fly (#34) | https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | — |
 | ace-353 | ACE | Reverse Fly (#353) | https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/ | — |
+| ace-357 | ACE | Squat to Overhead Press (#357) | https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/ | — |
 | ace-358 | ACE | Suitcase Carry (#358) | https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | — |
 | ace-359 | ACE | Farmer’s Carry (#359) | https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | — |
 | ace-36 | ACE | Lying Barbell Triceps Extensions (#36) | https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/ | — |
@@ -2286,6 +2942,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-363 | ACE | Lunge (#363) | https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/ | — |
 | ace-366 | ACE | Bulgarian Split Squat (#366) | https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/ | — |
 | ace-367 | ACE | Elevated Glute Bridge (#367) | https://www.acefitness.org/resources/everyone/exercise-library/367/elevated-glute-bridge/ | — |
+| ace-385 | ACE | Push-jerk (#385; kettlebells) | https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/ | — |
 | ace-391 | ACE | Swing (#391) | https://www.acefitness.org/resources/everyone/exercise-library/391/swing/ | — |
 | ace-41 | ACE | Push Up (#41) | https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/ | — |
 | ace-43 | ACE | Seated Shoulder Press (#43) | https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/ | — |
@@ -2295,6 +2952,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-5 | ACE | Chest Press (#5) | https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/ | — |
 | ace-51 | ACE | Calf Raises (#51) | https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/ | — |
 | ace-52 | ACE | Crunch (#52) | https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/ | — |
+| ace-5386-adv-kb | ACE | Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015) | https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/ | — |
 | ace-54 | ACE | Front Raise (#54) | https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/ | — |
 | ace-6 | ACE | Deadlift (#6) | https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | — |
 | ace-65 | ACE | Russian Twist (#65) | https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/ | — |
@@ -2313,19 +2971,70 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | alberta-abk4469 | WebMD Ignite | Piriformis stretch (from legs bent) | https://myhealth.alberta.ca/Health/healthy-living/pages/conditions.aspx?hwid=abk4469 | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
+| barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |
+| barbend-clean | BarBend | How to Do the Clean… (akt. 19.11.2024) | https://barbend.com/how-to-do-the-clean/ | — |
+| barbend-clean-pull | BarBend | Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024) | https://barbend.com/clean-pull-guide/ | — |
+| barbend-db-snatch | BarBend | Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024) | https://barbend.com/dumbbell-snatch/ | — |
+| barbend-fix-your-snatch | BarBend | Need to Fix Your Snatch? (R. Stefan, USAW-L1) | https://barbend.com/fix-your-snatch/ | — |
+| barbend-hang-clean | BarBend | How to Do a Hang Clean (akt. 19.12.2023) | https://barbend.com/hang-clean/ | — |
+| barbend-hang-lifts | BarBend | What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2) | https://barbend.com/what-are-hang-lifts-in-weightlifting/ | — |
+| barbend-jerk-dip | BarBend | Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023) | https://barbend.com/jerk-dip-technique-benefits/ | — |
+| barbend-jerk-exercises | BarBend | Exercises to Strengthen Your Jerk (R. Stefan, akt. 01.07.2024) | https://barbend.com/exercises-to-strengthen-jerk | — |
+| barbend-kb-clean | BarBend | Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023) | https://barbend.com/kettlebell-clean/ | — |
+| barbend-kb-jerk-vs-pp | BarBend | Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023) | https://barbend.com/kettlebell-jerk-vs-push-press | — |
+| barbend-muscle-snatch | BarBend | Muscle Snatch (C. Trieu, 2024) | https://barbend.com/muscle-snatch/ | — |
 | barbend-pendlay-row | BarBend | Pendlay Row | https://barbend.com/Pendlay-row/ | — |
+| barbend-power-clean | BarBend | The Power Clean Exercise: How To… (akt. 25.03.2024) | https://barbend.com/power-clean/ | — |
+| barbend-power-snatch | BarBend | Power Snatch (R. Stefan, USAW-L1) | https://barbend.com/power-snatch/ | — |
+| barbend-sled-push | BarBend | How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024) | https://barbend.com/sled-push/ | — |
+| barbend-snatch-balance | BarBend | Snatch Balance (M. Dewar, CSCS) | https://barbend.com/snatch-balance/ | — |
 | berling-2006 | Berling i in. (University of Wisconsin–La Crosse) | …handrail support on oxygen uptake during steady-state treadmill exercise, J Cardiopulm Rehabil 2006 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/17135860 | — |
 | bini-2011 | Bini, Hume, Croft (Auckland University of Technology) | Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/21615188 | — |
 | breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
 | c2-technique | Concept2 | Indoor Rowing Technique | https://www.concept2.com/training/rowing-technique | — |
+| catalyst-193 | Catalyst Athletics | Jerk Balance (Exercise Library #193) | https://catalystathletics.com/exercise/193/Jerk-Balance/ | — |
+| catalyst-194 | Catalyst Athletics | Jerk Dip Squat (Exercise Library #194) | https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/ | — |
+| catalyst-207 | Catalyst Athletics | Block Snatch (#207) | https://catalystathletics.com/exercise/207/Block-Snatch/ | — |
+| catalyst-211 | Catalyst Athletics | Split Clean | https://www.catalystathletics.com/exercise/211/Split-Clean/ | — |
+| catalyst-353 | Catalyst Athletics | Back Squat Jump (#353) | https://catalystathletics.com/exercise/353/Back-Squat-Jump/ | — |
+| catalyst-379 | Catalyst Athletics | Block Clean | https://www.catalystathletics.com/exercise/379/Block-Clean/ | — |
+| catalyst-380 | Catalyst Athletics | Block Power Clean | https://www.catalystathletics.com/exercise/380/Block-Power-Clean/ | — |
+| catalyst-549 | Catalyst Athletics | Broad Jump (#549) | https://www.catalystathletics.com/exercise/549/Broad-Jump/ | — |
+| catalyst-555 | Catalyst Athletics | Squat Vertical Jump (#555) | https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/ | — |
+| catalyst-558 | Catalyst Athletics | Tuck Jump (#558) | https://catalystathletics.com/exercise/558/Tuck-Jump/ | — |
+| catalyst-58 | Catalyst Athletics | Snatch (#58) | https://www.catalystathletics.com/exercise/58/Snatch/ | — |
+| catalyst-59 | Catalyst Athletics | Clean | https://www.catalystathletics.com/exercise/59/Clean/ | — |
+| catalyst-60 | Catalyst Athletics | Split Jerk (Exercise Library #60) | https://catalystathletics.com/exercise/60/Split-Jerk | — |
+| catalyst-61 | Catalyst Athletics | Power Snatch (#61) | https://www.catalystathletics.com/exercise/61/ | — |
+| catalyst-62 | Catalyst Athletics | Hang Power Snatch (#62) | https://www.catalystathletics.com/exercise/62/Hang-Power-Snatch/ | — |
+| catalyst-67 | Catalyst Athletics | Power Clean | https://www.catalystathletics.com/exercise/67/Power-Clean/ | — |
+| catalyst-68 | Catalyst Athletics | Hang Clean | https://www.catalystathletics.com/exercise/68/Hang-Clean/ | — |
+| catalyst-72 | Catalyst Athletics | Power Jerk (Exercise Library #72) | https://catalystathletics.com/exercise/72/Power-Jerk/ | — |
+| catalyst-75 | Catalyst Athletics | Squat Jerk (Exercise Library #75) | https://catalystathletics.com/exercise/75/Squat-Jerk/ | — |
+| catalyst-76 | Catalyst Athletics | Clean & Jerk | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | — |
+| catalyst-80 | Catalyst Athletics | Snatch Balance (#80) | https://www.catalystathletics.com/exercise/80/Snatch-Balance/ | — |
+| catalyst-96 | Catalyst Athletics | Muscle Snatch (#96) | https://www.catalystathletics.com/exercise/96/Muscle-Snatch/ | — |
+| catalyst-97 | Catalyst Athletics | Snatch Pull (#97) | https://www.catalystathletics.com/exercise/97/Snatch-Pull/ | — |
+| catalyst-98 | Catalyst Athletics | Clean Pull | https://www.catalystathletics.com/exercise/98/Clean-Pull/ | — |
+| catalyst-art-1904 | Catalyst Athletics | Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution | https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/ | — |
+| catalyst-art-2076 | Catalyst Athletics | Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017) | https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making | — |
+| catalyst-pm-815 | Catalyst Athletics | Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch | https://performancemenu.com/article/815/Greg-Everett | — |
+| catalyst-video-1499 | Catalyst Athletics | How To Stop Swinging Snatch & Clean Pulls (wideo z opisem) | https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls | — |
+| catalyst-video-1539 | Catalyst Athletics | Arm Bend In Snatch & Clean Pulls? (wideo z opisem) | https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/ | — |
 | cc-seated-warmup | Cleveland Clinic | Seated Warm-Up/Cool-Down Exercises (Rev. 7/19) | https://my.clevelandclinic.org/-/scassets/files/org/heart/patient-education/hvti-files/seated-warm-up-exercises.pdf | — |
 | ccmc-foam-rolling | Connecticut Children's Sports Medicine | Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.) | https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf | — |
 | ccsm-back-stretching | Connecticut Children's Sports Medicine | Back Stretching Home Exercise Program | https://www.connecticutchildrens.org/sites/default/files/2026-04/pdf_sportsmed_back-stretching-home-exercise-program.pdf | — |
 | ccv-flexibility | Cancer Council Victoria | Flexibility exercises | https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises | — |
+| cf-dkb-pp-jerk | CrossFit | Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008) | https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk | — |
 | coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
 | columbia-plantar-fasciitis | WebMD Ignite | Plantar Fasciitis Exercises (Health Library) | https://www.columbiadoctors.org/health-library/how-to/plantar-fasciitis-exercises | — |
 | covenant-lower-body-flex | Covenant HealthCare | Lower Body Flexibility (PDF, 2 s.) | https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf | — |
+| crossfit-cj | CrossFit | The Clean and Jerk (Essentials, 21.01.2020) | https://www.crossfit.com/essentials/the-clean-and-jerk | — |
+| crossfit-jerk | CrossFit | Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023) | https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk | — |
+| crossfit-snatch-forward | CrossFit | O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025) | https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch | — |
+| crossfit-thruster | CrossFit | The Thruster (Essentials, 12.04.2019) | https://www.crossfit.com/essentials/the-thruster | — |
+| crossfit-wall-ball | CrossFit | The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning | https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon | — |
 | cuh-spinal-rom | Cambridge University Hospitals NHS FT | Spinal range of movement/stretching exercises | https://www.cuh.nhs.uk/patient-information/spinal-range-of-movementstretching-exercises/ | — |
 | duke-oeso-stretches | Duke University Health System, Occupational and Environmental Safety Office | Stretches (handout, 2011) | https://www.safety.duke.edu/sites/default/files/Stretches.pdf | — |
 | ecu-pt-eversion-towel | East Carolina University Physical Therapy Clinic | Seated Ankle Eversion Stretch with Towel | https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138 | — |
@@ -2335,6 +3044,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | eleiko-659842f4 | Eleiko | Dual Cable Straight Arm Pulldown – Straight Bar | https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866 | — |
 | eleiko-6598447e | Eleiko | Dual Cable Straight Arm Pulldown – Handles | https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8 | — |
 | eleiko-659d665d | Eleiko | Pallof Cable Press – Low Split Stance | https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7 | — |
+| elitefts-shove | EliteFTS | Shove It! Top Pushing Moves (D. Balzarini, 05.07.2011) | https://elitefts.com/blogs/training/shove-it-top-pushing-moves | — |
+| experiencelife-power-clean | Experience Life | How to Power Clean (A. Heffernan, CSCS, 20.05.2019) | https://experiencelife.lifetime.life/article/learn-to-power-clean/ | — |
 | exrx-BackGeneral/BBBentOverRow | ExRx.net | BBBentOverRow | https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow |
 | exrx-BackGeneral/BWSupineRow | ExRx.net | BWSupineRow | https://exrx.net/WeightExercises/BackGeneral/BWSupineRow | https://web.archive.org/web/20250510042620/https://exrx.net/WeightExercises/BackGeneral/BWSupineRow |
 | exrx-BackGeneral/CBSeatedRow | ExRx.net | CBSeatedRow | https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow | https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow |
@@ -2416,8 +3127,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | hss-bike | HSS | A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020) | https://www.hss.edu/health-library/move-better/set-up-exercise-bike | — |
 | hss-sutton-shoulder-program | HSS | Shoulder Rotator Cuff and Scapular Strengthening Program | https://hss.edu/sutton/shoulder-strengthening-program.pdf | — |
 | hwq-cat-cow | Health and Wellbeing Queensland | Cat and cow stretch | https://hw.qld.gov.au/?p=41297 | — |
+| insportline-qt1005 | inSPORTline | Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises” | https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf | — |
+| ironmind-split | IronMind | Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada) | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/ | — |
 | leeds-ankle-phase2 | Leeds Teaching Hospitals NHS Trust, Physiotherapy Department | Ankle Phase 2 Exercises (A. Brogden, 27.01.2022) | https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf | — |
 | lifefitness-rails | Life Fitness | Is Treadmill Calorie Burn Affected by Holding the Handrails? (29.07.2024) | https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails | — |
+| lifetime-thruster | Experience Life | How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024) | https://experiencelife.lifetime.life/article/how-to-do-the-thruster/ | — |
 | livewell-lower-limb-stretch | Livewell Southwest | Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.) | https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf | — |
 | medlineplus-chest-stretch | MedlinePlus | Chest stretch (Medical Encyclopedia image page) | https://medlineplus.gov/ency/imagepages/19483.htm | — |
 | mullane-2021 | Mullane, Turner, Bishop (Middlesex University) | Exercise Technique: The Pallof Press, Strength Cond J 43(2):121–128 (rękopis) | https://repository.mdx.ac.uk/item/89098 | — |
@@ -2459,7 +3173,9 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-side-plank | NASM | Side Plank | https://www.nasm.org/resource-center/exercise-library/side-plank | — |
 | nasm-single-leg-seated-leg-curl | NASM | Single-Leg Seated Leg Curl | https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl | — |
 | nasm-single-leg-squat | NASM | Single Leg Squat | https://www.nasm.org/resource-center/exercise-library/single-leg-squat | — |
+| nasm-squat-jump | NASM | Squat Jump | https://www.nasm.org/resource-center/exercise-library/squat-jump | — |
 | nasm-squat-thrust-burpees | NASM | Squat Thrust Burpees | https://www.nasm.org/resource-center/exercise-library/squat-thrust-burpees | — |
+| nasm-tuck-jump | NASM | Tuck Jump | https://www.nasm.org/resource-center/exercise-library/tuck-jump | — |
 | nasm-two-arm-dumbbell-chest-press-with-band | NASM | Two Arm Dumbbell Chest Press With Band | https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | — |
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
 | nhs-flexibility | NHS (nhs.uk) | Flexibility exercises | https://www.nhs.uk/live-well/exercise/flexibility-exercises/ | — |
@@ -2487,9 +3203,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | pmc-13029269 | Intziegianni i in. (UCLan Cyprus) | EMG… Standard, Diamond, and Wide Hand Position Push-Ups, Muscles 2026 | https://pmc.ncbi.nlm.nih.gov/articles/PMC13029269/ | — |
 | pmc-13449400 | Ng i in. (Chinese University of Hong Kong) | Isometric resistance exercise… study protocol for a RCT, Trials 2026 | https://pmc.ncbi.nlm.nih.gov/articles/PMC13449400/ | — |
 | pmc-13517625 | Ghigiarelli i in. (Hofstra University) | Concurrent Validity… (MR EMG)… During the Leg Extension Exercise, Sensors 2026 | https://pmc.ncbi.nlm.nih.gov/articles/PMC13517625/ | — |
+| pmc-3658404 | Manske, Reiman (Wichita State University, Duke University) | Functional Performance Testing for Power and Return to Sports, Sports Health 2013 (Trunk Power Tests) | https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/ | — |
 | pmc-4732391 | Marcolin i in. (University of Padova) | Selective Activation of Shoulder, Trunk, and Arm Muscles… Push-Up Variants, J Athl Train 2015 | https://pmc.ncbi.nlm.nih.gov/articles/PMC4732391/ | — |
 | pmc-4887549 | Moore (Cardiff Metropolitan University) | Is There an Economical Running Technique?…, Sports Med 2016 | https://pmc.ncbi.nlm.nih.gov/articles/PMC4887549/ | — |
 | pmc-5473370 | Folland i in. (Loughborough University) | Running Technique is an Important Component of Running Economy and Performance, MSSE 2017 | https://pmc.ncbi.nlm.nih.gov/articles/PMC5473370/ | — |
+| pmc-6724584 | Suchomel i in. (J Hum Kinet 2019) | The Effect of Load Placement on the Power Production Characteristics of Three Lower Extremity Jumping Exercises (J Hum Kinet 2019) | https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/ | — |
 | pmc-7343795 | de Oliveira i in. (Federal University of Paraná) | …handrail support… during maximal exercise testing, Sci Rep 2020 | https://pmc.ncbi.nlm.nih.gov/articles/PMC7343795/ | — |
 | pmc-7460162 | Nunes i in. (Londrina State University) | …Cable vs. Barbell Preacher Curl Training…, IJERPH 2020 | https://pmc.ncbi.nlm.nih.gov/articles/PMC7460162/ | — |
 | pmc-8057707 | Andersen i in. (Western Norway University of Applied Sciences) | Comparison of Muscle Activity in Three Single-Joint, Hip Extension Exercises…, J Sports Sci Med 2021 | https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/ | — |
@@ -2497,13 +3215,28 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | pmc-9517252 | Polevoy i in. (Moscow Aviation Institute i in.) | The Influence of Burpee on Endurance and Short-Term Memory of Adolescents, IJERPH 2022 | https://pmc.ncbi.nlm.nih.gov/articles/PMC9517252/ | — |
 | pmc-9528903 | Plotkin i in. (CUNY Lehman College) | Progressive overload without progressing load?…, PeerJ 2022 | https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/ | — |
 | prehab-heel-raise-off-step | The Prehab Guys | Heel Raise – Off Step | https://theprehabguys.com/vimeo-video/heel-raise-off-step/ | — |
+| rep-sled-push | REP Fitness | Sled Push Technique Guide (2026) | https://repfitness.com/blogs/training/sled-push-technique | — |
+| rep-wall-balls | REP Fitness | How to Improve Your Wall Balls | https://uk.repfitness.com/blogs/training/wall-balls | — |
+| rfl-mb-chest-throw | RFL | Med Ball Chest Throw (karta PDF z oceną 1–5) | https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf | — |
+| rogue-alt-db-snatch | Rogue Fitness | Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution) | https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch | — |
+| rogue-clean-pull | Rogue Fitness | Movement Demo — Clean Pull | https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull | — |
+| rogue-hang-power-snatch | Rogue Fitness | Movement Demo — Hang Power Snatch | https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch | — |
+| rogue-hang-squat-clean | Rogue Fitness | Movement Demo — Hang Squat Clean | https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean | — |
+| rogue-hang-squat-snatch | Rogue Fitness | Movement Demo — Hang Squat Snatch | https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch | — |
+| rogue-snatch-pull | Rogue Fitness | Movement Demo — Snatch Pull (2025) | https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull | — |
 | sbs-how-to-bench | Stronger by Science | How to Bench Press: The Definitive Guide (Greg Nuckols) | https://www.strongerbyscience.com/how-to-bench/ | — |
 | sbs-how-to-deadlift | Stronger by Science | How to Deadlift: The Definitive Guide (Greg Nuckols) | https://www.strongerbyscience.com/how-to-deadlift/ | — |
 | sbs-how-to-squat | Stronger by Science | How to Squat: The Definitive Guide (Greg Nuckols) | https://www.strongerbyscience.com/how-to-squat/ | — |
+| sf-go-ballistic-jerk | StrongFirst | Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia) | https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/ | — |
 | southtees-cat-stretch | South Tees Hospitals NHS Foundation Trust | Cat stretch (Physiotherapy) | https://www.southtees.nhs.uk/?p=31588 | — |
+| torokhtiy-barbell-squat-jump | Torokhtiy | Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024) | https://torokhtiy.com/blogs/guides/barbell-squat-jump | — |
+| torokhtiy-snatch-balance | Torokhtiy | Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026) | https://store.torokhtiy.com/blogs/exercises/snatch-balance | — |
+| torque-utg-2024 | Torque Fitness | Ultimate TANK Training Guide (2024, PDF; kopia u dystrybutora) | https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf | — |
 | ucb-uhs-work-warmup | UC Berkeley University Health Services | Work Warm-Up | https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf | — |
 | uwmed-plantar-fasciitis | UW Medicine | Exercises for Plantar Fasciitis (Sports Medicine Clinic, PDF, 5 s.) | https://honline.s.uw.edu/sites/default/files/record_pdfs/Exercises-Plantar-Fasciitis.pdf | — |
 | vdhorst-2015 | van der Horst i in. (UMC Utrecht) | The Preventive Effect of the Nordic Hamstring Exercise… RCT, Am J Sports Med 2015 | https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | — |
+| wa-backward-overhead-throw | World Athletics | Backward overhead throw (Kids' Athletics, poziom 3) | https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw | — |
+| wa-overarm-throw | World Athletics | Overarm throw (Kids' Athletics) | https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw | — |
 | webmd-ignite-ankle-circles | WebMD Ignite | Ankle Circles (akt. 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/ankle-circles/ | — |
 | webmd-ignite-childs-pose | WebMD Ignite | Child's pose (ColumbiaDoctors Health Library, stan na 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/child-s-pose/ | — |
 | webmd-ignite-wrist-circles-fist | WebMD Ignite | Wrist Circles (Fist) (akt. 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/ | — |

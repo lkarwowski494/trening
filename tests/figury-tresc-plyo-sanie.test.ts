@@ -17,7 +17,11 @@ const item = (k: string): Item => (CUE_SETS.items as Record<string, Item>)[k];
 
 describe('Z1: Weighted Jump Squat — zestaw ogólny zgodny z rysunkiem (sztanga na barkach)', () => {
   test('zestaw nie ma jump.drive („z zamachem rąk”), zostaje lądowanie i błąd sztywnych nóg', () => {
-    expect(item('Weighted Jump Squat').ok).toEqual(['jump.land']); expect(item('Weighted Jump Squat').err).toEqual(['jump.mis.stiff']);
+    /* 03.11.2026 (P2 mocy): Weighted Jump Squat ma kartę własną (cue-sets b = own), więc zestaw ogólny nie istnieje — to samo pilnuje karta: bez jump.drive, zostaje lądowanie i błąd sztywnych nóg */
+    expect(item('Weighted Jump Squat')).toEqual({ b: 'own' });
+    const k = json('data/zrodla/cues.json').exercises['Weighted Jump Squat'] as Record<string, { c: string }[]>;
+    expect(Object.values(k).flat().map(r => r.c).sort()).toEqual(['jump.land', 'jump.mis.stiff', 'plyo.wjsBarBack', 'plyo.wjsMove']);
+    expect(Object.values(k).flat().map(r => r.c)).not.toContain('jump.drive');
   });
   test('Dumbbell Seated Box Jump zostaje z jump.drive (rysunek pokazuje zamach rąk z hantlami)', () => {
     expect(item('Dumbbell Seated Box Jump').ok).toContain('jump.drive');
@@ -45,7 +49,7 @@ describe('Z3: błąd kolan do środka (kneeLat) wymaga widoku z przodu', () => {
     const j = json(`lib/figures/v2/poses/${f}`) as { rodzina: string; cwiczenia: Record<string, { bledy: { cue: string; dotyczy: string[] }[] }> };
     for (const [k, p] of Object.entries(j.cwiczenia)) for (const b of p.bledy) if (b.dotyczy.includes('kneeLat')) kneeLat.push([j.rodzina, k, b.cue]);
   }
-  test('są ćwiczenia z takim błędem (w tym Wall Ball)', () => { expect(kneeLat.length).toBeGreaterThan(3); expect(kneeLat.some(([, k]) => k === 'Wall Ball')).toBe(true); });
+  test('są ćwiczenia z takim błędem (Wall Ball od 03.11.2026 nie: jego karta własna nie ma błędu „kolana do środka”, widok z przodu zostaje)', () => { expect(kneeLat.length).toBeGreaterThan(3); expect(kneeLat.some(([, k]) => k === 'Wall Ball')).toBe(false); });
   test.each(kneeLat)('%s / %s (%s): widoki ćwiczenia zawierają „front”', (f, k) => { expect([k, viewsOf(k, f as FamilyId).includes('front')]).toEqual([k, true]); });
   test('Wall Ball: widok z boku zostaje (ruch przysiadu), z przodu dochodzi', () => { expect(viewsOf('Wall Ball', 'sled_throw')).toEqual(['side', 'front']); });
   test('reszta sled_throw bez zmian: tylko z boku', () => { for (const k of ['Sled Push', 'Medicine Ball Slam', 'Standing Two-Arm Overhead Throw']) expect(viewsOf(k, 'sled_throw')).toEqual(['side']); });
