@@ -7,7 +7,8 @@ import { readFileSync, mkdtempSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
 import { spawnSync } from 'child_process';
-import * as yaml from 'js-yaml';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const yaml = require('js-yaml');
 
 const wf = yaml.load(readFileSync(join(__dirname, '..', '.github/workflows/e2e-ios.yml'), 'utf8')) as { jobs: Record<string, { steps: { name?: string; run?: string }[] }> };
 const krok = Object.values(wf.jobs).flatMap(j => j.steps).find(s => s.name === 'Maestro')!.run!;

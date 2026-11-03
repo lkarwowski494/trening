@@ -8,7 +8,8 @@
  */
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import * as yaml from 'js-yaml';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const yaml = require('js-yaml');
 
 const ROOT = join(__dirname, '..');
 const WF = '.github/workflows';
