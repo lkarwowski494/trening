@@ -267,7 +267,7 @@ describe('workflow: wejście „zestaw” (koordynator 1.1, 03.11.2026 — przek
     if (!m) throw new Error('brak bloku WEJ_ZESTAW w workflowie');
     return m[0];
   })();
-  const wykonaj = (wartosc: string) => spawnSync('bash', ['-c', `set -eu\nARGS=()\n${blok}\nprintf '%s\\n' "\${ARGS[@]+"\${ARGS[@]}"}"`], { env: { PATH: process.env.PATH ?? '', WEJ_ZESTAW: wartosc }, encoding: 'utf8' });
+  const wykonaj = (wartosc: string) => spawnSync('bash', ['-c', `set -eu\nARGS=()\n${blok}\nprintf '%s\\n' "\${ARGS[@]+"\${ARGS[@]}"}"`], { env: { PATH: process.env.PATH ?? '', WEJ_ZESTAW: wartosc } as unknown as NodeJS.ProcessEnv, encoding: 'utf8' });
   test('wejście zdefiniowane (string, domyślnie puste) i przekazane do OBU kroków skryptu', () => {
     expect(wf).toMatch(/\n {6}zestaw:\n {8}description: [^\n]+\n {8}type: string\n {8}default: ''\n/);
     expect((wf.match(/WEJ_ZESTAW: \$\{\{ inputs\.zestaw \}\}/g) ?? []).length).toBe(2);
