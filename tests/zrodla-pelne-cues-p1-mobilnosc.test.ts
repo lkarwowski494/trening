@@ -78,8 +78,10 @@ describe('P1 mobilność: źródła i reguły szczebli', () => {
 
   test('producent sprzętu z działem edukacji: organizacja warunkowo szczebla 4 — każde źródło ma własny szczebel i opis strony (docs/18, 02.11.2026, uzupełnienie 3)', () => {
     const warunkowe = Object.entries(CUE_FULL.orgs).filter(([, o]) => typeof (o as { warunkowo?: string }).warunkowo === 'string').map(([k]) => k);
-    expect(warunkowe.length).toBe(1);
-    const src = Object.values(CUE_FULL.sources).filter(s => s.org === warunkowe[0]);
+    // organizacje warunkowe szczebla 5 (np. serwis bez autora) nie wchodzą do danych jako szczebel 4 — tu tylko producent sprzętu z edukacją (szczebel 4)
+    const org4 = warunkowe.filter(k => Object.values(CUE_FULL.sources).some(s => s.org === k && s.level === 4));
+    expect(org4.length).toBe(1);
+    const src = Object.values(CUE_FULL.sources).filter(s => s.org === org4[0]);
     expect(src.length).toBeGreaterThan(0);
     for (const s of src) expect([s.level, (s.strona ?? '').length > 20]).toEqual([4, true]);
   });
