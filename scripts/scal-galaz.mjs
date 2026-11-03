@@ -8,6 +8,7 @@
 // z docelową to dokumenty (reguła scripts/dokumenty.mjs), scalenie nie czeka na tests.yml. Gałąź z wcześniejszym kodem NIE jest „samymi dokumentami”
 // — liczy się diff od wspólnego przodka z docelową, nie tylko ostatni commit (L-080). Wiele przebiegów dla SHA → najnowszy tests.yml.
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
 
 export const REPO = 'lkarwowski494/trening';
@@ -22,6 +23,10 @@ const domyslnyFetch = async (url) => {
   const r = await fetch(url, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'scal-galaz' } });
   if (!r.ok) throw new Error(`API Actions: HTTP ${r.status}`);
   return r.json();
+};
+
+const znacznikPelny = (cwd) => (sha) => {
+  try { execFileSync(process.execPath, [fileURLToPath(new URL('./verify-znacznik.mjs', import.meta.url)), '--sprawdz', sha, '--wymagaj', 'pelne'], { cwd, stdio: 'ignore' }); return true; } catch { return false; }
 };
 
 /** Najnowszy przebieg tests.yml z listy przebiegów API (po created_at, remis: run_number). */
@@ -84,6 +89,10 @@ export async function scal(argv, deps = {}) {
     opis = `${WORKFLOW} pominięty: same dokumenty (${zmiany.length}), wystarcza verify:docs`;
     log(opis);
   } else {
+    // Decyzja właściciela 03.11.2026 (wariant A): do main wchodzi tylko stan z lokalnym PEŁNYM verify (znacznik „pelne”); do integracja-* wystarcza zielone CI.
+    if (docelowa === 'main' && !(deps.znacznikPelny ?? znacznikPelny(deps.cwd))(sha)) {
+      log(`ODMOWA: scalenie do main wymaga pełnego npm run verify dla ${sha.slice(0, 8)} (znacznik „pelne”, scripts/verify-znacznik.mjs; uruchom w worktree gałęzi, potem ponów)`); return KOD.ODMOWA;
+    }
     let runy;
     try { runy = (await fetchJson(urlPrzebiegow(repo, sha))).workflow_runs; }
     catch (e) { log(`nie odczytano przebiegów CI: ${e.message}`); return KOD.ODMOWA; }
