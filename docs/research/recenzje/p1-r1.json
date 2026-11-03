@@ -1,0 +1,114 @@
+{
+ "karty": {
+  "Calves-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "e28d7d5f52e3",
+   "uwagi": "Sprawdzone: NASM (hips off the floor, one leg on top, knee → ankle; Rolling too quickly / excessive pressure jako częste błędy), OrthoBethesda (heel → below the knee). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Cat-Cow": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "cbae23964e25",
+   "uwagi": "Sprawdzone: ACE #15 (hands directly under your shoulders, knees under your hips; exhale… pushing your spine upwards; Let your stomach fall towards the floor). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Child's Pose": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "c05005a4f061",
+   "uwagi": "Sprawdzone: ACE #227 (Kneel… placing your hands on the ground; bringing your glutes to your heels; chest to rest between your thighs). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Chin To Chest Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "87d9ec3873de",
+   "uwagi": "Sprawdzone: ACE #204 (Slowly drop your chin toward your chest; Avoid any movement of the shoulders). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Cross-Body Shoulder Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "c3de51061483",
+   "uwagi": "Sprawdzone: Cancer Council Victoria (Raise one arm to shoulder height and slowly and gently pull it across your chest, podtrzymanie drugą ręką). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Foot-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "196758c327ca",
+   "uwagi": "Sprawdzone: Columbia/WebMD Ignite (Sit in a chair. Place your foot on a firm, tube-shaped object; roll back and forth), UW Medicine (ball, from the ball to the heel). Karta częściowa (bez błędów) — zgodnie z decyzją 02.11.2026 o minimalnej karcie. Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Latissimus Dorsi-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "d7a3e08c4871",
+   "uwagi": "Sprawdzone: OrthoBethesda (lying on your side… FR placed just below your armpit), NASM (slow, controlled; błędy: too quickly, excessive pressure). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Piriformis-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "b7fe6f2b1636",
+   "uwagi": "Sprawdzone: OSU (Sit on a foam roll and cross your right leg on top of your left knee), OrthoBethesda (crossing the ankle over the opposite thigh, back and forth a few inches). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Side Neck Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "5bad44d2b0c3",
+   "uwagi": "Sprawdzone: ACE #202 (Stand… pull shoulders down and back; Slowly draw your right ear toward your right shoulder stopping when you feel the stretch). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Side-Lying Quad Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "6c0b18bbb735",
+   "uwagi": "Sprawdzone: Livewell (Lying on your side… take your upper foot and pull it up toward your buttocks; Keep your knees together). Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  },
+  "Standing Soleus And Achilles Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "b1ad85a5d670",
+   "uwagi": "Sprawdzone: ACE #152 krok 4 (slightly flex the back knee while pressing the heel into the floor). Zmiana lokalizacji nr 30 (EN) nie zmienia skrótu. Skrót dla stanu fc2fe7c9 — po wdrożeniu zmian PL z lokalizacja-p1.md przeliczyć (node scripts/zrodla-runtime.mjs --skroty → .karty)."
+  }
+ }
+}
