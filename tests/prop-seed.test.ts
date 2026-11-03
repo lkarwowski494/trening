@@ -9,7 +9,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 const root = join(__dirname, '..');
-const { PROP_SEED_DEFAULT, resolvePropSeed } = require('./prop-seed');
+const { PROP_SEED_DEFAULT, resolvePropSeed, PROP_RUNS_SKALA_DEFAULT, PROP_RUNS_SKALA_NOC, resolveRunsScale, propRuns } = require('./prop-seed');
 
 describe('TST2-07: ziarno testów własności', () => {
   test('w tym przebiegu fast-check ma ziarno z PROP_SEED (domyślnie stałe) — każde fc.assert bez własnego ziarna jest powtarzalne', () => {
@@ -60,3 +60,32 @@ describe('TST2-07: ziarno testów własności', () => {
     expect(bad).toEqual([]);
   });
 });
+
+/* ZB-029 T2 (decyzja właściciela 31.10.2026): mniej przypadków testów własności w ciągu dnia (verify, tests.yml, testflight), pełna liczba w nocy. */
+describe('ZB-029 T2: skala liczby przypadków testów własności (31.10.2026)', () => {
+  test('resolveRunsScale: brak → domyślna (0,25); liczba z (0, 1] → ta liczba; poza przedziałem lub nie liczba → błąd', () => {
+    expect(PROP_RUNS_SKALA_DEFAULT).toBe(0.25); expect(PROP_RUNS_SKALA_NOC).toBe(1);
+    expect(resolveRunsScale(undefined)).toBe(0.25); expect(resolveRunsScale('')).toBe(0.25);
+    expect(resolveRunsScale('1')).toBe(1); expect(resolveRunsScale('0.5')).toBe(0.5);
+    for (const zle of ['0', '-1', '1.5', 'abc', 'NaN', 'Infinity']) expect(() => resolveRunsScale(zle)).toThrow(/PROP_RUNS_SKALA/);
+  });
+  test('propRuns: 3000 × skala, zaokrąglone, minimum 1; skala 1 daje pełną liczbę (noc), domyślna — 750', () => {
+    expect(propRuns(3000, 1)).toBe(3000); expect(propRuns(3000, 0.25)).toBe(750); expect(propRuns(3, 0.1)).toBe(1); expect(propRuns(1, 0.0001)).toBe(1);
+    expect(propRuns(3000, resolveRunsScale(undefined))).toBe(750);
+    const przed = process.env.PROP_RUNS_SKALA;
+    try { delete process.env.PROP_RUNS_SKALA; expect(propRuns(3000)).toBe(750); process.env.PROP_RUNS_SKALA = '1'; expect(propRuns(3000)).toBe(3000); }
+    finally { if (przed == null) delete process.env.PROP_RUNS_SKALA; else process.env.PROP_RUNS_SKALA = przed; }
+  });
+  test('nocny przebieg ma pełną skalę (PROP_RUNS_SKALA = stała nocna) obok losowego ziarna; tests.yml, testflight.yml i tests-tz.yml nie ustawiają skali', () => {
+    const nightly = readFileSync(join(root, '.github/workflows/nightly.yml'), 'utf8').split('\n').filter(l => !/^\s*#/.test(l)).join('\n');
+    expect(nightly).toMatch(new RegExp(`PROP_RUNS_SKALA=${PROP_RUNS_SKALA_NOC} PROP_SEED=random npx jest --maxWorkers=2`));
+    for (const f of ['tests.yml', 'testflight.yml', 'tests-tz.yml']) expect(readFileSync(join(root, '.github/workflows', f), 'utf8')).not.toMatch(/PROP_RUNS_SKALA/);
+  });
+  test('pliki z dawnym numRuns: 3000 liczą przez propRuns(3000), bez własnej liczby przypadków na stałe', () => {
+    for (const f of ['audit-r72-c', 'migrate-idem', 'invariants']) {
+      const s = readFileSync(join(root, 'tests', `${f}.test.ts`), 'utf8');
+      expect(s).toMatch(/propRuns\(3000\)/); expect(s).not.toMatch(/numRuns: 3000/);
+    }
+  });
+});
+

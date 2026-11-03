@@ -78,8 +78,8 @@ describe('verify i CI używają tej stałej, nie własnych liczb (zakres: jawna 
   test.each([...WORKFLOWY_JEST, ...WORKFLOWY_MALE])('.github/workflows/%s: bez własnego --max-old-space-size', f => {
     expect(czytaj(`.github/workflows/${f}`)).not.toMatch(/max-old-space-size/);
   });
-  test('tests.yml i testflight.yml uruchamiają pełny Jest przez `npm run verify`; nightly i tests-tz przez gołe `npx jest` (global-setup)', () => {
-    expect(czytaj('.github/workflows/tests.yml')).toMatch(/run: npm run verify\s*$/m);
+  test('testflight.yml uruchamia pełny Jest przez `npm run verify`, tests.yml przez jest-ponow w częściach; nightly i tests-tz przez gołe `npx jest` (global-setup)', () => {
+    expect(czytaj('.github/workflows/tests.yml')).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=/); /* ZB-029 T1: cztery części przez ten sam skrypt co verify */
     expect(czytaj('.github/workflows/testflight.yml')).toMatch(/run: npm run verify\s*$/m);
     expect(czytaj('.github/workflows/nightly.yml')).toMatch(/npx jest --maxWorkers=2/);
     expect(czytaj('.github/workflows/tests-tz.yml')).toMatch(/npx jest --maxWorkers=2/);

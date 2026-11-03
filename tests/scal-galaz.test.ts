@@ -136,3 +136,19 @@ describe('scal-galaz — bramka tests.yml (L-090 A, 02.11.2026)', () => {
     expect(fs.readFileSync(SKRYPT, 'utf8')).not.toMatch(/GITHUB_TOKEN|Authorization|authorization|secrets\./);
   });
 });
+
+/* Decyzja właściciela 03.11.2026 (wariant A): do main tylko stan z lokalnym PEŁNYM verify (znacznik „pelne”); „szybkie” wystarcza w haku, nie tutaj. */
+describe('scal-galaz --do main — znacznik pełnego verify (03.11.2026)', () => {
+  const ZN = join(root, 'scripts/verify-znacznik.mjs');
+  const naMain = () => { const e = srodowisko(); const sha = e.gałąź('f', [['plik.txt', '2\n']]); git(e.dir, 'checkout', '-q', '-b', 'main'); odpowiedz = [run(sha)];
+    const plik = join(nowy('zn-'), 'z.json'); const znacz = (rodzaj: string) => { git(e.dir, 'checkout', '-q', 'f'); const r = spawnSync(process.execPath, [ZN, '--zapisz', rodzaj], { cwd: e.dir, env: { ...ENV, VERIFY_ZNACZNIK_PLIK: plik, CI: '' }, encoding: 'utf8' }); git(e.dir, 'checkout', '-q', 'main'); return r; };
+    return { ...e, sha, plik, znacz }; };
+  const scalDoMain = (x: ReturnType<typeof naMain>) => new Promise<{ status: number | null; out: string }>(ok => {
+    const p = spawn(process.execPath, [SKRYPT, 'f', '--do', 'main'], { cwd: x.dir, env: { ...ENV, SCAL_API_BAZA: baza, VERIFY_ZNACZNIK_PLIK: x.plik } });
+    let out = ''; p.stdout.on('data', d => (out += d)); p.stderr.on('data', d => (out += d)); p.on('close', status => ok({ status, out })); });
+  test('bez znacznika albo ze znacznikiem „szybkie” → odmowa mimo zielonego CI; z „pelne” → scala', async () => {
+    const x = naMain(); let r = await scalDoMain(x); expect(r.status).toBe(1); expect(r.out).toContain('pełnego npm run verify'); expect(scalone(x.dir, x.sha)).toBe(false);
+    x.znacz('szybkie'); r = await scalDoMain(x); expect(r.status).toBe(1); expect(scalone(x.dir, x.sha)).toBe(false);
+    x.znacz('pelne'); r = await scalDoMain(x); expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true);
+  });
+});
