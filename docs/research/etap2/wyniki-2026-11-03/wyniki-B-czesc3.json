@@ -1,0 +1,86 @@
+[
+{"cwiczenie": "Leverage Decline Chest Press", "stan": "brak (1 z 3)", "zdania": [], "znalezione": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/lever-decline-chest-press/", "uwaga": "nieczytana"},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 14 (gif 14c)", "cytat": "Jest ćwiczeniem bardzo zbliżonym do wyciskania sztangi na ławce poziomej", "uwaga": "wzmianka wersji głową w dół, bez opisu ustawienia i ruchu"}]},
+{"cwiczenie": "Leverage Incline Chest Press", "stan": "brak (1 z 3)", "zdania": [], "znalezione": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/lever-incline-chest-press/", "uwaga": "nieczytana"},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 14 (gif 14b)", "uwaga": "wzmianka wersji skośnej, bez opisu"}]},
+{"cwiczenie": "Machine Shoulder Press", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "mshp.mis.wrist (nowe)", "pl": "Nadgarstki odgięte do tyłu zamiast w linii z przedramieniem.", "en": "Wrists bent back instead of in line with your forearms.", "zrodla": [
+  ["wniosek", "<setup Machine Shoulder Press, cues.json>"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/lever-seated-shoulder-press/", "cytat": "Bent-back wrists can create unnecessary discomfort and reduce pressing efficiency."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-nad-glowe-na-maszynie-chwytem", "cytat": "Utrzymuj łokieć i nadgarstek w jednej linii."}]}]},
+{"cwiczenie": "Smith Machine Shoulder Press", "stan": "komplet — praktyka (S częściowo, streszczenie — recenzent)", "zdania": [
+ {"rola": "setup", "pl": "Usiądź na ławce z oparciem ustawionym prawie pionowo, plecy przy oparciu; chwyć sztangę nachwytem nieco szerzej niż barki.", "en": "Sit on a bench with the backrest almost upright, back against it; grip the bar overhand, slightly wider than your shoulders.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-sztangi-na-maszynie-smith-siedzac", "cytat": "Pozycja siedząca na ławce, plecy dociśnięte do oparcia."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/smith-machine-seated-shoulder-press/", "cytat": "Use an upright or near-upright backrest so your torso stays tall during the press."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/naramienne.asp", "miejsce": "poz. 1", "cytat": "Do ćwiczenia można również użyć tzw. suwnicy Smitha (gif 2.),lub maszyn (gif 2a)", "uwaga": "wersja siedząc z oparciem i chwyt nieco szerzej niż barki — streszczenie, cytat do sprawdzenia"}]},
+ {"rola": "move", "pl": "Wyciśnij sztangę w górę po prowadnicy, aż ręce będą prawie proste; opuść ją powoli.", "en": "Press the bar up along the track until your arms are almost straight; lower it slowly.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-sztangi-na-maszynie-smith-siedzac", "cytat": "Następnie powolnym ruchem opuszczaj sztangę, uginając ramiona w łokciach", "uwaga": "„kieruj je za plecy” niejasne — miejsce opuszczenia pomijam"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/smith-machine-seated-shoulder-press/", "cytat": "Drive the bar upward along the fixed track until your arms are nearly straight overhead."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/naramienne.asp", "miejsce": "poz. 2 (Smith/maszyna)", "cytat": "po czym wyciskamy sztangę zatrzymując ruch zanim ramiona się wyprostują", "uwaga": "poz. 2 to wersja zza głowy — recenzent ocenia"}]},
+ {"rola": "mis", "pl": "Odchylanie się do tyłu i odrywanie pleców od oparcia.", "en": "Leaning back and lifting your back off the pad.", "zrodla": [
+  ["wniosek", "<setup Smith Machine Shoulder Press>"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/smith-machine-seated-shoulder-press/", "cytat": "Excessive lean-back turns the lift into more of an upper-chest press."}]}]},
+{"cwiczenie": "Dip Machine", "stan": "2 z 3 — otwarte", "zdania": [], "znalezione": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/265/pompki-na-maszynie", "cytat": "Złap rączki maszyny chwytem neutralnym."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/lever-seated-dip/", "cytat": "Extend your elbows smoothly while keeping your upper arms close to your sides."}],
+ "odrzucone": [{"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-triceps/prostowanie-ramion-na-maszynie-triceps-machine", "powod": "ramiona na wspornikach — maszyna do prostowania, kierunek ruchu nieopisany"}]},
+{"cwiczenie": "Triceps Dips (ławka)", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "bdip.mis.flare (nowe)", "pl": "Łokcie uciekają na boki zamiast iść prosto do tyłu.", "en": "Elbows flaring out to the sides instead of tracking straight back.", "zrodla": [
+  ["wniosek", "<move Triceps Dips (ławka), cues.json>"],
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/odwrotne-pompki/", "cytat": "W trakcie ruchu prowadź stawy łokciowe blisko ciała, nie pozwól, by odstawały na boki."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/bench-triceps-dip-leg-supported/", "cytat": "Avoid letting them flare excessively to the sides."}]}]},
+{"cwiczenie": "Push Press", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "ppress.mis.arms (nowe)", "pl": "Wyciskanie samymi rękami zamiast wybicia z nóg.", "en": "Pressing with just your arms instead of driving with your legs.", "zrodla": [
+  ["wniosek", "<move Push Press, cues.json>"],
+  {"serwis": "S", "url": "https://potreningu.pl/artykuly/trening/poczatkujacy-crossfit-czesc-iii-1454", "cytat": "praca tricepsami i m. naramiennymi zamiast nogami,"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/push-press/", "cytat": "Dynamicznie wyprostuj kończyny dolne i napnij mięśnie pośladkowe, inicjując w ten sposób ruch sztangi do góry."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/push-press/", "cytat": "Reverse the dip immediately by extending the knees and hips powerfully to launch the bar upward."}]}]},
+{"cwiczenie": "Wyciskanie nad głowę (linki)", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "cohp.mis.yank (nowe)", "pl": "Szarpanie i pozwalanie, by linki ściągały ręce w dół.", "en": "Jerking the weight and letting the cables yank your arms down.", "zrodla": [
+  ["wniosek", "<move Wyciskanie nad głowę (linki), cues.json>"],
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-nad-glowe-z-linkami-wyciagu", "cytat": "Nie szarp ciężaru."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-shoulder-press/", "cytat": "Do not let the cables yank your arms down between reps."}]}]},
+{"cwiczenie": "Standing Barbell Press Behind Neck", "stan": "komplet — praktyka (S częściowo — recenzent; pytanie o odesłanie do specjalisty)", "zdania": [
+ {"rola": "setup", "pl": "Stań prosto, sztanga na barkach za głową, chwyt nachwytem nieco szerzej niż barki.", "en": "Stand tall with the bar on your upper back behind your neck, overhand grip slightly wider than your shoulders.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-dla-kobiet/barki/wyciskanie-sztangi-zza-glowy-stojac", "cytat": "Stań prosto. Zarzuć sztangę na barki."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/standing-behind-the-neck-press/", "cytat": "Take a slightly wider-than-shoulder-width grip so the shoulders can move more naturally through the press."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/naramienne.asp", "miejsce": "poz. 2", "cytat": "ćwiczenie to, podobnie jak poprzednie można wykonywać zarówno w pozycji stojącej, jak i siedzącej"}]},
+ {"rola": "move", "pl": "Wyciśnij sztangę nad głowę i opuść ją powoli za głowę.", "en": "Press the bar overhead, then lower it slowly behind your head.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-dla-kobiet/barki/wyciskanie-sztangi-zza-glowy-stojac", "cytat": "Opuszczaj powoli sztangę za głowę, wykonując wydech."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/naramienne.asp", "miejsce": "poz. 2", "cytat": "sztangę opuszczamy aż do linii barków (druga wersja zakłada opuszczanie sztangi tylko do linii uszu"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/standing-behind-the-neck-press/", "cytat": "Lower the bar only as far as you can while maintaining good posture, shoulder comfort, and bar control.", "uwaga": "głębokość pomijam (różna, wiązana ze zdrowiem)"}]},
+ {"rola": "mis", "pl": "Odchylanie tułowia do tyłu.", "en": "Leaning your torso back.", "zrodla": [
+  ["wniosek", "<setup Standing Barbell Press Behind Neck>"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/standing-behind-the-neck-press/", "cytat": "Keep the torso upright: Too much backward lean shifts the work away from the shoulders and stresses the lower back."}]}]},
+{"cwiczenie": "Double Kettlebell Press", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "wyciskanie hantli nad głowę stojąc (R, F, S) + M wprost z kettlebellami", "roznica": "kettlebell zamiast hantli", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Stań prosto, stopy na szerokość bioder, kettlebelle przy barkach, łokcie lekko z przodu.", "en": "Stand tall, feet hip-width apart, kettlebells at your shoulders, elbows slightly forward.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/kettlebell-two-arm-military-press/", "cytat": "Set the elbows: Keep them slightly in front of the body instead of flaring wide to the sides."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/wyciskanie-hantli-stojac/", "cytat": "Hantle trzymaj na wysokości klatki piersiowej, stawy łokciowe mocno zegnij, a przedramiona ustaw pionowo."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-hantli-nad-glowe-stojac-standing", "cytat": "Pozycja stojąca, plecy wyprostowane. Nogi rozstawione na szerokość bioder zapewniają stabilną postawę."}]},
+ {"rola": "move", "pl": "Wyciśnij oba kettlebelle nad głowę bez pomocy nóg; opuść je powoli.", "en": "Press both kettlebells overhead without using your legs; lower them slowly.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/kettlebell-two-arm-military-press/", "cytat": "Press both kettlebells upward: Drive them overhead in a controlled vertical path without using your legs."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/wyciskanie-hantli-stojac/", "cytat": "Na wydechu wyciśnij hantle nad głowę, cały czas prowadząc przedramiona w pionie."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-hantli-nad-glowe-stojac-standing", "cytat": "Zatrzymaj na chwilę ruch w końcowej fazie, następnie wolno opuszczaj hantle"},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/naramienne.asp", "miejsce": "poz. 3", "cytat": "Ruch powinien odbywać się pod pełną kontrolą ciężaru"}]},
+ {"rola": "mis", "pl": "Odchylanie się do tyłu przy wyciskaniu.", "en": "Leaning back as you press.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/kettlebell-two-arm-military-press/", "cytat": "Avoid over-arching: One of the most common mistakes is leaning back to compensate for limited strength or mobility."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/wyciskanie-hantli-stojac/", "cytat": "W trakcie ruchu nie odchylaj się do tyłu."}]}]},
+{"cwiczenie": "Kettlebell Arnold Press", "stan": "move, mis: komplet – uproszczenie (do potwierdzenia); setup: zależne od figury (siedząc → R, F, M; stojąc → tylko M)", "uproszczenie": {"baza": "arnoldki z hantlami siedząc (R, F) + M wprost z kettlebellami (stojąc lub siedząc)", "roznica": "kettlebell zamiast hantli", "ruch_stawow": "ten sam obrót i wyciskanie (ocena badacza)"}, "zdania": [
+ {"rola": "move", "pl": "Wyciskaj w górę, obracając dłonie od siebie; opuszczaj powoli, obracając je z powrotem.", "en": "Press up while turning your palms to face forward; lower slowly, turning them back.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/kettlebell-arnold-press/", "cytat": "As the bells rise, rotate your hands outward so the palms gradually move from facing inward to facing forward."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/arnoldki/", "cytat": "W trakcie ruchu obróć hantle stroną dłoniową od siebie, łokcie prowadź z przodu ciała."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/arnoldki-wyciskanie-hantli-nad-glowe", "uwaga": "obrót nadgarstków przy wyciskaniu i powrocie — streszczenie, cytat do sprawdzenia"}]},
+ {"rola": "mis", "pl": "Odchylanie tułowia do tyłu.", "en": "Leaning your torso back.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/arnoldki/", "cytat": "nie odginaj tułowia do tyłu"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/kettlebell-arnold-press/", "cytat": "Keep the ribs down and avoid turning the press into a standing incline movement."}]}]},
+{"cwiczenie": "See-Saw Press (Alternating Side Press)", "stan": "1–2 z 3 — otwarte", "zdania": [], "znalezione": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/kettlebell-seesaw-press/", "cytat": "One side rises while the other side descends, creating a steady rhythm without losing posture."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/naprzemienne-wyciskanie-hantli-nad-glowe-stojac", "cytat": "Wykonaj ten sam ruch drugą ręką.", "uwaga": "ręce kolejno, nie jednocześnie w przeciwnych kierunkach — częściowo"}]},
+{"cwiczenie": "Push Press - Behind the Neck", "stan": "brak (1 z 3)", "zdania": [], "znalezione": [
+  {"serwis": "S", "url": "http://potreningu.pl/exercises/crossfit/556/push-press-behind", "uwaga": "nieczytana; tylko streszczenie wyszukiwarki"}]},
+{"cwiczenie": "Seated Cable Shoulder Press", "stan": "otwarte — do następnej rundy", "zdania": [], "znalezione": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-ramion-nad-glowe-siedzac", "uwaga": "wprost, nieczytana"}],
+ "odrzucone": [{"serwis": "M", "url": "https://maniacmuscle.com/cable-shoulder-press/", "powod": "stojąc — inna pozycja ciała"}]}
+]

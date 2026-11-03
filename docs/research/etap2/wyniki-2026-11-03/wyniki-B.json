@@ -1,0 +1,58 @@
+[
+{"cwiczenie": "Triceps Dip", "stan": "komplet — praktyka", "uwagi": "kandydat: Sakowski (szczebel 4) — nie szukano; 4 źródła szczebla 5", "zdania": [
+ {"rola": "setup", "id": "dip.setup (nowe)", "pl": "Wejdź w podpór na poręczach na prostych rękach, tułów pionowo.", "en": "Support yourself on the parallel bars with straight arms, torso upright.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/pompki-na-poreczach/", "cytat": "Przejdź do pozycji wysokiej na poręczach przez podskok i wyprostowanie stawów łokciowych lub w dowolny inny sposób."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-triceps/pompki-na-triceps-na-poreczach-dips", "cytat": "Wykonaj podpór na poręczach, ciało ustawione pionowo."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/ramiona.asp", "miejsce": "triceps poz. 9", "cytat": "Chwytamy poręcze chwytem neutralnym, ręce wyprostowane", "uwaga": "polskie znaki przywrócone przez narzędzie"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/triceps-dip/", "cytat": "Grip the supports firmly: Place one hand on each bar or stable edge with wrists stacked under the shoulders."}]},
+ {"rola": "move", "id": "dip.move (nowe)", "pl": "Uginając łokcie blisko tułowia, opuść się kontrolowanie, aż ramiona będą mniej więcej równolegle do podłogi; wypchnij się do wyprostu rąk.", "en": "Bend your elbows, keeping them close to your body, and lower yourself under control until your upper arms are about parallel to the floor; press back up to straight arms.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/pompki-na-poreczach/", "cytat": "kontynuuj ruch do momentu, gdy ramiona będą ustawione równolegle do podłoża."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-triceps/pompki-na-triceps-na-poreczach-dips", "cytat": "Dochodzimy do pozycji, w której łokieć jest zgięty prawie pod kątem prostym."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/ramiona.asp", "miejsce": "triceps poz. 9", "cytat": "Przez cały czas trwania ćwiczenia łokcie powinny znajdować się jak najbliżej tułowia.", "uwaga": "głębokość: S 'od maksymalnego ugięcia', ale 'nie opuszczać się zbyt nisko' — do zdania część wspólna"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/triceps-dip/", "cytat": "Keep the elbows close to your sides rather than flaring out wide."}]},
+ {"rola": "mis", "id": "dip.mis.drop (nowe)", "pl": "Opadanie i odbijanie się w dolnej pozycji.", "en": "Dropping and bouncing at the bottom.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/triceps-dip/", "cytat": "Control the bottom: Don’t drop fast or bounce out of the stretched position."},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/ramiona.asp", "miejsce": "triceps poz. 9", "cytat": "Tempo umiarkowane, bez zrywów i zbyt szybkiego opuszczania."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-triceps/pompki-na-triceps-na-poreczach-dips", "cytat": "Kontroluj ruch podczas trwania ćwiczenia."}]}]},
+{"cwiczenie": "Inverted Row", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "inv.mis.hips (nowe)", "pl": "Opadające biodra — ciało przestaje być w jednej linii.", "en": "Hips sagging so your body breaks its straight line.", "zrodla": [
+  ["wniosek", "inv.setup"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/inverted-row/", "cytat": "Keep a straight plank line: Don’t let the hips sag or the lower back arch excessively."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/australian-pull-up/", "cytat": "Cały czas trzymaj napięte ciało, tak jak przy ćwiczeniu „deska”."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/plecy/podciaganie-australijskie-podchwytem", "cytat": "Zachowaj ciało w pełnym wyproście podczas wykonywania ćwiczenia.", "uwaga": "wersja podchwytem"}]}]},
+{"cwiczenie": "Close Grip Bench Press", "stan": "komplet — praktyka", "zdania": [
+ {"rola": "mis", "id": "cgbp.mis.flare (nowe)", "pl": "Łokcie uciekające na boki.", "en": "Elbows flaring out to the sides.", "zrodla": [
+  ["wniosek", "cgbp.elbows"],
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/triceps/wyciskanie-sztangi-waskim-chwytem", "cytat": "Upewnij się, że podczas ruchu prowadzisz łokcie blisko tułowia"},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/ramiona.asp", "miejsce": "triceps poz. 12", "cytat": "łokcie nie poruszają się na boki jak przy wyciskaniu na klatkę", "uwaga": "streszczenie narzędzia — cytat do sprawdzenia"},
+  {"serwis": "M", "url": "https://maniacmuscle.com/barbell-close-grip-bench-press/", "cytat": "Keep elbows tucked: A moderate tuck helps target the triceps and protects the shoulders.", "uwaga": "część o barkach pomijam (zdrowie)"}]}]},
+{"cwiczenie": "Wyciskanie na linkach (stojąc)", "stan": "wniosek — praktyka", "zdania": [
+ {"rola": "mis", "id": "cpress.mis.lean (nowe)", "pl": "Pochylanie albo skręcanie tułowia przy wypychaniu.", "en": "Leaning or twisting your torso as you press.", "zrodla": [
+  ["wniosek", "cpress.base"],
+  {"serwis": "M", "url": "https://maniacmuscle.com/standing-cable-chest-press/", "cytat": "Keep torso tall—no leaning forward, no twisting, no bouncing."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/na-klatke-piersiowa/wyciskanie-stojac-z-wykorzystaniem-wyciagu-lub-bramy", "cytat": "Jedną nogą wyjdź naprzód w celu lepszej stabilizacji. Utrzymuj proste plecy."}]}],
+ "sprawdzone_bez_wyniku": ["https://centrumrespo.pl/atlas/kategoria/klatka-piersiowa/ (str. 1–5)", "https://atlas.kulturystyka.pl/klatka.asp", "potreningu.pl (WebSearch z allowed_domains)"]},
+{"cwiczenie": "Incline Cable Chest Press", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "wyciskanie hantli na ławce skośnej (R, F, S) + M wprost z linkami", "roznica": "linki z dolnych wyciągów zamiast hantli", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce skośnej między dolnymi wyciągami; uchwyty przy klatce, łopatki ściągnięte.", "en": "Lie on an incline bench between two low pulleys; handles by your chest, shoulder blades pulled back.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-incline-bench-press/", "cytat": "Elbows bent, hands near upper-chest line, wrists stacked over forearms, tension on the cables."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/wyciskanie-hantli-lawce-skosnej/", "cytat": "Weź hantle w ręce i połóż się na ławce skośnej na plecach, z wyprostowanymi przed sobą kończynami górnymi."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/wyciskanie-sztangielek-na-lawce-dodatniej-incline", "cytat": "Łopatki ściągnięte, barki maksymalnie opuszczone, dociśnięte do ławeczki."}]},
+ {"rola": "move", "pl": "Wypchnij uchwyty w górę nad klatkę; opuść je powoli do klatki.", "en": "Press the handles up over your chest; lower them slowly back to your chest.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-incline-bench-press/", "cytat": "Drive the handles upward in a smooth arc toward the midline without shrugging."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/wyciskanie-hantli-lawce-skosnej/", "cytat": "Stawy łokciowe poprowadź bokiem, przedramiona cały czas utrzymuj w pionie."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/wyciskanie-sztangielek-na-lawce-dodatniej-incline", "cytat": "powolnym ruchem opuść sztangielki w okolicy środkowej części klatki piersiowej"},
+  {"serwis": "S", "url": "https://atlas.kulturystyka.pl/klatka.asp", "miejsce": "poz. 4 (odsyła do poz. 3)", "cytat": "Nie wolno jednak odrywać zbytnio pleców od ławki"}]},
+ {"rola": "mis", "pl": "Unoszenie albo wysuwanie barków w przód.", "en": "Shrugging or rounding your shoulders forward.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-incline-bench-press/", "cytat": "Shoulder elevation steals tension from the pecs and irritates shoulders.", "uwaga": "część o barkach (zdrowie) pomijam"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/wyciskanie-hantli-lawce-skosnej/", "cytat": "Łopatki wysunięte w przód (protrakcja)", "uwaga": "nagłówek błędu"},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-klatke-piersiowa/wyciskanie-sztangielek-na-lawce-dodatniej-incline", "cytat": "Łopatki ściągnięte, barki maksymalnie opuszczone, dociśnięte do ławeczki."}]}]},
+{"cwiczenie": "Single Arm Cable Chest Press", "stan": "2 z 3 – uproszczenie (otwarte)", "uproszczenie": {"baza": "wyciskanie linek stojąc oburącz (F, M)", "roznica": "jedna ręka", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Stań tyłem do wyciągu, bloczek na wysokości klatki; uchwyt w jednej ręce przy barku, jedna noga z przodu.", "en": "Stand with your back to the pulley set at chest height; handle in one hand by your shoulder, one foot forward.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/na-klatke-piersiowa/wyciskanie-stojac-z-wykorzystaniem-wyciagu-lub-bramy", "cytat": "Ustaw wyciągi na wysokości klatki piersiowej."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/standing-cable-chest-press/", "cytat": "Position both cable pulleys at roughly mid-chest height (start here, then fine-tune)."}]},
+ {"rola": "move", "pl": "Wypchnij uchwyt przed siebie do wyprostu ręki; wróć powoli.", "en": "Press the handle forward to a straight arm; return slowly.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/na-klatke-piersiowa/wyciskanie-stojac-z-wykorzystaniem-wyciagu-lub-bramy", "cytat": "Utrzymując prawidłową pozycję wyjściową, weź wdech, a następnie wykonaj mocny wyprost ramion"}]},
+ {"rola": "mis", "pl": "Skręcanie tułowia za ręką.", "en": "Twisting your torso to follow the arm.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/standing-cable-chest-press/", "cytat": "Keep torso tall—no leaning forward, no twisting, no bouncing."}]}],
+ "odrzucone": [{"serwis": "R", "url": "https://centrumrespo.pl/atlas/single-arm-punches-with-power-band/", "powod": "guma z rotacją tułowia — dodany ruch"}, {"serwis": "R", "url": "https://centrumrespo.pl/atlas/single-arm-press-with-mini-band/", "powod": "leżąc na plecach — inna pozycja"}, {"serwis": "M", "url": "https://maniacmuscle.com/cable-seated-single-arm-chest-press/", "powod": "siedząc — inna pozycja"}]}
+]

@@ -1,0 +1,120 @@
+[
+ {"cwiczenie": "Curtsy Lunge", "poprawka_czesci_2": true, "stan": "2 z 3 (mis wprost R, M; wniosek z ruchu NIE wynika — curtsy.move z badania/w2-ramiona nie zawiera kolana ani pięty)", "zdania": []},
+ {"cwiczenie": "Crossover Reverse Lunge", "stan": "2 z 3 (tożsamość z Curtsy do potwierdzenia przez recenzenta)", "zdania": [
+  {"rola": "setup", "id": "lunge.stand", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/curtsy-lunge/", "cytat": "Stań ze stopami ustawionymi na szerokość bioder."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/", "cytat": "Stand tall: Place your feet about hip-width apart with your chest lifted and core lightly braced."}]},
+  {"rola": "move", "id": "curtsy.move", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/curtsy-lunge/", "cytat": "Wykonaj zakrok skrzyżny, kierując stopę w tył i do środka."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/", "cytat": "Step diagonally back: Move one leg behind and across the standing leg, like a controlled curtsey position."}]},
+  {"rola": "mis", "id": "curtsy.mis.kneeIn", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/curtsy-lunge/", "cytat": "Pilnuj tego, aby kolano kończyny wykrocznej (z przodu) znajdowało się nad stawem skokowym (nie uciekało do środka)."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/", "cytat": "Keep the front knee controlled: Avoid letting it cave sharply inward as you descend."}]},
+  {"rola": "mis", "id": "curtsy.mis.heel", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/curtsy-lunge/", "cytat": "Unikaj odrywania pięty czy palców od podłoża."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/", "cytat": "Keep the front foot grounded: Press through the front heel and midfoot while maintaining balance."}]}]},
+ {"cwiczenie": "Elevated Back Lunge", "stan": "2 z 3", "zdania": [
+  {"rola": "setup", "id": "eblunge.setup", "pl": "Stań na stabilnym podwyższeniu, stopy blisko siebie, brzuch napięty.", "en": "Stand on a sturdy step, feet close together, abs tight.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges", "cytat": "Pozycja stojąca na podwyższeniu."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/", "cytat": "Stand tall: Place both feet on the platform or keep the working foot elevated, depending on your setup."}]},
+  {"rola": "move", "id": "eblunge.move", "pl": "Zrób krok jedną nogą w tył na podłogę i zejdź, aż tylne kolano będzie tuż nad podłogą; wróć na podwyższenie, odpychając się przednią nogą.", "en": "Step one foot back down to the floor and lower until your back knee is just above it; push through your front leg to return to the step.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges", "cytat": "wykonaj zakrok jedną nogą do tyłu. Noga wykroczna pozostaje w miejscu."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/", "cytat": "Step backward: Move one leg behind you in a controlled reverse-lunge step."}]},
+  {"rola": "mis", "id": "lunge.mis.kneeIn", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges", "cytat": "Nie prowadź kolan do wewnątrz (utrzymuj je skierowane lekko na zewnątrz)."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/", "cytat": "Keep the knee tracking clean: The front knee should follow the toes without collapsing inward."}]},
+  {"rola": "mis", "id": "eblunge.mis.rush", "pl": "Zbyt szybkie opuszczanie.", "en": "Dropping down too fast.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges", "cytat": "Nie spiesz się podczas wykonywania tego ćwiczenia, zbyt szybkie wykonanie jest błędem technicznym."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/", "cytat": "losing front-foot pressure, rushing the descent, and using more weight than the movement can control."}]},
+  {"rola": "mis", "id": "eblunge.mis.rearPush", "pl": "Odpychanie się głównie tylną nogą.", "en": "Pushing mostly off the back leg.", "stan": "wniosek z ruchu 2 z 3", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "eblunge.move"},
+   {"serwis": "M", "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/", "cytat": "Common mistakes include stepping too far or too short, pushing too much from the rear leg"}]}]},
+ {"cwiczenie": "Lunge Pass Through", "stan": "brak (1 z 3: M)", "zdania": []},
+ {"cwiczenie": "Slider Reverse Lunge", "stan": "brak (0 z 3; pytanie o wariant sprzętu zakroku)", "zdania": []},
+ {"cwiczenie": "Split Squat (linki)", "stan": "2 z 3 – uproszczenie (wariant sprzętu: linki); uchwyty linek [OTWARTE]", "zdania": [
+  {"rola": "setup", "id": "split.setup", "pl": "Stań w rozkroku jedna noga przed drugą, tylna stopa na palcach, w dłoniach uchwyty linek z wyciągu dolnego.", "en": "Stand in a split stance, back heel up, holding handles from the low pulleys.", "stan": "2 z 3 – uproszczenie; część o linkach [OTWARTE]", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny", "cytat": "Pozycja wykroczna, nogi wyprostowane, stopa zakroczna ustawiona w pozycji na palcach."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-split-squat/", "cytat": "Step one foot forward and the other foot back."}]},
+  {"rola": "move", "id": "split.move", "pl": "Zegnij oba kolana i opuść się prosto w dół, aż tylne kolano będzie tuż nad podłogą; wstań, nie przestawiając stóp.", "en": "Bend both knees and lower straight down until your back knee is just above the floor; stand back up without moving your feet.", "stan": "2 z 3 – uproszczenie", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny", "cytat": "Ruch kontynuuj do momentu, aż kolano nogi zakrocznej znajdzie się tuż nad podłogą"},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-split-squat/", "cytat": "Stop when your rear knee is close to the floor or when you reach your comfortable depth."}]},
+  {"rola": "mis", "id": "lunge.mis.kneeIn", "stan": "1 z 3 + streszczenie (M do odczytu)", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny", "cytat": "Nie prowadź kolan do wewnątrz (utrzymuj je skierowane lekko na zewnątrz)."}]},
+  {"rola": "mis", "id": "split.mis.heel", "pl": "Odrywanie pięty przedniej stopy.", "en": "Front heel lifting.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny", "cytat": "Pilnuj, aby stopa nogi wykrocznej była cała dociśnięta do podłogi."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-split-squat/", "cytat": "Drive through the front heel and midfoot to rise back up."}]}]},
+ {"cwiczenie": "Suspended Split Squat", "stan": "setup komplet 3; move komplet – uproszczenie; mis kneeIn 2 z 3, rush komplet 3", "zdania": [
+  {"rola": "setup", "id": "ssplit.setup", "pl": "Stań tyłem do taśm, włóż stopę tylnej nogi w uchwyt, przednia stopa wysunięta do przodu.", "en": "Stand facing away from the straps, rear foot in the cradle, front foot well forward.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx", "cytat": "Jedna noga uniesiona i umieszczona w uchwycie taśm."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/suspended-split-squat/", "cytat": "Place the rear foot: Put the top of your rear foot or ankle into the strap cradle."},
+   {"serwis": "S", "url": "https://potreningu.pl/artykuly/trening/czy-warto-wykonywac-przysiady-bulgarskie-5032", "cytat": "Wówczas nogę zakroczną umieszczamy w uchwytach taśm TRX."}]},
+  {"rola": "move", "id": "ssplit.move", "pl": "Zegnij przednie kolano i biodro, pozwalając tylnemu kolanu opaść w dół; wstań, odpychając się przednią nogą.", "en": "Bend your front knee and hip, letting the back knee drop; push through your front leg to stand.", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx", "cytat": "Stabilnie i płynnie wróć do pozycji wyjściowej."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/suspended-split-squat/", "cytat": "Lower under control: Bend the front knee and hip while allowing the rear knee to travel downward behind you."},
+   {"serwis": "S", "url": "https://potreningu.pl/artykuly/trening/czy-warto-wykonywac-przysiady-bulgarskie-5032", "cytat": "Zejście w dół należy wykonywać nieco wolniej, powrót do góry wykonujemy dynamiczniej."}]},
+  {"rola": "mis", "id": "lunge.mis.kneeIn", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx", "cytat": "Postaraj się utrzymać przebieg pracy kolana bezpośrednio nad stopą, unikaj koślawienia kolan."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/suspended-split-squat/", "cytat": "Avoid knee collapse: Keep the front knee aligned with the toes to protect the knee and improve glute engagement."}]},
+  {"rola": "mis", "id": "ssplit.mis.rush", "pl": "Zbyt szybkie schodzenie w dół.", "en": "Lowering too fast.", "stan": "komplet 3 – praktyka", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx", "cytat": "Nie spiesz się podczas wykonywania tego ćwiczenia, zbyt szybkie wykonanie jest błędem technicznym."},
+   {"serwis": "M", "url": "https://maniacmuscle.com/suspended-split-squat/", "cytat": "Slow the lowering phase"},
+   {"serwis": "S", "url": "https://potreningu.pl/artykuly/trening/czy-warto-wykonywac-przysiady-bulgarskie-5032", "cytat": "Zejście w dół należy wykonywać nieco wolniej"}]}]},
+ {"cwiczenie": "Cable Hip Abduction", "stan": "2 z 3 (F18 ≈ S14 — jedno źródło)", "zdania": [
+  {"rola": "setup", "id": "cabd.setup", "pl": "Stań bokiem do wyciągu dolnego, linka przypięta do kostki nogi dalszej od wyciągu, druga noga stoi pewnie.", "en": "Stand side-on to a low pulley with the cable on your outside ankle, standing leg steady.", "stan": "2 z 3 (strona kostki do sprawdzenia)", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/cable-kick-side/", "cytat": "Stań na stepie bokiem do wyciągu dolnego."},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego", "cytat": "Stań przy wyciągu dolnym i przymocuj na wysokości kostki opaskę z linką wyciągu.", "uwaga": "≈ S14 (kopia), liczone razem jako jedno"}]},
+  {"rola": "move", "id": "cabd.move", "pl": "Odwodź nogę w bok, od wyciągu, ruch tylko w biodrze, tułów nieruchomy; powoli wróć.", "en": "Lift your leg out to the side, away from the pulley, moving only at the hip with your torso still; return slowly.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/cable-kick-side/", "cytat": "Ruch ma zachodzić w stawie biodrowym kończyny dolnej, nie przechylaj całego ciała w bok."},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego", "cytat": "Ruch odwodzenia odbywa się tylko w stawie biodrowym, a nie kolanowym."}]},
+  {"rola": "mis", "id": "cabd.mis.lean", "pl": "Przechylanie tułowia w bok, żeby unieść nogę wyżej.", "en": "Leaning your torso to lift the leg higher.", "stan": "wniosek z ruchu 2 z 3", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "cabd.move"},
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/cable-kick-side/", "cytat": "Pamiętaj, żeby nie pochylać tułowia, jakby uciekając od nogi wykonującej ruch."}]},
+  {"rola": "mis", "id": "cabd.mis.swing", "pl": "Zamachy i szarpanie zamiast spokojnego ruchu.", "en": "Swinging or jerking instead of a controlled lift.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/cable-kick-side/", "cytat": "Zarzucanie ciężaru"},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego", "cytat": "Unikaj gwałtownych ruchów powodujących zanik napięcia w mięśniach."}]}]},
+ {"cwiczenie": "Monster Walk", "stan": "brak (R, F — krok w bok, katalog: po skosie)", "zdania": []},
+ {"cwiczenie": "Hip Flexion with Band", "stan": "brak (0 z 3)", "zdania": []},
+ {"cwiczenie": "Frog Pump", "stan": "2 z 3", "zdania": [
+  {"rola": "setup", "id": "frogp.setup", "pl": "Połóż się na plecach, złącz stopy podeszwami blisko pośladków, kolana rozchyl na boki.", "en": "Lie on your back, soles of your feet together near your glutes, knees out to the sides.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/frog-pump-with-mini-band/", "cytat": "Połóż się na plecach, z kończynami górnymi wzdłuż ciała."},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/frog-hip-thrust", "cytat": "Leżenie tyłem, nogi ugięte w kolanach odwiedzione na zewnątrz, stopy skierowane do siebie."}]},
+  {"rola": "move", "id": "frogp.move", "pl": "Rozpychając kolana na zewnątrz, unieś biodra, aż kolana, biodra i barki będą w jednej linii; powoli opuść.", "en": "Pushing your knees out, lift your hips until knees, hips and shoulders line up; lower slowly.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/frog-pump-with-mini-band/", "cytat": "Rozciągnij gumę, kierując stawy kolanowe na zewnątrz, napnij mięśnie brzucha i z wydechem wypchnij biodra ku górze."},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/frog-hip-thrust", "cytat": "Utrzymując prawidłową pozycję ciała, weź wdech i zdecydowanym ruchem unieś biodra, lekko rozpychając kolana na zewnątrz."}]},
+  {"rola": "mis", "id": "frogp.mis.kneesIn", "pl": "Kolana schodzące się do środka.", "en": "Knees drifting in.", "stan": "wniosek z ruchu 2 z 3", "zrodla": [
+   {"serwis": "wniosek", "url": "", "cytat": "frogp.move"}]}]},
+ {"cwiczenie": "London Bridges", "stan": "brak (0 z 3)", "zdania": []},
+ {"cwiczenie": "Stability Ball Hip Bridge", "stan": "setup 1 z 3 [OTWARTE]; move komplet – uproszczenie", "zdania": [
+  {"rola": "move", "id": "ballbr.move", "pl": "Z łopatkami opartymi o piłkę i stopami na podłodze unieś biodra, aż uda i tułów będą w jednej linii; powoli opuść.", "en": "With your upper back on the ball and feet on the floor, lift your hips until thighs and torso line up; lower slowly.", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "zrodla": [
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/258/unoszenie-bioder-lezac-na-pilce-gimnastycznej", "cytat": "Biorąc wdech unieś biodra tak, aby uda i tułów tworzyły linię prostą"},
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/hip-thrust/", "cytat": "Napnij mięśnie brzucha i na wydechu unieś biodra tak, aby stawy kolanowe, biodrowe i barki tworzyły jedną linię."},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/unoszenie-bioder-ze-sztanga-w-oparciu-o-laweczke", "cytat": "Unoszenie bioder wykonuj wysoko w górę do momentu, aż tułów znajdzie się w jednej linii z udami,"}]},
+  {"rola": "mis", "id": "hipthrust.mis.kneesIn", "stan": "2 z 3 – uproszczenie", "zrodla": [
+   {"serwis": "R", "url": "https://centrumrespo.pl/atlas/hip-thrust/", "cytat": "Pilnuj tego, by stawy kolanowe nie schodziły się do wewnątrz."},
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/unoszenie-bioder-ze-sztanga-w-oparciu-o-laweczke", "cytat": "Pilnuj, aby podczas ruchu kolana nie schodziły się do środka."}]}]},
+ {"cwiczenie": "Machine Glute Kickback", "stan": "move 2 z 3; setup [OTWARTE] (stojąc vs w klęku)", "zdania": [
+  {"rola": "move", "id": "mkick.move", "pl": "Z poduszką maszyny w zgięciu kolana wypchnij nogę w tył, ruch tylko w biodrze; powoli wróć.", "en": "With the pad behind your knee, push the leg back, moving only at the hip; return slowly.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-tyl-na-maszynie", "cytat": "Poduszkę maszyny umieść w zgięciu kolanowym nogi ćwiczonej."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/380/odwodzenie-nogi-w-tyl-na-maszynie---wariant-a", "cytat": "Wykonaj klęk podparty na maszynie.", "uwaga": "opis ruchu — streszczenie narzędzia, do odczytu"}]},
+  {"rola": "mis", "id": "mkick.mis.swing", "pl": "Zamach nogą zamiast płynnego ruchu.", "en": "Swinging the leg instead of a smooth push.", "stan": "2 z 3", "zrodla": [
+   {"serwis": "F", "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-tyl-na-maszynie", "cytat": "Unikaj gwałtownych ruchów powodujących zanik napięcia w mięśniach."},
+   {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/380/odwodzenie-nogi-w-tyl-na-maszynie---wariant-a", "cytat": "Ruch powinien być płynny."}]}]},
+ {"cwiczenie": "Prone Flutter Kicks", "stan": "brak (0 z 3)", "zdania": []},
+ {"cwiczenie": "Kneeling Squat", "stan": "brak (≤ 1 z 3: M nieczytane)", "zdania": []},
+ {"cwiczenie": "Seated Good Mornings", "stan": "brak (0 z 3)", "zdania": []},
+ {"cwiczenie": "Kneeling Jump Squat", "stan": "brak (1 z 3: F)", "zdania": []},
+ {"cwiczenie": "Alternate Leg Diagonal Bound", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Bench Jump", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Box Skip", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Double Leg Butt Kick", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Dumbbell Seated Box Jump", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Frog Hops", "stan": "brak (1 z 3: R16)", "zdania": []},
+ {"cwiczenie": "Lateral Box Jump", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Side Hop-Sprint", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Side Standing Long Jump", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Side to Side Box Shuffle", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Single Leg Butt Kick", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Single-Leg Hop Progression", "stan": "brak (R „Skoki jednonóż w różnych kierunkach” nieczytane — ≤ 1 z 3)", "zdania": []},
+ {"cwiczenie": "Single-Leg Stride Jump", "stan": "brak", "zdania": []},
+ {"cwiczenie": "Star Jump", "stan": "brak", "zdania": []}
+]

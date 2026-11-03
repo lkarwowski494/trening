@@ -1,0 +1,423 @@
+[
+ {
+  "cwiczenie": "Decline Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Ab Wheel",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": true,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:13"
+  ]
+ },
+ {
+  "cwiczenie": "Hanging Leg Raise",
+  "rodzina": "core_hang",
+  "obowiazkowe": true,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g1-core:docs/research/wskazowki-fala-w1/STAN-g1-core.md:24"
+  ]
+ },
+ {
+  "cwiczenie": "Hanging Knee Raise",
+  "rodzina": "core_hang",
+  "obowiazkowe": true,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g1-core:docs/research/wskazowki-fala-w1/STAN-g1-core.md:24"
+  ]
+ },
+ {
+  "cwiczenie": "Skakanka",
+  "rodzina": "cardio",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:32",
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:53"
+  ]
+ },
+ {
+  "cwiczenie": "Incline Chest Fly (hantle)",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:15"
+  ]
+ },
+ {
+  "cwiczenie": "Decline Bench Press (hantle)",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Floor Press (hantle)",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Floor Press (sztanga)",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Svend Press",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:15"
+  ]
+ },
+ {
+  "cwiczenie": "Decline Push Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:13"
+  ]
+ },
+ {
+  "cwiczenie": "Pullover (hantel)",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:15"
+  ]
+ },
+ {
+  "cwiczenie": "Renegade Row",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:13"
+  ]
+ },
+ {
+  "cwiczenie": "Shrugs (linki)",
+  "rodzina": "shrug",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:19",
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:32",
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:45"
+  ]
+ },
+ {
+  "cwiczenie": "Bayesian Curl",
+  "rodzina": "curl",
+  "obowiazkowe": true,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-ramiona:docs/research/wskazowki-fala-w2/STAN-w2-ramiona.md:27"
+  ]
+ },
+ {
+  "cwiczenie": "Glute Ham Raise",
+  "rodzina": "leg_isolation",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:28"
+  ]
+ },
+ {
+  "cwiczenie": "Smith Machine Hip Thrust",
+  "rodzina": "hip_bridge",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:28"
+  ]
+ },
+ {
+  "cwiczenie": "Lateral Band Walk",
+  "rodzina": "hip_abd_add",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:22"
+  ]
+ },
+ {
+  "cwiczenie": "Fire Hydrant",
+  "rodzina": "glute_floor",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:33"
+  ]
+ },
+ {
+  "cwiczenie": "Clamshell",
+  "rodzina": "glute_floor",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:22"
+  ]
+ },
+ {
+  "cwiczenie": "Landmine Rotation",
+  "rodzina": "core_standing",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-core:docs/research/wskazowki-fala-w2/STAN-w2-core.md:40"
+  ]
+ },
+ {
+  "cwiczenie": "L-Sit",
+  "rodzina": "core_hang",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-core:docs/research/wskazowki-fala-w2/STAN-w2-core.md:40"
+  ]
+ },
+ {
+  "cwiczenie": "Machine Hip Thrust",
+  "rodzina": "hip_bridge",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:28"
+  ]
+ },
+ {
+  "cwiczenie": "Stability Ball Crunch",
+  "rodzina": "core_floor",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-core:docs/research/wskazowki-fala-w2/STAN-w2-core.md:40"
+  ]
+ },
+ {
+  "cwiczenie": "Band Chest Fly",
+  "rodzina": "chest_fly",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:15"
+  ]
+ },
+ {
+  "cwiczenie": "Suspended Push-Up",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:13"
+  ]
+ },
+ {
+  "cwiczenie": "Atlas Stones",
+  "rodzina": "strongman",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:32"
+  ]
+ },
+ {
+  "cwiczenie": "Leverage Shrug",
+  "rodzina": "shrug",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g6-przyciaganie:docs/research/wskazowki-fala-w1/STAN-g6-przyciaganie.md:45"
+  ]
+ },
+ {
+  "cwiczenie": "Band Lateral Raise",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-ramiona:docs/research/wskazowki-fala-w2/STAN-w2-ramiona.md:18"
+  ]
+ },
+ {
+  "cwiczenie": "Kettlebell Halo",
+  "rodzina": "delt_raise",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-ramiona:docs/research/wskazowki-fala-w2/STAN-w2-ramiona.md:18"
+  ]
+ },
+ {
+  "cwiczenie": "Cuban Press",
+  "rodzina": "rotator_cuff",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-mobilnosc:docs/research/wskazowki-fala-w2/STAN-w2-mobilnosc.md:33",
+   "w2-mobilnosc:docs/research/wskazowki-fala-w2/STAN-w2-mobilnosc.md:46"
+  ]
+ },
+ {
+  "cwiczenie": "Isometric Neck Exercise - Front And Back",
+  "rodzina": "neck",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g1-core:docs/research/wskazowki-fala-w1/STAN-g1-core.md:24"
+  ]
+ },
+ {
+  "cwiczenie": "Isometric Neck Exercise - Sides",
+  "rodzina": "neck",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g1-core:docs/research/wskazowki-fala-w1/STAN-g1-core.md:24"
+  ]
+ },
+ {
+  "cwiczenie": "Drag Curl",
+  "rodzina": "curl",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-ramiona:docs/research/wskazowki-fala-w2/STAN-w2-ramiona.md:27"
+  ]
+ },
+ {
+  "cwiczenie": "Floor Press with Chains",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Pin Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Close-Grip EZ-Bar Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Smith Machine Close-Grip Bench Press",
+  "rodzina": "bench_press",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:12"
+  ]
+ },
+ {
+  "cwiczenie": "Cable Deadlift",
+  "rodzina": "hinge",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g4-nogi:docs/research/wskazowki-fala-w1/STAN-g4-nogi.md:27",
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:28"
+  ]
+ },
+ {
+  "cwiczenie": "Front Cone Hops",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g3-moc:docs/research/wskazowki-fala-w1/STAN-g3-moc.md:52",
+   "w2-moc:docs/research/wskazowki-fala-w2/STAN-w2-moc.md:18"
+  ]
+ },
+ {
+  "cwiczenie": "Single-Leg Lateral Hop",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g3-moc:docs/research/wskazowki-fala-w1/STAN-g3-moc.md:52"
+  ]
+ },
+ {
+  "cwiczenie": "Hip Extension with Bands",
+  "rodzina": "glute_floor",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-nogi:docs/research/wskazowki-fala-w2/STAN-w2-nogi.md:33"
+  ]
+ },
+ {
+  "cwiczenie": "Lateral Cone Hops",
+  "rodzina": "plyo",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "g3-moc:docs/research/wskazowki-fala-w1/STAN-g3-moc.md:52"
+  ]
+ },
+ {
+  "cwiczenie": "Suspended Fallout",
+  "rodzina": "pushup_plank",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-pchanie:docs/research/wskazowki-fala-w2/STAN-w2-pchanie.md:13"
+  ]
+ },
+ {
+  "cwiczenie": "Leg Swings (Front-to-Back)",
+  "rodzina": "mobility_stand",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-mobilnosc:docs/research/wskazowki-fala-w2/STAN-w2-mobilnosc.md:50"
+  ]
+ },
+ {
+  "cwiczenie": "Peroneals-SMR",
+  "rodzina": "foam_roll",
+  "obowiazkowe": false,
+  "powod": "komplet z bloku badań, ale nazwa w wierszu „warunkowo” pliku STAN grupy — zależy od decyzji koordynatora o szczeblu",
+  "gdzie": [
+   "w2-mobilnosc:docs/research/wskazowki-fala-w2/STAN-w2-mobilnosc.md:32",
+   "w2-mobilnosc:docs/research/wskazowki-fala-w2/STAN-w2-mobilnosc.md:43"
+  ]
+ }
+]

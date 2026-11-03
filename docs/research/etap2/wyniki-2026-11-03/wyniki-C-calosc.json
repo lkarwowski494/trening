@@ -1,0 +1,1842 @@
+[
+ {
+  "cwiczenie": "Hip Abduction",
+  "stan": "częściowo (setup 2 z 3; move komplet 3 warunkowo — R uproszczenie wariantu sprzętu; mis wniosek)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "hab.setup",
+    "pl": "Usiądź w maszynie, oprzyj plecy, nogi przyłóż do poduszek i złap za uchwyty.",
+    "en": "Sit in the machine with your back on the pad, legs against the pads, and hold the handles.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie",
+      "cytat": "Usiądź i oprzyj plecy na maszynie."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a",
+      "cytat": "Zaprzyj nogi o poduszki maszyny."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "hab.move",
+    "pl": "Rozsuń nogi na boki, przytrzymaj chwilę na końcu i powoli wróć.",
+    "en": "Push your legs apart, hold briefly at the end, then return slowly.",
+    "stan": "komplet 3 – praktyka, warunkowo (R = uproszczenie)",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie",
+      "cytat": "W końcowym momencie utrzymaj pozycję przez sekundę."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a",
+      "cytat": "W momencie maksymalnego napięcia mięśni przytrzymaj ruch"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/seated-hip-abduction-with-mini-band/",
+      "cytat": "Przytrzymaj końcowy zakres ruchu, a następnie wróć do pozycji wyjściowej, kontrolując napięcie gumy."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "mis.jerk",
+    "pl": "(istniejące)",
+    "en": "(existing)",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "hab.move"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie",
+      "cytat": "Unikaj gwałtownych ruchów powodujących zanik napięcia w mięśniach."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a",
+      "cytat": "Ruch powinien być płynny."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Nordic Curl",
+  "stan": "komplet (mis: wniosek – praktyka)",
+  "zdania": [
+   {
+    "rola": "mis",
+    "id": "nordic.mis.hips",
+    "pl": "Zginanie w biodrach — pupa ucieka do tyłu.",
+    "en": "Bending at the hips — your butt drifts back.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "nordic.hips"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/zuraw",
+      "cytat": "Podczas wykonywania ćwiczenia pilnuj, aby ciało powyżej kolan zachowało pozycję wyprostowaną."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/nordic-hamstring-curl/",
+      "cytat": "Keep the hips locked: Avoid sitting back, hinging at the hips, or bending the spine to make the movement easier."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "nordic.mis.fast",
+    "pl": "Opadanie za szybko, bez hamowania.",
+    "en": "Dropping too fast instead of braking.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "nordic.move"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/zuraw",
+      "cytat": "Nie śpiesz się podczas wykonywania tego ćwiczenia, zbyt szybkie wykonanie jest błędem technicznym."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/nordic-hamstring-curl/",
+      "cytat": "Do not drop quickly just to complete more reps."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Sissy Squat",
+  "stan": "komplet 3 – praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "sissy.setup",
+    "pl": "Stań prosto i przytrzymaj się jedną ręką ściany albo stojaka.",
+    "en": "Stand tall and hold a wall or rack with one hand.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/syzyfki-z-asekuracja",
+      "cytat": "Ręka spoczywa na ścianie lub innej stabilnej podporze."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-sissy-squat/",
+      "cytat": "Hold a wall, rack, suspension strap, or sturdy object if balance limits your control."
+     },
+     {
+      "serwis": "S",
+      "url": "https://atlas.kulturystyka.pl/nogi.asp",
+      "cytat": "Drugą ręką podpieramy się dla zachowania równowagi czegoś stabilnego."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "sissy.move",
+    "pl": "Wypychaj kolana do przodu i odchylaj tułów do tyłu, biodra cały czas wyprostowane; wróć, prostując kolana.",
+    "en": "Drive your knees forward and lean back, keeping your hips straight the whole time; come back up by straightening your knees.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/syzyfki-z-asekuracja",
+      "cytat": "Cały czas utrzymuj biodra w pełnym wyproście."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-sissy-squat/",
+      "cytat": "Begin the rep by allowing the knees to move forward while the torso leans backward."
+     },
+     {
+      "serwis": "S",
+      "url": "https://atlas.kulturystyka.pl/nogi.asp",
+      "cytat": "Ćwiczenie polega na wykonaniu przysiadu z jednoczesnym mocnym odchyleniem tułowia do tyłu i wspięciem na palce stóp"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "sissy.mis.hips",
+    "pl": "Siadanie biodrami do tyłu jak w zwykłym przysiadzie.",
+    "en": "Sitting the hips back like in a regular squat.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "sissy.move"
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-sissy-squat/",
+      "cytat": "The hips should not shoot backward."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Seated Calf Raise",
+  "stan": "komplet 3 – praktyka, warunkowo (R = uproszczenie: sztanga zamiast maszyny)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "calf.seated",
+    "pl": "Usiądź w maszynie, kolana pod poduszkami, przednią część stóp oprzyj na platformie, pięty niżej.",
+    "en": "Sit in the machine with your knees under the pads and the balls of your feet on the platform, heels hanging lower.",
+    "stan": "komplet 3 warunkowo",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/cwiczenia/na-lydki/wspiecia-na-palcach-siedzac-na-maszynie",
+      "cytat": "Oprzyj przednią część stopy na platformie."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/375/wspiecia-na-palce-siedzac-na-maszynie",
+      "cytat": "Ugięte nogi w stawach kolanowych zaprzyj o poduszki. 1/3 stopy umieść na podkładce urządzenia."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/seated-barbell-calf-raise/",
+      "cytat": "Przyjmij pozycję siedzącą ze sztangą opartą na udach, tuż nad stawami kolanowymi."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "calf.mis.partial",
+    "pl": "(istniejące)",
+    "en": "(existing)",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "calf.move"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Łydki na stopniu",
+  "stan": "komplet (mis: wniosek – praktyka)",
+  "zdania": [
+   {
+    "rola": "mis",
+    "id": "calf.mis.partial",
+    "pl": "(istniejące)",
+    "en": "(existing)",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "calf.move"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Donkey Calf Raise",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://centrumrespo.pl/atlas/kategoria/lydki/ (str. 1-2)",
+   "https://fabrykasily.pl/cwiczenia/na-lydki",
+   "https://maniacmuscle.com/category/legs/calves/",
+   "https://maniacmuscle.com/?s=tibialis"
+  ],
+  "jest": [
+   "S: https://atlas.kulturystyka.pl/nogi.asp (łydki poz. 3)",
+   "S: https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/227/osle-wspiecia"
+  ]
+ },
+ {
+  "cwiczenie": "Smith Machine Reverse Calf Raise",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://centrumrespo.pl/atlas/kategoria/lydki/ (str. 1-2)",
+   "https://fabrykasily.pl/cwiczenia/na-lydki",
+   "https://maniacmuscle.com/category/legs/calves/",
+   "https://maniacmuscle.com/?s=tibialis"
+  ],
+  "jest": [
+   "S: https://atlas.kulturystyka.pl/nogi.asp (łydki poz. 6, nieczytane szczegółowo)"
+  ]
+ },
+ {
+  "cwiczenie": "Sumo Deadlift",
+  "stan": "komplet 3 – praktyka",
+  "zdania": [
+   {
+    "rola": "mis",
+    "id": "sumo.mis.kneesIn",
+    "pl": "Kolana uciekające do środka.",
+    "en": "Knees caving in.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/martwy-ciag-sumo/",
+      "cytat": "Koślawe ustawienie kończyn dolnych (kolana układają się w literę x)"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/martwy-ciag-sumo",
+      "cytat": "Utrzymuj zgięte kolana nad stopami, pilnuj, aby nie były skierowane do środka."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-sumo-deadlift/",
+      "cytat": "Keep the knees out: Letting the knees cave inward reduces hip power"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Leg Curl",
+  "stan": "komplet 3 – praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "lcurl.setup",
+    "pl": "Usiądź w maszynie, plecy oparte o oparcie, nogi wyprostowane, wałek nisko na łydkach.",
+    "en": "Sit in the machine with your back against the pad, legs straight, roller low on your calves.",
+    "stan": "komplet 3 – praktyka (wałek: F, M)",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/cwiczenia/dwuglowe-uda/zginanie-nog-na-maszynie-siedzac-seated",
+      "cytat": "Kończyny dolne wyprostowane, wałek maszyny znajduje się kilka centymetrów poniżej łydek."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/401/uginanie-podudzi-na-maszynie-siedzac",
+      "cytat": "Plecy stabilnie przylegają do oparcia."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/seated-lever-leg-curl/",
+      "cytat": "Place the lower roller just above the heels or around the lower calf, depending on the machine design."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "lcurl.mis.back",
+    "pl": "Odrywanie pleców od oparcia.",
+    "en": "Lifting your back off the pad.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/cwiczenia/dwuglowe-uda/zginanie-nog-na-maszynie-siedzac-seated",
+      "cytat": "Nie odrywaj pleców od oparcia."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/401/uginanie-podudzi-na-maszynie-siedzac",
+      "cytat": "Nie odrywaj pleców od oparcia."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/seated-lever-leg-curl/",
+      "cytat": "Keep your back against the pad and your hips pressed down into the seat."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Leg Extension",
+  "stan": "komplet 3 – praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "lext.setup",
+    "pl": "Usiądź w maszynie, plecy oparte o oparcie, wałek tuż nad kostkami; trzymaj uchwyty.",
+    "en": "Sit in the machine with your back against the pad and the roller just above your ankles; hold the handles.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/cwiczenia/czworoglowe-uda/wyprosty-kolan-na-maszynie-siedzac",
+      "cytat": "Dłonie z boku na uchwytach maszyny. / Plecy cały czas przylegają do oparcia maszyny."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/386/prostowanie-nog-w-siadzie",
+      "cytat": "Plecy stabilnie przylegają do oparcia."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lever-seated-leg-extension/",
+      "cytat": "Place the pad just above the ankles, not on the shins or feet."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "lext.mis.snap",
+    "pl": "Gwałtowne prostowanie kolan aż do przeprostu.",
+    "en": "Snapping your knees into a hard lockout.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/cwiczenia/czworoglowe-uda/wyprosty-kolan-na-maszynie-siedzac",
+      "cytat": "Nie wykonuj przeprostu w kolanach."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/386/prostowanie-nog-w-siadzie",
+      "cytat": "Unikaj przeprostu w kolanach."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lever-seated-leg-extension/",
+      "cytat": "Avoid hard knee snapping: Reach extension smoothly without forcing lockout."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Lying Leg Curl",
+  "stan": "komplet (mis: wniosek – praktyka)",
+  "zdania": [
+   {
+    "rola": "mis",
+    "id": "llc.mis.hips",
+    "pl": "Odrywanie bioder od ławki.",
+    "en": "Hips lifting off the bench.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "llc.hips"
+     },
+     {
+      "serwis": "S",
+      "url": "https://atlas.kulturystyka.pl/nogi.asp",
+      "cytat": "Ważne jest, by nie odrywać bioder od powierzchni ławki podczas ćwiczenia."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Step Up",
+  "stan": "komplet (mis: wniosek – praktyka)",
+  "zdania": [
+   {
+    "rola": "mis",
+    "id": "stepup.mis.toes",
+    "pl": "Stawianie na podwyższeniu samych palców zamiast całej stopy.",
+    "en": "Stepping up on your toes instead of the whole foot.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "stepup.move"
+     },
+     {
+      "serwis": "S",
+      "url": "https://atlas.kulturystyka.pl/nogi.asp",
+      "cytat": "nogę na ławce stawiamy całą powierzchnią stopy (nie samymi palcami)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Curtsy Lunge",
+  "poprawka_czesci_2": true,
+  "stan": "2 z 3 (mis wprost R, M; wniosek z ruchu NIE wynika — curtsy.move z badania/w2-ramiona nie zawiera kolana ani pięty)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Pistol Squat",
+  "stan": "komplet (mis: wniosek – praktyka)",
+  "zdania": [
+   {
+    "rola": "mis",
+    "id": "pistol.mis.kneeIn",
+    "pl": "Kolano nogi podporowej ucieka do środka.",
+    "en": "Standing knee caving in.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "pistol.knee"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/pistolet",
+      "cytat": "Pilnuj, aby kolano podczas przysiadu nie było skierowane do wewnątrz."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-pistol-squat/",
+      "cytat": "Avoid knee collapse: The knee should track over the toes instead of falling inward."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "pistol.mis.drop",
+    "pl": "Opadanie w dół bez kontroli albo odbijanie się z dołu.",
+    "en": "Dropping without control or bouncing out of the bottom.",
+    "stan": "wniosek – praktyka",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "pistol.move"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/pistolet",
+      "cytat": "Kontroluj ruch przysiadu, nie opadaj bezwładnie."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-pistol-squat/",
+      "cytat": "Do not bounce: Use muscle control instead of momentum at the bottom."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Wall Sit",
+  "stan": "komplet 3 – praktyka (mis.heels: wniosek)",
+  "zdania": [
+   {
+    "rola": "move",
+    "id": "wall.move",
+    "pl": "Zjedź plecami po ścianie do przysiadu i trzymaj tę pozycję nieruchomo, plecy przy ścianie.",
+    "en": "Slide down the wall into a squat and hold still, back against the wall.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/domowe/przysiad-przy-scianie",
+      "cytat": "Opierając się o ścianę, wykonaj przysiad do momentu, aż twoje uda będą równoległe do podłoża."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/wall-sit/",
+      "cytat": "Slide down slowly: Bend your knees and hips while keeping your back in contact with the wall."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/artykuly/zdrowie/5-rodzajow-przysiadow-dla-poczatkujacych-kobiet-6839",
+      "cytat": "Podchodzimy do ściany, przy której przyjmujemy pozycję przysiadu z plecami opartymi o ścianę"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "wall.mis.kneesIn",
+    "pl": "Kolana schodzące się do środka.",
+    "en": "Knees caving in.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/domowe/przysiad-przy-scianie",
+      "cytat": "Nie pozwól, aby kolana schodziły się do środka."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/wall-sit/",
+      "cytat": "Keep the knees aligned: Do not allow the knees to cave inward as fatigue builds."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/krzeselko/",
+      "cytat": "Nie pozwól, by stawy kolanowe schodziły się do wewnątrz."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "wall.mis.heels",
+    "pl": "Odrywanie pięt, ciężar na palcach.",
+    "en": "Heels lifting, weight on your toes.",
+    "stan": "wniosek – praktyka (słaby wniosek → wtedy 2 z 3)",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "wall.move"
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/domowe/przysiad-przy-scianie",
+      "cytat": "Dociskaj całą stopę do podłoża."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/wall-sit/",
+      "cytat": "Keep the heels down: Press through the full foot instead of shifting onto the toes."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Leg Curl (hantel)",
+  "stan": "komplet 3 – praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "dcurl.setup",
+    "pl": "Połóż się przodem na ławce albo na podłodze, hantel mocno ściśnij między stopami, nogi wyprostowane.",
+    "en": "Lie face down on a bench or the floor, squeeze a dumbbell firmly between your feet, legs straight.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/uginanie-podudzi-lezac-hantlem/",
+      "cytat": "Połóż się przodem na ławce skośnej dodatniej, trzymając hantel złączonymi stopami."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/uginanie-nog-z-hantla-w-lezeniu",
+      "cytat": "Leżenie przodem (na brzuchu), ramiona ugięte, oparte na podłodze, hantla pomiędzy stopami."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-lying-leg-curl/",
+      "cytat": "Place a dumbbell vertically between your feet and squeeze it firmly using the inner edges of your shoes."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "dcurl.move",
+    "pl": "Zegnij kolana, przyciągając hantel w stronę pośladków, i powoli opuść, nie odkładając go między powtórzeniami.",
+    "en": "Bend your knees to bring the dumbbell toward your glutes, then lower slowly without setting it down between reps.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/uginanie-podudzi-lezac-hantlem/",
+      "cytat": "Nie odkładaj obciążenia na podłoże między powtórzeniami."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/uginanie-nog-z-hantla-w-lezeniu",
+      "cytat": "Kontrolując napięcie mięśni, opuść powoli podudzia, wróć do pozycji wyjściowej,"
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-lying-leg-curl/",
+      "cytat": "Bend your knees and bring the dumbbell toward your glutes in a smooth arc."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "dcurl.mis.arch",
+    "pl": "Wyginanie lędźwi w łuk, żeby dociągnąć ciężar.",
+    "en": "Arching your lower back to finish the rep.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/uginanie-podudzi-lezac-hantlem/",
+      "cytat": "Przeprost w odcinku lędźwiowym kręgosłupa"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/uginanie-nog-z-hantla-w-lezeniu",
+      "cytat": "Unikaj zbyt dużego przeprostu w odcinku lędźwiowym."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-lying-leg-curl/",
+      "cytat": "Keep your hips close to the bench instead of arching your lower back to move the weight."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Reverse Nordic",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "rnordic.setup",
+    "pl": "Uklęknij, ręce skrzyżuj na klatce piersiowej, napnij brzuch i pośladki.",
+    "en": "Kneel with your arms crossed on your chest, abs and glutes tight.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/reverse-nordic-curl/",
+      "cytat": "Kończyny górne spleć na klatce piersiowej."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/odwrocone-nordyckie-opady",
+      "cytat": "Ramiona ustawione na biodrach lub klatce piersiowej."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "rnordic.move",
+    "pl": "Z biodrami wyprostowanymi powoli odchylaj się do tyłu, zginając tylko kolana; wróć tą samą drogą.",
+    "en": "Keeping your hips straight, slowly lean back by bending only at the knees; come back the same way.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/reverse-nordic-curl/",
+      "cytat": "W trakcie ruchu nie zginaj stawów biodrowych, utrzymaj napięcie mięśni pośladkowych i brzucha."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/odwrocone-nordyckie-opady",
+      "cytat": "Utrzymując biodra w pełnym wyproście, weź wdech i rozpocznij powolne odchylanie ciała."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "rnordic.mis.hips",
+    "pl": "Zginanie w biodrach zamiast odchylania całego tułowia.",
+    "en": "Bending at the hips instead of leaning back as one piece.",
+    "stan": "wniosek z ruchu 2 z 3",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "rnordic.move"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/reverse-nordic-curl/",
+      "cytat": "W trakcie ruchu nie zginaj stawów biodrowych"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Standing Leg Curl",
+  "stan": "2 z 3 (M = uproszczenie: bez sprzętu)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "scurl.setup",
+    "pl": "Stań prosto w maszynie, przytrzymaj uchwyty, wałek tuż nad piętą.",
+    "en": "Stand tall in the machine, hold the handles, roller just above your heel.",
+    "stan": "2 z 3 (M uproszczenie)",
+    "zrodla": [
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/579/uginanie-nogi-na-maszynie-w-pozycji-stojacej",
+      "cytat": "Ustaw pozycję maszyny w taki sposób, aby dolna część łydki (tuż nad piętą) znalazła się na ramieniu dźwigni."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/standing-single-leg-curl/",
+      "cytat": "Stand tall: Face a wall, chair, or stable surface and place your hands lightly on it for balance."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "scurl.move",
+    "pl": "Zegnij kolano, przyciągając piętę do pośladka, udo nieruchome; powoli wróć.",
+    "en": "Bend your knee to bring your heel toward your glutes, thigh still; return slowly.",
+    "stan": "2 z 3 (M uproszczenie)",
+    "zrodla": [
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/579/uginanie-nogi-na-maszynie-w-pozycji-stojacej",
+      "cytat": "Biorąc wdech ugnij nogę w stawie kolanowym do momentu maksymalnego napięcia mięśni kulszowo-goleniowych."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/standing-single-leg-curl/",
+      "cytat": "Bend one knee: Curl the working heel upward toward your glutes."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "scurl.mis.swing",
+    "pl": "Bujanie nogą i zamach zamiast spokojnego zgięcia.",
+    "en": "Swinging the leg instead of a controlled curl.",
+    "stan": "wniosek z ruchu 2 z 3",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "scurl.move"
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/standing-single-leg-curl/",
+      "cytat": "Do not swing: Momentum reduces hamstring tension and turns the exercise into a loose leg swing."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/579/uginanie-nogi-na-maszynie-w-pozycji-stojacej",
+      "cytat": "Ruch powinien być płynny."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Standing Cable Leg Curl",
+  "stan": "2 z 3 – uproszczenie (move/mis jak Standing Leg Curl: S maszyna, M bez sprzętu); setup [OTWARTE] 0 źródeł",
+  "zdania": [
+   {
+    "rola": "move",
+    "id": "scurl.move",
+    "pl": "(jak Standing Leg Curl)",
+    "en": "(as Standing Leg Curl)",
+    "stan": "2 z 3 – uproszczenie",
+    "zrodla": []
+   },
+   {
+    "rola": "mis",
+    "id": "scurl.mis.swing",
+    "pl": "(jak Standing Leg Curl)",
+    "en": "(as Standing Leg Curl)",
+    "stan": "wniosek z ruchu 2 z 3 – uproszczenie",
+    "zrodla": []
+   }
+  ],
+  "sprawdzone": [
+   "https://centrumrespo.pl/atlas/?s=leg+curl&type=atlas",
+   "https://maniacmuscle.com/?s=cable+leg+curl",
+   "https://www.fabrykasily.pl/treningi/trzymaj-linie-czyli-cwiczenia-na-wyciagu (wzmianka bez opisu)"
+  ]
+ },
+ {
+  "cwiczenie": "Single Leg Press",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "slp.setup",
+    "pl": "Usiądź w suwnicy, plecy i głowa przy oparciu, jedną stopę postaw na środku platformy, trzymaj uchwyty.",
+    "en": "Sit in the leg press with your back and head on the pad, one foot in the middle of the platform, hands on the handles.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/wypychanie-suwnicy-jednonoz",
+      "cytat": "Jedna noga na platformie, ustawiona w linii biodra."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lever-horizontal-one-leg-press/",
+      "cytat": "Sit firmly into the machine: Keep your back and hips supported against the pad."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "slp.move",
+    "pl": "Powoli opuść platformę, zginając kolano bez odrywania lędźwi od oparcia, i wypchnij ją, nie blokując mocno kolana.",
+    "en": "Lower the platform slowly by bending your knee without lifting your lower back off the pad, then press it away without snapping the knee straight.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/wypychanie-suwnicy-jednonoz",
+      "cytat": "Wykonaj maksymalne zgięcie bez odrywania odcinka lędźwiowego od oparcia."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lever-horizontal-one-leg-press/",
+      "cytat": "Reach near full extension: Extend the leg without snapping or locking the knee hard at the top."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "slp.mis.back",
+    "pl": "Odrywanie lędźwi od oparcia na dole ruchu.",
+    "en": "Lower back lifting off the pad at the bottom.",
+    "stan": "wniosek z ruchu 2 z 3",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "slp.move"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/wypychanie-suwnicy-jednonoz",
+      "cytat": "Plecy cały czas przylegają do oparcia."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "slp.mis.kneeIn",
+    "pl": "Kolano uciekające do środka.",
+    "en": "Knee caving in.",
+    "stan": "2 z 3 warunkowo (S = suwnica obunóż)",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lever-horizontal-one-leg-press/",
+      "cytat": "Avoid knee collapse: Do not let the working knee drift inward as the weight gets heavier."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/379/odpychanie-nog-siedac-na-suwnicy",
+      "cytat": "Nie prowadzimy kolan do wewnątrz."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Smith Machine Leg Press",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://centrumrespo.pl/atlas/?s=suwnic&type=atlas",
+   "https://fabrykasily.pl/cwiczenia/czworoglowe-uda"
+  ],
+  "jest": [
+   "M: https://maniacmuscle.com/smith-machine-leg-press/"
+  ]
+ },
+ {
+  "cwiczenie": "Pendulum Squat",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://maniacmuscle.com/?s=pendulum",
+   "https://centrumrespo.pl/atlas/przysiad-wahadlowy/ (inne ćwiczenie, bez maszyny)",
+   "https://fabrykasily.pl/cwiczenia/czworoglowe-uda"
+  ]
+ },
+ {
+  "cwiczenie": "Belt Squat Machine",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://maniacmuscle.com/?s=belt+squat",
+   "https://fabrykasily.pl/cwiczenia/czworoglowe-uda",
+   "https://centrumrespo.pl/atlas/?s=suwnic&type=atlas"
+  ]
+ },
+ {
+  "cwiczenie": "Lying Machine Squat",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://maniacmuscle.com/?s=lever+lying+squat",
+   "https://fabrykasily.pl/cwiczenia/czworoglowe-uda"
+  ]
+ },
+ {
+  "cwiczenie": "Cossack Squat",
+  "stan": "2 z 3 (setup); move komplet – uproszczenie (R guma); mis komplet 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "cossack.setup",
+    "pl": "Stań w rozkroku wyraźnie szerszym niż barki, stopy lekko na zewnątrz.",
+    "en": "Stand with your feet well wider than shoulder-width, toes slightly out.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-bez-ciezaru",
+      "cytat": "Pozycja rozkroczna, szerzej niż szerokość barków."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-cossack-squat/",
+      "cytat": "Stand wide: Place your feet much wider than shoulder-width."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "cossack.move",
+    "pl": "Przenieś ciężar na jedną nogę i zejdź na niej w przysiad, druga noga prosta; wróć do środka, odpychając się nogą zgiętą.",
+    "en": "Shift your weight onto one leg and squat down on it, other leg straight; push back to the middle with the bent leg.",
+    "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-bez-ciezaru",
+      "cytat": "Następnie rozpocznij przysiad, przenosząc ciężar ciała na jedną nogę."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-cossack-squat/",
+      "cytat": "Keep the opposite leg straight: Let the straight leg create an inner-thigh stretch without forcing the range."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cossack-squat-with-power-band/",
+      "cytat": "Wykonaj wypad w bok, przenosząc ciężar ciała na jedną stopę i jednocześnie zginając staw kolanowy i biodrowy.",
+      "uwaga": "uproszczenie — wariant sprzętu: guma pomaga przy powrocie"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "cossack.mis.kneeIn",
+    "pl": "Kolano nogi zgiętej ucieka do środka.",
+    "en": "Bent knee caving in.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-bez-ciezaru",
+      "cytat": "Podczas wykonywania przysiadu pilnuj, aby kolano nie było skierowane do środka"
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bodyweight-cossack-squat/",
+      "cytat": "Avoid knee collapse: Drive the knee in line with the toes throughout the movement."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cossack-squat-with-power-band/",
+      "cytat": "Kolano nogi zaangażowanej w ruch powinno poruszać się w osi stawu skokowego (uważaj, by nie zapadało się do środka)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Barbell Side Split Squat",
+  "stan": "2 z 3 (setup: sztanga tylko M); move i mis komplet – uproszczenie",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "bss.setup",
+    "pl": "Połóż sztangę na górze pleców, stań w szerokim rozkroku, stopy lekko na zewnątrz.",
+    "en": "Set the bar on your upper back and take a wide stance, toes slightly out.",
+    "stan": "2 z 3 (sztanga — jedno źródło M)",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-side-split-squat/",
+      "cytat": "Place the bar across your upper traps like a back squat."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-z-ciezarem",
+      "cytat": "Pozycja rozkroczna, szerzej niż szerokość barków."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "bss.move",
+    "pl": "Przesuń biodra nad jedną nogę i zejdź na niej w przysiad, druga noga prosta; wróć do środka i zmień stronę.",
+    "en": "Shift your hips over one leg and squat down on it, other leg straight; come back to the middle and switch sides.",
+    "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-side-split-squat/",
+      "cytat": "Bend one knee while allowing the hips to travel toward that leg."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-z-ciezarem",
+      "cytat": "Następnie rozpocznij przysiad, przenosząc ciężar ciała na jedną nogę.",
+      "uwaga": "uproszczenie — wariant sprzętu: ciężar przed klatką zamiast sztangi"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cossack-squat-with-power-band/",
+      "cytat": "Wykonaj wypad w bok, przenosząc ciężar ciała na jedną stopę i jednocześnie zginając staw kolanowy i biodrowy.",
+      "uwaga": "uproszczenie — wariant sprzętu: guma"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "cossack.mis.kneeIn",
+    "pl": "Kolano nogi zgiętej ucieka do środka.",
+    "en": "Bent knee caving in.",
+    "stan": "komplet – uproszczenie",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-side-split-squat/",
+      "cytat": "The bent knee should track over the toes, not cave inward."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-z-ciezarem",
+      "cytat": "Podczas wykonywania przysiadu pilnuj, aby kolano nie było skierowane do środka"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cossack-squat-with-power-band/",
+      "cytat": "Kolano nogi zaangażowanej w ruch powinno poruszać się w osi stawu skokowego (uważaj, by nie zapadało się do środka)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Single-Leg High Box Squat",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "sprawdzone": [
+   "https://maniacmuscle.com/?s=single-leg+box+squat",
+   "https://centrumrespo.pl/atlas/?s=jednon&type=atlas"
+  ],
+  "jest": [
+   "F: https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-do-skrzyni-jednonoz"
+  ]
+ },
+ {
+  "cwiczenie": "Smith Machine Pistol Squat",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone": [
+   "https://maniacmuscle.com/?s=smith+single+leg+squat",
+   "https://fabrykasily.pl/cwiczenia/czworoglowe-uda",
+   "https://centrumrespo.pl/atlas/?s=jednon&type=atlas"
+  ]
+ },
+ {
+  "cwiczenie": "Crossover Reverse Lunge",
+  "stan": "2 z 3 (tożsamość z Curtsy do potwierdzenia przez recenzenta)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "lunge.stand",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/curtsy-lunge/",
+      "cytat": "Stań ze stopami ustawionymi na szerokość bioder."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/",
+      "cytat": "Stand tall: Place your feet about hip-width apart with your chest lifted and core lightly braced."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "curtsy.move",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/curtsy-lunge/",
+      "cytat": "Wykonaj zakrok skrzyżny, kierując stopę w tył i do środka."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/",
+      "cytat": "Step diagonally back: Move one leg behind and across the standing leg, like a controlled curtsey position."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "curtsy.mis.kneeIn",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/curtsy-lunge/",
+      "cytat": "Pilnuj tego, aby kolano kończyny wykrocznej (z przodu) znajdowało się nad stawem skokowym (nie uciekało do środka)."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/",
+      "cytat": "Keep the front knee controlled: Avoid letting it cave sharply inward as you descend."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "curtsy.mis.heel",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/curtsy-lunge/",
+      "cytat": "Unikaj odrywania pięty czy palców od podłoża."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/",
+      "cytat": "Keep the front foot grounded: Press through the front heel and midfoot while maintaining balance."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Elevated Back Lunge",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "eblunge.setup",
+    "pl": "Stań na stabilnym podwyższeniu, stopy blisko siebie, brzuch napięty.",
+    "en": "Stand on a sturdy step, feet close together, abs tight.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges",
+      "cytat": "Pozycja stojąca na podwyższeniu."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/",
+      "cytat": "Stand tall: Place both feet on the platform or keep the working foot elevated, depending on your setup."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "eblunge.move",
+    "pl": "Zrób krok jedną nogą w tył na podłogę i zejdź, aż tylne kolano będzie tuż nad podłogą; wróć na podwyższenie, odpychając się przednią nogą.",
+    "en": "Step one foot back down to the floor and lower until your back knee is just above it; push through your front leg to return to the step.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges",
+      "cytat": "wykonaj zakrok jedną nogą do tyłu. Noga wykroczna pozostaje w miejscu."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/",
+      "cytat": "Step backward: Move one leg behind you in a controlled reverse-lunge step."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "lunge.mis.kneeIn",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges",
+      "cytat": "Nie prowadź kolan do wewnątrz (utrzymuj je skierowane lekko na zewnątrz)."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/",
+      "cytat": "Keep the knee tracking clean: The front knee should follow the toes without collapsing inward."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "eblunge.mis.rush",
+    "pl": "Zbyt szybkie opuszczanie.",
+    "en": "Dropping down too fast.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges",
+      "cytat": "Nie spiesz się podczas wykonywania tego ćwiczenia, zbyt szybkie wykonanie jest błędem technicznym."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/",
+      "cytat": "losing front-foot pressure, rushing the descent, and using more weight than the movement can control."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "eblunge.mis.rearPush",
+    "pl": "Odpychanie się głównie tylną nogą.",
+    "en": "Pushing mostly off the back leg.",
+    "stan": "wniosek z ruchu 2 z 3",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "eblunge.move"
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/",
+      "cytat": "Common mistakes include stepping too far or too short, pushing too much from the rear leg"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Lunge Pass Through",
+  "stan": "brak (1 z 3: M)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Slider Reverse Lunge",
+  "stan": "brak (0 z 3; pytanie o wariant sprzętu zakroku)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Split Squat (linki)",
+  "stan": "2 z 3 – uproszczenie (wariant sprzętu: linki); uchwyty linek [OTWARTE]",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "split.setup",
+    "pl": "Stań w rozkroku jedna noga przed drugą, tylna stopa na palcach, w dłoniach uchwyty linek z wyciągu dolnego.",
+    "en": "Stand in a split stance, back heel up, holding handles from the low pulleys.",
+    "stan": "2 z 3 – uproszczenie; część o linkach [OTWARTE]",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny",
+      "cytat": "Pozycja wykroczna, nogi wyprostowane, stopa zakroczna ustawiona w pozycji na palcach."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-split-squat/",
+      "cytat": "Step one foot forward and the other foot back."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "split.move",
+    "pl": "Zegnij oba kolana i opuść się prosto w dół, aż tylne kolano będzie tuż nad podłogą; wstań, nie przestawiając stóp.",
+    "en": "Bend both knees and lower straight down until your back knee is just above the floor; stand back up without moving your feet.",
+    "stan": "2 z 3 – uproszczenie",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny",
+      "cytat": "Ruch kontynuuj do momentu, aż kolano nogi zakrocznej znajdzie się tuż nad podłogą"
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-split-squat/",
+      "cytat": "Stop when your rear knee is close to the floor or when you reach your comfortable depth."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "lunge.mis.kneeIn",
+    "stan": "1 z 3 + streszczenie (M do odczytu)",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny",
+      "cytat": "Nie prowadź kolan do wewnątrz (utrzymuj je skierowane lekko na zewnątrz)."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "split.mis.heel",
+    "pl": "Odrywanie pięty przedniej stopy.",
+    "en": "Front heel lifting.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny",
+      "cytat": "Pilnuj, aby stopa nogi wykrocznej była cała dociśnięta do podłogi."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/dumbbell-split-squat/",
+      "cytat": "Drive through the front heel and midfoot to rise back up."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Suspended Split Squat",
+  "stan": "setup komplet 3; move komplet – uproszczenie; mis kneeIn 2 z 3, rush komplet 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "ssplit.setup",
+    "pl": "Stań tyłem do taśm, włóż stopę tylnej nogi w uchwyt, przednia stopa wysunięta do przodu.",
+    "en": "Stand facing away from the straps, rear foot in the cradle, front foot well forward.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx",
+      "cytat": "Jedna noga uniesiona i umieszczona w uchwycie taśm."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/suspended-split-squat/",
+      "cytat": "Place the rear foot: Put the top of your rear foot or ankle into the strap cradle."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/artykuly/trening/czy-warto-wykonywac-przysiady-bulgarskie-5032",
+      "cytat": "Wówczas nogę zakroczną umieszczamy w uchwytach taśm TRX."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "ssplit.move",
+    "pl": "Zegnij przednie kolano i biodro, pozwalając tylnemu kolanu opaść w dół; wstań, odpychając się przednią nogą.",
+    "en": "Bend your front knee and hip, letting the back knee drop; push through your front leg to stand.",
+    "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx",
+      "cytat": "Stabilnie i płynnie wróć do pozycji wyjściowej."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/suspended-split-squat/",
+      "cytat": "Lower under control: Bend the front knee and hip while allowing the rear knee to travel downward behind you."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/artykuly/trening/czy-warto-wykonywac-przysiady-bulgarskie-5032",
+      "cytat": "Zejście w dół należy wykonywać nieco wolniej, powrót do góry wykonujemy dynamiczniej."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "lunge.mis.kneeIn",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx",
+      "cytat": "Postaraj się utrzymać przebieg pracy kolana bezpośrednio nad stopą, unikaj koślawienia kolan."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/suspended-split-squat/",
+      "cytat": "Avoid knee collapse: Keep the front knee aligned with the toes to protect the knee and improve glute engagement."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "ssplit.mis.rush",
+    "pl": "Zbyt szybkie schodzenie w dół.",
+    "en": "Lowering too fast.",
+    "stan": "komplet 3 – praktyka",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx",
+      "cytat": "Nie spiesz się podczas wykonywania tego ćwiczenia, zbyt szybkie wykonanie jest błędem technicznym."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/suspended-split-squat/",
+      "cytat": "Slow the lowering phase"
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/artykuly/trening/czy-warto-wykonywac-przysiady-bulgarskie-5032",
+      "cytat": "Zejście w dół należy wykonywać nieco wolniej"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Cable Hip Abduction",
+  "stan": "2 z 3 (F18 ≈ S14 — jedno źródło)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "cabd.setup",
+    "pl": "Stań bokiem do wyciągu dolnego, linka przypięta do kostki nogi dalszej od wyciągu, druga noga stoi pewnie.",
+    "en": "Stand side-on to a low pulley with the cable on your outside ankle, standing leg steady.",
+    "stan": "2 z 3 (strona kostki do sprawdzenia)",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cable-kick-side/",
+      "cytat": "Stań na stepie bokiem do wyciągu dolnego."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego",
+      "cytat": "Stań przy wyciągu dolnym i przymocuj na wysokości kostki opaskę z linką wyciągu.",
+      "uwaga": "≈ S14 (kopia), liczone razem jako jedno"
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "cabd.move",
+    "pl": "Odwodź nogę w bok, od wyciągu, ruch tylko w biodrze, tułów nieruchomy; powoli wróć.",
+    "en": "Lift your leg out to the side, away from the pulley, moving only at the hip with your torso still; return slowly.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cable-kick-side/",
+      "cytat": "Ruch ma zachodzić w stawie biodrowym kończyny dolnej, nie przechylaj całego ciała w bok."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego",
+      "cytat": "Ruch odwodzenia odbywa się tylko w stawie biodrowym, a nie kolanowym."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "cabd.mis.lean",
+    "pl": "Przechylanie tułowia w bok, żeby unieść nogę wyżej.",
+    "en": "Leaning your torso to lift the leg higher.",
+    "stan": "wniosek z ruchu 2 z 3",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "cabd.move"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cable-kick-side/",
+      "cytat": "Pamiętaj, żeby nie pochylać tułowia, jakby uciekając od nogi wykonującej ruch."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "cabd.mis.swing",
+    "pl": "Zamachy i szarpanie zamiast spokojnego ruchu.",
+    "en": "Swinging or jerking instead of a controlled lift.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/cable-kick-side/",
+      "cytat": "Zarzucanie ciężaru"
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego",
+      "cytat": "Unikaj gwałtownych ruchów powodujących zanik napięcia w mięśniach."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Monster Walk",
+  "stan": "brak (R, F — krok w bok, katalog: po skosie)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Hip Flexion with Band",
+  "stan": "brak (0 z 3)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Frog Pump",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "id": "frogp.setup",
+    "pl": "Połóż się na plecach, złącz stopy podeszwami blisko pośladków, kolana rozchyl na boki.",
+    "en": "Lie on your back, soles of your feet together near your glutes, knees out to the sides.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/frog-pump-with-mini-band/",
+      "cytat": "Połóż się na plecach, z kończynami górnymi wzdłuż ciała."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/frog-hip-thrust",
+      "cytat": "Leżenie tyłem, nogi ugięte w kolanach odwiedzione na zewnątrz, stopy skierowane do siebie."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "id": "frogp.move",
+    "pl": "Rozpychając kolana na zewnątrz, unieś biodra, aż kolana, biodra i barki będą w jednej linii; powoli opuść.",
+    "en": "Pushing your knees out, lift your hips until knees, hips and shoulders line up; lower slowly.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/frog-pump-with-mini-band/",
+      "cytat": "Rozciągnij gumę, kierując stawy kolanowe na zewnątrz, napnij mięśnie brzucha i z wydechem wypchnij biodra ku górze."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/frog-hip-thrust",
+      "cytat": "Utrzymując prawidłową pozycję ciała, weź wdech i zdecydowanym ruchem unieś biodra, lekko rozpychając kolana na zewnątrz."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "frogp.mis.kneesIn",
+    "pl": "Kolana schodzące się do środka.",
+    "en": "Knees drifting in.",
+    "stan": "wniosek z ruchu 2 z 3",
+    "zrodla": [
+     {
+      "serwis": "wniosek",
+      "url": "",
+      "cytat": "frogp.move"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "London Bridges",
+  "stan": "brak (0 z 3)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Stability Ball Hip Bridge",
+  "stan": "setup 1 z 3 [OTWARTE]; move komplet – uproszczenie",
+  "zdania": [
+   {
+    "rola": "move",
+    "id": "ballbr.move",
+    "pl": "Z łopatkami opartymi o piłkę i stopami na podłodze unieś biodra, aż uda i tułów będą w jednej linii; powoli opuść.",
+    "en": "With your upper back on the ball and feet on the floor, lift your hips until thighs and torso line up; lower slowly.",
+    "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)",
+    "zrodla": [
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/258/unoszenie-bioder-lezac-na-pilce-gimnastycznej",
+      "cytat": "Biorąc wdech unieś biodra tak, aby uda i tułów tworzyły linię prostą"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/hip-thrust/",
+      "cytat": "Napnij mięśnie brzucha i na wydechu unieś biodra tak, aby stawy kolanowe, biodrowe i barki tworzyły jedną linię."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/unoszenie-bioder-ze-sztanga-w-oparciu-o-laweczke",
+      "cytat": "Unoszenie bioder wykonuj wysoko w górę do momentu, aż tułów znajdzie się w jednej linii z udami,"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "hipthrust.mis.kneesIn",
+    "stan": "2 z 3 – uproszczenie",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/hip-thrust/",
+      "cytat": "Pilnuj tego, by stawy kolanowe nie schodziły się do wewnątrz."
+     },
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda/unoszenie-bioder-ze-sztanga-w-oparciu-o-laweczke",
+      "cytat": "Pilnuj, aby podczas ruchu kolana nie schodziły się do środka."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Machine Glute Kickback",
+  "stan": "move 2 z 3; setup [OTWARTE] (stojąc vs w klęku)",
+  "zdania": [
+   {
+    "rola": "move",
+    "id": "mkick.move",
+    "pl": "Z poduszką maszyny w zgięciu kolana wypchnij nogę w tył, ruch tylko w biodrze; powoli wróć.",
+    "en": "With the pad behind your knee, push the leg back, moving only at the hip; return slowly.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-tyl-na-maszynie",
+      "cytat": "Poduszkę maszyny umieść w zgięciu kolanowym nogi ćwiczonej."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/380/odwodzenie-nogi-w-tyl-na-maszynie---wariant-a",
+      "cytat": "Wykonaj klęk podparty na maszynie.",
+      "uwaga": "opis ruchu — streszczenie narzędzia, do odczytu"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "id": "mkick.mis.swing",
+    "pl": "Zamach nogą zamiast płynnego ruchu.",
+    "en": "Swinging the leg instead of a smooth push.",
+    "stan": "2 z 3",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-tyl-na-maszynie",
+      "cytat": "Unikaj gwałtownych ruchów powodujących zanik napięcia w mięśniach."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/380/odwodzenie-nogi-w-tyl-na-maszynie---wariant-a",
+      "cytat": "Ruch powinien być płynny."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Prone Flutter Kicks",
+  "stan": "brak (0 z 3)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Kneeling Squat",
+  "stan": "brak (≤ 1 z 3: M nieczytane)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Seated Good Mornings",
+  "stan": "brak (0 z 3)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Kneeling Jump Squat",
+  "stan": "brak (1 z 3: F)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Alternate Leg Diagonal Bound",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Bench Jump",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Box Skip",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Double Leg Butt Kick",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Dumbbell Seated Box Jump",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Frog Hops",
+  "stan": "brak (1 z 3: R16)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Lateral Box Jump",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Side Hop-Sprint",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Side Standing Long Jump",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Side to Side Box Shuffle",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Single Leg Butt Kick",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Single-Leg Hop Progression",
+  "stan": "brak (R „Skoki jednonóż w różnych kierunkach” nieczytane — ≤ 1 z 3)",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Single-Leg Stride Jump",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "cwiczenie": "Star Jump",
+  "stan": "brak",
+  "zdania": []
+ }
+]

@@ -1,0 +1,62 @@
+[
+{"cwiczenie": "Dumbbell One-Arm Upright Row", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "Upright Row", "roznica": "hantel, jedna ręka", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Stań w lekkim rozkroku, hantel w jednej ręce przed udem, chwyt nachwytem.", "en": "Stand with feet slightly apart, a dumbbell in one hand in front of your thigh, overhand grip.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/693/podciaganie-linki-wyciagu-dolnego-do-brody", "cytat": "Stań w lekkim rozkroku przodem do wyciągu dolnego."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/podciaganie-sztangi-pod-brode-upright-barbell", "cytat": "Stopy w lekkim rozkroku, plecy proste, brzuch i pośladki napięte."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/upright-row-with-power-band/", "cytat": "Weź gumę power band i stań ze stopami rozstawionymi na szerokość bioder."}]},
+ {"rola": "move", "pl": "Podciągnij hantel blisko ciała w górę wzdłuż tułowia, łokieć prowadzi i jest wyżej niż dłoń; opuść powoli.", "en": "Pull the dumbbell up close to your body, elbow leading and higher than your hand; lower it slowly.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/693/podciaganie-linki-wyciagu-dolnego-do-brody", "cytat": "Łokcie przez cały zakres ruchu prowadź nad linkami."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/podciaganie-sztangi-pod-brode-upright-barbell", "cytat": "podciągaj sztangę wzdłuż tułowia możliwie jak najwyżej"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/upright-row-with-power-band/", "cytat": "Na wydechu przyciągnij ręce do brody, prowadząc ramiona z boku tułowia i kierując stawy łokciowe ku górze."}]},
+ {"rola": "mis", "pl": "Bujanie tułowiem albo odchylanie się do tyłu.", "en": "Swinging or leaning back.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/693/podciaganie-linki-wyciagu-dolnego-do-brody", "cytat": "Unikaj bujania tułowiem."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/upright-row-with-power-band/", "cytat": "Nie odchylaj tułowia do tyłu ani nie prostuj kręgosłupa."}]}]},
+{"cwiczenie": "Smith Machine One-Arm Upright Row", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "Upright Row", "roznica": "gryf w suwnicy Smitha, jedna ręka", "ruch_stawow": "ten sam (ocena badacza)"}, "zrodla_jak": "Dumbbell One-Arm Upright Row", "zdania": [
+ {"rola": "setup", "pl": "Stań blisko gryfu suwnicy, stopy w lekkim rozkroku; chwyć gryf jedną ręką nachwytem.", "en": "Stand close to the Smith bar, feet slightly apart, and take the bar in one hand with an overhand grip."},
+ {"rola": "move", "pl": "Podciągnij gryf w górę blisko ciała, łokieć prowadzi i jest wyżej niż dłoń; opuść powoli.", "en": "Pull the bar up close to your body, elbow leading and higher than your hand; lower it slowly."},
+ {"rola": "mis", "pl": "Bujanie tułowiem albo odchylanie się do tyłu.", "en": "Swinging or leaning back."}]},
+{"cwiczenie": "Smith Machine Upright Row", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "Upright Row", "roznica": "gryf w suwnicy Smitha (F — sztanga — najbliżej)", "ruch_stawow": "ten sam (ocena badacza)"}, "zrodla_jak": "Dumbbell One-Arm Upright Row", "zdania": [
+ {"rola": "setup", "pl": "Stań blisko gryfu suwnicy, stopy w lekkim rozkroku; chwyć gryf oburącz nachwytem.", "en": "Stand close to the Smith bar, feet slightly apart, and take the bar overhand with both hands."},
+ {"rola": "move", "pl": "Podciągnij gryf w górę blisko ciała, łokcie prowadzą i są wyżej niż dłonie; opuść powoli.", "en": "Pull the bar up close to your body, elbows leading and higher than your hands; lower it slowly."},
+ {"rola": "mis", "pl": "Bujanie tułowiem albo odchylanie się do tyłu.", "en": "Swinging or leaning back."}]},
+{"cwiczenie": "Barbell Front Raise to Overhead", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["5 domen: 'unoszenie sztangi przodem nad głowę'", "R, F, S: 'wznosy hantli w przód nad głowę proste ręce'", "maniacmuscle.com: 'front raise to overhead'"], "uwaga": "front raise kończy się na wysokości barków — faza nad głową zmienia ruch, uproszczenia nie stosuję"},
+{"cwiczenie": "Dumbbell Front Raise to Overhead", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["jak Barbell Front Raise to Overhead"]},
+{"cwiczenie": "Barbell Incline Shoulder Raise", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["5 domen: 'incline shoulder raise protrakcja łopatek leżąc na ławce'", "maniacmuscle.com: 'incline shoulder raise serratus'"]},
+{"cwiczenie": "Dumbbell Incline Shoulder Raise", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["jak Barbell Incline Shoulder Raise"]},
+{"cwiczenie": "Smith Incline Shoulder Raise", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["jak Barbell Incline Shoulder Raise"]},
+{"cwiczenie": "Cable Reverse Fly", "stan": "2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Stań pośrodku bramy przodem do wyciągów ustawionych wyżej głowy; chwyć uchwyty na krzyż, ręce przed sobą.", "en": "Stand in the middle of the cable station facing high pulleys; take the handles crossed, arms in front of you.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac", "cytat": "Złap linki wyciągów górnych na krzyż."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac", "cytat": "Wyciągi powinny być ustawione wyżej niż głowa."}]},
+ {"rola": "move", "pl": "Odwiedź lekko ugięte ręce w tył, aż ramiona będą w linii z tułowiem; wróć powoli.", "en": "Sweep your slightly bent arms back until they line up with your torso, then return slowly.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac", "cytat": "Ruch zakończ, kiedy ramiona będą przedłużeniem tułowia."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac", "cytat": "W końcowej fazie ruchu przytrzymuj napięte mięśnie ramion.", "uwaga": "kierunek w tył i lekko ugięte ręce — streszczenie narzędzia, cytat do sprawdzenia"}]},
+ {"rola": "mis", "pl": "Szarpanie ciężarem zamiast płynnego ruchu.", "en": "Jerking the weight instead of moving smoothly.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac", "cytat": "Nie szarp ciężaru."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac", "cytat": "Ruch powinien być płynny."}]}],
+ "odrzucone": [{"serwis": "M", "url": "https://maniacmuscle.com/cable-crossover-reverse-fly/", "powod": "wyciągi dolne i opad tułowia; strona: 'Standing too upright often turns the movement into a different cable variation'"}]},
+{"cwiczenie": "One-Arm Cable Rear Lateral Raise", "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)", "uproszczenie": {"baza": "unoszenie ramion bokiem w opadzie tułowia (linki oburącz S, M; hantle R)", "roznica": "jedna ręka; R — hantle zamiast linki", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Stań bokiem do dolnego wyciągu i pochyl tułów w przód z prostymi plecami; chwyć uchwyt dalszą ręką.", "en": "Stand side-on to a low pulley and hinge forward with a straight back; take the handle in your far hand.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie", "cytat": "Stań w lekkim rozkroku pośrodku bramy, pochyl tułów w przód."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-crossover-reverse-fly/", "cytat": "Lean your torso forward roughly 30–45 degrees while keeping a neutral spine.", "uwaga": "liczby nie przenoszę"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/unoszenie-hantli-bokiem-opadzie-tulowia/", "cytat": "Weź do rąk hantle i stań z nogami ustawionymi na szerokość bioder.", "uwaga": "pochylenie z bioder — streszczenie narzędzia, cytat do sprawdzenia"}]},
+ {"rola": "move", "pl": "Unieś rękę bokiem szerokim łukiem, łokieć lekko ugięty prowadzi, aż będzie na wysokości barku; opuść powoli.", "en": "Raise your arm out to the side in a wide arc, slightly bent elbow leading, up to shoulder height; lower slowly.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie", "cytat": "Ruch zakończ, kiedy łokcie znajdą się na wysokości barku."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-crossover-reverse-fly/", "cytat": "Raise the handles out to the sides in a wide arc, leading with the elbows while keeping them slightly bent."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/unoszenie-hantli-bokiem-opadzie-tulowia/", "cytat": "Stawy łokciowe powinny prowadzić ruch."}]},
+ {"rola": "mis", "pl": "Bujanie tułowiem, żeby unieść ciężar.", "en": "Swinging your torso to get the weight up.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie", "cytat": "Unikaj bujania tułowiem."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/cable-crossover-reverse-fly/", "cytat": "Swinging the torso or bouncing the rep reduces tension where you want it most."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/unoszenie-hantli-bokiem-opadzie-tulowia/", "cytat": "Częstym błędem jest zarzucenie ciężaru całym ciałem."}]}]},
+{"cwiczenie": "Cable Seated Lateral Raise", "stan": "setup 2 z 3 (uproszczenie); move komplet – uproszczenie (do potwierdzenia przez recenzenta); mis R wprost + wniosek", "uproszczenie": {"baza": "unoszenie ramion bokiem siedząc z hantlami (F, S); R stojąc z hantlami", "roznica": "linki dolne zamiast hantli", "ruch_stawow": "ten sam (ocena badacza)"}, "zdania": [
+ {"rola": "setup", "pl": "Usiądź na ławce między dolnymi wyciągami, plecy proste, stopy płasko na podłodze; uchwyty trzymaj przy bokach.", "en": "Sit on a bench between two low pulleys, back straight, feet flat; hold the handles at your sides.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/unoszenie-ramion-w-bok-ze-sztangielkami", "cytat": "Usiądź na ławce."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/358/unoszenie-ramion-bokiem-ze-sztangielkami-siedzac", "cytat": "Nogi ugięte pod kątem prostym, stopy przylegają do podłoża."}]},
+ {"rola": "move", "pl": "Unieś ręce bokiem do wysokości barków; opuść powoli.", "en": "Raise your arms out to the sides to shoulder height; lower slowly.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/unoszenie-ramion-w-bok-ze-sztangielkami", "cytat": "unieś hantle w bok, aż ramiona będą ustawione równolegle do podłogi."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/358/unoszenie-ramion-bokiem-ze-sztangielkami-siedzac", "cytat": "Biorąc wdech wykonaj unoszenia ramion w bok na wysokość barków."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/unoszenie-hantli-bokiem/", "cytat": "Zakończ ruch, kiedy ręce znajdą się w jednej linii z barkami."}]},
+ {"rola": "mis", "pl": "Odchylanie się do tyłu, żeby unieść ciężar.", "en": "Leaning back to get the weight up.", "wniosek": ["wniosek", "setup (plecy proste)"], "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/unoszenie-hantli-bokiem/", "cytat": "Częstym błędem jest zarzucenie ciężaru całym ciałem i odchylanie się do tyłu."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/358/unoszenie-ramion-bokiem-ze-sztangielkami-siedzac", "cytat": "Pamiętaj o prostych plecach."}]}]}
+]
