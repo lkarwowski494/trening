@@ -406,6 +406,9 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   const fr = resolveBells(mkFrame(pose, props, info, contactsFrom(d.sprzet)));
   /* drążek nieruchomy (ciało porusza się względem sprzętu): tor ruchu to droga środka ciała (miednicy), nie punktu na drążku */
   if (!d.sprzet.some(g => g.rodzaj === 'sztanga' && g.podazaZaChwytem)) fr.info.trail = fr.sk.pelvis;
+  /* ciężar w dłoni (hantel, wyciąg, dźwignia maszyny; bez sztangi): tor ciężaru = chwyt ręki, która go trzyma (obie ręce — środek między chwytami), nie miednica (recenzja curl W1, 03.11.2026) */
+  const nosi = d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia');
+  if (nosi && !d.sprzet.some(g => g.rodzaj === 'sztanga')) { const t = (nosi as { trzyma?: 'R' | 'L' }).trzyma; fr.info.trail = t ? grips[t] : [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3; }
   return fr;
 }
 

@@ -6,6 +6,12 @@ import { add, mul, norm, sub, rad, distSegSeg, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Skeleton } from './skeleton';
 import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 
+/** Środki talerzy od osi gryfu (cm): dla gryfu krótszego niż barLen (gryf łamany 120) talerze leżą na jego końcach (od końca 12 i 7 cm do środka), nie za nim (recenzja curl W2, 03.11.2026); dla pełnej długości bez zmian (plateZ). */
+export const PLATE_FROM_END_SHORT: [number, number] = [12, 7];
+export function plateZs(len?: number): [number, number] {
+  if (len === undefined || len >= EQUIP.barLen) return EQUIP.plateZ; return [len / 2 - PLATE_FROM_END_SHORT[0], len / 2 - PLATE_FROM_END_SHORT[1]];
+}
+
 /** Wymiary sprzętu (cm). Jedno źródło wartości: ta stała; opis, status i źródło każdego wymiaru — data/zrodla/figury-sprzet.json (test tests/zrodla-pelne-sprzet.test.ts).
  * Gryf, tuleje, talerze i ławka zgodne z normą sprzętu startowego; barR 1,6 to jawna konwencja „pogrubienie dla czytelności”; reszta — uproszczenie ilustracyjne.
  * plateZ = środki dwóch talerzy na tulei (od osi gryfu; pierwszy tuż za wewnętrznym kołnierzem), chainZ = łańcuchy sztangi tuż za zewnętrznym talerzem. */
@@ -394,7 +400,7 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
           if (side || view === 'top') {
             const half = (pr.len ?? E.barLen) / 2; const a = proj([c[0] - half, c[1], c[2]], view), b = proj([c[0] + half, c[1], c[2]], view);
             S.push({ k: 'line', a, b, w: E.barR * 2, role: 'steel', z: zKey(LAYER.frontEquip, 0.3), id: 'bar' });
-            if (pr.plates !== false && side) for (const sg of [-1, 1]) for (const zz of E.plateZ) S.push({ k: 'poly', pts: rect(o[0] + sg * zz - E.plateW / 2, o[1] - E.plateR, o[0] + sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.frontEquip, 0.2), id: 'plate' });
+            if (pr.plates !== false && side) for (const sg of [-1, 1]) for (const zz of plateZs(pr.len)) S.push({ k: 'poly', pts: rect(o[0] + sg * zz - E.plateW / 2, o[1] - E.plateR, o[0] + sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.frontEquip, 0.2), id: 'plate' });
           } else {
             if (pr.plates !== false) S.push({ k: 'circle', c: o, r: E.plateR, fill: 'plate', a: 0.42, stroke: 'plate', w: 0.8, z: zKey(LAYER.frontEquip, 0), id: 'plateNear' });
             S.push({ k: 'circle', c: o, r: E.barR, fill: 'steel', z: zKey(LAYER.overlay, 0), id: 'bar' });
@@ -412,7 +418,7 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
         } else {
           const half = (pr.len ?? E.barLen) / 2; const d = c[0];
           S.push({ k: 'line', a: [-half, o[1]], b: [half, o[1]], w: E.barR * 2, role: 'steel', z: zKey(LAYER.body, d), id: 'bar' });
-          if (pr.plates !== false) for (const sg of [-1, 1]) for (const zz of E.plateZ) S.push({ k: 'poly', pts: rect(sg * zz - E.plateW / 2, o[1] - E.plateR, sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.body, d - 0.2), id: 'plate' });
+          if (pr.plates !== false) for (const sg of [-1, 1]) for (const zz of plateZs(pr.len)) S.push({ k: 'poly', pts: rect(sg * zz - E.plateW / 2, o[1] - E.plateR, sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.body, d - 0.2), id: 'plate' });
         }
         break;
       }
