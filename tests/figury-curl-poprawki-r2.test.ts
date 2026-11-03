@@ -72,10 +72,12 @@ describe('H1 (recenzja r3, 03.11.2026, WYSOKIE): chwyt młotkowy — hantel ryso
   const fam = fs.readFileSync(path.join(__dirname, '../lib/figures/v2/families.ts'), 'utf8');
   const poseData = fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poseData.ts'), 'utf8');
   const draw = fs.readFileSync(path.join(__dirname, '../lib/figures/v2/draw.ts'), 'utf8');
-  test('wpis recenzji r3 opisuje wadę H1 i 4 ćwiczenia; autor ≠ recenzent', () => {
+  test('zapis 1:1 recenzji r3 (docs/research/recenzje-figur/curl-r3.md) opisuje wadę H1 i 4 ćwiczenia; bieżący wpis v2.curl (po poprawce i ponownej recenzji) ma autor ≠ recenzent', () => {
+    /* 03.11.2026 (scalenie z integracją): wpis v2.curl w figury-recenzja.json został zastąpiony recenzją różnicy po poprawce (cf5e04a8), więc opis H1 żyje w zapisie 1:1 r3 */
+    const r3 = fs.readFileSync(path.join(__dirname, '../docs/research/recenzje-figur/curl-r3.md'), 'utf8');
     expect(rec.werdykt).toBe('wyswietlana'); expect(rec.autor).not.toBe(rec.recenzent);
-    for (const k of HAMMER) expect([k, rec.uwagi.includes(k)]).toEqual([k, true]);
-    expect(rec.uwagi).toMatch(/H1 \(WYSOKIE\)/);
+    for (const k of HAMMER) expect([k, r3.includes(k)]).toEqual([k, true]);
+    expect(r3).toMatch(/H1 \(WYSOKIE\)/);
   });
   test('rodzina curl nie jest podłączona (planned, bez pliku póz w poseData), dopóki hantel nie zależy od obrotu przedramienia i 4 hammer nie przejdą ponownej recenzji', () => {
     const podlaczona = /id: 'curl', status: 'ready'/.test(fam) || /curl: \(\) => require\('\.\/poses\/curl\.json'\)/.test(poseData);
