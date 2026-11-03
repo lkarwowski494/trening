@@ -40,14 +40,14 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [, k] of DATA_KEYS.filter(([f, x]) => f === "pull_up" && !ISOMETRIC.has(x))) { /* podciąganie: faza i miara pull_up; curl ma własne testy (figury-curl-*) */
-      const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1);
-      expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect(s.lowerFirst).toBe(false); expect(measuredJoint(s)).toBe('elbow');
-      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([['Podciąganie', 1000], ['Pauza', 500], ['Opuszczanie', 2000], ['Pauza', 500]]);
+    for (const [f, k] of DATA_KEYS.filter(([, x]) => !ISOMETRIC.has(x))) { /* każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+      const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
+      if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
+      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
+      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
-      else { expect(measuredAngle(s, 1).deg).toBeGreaterThan(measuredAngle(s, 0).deg); }
+      else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {

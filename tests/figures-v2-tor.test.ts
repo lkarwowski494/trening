@@ -133,6 +133,16 @@ describe('C1 (recenzja niezależna 03.11.2026): ślad ciężaru w dłoni leży p
     for (let i = 0; i <= 12; i++) { const f = keyframeFrame(d, i / 12); if (!f.info.trail) continue; /* drążek nieruchomy: ślad = miednica, inna zasada */
       const o = odChwytu(f.info.trail, f.sk.arms.R.grip, f.sk.arms.L.grip, dw); expect([key, i, o <= MAX_OD_CHWYTU]).toEqual([key, i, true]); }
   });
+  /* C1 wariant 2 (koordynator, punkt 6): stały promień łuku — odległość śladu od najbliższego łokcia zmienia się w ruchu najwyżej o 3 cm (przedramię sztywne; pomiar po W1b: ≤ 2,5 cm, przed W1b High Cable Curl 9,1 cm). Obok progu cięciwy 26 cm (kształt) i warunku miejsca (≤ 3 cm od chwytu). */
+  const MAX_ROZRZUT_PROMIENIA = 3;
+  const rozrzutPromienia = (d: PoseData) => { const r = Array.from({ length: 13 }, (_, i) => { const f = keyframeFrame(d, i / 12); const t = f.info.trail; return t ? Math.min(...(['R', 'L'] as const).map(s => dist3(t, f.sk.arms[s].elbow))) : NaN; }).filter(x => !isNaN(x)); return r.length ? Math.max(...r) - Math.min(...r) : 0; };
+  test.each(ZESTAW.filter(([k]) => k.startsWith('curl|')).map(([k]) => k))('%s: promień łuku (ślad–łokieć) stały w ruchu (rozrzut ≤ 3 cm)', key => {
+    expect([key, rozrzutPromienia(ZESTAW.find(([k]) => k === key)![1]) <= MAX_ROZRZUT_PROMIENIA]).toEqual([key, true]);
+  });
+  test('rozrzut promienia potrafi paść: ślad w osi ciała (środek między dłońmi) przy parze hantli zmienia odległość od łokcia o > 3 cm', () => {
+    const d = DATA.find(([k]) => k === 'curl|High Cable Curl')![1]; const r = Array.from({ length: 13 }, (_, i) => { const f = keyframeFrame(d, i / 12); const t = [0, 1, 2].map(j => (f.sk.arms.R.grip[j] + f.sk.arms.L.grip[j]) / 2); return Math.min(dist3(t, f.sk.arms.R.elbow), dist3(t, f.sk.arms.L.elbow)); });
+    expect(Math.max(...r) - Math.min(...r)).toBeGreaterThan(MAX_ROZRZUT_PROMIENIA);
+  });
   test('warunek potrafi paść (przypadek negatywny): ślad w osi ciała przy parze hantli (stara reguła W1) ma ok. połowę rozstawu od chwytu', () => {
     const d = DATA.find(([k]) => k === 'curl|Hammer Curl')![1]; const f = keyframeFrame(d, 0.5);
     const srodek = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
