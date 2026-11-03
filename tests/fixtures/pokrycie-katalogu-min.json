@@ -3,7 +3,7 @@
   "minimum": {
     "figura.v2": 98,
     "figura.wAplikacji": 151,
-    "figura.zDanymiV2": 535,
+    "figura.zDanymiV2": 533,
     "animowanyBlad": 92,
     "wskazowki.wlasne": 130,
     "wskazowki.wlasneZBledami": 48,
@@ -108,8 +108,8 @@
       "data": "29.10.2026"
     },
     "figura.zDanymiV2": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20; 709 → 708, 535) oraz Zottman Curl i Zottman Preacher Curl bez rysunku — wyjątki w figury-wyjatki.json (decyzja właściciela 03.11.2026, wariant b; 535 → 533)",
+      "data": "03.11.2026"
     },
     "animowanyBlad": {
       "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
