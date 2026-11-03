@@ -196,6 +196,40 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     const ro = LOCALES.ro as Record<string, string>; expect(ro['Podciąganie']).toBe('Tragere în sus');
     expect(S.sprawdz(slownik, 'ro', 'Podciąganie', 'Tracţiune').length).toBe(1); /* recenzja 31.10.2026: także ţ z cedyllą */
   });
+  /* Recenzja lokalizacji P2 (moc), 03.11.2026: strażnik nie złapał rozjazdu „wykrok”/„nożyce” dla pozycji split w dwuboju, trzech brzmień pozycji kettlebelli przy barkach,
+     trzech form zakresu szerokości stóp, „trunk” zamiast „core” ani kalki „like for a …” w EN. Pojęcia dotyczą PL i EN (pozostałe 33 języki wg przekładu z poprawionej bazy). */
+  test('03.11.2026, P2 moc: regresja — „wykrok” dla split, „pozycja rack”, trzy formy szerokości stóp, „trunk” i „like for a” są wykrywane, poprawione brzmienia przechodzą', () => {
+    const nazwy = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+    const wy = 'Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w wykroku — jedna noga w przód, druga w tył.', noz = 'Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w nożycach — jedna stopa w przód, druga w tył.';
+    expect(nazwy('pl', wy, wy)).toEqual(['nozyce']); expect(nazwy('pl', noz, noz)).toEqual([]);
+    expect(nazwy('en', noz, 'Pull like a regular clean, but catch the bar in a lunge.')).toEqual(['nozyce']);
+    expect(nazwy('en', noz, 'Pull like a regular clean, but catch the bar in a split — one foot forward, one back.')).toEqual([]);
+    for (const zle of ['Kettlebell w pozycji przy barku, łokieć przy tułowiu.', 'Zakończ w pozycji rack przy klatce.']) expect([zle, nazwy('pl', zle, zle)]).toEqual([zle, ['rack_kettlebell']]);
+    const rk = 'Kettlebelle oparte przy barkach, łokcie przy tułowiu.'; expect(nazwy('pl', rk, rk)).toEqual([]);
+    for (const zle of ['Stopy między szerokością bioder a barków, palce lekko na zewnątrz.', 'Hantle przy barkach, stopy mniej więcej od szerokości bioder do szerokości barków.']) expect([zle, nazwy('pl', zle, zle)]).toEqual([zle, ['szerokosc_stop']]);
+    const sz = 'Hantle przy barkach, stopy na szerokość bioder do barków.'; expect(nazwy('pl', sz, sz)).toEqual([]);
+    expect(nazwy('en', sz, 'Dumbbells at your shoulders, feet somewhere between hip- and shoulder-width.')).toEqual(['szerokosc_stop']);
+    expect(nazwy('en', sz, 'Dumbbells at your shoulders, feet hip- to shoulder-width apart.')).toEqual([]);
+    const tul = 'Zanim ugniesz kolana, mocno napnij tułów.'; expect(nazwy('en', tul, 'Brace your trunk hard before you bend your knees.')).toEqual(['core_en']);
+    expect(nazwy('en', tul, 'Brace your core hard before you bend your knees.')).toEqual([]);
+    const jd = 'Sztanga na górze pleców, jak do przysiadu.'; expect(nazwy('en', jd, 'Bar on your upper back, like for a squat.')).toEqual(['jak_do_en']);
+    expect(nazwy('en', jd, 'Bar on your upper back, like a back squat.')).toEqual([]);
+  });
+  test('03.11.2026, P2 moc: wskazówki PL i EN partii (zdania z tests/fixtures/cues-p2-moc.json) nie łamią terminów nożyce / rack / szerokość stóp / core / „like for a”', () => {
+    const enCues = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/en.json'), 'utf8')) as Record<string, string>;
+    const P2 = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/cues-p2-moc.json'), 'utf8')) as { zdania: string[] };
+    expect(P2.zdania.length).toBeGreaterThan(80);
+    const bad: string[] = [];
+    for (const i of P2.zdania) {
+      for (const n of S.sprawdz(slownik, 'pl', cuesPl[i], cuesPl[i]) as { pojecie: string }[]) bad.push(`pl ${i} [${n.pojecie}]`);
+      for (const n of S.sprawdz(slownik, 'en', cuesPl[i], enCues[i] ?? '') as { pojecie: string }[]) bad.push(`en ${i} [${n.pojecie}]`);
+      if (/(?<![\p{L}])(trunk|lunge)(?![\p{L}])|like\s+for\s+a\b/iu.test(enCues[i])) bad.push(`en ${i} [trunk/lunge/like for a]`);
+      if (/^(olympic\.|kbj\.|kbb\.)/.test(i) && /wykrok|pozycj\w*\s+rack/i.test(cuesPl[i])) bad.push(`pl ${i} [wykrok/rack]`);
+    }
+    expect(bad).toEqual([]);
+    expect(cuesPl['olympic.splitCatch']).toContain('nożycach'); expect(cuesPl['olympic.snatchSplitMove']).toContain('nożyce'); expect(cuesPl['olympic.balanceMove']).toContain('nożyc');
+    expect(cuesPl['kbj.rack']).toContain('oparte przy barkach'); expect(cuesPl['thruster.kbSetup']).toContain('oparte przy barkach');
+  });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');
     expect(b).toContain('インターバル'); expect(b).toContain('休憩'); expect(b).toContain('naturalnie');

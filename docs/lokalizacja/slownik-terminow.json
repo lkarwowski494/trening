@@ -10438,6 +10438,143 @@
      "uwaga": "do potwierdzenia przez native speakera: „次の1回では” czy „次のレップでは”; „次の回” czyta się jak „następnym razem”, więc go unikamy"
     }
    }
+  },
+  {
+   "id": "nozyce",
+   "pl": "nożyce (pozycja split w dwuboju)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "jedna nazwa pozycji split w rwaniu, zarzucie i podrzucie (jedna stopa w przód, druga w tył); „wykrok” to osobne ćwiczenie (lunge) i nie opisuje pozycji przyjęcia sztangi. Dotyczy wskazówek dwuboju; pozostałe 33 języki wg przekładu z PL/EN (do potwierdzenia przez native speakerów)",
+   "kanon": null,
+   "wykrywaj": "nożyc|wykrok",
+   "jezyki": {
+    "pl": {
+     "zalecany": "nożyce",
+     "zakazane": [
+      {
+       "wzorzec": "wykrok",
+       "powod": "pozycja split w dwuboju to „nożyce”; „wykrok” to osobne ćwiczenie (lunge) i myli się z pozycją przyjęcia sztangi"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "split",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])lunge",
+       "powod": "pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "rack_kettlebell",
+   "pl": "kettlebelle oparte przy barkach (pozycja rack)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "pozycja kettlebelli (lub hantli) przy barkach i klatce; jedno brzmienie w całej partii siły i mocy: po polsku „oparte przy barkach”, bez obcego „pozycja rack” ani „w pozycji przy barku”; po angielsku „racked”",
+   "kanon": null,
+   "wykrywaj": "kettlebell\\w*\\s+(oparte|w\\s+pozycji)|pozycj\\w*\\s+(rack|przy\\s+barku)",
+   "jezyki": {
+    "pl": {
+     "zalecany": "oparte przy barkach",
+     "zakazane": [
+      {
+       "wzorzec": "pozycj\\w*\\s+rack|(?<![\\p{L}])rack(?![\\p{L}])|w\\s+pozycji\\s+przy\\s+barku",
+       "powod": "pozycję kettlebelli opisuj jednym brzmieniem „oparte przy barkach” (bez „pozycja rack” i „w pozycji przy barku”)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "racked",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "szerokosc_stop",
+   "pl": "stopy na szerokość bioder do barków",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "zakres szerokości ustawienia stóp: jedna forma we wszystkich wskazówkach („na szerokość bioder do barków”, jak w gob.stance i dl.feet); po angielsku „hip- to shoulder-width”",
+   "kanon": null,
+   "wykrywaj": "szeroko\\w*\\s+bioder|bioder\\s+(a|do)\\s+(szerokości\\s+)?barków",
+   "jezyki": {
+    "pl": {
+     "zalecany": "na szerokość bioder do barków",
+     "zakazane": [
+      {
+       "wzorzec": "między\\s+szerokością|mniej\\s+więcej\\s+od\\s+szerokości|bioder\\s+a\\s+barków|do\\s+szerokości\\s+barków",
+       "powod": "zakres szerokości stóp zapisuj jedną formą „na szerokość bioder do barków”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "hip- to shoulder-width",
+     "zakazane": [
+      {
+       "wzorzec": "between\\s+hip(-|\\s)(and|to)?\\s*shoulder|somewhere\\s+between|hip\\s+and\\s+shoulder\\s+width",
+       "powod": "zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "core_en",
+   "pl": "napnij tułów / brzuch (core)",
+   "tylko": [
+    "en"
+   ],
+   "znaczenie": "napięcie tułowia przed ruchem; po angielsku na siłowni „core” (nie podręcznikowe „trunk”). Dotyczy wskazówek techniki; pozostałe języki wg przekładu z PL/EN",
+   "kanon": null,
+   "wykrywaj": "napn\\w*\\s+(mocno\\s+)?(tułów|brzuch)|tułów\\s+mocno\\s+napięty",
+   "jezyki": {
+    "en": {
+     "zalecany": "core",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])trunk(?![\\p{L}])",
+       "powod": "„trunk” brzmi podręcznikowo; na siłowni mówi się „core”"
+      }
+     ],
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "jak_do_en",
+   "pl": "jak do … (kalka „like for a …”)",
+   "tylko": [
+    "en"
+   ],
+   "znaczenie": "polskie „jak do wyskoku / do przysiadu / do martwego ciągu” po angielsku to „like a squat”, „set up like a deadlift”, „jumping stance” — nie kalka „like for a …”",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])jak\\s+(do|przy)\\s",
+   "jezyki": {
+    "en": {
+     "zalecany": "like a …",
+     "zakazane": [
+      {
+       "wzorzec": "like\\s+for\\s+(a|an|the)\\s",
+       "powod": "kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift”"
+      }
+     ],
+     "pewnosc": "wysoka"
+    }
+   }
   }
  ]
 }

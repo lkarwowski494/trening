@@ -6,7 +6,7 @@
  * Rodzaje (docs/20): dane (karty, źródła), logika (≥ 2 niezależne organizacje szczebla ≤ 4), niezmienniki (szczebel 5 poza danymi, brak kolizji id między rwaniem a podrzutem),
  * języki (PL i EN w słownikach, reszta czeka na przekład — zestaw-przekladu-2026-11-03-p2-wskazowki.json), regresja (cue-sets: własne karty, pominięte zostają ogólne).
  * Ocena realności: błąd „karta techniki podnoszenia/skoków z jednego źródła, ze źródła marketingowego albo z zestawu ogólnego niepasującego do ruchu” — realny (treść w aplikacji i na stronie z ćwiczeniami);
- * karty po recenzji niezależnej (bramka 4, L-047) — do czasu recenzji ukryte (tests/karty-recenzja.test.tsx).
+ * karty po recenzji niezależnej (bramka 4, L-047; wpisy 03.11.2026): 35 wyświetlanych, Hang Clean „do poprawy” i ukryta do ponownej recenzji po poprawce (tests/karty-recenzja.test.tsx).
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -18,7 +18,7 @@ const root = path.join(__dirname, '..');
 const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
 const pl: Record<string, string> = json('lib/cues/text/pl.json'), en: Record<string, string> = json('lib/cues/text/en.json');
 const sets = json('lib/figures/v2/cue-sets.json').items as Record<string, { b: string }>;
-const REC = json('docs/research/figury-recenzja.json') as { zestawy: Record<string, unknown> };
+const REC = json('docs/research/figury-recenzja.json') as { zestawy: Record<string, unknown>; karty: Record<string, { werdykt: string; autor: string; recenzent: string }> };
 
 describe('P2 moc: karty własne', () => {
   test('36 ćwiczeń ma komplet ustawienie + ruch w pełnych danych i w runtime (widoczne albo ukryte do recenzji); nie są w otwartych; 23 niepełne są na liście partial', () => {
@@ -74,6 +74,46 @@ describe('P2 moc: źródła i reguły szczebli', () => {
   });
 });
 
+describe('P2 moc: bramka 4 i poprawki po recenzjach (03.11.2026)', () => {
+  test('35 kart ma recenzję niezależną (wyświetlane), Hang Clean „do poprawy” zostaje ukryta do ponownej recenzji po poprawce (decyzja koordynatora 03.11.2026)', () => {
+    const DO_POPRAWY = 'Hang Clean';
+    for (const k of P2.cwiczenia) {
+      const rec = REC.karty[k];
+      expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, k === DO_POPRAWY ? 'do poprawy' : 'wyswietlana', true]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual(k === DO_POPRAWY ? [k, true, false] : [k, false, true]);
+    }
+  });
+
+  test('Hang Clean: zwis nad kolanami bez zdania „gdy sztanga minie kolana” — olympic.hangExtend zamiast olympic.extend (źródła zostają na karcie)', () => {
+    const move = CUE_FULL.exercises['Hang Clean'].move;
+    expect(move.map(r => r.c)).toEqual(['olympic.legsFirst', 'olympic.hangExtend', 'olympic.under', 'olympic.catchLow']);
+    expect(pl['olympic.hangExtend']).toBe('Ze zwisu mocno wyprostuj biodra i nogi.'); expect(en['olympic.hangExtend']).toBe('From the hang, drive your hips and legs to full extension.');
+    expect(pl['olympic.hangExtend']).not.toMatch(/kolan/);
+    const src = move.find(r => r.c === 'olympic.hangExtend')!.s.map(([sid]) => sid);
+    expect(src).toEqual(expect.arrayContaining(['catalyst-68', 'rogue-hang-squat-clean']));
+    expect(pl['olympic.extend']).toMatch(/minie kolana/); // zdanie ogólne zostaje przy zarzucie z ziemi
+    expect(CUE_FULL.exercises['Clean'].move.map(r => r.c)).toContain('olympic.extend');
+  });
+
+  test('jedno brzmienie błędu ramion w zarzucie i rwaniu: olympic.mis.arms (olympic.mis.armsEarly usunięte ze słowników i kart)', () => {
+    expect(pl['olympic.mis.arms']).toBe('Ciągnięcie rękami, zanim nogi i biodra skończą wyprost.');
+    expect(en['olympic.mis.arms']).toBe('Pulling with your arms before your legs and hips finish the extension.');
+    expect(['olympic.mis.armsEarly' in pl, 'olympic.mis.armsEarly' in en]).toEqual([false, false]);
+    for (const k of ['Barbell Snatch', 'Power Snatch', 'Hang Snatch', 'Snatch Pull', 'Block Snatch', 'Split Snatch']) expect([k, CUE_FULL.exercises[k].mistakes.map(r => r.c)]).toEqual([k, expect.arrayContaining(['olympic.mis.arms'])]);
+    expect(JSON.stringify(CUE_FULL.exercises)).not.toContain('armsEarly');
+  });
+
+  test('zdania ruchu: najdłuższe skrócone, treść merytoryczna bez zmian ("nie niżej niż do równoległego ud", "biodra nad kolanami"), "po kontakcie z biodrami", ugięte łokcie', () => {
+    expect(pl['olympic.powerMove'].length).toBeLessThanOrEqual(170); expect(pl['olympic.powerMove']).toMatch(/nie niżej niż do równoległego ud/);
+    expect(en['olympic.powerMove']).toMatch(/no lower than thighs parallel/); expect(en['olympic.powerMove'].length).toBeLessThanOrEqual(170);
+    expect(pl['olympic.snatchPowerMove'].length).toBeLessThanOrEqual(170); expect(pl['olympic.snatchPowerMove']).toMatch(/wyżej niż w przysiadzie równoległym, biodra nad kolanami/);
+    expect(pl['olympic.mis.away']).toMatch(/po kontakcie z biodrami/); expect(pl['olympic.mis.softLockout']).toMatch(/^Ugięte łokcie/);
+    expect(pl['olympic.under']).toMatch(/przerzuć łokcie do przodu pod sztangą/);
+    for (const c of ['olympic.snatchMove', 'olympic.pullMove']) expect(pl[c]).toMatch(/gdy sztanga dojdzie do bioder/);
+    for (const c of ['olympic.snatchMove', 'olympic.pullMove', 'olympic.snatchPowerMove', 'olympic.splitMove', 'olympic.powerMove', 'olympic.squatMove']) expect([c, /i wypychając|przy biodrach wyprostuj/.test(pl[c])]).toEqual([c, false]);
+  });
+});
+
 describe('P2 moc: zdania', () => {
   test('79 nowych zdań ma tekst PL i EN; pominięte nie istnieją w słownikach', () => {
     expect(idyP2Nowe().size).toBe(79);
@@ -84,7 +124,7 @@ describe('P2 moc: zdania', () => {
   });
 
   test('rwanie i podrzut mają osobne id tam, gdzie brzmienie się różni (STAN-g3-moc, rozstrzygnięcie 5): olympic.splitMove/powerMove = podrzut, olympic.snatch* = rwanie', () => {
-    expect(pl['olympic.splitMove']).toMatch(/przeskocz do wykroku/);
+    expect(pl['olympic.splitMove']).toMatch(/wskocz pod nią w nożyce/);
     expect(pl['olympic.snatchSplitMove']).toMatch(/Ciągnij jak w rwaniu/);
     expect(pl['olympic.powerMove']).toMatch(/nad głowę/);
     expect(pl['olympic.snatchPowerMove']).toMatch(/wyżej niż w przysiadzie równoległym/);

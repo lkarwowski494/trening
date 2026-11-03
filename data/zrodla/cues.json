@@ -10101,7 +10101,7 @@
      ]
     },
     {
-     "c": "olympic.extend",
+     "c": "olympic.hangExtend",
      "s": [
       [
        "catalyst-68",
@@ -11073,7 +11073,7 @@
      ]
     },
     {
-     "c": "olympic.mis.armsEarly",
+     "c": "olympic.mis.arms",
      "s": [
       [
        "crossfit-snatch-forward",
@@ -11199,7 +11199,7 @@
      ]
     },
     {
-     "c": "olympic.mis.armsEarly",
+     "c": "olympic.mis.arms",
      "s": [
       [
        "crossfit-snatch-forward",
@@ -11321,7 +11321,7 @@
      ]
     },
     {
-     "c": "olympic.mis.armsEarly",
+     "c": "olympic.mis.arms",
      "s": [
       [
        "crossfit-snatch-forward",
@@ -11409,7 +11409,7 @@
    ],
    "mistakes": [
     {
-     "c": "olympic.mis.armsEarly",
+     "c": "olympic.mis.arms",
      "s": [
       [
        "catalyst-video-1539",
@@ -11651,7 +11651,7 @@
      ]
     },
     {
-     "c": "olympic.mis.armsEarly",
+     "c": "olympic.mis.arms",
      "s": [
       [
        "crossfit-snatch-forward",
@@ -11717,7 +11717,7 @@
    ],
    "mistakes": [
     {
-     "c": "olympic.mis.armsEarly",
+     "c": "olympic.mis.arms",
      "s": [
       [
        "crossfit-snatch-forward",
