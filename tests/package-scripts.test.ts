@@ -22,6 +22,7 @@ const WYJATKI: Record<string, string> = {
   'check:pochodne': 'hak pre-push (decyzja 8a, 28.10.2026): zbiera generatory --check i szybkie strażniki; verify uruchamia je osobno',
   'check:slowniki': 'hak pre-push warunkowo (L-048 A, check:pochodne przy zmianie słowników); te same testy Jest biegną w pełnym jest w verify',
   'verify:docs': 'szybkie kontrole dla commitu tylko z dokumentami (decyzja 21.10.2026), nie bramka wydania',
+  'verify:szybkie': 'szybka bramka na gałęzi pośredniej (decyzja 03.11.2026, wariant A): zmiany od bazy + typecheck, lint; pełne verify przed main',
 };
 
 describe('skrypty package.json (M1-051, L-008)', () => {

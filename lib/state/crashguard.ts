@@ -29,3 +29,6 @@ export function decideBoot(prev: BootGuard): { mode: BootMode; next: BootGuard }
   const starts = prev.starts + 1;
   return { mode: starts >= CRASH_LOOP_THRESHOLD ? 'safe' : 'normal', next: { starts: Math.min(GUARD_MAX, starts) } };
 }
+/** R-11-03: proces uruchomiony przez system w tle (AppState.currentState === 'background' przy starcie) bywa zamrożony i zabity przed „kamieniem” — to nie awaria.
+ * Zwykły start iOS to 'inactive'/'active', więc tylko 'background' zwalnia start z liczenia (pętla awarii przy starcie aktywnym nadal wykrywana). */
+export function startedInBackground(appState: string | null | undefined): boolean { return appState === 'background'; }

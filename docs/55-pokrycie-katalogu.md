@@ -17,13 +17,13 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 48 | 6,8% |
 | Bez figury w aplikacji | 528 | 74,6% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 58 | 8,2% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 94 | 13,3% |
 | Animowany błąd | 124 | 17,5% |
-| Własne wskazówki (źródłowe) | 131 | 18,5% |
-| — z czego z częstymi błędami | 49 | 6,9% |
+| Własne wskazówki (źródłowe) | 167 | 23,6% |
+| — z czego z częstymi błędami | 76 | 10,7% |
 | Zestaw ogólny wskazówek wzorca ruchu | 105 | 14,8% |
-| Bez tekstu wskazówek | 472 | 66,7% |
-| Częste błędy (własne albo zestaw ogólny) | 154 | 21,8% |
+| Bez tekstu wskazówek | 436 | 61,6% |
+| Częste błędy (własne albo zestaw ogólny) | 181 | 25,6% |
 | Role mięśni | 508 | 71,8% |
 | **Pełna karta** | 122 | 17,2% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 132 | 18,6% |
@@ -36,15 +36,48 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości.
 
-Cel osiągnięty: **nie** (42 z 47 liczb).
+Cel osiągnięty: **nie** (9 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 236 | 404 |
-| częste błędy (tekst) | 557 | 154 | 403 |
-| komplet tekstów karty: pl | 671 | 561 | 110 |
-| komplet tekstów karty: en | 671 | 561 | 110 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 272 | 368 |
+| częste błędy (tekst) | 557 | 181 | 376 |
+| komplet tekstów karty: pl | 671 | 571 | 100 |
+| komplet tekstów karty: en | 671 | 571 | 100 |
+| komplet tekstów karty: cs | 531 | 505 | 26 |
+| komplet tekstów karty: sk | 531 | 505 | 26 |
+| komplet tekstów karty: hu | 531 | 505 | 26 |
+| komplet tekstów karty: ro | 531 | 505 | 26 |
+| komplet tekstów karty: bg | 531 | 505 | 26 |
+| komplet tekstów karty: hr | 531 | 505 | 26 |
+| komplet tekstów karty: sl | 531 | 505 | 26 |
+| komplet tekstów karty: sr | 531 | 505 | 26 |
+| komplet tekstów karty: lt | 531 | 505 | 26 |
+| komplet tekstów karty: lv | 531 | 505 | 26 |
+| komplet tekstów karty: et | 531 | 505 | 26 |
+| komplet tekstów karty: uk | 531 | 505 | 26 |
+| komplet tekstów karty: es | 531 | 505 | 26 |
+| komplet tekstów karty: es-419 | 531 | 505 | 26 |
+| komplet tekstów karty: pt | 531 | 505 | 26 |
+| komplet tekstów karty: pt-BR | 531 | 505 | 26 |
+| komplet tekstów karty: de | 531 | 505 | 26 |
+| komplet tekstów karty: fr | 531 | 505 | 26 |
+| komplet tekstów karty: it | 531 | 505 | 26 |
+| komplet tekstów karty: nl | 531 | 505 | 26 |
+| komplet tekstów karty: sv | 531 | 505 | 26 |
+| komplet tekstów karty: da | 531 | 505 | 26 |
+| komplet tekstów karty: nb | 531 | 505 | 26 |
+| komplet tekstów karty: fi | 531 | 505 | 26 |
+| komplet tekstów karty: tr | 531 | 505 | 26 |
+| komplet tekstów karty: el | 531 | 505 | 26 |
+| komplet tekstów karty: id | 531 | 505 | 26 |
+| komplet tekstów karty: ms | 531 | 505 | 26 |
+| komplet tekstów karty: vi | 531 | 505 | 26 |
+| komplet tekstów karty: ru | 531 | 505 | 26 |
+| komplet tekstów karty: ja | 531 | 505 | 26 |
+| komplet tekstów karty: ko | 531 | 505 | 26 |
+| komplet tekstów karty: zh-Hant | 531 | 505 | 26 |
 
 ## Rodziny ruchu
 
@@ -58,16 +91,16 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
 | `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
-| `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 1 | 0 | 27 | 0 | 0 |
-| `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 0 | 0 | 25 | 0 | 0 |
+| `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
+| `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 21 | 0 | 4 | 0 | 0 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 2 | 0 | 18 | 0 | 0 |
 | `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 2 | 0 | 17 | 0 | 0 |
-| `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 1 | 0 | 18 | 0 | 0 |
-| `kb_ballistic` | do zrobienia | 17 | 0 | 16 | 1 | 1 | 0 | 16 | 0 | 0 |
+| `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 6 | 0 | 13 | 0 | 0 |
+| `kb_ballistic` | do zrobienia | 17 | 0 | 16 | 1 | 4 | 0 | 13 | 0 | 0 |
 | `cardio` | do zrobienia | 16 | 0 | 0 | 1 | 5 | 0 | 11 | 0 | 0 |
 | `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 4 | 0 | 10 | 0 | 0 |
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 3 | 0 | 10 | 0 | 0 |
@@ -91,50 +124,50 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `back_extension` | do zrobienia | 4 | 0 | 3 | 0 | 1 | 0 | 3 | 0 | 0 |
 | `cable_press` | do zrobienia | 4 | 0 | 4 | 0 | 1 | 0 | 3 | 0 | 0 |
 | `core_hang` | do zrobienia | 4 | 0 | 3 | 0 | 0 | 0 | 4 | 0 | 0 |
-| `thruster` | do zrobienia | 3 | 0 | 3 | 0 | 0 | 0 | 3 | 0 | 0 |
+| `thruster` | do zrobienia | 3 | 0 | 3 | 0 | 2 | 0 | 1 | 0 | 0 |
 | `kneeling_hinge` | do zrobienia | 2 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 |
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **561**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **571**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 561 | 0 | 0 | 0 |
-| en | 561 | 0 | 0 | 0 |
-| cs | 531 | 30 | 85 | 0 |
-| sk | 531 | 30 | 85 | 0 |
-| hu | 531 | 30 | 85 | 0 |
-| ro | 531 | 30 | 85 | 0 |
-| bg | 531 | 30 | 85 | 0 |
-| hr | 531 | 30 | 85 | 0 |
-| sl | 531 | 30 | 85 | 0 |
-| sr | 531 | 30 | 85 | 0 |
-| lt | 531 | 30 | 85 | 0 |
-| lv | 531 | 30 | 85 | 0 |
-| et | 531 | 30 | 85 | 0 |
-| uk | 531 | 30 | 85 | 0 |
-| es | 531 | 30 | 85 | 0 |
-| es-419 | 531 | 30 | 85 | 0 |
-| pt | 531 | 30 | 85 | 0 |
-| pt-BR | 531 | 30 | 85 | 0 |
-| de | 531 | 30 | 85 | 0 |
-| fr | 531 | 30 | 85 | 0 |
-| it | 531 | 30 | 85 | 0 |
-| nl | 531 | 30 | 85 | 0 |
-| sv | 531 | 30 | 85 | 0 |
-| da | 531 | 30 | 85 | 0 |
-| nb | 531 | 30 | 85 | 0 |
-| fi | 531 | 30 | 85 | 0 |
-| tr | 531 | 30 | 85 | 0 |
-| el | 531 | 30 | 85 | 0 |
-| id | 531 | 30 | 85 | 0 |
-| ms | 531 | 30 | 85 | 0 |
-| vi | 531 | 30 | 85 | 0 |
-| ru | 531 | 30 | 85 | 0 |
-| ja | 531 | 30 | 85 | 0 |
-| ko | 531 | 30 | 85 | 0 |
-| zh-Hant | 531 | 30 | 85 | 0 |
+| pl | 571 | 0 | 0 | 0 |
+| en | 571 | 0 | 0 | 0 |
+| cs | 505 | 66 | 228 | 0 |
+| sk | 505 | 66 | 228 | 0 |
+| hu | 505 | 66 | 228 | 0 |
+| ro | 505 | 66 | 228 | 0 |
+| bg | 505 | 66 | 228 | 0 |
+| hr | 505 | 66 | 228 | 0 |
+| sl | 505 | 66 | 228 | 0 |
+| sr | 505 | 66 | 228 | 0 |
+| lt | 505 | 66 | 228 | 0 |
+| lv | 505 | 66 | 228 | 0 |
+| et | 505 | 66 | 228 | 0 |
+| uk | 505 | 66 | 228 | 0 |
+| es | 505 | 66 | 228 | 0 |
+| es-419 | 505 | 66 | 228 | 0 |
+| pt | 505 | 66 | 228 | 0 |
+| pt-BR | 505 | 66 | 228 | 0 |
+| de | 505 | 66 | 228 | 0 |
+| fr | 505 | 66 | 228 | 0 |
+| it | 505 | 66 | 228 | 0 |
+| nl | 505 | 66 | 228 | 0 |
+| sv | 505 | 66 | 228 | 0 |
+| da | 505 | 66 | 228 | 0 |
+| nb | 505 | 66 | 228 | 0 |
+| fi | 505 | 66 | 228 | 0 |
+| tr | 505 | 66 | 228 | 0 |
+| el | 505 | 66 | 228 | 0 |
+| id | 505 | 66 | 228 | 0 |
+| ms | 505 | 66 | 228 | 0 |
+| vi | 505 | 66 | 228 | 0 |
+| ru | 505 | 66 | 228 | 0 |
+| ja | 505 | 66 | 228 | 0 |
+| ko | 505 | 66 | 228 | 0 |
+| zh-Hant | 505 | 66 | 228 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
@@ -147,7 +180,7 @@ Pełnych kart: 122. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy
 |---:|---:|
 | 0 | 122 |
 | 1 | 4 |
-| 2 | 18 |
-| 3 | 63 |
-| 4 | 348 |
-| 5 | 153 |
+| 2 | 40 |
+| 3 | 72 |
+| 4 | 327 |
+| 5 | 143 |

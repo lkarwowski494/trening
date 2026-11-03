@@ -1,0 +1,31 @@
+[
+{"cwiczenie": "High Cable Curl", "stan": "2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Stań między dwoma górnymi wyciągami i chwyć uchwyty podchwytem, ręce wyciągnięte w bok.", "en": "Stand between two high pulleys and take the handles underhand, arms out to the sides.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/jednoczesne-zginanie-przedramion-stojac-z-wykorzystaniem", "cytat": "Ramiona wyciągnięte, uchwyty wyciągu trzymane podchwytem."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/291/uginanie-przedramion-na-wyciagu-gornym-stojac-w-bramie", "cytat": "Stań w lekkim rozkroku pomiędzy linkami wyciągów górnych."}]},
+ {"rola": "move", "pl": "Ugnij ręce w łokciach, potem płynnie wróć.", "en": "Curl your arms, then return smoothly.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/jednoczesne-zginanie-przedramion-stojac-z-wykorzystaniem", "cytat": "wykonaj mocne zgięcie przedramion w pełnym zakresie ruchu"},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/291/uginanie-przedramion-na-wyciagu-gornym-stojac-w-bramie", "cytat": "Biorąc wdech wykonaj ruch uginania przedramion."}]},
+ {"rola": "mis", "pl": "Szarpanie ciężaru.", "en": "Jerking the weight.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/jednoczesne-zginanie-przedramion-stojac-z-wykorzystaniem", "cytat": "Nie szarp ciężaru."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/291/uginanie-przedramion-na-wyciagu-gornym-stojac-w-bramie", "cytat": "Ruch powinien być płynny."}]}],
+ "sprawdzone_bez_wyniku": ["https://centrumrespo.pl/atlas/kategoria/biceps/ (str. 1-4)", "centrumrespo.pl: 'uginanie przedramion wyciąg górny brama biceps'", "https://maniacmuscle.com/category/arms/biceps/", "maniacmuscle.com: 'cable high curl double biceps crossover'"]},
+{"cwiczenie": "Meadows Row", "stan": "brak", "zdania": [
+ {"rola": "mis", "pl": "Obracanie tułowia przy przyciąganiu.", "en": "Twisting your torso as you pull.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "z setup/move na gałęzi badania/obowiazkowe-1-1 (mieszane.md:177) — id do dopasowania"}]}],
+ "sprawdzone_bez_wyniku": ["5 domen listy: 'Meadows row'"]},
+{"cwiczenie": "Medicine Ball Slam", "stan": "setup 2 z 3; mis wniosek", "zdania": [
+ {"rola": "setup", "pl": "Stań w lekkim rozkroku, piłkę trzymaj oburącz.", "en": "Stand with your feet about shoulder-width apart and hold the ball with both hands.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/crossfit/slam-ball-uderzenia-pilka", "cytat": "Pozycja stojąca, nogi rozstawione na szerokość barków."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/crossfit/535/ball-slams", "cytat": "Stań w lekkim rozkroku."}]},
+ {"rola": "mis", "pl": "Zaokrąglanie pleców przy rzucie i podnoszeniu piłki.", "en": "Rounding your back as you slam or pick up the ball.", "zrodla": [
+  {"serwis": "wniosek", "url": "", "cytat": "hinge.back"},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/crossfit/535/ball-slams", "cytat": "Należy pamiętać o prostych plecach."}]}],
+ "sprawdzone_bez_wyniku": ["maniacmuscle.com: 'medicine ball slam'", "centrumrespo.pl: 'slam ball piłka uderzenia'"]},
+{"cwiczenie": "Cable Curl", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Odsuwanie łokci od tułowia w trakcie uginania.", "en": "Letting your elbows drift away from your sides.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "curl.elbows"}]}]},
+{"cwiczenie": "Lateral Raise (hantle)", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Bujanie tułowiem, żeby unieść ciężar.", "en": "Swinging your torso to get the weight up.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "lat.setup"}]}]},
+{"cwiczenie": "Cable Lateral Raise", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Bujanie tułowiem, żeby unieść ciężar.", "en": "Swinging your torso to get the weight up.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "clat.setup"}]}]},
+{"cwiczenie": "Front Raise", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Zginanie i prostowanie łokci w trakcie ruchu.", "en": "Bending and straightening your elbows during the rep.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "front.elbows"}]}]},
+{"cwiczenie": "Reverse Fly (hantle)", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Unoszenie tułowia w trakcie ruchu.", "en": "Raising your torso during the rep.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "rear.setup"}]}]},
+{"cwiczenie": "Reverse Pec Deck", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Opuszczanie łokci poniżej barków.", "en": "Letting your elbows drop below your shoulders.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "rpd.elbowsHigh"}]}]},
+{"cwiczenie": "Kettlebell Swing", "stan": "wniosek — praktyka", "zdania": [{"rola": "mis", "pl": "Unoszenie kettlebella siłą barków zamiast bioder.", "en": "Lifting the kettlebell with your shoulders instead of your hips.", "zrodla": [{"serwis": "wniosek", "url": "", "cytat": "kb.hips"}]}]}
+]

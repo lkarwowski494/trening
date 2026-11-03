@@ -32,6 +32,7 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
 };
 const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl'];
 
+
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
   test.each(W_ZAKRESIE)('%s: generuj() = plik póz, każda poza ważna', (r) => { expect(skanDozwolonyKod1([r])).toEqual({ [r]: {} }); });
 

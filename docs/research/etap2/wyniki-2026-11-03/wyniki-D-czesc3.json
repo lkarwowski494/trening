@@ -1,0 +1,30 @@
+[
+{"cwiczenie": "Upright Row (linki)", "stan": "komplet 3 – praktyka (F, R jako uproszczenie wariantu sprzętu — recenzent)", "zdania": [
+ {"rola": "setup", "pl": "Stań przodem do dolnego wyciągu, stopy w lekkim rozkroku; chwyć uchwyt nachwytem.", "en": "Stand facing a low pulley, feet slightly apart, and take the handle overhand.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/693/podciaganie-linki-wyciagu-dolnego-do-brody", "cytat": "Stań w lekkim rozkroku przodem do wyciągu dolnego."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/podciaganie-sztangi-pod-brode-upright-barbell", "cytat": "Stopy w lekkim rozkroku, plecy proste, brzuch i pośladki napięte."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/upright-row-with-power-band/", "cytat": "Weź gumę power band i stań ze stopami rozstawionymi na szerokość bioder."}]},
+ {"rola": "move", "pl": "Podciągnij uchwyt blisko ciała w górę wzdłuż tułowia, łokcie prowadzą i są wyżej niż dłonie; opuść powoli.", "en": "Pull the handle up close to your body, elbows leading and higher than your hands; lower it slowly.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/693/podciaganie-linki-wyciagu-dolnego-do-brody", "cytat": "Łokcie przez cały zakres ruchu prowadź nad linkami."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/podciaganie-sztangi-pod-brode-upright-barbell", "cytat": "podciągaj sztangę wzdłuż tułowia możliwie jak najwyżej"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/upright-row-with-power-band/", "cytat": "Na wydechu przyciągnij ręce do brody, prowadząc ramiona z boku tułowia i kierując stawy łokciowe ku górze."}]},
+ {"rola": "mis", "pl": "Bujanie tułowiem albo odchylanie się do tyłu.", "en": "Swinging or leaning back.", "zrodla": [
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/693/podciaganie-linki-wyciagu-dolnego-do-brody", "cytat": "Unikaj bujania tułowiem."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/upright-row-with-power-band/", "cytat": "Nie odchylaj tułowia do tyłu ani nie prostuj kręgosłupa."}]}]},
+{"cwiczenie": "Y Raise (hantle)", "stan": "setup 2 z 3; move komplet 3 (S uproszczenie); mis 2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Połóż się przodem na skośnej ławce, ręce z hantlami zwisają pod barkami.", "en": "Lie face down on an incline bench with the dumbbells hanging under your shoulders.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/trap-y-raises/", "cytat": "Połóż się przodem na ławce skośnej dodatniej, trzymając w rękach hantle."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/plecy/trap-y-raise", "cytat": "Ręce swobodnie opuść bezpośrednio pod barkami."}]},
+ {"rola": "move", "pl": "Unieś proste ręce w górę i lekko w bok, w kształt litery Y; opuść powoli.", "en": "Raise your straight arms up and slightly out into a Y, then lower slowly.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/trap-y-raises/", "cytat": "(do sprawdzenia na stronie: unieś hantle w górę i lekko w bok, łokcie proste, kształt Y)"},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/plecy/trap-y-raise", "cytat": "powoli opuszczaj ręce, kontrolując napięcie mięśni pleców."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/666/y-raise", "cytat": "aż Twoje ciało utworzy kształt litery „Y”"}]},
+ {"rola": "mis", "pl": "Odrywanie klatki od ławki.", "en": "Lifting your chest off the bench.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/plecy/trap-y-raise", "cytat": "nie odrywaj mostka od ławki."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/trap-y-raises/", "cytat": "(do sprawdzenia: nie odrywaj tułowia od ławki)"}]}]},
+{"cwiczenie": "Machine Lateral Raise", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["5 domen: 'unoszenie ramion bokiem na maszynie siedząc machine lateral raise'", "maniacmuscle.com: 'lever lateral raise machine'"]},
+{"cwiczenie": "Cable Y Raise", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["maniacmuscle.com, fabrykasily.pl, potreningu.pl, centrumrespo.pl: 'cable Y raise wyciąg dolny Y'"]},
+{"cwiczenie": "Dumbbell One-Arm Upright Row", "stan": "brak (wersja jednorącz nieopisana; wersje oburącz: S 693, F, R jak Upright Row)", "zdania": []},
+{"cwiczenie": "Smith Machine One-Arm Upright Row", "stan": "brak (jw.)", "zdania": []},
+{"cwiczenie": "Smith Machine Upright Row", "stan": "uproszczenie wariantu Upright Row — tylko po potwierdzeniu recenzenta; inaczej brak", "zdania": []}
+]

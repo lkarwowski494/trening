@@ -1,0 +1,27 @@
+[
+{"cwiczenie": "Bird Dog", "stan": "komplet 3 — praktyka (mis)", "zdania": [
+ {"rola": "mis", "pl": "Przekręcanie albo przechylanie bioder przy unoszeniu nogi.", "en": "Twisting or tilting your hips as you lift the leg.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/bird-dog/", "cytat": "Common mistakes: arching the low back, letting the stomach sag, twisting the hips, lifting the leg too high, shrugging the shoulder, and moving too fast to control alignment."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/ogolne/naprzemienne-wznosy-reki-i-nogi-w-kleku-podpartym", "cytat": "Utrzymuj biodra na jednej wysokości podczas podnoszenia kończyn."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/bird-dog-with-mini-band/", "cytat": "utrzymując stabilny korpus i kontrolując napięcie gumy."}]},
+ {"rola": "mis", "pl": "Wyginanie dolnej części pleców w łuk.", "en": "Arching your lower back.", "wniosek": ["wniosek", "bd.setup"], "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/bird-dog/", "cytat": "arching the low back"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/bird-dog-with-mini-band/", "cytat": "Po wykonaniu ruchu obie kończyny powinny być wyprostowane i ustawione w przedłużeniu tułowia."}]},
+ {"rola": "mis", "pl": "Pośpiech zamiast spokojnego, kontrolowanego ruchu.", "en": "Rushing instead of moving slowly and with control.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/bird-dog/", "cytat": "moving too fast to control alignment"},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/ogolne/naprzemienne-wznosy-reki-i-nogi-w-kleku-podpartym", "cytat": "Ćwiczenie wykonuj powoli, z pełnym zaangażowaniem."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/264/naprzemienne-unoszenie-reki-i-nogi-w-kleku-podpartym", "cytat": "Ruch ma być płynny.", "uwaga": "streszczenie narzędzia, cytat do sprawdzenia"}]}],
+ "odrzucone": [{"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/domowe/naprzemienne-wznosy-reki-i-nogi", "powod": "start z podporu przodem (nogi proste) — inna pozycja ciała"}]},
+{"cwiczenie": "Lying Leg Raise", "stan": "komplet 3 — praktyka (część wspólna)", "zdania": [
+ {"rola": "setup", "pl": "Połóż się na plecach, ręce wzdłuż tułowia, nogi złączone, proste albo lekko ugięte w kolanach.", "en": "Lie on your back, arms by your sides, legs together, straight or with a slight knee bend.", "uwaga": "'ręce wzdłuż tułowia' tylko S — usunąć, jeśli recenzent wymaga 3", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/lying-leg-raise/", "cytat": "Start flat on the floor with your legs extended and together."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/treningi/zrzuc-beben-najlepsze-cwiczenia-na-brzuch", "cytat": "Ponownie ruch zaczynamy od położenia się na plecach na macie lub podłodze."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/637/unoszenie-nog-lezac", "cytat": "(leżenie na plecach, ramiona wzdłuż tułowia, nogi lekko ugięte)", "uwaga": "streszczenie narzędzia, cytat do sprawdzenia"}]},
+ {"rola": "move", "pl": "Unieś nogi w górę nad biodra jednym płynnym ruchem, potem powoli je opuść.", "en": "Raise your legs up over your hips in one smooth motion, then lower them slowly.", "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/lying-leg-raise/", "cytat": "Raise your legs upward in one smooth motion while keeping them mostly straight."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/treningi/zrzuc-beben-najlepsze-cwiczenia-na-brzuch", "cytat": "Wyprostowane nogi unosimy jak do świecy, czyli aż nogi utworzą z tułowiem kąt prosty."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/637/unoszenie-nog-lezac", "cytat": "(unoś nogi w stronę klatki piersiowej; ruch płynny)", "uwaga": "streszczenie narzędzia, cytat do sprawdzenia"}]},
+ {"rola": "mis", "pl": "Wymachiwanie nogami z rozpędu.", "en": "Swinging your legs with momentum.", "wniosek": ["wniosek", "<id move>"], "zrodla": [
+  {"serwis": "M", "url": "https://maniacmuscle.com/lying-leg-raise/", "cytat": "Avoid swinging: Momentum reduces core tension and makes the exercise less effective."}]}]},
+{"cwiczenie": "Bicycle Crunch", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["WebSearch 4 domeny: 'rowerek brzuszki skośne łokieć do przeciwnego kolana'", "WebSearch maniacmuscle.com, potreningu.pl, centrumrespo.pl: 'bicycle crunch'", "https://maniacmuscle.com/bicycle-crunch/ (404)"], "odrzucone": [{"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-brzuch/naprzemienne-przyciaganie-lokci-do-kolan-lezac", "powod": "stopy na podłodze, bez pracy nóg w powietrzu — inna pozycja nóg"}], "nie_sprawdzone": ["potreningu.pl 'rowerek'", "https://centrumrespo.pl/atlas/21-crunch/"]}
+]
