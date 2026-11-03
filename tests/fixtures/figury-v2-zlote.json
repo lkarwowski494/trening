@@ -1089,64 +1089,60 @@
    "raw": "de74a56680d95ef995f4"
   },
   "curl/Barbell Curl": {
-   "svg": "ae64d3bf260e6f5da691",
-   "raw": "87e362ca74c93493f8ca"
+   "svg": "b553731d70e8231b52f7",
+   "raw": "05a55ccf0d774687ba3b"
   },
   "curl/EZ Bar Curl": {
-   "svg": "6b7c0ba2dfd7f92bf99b",
-   "raw": "12d5349b38a0e4e6fd58"
+   "svg": "e6b8dfb70b509cf5065c",
+   "raw": "2fb4d260767095f53b72"
   },
   "curl/Reverse Curl": {
-   "svg": "139e732ca94268444807",
-   "raw": "a9e09a3f75f59d78cdcc"
+   "svg": "e15a12db8925b5a9bed9",
+   "raw": "0a48a3898b841f115bfe"
   },
   "curl/Drag Curl": {
-   "svg": "76ed8a76fd69d0a6d1ea",
-   "raw": "8dfb1e392f59c63d3086"
+   "svg": "9b207e112d065a7261e2",
+   "raw": "f054757f481ca0ecde2d"
   },
   "curl/Biceps Curl (hantle)": {
-   "svg": "1bf0b1a94147446da5a8",
-   "raw": "9c1a78f50da43468c7a8"
+   "svg": "44e6b23326664bece1b9",
+   "raw": "86d01b084466c4ee82ed"
   },
   "curl/Hammer Curl": {
-   "svg": "e4b71645c2aa51677731",
-   "raw": "98b530aad00ca9bd83b1"
+   "svg": "2cd791e0fc6859cb3372",
+   "raw": "a7c8ab59a72e5b8bd2c2"
   },
   "curl/Standing Dumbbell Reverse Curl": {
-   "svg": "5a74835cae8dceab9f4d",
-   "raw": "83a56f4bf4266eda1faa"
-  },
-  "curl/Zottman Curl": {
-   "svg": "1bf0b1a94147446da5a8",
-   "raw": "9c1a78f50da43468c7a8"
+   "svg": "d46a2866de726d3c6896",
+   "raw": "071f14243df6a11cb9cb"
   },
   "curl/Standing Inner-Biceps Curl": {
-   "svg": "dce27a2dbd39143af313",
-   "raw": "c0fa0180775d3b00946e"
+   "svg": "c418bf56c262260ef714",
+   "raw": "e8654d04af7f308f3711"
   },
   "curl/Cross Body Hammer Curl": {
-   "svg": "99820e766aee6e3d87da",
-   "raw": "b1a4d3516d3ba31a3a89"
+   "svg": "850088a161640e9b573b",
+   "raw": "dd9a78afc94b90409f3c"
   },
   "curl/Cable Curl": {
-   "svg": "cb4b30e832706239de82",
-   "raw": "d2aa6ffb30781552d68b"
+   "svg": "06f039edfb8630cd32ec",
+   "raw": "64376a0a9a00506dc924"
   },
   "curl/Reverse Cable Curl": {
-   "svg": "059b063788cc9917b683",
-   "raw": "73efcb823f4d93b3af76"
+   "svg": "49cd0599a89742eb3709",
+   "raw": "e056828486aca9f6005a"
   },
   "curl/Hammer Curl (linki)": {
-   "svg": "dab7881e614aba7b238a",
-   "raw": "5522eb3779dcd24f0174"
+   "svg": "26385aa32bcaeb868b8e",
+   "raw": "4166606536a6bcdd0319"
   },
   "curl/Standing One-Arm Cable Curl": {
-   "svg": "e90d51a04aa789b91d46",
-   "raw": "8e528fc060d2730d34da"
+   "svg": "92992092602ee3adaa5a",
+   "raw": "264be1316c143971808f"
   },
   "curl/Cable Curl (dwie linki)": {
-   "svg": "6bc5c5ca448f94b327a7",
-   "raw": "4205d43cbe6509d4d740"
+   "svg": "60a68cfdcaceaf1775fb",
+   "raw": "8d573baa8fd0eee6f5d3"
   },
   "curl/Incline Curl (hantle)": {
    "svg": "b11ed471afa65d6d5f7b",
@@ -1169,60 +1165,56 @@
    "raw": "4287bbdc2f91970a8061"
   },
   "curl/Concentration Curl (hantle)": {
-   "svg": "0601e2ae86d3d88afa71",
-   "raw": "d357c126cb50996d6d36"
+   "svg": "10770e2484c0002ac92a",
+   "raw": "0c6b7be917ad2ca3891b"
   },
   "curl/Seated Close-Grip Concentration Barbell Curl": {
-   "svg": "ccc70ffaf55a08de4ee0",
-   "raw": "d897da3d0a0f2ca93d46"
+   "svg": "725d30fbecfd4048f976",
+   "raw": "7ebaff125767e677773d"
   },
   "curl/Standing Concentration Curl": {
    "svg": "b5491262bfac74358e4d",
    "raw": "59e0a964f3f736028587"
   },
   "curl/Lying Close-Grip Bar Curl On High Pulley": {
-   "svg": "038c7a7556672edefb85",
-   "raw": "c5f25ea059808a8933c1"
+   "svg": "da39376039ce14f7f3a6",
+   "raw": "fb69d0e141427c230e5b"
   },
   "curl/Lying Cable Curl": {
    "svg": "eafa17c2632e3cdb95dc",
    "raw": "0295fd525e7c0c6e9e37"
   },
   "curl/Barbell Preacher Curl": {
-   "svg": "ce51448fc2774e5ad982",
-   "raw": "b8ef98e83c4cfe5ee696"
+   "svg": "09aca5bf969f65b8ce4a",
+   "raw": "1120d3069d9801a9e6d7"
   },
   "curl/Preacher Curl (EZ)": {
-   "svg": "d46c2c8e3edb26a03e77",
-   "raw": "4b5a033d500c88a1479e"
+   "svg": "4ea1d7d5db14c84eeab3",
+   "raw": "898a278d3bd1b6afc55d"
   },
   "curl/Reverse EZ-Bar Preacher Curl": {
-   "svg": "1582aa362b28af5eb5ee",
-   "raw": "3c30fb17ce280b2a3b71"
+   "svg": "63662d93f999071fc178",
+   "raw": "121ca8ef5a475c8e320e"
   },
   "curl/Preacher Curl": {
-   "svg": "15de58f899dcae9a227c",
-   "raw": "ced063c74a3b85c0ca05"
+   "svg": "3a7b3380e90ec1276a62",
+   "raw": "cb6b452f2ee94165d849"
   },
   "curl/Preacher Hammer Dumbbell Curl": {
-   "svg": "15de58f899dcae9a227c",
-   "raw": "ced063c74a3b85c0ca05"
-  },
-  "curl/Zottman Preacher Curl": {
-   "svg": "15de58f899dcae9a227c",
-   "raw": "ced063c74a3b85c0ca05"
+   "svg": "3a7b3380e90ec1276a62",
+   "raw": "cb6b452f2ee94165d849"
   },
   "curl/Cable Preacher Curl": {
-   "svg": "c352cedeb6bc8ec4f4fb",
-   "raw": "5391cd28499836ea2df6"
+   "svg": "f4a6d3da7ddf7d4caeaf",
+   "raw": "78de55321b579c036765"
   },
   "curl/Machine Biceps Curl": {
-   "svg": "5beb953a8d7b530062bf",
-   "raw": "cf66fd4faa19d6f6cb82"
+   "svg": "210c1f4a981a53b1933b",
+   "raw": "10db982470c1d322b325"
   },
   "curl/One Arm Dumbbell Preacher Curl": {
-   "svg": "b94f017deccef17b5225",
-   "raw": "81d0819060c428ab3204"
+   "svg": "2ae3d192b777559680f7",
+   "raw": "15192ba41930021b87da"
   },
   "curl/Spider Curl": {
    "svg": "0ee0c653e2c2d226770d",
