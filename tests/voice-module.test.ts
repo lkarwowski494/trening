@@ -8,7 +8,7 @@ const load = (native: unknown): Bridge => {
   jest.isolateModules(() => { jest.doMock('expo-modules-core', () => ({ ...jest.requireActual('expo-modules-core'), requireOptionalNativeModule: () => native })); m = jest.requireActual('../modules/voice-cue/index'); });
   return m;
 };
-const fake = () => ({ isSupported: jest.fn(() => true), hasVoice: jest.fn(() => true), headphonesConnected: jest.fn(() => true), speak: jest.fn(async () => true), stop: jest.fn() });
+const fake = () => ({ isSupported: jest.fn(() => true), hasVoice: jest.fn(() => true), voiceQuality: jest.fn(() => 2), headphonesConnected: jest.fn(() => true), speak: jest.fn(async () => true), stop: jest.fn() });
 
 test('z modułem: wywołania trafiają do natywnego z tymi samymi argumentami', async () => {
   const n = fake(); const m = load(n);
@@ -18,6 +18,11 @@ test('z modułem: wywołania trafiają do natywnego z tymi samymi argumentami', 
 test('moduł rzuca wyjątki: most je połyka (false / brak wyjątku) — błąd audio nigdy nie psuje treningu', async () => {
   const m = load({ ...fake(), hasVoice: () => { throw new Error('x'); }, headphonesConnected: () => { throw new Error('x'); }, speak: async () => { throw new Error('x'); }, stop: () => { throw new Error('x'); } });
   expect([m.hasVoice('pl'), m.headphonesConnected(), await m.speak('a', 'pl')]).toEqual([false, false, false]); expect(() => m.stop()).not.toThrow();
+});
+test('ZB-039: voiceQuality — wartość z modułu, wyjątek lub nie-liczba → 0, bez modułu → 0', () => {
+  const n = fake(); const m = load(n); expect(m.voiceQuality('pl-PL')).toBe(2); expect(n.voiceQuality).toHaveBeenCalledWith('pl-PL');
+  expect(load({ ...fake(), voiceQuality: () => { throw new Error('x'); } }).voiceQuality('pl')).toBe(0);
+  expect(load({ ...fake(), voiceQuality: () => undefined }).voiceQuality('pl')).toBe(0); expect(load(null).voiceQuality('pl')).toBe(0);
 });
 test('bez modułu natywnego: wszystko false i no-op', async () => {
   const m = load(null); expect([m.isSupported(), m.hasVoice('pl'), m.headphonesConnected(), await m.speak('a', 'pl')]).toEqual([false, false, false, false]); expect(() => m.stop()).not.toThrow();

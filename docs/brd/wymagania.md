@@ -741,6 +741,20 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy zaczyna się przerwa po odhaczeniu serii
     - Wtedy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia
 
+### BR-GLS-002: Zapowiedzi głosowe używają najlepszego zainstalowanego głosu; wskazówka, jak pobrać lepszy
+- Przepływ: PR-02
+- Dowód potrzeby: docs/18 (03.11.2026 ~17:30 PL, ZB-039); docs/36-glos.md
+- Test: `tests/voice.test.ts`, `tests/voice-ui.test.tsx`, `tests/voice-native.test.ts`, `tests/voice-module.test.ts`, `.maestro/51-glos-ustawienia.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Najlepszy zainstalowany głos
+    - Zakładając, że telefon ma dla języka aplikacji głos podstawowy i premium
+    - Gdy telefon zapowiada serię
+    - Wtedy mówi głosem premium (kolejność: premium, rozszerzony, podstawowy; najpierw pełny kod języka, potem język podstawowy)
+  - Scenariusz: Wskazówka tylko przy głosie podstawowym
+    - Zakładając, że najlepszy zainstalowany głos dla języka jest podstawowy
+    - Gdy użytkownik otwiera Ustawienia
+    - Wtedy pod „Zapowiedzi głosowe” widzi, że lepszy głos pobierze w Ustawieniach iOS (Dostępność); przy głosie rozszerzonym lub premium wskazówki nie ma
+
 ### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
 - Przepływ: PR-08
 - Dowód potrzeby: ZM-07 (docs/design/to-be.md); decyzja właściciela 21.10.2026 (docs/18); kod `app/more/settings.tsx`, `lib/haptics.ts`, `components/ActiveWorkout.tsx` (onDone)

@@ -10,7 +10,7 @@ import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTi
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { hapticsEnabled } from '@/lib/haptics';
-import { sampleVoice, voiceAvailable, voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
+import { sampleVoice, voiceHintNow, voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
@@ -28,6 +28,7 @@ export default function SettingsScreen() {
   useEffect(refreshPerm, [fg]);
   const openIos = () => { Linking.openSettings().catch(() => {}); };
   const [goalsOpen, setGoalsOpen] = useState(false);
+  const voiceHint = voiceHintNow();
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {paywallOn() ? <SubscriptionCard /> /* 0.17.0 (docs/27): karta tylko przy PAYWALL.ENABLED */ : null}
@@ -48,7 +49,7 @@ export default function SettingsScreen() {
         <Segmented testID="voice-mode" label={t('Zapowiedzi głosowe')} options={VOICE_SETTINGS.map(v => [v, voiceSettingLabel(v)] as [VoiceSetting, string])} value={voiceSetting(s)} onChange={setVoiceSetting} />
       </Field>
       <Btn title={t('Posłuchaj przykładu')} small onPress={() => { sampleVoice().catch(() => {}); }} />
-      {!voiceAvailable() ? <Muted style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).')}</Muted> : null}
+      {voiceHint !== null ? <Muted testID={`voice-hint-${voiceHint}`} style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{voiceHint === 'missing' ? t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).') : t('Telefon używa podstawowego głosu. Lepszy głos pobierzesz w Ustawieniach iOS (Dostępność), najlepiej przez Wi-Fi.')}</Muted> : null}
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>

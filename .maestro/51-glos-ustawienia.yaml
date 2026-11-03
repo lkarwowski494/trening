@@ -1,6 +1,6 @@
 # Zapowiedzi głosowe w Ustawieniach (19.10.2026, decyzja właściciela; katalog przepływów W2-03): wybór „Voice announcements” Off / In headphones / Also through the speaker
 # (DEC-05, 20.10.2026: nowa instalacja domyślnie Off; trwały po restarcie) i przycisk „Posłuchaj przykładu” (aplikacja po stuknięciu dalej działa). Dźwięku symulator nie słychać, a to, czy symulator ma głos
-# dla języka, nie jest zagwarantowane — wskazówki „Brak głosu…” scenariusz więc nie wymaga i nie wyklucza (tekst i warianty: Jest, tests/voice-ui.test.tsx).
+# dla języka ani jakości tego głosu (ZB-039: wskazówka „basic voice”) nie jest zagwarantowane — wskazówek „Brak głosu…” i „basic voice” scenariusz więc nie wymaga i nie wyklucza (tekst i warianty: Jest, tests/voice-ui.test.tsx).
 # Mowa w przerwie, słuchawki i ściszanie muzyki: tylko telefon (W2-04). Przycisk „Głos” na ekranie treningu: 54-glos-w-treningu.yaml.
 #
 # Literały (EN z lib/i18n.en.ts):

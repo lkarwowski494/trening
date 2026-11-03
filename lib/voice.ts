@@ -83,6 +83,16 @@ export async function sayRestStart(w: Workout, setId: string): Promise<VoiceDeci
 export const silenceVoice = (): void => { Voice.stop(); };
 /** Czy telefon ma głos dla języka aplikacji (ekran Ustawień pokazuje wskazówkę, gdy nie). */
 export const voiceAvailable = (): boolean => Voice.isSupported() && Voice.hasVoice(locale());
+/** Jakość głosu (ZB-039, decyzja właściciela 03.11.2026): 0 brak, 1 podstawowy, 2 rozszerzony, 3 premium (Apple: AVSpeechSynthesisVoiceQuality). Moduł wybiera najlepszy zainstalowany głos języka. */
+export const VOICE_QUALITY = { none: 0, basic: 1, enhanced: 2, premium: 3 } as const;
+export type VoiceHint = 'missing' | 'better' | null;
+/** Wskazówka w Ustawieniach (czysta decyzja): brak głosu albo brak modułu (jak dotąd) → „missing”; tylko podstawowy → „better” (jak pobrać lepszy); rozszerzony lub premium → bez wskazówki. */
+export function voiceHint(supported: boolean, hasVoice: boolean, quality: number): VoiceHint {
+  if (!supported || !hasVoice || quality <= VOICE_QUALITY.none) return 'missing';
+  return quality < VOICE_QUALITY.enhanced ? 'better' : null;
+}
+/** Wskazówka dla języka aplikacji. */
+export const voiceHintNow = (): VoiceHint => voiceHint(Voice.isSupported(), Voice.hasVoice(locale()), Voice.voiceQuality(locale()));
 /** „Posłuchaj przykładu” w Ustawieniach: przykładowa zapowiedź w języku aplikacji, trasa dźwięku jak telefon ją ustawił (użytkownik sam o to poprosił — bez warunku słuchawek). */
 export async function sampleVoice(): Promise<boolean> {
   watchScreenReader(); const n = 8; const text = `${t('dalej: {name}', { name: 'Bench Press' })}, ${fmtNum(wOut(80), 2)} ${spokenUnit(wOut(80))}, ${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`;

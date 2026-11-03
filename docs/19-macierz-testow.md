@@ -11,9 +11,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
 | UI | 356 | 356 | 0 |
-| TEKST | 1082 | 1082 | 0 |
-| LOGIKA | 1138 | 1138 | 0 |
-| WYMIAR | 166 | 166 | 0 |
+| TEKST | 1083 | 1083 | 0 |
+| LOGIKA | 1140 | 1140 | 0 |
+| WYMIAR | 167 | 167 | 0 |
 
 ## EKRAN
 
@@ -94,7 +94,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | cel s | app/template/[id].tsx | tests/matrix-invariants.test.ts, tests/scenario-full.test.tsx, tests/set-goals-ui.test.tsx +8 |
 | Cel serii: {part} | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | Cele partii | app/more/settings.tsx | tests/interaction-patterns.test.tsx |
-| co | components/LoadEditor.tsx | tests/07-jakosc-002-recovery-cfg.test.ts, tests/access.test.ts, tests/adapt-ui.test.tsx +368 |
+| co | components/LoadEditor.tsx | tests/07-jakosc-002-recovery-cfg.test.ts, tests/access.test.ts, tests/adapt-ui.test.tsx +369 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +3 |
 | Co robią mięśnie | components/MuscleRoles.tsx | tests/muscle-roles-ui.test.tsx |
 | Cofnij | components/DayPanel.tsx | tests/adapt-ui.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +6 |
@@ -112,7 +112,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx +390 |
+| do | app/template/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx +392 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
@@ -195,13 +195,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/public-repo.test.ts |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/a11y-routes.ts, tests/access.test.ts +444 |
+| od | components/LoadEditor.tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/a11y-routes.ts, tests/access.test.ts +445 |
 | Odhacz bez pomiaru | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-tuleja.test.tsx |
 | Odhacz bez pomiaru: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
 | Odrzuć trening | app/history/edit/[id].tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/edit-history.test.tsx +6 |
 | Odrzuć zmiany | app/_layout.tsx | tests/audit-k1-fala2b.test.tsx, tests/backlog-0.10.1-dane-ui.test.tsx, tests/edit-history.test.tsx +4 |
-| OK | app/generator.tsx | tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts, tests/audit-0.10-gen-ui.test.tsx +37 |
+| OK | app/generator.tsx | tests/asc-metadane.test.ts, tests/asc-status-wersji.test.ts, tests/asc-zrzuty.test.ts +38 |
 | Opcje ćwiczenia: {name} | components/DragList.tsx | tests/audit-m1-026-kolejnosc-menu.test.tsx, tests/audit-m1-028-delete-menus.test.tsx, tests/swipe-delete.test.tsx |
 | Opcje treningu | components/ActiveWorkout.tsx | tests/m3-components.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-ui.test.tsx |
 | opcjonalne pole, nie wpływa na objętość | app/more/settings.tsx | tests/matrix-ui.test.tsx |
@@ -451,7 +451,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +15 |
 | {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +152 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +418 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +421 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +90 |
@@ -524,7 +524,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne. | app/paywall.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
 | bezpośrednie | components/ProgressBars.tsx | tests/set-split-ui.test.tsx |
 | Biblioteki natywne iOS spoza npm ({n}) | app/more/licenses.tsx | tests/licenses-native.test.tsx |
-| brak | app/history/edit/[id].tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-zrzuty.test.ts +111 |
+| brak | app/history/edit/[id].tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-status-wersji.test.ts +112 |
 | brak ciężarów — podpowiedź „↑” jak bez miejsca | components/LoadEditor.tsx | tests/bar-no-plates.test.tsx, tests/matrix-ui.test.tsx |
 | Brak ćwiczeń — dodaj pierwsze. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Brak ćwiczeń dostępnych w tym miejscu. | app/generator.tsx | tests/generator-ui.test.tsx |
@@ -864,7 +864,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +4 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +406 |
+| nie | app/exercise/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +407 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1170,8 +1170,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń. | app/more/settings.tsx | tests/tuleja.test.tsx |
 | Sprawdź datę i godzinę | app/history/add.tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Spróbuj ponownie. | app/(tabs)/index.tsx | tests/health-read-ui.test.tsx, tests/interaction-patterns.test.tsx, tests/matrix-ui.test.tsx |
-| SS | lib/state/groups.ts | tests/asc-kontrola.test.ts, tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts +26 |
-| SS {g} | lib/state/groups.ts | tests/asc-kontrola.test.ts, tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts +26 |
+| SS | lib/state/groups.ts | tests/asc-kontrola.test.ts, tests/asc-metadane.test.ts, tests/asc-status-wersji.test.ts +27 |
+| SS {g} | lib/state/groups.ts | tests/asc-kontrola.test.ts, tests/asc-metadane.test.ts, tests/asc-status-wersji.test.ts +27 |
 | stabilizacja | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | stacja | lib/swap.ts | tests/audit-k1-brands.test.ts, tests/audit-m1-048-claims-registry.test.ts, tests/locations-audit.test.tsx +6 |
 | Start następnego treningu: {name} | components/StartPanel.tsx | tests/home-b.test.tsx, tests/ux.test.tsx |
@@ -1226,6 +1226,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | te same mięśnie | lib/swap.ts | tests/matrix-ui.test.tsx |
 | Tego ćwiczenia nie da się już zamienić. | app/swap.tsx | tests/adapt-ui.test.tsx, tests/interaction-guards.test.ts, tests/matrix-logic.test.tsx +1 |
 | Tej sesji nie ma już w historii. | lib/edit.ts | tests/edit-history.test.tsx |
+| Telefon używa podstawowego głosu. Lepszy głos pobierzesz w Ustawieniach iOS (Dostępność), najlepiej przez Wi-Fi. | app/more/settings.tsx | tests/voice-ui.test.tsx |
 | tempo | app/exercises.tsx | tests/generator-ui.test.tsx, tests/i18n-wave2.test.ts, tests/m1-013-sklep-niedostepny-jezyki.test.ts +5 |
 | Ten miesiąc | app/progression.tsx | tests/audit-m1-032-total-bars.test.tsx, tests/period-bars.test.tsx, tests/set-split-ui.test.tsx |
 | Ten okres | components/ProgressBars.tsx | tests/audit-m1-p3-coverage.test.tsx |
@@ -1391,7 +1392,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | wykonane | components/Dashboard.tsx | tests/guard-ui.test.tsx, tests/guide.test.tsx, tests/progression-ui.test.tsx |
 | wykonane + zaplanowane | components/Dashboard.tsx | tests/guide.test.tsx, tests/progression-ui.test.tsx |
 | Wykonane: {text} | components/GuardSection.tsx | tests/guard-ui.test.tsx, tests/set-split-ui.test.tsx |
-| Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}). | components/Chart.tsx | tests/matrix-ui.test.tsx |
+| Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}). | components/Chart.tsx | tests/matrix-ui.test.tsx, tests/voice-ui.test.tsx |
 | Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii. | lib/guide.ts | tests/guide.test.tsx |
 | Wykresy pojawią się po pierwszym zakończonym treningu. | app/(tabs)/progress.tsx | tests/guide.test.tsx, tests/m3-p3-postepy-historia.test.tsx, tests/matrix-dim-langs1.test.tsx +6 |
 | Wyłącz plan: {name} | app/plan.tsx | tests/plan-wczesniej-ui.test.tsx |
@@ -2612,6 +2613,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | voice.sayRestStart | lib/voice.ts | tests/voice.test.ts |
 | voice.silenceVoice | lib/voice.ts | tests/voice.test.ts |
 | voice.voiceAvailable | lib/voice.ts | tests/voice.test.ts |
+| voice.voiceHint | lib/voice.ts | tests/voice.test.ts |
+| voice.voiceHintNow | lib/voice.ts | tests/voice.test.ts |
 | voice.sampleVoice | lib/voice.ts | tests/voice.test.ts |
 | watch/apple.startAppleWatchLink | lib/watch/apple.ts | tests/watch-apple-link.test.ts |
 | watch/apply.decideWatchEvent | lib/watch/apply.ts | tests/audit-m1-005-watch-reset.test.ts, tests/watch-apply.test.ts |
@@ -2798,6 +2801,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | VoiceMode: speak \| announce \| silent | lib/voice.ts | tests/voice-native.test.ts, tests/voice.test.ts |
 | VOICE_REASONS (7) | lib/voice.ts | tests/audit-close-c.test.tsx, tests/audit-m1-027-voice-default.test.ts, tests/voice.test.ts |
 | VOICE_SETTINGS (3) | lib/voice.ts | tests/voice.test.ts |
+| VoiceHint: missing \| better | lib/voice.ts | tests/audit-r72-b.test.ts, tests/voice.test.ts |
 | CLIENT_SCREENS (7) | lib/watch/client.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-close-c.test.tsx +3 |
 | CLIENT_ACTIONS (4) | lib/watch/client.ts | tests/adapt-logic.test.ts, tests/audit-0.10-data.test.ts, tests/audit-m1b-028-watch-ack.test.ts +1 |
 | HealthWriter: watch \| phone \| wait | lib/watch/health.ts | tests/audit-m1-009-watch-edit.test.ts, tests/watch-fixtures.test.ts, tests/watch-health.test.ts |
