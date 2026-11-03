@@ -1857,12 +1857,6 @@
    "url": "https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/",
    "level": 4
   },
-  "ace-142": {
-   "org": "ACE",
-   "title": "Kneeling Hip Flexor Stretch (#142)",
-   "url": "https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/",
-   "level": 4
-  },
   "ace-15": {
    "org": "ACE",
    "title": "Cat-Cow (#15)",
@@ -1903,12 +1897,6 @@
    "org": "ACE",
    "title": "Seated Straddle Stretch (#210)",
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/210/seated-straddle-stretch/",
-   "level": 4
-  },
-  "ace-211": {
-   "org": "ACE",
-   "title": "Step Stretch (#211)",
-   "url": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
    "level": 4
   },
   "ace-216": {
@@ -2139,12 +2127,6 @@
    "url": "https://honline.s.uw.edu/sites/default/files/record_pdfs/Exercises-Plantar-Fasciitis.pdf",
    "level": 4
   },
-  "webmd-calf-step": {
-   "org": "WebMD Ignite",
-   "title": "Calf stretch (step)",
-   "url": "https://www.columbiadoctors.org/health-library/multimedia/calf-stretch-step/",
-   "level": 4
-  },
   "webmd-ignite-ankle-circles": {
    "org": "WebMD Ignite",
    "title": "Ankle Circles (akt. 01.05.2026)",
@@ -2167,12 +2149,6 @@
    "org": "WebMD Ignite",
    "title": "Neck stretch (front)",
    "url": "https://www.columbiadoctors.org/health-library/multimedia/neck-stretch-front/",
-   "level": 4
-  },
-  "webmd-overhead-stretch": {
-   "org": "WebMD Ignite",
-   "title": "Overhead stretch",
-   "url": "https://www.columbiadoctors.org/health-library/multimedia/overhead-stretch/",
    "level": 4
   },
   "webmd-shoulder-posterior": {
@@ -10346,92 +10322,6 @@
    ],
    "mistakes": []
   },
-  "Kneeling Hip Flexor Stretch": {
-   "setup": [
-    {
-     "c": "mobility_floor.n.hfKneel",
-     "s": [
-      [
-       "ace-142",
-       "Step 1 (starting position)"
-      ],
-      [
-       "covenant-lower-body-flex",
-       "s. 1, HIP FLEXOR STRETCH, pkt 1"
-      ],
-      [
-       "livewell-lower-limb-stretch",
-       "s. 2, Hip Flexor Muscle Stretches, rysunek 1"
-      ]
-     ]
-    },
-    {
-     "c": "mobility_floor.n.hfKnee",
-     "s": [
-      [
-       "ace-142",
-       "Step 1 (knee over ankle)"
-      ],
-      [
-       "livewell-lower-limb-stretch",
-       "s. 2, Hip Flexor Muscle Stretches, punkty 2–3"
-      ]
-     ]
-    }
-   ],
-   "move": [
-    {
-     "c": "mobility_floor.n.hfShift",
-     "s": [
-      [
-       "ace-142",
-       "Step 3 (lean forward into the front hip, back knee pressed down)"
-      ],
-      [
-       "covenant-lower-body-flex",
-       "s. 1, HIP FLEXOR STRETCH, pkt 2"
-      ],
-      [
-       "livewell-lower-limb-stretch",
-       "s. 2, Hip Flexor Muscle Stretches, punkt 1"
-      ]
-     ]
-    }
-   ],
-   "tips": [
-    {
-     "c": "mobility_floor.n.core",
-     "s": [
-      [
-       "ace-142",
-       "Step 2 (brace core, pelvis level)"
-      ],
-      [
-       "covenant-lower-body-flex",
-       "s. 1, HIP FLEXOR STRETCH, pkt 1"
-      ],
-      [
-       "livewell-lower-limb-stretch",
-       "s. 1, Instructions for Stretching, punkt 5"
-      ]
-     ]
-    },
-    {
-     "c": "mobility_floor.n.tall",
-     "s": [
-      [
-       "ace-142",
-       "Step 1 (spine tall)"
-      ],
-      [
-       "livewell-lower-limb-stretch",
-       "s. 2, Hip Flexor Muscle Stretches, punkt 1 (torso upright)"
-      ]
-     ]
-    }
-   ],
-   "mistakes": []
-  },
   "Supine Figure-Four Stretch": {
    "setup": [
     {
@@ -10904,84 +10794,6 @@
    "tips": [],
    "mistakes": []
   },
-  "Standing Gastrocnemius Calf Stretch": {
-   "setup": [
-    {
-     "c": "gcalf.set",
-     "s": [
-      [
-       "ace-211",
-       "Step 1: tylko przednia część stopy na stopniu, „The heel is off the step.”"
-      ],
-      [
-       "webmd-calf-step",
-       "kroki 1–2: stopień schodów, pięty opuszczane za krawędź"
-      ]
-     ]
-    },
-    {
-     "c": "gcalf.support",
-     "s": [
-      [
-       "ace-211",
-       "Step 1: palce dłoni lekko na ścianie dla równowagi"
-      ],
-      [
-       "nhs-flexibility",
-       "Calf stretch: „Place your hands on a wall for stability” (wariant: przy ścianie)"
-      ]
-     ]
-    }
-   ],
-   "move": [
-    {
-     "c": "gcalf.move",
-     "s": [
-      [
-       "webmd-calf-step",
-       "krok 2–3: „Slowly let your heels down over the edge of the step…”, potem przytrzymanie"
-      ],
-      [
-       "nhs-shrops-calf",
-       "s. 1, How to Stretch: na schodach „drop your heels down with the legs straight”"
-      ],
-      [
-       "ace-211",
-       "Step 2: powoli opuść piętę tylnej nogi"
-      ]
-     ]
-    }
-   ],
-   "tips": [
-    {
-     "c": "gcalf.knee",
-     "s": [
-      [
-       "nhs-shrops-calf",
-       "s. 1, How to Stretch: nogi proste — środek łydki; kolana ugięte — „lower down the calf”"
-      ],
-      [
-       "ace-152",
-       "Step 4: lekko ugięte tylne kolano przenosi rozciąganie na płaszczkowaty (wariant: przy ścianie)"
-      ]
-     ]
-    },
-    {
-     "c": "st.tension",
-     "s": [
-      [
-       "webmd-calf-step",
-       "kroki 2–3: powolne opuszczanie, „You should feel a gentle stretch…”"
-      ],
-      [
-       "ace-211",
-       "Step 2: „Slowly lower the left (back) heel…”"
-      ]
-     ]
-    }
-   ],
-   "mistakes": []
-  },
   "Wall Calf Stretch": {
    "setup": [
     {
@@ -11339,40 +11151,6 @@
    "tips": [],
    "mistakes": []
   },
-  "Overhead Stretch": {
-   "setup": [
-    {
-     "c": "mobility_stand.s.overheadSet",
-     "s": [
-      [
-       "webmd-overhead-stretch",
-       "kroki 1–2: stań swobodnie, „Looking straight ahead…”"
-      ],
-      [
-       "duke-oeso-stretches",
-       "s. 1–2, Overhead Stretch: „While sitting or standing…” (potwierdza tylko pozycję stojącą)"
-      ]
-     ]
-    }
-   ],
-   "move": [
-    {
-     "c": "mobility_stand.s.overheadMove",
-     "s": [
-      [
-       "webmd-overhead-stretch",
-       "krok 2: „…raise both arms over your head and reach toward the ceiling.”"
-      ],
-      [
-       "duke-oeso-stretches",
-       "s. 1–2, Overhead Stretch: „…push both arms straight up…”"
-      ]
-     ]
-    }
-   ],
-   "tips": [],
-   "mistakes": []
-  },
   "Chin To Chest Stretch": {
    "setup": [
     {
@@ -11618,7 +11396,6 @@
   "Overhead Triceps Stretch",
   "Side Neck Stretch",
   "Chest And Front Of Shoulder Stretch",
-  "Overhead Stretch",
   "Chin To Chest Stretch",
   "Arm Circles",
   "Ankle Circles",

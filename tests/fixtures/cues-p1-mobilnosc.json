@@ -1,5 +1,5 @@
 {
- "_opis": "Partia P1 integracji badań (G2 mobilność, linia 1.1, 02.11.2026): ćwiczenia z nowymi kartami własnymi, lista kart niepełnych (partial) i nowe zdania. Źródło: docs/research/wskazowki-fala-w1 (gałąź badania/g2-mobilnosc, przeliczenie-2026-11-02.md), zdania z < 2 niezależnymi źródłami szczebla ≤ 4 pominięte.",
+ "_opis": "Partia P1 integracji badań (G2 mobilność, linia 1.1, 02.11.2026): 30 ćwiczeń z nowymi kartami własnymi, lista kart niepełnych (partial) i nowe zdania. Źródło: docs/research/wskazowki-fala-w1 (gałąź badania/g2-mobilnosc, przeliczenie-2026-11-02.md), zdania z < 2 niezależnymi źródłami szczebla ≤ 4 pominięte.",
  "cwiczenia": [
   "Foam Roll: Quadriceps",
   "Foam Roll: Hamstrings",
@@ -12,7 +12,6 @@
   "External Rotation with Band",
   "External Rotation (hantel)",
   "Internal Rotation with Band",
-  "Kneeling Hip Flexor Stretch",
   "Supine Figure-Four Stretch",
   "Butterfly Stretch",
   "Side-Lying Quad Stretch",
@@ -22,14 +21,12 @@
   "The Straddle",
   "Peroneals Stretch",
   "Posterior Tibialis Stretch",
-  "Standing Gastrocnemius Calf Stretch",
   "Wall Calf Stretch",
   "Standing Soleus And Achilles Stretch",
   "Cross-Body Shoulder Stretch",
   "Overhead Triceps Stretch",
   "Side Neck Stretch",
   "Chest And Front Of Shoulder Stretch",
-  "Overhead Stretch",
   "Chin To Chest Stretch",
   "Arm Circles",
   "Ankle Circles",
@@ -55,7 +52,6 @@
   "Overhead Triceps Stretch",
   "Side Neck Stretch",
   "Chest And Front Of Shoulder Stretch",
-  "Overhead Stretch",
   "Chin To Chest Stretch",
   "Arm Circles",
   "Ankle Circles",
@@ -84,12 +80,8 @@
   "foam_roll.ub.path",
   "foam_roll.ub.setup",
   "mobility_floor.n.bfHinge",
-  "mobility_floor.n.core",
   "mobility_floor.n.f4Cross",
   "mobility_floor.n.f4Pull",
-  "mobility_floor.n.hfKnee",
-  "mobility_floor.n.hfKneel",
-  "mobility_floor.n.hfShift",
   "mobility_floor.n.hingeFlat",
   "mobility_floor.n.mis.roundBack",
   "mobility_floor.n.qPull",
@@ -125,8 +117,6 @@
   "mobility_stand.s.neckSet",
   "mobility_stand.s.neckShouldersDown",
   "mobility_stand.s.neckSideMove",
-  "mobility_stand.s.overheadMove",
-  "mobility_stand.s.overheadSet",
   "mobility_stand.s.shoulderLoose",
   "mobility_stand.s.soleusMove",
   "mobility_stand.s.triMove",
@@ -200,5 +190,10 @@
   "rotator_cuff.pullMove",
   "rotator_cuff.pullSetup",
   "rotator_cuff.sideHead"
- ]
+ ],
+ "wylaczone_zestaw_ogolny": {
+  "Standing Gastrocnemius Calf Stretch": "ma zrecenzowany zestaw ogólny (figury-recenzja.json, 1.0.1) — wraca do zestawu ogólnego (decyzja koordynatora 02.11.2026)",
+  "Overhead Stretch": "ma zrecenzowany zestaw ogólny (figury-recenzja.json, 1.0.1) — wraca do zestawu ogólnego (decyzja koordynatora 02.11.2026)",
+  "Kneeling Hip Flexor Stretch": "ma zrecenzowany zestaw ogólny (figury-recenzja.json, 1.0.1) — wraca do zestawu ogólnego (decyzja koordynatora 02.11.2026)"
+ }
 }

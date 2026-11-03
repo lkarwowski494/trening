@@ -1272,6 +1272,307 @@
    "kto": "06-tresci — recenzja bramki 4 z 27.10.2026 (figura v1 + karta); wpis karty przeniesiony przez koordynatora linii 1.1 02.11.2026 bez zmiany treści",
    "sha": "f6c1f0a2e60d",
    "uwagi": "Treść karty bez zmian od recenzji 27.10.2026: skrót v1 (figura + wskazówki) 130597855e6d był aktualny do 02.11.2026 (tests/figury-recenzja.test.tsx zielony na integracja-1-1 @ 3d0e048). Przeniesienie, nie nowa recenzja."
+  },
+  "Foam Roll: Quadriceps": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "113626bae5df",
+   "uwagi": "Sprawdzone: OrthoBethesda (FR just above the knees → below hip crease; Avoid rolling directly over the joints), OSU (cross your other leg over the top). Zmiana lokalizacji nr 3 i 32 bez zmiany sensu."
+  },
+  "Foam Roll: Hamstrings": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "07958aebbed1",
+   "uwagi": "Sprawdzone: OrthoBethesda (long-sitting, FR above the back of the knees → buttocks), OSU (sitting on a foam roll under both thighs). Zmiana lokalizacji nr 16 bez zmiany sensu."
+  },
+  "Calves-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "e28d7d5f52e3",
+   "uwagi": "Sprawdzone: NASM (hips off the floor, one leg on top, knee → ankle; Rolling too quickly / excessive pressure jako częste błędy), OrthoBethesda (heel → below the knee)."
+  },
+  "Iliotibial Tract-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "af8a68e60bc8",
+   "uwagi": "Sprawdzone: OrthoBethesda (avoid placing pressure directly over the bony area near the top of the thigh), OSU (Don't let the foam roll go underneath your knee). Zmiana lokalizacji nr 17 („przed dolną”) poprawia zgodność z CCMC."
+  },
+  "Latissimus Dorsi-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "d7a3e08c4871",
+   "uwagi": "Sprawdzone: OrthoBethesda (lying on your side… FR placed just below your armpit), NASM (slow, controlled; błędy: too quickly, excessive pressure)."
+  },
+  "Piriformis-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "b7fe6f2b1636",
+   "uwagi": "Sprawdzone: OSU (Sit on a foam roll and cross your right leg on top of your left knee), OrthoBethesda (crossing the ankle over the opposite thigh, back and forth a few inches)."
+  },
+  "Rhomboids-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "f4e61bdf1591",
+   "uwagi": "Sprawdzone: OSU „Spine roll” (Slowly roll forward and back across your back using your legs) i OrthoBethesda (FR under lower ribs → top of the shoulder). Rolowanie w górę i w dół pleców wymaga wałka w poprzek — „w poprzek” zgodne z oboma; „stopy na podłodze” wynika z „using your legs”. Uwaga bez blokady: OrthoBethesda radzi rolować obok kręgosłupa i objąć łokcie (łopatki na boki) — możliwe uzupełnienie w przyszłości. Zmiana lokalizacji nr 14–15 bez zmiany sensu."
+  },
+  "Foot-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "196758c327ca",
+   "uwagi": "Sprawdzone: Columbia/WebMD Ignite (Sit in a chair. Place your foot on a firm, tube-shaped object; roll back and forth), UW Medicine (ball, from the ball to the heel). Karta częściowa (bez błędów) — zgodnie z decyzją 02.11.2026 o minimalnej karcie."
+  },
+  "External Rotation with Band": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "0081de688b36",
+   "uwagi": "Sprawdzone: Columbia/WebMD Ignite (waist height; unaffected side toward the door → ręka dalsza od zaczepu; forearm across your belly; Keep your elbow and upper arm tucked; Slowly move your arm back). Figura v2 rotator_cuff stoi, guma z zaczepem — zgodne. Zmiany lokalizacji nr 7–8 i 27 bez zmiany sensu (opis widocznego ruchu dłoni zgodny z „rotate your forearm out”)."
+  },
+  "External Rotation (hantel)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "9190e849f0f0",
+   "uwagi": "Sprawdzone: South Tees (lying on your side… lift the forearm toward the ceiling, elbow at a right angle, maintain contact with the towel, slowly back down). Figura v2 w leżeniu bokiem (pochylenieTulowia −90, hantel) — zgodna. Zmiana lokalizacji nr 27 (sideMove) bez zmiany sensu."
+  },
+  "Internal Rotation with Band": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "aca836b22b61",
+   "uwagi": "Sprawdzone: Columbia/WebMD Ignite (affected side toward the door → ręka bliższa zaczepu; elbow 90; rotate your forearm toward your body until it touches your belly; slowly back). Zmiany lokalizacji nr 9–10 i 27 bez zmiany sensu."
+  },
+  "Supine Figure-Four Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "2125d4eb5177",
+   "uwagi": "Sprawdzone: Livewell (both knees bent, cross the left leg over the right, pull your right knee toward your chest, Feel a stretch in the buttocks), Athletico (wariant zaawansowany: draw the legs towards the chest). Zmiana lokalizacji nr 12–13 („drugą” zamiast „dolną”) bez zmiany sensu, usuwa niejasność."
+  },
+  "Butterfly Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "0897280e2f00",
+   "uwagi": "Sprawdzone: ACE #216 (trunk vertical; elbows… push the thighs downward; move from the hips and not your low back). Zmiana lokalizacji nr 11 („podwijanie miednicy”) — ten sam sens (tyłopochylenie)."
+  },
+  "Side-Lying Quad Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "6c0b18bbb735",
+   "uwagi": "Sprawdzone: Livewell (Lying on your side… take your upper foot and pull it up toward your buttocks; Keep your knees together)."
+  },
+  "Cat-Cow": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "cbae23964e25",
+   "uwagi": "Sprawdzone: ACE #15 (hands directly under your shoulders, knees under your hips; exhale… pushing your spine upwards; Let your stomach fall towards the floor)."
+  },
+  "Child's Pose": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "c05005a4f061",
+   "uwagi": "Sprawdzone: ACE #227 (Kneel… placing your hands on the ground; bringing your glutes to your heels; chest to rest between your thighs)."
+  },
+  "The Straddle": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "9ef315960170",
+   "uwagi": "Sprawdzone: ACE #210 (legs apart, knees extended, toes towards the ceiling; trunk vertical; bend forward from your hips; avoid rounding your back). Figura v2 mobility_floor (siad rozkroczny, tułów pochylony) zgodna. Zmiana lokalizacji nr 23 bez zmiany sensu."
+  },
+  "Peroneals Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "5347ae8fe87e",
+   "uwagi": "Sprawdzone: ECU (wrap towel around foot… pressure with arm holding side of towel on inside of foot). Inwersja rozciąga strzałkowe — kierunek poprawny. Zmiany lokalizacji nr 4 i 6 („taśma”) bez zmiany sensu."
+  },
+  "Posterior Tibialis Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "cb48e90a2f5d",
+   "uwagi": "Sprawdzone: ECU (…holding side of towel on outside). Ewersja rozciąga piszczelowy tylny — kierunek poprawny. Zmiany lokalizacji nr 4–5 bez zmiany sensu."
+  },
+  "Wall Calf Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "07a87a7c88c3",
+   "uwagi": "Sprawdzone: ACE #152 (split-stance… both feet flat on the floor and toes pointing forward; back leg straight, pressing heel into the ground; ugięte tylne kolano — soleus), Cancer Council Victoria (hands flat against the wall; Do not bounce). Zmiana lokalizacji nr 2 („pochyl się do ściany”) zgodna z CCV „lean in”."
+  },
+  "Standing Soleus And Achilles Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "b1ad85a5d670",
+   "uwagi": "Sprawdzone: ACE #152 krok 4 (slightly flex the back knee while pressing the heel into the floor). Zmiana lokalizacji nr 30 (EN) nie zmienia skrótu."
+  },
+  "Cross-Body Shoulder Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "c3de51061483",
+   "uwagi": "Sprawdzone: Cancer Council Victoria (Raise one arm to shoulder height and slowly and gently pull it across your chest, podtrzymanie drugą ręką)."
+  },
+  "Overhead Triceps Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "9b2ae69aca8e",
+   "uwagi": "Sprawdzone: ACE #174 (let your right hand drop to the middle of your back; fingers just above the elbow, light pressure), CCV (forearm down your back). „Między łopatki” jest nieco węższe niż „middle of your back” — dopuszczalne; zalecane wyrównanie wg lokalizacji nr 28 w wersji PL „na środek pleców” / EN „toward the middle of your back” (oba źródła)."
+  },
+  "Side Neck Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "5bad44d2b0c3",
+   "uwagi": "Sprawdzone: ACE #202 (Stand… pull shoulders down and back; Slowly draw your right ear toward your right shoulder stopping when you feel the stretch)."
+  },
+  "Chest And Front Of Shoulder Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "db218b19b471",
+   "uwagi": "Sprawdzone: ACE #209 (wariant: clasping your hands behind your back; lift your chest up and out, shoulder blades together), MedlinePlus (clasp hands behind back; stretch in upper arms and chest). Karta nie podaje kierunku dłoni — brak sprzeczności (MedlinePlus: palms facing up, ACE nie określa). Zmiana lokalizacji nr 1 („barków”) zgodna z „front of shoulders” — poprawia zgodność."
+  },
+  "Chin To Chest Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "87d9ec3873de",
+   "uwagi": "Sprawdzone: ACE #204 (Slowly drop your chin toward your chest; Avoid any movement of the shoulders)."
+  },
+  "Arm Circles": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "7ba6ee3e0d1d",
+   "uwagi": "Sprawdzone: Arthritis Foundation (arms out to the sides… at shoulder height; circles in each direction; Progressively increase the size), UC Berkeley UHS (beginning small and increasing size; 10 forward, reverse). Zmiany lokalizacji nr 20 i 22 bez zmiany sensu."
+  },
+  "Ankle Circles": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "fdb9ccd3f39a",
+   "uwagi": "Sprawdzone: UC Berkeley UHS (Lift right leg… From ankle, make clockwise circles… reverse). Karta częściowa (bez błędów). Zmiana lokalizacji nr 19 bez zmiany sensu."
+  },
+  "Wrist Circles": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "b663a246e985",
+   "uwagi": "Sprawdzone: UC Berkeley UHS (hands loosely closed; Roll wrist in clockwise… counterclockwise circles). Zmiany lokalizacji nr 18 i 21 bez zmiany sensu."
+  },
+  "Supine Spinal Twist": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — do poprawy, partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+   "sha": "ea4880b4b184",
+   "uwagi": "Zdania supTwist.setup („ugnij kolano”) i supTwist.move („przenieś ugięte kolano w poprzek ciała”) opisują wariant z jednym kolanem, a wszystkie trzy przypisane źródła opisują wariant z dwoma kolanami: HSS Trunk Rotation („bend both knees”), Advocate Aurora („Lie on your back with knees bent and feet flat… Gently drop your knees to one side”), CUH Knee rolls — sam wpis w cues.json oznacza je „wariant: oba kolana”. Brzmienie nie mówi tego, co źródło. ACE #229 (Supine Spinal Twist) to inny wariant (leżenie bokiem, oba kolana zgięte, skręt tułowia) — też nie potwierdza jednego kolana. Zmiana lokalizacji nr 24–26 („jedno kolano”) utrwala rozjazd. supTwist.shoulders i mis.shoulder są poprawne (HSS: Keep your shoulders in place).",
+   "poprawka": "Wariant A (rekomendacja, źródła już są): przepisać setup na „Połóż się na plecach, kolana ugięte, stopy płasko na podłodze.” i move na „Powoli opuść oba kolana na jedną stronę; barki zostają na podłodze.” (HSS + Aurora + CUH), tips i błąd bez zmian; sprawdzić zgodność z przyszłą figurą v2 (reguła skret_miednica_vs_barki). Wariant B: zostawić jedno kolano (dawna nazwa Knee Across The Body), ale znaleźć 2 niezależne źródła szczebla 4 dla wersji z jednym kolanem; do tego czasu karta bez wpisu wyswietlana."
   }
  },
  "zestawy": {

@@ -93,9 +93,9 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 135; zdań (z powtórzeniami między ćwiczeniami): 583; unikalnych zdań: 406; źródeł: 292.
+- Ćwiczenia ze wskazówkami: 132; zdań (z powtórzeniami między ćwiczeniami): 571; unikalnych zdań: 397; źródeł: 288.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 44 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Overhead Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 43 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles.
 
 ## Otwarte — bez wskazówek
 
@@ -1788,7 +1788,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Połóż się przodem, oprzyj na przedramionach, wałek pod udami. — Connecticut Children's Sports Medicine: [Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.)](https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf) (s. 2, „Quad” („lying on your stomach with a foam roller under your upper thigh… elbows”)); Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Quadriceps” („Lie with the roll under the top of one thigh… Prop yourself on your elbows”)); OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „1. Quadriceps” („Begin by lying face down”)) `foam_roll.quad.setup`
+- Leżąc przodem, oprzyj się na przedramionach; wałek pod udami. — Connecticut Children's Sports Medicine: [Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.)](https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf) (s. 2, „Quad” („lying on your stomach with a foam roller under your upper thigh… elbows”)); Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Quadriceps” („Lie with the roll under the top of one thigh… Prop yourself on your elbows”)); OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „1. Quadriceps” („Begin by lying face down”)) `foam_roll.quad.setup`
 
 **Ruch**
 
@@ -1805,7 +1805,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź z wałkiem pod tyłem ud i podeprzyj się rękami. — OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „2. Hamstrings” („Begin in long-sitting, with the FR placed just above the back of the knees”)); Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Hamstrings” („Sit with the roll under both thighs. Use your arms…”)) `foam_roll.ham.setup`
+- Usiądź z wałkiem pod tylną stroną ud i podeprzyj się rękami. — OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „2. Hamstrings” („Begin in long-sitting, with the FR placed just above the back of the knees”)); Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Hamstrings” („Sit with the roll under both thighs. Use your arms…”)) `foam_roll.ham.setup`
 
 **Ruch**
 
@@ -1842,7 +1842,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Ustawienie**
 
 - Połóż się na boku, wałek pod zewnętrzną stroną uda. — Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Iliotibial band” („Lie on your side with the roll under your bottom thigh.”)); OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „5. Lateral Thigh (IT Band)” („Begin by lying on your side”)); Connecticut Children's Sports Medicine: [Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.)](https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf) (s. 1, „IT Band” („lying on your side with your hip resting on a foam roll”)) `foam_roll.it.setup`
-- Górną nogę przełóż przed siebie i oprzyj stopę o podłogę. — Connecticut Children's Sports Medicine: [Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.)](https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf) (s. 1, „IT Band” („your upper leg crossed in front of the other, and that foot resting on the ground”)); Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Iliotibial band” („Use your arms and top leg to roll”)) `foam_roll.it.topLeg`
+- Górną nogę przełóż przed dolną i postaw stopę na podłodze. — Connecticut Children's Sports Medicine: [Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.)](https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf) (s. 1, „IT Band” („your upper leg crossed in front of the other, and that foot resting on the ground”)); Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Iliotibial band” („Use your arms and top leg to roll”)) `foam_roll.it.topLeg`
 
 **Ruch**
 
@@ -1894,7 +1894,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Odpychaj się nogami i przetaczaj wałek wzdłuż górnej części pleców. — Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Spine roll” („Use your legs to roll slowly up and down.”)); OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „7. Mid/Upper Back” („Roll the FR upward to the top of the shoulder/base of the neck”)) `foam_roll.ub.path`
+- Odpychaj się nogami i roluj górną część pleców. — Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Spine roll” („Use your legs to roll slowly up and down.”)); OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 2, „7. Mid/Upper Back” („Roll the FR upward to the top of the shoulder/base of the neck”)) `foam_roll.ub.path`
 - Roluj powoli, krótkimi ruchami. — Ohio State University Wexner Medical Center: [Foam Rolling Exercises (transkrypcja filmu)](https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt) („Spine roll” („roll slowly up and down”)); OrthoBethesda Therapy Services: [Foam Rolling (FR) Exercises (PDF, 2 s., 2015)](https://www.orthobethesda.com/foam-rolling-exercises/) (s. 1, General Instructions („Slowly move the roller”)) `smr.slow`
 
 **Wskazówki**
@@ -1916,11 +1916,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Ustawienie**
 
 - Zaczep gumę na wysokości pasa i stań do niej bokiem. — HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation); WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja, akapity 1–2) `rotator_cuff.bandSetup`
-- Chwyć dalszą ręką; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem. — WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja: elbow 90°, forearm across the belly); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation (hand close to chest)) `rotator_cuff.erStart`
+- Chwyć gumę ręką dalej od zaczepu; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem. — WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja: elbow 90°, forearm across the belly); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation (hand close to chest)) `rotator_cuff.erStart`
 
 **Ruch**
 
-- Obracaj ramię na zewnątrz, odsuwając dłoń od brzucha, tak daleko, jak wygodnie. — HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation); WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja: rotate the forearm outward); AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 9 External Rotation) `rotator_cuff.erMove`
+- Odsuwaj dłoń od brzucha na zewnątrz, tak daleko, jak wygodnie. — HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation); WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja: rotate the forearm outward); AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 9 External Rotation) `rotator_cuff.erMove`
 
 **Wskazówki**
 
@@ -1939,7 +1939,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Unoś hantel w górę, obracając ramię — łokieć zostaje przy boku. — AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 17); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 2, Sidelying external rotation); South Tees Hospitals NHS Foundation Trust: [Rotator cuff in side lying](https://www.southtees.nhs.uk/resources/rotator-cuff-in-side-lying/) (instrukcja, krok 2) `rotator_cuff.sideMove`
+- Unoś hantel, obracając przedramię w górę; łokieć zostaje przy boku. — AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 17); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 2, Sidelying external rotation); South Tees Hospitals NHS Foundation Trust: [Rotator cuff in side lying](https://www.southtees.nhs.uk/resources/rotator-cuff-in-side-lying/) (instrukcja, krok 2) `rotator_cuff.sideMove`
 
 **Wskazówki**
 
@@ -1954,32 +1954,16 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Ustawienie**
 
 - Zaczep gumę na wysokości pasa i stań do niej bokiem. — HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, Internal Rotation); WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja, akapity 1–2) `rotator_cuff.bandSetup`
-- Chwyć bliższą ręką; łokieć zgięty pod kątem prostym przy boku. — WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja (affected side toward the door; elbow 90°)); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, Internal Rotation (elbow flexed at 90 degrees)) `rotator_cuff.irStart`
+- Chwyć gumę ręką bliżej zaczepu; łokieć zgięty pod kątem prostym przy boku. — WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja (affected side toward the door; elbow 90°)); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, Internal Rotation (elbow flexed at 90 degrees)) `rotator_cuff.irStart`
 
 **Ruch**
 
-- Obracaj ramię do środka, prowadząc dłoń do brzucha. — HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1 (move the hand toward the belly)); WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja (until it touches your belly)); AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 8 Internal Rotation) `rotator_cuff.irMove`
+- Przyciągaj dłoń do brzucha. — HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1 (move the hand toward the belly)); WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja (until it touches your belly)); AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 8 Internal Rotation) `rotator_cuff.irMove`
 
 **Wskazówki**
 
 - Łokieć zgięty i przy boku — obraca się tylko przedramię. — AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 8 (keep your elbow pressed into your side)); WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja) `rot.elbow`
 - Wracaj powoli. — AAOS: [Rotator Cuff and Shoulder Conditioning Program](https://www.orthoinfo.org/en/recovery/rotator-cuff-and-shoulder-conditioning-program/) (ćw. 8); WebMD Ignite: [Shoulder internal rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/) (instrukcja (slowly move it back)) `rot.slow`
-
-### Kneeling Hip Flexor Stretch
-
-**Ustawienie**
-
-- Uklęknij na jedno kolano, drugą stopę postaw przed sobą. — ACE: [Kneeling Hip Flexor Stretch (#142)](https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/) (Step 1 (starting position)); Covenant HealthCare: [Lower Body Flexibility (PDF, 2 s.)](https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf) (s. 1, HIP FLEXOR STRETCH, pkt 1); Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 2, Hip Flexor Muscle Stretches, rysunek 1) `mobility_floor.n.hfKneel`
-- Przednie kolano trzymaj nad kostką. — ACE: [Kneeling Hip Flexor Stretch (#142)](https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/) (Step 1 (knee over ankle)); Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 2, Hip Flexor Muscle Stretches, punkty 2–3) `mobility_floor.n.hfKnee`
-
-**Ruch**
-
-- Przesuń biodra w przód, aż poczujesz rozciąganie z przodu biodra tylnej nogi. — ACE: [Kneeling Hip Flexor Stretch (#142)](https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/) (Step 3 (lean forward into the front hip, back knee pressed down)); Covenant HealthCare: [Lower Body Flexibility (PDF, 2 s.)](https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf) (s. 1, HIP FLEXOR STRETCH, pkt 2); Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 2, Hip Flexor Muscle Stretches, punkt 1) `mobility_floor.n.hfShift`
-
-**Wskazówki**
-
-- Lekko napnij brzuch, żeby miednica się nie bujała. — ACE: [Kneeling Hip Flexor Stretch (#142)](https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/) (Step 2 (brace core, pelvis level)); Covenant HealthCare: [Lower Body Flexibility (PDF, 2 s.)](https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf) (s. 1, HIP FLEXOR STRETCH, pkt 1); Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 1, Instructions for Stretching, punkt 5) `mobility_floor.n.core`
-- Tułów trzymaj prosto. — ACE: [Kneeling Hip Flexor Stretch (#142)](https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/) (Step 1 (spine tall)); Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 2, Hip Flexor Muscle Stretches, punkt 1 (torso upright)) `mobility_floor.n.tall`
 
 ### Supine Figure-Four Stretch
 
@@ -1989,7 +1973,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Przyciągaj dolną nogę do klatki, aż poczujesz rozciąganie w pośladku. — Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 2, Hip Extensor Muscle Stretch, punkty 2–3); Athletico Physical Therapy: [Stretch of the Week: Figure 4](https://athletico.com/?p=27325) (Step 2 (Advanced)) `mobility_floor.n.f4Pull`
+- Przyciągaj drugą nogę do klatki, aż poczujesz rozciąganie w pośladku. — Livewell Southwest: [Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.)](https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf) (s. 2, Hip Extensor Muscle Stretch, punkty 2–3); Athletico Physical Therapy: [Stretch of the Week: Figure 4](https://athletico.com/?p=27325) (Step 2 (Advanced)) `mobility_floor.n.f4Pull`
 
 ### Butterfly Stretch
 
@@ -2003,7 +1987,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Garbienie się i odchylanie miednicy w tył. — ACE: [Seated Butterfly Stretch (#216)](https://www.acefitness.org/resources/everyone/exercise-library/216/seated-butterfly-stretch/) (Step 1 (back flat, move from the hips, not the low back)); Covenant HealthCare: [Lower Body Flexibility (PDF, 2 s.)](https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf) (s. 2, BUTTERFLY STRETCH, pkt 2 (do not allow pelvis to tilt backward)) `mobility_floor.n.mis.roundBack`
+- Garbienie się i podwijanie miednicy. — ACE: [Seated Butterfly Stretch (#216)](https://www.acefitness.org/resources/everyone/exercise-library/216/seated-butterfly-stretch/) (Step 1 (back flat, move from the hips, not the low back)); Covenant HealthCare: [Lower Body Flexibility (PDF, 2 s.)](https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf) (s. 2, BUTTERFLY STRETCH, pkt 2 (do not allow pelvis to tilt backward)) `mobility_floor.n.mis.roundBack`
 
 ### Side-Lying Quad Stretch
 
@@ -2046,11 +2030,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Połóż się na plecach i ugnij kolano. — HSS: [HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021)](https://www.hss.edu/health-library/move-better/back-neck-stretches) (Trunk Rotation, krok 1 (wariant: oba kolana)); Advocate Aurora Health: [Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019)](https://ahc.aurorahealthcare.org/fywb/x20549.pdf) (krok 1 (wariant: oba kolana)) `mobility_floor.t.supTwist.setup`
+- Połóż się na plecach, kolana ugięte, stopy płasko na podłodze. — HSS: [HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021)](https://www.hss.edu/health-library/move-better/back-neck-stretches) (Trunk Rotation, krok 1 (wariant: oba kolana)); Advocate Aurora Health: [Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019)](https://ahc.aurorahealthcare.org/fywb/x20549.pdf) (krok 1 (wariant: oba kolana)) `mobility_floor.t.supTwist.setup`
 
 **Ruch**
 
-- Powoli przenieś ugięte kolano w poprzek ciała, w stronę podłogi. — HSS: [HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021)](https://www.hss.edu/health-library/move-better/back-neck-stretches) (Trunk Rotation (wariant: oba kolana)); Advocate Aurora Health: [Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019)](https://ahc.aurorahealthcare.org/fywb/x20549.pdf) (krok 2 (wariant: oba kolana)); Cambridge University Hospitals NHS FT: [Spinal range of movement/stretching exercises](https://www.cuh.nhs.uk/patient-information/spinal-range-of-movementstretching-exercises/) (Lying on back, Knee rolls (wariant: oba kolana)) `mobility_floor.t.supTwist.move`
+- Powoli opuść oba kolana na jedną stronę; barki zostają na podłodze. — HSS: [HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021)](https://www.hss.edu/health-library/move-better/back-neck-stretches) (Trunk Rotation (wariant: oba kolana)); Advocate Aurora Health: [Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019)](https://ahc.aurorahealthcare.org/fywb/x20549.pdf) (krok 2 (wariant: oba kolana)); Cambridge University Hospitals NHS FT: [Spinal range of movement/stretching exercises](https://www.cuh.nhs.uk/patient-information/spinal-range-of-movementstretching-exercises/) (Lying on back, Knee rolls (wariant: oba kolana)) `mobility_floor.t.supTwist.move`
 
 **Wskazówki**
 
@@ -2064,7 +2048,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź z nogami szeroko rozstawionymi, kolana i palce stóp skieruj w górę. — ACE: [Seated Straddle Stretch (#210)](https://www.acefitness.org/resources/everyone/exercise-library/210/seated-straddle-stretch/) (Starting Position (legs apart, knees extended, toes pointing up)); YogaUOnline: [Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026)](https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/) (akapit o ustawieniu nóg (toes and kneecaps pointing toward the ceiling)) `mobility_floor.u.straddleSit`
+- Usiądź w szerokim rozkroku, kolana i palce stóp skierowane w górę. — ACE: [Seated Straddle Stretch (#210)](https://www.acefitness.org/resources/everyone/exercise-library/210/seated-straddle-stretch/) (Starting Position (legs apart, knees extended, toes pointing up)); YogaUOnline: [Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026)](https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/) (akapit o ustawieniu nóg (toes and kneecaps pointing toward the ceiling)) `mobility_floor.u.straddleSit`
 - Tułów trzymaj prosto. — ACE: [Seated Straddle Stretch (#210)](https://www.acefitness.org/resources/everyone/exercise-library/210/seated-straddle-stretch/) (Starting Position (trunk vertical, head aligned with spine)); YogaUOnline: [Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026)](https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/) (akapit o wydłużeniu kręgosłupa przed ruchem) `mobility_floor.n.tall`
 
 **Ruch**
@@ -2079,37 +2063,21 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź i załóż pas lub ręcznik na stopę. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2 Stretching inversion/eversion, zdanie 1); East Carolina University Physical Therapy Clinic: [Seated Ankle Inversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=143) (opis ćwiczenia, zdanie 1) `mobility_floor.u.ankleStrap`
+- Usiądź i załóż taśmę albo ręcznik na stopę. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2 Stretching inversion/eversion, zdanie 1); East Carolina University Physical Therapy Clinic: [Seated Ankle Inversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=143) (opis ćwiczenia, zdanie 1) `mobility_floor.u.ankleStrap`
 
 **Ruch**
 
-- Ciągnij za wewnętrzny koniec pasa, żeby obrócić stopę do środka. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2, zdanie o inwersji); East Carolina University Physical Therapy Clinic: [Seated Ankle Inversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=143) (opis ćwiczenia, zdanie 2 (nacisk po wewnętrznej stronie stopy)) `mobility_floor.u.invert`
+- Ciągnij za wewnętrzny koniec taśmy, żeby obrócić stopę do środka. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2, zdanie o inwersji); East Carolina University Physical Therapy Clinic: [Seated Ankle Inversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=143) (opis ćwiczenia, zdanie 2 (nacisk po wewnętrznej stronie stopy)) `mobility_floor.u.invert`
 
 ### Posterior Tibialis Stretch
 
 **Ustawienie**
 
-- Usiądź i załóż pas lub ręcznik na stopę. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2 Stretching inversion/eversion, zdanie 1); East Carolina University Physical Therapy Clinic: [Seated Ankle Eversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138) (opis ćwiczenia, zdanie 1) `mobility_floor.u.ankleStrap`
+- Usiądź i załóż taśmę albo ręcznik na stopę. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2 Stretching inversion/eversion, zdanie 1); East Carolina University Physical Therapy Clinic: [Seated Ankle Eversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138) (opis ćwiczenia, zdanie 1) `mobility_floor.u.ankleStrap`
 
 **Ruch**
 
-- Ciągnij za zewnętrzny koniec pasa, żeby obrócić stopę na zewnątrz. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2, zdanie o ewersji); East Carolina University Physical Therapy Clinic: [Seated Ankle Eversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138) (opis ćwiczenia (nacisk po zewnętrznej stronie)) `mobility_floor.u.evert`
-
-### Standing Gastrocnemius Calf Stretch
-
-**Ustawienie**
-
-- Stań przednią częścią stopy na krawędzi stopnia, pięta poza krawędzią. — ACE: [Step Stretch (#211)](https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/) (Step 1: tylko przednia część stopy na stopniu, „The heel is off the step.”); WebMD Ignite: [Calf stretch (step)](https://www.columbiadoctors.org/health-library/multimedia/calf-stretch-step/) (kroki 1–2: stopień schodów, pięty opuszczane za krawędź) `gcalf.set`
-- Przytrzymaj się czegoś stabilnego, na przykład ściany, dla równowagi. — ACE: [Step Stretch (#211)](https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/) (Step 1: palce dłoni lekko na ścianie dla równowagi); NHS (nhs.uk): [Flexibility exercises](https://www.nhs.uk/live-well/exercise/flexibility-exercises/) (Calf stretch: „Place your hands on a wall for stability” (wariant: przy ścianie)) `gcalf.support`
-
-**Ruch**
-
-- Z prostym kolanem opuść piętę poniżej krawędzi, aż poczujesz rozciągnięcie łydki, i przytrzymaj. — WebMD Ignite: [Calf stretch (step)](https://www.columbiadoctors.org/health-library/multimedia/calf-stretch-step/) (krok 2–3: „Slowly let your heels down over the edge of the step…”, potem przytrzymanie); Shropshire Community Health NHS Trust: [Calf Stretching Information Leaflet](https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf) (s. 1, How to Stretch: na schodach „drop your heels down with the legs straight”); ACE: [Step Stretch (#211)](https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/) (Step 2: powoli opuść piętę tylnej nogi) `gcalf.move`
-
-**Wskazówki**
-
-- Kolano zostaje proste — z ugiętym rozciągasz niżej położoną część łydki. — Shropshire Community Health NHS Trust: [Calf Stretching Information Leaflet](https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf) (s. 1, How to Stretch: nogi proste — środek łydki; kolana ugięte — „lower down the calf”); ACE: [Standing Dorsi-Flexion (Calf Stretch) (#152)](https://www.acefitness.org/resources/everyone/exercise-library/152/) (Step 4: lekko ugięte tylne kolano przenosi rozciąganie na płaszczkowaty (wariant: przy ścianie)) `gcalf.knee`
-- Wchodź w rozciąganie powoli, aż poczujesz napięcie. — WebMD Ignite: [Calf stretch (step)](https://www.columbiadoctors.org/health-library/multimedia/calf-stretch-step/) (kroki 2–3: powolne opuszczanie, „You should feel a gentle stretch…”); ACE: [Step Stretch (#211)](https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/) (Step 2: „Slowly lower the left (back) heel…”) `st.tension`
+- Ciągnij za zewnętrzny koniec taśmy, żeby obrócić stopę na zewnątrz. — Leeds Teaching Hospitals NHS Trust, Physiotherapy Department: [Ankle Phase 2 Exercises (A. Brogden, 27.01.2022)](https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf) (s. 1, ćw. 2, zdanie o ewersji); East Carolina University Physical Therapy Clinic: [Seated Ankle Eversion Stretch with Towel](https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138) (opis ćwiczenia (nacisk po zewnętrznej stronie)) `mobility_floor.u.evert`
 
 ### Wall Calf Stretch
 
@@ -2119,7 +2087,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Ugnij przednie kolano i przenieś ciężar w stronę ściany; tylna noga prosta, pięta na podłodze. — ACE: [Standing Dorsi-Flexion (Calf Stretch) (#152)](https://www.acefitness.org/resources/everyone/exercise-library/152/) (Step 2: przednie kolano ugina się, tylna noga prosta, pięta wciskana w podłogę); NHS (nhs.uk): [Flexibility exercises](https://www.nhs.uk/live-well/exercise/flexibility-exercises/) (Calf stretch: ugięte przednie kolano, tylna noga prosta, pięta na podłodze); Cancer Council Victoria: [Flexibility exercises](https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises) (Calf stretch: pochyl się, przednie kolano lekko ugięte, tylna noga prosta) `mobility_stand.s.wallCalfMove`
+- Ugnij przednie kolano i pochyl się do ściany; tylna noga prosta, pięta na podłodze. — ACE: [Standing Dorsi-Flexion (Calf Stretch) (#152)](https://www.acefitness.org/resources/everyone/exercise-library/152/) (Step 2: przednie kolano ugina się, tylna noga prosta, pięta wciskana w podłogę); NHS (nhs.uk): [Flexibility exercises](https://www.nhs.uk/live-well/exercise/flexibility-exercises/) (Calf stretch: ugięte przednie kolano, tylna noga prosta, pięta na podłodze); Cancer Council Victoria: [Flexibility exercises](https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises) (Calf stretch: pochyl się, przednie kolano lekko ugięte, tylna noga prosta) `mobility_stand.s.wallCalfMove`
 
 **Wskazówki**
 
@@ -2164,7 +2132,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Unieś rękę, ugnij ją w łokciu i opuść dłoń na plecy, między łopatki. — ACE: [Overhead Triceps Stretch (#174)](https://www.acefitness.org/resources/everyone/exercise-library/174/) (Step 1: ręka w górę, zgięcie w łokciu, dłoń na środek pleców); Cancer Council Victoria: [Flexibility exercises](https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises) (Triceps stretch: zgięty łokieć, przedramię opuszczone wzdłuż pleców) `mobility_stand.s.triSet`
+- Unieś rękę, ugnij ją w łokciu i opuść dłoń na środek pleców. — ACE: [Overhead Triceps Stretch (#174)](https://www.acefitness.org/resources/everyone/exercise-library/174/) (Step 1: ręka w górę, zgięcie w łokciu, dłoń na środek pleców); Cancer Council Victoria: [Flexibility exercises](https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises) (Triceps stretch: zgięty łokieć, przedramię opuszczone wzdłuż pleców) `mobility_stand.s.triSet`
 
 **Ruch**
 
@@ -2200,17 +2168,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Ściągnij łopatki i lekko unieś klatkę — poczujesz rozciąganie w klatce i z przodu ramion. — ACE: [Standing Chest Stretch (#209)](https://www.acefitness.org/resources/everyone/exercise-library/209/) (Step 2: łopatki ściągnięte, „slightly lift your chest up and out”; Step 3: wariant rozciąga przednią część barku); MedlinePlus: [Chest stretch (Medical Encyclopedia image page)](https://medlineplus.gov/ency/imagepages/19483.htm) („…press your shoulder blades together. Your chest should stick out.”; rozciąganie w ramionach i klatce) `mobility_stand.s.claspMove`
-
-### Overhead Stretch
-
-**Ustawienie**
-
-- Stań swobodnie, patrz przed siebie. — WebMD Ignite: [Overhead stretch](https://www.columbiadoctors.org/health-library/multimedia/overhead-stretch/) (kroki 1–2: stań swobodnie, „Looking straight ahead…”); Duke University Health System, Occupational and Environmental Safety Office: [Stretches (handout, 2011)](https://www.safety.duke.edu/sites/default/files/Stretches.pdf) (s. 1–2, Overhead Stretch: „While sitting or standing…” (potwierdza tylko pozycję stojącą)) `mobility_stand.s.overheadSet`
-
-**Ruch**
-
-- Unieś obie ręce nad głowę i sięgnij w stronę sufitu. — WebMD Ignite: [Overhead stretch](https://www.columbiadoctors.org/health-library/multimedia/overhead-stretch/) (krok 2: „…raise both arms over your head and reach toward the ceiling.”); Duke University Health System, Occupational and Environmental Safety Office: [Stretches (handout, 2011)](https://www.safety.duke.edu/sites/default/files/Stretches.pdf) (s. 1–2, Overhead Stretch: „…push both arms straight up…”) `mobility_stand.s.overheadMove`
+- Ściągnij łopatki i lekko unieś klatkę — poczujesz rozciąganie w klatce i z przodu barków. — ACE: [Standing Chest Stretch (#209)](https://www.acefitness.org/resources/everyone/exercise-library/209/) (Step 2: łopatki ściągnięte, „slightly lift your chest up and out”; Step 3: wariant rozciąga przednią część barku); MedlinePlus: [Chest stretch (Medical Encyclopedia image page)](https://medlineplus.gov/ency/imagepages/19483.htm) („…press your shoulder blades together. Your chest should stick out.”; rozciąganie w ramionach i klatce) `mobility_stand.s.claspMove`
 
 ### Chin To Chest Stretch
 
@@ -2230,11 +2188,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Rozłóż proste ręce w bok na wysokości barków. — Arthritis Foundation: [Dynamic Warm-Ups (Arthritis at Work)](https://www.arthritis.org/partnership/atwork/at-work-physical-activity/dynamic-warm-ups-for-arthritis-workplace) („2. Arm Circles”); UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („5 Arm Circles”, punkt 1) `mobility_stand.d.armsT`
+- Rozłóż proste ręce na boki, na wysokości barków. — Arthritis Foundation: [Dynamic Warm-Ups (Arthritis at Work)](https://www.arthritis.org/partnership/atwork/at-work-physical-activity/dynamic-warm-ups-for-arthritis-workplace) („2. Arm Circles”); UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („5 Arm Circles”, punkt 1) `mobility_stand.d.armsT`
 
 **Ruch**
 
-- Zataczaj rękami koła — w przód, potem w tył. — Arthritis Foundation: [Dynamic Warm-Ups (Arthritis at Work)](https://www.arthritis.org/partnership/atwork/at-work-physical-activity/dynamic-warm-ups-for-arthritis-workplace) („2. Arm Circles”); UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („5 Arm Circles”, punkty 2–3); Cleveland Clinic: [Seated Warm-Up/Cool-Down Exercises (Rev. 7/19)](https://my.clevelandclinic.org/-/scassets/files/org/heart/patient-education/hvti-files/seated-warm-up-exercises.pdf) (s. 2, „Arm Circles” (wariant: siedząc)) `mobility_stand.d.armCircles`
+- Krąż rękami — w przód, potem w tył. — Arthritis Foundation: [Dynamic Warm-Ups (Arthritis at Work)](https://www.arthritis.org/partnership/atwork/at-work-physical-activity/dynamic-warm-ups-for-arthritis-workplace) („2. Arm Circles”); UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („5 Arm Circles”, punkty 2–3); Cleveland Clinic: [Seated Warm-Up/Cool-Down Exercises (Rev. 7/19)](https://my.clevelandclinic.org/-/scassets/files/org/heart/patient-education/hvti-files/seated-warm-up-exercises.pdf) (s. 2, „Arm Circles” (wariant: siedząc)) `mobility_stand.d.armCircles`
 
 **Wskazówki**
 
@@ -2248,17 +2206,17 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Zataczaj stopą koła w kostce — w jedną, potem w drugą stronę. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („12 Ankle Circles”, punkty 3–4); WebMD Ignite: [Ankle Circles (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/ankle-circles/) (krok 3 (wariant: siedząc)) `mobility_stand.d.ankleCircles`
+- Krąż stopą — w jedną, potem w drugą stronę. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („12 Ankle Circles”, punkty 3–4); WebMD Ignite: [Ankle Circles (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/ankle-circles/) (krok 3 (wariant: siedząc)) `mobility_stand.d.ankleCircles`
 
 ### Wrist Circles
 
 **Ustawienie**
 
-- Zaciśnij dłonie luźno w pięści. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („7 Wrist Circles”, punkt 1 (hands loosely closed)); WebMD Ignite: [Wrist Circles (Fist) (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/) (krok 1 (very light fist; wariant: siedząc, przedramię na udzie)) `mobility_stand.u.looseFist`
+- Zwiń dłonie w luźne pięści. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („7 Wrist Circles”, punkt 1 (hands loosely closed)); WebMD Ignite: [Wrist Circles (Fist) (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/) (krok 1 (very light fist; wariant: siedząc, przedramię na udzie)) `mobility_stand.u.looseFist`
 
 **Ruch**
 
-- Zataczaj dłońmi koła w nadgarstkach. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („7 Wrist Circles”, punkty 2–3); WebMD Ignite: [Wrist Circles (Fist) (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/) (krok 2 (make slow circles with your hand; wariant: siedząc)) `mobility_stand.u.wristCircles`
+- Krąż nadgarstkami. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („7 Wrist Circles”, punkty 2–3); WebMD Ignite: [Wrist Circles (Fist) (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/) (krok 2 (make slow circles with your hand; wariant: siedząc)) `mobility_stand.u.wristCircles`
 
 ## Źródła
 
@@ -2274,7 +2232,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-135 | ACE | Bodyweight Squat (#135) | https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | — |
 | ace-139 | ACE | Walking Lunges With Twists (#139) | https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/ | — |
 | ace-14 | ACE | Bird Dog (#14) | https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/ | — |
-| ace-142 | ACE | Kneeling Hip Flexor Stretch (#142) | https://www.acefitness.org/resources/everyone/exercise-library/142/kneeling-hip-flexor-stretch/ | — |
 | ace-147 | ACE | Supine Dead Bug (#147) | https://www.acefitness.org/resources/everyone/exercise-library/147/supine-dead-bug/ | — |
 | ace-15 | ACE | Cat-Cow (#15) | https://www.acefitness.org/resources/everyone/exercise-library/15/cat-cow/ | — |
 | ace-152 | ACE | Standing Dorsi-Flexion (Calf Stretch) (#152) | https://www.acefitness.org/resources/everyone/exercise-library/152/ | — |
@@ -2297,7 +2254,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-209 | ACE | Standing Chest Stretch (#209) | https://www.acefitness.org/resources/everyone/exercise-library/209/ | — |
 | ace-21 | ACE | Lying Chest Fly (#21) | https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/ | — |
 | ace-210 | ACE | Seated Straddle Stretch (#210) | https://www.acefitness.org/resources/everyone/exercise-library/210/seated-straddle-stretch/ | — |
-| ace-211 | ACE | Step Stretch (#211) | https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/ | — |
 | ace-216 | ACE | Seated Butterfly Stretch (#216) | https://www.acefitness.org/resources/everyone/exercise-library/216/seated-butterfly-stretch/ | — |
 | ace-22 | ACE | Front Squat (#22) | https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | — |
 | ace-227 | ACE | Childs Pose (#227) | https://www.acefitness.org/resources/everyone/exercise-library/227/childs-pose/ | — |
@@ -2548,11 +2504,9 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ucb-uhs-work-warmup | UC Berkeley University Health Services | Work Warm-Up | https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf | — |
 | uwmed-plantar-fasciitis | UW Medicine | Exercises for Plantar Fasciitis (Sports Medicine Clinic, PDF, 5 s.) | https://honline.s.uw.edu/sites/default/files/record_pdfs/Exercises-Plantar-Fasciitis.pdf | — |
 | vdhorst-2015 | van der Horst i in. (UMC Utrecht) | The Preventive Effect of the Nordic Hamstring Exercise… RCT, Am J Sports Med 2015 | https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | — |
-| webmd-calf-step | WebMD Ignite | Calf stretch (step) | https://www.columbiadoctors.org/health-library/multimedia/calf-stretch-step/ | — |
 | webmd-ignite-ankle-circles | WebMD Ignite | Ankle Circles (akt. 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/ankle-circles/ | — |
 | webmd-ignite-childs-pose | WebMD Ignite | Child's pose (ColumbiaDoctors Health Library, stan na 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/child-s-pose/ | — |
 | webmd-ignite-wrist-circles-fist | WebMD Ignite | Wrist Circles (Fist) (akt. 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/ | — |
 | webmd-neck-stretch-front | WebMD Ignite | Neck stretch (front) | https://www.columbiadoctors.org/health-library/multimedia/neck-stretch-front/ | — |
-| webmd-overhead-stretch | WebMD Ignite | Overhead stretch | https://www.columbiadoctors.org/health-library/multimedia/overhead-stretch/ | — |
 | webmd-shoulder-posterior | WebMD Ignite | Shoulder stretch (posterior) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-stretch-posterior/ | — |
 | yogau-wide-angle | YogaUOnline | Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026) | https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/ | — |

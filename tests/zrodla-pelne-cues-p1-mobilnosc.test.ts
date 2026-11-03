@@ -1,10 +1,10 @@
 /*
- * Partia P1 integracji badań (G2 mobilność: foam_roll, mobility_floor, mobility_stand, rotator_cuff; linia 1.1, 02.11.2026): karty własne 33 ćwiczeń z fali W1 G2.
+ * Partia P1 integracji badań (G2 mobilność: foam_roll, mobility_floor, mobility_stand, rotator_cuff; linia 1.1, 02.11.2026): karty własne 30 ćwiczeń z fali W1 G2 (33 minus 3 z zestawem ogólnym po recenzji — decyzja koordynatora 02.11.2026).
  * Źródło danych: docs/research/wskazowki-fala-w1 (gałąź badania/g2-mobilnosc), przeliczenie-2026-11-02.md ma pierwszeństwo; lista ćwiczeń i zdań — tests/fixtures/cues-p1-mobilnosc.json.
  * Zakres strażnika źródeł (L-089): scripts/cues/gen.mjs `validate` (check:cues) — ten plik sprawdza, że dane P1 spełniają reguły i że pominięte zdania/ćwiczenia nie weszły.
  * Rodzaje (docs/20): dane (karty, źródła), logika (≥ 2 niezależne organizacje szczebla ≤ 4), niezmienniki (niezależność WebMD Ignite, szczebel 5 poza danymi),
  * języki (PL i EN w słownikach, reszta czeka na przekład — zestaw-przekladu-2026-11-02-p1-wskazowki.json), regresja (cue-sets: własne karty, pominięte zostają ogólne).
- * Ocena realności: błąd „karta mobilności z jednego źródła albo ze źródła marketingowego” — realny (treść w aplikacji i na stronie z ćwiczeniami); karty ukryte do recenzji niezależnej (bramka 4, L-047).
+ * Ocena realności: błąd „karta mobilności z jednego źródła albo ze źródła marketingowego” — realny (treść w aplikacji i na stronie z ćwiczeniami); karty po recenzji niezależnej (bramka 4, L-047; wpisy 02.11.2026).
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -15,28 +15,44 @@ import P1 from './fixtures/cues-p1-mobilnosc.json';
 const root = path.join(__dirname, '..');
 const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
 const pl: Record<string, string> = json('lib/cues/text/pl.json'), en: Record<string, string> = json('lib/cues/text/en.json');
+const REC = json('docs/research/figury-recenzja.json') as { karty: Record<string, { werdykt: string; autor: string; recenzent: string }> };
 const sets = json('lib/figures/v2/cue-sets.json').items as Record<string, { b: string }>;
 
 describe('P1 mobilność: karty własne', () => {
-  test('33 ćwiczeń ma komplet ustawienie + ruch w pełnych danych i w runtime; nie są w otwartych; 24 niepełne są na liście partial', () => {
-    expect(P1.cwiczenia.length).toBe(33);
+  test('30 ćwiczeń ma komplet ustawienie + ruch w pełnych danych i w runtime; nie są w otwartych; 23 niepełne są na liście partial', () => {
+    expect(P1.cwiczenia.length).toBe(30);
     for (const k of P1.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, x.setup.length >= 1, x.move.length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
       expect(CUE_DATA.exercises[k] ?? CUE_DATA.hidden.includes(k)).toBeTruthy();
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, x.tips.length < 2]);
     }
-    expect(P1.partial.length).toBe(24);
+    expect(P1.partial.length).toBe(23);
     expect([...P1.partial].sort()).toEqual(P1.cwiczenia.filter(k => CUE_FULL.exercises[k].tips.length < 2).sort());
   });
 
-  test('karty ukryte do recenzji niezależnej (bramka 4, L-047): żadna z 33 nie jest wyświetlana, dopóki nie ma aktualnej recenzji', () => {
-    for (const k of P1.cwiczenia) expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, false]);
+  test('bramka 4 (L-047): 29 kart ma recenzję niezależną (wyświetlane), Supine Spinal Twist „do poprawy” zostaje ukryta do ponownej recenzji po poprawce (02.11.2026)', () => {
+    const DO_POPRAWY = 'Supine Spinal Twist';
+    for (const k of P1.cwiczenia) {
+      const rec = REC.karty[k];
+      expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, k === DO_POPRAWY ? 'do poprawy' : 'wyswietlana', true]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual(k === DO_POPRAWY ? [k, true, false] : [k, false, true]);
+    }
   });
 
-  test('cue-sets: 33 ćwiczeń ma własne karty (b = own); 4 pominięte do decyzji zostają przy zestawie ogólnym', () => {
+  test('Supine Spinal Twist: opis obu kolan (źródła opisują oba kolana, decyzja koordynatora 02.11.2026), bez „jednego kolana” i „w poprzek ciała”', () => {
+    expect([pl['mobility_floor.t.supTwist.setup'], pl['mobility_floor.t.supTwist.move']]).toEqual(['Połóż się na plecach, kolana ugięte, stopy płasko na podłodze.', 'Powoli opuść oba kolana na jedną stronę; barki zostają na podłodze.']);
+    expect([en['mobility_floor.t.supTwist.setup'], en['mobility_floor.t.supTwist.move']]).toEqual(['Lie on your back with your knees bent and your feet flat on the floor.', 'Slowly lower both knees to one side; your shoulders stay on the floor.']);
+  });
+
+  test('cue-sets: 30 ćwiczeń ma własne karty (b = own); 4 pominięte do decyzji zostają przy zestawie ogólnym', () => {
     for (const k of P1.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
     for (const k of Object.keys(P1.pominiete_do_decyzji)) expect([k, sets[k].b, k in CUE_FULL.exercises]).toEqual([k, 'general', false]);
+  });
+
+  test('3 ćwiczenia ze zrecenzowanym zestawem ogólnym wyłączone z P1 (decyzja koordynatora 02.11.2026): zostają przy zestawie ogólnym, bez karty własnej', () => {
+    expect(Object.keys(P1.wylaczone_zestaw_ogolny).sort()).toEqual(['Kneeling Hip Flexor Stretch', 'Overhead Stretch', 'Standing Gastrocnemius Calf Stretch']);
+    for (const k of Object.keys(P1.wylaczone_zestaw_ogolny)) expect([k, sets[k].b, k in CUE_FULL.exercises, P1.cwiczenia.includes(k)]).toEqual([k, 'general', false, false]);
   });
 });
 
@@ -60,9 +76,10 @@ describe('P1 mobilność: źródła i reguły szczebli', () => {
     for (const i of ['nhs-sitting-exercises', 'nhs-flexibility']) expect(CUE_FULL.sources[i]?.org ?? 'NHS (nhs.uk)').toBe('NHS (nhs.uk)');
   });
 
-  test('Eleiko: organizacja warunkowo szczebla 4 — każde źródło ma własny szczebel i opis strony (docs/18, 02.11.2026, uzupełnienie 3)', () => {
-    expect(typeof CUE_FULL.orgs.Eleiko.warunkowo).toBe('string');
-    const src = Object.values(CUE_FULL.sources).filter(s => s.org === 'Eleiko');
+  test('producent sprzętu z działem edukacji: organizacja warunkowo szczebla 4 — każde źródło ma własny szczebel i opis strony (docs/18, 02.11.2026, uzupełnienie 3)', () => {
+    const warunkowe = Object.entries(CUE_FULL.orgs).filter(([, o]) => typeof (o as { warunkowo?: string }).warunkowo === 'string').map(([k]) => k);
+    expect(warunkowe.length).toBe(1);
+    const src = Object.values(CUE_FULL.sources).filter(s => s.org === warunkowe[0]);
     expect(src.length).toBeGreaterThan(0);
     for (const s of src) expect([s.level, (s.strona ?? '').length > 20]).toEqual([4, true]);
   });
@@ -74,10 +91,10 @@ describe('P1 mobilność: źródła i reguły szczebli', () => {
 });
 
 describe('P1 mobilność: zdania', () => {
-  test('82 nowe zdania mają tekst PL i EN, a pominięte (z < 2 źródłami szczebla ≤ 4) nie istnieją w słownikach', () => {
-    expect(P1.zdania.length).toBe(82);
+  test('76 nowych zdań mają tekst PL i EN, a pominięte (z < 2 źródłami szczebla ≤ 4) nie istnieją w słownikach', () => {
+    expect(P1.zdania.length).toBe(76);
     for (const c of idyP1Nowe()) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0]).toEqual([c, 'string', 'string', true, true]);
-    expect(idyP1Nowe().size).toBe(82);
+    expect(idyP1Nowe().size).toBe(76);
     for (const c of P1.pominiete_zdania) expect([c, c in pl, c in en]).toEqual([c, false, false]);
     expect(P1.pominiete_zdania.length).toBe(48);
   });

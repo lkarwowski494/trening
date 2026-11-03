@@ -35,14 +35,14 @@
   {
    "rodzaj": "nowy",
    "id": "foam_roll.ham.setup",
-   "pl": "Usiądź z wałkiem pod tyłem ud i podeprzyj się rękami.",
+   "pl": "Usiądź z wałkiem pod tylną stroną ud i podeprzyj się rękami.",
    "en": "Sit with the roller under the backs of your thighs and prop yourself up on your hands."
   },
   {
    "rodzaj": "nowy",
    "id": "foam_roll.it.hipBone",
    "pl": "Nie dociskaj wałka do kości z boku biodra.",
-   "en": "Don't press the roller into the bone at the side of your hip."
+   "en": "Don’t press the roller into the bone at the side of your hip."
   },
   {
    "rodzaj": "nowy",
@@ -59,7 +59,7 @@
   {
    "rodzaj": "nowy",
    "id": "foam_roll.it.topLeg",
-   "pl": "Górną nogę przełóż przed siebie i oprzyj stopę o podłogę.",
+   "pl": "Górną nogę przełóż przed dolną i postaw stopę na podłodze.",
    "en": "Cross your top leg in front and put that foot on the floor."
   },
   {
@@ -96,7 +96,7 @@
    "rodzaj": "nowy",
    "id": "foam_roll.pir.path",
    "pl": "Roluj pośladek krótkimi ruchami, podpierając się rękami.",
-   "en": "Roll your glute in short movements, supporting yourself on your hands."
+   "en": "Roll your glute in short strokes, supporting yourself on your hands."
   },
   {
    "rodzaj": "nowy",
@@ -113,14 +113,14 @@
   {
    "rodzaj": "nowy",
    "id": "foam_roll.quad.setup",
-   "pl": "Połóż się przodem, oprzyj na przedramionach, wałek pod udami.",
-   "en": "Lie face down on your forearms with the roller under your thighs."
+   "pl": "Leżąc przodem, oprzyj się na przedramionach; wałek pod udami.",
+   "en": "Lie face down, propped on your forearms, roller under your thighs."
   },
   {
    "rodzaj": "nowy",
    "id": "foam_roll.ub.path",
-   "pl": "Odpychaj się nogami i przetaczaj wałek wzdłuż górnej części pleców.",
-   "en": "Push with your legs and roll the roller along your upper back."
+   "pl": "Odpychaj się nogami i roluj górną część pleców.",
+   "en": "Push through your feet to roll up and down your upper back."
   },
   {
    "rodzaj": "nowy",
@@ -136,12 +136,6 @@
   },
   {
    "rodzaj": "nowy",
-   "id": "mobility_floor.n.core",
-   "pl": "Lekko napnij brzuch, żeby miednica się nie bujała.",
-   "en": "Lightly brace your abs to keep your pelvis steady."
-  },
-  {
-   "rodzaj": "nowy",
    "id": "mobility_floor.n.f4Cross",
    "pl": "Połóż się na plecach z ugiętymi kolanami i oprzyj kostkę jednej nogi na kolanie drugiej.",
    "en": "Lie on your back, knees bent, and rest one ankle on the opposite knee."
@@ -149,26 +143,8 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.n.f4Pull",
-   "pl": "Przyciągaj dolną nogę do klatki, aż poczujesz rozciąganie w pośladku.",
-   "en": "Draw the bottom leg toward your chest until you feel a stretch in your glute."
-  },
-  {
-   "rodzaj": "nowy",
-   "id": "mobility_floor.n.hfKnee",
-   "pl": "Przednie kolano trzymaj nad kostką.",
-   "en": "Keep your front knee over your ankle."
-  },
-  {
-   "rodzaj": "nowy",
-   "id": "mobility_floor.n.hfKneel",
-   "pl": "Uklęknij na jedno kolano, drugą stopę postaw przed sobą.",
-   "en": "Kneel on one knee with the other foot planted in front of you."
-  },
-  {
-   "rodzaj": "nowy",
-   "id": "mobility_floor.n.hfShift",
-   "pl": "Przesuń biodra w przód, aż poczujesz rozciąganie z przodu biodra tylnej nogi.",
-   "en": "Shift your hips forward until you feel a stretch at the front of your back leg's hip."
+   "pl": "Przyciągaj drugą nogę do klatki, aż poczujesz rozciąganie w pośladku.",
+   "en": "Pull the other leg toward your chest until you feel a stretch in your glute."
   },
   {
    "rodzaj": "nowy",
@@ -179,7 +155,7 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.n.mis.roundBack",
-   "pl": "Garbienie się i odchylanie miednicy w tył.",
+   "pl": "Garbienie się i podwijanie miednicy.",
    "en": "Rounding your back and tucking your pelvis under."
   },
   {
@@ -257,14 +233,14 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.t.supTwist.move",
-   "pl": "Powoli przenieś ugięte kolano w poprzek ciała, w stronę podłogi.",
-   "en": "Slowly bring the bent knee across your body toward the floor."
+   "pl": "Powoli opuść oba kolana na jedną stronę; barki zostają na podłodze.",
+   "en": "Slowly lower both knees to one side; your shoulders stay on the floor."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.t.supTwist.setup",
-   "pl": "Połóż się na plecach i ugnij kolano.",
-   "en": "Lie on your back and bend your knee."
+   "pl": "Połóż się na plecach, kolana ugięte, stopy płasko na podłodze.",
+   "en": "Lie on your back with your knees bent and your feet flat on the floor."
   },
   {
    "rodzaj": "nowy",
@@ -275,19 +251,19 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.u.ankleStrap",
-   "pl": "Usiądź i załóż pas lub ręcznik na stopę.",
+   "pl": "Usiądź i załóż taśmę albo ręcznik na stopę.",
    "en": "Sit and loop a strap or towel around your foot."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.u.evert",
-   "pl": "Ciągnij za zewnętrzny koniec pasa, żeby obrócić stopę na zewnątrz.",
+   "pl": "Ciągnij za zewnętrzny koniec taśmy, żeby obrócić stopę na zewnątrz.",
    "en": "Pull on the outer end of the strap to turn your foot outward."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.u.invert",
-   "pl": "Ciągnij za wewnętrzny koniec pasa, żeby obrócić stopę do środka.",
+   "pl": "Ciągnij za wewnętrzny koniec taśmy, żeby obrócić stopę do środka.",
    "en": "Pull on the inner end of the strap to turn your foot inward."
   },
   {
@@ -299,25 +275,25 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_floor.u.straddleSit",
-   "pl": "Usiądź z nogami szeroko rozstawionymi, kolana i palce stóp skieruj w górę.",
+   "pl": "Usiądź w szerokim rozkroku, kolana i palce stóp skierowane w górę.",
    "en": "Sit with your legs wide apart, kneecaps and toes pointing up."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.d.ankleCircles",
-   "pl": "Zataczaj stopą koła w kostce — w jedną, potem w drugą stronę.",
+   "pl": "Krąż stopą — w jedną, potem w drugą stronę.",
    "en": "Circle your foot at the ankle one way, then the other."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.d.armCircles",
-   "pl": "Zataczaj rękami koła — w przód, potem w tył.",
+   "pl": "Krąż rękami — w przód, potem w tył.",
    "en": "Circle your arms forward, then backward."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.d.armsT",
-   "pl": "Rozłóż proste ręce w bok na wysokości barków.",
+   "pl": "Rozłóż proste ręce na boki, na wysokości barków.",
    "en": "Hold your arms straight out to the sides at shoulder height."
   },
   {
@@ -347,8 +323,8 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.s.claspMove",
-   "pl": "Ściągnij łopatki i lekko unieś klatkę — poczujesz rozciąganie w klatce i z przodu ramion.",
-   "en": "Squeeze your shoulder blades together and lift your chest a little — you'll feel it across your chest and the front of your shoulders."
+   "pl": "Ściągnij łopatki i lekko unieś klatkę — poczujesz rozciąganie w klatce i z przodu barków.",
+   "en": "Squeeze your shoulder blades together and lift your chest a little — you’ll feel it across your chest and the front of your shoulders."
   },
   {
    "rodzaj": "nowy",
@@ -382,44 +358,32 @@
   },
   {
    "rodzaj": "nowy",
-   "id": "mobility_stand.s.overheadMove",
-   "pl": "Unieś obie ręce nad głowę i sięgnij w stronę sufitu.",
-   "en": "Raise both arms overhead and reach for the ceiling."
-  },
-  {
-   "rodzaj": "nowy",
-   "id": "mobility_stand.s.overheadSet",
-   "pl": "Stań swobodnie, patrz przed siebie.",
-   "en": "Stand relaxed, looking straight ahead."
-  },
-  {
-   "rodzaj": "nowy",
    "id": "mobility_stand.s.shoulderLoose",
    "pl": "Bark luźno — nie podciągaj go do ucha.",
-   "en": "Keep the shoulder relaxed — don't let it creep up to your ear."
+   "en": "Keep the shoulder relaxed — don’t let it creep up to your ear."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.s.soleusMove",
    "pl": "Lekko ugnij tylne kolano, pięta zostaje na podłodze — poczujesz rozciąganie niżej w łydce.",
-   "en": "Bend the back knee slightly, heel stays down — you'll feel it lower in the calf."
+   "en": "Bend your back knee slightly, keeping the heel down — you’ll feel it lower in the calf."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.s.triMove",
    "pl": "Drugą ręką lekko dociśnij łokieć, aż poczujesz rozciąganie z tyłu ramienia.",
-   "en": "Use your other hand to press lightly on the elbow until you feel the back of the arm stretch."
+   "en": "Use your other hand to press lightly on the elbow until you feel the back of your upper arm stretch."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.s.triSet",
-   "pl": "Unieś rękę, ugnij ją w łokciu i opuść dłoń na plecy, między łopatki.",
-   "en": "Raise your arm, bend the elbow and drop your hand down your back."
+   "pl": "Unieś rękę, ugnij ją w łokciu i opuść dłoń na środek pleców.",
+   "en": "Raise your arm, bend the elbow and drop your hand down toward the middle of your back."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.s.wallCalfMove",
-   "pl": "Ugnij przednie kolano i przenieś ciężar w stronę ściany; tylna noga prosta, pięta na podłodze.",
+   "pl": "Ugnij przednie kolano i pochyl się do ściany; tylna noga prosta, pięta na podłodze.",
    "en": "Bend the front knee and shift toward the wall; back leg straight, heel down."
   },
   {
@@ -443,13 +407,13 @@
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.u.looseFist",
-   "pl": "Zaciśnij dłonie luźno w pięści.",
+   "pl": "Zwiń dłonie w luźne pięści.",
    "en": "Make loose fists."
   },
   {
    "rodzaj": "nowy",
    "id": "mobility_stand.u.wristCircles",
-   "pl": "Zataczaj dłońmi koła w nadgarstkach.",
+   "pl": "Krąż nadgarstkami.",
    "en": "Circle your hands at the wrists."
   },
   {
@@ -461,32 +425,32 @@
   {
    "rodzaj": "nowy",
    "id": "rotator_cuff.erMove",
-   "pl": "Obracaj ramię na zewnątrz, odsuwając dłoń od brzucha, tak daleko, jak wygodnie.",
-   "en": "Rotate your arm out, moving your hand away from your stomach as far as is comfortable."
+   "pl": "Odsuwaj dłoń od brzucha na zewnątrz, tak daleko, jak wygodnie.",
+   "en": "Swing your hand out, away from your stomach, as far as feels comfortable."
   },
   {
    "rodzaj": "nowy",
    "id": "rotator_cuff.erStart",
-   "pl": "Chwyć dalszą ręką; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem.",
-   "en": "Hold it in the far hand, elbow bent at a right angle at your side, forearm across your stomach."
+   "pl": "Chwyć gumę ręką dalej od zaczepu; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem.",
+   "en": "Hold the band in the hand farther from the anchor, elbow bent at a right angle at your side, forearm across your stomach."
   },
   {
    "rodzaj": "nowy",
    "id": "rotator_cuff.irMove",
-   "pl": "Obracaj ramię do środka, prowadząc dłoń do brzucha.",
-   "en": "Rotate your arm in, bringing your hand to your stomach."
+   "pl": "Przyciągaj dłoń do brzucha.",
+   "en": "Pull your hand in to your stomach."
   },
   {
    "rodzaj": "nowy",
    "id": "rotator_cuff.irStart",
-   "pl": "Chwyć bliższą ręką; łokieć zgięty pod kątem prostym przy boku.",
-   "en": "Hold it in the near hand, elbow bent at a right angle at your side."
+   "pl": "Chwyć gumę ręką bliżej zaczepu; łokieć zgięty pod kątem prostym przy boku.",
+   "en": "Hold the band in the hand closer to the anchor, elbow bent at a right angle at your side."
   },
   {
    "rodzaj": "nowy",
    "id": "rotator_cuff.sideMove",
-   "pl": "Unoś hantel w górę, obracając ramię — łokieć zostaje przy boku.",
-   "en": "Raise the dumbbell by rotating your arm, keeping your elbow against your side."
+   "pl": "Unoś hantel, obracając przedramię w górę; łokieć zostaje przy boku.",
+   "en": "Raise the dumbbell by turning your forearm up, elbow pinned to your side."
   },
   {
    "rodzaj": "nowy",

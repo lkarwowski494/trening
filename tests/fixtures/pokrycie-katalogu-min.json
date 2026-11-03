@@ -5,57 +5,57 @@
     "figura.wAplikacji": 151,
     "figura.zDanymiV2": 535,
     "animowanyBlad": 92,
-    "wskazowki.wlasne": 101,
-    "wskazowki.wlasneZBledami": 39,
-    "wskazowki.zTekstem": 178,
-    "czesteBledyTekst": 116,
+    "wskazowki.wlasne": 130,
+    "wskazowki.wlasneZBledami": 48,
+    "wskazowki.zTekstem": 207,
+    "czesteBledyTekst": 125,
     "roleMiesni": 508,
     "pelnaKarta": 90,
     "recenzjaFigur": 98,
     "nazwaLokalna.razem": 0,
-    "jezyk.pl.kompletne": 528,
-    "jezyk.en.kompletne": 528,
-    "jezyk.cs.kompletne": 528,
-    "jezyk.sk.kompletne": 528,
-    "jezyk.hu.kompletne": 528,
-    "jezyk.ro.kompletne": 528,
-    "jezyk.bg.kompletne": 528,
-    "jezyk.hr.kompletne": 528,
-    "jezyk.sl.kompletne": 528,
-    "jezyk.sr.kompletne": 528,
-    "jezyk.lt.kompletne": 528,
-    "jezyk.lv.kompletne": 528,
-    "jezyk.et.kompletne": 528,
-    "jezyk.uk.kompletne": 528,
-    "jezyk.es.kompletne": 528,
-    "jezyk.es-419.kompletne": 528,
-    "jezyk.pt.kompletne": 528,
-    "jezyk.pt-BR.kompletne": 528,
-    "jezyk.de.kompletne": 528,
-    "jezyk.fr.kompletne": 528,
-    "jezyk.it.kompletne": 528,
-    "jezyk.nl.kompletne": 528,
-    "jezyk.sv.kompletne": 528,
-    "jezyk.da.kompletne": 528,
-    "jezyk.nb.kompletne": 528,
-    "jezyk.fi.kompletne": 528,
-    "jezyk.tr.kompletne": 528,
-    "jezyk.el.kompletne": 528,
-    "jezyk.id.kompletne": 528,
-    "jezyk.ms.kompletne": 528,
-    "jezyk.vi.kompletne": 528,
-    "jezyk.ru.kompletne": 528,
-    "jezyk.ja.kompletne": 528,
-    "jezyk.ko.kompletne": 528,
-    "jezyk.zh-Hant.kompletne": 528
+    "jezyk.pl.kompletne": 560,
+    "jezyk.en.kompletne": 560,
+    "jezyk.cs.kompletne": 531,
+    "jezyk.sk.kompletne": 531,
+    "jezyk.hu.kompletne": 531,
+    "jezyk.ro.kompletne": 531,
+    "jezyk.bg.kompletne": 531,
+    "jezyk.hr.kompletne": 531,
+    "jezyk.sl.kompletne": 531,
+    "jezyk.sr.kompletne": 531,
+    "jezyk.lt.kompletne": 531,
+    "jezyk.lv.kompletne": 531,
+    "jezyk.et.kompletne": 531,
+    "jezyk.uk.kompletne": 531,
+    "jezyk.es.kompletne": 531,
+    "jezyk.es-419.kompletne": 531,
+    "jezyk.pt.kompletne": 531,
+    "jezyk.pt-BR.kompletne": 531,
+    "jezyk.de.kompletne": 531,
+    "jezyk.fr.kompletne": 531,
+    "jezyk.it.kompletne": 531,
+    "jezyk.nl.kompletne": 531,
+    "jezyk.sv.kompletne": 531,
+    "jezyk.da.kompletne": 531,
+    "jezyk.nb.kompletne": 531,
+    "jezyk.fi.kompletne": 531,
+    "jezyk.tr.kompletne": 531,
+    "jezyk.el.kompletne": 531,
+    "jezyk.id.kompletne": 531,
+    "jezyk.ms.kompletne": 531,
+    "jezyk.vi.kompletne": 531,
+    "jezyk.ru.kompletne": 531,
+    "jezyk.ja.kompletne": 531,
+    "jezyk.ko.kompletne": 531,
+    "jezyk.zh-Hant.kompletne": 531
   },
   "rekord": {
     "figura.v2": 98,
     "figura.wAplikacji": 151,
     "figura.zDanymiV2": 536,
     "animowanyBlad": 92,
-    "wskazowki.wlasne": 102,
-    "wskazowki.wlasneZBledami": 43,
+    "wskazowki.wlasne": 130,
+    "wskazowki.wlasneZBledami": 48,
     "wskazowki.zTekstem": 640,
     "czesteBledyTekst": 557,
     "roleMiesni": 509,
@@ -128,11 +128,11 @@
       "data": "29.10.2026"
     },
     "jezyk.pl.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.en.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "wskazowki.wlasne": {
@@ -148,135 +148,135 @@
       "data": "02.11.2026"
     },
     "jezyk.cs.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.sk.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.hu.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.ro.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.bg.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.hr.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.sl.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.sr.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.lt.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.lv.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.et.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.uk.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.es.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.es-419.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.pt.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.pt-BR.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.de.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.fr.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.it.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.nl.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.sv.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.da.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.nb.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.fi.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.tr.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.el.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.id.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.ms.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.vi.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.ru.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.ja.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.ko.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     },
     "jezyk.zh-Hant.kompletne": {
-      "powod": "P1 integracji (G2 mobilność, 02.11.2026): 33 nowe karty własne są ukryte do recenzji niezależnej (bramka 4, L-047), więc 3 ćwiczenia, które miały zrecenzowany zestaw ogólny (Kneeling Hip Flexor Stretch, Overhead Stretch, Standing Gastrocnemius Calf Stretch), nie pokazują wskazówek do czasu recenzji ich kart własnych; po recenzji liczba wraca i rośnie",
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
       "data": "02.11.2026"
     }
   }
