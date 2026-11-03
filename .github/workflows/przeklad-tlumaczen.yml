@@ -26,6 +26,10 @@ on:
         type: choice
         default: 'nie'
         options: ['nie', 'tak']
+      zestaw:
+        description: 'Zestaw kluczy do przekładu (ścieżka docs/lokalizacja/zestaw-przekladu-*.json); puste = domyślny ze skryptu'
+        type: string
+        default: ''
       wznow:
         description: 'Odbiór wyników wysłanego wcześniej batcha (identyfikator msgbatch_… z logu przebiegu, który przekroczył czas oczekiwania); puste = nowy przekład'
         type: string
@@ -51,10 +55,15 @@ jobs:
           WEJ_MODEL: ${{ inputs.model }}
           WEJ_LIMIT: ${{ inputs.limit }}
           WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
+          WEJ_ZESTAW: ${{ inputs.zestaw }}
         run: |
           set -eu
           ARGS=(--szacuj --model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-przekladu)
           if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
+          if [ -n "$WEJ_ZESTAW" ]; then
+            [[ "$WEJ_ZESTAW" =~ ^docs/lokalizacja/zestaw-przekladu-[0-9a-z-]+\.json$ ]] || { echo "::error::zestaw: oczekiwana ścieżka docs/lokalizacja/zestaw-przekladu-*.json"; exit 1; }
+            ARGS+=(--zestaw "$WEJ_ZESTAW")
+          fi
           node scripts/i18n/przeklad-api.mjs "${ARGS[@]}"
       - name: Przekład (szacunek dokładny lub batch)
         env:
@@ -64,9 +73,14 @@ jobs:
           WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
           WEJ_SZACUJ: ${{ inputs.tylko_szacuj }}
           WEJ_WZNOW: ${{ inputs.wznow }}
+          WEJ_ZESTAW: ${{ inputs.zestaw }}
         run: |
           set -eu
           ARGS=(--model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-przekladu)
+          if [ -n "$WEJ_ZESTAW" ]; then
+            [[ "$WEJ_ZESTAW" =~ ^docs/lokalizacja/zestaw-przekladu-[0-9a-z-]+\.json$ ]] || { echo "::error::zestaw: oczekiwana ścieżka docs/lokalizacja/zestaw-przekladu-*.json"; exit 1; }
+            ARGS+=(--zestaw "$WEJ_ZESTAW")
+          fi
           if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
           if [ "$WEJ_SZACUJ" = "true" ]; then ARGS+=(--szacuj); fi
           if [ -n "$WEJ_WZNOW" ]; then

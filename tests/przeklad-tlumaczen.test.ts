@@ -259,3 +259,34 @@ describe('słownik terminów w przekładzie przez API (25.10.2026, bez sieci)', 
     expect(fs.existsSync(JSON.parse(Z2))).toBe(true);
   });
 });
+
+describe('workflow: wejście „zestaw” (koordynator 1.1, 03.11.2026 — przekład zestawów P1/P2 bez zmiany domyślnego zestawu)', () => {
+  /** Wiersze sterujące wejściem `zestaw` z kroków workflowu, wykonane w bash (wzór L-096: test wykonuje wiersze sterujące, nie tylko ich obecność). */
+  const blok = (() => {
+    const m = wf.match(/ {10}if \[ -n "\$WEJ_ZESTAW" \]; then\n[\s\S]*?\n {10}fi\n/);
+    if (!m) throw new Error('brak bloku WEJ_ZESTAW w workflowie');
+    return m[0];
+  })();
+  const wykonaj = (wartosc: string) => spawnSync('bash', ['-c', `set -eu\nARGS=()\n${blok}\nprintf '%s\\n' "\${ARGS[@]+"\${ARGS[@]}"}"`], { env: { PATH: process.env.PATH ?? '', WEJ_ZESTAW: wartosc }, encoding: 'utf8' });
+  test('wejście zdefiniowane (string, domyślnie puste) i przekazane do OBU kroków skryptu', () => {
+    expect(wf).toMatch(/\n {6}zestaw:\n {8}description: [^\n]+\n {8}type: string\n {8}default: ''\n/);
+    expect((wf.match(/WEJ_ZESTAW: \$\{\{ inputs\.zestaw \}\}/g) ?? []).length).toBe(2);
+    expect((wf.match(/ARGS\+=\(--zestaw "\$WEJ_ZESTAW"\)/g) ?? []).length).toBe(2);
+  });
+  test('puste → bez --zestaw (domyślny zestaw skryptu); poprawna ścieżka → --zestaw <ścieżka>', () => {
+    const r0 = wykonaj(''); expect(r0.status).toBe(0); expect(r0.stdout.trim()).toBe('');
+    const p = 'docs/lokalizacja/zestaw-przekladu-2026-11-03-p2-wskazowki.json';
+    const r1 = wykonaj(p); expect(r1.status).toBe(0); expect(r1.stdout.trim().split('\n')).toEqual(['--zestaw', p]);
+  });
+  test('ścieżka spoza docs/lokalizacja/zestaw-przekladu-*.json albo z wstrzyknięciem → błąd, nic nie przekazane', () => {
+    for (const zle of ['../.env', 'docs/lokalizacja/zestaw-przekladu-x.json; echo X', 'lib/locales/pl.json', 'docs/lokalizacja/zestaw-przekladu-A.json']) {
+      const r = wykonaj(zle); expect(r.status).not.toBe(0); expect(r.stdout).not.toMatch(/--zestaw/);
+    }
+  });
+  test('istniejące zestawy P1 i P2 pasują do wzorca wejścia', () => {
+    for (const f of ['zestaw-przekladu-2026-11-02-p1-wskazowki.json', 'zestaw-przekladu-2026-11-03-p2-wskazowki.json']) {
+      expect(fs.existsSync(path.join(ROOT, 'docs/lokalizacja', f))).toBe(true);
+      expect(wykonaj(`docs/lokalizacja/${f}`).status).toBe(0);
+    }
+  });
+});
