@@ -79,7 +79,7 @@ describe('H1 (recenzja r3, 03.11.2026, WYSOKIE): chwyt młotkowy — hantel ryso
   });
   test('rodzina curl nie jest podłączona (planned, bez pliku póz w poseData), dopóki hantel nie zależy od obrotu przedramienia i 4 hammer nie przejdą ponownej recenzji', () => {
     const podlaczona = /id: 'curl', status: 'ready'/.test(fam) || /curl: \(\) => require\('\.\/poses\/curl\.json'\)/.test(poseData);
-    const naprawione = /obrotPrzedramienia/.test(draw) || /rot\b/.test(draw.slice(draw.indexOf("case 'dumbbell'"), draw.indexOf("case 'handle'")));
+    const naprawione = /pr\.axis/.test(draw.slice(draw.indexOf("case 'dumbbell'"), draw.indexOf("case 'handle'"))); /* oś hantla z obrotu przedramienia (H1, partia wspólna) */
     expect([podlaczona, podlaczona ? naprawione : true]).toEqual([podlaczona, true]);
   });
 });
