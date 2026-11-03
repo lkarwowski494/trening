@@ -188,6 +188,21 @@
    "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuły stron w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
   },
   {
+   "path": "data/zrodla/cues.json",
+   "name": "Rogue Fitness",
+   "reason": "organizacja źródła wskazówek techniki (producent sprzętu, strona z biblioteką ruchów — jeden klucz organizacji w danych źródeł, partia P2 mocy, 03.11.2026, docs/18); podpis w aplikacji neutralny (rodzaj źródła) — jak Eleiko i Life Fitness, decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
+   "path": "tests/zrodla-pelne-cues-p2-moc.test.ts",
+   "name": "Rogue Fitness",
+   "reason": "strażnik jednego klucza organizacji w wewnętrznych danych źródeł (nazwa organizacji nie trafia do tekstów aplikacji) — partia P2 mocy, 03.11.2026"
+  },
+  {
+   "path": "tests/zrodla-pelne-cues-p2-moc.test.ts",
+   "name": "Eleiko",
+   "reason": "strażnik braku w danych źródeł szczebla 5 (producent sprzętu, strona o niepotwierdzonym autorze) — nazwa tylko w opisie testu wewnętrznych danych źródeł, partia P2 mocy, 03.11.2026"
+  },
+  {
    "path": "data/zrodla/cues-zestawy.json",
    "name": "Eleiko",
    "reason": "źródło wskazówek techniki (producent sprzętu — wpis źródła w zestawie wskazówek, jak data/zrodla/cues.json; plik tylko do narzędzi i testów, nie trafia do paczki aplikacji); podpis w aplikacji neutralny (rodzaj źródła) — decyzja MER2-07 = SEC2-02 wariant A"
