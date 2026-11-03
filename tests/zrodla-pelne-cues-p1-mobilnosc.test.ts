@@ -31,13 +31,13 @@ describe('P1 mobilność: karty własne', () => {
     expect([...P1.partial].sort()).toEqual(P1.cwiczenia.filter(k => CUE_FULL.exercises[k].tips.length < 2).sort());
   });
 
-  test('bramka 4 (L-047): 29 kart ma recenzję niezależną (wyświetlane), Supine Spinal Twist „do poprawy” zostaje ukryta do ponownej recenzji po poprawce (02.11.2026)', () => {
-    const DO_POPRAWY = 'Supine Spinal Twist';
+  test('bramka 4 (L-047): 30 kart ma recenzję niezależną (wyświetlane) — Supine Spinal Twist po poprawce i ponownej recenzji (03.11.2026)', () => {
     for (const k of P1.cwiczenia) {
       const rec = REC.karty[k];
-      expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, k === DO_POPRAWY ? 'do poprawy' : 'wyswietlana', true]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual(k === DO_POPRAWY ? [k, true, false] : [k, false, true]);
+      expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, 'wyswietlana', true]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]);
     }
+    expect(REC.karty['Supine Spinal Twist'].data).toBe('2026-11-03');
   });
 
   test('Supine Spinal Twist: opis obu kolan (źródła opisują oba kolana, decyzja koordynatora 02.11.2026), bez „jednego kolana” i „w poprzek ciała”', () => {
