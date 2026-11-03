@@ -126,7 +126,7 @@ describe('P2 moc: zdania', () => {
   test('rwanie i podrzut mają osobne id tam, gdzie brzmienie się różni (STAN-g3-moc, rozstrzygnięcie 5): olympic.splitMove/powerMove = podrzut, olympic.snatch* = rwanie', () => {
     expect(pl['olympic.splitMove']).toMatch(/wskocz pod nią w nożyce/);
     expect(pl['olympic.snatchSplitMove']).toMatch(/Ciągnij jak w rwaniu/);
-    expect(pl['olympic.powerMove']).toMatch(/nad głowę/);
+    expect(pl['olympic.powerMove']).toMatch(/wybij sztangę nogami/);
     expect(pl['olympic.snatchPowerMove']).toMatch(/wyżej niż w przysiadzie równoległym/);
     expect(CUE_FULL.exercises['Split Snatch'].move.map(r => r.c)).toContain('olympic.snatchSplitMove');
     expect(CUE_FULL.exercises['Split Jerk'].move.map(r => r.c)).toContain('olympic.splitMove');

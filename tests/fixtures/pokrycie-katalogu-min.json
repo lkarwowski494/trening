@@ -15,39 +15,39 @@
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 531,
     "jezyk.en.kompletne": 531,
-    "jezyk.cs.kompletne": 531,
-    "jezyk.sk.kompletne": 531,
-    "jezyk.hu.kompletne": 531,
-    "jezyk.ro.kompletne": 531,
-    "jezyk.bg.kompletne": 531,
-    "jezyk.hr.kompletne": 531,
-    "jezyk.sl.kompletne": 531,
-    "jezyk.sr.kompletne": 531,
-    "jezyk.lt.kompletne": 531,
-    "jezyk.lv.kompletne": 531,
-    "jezyk.et.kompletne": 531,
-    "jezyk.uk.kompletne": 531,
-    "jezyk.es.kompletne": 531,
-    "jezyk.es-419.kompletne": 531,
-    "jezyk.pt.kompletne": 531,
-    "jezyk.pt-BR.kompletne": 531,
-    "jezyk.de.kompletne": 531,
-    "jezyk.fr.kompletne": 531,
-    "jezyk.it.kompletne": 531,
-    "jezyk.nl.kompletne": 531,
-    "jezyk.sv.kompletne": 531,
-    "jezyk.da.kompletne": 531,
-    "jezyk.nb.kompletne": 531,
-    "jezyk.fi.kompletne": 531,
-    "jezyk.tr.kompletne": 531,
-    "jezyk.el.kompletne": 531,
-    "jezyk.id.kompletne": 531,
-    "jezyk.ms.kompletne": 531,
-    "jezyk.vi.kompletne": 531,
-    "jezyk.ru.kompletne": 531,
-    "jezyk.ja.kompletne": 531,
-    "jezyk.ko.kompletne": 531,
-    "jezyk.zh-Hant.kompletne": 531
+    "jezyk.cs.kompletne": 506,
+    "jezyk.sk.kompletne": 506,
+    "jezyk.hu.kompletne": 506,
+    "jezyk.ro.kompletne": 506,
+    "jezyk.bg.kompletne": 506,
+    "jezyk.hr.kompletne": 506,
+    "jezyk.sl.kompletne": 506,
+    "jezyk.sr.kompletne": 506,
+    "jezyk.lt.kompletne": 506,
+    "jezyk.lv.kompletne": 506,
+    "jezyk.et.kompletne": 506,
+    "jezyk.uk.kompletne": 506,
+    "jezyk.es.kompletne": 506,
+    "jezyk.es-419.kompletne": 506,
+    "jezyk.pt.kompletne": 506,
+    "jezyk.pt-BR.kompletne": 506,
+    "jezyk.de.kompletne": 506,
+    "jezyk.fr.kompletne": 506,
+    "jezyk.it.kompletne": 506,
+    "jezyk.nl.kompletne": 506,
+    "jezyk.sv.kompletne": 506,
+    "jezyk.da.kompletne": 506,
+    "jezyk.nb.kompletne": 506,
+    "jezyk.fi.kompletne": 506,
+    "jezyk.tr.kompletne": 506,
+    "jezyk.el.kompletne": 506,
+    "jezyk.id.kompletne": 506,
+    "jezyk.ms.kompletne": 506,
+    "jezyk.vi.kompletne": 506,
+    "jezyk.ru.kompletne": 506,
+    "jezyk.ja.kompletne": 506,
+    "jezyk.ko.kompletne": 506,
+    "jezyk.zh-Hant.kompletne": 506
   },
   "rekord": {
     "figura.v2": 98,
@@ -148,136 +148,136 @@
       "data": "02.11.2026"
     },
     "jezyk.cs.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.sk.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.hu.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.ro.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.bg.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.hr.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.sl.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.sr.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.lt.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.lv.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.et.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.uk.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.es.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.es-419.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.pt.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.pt-BR.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.de.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.fr.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.it.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.nl.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.sv.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.da.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.nb.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.fi.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.tr.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.el.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.id.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.ms.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.vi.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.ru.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.ja.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.ko.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     },
     "jezyk.zh-Hant.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karty 35 ćwiczeń partii P2 mocy (G3) wyświetlane po recenzji niezależnej L-047 (03.11.2026), a ich nowe zdania czekają na przekład na 33 języki (zestaw-przekladu-2026-11-03-p2-wskazowki.json); do czasu przekładu język zastępczy EN, więc „kompletne” tych języków spada o 25 (531 → 506)",
+      "data": "03.11.2026"
     }
   }
 }
