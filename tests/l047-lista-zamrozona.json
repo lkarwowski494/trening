@@ -66,26 +66,6 @@
   "termin": "2026-11-10",
   "powod": "karty partii P1 i P2 zrecenzowane niezależnie 02–03.11.2026, ale audytor nie zapisał pliku recenzenta; koordynator zleca pliki innemu agentowi-recenzentowi; karta znika z listy, gdy plik ma zgodny wpis",
   "maks": 66,
-  "karty": [
-   "Ankle Circles",
-   "Arm Circles",
-   "Butterfly Stretch",
-   "Chest And Front Of Shoulder Stretch",
-   "External Rotation (hantel)",
-   "External Rotation with Band",
-   "Foam Roll: Hamstrings",
-   "Foam Roll: Quadriceps",
-   "Iliotibial Tract-SMR",
-   "Internal Rotation with Band",
-   "Overhead Triceps Stretch",
-   "Peroneals Stretch",
-   "Posterior Tibialis Stretch",
-   "Power Snatch",
-   "Rhomboids-SMR",
-   "Supine Figure-Four Stretch",
-   "The Straddle",
-   "Wall Calf Stretch",
-   "Wrist Circles"
-  ]
+  "karty": []
  }
 }
