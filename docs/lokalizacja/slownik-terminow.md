@@ -81,6 +81,11 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `telefon_es419` | telefon (urządzenie użytkownika) | telefon użytkownika; w es-419 potocznie „celular” (jak w aplikacji na telefonie), w es zostaje „teléfono” |
 | `rysunek_zdanie` | rysunek (w zdaniu pod rysunkiem ćwiczenia: „Rysunek pokazuje ruch w jedną stronę…”) | rysunek techniki ćwiczenia w zdaniu opisującym, co pokazuje (recenzja lokalizacji 02.11.2026, pull_up C); słowo ma być takie samo jak w pozostałych podpisach rysunku w tym języku; w ms „Animasi” (rysunek jest animowany, jak w opisie sklepu), nie „lukisan” (obraz malowany) |
 | `nastepne_powtorzenie` | następne powtórzenie (w zdaniu pod rysunkiem ćwiczenia: „w kolejnym powtórzeniu…”) | kolejne powtórzenie w tej samej serii (nie „następnym razem”, nie „następna liczba”); recenzja lokalizacji 02.11.2026, pull_up C |
+| `nozyce` | nożyce (pozycja split w dwuboju) | jedna nazwa pozycji split w rwaniu, zarzucie i podrzucie (jedna stopa w przód, druga w tył); „wykrok” to osobne ćwiczenie (lunge) i nie opisuje pozycji przyjęcia sztangi. Dotyczy wskazówek dwuboju; pozostałe 33 języki wg przekładu z PL/EN (do potwierdzenia przez native speakerów) |
+| `rack_kettlebell` | kettlebelle oparte przy barkach (pozycja rack) | pozycja kettlebelli (lub hantli) przy barkach i klatce; jedno brzmienie w całej partii siły i mocy: po polsku „oparte przy barkach”, bez obcego „pozycja rack” ani „w pozycji przy barku”; po angielsku „racked” |
+| `szerokosc_stop` | stopy na szerokość bioder do barków | zakres szerokości ustawienia stóp: jedna forma we wszystkich wskazówkach („na szerokość bioder do barków”, jak w gob.stance i dl.feet); po angielsku „hip- to shoulder-width” |
+| `core_en` | napnij tułów / brzuch (core) | napięcie tułowia przed ruchem; po angielsku na siłowni „core” (nie podręcznikowe „trunk”). Dotyczy wskazówek techniki; pozostałe języki wg przekładu z PL/EN |
+| `jak_do_en` | jak do … (kalka „like for a …”) | polskie „jak do wyskoku / do przysiadu / do martwego ciągu” po angielsku to „like a squat”, „set up like a deadlift”, „jumping stance” — nie kalka „like for a …” |
 
 ## Terminy zalecane (rdzeń)
 
@@ -128,6 +133,13 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 
 | język | pojęcie | zakazane | powód |
 |---|---|---|---|
+| `pl` | `nozyce` | wykrok | pozycja split w dwuboju to „nożyce”; „wykrok” to osobne ćwiczenie (lunge) i myli się z pozycją przyjęcia sztangi |
+| `pl` | `rack_kettlebell` | pozycj\w*\s+rack\|(?<![\p{L}])rack(?![\p{L}])\|w\s+pozycji\s+przy\s+barku | pozycję kettlebelli opisuj jednym brzmieniem „oparte przy barkach” (bez „pozycja rack” i „w pozycji przy barku”) |
+| `pl` | `szerokosc_stop` | między\s+szerokością\|mniej\s+więcej\s+od\s+szerokości\|bioder\s+a\s+barków\|do\s+szerokości\s+barków | zakres szerokości stóp zapisuj jedną formą „na szerokość bioder do barków” |
+| `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
+| `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
+| `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
+| `en` | `jak_do_en` | like\s+for\s+(a\|an\|the)\s | kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift” |
 | `cs` | `przerwa` | přestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |

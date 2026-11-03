@@ -732,7 +732,7 @@
    }
   },
   "bmbt.setup": {
-   "s": "df0f66647364",
+   "s": "f0b7c5868afb",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6470,7 +6470,7 @@
    }
   },
   "kbb.dbSnatchMove": {
-   "s": "d8afdbab6d81",
+   "s": "6373692377f0",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6508,7 +6508,7 @@
    }
   },
   "kbb.dbSnatchSetup": {
-   "s": "e74dbf5b2485",
+   "s": "4dfd74daa738",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6546,7 +6546,7 @@
    }
   },
   "kbb.dblCleanMove": {
-   "s": "0c65d73d40ac",
+   "s": "2be84542ea8a",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6698,7 +6698,7 @@
    }
   },
   "kbb.wrist": {
-   "s": "f335f901936f",
+   "s": "0d3e238e7b9f",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6774,7 +6774,7 @@
    }
   },
   "kbj.lockFirst": {
-   "s": "62efbc4d3be0",
+   "s": "64ae5d67c5b3",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6812,7 +6812,7 @@
    }
   },
   "kbj.move": {
-   "s": "8da25170fde5",
+   "s": "a1e154e53c93",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -6850,7 +6850,7 @@
    }
   },
   "kbj.rack": {
-   "s": "c537220f065a",
+   "s": "7ed89009e5db",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9168,7 +9168,7 @@
    }
   },
   "olympic.balanceMove": {
-   "s": "5e40286e4cc0",
+   "s": "4f9c9a38bb42",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9206,7 +9206,7 @@
    }
   },
   "olympic.balanceSetup": {
-   "s": "25e4cf93d417",
+   "s": "2a5eaf5ab05b",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9244,7 +9244,7 @@
    }
   },
   "olympic.blockSetup": {
-   "s": "eb3b71c7bf09",
+   "s": "562cf368e309",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9358,7 +9358,7 @@
    }
   },
   "olympic.dip": {
-   "s": "a9473ed19d10",
+   "s": "395bb151c639",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9396,7 +9396,7 @@
    }
   },
   "olympic.dipBrace": {
-   "s": "430e245c600b",
+   "s": "4af80f3fec6c",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9434,7 +9434,7 @@
    }
   },
   "olympic.dipSquat": {
-   "s": "b814590729fd",
+   "s": "b48d9a105d79",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9510,7 +9510,7 @@
    }
   },
   "olympic.feet": {
-   "s": "463cb2ec8ee7",
+   "s": "e521a1a56cb0",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9585,8 +9585,46 @@
     "zh-Hant": "e3b0c44298fc"
    }
   },
+  "olympic.hangExtend": {
+   "s": "9f109bb9264b",
+   "t": {
+    "cs": "e3b0c44298fc",
+    "sk": "e3b0c44298fc",
+    "hu": "e3b0c44298fc",
+    "ro": "e3b0c44298fc",
+    "bg": "e3b0c44298fc",
+    "hr": "e3b0c44298fc",
+    "sl": "e3b0c44298fc",
+    "sr": "e3b0c44298fc",
+    "lt": "e3b0c44298fc",
+    "lv": "e3b0c44298fc",
+    "et": "e3b0c44298fc",
+    "uk": "e3b0c44298fc",
+    "es": "e3b0c44298fc",
+    "es-419": "e3b0c44298fc",
+    "pt": "e3b0c44298fc",
+    "pt-BR": "e3b0c44298fc",
+    "de": "e3b0c44298fc",
+    "fr": "e3b0c44298fc",
+    "it": "e3b0c44298fc",
+    "nl": "e3b0c44298fc",
+    "sv": "e3b0c44298fc",
+    "da": "e3b0c44298fc",
+    "nb": "e3b0c44298fc",
+    "fi": "e3b0c44298fc",
+    "tr": "e3b0c44298fc",
+    "el": "e3b0c44298fc",
+    "id": "e3b0c44298fc",
+    "ms": "e3b0c44298fc",
+    "vi": "e3b0c44298fc",
+    "ru": "e3b0c44298fc",
+    "ja": "e3b0c44298fc",
+    "ko": "e3b0c44298fc",
+    "zh-Hant": "e3b0c44298fc"
+   }
+  },
   "olympic.hangSetup": {
-   "s": "bb6654e85058",
+   "s": "4c86e61a77bf",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9662,7 +9700,7 @@
    }
   },
   "olympic.jerkSetup": {
-   "s": "f59687c300dc",
+   "s": "223328f368cf",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -9738,44 +9776,6 @@
    }
   },
   "olympic.mis.arms": {
-   "s": "342f472da7c4",
-   "t": {
-    "cs": "e3b0c44298fc",
-    "sk": "e3b0c44298fc",
-    "hu": "e3b0c44298fc",
-    "ro": "e3b0c44298fc",
-    "bg": "e3b0c44298fc",
-    "hr": "e3b0c44298fc",
-    "sl": "e3b0c44298fc",
-    "sr": "e3b0c44298fc",
-    "lt": "e3b0c44298fc",
-    "lv": "e3b0c44298fc",
-    "et": "e3b0c44298fc",
-    "uk": "e3b0c44298fc",
-    "es": "e3b0c44298fc",
-    "es-419": "e3b0c44298fc",
-    "pt": "e3b0c44298fc",
-    "pt-BR": "e3b0c44298fc",
-    "de": "e3b0c44298fc",
-    "fr": "e3b0c44298fc",
-    "it": "e3b0c44298fc",
-    "nl": "e3b0c44298fc",
-    "sv": "e3b0c44298fc",
-    "da": "e3b0c44298fc",
-    "nb": "e3b0c44298fc",
-    "fi": "e3b0c44298fc",
-    "tr": "e3b0c44298fc",
-    "el": "e3b0c44298fc",
-    "id": "e3b0c44298fc",
-    "ms": "e3b0c44298fc",
-    "vi": "e3b0c44298fc",
-    "ru": "e3b0c44298fc",
-    "ja": "e3b0c44298fc",
-    "ko": "e3b0c44298fc",
-    "zh-Hant": "e3b0c44298fc"
-   }
-  },
-  "olympic.mis.armsEarly": {
    "s": "7f91d962c6c0",
    "t": {
     "cs": "e3b0c44298fc",
@@ -9814,7 +9814,7 @@
    }
   },
   "olympic.mis.away": {
-   "s": "d6a432b6c3d6",
+   "s": "219941e73e9b",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10004,7 +10004,7 @@
    }
   },
   "olympic.mis.softLockout": {
-   "s": "16644c9cbf14",
+   "s": "bdb813f9ae74",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10080,7 +10080,7 @@
    }
   },
   "olympic.msMove": {
-   "s": "88290444888a",
+   "s": "6b63e2f3a916",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10156,7 +10156,7 @@
    }
   },
   "olympic.powerMove": {
-   "s": "108af3ac3cee",
+   "s": "a2a02600dd03",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10194,7 +10194,7 @@
    }
   },
   "olympic.pullMove": {
-   "s": "6a7014d9cd07",
+   "s": "d00df0ead95f",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10308,7 +10308,7 @@
    }
   },
   "olympic.sbPush": {
-   "s": "33614f11266f",
+   "s": "838d711ead02",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10422,7 +10422,7 @@
    }
   },
   "olympic.setupBack": {
-   "s": "670b45bec0b7",
+   "s": "3a756805a5b0",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10460,7 +10460,7 @@
    }
   },
   "olympic.snatchMove": {
-   "s": "42eafb77917c",
+   "s": "58248fb7e166",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10498,7 +10498,7 @@
    }
   },
   "olympic.snatchPowerMove": {
-   "s": "f407b563a6ec",
+   "s": "a11608b14936",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10574,7 +10574,7 @@
    }
   },
   "olympic.splitCatch": {
-   "s": "48aeaad2825d",
+   "s": "c522dc1ac325",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10612,7 +10612,7 @@
    }
   },
   "olympic.splitMove": {
-   "s": "ff1735621f69",
+   "s": "952786a41134",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10650,7 +10650,7 @@
    }
   },
   "olympic.squatMove": {
-   "s": "06ebd9621f52",
+   "s": "ee1dde2d506b",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10726,7 +10726,7 @@
    }
   },
   "olympic.under": {
-   "s": "a65580a8e186",
+   "s": "96d62a56461d",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -11600,7 +11600,7 @@
    }
   },
   "plyo.broadDrive": {
-   "s": "58cd44a7c9a2",
+   "s": "9ae9f58c69bd",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -11676,7 +11676,7 @@
    }
   },
   "plyo.broadLoad": {
-   "s": "ece72b9c2b40",
+   "s": "9e5c89dbe2eb",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -11866,7 +11866,7 @@
    }
   },
   "plyo.wjsBarBack": {
-   "s": "88cc40daf797",
+   "s": "38ec8fd80594",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -14830,7 +14830,7 @@
    }
   },
   "sled.pushGrip": {
-   "s": "40f2dfe9ccc7",
+   "s": "4f5b90b1f21c",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -14982,7 +14982,7 @@
    }
   },
   "soht.move": {
-   "s": "a48ba71d6ca0",
+   "s": "e12851a6d3f4",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -16160,7 +16160,7 @@
    }
   },
   "thruster.dbSetup": {
-   "s": "60f6d7fbe041",
+   "s": "dece50bb11e6",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -16274,7 +16274,7 @@
    }
   },
   "thruster.kbSetup": {
-   "s": "7989a6d341dd",
+   "s": "8f73c962fd62",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
