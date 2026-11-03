@@ -2,7 +2,7 @@
 
 - Data: 03.11.2026. Recenzent: audytor (niezależny). Autor: programista curl. Gałąź `figury/curl-wspolne` @ 90a7821c (worktree /home/user/wt-curl-b, tylko odczyt, `git status` czysty), zmiany 6102b96d..90a7821c nad 1065b7c6.
 - Pozy curl (`lib/figures/v2/poses/curl.json`) bez zmian względem r3 (`git diff a2ed2b85..HEAD -- lib/figures/v2/poses/` pusty) — oceniam tylko wpływ W1/W2/H1 i podłączenia; reszta ruchu jak w r3 (docs/research/recenzje-figur/curl-r3.md).
-- Liczby: skrypt poza repo (/tmp/claude-0/-home-user/bf725a39-67ca-4f08-a91e-56e382c9b82d/scratchpad/an/m.mjs, `loadV2` z scripts/figures/v2-build.mjs, `frameAt` w 41 próbkach u): zgięcie łokcia, dryf łokcia, źródło śladu (odległość od chwytu R/L i miednicy), odchylenie śladu od cięciwy w każdym widoku, oś hantla.
+- Liczby: skrypt poza repo (<scratchpad>/an/m.mjs, `loadV2` z scripts/figures/v2-build.mjs, `frameAt` w 41 próbkach u): zgięcie łokcia, dryf łokcia, źródło śladu (odległość od chwytu R/L i miednicy), odchylenie śladu od cięciwy w każdym widoku, oś hantla.
 - Arkusze obejrzane w pełnej rozdzielczości: curl/Biceps-Curl-hantle-front.png, curl/High-Cable-Curl-front.png, curl/Hammer-Curl-front.png, curl/Hammer-Curl-side.png, curl/Cross-Body-Hammer-Curl-front.png, roznica/Pull-Up-side.png (katalog /home/user/arkusze-curl/arkusze-wspolne/).
 - Skróty: `node scripts/zrodla-runtime.mjs --skroty` na 90a7821c (rodzinaSkrot = plik rigu/póz + V2_WSPOLNE, scripts/zrodla-runtime.mjs:97,103).
 
@@ -94,7 +94,7 @@ Jedyne ćwiczenie curl z błędem tempa: zestaw ogólny `err: [mis.jerk]` z rece
 
 - Data: 03.11.2026. Recenzent: audytor (niezależny, nie autor). Autor: programista curl. Worktree /home/user/wt-curl-b, gałąź `figury/curl-wspolne` @ 61949ba9 (tylko odczyt, `git status` czysty). Różnica 90a7821c..61949ba9: 18249bd2 (W1b + C1), e4b5ff5d (C1 wariant 2, figures-v2-data), 61949ba9 (generowane).
 - Skróty: `node scripts/zrodla-runtime.mjs --skroty` uruchomione samodzielnie — wynik bajtowo równy /home/user/stan-curl2/skroty-r2.json. v2: curl a350009031ac, squat 7dda7de11e7a, bench_press 514477abea1d, hinge 3083acdf1a01, pull_up 874f6d310756.
-- Liczby: skrypt poza repo (/tmp/claude-0/-home-user/bf725a39-67ca-4f08-a91e-56e382c9b82d/scratchpad/r2/m.mjs i t.mjs; `loadV2`, `frameAt`/`keyframeFrame`, 41 próbek u).
+- Liczby: skrypt poza repo (<scratchpad>/r2/m.mjs i t.mjs; `loadV2`, `frameAt`/`keyframeFrame`, 41 próbek u).
 - Testy: `npx jest --runInBand tests/figures-v2-tor.test.ts tests/figury-curl-wspolne-w1-w2.test.ts` — 233/233 zielone.
 
 **Wynik: curl — 34 × wyswietlana (12 po W1b naprawione, 22 bez zmian), 0 poprawka, 0 wstrzymana. Rodziny ready: squat, bench_press, hinge, pull_up — 4 × wyswietlana (tylko nowe skróty). Brak znalezisk KRYTYCZNE/WYSOKIE. Propozycje wpisów v2: /home/user/stan-curl2/recenzja-ruchu-B-r2.json.**
