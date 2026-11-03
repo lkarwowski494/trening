@@ -2087,7 +2087,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Odepchnij się nogami od podłogi, dynamicznie się wyprostuj i wejdź pod nią — złap ją na prostych rękach wyżej niż w przysiadzie równoległym, biodra nad kolanami. — Catalyst Athletics: [Power Snatch (#61)](https://www.catalystathletics.com/exercise/61/) (opis wykonania (extend the hips; pull elbows up and out; remain above a parallel squat)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Steps 2–4 (hip crease above knee in the catch)); Rogue Fitness: [Movement Demo — Hang Power Snatch](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch) (Receive (hip crease higher than the top of the knees) — wariant: ze zwisu) `olympic.snatchPowerMove`
+- Odepchnij się nogami od podłogi, dynamicznie się wyprostuj i wejdź pod sztangę — złap ją na prostych rękach wyżej niż w przysiadzie równoległym, biodra nad kolanami. — Catalyst Athletics: [Power Snatch (#61)](https://www.catalystathletics.com/exercise/61/) (opis wykonania (extend the hips; pull elbows up and out; remain above a parallel squat)); BarBend: [Power Snatch (R. Stefan, USAW-L1)](https://barbend.com/power-snatch/) (Steps 2–4 (hip crease above knee in the catch)); Rogue Fitness: [Movement Demo — Hang Power Snatch](https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch) (Receive (hip crease higher than the top of the knees) — wariant: ze zwisu) `olympic.snatchPowerMove`
 
 **Wskazówki**
 
