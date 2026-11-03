@@ -236,10 +236,12 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
   };
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
+  /** Zdania P2 (03.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml); po przekładzie wpisy znikają z zestawu. */
+  const OCZEKUJE: string[] = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'docs/lokalizacja/zestaw-przekladu-2026-11-03-p2-wskazowki.json'), 'utf8')).klucze as { id: string }[]).map(k => k.id);
   test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {
-    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371); /* 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371 + OCZEKUJE.length); /* + zdania P2 (G3 moc, 03.11.2026) czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-03-p2-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
-    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]); /* ACG-003, 31.10.2026: było 52 */
+    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).sort()]).toEqual([l, [...OCZEKUJE].sort()]); /* ACG-003, 31.10.2026: było 52; brakować mogą tylko zdania z zestawu oczekującego na przekład */
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
   });
   test.each(['de', 'ja', 'cs', 'es', 'pt-BR', 'es-419', 'zh-Hant', 'pl', 'en'] as Lang[])('język %s: liczba zdań ćwiczenia = id z przekładem w TYM języku; pominięte policzone w cues.missing; tekst zawsze z własnego słownika', l => {
