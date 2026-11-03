@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (31)
+## Bez figury — lista otwarta (67)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -987,5 +987,41 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Incline Walk (bieżnia) | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
 | Bieg | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
 | Rower | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Snatch (hantel) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Double Kettlebell Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Double Kettlebell Jerk | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Power Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Hang Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Block Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Block Power Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Split Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Clean and Jerk | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Clean Pull | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Split Jerk | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Power Jerk | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Squat Jerk | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Jerk Dip Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Jerk Balance | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Barbell Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Power Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Hang Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Snatch Pull | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Muscle Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Snatch Balance | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Block Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Split Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Jump Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Tuck Jump | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Weighted Jump Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Broad Jump | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Alternate Leg Push-Off | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Wall Ball | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Medicine Ball Chest Pass | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Backward Medicine Ball Throw | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Standing Two-Arm Overhead Throw | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Sled Push | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Thruster (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Kettlebell Thruster | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P2, 03.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 
 Poza tym bez figury: 22 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
