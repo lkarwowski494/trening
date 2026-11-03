@@ -68,7 +68,8 @@ describe('niezmiennik: kontrole + Jest = cały verify (prawdziwy package.json)',
 });
 
 describe('tests.yml: zadania kontrole, jest (części), zbiorcze verify', () => {
-  const zadania = yml.slice(yml.indexOf('\njobs:')).split(/^  (?=[\w-]+:\s*$)/m).slice(1);
+  const kod = yml.split('\n').map(l => l.replace(/\s+#.*$/, '').replace(/^\s*#.*$/, '')).join('\n'); /* bez komentarzy */
+  const zadania = kod.slice(kod.indexOf('\njobs:')).split(/^  (?=[\w-]+:\s*$)/m).slice(1);
   const zadanie = (n: string) => zadania.find(z => z.startsWith(`${n}:`)) ?? '';
   test('trzy zadania: kontrole, jest, verify (nazwa zbiorczego sprawdzenia zachowana)', () => { expect(zadania.map(z => z.split(':')[0])).toEqual(['kontrole', 'jest', 'verify']); });
   test('jest: macierz części 1..N = czesci_jest z scripts/ci/czasy-tests.json, każda część woła jest-ponow z --shard=<część>/N, fail-fast wyłączony (pełna lista porażek)', () => {
@@ -83,10 +84,10 @@ describe('tests.yml: zadania kontrole, jest (części), zbiorcze verify', () => 
     expect(v).toMatch(/needs: \[kontrole, jest\]/); expect(v).toMatch(/if: always\(\) && /);
     expect(v).toContain('test "$KONTROLE" = success && test "$JEST" = success');
     expect(v).toContain('KONTROLE: ${{ needs.kontrole.result }}'); expect(v).toContain('JEST: ${{ needs.jest.result }}');
-    expect(yml).not.toMatch(/secrets\.|contents: write|pull_request_target/);
+    expect(kod).not.toMatch(/secrets\.|contents: write|pull_request_target/);
   });
   test('te same zmienne środowiska co dotąd: żadne zadanie nie ustawia PROP_SEED, GITHUB_REF_NAME ani GITHUB_BASE_REF (test numeracji lekcji czyta je z otoczenia GitHuba — L-053); kasa z tagami w każdym zadaniu z npm ci', () => {
-    expect(yml).not.toMatch(/PROP_SEED|GITHUB_REF_NAME|GITHUB_BASE_REF/);
+    expect(kod).not.toMatch(/PROP_SEED|GITHUB_REF_NAME|GITHUB_BASE_REF/);
     for (const z of [zadanie('kontrole'), zadanie('jest')]) { expect(z).toContain('fetch-depth: 0'); expect(z).toContain('fetch-tags: true'); expect(z).toContain('run: npm ci'); }
   });
   test('zakres Jest: kontrole nie uruchamiają Jest, a cały katalog testów należy do części jest (bez --testPathPattern ani wskazania plików)', () => {

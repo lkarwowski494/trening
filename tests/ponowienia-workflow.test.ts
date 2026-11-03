@@ -53,8 +53,8 @@ describe('L-096-A: kroki workflowów z ponowieniem mają test wykonujący ich wi
   test('każdy wykryty krok jest na liście, a lista nie ma martwych wpisów ani testów bez workflowu', () => {
     expect(problemy(zPonowieniem(kroki(PLIKI)), LISTA, istnieje, tresc)).toEqual([]);
   });
-  test('wykrywa dziś dokładnie kroki z listy (dwa e2e-ios.yml + wyjątek testflight.yml)', () => {
-    expect(zPonowieniem(kroki(PLIKI)).map(x => `${x.plik}|${x.krok.slice(0, 12)}`).sort()).toEqual(['e2e-ios.yml|Aktualizacja', 'e2e-ios.yml|Maestro', 'testflight.yml|Strażnik upr']);
+  test('wykrywa dziś dokładnie kroki z listy (dwa e2e-ios.yml + wyjątki testflight.yml i tests.yml)', () => {
+    expect(zPonowieniem(kroki(PLIKI)).map(x => `${x.plik}|${x.krok.slice(0, 12)}`).sort()).toEqual(['e2e-ios.yml|Aktualizacja', 'e2e-ios.yml|Maestro', 'tests.yml|Jest (część ', 'testflight.yml|Strażnik upr']);
   });
   test('wzorce: ponow, retry, || rc=, pętla for proba — w kodzie tak, w komentarzu nie', () => {
     const k = (run: string): Krok => ({ plik: 'x.yml', zadanie: 'j', krok: 'k', run });

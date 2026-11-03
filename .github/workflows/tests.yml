@@ -51,7 +51,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Jest, część ${{ matrix.czesc }} z 4 (z ponowieniem plików przerwanych z zewnątrz)
+      - name: Jest (część ${{ matrix.czesc }} z 4)
         run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/4
   verify:
     # Zbiorcze sprawdzenie pod dawną nazwą `verify` (reguły ochrony gałęzi i scripts/scal-galaz.mjs czytają wynik przebiegu tests.yml). `always()`: bez tego pominięte

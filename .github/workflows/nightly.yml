@@ -67,7 +67,8 @@ jobs:
       - name: Losowe sekwencje działań — nowe ziarno, 1000 przebiegów
         run: MATRIX_SEED=random MATRIX_RUNS=1000 npx jest tests/matrix-invariants.test.ts --testTimeout=7200000
       - name: Pełny zestaw testów — losowe ziarno testów własności (PROP_SEED w logu, TST2-07)
-        run: PROP_RUNS_SKALA=1 PROP_SEED=random npx jest --maxWorkers=2  # ZB-029 T2 (31.10.2026): pełna liczba przypadków (w ciągu dnia skala z tests/prop-seed.js) — tests/prop-seed.test.ts
+      # ZB-029 T2 (31.10.2026): PROP_RUNS_SKALA=1 — pełna liczba przypadków (w ciągu dnia skala domyślna z prop-seed)
+        run: PROP_RUNS_SKALA=1 PROP_SEED=random npx jest --maxWorkers=2
   mutacje:
     # 25.10.2026 (decyzja właściciela, docs/18): jedno zadanie na moduł z `mutate` w stryker.config.json — całość w jednym zadaniu liczyła ok. 27 h przy limicie 5 h (24.10: 2182 z 4484 mutantów).
     # Zadanie ma kopię konfiguracji z jednym modułem i BEZ progu `break` (próg dla całości sprawdza zadanie „mutacje-podsumowanie”). Lista modułów: tests/nocne-workflowy.test.ts pilnuje zgodności ze stryker.config.json.
