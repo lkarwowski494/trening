@@ -2522,10 +2522,12 @@
    "jezyki": {
     "pl": {
      "zalecany": "ciężar",
+     "zakazane": [{"wzorzec": "(?<![\\p{L}])(przenieś|przenoś|przenosz\\w*|przeniesienie)\\s+ciężar\\w*(?![\\p{L}])|ciężar\\w*\\s+ciała", "powod": "w aplikacji „ciężar” to obciążenie na sztandze/hantlach, nie masa ciała; przeniesienie masy ciała opisz innym słowem (np. „pochyl się do ściany”)"}],
      "pewnosc": "srednia"
     },
     "en": {
      "zalecany": "weight",
+     "zakazane": [{"wzorzec": "(?<![\\p{L}])shift(ing)?\\s+(your\\s+)?weight(?![\\p{L}])", "powod": "w aplikacji „weight” to obciążenie, nie masa ciała; przeniesienie masy ciała opisz ruchem („lean toward the wall”)"}],
      "pewnosc": "srednia"
     },
     "cs": {
@@ -10436,6 +10438,100 @@
      "zalecany": "次の1回",
      "pewnosc": "niska",
      "uwaga": "do potwierdzenia przez native speakera: „次の1回では” czy „次のレップでは”; „次の回” czyta się jak „następnym razem”, więc go unikamy"
+    }
+   }
+  },
+  {
+   "id": "tasma_rozciaganie",
+   "pl": "taśma (do rozciągania)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "taśma lub pasek do rozciągania, ręcznik; NIE pas obciążeniowy (w aplikacji „pas” to sprzęt). Dotyczy wskazówek mobilności; pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów)",
+   "kanon": null,
+   "wykrywaj": "taśm|(?<![\\p{L}])pas(a|em|ie|y|ów)?(?![\\p{L}])",
+   "wyklucz": "wysokości pasa|w pasie|na pasie",
+   "jezyki": {
+    "pl": {
+     "zalecany": "taśma",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])pas(a|em|ie|y|ów)?(?![\\p{L}])",
+       "powod": "w aplikacji „pas” to pas obciążeniowy; do rozciągania mówi się „taśma”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "strap",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(belt|sash)s?(?![\\p{L}])",
+       "powod": "„belt” to pas obciążeniowy; do rozciągania „strap”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "krazenia",
+   "pl": "krążenia (stawów)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "ruch koliste w stawie (stopa, ramiona, nadgarstki), tak jak mówi się na sali: „krążenia”; NIE „zataczanie kół”",
+   "kanon": null,
+   "wykrywaj": "krąż|zataczaj|(?<![\\p{L}])koła(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "krążenia",
+     "zakazane": [
+      {
+       "wzorzec": "zataczaj|(?<![\\p{L}])koła(?![\\p{L}])",
+       "powod": "na sali mówi się „krążenia / krąż”, nie „zataczaj koła”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "circle",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "podwijanie_miednicy",
+   "pl": "podwijanie miednicy",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "cofanie miednicy pod siebie (zaokrąglenie dołu pleców); potocznie „podwijać miednicę”, jak w hang.ribs",
+   "kanon": null,
+   "wykrywaj": "podwij\\w*\\s+miednic|odchylani\\w*\\s+miednicy|tyłopochyl",
+   "jezyki": {
+    "pl": {
+     "zalecany": "podwijać miednicę",
+     "zakazane": [
+      {
+       "wzorzec": "odchylani\\w*\\s+miednicy|tyłopochyl",
+       "powod": "język podręcznika; w siłowni mówi się „podwijać miednicę”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "tuck your pelvis",
+     "zakazane": [
+      {
+       "wzorzec": "posterior\\s+pelvic\\s+tilt|tilt(ing)?\\s+(your\\s+)?pelvis\\s+back",
+       "powod": "język podręcznika; potocznie „tuck your pelvis”"
+      }
+     ],
+     "pewnosc": "srednia"
     }
    }
   }

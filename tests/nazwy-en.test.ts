@@ -207,9 +207,12 @@ describe('nazwy EN: scenariusze Maestro szukają po nowych nazwach', () => {
   const warianty = (d: string) => [d, d.replace(/[()]/g, c => `\\${c}`), d.replace(/[()]/g, c => `\\\\${c}`)];
   test('żaden plik ani podprzepływ Maestro nie zawiera dawnej nazwy EN ćwiczenia zmienionego w tabeli (ekran pokazuje już nową)', () => {
     const trafienia: string[] = [];
+    /* Wyjątek L-091 (02.11.2026, do usunięcia z ZB-036): scenariusz 33 i jego podprzepływ biegną na POPRZEDNIEJ wersji aplikacji (plik wydania v1.0.1-b1035), która jeszcze
+     * pokazuje dawne nazwy; selektor ma obie postacie (nowa|stara), pilnuje tego tests/maestro-33-stare-nazwy.test.ts. Reszta zakazu bez zmian. */
+    const L091: Record<string, string[]> = { '.maestro/33-aktualizacja-przygotuj.yaml': ['Bench Press (Dumbbell)'], '.maestro/subflows/szablon-testowy.yaml': ['Bench Press (Dumbbell)', 'Bent Over Row (Dumbbell)'] };
     for (const f of pliki) {
       const t = read(f);
-      for (const w of zrodlo.wpisy) for (const v of warianty(w.dawna)) if (new RegExp(`(?<![\\w-])${esc(v)}(?![\\w-])`).test(t)) trafienia.push(`${f}: ${w.dawna}`);
+      for (const w of zrodlo.wpisy) for (const v of warianty(w.dawna)) if (!L091[f]?.includes(w.dawna) && new RegExp(`(?<![\\w-])${esc(v)}(?![\\w-])`).test(t)) trafienia.push(`${f}: ${w.dawna}`);
     }
     expect(trafienia).toEqual([]);
   });

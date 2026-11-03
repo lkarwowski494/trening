@@ -17,13 +17,13 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 53 | 7,5% |
 | Bez figury w aplikacji | 557 | 78,7% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 437 | 61,7% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 29 | 4,1% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 59 | 8,3% |
 | Animowany błąd | 92 | 13% |
-| Własne wskazówki (źródłowe) | 101 | 14,3% |
-| — z czego z częstymi błędami | 39 | 5,5% |
+| Własne wskazówki (źródłowe) | 131 | 18,5% |
+| — z czego z częstymi błędami | 49 | 6,9% |
 | Zestaw ogólny wskazówek wzorca ruchu | 77 | 10,9% |
-| Bez tekstu wskazówek | 530 | 74,9% |
-| Częste błędy (własne albo zestaw ogólny) | 116 | 16,4% |
+| Bez tekstu wskazówek | 500 | 70,6% |
+| Częste błędy (własne albo zestaw ogólny) | 126 | 17,8% |
 | Role mięśni | 508 | 71,8% |
 | **Pełna karta** | 90 | 12,7% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 98 | 13,8% |
@@ -36,16 +36,14 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości.
 
-Cel osiągnięty: **nie** (41 z 47 liczb).
+Cel osiągnięty: **nie** (43 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| własne wskazówki | 102 | 101 | 1 |
-| własne wskazówki z częstymi błędami | 43 | 39 | 4 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 178 | 462 |
-| częste błędy (tekst) | 557 | 116 | 441 |
-| komplet tekstów karty: pl | 671 | 531 | 140 |
-| komplet tekstów karty: en | 671 | 531 | 140 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 208 | 432 |
+| częste błędy (tekst) | 557 | 126 | 431 |
+| komplet tekstów karty: pl | 671 | 561 | 110 |
+| komplet tekstów karty: en | 671 | 561 | 110 |
 
 ## Rodziny ruchu
 
@@ -54,7 +52,7 @@ Cel osiągnięty: **nie** (41 z 47 liczb).
 | `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
 | `curl` | do zrobienia | 36 | 0 | 36 | 5 | 6 | 0 | 30 | 0 | 0 |
-| `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 0 | 0 | 36 | 0 | 0 |
+| `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
 | `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 31 | 32 |
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
 | `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
@@ -64,7 +62,7 @@ Cel osiągnięty: **nie** (41 z 47 liczb).
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
-| `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 0 | 0 | 22 | 0 | 0 |
+| `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 2 | 0 | 18 | 0 | 0 |
 | `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 2 | 0 | 17 | 0 | 0 |
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 1 | 0 | 18 | 0 | 0 |
@@ -77,11 +75,11 @@ Cel osiągnięty: **nie** (41 z 47 liczb).
 | `row` | do zrobienia | 13 | 0 | 12 | 6 | 6 | 0 | 7 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 3 | 0 | 8 | 0 | 0 |
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 3 | 0 | 7 | 0 | 0 |
-| `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 0 | 0 | 10 | 0 | 0 |
+| `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 8 | 0 | 2 | 0 | 0 |
 | `strongman` | do zrobienia | 10 | 0 | 1 | 0 | 0 | 0 | 10 | 0 | 0 |
 | `hip_abd_add` | do zrobienia | 8 | 0 | 6 | 0 | 0 | 0 | 8 | 0 | 0 |
 | `leg_machine` | do zrobienia | 8 | 0 | 6 | 2 | 2 | 0 | 6 | 0 | 0 |
-| `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 0 | 0 | 8 | 0 | 0 |
+| `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 3 | 0 | 5 | 0 | 0 |
 | `shrug` | do zrobienia | 8 | 0 | 8 | 2 | 2 | 0 | 6 | 0 | 0 |
 | `carry` | do zrobienia | 7 | 0 | 7 | 0 | 2 | 0 | 5 | 0 | 0 |
 | `glute_floor` | do zrobienia | 7 | 0 | 7 | 0 | 0 | 0 | 7 | 0 | 0 |
@@ -97,45 +95,45 @@ Cel osiągnięty: **nie** (41 z 47 liczb).
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **531**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **561**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 531 | 0 | 0 | 0 |
-| en | 531 | 0 | 0 | 0 |
-| cs | 531 | 0 | 0 | 0 |
-| sk | 531 | 0 | 0 | 0 |
-| hu | 531 | 0 | 0 | 0 |
-| ro | 531 | 0 | 0 | 0 |
-| bg | 531 | 0 | 0 | 0 |
-| hr | 531 | 0 | 0 | 0 |
-| sl | 531 | 0 | 0 | 0 |
-| sr | 531 | 0 | 0 | 0 |
-| lt | 531 | 0 | 0 | 0 |
-| lv | 531 | 0 | 0 | 0 |
-| et | 531 | 0 | 0 | 0 |
-| uk | 531 | 0 | 0 | 0 |
-| es | 531 | 0 | 0 | 0 |
-| es-419 | 531 | 0 | 0 | 0 |
-| pt | 531 | 0 | 0 | 0 |
-| pt-BR | 531 | 0 | 0 | 0 |
-| de | 531 | 0 | 0 | 0 |
-| fr | 531 | 0 | 0 | 0 |
-| it | 531 | 0 | 0 | 0 |
-| nl | 531 | 0 | 0 | 0 |
-| sv | 531 | 0 | 0 | 0 |
-| da | 531 | 0 | 0 | 0 |
-| nb | 531 | 0 | 0 | 0 |
-| fi | 531 | 0 | 0 | 0 |
-| tr | 531 | 0 | 0 | 0 |
-| el | 531 | 0 | 0 | 0 |
-| id | 531 | 0 | 0 | 0 |
-| ms | 531 | 0 | 0 | 0 |
-| vi | 531 | 0 | 0 | 0 |
-| ru | 531 | 0 | 0 | 0 |
-| ja | 531 | 0 | 0 | 0 |
-| ko | 531 | 0 | 0 | 0 |
-| zh-Hant | 531 | 0 | 0 | 0 |
+| pl | 561 | 0 | 0 | 0 |
+| en | 561 | 0 | 0 | 0 |
+| cs | 531 | 30 | 85 | 0 |
+| sk | 531 | 30 | 85 | 0 |
+| hu | 531 | 30 | 85 | 0 |
+| ro | 531 | 30 | 85 | 0 |
+| bg | 531 | 30 | 85 | 0 |
+| hr | 531 | 30 | 85 | 0 |
+| sl | 531 | 30 | 85 | 0 |
+| sr | 531 | 30 | 85 | 0 |
+| lt | 531 | 30 | 85 | 0 |
+| lv | 531 | 30 | 85 | 0 |
+| et | 531 | 30 | 85 | 0 |
+| uk | 531 | 30 | 85 | 0 |
+| es | 531 | 30 | 85 | 0 |
+| es-419 | 531 | 30 | 85 | 0 |
+| pt | 531 | 30 | 85 | 0 |
+| pt-BR | 531 | 30 | 85 | 0 |
+| de | 531 | 30 | 85 | 0 |
+| fr | 531 | 30 | 85 | 0 |
+| it | 531 | 30 | 85 | 0 |
+| nl | 531 | 30 | 85 | 0 |
+| sv | 531 | 30 | 85 | 0 |
+| da | 531 | 30 | 85 | 0 |
+| nb | 531 | 30 | 85 | 0 |
+| fi | 531 | 30 | 85 | 0 |
+| tr | 531 | 30 | 85 | 0 |
+| el | 531 | 30 | 85 | 0 |
+| id | 531 | 30 | 85 | 0 |
+| ms | 531 | 30 | 85 | 0 |
+| vi | 531 | 30 | 85 | 0 |
+| ru | 531 | 30 | 85 | 0 |
+| ja | 531 | 30 | 85 | 0 |
+| ko | 531 | 30 | 85 | 0 |
+| zh-Hant | 531 | 30 | 85 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
@@ -149,6 +147,6 @@ Pełnych kart: 90. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy 
 | 0 | 90 |
 | 1 | 4 |
 | 2 | 20 |
-| 3 | 55 |
-| 4 | 356 |
-| 5 | 183 |
+| 3 | 65 |
+| 4 | 376 |
+| 5 | 153 |

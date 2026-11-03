@@ -234,12 +234,14 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
     if (sel.mode === 'general' && !(generalCuesReviewed(key) && figureSpec(key))) return [];
     return [...sel.ok, ...sel.err];
   };
+  /** Zdania P1 (02.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml); po przekładzie wpisy znikają z zestawu. */
+  const OCZEKUJE: string[] = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'docs/lokalizacja/zestaw-przekladu-2026-11-02-p1-wskazowki.json'), 'utf8')).klucze as { id: string }[]).map(k => k.id);
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
   test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {
-    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371); /* 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371 + OCZEKUJE.length); /* 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026; + zdania P1 (G2 mobilność, 02.11.2026) czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-02-p1-wskazowki.json */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
-    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]); /* ACG-003, 31.10.2026: było 52 */
+    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).sort()]).toEqual([l, [...OCZEKUJE].sort()]); /* ACG-003, 31.10.2026: było 52; brakować mogą tylko zdania z zestawu oczekującego na przekład (po przekładzie lista pusta → brak braków) */
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
   });
   test.each(['de', 'ja', 'cs', 'es', 'pt-BR', 'es-419', 'zh-Hant', 'pl', 'en'] as Lang[])('język %s: liczba zdań ćwiczenia = id z przekładem w TYM języku; pominięte policzone w cues.missing; tekst zawsze z własnego słownika', l => {

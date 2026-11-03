@@ -298,10 +298,10 @@ jobs:
             guard maestro --device "$SIM" test .maestro/34-aktualizacja-sprawdz.yaml --format junit --output "$OUT/sprawdz.xml" --test-output-dir "$OUT/sprawdz" || r=1
             return $r
           }
-          faza e2e-out/aktualizacja; rc=$?
+          rc=0; faza e2e-out/aktualizacja || rc=$?  # bez „|| rc=$?” powłoka z -e kończyłaby krok przed ponowieniem (run 41538603321)
           if [ "$rc" -ne 0 ] && [ "$STRICT" != "true" ]; then
             echo "::warning::Ponowienie testu aktualizacji (33–34) — jedno, od czystej instalacji poprzedniej wersji"
-            faza e2e-out/aktualizacja/ponowienie; rc=$?
+            rc=0; faza e2e-out/aktualizacja/ponowienie || rc=$?
           fi
           exit $rc
       - name: Wyniki scenariuszy (przeszedł / w ponowieniu / padł dwa razy, czasy)
