@@ -2,6 +2,9 @@
 # Repozytorium publiczne (ADR-031): maszyna ubuntu bez opłat. Uruchamia tylko wypchnięcie do tego repozytorium (właściciel i agent);
 # Od 30.10.2026 (właściciel, L-053 wariant A) także PR do main — ale job biegnie tylko dla gałęzi z tego repozytorium (warunek `if`),
 # więc kod z cudzych forków tego nie odpali; test numeracji lekcji widzi gałąź docelową przez GITHUB_BASE_REF. Bez sekretów.
+# Od ZB-029 T1 (decyzja właściciela 31.10.2026): trzy rodzaje zadań zamiast jednego — `kontrole` (łańcuch verify bez Jest: `npm run verify:kontrole`), `jest` w czterech częściach
+# równolegle (`--shard`, przez scripts/jest-ponow.mjs z ponowieniem plików przerwanych z zewnątrz) i zbiorcze `verify` (nazwa sprawdzenia zachowana), które jest zielone tylko
+# gdy kontrole i wszystkie cztery części są zielone. Liczba części i limity czasu: scripts/ci/czasy-tests.json (pilnuje tests/tests-yml-czas.test.ts).
 name: Testy (każde wypchnięcie)
 on:
   push:
@@ -14,10 +17,10 @@ concurrency:
   group: tests-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  verify:
+  kontrole:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 55  # wyliczony z pomiaru: scripts/ci/czasy-tests.json (p95 z 12 przebiegów 22–40 min × 1,25, w górę do 5 min; audyt jakości 007, 01.11.2026) — pilnuje tests/tests-yml-czas.test.ts
+    timeout-minutes: 20  # tymczasowo do pierwszego pomiaru po podziale; docelowo z scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
     steps:
       - uses: actions/checkout@v5
         with:
@@ -28,5 +31,40 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: npm run verify (typy, tłumaczenia, wszystkie testy Jest, macierz, eksport iOS, sprawdzenie natywne)
-        run: npm run verify
+      - name: npm run verify:kontrole (typy, tłumaczenia, sprawdzenia, macierz, eksport iOS, sprawdzenie natywne — wszystko z verify poza Jestem)
+        run: npm run verify:kontrole
+  jest:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 35  # tymczasowo do pierwszego pomiaru po podziale; docelowo z scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
+    strategy:
+      fail-fast: false  # każda część kończy się sama — pełna lista porażek w jednym przebiegu
+      matrix:
+        czesc: [1, 2, 3, 4]  # liczba części = czesci_jest w scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # pełna historia i tagi (audyt jakości 012): tests/audit-m1-050-release-log.test.ts sprawdza wiersz dziennika wydań dla każdego tagu v*-b* — bez tagów test był pusty
+          fetch-tags: true
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Jest, część ${{ matrix.czesc }} z 4 (z ponowieniem plików przerwanych z zewnątrz)
+        run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/4
+  verify:
+    # Zbiorcze sprawdzenie pod dawną nazwą `verify` (reguły ochrony gałęzi i scripts/scal-galaz.mjs czytają wynik przebiegu tests.yml). `always()`: bez tego pominięte
+    # zadanie (np. anulowane) zostawiłoby zbiorcze pominięte, czyli „nie czerwone”.
+    if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    needs: [kontrole, jest]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Kontrole i wszystkie części Jest muszą być zielone
+        env:
+          KONTROLE: ${{ needs.kontrole.result }}
+          JEST: ${{ needs.jest.result }}
+        run: |
+          echo "kontrole: $KONTROLE, jest (4 części): $JEST"
+          test "$KONTROLE" = success && test "$JEST" = success

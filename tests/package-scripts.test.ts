@@ -21,6 +21,7 @@ const WYJATKI: Record<string, string> = {
   'check:release': 'blokada wydania R-015 (wyjątek anonimizacji): uruchamia krok wydania i lista wydawcy, nie zwykłe verify (docs/40)',
   'check:pochodne': 'hak pre-push (decyzja 8a, 28.10.2026): zbiera generatory --check i szybkie strażniki; verify uruchamia je osobno',
   'check:slowniki': 'hak pre-push warunkowo (L-048 A, check:pochodne przy zmianie słowników); te same testy Jest biegną w pełnym jest w verify',
+  'verify:kontrole': 'kontrole z łańcucha verify bez Jest (zadanie `kontrole` w tests.yml, ZB-029 T1); bierze kroki z verify, nie ma własnej listy',
   'verify:docs': 'szybkie kontrole dla commitu tylko z dokumentami (decyzja 21.10.2026), nie bramka wydania',
 };
 

@@ -1,10 +1,72 @@
 {
-  "_opis": "Pomiar czasu zadania verify w tests.yml (audyt jakości 007, 01.11.2026) — JEDYNE źródło limitu `timeout-minutes` w tests.yml (pilnuje tests/tests-yml-czas.test.ts). Czas = updated_at − created_at przebiegu, minuty; próbka: 12 ostatnich przebiegów 31.10–01.11.2026 zakończonych success/failure (czyli pełnych; anulowane pominięte). Reguła limitu: p95 (najbliższy rząd) × zapas, w górę do 5 min. Nowy pomiar: przeliczyć z listy przebiegów tests.yml i zaktualizować próbkę oraz limit w tests.yml.",
+  "_opis": "Pomiar czasu zadań tests.yml — JEDYNE źródło liczby części Jest (`czesci_jest`) i limitów `timeout-minutes` w tests.yml (pilnuje tests/tests-yml-czas.test.ts). Czas = completed_at − started_at zadania (API jobs przebiegu), minuty. Reguła limitu zadania: p95 (najbliższy rząd) próbki × zapas, w górę do kroku zaokrąglenia; dopóki próbka zadania ma mniej wpisów niż `minimalna_probka`, obowiązuje `limit_tymczasowy_min`. `przed_podzialem` — dawne jedno zadanie verify (audyt jakości 007, 01.11.2026; 12 przebiegów 31.10–01.11.2026, czas przebiegu = updated_at − created_at), zostaje jako punkt odniesienia dla pomiaru po podziale (ZB-029 T1, 31.10.2026). Nowy pomiar: przeliczyć z zadań przebiegu tests.yml i zaktualizować próbkę oraz limit w tests.yml.",
   "zapas": 1.25,
   "krok_zaokraglenia_min": 5,
-  "probka_min": [
-    { "przebieg": 41245544499, "min": 22.4 }, { "przebieg": 41243399654, "min": 40.0 }, { "przebieg": 41243267412, "min": 38.7 }, { "przebieg": 41241158951, "min": 38.7 },
-    { "przebieg": 41240572619, "min": 29.3 }, { "przebieg": 41234584631, "min": 22.7 }, { "przebieg": 41231560838, "min": 38.0 }, { "przebieg": 41231545965, "min": 28.2 },
-    { "przebieg": 41227225716, "min": 39.7 }, { "przebieg": 41225259256, "min": 23.2 }, { "przebieg": 41245578852, "min": 40.1 }, { "przebieg": 41233303423, "min": 35.3 }
-  ]
+  "czesci_jest": 4,
+  "zbiorcze_limit_min": 5,
+  "przed_podzialem": {
+    "limit_min": 55,
+    "probka_min": [
+      {
+        "przebieg": 41245544499,
+        "min": 22.4
+      },
+      {
+        "przebieg": 41243399654,
+        "min": 40.0
+      },
+      {
+        "przebieg": 41243267412,
+        "min": 38.7
+      },
+      {
+        "przebieg": 41241158951,
+        "min": 38.7
+      },
+      {
+        "przebieg": 41240572619,
+        "min": 29.3
+      },
+      {
+        "przebieg": 41234584631,
+        "min": 22.7
+      },
+      {
+        "przebieg": 41231560838,
+        "min": 38.0
+      },
+      {
+        "przebieg": 41231545965,
+        "min": 28.2
+      },
+      {
+        "przebieg": 41227225716,
+        "min": 39.7
+      },
+      {
+        "przebieg": 41225259256,
+        "min": 23.2
+      },
+      {
+        "przebieg": 41245578852,
+        "min": 40.1
+      },
+      {
+        "przebieg": 41233303423,
+        "min": 35.3
+      }
+    ]
+  },
+  "po_podziale": {
+    "jest": {
+      "minimalna_probka": 4,
+      "limit_tymczasowy_min": 35,
+      "probka_min": []
+    },
+    "kontrole": {
+      "minimalna_probka": 1,
+      "limit_tymczasowy_min": 20,
+      "probka_min": []
+    }
+  }
 }
