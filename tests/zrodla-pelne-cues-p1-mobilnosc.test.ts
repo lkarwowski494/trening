@@ -37,7 +37,7 @@ describe('P1 mobilność: karty własne', () => {
       expect([k, rec.werdykt, rec.autor !== rec.recenzent]).toEqual([k, 'wyswietlana', true]);
       expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]);
     }
-    expect(REC.karty['Supine Spinal Twist'].data).toBe('2026-11-03');
+    expect((REC.karty['Supine Spinal Twist'] as { data?: string }).data).toBe('2026-11-03');
   });
 
   test('Supine Spinal Twist: opis obu kolan (źródła opisują oba kolana, decyzja koordynatora 02.11.2026), bez „jednego kolana” i „w poprzek ciała”', () => {
