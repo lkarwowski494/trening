@@ -418,9 +418,9 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   fr.props = fr.props.map(p => p.k === 'dumbbell' && !p.vertical ? withDumbbellAxis(p, fr.sk.arms[p.side], k.rece[p.side]?.obrotPrzedramienia) : p);
   /* drążek nieruchomy (ciało porusza się względem sprzętu): tor ruchu to droga środka ciała (miednicy), nie punktu na drążku */
   if (!d.sprzet.some(g => g.rodzaj === 'sztanga' && g.podazaZaChwytem)) fr.info.trail = fr.sk.pelvis;
-  /* ciężar w dłoni (hantel, wyciąg, dźwignia maszyny; bez sztangi): tor ciężaru = chwyt ręki, która go trzyma (obie ręce — środek między chwytami), nie miednica (recenzja curl W1, 03.11.2026) */
+  /* ciężar w dłoni (hantel, wyciąg, dźwignia maszyny; bez sztangi): tor ciężaru = chwyt ręki, która go trzyma (obie ręce — środek między chwytami jednego uchwytu; dwa osobne ciężary — chwyt R, W1b), nie miednica (recenzja curl W1, 03.11.2026) */
   const nosi = d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia');
-  if (nosi && !d.sprzet.some(g => g.rodzaj === 'sztanga')) { const t = (nosi as { trzyma?: 'R' | 'L' }).trzyma; fr.info.trail = t ? grips[t] : [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3; }
+  if (nosi && !d.sprzet.some(g => g.rodzaj === 'sztanga')) { const t = (nosi as { trzyma?: 'R' | 'L' }).trzyma; /* W1b (recenzja niezależna 03.11.2026): dwa osobne ciężary (para hantli, dwa wyciągi) — ślad przy chwycie jednej ręki (R, jak w rigach: squat.ts, hinge.ts), nie w osi ciała; jeden uchwyt/lina/dźwignia — środek między chwytami */ const dwaCiezary = (nosi.rodzaj === 'hantel' && !nosi.pionowo) || (nosi.rodzaj === 'wyciag' && nosi.dwa === true); fr.info.trail = t ? grips[t] : dwaCiezary ? grips.R : [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3; }
   return fr;
 }
 

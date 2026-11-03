@@ -13,9 +13,14 @@ const CURL: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__di
 const dist = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 
 describe('W1: ślad toru ciężaru w dłoni = chwyt', () => {
-  test('hantle obiema rękami: ślad w środku między chwytami, nie w miednicy (Hammer Curl, u = 0 i 0,5)', () => {
-    for (const u of [0, 0.5]) { const f = keyframeFrame(CURL['Hammer Curl'], u); const g = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
-      expect([u, dist(f.info.trail!, g) < 1e-6, dist(f.info.trail!, f.sk.pelvis) > 5]).toEqual([u, true, true]); }
+  test('W1b (recenzja niezależna 03.11.2026): para hantli = dwa osobne ciężary → ślad przy chwycie jednej ręki (R), nie w osi ciała (Hammer Curl, Biceps Curl (hantle), u = 0 i 0,5)', () => {
+    for (const k of ['Hammer Curl', 'Biceps Curl (hantle)']) for (const u of [0, 0.5]) { const f = keyframeFrame(CURL[k], u);
+      expect([k, u, dist(f.info.trail!, f.sk.arms.R.grip) < 1e-6, dist(f.info.trail!, f.sk.pelvis) > 5]).toEqual([k, u, true, true]);
+      expect([k, u, Math.abs(f.info.trail![2]) > 10]).toEqual([k, u, true]); /* nie w osi ciała (z = 0) */ }
+  });
+  test('W1b: dwie linki (dwa: true) → ślad przy chwycie R (Cable Curl (dwie linki), High Cable Curl); jeden uchwyt/lina (Cable Curl, Hammer Curl (linki)) → środek między chwytami jak dotąd', () => {
+    for (const k of ['Cable Curl (dwie linki)', 'High Cable Curl']) for (const u of [0, 0.5, 1]) { const f = keyframeFrame(CURL[k], u); expect([k, u, dist(f.info.trail!, f.sk.arms.R.grip) < 1e-6]).toEqual([k, u, true]); }
+    for (const k of ['Cable Curl', 'Hammer Curl (linki)']) for (const u of [0, 0.5, 1]) { const f = keyframeFrame(CURL[k], u); const g = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2); expect([k, u, dist(f.info.trail!, g) < 1e-6]).toEqual([k, u, true]); }
   });
   test('jedna ręka z hantlem: ślad = chwyt ręki trzymającej (Cross Body Hammer Curl)', () => {
     const f = keyframeFrame(CURL['Cross Body Hammer Curl'], 0.5); expect(dist(f.info.trail!, f.sk.arms.R.grip)).toBeLessThan(1e-6);

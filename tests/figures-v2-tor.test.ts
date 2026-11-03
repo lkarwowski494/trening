@@ -6,6 +6,7 @@
  * Wyjątki: tests/tor-wyjatki.json („ćwiczenie|widok” → powód); lista tylko maleje — wyjątek, który już spełnia progi, trzeba usunąć.
  */
 import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, HINGE, type View, type HingeParams } from '@/lib/figures/v2';
+import { keyframeFrame, type PoseData } from '@/lib/figures/v2';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -26,7 +27,7 @@ export function ksztaltToru(pts: [number, number][]): { odchylenie: number; zawr
 const tor = (k: string, v: View) => ksztaltToru(Array.from({ length: 25 }, (_, i) => { const f = frameAt(figureSpec(k)!, i / 24); return f.info.load ?? f.info.trail; }).filter(Boolean).map(p => proj(p!, v) as [number, number]));
 /* Ruch po łuku wokół stawu (curl, 03.11.2026): chwyt kreśli łuk o promieniu przedramienia (ok. 15–24 cm odchylenia od cięciwy — fizycznie poprawne), więc próg 4 cm (tor prostoliniowy gryfu) go nie dotyczy;
    dla łuku obowiązuje: najwyżej jedna zmiana kierunku w poziomie (bez „S”) i odchylenie ≤ PROG_LUK cm (ochrona przed ucieczką toru). Do potwierdzenia przez recenzenta niezależnego razem z arkuszem śladu. */
-const LUKOWE = new Set(['curl']); const PROG_LUK = 30; const FAM = assignAll() as Record<string, string>;
+const LUKOWE = new Set(['curl']); const PROG_LUK = 26; /* C1 (recenzja niezależna 03.11.2026): geometria — strzałka łuku r·(1 − cos(Δθ/2)) ≈ 21 cm + dryf łokcia ≈ 4 cm; pomiar max 23,8 cm; 30 cm dawało ok. 6 cm luzu */ const FAM = assignAll() as Record<string, string>;
 const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string) => (k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
 
 describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => {
@@ -107,5 +108,36 @@ describe('101-12 (29.10.2026, hinge): wyjątki toru po krzywej kolan (`knees` w 
   test('gryf z krzywą kolan: tor schodzi najwyżej HINGE.dev (3,5 cm) pod prostą między końcami — poniżej progu strażnika (4 cm)', () => {
     expect(HINGE.dev).toBeLessThan(PROG.odchylenie);
     for (const k of ['Deadlift (sztanga)', 'Snatch Deadlift', 'Sumo Deadlift', 'RDL (sztanga)']) expect([k, tor(k, 'side').odchylenie <= HINGE.dev + 0.01, tor(k, 'side').zawrocenia <= PROG.zawrocenia]).toEqual([k, true, true]);
+  });
+});
+
+describe('C1 (recenzja niezależna 03.11.2026): ślad ciężaru w dłoni leży przy chwycie, nie w osi ciała (rodziny z danych póz)', () => {
+  /* ćwiczenia z danych póz z ciężarem w dłoni bez sztangi (hantel, wyciąg, dźwignia): ślad ≤ MAX_OD_CHWYTU cm od chwytu R/L albo — przy jednym uchwycie/linie/dźwigni — od środka między chwytami */
+  const MAX_OD_CHWYTU = 3;
+  const dir = path.join(__dirname, '../lib/figures/v2/poses');
+  const DATA: [string, PoseData][] = fs.readdirSync(dir).filter(f => f.endsWith('.json')).flatMap(f => Object.entries(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')).cwiczenia as Record<string, PoseData>).map(([k, d]) => [`${f.replace('.json', '')}|${k}`, d] as [string, PoseData]));
+  const nosi = (d: PoseData) => d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia') as (PoseData['sprzet'][number] & { pionowo?: boolean; dwa?: boolean; trzyma?: string }) | undefined;
+  const dwa = (g: NonNullable<ReturnType<typeof nosi>>) => !g.trzyma && ((g.rodzaj === 'hantel' && !g.pionowo) || (g.rodzaj === 'wyciag' && g.dwa === true));
+  const dist3 = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  /** Odległość śladu od najbliższego dopuszczalnego punktu: chwyt R/L; środek między chwytami tylko dla jednego uchwytu (nie dla dwóch osobnych ciężarów). */
+  const odChwytu = (tr: number[], R: number[], L: number[], dwaCiezary: boolean) => Math.min(dist3(tr, R), dist3(tr, L), dwaCiezary ? Infinity : dist3(tr, [0, 1, 2].map(i => (R[i] + L[i]) / 2)));
+  const ZESTAW = DATA.filter(([, d]) => { const g = nosi(d); return !!g && !d.sprzet.some(x => x.rodzaj === 'sztanga'); });
+
+  test('zestaw jest niepusty i obejmuje curl: ćwiczenia z dwoma ciężarami i z jednym uchwytem', () => {
+    expect(ZESTAW.length).toBeGreaterThanOrEqual(30);
+    expect(ZESTAW.filter(([k, d]) => k.startsWith('curl|') && dwa(nosi(d)!)).length).toBeGreaterThanOrEqual(10);
+    expect(ZESTAW.filter(([k, d]) => k.startsWith('curl|') && !dwa(nosi(d)!)).length).toBeGreaterThanOrEqual(5);
+  });
+  test.each(ZESTAW.map(([k]) => k))('%s: ślad w każdej klatce ≤ 3 cm od chwytu (u = 0…1)', key => {
+    const d = ZESTAW.find(([k]) => k === key)![1]; const dw = dwa(nosi(d)!);
+    for (let i = 0; i <= 12; i++) { const f = keyframeFrame(d, i / 12); if (!f.info.trail) continue; /* drążek nieruchomy: ślad = miednica, inna zasada */
+      const o = odChwytu(f.info.trail, f.sk.arms.R.grip, f.sk.arms.L.grip, dw); expect([key, i, o <= MAX_OD_CHWYTU]).toEqual([key, i, true]); }
+  });
+  test('warunek potrafi paść (przypadek negatywny): ślad w osi ciała przy parze hantli (stara reguła W1) ma ok. połowę rozstawu od chwytu', () => {
+    const d = DATA.find(([k]) => k === 'curl|Hammer Curl')![1]; const f = keyframeFrame(d, 0.5);
+    const srodek = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
+    expect(odChwytu(srodek, f.sk.arms.R.grip, f.sk.arms.L.grip, true)).toBeGreaterThan(MAX_OD_CHWYTU * 3);
+    expect(odChwytu(srodek, f.sk.arms.R.grip, f.sk.arms.L.grip, false)).toBeLessThan(1e-6); /* a dla jednego uchwytu środek jest poprawny */
+    expect(odChwytu(f.info.trail!, f.sk.arms.R.grip, f.sk.arms.L.grip, true)).toBeLessThanOrEqual(MAX_OD_CHWYTU);
   });
 });
