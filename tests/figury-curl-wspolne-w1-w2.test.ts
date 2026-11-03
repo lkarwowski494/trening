@@ -55,7 +55,7 @@ describe('H1: orientacja hantla z obrotu przedramienia (chwyt neutralny)', () =>
     expect(Math.abs(d0.axis![0])).toBeGreaterThan(0.95);
     const side = propShapes(f0.props, 'side'), front = propShapes(f0.props, 'front');
     expect(szer(side as never, 'dbR')).toBeGreaterThan(E_DB.handle); expect(side.some(q => q.k === 'poly' && (q as { id?: string }).id === 'dbRB')).toBe(true);
-    expect(front.some(q => q.k === 'circle' && (q as { id?: string }).id === 'dbR')).toBe(true); expect(front.some(q => q.k === 'poly' && (q as { id?: string }).id === 'dbR')).toBe(false);
+    expect(szer(front as never, 'dbR')).toBeLessThanOrEqual(2 * EQUIP.dbHeadR + 1e-6); /* z przodu hantel widać wzdłuż osi: bez poprzeczki w poprzek ciała (szerokość = średnica główki); przedramię lekko przed ciałem pochyla oś, więc główki są przesunięte w pionie, nie w poziomie */
     const dm = hantle('Hammer Curl', 0.5)[0]; expect(Math.abs(dm.axis![1])).toBeGreaterThan(0.7);
   });
   test('Biceps Curl (hantle) (podchwyt u szczytu, obrót 70°): oś prawie w poprzek ciała; w u = 0 (obrót 0) — chwyt neutralny; Standing Dumbbell Reverse Curl (nachwyt −70°) — oś prawie w poprzek', () => {
