@@ -37,7 +37,7 @@ function lezac(cw, o) {
 
 /** Ściąganie z wyciągu górnego: ramiona wzdłuż tułowia, przedramię od poziomu w dół. */
 function pushdown(cw, o) {
-  const f1 = 3;
+  const f1 = 9; /* K7 (04.11.2026): przy 3° uchwyt wnikał w udo do 1,5 cm; ramię lekko przed tułowiem (łokieć przy boku), uchwyt kończy przed udem */
   return wlasna(cw, { sprzet: sprzJedna(o.sprzet, o.jedna), tulow: { m: [0, Y_STOJ], p: 6, glowa: 3 }, nogi: nogiStoj(0, 14),
     rece: (u) => { const a = ramie({ f1: [f1, f1], a1: 3, f2: [f1 + (o.zgiecie ?? 98), f1 + 5], zr: o.zr ?? 12, obrot: o.obrot }, u, false); return o.jedna ? jedna(o, o.jedna)(a) : obie(a); } });
 }
