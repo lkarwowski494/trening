@@ -14,6 +14,7 @@ import { fresh } from './helpers';
 import P2_MOC from './fixtures/cues-p2-moc.json';
 import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
 import T1_DELT from './fixtures/cues-t1-delt-raise.json';
+import T1_TRI from './fixtures/cues-t1-triceps.json';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
@@ -32,7 +33,7 @@ describe('0.14.0 wskazówki: dane', () => {
   test('20 nowych ćwiczeń ma wskazówki, nie jest już „otwartych”; łącznie 102', () => {
     expect(NEW.length).toBe(20);
     for (const k of NEW) { expect([k, !!CUE_DATA.exercises[k], CUE_DATA.open.includes(k)]).toEqual([k, true, false]); expect(cuesFor(lib(k), 'pl')).not.toBeNull(); }
-    const WLASNE_P = [...P1_MOBILNOSC.cwiczenia, ...P2_MOC.cwiczenia, ...T1_DELT.cwiczenia];
+    const WLASNE_P = [...P1_MOBILNOSC.cwiczenia, ...P2_MOC.cwiczenia, ...T1_DELT.cwiczenia, ...T1_TRI.cwiczenia];
     expect(Object.keys(CUE_DATA.exercises).filter(k => !WLASNE_P.includes(k)).length + CUE_DATA.hidden.filter(k => !WLASNE_P.includes(k)).length).toBe(102); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   test('otwarte zostają otwarte (powód ≥ 20 znaków, bez wskazówek) — nic spornego nie wdrożono', () => {
@@ -44,7 +45,7 @@ describe('0.14.0 wskazówki: dane', () => {
     expect(partial.length).toBeGreaterThan(0);
     /* + trzy wykroki po usunięciu zdań o kolanie (decyzja właściciela 1a, 28.10.2026, M1-audytor-generalny-038) — karta niepełna świadomie */
     const PO_1A = ['Lunges (hantle)', 'Walking Lunges', 'Reverse Lunge'];
-    for (const k of partial) { expect([...NEW, ...PO_1A, ...P1_MOBILNOSC.partial, ...P2_MOC.partial, ...T1_DELT.partial]).toContain(k); if (P1_MOBILNOSC.partial.includes(k) || P2_MOC.partial.includes(k) || T1_DELT.partial.includes(k)) continue; /* karty P1, P2 i T1 ukryte do recenzji — kompletność: tests/zrodla-pelne-cues-p1-mobilnosc.test.ts, tests/zrodla-pelne-cues-p2-moc.test.ts, tests/zrodla-pelne-cues-t1-delt-raise.test.ts */ const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
+    for (const k of partial) { expect([...NEW, ...PO_1A, ...P1_MOBILNOSC.partial, ...P2_MOC.partial, ...T1_DELT.partial, ...T1_TRI.partial]).toContain(k); if (P1_MOBILNOSC.partial.includes(k) || P2_MOC.partial.includes(k) || T1_DELT.partial.includes(k) || T1_TRI.partial.includes(k)) continue; /* karty P1, P2 i T1 ukryte do recenzji — kompletność: tests/zrodla-pelne-cues-p1-mobilnosc.test.ts, tests/zrodla-pelne-cues-p2-moc.test.ts, tests/zrodla-pelne-cues-t1-delt-raise.test.ts */ const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
     for (const [k, x] of Object.entries(CUE_DATA.exercises)) if (!partial.includes(k)) expect([k, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2]).toEqual([k, true, true, true]);
     for (const k of ['Machine Shoulder Press', 'Nordic Curl', 'Pallof Press']) expect(partial).not.toContain(k);
   });

@@ -87,7 +87,7 @@ describe('plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw', 
   });
   test('podpis (basis) = rodzaje organizacji ze wszystkich odwołań ćwiczenia (też „analogia”), w kolejności CUE_BASIS_KINDS — niezależne przeliczenie', () => {
     for (const ex of Object.keys(CUE_FULL.exercises).filter(e => !CUE_DATA.hidden.includes(e))) {
-      const kinds = new Set<CueBasisKind>(cueOrgsFull(ex).map(o => CUE_FULL.orgs[o].kind));
+      const kinds = new Set<string>(cueOrgsFull(ex).map(o => CUE_FULL.orgs[o].kind)) /* 'app' (szczebel 5) nie wchodzi do podpisu */;
       expect([ex, cueBasis(ex)]).toEqual([ex, CUE_BASIS_KINDS.filter(k => kinds.has(k))]);
     }
   });
