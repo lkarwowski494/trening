@@ -126,6 +126,11 @@
    "rodzaj": "nowy",
    "pl": "Czego unikać",
    "en": "What to avoid"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).",
+   "en": "This phone is using a basic voice. Get a better one in iOS Settings (Accessibility)."
   }
  ]
 }

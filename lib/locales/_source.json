@@ -5449,6 +5449,10 @@
   "en": "This session is no longer in your history."
  },
  {
+  "pl": "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).",
+  "en": "This phone is using a basic voice. Get a better one in iOS Settings (Accessibility)."
+ },
+ {
   "pl": "tempo",
   "en": "tempo"
  },

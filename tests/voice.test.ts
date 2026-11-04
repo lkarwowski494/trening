@@ -6,7 +6,7 @@
 import { AccessibilityInfo, AppState } from 'react-native';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { voicePolicy, cueSpeech, sayRestStart, silenceVoice, voiceAvailable, sampleVoice, appActive, __setScreenReaderForTests, VOICE_REASONS, VOICE_SETTINGS, VOICE_DEFAULT, voiceSetting, setVoiceSetting, voiceSettingLabel, type VoiceInput } from '@/lib/voice';
+import { voicePolicy, cueSpeech, sayRestStart, silenceVoice, voiceAvailable, voiceHint, voiceHintNow, VOICE_QUALITY, sampleVoice, appActive, __setScreenReaderForTests, VOICE_REASONS, VOICE_SETTINGS, VOICE_DEFAULT, voiceSetting, setVoiceSetting, voiceSettingLabel, type VoiceInput } from '@/lib/voice';
 import { completeSet } from '@/lib/setFlow';
 import { applyWatchEvent } from '@/lib/watch/apply';
 import { restCue } from '@/lib/live';
@@ -88,6 +88,14 @@ describe('sayRestStart: trasa dźwięku', () => {
   });
   test('pusty tekst (nieznana seria) → nic nie mówi', async () => { await world(); V().headphones = true; const r = await sayRestStart(A(), 'nie ma'); expect([r.mode, V().spoken]).toEqual(['silent', []]); });
   test('język bez głosu w telefonie: hasVoice=false → voiceAvailable false (Ustawienia pokazują wskazówkę)', () => { V().hasVoice = false; expect(voiceAvailable()).toBe(false); V().hasVoice = true; expect(voiceAvailable()).toBe(true); });
+  test.each([
+    [true, true, 0, 'missing'], [true, false, 3, 'missing'], [false, false, 0, 'missing'], [false, true, 3, 'missing'],
+    [true, true, VOICE_QUALITY.basic, 'better'], [true, true, VOICE_QUALITY.enhanced, null], [true, true, VOICE_QUALITY.premium, null],
+  ] as const)('ZB-039 (03.11.2026) voiceHint(supported=%s, hasVoice=%s, quality=%s) → %s', (sup, has, q, want) => { expect(voiceHint(sup, has, q)).toBe(want); });
+  test('ZB-039: VOICE_QUALITY zgodne z Apple (default < enhanced < premium) i voiceHintNow czyta moduł', () => {
+    expect(VOICE_QUALITY).toEqual({ none: 0, basic: 1, enhanced: 2, premium: 3 });
+    V().hasVoice = true; V().quality = 1; expect(voiceHintNow()).toBe('better'); V().quality = 2; expect(voiceHintNow()).toBeNull(); V().hasVoice = false; expect(voiceHintNow()).toBe('missing'); V().hasVoice = true; V().quality = 3;
+  });
   test('„Posłuchaj przykładu”: przykładowa zapowiedź w języku i jednostce aplikacji', async () => {
     await world(); expect(await sampleVoice()).toBe(true); expect(V().spoken.at(-1)).toEqual(['dalej: Bench Press, 80 kilogramów, 8 powtórzeń', 'pl-PL']);
     applyLang('en'); applyUnit('lb'); await sampleVoice(); expect(V().spoken.at(-1)).toEqual(['next: Bench Press, 176.4 pounds, 8 reps', 'en-GB'.replace('en-GB', V().spoken.at(-1)![1])]);

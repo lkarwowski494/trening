@@ -24,6 +24,12 @@ public class VoiceCueModule: Module {
       return VoiceCueModule.voice(for: language) != nil
     }
 
+    /// Jakość najlepszego zainstalowanego głosu dla języka: 0 = brak głosu, 1 = podstawowy, 2 = rozszerzony, 3 = premium (Ustawienia pokazują wskazówkę, jak pobrać lepszy).
+    Function("voiceQuality") { (language: String) -> Int in
+      guard let v = VoiceCueModule.voice(for: language) else { return 0 }
+      return VoiceCueModule.level(v.quality)
+    }
+
     /// Czy dźwięk idzie teraz do słuchawek (przewodowych, Bluetooth, USB). Głośnik telefonu, AirPlay, HDMI i samochód to nie słuchawki.
     Function("headphonesConnected") { () -> Bool in
       let outs = AVAudioSession.sharedInstance().currentRoute.outputs
@@ -65,10 +71,25 @@ public class VoiceCueModule: Module {
     try? AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
   }
 
+  /// Poziom jakości głosu dla mostu TS: 1 = podstawowy (default), 2 = rozszerzony (enhanced), 3 = premium (iOS 16+; cel podspecu 16.4). Źródło: Apple, AVSpeechSynthesisVoiceQuality (odczyt 03.11.2026, docs/18).
+  private static func level(_ q: AVSpeechSynthesisVoiceQuality) -> Int {
+    switch q {
+    case .premium: return 3
+    case .enhanced: return 2
+    default: return 1
+    }
+  }
+
+  /// Najlepszy ZAINSTALOWANY głos dla języka (ZB-039, wariant A): najpierw pełny kod języka (np. „pl-PL”), gdy go brak — każdy głos języka podstawowego („pl”);
+  /// wśród kandydatów wyższa jakość (premium > enhanced > default), przy remisie kolejność systemu (stabilnie: pierwszy z listy).
   private static func voice(for language: String) -> AVSpeechSynthesisVoice? {
-    if let v = AVSpeechSynthesisVoice(language: language) { return v }
+    let all = AVSpeechSynthesisVoice.speechVoices()
     let primary = language.split(separator: "-").first.map(String.init) ?? language
-    return AVSpeechSynthesisVoice.speechVoices().first { $0.language.hasPrefix(primary) }
+    let exact = all.filter { $0.language == language }
+    let pool = exact.isEmpty ? all.filter { $0.language == primary || $0.language.hasPrefix(primary + "-") } : exact
+    var best: AVSpeechSynthesisVoice? = nil
+    for v in pool where best == nil || level(v.quality) > level(best!.quality) { best = v }
+    return best ?? AVSpeechSynthesisVoice(language: language)
   }
 
   private final class Delegate: NSObject, AVSpeechSynthesizerDelegate {

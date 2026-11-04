@@ -7,6 +7,7 @@ import { requireOptionalNativeModule } from 'expo-modules-core';
 type Native = {
   isSupported(): boolean;
   hasVoice(language: string): boolean;
+  voiceQuality(language: string): number;
   headphonesConnected(): boolean;
   speak(text: string, language: string): Promise<boolean>;
   stop(): void;
@@ -16,6 +17,8 @@ const native = requireOptionalNativeModule<Native>('VoiceCue');
 export const isSupported = (): boolean => !!native && native.isSupported();
 /** Czy telefon ma głos dla języka (BCP 47); bez modułu false. */
 export const hasVoice = (language: string): boolean => { try { return !!native && native.hasVoice(language); } catch { return false; } };
+/** Jakość najlepszego zainstalowanego głosu dla języka: 0 brak, 1 podstawowy, 2 rozszerzony, 3 premium; bez modułu 0. */
+export const voiceQuality = (language: string): number => { try { return native ? Number(native.voiceQuality(language)) || 0 : 0; } catch { return 0; } };
 /** Czy dźwięk idzie do słuchawek; bez modułu false. */
 export const headphonesConnected = (): boolean => { try { return !!native && native.headphonesConnected(); } catch { return false; } };
 /** Mówi tekst; true = wypowiedziano do końca. Nowe wywołanie przerywa poprzednie. */
