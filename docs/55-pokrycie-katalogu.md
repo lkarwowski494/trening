@@ -34,9 +34,9 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 ### Wersja 1.1 — potwierdzony przez właściciela 31.10.2026 (decyzja 2 = A, docs/18); pełna karta liczona wg definicji Z3 (ZB-025 a, wdrożona 01.11.2026) — liczba 17 z definicji sprzed Z3 zostaje podłogą do decyzji właściciela
 
-Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela.
+Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela. 04.11.2026 (T1, przekład API 52 zdań kart delt_raise): 33 liczb kompletu kart języków podniesione do 572 (stan po przekładzie) — nadal cel startowy.
 
-Cel osiągnięty: **nie** (9 z 47 liczb).
+Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
@@ -45,39 +45,6 @@ Cel osiągnięty: **nie** (9 z 47 liczb).
 | częste błędy (tekst) | 557 | 196 | 361 |
 | komplet tekstów karty: pl | 671 | 572 | 99 |
 | komplet tekstów karty: en | 671 | 572 | 99 |
-| komplet tekstów karty: cs | 571 | 546 | 25 |
-| komplet tekstów karty: sk | 571 | 546 | 25 |
-| komplet tekstów karty: hu | 571 | 546 | 25 |
-| komplet tekstów karty: ro | 571 | 546 | 25 |
-| komplet tekstów karty: bg | 571 | 546 | 25 |
-| komplet tekstów karty: hr | 571 | 546 | 25 |
-| komplet tekstów karty: sl | 571 | 546 | 25 |
-| komplet tekstów karty: sr | 571 | 546 | 25 |
-| komplet tekstów karty: lt | 571 | 546 | 25 |
-| komplet tekstów karty: lv | 571 | 546 | 25 |
-| komplet tekstów karty: et | 571 | 546 | 25 |
-| komplet tekstów karty: uk | 571 | 546 | 25 |
-| komplet tekstów karty: es | 571 | 546 | 25 |
-| komplet tekstów karty: es-419 | 571 | 546 | 25 |
-| komplet tekstów karty: pt | 571 | 546 | 25 |
-| komplet tekstów karty: pt-BR | 571 | 546 | 25 |
-| komplet tekstów karty: de | 571 | 546 | 25 |
-| komplet tekstów karty: fr | 571 | 546 | 25 |
-| komplet tekstów karty: it | 571 | 546 | 25 |
-| komplet tekstów karty: nl | 571 | 546 | 25 |
-| komplet tekstów karty: sv | 571 | 546 | 25 |
-| komplet tekstów karty: da | 571 | 546 | 25 |
-| komplet tekstów karty: nb | 571 | 546 | 25 |
-| komplet tekstów karty: fi | 571 | 546 | 25 |
-| komplet tekstów karty: tr | 571 | 546 | 25 |
-| komplet tekstów karty: el | 571 | 546 | 25 |
-| komplet tekstów karty: id | 571 | 546 | 25 |
-| komplet tekstów karty: ms | 571 | 546 | 25 |
-| komplet tekstów karty: vi | 571 | 546 | 25 |
-| komplet tekstów karty: ru | 571 | 546 | 25 |
-| komplet tekstów karty: ja | 571 | 546 | 25 |
-| komplet tekstów karty: ko | 571 | 546 | 25 |
-| komplet tekstów karty: zh-Hant | 571 | 546 | 25 |
 
 ## Rodziny ruchu
 
@@ -135,39 +102,39 @@ Kart z tekstami (wskazówki albo role mięśni): **572**. „Komplet” = karta 
 |---|---:|---:|---:|---:|
 | pl | 572 | 0 | 0 | 0 |
 | en | 572 | 0 | 0 | 0 |
-| cs | 546 | 26 | 72 | 0 |
-| sk | 546 | 26 | 72 | 0 |
-| hu | 546 | 26 | 72 | 0 |
-| ro | 546 | 26 | 72 | 0 |
-| bg | 546 | 26 | 72 | 0 |
-| hr | 546 | 26 | 72 | 0 |
-| sl | 546 | 26 | 72 | 0 |
-| sr | 546 | 26 | 72 | 0 |
-| lt | 546 | 26 | 72 | 0 |
-| lv | 546 | 26 | 72 | 0 |
-| et | 546 | 26 | 72 | 0 |
-| uk | 546 | 26 | 72 | 0 |
-| es | 546 | 26 | 72 | 0 |
-| es-419 | 546 | 26 | 72 | 0 |
-| pt | 546 | 26 | 72 | 0 |
-| pt-BR | 546 | 26 | 72 | 0 |
-| de | 546 | 26 | 72 | 0 |
-| fr | 546 | 26 | 72 | 0 |
-| it | 546 | 26 | 72 | 0 |
-| nl | 546 | 26 | 72 | 0 |
-| sv | 546 | 26 | 72 | 0 |
-| da | 546 | 26 | 72 | 0 |
-| nb | 546 | 26 | 72 | 0 |
-| fi | 546 | 26 | 72 | 0 |
-| tr | 546 | 26 | 72 | 0 |
-| el | 546 | 26 | 72 | 0 |
-| id | 546 | 26 | 72 | 0 |
-| ms | 546 | 26 | 72 | 0 |
-| vi | 546 | 26 | 72 | 0 |
-| ru | 546 | 26 | 72 | 0 |
-| ja | 546 | 26 | 72 | 0 |
-| ko | 546 | 26 | 72 | 0 |
-| zh-Hant | 546 | 26 | 72 | 0 |
+| cs | 572 | 0 | 0 | 0 |
+| sk | 572 | 0 | 0 | 0 |
+| hu | 572 | 0 | 0 | 0 |
+| ro | 572 | 0 | 0 | 0 |
+| bg | 572 | 0 | 0 | 0 |
+| hr | 572 | 0 | 0 | 0 |
+| sl | 572 | 0 | 0 | 0 |
+| sr | 572 | 0 | 0 | 0 |
+| lt | 572 | 0 | 0 | 0 |
+| lv | 572 | 0 | 0 | 0 |
+| et | 572 | 0 | 0 | 0 |
+| uk | 572 | 0 | 0 | 0 |
+| es | 572 | 0 | 0 | 0 |
+| es-419 | 572 | 0 | 0 | 0 |
+| pt | 572 | 0 | 0 | 0 |
+| pt-BR | 572 | 0 | 0 | 0 |
+| de | 572 | 0 | 0 | 0 |
+| fr | 572 | 0 | 0 | 0 |
+| it | 572 | 0 | 0 | 0 |
+| nl | 572 | 0 | 0 | 0 |
+| sv | 572 | 0 | 0 | 0 |
+| da | 572 | 0 | 0 | 0 |
+| nb | 572 | 0 | 0 | 0 |
+| fi | 572 | 0 | 0 | 0 |
+| tr | 572 | 0 | 0 | 0 |
+| el | 572 | 0 | 0 | 0 |
+| id | 572 | 0 | 0 | 0 |
+| ms | 572 | 0 | 0 | 0 |
+| vi | 572 | 0 | 0 | 0 |
+| ru | 572 | 0 | 0 | 0 |
+| ja | 572 | 0 | 0 | 0 |
+| ko | 572 | 0 | 0 | 0 |
+| zh-Hant | 572 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
