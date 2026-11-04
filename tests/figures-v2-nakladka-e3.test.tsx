@@ -100,7 +100,7 @@ describe('kolor błędu linii odniesienia GUIDES (GuideDef.rule)', () => {
     const raw = GUIDES.backLine.build(f, 'side'); const got = guideShapes(spec(k), 0.5, 'side', ['backLine'], round);
     expect(got).toEqual(raw.map(x => ({ ...x, role: 'error' })));
   });
-  test('VoiceOver / dozwolone linie bez zmian: ids, wskazówki i rzuty GUIDES niezmienione', () => {
-    expect(Object.values(GUIDES).map(g => [g.id, g.cue, g.views])).toEqual([['thighParallel', ['sq.depth'], ['side']], ['plumbMidfoot', ['dl.feet'], ['side']], ['kneeToe', ['sq.kneesToes'], ['front']], ['backLine', ['hinge.back'], ['side']]]);
+  test('VoiceOver / dozwolone linie bez zmian: ids i rzuty GUIDES niezmienione, backLine z cue P1 (sq.back, wall.back)', () => {
+    expect(Object.values(GUIDES).map(g => [g.id, g.cue, g.views])).toEqual([['thighParallel', ['sq.depth'], ['side']], ['plumbMidfoot', ['dl.feet'], ['side']], ['kneeToe', ['sq.kneesToes'], ['front']], ['backLine', ['hinge.back', 'sq.back', 'wall.back'], ['side']]]);
   });
 });
