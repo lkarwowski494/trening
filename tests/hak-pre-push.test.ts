@@ -47,6 +47,8 @@ function repoProbne(): { dir: string; zdalne: string } {
   copyFileSync(join(root, 'scripts/numeruj-lekcje.mjs'), join(dir, 'scripts/numeruj-lekcje.mjs'));
   copyFileSync(ZNACZNIK, join(dir, 'scripts/verify-znacznik.mjs'));
   copyFileSync(join(root, 'scripts/dokumenty.mjs'), join(dir, 'scripts/dokumenty.mjs'));
+  copyFileSync(join(root, 'scripts/testy-dla-plikow.mjs'), join(dir, 'scripts/testy-dla-plikow.mjs'));
+  copyFileSync(join(root, 'scripts/ci-wynik.mjs'), join(dir, 'scripts/ci-wynik.mjs')); /* ZB-041 G4: wspólny odczyt wyniku tests.yml */
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
   git(dir, ['add', '-A']);
@@ -338,7 +340,7 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
 describe('verify sprawdza zainstalowany hak pre-push (L-014)', () => {
   const sprawdz = (dir: string, env: NodeJS.ProcessEnv = bezCI()) => spawnSync(process.execPath, [join(dir, 'scripts/hooks/sprawdz-instalacje.mjs')], { cwd: dir, env, encoding: 'utf8' });
   test('pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck', () => {
-    expect(pkg.scripts.verify.startsWith('node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck')).toBe(true);
+    expect(pkg.scripts.verify.startsWith('node scripts/hooks/sprawdz-instalacje.mjs && node scripts/verify-znacznik.mjs --czysta && npm run typecheck')).toBe(true);
     expect(existsSync(SPRAWDZ)).toBe(true);
   });
   test('hak niezainstalowany: kod 1 i polecenie instalacji', () => {
@@ -553,5 +555,40 @@ describe('hak pre-push — znacznik „szybkie” (03.11.2026)', () => {
   test('scal-galaz: scalenie do main wymaga znacznika „pelne”', () => {
     const t = readFileSync(join(root, 'scripts/scal-galaz.mjs'), 'utf8');
     expect(t).toMatch(/docelowa === 'main'/); expect(t).toContain("'--wymagaj', 'pelne'");
+  });
+});
+
+/* ZB-041 G4 (decyzja właściciela 04.11.2026 ~06:00 PL; L-080): gałąź integracji ma kod względem main i żadnego znacznika (commity scaleń), a zielony tests.yml jej zdalnej głowy
+   (tu: plik zamiast API, CI_RUNY_PLIK) jest bazą — commit tylko z dokumentami ze znacznikiem verify:docs przechodzi na prawdziwym git push; kod po tej bazie nadal nie. */
+describe('hak pre-push — baza z zielonego tests.yml gałęzi integracji (04.11.2026)', () => {
+  function integracja() {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    mkdirSync(join(r.dir, 'docs'), { recursive: true }); writeFileSync(join(r.dir, 'docs/a.md'), 'a\n'); writeFileSync(join(r.dir, 'docs/40-lekcje.md'), '# Lekcje\n');
+    git(r.dir, ['add', '-A']); git(r.dir, ['commit', '-q', '-m', 'docs']);
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    git(r.dir, ['checkout', '-q', '-b', 'integracja-1-1']);
+    writeFileSync(join(r.dir, 'plik.txt'), 'kod\n'); git(r.dir, ['commit', '-q', '-am', 'scalenie z kodem']);
+    expect(git(r.dir, ['push', '--no-verify', 'origin', 'integracja-1-1']).status).toBe(0);
+    const zdalny = git(r.dir, ['rev-parse', 'HEAD']).stdout.trim();
+    return { ...r, npm, zdalny };
+  }
+  const ciPlik = (npm: { bin: string }, sha: string, conclusion: string) => {
+    const f = join(npm.bin, 'runy.json');
+    writeFileSync(f, JSON.stringify({ workflow_runs: [{ id: 9, path: '.github/workflows/tests.yml', head_sha: sha, status: 'completed', conclusion, created_at: '2026-11-04T05:00:00Z', run_number: 1 }] }));
+    return f;
+  };
+  const dokument = (x: ReturnType<typeof integracja>) => { writeFileSync(join(x.dir, 'docs/a.md'), 'b\n'); git(x.dir, ['commit', '-q', '-am', 'dokument']); oznacz(x.dir, x.npm, 'dokumenty'); };
+  const pchnij = (x: ReturnType<typeof integracja>, ci: string) => git(x.dir, ['push', 'origin', 'integracja-1-1'], { ...zNpm(x.npm), CI_RUNY_PLIK: ci });
+  test('zielony tests.yml zdalnej głowy + commit tylko z dokumentami (znacznik verify:docs) → przechodzi', () => {
+    const x = integracja(); dokument(x);
+    expect(pchnij(x, ciPlik(x.npm, x.zdalny, 'success')).status).toBe(0);
+  });
+  test('czerwony tests.yml zdalnej głowy → zatrzymane jak dotąd', () => {
+    const x = integracja(); dokument(x);
+    const r = pchnij(x, ciPlik(x.npm, x.zdalny, 'failure')); expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs');
+  });
+  test('kod po zielonej bazie, nawet ze znacznikiem verify:docs → zatrzymane', () => {
+    const x = integracja(); dokument(x); writeFileSync(join(x.dir, 'plik.txt'), 'kod2\n'); git(x.dir, ['commit', '-q', '-am', 'kod']); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x, ciPlik(x.npm, x.zdalny, 'success')).status).not.toBe(0);
   });
 });

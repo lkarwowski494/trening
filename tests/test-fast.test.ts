@@ -19,8 +19,8 @@ describe('test:fast (M1-059)', () => {
     const p = plan(['.maestro/09-jezyk-wyglad.yaml']);
     expect(p.files).toEqual(expect.arrayContaining(['.maestro/09-jezyk-wyglad.yaml', 'tests/maestro-flows.test.tsx']));
   });
-  test('dokumenty i pliki bez kodu nie uruchamiają testów; brak zmian — pusty plan', () => {
-    expect(plan(['docs/40-lekcje.md', 'README.md']).files).toEqual([]);
+  test('dokumenty i pliki bez kodu, których nie czyta żaden test, nie uruchamiają testów; brak zmian — pusty plan (od 04.11.2026, L-100: dokument czytany przez test uruchamia ten test — tests/waskie-gardla-zb041.test.ts)', () => {
+    expect(plan(['docs/nikt-tego-' + 'nie-czyta.md', 'notatka-' + 'nikt.md']).files).toEqual([]);
     expect(plan([]).files).toEqual([]);
   });
   test('zmiana pliku testu i kodu: pliki bez duplikatów', () => {

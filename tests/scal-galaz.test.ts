@@ -15,6 +15,7 @@ const ENV = { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@example
 const git = (cwd: string, ...a: string[]) => { const r = spawnSync('git', a, { cwd, env: ENV, encoding: 'utf8' }); if (r.status !== 0) throw new Error(`git ${a.join(' ')}: ${r.stderr}`); return r.stdout.trim(); };
 
 type Run = Record<string, unknown>;
+let generowane = ''; /* SCAL_GENEROWANE dla uruchom (G1) */
 let serwer: Server; let baza = ''; let odpowiedz: Run[] = []; let zapytania: string[] = [];
 beforeAll(async () => {
   serwer = createServer((req, res) => { zapytania.push(req.url ?? ''); res.setHeader('content-type', 'application/json'); res.end(JSON.stringify({ workflow_runs: odpowiedz })); });
@@ -22,7 +23,7 @@ beforeAll(async () => {
   baza = `http://127.0.0.1:${(serwer.address() as { port: number }).port}`;
 });
 afterAll(async () => { await new Promise(ok => serwer.close(ok)); for (const d of tmp) rmSync(d, { recursive: true, force: true }); });
-beforeEach(() => { odpowiedz = []; zapytania = []; });
+beforeEach(() => { odpowiedz = []; zapytania = []; generowane = ''; });
 
 /* repo próbne: zdalne (bare) + klon na gałęzi integracja-1-1 z jednym commitem; gałąź źródłowa „zrodlo” wypchnięta do zdalnego */
 function srodowisko() {
@@ -41,7 +42,7 @@ function srodowisko() {
   return { dir, zdalne, zatwierdz, gałąź };
 }
 const uruchom = (dir: string, ...arg: string[]) => new Promise<{ status: number | null; out: string }>(ok => {
-  const p = spawn(process.execPath, [SKRYPT, ...arg], { cwd: dir, env: { ...ENV, SCAL_API_BAZA: baza } });
+  const p = spawn(process.execPath, [SKRYPT, ...arg], { cwd: dir, env: { ...ENV, SCAL_API_BAZA: baza, ...(generowane ? { SCAL_GENEROWANE: generowane } : {}) } });
   let out = ''; p.stdout.on('data', d => (out += d)); p.stderr.on('data', d => (out += d)); p.on('close', status => ok({ status, out }));
 });
 const run = (sha: string, o: Run = {}): Run => ({ id: 1, path: '.github/workflows/tests.yml', head_sha: sha, status: 'completed', conclusion: 'success', created_at: '2026-11-02T10:00:00Z', run_number: 1, ...o });
@@ -150,5 +151,57 @@ describe('scal-galaz --do main — znacznik pełnego verify (03.11.2026)', () =>
     const x = naMain(); let r = await scalDoMain(x); expect(r.status).toBe(1); expect(r.out).toContain('pełnego npm run verify'); expect(scalone(x.dir, x.sha)).toBe(false);
     x.znacz('szybkie'); r = await scalDoMain(x); expect(r.status).toBe(1); expect(scalone(x.dir, x.sha)).toBe(false);
     x.znacz('pelne'); r = await scalDoMain(x); expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true);
+  });
+});
+
+/* ZB-041 G1 (decyzja właściciela 04.11.2026 ~06:00 PL, wariant A): konflikt scalenia wyłącznie w plikach generowanych (scripts/pliki-generowane.mjs) rozwiązuje skrypt:
+   wersja docelowa, generatory, zatwierdzenie. Każdy inny konflikt przerywa scalenie jak dotąd. Lista i generator w repo próbnym: SCAL_GENEROWANE (tylko testy). */
+describe('scal-galaz — konflikty w plikach generowanych (ZB-041 G1, 04.11.2026)', () => {
+  const GEN = JSON.stringify([{ plik: 'gen.txt', polecenie: ['node', 'gen.js'] }]);
+  const GEN_JS = "const fs=require('fs');fs.writeFileSync('gen.txt','pochodna:'+fs.readFileSync('plik.txt','utf8'));\n";
+  /** integracja ma gen.js + gen.txt (pochodna plik.txt); gałąź f zmienia plik.txt i gen.txt; integracja po rozejściu zmienia gen.txt (konflikt tylko w gen.txt) */
+  function zKonfliktem(dodatkowo: 'brak' | 'plik' | 'generator-pada' = 'brak') {
+    const e = srodowisko();
+    e.zatwierdz('gen.js', dodatkowo === 'generator-pada' ? 'process.exit(1);\n' : GEN_JS); e.zatwierdz('gen.txt', 'pochodna:1\n'); git(e.dir, 'push', '-q', 'origin', 'integracja-1-1');
+    const sha = e.gałąź('f', [['plik.txt', '2\n'], ['gen.txt', 'pochodna:2\n']]);
+    e.zatwierdz('gen.txt', 'pochodna:docelowa\n');
+    if (dodatkowo === 'plik') e.zatwierdz('plik.txt', 'konflikt\n');
+    odpowiedz = [run(sha)]; generowane = GEN;
+    return { ...e, sha, głowa: git(e.dir, 'rev-parse', 'HEAD') };
+  }
+  const bezScalania = (dir: string, głowa: string) => {
+    expect(git(dir, 'rev-parse', 'HEAD')).toBe(głowa); expect(git(dir, 'status', '--porcelain')).toBe('');
+    expect(spawnSync('git', ['rev-parse', '-q', '--verify', 'MERGE_HEAD'], { cwd: dir }).status).not.toBe(0);
+  };
+  test('konflikt tylko w pliku generowanym → scala; plik przeliczony generatorem z drzewa po scaleniu, drzewo czyste, scalenie ma dwoje rodziców', async () => {
+    const x = zKonfliktem(); const r = await uruchom(x.dir, 'f');
+    expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true);
+    expect(git(x.dir, 'show', 'HEAD:gen.txt')).toBe('pochodna:2'); expect(git(x.dir, 'show', 'HEAD:plik.txt')).toBe('2');
+    expect(git(x.dir, 'status', '--porcelain')).toBe(''); expect(git(x.dir, 'log', '-1', '--format=%p').split(' ')).toHaveLength(2);
+    expect(git(x.dir, 'log', '-1', '--format=%s')).toContain('gen.txt'); expect(r.out).toContain('gen.txt');
+  });
+  test('konflikt w pliku generowanym i w zwykłym → odmowa, scalenie przerwane, HEAD i drzewo bez zmian', async () => {
+    const x = zKonfliktem('plik'); const r = await uruchom(x.dir, 'f');
+    expect(r.status).toBe(1); expect(r.out).toContain('przerwane'); expect(scalone(x.dir, x.sha)).toBe(false); bezScalania(x.dir, x.głowa);
+  });
+  test('konflikt tylko w pliku spoza listy generowanych → odmowa jak dotąd', async () => {
+    const e = srodowisko(); const sha = e.gałąź('f', [['plik.txt', '2\n']]); e.zatwierdz('plik.txt', 'inaczej\n'); const głowa = git(e.dir, 'rev-parse', 'HEAD');
+    odpowiedz = [run(sha)]; generowane = GEN; const r = await uruchom(e.dir, 'f');
+    expect(r.status).toBe(1); expect(scalone(e.dir, sha)).toBe(false); bezScalania(e.dir, głowa);
+  });
+  test('generator kończy się błędem → odmowa, scalenie przerwane', async () => {
+    const x = zKonfliktem('generator-pada'); const r = await uruchom(x.dir, 'f');
+    expect(r.status).toBe(1); expect(r.out).toContain('generator'); expect(scalone(x.dir, x.sha)).toBe(false); bezScalania(x.dir, x.głowa);
+  });
+  test('L-080 / bramka CI: konflikt tylko w generowanym nie omija tests.yml — czerwony przebieg → odmowa przed scaleniem', async () => {
+    const x = zKonfliktem(); odpowiedz = [run(x.sha, { conclusion: 'failure' })];
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(1); bezScalania(x.dir, x.głowa);
+  });
+  test('lista w jednym miejscu: pliki z generatorem --write istnieją w repo, a skrypty generatorów też', () => {
+    const fs = require('fs');
+    const { GENEROWANE } = JSON.parse(require('child_process').execFileSync(process.execPath, ['--input-type=module', '-e', `import { GENEROWANE } from ${JSON.stringify(join(root, 'scripts/pliki-generowane.mjs'))}; console.log(JSON.stringify({ GENEROWANE }));`], { encoding: 'utf8' }));
+    expect(GENEROWANE.length).toBeGreaterThanOrEqual(5);
+    for (const g of GENEROWANE) { expect(fs.existsSync(join(root, g.plik))).toBe(true); expect(fs.existsSync(join(root, g.polecenie[1]))).toBe(true); expect(g.polecenie).toContain('--write'); }
+    expect(GENEROWANE.map((g: { plik: string }) => g.plik)).not.toContain('docs/lokalizacja/skroty-przekladu.json');
   });
 });
