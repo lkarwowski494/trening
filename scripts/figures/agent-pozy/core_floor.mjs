@@ -3,7 +3,7 @@
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w stronę +x, miednica [0, 8, 0], pochylenieTulowia −90 (poziomo); na brzuchu — głowa +x, pochylenie +90.
 import { wczytajTeksty } from '../v2-jakosc.mjs';
 import { naLawce } from './gora.mjs';
-import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki } from './model.mjs';
+import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, kostkaNaPalcach } from './model.mjs';
 /** Stopa leżącego przodem (Superman, Lower Back Curl, Seal Row, Back Extension): grzbietem do podłogi, palce w dół i do tyłu (silnik od b07c7ed7 ma podbicie 91…270°: stopa skierowana do tyłu). Poprzednie przybliżenie (stopa obrócona na zewnątrz, podeszwa w dół pod goleniami) pokazywało stopę zgiętą wzdłuż goleni (recenzja ruchu r2, F2, 28.10.2026).
  * Podbicie = kierunek goleni (kolano → kostka, stopnie od +x) + 90° − zgięcie podeszwowe: stopa prostopadła do goleni (palce ku podłodze) zgięta podeszwowo o PODESZWOWE_LEZY stopni; rotacja 0 (palce w płaszczyźnie boku). */
 export const PODESZWOWE_LEZY = 50;
@@ -258,8 +258,71 @@ function machineCrunch(cw) {
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, siedzisko: 40 }, { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(P[0]), y: r1(P[1]), z: 0, dlugosc: r1(r), punkt: 'dlonie', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
 }
 
+/* ---------- Fala R3 (04.11.2026): ćwiczenia z tekstem, ale bez pozy ---------- */
+/** Butt-Ups (źródła: Lift Manual, HomeGym): podpór na przedramionach, ciało w jednej linii; biodra idą w górę i do tyłu do odwróconego V i wracają do podporu.
+ * Łokcie nieruchome pod barkami (przedramiona leżą na podłodze), bark odchyla się do tyłu o `a` stopni (ramię pochyla się wokół łokcia), stopy na palcach podchodzą o `krok` cm ku dłoniom (odległość bark–stopy skraca się, więc bez tego odwrócone V nie powstaje).
+ * Biodro z przecięcia okręgów: |biodro − kostka| = noga prosta, |bark − biodro| = tułów. */
+export function buttUps(cw, { aMax = -22, krok = 44, podKon = -40 } = {}) {
+  const B = BODY(); const DL = 82.0; const L = DL + B.trunk; const Ey = 3; const A0 = [0, kostkaNaPalcach(0, -60)]; const fi = Math.asin((Ey + B.uarm - A0[1]) / L) / R; const Ex = A0[0] + L * Math.cos(fi * R); const G = [Ex + B.farm + B.hand, Ey, 14];
+  const us = Array.from({ length: 9 }, (_, i) => i / 8); const tri = wygladzenie; /* 0 podpór, 1 odwrócone V (powrót robi pętla animacji) */
+  const fr = (u) => { const e = tri(u); const a = aMax * e; const S = [Ex - B.uarm * Math.sin(a * R), Ey + B.uarm * Math.cos(a * R)]; const pod = -60 + (podKon + 60) * e; const A = [A0[0] + krok * e, kostkaNaPalcach(0, pod)];
+    const P = u === 0 ? [A[0] + DL * Math.cos(fi * R), A[1] + DL * Math.sin(fi * R)] : przeciecie(A, DL, S, B.trunk, 'gora'); if (!P) throw new Error('brak biodra');
+    const p = Math.atan2(S[0] - P[0], S[1] - P[1]) / R; const f = nogaZCelu(P, A, 'dol'); const noga = (z) => ({ ankle: A, strona: 'dol', pod, z, rot: 10, pole: f.pole ?? undefined });
+    return ramka({ u, miednica: P, p, glowa: p * 0.85, nogi: { R: noga(10), L: noga(-10) }, rece: { R: { g: G, pole: [-0.3, -1, 0.4] }, L: { g: [G[0], G[1], -14], pole: [-0.3, -1, -0.4] } } }); };
+  return zbuduj1(cw, us.map(fr));
+}
+
+/** Otis-Up (Fitness Volt, SmartWorkout): leżenie na plecach, kolana ugięte, stopy płasko, talerz oburącz przy klatce; siad z wypchnięciem talerza nad głowę, powrót z opuszczeniem do klatki.
+ * Talerz rysowany zawsze w płaszczyźnie y–z (silnik), dłonie na jego obręczy po bokach (z = ±21): środek talerza = środek chwytów, przesunięty względem barku o `off(u)` (klatka → nad głowę). */
+export function otisUp(cw, { p1 = -14, bend1 = 10 } = {}) {
+  const us = Array.from({ length: 9 }, (_, i) => i / 8); const zH = 21;
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(-90, p1, a); const bend = bend1 * a; const S = barki([0, Y0], p, bend);
+    const off = [lerp(12, 2, a), lerp(35, 62, a)]; const c = [S[0] + off[0], S[1] + off[1]];
+    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: { ankle: [44, 7], strona: 'gora', pod: 0, z: ZNOG, rot: 10 }, L: { ankle: [44, 7], strona: 'gora', pod: 0, z: -ZNOG, rot: 10 } },
+      rece: { R: { g: [c[0], c[1], zH], pole: [0, -1, 0.1] }, L: { g: [c[0], c[1], -zH], pole: [0, -1, -0.1] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'talerz', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+
+/** GHD Sit Up (Catalyst, CrossFit, aplikacja): na ławce GHD leżąc na plecach, biodra na tylnym skraju poduszki, stopy zablokowane pod wałkami, nogi prawie proste; odchylenie do poziomu i siad (u = 0 tułów poziomo w tył, u = 1 siad), ręce skrzyżowane na klatce.
+ * Nogi opadają ku wałkom pod kątem `beta` (równolegle do poduszki), wałek leży nad kostką (stopa wciśnięta pod niego). Zakres wyprostu biodra silnika (−17°) wyznacza `beta` ≤ 17°. */
+export function ghdSitUp(cw, { kat = 15, beta = 15, top = 75, p0 = -90, p1 = 8, bend1 = 14 } = {}) {
+  const B = BODY(); const th = kat * R; const n = [Math.sin(th), Math.cos(th)]; const pelvis = [0 + 11.5 * n[0] + 0, top + 11.5 * n[1]]; const L = D_PROSTA_NOGA;
+  const A = [pelvis[0] + L * Math.cos(beta * R), pelvis[1] - L * Math.sin(beta * R)]; const rollerC = [A[0] + 9.6 * Math.sin(beta * R), A[1] + 9.6 * Math.cos(beta * R)]; void B;
+  const us = Array.from({ length: 9 }, (_, i) => i / 8);
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(p0, p1, a); const bend = bend1 * a; const S = barki(pelvis, p, bend); const f = nogaZCelu(pelvis, A, 'gora'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
+    const noga = (z) => ({ ankle: A, strona: 'gora', pod: Math.max(-90, Math.min(90, sd + 45)), z, rot: 10 });
+    return ramka({ u, miednica: pelvis, p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'rzymska', x: 0, top, kat, dlugosc: r1(rollerC[0]), y: r1(rollerC[1]) }], klatki: us.map(fr), bledy: [] });
+}
+
+/** Dragon Flag (Catalyst, Fabryka Siły): leżąc na ławce płaskiej, dłonie za głową chwytają ławkę; ciało proste jak deska, oparte na górnej części pleców (bark), biodra i nogi w powietrzu.
+ * Ruch (rysowany wg źródeł: tylko opuszczanie): u = 0 ciało prawie pionowo nad barkami, u = 1 ciało nisko nad ławką pod kątem `thDol`; obrót wokół barków jako sztywna linia (tułów + nogi proste), dłonie nieruchome. */
+export function dragonFlag(cw, { top = 43, thGora = 80, thDol = 24, dl = 70, dxBark = 14, dxDlon = 32 } = {}) {
+  const B = BODY(); const pad = v2().BENCH.padBack; const Sy = top + pad + 1.0; const Sx = -dl + dxBark; const L = D_PROSTA_NOGA; const G = (sg) => [Sx - dxDlon, top + 6, sg * 17];
+  const us = Array.from({ length: 9 }, (_, i) => i / 8);
+  const fr = (u) => { const a = wygladzenie(u); const th = lerp(thGora, thDol, a); const c = [Math.cos(th * R), Math.sin(th * R)]; const P = [Sx + B.trunk * c[0], Sy + B.trunk * c[1]]; const A = [P[0] + L * c[0], P[1] + L * c[1]];
+    const p = Math.atan2(-c[0], -c[1]) / R; const f = nogaZCelu(P, A, 'dol'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
+    const noga = (z) => ({ ankle: A, strona: 'dol', pod: Math.max(-90, Math.min(90, sd - 45)), z, rot: 10 });
+    return ramka({ u, miednica: P, p, glowa: -92, nogi: { R: noga(8), L: noga(-8) }, rece: { R: { g: G(1), pole: [0, 0.5, 1] }, L: { g: G(-1), pole: [0, 0.5, -1] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: dl, siedzisko: 40 }], klatki: us.map(fr), bledy: [] });
+}
+
+/** Press Sit-Up (aplikacja, jefit): na ławce skośnej w dół (−20°), stopy zablokowane pod wałkami, sztanga przy klatce; siad i w jego trakcie wypchnięcie sztangi nad głowę.
+ * Sztanga idzie za dłońmi (podazaZaChwytem): chwyt na wysokości klatki → nad barkami. Tułów obraca się wokół bioder, kolana ugięte wynikają z położenia kostek pod wałkami. */
+export function pressSitUp(cw, { kat = -20, top = 60, p1 = -25, bend1 = 12, zH = 20 } = {}) {
+  const B = BODY(); const hip = v2().benchHip(kat, top); const m = [hip[0], hip[1]]; const p0 = kat - 90; const A = [m[0] + v2().BENCH.footBack + 4, top + 7.4]; const us = Array.from({ length: 9 }, (_, i) => i / 8);
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(p0, p1, a); const bend = bend1 * a; const S = barki(m, p, bend); const fv = [Math.cos(p * R), -Math.sin(p * R)]; const cp = chestPt(S, p, 1);
+    const c0 = [cp[0] - S[0] + fv[0] * 6, cp[1] - S[1] + fv[1] * 6]; const off = [lerp(c0[0], 2, a), lerp(c0[1], 60, a)]; const g = [S[0] + off[0], S[1] + off[1]];
+    const noga = (z) => ({ ankle: A, strona: 'gora', pod: 0, z, rot: 10 });
+    return ramka({ u, miednica: m, p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: { R: { g: [g[0], g[1], zH], pole: [0, -1, 0.1] }, L: { g: [g[0], g[1], -zH], pole: [0, -1, -0.1] } } }); };
+  void B;
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, walki: true }, { rodzaj: 'sztanga', podazaZaChwytem: true, talerze: true, trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+
 /** Ćwiczenia, których generator rodziny nie robi (powód obowiązkowy). */
-export const WYJATKI = {};
+export const WYJATKI = {
+  'Side Jackknife': 'leżenie na boku (obrotTulowia 90) z jednoczesnym skłonem bocznym i odwiedzeniem górnej nogi: dwie próby (R3, 04.11.2026) padły na zakresach silnika — wyprost biodra górnej nogi −18° (limit −17°) i zgięcie barku górnej ręki przy głowie 218° (limit 171°); wymaga zmiany zakresów albo osobnego rigu, poza zakresem tej sesji',
+};
 /** Identyfikatory błędów z katalogu bez opisu w lib/cues/text/pl.json (id → powód); do uzupełnienia przez badacza i tłumacza. */
 export const WYJATKI_OPISU = { 'cobra.mis': 'zestaw ogólny „cobra” (cue-sets.json: Superman, Lower Back Curl) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza' };
 export const PRZYBLIZENIA = {
@@ -292,5 +355,10 @@ export function generuj() {
     'Suspended Reverse Crunch': () => suspendedReverseCrunch('Suspended Reverse Crunch'),
     'Cable Crunch': () => cableCrunch('Cable Crunch'),
     'Machine Crunch': () => machineCrunch('Machine Crunch'),
+    'Butt-Ups': () => buttUps('Butt-Ups'),
+    'Otis-Up': () => otisUp('Otis-Up'),
+    'GHD Sit Up': () => ghdSitUp('GHD Sit Up'),
+    'Dragon Flag': () => dragonFlag('Dragon Flag'),
+    'Press Sit-Up': () => pressSitUp('Press Sit-Up'),
   };
 }

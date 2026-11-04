@@ -104,8 +104,8 @@ export const ROZSTAW_DLONI = { 'Push Up': 1, 'Decline Push Up': 1, 'Incline Push
 export const ODWIEDZENIE = ODWIEDZENIE_PRZOD; /* reguła 11 (klatka największego zgięcia) używa tych samych progów */
 /** Ćwiczenia na podłodze, w których tułów nie leży (czworaki): reguła nic_nie_wisi ich nie obejmuje. */
 export const NIE_LEZY = ['Bird Dog'];
-/** Ćwiczenia z deklarowanym lotem (ciało oderwane od podłogi z założenia): ćwiczenie → powód. Puste: żadne ćwiczenie na podłodze rodziny core_floor nie ma fazy lotu. */
-export const LOT = {};
+/** Ćwiczenia z deklarowanym lotem albo podparciem poza podłogą (ciało oderwane od podłogi z założenia): ćwiczenie → powód. Żadne ćwiczenie na podłodze rodziny core_floor nie ma fazy lotu; wpis mają tylko ćwiczenia podparte na sprzęcie (GHD, ławka; R3, 04.11.2026). */
+export const LOT = { 'Press Sit-Up': 'ławka ujemna (−20°): głowa i plecy leżą niżej niż siedzisko, a reguła styku zna ławkę tylko jako poziom top; styk ciała z ławką pilnują kontakty sprzętu (BENCH_CONTACTS)', 'Dragon Flag': 'ciało oparte barkami i głową na ławce płaskiej, reszta w powietrzu z założenia; styk głowy z ławką pilnuje geometria (head × benchBack ≤ 1,5 cm), a reguła styku mierzy wielokąt szyi (2,5 cm nad blatem przy głowie ułożonej na ławce)', 'GHD Sit Up': 'podparcie na ławce GHD (rzymska): biodra na poduszce, stopy pod wałkami; styk ciała ze sprzętem pilnują kontakty sprzętu (HYPER_CONTACTS), a powierzchnie podparcia reguły styku znają tylko podłogę, skrzynię i ławkę' };
 /** Leżenie na plecach: ćwiczenia, w których tułów unosi się ŚWIADOMIE od miednicy (styk na kości krzyżowej), mimo że wskazówka rodziny mówi o lędźwiach przy podłodze: ćwiczenie → powód. */
 export const LEDZWIE_WYJATKI = { 'V-Up': 'zamierzone: „V” na kości krzyżowej, tułów i nogi unoszą się jednocześnie', 'Cocoons': 'zamierzone: zwijanie obu końców, styk na kości krzyżowej' };
 /** Mechanizm, który musi występować w pozie, żeby wyjątek od reguły „lędźwie przy podłodze” był prawdziwy (R14b): 'zwijanie' = miednica unosi się i kręgosłup się zgina; 'v' = tułów i nogi unoszą się jednocześnie. */

@@ -16,7 +16,7 @@ const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); }
 
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
 const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
-  core_floor: ['Superman', 'Crunch', 'Frog Sit-Ups', 'Janda Sit-Up', 'Oblique Crunches - On The Floor', 'Sit Up', 'Toe Touchers', 'Bicycle Crunch', 'Cross-Body Crunch', 'Scissor Kick'],
+  core_floor: [/* 04.11.2026: Bicycle Crunch, Cross-Body Crunch, Toe Touchers (poprawki R1) i Oblique Crunches - On The Floor (poza usunięta) zgodne z generatorem — wpisy zdjęte */ 'Superman', 'Crunch', 'Frog Sit-Ups', 'Janda Sit-Up', 'Sit Up', 'Scissor Kick'],
   delt_raise: ['Straight Raises on Incline Bench'],
   calf_raise: [/* ACG-020 31.10.2026 (podest pod przodostopiem; generator do backlogu) */ 'Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise', 'Dumbbell Seated One-Leg Calf Raise'],
   forearm: ['Barbell Wrist Curl', 'Barbell Reverse Wrist Curl', 'Wrist Curl (hantle)', 'Reverse Wrist Curl (hantle)', 'One-Arm Dumbbell Wrist Curl', 'One-Arm Dumbbell Reverse Wrist Curl', 'Cable Wrist Curl'],

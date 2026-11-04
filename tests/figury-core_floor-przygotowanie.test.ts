@@ -23,12 +23,12 @@ function zawroceniaPoza(k: string, y: number[]): number {
 }
 
 describe('core_floor: pokrycie póz (K2)', () => {
-  test('26 póz: 21 z poprzedniej wersji − Oblique Crunches - On The Floor (karta otwarta, rysunek niewyświetlany, 04.11.2026) + 6 dorobionych; Stability Ball Knee Tuck celowo bez pozy (kandydat K3: piłka toczy się, silnik ma piłkę nieruchomą)', () => {
-    expect(KEYS).toHaveLength(26); expect(KEYS).not.toContain('Oblique Crunches - On The Floor'); for (const k of DORABIANE) expect(P[k]).toBeDefined(); expect(KEYS).not.toContain('Stability Ball Knee Tuck');
+  test('31 póz: 21 z poprzedniej wersji − Oblique Crunches - On The Floor (karta otwarta, rysunek niewyświetlany, 04.11.2026) + 6 dorobionych + 5 z fali R3 (Butt-Ups, Otis-Up, GHD Sit Up, Dragon Flag, Press Sit-Up; Side Jackknife wyjątek); Stability Ball Knee Tuck celowo bez pozy (kandydat K3: piłka toczy się, silnik ma piłkę nieruchomą)', () => {
+    expect(KEYS).toHaveLength(31); expect(KEYS).not.toContain('Oblique Crunches - On The Floor'); for (const k of DORABIANE) expect(P[k]).toBeDefined(); expect(KEYS).not.toContain('Stability Ball Knee Tuck');
     expect(GEN).toMatch(/Stability Ball Crunch/); expect(GEN).not.toMatch(/'Stability Ball Knee Tuck': \(\)/);
   });
-  test('sprzęt: podłoga, piłka, wyciąg, zawieszenie, ławka, dźwignia — bez hantli i gryfu (H-A/H-B niedotyczące)', () => {
-    for (const k of KEYS) for (const g of P[k].sprzet) expect([k, ['podloga', 'pilka_gimnastyczna', 'wyciag', 'zawieszenie', 'lawka', 'dzwignia'].includes(g.rodzaj)]).toEqual([k, true]);
+  test('sprzęt: podłoga, piłka, wyciąg, zawieszenie, ławka, dźwignia, talerz (Otis-Up), sztanga (Press Sit-Up), rzymska (GHD Sit Up) — bez hantli', () => {
+    for (const k of KEYS) for (const g of P[k].sprzet) expect([k, ['podloga', 'pilka_gimnastyczna', 'wyciag', 'zawieszenie', 'lawka', 'dzwignia', 'talerz', 'sztanga', 'rzymska'].includes(g.rodzaj)]).toEqual([k, true]);
   });
 });
 
@@ -100,12 +100,50 @@ describe('core_floor R2: miejsce śladu toru (T-1)', () => {
   const ślad = (k: string, u: number) => (trail(k, u).info.trail ?? trail(k, u).info.load) as number[] | undefined;
   const ZASOBY: Record<string, (sk: ReturnType<typeof frame>['sk']) => number[]> = {
     'Cable Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2), 'Machine Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2),
-    'Cable Reverse Crunch': sk => sk.legs.R.ankle,
+    'Cable Reverse Crunch': sk => sk.legs.R.ankle, 'Otis-Up': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2), 'Press Sit-Up': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2),
   };
   test.each(KEYS)('%s: ślad istnieje i leży w miejscu wynikającym ze sprzętu (≤ 3 cm; miednica, środek chwytów albo kostka)', k => {
     for (const u of [0, 0.5, 1]) { const f = trail(k, u); const t = ślad(k, u); expect([k, u, !!t]).toEqual([k, u, true]); const cel = ZASOBY[k] ? ZASOBY[k](f.sk) : f.sk.pelvis; expect([k, u, dist(t!, cel) <= 3]).toEqual([k, u, true]); }
   });
   test('miara potrafi paść: dla Cable Reverse Crunch ślad nie leży w miednicy, a dla Cable Crunch — nie w miednicy (miejsce różne od przypadku bez sprzętu)', () => {
     for (const k of ['Cable Reverse Crunch', 'Cable Crunch']) { const f = trail(k, 0.5); expect(dist(ślad(k, 0.5)!, f.sk.pelvis)).toBeGreaterThan(3); }
+  });
+});
+
+/* R3 (04.11.2026): pięć póz dla ćwiczeń z tekstem bez pozy — miary tożsamości ruchu, każda z prawdziwym negatywem (sklonowane dane z mutacją). */
+const klon = (k: string, zmien: (kl: any[]) => void): PoseData => { const c = JSON.parse(JSON.stringify(P[k])); zmien(c.klatki); return c as PoseData; };
+const fr2 = (d: PoseData, u: number) => keyframeFrame(d, u);
+const mid = (f: ReturnType<typeof frame>) => [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
+const sprz = (k: string, r: string) => P[k].sprzet.find(g => g.rodzaj === r);
+describe('core_floor R3: tożsamość nowych póz', () => {
+  test('Butt-Ups: start = podpór na przedramionach (biodra nisko, ciało w linii), koniec = odwrócone V (biodra ≥ 60 cm, biodro zgięte ≥ 85°), dłonie nieruchome, nogi proste', () => {
+    const k = 'Butt-Ups'; expect(frame(k, 0).sk.pelvis[1]).toBeLessThan(35); expect(A(k, 0).hip).toBeLessThan(20); expect(frame(k, 1).sk.pelvis[1]).toBeGreaterThanOrEqual(60); expect(A(k, 1).hip).toBeGreaterThanOrEqual(85);
+    expect(dist(frame(k, 0).sk.arms.R.grip, frame(k, 1).sk.arms.R.grip)).toBeLessThan(0.5); for (const u of [0, 0.5, 1]) expect(A(k, u).knee).toBeLessThanOrEqual(20);
+  });
+  test('miara potrafi paść: Butt-Ups bez ruchu biodrami (koniec = start) ma biodra < 35 cm', () => { const d = klon('Butt-Ups', kl => { kl[kl.length - 1] = { ...JSON.parse(JSON.stringify(kl[0])), u: 1 }; }); expect(fr2(d, 1).sk.pelvis[1]).toBeLessThan(35); });
+  test('Otis-Up: talerz w dłoniach, leżenie z kolanami ugiętymi (≥ 90° przez cały ruch), siad (barki ≥ 40 cm nad miednicą), talerz z klatki (≤ 50 cm) nad głowę (≥ 110 cm)', () => {
+    const k = 'Otis-Up'; expect(sprz(k, 'talerz')).toBeDefined(); for (const u of [0, 0.5, 1]) expect(A(k, u).knee).toBeGreaterThanOrEqual(90);
+    expect(frame(k, 0).sk.shoulderC[1] - frame(k, 0).sk.pelvis[1]).toBeLessThan(5); expect(frame(k, 1).sk.shoulderC[1] - frame(k, 1).sk.pelvis[1]).toBeGreaterThan(40); expect(mid(frame(k, 0))[1]).toBeLessThan(50); expect(mid(frame(k, 1))[1]).toBeGreaterThanOrEqual(110);
+  });
+  test('miara potrafi paść: Otis-Up z talerzem zostającym przy klatce (chwyty końca = chwyty startu) nie sięga 110 cm', () => { const d = klon('Otis-Up', kl => { kl[kl.length - 1].rece = JSON.parse(JSON.stringify(kl[0].rece)); }); expect(mid(fr2(d, 1))[1]).toBeLessThan(110); });
+  test('GHD Sit Up: ławka rzymska z wałkami, miednica nieruchoma, nogi prawie proste (kolano ≤ 20°), stopy pod wałkiem (≤ 12 cm), start tułów poziomo w tył, koniec siad (barki ≥ 40 cm nad miednicą)', () => {
+    const k = 'GHD Sit Up'; const g = sprz(k, 'rzymska')!; expect(g).toBeDefined(); expect(dist(frame(k, 0).sk.pelvis, frame(k, 1).sk.pelvis)).toBeLessThan(0.5);
+    for (const u of [0, 1]) { expect(A(k, u).knee).toBeLessThanOrEqual(20); expect(dist([(g.x as number) + (g.dlugosc as number), g.y as number, 0], [frame(k, u).sk.legs.R.ankle[0], frame(k, u).sk.legs.R.ankle[1], 0])).toBeLessThanOrEqual(12); }
+    expect(frame(k, 0).sk.shoulderC[1] - frame(k, 0).sk.pelvis[1]).toBeLessThan(12); expect(frame(k, 1).sk.shoulderC[1] - frame(k, 1).sk.pelvis[1]).toBeGreaterThan(40);
+  });
+  test('miara potrafi paść: GHD Sit Up z tułowiem końca ułożonym poziomo (pochylenie −90) nie siada (< 12 cm)', () => { const d = klon('GHD Sit Up', kl => { kl[kl.length - 1].pochylenieTulowia = -90; kl[kl.length - 1].zgiecieKregoslupa = 0; kl[kl.length - 1].pochylenieGlowy = -90; }); expect(fr2(d, 1).sk.shoulderC[1] - fr2(d, 1).sk.pelvis[1]).toBeLessThan(12); });
+  test('Dragon Flag: ławka płaska, barki nieruchome na ławce, ciało proste (biodro i kolano ≤ 20°), dłonie nieruchome za głową, kąt ciała nad ławką ≥ 70° na starcie i ≤ 30° na końcu', () => {
+    const k = 'Dragon Flag'; const b = sprz(k, 'lawka')!; expect(b.kat).toBe(0); const ang = (u: number) => { const f = frame(k, u); return Math.atan2(f.sk.pelvis[1] - f.sk.shoulderC[1], f.sk.pelvis[0] - f.sk.shoulderC[0]) * 180 / Math.PI; };
+    expect(dist(frame(k, 0).sk.shoulderC, frame(k, 1).sk.shoulderC)).toBeLessThan(0.5); expect(frame(k, 0).sk.shoulderC[1] - (b.top as number)).toBeLessThan(14); for (const u of [0, 1]) { expect(Math.abs(A(k, u).hip)).toBeLessThanOrEqual(20); expect(A(k, u).knee).toBeLessThanOrEqual(20); }
+    expect(dist(frame(k, 0).sk.arms.R.grip, frame(k, 1).sk.arms.R.grip)).toBeLessThan(0.5); expect(ang(0)).toBeGreaterThanOrEqual(70); expect(ang(1)).toBeLessThanOrEqual(30);
+  });
+  test('miara potrafi paść: Dragon Flag z ciałem końca ustawionym jak na starcie ma kąt ≥ 70° (brak opuszczania)', () => { const d = klon('Dragon Flag', kl => { kl[kl.length - 1] = { ...JSON.parse(JSON.stringify(kl[0])), u: 1 }; }); const f = fr2(d, 1); expect(Math.atan2(f.sk.pelvis[1] - f.sk.shoulderC[1], f.sk.pelvis[0] - f.sk.shoulderC[0]) * 180 / Math.PI).toBeGreaterThanOrEqual(70); });
+  test('Press Sit-Up: ławka ujemna z wałkami, sztanga za dłońmi, stopy nieruchome, siad (biodro rośnie ≥ 70°), sztanga z klatki (≤ 85 cm) ≥ 100 cm wyżej', () => {
+    const k = 'Press Sit-Up'; const b = sprz(k, 'lawka')!; expect(b.kat as number).toBeLessThan(-5); expect(b.walki).toBe(true); expect(sprz(k, 'sztanga')).toBeDefined();
+    expect(dist(frame(k, 0).sk.legs.R.ankle, frame(k, 1).sk.legs.R.ankle)).toBeLessThan(0.5); expect(A(k, 1).hip - A(k, 0).hip).toBeGreaterThanOrEqual(70); expect(mid(frame(k, 1))[1] - mid(frame(k, 0))[1]).toBeGreaterThanOrEqual(100);
+  });
+  test('miara potrafi paść: Press Sit-Up ze sztangą zostającą na klatce (chwyty końca = chwyty startu) unosi ją < 100 cm', () => { const d = klon('Press Sit-Up', kl => { const r = JSON.parse(JSON.stringify(kl[0].rece)); kl[kl.length - 1].rece = r; }); expect(mid(fr2(d, 1))[1] - mid(fr2(d, 0))[1]).toBeLessThan(100); });
+  test('Side Jackknife: wyjątek z powodem w generatorze (dwie próby R3 padły na zakresach silnika), brak pozy w danych', () => {
+    expect(KEYS).not.toContain('Side Jackknife'); expect(GEN).toMatch(/export const WYJATKI = \{\s*'Side Jackknife': '[^']{40,}/); expect(GEN).not.toMatch(/'Side Jackknife': \(\) =>/);
   });
 });
