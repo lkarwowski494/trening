@@ -359,10 +359,13 @@ describe('zestaw wskazówek techniki: ton trenera i zapis do lib/cues/text (koor
     expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/fr.json'), 'utf8'))[T2]).toBe('FR2');
     expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/fr.json'), 'utf8'))).toEqual({});
   });
-  test('zestawy P1 i P2 z repozytorium są rozpoznane jako wskazówki (każda pozycja ma „id” istniejące w lib/cues/text/en.json albo nowe)', () => {
+  test('zestawy P1 i P2 z repozytorium są rozpoznane jako wskazówki albo puste po nałożeniu (04.11.2026: P1 nałożony — zestaw pusty; każda pozycja ma „id”)', () => {
     for (const f of ['zestaw-przekladu-2026-11-02-p1-wskazowki.json', 'zestaw-przekladu-2026-11-03-p2-wskazowki.json']) {
-      const p = JSON.stringify(path.join(ROOT, 'docs/lokalizacja', f));
-      expect(run(`const p = m.wczytajZestaw(${p}); console.log(JSON.stringify(m.czyWskazowki(p)))`)).toBe(true);
+      const plik = path.join(ROOT, 'docs/lokalizacja', f);
+      const klucze = JSON.parse(fs.readFileSync(plik, 'utf8')).klucze as { id?: unknown }[];
+      if (klucze.length === 0) continue; /* zestaw nałożony (przekład w lib/cues/text) — rozpoznanie pustego zestawu sprawdzają testy syntetyczne wyżej */
+      expect(klucze.every((k) => typeof k.id === 'string')).toBe(true);
+      expect(run(`const p = m.wczytajZestaw(${JSON.stringify(plik)}); console.log(JSON.stringify(m.czyWskazowki(p)))`)).toBe(true);
     }
   });
   test('gałąź z wcześniejszymi zmianami (L-080): zestaw interfejsu dopisany na gałęzi obok wskazówek nie jest rozpoznany jako wskazówki', () => {
