@@ -418,7 +418,7 @@
  "mobility_stand.s.wallCalfMove": "Dobre o joelho da frente e incline-se em direção à parede; perna de trás estendida, calcanhar no chão.",
  "mobility_stand.s.wallCalfSet": "Apoie as mãos na parede e leve uma perna para trás; os dois pés apoiados no chão, dedos para frente.",
  "mobility_stand.s.xbodyMove": "Com a outra mão, segure o cotovelo e puxe o braço suavemente em direção ao peito.",
- "mobility_stand.s.xbodySet": "Levante o braço até a altura do ombro e cruze-o à frente do peito para o outro lado.",
+ "mobility_stand.s.xbodySet": "Com o braço na altura do ombro, cruze na frente do peito para o outro lado.",
  "mobility_stand.u.looseFist": "Feche as mãos sem apertar.",
  "mobility_stand.u.wristCircles": "Gire os punhos.",
  "rotator_cuff.bandSetup": "Prenda o elástico na altura da cintura e fique de lado para ele.",
@@ -431,8 +431,6 @@
  "foam_roll.ub.setup": "Deite-se de costas, com o rolo atravessado sob a parte superior das costas e os pés no chão.",
  "mobility_floor.n.qPull": "Puxe o calcanhar em direção ao glúteo, com os joelhos juntos.",
  "mobility_floor.t.child.setup": "Ajoelhe-se e apoie as mãos no chão à sua frente.",
- "mobility_floor.t.supTwist.shoulders": "Os ombros ficam no chão.",
- "mobility_stand.s.chinShouldersStill": "Os ombros ficam parados — só a cabeça se mexe.",
  "rotator_cuff.erMove": "Afaste a mão da barriga para fora, até onde for confortável.",
  "rotator_cuff.irMove": "Puxe a mão em direção à barriga."
 }
