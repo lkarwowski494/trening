@@ -21,7 +21,7 @@ describe('r2-W1 Alternating Deltoid Raise: dwa powtórzenia obiema rękami — p
   /** Szczyty ruchu: lokalne maksima wysokości dłoni R powyżej wysokości barku − 15 cm; każdy opisany przez płaszczyznę (do przodu / w bok). */
   const szczyty = (d: PoseData) => {
     const h = UU.map(u => poz(d, 'R', u).h); const out: { u: number; h: number; x: number; z: number }[] = [];
-    for (let i = 1; i < UU.length - 1; i++) if (h[i] > h[i - 1] && h[i] >= h[i + 1] && h[i] >= -15) out.push({ u: UU[i], h: h[i], ...poz(d, 'R', UU[i]) });
+    for (let i = 1; i < UU.length - 1; i++) if (h[i] > h[i - 1] && h[i] >= h[i + 1] && h[i] >= -15) out.push({ u: UU[i], ...poz(d, 'R', UU[i]) });
     return out;
   };
   const przod = (t: { x: number; z: number }) => t.x >= 45 && t.z <= 25 + 3; /* przed sobą: dłoń ≥ 45 cm przed barkiem, w poprzek ≤ 28 cm (bark 19 cm + 9 cm luzu hantla) */
