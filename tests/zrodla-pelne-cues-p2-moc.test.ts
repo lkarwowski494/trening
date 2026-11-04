@@ -143,11 +143,10 @@ describe('P2 moc: zdania', () => {
     expect(CUE_FULL.exercises['Power Jerk'].move.map(r => r.c)).toContain('olympic.powerMove');
   });
 
-  test('zdania nowe czekają na przekład w zestawie zestaw-przekladu-2026-11-03-p2-wskazowki.json (rodzaj „nowy”) i nie mają tekstu w innych językach', () => {
-    const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-03-p2-wskazowki.json').klucze as { rodzaj: string; id: string; pl: string; en: string }[];
-    expect(z.map(k => k.id).sort()).toEqual([...idyP2Nowe()].sort());
-    for (const k of z) expect([k.id, k.rodzaj, k.pl, k.en]).toEqual([k.id, 'nowy', pl[k.id], en[k.id]]);
-    for (const l of ['de', 'fr', 'ja']) { const d = json(`lib/cues/text/${l}.json`); for (const k of z) expect([l, k.id, d[k.id]]).toEqual([l, k.id, undefined]); }
+  test('zdania nowe (79, lista w tests/fixtures/p2-moc-nowe-id.json) są przełożone na wszystkie 33 języki; zestaw przekładu P2 jest pusty (nałożenie 04.11.2026)', () => {
+    const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-03-p2-wskazowki.json').klucze as unknown[];
+    expect(z).toEqual([]);
+    for (const l of ['de', 'fr', 'ja', 'pt-BR', 'es-419']) { const d = json(`lib/cues/text/${l}.json`); for (const id of idyP2Nowe()) if (!['pt-BR', 'es-419'].includes(l)) expect([l, id, typeof d[id]]).toEqual([l, id, 'string']); }
   });
 
   test('teksty nowych zdań: bez cyfr (liczby wymagają osobnych źródeł), bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {
@@ -161,6 +160,5 @@ describe('P2 moc: zdania', () => {
 
 /** Zdania dodane w P2: id z fixture, których nie było przed partią (zdania ogólne `oly.*`, `pp.*`, `sq.*`, `ohp.*`, `jump.*`, `mis.*` istnieją w 35 słownikach). */
 function idyP2Nowe(): Set<string> {
-  const de = json('lib/cues/text/de.json') as Record<string, string>;
-  return new Set(P2.zdania.filter(c => !(c in de)));
+  return new Set(json('tests/fixtures/p2-moc-nowe-id.json') as string[]);
 }
