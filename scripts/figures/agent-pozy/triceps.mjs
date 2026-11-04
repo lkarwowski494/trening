@@ -1,6 +1,6 @@
 // Generator póz rodziny triceps po stronie agenta (26.10.2026): prostowanie ramion — nad głową (stojąc), leżąc na ławce (płaska, skośna, ujemna), ściąganie z wyciągu, odwodzenie w tył, maszyna.
 // Ramię nad głową / nad barkiem stoi w miejscu (reguła ramie_nieruchome), rusza się przedramię: u = 0 zgięcie ≥ 70°, u = 1 wyprost ≤ 25° (lokiec_prostuje_sie). Błędów rysowanych brak (jedyny błąd katalogu to szarpanie = tempo, nie poza).
-import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, naLawce, buduj, bark, ramieFK, ramieU as ramie, wolna, noga3, wyc } from './gora.mjs';
+import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, naLawce, modlitewnik, buduj, bark, ramieFK, ramieU as ramie, wolna, noga3, wyc } from './gora.mjs';
 
 export const RODZINA = 'triceps';
 const U5 = [0, 0.25, 0.5, 0.75, 1];
@@ -79,22 +79,22 @@ export function generuj() {
   G['Chain Handle Extension'] = () => lezac('Chain Handle Extension', { kat: 0, sprzet: [{ rodzaj: 'lancuchy' }], zr: 12 });
   G['Cable Lying Triceps Extension'] = () => lezac('Cable Lying Triceps Extension', { kat: 0, sprzet: [wyc({ chwyt: 'drazek', x: -115, y: 58 })], zr: 10 });
   /* --- skośna i ujemna --- */
-  G['Incline Barbell Triceps Extension'] = () => lezac('Incline Barbell Triceps Extension', { kat: 55, f1: 172, zgiecie: 75, sprzet: [SPRZET.sztanga()], zr: 10 });
+  G['Incline Barbell Triceps Extension'] = () => lezac('Incline Barbell Triceps Extension', { kat: 15, f1: 180, zgiecie: 100, sprzet: [SPRZET.sztanga()], zr: 10 });
   G['Cable Incline Triceps Extension'] = () => lezac('Cable Incline Triceps Extension', { kat: 55, f1: 172, zgiecie: 75, sprzet: [wyc({ chwyt: 'lina', x: -120, y: 200 })], zr: 8 });
   G['Decline Dumbbell Triceps Extension'] = () => lezac('Decline Dumbbell Triceps Extension', { kat: -20, sprzet: [SPRZET.hantle()], zr: 17.5, obrot: 0 });
   G['Decline EZ Bar Triceps Extension'] = () => lezac('Decline EZ Bar Triceps Extension', { kat: -20, sprzet: [SPRZET.gryfLamany()], zr: 10 });
   /* --- leżąc: łokcie na boki (Tate), sztanga za głową --- */
   const lerp3 = (a, b, t) => a.map((x, i) => lerp(x, b[i], t));
-  /* Tate Press: hantle leżą na mostku końcami do siebie (środki chwytów ok. ±12 cm od osi, przedramiona się nie krzyżują), łokcie szeroko na boki i lekko za linią barków; w górę ramię wraca do pionu (recenzja ruchu 27.10.2026); nachwyt: obrot −80 (granica walidatora; |obrot| ≥ 80 zostawia oś w poprzek ciała) = hantle leżą poprzecznie (oś w poprzek ciała, recenzja R1 04.11.2026 Ś-1; obrot 0 stawiał je wzdłuż ciała talerzem na klatce) */
+  /* Tate Press: hantle leżą na mostku końcami do siebie (środki chwytów ok. ±12 cm od osi, przedramiona się nie krzyżują), łokcie szeroko na boki i lekko za linią barków; w górę ramię wraca do pionu (recenzja ruchu 27.10.2026); nachwyt: obrot −90 (FW2 04.11.2026: od 90° oś jest poprzeczna bez względu na przedramię; przy −80 oś płynnie odchodzi od poprzecznej) = hantle leżą poprzecznie (oś w poprzek ciała, recenzja R1 04.11.2026 Ś-1; obrot 0 stawiał je wzdłuż ciała talerzem na klatce) */
   G['Tate Press'] = () => { const B = naLawce(0, 43, { zr: 22 }); const d1k = [0.05, 1, 0.32]; const d1s = [-0.5, 0.65, 0.58]; const d2s = [0.65, -0.1, -0.75]; return wlasna('Tate Press', { sprzet: [LAW(0), SPRZET.hantle()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
-    rece: (u) => obie({ d1: lerp3(d1s, d1k, u), d2: lerp3(d2s, d1k, u), obrot: -80 }) }); };
-  /* Za głową (recenzja R1 04.11.2026, Ś-3): ramię odchylone w tył ok. 140° od tułowia (Skullcrusher: 100°), przedramię zgięte ok. 90°, więc gryf w dole leży za głową (ok. 20 cm za jej środkiem), a nie nad czołem */
-  G['Lying Close-Grip Barbell Triceps Extension Behind The Head'] = () => lezac('Lying Close-Grip Barbell Triceps Extension Behind The Head', { kat: 0, f1: 230, zgiecie: 90, sprzet: [SPRZET.sztanga()], zr: 9 });
-  /* --- siedząc w maszynie: łokcie przy bokach, dźwignia na osi łokcia --- */
-  G['Machine Triceps Extension'] = () => { const B = naLawce(80, 43, { zr: 24 }); const spec = (u) => ({ f1: [4, 4], a1: 5, f2: [104, 12], zr: 22 });
-    const sp = (u) => ramie(spec(), u, false); const S = bark(B.m, B.p, 1); const fk0 = ramieFK(S, 1, sp(0)); const G0 = fk0.g; const pz = fk0.E[2] + 16;
+    rece: (u) => obie({ d1: lerp3(d1s, d1k, u), d2: lerp3(d2s, d1k, u), obrot: undefined }) }); };
+  /* Za głową (recenzja R1 04.11.2026 Ś-3; r2 04.11.2026): ramię prawie pionowo, lekko w tył (ok. 20° od pionu; wejście T1: „slightly behind vertical”, ramiona nie uciekają w tył), głębsze zgięcie łokcia (105°) niż w Skullcrusherze (110° przy ramieniu 10° w tył), więc gryf w dole leży za czubkiem głowy, a nie nad czołem (źródła: Catalyst — „past the top of the head”; ACE #36 — „slightly behind your head”, granica: aż ramiona zaczną uciekać w tył) */
+  G['Lying Close-Grip Barbell Triceps Extension Behind The Head'] = () => lezac('Lying Close-Grip Barbell Triceps Extension Behind The Head', { kat: 0, f1: 200, zgiecie: 105, sprzet: [SPRZET.sztanga()], zr: 9 });
+  /* --- siedząc w maszynie z podpórką na ramiona (r2 04.11.2026): przodem do pochyłej podpórki (modlitewnik), ramiona leżą na niej łokciami, ruch tylko w łokciu — przedramię z zagięcia (u = 0) do wyprostu wzdłuż podpórki; dźwignia na osi łokcia (wzór: Machine Biceps Curl) --- */
+  G['Machine Triceps Extension'] = () => { const M = modlitewnik(); const f1 = M.f1; const spec = (u) => ramie({ f1: [f1, f1], a1: 3, f2: [f1 + 104, f1 + 12], zr: 19, obrot: 0 }, u, false);
+    const S = bark(M.m, M.p, 1); const fk0 = ramieFK(S, 1, spec(0)); const G0 = fk0.g; const pz = fk0.E[2] + 16;
     const lever = { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(fk0.E[0]), y: r1(fk0.E[1]), z: r1(pz), dlugosc: r1(Math.hypot(G0[0] - fk0.E[0], G0[1] - fk0.E[1], G0[2] - pz)), punkt: 'dlonie', trzyma: 'R' };
-    return wlasna('Machine Triceps Extension', { sprzet: [LAW(80), lever], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi, rece: (u) => obie(sp(u)) }); };
+    return wlasna('Machine Triceps Extension', { sprzet: [M.sprzet, lever], tulow: { m: M.m, p: M.p, glowa: M.p }, nogi: M.nogi, rece: (u) => obie(spec(u)) }); };
   /* --- ściąganie z wyciągu --- */
   const hg = { x: 42, y: 200 };
   G['Triceps Pushdown'] = () => pushdown('Triceps Pushdown', { sprzet: [wyc({ chwyt: 'lina', ...hg })], zr: 9, obrot: 0 });
