@@ -8225,19 +8225,24 @@
      "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
     },
     "sr": {
-     "zalecany": "kettlebell",
-     "pewnosc": "niska",
-     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+     "zalecany": "кетлбел",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "kettlebell",
+       "powod": "serbski tekst jest cyrylicą; w kartach jest „кетлбел”, nie łacinka"
+      }
+     ]
     },
     "lt": {
      "zalecany": "kettlebell",
      "pewnosc": "niska",
-     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebell'as, kettlebell'ą, kettlebell'ai (z apostrofem)."
     },
     "lv": {
      "zalecany": "kettlebell",
      "pewnosc": "niska",
-     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli."
     },
     "et": {
      "zalecany": "kettlebell",
@@ -10849,6 +10854,191 @@
       }
      ],
      "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "uchwyt",
+   "pl": "uchwyt (część sprzętu, ang. handle)",
+   "tylko": [
+    "de",
+    "fr",
+    "es",
+    "es-419",
+    "it",
+    "pt",
+    "pt-BR",
+    "nl",
+    "sv",
+    "da",
+    "nb",
+    "fi",
+    "et",
+    "lt",
+    "lv",
+    "cs",
+    "sk"
+   ],
+   "znaczenie": "element, który trzymasz w dłoni na wyciągu, gumie albo sankach (ang. handle); NIE chwyt (sposób trzymania), NIE pięść, NIE nadgarstek",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])uchwyt(u|em|y|ów|om|ach|ami)?(?![\\p{L}])",
+   "jezyki": {
+    "de": {
+     "zalecany": "Griff",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "poignée",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "asa",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "agarre",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])maneral(es)?(?![\\p{L}])",
+       "powod": "jedno słowo w całym pliku: uchwyt wyciągu to „agarre”, nie „maneral” (decyzja koordynatora 04.11.2026); „mangos” zostaje tylko przy sankach (sled.pushGrip)"
+      }
+     ]
+    },
+    "it": {
+     "zalecany": "maniglia",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "pega",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])punhos?(?![\\p{L}])",
+       "powod": "„punho” to pięść albo mankiet (w pt-BR nadgarstek), nie uchwyt wyciągu; uchwyt to „pega”"
+      }
+     ]
+    },
+    "pt-BR": {
+     "zalecany": "pegador",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "handvat",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "handtag",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "håndtag",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "håndtak",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "kahva",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "käepide",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "rankena",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "rokturis",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "držadlo",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "rukoväť",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "nachwyt",
+   "pl": "nachwyt (dłonie od góry, ang. overhand)",
+   "tylko": [
+    "ja",
+    "id",
+    "bg"
+   ],
+   "znaczenie": "chwyt z dłońmi skierowanymi w dół; potoczna nazwa jak w innych kartach (martwy ciąg, podciąganie), bez terminu z podręcznika",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])nachwyt(u|em|y|ów|om|ach)?(?![\\p{L}])",
+   "jezyki": {
+    "ja": {
+     "zalecany": "順手",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "オーバーハンド",
+       "powod": "w pozostałych kartach jest „順手”, nie katakanowe „オーバーハンドグリップ”"
+      }
+     ]
+    },
+    "id": {
+     "zalecany": "genggaman atas",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])overhand(?![\\p{L}])",
+       "powod": "w pozostałych kartach jest „genggaman atas”, nie angielskie „overhand”"
+      }
+     ]
+    },
+    "bg": {
+     "zalecany": "прав хват",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "пронир",
+       "powod": "podręcznikowe; w pozostałych kartach jest „прав хват”"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "uda",
+   "pl": "uda (część ciała)",
+   "tylko": [
+    "ru",
+    "uk"
+   ],
+   "znaczenie": "uda jako miejsce przy którym zawisa ciężar (przed udami, przy udach, do ud); NIE nogi ani stopy",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])(uda|ud|udami|udach|udom|udo|udem|udzie)(?![\\p{L}])",
+   "jezyki": {
+    "ru": {
+     "zalecany": "бёдра",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(перед|к|у) ног(ами|ам|и|ой|е)?(?![\\p{L}])",
+       "powod": "„ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup)"
+      }
+     ]
+    },
+    "uk": {
+     "zalecany": "стегна",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(перед|до|біля) ног(ами|ам|и|ою|і)?(?![\\p{L}])|біля ніг",
+       "powod": "„ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup)"
+      }
+     ]
     }
    }
   }
