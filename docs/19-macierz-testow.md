@@ -907,7 +907,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Notatka do serii | app/history/edit/[id].tsx | tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx, tests/scenario-full.test.tsx |
 | Notatka szablonu | components/ActiveWorkout.tsx | tests/audit-0.10-ui.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | nowa | app/more/bands.tsx | tests/asc-metadane.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx +50 |
-| nowe | lib/guard.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst.test.ts +18 |
+| nowe | lib/guard.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst.test.ts +19 |
 | Nowe ćwiczenia: {n} | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nowe ćwiczenie nie zostanie zapisane. | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx |
 | nowe ćwiczenie własne | app/picker.tsx | tests/matrix-logic.test.tsx |
