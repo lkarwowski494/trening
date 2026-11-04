@@ -13,6 +13,14 @@
    "cwiczenie": "Good Morning",
    "plik": "wskazowki-slownik"
   },
+  "rdl.move": {
+   "cwiczenie": "RDL (sztanga)",
+   "uwaga": "04.11.2026 (spójność karta–rysunek, recenzja niezależna #3): zdanie z karty własnej RDL (sztanga) dla sztywnych nóg ze sztangą i w suwnicy — uproszczenie (wariant sprzętu tego samego ruchu), wymaga potwierdzenia przez recenzenta niezależnego"
+  },
+  "rdl.dbMove": {
+   "cwiczenie": "RDL (hantle/linki)",
+   "uwaga": "04.11.2026 (spójność karta–rysunek, recenzja niezależna #3): zdanie z karty własnej RDL (hantle/linki) dla wariantów jednorącz i jednonóż — uproszczenie (wariant tego samego ruchu), wymaga potwierdzenia przez recenzenta niezależnego"
+  },
   "pu.grip": {
    "cwiczenie": "Pull Up",
    "plik": "wskazowki-slownik"

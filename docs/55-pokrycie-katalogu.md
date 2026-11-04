@@ -18,14 +18,14 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Bez figury w aplikacji | 528 | 74,6% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 94 | 13,3% |
-| Animowany błąd | 94 | 13,3% |
-| Własne wskazówki (źródłowe) | 167 | 23,6% |
-| — z czego z częstymi błędami | 76 | 10,7% |
-| Zestaw ogólny wskazówek wzorca ruchu | 73 | 10,3% |
-| Bez tekstu wskazówek | 468 | 66,1% |
-| Częste błędy (własne albo zestaw ogólny) | 149 | 21% |
+| Animowany błąd | 85 | 12% |
+| Własne wskazówki (źródłowe) | 163 | 23% |
+| — z czego z częstymi błędami | 72 | 10,2% |
+| Zestaw ogólny wskazówek wzorca ruchu | 68 | 9,6% |
+| Bez tekstu wskazówek | 477 | 67,4% |
+| Częste błędy (własne albo zestaw ogólny) | 140 | 19,8% |
 | Role mięśni | 508 | 71,8% |
-| **Pełna karta** | 92 | 13% |
+| **Pełna karta** | 83 | 11,7% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 132 | 18,6% |
 
 ## Cele wersji
@@ -36,13 +36,14 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela.
 
-Cel osiągnięty: **nie** (42 z 47 liczb).
+Cel osiągnięty: **nie** (41 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 240 | 400 |
-| częste błędy (tekst) | 557 | 149 | 408 |
+| animowany błąd | 92 | 85 | 7 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 231 | 409 |
+| częste błędy (tekst) | 557 | 140 | 417 |
 | komplet tekstów karty: pl | 671 | 571 | 100 |
 | komplet tekstów karty: en | 671 | 571 | 100 |
 
@@ -54,9 +55,9 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 6 | 28 | 2 | 32 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
-| `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 16 | 9 | 22 | 32 |
+| `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 11 | 14 | 17 | 32 |
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
-| `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 19 | 6 | 22 | 30 |
+| `bench_press` | gotowa | 30 | 30 | 0 | 0 | 1 | 19 | 10 | 18 | 30 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
 | `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 21 | 0 | 4 | 0 | 0 |
@@ -138,16 +139,16 @@ Kart z tekstami (wskazówki albo role mięśni): **571**. „Komplet” = karta 
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 92. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 83. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
 
 - Brakuje tylko: animowany błąd — 1: JM Press
 - Brakuje tylko: role mięśni — 1: Scapular Pull-Up
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 92 |
+| 0 | 83 |
 | 1 | 2 |
 | 2 | 40 |
-| 3 | 104 |
+| 3 | 113 |
 | 4 | 327 |
 | 5 | 143 |

@@ -21,7 +21,7 @@ import { ExerciseCues } from '@/components/ExerciseCues';
 
 const root = path.join(__dirname, '..');
 /** Wyjątki linii 1.1 (scalenie main 28.10.2026): zestaw ogólny bez wpisu albo ze skrótem sprzed zmian 1.1 — runtime go nie pokazuje (lista „general”); pilnuje tests/recenzja-wyjatki-1-1.test.ts. */
-const WYJ: { zestawy_bez_wpisu: string[]; zestawy_zmienione: string[] } = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8'));
+const WYJ: { zestawy_bez_wpisu: string[]; zestawy_zmienione: string[]; karty_zmienione?: string[] } = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8'));
 const SCRIPT = path.join(root, 'scripts/zrodla-runtime.mjs');
 type Card = { werdykt: 'wyswietlana' | 'do poprawy'; data: string; stan: string; autor: string; recenzent: string; kto: string; sha: string; uwagi?: string; poprawka?: string };
 type Rec = { v1: Record<string, { werdykt: string; sha: string }>; karty?: Record<string, Card>; zestawy?: Record<string, Card & { rodzina: string }> };
@@ -58,7 +58,7 @@ describe('zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10
     }
   });
   test('wpis „wyswietlana” ⇒ skrót = skrót bieżących wskazówek (zmiana tekstu bez nowej recenzji czerwieni test)', () => {
-    for (const [k, e] of Object.entries(REC.karty ?? {})) if (e.werdykt === 'wyswietlana') expect([k, e.sha]).toEqual([k, NOW.karty[k]]);
+    for (const [k, e] of Object.entries(REC.karty ?? {})) if (e.werdykt === 'wyswietlana' && !(WYJ.karty_zmienione ?? []).includes(k)) expect([k, e.sha]).toEqual([k, NOW.karty[k]]); /* karty_zmienione (04.11.2026): karta własna zmieniona po recenzji — ukryta do recenzji niezależnej, pilnuje tests/recenzja-wyjatki-1-1.test.ts */
     for (const [k, e] of Object.entries(REC.zestawy ?? {})) if (e.werdykt === 'wyswietlana' && !WYJ.zestawy_zmienione.includes(k)) expect([k, e.sha]).toEqual([k, NOW.zestawy[k]]);
   });
 });

@@ -28,16 +28,27 @@
   "Pin Press",
   "Reverse Band Deadlift",
   "Reverse Band Power Squat",
+  "Single Arm RDL (hantel/linka)",
+  "Single Leg RDL (hantel)",
+  "Single Leg RDL (linki)",
   "Smith Machine Incline Press",
   "Smith Machine Squat",
+  "Smith Machine Stiff-Legged Deadlift",
   "Snatch Deadlift",
   "Squat with Bands",
   "Squat with Chains",
+  "Stiff-Legged Barbell Deadlift",
   "Sumo Squat (hantel)",
   "Wide-Grip Barbell Bench Press",
   "Zercher Squat"
  ],
  "zestawy_bez_wpisu": [
   "Dead Hang"
+ ],
+ "karty_zmienione": [
+  "Bench Press (sztanga)",
+  "Bench Press (hantle)",
+  "Incline Bench Press (sztanga)",
+  "Incline Bench Press (hantle)"
  ]
 }
