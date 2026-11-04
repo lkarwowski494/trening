@@ -308,8 +308,8 @@ export function dragonFlag(cw, { top = 43, thGora = 80, thDol = 24, dl = 70, dxB
   const B = BODY(); const pad = v2().BENCH.padBack; const Sy = top + pad + 1.0; const Sx = -dl + dxBark; const L = D_PROSTA_NOGA; const G = (sg) => [Sx - dxDlon, top + 6, sg * 17];
   const us = Array.from({ length: 9 }, (_, i) => i / 8);
   const fr = (u) => { const a = wygladzenie(u); const th = lerp(thGora, thDol, a); const c = [Math.cos(th * R), Math.sin(th * R)]; const P = [Sx + B.trunk * c[0], Sy + B.trunk * c[1]]; const A = [P[0] + L * c[0], P[1] + L * c[1]];
-    const p = Math.atan2(-c[0], -c[1]) / R; const f = nogaZCelu(P, A, 'dol'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
-    const noga = (z) => ({ ankle: A, strona: 'dol', pod: Math.max(-90, Math.min(90, sd - 45)), z, rot: 10 });
+    const p = Math.atan2(-c[0], -c[1]) / R; const f = nogaZCelu(P, A, 'gora'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
+    const noga = (z) => ({ ankle: A, strona: 'gora', pod: Math.max(-90, Math.min(90, sd - 45)), z, rot: 10 });
     return ramka({ u, miednica: P, p, glowa: -92, nogi: { R: noga(8), L: noga(-8) }, rece: { R: { g: G(1), pole: [0, 0.5, 1] }, L: { g: G(-1), pole: [0, 0.5, -1] } } }); };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: dl, siedzisko: 40 }], klatki: us.map(fr), bledy: [] });
 }
@@ -336,6 +336,10 @@ export const PRZYBLIZENIA = {
   'Alternate Heel Touchers': 'skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku',
   'Superman': 'przybliżenie: stopy grzbietem w dół, palce do tyłu (zgięcie podeszwowe 50°); nogi i ręce unoszą się razem, rysowane dwie fazy skrajne',
   'Tuck Crunch': 'przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)',
+  'Butt-Ups': 'przybliżenie: stopy na palcach podchodzą o 44 cm ku dłoniom podczas unoszenia bioder (przy nieruchomych łokciach i stopach odwrócone V nie powstaje: odległość bark–stopy jest stała); bark odchyla się do przodu o 22° nad łokciem',
+  'Press Sit-Up': 'przybliżenie: talerze sztangi rysowane w płaszczyźnie y–z, sztanga idzie za dłońmi (podazaZaChwytem); ławka −20°, stopy pod wałkami',
+  'Otis-Up': 'przybliżenie: talerz zawsze w płaszczyźnie y–z (silnik), dłonie na obręczy po bokach',
+  'GHD Sit Up': 'przybliżenie: wałek nad kostkami (stopa pod nim), poduszka rysowana jako schemat ławki rzymskiej (kąt 15°), tułów odchylany do poziomu (zakres wyprostu biodra silnika −17°)',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
 };
 
