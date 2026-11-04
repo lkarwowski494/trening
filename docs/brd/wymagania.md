@@ -453,6 +453,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
     - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
     - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Skrót recenzji rodziny obejmuje dobór po kartach (fix4 R2, decyzja koordynatora 04.11.2026; `scripts/skrot-v2-dobor.mjs`, test `tests/skrot-v2-dobor.test.ts`)
+    - Zakładając, że zmiana zestawu wskazówek albo karty zmienia linie odniesienia, elementy nakładki albo pozy „częsty błąd” ćwiczenia rodziny
+    - Gdy liczony jest skrót recenzji tej rodziny
+    - Wtedy skrót jest inny i rysunek rodziny czeka na nową recenzję; zmiana samego zdania karty albo wskazówka bez wpływu na rysunek skrótu nie zmienia
+  - Scenariusz: Element nakładki techniki tylko z regułą „ustalone” wariantu (fix4 R1, decyzja koordynatora 04.11.2026; `lib/figures/v2/reguly-cwiczen.json`, test `tests/figures-v2-nakladka-fix4.test.tsx`)
+    - Zakładając, że karta ćwiczenia ma wskazówkę elementu, ale reguła elementu nie należy do reguł wariantu ćwiczenia albo ma tam pewność inną niż „ustalone” (np. Single Leg RDL)
+    - Gdy użytkownik ogląda rysunek tego ćwiczenia
+    - Wtedy element nakładki nie jest rysowany; ćwiczenia z regułą „ustalone” pokazują go jak dotąd
   - Scenariusz: Wskazówki techniki tylko po recenzji treści karty (bramka 4; decyzja DEC-10 a, 2026-10-28; zadanie M1-audytor-generalny-038; zapis `docs/research/figury-recenzja.json`, sekcje „karty” i „zestawy”; test `tests/karty-recenzja.test.tsx`)
     - Zakładając, że karta ćwiczenia ze wskazówkami (własnymi albo ogólnymi wzorca ruchu przy rysunku v2) nie ma zapisu niezależnej recenzji treści z werdyktem „wyświetlana”, zmieniła się po recenzji (inny skrót wskazówek, tekstów polskich albo przypisania zestawu) albo recenzja oznaczyła ją „do poprawy” (np. Hack Squat, Pistol Squat)
     - Gdy użytkownik otwiera to ćwiczenie

@@ -42,17 +42,17 @@ export function onDrawingCues(spec: FigureSpec, guides: GuideId[], techniques: s
   return out;
 }
 
-/** Błędy do animacji: wskazówki „częsty błąd” ćwiczenia, które da się pokazać pozą w tym wariancie rysunku (bez powtórzeń). */
-export function errorsOf(spec: FigureSpec): { error: FigError; cue: string }[] {
+/** Błędy do animacji (`errCues` = id wskazówek „częsty błąd”; domyślnie z karty ćwiczenia, skrót recenzji rodziny podaje je z surowych danych): wskazówki „częsty błąd” ćwiczenia, które da się pokazać pozą w tym wariancie rysunku (bez powtórzeń). */
+export function errorsOf(spec: FigureSpec, errCues: readonly string[] = cueIdsOf(spec.key).errs): { error: FigError; cue: string }[] {
   const out: { error: FigError; cue: string }[] = [];
   const v = spec.variant;
   if ('data' in v) {
     /* rodzina z danych: błędy ćwiczenia to wpisy bledy[] (poza = poprawna + delty; wskazówka „częsty błąd” sprawdzona walidatorem), do tego błąd tempa, gdy wskazówki ćwiczenia go mają */
     v.data.bledy.forEach((b, i) => out.push({ error: dataErrorId(i), cue: b.cue }));
-    for (const cue of cueIdsOf(spec.key).errs) { const error = CUE_TO_ERROR[cue]; if (error && ERRORS[error].kind === 'tempo' && faultApplicable(spec, error) && !out.some(o => o.error === error)) out.push({ error, cue }); }
+    for (const cue of errCues) { const error = CUE_TO_ERROR[cue]; if (error && ERRORS[error].kind === 'tempo' && faultApplicable(spec, error) && !out.some(o => o.error === error)) out.push({ error, cue }); }
     return out;
   }
-  for (const cue of cueIdsOf(spec.key).errs) { const error = CUE_TO_ERROR[cue]; if (error && faultApplicable(spec, error) && !out.some(o => o.error === error)) out.push({ error, cue }); }
+  for (const cue of errCues) { const error = CUE_TO_ERROR[cue]; if (error && faultApplicable(spec, error) && !out.some(o => o.error === error)) out.push({ error, cue }); }
   return out;
 }
 

@@ -80,7 +80,7 @@ describe('1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.20
 describe('1A, L-080: gałąź z wcześniejszymi zmianami względem main — podłączenie rodziny na gałęzi nie zmienia skrótu, zmiana rysunku zmienia', () => {
   const git = (cwd: string, ...a: string[]) => execFileSync('git', ['-c', 'user.email=t@t', '-c', 'user.name=t', ...a], { cwd, encoding: 'utf8' });
   test('main → gałąź (commit 1: status + LOAD + DATA_UI; commit 2: dokument) → gałąź rysunku (commit 3: draw.ts)', () => {
-    const kod = `import * as z from ${JSON.stringify(RT)}; process.stdout.write(JSON.stringify([...z.V2_WSPOLNE, 'lib/figures/v2/poses/pull_up.json']));`;
+    const kod = `import * as z from ${JSON.stringify(RT)}; import { DANE_DOBORU } from ${JSON.stringify(path.join(root, 'scripts/skrot-v2-dobor.mjs'))}; process.stdout.write(JSON.stringify([...z.V2_WSPOLNE, 'lib/figures/v2/poses/pull_up.json', ...DANE_DOBORU]));`; /* fix4 R2 (04.11.2026): skrót czyta też dane doboru po kartach */
     const pliki: string[] = JSON.parse(execFileSync('node', ['--input-type=module', '-e', kod], { encoding: 'utf8' }));
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'skrot-l080-'));
     try {

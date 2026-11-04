@@ -17,6 +17,7 @@ import { HINGE_TECHNIQUE } from './overlay/hinge';
 import { CURL_TECHNIQUE } from './overlay/curl';
 import { PULL_UP_TECHNIQUE } from './overlay/pull_up';
 import { solid } from './overlay/common';
+import REGULY from './reguly-cwiczen.json';
 
 export const OVERLAY_MAX_LINES = 3, OVERLAY_MAX_ARCS = 1;
 /** Długość przedłużenia linii za staw i promienie łuków (cm rysunku). */
@@ -39,8 +40,16 @@ export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rul
 export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, squat: SQUAT_TECHNIQUE, hinge: HINGE_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE };
 export const techniqueDef = (id: string): TechniqueDef | undefined => Object.values(TECHNIQUE).flat().find(d => d.id === id);
 /** Elementy rodziny, które wolno pokazać przy zestawie wskazówek ćwiczenia (id wskazówek karty). */
+/**
+ * Reguły „ustalone” wariantu ćwiczenia (generowane z data/zrodla/figury-sens.json przez scripts/zrodla-runtime.mjs: regulyDla ∩ pewność „ustalone”, bez źródeł) — fix4 R1, 04.11.2026:
+ * element nakładki jest rysowany tylko wtedy, gdy jego reguła należy do tej listy (np. Single Leg RDL ma wyprost na górze tylko jako „analogia” → bez pionu).
+ */
+const REGULY_CWICZEN = REGULY as Record<string, Record<string, string[]>>;
+const has = (o: object, k: string): boolean => Object.prototype.hasOwnProperty.call(o, k);
 export function techniquesFor(family: string, cueIds: Iterable<string>, exercise?: string): TechniqueDef[] {
-  const have = new Set(cueIds); return (Object.prototype.hasOwnProperty.call(TECHNIQUE, family) ? TECHNIQUE[family] : []).filter(d => d.cue.some(c => have.has(c)) && (!d.exercises || (exercise !== undefined && d.exercises.includes(exercise))));
+  const have = new Set(cueIds); const rules = exercise !== undefined && has(REGULY_CWICZEN, family) && has(REGULY_CWICZEN[family], exercise) ? REGULY_CWICZEN[family][exercise] : [];
+  /* bez ćwiczenia (wywołanie na poziomie rodziny) reguły wariantu nie są znane — filtr tylko po wskazówkach; z ćwiczeniem bez wpisu reguł → brak elementu */
+  return (has(TECHNIQUE, family) ? TECHNIQUE[family] : []).filter(d => d.cue.some(c => have.has(c)) && (!d.exercises || (exercise !== undefined && d.exercises.includes(exercise))) && (exercise === undefined || rules.includes(d.rule)));
 }
 
 const angleDeg = (a: V3, b: V3): number => Math.acos(Math.max(-1, Math.min(1, dot(a, b)))) * 180 / Math.PI;

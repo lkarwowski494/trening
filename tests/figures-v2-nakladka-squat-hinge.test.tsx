@@ -110,12 +110,13 @@ describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element �
   test('element tylko z wskazówką karty: dla każdego ćwiczenia squat/hinge techniquesOf = elementy, których wskazówka (dowolna z cue) jest na karcie; spoza zestawu → brak', () => {
     for (const [k, fam, defs] of [...SQUAT_KEYS.map(k => [k, 'squat', SQUAT_TECHNIQUE] as const), ...HINGE_KEYS.map(k => [k, 'hinge', HINGE_TECHNIQUE] as const)]) {
       const have = new Set(cueIdsOf(k).ids); const want = defs.filter(d => d.cue.some(c => have.has(c))).map(d => d.id);
-      expect([k, techniquesOf(k)]).toEqual([k, want]); expect(techniquesFor(fam, have).map(d => d.id)).toEqual(want);
+      const zRegula = want.filter(id => techniquesFor(fam, have, k).some(d => d.id === id)); /* fix4 R1 (04.11.2026): element tylko z regułą „ustalone” wariantu (reguly-cwiczen.json) — szczegóły: figures-v2-nakladka-fix4.test.tsx */
+      expect([k, techniquesOf(k)]).toEqual([k, zRegula]); expect(zRegula.length === want.length || /^Single Leg RDL/.test(k)).toBe(true); expect(techniquesFor(fam, have).map(d => d.id)).toEqual(want);
       for (const id of want) expect(errorText(TECHNIQUE[fam].find(d => d.id === id)!.cue.find(c => have.has(c))!).length).toBeGreaterThan(0); /* zdanie elementu (cue) jest na karcie */
     }
     expect(techniquesOf('Back Squat')).toEqual(['squatKneeLimb']); expect(techniquesOf('Goblet Squat')).toEqual(['squatKneeLimb']); expect(techniquesOf('Box Squat')).toEqual(['squatKneeLimb']);
     expect(techniquesOf('Deadlift (sztanga)')).toEqual(['hingeUprightRef']); expect(techniquesOf('RDL (sztanga)')).toEqual(['hingeUprightRef']); expect(techniquesOf('Good Morning')).toEqual(['hingeUprightRef']);
-    expect(techniquesOf('Wall Sit')).toEqual([]); expect(techniquesOf('Single Leg RDL (hantel)')).toEqual(['hingeUprightRef']); expect(techniquesOf('Stiff-Legged Barbell Deadlift')).toEqual(['hingeUprightRef']); /* 04.11.2026: po scaleniu spójności karta–rysunek karty mają rdl.dbMove / rdl.move → pion wyprostu; ocena geometrii przy jednej nodze: roznica-elementow.md, recenzent niezależny */
+    expect(techniquesOf('Wall Sit')).toEqual([]); expect(techniquesOf('Single Leg RDL (hantel)')).toEqual([]); expect(techniquesOf('Stiff-Legged Barbell Deadlift')).toEqual(['hingeUprightRef']); /* 04.11.2026: karta ma rdl.dbMove, ale wariant jednonóż ma wyprost na górze tylko jako „analogia” → bez pionu (fix4 R1, wariant A′; recenzja różnicy elementów) */
     expect(techniquesFor('squat', ['dl.lift'])).toEqual([]); expect(techniquesFor('hinge', ['sq.down'])).toEqual([]); expect(techniquesFor('olympic', ['sq.down'])).toEqual([]);
   });
   test('linia pleców: przysiad dostaje ją przy sq.back, przysiad przy ścianie przy wall.back; bez wskazówki — brak (guidesOf)', () => {
