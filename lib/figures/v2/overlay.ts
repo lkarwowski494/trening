@@ -12,6 +12,8 @@ import type { Shape, View } from './scene';
 import type { Skeleton, Side } from './skeleton';
 import type { MeasuredJoint } from './poseData';
 import { BENCH_TECHNIQUE } from './overlay/bench_press';
+import { CURL_TECHNIQUE } from './overlay/curl';
+import { PULL_UP_TECHNIQUE } from './overlay/pull_up';
 import { solid } from './overlay/common';
 
 export const OVERLAY_MAX_LINES = 3, OVERLAY_MAX_ARCS = 1;
@@ -23,7 +25,7 @@ export type TechniqueKind = 'limb' | 'abduction';
 export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint };
 
 /** Elementy nakładki wg rodziny (dane: overlay/<rodzina>.ts). */
-export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE };
+export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE };
 export const techniqueDef = (id: string): TechniqueDef | undefined => Object.values(TECHNIQUE).flat().find(d => d.id === id);
 /** Elementy rodziny, które wolno pokazać przy zestawie wskazówek ćwiczenia (id wskazówek karty). */
 export function techniquesFor(family: string, cueIds: Iterable<string>): TechniqueDef[] {
