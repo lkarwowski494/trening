@@ -143,7 +143,13 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - L-098 A: `verify:docs` ponawia czerwone pliki jak pełne verify (docs/18, 03.11.2026 ~22:20 PL).
 - L-099 A: strażnik rejestru przy przekładzie wskazówek (docs/18, 03.11.2026 ~22:20 PL).
 - Przegląd native speakerów tłumaczeń P1 (pytania z recenzji: fr, lt, el, lv, tr, ro, pt-BR, ms, vi, sv, ru, hu).
+- `STAN-AGENTA.md` w worktree blokuje znacznik verify (plik nieśledzony) — dopisać do `.gitignore` albo trzymać stan agenta poza worktree (04.11.2026).
+- Słownik terminów: „pośladek/pośladki” — ms „punggung”, id „bokong” (w id „punggung” = plecy); z testem `tests/slownik-terminow.test.ts` (recenzja lokalizacji P1, 04.11.2026).
+- Polecenia figur (`scripts/figures/gemini-polecenia.mjs:22`, limit 36000): najdłuższy plik 35980 znaków — 20 znaków zapasu (04.11.2026).
 - Skrót recenzji v2 (audyt 1A, NISKIE): parser bloków `scripts/skrot-v2-norm.mjs` zakłada koniec bloku `};`; wzorzec LOAD nie sprawdza zgodności klucza z plikiem (skutek bezpieczny — brak figury).
+
+### Backlog 1.2 — figury (audyt scalenia curl, 04.11.2026, NISKIE)
+- Błąd „szarpnięcie” (jerk) w 12 z 18 ćwiczeń curl bez `info.load` (hantle, linka, maszyna): znacznik błędu na miednicy zamiast na ciężarze (`lib/figures/v2/figure.ts:167`) — jedno spojrzenie recenzenta na arkusz hantlowy z błędem jerk.
 
 ### Backlog 1.1 — zestawy ogólne i karty: sygnały badaczy źródeł (audyt sygnałów 02.11.2026; brak blokerów)
 Widoczne dziś (do 1.1, nie blokują): **S1** `kb.setup` „Stań za kettlebellem” (`lib/cues/text/pl.json:168`, własna karta Kettlebell Swing) — szczegół „za” bez potwierdzenia w zapisanych źródłach (`docs/research/27-wskazowki-zrodla.md:877`); dwa źródła albo neutralne brzmienie, tłumaczenie, `--rehash` — ŚREDNIE. **S-roles** pole „Obciążenie partii” przy pustych `muscles` (ok. 20 ćwiczeń cardio, rzutów, rozciągania; `lib/seed.ts:153-160`) — ukryć albo dopisek — NISKIE. **S-kbt** kettlebell w kategorii sprzętu „hantle” (`lib/seed.ts:75`; konwencja, zmiana typu = migracja) — NISKIE.
