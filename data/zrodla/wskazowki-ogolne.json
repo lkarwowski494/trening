@@ -1,6 +1,18 @@
 {
  "_opis": "Źródła wskazówek techniki z zestawów ogólnych figur v2 (lib/figures/v2/cue-sets.json, tryb general) i kąta stóp w przysiadzie — przeniesione 27.10.2026 z plików badacza z 25.10.2026 (wskazowki-cwiczenia-01…08, wskazowki-slownik, wskazowki-slownik-uzupelnienie, katy-oddech; gałąź przekazanie-konta, docs/przekazanie/notatki/badania-figury) — M1-audytor-generalny-021, 06-tresci-003. Tylko wewnętrzny rejestr: aplikacja nie wymienia źródeł (decyzja właściciela 25.10.2026), plik czytają tylko testy (tests/zrodla-pelne-wskazowki-ogolne.test.ts) i check:zrodla-runtime. „wskazowki”: id wskazówki → „cwiczenie” (źródła z adresem i miejscem przy tym ćwiczeniu w data/zrodla/cues.json) albo „zrodla” [{ adres, miejsce }] (≥ 2 źródła, zasada właściciela 25.10.2026 dla wskazówek techniki; miejsce z krótkim cytatem jak w zapisie badacza, odczyt 25.10.2026 przez badacza). „przypisania”: ćwiczenie z zestawem ogólnym → rodzina i zapis badacza, dlaczego zestaw nie przeczy ruchowi (null = zestaw rodziny bez uwag). „katy”: kąt techniki w tekście aplikacji.",
  "wskazowki": {
+  "sq.depth": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "dl.feet": {
+   "cwiczenie": "Deadlift (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "gm.depth": {
+   "cwiczenie": "Good Morning",
+   "plik": "wskazowki-slownik"
+  },
   "pu.grip": {
    "cwiczenie": "Pull Up",
    "plik": "wskazowki-slownik"

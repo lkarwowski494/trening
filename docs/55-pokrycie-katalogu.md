@@ -18,14 +18,14 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Bez figury w aplikacji | 528 | 74,6% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 94 | 13,3% |
-| Animowany błąd | 124 | 17,5% |
+| Animowany błąd | 94 | 13,3% |
 | Własne wskazówki (źródłowe) | 167 | 23,6% |
 | — z czego z częstymi błędami | 76 | 10,7% |
-| Zestaw ogólny wskazówek wzorca ruchu | 105 | 14,8% |
-| Bez tekstu wskazówek | 436 | 61,6% |
-| Częste błędy (własne albo zestaw ogólny) | 181 | 25,6% |
+| Zestaw ogólny wskazówek wzorca ruchu | 73 | 10,3% |
+| Bez tekstu wskazówek | 468 | 66,1% |
+| Częste błędy (własne albo zestaw ogólny) | 149 | 21% |
 | Role mięśni | 508 | 71,8% |
-| **Pełna karta** | 122 | 17,2% |
+| **Pełna karta** | 92 | 13% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 132 | 18,6% |
 
 ## Cele wersji
@@ -41,8 +41,8 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 272 | 368 |
-| częste błędy (tekst) | 557 | 181 | 376 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 240 | 400 |
+| częste błędy (tekst) | 557 | 149 | 408 |
 | komplet tekstów karty: pl | 671 | 571 | 100 |
 | komplet tekstów karty: en | 671 | 571 | 100 |
 
@@ -54,13 +54,13 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 6 | 28 | 2 | 32 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
-| `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 31 | 32 |
+| `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 16 | 9 | 22 | 32 |
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
-| `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
+| `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 19 | 6 | 22 | 30 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
 | `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 21 | 0 | 4 | 0 | 0 |
-| `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
+| `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 4 | 16 | 8 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
@@ -72,7 +72,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 4 | 0 | 10 | 0 | 0 |
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 3 | 0 | 10 | 0 | 0 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 0 | 0 | 13 | 0 | 0 |
-| `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 7 | 3 | 8 | 11 |
+| `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 6 | 4 | 8 | 11 |
 | `row` | do zrobienia | 13 | 0 | 12 | 6 | 6 | 0 | 7 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 3 | 0 | 8 | 0 | 0 |
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 3 | 0 | 7 | 0 | 0 |
@@ -138,16 +138,16 @@ Kart z tekstami (wskazówki albo role mięśni): **571**. „Komplet” = karta 
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 122. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 92. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: animowany błąd — 3: Gorilla Chin/Crunch, JM Press, Sumo Squat (hantel)
+- Brakuje tylko: animowany błąd — 1: JM Press
 - Brakuje tylko: role mięśni — 1: Scapular Pull-Up
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 122 |
-| 1 | 4 |
+| 0 | 92 |
+| 1 | 2 |
 | 2 | 40 |
-| 3 | 72 |
+| 3 | 104 |
 | 4 | 327 |
 | 5 | 143 |

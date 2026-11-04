@@ -3,6 +3,41 @@
  "powod": "scalenie main 28.10.2026: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1",
  "v1": [],
  "v2": [],
- "zestawy_zmienione": [],
- "zestawy_bez_wpisu": ["Dead Hang"]
+ "zestawy_zmienione": [
+  "Axle Deadlift",
+  "Band Bench Press",
+  "Band Good Morning",
+  "Band Squat",
+  "Barbell Hack Squat",
+  "Board Press",
+  "Bodyweight Squat",
+  "Cable Squat",
+  "Clean Deadlift",
+  "Deadlift with Bands",
+  "Deadlift with Chains",
+  "Deficit Deadlift",
+  "Dip Belt Squat",
+  "Double Kettlebell Front Squat",
+  "Dumbbell Squat",
+  "Good Morning off Pins",
+  "Gorilla Chin/Crunch",
+  "Landmine Squat",
+  "One Arm Dumbbell Bench Press",
+  "One-Arm Overhead Kettlebell Squat",
+  "Overhead Squat",
+  "Pin Press",
+  "Reverse Band Deadlift",
+  "Reverse Band Power Squat",
+  "Smith Machine Incline Press",
+  "Smith Machine Squat",
+  "Snatch Deadlift",
+  "Squat with Bands",
+  "Squat with Chains",
+  "Sumo Squat (hantel)",
+  "Wide-Grip Barbell Bench Press",
+  "Zercher Squat"
+ ],
+ "zestawy_bez_wpisu": [
+  "Dead Hang"
+ ]
 }
