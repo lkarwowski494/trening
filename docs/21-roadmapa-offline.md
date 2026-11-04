@@ -146,6 +146,8 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - `STAN-AGENTA.md` w worktree blokuje znacznik verify (plik nieśledzony) — dopisać do `.gitignore` albo trzymać stan agenta poza worktree (04.11.2026).
 - Słownik terminów: „pośladek/pośladki” — ms „punggung”, id „bokong” (w id „punggung” = plecy); z testem `tests/slownik-terminow.test.ts` (recenzja lokalizacji P1, 04.11.2026).
 - Polecenia figur (`scripts/figures/gemini-polecenia.mjs:22`, limit 36000): najdłuższy plik 35980 znaków — 20 znaków zapasu (04.11.2026).
+- Słownik „biodra” (recenzja różnicy P2, NISKIE): wzorzec ru łapie tylko „бёдр” z „ё” (bez „бедра”), wzorzec el nie łapie liczby pojedynczej „γοφό/γοφός” — poszerzyć z testem.
+- vi: „grip” w olympic.setup / olympic.sbSetup — w słowniku vi chwyt nadal „nieustalony” (recenzja różnicy P2).
 - Skrót recenzji v2 (audyt 1A, NISKIE): parser bloków `scripts/skrot-v2-norm.mjs` zakłada koniec bloku `};`; wzorzec LOAD nie sprawdza zgodności klucza z plikiem (skutek bezpieczny — brak figury).
 
 ### Backlog 1.2 — figury (audyt scalenia curl, 04.11.2026, NISKIE)
