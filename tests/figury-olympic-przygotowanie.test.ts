@@ -269,3 +269,43 @@ describe('olympic R1 Ś3: Snatch Balance — gryf startuje na górze pleców w s
   test('rozrzut poziomy gryfu ≤ 11 cm (ciało schodzi pod prawie pionowy tor)', () => { expect(rozrzutX(US, u => load(k, u)[0])).toBeLessThanOrEqual(11); });
   test('miara potrafi paść: stary start (gryf 14 cm za barkami = 2,9 cm szpary) i rozrzut 34,6 cm łamią progi', () => { expect(2.9 <= 1.5).toBe(false); expect(34.6 <= 11).toBe(false); });
 });
+
+/* Poprawka 2 (04.11.2026): R6 — palce w podporze nie suną się (≤ 2 cm), mimo że pięta się unosi; wzruszenia: tułów pionowy, ruch w kolanach, gryf wysoko na udach, barki widocznie w górę. */
+const SLIZG_MAX = 2; /* cm, próg R6 (tests/figury-mobilnosc-reguly.test.ts, PROGI) */
+const klon = (k: string, zmien: (kl: PoseData['klatki']) => void): PoseData => { const c: PoseData = JSON.parse(JSON.stringify(P[k])); zmien(c.klatki); return c; };
+/** Największy ślizg palców (cm) jednej stopy w ciągłym odcinku z palcem przy podłodze (y ≤ 0,3 cm). */
+function slizgPalcow(p: PoseData): number {
+  let m = 0;
+  for (const x of ['R', 'L'] as const) { let st: V3 | null = null; for (let i = 0; i <= 200; i++) { const t = keyframeFrame(p, i / 200).sk.legs[x].toe; if (t[1] <= 0.3) { st = st ?? t; m = Math.max(m, Math.hypot(t[0] - st[0], t[2] - st[2])); } else st = null; } }
+  return m;
+}
+describe('olympic poprawka 2: palce w podporze stoją w miejscu, gdy pięta się unosi (R6)', () => {
+  test.each(KEYS)('%s: ślizg palców ≤ 2 cm', k => { expect(slizgPalcow(P[k])).toBeLessThanOrEqual(SLIZG_MAX); });
+  test('miara potrafi paść: prawa stopa przesunięta o 5 cm w drugiej klatce (pozostaje przy podłodze) daje ślizg > 2 cm w Clean, Snatch i Clean Shrug', () => {
+    for (const k of ['Clean', 'Barbell Snatch', 'Clean Shrug']) {
+      const zle = klon(k, kl => { kl[1].nogi.R.kostka[0] += 5; }); /* druga klatka: stopy płasko na podłodze, prawa kostka 5 cm dalej = stopa jedzie po podłodze */
+      expect(slizgPalcow(zle)).toBeGreaterThan(SLIZG_MAX);
+    }
+  });
+});
+
+describe('olympic poprawka 2: Clean Shrug i Snatch Shrug — tułów pionowy, ruch w kolanach, gryf wysoko na udach, barki w górę', () => {
+  const SH = ['Clean Shrug', 'Snatch Shrug'];
+  const tulow = (p: PoseData) => Math.max(...US.map(u => { const s = keyframeFrame(p, u).sk; return Math.atan2(Math.abs(s.shoulderC[0] - s.pelvis[0]), s.shoulderC[1] - s.pelvis[1]) * 180 / Math.PI; }));
+  /** Najniżej ułożony gryf względem środka uda (0 = środek między kolanem a biodrem, > 0 = wyżej na udzie), cm. */
+  const gryfNaUdzie = (p: PoseData) => Math.min(...US.map(u => { const f = keyframeFrame(p, u); const kn = f.sk.legs.R.knee[1], bd = f.sk.pelvis[1]; return (f.info as unknown as { load: number[] }).load[1] - (kn + bd) / 2; }));
+  const kolano = (p: PoseData) => Math.max(...US.map(u => jointAngles(keyframeFrame(p, u).sk, 'R').knee));
+  const barki = (p: PoseData) => p.klatki.map(l => l.rece.R.uniesienieBarkow ?? 0);
+  const barkiDo = (p: PoseData, u0: number) => p.klatki.filter(l => l.u <= u0).map(l => l.rece.R.uniesienieBarkow ?? 0);
+  test.each(SH)('%s: tułów ≤ 20° od pionu przez cały ruch', k => { expect(tulow(P[k])).toBeLessThanOrEqual(20); });
+  test.each(SH)('%s: gryf przez cały ruch w górnej połowie uda lub wyżej', k => { expect(gryfNaUdzie(P[k])).toBeGreaterThanOrEqual(0); });
+  test.each(SH)('%s: ugięcie kolan 20–35° (ruch w kolanach, nie zawias biodrowy)', k => { const m = kolano(P[k]); expect(m).toBeGreaterThanOrEqual(20); expect(m).toBeLessThanOrEqual(35); });
+  test.each(SH)('%s: wzruszenie widoczne — barki bez uniesienia do u = 0,9 (ugięcie i wyprost), na końcu ≥ 4 cm', k => { const b = barki(P[k]); expect(b[b.length - 1]).toBeGreaterThanOrEqual(4); expect(barkiDo(P[k], 0.9).every(v => v < 1)).toBe(true); });
+  test('miary potrafią paść: pochylony tułów (+30°), gryf nisko (−25 cm) i płaskie barki łamią progi', () => {
+    for (const k of SH) {
+      expect(tulow(klon(k, kl => kl.forEach(l => { l.pochylenieTulowia += 30; })))).toBeGreaterThan(20);
+      expect(gryfNaUdzie(klon(k, kl => kl.forEach(l => { l.rece.R.chwyt[1] -= 25; l.rece.L.chwyt[1] -= 25; })))).toBeLessThan(0);
+      const b = barki(klon(k, kl => kl.forEach(l => { l.rece.R.uniesienieBarkow = 0; }))); expect(b[b.length - 1]).toBeLessThan(4);
+    }
+  });
+});
