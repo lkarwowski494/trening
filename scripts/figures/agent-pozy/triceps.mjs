@@ -66,7 +66,8 @@ export function generuj() {
   G['Kettlebell Overhead Triceps Extension'] = () => nadGlowa('Kettlebell Overhead Triceps Extension', { sprzet: [{ rodzaj: 'kettlebell', dzwon: 'tyl' }], zr: 4, a1: -6 });
   G['Dumbbell One-Arm Triceps Extension'] = () => nadGlowa('Dumbbell One-Arm Triceps Extension', { sprzet: [SPRZET.hantle()], zr: 12, jedna: 'R', obrot: 0 });
   G['Band Overhead Triceps Extension'] = () => nadGlowa('Band Overhead Triceps Extension', { sprzet: [{ rodzaj: 'guma', mocowanie: 'stopy' }], zr: 12 });
-  G['Kneeling Cable Triceps Extension'] = () => nadGlowa('Kneeling Cable Triceps Extension', { sprzet: [wyc({ chwyt: 'lina', x: -75, y: 155 }), { rodzaj: 'lawka', x: 130, top: 43, kat: 0, dlugosc: 75, siedzisko: 40 }], zr: 8, tulow: { m: [0, 50], p: 0 }, nogi: { R: noga3([-43, 20, 10], [1, 0, 0.05], { pod: -75, rot: 0 }), L: noga3([-43, 20, -10], [1, 0, -0.05], { pod: -75, rot: 0 }) } });
+  /* Klęk na ławce (recenzja R1 04.11.2026, Ś-2): ławka płaska jest w wymaganiach ćwiczenia (katalog sprzętu: cable.high + bench.flat), więc zostaje, ale ma podpierać — goleni leżą na siedzisku (ławka x 10 obejmuje kolana i kostki), reszta postaci o 43 cm wyżej, wyciąg o tyle samo wyżej. Źródło ruchu nie rozstrzyga ustawienia ławki — wątpliwość dla recenzenta r2 */
+  G['Kneeling Cable Triceps Extension'] = () => nadGlowa('Kneeling Cable Triceps Extension', { sprzet: [wyc({ chwyt: 'lina', x: -75, y: 198 }), { rodzaj: 'lawka', x: 10, top: 43, kat: 0, dlugosc: 75, siedzisko: 40 }], zr: 8, tulow: { m: [0, 93], p: 0 }, nogi: { R: noga3([-43, 63, 10], [1, 0, 0.05], { pod: -75, rot: 0 }), L: noga3([-43, 63, -10], [1, 0, -0.05], { pod: -75, rot: 0 }) } });
   G['Cable Overhead Extension'] = () => nadGlowa('Cable Overhead Extension', { sprzet: [wyc({ chwyt: 'lina', x: -75, y: 155 })], zr: 8 });
   G['Standing Low-Pulley One-Arm Triceps Extension'] = () => nadGlowa('Standing Low-Pulley One-Arm Triceps Extension', { sprzet: [wyc({ chwyt: 'uchwyt', x: -75, y: 20, trzyma: 'R' })], zr: 12, jedna: 'R' });
   /* --- leżąc na ławce płaskiej --- */
@@ -84,10 +85,11 @@ export function generuj() {
   G['Decline EZ Bar Triceps Extension'] = () => lezac('Decline EZ Bar Triceps Extension', { kat: -20, sprzet: [SPRZET.gryfLamany()], zr: 10 });
   /* --- leżąc: łokcie na boki (Tate), sztanga za głową --- */
   const lerp3 = (a, b, t) => a.map((x, i) => lerp(x, b[i], t));
-  /* Tate Press: hantle leżą na mostku końcami do siebie (środki chwytów ok. ±12 cm od osi, przedramiona się nie krzyżują), łokcie szeroko na boki i lekko za linią barków; w górę ramię wraca do pionu (recenzja ruchu 27.10.2026) */
+  /* Tate Press: hantle leżą na mostku końcami do siebie (środki chwytów ok. ±12 cm od osi, przedramiona się nie krzyżują), łokcie szeroko na boki i lekko za linią barków; w górę ramię wraca do pionu (recenzja ruchu 27.10.2026); nachwyt: obrot −80 (granica walidatora; |obrot| ≥ 80 zostawia oś w poprzek ciała) = hantle leżą poprzecznie (oś w poprzek ciała, recenzja R1 04.11.2026 Ś-1; obrot 0 stawiał je wzdłuż ciała talerzem na klatce) */
   G['Tate Press'] = () => { const B = naLawce(0, 43, { zr: 22 }); const d1k = [0.05, 1, 0.32]; const d1s = [-0.5, 0.65, 0.58]; const d2s = [0.65, -0.1, -0.75]; return wlasna('Tate Press', { sprzet: [LAW(0), SPRZET.hantle()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
-    rece: (u) => obie({ d1: lerp3(d1s, d1k, u), d2: lerp3(d2s, d1k, u), obrot: 0 }) }); };
-  G['Lying Close-Grip Barbell Triceps Extension Behind The Head'] = () => lezac('Lying Close-Grip Barbell Triceps Extension Behind The Head', { kat: 0, f1: 200, zgiecie: 100, sprzet: [SPRZET.sztanga()], zr: 9 });
+    rece: (u) => obie({ d1: lerp3(d1s, d1k, u), d2: lerp3(d2s, d1k, u), obrot: -80 }) }); };
+  /* Za głową (recenzja R1 04.11.2026, Ś-3): ramię odchylone w tył ok. 140° od tułowia (Skullcrusher: 100°), przedramię zgięte ok. 90°, więc gryf w dole leży za głową (ok. 20 cm za jej środkiem), a nie nad czołem */
+  G['Lying Close-Grip Barbell Triceps Extension Behind The Head'] = () => lezac('Lying Close-Grip Barbell Triceps Extension Behind The Head', { kat: 0, f1: 230, zgiecie: 90, sprzet: [SPRZET.sztanga()], zr: 9 });
   /* --- siedząc w maszynie: łokcie przy bokach, dźwignia na osi łokcia --- */
   G['Machine Triceps Extension'] = () => { const B = naLawce(80, 43, { zr: 24 }); const spec = (u) => ({ f1: [4, 4], a1: 5, f2: [104, 12], zr: 22 });
     const sp = (u) => ramie(spec(), u, false); const S = bark(B.m, B.p, 1); const fk0 = ramieFK(S, 1, sp(0)); const G0 = fk0.g; const pz = fk0.E[2] + 16;
