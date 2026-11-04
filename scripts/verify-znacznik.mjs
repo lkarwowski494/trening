@@ -61,12 +61,23 @@ export function bazaPelnego(sha = 'HEAD', rodzaje = ['pelne']) {
   return null;
 }
 
-/** ZB-041 G4: SHA origin/<gałąź>, gdy jest przodkiem <sha> (z nim włącznie) i jego tests.yml ma conclusion success; inaczej null. Błąd sieci → null. */
+/** ZB-041 G4 (+ G4b, 04.11.2026): SHA najbliższego commitu gałęzi origin/<gałąź> (będącego przodkiem <sha>, z nim włącznie), którego tests.yml ma conclusion success, o ile od niego do <sha> zmieniły się
+ *  TYLKO dokumenty; inaczej null. Koniec gałęzi bywa commitem z dokumentami bez zielonego przebiegu (wypchnięty po verify:docs, CI w toku albo anulowane przez nowsze wypchnięcie) — wtedy szukamy wstecz.
+ *  Przeglądamy najwyżej MAKS_ZDALNYCH commitów i przerywamy, gdy od kandydata zmienił się kod (starsi też by go zawierali). Błąd sieci → null. */
+export const MAKS_ZDALNYCH = 10;
 export async function bazaZdalna(galaz, sha = 'HEAD', deps = {}) {
   if (!galaz || galaz === 'HEAD') return null;
   const zdalny = sprobuj('rev-parse', '--verify', '--quiet', `refs/remotes/origin/${galaz}^{commit}`);
   if (!zdalny || sprobuj('merge-base', '--is-ancestor', zdalny, sha) === null) return null;
-  return (await zielonyTests(zdalny, deps)) ? zdalny : null;
+  const kandydaci = (sprobuj('rev-list', `--max-count=${MAKS_ZDALNYCH}`, zdalny) ?? '').split('\n').filter(Boolean);
+  for (const k of kandydaci) {
+    if (!tylkoDokumentyOd(k, sha)) {
+      /* brak zmian (k == sha) to nie „same dokumenty”, ale wtedy sam k jest końcem gałęzi: wystarczy jego CI */
+      if (git('rev-parse', `${k}^{tree}`) !== git('rev-parse', `${sha}^{tree}`)) return null;
+    }
+    if (await zielonyTests(k, deps)) return k;
+  }
+  return null;
 }
 /** Nazwa bieżącej gałęzi (null przy odłączonym HEAD). */
 export const biezacaGalaz = () => { const g = sprobuj('rev-parse', '--abbrev-ref', 'HEAD'); return g && g !== 'HEAD' ? g : null; };
