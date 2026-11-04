@@ -811,6 +811,28 @@
         ],
         "curl.noSwing": [
           "tulow_nieruchomy"
+        ],
+        "crf.move": [
+          "rear_dlonie_w_bok",
+          "rear_dlonie_w_linii_barkow"
+        ],
+        "cyr.move": [
+          "lokiec_staly",
+          "ramie_unosi_sie"
+        ],
+        "fro.move": [
+          "lokiec_staly",
+          "ramie_unosi_sie"
+        ],
+        "crear1.move": [
+          "lokiec_staly",
+          "rear_dlonie_w_bok"
+        ],
+        "halo.move": [
+          "ciezar_blisko_glowy"
+        ],
+        "halo.torso": [
+          "tulow_nieruchomy"
         ]
       },
       "grupy_bledow": {},
