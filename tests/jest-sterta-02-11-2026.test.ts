@@ -20,6 +20,8 @@ const WORKFLOWY_JEST = ['tests.yml', 'testflight.yml', 'nightly.yml', 'tests-tz.
 /** Workflowy z Jest tylko na jednym małym pliku (nasiona zrzutów) — sterta bez znaczenia, ale też bez własnej liczby. */
 const WORKFLOWY_MALE = ['store-screenshots.yml', 'watch-sim.yml'];
 
+/** Katalog plików tymczasowych testu sterty — poza tests/ (04.11.2026), jedna nazwa dla testu i .gitignore. */
+const KATALOG_TMP_STERTY = (pid: number) => `.jest-sterta-tmp-${pid}`;
 const tmp: string[] = [];
 afterAll(() => { for (const d of tmp) fs.rmSync(d, { recursive: true, force: true }); });
 
@@ -50,17 +52,21 @@ describe('sterta workerów Jest — jedno miejsce na liczbę (02.11.2026)', () =
   test('prawdziwy worker Jest dostaje stertę ≥ workerowMB (pomiar v8.heap_size_limit w procesie roboczym)', () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jest-sterta-')); tmp.push(dir);
     const wynik = path.join(dir, 'limit.txt');
-    const plik = (n: number) => path.join(ROOT, 'tests', `zz-sterta-tmp-${process.pid}-${n}.test.ts`);
+    /* 04.11.2026: pliki tymczasowe poza tests/ — strażniki skanujące tests/ (forbidden-names, readme, macierz…) nie widzą ich w ogóle (wyścig ENOENT w verify:docs).
+     * Katalog w korzeniu repo (preset Jest/Babel czyta konfigurację z rootDir), ignorowany przez git; testMatch podany w wierszu poleceń tylko dla niego. */
+    const katalog = path.join(ROOT, KATALOG_TMP_STERTY(process.pid));
+    const plik = (n: number) => path.join(katalog, `limit-${n}.test.ts`);
     const tresc = `test('limit sterty', () => { require('fs').appendFileSync(${JSON.stringify(wynik)}, Math.round(require('v8').getHeapStatistics().heap_size_limit / 1048576) + '\\n'); });\n`;
     try {
+      fs.mkdirSync(katalog, { recursive: true });
       for (const n of [1, 2]) fs.writeFileSync(plik(n), tresc);
       const env = { ...process.env }; delete env.NODE_OPTIONS;
-      const r = spawnSync(process.execPath, [path.join(ROOT, 'node_modules/jest/bin/jest.js'), `zz-sterta-tmp-${process.pid}`, '--maxWorkers=2', '--ci', '--silent'], { cwd: ROOT, env, encoding: 'utf8' });
+      const r = spawnSync(process.execPath, [path.join(ROOT, 'node_modules/jest/bin/jest.js'), '--testMatch', `<rootDir>/${KATALOG_TMP_STERTY(process.pid)}/*.test.ts`, '--maxWorkers=2', '--ci', '--silent'], { cwd: ROOT, env, encoding: 'utf8' });
       expect(r.status).toBe(0);
       const limity = fs.readFileSync(wynik, 'utf8').trim().split('\n').map(Number);
       expect(limity).toHaveLength(2);
       for (const l of limity) expect(l).toBeGreaterThanOrEqual(STERTA.workerowMB);
-    } finally { for (const n of [1, 2]) fs.rmSync(plik(n), { force: true }); }
+    } finally { fs.rmSync(katalog, { recursive: true, force: true }); }
   }, 180_000);
 });
 
@@ -89,6 +95,33 @@ describe('verify i CI używają tej stałej, nie własnych liczb (zakres: jawna 
     const uruchamiaJest = fs.readdirSync(path.join(ROOT, '.github/workflows')).filter(f => f.endsWith('.yml'))
       .filter(f => /(?:npx jest|npm test|npm run verify(?![:\w-])|jest-ponow)/.test(czytaj(`.github/workflows/${f}`).split('\n').filter(l => !/^\s*#/.test(l)).join('\n')));
     expect(uruchamiaJest.filter(f => !znane.has(f))).toEqual([]);
+  });
+});
+
+/* 04.11.2026: wyścig zz-sterta-tmp (verify:docs integracji, tests/forbidden-names.ts listował tests/, gdy ten test tworzył i kasował w nim pliki → ENOENT).
+ * Rozwiązanie u źródła: test sterty nie dotyka tests/. Zakres: ten plik + .gitignore; inne strażniki skanujące tests/ nie wymagają zmian, bo nic już w tests/ nie znika. */
+describe('pliki tymczasowe testu sterty poza tests/ (04.11.2026)', () => {
+  const zrodlo = czytaj('tests/jest-sterta-02-11-2026.test.ts');
+  test('test sterty nie tworzy plików w tests/ (stary wzorzec nazwy i zapis pod katalogiem tests)', () => {
+    const kod = zrodlo.split('\n').filter(l => !/^\s*(\/\*|\*|\/\/)/.test(l)).join('\n');
+    expect(kod).not.toContain(['zz', 'sterta', 'tmp'].join('-')); /* złożone, by sam test się nie trafiał */
+    expect(kod).not.toContain(['path.join(ROOT,', "'tests',"].join(' ')); /* złożone, by sam test się nie trafiał */
+  });
+  test('katalog tymczasowy jest ignorowany przez git (.jest-sterta-tmp-*)', () => {
+    expect(czytaj('.gitignore')).toMatch(/^\.jest-sterta-tmp-\*\/?$/m);
+    expect(KATALOG_TMP_STERTY(123).startsWith('tests')).toBe(false);
+  });
+  test('w trakcie pracy prawdziwego workera w tests/ nie pojawia się żaden plik tymczasowy (migawka listy przed i w trakcie)', () => {
+    const lista = () => fs.readdirSync(path.join(ROOT, 'tests')).filter(f => /sterta-tmp/.test(f));
+    expect(lista()).toEqual([]);
+    const katalog = path.join(ROOT, KATALOG_TMP_STERTY(process.pid));
+    try {
+      fs.mkdirSync(katalog, { recursive: true });
+      fs.writeFileSync(path.join(katalog, 'x.test.ts'), '');
+      expect(lista()).toEqual([]);
+      expect(require('./forbidden-names').scan().some((h: { f: string }) => h.f.includes('sterta-tmp'))).toBe(false);
+    } finally { fs.rmSync(katalog, { recursive: true, force: true }); }
+    expect(fs.existsSync(katalog)).toBe(false);
   });
 });
 
