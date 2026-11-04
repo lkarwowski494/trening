@@ -3,7 +3,7 @@
  * (leżenie PRZODEM na ławce, ręka zwisa i unosi się bokiem do wysokości barku — karta rear1.setup / rear1.move / rear1.mis.high), r2-N1 Smith Machine One-Arm Upright Row (gryf w szynie),
  * K1-przygotowanie (próg toru łukowego z geometrii ramienia). Każda miara ma negatyw: inne ćwiczenie o tym kształcie albo dane okaleczone do stanu sprzed poprawki.
  */
-import { keyframeFrame, type PoseData } from '@/lib/figures/v2';
+import { keyframeFrame, CONTRACT, type PoseData } from '@/lib/figures/v2';
 import { progLukuRamienia } from './helpers/tor-luk-ramienia';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -27,8 +27,8 @@ describe('r2-W1 Alternating Deltoid Raise: dwa powtórzenia obiema rękami — p
   const przod = (t: { x: number; z: number }) => t.x >= 45 && t.z <= 25 + 3; /* przed sobą: dłoń ≥ 45 cm przed barkiem, w poprzek ≤ 28 cm (bark 19 cm + 9 cm luzu hantla) */
   const bok = (t: { x: number; z: number }) => t.z >= 55 && t.x <= 15; /* bokiem: dłoń ≥ 55 cm od osi barku w poprzek, ≤ 15 cm przed barkiem */
   const dwaPowtorzenia = (d: PoseData) => { const s = szczyty(d); return s.length === 2 && przod(s[0]) && bok(s[1]) && s.every(t => Math.abs(t.h) <= 15); };
-  test('pętla jednokierunkowa, ≤ 12 klatek, u od 0 do 1 (całe dwa powtórzenia w jednym przebiegu)', () => {
-    expect([DATA[K].petla, (DATA[K] as any).lustroRece]).toEqual(['jednokierunkowa', undefined]); expect(DATA[K].klatki.length).toBeLessThanOrEqual(12);
+  test('pętla jednokierunkowa, ≤ CONTRACT.frames.maxDynamic klatek (r3: 17), u od 0 do 1 (całe dwa powtórzenia w jednym przebiegu)', () => {
+    expect([DATA[K].petla, (DATA[K] as any).lustroRece]).toEqual(['jednokierunkowa', undefined]); expect(DATA[K].klatki.length).toBeLessThanOrEqual(CONTRACT.frames.maxDynamic);
     expect([DATA[K].klatki[0].u, DATA[K].klatki[DATA[K].klatki.length - 1].u]).toEqual([0, 1]);
   });
   test('dokładnie dwa szczyty: pierwszy PRZED sobą, drugi BOKIEM, oba na wysokości barków (|Δy| ≤ 15 cm)', () => {
@@ -50,7 +50,7 @@ describe('r2-W1 Alternating Deltoid Raise: dwa powtórzenia obiema rękami — p
     const zle = kopia(DATA[K]); const f = zle.klatki.filter(k => k.u > 0.5); for (const k of f) for (const s of ['R', 'L'] as const) { const g = (k.rece as any)[s].chwyt as number[]; const sh = ark(DATA[K], s, 0).shoulder; g[2] = sh[2] + Math.sign(g[2] - sh[2]) * 19; }
     expect(dwaPowtorzenia(zle)).toBe(false);
   });
-  test('wyjątek pętli zamkniętej jest uzasadniony: DLON_NA_WYSOKOSCI_BARKOW_WYJATKI i dynamiczne w danych sensu nazywają Alternating, a generator ma 12 klatek jednokierunkowych', () => {
+  test('wyjątek pętli zamkniętej jest uzasadniony: DLON_NA_WYSOKOSCI_BARKOW_WYJATKI i dynamiczne w danych sensu nazywają Alternating, a generator ma klatki jednokierunkowe', () => {
     const J = fs.readFileSync(path.join(__dirname, '../scripts/figures/v2-jakosc.mjs'), 'utf8'); expect(J).toMatch(/DLON_NA_WYSOKOSCI_BARKOW_WYJATKI = \{ 'Alternating Deltoid Raise'/);
     const S = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figury-sens.json'), 'utf8')).rodziny.delt_raise; expect(String(S.dynamiczne['Alternating Deltoid Raise'])).toMatch(/maxJumpDynamic/); expect(GEN).toMatch(/jednokierunkowa\(stoj\('Alternating Deltoid Raise'/);
   });
@@ -92,11 +92,11 @@ describe('r2-N1 Smith Machine One-Arm Upright Row: gryf na szynie w każdej klat
 
 describe('K1-przygotowanie: próg toru łukowego delt_raise z geometrii ramienia (r·(1 − cos(Δθ/2)) + dryf)', () => {
   test('Front Raise to Overhead (Δθ ≈ 155°) ≈ 48,6 + 2 cm; Lateral Raise (Δθ ≈ 79°) ≈ 13–14 + 2 cm; próg nigdy poniżej 4 cm', () => {
-    expect(progLukuRamienia(DATA['Dumbbell Front Raise to Overhead'])).toBeGreaterThan(49.5); expect(progLukuRamienia(DATA['Dumbbell Front Raise to Overhead'])).toBeLessThan(52);
-    expect(progLukuRamienia(DATA['Lateral Raise (hantle)'])).toBeGreaterThan(14); expect(progLukuRamienia(DATA['Lateral Raise (hantle)'])).toBeLessThan(17.5);
-    for (const k of Object.keys(DATA)) expect(progLukuRamienia(DATA[k])).toBeGreaterThanOrEqual(4);
+    expect(progLukuRamienia(DATA['Dumbbell Front Raise to Overhead'], 'side')).toBeGreaterThan(49.5); expect(progLukuRamienia(DATA['Dumbbell Front Raise to Overhead'], 'side')).toBeLessThan(52);
+    expect(progLukuRamienia(DATA['Lateral Raise (hantle)'], 'front')).toBeGreaterThan(14); expect(progLukuRamienia(DATA['Lateral Raise (hantle)'], 'front')).toBeLessThan(17.5);
+    for (const k of Object.keys(DATA)) for (const v of ['front', 'side'] as const) expect(progLukuRamienia(DATA[k], v)).toBeGreaterThanOrEqual(4);
   });
   test('negatyw: ćwiczenie z krótszym łukiem ma niższy próg niż z dłuższym (próg zależy od Δθ, nie jest jedną liczbą)', () => {
-    expect(progLukuRamienia(DATA['Machine Lateral Raise'])).toBeLessThan(progLukuRamienia(DATA['Dumbbell Front Raise to Overhead']) - 20);
+    expect(progLukuRamienia(DATA['Machine Lateral Raise'], 'front')).toBeLessThan(progLukuRamienia(DATA['Dumbbell Front Raise to Overhead'], 'side') - 20);
   });
 });

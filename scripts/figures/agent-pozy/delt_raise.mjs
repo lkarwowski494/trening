@@ -56,6 +56,29 @@ function przodemBok(cw, o) {
   return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet], fr, us: o.us ?? U9 });
 }
 
+/** Parametry pętli Alternating Deltoid Raise (r3): zwis N (θ, φ), szczyty przodem (top) i bokiem (topB), pierwszy odcinek ze zwisu = f1 drogi (krótki: tu cięciwa przy zmianie płaszczyzny zgięłaby łokieć najmocniej), zgięcie łokcia (flex, stałe), płaszczyzna zgięcia pl (+1: przedramię wyżej niż ramię, jak Front Raise; −1: niżej, jak Lateral Raise). */
+export const ALT_DOMYSLNE = { flex: 28, thN: 12, phiN: 42, top: 86, topB: 92, phiA: 0, phiB: 85, plA: 1, plB: -1, plN: 1, f1: 0.12 };
+/**
+ * Alternating Deltoid Raise (r3-W1, r3-W2, r3-N1): zwis N → przód (1 s w górę, 2 s w dół, ta sama droga) → zwis N → bok (1 s w górę, 2 s w dół) → zwis N; czas pętli ALT_REP_MS = 6 s (anim.ts).
+ * Interpolacja klatek jest liniowa (cięciwa), więc krótszy promień ramienia w środku odcinka zgina łokieć: przy 3 odcinkach na ruch (łuk ≈ 28°) zmiana kąta łokcia dochodziła do 12°, bez zapasu; przy 4 odcinkach (≈ 22°) i krótkim pierwszym
+ * wynosi ok. 8° (reguła lokiec_staly: zmiana ≤ 12°, kąt ≤ 40°). Klatek jest 17 (po 8 odcinków na ruch: 4 w górę, 4 w dół), czyli ponad zalecane 12 — liczba klatek nie jest walidowana, a wyjątek pilnuje tests/figures-v2-delt-raise-p3.test.ts.
+ * Początek i koniec pętli to TEN SAM zwis N (φ pośrednie), więc restart nie ma przeskoku; powtórzenie bokiem biegnie w płaszczyźnie φ = phiB od pierwszego odcinka po zwisie.
+ */
+export function alternating(H, P = {}) {
+  const c = { ...ALT_DOMYSLNE, ...P }; const n = 4; const N = [c.thN, c.phiN, 0, c.plN]; /* 4 odcinki na jedno unoszenie i opuszczanie */
+  const th = (k, top) => c.thN + (top - c.thN) * [0, c.f1, c.f1 + (1 - c.f1) / 3, c.f1 + ((1 - c.f1) * 2) / 3, 1][k];
+  const A = (t, k) => [t, th(k, c.top), c.phiA, 0, c.plA], B = (t, k) => [t, th(k, c.topB), c.phiB, k / n, c.plB];
+  const ALT = [[0, ...N]];
+  for (let k = 1; k <= n; k++) ALT.push(A(k / n, k)); /* w górę: 1 s */
+  for (let k = n - 1; k >= 1; k--) ALT.push(A(1 + ((n - k) * 2) / n, k)); /* w dół: 2 s */
+  ALT.push([3, ...N]);
+  for (let k = 1; k <= n; k++) ALT.push(B(3 + k / n, k));
+  for (let k = n - 1; k >= 1; k--) ALT.push(B(4 + ((n - k) * 2) / n, k));
+  ALT.push([6, ...N]);
+  const U = ALT.map(([t]) => Math.round((t / 6) * 10000) / 10000);
+  return jednokierunkowa(stoj('Alternating Deltoid Raise', { sprzet: [H], us: U, rece: (u) => { const [, t, phi, ob, pl] = ALT[U.findIndex((x) => Math.abs(x - u) < 1e-9)]; return obie(RACZ(t, phi, { flex: c.flex, pl, obrot: lerp(0, -35, ob) })); } }));
+}
+
 export const WYJATKI = {
   'Kettlebell Halo': 'tor kettlebella wokół głowy przy regule „ciężar ≤ 30 cm od głowy” (ciezar_blisko_glowy) wymusza przenikanie głowy lub dzwonu przez ramię drugiej ręki (przeniesienie ręki przed twarzą): model ramienia ze stałymi kośćmi, bez ruchu łopatki i obrotu barku wokół osi ramienia, nie daje pozycji bez przenikania (kilka prób: promień 28–31 cm, wysokość od brody do czoła, biegun łokcia od głowy)',
   'One-Arm Incline Lateral Raise': 'leżenie bokiem na pochyłej ławce (ramię unoszone ku górze względem leżącego) wymaga obrotu tułowia wokół osi długiej (roll 90°) i ułożenia nóg poza siedziskiem; ruch ramienia w płaszczyźnie względem ławki, nie względem podłogi — poza zakresem kontraktu bez luzowania zakresów stawów',
@@ -91,11 +114,11 @@ export function generuj() {
   const FRONT = { pl: 1, obrot: [0, 0] };
   G['Single Dumbbell Front Raise'] = () => stoj('Single Dumbbell Front Raise', { sprzet: [{ rodzaj: 'hantel', pionowo: true }], rece: (u) => { const f = lukDloni(lerp(14, 98, u), 3.5); return { R: f('R'), L: f('L') }; } });
   G['Front Plate Raise'] = () => stoj('Front Plate Raise', { sprzet: [{ rodzaj: 'talerz' }], rece: (u) => { const f = lukDloni(lerp(12, 104, u), 22.5); return { R: f('R'), L: f('L') }; } });
-  /* r2-W1 (recenzja ruchu 04.11.2026; karta adr.move: „Na zmianę: jedno powtórzenie unieś oba hantle przed sobą, następne — bokiem”): pętla jednokierunkowa obejmuje DWA powtórzenia obiema rękami naraz —
-   * pierwsze przodem (płaszczyzna strzałkowa, jak Front Raise: θ 12° → 90°), drugie bokiem (φ 85°, jak Lateral Raise: θ → 88°). 12 klatek co 1/11: przód 3 + 3 odcinki (zwis → góra → zwis), bok 2 + 3 odcinki; po drugim powtórzeniu ręce zwisają przy bokach (φ 85°), a pętla zaczyna od zwisu przed udami (φ 0°) — u = 1 różni się od u = 0 o ok. 18 cm.
-   * Wcześniejsza wersja (cykl_lustro: prawa ręka przodem w górę, lewa w dół) pokazywała inne ćwiczenie niż karta. */
-  const ALT = [[12, 0, 0], [38, 0, 0], [64, 0, 0], [90, 0, 0], [64, 0, 0], [38, 0, 0], [12, 42, 0], [38, 65, 0.4], [64, 80, 0.75], [88, 85, 1], [50, 85, 0.5], [12, 85, 0]];
-  G['Alternating Deltoid Raise'] = () => jednokierunkowa(stoj('Alternating Deltoid Raise', { sprzet: [H], us: U12, rece: (u) => { const [th, phi, ob] = ALT[Math.round(u * 11)]; return obie(RACZ(th, phi, { flex: 14, pl: 1, obrot: lerp(0, -35, ob) })); } }));
+  /* r2-W1 / r3-W1, r3-W2, r3-N1 (recenzja ruchu 04.11.2026; karta adr.move: „Na zmianę: jedno powtórzenie unieś oba hantle przed sobą, następne — bokiem”): pętla jednokierunkowa obejmuje DWA powtórzenia obiema rękami naraz —
+   * pierwsze przodem (płaszczyzna strzałkowa, jak Front Raise), drugie bokiem (φ 85°, jak Lateral Raise), każde: 1 s unoszenia + 2 s opuszczania (ALT_REP_MS = 6 s całej pętli, anim.ts), więc klatki leżą NIERÓWNO w u (czas / 6 s).
+   * Łokieć stale zgięty o ok. 28° (r3-W1): przy 12 klatkach interpolacja idzie po cięciwach łuku (promień ramienia skraca się o ok. 3 cm), więc zgięcie przy prostym ramieniu pulsowało 14 → 40°; przy 28° ta sama zmiana promienia
+   * zmienia kąt łokcia o mniej niż 12° (reguła lokiec_staly). Obie ręce wracają do TEGO SAMEGO zwisu N (φ 42°, przed udami i lekko na boki): początek i koniec pętli są identyczne (r3-N1: bez przeskoku przy restarcie), a drugie powtórzenie biegnie czysto bokiem (φ 85°) od pierwszej klatki po zwisie. */
+  G['Alternating Deltoid Raise'] = () => alternating(H);
   G['Barbell Front Raise to Overhead'] = () => stoj('Barbell Front Raise to Overhead', { sprzet: [SPRZET.sztanga()], us: U12, rece: (u) => obie(RACZ(lerp(14, 167, u), 0, { flex: 25, pl: 1 })) });
   G['Dumbbell Front Raise to Overhead'] = () => stoj('Dumbbell Front Raise to Overhead', { sprzet: [H], us: U12, rece: ruch([12, 167], [0, 0], { flex: 25, pl: 1 }) });
   G['Cable Front Raise'] = () => stoj('Cable Front Raise', { sprzet: [wyc({ chwyt: 'uchwyt', x: -55, y: 15, z: 42, trzyma: 'R' })], rece: ruchJ(FRONT_TH, FRONT_PHI, FRONT) });

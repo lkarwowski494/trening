@@ -15,6 +15,13 @@ export const WALK = { stepMs: 1000 } as const;
  * i skok do u = 0. KONWENCJA ilustracyjna bez źródła (jak WALK i pauzy HOLD_MS): ruch liniowo w czasie (najszybszy punkt ma stałą prędkość, jak zakłada generator póz), czasu powtórzenia w aplikacji nie podajemy.
  */
 export const ONE_WAY = { repMs: 1500, holdStartMs: 500, holdEndMs: 500 } as const;
+/**
+ * Własny czas przebiegu u 0 → 1 (ms) dla ćwiczeń w pętli jednokierunkowej, które nie są skokiem ani rzutem (r3-W2, 04.11.2026): zamiast ONE_WAY.repMs. Alternating Deltoid Raise to dwa powtórzenia w jednej pętli,
+ * każde 1 s unoszenia + 2 s opuszczania (TEMPO, jak reszta rodziny) = 6000 ms; klatki danych leżą w u proporcjonalnie do czasu. Liczba spoza tabeli: ONE_WAY.repMs.
+ */
+export const ONE_WAY_REP_MS: Readonly<Record<string, number>> = { 'Alternating Deltoid Raise': 2 * (TEMPO.upMs + TEMPO.downMs) };
+/** Czas przebiegu pętli jednokierunkowej ćwiczenia `key` (ms). */
+export const oneWayRepMs = (key?: string): number => (key !== undefined && Object.prototype.hasOwnProperty.call(ONE_WAY_REP_MS, key) ? ONE_WAY_REP_MS[key] : ONE_WAY.repMs);
 /** Tempo animacji; holdLowMs = pauza po fazie opuszczania (u = 1) zamiast HOLD_MS (0 = bez pauzy na dole: przysiad, NSCA Basics 2012 s. 49–50). */
 export type Tempo = { downMs: number; upMs: number; holdLowMs?: number };
 
@@ -36,19 +43,19 @@ export function cycleAt(ms: number, _tempo: Tempo = TEMPO): number { const total
 /** Czas pełnej pętli marszu (dwa kroki), ms. */
 export const cycleLength = (): number => 2 * WALK.stepMs;
 /** Czas pełnej pętli jednokierunkowej: pauza na starcie + ruch + pauza na końcu, ms. */
-export const oneWayLength = (): number => ONE_WAY.holdStartMs + ONE_WAY.repMs + ONE_WAY.holdEndMs;
+export const oneWayLength = (repMs: number = ONE_WAY.repMs): number => ONE_WAY.holdStartMs + repMs + ONE_WAY.holdEndMs;
 /** Pozycja u (0–1) w chwili `ms` pętli jednokierunkowej: pauza w u = 0, ruch liniowy do u = 1, pauza w u = 1, potem skok do u = 0 (bez cofania ruchu). */
-export function oneWayAt(ms: number): number {
-  const total = oneWayLength(); const x = ((ms % total) + total) % total;
+export function oneWayAt(ms: number, repMs: number = ONE_WAY.repMs): number {
+  const total = oneWayLength(repMs); const x = ((ms % total) + total) % total;
   if (x < ONE_WAY.holdStartMs) return 0;
-  if (x < ONE_WAY.holdStartMs + ONE_WAY.repMs) return (x - ONE_WAY.holdStartMs) / ONE_WAY.repMs;
+  if (x < ONE_WAY.holdStartMs + repMs) return (x - ONE_WAY.holdStartMs) / repMs;
   return 1;
 }
 const lowLeg = (tempo: Tempo): number => tempo.holdLowMs ?? TEMPO.holdMs;
 export const loopLength = (_lowerFirst: boolean, tempo: Tempo = TEMPO): number => TEMPO.holdMs + lowLeg(tempo) + tempo.downMs + tempo.upMs;
 
 /** Fazy pętli do licznika: etykiety (klucze t()) i czas w ms. `first` = faza 0→1 (u rośnie), `second` = powrót. */
-export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Unoszenie' | 'Obrót' | 'Powrót' | 'Rozsuwanie' | 'Ściąganie' | 'Uginanie' | 'Grzbiet w dół' | 'Koci grzbiet' | 'Marsz' | 'Skok' | 'Rzut' | 'Pauza';
+export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Unoszenie' | 'Obrót' | 'Powrót' | 'Rozsuwanie' | 'Ściąganie' | 'Uginanie' | 'Grzbiet w dół' | 'Koci grzbiet' | 'Marsz' | 'Skok' | 'Rzut' | 'Naprzemiennie' | 'Pauza';
 /** `untimed`: faza bez czasu w liczniku (chód: sekundy opuszczania i podnoszenia nie dotyczą kroku); `ms` służy wtedy tylko do wyznaczenia bieżącej fazy w pętli. */
 export type Phase = { name: PhaseName; ms: number; untimed?: true };
 export type PhaseNames = { first: PhaseName; second: PhaseName };

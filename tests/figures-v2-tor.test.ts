@@ -7,7 +7,7 @@
  */
 import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, HINGE, type View, type HingeParams } from '@/lib/figures/v2';
 import { keyframeFrame, type PoseData } from '@/lib/figures/v2';
-import { progLukuRamienia } from './helpers/tor-luk-ramienia';
+import { progLukuRamienia, DODATEK_SKRETU } from './helpers/tor-luk-ramienia';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -32,8 +32,8 @@ const LUKOWE = new Set(['curl', 'delt_raise']); const PROG_LUK = 26; /* C1 (rece
 /* delt_raise (K1-przygotowanie, 04.11.2026; K5 autora): ręka R kreśli łuk o promieniu r = odległość chwytu od barku (ok. 62 cm), więc strzałka łuku r·(1 − cos(Δθ/2)) wynika z geometrii KAŻDEGO ćwiczenia osobno
    (tests/helpers/tor-luk-ramienia.ts: Δθ i r z pozy, dryf 2 cm), a nie z jednej liczby; próg zawróceń (≤ 1) bez zmian. */
 const DELT = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/delt_raise.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
-const progLuku = (k: string) => FAM[k] === 'delt_raise' ? progLukuRamienia(DELT[k]) : PROG_LUK;
-const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string) => (k && LUKOWE.has(FAM[k]) ? t.odchylenie <= progLuku(k) : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
+const progLuku = (k: string, v: View) => FAM[k] === 'delt_raise' ? progLukuRamienia(DELT[k], v, DODATEK_SKRETU[`${k}|${v}`] ?? 0) : PROG_LUK; /* r3-Ś1 (04.11.2026): próg liczony w rzucie na płaszczyznę widoku, osobno dla każdego widoku */
+const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string, v?: View) => (k && v && LUKOWE.has(FAM[k]) ? t.odchylenie <= progLuku(k, v) : k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
 
 describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => {
   test('miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze', () => {
@@ -42,7 +42,7 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
     expect(ok(ksztaltToru([[6, 20], [7, 40], [7.7, 60], [6.5, 80]]))).toBe(true);
   });
   test('każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem', () => {
-    const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t, t.k))
+    const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t, t.k, t.v))
       .map(t => `${t.k}|${t.v}: ${t.odchylenie.toFixed(1)} cm, ${t.zawrocenia} zawr.`);
     expect(zle).toEqual([]);
   });
@@ -50,7 +50,7 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
     const keys = new Set(CASES.map(([k, v]) => `${k}|${v}`));
     for (const [id, powod] of Object.entries(WYJATKI)) {
       const [k, v] = id.split('|') as [string, View]; if (!ready.has(FAM[k] as never)) { expect(powod.length).toBeGreaterThan(20); continue; } /* rodzina jeszcze niepodłączona (status planned): wyjątek przygotowany z góry (delt_raise, 04.11.2026), istnienie i przekroczenie progu sprawdzi to samo wywołanie po podłączeniu */
-      expect([id, keys.has(id)]).toEqual([id, true]); expect(powod.length).toBeGreaterThan(20); expect([id, ok(tor(k, v), k)]).toEqual([id, false]);
+      expect([id, keys.has(id)]).toEqual([id, true]); expect(powod.length).toBeGreaterThan(20); expect([id, ok(tor(k, v), k, v)]).toEqual([id, false]);
     }
   });
   test('martwe ciągi ze sztangą (skan 28.10.2026: 11 ćwiczeń z torem „S”) nie mają wyjątku', () => {

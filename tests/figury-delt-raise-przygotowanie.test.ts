@@ -41,11 +41,9 @@ describe('delt_raise: ślad toru przy chwycie (W1b)', () => {
 });
 
 describe('delt_raise: stały promień ręki (bez wybrzuszeń łuku)', () => {
-  /* r2-W1 (04.11.2026): Alternating Deltoid Raise ma dwa powtórzenia w jednej pętli, a kontrakt dopuszcza najwyżej 12 klatek (CONTRACT.frames.max) i interpolację liniową, więc łuk 78° przy 2–3 odcinkach
-     skraca promień o ok. 3 cm w środku cięciw (łokieć 14° → ok. 30°, w najkrótszym odcinku ok. 40°). Dla niego limit 4 cm (pomiar ≈ 3,4 cm); reszta rodziny bez zmian (1,5 cm). */
-  const LIMIT_PROMIENIA = (k: string) => k === 'Alternating Deltoid Raise' ? 4 : 1.5;
-  test.each(ARM_RAISE)('%s: odległość ciężaru od barku zmienia się o ≤ 1,5 cm w całym ruchu (Alternating ≤ 4 cm, 12 klatek)', k => { expect([k, rozrzutPromienia(k) <= LIMIT_PROMIENIA(k)]).toEqual([k, true]); });
-  test('Alternating Deltoid Raise: limit 4 cm jest wyjątkiem z powodem — rozrzut > 1,5 cm, a reszta rodziny nie dostaje tej tolerancji', () => { expect(rozrzutPromienia('Alternating Deltoid Raise')).toBeGreaterThan(1.5); expect(ARM_RAISE.filter(k => k !== 'Alternating Deltoid Raise' && LIMIT_PROMIENIA(k) !== 1.5)).toEqual([]); });
+  /* r3-W1 (04.11.2026): poluzowanie do 4 cm dla Alternating Deltoid Raise (r2) cofnięte — łuk jest dzielony na odcinki ≤ ok. 22° (17 klatek), więc promień ręki zmienia się o ≤ 1,5 cm jak w reszcie rodziny. */
+  const LIMIT_PROMIENIA = 1.5;
+  test.each(ARM_RAISE)('%s: odległość ciężaru od barku zmienia się o ≤ 1,5 cm w całym ruchu', k => { expect([k, rozrzutPromienia(k) <= LIMIT_PROMIENIA]).toEqual([k, true]); });
   test('miara potrafi paść: wiosłowanie pionowe (łokcie zgięte) zmienia promień o > 30 cm', () => { expect(rozrzutPromienia('Upright Row (hantle)')).toBeGreaterThan(30); });
 });
 

@@ -811,6 +811,31 @@
         ],
         "curl.noSwing": [
           "tulow_nieruchomy"
+        ],
+        "crf.move": [
+          "rear_dlonie_w_bok",
+          "rear_dlonie_w_linii_barkow"
+        ],
+        "cyr.move": [
+          "lokiec_staly",
+          "ramie_unosi_sie"
+        ],
+        "fro.move": [
+          "lokiec_staly",
+          "ramie_unosi_sie"
+        ],
+        "crear1.move": [
+          "lokiec_staly",
+          "rear_dlonie_w_bok"
+        ],
+        "halo.move": [
+          "ciezar_blisko_glowy"
+        ],
+        "halo.torso": [
+          "tulow_nieruchomy"
+        ],
+        "cdr.move": [
+          "lokcie_na_wysokosci_barkow_u1"
         ]
       },
       "grupy_bledow": {},
@@ -819,12 +844,13 @@
         "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy (bledy: [])"
       },
       "dynamiczne": {
-        "Alternating Deltoid Raise": "pętla jednokierunkowa z dwoma powtórzeniami naraz (przód, potem bok; karta adr.move „Na zmianę: jedno powtórzenie … przed sobą, następne — bokiem”): droga dłoni to ok. 4 × 84 cm (cztery łuki ramienia 78° przy promieniu 62 cm) na cały przebieg u = 0 → 1, czyli ok. 7–9 cm na 1/48 wobec 6 cm limitu ruchu zwykłego, a klatek jest najwyżej 12 (CONTRACT.frames.max); limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne; r2-W1, 04.11.2026)"
+        "Alternating Deltoid Raise": "pętla jednokierunkowa z dwoma powtórzeniami naraz (przód, potem bok; karta adr.move „Na zmianę: jedno powtórzenie … przed sobą, następne — bokiem”), 6 s (2 × [1 s w górę + 2 s w dół], ONE_WAY_REP_MS w anim.ts): w 1 s unoszenia dłoń przebywa łuk ok. 80 cm, czyli ok. 10 cm na 1/48 ruchu wobec 6 cm limitu ruchu zwykłego (maxJump); limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne; r2-W1, r3-W2, 04.11.2026)"
       },
       "warianty": {
-        "Alternating Deltoid Raise": [],
+        "Alternating Deltoid Raise": [
+          "lokiec_staly"
+        ],
         "Car Drivers": [
-          "lokiec_staly",
           "lokcie_na_wysokosci_barkow_u1"
         ],
         "One-Arm Incline Lateral Raise": [

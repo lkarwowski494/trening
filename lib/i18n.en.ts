@@ -801,6 +801,7 @@ export const EN: Record<string, string> = {
   'Koci grzbiet': 'Rounding',
   'Skok': 'Jump',
   'Rzut': 'Throw',
+  'Naprzemiennie': 'Alternating',
   '{faza} {n} s': '{faza} {n} s',
   'Pokaż częsty błąd': 'Show common mistake',
   'Ukryj częsty błąd': 'Hide common mistake',

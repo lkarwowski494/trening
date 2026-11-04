@@ -7,7 +7,7 @@ import { t, lang, exName } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, loopOf, cycleAt, oneWayAt, guideShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
+  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, loopOf, cycleAt, oneWayAt, oneWayRepMs, guideShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
   type View as FView, type FigError, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
@@ -81,7 +81,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const label = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
   const canPause = !spec.static && reduce === false;
   const stop = animate && figuraStop();
-  const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
+  const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms, oneWayRepMs(spec.key)) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
   const views = spec.views;
   const boxes = views.map(v => boxFor(spec, v, errors.map(e => e.error)));
   const aspects = boxes.map(b => b.w / b.h); const sumA = aspects.reduce((a, b) => a + b, 0);
