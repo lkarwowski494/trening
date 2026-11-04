@@ -21,6 +21,13 @@ export const TIPS_MIN = 2, TIPS_MAX = 4, MIN_ORGS = 2;
 export const MARKS = { analogia: 'analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł' };
 export const KINDS = { org: 'organizacja szkoleniowa (biblioteka ćwiczeń)', site: 'serwis specjalistyczny', maker: 'producent sprzętu', study: 'badanie (czasopismo recenzowane)', book: 'książka uznanego autora (szczebel 3; tytuł tylko na prywatnym Dysku)' };
 
+/** Rodzaj `app` (strona aplikacji treningowej; szczebel 5 — docs/18, 03.11.2026 ~11:30; koordynator 04.11.2026, decyzja 8): poza podpisem w aplikacji (szczebel 5 nie wchodzi do podpisu),
+ * w danych tylko nieprzezroczysty identyfikator `app-sN` (id = nazwa = tytuł), bez adresu i migawki; mapa id → adres poza repozytorium. */
+export const APP_KIND = 'app';
+export const APP_ID_RE = /^app-s\d+$/;
+/** Rodzaje organizacji dopuszczone w danych: rodzaje podstawy (= CUE_BASIS_KINDS) oraz `app`. */
+export const ORG_KINDS = { ...KINDS, [APP_KIND]: 'strona aplikacji treningowej (szczebel 5; w danych tylko identyfikator)' };
+
 /** id zdań używane przez zestawy ogólne (cue-sets.json). */
 function idsZestawow() { const f = join(root, 'lib/figures/v2/cue-sets.json'); return existsSync(f) ? Object.values(JSON.parse(readFileSync(f, 'utf8')).items).flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])]) : []; }
 /** Szczebel źródła: własny (`level` źródła — organizacje warunkowe oceniane per strona) albo szczebel organizacji. */
@@ -45,11 +52,15 @@ export function validate(data, pl, extraUsed = idsZestawow()) {
   const used = new Set(extraUsed), usedSrc = new Set();
   for (const [id, o] of Object.entries(data.orgs ?? {})) {
     if (!o || typeof o.name !== 'string' || ![2, 3, 4, 5].includes(o.level)) errs.push(`orgs.${id}: nazwa i szczebel 2–5`);
-    if (!o || !Object.prototype.hasOwnProperty.call(KINDS, o.kind)) errs.push(`orgs.${id}: rodzaj (${Object.keys(KINDS).join(', ')})`);
+    if (!o || !Object.prototype.hasOwnProperty.call(ORG_KINDS, o.kind)) errs.push(`orgs.${id}: rodzaj (${Object.keys(ORG_KINDS).join(', ')})`);
     if (o && o.warunkowo !== undefined && (typeof o.warunkowo !== 'string' || !o.warunkowo.trim())) errs.push(`orgs.${id}: warunkowo — opis warunku szczebla 4`);
     if (o && o.kind === 'book') {
       if (!BOOK_ID_RE.test(id) || o.name !== id) errs.push(`orgs.${id}: książka — nieprzezroczysty identyfikator (dysk-kN) jako id i nazwa; tytuł tylko na prywatnym Dysku`);
       if (o.level !== 3) errs.push(`orgs.${id}: książka — szczebel 3`);
+    }
+    if (o && o.kind === APP_KIND) {
+      if (!APP_ID_RE.test(id) || o.name !== id) errs.push(`orgs.${id}: aplikacja — nieprzezroczysty identyfikator (app-sN) jako id i nazwa; nazwa firmy i adres tylko poza repozytorium`);
+      if (o.level !== 5) errs.push(`orgs.${id}: aplikacja — szczebel 5`);
     }
   }
   for (const [id, s] of Object.entries(data.sources ?? {})) {
@@ -59,8 +70,11 @@ export function validate(data, pl, extraUsed = idsZestawow()) {
     if (org?.kind === 'book') {
       if (s.url !== undefined || s.archive !== undefined) errs.push(`sources.${id}: książka — bez adresu i migawki (tytuł i cytat tylko na prywatnym Dysku)`);
       if (typeof s.title === 'string' && !BOOK_ID_RE.test(s.title)) errs.push(`sources.${id}: książka — tytuł to nieprzezroczysty identyfikator (dysk-kN)`);
+    } else if (org?.kind === APP_KIND) {
+      if (s.url !== undefined || s.archive !== undefined) errs.push(`sources.${id}: aplikacja — bez adresu i migawki (adres tylko poza repozytorium)`);
+      if (typeof s.title === 'string' && !APP_ID_RE.test(s.title)) errs.push(`sources.${id}: aplikacja — tytuł to nieprzezroczysty identyfikator (app-sN)`);
     } else if (!s || !/^https:\/\//.test(s.url)) errs.push(`sources.${id}: adres https`);
-    if (s && s.archive !== undefined && org?.kind !== 'book' && !/^https:\/\/web\.archive\.org\/web\/\d{8,14}\//.test(s.archive)) errs.push(`sources.${id}: archive musi być migawką Wayback`);
+    if (s && s.archive !== undefined && org?.kind !== 'book' && org?.kind !== APP_KIND && !/^https:\/\/web\.archive\.org\/web\/\d{8,14}\//.test(s.archive)) errs.push(`sources.${id}: archive musi być migawką Wayback`);
     if (s && s.level !== undefined && ![2, 3, 4, 5].includes(s.level)) errs.push(`sources.${id}: szczebel`);
     if (s && org && org.warunkowo === undefined && s.level !== undefined && s.level !== org.level) errs.push(`sources.${id}: szczebel źródła różni się od szczebla organizacji (własny szczebel tylko dla organizacji warunkowych)`);
     if (s && org?.warunkowo !== undefined) {
@@ -143,7 +157,7 @@ const md = s => String(s).replace(/\|/g, '\\|');
 const refMd = data => ([sid, at, mark]) => {
   if (sid === 'wniosek') return `wniosek ze zdania \`${at}\` tej karty`;
   const s = data.sources[sid], lv = srcLevel(data, s), tag = lv > MAX_COUNT_LEVEL ? `szczebel ${lv} — nie liczy się do pary; ` : '';
-  const who = data.orgs[s.org].kind === 'book' ? `${s.title}` : `${s.org}: [${md(s.title)}](${s.archive ?? s.url})`;
+  const who = ['book', APP_KIND].includes(data.orgs[s.org].kind) ? `${s.title}` : `${s.org}: [${md(s.title)}](${s.archive ?? s.url})`;
   return `${who} (${tag}${mark ? `${md(MARKS[mark] ?? mark)}; ` : ''}${md(at)})`;
 };
 export function render(data, pl) {
