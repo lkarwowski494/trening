@@ -5065,124 +5065,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "cobra.mis",
-     "znacznik": "back",
-     "dotyczy": [
-      "hip",
-      "shoulder",
-      "spine"
-     ],
-     "klatki": [
-      {
-       "u": 0,
-       "pochylenieTulowia": -5.7,
-       "pochylenieGlowy": -5.3,
-       "rece": {
-        "R": {
-         "chwyt": [
-          0,
-          8.8,
-          0
-         ]
-        },
-        "L": {
-         "chwyt": [
-          0,
-          8.8,
-          0
-         ]
-        }
-       }
-      },
-      {
-       "u": 0.25,
-       "pochylenieTulowia": -8.4,
-       "pochylenieGlowy": -7.7,
-       "rece": {
-        "R": {
-         "chwyt": [
-          -0.8,
-          12.8,
-          0
-         ]
-        },
-        "L": {
-         "chwyt": [
-          -0.8,
-          12.8,
-          0
-         ]
-        }
-       }
-      },
-      {
-       "u": 0.5,
-       "pochylenieTulowia": -11.1,
-       "pochylenieGlowy": -10.2,
-       "rece": {
-        "R": {
-         "chwyt": [
-          -2,
-          16.8,
-          0
-         ]
-        },
-        "L": {
-         "chwyt": [
-          -2,
-          16.8,
-          0
-         ]
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "pochylenieTulowia": -13.9,
-       "pochylenieGlowy": -12.8,
-       "rece": {
-        "R": {
-         "chwyt": [
-          -3.8,
-          21,
-          0
-         ]
-        },
-        "L": {
-         "chwyt": [
-          -3.8,
-          21,
-          0
-         ]
-        }
-       }
-      },
-      {
-       "u": 1,
-       "pochylenieTulowia": -16.9,
-       "pochylenieGlowy": -15.5,
-       "rece": {
-        "R": {
-         "chwyt": [
-          -6.1,
-          25.1,
-          0
-         ]
-        },
-        "L": {
-         "chwyt": [
-          -6.1,
-          25.1,
-          0
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "V-Up": {
    "kontrakt": "figury-v2/poza@2",
@@ -8049,7 +7932,7 @@
      ],
      "pochylenieTulowia": 0.9,
      "zgiecieKregoslupa": 9.4,
-     "pochylenieGlowy": -0.2,
+     "pochylenieGlowy": 0.9,
      "nogi": {
       "R": {
        "kostka": [
@@ -8116,7 +7999,7 @@
      ],
      "pochylenieTulowia": 14,
      "zgiecieKregoslupa": 30,
-     "pochylenieGlowy": 10.2,
+     "pochylenieGlowy": 14,
      "nogi": {
       "R": {
        "kostka": [
@@ -8183,7 +8066,7 @@
      ],
      "pochylenieTulowia": 27.1,
      "zgiecieKregoslupa": 50.6,
-     "pochylenieGlowy": 20.7,
+     "pochylenieGlowy": 27.1,
      "nogi": {
       "R": {
        "kostka": [
@@ -8250,7 +8133,7 @@
      ],
      "pochylenieTulowia": 33,
      "zgiecieKregoslupa": 60,
-     "pochylenieGlowy": 25.4,
+     "pochylenieGlowy": 33,
      "nogi": {
       "R": {
        "kostka": [

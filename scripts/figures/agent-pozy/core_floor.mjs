@@ -222,7 +222,7 @@ function machineCrunch(cw) {
   const P = [[mid[0] + n[0] * hh, mid[1] + n[1] * hh], [mid[0] - n[0] * hh, mid[1] - n[1] * hh]].sort((a, b) => b[1] - a[1])[0]; /* oś nad dłońmi */
   const a0 = Math.atan2(H0[1] - P[1], H0[0] - P[0]); let a1 = Math.atan2(H1[1] - P[1], H1[0] - P[0]); if (Math.abs(a1 - a0) > Math.PI) a1 += a1 < a0 ? 2 * Math.PI : -2 * Math.PI;
   const fr = (u) => { const { p, bend } = poz(u); const ang = lerp(a0, a1, wygladzenie(u)); const c = [P[0] + r * Math.cos(ang), P[1] + r * Math.sin(ang)];
-    const k = klatka({ u, miednica: [m[0], m[1], 0], pitch: p, bend, glowa: Bn.glowa + (p - Bn.p) * 0.8, nogi: { R: { k: Bn.nogi.R.k, pod: Bn.nogi.R.pod, rot: Bn.nogi.R.rot, pole: Bn.nogi.R.pole }, L: { k: Bn.nogi.L.k, pod: Bn.nogi.L.pod, rot: Bn.nogi.L.rot, pole: Bn.nogi.L.pole } }, rece: { R: { g: [c[0], c[1], 24], pole: [0.4, -1, 0.8] }, L: { g: [c[0], c[1], -24], pole: [0.4, -1, -0.8] } } }); return k; };
+    const k = klatka({ u, miednica: [m[0], m[1], 0], pitch: p, bend, glowa: Bn.glowa + (p - Bn.p), nogi: { R: { k: Bn.nogi.R.k, pod: Bn.nogi.R.pod, rot: Bn.nogi.R.rot, pole: Bn.nogi.R.pole }, L: { k: Bn.nogi.L.k, pod: Bn.nogi.L.pod, rot: Bn.nogi.L.rot, pole: Bn.nogi.L.pole } }, rece: { R: { g: [c[0], c[1], 24], pole: [0.4, -1, 0.8] }, L: { g: [c[0], c[1], -24], pole: [0.4, -1, -0.8] } } }); return k; };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, siedzisko: 40 }, { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(P[0]), y: r1(P[1]), z: 0, dlugosc: r1(r), punkt: 'dlonie', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
 }
 
