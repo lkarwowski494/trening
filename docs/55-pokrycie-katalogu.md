@@ -21,9 +21,9 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Animowany błąd | 124 | 17,5% |
 | Własne wskazówki (źródłowe) | 167 | 23,6% |
 | — z czego z częstymi błędami | 76 | 10,7% |
-| Zestaw ogólny wskazówek wzorca ruchu | 105 | 14,8% |
-| Bez tekstu wskazówek | 436 | 61,6% |
-| Częste błędy (własne albo zestaw ogólny) | 181 | 25,6% |
+| Zestaw ogólny wskazówek wzorca ruchu | 106 | 15% |
+| Bez tekstu wskazówek | 435 | 61,4% |
+| Częste błędy (własne albo zestaw ogólny) | 182 | 25,7% |
 | Role mięśni | 508 | 71,8% |
 | **Pełna karta** | 122 | 17,2% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 132 | 18,6% |
@@ -41,8 +41,8 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 272 | 368 |
-| częste błędy (tekst) | 557 | 181 | 376 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 273 | 367 |
+| częste błędy (tekst) | 557 | 182 | 375 |
 | komplet tekstów karty: pl | 671 | 571 | 100 |
 | komplet tekstów karty: en | 671 | 571 | 100 |
 
@@ -72,7 +72,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 4 | 0 | 10 | 0 | 0 |
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 3 | 0 | 10 | 0 | 0 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 0 | 0 | 13 | 0 | 0 |
-| `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 7 | 3 | 8 | 11 |
+| `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 8 | 2 | 8 | 11 |
 | `row` | do zrobienia | 13 | 0 | 12 | 6 | 6 | 0 | 7 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 3 | 0 | 8 | 0 | 0 |
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 3 | 0 | 7 | 0 | 0 |
@@ -141,13 +141,13 @@ Kart z tekstami (wskazówki albo role mięśni): **571**. „Komplet” = karta 
 Pełnych kart: 122. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
 
 - Brakuje tylko: animowany błąd — 3: Gorilla Chin/Crunch, JM Press, Sumo Squat (hantel)
-- Brakuje tylko: role mięśni — 1: Scapular Pull-Up
+- Brakuje tylko: role mięśni — 2: Dead Hang, Scapular Pull-Up
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
 | 0 | 122 |
-| 1 | 4 |
+| 1 | 5 |
 | 2 | 40 |
-| 3 | 72 |
+| 3 | 71 |
 | 4 | 327 |
 | 5 | 143 |
