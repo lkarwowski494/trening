@@ -898,30 +898,6 @@
     ]
    ],
    "status": "wdrozony"
-  },
-  "ur.height": {
-   "pl": "Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała.",
-   "claim": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
-   "src": [
-    [
-     "https://www.coachesontario.ca/articles/breaking-down-the-upright-row/",
-     "NSCA Exercise Technique Manual (przedruk), Upward movement: „At the highest bar position, the elbows should be level with or slightly higher than the shoulders and wrists.”"
-    ],
-    [
-     "https://theprehabguys.com/vimeo-video/upright-row-band/",
-     "„Drive your elbows up and out so that they're even with your hands at the top.”"
-    ],
-    [
-     "https://www.ummhealth.org/health-library/upper-body-exercises-upright-row",
-     "„…raise the weights along the midline of your body up to your collarbone.”"
-    ],
-    [
-     "Schoenfeld i in., Strength Cond J 2011;33(5), s. 26–27",
-     "„…pull through the elbows, not the wrist…”; ramiona do tuż poniżej wysokości barków"
-    ]
-   ],
-   "status": "wdrozony",
-   "uwaga": "Badacz 27.10.2026 (sprzecznosci-tekst-rysunek.md, pkt 2): ustalone; tolerancja wysokości — konwencja, bez uzasadnienia zdrowotnego w tekście. Zastępuje lat.height w rodzinie uprightRow."
   }
  }
 }

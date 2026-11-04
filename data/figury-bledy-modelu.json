@@ -74,8 +74,8 @@
    "rodziny": [
     "pull_up"
    ],
-   "przyklad": "Side To Side Chins: reguła „broda_nad_drazkiem” (wskazówka pu.pull): broda w u = 1 jest na y = 225.1 cm, a ma być ≥ 232.0 cm (drążek y = 230 + 2; broda = środek głowy minus 9.5 cm wzdłuż osi głowy) — unieś miednicę w ostatniej klatce o co n",
-   "zapobieganie": "w u = 1 broda ≥ drążek + {chinMargin} cm: miednica.y ≥ wartość z tabeli „u = 1” (punkty odniesienia); nie kończ ruchu, gdy głowa dochodzi tylko do drążka."
+   "przyklad": "Side To Side Chins: reguła „broda_nad_drazkiem” (wskazówka pu.pull): broda w u = 1 jest na y = 225.1 cm, a ma być ≥ 230.0 cm (drążek y = 230 + 0; broda = środek głowy minus 9.5 cm wzdłuż osi głowy) — unieś miednicę w ostatniej klatce o co n",
+   "zapobieganie": "w u = 1 broda ≥ drążek + {chinMargin} cm: miednica.y ≥ wartość z tabeli „u = 1” (punkty odniesienia); nie kończ ruchu, gdy broda jest poniżej wysokości drążka."
   },
   "sens:dol_rece_proste": {
    "wystapien": 11,

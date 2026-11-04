@@ -7,19 +7,20 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { repoRoot } from './ts-loader.mjs';
-import { normalizujPlikV2 } from '../skrot-v2-norm.mjs';
+import { normalizujPlikV2, plikNakladki } from '../skrot-v2-norm.mjs';
+import { doborRodziny } from '../skrot-v2-dobor.mjs';
 
 export const PLIK_RECENZJI = join(repoRoot, 'docs/research/figury-recenzja.json');
 /** Pliki rigu rodzin v2 z własnym rigiem. */
 export const RIGI = { squat: 'squat.ts', bench_press: 'benchPress.ts', hinge: 'hinge.ts' };
 const sha12 = t => createHash('sha256').update(t).digest('hex').slice(0, 12);
 /** Pliki wspólne rodzin v2, które zmieniają rysunek — ta sama lista co V2_WSPOLNE w scripts/zrodla-runtime.mjs (parytet: tests/strona-eksport-recenzja.test.ts). */
-export const WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json'];
+export const WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/overlayShapes.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json', 'lib/figures/v2/overlay.ts', 'lib/figures/v2/overlay/common.ts', 'lib/figures/v2/overlay/hinge.ts', 'lib/figures/v2/overlay/squat.ts', 'lib/figures/v2/grupy.json', 'lib/figures/v2/reguly-cwiczen.json'];
 
 /** Skrót bieżącej wersji danych rodziny (rig albo poza z danych). */
 export function skrotRodziny(rodzina) {
   const zrodlo = RIGI[rodzina] ? `lib/figures/v2/rigs/${RIGI[rodzina]}` : `lib/figures/v2/poses/${rodzina}.json`;
-  return sha12([zrodlo, ...WSPOLNE].map(p => normalizujPlikV2(p, readFileSync(join(repoRoot, p), 'utf8'), rodzina)).join('\n'));
+  return sha12([...[zrodlo, plikNakladki(rodzina, p => existsSync(join(repoRoot, p))), ...WSPOLNE].filter(Boolean).map(p => normalizujPlikV2(p, readFileSync(join(repoRoot, p), 'utf8'), rodzina)), doborRodziny(rodzina)].join('\n')); /* fix4 R2: wynik doboru po kartach (parytet z zrodla-runtime.mjs) */
 }
 /** Zapis recenzji rodzin v2 ({} gdy pliku nie ma). */
 export function zapisRodzin(plik = PLIK_RECENZJI) { return existsSync(plik) ? (JSON.parse(readFileSync(plik, 'utf8')).v2 ?? {}) : {}; }
