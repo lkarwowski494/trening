@@ -137,6 +137,14 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
   albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
 
+### Backlog 1.1 — proces (noc 03/04.11, koordynator)
+- `jest-ponow` ponawia też pliki zakończone przekroczeniem limitu czasu testu (dziś tylko przerwane z zewnątrz).
+- `figures-v2-ui` (kąt): wyższy limit czasu testu — pełne verify 2× czerwone tylko przez timeout (gałąź `ci/przyspieszenie`).
+- L-098 A: `verify:docs` ponawia czerwone pliki jak pełne verify (docs/18, 03.11.2026 ~22:20 PL).
+- L-099 A: strażnik rejestru przy przekładzie wskazówek (docs/18, 03.11.2026 ~22:20 PL).
+- Przegląd native speakerów tłumaczeń P1 (pytania z recenzji: fr, lt, el, lv, tr, ro, pt-BR, ms, vi, sv, ru, hu).
+- Skrót recenzji v2 (audyt 1A, NISKIE): parser bloków `scripts/skrot-v2-norm.mjs` zakłada koniec bloku `};`; wzorzec LOAD nie sprawdza zgodności klucza z plikiem (skutek bezpieczny — brak figury).
+
 ### Backlog 1.1 — zestawy ogólne i karty: sygnały badaczy źródeł (audyt sygnałów 02.11.2026; brak blokerów)
 Widoczne dziś (do 1.1, nie blokują): **S1** `kb.setup` „Stań za kettlebellem” (`lib/cues/text/pl.json:168`, własna karta Kettlebell Swing) — szczegół „za” bez potwierdzenia w zapisanych źródłach (`docs/research/27-wskazowki-zrodla.md:877`); dwa źródła albo neutralne brzmienie, tłumaczenie, `--rehash` — ŚREDNIE. **S-roles** pole „Obciążenie partii” przy pustych `muscles` (ok. 20 ćwiczeń cardio, rzutów, rozciągania; `lib/seed.ts:153-160`) — ukryć albo dopisek — NISKIE. **S-kbt** kettlebell w kategorii sprzętu „hantle” (`lib/seed.ts:75`; konwencja, zmiana typu = migracja) — NISKIE.
 **Warunek recenzji treści przed zmianą statusu rodziny na `ready`** (dziś `planned`, treść niewidoczna — `components/ExerciseCues.tsx:34-36`): kb_ballistic/olympic — `oly.close`/`oly.mis`/`oly.legs` mówią „sztanga” przy ćwiczeniach z kettlebellem i hantlem (`lib/figures/v2/cue-sets.json:202,304,312,313,591`; strażnik `CUE_REQUIRES` w `lib/figures/v2/cueSets.ts`), Jerk Dip Squat bez `pp.legs` (`cue-sets.json:298`), swing jednorącz (`cue-sets.json:410`, `kb.hips`); sled_throw — `tgu.arm`/`tgu.eyes` „kettlebell” przy dopuszczonym hantlu (`cue-sets.json:679`), Wall Ball — źródło błędu `sq.mis.kneesIn` albo bez widoku z przodu (`lib/figures/v2/families.ts:79`); plyo — definicja Depth Jump w katalogu vs źródła; overhead_press — `ohp.mis.lock` poza push press/jerk (`cue-sets.json:194,456`). Uwaga: lista `general` w `lib/cues/data.json` ma już zrecenzowane wpisy z rodzin `planned` (One-Arm Kettlebell Jerk, Block Power Snatch, Split Jump) — pokażą się od razu po zmianie statusu.

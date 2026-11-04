@@ -3,6 +3,7 @@
   "kroki": [
     { "plik": "e2e-ios.yml", "krok": "Maestro", "test": "tests/e2e-ios-ponowienie-scenariusza.test.ts" },
     { "plik": "e2e-ios.yml", "krok": "Aktualizacja (poprzednia wersja → dane przez UI → bieżąca wersja bez odinstalowania → sprawdzenie)", "test": "tests/e2e-ios-ponowienie-aktualizacji.test.ts" },
+    { "plik": "tests.yml", "krok": "Jest (część ${{ matrix.czesc }} z 4)", "wyjatek": "to nie wiersze bash: ponowienie plików przerwanych z zewnątrz jest w scripts/jest-ponow.mjs (jeden skrypt dla verify i CI); jego logikę pilnuje tests/jest-ponow-29-10-2026.test.ts, a przekazanie --shard do pierwszego przebiegu bez ponowienia — tests/kontrole-ci.test.ts (ZB-029 T1)" },
     { "plik": "testflight.yml", "krok": "Strażnik uprawnień w .ipa (aplikacja i zegarek) — brak uprawnienia zatrzymuje przebieg przed wysyłką", "wyjatek": "to nie ponowienie: `cmd || rc=1` tylko zbiera błędy trzech kontroli i kończy `exit $rc`; brak ponowienia, a zachowanie kontroli pilnują testy skryptów (check-entitlements, ensure-privacy-manifest)" }
   ]
 }

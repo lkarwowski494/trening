@@ -30,8 +30,11 @@ describe('workflowy na publicznym repozytorium', () => {
     /* L-053 (właściciel 30.10.2026, A; zmienia „nigdy pull_request” z 06.10.2026 tylko dla tests.yml): PR do main z tego repozytorium — kod z forków nadal nie biegnie (warunek joba) */
     const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request_target|secrets\./);
     expect(t).toMatch(/\n  pull_request:\n    branches: \[main\]\n/);
-    expect(t).toMatch(/if: github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.head\.repo\.full_name == github\.repository\n/);
-    expect(t).toMatch(/on:\n\s+push:/); expect(t).toMatch(/run: npm run verify/);
+    /* ZB-029 T1 (31.10.2026): trzy zadania (kontrole, jest ×4 części, zbiorcze verify) — warunek blokujący forki w KAŻDYM z nich */
+    const warunek = "github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository";
+    const zadania = t.slice(t.indexOf('\njobs:')).split(/^  (?=[\w-]+:\s*$)/m).slice(1); expect(zadania.map((z: string) => z.split(':')[0])).toEqual(['kontrole', 'jest', 'verify']);
+    for (const z of zadania) expect(z).toContain(warunek);
+    expect(t).toMatch(/on:\n\s+push:/); expect(t).toMatch(/run: npm run verify:kontrole/); expect(t).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=\$\{\{ matrix\.czesc \}\}\//);
   });
   test('przebiegi według harmonogramu (nightly.yml, tests-tz.yml; 06.10.2026): tylko harmonogram i ręcznie, odczyt, bez sekretów, artefakty 1 dzień', () => {
     const fs = require('fs') as typeof import('fs');
@@ -311,7 +314,7 @@ describe('TST2-09 (audyt kontrolny 1): testflight.yml sprawdza to samo co verify
     expect(step).toMatch(/run: npm run verify\s*$/m);
     const v = require('../package.json').scripts.verify as string;
     for (const c of ['npm run typecheck', 'npm run check:i18n', 'npm run check:cues', 'npm run check:figures', 'jest', 'npm run check:matrix', 'npm run check:licenses', 'expo export --platform ios', 'npm run verify:native']) expect({ c, in: v.includes(c) }).toEqual({ c, in: true });
-    expect(wf('tests.yml')).toMatch(/run: npm run verify\s*$/m);
+    expect(wf('tests.yml')).toMatch(/run: npm run verify:kontrole\s*$/m); /* tests.yml: ten sam łańcuch w częściach (ZB-029 T1; scripts/ci/kontrole.mjs czyta scripts.verify) */
   });
 });
 

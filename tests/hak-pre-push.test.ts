@@ -451,7 +451,7 @@ describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego 
   test('commit po verify (inne drzewo) → zatrzymane, gałąź nie trafia na zdalne', () => {
     const x = galaz('kod'); oznacz(x.dir, x.npm);
     writeFileSync(join(x.dir, 'plik.txt'), 'c\n'); git(x.dir, ['commit', '-q', '-am', 'po verify']);
-    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('brak zielonego pełnego verify'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('brak zielonego verify'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
   });
   test('verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika', () => {
     const x = galaz('kod'); writeFileSync(join(x.dir, 'nowy.test.ts'), 'x\n');
@@ -499,5 +499,59 @@ describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego 
   test('w CI zapis nic nie robi (verify w tests.yml nie zostawia znaczników)', () => {
     const x = galaz('kod'); const r = spawnSync(process.execPath, [ZNACZNIK, '--zapisz', 'pelne'], { cwd: x.dir, env: { ...zNpm(x.npm), CI: 'true' }, encoding: 'utf8' });
     expect(r.status).toBe(0); expect(existsSync(join(x.npm.bin, 'znaczniki.json'))).toBe(false);
+  });
+});
+
+/* Decyzja właściciela 03.11.2026 ~21:45 PL (wariant A): „testy tylko tam, gdzie zmiana ma wpływ, pełne w CI” — znacznik „szybkie” (npm run verify:szybkie) wystarcza w haku;
+   pełne verify zostaje dla scalenia do main (scal-galaz --do main wymaga znacznika „pelne”). Zastępuje znacznik pełnego verify w haku z L-049 (28.10.2026). */
+describe('hak pre-push — znacznik „szybkie” (03.11.2026)', () => {
+  function galaz(zmiana: 'kod' | 'docs') {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    mkdirSync(join(r.dir, 'docs'), { recursive: true }); writeFileSync(join(r.dir, 'docs/a.md'), 'a\n');
+    git(r.dir, ['add', '-A']); git(r.dir, ['commit', '-q', '-m', 'docs']);
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    git(r.dir, ['checkout', '-q', '-b', 'g']);
+    writeFileSync(join(r.dir, zmiana === 'docs' ? 'docs/a.md' : 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm };
+  }
+  const pchnij = (x: ReturnType<typeof galaz>) => git(x.dir, ['push', 'origin', 'g'], zNpm(x.npm));
+  const dopisz = (x: ReturnType<typeof galaz>, plik: string, tresc: string) => { writeFileSync(join(x.dir, plik), tresc); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'dalej']); };
+  test('znacznik szybki dla tego drzewa → przechodzi', () => {
+    const x = galaz('kod'); expect(oznacz(x.dir, x.npm, 'szybkie').stdout).toContain('szybkie');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('brak znacznika → odrzucone, komunikat wymienia verify:szybkie', () => {
+    const x = galaz('kod'); const r = pchnij(x);
+    expect(r.status).not.toBe(0); expect(r.stderr).toContain('verify:szybkie'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('znacznik szybki dla innego drzewa (commit po verify) → odrzucone', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie'); dopisz(x, 'plik.txt', 'c\n');
+    expect(pchnij(x).status).not.toBe(0); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('H1 (03.11.2026, L-080): gałąź z wcześniejszymi zmianami względem main — kod ze znacznikiem szybkim, potem commit tylko z dokumentami ze znacznikiem verify:docs → przechodzi', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie'); dopisz(x, 'docs/a.md', 'c\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('H1 (03.11.2026, L-080): po znaczniku szybkim zmiana kodu ze znacznikiem verify:docs → zatrzymane; bez żadnego znacznika kodu → zatrzymane', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie'); dopisz(x, 'docs/a.md', 'c\n'); dopisz(x, 'plik.txt', 'd\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x).status).not.toBe(0);
+    const y = galaz('kod'); dopisz(y, 'docs/a.md', 'c\n'); oznacz(y.dir, y.npm, 'dokumenty'); expect(pchnij(y).status).not.toBe(0);
+  });
+  test('--wymagaj pelne (scalenie do main): szybki nie wystarcza, pełny tak', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie');
+    const sprawdz = () => spawnSync(process.execPath, [ZNACZNIK, '--sprawdz', 'HEAD', '--wymagaj', 'pelne'], { cwd: x.dir, env: zNpm(x.npm), encoding: 'utf8' });
+    expect(sprawdz().status).toBe(1); oznacz(x.dir, x.npm, 'pelne'); expect(sprawdz().status).toBe(0);
+  });
+  test('skrypty: verify:szybkie kończy się zapisem znacznika „szybkie”, używa test:fast od bazy gałęzi; jego kroki check:* są podzbiorem verify; pełne verify bez zmian', () => {
+    const v: string = pkg.scripts['verify:szybkie']; const pelne: string = pkg.scripts.verify;
+    expect(v).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz szybkie$/);
+    expect(v).toContain('node scripts/test-fast.mjs --od-bazy');
+    expect(v).not.toMatch(/expo export|verify:native|jest-ponow|check:bundle/);
+    for (const k of v.match(/npm run [\w:-]+/g)!) expect(pelne).toContain(k);
+    expect(pelne).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz pelne$/);
+  });
+  test('scal-galaz: scalenie do main wymaga znacznika „pelne”', () => {
+    const t = readFileSync(join(root, 'scripts/scal-galaz.mjs'), 'utf8');
+    expect(t).toMatch(/docelowa === 'main'/); expect(t).toContain("'--wymagaj', 'pelne'");
   });
 });

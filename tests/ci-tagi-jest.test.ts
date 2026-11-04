@@ -6,7 +6,7 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 const dir = join(__dirname, '..', '.github/workflows');
-const PELNY_JEST = /npx jest(?![^\n]*(?:\btests\/|--testMatch))|npm run verify(?![:\w])|npm (?:run )?test(?![:\w])/;
+const PELNY_JEST = /npx jest(?![^\n]*(?:\btests\/|--testMatch))|npm run verify(?![:\w])|npm (?:run )?test(?![:\w])|jest-ponow\.mjs/;
 
 /** Zadania (plik, id) z pełnym Jestem i to, czy ich kasa ma tagi i pełną historię. */
 export function zadaniaZJestem(pliki: Record<string, string>): { plik: string; zadanie: string; tagi: boolean }[] {
@@ -31,7 +31,7 @@ describe('CI: zadania z pełnym Jestem mają tagi (01.11.2026)', () => {
   });
   test('wykrywa znane zadania z pełnym Jestem (tests, tests-tz ×2, testflight, nightly); pomija verify:native i pojedyncze pliki', () => {
     const ids = zadaniaZJestem(PLIKI).map(x => `${x.plik}/${x.zadanie}`).sort();
-    expect(ids).toEqual(expect.arrayContaining(['nightly.yml/losowe', 'testflight.yml/build', 'tests-tz.yml/jest', 'tests-tz.yml/zmiana-czasu', 'tests.yml/verify']));
+    expect(ids).toEqual(expect.arrayContaining(['nightly.yml/losowe', 'testflight.yml/build', 'tests-tz.yml/jest', 'tests-tz.yml/zmiana-czasu', 'tests.yml/jest']));
     expect(ids.some(i => i.startsWith('ios-unsigned.yml') || i.startsWith('store-screenshots.yml') || i.startsWith('watch-sim.yml'))).toBe(false);
   });
   test('strażnik potrafi paść: zadanie z npx jest bez tagów', () => {
