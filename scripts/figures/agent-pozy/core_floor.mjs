@@ -327,8 +327,47 @@ export function pressSitUp(cw, { kat = -20, top = 60, p1 = -25, bend1 = 12, zH =
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, walki: true }, { rodzaj: 'sztanga', podazaZaChwytem: true, talerze: true, trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
 }
 
+/* ---------- Fala P5 (04.11.2026): ławka skośna, siad na ławce, wyciąg stojąc ---------- */
+/** Decline Oblique Crunch (źródło ruchu: „unoś tułów powoli ze skrętem”, stopy pod wałkami ławki skośnej głową w dół): jak Press Sit-Up (ławka −20°, kolana z położenia kostek pod wałkami), dłonie za głową, unoszenie tułowia o `p1` ze skrętem `skret` stopni (rysowana jedna strona). */
+export function declineObliqueCrunch(cw, { kat = -20, top = 60, p1 = -52, bend1 = 30, skret = 32 } = {}) {
+  const hip = v2().benchHip(kat, top); const m = [hip[0], hip[1]]; const p0 = kat - 90; const A = [m[0] + v2().BENCH.footBack + 4, top + 7.4]; const us = Array.from({ length: 9 }, (_, i) => i / 8);
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(p0, p1, a); const bend = bend1 * a; const S = barki(m, p, bend); const noga = (z) => ({ ankle: A, strona: 'gora', pod: 0, z, rot: 10 });
+    return ramka({ u, miednica: m, p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: reszkaZaGlowa(S, p), ext: { skretTulowia: -skret * a } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, walki: true }], klatki: us.map(fr), bledy: [] });
+}
+
+/** Weighted Sit-Ups - With Bands (źródło: „siad, klatka ku kolanom, guma w tym samym położeniu”): ławka −20°, stopy pod wałkami, końce gumy w dłoniach przy klatce (dłonie nie ruszają się względem klatki),
+ * guma biegnie do zaczepu przy dolnym końcu ławki (za głową) i rozciąga się w siadzie. */
+export function weightedSitUpBands(cw, { kat = -20, top = 60, p1 = -25, bend1 = 12, zH = 20 } = {}) {
+  const hip = v2().benchHip(kat, top); const m = [hip[0], hip[1]]; const p0 = kat - 90; const A = [m[0] + v2().BENCH.footBack + 4, top + 7.4]; const us = Array.from({ length: 9 }, (_, i) => i / 8); const th = kat * R; const dl = 75;
+  const zaczep = [r1(-Math.cos(th) * dl - 6), r1(top + Math.sin(th) * dl - 24), 0];
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(p0, p1, a); const bend = bend1 * a; const S = barki(m, p, bend); const noga = (z) => ({ ankle: A, strona: 'gora', pod: 0, z, rot: 10 }); const fv = [Math.cos(p * R), -Math.sin(p * R)]; const cp = chestPt(S, p, 1); const c0 = [cp[0] - S[0] + fv[0] * 6, cp[1] - S[1] + fv[1] * 6]; /* dłonie stałe względem klatki */
+    return ramka({ u, miednica: m, p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: { R: { g: [S[0] + c0[0], S[1] + c0[1], zH], pole: [0, -1, 0.1] }, L: { g: [S[0] + c0[0], S[1] + c0[1], -zH], pole: [0, -1, -0.1] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: dl, walki: true }, { rodzaj: 'guma', mocowanie: 'zaczep', x: zaczep[0], y: zaczep[1], z: zaczep[2], trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+
+/** Seated Flat Bench Leg Pull-In (źródło: „usiądź na brzegu ławki, chwyć ją po bokach, odchyl się, unieś proste nogi; przyciągnij kolana do klatki pochylając tułów”): siad na brzegu ławki płaskiej, miednica nieruchoma na ławce,
+ * dłonie na ławce po bokach bioder, tułów z odchylenia `pOd` do pochylenia `pDo`, nogi z prostych nad podłogą do zgiętych przy klatce. */
+export function seatedBenchLegPullIn(cw, { top = 43, mx = 34, pOd = -40, pDo = -10, bend1 = 16, tOd = -12, tDo = 52, kDo = 125 } = {}) {
+  const y = top + 9.5 + 0.8; const m = [mx, y]; const ks = kolanoProste(); const us = [0, 0.25, 0.5, 0.75, 1]; const G = (sg) => [mx - 6, top + 1.2, sg * 20];
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(pOd, pDo, a); const bend = bend1 * a; const tt = lerp(tOd, tDo, a), kk = lerp(ks, kDo, a); const nk = (z) => ({ t: tt, k: kk, z, pod: Math.max(-90, Math.min(90, tt - kk + 45)) });
+    return ramka({ u, miednica: m, p, bend, glowa: p, nogi: { R: nk(ZNOG), L: nk(-ZNOG) }, rece: { R: { g: G(1), pole: [0, 0.3, 1] }, L: { g: G(-1), pole: [0, 0.3, -1] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: 75, siedzisko: mx + 8 }], klatki: us.map(fr), bledy: [] });
+}
+
+/** Standing Rope Crunch (źródło: „zwijaj tułów w przód i w dół, żebra ku podłodze; nie zginaj się w biodrach”): stanie tyłem do górnego wyciągu, końce liny przy głowie; biodra i nogi stoją, tułów zwija się (zgięcie kręgosłupa `bend1`, pochylenie `p1`). */
+export function standingRopeCrunch(cw, { p1 = 34, bend1 = 62, x = -90, y = 225 } = {}) {
+  const us = [0, 0.25, 0.5, 0.75, 1]; const hy = 88.7;
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(2, p1, a); const bend = bend1 * a; const S = barki([0, hy], p, bend); const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)];
+    const hu = BODY().neckUp + BODY().headFromC7 - 3; /* końce liny po bokach głowy, tuż za uchem (lina idzie ku wyciągowi z tyłu, nie przez głowę) */ const g = (sg) => [S[0] + upv[0] * hu - fv[0] * 4, S[1] + upv[1] * hu - fv[1] * 4, sg * 13];
+    return ramka({ u, miednica: [0, hy], p, bend, glowa: p, nogi: { R: { ankle: [0, 7], strona: 'gora', pod: 0, z: ZNOG }, L: { ankle: [0, 7], strona: 'gora', pod: 0, z: -ZNOG } }, rece: { R: { g: g(1), pole: [0.3, -1, 0.5] }, L: { g: g(-1), pole: [0.3, -1, -0.5] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'wyciag', x, y, z: 0, chwyt: 'lina', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+
 /** Ćwiczenia, których generator rodziny nie robi (powód obowiązkowy). */
 export const WYJATKI = {
+  'Decline Reverse Crunch': 'źródło i opis w katalogu: głowa na wyższym końcu ławki skośnej, dłonie chwytają ławkę nad głową, a model ławki ujemnej (wymóg katalogu) ma głowę na niższym końcu (kąt −45…−5°); pozycja głową wyżej przeczyłaby wymogowi ławki, pozycja głową niżej — źródłu; bez rysunku (04.11.2026)',
+  'Stability Ball Knee Tuck': 'ruch polega na toczeniu piłki ku dłoniom (podpór na dłoniach, kolana do klatki), a piłka w modelu leży nieruchomo; bez rysunku (decyzja właściciela 04.11.2026, wpis „1B 2a 3a 4b 5b”, pkt 2)',
   'Side Jackknife': 'leżenie na boku (obrotTulowia 90) z jednoczesnym skłonem bocznym i odwiedzeniem górnej nogi: dwie próby (R3, 04.11.2026) padły na zakresach silnika — wyprost biodra górnej nogi −18° (limit −17°) i zgięcie barku górnej ręki przy głowie 218° (limit 171°); wymaga zmiany zakresów albo osobnego rigu, poza zakresem tej sesji',
 };
 /** Identyfikatory błędów z katalogu bez opisu w lib/cues/text/pl.json (id → powód); do uzupełnienia przez badacza i tłumacza. */
@@ -341,6 +380,10 @@ export const PRZYBLIZENIA = {
   'Press Sit-Up': 'przybliżenie: talerze sztangi rysowane w płaszczyźnie y–z, sztanga idzie za dłońmi (podazaZaChwytem); ławka −20°, stopy pod wałkami',
   'Otis-Up': 'przybliżenie: talerz rysowany zawsze w płaszczyźnie y–z, dłonie na obręczy po bokach',
   'GHD Sit Up': 'przybliżenie: wałek nad kostkami (stopa pod nim), poduszka rysowana jako schemat ławki rzymskiej (kąt 15°), tułów odchylany tylko do poziomu (wyprost biodra do −17°); miednica ślizga się po poduszce o 3 cm, by kolana prostowały się w siadzie (kostki stoją)',
+  'Decline Oblique Crunch': 'przybliżenie: rysowana jedna strona skrętu (zmiana strony w kolejnym powtórzeniu), dłonie za głową (ułożenie rąk w opisach różne); ławka −20°, stopy pod wałkami',
+  'Weighted Sit-Ups - With Bands': 'przybliżenie: zaczep gumy przy dolnym końcu ławki (opisy różnie podają miejsce zaczepienia), dłonie stale przy klatce; ławka −20°, stopy pod wałkami',
+  'Seated Flat Bench Leg Pull-In': 'przybliżenie: zgięcie biodra w przyciągnięciu ok. 130°, więc kolana kończą na wysokości dolnych żeber, nie przy samej klatce; stopy rozluźnione (zgięcie podeszwowe ok. 45°)',
+  'Standing Rope Crunch': 'przybliżenie: końce liny po bokach głowy, tuż za uchem (opisy: przy uszach, za głową, przy górnej części klatki); wyciąg za plecami, lina idzie do bloczka w górę i do tyłu',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
 };
 
@@ -372,5 +415,9 @@ export function generuj() {
     'GHD Sit Up': () => ghdSitUp('GHD Sit Up'),
     'Dragon Flag': () => dragonFlag('Dragon Flag'),
     'Press Sit-Up': () => pressSitUp('Press Sit-Up'),
+    'Decline Oblique Crunch': () => declineObliqueCrunch('Decline Oblique Crunch'),
+    'Weighted Sit-Ups - With Bands': () => weightedSitUpBands('Weighted Sit-Ups - With Bands'),
+    'Seated Flat Bench Leg Pull-In': () => seatedBenchLegPullIn('Seated Flat Bench Leg Pull-In'),
+    'Standing Rope Crunch': () => standingRopeCrunch('Standing Rope Crunch'),
   };
 }

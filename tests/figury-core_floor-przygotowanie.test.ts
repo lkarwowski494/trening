@@ -5,6 +5,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
+import { execFileSync } from 'child_process';
 import { keyframeFrame, jointAngles, type PoseData } from '@/lib/figures/v2';
 
 const P: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/core_floor.json'), 'utf8')).cwiczenia;
@@ -23,12 +24,12 @@ function zawroceniaPoza(k: string, y: number[]): number {
 }
 
 describe('core_floor: pokrycie póz (K2)', () => {
-  test('31 póz: 21 z poprzedniej wersji − Oblique Crunches - On The Floor (karta otwarta, rysunek niewyświetlany, 04.11.2026) + 6 dorobionych + 5 z fali R3 (Butt-Ups, Otis-Up, GHD Sit Up, Dragon Flag, Press Sit-Up; Side Jackknife wyjątek); Stability Ball Knee Tuck celowo bez pozy (kandydat K3: piłka toczy się, silnik ma piłkę nieruchomą)', () => {
-    expect(KEYS).toHaveLength(31); expect(KEYS).not.toContain('Oblique Crunches - On The Floor'); for (const k of DORABIANE) expect(P[k]).toBeDefined(); expect(KEYS).not.toContain('Stability Ball Knee Tuck');
+  test('35 póz (04.11.2026, P5: + Decline Oblique Crunch, Weighted Sit-Ups - With Bands, Seated Flat Bench Leg Pull-In, Standing Rope Crunch; Decline Reverse Crunch i Stability Ball Knee Tuck wyjątki): 31 = 21 z poprzedniej wersji − Oblique Crunches - On The Floor (karta otwarta, rysunek niewyświetlany, 04.11.2026) + 6 dorobionych + 5 z fali R3 (Butt-Ups, Otis-Up, GHD Sit Up, Dragon Flag, Press Sit-Up; Side Jackknife wyjątek); Stability Ball Knee Tuck celowo bez pozy (kandydat K3: piłka toczy się, silnik ma piłkę nieruchomą)', () => {
+    expect(KEYS).toHaveLength(35); for (const k of ['Decline Oblique Crunch', 'Weighted Sit-Ups - With Bands', 'Seated Flat Bench Leg Pull-In', 'Standing Rope Crunch']) expect(KEYS).toContain(k); expect(KEYS).not.toContain('Decline Reverse Crunch'); expect(KEYS).not.toContain('Oblique Crunches - On The Floor'); for (const k of DORABIANE) expect(P[k]).toBeDefined(); expect(KEYS).not.toContain('Stability Ball Knee Tuck');
     expect(GEN).toMatch(/Stability Ball Crunch/); expect(GEN).not.toMatch(/'Stability Ball Knee Tuck': \(\)/);
   });
   test('sprzęt: podłoga, piłka, wyciąg, zawieszenie, ławka, dźwignia, talerz (Otis-Up), sztanga (Press Sit-Up), rzymska (GHD Sit Up) — bez hantli', () => {
-    for (const k of KEYS) for (const g of P[k].sprzet) expect([k, ['podloga', 'pilka_gimnastyczna', 'wyciag', 'zawieszenie', 'lawka', 'dzwignia', 'talerz', 'sztanga', 'rzymska'].includes(g.rodzaj)]).toEqual([k, true]);
+    for (const k of KEYS) for (const g of P[k].sprzet) expect([k, ['podloga', 'pilka_gimnastyczna', 'wyciag', 'zawieszenie', 'lawka', 'dzwignia', 'talerz', 'sztanga', 'rzymska', 'guma'].includes(g.rodzaj)]).toEqual([k, true]);
   });
 });
 
@@ -101,6 +102,7 @@ describe('core_floor R2: miejsce śladu toru (T-1)', () => {
   const ZASOBY: Record<string, (sk: ReturnType<typeof frame>['sk']) => number[]> = {
     'Cable Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2), 'Machine Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2),
     'Cable Reverse Crunch': sk => sk.legs.R.ankle, 'Otis-Up': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2), 'Press Sit-Up': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2),
+    'Weighted Sit-Ups - With Bands': sk => sk.arms.R.grip /* guma w dłoniach: ślad = chwyt R (kontrakt FW1) */, 'Standing Rope Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2),
   };
   test.each(KEYS)('%s: ślad istnieje i leży w miejscu wynikającym ze sprzętu (≤ 3 cm; miednica, środek chwytów albo kostka)', k => {
     for (const u of [0, 0.5, 1]) { const f = trail(k, u); const t = ślad(k, u); expect([k, u, !!t]).toEqual([k, u, true]); const cel = ZASOBY[k] ? ZASOBY[k](f.sk) : f.sk.pelvis; expect([k, u, dist(t!, cel) <= 3]).toEqual([k, u, true]); }
@@ -181,7 +183,7 @@ describe('core_floor R3: tożsamość nowych póz', () => {
   });
   test('miara potrafi paść: Press Sit-Up ze sztangą zostającą na klatce (chwyty końca = chwyty startu) unosi ją < 100 cm', () => { const d = klon('Press Sit-Up', kl => { const r = JSON.parse(JSON.stringify(kl[0].rece)); kl[kl.length - 1].rece = r; }); expect(mid(fr2(d, 1))[1] - mid(fr2(d, 0))[1]).toBeLessThan(100); });
   test('Side Jackknife: wyjątek z powodem w generatorze (dwie próby R3 padły na zakresach silnika), brak pozy w danych', () => {
-    expect(KEYS).not.toContain('Side Jackknife'); expect(GEN).toMatch(/export const WYJATKI = \{\s*'Side Jackknife': '[^']{40,}/); expect(GEN).not.toMatch(/'Side Jackknife': \(\) =>/);
+    expect(KEYS).not.toContain('Side Jackknife'); expect(GEN).toMatch(/export const WYJATKI = \{[\s\S]*?'Side Jackknife': '[^']{40,}/); expect(GEN).not.toMatch(/'Side Jackknife': \(\) =>/);
   });
 });
 
@@ -211,5 +213,61 @@ describe('core_floor R3-poprawki: Stability Ball Crunch styk miednicy z piłką,
   test('miara potrafi paść: Toe Touchers z udami odchylonymi od pionu (kostki dalej w x) i prostymi rękami nie sięgającymi kostek', () => {
     const d = klon('Toe Touchers', kl => { for (const k of kl) { k.nogi.R.kostka = [70, 40, 12]; k.nogi.L.kostka = [70, 40, -12]; } kl[kl.length - 1].rece = JSON.parse(JSON.stringify(kl[0].rece)); }); const f = fr2(d, 1);
     expect(Math.abs(f.sk.legs.R.knee[0] - f.sk.legs.R.hip[0])).toBeGreaterThanOrEqual(8);
+  });
+});
+
+/* P5 (04.11.2026): cztery nowe pozy (ławka ujemna, siad na ławce, wyciąg stojąc) + dwa wyjątki z powodem; ruch zgodny ze zdaniami kart (T2), każda miara z prawdziwym negatywem. */
+describe('core_floor P5: tożsamość nowych póz', () => {
+  const stoi = (k: string, s: 'R' | 'L' = 'R') => { const a = frame(k, 0).sk.legs[s].ankle; return Math.max(...US.map(u => dist(frame(k, u).sk.legs[s].ankle, a))); };
+  const ławka = (k: string) => P[k].sprzet.find(g => g.rodzaj === 'lawka') as { kat: number; walki?: boolean; top: number };
+  test('Decline Oblique Crunch: ławka −20° z wałkami, kostki i miednica nieruchome, tułów unosi się ≥ 15 cm, skręt ≥ 25° na końcu, dłonie przy głowie (≤ 16 cm)', () => {
+    const k = 'Decline Oblique Crunch'; expect(ławka(k).kat).toBe(-20); expect(ławka(k).walki).toBe(true); expect(stoi(k)).toBeLessThanOrEqual(0.5);
+    expect(dist(frame(k, 1).sk.pelvis, frame(k, 0).sk.pelvis)).toBeLessThanOrEqual(0.5); expect(frame(k, 1).sk.shoulderC[1] - frame(k, 0).sk.shoulderC[1]).toBeGreaterThanOrEqual(15);
+    expect(Math.abs(frame(k, 1).sk.twist)).toBeGreaterThanOrEqual(25); for (const u of US) for (const s of ['R', 'L'] as const) expect([u, dist(frame(k, u).sk.arms[s].grip, frame(k, u).sk.head) <= 16]).toEqual([u, true]);
+  });
+  test('miara potrafi paść (Decline Oblique): bez skrętu i z miednicą unoszoną nie spełnia miar', () => {
+    const d = klon('Decline Oblique Crunch', kl => { for (const f of kl) { f.skretTulowia = 0; f.miednica = [f.miednica[0], f.miednica[1] + 8 * f.u, 0]; } });
+    expect(Math.abs(fr2(d, 1).sk.twist)).toBeLessThan(25); expect(dist(fr2(d, 1).sk.pelvis, fr2(d, 0).sk.pelvis)).toBeGreaterThan(0.5);
+  });
+  test('Weighted Sit-Ups - With Bands: ławka −20°, guma z zaczepem, dłonie stałe względem klatki (±2 cm), guma rozciąga się ≥ 25 cm, tułów siada (barki ≥ 30 cm wyżej), kostki stoją', () => {
+    const k = 'Weighted Sit-Ups - With Bands'; expect(ławka(k).kat).toBe(-20); const g = P[k].sprzet.find(x => x.rodzaj === 'guma') as { mocowanie: string; x: number; y: number; z: number }; expect(g.mocowanie).toBe('zaczep'); expect(stoi(k)).toBeLessThanOrEqual(0.5);
+    const rel = (u: number) => { const f = frame(k, u); return dist(mid(f), f.sk.shoulderC); }; for (const u of US) expect([u, Math.abs(rel(u) - rel(0)) <= 2]).toEqual([u, true]); /* odległość dłonie–bark stała = dłonie stałe względem klatki */
+    const gd = (u: number) => dist(mid(frame(k, u)), [g.x, g.y, g.z]); expect(gd(1) - gd(0)).toBeGreaterThanOrEqual(25); expect(frame(k, 1).sk.shoulderC[1] - frame(k, 0).sk.shoulderC[1]).toBeGreaterThanOrEqual(30);
+  });
+  test('miara potrafi paść (Weighted Sit-Ups): dłonie zostające w miejscu w świecie (chwyty startu) oddalają się od klatki > 2 cm, a bez ruchu tułowia guma się nie rozciąga', () => {
+    const k = 'Weighted Sit-Ups - With Bands'; const d = klon(k, kl => { for (const f of kl) f.rece = JSON.parse(JSON.stringify(kl[0].rece)); }); const f1 = fr2(d, 1);
+    expect(dist(mid(f1), f1.sk.shoulderC) - dist(mid(frame(k, 0)), frame(k, 0).sk.shoulderC)).toBeGreaterThan(2);
+  });
+  test('Seated Flat Bench Leg Pull-In: miednica nieruchoma na ławce (≤ 0,5 cm), dłonie na ławce po bokach, nogi proste i nad podłogą na starcie, na końcu zgięte w biodrze ≥ 110° z kolanami ≥ 20 cm nad biodrem, tułów pochyla się o ≥ 20°', () => {
+    const k = 'Seated Flat Bench Leg Pull-In'; const top = ławka(k).top; expect(ławka(k).kat).toBe(0);
+    for (const u of US) { const f = frame(k, u); expect([u, dist(f.sk.pelvis, frame(k, 0).sk.pelvis) <= 0.5]).toEqual([u, true]); for (const s of ['R', 'L'] as const) expect([u, s, Math.abs(f.sk.arms[s].grip[1] - top) <= 3]).toEqual([u, s, true]); }
+    expect(A(k, 0).knee).toBeLessThanOrEqual(15); expect(Math.min(...(['R', 'L'] as const).map(s => frame(k, 0).sk.legs[s].ankle[1]))).toBeGreaterThanOrEqual(20);
+    expect(A(k, 1).hip).toBeGreaterThanOrEqual(110); expect(frame(k, 1).sk.legs.R.knee[1] - frame(k, 1).sk.pelvis[1]).toBeGreaterThanOrEqual(20);
+    const lean = (u: number) => { const f = frame(k, u); return Math.atan2(f.sk.shoulderC[0] - f.sk.pelvis[0], f.sk.shoulderC[1] - f.sk.pelvis[1]) / (Math.PI / 180); }; expect(lean(1) - lean(0)).toBeGreaterThanOrEqual(20);
+  });
+  test('miara potrafi paść (Seated Leg Pull-In): miednica unoszona z ławki i nogi nieruszane nie spełniają miar', () => {
+    const d = klon('Seated Flat Bench Leg Pull-In', kl => { for (const f of kl) { f.miednica = [f.miednica[0], f.miednica[1] + 12 * f.u, 0]; f.nogi.R.kostka = JSON.parse(JSON.stringify(kl[0].nogi.R.kostka)); f.nogi.L.kostka = JSON.parse(JSON.stringify(kl[0].nogi.L.kostka)); } });
+    expect(dist(fr2(d, 1).sk.pelvis, fr2(d, 0).sk.pelvis)).toBeGreaterThan(0.5); expect(jointAngles(fr2(d, 1).sk, 'R').hip).toBeLessThan(110);
+  });
+  test('Standing Rope Crunch: wyciąg wysoki z liną za plecami (x < 0, y ≥ 150), stopy i miednica stoją, dłonie przy głowie (≤ 20 cm) w całym ruchu, tułów zwija się (głowa ≥ 15 cm do przodu), zgięcie biodra ≤ 45° (nie zginanie w biodrach)', () => {
+    const k = 'Standing Rope Crunch'; const w = P[k].sprzet.find(g => g.rodzaj === 'wyciag') as { x: number; y: number; chwyt: string }; expect(w.chwyt).toBe('lina'); expect(w.x).toBeLessThan(0); expect(w.y).toBeGreaterThanOrEqual(150); expect(stoi(k)).toBeLessThanOrEqual(0.5);
+    for (const u of US) { const f = frame(k, u); expect([u, dist(f.sk.pelvis, frame(k, 0).sk.pelvis) <= 0.5]).toEqual([u, true]); for (const s of ['R', 'L'] as const) expect([u, dist(f.sk.arms[s].grip, f.sk.head) <= 20]).toEqual([u, true]); expect([u, jointAngles(f.sk, 'R').hip <= 45]).toEqual([u, true]); }
+    expect(frame(k, 1).sk.head[0] - frame(k, 0).sk.head[0]).toBeGreaterThanOrEqual(15);
+  });
+  test('miara potrafi paść (Standing Rope Crunch): zgięcie w biodrach (miednica cofnięta, tułów pochylony 60°) przekracza 45°', () => {
+    const d = klon('Standing Rope Crunch', kl => { kl[kl.length - 1].pochylenieTulowia = 60; kl[kl.length - 1].zgiecieKregoslupa = 0; }); expect(jointAngles(fr2(d, 1).sk, 'R').hip).toBeGreaterThan(45);
+  });
+  test('wyjątki P5 z powodem: Decline Reverse Crunch (ławka głową wyżej przeczy modelowi ławki ujemnej) i Stability Ball Knee Tuck (toczenie piłki; decyzja właściciela 04.11.2026) — w generatorze i w figury-wyjatki.json, bez póz', () => {
+    const W = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figury-wyjatki.json'), 'utf8')).cwiczenia as Record<string, string>;
+    for (const k of ['Decline Reverse Crunch', 'Stability Ball Knee Tuck']) { expect(KEYS).not.toContain(k); expect(GEN).toMatch(new RegExp("'" + k + "': '[^']{60,}")); expect(GEN).not.toMatch(new RegExp("'" + k + "': \\(\\) =>")); expect(W[k].length).toBeGreaterThan(60); }
+    expect(W['Stability Ball Knee Tuck']).toMatch(/toczeniu piłki.*decyzja właściciela 04\.11\.2026/); expect(W['Decline Reverse Crunch']).toMatch(/głowa na wyższym końcu.*niższym końcu/);
+  });
+  test('reguła „lędźwie przy podłodze” nie dotyczy ćwiczeń z podparciem na ławce (LOT): Decline Oblique Crunch (wskazówka o lędźwiach na karcie) jej nie ma, Crunch na podłodze — ma (negatyw)', () => {
+    const root = path.join(__dirname, '..');
+    const kod = `import * as J from ${JSON.stringify(path.join(root, 'scripts/figures/v2-jakosc.mjs'))}; import * as S from ${JSON.stringify(path.join(root, 'scripts/figures/v2-sens.mjs'))}; import { v2 } from ${JSON.stringify(path.join(root, 'scripts/figures/agent-pozy/model.mjs'))}; import fs from 'node:fs';
+const P = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(root, 'lib/figures/v2/poses/core_floor.json'))}, 'utf8')).cwiczenia; const teksty = J.wczytajTeksty();
+const c = (cw) => J.cechyRuchu(v2(), P[cw], { rodzina: 'core_floor', cwiczenie: cw, teksty, reguly: S.regulyDla('core_floor', cw, ${JSON.stringify(root)}) }).has('ledzwie_przy_podlodze');
+console.log(JSON.stringify([J.maWskazowkeLedzwie('Decline Oblique Crunch', teksty, ${JSON.stringify(root)}), 'Decline Oblique Crunch' in J.LOT, c('Decline Oblique Crunch'), c('Crunch')]));`;
+    expect(JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', kod], { cwd: root, encoding: 'utf8' }))).toEqual([true, true, false, true]);
   });
 });
