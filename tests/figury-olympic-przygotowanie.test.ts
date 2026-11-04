@@ -82,8 +82,8 @@ describe('olympic: styki (K7)', () => {
 
 describe('olympic: zakres stawów i fazy ruchu zgodne z tekstem kart (K8)', () => {
   /** u wyprostu (drugi ciąg): najmniejsze zgięcie kolana w pierwszych 70% ruchu, ale po starcie z kolanem już ugiętym. */
-  /* Clean and Jerk: wyprost zarzutu to klatka kluczowa (pierwsza połowa ruchu); między wyprostem a wejściem pod sztangę łokcie zginają się szybko, więc próbka siatki obok klatki kluczowej bywa już zgięta */
-  const uWyprost = (k: string) => (k === 'Clean and Jerk' ? P[k].klatki.map(f => f.u).filter(u => u <= 0.45) : US.filter(u => u <= 0.7)).reduce((b, u) => (A(k, u).knee < A(k, b).knee ? u : b), 0.35);
+  /* poprawka 3 (04.11.2026): wyprost to klatka kluczowa o najmniejszym zgięciu kolan, dla wszystkich ćwiczeń jak dla Clean and Jerk (próbka siatki tuż po klatce kluczowej bywa już zgięta w łokciu: 25,6–27,9° 0,002–0,005 ruchu dalej, a kolano o ułamek stopnia prostsze; test mierzył los siatki, nie zaprojektowany wyprost). Clean and Jerk: wyprost zarzutu to klatka kluczowa (pierwsza połowa ruchu); między wyprostem a wejściem pod sztangę łokcie zginają się szybko, więc próbka siatki obok klatki kluczowej bywa już zgięta */
+  const uWyprost = (k: string) => (k === 'Clean and Jerk' ? P[k].klatki.map(f => f.u).filter(u => u <= 0.45) : P[k].klatki.map(f => f.u).filter(u => u <= 0.7)).reduce((b, u) => (A(k, u).knee < A(k, b).knee ? u : b), 0.35);
   test.each([...ZARZUT, ...RWANIE, 'Clean and Jerk'])('%s: „mocno wyprostuj biodra i nogi” — kolano ≤ 12° i łokcie ≤ 25° (ręce proste) w wyproście', k => {
     const u = uWyprost(k); expect([k, A(k, u).knee <= 12]).toEqual([k, true]); expect([k, A(k, u).elbow <= 25]).toEqual([k, true]);
   });
@@ -146,7 +146,8 @@ function rackMiara(f: Frame, pt: number[]) {
  * stary stan 14–15 cm nad stawem to wysokość ust. Odstęp od tułowia ≤ 7 cm, nie ≤ 5: kontrakt rigu ogranicza łokieć do 149° (CONTRACT/ROM), a ręka (ramię 31 + przedramię z dłonią 33 cm) przy chwycie 25 cm od osi
  * (rozstaw jak w ciągu) daje zgięcie ≤ 149° dopiero od ok. 17,5 cm chwytu od stawu barkowego, czyli powierzchnia gryfu ok. 5,5–6,5 cm od kapsuły tułowia (stary stan: 7,5 cm przy 14–15 cm nad barkiem).
  */
-const RACK = { goraMin: 0, goraMax: 8, odstepMax: 7 };
+/* poprawka 3 (04.11.2026, decyzja koordynatora z recenzji r2): odstęp gryf–bark ≤ 2 cm (było 7), łokieć ≤ 149° (limit ogólny kontraktu, bez wyjątku). Model (ramię 31 + przedramię 33 cm) przy takim odstępie wymaga chwytu ok. 31 cm od osi i gryfu ok. 7,6 cm nad stawem. */
+const RACK = { goraMin: 0, goraMax: 8, odstepMax: 2, lokiecMax: 149 };
 const rackOk = (m: { gora: number; odstep: number }) => m.gora >= RACK.goraMin && m.gora <= RACK.goraMax && m.odstep <= RACK.odstepMax;
 const uRack: Record<string, number[]> = {
   ...Object.fromEntries(ZARZUT.map(k => [k, [1]])),
@@ -154,14 +155,23 @@ const uRack: Record<string, number[]> = {
 const pt = (f: Frame) => (f.info as unknown as { load: number[] }).load;
 
 describe('olympic R1 W1: gryf na przodzie barków, nie przy ustach', () => {
-  test.each(Object.keys(uRack))('%s: gryf 0…8 cm nad stawem barkowym i ≤ 7 cm od tułowia w pozycji „na barkach”', k => {
-    for (const u of uRack[k]) { const m = rackMiara(frame(k, u), pt(frame(k, u))); expect([k, u, Math.round(m.gora * 10) / 10, rackOk(m)]).toEqual([k, u, Math.round(m.gora * 10) / 10, true]); }
+  test.each(Object.keys(uRack))('%s: gryf 0…8 cm nad stawem barkowym i ≤ 2 cm od tułowia w pozycji „na barkach”, łokieć ≤ 149°', k => {
+    for (const u of uRack[k]) { expect([k, u, A(k, u).elbow <= RACK.lokiecMax]).toEqual([k, u, true]); const m = rackMiara(frame(k, u), pt(frame(k, u))); expect([k, u, Math.round(m.gora * 10) / 10, rackOk(m)]).toEqual([k, u, Math.round(m.gora * 10) / 10, true]); }
   });
   test('miara potrafi paść: stary stan z R1 (gryf 15,4 cm nad barkiem i 10,4 cm przed osią = wysokość ust) nie jest „na barkach”', () => {
     const f = frame('Power Clean', 1); const o = osTulowia(f); const stary = [0, 1, 2].map(i => f.sk.shoulderC[i] + o.up[i] * 15.4 + o.front[i] * 10.4);
     const m = rackMiara(f, stary); expect(m.gora).toBeGreaterThan(RACK.goraMax); expect(rackOk(m)).toBe(false);
   });
-  test('miara potrafi paść: gryf 12 cm przed osią tułowia (daleko od ciała) przekracza 7 cm odstępu', () => {
+  test('miara potrafi paść na danych: gryf odsunięty od barków o 5 cm przed tułów (stan z R2: 6,3 cm odstępu) przekracza 2 cm odstępu', () => {
+    for (const k of ['Power Clean', 'Jerk Dip Squat']) { const f = frame(k, k === 'Power Clean' ? 1 : 0); const o = osTulowia(f); const odsuniety = pt(f).map((x, i) => x + o.front[i] * 5); expect([k, rackOk(rackMiara(f, pt(f)))]).toEqual([k, true]); expect([k, rackOk(rackMiara(f, odsuniety))]).toEqual([k, false]); }
+  });
+  test('łokcie w zarzucie są w przód (≥ 15 cm przed stawem barkowym, nie za nim) i nie niżej niż 15 cm pod barkiem; w podrzucie niżej i szerzej niż w zarzucie', () => {
+    const el = (k: string, u: number) => { const f = frame(k, u); const o = osTulowia(f); const d = sub(f.sk.arms.R.elbow as number[], f.sk.shoulderC as number[]); return { przod: dot(d, o.front), gora: dot(d, o.up), bok: Math.abs(d[2]) }; };
+    for (const k of ZARZUT) { const e = el(k, 1); expect([k, e.przod >= 15, e.gora >= -15]).toEqual([k, true, true]); }
+    for (const k of ['Power Jerk', 'Split Jerk', 'Squat Jerk', 'Jerk Dip Squat']) { const e = el(k, 0); const z = el('Power Clean', 1); expect([k, e.gora < z.gora, e.bok > z.bok]).toEqual([k, true, true]); }
+    const zly = el('Power Clean', 1); expect(zly.przod - 30 >= 15).toBe(false); /* łokieć za barkiem (stan z R2: −5 cm) łamie próg na danych */
+  });
+  test('miara potrafi paść: gryf 12 cm przed osią tułowia (daleko od ciała) przekracza 2 cm odstępu', () => {
     const f = frame('Power Clean', 1); const o = osTulowia(f); const daleko = [0, 1, 2].map(i => f.sk.shoulderC[i] + o.up[i] * 4 + o.front[i] * 20);
     expect(rackOk(rackMiara(f, daleko))).toBe(false);
   });
@@ -170,7 +180,8 @@ describe('olympic R1 W1: gryf na przodzie barków, nie przy ustach', () => {
 /* Pierwszy ciąg (R1 W2): „barki nad sztangą” (karta rwania), „sztanga blisko ciała”, stały kąt pleców. Dotyczy startu z podłogi i z bloków: sztanga poniżej 70 cm i ręce proste (łokieć ≤ 25°). */
 const PIERWSZY = ['Power Clean', 'Clean', 'Split Clean', 'Block Clean', 'Block Power Clean', 'Barbell Snatch', 'Power Snatch', 'Split Snatch', 'Block Snatch', 'Block Power Snatch', 'Clean Pull', 'Snatch Pull', 'Clean and Jerk'];
 const pochylenie = (f: Frame) => { const o = osTulowia(f); return Math.atan2(o.up[0], o.up[1]) * 180 / Math.PI; };
-function pierwszyCiag(k: string) { return US.filter(u => load(k, u)[1] <= 70 && A(k, u).elbow <= 25); }
+const USD = Array.from({ length: 2 * N + 1 }, (_, i) => i / (2 * N)); /* gęstsza siatka: pierwszy ciąg zajmuje kilka % ruchu, a po poprawce 3 (dłuższa droga rackiem) jeszcze mniej */
+function pierwszyCiag(k: string) { return USD.filter(u => load(k, u)[1] <= 70 && A(k, u).elbow <= 25); }
 /** Barki względem gryfu (cm): dodatnie = barki przed gryfem. */
 const barkiPrzedGryfem = (k: string, u: number) => frame(k, u).sk.shoulderC[0] - load(k, u)[0];
 describe('olympic R1 W2: pierwszy ciąg — barki nad gryfem, gryf przy nogach, stały kąt pleców', () => {
@@ -227,8 +238,11 @@ const odPodlogi = (k: string, u: number) => { const L = frame(k, u).sk.legs; ret
 const BEZ_LOTU = ['Jerk Dip Squat', 'Snatch Balance'];
 describe('olympic R1 Ś2: stopy w kontakcie z podłogą w podporze; lot tylko krótki, niski i po wybiciu', () => {
   test.each(BEZ_LOTU)('%s: stopy przy podłodze (≤ 1,5 cm) przez cały ruch', k => { for (const u of US) expect([k, u, odPodlogi(k, u) <= 1.5]).toEqual([k, u, true]); });
-  test.each(['Clean Pull', 'Snatch Pull', 'Clean Shrug', 'Snatch Shrug'])('%s: stopy ≤ 3 cm nad podłogą (krótki oderwany wyprost jak w zarzucie, R1 nie zgłosił; koniec ruchu na palcach ≤ 1 cm)', k => { for (const u of US) expect([k, u, odPodlogi(k, u) <= 3]).toEqual([k, u, true]); expect([k, odPodlogi(k, 1) <= 1]).toEqual([k, true]); });
-  test('Muscle Snatch: bez lotu — stopy ≤ 3 cm nad podłogą (stan z R1: do 5,3 cm przez połowę ruchu)', () => { for (const u of US) expect([u, odPodlogi('Muscle Snatch', u) <= 3]).toEqual([u, true]); });
+  test.each(['Clean Pull', 'Snatch Pull', 'Clean Shrug', 'Snatch Shrug'])('%s: stopy na podłodze (≤ 0,5 cm; poprawka 3: bez lewitacji w ćwiczeniu bez lotu); koniec ruchu na palcach ≤ 1 cm', k => { for (const u of US) expect([k, u, odPodlogi(k, u) <= 0.5]).toEqual([k, u, true]); expect([k, odPodlogi(k, 1) <= 1]).toEqual([k, true]); });
+  test('Muscle Snatch: bez lotu — stopy na podłodze (≤ 0,5 cm; stan z R1: do 5,3 cm, z R2: 2,5 cm)', () => { for (const u of US) expect([u, odPodlogi('Muscle Snatch', u) <= 0.5]).toEqual([u, true]); });
+  test('miara potrafi paść na danych: stopy uniesione o 2,5 cm (stan z R2) łamią próg 0,5 cm', () => {
+    for (const k of ['Clean Pull', 'Clean Shrug', 'Muscle Snatch']) { const max = Math.max(...US.map(u => odPodlogi(k, u))); expect([k, max <= 0.5]).toEqual([k, true]); expect([k, max + 2.5 <= 0.5]).toEqual([k, false]); }
+  });
   test.each([...PODRZUT, 'Clean and Jerk'])('%s: koniec wybicia na palcach w styku z podłogą (≤ 1,5 cm), potem lot ≤ 6 cm w jednym oknie po wybiciu', k => {
     const uE = k === 'Clean and Jerk' ? P[k].klatki.map(f => f.u).filter(u => u >= 0.5 && u <= 0.8).reduce((b, u) => (A(k, u).knee < A(k, b).knee ? u : b), 0.55) : uWybicia(k); /* C&J: wybicie podrzutu to klatka kluczowa w drugiej połowie */
     expect([k, odPodlogi(k, uE) <= 1.5]).toEqual([k, true]);

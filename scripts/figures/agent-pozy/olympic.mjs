@@ -64,7 +64,7 @@ function ciag(o) {
   const z = o.z ?? 25; const sn = o.chwyt === 'szeroki'; const xb = 22; const zz = sn ? 40 : z;
   const bar = (y, x = xb) => [x, y]; const W = [];
   const PE = sn ? PODEXT : PODEXT_ZARZUT;
-  const ext = (extra = {}) => wp({ k: 8, al: 8, pod: PE, A: stopa(PE, 2.5, 1), bar: bar(sn ? 96 : 91, 18.5), z: zz, ...extra }); /* wspięcie: palce na podłodze (recenzja p4a: 2,5 cm nad podłogą to lewitacja) */
+  const ext = (extra = {}) => wp({ k: 8, al: 8, pod: PE, A: stopa(PE, o.extDy ?? 0.1, 1), bar: bar((sn ? 96 : 91) - 2.1, 18.5), z: zz, ...extra }); /* wspięcie: palce na podłodze (recenzja p4a i r2: lewitacja; poprawka 3: 0,4 cm zamiast 2,5) */
   /* R1 W2: pierwszy ciąg — barki nad albo tuż przed gryfem (karta rwania: „barki nad sztangą”), stały kąt pleców (start ≈ 51°, przy kolanach ≈ 45°), gryf przy nogach (≈ 1,5 cm od kolana); pozycje dobrane skanem (kostka → biodro → pochylenie z zasięgu ramienia) */
   const kolana = wp({ al: 13, k: 51, bar: bar(52, 18.3), z: zz });
   if (o.koniec === 'wzrus') { /* wzruszenie (źródła: tułów zasadniczo pionowy, ruch w kolanach, gryf bardzo wysoko na udach): stanie → krótkie ugięcie kolan → wyprost → barki w górę */
@@ -80,7 +80,7 @@ function ciag(o) {
   }
   const e = ext(); W.push(e);
   if (o.koniec === 'wyprost' || o.koniec === 'wzrus') { /* ciąg i wzruszenie kończą się pełnym wyprostem na palcach i uniesionymi barkami przy prostych rękach (sztanga ok. 5 cm wyżej, bez zginania łokci) */
-    W.push(ext({ pitch: e.pitch, shrug: SHRUG, A: stopa(PE, 0.4, 1), bar: bar((sn ? 96 : 91) - 2.1, 18.5) })); /* wzruszenie na końcu: palce na podłodze (≤ 1 cm) */
+    W.push(ext({ pitch: e.pitch, shrug: SHRUG, A: stopa(PE, 0.1, 1), bar: bar((sn ? 96 : 91) - 2.1, 18.5) })); /* wzruszenie na końcu: palce na podłodze (≤ 1 cm) */
     for (const w of W) w.shrug = w.shrug ?? 0; /* pole uniesienieBarkow w każdej klatce (brak pola = wartość z najbliższej klatki, nie zero) */
   }
   return W;
@@ -88,13 +88,14 @@ function ciag(o) {
 
 /** Przechwyt na barkach (zarzut): sztanga w układzie tułowia tuż przy barkach, łokcie do przodu; głębokość: power (ćwierć przysiadu), pelny (głęboki), split (wykrok). */
 /* R1 W1: gryf na przodzie barków (karta: „przyjmij ją na przód barków”): ok. 4,5 cm nad stawem barkowym i 10,4 cm przed osią tułowia = powierzchnia klatki (promień kapsuły tułowia 9,5 + promień gryfu 1,6), czyli bez odstępu od ciała; wcześniej 15,4 cm nad barkiem = przy ustach */
-const RACK_REL = [4.5, 16.8];
+const RACK_REL = [7.6, 10.3];
 /* Łokieć w rigu leży na okręgu wokół osi bark–chwyt (dla ręki 31 + 33 cm i chwytu 17,5 cm od barku ok. 30 cm od tej osi): pole w bok = łokieć na wysokości barku (reguła odbior_na_barkach: ≤ 15 cm pod barkiem), poza głową; w widoku z boku łokieć nakłada się na bark. */
-const RACK_POLE = [0, 0.1, 1];
+const RACK_POLE = [0.75, -0.3, -0.2]; /* zarzut: łokcie wysoko i w przód (poprawka 3, decyzja koordynatora 04.11.2026 pkt 2) */
+const RACK_POLE_PODRZUT = [0.45, -0.35, 0.8]; /* podrzut: łokcie niżej i bardziej na boki niż w zarzucie (pkt 3) */
 const SPLIT = (A0 = 30, k = 85, al = 25) => { const hip = biodroZKostki([A0, 7], -90 - al + k, k); return { A: [A0, 7], al, k, AL: [hip[0] - 28, yP(-60) + 0.5], podL: -62 }; };
 function lapRack(gl, o = {}) {
   const d = { power: { al: 22, k: 78, pitch: 16, A: [0, 7] }, pelny: { al: 34, k: 125, pitch: 20, A: [0, 7] }, split: { ...SPLIT(), pitch: 10 } }[gl];
-  return wp({ ...d, w: 0, rel: RACK_REL, bar: [26, 120], z: 25, pole: RACK_POLE, zs: 16, ...o });
+  return wp({ ...d, w: 0, rel: RACK_REL, bar: [26, 120], z: 31.5, pole: RACK_POLE, zs: 16, ...o });
 }
 /** Przechwyt nad głową (rwanie, podrzut): ręce proste nad głową tuż przed linią tułowia (łokcie ≤ 20°, bark < 170°). */
 function lapNad(gl, z, o = {}) {
@@ -102,20 +103,20 @@ function lapNad(gl, z, o = {}) {
   const wide = z > 30; return wp({ ...d, w: 0, rel: wide ? [59.2, 6.5] : [62.9, 7], bar: [0, 150], z, pole: [0, -1, 0.3], zs: gl === 'pelny' ? 22 : 16, ...o });
 }
 /** Wejście pod sztangę (zarzut), recenzja p4a: po wyproście kolana od razu się uginają (stopy krótko odrywają się i lądują szerzej), a sztanga tylko dojeżdża do barków — nie wznosi się w staniu na palcach. */
-function podSztanga(W, kon) { /* kon = przechwyt */
-  W.push(wp({ al: 14, k: 26, pod: -22, A: stopa(-22, 0.8, 1), w: 0.9, bar: [14, 102], rel: [12, 17], pitch: 4, z: 24, pole: [0.2, -0.9, 0.3], zs: 17 }));
-  W.push(wp({ al: 22, k: 44, pod: 0, A: [0, 7], w: 0.95, bar: [11.6, 108], rel: [14.5, 12.5], pitch: 3, z: 23, pole: [0.7, -0.3, 0.9], zs: kon.zbR })); /* R6: rozstaw stóp po lądowaniu = rozstaw w przyjęciu (stopy stoją, nie suną się na boki) */
+function podSztanga(W, kon, rel1 = [12, 17]) { /* kon = przechwyt; rel1 = chwyt w pierwszym kroku wejścia pod sztangę */
+  W.push(wp({ al: 14, k: 26, pod: -22, A: stopa(-22, 0.8, 1), w: 0.9, bar: [14, 102], rel: rel1, pitch: 4, z: 24, pole: [0.2, -0.9, 0.3], zs: 17 }));
+  W.push(wp({ al: 22, k: 44, pod: 0, A: [0, 7], w: 0.95, bar: [11.6, 108], rel: [11, 12.2], pitch: 3, z: 25, pole: [0.7, -0.3, 0.9], zs: kon.zbR })); /* R6: rozstaw stóp po lądowaniu = rozstaw w przyjęciu (stopy stoją, nie suną się na boki) */
   W.push(kon);
 }
 /** Wejście pod sztangę (rwanie), recenzja p4a: ręce szeroko, łokcie na boki, ciało schodzi pod sztangę, która dojeżdża nad głowę dopiero w przyjęciu. */
 function podSztangeNad(W, kon, z) {
-  W.push(wp({ al: 14, k: 26, pod: -22, A: stopa(-22, 0.8, 1), w: 0.9, bar: [15, 108], rel: [20, 22], pitch: 4, z, pole: [0.2, -0.3, 1], zs: 17 }));
+  W.push(wp({ al: 14, k: 26, pod: -22, A: stopa(-22, 0.8, 1), w: 0.9, bar: [15, 106], rel: [20, 22], pitch: 4, z, pole: [0.2, -0.3, 1], zs: 17 }));
   W.push(wp({ al: 22, k: 44, pod: 0, A: [0, 7], w: 0.5, bar: [14, 130], rel: [36, 16], pitch: 4, z, pole: [0, -0.3, 1], zs: kon.zbR }));
   W.push(kon);
 }
 /** Wejście pod sztangę w „muscle snatch” (bez ponownego ugięcia nóg; bez zmian od 1.1). */
 function podSztangeNadMuscle(W, kon, z) {
-  W.push(wp({ al: 4, k: 14, pod: -30, A: stopa(-30, 0.9, 1), w: 0.5, bar: [15, 125], rel: [26, 22], pitch: 4, z, pole: [0.2, -0.3, 1], zs: 16 }));
+  W.push(wp({ al: 4, k: 14, pod: -30, A: stopa(-30, 0.1, 0.5), w: 0.5, bar: [15, 125], rel: [26, 22], pitch: 4, z, pole: [0.2, -0.3, 1], zs: 16 }));
   W.push(wp({ al: 13, k: 42, pod: 0, A: [0, 7], w: 0.15, bar: [14, 150], rel: [48, 16], pitch: 4, z, pole: [0, -0.3, 1], zs: kon.zbR }));
   W.push(kon);
 }
@@ -135,26 +136,26 @@ const sprzetDla = (start) => SPRZ(...(start === 'bloki' ? [BLOKI()] : []));
 const wLocieZ = (W, gl, nad) => {
   if (gl !== 'split') return;
   const P2 = nad ? { ax: 4, ay: 10, bx: 29, lx: 34, ly: 122, lk: 62 } : { ax: 10, ay: 12, bx: 23, lx: 38, ly: 114, lk: 68 }; /* parametry dobrane przeszukaniem siatki pod walidator (geometria, zakres łokcia) */
-  const w = W[W.length - 2]; w.A = [P2.ax, yP(-10) + LOT_PRZOD]; w.pod = -10; w.AL = [-9, yP(-45) + 4]; w.podL = -45; przelicz(w); if (w.ra.w > 0.5) { w.ra.g = [P2.bx, w.ra.g[1]]; w.ra.pole = [0.7, -0.3, 1.1]; }
-  const kon = W[W.length - 1]; const l = wp({ ...SPLIT(30, P2.lk, 22), pitch: 4, w: 0.7, bar: [P2.lx, P2.ly], rel: nad ? [36, 20] : [14.5, 12.5], z: kon.ra.z, pole: kon.ra.pole, zs: 16 }); /* lądowanie: stopy na podłodze, sztanga dojeżdża */
+  const w = W[W.length - 2]; w.A = [P2.ax, yP(-10) + LOT_PRZOD]; w.pod = -10; w.AL = [-9, yP(-45) + 3]; w.podL = -45; przelicz(w); if (w.ra.w > 0.5) { w.ra.g = [P2.bx, w.ra.g[1]]; w.ra.pole = [0.7, -0.3, 1.1]; }
+  const kon = W[W.length - 1]; const l = wp({ ...SPLIT(30, P2.lk, 22), pitch: 4, w: 0.7, bar: [P2.lx, P2.ly], rel: nad ? [36, 20] : [14.5, 12.5], z: kon.ra.z, pole: nad ? kon.ra.pole : [0.7, -0.3, 0.9], zs: 16 }); /* lądowanie: stopy na podłodze, sztanga dojeżdża */
   /* R6: przednia stopa leci nad podłogą (palce ≥ LOT_PRZOD cm) i dopiero na końcu dotyka podłogi: klatka pośrednia w połowie drogi, by ostatni odcinek ślizgu (y ≤ 0,3 cm) był krótki */
   const m = mix(w, l, 0.5); m.A = [m.A[0], yP(m.pod) + LOT_PRZOD * 0.8]; przelicz(m);
   W.splice(W.length - 1, 0, m, l);
 };
-const LOT_PRZOD = 4; /* wysokość palców przedniej stopy w locie nad podłogą (cm) */
+const LOT_PRZOD = 3; /* wysokość palców przedniej stopy w locie nad podłogą (cm) */
 function zarzut(cw, o) { const W = ciag({ ...o, koniec: 'rack' }); podSztanga(W, lapRack(o.glebokosc)); wLocieZ(W, o.glebokosc, false); return gotowe(cw, sprzetDla(o.start), W); }
 function rwanie(cw, o) { const W = ciag({ ...o, chwyt: 'szeroki', koniec: 'rack' }); podSztangeNad(W, lapNad(o.glebokosc, 40), 40); wLocieZ(W, o.glebokosc, true); return gotowe(cw, sprzetDla(o.start), W); }
 function ciagi(cw, o) { return gotowe(cw, SPRZ(), ciag({ ...o, start: 'podloga', koniec: 'wyprost' })); }
 function wzruszenie(cw, o) { const W = ciag({ ...o, start: 'zawis', koniec: 'wzrus' }); return gotowe(cw, SPRZ(), W); }
 
 /** Podrzut / dip: ze stojaka (sztanga na barkach), krótkie ugięcie nóg, wyprost na palcach i przechwyt nad głową (power: ćwierć przysiadu, split: wykrok, squat: głęboki przysiad). */
-const RACK_STOJ = (o = {}) => wp({ al: 3, k: 12, pitch: 2, w: 0, rel: RACK_REL, bar: [0, 0], z: 25, pole: RACK_POLE, zs: 14, ...o });
+const RACK_STOJ = (o = {}) => wp({ al: 3, k: 12, pitch: 2, w: 0, rel: RACK_REL, bar: [0, 0], z: 31.5, pole: RACK_POLE_PODRZUT, zs: 14, ...o });
 /** R1 W3: kąt goleni al, przy którym biodro stoi w x0 (kostka A, zgięcie kolana k) — ugięcie i wybicie pionowo w dół i w górę (kolana jadą w przód, miednica i gryf nie cofają się); x biodra rośnie z al, bisekcja. */
 function alPion(k, A, x0) { let lo = -10, hi = 50; for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (biodroZKostki(A, -90 - m + k, k)[0] < x0) lo = m; else hi = m; } return (lo + hi) / 2; }
 const X0 = biodroZKostki([0, 7], -90 - 3 + 12, 12)[0]; /* biodro w staniu ze sztangą na barkach: pion odniesienia ugięcia i wybicia */
 const DIP = (k = 40) => RACK_STOJ({ al: alPion(k, [0, 7], X0), k, pitch: 2 });
 /** Koniec wybicia: wyprost na palcach w styku z podłogą (≤ 1 cm; R1 Ś2), biodro w pionie nad miejscem startu (alPion), sztanga ok. 30 cm nad barkami nad klatką (gryf nie jedzie w przód). */
-const WYBICIE = (o = {}) => { const A = o.A ?? stopa(-30, 0.6, 1); return RACK_STOJ({ k: 8, al: alPion(8, A, X0), pod: -30, A, pitch: 2, rel: [30, RACK_REL[1]], ...o }); };
+const WYBICIE = (o = {}) => { const A = o.A ?? stopa(-30, 0.6, 1); return RACK_STOJ({ k: 8, al: alPion(8, A, X0), pod: -30, A, pitch: 2, rel: [28, RACK_REL[1] + 2], ...o }); };
 /** Lot po wybiciu jako OSOBNA klatka (R1 Ś2): stopy kilka cm nad podłogą między wyprostem na palcach a lądowaniem; reszta parametrów w połowie drogi wyprost → przechwyt. */
 function lotPodrzutu(W, gl) {
   const l = mix(W[W.length - 2], W[W.length - 1], 0.5); const h = yP(-8) + LOT_CM; l.A = [l.A[0], h]; l.pod = -8; l.AL = [l.AL[0], gl === 'split' ? yP(-45) + LOT_CM : h]; l.podL = gl === 'split' ? -45 : -8; przelicz(l);
@@ -169,11 +170,11 @@ function podrzut(cw, gl) {
  *  przednia stopa wsuwa się do przodu w pełny wykrok i sztanga zostaje przyjęta nad głową (u = 1 = przechwyt jak w Split Jerk). Stopy: prawa przód (A), lewa tył (AL). */
 function jerkBalance(cw) {
   const h0 = biodroZKostki([22, 7], -90 - 4 + 14, 14); const xr = h0[0] - 16; const AL = [xr, yP(-62) + 0.5]; /* R1 W4: tylna stopa stoi w miejscu na palcach przez cały ruch, rusza się tylko przednia */
-  const kr = (A0, k, al, o = {}) => wp({ A: [A0, 7], al, k, AL, podL: -62, pitch: 2, w: 0, rel: RACK_REL, bar: [0, 0], z: 25, pole: RACK_POLE, zs: 16, kontakt: false, ...o });
+  const kr = (A0, k, al, o = {}) => wp({ A: [A0, 7], al, k, AL, podL: -62, pitch: 2, w: 0, rel: RACK_REL, bar: [0, 0], z: 31.5, pole: RACK_POLE, zs: 16, kontakt: false, ...o });
   const x0 = biodroZKostki([22, 7], -90 - 3 + 12, 12)[0];
   const pion = (k, A) => alPion(k, A, x0);
   const A1 = [26.5, yP(-30) + 0.9]; /* kostka +4,5 cm: przy wspięciu palce zostają w miejscu (pięta unosi się, kostka jedzie w przód), więc przednia stopa nie cofa się */
-  const W = [kr(22, 14, 4), kr(22, 38, pion(38, [22, 7])), kr(22, 8, pion(8, A1), { A: A1, pod: -30, rel: [30, RACK_REL[1]] })];
+  const W = [kr(22, 14, 4), kr(22, 38, pion(38, [22, 7])), kr(22, 8, pion(8, A1), { A: A1, pod: -30, rel: [30, RACK_REL[1] + 4] })];
   W.push(lapNad('split', 25, { AL, podL: -62, A: [32.5, 7], kontakt: false })); /* pełne nożyce: przednia stopa ≥ 10 cm dalej niż na starcie */
   const l = mix(W[W.length - 2], W[W.length - 1], 0.5); l.A = [l.A[0], yP(-8) + 1.5]; l.pod = -8; l.AL = AL; l.podL = -62; przelicz(l); W.splice(W.length - 1, 0, l); /* przednia stopa tylko się wsuwa w przód (ślizg nisko nad podłogą) */
   return gotowe(cw, SPRZ(RACK()), W);
@@ -196,9 +197,9 @@ function muscleSnatch(cw) {
   return gotowe(cw, SPRZ(), W);
 }
 function cleanJerk(cw) {
-  const W = ciag({ start: 'podloga', koniec: 'rack' }); podSztanga(W, lapRack('power')); W.splice(6, 1); /* limit 12 klatek schematu: bez drugiego kroku wejścia pod sztangę (indeks 6) */
+  const W = ciag({ start: 'podloga', koniec: 'rack', extDy: 0.9 }); /* poprawka 3: wspięcie 0,9 cm nad stykiem (cały ciąg w 16% ruchu: interpolacja pięty przy 0,4 cm podcinała palce pod podłogę) */ podSztanga(W, lapRack("power")); W.splice(5, 1); W[5].ra.pole = [0.75, -0.3, -0.2]; W[5].ra.rel = [9.5, 11.4]; W[5].ra.g = [13.4, W[5].ra.g[1]]; /* C&J (bez pierwszego kroku wejścia): drugi krok bliżej przyjęcia, łokcie jak w zarzucie i gryf 1,8 cm dalej od tułowia: interpolacja do przyjęcia nie przecina ramienia ani tułowia (poprawka 3) */
   const zs16 = (w) => { w.zbR = 16; w.zbL = 16; return w; }; /* R6: rozstaw stóp jak w przyjęciu zarzutu (16 cm) — stopy stoją, nie suną się na boki */
-  W.push(zs16(RACK_STOJ({ al: 4, k: 12, pitch: 2 }))); /* po zarzucie: wstanie ze sztangą na barkach (recenzja p4a: podrzut nie rusza wprost z przysiadu) */
+  W.push(zs16(RACK_STOJ({ al: 4, k: 12, pitch: 2, pole: RACK_POLE }))); /* po zarzucie: wstanie ze sztangą na barkach (recenzja p4a: podrzut nie rusza wprost z przysiadu) */
   W.push(zs16(DIP(38)), zs16(WYBICIE()), lapNad('split', 25)); lotPodrzutu(W, 'split');
   return gotowe(cw, SPRZ(), W);
 }
