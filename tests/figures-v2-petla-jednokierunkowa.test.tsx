@@ -80,7 +80,7 @@ describe('kontrakt: pole petla = jednokierunkowa (schemat, walidator, klatki)', 
 
 describe('dane: 33 ćwiczenia w trybie jednokierunkowym', () => {
   test('dokładnie 27 z plyo i 6 z sled_throw ma petla = jednokierunkowa; Sled Push i Sled Drag zostają cyklicznymi; reszta plików bez zmian', () => {
-    const z: string[] = []; for (const f of Object.keys(POZY)) for (const [k, d] of Object.entries(POZY[f].cwiczenia)) if (d.petla === 'jednokierunkowa') z.push(`${f}/${k}`);
+    const z: string[] = []; for (const f of Object.keys(POZY)) for (const [k, d] of Object.entries(POZY[f].cwiczenia)) if (d.petla === 'jednokierunkowa' && !(f === 'delt_raise' && k === 'Alternating Deltoid Raise' /* r2-W1 04.11.2026: dwa powtórzenia w jednej pętli, osobny test niżej */)) z.push(`${f}/${k}`);
     expect(z.sort()).toEqual(JEDNOKIERUNKOWE.map(([f, k]) => `${f}/${k}`).sort()); expect(z.length).toBe(33); expect(Object.keys(POZY.plyo.cwiczenia).length).toBe(27);
     expect(dane('sled_throw', 'Sled Push').petla).toBe('cykl_lustro'); expect(dane('sled_throw', 'Sled Drag (Harness)').petla).toBe('cykl_lustro');
     expect(Object.keys(POZY.sled_throw.cwiczenia).sort()).toEqual([...RZUTY, 'Sled Push', 'Sled Drag (Harness)'].sort());
@@ -109,12 +109,13 @@ describe('silnik: figure.ts — tryb pętli, fazy i prezentacja', () => {
 });
 
 describe('niezmienniki: liczba ćwiczeń z polem petla w całym katalogu póz', () => {
-  test('45 ćwiczeń z polem: 10 cykl_lustro (marsz) + 2 cykl_lustro naprzemienne (delt_raise, 04.11.2026) + 33 jednokierunkowa; żadne inne', () => {
+  test('45 ćwiczeń z polem: 10 cykl_lustro (marsz) + 1 cykl_lustro naprzemienne (Car Drivers) + 34 jednokierunkowa (33 skoki i rzuty + Alternating Deltoid Raise, r2-W1 04.11.2026); żadne inne', () => {
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); const c: Record<string, number> = {}; const lustroDelt: string[] = [];
     for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const [cw, d] of Object.entries(j.cwiczenia)) if (d.petla !== undefined) { c[d.petla] = (c[d.petla] ?? 0) + 1; if (d.petla === 'cykl_lustro' && j.rodzina === 'delt_raise') lustroDelt.push(cw); } }
     /* Zmiana 04.11.2026 (R1 delt_raise Ś-2, decyzja koordynatora): cykl_lustro 10 → 12, dwa nowe to naprzemienne ćwiczenia delt_raise (jawna lista poniżej), nie marsz. */
-    expect(lustroDelt.sort()).toEqual(['Alternating Deltoid Raise', 'Car Drivers']);
-    expect(c).toEqual({ cykl_lustro: 10 + 2, jednokierunkowa: 33 });
+    expect(lustroDelt.sort()).toEqual(['Car Drivers']);
+    /* Zmiana 04.11.2026 (r2-W1): Alternating Deltoid Raise przeszło z cykl_lustro na jednokierunkową (dwa powtórzenia: przód, bok): cykl_lustro 12 → 11, jednokierunkowa 33 → 34; suma 45 bez zmian. */
+    expect(c).toEqual({ cykl_lustro: 10 + 1, jednokierunkowa: 33 + 1 });
   });
 });
 

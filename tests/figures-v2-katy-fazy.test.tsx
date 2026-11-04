@@ -10,7 +10,7 @@ import { render, screen, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import {
   FAMILY, DATA_UI, MEASURE_UNIT, MIN_MEASURED_ROM, SIDES, assignAll, figureSpec, jointAngles, keyframeFrame, loopLength, measuredAngle, measuredJoint, angleLineShown,
-  phaseNames, phasesFor, solveSkeleton, TEMPO, walkPhases, type FamilyId, type MeasuredJoint, type Side, type Skeleton, type V3, type PoseData,
+  oneWayPhases, phaseNames, phasesFor, solveSkeleton, TEMPO, walkPhases, type FamilyId, type MeasuredJoint, type Side, type Skeleton, type V3, type PoseData,
 } from '@/lib/figures/v2';
 import { measureLine } from '@/lib/figures/v2/ui';
 import { EN } from '@/lib/i18n.en';
@@ -96,7 +96,7 @@ describe('dane: 64 ćwiczenia pięciu rodzin (logika)', () => {
     const tab: Record<string, Record<string, number>> = {};
     for (const [f, k] of KEYS) { const j = measuredJoint(spec(k)); tab[f] = tab[f] ?? {}; tab[f][j] = (tab[f][j] ?? 0) + 1; }
     expect(tab).toEqual({
-      delt_raise: { shElev: 26, shAbd: 5 }, shrug: { shrug: 7, protract: 1 }, rotator_cuff: { shRot: 5, shAbd: 2 }, forearm: { wristFlex: 8, elbow: 1, forearmRoll: 2 }, carry: { knee: 7 },
+      delt_raise: { shElev: 25, shAbd: 6 } /* r2-W1 04.11.2026: Alternating Deltoid Raise (dwa powtórzenia, przód i bok) — największy zakres ma odwiedzenie barku (przód 0° → bok 85°), więc 26/5 → 25/6 */, shrug: { shrug: 7, protract: 1 }, rotator_cuff: { shRot: 5, shAbd: 2 }, forearm: { wristFlex: 8, elbow: 1, forearmRoll: 2 }, carry: { knee: 7 },
     });
   });
   test('ćwiczenie jednoręczne: mierzona jest ręka, która pracuje (największy zakres), nie średnia z ręką nieruchomą', () => {
@@ -121,7 +121,10 @@ describe('dane: 64 ćwiczenia pięciu rodzin (logika)', () => {
 
 describe('nazwy faz i licznik (logika)', () => {
   test('naprzemienne cykl_lustro w delt_raise (Alternating Deltoid Raise, Car Drivers) mają fazy Unoszenie/Opuszczanie, nie „Marsz” (wada naprawiona w FW3)', () => {
-    for (const k of ['Alternating Deltoid Raise', 'Car Drivers']) { expect(KEYS.some(([f, kk]) => f === 'delt_raise' && kk === k)).toBe(true); const n = phasesFor(spec(k)).map(p => p.name); expect([k, n.includes('Marsz')]).toEqual([k, false]); expect([k, n]).toEqual([k, ['Unoszenie', 'Pauza', 'Opuszczanie', 'Pauza']]); }
+    for (const k of ['Alternating Deltoid Raise', 'Car Drivers']) { expect(KEYS.some(([f, kk]) => f === 'delt_raise' && kk === k)).toBe(true); const n = phasesFor(spec(k)).map(p => p.name); expect([k, n.includes('Marsz')]).toEqual([k, false]);
+      /* r2-W1 04.11.2026: Alternating Deltoid Raise to pętla jednokierunkowa z dwoma powtórzeniami (przód, bok) — jedna faza „Unoszenie” bez sekund (jak skok i rzut); Car Drivers nadal Unoszenie/Pauza/Opuszczanie/Pauza */
+      expect([k, n]).toEqual([k, k === 'Alternating Deltoid Raise' ? ['Unoszenie'] : ['Unoszenie', 'Pauza', 'Opuszczanie', 'Pauza']]); }
+    expect(phasesFor(spec('Alternating Deltoid Raise'))).toEqual(oneWayPhases('Unoszenie'));
   });
   test('nazwy faz per ćwiczenie: wznosy i szrugsy Unoszenie/Opuszczanie, rotacje Obrót/Powrót, przedramię Uginanie/Opuszczanie; wyjątki: rozsuwanie taśmy, ściąganie łopatek, nawracanie', () => {
     const exc: Record<string, [string, string]> = {
@@ -132,7 +135,7 @@ describe('nazwy faz i licznik (logika)', () => {
     for (const [f, k] of KEYS) { const n = phaseNames(spec(k)); expect([k, [n.first, n.second]]).toEqual([k, exc[k] ?? fam[f]]); }
   });
   test('ruch z opuszczaniem: pętla Nazwa 1 s · Pauza · Nazwa 2 s · Pauza (tempo ilustracyjne jak w podciąganiu); noszenie: jedna faza „Marsz” bez sekund i bez pauz', () => {
-    for (const [f, k] of KEYS.filter(([f, k]) => f !== 'carry')) { const n = phaseNames(spec(k)); expect([k, phasesFor(spec(k)).map(p => [p.name, p.ms])]).toEqual([k, [[n.first, 1000], ['Pauza', 500], [n.second, 2000], ['Pauza', 500]]]); expect([f, spec(k).lowerFirst]).toEqual([f, false]); }
+    for (const [f, k] of KEYS.filter(([f, k]) => f !== 'carry' && k !== 'Alternating Deltoid Raise' /* jednokierunkowa: jedna faza, zob. test wyżej */)) { const n = phaseNames(spec(k)); expect([k, phasesFor(spec(k)).map(p => [p.name, p.ms])]).toEqual([k, [[n.first, 1000], ['Pauza', 500], [n.second, 2000], ['Pauza', 500]]]); expect([f, spec(k).lowerFirst]).toEqual([f, false]); }
     for (const [, k] of KEYS.filter(([f]) => f === 'carry')) { const ph = phasesFor(spec(k)); expect([k, ph]).toEqual([k, [{ name: 'Marsz', ms: loopLength(false), untimed: true }]]); expect(metricFor(k)).toMatch(/distance/); }
     expect(walkPhases()).toEqual([{ name: 'Marsz', ms: TEMPO.holdMs * 2 + TEMPO.downMs + TEMPO.upMs, untimed: true }]);
   });

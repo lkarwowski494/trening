@@ -41,15 +41,20 @@ describe('delt_raise: ślad toru przy chwycie (W1b)', () => {
 });
 
 describe('delt_raise: stały promień ręki (bez wybrzuszeń łuku)', () => {
-  test.each(ARM_RAISE)('%s: odległość ciężaru od barku zmienia się o ≤ 1,5 cm w całym ruchu', k => { expect([k, rozrzutPromienia(k) <= 1.5]).toEqual([k, true]); });
+  /* r2-W1 (04.11.2026): Alternating Deltoid Raise ma dwa powtórzenia w jednej pętli, a kontrakt dopuszcza najwyżej 12 klatek (CONTRACT.frames.max) i interpolację liniową, więc łuk 78° przy 2–3 odcinkach
+     skraca promień o ok. 3 cm w środku cięciw (łokieć 14° → ok. 30°, w najkrótszym odcinku ok. 40°). Dla niego limit 4 cm (pomiar ≈ 3,4 cm); reszta rodziny bez zmian (1,5 cm). */
+  const LIMIT_PROMIENIA = (k: string) => k === 'Alternating Deltoid Raise' ? 4 : 1.5;
+  test.each(ARM_RAISE)('%s: odległość ciężaru od barku zmienia się o ≤ 1,5 cm w całym ruchu (Alternating ≤ 4 cm, 12 klatek)', k => { expect([k, rozrzutPromienia(k) <= LIMIT_PROMIENIA(k)]).toEqual([k, true]); });
+  test('Alternating Deltoid Raise: limit 4 cm jest wyjątkiem z powodem — rozrzut > 1,5 cm, a reszta rodziny nie dostaje tej tolerancji', () => { expect(rozrzutPromienia('Alternating Deltoid Raise')).toBeGreaterThan(1.5); expect(ARM_RAISE.filter(k => k !== 'Alternating Deltoid Raise' && LIMIT_PROMIENIA(k) !== 1.5)).toEqual([]); });
   test('miara potrafi paść: wiosłowanie pionowe (łokcie zgięte) zmienia promień o > 30 cm', () => { expect(rozrzutPromienia('Upright Row (hantle)')).toBeGreaterThan(30); });
 });
 
-describe('delt_raise: poza leżąca na boku na ławce (Dumbbell Lying One-Arm Rear Lateral Raise)', () => {
-  test('ławka płaska, hantel trzyma R, ciężar w górę od poziomu do pionu nad barkiem', () => {
-    const g = P[LEZY].sprzet; expect(g.some(x => x.rodzaj === 'lawka' && (x as { kat: number }).kat === 0)).toBe(true); expect(reka(LEZY)).toBe('R');
+describe('delt_raise: poza leżąca PRZODEM na ławce (Dumbbell Lying One-Arm Rear Lateral Raise; r2-W2 04.11.2026 — wcześniej na boku)', () => {
+  test('ławka płaska albo lekko pochylona (≤ 20°), hantel trzyma R, ciężar od zwisu pod barkiem do wysokości barku w bok', () => {
+    const g = P[LEZY].sprzet; expect(g.some(x => x.rodzaj === 'lawka' && (x as { kat: number }).kat <= 20)).toBe(true); expect(reka(LEZY)).toBe('R');
     const a = slad(LEZY, 0), b = slad(LEZY, 1); expect(b.t[1] - a.t[1]).toBeGreaterThan(40);
-    expect(Math.abs(b.t[0] - b.f.sk.arms.R.shoulder[0])).toBeLessThan(4); /* na końcu hantel nad barkiem */
+    expect(Math.abs(b.t[1] - b.f.sk.arms.R.shoulder[1])).toBeLessThan(6); /* na końcu hantel na wysokości barku, nie nad nim */
+    expect(Math.abs(b.t[0] - b.f.sk.arms.R.shoulder[0])).toBeLessThan(4); /* w płaszczyźnie barku, prostopadle do tułowia */
     for (const u of U) { const f = slad(LEZY, u).f; expect([u, f.sk.pelvis[1] > 43]).toEqual([u, true]); }
   });
   test('styk: ciało na ławce, bez wnikania > 1 cm', () => { for (const x of stykPozy(P[LEZY])) expect([x.u, x.przenikanie <= 1]).toEqual([x.u, true]); });

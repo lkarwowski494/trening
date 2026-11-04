@@ -818,7 +818,11 @@
         "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
         "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy (bledy: [])"
       },
+      "dynamiczne": {
+        "Alternating Deltoid Raise": "pętla jednokierunkowa z dwoma powtórzeniami naraz (przód, potem bok; karta adr.move „Na zmianę: jedno powtórzenie … przed sobą, następne — bokiem”): droga dłoni to ok. 4 × 84 cm (cztery łuki ramienia 78° przy promieniu 62 cm) na cały przebieg u = 0 → 1, czyli ok. 7–9 cm na 1/48 wobec 6 cm limitu ruchu zwykłego, a klatek jest najwyżej 12 (CONTRACT.frames.max); limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne; r2-W1, 04.11.2026)"
+      },
       "warianty": {
+        "Alternating Deltoid Raise": [],
         "Car Drivers": [
           "lokiec_staly",
           "lokcie_na_wysokosci_barkow_u1"

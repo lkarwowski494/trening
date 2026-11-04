@@ -14,7 +14,7 @@ const U = Array.from({ length: 21 }, (_, i) => i / 20);
 const kopia = (d: PoseData) => JSON.parse(JSON.stringify(d)) as PoseData;
 
 describe('delt_raise R1 Ś-1: unoszenie w przód bez łuku na zewnątrz (front.setup „przed udami”, front.move „przed sobą”)', () => {
-  const FRONT = ['Front Raise', 'Alternating Deltoid Raise', 'Cable Front Raise', 'Dumbbell Front Raise to Overhead'];
+  const FRONT = ['Front Raise', 'Cable Front Raise', 'Dumbbell Front Raise to Overhead']; /* r2-W1 04.11.2026: Alternating Deltoid Raise ma drugie powtórzenie bokiem (karta adr.move) — jego pierwsze powtórzenie przodem mierzy tests/figures-v2-delt-raise-p2.test.ts */
   /** Chwyt ręki R stale na szerokości barku (≤ 3 cm od osi barku w poprzek) i na starcie ≥ 15 cm przed barkiem (przed udami, nie obok nich). */
   const wPrzod = (d: PoseData) => U.every(u => { const a = keyframeFrame(d, u).sk.arms.R; return Math.abs(Math.abs(a.grip[2]) - Math.abs(a.shoulder[2])) <= 3; }) && keyframeFrame(d, 0.0001).sk.arms.R.grip[0] - keyframeFrame(d, 0.0001).sk.arms.R.shoulder[0] >= 15;
   test.each(FRONT)('%s: chwyt w płaszczyźnie strzałkowej barku w 21 kadrach, start przed udami', k => { expect([k, wPrzod(DATA[k])]).toEqual([k, true]); });
@@ -27,15 +27,12 @@ describe('delt_raise R1 Ś-1: unoszenie w przód bez łuku na zewnątrz (front.s
   });
 });
 
-describe('delt_raise R1 Ś-2: naprzemienność i obrót w obie strony', () => {
+describe('delt_raise R1 Ś-2: obrót Car Drivers w obie strony (Alternating — zob. r2-W1)', () => {
   const ALT = 'Alternating Deltoid Raise', CD = 'Car Drivers';
   const yR = (d: PoseData, u: number) => keyframeFrame(d, u).sk.arms.R.grip[1], yL = (d: PoseData, u: number) => keyframeFrame(d, u).sk.arms.L.grip[1];
-  test('obie w pętli lustrzanej z zamianą rąk', () => { for (const k of [ALT, CD]) { expect([k, DATA[k].petla, (DATA[k] as any).lustroRece]).toEqual([k, 'cykl_lustro', true]); } });
-  test('Alternating Deltoid Raise: w pierwszej połowie pętli prawa ręka wyżej, w drugiej lewa (różnica ≥ 40 cm), na styku faz bez skoku', () => {
-    expect(yR(DATA[ALT], 0) - yL(DATA[ALT], 0)).toBeGreaterThanOrEqual(40); expect(yL(DATA[ALT], 1) - yR(DATA[ALT], 1)).toBeGreaterThanOrEqual(40);
-    expect(yR(DATA[ALT], 2) - yL(DATA[ALT], 2)).toBeGreaterThanOrEqual(40);
-    expect(Math.abs(yR(DATA[ALT], 1) - yR(DATA[ALT], 1.0001))).toBeLessThan(1);
-  });
+  /* r2-W1 04.11.2026: Alternating Deltoid Raise nie jest już naprzemienną pętlą rąk (cykl_lustro: prawa w górę, lewa w dół) — karta adr.move mówi o DWÓCH powtórzeniach obiema rękami (przód, potem bok);
+     pętla jednokierunkowa, miary w tests/figures-v2-delt-raise-p2.test.ts. Zostaje pętla lustrzana Car Drivers. */
+  test('Car Drivers w pętli lustrzanej z zamianą rąk; Alternating Deltoid Raise nie (r2-W1)', () => { expect([DATA[CD].petla, (DATA[CD] as any).lustroRece]).toEqual(['cykl_lustro', true]); expect([DATA[ALT].petla, (DATA[ALT] as any).lustroRece]).toEqual(['jednokierunkowa', undefined]); });
   test('Car Drivers: talerz obraca się w obie strony — różnica wysokości chwytów R i L zmienia znak (każdy znak ≥ 10 cm) w pętli', () => {
     const roz = (d: PoseData) => { const r = Array.from({ length: 41 }, (_, i) => yR(d, i / 20) - yL(d, i / 20)); return [Math.min(...r), Math.max(...r)]; };
     const [mn, mx] = roz(DATA[CD]); expect(mn).toBeLessThanOrEqual(-10); expect(mx).toBeGreaterThanOrEqual(10);
@@ -90,9 +87,9 @@ describe('delt_raise R1: Kettlebell Halo bez rysunku w 1.1 (decyzja właściciel
 
 describe('delt_raise R1 N-2/N-3: opisy przybliżeń zgodne z rysunkiem', () => {
   const opis = (k: string) => (GEN.match(new RegExp(`'${k.replace(/[()]/g, '\\$&')}': '([^']*)'`, 'g')) ?? []).join(' ');
-  test('Lying One-Arm Rear Lateral Raise: ławka płaska w opisie i w danych, nie „na podłodze zamiast na ławce”', () => {
-    const t = opis('Dumbbell Lying One-Arm Rear Lateral Raise'); expect(t).toMatch(/na ławce płaskiej/); expect(t).not.toMatch(/na podłodze zamiast/);
-    expect((DATA['Dumbbell Lying One-Arm Rear Lateral Raise'].sprzet as any[]).some(g => g.rodzaj === 'lawka' && g.kat === 0)).toBe(true);
+  test('Lying One-Arm Rear Lateral Raise: ławka w opisie i w danych, nie „na podłodze zamiast na ławce” (r2-W2 04.11.2026: leżenie przodem na ławce lekko pochylonej, ≤ 20°, zamiast płaskiej na boku)', () => {
+    const t = opis('Dumbbell Lying One-Arm Rear Lateral Raise'); expect(t).toMatch(/na ławce lekko pochylonej/); expect(t).not.toMatch(/na podłodze zamiast/);
+    expect((DATA['Dumbbell Lying One-Arm Rear Lateral Raise'].sprzet as any[]).some(g => g.rodzaj === 'lawka' && g.kat <= 20)).toBe(true);
   });
   test.each(['Cable Lateral Raise', 'Cable Reverse Fly', 'Cable Seated Lateral Raise', 'Machine Lateral Raise', 'Car Drivers'])('%s ma nazwane przybliżenie', k => { expect(opis(k).length).toBeGreaterThan(60); });
   test('Machine Lateral Raise i Car Drivers: opis zgodny z nowym rysunkiem (dwie dźwignie; obrót w obie strony)', () => {

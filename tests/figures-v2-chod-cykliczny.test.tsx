@@ -226,9 +226,10 @@ describe('niezmienniki: pozostałe ćwiczenia nie zmieniły trybu', () => {
   test('ćwiczenia sled_throw i strongman poza trzema marszowymi, oraz wszystkie rodziny z pliku poses, nie mają pola petla (domyślnie wahadło)', () => {
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); let n = 0, z = 0; const naprzemienne: string[] = [];
     for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const [cw, d] of Object.entries(j.cwiczenia)) { n++; if (d.petla === 'cykl_lustro') { z++; if (!CYKLICZNE.some(([, k]) => k === cw)) naprzemienne.push(`${j.rodzina}/${cw}`); } } }
-    expect(n).toBeGreaterThan(400); expect(z).toBe(10 + 2);
-    /* Zmiana 04.11.2026 (R1 delt_raise Ś-2, decyzja koordynatora): do 10 ćwiczeń marszowych dochodzą DWA naprzemienne (nie marsz), jawna lista — nie sam licznik. */
-    expect(naprzemienne.sort()).toEqual(['delt_raise/Alternating Deltoid Raise', 'delt_raise/Car Drivers']);
+    expect(n).toBeGreaterThan(400); expect(z).toBe(10 + 1);
+    /* Zmiana 04.11.2026 (R1 delt_raise Ś-2, decyzja koordynatora): do 10 ćwiczeń marszowych dochodzi naprzemienne Car Drivers (nie marsz), jawna lista — nie sam licznik.
+       Zmiana 04.11.2026 (r2-W1): Alternating Deltoid Raise przeszło na pętlę jednokierunkową (dwa powtórzenia obiema rękami: przód, bok), więc na liście zostaje tylko Car Drivers. */
+    expect(naprzemienne.sort()).toEqual(['delt_raise/Car Drivers']);
   });
 });
 

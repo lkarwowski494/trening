@@ -1,9 +1,7 @@
 // Generator póz rodziny delt_raise po stronie agenta (26.10.2026): unoszenie ramion bokiem, przodem, w skaptacji, tyłem (pochylony), w „Y”, wiosłowanie pionowe, halo.
 // Ramiona prawie proste (lokiec_staly: stałe lekkie zgięcie łokcia), kierunek ramienia = elewacja (od pionu) i płaszczyzna (0 = przód, 90 = bok); błędów rysowanych brak (jedyny błąd katalogu to szarpanie = tempo).
 import { lezyPrzodem } from './gora.mjs';
-import { cyklLustro } from './dyn.mjs';
-import { poza as pozaD, PODLOGA } from './dol.mjs';
-import { bokKlatka, bokSonda, bokDolnaReka, bokNogiUlozone } from './mob.mjs';
+import { cyklLustro, jednokierunkowa } from './dyn.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, naLawce, buduj, bark, ramieFK, kier, rekaProsta, noga3, wyc, U9, U12, wolna } from './gora.mjs';
 
 export const RODZINA = 'delt_raise';
@@ -48,6 +46,16 @@ function yLezac(cw, o) {
   return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet], fr, us: o.us ?? U12 });
 }
 
+/** Unoszenie ręki bokiem leżąc PRZODEM na ławce płaskiej (r2-W2): chwyt R na łuku w płaszczyźnie poprzecznej do tułowia, θ od zwisu (0°) do poziomu barku (90°), łokieć stale lekko zgięty; ręka L zwisa. Strona R leży po −z (jak w yLezac). */
+function przodemBok(cw, o) {
+  const L = lezyPrzodem(o.kat ?? 15, { top: o.top ?? 43, dl: 110, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const len = o.dl ?? 62.5; const TH1 = o.koniec ?? 90;
+  const fr = (u) => { const th = lerp(0, TH1, u) * R; const rece = {};
+    for (const sd of ['R', 'L']) { const sw = -POL(sd); const S = L.S(sd); const t = sd === 'R' ? th : 0;
+      rece[sd] = { g: [S[0], S[1] - len * Math.cos(t), S[2] + sw * len * Math.sin(t)], pole: [0.3, -1, 0], obrot: 0 }; }
+    return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };
+  return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet], fr, us: o.us ?? U9 });
+}
+
 export const WYJATKI = {
   'Kettlebell Halo': 'tor kettlebella wokół głowy przy regule „ciężar ≤ 30 cm od głowy” (ciezar_blisko_glowy) wymusza przenikanie głowy lub dzwonu przez ramię drugiej ręki (przeniesienie ręki przed twarzą): model ramienia ze stałymi kośćmi, bez ruchu łopatki i obrotu barku wokół osi ramienia, nie daje pozycji bez przenikania (kilka prób: promień 28–31 cm, wysokość od brody do czoła, biegun łokcia od głowy)',
   'One-Arm Incline Lateral Raise': 'leżenie bokiem na pochyłej ławce (ramię unoszone ku górze względem leżącego) wymaga obrotu tułowia wokół osi długiej (roll 90°) i ułożenia nóg poza siedziskiem; ruch ramienia w płaszczyźnie względem ławki, nie względem podłogi — poza zakresem kontraktu bez luzowania zakresów stawów',
@@ -58,7 +66,7 @@ export const WYJATKI = {
   'Kettlebell Halo with Overhead Extension': 'OTWARTE — wskazówka halo.close przeczy części z wyprostem nad głową (ciężar odchodzi od głowy), potrzebne źródło na odmianę (figury-sens.json → delt_raise.otwarte)',
 };
 export const PRZYBLIZENIA = {
-  'Dumbbell Lying One-Arm Rear Lateral Raise': 'przybliżenie: leżenie na lewym boku na ławce płaskiej (ułożenie ciała jak w pozostałych pozach na boku, bez modelu nóg poza ławką); górna ręka (R) unosi hantel od poziomu w bok do pionu, łokieć stały lekko zgięty',
+  'Dumbbell Lying One-Arm Rear Lateral Raise': 'przybliżenie: leżenie przodem na ławce lekko pochylonej (15°; na całkiem płaskiej tułów widziany z przodu spłaszczałby się do punktu, reguła czesc_ciala_nie_znika); ręka R pracuje, L zwisa swobodnie; ręka R od zwisu pionowo w dół unoszona bokiem w płaszczyźnie poprzecznej do tułowia do wysokości barku, łokieć stały lekko zgięty; bez modelu nóg poza ławką',
   'Cable Seated Lateral Raise': 'przybliżenie: ławka płaska jako siedzisko, dwa niskie wyciągi za plecami, kolumny bliżej osi ciała niż dłonie (linka ciąga dłoń do środka od startu, opór przez cały ruch); silnik prowadzi każdą linkę do dłoni po jej stronie, więc skrzyżowania linek nie rysuje; ręce unoszone symetrycznie',
   'Machine Lateral Raise': 'przybliżenie: dwie dźwignie obrotowe (R i L, jak w odwrotnych rozpiętkach na maszynie), oś obrotu na osi barku (schemat)',
   'Reverse Pec Deck': 'przybliżenie: dwie dźwignie (R i L) narysowane schematycznie z osią na wysokości barków; podpora piersiowa jako pionowe oparcie, siedzisko jako płaska ławka',
@@ -83,31 +91,30 @@ export function generuj() {
   const FRONT = { pl: 1, obrot: [0, 0] };
   G['Single Dumbbell Front Raise'] = () => stoj('Single Dumbbell Front Raise', { sprzet: [{ rodzaj: 'hantel', pionowo: true }], rece: (u) => { const f = lukDloni(lerp(14, 98, u), 3.5); return { R: f('R'), L: f('L') }; } });
   G['Front Plate Raise'] = () => stoj('Front Plate Raise', { sprzet: [{ rodzaj: 'talerz' }], rece: (u) => { const f = lukDloni(lerp(12, 104, u), 22.5); return { R: f('R'), L: f('L') }; } });
-  /* Ś-2: naprzemiennie, pętla cykl_lustro + lustroRece: u 0 → 1 prawa ręka opada, lewa się unosi; u 1 → 2 odwrotnie (lustro klatek 0 → 1). */
-  G['Alternating Deltoid Raise'] = () => cyklLustro(stoj('Alternating Deltoid Raise', { sprzet: [H], rece: (u) => ({ R: RACZ(lerp(FRONT_TH[1], FRONT_TH[0], u), 0, { flex: 14, ...FRONT, obrot: 0 }), L: RACZ(lerp(FRONT_TH[0], FRONT_TH[1], u), 0, { flex: 14, ...FRONT, obrot: 0 }) }) }), { rece: true });
+  /* r2-W1 (recenzja ruchu 04.11.2026; karta adr.move: „Na zmianę: jedno powtórzenie unieś oba hantle przed sobą, następne — bokiem”): pętla jednokierunkowa obejmuje DWA powtórzenia obiema rękami naraz —
+   * pierwsze przodem (płaszczyzna strzałkowa, jak Front Raise: θ 12° → 90°), drugie bokiem (φ 85°, jak Lateral Raise: θ → 88°). 12 klatek co 1/11: przód 3 + 3 odcinki (zwis → góra → zwis), bok 2 + 3 odcinki; po drugim powtórzeniu ręce zwisają przy bokach (φ 85°), a pętla zaczyna od zwisu przed udami (φ 0°) — u = 1 różni się od u = 0 o ok. 18 cm.
+   * Wcześniejsza wersja (cykl_lustro: prawa ręka przodem w górę, lewa w dół) pokazywała inne ćwiczenie niż karta. */
+  const ALT = [[12, 0, 0], [38, 0, 0], [64, 0, 0], [90, 0, 0], [64, 0, 0], [38, 0, 0], [12, 42, 0], [38, 65, 0.4], [64, 80, 0.75], [88, 85, 1], [50, 85, 0.5], [12, 85, 0]];
+  G['Alternating Deltoid Raise'] = () => jednokierunkowa(stoj('Alternating Deltoid Raise', { sprzet: [H], us: U12, rece: (u) => { const [th, phi, ob] = ALT[Math.round(u * 11)]; return obie(RACZ(th, phi, { flex: 14, pl: 1, obrot: lerp(0, -35, ob) })); } }));
   G['Barbell Front Raise to Overhead'] = () => stoj('Barbell Front Raise to Overhead', { sprzet: [SPRZET.sztanga()], us: U12, rece: (u) => obie(RACZ(lerp(14, 167, u), 0, { flex: 25, pl: 1 })) });
   G['Dumbbell Front Raise to Overhead'] = () => stoj('Dumbbell Front Raise to Overhead', { sprzet: [H], us: U12, rece: ruch([12, 167], [0, 0], { flex: 25, pl: 1 }) });
   G['Cable Front Raise'] = () => stoj('Cable Front Raise', { sprzet: [wyc({ chwyt: 'uchwyt', x: -55, y: 15, z: 42, trzyma: 'R' })], rece: ruchJ(FRONT_TH, FRONT_PHI, FRONT) });
   G['Cable Lateral Raise'] = () => stoj('Cable Lateral Raise', { sprzet: [wyc({ chwyt: 'uchwyt', x: 60, y: 30, z: -10, trzyma: 'R' })], rece: ruchJ([9, 88], [85, 85], { obrot: [0, -35], pl: -1, flex: [5, 13] }) });
   G['Cable Seated Lateral Raise'] = () => { const B = naLawce(90, 43, { zr: 22 }); return wlasna('Cable Seated Lateral Raise', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 30, siedzisko: 38 }, wyc({ chwyt: 'uchwyt', dwa: true, x: -40, y: 15, z: 14 })], tulow: { m: [14, 53.8], p: 0 }, nogi: { R: noga3([54, 7, 20], [1, 0.3, 0.1]), L: noga3([54, 7, -20], [1, 0.3, -0.1]) }, rece: ruch([9, 88], [85, 85], { pl: -1, flex: [5, 13] }) }); };
   /* --- wiosłowanie pionowe --- */
-  const ROW0 = 79.5, ROW1 = 126;
+  const ROW0 = 79.5, ROW1 = 126; /* r2-N1: szyna Smitha w x = 18 = x chwytu jednorącz (rzad(14, 18, …)); było 17 → gryf 1 cm przed szyną */
   G['Upright Row (sztanga)'] = () => stoj('Upright Row (sztanga)', { sprzet: [SPRZET.sztanga()], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
   G['Upright Row (hantle)'] = () => stoj('Upright Row (hantle)', { sprzet: [H], rece: rzad(14, 18, ROW0, ROW1, { obrot: -70 }) });
   G['Dumbbell One-Arm Upright Row'] = () => stoj('Dumbbell One-Arm Upright Row', { sprzet: sprzJ([H], 'R'), rece: rzad(14, 18, ROW0, ROW1, { obrot: -70, jedna: true }) });
   G['Upright Row (linki)'] = () => stoj('Upright Row (linki)', { sprzet: [wyc({ chwyt: 'drazek', x: 62, y: 15 })], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
   G['Band Upright Row'] = () => stoj('Band Upright Row', { sprzet: [{ rodzaj: 'guma', mocowanie: 'stopy' }], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
-  G['Smith Machine One-Arm Upright Row'] = () => stoj('Smith Machine One-Arm Upright Row', { sprzet: [{ rodzaj: 'smith', x: 17, h: 200 }, { ...SPRZET.sztanga(), trzyma: 'R' }], rece: rzad(14, 18, ROW0, ROW1, { obrot: -70, jedna: true }) });
+  G['Smith Machine One-Arm Upright Row'] = () => stoj('Smith Machine One-Arm Upright Row', { sprzet: [{ rodzaj: 'smith', x: 18, h: 200 }, { ...SPRZET.sztanga(), trzyma: 'R' }], rece: rzad(14, 18, ROW0, ROW1, { obrot: -70, jedna: true }) });
   G['Smith Machine Upright Row'] = () => stoj('Smith Machine Upright Row', { sprzet: [{ rodzaj: 'smith', x: 17, h: 200 }, SPRZET.sztanga()], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
   /* --- halo --- */
-  /* --- leżąc na boku na ławce płaskiej: jedna ręka (R) --- */
-  /* 04.11.2026 (tests/figury-p2-r3.test.ts, TOL_NOGI_CM = 0): górna noga o NOGI_DY cm wyżej niż w układzie wspólnym, żeby uda leżały jedno na drugim bez przenikania (było −1,03 cm; 2 cm dawało −0,2). */
-  const NOGI_DY = 3;
-  G['Dumbbell Lying One-Arm Rear Lateral Raise'] = () => { const T = bokSonda(); const Y = 43; const Sr = [T.sh.R[0], T.sh.R[1] + Y, T.sh.R[2]]; const reach = 61;
-    const wyz = (n, dy = 0) => ({ ...n, a: [n.a[0], r1(n.a[1] + Y + dy), n.a[2]] }); const dolna = bokDolnaReka(T); const dolR = { ...dolna, g: [dolna.g[0], r1(dolna.g[1] + Y), dolna.g[2]] };
-    const fr = (u) => { const b = lerp(8, 88, u) * R; const Hd = [Sr[0] - 2, Sr[1] + reach * Math.sin(b), Sr[2] - reach * Math.cos(b)]; const pol = [0.6, Math.cos(b) * 0.8 + 0.1, -Math.sin(b) * 0.8].map((v) => r1(v * 100) / 100);
-      const ng = bokNogiUlozone(T); const k = bokKlatka(u, { R: wyz(ng.R, NOGI_DY), L: wyz(ng.L) }, { L: dolR, R: { g: Hd.map(r1), pole: pol } }); k.miednica = [k.miednica[0], r1(k.miednica[1] + Y), k.miednica[2]]; return k; };
-    return pozaD(RODZINA, 'Dumbbell Lying One-Arm Rear Lateral Raise', [PODLOGA(-130, 130), { rodzaj: 'lawka', x: 0, top: Y, kat: 0, dlugosc: 120 }, { ...H, trzyma: 'R' }], U9.map(fr), []); };
+  /* --- leżąc PRZODEM na ławce płaskiej: jedna ręka (R) --- */
+  /* r2-W2 (recenzja ruchu 04.11.2026; karta rear1.setup „Połóż się przodem na ławce; ręka z hantlem zwisa swobodnie w dół”, rear1.move „Unieś rękę bokiem do wysokości barku, prostopadle do tułowia”,
+   * rear1.mis.high „Unoszenie ręki wyżej niż bark”): ramię pracuje w płaszczyźnie poprzecznej do tułowia — od zwisu pionowo w dół (θ = 0) do poziomu na wysokości barku (θ = 90), nie wyżej; druga ręka zwisa. */
+  G['Dumbbell Lying One-Arm Rear Lateral Raise'] = () => przodemBok('Dumbbell Lying One-Arm Rear Lateral Raise', { sprzet: [{ ...H, trzyma: 'R' }] });
   /* --- Car Drivers --- */
   G['Car Drivers'] = () => { const cy = Y_STOJ + 50 - 2; const rr = (u) => { const a = lerp(30, -30, u) * R; const rad = 21; const dy = rad * Math.sin(a), dz = rad * Math.cos(a) - 19; const x = Math.sqrt(62 ** 2 - dy * dy - dz * dz); const sp = (s) => ({ g: [x, cy + POL(s) * dy, POL(s) * rad * Math.cos(a)], pole: [-0.2, -0.6, POL(s)] }); return { R: sp('R'), L: sp('L') }; };
     return cyklLustro(wlasna('Car Drivers', { sprzet: [{ rodzaj: 'talerz' }], tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: rr }), { rece: true }); }; /* Ś-2: obrót ±30° w obie strony (pętla cykl_lustro: lustro klatek 0 → 1 to obrót z −30° do +30°) */
