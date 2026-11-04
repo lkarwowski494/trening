@@ -10,7 +10,7 @@ export const ZRODLA_DIR = path.join(__dirname, '..', 'data', 'zrodla');
 export type FullRef = [string, string] | [string, string, 'analogia'];
 export type FullCueRef = { c: string; s: FullRef[]; uproszczenie?: string; jedno_zrodlo?: true };
 export type CueFull = {
-  orgs: Record<string, { name: string; level: 2 | 3 | 4 | 5; kind: 'org' | 'site' | 'maker' | 'study' | 'book'; warunkowo?: string }>;
+  orgs: Record<string, { name: string; level: 2 | 3 | 4 | 5; kind: 'org' | 'site' | 'maker' | 'study' | 'book' | 'app'; warunkowo?: string }>;
   sources: Record<string, { org: string; title: string; url?: string; archive?: string; level: 2 | 3 | 4 | 5; strona?: string }>;
   exercises: Record<string, Record<'setup' | 'move' | 'tips' | 'mistakes', FullCueRef[]>>;
   open: Record<string, string>; partial?: string[]; partialNote?: string; luki?: Record<string, string>;

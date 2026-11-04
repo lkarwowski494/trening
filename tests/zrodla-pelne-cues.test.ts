@@ -36,7 +36,7 @@ describe('pełne dane wskazówek (data/zrodla/cues.json)', () => {
       expect([ex, r.c, liczace.size >= 2 || wyjatek]).toEqual([ex, r.c, true]);
       for (const [, at] of real) expect(at.trim().length).toBeGreaterThan(2);
     }
-    for (const s of Object.values(CUE_FULL.sources)) { if (CUE_FULL.orgs[s.org].kind === 'book') { expect(s.url).toBeUndefined(); continue; } expect(s.url).toMatch(/^https:\/\//); expect(CUE_FULL.orgs[s.org]).toBeDefined(); if (s.archive) expect(s.archive).toMatch(/^https:\/\/web\.archive\.org\/web\/\d+\//); }
+    for (const s of Object.values(CUE_FULL.sources)) { if (['book', 'app'].includes(CUE_FULL.orgs[s.org].kind)) { expect(s.url).toBeUndefined(); continue; } expect(s.url).toMatch(/^https:\/\//); expect(CUE_FULL.orgs[s.org]).toBeDefined(); if (s.archive) expect(s.archive).toMatch(/^https:\/\/web\.archive\.org\/web\/\d+\//); }
   });
   test('żadne źródło ze spornego szczebla (uczelniane centra sportu, DAN, WebMD Ignite, przedruk NSCA ETM) nie wchodzi do danych', () => {
     const HOSTS = /cse\.hku\.hk|uwo\.ca|sussex\.ac\.uk|ummhealth\.org|dan\.org|coachesontario\.ca|exrx\.net/;

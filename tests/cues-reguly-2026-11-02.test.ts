@@ -38,6 +38,36 @@ describe('stan wyjściowy: dane przechodzą validate()', () => {
   test('data/zrodla/cues.json: brak błędów', () => { expect(validate(CUE_FULL)).toEqual([]); });
 });
 
+/** Dane z dodaną stroną aplikacji (szczebel 5, nieprzezroczysty id, bez adresu) — baza przypadków rodzaju `app` (koordynator 04.11.2026, decyzja 8). */
+function zAplikacja(): Data {
+  const d = clone();
+  d.orgs['app-s1'] = { name: 'app-s1', level: 5, kind: 'app' };
+  d.sources['app-s1'] = { org: 'app-s1', title: 'app-s1' };
+  return d;
+}
+
+describe('rodzaj `app` (strona aplikacji, szczebel 5, 04.11.2026)', () => {
+  test('aplikacja z nieprzezroczystym id, szczebel 5, bez adresu — zgoda; nie liczy się do pary (zdanie z 1 organizacją ≤ 4 + app wymaga luki)', () => {
+    const d = zAplikacja(); cueOf(d, KEY, 'tips', 'dl.close').s = [['exrx-ErectorSpinae/BBDeadlift', 'Comments'], ['app-s1', 'opis']];
+    expect(validate(d).filter(e => !/dl\.close: 1 organizacja/.test(e))).toEqual([]);
+    expect(text(validate(d))).toMatch(/Deadlift \(sztanga\)\.dl\.close: 1 organizacja/);
+    d.luki = { [`${KEY}::dl.close`]: 'test: drugie źródło szczebla ≤ 4 do uzupełnienia' }; expect(text(validate(d))).not.toMatch(/dl\.close: 1 organizacja/);
+  });
+  test('aplikacja: adres albo migawka → błąd; nazwa firmy zamiast id → błąd; szczebel 4 → błąd; tytuł spoza wzorca → błąd; id źródła z nazwą marki nie istnieje w danych', () => {
+    let d = zAplikacja(); cueOf(d, KEY, 'tips', 'dl.close').s.push(['app-s1', 'opis']); d.sources['app-s1'].url = 'https://example.org/app'; expect(text(validate(d))).toMatch(/sources\.app-s1.*bez adresu/);
+    d = zAplikacja(); d.sources['app-s1'].archive = 'https://web.archive.org/web/20261104000000/https://example.org/'; expect(text(validate(d))).toMatch(/sources\.app-s1.*bez adresu/);
+    d = zAplikacja(); d.orgs['app-s1'].name = 'Przykładowa Aplikacja'; expect(text(validate(d))).toMatch(/orgs\.app-s1.*nieprzezroczyst/);
+    d = zAplikacja(); d.orgs['przyklad-app'] = { name: 'przyklad-app', level: 5, kind: 'app' }; expect(text(validate(d))).toMatch(/orgs\.przyklad-app.*nieprzezroczyst/);
+    d = zAplikacja(); d.orgs['app-s1'].level = 4; expect(text(validate(d))).toMatch(/orgs\.app-s1.*szczebel 5/);
+    d = zAplikacja(); d.sources['app-s1'].title = 'Przykładowa Aplikacja'; expect(text(validate(d))).toMatch(/sources\.app-s1.*tytuł to nieprzezroczysty/);
+  });
+  test('dane: każda organizacja rodzaju `app` ma id app-sN, szczebel 5 i źródło bez adresu; rodzaj `app` spoza listy podstawy (CUE_BASIS_KINDS) i nie wchodzi do podpisu', () => {
+    expect(CUE_BASIS_KINDS as readonly string[]).not.toContain('app');
+    for (const [id, o] of Object.entries(CUE_FULL.orgs)) if (o.kind === 'app') expect({ id, ok: /^app-s\d+$/.test(id) && o.name === id && o.level === 5 }).toEqual({ id, ok: true });
+    for (const [id, s] of Object.entries(CUE_FULL.sources)) if (CUE_FULL.orgs[s.org].kind === 'app') expect({ id, url: s.url, archive: s.archive, title: s.title }).toEqual({ id, url: undefined, archive: undefined, title: s.org });
+  });
+});
+
 describe('rodzaj podstawy `book` (szczebel 3, 02.11.2026)', () => {
   test('CUE_BASIS_KINDS ma `book` na końcu; BASIS_ORDER w zrodla-runtime.mjs i KINDS w gen.mjs są zgodne', () => {
     expect(CUE_BASIS_KINDS).toEqual(['org', 'site', 'maker', 'study', 'book']);
