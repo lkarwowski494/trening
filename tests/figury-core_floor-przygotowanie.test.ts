@@ -23,8 +23,8 @@ function zawroceniaPoza(k: string, y: number[]): number {
 }
 
 describe('core_floor: pokrycie póz (K2)', () => {
-  test('27 póz: 21 z poprzedniej wersji + 6 dorobionych; Stability Ball Knee Tuck celowo bez pozy (kandydat K3: piłka toczy się, silnik ma piłkę nieruchomą)', () => {
-    expect(KEYS).toHaveLength(27); for (const k of DORABIANE) expect(P[k]).toBeDefined(); expect(KEYS).not.toContain('Stability Ball Knee Tuck');
+  test('26 póz: 21 z poprzedniej wersji − Oblique Crunches - On The Floor (karta otwarta, rysunek niewyświetlany, 04.11.2026) + 6 dorobionych; Stability Ball Knee Tuck celowo bez pozy (kandydat K3: piłka toczy się, silnik ma piłkę nieruchomą)', () => {
+    expect(KEYS).toHaveLength(26); expect(KEYS).not.toContain('Oblique Crunches - On The Floor'); for (const k of DORABIANE) expect(P[k]).toBeDefined(); expect(KEYS).not.toContain('Stability Ball Knee Tuck');
     expect(GEN).toMatch(/Stability Ball Crunch/); expect(GEN).not.toMatch(/'Stability Ball Knee Tuck': \(\)/);
   });
   test('sprzęt: podłoga, piłka, wyciąg, zawieszenie, ławka, dźwignia — bez hantli i gryfu (H-A/H-B niedotyczące)', () => {
@@ -62,4 +62,50 @@ describe('core_floor: zakres stawów zgodny z tekstem (K8)', () => {
   });
   test('Suspended Reverse Crunch: ręce proste (łokieć ≤ 20°), kolano na końcu ≥ 110° (kolana do klatki)', () => { expect(A('Suspended Reverse Crunch', 0).elbow).toBeLessThanOrEqual(20); expect(A('Suspended Reverse Crunch', 1).knee).toBeGreaterThanOrEqual(110); });
   test('miara potrafi paść: Dead Bug nie kończy ruchu z biodrem ≥ 110°', () => { expect(A('Dead Bug', 1).hip).toBeLessThan(110); });
+});
+
+/* R2 (04.11.2026): poprawki po recenzji ruchu R1 — miary tożsamości ćwiczenia (W1, Ś1, Ś2, Ś3), każda z przypadkiem negatywnym na danych sprzed poprawki. */
+const dist = (a: number[], b: number[]) => Math.hypot(...a.map((x, i) => x - b[i]));
+const dlonDoGlowy = (k: string, u: number) => { const f = frame(k, u); return Math.max(...(['R', 'L'] as const).map(s => dist(f.sk.arms[s].grip, f.sk.head))); };
+describe('core_floor R2: tożsamość poprawionych ćwiczeń', () => {
+  test('Bicycle Crunch: dłonie przy głowie, obie stopy nad podłogą, jedna noga zgięta, druga prosta, skręt tułowia ku zgiętemu kolanu, role nóg się zamieniają', () => {
+    const k = 'Bicycle Crunch';
+    for (const u of [0, 0.5, 1]) { expect([u, dlonDoGlowy(k, u) <= 16]).toEqual([u, true]); }
+    for (const u of [0, 1]) { const f = frame(k, u); const l = f.sk.legs; expect(Math.min(l.R.heel[1], l.L.heel[1])).toBeGreaterThan(8); }
+    const kn = (u: number, s: 'R' | 'L') => jointAngles(frame(k, u).sk, s).knee;
+    expect(kn(0, 'R')).toBeGreaterThan(70); expect(kn(0, 'L')).toBeLessThan(20); expect(kn(1, 'L')).toBeGreaterThan(70); expect(kn(1, 'R')).toBeLessThan(20);
+    expect(frame(k, 0).sk.twist).toBeGreaterThan(15); expect(frame(k, 1).sk.twist).toBeLessThan(-15);
+  });
+  const k0 = 'Bicycle Crunch';
+  test('miara potrafi paść: Bicycle Crunch sprzed poprawki miał dłonie 39 cm od głowy i nieruchomą prawą stopę na podłodze', () => { const stara = JSON.parse(JSON.stringify(P[k0])); for (const kl of stara.klatki) { kl.rece.R.chwyt = [-30, 32, 24]; kl.rece.L.chwyt = [-30, 32, -24]; kl.nogi.R.kostka = [35, 7, 15]; } const f = keyframeFrame(stara as PoseData, 0); expect(dist(f.sk.arms.R.grip, f.sk.head)).toBeGreaterThan(16); expect(f.sk.legs.R.heel[1]).toBeLessThan(8); });
+  test('Cross-Body Crunch: dłonie przy głowie, skręt tułowia ≥ 20° na końcu, jedno kolano unosi się w trakcie ruchu', () => {
+    const k = 'Cross-Body Crunch'; for (const u of [0, 1]) expect(dlonDoGlowy(k, u)).toBeLessThanOrEqual(16);
+    expect(Math.abs(frame(k, 1).sk.twist)).toBeGreaterThanOrEqual(20); expect(Math.abs(frame(k, 0).sk.twist)).toBeLessThan(1);
+    expect(Math.abs(frame(k, 1).sk.legs.L.knee[0] - frame(k, 1).sk.legs.R.knee[0])).toBeGreaterThan(20); expect(Math.abs(frame(k, 0).sk.legs.L.knee[0] - frame(k, 0).sk.legs.R.knee[0])).toBeLessThan(3);
+  });
+  test('Toe Touchers: uda pionowo (kolano nad biodrem ±8 cm), kolana ≤ 20°, dłonie zbliżają się do kostek', () => {
+    const k = 'Toe Touchers'; for (const u of [0, 0.5, 1]) { const f = frame(k, u); expect(Math.abs(f.sk.legs.R.knee[0] - f.sk.legs.R.hip[0])).toBeLessThan(8); expect(A(k, u).knee).toBeLessThanOrEqual(20); }
+    const d = (u: number) => dist(frame(k, u).sk.arms.R.grip, frame(k, u).sk.legs.R.ankle); expect(d(1)).toBeLessThan(d(0) - 10);
+  });
+  test('Stability Ball Crunch: piłka 55 cm pod lędźwiami i środkiem pleców (środek pleców ≤ 3 cm od styku), miednica niżej od barków', () => {
+    const k = 'Stability Ball Crunch'; const b = P[k].sprzet.find(g => g.rodzaj === 'pilka_gimnastyczna')!; expect(b.promien).toBe(27.5);
+    for (const u of [0, 0.5]) { const f = frame(k, u); const c = [b.x as number, b.promien as number, 0]; expect(dist(f.sk.spineMid, c) - (b.promien as number) - 9.5).toBeLessThan(3); expect(f.sk.pelvis[1]).toBeLessThan(f.sk.shoulderC[1]); }
+  });
+  test('miara potrafi paść: środek pleców 6,5–7,8 cm od piłki (stan sprzed poprawki) przekracza 3 cm', () => { const b = P['Stability Ball Crunch'].sprzet.find(g => g.rodzaj === 'pilka_gimnastyczna')!; const f = frame('Stability Ball Crunch', 0); const c = [(b.x as number) - 25, b.promien as number, 0]; expect(dist(f.sk.spineMid, c) - (b.promien as number) - 9.5).toBeGreaterThan(3); });
+});
+
+/* T-1 (R1): MIEJSCE śladu toru z info.trail — nie tylko kształt miednicy. Bez sprzętu nośnego: ślad = miednica; wyciąg/dźwignia z chwytem: ślad = środek chwytów; wyciąg z linką na kostkach: ślad = kostka. */
+describe('core_floor R2: miejsce śladu toru (T-1)', () => {
+  const trail = (k: string, u: number) => frame(k, u) as unknown as { info: { trail?: number[]; load?: number[] }; sk: ReturnType<typeof frame>['sk'] };
+  const ślad = (k: string, u: number) => (trail(k, u).info.trail ?? trail(k, u).info.load) as number[] | undefined;
+  const ZASOBY: Record<string, (sk: ReturnType<typeof frame>['sk']) => number[]> = {
+    'Cable Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2), 'Machine Crunch': sk => [0, 1, 2].map(i => (sk.arms.R.grip[i] + sk.arms.L.grip[i]) / 2),
+    'Cable Reverse Crunch': sk => sk.legs.R.ankle,
+  };
+  test.each(KEYS)('%s: ślad istnieje i leży w miejscu wynikającym ze sprzętu (≤ 3 cm; miednica, środek chwytów albo kostka)', k => {
+    for (const u of [0, 0.5, 1]) { const f = trail(k, u); const t = ślad(k, u); expect([k, u, !!t]).toEqual([k, u, true]); const cel = ZASOBY[k] ? ZASOBY[k](f.sk) : f.sk.pelvis; expect([k, u, dist(t!, cel) <= 3]).toEqual([k, u, true]); }
+  });
+  test('miara potrafi paść: dla Cable Reverse Crunch ślad nie leży w miednicy, a dla Cable Crunch — nie w miednicy (miejsce różne od przypadku bez sprzętu)', () => {
+    for (const k of ['Cable Reverse Crunch', 'Cable Crunch']) { const f = trail(k, 0.5); expect(dist(ślad(k, 0.5)!, f.sk.pelvis)).toBeGreaterThan(3); }
+  });
 });

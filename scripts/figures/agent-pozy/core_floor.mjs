@@ -42,7 +42,7 @@ const pole3 = (p, z, domyslny) => (p ? [p[0], p[1], z * 0.1] : domyslny);
 
 /** Klatka leżenia/podparcia: miednica [x, y], pochylenie p, zgięcie kręgosłupa, głowa; nogi: { R: noga, L: noga } gdzie noga = { t, k, pod?, rot?, z? } (FK) albo { ankle:[x,y], strona, pod?, rot?, z? } (cel);
  ręce: { R: { a, z, d? } | { g:[x,y,z] }, L }. Zwraca klatkę kontraktu. */
-export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci = {}, przechyl }) {
+export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci = {}, przechyl, ext }) {
   const hip = [miednica[0], miednica[1]]; const S = barki([miednica[0], miednica[1]], p, bend); const nog = {}; const rec = {};
   for (const s of ['R', 'L']) {
     const sg = s === 'R' ? 1 : -1; const n = nogi[s]; const hz = sg * 8.5; void hz;
@@ -50,7 +50,7 @@ export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci =
     const sd = n.ankle ? null : n.t - n.k; const goleń = n.stopaPrzodem ? Math.atan2(f.ankle[1] - f.knee[1], f.ankle[0] - f.knee[0]) / R : 0; nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (n.z === undefined ? ZNOG : Math.abs(n.z))], pod: n.stopaPrzodem ? r1(podbicieStopyPrzodem(goleń)) : n.pod ?? (sd === null ? 0 : podbicieNeutralne(sd, n.stopa)), rot: n.stopaPrzodem ? 0 : n.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * 0.1] : [0.15, 1, sg * 0.1] };
     const r = rece[s]; const g = r.g ? r.g : chwyt(S, r.a, r.z ?? sg * 19, r.d); rec[s] = { g, pole: polaLokci[s] ?? r.pole ?? (r.g ? undefined : [0, 0.2, sg]) };
   }
-  return klatka({ u, miednica: [miednica[0], miednica[1], 0], pitch: p, bend, glowa: glowa ?? p, nogi: nog, rece: rec, przechyl });
+  return klatka({ u, miednica: [miednica[0], miednica[1], 0], pitch: p, bend, glowa: glowa ?? p, nogi: nog, rece: rec, przechyl, ext });
 }
 const lerp = (a, b, t) => a + (b - a) * t;
 const wygladzenie = (x) => x * x * (3 - 2 * x); /* start i koniec ruchu ramienia wolniejsze (limit szybkości punktu w kontrakcie) */
@@ -138,6 +138,37 @@ function vUp(cw) {
   return zbuduj1(cw, us.map(fr));
 }
 
+
+/* ---------- poprawki po recenzji ruchu R1 (04.11.2026): Bicycle Crunch, Cross-Body Crunch, Toe Touchers ---------- */
+/** Dłoń za głową (łokcie na boki): od barku S wzdłuż osi tułowia o 22 cm (głowa), z ≈ ±14. */
+const dlonZaGlowa = (S, p, sg) => { const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)]; return [S[0] + upv[0] * 22 + fv[0] * 2, S[1] + upv[1] * 22 + fv[1] * 2, sg * 14]; };
+const reszkaZaGlowa = (S, p) => ({ R: { g: dlonZaGlowa(S, p, 1), pole: [0, 0.1, 1] }, L: { g: dlonZaGlowa(S, p, -1), pole: [0, 0.1, -1] } });
+/** Bicycle Crunch (R1 W1, ACE 241/6521): dłonie za głową, łokcie na boki; obie nogi nad podłogą — jedna zgięta, kolano do klatki, druga prosta i uniesiona; tułów skręca się łokciem ku zgiętemu kolanu.
+ * u = 0 prawe kolano w klatce i skręt ku prawej, u = 1 lewe kolano i skręt ku lewej (pętla tam i z powrotem pokazuje obie strony); nogi zamieniają się rolami, barki zostają uniesione. */
+export function bicycleCrunch(cw, { skret = 28, pBok = -64, pSrodek = -74, bend = 36, zgieta = { t: 108, k: 110 }, prosta = 28 } = {}) {
+  const ks = kolanoProste(); const us = [0, 0.25, 0.5, 0.75, 1];
+  const fr = (u) => { const s = wygladzenie(u); const dol = 1 - Math.abs(2 * u - 1); /* 1 w środku (barki niżej) */ const p = lerp(pBok, pSrodek, dol); const S = barki([0, Y0], p, bend);
+    const tR = lerp(zgieta.t, prosta, s), kR = lerp(zgieta.k, ks, s), tL = lerp(prosta, zgieta.t, s), kL = lerp(ks, zgieta.k, s);
+    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: { t: tR, k: kR, z: ZNOG, stopa: 'dol' }, L: { t: tL, k: kL, z: -ZNOG, stopa: 'dol' } }, rece: reszkaZaGlowa(S, p), ext: { skretTulowia: lerp(skret, -skret, s) } }); };
+  return zbuduj1(cw, us.map(fr));
+}
+/** Cross-Body Crunch (R1 Ś1, ACE 52 / Fitness Volt): leżenie na plecach, kolana ugięte, stopy płasko, dłonie za głową; barki się unoszą ze skrętem, a łokieć i przeciwne kolano (także unoszone) spotykają się nad pępkiem. */
+export function crossBodyCrunch(cw, { skret = 30, p1 = -64, bend1 = 36 } = {}) {
+  const us = [0, 0.5, 1];
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(-90, p1, a); const bend = bend1 * a; const S = barki([0, Y0], p, bend);
+    const stopa = { ankle: [35, 7], strona: 'gora', pod: 0, z: ZNOG }; const kolano = { t: lerp(62, 108, a), k: lerp(100, 112, a), z: -ZNOG, pod: lerp(0, 40, a) };
+    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: { ...stopa, z: ZNOG }, L: u === 0 ? { ...stopa, z: -ZNOG } : kolano }, rece: reszkaZaGlowa(S, p), ext: { skretTulowia: -skret * a } }); };
+  return zbuduj1(cw, us.map(fr));
+}
+/** Toe Touchers (R1 Ś2, ACE 243): uda pionowo, kolana wyprostowane, łopatki odrywają się od podłogi, a proste ręce sięgają po udach w stronę stóp; uda nie przechodzą za pion. */
+export function toeTouchers(cw, { p1 = -60, bend1 = 44 } = {}) {
+  const ks = Math.min(kolanoProste(), 20); const us = [0, 0.5, 1];
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(-90, p1, a); const bend = bend1 * a; const S = barki([0, Y0], p, bend); const noga = (z) => ({ t: 90, k: ks, z, stopa: 'dol' }); const A = nogaFK([0, Y0], 90, ks).ankle;
+    const dlon = (sg) => { const d = [A[0] - S[0], A[1] - S[1]]; const l = Math.hypot(...d); const k = Math.min(1, 62 / l); return [S[0] + d[0] * k, S[1] + d[1] * k, sg * 9]; };
+    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: { R: { g: dlon(1), pole: [0, 0.1, 1] }, L: { g: dlon(-1), pole: [0, 0.1, -1] } } }); };
+  return zbuduj1(cw, us.map(fr));
+}
+
 /* ---------- Superman (na brzuchu, pozycja +x) ---------- */
 function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* błąd tylko, gdy ma opis w tekstach wskazówek (v2-jakosc: etykieta_bledu) */
   const us = [0, 0.25, 0.5, 0.75, 1];
@@ -172,11 +203,12 @@ function pilkaX(r, osie, wnik = 1) {
   let best = null; for (let x = -90; x <= -5; x += 0.25) { const m = Math.min(...osie.map(([a, b]) => dSeg([x, r], a, b))); if (m >= r + ODL_TULOW - wnik && m <= r + ODL_TULOW - wnik + 4 && (best === null || Math.abs(x) < Math.abs(best))) best = x; } /* najbliższy miednicy */
   return best;
 }
-/** Crunch na piłce: plecy na piłce (mała piłka 41 cm — przy większej oś tułowia nie sięga szczytu: miednica ok. 50 cm nad podłogą), stopy płasko na podłodze (kolana 90°), ręce na klatce; unoszenie tułowia z przeprostu nad piłką. */
+/** Crunch na piłce (R1 Ś3, ACE 68 / NFPT): piłka 55 cm pod lędźwiami i środkiem pleców, miednica niżej od barków, kolana ≈ 90°, stopy płasko, ręce na klatce; górna część pleców odrywa się od piłki, miednica i stopy zostają. */
 function stabilityBallCrunch(cw) {
-  const r = 20.5; const Y = 51; const us = [0, 0.5, 1]; const pS = -90, pK = -68, bK = 38; const osie = [0, 0.25, 0.5, 0.75, 1].map((u) => { const p = lerp(pS, pK, u); const S = barki([0, Y], p, bK * u); const d = up(p); return [[0, Y], [S[0] + 20 * d[0], S[1] + 20 * d[1]]]; });
-  const bx = pilkaX(r, osie.slice(0, 1)); if (bx === null) throw new Error('brak położenia piłki');
-  const fr = (u) => { const a = wygladzenie(u); const p = lerp(pS, pK, a); const bend = bK * a; const S = barki([0, Y], p, bend); const st = (z) => ({ ankle: [46, 7], strona: 'gora', pod: 0, z, rot: 10 });
+  const r = 27.5; const Y = 44; const us = [0, 0.5, 1]; const pS = -58, pK = -40, bK = 34;
+  const lumbar = (p) => { const d = up(p); return [[0, Y], [25 * d[0], Y + 25 * d[1]]]; };
+  const bx = pilkaX(r, [lumbar(pS)], 1); if (bx === null) throw new Error('brak położenia piłki');
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(pS, pK, a); const bend = bK * a; const S = barki([0, Y], p, bend); const st = (z) => ({ ankle: [42, 7], strona: 'gora', pod: 0, z, rot: 10 });
     return ramka({ u, miednica: [0, Y], p, bend, glowa: p, nogi: { R: st(ZNOG + 8), L: st(-ZNOG - 8) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'pilka_gimnastyczna', x: r1(bx), promien: r }], klatki: us.map(fr), bledy: [] });
 }
@@ -248,6 +280,9 @@ export function generuj() {
     'Tuck Crunch': () => tuckCrunch('Tuck Crunch'),
     'Alternate Heel Touchers': () => alternateHeelTouchers('Alternate Heel Touchers'),
     'Cocoons': () => cocoons('Cocoons'),
+    'Bicycle Crunch': () => bicycleCrunch('Bicycle Crunch'),
+    'Cross-Body Crunch': () => crossBodyCrunch('Cross-Body Crunch'),
+    'Toe Touchers': () => toeTouchers('Toe Touchers'),
     'Leg Pull-In': () => legPullIn('Leg Pull-In'),
     'Superman': () => superman('Superman'),
     'V-Up': () => vUp('V-Up'),
