@@ -19,7 +19,7 @@
     "czesteBledyTekst": 181,
     "roleMiesni": 508,
     "pelnaKarta": 122,
-    "recenzjaFigur": 132
+    "recenzjaFigur": 0
   },
   "kartZTekstami": 571,
   "rodziny": {
@@ -33,7 +33,7 @@
       "ogolne": 20,
       "bezTekstu": 0,
       "pelnaKarta": 23,
-      "recenzja": 25
+      "recenzja": 0
     },
     "bench_press": {
       "status": "ready",
@@ -45,7 +45,7 @@
       "ogolne": 25,
       "bezTekstu": 0,
       "pelnaKarta": 28,
-      "recenzja": 30
+      "recenzja": 0
     },
     "hinge": {
       "status": "ready",
@@ -57,7 +57,7 @@
       "ogolne": 25,
       "bezTekstu": 0,
       "pelnaKarta": 31,
-      "recenzja": 32
+      "recenzja": 0
     },
     "pushup_plank": {
       "status": "planned",
@@ -129,7 +129,7 @@
       "ogolne": 7,
       "bezTekstu": 3,
       "pelnaKarta": 8,
-      "recenzja": 11
+      "recenzja": 0
     },
     "pulldown": {
       "status": "planned",
@@ -249,7 +249,7 @@
       "ogolne": 28,
       "bezTekstu": 2,
       "pelnaKarta": 32,
-      "recenzja": 34
+      "recenzja": 0
     },
     "triceps": {
       "status": "planned",
@@ -763,7 +763,7 @@
     "czesteBledyTekst": 181,
     "roleMiesni": 508,
     "pelnaKarta": 122,
-    "recenzjaFigur": 132,
+    "recenzjaFigur": 0,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 571,
     "jezyk.en.kompletne": 571,

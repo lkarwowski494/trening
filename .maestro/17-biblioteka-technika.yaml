@@ -113,14 +113,11 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - takeScreenshot: 87-deadlift-sztanga-technika
 
 # --- 04.11.2026 (W7, recenzja 1R): nakładka techniki na wyciskaniu (Close Grip: odwiedzenie ramienia z góry, łuk i linia nakładki); rodzina bench_press ukryta do recenzji (bramka 4) — krok warunkowy jak wyżej ---
-- stopApp
-- launchApp:
-    clearState: false
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- tapOn: "More, tab.*"
-- tapOn: "Exercises"
-- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+# powrót z karty Deadlift do listy gestem krawędzi (karta ma gestureEnabled: true, app/exercise/[id].tsx) — bez ponownego uruchomienia i bez stuknięć po tekście (M1-034)
+- swipe: { start: "2%, 50%", end: "80%, 50%", duration: 300 }
+- extendedWaitUntil: { visible: { id: "exercises-search" }, timeout: 15000 }
 - tapOn: { id: "exercises-search" }
+- eraseText: 40
 - inputText: "Close Grip Bench"
 - pressKey: Enter
 - pressKey: Enter   # chowa klawiaturę (L-013)

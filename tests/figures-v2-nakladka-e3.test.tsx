@@ -9,7 +9,7 @@ import { errorsOf } from '@/lib/figures/v2/ui';
 import { OVERLAY_EXTEND, OVERLAY_LEVEL_HALF, OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, OVERLAY_PLUMB_LEN, refGeom2D, refPoint, techniqueShapes, type RefSpec, type TechniqueDef } from '@/lib/figures/v2/overlay';
 import { GUIDES, type GuideId } from '@/lib/figures/v2/guides';
 import { proj } from '@/lib/figures/v2/draw';
-import { errorBreaksRule } from '@/lib/figures/v2/figure';
+import { errorBreaksRule } from '@/lib/figures/v2/overlayShapes';
 
 const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
 const errOf = (k: string, cue: string) => errorsOf(spec(k)).find(e => e.cue === cue)!.error;

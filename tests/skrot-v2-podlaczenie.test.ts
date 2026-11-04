@@ -96,7 +96,7 @@ describe('1A, L-080: gałąź z wcześniejszymi zmianami względem main — pod�
       git(tmp, 'checkout', '-qb', 'rysunek');
       fs.appendFileSync(path.join(tmp, V2 + 'draw.ts'), '\n// zmiana rysunku'); git(tmp, 'commit', '-qam', 'draw');
       const kod2 = `import { rodzinaSkrot } from ${JSON.stringify(RT)}; import { execFileSync } from 'node:child_process';
-        const dla = ref => rodzinaSkrot('pull_up', p => execFileSync('git', ['show', ref + ':' + p], { cwd: ${JSON.stringify(tmp)}, encoding: 'utf8' }));
+        const dla = ref => rodzinaSkrot('pull_up', p => { try { return execFileSync('git', ['show', ref + ':' + p], { cwd: ${JSON.stringify(tmp)}, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }); } catch { return ''; /* plik nakładki rodziny (overlay/pull_up.ts) jest dopiero na gałęzi etapu 2 — w kopii z main go nie ma */ } });
         process.stdout.write(JSON.stringify({ main: dla('main'), galaz: dla('galaz'), rysunek: dla('rysunek') }));`;
       const r = JSON.parse(execFileSync('node', ['--input-type=module', '-e', kod2], { encoding: 'utf8' })) as Record<string, string>;
       expect(r.galaz).toBe(r.main);

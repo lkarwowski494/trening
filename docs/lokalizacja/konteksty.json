@@ -381,6 +381,7 @@
  "Modlitewnik": "POZYCJA katalogu wyposażenia (lib/equipment.ts, ekran wyposażenia): ławka modlitewnik (preacher bench) do uginania ramion [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Mój plan": "app/generator.tsx:95, app/plan.tsx:125",
  "Mój plan ({date})": "lib/plan.ts:128",
+ "Na rysunku: {lista}": "components/ExerciseFigureV2.tsx:84",
  "na urządzeniu: {v}": "components/EquipVisual.tsx:41",
  "Nadpisać dane?": "app/more/backup.tsx:26",
  "Najdłuższa seria": "components/ExerciseProgress.tsx:32",

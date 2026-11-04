@@ -16,8 +16,7 @@ import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
 import { SIDES, jointAngles, type Side } from './skeleton';
 import type { V3 } from './math';
-import { GUIDES, trailShapes, type GuideId } from './guides';
-import { techniqueShapes, techniqueDef, type TechniqueDef } from './overlay';
+import { trailShapes } from './guides';
 import { phasesOf, walkPhases, oneWayPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
@@ -209,31 +208,8 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
   const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : loopSpan(spec) * i / 24));
   const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
 }
-/** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
-export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: FigError): Shape[] {
-  const f = frameAt(spec, u, error);
-  return ids.flatMap(id => { const g = GUIDES[id]; if (!g.views.includes(view)) return []; const sh = g.build(f, view); return g.rule && errorBreaksRule(spec, error, g.rule) ? sh.map(x => x.k === 'line' ? { ...x, role: 'error' as const } : x) : sh; });
-}
-
-/** Grupy reguł i błędów rodzin (data/zrodla/figury-sens.json → lib/figures/v2/grupy.json, generuje scripts/zrodla-runtime.mjs): reguła → grupa, id wskazówki błędu → grupa reguł, które ten błąd łamie. */
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
-export const GROUP_DATA: Record<string, { reguly: Record<string, string>; bledy: Record<string, string> }> = require('./grupy.json');
-/** Czy błąd łamie regułę elementu nakładki: grupa błędu (grupy_bledow wskazówki) = grupa reguły; bez wpisu — nie (W2b: kolor danger tylko dla elementu reguły złamanej przez błąd). */
-export function errorBreaksRule(spec: FigureSpec, error: FigError | undefined, rule: string): boolean {
-  if (!error || !Object.prototype.hasOwnProperty.call(GROUP_DATA, spec.family)) return false;
-  const def = errorDefOf(spec, error); if (!def) return false; const g = GROUP_DATA[spec.family];
-  const eg = Object.prototype.hasOwnProperty.call(g.bledy, def.cue[0]) ? g.bledy[def.cue[0]] : undefined;
-  const rg = Object.prototype.hasOwnProperty.call(g.reguly, rule) ? g.reguly[rule] : undefined;
-  return !!eg && eg === rg;
-}
 /** Strona mierzonego stawu na rysunku (rzut z boku: strona bliższa kamerze, R; dane: strona, która pracuje). */
 export const measuredSide = (spec: FigureSpec): Side => measureOf(spec).sides[0];
-/** Elementy nakładki techniki (E1 linia przez kończynę, E2 łuk kąta, odwiedzenie ramienia) w klatce u i widoku; `ids` = id elementów dopuszczonych przez wskazówki ćwiczenia (ui.techniquesOf). Bez liczb. `guides` = linie odniesienia pokazane w tym rzucie: wchodzą do limitu linii (W3). */
-export function overlayShapes(spec: FigureSpec, u: number, view: View, ids: string[], error?: FigError, guides: GuideId[] = []): Shape[] {
-  const defs = ids.map(techniqueDef).filter((d): d is TechniqueDef => !!d); if (!defs.length) return [];
-  const f = frameAt(spec, u, error); const m = measureOf(spec);
-  return techniqueShapes(f.sk, view, defs, { joint: m.joint, side: view === 'top' ? 'R' : m.sides[0], limbShown: m.shown, danger: rule => errorBreaksRule(spec, error, rule), guideLines: guideShapes(spec, u, view, guides, error).filter(x => x.k === 'line').length });
-}
 
 /** Poświaty stref styku klatki (poza poprawna: styki „dobrze”; poza błędu: styk utracony względem pozy poprawnej w tej samej pozycji — „błąd”). Poza kadrem `shapesAt`. */
 export function contactShapes(spec: FigureSpec, u: number, view: View, error?: FigError): Shape[] {
