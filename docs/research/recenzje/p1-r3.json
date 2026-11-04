@@ -1,0 +1,184 @@
+{
+ "karty": {
+  "Ankle Circles": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "fdb9ccd3f39a",
+   "uwagi": "Względem fc2fe7c9 (sha 20bbeab12a8d) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 19, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Arm Circles": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "7ba6ee3e0d1d",
+   "uwagi": "Względem fc2fe7c9 (sha 3707f56b2ddf) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 20, 22, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Butterfly Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "0897280e2f00",
+   "uwagi": "Względem fc2fe7c9 (sha cc777e782ae4) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 11, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Chest And Front Of Shoulder Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "db218b19b471",
+   "uwagi": "Względem fc2fe7c9 (sha c2ff456cab83) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 1, 33, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "External Rotation (hantel)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "9190e849f0f0",
+   "uwagi": "Względem fc2fe7c9 (sha 0259e4c8939f) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 27, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "External Rotation with Band": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "0081de688b36",
+   "uwagi": "Względem fc2fe7c9 (sha aaad2b774ebb) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 7, 8, 27, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Foam Roll: Hamstrings": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "07958aebbed1",
+   "uwagi": "Względem fc2fe7c9 (sha 22f31fd49e15) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 16, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Foam Roll: Quadriceps": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "113626bae5df",
+   "uwagi": "Względem fc2fe7c9 (sha 1cd89f36d981) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 3, 32, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Iliotibial Tract-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "af8a68e60bc8",
+   "uwagi": "Względem fc2fe7c9 (sha e61f9f23b313) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 17, 33, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Internal Rotation with Band": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "aca836b22b61",
+   "uwagi": "Względem fc2fe7c9 (sha 6102d77aa584) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 9, 10, 27, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Overhead Triceps Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "9b2ae69aca8e",
+   "uwagi": "Względem fc2fe7c9 (sha 1038d2db32df) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 28, 29, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json). EN triSet: „drop your hand down toward the middle of your back” — o słowo „down” więcej niż propozycja („toward the middle of your back”), sens ten sam; EN nie wchodzi do sha."
+  },
+  "Peroneals Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "5347ae8fe87e",
+   "uwagi": "Względem fc2fe7c9 (sha d6bba09c8ae5) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 4, 6, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Posterior Tibialis Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "cb48e90a2f5d",
+   "uwagi": "Względem fc2fe7c9 (sha 61065b9534b5) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 4, 5, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Rhomboids-SMR": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "f4e61bdf1591",
+   "uwagi": "Względem fc2fe7c9 (sha 078dcb23bcdf) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 14, 15, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Supine Figure-Four Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "2125d4eb5177",
+   "uwagi": "Względem fc2fe7c9 (sha 6232d9d35b4f) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 12, 13, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "The Straddle": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "9ef315960170",
+   "uwagi": "Względem fc2fe7c9 (sha fc1ddbecb6d2) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 23, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  },
+  "Wall Calf Stretch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "07a87a7c88c3",
+   "uwagi": "Względem fc2fe7c9 (sha a1b55bfb14d8) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 2, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json). Uwaga bez blokady: wskazówka gcalf.knee („Kolano zostaje proste…”) nie mówi, że chodzi o tylną nogę, a setup każe ugiąć przednie kolano; sens wynika z „tylna noga prosta” w przebiegu. Treść sprzed recenzji 02.11, bez zmian."
+  },
+  "Wrist Circles": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po wdrożeniu zmian lokalizacji, partia P1 mobilność, L-047-A (ZB-038)",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ fc2fe7c9 (recenzja-p1-l047.md, wpisy.json) i lokalizacja-p1.md",
+   "sha": "b663a246e985",
+   "uwagi": "Względem fc2fe7c9 (sha eeeed1155910) zmieniły się wyłącznie zdania z lokalizacja-p1.md nr 18, 21, w brzmieniu zatwierdzonym; układ sekcji i id zdań bez zmian. Treść zgodna z ruchem; bez nazw źródeł, bez porad medycznych. Źródła jak w recenzji 02.11.2026 (wpisy.json)."
+  }
+ }
+}

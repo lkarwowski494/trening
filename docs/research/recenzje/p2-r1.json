@@ -1,0 +1,74 @@
+{
+ "karty": {
+  "Alternate Leg Push-Off": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "11c1fb78db71",
+   "uwagi": "Sprawdzone: ACE #246 („place your right foot on the top of the step or box, keep your left foot on the ground”, „Jump straight up into the air by explosively pushing your right foot in to the top of the box”, „quickly swing your left leg forward and your right leg back”). Drugie źródło inSPORTline (dokumentacja producenta)."
+  },
+  "Backward Medicine Ball Throw": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "871996234a76",
+   "uwagi": "Sprawdzone: World Athletics backward-overhead-throw (tyłem do linii, piłka „held at arms length with both hands”, przysiad, szybki wyprost nóg, rzut „backward over their head”). Drugie źródło Manske i Reiman (Sports Health 2013, szczebel 3)."
+  },
+  "Jump Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "b98a64aa5e09",
+   "uwagi": "Sprawdzone: ACE #116 („Stand with your feet feet hip-width apart”, „explode upwards through your lower extremity, achieving triple extension”, „Avoid locking out your knees or quads on your landing”). Karta nie powtarza twierdzenia ACE o ryzyku urazu kolan — dobrze. Drugie źródło NASM."
+  },
+  "Medicine Ball Chest Pass": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "5d47f3b8157d",
+   "uwagi": "Sprawdzone: ACE #264 („Firmly hold a medicine ball between both hands right in front of your chest.”, „push the medicine ball away from your chest to throw it directly to your partner”). Drugie źródło RFL. Karta przeniesiona z „open”."
+  },
+  "Tuck Jump": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "a59c1dbf900c",
+   "uwagi": "Sprawdzone: ACE #180 („swing your arms forward and up while pushing your legs in to the ground”, „pull your knees up towards your chest”, „land softly and quietly on the mid-foot”). Drugie źródło NASM, trzecie Catalyst."
+  },
+  "Wall Ball": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "6f2a286d08b6",
+   "uwagi": "Sprawdzone: CrossFit wall-ball („Keep the ball low to the chest.”, „Each rep begins with a rock bottom squat, with feet flat on the floor.”), REP („squat and as soon as you open your hips, throw the ball”, „Quarter squats won't provide the full benefit”). Treść karty zgodna. Figura v2 (rodzina sled_throw, status planned — nie wyświetlana): ruch bez zmian względem stanu sprzed regeneracji (porównanie JSON bez bledy: identyczne), ale piłka trzymana ok. 25 cm przed klatką na zgiętych rękach — rozjazd z wb.setup („przy klatce”); do poprawy przed podłączeniem rodziny (arkusz /home/user/recenzja-p2/arkusze/Wall-Ball-side.png). Błędów sq.mis.kneesIn / sq.mis.heels nie dopisywać jako uproszczenia: przeczytane źródła wall balla nie mówią o kolanach ani piętach, a pięty rosną legalnie przy wyrzucie (rysunek u ≥ 0,65), więc „Odrywanie pięt od podłogi” przeczyłoby ruchowi; kneesIn — możliwe jako nazwane uproszczenie (faza przysiadu z ciężarem z przodu nie różni się od przysiadu przedniego), ale niekonieczne."
+  },
+  "Weighted Jump Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+   "sha": "b258c26d1248",
+   "uwagi": "Sprawdzone: Catalyst #353 („Immediately change directions in the bottom and drive up as aggressively as possible into a maximal vertical jump.”; lądowanie: „absorbing the jump by immediately squatting down into the next rep”). Karta nie podaje obciążenia (Catalyst 20–30% — jedno źródło, słusznie pominięte). jump.mis.stiff z wariantu bez obciążenia nazwane w miejscu; Torokhtiy „land on soft knees”."
+  }
+ }
+}
