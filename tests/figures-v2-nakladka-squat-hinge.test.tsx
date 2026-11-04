@@ -10,7 +10,7 @@ import * as path from 'path';
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, act } from '@testing-library/react-native';
-import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
+import { ExerciseFigureV2, joinCues } from '@/components/ExerciseFigureV2';
 import { CATALOG } from '@/lib/catalog.generated';
 import { figureSpec, frameAt, guideShapes, measuredAngle, measuredSide, overlayShapes, errorBreaksRule, type FigureSpec, type Shape } from '@/lib/figures/v2';
 import { OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniqueGeom, techniqueShapes, techniquesFor } from '@/lib/figures/v2/overlay';
@@ -115,7 +115,7 @@ describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element �
     }
     expect(techniquesOf('Back Squat')).toEqual(['squatKneeLimb']); expect(techniquesOf('Goblet Squat')).toEqual(['squatKneeLimb']); expect(techniquesOf('Box Squat')).toEqual(['squatKneeLimb']);
     expect(techniquesOf('Deadlift (sztanga)')).toEqual(['hingeUprightRef']); expect(techniquesOf('RDL (sztanga)')).toEqual(['hingeUprightRef']); expect(techniquesOf('Good Morning')).toEqual(['hingeUprightRef']);
-    expect(techniquesOf('Wall Sit')).toEqual([]); expect(techniquesOf('Single Leg RDL (hantel)')).toEqual([]); expect(techniquesOf('Stiff-Legged Barbell Deadlift')).toEqual([]);
+    expect(techniquesOf('Wall Sit')).toEqual([]); expect(techniquesOf('Single Leg RDL (hantel)')).toEqual(['hingeUprightRef']); expect(techniquesOf('Stiff-Legged Barbell Deadlift')).toEqual(['hingeUprightRef']); /* 04.11.2026: po scaleniu spójności karta–rysunek karty mają rdl.dbMove / rdl.move → pion wyprostu; ocena geometrii przy jednej nodze: roznica-elementow.md, recenzent niezależny */
     expect(techniquesFor('squat', ['dl.lift'])).toEqual([]); expect(techniquesFor('hinge', ['sq.down'])).toEqual([]); expect(techniquesFor('olympic', ['sq.down'])).toEqual([]);
   });
   test('linia pleców: przysiad dostaje ją przy sq.back, przysiad przy ścianie przy wall.back; bez wskazówki — brak (guidesOf)', () => {
@@ -159,9 +159,9 @@ describe('VoiceOver: etykieta obrazu „Na rysunku: …” z elementami squat/hi
   test('komponent: etykieta = „Rysunek ruchu: …. Na rysunku: {zdania}” w PL i EN (przysiad i martwy ciąg)', async () => {
     AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
     await render(<ExerciseFigureV2 exercise={lib('Back Squat')} name="Przysiad" />); await flush();
-    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Przysiad. Na rysunku: ${['sq.depth', 'sq.kneesToes', 'sq.back', 'sq.down'].map(errorText).join('; ')}`);
+    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Przysiad. Na rysunku: ${joinCues(['sq.depth', 'sq.kneesToes', 'sq.back', 'sq.down'].map(errorText))}`);
     await render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} name="Martwy ciąg" />); await flush();
-    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Martwy ciąg. Na rysunku: ${['dl.feet', 'hinge.back', 'dl.lift'].map(errorText).join('; ')}`);
+    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Martwy ciąg. Na rysunku: ${joinCues(['dl.feet', 'hinge.back', 'dl.lift'].map(errorText))}`);
     applyLang('en'); await render(<ExerciseFigureV2 exercise={lib('Back Squat')} name="Squat" />); await flush();
     expect((screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel as string).startsWith('Movement drawing: Squat. On the drawing: ')).toBe(true);
   });

@@ -10,7 +10,7 @@ import * as path from 'path';
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, act } from '@testing-library/react-native';
-import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
+import { ExerciseFigureV2, joinCues } from '@/components/ExerciseFigureV2';
 import { CATALOG } from '@/lib/catalog.generated';
 import { figureSpec, frameAt, guideShapes, measuredAngle, measuredSide, overlayShapes, errorBreaksRule, type FigureSpec, type Shape } from '@/lib/figures/v2';
 import { OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniqueGeom, techniqueShapes, techniquesFor } from '@/lib/figures/v2/overlay';
@@ -143,9 +143,9 @@ describe('VoiceOver: etykieta obrazu „Na rysunku: …” z elementem curl', ()
   test('komponent: etykieta = „Rysunek ruchu: …. Na rysunku: {zdanie}” w PL i EN; podciąganie ze zdaniami elementów', async () => {
     AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
     await render(<ExerciseFigureV2 exercise={lib('Barbell Curl')} name="Uginanie ze sztangą" />); await flush();
-    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Uginanie ze sztangą. Na rysunku: ${['curl.bbMove', 'curl.elbows'].map(errorText).join('; ')}`);
+    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Uginanie ze sztangą. Na rysunku: ${joinCues(['curl.bbMove', 'curl.elbows'].map(errorText))}`);
     await render(<ExerciseFigureV2 exercise={lib('Pull Up')} name="Podciąganie" />); await flush();
-    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Podciąganie. Na rysunku: ${['pu.pull', 'pu.noSwing'].map(errorText).join('; ')}`);
+    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Podciąganie. Na rysunku: ${joinCues(['pu.pull', 'pu.noSwing'].map(errorText))}`);
     applyLang('en'); await render(<ExerciseFigureV2 exercise={lib('Barbell Curl')} name="Barbell curl" />); await flush();
     expect((screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel as string).startsWith('Movement drawing: Barbell curl. On the drawing: ')).toBe(true);
   });

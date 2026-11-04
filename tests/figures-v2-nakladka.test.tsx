@@ -9,7 +9,7 @@ import * as path from 'path';
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, act } from '@testing-library/react-native';
-import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
+import { ExerciseFigureV2, joinCues } from '@/components/ExerciseFigureV2';
 import { CATALOG } from '@/lib/catalog.generated';
 import {
   figureSpec, frameAt, trailFor, guideShapes, measuredAngle, measuredSide, jointAngles, overlayShapes, errorBreaksRule, GROUP_DATA, figurePalette, contrast, shapesAt, type FigureSpec, type Shape,
@@ -135,10 +135,10 @@ describe('niezmienniki: bez liczb i tekstu na rysunku, limit elementów na rzut'
     }
     expect(razem).toBeGreaterThanOrEqual(0); /* dziś żadne ćwiczenie nie ma obu naraz (squat/hinge bez elementów nakładki) — pętla pilnuje etapu 2, część syntetyczna wyżej pilnuje już teraz */
   });
-  test('element tylko z wskazówką karty: Bench Press (sztanga) — łokieć z boku (bp.move), z góry nic (bp.elbowsMid nie jest na karcie); Close Grip — z góry odwiedzenie ramienia (cgbp.elbows); wskazówka spoza zestawu → brak elementu', () => {
-    expect(techniquesOf('Bench Press (sztanga)')).toEqual(['benchElbowLimb']); expect(techniquesOf('Bench Press (hantle)')).toEqual(['benchElbowLimb']);
+  test('element tylko z wskazówką karty: Bench Press (sztanga) — łokieć z boku (bp.move), z góry odwiedzenie ramienia (bp.elbowsMid od scalenia spójności 04.11.2026); Close Grip — z góry odwiedzenie ramienia (cgbp.elbows); wskazówka spoza zestawu → brak elementu', () => {
+    expect(techniquesOf('Bench Press (sztanga)')).toEqual(['benchElbowLimb', 'benchShoulderAbduction']); expect(techniquesOf('Bench Press (hantle)')).toEqual(['benchElbowLimb', 'benchShoulderAbduction']); /* 04.11.2026: karta ma bp.elbowsMid po scaleniu spójności */
     expect(techniquesOf('Close Grip Bench Press')).toEqual(['benchElbowLimb', 'benchShoulderAbductionClose']); expect(techniquesOf('Decline Bench Press')).toContain('benchShoulderAbduction'); expect(techniquesOf('Wall Sit')).toEqual([]); /* etap 2: Back Squat ma już element (tests/figures-v2-nakladka-squat-hinge.test.tsx) */ expect(techniquesOf('Nie ma takiego')).toEqual([]);
-    const s = spec('Bench Press (sztanga)'); expect(overlayShapes(s, 1, 'top', techniquesOf('Bench Press (sztanga)')).length).toBe(0); expect(overlayShapes(s, 1, 'side', techniquesOf('Bench Press (sztanga)')).length).toBe(2);
+    const s = spec('Bench Press (sztanga)'); expect(overlayShapes(s, 1, 'top', techniquesOf('Bench Press (sztanga)')).length).toBe(2); /* 04.11.2026: z góry odwiedzenie ramienia (bp.elbowsMid na karcie): linia + łuk */ expect(overlayShapes(s, 1, 'side', techniquesOf('Bench Press (sztanga)')).length).toBe(2);
     expect(overlayShapes(s, 1, 'side', ['benchElbowLimb', 'nie-ma']).length).toBe(2); expect(techniquesFor('squat', ['bp.move'])).toEqual([]);
     const cg = spec('Close Grip Bench Press'); expect(overlayShapes(cg, 1, 'top', techniquesOf('Close Grip Bench Press')).some(x => x.k === 'line')).toBe(true);
   });
@@ -184,14 +184,14 @@ describe('kolor błędu (W2b): danger tylko dla elementu reguły złamanej przez
 
 describe('VoiceOver: etykieta obrazu „Na rysunku: …”', () => {
   test('onDrawingCues: wskazówki widocznych elementów (nakładka i linie), bez powtórzeń; ćwiczenie bez elementów — pusta lista', () => {
-    expect(onDrawingCues(spec('Bench Press (sztanga)'), guidesOf('Bench Press (sztanga)'), techniquesOf('Bench Press (sztanga)'))).toEqual(['bp.move']);
+    expect(onDrawingCues(spec('Bench Press (sztanga)'), guidesOf('Bench Press (sztanga)'), techniquesOf('Bench Press (sztanga)'))).toEqual(['bp.move', 'bp.elbowsMid']);
     expect(onDrawingCues(spec('Back Squat'), guidesOf('Back Squat'), techniquesOf('Back Squat')).length).toBeGreaterThan(0); expect(onDrawingCues(spec('Sumo Deadlift'), guidesOf('Sumo Deadlift'), [])).toEqual(['hinge.back']); expect(onDrawingCues(spec(NO_ELEMENTS), guidesOf(NO_ELEMENTS), techniquesOf(NO_ELEMENTS))).toEqual([]);
   });
   test('komponent: etykieta = „Rysunek ruchu: …. Na rysunku: {tekst wskazówki}” w PL i EN; brak elementów — sama etykieta', async () => {
     AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
     await render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} name="Wyciskanie" />); await flush();
     const label = screen.getByTestId('exercise-figure-v2-image').props.accessibilityLabel as string;
-    expect(label).toBe(`Rysunek ruchu: Wyciskanie. Na rysunku: ${errorText('bp.move')}`);
+    expect(label).toBe(`Rysunek ruchu: Wyciskanie. Na rysunku: ${joinCues(['bp.move', 'bp.elbowsMid'].map(errorText))}`);
     applyLang('en'); await render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} name="Bench" />); await flush();
     expect((screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel as string).startsWith('Movement drawing: Bench. On the drawing: ')).toBe(true);
     applyLang('pl'); await render(<ExerciseFigureV2 exercise={lib(NO_ELEMENTS)} name="Martwy ciąg" />); await flush();
