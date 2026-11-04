@@ -239,7 +239,7 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
   test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {
-    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371 + OCZEKUJE.length); /* + zdania P1 (G2 mobilność, 02.11.2026) i P2 (G3 moc, 03.11.2026) czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-0{2-p1,3-p2}-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(450 + OCZEKUJE.length); /* 371 + 79 zdań P2 (G3 moc, 03.11.2026) już przełożonych (zestaw P2 pusty od 04.11.2026) + zdania P1 (G2 mobilność, 02.11.2026) czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-02-p1-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
     for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).sort()]).toEqual([l, [...OCZEKUJE].sort()]); /* ACG-003, 31.10.2026: było 52; brakować mogą tylko zdania z zestawu oczekującego na przekład */
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
