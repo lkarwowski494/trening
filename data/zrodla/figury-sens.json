@@ -33,6 +33,10 @@
           "typ": "lokiec_caly_ruch",
           "grupa": "pelna_amplituda",
           "cue": "npu.hang",
+          "cue_wariant": {
+            "Dead Hang": {"cue": "pu.grip"},
+            "Scapular Pull-Up": {"cue": null, "powod": "karta nie ma zdania „ręce proste przez cały ruch” (npu.hang mówi o uchwytach, nie o podciąganiu łopatek) — zdanie do napisania ze źródłami i tłumaczeniami; do tego czasu reguła nie wymaga zdania"}
+          },
           "parametry": {
             "max_lokiec_deg": 25
           },
@@ -43,6 +47,7 @@
           "typ": "miednica_poziomo",
           "grupa": "bujanie",
           "cue": "pu.noSwing",
+          "cue_dodatkowe": ["hang.noSwing"],
           "parametry": {
             "osie": [
               "x",
@@ -82,6 +87,7 @@
           "typ": "pochylenie_tulowia",
           "grupa": "bujanie",
           "cue": "pu.noSwing",
+          "cue_dodatkowe": ["hang.noSwing"],
           "parametry": {
             "min_deg": -12,
             "max_deg": 3
@@ -104,6 +110,17 @@
           "typ": "styk_dlonie",
           "grupa": "styk",
           "cue": "pu.grip",
+          "cue_wariant": {
+            "Chin Up": {"cue": "cu.grip"},
+            "Neutral Grip Pull Up": {"cue": "npu.hang"},
+            "Gironda Sternum Chins": {"cue": null, "powod": "zdanie reguły (pu.grip: „nachwytem, trochę szerzej niż barki”) jest nieprawdziwe dla tego ćwiczenia, bo w nazwie jest „Chins” (chwyt podchwytem), a nie nachwyt; zdania chwytu tego ćwiczenia na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Mixed Grip Chin": {"cue": null, "powod": "zdanie reguły (pu.grip: „nachwytem, trochę szerzej niż barki”) jest nieprawdziwe dla tego ćwiczenia, bo chwyt jest mieszany (jedna ręka podchwytem, druga nachwytem); zdania chwytu tego ćwiczenia na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "One Arm Chin-Up": {"cue": null, "powod": "zdanie reguły (pu.grip: „nachwytem, trochę szerzej niż barki”) jest nieprawdziwe dla tego ćwiczenia, bo ćwiczenie jest jednorącz (jedna ręka na drążku), a nie dwie ręce na szerokość barków; zdania chwytu tego ćwiczenia na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Scapular Pull-Up": {"cue": null, "powod": "rysunek ma ten sam drążek i szerokość chwytu co Pull Up, więc nieprawdziwość pu.grip dla tego ćwiczenia nie jest wykazana (recenzja niezależna 04.11.2026, #6); zestaw ogólny nie ma zdania o chwycie, a jego dopisanie zmienia zestaw i wymaga recenzji — do decyzji, czy dopisać pu.grip"},
+            "Side To Side Chins": {"cue": null, "powod": "rysunek ma ten sam drążek i szerokość chwytu co Pull Up, więc nieprawdziwość pu.grip dla tego ćwiczenia nie jest wykazana (recenzja niezależna 04.11.2026, #6); zestaw ogólny nie ma zdania o chwycie, a jego dopisanie zmienia zestaw i wymaga recenzji — do decyzji, czy dopisać pu.grip"},
+            "Wide-Grip Rear Pull-Up": {"cue": null, "powod": "zdanie reguły (pu.grip: „nachwytem, trochę szerzej niż barki”) jest nieprawdziwe dla tego ćwiczenia, bo chwyt jest szeroki (szerzej niż barki), a nie „trochę szerzej”; zdania chwytu tego ćwiczenia na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Gorilla Chin/Crunch": {"cue": null, "powod": "zdanie reguły (pu.grip: „nachwytem, trochę szerzej niż barki”) jest nieprawdziwe dla tego ćwiczenia, bo w nazwie jest „Chin” (chwyt podchwytem), a nie nachwyt; zdania chwytu tego ćwiczenia na karcie nie ma — do napisania ze źródłami i tłumaczeniami"}
+          },
           "parametry": {},
           "zrodlo": "wskazówka pu.grip („chwyć drążek … i zawiśnij”); źródła w cues.json: ACE, NASM, ExRx; styk liczony z geometrii (lib/figures/v2/contacts.ts)",
           "liczba": "uproszczenie (styk = dłoń na osi drążka w granicach tolerancji chwytu walidatora)"
@@ -1274,6 +1291,18 @@
           "typ": "ciezar_blisko_nog",
           "grupa": "tor",
           "cue": "dl.close",
+          "cue_wariant": {
+            "Deadlift (hantle)": {"cue": "dbdl.setup"},
+            "Trap Bar Deadlift": {"cue": null, "powod": "zdanie reguły (dl.close: „prowadź sztangę blisko nóg”) mówi o sztandze przed udami na jednym gryfie, a w Trap Bar ciężar jest w uchwytach po bokach ciała (karta: tb.lift); zdania neutralnego na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Cable Deadlift": {"cue": null, "powod": "zdanie reguły mówi o „sztandze”, a ćwiczenie ma inny ciężar (hantel, odważnik, linka, rama, dźwignia); zdania neutralnego („ciężar blisko nóg”) na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Leverage Deadlift": {"cue": null, "powod": "zdanie reguły mówi o „sztandze”, a ćwiczenie ma inny ciężar (hantel, odważnik, linka, rama, dźwignia); zdania neutralnego („ciężar blisko nóg”) na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "One-Arm Side Deadlift": {"cue": null, "powod": "zdanie reguły mówi o „sztandze”, a ćwiczenie ma inny ciężar (hantel, odważnik, linka, rama, dźwignia); zdania neutralnego („ciężar blisko nóg”) na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Rickshaw Deadlift": {"cue": null, "powod": "zdanie reguły mówi o „sztandze”, a ćwiczenie ma inny ciężar (hantel, odważnik, linka, rama, dźwignia); zdania neutralnego („ciężar blisko nóg”) na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Sumo Deadlift (kettlebell)": {"cue": null, "powod": "zdanie reguły mówi o „sztandze”, a ćwiczenie ma inny ciężar (hantel, odważnik, linka, rama, dźwignia); zdania neutralnego („ciężar blisko nóg”) na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Single Arm RDL (hantel/linka)": {"cue": "rdl.dbMove"},
+            "Stiff-Legged Barbell Deadlift": {"cue": "rdl.move"},
+            "Smith Machine Stiff-Legged Deadlift": {"cue": "rdl.move"}
+          },
           "cue_dodatkowe": [
             "mis.barAway",
             "rdl.move",
@@ -1312,6 +1341,19 @@
           "typ": "ciezar_ponizej_kolan",
           "grupa": "zakres",
           "cue": "dl.feet",
+          "cue_wariant": {
+            "Sumo Deadlift": {"cue": "sumo.stance"},
+            "Trap Bar Deadlift": {"cue": "tb.inside"},
+            "Deadlift (hantle)": {"cue": "dbdl.setup"},
+            "Cable Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "Leverage Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "One-Arm Side Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "Rickshaw Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "Reverse Band Sumo Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "Sumo Deadlift (kettlebell)": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "Sumo Deadlift with Bands": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
+            "Sumo Deadlift with Chains": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"}
+          },
           "cue_dodatkowe": [
             "dl.lower"
           ],
@@ -1326,6 +1368,12 @@
           "typ": "kolana_max",
           "grupa": "kolana",
           "cue": "rdl.knees",
+          "cue_wariant": {
+            "Band Good Morning": {"cue": null, "powod": "zdanie rdl.knees („kolana tylko lekko ugięte — to nie przysiad”) nie przechodzi strażnika CUE_REQUIRES (lib/figures/v2/cueSets.ts:52: tylko RDL obunóż stojąc, „kolana prawie proste”) dla tego wariantu, więc nie może trafić do jego zestawu; zdanie wariantu do napisania ze źródłami i tłumaczeniami"},
+            "Good Morning off Pins": {"cue": null, "powod": "zdanie rdl.knees („kolana tylko lekko ugięte — to nie przysiad”) nie przechodzi strażnika CUE_REQUIRES (lib/figures/v2/cueSets.ts:52: tylko RDL obunóż stojąc, „kolana prawie proste”) dla tego wariantu, więc nie może trafić do jego zestawu; zdanie wariantu do napisania ze źródłami i tłumaczeniami"},
+            "Cable Pull Through": {"cue": null, "powod": "zdanie rdl.knees („kolana tylko lekko ugięte — to nie przysiad”) nie przechodzi strażnika CUE_REQUIRES (lib/figures/v2/cueSets.ts:52: tylko RDL obunóż stojąc, „kolana prawie proste”) dla tego wariantu, więc nie może trafić do jego zestawu; zdanie wariantu do napisania ze źródłami i tłumaczeniami"}
+          },
+          "cue_dodatkowe": ["rdl.move", "rdl.dbMove", "gm.setup", "rdl.mis.knees"],
           "parametry": {
             "max_deg": 45
           },
@@ -1410,6 +1458,7 @@
           "typ": "kolana_max",
           "grupa": "kolana",
           "cue": "rdl.knees",
+          "cue_dodatkowe": ["rdl.dbMove", "rdl.move"],
           "parametry": {
             "max_deg": 45,
             "noga": "podporowa"
@@ -1422,6 +1471,10 @@
           "typ": "ciezar_blisko_nog",
           "grupa": "tor",
           "cue": "dl.close",
+          "cue_wariant": {
+            "Single Leg RDL (hantel)": {"cue": "rdl.dbMove"},
+            "Single Leg RDL (linki)": {"cue": "rdl.dbMove"}
+          },
           "cue_dodatkowe": [
             "mis.barAway",
             "rdl.move",
@@ -1623,6 +1676,13 @@
           "typ": "lawka_kontakt",
           "grupa": "lawka",
           "cue": "bp.contact",
+          "cue_wariant": {
+            "Floor Press (hantle)": {"cue": null, "powod": "zdanie reguły („głowa, barki i pośladki na ławce, stopy na podłodze”) jest nieprawdziwe przy wyciskaniu z podłogi albo z zahaczonymi stopami (ławka ujemna); zdania wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Floor Press (sztanga)": {"cue": null, "powod": "zdanie reguły („głowa, barki i pośladki na ławce, stopy na podłodze”) jest nieprawdziwe przy wyciskaniu z podłogi albo z zahaczonymi stopami (ławka ujemna); zdania wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Floor Press with Chains": {"cue": null, "powod": "zdanie reguły („głowa, barki i pośladki na ławce, stopy na podłodze”) jest nieprawdziwe przy wyciskaniu z podłogi albo z zahaczonymi stopami (ławka ujemna); zdania wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "One-Arm Kettlebell Floor Press": {"cue": null, "powod": "zdanie reguły („głowa, barki i pośladki na ławce, stopy na podłodze”) jest nieprawdziwe przy wyciskaniu z podłogi albo z zahaczonymi stopami (ławka ujemna); zdania wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami"},
+            "Decline Close-Grip Bench To Skull Crusher": {"cue": null, "powod": "zdanie reguły („głowa, barki i pośladki na ławce, stopy na podłodze”) jest nieprawdziwe przy wyciskaniu z podłogi albo z zahaczonymi stopami (ławka ujemna); zdania wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami"}
+          },
           "cue_dodatkowe": [
             "bp.mis.arch"
           ],

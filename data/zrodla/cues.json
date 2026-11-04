@@ -8113,6 +8113,19 @@
      ]
     },
     {
+     "c": "bp.elbowsMid",
+     "s": [
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (elbows too wide or too close)"
+      ],
+      [
+       "sbs-how-to-bench",
+       "FAQ „How much should I tuck my elbows?”"
+      ]
+     ]
+    },
+    {
      "c": "bp.control",
      "s": [
       [
@@ -8205,6 +8218,19 @@
      ]
     },
     {
+     "c": "bp.elbowsMid",
+     "s": [
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (elbows too wide or too close) (skos — ta sama zasada)"
+      ],
+      [
+       "sbs-how-to-bench",
+       "FAQ „How much should I tuck my elbows?” (skos — ta sama zasada)"
+      ]
+     ]
+    },
+    {
      "c": "bp.control",
      "s": [
       [
@@ -8288,6 +8314,19 @@
       [
        "nasm-two-arm-incline-dumbbell-chest-press",
        "Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "bp.elbowsMid",
+     "s": [
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (elbows too wide or too close) (hantle — ta sama zasada)"
+      ],
+      [
+       "sbs-how-to-bench",
+       "FAQ „How much should I tuck my elbows?” (hantle — ta sama zasada)"
       ]
      ]
     },
@@ -8874,6 +8913,19 @@
       [
        "nasm-two-arm-dumbbell-chest-press-with-band",
        "Step 2 (retract your shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "bp.elbowsMid",
+     "s": [
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (elbows too wide or too close) (hantle — ta sama zasada)"
+      ],
+      [
+       "sbs-how-to-bench",
+       "FAQ „How much should I tuck my elbows?” (hantle — ta sama zasada)"
       ]
      ]
     },
