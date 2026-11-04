@@ -32,15 +32,15 @@ export type RefPoint = 'grip' | 'wrist' | 'elbow' | 'shoulder' | 'hip' | 'knee' 
  * - horizontal: poziom przez punkt `through` (np. przedłużony poziom drążka);
  * - segment: linia segmentu `from` → `to` przedłużona za `to` o OVERLAY_EXTEND (nieruchomy odcinek: ramię przy tułowiu, linia tułowia).
  */
-export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down' | 'both' } | { shape: 'horizontal'; through: RefPoint } | { shape: 'segment'; from: RefPoint; to: RefPoint };
-export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint; /** linia odniesienia (kind „ref”, E3) */ ref?: RefSpec };
+export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down' | 'both'; /** pion kończy się na wysokości tego punktu (zamiast OVERLAY_PLUMB_LEN) — tylko dla dir „down”/„up” */ until?: RefPoint } | { shape: 'horizontal'; through: RefPoint } | { shape: 'segment'; from: RefPoint; to: RefPoint };
+export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint; /** linia odniesienia (kind „ref”, E3) */ ref?: RefSpec; /** element tylko dla tych ćwiczeń (klucz katalogu), gdy reguła ma pewność „ustalone” tylko dla części odmian rodziny */ exercises?: string[] };
 
 /** Elementy nakładki wg rodziny (dane: overlay/<rodzina>.ts). */
 export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, squat: SQUAT_TECHNIQUE, hinge: HINGE_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE };
 export const techniqueDef = (id: string): TechniqueDef | undefined => Object.values(TECHNIQUE).flat().find(d => d.id === id);
 /** Elementy rodziny, które wolno pokazać przy zestawie wskazówek ćwiczenia (id wskazówek karty). */
-export function techniquesFor(family: string, cueIds: Iterable<string>): TechniqueDef[] {
-  const have = new Set(cueIds); return (Object.prototype.hasOwnProperty.call(TECHNIQUE, family) ? TECHNIQUE[family] : []).filter(d => d.cue.some(c => have.has(c)));
+export function techniquesFor(family: string, cueIds: Iterable<string>, exercise?: string): TechniqueDef[] {
+  const have = new Set(cueIds); return (Object.prototype.hasOwnProperty.call(TECHNIQUE, family) ? TECHNIQUE[family] : []).filter(d => d.cue.some(c => have.has(c)) && (!d.exercises || (exercise !== undefined && d.exercises.includes(exercise))));
 }
 
 const angleDeg = (a: V3, b: V3): number => Math.acos(Math.max(-1, Math.min(1, dot(a, b)))) * 180 / Math.PI;
@@ -108,7 +108,8 @@ export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec): [
   }
   if (view === 'top') return null; const p = proj(refPoint(sk, side, ref.through), view);
   if (ref.shape === 'horizontal') return [[p[0] - OVERLAY_LEVEL_HALF, p[1]], [p[0] + OVERLAY_LEVEL_HALF, p[1]]];
-  return [[p[0], ref.dir === 'up' ? p[1] : p[1] - OVERLAY_PLUMB_LEN], [p[0], ref.dir === 'down' ? p[1] : p[1] + OVERLAY_PLUMB_LEN]];
+  const end = ref.until ? proj(refPoint(sk, side, ref.until), view)[1] : undefined;
+  return [[p[0], ref.dir === 'up' ? p[1] : end ?? p[1] - OVERLAY_PLUMB_LEN], [p[0], ref.dir === 'down' ? p[1] : end ?? p[1] + OVERLAY_PLUMB_LEN]];
 }
 
 export type OverlayCtx = { joint: MeasuredJoint; side: Side; limbShown: boolean; /** czy reguła elementu jest złamana przez pokazany błąd (kolor danger) */ danger: (rule: string) => boolean; /** linie odniesienia (GUIDES) już narysowane w tym rzucie — wchodzą do limitu OVERLAY_MAX_LINES (W3) */ guideLines?: number };

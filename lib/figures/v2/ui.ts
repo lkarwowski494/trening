@@ -31,7 +31,7 @@ export const guidesOf = (key: string): GuideId[] => guidesFor(cueIdsOf(key).ids)
 
 /** Elementy nakładki techniki dozwolone przy ćwiczeniu (id elementów): tylko te, których wskazówka jest na karcie ćwiczenia. */
 export function techniquesOf(key: string): string[] {
-  const spec = shownFigureSpec(key); return spec ? techniquesFor(spec.family, cueIdsOf(key).ids).map(d => d.id) : [];
+  const spec = shownFigureSpec(key); return spec ? techniquesFor(spec.family, cueIdsOf(key).ids, key).map(d => d.id) : [];
 }
 
 /** Id wskazówek elementów WIDOCZNYCH na rysunku (linie odniesienia i nakładka techniki; bez powtórzeń, w kolejności): podstawa etykiety VoiceOver „Na rysunku: …”. Element jest widoczny, gdy jego rzut należy do rzutów figury (a łuk stawu — gdy staw jest mierzony). */

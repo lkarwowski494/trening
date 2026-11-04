@@ -677,9 +677,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy rysunek przechodzi w pozę błędu
     - Wtedy ten element ma kolor błędu (danger), a elementy innych reguł zostają bez zmiany
   - Scenariusz: Linia odniesienia z regułą (etap 2)
-    - Zakładając, że karta ćwiczenia z rodziny przysiadu, zawiasu, uginania ramion albo podciągania ma wskazówkę reguły „ustalone” (np. łokcie przy bokach, tułów nieruchomo, wyprost na górze, broda nad drążkiem, bez bujania)
-    - Gdy użytkownik widzi rysunek z boku (podciąganie także z przodu)
-    - Wtedy obok linii odniesienia do ciała (poziom uda, linia pleców, pion przez palce) rysunek ma ciągłą linię tej reguły: pion przez kostkę (wyprost na górze), pion przez bark (łokieć przy boku), linię tułowia, poziom drążka przez chwyt, pion pod drążkiem; razem nadal do 3 linii i 1 łuku na rzut
+    - Zakładając, że karta ćwiczenia z rodziny przysiadu, zawiasu, uginania ramion albo podciągania ma wskazówkę reguły „ustalone” (np. łokcie przy bokach, wyprost na górze, broda nad drążkiem, bez bujania — ta ostatnia tylko w Pull Up i Chin Up, gdzie reguła jest „ustalone”)
+    - Gdy użytkownik widzi rysunek z boku (elementy podciągania tylko z boku)
+    - Wtedy obok linii odniesienia do ciała (poziom uda, linia pleców, pion przez palce) rysunek ma ciągłą linię tej reguły: pion przez kostkę (wyprost na górze), pion od barku w dół do wysokości miednicy (łokieć przy boku), poziom drążka przez chwyt, pion pod drążkiem; razem nadal do 3 linii i 1 łuku na rzut
   - Scenariusz: Kolor błędu linii odniesienia (etap 2)
     - Zakładając, że użytkownik pokazuje częsty błąd łamiący regułę linii odniesienia (zaokrąglone plecy, kolana do środka, łokcie do przodu, skracanie ruchu, bujanie)
     - Gdy rysunek przechodzi w pozę błędu
