@@ -123,7 +123,8 @@ describe('C1 (recenzja niezależna 03.11.2026): ślad ciężaru w dłoni leży p
   const dist3 = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
   /** Odległość śladu od najbliższego dopuszczalnego punktu: chwyt R/L; środek między chwytami tylko dla jednego uchwytu (nie dla dwóch osobnych ciężarów). */
   const odChwytu = (tr: number[], R: number[], L: number[], dwaCiezary: boolean) => Math.min(dist3(tr, R), dist3(tr, L), dwaCiezary ? Infinity : dist3(tr, [0, 1, 2].map(i => (R[i] + L[i]) / 2)));
-  const ZESTAW = DATA.filter(([, d]) => { const g = nosi(d); return !!g && !d.sprzet.some(x => x.rodzaj === 'sztanga'); });
+  /* FW2 (04.11.2026, recenzja różnicy fw2-r1): wyciąg z opaską na kostce (chwyt 'kostka') — ciężar przy kostce, nie w dłoni; pilnuje go ostrzejszy test w tests/figures-v2-fala-wspolna-2.test.ts (≤ 1,5 cm od kostki) */
+  const ZESTAW = DATA.filter(([, d]) => { const g = nosi(d) as (ReturnType<typeof nosi> & { chwyt?: string }); return !!g && g.chwyt !== 'kostka' && !d.sprzet.some(x => x.rodzaj === 'sztanga'); });
 
   test('zestaw jest niepusty i obejmuje curl: ćwiczenia z dwoma ciężarami i z jednym uchwytem', () => {
     expect(ZESTAW.length).toBeGreaterThanOrEqual(30);
