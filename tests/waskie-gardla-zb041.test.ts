@@ -115,6 +115,47 @@ describe('G4 (04.11.2026): baza H1 = origin/<bieżąca gałąź> z zielonym test
   });
 });
 
+/* G4b (04.11.2026, błąd „883 pliki poza dokumentami”): koniec origin/<gałąź> bywa sam commitem z dokumentami (wypchniętym po verify:docs) — jego tests.yml jeszcze trwa albo go nie ma;
+   baza H1 to wtedy najbliższy przodek z zielonym tests.yml, o ile od niego zmieniły się same dokumenty. Gałąź z wcześniejszymi zmianami kodu względem main (L-080). */
+describe('G4b (04.11.2026): baza H1 = najbliższy wypchnięty commit gałęzi z zielonym tests.yml (końcówka origin/<gałąź> z samymi dokumentami bez przebiegu)', () => {
+  const plikCiWiele = (wpisy: Array<[string, string | null, string?]>) => {
+    const f = join(nowy('zb041-ci-'), 'runy.json');
+    writeFileSync(f, JSON.stringify({ workflow_runs: wpisy.map(([sha, conclusion, status = 'completed'], i) => ({ id: 7 + i, path: '.github/workflows/tests.yml', head_sha: sha, status, conclusion, created_at: '2026-11-04T05:00:00Z', run_number: 1 + i })) }));
+    return f;
+  };
+  const push = (dir: string) => { git(dir, 'push', '-q', 'origin', 'integracja-1-1'); return git(dir, 'rev-parse', 'HEAD'); };
+  /** kod (zielony) → wypchnięty commit z dokumentami (bez przebiegu) → lokalny commit z dokumentami */
+  function lancuch() {
+    const r = repo(); r.zatwierdz('plik.txt', '2\n'); const kod = push(r.dir);
+    r.zatwierdz('docs/b.md', 'b\n'); const koniecZdalnej = push(r.dir); r.zatwierdz('docs/c.md', 'c\n');
+    return { ...r, kod, koniecZdalnej };
+  }
+  test('verify:docs: koniec origin/<gałąź> = dokumenty bez przebiegu, wcześniejszy kod zielony → dokumenty, baza = commit z kodem', () => {
+    const x = lancuch(); const p = plan(x.dir, { CI_RUNY_PLIK: plikCiWiele([[x.kod, 'success']]) });
+    expect(p.dokumenty).toBe(true); expect(p.baza).toBe(x.kod); expect([...p.zmienione].sort()).toEqual(['docs/b.md', 'docs/c.md']);
+  });
+  test('verify:docs: koniec origin/<gałąź> w toku albo czerwony z samymi dokumentami → też baza = wcześniejszy zielony', () => {
+    const x = lancuch();
+    for (const koniec of [[x.koniecZdalnej, null, 'in_progress'], [x.koniecZdalnej, 'cancelled']] as Array<[string, string | null, string?]>)
+      expect(plan(x.dir, { CI_RUNY_PLIK: plikCiWiele([[x.kod, 'success'], koniec]) }).baza).toBe(x.kod);
+  });
+  test('verify:docs: kod między zielonym commitem a końcem gałęzi (przebieg anulowany) → nadal zmiany poza dokumentami', () => {
+    const r = repo(); r.zatwierdz('plik.txt', '2\n'); const zielony = push(r.dir); r.zatwierdz('plik.txt', '3\n'); const anulowany = push(r.dir); r.zatwierdz('docs/c.md', 'c\n');
+    const p = plan(r.dir, { CI_RUNY_PLIK: plikCiWiele([[zielony, 'success'], [anulowany, 'cancelled']]) });
+    expect(p.dokumenty).toBe(false); expect(p.poza).toContain('plik.txt');
+  });
+  test('verify:docs: żaden przodek bez zielonego przebiegu → jak dotąd', () => {
+    const x = lancuch(); expect(plan(x.dir, { CI_RUNY_PLIK: plikCiWiele([[x.kod, 'failure']]) }).dokumenty).toBe(false);
+  });
+  test('hak (--sprawdz --galaz): znacznik „dokumenty” + zielony wcześniejszy commit gałęzi → 0; kod po nim → 1', () => {
+    const x = lancuch(); oznacz(x.dir, 'dokumenty');
+    expect(sprawdz(x.dir, { CI_RUNY_PLIK: plikCiWiele([[x.kod, 'success']]) }).status).toBe(0);
+    expect(sprawdz(x.dir, { CI_RUNY_PLIK: plikCiWiele([[x.kod, 'failure']]) }).status).toBe(1);
+    x.zatwierdz('plik.txt', '9\n'); oznacz(x.dir, 'dokumenty');
+    expect(sprawdz(x.dir, { CI_RUNY_PLIK: plikCiWiele([[x.kod, 'success']]) }).status).toBe(1);
+  });
+});
+
 /* G3 (04.11.2026): fraza katalogu liczy się tylko w teście, który ten katalog przegląda albo buduje z niego ścieżki */
 describe('G3 (04.11.2026): verify:docs — wybór testów dla dokumentów', () => {
   const MODUL = join(root, 'scripts/testy-dla-plikow.mjs');
