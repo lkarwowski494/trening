@@ -1265,24 +1265,6 @@
    "twierdzenie": "Zakres opuszczania w wyciskaniu francuskim bez gryfu (hantle, guma): to samo zdanie co skull.depth, z „dłońmi” zamiast „gryfu”.",
    "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
   },
-  "ur.height": {
-   "zrodla": [
-    {
-     "adres": "https://www.coachesontario.ca/articles/breaking-down-the-upright-row/",
-     "miejsce": "NSCA Exercise Technique Manual (przedruk), Upward movement: „At the highest bar position, the elbows should be level with or slightly higher than the shoulders and wrists.”"
-    },
-    {
-     "adres": "https://theprehabguys.com/vimeo-video/upright-row-band/",
-     "miejsce": "„Drive your elbows up and out so that they're even with your hands at the top.”"
-    },
-    {
-     "adres": "https://www.ummhealth.org/health-library/upper-body-exercises-upright-row",
-     "miejsce": "„…raise the weights along the midline of your body up to your collarbone.”"
-    }
-   ],
-   "twierdzenie": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
-   "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
-  },
   "gcalf.knee": {
    "zrodla": [
     {
@@ -2019,11 +2001,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Dumbbell Front Raise to Overhead": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": "bez lat.height — ruch kończy się nad głową",
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Dumbbell One-Arm Triceps Extension": {
    "rodzina": "triOver",
    "sprawdzenie": null,
@@ -2123,11 +2100,6 @@
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Front Incline Dumbbell Raise": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Front Raise And Pullover": {
    "rodzina": "pullover",
@@ -3443,11 +3415,6 @@
    "rodzina": "rdl",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Straight Raises on Incline Bench": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Sumo Deadlift (kettlebell)": {
    "rodzina": "hingeFloor",

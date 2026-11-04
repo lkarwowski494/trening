@@ -134,11 +134,12 @@ describe('B3 (recenzja treści 1.1): wskazówka o zakresie opuszczania nie mówi
 });
 
 describe('Upright Row (badacz 27.10.2026): wysokość dotyczy łokci (ur.height zamiast dwuznacznego lat.height)', () => {
-  test('7 ćwiczeń Upright Row ma ur.elbows + ur.height, bez lat.height (od 04.11.2026 karty własne partii T1 zamiast zestawu ogólnego uprightRow); Straight Raises on Incline Bench ma od 04.11.2026 kartę własną (źródła typu strona aplikacji), bez zestawu ogólnego', () => {
+  test('7 ćwiczeń Upright Row ma ur.elbows + urow.height, bez lat.height (od 04.11.2026 karty własne partii T1 zamiast zestawu ogólnego uprightRow); Straight Raises on Incline Bench ma od 04.11.2026 kartę własną (źródła typu strona aplikacji), bez zestawu ogólnego', () => {
     const UR = ['Upright Row (sztanga)', 'Upright Row (hantle)', 'Upright Row (linki)', 'Smith Machine Upright Row', 'Dumbbell One-Arm Upright Row', 'Smith Machine One-Arm Upright Row', 'Band Upright Row'];
     expect(Object.values(CUE_SETS.items).filter(e => e.f === 'uprightRow')).toEqual([]);
-    for (const k of UR) { expect([k, CUE_SETS.items[k].b]).toEqual([k, 'own']); expect([k, CUE_FULL.exercises[k].tips.map(r => r.c)]).toEqual([k, ['ur.elbows', 'ur.height']]); }
-    expect(PL['ur.height']).toMatch(/łokci/); expect(EN['ur.height']).toMatch(/elbows/);
+    for (const k of UR) { expect([k, CUE_SETS.items[k].b]).toEqual([k, 'own']); expect([k, CUE_FULL.exercises[k].tips.map(r => r.c)]).toEqual([k, ['ur.elbows', 'urow.height']]); }
+    expect(PL['ur.height']).toBeUndefined(); /* 04.11.2026: zdanie zestawu ogólnego uprightRow bez zestawu i bez karty — usunięte (check:cues: nieużywane zdanie); karty mają urow.height */
+    expect(PL['urow.height']).toMatch(/łokcie prowadzą/); expect(EN['urow.height']).toMatch(/shoulder height/);
     expect(CUE_SETS.items['Straight Raises on Incline Bench'].b).toBe('own');
   });
 });

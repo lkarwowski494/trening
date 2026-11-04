@@ -19,10 +19,10 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 122 | 17,2% |
 | Animowany błąd | 124 | 17,5% |
-| Własne wskazówki (źródłowe) | 193 | 27,3% |
+| Własne wskazówki (źródłowe) | 186 | 26,3% |
 | — z czego z częstymi błędami | 91 | 12,9% |
 | Zestaw ogólny wskazówek wzorca ruchu | 105 | 14,8% |
-| Bez tekstu wskazówek | 410 | 57,9% |
+| Bez tekstu wskazówek | 417 | 58,9% |
 | Częste błędy (własne albo zestaw ogólny) | 196 | 27,7% |
 | Role mięśni | 508 | 71,8% |
 | **Pełna karta** | 122 | 17,2% |
@@ -41,50 +41,50 @@ Cel osiągnięty: **nie** (9 z 47 liczb).
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 298 | 342 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 291 | 349 |
 | częste błędy (tekst) | 557 | 196 | 361 |
 | komplet tekstów karty: pl | 671 | 572 | 99 |
 | komplet tekstów karty: en | 671 | 572 | 99 |
-| komplet tekstów karty: cs | 571 | 546 | 25 |
-| komplet tekstów karty: sk | 571 | 546 | 25 |
-| komplet tekstów karty: hu | 571 | 546 | 25 |
-| komplet tekstów karty: ro | 571 | 546 | 25 |
-| komplet tekstów karty: bg | 571 | 546 | 25 |
-| komplet tekstów karty: hr | 571 | 546 | 25 |
-| komplet tekstów karty: sl | 571 | 546 | 25 |
-| komplet tekstów karty: sr | 571 | 546 | 25 |
-| komplet tekstów karty: lt | 571 | 546 | 25 |
-| komplet tekstów karty: lv | 571 | 546 | 25 |
-| komplet tekstów karty: et | 571 | 546 | 25 |
-| komplet tekstów karty: uk | 571 | 546 | 25 |
-| komplet tekstów karty: es | 571 | 546 | 25 |
-| komplet tekstów karty: es-419 | 571 | 546 | 25 |
-| komplet tekstów karty: pt | 571 | 546 | 25 |
-| komplet tekstów karty: pt-BR | 571 | 546 | 25 |
-| komplet tekstów karty: de | 571 | 546 | 25 |
-| komplet tekstów karty: fr | 571 | 546 | 25 |
-| komplet tekstów karty: it | 571 | 546 | 25 |
-| komplet tekstów karty: nl | 571 | 546 | 25 |
-| komplet tekstów karty: sv | 571 | 546 | 25 |
-| komplet tekstów karty: da | 571 | 546 | 25 |
-| komplet tekstów karty: nb | 571 | 546 | 25 |
-| komplet tekstów karty: fi | 571 | 546 | 25 |
-| komplet tekstów karty: tr | 571 | 546 | 25 |
-| komplet tekstów karty: el | 571 | 546 | 25 |
-| komplet tekstów karty: id | 571 | 546 | 25 |
-| komplet tekstów karty: ms | 571 | 546 | 25 |
-| komplet tekstów karty: vi | 571 | 546 | 25 |
-| komplet tekstów karty: ru | 571 | 546 | 25 |
-| komplet tekstów karty: ja | 571 | 546 | 25 |
-| komplet tekstów karty: ko | 571 | 546 | 25 |
-| komplet tekstów karty: zh-Hant | 571 | 546 | 25 |
+| komplet tekstów karty: cs | 571 | 553 | 18 |
+| komplet tekstów karty: sk | 571 | 553 | 18 |
+| komplet tekstów karty: hu | 571 | 553 | 18 |
+| komplet tekstów karty: ro | 571 | 553 | 18 |
+| komplet tekstów karty: bg | 571 | 553 | 18 |
+| komplet tekstów karty: hr | 571 | 553 | 18 |
+| komplet tekstów karty: sl | 571 | 553 | 18 |
+| komplet tekstów karty: sr | 571 | 553 | 18 |
+| komplet tekstów karty: lt | 571 | 553 | 18 |
+| komplet tekstów karty: lv | 571 | 553 | 18 |
+| komplet tekstów karty: et | 571 | 553 | 18 |
+| komplet tekstów karty: uk | 571 | 553 | 18 |
+| komplet tekstów karty: es | 571 | 553 | 18 |
+| komplet tekstów karty: es-419 | 571 | 553 | 18 |
+| komplet tekstów karty: pt | 571 | 553 | 18 |
+| komplet tekstów karty: pt-BR | 571 | 553 | 18 |
+| komplet tekstów karty: de | 571 | 553 | 18 |
+| komplet tekstów karty: fr | 571 | 553 | 18 |
+| komplet tekstów karty: it | 571 | 553 | 18 |
+| komplet tekstów karty: nl | 571 | 553 | 18 |
+| komplet tekstów karty: sv | 571 | 553 | 18 |
+| komplet tekstów karty: da | 571 | 553 | 18 |
+| komplet tekstów karty: nb | 571 | 553 | 18 |
+| komplet tekstów karty: fi | 571 | 553 | 18 |
+| komplet tekstów karty: tr | 571 | 553 | 18 |
+| komplet tekstów karty: el | 571 | 553 | 18 |
+| komplet tekstów karty: id | 571 | 553 | 18 |
+| komplet tekstów karty: ms | 571 | 553 | 18 |
+| komplet tekstów karty: vi | 571 | 553 | 18 |
+| komplet tekstów karty: ru | 571 | 553 | 18 |
+| komplet tekstów karty: ja | 571 | 553 | 18 |
+| komplet tekstów karty: ko | 571 | 553 | 18 |
+| komplet tekstów karty: zh-Hant | 571 | 553 | 18 |
 
 ## Rodziny ruchu
 
 | Rodzina | Stan | Ćwiczeń | Figura v2 | Dane v2 (niewłączone) | Figura v1 | Własne wsk. | Zestaw ogólny | Bez tekstu | Pełne karty | Recenzja |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
-| `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 31 | 0 | 7 | 0 | 0 |
+| `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 24 | 0 | 14 | 0 | 0 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 6 | 28 | 2 | 32 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
 | `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 31 | 32 |
@@ -135,39 +135,39 @@ Kart z tekstami (wskazówki albo role mięśni): **572**. „Komplet” = karta 
 |---|---:|---:|---:|---:|
 | pl | 572 | 0 | 0 | 0 |
 | en | 572 | 0 | 0 | 0 |
-| cs | 546 | 26 | 72 | 0 |
-| sk | 546 | 26 | 72 | 0 |
-| hu | 546 | 26 | 72 | 0 |
-| ro | 546 | 26 | 72 | 0 |
-| bg | 546 | 26 | 72 | 0 |
-| hr | 546 | 26 | 72 | 0 |
-| sl | 546 | 26 | 72 | 0 |
-| sr | 546 | 26 | 72 | 0 |
-| lt | 546 | 26 | 72 | 0 |
-| lv | 546 | 26 | 72 | 0 |
-| et | 546 | 26 | 72 | 0 |
-| uk | 546 | 26 | 72 | 0 |
-| es | 546 | 26 | 72 | 0 |
-| es-419 | 546 | 26 | 72 | 0 |
-| pt | 546 | 26 | 72 | 0 |
-| pt-BR | 546 | 26 | 72 | 0 |
-| de | 546 | 26 | 72 | 0 |
-| fr | 546 | 26 | 72 | 0 |
-| it | 546 | 26 | 72 | 0 |
-| nl | 546 | 26 | 72 | 0 |
-| sv | 546 | 26 | 72 | 0 |
-| da | 546 | 26 | 72 | 0 |
-| nb | 546 | 26 | 72 | 0 |
-| fi | 546 | 26 | 72 | 0 |
-| tr | 546 | 26 | 72 | 0 |
-| el | 546 | 26 | 72 | 0 |
-| id | 546 | 26 | 72 | 0 |
-| ms | 546 | 26 | 72 | 0 |
-| vi | 546 | 26 | 72 | 0 |
-| ru | 546 | 26 | 72 | 0 |
-| ja | 546 | 26 | 72 | 0 |
-| ko | 546 | 26 | 72 | 0 |
-| zh-Hant | 546 | 26 | 72 | 0 |
+| cs | 553 | 19 | 51 | 0 |
+| sk | 553 | 19 | 51 | 0 |
+| hu | 553 | 19 | 51 | 0 |
+| ro | 553 | 19 | 51 | 0 |
+| bg | 553 | 19 | 51 | 0 |
+| hr | 553 | 19 | 51 | 0 |
+| sl | 553 | 19 | 51 | 0 |
+| sr | 553 | 19 | 51 | 0 |
+| lt | 553 | 19 | 51 | 0 |
+| lv | 553 | 19 | 51 | 0 |
+| et | 553 | 19 | 51 | 0 |
+| uk | 553 | 19 | 51 | 0 |
+| es | 553 | 19 | 51 | 0 |
+| es-419 | 553 | 19 | 51 | 0 |
+| pt | 553 | 19 | 51 | 0 |
+| pt-BR | 553 | 19 | 51 | 0 |
+| de | 553 | 19 | 51 | 0 |
+| fr | 553 | 19 | 51 | 0 |
+| it | 553 | 19 | 51 | 0 |
+| nl | 553 | 19 | 51 | 0 |
+| sv | 553 | 19 | 51 | 0 |
+| da | 553 | 19 | 51 | 0 |
+| nb | 553 | 19 | 51 | 0 |
+| fi | 553 | 19 | 51 | 0 |
+| tr | 553 | 19 | 51 | 0 |
+| el | 553 | 19 | 51 | 0 |
+| id | 553 | 19 | 51 | 0 |
+| ms | 553 | 19 | 51 | 0 |
+| vi | 553 | 19 | 51 | 0 |
+| ru | 553 | 19 | 51 | 0 |
+| ja | 553 | 19 | 51 | 0 |
+| ko | 553 | 19 | 51 | 0 |
+| zh-Hant | 553 | 19 | 51 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
@@ -181,6 +181,6 @@ Pełnych kart: 122. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy
 | 0 | 122 |
 | 1 | 4 |
 | 2 | 54 |
-| 3 | 84 |
-| 4 | 302 |
+| 3 | 77 |
+| 4 | 309 |
 | 5 | 142 |

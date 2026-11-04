@@ -3065,7 +3065,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Upright Row (hantle)
 
@@ -3080,7 +3080,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Upright Row (linki)
 
@@ -3095,7 +3095,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Smith Machine Upright Row
 
@@ -3110,7 +3110,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (Variations); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Dumbbell One-Arm Upright Row
 
@@ -3125,7 +3125,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Smith Machine One-Arm Upright Row
 
@@ -3140,7 +3140,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to; Variations (Smith)); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Band Upright Row
 
@@ -3155,7 +3155,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm)); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm): ręce do dolnej części klatki piersiowej); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm): ręce do dolnej części klatki piersiowej); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
 
 ### Band Lateral Raise
 

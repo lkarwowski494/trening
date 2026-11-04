@@ -1,5 +1,5 @@
 {
- "_opis": "Zdania wskazówek techniki z partii T1 (rodziny delt_raise i triceps; linia 1.1, 04.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków). Po recenzji L-047 (04.11.2026) zdanie ur.height zmieniło brzmienie (część wspólna źródeł); stare tłumaczenia usunięte ze słowników 31 języków, więc wpis jest rodzaju „nowy”.",
+ "_opis": "Zdania wskazówek techniki z partii T1 (rodziny delt_raise i triceps; linia 1.1, 04.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
  "data": "2026-11-04",
  "klucze": [
   {
@@ -280,7 +280,7 @@
   },
   {
    "rodzaj": "nowy",
-   "id": "ur.height",
+   "id": "urow.height",
    "pl": "Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą.",
    "en": "Bring the weight up close to your body to about shoulder height, elbows leading."
   },
