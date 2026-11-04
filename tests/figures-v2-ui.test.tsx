@@ -10,7 +10,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { compPropsAll } from './app';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { measuredAngle, measuredJoint, jointAngles, frameAt, SIDES, figurePalette, TEMPO, loopLength, figureSpec, shownFigureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
-import { errorsOf, hasTechnique, toeAngleApplies, guidesOf } from '@/lib/figures/v2/ui';
+import { errorsOf, hasTechnique, toeAngleApplies, guidesOf, errorText } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
@@ -63,9 +63,9 @@ describe('komponent ExerciseFigureV2', () => {
   });
   test('VoiceOver: jeden obraz z opisem „Rysunek ruchu: …” w języku interfejsu; przycisk pauzy osobno', async () => {
     setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} name="Martwy ciąg" />); await flush();
-    const img = screen.getByTestId('exercise-figure-v2-image'); expect(img.props.accessibilityRole).toBe('image'); expect(img.props.accessible).toBe(true); expect(img.props.accessibilityLabel).toBe('Rysunek ruchu: Martwy ciąg');
+    const img = screen.getByTestId('exercise-figure-v2-image'); expect(img.props.accessibilityRole).toBe('image'); expect(img.props.accessible).toBe(true); expect(img.props.accessibilityLabel).toBe(`Rysunek ruchu: Martwy ciąg. Na rysunku: ${errorText('hinge.back')}`); /* 04.11.2026: etykieta wymienia wskazówki widocznych linii (nakładka techniki; plecy proste) */
     applyLang('en'); setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} name="Deadlift" />); await flush();
-    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe('Movement drawing: Deadlift'); expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
+    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Movement drawing: Deadlift. On the drawing: ${errorText('hinge.back')}`); expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
   });
   test('bez kątów na rysunku: żadnego znaku stopnia; cyfry tylko w liczniku faz (tempo w sekundach)', async () => {
     setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();

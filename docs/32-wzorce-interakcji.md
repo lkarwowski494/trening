@@ -186,7 +186,15 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - **Miejsca:** wiersze serii w treningu w widoku Lista (`components/WorkoutBlocks.tsx`: ciężar, powtórzenia, dystans, czas, RPE), tabela edycji sesji (`app/history/edit/[id].tsx`), kafelki „Ten tydzień” i „Progresja” (`components/Dashboard.tsx`); tablica „teraz” (`components/BoardControls.tsx`) ma to od DEC-10.
 - **Odrzucone:** (b) własny dymek przy polu — wymaga pomiaru położenia i warstwy nad przewijaną listą, ryzyko zasłonięcia klawiatury; (c) małe okno z liczbą — wymaga przycisku „Anuluj” (wzorzec 1) i przesuwa uwagę z treningu. Ograniczenie wybranego wariantu: podgląd systemowy działa, gdy w iOS jest włączony „Podgląd dużej zawartości” (Ustawienia → Dostępność → Wyświetlanie i rozmiar tekstu); czy jest włączony domyślnie przy rozmiarach dostępności, sprawdza się na telefonie (**[OTWARTE]**, nie z dokumentacji z pamięci).
 
-## Strażniki (S1–S19)
+### 33. Element techniki na rysunku ćwiczenia (właściciel 04.11.2026: rysunek graficznie pokazuje technikę; spec „rysunek pokazuje technikę”, etap 1: wyciskanie leżąc)
+- **Po co:** nowy ćwiczący widzi z rysunku, jak zrobić ruch; bywalec w 2 sekundy widzi swój błąd. Linie i łuki wynikają z geometrii rysunku i z reguł ruchu ze źródłem — nie z nowych twierdzeń.
+- **Wygląd:** linia przerywana przez kończynę (przedłużenie segmentu za mierzony staw) i łuk kąta w tym stawie w każdej klatce; odwiedzenie ramienia — łuk w rzucie z góry. Kolor roli „guide” (token `doneLine`); **bez liczb i tekstu na rysunku** (liczba kąta tylko w podpisie „Kąt na rysunku”, który już istnieje). Zawsze widoczne, bez przełącznika; limit na rzut: 3 linie i 1 łuk (`OVERLAY_MAX_LINES`, `OVERLAY_MAX_ARCS` w `lib/figures/v2/overlay.ts`).
+- **Błąd:** po „Pokaż częsty błąd” element reguły złamanej przez ten błąd (ta sama grupa reguły i błędu, `grupy.json` z `figury-sens.json`) zmienia kolor na rolę „error” (`danger`); pozostałe elementy bez zmiany.
+- **Warunek elementu:** każdy element ma id wskazówki (`cue`) obecnej na karcie ćwiczenia i regułę ze źródłem o pewności „ustalone” (`rule`); bez wskazówki na karcie — brak elementu. Dane elementów rodziny: `lib/figures/v2/overlay/<rodzina>.ts`. Strefy liczbowe (zakres poprawny) — poza tym wzorcem do decyzji badacza i właściciela.
+- **VoiceOver:** jeden obraz (bez zmian); etykieta „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same teksty co na karcie, `t('Na rysunku: {lista}')`).
+- **Strażnik:** S20 w `tests/interaction-guards.test.ts`; geometria, limity, kolor i kontrast: `tests/figures-v2-nakladka.test.tsx`.
+
+## Strażniki (S1–S20)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
 | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
@@ -208,6 +216,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 | S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
 | S18 | przewijanie: ScrollView/FlatList/SectionList tylko z `components/Scroll.tsx` (wskaźnik ukryty), brak `persistentScrollbar`/`flashScrollIndicators` | `tests/interaction-guards.test.ts`, `tests/trening-naglowek.test.tsx` | jest |
 | S19 | element `accessible` bez roli kontrolki nie ma w drzewie JSX potomka z `onPress`/`onLongPress` (skan AST `app/`, `components/`) | `tests/voiceover-grupa-przycisk.test.tsx`, `.maestro/21-subskrypcja.yaml` | jest (komponent przekazany jako dziecko z `onPress` w środku skan widzi tylko po atrybucie w miejscu użycia) |
+| S20 | element techniki na rysunku: dane rodziny z `cue` i `rule`, brak tekstu/liczb w kształtach nakładki, limit linii i łuków w jednym miejscu, etykieta „Na rysunku: {lista}” przez `t()` | `tests/interaction-guards.test.ts`, `tests/figures-v2-nakladka.test.tsx`, `.maestro/17-biblioteka-technika.yaml` | jest |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·

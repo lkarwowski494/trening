@@ -12,6 +12,7 @@
 #   "Setup" / "The app does not give medical advice.*"  ← 'Ustawienie' / zdanie o poradach medycznych na końcu sekcji (stopka „Na podstawie…” usunięta 23.10.2026 — źródła są w Ustawienia → Źródła wiedzy)
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
 #   lib-row-1 / exercises-search / exercise-cues / exercise-figure-v2-image  ← testID: wiersz listy Ćwiczenia (jeden wynik), pole wyszukiwania (app/exercises.tsx), sekcja Technika, obraz figury v2 (101-22: Deadlift)
+#   "Movement drawing: .*On the drawing: .*"          ← 'Rysunek ruchu: {opis}. Na rysunku: {lista}' (04.11.2026, nakładka techniki: etykieta obrazu wymienia wskazówki widocznych linii i łuków; Deadlift (sztanga) ma linię nad środkiem stopy, dl.feet)
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
 # Audyt kontrolny 1, fala 2b (09.10.2026):
 #   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
@@ -108,6 +109,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
     commands:
       - scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
       - assertVisible: { id: "exercise-figure-v2-image" }
+      - assertVisible: "Movement drawing: .*On the drawing: .*"   # 04.11.2026: nakładka techniki — etykieta „Na rysunku: …” (linia nad środkiem stopy)
 - takeScreenshot: 87-deadlift-sztanga-technika
 
 # --- UX2-05: „Technika ›” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---

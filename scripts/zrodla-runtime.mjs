@@ -26,7 +26,7 @@ const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'da
 export const OUT_CUES = join(root, 'lib/cues/data.json'), OUT_FIG = join(root, 'lib/figures/data.json');
 const FULL_ROLES = join(root, 'data/zrodla/role-miesni.json'); export const OUT_ROLES = join(root, 'lib/muscleRoles/data.json');
 export const EN_FILE = join(root, 'lib/i18n.en.ts'); export const EN_BEGIN = '  /* ROLE-MIESNI:BEGIN — generowane przez scripts/zrodla-runtime.mjs z data/zrodla/role-miesni.json, nie edytować ręcznie */', EN_END = '  /* ROLE-MIESNI:END */';
-const FULL_SENS = join(root, 'data/zrodla/figury-sens.json'); export const OUT_STYKI = join(root, 'lib/figures/v2/styki.json');
+const FULL_SENS = join(root, 'data/zrodla/figury-sens.json'); export const OUT_STYKI = join(root, 'lib/figures/v2/styki.json'); export const OUT_GRUPY = join(root, 'lib/figures/v2/grupy.json');
 export const REVIEW = join(root, 'docs/research/figury-recenzja.json'), PL = join(root, 'lib/cues/text/pl.json');
 /** Werdykty recenzji, przy których figura v1 trafia do aplikacji. */
 export const SHOWN = ['wyswietlana', 'zastapiona'];
@@ -125,6 +125,15 @@ export function buildFigures(full, rec = recenzja(), cues = JSON.parse(readFileS
 export function buildStyki(full) {
   return Object.fromEntries(Object.entries(full.styki).filter(([k]) => !k.startsWith('_')).map(([k, v]) => [k, { wymagane: v.wymagane, ...(v.pomijane_gdy ? { pomijane_gdy: v.pomijane_gdy } : {}) }]));
 }
+/** Grupy reguł sensu i grupy błędów rodzin (W2b nakładki techniki, 04.11.2026): { rodzina: { reguly: { reguła: grupa }, bledy: { id wskazówki błędu: grupa } } } — bez źródeł. Rodziny bez grup błędów też mają wpis (puste bledy). */
+export function buildGrupy(full) {
+  const out = {};
+  for (const [k, r] of Object.entries(full.rodziny ?? {})) {
+    if (k.startsWith('_') || !r.reguly) continue;
+    out[k] = { reguly: Object.fromEntries(Object.entries(r.reguly).filter(([, v]) => v.grupa).map(([id, v]) => [id, v.grupa])), bledy: { ...(r.grupy_bledow ?? {}) } };
+  }
+  return out;
+}
 /** Funkcje wyświetlane: status „ustalone” albo „dwa_zrodla” (decyzja właściciela 26.10.2026: tylko pary z ≥ 2 źródłami). */
 export const roleShown = f => f.status === 'ustalone' || f.status === 'dwa_zrodla';
 /** Złożenie zdania: rola + opcjonalna faza (PL: „, faza.”, EN: „ faza.”). */
@@ -194,6 +203,7 @@ export function outputs() {
     [OUT_CUES, serialize(buildCues(JSON.parse(readFileSync(FULL_CUES, 'utf8')), { rec: recenzja(), pl: JSON.parse(readFileSync(PL, 'utf8')), sets: JSON.parse(readFileSync(CUE_SETS, 'utf8')) }))],
     [OUT_FIG, serialize(buildFigures(JSON.parse(readFileSync(FULL_FIG, 'utf8'))))],
     [OUT_STYKI, serialize(buildStyki(JSON.parse(readFileSync(FULL_SENS, 'utf8'))))],
+    [OUT_GRUPY, serialize(buildGrupy(JSON.parse(readFileSync(FULL_SENS, 'utf8'))))],
     ...(() => { const r = buildRoles(JSON.parse(readFileSync(FULL_ROLES, 'utf8'))); return [[OUT_ROLES, serialize(r.runtime)], [EN_FILE, withEnBlock(readFileSync(EN_FILE, 'utf8'), r.en)]]; })(),
   ];
 }
