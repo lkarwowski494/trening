@@ -30,7 +30,8 @@ export function elementyCiezaru(f: Frame): Kapsula[] {
   /* linka z uchwytem w dłoni (curl na wyciągu): każdy koniec linki (`ends`) to uchwyt w trzymającej dłoni — punkt o promieniu 2 cm; wolna ręka nie jest końcem, więc nie daje fałszywego styku z udem (linia 1.1, pilotaż curl 02.11.2026) */
   const konce = f.props.flatMap(p => (p.k === 'cable' && Array.isArray((p as { ends?: unknown }).ends) ? (p as unknown as { ends: V3[] }).ends : []));
   if (konce.length && !f.info.load) return konce.map(c => ({ a: c, b: c, r: 2 }));
-  const c = f.info.load; const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); /* uchwyt linki: odcinek w osi z o połowie rozstawu dłoni (jak items() w rigu hinge) */
+  const c = f.info.load ?? f.info.trail; if (!c) return []; /* FW1 (04.11.2026): guma, talerz, łańcuchy w dłoniach — bez info.load; uchwyt w śladzie (chwyt) */
+  const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); /* uchwyt linki: odcinek w osi z o połowie rozstawu dłoni (jak items() w rigu hinge) */
   return [{ a: [c[0], c[1], -h], b: [c[0], c[1], h], r: 2 }];
 }
 

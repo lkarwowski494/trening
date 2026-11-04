@@ -397,11 +397,20 @@ export function stanceAdvance(frames: Frame[]): { cm: number; side: Side | null;
 /** H1 (recenzja curl r3, 03.11.2026): oś hantla z obrotu przedramienia (dane: obrotPrzedramienia ustawione jawnie). 0 = chwyt neutralny („młotkowy”): oś ⟂ do przedramienia w płaszczyźnie strzałkowej
  * (przy zwisie — przód–tył, przy przedramieniu poziomo — pionowo); ±90 = oś w poprzek ciała (podchwyt/nachwyt, jak dotąd); pośrednie — płynnie. |obrót| ≥ 80° i brak wartości: bez zmiany rysunku (oś w poprzek). */
 function withDumbbellAxis(p: Extract<Prop, { k: 'dumbbell' }>, a: { elbow: V3; wrist: V3 }, rot: number | undefined): Prop {
-  if (rot === undefined || Math.abs(rot) >= 80) return p;
-  const f = [a.wrist[0] - a.elbow[0], a.wrist[1] - a.elbow[1], a.wrist[2] - a.elbow[2]]; const fl = Math.hypot(f[0], f[1], f[2]);
-  const n = [f[1], -f[0], 0]; const nl = Math.hypot(n[0], n[1]); if (!fl || nl < 0.2 * fl) return p; /* przedramię w poprzek ciała: brak płaszczyzny strzałkowej */
-  const nn = [n[0] / nl, n[1] / nl, 0]; const fu = f.map(x => x / fl); const b = [fu[1] * nn[2] - fu[2] * nn[1], fu[2] * nn[0] - fu[0] * nn[2], fu[0] * nn[1] - fu[1] * nn[0]];
-  const c = Math.cos(rot * Math.PI / 180), s = Math.sin(rot * Math.PI / 180); const ax = [0, 1, 2].map(i => c * nn[i] + s * b[i]); const al = Math.hypot(ax[0], ax[1], ax[2]);
+  const f = [a.wrist[0] - a.elbow[0], a.wrist[1] - a.elbow[1], a.wrist[2] - a.elbow[2]]; const fl = Math.hypot(f[0], f[1], f[2]); if (!fl) return p;
+  const fu = f.map(x => x / fl);
+  /* FW1 (H-B, 04.11.2026): przedramię w poprzek ciała (kąt do osi z < 60°) — domyślna oś poprzeczna leży wzdłuż ręki (gryf nie do chwycenia); wtedy oś liczymy zawsze, także bez obrotu i dla |obrót| ≥ 80 (bez wartości: ±90 = nachwyt) */
+  const wPoprzek = Math.abs(fu[2]) > 0.5;
+  if (!wPoprzek && (rot === undefined || Math.abs(rot) >= 80)) return p;
+  /* FW1 (H-A, 04.11.2026): wektor b = fu × nn zmienia zwrot dla lewej ręki (pseudowektor przy lustrze z), więc ten sam obrót daje oś nie-lustrzaną; lewa ręka dostaje obrót ze znakiem odwróconym → oś L = lustro osi R */
+  const r = Math.max(-90, Math.min(90, rot ?? 90)) * (p.side === 'L' ? -1 : 1);
+  const n = [f[1], -f[0], 0]; const nl = Math.hypot(n[0], n[1]);
+  let nn: number[];
+  if (nl >= 0.2 * fl) nn = [n[0] / nl, n[1] / nl, 0];
+  else { /* przedramię prawie w poprzek ciała: brak płaszczyzny strzałkowej — „pion” rzutowany na płaszczyznę prostopadłą do przedramienia (neutralny chwyt: gryf pionowo) */
+    const v = [-fu[0] * fu[1], 1 - fu[1] * fu[1], -fu[2] * fu[1]]; const vl = Math.hypot(v[0], v[1], v[2]); nn = [v[0] / vl, v[1] / vl, v[2] / vl]; }
+  const b = [fu[1] * nn[2] - fu[2] * nn[1], fu[2] * nn[0] - fu[0] * nn[2], fu[0] * nn[1] - fu[1] * nn[0]];
+  const c = Math.cos(r * Math.PI / 180), s = Math.sin(r * Math.PI / 180); const ax = [0, 1, 2].map(i => c * nn[i] + s * b[i]); const al = Math.hypot(ax[0], ax[1], ax[2]);
   return { ...p, axis: ax.map(x => x / al) as V3 };
 }
 
@@ -421,6 +430,12 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   /* ciężar w dłoni (hantel, wyciąg, dźwignia maszyny; bez sztangi): tor ciężaru = chwyt ręki, która go trzyma (obie ręce — środek między chwytami jednego uchwytu; dwa osobne ciężary — chwyt R, W1b), nie miednica (recenzja curl W1, 03.11.2026) */
   const nosi = d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia');
   if (nosi && !d.sprzet.some(g => g.rodzaj === 'sztanga')) { const t = (nosi as { trzyma?: 'R' | 'L' }).trzyma; /* W1b (recenzja niezależna 03.11.2026): dwa osobne ciężary (para hantli, dwa wyciągi) — ślad przy chwycie jednej ręki (R, jak w rigach: squat.ts, hinge.ts), nie w osi ciała; jeden uchwyt/lina/dźwignia — środek między chwytami */ const dwaCiezary = (nosi.rodzaj === 'hantel' && !nosi.pionowo) || (nosi.rodzaj === 'wyciag' && nosi.dwa === true); fr.info.trail = t ? grips[t] : dwaCiezary ? grips.R : [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3; }
+  /* FW1 (H-C, 04.11.2026; K4): ciężar w dłoniach bez hantla/wyciągu — guma w dłoniach (zaczep/stopy/dłonie: para → chwyt R jak W1b), talerz i kettlebell (oburącz → środek chwytów = środek talerza/uchwytu), łańcuchy w dłoniach (dwa uchwyty → chwyt R); `trzyma` R/L → ta dłoń. Guma między kostkami nie jest w dłoniach: ślad zostaje (miednica). */
+  else if (!d.sprzet.some(g => g.rodzaj === 'sztanga')) {
+    const w = d.sprzet.find(g => g.rodzaj === 'talerz' || g.rodzaj === 'kettlebell' || g.rodzaj === 'lancuchy' || (g.rodzaj === 'guma' && g.mocowanie !== 'kostki' && g.mocowanie !== 'zaczep_kostki'));
+    if (w) { const t = (w as { trzyma?: 'R' | 'L' | 'obie' }).trzyma; const srodek = [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3;
+      fr.info.trail = t === 'R' || t === 'L' ? grips[t] : w.rodzaj === 'talerz' || w.rodzaj === 'kettlebell' ? srodek : grips.R; }
+  }
   return fr;
 }
 
