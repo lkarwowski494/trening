@@ -13,9 +13,9 @@ import { FAMILIES, assignAll, figureSpec, shownFigureSpec } from '@/lib/figures/
 import { familyReviewed, figureWithheld } from '@/lib/figures/v2/figure';
 
 const root = path.join(__dirname, '..');
-const WYJ = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8')) as { powod: string; v1: string[]; v2: string[]; zestawy_zmienione: string[]; zestawy_bez_wpisu: string[] };
-const REC = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8')) as { v1: Record<string, { sha: string }>; v2: Record<string, { sha: string }>; zestawy?: Record<string, { sha: string }> };
-const NOW = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8' })) as { v1: Record<string, string>; v2: Record<string, string>; zestawy: Record<string, string> };
+const WYJ = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8')) as { powod: string; v1: string[]; v2: string[]; zestawy_zmienione: string[]; zestawy_bez_wpisu: string[]; karty_zmienione?: string[] };
+const REC = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8')) as { v1: Record<string, { sha: string }>; v2: Record<string, { sha: string }>; zestawy?: Record<string, { sha: string }>; karty?: Record<string, { sha: string }> };
+const NOW = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8' })) as { v1: Record<string, string>; v2: Record<string, string>; zestawy: Record<string, string>; karty: Record<string, string> };
 
 describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
   test('powód zapisany; listy bez duplikatów', () => {
@@ -38,6 +38,9 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
   test('zestawy ogólne: zmienione po recenzji i bez wpisu — poza listą general (ekran ich nie pokazuje)', () => {
     for (const k of WYJ.zestawy_zmienione) expect([k, !!REC.zestawy?.[k], REC.zestawy?.[k]?.sha !== NOW.zestawy[k], CUE_DATA.general.includes(k)]).toEqual([k, true, true, false]);
     for (const k of WYJ.zestawy_bez_wpisu) expect([k, !!REC.zestawy?.[k], CUE_DATA.general.includes(k)]).toEqual([k, false, false]);
+  });
+  test('karty własne zmienione po recenzji (04.11.2026, spójność karty z rysunkiem): wyjątek = wpis ze skrótem niezgodnym z bieżącym; karta na liście „hidden” (ekran jej nie pokazuje do recenzji niezależnej)', () => {
+    for (const k of WYJ.karty_zmienione ?? []) expect([k, !!REC.karty?.[k], REC.karty?.[k]?.sha !== NOW.karty[k], (CUE_DATA as typeof CUE_DATA & { hidden: string[] }).hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, true, true, false]);
   });
   test('familyReviewed / shownFigureSpec: rodzina bez aktualnej recenzji — silnik liczy figurę (figureSpec), aplikacja jej nie pokazuje', () => {
     for (const f of WYJ.v2) expect([f, familyReviewed(f)]).toEqual([f, false]);
