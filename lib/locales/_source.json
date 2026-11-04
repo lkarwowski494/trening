@@ -2819,6 +2819,10 @@
   "en": "At the start of the rest the phone announces the next exercise, weight and reps. In headphones — only with headphones connected; Also through the speaker — also without headphones, through the phone speaker (even in silent mode); Off — no announcements."
  },
  {
+  "pl": "Na rysunku: {lista}",
+  "en": "On the drawing: {lista}"
+ },
+ {
   "pl": "na urządzeniu: {v}",
   "en": "on the device: {v}"
  },

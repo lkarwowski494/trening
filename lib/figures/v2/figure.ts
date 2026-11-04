@@ -16,7 +16,7 @@ import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
 import { SIDES, jointAngles, type Side } from './skeleton';
 import type { V3 } from './math';
-import { GUIDES, trailShapes, type GuideId } from './guides';
+import { trailShapes } from './guides';
 import { phasesOf, walkPhases, oneWayPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
@@ -208,10 +208,8 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
   const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : loopSpan(spec) * i / 24));
   const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
 }
-/** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
-export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: FigError): Shape[] {
-  const f = frameAt(spec, u, error); return ids.flatMap(id => GUIDES[id].views.includes(view) ? GUIDES[id].build(f, view) : []);
-}
+/** Strona mierzonego stawu na rysunku (rzut z boku: strona bliższa kamerze, R; dane: strona, która pracuje). */
+export const measuredSide = (spec: FigureSpec): Side => measureOf(spec).sides[0];
 
 /** Poświaty stref styku klatki (poza poprawna: styki „dobrze”; poza błędu: styk utracony względem pozy poprawnej w tej samej pozycji — „błąd”). Poza kadrem `shapesAt`. */
 export function contactShapes(spec: FigureSpec, u: number, view: View, error?: FigError): Shape[] {
