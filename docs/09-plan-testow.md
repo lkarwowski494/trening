@@ -100,7 +100,7 @@ Decyzja właściciela 12.10.2026 (F3, wariant A): jednorazowe sprawdzenie skrypt
 teksty źródeł są treściami cudzymi i nie trafiają do repozytorium (zasada z 09.10.2026).
 
 **Zakres:** `lib/cues` po scaleniu partii 1–2 (gałąź `wydanie-0.14`, commit `4fd7038`; bez zmian w `lib/cues` do `0186e07`): 102 ćwiczenia, 306 wskazówek, 230 źródeł w `lib/cues/data.json`.
-Stan bieżący liczby kart (pilnuje go `tests/audit-k1-bl-mer.test.tsx`, MER2-09): `data.json`: 168 ćwiczeń bazowych (razem z kartami ukrytymi po recenzji treści; 102 + 30 kart P1 mobilności z 02.11.2026 + 36 kart P2 mocy z 03.11.2026).
+Stan bieżący liczby kart (pilnuje go `tests/audit-k1-bl-mer.test.tsx`, MER2-09): `data.json`: 191 ćwiczeń bazowych (razem z kartami ukrytymi po recenzji treści; 102 + 30 kart P1 mobilności z 02.11.2026 + 36 kart P2 mocy z 03.11.2026 + 23 karty T1 delt_raise z 04.11.2026).
 Teksty EN (`lib/cues/text/en.json`) — 306 zdań (każda wskazówka to jedno zdanie). Teksty PL nie mają z czym się równać:
 żadne z 230 źródeł nie jest polskie, a PL to własne sformułowania, nie tłumaczenie źródła. Pozostałe języki tłumaczymy z EN/PL, nie ze źródeł.
 

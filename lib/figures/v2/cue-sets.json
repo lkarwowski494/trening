@@ -52,15 +52,7 @@
       "b": "own"
     },
     "Alternating Deltoid Raise": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Ankle Circles": {
       "b": "own"
@@ -181,15 +173,7 @@
       ]
     },
     "Band Lateral Raise": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Overhead Triceps Extension": {
       "b": "general",
@@ -251,29 +235,13 @@
       ]
     },
     "Band Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Barbell Curl": {
       "b": "own"
     },
     "Barbell Front Raise to Overhead": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "curl.noSwing"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Barbell Guillotine Bench Press": {
       "b": "general",
@@ -765,15 +733,7 @@
       ]
     },
     "Cable Front Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Hip Abduction": {
       "b": "general",
@@ -893,15 +853,7 @@
       ]
     },
     "Cable Reverse Fly": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Rope Rear-Delt Rows": {
       "b": "general",
@@ -984,15 +936,7 @@
       ]
     },
     "Cable Y Raise": {
-      "b": "general",
-      "f": "raise",
-      "ok": [
-        "rear.elbows",
-        "curl.noSwing"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Calf Press (leg press)": {
       "b": "own"
@@ -1034,15 +978,7 @@
       "b": "own"
     },
     "Car Drivers": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Carioca Quick Step": {
       "b": "open"
@@ -1729,15 +1665,7 @@
       "b": "open"
     },
     "Dumbbell Lying One-Arm Rear Lateral Raise": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Lying Pronation": {
       "b": "open"
@@ -1757,26 +1685,10 @@
       ]
     },
     "Dumbbell One-Arm Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Scaption": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Seated Box Jump": {
       "b": "general",
@@ -2019,15 +1931,7 @@
       ]
     },
     "Front Plate Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Front Raise": {
       "b": "own"
@@ -2540,15 +2444,7 @@
       "b": "open"
     },
     "Kettlebell Halo": {
-      "b": "general",
-      "f": "halo",
-      "ok": [
-        "halo.close",
-        "dyn.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Kettlebell Halo with Overhead Extension": {
       "b": "general",
@@ -3331,15 +3227,7 @@
       ]
     },
     "One-Arm Cable Rear Lateral Raise": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Dumbbell Reverse Wrist Curl": {
       "b": "general",
@@ -3386,15 +3274,7 @@
       ]
     },
     "One-Arm Incline Lateral Raise": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Kettlebell Clean and Jerk": {
       "b": "general",
@@ -3460,15 +3340,7 @@
       ]
     },
     "One-Arm Lateral Raise (hantel)": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Lying Dumbbell Triceps Extension": {
       "b": "general",
@@ -4521,15 +4393,7 @@
       ]
     },
     "Single Dumbbell Front Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Single Leg Butt Kick": {
       "b": "general",
@@ -4768,7 +4632,7 @@
       "b": "own"
     },
     "Sled Reverse Flye": {
-      "b": "open"
+      "b": "own"
     },
     "Sled Row": {
       "b": "open"
@@ -4924,15 +4788,7 @@
       ]
     },
     "Smith Machine One-Arm Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Smith Machine Pistol Squat": {
       "b": "general",
@@ -4986,15 +4842,7 @@
       ]
     },
     "Smith Machine Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Snatch (hantel)": {
       "b": "own"
@@ -5778,37 +5626,13 @@
       ]
     },
     "Upright Row (hantle)": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Upright Row (linki)": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Upright Row (sztanga)": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "V-Bar Pulldown": {
       "b": "general",

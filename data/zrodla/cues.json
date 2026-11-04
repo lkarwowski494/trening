@@ -427,6 +427,76 @@
    "name": "YogaUOnline (prezentacja: J. Gudmestad, fizjoterapeutka)",
    "level": 4,
    "kind": "site"
+  },
+  "free-exercise-db": {
+   "name": "free-exercise-db — otwarty zbiór opisów ćwiczeń (github.com/yuhonas)",
+   "level": 5,
+   "kind": "site"
+  },
+  "Tomah Memorial Hospital": {
+   "name": "Tomah Memorial Hospital, Dept. of Physical Therapy — wideo ćwiczenia w MSD Manuals (msdmanuals.com)",
+   "level": 4,
+   "kind": "site"
+  },
+  "ISSA": {
+   "name": "International Sports Sciences Association — blog szkoleniowy (issaonline.com)",
+   "level": 4,
+   "kind": "org"
+  },
+  "Bodylastics": {
+   "name": "Bodylastics — instrukcje ćwiczeń z taśmami (producent taśm; bodylastics.com)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "Fitness Volt": {
+   "name": "Fitness Volt — artykuły o ćwiczeniach (fitnessvolt.com)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Atlas ćwiczeń potreningu.pl": {
+   "name": "Atlas ćwiczeń (potreningu.pl; grupa SFD)",
+   "level": 5,
+   "kind": "site"
+  },
+  "ManiacMuscle": {
+   "name": "ManiacMuscle — opisy ćwiczeń (maniacmuscle.com)",
+   "level": 5,
+   "kind": "site"
+  },
+  "Atlas ćwiczeń Fabryka Siły": {
+   "name": "Atlas ćwiczeń Fabryka Siły (fabrykasily.pl)",
+   "level": 5,
+   "kind": "site"
+  },
+  "weighttraining.guide": {
+   "name": "weighttraining.guide — opisy ćwiczeń",
+   "level": 5,
+   "kind": "site"
+  },
+  "FitVibe": {
+   "name": "FitVibe — ćwiczenia (fitvibe.gr)",
+   "level": 5,
+   "kind": "site"
+  },
+  "NFPT": {
+   "name": "National Federation of Professional Trainers — blog szkoleniowy (nfpt.com)",
+   "level": 4,
+   "kind": "org"
+  },
+  "Fitnall": {
+   "name": "Fitnall — opisy ćwiczeń (fitnall.com)",
+   "level": 5,
+   "kind": "site"
+  },
+  "SET FOR SET": {
+   "name": "SET FOR SET — blog sprzedawcy sanek (setforset.com)",
+   "level": 5,
+   "kind": "site"
+  },
+  "Atlas ćwiczeń Centrum Respo": {
+   "name": "Atlas ćwiczeń Centrum Respo (centrumrespo.pl)",
+   "level": 5,
+   "kind": "site"
   }
  },
  "sources": {
@@ -2741,6 +2811,151 @@
    "title": "Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026)",
    "url": "https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/",
    "level": 4
+  },
+  "hss-shoulder-strengthening-program": {
+   "org": "HSS",
+   "title": "Shoulder strengthening program",
+   "url": "https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf"
+  },
+  "ace-354": {
+   "org": "ACE",
+   "title": "Single Arm Lateral Raise (#354)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/"
+  },
+  "catalyst-822": {
+   "org": "Catalyst Athletics",
+   "title": "Dumbbell Front Side Raise (#822)",
+   "url": "https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/"
+  },
+  "acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders": {
+   "org": "ACE",
+   "title": "A pro s guide to muscle mechanics the shoulders",
+   "url": "https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/"
+  },
+  "fedb-alternating-deltoid-raise": {
+   "org": "free-exercise-db",
+   "title": "Alternating Deltoid Raise",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Deltoid_Raise.json"
+  },
+  "catalyst-803": {
+   "org": "Catalyst Athletics",
+   "title": "Barbell Front Raise (#803)",
+   "url": "https://catalystathletics.com/exercise/803/Barbell-Front-Raise/"
+  },
+  "catalyst-812": {
+   "org": "Catalyst Athletics",
+   "title": "Cable Front Raise (#812)",
+   "url": "https://catalystathletics.com/exercise/812/Cable-Front-Raise/"
+  },
+  "msdmanuals-prone-shoulder-horizontal-abduction": {
+   "org": "Tomah Memorial Hospital",
+   "title": "Prone shoulder horizontal abduction",
+   "url": "https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction"
+  },
+  "issaonline-upright-row-muscles-worked-benefits-proper-form-m": {
+   "org": "ISSA",
+   "title": "Upright row muscles worked benefits proper form more",
+   "url": "https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more"
+  },
+  "catalyst-805": {
+   "org": "Catalyst Athletics",
+   "title": "Barbell Upright Row (#805)",
+   "url": "https://catalystathletics.com/exercise/805/Barbell-Upright-Row/"
+  },
+  "bodylastics-upright-row": {
+   "org": "Bodylastics",
+   "title": "Upright row",
+   "url": "https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row"
+  },
+  "bodylastics-lateral-raise-with-flat-bands": {
+   "org": "Bodylastics",
+   "title": "Lateral raise with flat bands",
+   "url": "https://bodylastics.com/exercise/lateral-raise-with-flat-bands"
+  },
+  "ace-394": {
+   "org": "ACE",
+   "title": "Halo (#394)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/394/halo/"
+  },
+  "barbend-kettlebell-halo": {
+   "org": "BarBend",
+   "title": "Kettlebell halo",
+   "url": "https://barbend.com/kettlebell-halo/"
+  },
+  "fitnessvolt-cable-rear-delt-exercises": {
+   "org": "Fitness Volt",
+   "title": "Cable rear delt exercises",
+   "url": "https://fitnessvolt.com/cable-rear-delt-exercises/"
+  },
+  "potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami": {
+   "org": "Atlas ćwiczeń potreningu.pl",
+   "title": "Unoszenie ramion bokiem w opadzie tulowia w bramie",
+   "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie"
+  },
+  "maniacmuscle-cable-crossover-reverse-fly": {
+   "org": "ManiacMuscle",
+   "title": "Cable crossover reverse fly",
+   "url": "https://maniacmuscle.com/cable-crossover-reverse-fly/"
+  },
+  "potreningu-odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac": {
+   "org": "Atlas ćwiczeń potreningu.pl",
+   "title": "Odwodzenie ramion w tyl na wyciagu gornym stojac",
+   "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac"
+  },
+  "fabrykasily-odwodzenie-linek-w-tyl-wyciagu-stojac": {
+   "org": "Atlas ćwiczeń Fabryka Siły",
+   "title": "Odwodzenie linek w tyl wyciagu stojac",
+   "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac"
+  },
+  "weighttraining-cable-y-raise": {
+   "org": "weighttraining.guide",
+   "title": "Cable y raise",
+   "url": "https://weighttraining.guide/exercises/cable-y-raise/"
+  },
+  "fitvibe-cable-y-raise-668": {
+   "org": "FitVibe",
+   "title": "Cable y raise 668",
+   "url": "https://fitvibe.gr/askiseis/cable-y-raise-668"
+  },
+  "nfpt-how-to-do-incline-side-lateral-dumbbell-raises": {
+   "org": "NFPT",
+   "title": "How to do incline side lateral dumbbell raises",
+   "url": "https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/"
+  },
+  "fedb-one-arm-incline-lateral-raise": {
+   "org": "free-exercise-db",
+   "title": "One Arm Incline Lateral Raise",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise.json"
+  },
+  "fitnall-barbell-overhead-front-raise": {
+   "org": "Fitnall",
+   "title": "Barbell overhead front raise",
+   "url": "https://fitnall.com/exercises/barbell-overhead-front-raise/"
+  },
+  "fedb-standing-front-barbell-raise-over-head": {
+   "org": "free-exercise-db",
+   "title": "Standing Front Barbell Raise Over Head",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Front_Barbell_Raise_Over_Head.json"
+  },
+  "fedb-sled-reverse-flye": {
+   "org": "free-exercise-db",
+   "title": "Sled Reverse Flye",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json"
+  },
+  "setforset-sled-workouts": {
+   "org": "SET FOR SET",
+   "title": "Sled workouts",
+   "url": "https://www.setforset.com/blogs/news/sled-workouts"
+  },
+  "maniacmuscle-dumbbell-standing-driver": {
+   "org": "ManiacMuscle",
+   "title": "Dumbbell standing driver",
+   "url": "https://maniacmuscle.com/dumbbell-standing-driver/"
+  },
+  "centrumrespo-bus-driver-with-mini-band": {
+   "org": "Atlas ćwiczeń Centrum Respo",
+   "title": "Bus driver with mini band",
+   "url": "https://centrumrespo.pl/atlas/bus-driver-with-mini-band/"
   }
  },
  "exercises": {
@@ -14853,6 +15068,1509 @@
    ],
    "tips": [],
    "mistakes": []
+  },
+  "One-Arm Lateral Raise (hantel)": {
+   "setup": [
+    {
+     "c": "lat1.setup",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)"
+      ],
+      [
+       "ace-26",
+       "Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)"
+      ],
+      [
+       "ace-354",
+       "opis (wariant: wyciąg); ta sama org. co ace-26"
+      ],
+      [
+       "catalyst-822",
+       "opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję obiema rękami (26) i na wyciągu (354); ten sam ruch stawów, zmienia się liczba rąk i sprzęt"
+    }
+   ],
+   "move": [
+    {
+     "c": "lat1.move",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)"
+      ],
+      [
+       "ace-26",
+       "Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)"
+      ],
+      [
+       "ace-354",
+       "opis (wariant: wyciąg); ta sama org. co ace-26"
+      ],
+      [
+       "catalyst-822",
+       "opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję obiema rękami (26) i na wyciągu (354); ten sam ruch stawów, zmienia się liczba rąk i sprzęt"
+    }
+   ],
+   "tips": [
+    {
+     "c": "rear.elbows",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)"
+      ],
+      [
+       "ace-26",
+       "Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)"
+      ],
+      [
+       "ace-354",
+       "opis (wariant: wyciąg); ta sama org. co ace-26"
+      ],
+      [
+       "catalyst-822",
+       "opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)"
+      ],
+      [
+       "ace-26",
+       "Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)"
+      ],
+      [
+       "ace-354",
+       "opis (wariant: wyciąg); ta sama org. co ace-26"
+      ],
+      [
+       "catalyst-822",
+       "opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt1.mis.arch",
+     "s": [
+      [
+       "ace-26",
+       "Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)"
+      ],
+      [
+       "catalyst-822",
+       "opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dumbbell Scaption": {
+   "setup": [
+    {
+     "c": "scap.setup",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Standing forward flexion (‘full-can’)"
+      ],
+      [
+       "acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders",
+       "tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "scap.move",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Standing forward flexion (‘full-can’)"
+      ],
+      [
+       "acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders",
+       "tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sapd.arms",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Standing forward flexion (‘full-can’)"
+      ],
+      [
+       "acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders",
+       "tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 1, Standing forward flexion (‘full-can’)"
+      ],
+      [
+       "acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders",
+       "tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Alternating Deltoid Raise": {
+   "setup": [
+    {
+     "c": "front.setup",
+     "s": [
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ],
+      [
+       "catalyst-822",
+       "opis"
+      ],
+      [
+       "ace-26",
+       "Step 3 (składowa: bokiem); ta sama org. co ACE 54"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "adr.move",
+     "s": [
+      [
+       "catalyst-822",
+       "opis"
+      ],
+      [
+       "fedb-alternating-deltoid-raise",
+       "instructions — naprzemienność"
+      ]
+     ],
+     "uproszczenie": "naprzemienność (przód, bok) opisują Catalyst (szczebel 4) i jedno źródło szczebla 5; ACE — składowe ruchu osobno"
+    }
+   ],
+   "tips": [
+    {
+     "c": "front.elbows",
+     "s": [
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ],
+      [
+       "catalyst-822",
+       "opis"
+      ],
+      [
+       "ace-26",
+       "Step 3 (składowa: bokiem); ta sama org. co ACE 54"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ],
+      [
+       "catalyst-822",
+       "opis"
+      ],
+      [
+       "ace-26",
+       "Step 3 (składowa: bokiem); ta sama org. co ACE 54"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt1.mis.arch",
+     "s": [
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ],
+      [
+       "catalyst-822",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  },
+  "Front Plate Raise": {
+   "setup": [
+    {
+     "c": "front2.setup",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, zmienia się przyrząd (talerz)"
+    }
+   ],
+   "move": [
+    {
+     "c": "front.move",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, zmienia się przyrząd (talerz)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "front.elbows",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt1.mis.arch",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Dumbbell Front Raise": {
+   "setup": [
+    {
+     "c": "front2.setup",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, pojedynczy hantel trzymany oburącz"
+    }
+   ],
+   "move": [
+    {
+     "c": "front.move",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, pojedynczy hantel trzymany oburącz"
+    }
+   ],
+   "tips": [
+    {
+     "c": "front.elbows",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt1.mis.arch",
+     "s": [
+      [
+       "catalyst-803",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ]
+  },
+  "Cable Front Raise": {
+   "setup": [
+    {
+     "c": "cfr.setup",
+     "s": [
+      [
+       "catalyst-812",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ],
+     "uproszczenie": "ustawienie przy wyciągu opisuje wprost tylko Catalyst 812; ACE 54 opisuje hantle (ten sam ruch stawów)"
+    }
+   ],
+   "move": [
+    {
+     "c": "front.move",
+     "s": [
+      [
+       "catalyst-812",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "front.elbows",
+     "s": [
+      [
+       "catalyst-812",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "catalyst-812",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt1.mis.arch",
+     "s": [
+      [
+       "catalyst-812",
+       "opis"
+      ],
+      [
+       "ace-54",
+       "Steps 1, 3, 4"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dumbbell Lying One-Arm Rear Lateral Raise": {
+   "setup": [
+    {
+     "c": "rear1.setup",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 3, Prone horizontal abduction (‘T’s’)"
+      ],
+      [
+       "msdmanuals-prone-shoulder-horizontal-abduction",
+       "instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rear1.move",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 3, Prone horizontal abduction (‘T’s’)"
+      ],
+      [
+       "msdmanuals-prone-shoulder-horizontal-abduction",
+       "instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)"
+      ],
+      [
+       "ace-34",
+       "Steps 1–3 (wariant: dwie ręce, siad przodem do oparcia — NIE dla ustawienia)"
+      ]
+     ],
+     "uproszczenie": "ACE 34 opisuje wersję obiema rękami (siad przodem do oparcia) — tylko dla ruchu i wskazówek"
+    }
+   ],
+   "tips": [
+    {
+     "c": "rear.elbows",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 3, Prone horizontal abduction (‘T’s’)"
+      ],
+      [
+       "msdmanuals-prone-shoulder-horizontal-abduction",
+       "instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)"
+      ],
+      [
+       "ace-34",
+       "Steps 1–3 (wariant: dwie ręce, siad przodem do oparcia — NIE dla ustawienia)"
+      ]
+     ]
+    },
+    {
+     "c": "rear.arms",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 3, Prone horizontal abduction (‘T’s’)"
+      ],
+      [
+       "msdmanuals-prone-shoulder-horizontal-abduction",
+       "instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)"
+      ],
+      [
+       "ace-34",
+       "Steps 1–3 (wariant: dwie ręce, siad przodem do oparcia — NIE dla ustawienia)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "rear1.mis.high",
+     "s": [
+      [
+       "hss-shoulder-strengthening-program",
+       "s. 3, Prone horizontal abduction (‘T’s’)"
+      ],
+      [
+       "msdmanuals-prone-shoulder-horizontal-abduction",
+       "instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Upright Row (sztanga)": {
+   "setup": [
+    {
+     "c": "urow.setup",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "urow.move",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Upright Row (hantle)": {
+   "setup": [
+    {
+     "c": "urow.setup",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantle)"
+    }
+   ],
+   "move": [
+    {
+     "c": "urow.move",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantle)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Upright Row (linki)": {
+   "setup": [
+    {
+     "c": "urow.setup",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (linka)"
+    }
+   ],
+   "move": [
+    {
+     "c": "urow.move",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (linka)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Smith Machine Upright Row": {
+   "setup": [
+    {
+     "c": "urow.setup",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "Variations"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica; ISSA wymienia ją w „Variations”)"
+    }
+   ],
+   "move": [
+    {
+     "c": "urow.move",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "Variations"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica; ISSA wymienia ją w „Variations”)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "Variations"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "Variations"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Dumbbell One-Arm Upright Row": {
+   "setup": [
+    {
+     "c": "urow1.setup",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantel) i liczba rąk"
+    }
+   ],
+   "move": [
+    {
+     "c": "urow1.move",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantel) i liczba rąk"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Smith Machine One-Arm Upright Row": {
+   "setup": [
+    {
+     "c": "urow1.setup",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to; Variations (Smith)"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica) i liczba rąk"
+    }
+   ],
+   "move": [
+    {
+     "c": "urow1.move",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to; Variations (Smith)"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica) i liczba rąk"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to; Variations (Smith)"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to; Variations (Smith)"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Band Upright Row": {
+   "setup": [
+    {
+     "c": "urow.setup",
+     "s": [
+      [
+       "bodylastics-upright-row",
+       "instrukcja (producent taśm)"
+      ],
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (taśma; Bodylastics opisuje taśmy)"
+    }
+   ],
+   "move": [
+    {
+     "c": "urow.move",
+     "s": [
+      [
+       "bodylastics-upright-row",
+       "instrukcja (producent taśm)"
+      ],
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (taśma; Bodylastics opisuje taśmy)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ur.elbows",
+     "s": [
+      [
+       "bodylastics-upright-row",
+       "instrukcja (producent taśm)"
+      ],
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    },
+    {
+     "c": "ur.height",
+     "s": [
+      [
+       "bodylastics-upright-row",
+       "instrukcja (producent taśm)"
+      ],
+      [
+       "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
+       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+      ],
+      [
+       "catalyst-805",
+       "opis (opuszczanie pod kontrolą)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Band Lateral Raise": {
+   "setup": [
+    {
+     "c": "blat.setup",
+     "s": [
+      [
+       "bodylastics-lateral-raise-with-flat-bands",
+       "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ]
+     ],
+     "uproszczenie": "ustawienie „stań na taśmie” opisuje wprost tylko Bodylastics (producent taśm)"
+    }
+   ],
+   "move": [
+    {
+     "c": "lat.move",
+     "s": [
+      [
+       "bodylastics-lateral-raise-with-flat-bands",
+       "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: Bodylastics opisuje taśmy, ACE 26 hantle; ten sam ruch stawów"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "bodylastics-lateral-raise-with-flat-bands",
+       "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ]
+    },
+    {
+     "c": "lat.elbows",
+     "s": [
+      [
+       "bodylastics-lateral-raise-with-flat-bands",
+       "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt2.handsHigh",
+     "s": [
+      [
+       "bodylastics-lateral-raise-with-flat-bands",
+       "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ]
+    },
+    {
+     "c": "delt1.mis.arch",
+     "s": [
+      [
+       "bodylastics-lateral-raise-with-flat-bands",
+       "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Halo": {
+   "setup": [
+    {
+     "c": "halo.setup",
+     "s": [
+      [
+       "ace-394",
+       "opis (też: horns, in front of the chest; reverse direction)"
+      ],
+      [
+       "barbend-kettlebell-halo",
+       "instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "halo.move",
+     "s": [
+      [
+       "ace-394",
+       "opis (też: horns, in front of the chest; reverse direction)"
+      ],
+      [
+       "barbend-kettlebell-halo",
+       "instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "halo.dir",
+     "s": [
+      [
+       "ace-394",
+       "opis (też: horns, in front of the chest; reverse direction)"
+      ],
+      [
+       "barbend-kettlebell-halo",
+       "instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)"
+      ]
+     ]
+    },
+    {
+     "c": "halo.torso",
+     "s": [
+      [
+       "ace-394",
+       "opis (też: horns, in front of the chest; reverse direction)"
+      ],
+      [
+       "barbend-kettlebell-halo",
+       "instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "delt2.haloLean",
+     "s": [
+      [
+       "ace-394",
+       "opis (też: horns, in front of the chest; reverse direction)"
+      ],
+      [
+       "barbend-kettlebell-halo",
+       "instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)"
+      ]
+     ]
+    }
+   ]
+  },
+  "One-Arm Cable Rear Lateral Raise": {
+   "setup": [
+    {
+     "c": "crear1.setup",
+     "s": [
+      [
+       "fitnessvolt-cable-rear-delt-exercises",
+       "ćw. 5 Single-arm cable rear delt fly (P. Dale, akt. 07.06.2024)"
+      ],
+      [
+       "potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami",
+       "opis (też „Unikaj bujania tułowiem.”)"
+      ],
+      [
+       "maniacmuscle-cable-crossover-reverse-fly",
+       "execution"
+      ]
+     ],
+     "uproszczenie": "jedna ręka przy wyciągu: Fitness Volt (szczebel 4) opisuje wersję jednorącz, źródła szczebla 5 — linki oburącz i hantle"
+    }
+   ],
+   "move": [
+    {
+     "c": "crear1.move",
+     "s": [
+      [
+       "fitnessvolt-cable-rear-delt-exercises",
+       "ćw. 5 Single-arm cable rear delt fly (P. Dale, akt. 07.06.2024)"
+      ],
+      [
+       "potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami",
+       "opis (też „Unikaj bujania tułowiem.”)"
+      ],
+      [
+       "maniacmuscle-cable-crossover-reverse-fly",
+       "execution"
+      ]
+     ],
+     "uproszczenie": "jedna ręka przy wyciągu: Fitness Volt (szczebel 4) opisuje wersję jednorącz, źródła szczebla 5 — linki oburącz i hantle"
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "rdelt.mis.swing",
+     "s": [
+      [
+       "potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami",
+       "opis (też „Unikaj bujania tułowiem.”)"
+      ],
+      [
+       "maniacmuscle-cable-crossover-reverse-fly",
+       "execution"
+      ]
+     ]
+    }
+   ]
+  },
+  "Cable Reverse Fly": {
+   "setup": [
+    {
+     "c": "crf.setup",
+     "s": [
+      [
+       "ace-353",
+       "Step 1"
+      ],
+      [
+       "potreningu-odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac",
+       "opis"
+      ],
+      [
+       "fabrykasily-odwodzenie-linek-w-tyl-wyciagu-stojac",
+       "opis (2015-12-22)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "crf.move",
+     "s": [
+      [
+       "ace-353",
+       "Step 1"
+      ],
+      [
+       "potreningu-odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac",
+       "opis"
+      ],
+      [
+       "fabrykasily-odwodzenie-linek-w-tyl-wyciagu-stojac",
+       "opis (2015-12-22)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Cable Y Raise": {
+   "setup": [
+    {
+     "c": "cyr.setup",
+     "s": [
+      [
+       "weighttraining-cable-y-raise",
+       "Starting position 1 (Execution 1: elbows moderately flexed, „forming the letter 'Y'”); autor „Dr SAL”, akt. 05.09.2023"
+      ],
+      [
+       "fitvibe-cable-y-raise-668",
+       "krok 1 (krok 3: litera Y, łokcie lekko ugięte; krok 4: opuść powoli)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cyr.move",
+     "s": [
+      [
+       "weighttraining-cable-y-raise",
+       "Starting position 1 (Execution 1: elbows moderately flexed, „forming the letter 'Y'”); autor „Dr SAL”, akt. 05.09.2023"
+      ],
+      [
+       "fitvibe-cable-y-raise-668",
+       "krok 1 (krok 3: litera Y, łokcie lekko ugięte; krok 4: opuść powoli)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "One-Arm Incline Lateral Raise": {
+   "setup": [
+    {
+     "c": "inc1.setup",
+     "s": [
+      [
+       "nfpt-how-to-do-incline-side-lateral-dumbbell-raises",
+       "Starting Position (Guest — R. Bovee, Certified Master PPT; 11.08.2025); Warning: „Do not shrug your shoulder when raising the dumbbell.”"
+      ],
+      [
+       "fedb-one-arm-incline-lateral-raise",
+       "instructions (odczyt etap 2 przez kopię fitzport — kopia fedb = to samo źródło)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "inc1.move",
+     "s": [
+      [
+       "nfpt-how-to-do-incline-side-lateral-dumbbell-raises",
+       "Starting Position (Guest — R. Bovee, Certified Master PPT; 11.08.2025); Warning: „Do not shrug your shoulder when raising the dumbbell.”"
+      ],
+      [
+       "fedb-one-arm-incline-lateral-raise",
+       "instructions (odczyt etap 2 przez kopię fitzport — kopia fedb = to samo źródło)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "inc1.mis.shrug",
+     "s": [
+      [
+       "nfpt-how-to-do-incline-side-lateral-dumbbell-raises",
+       "Starting Position (Guest — R. Bovee, Certified Master PPT; 11.08.2025); Warning: „Do not shrug your shoulder when raising the dumbbell.”"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Front Raise to Overhead": {
+   "setup": [
+    {
+     "c": "bfro.setup",
+     "s": [
+      [
+       "fitnall-barbell-overhead-front-raise",
+       "How To 3 (5: „raise the barbell until it slightly passes your head”; 6: „avoid locking the elbows”); A. Albritton"
+      ],
+      [
+       "fedb-standing-front-barbell-raise-over-head",
+       "instructions 3"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "fro.move",
+     "s": [
+      [
+       "fitnall-barbell-overhead-front-raise",
+       "How To 3 (5: „raise the barbell until it slightly passes your head”; 6: „avoid locking the elbows”); A. Albritton"
+      ],
+      [
+       "fedb-standing-front-barbell-raise-over-head",
+       "instructions 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "fro.mis.arch",
+     "s": [
+      [
+       "fitnall-barbell-overhead-front-raise",
+       "How To 3 (5: „raise the barbell until it slightly passes your head”; 6: „avoid locking the elbows”); A. Albritton"
+      ]
+     ]
+    }
+   ]
+  },
+  "Sled Reverse Flye": {
+   "setup": [
+    {
+     "c": "srf.setup",
+     "s": [
+      [
+       "fedb-sled-reverse-flye",
+       "instructions 2–3"
+      ],
+      [
+       "setforset-sled-workouts",
+       "Sled Reverse Fly (blog sprzedawcy sanek)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "srf.move",
+     "s": [
+      [
+       "fedb-sled-reverse-flye",
+       "instructions 2–3"
+      ],
+      [
+       "setforset-sled-workouts",
+       "Sled Reverse Fly (blog sprzedawcy sanek)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Car Drivers": {
+   "setup": [
+    {
+     "c": "cdr.setup",
+     "s": [
+      [
+       "maniacmuscle-dumbbell-standing-driver",
+       "Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora"
+      ],
+      [
+       "centrumrespo-bus-driver-with-mini-band",
+       "pozycja wyjściowa; ruch: „krótkie skręty kierownicy samochodu, raz w prawo, raz w lewo”"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantle i gumę; ten sam ruch stawów, zmienia się przyrząd (talerz)"
+    }
+   ],
+   "move": [
+    {
+     "c": "cdr.move",
+     "s": [
+      [
+       "maniacmuscle-dumbbell-standing-driver",
+       "Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora"
+      ],
+      [
+       "centrumrespo-bus-driver-with-mini-band",
+       "pozycja wyjściowa; ruch: „krótkie skręty kierownicy samochodu, raz w prawo, raz w lewo”"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantle i gumę; ten sam ruch stawów, zmienia się przyrząd (talerz)"
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "cdr.mis.drop",
+     "s": [
+      [
+       "maniacmuscle-dumbbell-standing-driver",
+       "Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora"
+      ]
+     ]
+    },
+    {
+     "c": "mis.jerk",
+     "s": [
+      [
+       "maniacmuscle-dumbbell-standing-driver",
+       "Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -14860,7 +16578,6 @@
   "Pec Deck": "dwa źródła istnieją tylko w materiałach uczelnianych centrów sportu (HKU, Western), których szczebel (4 czy 5) jest otwarty (docs/research/33, pyt. 1)",
   "Chest Dip": "wspólna tylko jedna wskazówka (ruch) w źródłach McKenzie 2022 i HKU; głębokość i pozycja tułowia po jednym źródle (docs/research/33)",
   "Arnold Press": "brak opisu w ACE, NASM, Eleiko, HKU, Western ani w badaniach; zostają serwisy konsumenckie (odrzucone); ExRx niedostępny (docs/research/33)",
-  "Upright Row (hantle)": "komplet zależy od uznania szczebla WebMD Ignite i przedruku NSCA ETM (docs/research/33, pyt. 2–3)",
   "Incline Curl (hantle)": "opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33)",
   "Concentration Curl (hantle)": "jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33)",
   "Spider Curl": "brak źródeł szczebla do 4 (docs/research/33)",
@@ -14945,7 +16662,14 @@
   "Chin To Chest Stretch",
   "Arm Circles",
   "Ankle Circles",
-  "Wrist Circles"
+  "Wrist Circles",
+  "One-Arm Cable Rear Lateral Raise",
+  "Cable Reverse Fly",
+  "Cable Y Raise",
+  "One-Arm Incline Lateral Raise",
+  "Barbell Front Raise to Overhead",
+  "Sled Reverse Flye",
+  "Car Drivers"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {
@@ -14953,6 +16677,27 @@
   "Pendlay Row::pendlay.pull": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5) + Coach (5 per strona)",
   "Pendlay Row::pendlay.floor": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5)",
   "Pendlay Row::pendlay.mis.torso": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5); brak zdania ustawienia/ruchu do wniosku",
-  "Łydki na stopniu::calf.step": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona)"
+  "Łydki na stopniu::calf.step": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona)",
+  "Alternating Deltoid Raise::adr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Band Lateral Raise::blat.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "One-Arm Cable Rear Lateral Raise::crear1.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "One-Arm Cable Rear Lateral Raise::crear1.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "One-Arm Cable Rear Lateral Raise::rdelt.mis.swing": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Cable Reverse Fly::crf.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Cable Reverse Fly::crf.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Cable Y Raise::cyr.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Cable Y Raise::cyr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "One-Arm Incline Lateral Raise::inc1.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "One-Arm Incline Lateral Raise::inc1.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "One-Arm Incline Lateral Raise::inc1.mis.shrug": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Barbell Front Raise to Overhead::bfro.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Barbell Front Raise to Overhead::fro.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Barbell Front Raise to Overhead::fro.mis.arch": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Sled Reverse Flye::srf.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Sled Reverse Flye::srf.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Car Drivers::cdr.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Car Drivers::cdr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Car Drivers::cdr.mis.drop": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Car Drivers::mis.jerk": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)"
  }
 }
