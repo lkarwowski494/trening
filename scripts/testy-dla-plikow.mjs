@@ -9,7 +9,17 @@ import { basename, dirname, join } from 'node:path';
 const LISTA = /\b(readdirSync|readdir|walk\w*|glob\w*|listFiles?\w*)\s*\(/;
 /** Ścieżka katalogu w źródle testu: jako napis „a/b” albo jako kolejne argumenty join('a', 'b'). */
 const wymienia = (src, katalog) => src.includes(katalog) || new RegExp(katalog.split('/').map(s => `['"\`]${s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"\`]`).join(',\\s*')).test(src);
-const budujeSciezki = (src, katalog) => src.includes(`${katalog}/\${`) || src.includes(`${katalog}/' +`) || src.includes(`${katalog}/" +`);
+/** L-103 (04.11.2026): ciąg literałów-argumentów join/resolve, po którym idzie nazwa zmienna (szablon z ${}, identyfikator, konkatenacja, wywołanie funkcji) — katalog jako osobny argument, np.
+ *  path.join(ROOT, 'lib/figures/v2/poses', `${rodzina}.json`) albo join(ROOT, 'lib', 'figures', 'v2', 'poses', nazwa). Stały plik ('a.json') i sam katalog bez nazwy nie liczą się. */
+const CIAG_JOIN = /((?:'[^'\n]*'|"[^"\n]*")\s*,\s*)+(?=`[^`]*\$\{|[A-Za-z_$][\w$.]*\s*[,)+(])/g;
+const katalogJakoArgument = (src, katalog) => {
+  for (const m of src.matchAll(CIAG_JOIN)) {
+    const sciezka = [...m[0].matchAll(/['"]([^'"]*)['"]/g)].map(x => x[1]).join('/').replace(/\/+/g, '/').replace(/^(\.\.?\/)+/, '').replace(/^\/|\/$/g, ''); // „..” z __dirname testu = korzeń repo
+    if (sciezka === katalog) return true;
+  }
+  return false;
+};
+const budujeSciezki = (src, katalog) => src.includes(`${katalog}/\${`) || src.includes(`${katalog}/' +`) || src.includes(`${katalog}/" +`) || katalogJakoArgument(src, katalog);
 /** Czy test czyta pliki z katalogu: buduje ścieżki z jego nazwy albo wywołuje listowanie i wymienia ten katalog. */
 export const czytaKatalog = (src, katalog) => budujeSciezki(src, katalog) || (LISTA.test(src) && wymienia(src, katalog));
 /** Test przegląda cały katalog docs (każdy dokument może zmienić jego wynik). */
