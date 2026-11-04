@@ -10,38 +10,17 @@
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
+import { REPO, WORKFLOW, najnowszyTests, ocen, urlPrzebiegow, domyslnyFetch } from './ci-wynik.mjs';
 
-export const REPO = 'lkarwowski494/trening';
-export const WORKFLOW = 'tests.yml';
+export { REPO, WORKFLOW, najnowszyTests, ocen };
 export const DOMYSLNE_DOCELOWE = ['integracja-1-1', 'main'];
 export const KOD = { OK: 0, ODMOWA: 1, UZYCIE: 2, W_TOKU: 3 };
 
-const API = () => process.env.SCAL_API_BAZA || 'https://api.github.com'; /* SCAL_API_BAZA: tylko testy (lokalny serwer zamiast sieci) */
-const urlPrzebiegow = (repo, sha) => `${API()}/repos/${repo}/actions/runs?head_sha=${sha}&per_page=100`;
 const zGita = (cwd) => (...a) => execFileSync('git', a, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
-const domyslnyFetch = async (url) => {
-  const r = await fetch(url, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'scal-galaz' } });
-  if (!r.ok) throw new Error(`API Actions: HTTP ${r.status}`);
-  return r.json();
-};
 
 const znacznikPelny = (cwd) => (sha) => {
   try { execFileSync(process.execPath, [fileURLToPath(new URL('./verify-znacznik.mjs', import.meta.url)), '--sprawdz', sha, '--wymagaj', 'pelne'], { cwd, stdio: 'ignore' }); return true; } catch { return false; }
 };
-
-/** Najnowszy przebieg tests.yml z listy przebiegów API (po created_at, remis: run_number). */
-export function najnowszyTests(runy) {
-  const tests = (runy ?? []).filter(r => (r.path ?? '').split('@')[0].endsWith(`/${WORKFLOW}`) || r.path === WORKFLOW);
-  return tests.sort((a, b) => (Date.parse(b.created_at) || 0) - (Date.parse(a.created_at) || 0) || (b.run_number ?? 0) - (a.run_number ?? 0))[0] ?? null;
-}
-
-/** Ocena przebiegu: { ok } | { wToku } | { powod }. */
-export function ocen(run) {
-  if (!run) return { powod: `brak przebiegu ${WORKFLOW} dla tego SHA (poczekaj na start CI albo wypchnij gałąź)` };
-  if (run.status !== 'completed') return { wToku: `${WORKFLOW} jeszcze trwa (status: ${run.status}, przebieg ${run.id})` };
-  if (run.conclusion === 'success') return { ok: true };
-  return { powod: `${WORKFLOW} zakończony wynikiem „${run.conclusion}” (przebieg ${run.id}) — napraw gałąź źródłową` };
-}
 
 /**
  * @param {string[]} argv

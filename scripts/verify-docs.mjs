@@ -17,7 +17,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
-import { bazaPelnego } from './verify-znacznik.mjs';
+import { bazaPelnego, bazaZdalna, biezacaGalaz, czystaKopia } from './verify-znacznik.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -29,16 +29,19 @@ const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8', stdi
 const lines = s => s.split('\n').map(x => x.trim()).filter(Boolean);
 
 const zmienioneOd = baza => [...new Set([...lines(git('diff', '--name-only', baza)), ...lines(git('ls-files', '--others', '--exclude-standard'))])];
-/** Lista zmian i baza porównania: punkt rozejścia z ref, a gdy tam jest kod — H1: najbliższy przodek z pełnym verify (tylko przy domyślnym ref). */
-function zmienione() {
+/** Lista zmian i baza porównania: punkt rozejścia z ref, a gdy tam jest kod (tylko przy domyślnym ref) — H1: najbliższy przodek z zielonym verify (znacznik „pelne” albo „szybkie”)
+ *  albo — ZB-041 G4, 04.11.2026 — origin/<bieżąca gałąź>, gdy jej tests.yml ma conclusion success (pełne testy w CI to mocniejszy dowód niż znacznik lokalny). */
+async function zmienione() {
   if (process.env.VERIFY_DOCS_CHANGED !== undefined) return { zm: lines(process.env.VERIFY_DOCS_CHANGED), baza: null };
   const baza = git('merge-base', ref, 'HEAD').trim();
   const zm = zmienioneOd(baza);
   if (ref !== 'origin/main' || zm.every(jestDokumentem)) return { zm, baza };
-  const pelne = bazaPelnego('HEAD');
-  if (!pelne) return { zm, baza };
-  const odPelnego = zmienioneOd(pelne);
-  return odPelnego.length && odPelnego.every(jestDokumentem) ? { zm: odPelnego, baza: pelne } : { zm, baza };
+  for (const kandydat of [bazaPelnego('HEAD', ['pelne', 'szybkie']), await bazaZdalna(biezacaGalaz())]) {
+    if (!kandydat) continue;
+    const od = zmienioneOd(kandydat);
+    if (od.length && od.every(jestDokumentem)) return { zm: od, baza: kandydat };
+  }
+  return { zm, baza };
 }
 
 /* Testy Jest związane z dokumentami: wymieniają nazwę pliku (z rozszerzeniem; bez rozszerzenia tylko numerowane docs/NN-…),
@@ -61,7 +64,9 @@ function testyDlaDokumentow(pliki) {
     .sort();
 }
 
-const { zm, baza } = zmienione();
+/* ZB-041 G2 (04.11.2026): właściwy przebieg wymaga czystej kopii już na starcie — inaczej byłby zielony, ale bez znacznika, i trzeba by go powtórzyć po commicie */
+if (!planOnly && !czyDokumenty && process.env.VERIFY_DOCS_CHANGED === undefined && ref === 'origin/main' && czystaKopia() !== 0) process.exit(1);
+const { zm, baza } = await zmienione();
 const poza = zm.filter(f => !jestDokumentem(f));
 const dokumenty = zm.length > 0 && poza.length === 0;
 
@@ -86,7 +91,7 @@ if (!dokumenty) {
 }
 
 const start = Date.now();
-console.log(`verify:docs — ${zm.length} dokumentów względem ${baza && ref === 'origin/main' && git('merge-base', ref, 'HEAD').trim() !== baza ? `commitu z pełnym verify ${baza.slice(0, 8)}` : ref}`);
+console.log(`verify:docs — ${zm.length} dokumentów względem ${baza && ref === 'origin/main' && git('merge-base', ref, 'HEAD').trim() !== baza ? `commitu z zielonym verify albo tests.yml ${baza.slice(0, 8)}` : ref}`);
 for (const k of komendy) {
   console.log(`verify:docs: ${k}`);
   const r = spawnSync(k, { cwd: root, shell: true, stdio: 'inherit' });
