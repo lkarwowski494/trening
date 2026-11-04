@@ -1369,6 +1369,7 @@
       "b": "general",
       "f": "vpull",
       "ok": [
+        "pu.grip",
         "npu.hang"
       ],
       "err": [
