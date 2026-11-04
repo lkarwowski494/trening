@@ -1,7 +1,7 @@
 /* L-090, wariant A (decyzja właściciela 02.11.2026): scripts/scal-galaz.mjs scala gałąź tylko przy zielonym tests.yml dla SHA jej głowy.
    Bez sieci: lokalny serwer HTTP udaje API Actions (SCAL_API_BAZA); prawdziwe repozytoria git w katalogach tymczasowych.
    Przypadek L-080: gałąź z wcześniejszymi zmianami względem celu — ostatni commit to dokument, ale diff od wspólnego przodka ma kod. */
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'fs';
 import { createServer, Server } from 'http';
 import { tmpdir } from 'os';
 import { join } from 'path';
@@ -203,5 +203,62 @@ describe('scal-galaz — konflikty w plikach generowanych (ZB-041 G1, 04.11.2026
     expect(GENEROWANE.length).toBeGreaterThanOrEqual(5);
     for (const g of GENEROWANE) { expect(fs.existsSync(join(root, g.plik))).toBe(true); expect(fs.existsSync(join(root, g.polecenie[1]))).toBe(true); expect(g.polecenie).toContain('--write'); }
     expect(GENEROWANE.map((g: { plik: string }) => g.plik)).not.toContain('docs/lokalizacja/skroty-przekladu.json');
+  });
+});
+
+/* L-105, wariant A (decyzja właściciela 04.11.2026): po UDANYM scaleniu skrypt usuwa czysty worktree scalonej gałęzi (dysk kontenera). */
+describe('scal-galaz — sprzątanie worktree po scaleniu (L-105, 04.11.2026)', () => {
+  /** worktree gałęzi „f” obok repo próbnego; node_modules w nim to dowiązanie do katalogu z plikiem-świadkiem */
+  function zWorktree(zmiany: [string, string][] = [['plik.txt', '2\n']]) {
+    const e = srodowisko(); const sha = e.gałąź('f', zmiany); odpowiedz = [run(sha)];
+    const wt = join(nowy('scal-wt-'), 'wt'); git(e.dir, 'worktree', 'add', '-q', wt, 'f');
+    const cel = nowy('scal-nm-'); writeFileSync(join(cel, 'swiadek.txt'), 'x\n'); symlinkSync(cel, join(wt, 'node_modules'));
+    return { ...e, sha, wt, cel };
+  }
+  test('czysty worktree (z dowiązaniem node_modules) → usunięty po scaleniu, cel dowiązania nietknięty', async () => {
+    const x = zWorktree(); const r = await uruchom(x.dir, 'f');
+    expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true);
+    expect(existsSync(x.wt)).toBe(false); expect(existsSync(join(x.cel, 'swiadek.txt'))).toBe(true);
+    expect(git(x.dir, 'worktree', 'list', '--porcelain')).not.toContain(x.wt); expect(r.out).toContain('usunięto worktree');
+  });
+  test('brudny worktree (plik nieśledzony albo zmiana) → zostaje, komunikat, kod 0', async () => {
+    for (const brud of ['nowy.txt', 'plik.txt']) {
+      const x = zWorktree(); writeFileSync(join(x.wt, brud), 'brud\n');
+      const r = await uruchom(x.dir, 'f');
+      expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true);
+      expect(existsSync(join(x.wt, brud))).toBe(true); expect(r.out).toContain('zostawiam');
+    }
+  });
+  test('odmowa (czerwone CI) albo w toku → worktree zostaje', async () => {
+    const x = zWorktree(); odpowiedz = [run(x.sha, { conclusion: 'failure' })];
+    expect((await uruchom(x.dir, 'f')).status).toBe(1); expect(existsSync(x.wt)).toBe(true);
+    odpowiedz = [run(x.sha, { status: 'in_progress', conclusion: null })];
+    expect((await uruchom(x.dir, 'f')).status).toBe(3); expect(existsSync(x.wt)).toBe(true);
+  });
+  test('--zostaw-worktree → scala, worktree zostaje', async () => {
+    const x = zWorktree(); const r = await uruchom(x.dir, 'f', '--zostaw-worktree');
+    expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true); expect(existsSync(x.wt)).toBe(true);
+  });
+  test('gałąź bez worktree → scala jak dotąd (kod 0)', async () => {
+    const e = srodowisko(); const sha = e.gałąź('f', [['plik.txt', '2\n']]); odpowiedz = [run(sha)];
+    expect((await uruchom(e.dir, 'f')).status).toBe(0);
+  });
+  test('worktree bieżącego katalogu nie jest usuwany (skrypt uruchomiony z worktree gałęzi docelowej = źródłowej odpada; docelowa w drugim worktree)', async () => {
+    const e = srodowisko(); const sha = e.gałąź('f', [['plik.txt', '2\n']]); odpowiedz = [run(sha)];
+    git(e.dir, 'checkout', '-q', '-b', 'tmp'); const wt = join(nowy('scal-wt-'), 'cel'); git(e.dir, 'worktree', 'add', '-q', wt, 'integracja-1-1');
+    const r = await uruchom(wt, 'f'); expect(r.status).toBe(0); expect(existsSync(wt)).toBe(true); /* worktree bieżący (cel) zostaje */
+  });
+  test('L-080: gałąź z wcześniejszymi zmianami względem celu (kod + dokument na wierzchu) → po scaleniu z CI worktree usunięty; bez CI odmowa i worktree zostaje', async () => {
+    const x = zWorktree([['plik.txt', '2\n'], ['docs/a.md', 'b\n']]); odpowiedz = [];
+    expect((await uruchom(x.dir, 'f')).status).toBe(1); expect(existsSync(x.wt)).toBe(true);
+    odpowiedz = [run(x.sha)]; expect((await uruchom(x.dir, 'f')).status).toBe(0); expect(existsSync(x.wt)).toBe(false);
+  });
+  test('same dokumenty (bez CI) → worktree też usunięty po scaleniu', async () => {
+    const x = zWorktree([['docs/a.md', 'b\n']]); odpowiedz = [];
+    expect((await uruchom(x.dir, 'f')).status).toBe(0); expect(existsSync(x.wt)).toBe(false);
+  });
+  test('brief agenta (programista, tester-e2e): przed npm ci sprawdź df, próg 3 GB (04.11.2026)', () => {
+    const fs = require('fs');
+    for (const rola of ['programista', 'tester-e2e']) expect(fs.readFileSync(join(root, `.claude/agents/${rola}.md`), 'utf8')).toMatch(/df -h[\s\S]{0,200}3 GB/);
   });
 });

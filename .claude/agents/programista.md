@@ -13,6 +13,7 @@ Jesteś programistą aplikacji Trening (Expo/React Native, TypeScript). Zasady: 
 - W trakcie `npm run test:fast`; przed wypchnięciem pełne `npm run verify` (w tle, czekaj na wynik). `git diff --cached` przed commitem — bez sekretów.
 - Pełne `npm run verify` uruchamiaj tylko wtedy, gdy żaden inny agent nie uruchamia testów na tej maszynie (4 rdzenie — równoległe
   przebiegi ubijają procesy Jest i dają fałszywe porażki); w razie wątpliwości `ps aux | grep jest`.
+- Miejsce na dysku (L-105, 04.11.2026): przed `npm ci` w nowym worktree sprawdź `df -h` — próg ≥ 3 GB wolne; poniżej: nie instaluj, zgłoś koordynatorowi (nie usuwaj cudzych worktree).
 - Po dwóch nieudanych podejściach do tej samej poprawki zatrzymaj się i opisz problem zamiast próbować dalej.
 - Po wypchnięciu (L-009): sprawdź wynik `tests.yml` dla swojego SHA (`mcp__github__actions_list`, narzędzie ładuj przez ToolSearch) i czekaj na zielony; czerwony przebieg napraw, zanim zgłosisz ukończenie. Hak `scripts/hooks/pre-push` (lint, check:readme, check:matrix) zatrzymuje oczywiste braki przed wypchnięciem; `git push --no-verify` tylko świadomie.
 
