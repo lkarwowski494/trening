@@ -5,9 +5,6 @@
 name: ASC status wersji
 on:
   workflow_dispatch:
-  # TYMCZASOWE (Z1, właściciel 04.11.2026 B): przebieg dowodowy tylko na tej gałęzi; gałąź nie trafia do integracji ani main.
-  push:
-    branches: ['z1/asc-dowod']
 permissions:
   contents: read
 concurrency:
