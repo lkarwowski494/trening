@@ -179,12 +179,6 @@ const rect = (x0: number, y0: number, x1: number, y1: number): V2[] => [[x0, y0]
 /** Położenie nóg pod oparciem maszyny (ułamek długości oparcia od zawiasu). */
 const BACK_FRAME_T: [number, number] = [0.08, 0.75];
 
-/** Wysokość spodu oparcia (krawędź back[0]→back[1]) w danym x; poza oparciem albo przy pionowym oparciu — wysokość siedziska. */
-function legTop2(back: V2[], x: number, seatTop: number): number {
-  const [a, b] = [back[0], back[1]]; if (Math.abs(b[0] - a[0]) < 1e-6) return seatTop; const t = (x - a[0]) / (b[0] - a[0]); if (t < 0 || t > 1) return seatTop;
-  return Math.max(seatTop, a[1] + (b[1] - a[1]) * t);
-}
-
 /** Wielokąty ławki w widoku z boku: siedzisko, oparcie (górna krawędź = powierzchnia, na której leży osoba) i x nóg. Wspólne dla rysunku i kolizji. */
 export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; back: V2[]; legs: number[]; legTops: number[] } {
   const T = EQUIP.benchPad; const [sx0, sy] = pr.seatFrom, [hx, hy] = pr.hinge, [bx, by] = pr.backTo;
@@ -193,13 +187,11 @@ export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; bac
   /* Oparcie bez siedziska (maszyny: backFrame): nogi stoją pod spodem oparcia i dochodzą do niego (nie wiszą pod zawiasem) — jedna przy zawiasie, druga w trzech czwartych długości. */
   const pod = (t: number): V2 => [back[0][0] + (back[1][0] - back[0][0]) * t, back[0][1] + (back[1][1] - back[0][1]) * t];
   const frame = pr.backFrame ? [pod(BACK_FRAME_T[0]), pod(BACK_FRAME_T[1])] : null; const seatTop = Math.max(sy - EQUIP.benchPad, 0);
-  const legX2 = bx + Math.sign(hx - bx) * 6;
   return {
     seat: [[sx0, sy - T], [hx, hy - T], [hx, hy], [sx0, sy]],
     back,
-    legs: frame ? frame.map(p => p[0]) : [sx0 + Math.sign(hx - sx0) * 8, legX2],
-    /* N-1 (FW1, 04.11.2026): druga noga stoi pod oparciem — dochodzi do jego spodu w tym x (ławka skośna), nie tylko do wysokości siedziska */
-    legTops: frame ? frame.map(p => p[1]) : [seatTop, legTop2(back, legX2, seatTop)],
+    legs: frame ? frame.map(p => p[0]) : [sx0 + Math.sign(hx - sx0) * 8, bx + Math.sign(hx - bx) * 6],
+    legTops: frame ? frame.map(p => p[1]) : [seatTop, seatTop],
   };
 }
 

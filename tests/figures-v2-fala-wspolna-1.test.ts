@@ -1,14 +1,15 @@
 /*
  * Fala wspólna FW1 (kod wspólny figur v2, 04.11.2026; recenzje ruchu delt_raise i triceps, plan-recenzji-rodzin-v2 §3–§4).
  * H-A: oś hantla lewej ręki jest lustrem prawej (contract.ts withDumbbellAxis). H-B: oś hantla prostopadła do przedramienia także przy przedramieniu w poprzek ciała.
- * H-C: ślad toru (info.trail) przy chwycie dla gumy, talerza, kettlebell i łańcuchów w dłoniach (K4/W1b), nie w miednicy. N-1: druga noga ławki skośnej dochodzi do oparcia.
+ * H-C: ślad toru (info.trail) przy chwycie dla gumy, talerza, kettlebell i łańcuchów w dłoniach (K4/W1b), nie w miednicy.
+ * N-1 (noga ławki skośnej, draw.ts:194–195) NIE wchodzi do FW1: sprzeczne z tests/figury-p2-r2.test.ts („ławka z siedziskiem … nogi jak dotąd”) i zmienia ~37 póz niegotowych rodzin — decyzja koordynatora.
  * Narzędzia: styk-figur.ts i odstep-ciezaru.mjs (arkusz-slad.mjs) nie wywracają się bez info.load.
  */
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import { execFileSync } from 'child_process';
-import { keyframeFrame, benchPolys, SIDES, type PoseData, type Prop } from '@/lib/figures/v2';
+import { keyframeFrame, SIDES, type PoseData, type Prop } from '@/lib/figures/v2';
 import { stykKlatki } from './helpers/styk-figur';
 
 const ROOT = path.join(__dirname, '..');
@@ -96,18 +97,6 @@ describe('H-C: ślad toru przy chwycie (guma, talerz, kettlebell, łańcuchy), n
   test('przypadek negatywny: ze sztangą (Barbell Curl + guma) ślad nie jest przesuwany do dłoni — bez śladu, tor = gryf (info.load)', () => {
     const baza = poza('curl', 'Barbell Curl'); const d = { ...baza, sprzet: [...baza.sprzet, { rodzaj: 'guma', mocowanie: 'stopy' }] } as unknown as PoseData;
     const f = keyframeFrame(d, 0.5); expect(f.info.load).toBeDefined(); expect(f.info.trail).toBeUndefined();
-  });
-});
-
-describe('N-1: druga noga ławki skośnej dochodzi do oparcia (04.11.2026)', () => {
-  const lawka = (kat: number): Extract<Prop, { k: 'bench' }> => { const a = kat * Math.PI / 180; const hinge: [number, number] = [0, 43]; return { k: 'bench', seatFrom: [40, 43], hinge, backTo: [-70 * Math.cos(a), 43 + 70 * Math.sin(a)] } as Extract<Prop, { k: 'bench' }>; };
-  /** Wysokość spodu oparcia (dolna krawędź) w danym x. */
-  const spod = (bp: ReturnType<typeof benchPolys>, x: number): number => { const [a, b] = [bp.back[0], bp.back[1]]; return a[1] + (b[1] - a[1]) * (x - a[0]) / (b[0] - a[0]); };
-  test.each([30, 45, 60])('ławka skośna %s°: noga pod oparciem kończy się na spodzie oparcia (≤ 0,5 cm)', kat => {
-    const bp = benchPolys(lawka(kat)); expect(Math.abs(bp.legTops[1] - spod(bp, bp.legs[1]))).toBeLessThanOrEqual(0.5); expect(bp.legTops[1]).toBeGreaterThan(bp.legTops[0] + 5);
-  });
-  test('przypadek negatywny: ławka płaska — obie nogi jak dotąd (do wysokości siedziska)', () => {
-    const bp = benchPolys(lawka(0)); expect(bp.legTops[1]).toBeCloseTo(bp.legTops[0], 1);
   });
 });
 

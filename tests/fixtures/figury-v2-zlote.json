@@ -889,8 +889,8 @@
    "raw": "6a2db59b781cc66ca007"
   },
   "chest_fly/Crucifix": {
-   "svg": "63b90832857359e2d430",
-   "raw": "9b3cb60797348962ad44"
+   "svg": "315f32e2927c80356f8b",
+   "raw": "6d02dd17bca16e3bea9e"
   },
   "chest_fly/Pullover (hantel)": {
    "svg": "aae72087ed18bfd031d3",
@@ -1105,20 +1105,20 @@
    "raw": "f054757f481ca0ecde2d"
   },
   "curl/Biceps Curl (hantle)": {
-   "svg": "2b702b97bc2100f35463",
-   "raw": "c64265bf1a62bc4f0e00"
+   "svg": "dacc0463187c4c36da0f",
+   "raw": "99b0b9041e0244651cda"
   },
   "curl/Hammer Curl": {
    "svg": "4eeb28e5eb706d65f877",
    "raw": "c6fe5ba7a9faa1c6b945"
   },
   "curl/Standing Dumbbell Reverse Curl": {
-   "svg": "79b4991bffd9c3fd40e4",
-   "raw": "15c134f71f078b93c497"
+   "svg": "e711976556d7b2cb1640",
+   "raw": "eee8ba218925d14dc255"
   },
   "curl/Standing Inner-Biceps Curl": {
-   "svg": "985b9356d5d4586220e1",
-   "raw": "f47edb5cbfeef97ddf2c"
+   "svg": "ec6c26ab693f5faa3161",
+   "raw": "992e2bb8ee2e88364b90"
   },
   "curl/Cross Body Hammer Curl": {
    "svg": "18745e84406bb946fb7f",
@@ -1145,16 +1145,16 @@
    "raw": "8d573baa8fd0eee6f5d3"
   },
   "curl/Incline Curl (hantle)": {
-   "svg": "3d6fcd8cfcfd39470b4a",
-   "raw": "6bac3af9fc35b25a7ed3"
+   "svg": "822bb025157615ce2eb0",
+   "raw": "2a9ff36e988c906a189c"
   },
   "curl/Incline Hammer Curl": {
    "svg": "719df7e4a555b16d059e",
    "raw": "cd01a50a1852299ecbc6"
   },
   "curl/Lying Supine Dumbbell Curl": {
-   "svg": "be8e41777f8b15a54516",
-   "raw": "9bd9037312aff9a7cac7"
+   "svg": "49054452b85215d21085",
+   "raw": "0475f1150b246f3d5f76"
   },
   "curl/High Cable Curl": {
    "svg": "df25399e47604135a2fc",
@@ -1197,8 +1197,8 @@
    "raw": "e160690890782353dc18"
   },
   "curl/Preacher Curl": {
-   "svg": "33aca01902f690131c08",
-   "raw": "ba8d7119b504e2da2371"
+   "svg": "6cc8953f86365a5c79be",
+   "raw": "8e1facbc30583cd6dbf9"
   },
   "curl/Preacher Hammer Dumbbell Curl": {
    "svg": "3d247c773e1658d941dd",
@@ -1217,16 +1217,16 @@
    "raw": "9029a77092cece6f1fc5"
   },
   "curl/Spider Curl": {
-   "svg": "e7db3d38b3f06541f981",
-   "raw": "370c220855c5c0f22c4a"
+   "svg": "b791ae41b08f538d3a36",
+   "raw": "5b499847515f5d10778d"
   },
   "curl/Spider Curl (sztanga)": {
    "svg": "49b3f5bbfff43c854216",
    "raw": "e5b3a08c62a7a8508c7d"
   },
   "delt_raise/Lateral Raise (hantle)": {
-   "svg": "89ad871553767d5961c1",
-   "raw": "6f1eacef2050ffebe88c"
+   "svg": "5f151dbced79ed275537",
+   "raw": "37f07b8c45e152c29469"
   },
   "delt_raise/One-Arm Lateral Raise (hantel)": {
    "svg": "089f5f130b3308c5fcdb",
@@ -1281,8 +1281,8 @@
    "raw": "92a71dbae64a41e7a2c6"
   },
   "delt_raise/Upright Row (hantle)": {
-   "svg": "312695b1a6a73fcf31ad",
-   "raw": "39364f572cd9583ec843"
+   "svg": "fe6d4ec4b474a3112355",
+   "raw": "b1e6780f1d6985e9d380"
   },
   "delt_raise/Dumbbell One-Arm Upright Row": {
    "svg": "a4b7067a55a45e75e1c3",
@@ -1305,8 +1305,8 @@
    "raw": "6793c0d02738e3eab895"
   },
   "delt_raise/Reverse Fly (hantle)": {
-   "svg": "831354a0949f81d0ad8b",
-   "raw": "1ad4a9b8dd235213c545"
+   "svg": "cce48036485e44653dd8",
+   "raw": "9de10f80727960ce9d54"
   },
   "delt_raise/One-Arm Cable Rear Lateral Raise": {
    "svg": "af3ab01fa3041dbcc099",
@@ -1317,8 +1317,8 @@
    "raw": "7360bf797a5cfc421393"
   },
   "delt_raise/Y Raise (hantle)": {
-   "svg": "6a8e62aac0305d1c52e5",
-   "raw": "c4aea33f1c47b6df9e91"
+   "svg": "7bcbb916a5e8c6904d6d",
+   "raw": "b774283ea1430471e44c"
   },
   "delt_raise/Cable Y Raise": {
    "svg": "bd0123c8f23383e03ac6",
@@ -1373,12 +1373,12 @@
    "raw": "eadcfdeca28b117fc3ad"
   },
   "forearm/Wrist Curl (hantle)": {
-   "svg": "e0eb4f6fea27fe430500",
-   "raw": "bc92fc0c07ac2ad99281"
+   "svg": "633296739480a625fa80",
+   "raw": "ae54ae5b11ff45bb89f4"
   },
   "forearm/Reverse Wrist Curl (hantle)": {
-   "svg": "eed2da59fe18252b1353",
-   "raw": "c3c3864a1599a81e32a4"
+   "svg": "a1ded1e978c758eb2c9b",
+   "raw": "be0620af3bf63a18fcd5"
   },
   "forearm/One-Arm Dumbbell Wrist Curl": {
    "svg": "b1442ae1484c1df580c5",
@@ -1909,8 +1909,8 @@
    "raw": "1f26f6496d6e62b92531"
   },
   "overhead_press/Arnold Press": {
-   "svg": "508488aef2dbb5a29e62",
-   "raw": "5838013d1eb34eab8739"
+   "svg": "11923d5306c18f881907",
+   "raw": "1bd231fdd45c886bf950"
   },
   "overhead_press/Kettlebell Arnold Press": {
    "svg": "0a31d782f2907f439a86",
@@ -2217,8 +2217,8 @@
    "raw": "75ae531fe362e44a5012"
   },
   "rotator_cuff/External Rotation (hantel)": {
-   "svg": "76d048c7c9eb40c184ff",
-   "raw": "ebc45ff47790847dd184"
+   "svg": "f3f09ccde2ad47fa268d",
+   "raw": "5e336fd37fa3f0642408"
   },
   "rotator_cuff/External Rotation (linki)": {
    "svg": "f07e4e9141cd7c98c3f6",
@@ -2241,8 +2241,8 @@
    "raw": "04671cb9ceda402ce118"
   },
   "rotator_cuff/Reverse Flyes With External Rotation": {
-   "svg": "6cb0418b75685419014f",
-   "raw": "26ec8e0c330695ad078b"
+   "svg": "086e8084cba8dfd31d6d",
+   "raw": "3ed7ebd56d5a4c5fe22e"
   },
   "row/Bent Over Row (sztanga)": {
    "svg": "f2a424241ebbd60816dc",
@@ -2361,8 +2361,8 @@
    "raw": "d1669a4a0928f514fa4b"
   },
   "thruster/Thruster (hantle)": {
-   "svg": "b9a76b3fb96f103614b3",
-   "raw": "68d692e8cd3985c4f98c"
+   "svg": "b0ea78f3f1266f134c4b",
+   "raw": "2cbb6081c1831bce255a"
   },
   "thruster/Kettlebell Thruster": {
    "svg": "0f94056989d0f6b08955",
