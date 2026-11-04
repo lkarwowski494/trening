@@ -1409,11 +1409,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Alternating Deltoid Raise": {
-   "rodzina": "raiseSide",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Arnold Press": {
    "rodzina": "ohp",
    "sprawdzenie": "rotacja dłoni w Arnoldzie nie jest opisana — zdania dotyczą tylko wyciskania nad głowę",
@@ -1459,11 +1454,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Band Lateral Raise": {
-   "rodzina": "raiseSide",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Band Overhead Triceps Extension": {
    "rodzina": "triOver",
    "sprawdzenie": null,
@@ -1488,16 +1478,6 @@
    "rodzina": "squat",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Band Upright Row": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "Barbell Front Raise to Overhead": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Barbell Guillotine Bench Press": {
    "rodzina": "bench",
@@ -1679,11 +1659,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Cable Front Raise": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Cable Hip Abduction": {
    "rodzina": "hipAbd",
    "sprawdzenie": null,
@@ -1734,11 +1709,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Cable Reverse Fly": {
-   "rodzina": "raiseRear",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Cable Rope Rear-Delt Rows": {
    "rodzina": "faceRow",
    "sprawdzenie": null,
@@ -1774,11 +1744,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Cable Y Raise": {
-   "rodzina": "raise",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Calf Raise (linki)": {
    "rodzina": "calf",
    "sprawdzenie": null,
@@ -1793,11 +1758,6 @@
    "rodzina": "shrug",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Car Drivers": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Chain Handle Extension": {
    "rodzina": "triLying",
@@ -2064,25 +2024,10 @@
    "sprawdzenie": "bez lat.height — ruch kończy się nad głową",
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Dumbbell Lying One-Arm Rear Lateral Raise": {
-   "rodzina": "raiseRear",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Dumbbell One-Arm Triceps Extension": {
    "rodzina": "triOver",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Dumbbell One-Arm Upright Row": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "Dumbbell Scaption": {
-   "rodzina": "raiseSide",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Dumbbell Seated Box Jump": {
    "rodzina": "jump",
@@ -2180,11 +2125,6 @@
    "plik": "wskazowki-cwiczenia-06"
   },
   "Front Incline Dumbbell Raise": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "Front Plate Raise": {
    "rodzina": "raiseFront",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
@@ -2378,11 +2318,6 @@
    "rodzina": "oly",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Kettlebell Halo": {
-   "rodzina": "halo",
-   "sprawdzenie": "ACE #394 i ISSA — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Kettlebell Halo with Overhead Extension": {
    "rodzina": "halo",
@@ -2689,11 +2624,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
-  "One-Arm Cable Rear Lateral Raise": {
-   "rodzina": "raiseRear",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "One-Arm Dumbbell Reverse Wrist Curl": {
    "rodzina": "wrist",
    "sprawdzenie": null,
@@ -2713,11 +2643,6 @@
    "rodzina": "sideBend",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "One-Arm Incline Lateral Raise": {
-   "rodzina": "raiseSide",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "One-Arm Kettlebell Clean and Jerk": {
    "rodzina": "oly",
@@ -2748,11 +2673,6 @@
    "rodzina": "kbSwing",
    "sprawdzenie": "ACE #392 Single Arm Swing — możliwe źródło bezpośrednie",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "One-Arm Lateral Raise (hantel)": {
-   "rodzina": "raiseSide",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "One-Arm Lying Dumbbell Triceps Extension": {
    "rodzina": "triLying",
@@ -3159,11 +3079,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Single Dumbbell Front Raise": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Single Leg Butt Kick": {
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
@@ -3324,11 +3239,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Smith Machine One-Arm Upright Row": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Smith Machine Pistol Squat": {
    "rodzina": "pistol",
    "sprawdzenie": null,
@@ -3348,11 +3258,6 @@
    "rodzina": "rdl",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Smith Machine Upright Row": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Snatch Deadlift": {
    "rodzina": "hingeFloor",
@@ -3658,21 +3563,6 @@
    "rodzina": "stretch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Upright Row (hantle)": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": "ISSA opisuje wiosłowanie pionowe wprost (łokieć nad przedramieniem, do wysokości barków); ACE #26 — analogia",
-   "plik": "wskazowki-cwiczenia-04 (korekty)"
-  },
-  "Upright Row (linki)": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04 (korekty)"
-  },
-  "Upright Row (sztanga)": {
-   "rodzina": "uprightRow",
-   "sprawdzenie": "ISSA opisuje wersję ze sztangą",
-   "plik": "wskazowki-cwiczenia-04 (korekty)"
   },
   "V-Bar Pulldown": {
    "rodzina": "vpull",

@@ -10,6 +10,7 @@ import * as path from 'path';
 import { execFileSync } from 'child_process';
 import { CUE_BASIS_KINDS } from '@/lib/cues';
 import { CUE_FULL } from './zrodla-pelne';
+import T1_DELT from './fixtures/cues-t1-delt-raise.json';
 
 const root = path.join(__dirname, '..');
 const GEN = path.join(root, 'scripts/cues/gen.mjs');
@@ -148,10 +149,11 @@ describe('dane po porządkach P0 (02.11.2026)', () => {
       for (const [id, s] of Object.entries(CUE_FULL.sources)) if (s.org === org) expect([id, [4, 5].includes(s.level), typeof (s as { strona?: string }).strona]).toEqual([id, true, 'string']);
     }
   });
-  test('Skakanka i drugie ćwiczenie cardio z STAN-g6 zostają otwarte do czasu kart z fali G6 (P4): każde ćwiczenie bazowe ma wskazówki albo wpis open — tests/cues.test.tsx; luki = dokładnie wskazówki, które po przeliczeniu szczebli tracą parę', () => {
+  test('Skakanka i drugie ćwiczenie cardio z STAN-g6 zostają otwarte do czasu kart z fali G6 (P4): każde ćwiczenie bazowe ma wskazówki albo wpis open — tests/cues.test.tsx; luki = dokładnie wskazówki, które po przeliczeniu szczebli tracą parę (+ „praktyka” T1)', () => {
     expect(Object.keys(CUE_FULL.open)).toEqual(expect.arrayContaining(['Skakanka']));
     expect(Object.keys((CUE_FULL as unknown as Data).luki ?? {}).sort()).toEqual([
       'Pendlay Row::pendlay.floor', 'Pendlay Row::pendlay.mis.torso', 'Pendlay Row::pendlay.pull', 'Pendlay Row::pendlay.setup', 'Łydki na stopniu::calf.step',
+      ...T1_DELT.luki, /* + luki „praktyka” z partii T1 (delt_raise, 04.11.2026): 2 źródła szczebla 5 albo jedno szczebla 4 + 5 — recenzja L-047 */
     ].sort());
   });
   test('dokument docs/research/27 pokazuje sekcję luk i rodzaj `book`', () => {
