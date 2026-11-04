@@ -276,7 +276,7 @@ describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez 
   test('rozstaw dłoni: 100% standardowa, 50% wąska; diamentowa bez sprawdzenia', () => { expect(W.rozstaw_dloni.dobre).toEqual([]); expect(W.rozstaw_dloni.zle).toHaveLength(3); });
   test('lędźwie przy podłodze: reguła włączana wskazówką z tekstów; V-Up i Cocoons wyłączone jawnie (z mechanizmem), Tuck Crunch objęty regułą', () => { expect(W.ledzwie_zakres.dobre).toEqual([0, 0, 0, 0, 0, 0]); expect(W.ledzwie_zakres.zle).toEqual([1]); });
   test('R4-Ś1 (04.11.2026): LOT zwalnia tylko z reguły lędźwi — R14c (ćwiczenie z LOT bez wskazówki o lędźwiach) i R16 działają; wyjątki Decline Oblique mają powód, dotyczą ćwiczeń z LOT i nie są nieaktualne', () => {
-    const w = W.lot_wyjatki;
+    const w = W.lot_wyjatki as unknown as { niepowod: string[]; wszystkieWLot: string[]; r14cNieaktualny: string[]; r16NieaktualnyOdczyt: string[]; r16Pozostale: number; zWyjatkami: string[]; bezR14c: string[]; bezR16: string[]; ledzwieNieWlaczone: boolean };
     expect(w.niepowod).toEqual([]); expect(w.wszystkieWLot).toEqual([]); expect(w.r14cNieaktualny).toEqual([]);
     expect(String(w.r16NieaktualnyOdczyt[0])).toMatch(/19\.4°/); /* wyjątek R16 nadal potrzebny: bez niego reguła zgłasza odczyt na granicy */
     expect(w.r16Pozostale).toBe(0); /* poza Decline Oblique żadne ćwiczenie z LOT nie ma wskazówki o lędźwiach */
