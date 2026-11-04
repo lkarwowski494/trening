@@ -137,7 +137,7 @@ describe('niezmienniki: bez liczb i tekstu na rysunku, limit elementów na rzut'
   });
   test('element tylko z wskazówką karty: Bench Press (sztanga) — łokieć z boku (bp.move), z góry nic (bp.elbowsMid nie jest na karcie); Close Grip — z góry odwiedzenie ramienia (cgbp.elbows); wskazówka spoza zestawu → brak elementu', () => {
     expect(techniquesOf('Bench Press (sztanga)')).toEqual(['benchElbowLimb']); expect(techniquesOf('Bench Press (hantle)')).toEqual(['benchElbowLimb']);
-    expect(techniquesOf('Close Grip Bench Press')).toEqual(['benchElbowLimb', 'benchShoulderAbductionClose']); expect(techniquesOf('Decline Bench Press')).toContain('benchShoulderAbduction'); expect(techniquesOf('Back Squat')).toEqual([]); expect(techniquesOf('Nie ma takiego')).toEqual([]);
+    expect(techniquesOf('Close Grip Bench Press')).toEqual(['benchElbowLimb', 'benchShoulderAbductionClose']); expect(techniquesOf('Decline Bench Press')).toContain('benchShoulderAbduction'); expect(techniquesOf('Wall Sit')).toEqual([]); /* etap 2: Back Squat ma już element (tests/figures-v2-nakladka-squat-hinge.test.tsx) */ expect(techniquesOf('Nie ma takiego')).toEqual([]);
     const s = spec('Bench Press (sztanga)'); expect(overlayShapes(s, 1, 'top', techniquesOf('Bench Press (sztanga)')).length).toBe(0); expect(overlayShapes(s, 1, 'side', techniquesOf('Bench Press (sztanga)')).length).toBe(2);
     expect(overlayShapes(s, 1, 'side', ['benchElbowLimb', 'nie-ma']).length).toBe(2); expect(techniquesFor('squat', ['bp.move'])).toEqual([]);
     const cg = spec('Close Grip Bench Press'); expect(overlayShapes(cg, 1, 'top', techniquesOf('Close Grip Bench Press')).some(x => x.k === 'line')).toBe(true);
@@ -147,7 +147,7 @@ describe('niezmienniki: bez liczb i tekstu na rysunku, limit elementów na rzut'
   });
   test('rozbicie GUIDES na dane rodzin: te same cztery linie, te same wskazówki i rzuty', () => {
     expect(Object.keys(GUIDES)).toEqual(['thighParallel', 'plumbMidfoot', 'kneeToe', 'backLine']);
-    expect(GUIDES.thighParallel.cue).toEqual(['sq.depth']); expect(GUIDES.kneeToe.views).toEqual(['front']); expect(GUIDES.plumbMidfoot.cue).toEqual(['dl.feet']); expect(GUIDES.backLine.cue).toEqual(['hinge.back']);
+    expect(GUIDES.thighParallel.cue).toEqual(['sq.depth']); expect(GUIDES.kneeToe.views).toEqual(['front']); expect(GUIDES.plumbMidfoot.cue).toEqual(['dl.feet']); expect(GUIDES.backLine.cue).toEqual(['hinge.back', 'sq.back', 'wall.back']); /* etap 2 (04.11.2026): linia pleców także w przysiadzie */
     for (const f of ['squat', 'hinge']) expect(fs.existsSync(path.join(__dirname, '..', 'lib/figures/v2/overlay', f + '.ts'))).toBe(true);
   });
 });
