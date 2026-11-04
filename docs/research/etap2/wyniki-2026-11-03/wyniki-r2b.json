@@ -1,0 +1,100 @@
+[
+ {"cwiczenie":"Dumbbell Lying Pronation","stan":"brak po rundzie 2 (wersja „prone”, obrót przedramienia) – bez zmian względem uz2a (częściowo: 2 źródła wersji LEŻĄC NA BOKU)",
+  "odmiana":"catalog.json:16754; note :16781 „Prone on a bench, forearm rotates a dumbbell into pronation; light weight.”; pole fedb :16755 – tekst fedb opisuje rotację zewnętrzną barku leżąc przodem (inny ruch)",
+  "koszt":{"wyszukania":3,"strony":0},
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"zapytanie":"prone forearm pronation dumbbell lying face down bench forearm hanging","wynik":"tylko strony już znane (fedb i jego kopie: bodybuilding.com, repstack, health-os, exercise.com, Jefit 377; wersje na boku: Fitness Volt, weighttraining.guide; ACE – inna pozycja; fitwill 0347 – 403, nie otwierane)"},
+   {"zapytanie":"lying pronation dumbbell face down bench forearm off the end","wynik":"jw.; Jefit 377 ma adres „dumbbell-pronation-side-lying” – też wersja na boku"},
+   {"zapytanie":"physiotherapy prone on table arm hanging forearm pronation supination dumbbell","wynik":"Physitrack: pronacja/supinacja w siadzie z przedramieniem na stole (inna pozycja), wiosłowanie leżąc przodem (inny ruch); brak wersji leżąc przodem z obrotem przedramienia"}],
+  "uwagi":"Wersji „leżąc przodem, przedramię poza ławką, obrót przedramienia” nie opisuje żadne czytelne źródło; jedyna strona, która ją miała wg wyszukiwarki (fitwill 0347), zwraca 403. Do decyzji koordynatora: zmienić note katalogu na wersję na boku (2 źródła z uz2a: Fitness Volt M. Magnante + weighttraining.guide E. Lord) albo zostawić „prone” bez kompletu. Rysunek trzeba porównać z wybraną wersją."},
+
+ {"cwiczenie":"Lying Machine Squat","stan":"brak po rundzie 2 (drugie źródło z mechaniką fedb – rusza się ciało z oparciem) – bez zmian względem uz2a (częściowo: fedb + GMWD, część wspólna)",
+  "odmiana":"catalog.json:19899 (lever_machine, plate_loaded_machine); Hack Squat osobno :2435",
+  "koszt":{"wyszukania":3,"strony":1},
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://liftosaur.com/exercises/leverage-machine-squat","powod":"pozycja siedząca pod wałkami barkowymi („Sit with your back firmly against the pad”), nie leżąc – inna maszyna; nie liczę"},
+   {"zapytanie":"lying squat machine shoulder pads / supine squat machine / lying squat Panatta gym80 Super Squat","wynik":"tylko fedb i kopie (bodybuilding.com, repstack, Fitness Volt alternatives), hack squat, maszyny stojące (Planfit perfect squat, Hammer Strength squat lunge), patent US 5263913 (opis wynalazku, nie instrukcja – nie liczę), PDF Bodykore FL1806 (Super Squat, nieotwierany)"}],
+  "uwagi":"exrx LVVSquat i musclewiki – nieotwierane wg briefu (403). Zdania z uz2a (część wspólna fedb + GMWD) pozostają do decyzji recenzenta z rysunkiem."},
+
+ {"cwiczenie":"Smith Machine Pistol Squat","stan":"brak po rundzie 2 (drugie niezależne źródło) – bez zmian względem p5a (częściowo: fedb + RitFit, niezależność niepewna)",
+  "odmiana":"catalog.json:19773; fedb: sztanga na barkach, wolna noga wyprostowana przed sobą w powietrzu",
+  "koszt":{"wyszukania":2,"strony":1},
+  "zdania":[],
+  "rozbieznosc":{"szczebel":5,"url":"https://www.my-personaltrainer.it/Esercizi/Pistol_squat_al_multipower.html","autor":"dr Massimo Bonazzelli (ost. modyfikacja 05.12.2022; kwalifikacje nieweryfikowane → 5)","miejsce":"posizione di partenza / esecuzione","cytat":"Il bilanciere è tenuto appoggiato saldamente sui fasci superiori del trapezio o all'altezza delle spine scapolari.","uwaga":"sztanga na plecach jak w fedb, ALE wolna noga z tyłu (biodro wyprostowane, kolano zgięte, grzbiet stopy może leżeć na ławce za ćwiczącym) – inna odmiana (bliżej przysiadu bułgarskiego), nie liczę"},
+  "sprawdzone_bez_wyniku":[
+   {"zapytanie":"Smith machine pistol squat one leg extended forward bar on back","wynik":"fedb i kopie (bodybuilding.com, health-os, repstack, fitness-next, Fitness Volt alternatives), Motra (parafraza fedb), RitFit i Major Fitness (ocenione w p5a), Planfit one-leg Smith squat (rozkrok – inna odmiana), fitbod/muscleandstrength/musclewiki (403 wg briefu)"},
+   {"zapytanie":"Pistol Squat Multipresse (niemieckie atlasy)","wynik":"tylko pistol bez sprzętu i lever pistol squat (fitwill – 403); jedyny atlas z tą nazwą: my-personaltrainer.it – inna odmiana (wyżej)"}]},
+
+ {"cwiczenie":"Side Lying Groin Stretch","stan":"brak po rundzie 2 (drugie niezależne źródło) – bez zmian względem p4a (1 źródło: fedb)",
+  "odmiana":"catalog.json:27177; fedb: leżenie na boku, dolne kolano zgięte z przodu, górna noga uniesiona i trzymana pod kolanem albo za stopę, kolano do barku",
+  "koszt":{"wyszukania":3,"strony":2},
+  "zdania":[],
+  "rozbieznosc":[
+   {"szczebel":5,"url":"https://www.artofliving.org/us-en/yoga/benefits/anatasana/sleeping-vishnu-pose","autor":"Art of Living Volunteer (bez daty)","miejsce":"kroki 1 i 4","cytat":"Lift the left leg, keeping it straight, and hold the big toe with the left hand, if you can,","uwaga":"poza jogi Anantasana: leżenie na boku, górna noga uniesiona i trzymana – ALE noga prosta, ciało w jednej linii (dolna noga prosta), nacisk na tył uda; fedb – dolne kolano zgięte, górne kolano przyciągane do barku. Pokrewna, nie ta sama odmiana – nie liczę"}],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://www.hingehealth.com/gb/en/resources/articles/groin-stretches/","powod":"6 ćwiczeń (cytowana K. Schaner PT, DPT; 20.11.2024); jedyne na boku to „Side lying hip adduction” – wzmacnianie dolnej nogi, inne ćwiczenie"},
+   {"zapytanie":"side lying groin stretch lift top leg hold behind knee","wynik":"fedb i kopie (repstack, health-os, bodybuilding.com, Fitness Volt alternatives), ulotki kliniczne z innymi rozciąganiami przywodzicieli, Physitrack – wzmacnianie przywodzicieli leżąc na boku"},
+   {"zapytanie":"Anantasana bent bottom knee hold behind knee","wynik":"wersje Anantasany z prostą górną nogą; modyfikacje ze zgiętym kolanem (Yoga Outlet, Yoga Journal – nieotwierane) – nadal poza jogi, nie opis fedb"}]},
+
+ {"cwiczenie":"Incline Push-Up Reverse Grip","stan":"brak po rundzie 2 (drugie źródło wersji z drążkiem na wysokości bioder) – bez zmian względem uz2a (1 źródło fedb + kandydat „uproszczenie” WorkoutLabs)",
+  "odmiana":"catalog.json:10797, note :10810 „Palms-up grip needs a bar: Smith bar, or barbell on rack hooks”",
+  "koszt":{"wyszukania":2,"strony":0},
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"zapytanie":"reverse grip incline push-up smith machine bar underhand palms up","wynik":"Fitness Volt alternatives (kopia fedb – gemini-2a), WorkoutLabs (już ocenione), wyciskanie podchwytem na ławce w maszynie Smitha (Jefit, Motra, fitwill – inne ćwiczenie), fitwill 0494 (403 wg briefu)"},
+   {"zapytanie":"underhand incline push-up on Smith machine bar","wynik":"bar push-up Smith (bodybuilding.com – bez tekstu), Sussex PDF „olympic smith machine push-up” (wg wyszukiwarki bez podchwytu, nieotwierany), muscleandstrength node 4133 (403 wg briefu)"}]},
+
+ {"cwiczenie":"Standing Barbell Rollout","stan":"komplet warunkowo – praktyka: setup 2 źródła sz. 5 w części wspólnej (Lyfta + loadmuscle), move bez zmian (Lyfta + fedb; loadmuscle trzecie), mis bez zmian + loadmuscle; niezależność loadmuscle od Lyfty nieznana (inne brzmienie); do recenzji niezależnej (otwarte)",
+  "odmiana":"catalog.json:23852, note :23882 „Standing (from the feet) rollout on a barbell with round plates; harder than the kneeling Rollout”",
+  "koszt":{"wyszukania":3,"strony":3},
+  "zdania":[
+   {"rola":"setup","pl":"Stań ze stopami na szerokość barków, sztanga z okrągłymi talerzami leży przed tobą. Pochyl się i chwyć gryf.","en":"Stand with your feet shoulder-width apart, a barbell with round plates on the floor in front of you. Bend forward and grip the bar.",
+    "zrodla":[{"szczebel":5,"url":"https://www.lyfta.app/en/exercise/barbell-standing-ab-rollout-621","miejsce":"krok 1 (z p5b; strona aplikacji, bez autora)","cytat":"Bend at your waist, keeping your back straight, and roll the barbell out in front of you while keeping your arms extended."},
+              {"szczebel":5,"url":"https://loadmuscle.com/exercises/barbell-standing-ab-rollout","autor":"loadmuscle (bez autora i daty)","miejsce":"krok 1","cytat":"Stand with feet shoulder-width apart, holding a barbell in front of you."}],
+    "uwaga":"część wspólna: stanie, sztanga przed sobą w dłoniach. „Pochyl się” wprost tylko Lyfta (loadmuscle – pośrednio, gryf toczy się po podłodze). Szerokość stóp tylko loadmuscle (fitwill 2826 wg wyszukiwarki: na szerokość bioder – 403, nieczytane) – recenzent może usunąć szerokość ze zdania. Fedb zaczyna z podporu jak do pompki – nie liczę do setup"},
+   {"rola":"move","pl":"bez zmian względem p5b (Lyfta + fedb)","zrodla":[{"szczebel":5,"url":"https://loadmuscle.com/exercises/barbell-standing-ab-rollout","miejsce":"kroki 2–3 (trzecie źródło)","cytat":"Roll out until your body is in a straight line, then pull yourself back to the starting position using your core muscles."}]},
+   {"rola":"mis","pl":"bez zmian względem p5b („Nie spiesz się – wytaczaj i przyciągaj sztangę powoli.”)","zrodla":[{"szczebel":5,"url":"https://loadmuscle.com/exercises/barbell-standing-ab-rollout","miejsce":"Common mistakes (trzecie źródło)","cytat":"Using momentum instead of controlled movement."}],"uwaga":"loadmuscle ma też „Allowing the lower back to sag during the rollout.” – możliwy dodatkowy błąd (1 źródło + wniosek), do decyzji recenzenta"}],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://fmr.pages.dev/exercise/barbell-rollout","powod":"wersja ze stania jednym zdaniem w wariantach (Zylo Editorial Team) – bez kroków"},
+   {"url":"https://fitnessvolt.com/barbell-rolleout-guide/","powod":"(Ash, ACE, MSc) wersja ze stania tylko w wariantach – ta sama ocena co w p5b; ponowne otwarcie przez pomyłkę"},
+   {"zapytanie":"\"stand over it with your feet about hip-width apart\"","wynik":"zdanie pochodzi z fitwill 2826 (403 – nie liczę)"}]},
+
+ {"cwiczenie":"Reverse Flyes With External Rotation","stan":"częściowo – stan końcowy obrotu (ręce na boki, kciuki do góry) potwierdzają fedb (obrót w trakcie) + Generation Iron i VHI (kciuki do góry przez cały ruch, leżąc przodem na stole) → rozbieżność z paulstokes („do sufitu”, gemini-4b) rozstrzyga się na korzyść fedb; oba nowe źródła to wersja bez obrotu w trakcie i bez ławki skośnej – czy to ta sama odmiana, decyduje recenzent; otwarte",
+  "odmiana":"catalog.json:14887, note :14918 „Chest-down on a ~30 deg incline bench, reverse fly finishing with external rotation; dumbbell pair.”",
+  "koszt":{"wyszukania":1,"strony":3},
+  "zdania":[
+   {"rola":"move (propozycja części wspólnej, warunkowo)","pl":"Unieś hantle łukiem na boki do wysokości barków. Na górze kciuki mają być skierowane w górę.","en":"Raise the dumbbells out to the sides up to shoulder height. At the top, your thumbs point up.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Flyes_With_External_Rotation.json","miejsce":"krok 4 (cytat z sesji gemini-4b przez lustro repstack – tekst fedb; nieotwierane ponownie)","cytat":"your wrist should externally rotate by 90-degrees"},
+              {"szczebel":5,"url":"https://generationiron.com/blackburns-exercise-guide/","autor":"Terry Ramos, B.S. Kinesiology, ACSM CPT, ISSA CSCS; 07.03.2024; bez nazwanego recenzenta → 5 (warunkowo 4, szczeble:83 i :113)","miejsce":"Prone Horizontal Abduction (Full External Rotation)","cytat":"your thumbs point up (hitchhiker's position)."},
+              {"szczebel":5,"url":"https://iris.hattiesburgclinic.com/patadv/exkit/Orthopedic/English/0290000894shld076m_English.html","autor":"ulotka VHI na stronie kliniki (Copyright VHI → 5, szczeble:74)","miejsce":"Strengthening: Horizontal Abduction – with External Rotation (Prone)","cytat":"Keep elbows straight, thumbs up."}],
+    "uwaga":"ROZBIEŻNOŚĆ: fedb – obrót dłoni w trakcie unoszenia, ławka skośna; Generation Iron – leżenie przodem na stole, ręce w dół, kciuki do góry od startu, ręce „just slightly in front of the shoulder”; VHI – leżenie przodem, kciuki do góry. Wspólny tylko stan końcowy. „90 stopni” – liczba, nie w zdaniu"}],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://merckmanuals.com/home/multimedia/video/prone-shoulder-horizontal-abduction-with-external-rotation","powod":"(Tomah Memorial Hospital PT, E. Bender MSPT, W. Gnewikow DPT) – mimo nazwy inne ćwiczenie: łokieć zgięty, obrót przedramienia w górę bez odwodzenia; nie liczę"}]},
+
+ {"cwiczenie":"Supine One-Arm Overhead Throw","stan":"brak po rundzie 2 (drugie niezależne źródło) – bez zmian względem p5b (1 źródło: fedb)",
+  "odmiana":"catalog.json:25440, note :25472 „Sit-up with a one-arm medicine-ball throw; needs a wall or partner to throw to.”",
+  "koszt":{"wyszukania":2,"strony":0},
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"zapytanie":"single-arm medicine ball sit-up throw lying on back one hand","wynik":"fedb i kopie (bodybuilding.com, repstack, Jefit 799 – układ fedb), Physitrack/Virtuagym/exrx – wersje oburącz albo rzut od klatki (inne odmiany), Motra – rzut oburącz, fitwill – 403"},
+   {"zapytanie":"baseball one-arm medicine ball sit-up overhead throw supine","wynik":"materiały dla miotaczy opisują rzuty ze stania i rotacyjne; brak wersji leżąc jedną ręką"}],
+  "uwagi":"Opcja z p5b bez zmian: wersja oburącz jako nazwane „uproszczenie” – tylko po potwierdzeniu recenzenta."},
+
+ {"cwiczenie":"Lying Supine Dumbbell Curl","stan":"setup komplet – praktyka (fedb + weighttraining.guide E. Lord, część wspólna); move częściowo – część wspólna (zgięcie łokci z rękami zwisającymi z płaskiej ławki) w 2 źródłach, ale wtg pozwala ruszać ramieniem, fedb trzyma ramię przy tułowiu; Wikipedia z wcześniejszych sesji nadal kandydatem; do recenzji niezależnej (otwarte)",
+  "odmiana":"catalog.json:16188, note :16217 „Lying face up on a flat bench, arms hanging beside it.”",
+  "koszt":{"wyszukania":3,"strony":3},
+  "zdania":[
+   {"rola":"setup","pl":"Połóż się na plecach na płaskiej ławce z hantlem w każdej dłoni. Opuść ręce swobodnie w dół, obok ławki.","en":"Lie on your back on a flat bench with a dumbbell in each hand. Let your arms hang straight down beside the bench.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Supine_Dumbbell_Curl.json","miejsce":"instructions 1 i 3 (cytat z uz2b)","cytat":"While keeping the arms close to your torso and elbows in, slowly lower your arms"},
+              {"szczebel":5,"url":"https://weighttraining.guide/exercises/supine-dumbbell-curl","autor":"Edward Lord (bez podanych kwalifikacji), 28.05.2018, akt. 31.08.2022","miejsce":"instrukcja, setup","cytat":"Lie supine (on your back) on a flat bench and allow your arms to hang down behind you"}],
+    "uwaga":"„behind you” u wtg = w dół za płaszczyznę tułowia, czyli obok ławki – recenzent potwierdza z rysunkiem. Chwyt: wtg – neutralny na starcie, supinacja w trakcie; w zdaniu pominięty"},
+   {"rola":"move (warunkowo)","pl":"Ugnij łokcie i podnieś hantle w stronę barków, potem powoli opuść je z powrotem w dół.","en":"Bend your elbows to curl the dumbbells up toward your shoulders, then slowly lower them back down.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Supine_Dumbbell_Curl.json","miejsce":"instructions (cytat z uz2b)","cytat":"While keeping the arms close to your torso and elbows in, slowly lower your arms"},
+              {"szczebel":5,"url":"https://weighttraining.guide/exercises/supine-dumbbell-curl","miejsce":"instrukcja, ruch","cytat":"Exhale as you raise the dumbbells and simultaneously supinate your wrists until your elbows are by your sides"}],
+    "uwaga":"ROZBIEŻNOŚĆ: wtg – ramię wraca do boku w trakcie (ruch też w barku), a w uwagach: „Some authorities recommend that the upper arms remain fixed and only the forearms move.”; fedb – ramiona przy tułowiu. Zdanie mówi tylko o zgięciu łokci. wtg radzi nie prostować łokci do końca i ostrzega o ścięgnach bicepsa (zdrowie – pominięte); recenzent porówna dolną pozycję z fedb"}],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://barbend.com/?p=260687","powod":"strona główna serwisu, brak opisu ćwiczenia"},
+   {"url":"https://trainwell.net/exercises/dumbbell-lying-curl","powod":"ramiona przyciśnięte do ławki, hantle przy bokach – ręce nie zwisają (inna odmiana)"}]}
+]
