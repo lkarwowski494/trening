@@ -1,0 +1,355 @@
+{
+ "_opis": "Propozycja wpisów sekcji „zestawy” w docs/research/figury-recenzja.json (27 zestawów ogólnych curl brakujących względem tests/karty-recenzja.test.tsx:45–48). Skróty: node scripts/zrodla-runtime.mjs --skroty (pole zestawy), gałąź figury/curl-wspolne @ 90a7821c; skrót zależy tylko od cue-sets.json i lib/cues/text/pl.json — zmiana któregoś unieważnia wpis. Sekcja „karty”: bez nowych wpisów (karty własne curl przechodzą: v1 „wyswietlana” z bieżącym skrótem albo „karty”/Preacher Curl).",
+ "zestawy": {
+  "Barbell Preacher Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "b4701c579f67",
+   "uwagi": "Uginanie sztangi na modlitewniku: tył ramienia na podpórce (preacher.setup), pełny zakres (preacher.range), kontrola opuszczania (curl.control), mis.jerk — zgodne z ruchem. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Bayesian Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e0394ff3b0d",
+   "uwagi": "Uginanie z linką za plecami, ramię w wyproście w barku: bez curl.elbows (łokieć za linią tułowia — słusznie pominięte); curl.noSwing, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Cable Curl (dwie linki)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Uginanie stojąc z dwóch dolnych wyciągów, łokcie przy bokach (poza jak Biceps Curl): curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Cable Preacher Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "b4701c579f67",
+   "uwagi": "Modlitewnik z linką: preacher.setup, preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Concentration Curl (hantle)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "57beffa85533",
+   "uwagi": "Uginanie w siadzie, łokieć oparty o wewnętrzną stronę uda: curl.control, curl.noSwing, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Cross Body Hammer Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Uginanie młotkowe w poprzek tułowia, jedną ręką: łokieć przy boku (curl.elbows), curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Drag Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e0394ff3b0d",
+   "uwagi": "Gryf prowadzony po przodzie tułowia, łokcie celowo cofają się: curl.elbows słusznie pominięte; curl.noSwing, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Hammer Curl (linki)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Uginanie młotkowe z liną wyciągu, łokcie przy bokach: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "High Cable Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e0394ff3b0d",
+   "uwagi": "Uginanie z górnych wyciągów, ramiona odwiedzione na wysokości barków: curl.elbows słusznie pominięte; curl.noSwing, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Incline Curl (hantle)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Uginanie na ławce skośnej, ramiona zwisają pionowo za tułowiem: curl.elbows, curl.control i curl.mis.elbows (wysuwanie łokci do przodu — typowy błąd tego wariantu) zgodne; curl.noSwing: tułów leży na ławce, „bez odchylania się” czytać jako „nie odrywaj tułowia od ławki” — poprawne, brzmienie ogólne (NISKIE, backlog). Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Incline Hammer Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Jak Incline Curl (hantle), chwyt neutralny: przypisanie zgodne; uwaga o curl.noSwing na ławce skośnej jak przy Incline Curl (NISKIE, backlog). Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Lying Cable Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Uginanie leżąc z linką: preacher.range (tekst bez modlitewnika), curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Lying Close-Grip Bar Curl On High Pulley": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Leżąc, gryf z górnego wyciągu, przedramię zgina się ku głowie: preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Lying Supine Dumbbell Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Leżąc na ławce, ramiona zwisają poniżej ławki: preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Machine Biceps Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Maszyna z podpórką ramion: preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "One Arm Dumbbell Preacher Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "b4701c579f67",
+   "uwagi": "Modlitewnik jednorącz z hantlem: preacher.setup, preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Preacher Curl (EZ)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Modlitewnik z gryfem łamanym: preacher.range, curl.control, mis.jerk zgodne (brak preacher.setup — niespójność z innymi wariantami modlitewnika, nie błąd; NISKIE). Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Preacher Hammer Dumbbell Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "b4701c579f67",
+   "uwagi": "Modlitewnik, chwyt neutralny: preacher.setup, preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Reverse Cable Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Uginanie nachwytem z wyciągu, łokcie przy bokach: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Reverse Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Uginanie sztangi nachwytem, łokcie przy bokach: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Reverse EZ-Bar Preacher Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "b4701c579f67",
+   "uwagi": "Modlitewnik nachwytem z gryfem łamanym: preacher.setup, preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Spider Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Klatka na ławce skośnej, ramiona zwisają pionowo: preacher.range, curl.control, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Spider Curl (sztanga)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "8e7fc2761622",
+   "uwagi": "Jak Spider Curl, ze sztangą: przypisanie zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Standing Concentration Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "102b8e7e9de5",
+   "uwagi": "W pochyleniu, ramię zwisa swobodnie: curl.control, preacher.range, mis.jerk zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Standing Dumbbell Reverse Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Hantle nachwytem, łokcie przy bokach: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Standing Inner-Biceps Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Hantle uginane na zewnątrz, łokcie przy bokach: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  },
+  "Standing One-Arm Cable Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna treści zestawów curl, 03.11.2026; nie pisał zestawów ani rysunków)",
+   "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
+   "sha": "88e974d922c7",
+   "uwagi": "Jednorącz z dolnego wyciągu, łokieć przy boku: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+  }
+ },
+ "karty": {
+  "Biceps Curl (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "a0799f84e329",
+   "uwagi": "Ustawienie (curl.dbSetup), ruch z obrotem dłoni w stronę barku (curl.dbMove), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne z figurą v2: łokcie przy bokach, obrót przedramienia 0° (neutralnie) w dole → 70° (podchwyt) u góry, łokieć 7° → 134°. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "Barbell Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "c262b156adeb",
+   "uwagi": "Podchwyt na szerokość barków (curl.bbGrip), zgięcie do przedramion ~pionowo (curl.bbMove; figura u góry ok. 19° od pionu, łokieć 13° → 149°), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne z figurą v2. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "EZ Bar Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "eb090c667ee2",
+   "uwagi": "Gryf łamany podchwytem (curl.ezGrip; figura: obrót przedramienia 25° — półpodchwyt jak na gryfie łamanym), curl.bbMove (u góry ok. 17° od pionu), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne. Dół ruchu łokieć 16° przy tekście „do pełnego wyprostu” — w granicy „prawie wyprostowana” (W4); ocena ruchu u drugiego audytora. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "Hammer Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "fd2226f3b461",
+   "uwagi": "Chwyt neutralny (curl.hammerSetup; figura: obrót 0° w całym ruchu, oś hantla po H1), kciuk w stronę barku do przedramienia ~pionowo (u góry ok. 19° od pionu), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "Cable Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "db8b6290098b",
+   "uwagi": "Uchwyt dolnego wyciągu podchwytem (curl.cableSetup; figura: obrót 70°), ruch w stronę barków (curl.cableMove; łokieć 13° → 135°), curl.elbows, curl.control — zgodne z figurą v2. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  }
+ },
+ "_opis_karty": "Sekcja „karty” (dopisana 03.11.2026 po zmianie 5 wpisów v1 curl na „zastapiona”): tests/karty-recenzja.test.tsx:43 wymaga dla karty własnej wpisu „karty” albo v1 „wyswietlana”. Skrót: kartaSkrot (scripts/zrodla-runtime.mjs:72), polecenie: node scripts/zrodla-runtime.mjs --skroty (pole karty)."
+}

@@ -159,7 +159,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(98); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych; od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
+      expect(n).toBe(132); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');

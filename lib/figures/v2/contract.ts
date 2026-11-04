@@ -394,6 +394,17 @@ export function stanceAdvance(frames: Frame[]): { cm: number; side: Side | null;
   return { cm, side, retreat, runs };
 }
 
+/** H1 (recenzja curl r3, 03.11.2026): oś hantla z obrotu przedramienia (dane: obrotPrzedramienia ustawione jawnie). 0 = chwyt neutralny („młotkowy”): oś ⟂ do przedramienia w płaszczyźnie strzałkowej
+ * (przy zwisie — przód–tył, przy przedramieniu poziomo — pionowo); ±90 = oś w poprzek ciała (podchwyt/nachwyt, jak dotąd); pośrednie — płynnie. |obrót| ≥ 80° i brak wartości: bez zmiany rysunku (oś w poprzek). */
+function withDumbbellAxis(p: Extract<Prop, { k: 'dumbbell' }>, a: { elbow: V3; wrist: V3 }, rot: number | undefined): Prop {
+  if (rot === undefined || Math.abs(rot) >= 80) return p;
+  const f = [a.wrist[0] - a.elbow[0], a.wrist[1] - a.elbow[1], a.wrist[2] - a.elbow[2]]; const fl = Math.hypot(f[0], f[1], f[2]);
+  const n = [f[1], -f[0], 0]; const nl = Math.hypot(n[0], n[1]); if (!fl || nl < 0.2 * fl) return p; /* przedramię w poprzek ciała: brak płaszczyzny strzałkowej */
+  const nn = [n[0] / nl, n[1] / nl, 0]; const fu = f.map(x => x / fl); const b = [fu[1] * nn[2] - fu[2] * nn[1], fu[2] * nn[0] - fu[0] * nn[2], fu[0] * nn[1] - fu[1] * nn[0]];
+  const c = Math.cos(rot * Math.PI / 180), s = Math.sin(rot * Math.PI / 180); const ax = [0, 1, 2].map(i => c * nn[i] + s * b[i]); const al = Math.hypot(ax[0], ax[1], ax[2]);
+  return { ...p, axis: ax.map(x => x / al) as V3 };
+}
+
 /** Klatka danych rodziny w pozycji u; error = indeks błędu (poza poprawna + delta). Zwraca tę samą Frame co rigi (kolidery, kształty). */
 export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   /* tryb cykliczny: u ∈ (1, 2] = klatka u − 1 w lustrze (lustro po nałożeniu delty błędu, więc błąd też jest lustrzany) */
@@ -401,11 +412,15 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   let k = poseAt(d.klatki, uu); if (error !== undefined && d.bledy[error]) k = applyDelta(k, deltaAt(d.bledy[error].klatki, uu));
   if (mir) k = mirrorKey(k, !!d.lustroRece);
   const pose = toPoseIn(k); const grips = { R: pose.arms.R.grip, L: pose.arms.L.grip };
-  const props = propsFrom(d.sprzet, grips, { R: pose.legs.R.ankle, L: pose.legs.L.ankle }, pose.pelvis); const bar = props.find(p => p.k === 'barbell');
+  const props = propsFrom(d.sprzet, grips, { R: pose.legs.R.ankle, L: pose.legs.L.ankle }, pose.pelvis);const bar = props.find(p => p.k === 'barbell');
   const info: Record<string, V3> = {}; if (bar && bar.k === 'barbell') info.load = bar.c;
   const fr = resolveBells(mkFrame(pose, props, info, contactsFrom(d.sprzet)));
+  fr.props = fr.props.map(p => p.k === 'dumbbell' && !p.vertical ? withDumbbellAxis(p, fr.sk.arms[p.side], k.rece[p.side]?.obrotPrzedramienia) : p);
   /* drążek nieruchomy (ciało porusza się względem sprzętu): tor ruchu to droga środka ciała (miednicy), nie punktu na drążku */
   if (!d.sprzet.some(g => g.rodzaj === 'sztanga' && g.podazaZaChwytem)) fr.info.trail = fr.sk.pelvis;
+  /* ciężar w dłoni (hantel, wyciąg, dźwignia maszyny; bez sztangi): tor ciężaru = chwyt ręki, która go trzyma (obie ręce — środek między chwytami jednego uchwytu; dwa osobne ciężary — chwyt R, W1b), nie miednica (recenzja curl W1, 03.11.2026) */
+  const nosi = d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia');
+  if (nosi && !d.sprzet.some(g => g.rodzaj === 'sztanga')) { const t = (nosi as { trzyma?: 'R' | 'L' }).trzyma; /* W1b (recenzja niezależna 03.11.2026): dwa osobne ciężary (para hantli, dwa wyciągi) — ślad przy chwycie jednej ręki (R, jak w rigach: squat.ts, hinge.ts), nie w osi ciała; jeden uchwyt/lina/dźwignia — środek między chwytami */ const dwaCiezary = (nosi.rodzaj === 'hantel' && !nosi.pionowo) || (nosi.rodzaj === 'wyciag' && nosi.dwa === true); fr.info.trail = t ? grips[t] : dwaCiezary ? grips.R : [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3; }
   return fr;
 }
 

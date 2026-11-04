@@ -7,6 +7,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { repoRoot } from './ts-loader.mjs';
+import { normalizujPlikV2 } from '../skrot-v2-norm.mjs';
 
 export const PLIK_RECENZJI = join(repoRoot, 'docs/research/figury-recenzja.json');
 /** Pliki rigu rodzin v2 z własnym rigiem. */
@@ -18,7 +19,7 @@ export const WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variant
 /** Skrót bieżącej wersji danych rodziny (rig albo poza z danych). */
 export function skrotRodziny(rodzina) {
   const zrodlo = RIGI[rodzina] ? `lib/figures/v2/rigs/${RIGI[rodzina]}` : `lib/figures/v2/poses/${rodzina}.json`;
-  return sha12([zrodlo, ...WSPOLNE].map(p => readFileSync(join(repoRoot, p), 'utf8')).join('\n'));
+  return sha12([zrodlo, ...WSPOLNE].map(p => normalizujPlikV2(p, readFileSync(join(repoRoot, p), 'utf8'), rodzina)).join('\n'));
 }
 /** Zapis recenzji rodzin v2 ({} gdy pliku nie ma). */
 export function zapisRodzin(plik = PLIK_RECENZJI) { return existsSync(plik) ? (JSON.parse(readFileSync(plik, 'utf8')).v2 ?? {}) : {}; }
