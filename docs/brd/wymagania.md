@@ -688,6 +688,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ma widoczne linie lub łuki
     - Gdy użytkownik czyta obraz czytnikiem ekranu
     - Wtedy etykieta to „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same zdania co na karcie)
+    - Wtedy zdania w etykiecie łączy spacja, gdy poprzednie kończy się znakiem końca zdania (także „。”, „।”, „؟”), w pozostałych przypadkach średnik — bez „.;” (04.11.2026)
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

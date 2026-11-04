@@ -10,13 +10,15 @@ import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { compPropsAll } from './app';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { measuredAngle, measuredJoint, jointAngles, frameAt, SIDES, figurePalette, TEMPO, loopLength, figureSpec, shownFigureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
-import { errorsOf, hasTechnique, toeAngleApplies, guidesOf, errorText } from '@/lib/figures/v2/ui';
-import { applyLang } from '@/lib/i18n';
+import { errorsOf, hasTechnique, toeAngleApplies, guidesOf, errorText, techniquesOf, onDrawingCues } from '@/lib/figures/v2/ui';
+import { joinCues } from '@/components/ExerciseFigureV2';
+import { applyLang, LANGS } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock; addEventListener: jest.Mock };
 const setReduce = (v: boolean | 'never') => { AI.isReduceMotionEnabled.mockImplementation(() => v === 'never' ? new Promise(() => {}) : Promise.resolve(v)); };
+const naRysunku = () => { const sp = shownFigureSpec('Sumo Deadlift')!; const c = onDrawingCues(sp, guidesOf('Sumo Deadlift'), techniquesOf('Sumo Deadlift')); expect(c.length).toBeGreaterThanOrEqual(1); return joinCues(c.map(errorText)); };
 const flush = async () => { await act(async () => { await Promise.resolve(); }); };
 const pathsOf = (): string[] => compPropsAll(screen.container).filter(p => typeof p.d === 'string').map(p => p.d as string);
 afterEach(() => { applyLang('pl'); jest.useRealTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); jest.restoreAllMocks(); });
@@ -63,10 +65,18 @@ describe('komponent ExerciseFigureV2', () => {
   });
   test('VoiceOver: jeden obraz z opisem „Rysunek ruchu: …” w języku interfejsu; przycisk pauzy osobno', async () => {
     setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} name="Martwy ciąg" />); await flush();
-    const img = screen.getByTestId('exercise-figure-v2-image'); expect(img.props.accessibilityRole).toBe('image'); expect(img.props.accessible).toBe(true); expect(img.props.accessibilityLabel).toBe(`Rysunek ruchu: Martwy ciąg. Na rysunku: ${errorText('hinge.back')}`); /* 04.11.2026: etykieta wymienia wskazówki widocznych linii (nakładka techniki; plecy proste) */
+    const img = screen.getByTestId('exercise-figure-v2-image'); expect(img.props.accessibilityRole).toBe('image'); expect(img.props.accessible).toBe(true); expect(img.props.accessibilityLabel).toBe(`Rysunek ruchu: Martwy ciąg. Na rysunku: ${naRysunku()}`); /* 04.11.2026: etykieta wymienia wskazówki WIDOCZNYCH linii i łuków (onDrawingCues: linia pleców + pion wyprostu na górze) — pełna lista wg danych, nie twardo jedna */
     applyLang('en'); setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} name="Deadlift" />); await flush();
-    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Movement drawing: Deadlift. On the drawing: ${errorText('hinge.back')}`); expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
+    expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Movement drawing: Deadlift. On the drawing: ${naRysunku()}`); expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
   });
+  test('separator zdań w etykiecie VoiceOver: bez „.;” i podobnych (zdanie z końcową kropką łączy spacja) — wszystkie języki z LANGS (w tym ja, zh-Hant, ko); jednostkowo joinCues', async () => {
+    expect(joinCues(['A.', 'B.'])).toBe('A. B.'); expect(joinCues(['A', 'B'])).toBe('A; B'); expect(joinCues(['A。', 'B。'])).toBe('A。 B。'); expect(joinCues(['A।', 'B'])).toBe('A। B'); expect(joinCues(['A؟', 'B'])).toBe('A؟ B'); expect(joinCues(['A!', 'B'])).toBe('A! B'); expect(joinCues(['A'])).toBe('A'); expect(joinCues([])).toBe('');
+    for (const lg of LANGS) { /* wszystkie 35 języków aplikacji (hi/ar nie ma w LANGS) */
+      applyLang(lg); setReduce(true); const { unmount } = await render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} />); await flush();
+      const lab = screen.getByTestId('exercise-figure-v2-image').props.accessibilityLabel as string;
+      expect([lg, /[.。।۔؟?!！？…][;；؛]/.test(lab)]).toEqual([lg, false]); await unmount();
+    }
+  }, 60000);
   test('bez kątów na rysunku: żadnego znaku stopnia; cyfry tylko w liczniku faz (tempo w sekundach)', async () => {
     setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const texts = screen.container.queryAll((n: { type: unknown }) => n.type === 'Text').flatMap((n: { props: { children?: unknown } }) => React.Children.toArray(n.props.children as React.ReactNode)).map(String);

@@ -56,6 +56,9 @@ function ViewSvg({ spec, u, view, box, th, height, error, guides, techniques, te
   );
 }
 
+/** Łączy zdania wskazówek do etykiety VoiceOver: zdanie zakończone znakiem końca zdania (. ! ? 。 । ۔ ؟ …) — spacją (bez „.;”), inne — średnikiem. Zdania w słownikach języków kończą się różnymi znakami. */
+export const joinCues = (cues: string[]): string => cues.reduce((acc, c, i) => i === 0 ? c : `${acc}${/[.!?…。！？।۔؟]$/.test(acc) ? ' ' : '; '}${c}`, '');
+
 /** Figura v2 ćwiczenia z katalogu; null, gdy rodzina ćwiczenia nie jest jeszcze gotowa. */
 export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 'lib' | 'libKey'> & { name?: string }; name?: string }) {
   const th = useTheme(); const reduce = useReduceMotion();
@@ -81,7 +84,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const onBadge = (b: Badge) => { setPaused(true); setSel({ cue: b.cue, kind: b.kind }); };
   const base = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
   const drawn = onDrawingCues(spec, guides, techniques); /* VoiceOver: wskazówki widocznych linii i łuków (te same teksty co na karcie) */
-  const label = drawn.length ? `${base}. ${t('Na rysunku: {lista}', { lista: drawn.map(errorText).join('; ') })}` : base;
+  const label = drawn.length ? `${base}. ${t('Na rysunku: {lista}', { lista: joinCues(drawn.map(errorText)) })}` : base;
   const canPause = !spec.static && reduce === false;
   const stop = animate && figuraStop();
   const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
