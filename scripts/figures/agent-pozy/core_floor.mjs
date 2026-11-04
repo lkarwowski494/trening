@@ -2,6 +2,7 @@
 // (kąty uda i kolana → kostka; kąt ramienia → chwyt), biegun kolana z FK (kolano zawsze po właściwej stronie), parametry per ćwiczenie z katalogu i wskazówek.
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w stronę +x, miednica [0, 8, 0], pochylenieTulowia −90 (poziomo); na brzuchu — głowa +x, pochylenie +90.
 import { wczytajTeksty } from '../v2-jakosc.mjs';
+import { naLawce } from './gora.mjs';
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki } from './model.mjs';
 /** Stopa leżącego przodem (Superman, Lower Back Curl, Seal Row, Back Extension): grzbietem do podłogi, palce w dół i do tyłu (silnik od b07c7ed7 ma podbicie 91…270°: stopa skierowana do tyłu). Poprzednie przybliżenie (stopa obrócona na zewnątrz, podeszwa w dół pod goleniami) pokazywało stopę zgiętą wzdłuż goleni (recenzja ruchu r2, F2, 28.10.2026).
  * Podbicie = kierunek goleni (kolano → kostka, stopnie od +x) + 90° − zgięcie podeszwowe: stopa prostopadła do goleni (palce ku podłodze) zgięta podeszwowo o PODESZWOWE_LEZY stopni; rotacja 0 (palce w płaszczyźnie boku). */
@@ -94,11 +95,11 @@ export function tuckCrunch(cw, { bend1 = 40, pU1 = -62 } = {}) {
   return zbuduj1(cw, us.map(fr));
 }
 /** Ruch prowadzony miednicą (reverse crunch, leg pull-in): barki i głowa nieruchome, miednica unosi się o dy, uda i golenie zgodnie z FK. */
-function ruchMiednica(cw, { t0, k0, t1, k1, dy = 12, stopa = 'dol' }) {
+function ruchMiednica(cw, { t0, k0, t1, k1, dy = 12, stopa = 'dol', sprzet = SPRZET }) {
   const S0 = barki([0, Y0], -90); const us = [0, 0.25, 0.5, 0.75, 1];
   const fr = (u) => { const e = u; const y = Y0 + dy * e; const { P, p } = miednicaPrzyBarkach(S0, y); const nk = (t, k) => ({ t, k, stopa }); const tt = lerp(t0, t1, e), kk = lerp(k0, k1, e);
     return ramka({ u, miednica: P, p, glowa: -90, nogi: { R: { ...nk(tt, kk), z: ZNOG }, L: { ...nk(tt, kk), z: -ZNOG } }, rece: RECE_BOK(S0) }); };
-  return zbuduj1(cw, us.map(fr));
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map(fr), bledy: [] });
 }
 export function reverseCrunch(cw, o = {}) { return ruchMiednica(cw, { t0: 90, k0: 90, t1: 135, k1: 130, dy: 11, ...o }); }
 export function legPullIn(cw, o = {}) { const ks = kolanoProste(); return ruchMiednica(cw, { t0: 10, k0: ks, t1: 130, k1: 130, dy: 12, stopa: "gora", ...o }); }
@@ -161,6 +162,70 @@ function birdDog(cw) {
 }
 const ks0 = () => kolanoProste();
 
+
+/* ---------- sprzęt: piłka gimnastyczna, wyciąg, zawieszenie, maszyna (dorobione 04.11.2026, fala F2 linii 1.1) ---------- */
+const ODL_TULOW = 9.5; /* promień kapsuły tułowia (GIRTH.trunkCollide) */
+const dSeg = (c, a, b) => { const abx = b[0] - a[0], aby = b[1] - a[1]; const t = Math.max(0, Math.min(1, ((c[0] - a[0]) * abx + (c[1] - a[1]) * aby) / (abx * abx + aby * aby))); return Math.hypot(c[0] - a[0] - t * abx, c[1] - a[1] - t * aby); };
+const chestPt = (S, p, sg) => { const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)]; return [S[0] - upv[0] * 12 + fv[0] * 9.5, S[1] - upv[1] * 12 + fv[1] * 9.5, sg * 6]; }; /* ręce skrzyżowane na klatce */
+/** Środek piłki (x) tak, by oś tułowia (miednica → bark) w klatkach `osie` leżała od jej środka nie bliżej niż promień + promień kapsuły − `wnik` (miękka piłka wgniata się do 3 cm). */
+function pilkaX(r, osie, wnik = 1) {
+  let best = null; for (let x = -90; x <= -5; x += 0.25) { const m = Math.min(...osie.map(([a, b]) => dSeg([x, r], a, b))); if (m >= r + ODL_TULOW - wnik && m <= r + ODL_TULOW - wnik + 4 && (best === null || Math.abs(x) < Math.abs(best))) best = x; } /* najbliższy miednicy */
+  return best;
+}
+/** Crunch na piłce: plecy na piłce (mała piłka 41 cm — przy większej oś tułowia nie sięga szczytu: miednica ok. 50 cm nad podłogą), stopy płasko na podłodze (kolana 90°), ręce na klatce; unoszenie tułowia z przeprostu nad piłką. */
+function stabilityBallCrunch(cw) {
+  const r = 20.5; const Y = 51; const us = [0, 0.5, 1]; const pS = -90, pK = -68, bK = 38; const osie = [0, 0.25, 0.5, 0.75, 1].map((u) => { const p = lerp(pS, pK, u); const S = barki([0, Y], p, bK * u); const d = up(p); return [[0, Y], [S[0] + 20 * d[0], S[1] + 20 * d[1]]]; });
+  const bx = pilkaX(r, osie.slice(0, 1)); if (bx === null) throw new Error('brak położenia piłki');
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(pS, pK, a); const bend = bK * a; const S = barki([0, Y], p, bend); const st = (z) => ({ ankle: [46, 7], strona: 'gora', pod: 0, z, rot: 10 });
+    return ramka({ u, miednica: [0, Y], p, bend, glowa: p, nogi: { R: st(ZNOG + 8), L: st(-ZNOG - 8) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'pilka_gimnastyczna', x: r1(bx), promien: r }], klatki: us.map(fr), bledy: [] });
+}
+/** Crunch z łydkami na piłce: leżenie na plecach, biodra i kolana ≈ 90°, łydki leżą na piłce (mała piłka 41 cm — przy większej łydki nie sięgają jej szczytu), ręce przy głowie; unoszenie barków. */
+function crunchLegsOnBall(cw) {
+  const r = 20.5; const Y = Y0; const ks = [0, 0.5, 1];
+  const fr = (u) => { const p = lerp(-90, -62, wygladzenie(u)); const bend = 38 * wygladzenie(u); const S = barki([0, Y], p, bend);
+    const nog = (z) => ({ t: 90, k: 96, z, stopa: 'dol' });
+    return ramka({ u, miednica: [0, Y], p, bend, glowa: p, nogi: { R: nog(ZNOG), L: nog(-ZNOG) }, rece: { R: { a: KAT_OS(p) - 25, z: 6 }, L: { a: KAT_OS(p) - 25, z: -6 } } }); };
+  const k0 = fr(0); const A = k0.nogi.R.kostka; const bx = A[0] - 10; /* piłka pod łydką */
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'pilka_gimnastyczna', x: r1(bx), promien: r }], klatki: ks.map(fr), bledy: [] });
+}
+export function cableReverseCrunch(cw) { /* wyciąg niski za stopami, opaska na kostkach: kolana do klatki przeciw linki */
+  return ruchMiednica(cw, { t0: 90, k0: 90, t1: 135, k1: 130, dy: 11, sprzet: [...SPRZET, { rodzaj: 'wyciag', dwa: true, x: 120, y: 20, chwyt: 'kostka' }] });
+}
+/** Odwrócone spięcie w zawieszeniu: podpór przodem na dłoniach (ramiona proste, barki nieruchome), stopy w pętlach taśm, kolana do klatki (miednica unosi się). Głowa +x. */
+function suspendedReverseCrunch(cw) {
+  const B = BODY(); const Sx = 70; const Sy = 2 + 63.3; const us = [0, 0.25, 0.5, 0.75, 1]; const Ay = 220;
+  const A0 = [Sx - 131.5, 52], A1 = [Sx - 80, 62]; /* taśma nierozciągliwa: kostki idą po łuku wokół zaczepu P (|P−A0| = |P−A1|) */
+  const px = (A1[0] ** 2 + (Ay - A1[1]) ** 2 - A0[0] ** 2 - (Ay - A0[1]) ** 2) / (2 * (A1[0] - A0[0])); const L = Math.hypot(px - A0[0], Ay - A0[1]); const th0 = Math.atan2(A0[1] - Ay, A0[0] - px), th1 = Math.atan2(A1[1] - Ay, A1[0] - px);
+  const fr = (u) => { const a = wygladzenie(u); const phi = lerp(-3, 22, a) * R; const P = [Sx - B.trunk * Math.cos(phi), Sy + B.trunk * Math.sin(phi)]; const p = Math.atan2((Sx - P[0]) / B.trunk, (Sy - P[1]) / B.trunk) / R;
+    const th = lerp(th0, th1, a); const A = [px + L * Math.cos(th), Ay + L * Math.sin(th)]; const kn = nogaZCelu(P, A, 'dol').knee; const sd = Math.atan2(A[1] - kn[1], A[0] - kn[0]) / R;
+    const nog = (z) => ({ ankle: A, strona: 'dol', pod: Math.max(-90, Math.min(90, sd - 45)), z, rot: 10 });
+    return ramka({ u, miednica: P, p, glowa: p, nogi: { R: nog(ZNOG), L: nog(-ZNOG) }, rece: { R: { g: [Sx, 2, 19], pole: [-0.5, -1, 0.3] }, L: { g: [Sx, 2, -19], pole: [-0.5, -1, -0.3] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'zawieszenie', x: r1(px), y: Ay, punkt: 'kostki', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+/** Spięcie na klęczkach przy wysokim wyciągu (lina przy głowie): klęk, miednica nad kolanami, zwijanie tułowia do przodu (głowa +x). */
+function cableCrunch(cw) {
+  const B = BODY(); const Pm = [0, 8.8 + B.thigh]; const us = [0, 0.25, 0.5, 0.75, 1];
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(6, 64, a); const bend = 60 * a; const S = barki(Pm, p, bend); const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)];
+    const g = (sg) => [S[0] + upv[0] * 12 + fv[0] * 18, S[1] + upv[1] * 12 + fv[1] * 18, sg * 13];
+    const nog = (z) => ({ t: 270, k: 105, z, pod: -90, rot: 10 });
+    return ramka({ u, miednica: Pm, p, bend, glowa: p, nogi: { R: nog(ZNOG - 2), L: nog(-ZNOG + 2) }, rece: { R: { g: g(1), pole: [0.3, -1, 0.5] }, L: { g: g(-1), pole: [0.3, -1, -0.5] } } }); };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'wyciag', x: 160, y: 200, z: 0, chwyt: 'lina', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+
+/** Spięcie na maszynie (siedząc): oparcie 85°, miednica na siedzisku, uchwyty na dźwigni przy klatce; tułów zwija się do przodu (pochylenie −5° → 33°, zgięcie kręgosłupa 40°). Dźwignia obrotowa: oś P liczona z dwóch skrajnych położeń dłoni i ramienia r. */
+function machineCrunch(cw) {
+  const kat = 85, top = 45, r = 55; const Bn = naLawce(kat, top, { zr: 24 }); const m = Bn.m; const us = [0, 0.25, 0.5, 0.75, 1];
+  const poz = (u) => { const a = wygladzenie(u); return { p: lerp(Bn.p, 33, a), bend: 60 * a }; };
+  const hand = (u) => { const { p, bend } = poz(u); const S = barki(m, p, bend); const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)]; return [S[0] - upv[0] * 4 + fv[0] * 19, S[1] - upv[1] * 4 + fv[1] * 19]; };
+  const H0 = hand(0), H1 = hand(1); const mid = [(H0[0] + H1[0]) / 2, (H0[1] + H1[1]) / 2]; const dx = H1[0] - H0[0], dy = H1[1] - H0[1]; const l = Math.hypot(dx, dy); const hh = Math.sqrt(Math.max(0, r * r - (l / 2) ** 2)); const n = [-dy / l, dx / l];
+  const P = [[mid[0] + n[0] * hh, mid[1] + n[1] * hh], [mid[0] - n[0] * hh, mid[1] - n[1] * hh]].sort((a, b) => b[1] - a[1])[0]; /* oś nad dłońmi */
+  const a0 = Math.atan2(H0[1] - P[1], H0[0] - P[0]); let a1 = Math.atan2(H1[1] - P[1], H1[0] - P[0]); if (Math.abs(a1 - a0) > Math.PI) a1 += a1 < a0 ? 2 * Math.PI : -2 * Math.PI;
+  const fr = (u) => { const { p, bend } = poz(u); const ang = lerp(a0, a1, wygladzenie(u)); const c = [P[0] + r * Math.cos(ang), P[1] + r * Math.sin(ang)];
+    const k = klatka({ u, miednica: [m[0], m[1], 0], pitch: p, bend, glowa: Bn.glowa + (p - Bn.p) * 0.8, nogi: { R: { k: Bn.nogi.R.k, pod: Bn.nogi.R.pod, rot: Bn.nogi.R.rot, pole: Bn.nogi.R.pole }, L: { k: Bn.nogi.L.k, pod: Bn.nogi.L.pod, rot: Bn.nogi.L.rot, pole: Bn.nogi.L.pole } }, rece: { R: { g: [c[0], c[1], 24], pole: [0.4, -1, 0.8] }, L: { g: [c[0], c[1], -24], pole: [0.4, -1, -0.8] } } }); return k; };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, siedzisko: 40 }, { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(P[0]), y: r1(P[1]), z: 0, dlugosc: r1(r), punkt: 'dlonie', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
+}
+
 /** Ćwiczenia, których generator rodziny nie robi (powód obowiązkowy). */
 export const WYJATKI = {};
 /** Identyfikatory błędów z katalogu bez opisu w lib/cues/text/pl.json (id → powód); do uzupełnienia przez badacza i tłumacza. */
@@ -186,5 +251,11 @@ export function generuj() {
     'Leg Pull-In': () => legPullIn('Leg Pull-In'),
     'Superman': () => superman('Superman'),
     'V-Up': () => vUp('V-Up'),
+    'Stability Ball Crunch': () => stabilityBallCrunch('Stability Ball Crunch'),
+    'Crunch - Legs On Exercise Ball': () => crunchLegsOnBall('Crunch - Legs On Exercise Ball'),
+    'Cable Reverse Crunch': () => cableReverseCrunch('Cable Reverse Crunch'),
+    'Suspended Reverse Crunch': () => suspendedReverseCrunch('Suspended Reverse Crunch'),
+    'Cable Crunch': () => cableCrunch('Cable Crunch'),
+    'Machine Crunch': () => machineCrunch('Machine Crunch'),
   };
 }
