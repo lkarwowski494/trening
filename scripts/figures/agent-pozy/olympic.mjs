@@ -49,7 +49,7 @@ function ciag(o) {
   if (o.start === 'podloga') W.push(wp({ al: 22, k: 100, bar: bar(BAR0, 14), z: zz }));
   if (o.start === 'podloga') W.push(wp({ al: 10, k: 64, bar: bar(36, 16), z: zz })); /* kolana cofają się z drogi gryfu (gryf mija kolano o ≥ 7,6 cm = promień kolana + gryfu) */
   if (o.start === 'podloga') W.push(kolana);
-  W.push(wp({ al: 5, k: 28, bar: bar(o.start === 'podloga' ? 68 : 62, 12), z: zz })); /* sztanga na wysokości uda; w zawisie punkt wyjścia (tuż nad kolanem) */
+  W.push(wp({ al: 5, k: 28, bar: bar(o.start === 'podloga' ? 68 : 62, 7), z: zz })); /* sztanga na wysokości uda; w zawisie punkt wyjścia (tuż nad kolanem) */
   if (o.start === 'zawis') W.unshift(wp({ al: 4, k: 16, bar: bar(sn ? 76 : 72, 12), z: zz })); /* zawis: stanie ze sztangą na udach */
   if (o.start === 'bloki') W.unshift(kolana); /* bloki: sztanga na wysokości kolan */
   const e = ext(); W.push(e);
@@ -145,7 +145,7 @@ function jerkBalance(cw) {
   const pion = (k, A) => alPion(k, A, x0);
   const A1 = [26.5, yP(-30) + 0.9]; /* kostka +4,5 cm: przy wspięciu palce zostają w miejscu (pięta unosi się, kostka jedzie w przód), więc przednia stopa nie cofa się */
   const W = [kr(22, 14, 4), kr(22, 38, pion(38, [22, 7])), kr(22, 8, pion(8, A1), { A: A1, pod: -30, rel: [30, RACK_REL[1]] })];
-  W.push(lapNad('split', 25, { AL, podL: -62 }));
+  W.push(lapNad('split', 25, { AL, podL: -62, A: [32.5, 7] })); /* pełne nożyce: przednia stopa ≥ 10 cm dalej niż na starcie */
   const l = mix(W[W.length - 2], W[W.length - 1], 0.5); l.A = [l.A[0], yP(-8) + 1.5]; l.pod = -8; l.AL = AL; l.podL = -62; W.splice(W.length - 1, 0, l); /* przednia stopa tylko się wsuwa w przód (ślizg nisko nad podłogą) */
   return gotowe(cw, SPRZ(RACK()), W);
 }
@@ -164,7 +164,6 @@ function snatchBalance(cw) {
 function muscleSnatch(cw) {
   const W = ciag({ start: 'zawis', chwyt: 'szeroki', koniec: 'rack', stopyWisza: true }); const kon = wp({ al: 3, k: 12, pitch: 3, w: 0, rel: [59.2, 6.5], bar: [0, 150], z: 40, pole: [0, -1, 0.3], zs: 14 });
   podSztangeNadMuscle(W, kon, 40); W[W.length - 2].k = 12; W[W.length - 2].al = 3; W[W.length - 3].k = 10;
-  if (process.env.DBGW) console.error(JSON.stringify(W.map((w) => ({ al: w.al, k: w.k, pod: w.pod, A: w.A, pitch: w.pitch, w: w.ra.w }))));
   return gotowe(cw, SPRZ(), W);
 }
 function cleanJerk(cw) {
