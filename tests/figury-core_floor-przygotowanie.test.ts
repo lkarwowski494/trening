@@ -147,3 +147,24 @@ describe('core_floor R3: tożsamość nowych póz', () => {
     expect(KEYS).not.toContain('Side Jackknife'); expect(GEN).toMatch(/export const WYJATKI = \{\s*'Side Jackknife': '[^']{40,}/); expect(GEN).not.toMatch(/'Side Jackknife': \(\) =>/);
   });
 });
+
+/* R3-poprawki (04.11.2026, recenzja r2): R2-W1/R2-Ś1 styk miednicy i lędźwi z piłką w Stability Ball Crunch przez cały ruch; R2-N2 negatywy Cross-Body i Toe Touchers. */
+const ODL_T = 9.5;
+const stykPilki = (d: PoseData) => { const b = d.sprzet.find(g => g.rodzaj === 'pilka_gimnastyczna')!; const c = [b.x as number, b.promien as number]; const r = b.promien as number; let m = 0;
+  for (const u of [0, 0.25, 0.5, 0.75, 1]) { const f = keyframeFrame(d, u); const P = f.sk.pelvis, S = f.sk.shoulderC; const l = Math.hypot(S[0] - P[0], S[1] - P[1]); const q = [P[0] + 25 * (S[0] - P[0]) / l, P[1] + 25 * (S[1] - P[1]) / l];
+    const ab = [q[0] - P[0], q[1] - P[1]]; const t = Math.max(0, Math.min(1, ((c[0] - P[0]) * ab[0] + (c[1] - P[1]) * ab[1]) / (ab[0] ** 2 + ab[1] ** 2))); const dl = Math.hypot(c[0] - P[0] - t * ab[0], c[1] - P[1] - t * ab[1]);
+    m = Math.max(m, Math.abs(Math.hypot(c[0] - P[0], c[1] - P[1]) - r - ODL_T), Math.abs(dl - r - ODL_T)); } return m; };
+describe('core_floor R3-poprawki: Stability Ball Crunch styk miednicy z piłką, negatywy Cross-Body i Toe Touchers', () => {
+  test('Stability Ball Crunch: miednica i lędźwie (25 cm od miednicy) leżą na piłce przez cały ruch (odchylenie od powierzchni ≤ 3 cm)', () => { expect(stykPilki(P['Stability Ball Crunch'])).toBeLessThanOrEqual(3); });
+  test('miara potrafi paść: dane sprzed poprawki (piłka x = −41,5, miednica y = 44) — miednica wisi 7,7 cm przed piłką', () => {
+    const d = klon('Stability Ball Crunch', kl => { for (const k of kl) k.miednica = [0, 44, 0]; }); (d.sprzet.find(g => g.rodzaj === 'pilka_gimnastyczna') as { x: number }).x = -41.5; expect(stykPilki(d)).toBeGreaterThan(7);
+  });
+  test('miara potrafi paść: Cross-Body Crunch bez skrętu i z dłońmi daleko od głowy nie spełnia miar tożsamości', () => {
+    const d = klon('Cross-Body Crunch', kl => { const o = kl[kl.length - 1]; o.skretTulowia = 0; o.rece.R.chwyt = [-30, 32, 24]; o.rece.L.chwyt = [-30, 32, -24]; }); const f = fr2(d, 1);
+    expect(Math.abs(f.sk.twist)).toBeLessThan(20); expect(Math.max(...(['R', 'L'] as const).map(s => dist(f.sk.arms[s].grip, f.sk.head)))).toBeGreaterThan(16);
+  });
+  test('miara potrafi paść: Toe Touchers z udami odchylonymi od pionu (kostki dalej w x) i prostymi rękami nie sięgającymi kostek', () => {
+    const d = klon('Toe Touchers', kl => { for (const k of kl) { k.nogi.R.kostka = [70, 40, 12]; k.nogi.L.kostka = [70, 40, -12]; } kl[kl.length - 1].rece = JSON.parse(JSON.stringify(kl[0].rece)); }); const f = fr2(d, 1);
+    expect(Math.abs(f.sk.legs.R.knee[0] - f.sk.legs.R.hip[0])).toBeGreaterThanOrEqual(8);
+  });
+});

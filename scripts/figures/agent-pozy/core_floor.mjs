@@ -203,11 +203,18 @@ function pilkaX(r, osie, wnik = 1) {
   let best = null; for (let x = -90; x <= -5; x += 0.25) { const m = Math.min(...osie.map(([a, b]) => dSeg([x, r], a, b))); if (m >= r + ODL_TULOW - wnik && m <= r + ODL_TULOW - wnik + 4 && (best === null || Math.abs(x) < Math.abs(best))) best = x; } /* najbliższy miednicy */
   return best;
 }
+/** Środek piłki (x) tak, by w KAŻDEJ z pochyleń `ps` miednica (środek) i odcinek lędźwi (25 cm od miednicy wzdłuż tułowia) leżały od jej powierzchni (promień + promień kapsuły) o co najwyżej ±`tol` cm (R2-W1 / R2-Ś1, 04.11.2026: styk miednicy i lędźwi z piłką przez cały ruch); spośród spełniających — najmniejsze odchylenie. */
+export function pilkaStyk(r, Y, ps, tol = 3) {
+  let best = null;
+  for (let x = -90; x <= -5; x += 0.25) { let ok = true, worst = 0;
+    for (const p of ps) { const d = up(p); const dp = Math.hypot(x, Y - r) - r - ODL_TULOW; const dl = dSeg([x, r], [0, Y], [25 * d[0], Y + 25 * d[1]]) - r - ODL_TULOW; if (Math.abs(dp) > tol || Math.abs(dl) > tol) ok = false; worst = Math.max(worst, Math.abs(dp), Math.abs(dl)); }
+    if (ok && (best === null || worst < best[1])) best = [x, worst]; }
+  return best ? best[0] : null;
+}
 /** Crunch na piłce (R1 Ś3, ACE 68 / NFPT): piłka 55 cm pod lędźwiami i środkiem pleców, miednica niżej od barków, kolana ≈ 90°, stopy płasko, ręce na klatce; górna część pleców odrywa się od piłki, miednica i stopy zostają. */
 function stabilityBallCrunch(cw) {
-  const r = 27.5; const Y = 44; const us = [0, 0.5, 1]; const pS = -58, pK = -40, bK = 34;
-  const lumbar = (p) => { const d = up(p); return [[0, Y], [25 * d[0], Y + 25 * d[1]]]; };
-  const bx = pilkaX(r, [lumbar(pS)], 1); if (bx === null) throw new Error('brak położenia piłki');
+  const r = 27.5; const Y = 48; const us = [0, 0.5, 1]; const pS = -58, pK = -40, bK = 34;
+  const bx = pilkaStyk(r, Y, [pS, (pS + pK) / 2, pK]); if (bx === null) throw new Error('brak położenia piłki');
   const fr = (u) => { const a = wygladzenie(u); const p = lerp(pS, pK, a); const bend = bK * a; const S = barki([0, Y], p, bend); const st = (z) => ({ ankle: [42, 7], strona: 'gora', pod: 0, z, rot: 10 });
     return ramka({ u, miednica: [0, Y], p, bend, glowa: p, nogi: { R: st(ZNOG + 8), L: st(-ZNOG - 8) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'pilka_gimnastyczna', x: r1(bx), promien: r }], klatki: us.map(fr), bledy: [] });
