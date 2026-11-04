@@ -1,0 +1,59 @@
+[
+ {"cwiczenie":"Rower","stan":"komplet – setup, move, mis (HSS sz. 4 + Keiser sz. 4, producent roweru stacjonarnego); do recenzji niezależnej",
+  "odmiana":"catalog.json:3704, note (:3716): jazda na rowerze – stacjonarnym albo na zewnątrz; zdania opisują rower stacjonarny",
+  "zdania":[
+   {"rola":"setup","pl":"Ustaw siodełko tak, żeby przy pedale na dole noga była prawie prosta, z lekko ugiętym kolanem. Kierownicę ustaw wygodnie, tak żeby plecy zostały proste.","en":"Set the saddle so your leg is almost straight with a slight knee bend when the pedal is at the bottom. Set the handlebars where it's comfortable and your back stays straight.",
+    "zrodla":[{"szczebel":4,"url":"https://www.hss.edu/health-library/move-better/set-up-exercise-bike","autor":"HSS, wypowiedź A. Karp, MS, ATC, CSCS (fizjolog wysiłku); 21.12.2020","miejsce":"Seat Height","cytat":"It shouldn't be locked out, just bending noticeably"},
+              {"szczebel":4,"url":"https://keiser.com/support/articles/m3i-indoor-bike-set-up","autor":"Keiser (producent roweru M3i)","miejsce":"Seat height / Handlebars","cytat":"Adjust the handlebars until neutral spine is comfortably achieved while pedaling."}],"uwaga":"kąt ugięcia kolana pominięty (liczba; HSS i Keiser podają różne wartości – rozbieżność liczbowa, nie wchodzi). Keiser: zdanie o ugięciu kolana zawiera liczbę, cytuję zdanie o kierownicy; ugięcie kolana potwierdza część „a bend at the knee”."},
+   {"rola":"move","pl":"Pedałuj płynnie, plecy proste, brzuch napięty, łokcie lekko ugięte, barki z dala od uszu.","en":"Pedal smoothly with a straight back and tight core, elbows slightly bent and shoulders away from your ears.",
+    "zrodla":[{"szczebel":4,"url":"https://www.hss.edu/health-library/move-better/set-up-exercise-bike","miejsce":"Handlebar Height / Body Positioning","cytat":"Your elbows should be slightly bent and your shoulders away from your ears as much as possible."},
+              {"szczebel":4,"url":"https://keiser.com/support/articles/m3i-indoor-bike-set-up","miejsce":"Riding posture","cytat":"Pelvis is in a neutral position and the rider is activated through the core"}],"uwaga":"„łokcie/barki” – tylko HSS; część wspólna obu: plecy neutralne/proste, napięty brzuch"},
+   {"rola":"mis","pl":"Nie garb się i nie wieszaj na kierownicy – jeśli plecy się zaokrąglają, podnieś kierownicę.","en":"Don't slouch or hang on the handlebars – if your back rounds, raise the handlebars.",
+    "zrodla":[{"szczebel":4,"url":"https://www.hss.edu/health-library/move-better/set-up-exercise-bike","miejsce":"Handlebar Height","cytat":"If your back starts to round, your handlebars are too low."},
+              {"szczebel":4,"url":"https://keiser.com/support/articles/m3i-indoor-bike-set-up","miejsce":"Riding posture","cytat":"When seated on the bike, body weight should be evenly distributed across the saddle, handlebars and pedals."}],"uwaga":"HSS wprost; Keiser – zaprzeczenie standardu (ciężar rozłożony, kręgosłup neutralny)"}],
+  "uwagi":"Odmiana katalogu obejmuje też jazdę na zewnątrz – zdania dotyczą roweru stacjonarnego; do oceny recenzenta (czy rysunek/karta to rower stacjonarny). Zdania HSS o bólu kolan i szyi – zdrowie, pominięte. Wcześniej: partia A – brak (szukano ergometru wioślarskiego, nie roweru)."},
+
+ {"cwiczenie":"Meadows Row","stan":"komplet – mis z 2 źródeł (Muscle Booster/Welltech, D. Sautter sz. 5 + Generation Iron z gałęzi); setup i move bez zmian (gałąź); Welltech trzecim źródłem setup/move",
+  "odmiana":"catalog.json:4686, sztanga + landmine, jednorącz",
+  "zdania":[
+   {"rola":"mis","pl":"Nie pomagaj sobie rozpędem ani tułowiem – rusza się tylko ręka, która ciągnie.","en":"Don't use momentum or your body – only the pulling arm moves.",
+    "zrodla":[{"szczebel":5,"url":"https://musclebooster.welltech.com/content/meadows-row-exercise-build-back-muscle-and-correct-imbalance/","autor":"David J. Sautter (NASM-CPT, ACE SCS), 29.09.2022, bez recenzenta; strona aplikacji → sz. 5","miejsce":"Mistakes/tips","cytat":"The working arm should be the only body part moving during this exercise."},
+              {"szczebel":"4 warunkowo (gałąź, K3)","url":"generationiron-meadows-row (z-galezi/obowiazkowe-mieszane.md:170)","miejsce":"wg zapisu gałęzi: błąd „bez rozpędu”","cytat":"(nie czytane w tej rundzie – zapis gałęzi)"}],"uwaga":"Welltech przeczytane w tej rundzie; GI – zapis z gałęzi. Bez GI: 1 źródło + wniosek z ruchu „meadows.pull”."}],
+  "dodatkowe":[{"rola":"setup/move (3. źródło)","szczebel":5,"url":"https://musclebooster.welltech.com/content/meadows-row-exercise-build-back-muscle-and-correct-imbalance/","cytat":"Pull the barbell to the inside hip, keeping the elbow close to the body."}],
+  "uwagi":"Martwe/403: powerliftingtechnique.com/meadows-row (403), sportskeeda (403); welltech.com przekierowuje na musclebooster.welltech.com (przeczytane). Wcześniejsze martwe adresy Gemini – wyniki-gemini-3b.json:102."},
+
+ {"cwiczenie":"Kneeling High Pulley Row","stan":"komplet – move (fedb + ManiacMuscle, sz. 5, praktyka); mis z 2 źródeł; setup bez zmian (gemini-3a) + ManiacMuscle; do recenzji niezależnej",
+  "odmiana":"catalog.json:11779 (fedb ta sama nazwa :11780), wyciąg górny, lina",
+  "zdania":[
+   {"rola":"move","pl":"Zacznij od ściągnięcia łopatek, potem przyciągnij linę do górnej części klatki, prowadząc łokcie do tyłu. Powoli wyprostuj ręce.","en":"Start by drawing your shoulder blades back, then pull the rope to your upper chest, driving your elbows back. Slowly straighten your arms.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_High_Pulley_Row.json","miejsce":"instructions 2 (zapis gemini-3a)","cytat":"Initiate the movement by flexing the elbows and fully retracting your shoulders, pulling the rope toward your upper chest with your elbows out."},
+              {"szczebel":5,"url":"https://maniacmuscle.com/kneeling-cable-high-row/","autor":"bez autora i daty","miejsce":"instrukcja, ruch","cytat":"Drive the elbows behind you as the rope travels toward the upper chest or lower face area."}],"uwaga":"„łokcie na zewnątrz” – tylko fedb, nie weszło do zdania; ManiacMuscle: dłonie lekko rozchodzą się na końcu. Zdania i układ ManiacMuscle inne niż fedb (inicjacja łopatkami, osobna sekcja błędów) – niezależne. Strona była już w partii D (wyniki-D-czesc5.json:23), ale nie została policzona dla move w gemini-3a/uz2b."},
+   {"rola":"mis","pl":"Nie odchylaj się do tyłu i nie szarp – ciężar przyciągają ręce i łopatki, nie tułów.","en":"Don't lean back or yank – your arms and shoulder blades move the weight, not your body.",
+    "zrodla":[{"szczebel":5,"url":"https://maniacmuscle.com/kneeling-cable-high-row/","miejsce":"wskazówki/błędy","cytat":"Leaning too far back turns the exercise into a momentum-based row."},
+              {"szczebel":5,"url":"https://kovofitness.com/exercises/kneeling-lat-pulldown","miejsce":"Common mistakes (inna odmiana – ściąganie; zapis gemini-3a)","cytat":"Don't lean backward or use your body weight to yank the bar down"}],"uwaga":"ManiacMuscle tej odmiany + Kovo innej odmiany; jako komplet liczy się ManiacMuscle + wniosek z ruchu"}],
+  "uwagi":"Setup: ManiacMuscle „Kneel on both knees far enough back to create cable tension at the start.” – potwierdza zdanie setup z gemini-3a (lina przed sobą, ręce wyprostowane: „Reach forward and slightly upward”)."},
+
+ {"cwiczenie":"Smith Machine Reverse Calf Raise","stan":"komplet warunkowo – pięty na podeście, ruch i mis: fedb + potreningu.pl (sz. 5, wersja bez Smitha); część „sztanga Smitha na barkach” = fedb + Motra (niezależność niepewna) → wariant sprzętu jako uproszczenie, decyzja recenzenta",
+  "odmiana":"catalog.json:23414, note (:23436): unoszenie palców, pięty na podeście",
+  "zdania":[
+   {"rola":"setup","pl":"Postaw podest pod sztangą Smitha. Stań piętami na podeście, przednia część stóp poza krawędzią, sztanga na górze pleców.","en":"Put a platform under the Smith bar. Stand with your heels on it and the front of your feet off the edge, bar across your upper back.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Reverse_Calf_Raises.json","miejsce":"instructions 2 (zapis p5a)","cytat":"Stand on the platform with the heels of your feet secured on top of it with the balls of your feet extending off it."},
+              {"szczebel":5,"url":"https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/69/odwrotne-wspiecia-stojac","autor":"bez autora (SFD S.A.)","miejsce":"opis wykonania","cytat":"Stań w lekkim rozkroku piętami na podwyższeniu."}],"uwaga":"potreningu – bez sztangi/Smitha; obciążenie Smithem tylko fedb + Motra"},
+   {"rola":"move","pl":"Unieś palce i przód stóp jak najwyżej, kolana proste i nieruchome. Powoli opuść przód stóp poniżej krawędzi.","en":"Lift your toes and the front of your feet as high as you can, knees straight and still. Slowly lower the front of your feet below the edge.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Reverse_Calf_Raises.json","miejsce":"instructions 4 (zapis p5a)","cytat":"Ensure that the knee is kept stationary at all times."},
+              {"szczebel":5,"url":"https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/69/odwrotne-wspiecia-stojac","miejsce":"opis wykonania","cytat":"Następnie wykonując wydech rozciągnij mięśnie opuszczając palce poniżej poziomu podwyższenia."}]},
+   {"rola":"mis","pl":"Nie uginaj kolan i nie pomagaj sobie tułowiem – pracują tylko stopy.","en":"Don't bend your knees or use your body – only your feet move.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Reverse_Calf_Raises.json","miejsce":"instructions 4 (zapis p5a)","cytat":"There should be no bending at any time."},
+              {"szczebel":5,"url":"https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/69/odwrotne-wspiecia-stojac","miejsce":"wskazówki","cytat":"Nogi wyprostowane w kolanach."}],"uwaga":"potreningu – zaprzeczenie standardu"}],
+  "uwagi":"Livestrong 188652 (opis z Smithem, znany z wyszukiwarki) przekierowuje na everydayhealth.com – nieczytane; web.archive.org niedostępne. MuscleWiki (tibialis, wersja ze sztangą) – 403. Wyszukanie niemieckie (Multipresse) – brak opisu Smitha."},
+
+ {"cwiczenie":"Smith Machine Hip Raise","stan":"brak po rundzie 2 – nadal 1 źródło (fedb), otwarte",
+  "odmiana":"catalog.json:25277; fedb: leżenie na ławce, stopy na sztandze, podwinięcie miednicy",
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://bearly-fit-website.pages.dev/exercise/smith_machine_hip_raise","powod":"hip thrust (plecy o ławkę, sztanga na biodrach) – inna odmiana"},
+   {"url":"https://health-os-daa.pages.dev/en/exercises/smith-machine-hip-raise/","powod":"kopia słowo w słowo fedb"},
+   {"url":"https://musclewiki.com/exercise/smith-machine-reverse-crunch-hip-raise","powod":"403 (strona z właściwą nazwą „reverse crunch hip raise” – kandydat, nieczytany)"},
+   {"url":"wyszukiwanie: smith machine reverse crunch feet against bar","powod":"tylko spięcia odwrotne bez Smitha (liftosaur, majorfitness) – inna odmiana"}],
+  "uwagi":"Wcześniej (p5a): Lyfta – most biodrowy, Cora – hip thrust, fitbod 403. Wyszukiwarka wspomina wersję na podłodze ze stopami na sztandze (źródło niezidentyfikowane, nieczytane)."}
+]

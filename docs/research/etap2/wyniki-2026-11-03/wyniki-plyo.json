@@ -1,0 +1,36 @@
+{
+"zrodla": {
+ "UH": {"url": "https://cdn4.sportngin.com/attachments/document/0127/7274/G._Plyometrics_Master.pdf", "autor": "przypisany USA Hockey (nagłówek s. 1, stopka s. 10 'USA Hockey, 2001'); hosting klubowy SportsEngine, brak potwierdzenia na usahockey.com", "szczebel": "4 warunkowo"},
+ "HK-R": {"url": "https://us.humankinetics.com/blogs/excerpt/plyometric-bounds-and-skips", "autor": "James Radcliffe, High-Powered Plyometrics, 3rd ed., Human Kinetics", "szczebel": 3},
+ "HK-H": {"url": "https://us.humankinetics.com/blogs/excerpt/power-development-exercises", "autor": "Tom Howley, Complete Conditioning for Lacrosse, Human Kinetics", "szczebel": 3}
+},
+"gemini_niezgodne": [
+ {"cwiczenie": "Box Skip", "cytat": "Repeat the sequence (driving with the other leg) upon landing, as in the alternate-leg bound, except that you take every other step from a box.", "faktycznie": "HK-R, Box Bound (s. 63)"},
+ {"cwiczenie": "Box Skip", "cytat": "Eliminate landing positions that foster overstriding or pulling the hips over and off the box.", "faktycznie": "HK-R, Box Bound, coaching points"},
+ {"cwiczenie": "Box Skip", "cytat": "(opis książki) Radcliffe & Farentinos 2nd ed.", "faktycznie": "strona: James Radcliffe, 3rd ed."},
+ {"cwiczenie": "Side to Side Box Shuffle", "cytat": "Left leg flexed, Left foot on box. / Use both legs to jump.", "faktycznie": "dosłowne, ale ćwiczenie w UH nazywa się 'Lateral Bench Squats' (s. 6)"},
+ {"cwiczenie": "Single-Leg Hop Progression", "cytat": "Stand on one leg. / Push off ... / Try to keep ...", "faktycznie": "dosłowne, ćwiczenie w UH nazywa się 'Single Leg Hops' (s. 5)"}
+],
+"cwiczenia": [
+{"cwiczenie": "Box Skip", "stan": "setup, move: jedno źródło (szczebel 3); mis: brak", "zdania": [
+ {"rola": "setup", "pl": "Stań przodem do pierwszej skrzyni, w niewielkiej odległości, wyprostowany, jedna noga lekko z tyłu.", "en": "Stand tall facing the first box, a short distance away, one foot slightly behind the other.", "zrodla": [{"kod": "HK-R", "szczebel": 3, "miejsce": "Box Skip, Starting position", "cytat": "Facing the first box from about two steps away, assume an upright stance with one leg slightly behind the other."}]},
+ {"rola": "move", "pl": "Odbij się z tylnej nogi, pomagając sobie rękami i wyciągnięciem kolana w górę; po lądowaniu na skrzyni od razu wybij drugą nogę w przód i w górę, zeskocz między skrzynie i skipem przejdź do następnej.", "en": "Drive off your back leg, using your arms and knee drive; as soon as you land on the box, drive the other leg forward and up, drop down between the boxes and skip to the next one.", "zrodla": [{"kod": "HK-R", "szczebel": 3, "miejsce": "Box Skip, Action", "cytat": "Immediately upon landing on a box, drive the other leg forward and up to gain maximal height and distance"}], "uwaga": "rysunek aplikacji = jeden skok na skrzynię (plyo.mjs:18) — do porównania przez recenzenta"}]},
+{"cwiczenie": "Bench Jump", "stan": "setup, move: jedno źródło (szczebel 3) – uproszczenie: wariant sprzętu (ławka zamiast skrzyni), do potwierdzenia przez recenzenta; mis: brak [OTWARTE]", "zdania": [
+ {"rola": "setup", "pl": "Stań przed ławką, stopy mniej więcej na szerokość barków.", "en": "Stand in front of the bench, feet about shoulder-width apart.", "zrodla": [{"kod": "HK-H", "szczebel": 3, "miejsce": "Box Jump", "cytat": "Stand with the feet approximately shoulder-width apart in front of a box."}]},
+ {"rola": "move", "pl": "Zamachnij rękami w przód i wskocz na ławkę; wyląduj miękko, na ugiętych kolanach, klatka w górę.", "en": "Swing your arms forward and jump up onto the bench; land softly with your knees bent and chest up.", "zrodla": [{"kod": "HK-H", "szczebel": 3, "miejsce": "Box Jump", "cytat": "Land on box with both feet flat, the knees and hips slightly flexed, and the chest up"}, {"kod": "UH", "szczebel": "4 warunkowo", "miejsce": "s. 5, Box Jumps", "cytat": "Land with the knees bent, under control and on the balls of the feet."}], "uwaga": "sprzeczność co do stopy (cała vs przednia część) — w zdaniu tylko część wspólna"},
+ {"rola": "mis", "stan": "[OTWARTE]", "kandydat_pl": "Lądowanie na wyprostowanych nogach.", "kandydat_en": "Landing with straight legs.", "powod": "wniosek z wskazówek pozytywnych; drugie źródło szczebla 4 warunkowe"}]},
+{"cwiczenie": "Alternate Leg Diagonal Bound", "stan": "brak (1 źródło: UH s. 10, szczebel 4 warunkowo)", "zdania": []},
+{"cwiczenie": "Double Leg Butt Kick", "stan": "brak (1 źródło: UH s. 3 'Tuck Jump – Butt Kick')", "zdania": []},
+{"cwiczenie": "Lateral Box Jump", "stan": "brak (1 źródło: UH s. 6)", "zdania": []},
+{"cwiczenie": "Side to Side Box Shuffle", "stan": "brak (1 źródło: UH s. 6 'Lateral Bench Squats', inna nazwa)", "zdania": []},
+{"cwiczenie": "Single-Leg Hop Progression", "stan": "brak (1 źródło: UH s. 5 'Single Leg Hops')", "zdania": [], "odrzucone": [{"kod": "HK-H", "powod": "Single-Leg Power Hop — stopa na skrzyni, wybicie w górę; inny ruch"}]},
+{"cwiczenie": "Single-Leg Stride Jump", "stan": "brak (wyciąg HK stride-jump przekierowuje na stronę główną)", "zdania": []},
+{"cwiczenie": "Dumbbell Seated Box Jump", "stan": "brak", "zdania": []},
+{"cwiczenie": "Frog Hops", "stan": "brak", "zdania": []},
+{"cwiczenie": "Kneeling Jump Squat", "stan": "brak", "zdania": []},
+{"cwiczenie": "Side Hop-Sprint", "stan": "brak", "zdania": []},
+{"cwiczenie": "Side Standing Long Jump", "stan": "brak", "zdania": []},
+{"cwiczenie": "Single Leg Butt Kick", "stan": "brak", "zdania": []},
+{"cwiczenie": "Star Jump", "stan": "brak", "zdania": []}
+]
+}
