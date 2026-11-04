@@ -13,10 +13,10 @@
 // VERIFY_DOCS_CHANGED (pliki rozdzielone znakiem nowej linii) zastępuje odczyt z gita — do testów.
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { readdirSync, readFileSync } from 'node:fs';
-import { dirname, basename, join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
+import { testyCzytajace } from './testy-dla-plikow.mjs';
 import { bazaPelnego, bazaZdalna, biezacaGalaz, czystaKopia } from './verify-znacznik.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -44,25 +44,9 @@ async function zmienione() {
   return { zm, baza };
 }
 
-/* Testy Jest związane z dokumentami: wymieniają nazwę pliku (z rozszerzeniem; bez rozszerzenia tylko numerowane docs/NN-…),
-   ścieżkę albo katalog (nie sam „docs”), plus testy przeglądające cały katalog docs. */
-function testyDlaDokumentow(pliki) {
-  const wszystkie = readdirSync(join(root, 'tests')).filter(f => /\.test\.tsx?$/.test(f));
-  const zrodla = Object.fromEntries(wszystkie.map(f => [f, readFileSync(join(root, 'tests', f), 'utf8')]));
-  const przeglada = /(readdirSync|walk)\((path\.)?join\([^)]*['"]docs['"]/;
-  const frazy = new Set();
-  for (const f of pliki) {
-    const nazwa = basename(f);
-    frazy.add(f); frazy.add(nazwa);
-    if (/^\d/.test(nazwa)) frazy.add(nazwa.replace(/\.md$/, ''));
-    const katalog = dirname(f);
-    if (katalog !== '.' && katalog !== 'docs') frazy.add(katalog);
-  }
-  return wszystkie
-    .filter(f => przeglada.test(zrodla[f]) || [...frazy].some(fr => zrodla[f].includes(fr)))
-    .map(f => `tests/${f}`)
-    .sort();
-}
+/* Testy Jest związane z dokumentami (scripts/testy-dla-plikow.mjs; ZB-041 G3): wymieniają nazwę pliku (z rozszerzeniem; bez rozszerzenia tylko numerowane docs/NN-…), ścieżkę albo
+   katalog — ten ostatni tylko gdy test katalog przegląda — plus testy przeglądające cały katalog docs. */
+const testyDlaDokumentow = pliki => testyCzytajace(pliki, root, { zawszeDocs: true });
 
 /* ZB-041 G2 (04.11.2026): właściwy przebieg wymaga czystej kopii już na starcie — inaczej byłby zielony, ale bez znacznika, i trzeba by go powtórzyć po commicie */
 if (!planOnly && !czyDokumenty && process.env.VERIFY_DOCS_CHANGED === undefined && ref === 'origin/main' && czystaKopia() !== 0) process.exit(1);

@@ -17,7 +17,7 @@ const git = (cwd: string, ...a: string[]) => { const r = spawnSync('git', a, { c
 const node = (cwd: string, skrypt: string, args: string[], env: Record<string, string> = {}) =>
   spawnSync(process.execPath, [join(cwd, 'scripts', skrypt), ...args], { cwd, env: { ...ENV, ...env }, encoding: 'utf8' });
 
-const SKRYPTY = ['verify-docs.mjs', 'verify-znacznik.mjs', 'dokumenty.mjs', 'ci-wynik.mjs'];
+const SKRYPTY = ['verify-docs.mjs', 'verify-znacznik.mjs', 'dokumenty.mjs', 'ci-wynik.mjs', 'testy-dla-plikow.mjs'];
 /** main (plik.txt + docs/a.md) wypchnięty do zdalnego; kopia robocza na gałęzi `galaz`. */
 function repo(galaz = 'integracja-1-1') {
   const zdalne = nowy('zb041-zdalne-'); const dir = nowy('zb041-repo-');
@@ -112,5 +112,56 @@ describe('G4 (04.11.2026): baza H1 = origin/<bieżąca gałąź> z zielonym test
   test('scal-galaz i ci-wynik: jedna implementacja oceny przebiegu (scal-galaz importuje ją z scripts/ci-wynik.mjs)', () => {
     const s = readFileSync(join(root, 'scripts/scal-galaz.mjs'), 'utf8');
     expect(s).toContain("from './ci-wynik.mjs'"); expect(s).not.toMatch(/export function (ocen|najnowszyTests)/);
+  });
+});
+
+/* G3 (04.11.2026): fraza katalogu liczy się tylko w teście, który ten katalog przegląda albo buduje z niego ścieżki */
+describe('G3 (04.11.2026): verify:docs — wybór testów dla dokumentów', () => {
+  const MODUL = join(root, 'scripts/testy-dla-plikow.mjs');
+  const wybierz = (testy: Record<string, string>, pliki: string[]): string[] => {
+    const d = nowy('zb041-testy-'); mkdirSync(join(d, 'tests'));
+    for (const [n, tresc] of Object.entries(testy)) writeFileSync(join(d, 'tests', n), tresc);
+    const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import { testyCzytajace } from ${JSON.stringify(MODUL)}; console.log(JSON.stringify(testyCzytajace(${JSON.stringify(pliki)}, ${JSON.stringify(d)})));`], { encoding: 'utf8' });
+    expect([r.status, r.stderr]).toEqual([0, '']); return JSON.parse(r.stdout);
+  };
+  const TESTY = {
+    'komentarz.test.ts': "// dane w docs/research/ są ręczne\nexpect(1).toBe(1);\n",
+    'przeglada.test.ts': "fs.readdirSync(path.join(ROOT, 'docs', 'research'))\n",
+    'przeglada2.test.ts': "const D = 'docs/research'; fs.readdirSync(D)\n",
+    'sciezki.test.ts': 'read(`docs/research/${f}`)\n',
+    'nazwa.test.ts': "read('docs/research/nowy.md')\n",
+    'inny-katalog.test.ts': "fs.readdirSync('docs/lokalizacja')\n",
+  };
+  test('nowy plik w katalogu: testy tylko przeglądające katalog, budujące z niego ścieżki albo wymieniające plik; komentarz i inny katalog nie', () => {
+    expect(wybierz(TESTY, ['docs/research/nowy.md'])).toEqual(['tests/nazwa.test.ts', 'tests/przeglada.test.ts', 'tests/przeglada2.test.ts', 'tests/sciezki.test.ts']);
+  });
+  test('plik bez katalogu (docs/NN-….md) i nazwa numerowanego dokumentu bez rozszerzenia', () => {
+    expect(wybierz({ 'a.test.ts': "x('51-figury-v2-pokrycie')", 'b.test.ts': "x('docs/inne.md')" }, ['docs/51-figury-v2-pokrycie.md'])).toEqual(['tests/a.test.ts']);
+  });
+  test('prawdziwe repo: nowy plik w docs/research nie wybiera testu, który wspomina katalog tylko w komentarzu (tests/audit-0.10-gen.test.ts)', () => {
+    const r = spawnSync(process.execPath, [join(root, 'scripts/verify-docs.mjs'), '--plan'], { cwd: root, encoding: 'utf8', env: { ...ENV, VERIFY_DOCS_CHANGED: 'docs/research/nowy-plik-zb041.md' } });
+    const testy: string[] = JSON.parse(r.stdout).testy;
+    expect(testy).not.toContain('tests/audit-0.10-gen.test.ts'); expect(testy).toContain('tests/l047-recenzja-niezalezna.test.ts'); expect(testy.length).toBeLessThan(40);
+  });
+});
+
+/* G5 / L-100 (04.11.2026): test:fast dokłada testy czytające zmienione dokumenty i dane przez fs — --findRelatedTests ich nie wiąże (nie ma importu) */
+describe('G5 / L-100 (04.11.2026): test:fast — testy czytające dokumenty i dane', () => {
+  const skrypt = join(root, 'scripts/test-fast.mjs');
+  const fastPlan = (zm: string[]) => JSON.parse(spawnSync(process.execPath, [skrypt, '--plan'], { encoding: 'utf8', env: { ...ENV, TEST_FAST_CHANGED: zm.join('\n') } }).stdout);
+  test.each([
+    ['docs/51-figury-v2-pokrycie.md', 'tests/gemini-polecenia.test.ts'],
+    ['docs/research/recenzje/p1-r1.json', 'tests/l047-recenzja-niezalezna.test.ts'],
+    ['lib/cues/text/pl.json', 'tests/audit-m1-049-critical-content.test.ts'],
+    ['tests/fixtures/pokrycie-katalogu.json', 'tests/pokrycie-katalogu.test.ts'],
+  ])('L-100: zmiana %s uruchamia %s', (zmiana, test_) => {
+    expect(fastPlan([zmiana]).files).toEqual(expect.arrayContaining([test_]));
+  });
+  test('plik, którego nie czyta żaden test, nie dokłada nic; kod bez zmian (findRelatedTests)', () => {
+    expect(fastPlan(['docs/nieistniejacy-' + 'dokument.md']).files).toEqual([]);
+    expect(fastPlan(['lib/units.ts']).files).toEqual(['lib/units.ts']);
+  });
+  test('verify:szybkie bierze te testy: --od-bazy używa tego samego wyboru (jedna lista zmian)', () => {
+    expect(readFileSync(skrypt, 'utf8')).toContain("from './testy-dla-plikow.mjs'");
   });
 });
