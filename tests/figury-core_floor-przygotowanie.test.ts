@@ -116,9 +116,21 @@ const fr2 = (d: PoseData, u: number) => keyframeFrame(d, u);
 const mid = (f: ReturnType<typeof frame>) => [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
 const sprz = (k: string, r: string) => P[k].sprzet.find(g => g.rodzaj === r);
 describe('core_floor R3: tożsamość nowych póz', () => {
-  test('Butt-Ups: start = podpór na przedramionach (biodra nisko, ciało w linii), koniec = odwrócone V (biodra ≥ 60 cm, biodro zgięte ≥ 85°), dłonie nieruchome, nogi proste', () => {
-    const k = 'Butt-Ups'; expect(frame(k, 0).sk.pelvis[1]).toBeLessThan(35); expect(A(k, 0).hip).toBeLessThan(20); expect(frame(k, 1).sk.pelvis[1]).toBeGreaterThanOrEqual(60); expect(A(k, 1).hip).toBeGreaterThanOrEqual(85);
+  test('Butt-Ups: start = podpór na przedramionach (biodra nisko, ciało w linii), koniec = odwrócone V (biodra ≥ 55 cm, biodro zgięte ≥ 70°, czyli kąt w biodrze ≤ 110°), dłonie nieruchome, nogi proste', () => {
+    const k = 'Butt-Ups'; expect(frame(k, 0).sk.pelvis[1]).toBeLessThan(35); expect(A(k, 0).hip).toBeLessThan(20); expect(frame(k, 1).sk.pelvis[1]).toBeGreaterThanOrEqual(55); expect(A(k, 1).hip).toBeGreaterThanOrEqual(70);
     expect(dist(frame(k, 0).sk.arms.R.grip, frame(k, 1).sk.arms.R.grip)).toBeLessThan(0.5); for (const u of [0, 0.5, 1]) expect(A(k, u).knee).toBeLessThanOrEqual(20);
+  });
+  /* R3-W1 (recenzja r3, 04.11.2026): źródło ruchu — „butt up and back”, łokcie pod barkami, stopy stoją; poprzedni rysunek pchał miednicę do przodu i przesuwał stopy o 44 cm. */
+  const wTyl = (d: PoseData) => frame0x(d, 0, 'pelvis') - frame0x(d, 1, 'pelvis');
+  const frame0x = (d: PoseData, u: number, j: 'pelvis' | 'shoulderC') => fr2(d, u).sk[j][0];
+  const stopyRuch = (d: PoseData) => Math.max(...[0.25, 0.5, 0.75, 1].map(u => Math.max(dist(fr2(d, 0).sk.legs.R.toe, fr2(d, u).sk.legs.R.toe), dist(fr2(d, 0).sk.legs.R.ankle, fr2(d, u).sk.legs.R.ankle))));
+  test('Butt-Ups (R3-W1): miednica idzie w górę I DO TYŁU (w stronę stóp ≥ 5 cm), bark cofa się wokół łokcia (≥ 15 cm do tyłu), łokcie na podłodze w miejscu (x ≤ 3 cm, y ≤ 6 cm), stopy stoją (palce i kostki ≤ 0,5 cm)', () => {
+    const d = P['Butt-Ups']; expect(wTyl(d)).toBeGreaterThanOrEqual(5); expect(frame0x(d, 0, 'shoulderC') - frame0x(d, 1, 'shoulderC')).toBeGreaterThanOrEqual(15);
+    for (const u of [0, 0.5, 1]) { expect(Math.abs(fr2(d, u).sk.arms.R.elbow[0] - fr2(d, 0).sk.arms.R.elbow[0])).toBeLessThanOrEqual(3); expect(fr2(d, u).sk.arms.R.elbow[1]).toBeLessThanOrEqual(6); } expect(stopyRuch(d)).toBeLessThanOrEqual(0.5);
+  });
+  test('miara potrafi paść (R3-W1): miednica pchana do przodu (jak przed poprawką: x 81,6 → 108,7) nie spełnia „do tyłu”; stopy przesunięte o 44 cm nie spełniają „stopy stoją”', () => {
+    const przod = klon('Butt-Ups', kl => { kl[kl.length - 1].miednica = [108.7, 68.2, 0]; }); expect(wTyl(przod)).toBeLessThan(0);
+    const marsz = klon('Butt-Ups', kl => { for (const s of ['R', 'L']) { const k = kl[kl.length - 1].nogi[s].kostka; kl[kl.length - 1].nogi[s].kostka = [k[0] + 44, k[1], k[2]]; } }); expect(stopyRuch(marsz)).toBeGreaterThan(40);
   });
   test('miara potrafi paść: Butt-Ups bez ruchu biodrami (koniec = start) ma biodra < 35 cm', () => { const d = klon('Butt-Ups', kl => { kl[kl.length - 1] = { ...JSON.parse(JSON.stringify(kl[0])), u: 1 }; }); expect(fr2(d, 1).sk.pelvis[1]).toBeLessThan(35); });
   test('Otis-Up: talerz w dłoniach, leżenie z kolanami ugiętymi (≥ 90° przez cały ruch), siad (barki ≥ 40 cm nad miednicą), talerz z klatki (≤ 50 cm) nad głowę (≥ 110 cm)', () => {
@@ -126,16 +138,41 @@ describe('core_floor R3: tożsamość nowych póz', () => {
     expect(frame(k, 0).sk.shoulderC[1] - frame(k, 0).sk.pelvis[1]).toBeLessThan(5); expect(frame(k, 1).sk.shoulderC[1] - frame(k, 1).sk.pelvis[1]).toBeGreaterThan(40); expect(mid(frame(k, 0))[1]).toBeLessThan(50); expect(mid(frame(k, 1))[1]).toBeGreaterThanOrEqual(110);
   });
   test('miara potrafi paść: Otis-Up z talerzem zostającym przy klatce (chwyty końca = chwyty startu) nie sięga 110 cm', () => { const d = klon('Otis-Up', kl => { kl[kl.length - 1].rece = JSON.parse(JSON.stringify(kl[0].rece)); }); expect(mid(fr2(d, 1))[1]).toBeLessThan(110); });
-  test('GHD Sit Up: ławka rzymska z wałkami, miednica nieruchoma, nogi prawie proste (kolano ≤ 20°), stopy pod wałkiem (≤ 12 cm), start tułów poziomo w tył, koniec siad (barki ≥ 40 cm nad miednicą)', () => {
-    const k = 'GHD Sit Up'; const g = sprz(k, 'rzymska')!; expect(g).toBeDefined(); expect(dist(frame(k, 0).sk.pelvis, frame(k, 1).sk.pelvis)).toBeLessThan(0.5);
-    for (const u of [0, 1]) { expect(A(k, u).knee).toBeLessThanOrEqual(20); expect(dist([(g.x as number) + (g.dlugosc as number), g.y as number, 0], [frame(k, u).sk.legs.R.ankle[0], frame(k, u).sk.legs.R.ankle[1], 0])).toBeLessThanOrEqual(12); }
+  test('GHD Sit Up: ławka rzymska z wałkami, miednica prawie w miejscu (ślizg po poduszce ≤ 4 cm), nogi prawie proste na górze (kolano ≤ 20°), stopy pod wałkiem (≤ 12 cm), start tułów poziomo w tył, koniec siad (barki ≥ 40 cm nad miednicą)', () => {
+    const k = 'GHD Sit Up'; const g = sprz(k, 'rzymska')!; expect(g).toBeDefined(); expect(dist(frame(k, 0).sk.pelvis, frame(k, 1).sk.pelvis)).toBeLessThanOrEqual(4);
+    expect(A(k, 1).knee).toBeLessThanOrEqual(20); for (const u of [0, 1]) { expect(dist([(g.x as number) + (g.dlugosc as number), g.y as number, 0], [frame(k, u).sk.legs.R.ankle[0], frame(k, u).sk.legs.R.ankle[1], 0])).toBeLessThanOrEqual(12); }
     expect(frame(k, 0).sk.shoulderC[1] - frame(k, 0).sk.pelvis[1]).toBeLessThan(12); expect(frame(k, 1).sk.shoulderC[1] - frame(k, 1).sk.pelvis[1]).toBeGreaterThan(40);
+  });
+  /* R3-Ś3 (recenzja r3, 04.11.2026): biodra na tylnym skraju poduszki (nie na środku) i kolana prostują się w siadzie („wróć do siadu, mocno prostując nogi”). Poduszka: środek [x, top], długość 30 cm (EQUIP.hyperLen) wzdłuż kierunku opadania `kat`; tylna krawędź = −15 cm od środka. */
+  const odTylnejKrawedzi = (d: PoseData, u: number) => { const g = sprz('GHD Sit Up', 'rzymska')!; const th = (g.kat as number) * Math.PI / 180; const P = fr2(d, u).sk.pelvis; return (P[0] - (g.x as number)) * Math.cos(th) - (P[1] - (g.top as number)) * Math.sin(th) + 15; };
+  const kolanoGhd = (d: PoseData, u: number) => jointAngles(fr2(d, u).sk, 'R').knee;
+  test('GHD Sit Up (R3-Ś3): środek miednicy ≤ 8 cm od tylnej krawędzi poduszki w każdym kadrze; kolano zgięte ≥ 25° na dole i prostuje się o ≥ 15° w siadzie', () => {
+    const d = P['GHD Sit Up']; for (const u of [0, 0.5, 1]) { expect(odTylnejKrawedzi(d, u)).toBeLessThanOrEqual(8); expect(odTylnejKrawedzi(d, u)).toBeGreaterThanOrEqual(0); }
+    expect(kolanoGhd(d, 0)).toBeGreaterThanOrEqual(25); expect(kolanoGhd(d, 0) - kolanoGhd(d, 1)).toBeGreaterThanOrEqual(15);
+  });
+  test('miara potrafi paść (R3-Ś3): miednica na środku poduszki (jak przed poprawką: x 3,0, y 86,1) jest 15 cm od tylnej krawędzi; kolano stałe 10° nie prostuje się', () => {
+    const srodek = klon('GHD Sit Up', kl => { for (const k of kl) k.miednica = [3.0, 86.1, 0]; }); expect(odTylnejKrawedzi(srodek, 1)).toBeGreaterThan(8);
+    const stale = klon('GHD Sit Up', kl => { for (const k of kl) k.miednica = JSON.parse(JSON.stringify(kl[kl.length - 1].miednica)); }); expect(kolanoGhd(stale, 0) - kolanoGhd(stale, 1)).toBeLessThan(15);
   });
   test('miara potrafi paść: GHD Sit Up z tułowiem końca ułożonym poziomo (pochylenie −90) nie siada (< 12 cm)', () => { const d = klon('GHD Sit Up', kl => { kl[kl.length - 1].pochylenieTulowia = -90; kl[kl.length - 1].zgiecieKregoslupa = 0; kl[kl.length - 1].pochylenieGlowy = -90; }); expect(fr2(d, 1).sk.shoulderC[1] - fr2(d, 1).sk.pelvis[1]).toBeLessThan(12); });
   test('Dragon Flag: ławka płaska, barki nieruchome na ławce, ciało proste (biodro i kolano ≤ 20°), dłonie nieruchome za głową, kąt ciała nad ławką ≥ 70° na starcie i ≤ 30° na końcu', () => {
     const k = 'Dragon Flag'; const b = sprz(k, 'lawka')!; expect(b.kat).toBe(0); const ang = (u: number) => { const f = frame(k, u); return Math.atan2(f.sk.pelvis[1] - f.sk.shoulderC[1], f.sk.pelvis[0] - f.sk.shoulderC[0]) * 180 / Math.PI; };
     expect(dist(frame(k, 0).sk.shoulderC, frame(k, 1).sk.shoulderC)).toBeLessThan(0.5); expect(frame(k, 0).sk.shoulderC[1] - (b.top as number)).toBeLessThan(14); for (const u of [0, 1]) { expect(Math.abs(A(k, u).hip)).toBeLessThanOrEqual(20); expect(A(k, u).knee).toBeLessThanOrEqual(20); }
     expect(dist(frame(k, 0).sk.arms.R.grip, frame(k, 1).sk.arms.R.grip)).toBeLessThan(0.5); expect(ang(0)).toBeGreaterThanOrEqual(70); expect(ang(1)).toBeLessThanOrEqual(30);
+  });
+  /* R3-W2 / R3-Ś1 (recenzja r3, 04.11.2026): źródło — dłonie chwytają zewnętrzne krawędzie ławki przy głowie, na dole pośladki „prawie na ławce”. Ławka: x od (x − dlugosc) do x, y od top − 8 (EQUIP.benchPad) do top, z = ±15 (EQUIP.benchW/2).
+   Styk dłoni = odległość chwytu od bryły ławki ≤ 3 cm (promień dłoni). „Prawie na ławce”: środek miednicy leży 10,2 cm (BENCH.padBack) nad powierzchnią, gdy pośladki na niej leżą, więc luz pośladków = y miednicy − top − 10,2; próg 5 cm = połowa promienia miednicy (ok. 10 cm), czyli pośladki w zasięgu ręki od ławki. */
+  const doLawki = (d: PoseData, u: number, s: 'R' | 'L') => { const b = d.sprzet.find(g => g.rodzaj === 'lawka')!; const G = fr2(d, u).sk.arms[s].grip; const x0 = (b.x as number) - (b.dlugosc as number), x1 = b.x as number, y0 = (b.top as number) - 8, y1 = b.top as number;
+    return Math.hypot(Math.max(x0 - G[0], 0, G[0] - x1), Math.max(y0 - G[1], 0, G[1] - y1), Math.max(Math.abs(G[2]) - 15, 0)); };
+  const luzPosladkow = (d: PoseData, u: number) => fr2(d, u).sk.pelvis[1] - (sprz('Dragon Flag', 'lawka')!.top as number) - 10.2;
+  test('Dragon Flag (R3-W2): obie dłonie stykają się z ławką (≤ 3 cm) w każdym kadrze, głowa nie wystaje poza koniec ławki', () => {
+    const d = P['Dragon Flag']; const b = sprz('Dragon Flag', 'lawka')!; for (const u of US.filter((_, i) => i % 20 === 0)) for (const s of ['R', 'L'] as const) expect([u, s, doLawki(d, u, s) <= 3]).toEqual([u, s, true]);
+    expect(fr2(d, 0).sk.head[0]).toBeGreaterThanOrEqual((b.x as number) - (b.dlugosc as number));
+  });
+  test('Dragon Flag (R3-Ś1): na dole pośladki ≤ 5 cm nad ławką', () => { expect(luzPosladkow(P['Dragon Flag'], 1)).toBeLessThanOrEqual(5); });
+  test('miara potrafi paść (R3-W2, R3-Ś1): dłonie w x = −88, y = 49 (jak przed poprawką: 18 cm za końcem ławki) nie stykają się; dół ciała pod kątem 24° ma pośladki 21 cm nad ławką', () => {
+    const wolne = klon('Dragon Flag', kl => { for (const k of kl) { k.rece.R.chwyt = [-88, 49, 17]; k.rece.L.chwyt = [-88, 49, -17]; } }); expect(doLawki(wolne, 0.5, 'R')).toBeGreaterThan(3);
+    const wysoko = klon('Dragon Flag', kl => { kl[kl.length - 1].miednica = [-10.3, 74.5, 0]; }); expect(luzPosladkow(wysoko, 1)).toBeGreaterThan(5);
   });
   test('miara potrafi paść: Dragon Flag z ciałem końca ustawionym jak na starcie ma kąt ≥ 70° (brak opuszczania)', () => { const d = klon('Dragon Flag', kl => { kl[kl.length - 1] = { ...JSON.parse(JSON.stringify(kl[0])), u: 1 }; }); const f = fr2(d, 1); expect(Math.atan2(f.sk.pelvis[1] - f.sk.shoulderC[1], f.sk.pelvis[0] - f.sk.shoulderC[0]) * 180 / Math.PI).toBeGreaterThanOrEqual(70); });
   test('Press Sit-Up: ławka ujemna z wałkami, sztanga za dłońmi, stopy nieruchome, siad (biodro rośnie ≥ 70°), sztanga z klatki (≤ 85 cm) ≥ 100 cm wyżej', () => {
@@ -156,6 +193,14 @@ const stykPilki = (d: PoseData) => { const b = d.sprzet.find(g => g.rodzaj === '
     m = Math.max(m, Math.abs(Math.hypot(c[0] - P[0], c[1] - P[1]) - r - ODL_T), Math.abs(dl - r - ODL_T)); } return m; };
 describe('core_floor R3-poprawki: Stability Ball Crunch styk miednicy z piłką, negatywy Cross-Body i Toe Touchers', () => {
   test('Stability Ball Crunch: miednica i lędźwie (25 cm od miednicy) leżą na piłce przez cały ruch (odchylenie od powierzchni ≤ 3 cm)', () => { expect(stykPilki(P['Stability Ball Crunch'])).toBeLessThanOrEqual(3); });
+  /* R3-Ś2 (recenzja r3, 04.11.2026): start z plecami na piłce — punkt 35 cm od miednicy wzdłuż tułowia (górna część pleców; sam szczyt łopatek wystaje, bo tułów jest rysowany prosto) leży na piłce (≤ 3 cm od powierzchni), a na końcu ruchu jest oderwany (≥ 8 cm). */
+  const gornaCzescPlecow = (d: PoseData, u: number) => { const b = d.sprzet.find(g => g.rodzaj === 'pilka_gimnastyczna')!; const f = keyframeFrame(d, u); const P = f.sk.pelvis, S = f.sk.shoulderC; const l = Math.hypot(S[0] - P[0], S[1] - P[1]); const q = [P[0] + 35 * (S[0] - P[0]) / l, P[1] + 35 * (S[1] - P[1]) / l]; return Math.hypot(q[0] - (b.x as number), q[1] - (b.promien as number)) - (b.promien as number) - ODL_T; };
+  test('Stability Ball Crunch (R3-Ś2): górna część pleców (35 cm od miednicy) leży na piłce na starcie (≤ 3 cm od powierzchni) i odrywa się w ruchu (≥ 8 cm na końcu)', () => {
+    const d = P['Stability Ball Crunch']; expect(Math.abs(gornaCzescPlecow(d, 0))).toBeLessThanOrEqual(3); expect(gornaCzescPlecow(d, 1)).toBeGreaterThanOrEqual(8);
+  });
+  test('miara potrafi paść (R3-Ś2): ruch od unoszonych pleców (kadr startu = kadr końca) nie ma pleców na piłce na starcie', () => {
+    const d = klon('Stability Ball Crunch', kl => { kl[0] = { ...JSON.parse(JSON.stringify(kl[kl.length - 1])), u: 0 }; }); expect(gornaCzescPlecow(d, 0)).toBeGreaterThan(3);
+  });
   test('miara potrafi paść: dane sprzed poprawki (piłka x = −41,5, miednica y = 44) — miednica wisi 7,7 cm przed piłką', () => {
     const d = klon('Stability Ball Crunch', kl => { for (const k of kl) k.miednica = [0, 44, 0]; }); (d.sprzet.find(g => g.rodzaj === 'pilka_gimnastyczna') as { x: number }).x = -41.5; expect(stykPilki(d)).toBeGreaterThan(7);
   });

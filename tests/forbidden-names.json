@@ -25,8 +25,6 @@
   "Strong",
   "Hevy",
   "Fitbod",
-  "Jefit",
-  "JEFIT",
   "Liftosaur",
   "Boostcamp",
   "Caliber",
@@ -77,6 +75,8 @@
  ],
  "namesAnyCase": [
   "ViShape",
+  "Jefit",
+  "CrossFit",
   "SmartGym",
   "Speediance",
   "TREXO",
@@ -87,6 +87,21 @@
   "AssaultBike"
  ],
  "exceptions": [
+  {
+   "path": "data/zrodla/cues.json",
+   "name": "CrossFit",
+   "reason": "wewnętrzny rejestr źródeł wskazówek (nazwa organizacji szkolącej trenerów jako opis źródła); rejestr nie trafia do interfejsu ani do opisu sklepu — pilnuje tego tests/zrodla-wiedzy.test.ts (źródła publicznie anonimowo, zasada właściciela 25.10.2026)"
+  },
+  {
+   "path": "tests/zrodla-pelne-cues-p2-moc.test.ts",
+   "name": "CrossFit",
+   "reason": "wyrażenie regularne pilnuje, że nazwy organizacji szkolących trenerów NIE występują w tekstach wskazówek widocznych w aplikacji (strażnik braku, nie użycie nazwy)"
+  },
+  {
+   "path": "tests/gemini-polecenia.test.ts",
+   "name": "Jefit",
+   "reason": "wyrażenia regularne pilnują, że nazwy innych aplikacji NIE występują w poleceniach dla modelu (strażnik braku, nie użycie nazwy w treści)"
+  },
   {
    "path": "lib/catalog.generated.ts",
    "name": "Assault Bike",

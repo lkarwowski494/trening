@@ -211,9 +211,9 @@ export function pilkaStyk(r, Y, ps, tol = 3) {
     if (ok && (best === null || worst < best[1])) best = [x, worst]; }
   return best ? best[0] : null;
 }
-/** Crunch na piłce (R1 Ś3, ACE 68 / NFPT): piłka 55 cm pod lędźwiami i środkiem pleców, miednica niżej od barków, kolana ≈ 90°, stopy płasko, ręce na klatce; górna część pleców odrywa się od piłki, miednica i stopy zostają. */
-function stabilityBallCrunch(cw) {
-  const r = 27.5; const Y = 48; const us = [0, 0.5, 1]; const pS = -58, pK = -40, bK = 34;
+/** Crunch na piłce (R1 Ś3, ACE 68 / NFPT): piłka 55 cm pod lędźwiami i środkiem pleców, miednica niżej od barków, kolana ≈ 90°, stopy płasko, ręce na klatce; start: plecy leżą na piłce od lędźwi po górną część pleców (punkt 35 cm od miednicy, R3-Ś2, 04.11.2026; sam szczyt łopatek wystaje ok. 9 cm, bo tułów jest rysowany prosto), potem górna część pleców odrywa się od piłki, miednica i stopy zostają. */
+export function stabilityBallCrunch(cw, { pS = -61, pK = -40, bK = 34 } = {}) {
+  const r = 27.5; const Y = 48; const us = [0, 0.5, 1];
   const bx = pilkaStyk(r, Y, [pS, (pS + pK) / 2, pK]); if (bx === null) throw new Error('brak położenia piłki');
   const fr = (u) => { const a = wygladzenie(u); const p = lerp(pS, pK, a); const bend = bK * a; const S = barki([0, Y], p, bend); const st = (z) => ({ ankle: [42, 7], strona: 'gora', pod: 0, z, rot: 10 });
     return ramka({ u, miednica: [0, Y], p, bend, glowa: p, nogi: { R: st(ZNOG + 8), L: st(-ZNOG - 8) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
@@ -266,13 +266,13 @@ function machineCrunch(cw) {
 }
 
 /* ---------- Fala R3 (04.11.2026): ćwiczenia z tekstem, ale bez pozy ---------- */
-/** Butt-Ups (źródła: Lift Manual, HomeGym): podpór na przedramionach, ciało w jednej linii; biodra idą w górę i do tyłu do odwróconego V i wracają do podporu.
- * Łokcie nieruchome pod barkami (przedramiona leżą na podłodze), bark odchyla się do tyłu o `a` stopni (ramię pochyla się wokół łokcia), stopy na palcach podchodzą o `krok` cm ku dłoniom (odległość bark–stopy skraca się, więc bez tego odwrócone V nie powstaje).
- * Biodro z przecięcia okręgów: |biodro − kostka| = noga prosta, |bark − biodro| = tułów. */
-export function buttUps(cw, { aMax = -22, krok = 44, podKon = -40 } = {}) {
-  const B = BODY(); const DL = 82.0; const L = DL + B.trunk; const Ey = 3; const A0 = [0, kostkaNaPalcach(0, -60)]; const fi = Math.asin((Ey + B.uarm - A0[1]) / L) / R; const Ex = A0[0] + L * Math.cos(fi * R); const G = [Ex + B.farm + B.hand, Ey, 14];
+/** Butt-Ups (źródło ruchu: „butt up and back”, łokcie pod barkami, stopy stoją): podpór na przedramionach, ciało w jednej linii; miednica idzie w górę I DO TYŁU do odwróconego V i wraca do podporu.
+ * Łokcie i dłonie nieruchome (przedramiona leżą na podłodze), stopy na palcach nie przesuwają się; bark obraca się wokół łokcia do tyłu (ramię pochyla się o `aMax` stopni ku stopom), więc odległość bark–stopy się skraca i biodro unosi się do odwróconego V.
+ * Biodro z przecięcia okręgów: |biodro − kostka| = noga prosta, |bark − biodro| = tułów. Zakres: zgięcie barku silnika 171°, więc `aMax` ≤ ok. 38° (biodro zgięte ≈ 74°, kąt w biodrze ≈ 106°). */
+export function buttUps(cw, { aMax = 38 } = {}) {
+  const B = BODY(); const DL = 82.0; const L = DL + B.trunk; const Ey = 3; const pod = -60; const A = [0, kostkaNaPalcach(0, pod)]; const fi = Math.asin((Ey + B.uarm - A[1]) / L) / R; const Ex = A[0] + L * Math.cos(fi * R); const G = [Ex + B.farm + B.hand, Ey, 14];
   const us = Array.from({ length: 9 }, (_, i) => i / 8); const tri = wygladzenie; /* 0 podpór, 1 odwrócone V (powrót robi pętla animacji) */
-  const fr = (u) => { const e = tri(u); const a = aMax * e; const S = [Ex - B.uarm * Math.sin(a * R), Ey + B.uarm * Math.cos(a * R)]; const pod = -60 + (podKon + 60) * e; const A = [A0[0] + krok * e, kostkaNaPalcach(0, pod)];
+  const fr = (u) => { const e = tri(u); const a = aMax * e; const S = [Ex - B.uarm * Math.sin(a * R), Ey + B.uarm * Math.cos(a * R)];
     const P = u === 0 ? [A[0] + DL * Math.cos(fi * R), A[1] + DL * Math.sin(fi * R)] : przeciecie(A, DL, S, B.trunk, 'gora'); if (!P) throw new Error('brak biodra');
     const p = Math.atan2(S[0] - P[0], S[1] - P[1]) / R; const f = nogaZCelu(P, A, 'dol'); const noga = (z) => ({ ankle: A, strona: 'dol', pod, z, rot: 10, pole: f.pole ?? undefined });
     return ramka({ u, miednica: P, p, glowa: p * 0.85, nogi: { R: noga(10), L: noga(-10) }, rece: { R: { g: G, pole: [-0.3, -1, 0.4] }, L: { g: [G[0], G[1], -14], pole: [-0.3, -1, -0.4] } } }); };
@@ -290,31 +290,32 @@ export function otisUp(cw, { p1 = -14, bend1 = 10 } = {}) {
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'talerz', trzyma: 'obie' }], klatki: us.map(fr), bledy: [] });
 }
 
-/** GHD Sit Up (Catalyst, CrossFit, aplikacja): na ławce GHD leżąc na plecach, biodra na tylnym skraju poduszki, stopy zablokowane pod wałkami, nogi prawie proste; odchylenie do poziomu i siad (u = 0 tułów poziomo w tył, u = 1 siad), ręce skrzyżowane na klatce.
- * Nogi opadają ku wałkom pod kątem `beta` (równolegle do poduszki), wałek leży nad kostką (stopa wciśnięta pod niego). Zakres wyprostu biodra silnika (−17°) wyznacza `beta` ≤ 17°. */
-export function ghdSitUp(cw, { kat = 15, beta = 15, top = 75, p0 = -90, p1 = 8, bend1 = 14 } = {}) {
-  const B = BODY(); const th = kat * R; const n = [Math.sin(th), Math.cos(th)]; const pelvis = [0 + 11.5 * n[0] + 0, top + 11.5 * n[1]]; const L = D_PROSTA_NOGA;
-  const A = [pelvis[0] + L * Math.cos(beta * R), pelvis[1] - L * Math.sin(beta * R)]; const rollerC = [A[0] + 9.6 * Math.sin(beta * R), A[1] + 9.6 * Math.cos(beta * R)]; void B;
+/** GHD Sit Up (Catalyst, aplikacja): na ławce GHD leżąc na plecach, biodra na tylnym skraju poduszki (środek miednicy `odKrawedzi` cm od tylnej krawędzi), stopy zablokowane pod wałkami, kolana lekko ugięte na dole i prostujące się w trakcie siadu; odchylenie do poziomu i siad (u = 0 tułów poziomo w tył, u = 1 siad), ręce skrzyżowane na klatce.
+ * Nogi opadają ku wałkom pod kątem `beta` (równolegle do poduszki), wałek leży nad kostką (stopa wciśnięta pod niego). Zakres wyprostu biodra silnika (−17°) wyznacza `beta` ≤ 17°. Kostki stoją w miejscu: kolano prostuje się, bo miednica ślizga się po poduszce od stóp (na dole `kolano0` stopni zgięcia, na górze noga prawie prosta). */
+export function ghdSitUp(cw, { kat = 15, beta = 15, top = 75, p0 = -90, p1 = 8, bend1 = 14, odKrawedzi = 4, kolano0 = 35 } = {}) {
+  const B = BODY(); const th = kat * R; const n = [Math.sin(th), Math.cos(th)]; const d = [Math.cos(th), -Math.sin(th)]; const s = v2().EQUIP.hyperLen / 2 - odKrawedzi; const L = D_PROSTA_NOGA;
+  const pelvis = [0 - d[0] * s + 11.5 * n[0], top - d[1] * s + 11.5 * n[1]]; const dL = L - Math.sqrt(B.thigh ** 2 + B.shank ** 2 + 2 * B.thigh * B.shank * Math.cos(kolano0 * R));
+  const A = [pelvis[0] + L * Math.cos(beta * R), pelvis[1] - L * Math.sin(beta * R)]; const rollerC = [A[0] + 9.6 * Math.sin(beta * R), A[1] + 9.6 * Math.cos(beta * R)];
   const us = Array.from({ length: 9 }, (_, i) => i / 8);
-  const fr = (u) => { const a = wygladzenie(u); const p = lerp(p0, p1, a); const bend = bend1 * a; const S = barki(pelvis, p, bend); const f = nogaZCelu(pelvis, A, 'gora'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
+  const fr = (u) => { const a = wygladzenie(u); const p = lerp(p0, p1, a); const bend = bend1 * a; const m = [pelvis[0] + d[0] * dL * (1 - a), pelvis[1] + d[1] * dL * (1 - a)]; const S = barki(m, p, bend); const f = nogaZCelu(m, A, 'gora'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
     const noga = (z) => ({ ankle: A, strona: 'gora', pod: Math.max(-90, Math.min(90, sd + 45)), z, rot: 10 });
-    return ramka({ u, miednica: pelvis, p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
+    return ramka({ u, miednica: m, p, bend, glowa: p, nogi: { R: noga(ZNOG), L: noga(-ZNOG) }, rece: { R: { g: chestPt(S, p, -1), pole: [0, 0.1, 1] }, L: { g: chestPt(S, p, 1), pole: [0, 0.1, -1] } } }); };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'rzymska', x: 0, top, kat, dlugosc: r1(rollerC[0]), y: r1(rollerC[1]) }], klatki: us.map(fr), bledy: [] });
 }
 
 /** Dragon Flag (Catalyst, Fabryka Siły): leżąc na ławce płaskiej, dłonie za głową chwytają ławkę; ciało proste jak deska, oparte na górnej części pleców (bark), biodra i nogi w powietrzu.
  * Ruch (rysowany wg źródeł: tylko opuszczanie): u = 0 ciało prawie pionowo nad barkami, u = 1 ciało nisko nad ławką pod kątem `thDol`; obrót wokół barków jako sztywna linia (tułów + nogi proste), dłonie nieruchome. */
-export function dragonFlag(cw, { top = 43, thGora = 80, thDol = 24, dl = 70, dxBark = 14, dxDlon = 32 } = {}) {
-  const B = BODY(); const pad = v2().BENCH.padBack; const Sy = top + pad + 1.0; const Sx = -dl + dxBark; const L = D_PROSTA_NOGA; const G = (sg) => [Sx - dxDlon, top + 6, sg * 17];
+export function dragonFlag(cw, { top = 43, thGora = 80, thDol = 4, dl = 70, dxBark = 33, dxDlon = 3, zDlon = 16.5, GLOWA = -80, pole = [-0.3, 1, 0.2] } = {}) {
+  const B = BODY(); const pad = v2().BENCH.padBack; const Sy = top + pad + 1.0; const Sx = -dl + dxBark; const L = D_PROSTA_NOGA; const G = (sg) => [-dl + dxDlon, top - 3, sg * zDlon];
   const us = Array.from({ length: 9 }, (_, i) => i / 8);
   const fr = (u) => { const a = wygladzenie(u); const th = lerp(thGora, thDol, a); const c = [Math.cos(th * R), Math.sin(th * R)]; const P = [Sx + B.trunk * c[0], Sy + B.trunk * c[1]]; const A = [P[0] + L * c[0], P[1] + L * c[1]];
     const p = Math.atan2(-c[0], -c[1]) / R; const f = nogaZCelu(P, A, 'gora'); const sd = Math.atan2(A[1] - f.knee[1], A[0] - f.knee[0]) / R;
     const noga = (z) => ({ ankle: A, strona: 'gora', pod: Math.max(-90, Math.min(90, sd - 45)), z, rot: 10 });
-    return ramka({ u, miednica: P, p, glowa: -92, nogi: { R: noga(8), L: noga(-8) }, rece: { R: { g: G(1), pole: [0, 0.5, 1] }, L: { g: G(-1), pole: [0, 0.5, -1] } } }); };
+    return ramka({ u, miednica: P, p, glowa: GLOWA, nogi: { R: noga(8), L: noga(-8) }, rece: { R: { g: G(1), pole: [pole[0], pole[1], pole[2]] }, L: { g: G(-1), pole: [pole[0], pole[1], -pole[2]] } } }); };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [...SPRZET, { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: dl, siedzisko: 40 }], klatki: us.map(fr), bledy: [] });
 }
 
-/** Press Sit-Up (aplikacja, jefit): na ławce skośnej w dół (−20°), stopy zablokowane pod wałkami, sztanga przy klatce; siad i w jego trakcie wypchnięcie sztangi nad głowę.
+/** Press Sit-Up (źródło: opis ćwiczenia w aplikacji treningowej): na ławce skośnej w dół (−20°), stopy zablokowane pod wałkami, sztanga przy klatce; siad i w jego trakcie wypchnięcie sztangi nad głowę.
  * Sztanga idzie za dłońmi (podazaZaChwytem): chwyt na wysokości klatki → nad barkami. Tułów obraca się wokół bioder, kolana ugięte wynikają z położenia kostek pod wałkami. */
 export function pressSitUp(cw, { kat = -20, top = 60, p1 = -25, bend1 = 12, zH = 20 } = {}) {
   const B = BODY(); const hip = v2().benchHip(kat, top); const m = [hip[0], hip[1]]; const p0 = kat - 90; const A = [m[0] + v2().BENCH.footBack + 4, top + 7.4]; const us = Array.from({ length: 9 }, (_, i) => i / 8);
@@ -336,10 +337,10 @@ export const PRZYBLIZENIA = {
   'Alternate Heel Touchers': 'skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku',
   'Superman': 'przybliżenie: stopy grzbietem w dół, palce do tyłu (zgięcie podeszwowe 50°); nogi i ręce unoszą się razem, rysowane dwie fazy skrajne',
   'Tuck Crunch': 'przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)',
-  'Butt-Ups': 'przybliżenie: stopy na palcach podchodzą o 44 cm ku dłoniom podczas unoszenia bioder (przy nieruchomych łokciach i stopach odwrócone V nie powstaje: odległość bark–stopy jest stała); bark odchyla się do przodu o 22° nad łokciem',
+  'Butt-Ups': 'przybliżenie: odwrócone V kończy się z kątem w biodrze ok. 106°; bark obraca się wokół nieruchomego łokcia do tyłu o 38° (głębiej nie), stopy na palcach stoją w miejscu',
   'Press Sit-Up': 'przybliżenie: talerze sztangi rysowane w płaszczyźnie y–z, sztanga idzie za dłońmi (podazaZaChwytem); ławka −20°, stopy pod wałkami',
   'Otis-Up': 'przybliżenie: talerz rysowany zawsze w płaszczyźnie y–z, dłonie na obręczy po bokach',
-  'GHD Sit Up': 'przybliżenie: wałek nad kostkami (stopa pod nim), poduszka rysowana jako schemat ławki rzymskiej (kąt 15°), tułów odchylany tylko do poziomu (wyprost biodra do −17°)',
+  'GHD Sit Up': 'przybliżenie: wałek nad kostkami (stopa pod nim), poduszka rysowana jako schemat ławki rzymskiej (kąt 15°), tułów odchylany tylko do poziomu (wyprost biodra do −17°); miednica ślizga się po poduszce o 3 cm, by kolana prostowały się w siadzie (kostki stoją)',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
 };
 
