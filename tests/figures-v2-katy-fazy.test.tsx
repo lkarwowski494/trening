@@ -119,14 +119,9 @@ describe('dane: 64 ćwiczenia pięciu rodzin (logika)', () => {
   });
 });
 
-/** ZNANA WADA (wykryta 04.11.2026 przy R1 delt_raise Ś-2; NIE naprawiona w tej gałęzi, bo figure.ts należy do V2_WSPOLNE i zmiana unieważnia recenzje wszystkich rodzin):
- * dwa naprzemienne ćwiczenia z petla = cykl_lustro dostają z lib/figures/v2/figure.ts:104 (`walk: … || loopOf(spec) === 'cykl_lustro'`) i :202 (phasesFor → walkPhases) jedną fazę „Marsz” zamiast Unoszenie/Opuszczanie.
- * Zapadka poniżej czerwienieje, gdy wada zostanie naprawiona — wtedy usuń ten wyjątek, a pętla wyżej obejmie te ćwiczenia. */
-const WADA_CYKL_LUSTRO_NAPRZEMIENNE: Record<string, string> = { 'Alternating Deltoid Raise': 'Marsz', 'Car Drivers': 'Marsz' };
-
 describe('nazwy faz i licznik (logika)', () => {
-  test('zapadka znanej wady: naprzemienne cykl_lustro w delt_raise pokazują jeszcze „Marsz” (figure.ts:104, :202) — po naprawie usuń WADA_CYKL_LUSTRO_NAPRZEMIENNE', () => {
-    for (const [k, nazwa] of Object.entries(WADA_CYKL_LUSTRO_NAPRZEMIENNE)) { expect(KEYS.some(([f, kk]) => f === 'delt_raise' && kk === k)).toBe(true); expect([k, phasesFor(spec(k)).map(p => p.name)]).toEqual([k, [nazwa]]); }
+  test('naprzemienne cykl_lustro w delt_raise (Alternating Deltoid Raise, Car Drivers) mają fazy Unoszenie/Opuszczanie, nie „Marsz” (wada naprawiona w FW3)', () => {
+    for (const k of ['Alternating Deltoid Raise', 'Car Drivers']) { expect(KEYS.some(([f, kk]) => f === 'delt_raise' && kk === k)).toBe(true); const n = phasesFor(spec(k)).map(p => p.name); expect([k, n.includes('Marsz')]).toEqual([k, false]); expect([k, n]).toEqual([k, ['Unoszenie', 'Pauza', 'Opuszczanie', 'Pauza']]); }
   });
   test('nazwy faz per ćwiczenie: wznosy i szrugsy Unoszenie/Opuszczanie, rotacje Obrót/Powrót, przedramię Uginanie/Opuszczanie; wyjątki: rozsuwanie taśmy, ściąganie łopatek, nawracanie', () => {
     const exc: Record<string, [string, string]> = {
@@ -137,7 +132,7 @@ describe('nazwy faz i licznik (logika)', () => {
     for (const [f, k] of KEYS) { const n = phaseNames(spec(k)); expect([k, [n.first, n.second]]).toEqual([k, exc[k] ?? fam[f]]); }
   });
   test('ruch z opuszczaniem: pętla Nazwa 1 s · Pauza · Nazwa 2 s · Pauza (tempo ilustracyjne jak w podciąganiu); noszenie: jedna faza „Marsz” bez sekund i bez pauz', () => {
-    for (const [f, k] of KEYS.filter(([f, k]) => f !== 'carry' && !(k in WADA_CYKL_LUSTRO_NAPRZEMIENNE))) { const n = phaseNames(spec(k)); expect([k, phasesFor(spec(k)).map(p => [p.name, p.ms])]).toEqual([k, [[n.first, 1000], ['Pauza', 500], [n.second, 2000], ['Pauza', 500]]]); expect([f, spec(k).lowerFirst]).toEqual([f, false]); }
+    for (const [f, k] of KEYS.filter(([f, k]) => f !== 'carry')) { const n = phaseNames(spec(k)); expect([k, phasesFor(spec(k)).map(p => [p.name, p.ms])]).toEqual([k, [[n.first, 1000], ['Pauza', 500], [n.second, 2000], ['Pauza', 500]]]); expect([f, spec(k).lowerFirst]).toEqual([f, false]); }
     for (const [, k] of KEYS.filter(([f]) => f === 'carry')) { const ph = phasesFor(spec(k)); expect([k, ph]).toEqual([k, [{ name: 'Marsz', ms: loopLength(false), untimed: true }]]); expect(metricFor(k)).toMatch(/distance/); }
     expect(walkPhases()).toEqual([{ name: 'Marsz', ms: TEMPO.holdMs * 2 + TEMPO.downMs + TEMPO.upMs, untimed: true }]);
   });

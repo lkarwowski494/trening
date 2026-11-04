@@ -1,0 +1,88 @@
+# Etap 3 — lista (2 z 3 oraz 1 z 3)
+
+## 2 z 3 (41)
+- [A] High Knees — 2 z 3
+- [A] Jumping Jacks — 2 z 3
+- [A] Decline Crunch — 2 z 3
+- [A] Seated Barbell Twist — 2 z 3
+- [A] Bieg — 2 z 3
+- [B] Single Arm Cable Chest Press — 2 z 3 – uproszczenie (otwarte)
+- [B] Cable Fly (low to high) — komplet — praktyka (zastrzeżenie: S322 ≈ F3, recenzent oceni
+- [B] Decline Dumbbell Fly — 2 z 3
+- [B] Bent-Arm Barbell Pullover — setup, move: komplet – uproszczenie (część wspólna); mis: 2 
+- [B] Smith Machine Shoulder Press — komplet — praktyka (S częściowo, streszczenie — recenzent)
+- [B] Dip Machine — 2 z 3 — otwarte
+- [B] Standing Barbell Press Behind Neck — komplet — praktyka (S częściowo — recenzent; pytanie o odesł
+- [B] Single-Arm Push-Up — 2 z 3 — otwarte
+- [B] Plank Shoulder Taps — komplet — praktyka (R częściowo — recenzent)
+- [B] Bodyweight Triceps Extension — otwarte — definicja odmiany nieznana
+- [C] Hip Abduction — częściowo (setup 2 z 3; move komplet 3 warunkowo — R uproszc
+- [C] Curtsy Lunge — 2 z 3 (mis wprost R, M; wniosek z ruchu NIE wynika — curtsy.
+- [C] Reverse Nordic — 2 z 3
+- [C] Standing Leg Curl — 2 z 3 (M = uproszczenie: bez sprzętu)
+- [C] Standing Cable Leg Curl — 2 z 3 – uproszczenie (move/mis jak Standing Leg Curl: S masz
+- [C] Single Leg Press — 2 z 3
+- [C] Cossack Squat — 2 z 3 (setup); move komplet – uproszczenie (R guma); mis kom
+- [C] Barbell Side Split Squat — 2 z 3 (setup: sztanga tylko M); move i mis komplet – uproszc
+- [C] Crossover Reverse Lunge — 2 z 3 (tożsamość z Curtsy do potwierdzenia przez recenzenta)
+- [C] Elevated Back Lunge — 2 z 3
+- [C] Split Squat (linki) — 2 z 3 – uproszczenie (wariant sprzętu: linki); uchwyty linek
+- [C] Suspended Split Squat — setup komplet 3; move komplet – uproszczenie; mis kneeIn 2 z
+- [C] Cable Hip Abduction — 2 z 3 (F18 ≈ S14 — jedno źródło)
+- [C] Frog Pump — 2 z 3
+- [C] Machine Glute Kickback — move 2 z 3; setup [OTWARTE] (stojąc vs w klęku)
+- [D] High Cable Curl — 2 z 3
+- [D] Medicine Ball Slam — setup 2 z 3; mis wniosek
+- [D] Lying Close-Grip Bar Curl On High Pulley — 2 z 3
+- [D] Y Raise (hantle) — setup 2 z 3; move komplet 3 (S uproszczenie); mis 2 z 3
+- [D] Cable Reverse Fly — 2 z 3
+- [D] Cable Seated Lateral Raise — setup 2 z 3 (uproszczenie); move komplet – uproszczenie (do 
+- [D] Car Drivers — 2 z 3 – uproszczenie (wariant sprzętu: talerz)
+- [D] Reverse Plate Curls — 2 z 3 – uproszczenie (wariant sprzętu: talerz)
+- [D] Bottoms-Up Clean From The Hang Position — 2 z 3 – uproszczenie (faza zarzutu); chwyt dnem do góry [OTW
+- [D] Double Kettlebell Front Rack Carry — 2 z 3
+- [D] One-Arm Medicine Ball Slam — 2 z 3 – uproszczenie (do potwierdzenia przez recenzenta)
+
+## 1 z 3 (42)
+- [A] Reverse Hyperextension — brak (1 z 3)
+- [A] Treadmill Walking — brak (1 z 3)
+- [A] Cable Seated Crunch — brak (1 z 3)
+- [A] Crunch - Legs On Exercise Ball — brak (1 z 3)
+- [A] Dragon Flag — brak (1 z 3)
+- [A] Janda Sit-Up — brak (1 z 3)
+- [A] Oblique Crunches - On The Floor — brak (1 z 3)
+- [A] Hip Circles (Prone) — brak (1 z 3)
+- [A] Incline Walk (bieżnia) — brak (1 z 3)
+- [A] Kneeling Forearm Stretch — brak (1 z 3)
+- [A] Lying Neck Extension (talerz) — brak (1 z 3)
+- [A] Lying Neck Flexion (talerz) — brak (1 z 3)
+- [A] Neck Harness Extension — brak (1 z 3)
+- [B] Cable Fly (high to low) — 1 z 3 (+ częściowe) — otwarte
+- [B] Machine Pullover — brak (1 z 3, m nieczytane)
+- [B] Wide-Grip Decline Barbell Pullover — brak (1 z 3)
+- [B] Leverage Decline Chest Press — brak (1 z 3)
+- [B] Leverage Incline Chest Press — brak (1 z 3)
+- [B] Kettlebell Arnold Press — move, mis: komplet – uproszczenie (do potwierdzenia); setup:
+- [B] Push Press - Behind the Neck — brak (1 z 3)
+- [B] Clock Push-Up — brak (1 z 3)
+- [B] Standing Barbell Rollout — brak (1 z 3)
+- [B] Body-Up — brak (1 z 3)
+- [C] Barbell Side Split Squat — 2 z 3 (setup: sztanga tylko m); move i mis komplet – uproszc
+- [C] Single-Leg High Box Squat — brak (1 z 3)
+- [C] Lunge Pass Through — brak (1 z 3: m)
+- [C] Stability Ball Hip Bridge — setup 1 z 3 [otwarte]; move komplet – uproszczenie
+- [C] Kneeling Squat — brak (≤ 1 z 3: m nieczytane)
+- [C] Kneeling Jump Squat — brak (1 z 3: f)
+- [C] Frog Hops — brak (1 z 3: r16)
+- [C] Single-Leg Hop Progression — brak (r „skoki jednonóż w różnych kierunkach” nieczytane — ≤
+- [D] Lying Cable Curl — brak (1 z 3)
+- [D] Front Incline Dumbbell Raise — brak (1 z 3)
+- [D] Straight Raises on Incline Bench — brak (1 z 3)
+- [D] Dumbbell Lying Pronation — brak (najwyżej 1 z 3: m forearm-pronation)
+- [D] One-Arm Kettlebell Split Jerk — 1 z 3
+- [D] Muscle Up — 1 z 3
+- [D] Kneeling High Pulley Row — 1 z 3
+- [D] Leverage High Row — 1 z 3
+- [D] Sledgehammer Swings — 1 z 3
+- [D] Jefferson Squat — 1 z 3
+- [D] Tire Flip — 1 z 3 (setup, mis)

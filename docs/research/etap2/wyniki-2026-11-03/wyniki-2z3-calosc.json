@@ -1,0 +1,1134 @@
+[
+ {
+  "cwiczenie": "High Knees",
+  "paczka": "A",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup (tylko setup był brakujący)",
+  "odmiana": "catalog.json:8672, note „No equipment.” (8690); R i S = skip A w miejscu = bieg w miejscu z wysokim unoszeniem kolan",
+  "zrodla": [
+   {
+    "serwis": "R centrumrespo",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/skip-a-w-miejscu-z-rekami-pracujacymi/",
+    "cytat": "Pilnuj, żeby brzuch był napięty, a plecy proste!"
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/587/bieg-z-wysokim-unoszeniem-kolan-skip-a",
+    "cytat": "Wzrok skieruj przed siebie (nie patrz na nogi), plecy wyprostowane, ramiona ugięte."
+   }
+  ],
+  "uwaga": "„plecy proste” R+S; „ręce ugięte w łokciach” dosłownie tylko S (R „pracuj rękami” bez cytatu dosłownego) — w zdaniu zostawić część wspólną albo oznaczyć ręce jako jedno źródło. Źródła wg wyniki-A-calosc.json:237."
+ },
+ {
+  "cwiczenie": "Jumping Jacks",
+  "paczka": "A",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:8645, note „No equipment.” (8663)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/pajacyki",
+    "cytat": [
+     "Pozycja wyjściowa stojąca, z ramionami wzdłuż tułowia.",
+     "Ćwiczenie polega na wykonywaniu przeskoków nogami na boki wraz z uniesieniem ramion bokiem."
+    ]
+   },
+   {
+    "serwis": "R centrumrespo",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/jumping-jacks/",
+    "cytat": [
+     "Stań z kończynami górnymi wzdłuż ciała.",
+     "Na wdechu wykonaj dynamiczny podskok, odwodząc nogi w stawach biodrowych"
+    ]
+   }
+  ],
+  "uwaga": "„ręce nad głowę” nie ma w żadnym zapisanym cytacie (F: „uniesieniem ramion bokiem”) — zdanie move bez „nad głowę” albo potwierdzić cytatem. Mis (lądowanie) — R wprost, poza zakresem przeglądu. Źródło: wyniki-A-calosc.json:267."
+ },
+ {
+  "cwiczenie": "Decline Crunch",
+  "paczka": "A",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup",
+  "odmiana": "catalog.json:7863, requires bench.decline, note „Decline bench with foot pads.” (7886)",
+  "zrodla": [
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/decline-crunch/",
+    "cytat": [
+     "Place your feet under the pads so your lower body stays stable without excessive pulling.",
+     "Keep your hands across your chest, beside your head, or lightly near the temples. Do not pull the neck."
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/310/sklony-w-lezeniu-glowa-w-dol",
+    "cytat": [
+     "Nogi zaprzyj o poduszki znajdujące się na końcu ławki.",
+     "Dłonie trzymaj na skroniach lub skrzyżuj ręce na klatce piersiowej."
+    ]
+   }
+  ],
+  "uwaga": "S opisuje ruch do pełnego siadu (inny zakres) — ustawienie zgodne, zakres ruchu nie wchodzi z S. Źródło: wyniki-A-czesc2-b.md:26."
+ },
+ {
+  "cwiczenie": "Seated Barbell Twist",
+  "paczka": "A",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:25118, note „Seated on a bench end, light barbell across the upper back, rotating side to side.” (25148)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (A. Drężek, 2017-02-23)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/treningi/jak-schudnac-z-brzucha-jak-wzmocnic-brzuch",
+    "miejsce": "1. Zbiór… / Skręty tułowia ze sztangą stojąc",
+    "cytat": [
+     "Ćwiczenie to można wykonywać na siedząco lub stojąco. Gryf prosty należy trzymać na mięśniach czworobocznych, czyli na karku.",
+     "Kolejnym krokiem jest wykonywanie naprzemiennych skrętów w lewą stronę, a następnie w prawą."
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/134/skret-tulowia-z-kijem-siedzac",
+    "miejsce": "Poprawne wykonanie ćwiczenia",
+    "cytat": [
+     "Usiądź stabilnie na piłce lub ławce. Złap gryf nachwytem i umieść go na górnej części mięśni czworobocznych.",
+     "Następnie zrób wydech i wykonaj rotację tułowia w drugą stronę."
+    ]
+   }
+  ],
+  "uwaga": "F opisuje głównie wersję stojącą (siedząc dopuszczona wprost); S ma w tytule „kij”, w treści „gryf” — recenzent potwierdza, że to ta sama odmiana (lekka sztanga). Źródło: wyniki-A-calosc.json:968."
+ },
+ {
+  "cwiczenie": "Bieg",
+  "paczka": "A",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup (tylko setup był brakujący)",
+  "odmiana": "catalog.json:3679, note „Bieżnia albo bieg na zewnątrz…” (3686)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (S. Bednarczyk, 2015-11-16)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/treningi/popraw-swoj-biegowy-styl",
+    "miejsce": "Praca ramion",
+    "cytat": [
+     "Dłonie powinny być ułożone z kolei tak, jakby podtrzymywały piórko (nigdy nie powinny być zaciśnięte w pięść).",
+     "zwróćmy uwagę na nasze barki, które w czasie biegu należy rozluźnić"
+    ],
+    "odczyt": "03.11.2026 (cytat potwierdzony w tym przeglądzie; wcześniej tylko parafraza)"
+   },
+   {
+    "serwis": "R centrumrespo (Zespół Respo, 01.06.2023, akt. 19.01.2026)",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/trening/moda-na-bieganie/",
+    "miejsce": "Jaka jest prawidłowa technika biegania?",
+    "cytat": [
+     "nie unoś barków, nie napinaj ich",
+     "nie zaciskaj pięści"
+    ],
+    "odczyt": "03.11.2026 (cytat potwierdzony w tym przeglądzie)"
+   }
+  ],
+  "uwaga": "Zdanie „Barki rozluźnione, dłonie luźne, bez zaciskania pięści.” — oba elementy w obu źródłach. Ustawienie tułowia rozbieżne (F „Tułów i głowa prosto.”, R „pochyl się lekko do przodu, zaczynając już od kostek”) — nie wchodzi."
+ },
+ {
+  "cwiczenie": "Single Arm Cable Chest Press",
+  "paczka": "B",
+  "wynik": "rozbieżność do recenzji",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:4313, note „One handle at chest height, same height rule as Wyciskanie na linkach (stojąc).” (4342). Źródła opisują wersję oburącz → „uproszczenie” (jednorącz), wymaga potwierdzenia recenzenta niezależnego",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/na-klatke-piersiowa/wyciskanie-stojac-z-wykorzystaniem-wyciagu-lub-bramy",
+    "cytat": [
+     "Ustaw wyciągi na wysokości klatki piersiowej.",
+     "Jedną nogą wyjdź naprzód w celu lepszej stabilizacji. Utrzymuj proste plecy.",
+     "Utrzymując prawidłową pozycję wyjściową, weź wdech, a następnie wykonaj mocny wyprost ramion"
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/standing-cable-chest-press/",
+    "cytat": [
+     "Position both cable pulleys at roughly mid-chest height (start here, then fine-tune).",
+     "Use a staggered stance (one foot slightly forward) for balance and anti-rotation stability.",
+     "Drive both handles forward in a smooth path, ending with hands in front of the chest."
+    ],
+    "odczyt": "03.11.2026 (cytaty staggered stance i move dodane w tym przeglądzie)"
+   }
+  ],
+  "uwaga": "Wg nowej zasady źródła bazy są kompletne (setup i move: F+M). Brakuje tylko potwierdzenia recenzenta, że jednorącz to ten sam ruch. „Tyłem do wyciągu” nie ma dosłownie w żadnym źródle (M: „Take 1–2 steps forward so the cables have tension at the start.”) — w zdaniu lepiej „zrób krok w przód od wyciągu”. M podaje „near lockout”, nie pełny wyprost — zdanie move bez „do pełnego wyprostu”."
+ },
+ {
+  "cwiczenie": "Cable Fly (low to high)",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:4141, note „Two handles from low pulleys…” (4169)",
+  "zrodla": [
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/cable-low-fly-low-to-high-cable-fly/",
+    "cytat": [
+     "Stand centered between the columns with a staggered stance for balance.",
+     "Move the handles in a wide arc from low & wide to upward toward upper-chest level."
+    ]
+   },
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/klatka-piersiowa/rozpietki-z-wykorzystaniem-wyciagu-dolnego",
+    "cytat": [
+     "Ramiona rozłożone i lekko zgięte w łokciach. Rączki wyciągu dolnego w dłoniach.",
+     "przyciągnij do siebie ramiona, tak aby rączki wyciągu spotkały się ze sobą na wysokości klatki piersiowej."
+    ]
+   }
+  ],
+  "uwaga": "Zastrzeżenie S322 ≈ F3 (możliwa kopia) przestaje mieć znaczenie: M i F są niezależne i wystarczają. S nie jest liczony. Źródło: wyniki-B-calosc.json:416."
+ },
+ {
+  "cwiczenie": "Decline Dumbbell Fly",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:9620, note „Dumbbell pair on a decline bench.” (9631)",
+  "zrodla": [
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/330/rozpietki-ze-sztangielkami-lezac-na-lawce-ujemnej",
+    "cytat": [
+     "Połóż się stabilnie na ławce ujemnej",
+     "odwiedź ramiona na boki (lekko uginając ramiona w łokciach)."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/dumbbell-decline-fly/",
+    "cytat": [
+     "Lock in your lower body: Secure your feet under the pads and brace your core.",
+     "Start position: Hold dumbbells above the lower chest line with a neutral grip (palms facing).",
+     "Breathe in and lower: Open the arms in a wide arc, lowering the dumbbells slowly (2–4 seconds).",
+     "Drive the squeeze: Exhale and bring the dumbbells back up and inward along the same arc."
+    ],
+    "odczyt": "03.11.2026 (wcześniej streszczenie; cytaty potwierdzone)"
+   }
+  ],
+  "uwaga": "„Hantle nad klatką” dosłownie tylko M; „łokcie lekko ugięte” S+M (M: „small bend”, liczba stopni pominięta). Liczby czasu z M nie wchodzą."
+ },
+ {
+  "cwiczenie": "Bent-Arm Barbell Pullover",
+  "paczka": "B",
+  "wynik": "rozbieżność do recenzji",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:11163, note „Lying on a flat bench, bar taken behind the head with bent elbows; EZ bar also common.” (11197)",
+  "zrodla": [
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/barbell-bent-arm-pullover/",
+    "cytat": [
+     "Lie flat on a bench: Position your upper back, head, and hips securely on the bench with both feet planted on the floor.",
+     "Move the bar backward and down behind your head in a controlled semicircle, keeping the elbows fixed."
+    ]
+   },
+   {
+    "serwis": "R centrumrespo (hantel)",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/dumbbell-chest-pullover/",
+    "cytat": [
+     "Połóż się na plecach na ławce płaskiej.",
+     "Nie zmieniaj kąta zgięcia stawów łokciowych."
+    ]
+   }
+  ],
+  "uwaga": "Tylko M opisuje sztangę (tę samą odmianę). R i S to pullover z hantlem → drugie źródło tylko jako „uproszczenie” (wariant sprzętu), które wymaga potwierdzenia recenzenta. S (hantel) każe rozchodzić się łokciom na zewnątrz — przeczy stałemu kątowi z M i R. Move R to cytat o łokciach, nie o torze łukiem za głowę. Do recenzji: uproszczenie hantel→sztanga i sprzeczność S."
+ },
+ {
+  "cwiczenie": "Smith Machine Shoulder Press",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:5459, note „Seated under a Smith machine…” (5492)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/wyciskanie-sztangi-na-maszynie-smith-siedzac",
+    "cytat": [
+     "Pozycja siedząca na ławce, plecy dociśnięte do oparcia.",
+     "Następnie powolnym ruchem opuszczaj sztangę, uginając ramiona w łokciach"
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/smith-machine-seated-shoulder-press/",
+    "cytat": [
+     "Use an upright or near-upright backrest so your torso stays tall during the press.",
+     "Drive the bar upward along the fixed track until your arms are nearly straight overhead."
+    ]
+   }
+  ],
+  "uwaga": "S (atlas.kulturystyka) niepotrzebny — F+M wystarczą. Fragment zdania setup „chwyć sztangę nachwytem nieco szerzej niż barki” nie ma zapisanego cytatu dosłownego w F ani M → usunąć ze zdania albo potwierdzić cytatem. Źródło: wyniki-B-calosc.json:943."
+ },
+ {
+  "cwiczenie": "Dip Machine",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:18643, note „Seated dip machine…” (18672); S9 i M11 to wersja siedząc",
+  "zrodla": [
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/265/pompki-na-maszynie",
+    "cytat": [
+     "Złap rączki maszyny chwytem neutralnym.",
+     "rozpocznij ruch prostowania ramion w stawach łokciowych, aż do momentu pełnego napięcia trójgłowych ramion."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/lever-seated-dip/",
+    "cytat": [
+     "Place your back firmly against the pad",
+     "Hold them securely with neutral wrists and your elbows bent.",
+     "Extend your elbows smoothly while keeping your upper arms close to your sides.",
+     "Return the handles along the same path until your elbows are bent again and the triceps are stretched under control."
+    ],
+    "odczyt": "03.11.2026 (cytaty setup potwierdzone)"
+   }
+  ],
+  "uwaga": "„Plecy przy oparciu” dosłownie tylko M; chwyt neutralny S+M; prostowanie łokci S+M; „ramiona blisko tułowia” tylko M."
+ },
+ {
+  "cwiczenie": "Standing Barbell Press Behind Neck",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:13005, note „Bar starts on the upper back, so a rack is needed…” (13040)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-dla-kobiet/barki/wyciskanie-sztangi-zza-glowy-stojac",
+    "cytat": [
+     "Stań prosto. Zarzuć sztangę na barki.",
+     "Opuszczaj powoli sztangę za głowę, wykonując wydech."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/standing-behind-the-neck-press/",
+    "cytat": [
+     "Take a slightly wider-than-shoulder-width grip so the shoulders can move more naturally through the press.",
+     "Lower the bar only as far as you can while maintaining good posture, shoulder comfort, and bar control."
+    ]
+   }
+  ],
+  "uwaga": "Chwyt „nieco szerzej niż barki” — jedno źródło (M). Głębokość opuszczania nie wchodzi (różna, wiązana ze zdrowiem). Pytanie produktowe/zdrowotne z wyniki-B-czesc3.md:72 (odesłanie do specjalisty przy ćwiczeniu uznawanym za obciążające barki) pozostaje do decyzji koordynatora i recenzenta — nie zależy od liczby źródeł."
+ },
+ {
+  "cwiczenie": "Single-Arm Push-Up",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:10588, note „Floor, one arm, wide feet.” (10601)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2016-01-19)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/domowe/pompki-jednoracz",
+    "cytat": [
+     "Nogi wyprostowane przez cały czas, rozstawione nieco szerzej niż przy klasycznych pompkach",
+     "wykonaj płynny wdech, zginając łokieć i opuszczając klatkę piersiową do podłoża",
+     "Wróć do pozycji wyjściowej, prostując ramię. Następuje wydech."
+    ],
+    "odczyt": "03.11.2026 (cytaty move potwierdzone)"
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/single-arm-push-up/",
+    "cytat": [
+     "Step the feet wider than a normal push-up to improve balance and reduce unwanted rotation.",
+     "Place it behind your back or on your hip (no pushing from that side).",
+     "Bend the working elbow and descend slowly (2–4 seconds).",
+     "Drive the floor away and exhale near the top."
+    ],
+    "odczyt": "03.11.2026"
+   }
+  ],
+  "uwaga": "Druga ręka: F „za plecy bądź … wzdłuż tułowia”, M „behind your back or on your hip” — część wspólna „za plecami”."
+ },
+ {
+  "cwiczenie": "Plank Shoulder Taps",
+  "paczka": "B",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:7791, note „Floor.” (7813)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/dotykanie-przeciwnych-barkow-w-podporze",
+    "cytat": [
+     "Dłonie ustawione pod barkami, stopy na szerokość barków.",
+     "Podczas ćwiczenia nie wykonuj żadnych dodatkowych ruchów tułowiem ani biodrami,"
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/plank-shoulder-tap/",
+    "cytat": [
+     "Start in a high plank: Place both hands on the floor under your shoulders.",
+     "Tap the opposite shoulder: Touch the opposite shoulder with control, not speed."
+    ]
+   }
+  ],
+  "uwaga": "R (częściowo, „pupa wysoko” sprzeczne z linią ciała) niepotrzebny — F+M wystarczą. Źródło: wyniki-B-calosc.json:1821."
+ },
+ {
+  "cwiczenie": "Bodyweight Triceps Extension",
+  "paczka": "B",
+  "wynik": "nadal brak — brak źródeł dla odmiany z katalogu (drążek w stojaku/Smith na wysokości klatki); kandydaci R/F to TRX, M to wersja z podporu",
+  "odmiana": "catalog.json:17415, fedb „Body Tricep Press”, requires barbell/smith + rack/smith, note „Leaning on a bar fixed in a rack (or Smith) at chest height; bodyweight skullcrusher.” (17445). Wcześniejsze „definicja odmiany nieznana” — katalog ją podaje.",
+  "zrodla": [],
+  "uwaga": "TRX → drążek byłby „uproszczeniem” (wariant sprzętu) tylko po potwierdzeniu recenzenta; F TRX i M nieprzeczytane. Fedb (sz. 5) liczy się najwyżej jako jedno. Wymaga nowej rundy (poza zakresem tego przeglądu)."
+ },
+ {
+  "cwiczenie": "Hip Abduction",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:2988, requires hip_abductor_adductor (maszyna siedząc); F i S = odwodzenie nóg na maszynie",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nog-na-maszynie",
+    "cytat": [
+     "Usiądź i oprzyj plecy na maszynie.",
+     "W końcowym momencie utrzymaj pozycję przez sekundę."
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/384/odwodzenie-nog-na-maszynie---wariant-a",
+    "cytat": [
+     "Zaprzyj nogi o poduszki maszyny.",
+     "W momencie maksymalnego napięcia mięśni przytrzymaj ruch"
+    ]
+   }
+  ],
+  "uwaga": "R (guma, uproszczenie) niepotrzebny. Elementy setup rozłożone: „oprzyj plecy” F, „nogi do poduszek” S, „złap za uchwyty” bez cytatu → usunąć ze zdania albo potwierdzić. „Rozsuń nogi na boki” — oba źródła tylko w nazwie ćwiczenia (odwodzenie), dosłownego zdania o rozsuwaniu nie zapisano. Źródło: wyniki-C-calosc.json:3."
+ },
+ {
+  "cwiczenie": "Curtsy Lunge",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "mis (kneeIn, heel) — jedyne pozycje „2 z 3”",
+  "odmiana": "catalog.json:6482, equipment hantle, note „R3: often unloaded.” (6507); M = Dumbbell Curtsey Lunge, R = bez ciężaru (dopuszczone w note)",
+  "zrodla": [
+   {
+    "serwis": "R centrumrespo",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/curtsy-lunge/",
+    "cytat": [
+     "Pilnuj tego, aby kolano kończyny wykrocznej (z przodu) znajdowało się nad stawem skokowym (nie uciekało do środka).",
+     "Unikaj odrywania pięty czy palców od podłoża."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/",
+    "cytat": [
+     "Keep the front knee controlled: Avoid letting it cave sharply inward as you descend.",
+     "Keep the front foot grounded: Press through the front heel and midfoot while maintaining balance."
+    ]
+   }
+  ],
+  "uwaga": "Mis wprost w 2 niezależnych źródłach — reguła etapu 2 dopuszcza mis ze źródeł. Źródło: wyniki-C-czesc2.md:77–78, wyniki-C-czesc3.md:11."
+ },
+ {
+  "cwiczenie": "Reverse Nordic",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:6865, note „Kneeling, no equipment; mat for knees.” (6886)",
+  "zrodla": [
+   {
+    "serwis": "R centrumrespo",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/reverse-nordic-curl/",
+    "cytat": [
+     "Kończyny górne spleć na klatce piersiowej.",
+     "W trakcie ruchu nie zginaj stawów biodrowych, utrzymaj napięcie mięśni pośladkowych i brzucha."
+    ]
+   },
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/odwrocone-nordyckie-opady",
+    "cytat": [
+     "Ramiona ustawione na biodrach lub klatce piersiowej.",
+     "Utrzymując biodra w pełnym wyproście, weź wdech i rozpocznij powolne odchylanie ciała."
+    ]
+   }
+  ],
+  "uwaga": "„Uklęknij” bez zapisanego cytatu dosłownego (wynika z nazwy i katalogu). Źródło: wyniki-C-calosc.json:700."
+ },
+ {
+  "cwiczenie": "Standing Leg Curl",
+  "paczka": "C",
+  "wynik": "nadal brak — drugiego źródła dla odmiany maszynowej (setup: wałek, uchwyty tylko S); M opisuje wersję bez sprzętu = uproszczenie do recenzji",
+  "odmiana": "catalog.json:23631, note „Standing single-leg curl machine…” (23656)",
+  "zrodla": [
+   {
+    "serwis": "S potreningu (maszyna)",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/579/uginanie-nogi-na-maszynie-w-pozycji-stojacej",
+    "cytat": [
+     "Ustaw pozycję maszyny w taki sposób, aby dolna część łydki (tuż nad piętą) znalazła się na ramieniu dźwigni.",
+     "Biorąc wdech ugnij nogę w stawie kolanowym do momentu maksymalnego napięcia mięśni kulszowo-goleniowych."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle (bez sprzętu — inna odmiana)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/standing-single-leg-curl/",
+    "cytat": [
+     "Stand tall: Face a wall, chair, or stable surface and place your hands lightly on it for balance.",
+     "Bend one knee: Curl the working heel upward toward your glutes."
+    ]
+   }
+  ],
+  "uwaga": "Move (zgięcie kolana, pięta do pośladka) jest ten sam w S i M → move „komplet – uproszczenie” po potwierdzeniu recenzenta. Setup maszynowy stoi na jednym źródle."
+ },
+ {
+  "cwiczenie": "Standing Cable Leg Curl",
+  "paczka": "C",
+  "wynik": "nadal brak — setup: 0 źródeł; move tylko jako uproszczenie z Standing Leg Curl (S maszyna, M bez sprzętu)",
+  "odmiana": "catalog.json:6936, equipment linki",
+  "zrodla": [],
+  "uwaga": "Źródło: wyniki-C-calosc.json:831. Potrzebna nowa runda dla ustawienia przy wyciągu (opaska na kostce)."
+ },
+ {
+  "cwiczenie": "Single Leg Press",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:6332, note „Leg press one leg at a time.” (6358); F suwnica jednonóż, M maszyna pozioma (lever horizontal) — ta sama klasa",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/wypychanie-suwnicy-jednonoz",
+    "cytat": [
+     "Jedna noga na platformie, ustawiona w linii biodra.",
+     "Plecy cały czas przylegają do oparcia.",
+     "Wykonaj maksymalne zgięcie bez odrywania odcinka lędźwiowego od oparcia."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/lever-horizontal-one-leg-press/",
+    "cytat": [
+     "Sit firmly into the machine: Keep your back and hips supported against the pad.",
+     "Reach near full extension: Extend the leg without snapping or locking the knee hard at the top."
+    ]
+   }
+  ],
+  "uwaga": "„Plecy przy oparciu” F+M; „jedna stopa na platformie” F (M w nazwie); „trzymaj uchwyty” bez cytatu → usunąć albo potwierdzić. Recenzent: suwnica skośna vs pozioma — dla zdań bez kąta nie ma różnicy."
+ },
+ {
+  "cwiczenie": "Cossack Squat",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:6518, note „Bodyweight; can hold a weight.” (6540); F i M bez ciężaru",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-bez-ciezaru",
+    "cytat": [
+     "Pozycja rozkroczna, szerzej niż szerokość barków.",
+     "Następnie rozpocznij przysiad, przenosząc ciężar ciała na jedną nogę."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/bodyweight-cossack-squat/",
+    "cytat": [
+     "Stand wide: Place your feet much wider than shoulder-width.",
+     "Keep the opposite leg straight: Let the straight leg create an inner-thigh stretch without forcing the range."
+    ]
+   }
+  ],
+  "uwaga": "Wcześniejsze „move komplet – uproszczenie” zależało od R (guma); F+M (ta sama odmiana) wystarczają bez uproszczenia. „Stopy lekko na zewnątrz” bez zapisanego cytatu → usunąć albo potwierdzić."
+ },
+ {
+  "cwiczenie": "Barbell Side Split Squat",
+  "paczka": "C",
+  "wynik": "rozbieżność do recenzji",
+  "odmiana": "catalog.json:19400, note „Wide stance, lowering to the side of the angled lead foot with the bar on the back; rack required…” (19434)",
+  "zrodla": [
+   {
+    "serwis": "M maniacmuscle (sztanga)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/barbell-side-split-squat/",
+    "cytat": [
+     "Place the bar across your upper traps like a back squat.",
+     "Bend one knee while allowing the hips to travel toward that leg."
+    ]
+   },
+   {
+    "serwis": "F fabrykasily (kozak z ciężarem przed klatką)",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/kozak-squat-z-ciezarem",
+    "cytat": [
+     "Pozycja rozkroczna, szerzej niż szerokość barków.",
+     "Następnie rozpocznij przysiad, przenosząc ciężar ciała na jedną nogę."
+    ]
+   }
+  ],
+  "uwaga": "Tylko M opisuje tę odmianę (sztanga na plecach). F to przysiad kozacki z ciężarem z przodu = uproszczenie wariantu sprzętu; recenzent musi też ocenić, czy „side split squat” (stopa prowadząca ustawiona skośnie wg katalogu) to ten sam ruch co przysiad kozacki. Bez tego setup ze sztangą = jedno źródło."
+ },
+ {
+  "cwiczenie": "Crossover Reverse Lunge",
+  "paczka": "C",
+  "wynik": "rozbieżność do recenzji — odmiana źródeł ≠ katalog",
+  "odmiana": "catalog.json:26052, note „Bodyweight reverse lunge with a torso rotation; dynamic warm-up drill.” (26073)",
+  "zrodla": [
+   {
+    "serwis": "R centrumrespo (Curtsy lunge)",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/curtsy-lunge/",
+    "cytat": [
+     "Stań ze stopami ustawionymi na szerokość bioder.",
+     "Wykonaj zakrok skrzyżny, kierując stopę w tył i do środka."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle (Dumbbell Curtsey Lunge)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/dumbbell-curtsey-lunge/",
+    "cytat": [
+     "Stand tall: Place your feet about hip-width apart with your chest lifted and core lightly braced.",
+     "Step diagonally back: Move one leg behind and across the standing leg, like a controlled curtsey position."
+    ]
+   }
+  ],
+  "uwaga": "Liczbowo 2 niezależne źródła, ale oba opisują Curtsy Lunge bez rotacji tułowia. Katalog definiuje Crossover Reverse Lunge jako zakrok z rotacją tułowia (ćwiczenie rozgrzewkowe) — rotacji nie opisuje żadne z liczonych źródeł. Wcześniejszy wynik zakładał tożsamość z Curtsy; katalog jej przeczy. Do decyzji: tożsamość (wtedy nazwa/note katalogu do korekty) albo nowa runda dla wersji z rotacją."
+ },
+ {
+  "cwiczenie": "Elevated Back Lunge",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady (uproszczenie F: bez ciężaru — recenzent)",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:19541, note „Deficit reverse lunge from a low platform … with the bar on the back.” (19578); M sztanga = ta sama odmiana, F bez ciężaru = wariant sprzętu",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2020-03-31)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/reverse-drop-lunges",
+    "cytat": [
+     "Pozycja stojąca na podwyższeniu.",
+     "wykonaj zakrok jedną nogą do tyłu. Noga wykroczna pozostaje w miejscu."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/barbell-deficit-reverse-lunge/",
+    "cytat": [
+     "Stand tall: Place both feet on the platform or keep the working foot elevated, depending on your setup.",
+     "Step backward: Move one leg behind you in a controlled reverse-lunge step."
+    ]
+   }
+  ],
+  "uwaga": "Zdania setup/move nie wspominają sztangi, więc różnica sprzętu ich nie dotyczy; recenzent potwierdza uproszczenie. „Tylne kolano tuż nad podłogą” bez zapisanego cytatu w tym wpisie → sprawdzić albo usunąć."
+ },
+ {
+  "cwiczenie": "Split Squat (linki)",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady – uproszczenie (wariant sprzętu: linki; recenzent); fragment o uchwytach linek bez źródła",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:6406, note „Handle in each hand from two low cables.” (6435); F bez ciężaru, M hantle — oba warianty sprzętu",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-wykroczny",
+    "cytat": [
+     "Pozycja wykroczna, nogi wyprostowane, stopa zakroczna ustawiona w pozycji na palcach.",
+     "Ruch kontynuuj do momentu, aż kolano nogi zakrocznej znajdzie się tuż nad podłogą"
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle (hantle)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/dumbbell-split-squat/",
+    "cytat": [
+     "Step one foot forward and the other foot back.",
+     "Stop when your rear knee is close to the floor or when you reach your comfortable depth."
+    ]
+   }
+  ],
+  "uwaga": "„W dłoniach uchwyty linek z wyciągu dolnego” — [OTWARTE], żadne źródło; wg zasady wariantu sprzętu wolno to zdanie oprzeć na katalogu tylko po decyzji recenzenta. „Tylna stopa na palcach” tylko F."
+ },
+ {
+  "cwiczenie": "Suspended Split Squat",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:20020, note „Rear foot in a suspension-trainer strap.” (20049)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2018-02-27)",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/czworoglowe-uda/przysiad-bulgarski-z-trx",
+    "cytat": [
+     "Jedna noga uniesiona i umieszczona w uchwycie taśm.",
+     "wykonując przysiad tak, aby kolano nogi z przodu nie było nadmiernie wysunięte.",
+     "Stabilnie i płynnie wróć do pozycji wyjściowej."
+    ],
+    "odczyt": "03.11.2026 (cytat zejścia dodany w tym przeglądzie)"
+   },
+   {
+    "serwis": "M maniacmuscle",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/suspended-split-squat/",
+    "cytat": [
+     "Place the rear foot: Put the top of your rear foot or ankle into the strap cradle.",
+     "Lower under control: Bend the front knee and hip while allowing the rear knee to travel downward behind you."
+    ]
+   }
+  ],
+  "uwaga": "Wcześniejsze „move – uproszczenie” zbędne: F i M opisują tę samą odmianę (TRX). „Stań tyłem do taśm” — F „Pozycja stojąca około 50 cm przed taśmami.” (liczba pominięta); M bez zapisanego cytatu. S (artykuł) niepotrzebny."
+ },
+ {
+  "cwiczenie": "Cable Hip Abduction",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:7276, note „Standing, ankle strap on a low pulley…” (7302)",
+  "zrodla": [
+   {
+    "serwis": "R centrumrespo",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/cable-kick-side/",
+    "cytat": [
+     "Stań na stepie bokiem do wyciągu dolnego.",
+     "Ruch ma zachodzić w stawie biodrowym kończyny dolnej, nie przechylaj całego ciała w bok."
+    ]
+   },
+   {
+    "serwis": "F fabrykasily (≈ S14, liczone razem jako jedno)",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-bok-z-wykorzystaniem-linki-wyciagu-dolnego",
+    "cytat": [
+     "Stań przy wyciągu dolnym i przymocuj na wysokości kostki opaskę z linką wyciągu.",
+     "Ruch odwodzenia odbywa się tylko w stawie biodrowym, a nie kolanowym."
+    ]
+   }
+  ],
+  "uwaga": "R i F (z kopią S) to 2 niezależne → wystarcza. R stoi na stepie — w zdaniu bez stepu. „Noga dalsza od wyciągu” wynika z kierunku odwodzenia, bez dosłownego cytatu (wcześniej „strona kostki do sprawdzenia”)."
+ },
+ {
+  "cwiczenie": "Frog Pump",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady – uproszczenie (R z gumą mini; recenzent)",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:7054, note „Floor; a dumbbell on the hips is optional.” (7075); F na podłodze bez sprzętu = ta sama odmiana, R z gumą = wariant sprzętu",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (frog hip thrust, leżenie tyłem)",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/frog-hip-thrust",
+    "cytat": [
+     "Leżenie tyłem, nogi ugięte w kolanach odwiedzione na zewnątrz, stopy skierowane do siebie.",
+     "Utrzymując prawidłową pozycję ciała, weź wdech i zdecydowanym ruchem unieś biodra, lekko rozpychając kolana na zewnątrz."
+    ]
+   },
+   {
+    "serwis": "R centrumrespo (z gumą mini)",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/frog-pump-with-mini-band/",
+    "cytat": [
+     "Połóż się na plecach, z kończynami górnymi wzdłuż ciała.",
+     "Rozciągnij gumę, kierując stawy kolanowe na zewnątrz, napnij mięśnie brzucha i z wydechem wypchnij biodra ku górze."
+    ]
+   }
+  ],
+  "uwaga": "„Kolana, biodra i barki w jednej linii” bez zapisanego cytatu → usunąć albo potwierdzić. „Stopy blisko pośladków” bez cytatu."
+ },
+ {
+  "cwiczenie": "Machine Glute Kickback",
+  "paczka": "C",
+  "wynik": "komplet wg nowej zasady dla części wspólnej; stojąc vs w klęku — rozbieżność do recenzji (z rysunkiem)",
+  "zakres": "setup (część wspólna), move",
+  "odmiana": "catalog.json:9038, note pusty (9061) — katalog nie rozstrzyga stojąc/w klęku",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2022-02-18)",
+    "szczebel": 5,
+    "url": "https://fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/odwodzenie-nogi-w-tyl-na-maszynie",
+    "cytat": [
+     "Przedramiona oprzyj przodem o podpórkę. Plecy utrzymuj proste.",
+     "Poduszkę maszyny umieść w zgięciu kolanowym nogi ćwiczonej.",
+     "Drugą nogę pozostaw na ziemi.",
+     "wraz z wydechem powietrza wykonaj odwodzenie nogi umieszczonej pod poduszką maszyny."
+    ],
+    "odczyt": "03.11.2026"
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/380/odwodzenie-nogi-w-tyl-na-maszynie---wariant-a",
+    "cytat": [
+     "Wykonaj klęk podparty na maszynie.",
+     "Przedramiona oprzyj o podpórkę, następnie chwyć uchwyty.",
+     "Poduszkę maszyny umieść w zgięciu kolanowym nogi ćwiczonej.",
+     "Biorąc wdech wykonaj ruch odwodzenia nogi wolnej w tył."
+    ],
+    "odczyt": "03.11.2026 (cytat ruchu potwierdzony — wcześniej streszczenie)"
+   }
+  ],
+  "uwaga": "Część wspólna setup: przedramiona na podpórce, poduszka w zgięciu kolana ćwiczonej nogi (F+S dosłownie). Różnica: F — druga noga na ziemi (stojąc), S — klęk podparty. Zdanie bez „stojąc/w klęku” albo recenzent wybiera wg rysunku."
+ },
+ {
+  "cwiczenie": "High Cable Curl",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:5698, note „Arms out to the sides between two high pulleys.” (5726)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2015-12-22)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/jednoczesne-zginanie-przedramion-stojac-z-wykorzystaniem",
+    "cytat": [
+     "Ramiona wyciągnięte, uchwyty wyciągu trzymane podchwytem.",
+     "wykonaj mocne zgięcie przedramion w pełnym zakresie ruchu"
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/291/uginanie-przedramion-na-wyciagu-gornym-stojac-w-bramie",
+    "cytat": [
+     "Stań w lekkim rozkroku pomiędzy linkami wyciągów górnych.",
+     "Biorąc wdech wykonaj ruch uginania przedramion."
+    ]
+   }
+  ],
+  "uwaga": "„Ręce w bok” — F „Ramiona wyciągnięte” (kierunek bez słowa „w bok”) + katalog; S nie mówi wprost. Źródło: wyniki-D-calosc.json:3."
+ },
+ {
+  "cwiczenie": "Medicine Ball Slam",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup (tylko setup był „2 z 3”)",
+  "odmiana": "catalog.json:3888",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2016-03-30)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/crossfit/slam-ball-uderzenia-pilka",
+    "cytat": [
+     "Pozycja stojąca, nogi rozstawione na szerokość barków.",
+     "Piłka lekarska między nogami."
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/crossfit/535/ball-slams",
+    "cytat": [
+     "Stań w lekkim rozkroku.",
+     "Chwyć piłkę lekarską, a następnie unieś ją na wyprostowanych ramionach nad głowę."
+    ]
+   }
+  ],
+  "uwaga": "Rozstaw: F „na szerokość barków”, S „lekki rozkrok” — część wspólna. Mis (wniosek) poza zakresem. Źródło: wyniki-D.md:67."
+ },
+ {
+  "cwiczenie": "Lying Close-Grip Bar Curl On High Pulley",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:16624, note „Lying on a flat bench under a high pulley or lat pulldown, bar attachment.” (16654)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2015-12-22)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-gryfem-wyciagu-gornego",
+    "cytat": [
+     "Pozycja leżąca na ławeczce płaskiej.",
+     "wykonaj mocne ugięcie przedramion do momentu, aż gryf znajdzie się na wysokości czoła."
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/191/uginanie-przedramion-na-wyciagu-gornym-lezac-tylem-na-lawce",
+    "cytat": [
+     "Chwyć drążek wyciągu górnego podchwytem na szerokość barków.",
+     "Opuść drążek do czoła lub nieco powyżej."
+    ]
+   }
+  ],
+  "uwaga": "„Close-grip”: S podaje chwyt na szerokość barków — recenzent ocenia, czy to „wąski” w sensie nazwy; zdanie bez szerokości chwytu jest bezpieczne. Źródło: wyniki-D-czesc2.md:20."
+ },
+ {
+  "cwiczenie": "Y Raise (hantle)",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:5185, note „Usually chest-down on an incline bench; can be done bent over.” (5214)",
+  "zrodla": [
+   {
+    "serwis": "R centrumrespo",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/trap-y-raises/",
+    "cytat": [
+     "Połóż się przodem na ławce skośnej dodatniej, trzymając w rękach hantle.",
+     "Wraz z wydechem unieś hantle w górę i lekko w bok, nie zginaj stawów łokciowych.",
+     "W końcowym zakresie ruchu twoje ciało powinno przypominać literę Y."
+    ],
+    "odczyt": "03.11.2026 (wcześniej streszczenie; cytaty potwierdzone)"
+   },
+   {
+    "serwis": "F fabrykasily (2023-11-08)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/plecy/trap-y-raise",
+    "cytat": [
+     "Ręce swobodnie opuść bezpośrednio pod barkami.",
+     "Utrzymując złączone łopatki, postaraj się unieść płynnie wyprostowane ręce na wysokość uszu.",
+     "Utrzymując pozycję łopatek, powoli opuszczaj ręce, kontrolując napięcie mięśni pleców."
+    ],
+    "odczyt": "03.11.2026"
+   }
+  ],
+  "uwaga": "F nie wymienia hantli ani kształtu Y (proste ręce do wysokości uszu) i nie mówi wprost „przodem” — recenzent potwierdza, że to ta sama odmiana. „Lekko w bok / kształt Y” dosłownie tylko R. S (guma, stojąc) niepotrzebny. Mis: R „W trakcie ruchu nie odrywaj tułowia od ławki.” + F „nie odrywaj mostka od ławki.” — teraz oba dosłownie."
+ },
+ {
+  "cwiczenie": "Cable Reverse Fly",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:5144, note „Crossed cables from two pulleys at shoulder height or above.” (5174)",
+  "zrodla": [
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac",
+    "cytat": [
+     "Stań w lekkim rozkroku pośrodku bramy.",
+     "Złap linki wyciągów górnych na krzyż.",
+     "Ruch zakończ, kiedy ramiona będą przedłużeniem tułowia."
+    ]
+   },
+   {
+    "serwis": "F fabrykasily (2015-12-22)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac",
+    "cytat": [
+     "Stań na wprost wyciągów. Wyciągi powinny być ustawione wyżej niż głowa.",
+     "Lewą dłonią chwyć za końcówkę prawego wyciągu, a prawą dłonią za końcówkę lewego wyciągu.",
+     "Utrzymując prawidłową pozycję wyjściową, weź wdech, a następnie odwiedź lekko zgięte ramiona za siebie."
+    ],
+    "odczyt": "03.11.2026 (wcześniej streszczenie; cytaty potwierdzone)"
+   }
+  ],
+  "uwaga": "Wszystkie elementy zdań (przodem do wyciągów, na krzyż, lekko ugięte ręce w tył, do linii tułowia) mają teraz cytat dosłowny."
+ },
+ {
+  "cwiczenie": "Cable Seated Lateral Raise",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady – uproszczenie (wariant sprzętu: linki zamiast hantli; recenzent)",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:13949, note „Seated between two low pulleys, both arms at once (cables crossed).” (13982); F i S = hantle siedząc",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2018-10-30, hantle siedząc)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-barki/unoszenie-ramion-w-bok-ze-sztangielkami",
+    "cytat": [
+     "Usiądź na ławce.",
+     "unieś hantle w bok, aż ramiona będą ustawione równolegle do podłogi."
+    ]
+   },
+   {
+    "serwis": "S potreningu (hantle siedząc)",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/358/unoszenie-ramion-bokiem-ze-sztangielkami-siedzac",
+    "cytat": [
+     "Nogi ugięte pod kątem prostym, stopy przylegają do podłoża.",
+     "Biorąc wdech wykonaj unoszenia ramion w bok na wysokość barków."
+    ]
+   }
+  ],
+  "uwaga": "Fragmenty specyficzne dla linek („między dolnymi wyciągami”, linki skrzyżowane wg katalogu, „uchwyty przy bokach”) — bez źródła; wolno je oprzeć tylko na decyzji recenzenta o uproszczeniu. „Kąt prosty” z S to liczba — nie wchodzi."
+ },
+ {
+  "cwiczenie": "Car Drivers",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady – uproszczenie (wariant sprzętu: talerz; recenzent)",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:14410, note „Plate held at arm's length and rotated like a steering wheel…” (14439); M hantel, R guma mini — oba warianty sprzętu",
+  "zrodla": [
+   {
+    "serwis": "M maniacmuscle (hantel)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/dumbbell-standing-driver/",
+    "cytat": [
+     "Bring the dumbbell to about shoulder height with the elbows slightly bent.",
+     "Turn the dumbbell like a steering wheel so one hand moves slightly up while the other moves slightly down."
+    ]
+   },
+   {
+    "serwis": "R centrumrespo (guma na nadgarstkach)",
+    "szczebel": 5,
+    "url": "https://centrumrespo.pl/atlas/bus-driver-with-mini-band/",
+    "cytat": [
+     "Unieś proste kończyny górne na wysokość barków.",
+     "krótkie skręty kierownicy samochodu."
+    ]
+   }
+  ],
+  "uwaga": "Brak źródła z talerzem. Łokcie: M „slightly bent”, R „proste” — w zdaniu bez łokci albo część wspólna „ręce przed sobą na wysokości barków”."
+ },
+ {
+  "cwiczenie": "Reverse Plate Curls",
+  "paczka": "D",
+  "wynik": "komplet wg nowej zasady – uproszczenie (wariant sprzętu: talerz zamiast sztangi; recenzent)",
+  "zakres": "setup, move",
+  "odmiana": "catalog.json:17117, note „One plate held with both hands, overhand grip.” (17143); F i S = sztanga nachwytem",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (2020-09-26)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/biceps/zginanie-ramion-ze-sztanga-nachwytem",
+    "cytat": [
+     "Pozycja stojąca, ciało wyprostowane, sztanga trzymana nachwytem na szerokość barków.",
+     "Pełne ustabilizowanie łokci, które znajdują się możliwie blisko tułowia.",
+     "Tylko przedramiona są ruchome."
+    ]
+   },
+   {
+    "serwis": "S potreningu",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/300/uginanie-przedramion-ze-sztanga-nachwytem-stojac",
+    "cytat": [
+     "Stojąc w lekkim rozkroku chwyć sztangę nachwytem na szerokość barków.",
+     "Wykonując wdech ugnij przedramiona."
+    ]
+   }
+  ],
+  "uwaga": "„Łokcie blisko tułowia” tylko F. Szerokość chwytu nie przenosi się na talerz — w zdaniu bez szerokości."
+ },
+ {
+  "cwiczenie": "Bottoms-Up Clean From The Hang Position",
+  "paczka": "D",
+  "wynik": "nadal brak — chwyt dnem do góry (cecha odmiany z katalogu) bez źródła; faza zarzutu tylko jako uproszczenie (F z podłogi przez wymach, M hantel)",
+  "odmiana": "catalog.json:17157, note „One kettlebell cleaned from a hang into the bottoms-up position; grip-dominant.” (17190)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (kettlebell, start z podłogi)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/kettlebell/one-arm-clean-zarzut-kettla",
+    "cytat": [
+     "Cofnij biodra. Uginając nogi w kolanach, obniż tułów, chwytając jedną ręką kettlebell.",
+     "Pamiętaj o mocnej pracy bioder, które nadają siłę dynamiczną w tym ćwiczeniu."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle (hantel, ze zwisu)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/dumbbell-clean/",
+    "cytat": [
+     "Grip one dumbbell with one hand and let it hang between your thighs or slightly in front of your body.",
+     "The dumbbell should rise because of hip power, not because you are curling it with your arm."
+    ]
+   }
+  ],
+  "uwaga": "Liczba źródeł dla zarzutu jest wystarczająca, ale żadne nie opisuje odmiany z katalogu (zwis + złapanie dnem do góry). Bez tego karta opisywałaby zwykły zarzut. Potrzebna nowa runda."
+ },
+ {
+  "cwiczenie": "Double Kettlebell Front Rack Carry",
+  "paczka": "D",
+  "wynik": "nadal brak — move: drugie źródło marszu z ciężarem w pozycji przy barkach (R = spacer farmera z ciężarem w opuszczonych rękach, inne trzymanie — nie wariant sprzętu)",
+  "odmiana": "catalog.json:8301, note „Two kettlebells in the rack position.” (8329)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (spacer z ciężarem nad klatką, rodzaj ciężaru nieokreślony)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/spacer-farmera-z-ciezarem-nad-klatka-piersiowa",
+    "cytat": [
+     "Pozycja stojąca, ciężar trzymany nad klatką piersiową.",
+     "Stawiaj niewielkie kroki, pilnuj, aby utrzymać stałe, spokojne tempo."
+    ]
+   },
+   {
+    "serwis": "M maniacmuscle (pozycja rack przy wyciskaniu, bez marszu)",
+    "szczebel": 5,
+    "url": "https://maniacmuscle.com/kettlebell-strict-press/",
+    "cytat": [
+     "Bring the kettlebell to shoulder level so it rests against the forearm with the handle diagonally across the palm."
+    ]
+   }
+  ],
+  "uwaga": "Setup: F (ciężar przy klatce) + M (kettlebell w pozycji rack) — część wspólna wystarcza, ale M opisuje jeden odważnik w innym ćwiczeniu; recenzent ocenia. Move: dosłownie tylko F; R (https://centrumrespo.pl/atlas/farmers-walk/) to inne trzymanie ciężaru."
+ },
+ {
+  "cwiczenie": "One-Arm Medicine Ball Slam",
+  "paczka": "D",
+  "wynik": "rozbieżność do recenzji — uproszczenie jednorącz (nie wariant sprzętu); źródła opisują wersję oburącz",
+  "odmiana": "catalog.json:24947, note „One-arm version of Medicine Ball Slam; slam (non-bouncing) ball, per side.” (24974)",
+  "zrodla": [
+   {
+    "serwis": "F fabrykasily (oburącz)",
+    "szczebel": 5,
+    "url": "https://www.fabrykasily.pl/cwiczenia/crossfit/slam-ball-uderzenia-pilka",
+    "cytat": [
+     "Pozycja stojąca, nogi rozstawione na szerokość barków.",
+     "Uderzenie wykonuj dynamicznie."
+    ]
+   },
+   {
+    "serwis": "S potreningu (oburącz)",
+    "szczebel": 5,
+    "url": "https://potreningu.pl/atlas-cwiczen/crossfit/535/ball-slams",
+    "cytat": [
+     "Chwyć piłkę lekarską, a następnie unieś ją na wyprostowanych ramionach nad głowę.",
+     "Piłka powinna dotknąć podłoża tuż przed stopami."
+    ]
+   }
+  ],
+  "uwaga": "Wg nowej zasady liczba źródeł bazy wystarcza (F+S). Zostaje decyzja recenzenta, czy jednorącz to ten sam ruch — CLAUDE.md dopuszcza „uproszczenie” wprost tylko dla wariantu sprzętu."
+ }
+]

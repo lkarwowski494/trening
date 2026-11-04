@@ -31,7 +31,7 @@ const WYJATKI: Record<string, [number, string]> = {
   'app/generator.tsx': [22528, 'ekran — poza zakresem partii 4 (M3)'],
   /* M1-audytor-generalny-049 (28.10.2026): próg = rozmiar na 2385e75 + 5%; figury v2 prowadzi linia 1.1 (podział tam, osobnym commitem strukturalnym) */
   'lib/figures/geom.ts': [24576, 'geometria figur v1 (stawy, kąty, rzut) w jednym module; podział razem z silnikiem v1 (1.0.1)'],
-  'lib/figures/v2/contract.ts': [75776, 'kontrakt danych figur v2 (typy, walidacja schematu) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
+  'lib/figures/v2/contract.ts': [68608, 'kontrakt danych figur v2 (typy, schemat, walidacja) — linia 1.1; próg = rozmiar po wydzieleniu poseInterp.ts i dumbbellAxis.ts (04.11.2026) + 5%; dalszy podział (schemat, walidator) osobnym commitem strukturalnym (backlog 1.1)'],
   'lib/figures/v2/draw.ts': [48128, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1; próg = rozmiar po scaleniu wersja-1-0-1-r2 31.10.2026 (deska, stojak z bolcami, rączki z 1.0.1) + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
   'lib/figures/v2/gear.ts': [72192, 'sprzęt figur v2 (tabela GEAR_KINDS: kontakty, uchwyty, rysowanie) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział tabeli osobnym commitem strukturalnym (backlog 1.1)'],
 };
