@@ -130,7 +130,7 @@ describe('regresja: zmiana treści po recenzji unieważnia wpis (generator)', ()
     const r = run(`pl['sumo.kneesOut'] += ' (zmiana)';`);
     expect(r.sumo).toBe(false); expect(r.hidden).toContain('Sumo Deadlift');
     for (const k of ['Reverse Band Sumo Deadlift', 'Sumo Deadlift (kettlebell)', 'Sumo Deadlift with Bands', 'Sumo Deadlift with Chains']) expect([k, r.general.includes(k)]).toEqual([k, false]);
-    expect(r.general).toContain('Bodyweight Squat'); /* zestaw bez tej wskazówki zostaje */
+    expect(r.general).toContain('Box Squat'); /* zestaw bez tej wskazówki zostaje (04.11.2026: było Bodyweight Squat — zestaw zmieniony w partii spójności karta–rysunek) */
   });
   test('zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia', () => {
     const r = run(`sets.items['Sumo Deadlift with Bands'].ok.push('rdl.knees');`);

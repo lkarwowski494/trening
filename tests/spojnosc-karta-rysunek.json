@@ -1,0 +1,55 @@
+{
+ "_opis": "Konfiguracja strażnika spójności karty z rysunkiem (tests/spojnosc-karta-rysunek.test.ts; decyzja właściciela 04.11.2026, wariant A, docs/18). To JEDNO miejsce zakresu strażnika: rodziny z listy `rodziny`, ćwiczenia z shownFigureSpec != null; reguła rysunku z pewnością „ustalone” (albo bez pola pewnosc) i niepustym `cue`, która ma zdanie, musi mieć na karcie TEGO ćwiczenia (cueIdsOf: karta własna albo zestaw ogólny z recenzją) zdanie reguły (`cue`, `cue_dodatkowe`, zdania z `wskazowki_na_reguly`) albo zdanie z `rownowazniki` niżej albo wpis w `wyjatki` (z powodem).",
+ "rodziny": [
+  "squat",
+  "bench_press",
+  "hinge",
+  "curl",
+  "pull_up"
+ ],
+ "wyjatki": {
+  "Goblet Squat": {
+   "plecy_neutralne": "karta własna ma gob.move („klatka uniesiona”) i gob.close, ale żadne nie mówi o prostych plecach; sq.back („Plecy proste, klatka uniesiona”) pasuje, lecz zmiana karty własnej wymaga ponownej recenzji — do decyzji koordynatora (audyt 04.11.2026, klasa równoważnik)"
+  },
+  "Wall Sit": {
+   "kolana_nad_stopami": "zdanie sq.kneesToes ma źródła o przysiadzie, nie o Wall Sit; brak przeczytanego źródła o kolanach w siadzie przy ścianie — czego nie da się potwierdzić, nie trafia na kartę (CLAUDE.md, Merytoryczne podstawy); do badacza",
+   "piety_na_podlodze": "jak kolana_nad_stopami: sq.mis.heels ma źródła o przysiadzie, nie o Wall Sit — do badacza"
+  },
+  "Squeeze Press (hantle)": {
+   "lokcie_nie_szeroko": "do oceny badacza (audyt 04.11.2026): rysunek ma łokcie bliżej tułowia (kąt ramię–tułów 3D 26°), więc „ani przyklejone do tułowia” może przeczyć rysunkowi; zestaw badacza celowo pomija bp.elbowsMid (wskazowki-ogolne.json, sprawdzenie „hantle ściśnięte, łokcie blisko”)"
+  },
+  "Reverse Grip Bench Press": {
+   "lokcie_nie_szeroko": "do oceny badacza (audyt 04.11.2026): rysunek ma łokcie bliżej tułowia (kąt ramię–tułów 3D 44°), więc „ani przyklejone do tułowia” może przeczyć rysunkowi"
+  },
+  "Chin Up": {
+   "broda_nad_drazkiem": "karta własna Chin Up ma cu.pull (łokcie w dół, pełny wyprost rąk) bez celu „broda nad drążkiem” (pu.pull); dopisanie zdania do karty własnej unieważnia jej recenzję i wraz ze skrótem v1 chowa kartę z rysunkiem (lib/figures/data.json) — do osobnej poprawki z recenzją niezależną; poziom NISKIE (audyt 04.11.2026, #12)"
+  },
+  "Bench Press (sztanga)": {
+   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+  },
+  "Bench Press (hantle)": {
+   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+  },
+  "Incline Bench Press (sztanga)": {
+   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+  },
+  "Incline Bench Press (hantle)": {
+   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+  }
+ },
+ "ogolne_bez_ruchu": {
+  "bench_press": {
+   "pelny_zakres": "zestaw ogólny z założenia nie ma sekcji „Ruch” (components/ExerciseCues.tsx:34), a zdanie ruchu (bp.move) to zdanie sekcji „Ruch”; decyzja projektowa o zdaniu ruchu w zestawach ogólnych — do właściciela (audyt 04.11.2026, klasa 14)",
+   "dol_przy_klatce": "jak pelny_zakres: zdanie ruchu (bp.move) jest sekcją „Ruch”, której zestaw ogólny nie ma"
+  },
+  "curl": {
+   "lokiec_zgina_sie": "zestaw ogólny nie ma sekcji „Ruch” (curl.dbMove to zdanie ruchu); decyzja projektowa o zdaniu ruchu w zestawach ogólnych — do właściciela (audyt 04.11.2026, klasa 14)"
+  },
+  "hinge": {
+   "wyprost_na_gorze": "zestaw ogólny nie ma sekcji „Ruch” (dl.lift, sumo.lift to zdania ruchu); decyzja projektowa — do właściciela (audyt 04.11.2026, klasa 14)"
+  },
+  "pull_up": {
+   "broda_nad_drazkiem": "zestaw ogólny nie ma sekcji „Ruch” (pu.pull to zdanie ruchu); decyzja projektowa — do właściciela (audyt 04.11.2026, klasa 14)"
+  }
+ }
+}
