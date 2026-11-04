@@ -639,62 +639,62 @@
     "squat": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW1 r1 04.11.2026",
-      "autor": "programista FW1",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
+      "autor": "programista FW2",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW1 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-1 @ bf52604d (baza 8f798865)",
-      "sha": "a743f597de1d",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
+      "sha": "9a20d827560a",
       "liczba": 25,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich ćwiczeń rodziny w każdym widoku przed/po — bajtowo równe (cmp PNG autora + własne porównanie kształtów shapesAt, trailFor i info.trail w 21 klatkach); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW1 nie zmienia rysunku rodziny (rig/pozy bez hantla z obrotem przedramienia i bez gumy/talerza/kettlebell/łańcuchów w dłoniach); zmiana skrótu wyłącznie przez contract.ts w V2_WSPOLNE. Skrót poprzedni 69b3a04ba0eb (8f798865) → a743f597de1d (bf52604d po zrodla-runtime --write na kopii)."
+      "slad": "Arkusze arkusz-slad.mjs wszystkich 25 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni a743f597de1d (a040e2be) → 9a20d827560a (570f0670 po zrodla-runtime --write na kopii, --skroty)."
     },
     "bench_press": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW1 r1 04.11.2026",
-      "autor": "programista FW1",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
+      "autor": "programista FW2",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW1 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-1 @ bf52604d (baza 8f798865)",
-      "sha": "3bf538d83f99",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
+      "sha": "ff2cf5dd9c79",
       "liczba": 30,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich ćwiczeń rodziny w każdym widoku przed/po — bajtowo równe (cmp PNG autora + własne porównanie kształtów shapesAt, trailFor i info.trail w 21 klatkach); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW1 nie zmienia rysunku rodziny (rig/pozy bez hantla z obrotem przedramienia i bez gumy/talerza/kettlebell/łańcuchów w dłoniach); zmiana skrótu wyłącznie przez contract.ts w V2_WSPOLNE. Skrót poprzedni 1947e13d1058 (8f798865) → 3bf538d83f99 (bf52604d po zrodla-runtime --write na kopii)."
+      "slad": "Arkusze arkusz-slad.mjs wszystkich 30 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni 3bf538d83f99 (a040e2be) → ff2cf5dd9c79 (570f0670 po zrodla-runtime --write na kopii, --skroty)."
     },
     "hinge": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW1 r1 04.11.2026",
-      "autor": "programista FW1",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
+      "autor": "programista FW2",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW1 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-1 @ bf52604d (baza 8f798865)",
-      "sha": "f352e518743b",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
+      "sha": "24ca1a0274c0",
       "liczba": 32,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich ćwiczeń rodziny w każdym widoku przed/po — bajtowo równe (cmp PNG autora + własne porównanie kształtów shapesAt, trailFor i info.trail w 21 klatkach); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW1 nie zmienia rysunku rodziny (rig/pozy bez hantla z obrotem przedramienia i bez gumy/talerza/kettlebell/łańcuchów w dłoniach); zmiana skrótu wyłącznie przez contract.ts w V2_WSPOLNE. Skrót poprzedni 5fc4717eb8a4 (8f798865) → f352e518743b (bf52604d po zrodla-runtime --write na kopii)."
+      "slad": "Arkusze arkusz-slad.mjs wszystkich 32 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni f352e518743b (a040e2be) → 24ca1a0274c0 (570f0670 po zrodla-runtime --write na kopii, --skroty)."
     },
     "pull_up": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW1 r1 04.11.2026",
-      "autor": "programista FW1",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
+      "autor": "programista FW2",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW1 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-1 @ bf52604d (baza 8f798865)",
-      "sha": "4f8bbdf8f25e",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
+      "sha": "df333f264469",
       "liczba": 13,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich ćwiczeń rodziny w każdym widoku przed/po — bajtowo równe (cmp PNG autora + własne porównanie kształtów shapesAt, trailFor i info.trail w 21 klatkach); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW1 nie zmienia rysunku rodziny (rig/pozy bez hantla z obrotem przedramienia i bez gumy/talerza/kettlebell/łańcuchów w dłoniach); zmiana skrótu wyłącznie przez contract.ts w V2_WSPOLNE. Skrót poprzedni d8c477be2b3b (8f798865) → 4f8bbdf8f25e (bf52604d po zrodla-runtime --write na kopii)."
+      "slad": "Arkusze arkusz-slad.mjs wszystkich 11 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni 4f8bbdf8f25e (a040e2be) → df333f264469 (570f0670 po zrodla-runtime --write na kopii, --skroty)."
     },
     "curl": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW1 r1 04.11.2026",
-      "autor": "programista FW1",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
+      "autor": "programista FW2",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW1 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-1 @ bf52604d (baza 8f798865)",
-      "sha": "0448bfe6a40f",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
+      "sha": "1b3a94d1388f",
       "liczba": 36,
-      "slad": "Arkusze arkusz-slad.mjs (side, front) wszystkich 34 ćwiczeń z rysunkiem przed/po; cmp: 14 arkuszy różnych = 7 ćwiczeń z hantlami i obrotem przedramienia (Biceps Curl (hantle), Incline Curl (hantle), Preacher Curl, Spider Curl, Lying Supine Dumbbell Curl, Standing Inner-Biceps Curl, Standing Dumbbell Reverse Curl) — zmienia się tylko oś hantla L; ślad toru (info.trail, trailFor) bajtowo bez zmian we wszystkich 34 (chwyt R dla par hantli, W1b).",
-      "uwagi": "FW1 H-A: oś hantla L była nie-lustrem R (do 89°, L rysowany z obrotem przeciwnym); po FW1 kąt L do lustra R = 0,0° w każdej próbce (frameAt, 21 i 401 próbek), oś ⟂ przedramieniu 90°, skok osi między klatkami ≤ 11° (płynny obrót z danych). Kierunek obrotu R sprawdzony: +70 = podchwyt (koniec kciuka bocznie), −70 (Reverse Curl) = nachwyt. Pozostałe 27 ćwiczeń: kształty i ślad bajtowo równe. Złote odciski: 7 póz curl zmienione = dokładnie zbiór ze zmianą osi. Skrót poprzedni bb4f11aed0ea (8f798865) → 0448bfe6a40f (bf52604d po zrodla-runtime --write na kopii)."
+      "slad": "Arkusze arkusz-slad.mjs wszystkich 34 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni 0448bfe6a40f (a040e2be) → 1b3a94d1388f (570f0670 po zrodla-runtime --write na kopii, --skroty)."
     }
   },
   "karty": {
