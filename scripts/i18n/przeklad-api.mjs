@@ -6,7 +6,8 @@
 // Wyjście: PROPOZYCJE tłumaczeń jako artefakt JSON (<wyjscie>/<język>.json, podsumowanie.md, szacunek.json). Skrypt NIE zapisuje słowników.
 // Osobny tryb --zastosuj <katalog raportu> nakłada wynik na lib/locales lokalnie, PO PRZEGLĄDZIE człowieka (bez sieci i bez klucza).
 // Klucz: wyłącznie zmienna środowiskowa ANTHROPIC_API_KEY (nigdy w logach, raporcie ani argumentach). Bez zależności: fetch.
-// Wyjątek „ton trenera” (docs/16) dotyczy tylko wskazówek techniki ćwiczeń — te klucze to teksty interfejsu, więc obowiązuje rejestr interfejsu danego języka.
+// Wyjątek „ton trenera” (docs/16) dotyczy tylko wskazówek techniki ćwiczeń. Zestaw, w którym KAŻDA pozycja ma pole „id” (klucz lib/cues/text/<język>.json), to zestaw wskazówek: prompt dostaje ton trenera
+// (forma „ty”; rejestrDla w przeglad-api.mjs), a --zastosuj zapisuje do lib/cues/text (nakładki es-419/pt-BR tylko gdy różne od bazy). Pozostałe zestawy to teksty interfejsu (rejestr z docs/16, lib/locales).
 // Użycie:
 //   node scripts/i18n/przeklad-api.mjs --szacuj                    — tylko koszt (bez klucza: przybliżenie; z kluczem: count_tokens, darmowy)
 //   node scripts/i18n/przeklad-api.mjs --limit 2                   — przebieg dowodowy na 2 pierwszych językach (płatny)
@@ -17,7 +18,7 @@ import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
-import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
+import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, rejestrDla, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
 import { maskuj } from '../maskuj.mjs';
 import { wczytajKonteksty, kontekstDla, OPIS_POLA_KONTEKST } from './kontekst.mjs';
 
@@ -54,30 +55,36 @@ export function wczytajZestaw(plik) {
   if (!Array.isArray(z.klucze)) throw new Error(`${plik}: oczekiwane pole „klucze”`);
   return z.klucze.map((k, i) => {
     if (typeof k.pl !== 'string' || !k.pl.trim() || typeof k.en !== 'string' || !k.en.trim()) throw new Error(`${plik}: pozycja ${i + 1} bez pl/en`);
-    return { id: i + 1, rodzaj: k.rodzaj, pl: k.pl, en: k.en, poprzedni_pl: k.poprzedni_pl ?? null };
+    return { id: i + 1, rodzaj: k.rodzaj, pl: k.pl, en: k.en, poprzedni_pl: k.poprzedni_pl ?? null, klucz: typeof k.id === 'string' && k.id ? k.id : null };
   });
 }
+
+/** Zestaw wskazówek techniki = każda pozycja ma klucz lib/cues (pole „id” w zestawie). */
+export const czyWskazowki = (pozycje) => pozycje.length > 0 && pozycje.every((p) => p.klucz);
 
 /** Języki do przekładu: wszystkie słowniki lib/locales poza PL i EN (33). */
 export const kodyDoPrzekladu = (root) => jezyki(root).filter((k) => k !== 'en' && k !== 'pl');
 
 /** Stare tłumaczenie klucza zmienionego (słownik trzyma je pod nowym kluczem do czasu przekładu); brak → null. */
-export function stare(root, kod) {
-  const p = join(root, 'lib/locales', `${kod}.json`);
+export function stare(root, kod, wskazowki = false) {
+  const p = join(root, wskazowki ? 'lib/cues/text' : 'lib/locales', `${kod}.json`);
   return existsSync(p) ? czytaj(p) : {};
 }
 
 /** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): pozycja dostaje pole „kontekst” (L-030, L-052); null = bez kontekstu. */
 export function budujZadanie(kod, pozycje, staraTresc = {}, slownik = null, konteksty = null) {
+  const wskazowki = czyWskazowki(pozycje);
   const lista = pozycje.map((p) => {
     const o = { id: String(p.id), pl: p.pl, en: p.en };
-    if (p.rodzaj === 'zmieniony' && typeof staraTresc[p.pl] === 'string') o.stare = staraTresc[p.pl];
+    const sk = wskazowki ? p.klucz : p.pl;
+    if (p.rodzaj === 'zmieniony' && typeof staraTresc[sk] === 'string') o.stare = staraTresc[sk];
     const ctx = kontekstDla(konteksty, p.pl); if (ctx) o.kontekst = ctx;
     return o;
   });
   const user = [
     `Język docelowy: ${nazwaJezyka(kod)} (${kod}).`,
-    `Rejestr i konwencje tego języka: ${REJESTR[kod] ?? 'jak w iOS danego języka'}.`,
+    `Rejestr i konwencje tego języka: ${rejestrDla(kod, wskazowki)}.`,
+    ...(wskazowki ? ['Pozycje to wskazówki techniki ćwiczeń (krótkie polecenia trenera), nie ekrany: pisz je w tonie trenera podanym w rejestrze.'] : []),
     ...(slownik ? [SLOWNIK_MOD.blokPromptu(slownik, kod)].filter(Boolean) : []),
     `Pozycji: ${lista.length}. Pole „pl” to tekst źródłowy, „en” angielski tekst odniesienia, „stare” (jeśli jest) — poprzednie tłumaczenie poprzedniego brzmienia, „kontekst” (jeśli jest) — czym jest tekst i gdzie się pokazuje.`,
     '', JSON.stringify(lista),
@@ -170,18 +177,28 @@ export function szacunek(wiersze, model) {
  * UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts). Potem usuwa z zestawu wpisy, które mają już tłumaczenie we wszystkich językach. Zwraca podsumowanie. */
 export function zastosuj(root, katalog, plikZestawu) {
   const zestaw = czytaj(plikZestawu); const dozwolone = new Map(zestaw.klucze.map((k) => [k.pl, k]));
-  const pliki = readdirSync(katalog).filter((f) => f.endsWith('.json') && !['szacunek.json'].includes(f));
+  const wskazowki = czyWskazowki(zestaw.klucze.map((k) => ({ klucz: typeof k.id === 'string' ? k.id : null })));
+  const katSlownika = wskazowki ? 'lib/cues/text' : 'lib/locales'; /* wskazówki techniki → lib/cues/text/<kod>.json (klucz = „id”), interfejs → lib/locales (klucz = tekst polski) */
+  const BAZA = { 'es-419': 'es', 'pt-BR': 'pt' }; /* nakładki regionalne: wpis tylko gdy różny od bazy (jak lib/cues/index.ts) */
+  const pliki = readdirSync(katalog).filter((f) => f.endsWith('.json') && !['szacunek.json'].includes(f))
+    .sort((a, b) => (a.slice(0, -5) in BAZA) - (b.slice(0, -5) in BAZA)); /* bazy przed nakładkami */
   const podsumowanie = { jezykow: 0, zapisanych: 0, pominietych: [] }; const pokrycie = new Map();
   for (const f of pliki) {
     const r = czytaj(join(katalog, f)); const kod = r.jezyk;
-    if (typeof kod !== 'string' || !existsSync(join(root, 'lib/locales', `${kod}.json`))) { podsumowanie.pominietych.push(`${f}: nieznany język`); continue; }
-    const plik = join(root, 'lib/locales', `${kod}.json`); const d = czytaj(plik);
+    if (typeof kod !== 'string' || !existsSync(join(root, 'lib/locales', `${kod}.json`)) || !existsSync(join(root, katSlownika, `${kod}.json`))) { podsumowanie.pominietych.push(`${f}: nieznany język`); continue; }
+    const plik = join(root, katSlownika, `${kod}.json`); const d = czytaj(plik); const przed = { ...d };
+    const bazaPlik = wskazowki && BAZA[kod] ? join(root, katSlownika, `${BAZA[kod]}.json`) : null; const baza = bazaPlik && existsSync(bazaPlik) ? czytaj(bazaPlik) : null;
     for (const [pl, tl] of Object.entries(r.propozycje ?? {})) {
       if (!dozwolone.has(pl)) { podsumowanie.pominietych.push(`${kod}: klucz spoza zestawu „${pl.slice(0, 40)}”`); continue; }
       if (typeof tl !== 'string' || !tl.trim() || zmienne(pl).join('') !== zmienne(tl).join('')) { podsumowanie.pominietych.push(`${kod}: zmienne „${pl.slice(0, 40)}”`); continue; }
-      d[pl] = typografia(kod, tl); podsumowanie.zapisanych++; pokrycie.set(pl, (pokrycie.get(pl) ?? 0) + 1);
+      const klucz = wskazowki ? dozwolone.get(pl).id : pl; const wartosc = typografia(kod, tl);
+      pokrycie.set(pl, (pokrycie.get(pl) ?? 0) + 1);
+      if (baza && baza[klucz] === wartosc) { delete d[klucz]; continue; } /* identyczne z bazą → bez wpisu nakładki */
+      d[klucz] = wartosc; podsumowanie.zapisanych++;
     }
-    writeFileSync(plik, JSON.stringify(d, null, 1) + '\n'); podsumowanie.jezykow++;
+    const posortowany = (o) => Object.keys(o).every((k, i, t) => i === 0 || t[i - 1] < k);
+    const wynik = wskazowki && posortowany(przed) ? Object.fromEntries(Object.entries(d).sort(([x], [y]) => (x < y ? -1 : x > y ? 1 : 0))) : d; /* plik posortowany zostaje posortowany */
+    writeFileSync(plik, JSON.stringify(wynik, null, 1) + '\n'); podsumowanie.jezykow++;
   }
   const kody = kodyDoPrzekladu(root);
   const pozostale = zestaw.klucze.filter((k) => (pokrycie.get(k.pl) ?? 0) < kody.length); /* wpis zostaje, dopóki nie nałożono go we wszystkich 33 językach */
@@ -222,7 +239,7 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   const api = klucz ? klient(fetchFn, klucz) : null;
   const pozycje = wczytajZestaw(plikZestawu);
   const kody = kodyDoPrzekladu(root).slice(0, o.limit ?? undefined);
-  const stareTresc = Object.fromEntries(kody.map((k) => [k, stare(root, k)]));
+  const stareTresc = Object.fromEntries(kody.map((k) => [k, stare(root, k, czyWskazowki(pozycje))]));
   log(`pozycji: ${pozycje.length} (nowe ${pozycje.filter((p) => p.rodzaj === 'nowy').length}, zmienione ${pozycje.filter((p) => p.rodzaj === 'zmieniony').length}); języków: ${kody.length}; model ${o.model}, effort ${o.effort}`);
   mkdirSync(o.wyjscie, { recursive: true });
   const slownik = slownikTerminow(root);

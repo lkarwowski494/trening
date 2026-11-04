@@ -290,3 +290,84 @@ describe('workflow: wejście „zestaw” (koordynator 1.1, 03.11.2026 — przek
     }
   });
 });
+
+describe('zestaw wskazówek techniki: ton trenera i zapis do lib/cues/text (koordynator 1.1, 03.11.2026; przekład P1, przebieg 41705985128)', () => {
+  const C1 = 'Zejdź w dół — plecy proste.'; const C2 = 'Wypchnij biodra do przodu.';
+  const docs16 = fs.readFileSync(path.join(ROOT, 'docs/16-jezyki-i-marka.md'), 'utf8');
+  const TON13 = ['bg', 'cs', 'el', 'hr', 'hu', 'lt', 'lv', 'pt', 'ro', 'sk', 'sl', 'sr', 'uk'];
+  function fixtureCues(): string {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'przeklad-cues-'));
+    for (const k of ['cs', 'fr', 'es', 'es-419', 'pt', 'pt-BR']) { w(root, `lib/locales/${k}.json`, { Inny: 'x' }); }
+    w(root, 'lib/locales/_source.json', []);
+    w(root, 'lib/cues/text/cs.json', { 'a.old': 'Starý.' });
+    w(root, 'lib/cues/text/fr.json', { 'a.old': 'Ancien.' });
+    w(root, 'lib/cues/text/es.json', { 'a.old': 'Viejo.' });
+    w(root, 'lib/cues/text/es-419.json', { 'z.nakladka': 'Z.' });
+    w(root, 'lib/cues/text/pt.json', { 'a.old': 'Velho.' });
+    w(root, 'lib/cues/text/pt-BR.json', {});
+    w(root, 'docs/lokalizacja/zestaw.json', { klucze: [
+      { rodzaj: 'nowy', id: 'x.down', pl: C1, en: 'Go down — flat back.' },
+      { rodzaj: 'nowy', id: 'x.hips', pl: C2, en: 'Drive your hips forward.' },
+    ] });
+    return root;
+  }
+  const zestawCues = (root: string) => JSON.stringify(path.join(root, 'docs/lokalizacja/zestaw.json'));
+
+  test('lista 13 języków wyjątku w kodzie = lista z docs/16 (jedno źródło prawdy)', () => {
+    const wiersz = docs16.split('\n').find((l) => l.startsWith('*Wyjątek „ton trenera”'))!;
+    const z = wiersz.match(/\(([a-z, ]+)\)\. Ekrany/)![1].split(',').map((x) => x.trim()).sort();
+    expect(z).toEqual(TON13);
+    expect(run(`const r = await import(${JSON.stringify(path.join(ROOT, 'scripts/i18n/przeglad-api.mjs'))}); console.log(JSON.stringify([...r.JEZYKI_TON_TRENERA].sort()))`)).toEqual(z);
+  });
+  test.each(TON13)('wskazówki, %s: prompt zawiera regułę „ton trenera” (forma „ty”), nie rejestr interfejsu', (kod) => {
+    const root = fixtureCues();
+    const y = run(`const p = m.wczytajZestaw(${zestawCues(root)}); console.log(JSON.stringify(m.budujZadanie(${JSON.stringify(kod)}, p, {}).messages[0].content))`);
+    expect(y).toMatch(/ton trenera/); expect(y).toMatch(/forma „ty”/); expect(y).toMatch(/NIE forma grzecznościowa/);
+    expect(y).not.toContain('formalny jak w iOS');
+  });
+  test('wskazówki w języku poza wyjątkiem (fr, ru) zachowują rejestr z docs/16; zestaw interfejsu w cs zostaje formalny (bez tonu trenera)', () => {
+    const root = fixtureCues();
+    const fr = run(`const p = m.wczytajZestaw(${zestawCues(root)}); console.log(JSON.stringify(m.budujZadanie('fr', p, {}).messages[0].content))`);
+    expect(fr).toContain('vous'); expect(fr).not.toMatch(/forma „ty”/);
+    const ui = run(`const p = m.wczytajZestaw(${Z}); console.log(JSON.stringify(m.budujZadanie('cs', p, {}).messages[0].content))`);
+    expect(ui).toContain('formalny jak w iOS'); expect(ui).not.toMatch(/ton trenera/);
+  });
+  test('--zastosuj dla zestawu wskazówek zapisuje do lib/cues/text pod kluczem „id”, nie rusza lib/locales; nakładki tylko gdy różne od bazy', () => {
+    const root = fixtureCues(); const dir = path.join(root, 'raport'); fs.mkdirSync(dir);
+    const rap = (kod: string, p: Record<string, string>) => w(dir, `${kod}.json`, { jezyk: kod, propozycje: p });
+    rap('cs', { [C1]: 'Jdi dolů — rovná záda.', [C2]: 'Přitlač boky dopředu.' });
+    rap('fr', { [C1]: 'Descends ; dos plat.', [C2]: 'Pousse les hanches.' });
+    rap('es', { [C1]: 'Baja — espalda recta.', [C2]: 'Empuja las caderas.' });
+    rap('es-419', { [C1]: 'Baja — espalda recta.', [C2]: 'Empuja la cadera.' }); /* C1 = baza → bez wpisu; C2 różne → wpis */
+    rap('pt', { [C1]: 'Desce — costas retas.', [C2]: 'Empurra a anca.' });
+    rap('pt-BR', { [C1]: 'Desça — costas retas.', [C2]: 'Empurra a anca.' }); /* C1 różne → wpis; C2 = baza → bez wpisu */
+    const locBefore = ['cs', 'fr', 'es', 'pt'].map((k) => fs.readFileSync(path.join(root, `lib/locales/${k}.json`), 'utf8'));
+    const out = run(`console.log(JSON.stringify(m.zastosuj(${JSON.stringify(root)}, ${JSON.stringify(dir)}, ${zestawCues(root)})))`);
+    expect(out.pominietych).toEqual([]);
+    const cue = (k: string) => JSON.parse(fs.readFileSync(path.join(root, `lib/cues/text/${k}.json`), 'utf8'));
+    expect(cue('cs')).toEqual({ 'a.old': 'Starý.', 'x.down': 'Jdi dolů — rovná záda.', 'x.hips': 'Přitlač boky dopředu.' });
+    expect(cue('fr')['x.down']).toBe('Descends ; dos plat.'); /* typografia fr */
+    expect(cue('es-419')).toEqual({ 'z.nakladka': 'Z.', 'x.hips': 'Empuja la cadera.' });
+    expect(cue('pt-BR')).toEqual({ 'x.down': 'Desça — costas retas.' });
+    expect(['cs', 'fr', 'es', 'pt'].map((k) => fs.readFileSync(path.join(root, `lib/locales/${k}.json`), 'utf8'))).toEqual(locBefore);
+    expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/cs.json'), 'utf8'))[C1]).toBeUndefined();
+  });
+  test('zestaw interfejsu (bez pola „id”) nadal pisze do lib/locales, nie do lib/cues', () => {
+    const root = fixture(); w(root, 'lib/cues/text/fr.json', {}); const dir = path.join(root, 'raport'); fs.mkdirSync(dir);
+    w(dir, 'fr.json', { jezyk: 'fr', propozycje: { [T2]: 'FR2' } });
+    run(`console.log(JSON.stringify(m.zastosuj(${JSON.stringify(root)}, ${JSON.stringify(dir)}, ${JSON.stringify(path.join(root, 'docs/lokalizacja/zestaw.json'))})))`);
+    expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/fr.json'), 'utf8'))[T2]).toBe('FR2');
+    expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/fr.json'), 'utf8'))).toEqual({});
+  });
+  test('zestawy P1 i P2 z repozytorium są rozpoznane jako wskazówki (każda pozycja ma „id” istniejące w lib/cues/text/en.json albo nowe)', () => {
+    for (const f of ['zestaw-przekladu-2026-11-02-p1-wskazowki.json', 'zestaw-przekladu-2026-11-03-p2-wskazowki.json']) {
+      const p = JSON.stringify(path.join(ROOT, 'docs/lokalizacja', f));
+      expect(run(`const p = m.wczytajZestaw(${p}); console.log(JSON.stringify(m.czyWskazowki(p)))`)).toBe(true);
+    }
+  });
+  test('gałąź z wcześniejszymi zmianami (L-080): zestaw interfejsu dopisany na gałęzi obok wskazówek nie jest rozpoznany jako wskazówki', () => {
+    const root = fixtureCues(); const z = path.join(root, 'docs/lokalizacja/zestaw.json');
+    const d = JSON.parse(fs.readFileSync(z, 'utf8')); d.klucze.push({ rodzaj: 'nowy', pl: T2, en: 'New text' }); fs.writeFileSync(z, JSON.stringify(d));
+    expect(run(`const p = m.wczytajZestaw(${JSON.stringify(z)}); console.log(JSON.stringify(m.czyWskazowki(p)))`)).toBe(false);
+  });
+});
