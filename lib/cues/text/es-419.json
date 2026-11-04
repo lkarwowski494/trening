@@ -26,7 +26,7 @@
  "kbb.dblCleanMove": "Balancea ambas pesas rusas como en un swing; al extender la cadera, acércalas al cuerpo y apóyalas a la altura de los hombros.",
  "kbj.rack": "Pesas rusas apoyadas en los hombros, codos cerrados.",
  "kbj.move": "Flexiona brevemente las piernas e impulsa las pesas rusas hacia arriba; de inmediato métete debajo con una segunda flexión, con los brazos rectos, y levántate.",
- "kbb.dip": "Flexión de piernas corta; el torso se mantiene vertical.",
+ "kbb.dip": "Flexión corta de piernas; el torso se mantiene vertical.",
  "kbj.fullExt": "Primero extiende por completo las piernas y la cadera; solo después métete debajo del peso.",
  "kbj.lockFirst": "Bloquea los codos por encima de la cabeza ya en la segunda flexión; solo después levántate.",
  "olympic.feet": "Pies entre el ancho de la cadera y el de los hombros, puntas ligeramente hacia afuera.",
@@ -56,7 +56,7 @@
  "olympic.overBar": "Mantén los hombros sobre la barra el mayor tiempo posible; no te eches hacia atrás demasiado pronto.",
  "olympic.mis.away": "La barra se aleja del cuerpo, en el jalón o al tocar la cadera.",
  "olympic.snatchPowerMove": "Empuja el piso con las piernas, extiéndete con fuerza y métete debajo de la barra: recíbela con los brazos rectos por encima de una sentadilla paralela, con la cadera más alta que las rodillas.",
- "olympic.hangSetup": "Levántate con la barra y bájala a la posición colgante llevando la cadera atrás: espalda recta, hombros sobre la barra.",
+ "olympic.hangSetup": "Levántate con la barra y bájala a colgado llevando la cadera atrás: espalda recta, hombros sobre la barra.",
  "olympic.pullMove": "Empuja el piso con las piernas; cuando la barra llegue a la cadera, extiéndete con fuerza y termina con un encogimiento de hombros potente, sin meterte debajo de la barra.",
  "olympic.msMove": "Extiéndete con fuerza, luego jala los codos hacia arriba y hacia afuera, y después empuja la barra por encima de la cabeza, sin volver a flexionar las rodillas.",
  "olympic.mis.leanBack": "Inclinar mucho el torso hacia atrás en la parte alta del movimiento.",
@@ -73,7 +73,6 @@
  "plyo.altPushoff.move": "Impúlsate hacia arriba con el pie del cajón, cambia de pierna en el aire y aterriza con el otro pie sobre el cajón.",
  "wb.setup": "Párate de frente a la pared y sostén el balón con ambas manos a la altura del pecho.",
  "wb.move": "Baja a la sentadilla y, al subir, lanza el balón hacia arriba al objetivo de la pared en un solo movimiento.",
- "wb.mis.shallow": "Sentadilla muy poco profunda.",
  "mbcp.setup": "Párate de frente al objetivo, balón con ambas manos a la altura del pecho.",
  "mbcp.move": "Empuja el balón con fuerza desde el pecho, recto hacia adelante.",
  "bmbt.setup": "Párate de espaldas a la dirección del lanzamiento, balón con ambas manos y brazos rectos al frente.",
@@ -86,5 +85,5 @@
  "thruster.depth": "Baja al menos hasta que los muslos queden paralelos al piso.",
  "thruster.fullExt": "Arriba, cadera, rodillas y brazos quedan extendidos.",
  "thruster.kbSetup": "Pesas rusas apoyadas en los hombros, pies entre el ancho de la cadera y el de los hombros.",
- "olympic.hangExtend": "Desde la posición colgante, extiende con fuerza la cadera y las piernas."
+ "olympic.hangExtend": "Desde colgado, extiende con fuerza la cadera y las piernas."
 }
