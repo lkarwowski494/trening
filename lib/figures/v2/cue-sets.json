@@ -93,7 +93,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -122,7 +123,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -155,7 +157,8 @@
       "f": "rdl",
       "ok": [
         "gm.move",
-        "hinge.back"
+        "hinge.back",
+        "gm.depth"
       ],
       "err": [
         "mis.roundBack"
@@ -209,6 +212,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -243,10 +247,12 @@
       "f": "hingeFloor",
       "ok": [
         "hinge.back",
-        "sq.kneesToes"
+        "sq.kneesToes",
+        "sq.depth"
       ],
       "err": [
-        "mis.roundBack"
+        "mis.roundBack",
+        "sq.mis.heels"
       ]
     },
     "Barbell Incline Shoulder Raise": {
@@ -534,7 +540,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -548,6 +555,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -879,6 +887,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -1056,7 +1065,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1272,7 +1282,7 @@
       "b": "general",
       "f": "vpull",
       "ok": [
-        "npu.hang"
+        "pu.grip"
       ],
       "err": [
         "pu.noSwing"
@@ -1290,7 +1300,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1302,7 +1313,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1410,7 +1422,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1435,6 +1448,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -1493,6 +1507,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -1652,6 +1667,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -1941,7 +1957,8 @@
       "f": "rdl",
       "ok": [
         "gm.move",
-        "hinge.back"
+        "hinge.back",
+        "gm.depth"
       ],
       "err": [
         "mis.roundBack"
@@ -1955,7 +1972,8 @@
         "pu.shoulders"
       ],
       "err": [
-        "hang.noSwing"
+        "hang.noSwing",
+        "pu.partial"
       ]
     },
     "Groiners": {
@@ -2561,6 +2579,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -3095,7 +3114,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -3258,10 +3278,13 @@
       "f": "squat",
       "ok": [
         "sq.back",
-        "sq.kneesToes"
+        "sq.kneesToes",
+        "sq.depth",
+        "sq.down"
       ],
       "err": [
-        "sq.mis.kneesIn"
+        "sq.mis.kneesIn",
+        "sq.mis.heels"
       ]
     },
     "One-Arm Side Deadlift": {
@@ -3314,7 +3337,9 @@
       "f": "squat",
       "ok": [
         "sq.back",
-        "sq.kneesToes"
+        "sq.kneesToes",
+        "sq.depth",
+        "sq.down"
       ],
       "err": [
         "sq.mis.kneesIn",
@@ -3411,7 +3436,8 @@
       "f": "bench",
       "ok": [
         "bp.contact",
-        "bp.blades"
+        "bp.blades",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -3664,7 +3690,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -3675,6 +3702,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -4250,6 +4278,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.knees",
         "rdl.depth"
@@ -4335,6 +4364,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.depth"
       ],
@@ -4346,6 +4376,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.depth"
       ],
@@ -4622,7 +4653,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -4674,6 +4706,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -4686,6 +4719,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.move",
         "rdl.knees",
         "hinge.back",
         "rdl.depth"
@@ -4709,7 +4743,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -4807,6 +4842,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -4820,6 +4856,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -5130,6 +5167,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.move",
         "rdl.knees",
         "hinge.back",
         "rdl.depth"
@@ -5193,6 +5231,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -5517,7 +5556,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -5617,6 +5657,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],

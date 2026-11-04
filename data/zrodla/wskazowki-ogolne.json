@@ -1,6 +1,30 @@
 {
  "_opis": "Źródła wskazówek techniki z zestawów ogólnych figur v2 (lib/figures/v2/cue-sets.json, tryb general) i kąta stóp w przysiadzie — przeniesione 27.10.2026 z plików badacza z 25.10.2026 (wskazowki-cwiczenia-01…08, wskazowki-slownik, wskazowki-slownik-uzupelnienie, katy-oddech; gałąź przekazanie-konta, docs/przekazanie/notatki/badania-figury) — M1-audytor-generalny-021, 06-tresci-003. Tylko wewnętrzny rejestr: aplikacja nie wymienia źródeł (decyzja właściciela 25.10.2026), plik czytają tylko testy (tests/zrodla-pelne-wskazowki-ogolne.test.ts) i check:zrodla-runtime. „wskazowki”: id wskazówki → „cwiczenie” (źródła z adresem i miejscem przy tym ćwiczeniu w data/zrodla/cues.json) albo „zrodla” [{ adres, miejsce }] (≥ 2 źródła, zasada właściciela 25.10.2026 dla wskazówek techniki; miejsce z krótkim cytatem jak w zapisie badacza, odczyt 25.10.2026 przez badacza). „przypisania”: ćwiczenie z zestawem ogólnym → rodzina i zapis badacza, dlaczego zestaw nie przeczy ruchowi (null = zestaw rodziny bez uwag). „katy”: kąt techniki w tekście aplikacji.",
  "wskazowki": {
+  "sq.depth": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "dl.feet": {
+   "cwiczenie": "Deadlift (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "gm.depth": {
+   "cwiczenie": "Good Morning",
+   "plik": "wskazowki-slownik"
+  },
+  "rdl.move": {
+   "cwiczenie": "RDL (sztanga)",
+   "uwaga": "04.11.2026 (spójność karta–rysunek, recenzja niezależna #3): zdanie z karty własnej RDL (sztanga) dla sztywnych nóg ze sztangą i w suwnicy — uproszczenie (wariant sprzętu tego samego ruchu), wymaga potwierdzenia przez recenzenta niezależnego"
+  },
+  "rdl.dbMove": {
+   "cwiczenie": "RDL (hantle/linki)",
+   "uwaga": "04.11.2026 (spójność karta–rysunek, recenzja niezależna #3): zdanie z karty własnej RDL (hantle/linki) dla wariantów jednorącz i jednonóż — uproszczenie (wariant tego samego ruchu), wymaga potwierdzenia przez recenzenta niezależnego"
+  },
+  "pu.grip": {
+   "cwiczenie": "Pull Up",
+   "plik": "wskazowki-slownik"
+  },
   "bd.level": {
    "cwiczenie": "Bird Dog",
    "plik": "wskazowki-slownik"
@@ -1265,24 +1289,6 @@
    "twierdzenie": "Zakres opuszczania w wyciskaniu francuskim bez gryfu (hantle, guma): to samo zdanie co skull.depth, z „dłońmi” zamiast „gryfu”.",
    "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
   },
-  "ur.height": {
-   "zrodla": [
-    {
-     "adres": "https://www.coachesontario.ca/articles/breaking-down-the-upright-row/",
-     "miejsce": "NSCA Exercise Technique Manual (przedruk), Upward movement: „At the highest bar position, the elbows should be level with or slightly higher than the shoulders and wrists.”"
-    },
-    {
-     "adres": "https://theprehabguys.com/vimeo-video/upright-row-band/",
-     "miejsce": "„Drive your elbows up and out so that they're even with your hands at the top.”"
-    },
-    {
-     "adres": "https://www.ummhealth.org/health-library/upper-body-exercises-upright-row",
-     "miejsce": "„…raise the weights along the midline of your body up to your collarbone.”"
-    }
-   ],
-   "twierdzenie": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
-   "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
-  },
   "gcalf.knee": {
    "zrodla": [
     {
@@ -1989,11 +1995,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Dumbbell Front Raise to Overhead": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": "bez lat.height — ruch kończy się nad głową",
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Dumbbell Seated Box Jump": {
    "rodzina": "jump",
    "sprawdzenie": null,
@@ -2088,11 +2089,6 @@
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Front Incline Dumbbell Raise": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Front Raise And Pullover": {
    "rodzina": "pullover",
@@ -3353,11 +3349,6 @@
    "rodzina": "rdl",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Straight Raises on Incline Bench": {
-   "rodzina": "raiseFront",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Sumo Deadlift (kettlebell)": {
    "rodzina": "hingeFloor",

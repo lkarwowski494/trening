@@ -90,6 +90,9 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `krazenia` | krążenia (stawów) | ruch koliste w stawie (stopa, ramiona, nadgarstki), tak jak mówi się na sali: „krążenia”; NIE „zataczanie kół” |
 | `podwijanie_miednicy` | podwijanie miednicy | cofanie miednicy pod siebie (zaokrąglenie dołu pleców); potocznie „podwijać miednicę”, jak w hang.ribs |
 | `biodra` | biodra (część ciała; staw biodrowy) | biodra jako miejsce ruchu (wyprost, cofnięcie bioder, szerokość stóp „na szerokość bioder”); w ru/uk „бёдра”/„стегна” znaczą uda, w el „γοφοί” to potoczne „boki”; tam używamy „таз”/„таз”/„ισχία” (a szerokość stóp: „ширина таза”, „άνοιγμα λεκάνης”), jak w pozostałych wskazówkach tych języków |
+| `uchwyt` | uchwyt (część sprzętu, ang. handle) | element, który trzymasz w dłoni na wyciągu, gumie albo sankach (ang. handle); NIE chwyt (sposób trzymania), NIE pięść, NIE nadgarstek |
+| `nachwyt` | nachwyt (dłonie od góry, ang. overhand) | chwyt z dłońmi skierowanymi w dół; potoczna nazwa jak w innych kartach (martwy ciąg, podciąganie), bez terminu z podręcznika |
+| `uda` | uda (część ciała) | uda jako miejsce przy którym zawisa ciężar (przed udami, przy udach, do ud); NIE nogi ani stopy |
 
 ## Terminy zalecane (rdzeń)
 
@@ -178,6 +181,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ro` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `ro` | `faza_ruchu` | ^\s*trac[țţ]iun[ei]?\s*$ | „tracțiuni” to w ro nazwa ćwiczenia (podciąganie na drążku); faza animacji to rzeczownik odczasownikowy jak Coborâre, Împingere (przegląd API 31.10.2026) |
 | `bg` | `przerwa_robocza` | работна почивка | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `bg` | `nachwyt` | пронир | podręcznikowe; w pozostałych kartach jest „прав хват” |
 | `hr` | `przerwa` | pauz | „pauza” to pauza treningu, nie przerwa między seriami (odmor) |
 | `hr` | `przerwa_robocza` | radni odmor\|radna pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `hr` | `faza_pauza` | pauziraj | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
@@ -189,6 +193,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `sr` | `przerwa` | пауз | „пауза” to pauza treningu, nie przerwa między seriami (одмор) |
 | `sr` | `przerwa_robocza` | радни одмор\|радна пауза | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sr` | `faza_pauza` | паузирај | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
+| `sr` | `kettlebell` | kettlebell | serbski tekst jest cyrylicą; w kartach jest „кетлбел”, nie łacinka |
 | `lt` | `przerwa` | pertrauk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lt` | `przerwa_robocza` | darbinis poilsis | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lt` | `faza_pauza` | pristabd | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
@@ -211,6 +216,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `uk` | `seria` | серія | „серія” to odcinek; podejście to „підхід” |
 | `uk` | `zakres_powtorzen` | інтервал | „інтервал” to przerwa/trening interwałowy; zakres to „діапазон” |
 | `uk` | `biodra` | (?<![\p{L}])стег(на\|он\|нами\|нах\|нам)(?![\p{L}]) | „стегна” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
+| `uk` | `uda` | (?<![\p{L}])(перед\|до\|біля) ног(ами\|ам\|и\|ою\|і)?(?![\p{L}])\|біля ніг | „ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup) |
 | `es` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
@@ -220,6 +226,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `es-419` | `trening` | entrenos?(?![\p{L}]) | „entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento” |
 | `es-419` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
 | `es-419` | `telefon_es419` | teléfono | w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026) |
+| `es-419` | `uchwyt` | (?<![\p{L}])maneral(es)?(?![\p{L}]) | jedno słowo w całym pliku: uchwyt wyciągu to „agarre”, nie „maneral” (decyzja koordynatora 04.11.2026); „mangos” zostaje tylko przy sankach (sled.pushGrip) |
 | `pt` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `pt` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
@@ -227,6 +234,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pt` | `zakres_ruchu` | intervalo | „intervalo” to przerwa; zakres ruchu to „amplitude” |
 | `pt` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `pt` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
+| `pt` | `uchwyt` | (?<![\p{L}])punhos?(?![\p{L}]) | „punho” to pięść albo mankiet (w pt-BR nadgarstek), nie uchwyt wyciągu; uchwyt to „pega” |
 | `pt-BR` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt-BR` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `pt-BR` | `zakres_powtorzen` | intervalo | w Brazylii „intervalo” to przerwa między seriami (i przerwa w pracy/szkole); zakres to „faixa” |
@@ -289,6 +297,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `id` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to serial; podejście to „set” |
 | `id` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `id` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
+| `id` | `nachwyt` | (?<![\p{L}])overhand(?![\p{L}]) | w pozostałych kartach jest „genggaman atas”, nie angielskie „overhand” |
 | `ms` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „rehat” |
 | `ms` | `przerwa_robocza` | rehat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ms` | `seria` | (?<![\p{L}])siri(?![\p{L}]) | „siri” to serial; podejście to „set” |
@@ -306,6 +315,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ru` | `zakres_powtorzen` | интервал | „интервал” to przerwa/trening interwałowy; zakres to „диапазон” |
 | `ru` | `pozycja_posrednia` | в процессе | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ru` | `biodra` | (?<![\p{L}])(бёдр\p{L}*\|бёдер)(?![\p{L}]) | „бёдра” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
+| `ru` | `uda` | (?<![\p{L}])(перед\|к\|у) ног(ами\|ам\|и\|ой\|е)?(?![\p{L}]) | „ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup) |
 | `ja` | `przerwa` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni między seriami mówi się インターバル |
 | `ja` | `przerwa_robocza` | 仕事の\|休憩 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ja` | `przerwa_po_rozgrzewce` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni インターバル |
@@ -314,6 +324,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `lokcie_otwarte` | 肘を広げ | o łokciach przy wyciskaniu mówi się 開く (otwierać), nie 広げる (rozkładać) |
 | `ja` | `lokcie_waskie` | 肘を狭く | kalka z „wąsko”; na siłowni mówi się 肘を締める |
 | `ja` | `rysunek_zdanie` | イラスト | w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki |
+| `ja` | `nachwyt` | オーバーハンド | w pozostałych kartach jest „順手”, nie katakanowe „オーバーハンドグリップ” |
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ko` | `szablon` | 템플릿 | w koreańskich siłowniach „루틴” |
@@ -325,7 +336,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
-## Do potwierdzenia przez native speakera (136)
+## Do potwierdzenia przez native speakera (135)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -370,7 +381,6 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `sl` | `lokcie_waskie` | komolce ozko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sr` | `asekuracja` | Асистенција и безбедност | do potwierdzenia przez native speakera |
 | `sr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
-| `sr` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sr` | `ledzwie` | donji deo leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sr` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `sr` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
@@ -383,13 +393,13 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `lt` | `do_upadku` | Iki nesėkmės | do potwierdzenia przez native speakera |
 | `lt` | `asekuracja` | Pagalba ir saugumas | do potwierdzenia przez native speakera |
 | `lt` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
-| `lt` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
+| `lt` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebell'as, kettlebell'ą, kettlebell'ai (z apostrofem). |
 | `lt` | `ledzwie` | apatinė nugaros dalis | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lt` | `zegarek` | laikrodis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lt` | `lokcie_waskie` | alkūnes siaurai | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `lv` | `seria` | Sērija | „sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia |
 | `lv` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
-| `lv` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
+| `lv` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli. |
 | `lv` | `ledzwie` | lejasmugura | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lv` | `zegarek` | pulkstenis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lv` | `lokcie_waskie` | elkoņus šauri | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |

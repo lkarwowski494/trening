@@ -92,16 +92,18 @@
     "Bench Press (sztanga)": {
       "rodzina": "bench_press",
       "werdykt": "zastapiona",
-      "data": "2026-10-27",
+      "data": "2026-11-04",
       "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-      "sha": "0faf13f7caef"
+      "sha": "6299948df46b",
+      "uwagi": "Odświeżenie skrótu v1 (figura + wskazówki) po dopisaniu bp.elbowsMid do karty 04.11.2026; werdykt bez zmian — ćwiczenie wyświetla figurę v2 rodziny bench_press."
     },
     "Bench Press (hantle)": {
       "rodzina": "bench_press",
       "werdykt": "zastapiona",
-      "data": "2026-10-27",
+      "data": "2026-11-04",
       "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-      "sha": "9eeb59ea6fed"
+      "sha": "122dbdee3888",
+      "uwagi": "Odświeżenie skrótu v1 (figura + wskazówki) po dopisaniu bp.elbowsMid do karty 04.11.2026; werdykt bez zmian — ćwiczenie wyświetla figurę v2 rodziny bench_press."
     },
     "Close Grip Bench Press": {
       "rodzina": "bench_press",
@@ -113,16 +115,18 @@
     "Incline Bench Press (sztanga)": {
       "rodzina": "bench_press",
       "werdykt": "zastapiona",
-      "data": "2026-10-27",
+      "data": "2026-11-04",
       "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-      "sha": "4c083ac5283d"
+      "sha": "93a5311a3983",
+      "uwagi": "Odświeżenie skrótu v1 (figura + wskazówki) po dopisaniu bp.elbowsMid do karty 04.11.2026; werdykt bez zmian — ćwiczenie wyświetla figurę v2 rodziny bench_press."
     },
     "Incline Bench Press (hantle)": {
       "rodzina": "bench_press",
       "werdykt": "zastapiona",
-      "data": "2026-10-27",
+      "data": "2026-11-04",
       "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-      "sha": "31e502ef3e4d"
+      "sha": "d85cfd341d28",
+      "uwagi": "Odświeżenie skrótu v1 (figura + wskazówki) po dopisaniu bp.elbowsMid do karty 04.11.2026; werdykt bez zmian — ćwiczenie wyświetla figurę v2 rodziny bench_press."
     },
     "Machine Chest Press": {
       "rodzina": "chest_press_machine",
@@ -639,62 +643,62 @@
     "squat": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
-      "autor": "programista FW2",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
+      "autor": "programista FW3",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
-      "sha": "9a20d827560a",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
+      "sha": "9055d5c35c32",
       "liczba": 25,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich 25 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni a743f597de1d (a040e2be) → 9a20d827560a (570f0670 po zrodla-runtime --write na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: squat nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni 9a20d827560a (2be94212) → 9055d5c35c32 (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
     },
     "bench_press": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
-      "autor": "programista FW2",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
+      "autor": "programista FW3",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
-      "sha": "ff2cf5dd9c79",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
+      "sha": "f599fd4e1aac",
       "liczba": 30,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich 30 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni 3bf538d83f99 (a040e2be) → ff2cf5dd9c79 (570f0670 po zrodla-runtime --write na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: bench_press nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni ff2cf5dd9c79 (2be94212) → f599fd4e1aac (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
     },
     "hinge": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
-      "autor": "programista FW2",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
+      "autor": "programista FW3",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
-      "sha": "24ca1a0274c0",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
+      "sha": "95630867c85c",
       "liczba": 32,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich 32 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni f352e518743b (a040e2be) → 24ca1a0274c0 (570f0670 po zrodla-runtime --write na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: hinge nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni 24ca1a0274c0 (2be94212) → 95630867c85c (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
     },
     "pull_up": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
-      "autor": "programista FW2",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
+      "autor": "programista FW3",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
-      "sha": "df333f264469",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
+      "sha": "9c45f1245826",
       "liczba": 13,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich 11 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni 4f8bbdf8f25e (a040e2be) → df333f264469 (570f0670 po zrodla-runtime --write na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: pull_up nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni df333f264469 (2be94212) → 9c45f1245826 (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
     },
     "curl": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW2 r1 04.11.2026",
-      "autor": "programista FW2",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
+      "autor": "programista FW3",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW2 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-2 @ 570f0670 (baza a040e2be)",
-      "sha": "1b3a94d1388f",
+      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
+      "sha": "985b6e80edf6",
       "liczba": 36,
-      "slad": "Arkusze arkusz-slad.mjs wszystkich 34 ćwiczeń rodziny z rysunkiem w każdym generowanym widoku przed/po — cmp: bajtowo równe (łącznie 528/528 arkuszy dla 132 ćwiczeń 5 rodzin ready); frameAt (sk, props, info z info.trail) w 401 próbkach — skrót md5 równy na a040e2be i 570f0670; ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW2 nie zmienia rysunku rodziny: zmiana osi hantla (S-1) i reguł śladu (trzyma \"obie\", wyciąg z chwytem \"kostka\") dotyczy wyłącznie póz z danych spoza rodzin ready (19 póz z osią, 17 ze śladem w main, 3 w core_floor); podział contract.ts → poseInterp.ts + dumbbellAxis.ts bez zmiany zachowania (md5 579 wpisów równe 9b485cd5 vs 570f0670). Zmiana skrótu wyłącznie przez pliki w V2_WSPOLNE (contract.ts, nowe poseInterp.ts i dumbbellAxis.ts). Skrót poprzedni 0448bfe6a40f (a040e2be) → 1b3a94d1388f (570f0670 po zrodla-runtime --write na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
+      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: curl nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni 1b3a94d1388f (2be94212) → 985b6e80edf6 (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
     }
   },
   "karty": {
@@ -720,23 +724,23 @@
     },
     "Bench Press (hantle)": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "4d57041596ac",
-      "uwagi": "Ustawienie, kontakt z ławką, ruch, łopatki, bez odbijania, bez wyginania — przeczytane biblioteki (hantle; hantle z taśmą — wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (dbp.setup „hantle na udach”)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie — karta własna (bramka 4, treść karty: dopisane bp.elbowsMid dla spójności z regułą rysunku lokcie_nie_szeroko), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; patch /home/user/stan-spojnosc/bench-karty.patch, data/zrodla/cues.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "4acb788f0dd6",
+      "uwagi": "Względem wpisu 28.10.2026 (sha 4d57041596ac) dopisane tylko bp.elbowsMid; źródła jak przy sztandze z dopiskiem „hantle — ta sama zasada” (uproszczenie, ruch się nie różni). Zgodne z rysunkiem v2. Skrót karty bez zmian w rundzie 2 (kartaSkrot liczy id i teksty PL, nie opisy źródeł)."
     },
     "Bench Press (sztanga)": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "2c1ccee149b9",
-      "uwagi": "Kontakt z ławką, chwyt nieco szerzej niż barki, ruch, łopatki, kontrola, błąd wyginania — 2–3 przeczytane źródła o tym ćwiczeniu."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie — karta własna (bramka 4, treść karty: dopisane bp.elbowsMid dla spójności z regułą rysunku lokcie_nie_szeroko), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; patch /home/user/stan-spojnosc/bench-karty.patch, data/zrodla/cues.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "d3e892b40085",
+      "uwagi": "Względem wpisu 28.10.2026 (sha 2c1ccee149b9) dopisane tylko bp.elbowsMid w „Wskazówki” (po bp.blades), źródła NASM Barbell Bench Press (Common Mistakes) + SBS How to Bench (FAQ). Bez liczby (decyzja 26.10.2026), zgodne z rysunkiem v2 (reguła lokcie_nie_szeroko). Pozostałe zdania bez zmian. Skrót karty bez zmian w rundzie 2 (kartaSkrot liczy id i teksty PL, nie opisy źródeł)."
     },
     "Bieg": {
       "werdykt": "wyswietlana",
@@ -891,23 +895,23 @@
     },
     "Incline Bench Press (hantle)": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "099c10f1fed3",
-      "uwagi": "Ustawienie, ruch do boków górnej części klatki, łopatki, bez odbijania, bez wyginania — 2 przeczytane biblioteki o tym ćwiczeniu."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie — karta własna (bramka 4, treść karty: dopisane bp.elbowsMid dla spójności z regułą rysunku lokcie_nie_szeroko), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; patch /home/user/stan-spojnosc/bench-karty.patch, data/zrodla/cues.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "a788459ad971",
+      "uwagi": "Względem wpisu 28.10.2026 (sha 099c10f1fed3) dopisane tylko bp.elbowsMid; źródła z dopiskiem „hantle — ta sama zasada” (uproszczenie: płasko → skos, sztanga → hantle). Zgodne z rysunkiem v2. Skrót karty bez zmian w rundzie 2 (kartaSkrot liczy id i teksty PL, nie opisy źródeł)."
     },
     "Incline Bench Press (sztanga)": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "0e1a412280aa",
-      "uwagi": "Ławka skośna, plecy i stopy oparte, chwyt, sztanga do górnej części klatki, łopatki, kontrola — przeczytana biblioteka o tym ćwiczeniu + hantle (wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie — karta własna (bramka 4, treść karty: dopisane bp.elbowsMid dla spójności z regułą rysunku lokcie_nie_szeroko), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; patch /home/user/stan-spojnosc/bench-karty.patch, data/zrodla/cues.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "1b3d02b186a2",
+      "uwagi": "Względem wpisu 28.10.2026 (sha 0e1a412280aa) dopisane tylko bp.elbowsMid; źródła dla wyciskania na płasko — przy skosie to uproszczenie (dopisek „skos — ta sama zasada” w źródłach dodany w rundzie 2). Zgodne z rysunkiem v2. Skrót karty bez zmian w rundzie 2 (kartaSkrot liczy id i teksty PL, nie opisy źródeł)."
     },
     "Incline Walk (bieżnia)": {
       "werdykt": "wyswietlana",
@@ -2067,8 +2071,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Rysunek (Upright-Row-sztanga-side.png, rodzina planned): koniec ruchu — gryf na środku klatki, niżej niż tekst „do wysokości barków”; do recenzji ruchu rodziny, nie blokuje treści."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Rysunek (Upright-Row-sztanga-side.png, rodzina planned): koniec ruchu — gryf na środku klatki, niżej niż tekst „do wysokości barków”; do recenzji ruchu rodziny, nie blokuje treści."
     },
     "Upright Row (hantle)": {
       "werdykt": "wyswietlana",
@@ -2077,8 +2081,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu (sztanga → hantle) potwierdzone w r1."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu (sztanga → hantle) potwierdzone w r1."
     },
     "Upright Row (linki)": {
       "werdykt": "wyswietlana",
@@ -2087,8 +2091,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu potwierdzone w r1."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu potwierdzone w r1."
     },
     "Smith Machine Upright Row": {
       "werdykt": "wyswietlana",
@@ -2097,8 +2101,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (suwnica) potwierdzone w r1; uwaga NISKA r1 o miejscu „Variations” (ISSA wspomina suwnicę w części o technice) nadal aktualna — nie blokuje."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (suwnica) potwierdzone w r1; uwaga NISKA r1 o miejscu „Variations” (ISSA wspomina suwnicę w części o technice) nadal aktualna — nie blokuje."
     },
     "Dumbbell One-Arm Upright Row": {
       "werdykt": "wyswietlana",
@@ -2107,8 +2111,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "655442cbd7ad",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (hantel, jedna ręka) potwierdzone w r1."
+      "sha": "2e95e5a91846",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (hantel, jedna ręka) potwierdzone w r1."
     },
     "Smith Machine One-Arm Upright Row": {
       "werdykt": "wyswietlana",
@@ -2117,8 +2121,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "655442cbd7ad",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie potwierdzone w r1; uwaga NISKA o „Variations” jak wyżej."
+      "sha": "2e95e5a91846",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie potwierdzone w r1; uwaga NISKA o „Variations” jak wyżej."
     },
     "Band Upright Row": {
       "werdykt": "wyswietlana",
@@ -2127,8 +2131,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Bodylastics („until your hands reach the bottom of your chest”) nieco niżej — „mniej więcej” mieści część wspólną z ISSA; uproszczenie taśmy potwierdzone w r1."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Bodylastics („until your hands reach the bottom of your chest”) nieco niżej — „mniej więcej” mieści część wspólną z ISSA; uproszczenie taśmy potwierdzone w r1."
     },
     "Band Lateral Raise": {
       "werdykt": "wyswietlana",
@@ -2497,46 +2501,46 @@
     "Axle Deadlift": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Band Bench Press": {
       "rodzina": "bench",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "acd851225cdc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "aadff1efce51",
+      "uwagi": "Dopisane bp.elbowsMid (łokcie pośrodku, bez liczby — zgodnie z decyzją 26.10.2026 usuwającą „45°”) — reguła lokcie_nie_szeroko spełniona na rysunku v2. Źródła NASM + SBS (wskazowki-ogolne.json), wariant sprzętu — uproszczenie. Bez nazw źródeł w tekście, bez twierdzeń o zdrowiu. Runda 2 (18d19850): skrót bez zmian."
     },
     "Band Good Morning": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "543dd4716326",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "4fab53bdf65f",
+      "uwagi": "Dopisane gm.depth (tylko do łagodnego rozciągnięcia tyłu ud, nie niżej niż tułów poziomo) — reguła dzien_dobry_glebokosc spełniona na rysunku v2. Źródła z karty Good Morning, uproszczenie (wariant sprzętu). Uwaga: przy „off Pins” głębokość ustala wysokość podpórek — zdanie kierunkowo zgodne. Runda 2 (18d19850): skrót bez zmian."
     },
     "Band Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Barbell Guillotine Bench Press": {
       "rodzina": "bench",
@@ -2552,13 +2556,13 @@
     "Barbell Hack Squat": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "e76670c9126d",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "cc503d34c490",
+      "uwagi": "Po rundzie 1 usunięte sq.down (zapis badacza: sztanga za nogami — bez dl.close/sq.down); reguła zejscie_biodra_i_kolana ma wyjątek z powodem w tests/spojnosc-karta-rysunek.json. Zostają hinge.back, sq.kneesToes, sq.depth (głębokość — źródła Back Squat, uproszczenie) oraz błędy mis.roundBack, sq.mis.heels — zgodne z rysunkiem v2."
     },
     "Bench Press with Chains": {
       "rodzina": "bench",
@@ -2574,24 +2578,24 @@
     "Board Press": {
       "rodzina": "bench",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "acd851225cdc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.control „od klatki” — sztanga dochodzi do deski; nie przeczy, uwaga P2."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "aadff1efce51",
+      "uwagi": "Dopisane bp.elbowsMid (łokcie pośrodku, bez liczby — zgodnie z decyzją 26.10.2026 usuwającą „45°”) — reguła lokcie_nie_szeroko spełniona na rysunku v2. Źródła NASM + SBS (wskazowki-ogolne.json), wariant sprzętu — uproszczenie. Bez nazw źródeł w tekście, bez twierdzeń o zdrowiu. Runda 2 (18d19850): skrót bez zmian."
     },
     "Bodyweight Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Box Squat": {
       "rodzina": "squat",
@@ -2651,13 +2655,13 @@
     "Cable Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Chain Press": {
       "rodzina": "bench",
@@ -2673,13 +2677,13 @@
     "Clean Deadlift": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Close-Grip Dumbbell Press": {
       "rodzina": "bench",
@@ -2706,24 +2710,24 @@
     "Deadlift with Bands": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Deadlift with Chains": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Decline Bench Press": {
       "rodzina": "bench",
@@ -2761,46 +2765,46 @@
     "Deficit Deadlift": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Dip Belt Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Double Kettlebell Front Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Dumbbell Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Floor Press (hantle)": {
       "rodzina": "bench",
@@ -2838,13 +2842,13 @@
     "Good Morning off Pins": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "543dd4716326",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "4fab53bdf65f",
+      "uwagi": "Dopisane gm.depth (tylko do łagodnego rozciągnięcia tyłu ud, nie niżej niż tułów poziomo) — reguła dzien_dobry_glebokosc spełniona na rysunku v2. Źródła z karty Good Morning, uproszczenie (wariant sprzętu). Uwaga: przy „off Pins” głębokość ustala wysokość podpórek — zdanie kierunkowo zgodne. Runda 2 (18d19850): skrót bez zmian."
     },
     "JM Press": {
       "rodzina": "bench",
@@ -2860,13 +2864,13 @@
     "Landmine Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Leverage Deadlift": {
       "rodzina": "hingeFloor",
@@ -2882,13 +2886,13 @@
     "One Arm Dumbbell Bench Press": {
       "rodzina": "bench",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "acd851225cdc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "aadff1efce51",
+      "uwagi": "Dopisane bp.elbowsMid (łokcie pośrodku, bez liczby — zgodnie z decyzją 26.10.2026 usuwającą „45°”) — reguła lokcie_nie_szeroko spełniona na rysunku v2. Źródła NASM + SBS (wskazowki-ogolne.json), wariant sprzętu — uproszczenie. Bez nazw źródeł w tekście, bez twierdzeń o zdrowiu. Runda 2 (18d19850): skrót bez zmian."
     },
     "One-Arm Kettlebell Floor Press": {
       "rodzina": "bench",
@@ -2904,13 +2908,13 @@
     "One-Arm Overhead Kettlebell Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "fb2f06dff2f5",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "2e243563d258",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Także sq.down i błąd sq.mis.heels (reguły zejscie_biodra_i_kolana, piety_na_podlodze; sq.mis.heels przechodzi CUE_REQUIRES — stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "One-Arm Side Deadlift": {
       "rodzina": "hingeFloor",
@@ -2926,24 +2930,24 @@
     "Overhead Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "304e0fc5babd",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "2e243563d258",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Także sq.down (biodra i kolana jednocześnie) — reguła zejscie_biodra_i_kolana; przysiad z ciężarem nad głową, tułów bardziej pionowy, kierunek ruchu ten sam. Runda 2 (18d19850): skrót bez zmian."
     },
     "Pin Press": {
       "rodzina": "bench",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "60b4ee8e613d",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "4b10463e2eab",
+      "uwagi": "Dopisane bp.elbowsMid (łokcie pośrodku, bez liczby — zgodnie z decyzją 26.10.2026 usuwającą „45°”) — reguła lokcie_nie_szeroko spełniona na rysunku v2. Źródła NASM + SBS (wskazowki-ogolne.json), wariant sprzętu — uproszczenie. Bez nazw źródeł w tekście, bez twierdzeń o zdrowiu. Runda 2 (18d19850): skrót bez zmian."
     },
     "Rack Pull": {
       "rodzina": "hingeFloor",
@@ -2992,24 +2996,24 @@
     "Reverse Band Deadlift": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Reverse Band Power Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Reverse Band Sumo Deadlift": {
       "rodzina": "hingeFloor",
@@ -3047,35 +3051,35 @@
     "Single Arm RDL (hantel/linka)": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "41f335bcb706",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "3f53baf0e534",
+      "uwagi": "Dopisane rdl.dbMove (ciężar blisko nóg, kolana lekko ugięte) — reguła ciezar_przy_nogach; rysunek v2 styl rdl obunóż, jedna ręka. Źródła z karty RDL (hantle/linki): potwierdzam uproszczenie (wariant chwytu/sprzętu, ruch nóg i bioder ten sam). Powtórka „kolana lekko ugięte” z rdl.knees — bez sprzeczności."
     },
     "Single Leg RDL (hantel)": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "2097ba8dea72",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "fb92efd3bdc3",
+      "uwagi": "Dopisane rdl.dbMove — reguły ciezar_przy_nogach_jednonoz i kolana_lekko_ugiete_jednonoz (cue_dodatkowe). To nie wariant sprzętu, lecz analogia (jednonóż): potwierdzam jako nazwane uproszczenie zestawu ogólnego wzorca — zdanie nie przeczy ruchowi (biodra w tył, ciężar przy nodze podporowej, kolano podporowe lekko ugięte; CUE_REQUIRES dopuszcza wzorzec singleLeg dla rdl.move/rdl.depth). Zestaw nie opisuje stania na jednej nodze — luka treści, nie sprzeczność."
     },
     "Single Leg RDL (linki)": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "2097ba8dea72",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "fb92efd3bdc3",
+      "uwagi": "Jak Single Leg RDL (hantel) — ten sam zestaw i skrót; analogia jednonóż, uproszczenie potwierdzone."
     },
     "Smith Machine Bench Press": {
       "rodzina": "bench",
@@ -3113,68 +3117,68 @@
     "Smith Machine Incline Press": {
       "rodzina": "bench",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "acd851225cdc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "aadff1efce51",
+      "uwagi": "Dopisane bp.elbowsMid (łokcie pośrodku, bez liczby — zgodnie z decyzją 26.10.2026 usuwającą „45°”) — reguła lokcie_nie_szeroko spełniona na rysunku v2. Źródła NASM + SBS (wskazowki-ogolne.json), wariant sprzętu — uproszczenie. Bez nazw źródeł w tekście, bez twierdzeń o zdrowiu. Runda 2 (18d19850): skrót bez zmian."
     },
     "Smith Machine Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Smith Machine Stiff-Legged Deadlift": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "75d054771e9d",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "ccac470e18c2",
+      "uwagi": "Jak Stiff-Legged Barbell Deadlift (ten sam zestaw i skrót): rdl.move z karty RDL (sztanga) — uproszczenie potwierdzone (sztanga w suwnicy, ten sam ruch)."
     },
     "Snatch Deadlift": {
       "rodzina": "hingeFloor",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "da6e441d2361",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ad4fe9dc9a5a",
+      "uwagi": "Dopisane dl.feet (stopy pod sztangą, biodra–barki, sztanga przy piszczelach nad środkiem stopy) — reguła start_z_podlogi; martwy ciąg klasyczny ze sztangą z podłogi (warianty z gumami, łańcuchami, deficytem, osią, chwytem rwania/zarzutu — ustawienie stóp i sztangi to samo). Źródła z karty Deadlift (sztanga), nazwane uproszczenie (wariant sprzętu/chwytu). Runda 2 (18d19850): skrót bez zmian."
     },
     "Squat with Bands": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Squat with Chains": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Squeeze Press (hantle)": {
       "rodzina": "bench",
@@ -3190,13 +3194,13 @@
     "Stiff-Legged Barbell Deadlift": {
       "rodzina": "rdl",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "75d054771e9d",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "ccac470e18c2",
+      "uwagi": "Dopisane rdl.move (cofaj biodra, sztanga w dół blisko nóg, kolana lekko ugięte, powrót biodrami w przód) — reguły ciezar_przy_nogach i kolana_lekko_ugiete; rysunek v2 styl rdl (start stojąc, kolana prawie proste), CUE_REQUIRES rdl.move spełnione. Źródła z karty RDL (sztanga): potwierdzam uproszczenie — ten sam zawias stojąc ze sztangą, różnica tylko w stopniu ugięcia kolan, którą pokrywa rdl.knees. Drobna powtórka „kolana lekko ugięte” (rdl.move + rdl.knees) — bez sprzeczności."
     },
     "Sumo Deadlift (kettlebell)": {
       "rodzina": "hingeFloor",
@@ -3234,35 +3238,35 @@
     "Sumo Squat (hantel)": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "e1034221ea32",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "ef3566b22f3d",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Wide-Grip Barbell Bench Press": {
       "rodzina": "bench",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "acd851225cdc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "aadff1efce51",
+      "uwagi": "Dopisane bp.elbowsMid (łokcie pośrodku, bez liczby — zgodnie z decyzją 26.10.2026 usuwającą „45°”) — reguła lokcie_nie_szeroko spełniona na rysunku v2. Źródła NASM + SBS (wskazowki-ogolne.json), wariant sprzętu — uproszczenie. Bez nazw źródeł w tekście, bez twierdzeń o zdrowiu. Przy szerokim chwycie łokcie naturalnie dalej od tułowia; zdanie bez liczby nadal prawdziwe (unikać skrajnego odwiedzenia), rysunek spełnia regułę. Runda 2 (18d19850): skrót bez zmian."
     },
     "Zercher Squat": {
       "rodzina": "squat",
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "9358e2eddadc",
-      "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; zdanie dopisane dla spójności z regułą rysunku v2), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-zestawy-do-recenzji @ d0ed7915; raport /home/user/stan-spojnosc-r1/raport.md",
+      "sha": "5dc42893f126",
+      "uwagi": "Dopisane sq.depth (głębokość „zwykle co najmniej do równoległego ud”, proste plecy, całe stopy) — reguła rysunku udo_rownolegle, którą rysunek v2 spełnia (walidator sensu rodziny squat). Źródła zdania z karty Back Squat (wskazowki-ogolne.json → cwiczenie Back Squat) — wariant sprzętu tego samego ruchu, nazwane uproszczenie; ruch się nie różni (przysiad obunóż, stopy płasko). Runda 2 (18d19850): skrót bez zmian."
     },
     "Standing Gastrocnemius Calf Stretch": {
       "rodzina": "stretch",
@@ -3344,13 +3348,13 @@
     "Gorilla Chin/Crunch": {
       "rodzina": "hanging",
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
-      "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
-      "sha": "5faeb3667bc1",
-      "uwagi": "Zwis podchwytem z unoszeniem kolan (figura v2 pull_up, drążek): hang.slow (opuszczanie nóg), pu.shoulders, hang.noSwing zgodne z ruchem."
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "ca7d78a4747e",
+      "uwagi": "Po rundzie 1 pu.partial przeniesione z „Wskazówki” do „Czego unikać” (err), jak w pozostałych zestawach i kartach. hang.slow, pu.shoulders, hang.noSwing bez zmian (recenzja 02.11.2026)."
     },
     "Overhead Stretch": {
       "rodzina": "stretch",
@@ -3791,6 +3795,17 @@
       "kto": "audytor — recenzja niezależna zestawów ogólnych rodziny curl po podłączeniu figur v2 (bramka 4, L-047), 03.11.2026",
       "sha": "88e974d922c7",
       "uwagi": "Jednorącz z dolnego wyciągu, łokieć przy boku: curl.elbows, curl.noSwing, curl.control, curl.mis.elbows zgodne. Teksty PL/EN: lib/cues/text/pl.json, en.json; źródła: data/zrodla/wskazowki-ogolne.json → data/zrodla/cues.json."
+    },
+    "Dead Hang": {
+      "rodzina": "vpull",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek; poprawka po rundzie 1 spójności karta–rysunek), 04.11.2026",
+      "autor": "programista (agent spójność karta–rysunek, 04.11.2026; poprawki po recenzji niezależnej, gałąź figury/spojnosc-karta-rysunek @ 18d19850)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna L-047, runda 2 partii „spójność karta–rysunek” (decyzja właściciela A 04.11.2026), gałąź figury/spojnosc-karta-rysunek @ 18d19850; raport /home/user/stan-spojnosc-r2/raport.md",
+      "sha": "fc81d99b3aa6",
+      "uwagi": "Poprawka z recenzji 02.11.2026 (POPRAWKI) wykonana: npu.hang („uchwyty”) zastąpione pu.grip („drążek nachwytem, trochę szerzej niż barki, zawiśnij na prostych rękach”) — rysunek: drążek, ta sama szerokość co Pull Up; reguła rece_proste_caly_ruch → cue_wariant pu.grip. Błąd pu.noSwing zgodny z ruchem. Źródła pu.grip z karty Pull Up (zwis = pozycja wyjściowa podciągania, analogia z zapisu badacza)."
     }
   }
 }
