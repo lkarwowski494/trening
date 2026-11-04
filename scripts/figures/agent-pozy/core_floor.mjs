@@ -338,8 +338,8 @@ export const PRZYBLIZENIA = {
   'Tuck Crunch': 'przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)',
   'Butt-Ups': 'przybliżenie: stopy na palcach podchodzą o 44 cm ku dłoniom podczas unoszenia bioder (przy nieruchomych łokciach i stopach odwrócone V nie powstaje: odległość bark–stopy jest stała); bark odchyla się do przodu o 22° nad łokciem',
   'Press Sit-Up': 'przybliżenie: talerze sztangi rysowane w płaszczyźnie y–z, sztanga idzie za dłońmi (podazaZaChwytem); ławka −20°, stopy pod wałkami',
-  'Otis-Up': 'przybliżenie: talerz zawsze w płaszczyźnie y–z (silnik), dłonie na obręczy po bokach',
-  'GHD Sit Up': 'przybliżenie: wałek nad kostkami (stopa pod nim), poduszka rysowana jako schemat ławki rzymskiej (kąt 15°), tułów odchylany do poziomu (zakres wyprostu biodra silnika −17°)',
+  'Otis-Up': 'przybliżenie: talerz rysowany zawsze w płaszczyźnie y–z, dłonie na obręczy po bokach',
+  'GHD Sit Up': 'przybliżenie: wałek nad kostkami (stopa pod nim), poduszka rysowana jako schemat ławki rzymskiej (kąt 15°), tułów odchylany tylko do poziomu (wyprost biodra do −17°)',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
 };
 
