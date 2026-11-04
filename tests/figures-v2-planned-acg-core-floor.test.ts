@@ -10,7 +10,7 @@ import * as path from 'path';
 import { SIDES, keyframeFrame, type PoseData } from '@/lib/figures/v2';
 
 const CW: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/core_floor.json'), 'utf8')).cwiczenia;
-const KOLANA = ['Crunch', 'Sit Up', 'Janda Sit-Up', 'Oblique Crunches - On The Floor'];
+const KOLANA = ['Crunch', 'Sit Up', 'Janda Sit-Up']; /* Oblique Crunches - On The Floor: poza usunięta 04.11.2026 (karta otwarta, rysunek niewyświetlany; decyzja koordynatora T2 pkt 6) */
 const GRID = Array.from({ length: 9 }, (_, i) => i / 8);
 const us = (d: PoseData): number[] => [...new Set([...(d.klatki as { u: number }[]).map(k => k.u), ...GRID])];
 const dist = (a: number[], b: number[]): number => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
