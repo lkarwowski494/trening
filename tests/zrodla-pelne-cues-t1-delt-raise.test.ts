@@ -72,7 +72,7 @@ describe('T1 delt_raise: źródła i reguły szczebli', () => {
       expect([k, r.c, orgs4.size >= 2 || typeof luka === 'string']).toEqual([k, r.c, true]);
       expect([k, r.c, orgs4.size >= 2 && luka !== undefined]).toEqual([k, r.c, false]);
     }
-    expect(T1.luki.length).toBe(37);
+    expect(T1.luki.length).toBe(36);
     for (const id of T1.luki) expect([id, /^praktyka/.test(CUE_FULL.luki![id])]).toEqual([id, true]);
   });
 
@@ -129,9 +129,23 @@ describe('T1 delt_raise: karty na źródłach typu strona aplikacji (rodzaj `app
   });
 });
 
+describe('T1 delt_raise: poprawki po recenzji L-047 (04.11.2026)', () => {
+  test('WYS: ur.height mówi o wysokości ciężaru (część wspólna ISSA, Catalyst, Bodylastics), nie o łokciach „do barków”; stare tłumaczenia usunięte z 31 języków, zdanie w zestawie przekładu', () => {
+    expect(pl['ur.height']).not.toMatch(/Unoś łokcie/); expect(en['ur.height']).toMatch(/shoulder height/);
+    for (const l of ['de', 'fr', 'ja', 'cs', 'es']) expect([l, json(`lib/cues/text/${l}.json`)['ur.height']]).toEqual([l, undefined]);
+    const ISSA = CUE_FULL.exercises['Upright Row (sztanga)'].tips.find(r => r.c === 'ur.height')!;
+    expect(ISSA.s.some(([, at]) => /shoulder height/.test(at))).toBe(true); expect(ISSA.s.some(([, at]) => /jak najwyżej/.test(at))).toBe(true);
+  });
+  test('ŚR: Sled Reverse Flye srf.move ma 3 źródła szczebla 5 (w tym strona aplikacji); Band Lateral Raise blat.setup ma 2 organizacje szczebla ≤ 4 i brak luki', () => {
+    const m = CUE_FULL.exercises['Sled Reverse Flye'].move[0]; expect(m.s.length).toBe(3); expect(m.s.some(([sid]) => CUE_FULL.orgs[orgOf(sid)].kind === 'app')).toBe(true);
+    const b = CUE_FULL.exercises['Band Lateral Raise'].setup[0];
+    expect(new Set(b.s.filter(([sid]) => lv(sid) <= 4).map(([sid]) => orgOf(sid))).size).toBe(2); expect(CUE_FULL.luki?.['Band Lateral Raise::blat.setup']).toBeUndefined(); expect(typeof b.uproszczenie).toBe('string');
+  });
+});
+
 describe('T1 delt_raise: zdania', () => {
-  test('51 nowych zdań ma tekst PL i EN; kolizji z istniejącymi id nie ma (id z fixture nie były w słownikach przed partią)', () => {
-    expect(T1.zdania.length).toBe(51);
+  test('51 nowych zdań i zmienione ur.height (po recenzji L-047) mają tekst PL i EN; kolizji z istniejącymi id nie ma (id z fixture nie były w słownikach przed partią)', () => {
+    expect(T1.zdania.length).toBe(52);
     for (const c of T1.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const zestaw = json('docs/lokalizacja/zestaw-przekladu-2026-11-04-t1-wskazowki.json').klucze as { id: string; pl: string; en: string }[];
     expect(zestaw.map(k => k.id).sort()).toEqual([...T1.zdania].sort());
@@ -153,7 +167,7 @@ describe('T1 delt_raise: zdania', () => {
   test('wskazówki pozostałe: reużyte id mają to samo brzmienie co w wejściu badacza (lat.height, front.elbows, ur.height, rear.arms)', () => {
     expect(pl['lat.height']).toBe('Unoś mniej więcej do wysokości barków.');
     expect(pl['front.elbows']).toBe('Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch.');
-    expect(pl['ur.height']).toBe('Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała.');
+    expect(pl['ur.height']).toBe('Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą.');
     expect(pl['rear.arms']).toBe('Ramiona idą w bok, nie w tył — dłonie kończą ruch mniej więcej na linii barków.');
   });
 });

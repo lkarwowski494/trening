@@ -125,10 +125,11 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | app-s4 | app-s4 | 5 | ? |
 | app-s5 | app-s5 | 5 | ? |
 | app-s6 | app-s6 | 5 | ? |
+| app-s7 | app-s7 | 5 | ? |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 196; zdań (z powtórzeniami między ćwiczeniami): 866; unikalnych zdań: 536; źródeł: 411.
+- Ćwiczenia ze wskazówkami: 196; zdań (z powtórzeniami między ćwiczeniami): 866; unikalnych zdań: 536; źródeł: 412.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 21.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 78 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench.
 
@@ -170,7 +171,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | Pendlay Row | `pendlay.mis.torso` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5); brak zdania ustawienia/ruchu do wniosku |
 | Łydki na stopniu | `calf.step` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona) |
 | Alternating Deltoid Raise | `adr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
-| Band Lateral Raise | `blat.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | One-Arm Cable Rear Lateral Raise | `crear1.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | One-Arm Cable Rear Lateral Raise | `crear1.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | One-Arm Cable Rear Lateral Raise | `rdelt.mis.swing` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
@@ -185,7 +185,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | Barbell Front Raise to Overhead | `fro.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Barbell Front Raise to Overhead | `fro.mis.arch` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Sled Reverse Flye | `srf.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
-| Sled Reverse Flye | `srf.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Sled Reverse Flye | `srf.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła (w tym strona aplikacji), w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Car Drivers | `cdr.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Car Drivers | `cdr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Car Drivers | `cdr.mis.drop` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
@@ -3065,7 +3065,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Upright Row (hantle)
 
@@ -3080,7 +3080,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Upright Row (linki)
 
@@ -3095,7 +3095,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Smith Machine Upright Row
 
@@ -3110,7 +3110,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (Variations); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (Variations); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Dumbbell One-Arm Upright Row
 
@@ -3125,7 +3125,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Smith Machine One-Arm Upright Row
 
@@ -3140,7 +3140,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to; Variations (Smith)); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to; Variations (Smith)); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Band Upright Row
 
@@ -3155,13 +3155,13 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Łokcie prowadzą ruch i są wyżej niż dłonie. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm)); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
-- Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm)); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.height`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm): ręce do dolnej części klatki piersiowej); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `ur.height`
 
 ### Band Lateral Raise
 
 **Ustawienie**
 
-- Stań na taśmie, uchwyty w dłoniach przy udach, łokcie lekko ugięte. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)) [uproszczenie: ustawienie „stań na taśmie” opisuje wprost tylko Bodylastics (producent taśm)] `blat.setup`
+- Stań na taśmie, uchwyty w dłoniach przy udach, łokcie lekko ugięte. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 1 (wersja z hantlami)) [uproszczenie: ustawienie „stań na taśmie” opisuje wprost tylko Bodylastics (producent taśm); ACE opisuje wersję z hantlami — ten sam ruch stawów, zmienia się przyrząd (taśma)] `blat.setup`
 
 **Ruch**
 
@@ -3266,7 +3266,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Rozciągnij uchwyty na boki, nie zmieniając kąta w łokciach; wróć spokojnie. — free-exercise-db: [Sled Reverse Flye](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json) (szczebel 5 — nie liczy się do pary; instructions 2–3); SET FOR SET: [Sled workouts](https://www.setforset.com/blogs/news/sled-workouts) (szczebel 5 — nie liczy się do pary; Sled Reverse Fly (blog sprzedawcy sanek)) `srf.move`
+- Rozciągnij uchwyty na boki, nie zmieniając kąta w łokciach; wróć spokojnie. — free-exercise-db: [Sled Reverse Flye](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json) (szczebel 5 — nie liczy się do pary; instructions 2–3); SET FOR SET: [Sled workouts](https://www.setforset.com/blogs/news/sled-workouts) (szczebel 5 — nie liczy się do pary; Sled Reverse Fly (blog sprzedawcy sanek)); app-s7 (szczebel 5 — nie liczy się do pary; Instructions 2: slight bend in your elbows, pull the handles apart and out to the sides (Tips: avoid jerking)) `srf.move`
 
 ### Car Drivers
 
@@ -3465,6 +3465,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | app-s4 | app-s4 | app-s4 | — | — |
 | app-s5 | app-s5 | app-s5 | — | — |
 | app-s6 | app-s6 | app-s6 | — | — |
+| app-s7 | app-s7 | app-s7 | — | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
 | barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |

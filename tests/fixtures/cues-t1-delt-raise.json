@@ -92,6 +92,7 @@
   "srf.setup",
   "sri.move",
   "sri.setup",
+  "ur.height",
   "urow.move",
   "urow.setup",
   "urow1.move",
@@ -100,7 +101,6 @@
  ],
  "luki": [
   "Alternating Deltoid Raise::adr.move",
-  "Band Lateral Raise::blat.setup",
   "Barbell Front Raise to Overhead::bfro.setup",
   "Barbell Front Raise to Overhead::fro.mis.arch",
   "Barbell Front Raise to Overhead::fro.move",

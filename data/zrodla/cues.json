@@ -527,6 +527,11 @@
    "name": "app-s6",
    "level": 5,
    "kind": "app"
+  },
+  "app-s7": {
+   "name": "app-s7",
+   "level": 5,
+   "kind": "app"
   }
  },
  "sources": {
@@ -3063,6 +3068,10 @@
    "title": "Straight Raises on Incline Bench",
    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json",
    "level": 5
+  },
+  "app-s7": {
+   "org": "app-s7",
+   "title": "app-s7"
   }
  },
  "exercises": {
@@ -15802,11 +15811,11 @@
      "s": [
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -15865,11 +15874,11 @@
      "s": [
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "How to"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -15928,11 +15937,11 @@
      "s": [
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "How to"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -15991,11 +16000,11 @@
      "s": [
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "Variations"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -16054,11 +16063,11 @@
      "s": [
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "How to"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -16117,11 +16126,11 @@
      "s": [
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "How to; Variations (Smith)"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -16192,15 +16201,15 @@
      "s": [
       [
        "bodylastics-upright-row",
-       "instrukcja (producent taśm)"
+       "instrukcja (producent taśm): ręce do dolnej części klatki piersiowej"
       ],
       [
        "issaonline-upright-row-muscles-worked-benefits-proper-form-m",
-       "How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”"
+       "How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”"
       ],
       [
        "catalyst-805",
-       "opis (opuszczanie pod kontrolą)"
+       "opis (łokcie jak najwyżej; opuszczanie pod kontrolą)"
       ]
      ]
     }
@@ -16215,9 +16224,13 @@
       [
        "bodylastics-lateral-raise-with-flat-bands",
        "Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 1 (wersja z hantlami)"
       ]
      ],
-     "uproszczenie": "ustawienie „stań na taśmie” opisuje wprost tylko Bodylastics (producent taśm)"
+     "uproszczenie": "ustawienie „stań na taśmie” opisuje wprost tylko Bodylastics (producent taśm); ACE opisuje wersję z hantlami — ten sam ruch stawów, zmienia się przyrząd (taśma)"
     }
    ],
    "move": [
@@ -16617,6 +16630,10 @@
       [
        "setforset-sled-workouts",
        "Sled Reverse Fly (blog sprzedawcy sanek)"
+      ],
+      [
+       "app-s7",
+       "Instructions 2: slight bend in your elbows, pull the handles apart and out to the sides (Tips: avoid jerking)"
       ]
      ]
     }
@@ -17045,7 +17062,6 @@
   "Pendlay Row::pendlay.mis.torso": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5); brak zdania ustawienia/ruchu do wniosku",
   "Łydki na stopniu::calf.step": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona)",
   "Alternating Deltoid Raise::adr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
-  "Band Lateral Raise::blat.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "One-Arm Cable Rear Lateral Raise::crear1.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "One-Arm Cable Rear Lateral Raise::crear1.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "One-Arm Cable Rear Lateral Raise::rdelt.mis.swing": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
@@ -17060,7 +17076,7 @@
   "Barbell Front Raise to Overhead::fro.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Barbell Front Raise to Overhead::fro.mis.arch": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Sled Reverse Flye::srf.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
-  "Sled Reverse Flye::srf.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Sled Reverse Flye::srf.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła (w tym strona aplikacji), w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Car Drivers::cdr.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Car Drivers::cdr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Car Drivers::cdr.mis.drop": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
