@@ -101,7 +101,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
       const f = kolejka.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
       for (const m of fs.readFileSync(path.join(root, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V2)) kolejka.push(c); }
     }
-    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(squat|hinge|bench_press)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(squat|hinge|bench_press|curl|pull_up)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
     const brak = [...domk].filter(f => !rodzinne(f) && !r.wspolne.includes(f) && !(f in r.poza)).sort();
     expect(brak).toEqual([]);
     for (const f of ['muscles.ts', 'muscles.generated.ts', 'guides.ts', 'contacts.ts', 'colliders.ts', 'render.ts', 'families.ts', 'poseData.ts']) expect(r.wspolne).toContain(V2 + f);
@@ -112,7 +112,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
     const code = `import { rodzinaSkrot } from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))}; import { skrotRodziny } from ${JSON.stringify(path.join(root, 'scripts/strona/recenzja-figur.mjs'))}; import { readFileSync } from 'node:fs'; import { join } from 'node:path';
       const real = p => readFileSync(join(${JSON.stringify(root)}, p), 'utf8'); const out = {};
       const zm = (plik, f) => p => p === plik ? f(real(p)) : real(p);
-      for (const fam of ['squat', 'hinge', 'bench_press', 'curl']) {
+      for (const fam of ['squat', 'hinge', 'bench_press', 'curl', 'row']) {
         out[fam] = { baza: rodzinaSkrot(fam), strona: skrotRodziny(fam),
           wlasnaNakladka: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/' + fam + '.ts', t => t + '\\n// zmiana')),
           cudzaHinge: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/hinge.ts', t => t + '\\n// zmiana')),
@@ -123,14 +123,14 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
       }
       process.stdout.write(JSON.stringify(out));`;
     const r: Record<string, Record<string, string>> = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' }));
-    for (const fam of ['squat', 'hinge', 'bench_press', 'curl']) {
+    for (const fam of ['squat', 'hinge', 'bench_press', 'curl', 'row']) {
       const x = r[fam]; expect([fam, x.strona]).toEqual([fam, x.baza]); /* parytet skryptu strony */
-      expect([fam, x.wlasnaNakladka !== x.baza]).toEqual([fam, fam !== 'curl']); /* własna nakładka unieważnia recenzję; rodzina bez nakładki — nie ma czego */
+      expect([fam, x.wlasnaNakladka !== x.baza]).toEqual([fam, fam !== 'row']); /* własna nakładka unieważnia recenzję; rodzina bez nakładki — nie ma czego */
       for (const k of ['overlay', 'common', 'grupy']) expect([fam, k, x[k] !== x.baza]).toEqual([fam, k, true]);
       expect([fam, x.cudzaSquat !== x.baza, x.cudzaHinge !== x.baza]).toEqual([fam, true, true]); /* N1 (recenzja 1R runda 2, 04.11.2026): linie odniesienia wybiera się po wskazówkach karty, nie po rodzinie (np. Barbell Hack Squat z rodziny squat rysuje linię pleców z overlay/hinge.ts) — overlay/squat.ts i overlay/hinge.ts są we wspólnych, więc zmiana któregokolwiek unieważnia recenzję każdej rodziny */
     }
     expect(r.hinge.bezCudzegoWpisu).toBe(r.hinge.baza); expect(r.squat.bezCudzegoWpisu).toBe(r.squat.baza); /* wpis bench_press w rejestrze nakładki nie jest w skrócie squat/hinge */
-    expect(r.bench_press.bezCudzegoWpisu).not.toBe(r.bench_press.baza); for (const fam of ['squat', 'hinge', 'bench_press', 'curl']) expect([fam, r[fam].bezCudzejLinii !== r[fam].baza]).toEqual([fam, true]); /* wpis linii w guides.ts jest w skrócie każdej rodziny (nie jest normalizowany jak wpis bench_press w overlay.ts) */
+    expect(r.bench_press.bezCudzegoWpisu).not.toBe(r.bench_press.baza); for (const fam of ['squat', 'hinge', 'bench_press', 'curl', 'row']) expect([fam, r[fam].bezCudzejLinii !== r[fam].baza]).toEqual([fam, true]); /* wpis linii w guides.ts jest w skrócie każdej rodziny (nie jest normalizowany jak wpis bench_press w overlay.ts) */
   });
   test('N1 (recenzja 1R runda 2, 04.11.2026): każda linia odniesienia i element techniki użyte przy ćwiczeniu rodziny X pochodzą z pliku, który jest w skrócie recenzji X — na całym katalogu ćwiczeń z figurą v2; sztuczne przeniesienie overlay/hinge.ts poza wspólne daje czerwony wynik', () => {
     const code = `import { V2_WSPOLNE } from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))}; import { plikNakladki } from ${JSON.stringify(path.join(root, 'scripts/skrot-v2-norm.mjs'))}; import { existsSync } from 'node:fs'; import { join } from 'node:path';
