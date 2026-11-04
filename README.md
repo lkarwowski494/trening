@@ -353,7 +353,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `asc-iap-localizations.yml` | ASC lokalizacje produktów zakupu | ręcznie | lokalizacje produktów zakupu w App Store Connect |
 | `asc-kontrola.yml` | ASC kontrola ustawień | ręcznie | kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia) |
 | `asc-metadane.yml` | ASC metadane sklepu | ręcznie | wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release) |
-| `asc-status-wersji.yml` | ASC status wersji | wypchnięcie, ręcznie | status wersji iOS w App Store Connect: stan recenzji (tylko odczyt; ręcznie) |
+| `asc-status-wersji.yml` | ASC status wersji | ręcznie | status wersji iOS w App Store Connect: stan recenzji (tylko odczyt; ręcznie) |
 | `asc-zrzuty.yml` | ASC zrzuty ekranu | ręcznie | wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release) |
 | `check-urls.yml` | Sprawdzenie adresów (ręcznie) | ręcznie | sprawdzenie adresów wydania: kod 200 i zgodność stron apps4brew.com z site/ (ręcznie, tylko odczyt; krok bramki wydania) |
 | `e2e-ios.yml` | E2E iOS (symulator) | wypchnięcie, ręcznie, wywołanie z innego workflow | scenariusze Maestro na symulatorze iPhone |
