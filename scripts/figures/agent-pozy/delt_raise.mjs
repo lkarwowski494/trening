@@ -101,10 +101,12 @@ export function generuj() {
   G['Smith Machine Upright Row'] = () => stoj('Smith Machine Upright Row', { sprzet: [{ rodzaj: 'smith', x: 17, h: 200 }, SPRZET.sztanga()], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
   /* --- halo --- */
   /* --- leżąc na boku na ławce płaskiej: jedna ręka (R) --- */
+  /* 04.11.2026 (tests/figury-p2-r3.test.ts, TOL_NOGI_CM = 0): górna noga o NOGI_DY cm wyżej niż w układzie wspólnym, żeby uda leżały jedno na drugim bez przenikania (było −1,03 cm; 2 cm dawało −0,2). */
+  const NOGI_DY = 3;
   G['Dumbbell Lying One-Arm Rear Lateral Raise'] = () => { const T = bokSonda(); const Y = 43; const Sr = [T.sh.R[0], T.sh.R[1] + Y, T.sh.R[2]]; const reach = 61;
-    const wyz = (n) => ({ ...n, a: [n.a[0], r1(n.a[1] + Y), n.a[2]] }); const dolna = bokDolnaReka(T); const dolR = { ...dolna, g: [dolna.g[0], r1(dolna.g[1] + Y), dolna.g[2]] };
+    const wyz = (n, dy = 0) => ({ ...n, a: [n.a[0], r1(n.a[1] + Y + dy), n.a[2]] }); const dolna = bokDolnaReka(T); const dolR = { ...dolna, g: [dolna.g[0], r1(dolna.g[1] + Y), dolna.g[2]] };
     const fr = (u) => { const b = lerp(8, 88, u) * R; const Hd = [Sr[0] - 2, Sr[1] + reach * Math.sin(b), Sr[2] - reach * Math.cos(b)]; const pol = [0.6, Math.cos(b) * 0.8 + 0.1, -Math.sin(b) * 0.8].map((v) => r1(v * 100) / 100);
-      const ng = bokNogiUlozone(T); const k = bokKlatka(u, { R: wyz(ng.R), L: wyz(ng.L) }, { L: dolR, R: { g: Hd.map(r1), pole: pol } }); k.miednica = [k.miednica[0], r1(k.miednica[1] + Y), k.miednica[2]]; return k; };
+      const ng = bokNogiUlozone(T); const k = bokKlatka(u, { R: wyz(ng.R, NOGI_DY), L: wyz(ng.L) }, { L: dolR, R: { g: Hd.map(r1), pole: pol } }); k.miednica = [k.miednica[0], r1(k.miednica[1] + Y), k.miednica[2]]; return k; };
     return pozaD(RODZINA, 'Dumbbell Lying One-Arm Rear Lateral Raise', [PODLOGA(-130, 130), { rodzaj: 'lawka', x: 0, top: Y, kat: 0, dlugosc: 120 }, { ...H, trzyma: 'R' }], U9.map(fr), []); };
   /* --- Car Drivers --- */
   G['Car Drivers'] = () => { const cy = Y_STOJ + 50 - 2; const rr = (u) => { const a = lerp(30, -30, u) * R; const rad = 21; const dy = rad * Math.sin(a), dz = rad * Math.cos(a) - 19; const x = Math.sqrt(62 ** 2 - dy * dy - dz * dz); const sp = (s) => ({ g: [x, cy + POL(s) * dy, POL(s) * rad * Math.cos(a)], pole: [-0.2, -0.6, POL(s)] }); return { R: sp('R'), L: sp('L') }; };

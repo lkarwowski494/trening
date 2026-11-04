@@ -29,7 +29,7 @@ jest.mock('@/lib/figures/v2/poseData', () => {
 });
 
 jest.setTimeout(240000);
-type PoseFile = { cwiczenia: Record<string, PoseData> };
+type PoseFile = { rodzina: string; cwiczenia: Record<string, PoseData> };
 const FILES = require('@/lib/figures/v2/poses/carry.json') as PoseFile; /* typ pliku */
 const POZY: Record<string, PoseFile> = {
   carry: FILES, sled_throw: require('@/lib/figures/v2/poses/sled_throw.json'), strongman: require('@/lib/figures/v2/poses/strongman.json'),
@@ -224,9 +224,11 @@ describe('prezentacja: wpis UI dla ćwiczenia marszowego z rodziny bez DATA_UI',
 
 describe('niezmienniki: pozostałe ćwiczenia nie zmieniły trybu', () => {
   test('ćwiczenia sled_throw i strongman poza trzema marszowymi, oraz wszystkie rodziny z pliku poses, nie mają pola petla (domyślnie wahadło)', () => {
-    const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); let n = 0, z = 0;
-    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const d of Object.values(j.cwiczenia)) { n++; if (d.petla === 'cykl_lustro') z++; } }
-    expect(n).toBeGreaterThan(400); expect(z).toBe(10);
+    const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); let n = 0, z = 0; const naprzemienne: string[] = [];
+    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const [cw, d] of Object.entries(j.cwiczenia)) { n++; if (d.petla === 'cykl_lustro') { z++; if (!CYKLICZNE.some(([, k]) => k === cw)) naprzemienne.push(`${j.rodzina}/${cw}`); } } }
+    expect(n).toBeGreaterThan(400); expect(z).toBe(10 + 2);
+    /* Zmiana 04.11.2026 (R1 delt_raise Ś-2, decyzja koordynatora): do 10 ćwiczeń marszowych dochodzą DWA naprzemienne (nie marsz), jawna lista — nie sam licznik. */
+    expect(naprzemienne.sort()).toEqual(['delt_raise/Alternating Deltoid Raise', 'delt_raise/Car Drivers']);
   });
 });
 

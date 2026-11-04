@@ -29,7 +29,7 @@ jest.mock('@/lib/figures/v2/poseData', () => {
 });
 
 jest.setTimeout(240000);
-type PoseFile = { cwiczenia: Record<string, PoseData> };
+type PoseFile = { rodzina: string; cwiczenia: Record<string, PoseData> };
 const POZY: Record<string, PoseFile> = { plyo: require('@/lib/figures/v2/poses/plyo.json'), sled_throw: require('@/lib/figures/v2/poses/sled_throw.json') };
 const RZUTY = ['Medicine Ball Slam', 'One-Arm Medicine Ball Slam', 'Standing Two-Arm Overhead Throw', 'Backward Medicine Ball Throw', 'Medicine Ball Scoop Throw', 'Wall Ball'];
 const JEDNOKIERUNKOWE: [string, string][] = [...Object.keys(POZY.plyo.cwiczenia).map(k => ['plyo', k] as [string, string]), ...RZUTY.map(k => ['sled_throw', k] as [string, string])];
@@ -109,10 +109,12 @@ describe('silnik: figure.ts — tryb pętli, fazy i prezentacja', () => {
 });
 
 describe('niezmienniki: liczba ćwiczeń z polem petla w całym katalogu póz', () => {
-  test('43 ćwiczenia z polem: 10 cykl_lustro (marsz) + 33 jednokierunkowa; żadne inne', () => {
-    const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); const c: Record<string, number> = {};
-    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const d of Object.values(j.cwiczenia)) if (d.petla !== undefined) c[d.petla] = (c[d.petla] ?? 0) + 1; }
-    expect(c).toEqual({ cykl_lustro: 10, jednokierunkowa: 33 });
+  test('45 ćwiczeń z polem: 10 cykl_lustro (marsz) + 2 cykl_lustro naprzemienne (delt_raise, 04.11.2026) + 33 jednokierunkowa; żadne inne', () => {
+    const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); const c: Record<string, number> = {}; const lustroDelt: string[] = [];
+    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const [cw, d] of Object.entries(j.cwiczenia)) if (d.petla !== undefined) { c[d.petla] = (c[d.petla] ?? 0) + 1; if (d.petla === 'cykl_lustro' && j.rodzina === 'delt_raise') lustroDelt.push(cw); } }
+    /* Zmiana 04.11.2026 (R1 delt_raise Ś-2, decyzja koordynatora): cykl_lustro 10 → 12, dwa nowe to naprzemienne ćwiczenia delt_raise (jawna lista poniżej), nie marsz. */
+    expect(lustroDelt.sort()).toEqual(['Alternating Deltoid Raise', 'Car Drivers']);
+    expect(c).toEqual({ cykl_lustro: 10 + 2, jednokierunkowa: 33 });
   });
 });
 
