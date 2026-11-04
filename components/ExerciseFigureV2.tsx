@@ -7,12 +7,12 @@ import { t, lang, exName } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, loopOf, cycleAt, oneWayAt, guideShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
+  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, loopOf, cycleAt, oneWayAt, guideShapes, overlayShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
   type View as FView, type FigError, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
 import { oneSideNoteApplies } from '@/lib/figures/v2/cueSets';
-import { badgesFor, measureLine, errorsOf, errorText, guidesOf, legendOf, toeAngleApplies } from '@/lib/figures/v2/ui';
+import { badgesFor, measureLine, errorsOf, errorText, guidesOf, techniquesOf, onDrawingCues, legendOf, toeAngleApplies } from '@/lib/figures/v2/ui';
 
 /*
  * Figura ruchu v2 (grafiki ćwiczeń 1.0 — decyzja właściciela 25.10.2026; silnik: lib/figures/v2, projekt: docs/50). Widoki z boku i z przodu/z góry obok siebie, kolory z motywu,
@@ -25,7 +25,7 @@ import { badgesFor, measureLine, errorsOf, errorText, guidesOf, legendOf, toeAng
  * Poza tym buildem flagi nie ma (tests/figura-klatka-zrzutu.test.tsx). Czytana przy renderze (Expo wstawia wartość przy budowaniu). */
 const figuraStop = (): boolean => process.env.EXPO_PUBLIC_FIGURA_STOP === '1';
 
-function ViewSvg({ spec, u, view, box, th, height, error, guides, testID, onBadge }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: FigError; guides: GuideId[]; testID?: string; onBadge?: (b: Badge) => void }) {
+function ViewSvg({ spec, u, view, box, th, height, error, guides, techniques, testID, onBadge }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: FigError; guides: GuideId[]; techniques: string[]; testID?: string; onBadge?: (b: Badge) => void }) {
   const pal = useMemo(() => figurePalette(th), [th]);
   const trail = useMemo(() => trailFor(spec, view), [spec, view]);
   const all = useMemo(() => badgesFor(spec, u, view, error), [spec, u, view, error]);
@@ -33,7 +33,7 @@ function ViewSvg({ spec, u, view, box, th, height, error, guides, testID, onBadg
   const sc = w > 0 ? Math.min(w / box.w, height / box.h) : 0;
   /* odstęp ≥ BADGE_GAP_PT na ekranie: znaczki bliższe sobie są pomijane (przed pomiarem układu pokazujemy wszystkie) */
   const badges = useMemo(() => sc > 0 ? spaceBadges(all, BADGE_GAP_PT / sc) : all, [all, sc]);
-  const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error), ...contactShapes(spec, u, view, error), ...badgeShapes(badges)]), [spec, u, view, error, trail, guides, badges]);
+  const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error), ...overlayShapes(spec, u, view, techniques, error, guides), ...contactShapes(spec, u, view, error), ...badgeShapes(badges)]), [spec, u, view, error, trail, guides, techniques, badges]);
   /* piksele znaczka: viewBox z preserveAspectRatio „meet” (wyśrodkowany) — przeliczenie współrzędnych rysunku (y w górę) na układ widoku */
   const ox = (w - box.w * sc) / 2, oy = (height - box.h * sc) / 2;
   return (
@@ -56,6 +56,9 @@ function ViewSvg({ spec, u, view, box, th, height, error, guides, testID, onBadg
   );
 }
 
+/** Łączy zdania wskazówek do etykiety VoiceOver: zdanie zakończone znakiem końca zdania (. ! ? 。 । ۔ ؟ …) — spacją (bez „.;”), inne — średnikiem. Zdania w słownikach języków kończą się różnymi znakami. */
+export const joinCues = (cues: string[]): string => cues.reduce((acc, c, i) => i === 0 ? c : `${acc}${/[.!?…。！？।۔؟]$/.test(acc) ? ' ' : '; '}${c}`, '');
+
 /** Figura v2 ćwiczenia z katalogu; null, gdy rodzina ćwiczenia nie jest jeszcze gotowa. */
 export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 'lib' | 'libKey'> & { name?: string }; name?: string }) {
   const th = useTheme(); const reduce = useReduceMotion();
@@ -63,6 +66,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const spec = useMemo(() => key ? shownFigureSpec(key) : null, [key]);
   const errors = useMemo(() => spec ? errorsOf(spec) : [], [spec]);
   const guides = useMemo(() => key ? guidesOf(key) : [], [key]);
+  const techniques = useMemo(() => key ? techniquesOf(key) : [], [key]);
   const legend = useMemo(() => key ? legendOf(key) : null, [key]);
   const [paused, setPaused] = useState(false); const [ms, setMs] = useState(0); const last = useRef(0);
   const [errIdx, setErrIdx] = useState(-1); const [width, setWidth] = useState(320); const [sel, setSel] = useState<{ cue: string; kind: 'ok' | 'err' } | null>(null);
@@ -78,7 +82,9 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const tempo = tempoFor(spec, errId);
   /* stuknięcie znaczka zatrzymuje animację (znaczek się porusza) i pokazuje tekst wskazówki pod rysunkiem */
   const onBadge = (b: Badge) => { setPaused(true); setSel({ cue: b.cue, kind: b.kind }); };
-  const label = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
+  const base = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
+  const drawn = onDrawingCues(spec, guides, techniques); /* VoiceOver: wskazówki widocznych linii i łuków (te same teksty co na karcie) */
+  const label = drawn.length ? `${base}. ${t('Na rysunku: {lista}', { lista: joinCues(drawn.map(errorText)) })}` : base;
   const canPause = !spec.static && reduce === false;
   const stop = animate && figuraStop();
   const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
@@ -95,13 +101,13 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
       <View testID="exercise-figure-v2-image" accessible accessibilityRole="image" accessibilityLabel={label} accessibilityLanguage={lang()}>
         {animate
           ? <View testID="exercise-figure-v2-anim" style={{ flexDirection: 'row', gap: 8 }}>
-              {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${v}`} spec={spec} u={u} view={v} box={boxes[i]} th={th} height={height} error={errId} guides={guides} onBadge={onBadge} /></View>)}
+              {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${v}`} spec={spec} u={u} view={v} box={boxes[i]} th={th} height={height} error={errId} guides={guides} techniques={techniques} onBadge={onBadge} /></View>)}
             </View>
           : <View testID="exercise-figure-v2-static" style={{ gap: 4 }}>
               {staticPositions(spec).map(p => (
                 <View key={p}>
                   <View style={{ flexDirection: 'row', gap: 8 }}>
-                    {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${p === 0 ? 'start' : 'end'}-${v}`} spec={spec} u={p} view={v} box={boxes[i]} th={th} height={Math.round(height * 0.8)} error={errId} guides={guides} onBadge={onBadge} /></View>)}
+                    {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${p === 0 ? 'start' : 'end'}-${v}`} spec={spec} u={p} view={v} box={boxes[i]} th={th} height={Math.round(height * 0.8)} error={errId} guides={guides} techniques={techniques} onBadge={onBadge} /></View>)}
                   </View>
                   {staticPositions(spec).length > 1 ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, textAlign: 'center' }}>{p === 0 ? t('Pozycja wyjściowa') : t('Pozycja końcowa')}</Text> : null}
                 </View>

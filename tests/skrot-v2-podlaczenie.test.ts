@@ -80,7 +80,7 @@ describe('1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.20
 describe('1A, L-080: gałąź z wcześniejszymi zmianami względem main — podłączenie rodziny na gałęzi nie zmienia skrótu, zmiana rysunku zmienia', () => {
   const git = (cwd: string, ...a: string[]) => execFileSync('git', ['-c', 'user.email=t@t', '-c', 'user.name=t', ...a], { cwd, encoding: 'utf8' });
   test('main → gałąź (commit 1: status + LOAD + DATA_UI; commit 2: dokument) → gałąź rysunku (commit 3: draw.ts)', () => {
-    const kod = `import * as z from ${JSON.stringify(RT)}; process.stdout.write(JSON.stringify([...z.V2_WSPOLNE, 'lib/figures/v2/poses/pull_up.json']));`;
+    const kod = `import * as z from ${JSON.stringify(RT)}; import { DANE_DOBORU } from ${JSON.stringify(path.join(root, 'scripts/skrot-v2-dobor.mjs'))}; process.stdout.write(JSON.stringify([...z.V2_WSPOLNE, 'lib/figures/v2/poses/pull_up.json', ...DANE_DOBORU]));`; /* fix4 R2 (04.11.2026): skrót czyta też dane doboru po kartach */
     const pliki: string[] = JSON.parse(execFileSync('node', ['--input-type=module', '-e', kod], { encoding: 'utf8' }));
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'skrot-l080-'));
     try {
@@ -96,7 +96,7 @@ describe('1A, L-080: gałąź z wcześniejszymi zmianami względem main — pod�
       git(tmp, 'checkout', '-qb', 'rysunek');
       fs.appendFileSync(path.join(tmp, V2 + 'draw.ts'), '\n// zmiana rysunku'); git(tmp, 'commit', '-qam', 'draw');
       const kod2 = `import { rodzinaSkrot } from ${JSON.stringify(RT)}; import { execFileSync } from 'node:child_process';
-        const dla = ref => rodzinaSkrot('pull_up', p => execFileSync('git', ['show', ref + ':' + p], { cwd: ${JSON.stringify(tmp)}, encoding: 'utf8' }));
+        const dla = ref => rodzinaSkrot('pull_up', p => { try { return execFileSync('git', ['show', ref + ':' + p], { cwd: ${JSON.stringify(tmp)}, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }); } catch { return ''; /* plik nakładki rodziny (overlay/pull_up.ts) jest dopiero na gałęzi etapu 2 — w kopii z main go nie ma */ } });
         process.stdout.write(JSON.stringify({ main: dla('main'), galaz: dla('galaz'), rysunek: dla('rysunek') }));`;
       const r = JSON.parse(execFileSync('node', ['--input-type=module', '-e', kod2], { encoding: 'utf8' })) as Record<string, string>;
       expect(r.galaz).toBe(r.main);

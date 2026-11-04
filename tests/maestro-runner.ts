@@ -168,6 +168,12 @@ export class Runner {
     const pt = (s: string) => { const m = /^\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*$/.exec(s); if (!m) this.fail(step, `swipe: punkt „${s}” — interpreter zna tylko procenty ekranu`); return { x: +m![1] / 100 * SCREEN.w, y: +m![2] / 100 * SCREEN.h }; };
     const a = pt(start), b = pt(end); this.relayout();
     const nv = this.nav(); const po = nv?.getCurrentOptions?.() ?? {};
+    /* gest powrotu z lewej krawędzi (iOS, interactivePopGesture): start x ≤ 5% szerokości, ruch poziomy (|dy| ≤ 10% wysokości), dx > 30% szerokości; działa tylko na ekranie z gestureEnabled ≠ false i z ekranem pod spodem */
+    if (a.x <= SCREEN.w * 0.05 && Math.abs(b.y - a.y) <= SCREEN.h * 0.1 && b.x - a.x > SCREEN.w * 0.3) {
+      if (po.gestureEnabled === false) this.fail(step, 'swipe z krawędzi: ekran ma gestureEnabled: false — gest powrotu iOS nie działa (zamknij ekran przyciskiem).');
+      if (!nv?.canGoBack?.()) this.fail(step, 'swipe z krawędzi: nawigator bez ekranu pod spodem — nie ma dokąd wrócić.');
+      await act(async () => { nv.goBack(); }); await this.tick(); return;
+    }
     if (/modal|sheet/i.test(String(po.presentation ?? '')) && a.y < this.headerTop() && b.y > a.y + 100) { if (!nv?.canGoBack?.()) this.fail(step, 'swipe: okno modalne bez ekranu pod spodem.'); await act(async () => { nv.goBack(); }); await this.tick(); return; }
     let hit: LNode | null = null; let hitTop = 0;
     for (const [n, box] of this.boxes) {
