@@ -118,7 +118,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
           cudzaHinge: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/hinge.ts', t => t + '\\n// zmiana')),
           cudzaSquat: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/squat.ts', t => t + '\\n// zmiana')),
           overlay: rodzinaSkrot(fam, zm('lib/figures/v2/overlay.ts', t => t + '\\n// zmiana')), common: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/common.ts', t => t + '\\n// zmiana')), grupy: rodzinaSkrot(fam, zm('lib/figures/v2/grupy.json', t => t + ' ')),
-          bezCudzegoWpisu: rodzinaSkrot(fam, zm('lib/figures/v2/overlay.ts', t => t.replace(/import \\{ BENCH_TECHNIQUE \\} from '\\.\\/overlay\\/bench_press';\\n/, '').replace('bench_press: BENCH_TECHNIQUE ', ''))),
+          bezCudzegoWpisu: rodzinaSkrot(fam, zm('lib/figures/v2/overlay.ts', t => t.replace(/import \\{ BENCH_TECHNIQUE \\} from '\\.\\/overlay\\/bench_press';\\n/, '').replace('bench_press: BENCH_TECHNIQUE, ', ''))),
           bezCudzejLinii: rodzinaSkrot(fam, zm('lib/figures/v2/guides.ts', t => t.replace(/import \\{ HINGE_GUIDES \\} from '\\.\\/overlay\\/hinge';\\n/, '').replace('...HINGE_GUIDES', ''))) };
       }
       process.stdout.write(JSON.stringify(out));`;
