@@ -17,6 +17,7 @@ import { OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniqueGeom, techniqu
 import { SQUAT_TECHNIQUE } from '@/lib/figures/v2/overlay/squat';
 import { HINGE_TECHNIQUE } from '@/lib/figures/v2/overlay/hinge';
 import { GUIDES } from '@/lib/figures/v2/guides';
+import { proj } from '@/lib/figures/v2/draw';
 import { errorsOf, techniquesOf, onDrawingCues, guidesOf, cueIdsOf, errorText } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 
@@ -33,11 +34,11 @@ const sens = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/
 afterEach(() => { applyLang('pl'); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); });
 
 describe('dane: elementy rodzin squat i hinge ← reguły ze źródłem', () => {
-  test('rejestr: squat = squatKneeLimb, hinge = hingeHipLimb; rodzaj limb w stawie mierzonym rodziny (kolano / biodro) i w rzucie z boku', () => {
-    expect(SQUAT_TECHNIQUE.map(d => d.id)).toEqual(['squatKneeLimb']); expect(HINGE_TECHNIQUE.map(d => d.id)).toEqual(['hingeHipLimb']);
+  test('rejestr: squat = squatKneeLimb (limb, kolano), hinge = hingeUprightRef (E3: pion przez kostkę w górę); oba w rzucie z boku', () => {
+    expect(SQUAT_TECHNIQUE.map(d => d.id)).toEqual(['squatKneeLimb']); expect(HINGE_TECHNIQUE.map(d => d.id)).toEqual(['hingeUprightRef']);
     expect(TECHNIQUE.squat).toBe(SQUAT_TECHNIQUE); expect(TECHNIQUE.hinge).toBe(HINGE_TECHNIQUE);
     expect([SQUAT_TECHNIQUE[0].kind, SQUAT_TECHNIQUE[0].joint, SQUAT_TECHNIQUE[0].views]).toEqual(['limb', 'knee', ['side']]);
-    expect([HINGE_TECHNIQUE[0].kind, HINGE_TECHNIQUE[0].joint, HINGE_TECHNIQUE[0].views]).toEqual(['limb', 'hip', ['side']]);
+    expect([HINGE_TECHNIQUE[0].kind, HINGE_TECHNIQUE[0].ref, HINGE_TECHNIQUE[0].views]).toEqual(['ref', { shape: 'vertical', through: 'ankle', dir: 'up' }, ['side']]);
   });
   test.each([['squat', SQUAT_TECHNIQUE], ['hinge', HINGE_TECHNIQUE]] as const)('%s: reguła elementu istnieje, jest „ustalone” (bez zastrzeżeń), a każda wskazówka elementu należy do wskazowki_na_reguly tej reguły', (fam, defs) => {
     for (const d of defs) {
@@ -55,8 +56,8 @@ describe('dane: elementy rodzin squat i hinge ← reguły ze źródłem', () => 
 
 describe('geometria: łuk = kąt z jointAngles (±1°) w 21 klatkach', () => {
   const cases = (keys: string[], id: string) => keys.filter(k => techniquesOf(k).includes(id));
-  test.each([['squat', 'squatKneeLimb', 'knee'], ['hinge', 'hingeHipLimb', 'hip']] as const)('%s: rozwarcie łuku %s = measuredAngle (zgięcie stawu) w każdym ćwiczeniu z elementem', (fam, id, joint) => {
-    const keys = cases(fam === 'squat' ? SQUAT_KEYS : HINGE_KEYS, id); expect(keys.length).toBeGreaterThan(10);
+  test.each([['squat', 'squatKneeLimb', 'knee']] as const)('%s: rozwarcie łuku %s = measuredAngle (zgięcie stawu) w każdym ćwiczeniu z elementem', (fam, id, joint) => {
+    const keys = cases(SQUAT_KEYS, id); expect(keys.length).toBeGreaterThan(10);
     for (const k of keys) { const s = spec(k); const side = measuredSide(s);
       for (const u of US) {
         const f = frameAt(s, u); const g = techniqueGeom('limb', f.sk, side, joint)!; const m = measuredAngle(s, u);
@@ -65,24 +66,29 @@ describe('geometria: łuk = kąt z jointAngles (±1°) w 21 klatkach', () => {
         expect([k, u, sh.filter(x => x.k === 'poly').length]).toEqual([k, u, g.arc ? 1 : 0]);
       } }
   });
-  test('przysiad: u góry (wyprost kolana) łuk znika, u dołu jest linia i łuk; zawias: łuk biodra rośnie w RDL/Good Morning w dół (od ok. 12–21° do 64–74°) i maleje w martwym ciągu ku wyprostowi (ok. 7–12° na górze — wartość pomiaru rigu, łuk zostaje)', () => {
+  test('przysiad: u góry (wyprost kolana) łuk znika, u dołu jest linia i łuk', () => {
     const sq = spec('Back Squat');
     const n = (s: FigureSpec, u: number, id: string) => { const sh = overlayShapes(s, u, 'side', [id]); return [sh.filter(x => x.k === 'line').length, sh.filter(x => x.k === 'poly').length]; };
     expect(n(sq, 1, 'squatKneeLimb')).toEqual([1, 1]); expect(n(sq, 0, 'squatKneeLimb')).toEqual([1, 0]);
-    const sweep = (k: string, u: number) => { const s = spec(k); return techniqueGeom('limb', frameAt(s, u).sk, measuredSide(s), 'hip')!.sweepDeg; };
-    expect(sweep('Deadlift (sztanga)', 0)).toBeGreaterThan(100); expect(sweep('Deadlift (sztanga)', 1)).toBeLessThan(15);
-    expect(sweep('RDL (sztanga)', 0)).toBeLessThan(25); expect(sweep('RDL (sztanga)', 1)).toBeGreaterThan(60);
-    for (const k of ['Deadlift (sztanga)', 'RDL (sztanga)', 'Good Morning']) for (const u of [0, 1]) expect(n(spec(k), u, 'hingeHipLimb')).toEqual([1, 1]); /* łuk ≥ progu OVERLAY_ARC_MIN_DEG także na szczycie */
+  });
+  test('zawias (E3): pion przez kostkę — jedna linia ciągła, bez łuku, dokładnie pionowa i na x kostki w każdej klatce; na szczycie martwego ciągu bark, biodro, kolano i kostka leżą na tym pionie (±8 cm)', () => {
+    const keys = HINGE_KEYS.filter(k => techniquesOf(k).includes('hingeUprightRef')); expect(keys.length).toBeGreaterThan(8);
+    for (const k of keys) { const s = spec(k); const side = measuredSide(s);
+      for (const u of US) { const sh = overlayShapes(s, u, 'side', ['hingeUprightRef']); const ln = sh.filter(x => x.k === 'line') as { a: [number, number]; b: [number, number] }[];
+        expect([k, u, ln.length, sh.length]).toEqual([k, u, 1, 1]); const ank = proj(frameAt(s, u).sk.legs[side].ankle, 'side');
+        expect([k, u, ln[0].a[0] === ln[0].b[0], Math.abs(ln[0].a[0] - ank[0]) < 1e-9]).toEqual([k, u, true, true]); } }
+    const dl = frameAt(spec('Deadlift (sztanga)'), 1).sk, side = measuredSide(spec('Deadlift (sztanga)')), ax = proj(dl.legs[side].ankle, 'side')[0];
+    for (const p of [dl.shoulderC, dl.legs[side].hip, dl.legs[side].knee]) expect(Math.abs(proj(p, 'side')[0] - ax)).toBeLessThan(8);
   });
   test('rzut z przodu nie dostaje elementu (kolano/biodro są mierzone z boku): overlayShapes(front) puste', () => {
-    for (const [k, id] of [['Back Squat', 'squatKneeLimb'], ['Deadlift (sztanga)', 'hingeHipLimb']] as const) for (const u of US) expect(overlayShapes(spec(k), u, 'front', [id])).toEqual([]);
+    for (const [k, id] of [['Back Squat', 'squatKneeLimb'], ['Deadlift (sztanga)', 'hingeUprightRef']] as const) for (const u of US) expect(overlayShapes(spec(k), u, 'front', [id])).toEqual([]);
   });
 });
 
 describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element ⇔ wskazówka na karcie', () => {
   test('elementy to wyłącznie linie ciągłe i łuki (poly bez wypełnienia), w warstwie nad ciałem, bez pól tekstowych', () => {
     for (const k of [...SQUAT_KEYS, ...HINGE_KEYS]) { const s = spec(k); const ts = techniquesOf(k); for (const v of s.views) for (const u of [0, 0.5, 1]) for (const x of overlayShapes(s, u, v, ts)) {
-      expect(['line', 'poly']).toContain(x.k); expect(x.z).toBeGreaterThan(3000); expect(x.id).toMatch(/^(squatKneeLimb|hingeHipLimb)(Line|Arc)$/);
+      expect(['line', 'poly']).toContain(x.k); expect(x.z).toBeGreaterThan(3000); expect(x.id).toMatch(/^(squatKneeLimb|hingeUprightRef)(Line|Arc)$/);
       if (x.k === 'line') expect(x.dash).toBeUndefined(); else expect((x as { fill?: unknown }).fill).toBeUndefined();
       expect(JSON.stringify(x)).not.toMatch(/"(text|label|value)"/);
     } }
@@ -99,7 +105,7 @@ describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element �
   });
   test('najgęstszy rzut: przysiad z boku ma dokładnie 3 linie (poziom uda + linia pleców + udo) i 1 łuk; przysiad z przodu — tylko linie palców (bez nakładki); zawias z boku: pion + linia pleców + tułów', () => {
     const cnt = (k: string, v: 'side' | 'front', u: number) => { const s = spec(k); const a = [...guideShapes(s, u, v, guidesOf(k)), ...overlayShapes(s, u, v, techniquesOf(k), undefined, guidesOf(k))]; return [a.filter(x => x.k === 'line').length, a.filter(x => x.k === 'poly').length]; };
-    expect(cnt('Back Squat', 'side', 1)).toEqual([3, 1]); expect(cnt('Back Squat', 'front', 1)).toEqual([2, 0]); expect(cnt('Deadlift (sztanga)', 'side', 0.5)).toEqual([3, 1]);
+    expect(cnt('Back Squat', 'side', 1)).toEqual([3, 1]); expect(cnt('Back Squat', 'front', 1)).toEqual([2, 0]); expect(cnt('Deadlift (sztanga)', 'side', 0.5)).toEqual([3, 0]);
   });
   test('element tylko z wskazówką karty: dla każdego ćwiczenia squat/hinge techniquesOf = elementy, których wskazówka (dowolna z cue) jest na karcie; spoza zestawu → brak', () => {
     for (const [k, fam, defs] of [...SQUAT_KEYS.map(k => [k, 'squat', SQUAT_TECHNIQUE] as const), ...HINGE_KEYS.map(k => [k, 'hinge', HINGE_TECHNIQUE] as const)]) {
@@ -108,7 +114,7 @@ describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element �
       for (const id of want) expect(errorText(TECHNIQUE[fam].find(d => d.id === id)!.cue.find(c => have.has(c))!).length).toBeGreaterThan(0); /* zdanie elementu (cue) jest na karcie */
     }
     expect(techniquesOf('Back Squat')).toEqual(['squatKneeLimb']); expect(techniquesOf('Goblet Squat')).toEqual(['squatKneeLimb']); expect(techniquesOf('Box Squat')).toEqual(['squatKneeLimb']);
-    expect(techniquesOf('Deadlift (sztanga)')).toEqual(['hingeHipLimb']); expect(techniquesOf('RDL (sztanga)')).toEqual(['hingeHipLimb']); expect(techniquesOf('Good Morning')).toEqual(['hingeHipLimb']);
+    expect(techniquesOf('Deadlift (sztanga)')).toEqual(['hingeUprightRef']); expect(techniquesOf('RDL (sztanga)')).toEqual(['hingeUprightRef']); expect(techniquesOf('Good Morning')).toEqual(['hingeUprightRef']);
     expect(techniquesOf('Wall Sit')).toEqual([]); expect(techniquesOf('Single Leg RDL (hantel)')).toEqual([]); expect(techniquesOf('Stiff-Legged Barbell Deadlift')).toEqual([]);
     expect(techniquesFor('squat', ['dl.lift'])).toEqual([]); expect(techniquesFor('hinge', ['sq.down'])).toEqual([]); expect(techniquesFor('olympic', ['sq.down'])).toEqual([]);
   });
@@ -158,5 +164,39 @@ describe('VoiceOver: etykieta obrazu „Na rysunku: …” z elementami squat/hi
     expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe(`Rysunek ruchu: Martwy ciąg. Na rysunku: ${['dl.feet', 'hinge.back', 'dl.lift'].map(errorText).join('; ')}`);
     applyLang('en'); await render(<ExerciseFigureV2 exercise={lib('Back Squat')} name="Squat" />); await flush();
     expect((screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel as string).startsWith('Movement drawing: Squat. On the drawing: ')).toBe(true);
+  });
+});
+
+type Ln = Extract<Shape, { k: 'line' }>;
+/** Czy dwa odcinki leżą w tym samym miejscu: oba końce krótszego w ≤ 1,2 cm od prostej dłuższego, a rzuty odcinków na jego oś pokrywają ≥ 50% krótszego (linia pod linią). */
+const sameSpot = (p: Ln, q: Ln): boolean => {
+  const [s1, l1] = Math.hypot(p.b[0] - p.a[0], p.b[1] - p.a[1]) <= Math.hypot(q.b[0] - q.a[0], q.b[1] - q.a[1]) ? [p, q] : [q, p];
+  const dx = l1.b[0] - l1.a[0], dy = l1.b[1] - l1.a[1], L = Math.hypot(dx, dy) || 1; const ux = dx / L, uy = dy / L;
+  const dist = (pt: [number, number]) => Math.abs((pt[0] - l1.a[0]) * uy - (pt[1] - l1.a[1]) * ux), along = (pt: [number, number]) => (pt[0] - l1.a[0]) * ux + (pt[1] - l1.a[1]) * uy;
+  if (dist(s1.a) > 1.2 || dist(s1.b) > 1.2) return false;
+  const lo = Math.max(0, Math.min(along(s1.a), along(s1.b))), hi = Math.min(L, Math.max(along(s1.a), along(s1.b))), ls = Math.hypot(s1.b[0] - s1.a[0], s1.b[1] - s1.a[1]) || 1;
+  return (hi - lo) / ls >= 0.5;
+};
+
+describe('etap 2 po scaleniu E3: kolor błędu linii odniesienia i brak dwóch linii w tym samym miejscu (recenzja 2R P1: W4\', S1)', () => {
+  test('W4\': linia pleców (backLine) jest w kolorze błędu przy mis.roundBack w martwym ciągu, RDL i przysiadzie Hack, a kneeToe (z przodu) przy sq.mis.kneesIn; bez błędu — guide', () => {
+    const roleOf = (k: string, view: 'side' | 'front', cue: string | undefined, id: string) => { const s = spec(k); const e = cue ? errorsOf(s).find(x => x.cue === cue)?.error : undefined; if (cue) expect([k, cue, !!e]).toEqual([k, cue, true]);
+      const g = guideShapes(s, 1, view, guidesOf(k), e).filter(x => x.k === 'line' && x.id === id) as Ln[]; expect([k, id, g.length]).toEqual([k, id, 1]); return g[0].role; };
+    for (const k of ['Deadlift (sztanga)', 'RDL (sztanga)', 'Good Morning', 'Barbell Hack Squat']) {
+      expect([k, roleOf(k, 'side', 'mis.roundBack', 'guideBack')]).toEqual([k, 'error']); expect([k, roleOf(k, 'side', undefined, 'guideBack')]).toEqual([k, 'guide']);
+    }
+    expect(roleOf('Back Squat', 'front', 'sq.mis.kneesIn', 'guideKneeL')).toBe('error'); expect(roleOf('Back Squat', 'front', undefined, 'guideKneeL')).toBe('guide');
+  });
+  test('S1: w żadnej klatce, żadnym rzucie i żadnej pozie błędu squat/hinge dwie linie (odniesienia + nakładka) nie leżą jedna pod drugą — wyjątek tylko poziom uda i linia uda przysiadu przy udzie poziomo', () => {
+    let pary = 0, kadry = 0; const bad: string[] = [];
+    for (const k of [...SQUAT_KEYS, ...HINGE_KEYS]) { const s = spec(k); const g = guidesOf(k), t = techniquesOf(k);
+      for (const v of s.views) for (const u of US) for (const e of [undefined, ...errorsOf(s).map(x => x.error)]) { const ls = [...guideShapes(s, u, v, g, e), ...overlayShapes(s, u, v, t, e, g)].filter(x => x.k === 'line') as Ln[]; kadry++;
+        for (let i = 0; i < ls.length; i++) for (let j = i + 1; j < ls.length; j++) { pary++; if (sameSpot(ls[i], ls[j])) bad.push(`${k} ${v} u=${u} ${ls[i].id}+${ls[j].id}`); } }
+    }
+    expect(kadry).toBeGreaterThan(3000); expect(pary).toBeGreaterThan(3000);
+    /* martwy ciąg na szczycie: pion kostki i linia pleców/pion środka stopy mogą się pokryć tylko wtedy, gdy rysunek jest w idealnym wyproście — liczymy ułamek klatek */
+    expect(bad.length / kadry).toBeLessThan(0.02);
+    /* jedyny dozwolony wyjątek: poziom uda (guideThigh) i linia uda przysiadu, gdy udo jest poziomo — cel głębokości osiągnięty (linia odniesienia zgodna z ciałem z definicji) */
+    expect(bad.filter(b => !/guideThigh\+squatKneeLimbLine$/.test(b))).toEqual([]);
   });
 });

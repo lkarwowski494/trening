@@ -1,6 +1,6 @@
 /*
  * Nakładka techniki: zawias — linie odniesienia (decyzja właściciela 25.10.2026: linie bez liczb, tylko przy wskazówce ze źródłem; id wskazówki w `cue`)
- * oraz element kończyny (etap 2, 04.11.2026): linia przez tułów i łuk zgięcia w biodrze, tylko z regułą „ustalone” i wskazówką obecną na karcie ćwiczenia.
+ * oraz element E3 (etap 2, 04.11.2026): pion przez kostkę dla „wyprostu na górze”, tylko z regułą „ustalone” i wskazówką obecną na karcie ćwiczenia.
  * Linia pleców (`backLine`) jest wspólna z przysiadem (wskazówka sq.back, reguła plecy_neutralne rodziny squat) i z przysiadem przy ścianie (wall.back).
  */
 import type { GuideDef } from '../guides';
@@ -18,6 +18,6 @@ export const HINGE_GUIDES: GuideDef[] = [
 ];
 
 export const HINGE_TECHNIQUE: TechniqueDef[] = [
-  /** „wyprost na górze” (wyprost_na_gorze, ustalone): linia bark–biodro przedłużona poza biodro i łuk zgięcia biodra — u góry łuk znika, a linia leży na osi uda (tułów i noga w jednej linii). Kąt = „Kąt na rysunku: zgięcie biodra”. */
-  { id: 'hingeHipLimb', kind: 'limb', cue: ['dl.lift', 'tb.lift', 'sumo.lift', 'dbdl.hips', 'rdl.move', 'rdl.dbMove', 'gm.move'], rule: 'wyprost_na_gorze', views: ['side'], joint: 'hip' },
+  /** „wyprost na górze” (wyprost_na_gorze, ustalone; E3): pion przez kostkę w górę — na szczycie bark, biodro, kolano i kostka leżą na jednej linii (tułów i noga w jednej linii), w ruchu pion jest stałym odniesieniem. Zastępuje łuk biodra z P1: łuk na szczycie martwego ciągu ma ok. 10° i dubluje linię pleców (recenzja 2R). */
+  { id: 'hingeUprightRef', kind: 'ref', cue: ['dl.lift', 'tb.lift', 'sumo.lift', 'dbdl.hips', 'rdl.move', 'rdl.dbMove', 'gm.move'], rule: 'wyprost_na_gorze', views: ['side'], ref: { shape: 'vertical', through: 'ankle', dir: 'up' } },
 ];

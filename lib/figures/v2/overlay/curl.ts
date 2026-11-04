@@ -9,4 +9,8 @@ import type { TechniqueDef } from '../overlay';
 export const CURL_TECHNIQUE: TechniqueDef[] = [
   /** „zginaj łokieć … opuść do pełnego wyprostu ręki” (lokiec_zgina_sie): linia bark–łokieć przedłużona poza łokieć i łuk zgięcia łokcia. Kąt = „Kąt na rysunku: zgięcie łokcia”. */
   { id: 'curlElbowLimb', kind: 'limb', cue: ['curl.dbMove', 'curl.bbMove', 'curl.hammerMove', 'curl.cableMove', 'preacher.range'], rule: 'lokiec_zgina_sie', views: ['side'], joint: 'elbow' },
+  /** „Łokcie zostają przy bokach” (lokiec_przy_tulowiu, ustalone; E3): pion przez bark w dół — łokieć ma zostać na tym pionie (nie wędrować do przodu); złamana reguła → kolor błędu. */
+  { id: 'curlElbowPlumb', kind: 'ref', cue: ['curl.elbows'], rule: 'lokiec_przy_tulowiu', views: ['side'], ref: { shape: 'vertical', through: 'shoulder', dir: 'down' } },
+  /** „Tułów nieruchomo: bez bujania i odchylania się” (tulow_nieruchomy, ustalone; E3): linia tułowia miednica → bark, przedłużona za bark. */
+  { id: 'curlTrunkRef', kind: 'ref', cue: ['curl.noSwing'], rule: 'tulow_nieruchomy', views: ['side'], ref: { shape: 'segment', from: 'pelvis', to: 'shoulderC' } },
 ];
