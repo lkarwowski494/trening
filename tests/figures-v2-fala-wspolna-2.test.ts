@@ -85,3 +85,25 @@ describe('S-1: oś hantla ⟂ do przedramienia i płynna (04.11.2026)', () => {
         const ar = R.axis ?? [0, 0, 1], al = L.axis ?? [0, 0, 1]; if (katProstych([...al], [ar[0], ar[1], -ar[2]]) > 5) throw new Error(`${z.cw} u=${(i * 0.01).toFixed(2)}`); } }
   });
 });
+
+describe('FW2 / core_floor: ślad toru przy ciężarze trzymanym oburącz albo przy kostce (K4, 04.11.2026)', () => {
+  const dane = (rodz: string, cw: string): PoseData => JSON.parse(fs.readFileSync(path.join(POSES, rodz + '.json'), 'utf8')).cwiczenia[cw];
+  const dist = (a: V, b: V): number => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  const U = Array.from({ length: 21 }, (_, i) => i / 20);
+  test.each([['core_standing', 'Pallof Press'], ['core_standing', 'Cable Woodchop'], ['chest_press_machine', 'Machine Chest Press'], ['row', 'T-Bar Row']])(
+    '%s / %s: trzyma „obie” (uchwyt, lina, dźwignia przy dłoniach) — ślad istnieje i leży w środku chwytów (≤ 1 cm), nie w miednicy', (rodz, cw) => {
+      const d = dane(rodz, cw); let odMiednicy = 0;
+      for (const u of U) { const f = keyframeFrame(d, u); const t = f.info.trail as V | undefined; expect([cw, u, t !== undefined]).toEqual([cw, u, true]);
+        const g = f.sk.arms; expect(dist(t!, [0, 1, 2].map(i => (g.R.grip[i] + g.L.grip[i]) / 2))).toBeLessThanOrEqual(1); odMiednicy = Math.max(odMiednicy, dist(t!, f.sk.pelvis)); }
+      expect(odMiednicy).toBeGreaterThan(15); /* negatyw: ślad w miednicy (jak ruch ciała) nie przechodzi */
+    });
+  test.each([['hip_abd_add', 'Cable Hip Abduction'], ['glute_floor', 'Cable Kickback'], ['leg_isolation', 'Standing Cable Leg Curl']])(
+    '%s / %s: opaska na kostce (chwyt „kostka”) — ślad ≤ 1,5 cm od kostki, nie od dłoni', (rodz, cw) => {
+      const d = dane(rodz, cw); let odDloni = 0;
+      for (const u of U) { const f = keyframeFrame(d, u); const t = f.info.trail as V; expect(dist(t, f.sk.legs.R.ankle)).toBeLessThanOrEqual(1.5); odDloni = Math.max(odDloni, dist(t, f.sk.arms.R.grip)); }
+      expect(odDloni).toBeGreaterThan(15);
+    });
+  test('bez zmiany: dźwignia poza dłońmi (Leg Press, punkt „podeszwy”, trzyma „obie”) — ślad jak w FW1 (brak), zgłoszone osobno', () => {
+    expect(keyframeFrame(dane('leg_machine', 'Leg Press'), 0.5).info.trail).toBeUndefined();
+  });
+});
