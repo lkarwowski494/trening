@@ -16,7 +16,7 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v2 w aplikacji (rodzina gotowa) | 132 | 18,6% |
 | Figura v1 w aplikacji (bez v2) | 48 | 6,8% |
 | Bez figury w aplikacji | 528 | 74,6% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 407 | 57,5% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 94 | 13,3% |
 | Animowany błąd | 124 | 17,5% |
 | Własne wskazówki (źródłowe) | 167 | 23,6% |
@@ -36,11 +36,10 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela.
 
-Cel osiągnięty: **nie** (42 z 47 liczb).
+Cel osiągnięty: **nie** (43 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
 | wskazówki (własne lub zestaw ogólny) | 640 | 272 | 368 |
 | częste błędy (tekst) | 557 | 181 | 376 |
 | komplet tekstów karty: pl | 671 | 571 | 100 |
@@ -50,7 +49,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Rodzina | Stan | Ćwiczeń | Figura v2 | Dane v2 (niewłączone) | Figura v1 | Własne wsk. | Zestaw ogólny | Bez tekstu | Pełne karty | Recenzja |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
+| `core_floor` | do zrobienia | 44 | 0 | 27 | 2 | 4 | 0 | 40 | 0 | 0 |
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 6 | 28 | 2 | 32 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
