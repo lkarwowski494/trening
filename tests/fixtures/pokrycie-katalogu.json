@@ -6,7 +6,7 @@
       "v2": 132,
       "v1": 48,
       "bezFigury": 528,
-      "daneV2NieWlaczone": 401,
+      "daneV2NieWlaczone": 402,
       "wyjatekBezAnimacji": 94
     },
     "animowanyBlad": 124,
@@ -219,7 +219,7 @@
       "status": "planned",
       "cwiczen": 25,
       "figuraV2": 0,
-      "daneV2NieWlaczone": 23,
+      "daneV2NieWlaczone": 24,
       "v1": 0,
       "wlasne": 21,
       "ogolne": 0,
@@ -755,7 +755,7 @@
   "dobre": {
     "figura.v2": 132,
     "figura.wAplikacji": 180,
-    "figura.zDanymiV2": 533,
+    "figura.zDanymiV2": 534,
     "animowanyBlad": 124,
     "wskazowki.wlasne": 167,
     "wskazowki.wlasneZBledami": 76,

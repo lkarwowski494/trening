@@ -16,7 +16,7 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v2 w aplikacji (rodzina gotowa) | 132 | 18,6% |
 | Figura v1 w aplikacji (bez v2) | 48 | 6,8% |
 | Bez figury w aplikacji | 528 | 74,6% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 402 | 56,8% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 94 | 13,3% |
 | Animowany błąd | 124 | 17,5% |
 | Własne wskazówki (źródłowe) | 167 | 23,6% |
@@ -40,7 +40,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
+| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 534 | 1 |
 | wskazówki (własne lub zestaw ogólny) | 640 | 272 | 368 |
 | częste błędy (tekst) | 557 | 181 | 376 |
 | komplet tekstów karty: pl | 671 | 571 | 100 |
@@ -59,7 +59,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
-| `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 21 | 0 | 4 | 0 | 0 |
+| `olympic` | do zrobienia | 25 | 0 | 24 | 0 | 21 | 0 | 4 | 0 | 0 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |

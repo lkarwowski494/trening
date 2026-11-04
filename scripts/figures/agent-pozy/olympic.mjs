@@ -9,7 +9,7 @@ import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, pitc
 
 export const RODZINA = 'olympic';
 const OTW = 'ćwiczenie otwarte: brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → olympic.otwarte); poza wróci po opisie ruchu przez badacza';
-export const WYJATKI = { 'Rack Delivery': OTW, 'Jerk Balance': OTW };
+export const WYJATKI = { 'Rack Delivery': OTW };
 export const PRZYBLIZENIA = {
   'Clean and Jerk': 'zarzut do ćwierć przysiadu, wstanie, krótkie ugięcie i podrzut z wykrokiem w jednym przebiegu',
   'Muscle Snatch': 'ruch bez ponownego ugięcia nóg: sztanga z zawisu nad głowę na prostych nogach (przechwyt na palcach)',
@@ -66,7 +66,7 @@ function lapRack(gl, o = {}) {
 }
 /** Przechwyt nad głową (rwanie, podrzut): ręce proste nad głową tuż przed linią tułowia (łokcie ≤ 20°, bark < 170°). */
 function lapNad(gl, z, o = {}) {
-  const d = { power: { al: 22, k: 78, pitch: 5, A: [0, 7] }, pelny: { al: 38, k: 130, pitch: 16, A: [0, 7] }, split: { ...SPLIT(), pitch: 4 } }[gl];
+  const d = { power: { al: 22, k: 78, pitch: 5, A: [0, 7] }, pelny: { al: 38, k: 130, pitch: 8, A: [0, 7] }, split: { ...SPLIT(), pitch: 4 } }[gl];
   const wide = z > 30; return wp({ ...d, w: 0, rel: wide ? [58.5, 11] : [62.2, 11], bar: [0, 150], z, pole: [0, -1, 0.3], zs: gl === 'pelny' ? 22 : 16, ...o });
 }
 /** Wejście pod sztangę (zarzut), recenzja p4a: po wyproście kolana od razu się uginają (stopy krótko odrywają się i lądują szerzej), a sztanga tylko dojeżdża do barków — nie wznosi się w staniu na palcach. */
@@ -100,7 +100,7 @@ const gotowe = (cw, sprz, W) => {
 const BLOKI = () => ({ rodzaj: 'skrzynia', x0: -4, x1: 42, top: 29.5, z: 68, dwa: true });
 const sprzetDla = (start) => SPRZ(...(start === 'bloki' ? [BLOKI()] : []));
 /** Wykrok: stopy w locie przed lądowaniem (przednia do przodu, tylna do tyłu), żeby ruch stóp nie przechodził przez podłogę. */
-const wLocie = (W, gl) => { if (gl !== 'split') return; const w = W[W.length - 2]; w.A = [10, 24]; w.pod = -20; if (w.ra.w < 0.5) w.ra.rel = [13, 17.5]; w.AL = [0, 28]; w.podL = -45; };
+const wLocie = (W, gl) => { if (gl !== 'split') return; const w = W[W.length - 2]; w.A = [10, 24]; w.pod = -20; if (w.ra.w < 0.5) w.ra.rel = [26, 14]; w.AL = [0, 28]; w.podL = -45; };
 /** Wykrok w zarzucie i rwaniu (recenzja p4a): krótki lot (przednia stopa do przodu, tylna do tyłu, nisko nad podłogą), lądowanie w nożycach i dopiero potem przyjęcie sztangi. */
 const wLocieZ = (W, gl, nad) => {
   if (gl !== 'split') return;
@@ -119,8 +119,16 @@ const RACK_STOJ = (o = {}) => wp({ al: 3, k: 12, pitch: 2, w: 0, rel: RACK_REL, 
 const DIP = (k = 40) => RACK_STOJ({ al: 10, k, pitch: 3 });
 function podrzut(cw, gl) {
   const W = [RACK_STOJ(), DIP(40),
-    RACK_STOJ({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], pitch: 2, rel: gl === 'pelny' ? [14, 12] : [30, 12], pole: [0.3, -0.2, 0.8], z: 24 }), lapNad(gl, 25)]; /* przysiad: sztanga po wybiciu tylko dojeżdża do wysokości przyjęcia (recenzja p4a) */
+    RACK_STOJ({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], pitch: 2, rel: gl === 'pelny' ? [26, 13] : [30, 12], pole: [0.3, -0.2, 0.8], z: 24 }), lapNad(gl, 25)]; /* przysiad: sztanga po wybiciu tylko dojeżdża do wysokości przyjęcia (recenzja p4a) */
   wLocie(W, gl); return gotowe(cw, SPRZ(RACK()), W);
+}
+/** Jerk Balance (karta własna z fali W1, 03.11.2026): start ze sztangą na barkach w skróconym wykroku (krótszym niż przy odbiorze), proste ugięcie i wyprost, wyrzut sztangi nad głowę,
+ *  przednia stopa wsuwa się do przodu w pełny wykrok i sztanga zostaje przyjęta nad głową (u = 1 = przechwyt jak w Split Jerk). Stopy: prawa przód (A), lewa tył (AL). */
+function jerkBalance(cw) {
+  const kr = (A0, k, al, o = {}) => { const hip = biodroZKostki([A0, 7], -90 - al + k, k); return wp({ A: [A0, 7], al, k, AL: [hip[0] - 16, yP(-60) + 0.5], podL: -62, pitch: 2, w: 0, rel: RACK_REL, bar: [0, 0], z: 22, pole: [1, -0.4, 0.2], zs: 16, ...o }); };
+  const W = [kr(22, 14, 4), kr(22, 38, 10), kr(22, 12, 4, { rel: [30, 12], pole: [0.3, -0.2, 0.8], z: 24 })];
+  W.push(lapNad('split', 25)); wLocie(W, 'split');
+  return gotowe(cw, SPRZ(RACK()), W);
 }
 function dipSquat(cw) { return gotowe(cw, SPRZ(RACK()), [RACK_STOJ(), DIP(32), DIP(52)]); }
 function snatchBalance(cw) {
@@ -165,6 +173,7 @@ export function generuj() {
   G['Split Jerk'] = () => podrzut('Split Jerk', 'split');
   G['Squat Jerk'] = () => podrzut('Squat Jerk', 'pelny');
   G['Jerk Dip Squat'] = () => dipSquat('Jerk Dip Squat');
+  G['Jerk Balance'] = () => jerkBalance('Jerk Balance');
   G['Snatch Balance'] = () => snatchBalance('Snatch Balance');
   G['Muscle Snatch'] = () => muscleSnatch('Muscle Snatch');
   G['Clean and Jerk'] = () => cleanJerk('Clean and Jerk');
