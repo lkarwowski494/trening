@@ -497,6 +497,36 @@
    "name": "Atlas ćwiczeń Centrum Respo (centrumrespo.pl)",
    "level": 5,
    "kind": "site"
+  },
+  "app-s1": {
+   "name": "app-s1",
+   "level": 5,
+   "kind": "app"
+  },
+  "app-s2": {
+   "name": "app-s2",
+   "level": 5,
+   "kind": "app"
+  },
+  "app-s3": {
+   "name": "app-s3",
+   "level": 5,
+   "kind": "app"
+  },
+  "app-s4": {
+   "name": "app-s4",
+   "level": 5,
+   "kind": "app"
+  },
+  "app-s5": {
+   "name": "app-s5",
+   "level": 5,
+   "kind": "app"
+  },
+  "app-s6": {
+   "name": "app-s6",
+   "level": 5,
+   "kind": "app"
   }
  },
  "sources": {
@@ -2984,6 +3014,54 @@
    "org": "Atlas ćwiczeń Centrum Respo",
    "title": "Bus driver with mini band",
    "url": "https://centrumrespo.pl/atlas/bus-driver-with-mini-band/",
+   "level": 5
+  },
+  "app-s1": {
+   "org": "app-s1",
+   "title": "app-s1"
+  },
+  "app-s2": {
+   "org": "app-s2",
+   "title": "app-s2"
+  },
+  "app-s3": {
+   "org": "app-s3",
+   "title": "app-s3"
+  },
+  "app-s4": {
+   "org": "app-s4",
+   "title": "app-s4"
+  },
+  "app-s5": {
+   "org": "app-s5",
+   "title": "app-s5"
+  },
+  "app-s6": {
+   "org": "app-s6",
+   "title": "app-s6"
+  },
+  "weighttraining-incline-dumbbell-front-raise": {
+   "org": "weighttraining.guide",
+   "title": "Incline dumbbell front raise",
+   "url": "https://weighttraining.guide/exercises/incline-dumbbell-front-raise/",
+   "level": 5
+  },
+  "weighttraining-incline-dumbbell-shoulder-raise": {
+   "org": "weighttraining.guide",
+   "title": "Incline dumbbell shoulder raise",
+   "url": "https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/",
+   "level": 5
+  },
+  "fedb-barbell-incline-shoulder-raise": {
+   "org": "free-exercise-db",
+   "title": "Barbell Incline Shoulder Raise",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json",
+   "level": 5
+  },
+  "fedb-straight-raises-on-incline-bench": {
+   "org": "free-exercise-db",
+   "title": "Straight Raises on Incline Bench",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json",
    "level": 5
   }
  },
@@ -16600,6 +16678,260 @@
      ]
     }
    ]
+  },
+  "Front Incline Dumbbell Raise": {
+   "setup": [
+    {
+     "c": "fidr.setup",
+     "s": [
+      [
+       "weighttraining-incline-dumbbell-front-raise",
+       "Starting position 2 (autor Edward Lord)"
+      ],
+      [
+       "app-s1",
+       "instrukcja 2: hang at arm's length by your sides"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "fidr.move",
+     "s": [
+      [
+       "weighttraining-incline-dumbbell-front-raise",
+       "Execution 1: elbows slightly flexed"
+      ],
+      [
+       "app-s1",
+       "instrukcja 4: parallel or slightly above shoulder level"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "fidr.mis.back",
+     "s": [
+      [
+       "app-s1",
+       "Common Mistakes 3"
+      ],
+      [
+       "weighttraining-incline-dumbbell-front-raise",
+       "wniosek z ustawienia (etap 2): plecy na oparciu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dumbbell Incline Shoulder Raise": {
+   "setup": [
+    {
+     "c": "isr.setupDb",
+     "s": [
+      [
+       "weighttraining-incline-dumbbell-shoulder-raise",
+       "Execution 1 (M. Livelo)"
+      ],
+      [
+       "app-s2",
+       "Setup"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "isr.move",
+     "s": [
+      [
+       "weighttraining-incline-dumbbell-shoulder-raise",
+       "Execution 1 (M. Livelo)"
+      ],
+      [
+       "app-s2",
+       "Instructions 2"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "isr.mis.press",
+     "s": [
+      [
+       "app-s2",
+       "Common mistakes: bending the elbows and turning it into a press"
+      ],
+      [
+       "weighttraining-incline-dumbbell-shoulder-raise",
+       "Execution 1: only the shoulders should move"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Incline Shoulder Raise": {
+   "setup": [
+    {
+     "c": "isr.setupBb",
+     "s": [
+      [
+       "fedb-barbell-incline-shoulder-raise",
+       "instructions 2"
+      ],
+      [
+       "app-s3",
+       "krok 3"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "isr.move",
+     "s": [
+      [
+       "fedb-barbell-incline-shoulder-raise",
+       "instructions 2"
+      ],
+      [
+       "app-s3",
+       "krok 3"
+      ]
+     ],
+     "uproszczenie": "opuszczenie „powoli” opisują źródła wariantu z hantlami; źródła sztangi opisują tylko wypchnięcie z odrywaniem barków od ławki (do potwierdzenia przez recenzenta)"
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "isr.mis.press",
+     "s": [
+      [
+       "fedb-barbell-incline-shoulder-raise",
+       "wniosek z ruchu (etap 2): ręce proste"
+      ],
+      [
+       "app-s3",
+       "wniosek z ruchu (etap 2): ręce proste"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dumbbell Front Raise to Overhead": {
+   "setup": [
+    {
+     "c": "dfro.setup",
+     "s": [
+      [
+       "app-s4",
+       "How to do it 1 (from thighs)"
+      ],
+      [
+       "app-s5",
+       "How to 1: palms facing your thighs"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "fro.move",
+     "s": [
+      [
+       "app-s4",
+       "How to do it"
+      ],
+      [
+       "app-s5",
+       "How to 3: slowly raise … in an arc"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "fro.mis.arch",
+     "s": [
+      [
+       "app-s4",
+       "Common mistakes: avoid arching your lower back"
+      ],
+      [
+       "app-s5",
+       "Common mistakes 3"
+      ]
+     ]
+    },
+    {
+     "c": "mis.jerk",
+     "s": [
+      [
+       "app-s4",
+       "Common mistakes: do not swing or use momentum"
+      ],
+      [
+       "app-s5",
+       "Common mistakes 1"
+      ]
+     ]
+    }
+   ]
+  },
+  "Straight Raises on Incline Bench": {
+   "setup": [
+    {
+     "c": "sri.setup",
+     "s": [
+      [
+       "fedb-straight-raises-on-incline-bench",
+       "instructions 2–3"
+      ],
+      [
+       "app-s6",
+       "Steps 1–2"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sri.move",
+     "s": [
+      [
+       "fedb-straight-raises-on-incline-bench",
+       "instructions 3"
+      ],
+      [
+       "app-s6",
+       "Steps 3 i 5"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "yr.mis.chest",
+     "s": [
+      [
+       "fedb-straight-raises-on-incline-bench",
+       "wniosek z ustawienia (etap 2): leżenie na ławce"
+      ],
+      [
+       "app-s6",
+       "Steps 1: position chest against bench top"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -16698,7 +17030,12 @@
   "One-Arm Incline Lateral Raise",
   "Barbell Front Raise to Overhead",
   "Sled Reverse Flye",
-  "Car Drivers"
+  "Car Drivers",
+  "Front Incline Dumbbell Raise",
+  "Dumbbell Incline Shoulder Raise",
+  "Barbell Incline Shoulder Raise",
+  "Dumbbell Front Raise to Overhead",
+  "Straight Raises on Incline Bench"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {
@@ -16727,6 +17064,22 @@
   "Car Drivers::cdr.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Car Drivers::cdr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Car Drivers::cdr.mis.drop": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
-  "Car Drivers::mis.jerk": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)"
+  "Car Drivers::mis.jerk": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Front Incline Dumbbell Raise::fidr.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Front Incline Dumbbell Raise::fidr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Incline Shoulder Raise::isr.setupDb": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Incline Shoulder Raise::isr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Barbell Incline Shoulder Raise::isr.setupBb": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Barbell Incline Shoulder Raise::isr.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Front Raise to Overhead::dfro.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Front Raise to Overhead::fro.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Straight Raises on Incline Bench::sri.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Straight Raises on Incline Bench::sri.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Incline Shoulder Raise::isr.mis.press": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Front Incline Dumbbell Raise::fidr.mis.back": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Barbell Incline Shoulder Raise::isr.mis.press": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Straight Raises on Incline Bench::yr.mis.chest": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Front Raise to Overhead::fro.mis.arch": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Dumbbell Front Raise to Overhead::mis.jerk": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)"
  }
 }

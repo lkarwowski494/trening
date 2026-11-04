@@ -100,6 +100,30 @@
   },
   {
    "rodzaj": "nowy",
+   "id": "dfro.setup",
+   "pl": "Stań prosto, hantle trzymaj przed udami, dłonie zwrócone do ciała.",
+   "en": "Stand tall, holding the dumbbells in front of your thighs, palms facing your body."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "fidr.mis.back",
+   "pl": "Odrywanie pleców od oparcia.",
+   "en": "Lifting your back off the pad."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "fidr.move",
+   "pl": "Unieś hantle przed sobą, łokcie lekko ugięte, mniej więcej do wysokości barków; opuść je powoli.",
+   "en": "Raise the dumbbells in front of you, elbows slightly bent, to about shoulder height; lower them slowly."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "fidr.setup",
+   "pl": "Usiądź na ławce skośnej, plecy na oparciu; hantle zwisają po bokach.",
+   "en": "Sit on an incline bench with your back against the pad, dumbbells hanging at your sides."
+  },
+  {
+   "rodzaj": "nowy",
    "id": "fro.mis.arch",
    "pl": "Wyginanie lędźwi, gdy ręce idą nad głowę.",
    "en": "Arching your lower back as your arms go overhead."
@@ -157,6 +181,30 @@
    "id": "inc1.setup",
    "pl": "Połóż się bokiem na ławce skośnej, hantel w górnej ręce.",
    "en": "Lie on your side on an incline bench, dumbbell in your top hand."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "isr.mis.press",
+   "pl": "Zginanie łokci — ruch zamienia się w wyciskanie.",
+   "en": "Bending your elbows, which turns the move into a press."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "isr.move",
+   "pl": "Nie zginając łokci, wypchnij ciężar wyżej, odrywając barki od ławki; potem powoli opuść łopatki z powrotem.",
+   "en": "Without bending your elbows, push the weight higher by lifting your shoulders off the bench; then slowly lower your shoulder blades back down."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "isr.setupBb",
+   "pl": "Połóż się plecami na ławce skośnej, sztangę trzymaj nad sobą na prostych rękach.",
+   "en": "Lie back on an incline bench, holding the barbell above you with straight arms."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "isr.setupDb",
+   "pl": "Połóż się plecami na ławce skośnej, hantle trzymaj nad barkami na prostych rękach.",
+   "en": "Lie back on an incline bench, holding the dumbbells above your shoulders with straight arms."
   },
   {
    "rodzaj": "nowy",
@@ -220,6 +268,18 @@
   },
   {
    "rodzaj": "nowy",
+   "id": "sri.move",
+   "pl": "Prawie prostymi rękami unieś sztangę przed siebie, potem powoli ją opuść.",
+   "en": "With nearly straight arms, raise the barbell in front of you, then lower it slowly."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "sri.setup",
+   "pl": "Połóż się klatką na ławce skośnej; sztangę trzymaj nachwytem na prostych, zwisających rękach.",
+   "en": "Lie chest-down on an incline bench; hold the barbell in an overhand grip with straight, hanging arms."
+  },
+  {
+   "rodzaj": "nowy",
    "id": "urow.move",
    "pl": "Unoś ciężar blisko ciała w stronę obojczyków, potem opuść go powoli do wyprostu rąk.",
    "en": "Pull the weight up close to your body toward your collarbones, then lower it slowly until your arms are straight."
@@ -241,6 +301,12 @@
    "id": "urow1.setup",
    "pl": "Stań prosto, ciężar trzymaj jedną ręką przed udem, ręka wyprostowana, dłoń zwrócona do ciała.",
    "en": "Stand tall, holding the weight in one hand in front of your thigh, arm straight, palm facing your body."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "yr.mis.chest",
+   "pl": "Odrywanie klatki od ławki.",
+   "en": "Lifting your chest off the bench."
   }
  ]
 }

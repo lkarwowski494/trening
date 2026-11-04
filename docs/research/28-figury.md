@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (120)
+## Bez figury — lista otwarta (125)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1076,5 +1076,10 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Barbell Front Raise to Overhead | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Sled Reverse Flye | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Car Drivers | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Front Incline Dumbbell Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell Incline Shoulder Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Barbell Incline Shoulder Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell Front Raise to Overhead | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Straight Raises on Incline Bench | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 
 Poza tym bez figury: 21 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.

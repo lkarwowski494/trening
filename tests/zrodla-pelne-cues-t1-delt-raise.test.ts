@@ -27,16 +27,13 @@ const POMINIETE: Record<string, string> = {
   'Y Raise (hantle)': 'rysunek przeczy źródłom (stanie w pochyleniu zamiast leżenia przodem na ławce skośnej) — karta wstrzymana do poprawki rysunku (decyzja koordynatora 4)',
   'Cable Seated Lateral Raise': 'żadne przeczytane źródło nie opisuje wersji z linkami — odrzucona w 1.1 (decyzja koordynatora 5)',
   'Machine Lateral Raise': 'drugie źródło (uczelniany centrum sportu, host uwo.ca) jest na liście spornych źródeł poza danymi (tests/zrodla-pelne-cues.test.ts) — zostaje z jednym źródłem szczebla 4 i zestawem ogólnym',
-  'Front Incline Dumbbell Raise': 'drugie źródło to strona aplikacji — w danych wymaga nieprzezroczystego identyfikatora bez adresu, a validate() (scripts/cues/gen.mjs) dopuszcza taki wpis tylko dla książek',
-  'Dumbbell Incline Shoulder Raise': 'drugie źródło to prawdopodobnie strona aplikacji (jw.), trzecie (zbiór opisów) bez adresu w wejściu',
-  'Barbell Incline Shoulder Raise': 'jedno źródło nie-aplikacyjne (zbiór opisów) — druga strona to aplikacja (jw.)',
-  'Dumbbell Front Raise to Overhead': 'oba źródła to strony aplikacji (jw.)',
-  'Straight Raises on Incline Bench': 'drugie źródło to strona aplikacji (jw.)',
 };
+/** Karty wdrożone po dodaniu rodzaju źródła `app` (strona aplikacji, szczebel 5; 04.11.2026, decyzja koordynatora 8): 2 źródła szczebla 5, w tym strony aplikacji. */
+const APLIKACJE = ['Front Incline Dumbbell Raise', 'Dumbbell Incline Shoulder Raise', 'Barbell Incline Shoulder Raise', 'Dumbbell Front Raise to Overhead', 'Straight Raises on Incline Bench'];
 
 describe('T1 delt_raise: karty własne', () => {
-  test('23 ćwiczenia mają komplet ustawienie + ruch w pełnych danych i w runtime (widoczne albo ukryte do recenzji); nie są w otwartych; niepełne są na liście partial', () => {
-    expect(T1.cwiczenia.length).toBe(23);
+  test('28 ćwiczeń ma komplet ustawienie + ruch w pełnych danych i w runtime (widoczne albo ukryte do recenzji); nie są w otwartych; niepełne są na liście partial', () => {
+    expect(T1.cwiczenia.length).toBe(28);
     for (const k of T1.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, x.setup.length >= 1, x.move.length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
@@ -44,11 +41,11 @@ describe('T1 delt_raise: karty własne', () => {
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, x.tips.length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, CUE_FULL.exercises[k][s].length <= 4]).toEqual([k, s, true]);
     }
-    expect(T1.partial.length).toBe(7);
+    expect(T1.partial.length).toBe(12);
     expect([...T1.partial].sort()).toEqual(T1.cwiczenia.filter(k => CUE_FULL.exercises[k].tips.length < 2).sort());
   });
 
-  test('cue-sets: 23 ćwiczenia mają własne karty (b = own); pominięte nie mają karty własnej', () => {
+  test('cue-sets: 28 ćwiczeń ma własne karty (b = own); pominięte nie mają karty własnej', () => {
     for (const k of T1.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
     for (const k of Object.keys(POMINIETE)) expect([k, sets[k].b !== 'own', k in CUE_FULL.exercises, T1.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
   });
@@ -75,7 +72,7 @@ describe('T1 delt_raise: źródła i reguły szczebli', () => {
       expect([k, r.c, orgs4.size >= 2 || typeof luka === 'string']).toEqual([k, r.c, true]);
       expect([k, r.c, orgs4.size >= 2 && luka !== undefined]).toEqual([k, r.c, false]);
     }
-    expect(T1.luki.length).toBe(21);
+    expect(T1.luki.length).toBe(37);
     for (const id of T1.luki) expect([id, /^praktyka/.test(CUE_FULL.luki![id])]).toEqual([id, true]);
   });
 
@@ -86,10 +83,10 @@ describe('T1 delt_raise: źródła i reguły szczebli', () => {
       const ma5 = [...CUE_SECTIONS].some(s => CUE_FULL.exercises[k][s].some(r => r.s.some(([sid]) => lv(sid) === 5)));
       if (PRAKTYKA.includes(k)) expect([k, maLuke && ma5]).toEqual([k, true]);
     }
-    expect(PRAKTYKA.sort()).toEqual(T1.partial.slice().sort());
+    expect([...PRAKTYKA, ...APLIKACJE].sort()).toEqual(T1.partial.slice().sort());
   });
 
-  test('źródła sporne (przedruk NSCA ETM, WebMD Ignite, uczelniany centrum sportu) i strony aplikacji nie weszły do danych tych kart', () => {
+  test('źródła sporne (przedruk NSCA ETM, WebMD Ignite, uczelniany centrum sportu) i adresy stron aplikacji nie weszły do danych tych kart', () => {
     for (const k of T1.cwiczenia) for (const s of CUE_SECTIONS) for (const r of CUE_FULL.exercises[k][s]) for (const [sid] of r.s) {
       const u = CUE_FULL.sources[sid].url ?? '';
       expect([k, sid, /coachesontario|ummhealth|uwo\.ca|jefit|strongermobileapp|hueman|kovofitness|ellim\.app|motra\.com|lyfta/.test(u)]).toEqual([k, sid, false]);
@@ -97,9 +94,9 @@ describe('T1 delt_raise: źródła i reguły szczebli', () => {
   });
 
   test('niewdrożone ćwiczenia (powody w tym pliku) nie mają kart własnych; Y Raise (hantle) i Cable Seated Lateral Raise nie mają zdań yr.* ani wersji z linkami', () => {
-    expect(Object.keys(POMINIETE).length).toBe(8);
+    expect(Object.keys(POMINIETE).length).toBe(3);
     for (const k of Object.keys(POMINIETE)) expect(POMINIETE[k].length).toBeGreaterThan(20);
-    for (const c of ['yr.setup', 'yr.move', 'yr.mis.chest', 'fidr.setup', 'isr.setupDb', 'sri.setup', 'mlat.setup', 'dfro.setup']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
+    for (const c of ['yr.setup', 'yr.move', 'mlat.setup', 'mlat.move']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
   });
 
   test('błędy wnioskowane z ruchu (decyzja koordynatora 3, 04.11.2026) nie weszły; błędy tylko z danych źródłowych', () => {
@@ -109,9 +106,32 @@ describe('T1 delt_raise: źródła i reguły szczebli', () => {
   });
 });
 
+describe('T1 delt_raise: karty na źródłach typu strona aplikacji (rodzaj `app`, 04.11.2026)', () => {
+  test('5 kart: każde zdanie ma 2 źródła szczebla 5 (praktyka) i jawną lukę; źródła-aplikacje to tylko identyfikatory app-sN bez adresu; ≥ 1 strona aplikacji na kartę', () => {
+    for (const k of APLIKACJE) {
+      expect([k, T1.cwiczenia.includes(k), CUE_FULL.exercises[k].tips.length, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, true, 0, true]);
+      let apki = 0;
+      for (const s of CUE_SECTIONS) for (const r of CUE_FULL.exercises[k][s]) {
+        expect([k, r.c, r.s.length, r.s.every(([sid]) => lv(sid) === 5), r.s.some(([sid]) => sid === 'wniosek')]).toEqual([k, r.c, 2, true, false]);
+        expect([k, r.c, typeof CUE_FULL.luki?.[`${k}::${r.c}`]]).toEqual([k, r.c, 'string']);
+        for (const [sid] of r.s) if (CUE_FULL.orgs[orgOf(sid)].kind === 'app') { apki++; expect([sid, /^app-s\d+$/.test(sid), CUE_FULL.sources[sid].url, CUE_FULL.sources[sid].title]).toEqual([sid, true, undefined, sid]); }
+      }
+      expect([k, apki > 0]).toEqual([k, true]);
+    }
+  });
+  test('niezależność: w żadnym zdaniu dwa źródła nie są z tej samej organizacji; zdanie o ruchu sztangi (isr.move) ma oznaczone uproszczenie dla recenzenta', () => {
+    for (const k of APLIKACJE) for (const s of CUE_SECTIONS) for (const r of CUE_FULL.exercises[k][s]) expect([k, r.c, new Set(r.s.map(([sid]) => orgOf(sid))).size]).toEqual([k, r.c, 2]);
+    expect(typeof CUE_FULL.exercises['Barbell Incline Shoulder Raise'].move[0].uproszczenie).toBe('string');
+  });
+  test('11 nowych zdań ma PL i EN, bez cyfr; istniejące zdania fro.move, fro.mis.arch, mis.jerk są użyte ponownie', () => {
+    for (const c of ['fidr.setup', 'fidr.move', 'fidr.mis.back', 'isr.setupDb', 'isr.setupBb', 'isr.move', 'isr.mis.press', 'dfro.setup', 'sri.setup', 'sri.move', 'yr.mis.chest']) expect([c, T1.zdania.includes(c), typeof pl[c], typeof en[c]]).toEqual([c, true, 'string', 'string']);
+    for (const c of ['fro.move', 'fro.mis.arch', 'mis.jerk']) expect(CUE_FULL.exercises['Dumbbell Front Raise to Overhead'].setup.concat(CUE_FULL.exercises['Dumbbell Front Raise to Overhead'].move, CUE_FULL.exercises['Dumbbell Front Raise to Overhead'].mistakes).some(r => r.c === c)).toBe(true);
+  });
+});
+
 describe('T1 delt_raise: zdania', () => {
-  test('40 nowych zdań ma tekst PL i EN; kolizji z istniejącymi id nie ma (id z fixture nie były w słownikach przed partią)', () => {
-    expect(T1.zdania.length).toBe(40);
+  test('51 nowych zdań ma tekst PL i EN; kolizji z istniejącymi id nie ma (id z fixture nie były w słownikach przed partią)', () => {
+    expect(T1.zdania.length).toBe(51);
     for (const c of T1.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const zestaw = json('docs/lokalizacja/zestaw-przekladu-2026-11-04-t1-wskazowki.json').klucze as { id: string; pl: string; en: string }[];
     expect(zestaw.map(k => k.id).sort()).toEqual([...T1.zdania].sort());

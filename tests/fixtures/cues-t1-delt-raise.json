@@ -1,5 +1,5 @@
 {
- "_opis": "Partia T1 integracji badań (rodzina delt_raise; linia 1.1, 04.11.2026): ćwiczenia z nowymi kartami własnymi, lista kart niepełnych (partial), nowe zdania i pominięcia z powodem. Źródło: wejście badacza merytorycznego 04.11.2026 (W1/W2 po przeliczeniu szczebli, etap 2) i decyzje koordynatora z 04.11.2026.",
+ "_opis": "Partia T1 integracji badań (rodzina delt_raise; linia 1.1, 04.11.2026): ćwiczenia z nowymi kartami własnymi, lista kart niepełnych (partial), nowe zdania i pominięcia z powodem. Źródło: wejście badacza merytorycznego 04.11.2026 (W1/W2 po przeliczeniu szczebli, etap 2) i decyzje koordynatora z 04.11.2026. Uzupełnienie 04.11.2026: 5 kart ze źródłami typu strona aplikacji (rodzaj `app`, identyfikator app-sN).",
  "rodzina": "delt_raise",
  "cwiczenia": [
   "One-Arm Lateral Raise (hantel)",
@@ -24,7 +24,12 @@
   "One-Arm Incline Lateral Raise",
   "Barbell Front Raise to Overhead",
   "Sled Reverse Flye",
-  "Car Drivers"
+  "Car Drivers",
+  "Front Incline Dumbbell Raise",
+  "Dumbbell Incline Shoulder Raise",
+  "Barbell Incline Shoulder Raise",
+  "Dumbbell Front Raise to Overhead",
+  "Straight Raises on Incline Bench"
  ],
  "partial": [
   "One-Arm Cable Rear Lateral Raise",
@@ -33,7 +38,12 @@
   "One-Arm Incline Lateral Raise",
   "Barbell Front Raise to Overhead",
   "Sled Reverse Flye",
-  "Car Drivers"
+  "Car Drivers",
+  "Front Incline Dumbbell Raise",
+  "Dumbbell Incline Shoulder Raise",
+  "Barbell Incline Shoulder Raise",
+  "Dumbbell Front Raise to Overhead",
+  "Straight Raises on Incline Bench"
  ],
  "zdania": [
   "adr.move",
@@ -52,6 +62,10 @@
   "delt1.mis.arch",
   "delt2.haloLean",
   "delt2.handsHigh",
+  "dfro.setup",
+  "fidr.mis.back",
+  "fidr.move",
+  "fidr.setup",
   "fro.mis.arch",
   "fro.move",
   "front2.setup",
@@ -62,6 +76,10 @@
   "inc1.mis.shrug",
   "inc1.move",
   "inc1.setup",
+  "isr.mis.press",
+  "isr.move",
+  "isr.setupBb",
+  "isr.setupDb",
   "lat1.move",
   "lat1.setup",
   "rdelt.mis.swing",
@@ -72,10 +90,13 @@
   "scap.setup",
   "srf.move",
   "srf.setup",
+  "sri.move",
+  "sri.setup",
   "urow.move",
   "urow.setup",
   "urow1.move",
-  "urow1.setup"
+  "urow1.setup",
+  "yr.mis.chest"
  ],
  "luki": [
   "Alternating Deltoid Raise::adr.move",
@@ -83,6 +104,9 @@
   "Barbell Front Raise to Overhead::bfro.setup",
   "Barbell Front Raise to Overhead::fro.mis.arch",
   "Barbell Front Raise to Overhead::fro.move",
+  "Barbell Incline Shoulder Raise::isr.mis.press",
+  "Barbell Incline Shoulder Raise::isr.move",
+  "Barbell Incline Shoulder Raise::isr.setupBb",
   "Cable Reverse Fly::crf.move",
   "Cable Reverse Fly::crf.setup",
   "Cable Y Raise::cyr.move",
@@ -91,6 +115,16 @@
   "Car Drivers::cdr.move",
   "Car Drivers::cdr.setup",
   "Car Drivers::mis.jerk",
+  "Dumbbell Front Raise to Overhead::dfro.setup",
+  "Dumbbell Front Raise to Overhead::fro.mis.arch",
+  "Dumbbell Front Raise to Overhead::fro.move",
+  "Dumbbell Front Raise to Overhead::mis.jerk",
+  "Dumbbell Incline Shoulder Raise::isr.mis.press",
+  "Dumbbell Incline Shoulder Raise::isr.move",
+  "Dumbbell Incline Shoulder Raise::isr.setupDb",
+  "Front Incline Dumbbell Raise::fidr.mis.back",
+  "Front Incline Dumbbell Raise::fidr.move",
+  "Front Incline Dumbbell Raise::fidr.setup",
   "One-Arm Cable Rear Lateral Raise::crear1.move",
   "One-Arm Cable Rear Lateral Raise::crear1.setup",
   "One-Arm Cable Rear Lateral Raise::rdelt.mis.swing",
@@ -98,6 +132,9 @@
   "One-Arm Incline Lateral Raise::inc1.move",
   "One-Arm Incline Lateral Raise::inc1.setup",
   "Sled Reverse Flye::srf.move",
-  "Sled Reverse Flye::srf.setup"
+  "Sled Reverse Flye::srf.setup",
+  "Straight Raises on Incline Bench::sri.move",
+  "Straight Raises on Incline Bench::sri.setup",
+  "Straight Raises on Incline Bench::yr.mis.chest"
  ]
 }

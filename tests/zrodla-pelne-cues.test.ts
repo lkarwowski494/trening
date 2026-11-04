@@ -67,8 +67,8 @@ describe('pełne dane wskazówek (data/zrodla/cues.json)', () => {
     const o = cueOrgsFull('Deadlift (sztanga)'); expect(o[0]).toBe('ACE'); expect(new Set(o).size).toBe(o.length); expect(o.length).toBeGreaterThanOrEqual(2);
     expect(cueOrgsFull('xyz')).toEqual([]);
   });
-  test('każda organizacja ma szczebel 2–5 i rodzaj z CUE_BASIS_KINDS', () => {
-    for (const [id, o] of Object.entries(CUE_FULL.orgs)) expect([id, [2, 3, 4, 5].includes(o.level), (CUE_BASIS_KINDS as readonly string[]).includes(o.kind)]).toEqual([id, true, true]);
+  test('każda organizacja ma szczebel 2–5 i rodzaj z CUE_BASIS_KINDS albo `app` (strona aplikacji, szczebel 5)', () => {
+    for (const [id, o] of Object.entries(CUE_FULL.orgs)) expect([id, [2, 3, 4, 5].includes(o.level), ([...CUE_BASIS_KINDS, 'app'] as readonly string[]).includes(o.kind)]).toEqual([id, true, true]);
   });
 });
 

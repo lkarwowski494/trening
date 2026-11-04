@@ -267,7 +267,7 @@
       ]
     },
     "Barbell Incline Shoulder Raise": {
-      "b": "open"
+      "b": "own"
     },
     "Barbell Preacher Curl": {
       "b": "general",
@@ -1651,18 +1651,10 @@
       ]
     },
     "Dumbbell Front Raise to Overhead": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "curl.noSwing"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Incline Shoulder Raise": {
-      "b": "open"
+      "b": "own"
     },
     "Dumbbell Lying One-Arm Rear Lateral Raise": {
       "b": "own"
@@ -1920,15 +1912,7 @@
       ]
     },
     "Front Incline Dumbbell Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Front Plate Raise": {
       "b": "own"
@@ -5309,15 +5293,7 @@
       "b": "own"
     },
     "Straight Raises on Incline Bench": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Suitcase Carry": {
       "b": "own"

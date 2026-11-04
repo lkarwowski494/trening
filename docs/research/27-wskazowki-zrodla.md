@@ -119,12 +119,18 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Fitnall | Fitnall — opisy ćwiczeń (fitnall.com) | 5 | serwis specjalistyczny |
 | SET FOR SET | SET FOR SET — blog sprzedawcy sanek (setforset.com) | 5 | serwis specjalistyczny |
 | Atlas ćwiczeń Centrum Respo | Atlas ćwiczeń Centrum Respo (centrumrespo.pl) | 5 | serwis specjalistyczny |
+| app-s1 | app-s1 | 5 | ? |
+| app-s2 | app-s2 | 5 | ? |
+| app-s3 | app-s3 | 5 | ? |
+| app-s4 | app-s4 | 5 | ? |
+| app-s5 | app-s5 | 5 | ? |
+| app-s6 | app-s6 | 5 | ? |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 191; zdań (z powtórzeniami między ćwiczeniami): 850; unikalnych zdań: 525; źródeł: 401.
+- Ćwiczenia ze wskazówkami: 196; zdań (z powtórzeniami między ćwiczeniami): 866; unikalnych zdań: 536; źródeł: 411.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 21.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 73 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 78 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench.
 
 ## Otwarte — bez wskazówek
 
@@ -184,6 +190,22 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | Car Drivers | `cdr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Car Drivers | `cdr.mis.drop` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Car Drivers | `mis.jerk` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Front Incline Dumbbell Raise | `fidr.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Front Incline Dumbbell Raise | `fidr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Incline Shoulder Raise | `isr.setupDb` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Incline Shoulder Raise | `isr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Incline Shoulder Raise | `isr.setupBb` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Incline Shoulder Raise | `isr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `dfro.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `fro.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Straight Raises on Incline Bench | `sri.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Straight Raises on Incline Bench | `sri.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Incline Shoulder Raise | `isr.mis.press` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Front Incline Dumbbell Raise | `fidr.mis.back` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Incline Shoulder Raise | `isr.mis.press` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Straight Raises on Incline Bench | `yr.mis.chest` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `fro.mis.arch` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `mis.jerk` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 
 ## Wskazówki i źródła
 
@@ -3261,6 +3283,77 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 - Ręce opadają poniżej barków. — ManiacMuscle: [Dumbbell standing driver](https://maniacmuscle.com/dumbbell-standing-driver/) (szczebel 5 — nie liczy się do pary; Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora) `cdr.mis.drop`
 - Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — ManiacMuscle: [Dumbbell standing driver](https://maniacmuscle.com/dumbbell-standing-driver/) (szczebel 5 — nie liczy się do pary; Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora) `mis.jerk`
 
+### Front Incline Dumbbell Raise
+
+**Ustawienie**
+
+- Usiądź na ławce skośnej, plecy na oparciu; hantle zwisają po bokach. — weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; Starting position 2 (autor Edward Lord)); app-s1 (szczebel 5 — nie liczy się do pary; instrukcja 2: hang at arm's length by your sides) `fidr.setup`
+
+**Ruch**
+
+- Unieś hantle przed sobą, łokcie lekko ugięte, mniej więcej do wysokości barków; opuść je powoli. — weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; Execution 1: elbows slightly flexed); app-s1 (szczebel 5 — nie liczy się do pary; instrukcja 4: parallel or slightly above shoulder level) `fidr.move`
+
+**Czego unikać**
+
+- Odrywanie pleców od oparcia. — app-s1 (szczebel 5 — nie liczy się do pary; Common Mistakes 3); weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; wniosek z ustawienia (etap 2): plecy na oparciu) `fidr.mis.back`
+
+### Dumbbell Incline Shoulder Raise
+
+**Ustawienie**
+
+- Połóż się plecami na ławce skośnej, hantle trzymaj nad barkami na prostych rękach. — weighttraining.guide: [Incline dumbbell shoulder raise](https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/) (szczebel 5 — nie liczy się do pary; Execution 1 (M. Livelo)); app-s2 (szczebel 5 — nie liczy się do pary; Setup) `isr.setupDb`
+
+**Ruch**
+
+- Nie zginając łokci, wypchnij ciężar wyżej, odrywając barki od ławki; potem powoli opuść łopatki z powrotem. — weighttraining.guide: [Incline dumbbell shoulder raise](https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/) (szczebel 5 — nie liczy się do pary; Execution 1 (M. Livelo)); app-s2 (szczebel 5 — nie liczy się do pary; Instructions 2) `isr.move`
+
+**Czego unikać**
+
+- Zginanie łokci — ruch zamienia się w wyciskanie. — app-s2 (szczebel 5 — nie liczy się do pary; Common mistakes: bending the elbows and turning it into a press); weighttraining.guide: [Incline dumbbell shoulder raise](https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/) (szczebel 5 — nie liczy się do pary; Execution 1: only the shoulders should move) `isr.mis.press`
+
+### Barbell Incline Shoulder Raise
+
+**Ustawienie**
+
+- Połóż się plecami na ławce skośnej, sztangę trzymaj nad sobą na prostych rękach. — free-exercise-db: [Barbell Incline Shoulder Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json) (szczebel 5 — nie liczy się do pary; instructions 2); app-s3 (szczebel 5 — nie liczy się do pary; krok 3) `isr.setupBb`
+
+**Ruch**
+
+- Nie zginając łokci, wypchnij ciężar wyżej, odrywając barki od ławki; potem powoli opuść łopatki z powrotem. — free-exercise-db: [Barbell Incline Shoulder Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json) (szczebel 5 — nie liczy się do pary; instructions 2); app-s3 (szczebel 5 — nie liczy się do pary; krok 3) [uproszczenie: opuszczenie „powoli” opisują źródła wariantu z hantlami; źródła sztangi opisują tylko wypchnięcie z odrywaniem barków od ławki (do potwierdzenia przez recenzenta)] `isr.move`
+
+**Czego unikać**
+
+- Zginanie łokci — ruch zamienia się w wyciskanie. — free-exercise-db: [Barbell Incline Shoulder Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json) (szczebel 5 — nie liczy się do pary; wniosek z ruchu (etap 2): ręce proste); app-s3 (szczebel 5 — nie liczy się do pary; wniosek z ruchu (etap 2): ręce proste) `isr.mis.press`
+
+### Dumbbell Front Raise to Overhead
+
+**Ustawienie**
+
+- Stań prosto, hantle trzymaj przed udami, dłonie zwrócone do ciała. — app-s4 (szczebel 5 — nie liczy się do pary; How to do it 1 (from thighs)); app-s5 (szczebel 5 — nie liczy się do pary; How to 1: palms facing your thighs) `dfro.setup`
+
+**Ruch**
+
+- Unieś ciężar przed sobą łukiem aż nad głowę, łokcie lekko ugięte; potem opuść go powoli do ud. — app-s4 (szczebel 5 — nie liczy się do pary; How to do it); app-s5 (szczebel 5 — nie liczy się do pary; How to 3: slowly raise … in an arc) `fro.move`
+
+**Czego unikać**
+
+- Wyginanie lędźwi, gdy ręce idą nad głowę. — app-s4 (szczebel 5 — nie liczy się do pary; Common mistakes: avoid arching your lower back); app-s5 (szczebel 5 — nie liczy się do pary; Common mistakes 3) `fro.mis.arch`
+- Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — app-s4 (szczebel 5 — nie liczy się do pary; Common mistakes: do not swing or use momentum); app-s5 (szczebel 5 — nie liczy się do pary; Common mistakes 1) `mis.jerk`
+
+### Straight Raises on Incline Bench
+
+**Ustawienie**
+
+- Połóż się klatką na ławce skośnej; sztangę trzymaj nachwytem na prostych, zwisających rękach. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; instructions 2–3); app-s6 (szczebel 5 — nie liczy się do pary; Steps 1–2) `sri.setup`
+
+**Ruch**
+
+- Prawie prostymi rękami unieś sztangę przed siebie, potem powoli ją opuść. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; instructions 3); app-s6 (szczebel 5 — nie liczy się do pary; Steps 3 i 5) `sri.move`
+
+**Czego unikać**
+
+- Odrywanie klatki od ławki. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; wniosek z ustawienia (etap 2): leżenie na ławce); app-s6 (szczebel 5 — nie liczy się do pary; Steps 1: position chest against bench top) `yr.mis.chest`
+
 ## Źródła
 
 | Id | Organizacja | Tytuł | Adres | Migawka (odczyt) |
@@ -3366,6 +3459,12 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders | ACE | A pro s guide to muscle mechanics the shoulders | https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/ | — |
 | af-dynamic-warmups | Arthritis Foundation | Dynamic Warm-Ups (Arthritis at Work) | https://www.arthritis.org/partnership/atwork/at-work-physical-activity/dynamic-warm-ups-for-arthritis-workplace | — |
 | alberta-abk4469 | WebMD Ignite | Piriformis stretch (from legs bent) | https://myhealth.alberta.ca/Health/healthy-living/pages/conditions.aspx?hwid=abk4469 | — |
+| app-s1 | app-s1 | app-s1 | — | — |
+| app-s2 | app-s2 | app-s2 | — | — |
+| app-s3 | app-s3 | app-s3 | — | — |
+| app-s4 | app-s4 | app-s4 | — | — |
+| app-s5 | app-s5 | app-s5 | — | — |
+| app-s6 | app-s6 | app-s6 | — | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
 | barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |
@@ -3526,9 +3625,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | exrx-Triceps/DBTriExt | ExRx.net | DBTriExt | https://exrx.net/WeightExercises/Triceps/DBTriExt | https://web.archive.org/web/20220816182656/https://exrx.net/WeightExercises/Triceps/DBTriExt |
 | fabrykasily-odwodzenie-linek-w-tyl-wyciagu-stojac | Atlas ćwiczeń Fabryka Siły | Odwodzenie linek w tyl wyciagu stojac | https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac | — |
 | fedb-alternating-deltoid-raise | free-exercise-db | Alternating Deltoid Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Deltoid_Raise.json | — |
+| fedb-barbell-incline-shoulder-raise | free-exercise-db | Barbell Incline Shoulder Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json | — |
 | fedb-one-arm-incline-lateral-raise | free-exercise-db | One Arm Incline Lateral Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise.json | — |
 | fedb-sled-reverse-flye | free-exercise-db | Sled Reverse Flye | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json | — |
 | fedb-standing-front-barbell-raise-over-head | free-exercise-db | Standing Front Barbell Raise Over Head | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Front_Barbell_Raise_Over_Head.json | — |
+| fedb-straight-raises-on-incline-bench | free-exercise-db | Straight Raises on Incline Bench | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json | — |
 | fitnall-barbell-overhead-front-raise | Fitnall | Barbell overhead front raise | https://fitnall.com/exercises/barbell-overhead-front-raise/ | — |
 | fitnessvolt-cable-rear-delt-exercises | Fitness Volt | Cable rear delt exercises | https://fitnessvolt.com/cable-rear-delt-exercises/ | — |
 | fitvibe-cable-y-raise-668 | FitVibe | Cable y raise 668 | https://fitvibe.gr/askiseis/cable-y-raise-668 | — |
@@ -3665,4 +3766,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | webmd-neck-stretch-front | WebMD Ignite | Neck stretch (front) | https://www.columbiadoctors.org/health-library/multimedia/neck-stretch-front/ | — |
 | webmd-shoulder-posterior | WebMD Ignite | Shoulder stretch (posterior) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-stretch-posterior/ | — |
 | weighttraining-cable-y-raise | weighttraining.guide | Cable y raise | https://weighttraining.guide/exercises/cable-y-raise/ | — |
+| weighttraining-incline-dumbbell-front-raise | weighttraining.guide | Incline dumbbell front raise | https://weighttraining.guide/exercises/incline-dumbbell-front-raise/ | — |
+| weighttraining-incline-dumbbell-shoulder-raise | weighttraining.guide | Incline dumbbell shoulder raise | https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/ | — |
 | yogau-wide-angle | YogaUOnline | Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026) | https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/ | — |
