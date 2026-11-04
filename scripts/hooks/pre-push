@@ -34,9 +34,12 @@ start=$(date +%s)
 # L-049 (opcja A, 28.10.2026): znacznik zielonego verify dla każdego wypychanego commitu (bez danych wejściowych — HEAD).
 [ -n "$refy" ] || refy="$(git rev-parse HEAD) - -
 "
-bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha _ _; do
+# ZB-041 G4 (04.11.2026): dla wypychanej gałęzi baza dokumentów może być też origin/<gałąź> z zielonym tests.yml (--galaz).
+bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha zdalny_ref _; do
   [ -n "$lokalny_sha" ] || continue
-  node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" >&2 || echo "$lokalny_sha"
+  case "$zdalny_ref" in refs/heads/*) galaz="${zdalny_ref#refs/heads/}" ;; *) galaz="" ;; esac
+  if [ -n "$galaz" ]; then node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" --galaz "$galaz" >&2 || echo "$lokalny_sha"
+  else node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" >&2 || echo "$lokalny_sha"; fi
 done)
 if [ -n "$bez_znacznika" ]; then
   echo "" >&2
