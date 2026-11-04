@@ -639,62 +639,62 @@
     "squat": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
-      "autor": "programista FW3",
+      "autor": "programista nakładki techniki",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
-      "sha": "9055d5c35c32",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy nakładki techniki r2 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy nakładki techniki, runda 2 + runda 3 po N1 (bramka 4, L-047, L-050), 04.11.2026; figury/nakladka-techniki @ 71bf65bf (baza 24eac784)",
+      "sha": "f8f4939546c8",
       "liczba": 25,
-      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: squat nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni 9a20d827560a (2be94212) → 9055d5c35c32 (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, guideShapes, contactShapes, badgesFor; każdy rzut, u ∈ {0; 0,25; 0,5; 0,75; 1}, bez błędu i z każdym błędem z errorsOf) równy na 24eac784 (baza po scaleniu FW3, 801af17b) i 38ae3712 dla 132/132 ćwiczeń pięciu rodzin; ślad bez zmian względem wpisu fw3-r1. Runda 3: 71bf65bf zmienia tylko scripts/ i tests/ (lib/ i data/ bez zmian); md5 kształtów 38ae3712 = 71bf65bf = 24eac784 dla 132/132 ćwiczeń.",
+      "uwagi": "Nakładka nie dodaje elementów rodzinie (overlayShapes = 0 kształtów we wszystkich ćwiczeniach i klatkach). Linie odniesienia przeniesione do overlay/squat.ts bez zmiany kształtów. Zmiana skrótu: overlay.ts, overlay/common.ts, grupy.json w V2_WSPOLNE i overlay/squat.ts w skrócie rodziny (W1). Skrót poprzedni 9055d5c35c32 → 50addf3d2d64. N1 (r2) zamknięte w 71bf65bf: overlay/squat.ts i overlay/hinge.ts w V2_WSPOLNE/WSPOLNE (linie odniesienia wybiera się po wskazówkach karty, np. Barbell Hack Squat rysuje backLine z overlay/hinge.ts), test „N1” na całym katalogu z negatywem. Skrót r2 50addf3d2d64 → f8f4939546c8 (wyłącznie zmiana listy plików skrótu)."
     },
     "bench_press": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
-      "autor": "programista FW3",
+      "autor": "programista nakładki techniki",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
-      "sha": "f599fd4e1aac",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy i wzorca nakładki techniki r2 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy nakładki techniki, runda 2 + runda 3 po N1 (bramka 4, L-047, L-050), 04.11.2026; figury/nakladka-techniki @ 71bf65bf (baza 24eac784)",
+      "sha": "6addbb9f7499",
       "liczba": 30,
-      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: bench_press nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni ff2cf5dd9c79 (2be94212) → f599fd4e1aac (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, guideShapes, contactShapes, badgesFor; każdy rzut, u ∈ {0; 0,25; 0,5; 0,75; 1}, bez błędu i z każdym błędem z errorsOf) równy na 24eac784 (baza po scaleniu FW3, 801af17b) i 38ae3712 dla 132/132 ćwiczeń pięciu rodzin; ślad bez zmian względem wpisu fw3-r1. Runda 3: 71bf65bf zmienia tylko scripts/ i tests/ (lib/ i data/ bez zmian); md5 kształtów 38ae3712 = 71bf65bf = 24eac784 dla 132/132 ćwiczeń.",
+      "uwagi": "Ruch, pozy i ślad bez zmian (md5 wyżej). Recenzja wzorca nakładki (bramka 4, spec Etap 1R): ZALICZONA. Z boku: linia ciągła przez ramię za łokieć i łuk łokcia (rozwarcie = measuredAngle), ciągła i grubsza niż kreskowany ślad (W6). Z góry: odwiedzenie liczone w 2D na płaszczyźnie rzutu (W2): linia = rzut osi tułowia od barku (22 cm), łuk r = 9 cm od cięciwy 4 cm (od ok. 26°); w dole ruchu kąt czyta się z linii i ramienia, łuk jest znacznikiem. Close Grip w dole (4–8°) — sama linia wzdłuż ramienia, zgodnie z treścią wskazówki. Limit ≤ 3 linie + 1 łuk liczy linie odniesienia (W3, test). Bez liczb na rysunku, bez stref, bez „ducha”; wskazówka każdego elementu jest na karcie wariantu. Zrzuty w skali telefonu (390 × 180 pt, DSF 2) obejrzane w pełnej rozdzielczości. Znane, nieblokujące: kolor błędu nie pojawia się na wyciskaniu (W4, decyzja właściciela), łuk z góry w wyproście z krótkiego rzutu ramienia (N2, ŚREDNIE). Skrót poprzedni f599fd4e1aac → 2eb5b7f6e311. N1 (r2) zamknięte w 71bf65bf: overlay/squat.ts i overlay/hinge.ts w V2_WSPOLNE/WSPOLNE (linie odniesienia wybiera się po wskazówkach karty, np. Barbell Hack Squat rysuje backLine z overlay/hinge.ts), test „N1” na całym katalogu z negatywem. Skrót r2 2eb5b7f6e311 → 6addbb9f7499 (wyłącznie zmiana listy plików skrótu)."
     },
     "hinge": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
-      "autor": "programista FW3",
+      "autor": "programista nakładki techniki",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
-      "sha": "95630867c85c",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy nakładki techniki r2 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy nakładki techniki, runda 2 + runda 3 po N1 (bramka 4, L-047, L-050), 04.11.2026; figury/nakladka-techniki @ 71bf65bf (baza 24eac784)",
+      "sha": "5b470528ce83",
       "liczba": 32,
-      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: hinge nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni 24ca1a0274c0 (2be94212) → 95630867c85c (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, guideShapes, contactShapes, badgesFor; każdy rzut, u ∈ {0; 0,25; 0,5; 0,75; 1}, bez błędu i z każdym błędem z errorsOf) równy na 24eac784 (baza po scaleniu FW3, 801af17b) i 38ae3712 dla 132/132 ćwiczeń pięciu rodzin; ślad bez zmian względem wpisu fw3-r1. Runda 3: 71bf65bf zmienia tylko scripts/ i tests/ (lib/ i data/ bez zmian); md5 kształtów 38ae3712 = 71bf65bf = 24eac784 dla 132/132 ćwiczeń.",
+      "uwagi": "Bez elementów nakładki (0 kształtów). Linie odniesienia w overlay/hinge.ts bez zmiany kształtów. Zmiana skrótu: pliki nakładki w skrócie (W1). Skrót poprzedni 95630867c85c → adb9e90239e2. N1 (r2) zamknięte w 71bf65bf: overlay/squat.ts i overlay/hinge.ts w V2_WSPOLNE/WSPOLNE (linie odniesienia wybiera się po wskazówkach karty, np. Barbell Hack Squat rysuje backLine z overlay/hinge.ts), test „N1” na całym katalogu z negatywem. Skrót r2 adb9e90239e2 → 5b470528ce83 (wyłącznie zmiana listy plików skrótu)."
     },
     "pull_up": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
-      "autor": "programista FW3",
+      "autor": "programista nakładki techniki",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
-      "sha": "9c45f1245826",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy nakładki techniki r2 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy nakładki techniki, runda 2 + runda 3 po N1 (bramka 4, L-047, L-050), 04.11.2026; figury/nakladka-techniki @ 71bf65bf (baza 24eac784)",
+      "sha": "f50853dd8780",
       "liczba": 13,
-      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: pull_up nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni df333f264469 (2be94212) → 9c45f1245826 (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, guideShapes, contactShapes, badgesFor; każdy rzut, u ∈ {0; 0,25; 0,5; 0,75; 1}, bez błędu i z każdym błędem z errorsOf) równy na 24eac784 (baza po scaleniu FW3, 801af17b) i 38ae3712 dla 132/132 ćwiczeń pięciu rodzin; ślad bez zmian względem wpisu fw3-r1. Runda 3: 71bf65bf zmienia tylko scripts/ i tests/ (lib/ i data/ bez zmian); md5 kształtów 38ae3712 = 71bf65bf = 24eac784 dla 132/132 ćwiczeń.",
+      "uwagi": "Rodzina z danych bez nakładki (0 kształtów). Zmiana skrótu wyłącznie przez nowe pliki wspólne w V2_WSPOLNE. Skrót poprzedni 9c45f1245826 → f20847c0366b. N1 (r2) zamknięte w 71bf65bf: overlay/squat.ts i overlay/hinge.ts w V2_WSPOLNE/WSPOLNE (linie odniesienia wybiera się po wskazówkach karty, np. Barbell Hack Squat rysuje backLine z overlay/hinge.ts), test „N1” na całym katalogu z negatywem. Skrót r2 f20847c0366b → f50853dd8780 (wyłącznie zmiana listy plików skrótu)."
     },
     "curl": {
       "werdykt": "wyswietlana",
       "data": "2026-11-04",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy FW3 r1 04.11.2026",
-      "autor": "programista FW3",
+      "autor": "programista nakładki techniki",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna różnicy fali wspólnej FW3 (bramka 4, L-047, L-050), 04.11.2026; figury/fala-wspolna-3 @ d21da519 (baza 2be94212)",
-      "sha": "985b6e80edf6",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja różnicy nakładki techniki r2 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy nakładki techniki, runda 2 + runda 3 po N1 (bramka 4, L-047, L-050), 04.11.2026; figury/nakladka-techniki @ 71bf65bf (baza 24eac784)",
+      "sha": "305e88604f2e",
       "liczba": 36,
-      "slad": "Rysunek i ślad bez zmian: frameAt (cała klatka, w tym info.trail) w 401 próbkach u=0..1 — md5 równy na 2be94212 i d21da519 dla wszystkich 231 ćwiczeń z rysunkiem (wszystkie pliki póz załadowane, wszystkie rodziny otwarte), w tym każde ćwiczenie rodziny; phasesFor równe 231/231. Zmiana (figure.ts:104) dotyczy tylko pola walk, czytanego wyłącznie w phasesFor (figure.ts:202); ślad bez zmian względem wpisu poprzedniego.",
-      "uwagi": "FW3 nie zmienia rysunku ani faz rodziny: curl nie ma ćwiczeń z pętlą cykl_lustro, a wszystkie 10 dotychczasowych cykl_lustro (carry ×7, Sled Push, Sled Drag (Harness), Yoke Walk) nadal mają walk z DATA_UI.carry albo GAIT_UI → jedna faza Marsz. Po lokalnym scaleniu origin/figury/delt_raise @ 5936c938: Alternating Deltoid Raise i Car Drivers Marsz → Unoszenie 1000/Pauza 500/Opuszczanie 2000/Pauza 500 (md5 frameAt bez zmian), pozostałe 230 bez zmian. Zmiana skrótu wyłącznie przez figure.ts w V2_WSPOLNE. Skrót poprzedni 1b3a94d1388f (2be94212) → 985b6e80edf6 (d21da519 po zrodla-runtime --write ×2 na kopii, --skroty)."
+      "slad": "Rysunek i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, guideShapes, contactShapes, badgesFor; każdy rzut, u ∈ {0; 0,25; 0,5; 0,75; 1}, bez błędu i z każdym błędem z errorsOf) równy na 24eac784 (baza po scaleniu FW3, 801af17b) i 38ae3712 dla 132/132 ćwiczeń pięciu rodzin; ślad bez zmian względem wpisu fw3-r1. Runda 3: 71bf65bf zmienia tylko scripts/ i tests/ (lib/ i data/ bez zmian); md5 kształtów 38ae3712 = 71bf65bf = 24eac784 dla 132/132 ćwiczeń.",
+      "uwagi": "Rodzina z danych bez nakładki i bez linii odniesienia (0 kształtów nakładki). Zmiana skrótu wyłącznie przez nowe pliki wspólne w V2_WSPOLNE (overlay.ts, overlay/common.ts, grupy.json). Skrót poprzedni 985b6e80edf6 → 050fc17b36b7. N1 (r2) zamknięte w 71bf65bf: overlay/squat.ts i overlay/hinge.ts w V2_WSPOLNE/WSPOLNE (linie odniesienia wybiera się po wskazówkach karty, np. Barbell Hack Squat rysuje backLine z overlay/hinge.ts), test „N1” na całym katalogu z negatywem. Skrót r2 050fc17b36b7 → 305e88604f2e (wyłącznie zmiana listy plików skrótu)."
     }
   },
   "karty": {

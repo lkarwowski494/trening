@@ -1847,7 +1847,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/gear.requiredGearIssues | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/gear.contactsFrom | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/gear.propsFrom | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figury-p2-r5.test.ts +2 |
-| figures/v2/guides.guidesFor | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
+| figures/v2/guides.guidesFor | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx, tests/figury-recenzja.test.tsx |
 | figures/v2/guides.trailShapes | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-styk.test.tsx |
 | figures/v2/leverGuard.dzwigniaPrzezGlowe | lib/figures/v2/leverGuard.ts | tests/figury-p2-r4.test.ts |
 | figures/v2/math.rad | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/motyw.test.tsx |
@@ -1871,7 +1871,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/overlay/common.dash | lib/figures/v2/overlay/common.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx +2 |
 | figures/v2/overlay/common.solid | lib/figures/v2/overlay/common.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.techniqueDef | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
-| figures/v2/overlay.techniquesFor | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
+| figures/v2/overlay.techniquesFor | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx, tests/figury-recenzja.test.tsx |
 | figures/v2/overlay.limbTriple | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.arcPoints3 | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.techniqueGeom | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
@@ -1921,7 +1921,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +4 |
 | figures/v2/skeleton.soleY | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +1 |
 | figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +22 |
-| figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx, tests/figures.test.tsx |
+| figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx, tests/figures.test.tsx +1 |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx, tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.techniquesOf | lib/figures/v2/ui.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/ui.onDrawingCues | lib/figures/v2/ui.ts | tests/figures-v2-nakladka.test.tsx |
@@ -2734,8 +2734,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | MuscleId: chest \| triceps \| front_delt \| biceps \| abs \| lower_back \| hamstrings \| glutes \| quads \| upper_back \| forearms \| lats \| adductors \| rear_delt \| obliques \| side_delt \| calves \| abductors \| neck | lib/figures/v2/muscles.ts | tests/audit-0.10-gen.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
 | MUSCLES (19) | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts, tests/guard.test.ts, tests/logic.test.ts +9 |
 | BENCH_TECHNIQUE (3) | lib/figures/v2/overlay/bench_press.ts | tests/figures-v2-nakladka.test.tsx |
-| HINGE_GUIDES (2) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka.test.tsx |
-| SQUAT_GUIDES (2) | lib/figures/v2/overlay/squat.ts | tests/figures-v2-nakladka.test.tsx |
+| HINGE_GUIDES (2) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka.test.tsx, tests/figury-recenzja.test.tsx |
+| SQUAT_GUIDES (2) | lib/figures/v2/overlay/squat.ts | tests/figures-v2-nakladka.test.tsx, tests/figury-recenzja.test.tsx |
 | TechniqueKind: limb \| abduction | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | MeasuredJoint: knee \| elbow \| hip \| shElev \| shAbd \| shRot \| shrug \| protract \| wristFlex \| forearmRoll | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +2 |
 | TRUNK_EXT (6) | lib/figures/v2/poseInterp.ts | tests/figures-v2-poza2.test.ts |
