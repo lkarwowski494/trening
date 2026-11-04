@@ -2067,8 +2067,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Rysunek (Upright-Row-sztanga-side.png, rodzina planned): koniec ruchu — gryf na środku klatki, niżej niż tekst „do wysokości barków”; do recenzji ruchu rodziny, nie blokuje treści."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Rysunek (Upright-Row-sztanga-side.png, rodzina planned): koniec ruchu — gryf na środku klatki, niżej niż tekst „do wysokości barków”; do recenzji ruchu rodziny, nie blokuje treści."
     },
     "Upright Row (hantle)": {
       "werdykt": "wyswietlana",
@@ -2077,8 +2077,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu (sztanga → hantle) potwierdzone w r1."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu (sztanga → hantle) potwierdzone w r1."
     },
     "Upright Row (linki)": {
       "werdykt": "wyswietlana",
@@ -2087,8 +2087,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu potwierdzone w r1."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu potwierdzone w r1."
     },
     "Smith Machine Upright Row": {
       "werdykt": "wyswietlana",
@@ -2097,8 +2097,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (suwnica) potwierdzone w r1; uwaga NISKA r1 o miejscu „Variations” (ISSA wspomina suwnicę w części o technice) nadal aktualna — nie blokuje."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (suwnica) potwierdzone w r1; uwaga NISKA r1 o miejscu „Variations” (ISSA wspomina suwnicę w części o technice) nadal aktualna — nie blokuje."
     },
     "Dumbbell One-Arm Upright Row": {
       "werdykt": "wyswietlana",
@@ -2107,8 +2107,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "655442cbd7ad",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (hantel, jedna ręka) potwierdzone w r1."
+      "sha": "2e95e5a91846",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (hantel, jedna ręka) potwierdzone w r1."
     },
     "Smith Machine One-Arm Upright Row": {
       "werdykt": "wyswietlana",
@@ -2117,8 +2117,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "655442cbd7ad",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie potwierdzone w r1; uwaga NISKA o „Variations” jak wyżej."
+      "sha": "2e95e5a91846",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie potwierdzone w r1; uwaga NISKA o „Variations” jak wyżej."
     },
     "Band Upright Row": {
       "werdykt": "wyswietlana",
@@ -2127,8 +2127,8 @@
       "autor": "programista T1",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
-      "sha": "65010035466a",
-      "uwagi": "r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Bodylastics („until your hands reach the bottom of your chest”) nieco niżej — „mniej więcej” mieści część wspólną z ISSA; uproszczenie taśmy potwierdzone w r1."
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Bodylastics („until your hands reach the bottom of your chest”) nieco niżej — „mniej więcej” mieści część wspólną z ISSA; uproszczenie taśmy potwierdzone w r1."
     },
     "Band Lateral Raise": {
       "werdykt": "wyswietlana",
