@@ -84,7 +84,9 @@ describe('scripts/asc/status-wersji.mjs (statycznie)', () => {
 describe('workflow asc-status-wersji.yml (statycznie)', () => {
   test('tylko workflow_dispatch, contents: read, bez zapisów do repo ani środowiska release', () => {
     expect(wf).toMatch(/\non:\n  workflow_dispatch:\n/); expect(wf).toMatch(/\npermissions:\n  contents: read\n/);
-    expect(wf).not.toMatch(/contents: write|id-token|pull_request|schedule:|^\s+push:|environment:|workflow_run/m);
+    /* TYMCZASOWE (Z1, 04.11.2026 B): jedyny dozwolony push — gałąź dowodowa z1/asc-dowod (nie scalana) */
+    const bezZ1 = wf.replace(/\n  push:\n    branches: \['z1\/asc-dowod'\]\n/, '\n');
+    expect(bezZ1).not.toMatch(/contents: write|id-token|pull_request|schedule:|^\s+push:|environment:|workflow_run/m);
     expect(wf).toMatch(/runs-on: ubuntu-latest/); expect(wf).not.toMatch(/macos|eas-cli|EXPO_TOKEN/);
   });
   test('te same trzy sekrety co asc-kontrola.yml (bez nowych), klucz maskowany w RUNNER_TEMP i usuwany zawsze', () => {
