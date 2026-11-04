@@ -7655,44 +7655,66 @@
      "pewnosc": "srednia"
     },
     "ro": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "priză",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "bg": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "хват",
+     "pewnosc": "srednia"
     },
     "hr": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "hvat",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "sl": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "prijem",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "sr": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "хват",
+     "pewnosc": "srednia"
     },
     "lt": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "suėmimas",
+     "pewnosc": "srednia"
     },
     "lv": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "tvēriens",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "et": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "haare",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "uk": {
      "zalecany": "хват",
@@ -7707,9 +7729,15 @@
      "pewnosc": "srednia"
     },
     "pt": {
-     "zalecany": "grip",
+     "zalecany": "pega",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "uwaga": "do sprawdzenia przez native speakera: czy „pega” to potoczny termin siłowni (recenzja P2, 04.11.2026); dotąd tymczasowo angielskie „grip”"
     },
     "pt-BR": {
      "zalecany": "pegada",
@@ -7724,9 +7752,14 @@
      "pewnosc": "srednia"
     },
     "it": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "presa",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "nl": {
      "zalecany": "grip",
@@ -7737,38 +7770,63 @@
      "pewnosc": "srednia"
     },
     "da": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "greb",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "nb": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "grep",
+     "pewnosc": "srednia"
     },
     "fi": {
      "zalecany": "ote",
      "pewnosc": "srednia"
     },
     "tr": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "tutuş",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "el": {
-     "zalecany": "grip",
+     "zalecany": "λαβή",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "uwaga": "do sprawdzenia przez native speakera: czy „λαβή” to potoczny termin siłowni (recenzja P2, 04.11.2026); dotąd tymczasowo angielskie „grip”"
     },
     "id": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "genggaman",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "ms": {
-     "zalecany": "grip",
-     "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+     "zalecany": "genggaman",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])grips?(?![\\p{L}])",
+       "powod": "chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip”"
+      }
+     ],
+     "pewnosc": "srednia"
     },
     "vi": {
      "zalecany": "grip",
@@ -10742,6 +10800,55 @@
       }
      ],
      "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "biodra",
+   "pl": "biodra (część ciała; staw biodrowy)",
+   "tylko": [
+    "pl",
+    "ru",
+    "uk",
+    "el"
+   ],
+   "znaczenie": "biodra jako miejsce ruchu (wyprost, cofnięcie bioder, szerokość stóp „na szerokość bioder”); w ru/uk „бёдра”/„стегна” znaczą uda, w el „γοφοί” to potoczne „boki”; tam używamy „таз”/„таз”/„ισχία” (a szerokość stóp: „ширина таза”, „άνοιγμα λεκάνης”), jak w pozostałych wskazówkach tych języków",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])(biodr(a|o|ach|ami|om)|bioder)(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "biodra",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "таз",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])(бёдр\\p{L}*|бёдер)(?![\\p{L}])",
+       "powod": "„бёдра” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach)"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "таз",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])стег(на|он|нами|нах|нам)(?![\\p{L}])",
+       "powod": "„стегна” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach)"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "ισχία",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])γοφ(οί|ούς|ών|οίς)(?![\\p{L}])",
+       "powod": "„γοφοί” to potoczne „boki”; biodra w ruchu nazywaj „ισχία”, szerokość stóp „άνοιγμα λεκάνης” (jak w pozostałych wskazówkach)"
+      }
+     ],
+     "pewnosc": "wysoka"
     }
    }
   }

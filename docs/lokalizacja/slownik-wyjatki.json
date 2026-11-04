@@ -29,11 +29,108 @@
    ],
    "powod": "To samo zdanie: „pauza” to wstrzymanie zegara, a przerwa między seriami ma osobne słowo; wzorzec zakazu pauzy dotyczy tylko zdań o samej przerwie."
   },
- {
-  "pl": "pauza",
-  "pojecie": "faza_pauza",
-  "jezyki": "*",
-  "powod": "„pauza” (małą literą) to status wstrzymanego zegara treningu w nagłówku (ActiveWorkout.tsx:244) — pojęcie pauza_treningu, nie faza animacji; wzorce słownika nie rozróżniają wielkości liter."
- }
+  {
+   "pl": "pauza",
+   "pojecie": "faza_pauza",
+   "jezyki": "*",
+   "powod": "„pauza” (małą literą) to status wstrzymanego zegara treningu w nagłówku (ActiveWorkout.tsx:244) — pojęcie pauza_treningu, nie faza animacji; wzorce słownika nie rozróżniają wielkości liter."
+  },
+  {
+   "pl": "Weź ciężar w każdą rękę; ręce opuszczone wzdłuż boków, ciężary przy biodrach.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Uda i biodra nieruchomo — ruch tylko w kolanach.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Biodra wyprostowane — tułów i uda w jednej linii, bez zginania w biodrach.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Sztanga odjeżdża od ciała — w ciągu albo po kontakcie z biodrami.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i zakończ mocnym wzruszeniem barków — bez wchodzenia pod sztangę.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Odepchnij się nogami od podłogi, gdy sztanga dojdzie do bioder, dynamicznie się wyprostuj i wciągnij się pod nią — złap ją na prostych rękach w pełnym przysiadzie, potem wstań.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Stań prosto z hantlami przed udami lub po bokach, stopy na szerokość bioder.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "Chodzi o miejsce przy biodrze/udzie (kontakt sztangi lub ciężaru, linia ciała, nieruchome uda), a nie o ruch w stawie biodrowym; „бёдра”/„стегна” to tu naturalne słowo (zdania spoza P2, w P2 recenzja A 04.11.2026 zostawia kontakt ze sztangą)."
+  },
+  {
+   "pl": "zginacze biodra",
+   "pojecie": "biodra",
+   "jezyki": [
+    "uk"
+   ],
+   "powod": "Nazwa mięśni/ruchu w anatomii (zginacze stawu biodrowego): „стегна” w dopełniaczu to tu termin anatomiczny, nie ruch tułowia przy ćwiczeniu."
+  },
+  {
+   "pl": "zgięcie biodra",
+   "pojecie": "biodra",
+   "jezyki": [
+    "uk"
+   ],
+   "powod": "Nazwa mięśni/ruchu w anatomii (zginacze stawu biodrowego): „стегна” w dopełniaczu to tu termin anatomiczny, nie ruch tułowia przy ćwiczeniu."
+  },
+  {
+   "pl": "Pochyl się z bioder i łokciami delikatnie dociśnij uda w dół.",
+   "pojecie": "biodra",
+   "jezyki": [
+    "ru",
+    "uk"
+   ],
+   "powod": "„бёдра”/„стегна” to tu uda dociskane łokciami (PL „uda”), a biodra z PL nazywa „таз” w tym samym zdaniu — zgodnie z pojęciem (04.11.2026, koordynator, po scaleniu P1 i P2)"
+  }
  ]
 }
