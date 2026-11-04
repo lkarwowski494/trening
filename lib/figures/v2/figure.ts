@@ -211,7 +211,8 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
 }
 /** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
 export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: FigError): Shape[] {
-  const f = frameAt(spec, u, error); return ids.flatMap(id => GUIDES[id].views.includes(view) ? GUIDES[id].build(f, view) : []);
+  const f = frameAt(spec, u, error);
+  return ids.flatMap(id => { const g = GUIDES[id]; if (!g.views.includes(view)) return []; const sh = g.build(f, view); return g.rule && errorBreaksRule(spec, error, g.rule) ? sh.map(x => x.k === 'line' ? { ...x, role: 'error' as const } : x) : sh; });
 }
 
 /** Grupy reguł i błędów rodzin (data/zrodla/figury-sens.json → lib/figures/v2/grupy.json, generuje scripts/zrodla-runtime.mjs): reguła → grupa, id wskazówki błędu → grupa reguł, które ten błąd łamie. */

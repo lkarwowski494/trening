@@ -12,7 +12,7 @@ import type { Frame, Shape, View } from './scene';
 /** Wielkość grota na końcach toru (cm rysunku). */
 export const TRAIL_ARROW = 4.2;
 export type GuideId = 'thighParallel' | 'plumbMidfoot' | 'kneeToe' | 'backLine';
-export type GuideDef = { id: GuideId; cue: string[]; views: View[]; build: (f: Frame, view: View) => Shape[] };
+export type GuideDef = { id: GuideId; cue: string[]; views: View[]; /** reguła z data/zrodla/figury-sens.json (rodziny, w której linia jest pokazana) — przy błędzie łamiącym jej grupę linia jest w kolorze błędu; brak = linia nigdy nie jest czerwona (reguła nie „ustalone” albo bez odpowiednika) */ rule?: string; build: (f: Frame, view: View) => Shape[] };
 
 /** Linie odniesienia z danych rodzin (overlay/<rodzina>.ts) — jedno miejsce złożenia; kolejność = kolejność rodzin. */
 const ALL_GUIDES = [...SQUAT_GUIDES, ...HINGE_GUIDES];

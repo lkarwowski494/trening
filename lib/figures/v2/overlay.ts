@@ -19,8 +19,17 @@ export const OVERLAY_MAX_LINES = 3, OVERLAY_MAX_ARCS = 1;
 export const OVERLAY_EXTEND = 14, OVERLAY_ARC_R = 9, OVERLAY_REF_LEN = 22, OVERLAY_ARC_MIN_DEG = 3;
 /** Najmniejsza długość ramienia w rzucie (cm rysunku), od której pokazujemy odwiedzenie; łuk w rzucie ma co najmniej OVERLAY_ARC_R (jedno miejsce progu rozmiaru, W2). */
 export const OVERLAY_ARM_MIN_PROJ = 2, OVERLAY_ARC_MIN_CHORD = 4;
-export type TechniqueKind = 'limb' | 'abduction';
-export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint };
+export type TechniqueKind = 'limb' | 'abduction' | 'ref';
+/** Punkt szkieletu, przez który prowadzi linia odniesienia E3 (ręka/noga: strona pracująca rysunku, w rzucie z góry R). */
+export type RefPoint = 'grip' | 'wrist' | 'elbow' | 'shoulder' | 'hip' | 'knee' | 'ankle' | 'toe' | 'pelvis' | 'shoulderC' | 'head';
+/**
+ * E3 — linia odniesienia z regułą (kind „ref”), jedna linia ciągła w rzucie (rzut z góry: tylko „segment”; pion i poziom to pojęcia rzutu bocznego i z przodu):
+ * - vertical: pion przez punkt `through` (w górę `up`, w dół `down` albo w obie strony `both`) — dłonie/kostka/bark nad sobą;
+ * - horizontal: poziom przez punkt `through` (np. przedłużony poziom drążka);
+ * - segment: linia segmentu `from` → `to` przedłużona za `to` o OVERLAY_EXTEND (nieruchomy odcinek: ramię przy tułowiu, linia tułowia).
+ */
+export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down' | 'both' } | { shape: 'horizontal'; through: RefPoint } | { shape: 'segment'; from: RefPoint; to: RefPoint };
+export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint; /** linia odniesienia (kind „ref”, E3) */ ref?: RefSpec };
 
 /** Elementy nakładki wg rodziny (dane: overlay/<rodzina>.ts). */
 export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE };
@@ -76,6 +85,28 @@ export function abductionGeom2D(sk: Skeleton, side: Side, view: View): Geom2D | 
   return { line: [S, [S[0] + t[0] / lt * OVERLAY_REF_LEN, S[1] + t[1] / lt * OVERLAY_REF_LEN]], arc, sweepDeg: sweep };
 }
 
+/** Długość pionu (cm rysunku) w górę/w dół od punktu i połowa długości poziomu (jedno miejsce). */
+export const OVERLAY_PLUMB_LEN = 150, OVERLAY_LEVEL_HALF = 30;
+/** Punkt szkieletu wskazany przez RefPoint. */
+export function refPoint(sk: Skeleton, side: Side, p: RefPoint): V3 {
+  const A = sk.arms[side], L = sk.legs[side];
+  switch (p) {
+    case 'grip': return A.grip; case 'wrist': return A.wrist; case 'elbow': return A.elbow; case 'shoulder': return A.shoulder;
+    case 'hip': return L.hip; case 'knee': return L.knee; case 'ankle': return L.ankle; case 'toe': return L.toe;
+    case 'pelvis': return sk.pelvis; case 'shoulderC': return sk.shoulderC; default: return sk.head;
+  }
+}
+/** Linia odniesienia E3 w rzucie (cm rysunku); null, gdy rzut nie ma sensu (pion/poziom w rzucie z góry) albo segment jest w rzucie punktem (< OVERLAY_ARM_MIN_PROJ cm). */
+export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec): [V2, V2] | null {
+  if (ref.shape === 'segment') {
+    const a = proj(refPoint(sk, side, ref.from), view), b = proj(refPoint(sk, side, ref.to), view); const d: V2 = [b[0] - a[0], b[1] - a[1]]; const l = Math.hypot(d[0], d[1]);
+    if (l < OVERLAY_ARM_MIN_PROJ) return null; return [a, [b[0] + d[0] / l * OVERLAY_EXTEND, b[1] + d[1] / l * OVERLAY_EXTEND]];
+  }
+  if (view === 'top') return null; const p = proj(refPoint(sk, side, ref.through), view);
+  if (ref.shape === 'horizontal') return [[p[0] - OVERLAY_LEVEL_HALF, p[1]], [p[0] + OVERLAY_LEVEL_HALF, p[1]]];
+  return [[p[0], ref.dir === 'up' ? p[1] : p[1] - OVERLAY_PLUMB_LEN], [p[0], ref.dir === 'down' ? p[1] : p[1] + OVERLAY_PLUMB_LEN]];
+}
+
 export type OverlayCtx = { joint: MeasuredJoint; side: Side; limbShown: boolean; /** czy reguła elementu jest złamana przez pokazany błąd (kolor danger) */ danger: (rule: string) => boolean; /** linie odniesienia (GUIDES) już narysowane w tym rzucie — wchodzą do limitu OVERLAY_MAX_LINES (W3) */ guideLines?: number };
 /** Kształty elementów nakładki w widoku; z limitem OVERLAY_MAX_LINES linii (łącznie ze starymi liniami odniesienia `ctx.guideLines`) i OVERLAY_MAX_ARCS łuku na rzut (kolejność = kolejność danych). */
 export function techniqueShapes(sk: Skeleton, view: View, defs: TechniqueDef[], ctx: OverlayCtx): Shape[] {
@@ -83,7 +114,8 @@ export function techniqueShapes(sk: Skeleton, view: View, defs: TechniqueDef[], 
   for (const d of defs) {
     if (!d.views.includes(view) || (d.kind === 'limb' && (!ctx.limbShown || (d.joint && d.joint !== ctx.joint)))) continue;
     let line: [V2, V2], arc: V2[] | null;
-    if (d.kind === 'limb') { const g = techniqueGeom('limb', sk, ctx.side, ctx.joint); if (!g) continue; line = [proj(g.line[0], view), proj(g.line[1], view)]; arc = g.arc ? g.arc.map(p => proj(p, view)) : null; }
+    if (d.kind === 'ref') { const g = d.ref ? refGeom2D(sk, view === 'top' ? 'R' : ctx.side, view, d.ref) : null; if (!g) continue; line = g; arc = null; }
+    else if (d.kind === 'limb') { const g = techniqueGeom('limb', sk, ctx.side, ctx.joint); if (!g) continue; line = [proj(g.line[0], view), proj(g.line[1], view)]; arc = g.arc ? g.arc.map(p => proj(p, view)) : null; }
     else { const g = abductionGeom2D(sk, ctx.side, view); if (!g) continue; line = g.line; arc = g.arc; }
     const role = ctx.danger(d.rule) ? 'error' : 'guide';
     if (lines < OVERLAY_MAX_LINES) { out.push(solid(line[0], line[1], d.id + 'Line', role)); lines++; }
