@@ -2001,6 +2001,46 @@
       "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
       "sha": "175baa530c3a",
       "uwagi": "Sprawdzone: Experience Life thruster („front rack position”, „forcefully pressing the kettlebells straight overhead as you rise”, „Keep your heels down throughout the movement.”, „thighs are parallel (or below parallel)”), CrossFit („two dumbbells or two kettlebells”). sq.mis.heels — bezpośrednie źródła. Figura v2 (planned): ruch bez zmian; arkusz /home/user/recenzja-p2/arkusze/Kettlebell-Thruster-side.png zgodny z kartą. Jak przy Thruster (hantle): po wdrożeniu wpisu regeneracja thruster.json przywraca pozę błędu „pięty”."
+    },
+    "Skullcrusher (EZ)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny triceps, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał kart ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 triceps, recenzja v2 sha 7893f56835ab), gałąź figury/triceps @ 30be67f8, 04.11.2026",
+      "sha": "af1efaa1f360",
+      "uwagi": "ACE #36 przeczytane 04.11.2026: Step 1 „fully extending your elbows until the barbell is positioned directly above your face”, Step 2 „Your upper arms should remain vertical to the floor… Lower the bar until it sits just above your forehead or until you notice the upper arms begin to drift backwards” — skull.setup, skull.move, skull.upperArm, skull.depth zgodne. ExRx BBLyingTriExt (wąski chwyt, EZ) — wpis z archiwum w cues.json; nieotwarte ponownie (web.archive.org i exrx.net niedostępne z sesji). Rysunek v2 (arkusz r2 Skullcrusher-EZ-side.png, keyframeFrame): ramię 10° od pionu, nieruchome (łokieć bez dryfu), łokieć 71→162°, u=0 gryf ok. 7 cm nad głową, nad czołem — zdania karty spełnione, rysunek niczemu nie przeczy. Bez liczb i twierdzeń o zdrowiu."
+    },
+    "Triceps Pushdown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny triceps, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał kart ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 triceps, recenzja v2 sha 7893f56835ab), gałąź figury/triceps @ 30be67f8, 04.11.2026",
+      "sha": "14d8432a5f7b",
+      "uwagi": "ACE #185 przeczytane 04.11.2026: Step 1 „Stand facing the cable machine… arms postioned firmly by sides”, Step 3 „elbows right next to your side… until your elbows become fully extended, (do not allow them to \"lock out\"…)… until your elbows begin to drift forward”, uwaga końcowa „monitor the forward movement of your elbows” — tpd.setup, tpd.move, tpd.elbows, press.noLock zgodne. ExRx CBPushdown — wpis z archiwum w cues.json; nieotwarte ponownie (archiwum niedostępne z sesji). Rysunek v2: wyciąg górny przed ćwiczącym, lina („uchwyt” w zdaniu — ogólnie, nie przeczy), ramię nieruchome przy boku, łokieć 81→156°, u=0 dłonie na wysokości środka klatki (w granicy ACE). Końcowe zgięcie 24° przy „prostuj do końca” — znane R1 N-2 (NISKIE, backlog), nie wada karty."
+    },
+    "Overhead Triceps Extension (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny triceps, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał kart ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 triceps, recenzja v2 sha 7893f56835ab), gałąź figury/triceps @ 30be67f8, 04.11.2026",
+      "sha": "609ab68a66cc",
+      "uwagi": "ACE #74 przeczytane 04.11.2026: Step 1 „holding a dumbbell with both hands”, Step 2 „press the dumbbell overhead, extending your elbows until your arms are vertical”, Step 3 „lowering the dumbbell behind your head… without moving your upper arms”, uwaga końcowa „keep your upper arms vertical… and your elbows shoulder-width apart” — ote.setup, ote.move, ote.upperArm, ote.elbowsIn zgodne. ExRx DBTriExt — wpis z archiwum w cues.json; nieotwarte ponownie. Rysunek v2: ramię nieruchome nad głową, łokieć 60→163°, hantel pionowo za głową (ok. 22 cm od środka głowy, bez styku). Zgięcie w dole głębsze niż 90° z ACE — karta nie podaje głębokości, więc nie przeczy; sprawa rysunku, nie karty."
+    },
+    "Cable Overhead Extension": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny triceps, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 04.11.2026; nie pisał kart ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 triceps, recenzja v2 sha 7893f56835ab), gałąź figury/triceps @ 30be67f8, 04.11.2026",
+      "sha": "53e2f75bfad4",
+      "uwagi": "ExRx CBTriExt i CBStandingTricepsExtensionRope: treść potwierdzona odczytem 02.11.2026 (kopia właściciela; exrx-otwarte.md sekcja 6: „łokcie nad głową, drążek za szyją, prostowanie do pionu i opuszczanie za szyję”, lina: „plecami do wyciągu… łokcie w górę nad głową”). ACE #74 (wersja z hantlem) przeczytane 04.11.2026 — Step 2 „elbows pointing forward, but not completely locked”. Wariant sprzętu (L-047): potwierdzam, że ruch nie różni się od wersji z hantlem — rysunek v2 obu ćwiczeń: ramię nieruchome nad głową (kąt ramię–tułów 156° wobec 151°), łokieć 57→159° wobec 60→163°; zdania z ACE #74 (cote.setup, cote.move, ote.upperArm, press.noLock) to nazwane uproszczenie (wariant sprzętu). Rysunek: wyciąg z tyłu, uchwyt za głową, łokcie w górę — cote.setup spełnione; wysokości bloczka karta nie podaje, więc bloczek na wysokości głowy jej nie przeczy. Końcowe zgięcie ok. 21° — R1 N-2 (backlog)."
     }
   },
   "zestawy": {
