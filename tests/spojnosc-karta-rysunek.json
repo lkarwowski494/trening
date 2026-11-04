@@ -19,22 +19,22 @@
    "lokcie_nie_szeroko": "do oceny badacza (audyt 04.11.2026): rysunek ma łokcie bliżej tułowia (kąt ramię–tułów 3D 26°), więc „ani przyklejone do tułowia” może przeczyć rysunkowi; zestaw badacza celowo pomija bp.elbowsMid (wskazowki-ogolne.json, sprawdzenie „hantle ściśnięte, łokcie blisko”)"
   },
   "Reverse Grip Bench Press": {
-   "lokcie_nie_szeroko": "do oceny badacza (audyt 04.11.2026): rysunek ma łokcie bliżej tułowia (kąt ramię–tułów 3D 44°), więc „ani przyklejone do tułowia” może przeczyć rysunkowi"
+   "lokcie_nie_szeroko": "karta własna: dopisanie bp.elbowsMid zmienia kartę (unieważnia recenzję i chowa z kartą figurę v1 — wymaga recenzji niezależnej L-047 przed scaleniem); gotowa poprawka w osobnym patchu (koordynator), kolizja z nakładką techniki na kartach bench; audyt 04.11.2026, #1"
   },
   "Chin Up": {
    "broda_nad_drazkiem": "karta własna Chin Up ma cu.pull (łokcie w dół, pełny wyprost rąk) bez celu „broda nad drążkiem” (pu.pull); dopisanie zdania do karty własnej unieważnia jej recenzję i wraz ze skrótem v1 chowa kartę z rysunkiem (lib/figures/data.json) — do osobnej poprawki z recenzją niezależną; poziom NISKIE (audyt 04.11.2026, #12)"
   },
   "Bench Press (sztanga)": {
-   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+   "lokcie_nie_szeroko": "karta własna: dopisanie bp.elbowsMid zmienia kartę (unieważnia recenzję i chowa z kartą figurę v1 — wymaga recenzji niezależnej L-047 przed scaleniem); gotowa poprawka w osobnym patchu (koordynator), kolizja z nakładką techniki na kartach bench; audyt 04.11.2026, #1"
   },
   "Bench Press (hantle)": {
-   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+   "lokcie_nie_szeroko": "karta własna: dopisanie bp.elbowsMid zmienia kartę (unieważnia recenzję i chowa z kartą figurę v1 — wymaga recenzji niezależnej L-047 przed scaleniem); gotowa poprawka w osobnym patchu (koordynator), kolizja z nakładką techniki na kartach bench; audyt 04.11.2026, #1"
   },
   "Incline Bench Press (sztanga)": {
-   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+   "lokcie_nie_szeroko": "karta własna: dopisanie bp.elbowsMid zmienia kartę (unieważnia recenzję i chowa z kartą figurę v1 — wymaga recenzji niezależnej L-047 przed scaleniem); gotowa poprawka w osobnym patchu (koordynator), kolizja z nakładką techniki na kartach bench; audyt 04.11.2026, #1"
   },
   "Incline Bench Press (hantle)": {
-   "lokcie_nie_szeroko": "karta własna: zdanie bp.elbowsMid dopisuje osobny commit (zmiana karty bench, unieważnia jej recenzję — do recenzji niezależnej L-047); do czasu scalenia tego commitu wyjątek"
+   "lokcie_nie_szeroko": "karta własna: dopisanie bp.elbowsMid zmienia kartę (unieważnia recenzję i chowa z kartą figurę v1 — wymaga recenzji niezależnej L-047 przed scaleniem); gotowa poprawka w osobnym patchu (koordynator), kolizja z nakładką techniki na kartach bench; audyt 04.11.2026, #1"
   }
  },
  "ogolne_bez_ruchu": {
