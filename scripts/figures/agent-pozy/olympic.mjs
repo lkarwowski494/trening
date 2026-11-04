@@ -97,10 +97,14 @@ function lapRack(gl, o = {}) {
   const d = { power: { al: 22, k: 78, pitch: 16, A: [0, 7] }, pelny: { al: 34, k: 125, pitch: 20, A: [0, 7] }, split: { ...SPLIT(), pitch: 10 } }[gl];
   return wp({ ...d, w: 0, rel: RACK_REL, bar: [26, 120], z: 31.5, pole: RACK_POLE, zs: 16, ...o });
 }
+/** Ręce w pionie nad głową (decyzja koordynatora 04.11.2026 pkt 4, wyjątek OVERHEAD_SHOULDER_EXCEPTION): wektor chwytu w układzie tułowia [w górę, do przodu] o tej samej długości, ale obrócony tak, by ramię było ~2° przed pionem
+ * świata (tułów pochylony o pitch°, więc chwyt leży za linią tułowia). */
+const NAD_PRZED_PIONEM = 2;
+const nadGlowa = (pitch, rel, przed = NAD_PRZED_PIONEM) => { const n = Math.hypot(rel[0], rel[1]); const a = (pitch - przed) * Math.PI / 180; return [n * Math.cos(a), -n * Math.sin(a)]; };
 /** Przechwyt nad głową (rwanie, podrzut): ręce proste nad głową tuż przed linią tułowia (łokcie ≤ 20°, bark < 170°). */
 function lapNad(gl, z, o = {}) {
-  const d = { power: { al: 22, k: 78, pitch: 10, A: [0, 7] }, pelny: { al: 38, k: 130, pitch: 8, A: [0, 7] }, split: { ...SPLIT(), pitch: 4 } }[gl];
-  const wide = z > 30; return wp({ ...d, w: 0, rel: wide ? [59.2, 6.5] : [62.9, 7], bar: [0, 150], z, pole: [0, -1, 0.3], zs: gl === 'pelny' ? 22 : 16, ...o });
+  const d = { power: { al: 22, k: 78, pitch: 22, A: [0, 7] }, pelny: { al: 38, k: 130, pitch: 24, A: [0, 7] }, split: { ...SPLIT(), pitch: 4 } }[gl];
+  const wide = z > 30; return wp({ ...d, w: 0, rel: nadGlowa(d.pitch, wide ? [59.2, 6.5] : [62.9, 7], gl === 'split' || (gl === 'power' && wide) ? 3 : NAD_PRZED_PIONEM), bar: [0, 150], z, pole: [0, -1, 0.3], zs: gl === 'pelny' ? 22 : 16, ...o });
 }
 /** Wejście pod sztangę (zarzut), recenzja p4a: po wyproście kolana od razu się uginają (stopy krótko odrywają się i lądują szerzej), a sztanga tylko dojeżdża do barków — nie wznosi się w staniu na palcach. */
 function podSztanga(W, kon, rel1 = [12, 17]) { /* kon = przechwyt; rel1 = chwyt w pierwszym kroku wejścia pod sztangę */
@@ -163,7 +167,7 @@ function lotPodrzutu(W, gl) {
 }
 const LOT_CM = 3; /* wysokość stóp w locie nad podłogą: „krótko, nisko, kilka cm” */
 function podrzut(cw, gl) {
-  const W = [RACK_STOJ(), DIP(40), WYBICIE(), lapNad(gl, 25)]; /* przysiad: sztanga po wybiciu tylko dojeżdża do wysokości przyjęcia (recenzja p4a) */
+  const W = [RACK_STOJ(), DIP(40), WYBICIE(gl === 'pelny' ? { rel: [25.5, RACK_REL[1] + 2] } : {}), lapNad(gl, 25)]; /* przysiad: sztanga po wybiciu tylko dojeżdża do wysokości przyjęcia (recenzja p4a) */
   lotPodrzutu(W, gl); return gotowe(cw, SPRZ(RACK()), W);
 }
 /** Jerk Balance (karta własna z fali W1, 03.11.2026): start ze sztangą na barkach w skróconym wykroku (krótszym niż przy odbiorze), proste ugięcie i wyprost, wyrzut sztangi nad głowę,
@@ -192,7 +196,7 @@ function snatchBalance(cw) {
   return gotowe(cw, sprz, W);
 }
 function muscleSnatch(cw) {
-  const W = ciag({ start: 'zawis', chwyt: 'szeroki', koniec: 'rack', stopyWisza: true }); const kon = wp({ al: 3, k: 12, pitch: 3, w: 0, rel: [59.2, 6.5], bar: [0, 150], z: 40, pole: [0, -1, 0.3], zs: 14 });
+  const W = ciag({ start: 'zawis', chwyt: 'szeroki', koniec: 'rack', stopyWisza: true }); const kon = wp({ al: 3, k: 12, pitch: 3, w: 0, rel: nadGlowa(3, [59.2, 6.5]), bar: [0, 150], z: 40, pole: [0, -1, 0.3], zs: 14 });
   podSztangeNadMuscle(W, kon, 40); W[W.length - 2].k = 12; W[W.length - 2].al = 3; W[W.length - 3].k = 10;
   return gotowe(cw, SPRZ(), W);
 }

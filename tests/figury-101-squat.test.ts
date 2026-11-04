@@ -61,6 +61,7 @@ describe('101-10 Sumo Squat (hantel): pionowy tor pod barkami', () => {
   });
 });
 
+const OLYMPIC_NAD_GLOWA = ['Barbell Snatch', 'Power Snatch', 'Split Snatch', 'Hang Snatch', 'Block Snatch', 'Block Power Snatch', 'Snatch Balance', 'Muscle Snatch', 'Power Jerk', 'Split Jerk', 'Squat Jerk', 'Jerk Balance', 'Clean and Jerk'];
 describe('101-11 Overhead Squat i One-Arm Overhead Kettlebell Squat: wyjątek kontraktu barku (D1 = A)', () => {
   const TE = ['Overhead Squat', 'One-Arm Overhead Kettlebell Squat'];
   const ROM = FIG_DATA.rom as unknown as RomData;
@@ -79,7 +80,10 @@ describe('101-11 Overhead Squat i One-Arm Overhead Kettlebell Squat: wyjątek ko
     const r = overheadShoulderRange('Overhead Squat', 15)!; expect(r).toEqual({ min: 190, max: 205 });
     expect(180 + 15 - 15 < r.min).toBe(true); /* ramię 15° przed pionem: 180 + θ − 15 = 180 < 190 */
     expect(overheadShoulderRange('Back Squat', 15)).toBeUndefined(); expect(overheadShoulderRange('Front Squat', 15)).toBeUndefined();
-    expect(OVERHEAD_SHOULDER_EXCEPTION.keys).toEqual(TE); expect(OVERHEAD_SHOULDER_EXCEPTION.why.length).toBeGreaterThan(40);
+    /* 04.11.2026 (decyzja koordynatora pkt 4): wyjątek obejmuje też fazy nad głową rodziny olympic (dolnej granicy przedziału tam nie sprawdza się w przejściu: ruch zaczyna się niżej) */
+    expect(OVERHEAD_SHOULDER_EXCEPTION.keys).toEqual([...TE, ...OLYMPIC_NAD_GLOWA]); expect(OVERHEAD_SHOULDER_EXCEPTION.przejscie).toEqual(OLYMPIC_NAD_GLOWA); expect(OVERHEAD_SHOULDER_EXCEPTION.why.length).toBeGreaterThan(40);
+    expect(overheadShoulderRange('Squat Jerk', 15)).toEqual({ min: 0, max: 205 }); expect(overheadShoulderRange('Overhead Squat', 15)!.min).toBe(190); /* przysiady nad głową zachowują dolną granicę */
+    for (const k of ['Power Clean', 'Clean', 'Clean Pull', 'Snatch Pull', 'Clean Shrug', 'Snatch Shrug', 'Jerk Dip Squat', 'Back Squat']) expect(overheadShoulderRange(k, 15)).toBeUndefined(); /* zarzuty, ciągi, wzruszenia i dip bez ręki nad głową: limit z ROM */
   });
   test('kontrast: walidator kontraktu przepuszcza bark 183–198° tylko tym dwóm; to samo ułożenie pod inną nazwą (limit ok. 171°) dostaje błąd zakresu barku', () => {
     const E = { kneesIn: 'sq.mis.kneesIn', heels: 'sq.mis.heels' } as const; const cues = ['sq.mis.kneesIn', 'sq.mis.heels'];

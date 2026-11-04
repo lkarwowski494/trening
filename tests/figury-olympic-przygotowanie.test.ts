@@ -6,7 +6,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { keyframeFrame, jointAngles, distSegSeg, GIRTH, type PoseData, type Frame, type V3 } from '@/lib/figures/v2';
+import { keyframeFrame, jointAngles, distSegSeg, GIRTH, overheadShoulderRange, trunkLeanDeg, OVERHEAD_SHOULDER_EXCEPTION, type PoseData, type Frame, type V3 } from '@/lib/figures/v2';
 import { stykKlatki, elementyCiezaru } from './helpers/styk-figur';
 
 const P: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/olympic.json'), 'utf8')).cwiczenia;
@@ -88,8 +88,8 @@ describe('olympic: zakres stawów i fazy ruchu zgodne z tekstem kart (K8)', () =
     const u = uWyprost(k); expect([k, A(k, u).knee <= 12]).toEqual([k, true]); expect([k, A(k, u).elbow <= 25]).toEqual([k, true]);
   });
   test.each(['Clean Shrug', 'Snatch Shrug', 'Clean Pull', 'Snatch Pull'])('%s: na górze pełny wyprost (kolano ≤ 5°) i proste ręce (łokieć ≤ 25°)', k => { const a = A(k, 1); expect(a.knee).toBeLessThanOrEqual(5); expect(a.elbow).toBeLessThanOrEqual(25); });
-  test.each([...RWANIE, 'Muscle Snatch', 'Snatch Balance', ...PODRZUT])('%s: „złap ją na prostych rękach” — łokieć ≤ 21° i ramię nad głową (zgięcie w barku 150–171°) w przechwycie', k => {
-    const a = A(k, 1); expect([k, a.elbow <= 21]).toEqual([k, true]); expect([k, a.shSag >= 150 && a.shSag <= 171]).toEqual([k, true]);
+  test.each([...RWANIE, 'Muscle Snatch', 'Snatch Balance', ...PODRZUT])('%s: „złap ją na prostych rękach” — łokieć ≤ 21° i ramię nad głową (zgięcie w barku ≥ 150° i w przedziale wyjątku, poprawka 4: było 150–171°) w przechwycie', k => {
+    const a = A(k, 1); expect([k, a.elbow <= 21]).toEqual([k, true]); expect([k, a.shSag >= 150 && a.shSag <= overheadShoulderRange(k, trunkLeanDeg(frame(k, 1).sk))!.max]).toEqual([k, true]);
   });
   test.each(ZARZUT)('%s: „przyjmij ją na przód barków” — gryf przy barkach (≤ 24 cm od barków), łokcie zgięte ≥ 120° w przechwycie', k => {
     expect(d3(load(k, 1), frame(k, 1).sk.shoulderC)).toBeLessThanOrEqual(24); expect(A(k, 1).elbow).toBeGreaterThanOrEqual(120);
@@ -192,10 +192,15 @@ describe('olympic R1 W2: pierwszy ciąg — barki nad gryfem, gryf przy nogach, 
   test.each(PIERWSZY.filter(k => k !== 'Clean and Jerk'))('%s: kąt pleców stały — do wysokości kolana (sztanga ≤ 50 cm) w granicach 8° od startu', k => {
     const l0 = pochylenie(frame(k, 0)); for (const u of US.filter(x => load(k, x)[1] <= 50 && x < 0.3)) expect([k, u, Math.abs(pochylenie(frame(k, u)) - l0) <= 8]).toEqual([k, u, true]);
   });
-  test('miara potrafi paść: barki 15,6 cm za gryfem (stan z R1) oraz gryf 7 cm od nóg są poza progami', () => {
-    expect(-15.6 >= -3).toBe(false); expect(7.4 <= 3.5).toBe(false);
-    /* stan z R1: u = 0,10 Power Clean miał pochylenie 35,9° przy starcie 49,5° (−13,6°) */
-    expect(Math.abs(35.9 - 49.5) <= 8).toBe(false);
+  test('miary potrafią paść na danych (poprawka 4: bez porównań samych liczb): Power Clean z chwytem 7 cm dalej od nóg w klatkach ciągu łamie odstęp gryfu 3,5 cm, a z plecami wyprostowanymi o 14° w jednej klatce łamie stały kąt pleców (8°)', () => {
+    const k = 'Power Clean'; const us = pierwszyCiag(k); const kolano = USD.filter(u => load(k, u)[1] <= 50 && u < 0.3);
+    const odstep = (p: PoseData) => Math.max(...us.map(u => stykKlatki(keyframeFrame(p, u), u).odstep));
+    const plecy = (p: PoseData) => { const l0 = pochylenie(keyframeFrame(p, 0)); return Math.max(...kolano.map(u => Math.abs(pochylenie(keyframeFrame(p, u)) - l0))); };
+    expect(odstep(P[k])).toBeLessThanOrEqual(3.5); expect(plecy(P[k])).toBeLessThanOrEqual(8);
+    const dalej = klon(k, kl => kl.slice(0, 5).forEach(l => { l.rece.R.chwyt[0] += 7; l.rece.L.chwyt[0] += 7; }));
+    expect(odstep(dalej)).toBeGreaterThan(3.5);
+    const prosto = klon(k, kl => { kl[2].pochylenieTulowia -= 14; });
+    expect(plecy(prosto)).toBeGreaterThan(8);
   });
   test('miara jest czuła na dane: w Barbell Snatch przesunięcie barków o 16 cm do tyłu łamie próg', () => {
     const k = 'Barbell Snatch'; const u = pierwszyCiag(k)[5]; expect(barkiPrzedGryfem(k, u) - 16 >= -3).toBe(false);
@@ -230,25 +235,39 @@ describe('olympic R1 W4: Jerk Balance — tylna stopa stoi w miejscu, przednia t
     for (const u of US) { expect([u, stopa(u, 'R').heel[0] >= h0 - 1]).toEqual([u, true]); expect([u, stopa(u, 'R').toe[0] >= t0 - 2]).toEqual([u, true]); }
     expect(stopa(1, 'R').heel[0]).toBeGreaterThanOrEqual(h0 + 8);
   });
-  test('miara potrafi paść: stary stan z R1 (przednia pięta 16,1 → 4,8 cm, tylna −7,3 → −25,9 cm) łamie oba progi', () => { expect(4.8 >= 16.1 - 1).toBe(false); expect(Math.abs(-25.9 - -7.3) <= 1).toBe(false); });
+  test('miara potrafi paść: stary stan z R1 (przednia pięta 16,1 → 4,8 cm, tylna −7,3 → −25,9 cm) łamie oba progi na danych (poprawka 4): Jerk Balance z przednią stopą cofniętą o 12 cm w klatce końcowej i tylną przesuniętą o 8 cm w klatce środkowej', () => {
+    const miary = (p: PoseData) => { const f = (u: number, s: 'R' | 'L') => keyframeFrame(p, u).sk.legs[s]; const h0 = f(0, 'R').heel[0], l0 = f(0, 'L').heel[0];
+      return { przod: Math.min(...US.map(u => f(u, 'R').heel[0] - h0)), tyl: Math.max(...US.map(u => Math.abs(f(u, 'L').heel[0] - l0))) }; };
+    expect(miary(P[k]).przod).toBeGreaterThanOrEqual(-1); expect(miary(P[k]).tyl).toBeLessThanOrEqual(1);
+    const zly = klon(k, kl => { kl[kl.length - 1].nogi.R.kostka[0] -= 24; kl[2].nogi.L.kostka[0] -= 8; });
+    expect(miary(zly).przod).toBeLessThan(-1); expect(miary(zly).tyl).toBeGreaterThan(1);
+  });
 });
 
 /** Odstęp stóp od podłogi (cm): najniższy punkt pięty/palców. */
 const odPodlogi = (k: string, u: number) => { const L = frame(k, u).sk.legs; return Math.max(Math.min(L.R.toe[1], L.R.heel[1]), Math.min(L.L.toe[1], L.L.heel[1])); };
+const odPodlogi2 = (f: Frame) => { const L = f.sk.legs; return Math.max(Math.min(L.R.toe[1], L.R.heel[1]), Math.min(L.L.toe[1], L.L.heel[1])); };
 const BEZ_LOTU = ['Jerk Dip Squat', 'Snatch Balance'];
 describe('olympic R1 Ś2: stopy w kontakcie z podłogą w podporze; lot tylko krótki, niski i po wybiciu', () => {
   test.each(BEZ_LOTU)('%s: stopy przy podłodze (≤ 1,5 cm) przez cały ruch', k => { for (const u of US) expect([k, u, odPodlogi(k, u) <= 1.5]).toEqual([k, u, true]); });
   test.each(['Clean Pull', 'Snatch Pull', 'Clean Shrug', 'Snatch Shrug'])('%s: stopy na podłodze (≤ 0,5 cm; poprawka 3: bez lewitacji w ćwiczeniu bez lotu); koniec ruchu na palcach ≤ 1 cm', k => { for (const u of US) expect([k, u, odPodlogi(k, u) <= 0.5]).toEqual([k, u, true]); expect([k, odPodlogi(k, 1) <= 1]).toEqual([k, true]); });
   test('Muscle Snatch: bez lotu — stopy na podłodze (≤ 0,5 cm; stan z R1: do 5,3 cm, z R2: 2,5 cm)', () => { for (const u of US) expect([u, odPodlogi('Muscle Snatch', u) <= 0.5]).toEqual([u, true]); });
   test('miara potrafi paść na danych: stopy uniesione o 2,5 cm (stan z R2) łamią próg 0,5 cm', () => {
-    for (const k of ['Clean Pull', 'Clean Shrug', 'Muscle Snatch']) { const max = Math.max(...US.map(u => odPodlogi(k, u))); expect([k, max <= 0.5]).toEqual([k, true]); expect([k, max + 2.5 <= 0.5]).toEqual([k, false]); }
+    for (const k of ['Clean Pull', 'Clean Shrug', 'Muscle Snatch']) { const max = Math.max(...US.map(u => odPodlogi(k, u))); expect([k, max <= 0.5]).toEqual([k, true]); const uniesione = klon(k, kl => kl.forEach(l => { l.miednica[1] += 2.5; for (const x of ['R', 'L'] as const) l.nogi[x].kostka[1] += 2.5; })); const mu = Math.max(...US.map(u => odPodlogi2(keyframeFrame(uniesione, u)))); expect([k, mu > 0.5]).toEqual([k, true]); }
   });
   test.each([...PODRZUT, 'Clean and Jerk'])('%s: koniec wybicia na palcach w styku z podłogą (≤ 1,5 cm), potem lot ≤ 6 cm w jednym oknie po wybiciu', k => {
     const uE = k === 'Clean and Jerk' ? P[k].klatki.map(f => f.u).filter(u => u >= 0.5 && u <= 0.8).reduce((b, u) => (A(k, u).knee < A(k, b).knee ? u : b), 0.55) : uWybicia(k); /* C&J: wybicie podrzutu to klatka kluczowa w drugiej połowie */
     expect([k, odPodlogi(k, uE) <= 1.5]).toEqual([k, true]);
     const w = US.filter(u => odPodlogi(k, u) > 1.5 && (k !== 'Clean and Jerk' || u >= 0.5)); expect([k, Math.min(...w) > uE - 0.05 || w.length === 0]).toEqual([k, true]); for (const u of US) expect([k, u, odPodlogi(k, u) <= 6]).toEqual([k, u, true]);
   });
-  test('miara potrafi paść: stopy 4 cm nad podłogą w wyproście (stan z R1: +4 cm w klatce wyprostu) lub 10 cm w locie łamią progi', () => { expect(4 <= 1.5).toBe(false); expect(10 <= 6).toBe(false); });
+  test('miara potrafi paść: stopy 4 cm nad podłogą w wyproście (stan z R1: +4 cm w klatce wyprostu) lub 10 cm w locie łamią progi na danych (poprawka 4): Power Jerk z całym ciałem uniesionym o 4 cm w klatce wyprostu i o 10 cm w klatkach lotu', () => {
+    const k = 'Power Jerk'; const uE = uWybicia(k); const wys = (p: PoseData, u: number) => odPodlogi2(keyframeFrame(p, u));
+    const kfE = P[k].klatki.reduce((b, l, i) => (Math.abs(l.u - uE) < Math.abs(P[k].klatki[b].u - uE) ? i : b), 0);
+    const w4 = klon(k, kl => { kl[kfE].miednica[1] += 4; for (const x of ['R', 'L'] as const) kl[kfE].nogi[x].kostka[1] += 4; });
+    expect(wys(P[k], uE)).toBeLessThanOrEqual(1.5); expect(wys(w4, uE)).toBeGreaterThan(1.5);
+    const w10 = klon(k, kl => kl.forEach(l => { if (l.u > P[k].klatki[kfE].u && l.u < 1) { l.miednica[1] += 10; for (const x of ['R', 'L'] as const) l.nogi[x].kostka[1] += 10; } }));
+    expect(Math.max(...US.map(u => wys(w10, u)))).toBeGreaterThan(6);
+  });
 });
 
 /** Środek masy ciała (przybliżenie segmentowe, ±3 cm jak w R1: tułów 50 %, głowa 8 %, uda 2×10 %, golenie 2×4,65 %, stopy 2×1,45 %, ramiona 2×2,7 %, przedramiona 2×2,2 %) i środek masy razem ze sztangą (sztanga = 50 % masy ciała). */
@@ -267,11 +286,21 @@ describe('olympic R1 Ś1: przechwyt w równowadze — środek masy ze sztangą n
   test.each(NAD_GLOWA.filter(k => !SPLITY.includes(k)))('%s: gryf nad śródstopiem (± 5 cm) w przechwycie nad głową', k => {
     const f = frame(k, 1); const L = f.sk.legs.R; const sr = (L.heel[0] + L.toe[0]) / 2; expect([k, Math.abs(pt(f)[0] - sr) <= 5]).toEqual([k, true]);
   });
-  test.each(NAD_GLOWA)('%s: ramię blisko pionu — zgięcie barku 166…171° (kontrakt rigu: ≤ 171°; stan z R1: 164,4–165,6° = ręce ~15–19° przed pionem, barki 14–19,5 cm za gryfem)', k => {
-    const a = A(k, 1).shSag; expect([k, Math.round(a * 10) / 10, a >= 166 && a <= 171]).toEqual([k, Math.round(a * 10) / 10, true]);
+  /* Ś1 (poprawka 4, decyzja koordynatora 04.11.2026 pkt 4): ręce w pionie nad głową — zgięcie barku w przedziale wyjątku OVERHEAD_SHOULDER_EXCEPTION [180 + θ − 5, 180 + θ + 10] (θ = pochylenie tułowia), nie 166…171° (ręce 13–33° przed pionem). */
+  const odPionu = (p: PoseData) => { const f = keyframeFrame(p, 1); return jointAngles(f.sk, 'R').shSag - 180 - trunkLeanDeg(f.sk); };
+  test.each(NAD_GLOWA)('%s: ramię w pionie nad głową — zgięcie barku mieści się w przedziale wyjątku zależnym od pochylenia tułowia; wyjątek obejmuje to ćwiczenie', k => {
+    const f = frame(k, 1); const th = trunkLeanDeg(f.sk); const r = overheadShoulderRange(k, th)!; const a = A(k, 1).shSag;
+    expect(r).toBeDefined(); expect([k, Math.round(a * 10) / 10, a >= 180 + th - OVERHEAD_SHOULDER_EXCEPTION.aheadMax && a <= r.max]).toEqual([k, Math.round(a * 10) / 10, true]);
   });
-  test('miara potrafi paść: stary Power Clean (środek masy ze sztangą −8,6 cm przy pięcie −5,9 cm) i gryf 5,7 cm za śródstopiem (−5,7 przy 6,4) są poza progami', () => {
-    expect(-8.6 >= -5.9 + 1).toBe(false); expect(Math.abs(-5.7 - 6.4) <= 5).toBe(false); expect(164.4 >= 166).toBe(false);
+  test('miara potrafi paść na danych: chwyt 20 cm dalej w przód w przechwycie (ręka ~18° przed pionem, stan z R1: 13–33° przed pionem) wypada z przedziału', () => {
+    for (const k of NAD_GLOWA) { expect(odPionu(P[k])).toBeGreaterThanOrEqual(-OVERHEAD_SHOULDER_EXCEPTION.aheadMax); const zly = klon(k, kl => { const l = kl[kl.length - 1]; l.rece.R.chwyt[0] += 20; l.rece.L.chwyt[0] += 20; }); expect([k, odPionu(zly) < -OVERHEAD_SHOULDER_EXCEPTION.aheadMax]).toEqual([k, true]); }
+  });
+  test('miary potrafią paść na danych (poprawka 4): Power Clean z miednicą 15 cm za stopami w przechwycie wypada z obrysu stóp, Squat Jerk z gryfem 12 cm za śródstopiem łamie ± 5 cm', () => {
+    const c = (p: PoseData) => srodekMasy(keyframeFrame(p, 1)).zGryfem; const pod = (p: PoseData) => podpora(keyframeFrame(p, 1));
+    expect(c(P['Power Clean'])).toBeGreaterThanOrEqual(pod(P['Power Clean']).min + 1);
+    const tyl = klon('Power Clean', kl => { kl[kl.length - 1].miednica[0] -= 15; }); expect(c(tyl)).toBeLessThan(pod(tyl).min + 1);
+    const sr = (p: PoseData) => { const f = keyframeFrame(p, 1); const L = f.sk.legs.R; return Math.abs(pt(f)[0] - (L.heel[0] + L.toe[0]) / 2); };
+    expect(sr(P['Squat Jerk'])).toBeLessThanOrEqual(5); expect(sr(klon('Squat Jerk', kl => { const l = kl[kl.length - 1]; l.rece.R.chwyt[0] -= 12; l.rece.L.chwyt[0] -= 12; }))).toBeGreaterThan(5);
   });
 });
 
@@ -281,7 +310,12 @@ describe('olympic R1 Ś3: Snatch Balance — gryf startuje na górze pleców w s
     const f = frame(k, 0); const m = rackMiara(f, pt(f)); expect(m.odstep).toBeLessThanOrEqual(1.5); expect(m.odstep).toBeGreaterThanOrEqual(-0.3); expect(m.przod).toBeLessThan(0);
   });
   test('rozrzut poziomy gryfu ≤ 11 cm (ciało schodzi pod prawie pionowy tor)', () => { expect(rozrzutX(US, u => load(k, u)[0])).toBeLessThanOrEqual(11); });
-  test('miara potrafi paść: stary start (gryf 14 cm za barkami = 2,9 cm szpary) i rozrzut 34,6 cm łamią progi', () => { expect(2.9 <= 1.5).toBe(false); expect(34.6 <= 11).toBe(false); });
+  test('miara potrafi paść: stary start (gryf 14 cm za barkami = 2,9 cm szpary) i rozrzut 34,6 cm łamią progi na danych (poprawka 4): gryf 3 cm dalej od pleców w klatce startowej i klatki środkowe 25 cm w przód', () => {
+    const f0 = (p: PoseData) => { const f = keyframeFrame(p, 0); return rackMiara(f, pt(f)).odstep; }; const roz = (p: PoseData) => rozrzutX(US, u => pt(keyframeFrame(p, u))[0]);
+    expect(f0(P[k])).toBeLessThanOrEqual(1.5);
+    expect(f0(klon(k, kl => { kl[0].rece.R.chwyt[0] -= 3; kl[0].rece.L.chwyt[0] -= 3; }))).toBeGreaterThan(1.5);
+    expect(roz(klon(k, kl => kl.slice(1, -1).forEach(l => { l.rece.R.chwyt[0] += 25; l.rece.L.chwyt[0] += 25; })))).toBeGreaterThan(11);
+  });
 });
 
 /* Poprawka 2 (04.11.2026): R6 — palce w podporze nie suną się (≤ 2 cm), mimo że pięta się unosi; wzruszenia: tułów pionowy, ruch w kolanach, gryf wysoko na udach, barki widocznie w górę. */
