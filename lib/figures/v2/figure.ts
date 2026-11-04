@@ -227,11 +227,11 @@ export function errorBreaksRule(spec: FigureSpec, error: FigError | undefined, r
 }
 /** Strona mierzonego stawu na rysunku (rzut z boku: strona bliższa kamerze, R; dane: strona, która pracuje). */
 export const measuredSide = (spec: FigureSpec): Side => measureOf(spec).sides[0];
-/** Elementy nakładki techniki (E1 linia przez kończynę, E2 łuk kąta, odwiedzenie ramienia) w klatce u i widoku; `ids` = id elementów dopuszczonych przez wskazówki ćwiczenia (ui.techniquesOf). Bez liczb. */
-export function overlayShapes(spec: FigureSpec, u: number, view: View, ids: string[], error?: FigError): Shape[] {
+/** Elementy nakładki techniki (E1 linia przez kończynę, E2 łuk kąta, odwiedzenie ramienia) w klatce u i widoku; `ids` = id elementów dopuszczonych przez wskazówki ćwiczenia (ui.techniquesOf). Bez liczb. `guides` = linie odniesienia pokazane w tym rzucie: wchodzą do limitu linii (W3). */
+export function overlayShapes(spec: FigureSpec, u: number, view: View, ids: string[], error?: FigError, guides: GuideId[] = []): Shape[] {
   const defs = ids.map(techniqueDef).filter((d): d is TechniqueDef => !!d); if (!defs.length) return [];
   const f = frameAt(spec, u, error); const m = measureOf(spec);
-  return techniqueShapes(f.sk, view, defs, { joint: m.joint, side: view === 'top' ? 'R' : m.sides[0], limbShown: m.shown, danger: rule => errorBreaksRule(spec, error, rule) });
+  return techniqueShapes(f.sk, view, defs, { joint: m.joint, side: view === 'top' ? 'R' : m.sides[0], limbShown: m.shown, danger: rule => errorBreaksRule(spec, error, rule), guideLines: guideShapes(spec, u, view, guides, error).filter(x => x.k === 'line').length });
 }
 
 /** Poświaty stref styku klatki (poza poprawna: styki „dobrze”; poza błędu: styk utracony względem pozy poprawnej w tej samej pozycji — „błąd”). Poza kadrem `shapesAt`. */

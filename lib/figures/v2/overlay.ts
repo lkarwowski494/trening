@@ -1,7 +1,7 @@
 /*
  * Figury v2 — nakładka techniki na rysunku (04.11.2026, spec „rysunek pokazuje technikę”): elementy GEOMETRYCZNE liczone z szkieletu klatki, bez liczb na rysunku
  * (liczba kąta tylko w podpisie „Kąt na rysunku”). E1: linia przerywana przez segment proksymalny i poza staw mierzony; E2: łuk kąta w tym stawie w każdej klatce
- * (rozwarcie łuku = zgięcie stawu = wartość measuredAngle); odwiedzenie ramienia: linia w płaszczyźnie strzałkowej i łuk do ramienia (rzut z góry). Dane elementów rodzin:
+ * (rozwarcie łuku = zgięcie stawu = wartość measuredAngle); odwiedzenie ramienia: liczone w 2D na płaszczyźnie rzutu z góry — linia = rzut osi tułowia, łuk do rzutu ramienia (W2). Dane elementów rodzin:
  * overlay/<rodzina>.ts (id wskazówki `cue` + reguła `rule`). Limit czytelności: OVERLAY_MAX_LINES linii i OVERLAY_MAX_ARCS łuk na rzut (jedno miejsce).
  * Punkt rozszerzenia: kind 'zone' (E5, strefy liczbowe) — dopiero po decyzji badacza i właściciela; dziś nieobsługiwany.
  */
@@ -12,11 +12,13 @@ import type { Shape, View } from './scene';
 import type { Skeleton, Side } from './skeleton';
 import type { MeasuredJoint } from './poseData';
 import { BENCH_TECHNIQUE } from './overlay/bench_press';
-import { dash } from './overlay/common';
+import { solid } from './overlay/common';
 
 export const OVERLAY_MAX_LINES = 3, OVERLAY_MAX_ARCS = 1;
 /** Długość przedłużenia linii za staw i promienie łuków (cm rysunku). */
 export const OVERLAY_EXTEND = 14, OVERLAY_ARC_R = 9, OVERLAY_REF_LEN = 22, OVERLAY_ARC_MIN_DEG = 3;
+/** Najmniejsza długość ramienia w rzucie (cm rysunku), od której pokazujemy odwiedzenie; łuk w rzucie ma co najmniej OVERLAY_ARC_R (jedno miejsce progu rozmiaru, W2). */
+export const OVERLAY_ARM_MIN_PROJ = 2, OVERLAY_ARC_MIN_CHORD = 4;
 export type TechniqueKind = 'limb' | 'abduction';
 export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint };
 
@@ -45,32 +47,47 @@ export function arcPoints3(c: V3, u: V3, v: V3, r: number, n = 12): V3[] {
   for (let i = 0; i <= n; i++) { const t = i / n; out.push(add(c, mul(add(mul(u, Math.sin((1 - t) * th) / s), mul(v, Math.sin(t * th) / s)), r))); }
   return out;
 }
-const arcShape = (pts: V3[], view: View, role: 'guide' | 'error', id: string): Shape => ({ k: 'poly', pts: pts.map(p => proj(p, view)), stroke: role, w: 1.1, close: false, z: 4001, id });
+const arcShape = (pts: V2[], view: View, role: 'guide' | 'error', id: string): Shape => ({ k: 'poly', pts, stroke: role, w: 1.1, close: false, z: 4001, id });
 
-/** Geometria elementu (bez rzutu): linia 3D, łuk 3D i rozwarcie w stopniach; null, gdy element jest zdegenerowany w tej klatce. */
+/** Geometria elementu kończyny (bez rzutu): linia 3D, łuk 3D i rozwarcie w stopniach; null, gdy element jest zdegenerowany w tej klatce. */
 export type TechniqueGeom = { line: [V3, V3]; arc: V3[] | null; sweepDeg: number };
 export function techniqueGeom(kind: TechniqueKind, sk: Skeleton, side: Side, joint: MeasuredJoint): TechniqueGeom | null {
-  if (kind === 'limb') {
-    const t = limbTriple(sk, side, joint); if (!t) return null; const [A, B, C] = t;
-    const ext = norm(sub(B, A)), fore = norm(sub(C, B)); const sweep = angleDeg(ext, fore);
-    return { line: [A, add(B, mul(ext, OVERLAY_EXTEND))], arc: sweep >= OVERLAY_ARC_MIN_DEG ? arcPoints3(B, ext, fore, OVERLAY_ARC_R) : null, sweepDeg: sweep };
-  }
-  /* odwiedzenie ramienia: kąt między ramieniem a jego rzutem na płaszczyznę strzałkową (z = 0) — jak jointAngles.shAbd */
-  const S = sk.arms[side].shoulder, ua = norm(sub(sk.arms[side].elbow, S)); const flat: V3 = [ua[0], ua[1], 0]; const len = Math.hypot(flat[0], flat[1]); if (len < 1e-6) return null;
-  const ref = norm(flat); const sweep = angleDeg(ref, ua);
-  return { line: [S, add(S, mul(ref, OVERLAY_REF_LEN))], arc: sweep >= OVERLAY_ARC_MIN_DEG ? arcPoints3(S, ref, ua, OVERLAY_ARC_R) : null, sweepDeg: sweep };
+  if (kind !== 'limb') return null; /* odwiedzenie ramienia liczy abductionGeom2D w płaszczyźnie rzutu (W2, recenzja 1R) */
+  const t = limbTriple(sk, side, joint); if (!t) return null; const [A, B, C] = t;
+  const ext = norm(sub(B, A)), fore = norm(sub(C, B)); const sweep = angleDeg(ext, fore);
+  return { line: [A, add(B, mul(ext, OVERLAY_EXTEND))], arc: sweep >= OVERLAY_ARC_MIN_DEG ? arcPoints3(B, ext, fore, OVERLAY_ARC_R) : null, sweepDeg: sweep };
+}
+/** Geometria 2D elementu w płaszczyźnie rzutu: linia, łuk i rozwarcie w stopniach (kąt NA RYSUNKU). */
+export type Geom2D = { line: [V2, V2]; arc: V2[] | null; sweepDeg: number };
+const ang2 = (v: V2): number => Math.atan2(v[1], v[0]);
+/**
+ * Odwiedzenie ramienia w rzucie (W2, recenzja 1R 04.11.2026): odniesienie = rzut osi tułowia (bark → miednica) poprowadzony od barku, ramię = rzut łokcia względem barku;
+ * linia ma stałą długość OVERLAY_REF_LEN, łuk stały promień OVERLAY_ARC_R (rysunek czytelny także wtedy, gdy ramię jest prawie prostopadłe do płaszczyzny rzutu).
+ * Zwraca null, gdy oś tułowia albo ramię są w rzucie punktem (ramię < OVERLAY_ARM_MIN_PROJ cm — brak kierunku do pokazania).
+ */
+export function abductionGeom2D(sk: Skeleton, side: Side, view: View): Geom2D | null {
+  const S = proj(sk.arms[side].shoulder, view), P = proj(sk.pelvis, view), E = proj(sk.arms[side].elbow, view);
+  const t: V2 = [P[0] - proj(sk.shoulderC, view)[0], P[1] - proj(sk.shoulderC, view)[1]], e: V2 = [E[0] - S[0], E[1] - S[1]];
+  const lt = Math.hypot(t[0], t[1]), le = Math.hypot(e[0], e[1]); if (lt < 1e-6 || le < OVERLAY_ARM_MIN_PROJ) return null;
+  const a0 = ang2(t); let d = ang2(e) - a0; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
+  const sweep = Math.abs(d) * 180 / Math.PI; const n = 12;
+  const chord = 2 * OVERLAY_ARC_R * Math.sin(Math.abs(d) / 2);
+  const arc: V2[] | null = chord >= OVERLAY_ARC_MIN_CHORD ? Array.from({ length: n + 1 }, (_, i) => { const a = a0 + d * i / n; return [S[0] + OVERLAY_ARC_R * Math.cos(a), S[1] + OVERLAY_ARC_R * Math.sin(a)] as V2; }) : null;
+  return { line: [S, [S[0] + t[0] / lt * OVERLAY_REF_LEN, S[1] + t[1] / lt * OVERLAY_REF_LEN]], arc, sweepDeg: sweep };
 }
 
-export type OverlayCtx = { joint: MeasuredJoint; side: Side; limbShown: boolean; /** czy reguła elementu jest złamana przez pokazany błąd (kolor danger) */ danger: (rule: string) => boolean };
-/** Kształty elementów nakładki w widoku; z limitem OVERLAY_MAX_LINES linii i OVERLAY_MAX_ARCS łuku na rzut (kolejność = kolejność danych). */
+export type OverlayCtx = { joint: MeasuredJoint; side: Side; limbShown: boolean; /** czy reguła elementu jest złamana przez pokazany błąd (kolor danger) */ danger: (rule: string) => boolean; /** linie odniesienia (GUIDES) już narysowane w tym rzucie — wchodzą do limitu OVERLAY_MAX_LINES (W3) */ guideLines?: number };
+/** Kształty elementów nakładki w widoku; z limitem OVERLAY_MAX_LINES linii (łącznie ze starymi liniami odniesienia `ctx.guideLines`) i OVERLAY_MAX_ARCS łuku na rzut (kolejność = kolejność danych). */
 export function techniqueShapes(sk: Skeleton, view: View, defs: TechniqueDef[], ctx: OverlayCtx): Shape[] {
-  const out: Shape[] = []; let lines = 0, arcs = 0;
+  const out: Shape[] = []; let lines = ctx.guideLines ?? 0, arcs = 0;
   for (const d of defs) {
     if (!d.views.includes(view) || (d.kind === 'limb' && (!ctx.limbShown || (d.joint && d.joint !== ctx.joint)))) continue;
-    const g = techniqueGeom(d.kind, sk, ctx.side, ctx.joint); if (!g) continue;
+    let line: [V2, V2], arc: V2[] | null;
+    if (d.kind === 'limb') { const g = techniqueGeom('limb', sk, ctx.side, ctx.joint); if (!g) continue; line = [proj(g.line[0], view), proj(g.line[1], view)]; arc = g.arc ? g.arc.map(p => proj(p, view)) : null; }
+    else { const g = abductionGeom2D(sk, ctx.side, view); if (!g) continue; line = g.line; arc = g.arc; }
     const role = ctx.danger(d.rule) ? 'error' : 'guide';
-    if (lines < OVERLAY_MAX_LINES) { const a: V2 = proj(g.line[0], view), b: V2 = proj(g.line[1], view); out.push(dash(a, b, d.id + 'Line', role)); lines++; }
-    if (g.arc && arcs < OVERLAY_MAX_ARCS) { out.push(arcShape(g.arc, view, role, d.id + 'Arc')); arcs++; }
+    if (lines < OVERLAY_MAX_LINES) { out.push(solid(line[0], line[1], d.id + 'Line', role)); lines++; }
+    if (arc && arcs < OVERLAY_MAX_ARCS) { out.push(arcShape(arc, view, role, d.id + 'Arc')); arcs++; }
   }
   return out;
 }

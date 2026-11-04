@@ -112,6 +112,28 @@ name: Filtr „Podstawowe” i sekcja „Technika”
       - assertVisible: "Movement drawing: .*On the drawing: .*"   # 04.11.2026: nakładka techniki — etykieta „Na rysunku: …” (linia nad środkiem stopy)
 - takeScreenshot: 87-deadlift-sztanga-technika
 
+# --- 04.11.2026 (W7, recenzja 1R): nakładka techniki na wyciskaniu (Close Grip: odwiedzenie ramienia z góry, łuk i linia nakładki); rodzina bench_press ukryta do recenzji (bramka 4) — krok warunkowy jak wyżej ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: { id: "exercises-search" }
+- inputText: "Close Grip Bench"
+- pressKey: Enter
+- pressKey: Enter   # chowa klawiaturę (L-013)
+- tapOn: { id: "lib-row-1" }
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 8000, optional: true }
+- runFlow:
+    when: { visible: "Movement drawing: .*" }
+    commands:
+      - scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
+      - assertVisible: "Movement drawing: .*On the drawing: .*"   # etykieta z listą wskazówek elementów nakładki (cgbp.*), nie tylko starych linii
+- takeScreenshot: 88-close-grip-nakladka
+
 # --- UX2-05: „Technika ›” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
 - stopApp
 - launchApp:

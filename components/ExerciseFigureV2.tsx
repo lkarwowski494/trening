@@ -33,7 +33,7 @@ function ViewSvg({ spec, u, view, box, th, height, error, guides, techniques, te
   const sc = w > 0 ? Math.min(w / box.w, height / box.h) : 0;
   /* odstęp ≥ BADGE_GAP_PT na ekranie: znaczki bliższe sobie są pomijane (przed pomiarem układu pokazujemy wszystkie) */
   const badges = useMemo(() => sc > 0 ? spaceBadges(all, BADGE_GAP_PT / sc) : all, [all, sc]);
-  const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error), ...overlayShapes(spec, u, view, techniques, error), ...contactShapes(spec, u, view, error), ...badgeShapes(badges)]), [spec, u, view, error, trail, guides, techniques, badges]);
+  const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error), ...overlayShapes(spec, u, view, techniques, error, guides), ...contactShapes(spec, u, view, error), ...badgeShapes(badges)]), [spec, u, view, error, trail, guides, techniques, badges]);
   /* piksele znaczka: viewBox z preserveAspectRatio „meet” (wyśrodkowany) — przeliczenie współrzędnych rysunku (y w górę) na układ widoku */
   const ox = (w - box.w * sc) / 2, oy = (height - box.h * sc) / 2;
   return (

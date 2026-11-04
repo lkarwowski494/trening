@@ -12,14 +12,16 @@ import { render, screen, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { CATALOG } from '@/lib/catalog.generated';
 import {
-  figureSpec, frameAt, measuredAngle, measuredSide, jointAngles, overlayShapes, errorBreaksRule, GROUP_DATA, figurePalette, contrast, shapesAt, type FigureSpec, type Shape,
+  figureSpec, frameAt, trailFor, guideShapes, measuredAngle, measuredSide, jointAngles, overlayShapes, errorBreaksRule, GROUP_DATA, figurePalette, contrast, shapesAt, type FigureSpec, type Shape,
 } from '@/lib/figures/v2';
-import { OVERLAY_ARC_R, OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniqueGeom, techniqueShapes, techniquesFor, techniqueDef, limbTriple, arcPoints3, type TechniqueDef, type TechniqueKind } from '@/lib/figures/v2/overlay';
+import { OVERLAY_ARC_MIN_CHORD, OVERLAY_ARM_MIN_PROJ, OVERLAY_REF_LEN, abductionGeom2D, OVERLAY_ARC_R, OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniqueGeom, techniqueShapes, techniquesFor, techniqueDef, limbTriple, arcPoints3, type TechniqueDef, type TechniqueKind } from '@/lib/figures/v2/overlay';
+import { OVERLAY_LINE_W, solid } from '@/lib/figures/v2/overlay/common';
 import { BENCH_TECHNIQUE } from '@/lib/figures/v2/overlay/bench_press';
 import { SQUAT_GUIDES } from '@/lib/figures/v2/overlay/squat';
 import { HINGE_GUIDES } from '@/lib/figures/v2/overlay/hinge';
 import { GUIDES } from '@/lib/figures/v2/guides';
 import { errorsOf, techniquesOf, onDrawingCues, guidesOf, cueIdsOf, errorText } from '@/lib/figures/v2/ui';
+import { proj } from '@/lib/figures/v2/draw';
 import { applyLang } from '@/lib/i18n';
 import { light, dark, lightHC, darkHC } from '@/lib/theme';
 
@@ -48,9 +50,37 @@ describe('geometria: łuk = kąt z jointAngles (±1°)', () => {
       }
     }
   });
-  test('odwiedzenie ramienia: rozwarcie łuku = jointAngles.shAbd (±1°) w 21 klatkach', () => {
-    const s = spec('Close Grip Bench Press');
-    for (const u of US) { const f = frameAt(s, u); const g = techniqueGeom('abduction', f.sk, 'R', 'elbow'); if (g) expect(Math.abs(g.sweepDeg - jointAngles(f.sk, 'R').shAbd)).toBeLessThanOrEqual(1); }
+  test('odwiedzenie ramienia (W2): liczone w 2D na płaszczyźnie rzutu — rozwarcie łuku = kąt między rzutem osi tułowia a rzutem ramienia (±1°), stały promień łuku i stała długość linii, w 21 klatkach wszystkich ćwiczeń wyciskania', () => {
+    let n = 0;
+    for (const k of BENCH_KEYS) { const s = spec(k); for (const u of US) {
+      const f = frameAt(s, u); const g = abductionGeom2D(f.sk, 'R', 'top'); if (!g) continue; n++;
+      const S = proj(f.sk.arms.R.shoulder, 'top'), E = proj(f.sk.arms.R.elbow, 'top'), P = proj(f.sk.pelvis, 'top'), C = proj(f.sk.shoulderC, 'top');
+      const t = [P[0] - C[0], P[1] - C[1]], e = [E[0] - S[0], E[1] - S[1]];
+      const exp = Math.acos(Math.max(-1, Math.min(1, (t[0] * e[0] + t[1] * e[1]) / (Math.hypot(...t) * Math.hypot(...e))))) * 180 / Math.PI;
+      expect([k, u, Math.abs(g.sweepDeg - exp) <= 1]).toEqual([k, u, true]);
+      expect(Math.hypot(g.line[1][0] - g.line[0][0], g.line[1][1] - g.line[0][1])).toBeCloseTo(OVERLAY_REF_LEN, 6);
+      if (g.arc) for (const p of g.arc) expect(Math.abs(Math.hypot(p[0] - S[0], p[1] - S[1]) - OVERLAY_ARC_R)).toBeLessThan(1e-6);
+    } }
+    expect(n).toBeGreaterThan(300);
+  });
+  test('odwiedzenie ramienia (W2): minimalny rozmiar łuku w rzucie — każdy narysowany łuk ma cięciwę ≥ OVERLAY_ARC_MIN_CHORD (próg w jednym miejscu), a rozwarcie powyżej progu zawsze daje łuk', () => {
+    const minDeg = 2 * Math.asin(OVERLAY_ARC_MIN_CHORD / (2 * OVERLAY_ARC_R)) * 180 / Math.PI;
+    let arcs = 0;
+    for (const k of BENCH_KEYS) { const s = spec(k); for (const u of US) {
+      const g = abductionGeom2D(frameAt(s, u).sk, 'R', 'top'); if (!g) continue;
+      if (g.sweepDeg > minDeg + 1e-6) expect([k, u, !!g.arc]).toEqual([k, u, true]);
+      if (g.arc) { arcs++; const a = g.arc[0], b = g.arc[g.arc.length - 1]; expect(Math.hypot(a[0] - b[0], a[1] - b[1])).toBeGreaterThanOrEqual(OVERLAY_ARC_MIN_CHORD - 1e-6); }
+      else expect(g.sweepDeg).toBeLessThanOrEqual(minDeg + 1e-6);
+    } }
+    expect(arcs).toBeGreaterThan(200); expect(OVERLAY_ARM_MIN_PROJ).toBeGreaterThan(0);
+    const sk = frameAt(spec('Decline Bench Press'), 1).sk; expect(abductionGeom2D({ ...sk, arms: { ...sk.arms, R: { ...sk.arms.R, elbow: sk.arms.R.shoulder } } }, 'R', 'top')).toBeNull(); /* ramię punktem w rzucie → brak elementu */
+    expect(techniqueGeom('abduction', sk, 'R', 'elbow')).toBeNull(); /* odwiedzenie nie ma geometrii 3D — tylko rzut */
+  });
+  test('W6: linia elementu nakładki jest CIĄGŁA i grubsza niż ślad toru i linie odniesienia (kreskowane) — ta sama rola, inna kreska/grubość, nie nowy kolor', () => {
+    const s = spec('Bench Press (sztanga)'); const line = overlayShapes(s, 1, 'side', ['benchElbowLimb']).find(x => x.k === 'line') as Extract<Shape, { k: 'line' }>;
+    expect(line.dash).toBeUndefined(); expect(line.w).toBe(OVERLAY_LINE_W); expect(line.role).toBe('guide');
+    const trail = trailFor(s, 'side').find(x => x.k === 'line') as Extract<Shape, { k: 'line' }>; expect(trail.dash).toBeTruthy(); expect(line.w).toBeGreaterThan(trail.w!);
+    expect(solid([0, 0], [1, 1], 'x', 'error')).toMatchObject({ role: 'error', w: OVERLAY_LINE_W, id: 'x' });
   });
   test('łuk jest w każdej klatce, gdy zgięcie ≥ progu: u dołu (zgięte) jest łuk i linia, u góry (wyprost) łuk znika, linia zostaje', () => {
     const s = spec('Bench Press (sztanga)'); const down = frameAt(s, 1), up = frameAt(s, 0);
@@ -80,10 +110,10 @@ describe('logika pomocnicza: trójka stawu, łuk, rejestr, strona mierzona', () 
 });
 
 describe('niezmienniki: bez liczb i tekstu na rysunku, limit elementów na rzut', () => {
-  test('elementy to wyłącznie linie przerywane i łuki (poly bez wypełnienia), bez kształtów z tekstem; w warstwie nad ciałem', () => {
+  test('elementy to wyłącznie linie ciągłe (W6) i łuki (poly bez wypełnienia), bez kształtów z tekstem; w warstwie nad ciałem', () => {
     for (const k of BENCH_KEYS) { const s = spec(k); for (const v of s.views) for (const u of US) for (const x of overlayShapes(s, u, v, techniquesOf(k))) {
       expect(['line', 'poly']).toContain(x.k); expect(x.z).toBeGreaterThan(3000);
-      if (x.k === 'line') expect(x.dash).toBeTruthy(); else expect((x as { fill?: unknown }).fill).toBeUndefined();
+      if (x.k === 'line') expect(x.dash).toBeUndefined(); else expect((x as { fill?: unknown }).fill).toBeUndefined();
       expect(JSON.stringify(x)).not.toMatch(/"(text|label|value)"/);
     } }
   });
@@ -92,6 +122,18 @@ describe('niezmienniki: bez liczb i tekstu na rysunku, limit elementów na rzut'
     for (const k of BENCH_KEYS) { const s = spec(k); for (const v of s.views) for (const u of US) { const sh = overlayShapes(s, u, v, techniquesOf(k)); expect(sh.filter(x => x.k === 'line').length).toBeLessThanOrEqual(3); expect(sh.filter(x => x.k === 'poly').length).toBeLessThanOrEqual(1); } }
     const many: TechniqueDef[] = Array.from({ length: 6 }, (_, i) => ({ ...TECH_BENCH[0], id: 'bench' + i })); const sh = techniqueShapes(frameAt(spec('Bench Press (sztanga)'), 1).sk, 'side', many, ctx());
     expect([sh.filter(x => x.k === 'line').length, sh.filter(x => x.k === 'poly').length]).toEqual([3, 1]);
+  });
+  test('limit (W3): ≤ OVERLAY_MAX_LINES linii na rzut liczy też stare linie odniesienia (GUIDES) — suma guideShapes + overlayShapes dla każdego ćwiczenia z figurą v2, w każdym rzucie i klatce; łuk ≤ 1', () => {
+    const sk = frameAt(spec('Bench Press (sztanga)'), 1).sk;
+    const sh = techniqueShapes(sk, 'side', TECH_BENCH, { ...ctx(), guideLines: 2 }); expect(sh.filter(x => x.k === 'line').length).toBe(1);
+    expect(techniqueShapes(sk, 'side', TECH_BENCH, { ...ctx(), guideLines: 3 }).filter(x => x.k === 'line').length).toBe(0);
+    let razem = 0;
+    for (const k of Object.keys(CATALOG)) { let s: FigureSpec | null | undefined; try { s = figureSpec(k); } catch { continue; } if (!s) continue;
+      const g = guidesOf(k), t = techniquesOf(k); if (!g.length || !t.length) continue;
+      for (const v of s.views) for (const u of [0, 0.5, 1]) { const all = [...guideShapes(s, u, v, g), ...overlayShapes(s, u, v, t, undefined, g)]; razem++;
+        expect([k, v, u, all.filter(x => x.k === 'line').length <= OVERLAY_MAX_LINES]).toEqual([k, v, u, true]); expect(all.filter(x => x.k === 'poly' && /Arc$/.test(x.id ?? '')).length).toBeLessThanOrEqual(OVERLAY_MAX_ARCS); }
+    }
+    expect(razem).toBeGreaterThanOrEqual(0); /* dziś żadne ćwiczenie nie ma obu naraz (squat/hinge bez elementów nakładki) — pętla pilnuje etapu 2, część syntetyczna wyżej pilnuje już teraz */
   });
   test('element tylko z wskazówką karty: Bench Press (sztanga) — łokieć z boku (bp.move), z góry nic (bp.elbowsMid nie jest na karcie); Close Grip — z góry odwiedzenie ramienia (cgbp.elbows); wskazówka spoza zestawu → brak elementu', () => {
     expect(techniquesOf('Bench Press (sztanga)')).toEqual(['benchElbowLimb']); expect(techniquesOf('Bench Press (hantle)')).toEqual(['benchElbowLimb']);

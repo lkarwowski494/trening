@@ -667,11 +667,11 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Linia i łuk kąta łokcia
     - Zakładając, że karta ćwiczenia z rodziny wyciskania leżąc ma wskazówkę o pełnym zakresie ruchu, a łokieć jest mierzonym stawem rysunku
     - Gdy użytkownik widzi rysunek z boku
-    - Wtedy przez ramię i łokieć biegnie linia przerywana, a w łokciu łuk kąta zgięcia w każdej klatce animacji (rozwarcie łuku = „Kąt na rysunku” ±1°); na rysunku nie ma żadnych liczb ani napisów
+    - Wtedy przez ramię i łokieć biegnie ciągła linia (grubsza od przerywanego śladu toru), a w łokciu łuk kąta zgięcia w każdej klatce animacji (rozwarcie łuku = „Kąt na rysunku” ±1°); na rysunku nie ma żadnych liczb ani napisów
   - Scenariusz: Element tylko z wskazówką na karcie
     - Zakładając, że wskazówka powiązana z elementem (np. o ustawieniu łokci) nie należy do zestawu ćwiczenia
     - Gdy użytkownik widzi rysunek tego ćwiczenia
-    - Wtedy tego elementu nie ma (np. łuk odwiedzenia ramienia w rzucie z góry pojawia się tylko przy ćwiczeniach z tą wskazówką); do 3 linii i 1 łuku na rzut
+    - Wtedy tego elementu nie ma (np. łuk odwiedzenia ramienia w rzucie z góry pojawia się tylko przy ćwiczeniach z tą wskazówką); do 3 linii (łącznie z liniami odniesienia) i 1 łuku na rzut; łuk odwiedzenia liczony w płaszczyźnie rzutu z góry i rysowany tylko, gdy jest widoczny (cięciwa ≥ 4 cm rysunku)
   - Scenariusz: Błąd łamie regułę elementu
     - Zakładając, że użytkownik pokazuje częsty błąd, który łamie regułę z tej samej grupy co element
     - Gdy rysunek przechodzi w pozę błędu

@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 356 | 356 | 0 |
 | TEKST | 1084 | 1084 | 0 |
-| LOGIKA | 1154 | 1154 | 0 |
+| LOGIKA | 1156 | 1156 | 0 |
 | WYMIAR | 171 | 171 | 0 |
 
 ## EKRAN
@@ -1719,7 +1719,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/geom.norm | lib/figures/geom.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/geom.rawPoints | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.posePoints | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts |
-| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +23 |
+| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +22 |
 | figures/geom.toHorizontal | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-pendlay.test.ts |
 | figures/geom.angleAt | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.lerpPose | lib/figures/geom.ts | tests/figures.test.tsx |
@@ -1790,7 +1790,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/cueSets.cueTextGaps | lib/figures/v2/cueSets.ts | tests/figures-v2-cues.test.tsx |
 | figures/v2/cueSets.oneSideNoteApplies | lib/figures/v2/cueSets.ts | tests/figures-v2-pull-up-jedna-strona.test.tsx |
 | figures/v2/draw.plateZs | lib/figures/v2/draw.ts | tests/figury-curl-wspolne-w1-w2.test.ts |
-| figures/v2/draw.proj | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-tor.test.ts, tests/figury-101-squat.test.ts +3 |
+| figures/v2/draw.proj | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-nakladka.test.tsx, tests/figures-v2-tor.test.ts +4 |
 | figures/v2/draw.depthOf | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/draw.capsule2 | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/draw.spineAt | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
@@ -1832,8 +1832,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/figure.phaseNames | lib/figures/v2/figure.ts | tests/figures-v2-cykl-bez-marszu.test.ts, tests/figures-v2-guides.test.tsx, tests/figures-v2-katy-fazy.test.tsx |
 | figures/v2/figure.tempoFor | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx, tests/strona-eksport.test.ts |
 | figures/v2/figure.phasesFor | lib/figures/v2/figure.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-cykl-bez-marszu.test.ts, tests/figures-v2-data.test.tsx +4 |
-| figures/v2/figure.trailFor | lib/figures/v2/figure.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx +2 |
-| figures/v2/figure.guideShapes | lib/figures/v2/figure.ts | tests/figures-v2-guides.test.tsx |
+| figures/v2/figure.trailFor | lib/figures/v2/figure.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx +3 |
+| figures/v2/figure.guideShapes | lib/figures/v2/figure.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx |
 | figures/v2/figure.errorBreaksRule | lib/figures/v2/figure.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/figure.measuredSide | lib/figures/v2/figure.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/figure.overlayShapes | lib/figures/v2/figure.ts | tests/figures-v2-nakladka.test.tsx |
@@ -1869,11 +1869,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/overheadException.overheadShoulderRange | lib/figures/v2/overheadException.ts | tests/figury-101-squat.test.ts |
 | figures/v2/overheadException.trunkLeanDeg | lib/figures/v2/overheadException.ts | tests/figury-101-squat.test.ts |
 | figures/v2/overlay/common.dash | lib/figures/v2/overlay/common.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx +2 |
+| figures/v2/overlay/common.solid | lib/figures/v2/overlay/common.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.techniqueDef | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.techniquesFor | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.limbTriple | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.arcPoints3 | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.techniqueGeom | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
+| figures/v2/overlay.abductionGeom2D | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/overlay.techniqueShapes | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka.test.tsx |
 | figures/v2/palette.mixHex | lib/figures/v2/palette.ts | tests/figures-v2-engine.test.ts, tests/muscle-map.test.tsx |
 | figures/v2/palette.luminance | lib/figures/v2/palette.ts | tests/figures-v2-engine.test.ts |
@@ -1918,7 +1920,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/skeleton.hipPoint | lib/figures/v2/skeleton.ts | tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
 | figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +4 |
 | figures/v2/skeleton.soleY | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +1 |
-| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +23 |
+| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +22 |
 | figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx, tests/figures.test.tsx |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka.test.tsx, tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.techniquesOf | lib/figures/v2/ui.ts | tests/figures-v2-nakladka.test.tsx |
@@ -2030,7 +2032,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +263 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +264 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +29 |
 | i18n.exName | lib/i18n.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +31 |
