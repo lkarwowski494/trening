@@ -6,3 +6,5 @@
 - `wyniki-{A,B,C,D}-calosc.json` — scalone wyniki paczek (części `wyniki-*-czesc*.{md,json}` z cytatami i adresami).
 - `dwa-z-trzech.json` — ćwiczenia z 2 z 3 wymaganych źródeł (trzecie źródło szuka właściciel: `docs/przekazanie/notatki/linia-1-1/briefy/etap2-trzecie-zrodlo-wlasciciel.md`).
 - `STAN-*.md` — stan badaczy i ustalenia o serwisach (adresy wyszukiwarek, pułapki).
+
+- Uzupełnienie 04.11.2026 (koordynator 1.1): wyniki rund popołudniowych 03.11 (`wyniki-{2z3*,etap3,gemini-*,p4a,p4b,p5a,p5b,p6,plyo*,r2a*,r2b,r2c,uz2a,uz2b,uzup-1a,uzup-1b}.*`, `STAN-*.md`, `BRIEF-*.md`, `stan-koncowy-0311.json`) — przeniesione z kontenera, żeby nie zginęły przy jego wymianie; ścieżki lokalne zastąpione (`etap2/`, `~/`). Wyniki z Gemini to propozycje do sprawdzenia przez badacza (zasada z 11.10.2026), nie źródła.

@@ -1,0 +1,144 @@
+{
+  "data": "2026-11-03",
+  "uwaga": "PLIK PRYWATNY — cytaty z ksiazek nie trafiaja do repo; do repo tylko setup/move i identyfikatory zrodel.",
+  "zrodla": {
+    "ks-hpp": {"opis": "Radcliffe & Farentinos, High-Powered Plyometrics, HK 1999, ISBN 0880117842", "szczebel": 3},
+    "ks-k2": {"opis": "NSCA, Essentials of Strength Training and Conditioning 4th ed., rozdz. 18", "szczebel": 3},
+    "ks-nsca-podst": {"opis": "NSCA, Basics of Strength and Conditioning Manual", "szczebel": 3, "uwaga": "ta sama organizacja co ks-k2 — nie liczy sie jako niezalezne"},
+    "usa-hockey": {"opis": "PDF Plyometrics – USA Hockey (runda 1)", "szczebel": "4 warunkowo"}
+  },
+  "cwiczenia": [
+    {
+      "cwiczenie": "Alternate Leg Diagonal Bound",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 29 (odsyła do drill 27 Alternate Leg Bound)", "cytat": "Perform this drill in the same manner as the alternate leg bound, but increase the distance from side to side as well as forward upon landings."},
+        {"id": "usa-hockey", "miejsce": "s. 10", "cytat": "Start in an athletic position with feet together.", "uwaga": "sprzeczność z ks-hpp co do ustawienia stóp — w zdaniu część wspólna"}
+      ],
+      "setup": {"pl": "Stań swobodnie, wyprostowany, ręce luźno.", "en": "Stand tall and relaxed, arms loose."},
+      "move": {"pl": "Odbij się z jednej nogi, wypchnij drugie kolano w przód i w górę i wyląduj na niej, w przód i w bok; od razu odbij się w drugą stronę.", "en": "Push off one leg, drive the other knee forward and up and land on it, forward and out to the side; go straight into the next bound the other way."},
+      "avoid": null
+    },
+    {
+      "cwiczenie": "Bench Jump",
+      "stan": "uproszczenie (wariant sprzętu: ławka zamiast skrzyni; baza Box Jump ustalona: ks-hpp + ks-k2) — do potwierdzenia przez recenzenta",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 3 Box Jump (Single Response)", "cytat": "rapidly extend the hips and knees; quickly and explosively push off the ground, while blocking the arms, into a flexed landing position on the platform."},
+        {"id": "ks-k2", "miejsce": "18.30 Double-Leg Jump to Box, s. 504", "cytat": "Land on both feet in a half-squat position, step down from the box, and repeat."}
+      ],
+      "setup": {"pl": "Stań przodem do ławki, blisko niej, stopy na szerokość bioder lub barków.", "en": "Stand facing the bench, close to it, feet hip- to shoulder-width apart."},
+      "move": {"pl": "Zrób szybki przysiad z zamachem rąk i wskocz obunóż na ławkę; wyląduj na ugiętych nogach, potem zejdź.", "en": "Dip quickly, swing your arms and jump onto the bench with both feet; land with your knees and hips bent, then step down."},
+      "avoid": null
+    },
+    {
+      "cwiczenie": "Box Skip",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 30", "cytat": "Facing the first box from about two steps away, assume an upright stance with one leg slightly behind the other."}
+      ],
+      "setup": {"pl": "Stań przodem do pierwszej skrzyni, w niewielkiej odległości, wyprostowany, jedna noga lekko z tyłu.", "en": "Stand tall facing the first box, a short distance away, one foot slightly behind the other."},
+      "move": {"pl": "Odbij się z tylnej nogi, pomagając sobie rękami i wyciągnięciem kolana w górę; po lądowaniu na skrzyni od razu wybij drugą nogę w przód i w górę.", "en": "Drive off your back leg, using your arms and knee drive; as soon as you land on the box, drive the other leg forward and up."},
+      "avoid": null,
+      "recenzent": "książka: seria skrzyń; rysunek: jeden skok na skrzynię (plyo.mjs:18)"
+    },
+    {
+      "cwiczenie": "Double Leg Butt Kick",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 6", "cytat": "Using a quick countermovement jump, extend the hips for vertical height and, upon full extension, tuck the toes up and pull the heels upward and slightly backward into the buttocks."}
+      ],
+      "setup": {"pl": "Stań prosto, kolana lekko ugięte, klatka do przodu, barki cofnięte.", "en": "Stand tall, knees slightly bent, chest up, shoulders back."},
+      "move": {"pl": "Zrób szybki przysiad i wyskocz w górę; w najwyższym punkcie przyciągnij pięty do pośladków, kolana zostają nisko.", "en": "Dip quickly and jump straight up; at the top pull your heels to your glutes, keeping your knees down."},
+      "avoid": null
+    },
+    {"cwiczenie": "Dumbbell Seated Box Jump", "stan": "brak", "zrodla": [], "setup": null, "move": null, "avoid": null},
+    {"cwiczenie": "Frog Hops", "stan": "brak", "zrodla": [], "setup": null, "move": null, "avoid": null},
+    {"cwiczenie": "Kneeling Jump Squat", "stan": "brak", "zrodla": [], "setup": null, "move": null, "avoid": null},
+    {
+      "cwiczenie": "Lateral Box Jump",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-k2", "miejsce": "18.33, s. 506", "cytat": "Stand to one side of the plyometric box; get into a comfortable, upright stance with feet shoulder-width apart."},
+        {"id": "ks-nsca-podst", "miejsce": "rozdz. 5, ćw. 9 Lateral Box Jump", "uwaga": "ta sama organizacja; różni się zejściem (zeskok na drugą stronę)"},
+        {"id": "usa-hockey", "miejsce": "s. 6", "cytat": "Jump laterally from the ground onto the center of the box."}
+      ],
+      "setup": {"pl": "Stań bokiem do skrzyni, stopy na szerokość bioder lub barków.", "en": "Stand side-on to the box, feet hip- to shoulder-width apart."},
+      "move": {"pl": "Zrób szybki przysiad i wskocz bokiem, obunóż, na skrzynię; wyląduj na ugiętych nogach.", "en": "Dip quickly and jump sideways onto the box with both feet; land with your knees bent."},
+      "avoid": null
+    },
+    {
+      "cwiczenie": "Side Hop-Sprint",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 36", "cytat": "Anticipate the landing on the last repetition; land in a sprint start posture and accelerate forward past a designated finish line."}
+      ],
+      "setup": {"pl": "Stań bokiem przy niskiej przeszkodzie, stopy razem, palce w przód.", "en": "Stand beside a low obstacle, feet together, toes pointing forward."},
+      "move": {"pl": "Przeskakuj obunóż w bok tam i z powrotem jak najszybciej, biodra nad przeszkodą; po ostatnim skoku wyląduj gotowy do startu i ruszaj sprintem w przód.", "en": "Hop sideways back and forth over it as fast as you can, hips centered over it; on the last hop land ready to go and sprint forward."},
+      "avoid": null
+    },
+    {"cwiczenie": "Side Standing Long Jump", "stan": "brak", "zrodla": [], "setup": null, "move": null, "avoid": null, "uwaga": "ks-k2 18.13 Standing Long Jump to skok w przód — nie ten ruch"},
+    {
+      "cwiczenie": "Side to Side Box Shuffle",
+      "stan": "jedno źródło",
+      "nazwa_w_zrodle": "Side-to-Side Push-Off (ks-k2); Box Shuffle Step (ks-nsca-podst); Lateral Bench Squats (usa-hockey)",
+      "zrodla": [
+        {"id": "ks-k2", "miejsce": "18.29, s. 504", "cytat": "Land with the opposite foot on the opposite side of the top of the box; this foot should land just before the ground foot."},
+        {"id": "ks-nsca-podst", "miejsce": "rozdz. 5, ćw. 7 Box Shuffle Step", "uwaga": "ta sama organizacja"},
+        {"id": "usa-hockey", "miejsce": "s. 6 Lateral Bench Squats", "cytat": "Use both legs to jump."}
+      ],
+      "setup": {"pl": "Stań bokiem do niskiej skrzyni, jedna stopa na skrzyni, druga na podłodze.", "en": "Stand side-on to a low box, one foot on top, the other on the floor."},
+      "move": {"pl": "Odbij się stopą ze skrzyni i przeskocz nad nią w bok; wyląduj drugą stopą na skrzyni, a pierwszą na podłodze po drugiej stronie, i od razu wracaj.", "en": "Push off the foot on the box and jump over it sideways; land with the other foot on the box and the first on the floor on the far side, then go straight back."},
+      "avoid": null
+    },
+    {
+      "cwiczenie": "Single Leg Butt Kick",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 38", "cytat": "Lift one leg by pulling the heel upward and only slightly backward to the buttocks."}
+      ],
+      "setup": {"pl": "Stań prosto na jednej nodze, kolano lekko ugięte; piętę drugiej nogi podciągnij do pośladka.", "en": "Stand tall on one leg, knee slightly bent, with the other heel pulled up toward your glutes."},
+      "move": {"pl": "Zrób szybki przysiad i wyskocz w górę z nogi podporowej; w locie przyciągnij jej piętę do pośladka, kolano zostaje nisko. Całą serię zrób jedną nogą, potem zmień.", "en": "Dip quickly and jump straight up off your standing leg; in the air pull that heel to your glutes, knee staying low. Do all reps on one leg, then switch."},
+      "avoid": null
+    },
+    {
+      "cwiczenie": "Single-Leg Hop Progression",
+      "stan": "ustalone",
+      "nazwa_w_zrodle": "Single-Leg Hop (ks-k2)",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 39 (wykonanie jak drill 32)", "cytat": "Completely balance on one leg while maintaining the off leg in a flexed position with the toes up, knee up in front of the body, and the heel up underneath the hip."},
+        {"id": "ks-k2", "miejsce": "18.16, s. 492", "cytat": "Land in the starting position and immediately repeat the hop using the same leg."}
+      ],
+      "setup": {"pl": "Stań na jednej nodze, kolano lekko ugięte, drugą nogę trzymaj zgiętą.", "en": "Stand on one leg, knee slightly bent, with the other leg held bent."},
+      "move": {"pl": "Zrób szybki przysiad i skocz w przód, pomagając sobie rękami; wyląduj na tej samej nodze, uginając kolano i biodro.", "en": "Dip quickly and hop forward, using your arms; land on the same leg, giving at the knee and hip."},
+      "avoid": null
+    },
+    {
+      "cwiczenie": "Single-Leg Stride Jump",
+      "stan": "ustalone (tekst) — ROZBIEŻNOŚĆ Z RYSUNKIEM, nie do aplikacji do czasu zmiany rysunku albo ukrycia",
+      "nazwa_w_zrodle": "Lateral Push-Off (ks-k2, ten sam ruch w miejscu)",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 11", "cytat": "Place the inside foot on top of the bench, and hold arms downward at the sides."},
+        {"id": "ks-k2", "miejsce": "18.28, s. 503", "cytat": "Stand to one side of the plyometric box with one foot on the ground and one foot on the box."}
+      ],
+      "setup": {"pl": "Stań bokiem przy ławce lub skrzyni, wewnętrzna stopa na niej, druga na podłodze, ręce wzdłuż ciała.", "en": "Stand side-on to a bench or box, inside foot on top, the other on the floor, arms at your sides."},
+      "move": {"pl": "Zamachnij rękami w górę i wyskocz jak najwyżej, odbijając się głównie stopą z ławki; wyląduj w tej samej pozycji i od razu powtórz.", "en": "Swing your arms up and jump as high as you can, driving mainly through the foot on the bench; land back in the same position and go again."},
+      "avoid": null,
+      "recenzent": "rysunek plyo.mjs:19/:205 = skok jednonóż NA skrzynię z lądowaniem na tej samej nodze — inny ruch niż w obu książkach"
+    },
+    {
+      "cwiczenie": "Star Jump",
+      "stan": "jedno źródło",
+      "zrodla": [
+        {"id": "ks-hpp", "miejsce": "drill 5 (początek jak drill 4)", "cytat": "The difference is that you extend the limbs outward in all four directions away from the body."}
+      ],
+      "setup": {"pl": "Stań swobodnie, stopy na szerokość barków, ręce lekko ugięte przy ciele.", "en": "Stand relaxed, feet shoulder-width apart, arms slightly bent and close to your body."},
+      "move": {"pl": "Zejdź szybko do półprzysiadu i wyskocz jak najwyżej, rozrzucając ręce i nogi na boki jak gwiazda; przed lądowaniem złóż je i wyląduj na ugiętych nogach.", "en": "Drop quickly into a half squat and jump as high as you can, spreading your arms and legs out like a star; bring them back in and land with your knees bent."},
+      "avoid": null
+    }
+  ],
+  "avoid_kandydaci_otwarte": [
+    {"tekst": "Kolana uciekają do środka przy lądowaniu", "zrodla": ["ks-k2 rozdz. 18 Technique (2.txt l. 35725-35734)", "ks-nsca-podst (ta sama organizacja)"], "powod": "jedna organizacja; ks-k2 łączy z ryzykiem urazu"},
+    {"tekst": "Przetaczanie stopy z pięty na palce przy lądowaniu", "zrodla": ["ks-hpp Foot Placement (hpp.txt l. 943-948)"], "powod": "jedno źródło"},
+    {"tekst": "Pauza między lądowaniami (Lateral Box Jump, Box Shuffle)", "zrodla": ["ks-nsca-podst"], "powod": "jedno źródło"}
+  ]
+}

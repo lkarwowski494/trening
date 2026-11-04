@@ -1,0 +1,28 @@
+{
+ "data": "2026-11-03",
+ "uwagi": {
+  "szczebel": "oba serwisy = szczebel 5 (strony aplikacji treningowych); nazwy firm nigdy w zdaniach PL/EN",
+  "cytaty": "wszystkie cytaty training.fit pobrane narzędziem WebFetch z prośbą o tekst dosłowny (brak powłoki do curl) — recenzent sprawdza brzmienie na stronie",
+  "fitbod.me": "HTTP 403 dla WebFetch (2 próby: https://fitbod.me/exercises/medicine-ball-slam oraz z ukośnikiem) — żadnej strony nie przeczytano; wszystkie pozycje fitbod = brak (niedostępny)",
+  "training.fit": "indeks https://training.fit/exercise/ — 149 ćwiczeń na jednej stronie; dopasowania sprawdzone wyłącznie z tego indeksu"
+ },
+ "wyniki": [
+  {"cwiczenie": "High Cable Curl", "rola": "setup", "serwis": "training.fit", "url": "https://training.fit/exercise/high-cable-curls/", "cytat": "Stand in the center of the cable machine, with your feet about shoulder-width apart.", "nowy_stan": "komplet 3 – praktyka"},
+  {"cwiczenie": "High Cable Curl", "rola": "move", "serwis": "training.fit", "url": "https://training.fit/exercise/high-cable-curls/", "cytat": "Pull the handles towards your head by bending your elbows.", "nowy_stan": "komplet 3 – praktyka"},
+  {"cwiczenie": "High Cable Curl", "rola": "mis", "serwis": "training.fit", "url": "https://training.fit/exercise/high-cable-curls/", "cytat": "Hold the bent position for a moment, then lower the weight slowly and with control back to the starting position.", "nowy_stan": "komplet 3 – praktyka (mis „szarpanie” — wspiera kontrola ruchu, nie zakaz wprost; recenzent oceni)"},
+  {"cwiczenie": "Bent-Arm Barbell Pullover", "rola": "mis", "serwis": "training.fit", "url": "https://training.fit/exercise/pull-over/", "cytat": "Keep your elbows slightly bent during the exercise and don't change the angle too much.", "nowy_stan": "komplet – uproszczenie (strona: hantel; do potwierdzenia przez recenzenta)"},
+  {"cwiczenie": "Decline Dumbbell Fly", "rola": "setup", "serwis": "training.fit", "url": "https://training.fit/exercise/decline-flys/", "cytat": "Hold a dumbbell in each hand and sit on the decline bench. Secure your legs under the pads.", "nowy_stan": "2 z 3 (setup: S + training.fit; M ma cytat tylko dla mis)"},
+  {"cwiczenie": "Decline Dumbbell Fly", "rola": "move", "serwis": "training.fit", "url": "https://training.fit/exercise/decline-flys/", "cytat": "Slowly lower the dumbbells by spreading your arms, stretching your chest in the final position.", "nowy_stan": "2 z 3 (move: training.fit + M nieprzytoczony dla ruchu — recenzent może uzupełnić cytat M → komplet 3)"},
+  {"cwiczenie": "Cable Fly (high to low)", "rola": "setup", "serwis": "training.fit", "url": "https://training.fit/exercise/cable-chest-fly/", "cytat": "The following instructions cover cable chest flys with a high cable pulley.", "nowy_stan": "2 z 3 (setup); move: strona nie mówi wprost o ruchu w dół — nadal 1 z 3"},
+  {"cwiczenie": "Leverage Incline Chest Press", "rola": "setup", "serwis": "training.fit", "url": "https://training.fit/exercise/incline-chest-press/", "cytat": "Sit on the seat cushion and lean back. Your head and back should touch the backrest.", "nowy_stan": "1 z 3 przeczytane (M nadal nieczytane; po przeczytaniu M → 2 z 3)"},
+  {"cwiczenie": "Leverage Incline Chest Press", "rola": "move", "serwis": "training.fit", "url": "https://training.fit/exercise/incline-chest-press/", "cytat": "Next, push the handles forward or upward. Keep your back and head pressed against the backrest.", "nowy_stan": "1 z 3 przeczytane"},
+  {"cwiczenie": "Kettlebell Arnold Press", "rola": "setup", "serwis": "training.fit", "url": "https://training.fit/exercise/arnold-press/", "cytat": "The Arnold Press can be done standing, on a flat or incline bench, or seated on the floor.", "nowy_stan": "bez zmian (siedząc już 3; stojąc — tylko wzmianka, opis dotyczy wersji siedzącej z hantlami)"},
+  {"cwiczenie": "Hip Abduction", "rola": "setup", "serwis": "training.fit", "url": "https://training.fit/exercise/hip-adduction/", "cytat": "", "nowy_stan": "nadal 2 z 3 — adres dotyczy innego ćwiczenia (przywodzenie; słowo abduction nie występuje); hip abduction brak w indeksie training.fit; fitbod 403"},
+  {"cwiczenie": "Medicine Ball Slam", "rola": "setup", "serwis": "fitbod.me", "url": "https://fitbod.me/exercises/medicine-ball-slam", "cytat": "", "nowy_stan": "nadal 2 z 3 — fitbod HTTP 403 (nieprzeczytane); training.fit brak (404, brak w indeksie)"},
+  {"cwiczenie": "Seated Barbell Twist", "rola": "-", "serwis": "training.fit", "url": "https://training.fit/exercise/abdominal-twist/", "cytat": "", "nowy_stan": "nadal 2 z 3 — strona opisuje skręty siedząc na podłodze z hantlem (inna pozycja i opór)"},
+  {"cwiczenie": "Machine Glute Kickback", "rola": "-", "serwis": "training.fit", "url": "https://training.fit/exercise/kickbacks/", "cytat": "", "nowy_stan": "bez zmian — strona to wyprost ramion (triceps)"},
+  {"cwiczenie": "Cable Reverse Fly", "rola": "-", "serwis": "training.fit", "url": "https://training.fit/exercise/reverse-flys/", "cytat": "", "nowy_stan": "nadal 2 z 3 — strona: hantle w opadzie/leżąc; reverse-butterfly: maszyna siedząc (inna pozycja ciała)"},
+  {"cwiczenie": "Cable Seated Crunch", "rola": "-", "serwis": "training.fit", "url": "https://training.fit/exercise/cable-crunch/", "cytat": "", "nowy_stan": "nadal 1 z 3 — strona opisuje wersję w klęku (inna pozycja ciała)"}
+ ],
+ "bez_wyniku": "pozostałe ćwiczenia z etap3-lista.md: brak w indeksie 149 ćwiczeń training.fit; fitbod.me niedostępny (403)"
+}
