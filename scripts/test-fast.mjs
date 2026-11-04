@@ -10,7 +10,9 @@
 // scenariusze Maestro (.maestro/*.yaml) nie mają powiązania importami, więc ich zmiana dodaje tests/maestro-flows.test.tsx.
 import { execSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { testyCzytajace } from './testy-dla-plikow.mjs';
 const args = process.argv.slice(2); const planOnly = args.includes('--plan');
 const odBazy = args.includes('--od-bazy');
 const sh = c => execSync(c, { encoding: 'utf8' }).split('\n').map(s => s.trim()).filter(Boolean);
@@ -30,10 +32,16 @@ if (files.some(f => /^\.maestro\/.+\.ya?ml$/.test(f)) && !files.includes('tests/
 // --findRelatedTests ich nie znajduje. Zmiana słownika (tłumaczeń) dodaje je ręcznie.
 const OD_SLOWNIKA = ['tests/watch-apple-i18n.test.ts', 'tests/widget-i18n.test.ts', 'tests/health-permissions.test.ts', 'tests/i18n-locales.test.ts'];
 if (files.some(f => /^(lib\/locales\/|locales\/|lib\/i18n\.en\.ts$)/.test(f))) for (const t of OD_SLOWNIKA) if (!files.includes(t)) files.push(t);
+// L-100 (ZB-041 G5, 04.11.2026): testy czytające dokumenty i dane przez fs (docs/**, docs/research/**, tests/fixtures/**, lib/cues/**, docs/lokalizacja/**…) nie mają importu,
+// więc --findRelatedTests ich nie znajduje. Każdy zmieniony plik niebędący kodem dokłada testy, których źródło go wymienia (ścieżka, nazwa dokumentu, katalog przeglądany
+// albo budujący ścieżki) — wspólny wybór z verify:docs: scripts/testy-dla-plikow.mjs. Zmiana kodu (.ts/.tsx/.js/.jsx) nadal tylko przez graf importów.
+const czytajace = testyCzytajace([...new Set(changed)].filter(f => !/\.(tsx?|jsx?|mjs|cjs)$/.test(f)), resolve(dirname(fileURLToPath(import.meta.url)), '..'));
+for (const t of czytajace) if (!files.includes(t)) files.push(t);
 const jestBin = join(dirname(createRequire(import.meta.url).resolve('jest/package.json')), 'bin', 'jest.js');
 const command = process.execPath; const jestArgs = [jestBin, '--findRelatedTests', ...files, '--silent', '--reporters=summary'];
 if (planOnly) { console.log(JSON.stringify({ command, args: jestArgs, files, baza: ref })); process.exit(0); }
 if (!files.length) { console.log('test:fast — brak zmienionych plików kodu względem', ref); process.exit(0); }
 console.log(`test:fast — ${files.length} plików względem ${ref}`);
-const r = spawnSync(command, jestArgs, { stdio: 'inherit' });
+// ZB-041 G8: przez jest-ponow (jedno ponowienie plików przerwanych z zewnątrz albo padłych tylko na limicie czasu testu); wybór testów jak w planie
+const r = spawnSync(command, [join(dirname(fileURLToPath(import.meta.url)), 'jest-ponow.mjs'), ...jestArgs.slice(1)], { stdio: 'inherit' });
 process.exit(r.status ?? 1);
