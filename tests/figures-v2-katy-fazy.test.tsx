@@ -1,7 +1,7 @@
 /*
- * Karta ćwiczenia: „Kąt na rysunku” i nazwy faz ruchu dla rodzin delt_raise, shrug, rotator_cuff, forearm, carry (63 ćwiczenia z danych póz; decyzja właściciela 27.10.2026, znalezisko S2).
+ * Karta ćwiczenia: „Kąt na rysunku” i nazwy faz ruchu dla rodzin delt_raise, shrug, rotator_cuff, forearm, carry (64 ćwiczenia z danych póz; decyzja właściciela 27.10.2026, znalezisko S2).
  * Rodziny mają status „planned” (nie zmieniamy go): w tym pliku czasowo „gotowe” i obsługiwane z plików poses/<rodzina>.json przez podmienione `poseDataFor`.
- * Rodzaje (docs/20): logika (wybór stawu z geometrii, próg ruchu, nazwy faz), silnik (rotacja barku), dane (63 ćwiczenia), ekran (linia kąta i licznik faz), dostępność, języki (PL/EN), niezmienniki.
+ * Rodzaje (docs/20): logika (wybór stawu z geometrii, próg ruchu, nazwy faz), silnik (rotacja barku), dane (64 ćwiczenia), ekran (linia kąta i licznik faz), dostępność, języki (PL/EN), niezmienniki.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
@@ -59,9 +59,9 @@ function expectedPick(f: Fam, k: string): { joint: MeasuredJoint; side: Side; ra
 }
 const spec = (k: string) => figureSpec(k)!;
 
-describe('dane: 63 ćwiczenia pięciu rodzin (logika)', () => {
-  test('rodziny mają 30 + 8 + 7 + 11 + 7 ćwiczeń z danymi; każde należy do swojej rodziny i ma figurę z danych (status rodziny w tym pliku „gotowa”)', () => {
-    expect(FAMS.map(f => Object.keys(FILES[f]).length)).toEqual([30, 8, 7, 11, 7]); expect(KEYS.length).toBe(63);
+describe('dane: 64 ćwiczenia pięciu rodzin (logika)', () => {
+  test('rodziny mają 31 + 8 + 7 + 11 + 7 ćwiczeń z danymi; każde należy do swojej rodziny i ma figurę z danych (status rodziny w tym pliku „gotowa”)', () => {
+    expect(FAMS.map(f => Object.keys(FILES[f]).length)).toEqual([31, 8, 7, 11, 7]); expect(KEYS.length).toBe(64);
     for (const [f, k] of KEYS) { expect([k, ALL[k]]).toEqual([k, f]); const s = spec(k); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); }
   });
   test('każda rodzina ma wpis DATA_UI; kandydaci stawów (także w wyjątkach) mają jedną jednostkę, a wyjątki dotyczą istniejących ćwiczeń', () => {
@@ -96,7 +96,7 @@ describe('dane: 63 ćwiczenia pięciu rodzin (logika)', () => {
     const tab: Record<string, Record<string, number>> = {};
     for (const [f, k] of KEYS) { const j = measuredJoint(spec(k)); tab[f] = tab[f] ?? {}; tab[f][j] = (tab[f][j] ?? 0) + 1; }
     expect(tab).toEqual({
-      delt_raise: { shElev: 26, shAbd: 4 }, shrug: { shrug: 7, protract: 1 }, rotator_cuff: { shRot: 5, shAbd: 2 }, forearm: { wristFlex: 8, elbow: 1, forearmRoll: 2 }, carry: { knee: 7 },
+      delt_raise: { shElev: 26, shAbd: 5 }, shrug: { shrug: 7, protract: 1 }, rotator_cuff: { shRot: 5, shAbd: 2 }, forearm: { wristFlex: 8, elbow: 1, forearmRoll: 2 }, carry: { knee: 7 },
     });
   });
   test('ćwiczenie jednoręczne: mierzona jest ręka, która pracuje (największy zakres), nie średnia z ręką nieruchomą', () => {
