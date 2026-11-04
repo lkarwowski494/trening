@@ -4,7 +4,7 @@
 // Zmiany liczone względem punktu rozejścia z ref (domyślnie origin/main) razem z nieśledzonymi i niezatwierdzonymi. H1 (decyzja właściciela 31.10.2026 ~11:35, ZB-028):
 // gdy względem origin/main są zmiany kodu, liczą się zmiany od najbliższego przodka HEAD z zielonym pełnym verify (znacznik „pelne”, scripts/verify-znacznik.mjs) —
 // same dokumenty od tamtej chwili wystarczą; bez takiego przodka — jak dotąd, pełne verify.
-// Uruchamia: check:readme, check:matrix, check:claims, check:decyzje, check:i18n, check:pokrycie (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
+// Uruchamia: check:readme, check:znaczniki, check:matrix, check:claims, check:decyzje, check:i18n, check:pokrycie (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
 // które wymieniają zmieniony dokument (nazwa, ścieżka, katalog) albo przeglądają cały katalog docs. Cel: 1–2 min zamiast 12–15.
 // CI na PR i tak uruchamia pełne testy przed scaleniem.
 // Użycie: npm run verify:docs [-- <ref>]
@@ -61,7 +61,7 @@ if (zm.length === 0) {
   process.exit(0);
 }
 
-const komendy = ['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:decyzje', 'npm run check:i18n', 'npm run check:pokrycie'];
+const komendy = ['npm run check:readme', 'npm run check:znaczniki', 'npm run check:matrix', 'npm run check:claims', 'npm run check:decyzje', 'npm run check:i18n', 'npm run check:pokrycie'];
 if (zm.some(f => f.startsWith('docs/brd/'))) komendy.push('node scripts/kontrola-brd.mjs docs/brd');
 const testy = dokumenty ? testyDlaDokumentow(zm) : [];
 

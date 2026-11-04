@@ -1,6 +1,6 @@
 // check:pochodne (decyzja właściciela 8a, 28.10.2026; lekcje L-040, L-041 i wpis „naprawy M2 partia 1” w docs/40): jedno polecenie, które w haku pre-push łapie
 // klasę błędów „zmiana nie dotarła do pliku pochodnego albo do strażnika czytającego kod jako tekst”. Uruchamia (równolegle, wynik tylko przy błędzie):
-//  - generatory w trybie --check: README, macierz testów, konteksty tłumaczeń, wskazówki, figury v1/v2 (+ schemat), sprzęt, katalog przepływów, rejestr źródeł runtime, licencje, rejestr twierdzeń;
+//  - generatory w trybie --check: znaczniki konfliktu, README, macierz testów, konteksty tłumaczeń, wskazówki, figury v1/v2 (+ schemat), sprzęt, katalog przepływów, rejestr źródeł runtime, licencje, rejestr twierdzeń;
 //  - wektory BRD (kontrola-brd --wektory porównane z tests/wektory/brd.json; skrypt nie ma trybu check);
 //  - testy-pliki pochodne: lib/locales/_source.json, pliki zegarka (watch-fixtures, watch-apple-i18n) i widżetu (widget-i18n);
 //  - szybkie strażniki czytające źródła jako tekst (wzorce interakcji, repo publiczne, limity architektury, przepływy, stuknięcia Maestro, tokeny wyglądu).
@@ -23,6 +23,7 @@ const POCHODNE_JEST = ['tests/watch-fixtures.test.ts', 'tests/watch-apple-i18n.t
 const JEST = ['npx', 'jest', '--maxWorkers=1', '--silent'];
 
 export const KROKI = [
+  { nazwa: 'znaczniki konfliktu scalenia', polecenie: ['node', 'scripts/check-znaczniki-konfliktu.mjs'], jak: 'rozstrzygnij konflikt w wymienionym pliku (usuń wiersze <<<<<<<, =======, >>>>>>>); legalny przykład — wpis z powodem w tests/znaczniki-konfliktu-wyjatki.json.' },
   { nazwa: 'README', polecenie: ['node', 'scripts/readme.mjs', '--check'], jak: 'node scripts/readme.mjs --write, potem git add README.md.' },
   { nazwa: 'macierz testów', polecenie: ['node', 'scripts/test-matrix.mjs', '--check'], jak: 'najpierw git add nowych plików testów (macierz liczy tylko pliki śledzone), potem node scripts/test-matrix.mjs --write i git add docs; brakujące testy dopisz, nie wyłączaj sprawdzenia.' },
   { nazwa: 'konteksty tłumaczeń', polecenie: ['node', 'scripts/i18n-context.mjs', '--check'], jak: 'node scripts/i18n-context.mjs --write, potem git add docs/lokalizacja/konteksty.json.' },
