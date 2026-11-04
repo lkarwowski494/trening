@@ -14,10 +14,11 @@
           "grupa": "pelna_amplituda",
           "cue": "pu.pull",
           "parametry": {
-            "margines_cm": 2
+            "margines_cm": 0
           },
-          "zrodlo": "wskazówka pu.pull („podciągnij się, aż broda znajdzie się nad drążkiem”); źródła w cues.json: ACE, NASM, ExRx",
-          "liczba": "uproszczenie (margines 2 cm: broda = środek głowy minus promień głowy wzdłuż osi głowy)"
+          "zrodlo": "wskazówka pu.pull: ACE #191 i #190 Step 3 („until your chin is level with the bar or your hands”), NASM Pull Up Step 3 („until your chin clears the bar or your chest approaches the bar”) — przeczytane 04.11.2026; ExRx BWPullup i BWUnderhandChinup Execution (cues.json; dziś nie czytane ponownie). Część wspólna: broda co najmniej na wysokości drążka (ACE „level”, NASM „clears”). Chin Up: ACE #190 bezpośrednio + NASM Pull Up — uproszczenie (wariant chwytu, w tym aspekcie ruch się nie różni; recenzja niezależna 04.11.2026)",
+          "liczba": "uproszczenie (margines 0 cm: broda = środek głowy minus promień głowy wzdłuż osi głowy, co najmniej na wysokości drążka — część wspólna ACE i NASM; zmiana z 2 cm decyzją koordynatora 04.11.2026)",
+          "pewnosc": "ustalone (część wspólna: broda co najmniej na wysokości drążka; Pull Up, Chin Up); analogia (pozostałe odmiany)"
         },
         "dol_rece_proste": {
           "typ": "lokiec_u0",
@@ -26,8 +27,9 @@
           "parametry": {
             "max_lokiec_deg": 8
           },
-          "zrodlo": "wskazówka pu.partial („bez wyprostu rąk na dole”; opuść się do pełnego wyprostu rąk); źródła w cues.json: ACE, NASM, ExRx",
-          "liczba": "uproszczenie (łokieć ≤ 8° = ramię prawie proste, jak Dead Hang 7,3°; 0° = prosty; zaostrzone z 25° po recenzji niezależnej fala 25, 01.11.2026 — zwis 14° nie wyglądał na proste ręce)"
+          "zrodlo": "wskazówka pu.partial: ACE #191 i #190 Step 3 („until your arms are fully extended”), NASM Pull Up Step 1 („arms fully extended”), Step 4 i Common Mistakes („Not achieving full range of motion”) — przeczytane 04.11.2026; ExRx BWPullup i BWUnderhandChinup Execution (cues.json; dziś nie czytane ponownie)",
+          "liczba": "uproszczenie (łokieć ≤ 8° = ramię prawie proste, jak Dead Hang 7,3°; 0° = prosty; zaostrzone z 25° po recenzji niezależnej fala 25, 01.11.2026 — zwis 14° nie wyglądał na proste ręce)",
+          "pewnosc": "ustalone (Pull Up, Chin Up); analogia (pozostałe odmiany)"
         },
         "rece_proste_caly_ruch": {
           "typ": "lokiec_caly_ruch",
@@ -40,8 +42,9 @@
           "parametry": {
             "max_lokiec_deg": 25
           },
-          "zrodlo": "wskazówka npu.hang (zwis na prostych rękach) i pu.shoulders (ruch łopatek przy prostych ramionach)",
-          "liczba": "uproszczenie (łokieć ≤ 25° w każdej klatce)"
+          "zrodlo": "Dead Hang: definicja (zwis) + pozycja zwisu NASM Pull Up Step 1 („arms fully extended … hang freely”) i ACE #191 Step 3; Scapular Pull-Up: Catalyst Athletics Scap Pull-Up („Keeping the arms relaxed and straight”, szczebel 4) + szczebel 5: The Prehab Guys Scapular Pull Up (HOW, COMPENSATION), Rehab Hero Scapular Pull Ups — przeczytane 04.11.2026; wskazówki npu.hang i pu.shoulders (cues.json)",
+          "liczba": "uproszczenie (łokieć ≤ 25° w każdej klatce)",
+          "pewnosc": "definicja + pozycja zwisu ustalona (Dead Hang); jedno źródło + praktyka (Scapular Pull-Up)"
         },
         "miednica_nie_buja": {
           "typ": "miednica_poziomo",
@@ -55,8 +58,9 @@
             ],
             "max_cm": 3
           },
-          "zrodlo": "wskazówka pu.noSwing („bez bujania i wymachów nogami”); źródła w cues.json: ACE, NASM",
-          "liczba": "uproszczenie (3 cm przemieszczenia poziomego miednicy w całym ruchu)"
+          "zrodlo": "wskazówka pu.noSwing: ACE #191 i #190 Step 2 („avoid swinging your body during your upward pull”), NASM Pull Up Common Mistakes („Using excessive momentum or kipping (swinging)”) — przeczytane 04.11.2026. Chin Up: ACE #190 bezpośrednio + NASM Pull Up — uproszczenie (wariant chwytu; jak w cues.json „ta sama zasada”)",
+          "liczba": "uproszczenie (3 cm przemieszczenia poziomego miednicy w całym ruchu)",
+          "pewnosc": "ustalone (kierunek: bez bujania; Pull Up, Chin Up); analogia (pozostałe odmiany)"
         },
         "miednica_nie_buja_x": {
           "typ": "miednica_poziomo",
@@ -69,7 +73,8 @@
             "max_cm": 3
           },
           "zrodlo": "jak miednica_nie_buja; ruch boczny jest z definicji ćwiczenia, więc oś z bez limitu",
-          "liczba": "uproszczenie (3 cm)"
+          "liczba": "uproszczenie (3 cm)",
+          "pewnosc": "analogia"
         },
         "nogi_nieruchome": {
           "typ": "kostka_wzgledem_miednicy",
@@ -80,8 +85,9 @@
             "max_cm": 5,
             "zmiana_max_cm": 4
           },
-          "zrodlo": "wskazówka pu.noSwing („bez wymachów nogami”): stopy pod lub za biodrami, nie z przodu",
-          "liczba": "uproszczenie (x kostki − x miednicy w −10…5 cm, zmiana ≤ 4 cm)"
+          "zrodlo": "wskazówka pu.noSwing: ACE #191 i #190 Step 2 (bez bujania ciałem), ACE #190 Step 1 (skrzyżowane nogi stabilizują), NASM Pull Up Common Mistakes (kipping) — przeczytane 04.11.2026. Chin Up: ACE #190 + NASM Pull Up — uproszczenie (wariant chwytu). Położenie stóp pod lub za biodrami — w źródłach brak, uproszczenie rysunku",
+          "liczba": "uproszczenie (x kostki − x miednicy w −10…5 cm, zmiana ≤ 4 cm)",
+          "pewnosc": "ustalone (kierunek: ciało bez bujania i wymachów; Pull Up, Chin Up); analogia (pozostałe odmiany); położenie stóp względem bioder — uproszczenie"
         },
         "tulow_pion": {
           "typ": "pochylenie_tulowia",
@@ -92,8 +98,9 @@
             "min_deg": -12,
             "max_deg": 3
           },
-          "zrodlo": "wskazówka pu.noSwing (odchylanie tułowia to bujanie / kipping, NASM „Common Mistakes”)",
-          "liczba": "uproszczenie (−12°…3° w każdej klatce)"
+          "zrodlo": "wskazówka pu.noSwing: ACE #191 i #190 Step 2 („keep your body aligned vertically to the floor”), ACE #191 Step 1 (głowa w pionie z tułowiem pod dłońmi), NASM Pull Up Step 1 („Allow your body to hang freely”), Step 2 (ruch pionowy) i Common Mistakes (kipping) — przeczytane 04.11.2026; NASM pośrednio (swobodny zwis, bez kippingu). Chin Up: ACE #190 + NASM Pull Up — uproszczenie (wariant chwytu)",
+          "liczba": "uproszczenie (−12°…3° w każdej klatce)",
+          "pewnosc": "ustalone (kierunek: tułów pionowo, bez odchylania i bujania; Pull Up, Chin Up); analogia (pozostałe odmiany)"
         },
         "jedna_reka": {
           "typ": "jedna_reka",
@@ -104,7 +111,8 @@
           },
           "zrodlo": "nazwa ćwiczenia (jednorącz) — konwencja; drążek trzyma jedna dłoń (sprzet: trzyma R albo L), wolna dłoń leży poza osią drążka",
           "liczba": "konwencja (≥ 15 cm od osi drążka)",
-          "wskazowka_liczbowa": "wolna ręka wzdłuż ciała, prosto: chwyt wolnej dłoni = [miednica.x + 2, miednica.y − 13, ∓21] w KAŻDEJ klatce (z przeciwnego znaku niż strona trzymająca)"
+          "wskazowka_liczbowa": "wolna ręka wzdłuż ciała, prosto: chwyt wolnej dłoni = [miednica.x + 2, miednica.y − 13, ∓21] w KAŻDEJ klatce (z przeciwnego znaku niż strona trzymająca)",
+          "pewnosc": "definicja (nazwa ćwiczenia); położenie wolnej ręki — konwencja"
         },
         "dlonie_na_drazku": {
           "typ": "styk_dlonie",
@@ -122,9 +130,23 @@
             "Gorilla Chin/Crunch": {"cue": null, "powod": "zdanie reguły (pu.grip: „nachwytem, trochę szerzej niż barki”) jest nieprawdziwe dla tego ćwiczenia, bo w nazwie jest „Chin” (chwyt podchwytem), a nie nachwyt; zdania chwytu tego ćwiczenia na karcie nie ma — do napisania ze źródłami i tłumaczeniami"}
           },
           "parametry": {},
-          "zrodlo": "wskazówka pu.grip („chwyć drążek … i zawiśnij”); źródła w cues.json: ACE, NASM, ExRx; styk liczony z geometrii (lib/figures/v2/contacts.ts)",
-          "liczba": "uproszczenie (styk = dłoń na osi drążka w granicach tolerancji chwytu walidatora)"
+          "zrodlo": "wskazówka pu.grip: ACE #191 Step 1 („grasp the handles firmly with a full grip position”), NASM Pull Up Step 1 (zwis na drążku, dłonie nieco szerzej niż barki) — przeczytane 04.11.2026; ExRx BWPullup Preparation (cues.json); styk liczony z geometrii (lib/figures/v2/contacts.ts); w pozostałych odmianach chwyt drążka wynika z definicji ćwiczenia",
+          "liczba": "uproszczenie (styk = dłoń na osi drążka w granicach tolerancji chwytu walidatora)",
+          "pewnosc": "ustalone"
         }
+      },
+      "wskazowki_na_reguly": {
+        "pu.pull": [
+          "broda_nad_drazkiem",
+          "dol_rece_proste"
+        ],
+        "pu.noSwing": [
+          "miednica_nie_buja",
+          "nogi_nieruchome"
+        ],
+        "pu.grip": [
+          "dlonie_na_drazku"
+        ]
       },
       "grupy_bledow": {
         "pu.noSwing": "bujanie",
@@ -138,7 +160,6 @@
           "miednica_nie_buja",
           "nogi_nieruchome",
           "tulow_pion",
-          "dlonie_na_drazku",
           "dlonie_na_drazku"
         ],
         "Chin Up": "_scisle",
@@ -827,6 +848,28 @@
           "ciezar_blisko_glowy"
         ],
         "curl.noSwing": [
+          "tulow_nieruchomy"
+        ],
+        "crf.move": [
+          "rear_dlonie_w_bok",
+          "rear_dlonie_w_linii_barkow"
+        ],
+        "cyr.move": [
+          "lokiec_staly",
+          "ramie_unosi_sie"
+        ],
+        "fro.move": [
+          "lokiec_staly",
+          "ramie_unosi_sie"
+        ],
+        "crear1.move": [
+          "lokiec_staly",
+          "rear_dlonie_w_bok"
+        ],
+        "halo.move": [
+          "ciezar_blisko_glowy"
+        ],
+        "halo.torso": [
           "tulow_nieruchomy"
         ]
       },

@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (97)
+## Bez figury — lista otwarta (125)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1053,5 +1053,33 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Arm Circles | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Ankle Circles | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Wrist Circles | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z fali badań W1 (P1, 02.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| One-Arm Lateral Raise (hantel) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell Scaption | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Alternating Deltoid Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Front Plate Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Single Dumbbell Front Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Cable Front Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell Lying One-Arm Rear Lateral Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Upright Row (sztanga) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Upright Row (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Upright Row (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Smith Machine Upright Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell One-Arm Upright Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Smith Machine One-Arm Upright Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Band Upright Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Band Lateral Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Kettlebell Halo | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| One-Arm Cable Rear Lateral Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Cable Reverse Fly | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Cable Y Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| One-Arm Incline Lateral Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Barbell Front Raise to Overhead | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Sled Reverse Flye | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Car Drivers | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Front Incline Dumbbell Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell Incline Shoulder Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Barbell Incline Shoulder Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell Front Raise to Overhead | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Straight Raises on Incline Bench | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 
-Poza tym bez figury: 22 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
+Poza tym bez figury: 21 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
