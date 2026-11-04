@@ -297,8 +297,7 @@
       "ok": [
         "hinge.back",
         "sq.kneesToes",
-        "sq.depth",
-        "sq.down"
+        "sq.depth"
       ],
       "err": [
         "mis.roundBack",
@@ -1380,8 +1379,7 @@
       "b": "general",
       "f": "vpull",
       "ok": [
-        "pu.grip",
-        "npu.hang"
+        "pu.grip"
       ],
       "err": [
         "pu.noSwing"
@@ -2140,11 +2138,11 @@
       "f": "hanging",
       "ok": [
         "hang.slow",
-        "pu.shoulders",
-        "pu.partial"
+        "pu.shoulders"
       ],
       "err": [
-        "hang.noSwing"
+        "hang.noSwing",
+        "pu.partial"
       ]
     },
     "Groiners": {
@@ -4531,6 +4529,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.knees",
         "rdl.depth"
@@ -4632,6 +4631,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.depth"
       ],
@@ -4643,6 +4643,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.depth"
       ],
@@ -5009,6 +5010,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.move",
         "rdl.knees",
         "hinge.back",
         "rdl.depth"
@@ -5481,6 +5483,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.move",
         "rdl.knees",
         "hinge.back",
         "rdl.depth"
