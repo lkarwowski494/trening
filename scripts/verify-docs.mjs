@@ -12,7 +12,6 @@
 //         node scripts/verify-docs.mjs --czy-dokumenty [<ref>]   — kod 0, gdy są zmiany i wszystkie są dokumentami (dla haka pre-push)
 // VERIFY_DOCS_CHANGED (pliki rozdzielone znakiem nowej linii) zastępuje odczyt z gita — do testów.
 import { execFileSync, spawnSync } from 'node:child_process';
-import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
@@ -82,9 +81,9 @@ for (const k of komendy) {
   if (r.status !== 0) { console.error(`verify:docs — błąd w: ${k}`); process.exit(r.status ?? 1); }
 }
 if (testy.length) {
-  const jestBin = join(dirname(createRequire(import.meta.url).resolve('jest/package.json')), 'bin', 'jest.js');
   console.log(`verify:docs: jest — ${testy.length} testów czytających dokumenty`);
-  const r = spawnSync(process.execPath, [jestBin, '--runTestsByPath', ...testy, '--silent', '--reporters=summary'], { cwd: root, stdio: 'inherit' });
+  /* ZB-041 G8 (L-098): przez jest-ponow — jedno ponowienie plików padłych tylko na limicie czasu testu albo przerwanych z zewnątrz */
+  const r = spawnSync(process.execPath, [join(root, 'scripts/jest-ponow.mjs'), '--runTestsByPath', ...testy, '--silent', '--reporters=summary'], { cwd: root, stdio: 'inherit' });
   if (r.status !== 0) { console.error('verify:docs — błąd w testach Jest'); process.exit(r.status ?? 1); }
 }
 console.log(`verify:docs — zielone po ${Math.round((Date.now() - start) / 1000)} s`);

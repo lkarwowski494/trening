@@ -42,5 +42,6 @@ const command = process.execPath; const jestArgs = [jestBin, '--findRelatedTests
 if (planOnly) { console.log(JSON.stringify({ command, args: jestArgs, files, baza: ref })); process.exit(0); }
 if (!files.length) { console.log('test:fast — brak zmienionych plików kodu względem', ref); process.exit(0); }
 console.log(`test:fast — ${files.length} plików względem ${ref}`);
-const r = spawnSync(command, jestArgs, { stdio: 'inherit' });
+// ZB-041 G8: przez jest-ponow (jedno ponowienie plików przerwanych z zewnątrz albo padłych tylko na limicie czasu testu); wybór testów jak w planie
+const r = spawnSync(command, [join(dirname(fileURLToPath(import.meta.url)), 'jest-ponow.mjs'), ...jestArgs.slice(1)], { stdio: 'inherit' });
 process.exit(r.status ?? 1);

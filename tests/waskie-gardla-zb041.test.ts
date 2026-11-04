@@ -165,3 +165,59 @@ describe('G5 / L-100 (04.11.2026): test:fast — testy czytające dokumenty i da
     expect(readFileSync(skrypt, 'utf8')).toContain("from './testy-dla-plikow.mjs'");
   });
 });
+
+/* G8 (04.11.2026, decyzja właściciela ~06:00 PL; L-098): plik, który padł WYŁĄCZNIE przez przekroczenie limitu czasu testu (obciążona maszyna), jest ponawiany raz osobno (--runInBand);
+   asercja, błąd kompilacji, przerwanie innym sygnałem i mieszanka z asercją — bez ponawiania. Sztuczny Jest jak w tests/jest-ponow-29-10-2026.test.ts. */
+describe('G8 (04.11.2026): jest-ponow — jedno ponowienie pliku padłego tylko na limicie czasu testu', () => {
+  const SKRYPT = join(root, 'scripts/jest-ponow.mjs');
+  const FAKE = `const fs=require('fs');const dir=process.env.FAKE_DIR;const n=fs.readdirSync(dir).filter(f=>f.startsWith('call-')).length;
+fs.writeFileSync(dir+'/call-'+n+'.json',JSON.stringify(process.argv.slice(2)));const w=JSON.parse(fs.readFileSync(dir+'/scenariusz.json','utf8'))[n];
+fs.writeFileSync(process.argv.find(a=>a.startsWith('--outputFile=')).slice(13),JSON.stringify(w));process.exit(w.success?0:1);`;
+  const uruchom = (...przebiegi: object[]) => {
+    const d = nowy('zb041-ponow-'); writeFileSync(join(d, 'fake.js'), FAKE); writeFileSync(join(d, 'scenariusz.json'), JSON.stringify(przebiegi));
+    const r = spawnSync(process.execPath, [SKRYPT], { cwd: root, encoding: 'utf8', env: { ...ENV, JEST_PONOW_JEST: join(d, 'fake.js'), FAKE_DIR: d } });
+    const wywolania = require('fs').readdirSync(d).filter((f: string) => f.startsWith('call-')).sort().map((f: string) => JSON.parse(readFileSync(join(d, f), 'utf8')) as string[]);
+    return { kod: r.status, log: r.stderr, wywolania };
+  };
+  const limit = (m = 'thrown: "Exceeded timeout of 5000 ms for a test."') => ({ status: 'failed', failureMessages: [m] });
+  const plik = (name: string, status: string, assertionResults: object[], message = '') => ({ name, status, message, assertionResults });
+  const zielony = (name: string) => plik(name, 'passed', [{ status: 'passed', failureMessages: [] }]);
+  const wynik = (...testResults: { status: string }[]) => ({ success: testResults.every(t => t.status === 'passed'), testResults });
+  const TIMEOUT = (name: string) => plik(name, 'failed', [{ status: 'passed', failureMessages: [] }, limit(), limit()], 'thrown: "Exceeded timeout of 5000 ms for a test."');
+
+  test('plik padły tylko na limicie czasu testu, ponowienie zielone → kod 0; ponowiony tylko ten plik, osobno (--runInBand), w logu powód', () => {
+    const r = uruchom(wynik(zielony('/a.test.ts'), TIMEOUT('/b.test.ts')), wynik(zielony('/b.test.ts')));
+    expect(r.kod).toBe(0); expect(r.wywolania).toHaveLength(2);
+    expect(r.wywolania[1]).toEqual(expect.arrayContaining(['--runInBand', '--runTestsByPath', '/b.test.ts'])); expect(r.wywolania[1]).not.toContain('/a.test.ts');
+    expect(r.log).toMatch(/ponawiam TYLKO je/); expect(r.log).toMatch(/limicie czasu testu/);
+  });
+  test('limit czasu także w haku (beforeAll) jest ponawiany', () => {
+    const r = uruchom(wynik(plik('/h.test.ts', 'failed', [limit('thrown: "Exceeded timeout of 5000 ms for a hook."')])), wynik(zielony('/h.test.ts')));
+    expect(r.kod).toBe(0); expect(r.wywolania).toHaveLength(2);
+  });
+  test('ponowienie znowu na limicie czasu → kod 1 (jedno ponowienie, bez trzeciego)', () => {
+    const r = uruchom(wynik(TIMEOUT('/b.test.ts')), wynik(TIMEOUT('/b.test.ts')));
+    expect(r.kod).toBe(1); expect(r.wywolania).toHaveLength(2);
+  });
+  test('jedna nieudana asercja w pliku obok limitu czasu → bez ponawiania (kod 1)', () => {
+    const r = uruchom(wynik(plik('/b.test.ts', 'failed', [limit(), { status: 'failed', failureMessages: ['Error: expect(received).toBe(expected)'] }])));
+    expect(r.kod).toBe(1); expect(r.wywolania).toHaveLength(1);
+  });
+  test('plik z asercją nieudaną w innym pliku niż limit czasu → bez ponawiania (nie maskujemy prawdziwej porażki)', () => {
+    const r = uruchom(wynik(TIMEOUT('/b.test.ts'), plik('/c.test.ts', 'failed', [{ status: 'failed', failureMessages: ['Error: expect(received).toBe(expected)'] }])));
+    expect(r.kod).toBe(1); expect(r.wywolania).toHaveLength(1);
+  });
+  test('błąd kompilacji (suite failed to run) i nieudany test bez komunikatu o limicie → bez ponawiania', () => {
+    for (const zly of [plik('/k.test.ts', 'failed', [], 'Test suite failed to run\n\n  SyntaxError: Unexpected token'), plik('/n.test.ts', 'failed', [{ status: 'failed', failureMessages: [] }])]) {
+      const r = uruchom(wynik(zly)); expect([zly.name, r.kod, r.wywolania.length]).toEqual([zly.name, 1, 1]);
+    }
+  });
+  test('limit czasu i przerwanie z zewnątrz w jednym przebiegu → oba ponawiane razem, raz', () => {
+    const przerwany = plik('/p.test.ts', 'failed', [], 'Test suite failed to run\n\n  A jest worker process (pid=1) was terminated by another process: signal=SIGTERM, exitCode=null.');
+    const r = uruchom(wynik(TIMEOUT('/b.test.ts'), przerwany), wynik(zielony('/b.test.ts'), zielony('/p.test.ts')));
+    expect(r.kod).toBe(0); expect(r.wywolania[1]).toEqual(expect.arrayContaining(['/b.test.ts', '/p.test.ts']));
+  });
+  test('test:fast i verify:docs uruchamiają Jest przez scripts/jest-ponow.mjs (L-098: dokumenty bez ponowień padały na limicie czasu)', () => {
+    for (const f of ['scripts/test-fast.mjs', 'scripts/verify-docs.mjs']) expect(readFileSync(join(root, f), 'utf8')).toContain('jest-ponow.mjs');
+  });
+});
