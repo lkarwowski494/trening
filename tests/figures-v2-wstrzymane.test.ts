@@ -20,8 +20,14 @@ describe('figury v2 (JM Press, Skull Crusher) — wstrzymanie zdjęte 29.10.2026
       expect([k, !!VARIANTS[k]]).toEqual([k, true]);
     }
   });
-  test('lista wstrzymanych tylko z ćwiczeniami, które mają wariant (bez martwych wpisów)', () => {
-    for (const k of Object.keys(V2_WSTRZYMANE)) expect([k, !!VARIANTS[k]]).toEqual([k, true]);
+  test('lista wstrzymanych tylko z ćwiczeniami, które mają figurę w silniku (wariant albo pozy z danych; bez martwych wpisów)', () => {
+    for (const k of Object.keys(V2_WSTRZYMANE)) expect([k, !!VARIANTS[k] || figureSpec(k) !== null]).toEqual([k, true]);
+  });
+  test('04.11.2026 (olympic r4, warunek koordynatora): Clean Shrug i Snatch Shrug mają pozy w silniku, ale aplikacja ich nie pokazuje (do kart T2); reszta rodziny olympic z rysunkiem, Rack Delivery bez', () => {
+    for (const k of ['Clean Shrug', 'Snatch Shrug']) expect([k, figureSpec(k) !== null, shownFigureSpec(k), k in V2_WSTRZYMANE]).toEqual([k, true, null, true]);
+    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug']);
+    expect([figureSpec('Rack Delivery'), shownFigureSpec('Rack Delivery')]).toEqual([null, null]);
+    expect(shownFigureSpec('Power Clean')?.family).toBe('olympic'); /* bramka 4 otwarta w tym teście (mock wyżej) */
   });
   test('sąsiednie wyciskania wąskim chwytem nadal z rysunkiem', () => {
     expect(shownFigureSpec('Smith Machine Close-Grip Bench Press')).not.toBeNull();
@@ -142,7 +148,7 @@ describe('29.10.2026: 18 figur v2 zdjętych z V2_WSTRZYMANE po recenzjach niezal
     'Deadlift (sztanga)', 'Axle Deadlift', 'Deadlift with Bands', 'Deadlift with Chains', 'Deficit Deadlift', 'Rack Pull', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Cable Deadlift', 'Clean Deadlift', 'Snatch Deadlift',
     'Band Bench Press', 'Chain Press', 'Close Grip Bench Press', 'Zercher Squat', 'Sumo Squat (hantel)'];
   test('18 różnych kluczy; V2_WSTRZYMANE puste', () => {
-    expect(new Set(OSIEMNASCIE).size).toBe(18); expect(Object.keys(V2_WSTRZYMANE)).toEqual([]);
+    expect(new Set(OSIEMNASCIE).size).toBe(18); expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug']); /* 04.11.2026: tylko wzruszenia olympic (do kart T2); 18 figur z tej listy zdjęto 29.10.2026 */
   });
   test.each(OSIEMNASCIE)('%s: shownFigureSpec nie null, hasTechnique true, poza V2_WSTRZYMANE', k => {
     expect(shownFigureSpec(k)).not.toBeNull(); expect(hasTechnique({ lib: true, libKey: k })).toBe(true); expect(k in V2_WSTRZYMANE).toBe(false);
