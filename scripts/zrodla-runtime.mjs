@@ -19,6 +19,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { resolve as resolveFig } from './figures/gen.mjs';
 import { srcLevel, MAX_COUNT_LEVEL } from './cues/gen.mjs';
+import { normalizujPlikV2 } from './skrot-v2-norm.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'data/zrodla/figures.json');
@@ -100,7 +101,8 @@ export const V2_POZA_SKROTEM = {
   'lib/figures/v2/cueSets.ts': 'tekst wskazówek przypisany do ćwiczeń (zestawy) — nie zmienia rysunku; ma własny skrót recenzji zestawów (zestawSkrot)',
   'lib/figures/v2/cue-sets.json': 'dane zestawów wskazówek — nie zmieniają rysunku; własny skrót recenzji zestawów (zestawSkrot)',
 };
-export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([plikRodziny(fam), ...V2_WSPOLNE].map(czytaj).join('\n'));
+/** Skrót rodziny: pliki rodziny i wspólne; families.ts i poseData.ts po normalizacji (bez statusów rodzin, wpisów LOAD i cudzych wpisów DATA_UI — decyzja 1A, 03.11.2026; scripts/skrot-v2-norm.mjs). */
+export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([plikRodziny(fam), ...V2_WSPOLNE].map(p => normalizujPlikV2(p, czytaj(p), fam)).join('\n'));
 /** Rodziny v2 z aktualnym wpisem recenzji ruchu (werdykt „wyswietlana”, skrót równy bieżącemu rigowi/plikowi póz). Tylko one są rysowane w aplikacji (bramka 4, fail-closed): rodzina bez wpisu albo zmieniona po recenzji jest ukryta. */
 export const rodzinyZAktualnaRecenzja = rec => Object.keys(rec.v2 ?? {}).filter(f => rec.v2[f].werdykt === 'wyswietlana' && existsSync(join(root, plikRodziny(f))) && rec.v2[f].sha === rodzinaSkrot(f));
 export const recenzja = () => JSON.parse(readFileSync(REVIEW, 'utf8'));

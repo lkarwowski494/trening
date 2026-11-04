@@ -1,0 +1,44 @@
+# Status wersji iOS w App Store Connect — TYLKO ODCZYT (decyzja koordynatora 03.11.2026, ZB-022 w docs/zobowiazania.md): stan recenzji
+# (np. WAITING_FOR_REVIEW, IN_REVIEW, READY_FOR_DISTRIBUTION) bez udziału właściciela. Skrypt scripts/asc/status-wersji.mjs (tylko GET).
+# Tylko ręcznie. Sekrety jak w asc-kontrola.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (bez nowych). Repozytorium jest publiczne:
+# w logu tylko numer wersji, platforma, stan i daty; klucz tylko w RUNNER_TEMP i usuwany zawsze.
+name: ASC status wersji
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: asc-status-wersji
+  cancel-in-progress: false
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Status wersji (tylko odczyt)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node scripts/asc/status-wersji.mjs | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"

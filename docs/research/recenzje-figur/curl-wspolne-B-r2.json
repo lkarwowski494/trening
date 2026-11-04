@@ -1,0 +1,101 @@
+{
+ "_skroty": "node scripts/zrodla-runtime.mjs --skroty (pole v2) na figury/curl-wspolne @ 61949ba9, git status czysty; wynik bajtowo równy /home/user/stan-curl2/skroty-r2.json (cmp).",
+ "squat": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-03",
+  "kto": "audytor — recenzja niezależna różnicy po poprawce W1b (bramka 4, L-047, L-050), 03.11.2026; figury/curl-wspolne @ 61949ba9",
+  "sha": "7dda7de11e7a",
+  "liczba": 25,
+  "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B r2 (po W1b) 03.11.2026",
+  "autor": "programista curl",
+  "recenzent": "audytor",
+  "uwagi": "03.11.2026, recenzja różnicy partii B r2 po W1b; skrót 575a7c0eaba8 (r1; ostatni wpis w repo 71829b0e0c23) → 7dda7de11e7a, 25 ćw.; rysunek i ślad bez zmian (ślad z info.load, squat.ts:193–194, plik nietknięty; rig nie przechodzi keyframeFrame). Różnica 90a7821c..61949ba9 (18249bd2, e4b5ff5d, 61949ba9): w kodzie aplikacji zmienia się tylko keyframeFrame (contract.ts:421–423) — warunek dwaCiezary = (hantel bez pionowo) albo (wyciąg z dwa: true), działający tylko bez trzyma i bez sztangi, wywoływany tylko dla wariantów z danymi póz (figure.ts:73); pliki rigów bez zmian; reszta — testy i pliki generowane. Arkusze różnicy r2 (8 PNG) bajtowo równe arkuszom z 90a7821c (cmp). Zmienia się tylko skrót (V2_WSPOLNE). Pełny zapis: /home/user/stan-curl2/recenzja-ruchu-B-r2.md.",
+  "slad": "roznica/Back-Squat-front.png i Back-Squat-side.png (r2, /home/user/arkusze-curl/arkusze-wspolne-r2) obejrzane w pełnej rozdzielczości, 21 kadrów co 0,05: przód — ślad pionowy w osi na środku gryfu (jeden gryf — oś poprawna); bok — ślad pionowy nad śródstopiem, gryf na barkach, odstęp 1,7 cm stały. Bajtowo równe arkuszom z 90a7821c."
+ },
+ "bench_press": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-03",
+  "kto": "audytor — recenzja niezależna różnicy po poprawce W1b (bramka 4, L-047, L-050), 03.11.2026; figury/curl-wspolne @ 61949ba9",
+  "sha": "514477abea1d",
+  "liczba": 30,
+  "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B r2 (po W1b) 03.11.2026",
+  "autor": "programista curl",
+  "recenzent": "audytor",
+  "uwagi": "03.11.2026, recenzja różnicy partii B r2 po W1b; skrót 09bcea23ef4f (r1; ostatni wpis w repo 71527e934cce) → 514477abea1d, 30 ćw.; rysunek i ślad bez zmian (benchPress.ts:151 nietknięty). Różnica 90a7821c..61949ba9 (18249bd2, e4b5ff5d, 61949ba9): w kodzie aplikacji zmienia się tylko keyframeFrame (contract.ts:421–423) — warunek dwaCiezary = (hantel bez pionowo) albo (wyciąg z dwa: true), działający tylko bez trzyma i bez sztangi, wywoływany tylko dla wariantów z danymi póz (figure.ts:73); pliki rigów bez zmian; reszta — testy i pliki generowane. Arkusze różnicy r2 (8 PNG) bajtowo równe arkuszom z 90a7821c (cmp). Zmienia się tylko skrót (V2_WSPOLNE). Pełny zapis: /home/user/stan-curl2/recenzja-ruchu-B-r2.md.",
+  "slad": "roznica/Bench-Press-sztanga-side.png i -top.png (r2) obejrzane w pełnej rozdzielczości, 21 kadrów: bok — ukośny tor gryfu od nad barkami do dolnej części klatki, ślad na gryfie; z góry — ślad w osi na środku gryfu. Bajtowo równe arkuszom z 90a7821c."
+ },
+ "hinge": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-03",
+  "kto": "audytor — recenzja niezależna różnicy po poprawce W1b (bramka 4, L-047, L-050), 03.11.2026; figury/curl-wspolne @ 61949ba9",
+  "sha": "3083acdf1a01",
+  "liczba": 32,
+  "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B r2 (po W1b) 03.11.2026",
+  "autor": "programista curl",
+  "recenzent": "audytor",
+  "uwagi": "03.11.2026, recenzja różnicy partii B r2 po W1b; skrót 27c38a941476 (r1; ostatni wpis w repo efcef5e51801) → 3083acdf1a01, 32 ćw.; rysunek i ślad bez zmian (hinge.ts:218 nietknięty). Różnica 90a7821c..61949ba9 (18249bd2, e4b5ff5d, 61949ba9): w kodzie aplikacji zmienia się tylko keyframeFrame (contract.ts:421–423) — warunek dwaCiezary = (hantel bez pionowo) albo (wyciąg z dwa: true), działający tylko bez trzyma i bez sztangi, wywoływany tylko dla wariantów z danymi póz (figure.ts:73); pliki rigów bez zmian; reszta — testy i pliki generowane. Arkusze różnicy r2 (8 PNG) bajtowo równe arkuszom z 90a7821c (cmp). Zmienia się tylko skrót (V2_WSPOLNE). Pełny zapis: /home/user/stan-curl2/recenzja-ruchu-B-r2.md.",
+  "slad": "roznica/Deadlift-sztanga-side.png i -front.png (r2) obejrzane w pełnej rozdzielczości, 21 kadrów: bok — tor gryfu prawie pionowy przy nogach (odstęp 0,2–3,0 cm, bez przenikania), przód — ślad w osi na środku gryfu. Bajtowo równe arkuszom z 90a7821c."
+ },
+ "pull_up": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-03",
+  "kto": "audytor — recenzja niezależna różnicy po poprawce W1b (bramka 4, L-047, L-050), 03.11.2026; figury/curl-wspolne @ 61949ba9",
+  "sha": "874f6d310756",
+  "liczba": 13,
+  "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B r2 (po W1b) 03.11.2026",
+  "autor": "programista curl",
+  "recenzent": "audytor",
+  "uwagi": "03.11.2026, recenzja różnicy partii B r2 po W1b; skrót 2a9396984f85 (r1; ostatni wpis w repo 7f1633589728) → 874f6d310756, 13 ćw.; 13 przypisanych (11 rysowanych, Muscle Up i Rope Climb bez danych póz); sprzęt 11 ćw. = sztanga/slupek/podloga — warunek W1/W1b (hantel/wyciag/dzwignia bez sztangi) niespełniony, ślad = miednica jak dotąd (contract.ts:420). Różnica 90a7821c..61949ba9 (18249bd2, e4b5ff5d, 61949ba9): w kodzie aplikacji zmienia się tylko keyframeFrame (contract.ts:421–423) — warunek dwaCiezary = (hantel bez pionowo) albo (wyciąg z dwa: true), działający tylko bez trzyma i bez sztangi, wywoływany tylko dla wariantów z danymi póz (figure.ts:73); pliki rigów bez zmian; reszta — testy i pliki generowane. Arkusze różnicy r2 (8 PNG) bajtowo równe arkuszom z 90a7821c (cmp). Zmienia się tylko skrót (V2_WSPOLNE). Pełny zapis: /home/user/stan-curl2/recenzja-ruchu-B-r2.md.",
+  "slad": "roznica/Pull-Up-front.png i Pull-Up-side.png (r2) obejrzane w pełnej rozdzielczości, 21 kadrów: ślad pionowy na miednicy w obu widokach, bez bujania. Bajtowo równe arkuszom z 90a7821c."
+ },
+ "curl": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-03",
+  "kto": "audytor — recenzja niezależna różnicy po poprawce W1b (bramka 4, L-047, L-050), 03.11.2026; figury/curl-wspolne @ 61949ba9",
+  "sha": "a350009031ac",
+  "liczba": 36,
+  "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B r2 03.11.2026; 34 wyswietlana (12 po poprawce W1b, 22 bez zmian), 0 poprawka, 0 wstrzymana",
+  "autor": "programista curl",
+  "recenzent": "audytor",
+  "uwagi": "03.11.2026, recenzja różnicy po W1b (r1: b75fd7505062, werdykt ukryta → a350009031ac). W1b naprawione: dla dwóch osobnych ciężarów ślad = chwyt R (contract.ts:423). 12 ćw. (Biceps Curl (hantle), Hammer Curl, Standing Dumbbell Reverse Curl, Standing Inner-Biceps Curl, Incline Curl (hantle), Incline Hammer Curl, Lying Supine Dumbbell Curl, Preacher Curl, Preacher Hammer Dumbbell Curl, Spider Curl, Cable Curl (dwie linki), High Cable Curl): pomiar frameAt 41 próbek — ślad 0,00 cm od chwytu R w każdej klatce, |z| ≥ 22 cm (było 0 — oś ciała), rozrzut promienia ślad–łokieć 0,00 cm (r = 33,0 cm), łuk w boku 14,3–22,7 cm, w przodzie High Cable Curl 14,0 cm, ≤ 1 zawrócenie. Warunek dwaCiezary obejmuje dokładnie te 12 (klasyfikacja sprzętu curl.json); pozostałe 22 — różnica śladu względem reguły W1 0,00 cm w każdej próbce (sztanga: info.load, trzyma: chwyt tej ręki, jeden uchwyt: środek) — bez zmian, werdykt z r1 obowiązuje. H1, W2, wyjątek mis.jerk (Seated CG) — jak w r1. Testy figures-v2-tor + figury-curl-wspolne-w1-w2: 233/233 zielone na 61949ba9. NISKIE (backlog, nie blokuje): warunek miejsca w figures-v2-tor dla ćwiczeń z trzyma dopuszcza środek między dłońmi (cofnięcie do osi ciała w Machine Biceps Curl przeszłoby oba warunki: rozrzut 0,6 cm); 9 ćw. ze sztangą/EZ poza warunkiem miejsca i promienia. N5 (zestawy ogólne bez recenzji, fail-closed) — bez zmian, backlog. Pełny zapis: /home/user/stan-curl2/recenzja-ruchu-B-r2.md. Liczba 36 = ćwiczenia przypisane do rodziny przez assignAll() (jak w tests/figury-recenzja.test.tsx i we wpisie pull_up: 13 przypisanych, 11 rysowanych): 34 rysowane z danych póz + Zottman Curl i Zottman Preacher Curl bez rysunku (W8, wyjątek z decyzją właściciela 03.11.2026; brak w curl.json, figureSpec i shownFigureSpec = null, brak figury v1 — karta bez rysunku w aplikacji, eksport strony ich nie rysuje, scripts/strona/eksport.mjs:132 używa tej samej reguły co shownFigureSpec).",
+  "slad": "Arkusze arkusz-slad.mjs r2 (/home/user/arkusze-curl/arkusze-wspolne-r2/curl, 12 ćw. × przód i bok, 21 kadrów co 0,05): wszystkie 12 widoków z przodu obejrzane w pełnej rozdzielczości — ślad (linia przerywana z grotem) na dłoni/hantlu prawej ręki w każdym kadrze, nie w osi ciała; High Cable Curl — łuk przy dłoni od wysokości barku ku głowie (było: strzałka na twarzy); Spider Curl i Lying Supine — ślad przy dłoni po stronie R. Bok: Biceps-Curl-hantle-side obejrzany (łuk wokół łokcia na hantlu); pozostałe 11 widoków z boku bajtowo równe arkuszom r1 (cmp), ocenionym wtedy liczbowo i na Hammer-Curl-side. 22 ćw. bez zmian — arkusze r1 (/home/user/arkusze-curl/arkusze-wspolne/curl) obowiązują."
+ },
+ "v1": {
+  "_opis": "Wpisy sekcji v1 do przepisania 1:1 (zastępują istniejące): figury v1 rodziny curl przechodzą na „zastapiona”, bo po podłączeniu curl (families.ts:45 ready) i wpisie v2 shownFigureSpec zwraca figurę v2 (tests/figury-recenzja.test.tsx:55 wymaga wtedy „zastapiona”). Skróty v1 bez zmian (bieżące, skroty-r2.json v1).",
+  "Biceps Curl (hantle)": {
+   "rodzina": "curl",
+   "werdykt": "zastapiona",
+   "data": "2026-11-03",
+   "kto": "nie recenzowana ponownie jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny curl (recenzja rodziny w sekcji v2, partia B r2 03.11.2026; audytor); poprzednio wyswietlana (06-tresci, 27.10.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "7e67ed94d927"
+  },
+  "Barbell Curl": {
+   "rodzina": "curl",
+   "werdykt": "zastapiona",
+   "data": "2026-11-03",
+   "kto": "nie recenzowana ponownie jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny curl (recenzja rodziny w sekcji v2, partia B r2 03.11.2026; audytor); poprzednio wyswietlana (06-tresci, 27.10.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "121b0a0fed00"
+  },
+  "EZ Bar Curl": {
+   "rodzina": "curl",
+   "werdykt": "zastapiona",
+   "data": "2026-11-03",
+   "kto": "nie recenzowana ponownie jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny curl (recenzja rodziny w sekcji v2, partia B r2 03.11.2026; audytor); poprzednio wyswietlana (06-tresci, 27.10.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "c4fc06d30004"
+  },
+  "Hammer Curl": {
+   "rodzina": "curl",
+   "werdykt": "zastapiona",
+   "data": "2026-11-03",
+   "kto": "nie recenzowana ponownie jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny curl (recenzja rodziny w sekcji v2, partia B r2 03.11.2026; audytor); poprzednio wyswietlana (06-tresci, 27.10.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "74d34f0d12dc"
+  },
+  "Cable Curl": {
+   "rodzina": "curl",
+   "werdykt": "zastapiona",
+   "data": "2026-11-03",
+   "kto": "nie recenzowana ponownie jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny curl (recenzja rodziny w sekcji v2, partia B r2 03.11.2026; audytor); poprzednio wyswietlana (06-tresci, 27.10.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "3e3abd12ab7c"
+  }
+ }
+}

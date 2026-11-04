@@ -101,11 +101,14 @@ describe('P1 mobilność: zdania', () => {
     expect(P1.pominiete_zdania.length).toBe(48);
   });
 
-  test('zdania nowe czekają na przekład w zestawie zestaw-przekladu-2026-11-02-p1-wskazowki.json (rodzaj „nowy”) i nie mają tekstu w innych językach', () => {
-    const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-02-p1-wskazowki.json').klucze as { rodzaj: string; id: string; pl: string; en: string }[];
-    expect(z.map(k => k.id).sort()).toEqual([...idyP1Nowe()].sort());
-    for (const k of z) expect([k.id, k.rodzaj, k.pl, k.en]).toEqual([k.id, 'nowy', pl[k.id], en[k.id]]);
-    for (const l of ['de', 'fr', 'ja']) { const d = json(`lib/cues/text/${l}.json`); for (const k of z) expect([l, k.id, d[k.id]]).toEqual([l, k.id, undefined]); }
+  test('zdania nowe przełożone na 33 języki (02.11.2026 → przekład P1, 03.11.2026): zestaw oczekujących pusty, każdy język ma wszystkie 76 zdań (nakładki es-419/pt-BR na bazie)', () => {
+    const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-02-p1-wskazowki.json').klucze as unknown[];
+    expect(z).toEqual([]);
+    for (const l of ['bg', 'cs', 'da', 'de', 'el', 'es', 'es-419', 'et', 'fi', 'fr', 'hr', 'hu', 'id', 'it', 'ja', 'ko', 'lt', 'lv', 'ms', 'nb', 'nl', 'pt', 'pt-BR', 'ro', 'ru', 'sk', 'sl', 'sr', 'sv', 'tr', 'uk', 'vi', 'zh-Hant']) {
+      const baza = l === 'es-419' ? 'es' : l === 'pt-BR' ? 'pt' : null; /* nakładka ma tylko teksty różne od bazy */
+      const d = { ...(baza ? json(`lib/cues/text/${baza}.json`) : {}), ...json(`lib/cues/text/${l}.json`) } as Record<string, string>;
+      for (const c of idyP1Nowe()) expect([l, c, typeof d[c], (d[c] ?? '').trim().length > 0]).toEqual([l, c, 'string', true]);
+    }
   });
 
   test('teksty nowych zdań: bez liczb (czas, powtórzenia), bez twierdzeń o bólu i zdrowiu, bez nazw źródeł — liczby i zdrowie wymagają osobnych źródeł', () => {
@@ -119,6 +122,5 @@ describe('P1 mobilność: zdania', () => {
 
 /** Zdania dodane w P1: id z fixture, których nie było przed partią (przetłumaczone zdania ogólne `smr.*`, `st.*`, `dyn.*` istnieją w 35 słownikach). */
 function idyP1Nowe(): Set<string> {
-  const de = json('lib/cues/text/de.json') as Record<string, string>;
-  return new Set(P1.zdania.filter(c => !(c in de)));
+  return new Set<string>(P1.zdania);
 }

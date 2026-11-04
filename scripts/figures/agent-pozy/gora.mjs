@@ -110,29 +110,26 @@ export function naSiedzisku(top = 43, mx = 12, { zr = 20 } = {}) {
 }
 
 /** Modlitewnik: ustawienie osoby siedzącej przodem do podpórki. Zwraca { sprzet (wpis modlitewnik), m (miednica), p (pochylenie), nogi, S (bark 2D), E (łokieć 2D na podpórce) i kąty f1 ramienia }.
- * Miednica na siedzisku, klatka dotyka górnego końca podpórki (odstęp osi tułowia od podpórki ≈ 8 cm; kontakt tolerancja 2 cm), łokcie leżą na powierzchni. Liczby z modelu (EQUIP.preacher*, BODY). */
-export function modlitewnik({ top = 95, kat = 60, dl = 28, seatY = 48, odstep = 8, stawy = 8.5, kolanoDx = 41.5, kolanoMin = 8.5 } = {}) {
+ * Miednica na siedzisku, tułów pochylony o `przechyl`; ramię leży na podpórce (03.11.2026, recenzja W5): oś ramienia równoległa do powierzchni i oddalona o `stawy` (≈ promień ramienia), więc
+ * bark jest nad przedłużeniem powierzchni za jej górnym końcem, a ramię przechodzi przez górny koniec i leży na powierzchni aż do łokcia. Podpórka (kąt `kat`, górny koniec `top`) jest
+ * wyliczona z położenia barku; odstęp osi tułowia od podpórki = `odstep` (≈ 8 cm; kontakt tolerancja 2 cm). Liczby z modelu (EQUIP.preacher*, BODY). */
+export function modlitewnik({ kat = 50, przechyl = 20, dl = 28, seatY = 48, odstep = 8, stawy = 4.5, kolanoDx = 41.5, kolanoMin = 8.5 } = {}) {
   const E = v2(); const q = E.EQUIP; const th = kat * R; const x = 0; const b = BODY();
-  const pr = { k: 'preacher', top: [x, top], bottom: [x + Math.cos(th) * dl, top - Math.sin(th) * dl], seat: [x - q.preacherSeatDx, seatY] };
-  const pp = E.preacherPolys(pr); const py = seatY + 9.5 + 0.3; const dpad = (pt) => E.sdPoly(pt, pp.pad);
-  const odl = (px, p) => { const S = [px + b.trunk * Math.sin(p * R), py + b.trunk * Math.cos(p * R)]; let m = Infinity; for (let i = 0; i <= 24; i++) { const t = i / 24; m = Math.min(m, dpad([px + (S[0] - px) * t, py + (S[1] - py) * t])); } return m; };
   const dx = Math.cos(th), dy = -Math.sin(th); let n = [-dy, dx]; if (n[1] < 0) n = [-n[0], -n[1]];
-  const pt = (t) => [x + dx * t + n[0] * stawy, top + dy * t + n[1] * stawy];
-  const lokiec = (S) => { let lo = -5, hi = dl + 30; for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; const e = pt(mid); if (Math.hypot(e[0] - S[0], e[1] - S[1]) < b.uarm) lo = mid; else hi = mid; } return pt((lo + hi) / 2); };
-  let wyb = null;
-  for (let p = 14; p <= 50 && !wyb; p += 1) {
-    let px = -80; while (odl(px, p) > odstep && px < 40) px += 0.25; const S = [px + b.trunk * Math.sin(p * R), py + b.trunk * Math.cos(p * R)]; const Ee = lokiec(S);
-    let arm = Infinity; for (let i = 0; i <= 17; i++) { const t = i / 20; arm = Math.min(arm, dpad([S[0] + (Ee[0] - S[0]) * t, S[1] + (Ee[1] - S[1]) * t])); }
-    const ank = [px + kolanoDx, b.ankleH, b.hipHalf]; const k = E.ik2([px, py, b.hipHalf], [ank[0], ank[1], 18], b.thigh, b.shank, [1, 0.3, 0.1]).mid; const kn = dpad([k[0], k[1]]);
-    if (process.env.DBG) console.log(p, px, 'arm', arm.toFixed(1), 'knee', kn.toFixed(1), 'S', S.map(x=>x.toFixed(1)).join(','), 'E', Ee.map(x=>x.toFixed(1)).join(','));
-    if (arm >= 2.0 && kn >= kolanoMin) wyb = { p, px, S, Ee };
-  }
-  if (!wyb) throw new Error('modlitewnik: brak ułożenia tułowia');
-  const { p, px, S, Ee } = wyb; const f1 = Math.atan2(Ee[0] - S[0], -(Ee[1] - S[1])) / R;
+  const py = seatY + 9.5 + 0.3;
+  const bokOs = (px) => [px + b.trunk * Math.sin(przechyl * R), py + b.trunk * Math.cos(przechyl * R)];
+  const budujPod = (px) => { const S = bokOs(px); const L0 = [S[0] - n[0] * stawy, S[1] - n[1] * stawy]; const ts = L0[0] / dx; const top = L0[1] - dy * ts;
+    const pr = { k: 'preacher', top: [x, top], bottom: [x + dx * dl, top + dy * dl], seat: [x - q.preacherSeatDx, seatY] }; return { S, ts, top, pr, pp: E.preacherPolys(pr) }; };
+  let px = -60; let W = budujPod(px);
+  const odl = (px, W) => { let mn = Infinity; for (let i = 0; i <= 24; i++) { const t = i / 24; mn = Math.min(mn, E.sdPoly([px + (W.S[0] - px) * t, py + (W.S[1] - py) * t], W.pp.pad)); } return mn; };
+  while (odl(px, W) > odstep && px < 40) { px += 0.05; W = budujPod(px); }
+  const { S, top, pp } = W; const dpad = (pt) => E.sdPoly(pt, pp.pad);
+  const ank = [px + kolanoDx, b.ankleH, b.hipHalf]; const k = E.ik2([px, py, b.hipHalf], [ank[0], ank[1], 18], b.thigh, b.shank, [1, 0.3, 0.1]).mid;
+  if (dpad([k[0], k[1]]) < kolanoMin) throw new Error('modlitewnik: kolano w podpórce');
+  const Ee = [S[0] + dx * b.uarm, S[1] + dy * b.uarm]; const f1 = Math.atan2(dx, -dy) / R;
   const m = [px, py]; const nogi = nogiSiedz(m, { zr: 18, kolanoDx });
-  return { sprzet: { rodzaj: 'modlitewnik', x, top, kat, dlugosc: dl, y: seatY }, m, p, nogi, S, E: Ee, f1, kierPodpory: Math.atan2(dx, -dy) / R };
+  return { sprzet: { rodzaj: 'modlitewnik', x, top: r1(top), kat, dlugosc: dl, y: seatY }, m, p: przechyl, nogi, S, E: Ee, f1, kierPodpory: kat };
 }
-
 
 /** Ręka z parametrów: o.f1 / o.f2 = [początek, koniec] kąta ramienia i przedramienia (do przodu od pionu), o.a1 odchylenie ramienia na zewnątrz, o.zr = |z| chwytu (liczba albo [początek, koniec]),
  *  o.obrot = [początek, koniec] obrotu przedramienia (+ supinacja) albo lista wartości w klatkach U5; o.zle = [początek, koniec] kąta, o który błąd obraca ramię i przedramię do przodu (rytm u). */

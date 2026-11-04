@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 4, do zrobienia: 39); ćwiczeń z gotową figurą: **98** (13,8%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 5, do zrobienia: 38); ćwiczeń z gotową figurą: **132** (18,6%).
 
 ## Rodziny
 
@@ -27,7 +27,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `kb_ballistic` | do zrobienia | 17 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
 | `olympic` | do zrobienia | 25 | side | 6 | Podrzut, rwanie i ich odmiany |
 | `back_extension` | do zrobienia | 4 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
-| `curl` | do zrobienia | 36 | side, front | 4 | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
+| `curl` | gotowa | 36 | side, front | — | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
 | `triceps` | do zrobienia | 32 | side | 4 | Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył) |
 | `delt_raise` | do zrobienia | 38 | front, side | 4 | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
 | `chest_fly` | do zrobienia | 20 | top, side | 3 | Rozpiętki, pec deck, przenoszenie za głowę |
@@ -53,11 +53,12 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 39 rodzin, 609 ćwiczeń, ok. **123 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 38 rodzin, 573 ćwiczeń, ok. **119 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
+- `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 
 ## Ćwiczenia według rodzin
 
@@ -133,7 +134,7 @@ Barbell Snatch; Block Clean; Block Power Clean; Block Power Snatch; Block Snatch
 
 Back Extension; Lower Back Curl; Reverse Hyperextension; Weighted Ball Hyperextension
 
-### curl (36) — do zrobienia
+### curl (36) — gotowa
 
 Barbell Curl; Barbell Preacher Curl; Bayesian Curl; Biceps Curl (hantle); Cable Curl; Cable Curl (dwie linki); Cable Preacher Curl; Concentration Curl (hantle); Cross Body Hammer Curl; Drag Curl; EZ Bar Curl; Hammer Curl; Hammer Curl (linki); High Cable Curl; Incline Curl (hantle); Incline Hammer Curl; Lying Cable Curl; Lying Close-Grip Bar Curl On High Pulley; Lying Supine Dumbbell Curl; Machine Biceps Curl; One Arm Dumbbell Preacher Curl; Preacher Curl; Preacher Curl (EZ); Preacher Hammer Dumbbell Curl; Reverse Cable Curl; Reverse Curl; Reverse EZ-Bar Preacher Curl; Seated Close-Grip Concentration Barbell Curl; Spider Curl; Spider Curl (sztanga); Standing Concentration Curl; Standing Dumbbell Reverse Curl; Standing Inner-Biceps Curl; Standing One-Arm Cable Curl; Zottman Curl; Zottman Preacher Curl
 

@@ -68,7 +68,8 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     const out = buildFigures(full, rec);
     console.log(JSON.stringify({ v2: out.v2, deadlift: 'Deadlift (sztanga)' in out.exercises, fam: rodzinyZAktualnaRecenzja(rec) }));`], { encoding: 'utf8' }));
   test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up'] });
+    /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl'] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";

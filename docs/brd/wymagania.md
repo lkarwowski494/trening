@@ -470,6 +470,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Pendlay Row, a rysunek i karta mają aktualną recenzję niezależną
     - Gdy rysunek odtwarza ruch
     - Wtedy sztanga startuje z podłogi w każdym powtórzeniu (dolna krawędź talerza przy podłodze, ±0,5 j.), tułów jest prawie równolegle do podłogi (≤ 15° od poziomu, wyraźnie niżej niż w wiosłowaniu sztangą w opadzie) i nie unosi się w czasie ruchu (zmiana ≤ 5°), kolana są lekko ugięte, stopy nie ślizgają się (≤ 2 j.), a sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha; karta mówi o sztandze leżącej na podłodze, dynamicznym przyciągnięciu, starcie od nieruchomej sztangi i błędzie unoszenia tułowia (bez liczby kąta)
+  - Scenariusz: Hantel w chwycie młotkowym i ślad toru w dłoni (poprawki wspólne figur v2 po recenzji rodziny curl, 03.11.2026; test `tests/figury-curl-wspolne-w1-w2.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że ćwiczenie z hantlami (np. Hammer Curl) albo ze sztangą łamaną ma rysunek v2 z aktualną recenzją niezależną
+    - Gdy rysunek odtwarza ruch
+    - Wtedy oś hantla wynika z obrotu przedramienia (przy chwycie neutralnym leży w płaszczyźnie przód–tył i jest prostopadła do przedramienia — z boku widać poprzeczkę z dwiema główkami, z przodu hantel wzdłuż osi bez poprzeczki w poprzek ciała), ślad toru ciężaru trzymanego w dłoni leży w chwycie (przy dwóch rękach w środku między chwytami, nie w miednicy), a talerze gryfu łamanego stoją na końcach gryfu
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
@@ -740,6 +744,20 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wybrał „W słuchawkach” i podłączył słuchawki
     - Gdy zaczyna się przerwa po odhaczeniu serii
     - Wtedy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia
+
+### BR-GLS-002: Zapowiedzi głosowe używają zainstalowanego głosu o najwyższej jakości; wskazówka, jak pobrać lepszy
+- Przepływ: PR-02
+- Dowód potrzeby: docs/18 (03.11.2026 ~17:30 PL, ZB-039); docs/36-glos.md
+- Test: `tests/voice.test.ts`, `tests/voice-ui.test.tsx`, `tests/voice-native.test.ts`, `tests/voice-module.test.ts`, `.maestro/51-glos-ustawienia.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Głos o najwyższej jakości spośród zainstalowanych
+    - Zakładając, że telefon ma dla języka aplikacji głos podstawowy i premium
+    - Gdy telefon zapowiada serię
+    - Wtedy mówi głosem premium (kolejność: premium, rozszerzony, podstawowy; najpierw pełny kod języka, potem język podstawowy)
+  - Scenariusz: Wskazówka tylko przy głosie podstawowym
+    - Zakładając, że głos o najwyższej jakości dla języka jest podstawowy
+    - Gdy użytkownik otwiera Ustawienia
+    - Wtedy pod „Zapowiedzi głosowe” widzi, że lepszy głos pobierze w Ustawieniach iOS (Dostępność); przy głosie rozszerzonym lub premium wskazówki nie ma
 
 ### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
 - Przepływ: PR-08

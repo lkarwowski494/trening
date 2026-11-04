@@ -90,10 +90,11 @@ jest.mock('@/modules/rest-activity', () => ({
 }));
 
 /* 0.20 (docs/36): moduł głosu — atrapa sterowana z testów (global.__voice: wypowiedziane [tekst, język], liczba przerwań, słuchawki, dostępność głosu) */
-global.__voice = { spoken: [], stops: 0, headphones: false, hasVoice: true };
+global.__voice = { spoken: [], stops: 0, headphones: false, hasVoice: true, quality: 3 };
 jest.mock('@/modules/voice-cue', () => ({
   isSupported: () => true,
   hasVoice: () => global.__voice.hasVoice,
+  voiceQuality: () => (global.__voice.hasVoice ? global.__voice.quality : 0),
   headphonesConnected: () => global.__voice.headphones,
   speak: jest.fn(async (text, language) => { global.__voice.spoken.push([text, language]); return true; }),
   stop: jest.fn(() => { global.__voice.stops++; }),

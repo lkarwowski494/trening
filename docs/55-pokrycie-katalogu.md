@@ -13,20 +13,20 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
-| Figura v2 w aplikacji (rodzina gotowa) | 98 | 13,8% |
-| Figura v1 w aplikacji (bez v2) | 53 | 7,5% |
-| Bez figury w aplikacji | 557 | 78,7% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 437 | 61,7% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 95 | 13,4% |
-| Animowany błąd | 92 | 13% |
+| Figura v2 w aplikacji (rodzina gotowa) | 132 | 18,6% |
+| Figura v1 w aplikacji (bez v2) | 48 | 6,8% |
+| Bez figury w aplikacji | 528 | 74,6% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 401 | 56,6% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 94 | 13,3% |
+| Animowany błąd | 124 | 17,5% |
 | Własne wskazówki (źródłowe) | 167 | 23,6% |
 | — z czego z częstymi błędami | 76 | 10,7% |
-| Zestaw ogólny wskazówek wzorca ruchu | 77 | 10,9% |
-| Bez tekstu wskazówek | 464 | 65,5% |
-| Częste błędy (własne albo zestaw ogólny) | 153 | 21,6% |
+| Zestaw ogólny wskazówek wzorca ruchu | 105 | 14,8% |
+| Bez tekstu wskazówek | 436 | 61,6% |
+| Częste błędy (własne albo zestaw ogólny) | 181 | 25,6% |
 | Role mięśni | 508 | 71,8% |
-| **Pełna karta** | 90 | 12,7% |
-| Figura z aktualną recenzją ruchu (bramka 4) | 98 | 13,8% |
+| **Pełna karta** | 122 | 17,2% |
+| Figura z aktualną recenzją ruchu (bramka 4) | 132 | 18,6% |
 
 ## Cele wersji
 
@@ -36,12 +36,13 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości.
 
-Cel osiągnięty: **nie** (43 z 47 liczb).
+Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| wskazówki (własne lub zestaw ogólny) | 640 | 244 | 396 |
-| częste błędy (tekst) | 557 | 153 | 404 |
+| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 272 | 368 |
+| częste błędy (tekst) | 557 | 181 | 376 |
 | komplet tekstów karty: pl | 671 | 571 | 100 |
 | komplet tekstów karty: en | 671 | 571 | 100 |
 
@@ -51,7 +52,7 @@ Cel osiągnięty: **nie** (43 z 47 liczb).
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
-| `curl` | do zrobienia | 36 | 0 | 36 | 5 | 6 | 0 | 30 | 0 | 0 |
+| `curl` | gotowa | 36 | 34 | 0 | 0 | 6 | 28 | 2 | 32 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
 | `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 31 | 32 |
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
@@ -101,52 +102,52 @@ Kart z tekstami (wskazówki albo role mięśni): **571**. „Komplet” = karta 
 |---|---:|---:|---:|---:|
 | pl | 571 | 0 | 0 | 0 |
 | en | 571 | 0 | 0 | 0 |
-| cs | 541 | 30 | 85 | 0 |
-| sk | 541 | 30 | 85 | 0 |
-| hu | 541 | 30 | 85 | 0 |
-| ro | 541 | 30 | 85 | 0 |
-| bg | 541 | 30 | 85 | 0 |
-| hr | 541 | 30 | 85 | 0 |
-| sl | 541 | 30 | 85 | 0 |
-| sr | 541 | 30 | 85 | 0 |
-| lt | 541 | 30 | 85 | 0 |
-| lv | 541 | 30 | 85 | 0 |
-| et | 541 | 30 | 85 | 0 |
-| uk | 541 | 30 | 85 | 0 |
-| es | 541 | 30 | 85 | 0 |
-| es-419 | 541 | 30 | 85 | 0 |
-| pt | 541 | 30 | 85 | 0 |
-| pt-BR | 541 | 30 | 85 | 0 |
-| de | 541 | 30 | 85 | 0 |
-| fr | 541 | 30 | 85 | 0 |
-| it | 541 | 30 | 85 | 0 |
-| nl | 541 | 30 | 85 | 0 |
-| sv | 541 | 30 | 85 | 0 |
-| da | 541 | 30 | 85 | 0 |
-| nb | 541 | 30 | 85 | 0 |
-| fi | 541 | 30 | 85 | 0 |
-| tr | 541 | 30 | 85 | 0 |
-| el | 541 | 30 | 85 | 0 |
-| id | 541 | 30 | 85 | 0 |
-| ms | 541 | 30 | 85 | 0 |
-| vi | 541 | 30 | 85 | 0 |
-| ru | 541 | 30 | 85 | 0 |
-| ja | 541 | 30 | 85 | 0 |
-| ko | 541 | 30 | 85 | 0 |
-| zh-Hant | 541 | 30 | 85 | 0 |
+| cs | 571 | 0 | 0 | 0 |
+| sk | 571 | 0 | 0 | 0 |
+| hu | 571 | 0 | 0 | 0 |
+| ro | 571 | 0 | 0 | 0 |
+| bg | 571 | 0 | 0 | 0 |
+| hr | 571 | 0 | 0 | 0 |
+| sl | 571 | 0 | 0 | 0 |
+| sr | 571 | 0 | 0 | 0 |
+| lt | 571 | 0 | 0 | 0 |
+| lv | 571 | 0 | 0 | 0 |
+| et | 571 | 0 | 0 | 0 |
+| uk | 571 | 0 | 0 | 0 |
+| es | 571 | 0 | 0 | 0 |
+| es-419 | 571 | 0 | 0 | 0 |
+| pt | 571 | 0 | 0 | 0 |
+| pt-BR | 571 | 0 | 0 | 0 |
+| de | 571 | 0 | 0 | 0 |
+| fr | 571 | 0 | 0 | 0 |
+| it | 571 | 0 | 0 | 0 |
+| nl | 571 | 0 | 0 | 0 |
+| sv | 571 | 0 | 0 | 0 |
+| da | 571 | 0 | 0 | 0 |
+| nb | 571 | 0 | 0 | 0 |
+| fi | 571 | 0 | 0 | 0 |
+| tr | 571 | 0 | 0 | 0 |
+| el | 571 | 0 | 0 | 0 |
+| id | 571 | 0 | 0 | 0 |
+| ms | 571 | 0 | 0 | 0 |
+| vi | 571 | 0 | 0 | 0 |
+| ru | 571 | 0 | 0 | 0 |
+| ja | 571 | 0 | 0 | 0 |
+| ko | 571 | 0 | 0 | 0 |
+| zh-Hant | 571 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 90. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 122. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
 
 - Brakuje tylko: animowany błąd — 3: Gorilla Chin/Crunch, JM Press, Sumo Squat (hantel)
 - Brakuje tylko: role mięśni — 1: Scapular Pull-Up
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 90 |
+| 0 | 122 |
 | 1 | 4 |
-| 2 | 42 |
-| 3 | 74 |
-| 4 | 355 |
+| 2 | 40 |
+| 3 | 72 |
+| 4 | 327 |
 | 5 | 143 |

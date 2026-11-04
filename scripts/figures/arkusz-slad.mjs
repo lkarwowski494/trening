@@ -19,7 +19,8 @@ const U = Array.from({ length: 21 }, (_, i) => +(i / 20).toFixed(2));
 /** Odstęp ciężaru od nóg (powierzchnia jak na rysunku) i tułowia, cm; ujemny = przenikanie. */
 function odstep(f) {
   const eq = v2.equipColliders(f.props).filter(c => c.k === 'capsule' && /^(bar|db|kb)/.test(c.id));
-  const items = eq.length ? eq.map(c => ({ a: c.a, b: c.b, r: c.r })) : (() => { const c = f.info.load; const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); return [{ a: [c[0], c[1], -h], b: [c[0], c[1], h], r: 2 }]; })();
+  const konce = f.props.flatMap(p => (p.k === 'cable' && Array.isArray(p.ends) ? p.ends : []));
+  const items = eq.length ? eq.map(c => ({ a: c.a, b: c.b, r: c.r })) : (konce.length && !f.info.load) ? konce.map(c => ({ a: c, b: c, r: 2 })) : (() => { const c = f.info.load; const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); return [{ a: [c[0], c[1], -h], b: [c[0], c[1], h], r: 2 }]; })();
   let m = Infinity;
   for (const it of items) {
     for (const s of v2.SIDES) { const L = f.sk.legs[s]; for (const [seg, a, b] of [['thigh', L.hip, L.knee], ['shank', L.knee, L.ankle]])

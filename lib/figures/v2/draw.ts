@@ -6,6 +6,12 @@ import { add, mul, norm, sub, rad, distSegSeg, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Skeleton } from './skeleton';
 import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 
+/** Środki talerzy od osi gryfu (cm): dla gryfu krótszego niż barLen (gryf łamany 120) talerze leżą na jego końcach (od końca 12 i 7 cm do środka), nie za nim (recenzja curl W2, 03.11.2026); dla pełnej długości bez zmian (plateZ). */
+export const PLATE_FROM_END_SHORT: [number, number] = [12, 7];
+export function plateZs(len?: number): [number, number] {
+  if (len === undefined || len >= EQUIP.barLen) return EQUIP.plateZ; return [len / 2 - PLATE_FROM_END_SHORT[0], len / 2 - PLATE_FROM_END_SHORT[1]];
+}
+
 /** Wymiary sprzętu (cm). Jedno źródło wartości: ta stała; opis, status i źródło każdego wymiaru — data/zrodla/figury-sprzet.json (test tests/zrodla-pelne-sprzet.test.ts).
  * Gryf, tuleje, talerze i ławka zgodne z normą sprzętu startowego; barR 1,6 to jawna konwencja „pogrubienie dla czytelności”; reszta — uproszczenie ilustracyjne.
  * plateZ = środki dwóch talerzy na tulei (od osi gryfu; pierwszy tuż za wewnętrznym kołnierzem), chainZ = łańcuchy sztangi tuż za zewnętrznym talerzem. */
@@ -212,6 +218,12 @@ export function dzwigniaDotykaGlowy(props: Prop[], sk: Skeleton): boolean {
   return props.some(pr => pr.k === 'pivot' && pr.label === 'dzwignia' && distSegSeg([...proj(pr.from, 'front'), 0] as V3, [...proj(pr.to, 'front'), 0] as V3, [h[0], h[1], 0], [h[0], h[1], 0]) < BODY.headR + 1.4);
 }
 /** Kształty rekwizytów. `hideLever`: nie rysuj dźwigni maszyny w widoku z przodu (decyzja na cały ruch, patrz `dzwigniaPrzezGlowe`). */
+/** Oś hantla (axis) widoczna jako odcinek na rysunku (rzut dłuższy niż promień główki); inaczej główki się pokrywają i hantel rysuje się jak dotąd (koło / poprzeczny gryf). */
+function dumbbellAxisOnScreen(pr: Extract<Prop, { k: 'dumbbell' }>, view: View, r: number): boolean {
+  const hl = EQUIP.dbHandle / 2 + 0.2 * r; const a = proj(add(pr.c, mul(pr.axis!, hl)), view), b = proj(add(pr.c, mul(pr.axis!, -hl)), view);
+  return Math.hypot(a[0] - b[0], a[1] - b[1]) > 0.5 * r;
+}
+
 export function propShapes(props: Prop[], view: View, hideLever = false): Shape[] {
   const S: Shape[] = []; const side = view === 'side';
   const E = EQUIP;
@@ -394,7 +406,7 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
           if (side || view === 'top') {
             const half = (pr.len ?? E.barLen) / 2; const a = proj([c[0] - half, c[1], c[2]], view), b = proj([c[0] + half, c[1], c[2]], view);
             S.push({ k: 'line', a, b, w: E.barR * 2, role: 'steel', z: zKey(LAYER.frontEquip, 0.3), id: 'bar' });
-            if (pr.plates !== false && side) for (const sg of [-1, 1]) for (const zz of E.plateZ) S.push({ k: 'poly', pts: rect(o[0] + sg * zz - E.plateW / 2, o[1] - E.plateR, o[0] + sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.frontEquip, 0.2), id: 'plate' });
+            if (pr.plates !== false && side) for (const sg of [-1, 1]) for (const zz of plateZs(pr.len)) S.push({ k: 'poly', pts: rect(o[0] + sg * zz - E.plateW / 2, o[1] - E.plateR, o[0] + sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.frontEquip, 0.2), id: 'plate' });
           } else {
             if (pr.plates !== false) S.push({ k: 'circle', c: o, r: E.plateR, fill: 'plate', a: 0.42, stroke: 'plate', w: 0.8, z: zKey(LAYER.frontEquip, 0), id: 'plateNear' });
             S.push({ k: 'circle', c: o, r: E.barR, fill: 'steel', z: zKey(LAYER.overlay, 0), id: 'bar' });
@@ -412,7 +424,7 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
         } else {
           const half = (pr.len ?? E.barLen) / 2; const d = c[0];
           S.push({ k: 'line', a: [-half, o[1]], b: [half, o[1]], w: E.barR * 2, role: 'steel', z: zKey(LAYER.body, d), id: 'bar' });
-          if (pr.plates !== false) for (const sg of [-1, 1]) for (const zz of E.plateZ) S.push({ k: 'poly', pts: rect(sg * zz - E.plateW / 2, o[1] - E.plateR, sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.body, d - 0.2), id: 'plate' });
+          if (pr.plates !== false) for (const sg of [-1, 1]) for (const zz of plateZs(pr.len)) S.push({ k: 'poly', pts: rect(sg * zz - E.plateW / 2, o[1] - E.plateR, sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.body, d - 0.2), id: 'plate' });
         }
         break;
       }
@@ -429,7 +441,13 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
         if (pr.vertical) {
           for (const dy of [-1, 1]) S.push({ k: 'circle', c: [o[0], o[1] + dy * (E.dbHandle * 0.75)], r: r * 0.9, fill: role, a: 0.9, z: zz, id: 'db' + pr.side });
           S.push({ k: 'line', a: [o[0], o[1] - E.dbHandle * 0.75], b: [o[0], o[1] + E.dbHandle * 0.75], w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side });
-        } else if (side) { S.push({ k: 'circle', c: o, r, fill: role, a: near ? 0.85 : 0.55, z: zz, id: 'db' + pr.side }); S.push({ k: 'circle', c: o, r: 1.5, fill: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
+        } else if (pr.axis && dumbbellAxisOnScreen(pr, view, r)) {
+          /* H1: oś hantla z obrotu przedramienia — główki na końcach osi (obrócone prostokąty), uchwyt między nimi */
+          const hl = E.dbHandle / 2 + 0.2 * r; const ha = proj(add(pr.c, mul(pr.axis, hl)), view), hb = proj(add(pr.c, mul(pr.axis, -hl)), view);
+          const dx = ha[0] - hb[0], dy = ha[1] - hb[1], L = Math.hypot(dx, dy); const u: V2 = [dx / L, dy / L], nrm: V2 = [-u[1], u[0]]; const hh = 0.4 * r;
+          S.push({ k: 'line', a: hb, b: ha, w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side });
+          for (const [i, h] of [ha, hb].entries()) S.push({ k: 'poly', pts: [[h[0] - u[0] * hh - nrm[0] * r, h[1] - u[1] * hh - nrm[1] * r], [h[0] + u[0] * hh - nrm[0] * r, h[1] + u[1] * hh - nrm[1] * r], [h[0] + u[0] * hh + nrm[0] * r, h[1] + u[1] * hh + nrm[1] * r], [h[0] - u[0] * hh + nrm[0] * r, h[1] - u[1] * hh + nrm[1] * r]], fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side + (i ? 'B' : '') });
+        } else if (side || pr.axis) { S.push({ k: 'circle', c: o, r, fill: role, a: near ? 0.85 : 0.55, z: zz, id: 'db' + pr.side }); S.push({ k: 'circle', c: o, r: 1.5, fill: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
         else { S.push({ k: 'poly', pts: rect(o[0] - E.dbHandle / 2 - r * 0.6, o[1] - r, o[0] - E.dbHandle / 2 + r * 0.2, o[1] + r), fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side }); S.push({ k: 'poly', pts: rect(o[0] + E.dbHandle / 2 - r * 0.2, o[1] - r, o[0] + E.dbHandle / 2 + r * 0.6, o[1] + r), fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side }); S.push({ k: 'line', a: [o[0] - E.dbHandle / 2, o[1]], b: [o[0] + E.dbHandle / 2, o[1]], w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
         break;
       }

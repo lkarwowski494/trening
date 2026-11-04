@@ -12,7 +12,7 @@ const SIDES = ['R', 'L'];
 function stoj(cw, o) {
   const m = o.m ?? [0, Y_STOJ]; const p = o.p ?? 0; const nogi = o.nogi ?? nogiStoj(0, o.zrStop ?? 14);
   const fr = (u, zle) => {
-    const rece = {}; for (const s of SIDES) rece[s] = o.jedna && o.jedna !== s ? (o.wolna ?? wolna()) : ramie(o.sideo?.[s] ?? o, u, zle);
+    const rece = {}; for (const s of SIDES) rece[s] = o.jedna && o.jedna !== s ? (o.wolna ?? wolna()) : ramie(o.f1de ? { ...o, f1: [o.f1de(u), o.f1de(u)] } : (o.sideo?.[s] ?? o), u, zle);
     return poza({ u, tulow: { m, p, glowa: o.glowa ?? p * 0.5 }, nogi, rece });
   };
   const sprz = o.sprzet.map((g) => (o.jedna && g.rodzaj === 'hantel' ? { ...g, trzyma: o.jedna } : g));
@@ -33,7 +33,7 @@ function lawka(cw, o) {
 function modl(cw, o) {
   const M = modlitewnik();
   const f1 = M.f1;
-  const oo = { ...o, f1: [f1, o.dzwignia ? f1 : f1 + 2], f2: [f1 + 12, f1 + (o.gora ?? 128)], a1: 3 };
+  const oo = { ...o, f1: [f1, f1], f2: [f1 + 12, f1 + (o.gora ?? 128)], a1: 3 };
   if (o.dzwignia) { /* maszyna: dźwignia obrotowa o osi na wysokości łokcia (przesuniętej na bok), punkt mocowania = chwyt; długość = odległość osi od chwytu (stała w ruchu) */
     const S = bark(M.m, M.p, 1); const f = ramieFK(S, 1, ramie(oo, 0, false)); const pz = f.E[2] + 16; const g0 = ramie(oo, 0, false); const G = ramieFK(S, 1, g0).g;
     o.sprzet = [...o.sprzet, { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(f.E[0]), y: r1(f.E[1]), z: r1(pz), dlugosc: r1(Math.hypot(G[0] - f.E[0], G[1] - f.E[1], G[2] - pz)), punkt: 'dlonie', trzyma: 'R' }]; }
@@ -70,28 +70,35 @@ function spider(cw, o) {
 }
 
 export const WYJATKI = {
+  'Zottman Curl': 'uginanie Zottmana: podnoszenie podchwytem i opuszczanie nachwytem (obrót przedramienia u szczytu) — silnik animacji prowadzi jedną pętlę w obie strony po tej samej ścieżce (anim.ts), więc nie da się pokazać opuszczania innym chwytem niż podnoszenie; wyjątek bez rysunku (decyzja właściciela 03.11.2026, wariant b, recenzja curl W8)',
+  'Zottman Preacher Curl': 'uginanie Zottmana: podnoszenie podchwytem i opuszczanie nachwytem (obrót przedramienia u szczytu) — silnik animacji prowadzi jedną pętlę w obie strony po tej samej ścieżce (anim.ts), więc nie da się pokazać opuszczania innym chwytem niż podnoszenie; wyjątek bez rysunku (decyzja właściciela 03.11.2026, wariant b, recenzja curl W8)',
 };
 export const PRZYBLIZENIA = {};
 
 export function generuj() {
   const G = {};
-  const STD = { f1: [2, 5], f2: [20, 140], zle: [10, 36] };
+  /* W4 (recenzja 03.11.2026): na dole ruchu ręka prawie wyprostowana (zgięcie łokcia ≈ 3–6°), jak w kartach „do pełnego wyprostu rąk” */
+  const STD = { f1: [10, 5], f2: [17, 140], zle: [10, 36] };
+  /* ACG-012 (31.10.2026): w górze ruchu przedramię ≤ 20° od pionu, ramię ≤ 15° od osi tułowia (tests/figures-v2-planned-acg-curl.test.ts) — Barbell, EZ Bar i Hammer Curl; ramię 12°, przedramię 161° na końcu ruchu (było 5° i 140°: przedramię ok. 40° od pionu) */
+  const KARTA_PIONOWO = { f1: [10, 12], f2: [17, 161] }; const KARTA_PIONOWO_EZ = { f1: [10, 13.5], f2: [13.5, 162.5] }; /* gryf łamany z obrotem przedramienia 25°: przedramię 3° dalej, żeby zmieścić się w 20° od pionu */
   /* --- stojące: sztanga, gryf łamany --- */
-  G['Barbell Curl'] = () => stoj('Barbell Curl', { ...STD, sprzet: [SPRZET.sztanga()], zr: 19, blad: true });
-  G['EZ Bar Curl'] = () => stoj('EZ Bar Curl', { ...STD, sprzet: [SPRZET.gryfLamany()], zr: 15, obrot: [25, 25], blad: true });
-  G['Reverse Curl'] = () => stoj('Reverse Curl', { ...STD, f2: [20, 128], sprzet: [SPRZET.sztanga()], zr: 19, obrot: [-70, -70], blad: true });
-  G['Drag Curl'] = () => stoj('Drag Curl', { f1: [0, -22], f2: [20, 118], sprzet: [SPRZET.sztanga()], zr: 19 });
+  G['Barbell Curl'] = () => stoj('Barbell Curl', { ...STD, ...KARTA_PIONOWO, sprzet: [SPRZET.sztanga()], zr: 19, blad: true });
+  G['EZ Bar Curl'] = () => stoj('EZ Bar Curl', { ...STD, ...KARTA_PIONOWO_EZ, sprzet: [SPRZET.gryfLamany()], zr: 17, obrot: [25, 25], blad: true });
+  G['Reverse Curl'] = () => stoj('Reverse Curl', { ...STD, f2: [17, 128], sprzet: [SPRZET.sztanga()], zr: 19, obrot: [-70, -70], blad: true });
+  /* Drag Curl (recenzja W3, 03.11.2026): gryf idzie po przodzie tułowia — łokcie cofają się tak, by chwyt został w stałej odległości od tułowia (x ≈ DRAG_X), kąt ramienia wynika z kąta przedramienia */
+  const DRAG_X = 13.8; const dragF2 = (u) => lerp(15, 112, u); const dragF1 = (u) => Math.max(-40, Math.min(14, Math.asin(Math.max(-1, Math.min(1, (DRAG_X - 33 * Math.sin(dragF2(u) * R)) / 31))) / R));
+  G['Drag Curl'] = () => stoj('Drag Curl', { f1: [4, -22], f1de: dragF1, f2: [15, 112], sprzet: [SPRZET.sztanga()], zr: 19 });
   /* --- stojące: hantle --- */
   G['Biceps Curl (hantle)'] = () => stoj('Biceps Curl (hantle)', { ...STD, sprzet: [SPRZET.hantle()], zr: 25, obrot: [0, 70], blad: true });
-  G['Hammer Curl'] = () => stoj('Hammer Curl', { ...STD, sprzet: [SPRZET.hantle()], zr: 25, obrot: [0, 0], blad: true });
-  G['Standing Dumbbell Reverse Curl'] = () => stoj('Standing Dumbbell Reverse Curl', { ...STD, f2: [20, 128], sprzet: [SPRZET.hantle()], zr: 25, obrot: [-70, -70], blad: true });
+  G['Hammer Curl'] = () => stoj('Hammer Curl', { ...STD, ...KARTA_PIONOWO, sprzet: [SPRZET.hantle()], zr: 25, obrot: [0, 0], blad: true });
+  G['Standing Dumbbell Reverse Curl'] = () => stoj('Standing Dumbbell Reverse Curl', { ...STD, f2: [17, 128], sprzet: [SPRZET.hantle()], zr: 25, obrot: [-70, -70], blad: true });
   G['Zottman Curl'] = () => stoj('Zottman Curl', { ...STD, sprzet: [SPRZET.hantle()], zr: 25, obrot: [60, 60, 60, 60, -60], blad: true });
-  G['Standing Inner-Biceps Curl'] = () => stoj('Standing Inner-Biceps Curl', { ...STD, a1: 22, sprzet: [SPRZET.hantle()], zr: 31, obrot: [20, 75], blad: true });
+  G['Standing Inner-Biceps Curl'] = () => stoj('Standing Inner-Biceps Curl', { ...STD, a1: 5, sprzet: [SPRZET.hantle()], zr: 31, obrot: [20, 75], blad: true });
   G['Cross Body Hammer Curl'] = () => stoj('Cross Body Hammer Curl', { ...STD, sprzet: [SPRZET.hantle()], jedna: 'R', zr: [25, 3], obrot: [0, 0], blad: true });
   /* --- wyciąg --- */
   G['Cable Curl'] = () => stoj('Cable Curl', { ...STD, sprzet: [wyc({ chwyt: 'drazek' })], zr: 19, obrot: [70, 70] });
-  G['Reverse Cable Curl'] = () => stoj('Reverse Cable Curl', { ...STD, f2: [20, 128], sprzet: [wyc({ chwyt: 'drazek' })], zr: 19, obrot: [-70, -70], blad: true });
-  G['Hammer Curl (linki)'] = () => stoj('Hammer Curl (linki)', { ...STD, f2: [14, 140], sprzet: [wyc({ chwyt: 'lina' })], zr: 12, obrot: [0, 0], blad: true });
+  G['Reverse Cable Curl'] = () => stoj('Reverse Cable Curl', { ...STD, f2: [17, 128], sprzet: [wyc({ chwyt: 'drazek' })], zr: 19, obrot: [-70, -70], blad: true });
+  G['Hammer Curl (linki)'] = () => stoj('Hammer Curl (linki)', { ...STD, f2: [17, 140], sprzet: [wyc({ chwyt: 'lina' })], zr: [21, 12], obrot: [0, 0], blad: true });
   G['Standing One-Arm Cable Curl'] = () => stoj('Standing One-Arm Cable Curl', { ...STD, sprzet: [wyc({ chwyt: 'uchwyt', trzyma: 'R' })], jedna: 'R', zr: 24, obrot: [70, 70], blad: true });
   G['Cable Curl (dwie linki)'] = () => stoj('Cable Curl (dwie linki)', { ...STD, sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, y: 15 })], zr: 25, obrot: [70, 70], blad: true });
   /* --- ławka skośna: ręce zwisają poza linią tułowia --- */
@@ -99,7 +106,7 @@ export function generuj() {
   G['Incline Curl (hantle)'] = () => lawka('Incline Curl (hantle)', { ...SK, kat: 55, sprzet: [SPRZET.hantle()], obrot: [0, 70], blad: true });
   G['Incline Hammer Curl'] = () => lawka('Incline Hammer Curl', { ...SK, kat: 55, sprzet: [SPRZET.hantle()], obrot: [0, 0], blad: true });
   /* --- leżenie na ławce płaskiej --- */
-  G['Lying Supine Dumbbell Curl'] = () => leza('Lying Supine Dumbbell Curl', { f1: [72, 72], f2: [82, 200], zr: 27, sprzet: [SPRZET.hantle()], obrot: [0, 70] });
+  G['Lying Supine Dumbbell Curl'] = () => leza('Lying Supine Dumbbell Curl', { f1: [72, 72], f2: [82, 200], zr: 31, sprzet: [SPRZET.hantle()], obrot: [0, 70] });
   /* --- wyciąg: ramiona w bok (dwa górne wyciągi), ramię za tułowiem (Bayesian) --- */
   G['High Cable Curl'] = () => wlasna('High Cable Curl', { sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, y: 200, z: 100 })], tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14),
     rece: (u) => { const al = lerp(18, 128, u) * R; const sp = (s) => ({ d1: [0, 0.18, 1], d2: [0, Math.sin(al), Math.cos(al)], obrot: lerp(60, 80, u) }); return { R: sp('R'), L: sp('L') }; } });
@@ -111,14 +118,14 @@ export function generuj() {
   /* Concentration Curl: tył ramienia (łokieć) oparty o wewnętrzną stronę uda tuż nad kolanem, wolna dłoń na drugim udzie (wskazówka „setup” ćwiczenia; recenzja ruchu 27.10.2026). Tułów 50° od pionu, żeby bark był nad łokciem opartym na udzie (ramię ma 31 cm). */
   const NAK_CC = 50;
   G['Concentration Curl (hantle)'] = () => { const T = sed(); return wlasna('Concentration Curl (hantle)', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 75, siedzisko: 38 }, SPRZET.hantle({ trzyma: 'R' })], tulow: { m: T.m, p: NAK_CC, glowa: NAK_CC * 0.7 }, nogi: T.nogi,
-    rece: (u) => ({ R: { f1: -9, a1: 5.6, f2: lerp(3, 128, u), zG: 15, obrot: lerp(0, 70, u) }, L: { g: [39, 61, -21], pole: [-0.4, 0.3, -0.8] } }) }); };
+    rece: (u) => ({ R: { f1: -9, a1: 5.6, f2: lerp(3, 128, u), zG: 15, obrot: lerp(0, 70, u) }, L: { g: [39, 61, -21], pole: [0, -1, -0.4] } }) }); };
   G['Seated Close-Grip Concentration Barbell Curl'] = () => { const T = sed(); return wlasna('Seated Close-Grip Concentration Barbell Curl', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 75, siedzisko: 38 }, SPRZET.gryfLamany()], tulow: { m: T.m, p: NAK, glowa: NAK * 0.7 }, nogi: T.nogi,
-    rece: (u) => { const a = (s) => ({ f1: 14, a1: -14, f2: lerp(34, 145, u), zG: 9, obrot: 60 }); return { R: a('R'), L: a('L') }; } }); };
+    rece: (u) => { const a = (s) => ({ f1: 14, a1: -14, f2: lerp(24, 145, u), zG: 9, obrot: 60 }); return { R: a('R'), L: a('L') }; } }); };
   G['Standing Concentration Curl'] = () => { const m = [-22, 72]; const k = (s) => [0, 7, POL(s) * 26]; return wlasna('Standing Concentration Curl', { sprzet: [SPRZET.hantle({ trzyma: 'R' })], tulow: { m, p: 45, glowa: 38 }, nogi: { R: noga3(k('R'), [1, 0.1, 0.9]), L: noga3(k('L'), [1, 0.1, -0.9]) },
     rece: (u) => ({ R: { f1: 0, a1: -16, f2: lerp(2, 120, u), zG: 11, obrot: lerp(0, 70, u) }, L: { g: [-3, 70, -21] } }) }); };
   /* --- leżenie na ławce płaskiej głową do wysokiego wyciągu: ramiona ku bloczkowi, przedramiona zginają się nad klatkę --- */
   G['Lying Close-Grip Bar Curl On High Pulley'] = () => { const B = naLawce(0, 43, { zr: 22 }); return wlasna('Lying Close-Grip Bar Curl On High Pulley', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 75 }, wyc({ chwyt: 'drazek', x: -125, y: 200 })], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
-    rece: (u) => { const a = lerp(112, 4, u) * R; const sp = () => ({ d1: [-0.38, 0.92, 0], d2: [Math.cos(a) * 0.95, Math.sin(a) * 0.95, -0.3], obrot: 60 }); return { R: sp(), L: sp() }; } }); };
+    rece: (u) => { const a = lerp(112, 218, u) * R; const sp = () => ({ d1: [-0.38, 0.92, 0], d2: [Math.cos(a) * 0.95, Math.sin(a) * 0.95, -0.3], obrot: 60 }); return { R: sp(), L: sp() }; } }); };
   /* --- leżenie na podłodze (wyciąg niski za stopami) --- */
   G['Lying Cable Curl'] = () => { const m = [0, 9.5]; const nog = (s) => noga3([83, 7, POL(s) * 10], [0, 1, 0], { pod: null }); return wlasna('Lying Cable Curl', { sprzet: [wyc({ chwyt: 'drazek', x: 120, y: 30 })], tulow: { m, p: -90, glowa: -90 }, nogi: { R: nog('R'), L: nog('L') },
     rece: (u) => { const a = (s) => ({ f1: 93, a1: 6, f2: lerp(103, 218, u), zG: 20, obrot: 70 }); return { R: a('R'), L: a('L') }; } }); };
