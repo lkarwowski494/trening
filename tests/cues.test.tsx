@@ -38,7 +38,9 @@ describe('dane wskazówek', () => {
   });
   test('sekcje: ustawienie i ruch ≥ 1, wskazówki 2–4, błędy 0–4; bez powtórzeń w sekcji (ćwiczenia z listy „partial” z 0.14.0: łącznie ≥ 2 — patrz tests/cues-014)', () => {
     const partial = new Set(CUE_DATA.partial);
-    for (const [ex, x] of Object.entries(CUE_DATA.exercises)) {
+    for (const [ex, x0] of Object.entries(CUE_DATA.exercises)) {
+      /* 04.11.2026 (T1b): karta „partial” może nie mieć pustej sekcji w danych runtime — ekran czyta `x[id] ?? []` (lib/cues/index.ts cuesFor) */
+      const x = Object.fromEntries(CUE_SECTIONS.map(s => [s, (x0 as Record<string, { c: string }[]>)[s] ?? []])) as Record<(typeof CUE_SECTIONS)[number], { c: string }[]>;
       if (partial.has(ex)) { expect([ex, x.setup.length + x.move.length + x.tips.length >= 2, x.tips.length <= 4, x.mistakes.length <= 4]).toEqual([ex, true, true, true]); }
       else expect([ex, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2 && x.tips.length <= 4, x.mistakes.length <= 4]).toEqual([ex, true, true, true, true]);
       for (const sec of CUE_SECTIONS) expect(new Set(x[sec].map(r => r.c)).size).toBe(x[sec].length);

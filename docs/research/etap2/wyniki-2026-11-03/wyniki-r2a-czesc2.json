@@ -1,0 +1,43 @@
+[
+ {"cwiczenie":"Bosu Ball Cable Crunch With Side Bends","stan":"brak po rundzie 2 – nadal 1 źródło (fedb/LiftChat), otwarte",
+  "odmiana":"catalog.json:24025; fedb: leżenie lędźwiami na Bosu, dwa uchwyty z dolnych wyciągów, ręce proste, spięcia, potem skłony boczne",
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://www.bodybuilding.com/fun/cable-ready-abs-10-cable-based-ab-workouts.html","powod":"przekierowanie na shop.bodybuilding.com → 404 (artykuł znany tylko z wyszukiwarki; mógł opisywać tę odmianę)"},
+   {"url":"https://www.oxygenmag.com/workouts-for-women/form-and-function-oblique-workout/","powod":"logowanie (outsideonline) – nieczytane"},
+   {"url":"wyszukanie: bosu ball cable crunch side bends lying two low pulleys","powod":"trafienia: kopie fedb (health-os, fitness-next), bearly (inna odmiana – siad, jeden uchwyt; wyniki-uzup-1b.json:82), fitwill 403, fitnessvolt alternatives"}]},
+
+ {"cwiczenie":"Cable Judo Flip","stan":"bez zmian – częściowo (fedb + Jefit 786, niezależność niepewna; wyniki-p6.json:108); nowego niezależnego opisu nie znaleziono",
+  "odmiana":"catalog.json:24108, note :24138 lina na dolnym wyciągu, bokiem, obrót przez bark",
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"url":"wyszukanie: \"judo flip\" cable rope low pulley over shoulder","powod":"tylko kopie fedb (repstack, health-os), Jefit (już oceniony), fitnessvolt cable-judo-flip-guide (inna odmiana wg p6), fitwill 403, lyfta (odrzucona w p6), weighttraining.guide cable down-up twist (inny ruch)"},
+   {"url":"wyszukanie: cable seoi nage / shoulder throw low pulley","powod":"tylko prace o rzucie seoi-nage (biomechanika), bez opisu ćwiczenia na wyciągu"}]},
+
+ {"cwiczenie":"Seated Close-Grip Concentration Barbell Curl","stan":"komplet – praktyka (setup, move: fedb + LoadMuscle sz. 5; Motra pomocniczo); mis z 2 źródeł; „wąski chwyt” tylko fedb + Motra; do recenzji niezależnej",
+  "odmiana":"catalog.json:16058, note (:16088) sztanga prosta albo EZ; LoadMuscle – gryf EZ (zgodne z katalogiem)",
+  "zdania":[
+   {"rola":"setup","pl":"Usiądź na ławce, stopy płasko na podłodze. Pochyl się lekko, oprzyj łokcie o wewnętrzną stronę ud i chwyć sztangę podchwytem, wąsko.","en":"Sit on a bench with your feet flat. Lean forward a little, rest your elbows against your inner thighs and take a close underhand grip on the bar.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Close-Grip_Concentration_Barbell_Curl.json","miejsce":"instructions 1 (zapis p4a)","cytat":"Sit down on a flat bench with a barbell or E-Z Bar in front of you in between your legs."},
+              {"szczebel":5,"url":"https://loadmuscle.com/exercises/ez-bar-seated-close-grip-concentration-curl","autor":"bez autora i daty","miejsce":"Instruction steps 1–3","cytat":"Rest your elbow against your inner thigh and curl the weight toward your shoulder."}],"uwaga":"LoadMuscle nie mówi „wąsko” – wąski chwyt: fedb + Motra (Motra = układ fedb). LoadMuscle: inne zdania, inny układ (5 krótkich kroków, osobne sekcje błędów i wskazówek) → niezależne"},
+   {"rola":"move","pl":"Ramiona zostają na udach – zegnij łokcie i podnieś sztangę do barków, potem powoli opuść do wyprostu.","en":"Keep your upper arms on your thighs – bend your elbows to curl the bar up to your shoulders, then lower it slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Close-Grip_Concentration_Barbell_Curl.json","miejsce":"instructions 3 (zapis p4a)","cytat":"While holding the upper arms stationary, curl the weights forward while contracting the biceps as you breathe out."},
+              {"szczebel":5,"url":"https://loadmuscle.com/exercises/ez-bar-seated-close-grip-concentration-curl","miejsce":"Instruction steps 4","cytat":"Pause briefly at the top of the curl, then slowly lower the bar back to the starting position."}]},
+   {"rola":"mis","pl":"Nie odrywaj łokci od ud i nie pomagaj sobie bujaniem.","en":"Don't let your elbows come off your thighs or swing the weight up.",
+    "zrodla":[{"szczebel":5,"url":"https://loadmuscle.com/exercises/ez-bar-seated-close-grip-concentration-curl","miejsce":"Common mistakes","cytat":"Using momentum to lift the weight instead of muscle strength."},
+              {"szczebel":5,"url":"https://www.motra.com/exercises/ezBarSeatedCloseGripConcentrationCurl","miejsce":"Common mistakes (zapis p4a)","cytat":"Allowing elbows to lift off thighs"}],"uwaga":"„bujanie” – LoadMuscle + fedb; „łokcie” – Motra"}]},
+
+ {"cwiczenie":"Smith Incline Shoulder Raise","stan":"rozbieżność ruchu – bez kompletu dla odmiany ze Smithem; ruch łopatek (wysunięcie) przy prostych rękach na ławce skośnej ma 2 źródła z hantlami (weighttraining.guide + Rehab Hero) → możliwy wariant sprzętu (uproszczenie) po decyzji recenzenta",
+  "odmiana":"catalog.json:14670, note (:14699): ławka skośna pod Smithem, wysunięcie łopatek (zębaty przedni); fedb: wyciskanie z lekko ugiętych łokci do wyprostu (opis niejednoznaczny)",
+  "zdania_warunkowe":[
+   {"rola":"setup","pl":"Połóż się na ławce skośnej pod sztangą Smitha i trzymaj sztangę nad barkami na prostych rękach.","en":"Lie on an incline bench under the Smith bar and hold the bar above your shoulders with straight arms.",
+    "zrodla":[{"szczebel":5,"url":"https://www.rehabhero.ca/exercise/incline-serratus-punch","autor":"David Song (bez kwalifikacji na stronie), bez roku","miejsce":"opis (hantle/kettlebell)","cytat":"Raise both arms directly above your shoulders and keep the elbows straight."},
+              {"szczebel":5,"url":"https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise","autor":"Edward Lord","miejsce":"Execution 1 (hantle; zapis p5a)","cytat":"Keeping your elbows straight, exhale as you lift your shoulders off the bench as high as possible."}],"uwaga":"oba źródła – hantle; Smith tylko fedb"},
+   {"rola":"move","pl":"Nie zginając łokci, wypchnij sztangę wyżej samym ruchem łopatek – barki odrywają się od ławki. Powoli opuść barki z powrotem.","en":"Without bending your elbows, push the bar higher just by moving your shoulder blades – your shoulders lift off the bench. Slowly lower them back.",
+    "zrodla":[{"szczebel":5,"url":"https://www.rehabhero.ca/exercise/incline-serratus-punch","miejsce":"opis","cytat":"Proceed to protract the shoulder blades by pushing them forwards (pushing the fists towards the ceiling)."},
+              {"szczebel":5,"url":"https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise","miejsce":"Execution 1","cytat":"Keeping your elbows straight, exhale as you lift your shoulders off the bench as high as possible."}]},
+   {"rola":"mis","pl":"Nie zginaj łokci – to nie wyciskanie, ruch robią łopatki.","en":"Don't bend your elbows – it's not a press, your shoulder blades do the work.",
+    "zrodla":[{"szczebel":5,"url":"https://www.rehabhero.ca/exercise/incline-serratus-punch","miejsce":"opis","cytat":"keep the elbows straight."},
+              {"szczebel":5,"url":"https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise","miejsce":"Execution 1","cytat":"Keeping your elbows straight"}],"uwaga":"zaprzeczenie standardu w 2 źródłach; SPRZECZNE z fedb (wyprost łokci z lekkiego ugięcia)"}],
+  "uwagi":"Zdania warunkowe – tylko jeśli recenzent potwierdzi z rysunkiem, że ruch to wysunięcie łopatek (jak note katalogu), a nie wyciskanie (fedb). Rehab Hero opisuje też naprzemienne ściąganie łopatek – nie weszło. Kąt ławki (liczba) pominięty."}
+]

@@ -26,7 +26,7 @@ const NEW_P2 = ['Medicine Ball Slam', 'Leg Extension', 'Seated Calf Raise', 'Inc
 const NEW = [...NEW_P1, ...NEW_P2];
 /** Zostają otwarte: research zostawia je jako otwarte (szczebel materiałów uczelnianych/DAN/WebMD/przedruku, kąt ławki, wariant roweru, brak drugiego źródła). */
 const STILL_OPEN = ['Decline Bench Press', 'Pec Deck', 'Chest Dip', 'Arnold Press', 'Incline Curl (hantle)', 'Concentration Curl (hantle)', 'Spider Curl',
-  'Skullcrusher (hantle)', 'Triceps Kickback', 'Box Squat', 'Sissy Squat', 'Cable Kickback', 'Hip Abduction', 'Hip Adduction', 'Ab Wheel', 'Hanging Leg Raise',
+  'Box Squat', 'Sissy Squat', 'Cable Kickback', 'Hip Abduction', 'Hip Adduction', 'Ab Wheel', 'Hanging Leg Raise',
   'Hanging Knee Raise', 'Cable Crunch', 'Hollow Hold', 'Assault Bike', 'Skakanka'];
 
 describe('0.14.0 wskazówki: dane', () => {
@@ -37,7 +37,7 @@ describe('0.14.0 wskazówki: dane', () => {
     expect(Object.keys(CUE_DATA.exercises).filter(k => !WLASNE_P.includes(k)).length + CUE_DATA.hidden.filter(k => !WLASNE_P.includes(k)).length).toBe(102); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   test('otwarte zostają otwarte (powód ≥ 20 znaków, bez wskazówek) — nic spornego nie wdrożono', () => {
-    expect(STILL_OPEN.length).toBe(21); /* 04.11.2026: Upright Row (hantle) wdrożone w partii T1 (karta własna na ISSA + Catalyst, bez WebMD Ignite i przedruku NSCA ETM) */
+    expect(STILL_OPEN.length).toBe(19); /* 04.11.2026: Upright Row (hantle) wdrożone w partii T1 (karta własna na ISSA + Catalyst, bez WebMD Ignite i przedruku NSCA ETM); Skullcrusher (hantle) i Triceps Kickback — partia T1b (triceps) */
     for (const k of STILL_OPEN) { expect([k, CUE_DATA.open.includes(k), CUE_DATA.exercises[k]]).toEqual([k, true, undefined]); expect(cuesFor(lib(k))).toBeNull(); }
   });
   test('lista „partial”: tylko nowe ćwiczenia, każde naprawdę niekompletne; reszta ma komplet sekcji (etap 1 bez zmian)', () => {

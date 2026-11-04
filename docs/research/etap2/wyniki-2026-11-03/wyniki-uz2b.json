@@ -1,0 +1,84 @@
+[
+ {"cwiczenie":"Incline Walk","stan":"move komplet – setup/mis bez zmian z wyniki-gemini-2a; move: Life Fitness (sz. 4, producent bieżni) + Peloton (sz. 5); do recenzji niezależnej (otwarte)",
+  "odmiana":"catalog.json:3651 „Incline Walk (bieżnia)”, note: „PL 'bieżnia' = treadmill.” (:3662)",
+  "zdania":[
+   {"rola":"move","pl":"Idź wyprostowany, z wolnymi rękami, głowa w górze, wzrok przed siebie. Nie odchylaj się do tyłu.","en":"Walk tall with your hands free, head up and eyes forward. Don't lean back.",
+    "zrodla":[{"szczebel":4,"url":"https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails","autor":"Life Fitness (firmowane, bez autora), 29.07.2024","miejsce":"wskazówki na końcu artykułu","cytat":"Walk at the highest incline that you can comfortably maintain without holding on"},
+              {"szczebel":4,"url":"https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails","miejsce":"to samo miejsce","cytat":"If you feel more comfortable holding on, ensure that you keep an upright posture and don't lean back!"},
+              {"szczebel":5,"url":"https://www.onepeloton.com/blog/incline-treadmill-walking/","miejsce":"Moving Up Safely (z wyniki-gemini-2a, nie otwierane ponownie)","cytat":"You should be able to walk briskly, with your hands free, head up, and eyes forward"}],
+    "uwaga":"część wspólna: wolne ręce, wyprostowana postawa; „żwawo” tylko Peloton – pominięte w zdaniu. Liczby (nachylenie) pominięte."}],
+  "uwagi":"Life Fitness = producent bieżni, szczebel 4 tylko dla własnego rodzaju sprzętu (szczeble-organizacji, kryterium pkt 1, precedens). Artykuł dotyczy kalorii, ale wskazówka techniki jest wprost. Sprzeczność Peloton/Hinge Health o pochyleniu (z gemini-2a) – nadal poza zdaniem."},
+
+ {"cwiczenie":"Kettlebell Halo with Overhead Extension","stan":"move (wyprost nad głową) – komplet jako uproszczenie (analogia): Iron and Oven (sz. 5, opis tego ćwiczenia) + BarBend (warunkowo 4, inne ćwiczenie – „Pull Over”, ten sam element ruchu); do potwierdzenia recenzenta (otwarte)",
+  "odmiana":"catalog.json:14492, fedb „Kettlebell Halo with Overhead Extension” (:14493); plik fedb raw …/Kettlebell_Halo_with_Overhead_Extension.json → 404 (inna nazwa pliku albo brak w fedb)",
+  "zdania":[
+   {"rola":"move","pl":"Gdy kettlebell jest za głową, wyprostuj łokcie i wypchnij go nad głowę. Ramiona zostają przy głowie.","en":"With the kettlebell behind your head, straighten your elbows to press it overhead. Keep your upper arms by your head.",
+    "zrodla":[{"szczebel":5,"url":"https://ironandoven.com/exercises/kettlebell-halo-with-overhead-extension","miejsce":"z wyniki-gemini-2b (nie otwierane ponownie)","cytat":"From this position, extend your elbows to press the kettlebell up and overhead until your arms are straight, keeping your upper arms alongside your head."},
+              {"szczebel":4,"warunek":"BarBend artykuł techniki z autorem i datą; brak „Expert Verified”","url":"https://barbend.com/kettlebell-halo","autor":"Damali Fraiser (Canadian Kettlebell Instructor), aktualizacja 01.11.2023","miejsce":"Kettlebell Halo Alternatives – Pull Over","cytat":"Then pull the kettlebell back to the overhead position with a triceps extension."}],
+    "uwaga":"uproszczenie (analogia): BarBend opisuje ten sam element (kettlebell za głową → wyprost łokci nad głowę) w innym ćwiczeniu; recenzent potwierdza, że element się nie różni"}],
+  "uwagi":"Breaking Muscle (sz. 5, nigdy niezależne od BarBend) „Day 17/360” (G. Walsh, 06.12.2022) potwierdza istnienie połączenia „halo + extension”, ale nie opisuje kolejności: „Safe, organized extension of arms and strong lock-out (with wrists straight) govern weight in each round.” – nie liczone."},
+
+ {"cwiczenie":"Kneeling Cable Crunch With Alternating Oblique Twists","stan":"move komplet – praktyka: fedb (raw, sz. 5) + The Workout Digest (B. Ward, 03.03.2019, sz. 5); do recenzji niezależnej (otwarte). Usuwa warunek z wyniki-gemini-2b (lustro health-os-daa = tekst fedb, potwierdzone w raw)",
+  "odmiana":"catalog.json:24753, fedb ta sama nazwa (:24754)",
+  "zdania":[
+   {"rola":"move","pl":"Biodra trzymaj w miejscu, dłonie przy głowie. Zwijaj się w dół i w połowie ruchu skręć tułów, prowadząc łokcie do jednego kolana; w kolejnym powtórzeniu – w drugą stronę.","en":"Keep your hips still and your hands by your head. Crunch down and, halfway, twist to bring your elbows toward one knee; next rep, the other side.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists.json","miejsce":"instructions 6 i 8","cytat":"Repeat the same downward movement until you're halfway down, at which time you'll begin rotating one of your elbows to t[…]"},
+              {"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists.json","miejsce":"instructions 8","cytat":"Repeat the same movement as before, but alternate the other elbow to the opposite knee."},
+              {"szczebel":5,"url":"https://theworkoutdigest.com/cable-exercises-for-abs","autor":"Brian Ward, 03.03.2019 (bez kwalifikacji)","miejsce":"4. Kneeling Oblique Cable Twists, kroki 5 i 9","cytat":"Engage your core and pull downwards to your right into a crunch until your elbows are near or touching your right knee"}],
+    "uwaga":"rozbieżność: fedb – łokieć do przeciwnego kolana i najpierw prosto do połowy; Workout Digest – łokcie do kolana po tej samej stronie, skręt od początku. W zdaniu bez strony kolana; „w połowie ruchu” tylko fedb – recenzent może usunąć."}],
+  "uwagi":"Cytat fedb krok 6 ucięty przez narzędzie na 120 znakach (oznaczone […])."},
+
+ {"cwiczenie":"Kneeling High Pulley Row","stan":"move nadal 1 źródło (fedb); setup bez zmian (wyniki-gemini-3a)",
+  "odmiana":"catalog.json:11779, fedb ta sama nazwa (:11780)",
+  "zdania":[],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://exercises.virtuagym.com/exercise/pulley-high-row/","powod":"stojąc, uchwyty – inna odmiana"},
+   {"url":"https://gymnavigator.com/workout-center/exercise/621203378117b300142670ef/kneeling-high-pulley-row","powod":"jednorącz, pojedynczy uchwyt – inna odmiana"},
+   {"url":"https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope","powod":"403; stojąca odmiana (lina, wyciąg na wysokości głowy) – kandydat na uproszczenie, nieprzeczytany"}],
+  "uwagi":"Wyniki wyszukiwania: klęczące wiosłowanie liną na tylne barki zwykle z wyciągu dolnego (inny kierunek). Fitnessvolt „alternatives”, fitwill (403), repstack (kopia fedb) – nie liczone."},
+
+ {"cwiczenie":"Lying Supine Dumbbell Curl","stan":"bez zmian: komplet warunkowo (fedb + Wikipedia, niezależność Wikipedii do oceny); nowego niezależnego źródła tej odmiany nie znaleziono",
+  "odmiana":"catalog.json:16188, fedb ta sama nazwa (:16189)",
+  "zdania":[],
+  "potwierdzone":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Supine_Dumbbell_Curl.json","miejsce":"instructions 1 i 3","cytat":"While keeping the arms close to your torso and elbows in, slowly lower your arms"}],
+  "sprawdzone_bez_wyniku":[
+   {"url":"https://www.active.com/fitness/articles/the-ultimate-bicep-workout-routine?page=3","powod":"parafraza tekstu fedb (J. Gates, 2015) – kopia, nie liczona"},
+   {"url":"https://liftosaur.com/exercises/dumbbell-lying-bicep-curl","powod":"nie mówi, że ręce wiszą obok ławki – odmiana niepewna"},
+   {"url":"https://exercises.virtuagym.com/exercise/dumbbells-biceps-curl-lying-alternating/","powod":"ręce w górę do sufitu, naprzemiennie – inna odmiana"},
+   {"url":"https://fitwill.app/exercise/0350/dumbbell-lying-supine-curl.md","powod":"403"},
+   {"url":"https://musclewiki.com/exercises/biceps/dumbbells/16","powod":"403"}],
+  "uwagi":"Ironandoven = tekst fedb (z gemini-3b). Wikipedia nadal jedynym kandydatem na drugie źródło."},
+
+ {"cwiczenie":"Belt Squat Machine","stan":"move komplet: Bells of Steel (sz. 4 warunkowo – producent maszyny, strona sprzedaży obok) + Barbell Logic (sz. 5, bez autora) + StrengthLog (sz. 5); setup: miejsce pasa rozstrzygnięte większością (biodra); do recenzji niezależnej (otwarte)",
+  "odmiana":"catalog.json:9110, sprzęt maszyna, bez pola fedb",
+  "zdania":[
+   {"rola":"setup","pl":"Załóż pas na biodra (nie na talię) i przypnij go do maszyny.","en":"Put the belt around your hips, not your waist, and clip it to the machine.",
+    "zrodla":[{"szczebel":4,"url":"https://bellsofsteel.us/blogs/content/how-to-use-a-belt-squat-machine","autor":"Bells of Steel (bez autora), 08.05.2023","miejsce":"ustawienie pasa","cytat":"The belt should be positioned around your hips and not your waist, as this will help to distribute the weight evenly"},
+              {"szczebel":5,"url":"https://barbell-logic.com/how-to-do-the-belt-squat-exercise/","miejsce":"instrukcja (bez autora i daty)","cytat":"Place the belt around your hips and clip it to the machine."}],
+    "uwaga":"Bradley (z gemini-1) też „around your hips”; StrengthLog „waist” – mniejszość; recenzent decyduje, czy wstawić „nie na talię”"},
+   {"rola":"move","pl":"Zejdź w przysiad pod kontrolą, uginając kolana, klatka do przodu. Wstań, odpychając się nogami i prostując biodra.","en":"Squat down under control by bending your knees, chest up. Stand up by pushing through your legs and driving your hips through.",
+    "zrodla":[{"szczebel":4,"url":"https://bellsofsteel.us/blogs/content/how-to-use-a-belt-squat-machine","miejsce":"opis ruchu","cytat":"Lower your body under control by bending your knees, keeping your chest out."},
+              {"szczebel":4,"url":"https://bellsofsteel.us/blogs/content/how-to-use-a-belt-squat-machine","miejsce":"opis ruchu","cytat":"Once you have lowered to your desired depth, usually to powerlifting-depth, push with your legs to stand up."},
+              {"szczebel":5,"url":"https://barbell-logic.com/how-to-do-the-belt-squat-exercise/","miejsce":"instrukcja","cytat":"Drive from the hips to stand up, maintaining constant torso position out of the bottom."}],
+    "uwaga":"głębokość („powerlifting-depth”) pominięta"}],
+  "uwagi":"Bells of Steel: producent maszyn do przysiadu z pasem – szczebel 4 tylko dla własnego rodzaju sprzętu; na stronie produkt w sprzedaży (kryterium pkt 3) – recenzent/koordynator potwierdza szczebel; bez tego komplet i tak stoi na 2 źródłach sz. 5 (Barbell Logic + StrengthLog/Bradley). Barbell Logic: brak autora → 5 (szczeble-organizacji, uzup. 3)."},
+
+ {"cwiczenie":"Donkey Calf Raise","stan":"setup komplet – praktyka, wariant maszyny (nie uproszczenie): fedb (sz. 5) + training.fit (sz. 5); do recenzji niezależnej (otwarte)",
+  "odmiana":"catalog.json:22342, sprzęt maszyna, fedb „Donkey Calf Raises” (:22343)",
+  "zdania":[
+   {"rola":"setup","pl":"Wejdź pod poduszkę maszyny tak, by oparła się na dolnej części pleców i biodrach. Pochyl tułów do przodu, chwyć uchwyty, stań przodem stóp na podwyższeniu – pięty poza krawędzią.","en":"Get under the machine pad so it rests on your lower back and hips. Lean your torso forward, hold the handles and stand with the balls of your feet on the block, heels hanging off.",
+    "zrodla":[{"szczebel":5,"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Donkey_Calf_Raises.json","miejsce":"instructions 1–2","cytat":"Place both of your arms on the side handles and place the balls of your feet on the calf block with the heels extending […]"},
+              {"szczebel":5,"url":"https://training.fit/exercise/donkey-calf-raise/","miejsce":"opis ustawienia (bez autora i daty)","cytat":"Simultaneously, lean your upper body forward, rest your forearms on the provided pad, and grab the handles (if available)."},
+              {"szczebel":5,"url":"https://training.fit/exercise/donkey-calf-raise/","miejsce":"opis ustawienia","cytat":"Stand with both feet on the base plate or bar and position your tailbone under the pad."}],
+    "uwaga":"fedb krok 1 (ucięty przez narzędzie): „…positioning your lower back and hips und[er]…”; training.fit – poduszka na kości ogonowej. Część wspólna: dół pleców/biodra. Przedramiona na podpórce tylko training.fit – pominięte. Pięty poza krawędzią: fedb; training.fit tylko „feet on the base plate or bar”."}],
+  "uwagi":"Zastępuje uproszczenie z wyniki-gemini-1-r2 (oparcie o ławkę). NFPT ?p=9313 = strona kursu, nie ćwiczenie. Kolana (nie blokować) – fedb i training.fit, ale to wskazówka pozycji; do zdania nie weszła."},
+
+ {"cwiczenie":"Cable Fly (high to low)","stan":"move komplet – praktyka, wersja oburącz (bez uproszczenia): atlas.kulturystyka.pl (S, sz. 5) + Motra (sz. 5); do recenzji niezależnej (otwarte)",
+  "odmiana":"catalog.json:4183, linki, requires cable.dual",
+  "zdania":[
+   {"rola":"move","pl":"Ściągaj uchwyty łukiem w dół i do środka, aż dłonie spotkają się przed biodrami; wracaj powoli.","en":"Bring the handles down and in, in an arc, until your hands meet in front of your hips; return slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://motra.com/exercises/cableCrossoverHigh","miejsce":"Steps","cytat":"Pull handles down and in toward the front of your hips."},
+              {"szczebel":5,"url":"https://atlas.kulturystyka.pl/klatka.asp","miejsce":"poz. 13 (z wyniki-gemini-1-r2, etap 2, nie otwierane ponownie)","cytat":"Chwytamy rączki wyciągów i ściągamy je do wewnątrz w dół"}],
+    "uwaga":"„przed biodrami” tylko Motra; recenzent może skrócić do „w dół i do środka”"}],
+  "uwagi":"Motra: setup „Set pulleys to the highest position with D-handles attached.” Motra = dawniej Train Fitness (aplikacja, sz. 5). weighttraining.guide (M. Livelo, 2022) – krok wykonania opisuje ruch w górę i na zewnątrz (faza ekscentryczna), nie liczony."}
+]
