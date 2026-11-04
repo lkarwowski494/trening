@@ -67,11 +67,11 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
     const RIG: Record<string, string> = { squat: 'squat.ts', bench_press: 'benchPress.ts', hinge: 'hinge.ts' };
     /* families.ts i poseData.ts wchodzą do skrótu po normalizacji (1A, 03.11.2026: bez statusów rodzin, wpisów LOAD i cudzych wpisów DATA_UI) — wzór w scripts/skrot-v2-norm.mjs, tu tylko zastosowany */
     const kodNorm = `import { normalizujPlikV2 } from ${JSON.stringify(path.join(root, 'scripts/skrot-v2-norm.mjs'))}; import { readFileSync } from 'node:fs'; import { join } from 'node:path';
-      const out = {}; for (const fam of JSON.parse(process.env.FAM)) out[fam] = Object.fromEntries(['lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts'].map(p => [p, normalizujPlikV2(p, readFileSync(join(${JSON.stringify(root)}, p), 'utf8'), fam)]));
+      const out = {}; for (const fam of JSON.parse(process.env.FAM)) out[fam] = Object.fromEntries(['lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/overlay.ts', 'lib/figures/v2/guides.ts'].map(p => [p, normalizujPlikV2(p, readFileSync(join(${JSON.stringify(root)}, p), 'utf8'), fam)]));
       process.stdout.write(JSON.stringify(out));`;
     const NORM: Record<string, Record<string, string>> = JSON.parse(execFileSync('node', ['--input-type=module', '-e', kodNorm], { encoding: 'utf8', env: { ...process.env, FAM: JSON.stringify(FAMILIES.filter(x => x.status === 'ready').map(x => x.id)) }, maxBuffer: 1 << 26 }));
     for (const f of FAMILIES.filter(x => x.status === 'ready')) {
-      const txt = [RIG[f.id] ? 'lib/figures/v2/rigs/' + RIG[f.id] : `lib/figures/v2/poses/${f.id}.json` /* rodzina z danych pozy */, 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json'].map(p => NORM[f.id]?.[p] ?? fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
+      const txt = [RIG[f.id] ? 'lib/figures/v2/rigs/' + RIG[f.id] : `lib/figures/v2/poses/${f.id}.json` /* rodzina z danych pozy */, ...(fs.existsSync(path.join(root, `lib/figures/v2/overlay/${f.id}.ts`)) ? [`lib/figures/v2/overlay/${f.id}.ts`] : []) /* W1: nakładka tylko we własnym skrócie */, 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json', 'lib/figures/v2/overlay.ts', 'lib/figures/v2/overlay/common.ts', 'lib/figures/v2/grupy.json'].map(p => NORM[f.id]?.[p] ?? fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
       expect([f.id, createHash('sha256').update(txt).digest('hex').slice(0, 12)]).toEqual([f.id, NOW.v2[f.id]]);
     }
   });
@@ -96,12 +96,36 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
       const f = kolejka.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
       for (const m of fs.readFileSync(path.join(root, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V2)) kolejka.push(c); }
     }
-    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(squat|hinge|bench_press)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
     const brak = [...domk].filter(f => !rodzinne(f) && !r.wspolne.includes(f) && !(f in r.poza)).sort();
     expect(brak).toEqual([]);
     for (const f of ['muscles.ts', 'muscles.generated.ts', 'guides.ts', 'contacts.ts', 'colliders.ts', 'render.ts', 'families.ts', 'poseData.ts']) expect(r.wspolne).toContain(V2 + f);
     expect(r.strona).toEqual(r.wspolne); /* eksport strony liczy ten sam skrót */
     for (const [f, powod] of Object.entries(r.poza)) { expect(domk.has(f) || fs.existsSync(path.join(root, f))).toBe(true); expect(powod.length).toBeGreaterThan(20); expect(r.wspolne).not.toContain(f); }
+  });
+  test('W1 (recenzja 1R 04.11.2026): overlay/<rodzina>.ts wchodzi tylko do skrótu swojej rodziny; overlay.ts, overlay/common.ts i grupy.json do skrótu każdej; cudze importy i wpisy rejestru nie zmieniają skrótu', () => {
+    const code = `import { rodzinaSkrot } from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))}; import { skrotRodziny } from ${JSON.stringify(path.join(root, 'scripts/strona/recenzja-figur.mjs'))}; import { readFileSync } from 'node:fs'; import { join } from 'node:path';
+      const real = p => readFileSync(join(${JSON.stringify(root)}, p), 'utf8'); const out = {};
+      const zm = (plik, f) => p => p === plik ? f(real(p)) : real(p);
+      for (const fam of ['squat', 'hinge', 'bench_press', 'curl']) {
+        out[fam] = { baza: rodzinaSkrot(fam), strona: skrotRodziny(fam),
+          wlasnaNakladka: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/' + fam + '.ts', t => t + '\\n// zmiana')),
+          cudzaHinge: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/hinge.ts', t => t + '\\n// zmiana')),
+          cudzaSquat: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/squat.ts', t => t + '\\n// zmiana')),
+          overlay: rodzinaSkrot(fam, zm('lib/figures/v2/overlay.ts', t => t + '\\n// zmiana')), common: rodzinaSkrot(fam, zm('lib/figures/v2/overlay/common.ts', t => t + '\\n// zmiana')), grupy: rodzinaSkrot(fam, zm('lib/figures/v2/grupy.json', t => t + ' ')),
+          bezCudzegoWpisu: rodzinaSkrot(fam, zm('lib/figures/v2/overlay.ts', t => t.replace(/import \\{ BENCH_TECHNIQUE \\} from '\\.\\/overlay\\/bench_press';\\n/, '').replace('bench_press: BENCH_TECHNIQUE ', ''))),
+          bezCudzejLinii: rodzinaSkrot(fam, zm('lib/figures/v2/guides.ts', t => t.replace(/import \\{ HINGE_GUIDES \\} from '\\.\\/overlay\\/hinge';\\n/, '').replace('...HINGE_GUIDES', ''))) };
+      }
+      process.stdout.write(JSON.stringify(out));`;
+    const r: Record<string, Record<string, string>> = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' }));
+    for (const fam of ['squat', 'hinge', 'bench_press', 'curl']) {
+      const x = r[fam]; expect([fam, x.strona]).toEqual([fam, x.baza]); /* parytet skryptu strony */
+      expect([fam, x.wlasnaNakladka !== x.baza]).toEqual([fam, fam !== 'curl']); /* własna nakładka unieważnia recenzję; rodzina bez nakładki — nie ma czego */
+      for (const k of ['overlay', 'common', 'grupy']) expect([fam, k, x[k] !== x.baza]).toEqual([fam, k, true]);
+      expect([fam, x.cudzaSquat === x.baza, x.cudzaHinge === x.baza]).toEqual([fam, fam !== 'squat', fam !== 'hinge']); /* squat: zmiana linii przysiadu zmienia skrót squat (guides.ts importuje overlay/squat), nie hinge */
+    }
+    expect(r.hinge.bezCudzegoWpisu).toBe(r.hinge.baza); expect(r.squat.bezCudzegoWpisu).toBe(r.squat.baza); /* wpis bench_press w rejestrze nakładki nie jest w skrócie squat/hinge */
+    expect(r.bench_press.bezCudzegoWpisu).not.toBe(r.bench_press.baza); expect(r.squat.bezCudzejLinii).toBe(r.squat.baza); expect(r.hinge.bezCudzejLinii).not.toBe(r.hinge.baza);
   });
   test('generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą', () => {
     const code = `import { buildFigures, recenzja } from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))};
