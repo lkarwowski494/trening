@@ -58,7 +58,7 @@ describe('1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.20
     ])).toEqual(baza);
   });
   test.each([
-    ['contract.ts (kontrakt póz)', V2 + 'contract.ts'], ['scene.ts', V2 + 'scene.ts'], ['draw.ts', V2 + 'draw.ts'], ['rigs/common.ts', V2 + 'rigs/common.ts'], ['figure.ts', V2 + 'figure.ts'],
+    ['contract.ts (kontrakt póz)', V2 + 'contract.ts'], ['scene.ts', V2 + 'scene.ts'], ['draw.ts', V2 + 'draw.ts'], ['rigs/common.ts', V2 + 'rigs/common.ts'], ['figure.ts', V2 + 'figure.ts'], ['poseInterp.ts (interpolacja póz)', V2 + 'poseInterp.ts'], ['dumbbellAxis.ts (oś hantla)', V2 + 'dumbbellAxis.ts'],
   ])('zmiana rysunku: %s zmienia skrót każdej rodziny', (_n, plik) => {
     expect(rozne(baza, wszystkie([{ plik, dopisz: '\n// zmiana' }]))).toEqual(FAM.map(() => true));
   });
