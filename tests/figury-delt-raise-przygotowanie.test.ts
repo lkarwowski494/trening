@@ -15,7 +15,7 @@ const LEZY = 'Dumbbell Lying One-Arm Rear Lateral Raise';
 const ARM_RAISE = ['Lateral Raise (hantle)', 'One-Arm Lateral Raise (hantel)', 'Dumbbell Scaption', 'Front Raise', 'Alternating Deltoid Raise', 'Dumbbell Front Raise to Overhead', 'Cable Front Raise', 'Cable Lateral Raise',
   'Reverse Fly (hantle)', 'One-Arm Cable Rear Lateral Raise', 'Y Raise (hantle)', 'Cable Y Raise', 'Cable Reverse Fly', 'Machine Lateral Raise', 'Reverse Pec Deck', 'Front Incline Dumbbell Raise', LEZY];
 /** Ślad bierze punkt ciężaru z klatki (info.trail), a przy braku — info.load. */
-const slad = (k: string, u: number) => { const f = keyframeFrame(P[k], u); return { t: ((f.info as { trail?: number[] }).trail ?? (f.info as { load: number[] }).load) as number[], f }; };
+const slad = (k: string, u: number) => { const f = keyframeFrame(P[k], u); const i = f.info as unknown as { trail?: number[]; load?: number[] }; return { t: (i.trail ?? i.load) as number[], f }; };
 const reka = (k: string) => (P[k].sprzet.find(g => (g as { trzyma?: string }).trzyma) as { trzyma?: 'R' | 'L' } | undefined)?.trzyma ?? 'R';
 const rozrzutPromienia = (k: string) => { const r = U.map(u => { const { t, f } = slad(k, u); return d3(t, f.sk.arms[reka(k)].shoulder); }); return Math.max(...r) - Math.min(...r); };
 
