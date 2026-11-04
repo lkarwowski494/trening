@@ -56,7 +56,8 @@ describe('niezmiennik: kontrole + Jest = cały verify (prawdziwy package.json)',
   test('kroki kontroli to dokładnie kroki verify bez jest-ponow i verify-znacznik; Jest i znacznik zostają w verify; kontrole zawierają typecheck, lint, macierz, eksport iOS i sprawdzenie natywne', () => {
     const wszystkie = kroki(pkg.scripts.verify);
     const pominiete = wszystkie.filter(k => /jest-ponow\.mjs|verify-znacznik\.mjs/.test(k));
-    expect(pominiete.map(k => k.split(' ')[1])).toEqual(['scripts/jest-ponow.mjs', 'scripts/verify-znacznik.mjs']);
+    /* od 04.11.2026 (ZB-041 G2) verify zaczyna się od `verify-znacznik.mjs --czysta` (kopia robocza; w CI bez znaczenia), a kończy zapisem znacznika */
+    expect(pominiete.map(k => k.split(' ').slice(1, 3).join(' '))).toEqual(['scripts/verify-znacznik.mjs --czysta', 'scripts/jest-ponow.mjs', 'scripts/verify-znacznik.mjs --zapisz']);
     expect(wypisane()).toEqual(wszystkie.filter(k => !pominiete.includes(k)));
     for (const c of ['npm run typecheck', 'npm run lint', 'npm run check:matrix', 'npm run check:pokrycie', 'npx expo export --platform ios --output-dir .expo/verify-export', 'npm run verify:native']) expect(wypisane()).toContain(c);
     expect(wypisane().some(k => /jest/.test(k))).toBe(false);

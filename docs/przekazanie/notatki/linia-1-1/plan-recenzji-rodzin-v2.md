@@ -125,7 +125,7 @@ Ruch (autor sprawdza, recenzent ruchu potwierdza):
 - **K4** Arkusze `arkusz-slad.mjs` dla **każdego** ćwiczenia w **każdym** widoku rodziny (`views`), oglądane w pełnej rozdzielczości; widoki bajtowo równe
   poprzedniej rundzie — `cmp`, z listą. Ślad: sztanga/gryf = środek gryfu; para hantli / dwie linki = chwyt R (W1b, `contract.ts` na curl-wspolne);
   `trzyma` = chwyt tej ręki; jeden uchwyt = środek uchwytu; bez ciężaru = miednica.
-- **K5** Test toru (`tests/figures-v2-tor.test.ts`): próg kształtu z geometrii rodziny (np. łuk r·(1−cos(Δθ/2)) + dryf + 2 cm), warunek miejsca
+- **K5** (uzupełnienie 04.11.2026 po R1 olympic: progi autora dopasowane do własnych danych przepuściły 19 WYSOKICH) Progi testów rodziny bierze się z **tekstu karty i geometrii**, nie z bieżących danych; każda wada z recenzji ma miarę, a przypadek negatywny odtwarza ją (dane sprzed poprawki oblewają test); recenzent porównuje próg z kartą. Test toru (`tests/figures-v2-tor.test.ts`): próg kształtu z geometrii rodziny (np. łuk r·(1−cos(Δθ/2)) + dryf + 2 cm), warunek miejsca
   (ślad ≤ 3 cm od właściwego chwytu) i promienia, każdy z przypadkiem negatywnym; przy `trzyma` porównanie tylko z `grips[trzyma]` (T1, NISKIE z curl).
 - **K6** Orientacja sprzętu: oś hantla z `obrotPrzedramienia` (H1), talerze na końcach gryfu (W2), kettlebell/linka/dźwignia — w widoku z przodu i z boku.
 - **K7** Styki między klatkami kluczowymi (u co 0,05, nie tylko w kadrach 0/0,25/…): wnikanie w ławkę/podpórkę ≤ 1 cm (N4 z curl: do 1,8 cm).
@@ -188,7 +188,9 @@ Wariant do decyzji koordynatora (wykonalność: `scripts/zrodla-runtime.mjs:98-1
 
 ## 5. Szacunek czasu
 
-Czas pracy agenta na rodzinę (z założeniem 2 rund; przeliczyć po F1–F3, jak w `docs/18-przekazanie.md:216`):
+**Przeliczenie 04.11.2026 (koordynator; decyzja właściciela A z 04.11 ~06:20 PL, `docs/18-przekazanie.md`):** pomiary F1/F2 — autor rodziny dużej 19–36 min z verify (delt_raise 20, olympic 19, triceps 36), recenzja ruchu R1 9–14 min (tabela niżej zakładała 3–5 h i 2–3 h). Szacunek: ok. 40 h programistów + 25 h audytorów, przy 3 programistach naraz i scalaniu ok. 2 rodzin na 45 min — 2–3 doby na rysunki, kandydat TestFlight 1.1 ok. 08–09.11. Niezmierzone: poprawki r1, r2, karty, podłączenie z przepisaniem, recenzja różnicy, scalenie — punkt kontrolny po pierwszym pełnym cyklu (triceps + delt_raise). Ryzyko: olympic R1 — 19 WYSOKIE (dane rodziny).
+
+Czas pracy agenta na rodzinę (pierwotny szacunek 03.11; z założeniem 2 rund; przeliczyć po F1–F3, jak w `docs/18-przekazanie.md:216`):
 
 | Rozmiar (tekst) | Autor (pozy, generator, podłączenie, arkusze, poprawki r1) | Ruch r1+r2 | Karty | Przepisanie | Razem agent |
 |---|---|---|---|---|---|

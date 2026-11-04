@@ -89,11 +89,10 @@ describe('scripts/jest-ponow.mjs — ponawia tylko przerwania z zewnątrz (decyz
     expect(r.wywolania).toHaveLength(1);
     expect(r.log).not.toMatch(/ponawiam/);
   });
-  test('(c2) timeout, błąd kompilacji i przerwanie innym sygnałem nie są ponawiane', () => {
+  test('(c2) błąd kompilacji i przerwanie innym sygnałem nie są ponawiane (przekroczenie limitu czasu testu — od 04.11.2026 ponawiane raz: tests/waskie-gardla-zb041.test.ts, G8)', () => {
     const kompilacja = { name: '/k.test.ts', status: 'failed', message: 'Test suite failed to run\n\n  SyntaxError: Unexpected token', assertionResults: [] };
     const sigsegv = przerwany('/s.test.ts', SIGTERM.replace('SIGTERM', 'SIGSEGV'));
-    const timeout = { name: '/t.test.ts', status: 'failed', message: 'thrown: "Exceeded timeout of 5000 ms for a test."', assertionResults: [{ status: 'failed' }] };
-    for (const zly of [kompilacja, sigsegv, timeout]) {
+    for (const zly of [kompilacja, sigsegv]) {
       const r = uruchom(wynik(zly));
       expect([zly.name, r.kod, r.wywolania.length]).toEqual([zly.name, 1, 1]);
     }
