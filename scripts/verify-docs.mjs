@@ -15,7 +15,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
-import { testyCzytajace } from './testy-dla-plikow.mjs';
+import { testyCzytajace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs';
 import { bazaPelnego, bazaZdalna, biezacaGalaz, czystaKopia } from './verify-znacznik.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -45,7 +45,8 @@ async function zmienione() {
 
 /* Testy Jest związane z dokumentami (scripts/testy-dla-plikow.mjs; ZB-041 G3): wymieniają nazwę pliku (z rozszerzeniem; bez rozszerzenia tylko numerowane docs/NN-…), ścieżkę albo
    katalog — ten ostatni tylko gdy test katalog przegląda — plus testy przeglądające cały katalog docs. */
-const testyDlaDokumentow = pliki => testyCzytajace(pliki, root, { zawszeDocs: true });
+/* L-104 (04.11.2026): do tego testy uruchamiające skrypt repo, którego zależnością (importy rekurencyjnie, czytane pliki i katalogi) jest zmieniony plik. */
+const testyDlaDokumentow = pliki => [...new Set([...testyCzytajace(pliki, root, { zawszeDocs: true }), ...testyUruchamiajaceSkrypty(pliki, root)])].sort();
 
 /* ZB-041 G2 (04.11.2026): właściwy przebieg wymaga czystej kopii już na starcie — inaczej byłby zielony, ale bez znacznika, i trzeba by go powtórzyć po commicie */
 if (!planOnly && !czyDokumenty && process.env.VERIFY_DOCS_CHANGED === undefined && ref === 'origin/main' && czystaKopia() !== 0) process.exit(1);

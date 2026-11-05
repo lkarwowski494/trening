@@ -453,6 +453,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
     - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
     - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Skrót recenzji rodziny obejmuje dobór po kartach (fix4 R2, decyzja koordynatora 04.11.2026; `scripts/skrot-v2-dobor.mjs`, test `tests/skrot-v2-dobor.test.ts`)
+    - Zakładając, że zmiana zestawu wskazówek albo karty zmienia linie odniesienia, elementy nakładki albo pozy „częsty błąd” ćwiczenia rodziny
+    - Gdy liczony jest skrót recenzji tej rodziny
+    - Wtedy skrót jest inny i rysunek rodziny czeka na nową recenzję; zmiana samego zdania karty albo wskazówka bez wpływu na rysunek skrótu nie zmienia
+  - Scenariusz: Element nakładki techniki tylko z regułą „ustalone” wariantu (fix4 R1, decyzja koordynatora 04.11.2026; `lib/figures/v2/reguly-cwiczen.json`, test `tests/figures-v2-nakladka-fix4.test.tsx`)
+    - Zakładając, że karta ćwiczenia ma wskazówkę elementu, ale reguła elementu nie należy do reguł wariantu ćwiczenia albo ma tam pewność inną niż „ustalone” (np. Single Leg RDL)
+    - Gdy użytkownik ogląda rysunek tego ćwiczenia
+    - Wtedy element nakładki nie jest rysowany; ćwiczenia z regułą „ustalone” pokazują go jak dotąd
   - Scenariusz: Wskazówki techniki tylko po recenzji treści karty (bramka 4; decyzja DEC-10 a, 2026-10-28; zadanie M1-audytor-generalny-038; zapis `docs/research/figury-recenzja.json`, sekcje „karty” i „zestawy”; test `tests/karty-recenzja.test.tsx`)
     - Zakładając, że karta ćwiczenia ze wskazówkami (własnymi albo ogólnymi wzorca ruchu przy rysunku v2) nie ma zapisu niezależnej recenzji treści z werdyktem „wyświetlana”, zmieniła się po recenzji (inny skrót wskazówek, tekstów polskich albo przypisania zestawu) albo recenzja oznaczyła ją „do poprawy” (np. Hack Squat, Pistol Squat)
     - Gdy użytkownik otwiera to ćwiczenie
@@ -657,6 +665,38 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ktoś dodaje albo zmienia nazwę angielską
     - Gdy uruchamiane są testy
     - Wtedy nazwa z nawiasem, separatorem „ - ”, ukośnikiem, „Push Up”, „One-Arm”, „SMR”, „Leverage”, „Pulley”, błędną wielkością liter, liczbą mnogą spoza listy wyjątków albo duplikatem po złożeniu nie przechodzi
+
+### BR-BIB-011: Rysunek ćwiczenia pokazuje technikę linią i łukiem kąta, bez liczb (04.11.2026, etap 1: wyciskanie leżąc; etap 2: przysiad, zawias, uginanie ramion, podciąganie)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 04.11.2026 (w 1.1 rysunki ćwiczeń graficznie pokazują technikę); reguły `pelny_zakres`, `lokcie_nie_szeroko`, `lokcie_przy_tulowiu` w `data/zrodla/figury-sens.json` (pewność „ustalone”); kąty jako opis figury, nie zalecenie (decyzja 25.10.2026, linie bez liczb); `lib/figures/v2/overlay.ts`, dane `lib/figures/v2/overlay/bench_press.ts`, grupy reguł i błędów `lib/figures/v2/grupy.json`; dane rodzin etapu 2 `lib/figures/v2/overlay/{squat,hinge,curl,pull_up}.ts` (linia odniesienia z regułą `kind: 'ref'` — pion, poziom, segment — i kolor błędu linii odniesienia `GuideDef.rule` w `lib/figures/v2/guides.ts`); testy `tests/figures-v2-nakladka.test.tsx`, `tests/figures-v2-nakladka-e3.test.tsx`, `tests/figures-v2-nakladka-squat-hinge.test.tsx`, `tests/figures-v2-nakladka-curl-pullup.test.tsx`, strażnik S20 w `tests/interaction-guards.test.ts` (docs/32 wzorzec 33)
+- Ekrany: `components/ExerciseFigureV2.tsx` (sekcja „Technika” karty ćwiczenia)
+- Test: `tests/figures-v2-nakladka.test.tsx`, `.maestro/17-biblioteka-technika.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Linia i łuk kąta łokcia
+    - Zakładając, że karta ćwiczenia z rodziny wyciskania leżąc ma wskazówkę o pełnym zakresie ruchu, a łokieć jest mierzonym stawem rysunku
+    - Gdy użytkownik widzi rysunek z boku
+    - Wtedy przez ramię i łokieć biegnie ciągła linia (grubsza od przerywanego śladu toru), a w łokciu łuk kąta zgięcia w każdej klatce animacji (rozwarcie łuku = „Kąt na rysunku” ±1°); na rysunku nie ma żadnych liczb ani napisów
+  - Scenariusz: Element tylko z wskazówką na karcie
+    - Zakładając, że wskazówka powiązana z elementem (np. o ustawieniu łokci) nie należy do zestawu ćwiczenia
+    - Gdy użytkownik widzi rysunek tego ćwiczenia
+    - Wtedy tego elementu nie ma (np. łuk odwiedzenia ramienia w rzucie z góry pojawia się tylko przy ćwiczeniach z tą wskazówką); do 3 linii (łącznie z liniami odniesienia) i 1 łuku na rzut; łuk odwiedzenia liczony w płaszczyźnie rzutu z góry i rysowany tylko, gdy jest widoczny (cięciwa ≥ 4 cm rysunku)
+  - Scenariusz: Błąd łamie regułę elementu
+    - Zakładając, że użytkownik pokazuje częsty błąd, który łamie regułę z tej samej grupy co element
+    - Gdy rysunek przechodzi w pozę błędu
+    - Wtedy ten element ma kolor błędu (danger), a elementy innych reguł zostają bez zmiany
+  - Scenariusz: Linia odniesienia z regułą (etap 2)
+    - Zakładając, że karta ćwiczenia z rodziny przysiadu, zawiasu, uginania ramion albo podciągania ma wskazówkę reguły „ustalone” (np. łokcie przy bokach, wyprost na górze, broda nad drążkiem, bez bujania — ta ostatnia tylko w Pull Up i Chin Up, gdzie reguła jest „ustalone”)
+    - Gdy użytkownik widzi rysunek z boku (elementy podciągania tylko z boku)
+    - Wtedy obok linii odniesienia do ciała (poziom uda, linia pleców, pion przez palce) rysunek ma ciągłą linię tej reguły: pion przez kostkę (wyprost na górze), pion od barku w dół do wysokości miednicy (łokieć przy boku), poziom drążka przez chwyt, pion pod drążkiem; razem nadal do 3 linii i 1 łuku na rzut
+  - Scenariusz: Kolor błędu linii odniesienia (etap 2)
+    - Zakładając, że użytkownik pokazuje częsty błąd łamiący regułę linii odniesienia (zaokrąglone plecy, kolana do środka, łokcie do przodu, skracanie ruchu, bujanie)
+    - Gdy rysunek przechodzi w pozę błędu
+    - Wtedy linia tej reguły (linia pleców, linia kolan nad stopami, pion łokcia, poziom drążka, pion pod drążkiem) ma kolor błędu (danger), a pozostałe linie zostają bez zmiany
+  - Scenariusz: Czytnik ekranu
+    - Zakładając, że rysunek ma widoczne linie lub łuki
+    - Gdy użytkownik czyta obraz czytnikiem ekranu
+    - Wtedy etykieta to „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same zdania co na karcie)
+    - Wtedy zdania w etykiecie łączy spacja, gdy poprzednie kończy się znakiem końca zdania (także „。”, „।”, „؟”), w pozostałych przypadkach średnik — bez „.;” (04.11.2026)
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

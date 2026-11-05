@@ -1,5 +1,6 @@
 // Scalanie gałęzi z kodem tylko przy zielonym tests.yml (L-090, wariant A, decyzja właściciela 02.11.2026).
-//   node scripts/scal-galaz.mjs <gałąź-źródłowa> [--do <gałąź-docelowa>]
+//   node scripts/scal-galaz.mjs <gałąź-źródłowa> [--do <gałąź-docelowa>] [--zostaw-worktree]
+// Po udanym scaleniu usuwa czysty worktree gałęzi źródłowej (L-105; --zostaw-worktree wyłącza).
 // Pobiera SHA głowy origin/<gałąź>, czyta przebiegi workflowu tests.yml dla tego SHA publicznym API Actions (bez tokenu) i:
 //   success → `git merge --no-ff origin/<gałąź>` na bieżącej gałęzi (musi być równa docelowej; drzewo czyste),
 //   w toku  → komunikat, kod 3 (bez scalenia; ponów po zakończeniu przebiegu),
@@ -8,8 +9,8 @@
 // z docelową to dokumenty (reguła scripts/dokumenty.mjs), scalenie nie czeka na tests.yml. Gałąź z wcześniejszym kodem NIE jest „samymi dokumentami”
 // — liczy się diff od wspólnego przodka z docelową, nie tylko ostatni commit (L-080). Wiele przebiegów dla SHA → najnowszy tests.yml.
 import { execFileSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, lstatSync, realpathSync, unlinkSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
 import { generowane } from './pliki-generowane.mjs';
@@ -41,6 +42,38 @@ function rozwiazGenerowane(git, cwd, log) {
   return konflikty;
 }
 
+/** Ścieżka worktree z wyewidencjonowaną gałęzią albo null (`git worktree list --porcelain`). */
+export function sciezkaWorktree(git, galaz) {
+  let blok = [];
+  for (const l of [...git('worktree', 'list', '--porcelain').split('\n'), '']) {
+    if (l) { blok.push(l); continue; }
+    if (blok.includes(`branch refs/heads/${galaz}`)) return blok[0].replace(/^worktree /, '');
+    blok = [];
+  }
+  return null;
+}
+
+/**
+ * L-105 (wariant A, 04.11.2026): po udanym scaleniu usuwa CZYSTY worktree scalonej gałęzi (dysk kontenera). Nie usuwa worktree bieżącego katalogu ani brudnego
+ * (komunikat). `node_modules` będący dowiązaniem jest usuwany jako dowiązanie — cel nietknięty. Nigdy nie zmienia kodu wyjścia scalenia.
+ * @returns {string} 'usunieto' | 'brak' | 'biezacy' | 'brudny' | 'blad'
+ */
+export function sprzatnijWorktree(git, galaz, cwd, log) {
+  try {
+    const wt = sciezkaWorktree(git, galaz);
+    if (!wt || !existsSync(wt)) return 'brak';
+    if (realpathSync(wt) === realpathSync(resolve(cwd ?? '.', git('rev-parse', '--show-toplevel')))) return 'biezacy';
+    const nm = join(wt, 'node_modules');
+    let dowiazanie = false;
+    try { dowiazanie = lstatSync(nm).isSymbolicLink(); } catch { /* brak node_modules */ }
+    const wGicie = git('-C', wt, 'status', '--porcelain').split('\n').filter(Boolean).filter(l => !(dowiazanie && l.slice(3).replace(/\/$/, '') === 'node_modules'));
+    if (wGicie.length) { log(`worktree ${wt} ma zmiany albo pliki nieśledzone (${wGicie.length}) — zostawiam; usuń ręcznie: git worktree remove ${wt}`); return 'brudny'; }
+    if (dowiazanie) unlinkSync(nm);
+    git('worktree', 'remove', '--force', wt);
+    log(`usunięto worktree scalonej gałęzi: ${wt}`); return 'usunieto';
+  } catch (e) { log(`nie usunięto worktree gałęzi ${galaz}: ${String(e.message).split('\n')[0]}`); return 'blad'; }
+}
+
 /**
  * @param {string[]} argv
  * @param {{ git?: Function, fetchJson?: Function, repo?: string, cwd?: string, log?: Function }} deps
@@ -52,12 +85,12 @@ export async function scal(argv, deps = {}) {
   const fetchJson = deps.fetchJson ?? domyslnyFetch;
   const repo = deps.repo ?? REPO;
 
-  const poz = []; let docelowa = null;
+  const poz = []; let docelowa = null; let zostaw = false;
   for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === '--do') docelowa = argv[++i] ?? null; else poz.push(argv[i]);
+    if (argv[i] === '--do') docelowa = argv[++i] ?? null; else if (argv[i] === '--zostaw-worktree') zostaw = true; else poz.push(argv[i]);
   }
   if (poz.length !== 1 || !poz[0] || poz[0].startsWith('-') || (argv.includes('--do') && !docelowa)) {
-    log('użycie: node scripts/scal-galaz.mjs <gałąź-źródłowa> [--do <gałąź-docelowa>]'); return KOD.UZYCIE;
+    log('użycie: node scripts/scal-galaz.mjs <gałąź-źródłowa> [--do <gałąź-docelowa>] [--zostaw-worktree]'); return KOD.UZYCIE;
   }
   const zrodlo = poz[0];
 
@@ -110,6 +143,7 @@ export async function scal(argv, deps = {}) {
     opis += `; konflikt w plikach generowanych rozwiązany generatorami (${przeliczone.join(', ')})`;
   }
   log(`scalono origin/${zrodlo} (${sha.slice(0, 8)}) do ${biezaca}: ${opis}`);
+  if (!zostaw) sprzatnijWorktree(git, zrodlo, deps.cwd, log);
   return KOD.OK;
 }
 
