@@ -7,6 +7,7 @@ describe('05.11.2026: rola studio-projektowe', () => {
   it('ma nagłówek agenta i zakaz zmiany kodu aplikacji', () => {
     expect(rola).toMatch(/^---\nname: studio-projektowe\n/);
     expect(rola).toContain('Kodu aplikacji nie zmieniasz');
+    expect(rola).toContain('Nie wypychasz gałęzi');
   });
   it('pilnuje zasady: barwa talerza oznacza wyłącznie ciężar, element firmowy niesie dane', () => {
     expect(rola).toContain('Barwa talerza oznacza wyłącznie ciężar');

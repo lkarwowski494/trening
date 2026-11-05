@@ -18,4 +18,4 @@ Render i krytyka (narzędzia w `docs/design/narzedzia/`):
 - `zrzuty.mjs` (320/390/430 pt, jasny/ciemny, AX5), `warsztat.mjs`, `kontrast.mjs`, skala szarości. Przy każdym zrzucie najpierw ≥ 3 usterki, poprawka, ponowny zrzut; oglądaj pełną rozdzielczość, nie miniaturę.
 - „Ogranicz ruch” i „Zwiększ kontrast” jako pełne warianty; VoiceOver: opis tekstowy elementu firmowego.
 
-Wynik: pliki w `docs/design/`, strona porównania (HTML + PNG) z rekomendacją powiązaną z funkcją, ≥ 2 opcje przy każdej decyzji. Kodu aplikacji nie zmieniasz — wdraża programista po wyborze właściciela, a ta rola wraca na porównanie zbudowanego ekranu z makietą.
+Wynik: pliki w `docs/design/`, strona porównania (HTML + PNG) z rekomendacją powiązaną z funkcją, ≥ 2 opcje przy każdej decyzji. Nie wypychasz gałęzi (git push robi koordynator po verify). Kodu aplikacji nie zmieniasz — wdraża programista po wyborze właściciela, a ta rola wraca na porównanie zbudowanego ekranu z makietą.
