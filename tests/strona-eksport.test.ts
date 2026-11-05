@@ -19,6 +19,7 @@ import { isNiche, MUSCLES, REGION_MUSCLE } from '@/lib/seed';
 import { PARTS, silhouetteSprite, SILHOUETTE_VARS, exerciseMapSets, shadeLevel } from '@/lib/musclemap';
 import { FAMILIES } from '@/lib/figures/v2/families';
 import { figurePalette, svgInner, shapesAt as appShapesAt } from '@/lib/figures/v2';
+import { oneWayAt, uAt as uAtApp } from '@/lib/figures/v2/anim';
 import { light } from '@/lib/tokens';
 import { similarity, SWAP_WEIGHTS, orderSwaps } from '@/lib/swapScore';
 import { swapCandidates, SWAP_TOP } from '@/lib/swap';
@@ -29,15 +30,15 @@ import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources'
 
 const root = path.join(__dirname, '..');
 /** Figura, którą eksport może narysować: jak w aplikacji (shownFigureSpec) przy zapisie recenzji z tego testu (wszystkie rodziny ready z aktualnymi skrótami) — bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84). */
-/* r6-W2 B (05.11.2026): bez rysunków wstrzymanych i bez ćwiczeń w pętli jednokierunkowej — eksport ich nie rysuje do czasu obsługi trybu pętli na stronie (docs/21, „r6-W2 A”) */
-const figureSpec = (k: string) => { if (Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k)) return null; const s = figureSpecAll(k); return s && loopOf(s) === 'jednokierunkowa' ? null : s; };
+/* r6-W2 A (05.11.2026): ćwiczenia w pętli jednokierunkowej wracają do eksportu (wpis figury niesie `loop`, fazy `untimed`); pomijanie W2-B zdjęte */
+const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
 const SEKCJE = ['setup', 'move', 'tips', 'mistakes'] as const;
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 /** Zapis recenzji dla eksportu w tym teście: wszystkie rodziny ready z aktualnymi skrótami (bramka 4, decyzja 9a 28.10.2026; sam warunek: tests/strona-eksport-recenzja.test.ts). */
 let REC = '';
 const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', '--recenzja', REC, ...extra], { encoding: 'utf8' });
 type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
-  figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: Cues; alternatives: string[]; requires: string[][] };
+  figure: null | { phases: { name: string; ms: number; untimed?: boolean }[]; errors: { id: string; text: string }[] }; cues: Cues; alternatives: string[]; requires: string[][] };
 type Cues = { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[]; move?: string[]; tips?: string[]; missing?: number };
 type ExRoles = { roles: { id: string; text: string }[] };
 type Out = { schema: string; app: { version: string; commit: string; catalogRev: string }; lang: string; meta: { exercises: number; cuesWithoutText: number }; labels: Record<string, Record<string, string>>; exercises: Ex[] };
@@ -157,22 +158,36 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         const spec = figureSpec(e.id);
         if (!spec) { expect([e.id, e.figure]).toEqual([e.id, null]); continue; } /* bez specyfikacji (rodzina bez statusu ready, także z pozą w poses/*.json): bez figury — bramka 4 */
         n++; expect(e.figure!.phases.map(p => p.ms)).toEqual(phasesFor(spec, tempoFor(spec)).map(p => p.ms));
+        expect(e.figure!.phases.map(p => !!p.untimed)).toEqual(phasesFor(spec, tempoFor(spec)).map(p => !!p.untimed)); /* r6-W2 A (05.11.2026): znacznik „bez sekund” jak w aplikacji */
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(135); /* 05.11.2026: 132 + 3 olympic z danych (Clean Pull, Snatch Pull, Jerk Dip Squat) (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; − 19 jednokierunkowych bez figury w eksporcie, r6-W2 B: lot i przechwyt wstecz w wahadle strony; 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
+      expect(n).toBe(154); /* 05.11.2026: 132 + 22 olympic z danych (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; 19 jednokierunkowych wróciło do eksportu po r6-W2 A: strona gra pętlę jednokierunkową, 135 = 132 + 3 wahadła Clean Pull, Snatch Pull, Jerk Dip Squat przed W2-A); 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
   });
-  test('r6-W2 B (05.11.2026): ćwiczenia w pętli jednokierunkowej nie mają figury w eksporcie (figury.json i pole figure) — Power Clean i Snatch Balance bez, Clean Pull (wahadło) z figurą; negatyw: wahadło nie jest pomijane', () => {
-    const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, unknown> };
+  test('r6-W2 A (05.11.2026): ćwiczenia w pętli jednokierunkowej mają figurę z `loop: jednokierunkowa` i jedną fazą bez sekund; wahadło (Clean Pull) ma `loop: wahadlo` i fazy z sekundami; negatyw: żadna figura nie jest pomijana z powodu trybu pętli', () => {
+    const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { loop: string; lowerFirst: boolean }> };
     for (const l of ['pl', 'en']) {
       const ex = (id: string) => data[l].exercises.find(e => e.id === id)!;
-      for (const k of ['Power Clean', 'Snatch Balance', 'Clean and Jerk']) { expect(loopOf(figureSpecAll(k)!)).toBe('jednokierunkowa'); expect([k, ex(k).slug in fig.figures, ex(k).figure]).toEqual([k, false, null]); }
-      for (const k of ['Clean Pull', 'Jerk Dip Squat']) { expect(loopOf(figureSpecAll(k)!)).toBe('wahadlo'); expect([k, ex(k).slug in fig.figures, ex(k).figure === null]).toEqual([k, true, false]); }
+      for (const k of ['Power Clean', 'Snatch Balance', 'Clean and Jerk', 'Block Power Snatch']) {
+        expect(loopOf(figureSpecAll(k)!)).toBe('jednokierunkowa');
+        const e = ex(k); expect([k, e.slug in fig.figures, fig.figures[e.slug]?.loop]).toEqual([k, true, 'jednokierunkowa']);
+        expect([k, e.figure!.phases.length, e.figure!.phases[0].untimed]).toEqual([k, 1, true]); /* jedna faza „Podnoszenie” bez sekund */
+        expect(e.figure!.phases[0].ms).toBe(phasesFor(figureSpecAll(k)!, tempoFor(figureSpecAll(k)!))[0].ms);
+      }
+      for (const k of ['Clean Pull', 'Jerk Dip Squat', 'Back Squat']) {
+        expect(loopOf(figureSpecAll(k)!)).toBe('wahadlo');
+        const e = ex(k); expect([k, fig.figures[e.slug]?.loop]).toEqual([k, 'wahadlo']);
+        expect([k, e.figure!.phases.length > 1, e.figure!.phases.some(p => p.untimed)]).toEqual([k, true, false]);
+      }
     }
-    for (const e of data.en.exercises) { const s = figureSpecAll(e.id); if (s && loopOf(s) === 'jednokierunkowa') expect([e.id, e.slug in fig.figures]).toEqual([e.id, false]); }
+    /* każda figura niesie tryb pętli zgodny z aplikacją; jednokierunkowych jest 19 (olympic) + pozostałe rodziny z trybem (plyo, rzuty) */
+    const jedn = data.en.exercises.filter(e => { const s = figureSpec(e.id); return s && loopOf(s) === 'jednokierunkowa'; });
+    expect(jedn.length).toBeGreaterThanOrEqual(19);
+    for (const e of data.en.exercises) { const s = figureSpec(e.id); if (!s) continue; expect([e.id, fig.figures[e.slug]?.loop]).toEqual([e.id, loopOf(s)]); expect([e.id, e.slug in fig.figures]).toEqual([e.id, true]); }
+    const olympic = data.en.exercises.filter(e => e.family === 'olympic' && figureSpec(e.id)); expect(olympic.length).toBe(22);
   });
   test('figury.json: wpis na slug ćwiczenia z figurą — 25 próbek klatek, kontrakt pozy, tempo i błędy jak w aplikacji; próbki = klatki rigu (zaokrąglone do 0,001 cm — zawias z prawie prostymi kolanami jest wrażliwy na zaokrąglenie)', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { frames: { pose: { pelvis: number[] }; props: unknown[] }[]; pose: { kontrakt: string }; tempo: unknown; errors: { id: string; cue: string; kind: string; frames?: unknown[]; tempo?: unknown }[]; views: string[]; family: string }> };
@@ -368,6 +383,15 @@ describe('silnik figur dla przeglądarki (scripts/strona/silnik-build.mjs)', () 
       const left = b.map(nums); const tag = (x: string) => x.replace(/[-\d.]+/g, '#');
       for (const l of lines) { const na = nums(l); const j = left.findIndex((nb, k) => nb.length === na.length && tag(b[k]) === tag(l) && Math.max(0, ...na.map((v, q) => Math.abs(v - nb[q]))) < 0.3); expect([r.key, r.view, r.u, l.slice(0, 40), j >= 0]).toEqual([r.key, r.view, r.u, l.slice(0, 40), true]); left.splice(j, 1); b.splice(j, 1); }
     });
+  });
+  test('r6-W2 A (05.11.2026): oneWayAt silnika strony = oneWayAt aplikacji (jedno źródło prawdy, próbki czasu co 50 ms przez 2 pętle); negatyw: nie jest wahadłem uAt (po końcu ruchu skok do 0, bez cofania)', () => {
+    const code = `import * as E from ${JSON.stringify('file://' + path.join(eng, 'silnik/figura.js'))}; const o = []; for (let ms = -700; ms <= 2 * 2500 + 700; ms += 50) o.push([ms, E.oneWayAt(ms), E.uAt(ms, true, E.TEMPO)]); process.stdout.write(JSON.stringify(o));`;
+    const rows = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' })) as [number, number, number][];
+    expect(rows.length).toBeGreaterThan(100);
+    for (const [ms, w, p] of rows) { expect([ms, w]).toEqual([ms, oneWayAt(ms)]); expect([ms, p]).toEqual([ms, uAtApp(ms, true)]); }
+    const lot = rows.filter(([ms]) => ms >= 0 && ms <= 2500);
+    for (let i = 1; i < lot.length; i++) { const [ms, w] = lot[i]; if (ms < 2000) expect([ms, w >= lot[i - 1][1]]).toEqual([ms, true]); } /* w jednej pętli u nie maleje do końca ruchu (pętla jednokierunkowa trwa 2500 ms) */
+    expect(rows.some(([, w, p]) => w !== p)).toBe(true); /* inna funkcja niż wahadło */
   });
 });
 

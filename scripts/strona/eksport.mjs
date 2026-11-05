@@ -73,18 +73,16 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     if (Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key)) return null; /* rysunek wstrzymany w aplikacji (PR #84) — strona go nie eksportuje */
     const spec = v2.figureSpec(key); if (!zRecenzja.has(spec ? spec.family : v2.familyOf(key))) return null;
     const pose = poseFor(key, spec);
-    /* r6-W2 B (05.11.2026, tymczasowo): wpis figury nie niesie trybu pętli, a odtwarzacz strony gra wahadło — ćwiczenia w pętli jednokierunkowej (olympic, plyo, sled_throw) bez figury do czasu A (docs/21, „r6-W2 A”, wymaga zgody właściciela) */
-    if (spec ? v2.loopOf(spec) === 'jednokierunkowa' : pose?.petla === 'jednokierunkowa') return null;
     if (spec) {
       const errors = ui.errorsOf(spec).map(({ error, cue }) => {
         const def = v2.errorDefOf(spec, error);
         return { id: error, cue, kind: def.kind, mark: def.mark, ...(def.kind === 'pose' ? { frames: sample(u => v2.frameAt(spec, u, error)) } : { tempo: def.mods.tempo }) };
       });
-      return { family: spec.family, views: spec.views, static: spec.static, lowerFirst: spec.lowerFirst, tempo: v2.tempoFor(spec), pose, frames: sample(u => v2.frameAt(spec, u)), errors };
+      return { family: spec.family, views: spec.views, static: spec.static, lowerFirst: spec.lowerFirst, loop: v2.loopOf(spec), tempo: v2.tempoFor(spec), pose, frames: sample(u => v2.frameAt(spec, u)), errors };
     }
     if (!pose) return null;
     const fam = v2.FAMILIES.find(f => f.id === v2.familyOf(key));
-    return { family: fam.id, views: fam.views, static: false, lowerFirst: true, tempo: { ...v2.TEMPO }, pose, frames: sample(u => v2.keyframeFrame(pose, u)), errors: [] };
+    return { family: fam.id, views: fam.views, static: false, lowerFirst: true, loop: pose.petla === 'jednokierunkowa' ? 'jednokierunkowa' : 'wahadlo', tempo: { ...v2.TEMPO }, pose, frames: sample(u => v2.keyframeFrame(pose, u)), errors: [] };
   };
   /* sylwetka: stopień 0–4 każdej z 12 partii (kolejność mm.MUSCLES = numer zmiennej --mm-<n> arkusza); niezależne od języka */
   const levelsOf = key => {
@@ -132,9 +130,9 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       phases: Object.fromEntries(['Opuszczanie', 'Wypychanie', 'Wstawanie', 'Podnoszenie', 'Prostowanie', 'Pauza'].map(p => [p, t(p)])),
     };
     /* figura v2 jak w aplikacji (shownFigureSpec): bez wstrzymanych (V2_WSTRZYMANE) i tylko z rodziny z recenzją ruchu (zRecenzja — w eksporcie z bieżącego zapisu albo pliku --recenzja) */
-    const shownSpec = key => { const spec = v2.figureSpec(key); return spec && !Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key) && zRecenzja.has(spec.family) && v2.loopOf(spec) !== 'jednokierunkowa' ? spec : null; }; /* jednokierunkowe: bez figury (r6-W2 B, 05.11.2026) */
+    const shownSpec = key => { const spec = v2.figureSpec(key); return spec && !Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key) && zRecenzja.has(spec.family) ? spec : null; };
     const figureShown = key => !!shownSpec(key);
-    const figurePhases = key => { const spec = shownSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms })) : []; };
+    const figurePhases = key => { const spec = shownSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms, ...(p.untimed ? { untimed: true } : {}) })) : []; };
     const figureErrors = key => { const spec = shownSpec(key); return spec ? ui.errorsOf(spec).map(e => ({ id: e.error, text: cueTextIn(l, e.cue) ?? null })).filter(e => e.text) : []; };
     let withoutText = 0;
     const exercises = keys.map(key => {

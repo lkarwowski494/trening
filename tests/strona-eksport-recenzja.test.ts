@@ -36,10 +36,8 @@ const eksport = (name: string, recenzja?: object) => {
 };
 /** Figura jak w aplikacji: bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84) — eksport ich nie rysuje. */
 const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
-/** 05.11.2026 (r6-W2 B): eksport nie rysuje ćwiczeń w pętli jednokierunkowej (strona gra wahadło; docs/21 „r6-W2 A”) — parytet je pomija. */
-const jednokierunkowe = (k: string) => { const s = figureSpecAll(k); return !!s && loopOf(s) === 'jednokierunkowa'; };
 /** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. Wstrzymane (V2_WSTRZYMANE) wypadają także z gałęzi „poza z pliku danych” — scripts/strona/eksport.mjs:73,133 ich nie rysuje (05.11.2026: Clean Shrug i Snatch Shrug mają pozy w olympic.json, a rysunek wstrzymany do kart T2). */
-const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && !jednokierunkowe(e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
+const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
   test('pilotaż z plików pozy (core_floor, pushup_plank) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji', () => {
@@ -67,6 +65,16 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
     const ok = eksport('pull-up', { pull_up: wpis(s.skroty.pull_up) });
     const oczek = rysowalne(ok.atlas).filter(x => x.family === 'pull_up').map(x => x.slug).sort(); expect(oczek.length).toBeGreaterThan(0);
     expect(Object.keys(ok.fig.figures).sort()).toEqual(oczek);
+  });
+  test('r6-W2 A (05.11.2026): olympic z aktualną recenzją — 19 ćwiczeń jednokierunkowych (Power Clean, Block Power Snatch) wraca do eksportu razem z wahadłami; bez wpisu olympic żadne z nich (negatyw)', () => {
+    const s = skroty(); const jedn = (id: string) => loopOf(figureSpecAll(id)!) === 'jednokierunkowa';
+    const ok = eksport('olympic', { olympic: wpis(s.skroty.olympic) });
+    const oly = ok.atlas.exercises.filter(e => e.id !== 'Clean Shrug' && e.id !== 'Snatch Shrug' && figureSpecAll(e.id)?.family === 'olympic');
+    expect(oly.filter(e => jedn(e.id)).length).toBe(19);
+    for (const e of oly) expect([e.id, e.slug in ok.fig.figures, !!e.figure]).toEqual([e.id, true, true]);
+    for (const k of ['Power Clean', 'Block Power Snatch']) expect(ok.atlas.exercises.find(e => e.id === k)!.cues.scope).not.toBe('none'); /* r7-N1: zestaw ogólny wraca razem z figurą */
+    const bez = eksport('olympic-bez', { squat: wpis(s.skroty.squat) });
+    for (const e of oly) expect([e.id, e.slug in bez.fig.figures]).toEqual([e.id, false]);
   });
   test('bez pliku zapisu (fail closed): pusty figury.json', () => {
     expect(Object.keys(eksport('brak', {}).fig.figures)).toEqual([]);

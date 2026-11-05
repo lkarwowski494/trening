@@ -1744,7 +1744,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/anim.cycleAt | lib/figures/v2/anim.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/anim.cycleLength | lib/figures/v2/anim.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/anim.oneWayLength | lib/figures/v2/anim.ts | tests/figures-v2-petla-jednokierunkowa.test.tsx |
-| figures/v2/anim.oneWayAt | lib/figures/v2/anim.ts | tests/figures-v2-petla-jednokierunkowa.test.tsx |
+| figures/v2/anim.oneWayAt | lib/figures/v2/anim.ts | tests/figures-v2-petla-jednokierunkowa.test.tsx, tests/strona-eksport.test.ts |
 | figures/v2/anim.loopLength | lib/figures/v2/anim.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-cykl-bez-marszu.test.ts, tests/figures-v2-engine.test.ts +4 |
 | figures/v2/anim.phasesOf | lib/figures/v2/anim.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/anim.walkPhases | lib/figures/v2/anim.ts | tests/figures-v2-katy-fazy.test.tsx |
