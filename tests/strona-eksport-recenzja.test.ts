@@ -36,8 +36,8 @@ const eksport = (name: string, recenzja?: object) => {
 };
 /** Figura jak w aplikacji: bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84) — eksport ich nie rysuje. */
 const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
-/** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. */
-const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => figureSpec(e.id) || POZY.has(e.id)).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
+/** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. Wstrzymane (V2_WSTRZYMANE) wypadają także z gałęzi „poza z pliku danych” — scripts/strona/eksport.mjs:73,133 ich nie rysuje (05.11.2026: Clean Shrug i Snatch Shrug mają pozy w olympic.json, a rysunek wstrzymany do kart T2). */
+const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
   test('pilotaż z plików pozy (core_floor, pushup_plank) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji', () => {

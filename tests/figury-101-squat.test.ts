@@ -127,7 +127,7 @@ describe('101-12 (squat): wyjątki toru — naprawione albo uzasadnione liczbą'
     for (const u of KADRY_STYKU) { const b = frameAt(spec('Dip Belt Squat'), u); expect(b.info.load).toEqual(b.info.hip); const h = frameAt(spec('Barbell Hack Squat'), u); expect(Math.abs(h.info.load[0] - (h.info.hip[0] - 11.8))).toBeLessThan(0.01); }
   });
   test('lista wyjątków squat: pozostają tylko trzy (inne rodziny w pliku — nie ta paczka)', () => {
-    const squat = Object.keys(WYJ).filter(k => /Squat|Przysiad/.test(k)).sort(); expect(squat).toEqual(['Barbell Hack Squat|side', 'Dip Belt Squat|side', 'Przysiad z pasem (linki)|side']);
+    const squat = Object.keys(WYJ).filter(k => /Squat|Przysiad/.test(k) && !k.startsWith('Squat Jerk')).sort(); /* 05.11.2026: Squat Jerk to olympic (wyjątek toru podrzutu), nie przysiad — regex nie obejmuje go z nazwy */ expect(squat).toEqual(['Barbell Hack Squat|side', 'Dip Belt Squat|side', 'Przysiad z pasem (linki)|side']);
   });
 });
 

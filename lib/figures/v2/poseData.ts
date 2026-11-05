@@ -62,7 +62,12 @@ export const DATA_UI: Record<string, DataUi> = {
   curl: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* olympic: u = 0 start (podłoga, wiszenie, rack), u = 1 przechwyt/wyprost; Jerk Dip Squat to zejście w dół (u: 0 → 1 = ugięcie 52°), więc wyjątek odwraca kierunek (R1-N1) */
   olympic: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee', 'hip'],
-    exceptions: { 'Jerk Dip Squat': { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true } } },
+    /* 05.11.2026: 18 ćwiczeń z lotem albo wyrzutem ma petla = jednokierunkowa — jedna faza „Podnoszenie” (całe powtórzenie od podłogi, wiszenia albo racka do przechwytu i wstania), bez opuszczania; kierunek u 0 → 1 ich nie dotyczy.
+     * Snatch Balance, jak Jerk Dip Squat, to zejście pod sztangę (u 0 → 1 = opuszczanie). Clean Pull, Snatch Pull i wzruszenia (bez lotu) zostają wahadłem z nazwami rodziny. Wyjątki są we wpisie olympic, nie w ONE_WAY_UI:
+     * wpis rodziny pozostaje jeden, a skróty recenzji pozostałych rodzin nie zmieniają się od poprawki olympic (scripts/skrot-v2-norm.mjs). */
+    exceptions: { 'Jerk Dip Squat': { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true }, 'Snatch Balance': { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true },
+      ...Object.fromEntries(['Power Clean', 'Clean', 'Split Clean', 'Hang Clean', 'Block Clean', 'Block Power Clean', 'Barbell Snatch', 'Power Snatch', 'Split Snatch', 'Hang Snatch', 'Block Snatch', 'Block Power Snatch',
+        'Power Jerk', 'Split Jerk', 'Squat Jerk', 'Muscle Snatch', 'Clean and Jerk', 'Jerk Balance'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) } },
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],

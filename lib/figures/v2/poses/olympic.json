@@ -6,6 +6,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Power Clean",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -831,6 +832,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Clean",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -1656,6 +1658,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Split Clean",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -2481,6 +2484,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Hang Clean",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -3306,6 +3310,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Block Clean",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -4139,6 +4144,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Block Power Clean",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -4972,6 +4978,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Barbell Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -5797,6 +5804,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Power Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -6622,6 +6630,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Split Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -7447,6 +7456,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Hang Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -8272,6 +8282,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Block Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -9105,6 +9116,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Block Power Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -13334,6 +13346,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Power Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -14165,6 +14178,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Split Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -14996,6 +15010,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Squat Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -17489,6 +17504,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Muscle Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -18314,6 +18330,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Clean and Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -19139,6 +19156,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "olympic",
    "cwiczenie": "Jerk Balance",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
