@@ -1,4 +1,12 @@
 {
   "_opis": "Wyjątki od strażnika czasu pojedynczego testu (scripts/kontrola-czasu-testu.mjs, 05.11.2026): test, którego nie da się teraz podzielić. Wpis: plik, test (pełna nazwa z wyniku Jest), powod, data (DD.MM.RRRR), plan (jak i kiedy podzielić).",
-  "wyjatki": []
+  "wyjatki": [
+    {
+      "plik": "tests/audit-k1-bl-mer.test.tsx",
+      "test": "MER2-07: podpis wskazówek bez nazw organizacji i marek regresja: żaden tekst aplikacji (słownik EN, 24 słowniki, wskazówki 26 języków, podpis każdego ćwiczenia w każdym języku) nie zawiera nazw źródeł",
+      "powod": "Jeden przypadek 26 języków × wszystkie karty: 416 s z limitu 480 s (87%) w przebiegu tests.yml 42014049471 (część Jest 2); na gałęzi figury/triceps 526 s (lekcja L-NNN w docs/40, 05.11.2026).",
+      "data": "05.11.2026",
+      "plan": "Podział na przypadek na język (test.each po 26 językach) — gotowy w commicie MER2-07 na gałęzi figury/triceps (f0d3b75d i następne); po jej scaleniu usunąć ten wpis."
+    }
+  ]
 }
