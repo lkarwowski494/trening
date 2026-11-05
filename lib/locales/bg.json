@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Моят план ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "На екрана Тренировка „Планиране“ (без план: „Задай план“) отваря седмичния план, който свързва шаблони с дни — планът се повтаря всяка седмица.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "На екрана Тренировка „Прогресия“ сравнява седмицата (готово + планирано) с предишната и месеца с предишния месец.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "На екрана Тренировка докоснете големия бутон „Старт“ (следваща тренировка) или „Друга тренировка“ — там избирате шаблон, повтаряте последната тренировка или започвате празна.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "На екрана Тренировка докоснете големия бутон горе: „Старт“ (следваща тренировка), а преди първата тренировка — „Започване на първа тренировка“. Когато вече имате шаблони или история, „Друга тренировка“ ви позволява да изберете шаблон, да повторите последната тренировка или да започнете празна.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Най-горе е препоръчаната: връща към рутината без загубена тренировка, после избягва последователни дни със същите мускулни групи и променя най-малко дни.",
  "na urządzeniu: {v}": "на уреда: {v}",
  "Nadpisać dane?": "Презаписване на данните?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Междинна позиция {n}",
  "Pozycja pośrednia": "Междинна позиция",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Рисунката показва движението само към едната страна — при следващото повторение се набирате към другата ръка."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Рисунката показва движението само към едната страна — при следващото повторение се набирате към другата ръка.",
+ "Zacznij pierwszy trening": "Започване на първа тренировка",
+ "Pierwszy trening": "Първа тренировка",
+ "Pierwszy trening, dziś, {date}": "Първа тренировка, днес, {date}",
+ "trening": "тренировка",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Вкъщи или във фитнеса — настройте оборудването си.",
+ "Historia z CSV": "История от CSV",
+ "Co gdzie jest i jak działa.": "Какво къде е и как работи."
 }

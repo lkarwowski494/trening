@@ -1328,7 +1328,7 @@
  "Miesiąc do miesiąca": "逐月比較",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "在「訓練」畫面中，「規劃」（尚無計畫時為「設定計畫」）會開啟每週計畫，將範本分配到各天，計畫每週重複。",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "在「訓練」畫面中，「漸進」會將本週（已完成 + 已計畫）與上週比較，並將本月與上月比較。",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "在「訓練」畫面中，點大的「開始」按鈕（下一次訓練）或「其他訓練」，即可選擇範本、重複上次訓練，或開始空白訓練。",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "在「訓練」畫面點上方的大按鈕：「開始」（下一次訓練），第一次訓練前則是「開始第一次訓練」。有了範本或紀錄後，可用「其他訓練」選擇範本、重複上次訓練，或開始空白訓練。",
  "Najlepsza seria: {s}": "最佳組：{s}",
  "Nie można wyłączyć planu": "無法關閉計畫",
  "nieaktywny": "未啟用",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "中間姿勢 {n}",
  "Pozycja pośrednia": "中間姿勢",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "圖中只畫出拉向一側的動作 — 下一下改拉向另一隻手。"
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "圖中只畫出拉向一側的動作 — 下一下改拉向另一隻手。",
+ "Zacznij pierwszy trening": "開始第一次訓練",
+ "Pierwszy trening": "第一次訓練",
+ "Pierwszy trening, dziś, {date}": "第一次訓練，今天，{date}",
+ "trening": "次訓練",
+ "Dom albo siłownia — ustaw swój sprzęt.": "在家或健身房，設定你的器材。",
+ "Historia z CSV": "從 CSV 匯入紀錄",
+ "Co gdzie jest i jak działa.": "各功能的位置與用法。"
 }

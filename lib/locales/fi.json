@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Oma suunnitelma ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Treeni-näytöllä ”Suunnittelu” (ilman suunnitelmaa: ”Aseta suunnitelma”) avaa viikkosuunnitelman, joka liittää pohjat päiviin — suunnitelma toistuu joka viikko.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Treeni-näytöllä ”Progressio” vertaa viikkoa (tehty + suunniteltu) edelliseen ja kuukautta edelliseen kuukauteen.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Napauta Treeni-näytöllä isoa ”Aloita”-painiketta (seuraava treeni) tai ”Toinen treeni” — siellä valitset pohjan, toistat viimeisen treenin tai aloitat tyhjän.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Napauta Treeni-näytöllä ylhäällä olevaa isoa painiketta: ”Aloita” (seuraava treeni) tai ennen ensimmäistä treeniä ”Aloita ensimmäinen treeni”. Kun sinulla on jo pohjia tai historiaa, ”Toinen treeni” -kohdasta voit valita pohjan, toistaa viimeisimmän treenin tai aloittaa tyhjän.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Ylimpänä on suositeltu: se palaa rutiiniin menettämättä treeniä, välttää sitten peräkkäisiä päiviä samoilla lihasryhmillä ja muuttaa vähiten päiviä.",
  "na urządzeniu: {v}": "laitteessa: {v}",
  "Nadpisać dane?": "Korvataanko tiedot?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Väliasento {n}",
  "Pozycja pośrednia": "Väliasento",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Piirros näyttää liikkeen vain yhteen suuntaan — seuraavalla toistolla vedät itsesi ylös toista kättä kohti."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Piirros näyttää liikkeen vain yhteen suuntaan — seuraavalla toistolla vedät itsesi ylös toista kättä kohti.",
+ "Zacznij pierwszy trening": "Aloita ensimmäinen treeni",
+ "Pierwszy trening": "Ensimmäinen treeni",
+ "Pierwszy trening, dziś, {date}": "Ensimmäinen treeni, tänään, {date}",
+ "trening": "treeni",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Koti tai sali — määritä välineesi.",
+ "Historia z CSV": "Historia CSV:stä",
+ "Co gdzie jest i jak działa.": "Mikä on missä ja miten se toimii."
 }

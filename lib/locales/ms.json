@@ -1329,7 +1329,7 @@
  "Miesiąc do miesiąca": "Bulan ke bulan",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Pada skrin Latihan, “Perancangan” (tanpa pelan: “Tetapkan pelan”) membuka pelan mingguan yang menetapkan templat kepada hari — pelan berulang setiap minggu.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Pada skrin Latihan, “Progresi” membandingkan minggu (selesai + dirancang) dengan minggu sebelumnya, dan bulan dengan bulan sebelumnya.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Pada skrin Latihan, ketik butang besar “Mula” (latihan seterusnya) atau “Latihan lain” — di situ anda memilih templat, mengulang latihan terakhir atau memulakan yang kosong.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Pada skrin Latihan, ketik butang besar di bahagian atas: “Mula” (latihan seterusnya), dan sebelum latihan pertama anda, “Mulakan latihan pertama”. Apabila anda sudah ada templat atau sejarah, “Latihan lain” membolehkan anda memilih templat, mengulang latihan terakhir atau memulakan latihan kosong.",
  "Najlepsza seria: {s}": "Set terbaik: {s}",
  "Nie można wyłączyć planu": "Pelan tidak boleh dimatikan",
  "nieaktywny": "tidak aktif",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Kedudukan tengah {n}",
  "Pozycja pośrednia": "Kedudukan tengah",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Animasi ini menunjukkan pergerakan ke satu sisi sahaja — pada ulangan seterusnya, anda menarik badan ke arah tangan sebelah lagi."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Animasi ini menunjukkan pergerakan ke satu sisi sahaja — pada ulangan seterusnya, anda menarik badan ke arah tangan sebelah lagi.",
+ "Zacznij pierwszy trening": "Mulakan latihan pertama",
+ "Pierwszy trening": "Latihan pertama",
+ "Pierwszy trening, dziś, {date}": "Latihan pertama, hari ini, {date}",
+ "trening": "latihan",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Rumah atau gim — sediakan peralatan anda.",
+ "Historia z CSV": "Sejarah daripada CSV",
+ "Co gdzie jest i jak działa.": "Apa di mana dan cara ia berfungsi."
 }

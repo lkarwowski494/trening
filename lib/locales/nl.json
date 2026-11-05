@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Mijn plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Op het scherm Training opent ‘Planning’ (zonder plan: ‘Plan instellen’) het weekplan, dat sjablonen aan dagen koppelt — het plan herhaalt zich elke week.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Op het scherm Training vergelijkt ‘Progressie’ de week (gedaan + gepland) met de vorige en de maand met de maand ervoor.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Tik op het scherm Training op de grote knop ‘Start’ (volgende training) of ‘Andere training’ — daar kies je een sjabloon, herhaal je de laatste training of begin je met een lege.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Tik op het scherm Training op de grote knop bovenaan: ‘Start’ (volgende training), en vóór je eerste training ‘Start je eerste training’. Heb je al sjablonen of geschiedenis, dan kun je met ‘Andere training’ een sjabloon kiezen, de laatste training herhalen of met een lege beginnen.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Bovenaan staat de aanbevolen: die keert terug naar de routine zonder een training te verliezen, vermijdt daarna dagen achter elkaar met dezelfde spiergroepen en wijzigt de minste dagen.",
  "na urządzeniu: {v}": "op het apparaat: {v}",
  "Nadpisać dane?": "Gegevens overschrijven?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Tussenpositie {n}",
  "Pozycja pośrednia": "Tussenpositie",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "De tekening toont de beweging alleen naar één kant — bij de volgende herhaling trek je je op naar de andere hand."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "De tekening toont de beweging alleen naar één kant — bij de volgende herhaling trek je je op naar de andere hand.",
+ "Zacznij pierwszy trening": "Start je eerste training",
+ "Pierwszy trening": "Eerste training",
+ "Pierwszy trening, dziś, {date}": "Eerste training, vandaag, {date}",
+ "trening": "training",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Thuis of in de gym — stel je materiaal in.",
+ "Historia z CSV": "Geschiedenis uit CSV",
+ "Co gdzie jest i jak działa.": "Wat staat waar en hoe het werkt."
 }

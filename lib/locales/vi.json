@@ -1328,7 +1328,7 @@
  "Miesiąc do miesiąca": "Tháng so với tháng",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Trên màn hình Tập, “Lên kế hoạch” (khi chưa có kế hoạch: “Đặt kế hoạch”) mở kế hoạch tuần, gán mẫu cho các ngày — kế hoạch lặp lại mỗi tuần.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Trên màn hình Tập, “Tiến triển” so sánh tuần (đã xong + theo kế hoạch) với tuần trước, và tháng với tháng trước.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Trên màn hình Tập, chạm nút lớn “Bắt đầu” (buổi tập kế tiếp) hoặc “Buổi tập khác” — ở đó bạn chọn mẫu, lặp lại buổi tập gần nhất hoặc bắt đầu buổi tập trống.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Trên màn hình Tập, hãy chạm nút lớn ở trên cùng: “Bắt đầu” (buổi tập kế tiếp), còn trước buổi tập đầu tiên là “Bắt đầu buổi tập đầu tiên”. Khi bạn đã có mẫu hoặc lịch sử, “Buổi tập khác” cho phép chọn mẫu, lặp lại buổi tập gần nhất hoặc bắt đầu buổi tập trống.",
  "Najlepsza seria: {s}": "Hiệp tốt nhất: {s}",
  "Nie można wyłączyć planu": "Không thể tắt kế hoạch",
  "nieaktywny": "không dùng",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Tư thế giữa {n}",
  "Pozycja pośrednia": "Tư thế giữa",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Hình minh họa chỉ cho thấy động tác về một bên — ở lần tiếp theo, bạn kéo người lên về phía tay còn lại."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Hình minh họa chỉ cho thấy động tác về một bên — ở lần tiếp theo, bạn kéo người lên về phía tay còn lại.",
+ "Zacznij pierwszy trening": "Bắt đầu buổi tập đầu tiên",
+ "Pierwszy trening": "Buổi tập đầu tiên",
+ "Pierwszy trening, dziś, {date}": "Buổi tập đầu tiên, hôm nay, {date}",
+ "trening": "buổi tập",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Ở nhà hay phòng tập — hãy thiết lập dụng cụ của bạn.",
+ "Historia z CSV": "Lịch sử từ CSV",
+ "Co gdzie jest i jak działa.": "Mọi thứ ở đâu và hoạt động thế nào."
 }

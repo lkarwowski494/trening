@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Mi plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "En la pantalla Entreno, «Planificación» (sin plan: «Configurar plan») abre el plan semanal, que asigna plantillas a los días — el plan se repite cada semana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "En la pantalla Entreno, «Progresión» compara la semana (hecho + planificado) con la anterior y un mes con el mes anterior.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "En la pantalla Entreno, toca el botón grande «Empezar» (siguiente entrenamiento) u «Otro entrenamiento» — ahí elegirás una plantilla, repetirás el último entrenamiento o empezarás uno vacío.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "En la pantalla Entreno, toca el botón grande de arriba: «Empezar» (siguiente entreno) y, antes de tu primer entreno, «Empieza tu primer entreno». Cuando ya tengas plantillas o historial, «Otro entrenamiento» te permite elegir una plantilla, repetir el último entreno o empezar uno vacío.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Arriba está la recomendada: vuelve a la rutina sin perder un entreno, luego evita días seguidos con los mismos grupos musculares y cambia el menor número de días.",
  "na urządzeniu: {v}": "en el aparato: {v}",
  "Nadpisać dane?": "¿Sobrescribir los datos?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Posición intermedia {n}",
  "Pozycja pośrednia": "Posición intermedia",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "El dibujo muestra el movimiento solo hacia un lado: en la siguiente repetición, subes hacia la otra mano."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "El dibujo muestra el movimiento solo hacia un lado: en la siguiente repetición, subes hacia la otra mano.",
+ "Zacznij pierwszy trening": "Empieza tu primer entreno",
+ "Pierwszy trening": "Primer entreno",
+ "Pierwszy trening, dziś, {date}": "Primer entreno, hoy, {date}",
+ "trening": "entreno",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Casa o gimnasio: configura tu material.",
+ "Historia z CSV": "Historial desde CSV",
+ "Co gdzie jest i jak działa.": "Qué hay en cada sitio y cómo funciona."
 }

@@ -1329,7 +1329,7 @@
  "Miesiąc do miesiąca": "월별 비교",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "운동 화면에서 ‘계획’(플랜이 없을 때는 ‘플랜 설정’)을 누르면 루틴을 요일에 배정하는 주간 플랜이 열립니다. 플랜은 매주 반복됩니다.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "운동 화면에서 ‘프로그레션’은 주(완료 + 예정됨)를 이전 주와, 월을 이전 월과 비교합니다.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "운동 화면에서 큰 ‘시작’ 버튼(다음 운동) 또는 ‘다른 운동’을 누르면 루틴을 고르거나, 마지막 운동을 반복하거나, 빈 운동을 시작할 수 있습니다.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "운동 화면 상단의 큰 버튼을 누르세요. 평소에는 ‘시작’(다음 운동), 첫 운동 전에는 ‘첫 운동 시작’ 버튼입니다. 루틴이나 기록이 생기면 ‘다른 운동’에서 루틴을 고르거나, 마지막 운동을 반복하거나, 빈 운동을 시작할 수 있습니다.",
  "Najlepsza seria: {s}": "최고 세트: {s}",
  "Nie można wyłączyć planu": "플랜을 끌 수 없습니다",
  "nieaktywny": "비활성",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "중간 자세 {n}",
  "Pozycja pośrednia": "중간 자세",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "그림은 한쪽 방향의 동작만 보여 줍니다. 다음 반복에서는 반대쪽 손 쪽으로 몸을 끌어올립니다."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "그림은 한쪽 방향의 동작만 보여 줍니다. 다음 반복에서는 반대쪽 손 쪽으로 몸을 끌어올립니다.",
+ "Zacznij pierwszy trening": "첫 운동 시작",
+ "Pierwszy trening": "첫 운동",
+ "Pierwszy trening, dziś, {date}": "첫 운동, 오늘, {date}",
+ "trening": "운동",
+ "Dom albo siłownia — ustaw swój sprzęt.": "집이든 헬스장이든 장비를 설정하세요.",
+ "Historia z CSV": "CSV에서 가져온 기록",
+ "Co gdzie jest i jak działa.": "어디에 무엇이 있고 어떻게 작동하는지 알아보세요."
 }

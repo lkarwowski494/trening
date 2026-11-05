@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Můj plán ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Na obrazovce Trénink „Plánování“ (bez plánu: „Nastavit plán“) otevře týdenní plán, který přiřazuje šablony ke dnům — plán se opakuje každý týden.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Na obrazovce Trénink „Progrese“ porovnává týden (hotovo + naplánováno) s předchozím a měsíc s předchozím měsícem.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Na obrazovce Trénink klepněte na velké tlačítko „Začít“ (další trénink) nebo „Jiný trénink“ — tam vyberete šablonu, zopakujete poslední trénink nebo začnete prázdný.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Na obrazovce Trénink klepněte na velké tlačítko nahoře: „Začít“ (další trénink), před prvním tréninkem „Zahájit první trénink“. Jakmile máte šablony nebo historii, můžete přes „Jiný trénink“ vybrat šablonu, zopakovat poslední trénink nebo začít prázdný.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Nahoře je doporučená: vrátí se k rutině a neztratí trénink, pak se vyhne dvojicím den po dni se stejnými partiemi a změní nejméně dnů.",
  "na urządzeniu: {v}": "na zařízení: {v}",
  "Nadpisać dane?": "Přepsat data?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Mezipoloha {n}",
  "Pozycja pośrednia": "Mezipoloha",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Obrázek ukazuje pohyb jen na jednu stranu — při dalším opakování se přitáhnete k druhé ruce."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Obrázek ukazuje pohyb jen na jednu stranu — při dalším opakování se přitáhnete k druhé ruce.",
+ "Zacznij pierwszy trening": "Zahájit první trénink",
+ "Pierwszy trening": "První trénink",
+ "Pierwszy trening, dziś, {date}": "První trénink, dnes, {date}",
+ "trening": "trénink",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Doma nebo v posilovně — nastavte si své vybavení.",
+ "Historia z CSV": "Historie z CSV",
+ "Co gdzie jest i jak działa.": "Co kde najdete a jak to funguje."
 }

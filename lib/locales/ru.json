@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Мой план ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "На экране Тренировка «Планирование» (без плана: «Составить план») открывает план на неделю, который назначает шаблоны дням — план повторяется каждую неделю.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "На экране Тренировка «Прогрессия» сравнивает неделю (выполнено + запланировано) с предыдущей, а месяц — с предыдущим месяцем.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "На экране Тренировка нажмите большую кнопку «Старт» (следующая тренировка) или «Другая тренировка» — там вы выберете шаблон, повторите последнюю тренировку или начнёте пустую.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "На экране «Тренировка» нажмите большую кнопку вверху: «Старт» (следующая тренировка), а перед первой тренировкой — «Начать первую тренировку». Когда у вас уже есть шаблоны или история, кнопка «Другая тренировка» позволяет выбрать шаблон, повторить последнюю тренировку или начать пустую.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Рекомендуемый вариант — вверху списка: он возвращает к обычному ритму и не теряет тренировку, затем избегает соседних дней с теми же мышечными группами и меняет меньше всего дней.",
  "na urządzeniu: {v}": "на тренажёре: {v}",
  "Nadpisać dane?": "Перезаписать данные?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} фнт",
  "Pozycja pośrednia {n}": "Промежуточное положение {n}",
  "Pozycja pośrednia": "Промежуточное положение",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "На рисунке движение показано только в одну сторону — в следующем повторении вы подтягиваетесь к другой руке."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "На рисунке движение показано только в одну сторону — в следующем повторении вы подтягиваетесь к другой руке.",
+ "Zacznij pierwszy trening": "Начать первую тренировку",
+ "Pierwszy trening": "Первая тренировка",
+ "Pierwszy trening, dziś, {date}": "Первая тренировка, сегодня, {date}",
+ "trening": "тренировка",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Дом или зал — настройте своё оборудование.",
+ "Historia z CSV": "История из CSV",
+ "Co gdzie jest i jak działa.": "Что где находится и как работает."
 }

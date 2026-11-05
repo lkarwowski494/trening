@@ -4569,6 +4569,10 @@
   "en": "Would help: {list}."
  },
  {
+  "pl": "Przygotuj się do pierwszej serii",
+  "en": "Get ready for your first set"
+ },
+ {
   "pl": "Przypomnienie o treningu z planu",
   "en": "Reminder for planned workouts"
  },
@@ -6691,10 +6695,6 @@
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
- },
- {
-  "pl": "Zacznij od ustawień",
-  "en": "Start with the settings"
  },
  {
   "pl": "Zacznij pierwszy trening",

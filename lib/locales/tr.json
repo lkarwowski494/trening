@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Planım ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Antrenman ekranında “Planlama” (plan yoksa: “Plan ayarla”), şablonları günlere atayan haftalık planı açar — plan her hafta tekrarlanır.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Antrenman ekranında “Progresyon”, haftayı (tamam + planlandı) bir öncekiyle, ayı da bir önceki ayla karşılaştırır.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Antrenman ekranında büyük “Başlat” düğmesine (sıradaki antrenman) veya “Başka antrenman”a dokunun — orada şablon seçer, son antrenmanı tekrarlar ya da boş bir antrenman başlatırsınız.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Antrenman ekranında üstteki büyük düğmeye dokunun: “Başlat” (sıradaki antrenman), ilk antrenmanınızdan önce ise “İlk antrenmanınıza başlayın”. Şablonlarınız veya geçmişiniz olduğunda “Başka antrenman” ile bir şablon seçebilir, son antrenmanı tekrarlayabilir ya da boş bir antrenman başlatabilirsiniz.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "En üstte önerilen var: antrenman kaybetmeden rutine döner, sonra aynı kas gruplarıyla art arda günlerden kaçınır ve en az günü değiştirir.",
  "na urządzeniu: {v}": "cihazda: {v}",
  "Nadpisać dane?": "Verilerin üzerine yazılsın mı?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Ara pozisyon {n}",
  "Pozycja pośrednia": "Ara pozisyon",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Çizim hareketi yalnızca tek yöne gösteriyor — bir sonraki tekrarda kendinizi diğer elinize doğru yukarı çekersiniz."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Çizim hareketi yalnızca tek yöne gösteriyor — bir sonraki tekrarda kendinizi diğer elinize doğru yukarı çekersiniz.",
+ "Zacznij pierwszy trening": "İlk antrenmanınıza başlayın",
+ "Pierwszy trening": "İlk antrenman",
+ "Pierwszy trening, dziś, {date}": "İlk antrenman, bugün, {date}",
+ "trening": "antrenman",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Ev ya da spor salonu: ekipmanınızı ayarlayın.",
+ "Historia z CSV": "CSV'den geçmiş",
+ "Co gdzie jest i jak działa.": "Ne nerede ve nasıl çalışır."
 }

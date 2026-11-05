@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Moj plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Na zaslonu Trening „Planiranje” (bez plana: „Postavi plan”) otvara tjedni plan koji dodjeljuje predloške danima — plan se ponavlja svaki tjedan.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Na zaslonu Trening „Progresija” uspoređuje tjedan (gotovo + planirano) s prethodnim i mjesec s prethodnim mjesecom.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Na zaslonu Trening dodirnite veliki gumb „Započni” (sljedeći trening) ili „Drugi trening” — tamo birate predložak, ponavljate zadnji trening ili započinjete prazan.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Na zaslonu Trening dodirnite veliki gumb na vrhu: „Započni” (sljedeći trening), a prije prvog treninga „Započni prvi trening”. Kad već imate predloške ili povijest, „Drugi trening” omogućuje odabir predloška, ponavljanje zadnjeg treninga ili početak praznog.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Na vrhu je preporučena: vraća se na rutinu bez izgubljenog treninga, zatim izbjegava dane zaredom s istim mišićnim skupinama i mijenja najmanje dana.",
  "na urządzeniu: {v}": "na uređaju: {v}",
  "Nadpisać dane?": "Prepisati podatke?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Međupoložaj {n}",
  "Pozycja pośrednia": "Međupoložaj",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Crtež prikazuje pokret samo na jednu stranu — pri sljedećem ponavljanju podižete se prema drugoj ruci."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Crtež prikazuje pokret samo na jednu stranu — pri sljedećem ponavljanju podižete se prema drugoj ruci.",
+ "Zacznij pierwszy trening": "Započni prvi trening",
+ "Pierwszy trening": "Prvi trening",
+ "Pierwszy trening, dziś, {date}": "Prvi trening, danas, {date}",
+ "trening": "trening",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Kod kuće ili u teretani — postavite svoju opremu.",
+ "Historia z CSV": "Povijest iz CSV-a",
+ "Co gdzie jest i jak działa.": "Što je gdje i kako radi."
 }

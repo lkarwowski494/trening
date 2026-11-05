@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Mans plāns ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Ekrānā Treniņš “Plānošana” (bez plāna: “Iestatīt plānu”) atver nedēļas plānu, kas piešķir veidnes dienām — plāns atkārtojas katru nedēļu.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Ekrānā Treniņš “Progresija” salīdzina nedēļu (izdarīts + plānots) ar iepriekšējo un mēnesi ar iepriekšējo mēnesi.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Ekrānā Treniņš pieskarieties lielajai pogai “Sākt” (nākamais treniņš) vai “Cits treniņš” — tur izvēlēsieties veidni, atkārtosiet pēdējo treniņu vai sāksiet tukšu.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Ekrānā Treniņš pieskarieties lielajai pogai augšpusē: “Sākt” (nākamais treniņš), bet pirms pirmā treniņa — “Sākt pirmo treniņu”. Kad jums jau ir veidnes vai vēsture, ar “Cits treniņš” varat izvēlēties veidni, atkārtot pēdējo treniņu vai sākt tukšu.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Augšā ir ieteicamā: atgriežas rutīnā, nezaudējot treniņu, tad izvairās no dienām pēc kārtas ar tām pašām muskuļu grupām un maina vismazāk dienu.",
  "na urządzeniu: {v}": "ierīcē: {v}",
  "Nadpisać dane?": "Pārrakstīt datus?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Starppozīcija {n}",
  "Pozycja pośrednia": "Starppozīcija",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Zīmējumā kustība parādīta tikai uz vienu pusi — nākamajā atkārtojumā jūs pievelkaties pie otras rokas."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Zīmējumā kustība parādīta tikai uz vienu pusi — nākamajā atkārtojumā jūs pievelkaties pie otras rokas.",
+ "Zacznij pierwszy trening": "Sākt pirmo treniņu",
+ "Pierwszy trening": "Pirmais treniņš",
+ "Pierwszy trening, dziś, {date}": "Pirmais treniņš, šodien, {date}",
+ "trening": "treniņš",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Mājās vai sporta zālē — iestatiet savu aprīkojumu.",
+ "Historia z CSV": "Vēsture no CSV",
+ "Co gdzie jest i jak działa.": "Kas kur atrodas un kā tas darbojas."
 }

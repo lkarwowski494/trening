@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Saját terv ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Az Edzés képernyőn a „Tervezés” (terv nélkül: „Terv beállítása”) megnyitja a heti tervet, amely sablonokat rendel a napokhoz — a terv minden héten ismétlődik.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Az Edzés képernyőn a „Progresszió” a hetet (kész + tervezett) az előzővel, a hónapot az előző hónappal hasonlítja össze.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Az Edzés képernyőn koppintson a nagy „Indítás” gombra (következő edzés) vagy a „Másik edzés” lehetőségre — ott sablont választ, megismétli az utolsó edzést, vagy üreset kezd.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Az Edzés képernyőn koppintson a felső nagy gombra: „Indítás” (következő edzés), az első edzés előtt pedig „Első edzés indítása”. Ha már vannak sablonjai vagy előzményei, a „Másik edzés” lehetőséggel sablont választhat, megismételheti az utolsó edzést, vagy üreset kezdhet.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Legfelül az ajánlott: edzésvesztés nélkül tér vissza a rutinhoz, aztán elkerüli az azonos izomcsoportos egymás utáni napokat, és a legkevesebb napot módosítja.",
  "na urządzeniu: {v}": "a gépen: {v}",
  "Nadpisać dane?": "Felülírja az adatokat?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Köztes helyzet {n}",
  "Pozycja pośrednia": "Köztes helyzet",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "A rajz csak az egyik oldalra mutatja a mozdulatot — a következő ismétlésnél a másik keze felé húzza fel magát."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "A rajz csak az egyik oldalra mutatja a mozdulatot — a következő ismétlésnél a másik keze felé húzza fel magát.",
+ "Zacznij pierwszy trening": "Első edzés indítása",
+ "Pierwszy trening": "Első edzés",
+ "Pierwszy trening, dziś, {date}": "Első edzés, ma, {date}",
+ "trening": "edzés",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Otthon vagy edzőteremben — állítsa be a felszerelését.",
+ "Historia z CSV": "Előzmények CSV-ből",
+ "Co gdzie jest i jak działa.": "Mi hol található, és hogyan működik."
 }

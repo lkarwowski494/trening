@@ -622,7 +622,7 @@
  "Mój plan ({date})": "Το πρόγραμμά μου ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Στην οθόνη Προπόνηση, ο «Σχεδιασμός» (χωρίς πρόγραμμα: «Ορίστε πρόγραμμα») ανοίγει το εβδομαδιαίο πρόγραμμα, που αντιστοιχίζει πρότυπα σε μέρες — το πρόγραμμα επαναλαμβάνεται κάθε εβδομάδα.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Στην οθόνη Προπόνηση, η «Εξέλιξη» συγκρίνει την εβδομάδα (έγινε + προγραμματισμένο) με την προηγούμενη και τον μήνα με τον προηγούμενο μήνα.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Στην οθόνη Προπόνηση πατήστε το μεγάλο κουμπί «Έναρξη» (επόμενη προπόνηση) ή «Άλλη προπόνηση» — εκεί θα διαλέξετε πρότυπο, θα επαναλάβετε την τελευταία προπόνηση ή θα ξεκινήσετε μια κενή.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Στην οθόνη Προπόνηση πατήστε το μεγάλο κουμπί στο πάνω μέρος: «Έναρξη» (επόμενη προπόνηση) και, πριν από την πρώτη σας προπόνηση, «Έναρξη πρώτης προπόνησης». Όταν έχετε ήδη πρότυπα ή ιστορικό, η «Άλλη προπόνηση» σάς επιτρέπει να διαλέξετε πρότυπο, να επαναλάβετε την τελευταία προπόνηση ή να ξεκινήσετε μια κενή.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Στην κορυφή είναι η προτεινόμενη: επιστρέφει στη ρουτίνα χωρίς να χαθεί προπόνηση, μετά αποφεύγει συνεχόμενες μέρες με τις ίδιες μυϊκές ομάδες και αλλάζει τις λιγότερες μέρες.",
  "na urządzeniu: {v}": "στη συσκευή: {v}",
  "Nadpisać dane?": "Αντικατάσταση δεδομένων;",
@@ -1773,5 +1773,12 @@
  "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Έχετε ιστορικό σε άλλη εφαρμογή; Μπορείτε να το προσθέσετε από αρχείο CSV.",
  "Pozycja pośrednia {n}": "Ενδιάμεση θέση {n}",
  "Pozycja pośrednia": "Ενδιάμεση θέση",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Το σχέδιο δείχνει την κίνηση μόνο προς τη μία πλευρά — στην επόμενη επανάληψη ανεβαίνετε προς το άλλο χέρι."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Το σχέδιο δείχνει την κίνηση μόνο προς τη μία πλευρά — στην επόμενη επανάληψη ανεβαίνετε προς το άλλο χέρι.",
+ "Zacznij pierwszy trening": "Έναρξη πρώτης προπόνησης",
+ "Pierwszy trening": "Πρώτη προπόνηση",
+ "Pierwszy trening, dziś, {date}": "Πρώτη προπόνηση, σήμερα, {date}",
+ "trening": "προπόνηση",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Σπίτι ή γυμναστήριο — ρυθμίστε τον εξοπλισμό σας.",
+ "Historia z CSV": "Ιστορικό από CSV",
+ "Co gdzie jest i jak działa.": "Τι βρίσκεται πού και πώς λειτουργεί."
 }

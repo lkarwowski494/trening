@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Мој план ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "На екрану Тренинг „Планирање” (без плана: „Постави план”) отвара недељни план који додељује шаблоне данима — план се понавља сваке недеље.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "На екрану Тренинг „Прогресија” упоређује недељу (урађено + планирано) са претходном и месец са претходним месецом.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "На екрану Тренинг додирните велико дугме „Почни” (следећи тренинг) или „Други тренинг” — тамо бирате шаблон, понављате последњи тренинг или започињете празан.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "На екрану Тренинг додирните велико дугме на врху: „Почни” (следећи тренинг), а пре првог тренинга „Започни први тренинг”. Када већ имате шаблоне или историју, „Други тренинг” вам омогућава да изаберете шаблон, поновите последњи тренинг или започнете празан.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "На врху је препоручена: враћа се на рутину без изгубљеног тренинга, затим избегава дане заредом са истим мишићним групама и мења најмање дана.",
  "na urządzeniu: {v}": "на уређају: {v}",
  "Nadpisać dane?": "Преписати податке?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} фнт",
  "Pozycja pośrednia {n}": "Међуположај {n}",
  "Pozycja pośrednia": "Међуположај",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Цртеж приказује покрет само на једну страну — при следећем понављању повлачите се ка другој руци."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Цртеж приказује покрет само на једну страну — при следећем понављању повлачите се ка другој руци.",
+ "Zacznij pierwszy trening": "Започни први тренинг",
+ "Pierwszy trening": "Први тренинг",
+ "Pierwszy trening, dziś, {date}": "Први тренинг, данас, {date}",
+ "trening": "тренинг",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Код куће или у теретани — подесите своју опрему.",
+ "Historia z CSV": "Историја из CSV-а",
+ "Co gdzie jest i jak działa.": "Шта је где и како ради."
 }

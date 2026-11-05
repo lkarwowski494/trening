@@ -845,7 +845,6 @@
  "z oparciem skośnym": "dynamiczny (lista, etykieta albo dane w kodzie)",
  "Z szablonu": "app/history/add.tsx:40, components/StartPanel.tsx:54",
  "Z zegarka": "lib/healthRead.ts:161",
- "Zacznij od ustawień": "components/Dashboard.tsx:104",
  "Zacznij trening": "app/(tabs)/progress.tsx:95",
  "Zaimportowano": "app/more/backup.tsx:26, app/more/import.tsx:35",
  "zakładka, {i} z {n}": "app/(tabs)/_layout.tsx:18",

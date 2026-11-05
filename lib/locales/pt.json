@@ -623,7 +623,7 @@
  "Mój plan ({date})": "O meu plano ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "No ecrã Treino, «Planeamento» (sem plano: «Definir plano») abre o plano semanal, que atribui modelos aos dias — o plano repete-se todas as semanas.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "No ecrã Treino, «Progressão» compara a semana (feito + planeado) com a anterior e um mês com o mês anterior.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "No ecrã Treino, toque no botão grande «Iniciar» (próximo treino) ou «Outro treino» — aí vai escolher um modelo, repetir o último treino ou começar um vazio.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "No ecrã Treino, toque no botão grande no topo: «Iniciar» (próximo treino) e, antes do primeiro treino, «Iniciar o primeiro treino». Quando já tiver modelos ou histórico, «Outro treino» permite escolher um modelo, repetir o último treino ou começar um vazio.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "No topo está a recomendada: volta à rotina sem perder treino, depois evita dias seguidos com os mesmos grupos musculares e altera o menor número de dias.",
  "na urządzeniu: {v}": "no aparelho: {v}",
  "Nadpisać dane?": "Substituir dados?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Posição intermédia {n}",
  "Pozycja pośrednia": "Posição intermédia",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "O desenho mostra o movimento apenas para um lado — na repetição seguinte, o corpo sobe em direção à outra mão."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "O desenho mostra o movimento apenas para um lado — na repetição seguinte, o corpo sobe em direção à outra mão.",
+ "Zacznij pierwszy trening": "Iniciar o primeiro treino",
+ "Pierwszy trening": "Primeiro treino",
+ "Pierwszy trening, dziś, {date}": "Primeiro treino, hoje, {date}",
+ "trening": "treino",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Casa ou ginásio — configure o seu equipamento.",
+ "Historia z CSV": "Histórico CSV",
+ "Co gdzie jest i jak działa.": "O que está onde e como funciona."
 }

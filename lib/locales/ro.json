@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Planul meu ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Pe ecranul Antrenament, „Planificare” (fără plan: „Setează planul”) deschide planul săptămânal, care atribuie șabloane zilelor — planul se repetă în fiecare săptămână.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Pe ecranul Antrenament, „Progresie” compară săptămâna (gata + planificat) cu cea anterioară și luna cu luna anterioară.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Pe ecranul Antrenament atingeți butonul mare „Start” (următorul antrenament) sau „Alt antrenament” — acolo alegeți un șablon, repetați ultimul antrenament sau începeți unul gol.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Pe ecranul Antrenament atingeți butonul mare din partea de sus: „Start” (următorul antrenament), iar înainte de primul antrenament „Începe primul antrenament”. Când aveți deja șabloane sau istoric, „Alt antrenament” vă permite să alegeți un șablon, să repetați ultimul antrenament sau să începeți unul gol.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Sus este cea recomandată: revine la rutină fără să piardă un antrenament, apoi evită zile la rând cu aceleași grupe musculare și schimbă cele mai puține zile.",
  "na urządzeniu: {v}": "pe aparat: {v}",
  "Nadpisać dane?": "Suprascrieți datele?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Poziția intermediară {n}",
  "Pozycja pośrednia": "Poziția intermediară",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Desenul arată mișcarea doar într-o parte — la următoarea repetare vă trageți spre cealaltă mână."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Desenul arată mișcarea doar într-o parte — la următoarea repetare vă trageți spre cealaltă mână.",
+ "Zacznij pierwszy trening": "Începe primul antrenament",
+ "Pierwszy trening": "Primul antrenament",
+ "Pierwszy trening, dziś, {date}": "Primul antrenament, azi, {date}",
+ "trening": "antrenament",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Acasă sau la sală — configurați-vă echipamentul.",
+ "Historia z CSV": "Istoric din CSV",
+ "Co gdzie jest i jak działa.": "Ce se află unde și cum funcționează."
 }

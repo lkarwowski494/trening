@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Min plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "På skjermen Trening åpner «Planlegging» (uten plan: «Lag plan») ukeplanen, som knytter maler til dager — planen gjentas hver uke.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "På skjermen Trening sammenligner «Progresjon» uken (ferdig + planlagt) med forrige og måneden med måneden før.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "På skjermen Trening trykker du på den store knappen «Start» (neste økt) eller «Annen økt» — der velger du en mal, gjentar siste økt eller starter en tom.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "På skjermen Trening trykker du på den store knappen øverst: «Start» (neste økt), og før din første økt «Start din første økt». Når du har maler eller historikk, kan du med «Annen økt» velge en mal, gjenta siste økt eller starte en tom.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Øverst står den anbefalte: den går tilbake til rutinen uten å miste en økt, unngår så dager på rad med samme muskelgrupper og endrer færrest dager.",
  "na urządzeniu: {v}": "på enheten: {v}",
  "Nadpisać dane?": "Overskrive data?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Mellomstilling {n}",
  "Pozycja pośrednia": "Mellomstilling",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Tegningen viser bevegelsen bare til én side — i neste repetisjon drar du deg opp mot den andre hånden."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Tegningen viser bevegelsen bare til én side — i neste repetisjon drar du deg opp mot den andre hånden.",
+ "Zacznij pierwszy trening": "Start din første økt",
+ "Pierwszy trening": "Første økt",
+ "Pierwszy trening, dziś, {date}": "Første økt, i dag, {date}",
+ "trening": "økt",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Hjemme eller på treningssenteret — sett opp utstyret ditt.",
+ "Historia z CSV": "Historikk fra CSV",
+ "Co gdzie jest i jak działa.": "Hva som er hvor og hvordan det virker."
 }

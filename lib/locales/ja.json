@@ -1328,7 +1328,7 @@
  "Miesiąc do miesiąca": "月ごとの比較",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "トレーニング画面の「プランニング」（プランがない場合は「プランを設定」）で、テンプレートを各曜日に割り当てる週間プランを開きます。プランは毎週繰り返されます。",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "トレーニング画面の「プログレッション」では、週（完了 + 予定）を前の週と、月を前の月と比較します。",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "トレーニング画面で大きな「開始」ボタン（次のトレーニング）か「別のトレーニング」をタップすると、テンプレートの選択、前回のトレーニングの繰り返し、空のトレーニングの開始ができます。",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "トレーニング画面で上部の大きなボタンをタップします。通常は「開始」（次のトレーニング）、最初のトレーニングの前は「最初のトレーニングを始める」です。テンプレートや履歴ができたら、「別のトレーニング」からテンプレートの選択、前回のトレーニングの繰り返し、空のトレーニングの開始ができます。",
  "Najlepsza seria: {s}": "ベストセット：{s}",
  "Nie można wyłączyć planu": "プランをオフにできません",
  "nieaktywny": "無効",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "途中の姿勢{n}",
  "Pozycja pośrednia": "途中の姿勢",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "図は片側への動きだけを示しています。次の1回では反対の手のほうへ体を引き上げます。"
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "図は片側への動きだけを示しています。次の1回では反対の手のほうへ体を引き上げます。",
+ "Zacznij pierwszy trening": "最初のトレーニングを始める",
+ "Pierwszy trening": "最初のトレーニング",
+ "Pierwszy trening, dziś, {date}": "最初のトレーニング、今日、{date}",
+ "trening": "トレーニング",
+ "Dom albo siłownia — ustaw swój sprzęt.": "自宅でもジムでも、使う器具を設定しましょう。",
+ "Historia z CSV": "CSVからの履歴",
+ "Co gdzie jest i jak działa.": "どこに何があり、どう使うかを説明します。"
 }

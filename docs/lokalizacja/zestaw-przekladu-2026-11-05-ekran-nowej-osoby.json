@@ -1,62 +1,13 @@
 {
  "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN) po wdrożeniu ekranu nowej osoby 1.1 (05.11.2026, docs/18): nowe klucze interfejsu. Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności tests/i18n-locales.test.ts, wczytywany przez tests/pending-translation.ts). Przekład robi koordynator przez API; po przekładzie wpisać tłumaczenia do lib/locales/<kod>.json, usunąć wpis z tego pliku i uruchomić UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts. Klucz 'trening' (podpis jednostki przy dużej „1”) — kontekst: rzeczownik, podpis pod liczbą, jak „1 workout”.",
  "data": "2026-11-05",
- "status": "otwarty - czeka na przekład API",
+ "status": "otwarty - czeka na przekład API tylko nagłówka „Przygotuj się do pierwszej serii” (pozostałe 8 pozycji nałożone 05.11.2026, przebieg 42103385218)",
  "klucze": [
   {
    "rodzaj": "nowy",
-   "pl": "Zacznij pierwszy trening",
-   "en": "Start your first workout",
-   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): duży przycisk startu pustego treningu (czasownik w trybie rozkazującym, jak „Zacznij trening”); podpis pod nim: „ćwiczenia dodasz w trakcie”"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Zacznij od ustawień",
-   "en": "Start with the settings",
-   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): nagłówek sekcji z czterema kafelkami (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik); wersaliki wg języka; „ustawienia” = wstępne przygotowanie aplikacji, nie ekran Ustawienia"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Pierwszy trening",
-   "en": "First workout",
-   "kontekst": "nagłówek tablicy „Pierwszy trening” na ekranie głównym nowej osoby (granatowa tablica z datą, wersaliki wg języka): „pierwszy” = jeszcze nie odbyty trening w aplikacji; krótki tytuł, NIE zdanie i NIE przycisk (przycisk to „Zacznij pierwszy trening”)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Pierwszy trening, dziś, {date}",
-   "en": "First workout, today, {date}",
-   "kontekst": "opis dla czytnika ekranu (VoiceOver) tablicy „Pierwszy trening”: „{date}” to pełna data z dniem tygodnia, np. „czwartek, 5 listopada”; krótkie wyliczenie po przecinkach, nie zdanie"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "trening",
-   "en": "workout",
-   "kontekst": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Dom albo siłownia — ustaw swój sprzęt.",
-   "en": "Home or gym — set up your equipment.",
-   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): podpis kafelka „Miejsca i sprzęt”; krótka zachęta, zwykły ton"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Historia z CSV",
-   "en": "History from CSV",
-   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): tytuł kafelka prowadzącego do importu historii treningów z pliku CSV (nazwa formatu zostaje „CSV”)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Co gdzie jest i jak działa.",
-   "en": "What is where and how it works.",
-   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): podpis kafelka „Przewodnik”; krótka zachęta, zwykły ton"
-  },
-  {
-   "rodzaj": "zmieniony",
-   "pl": "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.",
-   "en": "On the Workout screen tap the big button at the top: “Start” (next workout), and before your first workout “Start your first workout”. Once you have templates or history, “Other workout” lets you pick a template, repeat the last workout or start an empty one.",
-   "poprzedni_pl": "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.",
-   "kontekst": "krok 1 Przewodnika, temat „Trening i serie”; cytaty w „…” to nazwy przycisków („Start”, „Zacznij pierwszy trening”, „Inny trening”) — w przekładzie użyć dokładnie tych samych nazw co przyciski w danym języku"
+   "pl": "Przygotuj się do pierwszej serii",
+   "en": "Get ready for your first set",
+   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): nagłówek sekcji wersalikami nad czterema kafelkami przygotowania przed pierwszym treningiem (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik); przenośnia siłowniana „przygotuj się do pierwszej serii”, NIE ekran Ustawienia; krótko"
   }
  ]
 }

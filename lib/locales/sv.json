@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Min plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "På skärmen Träning öppnar ”Planering” (utan plan: ”Ställ in plan”) veckoplanen, som kopplar mallar till dagar — planen upprepas varje vecka.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "På skärmen Träning jämför ”Progression” veckan (klart + planerat) med den förra och månaden med månaden innan.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "På skärmen Träning trycker du på den stora knappen ”Start” (nästa pass) eller ”Annat pass” — där väljer du en mall, upprepar det senaste passet eller börjar ett tomt.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "På skärmen Träning trycker du på den stora knappen högst upp: ”Start” (nästa pass), och före ditt första pass ”Starta ditt första pass”. När du har mallar eller historik kan du med ”Annat pass” välja en mall, upprepa det senaste passet eller börja ett tomt.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Överst står den rekommenderade: den återgår till rutinen utan att tappa ett pass, undviker sedan dagar i rad med samma muskelgrupper och ändrar minst antal dagar.",
  "na urządzeniu: {v}": "på enheten: {v}",
  "Nadpisać dane?": "Skriva över data?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Mellanläge {n}",
  "Pozycja pośrednia": "Mellanläge",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Teckningen visar rörelsen bara åt ena hållet – i nästa rep drar du dig upp mot andra handen."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Teckningen visar rörelsen bara åt ena hållet – i nästa rep drar du dig upp mot andra handen.",
+ "Zacznij pierwszy trening": "Starta ditt första pass",
+ "Pierwszy trening": "Första passet",
+ "Pierwszy trening, dziś, {date}": "Första passet, i dag, {date}",
+ "trening": "pass",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Hemma eller på gymmet – ställ in din utrustning.",
+ "Historia z CSV": "Historik från CSV",
+ "Co gdzie jest i jak działa.": "Var allt finns och hur det fungerar."
 }

@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Il mio piano ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Nella schermata Allenamento, «Pianificazione» (senza piano: «Imposta piano») apre il piano settimanale, che assegna le schede ai giorni — il piano si ripete ogni settimana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Nella schermata Allenamento, «Progressione» confronta la settimana (fatto + pianificato) con la precedente e il mese con il mese precedente.",
- "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Nella schermata Allenamento tocca il grande pulsante «Inizia» (prossimo allenamento) o «Altro allenamento» — lì sceglierai una scheda, ripeterai l’ultimo allenamento o ne inizierai uno vuoto.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Nella schermata Allenamento tocca il grande pulsante in alto: «Inizia» (prossimo allenamento) oppure, prima del tuo primo allenamento, «Inizia il tuo primo allenamento». Quando hai già delle schede o uno storico, con «Altro allenamento» puoi scegliere una scheda, ripetere l’ultimo allenamento o iniziarne uno vuoto.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "In cima c’è la consigliata: torna alla routine senza perdere allenamenti, poi evita giorni di seguito con gli stessi gruppi muscolari e cambia il minor numero di giorni.",
  "na urządzeniu: {v}": "sul dispositivo: {v}",
  "Nadpisać dane?": "Sovrascrivere i dati?",
@@ -1773,5 +1773,12 @@
  "{n} lb": "{n} lb",
  "Pozycja pośrednia {n}": "Posizione intermedia {n}",
  "Pozycja pośrednia": "Posizione intermedia",
- "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Il disegno mostra il movimento da un solo lato: alla ripetizione successiva ti tiri su verso l’altra mano."
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "Il disegno mostra il movimento da un solo lato: alla ripetizione successiva ti tiri su verso l’altra mano.",
+ "Zacznij pierwszy trening": "Inizia il tuo primo allenamento",
+ "Pierwszy trening": "Primo allenamento",
+ "Pierwszy trening, dziś, {date}": "Primo allenamento, oggi, {date}",
+ "trening": "allenamento",
+ "Dom albo siłownia — ustaw swój sprzęt.": "Casa o palestra: imposta la tua attrezzatura.",
+ "Historia z CSV": "Storico da CSV",
+ "Co gdzie jest i jak działa.": "Dove trovi tutto e come funziona."
 }
