@@ -9,6 +9,9 @@
 // Zapadka (wzór BEZ_KONTEKSTU_MAX / ROZJAZDY_POZA_ZAKRESEM): tests/czas-testu-wyjatki.json = lista bazowa przypadków ponad progiem (powód, data, plan).
 //   NOWY przypadek ponad progiem → odmowa; wpis, którego przypadek (obecny w wyniku tej części) mieści się już w progu × `zapadka_margines` → odmowa
 //   (lista tylko maleje; margines chroni przed migotaniem przypadków tuż nad progiem). Wpis bez przypadku w wyniku (inna część Jest) jest pomijany.
+// Zakres (decyzja właściciela 05.11.2026 ~15:35 UTC, wariant A; powód: przebieg dowodowy 2 — miganie przypadków z limitem 5 s, 2,7–3,2 s ↔ 0,9 s):
+//   kontrola obejmuje tylko przypadki z limitem ≥ `min_limit_kontroli_s` (scripts/ci/czasy-tests.json); przypadki z krótszym limitem są pomijane (licznik „poza zakresem”),
+//   a wpis bazowy z takim przypadkiem nie jest ani wymagany, ani „zbędny”. Ryzyko z lekcji to testy długie (526 s przy limicie 480 s).
 // Brak wyniku albo brak czasów → kod 2 z komunikatem. Naruszenie → kod 1 z listą testów do podziału i gotowymi wpisami JSON.
 // Użycie: node scripts/kontrola-czasu-testu.mjs <wynik.json> [--limity <plik>] [--root <katalog>] [--propozycja]
 //   --limity domyślnie z JEST_LIMITY_PLIK; --propozycja wypisuje na stdout gotowe wpisy JSON (stan bazowy) dla przypadków ponad progiem i kończy kodem 0.
@@ -34,26 +37,27 @@ export function wczytajLimity(tekst) {
 
 /**
  * Ocena wyniku Jest. `limity` — obiekt { klucz(plik, pełna nazwa): limit ms | null } (z wczytajLimity). Zwraca
- * { naruszenia, wyjatki, zbedne, bezLimitu, zmierzone } albo { bladCzasow }.
+ * { naruszenia, wyjatki, zbedne, bezLimitu, pozaZakresem, zmierzone } albo { bladCzasow }.
  * Naruszenie: { plik, test, ms, limit, udzial }. Zbędny: wyjątek, którego przypadek mieści się w progu × margines (zapadka).
  */
-export function ocenCzasy(wynik, { prog, limity = {}, wyjatki = [], margines = 1, korzen = '' }) {
+export function ocenCzasy(wynik, { prog, limity = {}, wyjatki = [], margines = 1, korzen = '', minLimit = 0 }) {
   const pliki = (wynik && wynik.testResults) || [];
   const przypadki = pliki.flatMap(f => (f.assertionResults || []).map(a => ({ plik: String(f.name).replace(korzen ? korzen.replace(/\/?$/, '/') : '', ''), a })))
     .filter(({ a }) => typeof a.duration === 'number');
   if (!pliki.length) return { bladCzasow: 'wynik Jest nie zawiera żadnego pliku testowego — brak czasów do sprawdzenia' };
   if (!przypadki.length) return { bladCzasow: 'wynik Jest nie zawiera czasów przypadków (assertionResults[].duration) — brak czasów do sprawdzenia' };
-  const naruszenia = []; const uzyte = []; const zbedne = []; const bezLimitu = [];
+  const naruszenia = []; const uzyte = []; const zbedne = []; const bezLimitu = []; let pozaZakresem = 0;
   for (const { plik, a } of przypadki) {
     const test = a.fullName || a.title;
     const limit = limity[klucz(plik, test)];
     const w = wyjatki.find(x => x.plik === plik && x.test === test);
     if (!limit) { bezLimitu.push({ plik, test, ms: a.duration }); continue; }
+    if (limit < minLimit) { pozaZakresem++; continue; }
     const n = { plik, test, ms: a.duration, limit, udzial: a.duration / limit };
     if (a.duration > prog * limit) (w ? uzyte : naruszenia).push(w ? { ...n, wyjatek: w } : n);
     else if (w && a.duration <= prog * limit * margines) zbedne.push({ ...n, wyjatek: w });
   }
-  return { naruszenia, wyjatki: uzyte, zbedne, bezLimitu, zmierzone: przypadki.length };
+  return { naruszenia, wyjatki: uzyte, zbedne, bezLimitu, pozaZakresem, zmierzone: przypadki.length };
 }
 
 /** Gotowy wpis do tests/czas-testu-wyjatki.json dla przypadku ponad progiem (stan bazowy). */
@@ -76,12 +80,14 @@ export function main(argv) {
   const czasy = JSON.parse(readFileSync(join(korzen, 'scripts/ci/czasy-tests.json'), 'utf8'));
   const prog = czasy.prog_czasu_testu;
   if (!(prog > 0 && prog <= 1)) { console.error('kontrola-czasu-testu: brak prog_czasu_testu (0–1) w scripts/ci/czasy-tests.json'); return 2; }
+  const minLimit = czasy.min_limit_kontroli_s * 1000;
+  if (!(minLimit > 0)) { console.error('kontrola-czasu-testu: brak min_limit_kontroli_s (> 0) w scripts/ci/czasy-tests.json'); return 2; }
   const margines = czasy.zapadka_margines ?? 1;
   if (!(margines > 0 && margines <= 1)) { console.error('kontrola-czasu-testu: zapadka_margines (0–1) w scripts/ci/czasy-tests.json jest niepoprawny'); return 2; }
   const dw = join(korzen, 'tests/czas-testu-wyjatki.json');
   const wyjatki = existsSync(dw) ? JSON.parse(readFileSync(dw, 'utf8')).wyjatki || [] : [];
   const { limity, uszkodzone } = wczytajLimity(readFileSync(plikLimitow, 'utf8'));
-  const r = ocenCzasy(wynik, { prog, limity, wyjatki, margines, korzen });
+  const r = ocenCzasy(wynik, { prog, limity, wyjatki, margines, korzen, minLimit });
   if (r.bladCzasow) { console.error(`kontrola-czasu-testu: ${r.bladCzasow}`); return 2; }
   const proc = x => `${Math.round(x * 100)}%`;
   const opis = n => `${n.plik} — "${n.test}" — ${(n.ms / 1000).toFixed(1)} s z limitu ${n.limit / 1000} s (${proc(n.udzial)})`;
@@ -90,7 +96,7 @@ export function main(argv) {
     console.error(`kontrola-czasu-testu --propozycja: ${r.naruszenia.length} nowych wpisów bazowych, ${r.zbedne.length} zbędnych wpisów, ${r.bezLimitu.length} przypadków bez znanego limitu`);
     return 0;
   }
-  console.log(`kontrola-czasu-testu: ${r.zmierzone} przypadków, próg ${proc(prog)} limitu; ponad progiem: ${r.naruszenia.length}, z wyjątkiem: ${r.wyjatki.length}, zbędne wyjątki: ${r.zbedne.length}, bez znanego limitu: ${r.bezLimitu.length}`);
+  console.log(`kontrola-czasu-testu: ${r.zmierzone} przypadków, próg ${proc(prog)} limitu; ponad progiem: ${r.naruszenia.length}, z wyjątkiem: ${r.wyjatki.length}, zbędne wyjątki: ${r.zbedne.length}, bez znanego limitu: ${r.bezLimitu.length}, poza zakresem (limit < ${czasy.min_limit_kontroli_s} s): ${r.pozaZakresem}`);
   for (const w of r.wyjatki) console.log(`  wyjątek (${w.wyjatek.data}): ${opis(w)}; plan: ${w.wyjatek.plan}`);
   if (uszkodzone) console.error(`kontrola-czasu-testu: ${uszkodzone} uszkodzonych wierszy w pliku limitów (pominięte)`);
   let kod = 0;

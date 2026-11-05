@@ -13,9 +13,10 @@ const SKRYPT = join(ROOT, 'scripts/kontrola-czasu-testu.mjs');
 const czasy = JSON.parse(readFileSync(join(ROOT, 'scripts/ci/czasy-tests.json'), 'utf8'));
 const yml = readFileSync(join(ROOT, '.github/workflows/tests.yml'), 'utf8');
 const PROG: number = czasy.prog_czasu_testu;
+const MIN_LIMIT_S: number = czasy.min_limit_kontroli_s;
 
 type Naruszenie = { plik: string; test: string; ms: number; limit: number; udzial: number };
-type Ocena = { naruszenia: Naruszenie[]; wyjatki: unknown[]; zbedne: Naruszenie[]; bezLimitu: { plik: string; test: string }[]; zmierzone: number; bladCzasow?: string };
+type Ocena = { naruszenia: Naruszenie[]; wyjatki: unknown[]; zbedne: Naruszenie[]; pozaZakresem: number; bezLimitu: { plik: string; test: string }[]; zmierzone: number; bladCzasow?: string };
 /* Moduł .mjs ładujemy w osobnym procesie Node (Jest tu nie obsługuje dynamicznego import ESM); funkcje dostają dane jako JSON. */
 const wModule = (kod: string, wejscie: unknown) => {
   const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(SKRYPT)}; const w = JSON.parse(process.env.WEJSCIE); console.log(JSON.stringify(${kod}));`], { encoding: 'utf8', env: { ...process.env, WEJSCIE: JSON.stringify(wejscie) } });
@@ -31,12 +32,13 @@ const wiersz = (p: string, test: string, limit: number | null) => JSON.stringify
 /** Limity dla przypadków `S <tytuł>` w pliku p. */
 const limity = (p: string, wpisy: Record<string, number | null>) => wczytajLimity(Object.entries(wpisy).map(([t, l]) => wiersz(p, `S ${t}`, l)).join('\n')).limity;
 const oceń = (w: object, lim: Record<string, number | null>, wyjatki: object[] = [], margines = 1): Ocena =>
-  wModule('m.ocenCzasy(w.wynik, { prog: w.prog, limity: w.limity, wyjatki: w.wyjatki, margines: w.margines, korzen: "/r" })', { wynik: w, prog: PROG, limity: lim, wyjatki, margines });
+  wModule('m.ocenCzasy(w.wynik, { prog: w.prog, limity: w.limity, wyjatki: w.wyjatki, margines: w.margines, korzen: "/r", minLimit: w.minLimit })', { wynik: w, prog: PROG, limity: lim, wyjatki, margines, minLimit: MIN_LIMIT_S * 1000 });
 
 describe('próg (05.11.2026): jedyne źródło liczby to scripts/ci/czasy-tests.json', () => {
   test('prog_czasu_testu = 0,5 z opisem; skrypt nie ma własnej liczby progu ani marginesu zapadki', () => {
     expect(PROG).toBe(0.5);
     expect(czasy.prog_czasu_testu_opis).toMatch(/05\.11\.2026/);
+    expect(MIN_LIMIT_S).toBe(60); expect(czasy.min_limit_kontroli_s_opis).toMatch(/05\.11\.2026/);
     expect(czasy.zapadka_margines).toBeGreaterThan(0); expect(czasy.zapadka_margines).toBeLessThanOrEqual(1);
     expect(czasy.zapadka_margines_opis).toMatch(/05\.11\.2026/);
     expect(readFileSync(SKRYPT, 'utf8')).not.toMatch(/\b0\.[58]\b|\b50\s*%|\b80\s*%/);
@@ -64,8 +66,8 @@ describe('ocenCzasy: ponad progiem → odmowa z nazwą, poniżej → OK (05.11.2
     expect(oceń(wynik(plik('/r/tests/a.test.ts', przypadek('na progu', 240000 * PROG), przypadek('mało', 1000))), lim).naruszenia).toEqual([]);
   });
   test('limit jest per przypadek, nie per plik: krótki test w pliku z długim limitem innego testu też jest oceniany (czego nie robił odczyt statyczny)', () => {
-    const l = limity('tests/b.test.ts', { krótki: 5000, długi: 480000 });
-    const r = oceń(wynik(plik('/r/tests/b.test.ts', przypadek('krótki', 3000), przypadek('długi', 100000))), l);
+    const l = limity('tests/b.test.ts', { krótki: 90000, długi: 480000 });
+    const r = oceń(wynik(plik('/r/tests/b.test.ts', przypadek('krótki', 50000), przypadek('długi', 100000))), l);
     expect(r.naruszenia.map(n => n.test)).toEqual(['S krótki']);
     expect(oceń(wynik(plik('/r/tests/b.test.ts', przypadek('krótki', 2000), przypadek('długi', 200000))), l).naruszenia).toEqual([]);
   });
@@ -104,6 +106,30 @@ describe('zapadka: lista bazowa tylko maleje (05.11.2026)', () => {
   });
 });
 
+describe('zakres: tylko przypadki z limitem co najmniej min_limit_kontroli_s (05.11.2026, wariant A)', () => {
+  const lim = { ...limity('tests/a.test.ts', { krótki: 5000, 'prawie 60': 59000, długi: 60000, 'długi ok': 60000, wpis: 5000 }) };
+  test('przypadek 3 s z limitu 5 s jest pomijany (licznik poza zakresem), nie jest naruszeniem', () => {
+    const r = oceń(wynik(plik('/r/tests/a.test.ts', przypadek('krótki', 3000))), lim);
+    expect(r.naruszenia).toEqual([]); expect(r.pozaZakresem).toBe(1);
+  });
+  test('przypadek 40 s z limitu 60 s (ponad 50%) → odmowa; 25 s z limitu 60 s → OK', () => {
+    const r = oceń(wynik(plik('/r/tests/a.test.ts', przypadek('długi', 40000), przypadek('długi ok', 25000))), lim);
+    expect(r.naruszenia.map(n => n.test)).toEqual(['S długi']); expect(r.pozaZakresem).toBe(0);
+  });
+  test('limit 59 s (tuż poniżej zakresu) jest pomijany', () => {
+    expect(oceń(wynik(plik('/r/tests/a.test.ts', przypadek('prawie 60', 50000))), lim).pozaZakresem).toBe(1);
+  });
+  test('wpis bazowy z przypadkiem poza zakresem nie jest zbędny (ani naruszeniem)', () => {
+    const w = [{ plik: 'tests/a.test.ts', test: 'S wpis', powod: 'stan bazowy', data: '05.11.2026', plan: 'pl' }];
+    const r = oceń(wynik(plik('/r/tests/a.test.ts', przypadek('wpis', 100))), lim, w);
+    expect(r.zbedne).toEqual([]); expect(r.naruszenia).toEqual([]); expect(r.pozaZakresem).toBe(1);
+  });
+  test('tests/czas-testu-wyjatki.json: każdy wpis ma limit ≥ zakresu (limit w polu powód: „z limitu Y s”)', () => {
+    const w = JSON.parse(readFileSync(join(ROOT, 'tests/czas-testu-wyjatki.json'), 'utf8')) as { wyjatki: { powod: string }[] };
+    for (const x of w.wyjatki) expect(Number((x.powod.match(/z limitu ([\d.]+) s/) || [])[1])).toBeGreaterThanOrEqual(MIN_LIMIT_S);
+  });
+});
+
 describe('polecenie node scripts/kontrola-czasu-testu.mjs (05.11.2026)', () => {
   const tmp: string[] = [];
   afterAll(() => { for (const d of tmp) rmSync(d, { recursive: true, force: true }); });
@@ -111,7 +137,7 @@ describe('polecenie node scripts/kontrola-czasu-testu.mjs (05.11.2026)', () => {
   function korzen(opcje: { wyjatki?: object[]; margines?: number } = {}) {
     const d = mkdtempSync(join(tmpdir(), 'czas-testu-')); tmp.push(d);
     mkdirSync(join(d, 'scripts/ci'), { recursive: true }); mkdirSync(join(d, 'tests'), { recursive: true });
-    writeFileSync(join(d, 'scripts/ci/czasy-tests.json'), JSON.stringify({ prog_czasu_testu: PROG, zapadka_margines: opcje.margines ?? 1 }));
+    writeFileSync(join(d, 'scripts/ci/czasy-tests.json'), JSON.stringify({ prog_czasu_testu: PROG, zapadka_margines: opcje.margines ?? 1, min_limit_kontroli_s: MIN_LIMIT_S }));
     if (opcje.wyjatki) writeFileSync(join(d, 'tests/czas-testu-wyjatki.json'), JSON.stringify({ wyjatki: opcje.wyjatki }));
     return d;
   }
@@ -130,10 +156,17 @@ describe('polecenie node scripts/kontrola-czasu-testu.mjs (05.11.2026)', () => {
     expect(r.stderr).toContain('tests/a.test.ts'); expect(r.stderr).toContain('S wolny'); expect(r.stderr).toMatch(/130\.0 s z limitu 240 s/); expect(r.stderr).toMatch(/podziel/);
     expect(r.stderr).toContain('stan bazowy 05.11.2026');
   });
+  test('polecenie: przypadek 3 s / 5 s pomijany (kod 0, linia z licznikiem poza zakresem); 40 s / 60 s → kod 1', () => {
+    const d = korzen();
+    const r = uruchom(d, wynik(plik(join(d, 'tests/a.test.ts'), przypadek('wolny', 3000))), wiersze({ wolny: 5000 }));
+    expect(r.status).toBe(0); expect(r.stdout).toMatch(/ponad progiem: 0, .*poza zakresem \(limit < 60 s\): 1/);
+    const r2 = uruchom(d, wynik(plik(join(d, 'tests/a.test.ts'), przypadek('wolny', 40000))), wiersze({ wolny: 60000 }));
+    expect(r2.status).toBe(1); expect(r2.stderr).toContain('S wolny');
+  });
   test('wszystko poniżej progu → kod 0 i linia raportu z liczbą przypadków', () => {
     const d = korzen();
     const r = uruchom(d, wynik(plik(join(d, 'tests/a.test.ts'), przypadek('wolny', 1000), przypadek('szybki', 2000))));
-    expect(r.status).toBe(0); expect(r.stdout).toMatch(/kontrola-czasu-testu: 2 przypadków, próg 50% limitu; ponad progiem: 0, z wyjątkiem: 0, zbędne wyjątki: 0, bez znanego limitu: 0/);
+    expect(r.status).toBe(0); expect(r.stdout).toMatch(/kontrola-czasu-testu: 2 przypadków, próg 50% limitu; ponad progiem: 0, z wyjątkiem: 0, zbędne wyjątki: 0, bez znanego limitu: 0, poza zakresem \(limit < 60 s\): 0/);
   });
   test('wyjątek bazowy → kod 0, wyjątek wypisany z planem', () => {
     const d = korzen({ wyjatki: [{ plik: 'tests/a.test.ts', test: 'S wolny', powod: 'stan bazowy 05.11.2026', data: '05.11.2026', plan: 'podział na języki' }] });
