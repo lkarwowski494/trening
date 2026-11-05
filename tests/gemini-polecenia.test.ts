@@ -74,7 +74,7 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
   });
   test('poza poprawna łamiąca regułę jest odrzucana z konkretnym komunikatem: broda pod drążkiem, bujanie miednicy, nogi z przodu, tułów odchylony', () => {
     const a = klon(WZ['Pull Up']); a.klatki[a.klatki.length - 1].miednica[1] -= 10; for (const s of ['R', 'L']) a.klatki[a.klatki.length - 1].nogi[s].kostka[1] -= 10; a.bledy = [];
-    expect(waliduj(a, 'Pull Up').bledy.map((b) => b.szczegol).join('|')).toMatch(/reguła „broda_nad_drazkiem” \(wskazówka pu\.pull\): broda w u = 1 jest na y = [\d.]+ cm, a ma być ≥ 232\.0 cm/);
+    expect(waliduj(a, 'Pull Up').bledy.map((b) => b.szczegol).join('|')).toMatch(/reguła „broda_nad_drazkiem” \(wskazówka pu\.pull\): broda w u = 1 jest na y = [\d.]+ cm, a ma być ≥ 230\.0 cm/);
     const b = klon(WZ['Pull Up']); b.klatki[2].miednica[0] -= 6; b.bledy = []; expect(waliduj(b, 'Pull Up').bledy.map((x) => x.szczegol).join('|')).toMatch(/reguła „miednica_nie_buja” .*miednica przesuwa się w x o 6\.0 cm w ruchu \(limit 3 cm\)/);
     const c = klon(WZ['Pull Up']); for (const k of c.klatki) for (const s of ['R', 'L']) k.nogi[s].kostka[0] += 14; c.bledy = []; expect(waliduj(c, 'Pull Up').bledy.map((x) => x.szczegol).join('|')).toMatch(/reguła „nogi_nieruchome” .*kostka R względem miednicy w x: 10\.0…10\.0 cm, dozwolone -10…5 cm/);
     const d = klon(WZ['Pull Up']); d.klatki[0].pochylenieTulowia = -20; d.bledy = []; expect(waliduj(d, 'Pull Up').bledy.map((x) => x.kod)).toContain('sens');
@@ -170,7 +170,7 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
     const potrzebne = new Set(cwiczenia.flatMap((c) => { const w = dane.warianty[c]; return typeof w === 'string' ? dane.warianty[w] : w ?? []; }));
     for (const id of potrzebne) expect([id, wPoleceniu.includes(id)]).toEqual([id, true]);
     expect(new Set(wPoleceniu)).toEqual(potrzebne);
-    const liczby: Record<string, string[]> = { broda_nad_drazkiem: ['≥ y drążka + 2 cm'], dol_rece_proste: ['≤ 8°'], miednica_nie_buja: ['o ≤ 3 cm'], nogi_nieruchome: ['-10…5 cm', '≤ 4 cm'], tulow_pion: ['-12°…3°'], rece_proste_caly_ruch: ['≤ 25°'], jedna_reka: ['≥ 15 cm'], miednica_nie_buja_x: ['(x) o ≤ 3 cm'] };
+    const liczby: Record<string, string[]> = { broda_nad_drazkiem: ['≥ y drążka + 0 cm'], dol_rece_proste: ['≤ 8°'], miednica_nie_buja: ['o ≤ 3 cm'], nogi_nieruchome: ['-10…5 cm', '≤ 4 cm'], tulow_pion: ['-12°…3°'], rece_proste_caly_ruch: ['≤ 25°'], jedna_reka: ['≥ 15 cm'], miednica_nie_buja_x: ['(x) o ≤ 3 cm'] };
     for (const [id, fr] of Object.entries(liczby)) { const linia = tresc.split('\n').find((l) => l.includes(`[reguła: ${id}]`))!; for (const f of fr) expect([id, linia.includes(f)]).toEqual([id, true]); }
     for (const [cue, g] of Object.entries(dane.grupy_bledow)) if (cwiczenia.some((c) => tresc.includes(`błędy: ${cue}`) || tresc.includes(`${cue} (`))) expect(tresc).toContain(`${cue} → grupa „${g}”`);
   });

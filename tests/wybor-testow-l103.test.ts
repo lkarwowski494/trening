@@ -41,8 +41,9 @@ describe('L-103: prawdziwe repo — zmiana pliku z katalogu czytanego przez join
     expect(w).toContain('tests/figury-recenzja-p4a.test.ts'); expect(w).toContain('tests/waskie-gardla-zb041.test.ts');
   });
   test('G3/L-100: rozszerzenie wzorca nie dokłada testów dla docs/research (pomiar 04.11.2026: 20 i 29 przed i po zmianie; wybierają je nazwy plików, nie katalog)', () => {
-    expect(wybor(['docs/research/rejestr-twierdzen.json']).length).toBeLessThanOrEqual(20);
-    expect(wybor(['docs/research/figury-recenzja.json']).length).toBeLessThanOrEqual(29);
+    /* 04.11.2026 (L-104): +1 — tests/wybor-testow-l104.test.ts czyta pliki docs/research w scenariuszach (pomiar: integracja 20/29, gałąź L-104 21/30; różnica = tylko ten test) */
+    expect(wybor(['docs/research/rejestr-twierdzen.json']).length).toBeLessThanOrEqual(21);
+    expect(wybor(['docs/research/figury-recenzja.json']).length).toBeLessThanOrEqual(30); /* 04.11.2026 (L-104): +1 — ten sam test L-104 (ścieżki docs/research w scenariuszach) */
   });
 });
 

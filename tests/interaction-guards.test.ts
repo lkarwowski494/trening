@@ -292,3 +292,23 @@ describe('S19 (28.10.2026, DEC-11 a): grupa `accessible` nie zawiera przycisku �
     expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible accessibilityRole="button" onPress={f}><Text onPress={f}>x</Text></View>;`)).toEqual([]);
   });
 });
+
+/* ---------- S20: element techniki na rysunku ćwiczenia (docs/32 wzorzec 33; właściciel 04.11.2026) ---------- */
+describe('S20 (04.11.2026): nakładka techniki na rysunku — dane z wskazówką i regułą, bez liczb i tekstu, etykieta VoiceOver przez t()', () => {
+  const read = (f: string): string => readFileSync(join(ROOT, f), 'utf8');
+  const overlayFiles = readdirSync(join(ROOT, 'lib/figures/v2/overlay')).filter(f => /\.ts$/.test(f) && f !== 'common.ts');
+  test('każdy element z overlay/<rodzina>.ts ma `cue` (id wskazówki) i `rule` (reguła ze źródłem); pliki rodzin tylko z danymi (bez t(), bez tekstów UI)', () => {
+    const data = overlayFiles.filter(f => /TechniqueDef/.test(read('lib/figures/v2/overlay/' + f)));
+    expect(data.length).toBeGreaterThan(0);
+    for (const f of data) { const s = read('lib/figures/v2/overlay/' + f); const defs = s.match(/\{ id: '[^']+', kind:[^}]*\}/g) ?? []; expect(defs.length).toBeGreaterThan(0); for (const d of defs) { expect(d).toMatch(/cue: \['[^']+'/); expect(d).toMatch(/rule: '[^']+'/); } expect(s).not.toMatch(/\bt\(/); }
+  });
+  test('silnik nakładki: kształty tylko linie i łuki (bez kształtu tekstu), limity w jednym miejscu, brak liczb zapisanych na rysunku', () => {
+    const s = read('lib/figures/v2/overlay.ts'); expect(s).toMatch(/OVERLAY_MAX_LINES = 3, OVERLAY_MAX_ARCS = 1/); expect(s).not.toMatch(/k: 'text'/); expect(s).not.toMatch(/\bt\(/);
+    const sc = read('lib/figures/v2/scene.ts'); expect(sc).not.toMatch(/k: 'text'/);
+  });
+  test('komponent: etykieta VoiceOver „Na rysunku: {lista}” przez t(), na obrazie (jedna etykieta), nie na elementach', () => {
+    const c = read('components/ExerciseFigureV2.tsx'); expect(c).toContain("t('Na rysunku: {lista}'"); expect(c).toMatch(/accessibilityLabel=\{label\}/);
+    expect(read('lib/i18n.en.ts')).toContain("'Na rysunku: {lista}'");
+  });
+  test('Maestro: biblioteka techniki sprawdza obraz z opisem „Na rysunku” (17-biblioteka-technika)', () => { expect(read('.maestro/17-biblioteka-technika.yaml')).toContain('Na rysunku'); });
+});

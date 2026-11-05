@@ -291,3 +291,52 @@ test('słownik UI: angielski (źródło odniesienia) nie używa „break” dla 
   expect(zle).toEqual([]);
   expect(enOf['Przerwa']).toBe('Rest');
 });
+
+describe('04.11.2026, recenzja lokalizacji T1 (delt_raise): uchwyt, nachwyt, uda, kettlebell sr/lt/lv, „Czego unikać” sv/da/nb', () => {
+  const nar = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+  test('uchwyt: pt „punho” i es-419 „maneral” są wykrywane, „pega”/„agarre” przechodzą', () => {
+    const pl = 'Chwyć uchwyt dolnego wyciągu i stań prosto.';
+    expect(nar('pt', pl, 'Agarra o punho da polia baixa.')).toContain('uchwyt');
+    expect(nar('es-419', pl, 'Toma el maneral de la polea baja.')).toContain('uchwyt');
+    expect(nar('pt', pl, 'Agarra a pega da polia baixa.')).not.toContain('uchwyt');
+    expect(nar('es-419', pl, 'Toma el agarre de la polea baja.')).not.toContain('uchwyt');
+  });
+  test('nachwyt: ja オーバーハンド, id overhand, bg пронирован są wykrywane; 順手, genggaman atas, прав хват przechodzą', () => {
+    const pl = 'Sztangę trzymaj nachwytem przed udami.';
+    expect(nar('ja', pl, 'バーベルをオーバーハンドグリップで持ちます。')).toContain('nachwyt');
+    expect(nar('id', pl, 'pegang barbel dengan genggaman overhand')).toContain('nachwyt');
+    expect(nar('bg', pl, 'дръж щангата с пронирован хват')).toContain('nachwyt');
+    expect(nar('ja', pl, 'バーベルを順手で持ちます。')).not.toContain('nachwyt');
+    expect(nar('id', pl, 'pegang barbel dengan genggaman atas')).not.toContain('nachwyt');
+    expect(nar('bg', pl, 'дръж щангата с прав хват')).not.toContain('nachwyt');
+  });
+  test('uda ru/uk: „перед ногами”, „біля ніг” są wykrywane, „бёдра”/„стегна” przechodzą', () => {
+    const pl = 'Trzymaj ciężar przed udami.';
+    expect(nar('ru', pl, 'держи вес перед ногами')).toContain('uda');
+    expect(nar('uk', pl, 'тримай вагу перед ногами')).toContain('uda');
+    expect(nar('uk', pl, 'ручки біля ніг')).toContain('uda');
+    expect(nar('ru', pl, 'держи вес перед бёдрами')).not.toContain('uda');
+    expect(nar('uk', pl, 'тримай вагу перед стегнами')).not.toContain('uda');
+  });
+  test('kettlebell: sr łacinką jest wykrywany, „кетлбел” przechodzi; lt i lv mają zapisaną odmianę', () => {
+    expect(nar('sr', 'Trzymaj kettlebell przed klatką.', 'Држи kettlebell испред груди.')).toContain('kettlebell');
+    expect(nar('sr', 'Trzymaj kettlebell przed klatką.', 'Држи кетлбел испред груди.')).not.toContain('kettlebell');
+    const kb = slownik.pojecia.find(p => p.id === 'kettlebell')!;
+    expect(kb.jezyki.lt.uwaga).toContain("kettlebell'ą");
+    expect(kb.jezyki.lv.uwaga).toContain('kettlebellu');
+  });
+  test('reguła stylu: „Czego unikać” (8 zdań z czasownikiem) w sv/da/nb zaczyna się od „Att”/„At”/„Å” + bezokolicznik', () => {
+    /* zdania „Czego unikać” z czasownikiem (karty delt_raise); rzeczownikowe (np. sq.mis.heels) zostają bez zmian */
+    const KLUCZE_ATT = ['delt1.mis.arch', 'fidr.mis.back', 'fro.mis.arch', 'inc1.mis.shrug', 'isr.mis.press', 'rdelt.mis.swing', 'rear1.mis.high', 'yr.mis.chest'];
+    const poczatek: Record<string, RegExp> = { sv: /^Att /, da: /^At /, nb: /^Å / };
+    for (const [kod, re] of Object.entries(poczatek)) {
+      const d = cueDict(kod as Lang) as Record<string, string>;
+      const zle = KLUCZE_ATT.filter(id => !re.test(d[id])).map(id => `${kod}/${id}: ${d[id]}`);
+      expect(zle).toEqual([]);
+    }
+  });
+  test('adr.move: sv „Växelvis:”, da „Skiftevis:” (nie rozkaz „Växla:”/„Skift:”)', () => {
+    expect(cueDict('sv' as Lang)['adr.move']).toMatch(/^Växelvis:/);
+    expect(cueDict('da' as Lang)['adr.move']).toMatch(/^Skiftevis:/);
+  });
+});

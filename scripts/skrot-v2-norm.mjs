@@ -23,9 +23,22 @@ function bezObcychWpisow(linie, rodzina) {
   return out;
 }
 
+/** Plik danych nakładki techniki rodziny (overlay/<rodzina>.ts) — tylko w skrócie swojej rodziny (W1, recenzja 1R, 04.11.2026); null, gdy rodzina nie ma nakładki. */
+export const plikNakladki = (rodzina, istnieje) => { if (NAKLADKI_WSPOLNE.includes(rodzina)) return null; /* już w V2_WSPOLNE — bez dubletu */ const p = `lib/figures/v2/overlay/${rodzina}.ts`; return istnieje(p) ? p : null; };
+/** Pliki overlay/ wspólne dla wszystkich rodzin (są w V2_WSPOLNE): linie odniesienia wybiera się po wskazówkach karty, nie po rodzinie (N1, recenzja 1R runda 2, 04.11.2026), więc squat.ts i hinge.ts rysują przy ćwiczeniu dowolnej rodziny; overlay/bench_press.ts (elementy techniki) zostaje rodzinny — overlay.ts filtruje po rodzinie. */
+export const NAKLADKI_WSPOLNE = ['common', 'squat', 'hinge'];
+const IMPORT_NAKLADKI = /^import \{ (\w+) \} from '\.\/overlay\/(\w+)';$/;
+/** overlay.ts i guides.ts składają dane WSZYSTKICH rodzin (importy + rejestr); do skrótu rodziny wchodzi tylko jej własny import i wpis (jak DATA_UI, decyzja 1A) — dodanie nakładki innej rodziny nie unieważnia recenzji. */
+function bezObcychNakladek(tekst, rodzina) {
+  const obce = [...tekst.split('\n')].map(l => IMPORT_NAKLADKI.exec(l)).filter(m => m && !NAKLADKI_WSPOLNE.includes(m[2]) && m[2] !== rodzina).map(m => m[1]);
+  let out = tekst.split('\n').filter(l => { const m = IMPORT_NAKLADKI.exec(l); return !(m && obce.includes(m[1])); }).join('\n');
+  for (const n of obce) out = out.replace(new RegExp(`\\.\\.\\.${n},? ?`, 'g'), '').replace(new RegExp(`\\w+: ${n},? ?`, 'g'), '');
+  return out;
+}
 /** Tekst pliku wspólnego rodziny v2 w postaci wchodzącej do skrótu rodziny `rodzina`. Pliki inne niż families.ts i poseData.ts: bez zmian. */
 export function normalizujPlikV2(plik, tekst, rodzina) {
   if (plik === 'lib/figures/v2/families.ts') return tekst.replace(/\bstatus: '(?:ready|planned)'/g, "status: '_'");
   if (plik === 'lib/figures/v2/poseData.ts') return bezObcychWpisow(tekst.split('\n').filter(l => !LOAD_WPIS.test(l)), rodzina).join('\n');
+  if (plik === 'lib/figures/v2/overlay.ts' || plik === 'lib/figures/v2/guides.ts') return bezObcychNakladek(tekst, rodzina);
   return tekst;
 }

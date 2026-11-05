@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-7952-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-8122-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -59,11 +59,11 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 708 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 356 (z testem: 356) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1083 (z testem: 1083) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 1142 (z testem: 1142) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 167 (z testem: 167) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 688 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 7952 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Komunikaty i teksty | 1084 (z testem: 1084) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 1158 (z testem: 1158) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 177 (z testem: 177) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 699 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 8122 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -174,14 +174,15 @@ Kroki `npm run verify` (generowane z `package.json`):
 11. `npm run check:zrodla-runtime`
 12. `npm run check:pokrycie`
 13. `npm run check:readme`
-14. `node scripts/jest-ponow.mjs`
-15. `npm run check:matrix`
-16. `npm run check:licenses`
-17. `npx expo export --platform ios --output-dir .expo/verify-export`
-18. `npm run check:bundle`
-19. sprzątanie katalogu tymczasowego eksportu
-20. `npm run verify:native`
-21. `node scripts/verify-znacznik.mjs --zapisz pelne`
+14. `npm run check:znaczniki`
+15. `node scripts/jest-ponow.mjs`
+16. `npm run check:matrix`
+17. `npm run check:licenses`
+18. `npx expo export --platform ios --output-dir .expo/verify-export`
+19. `npm run check:bundle`
+20. sprzątanie katalogu tymczasowego eksportu
+21. `npm run verify:native`
+22. `node scripts/verify-znacznik.mjs --zapisz pelne`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
