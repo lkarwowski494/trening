@@ -268,7 +268,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Przywróć ćwiczenie: {name} | components/WorkoutBlocks.tsx | tests/skip-today.test.tsx |
 | Przywróć z planu | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plan-calendar-ui.test.tsx, tests/plan-own-templates-ui.test.tsx |
 | Przywróć zakupy | app/paywall.tsx | tests/audit-m1-047-store-docs.test.ts, tests/audit-m1-050-support-subscription.test.ts, tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts +2 |
-| Pusty trening | app/history/add.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-025-pierwsze-kroki.test.tsx +12 |
+| Pusty trening | app/history/add.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-025-pierwsze-kroki.test.tsx +11 |
 | rano o {h}:00 w dniu zaplanowanego treningu | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plan-reminder.test.tsx |
 | Rekord: {list} | components/WorkoutBlocks.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-m1-2026-10-27-030-liczby-w-kodzie.test.ts, tests/audit-records-live.test.tsx +2 |
 | Rozgrzewka (W) | app/template/[id].tsx | tests/scenario-full.test.tsx |
@@ -287,7 +287,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Spróbuj ponownie | app/_layout.tsx | tests/audit-m1-003-boundary.test.tsx, tests/audit-m1-003-guard-ui.test.tsx, tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx +4 |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-0.10-tst.test.ts, tests/edit-on-demand.test.tsx, tests/figures-v2-contract.test.ts +2 |
-| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +114 |
+| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +113 |
 | Start stopera: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx |
 | Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo. | components/DayPanel.tsx | tests/places-ui.test.tsx |
 | Start zaplanowanego treningu: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/deload-ui.test.tsx +3 |
@@ -446,7 +446,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {label} {value}, przyrost {delta} | components/RecordsCard.tsx | tests/records-card.test.tsx |
 | {left} {n} z {limit} darmowych dni treningowych w tym miesiącu. | components/StartPanel.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
 | {n} {w} · Dostosuj | components/ActiveWorkout.tsx | tests/adapt-ui.test.tsx, tests/maestro-selectors.test.ts, tests/places-ui.test.tsx |
-| {n} / {goal} serii | components/GuardSection.tsx | tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx +88 |
+| {n} / {goal} serii | components/GuardSection.tsx | tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx +91 |
 | {n} h | components/Dashboard.tsx | (tylko parametry) |
 | {n} kcal aktywne | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts, tests/health-scenario.test.tsx |
 | {n} kg | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts +147 |
@@ -1056,8 +1056,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Poprzedni tydzień | app/progression.tsx | tests/audit-m1-032-total-bars.test.tsx, tests/deload-week.test.tsx, tests/period-bars.test.tsx +4 |
 | Poprzedni tydzień jest oznaczony jako deload. | app/progression.tsx | tests/deload-week.test.tsx, tests/progression-ui.test.tsx |
 | Poprzedni tydzień vs 2 tyg. temu | app/progression.tsx | tests/progression-ui.test.tsx |
-| Poprzednio | app/template/[id].tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/decisions-0310.test.tsx +9 |
-| Poprzednio: {l} | components/WorkoutBlocks.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/decisions-0310.test.tsx +4 |
+| Poprzednio | app/template/[id].tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/blokada-wydania.test.ts +10 |
+| Poprzednio: {l} | components/WorkoutBlocks.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/blokada-wydania.test.ts +5 |
 | Porównanie tych samych dni miesiąca: 1–{n}. | app/progression.tsx | tests/progression-ui.test.tsx |
 | Porównanie: {name} | app/progression.tsx | tests/progression-ui.test.tsx, tests/set-goals-ui.test.tsx |
 | Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy | components/GuardSection.tsx | tests/guard-ui.test.tsx |
@@ -1110,6 +1110,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Przód | components/Guard.tsx | tests/muscle-map.test.tsx, tests/strona-eksport.test.ts |
 | Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu. | app/(tabs)/progress.tsx | tests/set-goals.test.ts, tests/sets-mark.test.tsx |
 | Przyda się: {list}. | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/mutation-generator.test.ts |
+| Przygotuj się do pierwszej serii | components/Dashboard.tsx | tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts, tests/dashboard.test.tsx, tests/ekran-nowej-osoby-1-1.test.tsx |
 | przyrząd: {impl} | components/WorkoutBlocks.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +1 |
 | Przywrócono zakupy. | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | Przywróć z archiwum | app/template/[id].tsx | tests/edit-on-demand.test.tsx, tests/template-folders.test.tsx |
@@ -1420,8 +1421,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Za dużo ustawień (najwyżej {n}) — zwiększ krok. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Za dużo zapisanych planów | app/generator.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plan-own-templates-ui.test.tsx |
 | Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia. | lib/start.ts | tests/audit-0.10-live.test.tsx, tests/deload-ui.test.tsx |
-| Zacznij od ustawień | components/Dashboard.tsx | tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts, tests/dashboard.test.tsx, tests/ekran-nowej-osoby-1-1.test.tsx |
-| Zacznij pierwszy trening | components/StartPanel.tsx | tests/audit-m1-025-pierwsze-kroki.test.tsx, tests/edit-on-demand.test.tsx, tests/ekran-nowej-osoby-1-1.test.tsx +11 |
+| Zacznij pierwszy trening | components/StartPanel.tsx | tests/audit-m1-025-pierwsze-kroki.test.tsx, tests/edit-on-demand.test.tsx, tests/ekran-nowej-osoby-1-1.test.tsx +12 |
 | Zacznij trening na telefonie | lib/watch/labels.ts | tests/watch-protocol.test.ts |
 | Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik. | components/WhatsNew.tsx | tests/whats-new.test.tsx |
 | Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze. | components/ImportProCard.tsx | tests/monetyzacja-ui.test.tsx |
