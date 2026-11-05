@@ -51,6 +51,7 @@ const D = (d: Date | number, o: Intl.DateTimeFormatOptions) => new Date(d).toLoc
 /** „12 paź 2026” */ export const fmtDayMonthYear = (d: Date | number) => D(d, { day: 'numeric', month: 'short', year: 'numeric' });
 /** „poniedziałek, 12 października” */ export const fmtWeekdayDayMonth = (d: Date | number) => D(d, { weekday: 'long', day: 'numeric', month: 'long' });
 /** „pon.” */ export const fmtWeekdayShort = (d: Date | number) => D(d, { weekday: 'short' });
+/** „lis” — skrót miesiąca (tablica „Pierwszy trening”) */ export const fmtMonthShort = (d: Date | number) => D(d, { month: 'short' });
 /** „P” — jednoliterowy skrót dnia (Intl 'narrow'); pasek tygodnia, gdy zwykły skrót się nie mieści (M1-audytor-generalny-027). */ export const fmtWeekdayNarrow = (d: Date | number) => D(d, { weekday: 'narrow' });
 /* Pasek tygodnia na ekranie Trening (M1-audytor-generalny-027, 04-studio-projektowe-010, 27.10.2026): 7 kolumn flex 1 w karcie z wcięciem SPACE.s
  * i odstępem STRIP_GAP, każda z ramką 2 pt („dziś”). Szerokość skrótu szacujemy zachowawczo: STRIP_CHAR_EM em na znak (wersaliki i kropka, krój
