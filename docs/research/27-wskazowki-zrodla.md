@@ -105,12 +105,33 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | UC Berkeley University Health Services | UC Berkeley University Health Services (Be Well at Work) | 4 | serwis specjalistyczny |
 | UW Medicine | UW Medicine | 4 | serwis specjalistyczny |
 | YogaUOnline | YogaUOnline (prezentacja: J. Gudmestad, fizjoterapeutka) | 4 | serwis specjalistyczny |
+| free-exercise-db | free-exercise-db — otwarty zbiór opisów ćwiczeń (github.com/yuhonas) | 5 | serwis specjalistyczny |
+| Tomah Memorial Hospital | Tomah Memorial Hospital, Dept. of Physical Therapy — wideo ćwiczenia w MSD Manuals (msdmanuals.com) | 4 | serwis specjalistyczny |
+| ISSA | International Sports Sciences Association — blog szkoleniowy (issaonline.com) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| Bodylastics | Bodylastics — instrukcje ćwiczeń z taśmami (producent taśm; bodylastics.com) | 4 | producent sprzętu |
+| Fitness Volt | Fitness Volt — artykuły o ćwiczeniach (fitnessvolt.com) | 4 | serwis specjalistyczny |
+| Atlas ćwiczeń potreningu.pl | Atlas ćwiczeń (potreningu.pl; grupa SFD) | 5 | serwis specjalistyczny |
+| ManiacMuscle | ManiacMuscle — opisy ćwiczeń (maniacmuscle.com) | 5 | serwis specjalistyczny |
+| Atlas ćwiczeń Fabryka Siły | Atlas ćwiczeń Fabryka Siły (fabrykasily.pl) | 5 | serwis specjalistyczny |
+| weighttraining.guide | weighttraining.guide — opisy ćwiczeń | 5 | serwis specjalistyczny |
+| FitVibe | FitVibe — ćwiczenia (fitvibe.gr) | 5 | serwis specjalistyczny |
+| NFPT | National Federation of Professional Trainers — blog szkoleniowy (nfpt.com) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| Fitnall | Fitnall — opisy ćwiczeń (fitnall.com) | 5 | serwis specjalistyczny |
+| SET FOR SET | SET FOR SET — blog sprzedawcy sanek (setforset.com) | 5 | serwis specjalistyczny |
+| Atlas ćwiczeń Centrum Respo | Atlas ćwiczeń Centrum Respo (centrumrespo.pl) | 5 | serwis specjalistyczny |
+| app-s1 | app-s1 | 5 | ? |
+| app-s2 | app-s2 | 5 | ? |
+| app-s3 | app-s3 | 5 | ? |
+| app-s4 | app-s4 | 5 | ? |
+| app-s5 | app-s5 | 5 | ? |
+| app-s6 | app-s6 | 5 | ? |
+| app-s7 | app-s7 | 5 | ? |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 168; zdań (z powtórzeniami między ćwiczeniami): 758; unikalnych zdań: 483; źródeł: 372.
-- Ćwiczenia bazowe bez wskazówek (otwarte): 22.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 66 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles.
+- Ćwiczenia ze wskazówkami: 196; zdań (z powtórzeniami między ćwiczeniami): 870; unikalnych zdań: 537; źródeł: 412.
+- Ćwiczenia bazowe bez wskazówek (otwarte): 21.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 78 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench.
 
 ## Otwarte — bez wskazówek
 
@@ -120,7 +141,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Pec Deck | dwa źródła istnieją tylko w materiałach uczelnianych centrów sportu (HKU, Western), których szczebel (4 czy 5) jest otwarty (docs/research/33, pyt. 1) |
 | Chest Dip | wspólna tylko jedna wskazówka (ruch) w źródłach McKenzie 2022 i HKU; głębokość i pozycja tułowia po jednym źródle (docs/research/33) |
 | Arnold Press | brak opisu w ACE, NASM, Eleiko, HKU, Western ani w badaniach; zostają serwisy konsumenckie (odrzucone); ExRx niedostępny (docs/research/33) |
-| Upright Row (hantle) | komplet zależy od uznania szczebla WebMD Ignite i przedruku NSCA ETM (docs/research/33, pyt. 2–3) |
 | Incline Curl (hantle) | opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33) |
 | Concentration Curl (hantle) | jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33) |
 | Spider Curl | brak źródeł szczebla do 4 (docs/research/33) |
@@ -150,6 +170,42 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | Pendlay Row | `pendlay.floor` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5) |
 | Pendlay Row | `pendlay.mis.torso` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5); brak zdania ustawienia/ruchu do wniosku |
 | Łydki na stopniu | `calf.step` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona) |
+| Alternating Deltoid Raise | `adr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| One-Arm Cable Rear Lateral Raise | `crear1.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| One-Arm Cable Rear Lateral Raise | `crear1.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| One-Arm Cable Rear Lateral Raise | `rdelt.mis.swing` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Cable Reverse Fly | `crf.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Cable Reverse Fly | `crf.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Cable Y Raise | `cyr.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Cable Y Raise | `cyr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| One-Arm Incline Lateral Raise | `inc1.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| One-Arm Incline Lateral Raise | `inc1.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| One-Arm Incline Lateral Raise | `inc1.mis.shrug` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Front Raise to Overhead | `bfro.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Front Raise to Overhead | `fro.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Front Raise to Overhead | `fro.mis.arch` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Sled Reverse Flye | `srf.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Sled Reverse Flye | `srf.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 3 niezależne źródła (w tym strona aplikacji), w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Car Drivers | `cdr.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Car Drivers | `cdr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Car Drivers | `cdr.mis.drop` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Car Drivers | `mis.jerk` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): pojedyncze źródło, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Front Incline Dumbbell Raise | `fidr.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Front Incline Dumbbell Raise | `fidr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Incline Shoulder Raise | `isr.setupDb` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Incline Shoulder Raise | `isr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Incline Shoulder Raise | `isr.setupBb` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Incline Shoulder Raise | `isr.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `dfro.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `fro.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Straight Raises on Incline Bench | `sri.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Straight Raises on Incline Bench | `sri.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Incline Shoulder Raise | `isr.mis.press` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Front Incline Dumbbell Raise | `fidr.mis.back` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Barbell Incline Shoulder Raise | `isr.mis.press` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Straight Raises on Incline Bench | `yr.mis.chest` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `fro.mis.arch` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Dumbbell Front Raise to Overhead | `mis.jerk` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 
 ## Wskazówki i źródła
 
@@ -1296,6 +1352,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 2 (retract your shoulder blades)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Scapular position) `bp.blades`
+- Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (elbows too wide or too close)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (FAQ „How much should I tuck my elbows?”) `bp.elbowsMid`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Descent (lower the bar under control)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (lowering the bar too quickly)) `bp.control`
 
 **Czego unikać**
@@ -1316,6 +1373,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Step 2); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 2 (hantle — ta sama zasada)) `bp.blades`
+- Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (elbows too wide or too close) (skos — ta sama zasada)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (FAQ „How much should I tuck my elbows?” (skos — ta sama zasada)) `bp.elbowsMid`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes (lowering the bar too quickly)); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3 (slowly lower)) `bp.control`
 
 **Czego unikać**
@@ -1335,6 +1393,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 2); NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Step 2) `bp.blades`
+- Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (elbows too wide or too close) (hantle — ta sama zasada)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (FAQ „How much should I tuck my elbows?” (hantle — ta sama zasada)) `bp.elbowsMid`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3); NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes (lowering too quickly or bouncing)) `bp.control`
 
 **Czego unikać**
@@ -1465,6 +1524,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Wskazówki**
 
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 2); NASM: [Two Arm Dumbbell Chest Press With Band](https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band) (Step 2 (retract your shoulders)) `bp.blades`
+- Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (elbows too wide or too close) (hantle — ta sama zasada)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (FAQ „How much should I tuck my elbows?” (hantle — ta sama zasada)) `bp.elbowsMid`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3 (slowly lower… without bouncing)); NASM: [Two Arm Dumbbell Chest Press With Band](https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band) (Step 4 (lower with control)) `bp.control`
 
 **Czego unikać**
@@ -2867,6 +2927,437 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 - Krąż nadgarstkami. — UC Berkeley University Health Services: [Work Warm-Up](https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf) („7 Wrist Circles”, punkty 2–3); WebMD Ignite: [Wrist Circles (Fist) (akt. 01.05.2026)](https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/) (krok 2 (make slow circles with your hand; wariant: siedząc)) `mobility_stand.u.wristCircles`
 
+### One-Arm Lateral Raise (hantel)
+
+**Ustawienie**
+
+- Stań prosto z hantlem w jednej ręce przy udzie, łokieć prosty lub lekko ugięty. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)); ACE: [Single Arm Lateral Raise (#354)](https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/) (opis (wariant: wyciąg); ta sama org. co ace-26); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)) [uproszczenie: ACE opisuje wersję obiema rękami (26) i na wyciągu (354); ten sam ruch stawów, zmienia się liczba rąk i sprzęt] `lat1.setup`
+
+**Ruch**
+
+- Unieś rękę bokiem mniej więcej do wysokości barku, potem opuść ją powoli. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)); ACE: [Single Arm Lateral Raise (#354)](https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/) (opis (wariant: wyciąg); ta sama org. co ace-26); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)) [uproszczenie: ACE opisuje wersję obiema rękami (26) i na wyciągu (354); ten sam ruch stawów, zmienia się liczba rąk i sprzęt] `lat1.move`
+
+**Wskazówki**
+
+- Kąt w łokciach stały przez cały ruch. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)); ACE: [Single Arm Lateral Raise (#354)](https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/) (opis (wariant: wyciąg); ta sama org. co ace-26); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)) `rear.elbows`
+- Unoś mniej więcej do wysokości barków. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Lateral Raises (też: arm at your side with the elbow straight; until the hands reach shoulder level; slowly lower)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)); ACE: [Single Arm Lateral Raise (#354)](https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/) (opis (wariant: wyciąg); ta sama org. co ace-26); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)) `lat.height`
+
+**Czego unikać**
+
+- Odchylanie się w tył i wyginanie lędźwi przy unoszeniu. — ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (Step 1: elbows extended or slight bend; Step 3: level with shoulders)); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis — tylko drugie źródło błędu (błąd = zaprzeczenie standardu)) `delt1.mis.arch`
+
+### Dumbbell Scaption
+
+**Ustawienie**
+
+- Stań prosto, hantle w dłoniach, ręce proste. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Standing forward flexion (‘full-can’)); ACE: [A pro s guide to muscle mechanics the shoulders](https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/) (tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash) `scap.setup`
+
+**Ruch**
+
+- Unieś ręce w przód i lekko na zewnątrz do wysokości barków, potem je opuść. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Standing forward flexion (‘full-can’)); ACE: [A pro s guide to muscle mechanics the shoulders](https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/) (tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash) `scap.move`
+
+**Wskazówki**
+
+- Ręce proste przez cały ruch — nie zginaj łokci. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Standing forward flexion (‘full-can’)); ACE: [A pro s guide to muscle mechanics the shoulders](https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/) (tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash) `sapd.arms`
+- Unoś mniej więcej do wysokości barków. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 1, Standing forward flexion (‘full-can’)); ACE: [A pro s guide to muscle mechanics the shoulders](https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/) (tabela ćwiczeń, Dumbbell V-Raise (P. McCall, MS, CSCS; IX 2025) — cytat z odczytu narzędzia, sprawdzić przy rehash) `lat.height`
+
+### Alternating Deltoid Raise
+
+**Ustawienie**
+
+- Stań z hantlami przed udami, łokcie proste lub lekko ugięte. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (składowa: bokiem); ta sama org. co ACE 54) `front.setup`
+
+**Ruch**
+
+- Na zmianę: jedno powtórzenie unieś oba hantle przed sobą, następne — bokiem. — Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis); free-exercise-db: [Alternating Deltoid Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Deltoid_Raise.json) (szczebel 5 — nie liczy się do pary; instructions — naprzemienność) [uproszczenie: naprzemienność (przód, bok) opisują Catalyst (szczebel 4) i jedno źródło szczebla 5; ACE — składowe ruchu osobno] `adr.move`
+
+**Wskazówki**
+
+- Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (składowa: bokiem); ta sama org. co ACE 54) `front.elbows`
+- Unoś mniej więcej do wysokości barków. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (składowa: bokiem); ta sama org. co ACE 54) `lat.height`
+
+**Czego unikać**
+
+- Odchylanie się w tył i wyginanie lędźwi przy unoszeniu. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4); Catalyst Athletics: [Dumbbell Front Side Raise (#822)](https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/) (opis) `delt1.mis.arch`
+
+### Front Plate Raise
+
+**Ustawienie**
+
+- Stań prosto i trzymaj ciężar oburącz przed sobą na opuszczonych rękach, łokcie proste lub lekko ugięte. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) [uproszczenie: wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, zmienia się przyrząd (talerz)] `front2.setup`
+
+**Ruch**
+
+- Unieś ręce przed sobą, potem opuść je powoli. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) [uproszczenie: wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, zmienia się przyrząd (talerz)] `front.move`
+
+**Wskazówki**
+
+- Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `front.elbows`
+- Unoś mniej więcej do wysokości barków. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `lat.height`
+
+**Czego unikać**
+
+- Odchylanie się w tył i wyginanie lędźwi przy unoszeniu. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `delt1.mis.arch`
+
+### Single Dumbbell Front Raise
+
+**Ustawienie**
+
+- Stań prosto i trzymaj ciężar oburącz przed sobą na opuszczonych rękach, łokcie proste lub lekko ugięte. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) [uproszczenie: wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, pojedynczy hantel trzymany oburącz] `front2.setup`
+
+**Ruch**
+
+- Unieś ręce przed sobą, potem opuść je powoli. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) [uproszczenie: wariant sprzętu: źródła opisują sztangę (Catalyst 803) i hantle (ACE 54); ten sam ruch stawów, pojedynczy hantel trzymany oburącz] `front.move`
+
+**Wskazówki**
+
+- Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `front.elbows`
+- Unoś mniej więcej do wysokości barków. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `lat.height`
+
+**Czego unikać**
+
+- Odchylanie się w tył i wyginanie lędźwi przy unoszeniu. — Catalyst Athletics: [Barbell Front Raise (#803)](https://catalystathletics.com/exercise/803/Barbell-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `delt1.mis.arch`
+
+### Cable Front Raise
+
+**Ustawienie**
+
+- Chwyć uchwyt dolnego wyciągu i stań prosto — uchwyt przed udami, ręce opuszczone. — Catalyst Athletics: [Cable Front Raise (#812)](https://catalystathletics.com/exercise/812/Cable-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) [uproszczenie: ustawienie przy wyciągu opisuje wprost tylko Catalyst 812; ACE 54 opisuje hantle (ten sam ruch stawów)] `cfr.setup`
+
+**Ruch**
+
+- Unieś ręce przed sobą, potem opuść je powoli. — Catalyst Athletics: [Cable Front Raise (#812)](https://catalystathletics.com/exercise/812/Cable-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `front.move`
+
+**Wskazówki**
+
+- Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch. — Catalyst Athletics: [Cable Front Raise (#812)](https://catalystathletics.com/exercise/812/Cable-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `front.elbows`
+- Unoś mniej więcej do wysokości barków. — Catalyst Athletics: [Cable Front Raise (#812)](https://catalystathletics.com/exercise/812/Cable-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `lat.height`
+
+**Czego unikać**
+
+- Odchylanie się w tył i wyginanie lędźwi przy unoszeniu. — Catalyst Athletics: [Cable Front Raise (#812)](https://catalystathletics.com/exercise/812/Cable-Front-Raise/) (opis); ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Steps 1, 3, 4) `delt1.mis.arch`
+
+### Dumbbell Lying One-Arm Rear Lateral Raise
+
+**Ustawienie**
+
+- Połóż się przodem na ławce; ręka z hantlem zwisa swobodnie w dół. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 3, Prone horizontal abduction (‘T’s’)); Tomah Memorial Hospital: [Prone shoulder horizontal abduction](https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction) (instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)) `rear1.setup`
+
+**Ruch**
+
+- Unieś rękę bokiem do wysokości barku, prostopadle do tułowia; opuść ją powoli. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 3, Prone horizontal abduction (‘T’s’)); Tomah Memorial Hospital: [Prone shoulder horizontal abduction](https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction) (instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)); ACE: [Incline Reverse Fly (#34)](https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/) (Steps 1–3 (wariant: dwie ręce, siad przodem do oparcia — NIE dla ustawienia)) [uproszczenie: ACE 34 opisuje wersję obiema rękami (siad przodem do oparcia) — tylko dla ruchu i wskazówek] `rear1.move`
+
+**Wskazówki**
+
+- Kąt w łokciach stały przez cały ruch. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 3, Prone horizontal abduction (‘T’s’)); Tomah Memorial Hospital: [Prone shoulder horizontal abduction](https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction) (instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)); ACE: [Incline Reverse Fly (#34)](https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/) (Steps 1–3 (wariant: dwie ręce, siad przodem do oparcia — NIE dla ustawienia)) `rear.elbows`
+- Ramiona idą w bok, nie w tył — dłonie kończą ruch mniej więcej na linii barków. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 3, Prone horizontal abduction (‘T’s’)); Tomah Memorial Hospital: [Prone shoulder horizontal abduction](https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction) (instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)); ACE: [Incline Reverse Fly (#34)](https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/) (Steps 1–3 (wariant: dwie ręce, siad przodem do oparcia — NIE dla ustawienia)) `rear.arms`
+
+**Czego unikać**
+
+- Unoszenie ręki wyżej niż bark. — HSS: [Shoulder strengthening program](https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf) (s. 3, Prone horizontal abduction (‘T’s’)); Tomah Memorial Hospital: [Prone shoulder horizontal abduction](https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction) (instrukcja (Courtesy of Tomah Memorial Hospital, Dept. of Physical Therapy)) `rear1.mis.high`
+
+### Upright Row (sztanga)
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj przed udami na wyprostowanych rękach, dłonie zwrócone do ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `urow.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyków, potem opuść go powoli do wyprostu rąk. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `urow.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Upright Row (hantle)
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj przed udami na wyprostowanych rękach, dłonie zwrócone do ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantle)] `urow.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyków, potem opuść go powoli do wyprostu rąk. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantle)] `urow.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Upright Row (linki)
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj przed udami na wyprostowanych rękach, dłonie zwrócone do ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (linka)] `urow.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyków, potem opuść go powoli do wyprostu rąk. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (linka)] `urow.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Smith Machine Upright Row
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj przed udami na wyprostowanych rękach, dłonie zwrócone do ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (Variations); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica; ISSA wymienia ją w „Variations”)] `urow.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyków, potem opuść go powoli do wyprostu rąk. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (Variations); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica; ISSA wymienia ją w „Variations”)] `urow.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (Variations); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Dumbbell One-Arm Upright Row
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj jedną ręką przed udem, ręka wyprostowana, dłoń zwrócona do ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantel) i liczba rąk] `urow1.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyka, potem opuść go powoli do wyprostu ręki. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (hantel) i liczba rąk] `urow1.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Smith Machine One-Arm Upright Row
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj jedną ręką przed udem, ręka wyprostowana, dłoń zwrócona do ciała. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to; Variations (Smith)); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica) i liczba rąk] `urow1.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyka, potem opuść go powoli do wyprostu ręki. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to; Variations (Smith)); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (suwnica) i liczba rąk] `urow1.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to; Variations (Smith)); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Band Upright Row
+
+**Ustawienie**
+
+- Stań prosto, ciężar trzymaj przed udami na wyprostowanych rękach, dłonie zwrócone do ciała. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm)); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (taśma; Bodylastics opisuje taśmy)] `urow.setup`
+
+**Ruch**
+
+- Unoś ciężar blisko ciała w stronę obojczyków, potem opuść go powoli do wyprostu rąk. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm)); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) [uproszczenie: wariant sprzętu: źródła opisują sztangę; ten sam ruch stawów, zmienia się przyrząd (taśma; Bodylastics opisuje taśmy)] `urow.move`
+
+**Wskazówki**
+
+- Łokcie prowadzą ruch i są wyżej niż dłonie. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm)); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024); też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (opuszczanie pod kontrolą)) `ur.elbows`
+- Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą. — Bodylastics: [Upright row](https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row) (instrukcja (producent taśm): ręce do dolnej części klatki piersiowej); ISSA: [Upright row muscles worked benefits proper form more](https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more) (How to (By ISSA, 05.02.2024): „Stop when the barbell reaches shoulder height”; też „make sure each elbow stays above the forearm”); Catalyst Athletics: [Barbell Upright Row (#805)](https://catalystathletics.com/exercise/805/Barbell-Upright-Row/) (opis (łokcie jak najwyżej; opuszczanie pod kontrolą)) `urow.height`
+
+### Band Lateral Raise
+
+**Ustawienie**
+
+- Stań na taśmie, uchwyty w dłoniach przy udach, łokcie lekko ugięte. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 1 (wersja z hantlami)) [uproszczenie: ustawienie „stań na taśmie” opisuje wprost tylko Bodylastics (producent taśm); ACE opisuje wersję z hantlami — ten sam ruch stawów, zmienia się przyrząd (taśma)] `blat.setup`
+
+**Ruch**
+
+- Unieś ramiona bokiem, potem opuść je powoli. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) [uproszczenie: wariant sprzętu: Bodylastics opisuje taśmy, ACE 26 hantle; ten sam ruch stawów] `lat.move`
+
+**Wskazówki**
+
+- Unoś mniej więcej do wysokości barków. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `lat.height`
+- Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `lat.elbows`
+
+**Czego unikać**
+
+- Dłonie wyprzedzają łokcie i idą wyżej od nich. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `delt2.handsHigh`
+- Odchylanie się w tył i wyginanie lędźwi przy unoszeniu. — Bodylastics: [Lateral raise with flat bands](https://bodylastics.com/exercise/lateral-raise-with-flat-bands) (Common Mistake (też Body Position: stand on the bands; Movement: until elbows at shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `delt1.mis.arch`
+
+### Kettlebell Halo
+
+**Ustawienie**
+
+- Stań prosto i trzymaj kettlebell za rogi przed klatką piersiową. — ACE: [Halo (#394)](https://www.acefitness.org/resources/everyone/exercise-library/394/halo/) (opis (też: horns, in front of the chest; reverse direction)); BarBend: [Kettlebell halo](https://barbend.com/kettlebell-halo/) (instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)) `halo.setup`
+
+**Ruch**
+
+- Prowadź kettlebell wokół głowy: nad jednym barkiem, za głową, nad drugim barkiem i z powrotem przed klatkę. — ACE: [Halo (#394)](https://www.acefitness.org/resources/everyone/exercise-library/394/halo/) (opis (też: horns, in front of the chest; reverse direction)); BarBend: [Kettlebell halo](https://barbend.com/kettlebell-halo/) (instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)) `halo.move`
+
+**Wskazówki**
+
+- Zrób powtórzenia w jedną stronę, potem tyle samo w drugą. — ACE: [Halo (#394)](https://www.acefitness.org/resources/everyone/exercise-library/394/halo/) (opis (też: horns, in front of the chest; reverse direction)); BarBend: [Kettlebell halo](https://barbend.com/kettlebell-halo/) (instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)) `halo.dir`
+- Plecy proste, tułów nieruchomy przez cały ruch. — ACE: [Halo (#394)](https://www.acefitness.org/resources/everyone/exercise-library/394/halo/) (opis (też: horns, in front of the chest; reverse direction)); BarBend: [Kettlebell halo](https://barbend.com/kettlebell-halo/) (instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)) `halo.torso`
+
+**Czego unikać**
+
+- Tułów pochyla się albo wygina, kiedy kettlebell idzie za głowę. — ACE: [Halo (#394)](https://www.acefitness.org/resources/everyone/exercise-library/394/halo/) (opis (też: horns, in front of the chest; reverse direction)); BarBend: [Kettlebell halo](https://barbend.com/kettlebell-halo/) (instrukcja krok po kroku + błędy formy (D. Fraiser, akt. 01.11.2023)) `delt2.haloLean`
+
+### One-Arm Cable Rear Lateral Raise
+
+**Ustawienie**
+
+- Stań bokiem do dolnego wyciągu, uchwyt w dalszej ręce; pochyl tułów w przód z prostymi plecami. — Fitness Volt: [Cable rear delt exercises](https://fitnessvolt.com/cable-rear-delt-exercises/) (ćw. 5 Single-arm cable rear delt fly (P. Dale, akt. 07.06.2024)); Atlas ćwiczeń potreningu.pl: [Unoszenie ramion bokiem w opadzie tulowia w bramie](https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie) (szczebel 5 — nie liczy się do pary; opis (też „Unikaj bujania tułowiem.”)); ManiacMuscle: [Cable crossover reverse fly](https://maniacmuscle.com/cable-crossover-reverse-fly/) (szczebel 5 — nie liczy się do pary; execution) [uproszczenie: jedna ręka przy wyciągu: Fitness Volt (szczebel 4) opisuje wersję jednorącz, źródła szczebla 5 — linki oburącz i hantle] `crear1.setup`
+
+**Ruch**
+
+- Unieś rękę bokiem szerokim łukiem, łokieć lekko ugięty prowadzi ruch, aż znajdzie się na wysokości barku; opuść powoli. — Fitness Volt: [Cable rear delt exercises](https://fitnessvolt.com/cable-rear-delt-exercises/) (ćw. 5 Single-arm cable rear delt fly (P. Dale, akt. 07.06.2024)); Atlas ćwiczeń potreningu.pl: [Unoszenie ramion bokiem w opadzie tulowia w bramie](https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie) (szczebel 5 — nie liczy się do pary; opis (też „Unikaj bujania tułowiem.”)); ManiacMuscle: [Cable crossover reverse fly](https://maniacmuscle.com/cable-crossover-reverse-fly/) (szczebel 5 — nie liczy się do pary; execution) [uproszczenie: jedna ręka przy wyciągu: Fitness Volt (szczebel 4) opisuje wersję jednorącz, źródła szczebla 5 — linki oburącz i hantle] `crear1.move`
+
+**Czego unikać**
+
+- Bujanie tułowiem, żeby unieść ciężar. — Atlas ćwiczeń potreningu.pl: [Unoszenie ramion bokiem w opadzie tulowia w bramie](https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie) (szczebel 5 — nie liczy się do pary; opis (też „Unikaj bujania tułowiem.”)); ManiacMuscle: [Cable crossover reverse fly](https://maniacmuscle.com/cable-crossover-reverse-fly/) (szczebel 5 — nie liczy się do pary; execution) `rdelt.mis.swing`
+
+### Cable Reverse Fly
+
+**Ustawienie**
+
+- Stań między dwoma wyciągami i chwyć uchwyty na krzyż: lewą ręką ten z prawej, prawą — ten z lewej. — ACE: [Reverse Fly (#353)](https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/) (Step 1); Atlas ćwiczeń potreningu.pl: [Odwodzenie ramion w tyl na wyciagu gornym stojac](https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac) (szczebel 5 — nie liczy się do pary; opis); Atlas ćwiczeń Fabryka Siły: [Odwodzenie linek w tyl wyciagu stojac](https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac) (szczebel 5 — nie liczy się do pary; opis (2015-12-22)) `crf.setup`
+
+**Ruch**
+
+- Rozciągnij ręce szeroko na boki, aż utworzą prostą linię, potem wróć do skrzyżowania. — ACE: [Reverse Fly (#353)](https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/) (Step 1); Atlas ćwiczeń potreningu.pl: [Odwodzenie ramion w tyl na wyciagu gornym stojac](https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac) (szczebel 5 — nie liczy się do pary; opis); Atlas ćwiczeń Fabryka Siły: [Odwodzenie linek w tyl wyciagu stojac](https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac) (szczebel 5 — nie liczy się do pary; opis (2015-12-22)) `crf.move`
+
+### Cable Y Raise
+
+**Ustawienie**
+
+- Stań przodem między dolnymi wyciągami i chwyć uchwyty na krzyż; cofnij się, aż linki się napną. — weighttraining.guide: [Cable y raise](https://weighttraining.guide/exercises/cable-y-raise/) (szczebel 5 — nie liczy się do pary; Starting position 1 (Execution 1: elbows moderately flexed, „forming the letter 'Y'”); autor „Dr SAL”, akt. 05.09.2023); FitVibe: [Cable y raise 668](https://fitvibe.gr/askiseis/cable-y-raise-668) (szczebel 5 — nie liczy się do pary; krok 1 (krok 3: litera Y, łokcie lekko ugięte; krok 4: opuść powoli)) `cyr.setup`
+
+**Ruch**
+
+- Unieś ręce w górę i na boki, łokcie lekko ugięte, aż ułożą się w literę Y; opuść je powoli. — weighttraining.guide: [Cable y raise](https://weighttraining.guide/exercises/cable-y-raise/) (szczebel 5 — nie liczy się do pary; Starting position 1 (Execution 1: elbows moderately flexed, „forming the letter 'Y'”); autor „Dr SAL”, akt. 05.09.2023); FitVibe: [Cable y raise 668](https://fitvibe.gr/askiseis/cable-y-raise-668) (szczebel 5 — nie liczy się do pary; krok 1 (krok 3: litera Y, łokcie lekko ugięte; krok 4: opuść powoli)) `cyr.move`
+
+### One-Arm Incline Lateral Raise
+
+**Ustawienie**
+
+- Połóż się bokiem na ławce skośnej, hantel w górnej ręce. — NFPT: [How to do incline side lateral dumbbell raises](https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/) (Starting Position (Guest — R. Bovee, Certified Master PPT; 11.08.2025); Warning: „Do not shrug your shoulder when raising the dumbbell.”); free-exercise-db: [One Arm Incline Lateral Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise.json) (szczebel 5 — nie liczy się do pary; instructions (odczyt etap 2 przez kopię fitzport — kopia fedb = to samo źródło)) `inc1.setup`
+
+**Ruch**
+
+- Unieś rękę bokiem w górę, potem opuść ją powoli. — NFPT: [How to do incline side lateral dumbbell raises](https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/) (Starting Position (Guest — R. Bovee, Certified Master PPT; 11.08.2025); Warning: „Do not shrug your shoulder when raising the dumbbell.”); free-exercise-db: [One Arm Incline Lateral Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise.json) (szczebel 5 — nie liczy się do pary; instructions (odczyt etap 2 przez kopię fitzport — kopia fedb = to samo źródło)) `inc1.move`
+
+**Czego unikać**
+
+- Podciąganie barku do ucha przy unoszeniu. — NFPT: [How to do incline side lateral dumbbell raises](https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/) (Starting Position (Guest — R. Bovee, Certified Master PPT; 11.08.2025); Warning: „Do not shrug your shoulder when raising the dumbbell.”) `inc1.mis.shrug`
+
+### Barbell Front Raise to Overhead
+
+**Ustawienie**
+
+- Stań prosto, sztangę trzymaj nachwytem przed udami na opuszczonych rękach. — Fitnall: [Barbell overhead front raise](https://fitnall.com/exercises/barbell-overhead-front-raise/) (szczebel 5 — nie liczy się do pary; How To 3 (5: „raise the barbell until it slightly passes your head”; 6: „avoid locking the elbows”); A. Albritton); free-exercise-db: [Standing Front Barbell Raise Over Head](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Front_Barbell_Raise_Over_Head.json) (szczebel 5 — nie liczy się do pary; instructions 3) `bfro.setup`
+
+**Ruch**
+
+- Unieś ciężar przed sobą łukiem aż nad głowę, łokcie lekko ugięte; potem opuść go powoli do ud. — Fitnall: [Barbell overhead front raise](https://fitnall.com/exercises/barbell-overhead-front-raise/) (szczebel 5 — nie liczy się do pary; How To 3 (5: „raise the barbell until it slightly passes your head”; 6: „avoid locking the elbows”); A. Albritton); free-exercise-db: [Standing Front Barbell Raise Over Head](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Front_Barbell_Raise_Over_Head.json) (szczebel 5 — nie liczy się do pary; instructions 3) `fro.move`
+
+**Czego unikać**
+
+- Wyginanie lędźwi, gdy ręce idą nad głowę. — Fitnall: [Barbell overhead front raise](https://fitnall.com/exercises/barbell-overhead-front-raise/) (szczebel 5 — nie liczy się do pary; How To 3 (5: „raise the barbell until it slightly passes your head”; 6: „avoid locking the elbows”); A. Albritton) `fro.mis.arch`
+
+### Sled Reverse Flye
+
+**Ustawienie**
+
+- Stań przodem do sanek z uchwytami w wyciągniętych rękach i cofnij się, aż linka się napnie. — free-exercise-db: [Sled Reverse Flye](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json) (szczebel 5 — nie liczy się do pary; instructions 2–3); SET FOR SET: [Sled workouts](https://www.setforset.com/blogs/news/sled-workouts) (szczebel 5 — nie liczy się do pary; Sled Reverse Fly (blog sprzedawcy sanek)) `srf.setup`
+
+**Ruch**
+
+- Rozciągnij uchwyty na boki, nie zmieniając kąta w łokciach; wróć spokojnie. — free-exercise-db: [Sled Reverse Flye](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json) (szczebel 5 — nie liczy się do pary; instructions 2–3); SET FOR SET: [Sled workouts](https://www.setforset.com/blogs/news/sled-workouts) (szczebel 5 — nie liczy się do pary; Sled Reverse Fly (blog sprzedawcy sanek)); app-s7 (szczebel 5 — nie liczy się do pary; Instructions 2: slight bend in your elbows, pull the handles apart and out to the sides (Tips: avoid jerking)) `srf.move`
+
+### Car Drivers
+
+**Ustawienie**
+
+- Stań prosto, chwyć talerz oburącz i wyciągnij ręce przed sobą na wysokość barków. — ManiacMuscle: [Dumbbell standing driver](https://maniacmuscle.com/dumbbell-standing-driver/) (szczebel 5 — nie liczy się do pary; Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora); Atlas ćwiczeń Centrum Respo: [Bus driver with mini band](https://centrumrespo.pl/atlas/bus-driver-with-mini-band/) (szczebel 5 — nie liczy się do pary; pozycja wyjściowa; ruch: „krótkie skręty kierownicy samochodu, raz w prawo, raz w lewo”) [uproszczenie: wariant sprzętu: źródła opisują hantle i gumę; ten sam ruch stawów, zmienia się przyrząd (talerz)] `cdr.setup`
+
+**Ruch**
+
+- Obracaj talerz jak kierownicę — raz w jedną, raz w drugą stronę; ręce cały czas na wysokości barków. — ManiacMuscle: [Dumbbell standing driver](https://maniacmuscle.com/dumbbell-standing-driver/) (szczebel 5 — nie liczy się do pary; Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora); Atlas ćwiczeń Centrum Respo: [Bus driver with mini band](https://centrumrespo.pl/atlas/bus-driver-with-mini-band/) (szczebel 5 — nie liczy się do pary; pozycja wyjściowa; ruch: „krótkie skręty kierownicy samochodu, raz w prawo, raz w lewo”) [uproszczenie: wariant sprzętu: źródła opisują hantle i gumę; ten sam ruch stawów, zmienia się przyrząd (talerz)] `cdr.move`
+
+**Czego unikać**
+
+- Ręce opadają poniżej barków. — ManiacMuscle: [Dumbbell standing driver](https://maniacmuscle.com/dumbbell-standing-driver/) (szczebel 5 — nie liczy się do pary; Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora) `cdr.mis.drop`
+- Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — ManiacMuscle: [Dumbbell standing driver](https://maniacmuscle.com/dumbbell-standing-driver/) (szczebel 5 — nie liczy się do pary; Execution 2 (Setup 4: shoulder height, elbows slightly bent; Tips: „Letting the dumbbell sink lower reduces the shoulder challenge.”; Execution 3: „Do not jerk…”); bez autora) `mis.jerk`
+
+### Front Incline Dumbbell Raise
+
+**Ustawienie**
+
+- Usiądź na ławce skośnej, plecy na oparciu; hantle zwisają po bokach. — weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; Starting position 2 (autor Edward Lord)); app-s1 (szczebel 5 — nie liczy się do pary; instrukcja 2: hang at arm's length by your sides) `fidr.setup`
+
+**Ruch**
+
+- Unieś hantle przed sobą, łokcie lekko ugięte, mniej więcej do wysokości barków; opuść je powoli. — weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; Execution 1: elbows slightly flexed); app-s1 (szczebel 5 — nie liczy się do pary; instrukcja 4: parallel or slightly above shoulder level) `fidr.move`
+
+**Czego unikać**
+
+- Odrywanie pleców od oparcia. — app-s1 (szczebel 5 — nie liczy się do pary; Common Mistakes 3); weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; wniosek z ustawienia (etap 2): plecy na oparciu) `fidr.mis.back`
+
+### Dumbbell Incline Shoulder Raise
+
+**Ustawienie**
+
+- Połóż się plecami na ławce skośnej, hantle trzymaj nad barkami na prostych rękach. — weighttraining.guide: [Incline dumbbell shoulder raise](https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/) (szczebel 5 — nie liczy się do pary; Execution 1 (M. Livelo)); app-s2 (szczebel 5 — nie liczy się do pary; Setup) `isr.setupDb`
+
+**Ruch**
+
+- Nie zginając łokci, wypchnij ciężar wyżej, odrywając barki od ławki; potem powoli opuść łopatki z powrotem. — weighttraining.guide: [Incline dumbbell shoulder raise](https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/) (szczebel 5 — nie liczy się do pary; Execution 1 (M. Livelo)); app-s2 (szczebel 5 — nie liczy się do pary; Instructions 2) `isr.move`
+
+**Czego unikać**
+
+- Zginanie łokci — ruch zamienia się w wyciskanie. — app-s2 (szczebel 5 — nie liczy się do pary; Common mistakes: bending the elbows and turning it into a press); weighttraining.guide: [Incline dumbbell shoulder raise](https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/) (szczebel 5 — nie liczy się do pary; Execution 1: only the shoulders should move) `isr.mis.press`
+
+### Barbell Incline Shoulder Raise
+
+**Ustawienie**
+
+- Połóż się plecami na ławce skośnej, sztangę trzymaj nad sobą na prostych rękach. — free-exercise-db: [Barbell Incline Shoulder Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json) (szczebel 5 — nie liczy się do pary; instructions 2); app-s3 (szczebel 5 — nie liczy się do pary; krok 3) `isr.setupBb`
+
+**Ruch**
+
+- Nie zginając łokci, wypchnij ciężar wyżej, odrywając barki od ławki; potem powoli opuść łopatki z powrotem. — free-exercise-db: [Barbell Incline Shoulder Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json) (szczebel 5 — nie liczy się do pary; instructions 2); app-s3 (szczebel 5 — nie liczy się do pary; krok 3) [uproszczenie: opuszczenie „powoli” opisują źródła wariantu z hantlami; źródła sztangi opisują tylko wypchnięcie z odrywaniem barków od ławki (do potwierdzenia przez recenzenta)] `isr.move`
+
+**Czego unikać**
+
+- Zginanie łokci — ruch zamienia się w wyciskanie. — free-exercise-db: [Barbell Incline Shoulder Raise](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json) (szczebel 5 — nie liczy się do pary; wniosek z ruchu (etap 2): ręce proste); app-s3 (szczebel 5 — nie liczy się do pary; wniosek z ruchu (etap 2): ręce proste) `isr.mis.press`
+
+### Dumbbell Front Raise to Overhead
+
+**Ustawienie**
+
+- Stań prosto, hantle trzymaj przed udami, dłonie zwrócone do ciała. — app-s4 (szczebel 5 — nie liczy się do pary; How to do it 1 (from thighs)); app-s5 (szczebel 5 — nie liczy się do pary; How to 1: palms facing your thighs) `dfro.setup`
+
+**Ruch**
+
+- Unieś ciężar przed sobą łukiem aż nad głowę, łokcie lekko ugięte; potem opuść go powoli do ud. — app-s4 (szczebel 5 — nie liczy się do pary; How to do it); app-s5 (szczebel 5 — nie liczy się do pary; How to 3: slowly raise … in an arc) `fro.move`
+
+**Czego unikać**
+
+- Wyginanie lędźwi, gdy ręce idą nad głowę. — app-s4 (szczebel 5 — nie liczy się do pary; Common mistakes: avoid arching your lower back); app-s5 (szczebel 5 — nie liczy się do pary; Common mistakes 3) `fro.mis.arch`
+- Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — app-s4 (szczebel 5 — nie liczy się do pary; Common mistakes: do not swing or use momentum); app-s5 (szczebel 5 — nie liczy się do pary; Common mistakes 1) `mis.jerk`
+
+### Straight Raises on Incline Bench
+
+**Ustawienie**
+
+- Połóż się klatką na ławce skośnej; sztangę trzymaj nachwytem na prostych, zwisających rękach. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; instructions 2–3); app-s6 (szczebel 5 — nie liczy się do pary; Steps 1–2) `sri.setup`
+
+**Ruch**
+
+- Prawie prostymi rękami unieś sztangę przed siebie, potem powoli ją opuść. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; instructions 3); app-s6 (szczebel 5 — nie liczy się do pary; Steps 3 i 5) `sri.move`
+
+**Czego unikać**
+
+- Odrywanie klatki od ławki. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; wniosek z ustawienia (etap 2): leżenie na ławce); app-s6 (szczebel 5 — nie liczy się do pary; Steps 1: position chest against bench top) `yr.mis.chest`
+
 ## Źródła
 
 | Id | Organizacja | Tytuł | Adres | Migawka (odczyt) |
@@ -2934,6 +3425,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-338 | ACE | Single-arm Chest Press (#338) | https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/ | — |
 | ace-34 | ACE | Incline Reverse Fly (#34) | https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | — |
 | ace-353 | ACE | Reverse Fly (#353) | https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/ | — |
+| ace-354 | ACE | Single Arm Lateral Raise (#354) | https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/ | — |
 | ace-357 | ACE | Squat to Overhead Press (#357) | https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/ | — |
 | ace-358 | ACE | Suitcase Carry (#358) | https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | — |
 | ace-359 | ACE | Farmer’s Carry (#359) | https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | — |
@@ -2944,6 +3436,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-367 | ACE | Elevated Glute Bridge (#367) | https://www.acefitness.org/resources/everyone/exercise-library/367/elevated-glute-bridge/ | — |
 | ace-385 | ACE | Push-jerk (#385; kettlebells) | https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/ | — |
 | ace-391 | ACE | Swing (#391) | https://www.acefitness.org/resources/everyone/exercise-library/391/swing/ | — |
+| ace-394 | ACE | Halo (#394) | https://www.acefitness.org/resources/everyone/exercise-library/394/halo/ | — |
 | ace-41 | ACE | Push Up (#41) | https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/ | — |
 | ace-43 | ACE | Seated Shoulder Press (#43) | https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/ | — |
 | ace-44 | ACE | Seated Biceps Curl (#44) | https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/ | — |
@@ -2967,8 +3460,16 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-blog-5624 | ACE | Foam Rolling 101 (blog) | https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/ | — |
 | aceblog-5881 | ACE | Reap the Benefits of Rowing With 3 Fast and Efficient Workouts (blog, 2016) | https://www.acefitness.org/resources/everyone/blog/5881/reap-the-benefits-of-rowing-with-3-fast-and-efficient-workouts/ | — |
 | acecert-7403 | ACE | Understanding the Barbell Hip Thrust (ACE Certified, XI 2019) | https://www.acefitness.org/continuing-education/certified/november-2019/7403/understanding-the-barbell-hip-thrust/ | — |
+| acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders | ACE | A pro s guide to muscle mechanics the shoulders | https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/ | — |
 | af-dynamic-warmups | Arthritis Foundation | Dynamic Warm-Ups (Arthritis at Work) | https://www.arthritis.org/partnership/atwork/at-work-physical-activity/dynamic-warm-ups-for-arthritis-workplace | — |
 | alberta-abk4469 | WebMD Ignite | Piriformis stretch (from legs bent) | https://myhealth.alberta.ca/Health/healthy-living/pages/conditions.aspx?hwid=abk4469 | — |
+| app-s1 | app-s1 | app-s1 | — | — |
+| app-s2 | app-s2 | app-s2 | — | — |
+| app-s3 | app-s3 | app-s3 | — | — |
+| app-s4 | app-s4 | app-s4 | — | — |
+| app-s5 | app-s5 | app-s5 | — | — |
+| app-s6 | app-s6 | app-s6 | — | — |
+| app-s7 | app-s7 | app-s7 | — | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
 | barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |
@@ -2982,6 +3483,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | barbend-jerk-exercises | BarBend | Exercises to Strengthen Your Jerk (R. Stefan, akt. 01.07.2024) | https://barbend.com/exercises-to-strengthen-jerk | — |
 | barbend-kb-clean | BarBend | Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023) | https://barbend.com/kettlebell-clean/ | — |
 | barbend-kb-jerk-vs-pp | BarBend | Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023) | https://barbend.com/kettlebell-jerk-vs-push-press | — |
+| barbend-kettlebell-halo | BarBend | Kettlebell halo | https://barbend.com/kettlebell-halo/ | — |
 | barbend-muscle-snatch | BarBend | Muscle Snatch (C. Trieu, 2024) | https://barbend.com/muscle-snatch/ | — |
 | barbend-pendlay-row | BarBend | Pendlay Row | https://barbend.com/Pendlay-row/ | — |
 | barbend-power-clean | BarBend | The Power Clean Exercise: How To… (akt. 25.03.2024) | https://barbend.com/power-clean/ | — |
@@ -2990,6 +3492,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | barbend-snatch-balance | BarBend | Snatch Balance (M. Dewar, CSCS) | https://barbend.com/snatch-balance/ | — |
 | berling-2006 | Berling i in. (University of Wisconsin–La Crosse) | …handrail support on oxygen uptake during steady-state treadmill exercise, J Cardiopulm Rehabil 2006 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/17135860 | — |
 | bini-2011 | Bini, Hume, Croft (Auckland University of Technology) | Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/21615188 | — |
+| bodylastics-lateral-raise-with-flat-bands | Bodylastics | Lateral raise with flat bands | https://bodylastics.com/exercise/lateral-raise-with-flat-bands | — |
+| bodylastics-upright-row | Bodylastics | Upright row | https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row | — |
 | breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
 | c2-technique | Concept2 | Indoor Rowing Technique | https://www.concept2.com/training/rowing-technique | — |
@@ -3014,6 +3518,10 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-75 | Catalyst Athletics | Squat Jerk (Exercise Library #75) | https://catalystathletics.com/exercise/75/Squat-Jerk/ | — |
 | catalyst-76 | Catalyst Athletics | Clean & Jerk | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | — |
 | catalyst-80 | Catalyst Athletics | Snatch Balance (#80) | https://www.catalystathletics.com/exercise/80/Snatch-Balance/ | — |
+| catalyst-803 | Catalyst Athletics | Barbell Front Raise (#803) | https://catalystathletics.com/exercise/803/Barbell-Front-Raise/ | — |
+| catalyst-805 | Catalyst Athletics | Barbell Upright Row (#805) | https://catalystathletics.com/exercise/805/Barbell-Upright-Row/ | — |
+| catalyst-812 | Catalyst Athletics | Cable Front Raise (#812) | https://catalystathletics.com/exercise/812/Cable-Front-Raise/ | — |
+| catalyst-822 | Catalyst Athletics | Dumbbell Front Side Raise (#822) | https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/ | — |
 | catalyst-96 | Catalyst Athletics | Muscle Snatch (#96) | https://www.catalystathletics.com/exercise/96/Muscle-Snatch/ | — |
 | catalyst-97 | Catalyst Athletics | Snatch Pull (#97) | https://www.catalystathletics.com/exercise/97/Snatch-Pull/ | — |
 | catalyst-98 | Catalyst Athletics | Clean Pull | https://www.catalystathletics.com/exercise/98/Clean-Pull/ | — |
@@ -3026,6 +3534,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ccmc-foam-rolling | Connecticut Children's Sports Medicine | Lower Extremity Foam Rolling Home Exercise Program (PDF, 2 s.) | https://www.connecticutchildrens.org/sites/default/files/2024-01/lower_extremity_foam_rolling_home_exercise_program.pdf | — |
 | ccsm-back-stretching | Connecticut Children's Sports Medicine | Back Stretching Home Exercise Program | https://www.connecticutchildrens.org/sites/default/files/2026-04/pdf_sportsmed_back-stretching-home-exercise-program.pdf | — |
 | ccv-flexibility | Cancer Council Victoria | Flexibility exercises | https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises | — |
+| centrumrespo-bus-driver-with-mini-band | Atlas ćwiczeń Centrum Respo | Bus driver with mini band | https://centrumrespo.pl/atlas/bus-driver-with-mini-band/ | — |
 | cf-dkb-pp-jerk | CrossFit | Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008) | https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk | — |
 | coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
 | columbia-plantar-fasciitis | WebMD Ignite | Plantar Fasciitis Exercises (Health Library) | https://www.columbiadoctors.org/health-library/how-to/plantar-fasciitis-exercises | — |
@@ -3119,21 +3628,36 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | exrx-Triceps/CBStandingTricepsExtensionRope | ExRx.net | CBStandingTricepsExtensionRope | https://exrx.net/WeightExercises/Triceps/CBStandingTricepsExtensionRope | https://web.archive.org/web/20220403090026/https://exrx.net/WeightExercises/Triceps/CBStandingTricepsExtensionRope |
 | exrx-Triceps/CBTriExt | ExRx.net | CBTriExt | https://exrx.net/WeightExercises/Triceps/CBTriExt | https://web.archive.org/web/20231228115509/https://exrx.net/WeightExercises/Triceps/CBTriExt |
 | exrx-Triceps/DBTriExt | ExRx.net | DBTriExt | https://exrx.net/WeightExercises/Triceps/DBTriExt | https://web.archive.org/web/20220816182656/https://exrx.net/WeightExercises/Triceps/DBTriExt |
+| fabrykasily-odwodzenie-linek-w-tyl-wyciagu-stojac | Atlas ćwiczeń Fabryka Siły | Odwodzenie linek w tyl wyciagu stojac | https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac | — |
+| fedb-alternating-deltoid-raise | free-exercise-db | Alternating Deltoid Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Deltoid_Raise.json | — |
+| fedb-barbell-incline-shoulder-raise | free-exercise-db | Barbell Incline Shoulder Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json | — |
+| fedb-one-arm-incline-lateral-raise | free-exercise-db | One Arm Incline Lateral Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise.json | — |
+| fedb-sled-reverse-flye | free-exercise-db | Sled Reverse Flye | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json | — |
+| fedb-standing-front-barbell-raise-over-head | free-exercise-db | Standing Front Barbell Raise Over Head | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Front_Barbell_Raise_Over_Head.json | — |
+| fedb-straight-raises-on-incline-bench | free-exercise-db | Straight Raises on Incline Bench | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json | — |
+| fitnall-barbell-overhead-front-raise | Fitnall | Barbell overhead front raise | https://fitnall.com/exercises/barbell-overhead-front-raise/ | — |
+| fitnessvolt-cable-rear-delt-exercises | Fitness Volt | Cable rear delt exercises | https://fitnessvolt.com/cable-rear-delt-exercises/ | — |
+| fitvibe-cable-y-raise-668 | FitVibe | Cable y raise 668 | https://fitvibe.gr/askiseis/cable-y-raise-668 | — |
 | hci-neck-exercises | Huntsman Cancer Institute, University of Utah Health | Neck Exercises (fact sheet, 2022) | https://hci-portal.hci.utah.edu/sites/factsheets/Shared%20Documents/neck-exercises.pdf | — |
 | healthwise-columbia-shoulder-er | WebMD Ignite | Shoulder external rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/ | — |
 | healthwise-columbia-shoulder-ir | WebMD Ignite | Shoulder internal rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/ | — |
 | hofmann-2014 | Hofmann i in. (Cybex Research Institute) | …handrail-use instructions… inclined treadmill walking, Int J Exerc Sci 7(4):339–345 (abstrakt) | https://digitalcommons.wku.edu/ijes/vol7/iss4/10 | — |
 | hss-back-neck-stretches | HSS | HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021) | https://www.hss.edu/health-library/move-better/back-neck-stretches | — |
 | hss-bike | HSS | A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020) | https://www.hss.edu/health-library/move-better/set-up-exercise-bike | — |
+| hss-shoulder-strengthening-program | HSS | Shoulder strengthening program | https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf | — |
 | hss-sutton-shoulder-program | HSS | Shoulder Rotator Cuff and Scapular Strengthening Program | https://hss.edu/sutton/shoulder-strengthening-program.pdf | — |
 | hwq-cat-cow | Health and Wellbeing Queensland | Cat and cow stretch | https://hw.qld.gov.au/?p=41297 | — |
 | insportline-qt1005 | inSPORTline | Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises” | https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf | — |
 | ironmind-split | IronMind | Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada) | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/ | — |
+| issaonline-upright-row-muscles-worked-benefits-proper-form-m | ISSA | Upright row muscles worked benefits proper form more | https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more | — |
 | leeds-ankle-phase2 | Leeds Teaching Hospitals NHS Trust, Physiotherapy Department | Ankle Phase 2 Exercises (A. Brogden, 27.01.2022) | https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf | — |
 | lifefitness-rails | Life Fitness | Is Treadmill Calorie Burn Affected by Holding the Handrails? (29.07.2024) | https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails | — |
 | lifetime-thruster | Experience Life | How to Do the Thruster (Experience Life, M. Fazeli Fard, RKC, 19.06.2024) | https://experiencelife.lifetime.life/article/how-to-do-the-thruster/ | — |
 | livewell-lower-limb-stretch | Livewell Southwest | Lower Limb Muscle Stretching Exercises, v2 04.2016 (PDF, 2 s.) | https://www.livewellsouthwest.co.uk/wp-content/uploads/2023/06/Adult-Stretching-Leafelt-V2-April-2016.pdf | — |
+| maniacmuscle-cable-crossover-reverse-fly | ManiacMuscle | Cable crossover reverse fly | https://maniacmuscle.com/cable-crossover-reverse-fly/ | — |
+| maniacmuscle-dumbbell-standing-driver | ManiacMuscle | Dumbbell standing driver | https://maniacmuscle.com/dumbbell-standing-driver/ | — |
 | medlineplus-chest-stretch | MedlinePlus | Chest stretch (Medical Encyclopedia image page) | https://medlineplus.gov/ency/imagepages/19483.htm | — |
+| msdmanuals-prone-shoulder-horizontal-abduction | Tomah Memorial Hospital | Prone shoulder horizontal abduction | https://www.msdmanuals.com/professional/multimedia/video/prone-shoulder-horizontal-abduction | — |
 | mullane-2021 | Mullane, Turner, Bishop (Middlesex University) | Exercise Technique: The Pallof Press, Strength Cond J 43(2):121–128 (rękopis) | https://repository.mdx.ac.uk/item/89098 | — |
 | nasm-barbell-bench-press | NASM | Barbell Bench Press | https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | — |
 | nasm-barbell-bicep-curl | NASM | Barbell Bicep Curl | https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl | — |
@@ -3178,6 +3702,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-tuck-jump | NASM | Tuck Jump | https://www.nasm.org/resource-center/exercise-library/tuck-jump | — |
 | nasm-two-arm-dumbbell-chest-press-with-band | NASM | Two Arm Dumbbell Chest Press With Band | https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | — |
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
+| nfpt-how-to-do-incline-side-lateral-dumbbell-raises | NFPT | How to do incline side lateral dumbbell raises | https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/ | — |
 | nhs-flexibility | NHS (nhs.uk) | Flexibility exercises | https://www.nhs.uk/live-well/exercise/flexibility-exercises/ | — |
 | nhs-shrops-calf | Shropshire Community Health NHS Trust | Calf Stretching Information Leaflet | https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf | — |
 | nhs-southtees-side-lying | South Tees Hospitals NHS Foundation Trust | Rotator cuff in side lying | https://www.southtees.nhs.uk/resources/rotator-cuff-in-side-lying/ | — |
@@ -3214,6 +3739,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | pmc-8152048 | Hasani i in. (Monash University) | LOAD-intensity and time-under-tension… feasibility, BMC Sports Sci Med Rehabil 2021 | https://pmc.ncbi.nlm.nih.gov/articles/PMC8152048/ | — |
 | pmc-9517252 | Polevoy i in. (Moscow Aviation Institute i in.) | The Influence of Burpee on Endurance and Short-Term Memory of Adolescents, IJERPH 2022 | https://pmc.ncbi.nlm.nih.gov/articles/PMC9517252/ | — |
 | pmc-9528903 | Plotkin i in. (CUNY Lehman College) | Progressive overload without progressing load?…, PeerJ 2022 | https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/ | — |
+| potreningu-odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac | Atlas ćwiczeń potreningu.pl | Odwodzenie ramion w tyl na wyciagu gornym stojac | https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac | — |
+| potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami | Atlas ćwiczeń potreningu.pl | Unoszenie ramion bokiem w opadzie tulowia w bramie | https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie | — |
 | prehab-heel-raise-off-step | The Prehab Guys | Heel Raise – Off Step | https://theprehabguys.com/vimeo-video/heel-raise-off-step/ | — |
 | rep-sled-push | REP Fitness | Sled Push Technique Guide (2026) | https://repfitness.com/blogs/training/sled-push-technique | — |
 | rep-wall-balls | REP Fitness | How to Improve Your Wall Balls | https://uk.repfitness.com/blogs/training/wall-balls | — |
@@ -3227,6 +3754,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | sbs-how-to-bench | Stronger by Science | How to Bench Press: The Definitive Guide (Greg Nuckols) | https://www.strongerbyscience.com/how-to-bench/ | — |
 | sbs-how-to-deadlift | Stronger by Science | How to Deadlift: The Definitive Guide (Greg Nuckols) | https://www.strongerbyscience.com/how-to-deadlift/ | — |
 | sbs-how-to-squat | Stronger by Science | How to Squat: The Definitive Guide (Greg Nuckols) | https://www.strongerbyscience.com/how-to-squat/ | — |
+| setforset-sled-workouts | SET FOR SET | Sled workouts | https://www.setforset.com/blogs/news/sled-workouts | — |
 | sf-go-ballistic-jerk | StrongFirst | Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia) | https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/ | — |
 | southtees-cat-stretch | South Tees Hospitals NHS Foundation Trust | Cat stretch (Physiotherapy) | https://www.southtees.nhs.uk/?p=31588 | — |
 | torokhtiy-barbell-squat-jump | Torokhtiy | Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024) | https://torokhtiy.com/blogs/guides/barbell-squat-jump | — |
@@ -3242,4 +3770,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | webmd-ignite-wrist-circles-fist | WebMD Ignite | Wrist Circles (Fist) (akt. 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/ | — |
 | webmd-neck-stretch-front | WebMD Ignite | Neck stretch (front) | https://www.columbiadoctors.org/health-library/multimedia/neck-stretch-front/ | — |
 | webmd-shoulder-posterior | WebMD Ignite | Shoulder stretch (posterior) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-stretch-posterior/ | — |
+| weighttraining-cable-y-raise | weighttraining.guide | Cable y raise | https://weighttraining.guide/exercises/cable-y-raise/ | — |
+| weighttraining-incline-dumbbell-front-raise | weighttraining.guide | Incline dumbbell front raise | https://weighttraining.guide/exercises/incline-dumbbell-front-raise/ | — |
+| weighttraining-incline-dumbbell-shoulder-raise | weighttraining.guide | Incline dumbbell shoulder raise | https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/ | — |
 | yogau-wide-angle | YogaUOnline | Wide-Angle Seated Forward Bend – Open Inner Thighs Safely (07.03.2026) | https://yogauonline.com/yoga-practice-teaching-tips/yoga-practice-tips/julie-gudmestad-wide-angle-seated-forward-bend-open-inner-thighs-safely/ | — |

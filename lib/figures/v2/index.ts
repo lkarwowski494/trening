@@ -13,6 +13,7 @@ export * from './families';
 export * from './variants';
 export * from './anim';
 export * from './figure';
+export * from './overlayShapes';
 export * from './contacts';
 export * from './badges';
 export * from './poseData';

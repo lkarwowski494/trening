@@ -4,7 +4,7 @@
 // Zmiany liczone względem punktu rozejścia z ref (domyślnie origin/main) razem z nieśledzonymi i niezatwierdzonymi. H1 (decyzja właściciela 31.10.2026 ~11:35, ZB-028):
 // gdy względem origin/main są zmiany kodu, liczą się zmiany od najbliższego przodka HEAD z zielonym pełnym verify (znacznik „pelne”, scripts/verify-znacznik.mjs) —
 // same dokumenty od tamtej chwili wystarczą; bez takiego przodka — jak dotąd, pełne verify.
-// Uruchamia: check:readme, check:matrix, check:claims, check:decyzje, check:i18n, check:pokrycie (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
+// Uruchamia: check:readme, check:znaczniki, check:matrix, check:claims, check:decyzje, check:i18n, check:pokrycie (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
 // które wymieniają zmieniony dokument (nazwa, ścieżka, katalog) albo przeglądają cały katalog docs. Cel: 1–2 min zamiast 12–15.
 // CI na PR i tak uruchamia pełne testy przed scaleniem.
 // Użycie: npm run verify:docs [-- <ref>]
@@ -15,7 +15,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
-import { testyCzytajace } from './testy-dla-plikow.mjs';
+import { testyCzytajace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs';
 import { bazaPelnego, bazaZdalna, biezacaGalaz, czystaKopia } from './verify-znacznik.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -45,7 +45,8 @@ async function zmienione() {
 
 /* Testy Jest związane z dokumentami (scripts/testy-dla-plikow.mjs; ZB-041 G3): wymieniają nazwę pliku (z rozszerzeniem; bez rozszerzenia tylko numerowane docs/NN-…), ścieżkę albo
    katalog — ten ostatni tylko gdy test katalog przegląda — plus testy przeglądające cały katalog docs. */
-const testyDlaDokumentow = pliki => testyCzytajace(pliki, root, { zawszeDocs: true });
+/* L-104 (04.11.2026): do tego testy uruchamiające skrypt repo, którego zależnością (importy rekurencyjnie, czytane pliki i katalogi) jest zmieniony plik. */
+const testyDlaDokumentow = pliki => [...new Set([...testyCzytajace(pliki, root, { zawszeDocs: true }), ...testyUruchamiajaceSkrypty(pliki, root)])].sort();
 
 /* ZB-041 G2 (04.11.2026): właściwy przebieg wymaga czystej kopii już na starcie — inaczej byłby zielony, ale bez znacznika, i trzeba by go powtórzyć po commicie */
 if (!planOnly && !czyDokumenty && process.env.VERIFY_DOCS_CHANGED === undefined && ref === 'origin/main' && czystaKopia() !== 0) process.exit(1);
@@ -61,7 +62,7 @@ if (zm.length === 0) {
   process.exit(0);
 }
 
-const komendy = ['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:decyzje', 'npm run check:i18n', 'npm run check:pokrycie'];
+const komendy = ['npm run check:readme', 'npm run check:znaczniki', 'npm run check:matrix', 'npm run check:claims', 'npm run check:decyzje', 'npm run check:i18n', 'npm run check:pokrycie'];
 if (zm.some(f => f.startsWith('docs/brd/'))) komendy.push('node scripts/kontrola-brd.mjs docs/brd');
 const testy = dokumenty ? testyDlaDokumentow(zm) : [];
 

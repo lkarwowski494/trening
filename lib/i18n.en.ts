@@ -760,6 +760,7 @@ export const EN: Record<string, string> = {
   'piszczelowy przedni': 'tibialis anterior',
   'zginacze biodra': 'hip flexors',
   'Rysunek ruchu: {opis}': 'Movement drawing: {opis}',
+  'Na rysunku: {lista}': 'On the drawing: {lista}',
   'Ogólne wskazówki dla tego ruchu': 'General tips for this movement',
   'Kąt na rysunku: {staw} {n}°': 'Angle in the drawing: {staw} {n}°',
   'zgięcie kolana': 'knee flexion',

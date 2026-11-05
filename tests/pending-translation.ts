@@ -7,7 +7,11 @@ import * as path from 'path';
 
 export const PENDING_FILE = path.join(__dirname, '..', 'docs', 'lokalizacja', 'zestaw-przekladu-2026-10-23.json');
 export type Pending = { rodzaj: 'nowy' | 'zmieniony'; pl: string; en: string; poprzedni_pl?: string };
-export const PENDING: Pending[] = (JSON.parse(fs.readFileSync(PENDING_FILE, 'utf8')) as { klucze: Pending[] }).klucze;
+/** Dalsze zestawy interfejsu (zestaw-przekladu-<data>-<temat>.json z kluczami rodzaju nowy/zmieniony; bez zestawów wskazówek) — dopisywane do głównego. */
+const LOK_UI = path.join(__dirname, '..', 'docs', 'lokalizacja');
+const DALSZE = fs.readdirSync(LOK_UI).filter(f => /^zestaw-przekladu-.*\.json$/.test(f) && !/-wskazowki\.json$/.test(f) && path.join(LOK_UI, f) !== PENDING_FILE)
+  .flatMap(f => ((JSON.parse(fs.readFileSync(path.join(LOK_UI, f), 'utf8')) as { klucze?: Pending[] }).klucze ?? []).filter(k => k.rodzaj === 'nowy' || k.rodzaj === 'zmieniony'));
+export const PENDING: Pending[] = [...(JSON.parse(fs.readFileSync(PENDING_FILE, 'utf8')) as { klucze: Pending[] }).klucze, ...DALSZE];
 export const PENDING_NEW = new Set(PENDING.filter(p => p.rodzaj === 'nowy').map(p => p.pl));
 export const PENDING_CHANGED = new Set(PENDING.filter(p => p.rodzaj === 'zmieniony').map(p => p.pl));
 

@@ -17,16 +17,21 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { resolve as resolveFig } from './figures/gen.mjs';
 import { srcLevel, MAX_COUNT_LEVEL } from './cues/gen.mjs';
-import { normalizujPlikV2 } from './skrot-v2-norm.mjs';
+import { normalizujPlikV2, plikNakladki } from './skrot-v2-norm.mjs';
+import { regulyDla } from './figures/v2-sens.mjs';
+import { appRequire } from './strona/ts-loader.mjs';
+import { doborRodziny } from './skrot-v2-dobor.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'data/zrodla/figures.json');
 export const OUT_CUES = join(root, 'lib/cues/data.json'), OUT_FIG = join(root, 'lib/figures/data.json');
 const FULL_ROLES = join(root, 'data/zrodla/role-miesni.json'); export const OUT_ROLES = join(root, 'lib/muscleRoles/data.json');
 export const EN_FILE = join(root, 'lib/i18n.en.ts'); export const EN_BEGIN = '  /* ROLE-MIESNI:BEGIN — generowane przez scripts/zrodla-runtime.mjs z data/zrodla/role-miesni.json, nie edytować ręcznie */', EN_END = '  /* ROLE-MIESNI:END */';
-const FULL_SENS = join(root, 'data/zrodla/figury-sens.json'); export const OUT_STYKI = join(root, 'lib/figures/v2/styki.json');
+const FULL_SENS = join(root, 'data/zrodla/figury-sens.json'); export const OUT_STYKI = join(root, 'lib/figures/v2/styki.json'); export const OUT_GRUPY = join(root, 'lib/figures/v2/grupy.json');
+export const OUT_REGULY = join(root, 'lib/figures/v2/reguly-cwiczen.json');
 export const REVIEW = join(root, 'docs/research/figury-recenzja.json'), PL = join(root, 'lib/cues/text/pl.json');
 /** Werdykty recenzji, przy których figura v1 trafia do aplikacji. */
 export const SHOWN = ['wyswietlana', 'zastapiona'];
@@ -95,14 +100,14 @@ const plikRodziny = fam => V2_RIGS[fam] ? `lib/figures/v2/rigs/${V2_RIGS[fam]}` 
  * sprzęt i kształty (draw, scene), szkielet i matematyka (skeleton, math), czas (anim), błędy i figura (errors, figure).
  * ACG-002 (audyt ćwiczeń 31.10.2026): także mięśnie, prowadnice, styki i kolidery, kadr, rodziny, dane póz z kontraktem i sprzętem, osłony dźwigni i barku, paleta, znaczki, warstwa UI figury, styki.json —
  * cała reszta domknięcia importów rysunku (strażnik: tests/figury-recenzja.test.tsx „ACG-002”). Rozszerzenie zmieniło skróty wszystkich rodzin (wpisy recenzji 1.0.1 i tak były nieaktualne po scaleniu 31.10). */
-export const V2_WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json'];
+export const V2_WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/overlayShapes.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json', 'lib/figures/v2/overlay.ts', 'lib/figures/v2/overlay/common.ts', 'lib/figures/v2/overlay/hinge.ts', 'lib/figures/v2/overlay/squat.ts', 'lib/figures/v2/grupy.json', 'lib/figures/v2/reguly-cwiczen.json'];
 /** Pliki z domknięcia importów rysunku celowo poza skrótem rodziny — z powodem (ACG-002, 31.10.2026). */
 export const V2_POZA_SKROTEM = {
   'lib/figures/v2/cueSets.ts': 'tekst wskazówek przypisany do ćwiczeń (zestawy) — nie zmienia rysunku; ma własny skrót recenzji zestawów (zestawSkrot)',
   'lib/figures/v2/cue-sets.json': 'dane zestawów wskazówek — nie zmieniają rysunku; własny skrót recenzji zestawów (zestawSkrot)',
 };
 /** Skrót rodziny: pliki rodziny i wspólne; families.ts i poseData.ts po normalizacji (bez statusów rodzin, wpisów LOAD i cudzych wpisów DATA_UI — decyzja 1A, 03.11.2026; scripts/skrot-v2-norm.mjs). */
-export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([plikRodziny(fam), ...V2_WSPOLNE].map(p => normalizujPlikV2(p, czytaj(p), fam)).join('\n'));
+export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([...[plikRodziny(fam), plikNakladki(fam, p => existsSync(join(root, p))), ...V2_WSPOLNE].filter(Boolean).map(p => normalizujPlikV2(p, czytaj(p), fam)), doborRodziny(fam, czytaj)].join('\n')); /* fix4 R2: do skrótu wchodzi też WYNIK doboru po kartach (scripts/skrot-v2-dobor.mjs) */
 /** Rodziny v2 z aktualnym wpisem recenzji ruchu (werdykt „wyswietlana”, skrót równy bieżącemu rigowi/plikowi póz). Tylko one są rysowane w aplikacji (bramka 4, fail-closed): rodzina bez wpisu albo zmieniona po recenzji jest ukryta. */
 export const rodzinyZAktualnaRecenzja = rec => Object.keys(rec.v2 ?? {}).filter(f => rec.v2[f].werdykt === 'wyswietlana' && existsSync(join(root, plikRodziny(f))) && rec.v2[f].sha === rodzinaSkrot(f));
 export const recenzja = () => JSON.parse(readFileSync(REVIEW, 'utf8'));
@@ -124,6 +129,30 @@ export function buildFigures(full, rec = recenzja(), cues = JSON.parse(readFileS
 /** Styki wymagane w pozie poprawnej (reguły sensu, bez źródeł): { rodzina: { wymagane, pomijane_gdy? } }. */
 export function buildStyki(full) {
   return Object.fromEntries(Object.entries(full.styki).filter(([k]) => !k.startsWith('_')).map(([k, v]) => [k, { wymagane: v.wymagane, ...(v.pomijane_gdy ? { pomijane_gdy: v.pomijane_gdy } : {}) }]));
+}
+/** Grupy reguł sensu i grupy błędów rodzin (W2b nakładki techniki, 04.11.2026): { rodzina: { reguly: { reguła: grupa }, bledy: { id wskazówki błędu: grupa } } } — bez źródeł. Rodziny bez grup błędów też mają wpis (puste bledy). */
+export function buildGrupy(full) {
+  const out = {};
+  for (const [k, r] of Object.entries(full.rodziny ?? {})) {
+    if (k.startsWith('_') || !r.reguly) continue;
+    out[k] = { reguly: Object.fromEntries(Object.entries(r.reguly).filter(([, v]) => v.grupa).map(([id, v]) => [id, v.grupa])), bledy: { ...(r.grupy_bledow ?? {}) } };
+  }
+  return out;
+}
+/**
+ * Reguły „ustalone” wariantu ćwiczenia dla rodzin z nakładką techniki (fix4 R1, 04.11.2026): { rodzina: { ćwiczenie: [id reguł] } } = regulyDla(rodzina, ćwiczenie) z pewnością „ustalone”
+ * (pole `pewnosc` zaczyna się od „ustalone”; wpisy mieszane typu „ustalone (…; Pull Up); analogia (pozostałe)” przechodzą — takie przypadki ogranicza lista `exercises` elementu).
+ * Rodziny z nakładką = pliki lib/figures/v2/overlay/<rodzina>.ts (poza common.ts). Bez źródeł i bez pewności — tylko id (runtime anonimowy). Czyta regulyDla z dysku (lib/cues/data.json): zapis w dwóch przebiegach (zob. --write).
+ */
+export function buildReguly(rq = appRequire()) {
+  const fam = rq('lib/figures/v2/families.ts'); const all = fam.assignAll();
+  const rodziny = readdirSync(join(root, 'lib/figures/v2/overlay')).filter(n => n.endsWith('.ts') && n !== 'common.ts').map(n => n.slice(0, -3)).sort();
+  const out = {};
+  for (const f of rodziny) {
+    out[f] = {};
+    for (const k of Object.keys(all).filter(x => all[x] === f).sort()) { const ids = regulyDla(f, k, root).filter(r => /^ustalone/.test(r.pewnosc ?? '')).map(r => r.id); if (ids.length) out[f][k] = ids; }
+  }
+  return out;
 }
 /** Funkcje wyświetlane: status „ustalone” albo „dwa_zrodla” (decyzja właściciela 26.10.2026: tylko pary z ≥ 2 źródłami). */
 export const roleShown = f => f.status === 'ustalone' || f.status === 'dwa_zrodla';
@@ -194,6 +223,8 @@ export function outputs() {
     [OUT_CUES, serialize(buildCues(JSON.parse(readFileSync(FULL_CUES, 'utf8')), { rec: recenzja(), pl: JSON.parse(readFileSync(PL, 'utf8')), sets: JSON.parse(readFileSync(CUE_SETS, 'utf8')) }))],
     [OUT_FIG, serialize(buildFigures(JSON.parse(readFileSync(FULL_FIG, 'utf8'))))],
     [OUT_STYKI, serialize(buildStyki(JSON.parse(readFileSync(FULL_SENS, 'utf8'))))],
+    [OUT_GRUPY, serialize(buildGrupy(JSON.parse(readFileSync(FULL_SENS, 'utf8'))))],
+    [OUT_REGULY, serialize(buildReguly())],
     ...(() => { const r = buildRoles(JSON.parse(readFileSync(FULL_ROLES, 'utf8'))); return [[OUT_ROLES, serialize(r.runtime)], [EN_FILE, withEnBlock(readFileSync(EN_FILE, 'utf8'), r.en)]]; })(),
   ];
 }
@@ -212,5 +243,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     if (check) { if (!existsSync(file) || readFileSync(file, 'utf8') !== text) { console.error(`nieaktualny: ${file.slice(root.length)} — uruchom node scripts/zrodla-runtime.mjs --write (figura zmieniona po recenzji bramki 4 wypada z pliku: nowa recenzja i skrót w docs/research/figury-recenzja.json)`); bad = 1; } }
     else { writeFileSync(file, text); console.log(`zapisano ${file}`); }
   }
+  /* Dwa przebiegi (fix4): reguly-cwiczen.json zależy od lib/cues/data.json, a lista rodzin v2 w lib/figures/data.json i skrót rodziny — od reguly-cwiczen.json; drugi przebieg w nowym procesie czyta już zapisane pliki. */
+  if (!check && !process.argv.includes('--final')) process.exit(spawnSync(process.execPath, [fileURLToPath(import.meta.url), '--write', '--final'], { stdio: 'inherit' }).status ?? 1);
   process.exit(bad);
 }
