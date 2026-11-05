@@ -1,0 +1,4 @@
+{
+  "_opis": "Wyjątki od strażnika czasu pojedynczego testu (scripts/kontrola-czasu-testu.mjs, 05.11.2026): test, którego nie da się teraz podzielić. Wpis: plik, test (pełna nazwa z wyniku Jest), powod, data (DD.MM.RRRR), plan (jak i kiedy podzielić).",
+  "wyjatki": []
+}

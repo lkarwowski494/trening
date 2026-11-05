@@ -52,7 +52,13 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Jest (część ${{ matrix.czesc }} z 4)
+        env:
+          JEST_PONOW_WYNIK: ${{ runner.temp }}/jest-wynik.json  # wynik JSON z czasami przypadków dla kroku niżej
         run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/4
+      - name: Czas pojedynczego testu (do prog_czasu_testu limitu przypadku, wyjątki w tests/czas-testu-wyjatki.json)
+        env:
+          JEST_PONOW_WYNIK: ${{ runner.temp }}/jest-wynik.json
+        run: node scripts/kontrola-czasu-testu.mjs "$JEST_PONOW_WYNIK"
   verify:
     # Zbiorcze sprawdzenie pod dawną nazwą `verify` (reguły ochrony gałęzi i scripts/scal-galaz.mjs czytają wynik przebiegu tests.yml). `always()`: bez tego pominięte
     # zadanie (np. anulowane) zostawiłoby zbiorcze pominięte, czyli „nie czerwone”.
