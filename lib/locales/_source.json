@@ -616,6 +616,10 @@
   "en": "incline treadmill"
  },
  {
+  "pl": "Bokiem",
+  "en": "To the side"
+ },
+ {
   "pl": "brak",
   "en": "none"
  },
@@ -2899,6 +2903,10 @@
   "en": "Write to: {mail}"
  },
  {
+  "pl": "Naprzemiennie",
+  "en": "Alternating"
+ },
+ {
   "pl": "następna propozycja — pierwsza jest już zajęta przez inne ćwiczenie",
   "en": "next suggestion — the first one is already taken by another exercise"
  },
@@ -4313,6 +4321,10 @@
   "en": "Starting position"
  },
  {
+  "pl": "Pozycje na rysunku: {lista}",
+  "en": "Positions in the drawing: {lista}"
+ },
+ {
   "pl": "półkula balansowa / platforma balansowa",
   "en": "balance dome / balance board"
  },
@@ -4543,6 +4555,10 @@
  {
   "pl": "Przewodnik po funkcjach",
   "en": "Feature guide"
+ },
+ {
+  "pl": "Przodem",
+  "en": "Forward"
  },
  {
   "pl": "Przód",

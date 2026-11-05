@@ -174,5 +174,8 @@
  "barki do przodu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki wysunięte do przodu, w centymetrach",
  "barki do tyłu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki (łopatki) cofnięte do tyłu, w centymetrach",
  "Skok": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden skok (plyometria: skok obunóż, jednonóż, w bok, na skrzynię); jedyna faza, bez sekund",
- "Rzut": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden rzut piłką lekarską (rzut, uderzenie o podłogę, Wall Ball); jedyna faza, bez sekund"
+ "Rzut": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden rzut piłką lekarską (rzut, uderzenie o podłogę, Wall Ball); jedyna faza, bez sekund",
+ "Naprzemiennie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names, wyjątek ćwiczenia), pokazana jako jedyna faza, bez sekund: przysłówek „na zmianę”; NIE nazwa ćwiczenia; unoszenie hantli na zmianę przodem i bokiem (Alternating Deltoid Raise); jedyna faza, bez sekund",
+ "Przodem": "etykieta POZYCJI statycznej na rysunku ćwiczenia (anim.ts, labels pozycji Alternating Deltoid Raise), czytana przez VoiceOver w „Pozycje na rysunku: {lista}”: ręka uniesiona przed sobą (unoszenie przodem); przysłówek, NIE nazwa ćwiczenia",
+ "Bokiem": "etykieta POZYCJI statycznej na rysunku ćwiczenia (anim.ts, labels pozycji Alternating Deltoid Raise), czytana przez VoiceOver w „Pozycje na rysunku: {lista}”: ręka uniesiona w bok (unoszenie bokiem); przysłówek, NIE nazwa ćwiczenia"
 }
