@@ -173,9 +173,9 @@ describe('teksty edycji na żądanie, pierwszych kroków i edycji sesji (macierz
     await fresh(); const x = store.markDraft(JSON.parse(JSON.stringify(mkTpl('Szkic')))); expect(store.isDraftObj(x)).toBe(true); x.name = 'Zmiana';
     await act(async () => { await store.flush(); }); const before = global.__kv.get('state'); store.save(x); await act(async () => { await store.flush(); }); expect(global.__kv.get('state')).toBe(before);
   });
-  test('pierwsze kroki: kroki 1 i 3 z przewodnikiem „Trening i serie” (P4 A: przycisk „Przewodnik”)', async () => {
-    await boot(); expect(screen.getByText('Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Pusty trening” u góry.')).toBeTruthy(); /* M1-audytor-generalny-025: bez szablonu duży przycisk to „Pusty trening” */
-    await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10); expect(headers()).toContain('Przewodnik');
+  test('ekran nowej osoby (dawniej pierwsze kroki): kafelek „Szablony i plan” i kafelek „Przewodnik” z tematem „Trening i serie” (P4 A; 05.11.2026)', async () => {
+    await boot(); expect(screen.getByText('Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(); expect(screen.queryByText(/duży przycisk/)).toBeNull(); /* M1-audytor-generalny-025; 05.11.2026: bez szablonu duży przycisk to „Zacznij pierwszy trening” */
+    await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); expect(headers()).toContain('Przewodnik');
   });
   test('edycja sesji (G4): draftRemoveSet nie usuwa ostatniej serii — blok nigdy nie zostaje bez serii', async () => {
     await fresh(); const edit = require('@/lib/edit'); const w = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]]); const d = edit.beginEdit(w.id)!;
