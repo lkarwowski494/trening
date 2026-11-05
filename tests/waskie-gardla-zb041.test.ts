@@ -200,7 +200,8 @@ describe('G5 / L-100 (04.11.2026): test:fast — testy czytające dokumenty i da
   });
   test('plik, którego nie czyta żaden test, nie dokłada nic; kod bez zmian (findRelatedTests)', () => {
     expect(fastPlan(['docs/nieistniejacy-' + 'dokument.md']).files).toEqual([]);
-    expect(fastPlan(['lib/units.ts']).files).toEqual(['lib/units.ts']);
+    /* 05.11.2026: kod aplikacji dokłada jeszcze test renderujący router (smoke) — tests/test-fast.test.ts; poza tym tylko findRelatedTests */
+    expect(fastPlan(['lib/units.ts']).files.filter((f: string) => f !== 'tests/smoke.test.tsx')).toEqual(['lib/units.ts']);
   });
   test('verify:szybkie bierze te testy: --od-bazy używa tego samego wyboru (jedna lista zmian)', () => {
     expect(readFileSync(skrypt, 'utf8')).toContain("from './testy-dla-plikow.mjs'");
