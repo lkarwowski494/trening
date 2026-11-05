@@ -1,7 +1,7 @@
 /* Własne ikony zamiast emoji w etykietach (M1-029; decyzja właściciela DEC-11, 19.10.2026): ten sam język rysunku co ikony zakładek
  * (components/TabIcon: siatka 24, linia 1,8, zaokrąglone zakończenia), kolor zawsze z motywu przez `color` — nigdy z systemowej czcionki emoji,
  * więc ikona jest czytelna w jasnym i ciemnym wyglądzie i przy „Zwiększ kontrast”. Ikona jest ozdobna: nazwę akcji niesie etykieta VoiceOver
- * przycisku, nie ikona (bez nazw emoji w odczycie). Zakres (✂ wyjęcie z supersetu to znak „✕ SS”, bez ikony): 📍 miejsce, ⏸/▶ pauza i wznowienie, ⏱ przerwa, 🎧/🔊/🔇 głos, „⋯” menu; od 05.11.2026 kafelki „Zacznij od ustawień”: kalendarz, dokument z strzałką (import), książka (przewodnik). */
+ * przycisku, nie ikona (bez nazw emoji w odczycie). Zakres (✂ wyjęcie z supersetu to znak „✕ SS”, bez ikony): 📍 miejsce, ⏸/▶ pauza i wznowienie, ⏱ przerwa, 🎧/🔊/🔇 głos, „⋯” menu; od 05.11.2026 kafelki „Przygotuj się do pierwszej serii”: kalendarz, dokument z strzałką (import), książka (przewodnik). */
 import React from 'react';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import { View, type ColorValue } from 'react-native';

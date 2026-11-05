@@ -2,7 +2,7 @@
 # tests/generator-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze — wejście z ekranu planu, podgląd, zapis i aktywacja planu.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Templates and plan"             ← 'Szablony i plan' (kafelek „Zacznij od ustawień” na ekranie Trening, testID first-tile-plan — M1-audytor-generalny-025, 27.10.2026; otwiera ekran planu app/plan.tsx)
+#   "Templates and plan"             ← 'Szablony i plan' (kafelek „Przygotuj się do pierwszej serii” na ekranie Trening, testID first-tile-plan — M1-audytor-generalny-025, 27.10.2026; otwiera ekran planu app/plan.tsx)
 #   "Planning"                       ← 'Planowanie' (po pierwszym treningu — w nagłówku ekranu i zakładki Plan; otwiera ekran planu)
 #   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/templates.tsx, app/plan.tsx)
 #   "New templates and plan", "Plan from my templates" ← 'Nowe szablony i plan', 'Plan z moich szablonów' (przełącznik trybu generatora — DEC-03 c, app/generator.tsx)

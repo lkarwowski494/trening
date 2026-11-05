@@ -857,7 +857,7 @@ export const EN: Record<string, string> = {
   'ćwiczenia dodasz w trakcie': 'add exercises as you go',
   /* ekran nowej osoby 1.1 (05.11.2026) */
   'Zacznij pierwszy trening': 'Start your first workout',
-  'Zacznij od ustawień': 'Start with the settings',
+  'Przygotuj się do pierwszej serii': 'Get ready for your first set',
   'Pierwszy trening': 'First workout',
   'Pierwszy trening, dziś, {date}': 'First workout, today, {date}',
   'trening': 'workout',

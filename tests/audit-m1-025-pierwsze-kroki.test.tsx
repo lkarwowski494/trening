@@ -1,6 +1,6 @@
 /*
  * M1-audytor-generalny-025 (04-studio-projektowe-007, audyt M1 27.10.2026; przejście poznawcze P1, kroki 2 i 3 „porażka”):
- * „Pierwsze kroki” dla nowej osoby — od 05.11.2026 (docs/18, ekran nowej osoby 1.1) karta ma postać czterech kafelków „Zacznij od ustawień”; cele audytu zostają, zmienia się postać:
+ * „Pierwsze kroki” dla nowej osoby — od 05.11.2026 (docs/18, ekran nowej osoby 1.1) karta ma postać czterech kafelków „Przygotuj się do pierwszej serii”; cele audytu zostają, zmienia się postać:
  *  - jeden kafelek „Szablony i plan” (bez drugiego „Planowanie”), nazwany celem, prowadzi na ekran planu;
  *  - duży przycisk na ekranie to „Zacznij pierwszy trening” (bez szablonu) albo „Start: …”; zdanie kroku 3 o przycisku „Start”/„Pusty trening” zniknęło razem z krokami;
  *  - wszystkie kafelki jednego rodzaju; „›” po tekście (docs/32 wzorzec 17), ukryty dla VoiceOver.

@@ -133,7 +133,7 @@ describe('ekrany', () => {
     await boot('/more', () => { markGuideSeen('workout'); });
     expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
     await tap(screen.getByText('Przewodnik')); await flushAll(10); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
-    await boot('/'); await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy(); /* 05.11.2026: kafelek „Przewodnik” w „Zacznij od ustawień” (ekran nowej osoby 1.1) */
+    await boot('/'); await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy(); /* 05.11.2026: kafelek „Przewodnik” w „Przygotuj się do pierwszej serii” (ekran nowej osoby 1.1) */
     WHATS_NEW.splice(0, WHATS_NEW.length, ...PROBKI); /* 1.0.0: historia pusta — wejście z „Co nowego” przy wpisach (pierwszy wpis 1.1) */
     try {
       await boot('/', () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });

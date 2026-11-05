@@ -86,7 +86,7 @@ export function ProgressTiles() {
   </>;
 }
 
-/** Nowa osoba (do pierwszego zakończonego treningu): „Zacznij od ustawień” — cztery osobne kafelki W1 (decyzja właściciela 05.11.2026, docs/18; makieta docs/design/kierunki/start-1-1-r4.html),
+/** Nowa osoba (do pierwszego zakończonego treningu): „Przygotuj się do pierwszej serii” — cztery osobne kafelki W1 (decyzja właściciela 05.11.2026, docs/18; makieta docs/design/kierunki/start-1-1-r4.html),
  * w stylu kafelków „Ten tydzień” (promień, obwódka, ikona przy tytule), „›” w prawym dolnym rogu (docs/32 wzorzec 17); całe kafelki są przyciskami ≥ 44 pt.
  * 2 × 2, a przy wąskim ekranie, dużym tekście i dłuższych językach jedna kolumna (lib/dashboard.setupTileColumns). Zastępuje kartę „Pierwsze kroki” (08.10.2026, P4 A 11.10.2026,
  * DEC-04 a 23.10.2026): te same wejścia — Szablony i plan, Miejsca i sprzęt, import CSV (testID first-steps-import), Przewodnik; kroki „zrobione” i zdanie o dużym przycisku zniknęły. */
@@ -101,7 +101,7 @@ export function FirstSteps() {
   ];
   return (
     <View testID="first-steps">
-      <SectionTitle>{t('Zacznij od ustawień')}</SectionTitle>
+      <SectionTitle>{t('Przygotuj się do pierwszej serii')}</SectionTitle>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SETUP_TILE_GAP }}>
         {tiles.map(x => (
           <Pressable key={x.id} testID={x.id} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={`${x.title}. ${x.text}`} onPress={once(x.go)}

@@ -4,7 +4,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ## Prace i przepływy dopisane
 
 ### PR-10: Pomoc i kontakt
-- P-1, J-06. Kroki: na starcie czyta ekran nowej osoby („Zacznij od ustawień”); otwiera Przewodnik; w Więcej → O aplikacji pisze do autora albo prosi o nową funkcję. Kontekst: poza treningiem, telefon w ręku.
+- P-1, J-06. Kroki: na starcie czyta ekran nowej osoby („Przygotuj się do pierwszej serii”); otwiera Przewodnik; w Więcej → O aplikacji pisze do autora albo prosi o nową funkcję. Kontekst: poza treningiem, telefon w ręku.
 ### PR-11: Podsumowanie po treningu
 - P-1, J-01, J-03. Kroki: kończy trening; ogląda podsumowanie sesji (rekordy, zmiany względem szablonu); reaguje na najwyżej jedno okno albo link. Kontekst: siłownia lub dom, zaraz po treningu.
 ### PR-12: Historia: dopisanie i poprawienie treningu
@@ -429,7 +429,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Gdy użytkownik nie stuka przycisku
     - Wtedy szablon zostaje bez zmian, a przycisk jest tylko zaraz po treningu (D-116)
 
-### BR-POM-001: Ekran nowej osoby: tablica „Pierwszy trening” i „Zacznij od ustawień”
+### BR-POM-001: Ekran nowej osoby: tablica „Pierwszy trening” i „Przygotuj się do pierwszej serii”
 - Przepływ: PR-10
 - Dowód potrzeby: D-117 (decyzja właściciela 2026-10-11, docs/22 P4 A; zmieniona 05.11.2026: kierunek C′, bez „Inny trening”, kafelki W1, docs/18); kod `components/Dashboard.tsx`, `components/FirstBoard.tsx`, `components/StartPanel.tsx`, `lib/dashboard.ts`
 - Test: `tests/ekran-nowej-osoby-1-1.test.tsx`, `tests/first-steps-empty.test.tsx`, `tests/dashboard.test.tsx`, `tests/dec04a-import-w-pierwszych-krokach.test.tsx`, `.maestro/31-pierwszy-tydzien.yaml`
@@ -437,15 +437,15 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
   - Scenariusz: Pierwsze uruchomienie
     - Zakładając, że baza jest pusta (nowa instalacja albo po wyczyszczeniu danych)
     - Gdy użytkownik otwiera ekran Trening
-    - Wtedy widzi tytuł i datę, pasek tygodnia „Bez planu tygodnia” z dzisiejszym dniem w ramce, tablicę „Pierwszy trening” (granatowa tablica z datą na klapkach, czytana przez VoiceOver jako jeden opis), duży przycisk „Zacznij pierwszy trening” z podpisem „ćwiczenia dodasz w trakcie” (uruchamia pusty trening) i sekcję „Zacznij od ustawień”; przycisku „Inny trening” nie ma, bo nie ma innych sposobów startu
-  - Scenariusz: Kafelki „Zacznij od ustawień” (decyzja właściciela 05.11.2026, kafelki W1)
+    - Wtedy widzi tytuł i datę, pasek tygodnia „Bez planu tygodnia” z dzisiejszym dniem w ramce, tablicę „Pierwszy trening” (granatowa tablica z datą na klapkach, czytana przez VoiceOver jako jeden opis), duży przycisk „Zacznij pierwszy trening” z podpisem „ćwiczenia dodasz w trakcie” (uruchamia pusty trening) i sekcję „Przygotuj się do pierwszej serii”; przycisku „Inny trening” nie ma, bo nie ma innych sposobów startu
+  - Scenariusz: Kafelki „Przygotuj się do pierwszej serii” (decyzja właściciela 05.11.2026, kafelki W1)
     - Zakładając, że nowa osoba nie ma jeszcze zakończonego treningu
     - Gdy patrzy na cztery kafelki „Szablony i plan”, „Miejsca i sprzęt”, „Historia z CSV”, „Przewodnik” i stuka jeden z nich
     - Wtedy otwiera się odpowiednio ekran planu, miejsc, importu CSV (podgląd przed zapisem, obecne dane bez zmian) albo Przewodnika; cały kafelek jest przyciskiem (≥ 44 pt, „›” w rogu); kafelki stoją w układzie 2 × 2, a przy wąskim ekranie (kafelek węższy niż 144 pt; w de i el 156 pt), dużym tekście i długich językach — w jednej kolumnie
   - Scenariusz: Szablon bez planu albo plan, jeszcze bez treningu
     - Zakładając, że nowa osoba ma szablon (z planem albo bez), ale nie zakończyła treningu
     - Gdy wraca na ekran Trening
-    - Wtedy duży przycisk to „Start: …” jak zawsze, kafelki „Zacznij od ustawień” zostają, tablica „Pierwszy trening” jest bez planu (z planem jest tablica „Dziś”), a „Inny trening” pokazuje się, bo są inne sposoby startu
+    - Wtedy duży przycisk to „Start: …” jak zawsze, kafelki „Przygotuj się do pierwszej serii” zostają, tablica „Pierwszy trening” jest bez planu (z planem jest tablica „Dziś”), a „Inny trening” pokazuje się, bo są inne sposoby startu
   - Scenariusz: Po pierwszym treningu
     - Zakładając, że użytkownik zakończył pierwszy trening
     - Gdy wraca na ekran Trening

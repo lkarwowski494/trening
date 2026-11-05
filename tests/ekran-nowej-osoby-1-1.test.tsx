@@ -47,7 +47,7 @@ describe('ekran nowej osoby (bez treningów, szablonów i planu)', () => {
     expect(within(screen.getByTestId('first-board')).queryAllByText(/./, { includeHiddenElements: false })).toHaveLength(0); /* dekoracja ukryta, jeden opis tekstowy */
     expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(); expect(screen.getByText('ćwiczenia dodasz w trakcie')).toBeTruthy();
     expect(screen.queryByText('Inny trening')).toBeNull(); expect(screen.queryByText('Pusty trening')).toBeNull();
-    expect(screen.queryByText('Pierwsze kroki')).toBeNull(); expect(screen.getByText('Zacznij od ustawień')).toBeTruthy();
+    expect(screen.queryByText('Pierwsze kroki')).toBeNull(); expect(screen.getByText('Przygotuj się do pierwszej serii')).toBeTruthy();
     for (const id of TILES) { const el = screen.getByTestId(id); expect(el.props.accessibilityRole).toBe('button'); expect(el.props.accessibilityLabel).toMatch(/^[^.]+\. .+/); }
   });
   test('kafelki: teksty z makiety; całe kafelki są przyciskami z „›”', async () => {
@@ -68,7 +68,7 @@ describe('ekran nowej osoby (bez treningów, szablonów i planu)', () => {
   });
   test('angielski: ten sam układ i opis tablicy', async () => {
     await boot(() => {}, { locale: 'en' });
-    expect(screen.getByTestId('first-board').props.accessibilityLabel).toBe('First workout, today, Thursday 5 November'); expect(screen.getByText('Start your first workout')).toBeTruthy(); expect(screen.getByText('Start with the settings')).toBeTruthy();
+    expect(screen.getByTestId('first-board').props.accessibilityLabel).toBe('First workout, today, Thursday 5 November'); expect(screen.getByText('Start your first workout')).toBeTruthy(); expect(screen.getByText('Get ready for your first set')).toBeTruthy();
   });
 });
 
@@ -80,7 +80,7 @@ describe('„Inny trening” — reguła ogólna: tylko gdy są inne sposoby sta
   });
   test('stary trening bez szablonów (nie nowa osoba): przycisk „Pusty trening” jak dotąd, „Inny trening” z „Powtórz ostatni”; bez tablicy i kafelków', async () => {
     await boot(() => { addWorkout(NOW.getTime() - 86400000, [['Plank', [{ done: true, durationSec: 30 }]]]); });
-    expect(screen.getByText('Pusty trening')).toBeTruthy(); expect(screen.getByText('Inny trening')).toBeTruthy(); expect(screen.queryByTestId('first-board')).toBeNull(); expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.queryByText('Zacznij od ustawień')).toBeNull();
+    expect(screen.getByText('Pusty trening')).toBeTruthy(); expect(screen.getByText('Inny trening')).toBeTruthy(); expect(screen.queryByTestId('first-board')).toBeNull(); expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.queryByText('Przygotuj się do pierwszej serii')).toBeNull();
   });
 });
 
@@ -97,11 +97,11 @@ const win = (width: number, fontScale = 1) => { const w = Dimensions.get('window
 
 describe('plan ustawiony, ale jeszcze bez treningu (stan „plan przed pierwszym treningiem”)', () => {
   const withPlan = () => { const t = withDemoTemplates(); plan.setWeekDay(3 /* czwartek = dziś */, t[0].id); return t; };
-  test('rządzi tablica „Dziś: …” ze startem zaplanowanego treningu, a kafelki „Zacznij od ustawień” zostają; nie ma tablicy „Pierwszy trening” ani „Zacznij pierwszy trening”', async () => {
+  test('rządzi tablica „Dziś: …” ze startem zaplanowanego treningu, a kafelki „Przygotuj się do pierwszej serii” zostają; nie ma tablicy „Pierwszy trening” ani „Zacznij pierwszy trening”', async () => {
     let tpl = ''; await boot(() => { tpl = withPlan()[0].name; });
     expect(screen.getByTestId('today-board')).toBeTruthy(); expect(screen.getByText(`Dziś: ${tpl}`)).toBeTruthy(); expect(within(screen.getByTestId('plan-header')).getByText(/^Plan: /)).toBeTruthy();
     expect(screen.queryByTestId('first-board')).toBeNull(); expect(screen.queryByText('Zacznij pierwszy trening')).toBeNull(); expect(screen.getByLabelText(`Start zaplanowanego treningu: ${tpl}`)).toBeTruthy();
-    expect(screen.getByText('Zacznij od ustawień')).toBeTruthy(); for (const id of TILES) expect(screen.getByTestId(id)).toBeTruthy();
+    expect(screen.getByText('Przygotuj się do pierwszej serii')).toBeTruthy(); for (const id of TILES) expect(screen.getByTestId(id)).toBeTruthy();
     expect(screen.getByText('Inny trening')).toBeTruthy(); /* są inne starty (szablony) — przycisk jest */
   });
   test('plan na inny dzień (dziś wolne): „Dziś wolne” zamiast tablicy „Pierwszy trening”, kafelki zostają', async () => {
@@ -111,7 +111,7 @@ describe('plan ustawiony, ale jeszcze bez treningu (stan „plan przed pierwszym
   test('po pierwszym zakończonym treningu z planu kafelki znikają', async () => {
     await boot(() => { withPlan(); }); for (const id of TILES) expect(screen.getByTestId(id)).toBeTruthy();
     await act(async () => { addWorkout(NOW.getTime() - 3600000, [['Plank', [{ done: true, durationSec: 30 }]]]); }); await flushAll(10);
-    expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.queryByText('Zacznij od ustawień')).toBeNull(); expect(screen.getByTestId('week-strip')).toBeTruthy();
+    expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.queryByText('Przygotuj się do pierwszej serii')).toBeNull(); expect(screen.getByTestId('week-strip')).toBeTruthy();
   });
 });
 
@@ -141,7 +141,7 @@ describe('ruch tablicy „Pierwszy trening”: kaskada klapek, a przy „Ogranic
   });
 });
 
-describe('kafelki „Zacznij od ustawień”: kolumny na ekranie (próg z lib/dashboard)', () => {
+describe('kafelki „Przygotuj się do pierwszej serii”: kolumny na ekranie (próg z lib/dashboard)', () => {
   const wide = (id: string) => flat(screen.getByTestId(id)).width;
   test('390 pt, tekst 100 %: 2 kolumny — każdy kafelek ok. połowy szerokości', async () => {
     win(390); await boot(); for (const id of TILES) expect(wide(id)).toBe((390 - 32 - 8) / 2);
@@ -159,6 +159,17 @@ describe('kafelki „Zacznij od ustawień”: kolumny na ekranie (próg z lib/da
   test('niemiecki: 350 pt jedna kolumna (dłuższe napisy, próg 156 pt), 390 pt dwie', async () => {
     win(350); await boot(() => { store.getState().settings.language = 'de'; store.save(); }); for (const id of TILES) expect(wide(id)).toBe('100%');
     win(390); await boot(() => { store.getState().settings.language = 'de'; store.save(); }); for (const id of TILES) expect(wide(id)).toBe((390 - 32 - 8) / 2);
+  });
+});
+
+describe('nagłówek sekcji kafelków (decyzja właściciela 05.11.2026 ~22:00 PL, docs/18: „Przygotuj się do pierwszej serii”, dawniej „Zacznij od ustawień”)', () => {
+  test('pl i en: nowy nagłówek jest, starego brak (nie myli się z ekranem Ustawienia)', async () => {
+    await boot(); expect(screen.getByRole('header', { name: 'Przygotuj się do pierwszej serii' })).toBeTruthy(); expect(screen.queryByText('Zacznij od ustawień')).toBeNull();
+    await boot(() => { store.getState().settings.language = 'en'; store.save(); }, { locale: 'en' }); expect(screen.getByRole('header', { name: 'Get ready for your first set' })).toBeTruthy(); expect(screen.queryByText('Start with the settings')).toBeNull();
+  });
+  test('320 pt i największy tekst: nagłówek jest w drzewie i bez limitu wierszy (może się zawinąć, nie jest ucięty)', async () => {
+    win(320, 2); await boot(); const h = screen.getByRole('header', { name: 'Przygotuj się do pierwszej serii' });
+    expect(h.props.numberOfLines).toBeUndefined(); expect(h.props.ellipsizeMode).toBeUndefined();
   });
 });
 

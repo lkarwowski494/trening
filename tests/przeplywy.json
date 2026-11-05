@@ -24,14 +24,14 @@
  "przeplywy": [
   {
    "id": "NU-01",
-   "tytul": "Pierwsze uruchomienie: ekran nowej osoby (tablica „Pierwszy trening”, kafelki „Zacznij od ustawień”)",
+   "tytul": "Pierwsze uruchomienie: ekran nowej osoby (tablica „Pierwszy trening”, kafelki „Przygotuj się do pierwszej serii”)",
    "stan": "nowy",
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
     "Zainstaluj i uruchom aplikację (pusta baza)",
     "Poczekaj na koniec animacji startowej",
-    "Na zakładce Trening: pasek tygodnia „Bez planu tygodnia”, tablica „Pierwszy trening” z datą, przycisk „Zacznij pierwszy trening” (bez „Inny trening”) i cztery kafelki „Zacznij od ustawień” (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik)"
+    "Na zakładce Trening: pasek tygodnia „Bez planu tygodnia”, tablica „Pierwszy trening” z datą, przycisk „Zacznij pierwszy trening” (bez „Inny trening”) i cztery kafelki „Przygotuj się do pierwszej serii” (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik)"
    ],
    "wynik": "Brak szablonów i treningów; widać tablicę „Pierwszy trening” i kafelki, a duży przycisk startu to „Zacznij pierwszy trening” (pusty trening).",
    "ekrany": [
@@ -39,7 +39,7 @@
    ],
    "scenariusz": "31-pierwszy-tydzien.yaml",
    "znaczniki": [
-    "Start with the settings",
+    "Get ready for your first set",
     "Start your first workout"
    ]
   },
@@ -331,7 +331,7 @@
    "wersja": "1.0",
    "realnosc": "realny",
    "kroki": [
-    "Pierwsze uruchomienie (pusta baza), sekcja „Zacznij od ustawień”",
+    "Pierwsze uruchomienie (pusta baza), sekcja „Przygotuj się do pierwszej serii”",
     "Kafelek „Historia z CSV” („Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.”)",
     "Otwiera się ekran importu z „Wybierz plik CSV” → „Wróć” do ekranu Trening"
    ],
@@ -342,7 +342,7 @@
    ],
    "scenariusz": "59-import-z-pierwszych-krokow.yaml",
    "znaczniki": [
-    "Start with the settings",
+    "Get ready for your first set",
     "Choose a CSV file"
    ]
   },

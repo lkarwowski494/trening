@@ -140,7 +140,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     const t = mkTpl(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/template/${t.id}`); await flushAll(10);
     expect(screen.getByText('zakres 6–8 · przerwa 1:30')).toBeTruthy(); expect(screen.getByText('przerwa 2:00')).toBeTruthy();
   });
-  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A i 05.11.2026 — ekran nowej osoby 1.1): cztery kafelki „Zacznij od ustawień”, każdy z jednym wejściem; „Szablony i plan” (M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
+  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A i 05.11.2026 — ekran nowej osoby 1.1): cztery kafelki „Przygotuj się do pierwszej serii”, każdy z jednym wejściem; „Szablony i plan” (M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
     await boot(); const fs = within(screen.getByTestId('first-steps'));
     expect(fs.getAllByText('Szablony i plan')).toHaveLength(1); expect(fs.queryAllByText('Planowanie')).toHaveLength(0); expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.getAllByText('Miejsca i sprzęt')).toHaveLength(1); expect(fs.getAllByText('Historia z CSV')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull();
     expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();

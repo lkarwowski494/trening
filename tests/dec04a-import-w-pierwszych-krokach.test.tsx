@@ -1,7 +1,7 @@
 /*
  * DEC-04 a (właściciel 23.10.2026; wdrożenie 1.0.1, docs/21 „Backlog 1.0.1 — decyzje DEC-01 a i DEC-04 a”): w „Pierwszych krokach” czwarty, pomijalny krok
  * „Masz historię w innej aplikacji?” z przyciskiem „Importuj historię z pliku CSV” — tylko wejście do istniejącego importu (/more/import), bez zmian w samym imporcie.
- * Od 05.11.2026 (docs/18, ekran nowej osoby 1.1) wejście to kafelek „Historia z CSV” (testID first-steps-import) w „Zacznij od ustawień”: ten sam cel, ten sam opis, bez numeru i statusu „do zrobienia”.
+ * Od 05.11.2026 (docs/18, ekran nowej osoby 1.1) wejście to kafelek „Historia z CSV” (testID first-steps-import) w „Przygotuj się do pierwszej serii”: ten sam cel, ten sam opis, bez numeru i statusu „do zrobienia”.
  * Realność: realny (nowa osoba przychodzi z innego dziennika). Kroki: pierwsze uruchomienie → ekran Trening → karta „Pierwsze kroki” → krok 4 → przycisk → ekran importu.
  * Wzorzec docs/32 nr 18 (przycisk drugorzędny jak w krokach 1–3), nr 17 (przejście na inny ekran), nr 23 (etykieta/rola).
  */

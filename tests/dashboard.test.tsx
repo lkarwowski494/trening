@@ -54,9 +54,9 @@ describe('ekran', () => {
     jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); fn();
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   };
-  test('nowa osoba (ekran nowej osoby 1.1, 05.11.2026; dawniej „Pierwsze kroki” P4 A): „Zacznij od ustawień” — 4 kafelki, każdy z jednym wejściem („Szablony i plan”, „Miejsca i sprzęt”, „Historia z CSV”, „Przewodnik” — M1-audytor-generalny-025); bez kafelków tygodnia i Progresji', async () => {
+  test('nowa osoba (ekran nowej osoby 1.1, 05.11.2026; dawniej „Pierwsze kroki” P4 A): „Przygotuj się do pierwszej serii” — 4 kafelki, każdy z jednym wejściem („Szablony i plan”, „Miejsca i sprzęt”, „Historia z CSV”, „Przewodnik” — M1-audytor-generalny-025); bez kafelków tygodnia i Progresji', async () => {
     await boot();
-    expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Zacznij od ustawień' })).toBeTruthy(); expect(screen.queryByText('Pierwsze kroki')).toBeNull();
+    expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Przygotuj się do pierwszej serii' })).toBeTruthy(); expect(screen.queryByText('Pierwsze kroki')).toBeNull();
     expect(screen.getByLabelText('Szablony i plan. Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); /* UX-12 A (audyt 0.10): całe kafelki są przyciskami */
     expect(screen.getByLabelText('Miejsca i sprzęt. Dom albo siłownia — ustaw swój sprzęt.')).toBeTruthy(); expect(screen.getByLabelText('Historia z CSV. Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.')).toBeTruthy(); expect(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')).toBeTruthy();
     expect(screen.queryByText('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.')).toBeNull(); expect(screen.queryByLabelText(/do zrobienia$/)).toBeNull(); /* bez numerów i statusów kroków */ expect(screen.queryByTestId('week-tiles')).toBeNull(); expect(screen.queryByText('Progresja')).toBeNull();
@@ -95,6 +95,6 @@ describe('ekran', () => {
     await boot(() => { sq(9, 6); }, 'en');
     expect(screen.getByText('This week')).toBeTruthy(); expect(screen.getByLabelText('Workouts: 1')).toBeTruthy(); expect(screen.queryByLabelText(/previous week/)).toBeNull(); expect(screen.queryByText('Last workout')).toBeNull();
     expect(screen.getByText('No weekly plan')).toBeTruthy(); expect(screen.getByLabelText('Set a plan')).toBeTruthy(); expect(screen.queryByText('Today')).toBeNull(); expect(screen.getByLabelText(/^Volume: /)).toBeTruthy();
-    await boot(() => {}, 'en'); expect(screen.getByText('Start with the settings')).toBeTruthy(); expect(screen.queryByText('First steps')).toBeNull(); expect(screen.getByLabelText('Templates and plan. Create your first template or generate templates and a plan.')).toBeTruthy(); /* 05.11.2026 */
+    await boot(() => {}, 'en'); expect(screen.getByText('Get ready for your first set')).toBeTruthy(); expect(screen.queryByText('First steps')).toBeNull(); expect(screen.getByLabelText('Templates and plan. Create your first template or generate templates and a plan.')).toBeTruthy(); /* 05.11.2026 */
   });
 });

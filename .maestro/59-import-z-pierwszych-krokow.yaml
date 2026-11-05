@@ -9,7 +9,7 @@ name: Ekran nowej osoby — wejście do importu historii
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start with the settings", timeout: 60000 }
+- extendedWaitUntil: { visible: "Get ready for your first set", timeout: 60000 }
 - scrollUntilVisible: { element: { id: "first-steps-import" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "first-steps-import" }
 - extendedWaitUntil: { visible: "Choose a CSV file", timeout: 30000 }
