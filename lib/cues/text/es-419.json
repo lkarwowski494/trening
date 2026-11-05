@@ -191,5 +191,19 @@
  "sri.setup": "Acuéstate con el pecho sobre un banco inclinado; sostén la barra en agarre prono con los brazos rectos colgando.",
  "urow.height": "Sube el peso pegado al cuerpo hasta más o menos la altura de los hombros, con los codos guiando.",
  "urow.setup": "Párate derecho con el peso frente a los muslos, brazos extendidos y palmas hacia el cuerpo.",
- "urow1.setup": "Párate derecho con el peso en una mano frente al muslo, brazo extendido y palma hacia el cuerpo."
+ "urow1.setup": "Párate derecho con el peso en una mano frente al muslo, brazo extendido y palma hacia el cuerpo.",
+ "lpote.setup": "Párate de espaldas a la polea y sujeta el agarre con una mano por encima de la cabeza, con el codo hacia arriba.",
+ "skullDb.setup": "Acuéstate en un banco y sostén las mancuernas sobre ti con los brazos estirados.",
+ "tate.setup": "Acuéstate en un banco y sostén las mancuernas sobre el pecho con los brazos estirados.",
+ "tpd1.setup": "De frente a la polea alta, toma el agarre con una mano y el codo pegado al costado.",
+ "tri.bandOte.setup": "Párate de pie sobre el centro de la banda, agarra los extremos y lleva las manos detrás de la cabeza, con los codos hacia arriba.",
+ "tri.chainExt.setup": "Acuéstate en un banco plano con un agarre con cadena en cada mano y los codos hacia arriba.",
+ "tri.kickCb.setup": "De frente a la polea, toma el agarre con una mano y da un paso atrás; inclínate hacia delante con la espalda recta y el brazo pegado al torso.",
+ "tri.skullBand.setup": "Acuéstate en un banco y sostén la banda sobre ti con los brazos estirados.",
+ "tri.skullBb.setup": "Acuéstate en un banco y sostén la barra sobre ti con los brazos estirados.",
+ "tri.skullCb.setup": "Acuéstate en un banco y sostén la barra de la polea sobre ti con los brazos estirados.",
+ "tri.skullDb1.setup": "Acuéstate en un banco y sostén una mancuerna sobre ti con el brazo estirado.",
+ "tri.skullDbDec.setup": "Acuéstate en un banco declinado, con la cabeza más baja que las caderas, y sostén las mancuernas sobre ti con los brazos estirados.",
+ "tri.skullDec.setup": "Acuéstate en un banco declinado, con la cabeza más baja que las caderas, y sostén la barra sobre ti con los brazos estirados.",
+ "tri.skullInc.setup": "Acuéstate en un banco inclinado y sostén la barra sobre ti con los brazos estirados."
 }
