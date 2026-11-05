@@ -17,11 +17,13 @@ import { t, lang } from '@/lib/i18n';
 /** Odstęp klapek w kaskadzie (ułamek czasu jednej klapki — bez nowej liczby w tokenach). */
 const STAGGER = 0.6;
 function useCascade(n: number) {
-  const reduce = useReduceMotion() !== false; const v = useRef(Array.from({ length: n }, () => new Animated.Value(0))).current; const started = useRef(false);
+  /* Ruch startuje dopiero, gdy ustawienie „Ogranicz ruch” jest znane (useReduceMotion: null do odczytu). Wcześniej start przy null liczył się jak „Ogranicz ruch” i — przez started — klapki
+   * nigdy się nie obracały u osoby bez tego ustawienia (test: tests/ekran-nowej-osoby-1-1.test.tsx „ruch dozwolony”). */
+  const rm = useReduceMotion(); const reduce = rm !== false; const v = useRef(Array.from({ length: n }, () => new Animated.Value(0))).current; const started = useRef(false);
   useEffect(() => {
-    if (started.current) return; started.current = true;
+    if (rm === null || started.current) return; started.current = true;
     Animated.parallel(v.map((x, i) => Animated.timing(x, { toValue: 1, delay: reduce ? 0 : i * STAGGER * MOTION.boardFlipMs, duration: reduce ? MOTION.reducedCrossfadeMs : MOTION.boardFlipMs, easing: Easing.out(Easing.ease), useNativeDriver: true }))).start();
-  }, [reduce]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [rm]); // eslint-disable-line react-hooks/exhaustive-deps
   return v.map(x => reduce ? { opacity: x } : { opacity: x.interpolate({ inputRange: [0, 0.4, 1], outputRange: [0, 1, 1] }), transform: [{ perspective: 900 }, { rotateX: x.interpolate({ inputRange: [0, 1], outputRange: ['70deg', '0deg'] }) }] });
 }
 
