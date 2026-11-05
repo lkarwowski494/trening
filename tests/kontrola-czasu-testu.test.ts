@@ -176,9 +176,9 @@ describe('tests.yml: strażnik w każdej części Jest po kroku Jest (05.11.2026
   const jest = yml.slice(yml.indexOf('\n  jest:'), yml.indexOf('\n  verify:'));
   test('krok Jest zapisuje wynik (JEST_PONOW_WYNIK), a następny krok uruchamia scripts/kontrola-czasu-testu.mjs na tym samym pliku', () => {
     expect(jest).toMatch(/JEST_PONOW_WYNIK: \$\{\{ runner\.temp \}\}\/jest-wynik\.json/);
-    const iJest = jest.indexOf('node scripts/jest-ponow.mjs'); const iKontrola = jest.indexOf('node scripts/kontrola-czasu-testu.mjs "$JEST_PONOW_WYNIK"');
+    const iJest = jest.indexOf('node scripts/jest-ponow.mjs'); const iKontrola = jest.indexOf('node scripts/kontrola-czasu-testu.mjs "$WYNIK_JEST"');
     expect(iJest).toBeGreaterThan(0); expect(iKontrola).toBeGreaterThan(iJest);
-    expect(jest).toMatch(/kontrola-czasu-testu\.mjs "\$JEST_PONOW_WYNIK"/);
+    expect(jest).toMatch(/kontrola-czasu-testu\.mjs "\$WYNIK_JEST"/); expect(jest).toMatch(/WYNIK_JEST: \$\{\{ runner\.temp \}\}\/jest-wynik\.json/); /* 05.11.2026: osobna nazwa zmiennej w kroku kontroli — „PONOW” w kroku łapał strażnik ponowień (tests/ponowienia-workflow.test.ts) */
   });
   test('krok kontroli nie jest pomijany po zielonym Jeście (bez if: false / continue-on-error)', () => {
     const krok = jest.slice(jest.indexOf('- name: Czas pojedynczego testu'));
