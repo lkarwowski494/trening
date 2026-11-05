@@ -9,7 +9,7 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { figureSpec as figureSpecAll, familyOf } from '@/lib/figures/v2';
-import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
+import { V2_WSTRZYMANE, loopOf } from '@/lib/figures/v2/figure';
 import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
 
@@ -36,8 +36,10 @@ const eksport = (name: string, recenzja?: object) => {
 };
 /** Figura jak w aplikacji: bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84) — eksport ich nie rysuje. */
 const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
+/** 05.11.2026 (r6-W2 B): eksport nie rysuje ćwiczeń w pętli jednokierunkowej (strona gra wahadło; docs/21 „r6-W2 A”) — parytet je pomija. */
+const jednokierunkowe = (k: string) => { const s = figureSpecAll(k); return !!s && loopOf(s) === 'jednokierunkowa'; };
 /** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. Wstrzymane (V2_WSTRZYMANE) wypadają także z gałęzi „poza z pliku danych” — scripts/strona/eksport.mjs:73,133 ich nie rysuje (05.11.2026: Clean Shrug i Snatch Shrug mają pozy w olympic.json, a rysunek wstrzymany do kart T2). */
-const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
+const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && !jednokierunkowe(e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
   test('pilotaż z plików pozy (core_floor, pushup_plank) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji', () => {

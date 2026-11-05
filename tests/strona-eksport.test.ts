@@ -12,7 +12,7 @@ import { LIB, LIB_DISPLAY_NAME, libExercise } from '@/lib/seed';
 import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
-import { figureSpec as figureSpecAll, phasesFor, tempoFor, frameAt, V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
+import { figureSpec as figureSpecAll, phasesFor, tempoFor, frameAt, loopOf, V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
 import { generalCuesReviewed } from '@/lib/cues';
 import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
 import { isNiche, MUSCLES, REGION_MUSCLE } from '@/lib/seed';
@@ -29,7 +29,8 @@ import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources'
 
 const root = path.join(__dirname, '..');
 /** Figura, którą eksport może narysować: jak w aplikacji (shownFigureSpec) przy zapisie recenzji z tego testu (wszystkie rodziny ready z aktualnymi skrótami) — bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84). */
-const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
+/* r6-W2 B (05.11.2026): bez rysunków wstrzymanych i bez ćwiczeń w pętli jednokierunkowej — eksport ich nie rysuje do czasu obsługi trybu pętli na stronie (docs/21, „r6-W2 A”) */
+const figureSpec = (k: string) => { if (Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k)) return null; const s = figureSpecAll(k); return s && loopOf(s) === 'jednokierunkowa' ? null : s; };
 const SEKCJE = ['setup', 'move', 'tips', 'mistakes'] as const;
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 /** Zapis recenzji dla eksportu w tym teście: wszystkie rodziny ready z aktualnymi skrótami (bramka 4, decyzja 9a 28.10.2026; sam warunek: tests/strona-eksport-recenzja.test.ts). */
@@ -159,10 +160,19 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(154); /* 05.11.2026: 132 + 22 olympic z danych (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
+      expect(n).toBe(135); /* 05.11.2026: 132 + 3 olympic z danych (Clean Pull, Snatch Pull, Jerk Dip Squat) (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; − 19 jednokierunkowych bez figury w eksporcie, r6-W2 B: lot i przechwyt wstecz w wahadle strony; 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
+  });
+  test('r6-W2 B (05.11.2026): ćwiczenia w pętli jednokierunkowej nie mają figury w eksporcie (figury.json i pole figure) — Power Clean i Snatch Balance bez, Clean Pull (wahadło) z figurą; negatyw: wahadło nie jest pomijane', () => {
+    const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, unknown> };
+    for (const l of ['pl', 'en']) {
+      const ex = (id: string) => data[l].exercises.find(e => e.id === id)!;
+      for (const k of ['Power Clean', 'Snatch Balance', 'Clean and Jerk']) { expect(loopOf(figureSpecAll(k)!)).toBe('jednokierunkowa'); expect([k, ex(k).slug in fig.figures, ex(k).figure]).toEqual([k, false, null]); }
+      for (const k of ['Clean Pull', 'Jerk Dip Squat']) { expect(loopOf(figureSpecAll(k)!)).toBe('wahadlo'); expect([k, ex(k).slug in fig.figures, ex(k).figure === null]).toEqual([k, true, false]); }
+    }
+    for (const e of data.en.exercises) { const s = figureSpecAll(e.id); if (s && loopOf(s) === 'jednokierunkowa') expect([e.id, e.slug in fig.figures]).toEqual([e.id, false]); }
   });
   test('figury.json: wpis na slug ćwiczenia z figurą — 25 próbek klatek, kontrakt pozy, tempo i błędy jak w aplikacji; próbki = klatki rigu (zaokrąglone do 0,001 cm — zawias z prawie prostymi kolanami jest wrażliwy na zaokrąglenie)', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { frames: { pose: { pelvis: number[] }; props: unknown[] }[]; pose: { kontrakt: string }; tempo: unknown; errors: { id: string; cue: string; kind: string; frames?: unknown[]; tempo?: unknown }[]; views: string[]; family: string }> };

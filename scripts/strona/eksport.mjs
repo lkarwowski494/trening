@@ -73,6 +73,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     if (Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key)) return null; /* rysunek wstrzymany w aplikacji (PR #84) — strona go nie eksportuje */
     const spec = v2.figureSpec(key); if (!zRecenzja.has(spec ? spec.family : v2.familyOf(key))) return null;
     const pose = poseFor(key, spec);
+    /* r6-W2 B (05.11.2026, tymczasowo): wpis figury nie niesie trybu pętli, a odtwarzacz strony gra wahadło — ćwiczenia w pętli jednokierunkowej (olympic, plyo, sled_throw) bez figury do czasu A (docs/21, „r6-W2 A”, wymaga zgody właściciela) */
+    if (spec ? v2.loopOf(spec) === 'jednokierunkowa' : pose?.petla === 'jednokierunkowa') return null;
     if (spec) {
       const errors = ui.errorsOf(spec).map(({ error, cue }) => {
         const def = v2.errorDefOf(spec, error);
@@ -130,7 +132,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       phases: Object.fromEntries(['Opuszczanie', 'Wypychanie', 'Wstawanie', 'Podnoszenie', 'Prostowanie', 'Pauza'].map(p => [p, t(p)])),
     };
     /* figura v2 jak w aplikacji (shownFigureSpec): bez wstrzymanych (V2_WSTRZYMANE) i tylko z rodziny z recenzją ruchu (zRecenzja — w eksporcie z bieżącego zapisu albo pliku --recenzja) */
-    const shownSpec = key => { const spec = v2.figureSpec(key); return spec && !Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key) && zRecenzja.has(spec.family) ? spec : null; };
+    const shownSpec = key => { const spec = v2.figureSpec(key); return spec && !Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key) && zRecenzja.has(spec.family) && v2.loopOf(spec) !== 'jednokierunkowa' ? spec : null; }; /* jednokierunkowe: bez figury (r6-W2 B, 05.11.2026) */
     const figureShown = key => !!shownSpec(key);
     const figurePhases = key => { const spec = shownSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms })) : []; };
     const figureErrors = key => { const spec = shownSpec(key); return spec ? ui.errorsOf(spec).map(e => ({ id: e.error, text: cueTextIn(l, e.cue) ?? null })).filter(e => e.text) : []; };
