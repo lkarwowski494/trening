@@ -12,7 +12,7 @@ import { execSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { testyCzytajace } from './testy-dla-plikow.mjs';
+import { testyCzytajace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs';
 const args = process.argv.slice(2); const planOnly = args.includes('--plan');
 const odBazy = args.includes('--od-bazy');
 const sh = c => execSync(c, { encoding: 'utf8' }).split('\n').map(s => s.trim()).filter(Boolean);
@@ -36,7 +36,9 @@ if (files.some(f => /^(lib\/locales\/|locales\/|lib\/i18n\.en\.ts$)/.test(f))) f
 // więc --findRelatedTests ich nie znajduje. Każdy zmieniony plik niebędący kodem dokłada testy, których źródło go wymienia (ścieżka, nazwa dokumentu, katalog przeglądany
 // albo budujący ścieżki) — wspólny wybór z verify:docs: scripts/testy-dla-plikow.mjs. Zmiana kodu (.ts/.tsx/.js/.jsx) nadal tylko przez graf importów.
 const czytajace = testyCzytajace([...new Set(changed)].filter(f => !/\.(tsx?|jsx?|mjs|cjs)$/.test(f)), resolve(dirname(fileURLToPath(import.meta.url)), '..'));
-for (const t of czytajace) if (!files.includes(t)) files.push(t);
+// L-104 (04.11.2026): test uruchamiający skrypt repo dziedziczy zależności skryptu (importy rekurencyjnie + czytane pliki), także gdy zmienił się kod (.ts/.mjs) — scripts/testy-dla-plikow.mjs
+const korzen = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+for (const t of [...czytajace, ...testyUruchamiajaceSkrypty([...new Set(changed)], korzen)]) if (!files.includes(t)) files.push(t);
 const jestBin = join(dirname(createRequire(import.meta.url).resolve('jest/package.json')), 'bin', 'jest.js');
 const command = process.execPath; const jestArgs = [jestBin, '--findRelatedTests', ...files, '--silent', '--reporters=summary'];
 if (planOnly) { console.log(JSON.stringify({ command, args: jestArgs, files, baza: ref })); process.exit(0); }

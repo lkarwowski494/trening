@@ -1,0 +1,286 @@
+{
+  "karty": {
+    "One-Arm Lateral Raise (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "1b2c07aac203",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). lat1.setup/lat1.move: HSS s.1 Lateral Raises („arm at your side with the elbow straight… until the hands reach shoulder level… slowly lower”) + ACE 26 (uproszczenie liczby rąk nazwane). rear.elbows, lat.height zgodne z HSS/ACE 26. delt1.mis.arch: ACE 26 wprost („no arching your low back”) + Catalyst 822 („Keeping the trunk braced tightly”). Uwaga NISKA: catalyst-822 przypisane też do ustawienia/ruchu/wskazówek z miejscem „tylko drugie źródło błędu” (przypisanie na poziomie ćwiczenia). PL/EN naturalne."
+    },
+    "Dumbbell Scaption": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "016cf9cf6128",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). HSS s.1 full-can („elbows straight… forward and upward to shoulder level with a slight outward angle (30°)”) + ACE 8951 Exercise 4 V-Raise („arms straight… shoulder height in a 30-degree angle”). scap.setup/move, sapd.arms, lat.height wsparte; kąt 30° słusznie pominięty w tekście. Bez błędów — zgodnie z decyzją 3."
+    },
+    "Alternating Deltoid Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "638d4db5d743",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). adr.move: Catalyst 822 wprost („On the next rep, raise the dumbbells out to the sides… Continue alternating”) + fedb (szczebel 5, wprost) — para 4+5 jako praktyka zgodna z decyzją koordynatora 1; uproszczenie nazwane. front.setup/front.elbows: ACE 54 Step 1. delt1.mis.arch: ACE 54 Step 3 wprost. lat.height „mniej więcej” = część wspólna (ACE level, Catalyst above)."
+    },
+    "Front Plate Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "fd640191ccb9",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). Uproszczenie (talerz ← sztanga Catalyst 803 / hantle ACE 54) POTWIERDZONE: ten sam ruch stawów (zgięcie barku przy prostych łokciach), zmienia się tylko przyrząd. Catalyst 803: „straight arms to just above shoulder height… lower again under control”; ACE 54 Step 1/3/4. delt1.mis.arch: ACE 54 „no arching of your low back”."
+    },
+    "Single Dumbbell Front Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "fd640191ccb9",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). Uproszczenie (jeden hantel oburącz) POTWIERDZONE — ten sam ruch stawów co Front Raise. Treść identyczna jak Front Plate Raise (ten sam skrót karty), źródła jw."
+    },
+    "Cable Front Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "464cee4c8f95",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). cfr.setup: Catalyst 812 („Hold a straight handle with a shoulder-width grip attached to a low cable”) + ACE 54 (pozycja przed udami) — uproszczenie nazwane. front.move/elbows/height: Catalyst 812 („lift the handle up with straight arms to above shoulder height, then lower again under control”) + ACE 54. Arkusz rysunku nieoglądany przeze mnie (rodzina delt_raise ma osobną bramkę rysunku)."
+    },
+    "Dumbbell Lying One-Arm Rear Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "3b5f47344421",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). rear1.setup: HSS s.3 („lie face down on your bed with the operated arm hanging freely”) + Tomah/MSD („Lie on stomach with involved arm down off edge of table”). rear1.move/rear.arms: HSS („raise your arm away from your body to shoulder height”) + Tomah („Lift arm upward to shoulder level”). rear1.mis.high: HSS wprost („Limit the height… to 90 degrees… horizontal to the floor”) — błąd ze źródła, nie wnioskowany. rear.elbows: HSS łokcie proste, ACE 34 lekko ugięte → „kąt stały” = część wspólna. Rysunku nie oglądałem."
+    },
+    "Upright Row (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Rysunek (Upright-Row-sztanga-side.png, rodzina planned): koniec ruchu — gryf na środku klatki, niżej niż tekst „do wysokości barków”; do recenzji ruchu rodziny, nie blokuje treści."
+    },
+    "Upright Row (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu (sztanga → hantle) potwierdzone w r1."
+    },
+    "Upright Row (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie sprzętu potwierdzone w r1."
+    },
+    "Smith Machine Upright Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (suwnica) potwierdzone w r1; uwaga NISKA r1 o miejscu „Variations” (ISSA wspomina suwnicę w części o technice) nadal aktualna — nie blokuje."
+    },
+    "Dumbbell One-Arm Upright Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "2e95e5a91846",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie (hantel, jedna ręka) potwierdzone w r1."
+    },
+    "Smith Machine One-Arm Upright Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "2e95e5a91846",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Uproszczenie potwierdzone w r1; uwaga NISKA o „Variations” jak wyżej."
+    },
+    "Band Upright Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "f444d5597085",
+      "uwagi": "r2b: zmiana tylko id zdania, tekst identyczny (ur.height → urow.height; PL/EN i źródła w data/zrodla/cues.json jak w f5312eae; sprawdzone na 500cf64f). r2: ur.height przeformułowane („Unoś ciężar blisko ciała mniej więcej do wysokości barków, łokcie prowadzą”) — ISSA wprost („Stop when the barbell reaches shoulder height”, „keeping it close to the front of the body”, „each elbow stays above the forearm”); Catalyst 805 zgodny („lift the elbows as high as possible… lower under control”), nie przeczy. Znalezisko r1 #1 zamknięte. Bodylastics („until your hands reach the bottom of your chest”) nieco niżej — „mniej więcej” mieści część wspólną z ISSA; uproszczenie taśmy potwierdzone w r1."
+    },
+    "Band Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "28b8b58f83e0",
+      "uwagi": "r2: blat.setup — dopisane ace-26 Step 1 jako nazwane uproszczenie sprzętu, luka usunięta z data/zrodla/cues.json (brak wpisu w „luki”). Znalezisko r1 #3 zamknięte. Skrót bez zmian (zmiana tylko w danych źródeł)."
+    },
+    "Kettlebell Halo": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "4e4c230793b2",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). halo.setup: ACE 394 („hold a kettlebell by the horns directly in front of the chest”) + BarBend („bottoms-up by its horns”). halo.move: ACE 394 (prawy bark → za głową → lewy bark → klatka) + BarBend. halo.dir: ACE („before switching directions”) + BarBend („Repeat… in the opposite direction”). halo.torso: ACE („Keep the back straight”) + BarBend („Try not to bend at all”). delt2.haloLean: BarBend błąd wprost + ACE (zaprzeczenie standardu). Bez rysunku w 1.1 (decyzja) — zgodność z rysunkiem nie dotyczy."
+    },
+    "One-Arm Cable Rear Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "4ab8da0ec4e9",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). partial słusznie (brak wskazówek). crear1.setup: Fitness Volt (4; „Stand side-on to a low pulley… furthest hand… hinge forward”) + potreningu 357 („pochyl tułów w przód… prostych plecach”) + ManiacMuscle. crear1.move: ManiacMuscle („wide arc, leading with the elbows… slightly bent”) + potreningu („łokcie… na wysokości barku”) + FV. rdelt.mis.swing: potreningu („Unikaj bujania tułowiem.”) + ManiacMuscle („Swinging the torso… reduces tension”) — oba wprost. Oznaczenia praktyka + uproszczenie zgodne."
+    },
+    "Cable Reverse Fly": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "5b3816641b59",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). partial słusznie. crf.setup: ACE 353 („With the left hand, grab the handle from the pulley on the right side”) + potreningu 348 („na krzyż”) + Fabryka Siły („Lewą dłonią chwyć za końcówkę prawego wyciągu…”). crf.move: ACE 353 („spread both arms apart until they are in a straight line”) + potreningu („ramiona będą przedłużeniem tułowia”). Wysokość bloczków słusznie pominięta (ACE vs F/S sprzeczne)."
+    },
+    "Cable Y Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "0856f2533707",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). partial słusznie. cyr.setup: weighttraining.guide („Stand facing between two low cable pulleys… opposite pulley… Step back so that the cables are pulled taut”) + FitVibe (krok 1–2: linki skrzyżowane, krok w tył). cyr.move: weighttraining („elbows moderately flexed… letter Y… lower”) + FitVibe (krok 3–4). Praktyka 2×5 zgodna z etapem 2."
+    },
+    "One-Arm Incline Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "6cea89ab8d9b",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). partial słusznie. inc1.setup: NFPT („Lay on your left side on an incline bench”, dumbbell in right hand) + fedb („Lie down sideways on an incline bench… dumbbell in the hand”). inc1.move: część wspólna (NFPT do linii barku, fedb do pionu) — zdanie bez wysokości zgodne z decyzją 7. inc1.mis.shrug: NFPT Warnings wprost („Do not shrug your shoulder…”) — jedno źródło dopuszczalne dla „Czego unikać” w etapie 2. BRAK FIGURY v2 (lib/figures/v2/poses/delt_raise.json nie ma tego klucza) — zgodności z rysunkiem nie da się ocenić; gdy rysunek powstanie, recenzja rysunku musi sprawdzić leżenie bokiem i wysokość (NFPT vs fedb)."
+    },
+    "Barbell Front Raise to Overhead": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "8fa463a1500a",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). partial słusznie. bfro.setup: fitnall („overhand grip… hang in front of your thighs, arms fully extended”) + fedb („stand straight… palms facing down”). fro.move: fitnall („until it slightly passes your head”, „avoid locking the elbows”) + fedb („directly over your head… elbows slightly bent”). fro.mis.arch: fitnall wprost („Avoid arching your lower back excessively”). Uwaga: Catalyst 803 (szczebel 4) wspomina wariant „raised completely overhead” — można wzmocnić, nie wymagane."
+    },
+    "Sled Reverse Flye": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "b91cd76ec9ae",
+      "uwagi": "r2: srf.move ma teraz 2 źródła szczebla 5 wprost: fedb („Without flexing the elbow, pull the handles upward and apart”) + app-s7 („With a slight bend in your elbows, pull the handles apart and out to the sides”; „Bring the handles back to the starting position in a controlled manner”). Niezależne (różne brzmienie i układ). srf.setup: fedb („Face the sled, backing up until there is some tension in the line”) + SET FOR SET („Look at the sled… Stand far enough back”). Znalezisko r1 #2 zamknięte. Brak figury v2 — porównania z rysunkiem nie ma (uwaga r1 #6)."
+    },
+    "Car Drivers": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026",
+      "sha": "d5ee6424753e",
+      "uwagi": "r2: skrót bez zmian względem r1 (przeniesione). partial słusznie. Uproszczenie talerz ← hantel (ManiacMuscle) / guma na nadgarstkach (Centrum Respo) POTWIERDZONE (decyzja 6): ten sam ruch stawów — ręce wyprostowane przed sobą na wysokości barków, obrót jak kierownicą; arkusz Car-Drivers-front.png (/home/user/arkusze-delt_raise/arkusze/) pokazuje talerz trzymany po bokach na wysokości barków/klatki z obrotem — zgodny. cdr.setup/move: ManiacMuscle („about shoulder height… Turn the dumbbell like a steering wheel”) + Respo („Unieś proste kończyny górne na wysokość barków”, „krótkie skręty kierownicy… raz w prawo, raz w lewo”). cdr.mis.drop: ManiacMuscle („Letting the dumbbell sink lower…”); mis.jerk: ManiacMuscle („Do not jerk the dumbbell”) — jedno źródło wprost, dopuszczalne w etapie 2."
+    },
+    "Front Incline Dumbbell Raise": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "251d91b466cc",
+      "uwagi": "r2, WYSOKIE: fidr.move „mniej więcej do wysokości barków” — wprost tylko app-s1 („parallel with the floor or slightly above shoulder level”; „Stop at or just above shoulder level”). Drugie źródło przeczy: weighttraining.guide (E. Lord) Execution 1 „raise the dumbbells forward and upward in a semicircular motion until they are way above the height of your shoulders” — w cues.json cytowane tylko za „elbows slightly flexed”. Naprawa: część wspólna („co najmniej do wysokości barków”) albo zdanie bez wysokości + claims --rehash. fidr.setup (app-s1 „hang at arm's length by your sides”; weighttraining „hang straight down by your sides”) i fidr.mis.back (app-s1 „Arching the back off the bench… Keep your back pressed firmly against the bench”) — wsparte. Rysunek (Front-Incline-Dumbbell-Raise-side.png): koniec ruchu ok. wysokości barków — zgodny z app-s1, nie z weighttraining; tor przechodzi blisko uda (odstęp 1,3 cm w u=0,40) — do recenzji ruchu rodziny.",
+      "poprawka": "Recenzent (r2, znalezisko 1): część wspólna („co najmniej do wysokości barków”) albo zdanie `fidr.move` bez wysokości + claims.mjs --rehash."
+    },
+    "Dumbbell Incline Shoulder Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "8c67f0c13b02",
+      "uwagi": "r2, praktyka etap 2: isr.setupDb — weighttraining.guide (M. Livelo) „lie on your back on an inclined bench. Press the dumbbells directly upward” + app-s2 „Lie back on an incline bench holding two dumbbells straight above your shoulders, arms locked”. isr.move — weighttraining „Keeping your elbows straight… lift your shoulders off the bench as high as possible… lower your shoulders back to the bench” + app-s2 „Push the dumbbells toward the ceiling by spreading your shoulder blades and lifting the shoulders off the bench… Let the shoulder blades sink back to the bench under control”. isr.mis.press — app-s2 Common mistakes wprost („Bending the elbows and turning it into a press”) + wniosek z ruchu. Źródła niezależne (różny autor i układ). Bez liczb i zdrowia. Brak figury v2."
+    },
+    "Barbell Incline Shoulder Raise": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "3dc255258160",
+      "uwagi": "r2, ŚREDNIE: para fedb + app-s3 nie jest niezależna — tekst app-s3 to przeróbka tego samego opisu co fedb: te same 4 kroki w tej samej kolejności i frazy („medium width grip”, „hold it straight over you[r head] with [your] arms straight”, „rais[e/ing] the shoulders [off] from the bench”, „exhale/breathe out”, „Return/Bring back the bar to the starting position… inhale/breathe in”). Etap 2 wymaga 2 niezależnych źródeł (bez kopiowania). Treść poprawna. Naprawa tania: źródła wersji z hantlami (weighttraining-incline-dumbbell-shoulder-raise + app-s2) jako nazwane uproszczenie sprzętu — recenzent potwierdza, że ruch się nie różni (protrakcja łopatek na prostych rękach, sztanga vs hantle); wtedy też „powoli” przestaje być osobnym uproszczeniem. Brak figury v2.",
+      "poprawka": "Recenzent (r2, znalezisko 2): źródła wersji z hantlami (weighttraining-incline-dumbbell-shoulder-raise + app-s2) jako nazwane uproszczenie sprzętu — recenzent potwierdza, że ruch się nie różni."
+    },
+    "Dumbbell Front Raise to Overhead": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "7a79d7332b19",
+      "uwagi": "r2, praktyka etap 2: app-s4 (Kovo, „Pulled straight from the… app's exercise library”) i app-s5 — brzmienie i układ różne, wspólne są tylko frazy ogólne („avoid arching your lower back”), brak oznak kopiowania → niezależne. dfro.setup: app-s4 „Stand tall with a dumbbell in each hand resting in front of your thighs, palms facing you” + app-s5 „Stand tall… palms facing your thighs” — „dłonie zwrócone do ciała” wsparte przez oba (zwrócone do ud = do ciała). fro.move: app-s4 „Keeping your arms nearly straight, raise… in a smooth arc until they are overhead. Lower them back to your thighs under control” + app-s5 „slowly raise… in an arc, keeping the slight elbow bend, until they are directly above your head… slowly lower”. fro.mis.arch: app-s4 „Avoid arching your lower back as the arms pass shoulder height” + app-s5 Common mistakes „Arching the lower back during the raise”. mis.jerk: app-s4 „Don't swing or use momentum” + app-s5 „Swinging the weights to generate momentum”. Twierdzeń zdrowotnych z app-s5 („strains the lower back”, „protect your spine”) słusznie nie przeniesiono. Rysunek istnieje (Dumbbell-Front-Raise-to-Overhead-*.png) — nieoglądany w r2 (rodzina planned, recenzja ruchu osobno)."
+    },
+    "Straight Raises on Incline Bench": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-04",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, partia T1 delt_raise, runda r2, 04.11.2026)",
+      "autor": "programista T1",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 karty własnej partii T1 (rodzina delt_raise; bramka 4, L-047), 04.11.2026, kopia f5312eae",
+      "sha": "f1f44f6674f5",
+      "uwagi": "r2, praktyka etap 2: fedb („Lay on the bench face down. With a pronated grip… keeping your arms straight. Allow the bar to hang straight down”; „raise the barbell out in front of your head while keeping your arms extended”) + app-s6 („Lie prone with chest supported… grip barbell overhand… arms hanging straight down”; „raise barbell forward by flexing shoulders”; „lower barbell slowly to start”) — niezależne. Wysokość słusznie pominięta (fedb „in front of your head” vs app-s6 „parallel with floor” — sprzeczne). yr.mis.chest: app-s6 „Position chest against bench top”, „Press chest into bench” + wniosek z ustawienia. Uwaga NISKA: sri.move „prawie prostymi rękami” — oba źródła mówią „straight/extended”; zmiękczenie nie przeczy kierunkowo, nie blokuje. Rysunek istnieje — nieoglądany w r2 (rodzina planned)."
+    }
+  }
+}

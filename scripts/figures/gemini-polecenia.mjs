@@ -114,12 +114,12 @@ export function liczbyZSilnika(rodzina = 'pull_up') {
   const par = (id, k, d) => s[id]?.parametry?.[k] ?? d;
   return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, ankleH: B.ankleH, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shElevMax: rom.front.abd.max, shSagAllow: al.shSag ?? rom.side.sh.max,
     hipMin: rom.side.hip.min, hipMax: rom.side.hip.max, kneeMax: rom.side.knee.max, pen: v2.TOL.pen, maxJump: C.maxJump, step: C.step, perFrame: C.maxJump * C.step, gap10: Math.floor((C.maxJump * C.step) / 20), minMotion: C.minMotionCm,
-    undeclared: C.undeclaredDeg, visibleCm: C.visibleCm, visibleDeg: C.visibleDeg, chinMargin: par('broda_nad_drazkiem', 'margines_cm', 2), armsStraight: par('dol_rece_proste', 'max_lokiec_deg', 25), armsStraightAll: par('rece_proste_caly_ruch', 'max_lokiec_deg', 25), swingPelvis: par('miednica_nie_buja', 'max_cm', 3),
+    undeclared: C.undeclaredDeg, visibleCm: C.visibleCm, visibleDeg: C.visibleDeg, chinMargin: par('broda_nad_drazkiem', 'margines_cm', 0), armsStraight: par('dol_rece_proste', 'max_lokiec_deg', 25), armsStraightAll: par('rece_proste_caly_ruch', 'max_lokiec_deg', 25), swingPelvis: par('miednica_nie_buja', 'max_cm', 3),
     lezyCm: PROGI.lezyCm, lezyBokNogaCm: PROGI.lezyBokNogaCm, glowaPodparcieCm: PROGI.glowaPodparcieCm, znikaCm: PROGI.znikaCm, lekkoMin: wczytajSens().rodziny?.mobility_stand?.reguly?.obie_kolana_lekko?.parametry?.min_max_deg ?? 10, lekkoMax: KOLANO_LEKKO_MAX_DEG, podlogaObrysKonczynCm: -PROGI.podlogaObrysKonczynCm, mostekDeg: PROGI.mostekDeg,
     ankleRel: `${par('nogi_nieruchome', 'min_cm', -10)}…${par('nogi_nieruchome', 'max_cm', 5)}`, trunkRange: `${par('tulow_pion', 'min_deg', -12)}…${par('tulow_pion', 'max_deg', 3)}`, freeHand: par('jedna_reka', 'min_wolna_od_osi_cm', 15) };
 }
 const KOSTKI_Z = 15;
-/** Układ wzorca podciągania: miednica za drążkiem o |PX| cm (głowa mija drążek z przodu; łokieć w górze < limitu), broda w u = 1 co najmniej BRODA_CEL cm nad drążkiem (reguła 2 cm + zapas). */
+/** Układ wzorca podciągania: miednica za drążkiem o |PX| cm (głowa mija drążek z przodu; łokieć w górze < limitu), broda w u = 1 co najmniej BRODA_CEL cm nad drążkiem (reguła 0 cm, czyli co najmniej na wysokości drążka, + zapas). */
 export const PX = -18, BRODA_CEL = 3;
 /** Podciąganie: zapas zasięgu ramienia w u = 0 (cm) — ramię prawie proste (łokieć ≈ 6°; było 0,5 cm = 14°, fala 25, 01.11.2026) i błąd pu.partial na DOLE (miednica wyżej o BLAD_DOL_CM → łokieć ≈ 50°, u = 0,5 połowa, góra jak w pozie poprawnej). */
 export const ZAPAS_POCIAGANIA_CM = 0.1, BLAD_DOL_CM = 6.5;
@@ -152,7 +152,7 @@ const FAZY = {
   pull_up: () => [
     `Układ osoby względem drążka (x): miednica ZA drążkiem — miednica.x = drążek.x − 18 (stała w całym ruchu, ±3 cm), chwyt x = x drążka; wtedy głowa mija drążek z przodu (odstęp środka głowy od osi drążka ≥ 15 cm; promień głowy 9,5 cm), nie przenika go, a łokieć w górze nie przekracza limitu (bliżej drążka łokieć zginałby się powyżej 149°). Tułów pionowo (pochylenieTulowia 0, w całym ruchu −12…3°), pochylenieGlowy 0.`,
     'Zwis (u = 0): ramiona prawie proste (łokieć ≤ 8°, cel ≈ 6°: odległość bark–chwyt 63,9 cm przy zasięgu 64 cm), stopy tuż za miednicą (x kostki = miednica.x − 4), kostki ok. 80 cm pod miednicą, podbicie −10.',
-    `Góra (u = 1): broda (środek głowy minus 9,5 cm) co najmniej ${BRODA_CEL} cm nad drążkiem (reguła: ≥ 2 cm, zapas 1 cm); łokcie zgięte 130–145° (limit 149°) — nie unoś miednicy wyżej niż w tabeli.`,
+    `Góra (u = 1): broda (środek głowy minus 9,5 cm) co najmniej ${BRODA_CEL} cm nad drążkiem (reguła: co najmniej na wysokości drążka, 0 cm); łokcie zgięte 130–145° (limit 149°) — nie unoś miednicy wyżej niż w tabeli.`,
     'Tabela referencyjna (wyliczona z modelu, tułów pionowo, miednica.x = drążek.x − 18, kostki 80 cm pod miednicą):',
     ...tabelaPodciagania(),
     'Dla innych wysokości drążka i rozstawu: u = 0 → miednica.y = B − 50 − sqrt(63,9² − (c − 19)² − 18²); u = 1 → miednica.y ≈ wartość z tabeli dla najbliższego B, przesunięta o różnicę B (szybka kontrola: broda = miednica.y + 62,5 ≥ B + 3).',

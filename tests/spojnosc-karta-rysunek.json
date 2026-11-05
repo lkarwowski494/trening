@@ -1,0 +1,46 @@
+{
+ "_opis": "Konfiguracja strażnika spójności karty z rysunkiem (tests/spojnosc-karta-rysunek.test.ts; decyzja właściciela 04.11.2026, wariant A, docs/18). To JEDNO miejsce zakresu strażnika: rodziny z listy `rodziny`, ćwiczenia z shownFigureSpec != null; reguła rysunku z pewnością „ustalone” (albo bez pola pewnosc) i niepustym `cue`, która ma zdanie, musi mieć na karcie TEGO ćwiczenia (cueIdsOf: karta własna albo zestaw ogólny — treść bez względu na stan recenzji) zdanie reguły (`cue`, `cue_dodatkowe`, zdania z `wskazowki_na_reguly`) albo zdanie wariantu z `cue_wariant` (w data/zrodla/figury-sens.json) albo wpis w `wyjatki` (z powodem). `ogolne_bez_ruchu`: reguły, których zdanie jest zdaniem sekcji „Ruch”, a zestaw ogólny jej nie ma (decyzja projektowa czeka na właściciela).",
+ "rodziny": [
+  "squat",
+  "bench_press",
+  "hinge",
+  "curl",
+  "pull_up"
+ ],
+ "wyjatki": {
+  "Goblet Squat": {
+   "plecy_neutralne": "karta własna ma gob.move („klatka uniesiona”) i gob.close, ale żadne nie mówi o prostych plecach; sq.back („Plecy proste, klatka uniesiona”) pasuje, lecz zmiana karty własnej wymaga ponownej recenzji — do decyzji koordynatora (audyt 04.11.2026, klasa równoważnik)"
+  },
+  "Wall Sit": {
+   "kolana_nad_stopami": "zdanie sq.kneesToes ma źródła o przysiadzie, nie o Wall Sit; brak przeczytanego źródła o kolanach w siadzie przy ścianie — czego nie da się potwierdzić, nie trafia na kartę (CLAUDE.md, Merytoryczne podstawy); do badacza",
+   "piety_na_podlodze": "jak kolana_nad_stopami: sq.mis.heels ma źródła o przysiadzie, nie o Wall Sit — do badacza"
+  },
+  "Squeeze Press (hantle)": {
+   "lokcie_nie_szeroko": "do oceny badacza (audyt 04.11.2026): rysunek ma łokcie bliżej tułowia (kąt ramię–tułów 3D 26°), więc „ani przyklejone do tułowia” może przeczyć rysunkowi; zestaw badacza celowo pomija bp.elbowsMid (wskazowki-ogolne.json, sprawdzenie „hantle ściśnięte, łokcie blisko”)"
+  },
+  "Reverse Grip Bench Press": {
+   "lokcie_nie_szeroko": "karta własna: dopisanie bp.elbowsMid zmienia kartę (unieważnia recenzję i chowa z kartą figurę v1 — wymaga recenzji niezależnej L-047 przed scaleniem); gotowa poprawka w osobnym patchu (koordynator), kolizja z nakładką techniki na kartach bench; audyt 04.11.2026, #1"
+  },
+  "Chin Up": {
+   "broda_nad_drazkiem": "karta własna Chin Up ma cu.pull (łokcie w dół, pełny wyprost rąk) bez celu „broda nad drążkiem” (pu.pull); dopisanie zdania do karty własnej unieważnia jej recenzję i wraz ze skrótem v1 chowa kartę z rysunkiem (lib/figures/data.json) — do osobnej poprawki z recenzją niezależną; poziom NISKIE (audyt 04.11.2026, #12)"
+  },
+  "Barbell Hack Squat": {
+   "zejscie_biodra_i_kolana": "zapis badacza przy przypisaniu zestawu (data/zrodla/wskazowki-ogolne.json, przypisania): sztanga za nogami — bez dl.close/sq.down; sq.down („cofając biodra”) opisuje inny ruch niż ten przysiad; zdanie ruchu wariantu do napisania ze źródłami i tłumaczeniami (recenzja niezależna 04.11.2026, #1)"
+  }
+ },
+ "ogolne_bez_ruchu": {
+  "bench_press": {
+   "pelny_zakres": "zestaw ogólny z założenia nie ma sekcji „Ruch” (components/ExerciseCues.tsx:34), a zdanie ruchu (bp.move) to zdanie sekcji „Ruch”; decyzja projektowa o zdaniu ruchu w zestawach ogólnych — do właściciela (audyt 04.11.2026, klasa 14)",
+   "dol_przy_klatce": "jak pelny_zakres: zdanie ruchu (bp.move) jest sekcją „Ruch”, której zestaw ogólny nie ma"
+  },
+  "curl": {
+   "lokiec_zgina_sie": "zestaw ogólny nie ma sekcji „Ruch” (curl.dbMove to zdanie ruchu); decyzja projektowa o zdaniu ruchu w zestawach ogólnych — do właściciela (audyt 04.11.2026, klasa 14)"
+  },
+  "hinge": {
+   "wyprost_na_gorze": "zestaw ogólny nie ma sekcji „Ruch” (dl.lift, sumo.lift to zdania ruchu); decyzja projektowa — do właściciela (audyt 04.11.2026, klasa 14)"
+  },
+  "pull_up": {
+   "broda_nad_drazkiem": "zestaw ogólny nie ma sekcji „Ruch” (pu.pull to zdanie ruchu); decyzja projektowa — do właściciela (audyt 04.11.2026, klasa 14)"
+  }
+ }
+}

@@ -52,15 +52,7 @@
       "b": "own"
     },
     "Alternating Deltoid Raise": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Ankle Circles": {
       "b": "own"
@@ -101,7 +93,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -130,7 +123,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -163,7 +157,8 @@
       "f": "rdl",
       "ok": [
         "gm.move",
-        "hinge.back"
+        "hinge.back",
+        "gm.depth"
       ],
       "err": [
         "mis.roundBack"
@@ -181,27 +176,10 @@
       ]
     },
     "Band Lateral Raise": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Overhead Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Pull Apart": {
       "b": "general",
@@ -227,21 +205,14 @@
       ]
     },
     "Band Skull Crusher": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depthFree"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Squat": {
       "b": "general",
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -251,29 +222,13 @@
       ]
     },
     "Band Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Barbell Curl": {
       "b": "own"
     },
     "Barbell Front Raise to Overhead": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "curl.noSwing"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Barbell Guillotine Bench Press": {
       "b": "general",
@@ -292,14 +247,16 @@
       "f": "hingeFloor",
       "ok": [
         "hinge.back",
-        "sq.kneesToes"
+        "sq.kneesToes",
+        "sq.depth"
       ],
       "err": [
-        "mis.roundBack"
+        "mis.roundBack",
+        "sq.mis.heels"
       ]
     },
     "Barbell Incline Shoulder Raise": {
-      "b": "open"
+      "b": "own"
     },
     "Barbell Preacher Curl": {
       "b": "general",
@@ -583,7 +540,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -597,6 +555,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -765,15 +724,7 @@
       ]
     },
     "Cable Front Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Hip Abduction": {
       "b": "general",
@@ -845,15 +796,7 @@
       "b": "own"
     },
     "Cable Lying Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Overhead Extension": {
       "b": "own"
@@ -893,15 +836,7 @@
       ]
     },
     "Cable Reverse Fly": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Rope Rear-Delt Rows": {
       "b": "general",
@@ -952,6 +887,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -984,15 +920,7 @@
       ]
     },
     "Cable Y Raise": {
-      "b": "general",
-      "f": "raise",
-      "ok": [
-        "rear.elbows",
-        "curl.noSwing"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Calf Press (leg press)": {
       "b": "own"
@@ -1034,15 +962,7 @@
       "b": "own"
     },
     "Car Drivers": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Carioca Quick Step": {
       "b": "open"
@@ -1051,15 +971,7 @@
       "b": "own"
     },
     "Chain Handle Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Chain Press": {
       "b": "general",
@@ -1153,7 +1065,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1369,7 +1282,7 @@
       "b": "general",
       "f": "vpull",
       "ok": [
-        "npu.hang"
+        "pu.grip"
       ],
       "err": [
         "pu.noSwing"
@@ -1387,7 +1300,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1399,7 +1313,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1462,26 +1377,10 @@
       ]
     },
     "Decline Dumbbell Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depthFree"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Decline EZ Bar Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depth"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Decline Oblique Crunch": {
       "b": "general",
@@ -1523,7 +1422,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -1548,6 +1448,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -1606,6 +1507,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -1715,29 +1617,13 @@
       ]
     },
     "Dumbbell Front Raise to Overhead": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "curl.noSwing"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Incline Shoulder Raise": {
-      "b": "open"
+      "b": "own"
     },
     "Dumbbell Lying One-Arm Rear Lateral Raise": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Lying Pronation": {
       "b": "open"
@@ -1746,37 +1632,13 @@
       "b": "open"
     },
     "Dumbbell One-Arm Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell One-Arm Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Scaption": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell Seated Box Jump": {
       "b": "general",
@@ -1805,6 +1667,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -2008,26 +1871,10 @@
       ]
     },
     "Front Incline Dumbbell Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Front Plate Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Front Raise": {
       "b": "own"
@@ -2110,7 +1957,8 @@
       "f": "rdl",
       "ok": [
         "gm.move",
-        "hinge.back"
+        "hinge.back",
+        "gm.depth"
       ],
       "err": [
         "mis.roundBack"
@@ -2124,7 +1972,8 @@
         "pu.shoulders"
       ],
       "err": [
-        "hang.noSwing"
+        "hang.noSwing",
+        "pu.partial"
       ]
     },
     "Groiners": {
@@ -2287,15 +2136,7 @@
       ]
     },
     "Incline Barbell Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Incline Bench Press (hantle)": {
       "b": "own"
@@ -2540,15 +2381,7 @@
       "b": "open"
     },
     "Kettlebell Halo": {
-      "b": "general",
-      "f": "halo",
-      "ok": [
-        "halo.close",
-        "dyn.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Kettlebell Halo with Overhead Extension": {
       "b": "general",
@@ -2562,16 +2395,7 @@
       ]
     },
     "Kettlebell Overhead Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Kettlebell Pirate Ships": {
       "b": "open"
@@ -2755,6 +2579,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -3004,15 +2829,7 @@
       ]
     },
     "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Lying Leg Crossover Swings": {
       "b": "general",
@@ -3297,7 +3114,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -3331,15 +3149,7 @@
       ]
     },
     "One-Arm Cable Rear Lateral Raise": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Dumbbell Reverse Wrist Curl": {
       "b": "general",
@@ -3386,15 +3196,7 @@
       ]
     },
     "One-Arm Incline Lateral Raise": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Kettlebell Clean and Jerk": {
       "b": "general",
@@ -3460,26 +3262,10 @@
       ]
     },
     "One-Arm Lateral Raise (hantel)": {
-      "b": "general",
-      "f": "raiseSide",
-      "ok": [
-        "lat.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Lying Dumbbell Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Medicine Ball Slam": {
       "b": "general",
@@ -3492,10 +3278,13 @@
       "f": "squat",
       "ok": [
         "sq.back",
-        "sq.kneesToes"
+        "sq.kneesToes",
+        "sq.depth",
+        "sq.down"
       ],
       "err": [
-        "sq.mis.kneesIn"
+        "sq.mis.kneesIn",
+        "sq.mis.heels"
       ]
     },
     "One-Arm Side Deadlift": {
@@ -3548,7 +3337,9 @@
       "f": "squat",
       "ok": [
         "sq.back",
-        "sq.kneesToes"
+        "sq.kneesToes",
+        "sq.depth",
+        "sq.down"
       ],
       "err": [
         "sq.mis.kneesIn",
@@ -3568,16 +3359,7 @@
       ]
     },
     "Overhead Triceps Extension (EZ)": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Overhead Triceps Extension (hantel)": {
       "b": "own"
@@ -3654,7 +3436,8 @@
       "f": "bench",
       "ok": [
         "bp.contact",
-        "bp.blades"
+        "bp.blades",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -3907,7 +3690,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -3918,6 +3702,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -4015,15 +3800,7 @@
       ]
     },
     "Reverse Grip Triceps Pushdown": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Reverse Hyperextension": {
       "b": "general",
@@ -4501,6 +4278,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.knees",
         "rdl.depth"
@@ -4510,26 +4288,10 @@
       ]
     },
     "Single Arm Triceps Pushdown": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Single Dumbbell Front Raise": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Single Leg Butt Kick": {
       "b": "general",
@@ -4602,6 +4364,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.depth"
       ],
@@ -4613,6 +4376,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.dbMove",
         "hinge.back",
         "rdl.depth"
       ],
@@ -4725,26 +4489,10 @@
       "b": "own"
     },
     "Skullcrusher (hantle)": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depthFree"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Skullcrusher (sztanga)": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depth"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Sled Drag (Harness)": {
       "b": "general",
@@ -4768,7 +4516,7 @@
       "b": "own"
     },
     "Sled Reverse Flye": {
-      "b": "open"
+      "b": "own"
     },
     "Sled Row": {
       "b": "open"
@@ -4905,7 +4653,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -4924,15 +4673,7 @@
       ]
     },
     "Smith Machine One-Arm Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Smith Machine Pistol Squat": {
       "b": "general",
@@ -4965,6 +4706,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -4977,6 +4719,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.move",
         "rdl.knees",
         "hinge.back",
         "rdl.depth"
@@ -4986,15 +4729,7 @@
       ]
     },
     "Smith Machine Upright Row": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Snatch (hantel)": {
       "b": "own"
@@ -5008,7 +4743,8 @@
       "ok": [
         "dl.lift",
         "hinge.back",
-        "dl.close"
+        "dl.close",
+        "dl.feet"
       ],
       "err": [
         "mis.roundBack"
@@ -5106,6 +4842,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -5119,6 +4856,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -5354,15 +5092,7 @@
       ]
     },
     "Standing Low-Pulley One-Arm Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Standing One-Arm Cable Curl": {
       "b": "general",
@@ -5377,16 +5107,7 @@
       ]
     },
     "Standing Overhead Barbell Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Standing Pelvic Tilt": {
       "b": "general",
@@ -5446,6 +5167,7 @@
       "b": "general",
       "f": "rdl",
       "ok": [
+        "rdl.move",
         "rdl.knees",
         "hinge.back",
         "rdl.depth"
@@ -5461,15 +5183,7 @@
       "b": "own"
     },
     "Straight Raises on Incline Bench": {
-      "b": "general",
-      "f": "raiseFront",
-      "ok": [
-        "front.elbows",
-        "lat.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Suitcase Carry": {
       "b": "own"
@@ -5517,6 +5231,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],
@@ -5614,15 +5329,7 @@
       "b": "own"
     },
     "Tate Press": {
-      "b": "general",
-      "f": "bench",
-      "ok": [
-        "bp.contact",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "The Straddle": {
       "b": "own"
@@ -5693,26 +5400,10 @@
       "b": "own"
     },
     "Triceps Kickback": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Triceps Kickback (linki)": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Triceps Pushdown": {
       "b": "own"
@@ -5743,15 +5434,7 @@
       ]
     },
     "Two-Arm Dumbbell Kickback": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Underhand Lat Pulldown": {
       "b": "general",
@@ -5778,37 +5461,13 @@
       ]
     },
     "Upright Row (hantle)": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Upright Row (linki)": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Upright Row (sztanga)": {
-      "b": "general",
-      "f": "uprightRow",
-      "ok": [
-        "ur.elbows",
-        "ur.height"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "V-Bar Pulldown": {
       "b": "general",
@@ -5897,7 +5556,8 @@
       "ok": [
         "bp.contact",
         "bp.blades",
-        "bp.control"
+        "bp.control",
+        "bp.elbowsMid"
       ],
       "err": [
         "bp.mis.arch"
@@ -5997,6 +5657,7 @@
       "f": "squat",
       "ok": [
         "sq.down",
+        "sq.depth",
         "sq.back",
         "sq.kneesToes"
       ],

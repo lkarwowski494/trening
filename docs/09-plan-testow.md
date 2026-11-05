@@ -100,7 +100,7 @@ Decyzja właściciela 12.10.2026 (F3, wariant A): jednorazowe sprawdzenie skrypt
 teksty źródeł są treściami cudzymi i nie trafiają do repozytorium (zasada z 09.10.2026).
 
 **Zakres:** `lib/cues` po scaleniu partii 1–2 (gałąź `wydanie-0.14`, commit `4fd7038`; bez zmian w `lib/cues` do `0186e07`): 102 ćwiczenia, 306 wskazówek, 230 źródeł w `lib/cues/data.json`.
-Stan bieżący liczby kart (pilnuje go `tests/audit-k1-bl-mer.test.tsx`, MER2-09): `data.json`: 168 ćwiczeń bazowych (razem z kartami ukrytymi po recenzji treści; 102 + 30 kart P1 mobilności z 02.11.2026 + 36 kart P2 mocy z 03.11.2026).
+Stan bieżący liczby kart (pilnuje go `tests/audit-k1-bl-mer.test.tsx`, MER2-09): `data.json`: 218 ćwiczeń bazowych (razem z kartami ukrytymi po recenzji treści; 102 + 30 kart P1 mobilności z 02.11.2026 + 36 kart P2 mocy z 03.11.2026 + 23 karty T1 delt_raise z 04.11.2026 + 5 kart T1 delt_raise na źródłach typu strona aplikacji z 04.11.2026 + 22 karty T1 triceps z 04.11.2026).
 Teksty EN (`lib/cues/text/en.json`) — 306 zdań (każda wskazówka to jedno zdanie). Teksty PL nie mają z czym się równać:
 żadne z 230 źródeł nie jest polskie, a PL to własne sformułowania, nie tłumaczenie źródła. Pozostałe języki tłumaczymy z EN/PL, nie ze źródeł.
 
@@ -599,3 +599,14 @@ Decyzja właściciela 27.10.2026 (docs/18): do 1.0 wiersz „Pełna wersja”, d
 | Z-02 lokalizacja | `tests/lokalizacja-1-0-1.test.ts` | języki, regresja | zielone; E2E Maestro: brak (zmiany tylko tekstów) |
 | Standing Gastrocnemius Calf Stretch (wariant na stopniu), przypis `calf.step` | `tests/gastro-calf-stretch-1-0-1.test.ts`, `tests/zrodlo-jedno.test.ts` (licznik 214) | dane, języki, niezmienniki, regresja | zielone; E2E Maestro: brak powodu (zestaw ogólny bez figury nie ma ekranu — pokaże się po figurze v2 i recenzji niezależnej) |
 | Pendlay Row: figura v1 (start z podłogi, tułów nieruchomy) i karta pendlay.* | `tests/figury-pendlay.test.ts` (15) | niezmienniki, dane, języki, regresja | zielone; figura ukryta do recenzji niezależnej; E2E Maestro: po 1.0 (sekcja „Technika” po recenzji) |
+
+## 04.11.2026 — spójność karty z rysunkiem (decyzja właściciela, docs/18; gałąź `figury/spojnosc-karta-rysunek`)
+| Pozycja | Testy | Rodzaje (docs/20) | Stan |
+|---|---|---|---|
+| Strażnik: reguła rysunku ze zdaniem (pewność „ustalone”) ma to zdanie na karcie wariantu | `tests/spojnosc-karta-rysunek.test.ts` (4: zakres i liczby, brak luk, wyjątki prawdziwe i z powodem, wykrycie symulowanej luki); zakres w jednym miejscu: `tests/spojnosc-karta-rysunek.json` (`rodziny`) | dane, niezmienniki, regresja, macierz (5 rodzin) | zielone |
+| Zdania wariantu w danych reguł (`cue_wariant`, 36 wpisów „zdanie nie pasuje do wariantu”) i równoważniki (`cue_dodatkowe`) | `tests/spojnosc-karta-rysunek.test.ts` (cue: null wymaga powodu; id z `cue_wariant` musi być na karcie) | dane, niezmienniki | zielone |
+| Luki dopisane do zestawów ogólnych (sq.depth, sq.down, sq.mis.heels, dl.feet, gm.depth, bp.elbowsMid, pu.partial, pu.grip) | `tests/spojnosc-karta-rysunek.test.ts`, `tests/karty-recenzja.test.tsx` (zestawy zmienione czekają na recenzję: `tests/recenzja-wyjatki-1-1.json`), `check:zrodla-runtime` (źródła zdań w `wskazowki-ogolne.json`) | dane, regresja | zielone; recenzja niezależna (L-047) — koordynator |
+| L-080 („gałąź z wcześniejszymi zmianami względem main”) | **nie dotyczy**: strażnik jest zwykłym testem danych (czyta dane w katalogu roboczym: cue-sets.json, cues.json, figury-sens.json; nie zależy od stanu gałęzi, historii git ani od haków/verify), więc nie jest strażnikiem procesu w rozumieniu CLAUDE.md | — | powód zapisany |
+| E2E Maestro | brak powodu: zmiana treści zestawów ogólnych i strażnik danych; ekran „Technika” bez nowych elementów; zestawy zmienione są ukryte do recenzji | — | — |
+| BRD | bez zmiany: żadnego nowego wymagania ani reguły RD — uzupełnione zdania kart i strażnik testowy; zachowanie aplikacji bez zmian poza brzmieniem kart | — | — |
+| Karty własne bench (bp.elbowsMid na 4 kartach) i Chin Up (pu.pull) | wyjątki w `tests/spojnosc-karta-rysunek.json` (z powodem; zapadka: wyjątek musi być prawdziwy) | dane, niezmienniki | zdania NIE dopisane: zmiana karty własnej chowa ją i jej figurę v1 do recenzji niezależnej (sprawdzone: 8 zestawów testów czerwonych); poprawka bench gotowa jako patch u koordynatora |

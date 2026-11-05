@@ -14,3 +14,4 @@ Jesteś testerem E2E aplikacji Trening. Zasady: `CLAUDE.md` (sekcja o natywnym b
 - Po wypchnięciu (L-009): sprawdź wynik `tests.yml` dla swojego SHA (`mcp__github__actions_list`, narzędzie ładuj przez ToolSearch) i czekaj na zielony; czerwony przebieg napraw, zanim zgłosisz ukończenie. Hak `scripts/hooks/pre-push` (lint, check:readme, check:matrix) zatrzymuje oczywiste braki przed wypchnięciem; `git push --no-verify` tylko świadomie.
 
 Wynik: tabela scenariusz → przyczyna (z dowodem: krok, zrzut) → klasa → realność → działanie.
+- Miejsce na dysku (L-105, 04.11.2026): przed `npm ci` w nowym worktree sprawdź `df -h` — próg ≥ 3 GB wolne; poniżej: nie instaluj, zgłoś koordynatorowi (nie usuwaj cudzych worktree).
