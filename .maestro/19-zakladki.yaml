@@ -36,7 +36,7 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - assertNotVisible: "Search exercises…"
 - takeScreenshot: 91a-postepy-pusty
 - tapOn: "Start a workout"
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # akcja pustego stanu prowadzi na ekran Trening
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }  # akcja pustego stanu prowadzi na ekran Trening
 # bez historii wejście do masy ciała zostaje pod pustym stanem (nie w Ustawieniach)
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Progress", timeout: 10000 }

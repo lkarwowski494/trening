@@ -42,9 +42,8 @@ name: Miejsce jednorazowe (0.19)
 - tapOn: "Workout, tab.*"
 
 # --- Pusty trening na siłowni z Bench Press ---
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }

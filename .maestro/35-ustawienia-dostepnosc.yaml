@@ -19,8 +19,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - assertVisible: "Plan, tab, 2 of 4"
 - assertVisible: "Progress, tab, 3 of 4"
 - assertVisible: "More, tab, 4 of 4"
-- assertVisible: "Empty workout"
-- assertVisible: "Other workout"
+- assertVisible: "Start your first workout"
+- assertNotVisible: "Other workout"  # 05.11.2026: nowa osoba bez innych sposobów startu — przycisku „Inny trening” nie ma
 - assertNotVisible: { id: "whats-new-i" }  # 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
@@ -101,8 +101,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Back"
 # --- skutki ustawień w treningu: widok „Lista”, kolumna RIR, przerwa 0:45, kg ---
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Empty workout", timeout: 30000 }
-- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }

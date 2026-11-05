@@ -22,7 +22,9 @@ const v2 = figures.v2 as string[];
 /** Stary scenariusz z f77db9b (kroki rysunku Pull-Up twarde). */
 const stary = (): Cmd[] => {
   const d = mkdtempSync(join(tmpdir(), 'm57-')); const p = join(d, FILE);
-  writeFileSync(p, execFileSync('git', ['show', `f77db9b:.maestro/${FILE}`], { cwd: join(__dirname, '..') }));
+  /* 05.11.2026 (ekran nowej osoby 1.1): po świeżym starcie ekran główny nie ma „Inny trening” — gotowość znaczy „Start your first workout”; tylko ta jedna zmiana czekania, reszta kroków starego 57 bez zmian */
+  const tekst = execFileSync('git', ['show', `f77db9b:.maestro/${FILE}`], { cwd: join(__dirname, '..') }).toString().replace('visible: "Other workout"', 'visible: "Start your first workout"');
+  writeFileSync(p, tekst);
   return load(p);
 };
 const nowy = (): Cmd[] => load(join(DIR, FILE));

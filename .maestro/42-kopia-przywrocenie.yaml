@@ -43,7 +43,7 @@ name: Eksperyment — przywrócenie danych z pliku kopii
 - tapOn: { text: "Erase", below: "Erase all data\\?" }
 - tapOn: "Back"
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "First steps", timeout: 30000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
 - takeScreenshot: 121-po-wyczyszczeniu
 # --- import kopii z pliku (okno wyboru plików iOS) ---
 - tapOn: "More, tab.*"

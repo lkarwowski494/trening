@@ -201,6 +201,6 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - extendedWaitUntil: { notVisible: "Erase all data\\?", timeout: 30000 }
 - tapOn: "Back"
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "First steps", timeout: 30000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
 - assertNotVisible: "This week"
 - takeScreenshot: 99-po-wyczyszczeniu

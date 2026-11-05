@@ -45,7 +45,7 @@ name: Zapowiedzi głosowe — ustawienia
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
