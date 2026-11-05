@@ -176,6 +176,5 @@
  "Skok": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden skok (plyometria: skok obunóż, jednonóż, w bok, na skrzynię); jedyna faza, bez sekund",
  "Rzut": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden rzut piłką lekarską (rzut, uderzenie o podłogę, Wall Ball); jedyna faza, bez sekund",
  "Pierwszy trening": "nagłówek tablicy „Pierwszy trening” na ekranie głównym nowej osoby (granatowa tablica z datą, wersaliki wg języka): „pierwszy” = jeszcze nie odbyty trening w aplikacji; krótki tytuł, NIE zdanie i NIE przycisk (przycisk to „Zacznij pierwszy trening”)",
- "trening": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu",
- "Pierwszy trening, dziś, {date}": "opis dla czytnika ekranu (VoiceOver) tablicy „Pierwszy trening”: „{date}” to pełna data z dniem tygodnia, np. „czwartek, 5 listopada”; krótkie wyliczenie po przecinkach, nie zdanie"
+ "trening": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu"
 }

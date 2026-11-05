@@ -154,7 +154,6 @@
  "do upadku": "lib/live.ts:82",
  "Do upadku (F)": "app/history/edit/[id].tsx:111, app/template/[id].tsx:184, components/WorkoutBlocks.tsx:135",
  "do uzupełnienia": "components/WorkoutBlocks.tsx:202",
- "do zrobienia": "dynamiczny (lista, etykieta albo dane w kodzie)",
  "Do: {day}": "components/DayPanel.tsx:155",
  "dociążenie: {v}": "components/EquipVisual.tsx:50",
  "dodaj ciężar": "components/LoadEditor.tsx:70",
