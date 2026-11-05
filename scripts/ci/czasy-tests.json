@@ -1,6 +1,12 @@
 {
   "_opis": "Pomiar czasu zadań tests.yml — JEDYNE źródło liczby części Jest (`czesci_jest`) i limitów `timeout-minutes` w tests.yml (pilnuje tests/tests-yml-czas.test.ts). Czas = completed_at − started_at zadania (API jobs przebiegu), minuty. Reguła limitu zadania: p95 (najbliższy rząd) próbki × zapas, w górę do kroku zaokrąglenia; dopóki próbka zadania ma mniej wpisów niż `minimalna_probka`, obowiązuje `limit_tymczasowy_min`. `przed_podzialem` — dawne jedno zadanie verify (audyt jakości 007, 01.11.2026; 12 przebiegów 31.10–01.11.2026, czas przebiegu = updated_at − created_at), zostaje jako punkt odniesienia dla pomiaru po podziale (ZB-029 T1, 31.10.2026). Nowy pomiar: przeliczyć z zadań przebiegu tests.yml i zaktualizować próbkę oraz limit w tests.yml.",
   "zapas": 1.25,
+  "prog_czasu_testu": 0.5,
+  "prog_czasu_testu_opis": "Strażnik czasu pojedynczego testu (05.11.2026, lekcja o tests/audit-k1-bl-mer.test.tsx w docs/40): przypadek trwający w CI dłużej niż ta część swojego limitu czasu (scripts/kontrola-czasu-testu.mjs, krok po Jest w każdej części tests.yml) jest odrzucany; wyjątki z powodem i planem: tests/czas-testu-wyjatki.json.",
+  "min_limit_kontroli_s": 60,
+  "min_limit_kontroli_s_opis": "Zakres strażnika czasu testu (05.11.2026 ~15:35 UTC, właściciel, wariant A): kontrola obejmuje tylko przypadki z limitem co najmniej tyle sekund. Powód: przebieg dowodowy 2 — przypadki z domyślnym limitem 5 s migały (2,7–3,2 s ↔ 0,9 s, wariancja runnerów); ryzyko z lekcji o tests/audit-k1-bl-mer.test.tsx to testy długie (526 s przy limicie 480 s). Odrzucone B: szersza histereza — nadal migałoby.",
+  "zapadka_margines": 0.8,
+  "zapadka_margines_opis": "Zapadka strażnika czasu testu (05.11.2026): wpis w tests/czas-testu-wyjatki.json jest zbędny (kontrola go odrzuca), gdy jego przypadek trwa najwyżej tę część progu `prog_czasu_testu` × limit. 0,8 — zostaje także przy zakresie ≥ 60 s: przypadek długi tuż nad progiem też migocze o ±20% obciążenia runnera (np. 240 s ↔ 190 s), a wpis nie może spadać i wracać; przypadek tuż nad progiem migocze między przebiegami CI (±20% obciążenia maszyny), a wpis nie może spadać i wracać; 1 = każdy wpis w progu jest zbędny.",
   "krok_zaokraglenia_min": 5,
   "czesci_jest": 4,
   "zbiorcze_limit_min": 5,
