@@ -33,6 +33,40 @@ code { font-size: 12.5px; }
 <p class="uw">Treść w makietach krojem zastępczym Source Sans 3 (na iOS SF Pro); tytuły i liczby Barlow Condensed z <code>docs/design/fonty</code>. Tokeny 1:1 z <code>lib/tokens.ts</code>. Ramka przerywana = nowy tekst (do <code>lib/i18n</code> i 33 języków). [PRZYKŁAD] = wartość przykładowa (data, serie).</p>
 </div>
 
+<section class="wstep" style="max-width:none">
+<h2 style="margin-top:8px">C′. Spójny — nowa rekomendacja (po uwadze właściciela)</h2>
+<p style="max-width:1100px"><b>Uwaga właściciela (05.11.2026, dosłownie):</b> „Pamiętaj że my zmieniamy tylko pierwszy ekran dla nowego użytkownika - to ma być wow ale spójne z tym co zobaczy później”.
+A wprowadza figury, których potem na ekranie głównym nie ma; B dubluje pasek tygodnia; C był najbliżej. <b>C′</b> to ekran główny, który osoba będzie widzieć na co dzień (tytuł z ikonką, data, „Bez planu tygodnia”, pasek tygodnia, przycisk startu, „Inny trening”), z <b>jednym</b> nowym elementem: tablicą „Pierwszy trening”, czyli tą samą granatową tablicą z wielkimi cyframi, którą zobaczy w trakcie serii (BoardFace).</p>
+<p style="max-width:1100px"><b>Spójność krok po kroku:</b> nowa osoba → po pierwszym treningu tablica znika, w pasku pojawia się znak dnia, a pod spodem „Ten tydzień” (wszystko inne zostaje na swoim miejscu) → w trakcie treningu ta sama tablica, tym razem z ciężarem i powtórzeniami.</p>
+<div class="siatka" style="grid-template-columns:repeat(3,400px)">
+<div class="kol rek"><h3 style="margin-top:0">1. Nowa osoba (C′)</h3><iframe class="ramka" name="r1" title="C′ nowa osoba" src="kierunki/start-1-1-r3-spojny.html?ekran=nowa"></iframe>
+<div class="prz"><a target="r1" href="kierunki/start-1-1-r3-spojny.html?ekran=nowa">Ruch</a><a target="r1" href="kierunki/start-1-1-r3-spojny.html?ekran=nowa-ogranicz-ruch">Ogranicz ruch</a><a target="r1" href="kierunki/start-1-1-r3-spojny.html?ekran=nowa-kontrast">Zwiększ kontrast</a><a target="r1" href="kierunki/start-1-1-r3-spojny.html?ekran=nowa&amp;motyw=light">Jasny</a><a href="kierunki/start-1-1-r3-spojny.html">Wszystkie stany</a></div></div>
+<div class="kol"><h3 style="margin-top:0">2. Po pierwszym treningu (zwykły ekran główny)</h3><iframe class="ramka" name="r2" title="Po pierwszym treningu" src="kierunki/start-1-1-r3-spojny.html?ekran=po-treningu"></iframe>
+<div class="prz"><a target="r2" href="kierunki/start-1-1-r3-spojny.html?ekran=po-treningu&amp;motyw=light">Jasny</a></div></div>
+<div class="kol"><h3 style="margin-top:0">3. W trakcie treningu (tablica)</h3><iframe class="ramka" name="r3" title="W trakcie treningu" src="kierunki/start-1-1-r3-spojny.html?ekran=w-treningu"></iframe>
+<div class="prz"><a target="r3" href="kierunki/start-1-1-r3-spojny.html?ekran=w-treningu&amp;motyw=light">Jasny</a></div></div>
+</div>
+<div style="display:flex;gap:16px;align-items:flex-start;margin-top:16px;flex-wrap:wrap">
+<figure style="margin:0"><img style="width:260px;display:block" src="start-1-1-r2/zrzuty/start-1-1-r3-spojny-nowa-390-light.png" alt="C′ jasny"><figcaption class="uw">jasny, 390 pt</figcaption></figure>
+<figure style="margin:0"><img style="width:214px;display:block" src="start-1-1-r2/zrzuty/start-1-1-r3-spojny-nowa-320-dark.png" alt="C′ 320 pt"><figcaption class="uw">320 pt</figcaption></figure>
+<figure style="margin:0"><img style="width:260px;display:block" src="start-1-1-r2/zrzuty/start-1-1-r3-spojny-nowa-390-dark-ax5.png" alt="C′ AX5"><figcaption class="uw">AX5 (tekst ok. 310%, DEC-10: opisy do 200%)</figcaption></figure>
+<figure style="margin:0"><video style="width:214px;display:block" src="start-1-1-r2/ruch/c2-spojny.webm" controls muted loop playsinline></video><figcaption class="uw">nagranie ruchu, 390 pt</figcaption></figure>
+<figure style="margin:0"><img style="width:640px;display:block" src="start-1-1-r2/ruch/c2-spojny.png" alt="Klatki ruchu C′"><figcaption class="uw">klatki: 150 / 400 / 650 / 1000 ms</figcaption></figure>
+</div>
+<table>
+<tr><th>Pole</th><th>C′ spójny</th></tr>
+<tr><td>Co robi wrażenie w 1. sekundzie</td><td>Granatowa tablica z wielką klapką, która przewraca się na „1”, a klapki daty przelatują kaskadą (ok. 0,7 s, raz przy wejściu). To ten sam przedmiot, który za chwilę pokaże ciężar i powtórzenia.</td></tr>
+<tr><td>Kolejność</td><td><b>Pasek tygodnia nad tablicą</b>: pasek stoi tam, gdzie będzie zawsze, więc po pierwszym treningu nic nie skacze — znika tylko tablica. Tablica tuż nad przyciskiem startu, jak w treningu (tablica, pod nią „Seria zrobiona”). Druga opcja: tablica nad paskiem (mocniejsze „wow” u góry, ale po pierwszym treningu pasek przeskoczy w górę).</td></tr>
+<tr><td>Prawdziwe dane</td><td>data, dzień tygodnia, bieżący tydzień; „1” = liczba zapisanych treningów + 1 (historia). Po treningu: znak dnia w pasku i „Ten tydzień” jak dziś.</td></tr>
+<tr><td>Tokeny</td><td>bez nowych tokenów: <code>board</code>, <code>boardEdge</code>, <code>RADIUS.board</code> 8, <code>boardName</code>, <code>boardMeta</code>, cyfra w <code>TYPE.boardClock</code> 112 pt (rola stała), pola jak pola serii (<code>SIZE.boardFieldMin</code> 44), <code>MOTION.boardFlipMs</code>; Ogranicz ruch — przenikanie <code>MOTION.reducedCrossfadeMs</code> 150.</td></tr>
+<tr><td>Zmienia decyzje</td><td>08.10.2026 „lista Pierwsze kroki” (<code>docs/18-archiwum-do-11.10.md:148</code>) i P4 A (<code>docs/18-archiwum-do-30.10.md:64</code>) → wiersze „Kiedy zechcesz” w miejscu „Ten tydzień”; reguła kodu „pasek tygodnia tylko z planem albo historią” (<code>components/TodayPlan.tsx:35</code>) → pasek od pierwszego dnia; tekst startu nowej osoby. Układ B, motyw A2 i intro bez zmian.</td></tr>
+<tr><td>Koszt (czas agenta)</td><td>ok. 4–5 h: komponent tablicy nowej osoby (na bazie BoardFace), klapki, pasek bez warunku, 3 nowe teksty × 33 języki, testy ekranu, macierzy i Maestro.</td></tr>
+<tr><td>Ryzyka</td><td>Dostępność: klapki ukryte dla VoiceOver, etykieta „Pierwszy trening. Czwartek, 5 listopada.”. Wydajność: kilkanaście podmian znaku przez ok. 0,7 s, jednorazowo. Przekład: skróty dnia i miesiąca na klapkach z Intl; w alfabetach bez Barlow (cyrylica, greka, CJK) litery krojem zastępczym systemu, a cyfry zostają w Barlow.</td></tr>
+<tr><td>Poprawione usterki C</td><td>wielka cyfra nie przelatuje już przez przypadkowe liczby (pusta klapka → „1”, bez fałszywych danych); przy 320 pt nic nie wychodzi za ekran (pola klapek w siatce 3 kolumn, napisy zawijane); tytuł tablicy w kolorze <code>boardText</code>.</td></tr>
+</table>
+<p class="uw">Niżej runda 2 bez zmian: A, B, C — jako materiał porównawczy.</p>
+</section>
+
 <div class="siatka">
 <section class="kol"><h2>Dziś (AS IS)</h2>
 <img class="obraz" src="start-1-1/zrzuty/as-is-1-01-start.png" alt="Obecny ekran Trening nowej osoby: tytuł, przycisk Pusty trening, karta Pierwsze kroki z czterema krokami">
@@ -40,7 +74,7 @@ code { font-size: 12.5px; }
 <dt>Porażki przejścia</dt><dd>krok 1 („bez szablonu nie zacznę”) i krok 7 (lista znika bez domknięcia).</dd>
 <dt>Opcja „zostawić”</dt><dd>Zero kosztu; ekran dalej bez tożsamości aplikacji (ST-03).</dd></dl></section>
 
-<section class="kol rek"><h2>A. Żywa biblioteka — rekomendacja</h2>
+<section class="kol"><h2>A. Żywa biblioteka</h2>
 <iframe class="ramka" name="ra" title="Makieta A" src="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa"></iframe>
 <div class="prz"><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa">Ruch</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa-ogranicz-ruch">Ogranicz ruch</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa-kontrast">Zwiększ kontrast</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=po-treningu">Po 1. treningu</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa&amp;motyw=light">Jasny</a><a href="kierunki/start-1-1-r2-biblioteka.html">Wszystkie stany</a></div>
 <dl><dt>Idea</dt><dd>Pół ekranu to granatowa tablica, na której prawdziwa figura z biblioteki robi ruch; co pętlę tablica przewraca się klapką na kolejne ćwiczenie.</dd>
@@ -77,13 +111,13 @@ code { font-size: 12.5px; }
 <img class="pasek" src="start-1-1-r2/ruch/c-klapki.png" alt="Klatki ruchu C"><video class="pasek" src="start-1-1-r2/ruch/c-klapki.webm" controls muted loop playsinline></video></section>
 </div>
 
-<h2>Rekomendacja: A „Żywa biblioteka”</h2>
+<h2>Rekomendacja rundy 2 przed uwagą właściciela: A „Żywa biblioteka” (zastąpiona przez C′ wyżej)</h2>
 <p class="wstep">Z funkcji, nie z gustu: nowa osoba po instalacji chce sprawdzić, czy aplikacja jest dla niej, i zacząć. A jako jedyny kierunek pokazuje w pierwszej sekundzie <b>prawdziwą wartość aplikacji</b> (ruch ćwiczeń z recenzją, 132 ćwiczenia), działa przy każdym otwarciu, nie tylko przy zimnym starcie (B), i nie traci siły po kilku tygodniach (C). Prowadzi też prosto do treści: „Karta ćwiczenia” i „Zacznij pierwszy trening”. Po pierwszym treningu scena pokazuje Twoje ćwiczenie i Twoje serie — domknięcie ST-07 na tej samej powierzchni. Szybki test (opcjonalnie, ok. 1 h czasu właściciela): test pięciosekundowy z 5 osobami, trzy żywe makiety z tej strony.</p>
 
 <h2>Decyzje dla właściciela (każda z opcją „zostawić”)</h2>
 <table>
 <tr><th>#</th><th>Decyzja</th><th>Opcje (rekomendacja <b>pogrubiona</b>)</th></tr>
-<tr><td>D1</td><td>Kierunek ekranu nowej osoby</td><td><b>(a) A Żywa biblioteka</b> · (b) B Gryf zostaje · (c) C Tablica klapkowa · (d) połączenie, np. intro z B prowadzi w scenę A · (e) zostawić dzisiejszy ekran</td></tr>
+<tr><td>D1</td><td>Kierunek ekranu nowej osoby</td><td><b>(a) C′ Spójny</b> · (a′) A Żywa biblioteka · (b) B Gryf zostaje · (c) C Tablica klapkowa · (d) połączenie, np. intro z B prowadzi w scenę A · (e) zostawić dzisiejszy ekran</td></tr>
 <tr><td>D2</td><td>Lista „Pierwsze kroki” (08.10.2026, P4 A)</td><td><b>(a) lista „Kiedy zechcesz” z wierszami „›” pod sceną</b> · (b) zostawić kartę z przyciskami pod sceną (ekran dłuższy, dwa punkty skupienia) · (c) kroki do Przewodnika, na starcie tylko scena i start</td></tr>
 <tr><td>D3</td><td>Tekst przycisku startu nowej osoby</td><td><b>(a) „Zacznij pierwszy trening” + „ćwiczenia dodasz w trakcie”</b> · (b) zostawić „Pusty trening”</td></tr>
 <tr><td>D4</td><td>Scena po pierwszych treningach (dotyczy A)</td><td><b>(a) Twoje ostatnie ćwiczenie i serie, bez pętli między ćwiczeniami</b> · (b) dalej przegląd biblioteki · (c) scena znika, wraca dzisiejszy układ z tablicą „Dziś”</td></tr>
