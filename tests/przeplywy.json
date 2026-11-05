@@ -69,7 +69,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„Pusty trening” → „+ Dodaj ćwiczenie” → wyszukaj → wybierz",
+    "„Zacznij pierwszy trening” (pusty trening) → „+ Dodaj ćwiczenie” → wyszukaj → wybierz",
     "Wpisz ciężar i powtórzenia, odhacz serię",
     "Zakończ → potwierdź → ekran sesji"
    ],
@@ -81,7 +81,7 @@
    ],
    "scenariusz": "04-plank-stoper.yaml",
    "znaczniki": [
-    "Empty workout",
+    "start-main",
     "Search exercises"
    ]
   },
@@ -265,7 +265,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„Pusty trening” → bez odhaczania serii stuknij „Zakończ”",
+    "„Zacznij pierwszy trening” (pusty trening) → bez odhaczania serii stuknij „Zakończ”",
     "Okno „Brak odhaczonych serii: Nic do zapisania. Odrzucić ten trening?”",
     "„Anuluj” zostaje w treningu; „Odrzuć trening” wraca na ekran Trening bez sesji"
    ],
