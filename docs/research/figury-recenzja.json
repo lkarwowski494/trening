@@ -641,64 +641,186 @@
   },
   "v2": {
     "squat": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista olympic (scalenie integracja-1-1 do figury/olympic @ 23f1579a; zmiany plików wspólnych: figure.ts, overheadException.ts, poseData.ts, families.ts)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, 05.11.2026; wcześniej: audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
       "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "ea71e4cef9b5",
+      "sha": "855f7f1ea076",
       "liczba": 25,
-      "uwagi": "Różnica po scaleniu spójności: squatKneeLimb w Overhead Squat (łuk kolana 0→128°) i One-Arm Overhead Kettlebell Squat (0→113°) — zostaje, bez kolizji z ciężarem nad głową, reguła zejscie_biodra_i_kolana w _przysiad. thighParallel w 16 przysiadach — zostaje (udo na dole od −8,6° do 14,7°; Hack Squat 14,7° na granicy, Sumo Squat 22° w rzucie = 4,5° w 3D); nowa poza sq.mis.heels (Barbell Hack Squat, One-Arm OH KB Squat) — zostaje, 0 kolizji. S1 (linie odniesienia bez bramki reguły „ustalone” wariantu; udo_rownolegle = analogia poza sztangą na plecach / bez obciążenia) — ŚREDNIE, odłożone do 1.1 (docs/18). Wcześniej (2R): squatKneeLimb, backLine czerwona przy mis.roundBack, kneeToe czerwona przy sq.mis.kneesIn. Skrót zmienia się przez fix4 (overlay.ts, reguly-cwiczen.json, dobór w skrócie)."
+      "uwagi": "Różnica 05.11.2026 (recenzja niezależna, audytor; figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, czyste kopie git archive): skrót ea71e4cef9b5 → 855f7f1ea076 wyłącznie przez pliki wspólne V2 zmienione na gałęzi olympic (figure.ts: V2_WSTRZYMANE tylko Clean Shrug i Snatch Shrug; overheadException.ts: 13 ćwiczeń olympic w keys/przejscie, używane tylko w walidatorze contract.ts:422–423; poseData.ts: LOAD i DATA_UI olympic; families.ts: olympic ready). md5 ruchu (/home/user/stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf) równy 132/132 ćwiczeń squat/bench_press/hinge/curl/pull_up; linie i nakładka (guideShapes, overlayShapes; u co 1/8, każdy błąd, dobór z surowych kart) równe 132/132; dobór po kartach (doborPoKluczach: guidesFor, techniquesFor, errorsOf) równy we wszystkich rodzinach poza olympic. Werdykt przeniesiony bez ponownej recenzji ruchu. Wcześniej: Różnica po scaleniu spójności: squatKneeLimb w Overhead Squat (łuk kolana 0→128°) i One-Arm Overhead Kettlebell Squat (0→113°) — zostaje, bez kolizji z ciężarem nad głową, reguła zejscie_biodra_i_kolana w _przysiad. thighParallel w 16 przysiadach — zostaje (udo na dole od −8,6° do 14,7°; Hack Squat 14,7° na granicy, Sumo Squat 22° w rzucie = 4,5° w 3D); nowa poza sq.mis.heels (Barbell Hack Squat, One-Arm OH KB Squat) — zostaje, 0 kolizji. S1 (linie odniesienia bez bramki reguły „ustalone” wariantu; udo_rownolegle = analogia poza sztangą na plecach / bez obciążenia) — ŚREDNIE, odłożone do 1.1 (docs/18). Wcześniej (2R): squatKneeLimb, backLine czerwona przy mis.roundBack, kneeToe czerwona przy sq.mis.kneesIn. Skrót zmienia się przez fix4 (overlay.ts, reguly-cwiczen.json, dobór w skrócie)."
     },
     "bench_press": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista olympic (scalenie integracja-1-1 do figury/olympic @ 23f1579a; zmiany plików wspólnych: figure.ts, overheadException.ts, poseData.ts, families.ts)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, 05.11.2026; wcześniej: audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
       "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "c5b633c4e8a9",
+      "sha": "25bc1d569a23",
       "liczba": 30,
-      "uwagi": "Różnica po scaleniu spójności: benchShoulderAbduction (bp.elbowsMid, lokcie_nie_szeroko ≤ 75°) w 10 ćwiczeniach (Bench Press sztanga/hantle, Incline sztanga/hantle, Wide-Grip, One Arm DB, Band, Board, Pin, Smith Incline) — zostaje: odwiedzenie na dole 32–55°, łuk na ramieniu R (One Arm DB: ramię z hantlem), 0 kształtów czerwonych (bp.mis.arch = grupa „lawka”). Znany artefakt góry ruchu 80–85° i mały łuk (N2/N3 r2, backlog); w Band Bench Press linia gumy przecina element (kosmetyka). Wcześniej (2R): bez zmian ruchu, linii i nakładki. Skrót zmienia się przez fix4."
+      "uwagi": "Różnica 05.11.2026 (recenzja niezależna, audytor; figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, czyste kopie git archive): skrót c5b633c4e8a9 → 25bc1d569a23 wyłącznie przez pliki wspólne V2 zmienione na gałęzi olympic (figure.ts: V2_WSTRZYMANE tylko Clean Shrug i Snatch Shrug; overheadException.ts: 13 ćwiczeń olympic w keys/przejscie, używane tylko w walidatorze contract.ts:422–423; poseData.ts: LOAD i DATA_UI olympic; families.ts: olympic ready). md5 ruchu (/home/user/stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf) równy 132/132 ćwiczeń squat/bench_press/hinge/curl/pull_up; linie i nakładka (guideShapes, overlayShapes; u co 1/8, każdy błąd, dobór z surowych kart) równe 132/132; dobór po kartach (doborPoKluczach: guidesFor, techniquesFor, errorsOf) równy we wszystkich rodzinach poza olympic. Werdykt przeniesiony bez ponownej recenzji ruchu. Wcześniej: Różnica po scaleniu spójności: benchShoulderAbduction (bp.elbowsMid, lokcie_nie_szeroko ≤ 75°) w 10 ćwiczeniach (Bench Press sztanga/hantle, Incline sztanga/hantle, Wide-Grip, One Arm DB, Band, Board, Pin, Smith Incline) — zostaje: odwiedzenie na dole 32–55°, łuk na ramieniu R (One Arm DB: ramię z hantlem), 0 kształtów czerwonych (bp.mis.arch = grupa „lawka”). Znany artefakt góry ruchu 80–85° i mały łuk (N2/N3 r2, backlog); w Band Bench Press linia gumy przecina element (kosmetyka). Wcześniej (2R): bez zmian ruchu, linii i nakładki. Skrót zmienia się przez fix4."
     },
     "hinge": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista olympic (scalenie integracja-1-1 do figury/olympic @ 23f1579a; zmiany plików wspólnych: figure.ts, overheadException.ts, poseData.ts, families.ts)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, 05.11.2026; wcześniej: audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
       "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "e3920524c668",
+      "sha": "cb535fbface9",
       "liczba": 32,
-      "uwagi": "R1 zamknięte (fix4, A′): element nakładki tylko z regułą „ustalone” wariantu (lib/figures/v2/reguly-cwiczen.json z regulyDla); Single Leg RDL (hantel, linki) bez hingeUprightRef (wyprost_na_gorze poza _rdl_jednonoz; odpowiednik jednonóż — analogia; na szczycie tułów 15,0°/11,2°). hingeUprightRef zostaje w Stiff-Legged (bark 9,3 cm przed pionem na szczycie, 10,7°), Smith Stiff-Legged (11,7 cm, 10,1°), Single Arm RDL (2,8 cm, 4,6°). plumbMidfoot w 7 martwych ciągach (Axle, Clean, Bands, Chains, Deficit, Reverse Band, Snatch) — zostaje (gryf 0,8–3,3 cm od linii); N1: Reverse Band Deadlift — trzy piony w ok. 10 cm (NISKIE, backlog); S1 (plumbMidfoot bez reguły) — odłożone do 1.1. Uwaga do wpisu r1: w RDL bark na szczycie leży 9–11 cm przed pionem (nie 0–4 cm), w tolerancji reguły (≤ 15°). Wcześniej (2R): backLine czerwona przy mis.roundBack."
+      "uwagi": "Różnica 05.11.2026 (recenzja niezależna, audytor; figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, czyste kopie git archive): skrót e3920524c668 → cb535fbface9 wyłącznie przez pliki wspólne V2 zmienione na gałęzi olympic (figure.ts: V2_WSTRZYMANE tylko Clean Shrug i Snatch Shrug; overheadException.ts: 13 ćwiczeń olympic w keys/przejscie, używane tylko w walidatorze contract.ts:422–423; poseData.ts: LOAD i DATA_UI olympic; families.ts: olympic ready). md5 ruchu (/home/user/stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf) równy 132/132 ćwiczeń squat/bench_press/hinge/curl/pull_up; linie i nakładka (guideShapes, overlayShapes; u co 1/8, każdy błąd, dobór z surowych kart) równe 132/132; dobór po kartach (doborPoKluczach: guidesFor, techniquesFor, errorsOf) równy we wszystkich rodzinach poza olympic. Werdykt przeniesiony bez ponownej recenzji ruchu. Wcześniej: R1 zamknięte (fix4, A′): element nakładki tylko z regułą „ustalone” wariantu (lib/figures/v2/reguly-cwiczen.json z regulyDla); Single Leg RDL (hantel, linki) bez hingeUprightRef (wyprost_na_gorze poza _rdl_jednonoz; odpowiednik jednonóż — analogia; na szczycie tułów 15,0°/11,2°). hingeUprightRef zostaje w Stiff-Legged (bark 9,3 cm przed pionem na szczycie, 10,7°), Smith Stiff-Legged (11,7 cm, 10,1°), Single Arm RDL (2,8 cm, 4,6°). plumbMidfoot w 7 martwych ciągach (Axle, Clean, Bands, Chains, Deficit, Reverse Band, Snatch) — zostaje (gryf 0,8–3,3 cm od linii); N1: Reverse Band Deadlift — trzy piony w ok. 10 cm (NISKIE, backlog); S1 (plumbMidfoot bez reguły) — odłożone do 1.1. Uwaga do wpisu r1: w RDL bark na szczycie leży 9–11 cm przed pionem (nie 0–4 cm), w tolerancji reguły (≤ 15°). Wcześniej (2R): backLine czerwona przy mis.roundBack."
     },
     "pull_up": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista olympic (scalenie integracja-1-1 do figury/olympic @ 23f1579a; zmiany plików wspólnych: figure.ts, overheadException.ts, poseData.ts, families.ts)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, 05.11.2026; wcześniej: audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
       "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "f553872e02af",
+      "sha": "2f2ae15ced62",
       "liczba": 13,
-      "uwagi": "Bez zmian rysunku po scaleniu spójności i fix4 (dobór równy; ruch równy). Filtr A′ przepuszcza pewność mieszaną („ustalone (…; Pull Up, Chin Up); analogia (pozostałe)”, /^ustalone/) — pullPlumbRef ograniczają dalej `exercises`; pullChinBarRef rysuje się w Pull Up i Neutral Grip Pull Up (jak w 2R, „część wspólna” — bez zmiany). Skrót zmienia się przez wspólne moduły i dobór w skrócie. Wcześniej (2R): W2 zamknięte: pullPlumbRef tylko Pull Up i Chin Up (TechniqueDef.exercises; reguła „ustalone” dla tych odmian). Skutek: czerwony pion „bujanie” nie zapala się w żadnym ćwiczeniu (Pull Up i Chin Up nie mają pozy pu.noSwing; 6 odmian z tą pozą nie ma elementu) — brak fałszywego twierdzenia, błąd wskazuje znacznik ✕. S3 zamknięte: elementy tylko z boku. Czerwony poziom drążka przy pu.partial (Pull Up, Neutral Grip Pull Up). Z boku pion pod drążkiem leży na słupku stojaka (zielony na szarym, czytelny)."
+      "uwagi": "Różnica 05.11.2026 (recenzja niezależna, audytor; figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, czyste kopie git archive): skrót f553872e02af → 2f2ae15ced62 wyłącznie przez pliki wspólne V2 zmienione na gałęzi olympic (figure.ts: V2_WSTRZYMANE tylko Clean Shrug i Snatch Shrug; overheadException.ts: 13 ćwiczeń olympic w keys/przejscie, używane tylko w walidatorze contract.ts:422–423; poseData.ts: LOAD i DATA_UI olympic; families.ts: olympic ready). md5 ruchu (/home/user/stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf) równy 132/132 ćwiczeń squat/bench_press/hinge/curl/pull_up; linie i nakładka (guideShapes, overlayShapes; u co 1/8, każdy błąd, dobór z surowych kart) równe 132/132; dobór po kartach (doborPoKluczach: guidesFor, techniquesFor, errorsOf) równy we wszystkich rodzinach poza olympic. Werdykt przeniesiony bez ponownej recenzji ruchu. Wcześniej: Bez zmian rysunku po scaleniu spójności i fix4 (dobór równy; ruch równy). Filtr A′ przepuszcza pewność mieszaną („ustalone (…; Pull Up, Chin Up); analogia (pozostałe)”, /^ustalone/) — pullPlumbRef ograniczają dalej `exercises`; pullChinBarRef rysuje się w Pull Up i Neutral Grip Pull Up (jak w 2R, „część wspólna” — bez zmiany). Skrót zmienia się przez wspólne moduły i dobór w skrócie. Wcześniej (2R): W2 zamknięte: pullPlumbRef tylko Pull Up i Chin Up (TechniqueDef.exercises; reguła „ustalone” dla tych odmian). Skutek: czerwony pion „bujanie” nie zapala się w żadnym ćwiczeniu (Pull Up i Chin Up nie mają pozy pu.noSwing; 6 odmian z tą pozą nie ma elementu) — brak fałszywego twierdzenia, błąd wskazuje znacznik ✕. S3 zamknięte: elementy tylko z boku. Czerwony poziom drążka przy pu.partial (Pull Up, Neutral Grip Pull Up). Z boku pion pod drążkiem leży na słupku stojaka (zielony na szarym, czytelny)."
     },
     "curl": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista olympic (scalenie integracja-1-1 do figury/olympic @ 23f1579a; zmiany plików wspólnych: figure.ts, overheadException.ts, poseData.ts, families.ts)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, 05.11.2026; wcześniej: audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
       "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "9eac38ed8070",
+      "sha": "820aababfaea",
       "liczba": 36,
-      "uwagi": "Bez zmian rysunku po scaleniu spójności i fix4 (dobór i ruch równe dla wszystkich ćwiczeń rodziny z rysunkiem). Skrót zmienia się tylko przez wspólne moduły i dobór w skrócie (fix4 R2). Wcześniej (2R): W1 zamknięte: curlTrunkRef usunięty (zdanie curl.noSwing zostaje na karcie bez elementu i nie jest czytane w „Na rysunku”), curlElbowPlumb od barku do wysokości miednicy (RefSpec.until), nie schodzi pod podłogę. Przy curl.mis.elbows czerwony pion widoczny na wysokości łokcia (test + zrzut Barbell_Curl blad0); kolor błędu zapala się w 14 ćwiczeniach. Brak par linii w jednym miejscu (sameSpot, 3654 kadry curl+pull_up). W pozie poprawnej linia ramienia leży blisko pionu (min. 3°, Cable Curl) — to obraz poprawnej techniki, nie konflikt."
+      "uwagi": "Różnica 05.11.2026 (recenzja niezależna, audytor; figury/olympic @ 23f1579a vs origin/integracja-1-1 @ 9ff9a3fe, czyste kopie git archive): skrót 9eac38ed8070 → 820aababfaea wyłącznie przez pliki wspólne V2 zmienione na gałęzi olympic (figure.ts: V2_WSTRZYMANE tylko Clean Shrug i Snatch Shrug; overheadException.ts: 13 ćwiczeń olympic w keys/przejscie, używane tylko w walidatorze contract.ts:422–423; poseData.ts: LOAD i DATA_UI olympic; families.ts: olympic ready). md5 ruchu (/home/user/stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf) równy 132/132 ćwiczeń squat/bench_press/hinge/curl/pull_up; linie i nakładka (guideShapes, overlayShapes; u co 1/8, każdy błąd, dobór z surowych kart) równe 132/132; dobór po kartach (doborPoKluczach: guidesFor, techniquesFor, errorsOf) równy we wszystkich rodzinach poza olympic. Werdykt przeniesiony bez ponownej recenzji ruchu. Wcześniej: Bez zmian rysunku po scaleniu spójności i fix4 (dobór i ruch równe dla wszystkich ćwiczeń rodziny z rysunkiem). Skrót zmienia się tylko przez wspólne moduły i dobór w skrócie (fix4 R2). Wcześniej (2R): W1 zamknięte: curlTrunkRef usunięty (zdanie curl.noSwing zostaje na karcie bez elementu i nie jest czytane w „Na rysunku”), curlElbowPlumb od barku do wysokości miednicy (RefSpec.until), nie schodzi pod podłogę. Przy curl.mis.elbows czerwony pion widoczny na wysokości łokcia (test + zrzut Barbell_Curl blad0); kolor błędu zapala się w 14 ćwiczeniach. Brak par linii w jednym miejscu (sameSpot, 3654 kadry curl+pull_up). W pozie poprawnej linia ramienia leży blisko pionu (min. 3°, Cable Curl) — to obraz poprawnej techniki, nie konflikt."
+    },
+    "olympic": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-05",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050, spójność karta–rysunek) — linia 1.1, recenzja ruchu r4 04.11.2026 (poprawki 3 i 4) + potwierdzenie po podłączeniu K1 i scaleniu integracja-1-1 05.11.2026; 0 KRYTYCZNE/WYSOKIE, 4 NISKIE (r4-N1 łokieć C&J 150,7° w przejściu, r4-N2 rack Jerk Balance, r4-N3 docs/18 pkt 4 nieaktualny, r4-N4 wpisy tor-wyjatki przy podłączeniu) → backlog 1.1.x; r2: W1-r2, Ś1, Ś2-r2, N-T1, N-T2 zamknięte; Clean Shrug i Snatch Shrug — pokazanie dopiero z kartami T2 (warunek koordynatora); Rack Delivery bez rysunku",
+      "autor": "programista olympic (poprawki 3 i 4, podłączenie K1, scalenie integracja-1-1 @ 23f1579a)",
+      "recenzent": "audytor",
+      "kto": "audytor — potwierdzenie 05.11.2026: figury/olympic @ 23f1579a (K1 8c965447 + scalenie origin/integracja-1-1 @ 9ff9a3fe); wcześniej: audytor — recenzja niezależna ruchu r4 rodziny olympic, 04.11.2026; figury/olympic @ fc17dfa9 (kopia git archive z tymczasowym podłączeniem: families.ts ready, poseData.ts LOAD i DATA_UI), porównanie z 4c272616; karty lib/cues/data.json (zgodne z tekst/t1 @ db9716f7 i integracja/p2-moc @ 8663f6f7)",
+      "sha": "e17b352c640f",
+      "liczba": 25,
+      "slad": "Własne arkusze arkusz-slad.mjs (kopia fc17dfa9 z podłączeniem), wszystkie 24 ćwiczenia, widok side, 21 kadrów co 0,05, ślad toru gryfu, oba motywy: /home/user/stan-olympic-r4/arkusze (jasny), /home/user/stan-olympic-r4/arkusze-dark (ciemny); powtórzone na czystej kopii — HTML 48/48 bajtowo równe. Obejrzane w pełnej rozdzielczości: Barbell Snatch (wycinek u 0,60–0,85 w 1:1), Squat Jerk, Power Clean (jasny), Split Jerk, Clean Shrug (ciemny); ostatni rząd u 0,70–1,00 dla Power/Split/Hang/Block Power Snatch, Snatch Balance, Muscle Snatch, Power Jerk, Jerk Balance, Clean and Jerk. Miary frameAt: ręka od pionu, gryf–bark, gryf–śródstopie, tułów, łokieć (gęsta siatka 0,0025), rack (kierunek ramienia), stopy, tor x gryfu.",
+      "uwagi": "Potwierdzenie 05.11.2026 (audytor, niezależny): arkusze arkusz-slad.mjs z czystej kopii 23f1579a (24 ćwiczenia, side, 21 kadrów, ślad gryfu, oba motywy) bajtowo równe arkuszom r4 — HTML 48/48 (/home/user/stan-olympic-r4/arkusze i arkusze-dark vs /home/user/stan-olympic-r5/ark-light i ark-dark); md5 ruchu 24/24 równy K1 (8c965447); poses/olympic.json i scripts/figures/agent-pozy/olympic.mjs bez zmian od fc17dfa9. Dobór po kartach olympic pusty w każdym ćwiczeniu (guidesFor [], techniquesFor [] — brak rejestru TECHNIQUE dla olympic w overlay.ts:40, errorsOf [] — poses bez bledy[]), więc nakładka Etapu 1+2 nie rysuje na olympic żadnej linii ani elementu; brak sprzeczności karta–rysunek z tej strony. liczba 25 = assignAll łącznie z Rack Delivery bez rysunku (r4 podawała 24 rysowane; scripts/recenzja-szkielet.mjs olympic). Clean Shrug i Snatch Shrug wstrzymane w V2_WSTRZYMANE (figure.ts:47–51) do kart T2 — zestawy ogólne oly bez wpisów „zestawy” (wymagane dopiero przy zdjęciu wstrzymania). Testy w kopii 23f1579a (pojedynczo, --runInBand): figures-v2-tor, figury-olympic-przygotowanie, figures-v2-wstrzymane — 615/615 (r4-N4 zamknięte wpisami tests/tor-wyjatki.json). Wcześniej (r4): Testy w kopii z podłączeniem (pojedynczo, --runInBand): figury-olympic-przygotowanie 341/341, figures-v2-styk 24/24, figury-101-squat 33/33, figury-recenzja-p4a 64/64, figures-v2-tor 214/215 — brak wpisów tor-wyjatki dla 21 ćwiczeń (r4-N4): Power Clean 9,6; Clean and Jerk 9,8; Jerk Balance 13,8; Hang Clean 7,7; Clean Pull 9,7; Block Clean 8,8; Split Clean 13,2; Barbell Snatch 12,3; Block Snatch 12,3; Block Power Snatch 11,8; Snatch Balance 36,8; Power Jerk 8,3; Split Jerk 7,7; Squat Jerk 28,2; Clean 7,6; Hang Snatch 12,6; Muscle Snatch 16,2; Block Power Clean 8,4; Power Snatch 13,3; Snatch Pull 9,6; Split Snatch 19,1 (cm, widok side). Kod wspólny: overheadException.ts używany tylko w walidatorze (contract.ts:422–424); md5 ruchu 132 ćwiczeń squat/bench_press/hinge/curl/pull_up przed i po bez zmian (md5-5-rodzin.md) — zmiana skrótów tych rodzin wynika z pliku V2_WSPOLNE, nie z rysunku. Szczegóły: recenzja-ruchu.md.",
+      "cwiczenia": {
+        "Power Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack zarzutu: gryf na przodzie barków (≤ 2 cm), łokieć 147,7°, łokcie w przód (ramię 25° pod poziomem: uproszczenie z granicy modelu, docs/18:243). Bez zmian od poprawki 3. Przyjęcie płytkie zgodne z catchHigh."
+        },
+        "Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack zarzutu: gryf na przodzie barków (≤ 2 cm), łokieć 147,7°, łokcie w przód (ramię 25° pod poziomem: uproszczenie z granicy modelu, docs/18:243). Bez zmian od poprawki 3. Pełny przysiad zgodny z catchLow."
+        },
+        "Split Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack zarzutu: gryf na przodzie barków (≤ 2 cm), łokieć 147,7°, łokcie w przód (ramię 25° pod poziomem: uproszczenie z granicy modelu, docs/18:243). Bez zmian od poprawki 3. Nożyce zgodne ze splitCatch."
+        },
+        "Hang Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack zarzutu: gryf na przodzie barków (≤ 2 cm), łokieć 147,7°, łokcie w przód (ramię 25° pod poziomem: uproszczenie z granicy modelu, docs/18:243). Bez zmian od poprawki 3. Start ze zwisu zgodny z hangStart."
+        },
+        "Block Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack zarzutu: gryf na przodzie barków (≤ 2 cm), łokieć 147,7°, łokcie w przód (ramię 25° pod poziomem: uproszczenie z granicy modelu, docs/18:243). Bez zmian od poprawki 3."
+        },
+        "Block Power Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack zarzutu: gryf na przodzie barków (≤ 2 cm), łokieć 147,7°, łokcie w przód (ramię 25° pod poziomem: uproszczenie z granicy modelu, docs/18:243). Bez zmian od poprawki 3."
+        },
+        "Barbell Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Poprawka 4: ręce 2,1° przed pionem, gryf 2,1 cm przed barkiem, 0,7 cm za śródstopiem, tułów 24° (jak Overhead Squat). Kadr 9/12 (u 0,655): przedramię poziomo w obrocie pod gryf, dopuszczalne (recenzja-ruchu.md)."
+        },
+        "Power Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ręce 3,2° przed pionem, biodra nad kolanami (68,5 vs 45,2 cm), tułów 22° (poniżej progu, pytanie do badacza w backlogu)."
+        },
+        "Split Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ręce 3,1° przed pionem, gryf 17,6 cm przy środku podpory 19,4, tułów 4°."
+        },
+        "Hang Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Jak Barbell Snatch (przechwyt bajtowo ten sam co do miar)."
+        },
+        "Block Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Jak Barbell Snatch."
+        },
+        "Block Power Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Jak Power Snatch; karta: zestaw ogólny oly (cue-sets.json:565), bez sprzeczności z rysunkiem."
+        },
+        "Clean Pull": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od poprawki 3; stopy na podłodze (≤ 0,5 cm)."
+        },
+        "Snatch Pull": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od poprawki 3."
+        },
+        "Clean Shrug": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Warunek koordynatora: pokazać dopiero z kartami T2 (status bez zmian). Rysunek zgodny z częścią wspólną T2; dzisiejszy zestaw ogólny oly mu nie przeczy. N-S1 (odstęp 4,6 cm na starcie) w backlogu."
+        },
+        "Snatch Shrug": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Jak Clean Shrug (warunek kart T2)."
+        },
+        "Power Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack podrzutu (łokcie niżej i na boki), ugięcie z tułowiem 2°, przyjęcie z kolanem 77°, ręce 2,1° przed pionem, gryf 4,9 cm za śródstopiem w obrysie; tułów 22° poniżej progu."
+        },
+        "Split Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ręce 3,1° przed pionem, gryf nad środkiem nożyc (17,8 przy 19,4), feetHands zgodne. N-P1 (zawis na palcach) w backlogu."
+        },
+        "Squat Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Pełny przysiad, ręce 2,0° przed pionem, gryf 0,6 cm za śródstopiem w u = 1; w zejściu gryf cofa się do 9,4 cm za śródstopiem (nad stopą), poniżej progu."
+        },
+        "Jerk Dip Squat": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od poprawki 3; rack podrzutu. N1 (nazwy faz) w backlogu."
+        },
+        "Snatch Balance": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ręce 2,1° przed pionem, tułów 24°, start w styku z plecami (bez zmian)."
+        },
+        "Muscle Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ręce 2,1° przed pionem, tułów 3°, bez zejścia pod sztangę; stopy na podłodze."
+        },
+        "Clean and Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Łokieć 150,7° w przejściu u 0,515–0,5375 (r4-N1, niewidoczne).",
+          "znaleziska": [
+            "r4-N1"
+          ],
+          "poprawka": "Zmniejszyć zgięcie łokcia w klatkach wokół u ≈ 0,52 do ≤ 149° i dodać test łokcia na gęstej siatce (frameAt co ≤ 0,005) z negatywem."
+        },
+        "Jerk Balance": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Rack z łokciami jak w zarzucie zamiast podrzutowego (r4-N2); przechwyt: ręce 3,1° przed pionem, gryf 20,3 cm przy środku podpory 22.",
+          "znaleziska": [
+            "r4-N2"
+          ],
+          "poprawka": "scripts/figures/agent-pozy/olympic.mjs:177 — pole: RACK_POLE_PODRZUT (decyzja koordynatora pkt 3) albo zapisany powód wyjątku."
+        },
+        "Rack Delivery": {
+          "werdykt": "wyjątek (bez rysunku)",
+          "uwagi": "Bez zmian."
+        }
+      }
     }
   },
   "karty": {
