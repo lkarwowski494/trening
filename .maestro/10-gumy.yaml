@@ -26,7 +26,7 @@ name: Gumy w miejscu i w treningu
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Miejsce „Home”: drążek i gumy ---
 - tapOn: "More, tab.*"

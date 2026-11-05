@@ -13,7 +13,7 @@ name: Aktualizacja — dane w poprzedniej wersji
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- ustawienia: kg i ciemny wygląd ---
 - tapOn: "More, tab.*"

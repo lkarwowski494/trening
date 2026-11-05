@@ -31,7 +31,7 @@ name: Szablon jak trening — wiersze serii, karty, start
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Nowy szablon „Rows E2E” ---
 # 11.10.2026: ekran główny nie ma „+ New template” — nowy szablon z ekranu Szablony (Więcej → Templates, przycisk „+” (Add template); wariant A: Szablony pod Więcej)

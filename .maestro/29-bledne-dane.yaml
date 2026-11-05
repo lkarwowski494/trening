@@ -13,7 +13,7 @@ name: Błędne i skrajne dane
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- pusty trening: „Zakończ” bez serii nie zapisuje sesji ---
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"

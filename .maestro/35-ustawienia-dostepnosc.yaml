@@ -13,7 +13,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- etykiety VoiceOver zakładek i głównych przycisków ekranu Trening ---
 - assertVisible: "Workout, tab, 1 of 4"
 - assertVisible: "Plan, tab, 2 of 4"

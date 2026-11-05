@@ -1,11 +1,11 @@
-# Scenariusz „z życia” (docs/31, persona A — Ola, nowa użytkowniczka, pierwszy tydzień): pierwsze uruchomienie → „Pierwsze kroki” → „Co nowego” → generator szablonów
+# Scenariusz „z życia” (docs/31, persona A — Ola, nowa użytkowniczka, pierwszy tydzień): pierwsze uruchomienie → ekran nowej osoby („Zacznij od ustawień”) → „Co nowego” → generator szablonów
 # i planu → miejsce i sprzęt → pierwszy trening z szablonu (waga i powtórzenia wpisane, przerwa, pauza, zamiana ćwiczenia, pominięcie ćwiczenia, seria dopisana) →
 # zakończenie → dwa treningi wstecz (poprzednie dni) → „Ten tydzień”, Progresja, Postępy, rekordy ćwiczenia, historia i kalendarz.
 # Daty: symulator nie pozwala przesunąć zegara w Maestro, więc „kolejne dni” to trening wstecz (przycisk „Previous day”) — docs/31 pkt 3. Asercje nie zależą
 # od dnia tygodnia ani od północy (dzień uruchomienia bywa poniedziałkiem lub niedzielą; „wczoraj” bywa w poprzednim tygodniu).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "First steps", "Create your first template or generate templates and a plan.", "Set a weekly plan.*", "First workout.*" ← components/Dashboard.tsx FirstSteps
+#   "No weekly plan", "First workout, today.*" (id first-board), "Start your first workout", "Start with the settings", "Templates and plan. Create your first template or generate templates and a plan." ← ekran nowej osoby 1.1 (components/FirstBoard.tsx, Dashboard.tsx FirstSteps, StartPanel.tsx)
 #   "What's new.*", "In this version", "Close"            ← components/WhatsNew.tsx ('Co nowego', 'W tej wersji', 'Zamknij')
 #   "Full Body A", "Full Body B"                           ← szablony z generatora (subflows/generator-plan.yaml)
 #   "Previous day"                                          ← components/WhenFields.tsx ('Dzień wcześniej')
@@ -16,16 +16,19 @@ name: Pierwszy tydzień nowego użytkownika
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-# --- pierwsze uruchomienie: „Pierwsze kroki” (bez „Co nowego” w 1.0.0) ---
-- assertVisible: "First steps"
-- assertVisible: "Create your first template or generate templates and a plan."
-- assertVisible: "Set a weekly plan.*"
-- assertVisible: "First workout.*"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
+# --- pierwsze uruchomienie: ekran nowej osoby 1.1 (05.11.2026): pasek tygodnia, tablica „Pierwszy trening”, „Zacznij od ustawień” (bez „Co nowego” w 1.0.0) ---
+- assertVisible: "No weekly plan"
+- assertVisible: { id: "first-board" }
+- assertVisible: "First workout, today.*"
+- assertVisible: "Start your first workout"
+- assertNotVisible: "Other workout"
+- scrollUntilVisible: { element: "Start with the settings", direction: DOWN, timeout: 30000 }
+- assertVisible: "Templates and plan. Create your first template or generate templates and a plan."
 - takeScreenshot: 80-pierwsze-kroki
 # „Co nowego”: 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma także dla nowej osoby
 - assertNotVisible: { id: "whats-new-i" }
-- scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
+- scrollUntilVisible: { element: { id: "first-tile-plan" }, direction: DOWN, timeout: 30000, centerElement: true }
 # --- generator szablonów i planu (jak 14) ---
 - runFlow: subflows/generator-plan.yaml
 - takeScreenshot: 81-po-generatorze
@@ -180,7 +183,8 @@ name: Pierwszy tydzień nowego użytkownika
 # --- ekran Trening po pierwszym tygodniu: „Ten tydzień”, brak „Pierwszych kroków”; bez sekcji „Progression” (14.10.2026: jest w Postępach) ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
-- assertNotVisible: "First steps"
+- assertNotVisible: "Start with the settings"
+- assertNotVisible: { id: "first-board" }
 - assertVisible: "Workouts: [1-9];.*"
 - assertNotVisible: "Progression"
 - takeScreenshot: 88-ten-tydzien

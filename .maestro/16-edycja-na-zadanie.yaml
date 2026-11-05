@@ -24,7 +24,7 @@ name: Edycja na żądanie — ekran ćwiczenia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }

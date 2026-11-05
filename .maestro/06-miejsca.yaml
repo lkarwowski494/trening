@@ -30,7 +30,7 @@ name: Miejsca treningu i filtr ćwiczeń
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Więcej → Ustawienia → Miejsca treningu ---
 - tapOn: "More, tab.*"

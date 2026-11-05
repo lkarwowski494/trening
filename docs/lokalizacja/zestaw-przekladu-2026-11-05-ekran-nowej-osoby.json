@@ -6,42 +6,50 @@
   {
    "rodzaj": "nowy",
    "pl": "Zacznij pierwszy trening",
-   "en": "Start your first workout"
+   "en": "Start your first workout",
+   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): duży przycisk startu pustego treningu (czasownik w trybie rozkazującym, jak „Zacznij trening”); podpis pod nim: „ćwiczenia dodasz w trakcie”"
   },
   {
    "rodzaj": "nowy",
    "pl": "Zacznij od ustawień",
-   "en": "Start with the settings"
+   "en": "Start with the settings",
+   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): nagłówek sekcji z czterema kafelkami (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik); wersaliki wg języka; „ustawienia” = wstępne przygotowanie aplikacji, nie ekran Ustawienia"
   },
   {
    "rodzaj": "nowy",
    "pl": "Pierwszy trening",
-   "en": "First workout"
+   "en": "First workout",
+   "kontekst": "nagłówek tablicy „Pierwszy trening” na ekranie głównym nowej osoby (granatowa tablica z datą, wersaliki wg języka): „pierwszy” = jeszcze nie odbyty trening w aplikacji; krótki tytuł, NIE zdanie i NIE przycisk (przycisk to „Zacznij pierwszy trening”)"
   },
   {
    "rodzaj": "nowy",
    "pl": "Pierwszy trening, dziś, {date}",
-   "en": "First workout, today, {date}"
+   "en": "First workout, today, {date}",
+   "kontekst": "opis dla czytnika ekranu (VoiceOver) tablicy „Pierwszy trening”: „{date}” to pełna data z dniem tygodnia, np. „czwartek, 5 listopada”; krótkie wyliczenie po przecinkach, nie zdanie"
   },
   {
    "rodzaj": "nowy",
    "pl": "trening",
-   "en": "workout"
+   "en": "workout",
+   "kontekst": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu"
   },
   {
    "rodzaj": "nowy",
    "pl": "Dom albo siłownia — ustaw swój sprzęt.",
-   "en": "Home or gym — set up your equipment."
+   "en": "Home or gym — set up your equipment.",
+   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): podpis kafelka „Miejsca i sprzęt”; krótka zachęta, zwykły ton"
   },
   {
    "rodzaj": "nowy",
    "pl": "Historia z CSV",
-   "en": "History from CSV"
+   "en": "History from CSV",
+   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): tytuł kafelka prowadzącego do importu historii treningów z pliku CSV (nazwa formatu zostaje „CSV”)"
   },
   {
    "rodzaj": "nowy",
    "pl": "Co gdzie jest i jak działa.",
-   "en": "What is where and how it works."
+   "en": "What is where and how it works.",
+   "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): podpis kafelka „Przewodnik”; krótka zachęta, zwykły ton"
   }
  ]
 }

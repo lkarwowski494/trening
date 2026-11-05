@@ -21,7 +21,7 @@ name: Widok skupiony (bez paska talerzy)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- miejsce „Full gym” (sztanga + talerze) ---
 - tapOn: "More, tab.*"

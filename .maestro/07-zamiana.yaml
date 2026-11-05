@@ -23,7 +23,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Miejsce „Home”: ławka regulowana i hantle ---
 - tapOn: "More, tab.*"

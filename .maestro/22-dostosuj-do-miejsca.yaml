@@ -22,7 +22,7 @@ name: Dostosowanie treningu do miejsca (0.18)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Dwa miejsca: pełna siłownia (główne) i Hotel ---
 - tapOn: "More, tab.*"

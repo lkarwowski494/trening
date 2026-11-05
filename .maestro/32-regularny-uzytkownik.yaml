@@ -15,7 +15,7 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- jednostka kg (symulator en-US startuje w lb), jak 15 ---
 - tapOn: "More, tab.*"

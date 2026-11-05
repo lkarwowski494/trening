@@ -21,7 +21,7 @@ name: Język, wygląd i jednostka
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Język: polski ---
 - tapOn: "More, tab.*"

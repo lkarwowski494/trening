@@ -16,7 +16,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- nowe ćwiczenie z formularza ---
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"

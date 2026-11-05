@@ -20,7 +20,7 @@ name: Miejsce jednorazowe (0.19)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Jedno miejsce: pełna siłownia (główne) ---
 # run 39191946283 (zrzut: wciąż „Workout”): stuknięcie zakładki tuż po starcie aplikacji zostało zignorowane — powtórka

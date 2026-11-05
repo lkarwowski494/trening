@@ -23,10 +23,10 @@ name: Plan z moich szablonów
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- „Pierwsze kroki” (krok 2, bez planu): przycisk „Planning” → ekran planu → „Plan z moich szablonów” (11.10.2026; lista „Start from a template” i przyciski kroków zniknęły) ---
-- tapOn: "Planning"
+- tapOn: { id: "first-tile-plan" }  # 05.11.2026: kafelek „Szablony i plan” (dawny przycisk kroku 2)
 - extendedWaitUntil: { visible: "Plan from my templates", timeout: 30000 }
 - tapOn: "Plan from my templates"
 - extendedWaitUntil: { visible: "Training days per week", timeout: 30000 }

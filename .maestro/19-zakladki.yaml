@@ -14,7 +14,7 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - assertVisible: "Workout, tab, 1 of 4"
 - assertVisible: "Plan, tab, 2 of 4"
 - assertVisible: "Progress, tab, 3 of 4"
