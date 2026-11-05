@@ -1,0 +1,126 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekran startowy nowej osoby — runda 2 (05.11.2026)</title>
+<style>
+@font-face { font-family: 'Barlow Condensed'; src: url('fonty/barlow-condensed/BarlowCondensed-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Zastepczy'; src: url('fonty/source-sans-3/SourceSans3-var.ttf') format('truetype'); font-weight: 200 900; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 28px; background: #dfe2e0; color: #18202B; font: 15px/1.45 'Zastepczy', sans-serif; }
+h1, h2, h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; line-height: 1.1; margin: 0 0 8px; }
+h1 { font-size: 40px; } h2 { font-size: 28px; margin-top: 28px; } h3 { font-size: 20px; margin-top: 14px; }
+.wstep { max-width: 1100px; }
+.siatka { display: grid; grid-template-columns: repeat(4, 400px); gap: 20px; align-items: start; margin-top: 18px; }
+.kol { background: #fff; border-radius: 8px; padding: 14px; }
+.kol.rek { box-shadow: 0 0 0 3px #13294B; }
+.kol h2 { margin-top: 0; }
+.ramka { width: 370px; height: 800px; border: 0; display: block; background: #161C24; border-radius: 6px; }
+.obraz { width: 370px; display: block; border-radius: 6px; }
+.prz { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.prz a { font-size: 13px; padding: 4px 8px; border-radius: 6px; background: #e6e8e5; color: #13294B; text-decoration: none; font-weight: 600; }
+.kol dl { margin: 8px 0 0; } .kol dt { font-weight: 700; margin-top: 8px; } .kol dd { margin: 0; }
+.pasek { width: 100%; display: block; border-radius: 4px; margin-top: 6px; }
+video.pasek { width: 180px; }
+table { border-collapse: collapse; background: #fff; margin-top: 8px; max-width: 1660px; }
+th, td { border: 1px solid #cbd0cb; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 14px; }
+th { background: #eef0ee; }
+.uw { font-size: 13px; color: #4A5361; }
+code { font-size: 12.5px; }
+</style></head><body>
+<div class="wstep">
+<h1>Ekran Trening nowej osoby — runda 2: „wow”</h1>
+<p><b>Werdykt właściciela po rundzie 1 (05.11.2026, dosłownie):</b> „Ale tu nie ma efektu wow”. Runda 1 (<a href="porownanie-start-1-1.png">porownanie-start-1-1.png</a>) to trzy razy ta sama lista „Pierwsze kroki” z dodatkiem nad nią. Z rundy 1 zostają tylko wnioski AS IS
+(<a href="start-1-1/as-is.md">start-1-1/as-is.md</a>): nowa osoba myśli „bez szablonu nie zacznę” (ST-01), a lista znika po pierwszym treningu bez domknięcia (ST-07) — oraz zasada, że element firmowy niesie dane.</p>
+<p><b>Co tu jest:</b> obecny ekran i trzy kierunki jako <b>żywe makiety</b> (ruch działa w ramce; przyciski pod ramką przełączają stan). Każdy kierunek ma inny rodzaj „wow”: <b>A — żywa treść</b> (prawdziwe figury z biblioteki), <b>B — przejście</b> (intro przechodzi w ekran), <b>C — skala i mechanika</b> (tablica klapkowa). We wszystkich pierwszy trening jest jednym stuknięciem („Zacznij pierwszy trening”), a „Pierwsze kroki” stają się spokojną listą „Kiedy zechcesz”.</p>
+<p class="uw">Treść w makietach krojem zastępczym Source Sans 3 (na iOS SF Pro); tytuły i liczby Barlow Condensed z <code>docs/design/fonty</code>. Tokeny 1:1 z <code>lib/tokens.ts</code>. Ramka przerywana = nowy tekst (do <code>lib/i18n</code> i 33 języków). [PRZYKŁAD] = wartość przykładowa (data, serie).</p>
+</div>
+
+<div class="siatka">
+<section class="kol"><h2>Dziś (AS IS)</h2>
+<img class="obraz" src="start-1-1/zrzuty/as-is-1-01-start.png" alt="Obecny ekran Trening nowej osoby: tytuł, przycisk Pusty trening, karta Pierwsze kroki z czterema krokami">
+<dl><dt>Pierwsza sekunda</dt><dd>Karta z czterema krokami i czterema przyciskami — wygląda jak formularz. Element firmowy (tablica) pojawia się dopiero po ułożeniu planu.</dd>
+<dt>Porażki przejścia</dt><dd>krok 1 („bez szablonu nie zacznę”) i krok 7 (lista znika bez domknięcia).</dd>
+<dt>Opcja „zostawić”</dt><dd>Zero kosztu; ekran dalej bez tożsamości aplikacji (ST-03).</dd></dl></section>
+
+<section class="kol rek"><h2>A. Żywa biblioteka — rekomendacja</h2>
+<iframe class="ramka" name="ra" title="Makieta A" src="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa"></iframe>
+<div class="prz"><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa">Ruch</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa-ogranicz-ruch">Ogranicz ruch</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa-kontrast">Zwiększ kontrast</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=po-treningu">Po 1. treningu</a><a target="ra" href="kierunki/start-1-1-r2-biblioteka.html?ekran=nowa&amp;motyw=light">Jasny</a><a href="kierunki/start-1-1-r2-biblioteka.html">Wszystkie stany</a></div>
+<dl><dt>Idea</dt><dd>Pół ekranu to granatowa tablica, na której prawdziwa figura z biblioteki robi ruch; co pętlę tablica przewraca się klapką na kolejne ćwiczenie.</dd>
+<dt>Rodzaj wow / 1. sekunda</dt><dd><b>Żywa treść + ruch.</b> Człowiek na ekranie robi przysiad ze sztangą, z kreską toru ciężaru. Aplikacja „żyje” i od razu pokazuje, co umie.</dd>
+<dt>Prawdziwe dane</dt><dd>Figury v2 z <code>lib/figures/v2</code> (tylko rodziny z recenzją bramki 4: przysiad, zawias, wyciskanie — <code>FIG_DATA.v2</code>), klatki <code>shapesAt()</code>, tempo <code>uAt()</code>, tor <code>trailFor()</code>; „132 z ruchem” = <code>shownFigureSpec</code> po katalogu (liczone, nie wpisane). Po treningu: Twoje ćwiczenie i Twoje serie.</dd>
+<dt>Najmocniejszy argument</dt><dd>Pokazuje najmocniejszy własny zasób aplikacji (figury z recenzją) — tego nie da się podrobić szablonem — i od razu prowadzi do pierwszego ćwiczenia.</dd>
+<dt>Zmienia decyzje</dt><dd>08.10.2026 „lista Pierwsze kroki, nie karta powitalna” (<code>docs/18-archiwum-do-11.10.md:148</code>) → scena + lista „Kiedy zechcesz”; 11.10.2026 P4 A (<code>docs/18-archiwum-do-30.10.md:64</code>) → wiersze z „›”; układ B „najpierw trening” (09.10.2026) — przycisk startu pod sceną, nadal nad listą i nad zgięciem ekranu; nowe miejsce figur (dziś tylko karta ćwiczenia).</dd>
+<dt>Koszt (czas agenta, szacunek)</dt><dd>ok. 5–7 h: komponent sceny z <code>ExerciseFigureV2</code>, zmiana klapką, stan po treningu, i18n (4 teksty × 33 języki przez tłumacza), testy ekranu/macierzy/Maestro.</dd>
+<dt>Ryzyka</dt><dd>Wydajność: SVG przeliczane co 33 ms (to samo co karta ćwiczenia dziś — znany koszt; pauza poza ekranem). Uwaga: ruch w pętli rozprasza — po pierwszym treningu scena pokazuje Twoje ćwiczenie. Dostępność: VoiceOver czyta opis, nie ogłasza zmian; Ogranicz ruch = dwie pozy i ‹ ›. Przekład: nazwy ćwiczeń już są w katalogu; 4 nowe zdania.</dd></dl>
+<img class="pasek" src="start-1-1-r2/ruch/a-biblioteka.png" alt="Klatki ruchu A"><video class="pasek" src="start-1-1-r2/ruch/a-biblioteka.webm" controls muted loop playsinline></video></section>
+
+<section class="kol"><h2>B. Gryf zostaje</h2>
+<iframe class="ramka" name="rb" title="Makieta B" src="kierunki/start-1-1-r2-gryf.html?ekran=nowa"></iframe>
+<div class="prz"><a target="rb" href="kierunki/start-1-1-r2-gryf.html?ekran=nowa">Ruch (od nowa)</a><a target="rb" href="kierunki/start-1-1-r2-gryf.html?ekran=nowa-ogranicz-ruch">Ogranicz ruch</a><a target="rb" href="kierunki/start-1-1-r2-gryf.html?ekran=nowa-kontrast">Zwiększ kontrast</a><a target="rb" href="kierunki/start-1-1-r2-gryf.html?ekran=po-treningu">Po 1. treningu</a><a target="rb" href="kierunki/start-1-1-r2-gryf.html?ekran=nowa&amp;motyw=light">Jasny</a><a href="kierunki/start-1-1-r2-gryf.html">Wszystkie stany</a></div>
+<dl><dt>Idea</dt><dd>Animacja startowa nie znika: talerze schodzą z gryfu, a gryf z ikony wjeżdża w ekran i staje się osią tygodnia, na której zacisk pokazuje dziś.</dd>
+<dt>Rodzaj wow / 1. sekunda</dt><dd><b>Przejście.</b> Logo „rozkłada się” w ekran — przedmiot z ikony zostaje i zaczyna znaczyć. Ogromne „CZWARTEK”.</dd>
+<dt>Prawdziwe dane</dt><dd>Bieżący tydzień i dziś (<code>lib/dashboard.ts</code> weekStrip działa bez planu); dni z treningiem — znak „✓” w barwie <code>doneLine</code>. Barwy talerzy tylko w intro (ikona), na ekranie żadnej.</dd>
+<dt>Najmocniejszy argument</dt><dd>Najsilniej buduje markę: ten sam gryf w ikonie, w intro i na ekranie, a każdy trening zostawia na nim ślad (domknięcie ST-07).</dd>
+<dt>Zmienia decyzje</dt><dd>Intro 09.10.2026 (<code>docs/18-archiwum-do-11.10.md:338</code>, <code>lib/intro.ts:4</code>: ok. 1 s i zniknięcie) → ok. 1,6 s z przejściem, nadal pomijane stuknięciem; <code>MOTIF.where</code> (<code>lib/tokens.ts:68</code>) — gryf przestaje być ozdobą i niesie tydzień; 08.10.2026 i P4 A jak w A; dubluje pasek tygodnia osoby z planem (trzeba wybrać jeden).</dd>
+<dt>Koszt (czas agenta, szacunek)</dt><dd>ok. 8–10 h: przejście między nakładką intro (<code>app/_layout.tsx</code>) a układem zakładki (pomiar położenia), oś tygodnia, stan po treningu, testy intro i Maestro.</dd>
+<dt>Ryzyka</dt><dd>Wow tylko przy zimnym starcie — przy kolejnych otwarciach ekran jest spokojny. Dłuższe intro (zasada „nie wydłużaj czekania”). Zacisk <code>now</code> na jasnym tle ma 1,6:1 — dlatego ramka w kolorze tekstu (pomiar w <code>kierunki/kontrast-start-1-1-r2-wynik.txt</code>). Przekład: dzień tygodnia wielkimi literami w 33 językach (długie nazwy, np. niemieckie — skalowanie do szerokości).</dd></dl>
+<img class="pasek" src="start-1-1-r2/ruch/b-gryf.png" alt="Klatki ruchu B"><video class="pasek" src="start-1-1-r2/ruch/b-gryf.webm" controls muted loop playsinline></video></section>
+
+<section class="kol"><h2>C. Tablica klapkowa</h2>
+<iframe class="ramka" name="rc" title="Makieta C" src="kierunki/start-1-1-r2-klapki.html?ekran=nowa"></iframe>
+<div class="prz"><a target="rc" href="kierunki/start-1-1-r2-klapki.html?ekran=nowa">Ruch</a><a target="rc" href="kierunki/start-1-1-r2-klapki.html?ekran=nowa-ogranicz-ruch">Ogranicz ruch</a><a target="rc" href="kierunki/start-1-1-r2-klapki.html?ekran=nowa-kontrast">Zwiększ kontrast</a><a target="rc" href="kierunki/start-1-1-r2-klapki.html?ekran=po-treningu">Po 1. treningu</a><a target="rc" href="kierunki/start-1-1-r2-klapki.html?ekran=nowa&amp;motyw=light">Jasny</a><a href="kierunki/start-1-1-r2-klapki.html">Wszystkie stany</a></div>
+<dl><dt>Idea</dt><dd>Pół ekranu to tablica podejść: klapki przelatują kaskadą i stają na dzisiejszej dacie i ogromnym numerze Twojego treningu — „1”.</dd>
+<dt>Rodzaj wow / 1. sekunda</dt><dd><b>Skala + mechanika.</b> Granat od samej góry, szum klapek, cyfra ok. 230 pt.</dd>
+<dt>Prawdziwe dane</dt><dd>Data i dzień tygodnia; numer następnego treningu = zapisane treningi + 1; po treningu „Ostatni: dziś, 1 ćw.” i „2”.</dd>
+<dt>Najmocniejszy argument</dt><dd>Najprostszy do wdrożenia i najtańszy w działaniu, a ta sama tablica i klapka (<code>MOTION.boardFlipMs</code>) są już w treningu — spójny język od pierwszej sekundy.</dd>
+<dt>Zmienia decyzje</dt><dd>Reguła kodu „tablica Dziś tylko z planem” (<code>components/TodayPlan.tsx:35</code>); 08.10.2026 i P4 A jak w A; nowy rozmiar cyfr poza <code>TYPE.boardNumber</code> 96 pt (nowy token).</dd>
+<dt>Koszt (czas agenta, szacunek)</dt><dd>ok. 4–6 h: komponent klapki, nowy token, stan po treningu, i18n skrótów dat (Intl), testy.</dd>
+<dt>Ryzyka</dt><dd>Po kilku tygodniach „Trening 37” mówi mniej niż „1” — wow słabnie z czasem (można przełączyć na tydzień). Klapki z literami muszą znać alfabety 33 języków (cyrylica, grecki, CJK — Barlow nie ma; w tych językach tylko cyfry na klapkach). Ogranicz ruch: wartości od razu.</dd></dl>
+<img class="pasek" src="start-1-1-r2/ruch/c-klapki.png" alt="Klatki ruchu C"><video class="pasek" src="start-1-1-r2/ruch/c-klapki.webm" controls muted loop playsinline></video></section>
+</div>
+
+<h2>Rekomendacja: A „Żywa biblioteka”</h2>
+<p class="wstep">Z funkcji, nie z gustu: nowa osoba po instalacji chce sprawdzić, czy aplikacja jest dla niej, i zacząć. A jako jedyny kierunek pokazuje w pierwszej sekundzie <b>prawdziwą wartość aplikacji</b> (ruch ćwiczeń z recenzją, 132 ćwiczenia), działa przy każdym otwarciu, nie tylko przy zimnym starcie (B), i nie traci siły po kilku tygodniach (C). Prowadzi też prosto do treści: „Karta ćwiczenia” i „Zacznij pierwszy trening”. Po pierwszym treningu scena pokazuje Twoje ćwiczenie i Twoje serie — domknięcie ST-07 na tej samej powierzchni. Szybki test (opcjonalnie, ok. 1 h czasu właściciela): test pięciosekundowy z 5 osobami, trzy żywe makiety z tej strony.</p>
+
+<h2>Decyzje dla właściciela (każda z opcją „zostawić”)</h2>
+<table>
+<tr><th>#</th><th>Decyzja</th><th>Opcje (rekomendacja <b>pogrubiona</b>)</th></tr>
+<tr><td>D1</td><td>Kierunek ekranu nowej osoby</td><td><b>(a) A Żywa biblioteka</b> · (b) B Gryf zostaje · (c) C Tablica klapkowa · (d) połączenie, np. intro z B prowadzi w scenę A · (e) zostawić dzisiejszy ekran</td></tr>
+<tr><td>D2</td><td>Lista „Pierwsze kroki” (08.10.2026, P4 A)</td><td><b>(a) lista „Kiedy zechcesz” z wierszami „›” pod sceną</b> · (b) zostawić kartę z przyciskami pod sceną (ekran dłuższy, dwa punkty skupienia) · (c) kroki do Przewodnika, na starcie tylko scena i start</td></tr>
+<tr><td>D3</td><td>Tekst przycisku startu nowej osoby</td><td><b>(a) „Zacznij pierwszy trening” + „ćwiczenia dodasz w trakcie”</b> · (b) zostawić „Pusty trening”</td></tr>
+<tr><td>D4</td><td>Scena po pierwszych treningach (dotyczy A)</td><td><b>(a) Twoje ostatnie ćwiczenie i serie, bez pętli między ćwiczeniami</b> · (b) dalej przegląd biblioteki · (c) scena znika, wraca dzisiejszy układ z tablicą „Dziś”</td></tr>
+<tr><td>D5</td><td>Intro (dotyczy B)</td><td><b>(a) bez zmian, ok. 1 s</b> (wybór A/C) · (b) przejście w ekran ok. 1,6 s, pomijane stuknięciem</td></tr>
+</table>
+
+<h2>Kandydaci (8) → wybór 3 różnych rodzajów wow</h2>
+<table>
+<tr><th>#</th><th>Kandydat</th><th>Rodzaj wow</th><th>Prawdziwe dane</th><th>Ocena</th></tr>
+<tr><td>W1</td><td>Żywa biblioteka — figura z biblioteki na tablicy</td><td>ruch, żywa treść</td><td>figury v2 z recenzją, liczba ćwiczeń z ruchem</td><td><b>wybrany (A)</b></td></tr>
+<tr><td>W2</td><td>Gryf z intro zostaje jako oś tygodnia</td><td>przejście z intro</td><td>tydzień, dziś, dni z treningiem</td><td><b>wybrany (B)</b></td></tr>
+<tr><td>W3</td><td>Tablica klapkowa „1” na pół ekranu</td><td>skala, mechanika</td><td>data, numer treningu z historii</td><td><b>wybrany (C)</b></td></tr>
+<tr><td>W4</td><td>Tydzień jako 7 wysokich kolumn na cały ekran</td><td>skala</td><td>tydzień</td><td>rezerwa — ten sam rodzaj danych co B, słabszy moment</td></tr>
+<tr><td>W5</td><td>Ściana figur: 6–9 małych figur w jednym rytmie</td><td>ruch, ilość</td><td>biblioteka</td><td>odrzucony — tłok, 9× koszt rysowania, małe figury nieczytelne przy 320 pt</td></tr>
+<tr><td>W6</td><td>Figura do przewijania palcem (ruch pod palcem)</td><td>interakcja</td><td>biblioteka</td><td>rezerwa — możliwy dodatek do A (przesunięcie palcem w poziomie przewija ruch; ekran przewija się w pionie, więc gesty się nie gryzą); do decyzji po A</td></tr>
+<tr><td>W7</td><td>Wielki zegar „teraz” (godzina) na tablicy</td><td>skala</td><td>godzina</td><td>odrzucony — dane bez związku z treningiem, pasek stanu już ma godzinę</td></tr>
+<tr><td>W8</td><td>Sztanga do załadowania palcem (zabawka talerzy)</td><td>interakcja</td><td>brak — przykładowy ciężar</td><td>odrzucony — fałszywe dane, ryzyko pomylenia z kalkulatorem talerzy</td></tr>
+</table>
+
+<h2>Test generyczności (karty kontrolne z rundy 1 obowiązują)</h2>
+<table>
+<tr><th>Pole</th><th>Karta (a): dziennik siłowni bez wiedzy o dziedzinie</th><th>Karta (b): nauka z codziennym celem</th><th>A / B / C</th></tr>
+<tr><td>Bohater</td><td>„Witaj!” + zdjęcie hantli</td><td>maskotka z dymkiem</td><td>A: prawdziwa figura z recenzją ruchu · B: gryf z ikony · C: tablica podejść — żadne nie jest ilustracją ani maskotką</td></tr>
+<tr><td>Postęp</td><td>pierścień „0/3”</td><td>płomień serii, procent</td><td>brak licznika kroków; B: znak dnia na gryfie (fakt, nie seria), C: numer treningu (fakt z historii)</td></tr>
+<tr><td>Ruch</td><td>lista wjeżdża „fade + slide up”</td><td>konfetti, pulsująca kropka</td><td>A: ruch ćwiczenia w tempie z aplikacji; B: przejście przedmiotu z ikony; C: klapka (ten sam ruch co „Seria zrobiona”)</td></tr>
+<tr><td>Paleta</td><td>gradient przycisku</td><td>jaskrawy akcent</td><td>tokeny A2: granat tablicy, krem cyfr, bursztyn „teraz”; barwy talerzy tylko w intro (B) = ciężar w ikonie</td></tr>
+<tr><td>Krój</td><td>systemowy pogrubiony</td><td>zaokrąglony</td><td>Barlow Condensed (tablica podejść) w dużej skali</td></tr>
+</table>
+<p class="uw">Żadne pole kierunków nie pokrywa się z kartami kontrolnymi. Kalibracja (wzorce studia): bez wersalikowych „eyebrow” nad sekcjami — wersaliki tylko w nazwie ćwiczenia (zasada tablicy, wz. 28) i dniu tygodnia w B.</p>
+
+<h2>Krytyka i poprawki (zrzuty: <code>start-1-1-r2/zrzuty/</code>, 320/390/430 × jasny/ciemny × AX5 × 4 stany)</h2>
+<table>
+<tr><th>Kierunek</th><th>Usterki znalezione → poprawione</th><th>Pozostałe (świadomie)</th></tr>
+<tr><td>A</td><td>1) pierwsza klatka pusta (klapka obracała się już przy starcie) → klapka tylko między ćwiczeniami; 2) figura za mała, dużo pustego granatu → wyższa figura i tor ciężaru z aplikacji (<code>trailFor</code>); 3) w „Ogranicz ruch” znikał przycisk „Karta ćwiczenia” → jest obok ‹ ›; 4) paleta figury jasnego motywu ginie na granacie → na tablicy zawsze paleta ciemna</td><td>talerz figury nachodzi na głowę w pozie startowej (rysunek aplikacji, nie makiety); dwa małe podpisy (data, „Biblioteka”) obok siebie</td></tr>
+<tr><td>B</td><td>1) dni i tytuł pokazywały się, zanim gryf doleciał → wejście treści po przejściu; 2) zacisk zasłaniał literę „CZ” → niższy zacisk, litery niżej; 3) zacisk bursztynowy na jasnym tle 1,6:1 → ramka w kolorze tekstu; 4) tło intro gasło za szybko → 450 ms</td><td>po intro ekran jest spokojny — wow tylko przy zimnym starcie (cecha kierunku)</td></tr>
+<tr><td>C</td><td>1) „PIERWSZY TRENING” w kolorze podpisu (2:1 na granacie) → kolor <code>boardText</code>; 2) przy 320 pt napis wychodził za ekran → rozmiar od szerokości ekranu (<code>cqw</code>); 3) wielka cyfra przelatywała przez przypadkowe liczby (wyglądało jak dane) → pusta klapka, potem „1”; 4) klapki daty za małe → 30 px</td><td>przy 430 pt cyfra mogłaby być większa (limit 220 pt)</td></tr>
+</table>
+<p class="uw">Kontrast: <code>kierunki/kontrast-start-1-1-r2-wynik.txt</code> — 25 z 26 par OK; jedna z premedytacją pokazana jako BRAK (sam bursztyn zacisku na jasnym tle), rozwiązana ramką. Warsztat (<code>narzedzia/warsztat.mjs</code>): bez błędów; ostrzeżenia o liczbie wielkości tekstu dotyczą paneli opisowych poza ekranem. Kod aplikacji bez zmian.</p>
+<p class="uw">Narzędzia: <code>narzedzia/start-1-1-r2-figury.mjs</code> (klatki figur z <code>lib/figures/v2</code>), <code>narzedzia/start-1-1-r2-gen.mjs</code> (makiety), <code>narzedzia/klatki-ruchu.mjs</code> (pasek klatek + nagranie webm), <code>narzedzia/zrzuty.mjs</code> (<code>ZRZUTY_QUERY='?t=2600'</code> — stała klatka).</p>
+</body></html>
