@@ -5,7 +5,7 @@
 import { kostkaNaPalcach, r1, BODY } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { katyNogi, P, mix, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, pitchDoChwytu, wyjatkiOpisu } from './dyn.mjs';
+import { katyNogi, P, mix, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, pitchDoChwytu, wyjatkiOpisu, jednokierunkowa } from './dyn.mjs';
 
 export const RODZINA = 'olympic';
 const OTW = 'ćwiczenie otwarte: brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → olympic.otwarte); poza wróci po opisie ruchu przez badacza';
@@ -234,5 +234,8 @@ export function generuj() {
   G['Snatch Balance'] = () => snatchBalance('Snatch Balance');
   G['Muscle Snatch'] = () => muscleSnatch('Muscle Snatch');
   G['Clean and Jerk'] = () => cleanJerk('Clean and Jerk');
+  /* 05.11.2026 (olympic r6/r7, decyzja właściciela „naprawić teraz”): ruchy z lotem i wyrzutem w jednej pętli 0 → 1, bez powrotu (wzór plyo, sled_throw); wahadła zostają: ciągi, wzruszenia, Jerk Dip Squat */
+  const WAHADLA = ['Clean Pull', 'Snatch Pull', 'Clean Shrug', 'Snatch Shrug', 'Jerk Dip Squat'];
+  for (const k of Object.keys(G)) if (!WAHADLA.includes(k)) { const f = G[k]; G[k] = () => jednokierunkowa(f()); }
   return G;
 }

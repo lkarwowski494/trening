@@ -160,7 +160,7 @@ describe('p4a runda 2 — Kettlebell Sumo High Pull: łokcie wysoko i na boki, s
 const BEZ_ZMIAN: Record<string, Record<string, string>> = {"olympic": {"Power Jerk": "6a1527604c8d9076", "Split Jerk": "a1478949c879651e", "Jerk Dip Squat": "09f5a125e3913d13", "Snatch Balance": "6e5d7ed27d513ba3", "Muscle Snatch": "038ef40ab4c0aff5"}, "kb_ballistic": {"Kettlebell Clean": "ed22e6f99459d35a", "Double Kettlebell Clean": "eb9f533d51721320", "Dumbbell Clean": "201cff54e2ce4914", "Kettlebell Snatch": "a15c1a39149ef3bc", "Double Kettlebell Snatch": "26565c5a9f432d0f", "Snatch (hantel)": "b9738fee613e0532", "Double Kettlebell Jerk": "02a106031cd4bdc7", "One-Arm Kettlebell Jerk": "b151c63125489ff1", "One-Arm Kettlebell Split Jerk": "002a539901d836cc", "One-Arm Kettlebell Clean and Jerk": "ad9e669c5fd813fd"}};
 describe('regresja: pozy bez zmian (inne ćwiczenia obu rodzin)', () => {
   test.each(Object.entries(BEZ_ZMIAN).flatMap(([r, m]) => Object.entries(m).map(([cw, h]) => [r, cw, h] as const)))('%s / %s: poza bajt w bajt jak przed poprawkami', (r, cw, h) => {
-    const p = (r === 'olympic' ? OLY : KB)[cw]; expect(createHash('sha256').update(JSON.stringify(p)).digest('hex').slice(0, 16)).toBe(h);
+    const { petla: _petla, ...p } = (r === 'olympic' ? OLY : KB)[cw] as Record<string, unknown>; /* 05.11.2026: pole trybu pętli (olympic r6/r7) poza skrótem — regresja dotyczy geometrii pozy; tryb pilnuje tests/figures-v2-olympic-petla.test.ts */ expect(createHash('sha256').update(JSON.stringify(p)).digest('hex').slice(0, 16)).toBe(h);
   });
   test('poprawione ćwiczenia różnią się od wersji sprzed poprawek, a rodziny mają komplet póz', () => {
     expect(Object.keys(OLY)).toHaveLength(24); expect(Object.keys(KB)).toHaveLength(16);
