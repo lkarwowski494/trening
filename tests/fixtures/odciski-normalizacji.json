@@ -100,6 +100,35 @@
    "userTouched": "b5bea41b6c623f7c",
    "seenFairRulesManifest": "b5bea41b6c623f7c",
    "liveDays": "2f8765defcafeb64"
+  },
+  "state-v1.0.0-b1033-schema19.json": {
+   "v": "d4735e3a265e16ee",
+   "schemaVersion": "9400f1b21cb527d7",
+   "ownerId": "ea17e25c6c7aa6ef",
+   "settings": "de294eb1643724d0",
+   "exercises": "d93db9e65cb361c4",
+   "bands": "758465a0fcedc2e9",
+   "templates": "73dd7ebf16c5a8d8",
+   "workouts": "bb543b592e0d09b4",
+   "active": "8f9d94f7b0961f67",
+   "mornings": "6990fade31f573bf",
+   "relations": "4f53cda18c2baa0c",
+   "feedback": "4f53cda18c2baa0c",
+   "instructions": "4f53cda18c2baa0c",
+   "timer": "5e7eafb5cea68816",
+   "equipFill": "f409dbd079a1ffdc",
+   "equipFill2": "3cef06f0970cd90e",
+   "optFill": "3a3fffca074f2b2e",
+   "bodyMassLog": "1567dfd52a886d0b",
+   "weekPlan": "54d7a3dc9eea4a7f",
+   "planHistory": "73bfddc264fddd52",
+   "savedPlans": "c3649ce2be6e10f7",
+   "planPlaces": "cd3490376fd3ee70",
+   "planOverrides": "02ef7604c6171f89",
+   "deloadWeeks": "48466a4e115acc8d",
+   "userTouched": "b5bea41b6c623f7c",
+   "seenFairRulesManifest": "b5bea41b6c623f7c",
+   "liveDays": "2f8765defcafeb64"
   }
  }
 }
