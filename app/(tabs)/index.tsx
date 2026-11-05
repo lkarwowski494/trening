@@ -16,6 +16,8 @@ import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
 import { StartPanel } from '@/components/StartPanel';
+import { FirstBoard } from '@/components/FirstBoard';
+import { firstSteps } from '@/lib/dashboard';
 import { t } from '@/lib/i18n';
 import { cancelButton } from '@/lib/confirm';
 import { setAutoSavedNotice, useAutoSavedNotice } from '@/lib/notices';
@@ -48,6 +50,7 @@ function Home() {
       </WhatsNewHeader>
       <DataBanners />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A); 11.10.2026: z nagłówkiem planu i „Planowaniem” */}
+      {firstSteps() && !plan ? <FirstBoard /> : null /* 05.11.2026: tablica „Pierwszy trening”; z planem jest tablica „Dziś” */}
       <StartPanel />
       <FirstSteps />
       <WeekStats />

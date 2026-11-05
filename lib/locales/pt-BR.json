@@ -234,7 +234,6 @@
  "Tylko zapisz": "Só salvar",
  "Uchwyt (jeden, {u})": "Pegador (um, {u})",
  "Uchwyty farmerskie": "Alças de farmer's walk",
- "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Defina um plano semanal — você vai ver aqui o treino de hoje e receber um lembrete.",
  "Ustaw termin i szablon — serie uzupełnisz w następnym kroku.": "Defina a data e o modelo — você preenche as séries na próxima etapa.",
  "Ustawienia": "Ajustes",
  "Ustawienia na stronę: {n} ({r})": "Ajustes por lado: {n} ({r})",
@@ -390,7 +389,6 @@
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "“Gerar modelos e plano” (Modelos ou Planejamento): escolha objetivo, local, número e duração das sessões.",
  "{cur} wobec {prev}": "{cur} em relação a {prev}",
  "Cofnij: {name} znów zaplanowany na ten dzień": "Desfazer: {name} volta a estar planejado para este dia",
- "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.": "Você treina em casa ou na academia? Defina seu equipamento em “Locais e equipamento”.",
  "dni 1–{n} miesiąca vs poprzedni miesiąc": "dias 1–{n} do mês em relação ao mês anterior",
  "Dopisz trening wstecz": "Registrar treino passado",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Na tela Treino, “Planejamento” (sem plano: “Definir plano”) abre o plano semanal, que atribui modelos aos dias — o plano se repete toda semana.",
@@ -617,6 +615,5 @@
  "Pozycja pośrednia {n}": "Posição intermediária {n}",
  "Pozycja pośrednia": "Posição intermediária",
  "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.": "Menu ⋯ no cabeçalho: “Pausar treino” para o relógio do treino; o tempo de pausa não conta para a duração.",
- "Pierwszy trening: duży przycisk „Pusty trening” u góry.": "Primeiro treino: o botão grande “Treino vazio” em cima.",
  "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "O desenho mostra o movimento só para um lado — na repetição seguinte, você sobe em direção à outra mão."
 }

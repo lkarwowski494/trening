@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { IconRow } from '@/components/Icon';
 import { useTheme, NUM_SCALE_MAX, FW, font, maxScale, RADIUS, SIZE, SPACE } from '@/lib/theme';
-import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, exById, reps } from '@/lib/store';
+import { getState, useForegroundTick, isDeloadWeek, fmtDayKey, exById, reps } from '@/lib/store';
 import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
@@ -17,7 +17,7 @@ import { fmtWeekdayShort, fmtWeekdayNarrow, fmtWeekdayDayMonth, fmtDayNum, strip
  * Karta „Dziś” na ekranie treningu (decyzje właściciela 08.10.2026: 1A, potem dashboard wariant A): „Dziś: X” ze startem i pasek bieżącego
  * tygodnia pon…nd — pod dniem mała ikona aplikacji: zrobione (pełna), zaplanowane (obwódka), opuszczone (obwódka wyszarzona), wolne (nic)
  * — korekta właściciela 09.10.2026 ok. 17:00; „dziś” — ramka wokół kolumny dnia (data i ikona), jak w Kalendarzu.
- * Bez planu: tydzień z odbytymi treningami i zachęta do ustawienia planu. Nowa osoba bez treningów i planu — karty nie ma (są „Pierwsze kroki”).
+ * Bez planu: tydzień z odbytymi treningami i zachęta do ustawienia planu. Nowa osoba bez treningów i planu (05.11.2026, kierunek C′): ten sam pasek „Bez planu tygodnia”, pod nim tablica „Pierwszy trening” (components/FirstBoard).
  * Audyt 0.10: stan dnia z jednej funkcji (dayStatus — A2); A5 — nazwa faktycznie zrobionej sesji, zrobiony inny trening: zaplanowany czeka
  * (kropka pod kółkiem); A8 — pusty szablon bez Startu; A9 — pod paskiem 2–3 najbliższe treningi z nazwą, tapnięcie dnia otwiera ten dzień
  * w Kalendarzu; A11-05 — „dziś” i „tydzień deload” w etykiecie dnia; D4 — „Tydzień deload” na karcie w tygodniu deload.
@@ -32,7 +32,7 @@ const PREVIEW = 2;
 export function TodayPlan() {
   useForegroundTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); /* UI2-02 */
   const win = useWindowDimensions(); const [stripW, setStripW] = React.useState<number | null>(null);
-  const plan = hasPlan(); if (!plan && !finishedWorkouts().length) return null;
+  const plan = hasPlan();
   const today = dayKeyOf(Date.now()); const days = weekStrip(); const name = planTplName;
   const cur = days.find(d => d.today)!; const id = cur.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
   /* M1-audytor-generalny-027: skrót dnia w jednej linii; gdy najdłuższy nie mieści się w kolumnie nawet po zmniejszeniu (np. 320 pt i duży tekst — „NIEDZ.”),

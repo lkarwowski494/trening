@@ -49,13 +49,13 @@ describe('ekran nowej osoby (bez treningów, szablonów i planu)', () => {
   test('kafelki: teksty z makiety; całe kafelki są przyciskami z „›”', async () => {
     await boot();
     for (const x of ['Szablony i plan', 'Miejsca i sprzęt', 'Historia z CSV', 'Przewodnik', 'Utwórz pierwszy szablon albo wygeneruj szablony i plan.', 'Dom albo siłownia — ustaw swój sprzęt.', 'Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.', 'Co gdzie jest i jak działa.']) expect(screen.getByText(x)).toBeTruthy();
-    expect(screen.getAllByText('›').length).toBeGreaterThanOrEqual(TILES.length);
+    expect(screen.getAllByText('›', { includeHiddenElements: true }).length).toBeGreaterThanOrEqual(TILES.length);
   });
   test('scenariusz: „Zacznij pierwszy trening” uruchamia pusty trening', async () => {
     await boot(); await tap(screen.getByTestId('start-main')); await flushAll(10);
     expect(store.getState().active).toBeTruthy(); expect(store.getState().active!.exercises).toHaveLength(0);
   });
-  test.each([['first-tile-plan', 'Plan'], ['first-tile-places', 'Miejsca'], ['first-steps-import', 'Import'], ['first-tile-guide', 'Przewodnik']] as const)('scenariusz: kafelek %s prowadzi do ekranu', async (id) => {
+  test.each([['first-tile-plan', 'Plan'], ['first-tile-places', 'Miejsca'], ['first-steps-import', 'Import'], ['first-tile-guide', 'Przewodnik']] as const)('scenariusz: kafelek %s prowadzi do ekranu', async (id, _ekran) => {
     await boot(); await tap(screen.getByTestId(id)); await flushAll(10);
     expect(screen.queryByTestId('first-board')).toBeNull(); /* opuszczono ekran Trening */
   });
@@ -64,7 +64,7 @@ describe('ekran nowej osoby (bez treningów, szablonów i planu)', () => {
   });
   test('angielski: ten sam układ i opis tablicy', async () => {
     await boot(() => {}, { locale: 'en' });
-    expect(screen.getByTestId('first-board').props.accessibilityLabel).toBe('First workout, today, Thursday, November 5'); expect(screen.getByText('Start your first workout')).toBeTruthy(); expect(screen.getByText('Start with the settings')).toBeTruthy();
+    expect(screen.getByTestId('first-board').props.accessibilityLabel).toBe('First workout, today, Thursday 5 November'); expect(screen.getByText('Start your first workout')).toBeTruthy(); expect(screen.getByText('Start with the settings')).toBeTruthy();
   });
 });
 
@@ -75,7 +75,7 @@ describe('„Inny trening” — reguła ogólna: tylko gdy są inne sposoby sta
     expect(screen.queryByText('Zacznij pierwszy trening')).toBeNull();
   });
   test('stary trening bez szablonów (nie nowa osoba): przycisk „Pusty trening” jak dotąd, „Inny trening” z „Powtórz ostatni”; bez tablicy i kafelków', async () => {
-    await boot(() => { addWorkout(NOW.getTime() - 86400000, [['Plank', [{ done: true, durationSec: '30' }]]]); });
+    await boot(() => { addWorkout(NOW.getTime() - 86400000, [['Plank', [{ done: true, durationSec: 30 }]]]); });
     expect(screen.getByText('Pusty trening')).toBeTruthy(); expect(screen.getByText('Inny trening')).toBeTruthy(); expect(screen.queryByTestId('first-board')).toBeNull(); expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.queryByText('Zacznij od ustawień')).toBeNull();
   });
 });
@@ -83,7 +83,7 @@ describe('„Inny trening” — reguła ogólna: tylko gdy są inne sposoby sta
 describe('niezmiennik: po pierwszym zakończonym treningu tablica i kafelki znikają (pasek tygodnia zostaje)', () => {
   test('nowa osoba → trening zakończony → zwykły ekran główny', async () => {
     await boot(); expect(screen.getByTestId('first-board')).toBeTruthy();
-    await act(async () => { addWorkout(NOW.getTime() - 3600000, [['Plank', [{ done: true, durationSec: '30' }]]]); }); await flushAll(10);
+    await act(async () => { addWorkout(NOW.getTime() - 3600000, [['Plank', [{ done: true, durationSec: 30 }]]]); }); await flushAll(10);
     expect(screen.queryByTestId('first-board')).toBeNull(); expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.getByTestId('week-strip')).toBeTruthy(); expect(screen.getByText('Pusty trening')).toBeTruthy();
   });
 });

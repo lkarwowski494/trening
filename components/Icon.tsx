@@ -1,12 +1,12 @@
 /* Własne ikony zamiast emoji w etykietach (M1-029; decyzja właściciela DEC-11, 19.10.2026): ten sam język rysunku co ikony zakładek
  * (components/TabIcon: siatka 24, linia 1,8, zaokrąglone zakończenia), kolor zawsze z motywu przez `color` — nigdy z systemowej czcionki emoji,
  * więc ikona jest czytelna w jasnym i ciemnym wyglądzie i przy „Zwiększ kontrast”. Ikona jest ozdobna: nazwę akcji niesie etykieta VoiceOver
- * przycisku, nie ikona (bez nazw emoji w odczycie). Zakres (✂ wyjęcie z supersetu to znak „✕ SS”, bez ikony): 📍 miejsce, ⏸/▶ pauza i wznowienie, ⏱ przerwa, 🎧/🔊/🔇 głos, „⋯” menu. */
+ * przycisku, nie ikona (bez nazw emoji w odczycie). Zakres (✂ wyjęcie z supersetu to znak „✕ SS”, bez ikony): 📍 miejsce, ⏸/▶ pauza i wznowienie, ⏱ przerwa, 🎧/🔊/🔇 głos, „⋯” menu; od 05.11.2026 kafelki „Zacznij od ustawień”: kalendarz, dokument z strzałką (import), książka (przewodnik). */
 import React from 'react';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import { View, type ColorValue } from 'react-native';
 
-export const ICON_NAMES = ['pin', 'pause', 'play', 'timer', 'headphones', 'speaker', 'speakerOff', 'more'] as const;
+export const ICON_NAMES = ['pin', 'pause', 'play', 'timer', 'headphones', 'speaker', 'speakerOff', 'more', 'calendar', 'download', 'book'] as const;
 export type IconName = typeof ICON_NAMES[number];
 /** Rozmiar ikony obok tekstu 14–16 pt (przyciski, chipy). */
 export const ICON_INLINE = 16;
@@ -23,6 +23,9 @@ export function Icon({ name, color, size = ICON_INLINE }: { name: IconName; colo
       {name === 'speaker' || name === 'speakerOff' ? <Path {...p} d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" /> : null}
       {name === 'speaker' ? <Path {...p} d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" /> : null}
       {name === 'speakerOff' ? <Path {...p} d="M16 9.5l5 5M21 9.5l-5 5" /> : null}
+      {name === 'calendar' ? <><Rect {...p} x={3.5} y={5} width={17} height={15.5} rx={3} /><Path {...p} d="M3.5 10h17M8 3v4M16 3v4" /></> : null}
+      {name === 'download' ? <><Path {...p} d="M7 3h7l5 5v13H7z" /><Path {...p} d="M14 3v5h5M12.5 11v6.5M9.8 14.8l2.7 2.7 2.7-2.7" /></> : null}
+      {name === 'book' ? <><Path {...p} d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z" /><Path {...p} d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3" /></> : null}
       {name === 'more' ? <><Circle {...solid} cx={5.5} cy={12} r={1.8} /><Circle {...solid} cx={12} cy={12} r={1.8} /><Circle {...solid} cx={18.5} cy={12} r={1.8} /></> : null}
     </Svg>
   );

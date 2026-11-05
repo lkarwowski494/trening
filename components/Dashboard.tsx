@@ -1,14 +1,14 @@
 import { WeekHealthLine } from '@/components/HealthLines';
 import { fullValueProps } from '@/components/FullValue'; /* DEC-01 a */
 import React from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, useWindowDimensions } from 'react-native';
 import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, FONT, TYPE, TEXT_SIZE, RADIUS, RADIUS_PRZEJSCIOWE, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
+import { Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
+import { Icon, type IconName } from '@/components/Icon';
+import { useTheme, FONT, TYPE, TEXT_SIZE, RADIUS_PRZEJSCIOWE, SPACE, SIZE, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { useTick } from '@/lib/store';
-import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
-import { mainStart } from '@/lib/home';
+import { weekTiles, lastWorkout, firstSteps, setupTileColumns, SETUP_TILE_GAP } from '@/lib/dashboard';
 import { compareCached, pctText, type CmpKind } from '@/lib/progress';
 import { guardCached, guardTexts } from '@/lib/guard';
 import { fmtVol } from '@/lib/units';
@@ -86,35 +86,33 @@ export function ProgressTiles() {
   </>;
 }
 
-/** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). P4 A (decyzja właściciela 11.10.2026, docs/22): trzy kroki, każdy
- * z jednym przyciskiem — „Planowanie” (szablony i plan są w jednym miejscu: + Nowy szablon, Plan z moich szablonów, Wygeneruj) albo „Przewodnik”.
- * P6 B / DEC-04 a (1.0.1): czwarty, pomijalny krok „Masz historię w innej aplikacji?” z przyciskiem do importu CSV (/more/import).
- * M1-audytor-generalny-025 (04-studio-projektowe-007, 27.10.2026): krok 1 ma przycisk nazwany celem („Szablony i plan”, to samo miejsce co „Planowanie”),
- * krok 3 wskazuje duży przycisk, który jest na ekranie (bez szablonu „Pusty trening” — lib/home mainStart), przyciski kroków jednego rodzaju,
- * zdanie o miejscach z „›” (przejście na inny ekran, docs/32 wzorzec 17). */
+/** Nowa osoba (do pierwszego zakończonego treningu): „Zacznij od ustawień” — cztery osobne kafelki W1 (decyzja właściciela 05.11.2026, docs/18; makieta docs/design/kierunki/start-1-1-r4.html),
+ * w stylu kafelków „Ten tydzień” (promień, obwódka, ikona przy tytule), „›” w prawym dolnym rogu (docs/32 wzorzec 17); całe kafelki są przyciskami ≥ 44 pt.
+ * 2 × 2, a przy wąskim ekranie, dużym tekście i dłuższych językach jedna kolumna (lib/dashboard.setupTileColumns). Zastępuje kartę „Pierwsze kroki” (08.10.2026, P4 A 11.10.2026,
+ * DEC-04 a 23.10.2026): te same wejścia — Szablony i plan, Miejsca i sprzęt, import CSV (testID first-steps-import), Przewodnik; kroki „zrobione” i zdanie o dużym przycisku zniknęły. */
 export function FirstSteps() {
-  useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
-  const step = (done: boolean, n: number, text: string, action?: React.ReactNode) => (
-    <View accessibilityLanguage={lang()} key={n} accessible={!action} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
-      <View style={{ width: 24, height: 24, borderRadius: RADIUS_PRZEJSCIOWE.badge, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: TEXT_SIZE.small, ...FW.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
-      </View>
-      <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: TEXT_SIZE.medium, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>
-    </View>);
-  const toPlan = (title: string) => <Btn nav small title={title} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} />;
-  const noTemplate = mainStart().kind === 'empty';
+  useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); const win = useWindowDimensions(); if (!f) return null;
+  const cols = setupTileColumns(win.width - 2 * SPACE.l, win.fontScale || 1);
+  const tiles: { id: string; icon: IconName; title: string; text: string; go: () => void }[] = [
+    { id: 'first-tile-plan', icon: 'calendar', title: t('Szablony i plan'), text: t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), go: () => router.push('/plan') },
+    { id: 'first-tile-places', icon: 'pin', title: t('Miejsca i sprzęt'), text: t('Dom albo siłownia — ustaw swój sprzęt.'), go: () => router.push('/more/locations') },
+    { id: 'first-steps-import', icon: 'download', title: t('Historia z CSV'), text: t('Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.'), go: () => router.push('/more/import') },
+    { id: 'first-tile-guide', icon: 'book', title: t('Przewodnik'), text: t('Co gdzie jest i jak działa.'), go: () => router.push('/guide?topic=workout') },
+  ];
   return (
-    <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
-      <Txt accessibilityRole="header" style={{ ...FW.semibold, fontSize: TYPE.body.size }}>{t('Pierwsze kroki')}</Txt>
-      {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? toPlan(t('Szablony i plan')) : undefined)}
-      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? toPlan(t('Planowanie')) : undefined)}
-      {step(false, 3, noTemplate ? t('Pierwszy trening: duży przycisk „Pusty trening” u góry.') : t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
-      {/* DEC-04 a (23.10.2026, wdrożenie 1.0.1): czwarty, pomijalny krok — tylko wejście do istniejącego importu CSV; nigdy „zrobiony” (kroki znikają po pierwszym treningu) */}
-      {step(false, 4, t('Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.'), <Btn nav small testID="first-steps-import" title={t('Importuj historię z pliku CSV')} onPress={once(() => router.push('/more/import'))} style={{ alignSelf: 'flex-start' }} />)}
-      {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
-      <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-        <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: TYPE.footnote.size }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
-        <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
-      </Pressable>
+    <View testID="first-steps">
+      <SectionTitle>{t('Zacznij od ustawień')}</SectionTitle>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SETUP_TILE_GAP }}>
+        {tiles.map(x => (
+          <Pressable key={x.id} testID={x.id} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={`${x.title}. ${x.text}`} onPress={once(x.go)}
+            style={({ pressed }: { pressed: boolean }) => ({ width: cols === 2 ? (win.width - 2 * SPACE.l - SETUP_TILE_GAP) / 2 : '100%', minHeight: SIZE.hit, gap: SPACE.xs, padding: SPACE.m, borderRadius: RADIUS_PRZEJSCIOWE.tile, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1 })}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: SPACE.s }}>
+              <Icon name={x.icon} color={th.text} size={SIZE.icon} />
+              <View style={{ flex: 1 }}><Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: TYPE.body.size - 1 }}>{x.title}</Txt></View>
+            </View>
+            <View style={{ paddingRight: SPACE.m + SPACE.xs }}><Muted maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontSize: TYPE.footnote.size }}>{x.text}</Muted></View>
+            <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ position: 'absolute', right: SPACE.m, bottom: SPACE.s, color: th.muted, ...font('callout') }}>›</Text>
+          </Pressable>))}
+      </View>
     </View>);
 }
