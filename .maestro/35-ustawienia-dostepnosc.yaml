@@ -77,7 +77,11 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
 # E2E-35 (run 39676394005): „RIR” po tekście trafiało w nieostry cel (trening pokazał potem RPE) — segment ma testID `effort-scale-rir`; zaznaczenie sprawdzamy przed dalszymi krokami
-- scrollUntilVisible: { element: { id: "effort-scale-rir" }, direction: DOWN, timeout: 20000, centerElement: true }
+# Run 42103163923 (standardowy iPhone): przewijanie tylko w DÓŁ kończyło na dole listy, a segment (zaraz pod przełącznikiem) został wyżej — „No visible element found: id: effort-scale-rir”. Najpierw sprawdzamy, czy segment już jest na ekranie; jeśli nie — szukamy w GÓRĘ.
+- runFlow:
+    when: { notVisible: { id: "effort-scale-rir" } }
+    commands:
+      - scrollUntilVisible: { element: { id: "effort-scale-rir" }, direction: UP, timeout: 20000, centerElement: true }
 # E2E 39702654990: segment bywa pod przezroczystym nagłówkiem Settings (Maestro uważa go za widoczny, więc centerElement go nie przewija) — zsuwamy listę w dół o ok. 100 pt
 - swipe: { start: "50%, 40%", end: "50%, 52%", duration: 400 }
 - tapOn: { id: "effort-scale-rir" }
