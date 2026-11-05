@@ -92,7 +92,7 @@ describe('zapadka: lista bazowa tylko maleje (05.11.2026)', () => {
     const r = oceń(wynik(plik('/r/tests/a.test.ts', przypadek('wolny', 200000), przypadek('inny', 200000))), lim, w);
     expect(r.wyjatki).toHaveLength(1); expect(r.naruszenia.map(n => n.test)).toEqual(['S inny']); expect(r.zbedne).toEqual([]);
   });
-  test('wpis bazowy, którego przypadek mieści się już w progu → zbędny (odmowa w poleceniu)', () => {
+  test('wpis bazowy, którego przypadek mieści się już w progu → zbędny (ostrzeżenie w poleceniu)', () => {
     const r = oceń(wynik(plik('/r/tests/a.test.ts', przypadek('wolny', 1000))), lim, w);
     expect(r.zbedne.map(n => n.test)).toEqual(['S wolny']); expect(r.naruszenia).toEqual([]);
   });
@@ -173,10 +173,10 @@ describe('polecenie node scripts/kontrola-czasu-testu.mjs (05.11.2026)', () => {
     const r = uruchom(d, wolny(d));
     expect(r.status).toBe(0); expect(r.stdout).toMatch(/wyjątek \(05\.11\.2026\).*podział na języki/);
   });
-  test('zapadka: wpis bazowy w progu → kod 1 z listą zbędnych wpisów', () => {
+  test('zapadka: wpis bazowy w progu → OSTRZEŻENIE z listą zbędnych wpisów, kod 0 (05.11.2026: czasy runnerów migają o ok. 30%)', () => {
     const d = korzen({ wyjatki: [{ plik: 'tests/a.test.ts', test: 'S szybki', powod: 'stan bazowy 05.11.2026', data: '05.11.2026', plan: 'podział na języki' }] });
     const r = uruchom(d, wynik(plik(join(d, 'tests/a.test.ts'), przypadek('szybki', 100))));
-    expect(r.status).toBe(1); expect(r.stderr).toMatch(/już mieści się w progu.*usuń/); expect(r.stderr).toContain('S szybki');
+    expect(r.status).toBe(0); expect(r.stderr).toMatch(/OSTRZEŻENIE.*mieści się w tym przebiegu w progu.*usuń/); expect(r.stderr).toContain('S szybki');
   });
   test('zapadka: nowy przypadek ponad progiem przy istniejącej liście bazowej → kod 1 (lista tylko maleje)', () => {
     const d = korzen({ wyjatki: [{ plik: 'tests/a.test.ts', test: 'S szybki', powod: 'stan bazowy 05.11.2026', data: '05.11.2026', plan: 'podział na języki' }] });

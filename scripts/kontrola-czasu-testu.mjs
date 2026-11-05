@@ -106,9 +106,9 @@ export function main(argv) {
     kod = 2;
   }
   if (r.zbedne.length) {
-    console.error(`\nkontrola-czasu-testu: ${r.zbedne.length} wpisów w tests/czas-testu-wyjatki.json już mieści się w progu (poniżej ${proc(prog * margines)} limitu) — usuń je (zapadka: lista tylko maleje):`);
+    /* 05.11.2026 (przebieg dowodowy 4, 929ec7f5): czasy runnerów różnią się o ok. 30% między przebiegami (gemini-polecenia 52% → < 40%), więc „zbędny wpis” jako błąd migał — teraz OSTRZEŻENIE (kod bez zmian); blokują tylko nowe przypadki ponad progiem i brak limitu. */
+    console.error(`\nkontrola-czasu-testu: OSTRZEŻENIE — ${r.zbedne.length} wpisów w tests/czas-testu-wyjatki.json mieści się w tym przebiegu w progu (poniżej ${proc(prog * margines)} limitu) — usuń je, jeśli to się powtarza (lista tylko maleje):`);
     for (const n of r.zbedne) console.error(`  - ${opis(n)}`);
-    kod = kod || 1;
   }
   if (r.naruszenia.length) {
     console.error(`\nkontrola-czasu-testu: ${r.naruszenia.length} NOWYCH przypadków trwa ponad ${proc(prog)} swojego limitu — podziel je (np. jeden przypadek na język albo na rodzinę); wyjątek tylko z powodem i planem w tests/czas-testu-wyjatki.json (zapadka: nowych wpisów nie dopisuje się dla nowych testów):`);
