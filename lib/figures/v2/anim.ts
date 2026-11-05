@@ -22,6 +22,13 @@ export const ONE_WAY = { repMs: 1500, holdStartMs: 500, holdEndMs: 500 } as cons
 export const ONE_WAY_REP_MS: Readonly<Record<string, number>> = { 'Alternating Deltoid Raise': 2 * (TEMPO.upMs + TEMPO.downMs) };
 /** Czas przebiegu pętli jednokierunkowej ćwiczenia `key` (ms). */
 export const oneWayRepMs = (key?: string): number => (key !== undefined && Object.prototype.hasOwnProperty.call(ONE_WAY_REP_MS, key) ? ONE_WAY_REP_MS[key] : ONE_WAY.repMs);
+/**
+ * Pozycje statyczne (Ogranicz ruch, pauza, zrzuty) pętli jednokierunkowej ZAMKNIĘTEJ (u = 0 i u = 1 to ta sama poza; r4-W1, 04.11.2026): zamiast końców — poza wyjściowa i szczyty ruchu.
+ * Alternating Deltoid Raise: szczyt przodem po 1 s unoszenia (u = 1/6), szczyt bokiem w drugim powtórzeniu (u = 2/3); podpisy to nazwy do t() („Pozycja wyjściowa” / „Przodem” / „Bokiem”). Liczby z TEMPO i ONE_WAY_REP_MS.
+ */
+export const ONE_WAY_STATIC: Readonly<Record<string, { u: number[]; labels: string[] }>> = {
+  'Alternating Deltoid Raise': { u: [0, TEMPO.upMs / ONE_WAY_REP_MS['Alternating Deltoid Raise'], (2 * TEMPO.upMs + TEMPO.downMs) / ONE_WAY_REP_MS['Alternating Deltoid Raise']], labels: ['Pozycja wyjściowa', 'Przodem', 'Bokiem'] },
+};
 /** Tempo animacji; holdLowMs = pauza po fazie opuszczania (u = 1) zamiast HOLD_MS (0 = bez pauzy na dole: przysiad, NSCA Basics 2012 s. 49–50). */
 export type Tempo = { downMs: number; upMs: number; holdLowMs?: number };
 

@@ -3,61 +3,61 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 132,
+      "v2": 0,
       "v1": 48,
-      "bezFigury": 528,
-      "daneV2NieWlaczone": 401,
-      "wyjatekBezAnimacji": 122
+      "bezFigury": 660,
+      "daneV2NieWlaczone": 447,
+      "wyjatekBezAnimacji": 125
     },
-    "animowanyBlad": 124,
+    "animowanyBlad": 0,
     "wskazowki": {
       "wlasne": 193,
       "wlasneZBledami": 91,
-      "ogolne": 106,
-      "bezTekstu": 409
+      "ogolne": 0,
+      "bezTekstu": 515
     },
-    "czesteBledyTekst": 197,
+    "czesteBledyTekst": 91,
     "roleMiesni": 508,
-    "pelnaKarta": 122,
-    "recenzjaFigur": 132
+    "pelnaKarta": 0,
+    "recenzjaFigur": 0
   },
   "kartZTekstami": 572,
   "rodziny": {
     "squat": {
       "status": "ready",
       "cwiczen": 25,
-      "figuraV2": 25,
+      "figuraV2": 0,
       "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 5,
-      "ogolne": 20,
-      "bezTekstu": 0,
-      "pelnaKarta": 23,
-      "recenzja": 25
+      "ogolne": 0,
+      "bezTekstu": 20,
+      "pelnaKarta": 0,
+      "recenzja": 0
     },
     "bench_press": {
       "status": "ready",
       "cwiczen": 30,
-      "figuraV2": 30,
+      "figuraV2": 0,
       "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 5,
-      "ogolne": 25,
-      "bezTekstu": 0,
-      "pelnaKarta": 28,
-      "recenzja": 30
+      "ogolne": 0,
+      "bezTekstu": 25,
+      "pelnaKarta": 0,
+      "recenzja": 0
     },
     "hinge": {
       "status": "ready",
       "cwiczen": 32,
-      "figuraV2": 32,
+      "figuraV2": 0,
       "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 7,
-      "ogolne": 25,
-      "bezTekstu": 0,
-      "pelnaKarta": 31,
-      "recenzja": 32
+      "ogolne": 0,
+      "bezTekstu": 25,
+      "pelnaKarta": 0,
+      "recenzja": 0
     },
     "pushup_plank": {
       "status": "planned",
@@ -122,14 +122,14 @@
     "pull_up": {
       "status": "ready",
       "cwiczen": 13,
-      "figuraV2": 11,
-      "daneV2NieWlaczone": 0,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 11,
       "v1": 0,
       "wlasne": 3,
-      "ogolne": 8,
-      "bezTekstu": 2,
-      "pelnaKarta": 8,
-      "recenzja": 11
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
     },
     "pulldown": {
       "status": "planned",
@@ -242,14 +242,14 @@
     "curl": {
       "status": "ready",
       "cwiczen": 36,
-      "figuraV2": 34,
-      "daneV2NieWlaczone": 0,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 34,
       "v1": 0,
       "wlasne": 6,
-      "ogolne": 28,
-      "bezTekstu": 2,
-      "pelnaKarta": 32,
-      "recenzja": 34
+      "ogolne": 0,
+      "bezTekstu": 30,
+      "pelnaKarta": 0,
+      "recenzja": 0
     },
     "triceps": {
       "status": "planned",
@@ -267,7 +267,7 @@
       "status": "planned",
       "cwiczen": 38,
       "figuraV2": 0,
-      "daneV2NieWlaczone": 30,
+      "daneV2NieWlaczone": 31,
       "v1": 3,
       "wlasne": 31,
       "ogolne": 0,
@@ -753,17 +753,17 @@
     }
   },
   "dobre": {
-    "figura.v2": 132,
-    "figura.wAplikacji": 180,
-    "figura.zDanymiV2": 533,
-    "animowanyBlad": 124,
+    "figura.v2": 0,
+    "figura.wAplikacji": 48,
+    "figura.zDanymiV2": 447,
+    "animowanyBlad": 0,
     "wskazowki.wlasne": 193,
     "wskazowki.wlasneZBledami": 91,
-    "wskazowki.zTekstem": 299,
-    "czesteBledyTekst": 197,
+    "wskazowki.zTekstem": 193,
+    "czesteBledyTekst": 91,
     "roleMiesni": 508,
-    "pelnaKarta": 122,
-    "recenzjaFigur": 132,
+    "pelnaKarta": 0,
+    "recenzjaFigur": 0,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 572,
     "jezyk.en.kompletne": 572,

@@ -17,7 +17,7 @@ import type { Frame, Shape, View } from './scene';
 import { SIDES, jointAngles, type Side } from './skeleton';
 import type { V3 } from './math';
 import { trailShapes } from './guides';
-import { phasesOf, walkPhases, oneWayPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
+import { phasesOf, walkPhases, oneWayPhases, ONE_WAY_STATIC, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
 import { contactGlows, type ContactId } from './contacts';
@@ -135,8 +135,10 @@ export const loopOf = (spec: FigureSpec): LoopMode => { if (!('data' in spec.var
 /** Zakres pozycji u pętli: 2 w trybie cyklicznym (druga połowa w lustrze), 1 w wahadle. */
 export const loopSpan = (spec: FigureSpec): number => 'data' in spec.variant ? poseLoopSpan(spec.variant.data) : 1;
 
-/** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii). */
-export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1] : [0, 1];
+/** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii; pętla jednokierunkowa zamknięta — poza wyjściowa i szczyty, r4-W1). */
+export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1] : Object.prototype.hasOwnProperty.call(ONE_WAY_STATIC, spec.key) ? [...ONE_WAY_STATIC[spec.key].u] : [0, 1];
+/** Podpisy pozycji statycznych (nazwy do t()): wyjściowa / końcowa albo własne szczyty pętli zamkniętej (ONE_WAY_STATIC); pusta lista dla jednej pozycji. */
+export const staticLabels = (spec: FigureSpec): string[] => spec.static ? [] : Object.prototype.hasOwnProperty.call(ONE_WAY_STATIC, spec.key) ? [...ONE_WAY_STATIC[spec.key].labels] : ['Pozycja wyjściowa', 'Pozycja końcowa'];
 
 /** Udział mięśni w ćwiczeniu z katalogu (docs/research/equipment/catalog.json → muscleLoad) wraz z pewnością; null, gdy brak. */
 export function musclesFor(key: string): MuscleEntry | null { return Object.prototype.hasOwnProperty.call(MUSCLE_DATA, key) ? MUSCLE_DATA[key] : null; }
