@@ -125,8 +125,8 @@ describe('G5 — konwencje okien i SwipeRow', () => {
 });
 
 describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
-  test('H1: „Przewodnik” (Pierwsze kroki, krok 3) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
-    await boot(); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10);
+  test('H1: „Przewodnik” (kafelek na ekranie nowej osoby, dawniej Pierwsze kroki krok 3) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
+    await boot(); await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); /* 05.11.2026: kafelek „Przewodnik” (ekran nowej osoby 1.1) */
     expect(screen.getByLabelText('Trening i serie, przeczytane').props.accessibilityState).toEqual({ expanded: true }); expect(S().guideSeen).toEqual(['workout']);
   });
   test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej; z Ustawień zniknęło), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
@@ -140,9 +140,9 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     const t = mkTpl(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/template/${t.id}`); await flushAll(10);
     expect(screen.getByText('zakres 6–8 · przerwa 1:30')).toBeTruthy(); expect(screen.getByText('przerwa 2:00')).toBeTruthy();
   });
-  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A): Pierwsze kroki — 3 kroki, każdy z jednym przyciskiem; „Szablony i plan” (krok 1, M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
+  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A i 05.11.2026 — ekran nowej osoby 1.1): cztery kafelki „Zacznij od ustawień”, każdy z jednym wejściem; „Szablony i plan” (M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
     await boot(); const fs = within(screen.getByTestId('first-steps'));
-    expect(fs.getAllByText('Szablony i plan')).toHaveLength(1); expect(fs.getAllByText('Planowanie')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): krok 1 „Szablony i plan”, krok 2 „Planowanie” */ expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull(); expect(fs.queryByText('Miejsca i sprzęt')).toBeNull();
+    expect(fs.getAllByText('Szablony i plan')).toHaveLength(1); expect(fs.queryAllByText('Planowanie')).toHaveLength(0); expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.getAllByText('Miejsca i sprzęt')).toHaveLength(1); expect(fs.getAllByText('Historia z CSV')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull();
     expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
     await tap(fs.getByText('Szablony i plan')); await flushAll(10); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();

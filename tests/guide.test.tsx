@@ -113,10 +113,10 @@ describe('ekrany', () => {
   });
   test('wszystkie tematy po polsku na ekranie; „Pokaż” otwiera opisany ekran', async () => {
     const expectOn: Record<string, () => void> = {
-      workout: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), templates: () => expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(),
+      workout: () => expect(screen.getByTestId('start-main')).toBeTruthy(), /* 05.11.2026: nowa osoba nie ma „Inny trening” (tylko gdy są inne starty) — ekran Trening poznaje po dużym przycisku */ templates: () => expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(),
       plan: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
       deload: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), /* 11.10.2026: Przewodnik „Deload” kieruje do planu (zakładka Plan), nie do Postępów */
-      during: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
+      during: () => expect(screen.getByTestId('start-main')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
       places: () => expect(screen.getAllByText(/Miejsc|miejsc/).length).toBeGreaterThan(0), backup: () => expect(screen.getAllByText(/Eksport|eksport/).length).toBeGreaterThan(0),
     };
     for (const g of GUIDE) {
@@ -129,11 +129,11 @@ describe('ekrany', () => {
       expect([g.id, names.filter((n: string) => n === '(tabs)').length]).toEqual([g.id, 1]);
     }
   }, 20000); /* ~2,5 s osobno; 8 ekranów — pod obciążeniem pełnego verify przekraczał domyślne 5 s */
-  test('wejścia: Więcej (z postępem), „Pierwsze kroki” (nowa osoba), „Co nowego” (po aktualizacji)', async () => {
+  test('wejścia: Więcej (z postępem), kafelek „Przewodnik” (nowa osoba; dawniej „Pierwsze kroki”), „Co nowego” (po aktualizacji)', async () => {
     await boot('/more', () => { markGuideSeen('workout'); });
     expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
     await tap(screen.getByText('Przewodnik')); await flushAll(10); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
-    await boot('/'); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10); expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy();
+    await boot('/'); await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy(); /* 05.11.2026: kafelek „Przewodnik” w „Zacznij od ustawień” (ekran nowej osoby 1.1) */
     WHATS_NEW.splice(0, WHATS_NEW.length, ...PROBKI); /* 1.0.0: historia pusta — wejście z „Co nowego” przy wpisach (pierwszy wpis 1.1) */
     try {
       await boot('/', () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
