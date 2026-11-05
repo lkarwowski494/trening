@@ -7,6 +7,671 @@
       "powod": "Jeden przypadek 26 języków × wszystkie karty: 416 s z limitu 480 s (87%) w przebiegu tests.yml 42014049471 (część Jest 2); na gałęzi figury/triceps 526 s (lekcja L-NNN w docs/40, 05.11.2026).",
       "data": "05.11.2026",
       "plan": "Podział na przypadek na język (test.each po 26 językach) — gotowy w commicie MER2-07 na gałęzi figury/triceps (f0d3b75d i następne); po jej scaleniu usunąć ten wpis."
+    },
+    {
+      "plik": "tests/strona-eksport.test.ts",
+      "test": "eksport dla strony: komplet i spójność z runtime aplikacji (macierz: 708 ćwiczeń × 35 języków) każdy język ma wszystkie ćwiczenia biblioteki, w kolejności biblioteki, z polami wymaganymi",
+      "powod": "stan bazowy 05.11.2026: 11.9 s z limitu 5 s (237%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport.test.ts",
+      "test": "eksport dla strony: niezmienniki anonimowości (jak tests/zrodla-wiedzy.test.ts) bramka eksportu: wstrzyknięta nazwa źródła (wszystkie języki) i odwołanie ogólne (pl, en) przerywają eksport; czysty tekst przechodzi",
+      "powod": "stan bazowy 05.11.2026: 8.0 s z limitu 5 s (159%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/swap-logic.test.ts",
+      "test": "ranking zamiany (swapCandidates) ranking: żaden kandydat nie jest bieżącym ćwiczeniem; ta sama metryka; przy filtrze — wszystkie dostępne w miejscu; wynik deterministyczny",
+      "powod": "stan bazowy 05.11.2026: 2.8 s z limitu 5 s (56%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-contract.test.ts",
+      "test": "biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI zastosuj: zapisuje tylko poprawne pozy do lib/figures/v2/poses/<rodzina>.json (katalog tymczasowy), odrzucone zwraca z błędami; kolejne wywołanie scala",
+      "powod": "stan bazowy 05.11.2026: 4.3 s z limitu 5 s (86%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-contract.test.ts",
+      "test": "biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI CLI: node scripts/figures/v2-validate.mjs <plik> — kod 0 dla poprawnej pozy, 1 z listą błędów dla niepoprawnej, 2 bez argumentu",
+      "powod": "stan bazowy 05.11.2026: 6.6 s z limitu 5 s (133%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-1-0-1-uwagi.test.ts",
+      "test": "bench_press: JM Press i Skull Crusher — zgięcie łokcia w granicy kontraktu (było: 152° i 154° przy limicie 149°; docs/research/28: CDC zgięcie łokcia 150°/145°) łokieć ≤ 149° w każdej klatce, obie strony; gryf nie wchodzi w głowę (kontrola geometrii)",
+      "powod": "stan bazowy 05.11.2026: 10.7 s z limitu 5 s (215%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-1-0-1-uwagi.test.ts",
+      "test": "widok z przodu i z góry: ślad toru biegnie przy hantlu, nie w osi ciała (było: info.load w z = 0 przy hantlach po bokach — tor między nogami, a hantle po bokach) ćwiczenia z hantlami: z środka ciężaru = z hantla prawej ręki (± 0,01 cm), w każdej klatce; ćwiczenia z jednym środkiem (sztanga, goblet, kettlebell) bez zmian: z = 0",
+      "powod": "stan bazowy 05.11.2026: 2.7 s z limitu 5 s (54%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-1-0-1-uwagi.test.ts",
+      "test": "zaczepy stałe: górny zaczep gumy „Reverse Band” i bloczek linki przy podłodze stoją w miejscu, nie jadą z ciężarem (było: 3,4 i 8 cm w martwych ciągach; w Reverse Band Bench Press kotwica jechała z gryfem) każda guma z kotwicą nad gryfem (hang) ma kotwicę w tym samym miejscu we wszystkich klatkach; to samo każda linka (bloczek)",
+      "powod": "stan bazowy 05.11.2026: 36.6 s z limitu 5 s (731%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-1-0-1-uwagi.test.ts",
+      "test": "F1 (badacz 28.10.2026, JM Press): łokcie wysoko, ramię ku stopom, odwiedzenie stałe ok. 45°, sztanga w dół ku szyi (było: łokieć 26 cm za barkiem ku głowie i 10 cm poniżej barku, ramię 110° od pionu; w połowie ruchu odwiedzenie 57°, łokcie do z = 41) w całym ruchu łokieć nad barkiem lub nie niżej niż 5 cm pod nim i nigdy za barkiem ku głowie (dx ≥ −1)",
+      "powod": "stan bazowy 05.11.2026: 13.7 s z limitu 5 s (273%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-1-0-1-uwagi.test.ts",
+      "test": "R2-3, R2-4, R2-5 (recenzja r2 28.10.2026): dłonie stałe na gryfie i ciągłość gryfu w JM Press i Skull Crusher (było: JM z dłoni 19 → 6, Skull Crusher 19 → 10,9 → 12,5, skok gryfu 3,75 cm przy u = 0,6) |z| dłoni stałe (± 0,5 cm) w 41 klatkach, obie dłonie symetrycznie",
+      "powod": "stan bazowy 05.11.2026: 27.4 s z limitu 5 s (547%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-1-0-1-uwagi.test.ts",
+      "test": "R2-3, R2-4, R2-5 (recenzja r2 28.10.2026): dłonie stałe na gryfie i ciągłość gryfu w JM Press i Skull Crusher (było: JM z dłoni 19 → 6, Skull Crusher 19 → 10,9 → 12,5, skok gryfu 3,75 cm przy u = 0,6) ciągłość: gryf i dłonie przesuwają się między sąsiednimi klatkami (Δu = 1/200) o ≤ 1 cm — bez skoków",
+      "powod": "stan bazowy 05.11.2026: 129.3 s z limitu 5 s (2585%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-ui.test.tsx",
+      "test": "komponent ExerciseFigureV2 VoiceOver: jeden obraz z opisem „Rysunek ruchu: …” w języku interfejsu; przycisk pauzy osobno",
+      "powod": "stan bazowy 05.11.2026: 4.4 s z limitu 5 s (87%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-ui.test.tsx",
+      "test": "komponent ExerciseFigureV2 kąt na rysunku (decyzja właściciela 25.10.2026): pomiar zgadza się z geometrią klatki ±1° (niezależny rachunek z punktów szkieletu) dla każdej pozycji i błędu; tekst w komponencie = pomiar; etykieta PL i EN; pomiar odróżniony od zaleceń (kursywa vs półpogrubienie)",
+      "powod": "stan bazowy 05.11.2026: 3.9 s z limitu 5 s (78%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/readme.test.ts",
+      "test": "README.md: bloki generowane scripts/readme.mjs --check przechodzi (README zgodny z kodem; nieaktualny → node scripts/readme.mjs --write)",
+      "powod": "stan bazowy 05.11.2026: 4.8 s z limitu 5 s (95%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/readme.test.ts",
+      "test": "README.md: bloki generowane --write jest idempotentne i nie zmienia aktualnego README",
+      "powod": "stan bazowy 05.11.2026: 5.4 s z limitu 5 s (108%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/readme.test.ts",
+      "test": "README.md: bloki generowane ręczna zmiana wewnątrz bloku jest wykrywana przez --check (README skopiowane do katalogu tymczasowego)",
+      "powod": "stan bazowy 05.11.2026: 6.0 s z limitu 5 s (120%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/wybor-testow-l104.test.ts",
+      "test": "L-104: prawdziwe repo — zmiana zależności skryptu wybiera test, który go uruchamia negatyw: pliki spoza zależności skryptu nie wybierają testu",
+      "powod": "stan bazowy 05.11.2026: 3.5 s z limitu 5 s (71%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/cues.test.tsx",
+      "test": "komponent ExerciseCues zwinięty: przycisk „Technika” z expanded=false; po stuknięciu sekcje, punkty i stopka; ponowne stuknięcie zwija",
+      "powod": "stan bazowy 05.11.2026: 3.1 s z limitu 5 s (62%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/migrate-idem.test.ts",
+      "test": "migrate is idempotent through JSON (export→import is a no-op)",
+      "powod": "stan bazowy 05.11.2026: 87.9 s z limitu 5 s (1759%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-geometry.test.ts",
+      "test": "niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji ruchu) 87 wariantów: każda klatka bez błędów (kości, zasięg, podłoga, przenikanie ciało–sprzęt, chwyt, głowa)",
+      "powod": "stan bazowy 05.11.2026: 27.6 s z limitu 5 s (551%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-geometry.test.ts",
+      "test": "niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji ruchu) zakres stawów w każdej klatce mieści się w granicach z docs/research/28 (CDC, Anderton): biodro, kolano, stopa, łokieć, bark (zgięcie w płaszczyźnie strzałkowej, unoszenie)",
+      "powod": "stan bazowy 05.11.2026: 91.8 s z limitu 5 s (1835%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-geometry.test.ts",
+      "test": "niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji ruchu) ciągłość: między sąsiednimi pozycjami (Δu = 1/48) żaden staw nie przeskakuje o więcej niż 6 cm (bez przeskoków IK i skoku ciężaru)",
+      "powod": "stan bazowy 05.11.2026: 40.6 s z limitu 5 s (813%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-geometry.test.ts",
+      "test": "niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji ruchu) kształty wszystkich klatek i widoków są skończone i mają kolejność rysowania (bez NaN)",
+      "powod": "stan bazowy 05.11.2026: 3.2 s z limitu 5 s (65%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-geometry.test.ts",
+      "test": "regresja błędów makiety (przysiad, podciąganie, wyciskanie) — gryf, głowa, przenikanie wyciskanie: sztanga w dłoniach w każdej klatce (odległość chwytu od gryfu ≤ 0,6 cm), hantle w dłoniach",
+      "powod": "stan bazowy 05.11.2026: 17.8 s z limitu 5 s (356%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-geometry.test.ts",
+      "test": "regresja błędów makiety (przysiad, podciąganie, wyciskanie) — gryf, głowa, przenikanie przysiad i zawias: obie stopy płasko na podłodze w całym ruchu (poza stopą wolną w martwym na jednej nodze i stopniem w martwym z deficytu)",
+      "powod": "stan bazowy 05.11.2026: 5.2 s z limitu 5 s (105%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-sprzet-geometria.test.ts",
+      "test": "talerze i dłonie na gryfie (wszystkie warianty, 25 klatek) dłonie (chwyt) są między wewnętrznymi kołnierzami: |z chwytu| + szerokość dłoni ≤ ±65,5 cm",
+      "powod": "stan bazowy 05.11.2026: 17.7 s z limitu 5 s (354%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-sprzet-geometria.test.ts",
+      "test": "talerze i dłonie na gryfie (wszystkie warianty, 25 klatek) talerz nie zachodzi na dłoń: wewnętrzna krawędź pierwszego talerza leży dalej niż najdalszy punkt dłoni (3D i na rysunku z przodu)",
+      "powod": "stan bazowy 05.11.2026: 16.5 s z limitu 5 s (331%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-sprzet-geometria.test.ts",
+      "test": "kadr widoku z przodu talerze i łańcuchy mieszczą się w kadrze, a kadr nie poszerza się ponad gryf (skala bez zmian)",
+      "powod": "stan bazowy 05.11.2026: 3.2 s z limitu 5 s (64%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/audit-r72-c.test.ts",
+      "test": "C migrate idempotent incl. bodyWeightKg (fixed bw values >= 0.005)",
+      "powod": "stan bazowy 05.11.2026: 73.9 s z limitu 5 s (1477%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/matrix-i18n.test.tsx",
+      "test": "długie tłumaczenia w miejscach, gdzie tekst może być ucięty pl: wszystkie Segmented (Wygląd, Widok treningu) na ekranie 320 pt — bez łamania wyrazu i bez „…”",
+      "powod": "stan bazowy 05.11.2026: 9.6 s z limitu 5 s (192%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-recenzja.test.tsx",
+      "test": "zapis recenzji (docs/research/figury-recenzja.json) R2-6 (recenzja niezależna 28.10.2026): skrót rodziny v2 obejmuje także draw.ts, scene.ts, skeleton.ts, math.ts, anim.ts, errors.ts i figure.ts — zmiana któregokolwiek zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 7.7 s z limitu 5 s (153%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-recenzja.test.tsx",
+      "test": "zapis recenzji (docs/research/figury-recenzja.json) W1 (recenzja 1R 04.11.2026): overlay/bench_press.ts (elementy techniki) wchodzi tylko do skrótu swojej rodziny, a overlay/squat.ts i overlay/hinge.ts (linie odniesienia, N1) do skrótu każdej; overlay.ts, overlay/common.ts i grupy.json do skrótu każdej; cudze importy i wpisy rejestru nie zmieniają skrótu",
+      "powod": "stan bazowy 05.11.2026: 4.5 s z limitu 5 s (90%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-nakladka-squat-hinge.test.tsx",
+      "test": "niezmienniki: bez tekstu i liczb, limit elementów na rzut, element ⇔ wskazówka na karcie limit (W3): ≤ 3 linie i ≤ 1 łuk na rzut — suma linii odniesienia (GUIDES) i nakładki, w każdym ćwiczeniu squat/hinge, rzucie, klatce i pozie błędu",
+      "powod": "stan bazowy 05.11.2026: 5.0 s z limitu 5 s (100%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-nakladka-squat-hinge.test.tsx",
+      "test": "etap 2 po scaleniu E3: kolor błędu linii odniesienia i brak dwóch linii w tym samym miejscu (recenzja 2R P1: W4', S1) S1: w żadnej klatce, żadnym rzucie i żadnej pozie błędu squat/hinge dwie linie (odniesienia + nakładka) nie leżą jedna pod drugą — wyjątek tylko poziom uda i linia uda przysiadu przy udzie poziomo",
+      "powod": "stan bazowy 05.11.2026: 22.1 s z limitu 5 s (443%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/locations-model.test.ts",
+      "test": "schemat 14 i migracja migracja z miejscami jest idempotentna (właściwość, śmieci w miejscach)",
+      "powod": "stan bazowy 05.11.2026: 12.3 s z limitu 5 s (247%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-tor.test.ts",
+      "test": "tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026) każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem",
+      "powod": "stan bazowy 05.11.2026: 23.7 s z limitu 5 s (474%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-tor.test.ts",
+      "test": "gumy kotwiczone na podłodze: dolny koniec stoi w miejscu (recenzja niezależna 28.10.2026, F3; było: jechał z gryfem — Band Bench Press 15 cm, Sumo with Bands 8 cm, Deadlift with Bands 3,3 cm, Rack Pull with Bands 2,5 cm) każda guma sztangi „do podłogi” (bar, bez hang) ma dolny koniec w tym samym x we wszystkich klatkach",
+      "powod": "stan bazowy 05.11.2026: 11.3 s z limitu 5 s (226%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-tor.test.ts",
+      "test": "101-12 (29.10.2026, hinge): wyjątki toru po krzywej kolan (`knees` w rigu hinge) hantle w RDL i na jednej nodze prowadzone tuż przy udach: wyjątki usunięte; zostaje tylko Cable Pull Through (łuk zamierzony, z powodem)",
+      "powod": "stan bazowy 05.11.2026: 3.0 s z limitu 5 s (59%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-wstrzymane.test.ts",
+      "test": "101-01 (29.10.2026): JM Press i Decline Close-Grip Bench To Skull Crusher — rig r2 spełnia kartę r2 (jm.elbows, dcgsk.elbows) na kadrach co 0,05; rig z main nie (wstrzymanie zdjęte 29.10.2026) JM Press: łokieć nigdy za barkiem ku głowie (dx ≥ −1) ani poniżej barku o więcej niż 5 cm — w 21 kadrach, obie strony; na dole ramię ku stopom (dx > 0)",
+      "powod": "stan bazowy 05.11.2026: 7.3 s z limitu 5 s (146%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-wstrzymane.test.ts",
+      "test": "101-01 (29.10.2026): JM Press i Decline Close-Grip Bench To Skull Crusher — rig r2 spełnia kartę r2 (jm.elbows, dcgsk.elbows) na kadrach co 0,05; rig z main nie (wstrzymanie zdjęte 29.10.2026) JM Press: łokcie nie uciekają na boki — odległość od osi nigdy większa niż 2 × połowa barków (było 2,2×) i odwiedzenie stałe 37–53° (tam, gdzie wychylenie ≥ 3 cm)",
+      "powod": "stan bazowy 05.11.2026: 4.4 s z limitu 5 s (88%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-errors.test.tsx",
+      "test": "poza błędu: bez przenikania, tylko deklarowane stawy, widoczna różnica 126 par: każda klatka bez błędów geometrii (podłoga, zasięg, przenikanie ciało–sprzęt, chwyt)",
+      "powod": "stan bazowy 05.11.2026: 37.4 s z limitu 5 s (747%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-errors.test.tsx",
+      "test": "poza błędu: bez przenikania, tylko deklarowane stawy, widoczna różnica kąty niedeklarowane w `affects` różnią się od pozy poprawnej o ≤ 4° w każdej pozycji (bark, łokieć, biodro, kolano, kostka)",
+      "powod": "stan bazowy 05.11.2026: 5.7 s z limitu 5 s (114%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: figura tylko z rodziny ready z aktualną recenzją fixture: recenzja squat, bench_press, hinge (aktualne skróty) + pull_up z nieaktualnym skrótem + brak wpisów pilotażu ⇒ figury dokładnie z tych trzech rodzin (parytet)",
+      "powod": "stan bazowy 05.11.2026: 6.4 s z limitu 5 s (129%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: figura tylko z rodziny ready z aktualną recenzją regresja: pull_up (ready, wpis z nieaktualnym skrótem), core_floor i pushup_plank (bez wpisu) nie trafiają do eksportu",
+      "powod": "stan bazowy 05.11.2026: 4.2 s z limitu 5 s (83%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: figura tylko z rodziny ready z aktualną recenzją wpis z werdyktem innym niż „wyswietlana” albo bez skrótu nie wystarcza; aktualny skrót pull_up wpuszcza jej figury (warunek jest jedyną przeszkodą)",
+      "powod": "stan bazowy 05.11.2026: 5.6 s z limitu 5 s (112%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: figura tylko z rodziny ready z aktualną recenzją stan repozytorium: figury w domyślnym eksporcie = rodziny ready z aktualną recenzją w docs/research/figury-recenzja.json (parytet)",
+      "powod": "stan bazowy 05.11.2026: 7.5 s z limitu 5 s (149%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006, 29.10.2026) tryb wskazówek w eksporcie = tryb w aplikacji dla każdego ćwiczenia (karta własna spoza listy hidden; zestaw ogólny tylko z recenzją treści i przy figurze)",
+      "powod": "stan bazowy 05.11.2026: 7.2 s z limitu 5 s (143%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006, 29.10.2026) karta ukryta po recenzji treści (lista hidden) nie trafia do eksportu jako „own”; zestaw ogólny bez recenzji treści nie trafia jako „general”",
+      "powod": "stan bazowy 05.11.2026: 7.4 s z limitu 5 s (147%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006, 29.10.2026) rysunki wstrzymane w aplikacji (V2_WSTRZYMANE) nie trafiają do figur; od 1.0.1 (scalenie 31.10.2026) lista jest pusta — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji trafiają do figur jak sąsiednie wyciskania wąskim chwytem",
+      "powod": "stan bazowy 05.11.2026: 6.9 s z limitu 5 s (138%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/strona-eksport-recenzja.test.ts",
+      "test": "eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006, 29.10.2026) 31.10.2026 (scalenie wersja-1-0-1-r2): skrót rodziny strony = skrót aplikacji (scripts/zrodla-runtime.mjs, z plikami wspólnymi R2-6) — strona nie eksportuje rodziny, której aplikacja nie pokazuje",
+      "powod": "stan bazowy 05.11.2026: 4.7 s z limitu 5 s (94%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/recenzja-szkielet.test.ts",
+      "test": "2A: szkielet wpisów recenzji rodziny v2 (scripts/recenzja-szkielet.mjs) CLI: szkielet na stdout, --sprawdz z kodem 1 przy brakach i 0 przy komplecie, nieznana rodzina → kod 2",
+      "powod": "stan bazowy 05.11.2026: 9.2 s z limitu 5 s (184%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-dobor.test.ts",
+      "test": "skrót rodziny reaguje na zmianę doboru, nie na zmianę brzmienia zestaw dodaje linię (sq.depth → thighParallel) → skrót squat inny; wskazówka bez wpływu na rysunek i zdanie karty (pl.json) → skrót bez zmian; inne rodziny bez zmian",
+      "powod": "stan bazowy 05.11.2026: 2.6 s z limitu 5 s (53%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-dobor.test.ts",
+      "test": "skrót rodziny reaguje na zmianę doboru, nie na zmianę brzmienia parytet strony: skrót rodziny w eksporcie strony = skrót aplikacji (z doborem) dla gotowych rodzin",
+      "powod": "stan bazowy 05.11.2026: 2.5 s z limitu 5 s (50%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-dobor.test.ts",
+      "test": "L-080 (04.11.2026): gałąź z wcześniejszymi zmianami względem main — zmiana doboru na gałęzi zmienia skrót, dokument i wskazówka bez wpływu nie main → commit 1 (zestaw dodaje sq.depth) → commit 2 (dokument) → commit 3 (wskazówka bez wpływu)",
+      "powod": "stan bazowy 05.11.2026: 6.7 s z limitu 5 s (134%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/test-fast.test.ts",
+      "test": "test:fast (M1-059) 1.0.1 (lekcja L-NNN): zmiana słownika (lib/locales, locales, lib/i18n.en.ts) uruchamia testy plików generowanych z niego — jest ich nie wiąże import",
+      "powod": "stan bazowy 05.11.2026: 2.5 s z limitu 5 s (50%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/interaction-guards.test.ts",
+      "test": "S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch lekkość: widoczny tekst pomocniczy (<Muted>, detail) ma najwyżej 100 znaków poza listą z powodem",
+      "powod": "stan bazowy 05.11.2026: 3.6 s z limitu 5 s (72%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-styk.test.ts",
+      "test": "101-03 (L-056): ten sam pomiar — sumo ×4, martwy na prostych nogach, RDL sztanga, jedna noga z linką; stałe wyjątki z powodem ciężar obok nóg (hantle, drążek sześciokątny, gryf z boku) nie podlega progowi „przed udami” — odstęp boczny z konstrukcji (5–8 cm), bez przenikania",
+      "powod": "stan bazowy 05.11.2026: 2.9 s z limitu 5 s (59%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-nakladka.test.tsx",
+      "test": "geometria: łuk = kąt z jointAngles (±1°) odwiedzenie ramienia (W2): liczone w 2D na płaszczyźnie rzutu — rozwarcie łuku = kąt między rzutem osi tułowia a rzutem ramienia (±1°), stały promień łuku i stała długość linii, w 21 klatkach wszystkich ćwiczeń wyciskania",
+      "powod": "stan bazowy 05.11.2026: 11.3 s z limitu 5 s (225%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-nakladka.test.tsx",
+      "test": "geometria: łuk = kąt z jointAngles (±1°) odwiedzenie ramienia (W2): minimalny rozmiar łuku w rzucie — każdy narysowany łuk ma cięciwę ≥ OVERLAY_ARC_MIN_CHORD (próg w jednym miejscu), a rozwarcie powyżej progu zawsze daje łuk",
+      "powod": "stan bazowy 05.11.2026: 10.7 s z limitu 5 s (215%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/pokrycie-katalogu.test.ts",
+      "test": "pokrycie katalogu: dokument i liczby z kodu docs/55 i fixture są aktualne (node scripts/pokrycie-katalogu.mjs --write)",
+      "powod": "stan bazowy 05.11.2026: 3.1 s z limitu 5 s (62%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/pokrycie-katalogu.test.ts",
+      "test": "pokrycie katalogu: cele wersji --cel 1.1: kod 0 i „osiągnięty”, gdy wszystkie liczby celu są osiągnięte; inaczej kod 1 i dokładnie te metryki, których brakuje (po scaleniu main 29.10.2026 rodziny v2 są ukryte do recenzji 1.1 — cel nieosiągnięty)",
+      "powod": "stan bazowy 05.11.2026: 3.3 s z limitu 5 s (66%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/pokrycie-katalogu.test.ts",
+      "test": "pokrycie katalogu: cele wersji --cel: wersja bez celu → kod 1",
+      "powod": "stan bazowy 05.11.2026: 3.3 s z limitu 5 s (66%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/pokrycie-katalogu.test.ts",
+      "test": "pokrycie katalogu: cele wersji scenariusz: cel wyższy niż stan → kod 1 i lista braków",
+      "powod": "stan bazowy 05.11.2026: 3.1 s z limitu 5 s (61%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/pokrycie-katalogu.test.ts",
+      "test": "pokrycie katalogu: cele wersji scenariusz: cel równy stanowi → kod 0",
+      "powod": "stan bazowy 05.11.2026: 3.3 s z limitu 5 s (66%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-101-squat.test.ts",
+      "test": "101-11 Overhead Squat i One-Arm Overhead Kettlebell Squat: wyjątek kontraktu barku (D1 = A) inne figury nadal mają limit: Back Squat, Front Squat i pozostałe gotowe rodziny nie przekraczają zgięcia barku 171° (ALLOW w figures-v2-geometry tylko dla czterech wyjątków)",
+      "powod": "stan bazowy 05.11.2026: 4.9 s z limitu 5 s (98%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/zrodla-pelne-cues.test.ts",
+      "test": "plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw generator zrodla-runtime --check: plik aktualny",
+      "powod": "stan bazowy 05.11.2026: 4.1 s z limitu 5 s (81%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-pendlay.test.ts",
+      "test": "Pendlay Row: recenzja (L-047) — figura i karta po recenzji niezależnej (29.10.2026) wpisy v1 i karty „wyswietlana” ze skrótem bieżących danych, recenzent ≠ autor; figura w runtime",
+      "powod": "stan bazowy 05.11.2026: 3.5 s z limitu 5 s (70%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-styk.test.tsx",
+      "test": "wykrywanie styku z geometrii (logika) macierz: każde ćwiczenie z figurą — styki skończone, punkty w kadrze, kolejność stabilna; stan startowy i końcowy zawierają styki wymagane rodziny (reguła sensu)",
+      "powod": "stan bazowy 05.11.2026: 12.3 s z limitu 5 s (246%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-styk.test.tsx",
+      "test": "znaczki ✓/✕ powiązane ze wskazówkami macierz: dla każdego ćwiczenia z figurą ≤ 3 znaczków ✓ w pozie poprawnej (w obu widokach) i ≤ 3 ✕ w widoku każdego błędu; wszystkie we współrzędnych skończonych; błąd ma wskazówkę",
+      "powod": "stan bazowy 05.11.2026: 4.3 s z limitu 5 s (85%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-styk.test.tsx",
+      "test": "odstęp znaczków i brak powtórzeń tekstu błędu wszystkie ćwiczenia z figurą: znaczki po rozrzedzeniu leżą ≥ 24 pt od siebie (✓ w pozie poprawnej i ✕ w widoku każdego błędu), zawsze zostaje co najmniej pierwszy; gdy się nie mieszczą — mniej znaczków",
+      "powod": "stan bazowy 05.11.2026: 87.9 s z limitu 5 s (1758%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-styk.test.tsx",
+      "test": "wydajność styki, znaczki i poświaty jednej klatki (oba widoki, klatka już policzona) koszt względny (krotność czasu odniesienia, tests/perf-wzgledny.ts); ≤ 40 kształtów dodatkowych na widok; pamięć klatek: ta sama klatka to ten sam obiekt",
+      "powod": "stan bazowy 05.11.2026: 8.7 s z limitu 5 s (174%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/maestro-failures.test.ts",
+      "test": "e2e-ios.yml: całość powtarzana najwyżej raz i tylko, gdy sterownik XCTest nie wystartował; nieudany scenariusz — osobne ponowienie tylko jego (raz), w trybie ścisłym bez ponowień",
+      "powod": "stan bazowy 05.11.2026: 6.7 s z limitu 5 s (134%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) status innej rodziny planned → ready (families.ts) nie zmienia skrótu żadnej rodziny",
+      "powod": "stan bazowy 05.11.2026: 2.6 s z limitu 5 s (51%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) status własnej rodziny też jest poza skrótem (planned ↔ ready to podłączenie, nie zmiana rysunku)",
+      "powod": "stan bazowy 05.11.2026: 2.8 s z limitu 5 s (57%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) wpis ładowania LOAD innej rodziny (poseData.ts) nie zmienia skrótu",
+      "powod": "stan bazowy 05.11.2026: 3.0 s z limitu 5 s (60%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) wpis prezentacji DATA_UI innej rodziny (dodany albo zmieniony) nie zmienia skrótu; własny wpis zmienia tylko skrót tej rodziny",
+      "powod": "stan bazowy 05.11.2026: 8.8 s z limitu 5 s (176%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) zmiana rysunku: draw.ts zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 3.4 s z limitu 5 s (68%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) zmiana rysunku: rigs/common.ts zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 2.9 s z limitu 5 s (59%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) zmiana rysunku: figure.ts zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 3.0 s z limitu 5 s (60%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) zmiana rysunku: poseInterp.ts (interpolacja póz) zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 2.9 s z limitu 5 s (58%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) zmiana rysunku: dumbbellAxis.ts (oś hantla) zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 2.9 s z limitu 5 s (57%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) zmiana danych póz albo rigu zmienia skrót tylko tej rodziny",
+      "powod": "stan bazowy 05.11.2026: 5.8 s z limitu 5 s (117%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026) reszta families.ts i poseData.ts zostaje w skrócie: widoki rodziny, etykieta, ISOMETRIC, komentarz — zmiana zmienia skrót każdej rodziny",
+      "powod": "stan bazowy 05.11.2026: 11.9 s z limitu 5 s (237%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/skrot-v2-podlaczenie.test.ts",
+      "test": "1A, L-080: gałąź z wcześniejszymi zmianami względem main — podłączenie rodziny na gałęzi nie zmienia skrótu, zmiana rysunku zmienia main → gałąź (commit 1: status + LOAD + DATA_UI; commit 2: dokument) → gałąź rysunku (commit 3: draw.ts)",
+      "powod": "stan bazowy 05.11.2026: 4.1 s z limitu 5 s (82%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/recenzja-wyjatki-1-1.test.ts",
+      "test": "generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „zastąpione” zależą od aktualnej recenzji bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)",
+      "powod": "stan bazowy 05.11.2026: 4.2 s z limitu 5 s (83%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/recenzja-wyjatki-1-1.test.ts",
+      "test": "generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „zastąpione” zależą od aktualnej recenzji wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika",
+      "powod": "stan bazowy 05.11.2026: 9.2 s z limitu 5 s (184%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/zrodla-pelne-figury.test.ts",
+      "test": "plik runtime lib/figures/data.json = funkcja pełnych danych, bez nazw generator zrodla-runtime --check: plik aktualny",
+      "powod": "stan bazowy 05.11.2026: 4.3 s z limitu 5 s (85%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/audit-r72-a.test.ts",
+      "test": "D1b property: migrate idempotent with arbitrary bodyWeightKg",
+      "powod": "stan bazowy 05.11.2026: 72.8 s z limitu 120 s (61%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figury-mobilnosc-reguly.test.ts",
+      "test": "reguły ruchu z recenzji mobilności na wszystkich pozach reguły są czerwone na starych pozach mobilności (dowód: POZY_DIR wskazuje pliki z c3913afd) — tu: sprawdzenie, że każda reguła ma zastosowanie (≥ 1 poza)",
+      "powod": "stan bazowy 05.11.2026: 3.6 s z limitu 5 s (72%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/kontrola-czasu-testu.test.ts",
+      "test": "tests/setup-limity-czasu.js: efektywny limit przypadku zapisany w czasie działania (05.11.2026) limit domyślny, jawny trzeci argument, test.each z limitem, jest.setTimeout w pliku; nazwy zgodne z fullName wyniku Jest",
+      "powod": "stan bazowy 05.11.2026: 3.4 s z limitu 5 s (68%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/figures-v2-data.test.tsx",
+      "test": "błędy z danych (bledy[]) macierz: kadr obejmuje poprawną pozę i pozy błędów; kształty w obu widokach i oba motywy istnieją dla każdego ćwiczenia z danymi",
+      "powod": "stan bazowy 05.11.2026: 3.3 s z limitu 5 s (67%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/zrodla-paczka.test.ts",
+      "test": "strażnik paczki (scripts/check-bundle.mjs): wyszukiwanie nazw w bajtach wykrywa nazwę w utf8, w utf16le (przesunięcie 0 i 1) i wklejoną w ciągły zapis łańcuchów; nie łapie czystego tekstu",
+      "powod": "stan bazowy 05.11.2026: 2.8 s z limitu 5 s (57%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/zrodla-paczka.test.ts",
+      "test": "strażnik paczki (scripts/check-bundle.mjs): wyszukiwanie nazw w bajtach nazwy dłuższe niż 4 litery nadal alarmują, także w ciągłym zapisie łańcuchów i w utf16le",
+      "powod": "stan bazowy 05.11.2026: 3.7 s z limitu 5 s (75%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/wybor-testow-l103.test.ts",
+      "test": "L-103: strażnik na całym katalogu tests/ — każdy odczyt fs ze stałym katalogiem repo i zmienną nazwą pliku jest rozpoznany dla każdego przypadku wybór dla pliku z katalogu zawiera test",
+      "powod": "stan bazowy 05.11.2026: 4.3 s z limitu 5 s (85%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/roundtrip.test.ts",
+      "test": "roundtrip export→import preserves state (property)",
+      "powod": "stan bazowy 05.11.2026: 4.9 s z limitu 5 s (99%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
     }
   ]
 }
