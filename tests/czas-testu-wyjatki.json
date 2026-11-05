@@ -14,6 +14,13 @@
       "powod": "stan bazowy 05.11.2026: 72.8 s z limitu 120 s (61%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
       "data": "05.11.2026",
       "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
+    },
+    {
+      "plik": "tests/gemini-polecenia.test.ts",
+      "test": "pozy w danych (lib/figures/v2/poses): każda przechodzi walidator geometrii i sensu każdy plik poses/<rodzina>.json: kontrakt, rodzina zgodna z plikiem, każda poza przechodzi waliduj() (w tym reguły sensu); pull_up ma Gironda Sternum Chins",
+      "powod": "stan bazowy 05.11.2026: 125.6 s z limitu 240 s (52%) w przebiegu tests.yml (zapadka: lista tylko maleje)",
+      "data": "05.11.2026",
+      "plan": "Podział przypadku (np. jeden na język albo rodzinę) albo skrócenie; po poprawie usunąć wpis — kontrola odrzuca wpis, którego przypadek mieści się już w progu."
     }
   ]
 }
