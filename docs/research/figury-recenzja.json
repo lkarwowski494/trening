@@ -641,64 +641,218 @@
   },
   "v2": {
     "squat": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista delt_raise (p4)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
-      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "ea71e4cef9b5",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026; sprawdzenie różnicy po zmianie plików wspólnych w figury/delt_raise p4 (ruch i dobór bez zmian), 05.11.2026",
+      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026; audytor — sprawdzenie różnicy plików wspólnych figury/delt_raise @ 18d08164 wobec integracja-1-1 @ 9ff9a3fe, 05.11.2026 (recenzja r5 delt_raise)",
+      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu. Różnica 05.11.2026 (recenzja r5 delt_raise, audytor; figury/delt_raise @ 18d08164 = scalenie integracja-1-1 9ff9a3fe + p4): p4 zmienia pliki wspólne V2_WSPOLNE (anim.ts: ONE_WAY_STATIC; figure.ts: staticPositions/staticLabels), więc skrót rodziny zmienia się bez zmiany ruchu. Czyste kopie git archive 9ff9a3fe i 18d08164 (bez podłączania delt_raise): md5 ruchu (stan-delt_raise-r4/md5x.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf; drugi skrót: phasesFor, loopOf, oneWayRepMs, oneWayAt co 250 ms) równy 132/132; dobór (guidesOf, techniquesOf, errorsOf, onDrawingCues) równy 132/132 przy tej samej liście rodzin v2 w lib/figures/data.json; staticPositions/staticLabels = [0, 1] / start–koniec dla 130 ćwiczeń, [1] dla 2 izometrii — bez zmian. 17 ćwiczeń, których md5 różniło się między p3 a scaleniem (16 przysiadów i Dead Hang), ma md5 równe integracji 9ff9a3fe — zmiana z integracji, zrecenzowana tam.",
+      "sha": "bf5193d079a3",
       "liczba": 25,
-      "uwagi": "Różnica po scaleniu spójności: squatKneeLimb w Overhead Squat (łuk kolana 0→128°) i One-Arm Overhead Kettlebell Squat (0→113°) — zostaje, bez kolizji z ciężarem nad głową, reguła zejscie_biodra_i_kolana w _przysiad. thighParallel w 16 przysiadach — zostaje (udo na dole od −8,6° do 14,7°; Hack Squat 14,7° na granicy, Sumo Squat 22° w rzucie = 4,5° w 3D); nowa poza sq.mis.heels (Barbell Hack Squat, One-Arm OH KB Squat) — zostaje, 0 kolizji. S1 (linie odniesienia bez bramki reguły „ustalone” wariantu; udo_rownolegle = analogia poza sztangą na plecach / bez obciążenia) — ŚREDNIE, odłożone do 1.1 (docs/18). Wcześniej (2R): squatKneeLimb, backLine czerwona przy mis.roundBack, kneeToe czerwona przy sq.mis.kneesIn. Skrót zmienia się przez fix4 (overlay.ts, reguly-cwiczen.json, dobór w skrócie)."
+      "uwagi": "Różnica po scaleniu spójności: squatKneeLimb w Overhead Squat (łuk kolana 0→128°) i One-Arm Overhead Kettlebell Squat (0→113°) — zostaje, bez kolizji z ciężarem nad głową, reguła zejscie_biodra_i_kolana w _przysiad. thighParallel w 16 przysiadach — zostaje (udo na dole od −8,6° do 14,7°; Hack Squat 14,7° na granicy, Sumo Squat 22° w rzucie = 4,5° w 3D); nowa poza sq.mis.heels (Barbell Hack Squat, One-Arm OH KB Squat) — zostaje, 0 kolizji. S1 (linie odniesienia bez bramki reguły „ustalone” wariantu; udo_rownolegle = analogia poza sztangą na plecach / bez obciążenia) — ŚREDNIE, odłożone do 1.1 (docs/18). Wcześniej (2R): squatKneeLimb, backLine czerwona przy mis.roundBack, kneeToe czerwona przy sq.mis.kneesIn. Skrót zmienia się przez fix4 (overlay.ts, reguly-cwiczen.json, dobór w skrócie). Skrót ea71e4cef9b5 → bf5193d079a3 (05.11.2026): tylko pliki wspólne p4 delt_raise (anim.ts, figure.ts), ruch i dobór bez zmian."
     },
     "bench_press": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista delt_raise (p4)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
-      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "c5b633c4e8a9",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026; sprawdzenie różnicy po zmianie plików wspólnych w figury/delt_raise p4 (ruch i dobór bez zmian), 05.11.2026",
+      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026; audytor — sprawdzenie różnicy plików wspólnych figury/delt_raise @ 18d08164 wobec integracja-1-1 @ 9ff9a3fe, 05.11.2026 (recenzja r5 delt_raise)",
+      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu. Różnica 05.11.2026 (recenzja r5 delt_raise, audytor; figury/delt_raise @ 18d08164 = scalenie integracja-1-1 9ff9a3fe + p4): p4 zmienia pliki wspólne V2_WSPOLNE (anim.ts: ONE_WAY_STATIC; figure.ts: staticPositions/staticLabels), więc skrót rodziny zmienia się bez zmiany ruchu. Czyste kopie git archive 9ff9a3fe i 18d08164 (bez podłączania delt_raise): md5 ruchu (stan-delt_raise-r4/md5x.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf; drugi skrót: phasesFor, loopOf, oneWayRepMs, oneWayAt co 250 ms) równy 132/132; dobór (guidesOf, techniquesOf, errorsOf, onDrawingCues) równy 132/132 przy tej samej liście rodzin v2 w lib/figures/data.json; staticPositions/staticLabels = [0, 1] / start–koniec dla 130 ćwiczeń, [1] dla 2 izometrii — bez zmian. 17 ćwiczeń, których md5 różniło się między p3 a scaleniem (16 przysiadów i Dead Hang), ma md5 równe integracji 9ff9a3fe — zmiana z integracji, zrecenzowana tam.",
+      "sha": "074b38411452",
       "liczba": 30,
-      "uwagi": "Różnica po scaleniu spójności: benchShoulderAbduction (bp.elbowsMid, lokcie_nie_szeroko ≤ 75°) w 10 ćwiczeniach (Bench Press sztanga/hantle, Incline sztanga/hantle, Wide-Grip, One Arm DB, Band, Board, Pin, Smith Incline) — zostaje: odwiedzenie na dole 32–55°, łuk na ramieniu R (One Arm DB: ramię z hantlem), 0 kształtów czerwonych (bp.mis.arch = grupa „lawka”). Znany artefakt góry ruchu 80–85° i mały łuk (N2/N3 r2, backlog); w Band Bench Press linia gumy przecina element (kosmetyka). Wcześniej (2R): bez zmian ruchu, linii i nakładki. Skrót zmienia się przez fix4."
+      "uwagi": "Różnica po scaleniu spójności: benchShoulderAbduction (bp.elbowsMid, lokcie_nie_szeroko ≤ 75°) w 10 ćwiczeniach (Bench Press sztanga/hantle, Incline sztanga/hantle, Wide-Grip, One Arm DB, Band, Board, Pin, Smith Incline) — zostaje: odwiedzenie na dole 32–55°, łuk na ramieniu R (One Arm DB: ramię z hantlem), 0 kształtów czerwonych (bp.mis.arch = grupa „lawka”). Znany artefakt góry ruchu 80–85° i mały łuk (N2/N3 r2, backlog); w Band Bench Press linia gumy przecina element (kosmetyka). Wcześniej (2R): bez zmian ruchu, linii i nakładki. Skrót zmienia się przez fix4. Skrót c5b633c4e8a9 → 074b38411452 (05.11.2026): tylko pliki wspólne p4 delt_raise (anim.ts, figure.ts), ruch i dobór bez zmian."
     },
     "hinge": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista delt_raise (p4)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
-      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "e3920524c668",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026; sprawdzenie różnicy po zmianie plików wspólnych w figury/delt_raise p4 (ruch i dobór bez zmian), 05.11.2026",
+      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026; audytor — sprawdzenie różnicy plików wspólnych figury/delt_raise @ 18d08164 wobec integracja-1-1 @ 9ff9a3fe, 05.11.2026 (recenzja r5 delt_raise)",
+      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu. Różnica 05.11.2026 (recenzja r5 delt_raise, audytor; figury/delt_raise @ 18d08164 = scalenie integracja-1-1 9ff9a3fe + p4): p4 zmienia pliki wspólne V2_WSPOLNE (anim.ts: ONE_WAY_STATIC; figure.ts: staticPositions/staticLabels), więc skrót rodziny zmienia się bez zmiany ruchu. Czyste kopie git archive 9ff9a3fe i 18d08164 (bez podłączania delt_raise): md5 ruchu (stan-delt_raise-r4/md5x.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf; drugi skrót: phasesFor, loopOf, oneWayRepMs, oneWayAt co 250 ms) równy 132/132; dobór (guidesOf, techniquesOf, errorsOf, onDrawingCues) równy 132/132 przy tej samej liście rodzin v2 w lib/figures/data.json; staticPositions/staticLabels = [0, 1] / start–koniec dla 130 ćwiczeń, [1] dla 2 izometrii — bez zmian. 17 ćwiczeń, których md5 różniło się między p3 a scaleniem (16 przysiadów i Dead Hang), ma md5 równe integracji 9ff9a3fe — zmiana z integracji, zrecenzowana tam.",
+      "sha": "923b58787a2a",
       "liczba": 32,
-      "uwagi": "R1 zamknięte (fix4, A′): element nakładki tylko z regułą „ustalone” wariantu (lib/figures/v2/reguly-cwiczen.json z regulyDla); Single Leg RDL (hantel, linki) bez hingeUprightRef (wyprost_na_gorze poza _rdl_jednonoz; odpowiednik jednonóż — analogia; na szczycie tułów 15,0°/11,2°). hingeUprightRef zostaje w Stiff-Legged (bark 9,3 cm przed pionem na szczycie, 10,7°), Smith Stiff-Legged (11,7 cm, 10,1°), Single Arm RDL (2,8 cm, 4,6°). plumbMidfoot w 7 martwych ciągach (Axle, Clean, Bands, Chains, Deficit, Reverse Band, Snatch) — zostaje (gryf 0,8–3,3 cm od linii); N1: Reverse Band Deadlift — trzy piony w ok. 10 cm (NISKIE, backlog); S1 (plumbMidfoot bez reguły) — odłożone do 1.1. Uwaga do wpisu r1: w RDL bark na szczycie leży 9–11 cm przed pionem (nie 0–4 cm), w tolerancji reguły (≤ 15°). Wcześniej (2R): backLine czerwona przy mis.roundBack."
+      "uwagi": "R1 zamknięte (fix4, A′): element nakładki tylko z regułą „ustalone” wariantu (lib/figures/v2/reguly-cwiczen.json z regulyDla); Single Leg RDL (hantel, linki) bez hingeUprightRef (wyprost_na_gorze poza _rdl_jednonoz; odpowiednik jednonóż — analogia; na szczycie tułów 15,0°/11,2°). hingeUprightRef zostaje w Stiff-Legged (bark 9,3 cm przed pionem na szczycie, 10,7°), Smith Stiff-Legged (11,7 cm, 10,1°), Single Arm RDL (2,8 cm, 4,6°). plumbMidfoot w 7 martwych ciągach (Axle, Clean, Bands, Chains, Deficit, Reverse Band, Snatch) — zostaje (gryf 0,8–3,3 cm od linii); N1: Reverse Band Deadlift — trzy piony w ok. 10 cm (NISKIE, backlog); S1 (plumbMidfoot bez reguły) — odłożone do 1.1. Uwaga do wpisu r1: w RDL bark na szczycie leży 9–11 cm przed pionem (nie 0–4 cm), w tolerancji reguły (≤ 15°). Wcześniej (2R): backLine czerwona przy mis.roundBack. Skrót e3920524c668 → 923b58787a2a (05.11.2026): tylko pliki wspólne p4 delt_raise (anim.ts, figure.ts), ruch i dobór bez zmian."
     },
     "pull_up": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista delt_raise (p4)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
-      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "f553872e02af",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026; sprawdzenie różnicy po zmianie plików wspólnych w figury/delt_raise p4 (ruch i dobór bez zmian), 05.11.2026",
+      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026; audytor — sprawdzenie różnicy plików wspólnych figury/delt_raise @ 18d08164 wobec integracja-1-1 @ 9ff9a3fe, 05.11.2026 (recenzja r5 delt_raise)",
+      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu. Różnica 05.11.2026 (recenzja r5 delt_raise, audytor; figury/delt_raise @ 18d08164 = scalenie integracja-1-1 9ff9a3fe + p4): p4 zmienia pliki wspólne V2_WSPOLNE (anim.ts: ONE_WAY_STATIC; figure.ts: staticPositions/staticLabels), więc skrót rodziny zmienia się bez zmiany ruchu. Czyste kopie git archive 9ff9a3fe i 18d08164 (bez podłączania delt_raise): md5 ruchu (stan-delt_raise-r4/md5x.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf; drugi skrót: phasesFor, loopOf, oneWayRepMs, oneWayAt co 250 ms) równy 132/132; dobór (guidesOf, techniquesOf, errorsOf, onDrawingCues) równy 132/132 przy tej samej liście rodzin v2 w lib/figures/data.json; staticPositions/staticLabels = [0, 1] / start–koniec dla 130 ćwiczeń, [1] dla 2 izometrii — bez zmian. 17 ćwiczeń, których md5 różniło się między p3 a scaleniem (16 przysiadów i Dead Hang), ma md5 równe integracji 9ff9a3fe — zmiana z integracji, zrecenzowana tam.",
+      "sha": "920f9a005e32",
       "liczba": 13,
-      "uwagi": "Bez zmian rysunku po scaleniu spójności i fix4 (dobór równy; ruch równy). Filtr A′ przepuszcza pewność mieszaną („ustalone (…; Pull Up, Chin Up); analogia (pozostałe)”, /^ustalone/) — pullPlumbRef ograniczają dalej `exercises`; pullChinBarRef rysuje się w Pull Up i Neutral Grip Pull Up (jak w 2R, „część wspólna” — bez zmiany). Skrót zmienia się przez wspólne moduły i dobór w skrócie. Wcześniej (2R): W2 zamknięte: pullPlumbRef tylko Pull Up i Chin Up (TechniqueDef.exercises; reguła „ustalone” dla tych odmian). Skutek: czerwony pion „bujanie” nie zapala się w żadnym ćwiczeniu (Pull Up i Chin Up nie mają pozy pu.noSwing; 6 odmian z tą pozą nie ma elementu) — brak fałszywego twierdzenia, błąd wskazuje znacznik ✕. S3 zamknięte: elementy tylko z boku. Czerwony poziom drążka przy pu.partial (Pull Up, Neutral Grip Pull Up). Z boku pion pod drążkiem leży na słupku stojaka (zielony na szarym, czytelny)."
+      "uwagi": "Bez zmian rysunku po scaleniu spójności i fix4 (dobór równy; ruch równy). Filtr A′ przepuszcza pewność mieszaną („ustalone (…; Pull Up, Chin Up); analogia (pozostałe)”, /^ustalone/) — pullPlumbRef ograniczają dalej `exercises`; pullChinBarRef rysuje się w Pull Up i Neutral Grip Pull Up (jak w 2R, „część wspólna” — bez zmiany). Skrót zmienia się przez wspólne moduły i dobór w skrócie. Wcześniej (2R): W2 zamknięte: pullPlumbRef tylko Pull Up i Chin Up (TechniqueDef.exercises; reguła „ustalone” dla tych odmian). Skutek: czerwony pion „bujanie” nie zapala się w żadnym ćwiczeniu (Pull Up i Chin Up nie mają pozy pu.noSwing; 6 odmian z tą pozą nie ma elementu) — brak fałszywego twierdzenia, błąd wskazuje znacznik ✕. S3 zamknięte: elementy tylko z boku. Czerwony poziom drążka przy pu.partial (Pull Up, Neutral Grip Pull Up). Z boku pion pod drążkiem leży na słupku stojaka (zielony na szarym, czytelny). Skrót f553872e02af → 920f9a005e32 (05.11.2026): tylko pliki wspólne p4 delt_raise (anim.ts, figure.ts), ruch i dobór bez zmian."
     },
     "curl": {
-      "data": "2026-11-04",
-      "autor": "programista nakładki techniki (E3, P1, P2, etap 2) i spójności karta–rysunek (fix4)",
+      "data": "2026-11-05",
+      "autor": "programista delt_raise (p4)",
       "recenzent": "audytor",
       "werdykt": "wyswietlana",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026",
-      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu.",
-      "sha": "9eac38ed8070",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026; sprawdzenie różnicy po zmianie plików wspólnych w figury/delt_raise p4 (ruch i dobór bez zmian), 05.11.2026",
+      "kto": "audytor — recenzja niezależna: 2R Etapu 2 (runda 2, @ e0f2bd96), różnica elementów po scaleniu spójności (@ 5632fd27; 17 ćw. — audytor, 21 ćw. R2 — drugi audytor, /home/user/stan-nakl-r2-21), sprawdzenie poprawek fix4 (@ bb8c394c), 04.11.2026; audytor — sprawdzenie różnicy plików wspólnych figury/delt_raise @ 18d08164 wobec integracja-1-1 @ 9ff9a3fe, 05.11.2026 (recenzja r5 delt_raise)",
+      "slad": "Ruch i ślad bez zmian: własny md5 (shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, bez błędu i z każdym błędem z errorsOf) z czystych kopii git archive 56c9c751 i e0f2bd96 — równy 132/132 ćwiczeń rysowanych. Linie odniesienia i nakładka (guideShapes, overlayShapes, onDrawingCues; u co 1/8, wszystkie błędy): 56c9c751 → 4724c933 (wydzielenie overlayShapes.ts) równe 132/132; 4724c933 → e0f2bd96 zmienione tylko w curl 20 i pull_up 9 (poprawki W1, W2, S3); squat, hinge, bench_press bez zmian. Fix4 (5632fd27 → bb8c394c, czyste kopie git archive): md5 ruchu (stan-nakl-p1/md5-ruch.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd) równy 132/132. Dobór po kartach (guidesFor, techniquesFor z ćwiczeniem, errorsOf; 132 ćw.) równy poza 2 ćwiczeniami: Single Leg RDL (hantel) i (linki) tracą hingeUprightRef (R1). Scalenie spójności (af6b986f → 5632fd27) zmieniło dobór w 38 ćwiczeniach (17 elementów nakładki, 16 × thighParallel, 7 × plumbMidfoot, 2 nowe pozy sq.mis.heels) — wszystkie zrecenzowane; ruch i ślad bez zmian poza nową pozą błędu. Różnica 05.11.2026 (recenzja r5 delt_raise, audytor; figury/delt_raise @ 18d08164 = scalenie integracja-1-1 9ff9a3fe + p4): p4 zmienia pliki wspólne V2_WSPOLNE (anim.ts: ONE_WAY_STATIC; figure.ts: staticPositions/staticLabels), więc skrót rodziny zmienia się bez zmiany ruchu. Czyste kopie git archive 9ff9a3fe i 18d08164 (bez podłączania delt_raise): md5 ruchu (stan-delt_raise-r4/md5x.mjs: shapesAt z mięśniami, trailFor, contactShapes, badgesFor; każdy rzut, u ∈ {0; 1/4; 1/2; 3/4; 1}, każdy błąd z errorsOf; drugi skrót: phasesFor, loopOf, oneWayRepMs, oneWayAt co 250 ms) równy 132/132; dobór (guidesOf, techniquesOf, errorsOf, onDrawingCues) równy 132/132 przy tej samej liście rodzin v2 w lib/figures/data.json; staticPositions/staticLabels = [0, 1] / start–koniec dla 130 ćwiczeń, [1] dla 2 izometrii — bez zmian. 17 ćwiczeń, których md5 różniło się między p3 a scaleniem (16 przysiadów i Dead Hang), ma md5 równe integracji 9ff9a3fe — zmiana z integracji, zrecenzowana tam.",
+      "sha": "ade19bf7acea",
       "liczba": 36,
-      "uwagi": "Bez zmian rysunku po scaleniu spójności i fix4 (dobór i ruch równe dla wszystkich ćwiczeń rodziny z rysunkiem). Skrót zmienia się tylko przez wspólne moduły i dobór w skrócie (fix4 R2). Wcześniej (2R): W1 zamknięte: curlTrunkRef usunięty (zdanie curl.noSwing zostaje na karcie bez elementu i nie jest czytane w „Na rysunku”), curlElbowPlumb od barku do wysokości miednicy (RefSpec.until), nie schodzi pod podłogę. Przy curl.mis.elbows czerwony pion widoczny na wysokości łokcia (test + zrzut Barbell_Curl blad0); kolor błędu zapala się w 14 ćwiczeniach. Brak par linii w jednym miejscu (sameSpot, 3654 kadry curl+pull_up). W pozie poprawnej linia ramienia leży blisko pionu (min. 3°, Cable Curl) — to obraz poprawnej techniki, nie konflikt."
+      "uwagi": "Bez zmian rysunku po scaleniu spójności i fix4 (dobór i ruch równe dla wszystkich ćwiczeń rodziny z rysunkiem). Skrót zmienia się tylko przez wspólne moduły i dobór w skrócie (fix4 R2). Wcześniej (2R): W1 zamknięte: curlTrunkRef usunięty (zdanie curl.noSwing zostaje na karcie bez elementu i nie jest czytane w „Na rysunku”), curlElbowPlumb od barku do wysokości miednicy (RefSpec.until), nie schodzi pod podłogę. Przy curl.mis.elbows czerwony pion widoczny na wysokości łokcia (test + zrzut Barbell_Curl blad0); kolor błędu zapala się w 14 ćwiczeniach. Brak par linii w jednym miejscu (sameSpot, 3654 kadry curl+pull_up). W pozie poprawnej linia ramienia leży blisko pionu (min. 3°, Cable Curl) — to obraz poprawnej techniki, nie konflikt. Skrót 9eac38ed8070 → ade19bf7acea (05.11.2026): tylko pliki wspólne p4 delt_raise (anim.ts, figure.ts), ruch i dobór bez zmian."
+    },
+    "delt_raise": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-05",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja ruchu r5 05.11.2026; r4-W1 i r4-N2 naprawione, r4-N1 w backlogu (docs/21); 1 WYSOKIE (Car Drivers: pasek faz 4 s „Unoszenie/Opuszczanie” przy animacji obrotu 2 s), 1 ŚREDNIE (Car Drivers: błąd szarpania bez zmiany tempa ruchu); Cable Reverse Fly i Cable Y Raise — r2-Ś1 w backlogu (bez zmian)",
+      "autor": "programista delt_raise (p4)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna ruchu r5 rodziny delt_raise, 05.11.2026; figury/delt_raise @ 18d08164 (kopia git archive; do pomiarów i arkuszy tymczasowe podłączenie: families.ts ready, poseData.ts LOAD, data.json v2; skrót liczony na kopii bez podłączenia); porównanie z a509bfc1 (r4) i integracja-1-1 9ff9a3fe; worktree autora nietknięty",
+      "sha": "02b9601c8219",
+      "liczba": 38,
+      "slad": "Arkusze arkusz-slad.mjs (kopia 18d08164 z podłączeniem) dla Alternating Deltoid Raise, Car Drivers, Dumbbell Scaption, Front Incline Dumbbell Raise × front i side, 21 kadrów co 0,05, ślad toru, oba motywy: /home/user/stan-delt_raise-r5/arkusze-light, /home/user/stan-delt_raise-r5/arkusze-dark — 16/16 PNG bajtowo równe arkuszom r4 (cmp), więc ocena śladu r4 obowiązuje. md5 ruchu 31 ćwiczeń rysowanych a509bfc1 → 18d08164: 29 równych, 2 różne (Car Drivers, Dumbbell Front Raise to Overhead) wyłącznie przez nową pozę błędu mis.jerk z kart integracji (kształty poprawnej pozy i ślad bez zmian). Tryb statyczny Alternating: klatki u = 0, 1/6, 2/3 w pełnej rozdzielczości, oba motywy (/home/user/stan-delt_raise-r5/klatki/static-light.png, static-dark.png).",
+      "uwagi": "Testy w kopii (pojedynczo, --runInBand): figures-v2-delt-raise-p4 44/44, figures-v2-petla-jednokierunkowa 87/87, figures-v2-cykl-bez-marszu 3/3, figures-v2-delt-raise-p3 24/24. Dobór delt_raise (guidesOf, errorsOf, techniquesOf) a509bfc1 → 18d08164: zmiana tylko mis.jerk w 2 ćwiczeniach; linii odniesienia i nakładki techniki brak (jak w r4). Zmiana statusu rodziny na ready (families.ts w V2_WSPOLNE) zmieni skróty wszystkich rodzin — wtedy nowe skróty i sprawdzenie różnicy. Szczegóły: /home/user/stan-delt_raise-r5/STAN.md.",
+      "cwiczenia": {
+        "Alternating Deltoid Raise": {
+          "werdykt": "wyswietlana",
+          "naprawione": "r4-W1: tryb statyczny (pauza, Ogranicz ruch) rysuje u = 0 / 1/6 / 2/3 z podpisami „Pozycja wyjściowa” / „Przodem” / „Bokiem” (EN Starting position / Forward / To the side); klatki w pełnej rozdzielczości, oba motywy (stan-delt_raise-r5/klatki/static-light.png, static-dark.png): zwis, unoszenie przodem do ok. barków, unoszenie bokiem do ok. barków — trzy różne pozy; VoiceOver „Pozycje na rysunku: Pozycja wyjściowa, Przodem, Bokiem” tylko w trybie statycznym (test figures-v2-delt-raise-p4 44/44, negatyw dla Jump Squat i trybu animacji). Strażnik ogólny: żadna z 34 pętli jednokierunkowych nie ma identycznych pozycji statycznych. r4-N2: powód wyjątku v2-jakosc podaje 1/6 i 2/3. r4-N1: w backlogu docs/21 z wersją „przed eksportem delt_raise na stronę” — wystarczające (w aplikacji brak skutku).",
+          "uwagi": "Uwaga bez wagi: przy trybie statycznym linia „Kąt na rysunku” liczy u = 1 (8°, ta sama poza co „Pozycja wyjściowa”), nie szczyty (0° przodem, 85° bokiem); poprawna wobec pierwszego rysunku. EXPO_PUBLIC_FIGURA_STOP (tylko zrzuty) nadal rysuje u = 1 (zwis) — nie dotyczy użytkownika."
+        },
+        "Band Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-C naprawione: ślad przy chwycie R (0 cm); ruch jak Lateral Raise. N-1 z R1 (guma w podudziu) — backlog."
+        },
+        "Band Upright Row": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-C naprawione: ślad przy chwycie R; łokcie 7 cm wyżej niż dłonie (ur.elbows)."
+        },
+        "Barbell Front Raise to Overhead": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Cable Front Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-1 naprawione: odwiedzenie 0°, z = 19 cm stale; wyciąg z tyłu (x −55)."
+        },
+        "Cable Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1; przybliżenie wyciągu nazwane (N-3)."
+        },
+        "Cable Reverse Fly": {
+          "werdykt": "do poprawy (r2-Ś1 — backlog decyzją koordynatora; rysunek bez zmian od r2)",
+          "poziom": "ŚREDNIE",
+          "wada": "Karta crf.setup: „chwyć uchwyty na krzyż: lewą ręką ten z prawej…”, crf.move: „…potem wróć do skrzyżowania”. Rysunek: linka R z wyciągu z = +58 do dłoni R (z = 30 → 81), linki nieskrzyżowane, ręce w żadnej klatce się nie krzyżują.",
+          "poprawka": "Opcja silnika wspólnego dla wyciag dwa: true — wyciąg po stronie przeciwnej (na krzyż); start z dłońmi skrzyżowanymi przed ciałem (z R ≤ 0). Do tego czasu ukryć rysunek albo zdanie przybliżenia na karcie. Wykonalność: contract.ts:218 (dwa: kolumny w z = ±|z|, po jednej lince na dłoń) — brak parametru krzyżowania, potrzebna zmiana kontraktu."
+        },
+        "Cable Seated Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-3 naprawione: wyciągi za plecami (x −40, z ±14), linka ciągnie dłoń do środka i w dół od startu."
+        },
+        "Cable Y Raise": {
+          "werdykt": "do poprawy (r2-Ś1 — backlog decyzją koordynatora; rysunek bez zmian od r2)",
+          "poziom": "ŚREDNIE",
+          "wada": "Karta cyr.setup: „chwyć uchwyty na krzyż; cofnij się, aż linki się napną”. Rysunek: wyciągi z = ±70, każda linka do dłoni po swojej stronie (dłoń R z = 32–34) — bez skrzyżowania.",
+          "poprawka": "Jak Cable Reverse Fly: krzyżowanie dwóch linek w silniku wspólnym (contract.ts:218)."
+        },
+        "Car Drivers": {
+          "werdykt": "do poprawy",
+          "poziom": "WYSOKIE",
+          "znaleziska": [
+            "r5-W1",
+            "r5-Ś1"
+          ],
+          "opis": "r5-W1: pętla cykl_lustro bez marszu animowana cycleAt (pełny cykl 2000 ms, tempo ignorowane), a pasek faz pokazuje fazy rodziny „Unoszenie 1 s · Pauza · Opuszczanie 2 s” (4000 ms, phaseIndexAt) — wyróżniana faza i podane sekundy nie odpowiadają rysunkowi (obrót kierownicą, bez unoszenia i opuszczania). r5-Ś1: błąd „szarpanie” (mis.jerk, doszedł z kartami przy scaleniu integracji) zmienia tylko sekundy w pasku (0,4 / 0,5 s) i dodaje znak X, ruch na rysunku ma to samo tempo co poprawny."
+        },
+        "Dumbbell Front Raise to Overhead": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Od scalenia integracji (karty) ma błąd „szarpanie” (mis.jerk, wahadło: tempo 350/450 ms działa jak w curl i bench_press, znak X przy ciężarze) — bez zastrzeżeń."
+        },
+        "Dumbbell Lying One-Arm Rear Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "poziom": null,
+          "wada": "r2-W2 naprawione: leżenie przodem (ławka 15°, przybliżenie nazwane — na płaskiej tułów z przodu znika, reguła czesc_ciala_nie_znika), ręka R od zwisu pionowo (θ 0°) bokiem do wysokości barku (u = 1: chwyt y 68 = bark y 68, z −82 przy barku −19, x stałe −45 → prostopadle do tułowia), łokieć stały 24–25°, ręka L zwisa. Zgodne z rear1.setup/rear1.move/rear1.mis.high, rear.elbows, rear.arms; sens t1 i gałęzi 0 naruszeń. Uwaga (bez znaleziska): hantel w zwisie dotyka podłogi (środek 5,8 cm, promień głowy 6 cm) — przy ławce 43 cm realistyczne; figures-v2-styk 24/24.",
+          "poprawka": "brak; przy następnej zmianie silnika — ławka płaska, gdy czesc_ciala_nie_znika pozwoli"
+        },
+        "Dumbbell One-Arm Upright Row": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Dumbbell Scaption": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1. r2-N2: łokieć 6–16° przy sapd.arms „Ręce proste przez cały ruch — nie zginaj łokci” — backlog.",
+          "uwagi_r4": "Ruch bez zmian (md5 pozy przed = po). Próg toru per widok + DODATEK_SKRETU (r3-Ś1): pomiar w widoku front równy modelowi z płaszczyzną φ liniowo (Scaption 70°→52°: 16,3 / 16,4 cm; Front Incline 30°→0°: 9,5 / 9,6 cm), ślad gładki, jedno wygięcie, bez „S”; dodatek pokrywa zaprojektowany skręt płaszczyzny, nie wadę (luz 0,2 i 0,5 cm)."
+        },
+        "Front Incline Dumbbell Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1. Karta na t1 ukryta (do poprawy, fidr.move); do czasu poprawki karty rysunek bez tekstu techniki, a zdanie reguły lokiec_staly jest tylko w ukrytej fidr.move.",
+          "uwagi_r4": "Ruch bez zmian (md5 pozy przed = po). Próg toru per widok + DODATEK_SKRETU (r3-Ś1): pomiar w widoku front równy modelowi z płaszczyzną φ liniowo (Scaption 70°→52°: 16,3 / 16,4 cm; Front Incline 30°→0°: 9,5 / 9,6 cm), ślad gładki, jedno wygięcie, bez „S”; dodatek pokrywa zaprojektowany skręt płaszczyzny, nie wadę (luz 0,2 i 0,5 cm)."
+        },
+        "Front Plate Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-C naprawione: ślad to łuk środka talerza od ud do wysokości barków. N-4 łokieć 28–31° (backlog z R1)."
+        },
+        "Front Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-1 naprawione: hantle przed udami, płaszczyzna strzałkowa (odwiedzenie 0°, z = 19 cm), do 90°; łokieć 14–17° stały."
+        },
+        "Lateral Raise (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-A naprawione: osie hantli lustrzane (asymetria 0°), oś ⟂ przedramienia 90°; ramię do 85°, łokieć 7 cm nad nadgarstkiem w u = 1."
+        },
+        "Machine Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-4 naprawione: dwie dźwignie wzdłuż ramion."
+        },
+        "One-Arm Cable Rear Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1; linka na krzyż pod tułowiem (crear1.setup „uchwyt w dalszej ręce” — zgodne)."
+        },
+        "One-Arm Lateral Raise (hantel)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Reverse Fly (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-B naprawione: oś hantla 80–81° do przedramienia (próg walidatora ±80°)."
+        },
+        "Reverse Pec Deck": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Single Dumbbell Front Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Smith Machine One-Arm Upright Row": {
+          "werdykt": "wyswietlana",
+          "poziom": null,
+          "wada": "r2-N1 naprawione: szyna x = 18 = chwyt; figures-v2-tor (po podłączeniu) 216/216, p2 test „gryf na szynie” 0 cm w 21 kadrach.",
+          "poprawka": "brak"
+        },
+        "Smith Machine Upright Row": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1; gryf na szynie."
+        },
+        "Straight Raises on Incline Bench": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1. Łokieć 28–31° przy sri.setup „na prostych, zwisających rękach” i sri.move „prawie prostymi rękami” (N-4 z R1, backlog; poprawka 10–15° tania)."
+        },
+        "Upright Row (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-A naprawione (asymetria 0°)."
+        },
+        "Upright Row (linki)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Upright Row (sztanga)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Y Raise (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Leżenie przodem na ławce skośnej 45° (przybliżenie nazwane), ramiona od zwisu do linii tułowia w „Y”, łokieć 14–18° stały."
+        }
+      }
     }
   },
   "karty": {
