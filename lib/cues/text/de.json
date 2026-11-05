@@ -593,7 +593,7 @@
  "rgpd.setup": "Greif die Stange des Kabelzugs im Untergriff, Handflächen nach oben, Ellbogen seitlich am Körper.",
  "skullDb.move": "Beuge die Ellbogen und senke die Hanteln Richtung Kopf ab; streck die Arme zurück in die Ausgangsposition.",
  "skullDb.setup": "Leg dich auf eine Bank und halte die Hanteln mit gestreckten Armen über dir.",
- "tate.move": "Beuge die Ellbogen, die dabei zur Seite zeigen, und senke die Hanteln zur Brust ab; streck die Arme.",
+ "tate.move": "Ellbogen zeigen zur Seite: beug sie und senk die Hanteln zur Brust ab; streck die Arme.",
  "tate.setup": "Leg dich auf eine Bank und halte die Hanteln mit gestreckten Armen über der Brust.",
  "tpd1.elbow": "Ellbogen seitlich am Körper — der Unterarm bewegt sich, nicht die Schulter.",
  "tpd1.move": "Streck den Ellbogen und drück den Griff nach unten; langsam zurück nach oben.",
@@ -619,7 +619,7 @@
  "tri.skullCb.setup": "Leg dich auf eine Bank und halte die Stange des Kabelzugs mit gestreckten Armen über dir.",
  "tri.skullDb1.move": "Beuge den Ellbogen und senke die Hantel Richtung Kopf ab; streck den Arm zurück in die Ausgangsposition.",
  "tri.skullDb1.setup": "Leg dich auf eine Bank und halte eine Hantel mit gestrecktem Arm über dir.",
- "tri.skullDbDec.setup": "Leg dich auf eine Negativbank (Kopf tiefer als die Hüfte) und halte die Hanteln mit gestreckten Armen über dir.",
- "tri.skullDec.setup": "Leg dich auf eine Negativbank (Kopf tiefer als die Hüfte) und halte die Langhantel mit gestreckten Armen über dir.",
+ "tri.skullDbDec.setup": "Leg dich auf eine Negativbank, Kopf tiefer als die Hüfte, und halte die Hanteln mit gestreckten Armen über dir.",
+ "tri.skullDec.setup": "Leg dich auf eine Negativbank, Kopf tiefer als die Hüfte, und halte die Langhantel mit gestreckten Armen über dir.",
  "tri.skullInc.setup": "Leg dich auf eine Schrägbank und halte die Langhantel mit gestreckten Armen über dir."
 }

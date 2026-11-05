@@ -6314,7 +6314,7 @@
      "pewnosc": "srednia"
     },
     "ro": {
-     "zalecany": "halteră",
+     "zalecany": "bară",
      "pewnosc": "srednia"
     },
     "bg": {
@@ -6326,7 +6326,7 @@
      "pewnosc": "srednia"
     },
     "sl": {
-     "zalecany": "palica",
+     "zalecany": "drog",
      "pewnosc": "srednia"
     },
     "sr": {
@@ -10892,7 +10892,7 @@
      "pewnosc": "srednia"
     },
     "es": {
-     "zalecany": "asa",
+     "zalecany": "agarre",
      "pewnosc": "srednia"
     },
     "es-419": {
@@ -10924,7 +10924,7 @@
      "pewnosc": "srednia"
     },
     "nl": {
-     "zalecany": "handvat",
+     "zalecany": "handgreep",
      "pewnosc": "srednia"
     },
     "sv": {
@@ -10956,7 +10956,7 @@
      "pewnosc": "srednia"
     },
     "cs": {
-     "zalecany": "držadlo",
+     "zalecany": "rukojeť",
      "pewnosc": "srednia"
     },
     "sk": {
@@ -11039,6 +11039,185 @@
        "powod": "„ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup)"
       }
      ]
+    }
+   }
+  },
+  {
+   "id": "lawka_skosna_glowa_w_dol",
+   "pl": "ławka skośna głową w dół (ang. decline bench)",
+   "znaczenie": "ławka z głową niżej niż biodra (decline bench); NIE ławka skośna głową w górę (incline), NIE ławka płaska",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])(?:ławk\\p{L}*|ławc\\p{L}*)\\s+skośn\\p{L}*\\s+głową\\s+w\\s+dół",
+   "jezyki": {
+    "pl": {
+     "zalecany": "ławka skośna głową w dół",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "decline bench",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "lavice s negativním sklonem",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavice s negativním sklonem czy lavice se sklonem hlavou dolů"
+    },
+    "sk": {
+     "zalecany": "lavička s negatívnym sklonom",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavička s negatívnym sklonom czy lavička so sklonom hlavou nadol"
+    },
+    "hu": {
+     "zalecany": "negatív pad",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): negatív pad czy lefelé lejtő pad"
+    },
+    "ro": {
+     "zalecany": "bancă înclinată cu capul în jos",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "bg": {
+     "zalecany": "наклонена пейка с главата надолу",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "hr": {
+     "zalecany": "kosa klupa",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): kosa klupa glavom prema dolje czy negativna klupa"
+    },
+    "sl": {
+     "zalecany": "klop, nagnjena navzdol",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "sr": {
+     "zalecany": "коса клупа",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): коса клупа главом надоле czy негативна клупа"
+    },
+    "lt": {
+     "zalecany": "suolas, pasvirusio galva žemyn",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "lv": {
+     "zalecany": "sols ar slīpumu uz leju",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "et": {
+     "zalecany": "allapoole kaldu pink",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): allapoole kaldu pink czy negatiivne pink"
+    },
+    "uk": {
+     "zalecany": "лава зі зворотним нахилом",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): лава зі зворотним нахилом (do potwierdzenia)"
+    },
+    "es": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "Negativbank",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "banc décliné",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "panca declinata",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "declinebank",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): declinebank czy afhellende bank"
+    },
+    "sv": {
+     "zalecany": "lutande bänk",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lutande bänk z dopiskiem o głowie czy declinebänk"
+    },
+    "da": {
+     "zalecany": "skråbænk",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbænk czy decline-bænk"
+    },
+    "nb": {
+     "zalecany": "skråbenk",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbenk czy declinebenk"
+    },
+    "fi": {
+     "zalecany": "alaviistopenkki",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): alaviistopenkki czy laskeva penkki"
+    },
+    "tr": {
+     "zalecany": "ters eğimli sehpa",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<!ters )(?<![\\p{L}])eğimli sehpa",
+       "powod": "samo „eğimli sehpa” to też ławka skośna głową w górę (incline); przy głowie w dół ma być „ters eğimli sehpa” (recenzja T1b, 05.11.2026)"
+      }
+     ]
+    },
+    "el": {
+     "zalecany": "αρνητικός πάγκος",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): αρνητικός πάγκος czy πάγκος με κλίση προς τα κάτω"
+    },
+    "id": {
+     "zalecany": "bangku decline",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "bangku condong ke bawah",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "ghế dốc xuống",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "скамья с обратным наклоном",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "наклонн\\p{L}*\\s+скамь",
+       "powod": "„наклонная скамья” to też ławka skośna głową w górę (incline); ławka głową w dół to „скамья с обратным наклоном” (recenzja T1b, 05.11.2026)"
+      }
+     ]
+    },
+    "ja": {
+     "zalecany": "デクラインベンチ",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "디클라인 벤치",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "下斜椅",
+     "pewnosc": "srednia"
     }
    }
   }

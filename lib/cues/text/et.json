@@ -619,7 +619,7 @@
  "tri.skullCb.setup": "Lama pingil ja hoia ploki kangi enda kohal sirgete kätega.",
  "tri.skullDb1.move": "Kõverda küünarnukk ja langeta hantel pea poole; sirguta käsi tagasi algasendisse.",
  "tri.skullDb1.setup": "Lama pingil ja hoia hantlit enda kohal sirge käega.",
- "tri.skullDbDec.setup": "Lama pingil, mille pealagi jääb puusadest madalamale, ja hoia hantleid enda kohal sirgete kätega.",
- "tri.skullDec.setup": "Lama pingil, mille pealagi jääb puusadest madalamale, ja hoia kangi enda kohal sirgete kätega.",
+ "tri.skullDbDec.setup": "Lama allapoole kaldu pingile nii, et pea jääb puusadest madalamale, ja hoia hantleid enda kohal sirgete kätega.",
+ "tri.skullDec.setup": "Lama allapoole kaldu pingile nii, et pea jääb puusadest madalamale, ja hoia kangi enda kohal sirgete kätega.",
  "tri.skullInc.setup": "Lama kaldpingil ja hoia kangi enda kohal sirgete kätega."
 }

@@ -618,8 +618,8 @@
  "tri.skullCb.move": "Bøy albuene og senk stangen mot hodet; strekk armene tilbake til start.",
  "tri.skullCb.setup": "Ligg på en benk og hold kabelstangen over deg med strake armer.",
  "tri.skullDb1.move": "Bøy albuen og senk manualen mot hodet; strekk armen tilbake til start.",
- "tri.skullDb1.setup": "Ligg på en benk og hold en manual over deg med rett arm.",
- "tri.skullDbDec.setup": "Ligg på en benk som heller nedover, med hodet lavere enn hoftene, og hold manualene over deg med strake armer.",
- "tri.skullDec.setup": "Ligg på en benk som heller nedover, med hodet lavere enn hoftene, og hold vektstangen over deg med strake armer.",
+ "tri.skullDb1.setup": "Ligg på en benk og hold en manual over deg med strak arm.",
+ "tri.skullDbDec.setup": "Ligg på en skråbenk med hodet lavere enn hoftene, og hold manualene over deg med strake armer.",
+ "tri.skullDec.setup": "Ligg på en skråbenk med hodet lavere enn hoftene, og hold vektstangen over deg med strake armer.",
  "tri.skullInc.setup": "Ligg på en skråbenk og hold vektstangen over deg med strake armer."
 }

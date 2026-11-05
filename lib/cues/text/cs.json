@@ -619,7 +619,7 @@
  "tri.skullCb.setup": "Lehni si na lavici a drž tyč kladky nad sebou na propnutých pažích.",
  "tri.skullDb1.move": "Pokrč loket a spouštěj jednoručku k hlavě; propni paži zpět do výchozí polohy.",
  "tri.skullDb1.setup": "Lehni si na lavici a drž jednoručku nad sebou na propnuté paži.",
- "tri.skullDbDec.setup": "Lehni si na lavici se sklonem hlavou dolů a drž jednoručky nad sebou na propnutých pažích.",
- "tri.skullDec.setup": "Lehni si na lavici se sklonem hlavou dolů a drž činku nad sebou na propnutých pažích.",
+ "tri.skullDbDec.setup": "Lehni si na lavici s negativním sklonem (hlavou dolů) a drž jednoručky nad sebou na propnutých pažích.",
+ "tri.skullDec.setup": "Lehni si na lavici s negativním sklonem (hlavou dolů) a drž činku nad sebou na propnutých pažích.",
  "tri.skullInc.setup": "Lehni si na šikmou lavici a drž činku nad sebou na propnutých pažích."
 }

@@ -618,8 +618,8 @@
  "tri.skullCb.move": "Koukista kyynärpäät ja laske tanko kohti päätä; ojenna kädet takaisin alkuasentoon.",
  "tri.skullCb.setup": "Käy makuulle penkille ja pidä taljan tankoa yläpuolellasi suorin käsin.",
  "tri.skullDb1.move": "Koukista kyynärpää ja laske käsipaino kohti päätä; ojenna käsi takaisin alkuasentoon.",
- "tri.skullDb1.setup": "Käy makuulle penkille ja pidä käsipainoa yläpuolellasi suorin käsin.",
- "tri.skullDbDec.setup": "Käy makuulle laskevalle penkille pää lantiota alempana ja pidä käsipainoja yläpuolellasi suorin käsin.",
- "tri.skullDec.setup": "Käy makuulle laskevalle penkille pää lantiota alempana ja pidä levytankoa yläpuolellasi suorin käsin.",
+ "tri.skullDb1.setup": "Käy makuulle penkille ja pidä käsipainoa yläpuolellasi suoralla kädellä.",
+ "tri.skullDbDec.setup": "Käy makuulle alaviistopenkille pää lantiota alempana ja pidä käsipainoja yläpuolellasi suorin käsin.",
+ "tri.skullDec.setup": "Käy makuulle alaviistopenkille pää lantiota alempana ja pidä levytankoa yläpuolellasi suorin käsin.",
  "tri.skullInc.setup": "Käy makuulle vinopenkille ja pidä levytankoa yläpuolellasi suorin käsin."
 }

@@ -595,7 +595,7 @@
  "skullDb.setup": "Feküdj a padra, és tartsd a kézisúlyzókat magad fölött nyújtott karral.",
  "tate.move": "A könyököd oldalra mutat; hajlítsd be, és engedd a kézisúlyzókat a mellkasodra; nyújtsd ki a karod.",
  "tate.setup": "Feküdj a padra, és tartsd a kézisúlyzókat a mellkasod fölött nyújtott karral.",
- "tpd1.elbow": "A könyök az oldal mellett — az alkar mozog, nem a váll.",
+ "tpd1.elbow": "A könyök a törzs mellett — az alkar mozog, nem a váll.",
  "tpd1.move": "Nyújtsd ki a könyököd, és told le a fogantyút; lassan térj vissza felfelé.",
  "tpd1.setup": "Állj szemben a felső csigával, fogd meg a fogantyút egy kézzel, a könyököd a tested mellett.",
  "tri.bandOte.move": "Nyújtsd ki a könyököd, és told a kezed a fejed fölé; hajlítva vidd vissza a kezed a fejed mögé.",
@@ -619,7 +619,7 @@
  "tri.skullCb.setup": "Feküdj a padra, és tartsd a csiga rúdját magad fölött nyújtott karral.",
  "tri.skullDb1.move": "Hajlítsd a könyököd, és engedd a kézisúlyzót a fejed felé; nyújtsd vissza a karod a kiinduló helyzetbe.",
  "tri.skullDb1.setup": "Feküdj a padra, és tartsd a kézisúlyzót magad fölött nyújtott karral.",
- "tri.skullDbDec.setup": "Feküdj lefelé lejtő padra, a fejed lejjebb legyen, mint a csípőd, és tartsd a kézisúlyzókat magad fölött nyújtott karral.",
- "tri.skullDec.setup": "Feküdj lefelé lejtő padra, a fejed lejjebb legyen, mint a csípőd, és tartsd a rudat magad fölött nyújtott karral.",
+ "tri.skullDbDec.setup": "Feküdj negatív padra, a fejed lejjebb legyen, mint a csípőd, és tartsd a kézisúlyzókat magad fölött nyújtott karral.",
+ "tri.skullDec.setup": "Feküdj negatív padra, a fejed lejjebb legyen, mint a csípőd, és tartsd a rudat magad fölött nyújtott karral.",
  "tri.skullInc.setup": "Feküdj ferde padra, és tartsd a rudat magad fölött nyújtott karral."
 }

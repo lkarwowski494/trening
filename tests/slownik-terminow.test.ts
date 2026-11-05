@@ -339,4 +339,18 @@ describe('04.11.2026, recenzja lokalizacji T1 (delt_raise): uchwyt, nachwyt, uda
     expect(cueDict('sv' as Lang)['adr.move']).toMatch(/^Växelvis:/);
     expect(cueDict('da' as Lang)['adr.move']).toMatch(/^Skiftevis:/);
   });
+  /* Recenzja lokalizacji T1b (triceps), 05.11.2026: ławka skośna głową w dół — nowe pojęcie; uchwyt (cs rukojeť, es agarre, nl handgreep) i sztanga (sl drog, ro bară) zgodnie z istniejącymi kartami */
+  test('05.11.2026: ławka skośna głową w dół (decline bench): wykrywanie, tr i ru nie mogą użyć samej „ławki skośnej”; terminy uchwytu i sztangi z recenzji T1b', () => {
+    const lw = slownik.pojecia.find(x => x.id === 'lawka_skosna_glowa_w_dol')!; const pl = 'Połóż się na ławce skośnej głową w dół i trzymaj hantle nad sobą na prostych rękach.';
+    expect(S.wykryte(lw, pl)).toBe(true); expect(S.wykryte(lw, 'Połóż się na ławce skośnej i trzymaj hantle nad sobą.')).toBe(false); /* ławka głową w górę (incline) to inne pojęcie */
+    expect(Object.keys(lw.jezyki).sort()).toEqual([...LANGS].sort());
+    expect(S.sprawdz(slownik, 'tr', pl, 'Eğimli sehpaya uzanın.').length).toBe(1); expect(S.sprawdz(slownik, 'tr', pl, 'Ters eğimli sehpaya uzanın.')).toEqual([]);
+    expect(S.sprawdz(slownik, 'ru', pl, 'Ляг на наклонную скамью головой вниз.').length).toBe(1); expect(S.sprawdz(slownik, 'ru', pl, 'Ляг на скамью с обратным наклоном, головой вниз.')).toEqual([]);
+    for (const k of ['skullDbDec', 'skullDec']) for (const kod of LANGS.filter(l => l !== 'pl' && l !== 'en' && l !== 'ru')) { /* ru: odmiana (скамью), pilnuje wzorzec zakazany */
+      const t = (cueDict(kod as Lang) as Record<string, string>)[`tri.${k}.setup`]; const z = lw.jezyki[kod].zalecany.split(',')[0];
+      if (lw.jezyki[kod].pewnosc !== 'niska') expect([kod, k, t.toLowerCase().includes(z.toLowerCase())]).toEqual([kod, k, true]);
+    }
+    const zal = (id: string, k: string) => slownik.pojecia.find(x => x.id === id)!.jezyki[k].zalecany;
+    expect([zal('uchwyt', 'cs'), zal('uchwyt', 'es'), zal('uchwyt', 'nl'), zal('sztanga', 'sl'), zal('sztanga', 'ro')]).toEqual(['rukojeť', 'agarre', 'handgreep', 'drog', 'bară']);
+  });
 });

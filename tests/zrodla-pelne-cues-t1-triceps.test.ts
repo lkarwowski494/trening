@@ -4,7 +4,7 @@
  * Zakres strażnika źródeł (L-089): scripts/cues/gen.mjs `validate` (check:cues; reguły: tests/cues-reguly-2026-11-02.test.ts) — ten plik sprawdza, że dane T1 spełniają reguły,
  * że „praktyka” (para szczebel 4 + 5 albo 5 + 5) jest jawna w `luki`, a pominięte ćwiczenia i błędy wnioskowane nie weszły.
  * Rodzaje (docs/20): dane (karty, źródła), logika (≥ 2 organizacje szczebla ≤ 4 albo jawna luka), niezmienniki (szczebel 5 nie liczy się do pary, bez „wniosek”),
- * języki (PL i EN w słownikach, reszta czeka na przekład — zestaw-przekladu-2026-11-04-t1b-wskazowki.json), regresja (cue-sets: własne karty; pominięte bez karty własnej).
+ * języki (PL i EN w słownikach, przekład 33 języków z 05.11.2026 — zestaw-przekladu-2026-11-04-t1b-wskazowki.json pusty), regresja (cue-sets: własne karty; pominięte bez karty własnej).
  * Ocena realności: błąd „karta techniki z jednego źródła, ze źródła szczebla 5 albo sprzeczna z rysunkiem” — realny (treść w aplikacji i na stronie z ćwiczeniami);
  * karty są ukryte do recenzji niezależnej (bramka 4, L-047) — nie sprawdzamy tu ich wyświetlania.
  */
@@ -114,18 +114,17 @@ describe('T1 triceps: źródła i reguły szczebli', () => {
 });
 
 describe('T1 triceps: zdania', () => {
-  test('46 nowych zdań ma tekst PL i EN; id z fixture nie było w słownikach przed partią; zestaw przekładu zgadza się ze słownikami', () => {
+  test('46 nowych zdań ma tekst PL i EN; id z fixture nie było w słownikach przed partią; po przekładzie (05.11.2026) zestaw T1b jest pusty', () => {
     expect(T1.zdania.length).toBe(46);
     for (const c of T1.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
-    const zestaw = json('docs/lokalizacja/zestaw-przekladu-2026-11-04-t1b-wskazowki.json').klucze as { rodzaj: string; id: string; pl: string; en: string }[];
-    expect(zestaw.map(k => k.id).sort()).toEqual([...T1.zdania].sort());
-    for (const k of zestaw) expect([k.id, k.rodzaj, k.pl, k.en]).toEqual([k.id, 'nowy', pl[k.id], en[k.id]]);
-    const delt = json('docs/lokalizacja/zestaw-przekladu-2026-11-04-t1-wskazowki.json').klucze as { id: string }[];
-    expect(zestaw.filter(k => delt.some(d => d.id === k.id))).toEqual([]);
+    expect(json('docs/lokalizacja/zestaw-przekladu-2026-11-04-t1b-wskazowki.json').klucze).toEqual([]);
   });
 
-  test('zdania nowe czekają na przekład w 33 językach (zestaw), a PL i EN mają komplet', () => {
-    for (const l of ['de', 'fr', 'ja', 'cs']) { const d = json(`lib/cues/text/${l}.json`); for (const id of T1.zdania) expect([l, id, d[id]]).toEqual([l, id, undefined]); }
+  const NAKLADKI = ['pt-BR', 'es-419'];
+  test('zdania nowe są przetłumaczone (05.11.2026): komplet języków lib/cues/text (35 plików: 33 języki przekładu i nakładki) ma niepuste teksty, parametry {…} bez zmian', () => {
+    const langs = fs.readdirSync(path.join(__dirname, '..', 'lib/cues/text')).filter(f => f.endsWith('.json')).map(f => f.replace('.json', ''));
+    expect(langs.length).toBe(35);
+    for (const l of langs) { const d = json(`lib/cues/text/${l}.json`); for (const id of T1.zdania) { if (NAKLADKI.includes(l) && d[id] === undefined) continue; /* nakładki zawierają tylko teksty różne od bazowych pt/es */ expect([l, id, typeof d[id], String(d[id] ?? '').trim().length > 0]).toEqual([l, id, 'string', true]); expect([l, id, (String(d[id]).match(/\{[^}]+\}/g) ?? []).sort()]).toEqual([l, id, (pl[id].match(/\{[^}]+\}/g) ?? []).sort()]); } }
   });
 
   test('teksty: bez cyfr (liczby wymagają osobnych źródeł; kąt prosty słowami), bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {

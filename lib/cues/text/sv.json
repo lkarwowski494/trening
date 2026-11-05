@@ -619,7 +619,7 @@
  "tri.skullCb.setup": "Ligg på en bänk och håll kabelstången ovanför dig med raka armar.",
  "tri.skullDb1.move": "Böj armbågen och sänk hanteln mot huvudet; sträck armen tillbaka till start.",
  "tri.skullDb1.setup": "Ligg på en bänk och håll en hantel ovanför dig med rak arm.",
- "tri.skullDbDec.setup": "Ligg på en nedåtlutande bänk med huvudet lägre än höfterna och håll hantlarna ovanför dig med raka armar.",
- "tri.skullDec.setup": "Ligg på en nedåtlutande bänk med huvudet lägre än höfterna och håll skivstången ovanför dig med raka armar.",
+ "tri.skullDbDec.setup": "Ligg på en lutande bänk med huvudet lägre än höfterna och håll hantlarna ovanför dig med raka armar.",
+ "tri.skullDec.setup": "Ligg på en lutande bänk med huvudet lägre än höfterna och håll skivstången ovanför dig med raka armar.",
  "tri.skullInc.setup": "Ligg på en lutande bänk och håll skivstången ovanför dig med raka armar."
 }

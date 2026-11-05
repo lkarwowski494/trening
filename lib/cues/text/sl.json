@@ -619,7 +619,7 @@
  "tri.skullCb.setup": "Uleži se na klop in drog škripca drži nad seboj na iztegnjenih rokah.",
  "tri.skullDb1.move": "Pokrči komolec in ročko spuščaj proti glavi; roko iztegni nazaj v začetni položaj.",
  "tri.skullDb1.setup": "Uleži se na klop in ročko drži nad seboj na iztegnjeni roki.",
- "tri.skullDbDec.setup": "Uleži se na klop z nagibom glave navzdol in ročki drži nad seboj na iztegnjenih rokah.",
- "tri.skullDec.setup": "Uleži se na klop z nagibom glave navzdol in drog drži nad seboj na iztegnjenih rokah.",
+ "tri.skullDbDec.setup": "Uleži se na klop, nagnjeno navzdol, z glavo nižje od bokov, in ročki drži nad seboj na iztegnjenih rokah.",
+ "tri.skullDec.setup": "Uleži se na klop, nagnjeno navzdol, z glavo nižje od bokov, in drog drži nad seboj na iztegnjenih rokah.",
  "tri.skullInc.setup": "Uleži se na poševno klop in drog drži nad seboj na iztegnjenih rokah."
 }
