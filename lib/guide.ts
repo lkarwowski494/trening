@@ -12,7 +12,7 @@ import { WEEKLY_SETS_MARK } from '@/lib/stats';
 export type GuideTopic = { id: string; title: () => string; steps: () => string[]; route: string };
 export const GUIDE: GuideTopic[] = [
   { id: 'workout', route: '/', title: () => t('Trening i serie'), steps: () => [
-    t('Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.'),
+    t('Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.'),
     t('Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.'), /* M3 ZM-01 */
     t('Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.'), /* M3 ZM-02: pauza w menu „⋯”; cytat = pozycja menu */
     t('Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.'), /* ZM-07 (p5d, 21.10.2026): cytaty = etykiety przełączników w Ustawieniach */

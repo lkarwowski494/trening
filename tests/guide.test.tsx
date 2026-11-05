@@ -54,7 +54,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Kopia zapasowa',
     'Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.',
     'Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.',
-    'Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.', /* docs/22 P2/P3 (11.10.2026) */
+    'Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.', /* docs/22 P2/P3 (11.10.2026) */
     'Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
     'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.',
     'Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.',
@@ -113,10 +113,10 @@ describe('ekrany', () => {
   });
   test('wszystkie tematy po polsku na ekranie; „Pokaż” otwiera opisany ekran', async () => {
     const expectOn: Record<string, () => void> = {
-      workout: () => expect(screen.getByTestId('start-main')).toBeTruthy(), /* 05.11.2026: nowa osoba nie ma „Inny trening” (tylko gdy są inne starty) — ekran Trening poznaje po dużym przycisku */ templates: () => expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(),
+      workout: () => { expect(screen.getByTestId('start-main')).toBeTruthy(); expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(); expect(screen.queryByText('Inny trening')).toBeNull(); } /* 05.11.2026 (audyt): krok 1 cytuje przycisk widoczny u nowej osoby; „Inny trening” opisany warunkowo, bo u nowej osoby go nie ma */,  templates: () => expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(),
       plan: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
       deload: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), /* 11.10.2026: Przewodnik „Deload” kieruje do planu (zakładka Plan), nie do Postępów */
-      during: () => expect(screen.getByTestId('start-main')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
+      during: () => expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
       places: () => expect(screen.getAllByText(/Miejsc|miejsc/).length).toBeGreaterThan(0), backup: () => expect(screen.getAllByText(/Eksport|eksport/).length).toBeGreaterThan(0),
     };
     for (const g of GUIDE) {
@@ -146,6 +146,19 @@ describe('ekrany', () => {
     expect(screen.getByText('Read: 0 of 10')).toBeTruthy(); await tap(screen.getByLabelText('Weekly plan and Calendar, unread')); await flushAll(5);
     expect(screen.getByText('1. On the Workout screen “Planning” (with no plan: “Set a plan”) opens the weekly plan, which assigns templates to days — the plan repeats every week.')).toBeTruthy();
     expect(screen.getByLabelText('Show: Weekly plan and Calendar')).toBeTruthy();
+    await tap(screen.getByLabelText('Workouts and sets, unread')); await flushAll(5); /* 05.11.2026 (audyt): krok 1 z angielskimi nazwami przycisków */
+    expect(screen.getByText(/^1\. On the Workout screen tap the big button at the top: “Start” \(next workout\), and before your first workout “Start your first workout”\. Once you have templates or history, “Other workout” lets you/)).toBeTruthy();
+  });
+});
+
+describe('05.11.2026 (audyt, ŚREDNIE): krok 1 „Trening i serie” zgadza się z ekranem nowej osoby', () => {
+  test('krok 1 cytuje „Start” i „Zacznij pierwszy trening”, a „Inny trening” opisuje warunkowo (po szablonach albo historii)', () => {
+    const s = GUIDE.find(g => g.id === 'workout')!.steps()[0];
+    expect(s).toContain('„Start”'); expect(s).toContain('„Zacznij pierwszy trening”'); expect(s).toMatch(/Gdy masz już szablony albo historię, „Inny trening”/);
+    expect(s).not.toMatch(/albo „Inny trening” — tam/);
+  });
+  test('cytowane przyciski kroku 1 istnieją w EN pod nazwami z ekranu', () => {
+    expect(EN['Zacznij pierwszy trening']).toBe('Start your first workout'); expect(EN['Inny trening']).toBe('Other workout');
   });
 });
 

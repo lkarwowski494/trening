@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Moj plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Na zaslonu Trening „Planiranje” (bez plana: „Postavi plan”) otvara tjedni plan koji dodjeljuje predloške danima — plan se ponavlja svaki tjedan.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Na zaslonu Trening „Progresija” uspoređuje tjedan (gotovo + planirano) s prethodnim i mjesec s prethodnim mjesecom.",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "Na zaslonu Trening dodirnite veliki gumb „Započni” (sljedeći trening) ili „Drugi trening” — tamo birate predložak, ponavljate zadnji trening ili započinjete prazan.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Na zaslonu Trening dodirnite veliki gumb „Započni” (sljedeći trening) ili „Drugi trening” — tamo birate predložak, ponavljate zadnji trening ili započinjete prazan.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Na vrhu je preporučena: vraća se na rutinu bez izgubljenog treninga, zatim izbjegava dane zaredom s istim mišićnim skupinama i mijenja najmanje dana.",
  "na urządzeniu: {v}": "na uređaju: {v}",
  "Nadpisać dane?": "Prepisati podatke?",

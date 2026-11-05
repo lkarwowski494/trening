@@ -73,7 +73,7 @@ describe('ekran', () => {
     for (const id of ['first-tile-plan', 'first-tile-places', 'first-steps-import', 'first-tile-guide']) expect(screen.getByTestId(id)).toBeTruthy();
     expect(screen.queryByLabelText(/zrobione$/)).toBeNull(); expect(screen.queryByText('Wygeneruj szablony i plan')).toBeNull(); expect(screen.queryByText('✓')).toBeNull();
     expect(within(screen.getByTestId('first-steps')).queryByText('Planowanie')).toBeNull(); expect(within(screen.getByTestId('first-steps')).getAllByText('Przewodnik')).toHaveLength(1);
-    await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); expect(screen.getByText(/^1\. Na ekranie Trening stuknij duży przycisk „Start”/)).toBeTruthy(); /* temat „Trening i serie” rozwinięty od razu */
+    await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); expect(screen.getByText(/^1\. Na ekranie Trening stuknij duży przycisk u góry: „Start”/)).toBeTruthy(); /* temat „Trening i serie” rozwinięty od razu */
   });
   test('po treningach: kafelki z poprzednim tygodniem (VoiceOver), opis z planem, ostatni trening z rekordami → szczegóły', async () => {
     await boot(() => { sq(8, 29, 80); const t = withDemoTemplates(); sq(9, 6, 100).templateId = t[0].id; since0901(() => { plan.setWeekDay(1, t[0].id); plan.setWeekDay(3, t[0].id); }); });

@@ -392,7 +392,7 @@
  "Dopisz trening wstecz": "Registrar treino passado",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Na tela Treino, “Planejamento” (sem plano: “Definir plano”) abre o plano semanal, que atribui modelos aos dias — o plano se repete toda semana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Na tela Treino, “Progressão” compara a semana (feito + planejado) com a anterior e um mês com o mês anterior.",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "Na tela Treino, toque no botão grande “Iniciar” (próximo treino) ou “Outro treino” — lá você escolhe um modelo, repete o último treino ou começa um vazio.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Na tela Treino, toque no botão grande “Iniciar” (próximo treino) ou “Outro treino” — lá você escolhe um modelo, repete o último treino ou começa um vazio.",
  "Policzone jako trening z {day} — ten dzień jest wolny.": "Contado como o treino planejado para {day} — esse dia fica livre.",
  "Poprzedni tydzień vs 2 tyg. temu": "Semana anterior vs 2 semanas atrás",
  "Szukaj szablonu…": "Buscar modelo…",

@@ -1328,7 +1328,7 @@
  "Miesiąc do miesiąca": "月ごとの比較",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "トレーニング画面の「プランニング」（プランがない場合は「プランを設定」）で、テンプレートを各曜日に割り当てる週間プランを開きます。プランは毎週繰り返されます。",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "トレーニング画面の「プログレッション」では、週（完了 + 予定）を前の週と、月を前の月と比較します。",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "トレーニング画面で大きな「開始」ボタン（次のトレーニング）か「別のトレーニング」をタップすると、テンプレートの選択、前回のトレーニングの繰り返し、空のトレーニングの開始ができます。",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "トレーニング画面で大きな「開始」ボタン（次のトレーニング）か「別のトレーニング」をタップすると、テンプレートの選択、前回のトレーニングの繰り返し、空のトレーニングの開始ができます。",
  "Najlepsza seria: {s}": "ベストセット：{s}",
  "Nie można wyłączyć planu": "プランをオフにできません",
  "nieaktywny": "無効",

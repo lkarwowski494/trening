@@ -2807,8 +2807,8 @@
   "en": "On the Workout screen “Progression” compares the week (done + planned) with the previous one and month with month."
  },
  {
-  "pl": "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.",
-  "en": "On the Workout screen tap the big “Start” button (next workout) or “Other workout” — there you pick a template, repeat the last workout or start an empty one."
+  "pl": "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.",
+  "en": "On the Workout screen tap the big button at the top: “Start” (next workout), and before your first workout “Start your first workout”. Once you have templates or history, “Other workout” lets you pick a template, repeat the last workout or start an empty one."
  },
  {
   "pl": "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.",

@@ -287,7 +287,7 @@
  "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "¿Tienes historial en otra app? Puedes agregarlo desde un archivo CSV.",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "En la pantalla Entrenamiento, «Planificación» (sin plan: «Configurar plan») abre el plan semanal, que asigna plantillas a los días — el plan se repite cada semana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "En la pantalla Entrenamiento, «Progresión» compara la semana (hecho + planificado) con la anterior y un mes con el mes anterior.",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "En la pantalla Entrenamiento, toca el botón grande «Empezar» (siguiente entrenamiento) u «Otro entrenamiento» — ahí elegirás una plantilla, repetirás el último entrenamiento o empezarás uno vacío.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "En la pantalla Entrenamiento, toca el botón grande «Empezar» (siguiente entrenamiento) u «Otro entrenamiento» — ahí elegirás una plantilla, repetirás el último entrenamiento o empezarás uno vacío.",
  "Trening": "Entrenamiento",
  "Połącz z telefonem": "Conectar con el celular",
  "Zacznij trening na telefonie": "Empieza un entrenamiento en el celular",

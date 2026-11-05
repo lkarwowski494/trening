@@ -50,6 +50,13 @@
    "pl": "Co gdzie jest i jak działa.",
    "en": "What is where and how it works.",
    "kontekst": "ekran Trening dla nowej osoby (do pierwszego zakończonego treningu): podpis kafelka „Przewodnik”; krótka zachęta, zwykły ton"
+  },
+  {
+   "rodzaj": "zmieniony",
+   "pl": "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.",
+   "en": "On the Workout screen tap the big button at the top: “Start” (next workout), and before your first workout “Start your first workout”. Once you have templates or history, “Other workout” lets you pick a template, repeat the last workout or start an empty one.",
+   "poprzedni_pl": "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.",
+   "kontekst": "krok 1 Przewodnika, temat „Trening i serie”; cytaty w „…” to nazwy przycisków („Start”, „Zacznij pierwszy trening”, „Inny trening”) — w przekładzie użyć dokładnie tych samych nazw co przyciski w danym języku"
   }
  ]
 }

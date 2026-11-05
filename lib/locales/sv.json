@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Min plan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "På skärmen Träning öppnar ”Planering” (utan plan: ”Ställ in plan”) veckoplanen, som kopplar mallar till dagar — planen upprepas varje vecka.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "På skärmen Träning jämför ”Progression” veckan (klart + planerat) med den förra och månaden med månaden innan.",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "På skärmen Träning trycker du på den stora knappen ”Start” (nästa pass) eller ”Annat pass” — där väljer du en mall, upprepar det senaste passet eller börjar ett tomt.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "På skärmen Träning trycker du på den stora knappen ”Start” (nästa pass) eller ”Annat pass” — där väljer du en mall, upprepar det senaste passet eller börjar ett tomt.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Överst står den rekommenderade: den återgår till rutinen utan att tappa ett pass, undviker sedan dagar i rad med samma muskelgrupper och ändrar minst antal dagar.",
  "na urządzeniu: {v}": "på enheten: {v}",
  "Nadpisać dane?": "Skriva över data?",

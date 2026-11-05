@@ -623,7 +623,7 @@
  "Mój plan ({date})": "Minu plaan ({date})",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Ekraanil Treening avab „Planeerimine“ (plaanita: „Sea plaan“) nädalaplaani, mis seob mallid päevadega — plaan kordub igal nädalal.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Ekraanil Treening võrdleb „Progressioon“ nädalat (tehtud + planeeritud) eelmisega ning kuud eelmise kuuga.",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "Ekraanil Treening puuduta suurt nuppu „Alusta“ (järgmine treening) või „Muu treening“ — seal valid malli, kordad viimast treeningut või alustad tühja.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "Ekraanil Treening puuduta suurt nuppu „Alusta“ (järgmine treening) või „Muu treening“ — seal valid malli, kordad viimast treeningut või alustad tühja.",
  "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.": "Ülal on soovitatud: naaseb rutiini treeningut kaotamata, siis väldib järjestikuseid samade lihasrühmadega päevi ja muudab kõige vähem päevi.",
  "na urządzeniu: {v}": "seadmel: {v}",
  "Nadpisać dane?": "Kirjutada andmed üle?",
