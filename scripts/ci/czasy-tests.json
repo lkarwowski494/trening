@@ -3,6 +3,8 @@
   "zapas": 1.25,
   "prog_czasu_testu": 0.5,
   "prog_czasu_testu_opis": "Strażnik czasu pojedynczego testu (05.11.2026, lekcja o tests/audit-k1-bl-mer.test.tsx w docs/40): przypadek trwający w CI dłużej niż ta część swojego limitu czasu (scripts/kontrola-czasu-testu.mjs, krok po Jest w każdej części tests.yml) jest odrzucany; wyjątki z powodem i planem: tests/czas-testu-wyjatki.json.",
+  "zapadka_margines": 0.8,
+  "zapadka_margines_opis": "Zapadka strażnika czasu testu (05.11.2026): wpis w tests/czas-testu-wyjatki.json jest zbędny (kontrola go odrzuca), gdy jego przypadek trwa najwyżej tę część progu `prog_czasu_testu` × limit. 0,8 — przypadek tuż nad progiem migocze między przebiegami CI (±20% obciążenia maszyny), a wpis nie może spadać i wracać; 1 = każdy wpis w progu jest zbędny.",
   "krok_zaokraglenia_min": 5,
   "czesci_jest": 4,
   "zbiorcze_limit_min": 5,

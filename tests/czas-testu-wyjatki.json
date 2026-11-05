@@ -1,5 +1,5 @@
 {
-  "_opis": "Wyjątki od strażnika czasu pojedynczego testu (scripts/kontrola-czasu-testu.mjs, 05.11.2026): test, którego nie da się teraz podzielić. Wpis: plik, test (pełna nazwa z wyniku Jest), powod, data (DD.MM.RRRR), plan (jak i kiedy podzielić).",
+  "_opis": "Wyjątki od strażnika czasu pojedynczego testu (scripts/kontrola-czasu-testu.mjs, 05.11.2026): test, którego nie da się teraz podzielić. Zapadka: to lista bazowa (stan bazowy 05.11.2026) — nowych wpisów nie dopisuje się dla nowych testów (nowy przypadek ponad progiem trzeba podzielić), wpis, którego przypadek mieści się w progu, kontrola odrzuca (usuń go). Wpis: plik, test (pełna nazwa z wyniku Jest), powod, data (DD.MM.RRRR), plan (jak i kiedy podzielić).",
   "wyjatki": [
     {
       "plik": "tests/audit-k1-bl-mer.test.tsx",
