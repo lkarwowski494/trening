@@ -50,9 +50,9 @@ describe('nagłówek planu nad kalendarzem', () => {
     for (const l of ['+ Nowy szablon', 'Plan z moich szablonów', 'Wygeneruj szablony i plan']) expect(labels()).not.toContain(l);
     expect(screen.queryAllByLabelText(/^Start: /)).toHaveLength(0); /* start szablonu tylko przez „Inny trening” */
   });
-  test('nowa osoba (bez planu i treningów): bez karty „Dziś”/nagłówka — są „Pierwsze kroki” z „Planowaniem”', async () => {
+  test('nowa osoba (bez planu i treningów): nagłówek „Bez planu tygodnia” z paskiem tygodnia, tablica „Pierwszy trening” i kafelki; bez karty „Dziś: X” (05.11.2026)', async () => {
     await boot(); /* withDemoTemplates dokłada szablony, ale nie trening ani plan */
-    expect(screen.queryByTestId('plan-header')).toBeNull(); expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1); /* szablony demonstracyjne zaliczają krok 1 — zostaje przycisk kroku 2 */
+    expect(within(screen.getByTestId('plan-header')).getByText('Bez planu tygodnia')).toBeTruthy(); expect(screen.getByTestId('first-board')).toBeTruthy(); expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.queryByTestId('today-board')).toBeNull(); /* szablony demonstracyjne nie są treningiem ani planem; nagłówek planu jest od 05.11.2026 także u nowej osoby */
   });
   test('EN: „Plan: …”, „Planning”, „No weekly plan”, „Set a plan”', async () => {
     await boot(t => { setPlan(t, { 3: 0 }, 'Upper / Lower'); hist(); }, '/', 'en'); expect(within(screen.getByTestId('plan-header')).getByText('Plan: Upper / Lower')).toBeTruthy(); expect(screen.getByLabelText('Planning')).toBeTruthy();
