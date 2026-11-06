@@ -21,7 +21,7 @@ name: Język, wygląd i jednostka
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Język: polski ---
 - tapOn: "More, tab.*"
@@ -65,7 +65,7 @@ name: Język, wygląd i jednostka
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
 - takeScreenshot: 53-ekran-glowny-ciemny
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
@@ -77,7 +77,7 @@ name: Język, wygląd i jednostka
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
@@ -92,9 +92,8 @@ name: Język, wygląd i jednostka
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }

@@ -5,7 +5,7 @@ name: Trening z szablonu
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
 - takeScreenshot: 01-start

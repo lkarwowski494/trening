@@ -1,0 +1,6 @@
+{
+ "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN) po wdrożeniu ekranu nowej osoby 1.1 (05.11.2026, docs/18): nowe klucze interfejsu. Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności tests/i18n-locales.test.ts, wczytywany przez tests/pending-translation.ts). Przekład robi koordynator przez API; po przekładzie wpisać tłumaczenia do lib/locales/<kod>.json, usunąć wpis z tego pliku i uruchomić UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts. Klucz 'trening' (podpis jednostki przy dużej „1”) — kontekst: rzeczownik, podpis pod liczbą, jak „1 workout”.",
+ "data": "2026-11-05",
+ "status": "otwarty - czeka na przekład API tylko nagłówka „Przygotuj się do pierwszej serii” (pozostałe 8 pozycji nałożone 05.11.2026, przebieg 42103385218)",
+ "klucze": []
+}

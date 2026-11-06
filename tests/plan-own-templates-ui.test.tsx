@@ -113,9 +113,9 @@ describe('wejścia: edytor planu i „Pierwsze kroki”', () => {
     await boot('/plan'); await tap(screen.getByText('Plan z moich szablonów')); await flushAll(10); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy();
     await boot('/plan', () => {}, { demo: false }); expect(screen.queryByText('Plan z moich szablonów')).toBeNull();
   });
-  test('„Pierwsze kroki”: szablon z ćwiczeniami bez planu → krok 2 z jednym przyciskiem „Planowanie”; na ekranie planu „Plan z moich szablonów”', async () => {
-    await boot('/'); expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByText('Planowanie')).toBeTruthy(); expect(screen.queryByText('Plan z moich szablonów')).toBeNull();
-    await tap(screen.getByText('Planowanie')); await flushAll(10); await tap(screen.getByText('Plan z moich szablonów')); await flushAll(10); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy();
+  test('ekran nowej osoby (dawniej „Pierwsze kroki”): szablon z ćwiczeniami bez planu → kafelek „Szablony i plan”; na ekranie planu „Plan z moich szablonów” (05.11.2026)', async () => {
+    await boot('/'); expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByTestId('first-tile-plan')).toBeTruthy(); expect(screen.queryByText('Plan z moich szablonów')).toBeNull();
+    await tap(screen.getByTestId('first-tile-plan')); await flushAll(10); await tap(screen.getByText('Plan z moich szablonów')); await flushAll(10); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy();
   });
 });
 

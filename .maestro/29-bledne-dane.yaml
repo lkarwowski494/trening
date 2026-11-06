@@ -13,10 +13,9 @@ name: Błędne i skrajne dane
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- pusty trening: „Zakończ” bez serii nie zapisuje sesji ---
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "Finish", timeout: 30000 }
 - tapOn: "Finish"
 - extendedWaitUntil: { visible: "Nothing to save. Discard this workout\\?", timeout: 15000 }
@@ -32,10 +31,9 @@ name: Błędne i skrajne dane
     when: { visible: "Nothing to save. Discard this workout\\?" }
     commands:
       - tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?", index: 1, optional: true }
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
 - assertNotVisible: "This week"   # nic nie zapisano: ekran jak dla nowej osoby
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 # --- liczby poza zakresem w polach serii: powtórzenia i ciężar obcięte do limitu ---
 - tapOn: "\\+ Add exercise"

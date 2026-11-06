@@ -13,7 +13,8 @@ name: Aktualizacja — dane w poprzedniej wersji
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# POPRZEDNIA wersja (1.0.0) ma jeszcze stary ekran główny („Other workout”); od 1.1 — ekran nowej osoby („Start your first workout”). Run 42103163923: czekanie tylko na nowy tekst padało na starej aplikacji. Czekamy na oba.
+- extendedWaitUntil: { visible: "Other workout|Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- ustawienia: kg i ciemny wygląd ---
 - tapOn: "More, tab.*"

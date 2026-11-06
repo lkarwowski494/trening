@@ -24,23 +24,23 @@
  "przeplywy": [
   {
    "id": "NU-01",
-   "tytul": "Pierwsze uruchomienie: ekran Trening z „Pierwszymi krokami”",
+   "tytul": "Pierwsze uruchomienie: ekran nowej osoby (tablica „Pierwszy trening”, kafelki „Przygotuj się do pierwszej serii”)",
    "stan": "nowy",
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
     "Zainstaluj i uruchom aplikację (pusta baza)",
     "Poczekaj na koniec animacji startowej",
-    "Na zakładce Trening jest karta „Pierwsze kroki” z trzema krokami (szablon / plan / pierwszy trening)"
+    "Na zakładce Trening: tytuł „Trening” (bez daty, nagłówka „Bez planu tygodnia” i paska tygodnia — 06.11.2026), tablica „Pierwszy trening” z datą, przycisk „Zacznij pierwszy trening” (bez „Inny trening”) i cztery kafelki „Przygotuj się do pierwszej serii” (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik)"
    ],
-   "wynik": "Brak szablonów i treningów; widać „Pierwsze kroki”, a duży przycisk startu to „Pusty trening”.",
+   "wynik": "Brak szablonów i treningów; widać tablicę „Pierwszy trening” i kafelki, a duży przycisk startu to „Zacznij pierwszy trening” (pusty trening).",
    "ekrany": [
     "/"
    ],
    "scenariusz": "31-pierwszy-tydzien.yaml",
    "znaczniki": [
-    "First steps",
-    "Set a weekly plan"
+    "Get ready for your first set",
+    "Start your first workout"
    ]
   },
   {
@@ -69,7 +69,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„Pusty trening” → „+ Dodaj ćwiczenie” → wyszukaj → wybierz",
+    "„Zacznij pierwszy trening” (pusty trening) → „+ Dodaj ćwiczenie” → wyszukaj → wybierz",
     "Wpisz ciężar i powtórzenia, odhacz serię",
     "Zakończ → potwierdź → ekran sesji"
    ],
@@ -81,7 +81,7 @@
    ],
    "scenariusz": "04-plank-stoper.yaml",
    "znaczniki": [
-    "Empty workout",
+    "start-main",
     "Search exercises"
    ]
   },
@@ -137,7 +137,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„Pierwsze kroki” → „Plan z moich szablonów”",
+    "kafelek „Szablony i plan” → „Plan z moich szablonów”",
     "Wybierz szablon i liczbę dni",
     "Podgląd → „Zapisz plan” → aktywacja"
    ],
@@ -202,7 +202,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„Pierwsze kroki” albo Więcej → Przewodnik",
+    "kafelek „Przewodnik” albo Więcej → Przewodnik",
     "Wybierz temat, przeczytaj kroki",
     "„Pokaż” przenosi na właściwy ekran i da się wrócić"
    ],
@@ -226,7 +226,7 @@
     "Wpisz wartości, odhacz serię, poczekaj/pomiń przerwę",
     "Zakończ"
    ],
-   "wynik": "Sesja zapisana; „Ten tydzień” pokazuje „Workouts: 1”; brak „Pierwszych kroków” dla szablonu.",
+   "wynik": "Sesja zapisana; „Ten tydzień” pokazuje „Workouts: 1”; brak tablicy „Pierwszy trening” i kafelków po pierwszym treningu.",
    "ekrany": [
     "/",
     "/pick-template",
@@ -265,7 +265,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„Pusty trening” → bez odhaczania serii stuknij „Zakończ”",
+    "„Zacznij pierwszy trening” (pusty trening) → bez odhaczania serii stuknij „Zakończ”",
     "Okno „Brak odhaczonych serii: Nic do zapisania. Odrzucić ten trening?”",
     "„Anuluj” zostaje w treningu; „Odrzuć trening” wraca na ekran Trening bez sesji"
    ],
@@ -326,23 +326,23 @@
   },
   {
    "id": "NU-15",
-   "tytul": "Pierwsze kroki: krok „masz historię w innej aplikacji?” prowadzi do importu CSV",
+   "tytul": "Ekran nowej osoby: kafelek „Historia z CSV” prowadzi do importu CSV",
    "stan": "nowy",
    "wersja": "1.0",
    "realnosc": "realny",
    "kroki": [
-    "Pierwsze uruchomienie (pusta baza), karta „Pierwsze kroki”",
-    "Krok 4 „Masz historię w innej aplikacji?” → „Importuj historię z pliku CSV”",
+    "Pierwsze uruchomienie (pusta baza), sekcja „Przygotuj się do pierwszej serii”",
+    "Kafelek „Historia z CSV” („Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.”)",
     "Otwiera się ekran importu z „Wybierz plik CSV” → „Wróć” do ekranu Trening"
    ],
-   "wynik": "Z karty Pierwsze kroki jednym stuknięciem wchodzi się do istniejącego importu CSV; sam import i formaty bez zmian; krok nie jest nigdy odhaczony (znika razem z kartą po pierwszym treningu).",
+   "wynik": "Z kafelka „Historia z CSV” jednym stuknięciem wchodzi się do istniejącego importu CSV; sam import i formaty bez zmian; kafelek znika razem z tablicą po pierwszym treningu.",
    "ekrany": [
     "/",
     "/more/import"
    ],
    "scenariusz": "59-import-z-pierwszych-krokow.yaml",
    "znaczniki": [
-    "Already logging workouts in another app",
+    "Get ready for your first set",
     "Choose a CSV file"
    ]
   },
@@ -2575,7 +2575,7 @@
    "realnosc": "realny",
    "kroki": [
     "Ustawienia → „Wyczyść wszystkie dane” → Anuluj → jeszcze raz → Wyczyść",
-    "Powrót do „Pierwszych kroków”"
+    "Powrót do ekranu nowej osoby"
    ],
    "wynik": "Przed czyszczeniem powstaje kopia bezpieczeństwa; po czyszczeniu stan jak nowy.",
    "ekrany": [
@@ -3065,7 +3065,7 @@
     "Zainstaluj z TestFlight",
     "Uruchom, obejrzyj ikonę, nazwę i animację startową"
    ],
-   "wynik": "Aplikacja startuje bez błędu, „Pierwsze kroki” widoczne.",
+   "wynik": "Aplikacja startuje bez błędu, tablica „Pierwszy trening” widoczna.",
    "ekrany": [
     "/"
    ],
@@ -3076,7 +3076,7 @@
      "tests/intro.test.tsx",
      "tests/smoke.test.tsx"
     ],
-    "kontrola": "Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), „Pierwsze kroki”, brak komunikatu o błędzie danych."
+    "kontrola": "Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), tablica „Pierwszy trening” i kafelki, brak komunikatu o błędzie danych."
    }
   },
   {

@@ -64,9 +64,9 @@ describe('ekran', () => {
     await tap(screen.getByText('Archiwizuj')); /* archiwum — akcja na całym szablonie w podglądzie */ expect(S().templates.find(t => t.id === id)!.archived).toBe(true);
     await tap(screen.getByText('Przywróć z archiwum')); expect('archived' in S().templates.find(t => t.id === id)!).toBe(false);
   });
-  test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów („Pierwsze kroki” z „Planowaniem”)', async () => {
+  test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów (ekran nowej osoby z kafelkiem „Szablony i plan”, 05.11.2026)', async () => {
     await boot(() => { mk('E', 'Siła', true); }, '/');
-    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); /* M1-audytor-generalny-025: krok 1 „Szablony i plan”; UX-12 A, P4 A: „Pierwsze kroki” zamiast komunikatu o braku szablonów */
+    expect(screen.getByLabelText('Szablony i plan. Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).queryAllByText('Planowanie')).toHaveLength(0); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(); /* M1-audytor-generalny-025: kafelek „Szablony i plan”; UX-12 A, P4 A: ekran startowy zamiast komunikatu o braku szablonów; 05.11.2026: kafelki zamiast kroków */
   });
   test('English', async () => {
     await fresh(undefined, 'en'); mk('A'); mk('E', 'Strength', true); await act(async () => { await store.flush(); });

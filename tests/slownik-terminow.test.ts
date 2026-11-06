@@ -154,6 +154,15 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     expect(S.sprawdz(slownik, 'ko', z, '그림은 보여 줍니다. 다음 반복에서는 끌어올립니다.')).toEqual([]);
     expect(S.sprawdz(slownik, 'zh-Hant', z, '圖中只畫出拉向一側的動作 — 下一下改拉向另一隻手。')).toEqual([]);
   });
+  /* Kontrola zastępcza 06.11.2026 (docs/18): id „fitur”, ms „ciri” (zakaz „fungsi”, nie łapie „berfungsi”), et „funktsioon”; ko/ja licznik sesji w uwadze pojęcia „trening” */
+  test('06.11.2026: funkcja aplikacji — ms „ciri” zamiast „fungsi”; „berfungsi” (działa) dozwolone; licznik sesji ko/ja', () => {
+    const fa = slownik.pojecia.find(x => x.id === 'funkcja_aplikacji')!; const z = 'Wszystkie funkcje działają od pierwszego dnia.';
+    expect(S.wykryte(fa, z)).toBe(true); expect(S.wykryte(fa, 'Funkcjonalność')).toBe(false);
+    expect(S.sprawdz(slownik, 'ms', z, 'Semua fungsi berfungsi').some((n: { pojecie: string }) => n.pojecie === 'funkcja_aplikacji')).toBe(true);
+    expect(S.sprawdz(slownik, 'ms', z, 'Semua ciri berfungsi')).toEqual([]);
+    expect([fa.jezyki.id.zalecany, fa.jezyki.ms.zalecany, fa.jezyki.et.zalecany]).toEqual(['fitur', 'ciri', 'funktsioon']);
+    const tr = slownik.pojecia.find(x => x.id === 'trening')!; expect(tr.jezyki.ko.uwaga).toContain('회차'); expect(tr.jezyki.ja.uwaga).toContain('回目');
+  });
   test('el: squat / bench press / deadlift zalecane po angielsku; pojęcia wykrywane w polskim tekście', () => {
     const zal = (id: string) => slownik.pojecia.find(x => x.id === id)!.jezyki.el.zalecany;
     expect([zal('przysiad'), zal('wyciskanie_lezac'), zal('martwy_ciag')]).toEqual(['squat', 'bench press', 'deadlift']);

@@ -1,6 +1,10 @@
 /*
  * M1-audytor-generalny-025 (04-studio-projektowe-007, audyt M1 27.10.2026; przejście poznawcze P1, kroki 2 i 3 „porażka”):
- * „Pierwsze kroki” dla nowej osoby —
+ * „Pierwsze kroki” dla nowej osoby — od 05.11.2026 (docs/18, ekran nowej osoby 1.1) karta ma postać czterech kafelków „Przygotuj się do pierwszej serii”; cele audytu zostają, zmienia się postać:
+ *  - jeden kafelek „Szablony i plan” (bez drugiego „Planowanie”), nazwany celem, prowadzi na ekran planu;
+ *  - duży przycisk na ekranie to „Zacznij pierwszy trening” (bez szablonu) albo „Start: …”; zdanie kroku 3 o przycisku „Start”/„Pusty trening” zniknęło razem z krokami;
+ *  - wszystkie kafelki jednego rodzaju; „›” po tekście (docs/32 wzorzec 17), ukryty dla VoiceOver.
+ * Stan sprzed zmiany:
  *  - krok 1 („Utwórz pierwszy szablon albo wygeneruj szablony i plan.”) miał przycisk „Planowanie”, ten sam co krok 2 → przycisk nazwany celem: „Szablony i plan”
  *    (prowadzi do tego samego miejsca: ekran planu z „+ Nowy szablon” i „Wygeneruj szablony i plan”; P4 A z 11.10.2026 bez zmian);
  *  - krok 3 wskazywał duży przycisk „Start”, którego osoba bez szablonu nie ma (duży przycisk to „Pusty trening”, lib/home mainStart) → tekst zależny od stanu;
@@ -24,48 +28,45 @@ const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => {
 };
 const box = () => within(screen.getByTestId('first-steps'));
 const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten((typeof el.props.style === 'function' ? (el.props.style as (s: { pressed: boolean }) => unknown)({ pressed: false }) : el.props.style) as never) as Record<string, unknown>;
-const STEP3_START = 'Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.';
-const STEP3_EMPTY = 'Pierwszy trening: duży przycisk „Pusty trening” u góry.';
+const TILE_IDS = ['first-tile-plan', 'first-tile-places', 'first-steps-import', 'first-tile-guide'];
+const PLACES = 'Miejsca i sprzęt. Dom albo siłownia — ustaw swój sprzęt.';
 
-describe('M1-audytor-generalny-025: „Pierwsze kroki” — przyciski i teksty zgodne z ekranem', () => {
-  test('nowa osoba bez szablonu: kroki 1 i 2 mają różne przyciski („Szablony i plan”, „Planowanie”), oba prowadzą do ekranu planu', async () => {
+describe('M1-audytor-generalny-025: ekran nowej osoby (dawniej „Pierwsze kroki”) — kafelki i teksty zgodne z ekranem', () => {
+  test('nowa osoba bez szablonu: jeden kafelek „Szablony i plan” (bez „Planowanie”), prowadzi do ekranu planu', async () => {
     await boot();
-    expect(box().getAllByText('Szablony i plan')).toHaveLength(1); expect(box().getAllByText('Planowanie')).toHaveLength(1);
-    await tap(box().getByText('Szablony i plan')); await flushAll(10);
+    expect(box().getAllByText('Szablony i plan')).toHaveLength(1); expect(box().queryAllByText('Planowanie')).toHaveLength(0);
+    await tap(screen.getByTestId('first-tile-plan')); await flushAll(10);
     expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy(); /* ekran planu (+ Nowy szablon — w wyborze szablonu dnia, tests/flows.test.tsx) */
   });
-  test('bez szablonu: krok 3 wskazuje przycisk, który jest na ekranie („Pusty trening”), bez „Start”', async () => {
+  test('bez szablonu: duży przycisk to „Zacznij pierwszy trening”; nie ma zdania kroku 3 o „Start” ani „Pusty trening”', async () => {
     await boot();
-    expect(within(screen.getByTestId('start-main')).getAllByText('Pusty trening').length).toBeGreaterThan(0);
-    expect(screen.getByLabelText(`3. ${STEP3_EMPTY} do zrobienia`)).toBeTruthy();
-    expect(box().queryByText(/„Start”/)).toBeNull();
+    expect(within(screen.getByTestId('start-main')).getAllByText('Zacznij pierwszy trening').length).toBeGreaterThan(0);
+    expect(screen.queryByText(/duży przycisk/)).toBeNull(); expect(box().queryByText(/„Start”/)).toBeNull(); expect(screen.queryByText('Pusty trening')).toBeNull();
   });
-  test('z szablonem: duży przycisk to „Start: …”, krok 3 mówi o „Start”', async () => {
+  test('z szablonem: duży przycisk to „Start: …”, kafelki zostają (bez zdania o „Start”)', async () => {
     await boot(() => { withDemoTemplates(); });
     expect(within(screen.getByTestId('start-main')).getByText(/^Start: /)).toBeTruthy();
-    expect(screen.getByLabelText(`3. ${STEP3_START} do zrobienia`)).toBeTruthy();
+    for (const id of TILE_IDS) expect(screen.getByTestId(id)).toBeTruthy(); expect(screen.queryByText(/duży przycisk/)).toBeNull();
   });
-  test('wszystkie przyciski kroków jednego rodzaju (to samo tło i obramowanie co „Planowanie”)', async () => {
+  test('wszystkie cztery kafelki jednego rodzaju (to samo obramowanie i rodzaj przycisku)', async () => {
     await boot();
-    const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.';
-    const btns = box().getAllByRole('button').filter(b => b.props.accessibilityLabel !== places); expect(btns.length).toBe(4); /* 1.0.1 (DEC-04 a): + „Importuj historię z pliku CSV” */
-    const ref = flat(box().getAllByRole('button', { name: 'Planowanie' }).at(-1)!);
-    for (const b of btns) { const s = flat(b); expect([b.props.accessibilityLabel, s.backgroundColor, s.borderColor]).toEqual([b.props.accessibilityLabel, ref.backgroundColor, ref.borderColor]); }
+    const btns = TILE_IDS.map(id => screen.getByTestId(id)); const ref = flat(btns[0]);
+    for (const b of btns) { const s = flat(b); expect([b.props.accessibilityLabel, b.props.accessibilityRole, s.borderColor, s.borderRadius, s.borderWidth]).toEqual([b.props.accessibilityLabel, 'button', ref.borderColor, ref.borderRadius, ref.borderWidth]); }
   });
-  test('zdanie o „Miejscach i sprzęcie” ma „›” (przejście na inny ekran, wzorzec 17); znak ukryty dla VoiceOver, etykieta bez zmian', async () => {
+  test('kafelek „Miejsca i sprzęt” ma „›” (przejście na inny ekran, wzorzec 17); znak ukryty dla VoiceOver, etykieta „tytuł. opis”', async () => {
     await boot();
-    const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.';
-    const row = screen.getByLabelText(places); expect(row.props.accessibilityRole).toBe('button');
+    const row = screen.getByLabelText(PLACES); expect(row.props.accessibilityRole).toBe('button');
     const chev = within(row).getByText('›', { includeHiddenElements: true }); expect(chev).toBeTruthy();
     expect(within(row).queryByText('›')).toBeNull(); /* ukryty dla VoiceOver */
   });
-  test('EN: „Templates and plan”; krok 3 bez szablonu — „Empty workout”', async () => {
+  test('EN: „Templates and plan”, „Start your first workout”; bez zdania o dużym przycisku', async () => {
     await boot(() => {}, 'en');
-    expect(box().getByText('Templates and plan')).toBeTruthy(); expect(box().getByText('Planning')).toBeTruthy();
-    expect(box().getByText('First workout: the big “Empty workout” button at the top.')).toBeTruthy();
+    expect(box().getByText('Templates and plan')).toBeTruthy(); expect(box().queryByText('Planning')).toBeNull();
+    expect(within(screen.getByTestId('start-main')).getByText('Start your first workout')).toBeTruthy(); expect(screen.queryByText(/big “/)).toBeNull();
   });
-  test('po utworzeniu szablonu i planu kroki 1 i 2 odhaczone, bez przycisków „Szablony i plan” i „Planowanie”', async () => {
-    await boot(() => { const t = withDemoTemplates(); plan.setWeekDay(0, t[0].id); });
-    expect(box().queryByText('Szablony i plan')).toBeNull(); expect(box().queryByText('Planowanie')).toBeNull();
+  test('po utworzeniu szablonu i planu kafelki zostają (nie są „zrobione”, brak ✓), a do pierwszego treningu rządzi tablica „Dziś”', async () => {
+    await boot(() => { const t = withDemoTemplates(); plan.setWeekDay(3 /* czwartek = dziś */, t[0].id); });
+    for (const id of TILE_IDS) expect(screen.getByTestId(id)).toBeTruthy(); expect(box().queryByText('Planowanie')).toBeNull(); expect(screen.queryByLabelText(/zrobione$/)).toBeNull();
+    expect(screen.queryByTestId('first-board')).toBeNull(); expect(screen.getByText(/^Dziś: /)).toBeTruthy();
   });
 });

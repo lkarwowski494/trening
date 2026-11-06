@@ -187,7 +187,7 @@ export function zastosuj(root, katalog, plikZestawu) {
     const r = czytaj(join(katalog, f)); const kod = r.jezyk;
     if (typeof kod !== 'string' || !existsSync(join(root, 'lib/locales', `${kod}.json`)) || !existsSync(join(root, katSlownika, `${kod}.json`))) { podsumowanie.pominietych.push(`${f}: nieznany język`); continue; }
     const plik = join(root, katSlownika, `${kod}.json`); const d = czytaj(plik); const przed = { ...d };
-    const bazaPlik = wskazowki && BAZA[kod] ? join(root, katSlownika, `${BAZA[kod]}.json`) : null; const baza = bazaPlik && existsSync(bazaPlik) ? czytaj(bazaPlik) : null;
+    const bazaPlik = BAZA[kod] ? join(root, katSlownika, `${BAZA[kod]}.json`) : null; /* także zestaw interfejsu (05.11.2026: wpisy pt-BR/es-419 równe bazie usuwane ręcznie dwa razy) */ const baza = bazaPlik && existsSync(bazaPlik) ? czytaj(bazaPlik) : null;
     for (const [pl, tl] of Object.entries(r.propozycje ?? {})) {
       if (!dozwolone.has(pl)) { podsumowanie.pominietych.push(`${kod}: klucz spoza zestawu „${pl.slice(0, 40)}”`); continue; }
       if (typeof tl !== 'string' || !tl.trim() || zmienne(pl).join('') !== zmienne(tl).join('')) { podsumowanie.pominietych.push(`${kod}: zmienne „${pl.slice(0, 40)}”`); continue; }

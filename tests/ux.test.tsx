@@ -28,10 +28,10 @@ test('C1a z szablonem: od uruchomienia do pierwszej odhaczonej serii ≤ 2 tapni
   expect(store.getState().active!.exercises[0].sets[0].done).toBe(true); expect(taps).toBeLessThanOrEqual(2);
 });
 
-test('C1b świeża instalacja (bez szablonów): 4 tapnięcia (Pusty trening, + Dodaj ćwiczenie, ćwiczenie, ✓) plus wpis ciężaru i powtórzeń', async () => {
+test('C1b świeża instalacja (bez szablonów): 4 tapnięcia (Zacznij pierwszy trening, + Dodaj ćwiczenie, ćwiczenie, ✓) plus wpis ciężaru i powtórzeń', async () => {
   await renderApp(); let taps = 0;
   expect(store.getState().templates).toEqual([]); expect(screen.queryByLabelText(/^Start: /)).toBeNull(); /* nie ma skrótu „Start” */
-  await tap(screen.getByText('Pusty trening')); taps++;
+  await tap(screen.getByText('Zacznij pierwszy trening')); taps++; /* 05.11.2026: ekran nowej osoby 1.1 (dawniej „Pusty trening”) */
   await tap(screen.getByText('+ Dodaj ćwiczenie')); taps++; await flushAll(20);
   await tap(screen.getByText('Bench Press (hantle)')); taps++; await flushAll(20); /* lista bez szukania — pierwszy ekran wyboru */
   /* bez historii i bez szablonu nic się nie wstawia — ciężar i powtórzenia trzeba wpisać (pola, nie tapnięcia w miarze C1) */

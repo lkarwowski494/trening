@@ -1,0 +1,55 @@
+/* C′ „spójny” (05.11.2026, uwaga właściciela: „wow, ale spójne z tym, co zobaczy później”). Układ = ekran główny bez planu z prawdziwej aplikacji;
+ * jedyny nowy element: tablica nowej osoby w stylu tablicy treningu (BoardFace: board, boardEdge 1 pt, promień RADIUS.board 8, boardName, boardMeta,
+ * boardNumber 96, pola jak pola serii). Bez nowych tokenów. */
+.g-tyt { display: flex; align-items: center; gap: 8px; padding: 4px 16px 0; flex-wrap: wrap; }
+.g-tyt h1 { font-family: var(--krój-tytul); font-weight: 700; font-size: calc(2.125rem * var(--dt-tytul)); line-height: 1.12; }
+.g-tyt svg { height: calc(1.6rem * var(--dt-tytul)); width: auto; }
+.g-tyt .up { margin-left: auto; font-size: calc(1.0625rem * var(--dt-opis)); color: var(--tekst); min-height: 44px; display: grid; place-items: center; }
+.g-data { padding: 0 16px; color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); line-height: 1.35; }
+.g-bez { padding: 12px 16px 8px; color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); }
+.g-tydz { margin: 0 16px; background: var(--surface); border-radius: 12px; padding: 8px 4px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.g-tydz div { display: grid; justify-items: center; align-content: start; gap: 2px; padding: 6px 0; min-height: 64px; border-radius: 8px; border: 2px solid transparent; }
+.g-tydz div.dzis { border-color: var(--tekst); }
+.g-tydz small { font-size: calc(0.6875rem * min(var(--dt-tresc), 1.25)); font-weight: 600; color: var(--tekst2); }
+.g-tydz div.dzis small { color: var(--tekst); }
+.g-tydz b { font-family: var(--krój-tytul); font-weight: 700; font-size: calc(1.25rem * min(var(--dt-tresc), 1.25)); color: var(--tekst2); }
+.g-tydz div.dzis b { color: var(--tekst); }
+.g-tydz i { width: 16px; height: 16px; border-radius: 3px; background: var(--accent); margin-top: 4px; }
+/* tablica nowej osoby = BoardFace */
+.g-tab { margin: 12px 16px 0; background: var(--board); border: 1px solid var(--boardEdge); border-radius: 8px; padding: 16px; color: var(--boardText); }
+.g-r1 { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
+.g-nazwa { font-family: var(--krój-tytul); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; font-size: calc(1.5rem * var(--dt-tytul)); line-height: 1.08; }
+.g-meta { font-family: var(--krój-tytul); font-weight: 600; font-size: calc(1.125rem * var(--dt-tytul)); color: var(--boardMuted); }
+.g-duza { display: flex; justify-content: center; align-items: baseline; gap: 6px; margin: 16px 0 12px; }
+.g-duza .fl { background: var(--boardField); font-size: 112px; width: .82em; height: 1.08em; line-height: 1; border-radius: 8px; }
+.g-duza .fl::after { background: var(--board); height: 3px; margin-top: -1.5px; }
+.g-duza { align-items: flex-end; }
+.g-duza .jedn { font-family: var(--krój-tytul); font-weight: 600; font-size: calc(1.125rem * var(--dt-tytul)); color: var(--boardMuted); }
+.g-pola { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.g-pola > span { min-height: 44px; border: 1.5px solid var(--boardMuted); border-radius: 4px; display: flex; justify-content: center; align-items: center; gap: 2px; padding: 4px; }
+.g-pola .fl { width: 0.72em; height: 1.3em; font-size: 20px; background: transparent; }
+.g-pola .fl::after { opacity: .7; }
+.g-start { margin: 12px 16px 0; display: flex; align-items: center; gap: 12px; min-height: 60px; border-radius: 8px; padding: 10px 16px; background: var(--accent); color: var(--accentInk); text-align: left; width: calc(100% - 32px); }
+.g-start span { flex: 1; } .g-start b { display: block; font-size: calc(1.1875rem * var(--dt-opis)); line-height: 1.26; } .g-start small { display: block; font-size: calc(0.9375rem * var(--dt-opis)); margin-top: 2px; }
+.g-start i { font-style: normal; font-family: var(--krój-tytul); font-size: 1.25rem; }
+.g-inny { margin: 8px 16px 0; width: calc(100% - 32px); min-height: 52px; border-radius: 8px; background: var(--surface2); color: var(--tekst); font-weight: 600; font-size: calc(1.0625rem * var(--dt-opis)); }
+.g-sek { padding: 24px 16px 0; color: var(--tekst2); font-weight: 600; font-size: calc(0.8125rem * var(--dt-opis)); letter-spacing: .04em; text-transform: uppercase; }
+.g-kafle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 16px 16px; }
+.g-kafle div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.g-kafle b { display: block; font-family: var(--krój-tytul); font-size: calc(1.5rem * var(--dt-liczba)); }
+.g-kafle span { color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); }
+.g-lista { list-style: none; margin: 8px 16px 16px; background: var(--surface); border-radius: 12px; }
+.g-lista li + li { border-top: 1px solid var(--line); }
+.g-lista a { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 16px; color: var(--tekst); text-decoration: none; font-size: calc(1.0625rem * var(--dt-opis)); }
+.g-lista a span { flex: 1; } .g-lista a i { font-style: normal; color: var(--tekst2); }
+/* w treningu (tablica z pozniej.png, BoardFace) */
+.w-nag { display: flex; align-items: center; gap: 8px; padding: 8px 16px; min-height: 52px; }
+.w-nag b { font-family: var(--krój-tytul); font-size: calc(1.25rem * var(--dt-tytul)); } .w-nag span { color: var(--tekst2); } .w-nag em { margin-left: auto; font-style: normal; }
+.w-post { margin: 4px 16px 0; height: 6px; border-radius: 3px; background: var(--surface2); }
+.w-post i { display: block; width: 8%; height: 100%; border-radius: 3px; background: var(--tekst); }
+.w-liczby { display: flex; justify-content: center; align-items: baseline; gap: 6px; font-family: var(--krój-tytul); font-weight: 700; font-size: 96px; line-height: 91px; margin: 12px 0; }
+.w-liczby small { font-size: 22px; color: var(--boardMuted); font-weight: 600; }
+.w-pola { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.w-pola span { min-height: 44px; border: 1.5px solid var(--boardMuted); border-radius: 4px; display: grid; place-items: center; font-family: var(--krój-tytul); font-weight: 700; font-size: 20px; }
+.w-pola span.teraz { border: 3px solid var(--now); }
+.w-seria { margin: 16px; min-height: 60px; border-radius: 8px; background: var(--accent); color: var(--accentInk); font-weight: 700; font-size: calc(1.1875rem * var(--dt-opis)); width: calc(100% - 32px); }

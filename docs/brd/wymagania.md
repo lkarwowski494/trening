@@ -42,10 +42,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest na ekranie Kolejność (szablon albo trening w toku)
     - Gdy stuka „⋯” przy wierszu (ćwiczenie, superset albo ćwiczenie w supersecie) i wybiera „Przesuń wyżej” albo „Przesuń niżej”
     - Wtedy kolejność zmienia się tak samo jak po przeciągnięciu uchwytu „≡” o jedno miejsce; arkusz pokazuje tylko możliwe kierunki i „Anuluj”
-  - Scenariusz: „Pierwsze kroki” prowadzą do przycisków, które są na ekranie (M1-audytor-generalny-025, 27.10.2026)
-    - Zakładając, że nowa osoba nie ma jeszcze szablonu z ćwiczeniami ani planu
-    - Gdy patrzy na „Pierwsze kroki” na ekranie Trening
-    - Wtedy krok 1 ma przycisk „Szablony i plan”, krok 2 „Planowanie” (oba otwierają ekran planu), krok 3 wskazuje duży przycisk „Pusty trening” (z szablonem — „Start”), przyciski kroków są jednego rodzaju, a zdanie o „Miejscach i sprzęcie” ma „›”
+  - Scenariusz: Kafelki „Przygotuj się do pierwszej serii” prowadzą do ekranów, które istnieją (M1-audytor-generalny-025, 27.10.2026; zmiana 05.11.2026)
+    - Zakładając, że nowa osoba nie zakończyła jeszcze treningu
+    - Gdy patrzy na „Przygotuj się do pierwszej serii” na ekranie Trening
+    - Wtedy kafelek „Szablony i plan” otwiera ekran planu, „Miejsca i sprzęt” — miejsca, „Historia z CSV” — import, „Przewodnik” — Przewodnik; wszystkie są przyciskami jednego rodzaju z „›” (BR-POM-001)
 
 ### BR-TRN-002: Typy serii: rozgrzewka, drop set, do upadku, notatka
 - Przepływ: PR-01

@@ -1,0 +1,19 @@
+{
+ "jasny: tekst na surface (kroki, rubryki)": ["#18202B", "#F4F5F3"],
+ "jasny: tekst2 na surface (podpis rubryki, skrót dnia)": ["#4A5361", "#F4F5F3"],
+ "jasny: tekst2 na bg (data, pusty stan)": ["#4A5361", "#E6E8E5"],
+ "jasny: ramka rubryki ctrlLine na surface (element)": ["#6B7380", "#F4F5F3", 3],
+ "jasny: ramka rubryki ctrlLine na bg (element)": ["#6B7380", "#E6E8E5", 3],
+ "jasny: ramka dziś = tekst na surface (element)": ["#18202B", "#F4F5F3", 3],
+ "jasny: boardText na board (wiersze tablicy dnia)": ["#F5F1E6", "#13294B"],
+ "jasny: accentInk na accent (przycisk startu)": ["#F5F1E6", "#13294B"],
+ "ciemny: tekst na surface": ["#E8EAED", "#1E2530"],
+ "ciemny: tekst2 na surface": ["#A3ACB8", "#1E2530"],
+ "ciemny: tekst2 na bg": ["#A3ACB8", "#161C24"],
+ "ciemny: ramka rubryki ctrlLine na surface (element)": ["#7C8594", "#1E2530", 3],
+ "ciemny: ramka rubryki ctrlLine na bg (element)": ["#7C8594", "#161C24", 3],
+ "ciemny: ramka dziś = tekst na surface (element)": ["#E8EAED", "#1E2530", 3],
+ "ciemny: boardText na board": ["#F5F1E6", "#102544"],
+ "ciemny: krawędź tablicy boardEdge na bg (element)": ["#5675A8", "#161C24", 3],
+ "ciemny: accentInk na accent": ["#13294B", "#F5F1E6"]
+}

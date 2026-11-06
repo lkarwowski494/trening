@@ -16,7 +16,7 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- drugi szablon (kopia) do wyboru w panelu dnia ---
 - tapOn: "More, tab.*"

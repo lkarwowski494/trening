@@ -99,7 +99,6 @@
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Los entrenamientos siguen pendientes de guardar en Apple Health. Revisa el permiso en la app Salud: perfil → Apps → {app}.",
  "Tygodnie treningu bez deloadu: {n}.": "Semanas de entrenamiento sin descarga: {n}.",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.": "Semanas de entrenamiento seguidas sin descarga: {n}. La descarga suele hacerse cada {a}–{b} semanas: es una práctica común, no una regla fija.",
- "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Configura un plan semanal — verás aquí el entrenamiento de hoy y recibirás un recordatorio.",
  "Ustawienia": "Configuración",
  "Ustawienia na stronę: {n} ({r})": "Configuraciones por lado: {n} ({r})",
  "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Esto elimina ejercicios, plantillas y todo el historial y restablece la configuración predeterminada (también lugares, equipo y bandas). Antes, tus datos actuales se guardan como copia en Archivos: {app} → Backup (puedes importarla).",
@@ -149,7 +148,6 @@
  "Ławka regulowana": "Banco ajustable",
  "łydki": "pantorrillas",
  "„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).": "«Sin límites de equipo» = gimnasio completo (barra, mancuernas, máquinas y poleas).",
- "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.": "¿Entrenas en casa o en el gimnasio? Configura tu equipo en «Lugares y equipo».",
  "Dodaj do planu": "Agregar al plan",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planificado = plantillas de tu plan para el resto de los días de la semana, calculadas con los valores de la plantilla (los que faltan, con «Anterior»). Es un cálculo sobre tu plan, no un pronóstico. Un grupo muscular principal cuenta 1 serie, uno secundario 0,5.",
  "e1RM pojawi się po wpisaniu masy ciała w Postępach.": "El e1RM aparecerá cuando ingreses tu peso corporal en Progreso.",
@@ -289,9 +287,15 @@
  "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "¿Tienes historial en otra app? Puedes agregarlo desde un archivo CSV.",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "En la pantalla Entrenamiento, «Planificación» (sin plan: «Configurar plan») abre el plan semanal, que asigna plantillas a los días — el plan se repite cada semana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "En la pantalla Entrenamiento, «Progresión» compara la semana (hecho + planificado) con la anterior y un mes con el mes anterior.",
- "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "En la pantalla Entrenamiento, toca el botón grande «Empezar» (siguiente entrenamiento) u «Otro entrenamiento» — ahí elegirás una plantilla, repetirás el último entrenamiento o empezarás uno vacío.",
+ "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.": "En la pantalla Entrenamiento, toca el botón grande de arriba: «Empezar» (siguiente entrenamiento) y, antes de tu primer entrenamiento, «Empieza tu primer entrenamiento». Cuando ya tengas plantillas o historial, «Otro entrenamiento» te permite elegir una plantilla, repetir el último entrenamiento o empezar uno vacío.",
  "Trening": "Entrenamiento",
  "Połącz z telefonem": "Conectar con el celular",
  "Zacznij trening na telefonie": "Empieza un entrenamiento en el celular",
- "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Tus datos en el celular no han cambiado: puedes enviarlos como archivo."
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Tus datos en el celular no han cambiado: puedes enviarlos como archivo.",
+ "Zacznij pierwszy trening": "Empieza tu primer entrenamiento",
+ "Pierwszy trening": "Primer entrenamiento",
+ "Pierwszy trening, dziś, {date}": "Primer entrenamiento, hoy, {date}",
+ "trening": "entrenamiento",
+ "Dom albo siłownia — ustaw swój sprzęt.": "En casa o en el gimnasio: configura tu equipo.",
+ "Co gdzie jest i jak działa.": "Dónde está cada cosa y cómo funciona."
 }

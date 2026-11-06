@@ -168,7 +168,7 @@ describe('przyciski nagłówka (W1): wspólny HeaderButton, 44 pt, limit powięk
 
 describe('ikony M1-029 i zakładki', () => {
   test('zestaw: pin, pauza, start, przerwa, słuchawki, głośnik, wyciszenie, „⋯”; siatka 24, linia 1,8, ukryte dla VoiceOver', async () => {
-    expect([...ICON_NAMES].sort()).toEqual(['headphones', 'more', 'pause', 'pin', 'play', 'speaker', 'speakerOff', 'timer']);
+    expect([...ICON_NAMES].sort()).toEqual(['book', 'calendar', 'download', 'headphones', 'more', 'pause', 'pin', 'play', 'speaker', 'speakerOff', 'timer']);
     for (const n of ICON_NAMES) { const r = await render(<Icon name={n} color="#112233" />); expect(r.getByTestId(`icon-${n}`, { includeHiddenElements: true })).toBeTruthy(); expect(JSON.stringify(r.toJSON())).toContain(`"vbWidth":${ICON.grid},"vbHeight":${ICON.grid}`); if (!['pause', 'more'].includes(n)) expect(JSON.stringify(r.toJSON())).toContain(`"strokeWidth":${ICON.stroke}`); /* pauza i „⋯” są wypełnione */ await r.unmount(); }
   });
   test('ikony zakładek: 26 pt, linia 1,8, zaokrąglone końce; podpis 11 pt rośnie do 125% (DEC-10), mieści się przez zmniejszenie do 0,8', async () => {

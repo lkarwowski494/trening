@@ -13,14 +13,14 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- etykiety VoiceOver zakładek i głównych przycisków ekranu Trening ---
 - assertVisible: "Workout, tab, 1 of 4"
 - assertVisible: "Plan, tab, 2 of 4"
 - assertVisible: "Progress, tab, 3 of 4"
 - assertVisible: "More, tab, 4 of 4"
-- assertVisible: "Empty workout"
-- assertVisible: "Other workout"
+- assertVisible: "Start your first workout"
+- assertNotVisible: "Other workout"  # 05.11.2026: nowa osoba bez innych sposobów startu — przycisku „Inny trening” nie ma
 - assertNotVisible: { id: "whats-new-i" }  # 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
@@ -74,10 +74,18 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: { id: "sw-Keep screen on during workout" }
 - scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Progression hint" }
+# E2E 42131719080 (iPhone 17, nagłówek nieprzezroczysty — ZB-010): po przewinięciu do „Progression hint” wiersz „RPE / RIR per set” leżał na y=53 (nagłówek kończy się na y=116), Maestro uważa go
+# za widoczny (centerElement go nie przewija), a stuknięcie w (354, 67) trafiało w nagłówek — przełącznik się nie zmieniał, segment „Skala wysiłku” nigdy się nie pojawiał
+# (maestro.log: Tapping on element … sw-RPE / RIR per set bounds=[323,53][386,81]; hierarchia: brak effort-scale-*). Zsuwamy listę w dół o ok. 100 pt PRZED przewinięciem do przełącznika i stuknięciem.
+- swipe: { start: "50%, 40%", end: "50%, 52%", duration: 400 }
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
 # E2E-35 (run 39676394005): „RIR” po tekście trafiało w nieostry cel (trening pokazał potem RPE) — segment ma testID `effort-scale-rir`; zaznaczenie sprawdzamy przed dalszymi krokami
-- scrollUntilVisible: { element: { id: "effort-scale-rir" }, direction: DOWN, timeout: 20000, centerElement: true }
+# Run 42103163923/42131719080: segment nie pojawiał się, bo stuknięcie w przełącznik wyżej trafiało w nagłówek (patrz wyżej). Gdyby segment był na ekranie, nie szukamy go; w razie potrzeby szukamy też w GÓRĘ.
+- runFlow:
+    when: { notVisible: { id: "effort-scale-rir" } }
+    commands:
+      - scrollUntilVisible: { element: { id: "effort-scale-rir" }, direction: UP, timeout: 20000, centerElement: true }
 # E2E 39702654990: segment bywa pod przezroczystym nagłówkiem Settings (Maestro uważa go za widoczny, więc centerElement go nie przewija) — zsuwamy listę w dół o ok. 100 pt
 - swipe: { start: "50%, 40%", end: "50%, 52%", duration: 400 }
 - tapOn: { id: "effort-scale-rir" }
@@ -101,8 +109,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Back"
 # --- skutki ustawień w treningu: widok „Lista”, kolumna RIR, przerwa 0:45, kg ---
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Empty workout", timeout: 30000 }
-- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }

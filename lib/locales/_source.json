@@ -900,6 +900,10 @@
   "en": "step"
  },
  {
+  "pl": "Co gdzie jest i jak działa.",
+  "en": "What is where and how it works."
+ },
+ {
   "pl": "Co logujesz w serii",
   "en": "What you log per set"
  },
@@ -1083,10 +1087,6 @@
   "plural": true
  },
  {
-  "pl": "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.",
-  "en": "Exercising at home or at a gym? Set your equipment in “Places and equipment”."
- },
- {
   "pl": "D — tydzień deload",
   "en": "D — deload week"
  },
@@ -1215,10 +1215,6 @@
   "en": "to fill in"
  },
  {
-  "pl": "do zrobienia",
-  "en": "to do"
- },
- {
   "pl": "Do: {day}",
   "en": "To: {day}"
  },
@@ -1277,6 +1273,10 @@
  {
   "pl": "Dom",
   "en": "Home"
+ },
+ {
+  "pl": "Dom albo siłownia — ustaw swój sprzęt.",
+  "en": "Home or gym — set up your equipment."
  },
  {
   "pl": "domyślna {s}",
@@ -1771,6 +1771,10 @@
  {
   "pl": "Historia jest już w telefonie",
   "en": "Your history is now on your phone"
+ },
+ {
+  "pl": "Historia z CSV",
+  "en": "History from CSV"
  },
  {
   "pl": "Hotel",
@@ -2803,8 +2807,8 @@
   "en": "On the Workout screen “Progression” compares the week (done + planned) with the previous one and month with month."
  },
  {
-  "pl": "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.",
-  "en": "On the Workout screen tap the big “Start” button (next workout) or “Other workout” — there you pick a template, repeat the last workout or start an empty one."
+  "pl": "Na ekranie Trening stuknij duży przycisk u góry: „Start” (następny trening), a przed pierwszym treningiem „Zacznij pierwszy trening”. Gdy masz już szablony albo historię, „Inny trening” pozwala wybrać szablon, powtórzyć ostatni trening albo zacząć pusty.",
+  "en": "On the Workout screen tap the big button at the top: “Start” (next workout), and before your first workout “Start your first workout”. Once you have templates or history, “Other workout” lets you pick a template, repeat the last workout or start an empty one."
  },
  {
   "pl": "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.",
@@ -3683,20 +3687,16 @@
   "en": "per dumbbell (×2)"
  },
  {
-  "pl": "Pierwsze kroki",
-  "en": "First steps"
+  "pl": "Pierwszy trening",
+  "en": "First workout"
  },
  {
   "pl": "Pierwszy trening za Tobą!",
   "en": "First workout done!"
  },
  {
-  "pl": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
-  "en": "First workout: the big “Empty workout” button at the top."
- },
- {
-  "pl": "Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.",
-  "en": "First workout: the big “Start” button at the top, or “Empty workout”."
+  "pl": "Pierwszy trening, dziś, {date}",
+  "en": "First workout, today, {date}"
  },
  {
   "pl": "piłka gimnastyczna",
@@ -4567,6 +4567,10 @@
  {
   "pl": "Przyda się: {list}.",
   "en": "Would help: {list}."
+ },
+ {
+  "pl": "Przygotuj się do pierwszej serii",
+  "en": "Get ready for your first set"
  },
  {
   "pl": "Przypomnienie o treningu z planu",
@@ -5585,6 +5589,10 @@
   "en": "trap bar"
  },
  {
+  "pl": "trening",
+  "en": "workout"
+ },
+ {
   "pl": "Trening",
   "en": "Workout"
  },
@@ -5891,10 +5899,6 @@
  {
   "pl": "Ustaw plan",
   "en": "Set a plan"
- },
- {
-  "pl": "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.",
-  "en": "Set a weekly plan — you will see today’s workout here and get a reminder."
  },
  {
   "pl": "Ustaw termin i szablon — serie uzupełnisz w następnym kroku.",
@@ -6691,6 +6695,10 @@
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
+ },
+ {
+  "pl": "Zacznij pierwszy trening",
+  "en": "Start your first workout"
  },
  {
   "pl": "Zacznij trening",

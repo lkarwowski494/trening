@@ -12,7 +12,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- ustawienia: ciemny wygląd, kg, język polski ---
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }

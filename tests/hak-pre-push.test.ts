@@ -331,7 +331,7 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
       const tools = /^tools:\s*(.*)$/m.exec(t.split('---')[1] || '')?.[1];
       return !tools || /\bBash\b/.test(tools);
     });
-    const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha', 'recenzent-lokalizacji': 'czyta teksty i zwraca listę poprawek, niczego nie edytuje ani nie wypycha' };
+    const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha', 'recenzent-lokalizacji': 'czyta teksty i zwraca listę poprawek, niczego nie edytuje ani nie wypycha', 'studio-projektowe': 'makiety w docs/design, commit bez wypychania — wypycha koordynator (05.11.2026)' };
     expect(zBash.filter(r => !WYPYCHAJA.includes(r) && !(r in WYJATKI))).toEqual([]);
   });
 });

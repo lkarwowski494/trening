@@ -1,8 +1,8 @@
 # Podprzepływ: generator szablonów i planu (jak 14) — „Planning” → podgląd → zapis „Full Body A/B”, plan Pn/Śr/Sb aktywny. Koniec na ekranie planu (Back → ekran Trening).
-# Wołać na ekranie Trening z widocznym „Planning”, bez szablonów i planu. Kroki jak w 14-generator.yaml (sprawdzone na symulatorze, run 38330631978).
+# Wołać na ekranie Trening z widocznym kafelkiem „Szablony i plan” (first-tile-plan; ekran nowej osoby 1.1), bez szablonów i planu. Kroki jak w 14-generator.yaml (sprawdzone na symulatorze, run 38330631978).
 appId: pl.lukasz.trening
 ---
-- tapOn: "Planning"
+- tapOn: { id: "first-tile-plan" }
 - extendedWaitUntil: { visible: "Generate templates and plan", timeout: 30000 }
 - tapOn: "Generate templates and plan"
 - extendedWaitUntil: { visible: "Preview", timeout: 30000 }

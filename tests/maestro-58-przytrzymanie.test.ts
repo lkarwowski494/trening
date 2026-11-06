@@ -16,7 +16,13 @@ const FILE = '58-duzy-tekst.yaml';
 type Cmd = any;
 const stary = (): Cmd[] => {
   const d = mkdtempSync(join(tmpdir(), 'm58-')); const p = join(d, FILE);
-  writeFileSync(p, execFileSync('git', ['show', `f77db9b:.maestro/${FILE}`], { cwd: join(__dirname, '..') }));
+  /* 05.11.2026 (ekran nowej osoby 1.1): te same trzy zmiany co w bieżącym 58 — gotowość „Start your first workout” (po świeżym starcie nie ma „Inny trening”), przewinięcie do tego przycisku
+   * i do kafelka planu (id first-tile-plan) zamiast „Planning”; reszta kroków starego 58 (w tym przytrzymanie liczby) bez zmian */
+  const tekst = execFileSync('git', ['show', `f77db9b:.maestro/${FILE}`], { cwd: join(__dirname, '..') }).toString()
+    .replace('visible: "Other workout"', 'visible: "Start your first workout"')
+    .replace('element: "Other workout", direction: DOWN', 'element: "Start your first workout", direction: DOWN')
+    .replace('element: "Planning", direction: UP', 'element: { id: "first-tile-plan" }, direction: DOWN');
+  writeFileSync(p, tekst);
   return load(p);
 };
 const run = async (cmds: Cmd[]) => {

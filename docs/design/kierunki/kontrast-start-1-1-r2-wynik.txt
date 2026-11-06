@@ -1,0 +1,26 @@
+OK   13.58:1 (min 4.5) A: boardText na board ciemny (nazwa ćwiczenia, liczby) #F5F1E6 na #102544
+OK   12.86:1 (min 4.5) A: boardText na board jasny #F5F1E6 na #13294B
+OK   7.73:1 (min 4.5) A: boardMuted na board ciemny (podpis) #AEB9CA na #102544
+OK   7.99:1 (min 4.5) A: boardMuted na board jasny #B7C1D0 na #13294B
+OK   9.10:1 (min 4.5) A: boardText na boardField (przycisk Karta ćwiczenia, serie) #F5F1E6 na #22416D
+OK   5.56:1 (min 3) A: figura ubranie clothFar na board (element) #9C9C98 na #102544
+OK   3.68:1 (min 3) A: figura skóra skin na board (element) #747D8B na #102544
+OK   5.44:1 (min 3) A: figura tor ciężaru guide na board (element) #5FA97C na #102544
+OK   7.40:1 (min 3) A: figura talerz plate na board (element) #5FC3C9 na #102544
+OK   14.21:1 (min 4.5) B: tekst na bg ciemny (dzień tygodnia) #E8EAED na #161C24
+OK   13.31:1 (min 4.5) B: tekst na bg jasny #18202B na #E6E8E5
+OK   7.47:1 (min 4.5) B: tekst2 na bg ciemny (data, dni minione) #A3ACB8 na #161C24
+OK   6.31:1 (min 4.5) B: tekst2 na bg jasny #4A5361 na #E6E8E5
+OK   13.31:1 (min 3) B: gryf tekst na bg jasny (element) #18202B na #E6E8E5
+OK   14.21:1 (min 3) B: gryf tekst na bg ciemny (element) #E8EAED na #161C24
+OK   9.19:1 (min 3) B: zacisk now na bg ciemny (element) #F5B21C na #161C24
+BRAK 1.63:1 (min 3) B: zacisk now na bg jasny (element) — sam kolor za słaby, stąd ramka tekst #F2A900 na #E6E8E5
+OK   13.31:1 (min 3) B: zacisk ramka tekst na bg jasny (element) #18202B na #E6E8E5
+OK   4.60:1 (min 3) B: kreska dnia ctrlLine na bg ciemny (element) #7C8594 na #161C24
+OK   3.88:1 (min 3) B: kreska dnia ctrlLine na bg jasny (element) #6B7380 na #E6E8E5
+OK   6.08:1 (min 3) B: znak dnia doneLine na bg ciemny (element) #5FA97C na #161C24
+OK   4.73:1 (min 3) B: znak dnia doneLine na bg jasny (element) #2A7248 na #E6E8E5
+OK   4.73:1 (min 4.5) B: ✓ bg na doneLine jasny #E6E8E5 na #2A7248
+OK   9.10:1 (min 4.5) C: boardText na boardField ciemny (klapki) #F5F1E6 na #22416D
+OK   8.70:1 (min 4.5) C: boardText na boardField jasny #F5F1E6 na #26446F
+OK   7.73:1 (min 4.5) C: boardMuted na board ciemny (etykieta wiersza) #AEB9CA na #102544

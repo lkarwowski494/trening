@@ -26,7 +26,7 @@ name: Kalendarz z planem tygodnia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- 0.19: dwa miejsca (pełna siłownia — główne, Hotel) do miejsca na zakres dni w planie (jak 22) ---
 - tapOn: "More, tab.*"

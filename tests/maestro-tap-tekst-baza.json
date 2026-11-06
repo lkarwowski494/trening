@@ -22,7 +22,6 @@
   "Done": 1
  },
  "04-plank-stoper.yaml": {
-  "Empty workout": 1,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 1,
@@ -65,7 +64,6 @@
   "Cancel": 2,
   "Back": 2,
   "Workout, tab.*": 1,
-  "Empty workout": 1,
   "+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 2,
@@ -81,7 +79,6 @@
   "Benches and racks.*": 1,
   "Back": 3,
   "Workout, tab.*": 1,
-  "Empty workout": 1,
   "Not now": 1,
   "\\\\+ Add exercise": 2,
   "Place filter: Home.*": 1,
@@ -155,7 +152,6 @@
   "Workout, tab.*": 5,
   "Phone setting": 1,
   "Light": 1,
-  "Empty workout": 1,
   "\\\\+ Add exercise": 2,
   "Search exercises…": 2,
   "Continue": 2,
@@ -179,7 +175,6 @@
   "Cancel": 1,
   "Back": 3,
   "Workout, tab.*": 1,
-  "Empty workout": 1,
   "Not now": 1,
   "\\\\+ Add exercise": 2,
   "Search exercises…": 2,
@@ -204,7 +199,6 @@
   "Add place": 1,
   "Full gym,.*": 1,
   "Workout, tab.*": 2,
-  "Empty workout": 1,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 1,
@@ -219,7 +213,6 @@
   "List": 1
  },
  "12-usuwanie-gestem.yaml": {
-  "Empty workout": 1,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 1,
@@ -270,7 +263,6 @@
   "Start planned workout: Upper A": 1
  },
  "14-generator.yaml": {
-  "Templates and plan": 1,
   "Generate templates and plan": 1,
   "Plan from my templates": 1,
   "New templates and plan": 1,
@@ -321,14 +313,12 @@
   "Technique": 2,
   "Pause animation": 1,
   "Resume animation": 1,
-  "Empty workout": 1,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Back Squat, barbell": 1,
   "Technique: Back Squat": 1
  },
  "18-plan-z-moich-szablonow.yaml": {
-  "Planning": 1,
   "Plan from my templates": 2,
   "New templates and plan": 1,
   "Save plan": 1,
@@ -391,7 +381,6 @@
   "Back": 3,
   "Hotel,.*": 1,
   "Workout, tab.*": 1,
-  "Empty workout": 1,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 1,
@@ -412,7 +401,6 @@
   "Full gym,.*": 1,
   "Back": 2,
   "Workout, tab.*": 1,
-  "Empty workout": 1,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 1,
@@ -522,7 +510,6 @@
   "Search exercises…": 4,
   "Continue": 4,
   "Workout, tab.*": 1,
-  "Empty workout": 1,
   "\\\\+ Add exercise": 2,
   "Cable Hammer E2E,.*": 1,
   "Create “Zottman Curl E2E”.*": 1,
@@ -548,7 +535,6 @@
   "Delete": 1
  },
  "29-bledne-dane.yaml": {
-  "Empty workout": 2,
   "Finish": 4,
   "Cancel": 1,
   "Discard workout": 2,
@@ -698,7 +684,6 @@
   "Manual": 1,
   "Weekly set goal per muscle group": 1,
   "Workout, tab.*": 3,
-  "Empty workout": 3,
   "\\\\+ Add exercise": 1,
   "Search exercises…": 1,
   "Continue": 1,
@@ -710,6 +695,7 @@
   "Test store: expire access": 1,
   "Restore purchases": 1,
   "Other workout": 2,
+  "Empty workout": 2,
   "Subscribe": 1,
   "Not now": 1
  },
@@ -879,14 +865,12 @@
   "Workout, tab.*": 1
  },
  "subflows/generator-plan-duzy-tekst.yaml": {
-  "Planning": 1,
   "Generate templates and plan": 1,
   "Save templates and plan": 1,
   "Not now": 1,
   "Back": 1
  },
  "subflows/generator-plan.yaml": {
-  "Planning": 1,
   "Generate templates and plan": 1,
   "Save templates and plan": 1,
   "Not now": 1,

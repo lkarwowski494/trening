@@ -150,3 +150,15 @@ export function testyCzytajace(pliki, root, { zawszeDocs = false } = {}) {
   }
   return [...trafione].sort();
 }
+
+// L-NNN (05.11.2026): test renderujący CAŁĄ aplikację przez `renderRouter('./app', …)` (expo-router/testing-library) ładuje ekrany ze ścieżki napisowej — nie ma krawędzi importu do app/, components/ ani lib/,
+// więc `jest --findRelatedTests` go nie wybiera przy zmianie kodu ekranów (przypadek wyjściowy: tests/smoke.test.tsx, tests.yml 42103130652). Wybór jest automatyczny: źródło testu zawiera wywołanie
+// renderRouter( ze ścieżką './app' (komentarze blokowe i liniowe są pomijane; wymagany nawias i literał ścieżki). Testy przez pomocnika tests/app.tsx (import './app') mają krawędzie przez lib/ i są poza tym wyborem.
+const RENDER_ROUTER_APP = /\brenderRouter\(\s*['"`]\.\/app['"`]/;
+/** Kod aplikacji, którego zmiana może zmienić wynik renderu całej aplikacji. */
+export const kodAplikacji = f => /^(app|components|lib)\/.+\.(tsx?|jsx?)$/.test(f);
+/** Testy z bezpośrednim renderRouter('./app', …) — dołączane, gdy zmieniono kod aplikacji (app/**, components/**, lib/**). */
+export function testyRenderujaceRouter(pliki, root) {
+  if (!pliki.some(kodAplikacji) || !existsSync(join(root, 'tests'))) return [];
+  return readdirSync(join(root, 'tests')).filter(f => /\.test\.tsx?$/.test(f) && RENDER_ROUTER_APP.test(readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|\s)\/\/.*$/gm, '$1'))).map(f => `tests/${f}`).sort();
+}

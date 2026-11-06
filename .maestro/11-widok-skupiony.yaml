@@ -21,7 +21,7 @@ name: Widok skupiony (bez paska talerzy)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- miejsce „Full gym” (sztanga + talerze) ---
 - tapOn: "More, tab.*"
@@ -44,8 +44,7 @@ name: Widok skupiony (bez paska talerzy)
 
 # --- pusty trening + przysiad ze sztangą ---
 - tapOn: "Workout, tab.*"
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - tapOn: "Search exercises…"

@@ -352,6 +352,14 @@ describe('zestaw wskazówek techniki: ton trenera i zapis do lib/cues/text (koor
     expect(['cs', 'fr', 'es', 'pt'].map((k) => fs.readFileSync(path.join(root, `lib/locales/${k}.json`), 'utf8'))).toEqual(locBefore);
     expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/cs.json'), 'utf8'))[C1]).toBeUndefined();
   });
+  test('zestaw interfejsu: nakładka pt-BR/es-419 bez wpisu równego bazie (05.11.2026 — drugi raz ręczne usuwanie po --zastosuj)', () => {
+    const root = fixture(); w(root, 'lib/locales/pt-BR.json', { 'Stary': 'Velho' }); const dir = path.join(root, 'raport'); fs.mkdirSync(dir);
+    w(dir, 'pt.json', { jezyk: 'pt', propozycje: { [T2]: 'PT2', [T1]: 'PT1 {n}' } });
+    w(dir, 'pt-BR.json', { jezyk: 'pt-BR', propozycje: { [T2]: 'PT2', [T1]: 'BR1 {n}' } }); /* T2 = baza → bez wpisu; T1 różne → wpis */
+    run(`console.log(JSON.stringify(m.zastosuj(${JSON.stringify(root)}, ${JSON.stringify(dir)}, ${JSON.stringify(path.join(root, 'docs/lokalizacja/zestaw.json'))})))`);
+    expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/pt-BR.json'), 'utf8'))).toEqual({ 'Stary': 'Velho', [T1]: 'BR1 {n}' });
+    expect(JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/pt.json'), 'utf8'))[T2]).toBe('PT2');
+  });
   test('zestaw interfejsu (bez pola „id”) nadal pisze do lib/locales, nie do lib/cues', () => {
     const root = fixture(); w(root, 'lib/cues/text/fr.json', {}); const dir = path.join(root, 'raport'); fs.mkdirSync(dir);
     w(dir, 'fr.json', { jezyk: 'fr', propozycje: { [T2]: 'FR2' } });
