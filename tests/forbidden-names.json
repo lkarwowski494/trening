@@ -356,6 +356,26 @@
    "path": "tests/fixtures/released/state-v1.0.0-b1033-schema19.json",
    "name": "TRX",
    "reason": "M1-audytor-generalny-014 (jak b1032): zapis wzorcowy z buildu 1.0 b1033 wydanego w App Store (05.11.2026) — nazwa ćwiczenia własnego wpisana jak przez użytkownika (dane użytkownika, nie tekst aplikacji), plik wygenerowany z kodu tagu, nie edytowany ręcznie"
+  },
+  {
+   "path": "tests/whats-new.test.tsx",
+   "name": "Strong",
+   "reason": "test negatywny (06.11.2026, wpis „Co nowego” 1.0.1): wzorzec sprawdza, że teksty panelu NIE zawierają nazw innych aplikacji — nazwa występuje tylko w wyrażeniu regularnym asercji"
+  },
+  {
+   "path": "tests/whats-new.test.tsx",
+   "name": "Hevy",
+   "reason": "test negatywny (06.11.2026, wpis „Co nowego” 1.0.1): wzorzec sprawdza, że teksty panelu NIE zawierają nazw innych aplikacji — nazwa występuje tylko w wyrażeniu regularnym asercji"
+  },
+  {
+   "path": "tests/whats-new.test.tsx",
+   "name": "Fitbod",
+   "reason": "test negatywny (06.11.2026, wpis „Co nowego” 1.0.1): wzorzec sprawdza, że teksty panelu NIE zawierają nazw innych aplikacji — nazwa występuje tylko w wyrażeniu regularnym asercji"
+  },
+  {
+   "path": "tests/whats-new.test.tsx",
+   "name": "JEFIT",
+   "reason": "test negatywny (06.11.2026, wpis „Co nowego” 1.0.1): wzorzec sprawdza, że teksty panelu NIE zawierają nazw innych aplikacji — nazwa występuje tylko w wyrażeniu regularnym asercji"
   }
  ]
 }
