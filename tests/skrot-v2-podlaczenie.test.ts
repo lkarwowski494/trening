@@ -27,6 +27,7 @@ const FAM = ['squat', 'bench_press', 'hinge', 'pull_up', 'curl'];
 const V2 = 'lib/figures/v2/';
 const rozne = (a: string[], b: string[]) => a.map((x, i) => x !== b[i]);
 
+/* 05.11.2026: przykład „innej rodziny” to chest_fly (planned, z plikiem póz); triceps jest już ready, więc jego zamiana nic by nie sprawdzała */
 describe('1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.2026)', () => {
   const baza = skroty(FAM.map(rodzina => ({ rodzina })));
   const wszystkie = (zmiany: Zmiana[]) => skroty(FAM.map(rodzina => ({ rodzina, zmiany })));
@@ -36,25 +37,25 @@ describe('1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.20
     for (const s of baza) expect(s).toMatch(/^[0-9a-f]{12}$/);
   });
   test('status innej rodziny planned → ready (families.ts) nie zmienia skrótu żadnej rodziny', () => {
-    expect(wszystkie([{ plik: V2 + 'families.ts', z: "{ id: 'triceps', status: 'planned'", na: "{ id: 'triceps', status: 'ready'" }])).toEqual(baza);
+    expect(wszystkie([{ plik: V2 + 'families.ts', z: "{ id: 'chest_fly', status: 'planned'", na: "{ id: 'chest_fly', status: 'ready'" }])).toEqual(baza);
   });
   test('status własnej rodziny też jest poza skrótem (planned ↔ ready to podłączenie, nie zmiana rysunku)', () => {
     expect(wszystkie([{ plik: V2 + 'families.ts', z: "{ id: 'curl', status: 'ready'", na: "{ id: 'curl', status: 'planned'" }])).toEqual(baza);
   });
   test('wpis ładowania LOAD innej rodziny (poseData.ts) nie zmienia skrótu', () => {
-    expect(wszystkie([{ plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  triceps: () => require('./poses/triceps.json'),\n" }])).toEqual(baza);
+    expect(wszystkie([{ plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  chest_fly: () => require('./poses/chest_fly.json'),\n" }])).toEqual(baza);
   });
   test('wpis prezentacji DATA_UI innej rodziny (dodany albo zmieniony) nie zmienia skrótu; własny wpis zmienia tylko skrót tej rodziny', () => {
     expect(wszystkie([{ plik: V2 + 'poseData.ts', z: "carry: { names: { first: 'Marsz'", na: "carry: { names: { first: 'Chód'" }])).toEqual(baza);
-    expect(wszystkie([{ plik: V2 + 'poseData.ts', z: "export const DATA_UI: Record<string, DataUi> = {\n", na: "export const DATA_UI: Record<string, DataUi> = {\n  triceps: { names: { first: 'Prostowanie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },\n" }])).toEqual(baza);
+    expect(wszystkie([{ plik: V2 + 'poseData.ts', z: "export const DATA_UI: Record<string, DataUi> = {\n", na: "export const DATA_UI: Record<string, DataUi> = {\n  chest_fly: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" }])).toEqual(baza);
     const wlasny = wszystkie([{ plik: V2 + 'poseData.ts', z: "pull_up: { names: { first: 'Podciąganie'", na: "pull_up: { names: { first: 'Podciągnięcie'" }]);
     expect(rozne(baza, wlasny)).toEqual(FAM.map(f => f === 'pull_up'));
   });
   test('pełny scenariusz podłączenia (status + LOAD + DATA_UI nowej rodziny) = skróty bez zmian', () => {
     expect(wszystkie([
-      { plik: V2 + 'families.ts', z: "{ id: 'triceps', status: 'planned'", na: "{ id: 'triceps', status: 'ready'" },
-      { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  triceps: () => require('./poses/triceps.json'),\n" },
-      { plik: V2 + 'poseData.ts', z: "export const DATA_UI: Record<string, DataUi> = {\n", na: "export const DATA_UI: Record<string, DataUi> = {\n  triceps: { names: { first: 'Prostowanie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },\n" },
+      { plik: V2 + 'families.ts', z: "{ id: 'chest_fly', status: 'planned'", na: "{ id: 'chest_fly', status: 'ready'" },
+      { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  chest_fly: () => require('./poses/chest_fly.json'),\n" },
+      { plik: V2 + 'poseData.ts', z: "export const DATA_UI: Record<string, DataUi> = {\n", na: "export const DATA_UI: Record<string, DataUi> = {\n  chest_fly: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" },
     ])).toEqual(baza);
   });
   test.each([
@@ -88,10 +89,10 @@ describe('1A, L-080: gałąź z wcześniejszymi zmianami względem main — pod�
       git(tmp, 'init', '-q', '-b', 'main'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'main');
       git(tmp, 'checkout', '-qb', 'galaz');
       const ed = (p: string, z: string, na: string) => { const f = path.join(tmp, p); const t = fs.readFileSync(f, 'utf8'); if (!t.includes(z)) throw new Error('brak ' + z); fs.writeFileSync(f, t.replace(z, () => na)); };
-      ed(V2 + 'families.ts', "{ id: 'triceps', status: 'planned'", "{ id: 'triceps', status: 'ready'");
-      ed(V2 + 'poseData.ts', "  pull_up: () => require('./poses/pull_up.json'),\n", "  pull_up: () => require('./poses/pull_up.json'),\n  triceps: () => require('./poses/triceps.json'),\n");
-      ed(V2 + 'poseData.ts', "export const DATA_UI: Record<string, DataUi> = {\n", "export const DATA_UI: Record<string, DataUi> = {\n  triceps: { names: { first: 'Prostowanie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },\n");
-      git(tmp, 'commit', '-qam', 'podlaczenie triceps');
+      ed(V2 + 'families.ts', "{ id: 'chest_fly', status: 'planned'", "{ id: 'chest_fly', status: 'ready'");
+      ed(V2 + 'poseData.ts', "  pull_up: () => require('./poses/pull_up.json'),\n", "  pull_up: () => require('./poses/pull_up.json'),\n  chest_fly: () => require('./poses/chest_fly.json'),\n");
+      ed(V2 + 'poseData.ts', "export const DATA_UI: Record<string, DataUi> = {\n", "export const DATA_UI: Record<string, DataUi> = {\n  chest_fly: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n");
+      git(tmp, 'commit', '-qam', 'podlaczenie chest_fly');
       fs.writeFileSync(path.join(tmp, 'dokument.md'), 'notatka\n'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'dokument');
       git(tmp, 'checkout', '-qb', 'rysunek');
       fs.appendFileSync(path.join(tmp, V2 + 'draw.ts'), '\n// zmiana rysunku'); git(tmp, 'commit', '-qam', 'draw');

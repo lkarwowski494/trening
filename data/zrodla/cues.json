@@ -532,6 +532,26 @@
    "name": "app-s7",
    "level": 5,
    "kind": "app"
+  },
+  "NFPT (wpisy gościnne)": {
+   "name": "National Federation of Professional Trainers — wpisy gościnne bez nazwanego autora (nfpt.com)",
+   "level": 5,
+   "kind": "org"
+  },
+  "Fit Father Project": {
+   "name": "Fit Father Project — poradnik o ćwiczeniach (fitfatherproject.com)",
+   "level": 5,
+   "kind": "site"
+  },
+  "BodBot": {
+   "name": "BodBot — opisy ćwiczeń (bodbot.com)",
+   "level": 5,
+   "kind": "site"
+  },
+  "app-s8": {
+   "name": "app-s8",
+   "level": 5,
+   "kind": "app"
   }
  },
  "sources": {
@@ -3072,6 +3092,119 @@
   "app-s7": {
    "org": "app-s7",
    "title": "app-s7"
+  },
+  "ace-55": {
+   "org": "ACE",
+   "title": "Triceps Kickback (#55)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/",
+   "level": 4
+  },
+  "catalyst-878": {
+   "org": "Catalyst Athletics",
+   "title": "Reverse Grip Tricep Pushdown (#878)",
+   "url": "https://www.catalystathletics.com/exercise/878/Reverse-Grip-Tricep-Pushdown/",
+   "level": 4
+  },
+  "catalyst-894": {
+   "org": "Catalyst Athletics",
+   "title": "Single Arm Overhead Cable Tricep Extension (#894)",
+   "url": "https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/",
+   "level": 4
+  },
+  "catalyst-898": {
+   "org": "Catalyst Athletics",
+   "title": "Single Arm Rope Tricep Pushdown (#898)",
+   "url": "https://www.catalystathletics.com/exercise/898/Single-Arm-Rope-Tricep-Pushdown/",
+   "level": 4
+  },
+  "catalyst-903": {
+   "org": "Catalyst Athletics",
+   "title": "Skullcrusher (#903)",
+   "url": "https://www.catalystathletics.com/exercise/903/Skullcrusher/",
+   "level": 4
+  },
+  "catalyst-909": {
+   "org": "Catalyst Athletics",
+   "title": "Tate Press (#909)",
+   "url": "https://www.catalystathletics.com/exercise/909/Tate-Press/",
+   "level": 4
+  },
+  "catalyst-910": {
+   "org": "Catalyst Athletics",
+   "title": "Tricep Kickback (#910)",
+   "url": "https://www.catalystathletics.com/exercise/910/Tricep-Kickback/",
+   "level": 4
+  },
+  "issa-tri-top5": {
+   "org": "ISSA",
+   "title": "Top exercises to enhance your triceps workout",
+   "url": "https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout",
+   "level": 4
+  },
+  "issa-band-20": {
+   "org": "ISSA",
+   "title": "20-minute full-body resistance band workout",
+   "url": "https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout",
+   "level": 4
+  },
+  "barbend-ote": {
+   "org": "BarBend",
+   "title": "Overhead triceps extension",
+   "url": "https://barbend.com/overhead-triceps-extension/",
+   "level": 4
+  },
+  "barbend-tri-best": {
+   "org": "BarBend",
+   "title": "Best triceps exercises",
+   "url": "https://barbend.com/best-triceps-exercises/",
+   "level": 4
+  },
+  "nfpt-reverse-tricep-pushdown": {
+   "org": "NFPT (wpisy gościnne)",
+   "title": "How to do reverse tricep pushdown",
+   "url": "https://nfpt.com/how-to-do-reverse-tricep-pushdown/",
+   "level": 5
+  },
+  "fitnessvolt-decline-skull-crusher": {
+   "org": "Fitness Volt",
+   "title": "Decline skull crusher",
+   "url": "https://fitnessvolt.com/23999/decline-skull-crusher/",
+   "level": 4
+  },
+  "fitfather-skull-crusher": {
+   "org": "Fit Father Project",
+   "title": "Skull crusher exercise",
+   "url": "https://www.fitfatherproject.com/skull-crusher-exercise/",
+   "level": 5
+  },
+  "bodbot-lying-one-arm-triceps-extension": {
+   "org": "BodBot",
+   "title": "Tricep extension, lying, dumbbell, one arm",
+   "url": "https://www.bodbot.com/Exercises/1010/Tricep-Extension-_-Lying,-Dumbbell-_-One-Arm",
+   "level": 5
+  },
+  "fedb-chain-handle-extension": {
+   "org": "free-exercise-db",
+   "title": "Chain Handle Extension",
+   "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chain_Handle_Extension.json",
+   "level": 5
+  },
+  "app-s8": {
+   "org": "app-s8",
+   "title": "app-s8"
+  },
+  "exrx-Triceps/CBLyingTriExt": {
+   "org": "ExRx.net",
+   "title": "CBLyingTriExt",
+   "url": "https://exrx.net/WeightExercises/Triceps/CBLyingTriExt",
+   "level": 4
+  },
+  "theprehabguys-overhead-tricep-extension-band": {
+   "org": "The Prehab Guys",
+   "title": "Overhead Tricep Extension – Band",
+   "url": "https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/",
+   "level": 5,
+   "strona": "odczyt 04.11.2026: strona biblioteki ćwiczeń bez podpisu autora i biogramu → szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2); do potwierdzenia przez badacza"
   }
  },
  "exercises": {
@@ -17001,6 +17134,1517 @@
      ]
     }
    ]
+  },
+  "Dumbbell One-Arm Triceps Extension": {
+   "setup": [
+    {
+     "c": "ote1.setup",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (or use one arm at a time)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 (wariant oburącz)"
+      ],
+      [
+       "catalyst-894",
+       "Description (wariant wyciąg)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd"
+    }
+   ],
+   "move": [
+    {
+     "c": "ote1.move",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (one arm at a time)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 (wariant oburącz)"
+      ],
+      [
+       "catalyst-894",
+       "Description (wariant wyciąg)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote1.upperArm",
+     "s": [
+      [
+       "catalyst-894",
+       "Description (keep the elbow high instead of driving it forward; wariant wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 3 (wariant oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 (upper arm still; one arm at a time)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd"
+    },
+    {
+     "c": "press1.noLock",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 (one arm; not lock the elbows)"
+      ],
+      [
+       "ace-74",
+       "Step 2 (wariant oburącz)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowDrift1",
+     "s": [
+      [
+       "catalyst-894",
+       "Description (wariant wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 3 — błąd = zaprzeczenie standardu; wariant oburącz"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd"
+    },
+    {
+     "c": "tri.mis.archBack",
+     "s": [
+      [
+       "barbend-ote",
+       "Coach's Tips (wariant: wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 — błąd = zaprzeczenie standardu; wariant oburącz"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd"
+    }
+   ]
+  },
+  "Kettlebell Overhead Triceps Extension": {
+   "setup": [
+    {
+     "c": "ote.setupLoad",
+     "s": [
+      [
+       "ace-74",
+       "Step 2–3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu"
+    }
+   ],
+   "move": [
+    {
+     "c": "ote.moveLoad",
+     "s": [
+      [
+       "ace-74",
+       "Step 2–3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote.upperArm",
+     "s": [
+      [
+       "ace-74",
+       "Step 3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 (upper arm still; wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu"
+    },
+    {
+     "c": "ote.elbowsIn",
+     "s": [
+      [
+       "ace-74",
+       "wskazówka końcowa (wariant: hantel oburącz)"
+      ],
+      [
+       "barbend-tri-best",
+       "Overhead Triceps Extension, How to Do It (keeping your elbows tucked in; wariant: guma)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu"
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 (not lock the elbows; wariant: hantel)"
+      ],
+      [
+       "ace-74",
+       "Step 2 (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.archBack",
+     "s": [
+      [
+       "barbend-ote",
+       "Coach's Tips (wariant: wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu"
+    }
+   ]
+  },
+  "Overhead Triceps Extension (EZ)": {
+   "setup": [
+    {
+     "c": "ote.setupLoad",
+     "s": [
+      [
+       "ace-74",
+       "Step 2–3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla"
+    }
+   ],
+   "move": [
+    {
+     "c": "ote.moveLoad",
+     "s": [
+      [
+       "ace-74",
+       "Step 2–3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote.upperArm",
+     "s": [
+      [
+       "ace-74",
+       "Step 3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 (upper arm still; wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla"
+    },
+    {
+     "c": "ote.elbowsIn",
+     "s": [
+      [
+       "ace-74",
+       "wskazówka końcowa (wariant: hantel oburącz)"
+      ],
+      [
+       "barbend-tri-best",
+       "Overhead Triceps Extension, How to Do It (keeping your elbows tucked in; wariant: guma)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla"
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 (not lock the elbows; wariant: hantel)"
+      ],
+      [
+       "ace-74",
+       "Step 2 (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.archBack",
+     "s": [
+      [
+       "barbend-ote",
+       "Coach's Tips (wariant: wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla"
+    }
+   ]
+  },
+  "Standing Overhead Barbell Triceps Extension": {
+   "setup": [
+    {
+     "c": "ote.setupLoad",
+     "s": [
+      [
+       "ace-74",
+       "Step 2–3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla"
+    }
+   ],
+   "move": [
+    {
+     "c": "ote.moveLoad",
+     "s": [
+      [
+       "ace-74",
+       "Step 2–3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote.upperArm",
+     "s": [
+      [
+       "ace-74",
+       "Step 3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 (upper arm still; wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla"
+    },
+    {
+     "c": "ote.elbowsIn",
+     "s": [
+      [
+       "ace-74",
+       "wskazówka końcowa (wariant: hantel oburącz)"
+      ],
+      [
+       "barbend-tri-best",
+       "Overhead Triceps Extension, How to Do It (keeping your elbows tucked in; wariant: guma)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla"
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 (not lock the elbows; wariant: hantel)"
+      ],
+      [
+       "ace-74",
+       "Step 2 (wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.archBack",
+     "s": [
+      [
+       "barbend-ote",
+       "Coach's Tips (wariant: wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla"
+    }
+   ]
+  },
+  "Single Arm Triceps Pushdown": {
+   "setup": [
+    {
+     "c": "tpd1.setup",
+     "s": [
+      [
+       "ace-185",
+       "Step 1–3 (wersja jednorącz)"
+      ],
+      [
+       "catalyst-898",
+       "Description (one hand; elbow close to the side)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tpd1.move",
+     "s": [
+      [
+       "ace-185",
+       "Step 3 (wersja jednorącz)"
+      ],
+      [
+       "catalyst-898",
+       "Description (extend, return under control)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "tpd1.elbow",
+     "s": [
+      [
+       "ace-185",
+       "wskazówka końcowa (forward movement of your elbows)"
+      ],
+      [
+       "catalyst-898",
+       "Description (elbow close to the side)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.elbowAway1",
+     "s": [
+      [
+       "ace-185",
+       "wskazówka końcowa (forward movement of your elbows)"
+      ],
+      [
+       "catalyst-898",
+       "Description (elbow close to the side) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Skullcrusher (hantle)": {
+   "setup": [
+    {
+     "c": "skullDb.setup",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 Triceps Extension, wersja leżąc (dumbbells raised above the head)"
+      ],
+      [
+       "catalyst-903",
+       "Description; Variations (dumbbells)"
+      ],
+      [
+       "ace-36",
+       "Step 1 (wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd"
+    }
+   ],
+   "move": [
+    {
+     "c": "skullDb.move",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (lowered to ear level)"
+      ],
+      [
+       "catalyst-903",
+       "Description; Variations (dumbbells)"
+      ],
+      [
+       "ace-36",
+       "Step 2–3 (wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd"
+    }
+   ],
+   "tips": [
+    {
+     "c": "skull.upperArm",
+     "s": [
+      [
+       "ace-36",
+       "Final Tip (upper arms vertical; wariant: sztanga)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (upper arm does not move)"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd"
+    },
+    {
+     "c": "skull.depthFree",
+     "s": [
+      [
+       "ace-36",
+       "Step 2 (lower until just above your forehead or until the upper arms begin to drift backwards; wariant: sztanga)"
+      ],
+      [
+       "exrx-Triceps/BBLyingTriExt",
+       "Execution (as bar nears head; wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "ACE i ExRx opisują sztangę; zakres opuszczania ten sam przy hantlach (zdanie bez słowa o gryfie)"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides)"
+      ],
+      [
+       "ace-36",
+       "Final Tip (elbows shoulder-width apart) — błąd = zaprzeczenie standardu; wariant: sztanga"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd"
+    }
+   ]
+  },
+  "Skullcrusher (sztanga)": {
+   "setup": [
+    {
+     "c": "tri.skullBb.setup",
+     "s": [
+      [
+       "ace-36",
+       "Step 1–3"
+      ],
+      [
+       "catalyst-903",
+       "Description (barbell or EZ curl bar pressed up above you)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (sztanga dozwolona)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullBb.move",
+     "s": [
+      [
+       "ace-36",
+       "Step 2–3"
+      ],
+      [
+       "catalyst-903",
+       "Description"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (lowered to ear level)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "skull.upperArm",
+     "s": [
+      [
+       "ace-36",
+       "Final Tip (upper arms vertical)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (upper arm does not move; wariant: hantle)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides)"
+      ],
+      [
+       "ace-36",
+       "Final Tip — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Standing Low-Pulley One-Arm Triceps Extension": {
+   "setup": [
+    {
+     "c": "lpote.setup",
+     "s": [
+      [
+       "catalyst-894",
+       "Description (one hand overhead, facing away from the machine; elbow high)"
+      ],
+      [
+       "barbend-ote",
+       "How to (pulley at a low position; face away from the cable stack)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lpote.move",
+     "s": [
+      [
+       "catalyst-894",
+       "Description (bend the arm, then extend it completely)"
+      ],
+      [
+       "barbend-ote",
+       "How to (extend; lower under control)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 (za głową; wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote1.upperArm",
+     "s": [
+      [
+       "catalyst-894",
+       "Description (keep the elbow high instead of driving it forward)"
+      ],
+      [
+       "ace-74",
+       "Step 3 (wariant: hantel oburącz)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 (one arm; upper arm still; wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.archBack",
+     "s": [
+      [
+       "barbend-ote",
+       "Coach's Tips"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel"
+      ]
+     ],
+     "uproszczenie": "wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów"
+    },
+    {
+     "c": "tri.mis.elbowDrift1",
+     "s": [
+      [
+       "catalyst-894",
+       "Description"
+      ],
+      [
+       "ace-74",
+       "Step 3 — błąd = zaprzeczenie standardu; wariant: hantel"
+      ]
+     ],
+     "uproszczenie": "wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów"
+    }
+   ]
+  },
+  "Tate Press": {
+   "setup": [
+    {
+     "c": "tate.setup",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#5 Tate Press"
+      ],
+      [
+       "catalyst-909",
+       "Description"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tate.move",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#5 Tate Press (lower toward the chest, elbows pointing outward)"
+      ],
+      [
+       "catalyst-909",
+       "Description (elbows out to the sides, lower the dumbbells to the chest)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Triceps Kickback": {
+   "setup": [
+    {
+     "c": "kick.setup",
+     "s": [
+      [
+       "ace-55",
+       "Step 1–2 (lean forward; upper arm parallel to and close to your torso; elbow about a right angle)"
+      ],
+      [
+       "catalyst-910",
+       "Description (upper arm horizontal and against your side)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kick.move",
+     "s": [
+      [
+       "ace-55",
+       "Step 3–4"
+      ],
+      [
+       "catalyst-910",
+       "Description (extend the elbow completely, then return under control)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "kick.upperArm",
+     "s": [
+      [
+       "ace-55",
+       "Step 3 (upper arm stationary next to your torso)"
+      ],
+      [
+       "catalyst-910",
+       "Description (upper arm horizontal and against your side)"
+      ]
+     ]
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "ace-55",
+       "Step 3 (until your elbow is fully extended)"
+      ],
+      [
+       "issa-tri-top5",
+       "#3 Triceps Kickback (Don't lock the elbow)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.kickArm",
+     "s": [
+      [
+       "ace-55",
+       "Step 3 (upper arm stationary; not raised during the movement)"
+      ],
+      [
+       "catalyst-910",
+       "Description — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Reverse Grip Triceps Pushdown": {
+   "setup": [
+    {
+     "c": "rgpd.setup",
+     "s": [
+      [
+       "catalyst-878",
+       "Description, zdanie 1 (straight handle; high cable attachment; palms up)"
+      ],
+      [
+       "nfpt-reverse-tricep-pushdown",
+       "Setup (under grip, palms facing up; elbows in at your sides)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rgpd.move",
+     "s": [
+      [
+       "catalyst-878",
+       "Description (extend the elbows fully, then return under control)"
+      ],
+      [
+       "nfpt-reverse-tricep-pushdown",
+       "Movement (press the handle down to the extended position)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "tpd.elbows",
+     "s": [
+      [
+       "catalyst-878",
+       "Description (elbows close to the sides)"
+      ],
+      [
+       "nfpt-reverse-tricep-pushdown",
+       "Setup (elbows at your sides)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.elbowsAway",
+     "s": [
+      [
+       "ace-185",
+       "wskazówka końcowa (forward movement of your elbows; wariant: nachwyt)"
+      ],
+      [
+       "catalyst-878",
+       "Description (elbows close to the sides) — błąd = zaprzeczenie standardu"
+      ]
+     ],
+     "uproszczenie": "ACE opisuje chwyt nachwytem; błąd (łokcie odjeżdżają od tułowia) nie zależy od chwytu"
+    }
+   ]
+  },
+  "Triceps Kickback (linki)": {
+   "setup": [
+    {
+     "c": "tri.kickCb.setup",
+     "s": [
+      [
+       "barbend-tri-best",
+       "Cable Kickback, How to Do It (torso roughly parallel to the floor; upper arm back and against your torso)"
+      ],
+      [
+       "issa-band-20",
+       "Triceps Kickback (band secured; one hand; a few steps from the attachment point; hinge, neutral spine; wariant: guma)"
+      ]
+     ],
+     "uproszczenie": "guma ≈ wyciąg: ten sam ruch, zmienia się źródło oporu"
+    }
+   ],
+   "move": [
+    {
+     "c": "kick.move",
+     "s": [
+      [
+       "barbend-tri-best",
+       "Cable Kickback, How to Do It (extend your elbow)"
+      ],
+      [
+       "ace-55",
+       "Step 3–4 (wariant: hantel)"
+      ],
+      [
+       "issa-band-20",
+       "Triceps Kickback (wariant: guma)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu hantel (ACE, Catalyst) → wyciąg; błąd (ramię się rusza) nie zależy od przyrządu"
+    }
+   ],
+   "tips": [
+    {
+     "c": "kick.upperArm",
+     "s": [
+      [
+       "barbend-tri-best",
+       "Cable Kickback (upper arm back and against your torso)"
+      ],
+      [
+       "ace-55",
+       "Step 3 (wariant: hantel)"
+      ],
+      [
+       "issa-band-20",
+       "Triceps Kickback (wariant: guma)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu hantel (ACE, Catalyst) → wyciąg; błąd (ramię się rusza) nie zależy od przyrządu"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.kickArm",
+     "s": [
+      [
+       "ace-55",
+       "Step 3 (wariant: hantel)"
+      ],
+      [
+       "catalyst-910",
+       "Description (wariant: hantel) — błąd = zaprzeczenie standardu"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu hantel (ACE, Catalyst) → wyciąg; błąd (ramię się rusza) nie zależy od przyrządu"
+    }
+   ]
+  },
+  "Two-Arm Dumbbell Kickback": {
+   "setup": [
+    {
+     "c": "tri.kick2.setup",
+     "s": [
+      [
+       "ace-55",
+       "Step 1–2 (lean forward; upper arm parallel to and close to your torso; elbow about a right angle)"
+      ],
+      [
+       "barbend-tri-best",
+       "Cable Kickback, modyfikacja (two cables at the same time; torso roughly parallel to the floor)"
+      ]
+     ],
+     "uproszczenie": "ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)"
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.kick2.move",
+     "s": [
+      [
+       "ace-55",
+       "Step 3–4"
+      ],
+      [
+       "catalyst-910",
+       "Description (extend the elbow completely, then return under control)"
+      ]
+     ],
+     "uproszczenie": "ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "kick.upperArm",
+     "s": [
+      [
+       "ace-55",
+       "Step 3"
+      ],
+      [
+       "catalyst-910",
+       "Description (upper arm horizontal and against your side)"
+      ]
+     ],
+     "uproszczenie": "ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.kickArm",
+     "s": [
+      [
+       "ace-55",
+       "Step 3"
+      ],
+      [
+       "catalyst-910",
+       "Description — błąd = zaprzeczenie standardu"
+      ]
+     ],
+     "uproszczenie": "ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)"
+    }
+   ]
+  },
+  "Band Overhead Triceps Extension": {
+   "setup": [
+    {
+     "c": "tri.bandOte.setup",
+     "s": [
+      [
+       "barbend-tri-best",
+       "Overhead Triceps Extension, How to Do It (band underneath the middle of both feet; handles behind your ears)"
+      ],
+      [
+       "theprehabguys-overhead-tricep-extension-band",
+       "opis (start standing with a band anchored under your feet)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.bandOte.move",
+     "s": [
+      [
+       "barbend-tri-best",
+       "Overhead Triceps Extension, How to Do It (extend the elbows until lockout)"
+      ],
+      [
+       "theprehabguys-overhead-tricep-extension-band",
+       "opis (extend overhead and return)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote.upperArm",
+     "s": [
+      [
+       "ace-74",
+       "Step 3 (wariant: hantel)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 (upper arm still; wariant: hantel)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu guma: ACE opisuje hantel (łokcie w górę), BarBend — wyciąg; ten sam ruch stawów"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.archBack",
+     "s": [
+      [
+       "theprehabguys-overhead-tricep-extension-band",
+       "opis (do not excessively arch or bend your back)"
+      ],
+      [
+       "barbend-ote",
+       "Coach's Tips (wariant: wyciąg)"
+      ],
+      [
+       "ace-74",
+       "Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu guma: ACE opisuje hantel (łokcie w górę), BarBend — wyciąg; ten sam ruch stawów"
+    }
+   ]
+  },
+  "Band Skull Crusher": {
+   "setup": [
+    {
+     "c": "tri.skullBand.setup",
+     "s": [
+      [
+       "catalyst-903",
+       "Description; Variations (low cable)"
+      ],
+      [
+       "exrx-Triceps/CBLyingTriExt",
+       "Preparation (wersja z wyciągiem leżąc)"
+      ],
+      [
+       "barbend-tri-best",
+       "Skull Crusher — lista sprzętu (cable pulley)"
+      ]
+     ],
+     "uproszczenie": "guma zaczepiona nisko za głową ≈ dolny wyciąg (Catalyst i ExRx opisują wyciąg leżąc); żadne przeczytane źródło nie opisuje gumy leżąc — decyzja recenzenta L-047 (bez potwierdzenia karta zostaje otwarta)"
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullBand.move",
+     "s": [
+      [
+       "catalyst-903",
+       "Description; Variations (low cable)"
+      ],
+      [
+       "exrx-Triceps/CBLyingTriExt",
+       "Execution (wersja z wyciągiem leżąc)"
+      ],
+      [
+       "barbend-tri-best",
+       "Skull Crusher — lista sprzętu (cable pulley)"
+      ]
+     ],
+     "uproszczenie": "guma zaczepiona nisko za głową ≈ dolny wyciąg (Catalyst i ExRx opisują wyciąg leżąc); żadne przeczytane źródło nie opisuje gumy leżąc — decyzja recenzenta L-047 (bez potwierdzenia karta zostaje otwarta)"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides)"
+      ],
+      [
+       "ace-36",
+       "Final Tip — błąd = zaprzeczenie standardu; wariant: sztanga"
+      ]
+     ],
+     "uproszczenie": "guma zaczepiona nisko za głową ≈ dolny wyciąg (Catalyst i ExRx opisują wyciąg leżąc); żadne przeczytane źródło nie opisuje gumy leżąc — decyzja recenzenta L-047 (bez potwierdzenia karta zostaje otwarta)"
+    }
+   ]
+  },
+  "Cable Lying Triceps Extension": {
+   "setup": [
+    {
+     "c": "tri.skullCb.setup",
+     "s": [
+      [
+       "catalyst-903",
+       "Description; Variations (low cable)"
+      ],
+      [
+       "exrx-Triceps/CBLyingTriExt",
+       "Preparation (leżąc, drążek nad twarzą na prostych rękach)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów"
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullCb.move",
+     "s": [
+      [
+       "catalyst-903",
+       "Description; Variations (low cable)"
+      ],
+      [
+       "exrx-Triceps/CBLyingTriExt",
+       "Execution"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów"
+    }
+   ],
+   "tips": [
+    {
+     "c": "skull.upperArm",
+     "s": [
+      [
+       "ace-36",
+       "Final Tip (upper arms vertical; wariant: sztanga)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (upper arm does not move; wariant: hantle)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides)"
+      ],
+      [
+       "ace-36",
+       "Final Tip — błąd = zaprzeczenie standardu"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów"
+    }
+   ]
+  },
+  "Incline Barbell Triceps Extension": {
+   "setup": [
+    {
+     "c": "tri.skullInc.setup",
+     "s": [
+      [
+       "catalyst-903",
+       "Variations (can also be done on an incline bench); Description (bar pressed up above you)"
+      ],
+      [
+       "barbend-tri-best",
+       "Skull Crusher, modyfikacja (adjustable bench, low incline)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullBb.move",
+     "s": [
+      [
+       "catalyst-903",
+       "Description; Variations (incline bench)"
+      ],
+      [
+       "ace-36",
+       "Step 2–3 (ławka płaska)"
+      ]
+     ],
+     "uproszczenie": "ławka skośna: ruch łokcia ten sam, inny stały kąt barku (ACE opisuje ławkę płaską); kąta ławki zdanie nie podaje"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides)"
+      ],
+      [
+       "ace-36",
+       "Final Tip — błąd = zaprzeczenie standardu; ławka płaska"
+      ]
+     ],
+     "uproszczenie": "ławka skośna: ruch łokcia ten sam, inny stały kąt barku (ACE opisuje ławkę płaską); kąta ławki zdanie nie podaje"
+    }
+   ]
+  },
+  "Decline Dumbbell Triceps Extension": {
+   "setup": [
+    {
+     "c": "tri.skullDbDec.setup",
+     "s": [
+      [
+       "fitnessvolt-decline-skull-crusher",
+       "How to (decline bench; wariant: sztanga)"
+      ],
+      [
+       "fitfather-skull-crusher",
+       "sekcja Decline Bench (EZ, krótka sztanga lub hantle)"
+      ]
+     ],
+     "uproszczenie": "źródła opisują sztangę, gryf EZ i hantle; ten sam ruch stawów, zmienia się przyrząd"
+    }
+   ],
+   "move": [
+    {
+     "c": "skullDb.move",
+     "s": [
+      [
+       "fitnessvolt-decline-skull-crusher",
+       "How to (slowly lower … to your forehead; wariant: sztanga)"
+      ],
+      [
+       "fitfather-skull-crusher",
+       "Decline Bench (ruch jak wersja płaska; hantle)"
+      ]
+     ],
+     "uproszczenie": "źródła opisują sztangę, gryf EZ i hantle; ten sam ruch stawów, zmienia się przyrząd"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "fitfather-skull-crusher",
+       "sekcja Decline Bench (Don't let them flare outwards)"
+      ],
+      [
+       "fitnessvolt-decline-skull-crusher",
+       "How to (keep your elbows tucked in)"
+      ]
+     ],
+     "uproszczenie": "źródła opisują sztangę, gryf EZ i hantle; ten sam ruch stawów, zmienia się przyrząd"
+    }
+   ]
+  },
+  "Decline EZ Bar Triceps Extension": {
+   "setup": [
+    {
+     "c": "tri.skullDec.setup",
+     "s": [
+      [
+       "fitnessvolt-decline-skull-crusher",
+       "How to (lie on a decline bench holding a barbell straight up above chin level)"
+      ],
+      [
+       "fitfather-skull-crusher",
+       "sekcja Decline Bench (EZ lub krótka sztanga)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullBb.move",
+     "s": [
+      [
+       "fitnessvolt-decline-skull-crusher",
+       "How to (slowly lower the barbell to your forehead)"
+      ],
+      [
+       "fitfather-skull-crusher",
+       "sekcja Decline Bench (Slowly lower the bar)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "fitfather-skull-crusher",
+       "sekcja Decline Bench (Don't let them flare outwards)"
+      ],
+      [
+       "fitnessvolt-decline-skull-crusher",
+       "How to (keep your elbows tucked in)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
+   "setup": [
+    {
+     "c": "tri.skullBb.setup",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (lie supine on a bench with a barbell … pressed up above you)"
+      ],
+      [
+       "ace-36",
+       "Step 1"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullBehind.move",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (move the elbows back slightly to bring the bar past the top of the head)"
+      ],
+      [
+       "ace-36",
+       "Step 2 (towards your forehead or slightly behind your head; granica: upper arms begin to drift backwards)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides)"
+      ],
+      [
+       "ace-36",
+       "Final Tip — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "One-Arm Lying Dumbbell Triceps Extension": {
+   "setup": [
+    {
+     "c": "tri.skullDb1.setup",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (dumbbells raised above the head)"
+      ],
+      [
+       "catalyst-903",
+       "Description; Variations (dumbbells)"
+      ],
+      [
+       "bodbot-lying-one-arm-triceps-extension",
+       "Set-up (raise a dumbbell overhead with one arm)"
+      ]
+     ],
+     "uproszczenie": "jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów"
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.skullDb1.move",
+     "s": [
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (lowered to ear level)"
+      ],
+      [
+       "catalyst-903",
+       "Description; Variations (dumbbells)"
+      ],
+      [
+       "bodbot-lying-one-arm-triceps-extension",
+       "ruch (keeping the upper arm still, lower the forearm)"
+      ]
+     ],
+     "uproszczenie": "jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów"
+    }
+   ],
+   "tips": [
+    {
+     "c": "skull.upperArm",
+     "s": [
+      [
+       "ace-36",
+       "Final Tip (upper arms vertical; wariant: sztanga)"
+      ],
+      [
+       "issa-tri-top5",
+       "#2 wersja leżąc (upper arm does not move)"
+      ]
+     ],
+     "uproszczenie": "jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowFlare1",
+     "s": [
+      [
+       "catalyst-903",
+       "Description (avoiding flaring them out to the sides; hantle)"
+      ],
+      [
+       "ace-36",
+       "Final Tip — błąd = zaprzeczenie standardu; wariant: sztanga"
+      ]
+     ],
+     "uproszczenie": "jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów"
+    }
+   ]
+  },
+  "Chain Handle Extension": {
+   "setup": [
+    {
+     "c": "tri.chainExt.setup",
+     "s": [
+      [
+       "fedb-chain-handle-extension",
+       "instructions[0] (position yourself on the flat bench; elbows pointing straight up)"
+      ],
+      [
+       "app-s8",
+       "Movement, krok 1 (lie securely with one handle in each hand, elbows upward)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tri.chainExt.move",
+     "s": [
+      [
+       "fedb-chain-handle-extension",
+       "instructions (straighten the arms)"
+      ],
+      [
+       "app-s8",
+       "Movement, krok 2 (straighten both arms without allowing the elbows to move)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "tri.mis.elbowsFlare",
+     "s": [
+      [
+       "fedb-chain-handle-extension",
+       "instructions[0] (your elbows should be pointing straight up)"
+      ],
+      [
+       "app-s8",
+       "Movement, krok 2 (without allowing the elbows to move)"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -17011,8 +18655,6 @@
   "Incline Curl (hantle)": "opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33)",
   "Concentration Curl (hantle)": "jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33)",
   "Spider Curl": "brak źródeł szczebla do 4 (docs/research/33)",
-  "Skullcrusher (hantle)": "brak opisu wersji z hantlami (ACE 36 opisuje sztangę) (docs/research/33)",
-  "Triceps Kickback": "jedyne źródło: ACE 55; opis z biblioteki Human Kinetics dotyczy innego ćwiczenia (docs/research/33)",
   "Box Squat": "wspólna tylko jedna wskazówka (siad na skrzyni bez odbicia); szeroki rozstaw i pionowe piszczele — jedno źródło (docs/research/33)",
   "Sissy Squat": "brak źródeł (docs/research/33)",
   "Cable Kickback": "dwa źródła tylko w materiałach uczelnianych centrów sportu (HKU, Western) lub badanie maszyny; szczebel otwarty (docs/research/33, pyt. 1)",
@@ -17104,7 +18746,23 @@
   "Dumbbell Incline Shoulder Raise",
   "Barbell Incline Shoulder Raise",
   "Dumbbell Front Raise to Overhead",
-  "Straight Raises on Incline Bench"
+  "Straight Raises on Incline Bench",
+  "Single Arm Triceps Pushdown",
+  "Skullcrusher (sztanga)",
+  "Standing Low-Pulley One-Arm Triceps Extension",
+  "Tate Press",
+  "Reverse Grip Triceps Pushdown",
+  "Triceps Kickback (linki)",
+  "Two-Arm Dumbbell Kickback",
+  "Band Overhead Triceps Extension",
+  "Band Skull Crusher",
+  "Cable Lying Triceps Extension",
+  "Incline Barbell Triceps Extension",
+  "Decline Dumbbell Triceps Extension",
+  "Decline EZ Bar Triceps Extension",
+  "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+  "One-Arm Lying Dumbbell Triceps Extension",
+  "Chain Handle Extension"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {
@@ -17148,6 +18806,20 @@
   "Barbell Incline Shoulder Raise::isr.mis.press": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Straight Raises on Incline Bench::yr.mis.chest": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
   "Dumbbell Front Raise to Overhead::fro.mis.arch": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
-  "Dumbbell Front Raise to Overhead::mis.jerk": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)"
+  "Dumbbell Front Raise to Overhead::mis.jerk": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Reverse Grip Triceps Pushdown::rgpd.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Reverse Grip Triceps Pushdown::rgpd.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Reverse Grip Triceps Pushdown::tpd.elbows": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Band Overhead Triceps Extension::tri.bandOte.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Band Overhead Triceps Extension::tri.bandOte.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Decline Dumbbell Triceps Extension::tri.skullDbDec.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Decline Dumbbell Triceps Extension::skullDb.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Decline Dumbbell Triceps Extension::tri.mis.elbowsFlare": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Decline EZ Bar Triceps Extension::tri.skullDec.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Decline EZ Bar Triceps Extension::tri.skullBb.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Decline EZ Bar Triceps Extension::tri.mis.elbowsFlare": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Chain Handle Extension::tri.chainExt.setup": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Chain Handle Extension::tri.chainExt.move": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)",
+  "Chain Handle Extension::tri.mis.elbowsFlare": "praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047)"
  }
 }

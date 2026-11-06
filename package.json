@@ -103,6 +103,9 @@
     "setupFiles": [
       "<rootDir>/tests/setup.js"
     ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup-limity-czasu.js"
+    ],
     "testMatch": [
       "<rootDir>/tests/**/*.test.[jt]s?(x)"
     ],

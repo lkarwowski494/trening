@@ -179,16 +179,7 @@
       "b": "own"
     },
     "Band Overhead Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Pull Apart": {
       "b": "general",
@@ -214,15 +205,7 @@
       ]
     },
     "Band Skull Crusher": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depthFree"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Squat": {
       "b": "general",
@@ -813,15 +796,7 @@
       "b": "own"
     },
     "Cable Lying Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Overhead Extension": {
       "b": "own"
@@ -996,15 +971,7 @@
       "b": "own"
     },
     "Chain Handle Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Chain Press": {
       "b": "general",
@@ -1410,26 +1377,10 @@
       ]
     },
     "Decline Dumbbell Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depthFree"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Decline EZ Bar Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depth"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Decline Oblique Crunch": {
       "b": "general",
@@ -1681,15 +1632,7 @@
       "b": "open"
     },
     "Dumbbell One-Arm Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Dumbbell One-Arm Upright Row": {
       "b": "own"
@@ -2193,15 +2136,7 @@
       ]
     },
     "Incline Barbell Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Incline Bench Press (hantle)": {
       "b": "own"
@@ -2460,16 +2395,7 @@
       ]
     },
     "Kettlebell Overhead Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Kettlebell Pirate Ships": {
       "b": "open"
@@ -2903,15 +2829,7 @@
       ]
     },
     "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Lying Leg Crossover Swings": {
       "b": "general",
@@ -3347,15 +3265,7 @@
       "b": "own"
     },
     "One-Arm Lying Dumbbell Triceps Extension": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "One-Arm Medicine Ball Slam": {
       "b": "general",
@@ -3449,16 +3359,7 @@
       ]
     },
     "Overhead Triceps Extension (EZ)": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Overhead Triceps Extension (hantel)": {
       "b": "own"
@@ -3899,15 +3800,7 @@
       ]
     },
     "Reverse Grip Triceps Pushdown": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Reverse Hyperextension": {
       "b": "general",
@@ -4395,15 +4288,7 @@
       ]
     },
     "Single Arm Triceps Pushdown": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Single Dumbbell Front Raise": {
       "b": "own"
@@ -4604,26 +4489,10 @@
       "b": "own"
     },
     "Skullcrusher (hantle)": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depthFree"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Skullcrusher (sztanga)": {
-      "b": "general",
-      "f": "triLying",
-      "ok": [
-        "skull.upperArm",
-        "skull.depth"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Sled Drag (Harness)": {
       "b": "general",
@@ -5223,15 +5092,7 @@
       ]
     },
     "Standing Low-Pulley One-Arm Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Standing One-Arm Cable Curl": {
       "b": "general",
@@ -5246,16 +5107,7 @@
       ]
     },
     "Standing Overhead Barbell Triceps Extension": {
-      "b": "general",
-      "f": "triOver",
-      "ok": [
-        "ote.upperArm",
-        "ote.elbowsIn",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Standing Pelvic Tilt": {
       "b": "general",
@@ -5477,15 +5329,7 @@
       "b": "own"
     },
     "Tate Press": {
-      "b": "general",
-      "f": "bench",
-      "ok": [
-        "bp.contact",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "The Straddle": {
       "b": "own"
@@ -5556,26 +5400,10 @@
       "b": "own"
     },
     "Triceps Kickback": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Triceps Kickback (linki)": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Triceps Pushdown": {
       "b": "own"
@@ -5606,15 +5434,7 @@
       ]
     },
     "Two-Arm Dumbbell Kickback": {
-      "b": "general",
-      "f": "triPush",
-      "ok": [
-        "tpd.elbows",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Underhand Lat Pulldown": {
       "b": "general",

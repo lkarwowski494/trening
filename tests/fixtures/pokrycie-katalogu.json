@@ -3,23 +3,23 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 132,
-      "v1": 48,
-      "bezFigury": 528,
-      "daneV2NieWlaczone": 401,
-      "wyjatekBezAnimacji": 122
+      "v2": 183,
+      "v1": 44,
+      "bezFigury": 481,
+      "daneV2NieWlaczone": 351,
+      "wyjatekBezAnimacji": 101
     },
-    "animowanyBlad": 124,
+    "animowanyBlad": 127,
     "wskazowki": {
-      "wlasne": 193,
-      "wlasneZBledami": 91,
-      "ogolne": 106,
-      "bezTekstu": 409
+      "wlasne": 215,
+      "wlasneZBledami": 112,
+      "ogolne": 110,
+      "bezTekstu": 383
     },
-    "czesteBledyTekst": 197,
+    "czesteBledyTekst": 222,
     "roleMiesni": 508,
-    "pelnaKarta": 122,
-    "recenzjaFigur": 132
+    "pelnaKarta": 125,
+    "recenzjaFigur": 183
   },
   "kartZTekstami": 572,
   "rodziny": {
@@ -216,16 +216,16 @@
       "recenzja": 0
     },
     "olympic": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 25,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 23,
+      "figuraV2": 22,
+      "daneV2NieWlaczone": 2,
       "v1": 0,
       "wlasne": 21,
-      "ogolne": 0,
-      "bezTekstu": 4,
+      "ogolne": 1,
+      "bezTekstu": 3,
       "pelnaKarta": 0,
-      "recenzja": 0
+      "recenzja": 22
     },
     "back_extension": {
       "status": "planned",
@@ -252,16 +252,16 @@
       "recenzja": 34
     },
     "triceps": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 32,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 29,
-      "v1": 4,
-      "wlasne": 4,
-      "ogolne": 0,
-      "bezTekstu": 28,
-      "pelnaKarta": 0,
-      "recenzja": 0
+      "figuraV2": 29,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 26,
+      "ogolne": 3,
+      "bezTekstu": 3,
+      "pelnaKarta": 3,
+      "recenzja": 29
     },
     "delt_raise": {
       "status": "planned",
@@ -753,17 +753,17 @@
     }
   },
   "dobre": {
-    "figura.v2": 132,
-    "figura.wAplikacji": 180,
-    "figura.zDanymiV2": 533,
-    "animowanyBlad": 124,
-    "wskazowki.wlasne": 193,
-    "wskazowki.wlasneZBledami": 91,
-    "wskazowki.zTekstem": 299,
-    "czesteBledyTekst": 197,
+    "figura.v2": 183,
+    "figura.wAplikacji": 227,
+    "figura.zDanymiV2": 534,
+    "animowanyBlad": 127,
+    "wskazowki.wlasne": 215,
+    "wskazowki.wlasneZBledami": 112,
+    "wskazowki.zTekstem": 325,
+    "czesteBledyTekst": 222,
     "roleMiesni": 508,
-    "pelnaKarta": 122,
-    "recenzjaFigur": 132,
+    "pelnaKarta": 125,
+    "recenzjaFigur": 183,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 572,
     "jezyk.en.kompletne": 572,
