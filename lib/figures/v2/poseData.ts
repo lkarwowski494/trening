@@ -13,6 +13,7 @@ type PoseFile = { kontrakt: string; rodzina: string; cwiczenia: Record<string, P
 const LOAD: Record<string, () => PoseFile> = {
   pull_up: () => require('./poses/pull_up.json'),
   curl: () => require('./poses/curl.json'),
+  triceps: () => require('./poses/triceps.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -59,6 +60,7 @@ export type DataUi = {
 export const DATA_UI: Record<string, DataUi> = {
   /* u = 0 zwis, u = 1 górna pozycja: podciąganie 1 s, opuszczanie 2 s (tempo ilustracyjne, anim.ts) */
   curl: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
+  triceps: { names: { first: 'Prostowanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],

@@ -1,0 +1,224 @@
+{
+ "karty": {
+  "Dumbbell One-Arm Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "df9e78aafcc9",
+   "uwagi": "ISSA #2 („You can also do this exercise using one arm at a time”, „Without moving the upper arm … Be careful to not lock the elbows”), ACE #74 Step 2 („extending your elbows … but not completely locked”), Step 3 („without moving your upper arms”), Catalyst #894 („Keeping the elbow as high as possible … instead of driving it forward”) — ote1.*, press1.noLock, elbowDrift1 wspierane. archBack: BarBend OTE Coach’s Tip („try not to allow your lower back to arch excessively”) — błąd wprost w źródle, dec. 3 nie dotyczy. Uproszczenie jednej ręki potwierdzone (ten sam ruch stawów)."
+  },
+  "Kettlebell Overhead Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "5440130e044d",
+   "uwagi": "ACE #74 Step 2–3, ISSA #2 (hantel); ote.elbowsIn: ACE final tip („elbows shoulder-width apart”), BarBend best #6 („keeping your elbows tucked in”), BarBend OTE Step 2 („Don’t let your elbows flare out”); „łokcie w górę”: BarBend OTE („elbows should be facing forward and upwards”). press.noLock = ACE Step 2 + ISSA („not lock the elbows”). Uproszczenie kettlebell ≈ hantel oburącz potwierdzone (Catalyst #903 też wymienia kettlebell jako przyrząd tej rodziny ruchów)."
+  },
+  "Overhead Triceps Extension (EZ)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "5440130e044d",
+   "uwagi": "Te same źródła i zdania co karta Kettlebell (ACE #74, ISSA #2, BarBend OTE/best). Uproszczenie gryf EZ ≈ hantel oburącz potwierdzone — ruch stawów ten sam, zmienia się tylko uchwyt."
+  },
+  "Standing Overhead Barbell Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "5440130e044d",
+   "uwagi": "Te same źródła i zdania co karta Kettlebell. Uproszczenie sztanga ≈ hantel oburącz potwierdzone — ruch łokcia i nieruchome ramię bez zmian."
+  },
+  "Single Arm Triceps Pushdown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "2695b910d9ae",
+   "uwagi": "ACE #185 Step 1–4 („facing the cable machine … above your head”, „performed unilaterally”, „monitor the forward movement of your elbows”), Catalyst #898 („one hand … high cable … elbow close to the side … return to the top under control”). mis.elbowAway1 = zaprzeczenie standardu obu źródeł."
+  },
+  "Skullcrusher (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "fcc3afcc04e5",
+   "uwagi": "ISSA #2 leżąc („dumbbells are raised above the head, then lowered to ear level … upper arm does not move”), Catalyst #903 Variations („dumbbells”), ACE #36 Step 1–3. skull.depthFree (dec. wykonawcza 3): ACE #36 Step 2 („just above your forehead or until you notice the upper arms begin to drift backwards”) — przy hantlach przyjmuję jako uproszczenie; kryterium zatrzymania (ramiona uciekają w tył) nie zależy od przyrządu, a „nad czołem” ≈ „ear level” ISSA w osi ciała. elbowsFlare: Catalyst („avoiding flaring them out to the sides”)."
+  },
+  "Skullcrusher (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "ec2a54cba68b",
+   "uwagi": "ACE #36 Step 1–3 i Final Tip („upper arms vertical … elbows shoulder-width apart”), Catalyst #903 („barbell or EZ curl bar pressed up above you … avoiding flaring”), ISSA #2 („You can also use a barbell”)."
+  },
+  "Standing Low-Pulley One-Arm Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "7099f0569a9c",
+   "uwagi": "Catalyst #894 („one hand overhead facing away from the machine … elbow as high as possible … extend it completely”), BarBend OTE Step 1 („Set up the pulley at a low position … face away from the cable stack”) i Coach’s Tip (arch). Zgodne z rysunkiem (wyciąg nisko za plecami, uchwyt w prawej ręce)."
+  },
+  "Tate Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "d409a838ed83",
+   "uwagi": "ISSA #5 („Hold the dumbbells upright, as if doing a bench press … just above the chest. The elbows are pointing outward”), Catalyst #909 („pressed straight up … elbows out to the sides, bend the elbows to lower the dumbbells to the chest”). Bez wnioskowanego tateElbows (dec. 3) — słusznie."
+  },
+  "Triceps Kickback": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "622dd73415e8",
+   "uwagi": "ACE #55 Step 1–4 („right hand on your right thigh or knee … lean forward”, „upper arm parallel to, and close to, your torso. Bend your elbow to 90 degrees”, „until your elbow is fully extended … stationary … not raised”), Catalyst #910 („knee and hand on a bench … upper arm horizontal and against your side”), ISSA #3 („Don’t lock the elbow”, „until the elbow is at a 90-degree angle”). Kąt prosty: ACE + ISSA (2× szczebel 4) — ISSA warto dopisać do kick.setup/kick.move (NISKIE #3)."
+  },
+  "Reverse Grip Triceps Pushdown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "a2350bf7d8f9",
+   "uwagi": "Catalyst #878 („straight handle … high cable attachment … palms up … elbows close to the sides, extend the elbows maximally, then return to the top under control”), NFPT gościnny („under grip (palms facing up) … elbows at your sides”, „Keep your elbows in at your sides … As your elbows move away from your body…”). Para 4+5 = „praktyka” wg dec. 1; organizacje niezależne. Luki obecne."
+  },
+  "Triceps Kickback (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "375a9f33fc92",
+   "uwagi": "BarBend best #11 Cable Kickback („Tip over so your torso is roughly parallel to the floor … Tuck your upper arm back and against your torso … extend your elbow”), ISSA band 20 (guma, kilka kroków od zaczepu). Uproszczenia potwierdzone: guma ≈ wyciąg (ten sam kierunek oporu) dla „cofnij się”, hantel → wyciąg dla kick.move/kickArm (ruch stawów ten sam)."
+  },
+  "Two-Arm Dumbbell Kickback": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "0f5fa85145ab",
+   "uwagi": "ACE #55 Step 1–4, Catalyst #910, BarBend best #11 („Try it with two cables at the same time”; „torso roughly parallel to the floor” bez podparcia). Uproszczenie obie ręce bez podparcia potwierdzone — ruch łokcia i barku ten sam, zmienia się tylko podparcie tułowia. Rysunek r2: ramię wzdłuż tułowia, przedramię pionowo na starcie, wyprost do linii tułowia — zgodny z tekstem."
+  },
+  "Band Overhead Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "93f0d8633940",
+   "uwagi": "BarBend best #6 („band underneath the middle of both feet … handles of the band up behind your ears … elbows tucked in, extend the elbows until lockout”), Prehab Guys („band anchored under your feet … behind your head … straighten your elbows”, „do not excessively arch … Do not let your elbows flare out”). Niezależne (różne firmy, różne brzmienie); 4+5 = „praktyka”, luki obecne. Rysunek: guma mocowana pod stopami."
+  },
+  "Band Skull Crusher": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "d5502da2110c",
+   "uwagi": "Uproszczenie (dec. 10) POTWIERDZONE: guma zaczepiona nisko za głową daje ten sam kierunek oporu co dolny wyciąg leżąc (Catalyst #903 „low cable”, ExRx CBLyingTriExt, BarBend best #4 „cable pulley”); ruch stawów identyczny, różni się tylko krzywa oporu. Rysunek: zaczep gumy za głową (x −110, y 25). Zdanie ustawienia nie mówi, gdzie zaczepić gumę (NISKIE #4)."
+  },
+  "Cable Lying Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "37153dc07481",
+   "uwagi": "Catalyst #903 Variations („low cable”), ExRx CBLyingTriExt — odczyt z kopii właściciela 02.11.2026 (exrx-otwarte.md:99); sam nie otworzyłem (403, Wayback zrywa połączenie), ale API dostępności Wayback zwraca migawkę 20210413190354 — do dopisania jako archive (NISKIE #2). skull.upperArm: ACE #36 Final Tip, ISSA #2."
+  },
+  "Incline Barbell Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "9d392623bfa7",
+   "uwagi": "Catalyst #903 („They can also be done on an incline bench”), BarBend best #4 („adjustable bench with the backrest set at a low (10 to 20-degree) incline”). Kąt poza tekstem; rysunek r2 15° mieści się w 10–20°. Bez skull.upperArm (dec. 12) — słusznie."
+  },
+  "Decline Dumbbell Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "c1bb82b7c857",
+   "uwagi": "Fitness Volt („Lie on a decline bench … Keep your elbows tucked in … slowly lower the barbell to your forehead”; sprzęt „Barbell Or Dumbbells”), Fit Father („Decline Bench: You can use the EZ bar, short weighted barbell, or dumbbells … head is angled towards the ground”). Praktyka 4+5 (dec. wykonawcza 2: ławka ujemna jako inny kąt) — zgadzam się, zapis ostrożniejszy niż uproszczenie. Miejsce cytatu elbowsFlare u Fit Father to „Additional Tips”, nie sekcja Decline (NISKIE #1)."
+  },
+  "Decline EZ Bar Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "2f040c02ae47",
+   "uwagi": "Fitness Volt (barbell, decline, „above chin level”, „elbows tucked in”, „slowly lower … to your forehead”), Fit Father (Decline Bench, EZ). Praktyka 4+5, luki obecne. Miejsce cytatu elbowsFlare jak w karcie Decline Dumbbell (NISKIE #1)."
+  },
+  "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "6b846e143d00",
+   "uwagi": "Catalyst #903 („allow them to move back slightly to bring the bar past the top of the head”), ACE #36 Step 2 („towards your forehead or slightly behind your head”). Rysunek r2: w dolnej pozycji gryf za czubkiem głowy, ramię odchylone ok. 20° od pionu — zgodny z tri.skullBehind.move; skull.upperArm słusznie pominięte (dec. 12)."
+  },
+  "One-Arm Lying Dumbbell Triceps Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "ce3f7e588742",
+   "uwagi": "ISSA #2 leżąc, Catalyst #903 (dumbbells), BodBot („Raise a dumbbell overhead with one arm, pointing your elbow towards the ceiling … keeping the upper arm straight, lower the forearm … Do not allow the elbow to flare out to the side”). Uproszczenie jednej ręki (dec. 9) POTWIERDZONE — ten sam ruch stawów."
+  },
+  "Chain Handle Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-04",
+   "stan": "zrecenzowana niezależnie, runda 1 (bramka 4, treść karty) — partia T1b triceps, L-047",
+   "autor": "programista T1b",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047 kart partii T1b triceps (04.11.2026), gałąź tekst/t1-triceps @ ac0fe14e; źródła otwarte 04.11.2026 (curl), rysunki origin/figury/triceps @ 0466da34 (arkusze r2)",
+   "sha": "99aaca811257",
+   "uwagi": "fedb („position yourself on the flat bench. Your elbows should be pointing straight up … extending through the elbow, keeping your upper arm still … Pause at the lockout, and reverse the motion”), app-s8 = gmlyft.com (aplikacja: „Get the app”, App Store, zapis treningów — dec. wykonawcza 4 potwierdzona): „Lie securely with one handle in each hand and the elbows pointing upward. Straighten both arms without allowing the elbows to drift apart.” Brzmienie różne, app-s8 ma treść własną (łańcuchy na podłodze, partner) — uznaję za niezależne (wspólna tylko fraza „pause at lockout”). Miejsce app-s8 w cues.json cytuje „without allowing the elbows to move”, na stronie „to drift apart” (NISKIE #1). Brak źródła ≤ 4 — rozważyć Catalyst #903/ISSA leżąc jako nazwane uproszczenie przyrządu."
+  }
+ }
+}

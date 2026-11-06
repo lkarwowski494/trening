@@ -159,7 +159,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(132); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
+      expect(n).toBe(161); /* 05.11.2026: 132 → 161 (+29 triceps z danych, podłączone i zrecenzowane niezależnie — r5, wpis v2 w figury-recenzja.json); 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych + 29 triceps z danych (podłączone 03.11.2026 / 05.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
@@ -235,11 +235,11 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
     return [...sel.ok, ...sel.err];
   };
   /** Zdania P1 (02.11.2026) i P2 (03.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml); po przekładzie wpisy znikają z zestawów. */
-  const OCZEKUJE: string[] = ['2026-11-02-p1', '2026-11-03-p2', '2026-11-04-t1'].flatMap(d => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', `docs/lokalizacja/zestaw-przekladu-${d}-wskazowki.json`), 'utf8')).klucze as { id: string }[]).map(k => k.id));
+  const OCZEKUJE: string[] = ['2026-11-02-p1', '2026-11-03-p2', '2026-11-04-t1', '2026-11-04-t1b'].flatMap(d => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', `docs/lokalizacja/zestaw-przekladu-${d}-wskazowki.json`), 'utf8')).klucze as { id: string }[]).map(k => k.id));
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
   test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {
-    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(577 + OCZEKUJE.length); /* 577 = 371 + 76 zdań P1 (G2 mobilność, 02.11.2026) + 79 zdań P2 (G3 moc, 03.11.2026) + 52 zdania T1 (delt_raise, 04.11.2026); 577 = 371+76+79+52 − 1 (ur.height zestawu ogólnego uprightRow usunięte 04.11.2026 po zastąpieniu kartami własnymi z urow.height); wszystkie już przełożone (zestawy P1, P2 i T1 puste od 04.11.2026); + zdania czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-0{2-p1,3-p2,4-t1}-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(623 + OCZEKUJE.length); /* 623 = 577 + 46 zdań T1b (triceps, 05.11.2026; już przełożone, zestaw T1b pusty); 577 = 371 + 76 zdań P1 (G2 mobilność, 02.11.2026) + 79 zdań P2 (G3 moc, 03.11.2026) + 52 zdania T1 (delt_raise, 04.11.2026); 577 = 371+76+79+52 − 1 (ur.height zestawu ogólnego uprightRow usunięte 04.11.2026 po zastąpieniu kartami własnymi z urow.height); wszystkie już przełożone (zestawy P1, P2 i T1 puste od 04.11.2026); + zdania czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-0{2-p1,3-p2,4-t1}-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
     for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).sort()]).toEqual([l, [...OCZEKUJE].sort()]); /* ACG-003, 31.10.2026: było 52; brakować mogą tylko zdania z zestawu oczekującego na przekład */
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
