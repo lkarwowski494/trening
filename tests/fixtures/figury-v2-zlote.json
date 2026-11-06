@@ -1789,96 +1789,100 @@
    "raw": "863c8739239817fa1bad"
   },
   "olympic/Power Clean": {
-   "svg": "e8d2749694986d029dcc",
-   "raw": "77caeb982b13db3d2a8b"
+   "svg": "68289d6687d1688abd39",
+   "raw": "71a82662124d0f5e6b12"
   },
   "olympic/Clean": {
-   "svg": "c806a14fa369ced105a9",
-   "raw": "37da6d904f61c4821756"
+   "svg": "f5c5a740ccdfb6495681",
+   "raw": "4363349ec64496079187"
   },
   "olympic/Split Clean": {
-   "svg": "910cee8fa14bfeb15eee",
-   "raw": "9b1820f00fb658942422"
+   "svg": "5218380b60276b21216e",
+   "raw": "959d068d33e993c7563b"
   },
   "olympic/Hang Clean": {
-   "svg": "bf7a1d6d9c42b40f950a",
-   "raw": "1528d8f232753ce5e5b9"
+   "svg": "7cf3a8b614f668f96e11",
+   "raw": "9057d61455ddf287d57a"
   },
   "olympic/Block Clean": {
-   "svg": "0cec5def839de1d6e37d",
-   "raw": "2fbe367a8aa115077596"
+   "svg": "e326f6506971aa5944c8",
+   "raw": "25786c91e0f30904f54d"
   },
   "olympic/Block Power Clean": {
-   "svg": "474e3d9d0560e2dd377d",
-   "raw": "f5550296b4ed8841fe37"
+   "svg": "cf3fc1aaf91713cec6a2",
+   "raw": "b175e1c2cec9dfcb13d5"
   },
   "olympic/Barbell Snatch": {
-   "svg": "43acdcbab1d4537052ef",
-   "raw": "5fa3efa8eb18ce609a48"
+   "svg": "f6dd1c8c476be847acea",
+   "raw": "17d44e1626addf6bb127"
   },
   "olympic/Power Snatch": {
-   "svg": "85e2fcd072ed002ce62f",
-   "raw": "06a58205eae3d956db9f"
+   "svg": "d60a0ee83a521dd5f213",
+   "raw": "1c5f748507a5f68102f3"
   },
   "olympic/Split Snatch": {
-   "svg": "0f4c568b0a7c2a4862ba",
-   "raw": "e7596bf625091d26ab25"
+   "svg": "ffa6ba7436fad306b03e",
+   "raw": "84e3535971fa1293724c"
   },
   "olympic/Hang Snatch": {
-   "svg": "8b848332dd42b8f2468e",
-   "raw": "bd70b6cfcfb6e1d104a1"
+   "svg": "0eff19088d45e71daa85",
+   "raw": "d425d0420c42462f2327"
   },
   "olympic/Block Snatch": {
-   "svg": "7f534d70df7a4878af11",
-   "raw": "fe513c0979608eec2aca"
+   "svg": "20f381a77ccc7e86865f",
+   "raw": "bf9aa6874785351c4029"
   },
   "olympic/Block Power Snatch": {
-   "svg": "be759632317ec8312399",
-   "raw": "e6c560dfdd326e7fabd5"
+   "svg": "4739c288de934d6c0d4e",
+   "raw": "f9ac8a8832e61162f4eb"
   },
   "olympic/Clean Pull": {
-   "svg": "e68db1a121fe23a9f617",
-   "raw": "c7c7f5c8a93994f41976"
+   "svg": "b3b5cd4a23da6b9c2056",
+   "raw": "d0ac3ad7bb84bad865ab"
   },
   "olympic/Snatch Pull": {
-   "svg": "e3b7afa50ded95747e89",
-   "raw": "aa77872a5571c6630436"
+   "svg": "7a0044f7c8686b288fb7",
+   "raw": "a7033633c71840874996"
   },
   "olympic/Clean Shrug": {
-   "svg": "b368e2c813756d7a452d",
-   "raw": "945de6a97a8968d18bed"
+   "svg": "ea143135e6e148401713",
+   "raw": "d0c65a590ed96c31122e"
   },
   "olympic/Snatch Shrug": {
-   "svg": "1f1fe4904671229ce166",
-   "raw": "0247f9a0216d5eb48495"
+   "svg": "5a348613c2555232ce52",
+   "raw": "c81a30f295651b10f559"
   },
   "olympic/Power Jerk": {
-   "svg": "a5d39e0d06c6ee5a6979",
-   "raw": "dc516c69afb5924e92e1"
+   "svg": "a967ca6e5b6a15b280b2",
+   "raw": "cc3a21abacddf84fa7e6"
   },
   "olympic/Split Jerk": {
-   "svg": "9b85b694ba227b0188be",
-   "raw": "fd8b8026fb3f62e2c612"
+   "svg": "7be88d5b589c0874efba",
+   "raw": "18a4941e439e1f053f88"
   },
   "olympic/Squat Jerk": {
-   "svg": "b2b7a69cfc672e773b0d",
-   "raw": "e17d79a0c86b5c63786c"
+   "svg": "75b27acb877ad5667aa0",
+   "raw": "8b43b0ae4b6237d5ac9a"
   },
   "olympic/Jerk Dip Squat": {
-   "svg": "3bde11e063e51d21b816",
-   "raw": "1878e2235aaa2a2415f1"
+   "svg": "b96665f7fb22d3fa7b22",
+   "raw": "ec246039f3bd759421b4"
   },
   "olympic/Snatch Balance": {
-   "svg": "183e3a49da819075d6b7",
-   "raw": "38fdf7c4ed517bb9c86a"
+   "svg": "3131c0d00be1868d96e8",
+   "raw": "cc6290b3c71e3068db69"
   },
   "olympic/Muscle Snatch": {
-   "svg": "6c2cbcc18c22f53d7290",
-   "raw": "fd58a2016ff62599c632"
+   "svg": "c007be9ce2cfb2119c0f",
+   "raw": "b072aaf8aa90a99a46fd"
   },
   "olympic/Clean and Jerk": {
-   "svg": "01301340f45489c6de68",
-   "raw": "ef5e9a856285f77cbec4"
+   "svg": "73a305a52012cbfd8282",
+   "raw": "8bf52ec6228bce78c208"
+  },
+  "olympic/Jerk Balance": {
+   "svg": "d023d5b43ad456a100d6",
+   "raw": "919b951cabdec295ffdc"
   },
   "overhead_press/Overhead Press (sztanga)": {
    "svg": "7cd9bfec01bd2736bb6f",

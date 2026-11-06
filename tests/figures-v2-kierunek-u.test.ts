@@ -35,6 +35,7 @@ function naruszenia(family: string, ui: DataUi): string[] {
   if (Object.values(kier).every(x => x === null)) return []; /* rodzina bez ruchu miednicy i kolan (ręce, barki): kierunku nie da się ocenić geometrią */
   const o: string[] = [];
   for (const [k, kd] of Object.entries(kier)) {
+    if (cw[k].petla === 'jednokierunkowa') continue; /* 05.11.2026: pętla jednokierunkowa — u 0→1 to całe powtórzenie, kierunku opuszczania nie ma (nazwę fazy daje ONE_WAY_UI; strażnik lotu niżej wymusza sam tryb) */
     const wyj = ui.exceptions?.[k]; const lf = lowerFirstOf(ui, k); const nazwy = wyj?.names ?? ui.names;
     if (kd === null) { if (ISOMETRIC.has(k)) continue; /* izometria: jedna pozycja bez animacji */
       if (wyj?.lowerFirst === undefined) o.push(`${k}: kierunek nie do zmierzenia, a wyjątek nie deklaruje lowerFirst`); continue; }
@@ -99,6 +100,14 @@ describe('strażnik: wpis DATA_UI zgodny z kierunkiem u dla każdego ćwiczenia'
   });
   test('sama zmiana lowerFirst bez nazwy faz też jest czerwona (nazwa „Opuszczanie” przy wypychaniu)', () => {
     expect(naruszenia('lunge', { ...OPUSZCZANIE, exceptions: { 'Step Up': { lowerFirst: false }, 'Barbell Step Up': { ...WEJSCIE } } })).toEqual(['Step Up: u 0→1 to wysilek, a pierwsza faza nazywa się „Opuszczanie”']);
+  });
+  test('05.11.2026: ćwiczenie w pętli jednokierunkowej nie podlega kierunkowi opuszczania, a to samo ćwiczenie w wahadle jest czerwone (olympic: Clean, Muscle Snatch)', () => {
+    const jed = ['Clean', 'Muscle Snatch'];
+    expect(naruszenia('olympic', dataUiFor('olympic')!)).toEqual([]);
+    const cw = plik('olympic'); for (const k of jed) expect(cw[k].petla).toBe('jednokierunkowa');
+    const bez = Object.fromEntries(Object.entries(cw).map(([k, d]) => [k, { ...d, petla: undefined }])) as Record<string, PoseData>;
+    const spy = jest.spyOn(fs, 'readFileSync'); spy.mockImplementation(((p: fs.PathOrFileDescriptor, ...r: unknown[]) => String(p).endsWith('olympic.json') ? JSON.stringify({ cwiczenia: bez }) : (jest.requireActual('fs') as typeof fs).readFileSync(p, ...(r as [BufferEncoding]))) as typeof fs.readFileSync);
+    try { const o = naruszenia('olympic', dataUiFor('olympic')!); expect(o).toContain('Clean: u 0→1 to opuszczanie, a lowerFirst = false'); expect(o).toContain('Muscle Snatch: kierunek nie do zmierzenia, a wyjątek nie deklaruje lowerFirst'); } finally { spy.mockRestore(); }
   });
   test('rodzina bez ruchu miednicy i kolan (ręce, barki) nie jest oceniana geometrią', () => {
     expect(naruszenia('delt_raise', { ...OPUSZCZANIE, lowerFirst: false })).toEqual([]);

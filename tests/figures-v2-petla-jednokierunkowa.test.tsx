@@ -109,10 +109,10 @@ describe('silnik: figure.ts — tryb pętli, fazy i prezentacja', () => {
 });
 
 describe('niezmienniki: liczba ćwiczeń z polem petla w całym katalogu póz', () => {
-  test('43 ćwiczenia z polem: 10 cykl_lustro (marsz) + 33 jednokierunkowa; żadne inne', () => {
+  test('62 ćwiczenia z polem: 10 cykl_lustro (marsz) + 52 jednokierunkowa (33 plyo i rzuty + 19 olympic); żadne inne', () => {
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); const c: Record<string, number> = {};
     for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const d of Object.values(j.cwiczenia)) if (d.petla !== undefined) c[d.petla] = (c[d.petla] ?? 0) + 1; }
-    expect(c).toEqual({ cykl_lustro: 10, jednokierunkowa: 33 });
+    expect(c).toEqual({ cykl_lustro: 10, jednokierunkowa: 52 }); /* 05.11.2026: 33 (plyo, sled_throw) + 19 olympic (18 z lotem albo wyrzutem + Snatch Balance, r6-W1) (tests/figures-v2-olympic-petla.test.ts) */
   });
 });
 

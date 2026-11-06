@@ -9,7 +9,7 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { figureSpec as figureSpecAll, familyOf } from '@/lib/figures/v2';
-import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
+import { V2_WSTRZYMANE, loopOf } from '@/lib/figures/v2/figure';
 import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
 
@@ -36,8 +36,8 @@ const eksport = (name: string, recenzja?: object) => {
 };
 /** Figura jak w aplikacji: bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84) — eksport ich nie rysuje. */
 const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
-/** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. */
-const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => figureSpec(e.id) || POZY.has(e.id)).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
+/** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. Wstrzymane (V2_WSTRZYMANE) wypadają także z gałęzi „poza z pliku danych” — scripts/strona/eksport.mjs:73,133 ich nie rysuje (05.11.2026: Clean Shrug i Snatch Shrug mają pozy w olympic.json, a rysunek wstrzymany do kart T2). */
+const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
   test('pilotaż z plików pozy (core_floor, pushup_plank) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji', () => {
@@ -65,6 +65,16 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
     const ok = eksport('pull-up', { pull_up: wpis(s.skroty.pull_up) });
     const oczek = rysowalne(ok.atlas).filter(x => x.family === 'pull_up').map(x => x.slug).sort(); expect(oczek.length).toBeGreaterThan(0);
     expect(Object.keys(ok.fig.figures).sort()).toEqual(oczek);
+  });
+  test('r6-W2 A (05.11.2026): olympic z aktualną recenzją — 19 ćwiczeń jednokierunkowych (Power Clean, Block Power Snatch) wraca do eksportu razem z wahadłami; bez wpisu olympic żadne z nich (negatyw)', () => {
+    const s = skroty(); const jedn = (id: string) => loopOf(figureSpecAll(id)!) === 'jednokierunkowa';
+    const ok = eksport('olympic', { olympic: wpis(s.skroty.olympic) });
+    const oly = ok.atlas.exercises.filter(e => e.id !== 'Clean Shrug' && e.id !== 'Snatch Shrug' && figureSpecAll(e.id)?.family === 'olympic');
+    expect(oly.filter(e => jedn(e.id)).length).toBe(19);
+    for (const e of oly) expect([e.id, e.slug in ok.fig.figures, !!e.figure]).toEqual([e.id, true, true]);
+    for (const k of ['Power Clean', 'Block Power Snatch']) expect(ok.atlas.exercises.find(e => e.id === k)!.cues.scope).not.toBe('none'); /* r7-N1: zestaw ogólny wraca razem z figurą */
+    const bez = eksport('olympic-bez', { squat: wpis(s.skroty.squat) });
+    for (const e of oly) expect([e.id, e.slug in bez.fig.figures]).toEqual([e.id, false]);
   });
   test('bez pliku zapisu (fail closed): pusty figury.json', () => {
     expect(Object.keys(eksport('brak', {}).fig.figures)).toEqual([]);
@@ -104,7 +114,7 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
   test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE) nie trafiają do figur; od 1.0.1 (scalenie 31.10.2026) lista jest pusta — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji trafiają do figur jak sąsiednie wyciskania wąskim chwytem', () => {
     const { fig, atlas } = eksport('wstrzymane', fixture());
     const slug = (id: string) => atlas.exercises.find(e => e.id === id)!.slug;
-    expect(Object.keys(V2_WSTRZYMANE)).toEqual([]);
+    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug']); /* 04.11.2026: wzruszenia olympic wstrzymane do kart T2 (olympic r4) */
     for (const k of Object.keys(V2_WSTRZYMANE)) { expect([k, slug(k) in fig.figures]).toEqual([k, false]); expect([k, atlas.exercises.find(e => e.id === k)!.figure]).toEqual([k, null]); }
     for (const k of ['JM Press', 'Decline Close-Grip Bench To Skull Crusher', 'Smith Machine Close-Grip Bench Press']) expect([k, slug(k) in fig.figures]).toEqual([k, true]);
   });

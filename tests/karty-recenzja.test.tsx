@@ -16,6 +16,7 @@ import { render, screen } from '@testing-library/react-native';
 import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
 import { FIG_DATA } from '@/lib/figures';
 import { figureSpec } from '@/lib/figures/v2';
+import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
 import { CUE_SETS } from '@/lib/figures/v2/cueSets';
 import { ExerciseCues } from '@/components/ExerciseCues';
 
@@ -33,7 +34,8 @@ const RT = CUE_DATA as typeof CUE_DATA & { hidden?: string[]; general?: string[]
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const OWN = Object.keys(FULL.exercises);
 /** Zestawy ogólne wyświetlane w 1.0: ćwiczenie z figurą v2 (gotowa rodzina) i trybem „general”. */
-const GENERAL_SHOWN = Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'general' && !!figureSpec(k));
+/* 05.11.2026 (olympic r5): figury wstrzymane (V2_WSTRZYMANE — np. Clean/Snatch Shrug do kart T2) nie są wyświetlane (shownFigureSpec), więc ich zestaw ogólny też nie */
+const GENERAL_SHOWN = Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'general' && !!figureSpec(k) && !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k));
 const cardOk = (k: string) => { const c = REC.karty?.[k]; if (c) return c.werdykt === 'wyswietlana' && c.sha === NOW.karty[k]; const v = REC.v1[k]; return !!v && v.werdykt === 'wyswietlana' && v.sha === NOW.v1[k]; };
 const setOk = (k: string) => { const z = REC.zestawy?.[k]; return !!z && z.werdykt === 'wyswietlana' && z.sha === NOW.zestawy[k]; };
 

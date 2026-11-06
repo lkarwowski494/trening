@@ -13,20 +13,20 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
-| Figura v2 w aplikacji (rodzina gotowa) | 161 | 22,7% |
+| Figura v2 w aplikacji (rodzina gotowa) | 183 | 25,8% |
 | Figura v1 w aplikacji (bez v2) | 44 | 6,2% |
-| Bez figury w aplikacji | 503 | 71% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 372 | 52,5% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 122 | 17,2% |
+| Bez figury w aplikacji | 481 | 67,9% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 351 | 49,6% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 101 | 14,3% |
 | Animowany błąd | 127 | 17,9% |
 | Własne wskazówki (źródłowe) | 215 | 30,4% |
 | — z czego z częstymi błędami | 112 | 15,8% |
-| Zestaw ogólny wskazówek wzorca ruchu | 109 | 15,4% |
-| Bez tekstu wskazówek | 384 | 54,2% |
-| Częste błędy (własne albo zestaw ogólny) | 221 | 31,2% |
+| Zestaw ogólny wskazówek wzorca ruchu | 110 | 15,5% |
+| Bez tekstu wskazówek | 383 | 54,1% |
+| Częste błędy (własne albo zestaw ogólny) | 222 | 31,4% |
 | Role mięśni | 508 | 71,8% |
 | **Pełna karta** | 125 | 17,7% |
-| Figura z aktualną recenzją ruchu (bramka 4) | 161 | 22,7% |
+| Figura z aktualną recenzją ruchu (bramka 4) | 183 | 25,8% |
 
 ## Cele wersji
 
@@ -40,9 +40,9 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 324 | 316 |
-| częste błędy (tekst) | 557 | 221 | 336 |
+| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 534 | 1 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 325 | 315 |
+| częste błędy (tekst) | 557 | 222 | 335 |
 | komplet tekstów karty: pl | 671 | 572 | 99 |
 | komplet tekstów karty: en | 671 | 572 | 99 |
 
@@ -59,7 +59,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
-| `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 21 | 0 | 4 | 0 | 0 |
+| `olympic` | gotowa | 25 | 22 | 2 | 0 | 21 | 1 | 3 | 0 | 22 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
@@ -140,14 +140,14 @@ Kart z tekstami (wskazówki albo role mięśni): **572**. „Komplet” = karta 
 
 Pełnych kart: 125. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: animowany błąd — 24: Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Chain Handle Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Dumbbell One-Arm Triceps Extension, Gorilla Chin/Crunch, Incline Barbell Triceps Extension, JM Press, Kettlebell Overhead Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Overhead Triceps Extension (EZ), Reverse Grip Triceps Pushdown, Single Arm Triceps Pushdown, Skullcrusher (hantle), Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Standing Overhead Barbell Triceps Extension, Sumo Squat (hantel), Triceps Kickback, Triceps Kickback (linki), Two-Arm Dumbbell Kickback
+- Brakuje tylko: animowany błąd — 45
 - Brakuje tylko: role mięśni — 2: Dead Hang, Scapular Pull-Up
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
 | 0 | 125 |
-| 1 | 26 |
-| 2 | 59 |
-| 3 | 79 |
-| 4 | 277 |
+| 1 | 47 |
+| 2 | 39 |
+| 3 | 80 |
+| 4 | 275 |
 | 5 | 142 |
