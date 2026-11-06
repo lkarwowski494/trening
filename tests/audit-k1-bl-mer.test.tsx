@@ -17,6 +17,7 @@ import { LOCALES } from '@/lib/locales';
 import * as store from '@/lib/store';
 import { fresh, saved, addWorkout, ex } from './helpers';
 import { CUE_FULL } from './zrodla-pelne';
+import { SOURCE_NAMES } from './podpisy-jezyki-shared';
 import { renderApp, flushAll, act, screen as appScreen, openInfo } from './app';
 
 const root = path.join(__dirname, '..');
@@ -24,9 +25,6 @@ const root = path.join(__dirname, '..');
 const srcLevel = (sid: string): number => CUE_FULL.sources[sid].level ?? CUE_FULL.orgs[CUE_FULL.sources[sid].org].level;
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
-
-/** Nazwy organizacji i marek źródeł wskazówek — tylko w docs/research/27 (zasada właściciela 09.10.2026: nazwy innych firm nie w tekstach aplikacji). */
-const SOURCE_NAMES = /\b(ACE|NASM|ExRx|Stronger by Science|Concept ?2|acefitness|nasm\.org)\b/i;
 
 describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
   beforeEach(async () => { await fresh(); });
@@ -77,12 +75,9 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
     expect(SOURCE_NAMES.test(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8'))).toBe(true);
     expect(fs.readFileSync(path.join(root, 'components/ExerciseCues.tsx'), 'utf8')).not.toMatch(/c\.orgs|cueOrgs/);
   }, 480000); /* RNTL 14: render i press asynchroniczne — 26 języków × wszystkie ćwiczenia; pomiar 02.11.2026 (ZB-010): ponad 120 s (126 s i przekroczony limit przy 120 s), pamięć rośnie ok. 160 KB na otwartą kartę po unmount */
-  /* 05.11.2026 (koordynator 1.1, figury/triceps): podpis każdego ćwiczenia renderowany osobnym testem na język — po podłączeniu triceps jeden test 26 języków trwał w CI 526 s (> 480 s limitu; olympic 371 s, T1b 327 s), a ponowienie przez jest-ponow wypychało część Jest 2 poza limit zadania 20 min (przebieg 42004324653 dwa razy). Zakres i warunek bez zmian: każdy język × każde ćwiczenie, zero nazw źródeł. */
-  test.each(LANGS)('regresja: podpis i teksty karty każdego ćwiczenia w języku %s bez nazw źródeł', async (l) => {
-    const bad: string[] = []; applyLang(l);
-    for (const k of Object.keys(CUE_DATA.exercises)) { const { unmount } = await render(<ExerciseCues exercise={lib(k)} />); await fireEvent.press(screen.getByRole('button', { name: t('Technika') })); for (const x of screen.container.queryAll((n: { type: unknown }) => n.type === 'Text')) { const s = JSON.stringify(x.props.children); if (SOURCE_NAMES.test(s)) bad.push(`${l} ${k}: ${s.slice(0, 60)}`); } await unmount(); }
-    expect(bad).toEqual([]);
-  }, 120000);
+  /* 06.11.2026 (L-110): render podpisu każdego ćwiczenia w każdym języku przeniesiony do tests/audit-k1-bl-mer-podpisy1…7.test.tsx (kod: tests/podpisy-jezyki-shared.tsx) —
+     po scaleniu olympic+triceps jeden proces roboczy kończył się „heap out of memory” (ok. 160 KB sterty na otwartą kartę po unmount; tests.yml 42159848532, część Jest 2).
+     Zakres bez zmian: każdy język × każde ćwiczenie, zero nazw źródeł; sumę grup pilnuje tests/audit-k1-bl-mer-podpisy-guard.test.ts. */
 });
 
 /*
