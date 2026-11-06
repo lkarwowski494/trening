@@ -7,16 +7,16 @@
       "v1": 48,
       "bezFigury": 528,
       "daneV2NieWlaczone": 401,
-      "wyjatekBezAnimacji": 122
+      "wyjatekBezAnimacji": 144
     },
     "animowanyBlad": 124,
     "wskazowki": {
-      "wlasne": 193,
-      "wlasneZBledami": 91,
+      "wlasne": 215,
+      "wlasneZBledami": 112,
       "ogolne": 106,
-      "bezTekstu": 409
+      "bezTekstu": 387
     },
-    "czesteBledyTekst": 197,
+    "czesteBledyTekst": 218,
     "roleMiesni": 508,
     "pelnaKarta": 122,
     "recenzjaFigur": 132
@@ -257,9 +257,9 @@
       "figuraV2": 0,
       "daneV2NieWlaczone": 29,
       "v1": 4,
-      "wlasne": 4,
+      "wlasne": 26,
       "ogolne": 0,
-      "bezTekstu": 28,
+      "bezTekstu": 6,
       "pelnaKarta": 0,
       "recenzja": 0
     },
@@ -757,10 +757,10 @@
     "figura.wAplikacji": 180,
     "figura.zDanymiV2": 533,
     "animowanyBlad": 124,
-    "wskazowki.wlasne": 193,
-    "wskazowki.wlasneZBledami": 91,
-    "wskazowki.zTekstem": 299,
-    "czesteBledyTekst": 197,
+    "wskazowki.wlasne": 215,
+    "wskazowki.wlasneZBledami": 112,
+    "wskazowki.zTekstem": 321,
+    "czesteBledyTekst": 218,
     "roleMiesni": 508,
     "pelnaKarta": 122,
     "recenzjaFigur": 132,

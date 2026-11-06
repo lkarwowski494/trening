@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (125)
+## Bez figury — lista otwarta (147)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1081,5 +1081,27 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Barbell Incline Shoulder Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Dumbbell Front Raise to Overhead | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Straight Raises on Incline Bench | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Dumbbell One-Arm Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Kettlebell Overhead Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Overhead Triceps Extension (EZ) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Standing Overhead Barbell Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Single Arm Triceps Pushdown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Skullcrusher (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Skullcrusher (sztanga) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Standing Low-Pulley One-Arm Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Tate Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Triceps Kickback | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Reverse Grip Triceps Pushdown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Triceps Kickback (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Two-Arm Dumbbell Kickback | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Band Overhead Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Band Skull Crusher | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Cable Lying Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Incline Barbell Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Decline Dumbbell Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Decline EZ Bar Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Lying Close-Grip Barbell Triceps Extension Behind The Head | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| One-Arm Lying Dumbbell Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Chain Handle Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 
-Poza tym bez figury: 21 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
+Poza tym bez figury: 19 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.

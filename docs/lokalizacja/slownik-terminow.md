@@ -93,6 +93,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `uchwyt` | uchwyt (część sprzętu, ang. handle) | element, który trzymasz w dłoni na wyciągu, gumie albo sankach (ang. handle); NIE chwyt (sposób trzymania), NIE pięść, NIE nadgarstek |
 | `nachwyt` | nachwyt (dłonie od góry, ang. overhand) | chwyt z dłońmi skierowanymi w dół; potoczna nazwa jak w innych kartach (martwy ciąg, podciąganie), bez terminu z podręcznika |
 | `uda` | uda (część ciała) | uda jako miejsce przy którym zawisa ciężar (przed udami, przy udach, do ud); NIE nogi ani stopy |
+| `lawka_skosna_glowa_w_dol` | ławka skośna głową w dół (ang. decline bench) | ławka z głową niżej niż biodra (decline bench); NIE ławka skośna głową w górę (incline), NIE ławka płaska |
 
 ## Terminy zalecane (rdzeń)
 
@@ -285,6 +286,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `tr` | `faza_pauza` | duraklat | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `tr` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to seria/szybki; podejście to „set” |
 | `tr` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `tr` | `lawka_skosna_glowa_w_dol` | (?<!ters )(?<![\p{L}])eğimli sehpa | samo „eğimli sehpa” to też ławka skośna głową w górę (incline); przy głowie w dół ma być „ters eğimli sehpa” (recenzja T1b, 05.11.2026) |
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `el` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
@@ -316,6 +318,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ru` | `pozycja_posrednia` | в процессе | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ru` | `biodra` | (?<![\p{L}])(бёдр\p{L}*\|бёдер)(?![\p{L}]) | „бёдра” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
 | `ru` | `uda` | (?<![\p{L}])(перед\|к\|у) ног(ами\|ам\|и\|ой\|е)?(?![\p{L}]) | „ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup) |
+| `ru` | `lawka_skosna_glowa_w_dol` | наклонн\p{L}*\s+скамь | „наклонная скамья” to też ławka skośna głową w górę (incline); ławka głową w dół to „скамья с обратным наклоном” (recenzja T1b, 05.11.2026) |
 | `ja` | `przerwa` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni między seriami mówi się インターバル |
 | `ja` | `przerwa_robocza` | 仕事の\|休憩 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ja` | `przerwa_po_rozgrzewce` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni インターバル |
@@ -336,7 +339,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
-## Do potwierdzenia przez native speakera (135)
+## Do potwierdzenia przez native speakera (153)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -348,37 +351,44 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `cs` | `zegarek` | hodinky | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `cs` | `lokcie_waskie` | lokty úzko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `cs` | `pozycja_posrednia` | Mezipoloha | „Mezipoloha” czy „Střední poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `cs` | `lawka_skosna_glowa_w_dol` | lavice s negativním sklonem | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavice s negativním sklonem czy lavice se sklonem hlavou dolů |
 | `sk` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sk` | `zegarek` | hodinky | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sk` | `lokcie_waskie` | lakte úzko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sk` | `pozycja_posrednia` | Medzipoloha | „Medzipoloha” czy „Stredná poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sk` | `lawka_skosna_glowa_w_dol` | lavička s negatívnym sklonom | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavička s negatívnym sklonom czy lavička so sklonom hlavou nadol |
 | `hu` | `seria` | Sorozat | w siłowniach używa się też „széria”/„szett”; do potwierdzenia przez native speakera |
 | `hu` | `asekuracja` | Biztosítás | „biztosítás” bywa ubezpieczeniem — do potwierdzenia |
 | `hu` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `hu` | `zegarek` | óra | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hu` | `lokcie_waskie` | szűk könyök | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hu` | `pozycja_posrednia` | Köztes helyzet | Szyk numeru: „Köztes helyzet 1” czy „1. köztes helyzet”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `hu` | `lawka_skosna_glowa_w_dol` | negatív pad | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): negatív pad czy lefelé lejtő pad |
 | `ro` | `do_upadku` | Până la epuizare | w siłowniach też „până la cedare”; do potwierdzenia |
 | `ro` | `asekuracja` | Siguranță și asigurare | do potwierdzenia przez native speakera |
 | `ro` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ro` | `zegarek` | ceas | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `ro` | `lawka_skosna_glowa_w_dol` | bancă înclinată cu capul în jos | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `bg` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `bg` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `bg` | `jednostka_dystansu_mi` | мили | Skrót nieodmienny „мили” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026) |
 | `bg` | `jednostka_dystansu_yd` | ярд | Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026) |
 | `bg` | `zegarek` | часовник | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `bg` | `lawka_skosna_glowa_w_dol` | наклонена пейка с главата надолу | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `hr` | `asekuracja` | Sigurnost i asistencija | do potwierdzenia przez native speakera |
 | `hr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `hr` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `ledzwie` | donji dio leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `zegarek` | sat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hr` | `lokcie_waskie` | laktove usko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `hr` | `lawka_skosna_glowa_w_dol` | kosa klupa | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): kosa klupa glavom prema dolje czy negativna klupa |
 | `sl` | `faza_pauza` | Premor | Tłumacz (31.10.2026) proponuje „Pavza” — „premor” bliższy przerwie/odpoczynkowi niż zatrzymaniu w ruchu; przegląd API tego nie zgłosił. Do sprawdzenia przez native speakera; bez zmiany. |
 | `sl` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sl` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sl` | `ledzwie` | ledveni del hrbta | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sl` | `zegarek` | ura | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sl` | `lokcie_waskie` | komolce ozko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sl` | `lawka_skosna_glowa_w_dol` | klop, nagnjena navzdol | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `sr` | `asekuracja` | Асистенција и безбедност | do potwierdzenia przez native speakera |
 | `sr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sr` | `ledzwie` | donji deo leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
@@ -389,6 +399,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `sr` | `zegarek` | сат | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sr` | `lokcie_waskie` | лактове уско | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sr` | `pozycja_posrednia` | Међуположај | „Међуположај” czy „Средњи положај”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sr` | `lawka_skosna_glowa_w_dol` | коса клупа | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): коса клупа главом надоле czy негативна клупа |
 | `lt` | `zakres_powtorzen` | pakartojimų intervalas | „intervalas” bywa przerwą; w siłowniach też „diapazonas” — do potwierdzenia |
 | `lt` | `do_upadku` | Iki nesėkmės | do potwierdzenia przez native speakera |
 | `lt` | `asekuracja` | Pagalba ir saugumas | do potwierdzenia przez native speakera |
@@ -397,16 +408,19 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `lt` | `ledzwie` | apatinė nugaros dalis | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lt` | `zegarek` | laikrodis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lt` | `lokcie_waskie` | alkūnes siaurai | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `lt` | `lawka_skosna_glowa_w_dol` | suolas, pasvirusio galva žemyn | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `lv` | `seria` | Sērija | „sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia |
 | `lv` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `lv` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli. |
 | `lv` | `ledzwie` | lejasmugura | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lv` | `zegarek` | pulkstenis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lv` | `lokcie_waskie` | elkoņus šauri | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `lv` | `lawka_skosna_glowa_w_dol` | sols ar slīpumu uz leju | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `et` | `do_upadku` | Kuni väsimuseni | „väsimuseni” = do zmęczenia; do potwierdzenia |
 | `et` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `et` | `ledzwie` | alaselg | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `et` | `zegarek` | käekell | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `et` | `lawka_skosna_glowa_w_dol` | allapoole kaldu pink | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): allapoole kaldu pink czy negatiivne pink |
 | `uk` | `asekuracja` | Страхування | „страхування” bywa ubezpieczeniem; w siłowniach też „страховка”/„спотінг” — do potwierdzenia |
 | `uk` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `uk` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
@@ -414,6 +428,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `uk` | `jednostka_dystansu_yd` | ярд | Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026) |
 | `uk` | `zegarek` | годинник | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `uk` | `lokcie_waskie` | лікті вузько | O łokciach w wąskim wyciskaniu i prostowaniu: „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `uk` | `lawka_skosna_glowa_w_dol` | лава зі зворотним нахилом | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): лава зі зворотним нахилом (do potwierdzenia) |
 | `es` | `zegarek` | reloj | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `es-419` | `zegarek` | reloj | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `pt` | `zakres_powtorzen` | gama de repetições | w Portugalii „intervalo” = przerwa między seriami, więc „gama”; do potwierdzenia przez native speakera |
@@ -427,13 +442,18 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `it` | `zakres_powtorzen` | range di ripetizioni | „range” to potoczne w siłowni; „intervallo” bywa przerwą — do potwierdzenia |
 | `it` | `zegarek` | orologio | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `nl` | `zegarek` | horloge | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `nl` | `lawka_skosna_glowa_w_dol` | declinebank | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): declinebank czy afhellende bank |
 | `sv` | `zegarek` | klocka | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `sv` | `lawka_skosna_glowa_w_dol` | lutande bänk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lutande bänk z dopiskiem o głowie czy declinebänk |
 | `da` | `ledzwie` | lænd | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `da` | `zegarek` | ur | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `da` | `lawka_skosna_glowa_w_dol` | skråbænk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbænk czy decline-bænk |
 | `nb` | `zegarek` | klokke | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `nb` | `lawka_skosna_glowa_w_dol` | skråbenk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbenk czy declinebenk |
 | `fi` | `do_upadku` | Uupumukseen | do potwierdzenia przez native speakera |
 | `fi` | `zegarek` | kello | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `fi` | `lokcie_waskie` | kyynärpäät kapeasti | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `fi` | `lawka_skosna_glowa_w_dol` | alaviistopenkki | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): alaviistopenkki czy laskeva penkki |
 | `tr` | `do_upadku` | Tükenişe kadar | do potwierdzenia przez native speakera |
 | `tr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `tr` | `zegarek` | saat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
@@ -444,6 +464,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `el` | `ledzwie` | μέση | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `el` | `jednostka_masy_kg` | κιλά | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Grecki: „κιλά” (pełne słowo) czy „kg”? |
 | `el` | `zegarek` | ρολόι | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `el` | `lawka_skosna_glowa_w_dol` | αρνητικός πάγκος | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): αρνητικός πάγκος czy πάγκος με κλίση προς τα κάτω |
 | `id` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `id` | `zegarek` | jam tangan | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `ms` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |

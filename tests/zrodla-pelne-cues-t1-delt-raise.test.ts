@@ -134,8 +134,8 @@ describe('T1 delt_raise: poprawki po recenzji L-047 (04.11.2026)', () => {
     expect(pl['urow.height']).not.toMatch(/Unoś łokcie/); expect(en['urow.height']).toMatch(/shoulder height/);
     expect(pl['ur.height']).toBeUndefined(); expect(en['ur.height']).toBeUndefined();
     for (const l of ['de', 'fr', 'ja', 'cs', 'es']) { const d = json(`lib/cues/text/${l}.json`); expect([l, typeof d['urow.height'], d['ur.height']]).toEqual([l, 'string', undefined]); }
-    expect(Object.entries(CUE_FULL.exercises).filter(([, e]) => e.tips.some(r => r.c === 'urow.height')).length).toBe(7);
-    for (const [k, e] of Object.entries(CUE_FULL.exercises)) expect([k, e.tips.some(r => r.c === 'ur.height')]).toEqual([k, false]);
+    expect(Object.entries(CUE_FULL.exercises).filter(([, e]) => (e.tips ?? []).some(r => r.c === 'urow.height')).length).toBe(7);
+    for (const [k, e] of Object.entries(CUE_FULL.exercises)) expect([k, (e.tips ?? []).some(r => r.c === 'ur.height')]).toEqual([k, false]);
     const ISSA = CUE_FULL.exercises['Upright Row (sztanga)'].tips.find(r => r.c === 'urow.height')!;
     expect(ISSA.s.some(([, at]) => /shoulder height/.test(at))).toBe(true); expect(ISSA.s.some(([, at]) => /jak najwyżej/.test(at))).toBe(true);
   });
