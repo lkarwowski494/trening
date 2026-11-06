@@ -35,11 +35,15 @@ start=$(date +%s)
 [ -n "$refy" ] || refy="$(git rev-parse HEAD) - -
 "
 # ZB-041 G4 (04.11.2026): dla wypychanej gałęzi baza dokumentów może być też origin/<gałąź> z zielonym tests.yml (--galaz).
+# Pętla w $(…) woła funkcję zamiast mieć własne `case`: bash 3.2 (/bin/sh na macOS) liczy nawias `)` wzorca case wewnątrz $(…) jako koniec podstawienia → błąd składni (06.11.2026, docs/40 lekcja o buildzie TestFlight 1.0.1 na macOS).
+znacznik_dla() { # $1 = lokalny sha, $2 = zdalny ref
+  case "$2" in refs/heads/*) galaz="${2#refs/heads/}" ;; *) galaz="" ;; esac
+  if [ -n "$galaz" ]; then node scripts/verify-znacznik.mjs --sprawdz "$1" --galaz "$galaz" >&2
+  else node scripts/verify-znacznik.mjs --sprawdz "$1" >&2; fi
+}
 bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha zdalny_ref _; do
   [ -n "$lokalny_sha" ] || continue
-  case "$zdalny_ref" in refs/heads/*) galaz="${zdalny_ref#refs/heads/}" ;; *) galaz="" ;; esac
-  if [ -n "$galaz" ]; then node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" --galaz "$galaz" >&2 || echo "$lokalny_sha"
-  else node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" >&2 || echo "$lokalny_sha"; fi
+  znacznik_dla "$lokalny_sha" "$zdalny_ref" || echo "$lokalny_sha"
 done)
 if [ -n "$bez_znacznika" ]; then
   echo "" >&2

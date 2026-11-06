@@ -300,6 +300,18 @@ describe('zależności i konfiguracja natywna', () => {
     expect(pkg.scripts['check:licenses']).toBe('node scripts/licenses.mjs --check'); expect(pkg.scripts.verify).toContain('npm run check:licenses');
     expect(require('child_process').execFileSync('node', ['scripts/licenses.mjs', '--check'], { cwd: root }).toString()).toMatch(/^licencje: OK/);
   });
+  test('06.11.2026 (build TestFlight 1.0.1 na macOS): lista licencji nie zależy od platformy maszyny — pakiety z os/cpu w package-lock (fsevents, lightningcss-*, binarki narzędzi) mają wpis bez notek z plików i bez roli źródła treści licencji', () => {
+    const lock = JSON.parse(readFileSync(join(root, 'package-lock.json'), 'utf8')).packages as Record<string, { version?: string; os?: string[]; cpu?: string[] }>;
+    const gen = readFileSync(join(root, 'lib/licenses.generated.ts'), 'utf8');
+    const lista = JSON.parse(/LICENSES[^=]*= (\[.*\]);\n/.exec(gen)![1]) as [string, string, string, string[]][];
+    const teksty = JSON.parse(/LICENSE_TEXTS[^=]*= (\{.*\});\n/.exec(gen)![1]) as Record<string, { from: string }>;
+    const platformowe = new Set(Object.entries(lock).filter(([k, e]) => k && (e.os || e.cpu)).map(([k]) => k.slice(k.lastIndexOf('node_modules/') + 13)));
+    const wpisy = lista.filter(r => platformowe.has(r[0]));
+    expect(wpisy.length).toBeGreaterThan(10);
+    for (const r of wpisy) expect([r[0], r[3]]).toEqual([r[0], []]);
+    for (const t of Object.values(teksty)) expect(platformowe.has(t.from)).toBe(false);
+    expect(readFileSync(join(root, 'scripts/licenses.mjs'), 'utf8')).toMatch(/platformowy = Boolean\(e\.os \|\| e\.cpu\)/);
+  });
   test('NAT-07: ekran startowy z wariantem ciemnym (tło jak motyw ciemny), martwy moduł ExtensionStorage poza autolinkowaniem', () => {
     const app = JSON.parse(readFileSync(join(root, 'app.json'), 'utf8')); const sp = app.expo.plugins.find((p: unknown) => Array.isArray(p) && p[0] === 'expo-splash-screen')[1];
     expect(sp.dark.backgroundColor).toBe(require('../lib/theme').dark.bg); expect(sp.backgroundColor).toBe(require('../lib/theme').light.bg); /* M3 (STOP E3, docs/18): tło startu = bg z tokenów */

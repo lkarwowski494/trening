@@ -1,7 +1,7 @@
 /* L-009 (decyzja właściciela 21.10.2026): hak pre-push w repo (lint + check:pochodne, wcześniej check:readme + check:matrix), instalowany przez `prepare`,
    plus krok „sprawdź wynik tests.yml po wypchnięciu” w poleceniach dla agentów, które wypychają. Sprawdzamy hak na prawdziwym git push
    (także z worktree), z podstawionym `npm`, żeby nie uruchamiać lintu w teście. */
-import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from 'fs';
+import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, statSync, symlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { spawnSync } from 'child_process';
@@ -15,7 +15,8 @@ const hakTekst = () => readFileSync(HAK, 'utf8');
 const bezKomentarzy = (s: string) => s.split('\n').filter(l => !/^\s*#/.test(l) && !/^\s*echo /.test(l)).join('\n'); /* bez komentarzy i komunikatów (echo) */
 
 const tmp: string[] = [];
-const nowyKatalog = (p: string) => { const d = mkdtempSync(join(tmpdir(), p)); tmp.push(d); return d; };
+/* macOS: tmpdir() to /var/folders → symlink do /private/var; Node rozwiązuje import.meta.url przez realpath, więc strażnik „uruchomiony jako skrypt” (resolve(argv[1]) === ścieżka modułu) w kopiach skryptów milczy (06.11.2026, docs/40 lekcja o buildzie TestFlight 1.0.1 na macOS) — katalogi próbne zawsze po realpath. */
+const nowyKatalog = (p: string) => { const d = mkdtempSync(join(realpathSync(tmpdir()), p)); tmp.push(d); return d; };
 afterAll(() => { for (const d of tmp) rmSync(d, { recursive: true, force: true }); });
 
 const GIT_ENV = { GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@example.invalid', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@example.invalid' };
@@ -74,6 +75,18 @@ describe('hak pre-push — plik (L-009)', () => {
     expect(hakTekst().startsWith('#!/bin/sh\n')).toBe(true);
     expect(spawnSync('sh', ['-n', HAK], { encoding: 'utf8' }).status).toBe(0);
     expect(bezKomentarzy(hakTekst())).not.toMatch(/\[\[|\bfunction\b|<<<|\bsource\b|\bshopt\b/); /* bez składni bash */
+  });
+  test('06.11.2026 (build TestFlight 1.0.1, macOS): w podstawieniu $(…) nie ma `case` — bash 3.2 (/bin/sh na macOS) liczy `)` wzorca jako koniec podstawienia i `sh -n` kończy kodem 2', () => {
+    /* liczymy nawiasy tak naiwnie jak bash 3.2 (parse_matched_pair); `$((` (arytmetyka) pomijamy */
+    const t = bezKomentarzy(hakTekst()); const podstawienia: string[] = [];
+    for (let i = t.indexOf('$('); i >= 0; i = t.indexOf('$(', i + 1)) {
+      if (t[i + 2] === '(') continue;
+      let glebia = 0; let j = i + 1;
+      for (; j < t.length; j++) { if (t[j] === '(') glebia++; else if (t[j] === ')' && --glebia === 0) break; }
+      podstawienia.push(t.slice(i, j + 1));
+    }
+    expect(podstawienia.length).toBeGreaterThan(3);
+    for (const p of podstawienia) expect(p).not.toMatch(/\bcase\b/);
   });
   test('uruchamia lint, check:pochodne (decyzja 8a, 28.10.2026) — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej', () => {
     const wywolaniaNpm = [...bezKomentarzy(hakTekst()).matchAll(/^\s*sprawdz\s+(\S+)/gm)].map(m => m[1]);

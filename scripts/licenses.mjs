@@ -29,7 +29,7 @@ while (queue.length) {
 }
 
 const LICENSE_FILE = /^(licen[cs]e|copying)([._-].*)?$/i; /* także LICENSE_FONT (IBM Plex, OFL-1.1) */
-const licenseFiles = dir => { try { return readdirSync(join(root, dir)).filter(f => LICENSE_FILE.test(f)).sort(); } catch { return []; } };
+const licenseFiles = dir => { if (!dir) return []; try { return readdirSync(join(root, dir)).filter(f => LICENSE_FILE.test(f)).sort(); } catch { return []; } };
 const COPY = /^\s*(?:copyright\b|\(c\)\s*\d|©)/i;
 const PLACEHOLDER = /<[^>]+>|\[[^\]]*(?:yyyy|year|name)[^\]]*\]|copyright (?:notice|holders?|owner)|copyright and license|^\s*copyright\s*$/i;
 const clean = s => s.replace(/\s+/g, ' ').trim();
@@ -42,9 +42,12 @@ function copyrights(dir, pkgJson) {
 const name = k => k.slice(k.lastIndexOf('node_modules/') + 'node_modules/'.length);
 const rows = [];
 for (const [k, e] of seen) {
-  let pj = null; try { pj = JSON.parse(readFileSync(join(root, k, 'package.json'), 'utf8')); } catch {}
+  /* 06.11.2026 (build TestFlight 1.0.1 na macOS): pakiety z `os`/`cpu` w package-lock (binarki narzędzi dla jednej platformy: fsevents, lightningcss-*, @expo/modules-macros-*) są zainstalowane tylko na pasującej
+   * platformie — lista z ich plików LICENSE zależałaby od maszyny (Linux ≠ macOS, `--check` czerwony na runnerze macOS). Z nich bierzemy wyłącznie wpis z package-lock (nazwa, wersja, licencja), nie pliki. */
+  const platformowy = Boolean(e.os || e.cpu);
+  let pj = null; if (!platformowy) try { pj = JSON.parse(readFileSync(join(root, k, 'package.json'), 'utf8')); } catch {}
   const lic = e.license ?? (typeof pj?.license === 'string' ? pj.license : Array.isArray(pj?.licenses) ? pj.licenses.map(x => x.type ?? x).join(' OR ') : 'UNKNOWN');
-  rows.push({ n: name(k), v: e.version ?? pj?.version ?? '', l: lic, c: copyrights(k, pj), dir: k });
+  rows.push({ n: name(k), v: e.version ?? pj?.version ?? '', l: lic, c: platformowy ? [] : copyrights(k, pj), dir: platformowy ? null : k });
 }
 rows.sort((a, b) => (a.n < b.n ? -1 : a.n > b.n ? 1 : a.v < b.v ? -1 : a.v > b.v ? 1 : 0));
 const uniq = []; for (const r of rows) { const last = uniq[uniq.length - 1]; if (last && last.n === r.n && last.v === r.v) continue; uniq.push(r); }
