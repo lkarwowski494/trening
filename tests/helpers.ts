@@ -1,6 +1,7 @@
 import * as store from '@/lib/store';
 import { seedState, type State, type Template, type Workout, type WSet, type Band } from '@/lib/seed';
-import { lang, type Lang } from '@/lib/i18n';
+import { lang, upper, type Lang } from '@/lib/i18n';
+import { fmtWeekdayShort, fmtMonthShort } from '@/lib/calendar';
 import { demoTemplates } from './fixtures/demo-templates';
 
 declare global { // eslint-disable-next-line no-var
@@ -8,7 +9,7 @@ declare global { // eslint-disable-next-line no-var
   // eslint-disable-next-line no-var
   var __kv: Map<string, string>; var __dbFail: boolean; var __locales: { languageCode: string; languageTag: string }[]; var __alerts: { title: string; msg?: string; buttons?: { text: string; onPress?: (v?: string) => void; style?: string }[]; prompt?: boolean; def?: string }[]; var __notifications: unknown[]; var __cancelled: string[]; var __la: unknown[];
   // eslint-disable-next-line no-var
-  var __voice: { spoken: [string, string][]; stops: number; headphones: boolean; hasVoice: boolean }; /* 0.20: atrapa modułu głosu (tests/setup.js) */
+  var __voice: { spoken: [string, string][]; stops: number; headphones: boolean; hasVoice: boolean; quality: number }; /* 0.20: atrapa modułu głosu (tests/setup.js) */
   // eslint-disable-next-line no-var
   var __iap: any; var __review: { available: boolean; requested: number; fail: boolean }; /* 0.17.0: makiety expo-iap i expo-store-review (tests/setup.js) */
 }
@@ -63,4 +64,11 @@ export function pinDate(iso: string): () => void {
   }
   (globalThis as { Date: DateConstructor }).Date = Shifted as unknown as DateConstructor;
   return () => { (globalThis as { Date: DateConstructor }).Date = Real; };
+}
+
+/** Skróty dni tygodnia i miesięcy z Intl w bieżącym języku (pasek tygodnia, tablica „Pierwszy trening”; także wersaliki i bez kropki) — to nie teksty słownika, więc testy „bez polskich tekstów” i pseudolokalizacji je pomijają (05.11.2026). */
+export function intlDateAbbrevs(): Set<string> {
+  const out = new Set<string>();
+  for (let i = 0; i < 366; i += 1) { const d = new Date(2026, 0, 1 + i); for (const s of [fmtWeekdayShort(d), fmtMonthShort(d)]) { out.add(s); out.add(s.replace(/\.$/, '')); out.add(upper(s)); out.add(upper(s.replace(/\.$/, ''))); } }
+  return out;
 }

@@ -84,7 +84,7 @@ describe('„Jak w telefonie”: telefon z Japonii, Korei, Tajwanu, Hongkongu; c
 
 describe('ekran ćwiczenia: sekcja techniki w ja, ko, zh-Hant', () => {
   test.each([
-    ['ja', 'テクニック', 'よくある間違い'], ['ko', '자세', '흔한 실수'], ['zh-Hant', '技巧', '常見錯誤'],
+    ['ja', 'テクニック', 'What to avoid'], ['ko', '자세', 'What to avoid'], ['zh-Hant', '技巧', 'What to avoid'], /* 02.11.2026: nagłówek „Czego unikać” czeka na przekład (zestaw-przekladu-2026-10-23.json) — do tego czasu angielski w zastępstwie */
   ] as const)('%s: przycisk „%s”, wskazówki z lib/cues/text, nagłówek „%s”; nazwa ćwiczenia po angielsku', async (l, tech, mistakes) => {
     await renderApp(); S().settings.language = l; store.applyPrefs(); await flushAll(5);
     const ex = S().exercises.find(e => e.lib && e.libKey === 'Back Squat')!;

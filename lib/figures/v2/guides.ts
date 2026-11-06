@@ -5,26 +5,18 @@
  */
 import type { V2 } from './math';
 import { proj } from './draw';
-import { BODY } from './skeleton';
+import { SQUAT_GUIDES } from './overlay/squat';
+import { HINGE_GUIDES } from './overlay/hinge';
 import type { Frame, Shape, View } from './scene';
 
 /** Wielkość grota na końcach toru (cm rysunku). */
 export const TRAIL_ARROW = 4.2;
 export type GuideId = 'thighParallel' | 'plumbMidfoot' | 'kneeToe' | 'backLine';
-export type GuideDef = { id: GuideId; cue: string[]; views: View[]; build: (f: Frame, view: View) => Shape[] };
+export type GuideDef = { id: GuideId; cue: string[]; views: View[]; /** reguła z data/zrodla/figury-sens.json (rodziny, w której linia jest pokazana) — przy błędzie łamiącym jej grupę linia jest w kolorze błędu; brak = linia nigdy nie jest czerwona (reguła nie „ustalone” albo bez odpowiednika) */ rule?: string; build: (f: Frame, view: View) => Shape[] };
 
-const dash = (a: V2, b: V2, id: string): Shape => ({ k: 'line', a, b, w: 0.9, role: 'guide', dash: [3, 2.2], z: 4000, id });
-
-export const GUIDES: Record<GuideId, GuideDef> = {
-  /** „co najmniej do równoległego ud” (sq.depth): pozioma linia na wysokości kolana — na dole przysiadu uda leżą na niej. */
-  thighParallel: { id: 'thighParallel', cue: ['sq.depth'], views: ['side'], build: (f, v) => { const k = proj(f.sk.legs.R.knee, v), h = proj(f.sk.legs.R.hip, v); return [dash([Math.min(h[0], k[0]) - 14, k[1]], [Math.max(h[0], k[0]) + 14, k[1]], 'guideThigh')]; } },
-  /** „sztanga tuż przy piszczelach, nad środkiem stopy” (dl.feet): pionowa linia przez środek stopy. */
-  plumbMidfoot: { id: 'plumbMidfoot', cue: ['dl.feet'], views: ['side'], build: (f, v) => { const m = f.info.midfoot ? proj(f.info.midfoot, v) : null; return m ? [dash([m[0], 0], [m[0], 150], 'guidePlumb')] : []; } },
-  /** „kolana idą w linii palców stóp” (sq.kneesToes): pionowa linia przez palce każdej stopy (widok z przodu). */
-  kneeToe: { id: 'kneeToe', cue: ['sq.kneesToes'], views: ['front'], build: (f, v) => (['R', 'L'] as const).map(s => { const t = proj(f.sk.legs[s].toe, v), k = proj(f.sk.legs[s].knee, v); return dash([t[0], 0], [t[0], k[1] + 12], 'guideKnee' + s); }) },
-  /** „plecy proste (neutralne) przez cały ruch” (hinge.back): prosta od miednicy przez bark do głowy. */
-  backLine: { id: 'backLine', cue: ['hinge.back'], views: ['side'], build: (f, v) => { const p = proj(f.sk.pelvis, v), s = proj(f.sk.shoulderC, v); const d: V2 = [s[0] - p[0], s[1] - p[1]]; const L = Math.hypot(d[0], d[1]) || 1; const e = (BODY.trunk + 30) / L; return [dash([p[0] - d[0] * 0.25, p[1] - d[1] * 0.25], [p[0] + d[0] * e, p[1] + d[1] * e], 'guideBack')]; } },
-};
+/** Linie odniesienia z danych rodzin (overlay/<rodzina>.ts) — jedno miejsce złożenia; kolejność = kolejność rodzin. */
+const ALL_GUIDES = [...SQUAT_GUIDES, ...HINGE_GUIDES];
+export const GUIDES: Record<GuideId, GuideDef> = Object.fromEntries((['thighParallel', 'plumbMidfoot', 'kneeToe', 'backLine'] as GuideId[]).map(id => [id, ALL_GUIDES.find(g => g.id === id)])) as Record<GuideId, GuideDef>;
 
 /** Linie odniesienia, które wolno pokazać przy zestawie wskazówek ćwiczenia (id wskazówek własnych i ogólnych). */
 export function guidesFor(cueIds: Iterable<string>): GuideId[] {

@@ -157,7 +157,6 @@ const wszystkie = (): Trafienie[] => wczytaj().flatMap((p) => Object.entries(REG
 export const TRAFIENIA_POZA_MOBILNOSCIA: Record<string, { max: number; ocena: string }> = {
   'R6_palce_nie_slizgaja_sie|carry': { max: 7, ocena: 'PRAWDZIWE: marsz z ciężarem — palce suną po podłodze 9–52 cm (stopa „jeździ” zamiast kroków); do poprawy w rodzinie carry' },
   'R6_palce_nie_slizgaja_sie|lunge': { max: 10, ocena: 'PRAWDZIWE: tylna stopa wykroku suwa się 17–93 cm po podłodze; do poprawy w rodzinie lunge' },
-  'R6_palce_nie_slizgaja_sie|olympic': { max: 20, ocena: 'BRZEGOWE: przeskok stóp w rwaniu i podrzucie, ślizg 3,8–4,4 cm przy zmianie ustawienia; reguła o progu 2 cm jest dla olympic za ostra' },
   'R6_palce_nie_slizgaja_sie|glute_floor': { max: 3, ocena: 'FAŁSZYWE: noga robocza (kickback) dotyka podłogi palcami w ruchu, to nie podparcie' },
   'R6_palce_nie_slizgaja_sie|hip_abd_add': { max: 1, ocena: 'FAŁSZYWE: noga robocza przy podłodze, nie podparcie' },
   'R6_palce_nie_slizgaja_sie|leg_isolation': { max: 4, ocena: 'FAŁSZYWE: ugięcie nogi (stopa pracująca przy podłodze/podkładce), nie podparcie' },

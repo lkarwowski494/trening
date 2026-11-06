@@ -1,0 +1,28 @@
+[
+{"nr": 75, "cwiczenie": "Crunch", "stan": "komplet 3 — praktyka", "zdania": [
+ {"rola": "mis", "pl": "Szybkie, szarpane powtórzenia.", "en": "Jerking through fast reps.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/brzuszki-z-rekami-na-klatce-piersiowej", "miejsce": "Wskazówki", "cytat": "Ćwiczenie wykonuj powoli, z pełnym wyczuciem zaangażowanej grupy mięśniowej."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/crunches/", "miejsce": "Ruch", "cytat": "Staraj się kontrolować ruch, nie zaczynaj powtórzenia od zginania szyi i głowy i nie wypychaj brzucha do góry."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/108/spiecia-brzucha-lezac-brzuszki", "miejsce": "Poprawne wykonanie ćwiczenia", "cytat": "Ruch powinien być płynny."}]},
+ {"rola": "mis", "pl": "Ciągnięcie głowy rękami.", "en": "Pulling on your head with your hands.", "wniosek": ["wniosek", "<id setup>"], "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/crunches/", "miejsce": "Wskazówki", "cytat": "Nie ciągnij rękami za szyję."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/108/spiecia-brzucha-lezac-brzuszki", "miejsce": "Poprawne wykonanie ćwiczenia", "cytat": "Ramiona trzymaj na skroniach lub klatce piersiowej."}]},
+ {"rola": "mis", "pl": "Odrywanie stóp od podłogi.", "en": "Lifting your feet off the floor.", "uwaga": "opcjonalne; tylko gdy setup karty ma stopy na podłodze", "wniosek": ["wniosek", "<id setup>"], "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/brzuszki-z-rekami-na-klatce-piersiowej", "miejsce": "Wskazówki", "cytat": "Staraj się nie odrywać stóp od podłoża podczas wykonywania spięcia brzucha."}]}]},
+{"nr": 78, "cwiczenie": "Russian Twist", "stan": "komplet (mis) — praktyka", "zdania": [
+ {"rola": "mis", "pl": "Kołysanie się w przód i w tył.", "en": "Rocking back and forth.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/kettlebell/russian-twist", "miejsce": "Wskazówki", "cytat": "(cytat do sprawdzenia — parafraza: nie pozwól, by ciało kołysało się w przód i w tył)"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/russian-twist/", "miejsce": "Ruch", "cytat": "Utrzymuj stabilną pozycję reszty ciała."}]},
+ {"rola": "mis", "pl": "Przenoszenie ciężaru samymi rękami, bez skrętu tułowia.", "en": "Moving the weight with just your arms instead of turning your torso.", "wniosek": ["wniosek", "<id move>"], "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/kettlebell/russian-twist", "miejsce": "Wskazówki", "cytat": "(cytat do sprawdzenia — parafraza: skręcaj cały tułów, nie przenoś ciężaru samymi rękami)"},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/russian-twist/", "miejsce": "Ruch", "cytat": "Skręcaj tułów, dotykając ciężarem podłogi po prawej i lewej stronie."}]},
+ {"rola": "mis", "pl": "Uderzanie ciężarem o podłogę.", "en": "Banging the weight on the floor.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/russian-twist/", "miejsce": "Ruch", "cytat": "Nie uderzaj ciężarem o podłogę, trzymaj go blisko ciała."}]}],
+ "odrzucone": [{"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/660/przenoszenie-obciazenia-na-boki---russian-twist", "powod": "„Nie należy zbyt mocno rotować tułowia” — rozbieżne z R (dotykanie podłogi po bokach); pominięte"}]},
+{"nr": 77, "cwiczenie": "Pallof Press", "stan": "brak", "zdania": [], "zrodla_czesciowe": [{"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/pallof-press-na-wyciagu", "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"}], "odrzucone": [{"serwis": "R", "url": "https://centrumrespo.pl/atlas/pallof-press-with-power-band/", "powod": "klęk prosty z gumą — inna pozycja ciała; nieprzeczytana"}], "sprawdzone_bez_wyniku": ["WebSearch potreningu.pl, centrumrespo.pl, maniacmuscle.com, atlas.kulturystyka.pl: pallof press antyrotacja", "WebSearch maniacmuscle.com, potreningu.pl, atlas.kulturystyka.pl: pallof press anti-rotation"]},
+{"nr": 72, "cwiczenie": "Burpees", "stan": "komplet 3 — praktyka", "zdania": [
+ {"rola": "setup", "pl": "Zacznij w pozycji stojącej.", "en": "Start standing up.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/ogolne/burpees", "miejsce": "Pozycja wyjściowa", "cytat": "Pozycja stojąca, tułów wyprostowany."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/burpee/", "miejsce": "Pozycja wyjściowa", "cytat": "Zacznij z pozycji stojącej."},
+  {"serwis": "S", "url": "https://potreningu.pl/artykuly/odchudzanie/burpees-prosty-sposob-na-solidny-wycisk-5270", "miejsce": "opis wykonania (K. Żuralska, 03.04.2017)", "cytat": "Zaczynamy od pozycji stojącej."}]}]}
+]

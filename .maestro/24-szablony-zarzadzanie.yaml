@@ -15,7 +15,7 @@ name: Szablony — duplikat, archiwum, usuwanie, zapis zmian
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- podgląd szablonu: Duplikuj (kopia otwiera się jako nowy szablon) ---
 - tapOn: "More, tab.*"

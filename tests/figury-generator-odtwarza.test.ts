@@ -17,7 +17,6 @@ const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); }
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
 const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   core_floor: ['Superman', 'Crunch', 'Frog Sit-Ups', 'Janda Sit-Up', 'Oblique Crunches - On The Floor', 'Sit Up', 'Toe Touchers', 'Bicycle Crunch', 'Cross-Body Crunch', 'Scissor Kick'],
-  curl: ['Spider Curl', 'Spider Curl (sztanga)', /* ACG-012 31.10.2026 (ręczna poprawka pozy, generator do backlogu) */ 'Barbell Curl', 'EZ Bar Curl', 'Hammer Curl'],
   delt_raise: ['Straight Raises on Incline Bench'],
   calf_raise: [/* ACG-020 31.10.2026 (podest pod przodostopiem; generator do backlogu) */ 'Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise', 'Dumbbell Seated One-Leg Calf Raise'],
   forearm: ['Barbell Wrist Curl', 'Barbell Reverse Wrist Curl', 'Wrist Curl (hantle)', 'Reverse Wrist Curl (hantle)', 'One-Arm Dumbbell Wrist Curl', 'One-Arm Dumbbell Reverse Wrist Curl', 'Cable Wrist Curl'],
@@ -26,12 +25,13 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   leg_isolation: [/* ACG-019 31.10.2026 */ 'Seated Band Hamstring Curl'],
   mobility_stand: [/* ACG-013 31.10.2026 (figura na stopniu) */ 'Standing Gastrocnemius Calf Stretch'],
   pull_up: ['Gironda Sternum Chins', 'Chin Up', 'Mixed Grip Chin', 'Neutral Grip Pull Up', 'One Arm Chin-Up', 'Pull Up', 'Side To Side Chins', 'Gorilla Chin/Crunch'],
-  rotator_cuff: ['External Rotation (linki)', 'External Rotation with Band', 'Internal Rotation with Band', 'Cable Internal Rotation', 'Reverse Flyes With External Rotation'],
+  rotator_cuff: ['External Rotation (linki)', 'External Rotation with Band', 'Cable Internal Rotation', 'Reverse Flyes With External Rotation'],
   row: ['Lying T-Bar Row', 'Chest Supported Row', /* wyjątek nazwany 01.11.2026 (koordynator 1.1): karty Bent Over Row ×2 i T-Bar Row wróciły po recenzji v1, więc częsty błąd mis.roundBack ma opis i generator rysuje jego pozę, której nie ma w zatwierdzonym row.json; rodzina row v2 niewyświetlana — poza błędu wejdzie przez recenzję rodziny (fala 2) */ 'Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'T-Bar Row'],
   shrug: ['Middle Back Shrug'],
   thruster: ['Clean and Press'],
 };
-const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw'];
+const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl'];
+
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
   test.each(W_ZAKRESIE)('%s: generuj() = plik póz, każda poza ważna', (r) => { expect(skanDozwolonyKod1([r])).toEqual({ [r]: {} }); });

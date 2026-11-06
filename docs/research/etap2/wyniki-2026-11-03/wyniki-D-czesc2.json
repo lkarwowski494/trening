@@ -1,0 +1,39 @@
+[
+{"cwiczenie": "Preacher Curl", "stan": "komplet 3 – praktyka", "zdania": [
+ {"rola": "move", "pl": "Ugnij łokcie, unosząc hantle, potem powoli opuść je prawie do wyprostu rąk.", "en": "Curl the dumbbells up, then lower them slowly until your arms are almost straight.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/dumbbell-preacher-curl/", "cytat": "Po osiągnięciu pełnego zakresu zgięcia powoli wróć do pozycji wyjściowej."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/biceps/zginanie-ramion-z-hantlami-na-modlitewniku", "cytat": "Ramię opuszczaj do pełnego wyprostu, lecz nie pozwól na przeprost ramienia w łokciu."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-seated-preacher-curl/", "cytat": "Flex at the elbow and raise the dumbbell upward in a smooth arc without swinging."}]},
+ {"rola": "mis", "pl": "Odrywanie ramion od podpórki.", "en": "Lifting your upper arms off the pad.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/atlas-cwiczen/biceps/zginanie-ramion-z-hantlami-na-modlitewniku", "cytat": "Nie odrywaj łokci od pulpitu."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-seated-preacher-curl/", "cytat": "Lifting it off the bench reduces isolation and turns the rep sloppy."},
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/dumbbell-preacher-curl/", "cytat": "Reszta ciała powinna pozostać nieruchoma."},
+  {"serwis": "wniosek", "url": "", "cytat": "preacher.setup"}]}]},
+{"cwiczenie": "Standing Concentration Curl", "stan": "komplet 3 – praktyka", "zdania": [
+ {"rola": "setup", "pl": "Pochyl tułów w biodrach, plecy proste; ręka z hantlem zwisa w dół, drugą oprzyj o kolano.", "en": "Hinge forward with a flat back, let the dumbbell arm hang, and rest your other hand on your knee.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/bent-over-dumbbell-bicep-curl/", "cytat": "Pochyl się do przodu, zachowując naturalne krzywizny kręgosłupa (hip hinge)."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-hantlem-w-opadzie", "cytat": "Pozwól, aby ramię, które będzie wykonywać ćwiczenie, było swobodnie opuszczone do podłogi."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-bent-over-curl/", "cytat": "Start with the dumbbells below the shoulders and elbows extended."}]},
+ {"rola": "move", "pl": "Ugnij łokieć, unosząc hantel, potem powoli opuść.", "en": "Curl the dumbbell up, then lower it slowly.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/bent-over-dumbbell-bicep-curl/", "cytat": "Zegnij łokieć, dbając o to, by nie przesuwać go w żadnym kierunku."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-hantlem-w-opadzie", "cytat": "Następnie powolnym ruchem opuść przedramię."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-bent-over-curl/", "cytat": "Extend the elbows under control and resist gravity during the eccentric phase."}]},
+ {"rola": "mis", "pl": "Przesuwanie łokcia w trakcie uginania.", "en": "Letting your elbow drift as you curl.", "zrodla": [
+  {"serwis": "R", "url": "https://centrumrespo.pl/atlas/bent-over-dumbbell-bicep-curl/", "cytat": "Zegnij łokieć, dbając o to, by nie przesuwać go w żadnym kierunku."},
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-hantlem-w-opadzie", "cytat": "Tylko przedramiona są ruchome."},
+  {"serwis": "M", "url": "https://maniacmuscle.com/dumbbell-bent-over-curl/", "cytat": "Excessive elbow travel turns it into more of a front raise-curl hybrid."}]}]},
+{"cwiczenie": "Lying Close-Grip Bar Curl On High Pulley", "stan": "2 z 3", "zdania": [
+ {"rola": "setup", "pl": "Połóż się na ławce pod górnym wyciągiem, chwyć drążek podchwytem, ręce skierowane w górę.", "en": "Lie on a bench under a high pulley and take the bar underhand, arms pointing up.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-gryfem-wyciagu-gornego", "cytat": "Pozycja leżąca na ławeczce płaskiej."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/191/uginanie-przedramion-na-wyciagu-gornym-lezac-tylem-na-lawce", "cytat": "Chwyć drążek wyciągu górnego podchwytem na szerokość barków."}]},
+ {"rola": "move", "pl": "Ugnij łokcie, przyciągając drążek w stronę czoła, potem powoli wyprostuj ręce.", "en": "Curl the bar toward your forehead, then straighten your arms slowly.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-gryfem-wyciagu-gornego", "cytat": "wykonaj mocne ugięcie przedramion do momentu, aż gryf znajdzie się na wysokości czoła."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/191/uginanie-przedramion-na-wyciagu-gornym-lezac-tylem-na-lawce", "cytat": "Opuść drążek do czoła lub nieco powyżej."}]},
+ {"rola": "mis", "pl": "Rozchodzenie się łokci na boki.", "en": "Letting your elbows flare out.", "zrodla": [
+  {"serwis": "F", "url": "https://www.fabrykasily.pl/cwiczenia/na-biceps/zginanie-przedramion-z-gryfem-wyciagu-gornego", "cytat": "Nie szarp ciężaru. Nie odrywaj łokci."},
+  {"serwis": "S", "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/191/uginanie-przedramion-na-wyciagu-gornym-lezac-tylem-na-lawce", "cytat": "Nie można dopuszczać do rozchodzenia się łokci na zewnątrz."}]}]},
+{"cwiczenie": "Lying Cable Curl", "stan": "brak (1 z 3)", "zdania": [], "znalezione": [{"serwis": "M", "url": "https://maniacmuscle.com/cable-lying-biceps-curl/", "cytat": "Position yourself on the floor or a flat bench so the cable pulls directly toward your hands."}], "sprawdzone_bez_wyniku": ["F/S/R: 'uginanie przedramion leżąc na podłodze wyciąg dolny biceps'", "'uginanie przedramion leżąc wyciąg lying cable curl'", "https://centrumrespo.pl/atlas/kategoria/biceps/ str. 1-4"]},
+{"cwiczenie": "Lying Supine Dumbbell Curl", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["5 domen: 'uginanie przedramion z hantlami leżąc na ławce płaskiej tyłem lying dumbbell curl'", "maniacmuscle.com: 'dumbbell lying supine curl biceps flat bench'", "https://centrumrespo.pl/atlas/kategoria/biceps/ str. 1-4"]},
+{"cwiczenie": "Seated Close-Grip Concentration Barbell Curl", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["5 domen: 'uginanie przedramion ze sztangą siedząc łokcie oparte o uda wąski chwyt'", "maniacmuscle.com: 'barbell seated close grip concentration curl'"]},
+{"cwiczenie": "Standing Inner-Biceps Curl", "stan": "brak", "zdania": [], "sprawdzone_bez_wyniku": ["5 domen: 'inner biceps curl hantle na zewnątrz stojąc uginanie'", "https://maniacmuscle.com/category/arms/biceps/"]}
+]

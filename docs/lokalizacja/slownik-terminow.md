@@ -24,7 +24,6 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `powtorzenie` | powtórzenie | jedno pełne wykonanie ruchu w serii (ang. rep) |
 | `zakres_powtorzen` | zakres powtórzeń | przedział liczby powtórzeń w serii (np. 8–12); NIE przerwa i NIE zakres ruchu |
 | `zakres_ruchu` | zakres ruchu | amplituda ruchu w ćwiczeniu (ang. range of motion); NIE zakres powtórzeń |
-| `ciezar` | ciężar | obciążenie podnoszone w serii (kg/lb); NIE masa ciała |
 | `masa_ciala` | masa ciała | waga użytkownika (pomiary); także ćwiczenia z masą ciała |
 | `dociazenie` | dociążenie | dodatkowy ciężar do masy ciała (pas, kamizelka) |
 | `do_upadku` | do upadku | seria wykonywana do niemożności kolejnego powtórzenia (oznaczenie F) |
@@ -81,6 +80,21 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `telefon_es419` | telefon (urządzenie użytkownika) | telefon użytkownika; w es-419 potocznie „celular” (jak w aplikacji na telefonie), w es zostaje „teléfono” |
 | `rysunek_zdanie` | rysunek (w zdaniu pod rysunkiem ćwiczenia: „Rysunek pokazuje ruch w jedną stronę…”) | rysunek techniki ćwiczenia w zdaniu opisującym, co pokazuje (recenzja lokalizacji 02.11.2026, pull_up C); słowo ma być takie samo jak w pozostałych podpisach rysunku w tym języku; w ms „Animasi” (rysunek jest animowany, jak w opisie sklepu), nie „lukisan” (obraz malowany) |
 | `nastepne_powtorzenie` | następne powtórzenie (w zdaniu pod rysunkiem ćwiczenia: „w kolejnym powtórzeniu…”) | kolejne powtórzenie w tej samej serii (nie „następnym razem”, nie „następna liczba”); recenzja lokalizacji 02.11.2026, pull_up C |
+| `nozyce` | nożyce (pozycja split w dwuboju) | jedna nazwa pozycji split w rwaniu, zarzucie i podrzucie (jedna stopa w przód, druga w tył); „wykrok” to osobne ćwiczenie (lunge) i nie opisuje pozycji przyjęcia sztangi. Dotyczy wskazówek dwuboju; pozostałe 33 języki wg przekładu z PL/EN (do potwierdzenia przez native speakerów) |
+| `rack_kettlebell` | kettlebelle oparte przy barkach (pozycja rack) | pozycja kettlebelli (lub hantli) przy barkach i klatce; jedno brzmienie w całej partii siły i mocy: po polsku „oparte przy barkach”, bez obcego „pozycja rack” ani „w pozycji przy barku”; po angielsku „racked” |
+| `szerokosc_stop` | stopy na szerokość bioder do barków | zakres szerokości ustawienia stóp: jedna forma we wszystkich wskazówkach („na szerokość bioder do barków”, jak w gob.stance i dl.feet); po angielsku „hip- to shoulder-width” |
+| `core_en` | napnij tułów / brzuch (core) | napięcie tułowia przed ruchem; po angielsku na siłowni „core” (nie podręcznikowe „trunk”). Dotyczy wskazówek techniki; pozostałe języki wg przekładu z PL/EN |
+| `jak_do_en` | jak do … (kalka „like for a …”) | polskie „jak do wyskoku / do przysiadu / do martwego ciągu” po angielsku to „like a squat”, „set up like a deadlift”, „jumping stance” — nie kalka „like for a …” |
+| `ciezar` | ciężar | obciążenie podnoszone w serii (kg/lb); NIE masa ciała |
+| `tasma_rozciaganie` | taśma (do rozciągania) | taśma lub pasek do rozciągania, ręcznik; NIE pas obciążeniowy (w aplikacji „pas” to sprzęt). Dotyczy wskazówek mobilności; pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów) |
+| `krazenia` | krążenia (stawów) | ruch koliste w stawie (stopa, ramiona, nadgarstki), tak jak mówi się na sali: „krążenia”; NIE „zataczanie kół” |
+| `podwijanie_miednicy` | podwijanie miednicy | cofanie miednicy pod siebie (zaokrąglenie dołu pleców); potocznie „podwijać miednicę”, jak w hang.ribs |
+| `biodra` | biodra (część ciała; staw biodrowy) | biodra jako miejsce ruchu (wyprost, cofnięcie bioder, szerokość stóp „na szerokość bioder”); w ru/uk „бёдра”/„стегна” znaczą uda, w el „γοφοί” to potoczne „boki”; tam używamy „таз”/„таз”/„ισχία” (a szerokość stóp: „ширина таза”, „άνοιγμα λεκάνης”), jak w pozostałych wskazówkach tych języków |
+| `uchwyt` | uchwyt (część sprzętu, ang. handle) | element, który trzymasz w dłoni na wyciągu, gumie albo sankach (ang. handle); NIE chwyt (sposób trzymania), NIE pięść, NIE nadgarstek |
+| `nachwyt` | nachwyt (dłonie od góry, ang. overhand) | chwyt z dłońmi skierowanymi w dół; potoczna nazwa jak w innych kartach (martwy ciąg, podciąganie), bez terminu z podręcznika |
+| `uda` | uda (część ciała) | uda jako miejsce przy którym zawisa ciężar (przed udami, przy udach, do ud); NIE nogi ani stopy |
+| `funkcja_aplikacji` | funkcja aplikacji | funkcja (feature) aplikacji, np. opis kafelka Przewodnik „Co gdzie jest i jak działa”; NIE funkcja matematyczna |
+| `lawka_skosna_glowa_w_dol` | ławka skośna głową w dół (ang. decline bench) | ławka z głową niżej niż biodra (decline bench); NIE ławka skośna głową w górę (incline), NIE ławka płaska |
 
 ## Terminy zalecane (rdzeń)
 
@@ -128,6 +142,20 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 
 | język | pojęcie | zakazane | powód |
 |---|---|---|---|
+| `pl` | `nozyce` | wykrok | pozycja split w dwuboju to „nożyce”; „wykrok” to osobne ćwiczenie (lunge) i myli się z pozycją przyjęcia sztangi |
+| `pl` | `rack_kettlebell` | pozycj\w*\s+rack\|(?<![\p{L}])rack(?![\p{L}])\|w\s+pozycji\s+przy\s+barku | pozycję kettlebelli opisuj jednym brzmieniem „oparte przy barkach” (bez „pozycja rack” i „w pozycji przy barku”) |
+| `pl` | `szerokosc_stop` | między\s+szerokością\|mniej\s+więcej\s+od\s+szerokości\|bioder\s+a\s+barków\|do\s+szerokości\s+barków | zakres szerokości stóp zapisuj jedną formą „na szerokość bioder do barków” |
+| `pl` | `ciezar` | (?<![\p{L}])(przenieś\|przenoś\|przenosz\w*\|przeniesienie)\s+ciężar\w*(?![\p{L}])\|ciężar\w*\s+ciała | w aplikacji „ciężar” to obciążenie na sztandze/hantlach, nie masa ciała; przeniesienie masy ciała opisz innym słowem (np. „pochyl się do ściany”) |
+| `pl` | `tasma_rozciaganie` | (?<![\p{L}])pas(a\|em\|ie\|y\|ów)?(?![\p{L}]) | w aplikacji „pas” to pas obciążeniowy; do rozciągania mówi się „taśma” |
+| `pl` | `krazenia` | zataczaj\|(?<![\p{L}])koła(?![\p{L}]) | na sali mówi się „krążenia / krąż”, nie „zataczaj koła” |
+| `pl` | `podwijanie_miednicy` | odchylani\w*\s+miednicy\|tyłopochyl | język podręcznika; w siłowni mówi się „podwijać miednicę” |
+| `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
+| `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
+| `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
+| `en` | `jak_do_en` | like\s+for\s+(a\|an\|the)\s | kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift” |
+| `en` | `ciezar` | (?<![\p{L}])shift(ing)?\s+(your\s+)?weight(?![\p{L}]) | w aplikacji „weight” to obciążenie, nie masa ciała; przeniesienie masy ciała opisz ruchem („lean toward the wall”) |
+| `en` | `tasma_rozciaganie` | (?<![\p{L}])(belt\|sash)s?(?![\p{L}]) | „belt” to pas obciążeniowy; do rozciągania „strap” |
+| `en` | `podwijanie_miednicy` | posterior\s+pelvic\s+tilt\|tilt(ing)?\s+(your\s+)?pelvis\s+back | język podręcznika; potocznie „tuck your pelvis” |
 | `cs` | `przerwa` | přestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |
@@ -152,17 +180,22 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ro` | `faza_pauza` | pauz | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
 | `ro` | `faza_pauza` | întrerup | czasownik/przycisk przerwania, a faza to zatrzymanie w pozycji |
 | `ro` | `faza_pauza` | oprire | brzmi jak przycisk stop, a nie zatrzymanie w pozycji |
+| `ro` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `ro` | `faza_ruchu` | ^\s*trac[țţ]iun[ei]?\s*$ | „tracțiuni” to w ro nazwa ćwiczenia (podciąganie na drążku); faza animacji to rzeczownik odczasownikowy jak Coborâre, Împingere (przegląd API 31.10.2026) |
 | `bg` | `przerwa_robocza` | работна почивка | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `bg` | `nachwyt` | пронир | podręcznikowe; w pozostałych kartach jest „прав хват” |
 | `hr` | `przerwa` | pauz | „pauza” to pauza treningu, nie przerwa między seriami (odmor) |
 | `hr` | `przerwa_robocza` | radni odmor\|radna pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `hr` | `faza_pauza` | pauziraj | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
+| `hr` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `sl` | `przerwa` | odmor | „odmor” znaczy urlop/wakacje; między seriami „počitek” |
 | `sl` | `przerwa_robocza` | delovni počitek | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `sl` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `sl` | `plan_subskrypcji` | načrt | „Načrt” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Paket” |
 | `sr` | `przerwa` | пауз | „пауза” to pauza treningu, nie przerwa między seriami (одмор) |
 | `sr` | `przerwa_robocza` | радни одмор\|радна пауза | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sr` | `faza_pauza` | паузирај | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
+| `sr` | `kettlebell` | kettlebell | serbski tekst jest cyrylicą; w kartach jest „кетлбел”, nie łacinka |
 | `lt` | `przerwa` | pertrauk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lt` | `przerwa_robocza` | darbinis poilsis | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lt` | `faza_pauza` | pristabd | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
@@ -170,11 +203,13 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `lv` | `przerwa` | starpbr[īi]\|pārtraukum | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lv` | `przerwa_robocza` | darba atpūta | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lv` | `faza_pauza` | aptur | czasownik/przycisk zatrzymania, a faza jest rzeczownikiem |
+| `lv` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `et` | `przerwa` | vaheaeg\|vahetund | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `et` | `przerwa_robocza` | tööpaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `et` | `pauza_treningu` | paus(?!eeri) | „paus” to przerwa między seriami; pauza treningu to „peata” |
 | `et` | `faza_pauza` | paus | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
 | `et` | `faza_pauza` | peat | czasownik/przycisk zatrzymania, a faza to zatrzymanie w pozycji |
+| `et` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `et` | `plan_subskrypcji` | plaan | „Plaan” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Pakett” |
 | `et` | `plan_dozywotni` | igavene | „Igavene” znaczy wieczny (religijnie/poetycko); plan bez terminu to „eluaegne” |
 | `uk` | `przerwa` | перерв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
@@ -182,6 +217,8 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `uk` | `faza_pauza` | призупин | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
 | `uk` | `seria` | серія | „серія” to odcinek; podejście to „підхід” |
 | `uk` | `zakres_powtorzen` | інтервал | „інтервал” to przerwa/trening interwałowy; zakres to „діапазон” |
+| `uk` | `biodra` | (?<![\p{L}])стег(на\|он\|нами\|нах\|нам)(?![\p{L}]) | „стегна” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
+| `uk` | `uda` | (?<![\p{L}])(перед\|до\|біля) ног(ами\|ам\|и\|ою\|і)?(?![\p{L}])\|біля ніг | „ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup) |
 | `es` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
@@ -191,12 +228,15 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `es-419` | `trening` | entrenos?(?![\p{L}]) | „entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento” |
 | `es-419` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
 | `es-419` | `telefon_es419` | teléfono | w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026) |
+| `es-419` | `uchwyt` | (?<![\p{L}])maneral(es)?(?![\p{L}]) | jedno słowo w całym pliku: uchwyt wyciągu to „agarre”, nie „maneral” (decyzja koordynatora 04.11.2026); „mangos” zostaje tylko przy sankach (sled.pushGrip) |
 | `pt` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `pt` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `pt` | `zakres_powtorzen` | intervalo | „intervalo” w siłowni to przerwa między seriami; zakres to „gama” |
 | `pt` | `zakres_ruchu` | intervalo | „intervalo” to przerwa; zakres ruchu to „amplitude” |
+| `pt` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `pt` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
+| `pt` | `uchwyt` | (?<![\p{L}])punhos?(?![\p{L}]) | „punho” to pięść albo mankiet (w pt-BR nadgarstek), nie uchwyt wyciągu; uchwyt to „pega” |
 | `pt-BR` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt-BR` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `pt-BR` | `zakres_powtorzen` | intervalo | w Brazylii „intervalo” to przerwa między seriami (i przerwa w pracy/szkole); zakres to „faixa” |
@@ -220,6 +260,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `it` | `zakres_powtorzen` | intervall | „intervallo” bywa przerwą; zakres powtórzeń to „range” |
 | `it` | `zakres_ruchu` | intervall | „intervallo” bywa przerwą; zakres ruchu to „escursione” |
 | `it` | `szablon` | modell | w włoskich siłowniach „scheda” |
+| `it` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `nl` | `przerwa` | pauze | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nl` | `przerwa_robocza` | werkpauze | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `nl` | `faza_pauza` | pauzeren | bezokolicznik to przycisk, a faza jest rzeczownikiem |
@@ -234,6 +275,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `da` | `przerwa_robocza` | arbejdspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `da` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `da` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sæt” |
+| `da` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `nb` | `przerwa` | friminutt\|lunsj | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nb` | `przerwa_robocza` | arbeidspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `nb` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
@@ -244,21 +286,29 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `tr` | `przerwa_robocza` | iş molası\|çalışma molası | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `tr` | `faza_pauza` | duraklat | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `tr` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to seria/szybki; podejście to „set” |
+| `tr` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `tr` | `lawka_skosna_glowa_w_dol` | (?<!ters )(?<![\p{L}])eğimli sehpa | samo „eğimli sehpa” to też ławka skośna głową w górę (incline); przy głowie w dół ma być „ters eğimli sehpa” (recenzja T1b, 05.11.2026) |
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `el` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
 | `el` | `animacja_ruchu` | κινούμενα σχέδια | „κινούμενα σχέδια” znaczy kreskówki / film animowany, nie rysunek ruchu ćwiczenia |
 | `el` | `wyciskanie_lezac` | πιέσεις\s+πάγκου | „πιέσεις πάγκου” to kalka; w el zalecane bench press, tak mówi się na siłowni |
 | `el` | `martwy_ciag` | (?<![\p{L}])(άρσεις\|νεκρή\s+άρση)(?![\p{L}]) | „άρσεις” to ogólne podnoszenia, „νεκρή άρση” to kalka; w el zalecane deadlift |
+| `el` | `biodra` | (?<![\p{L}])γοφ(οί\|ούς\|ών\|οίς)(?![\p{L}]) | „γοφοί” to potoczne „boki”; biodra w ruchu nazywaj „ισχία”, szerokość stóp „άνοιγμα λεκάνης” (jak w pozostałych wskazówkach) |
 | `id` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „istirahat” |
 | `id` | `przerwa_robocza` | istirahat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `id` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to serial; podejście to „set” |
+| `id` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `id` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
+| `id` | `nachwyt` | (?<![\p{L}])overhand(?![\p{L}]) | w pozostałych kartach jest „genggaman atas”, nie angielskie „overhand” |
 | `ms` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „rehat” |
 | `ms` | `przerwa_robocza` | rehat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ms` | `seria` | (?<![\p{L}])siri(?![\p{L}]) | „siri” to serial; podejście to „set” |
+| `ms` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `ms` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ms` | `animacja_ruchu` | lukisan pergerakan | termin marketingowy w opisie sklepu to „animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `ms` | `rysunek_zdanie` | lukisan | rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
+| `ms` | `funkcja_aplikacji` | (?<![\p{L}])fungsi(?![\p{L}]) | „fungsi” to funkcja matematyczna/techniczna; funkcja aplikacji to „ciri” (czasownik „berfungsi” = działa jest poprawny) |
 | `vi` | `przerwa` | giải lao | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `vi` | `przerwa_robocza` | nghỉ giải lao\|nghỉ làm việc | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `vi` | `pozycja_posrednia` | đang diễn ra | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
@@ -268,6 +318,9 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ru` | `seria` | серия | „серия” to odcinek/seria produktów; podejście to „подход” |
 | `ru` | `zakres_powtorzen` | интервал | „интервал” to przerwa/trening interwałowy; zakres to „диапазон” |
 | `ru` | `pozycja_posrednia` | в процессе | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
+| `ru` | `biodra` | (?<![\p{L}])(бёдр\p{L}*\|бёдер)(?![\p{L}]) | „бёдра” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
+| `ru` | `uda` | (?<![\p{L}])(перед\|к\|у) ног(ами\|ам\|и\|ой\|е)?(?![\p{L}]) | „ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup) |
+| `ru` | `lawka_skosna_glowa_w_dol` | наклонн\p{L}*\s+скамь | „наклонная скамья” to też ławka skośna głową w górę (incline); ławka głową w dół to „скамья с обратным наклоном” (recenzja T1b, 05.11.2026) |
 | `ja` | `przerwa` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni między seriami mówi się インターバル |
 | `ja` | `przerwa_robocza` | 仕事の\|休憩 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ja` | `przerwa_po_rozgrzewce` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni インターバル |
@@ -276,6 +329,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `lokcie_otwarte` | 肘を広げ | o łokciach przy wyciskaniu mówi się 開く (otwierać), nie 広げる (rozkładać) |
 | `ja` | `lokcie_waskie` | 肘を狭く | kalka z „wąsko”; na siłowni mówi się 肘を締める |
 | `ja` | `rysunek_zdanie` | イラスト | w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki |
+| `ja` | `nachwyt` | オーバーハンド | w pozostałych kartach jest „順手”, nie katakanowe „オーバーハンドグリップ” |
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ko` | `szablon` | 템플릿 | w koreańskich siłowniach „루틴” |
@@ -287,7 +341,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
-## Do potwierdzenia przez native speakera (150)
+## Do potwierdzenia przez native speakera (153)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -299,45 +353,46 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `cs` | `zegarek` | hodinky | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `cs` | `lokcie_waskie` | lokty úzko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `cs` | `pozycja_posrednia` | Mezipoloha | „Mezipoloha” czy „Střední poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `cs` | `lawka_skosna_glowa_w_dol` | lavice s negativním sklonem | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavice s negativním sklonem czy lavice se sklonem hlavou dolů |
 | `sk` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sk` | `zegarek` | hodinky | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sk` | `lokcie_waskie` | lakte úzko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sk` | `pozycja_posrednia` | Medzipoloha | „Medzipoloha” czy „Stredná poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sk` | `lawka_skosna_glowa_w_dol` | lavička s negatívnym sklonom | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavička s negatívnym sklonom czy lavička so sklonom hlavou nadol |
 | `hu` | `seria` | Sorozat | w siłowniach używa się też „széria”/„szett”; do potwierdzenia przez native speakera |
 | `hu` | `asekuracja` | Biztosítás | „biztosítás” bywa ubezpieczeniem — do potwierdzenia |
 | `hu` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `hu` | `zegarek` | óra | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hu` | `lokcie_waskie` | szűk könyök | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hu` | `pozycja_posrednia` | Köztes helyzet | Szyk numeru: „Köztes helyzet 1” czy „1. köztes helyzet”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `hu` | `lawka_skosna_glowa_w_dol` | negatív pad | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): negatív pad czy lefelé lejtő pad |
 | `ro` | `do_upadku` | Până la epuizare | w siłowniach też „până la cedare”; do potwierdzenia |
 | `ro` | `asekuracja` | Siguranță și asigurare | do potwierdzenia przez native speakera |
-| `ro` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `ro` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ro` | `zegarek` | ceas | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `bg` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `ro` | `lawka_skosna_glowa_w_dol` | bancă înclinată cu capul în jos | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `bg` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `bg` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `bg` | `jednostka_dystansu_mi` | мили | Skrót nieodmienny „мили” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026) |
 | `bg` | `jednostka_dystansu_yd` | ярд | Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026) |
 | `bg` | `zegarek` | часовник | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `bg` | `lawka_skosna_glowa_w_dol` | наклонена пейка с главата надолу | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `hr` | `asekuracja` | Sigurnost i asistencija | do potwierdzenia przez native speakera |
-| `hr` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `hr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `hr` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `ledzwie` | donji dio leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `zegarek` | sat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hr` | `lokcie_waskie` | laktove usko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `hr` | `lawka_skosna_glowa_w_dol` | kosa klupa | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): kosa klupa glavom prema dolje czy negativna klupa |
 | `sl` | `faza_pauza` | Premor | Tłumacz (31.10.2026) proponuje „Pavza” — „premor” bliższy przerwie/odpoczynkowi niż zatrzymaniu w ruchu; przegląd API tego nie zgłosił. Do sprawdzenia przez native speakera; bez zmiany. |
-| `sl` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `sl` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sl` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sl` | `ledzwie` | ledveni del hrbta | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sl` | `zegarek` | ura | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sl` | `lokcie_waskie` | komolce ozko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sl` | `lawka_skosna_glowa_w_dol` | klop, nagnjena navzdol | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `sr` | `asekuracja` | Асистенција и безбедност | do potwierdzenia przez native speakera |
-| `sr` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `sr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
-| `sr` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sr` | `ledzwie` | donji deo leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sr` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `sr` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
@@ -346,27 +401,28 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `sr` | `zegarek` | сат | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sr` | `lokcie_waskie` | лактове уско | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sr` | `pozycja_posrednia` | Међуположај | „Међуположај” czy „Средњи положај”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sr` | `lawka_skosna_glowa_w_dol` | коса клупа | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): коса клупа главом надоле czy негативна клупа |
 | `lt` | `zakres_powtorzen` | pakartojimų intervalas | „intervalas” bywa przerwą; w siłowniach też „diapazonas” — do potwierdzenia |
 | `lt` | `do_upadku` | Iki nesėkmės | do potwierdzenia przez native speakera |
 | `lt` | `asekuracja` | Pagalba ir saugumas | do potwierdzenia przez native speakera |
-| `lt` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `lt` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
-| `lt` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
+| `lt` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebell'as, kettlebell'ą, kettlebell'ai (z apostrofem). |
 | `lt` | `ledzwie` | apatinė nugaros dalis | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lt` | `zegarek` | laikrodis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lt` | `lokcie_waskie` | alkūnes siaurai | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `lt` | `lawka_skosna_glowa_w_dol` | suolas, pasvirusio galva žemyn | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `lv` | `seria` | Sērija | „sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia |
-| `lv` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `lv` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
-| `lv` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
+| `lv` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli. |
 | `lv` | `ledzwie` | lejasmugura | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lv` | `zegarek` | pulkstenis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lv` | `lokcie_waskie` | elkoņus šauri | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `lv` | `lawka_skosna_glowa_w_dol` | sols ar slīpumu uz leju | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `et` | `do_upadku` | Kuni väsimuseni | „väsimuseni” = do zmęczenia; do potwierdzenia |
-| `et` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `et` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `et` | `ledzwie` | alaselg | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `et` | `zegarek` | käekell | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `et` | `lawka_skosna_glowa_w_dol` | allapoole kaldu pink | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): allapoole kaldu pink czy negatiivne pink |
 | `uk` | `asekuracja` | Страхування | „страхування” bywa ubezpieczeniem; w siłowniach też „страховка”/„спотінг” — do potwierdzenia |
 | `uk` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `uk` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
@@ -374,44 +430,45 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `uk` | `jednostka_dystansu_yd` | ярд | Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026) |
 | `uk` | `zegarek` | годинник | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `uk` | `lokcie_waskie` | лікті вузько | O łokciach w wąskim wyciskaniu i prostowaniu: „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `uk` | `lawka_skosna_glowa_w_dol` | лава зі зворотним нахилом | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): лава зі зворотним нахилом (do potwierdzenia) |
 | `es` | `zegarek` | reloj | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `es-419` | `zegarek` | reloj | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `pt` | `zakres_powtorzen` | gama de repetições | w Portugalii „intervalo” = przerwa między seriami, więc „gama”; do potwierdzenia przez native speakera |
 | `pt` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha/plano de treino” — do potwierdzenia |
-| `pt` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `pt` | `chwyt` | pega | do sprawdzenia przez native speakera: czy „pega” to potoczny termin siłowni (recenzja P2, 04.11.2026); dotąd tymczasowo angielskie „grip” |
 | `pt` | `zegarek` | relógio | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `pt-BR` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha” — do potwierdzenia |
 | `pt-BR` | `zegarek` | relógio | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `de` | `zegarek` | Uhr | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `fr` | `zegarek` | montre | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `it` | `zakres_powtorzen` | range di ripetizioni | „range” to potoczne w siłowni; „intervallo” bywa przerwą — do potwierdzenia |
-| `it` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `it` | `zegarek` | orologio | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `nl` | `zegarek` | horloge | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `nl` | `lawka_skosna_glowa_w_dol` | declinebank | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): declinebank czy afhellende bank |
 | `sv` | `zegarek` | klocka | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `da` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `sv` | `lawka_skosna_glowa_w_dol` | lutande bänk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lutande bänk z dopiskiem o głowie czy declinebänk |
 | `da` | `ledzwie` | lænd | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `da` | `zegarek` | ur | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `nb` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `da` | `lawka_skosna_glowa_w_dol` | skråbænk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbænk czy decline-bænk |
 | `nb` | `zegarek` | klokke | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `nb` | `lawka_skosna_glowa_w_dol` | skråbenk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbenk czy declinebenk |
 | `fi` | `do_upadku` | Uupumukseen | do potwierdzenia przez native speakera |
 | `fi` | `zegarek` | kello | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `fi` | `lokcie_waskie` | kyynärpäät kapeasti | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `fi` | `lawka_skosna_glowa_w_dol` | alaviistopenkki | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): alaviistopenkki czy laskeva penkki |
 | `tr` | `do_upadku` | Tükenişe kadar | do potwierdzenia przez native speakera |
-| `tr` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `tr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `tr` | `zegarek` | saat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `el` | `do_upadku` | Έως αποτυχία | do potwierdzenia przez native speakera |
-| `el` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `el` | `chwyt` | λαβή | do sprawdzenia przez native speakera: czy „λαβή” to potoczny termin siłowni (recenzja P2, 04.11.2026); dotąd tymczasowo angielskie „grip” |
 | `el` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `el` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `el` | `ledzwie` | μέση | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `el` | `jednostka_masy_kg` | κιλά | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Grecki: „κιλά” (pełne słowo) czy „kg”? |
 | `el` | `zegarek` | ρολόι | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `id` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `el` | `lawka_skosna_glowa_w_dol` | αρνητικός πάγκος | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): αρνητικός πάγκος czy πάγκος με κλίση προς τα κάτω |
 | `id` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `id` | `zegarek` | jam tangan | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `ms` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `ms` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ms` | `ledzwie` | belakang bawah | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `ms` | `zegarek` | jam tangan | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |

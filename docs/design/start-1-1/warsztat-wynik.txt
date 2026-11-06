@@ -1,0 +1,15 @@
+== tablica-dnia
+INFO wielkości tekstu (px): 11, 12, 13, 14, 15, 16, 17, 18, 19, 24, 26, 34; kolory tekstu: 4
+UWAGA odstępy poza jednostką 4 px: 2, 6, 10, 14, 18, 41.11, 138.95
+UWAGA 12 wielkości tekstu: sprawdź hierarchię (punkt wyjścia NN/g: 3)
+OK
+== pusty-tydzien
+INFO wielkości tekstu (px): 11, 12, 13, 14, 15, 16, 17, 19, 26, 34; kolory tekstu: 4
+UWAGA odstępy poza jednostką 4 px: 2, 6, 10, 14, 18, 41.11, 138.95, 325.52
+UWAGA 10 wielkości tekstu: sprawdź hierarchię (punkt wyjścia NN/g: 3)
+OK
+== zgloszenie
+INFO wielkości tekstu (px): 11, 12, 13, 14, 15, 16, 17, 19, 22, 26, 34; kolory tekstu: 4
+UWAGA odstępy poza jednostką 4 px: 0.83, 2, 6, 10, 14, 18, 41.11, 138.95
+UWAGA 11 wielkości tekstu: sprawdź hierarchię (punkt wyjścia NN/g: 3)
+OK

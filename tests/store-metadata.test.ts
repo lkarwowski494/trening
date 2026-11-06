@@ -101,7 +101,13 @@ describe('store/app-store-metadata.json', () => {
       for (const f of ['squat', 'bench_press', 'hinge'] as const) expect([f, V2.FAMILY[f].status]).toEqual([f, 'ready']);
       const v2 = keys.map(spec).filter((s): s is NonNullable<typeof s> => !!s);
       expect(v2.filter((s) => !legendOf(s.key))).toEqual([]);
-      expect(v2.filter((s) => errorsOf(s).length > 0).length / v2.length).toBeGreaterThanOrEqual(0.8);
+      /* 05.11.2026: opis zawęża twierdzenie do „wielu odmian przysiadu, wyciskania leżąc i martwego ciągu” — udział liczony po tych trzech rodzinach (po podłączeniu rodzin curl, triceps itd. udział po wszystkich figurach v2 spadł do 0,789 i nie opisuje już treści opisu) */
+      const opis = v2.filter((s) => ['squat', 'bench_press', 'hinge'].includes(s.family));
+      const udzial = (l: boolean[]) => l.filter(Boolean).length / l.length;
+      expect(opis.length).toBeGreaterThan(0);
+      expect(udzial(opis.map((s) => errorsOf(s).length > 0))).toBeGreaterThanOrEqual(0.8);
+      /* negatyw: ten sam próg odrzuca 3 z 5 (60%) i 7 z 10 (70%), a przepuszcza 4 z 5 (80%) */
+      expect(udzial([true, true, true, false, false])).toBeLessThan(0.8); expect(udzial([...Array(7).fill(true), false, false, false])).toBeLessThan(0.8); expect(udzial([true, true, true, true, false])).toBeGreaterThanOrEqual(0.8);
     });
     test('każda lokalizacja: rysunki ruchu z liczbą, nazwa sekcji i „Strażnika progresji” jak w interfejsie, wzmianka o animacji w tekście promocyjnym', () => {
       for (const [l, v] of Object.entries(L)) {

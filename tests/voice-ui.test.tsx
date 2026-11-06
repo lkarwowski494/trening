@@ -20,7 +20,7 @@ const INFO = [
   'Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.',
   'Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.',
 ];
-beforeEach(() => { V().spoken.length = 0; V().hasVoice = true; __setScreenReaderForTests(false); G.__sheets.length = 0; });
+beforeEach(() => { V().spoken.length = 0; V().hasVoice = true; V().quality = 3; __setScreenReaderForTests(false); G.__sheets.length = 0; });
 afterEach(() => { applyLang('pl'); });
 const boot = async (locale: 'pl' | 'en' = 'pl', fn: () => void = () => {}, url = '/more/settings', width?: number) => { await fresh(undefined, locale); fn(); store.save(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url, width }); await flushAll(10); };
 const sel = (k: string) => screen.getByTestId(`voice-mode-${k}`);
@@ -61,6 +61,18 @@ test('„Posłuchaj przykładu” mówi przykładową zapowiedź w języku aplik
 test('brak głosu dla języka w telefonie: wskazówka z instrukcją pobrania (przełącznik i przykład dalej dostępne)', async () => {
   V().hasVoice = false; await boot(); expect(screen.getByText('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).')).toBeTruthy();
   expect(screen.getByText('Posłuchaj przykładu')).toBeTruthy();
+});
+const BETTER = 'Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).';
+test.each([[1, true], [2, false], [3, false]])('ZB-039 (03.11.2026): jakość najlepszego głosu %i → wskazówka „lepszy głos” widoczna: %s (tylko gdy jest sam głos podstawowy)', async (q, shown) => {
+  V().quality = q; await boot();
+  expect(!!screen.queryByText(BETTER)).toBe(shown); expect(!!screen.queryByTestId('voice-hint-better')).toBe(shown);
+  expect(screen.queryByTestId('voice-hint-missing')).toBeNull(); expect(screen.getByText('Posłuchaj przykładu')).toBeTruthy();
+});
+test('ZB-039: brak głosu → tylko wskazówka „brak głosu”, bez „lepszy głos”', async () => {
+  V().hasVoice = false; await boot(); expect(screen.getByTestId('voice-hint-missing')).toBeTruthy(); expect(screen.queryByText(BETTER)).toBeNull();
+});
+test('ZB-039 EN: wskazówka „lepszy głos” po angielsku, bez ścieżki spoza przeczytanej strony Apple (Settings → Accessibility)', async () => {
+  V().quality = 1; await boot('en'); expect(screen.getByText('This phone is using a basic voice. Get a better one in iOS Settings (Accessibility).')).toBeTruthy();
 });
 test('EN: etykiety, wskazówka i przykład po angielsku', async () => {
   V().hasVoice = false; await boot('en'); expect(screen.getByText('Voice announcements')).toBeTruthy(); expect(['off', 'headphones', 'speaker'].map(k => sel(k).props.accessibilityLabel)).toEqual(['Off', 'In headphones', 'Also through the speaker']); expect(screen.getByText('Listen to an example')).toBeTruthy();

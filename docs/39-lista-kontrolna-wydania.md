@@ -64,7 +64,7 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Dlaczego nie automat: Silnik haptyczny nie istnieje na symulatorze, a Maestro go nie czyta.
   - Pokrycie zastępcze w Jest: `tests/timer-logic.test.ts`, `tests/e2e-102-reminder.test.tsx`, `tests/m3-p5d-haptics.test.ts`, `tests/m3-p5d-haptics-done.test.tsx`
 - [ ] **ZD-02** Instalacja z TestFlight na prawdziwym telefonie: pierwsze uruchomienie, ikona, nazwa, animacja startowa
-  - Co zrobić i czego oczekiwać: Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), „Pierwsze kroki”, brak komunikatu o błędzie danych.
+  - Co zrobić i czego oczekiwać: Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), tablica „Pierwszy trening” i kafelki, brak komunikatu o błędzie danych.
   - Dlaczego nie automat: Podpis, ikona, ekran startowy i środowisko prawdziwego urządzenia istnieją dopiero w buildzie z TestFlight.
   - Pokrycie zastępcze w Jest: `tests/intro.test.tsx`, `tests/smoke.test.tsx`
 - [ ] **ZD-03** Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”

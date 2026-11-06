@@ -1,0 +1,14 @@
+{
+ "karty": {
+  "Supine Spinal Twist": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — ponowna recenzja po poprawce wady 1 (jedno → oba kolana), partia P1 mobilność, L-047",
+   "autor": "programista P1 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047)",
+   "kto": "audytor — ponowna recenzja niezależna L-047 karty Supine Spinal Twist (03.11.2026), gałąź integracja/p1-mobilnosc @ db021986; źródła sprawdzone WebFetch (HSS, CUH)",
+   "sha": "ea4880b4b184",
+   "uwagi": "Poprawka zgodna z wariantem A poprzedniej recenzji. setup PL „Połóż się na plecach, kolana ugięte, stopy płasko na podłodze.” / EN „Lie on your back with your knees bent and your feet flat on the floor.” — HSS Trunk Rotation: „Lying on your back, bend both knees, keeping your feet flat on the bed or the floor.” move PL „Powoli opuść oba kolana na jedną stronę; barki zostają na podłodze.” / EN „Slowly lower both knees to one side; your shoulders stay on the floor.” — CUH Knee rolls: „Lying on your back with knees together and bent, slowly roll your knees from side to side keeping your upper trunk still.”; HSS: „Keep your shoulders in place and do not lift them up as your knees rotate.” (podstawa też dla shoulders i mis.shoulder). Advocate Aurora (x20549, „Gently drop your knees to one side”) — z poprzedniej recenzji. Każde zdanie ma ≥ 2 źródła szczebla 4 różnych organizacji (HSS, Advocate Aurora, CUH NHS). PL i EN mówią to samo; język prosty. Brak liczb i twierdzeń o zdrowiu. Figura: brak pozy w lib/figures/v2/poses/mobility_floor.json i brak figury v1 (figury-wyjatki.json — bez animacji), więc nie ma rysunku do porównania; przy przyszłej figurze v2 obowiązuje reguła skret_miednica_vs_barki (figury-sens.json:7547). Uwaga bez blokady: „barki zostają na podłodze” powtarza się w move i w tips (supTwist.shoulders) — redakcyjne."
+  }
+ }
+}

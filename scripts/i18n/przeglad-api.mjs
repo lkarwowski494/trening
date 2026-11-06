@@ -62,6 +62,13 @@ export const REJESTR = {
   'zh-Hant': 'Tajwan, „你”, znaki tradycyjne, słownictwo iOS tajwańskie',
 };
 
+/** Wyjątek „ton trenera” (docs/16, decyzja właściciela 21.10.2026): wskazówki techniki (`lib/cues/text`) zwracają się do użytkownika formą „ty” także w językach, w których ekrany są formalne.
+ * Lista = języki z wiersza „Wyjątek” w docs/16 (pilnuje tests/przeklad-tlumaczen.test.ts); pozostałe języki mają we wskazówkach ten sam rejestr co w REJESTR. */
+export const JEZYKI_TON_TRENERA = ['bg', 'cs', 'el', 'hr', 'hu', 'lt', 'lv', 'pt', 'ro', 'sk', 'sl', 'sr', 'uk'];
+export const REJESTR_TON_TRENERA = 'wskazówki techniki ćwiczeń — „ton trenera”: forma „ty” (2. osoba liczby pojedynczej, jak trener na siłowni; NIE forma grzecznościowa „wy/Pan/Pani”), mimo że ekrany w tym języku są formalne';
+/** Rejestr do promptu: dla wskazówek techniki (`wskazowki`) w językach z wyjątkiem — ton trenera; poza tym rejestr z docs/16. */
+export const rejestrDla = (kod, wskazowki = false) => (wskazowki && JEZYKI_TON_TRENERA.includes(kod) ? REJESTR_TON_TRENERA : REJESTR[kod] ?? 'jak w iOS danego języka');
+
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
 /** Wariant regionalny = słownik bazowy + nakładka (jak lib/locales/index.ts i lib/cues/index.ts). */
 const BAZA = { 'es-419': 'es', 'pt-BR': 'pt' };

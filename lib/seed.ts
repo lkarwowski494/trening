@@ -8,6 +8,7 @@ import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { GYM_FILL, OPT_FILL, EQUIP_FILL2 } from './equipment';
 import { LEGACY_FP } from './catalog-fp-legacy.generated';
+import { LIB_WYCOFANE } from './catalog-wycofane';
 import { CATALOG, CATALOG_REV, CATALOG_LIB_EXTRA, CATALOG_ADDED_REVS, MUSCLE_LOAD, CATALOG_NICHE, CATALOG_RESEARCH, CATALOG_STEP, CATALOG_UNMAPPED, type LoadSource, type Pattern, type MuscleRegion } from './catalog.generated';
 
 export const SCHEMA_VERSION = 19; // 19 (0.19, docs/33 A4 i B, decyzje właściciela 13.10.2026 P1 A, P6 B, P7 A): Location.oneOff — miejsce jednorazowe (ukryte na listach miejsc; historia zachowuje nazwę i sprzęt), State.planPlaces — miejsce na dni planu (data → id miejsca) i SavedPlan.places — to samo zapisane z planem; pola opcjonalne, dane sprzed 19 bez zmian; kopia 19 odrzucana przez 18; 18 (audyt 0.10 A1, decyzja właściciela 08.10.2026 — wariant B): State.planHistory — historia planu tygodnia (odcinki „od dnia”), dzień liczony wg planu, który wtedy obowiązywał; dane sprzed 18: plan obowiązuje od dnia migracji (wcześniejsze dni bez planu); weekPlan zostaje (czytają go starsze wersje); kopia 18 odrzucana przez 17; baza ze schematem wyższym niż obsługiwany nie jest nadpisywana (J1, store.init); 17 (decyzja 05.10.2026, docs/17): TemplateItem.rows — serie szablonu jako wiersze (typ, powtórzenia, ciężar); pole opcjonalne, szablony sprzed 17 bez zmian; kopia 17 odrzucana przez 16; 16 (E2, docs/14 pkt 2): WExercise.swappedFrom / implPinned (trening w toku i historia), splitFrom / altSkip (tylko trening w toku), TemplateItem.alternates (W3); pola opcjonalne — blok bez zamiany i szablon bez zamienników wyglądają jak w 15; kopia 16 jest odrzucana przez wersję 15 (pkt 2.4); 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); ciężarów ani treści szablonów użytkownika migracja nie zmienia (decyzja 03.10, 08:11 — bez dawnej jednorazowej zmiany 48 → 24 kg z P-004; zostaje tylko normalizacja pól i usuwanie pozycji z brakującym/usuniętym ćwiczeniem, jak w main); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
@@ -163,7 +164,7 @@ export const muscleLoadOf = (e: Pick<Exercise, 'lib' | 'libKey'> & Partial<Pick<
 /** Katalog 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu): nowe ćwiczenia biblioteki — JEDNO źródło: docs/research/equipment/catalog.json
  * (pola group/equipment/metric/loadMode/muscles), generowane do lib/catalog.generated.ts. */
 const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
-export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]);
+export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]).filter(n => !LIB_WYCOFANE.includes(n)); /* bez wycofanych (02.11.2026) */
 /** Nazwy 125 ćwiczeń pierwszej wersji (reguły migracji danych sprzed schematu 10 — runda 52/56). */
 export const LIB_BASE_NAMES: ReadonlySet<string> = new Set(LIB_BASE.map(l => l[0]));
 /** Nazwy pierwszej wersji biblioteki (125, także scalone i przemianowane później) — tylko reguła danych sprzed schematu 10 (flaga lib). */
@@ -181,7 +182,7 @@ export const LIB_MUSCLE_FIXES: readonly { rev: string; name: string; from: [Musc
   { rev: 'katalog-2026-10-04b', name: 'Hip Adduction', from: [['pośladki'], []] },
   { rev: 'katalog-2026-10-04b', name: 'Copenhagen Plank', from: [['core'], []] },
 ];
-export const LIB: [string, Group, Equipment, boolean?][] = [...LIB_BASE, ...CATALOG_LIB_EXTRA.map(r => [r[0], r[1] as Group, r[2] as Equipment, r[3]] as [string, Group, Equipment, boolean])];
+export const LIB: [string, Group, Equipment, boolean?][] = [...LIB_BASE, ...CATALOG_LIB_EXTRA.map(r => [r[0], r[1] as Group, r[2] as Equipment, r[3]] as [string, Group, Equipment, boolean])].filter(r => !LIB_WYCOFANE.includes(r[0])); /* 02.11.2026: wycofane po katalogu — lib/catalog-wycofane.ts */
 /** E2 (audyt 0.10): nazwy kanoniczne całego katalogu — dozwolone wartości Exercise.libKey. */
 export const LIB_KEYS: ReadonlySet<string> = new Set(LIB.map(r => r[0]));
 /** E2 (audyt 0.10, X-03): klucz katalogu ćwiczenia z biblioteki (tylko prawidłowy) — nazwa wyświetlana nie wpływa na reguły. */
@@ -226,7 +227,7 @@ export const isNiche = (e: Pick<Exercise, 'lib' | 'libKey'>): boolean => { const
 /** Krok danych 09.10.2026: dawne klucze przemianowane (→ nowy klucz), scalone (→ klucz docelowy) i usunięte z biblioteki. */
 export const LIB_RENAMED: Readonly<Record<string, string>> = CATALOG_STEP.renamed;
 export const LIB_MERGED: Readonly<Record<string, string>> = CATALOG_STEP.merged;
-export const LIB_REMOVED: ReadonlySet<string> = new Set(CATALOG_STEP.removed);
+export const LIB_REMOVED: ReadonlySet<string> = new Set([...CATALOG_STEP.removed, ...LIB_WYCOFANE]);
 /** Klucze wycofane z katalogu (scalone i usunięte) — migrate przenosi ich dane (lib/state/migrate-catalog.ts retireCatalog). */
 export const LIB_RETIRED: ReadonlySet<string> = new Set([...Object.keys(LIB_MERGED), ...LIB_REMOVED]);
 /** Audyt kontrolny 1 (UX2-01, wariant a): dawne nazwy (klucze) ćwiczenia z biblioteki — wyprowadzone z kroku katalogu (LIB_RENAMED + LIB_MERGED,

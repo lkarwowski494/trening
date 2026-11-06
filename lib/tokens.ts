@@ -166,6 +166,8 @@ export const SIZE = {
   hit: 44, buttonPrimary: 60, buttonSecondary: 52, stepButton: 44, rowMin: 52, boardFieldMin: 44,
   /** Pole serii nie jest celem dotyku (seria poprawiana poza tablicą) — minimum szerokości przy liczeniu rzędów: 36 × skala liczb. Decyzja STOP E3 (21.10.2026): pola bez dotyku. */
   boardFieldMinWidth: 36, boardFieldGap: 8,
+  /** Najmniejsza skala tekstu pól daty tablicy „Pierwszy trening” (adjustsFontSizeToFit; decyzja 06.11.2026: 0,55 — było 0,7; pomiar docs/18). */
+  boardFieldMinScale: 0.55,
   icon: 24, iconInline: 16, tabIcon: 26,
 } as const;
 

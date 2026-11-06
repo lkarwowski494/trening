@@ -15,7 +15,7 @@ name: Eksperyment — tło i powrót w trakcie przerwy
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/start-szablonu.yaml
 - tapOn: { text: "Not now", optional: true }   # M1-035: karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) przesuwa układ — chowamy ją przed dalszymi krokami

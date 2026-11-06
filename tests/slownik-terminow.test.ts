@@ -154,6 +154,15 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     expect(S.sprawdz(slownik, 'ko', z, '그림은 보여 줍니다. 다음 반복에서는 끌어올립니다.')).toEqual([]);
     expect(S.sprawdz(slownik, 'zh-Hant', z, '圖中只畫出拉向一側的動作 — 下一下改拉向另一隻手。')).toEqual([]);
   });
+  /* Kontrola zastępcza 06.11.2026 (docs/18): id „fitur”, ms „ciri” (zakaz „fungsi”, nie łapie „berfungsi”), et „funktsioon”; ko/ja licznik sesji w uwadze pojęcia „trening” */
+  test('06.11.2026: funkcja aplikacji — ms „ciri” zamiast „fungsi”; „berfungsi” (działa) dozwolone; licznik sesji ko/ja', () => {
+    const fa = slownik.pojecia.find(x => x.id === 'funkcja_aplikacji')!; const z = 'Wszystkie funkcje działają od pierwszego dnia.';
+    expect(S.wykryte(fa, z)).toBe(true); expect(S.wykryte(fa, 'Funkcjonalność')).toBe(false);
+    expect(S.sprawdz(slownik, 'ms', z, 'Semua fungsi berfungsi').some((n: { pojecie: string }) => n.pojecie === 'funkcja_aplikacji')).toBe(true);
+    expect(S.sprawdz(slownik, 'ms', z, 'Semua ciri berfungsi')).toEqual([]);
+    expect([fa.jezyki.id.zalecany, fa.jezyki.ms.zalecany, fa.jezyki.et.zalecany]).toEqual(['fitur', 'ciri', 'funktsioon']);
+    const tr = slownik.pojecia.find(x => x.id === 'trening')!; expect(tr.jezyki.ko.uwaga).toContain('회차'); expect(tr.jezyki.ja.uwaga).toContain('回目');
+  });
   test('el: squat / bench press / deadlift zalecane po angielsku; pojęcia wykrywane w polskim tekście', () => {
     const zal = (id: string) => slownik.pojecia.find(x => x.id === id)!.jezyki.el.zalecany;
     expect([zal('przysiad'), zal('wyciskanie_lezac'), zal('martwy_ciag')]).toEqual(['squat', 'bench press', 'deadlift']);
@@ -196,6 +205,69 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     const ro = LOCALES.ro as Record<string, string>; expect(ro['Podciąganie']).toBe('Tragere în sus');
     expect(S.sprawdz(slownik, 'ro', 'Podciąganie', 'Tracţiune').length).toBe(1); /* recenzja 31.10.2026: także ţ z cedyllą */
   });
+  /* Recenzja lokalizacji P2 (moc), 03.11.2026: strażnik nie złapał rozjazdu „wykrok”/„nożyce” dla pozycji split w dwuboju, trzech brzmień pozycji kettlebelli przy barkach,
+     trzech form zakresu szerokości stóp, „trunk” zamiast „core” ani kalki „like for a …” w EN. Pojęcia dotyczą PL i EN (pozostałe 33 języki wg przekładu z poprawionej bazy). */
+  test('03.11.2026, P2 moc: regresja — „wykrok” dla split, „pozycja rack”, trzy formy szerokości stóp, „trunk” i „like for a” są wykrywane, poprawione brzmienia przechodzą', () => {
+    const nazwy = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+    const wy = 'Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w wykroku — jedna noga w przód, druga w tył.', noz = 'Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w nożycach — jedna stopa w przód, druga w tył.';
+    expect(nazwy('pl', wy, wy)).toEqual(['nozyce']); expect(nazwy('pl', noz, noz)).toEqual([]);
+    expect(nazwy('en', noz, 'Pull like a regular clean, but catch the bar in a lunge.')).toEqual(['nozyce']);
+    expect(nazwy('en', noz, 'Pull like a regular clean, but catch the bar in a split — one foot forward, one back.')).toEqual([]);
+    for (const zle of ['Kettlebell w pozycji przy barku, łokieć przy tułowiu.', 'Zakończ w pozycji rack przy klatce.']) expect([zle, nazwy('pl', zle, zle)]).toEqual([zle, ['rack_kettlebell']]);
+    const rk = 'Kettlebelle oparte przy barkach, łokcie przy tułowiu.'; expect(nazwy('pl', rk, rk)).toEqual([]);
+    for (const zle of ['Stopy między szerokością bioder a barków, palce lekko na zewnątrz.', 'Hantle przy barkach, stopy mniej więcej od szerokości bioder do szerokości barków.']) expect([zle, nazwy('pl', zle, zle)]).toEqual([zle, ['szerokosc_stop']]);
+    const sz = 'Hantle przy barkach, stopy na szerokość bioder do barków.'; expect(nazwy('pl', sz, sz)).toEqual([]);
+    expect(nazwy('en', sz, 'Dumbbells at your shoulders, feet somewhere between hip- and shoulder-width.')).toEqual(['szerokosc_stop']);
+    expect(nazwy('en', sz, 'Dumbbells at your shoulders, feet hip- to shoulder-width apart.')).toEqual([]);
+    const tul = 'Zanim ugniesz kolana, mocno napnij tułów.'; expect(nazwy('en', tul, 'Brace your trunk hard before you bend your knees.')).toEqual(['core_en']);
+    expect(nazwy('en', tul, 'Brace your core hard before you bend your knees.')).toEqual([]);
+    const jd = 'Sztanga na górze pleców, jak do przysiadu.'; expect(nazwy('en', jd, 'Bar on your upper back, like for a squat.')).toEqual(['jak_do_en']);
+    expect(nazwy('en', jd, 'Bar on your upper back, like a back squat.')).toEqual([]);
+  });
+  test('03.11.2026, P2 moc: wskazówki PL i EN partii (zdania z tests/fixtures/cues-p2-moc.json) nie łamią terminów nożyce / rack / szerokość stóp / core / „like for a”', () => {
+    const enCues = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/en.json'), 'utf8')) as Record<string, string>;
+    const P2 = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/cues-p2-moc.json'), 'utf8')) as { zdania: string[] };
+    expect(P2.zdania.length).toBeGreaterThan(80);
+    const bad: string[] = [];
+    for (const i of P2.zdania) {
+      for (const n of S.sprawdz(slownik, 'pl', cuesPl[i], cuesPl[i]) as { pojecie: string }[]) bad.push(`pl ${i} [${n.pojecie}]`);
+      for (const n of S.sprawdz(slownik, 'en', cuesPl[i], enCues[i] ?? '') as { pojecie: string }[]) bad.push(`en ${i} [${n.pojecie}]`);
+      if (/(?<![\p{L}])(trunk|lunge)(?![\p{L}])|like\s+for\s+a\b/iu.test(enCues[i])) bad.push(`en ${i} [trunk/lunge/like for a]`);
+      if (/^(olympic\.|kbj\.|kbb\.)/.test(i) && /wykrok|pozycj\w*\s+rack/i.test(cuesPl[i])) bad.push(`pl ${i} [wykrok/rack]`);
+    }
+    expect(bad).toEqual([]);
+    expect(cuesPl['olympic.splitCatch']).toContain('nożycach'); expect(cuesPl['olympic.snatchSplitMove']).toContain('nożyce'); expect(cuesPl['olympic.balanceMove']).toContain('nożyc');
+    expect(cuesPl['kbj.rack']).toContain('oparte przy barkach'); expect(cuesPl['thruster.kbSetup']).toContain('oparte przy barkach');
+  });
+  /* Recenzja lokalizacji P1 (mobilność), 02.11.2026: strażnik nie złapał dwóch błędów — „pas” zamiast „taśma” do rozciągania oraz „przenieś ciężar” (masa ciała) przy pojęciu „ciężar” = obciążenie.
+     Dochodzą „krążenia” (nie „zataczaj koła”) i „podwijanie miednicy”. Pojęcia dotyczą PL i EN (pozostałe 33 języki wg przekładu z poprawionej bazy). */
+  test('02.11.2026, P1 mobilność: regresja — „pas” i „przenieś ciężar” są wykrywane, poprawione brzmienia przechodzą', () => {
+    const pas = 'Usiądź i załóż pas lub ręcznik na stopę.', tasma = 'Usiądź i załóż taśmę albo ręcznik na stopę.';
+    expect(S.sprawdz(slownik, 'pl', pas, pas).map((n: { pojecie: string }) => n.pojecie)).toEqual(['tasma_rozciaganie']);
+    expect(S.sprawdz(slownik, 'pl', tasma, tasma)).toEqual([]);
+    expect(S.sprawdz(slownik, 'en', tasma, 'Sit and loop a belt or towel around your foot.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'en', tasma, 'Sit and loop a strap or towel around your foot.')).toEqual([]);
+    const cw = 'Ugnij przednie kolano i przenieś ciężar w stronę ściany; tylna noga prosta, pięta na podłodze.', cw2 = 'Ugnij przednie kolano i pochyl się do ściany; tylna noga prosta, pięta na podłodze.';
+    expect(S.sprawdz(slownik, 'pl', cw, cw).map((n: { pojecie: string }) => n.pojecie)).toEqual(['ciezar']);
+    expect(S.sprawdz(slownik, 'pl', cw2, cw2)).toEqual([]);
+    expect(S.sprawdz(slownik, 'pl', 'Ciężar ciała na przednią nogę.', 'Ciężar ciała na przednią nogę.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'pl', 'Dobierz ciężar tak, by technika się nie zmieniała.', 'Dobierz ciężar tak, by technika się nie zmieniała.')).toEqual([]); /* ciężar = obciążenie — dozwolone */
+    expect(S.sprawdz(slownik, 'en', cw, 'Shift your weight toward the wall.').length).toBe(1);
+    const kr = 'Zataczaj stopą koła w kostce.'; expect(S.sprawdz(slownik, 'pl', kr, kr).length).toBe(1); expect(S.sprawdz(slownik, 'pl', 'Krąż stopą.', 'Krąż stopą.')).toEqual([]);
+    const mi = 'Garbienie się i odchylanie miednicy w tył.'; expect(S.sprawdz(slownik, 'pl', mi, mi).length).toBe(1); expect(S.sprawdz(slownik, 'pl', 'Garbienie się i podwijanie miednicy.', 'Garbienie się i podwijanie miednicy.')).toEqual([]);
+    expect(S.sprawdz(slownik, 'en', mi, 'Rounding your back with a posterior pelvic tilt.').length).toBe(1);
+  });
+  test('02.11.2026, P1 mobilność: wskazówki PL i EN mobilności (mobility_*, foam_roll.*, rotator_cuff.*) nie łamią terminów taśma / krążenia / podwijanie miednicy / ciężar', () => {
+    const enCues = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/en.json'), 'utf8')) as Record<string, string>;
+    const ids = Object.keys(cuesPl).filter(i => /^(mobility_|foam_roll\.|rotator_cuff\.)/.test(i)); expect(ids.length).toBeGreaterThan(70);
+    const bad: string[] = [];
+    for (const i of ids) {
+      for (const n of S.sprawdz(slownik, 'pl', cuesPl[i], cuesPl[i]) as { pojecie: string }[]) bad.push(`pl ${i} [${n.pojecie}]`);
+      for (const n of S.sprawdz(slownik, 'en', cuesPl[i], enCues[i] ?? '') as { pojecie: string }[]) bad.push(`en ${i} [${n.pojecie}]`);
+    }
+    expect(bad).toEqual([]);
+    expect(cuesPl['mobility_floor.u.ankleStrap']).toContain('taśm'); expect(enCues['mobility_floor.u.ankleStrap']).toContain('strap');
+  });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');
     expect(b).toContain('インターバル'); expect(b).toContain('休憩'); expect(b).toContain('naturalnie');
@@ -227,4 +299,67 @@ test('słownik UI: angielski (źródło odniesienia) nie używa „break” dla 
   const zle = source.filter(s => S.wykryte(slownik.pojecia.find(p => p.id === 'przerwa'), s.pl) && /\bbreak\b/i.test(s.en)).map(s => s.en);
   expect(zle).toEqual([]);
   expect(enOf['Przerwa']).toBe('Rest');
+});
+
+describe('04.11.2026, recenzja lokalizacji T1 (delt_raise): uchwyt, nachwyt, uda, kettlebell sr/lt/lv, „Czego unikać” sv/da/nb', () => {
+  const nar = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+  test('uchwyt: pt „punho” i es-419 „maneral” są wykrywane, „pega”/„agarre” przechodzą', () => {
+    const pl = 'Chwyć uchwyt dolnego wyciągu i stań prosto.';
+    expect(nar('pt', pl, 'Agarra o punho da polia baixa.')).toContain('uchwyt');
+    expect(nar('es-419', pl, 'Toma el maneral de la polea baja.')).toContain('uchwyt');
+    expect(nar('pt', pl, 'Agarra a pega da polia baixa.')).not.toContain('uchwyt');
+    expect(nar('es-419', pl, 'Toma el agarre de la polea baja.')).not.toContain('uchwyt');
+  });
+  test('nachwyt: ja オーバーハンド, id overhand, bg пронирован są wykrywane; 順手, genggaman atas, прав хват przechodzą', () => {
+    const pl = 'Sztangę trzymaj nachwytem przed udami.';
+    expect(nar('ja', pl, 'バーベルをオーバーハンドグリップで持ちます。')).toContain('nachwyt');
+    expect(nar('id', pl, 'pegang barbel dengan genggaman overhand')).toContain('nachwyt');
+    expect(nar('bg', pl, 'дръж щангата с пронирован хват')).toContain('nachwyt');
+    expect(nar('ja', pl, 'バーベルを順手で持ちます。')).not.toContain('nachwyt');
+    expect(nar('id', pl, 'pegang barbel dengan genggaman atas')).not.toContain('nachwyt');
+    expect(nar('bg', pl, 'дръж щангата с прав хват')).not.toContain('nachwyt');
+  });
+  test('uda ru/uk: „перед ногами”, „біля ніг” są wykrywane, „бёдра”/„стегна” przechodzą', () => {
+    const pl = 'Trzymaj ciężar przed udami.';
+    expect(nar('ru', pl, 'держи вес перед ногами')).toContain('uda');
+    expect(nar('uk', pl, 'тримай вагу перед ногами')).toContain('uda');
+    expect(nar('uk', pl, 'ручки біля ніг')).toContain('uda');
+    expect(nar('ru', pl, 'держи вес перед бёдрами')).not.toContain('uda');
+    expect(nar('uk', pl, 'тримай вагу перед стегнами')).not.toContain('uda');
+  });
+  test('kettlebell: sr łacinką jest wykrywany, „кетлбел” przechodzi; lt i lv mają zapisaną odmianę', () => {
+    expect(nar('sr', 'Trzymaj kettlebell przed klatką.', 'Држи kettlebell испред груди.')).toContain('kettlebell');
+    expect(nar('sr', 'Trzymaj kettlebell przed klatką.', 'Држи кетлбел испред груди.')).not.toContain('kettlebell');
+    const kb = slownik.pojecia.find(p => p.id === 'kettlebell')!;
+    expect(kb.jezyki.lt.uwaga).toContain("kettlebell'ą");
+    expect(kb.jezyki.lv.uwaga).toContain('kettlebellu');
+  });
+  test('reguła stylu: „Czego unikać” (8 zdań z czasownikiem) w sv/da/nb zaczyna się od „Att”/„At”/„Å” + bezokolicznik', () => {
+    /* zdania „Czego unikać” z czasownikiem (karty delt_raise); rzeczownikowe (np. sq.mis.heels) zostają bez zmian */
+    const KLUCZE_ATT = ['delt1.mis.arch', 'fidr.mis.back', 'fro.mis.arch', 'inc1.mis.shrug', 'isr.mis.press', 'rdelt.mis.swing', 'rear1.mis.high', 'yr.mis.chest'];
+    const poczatek: Record<string, RegExp> = { sv: /^Att /, da: /^At /, nb: /^Å / };
+    for (const [kod, re] of Object.entries(poczatek)) {
+      const d = cueDict(kod as Lang) as Record<string, string>;
+      const zle = KLUCZE_ATT.filter(id => !re.test(d[id])).map(id => `${kod}/${id}: ${d[id]}`);
+      expect(zle).toEqual([]);
+    }
+  });
+  test('adr.move: sv „Växelvis:”, da „Skiftevis:” (nie rozkaz „Växla:”/„Skift:”)', () => {
+    expect(cueDict('sv' as Lang)['adr.move']).toMatch(/^Växelvis:/);
+    expect(cueDict('da' as Lang)['adr.move']).toMatch(/^Skiftevis:/);
+  });
+  /* Recenzja lokalizacji T1b (triceps), 05.11.2026: ławka skośna głową w dół — nowe pojęcie; uchwyt (cs rukojeť, es agarre, nl handgreep) — sztanga sl/ro bez zmiany (decyzja koordynatora 05.11.2026: interfejs ma „palica”/„halteră”; ujednolicenie kart i UI → backlog) */
+  test('05.11.2026: ławka skośna głową w dół (decline bench): wykrywanie, tr i ru nie mogą użyć samej „ławki skośnej”; terminy uchwytu i sztangi z recenzji T1b', () => {
+    const lw = slownik.pojecia.find(x => x.id === 'lawka_skosna_glowa_w_dol')!; const pl = 'Połóż się na ławce skośnej głową w dół i trzymaj hantle nad sobą na prostych rękach.';
+    expect(S.wykryte(lw, pl)).toBe(true); expect(S.wykryte(lw, 'Połóż się na ławce skośnej i trzymaj hantle nad sobą.')).toBe(false); /* ławka głową w górę (incline) to inne pojęcie */
+    expect(Object.keys(lw.jezyki).sort()).toEqual([...LANGS].sort());
+    expect(S.sprawdz(slownik, 'tr', pl, 'Eğimli sehpaya uzanın.').length).toBe(1); expect(S.sprawdz(slownik, 'tr', pl, 'Ters eğimli sehpaya uzanın.')).toEqual([]);
+    expect(S.sprawdz(slownik, 'ru', pl, 'Ляг на наклонную скамью головой вниз.').length).toBe(1); expect(S.sprawdz(slownik, 'ru', pl, 'Ляг на скамью с обратным наклоном, головой вниз.')).toEqual([]);
+    for (const k of ['skullDbDec', 'skullDec']) for (const kod of LANGS.filter(l => l !== 'pl' && l !== 'en' && l !== 'ru')) { /* ru: odmiana (скамью), pilnuje wzorzec zakazany */
+      const t = (cueDict(kod as Lang) as Record<string, string>)[`tri.${k}.setup`]; const z = lw.jezyki[kod].zalecany.split(',')[0];
+      if (lw.jezyki[kod].pewnosc !== 'niska') expect([kod, k, t.toLowerCase().includes(z.toLowerCase())]).toEqual([kod, k, true]);
+    }
+    const zal = (id: string, k: string) => slownik.pojecia.find(x => x.id === id)!.jezyki[k].zalecany;
+    expect([zal('uchwyt', 'cs'), zal('uchwyt', 'es'), zal('uchwyt', 'nl'), zal('sztanga', 'sl'), zal('sztanga', 'ro')]).toEqual(['rukojeť', 'agarre', 'handgreep', 'palica', 'halteră']);
+  });
 });

@@ -317,9 +317,9 @@ describe('/ (ekran główny)', () => {
   test('wskazówka pierwszego startu: bez szablonów i z szablonami', async () => {
     await renderApp(); await flushAll(10);
     /* UX-12 A (audyt 0.10): „Pierwsze kroki” z przyciskami przy kroku zamiast dawnej podpowiedzi „Pierwszy raz?” */
-    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
+    expect(screen.getByLabelText('Szablony i plan. Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
     await renderApp({ saved: await prepared(() => { withDemoTemplates(); }) }); await flushAll(10);
-    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.')).toBeTruthy();
+    expect(screen.getByTestId('first-tile-plan')).toBeTruthy(); expect(screen.getAllByText(/^Start: /).length).toBeGreaterThan(0); expect(screen.queryByText(/duży przycisk/)).toBeNull(); /* ekran nowej osoby 1.1 (05.11.2026): kafelki zamiast kroków ze statusem; duży przycisk „Start: …” */
   });
 
   test('błąd zapisu: baner „Tapnij, by spróbować ponownie…”; tapnięcie zapisuje ponownie i baner znika', async () => {

@@ -7,6 +7,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import * as store from '@/lib/store';
+import { LIB_WYCOFANE } from '@/lib/catalog-wycofane';
 import { CATALOG, MUSCLE_LOAD, CABLES, CATALOG_NICHE, CATALOG_RESEARCH, CATALOG_STEP, CATALOG_UNMAPPED } from '@/lib/catalog.generated';
 import { LIB, LIB_KEYS, LIB_RENAMED, LIB_MERGED, LIB_REMOVED, LIB_BASE_NAMES, LIB_EXTRA_REV, seedState, musclesFor, metricFor, loadModeFor, isNiche, muscleConfidence, unmappedMuscleOf, hasWeight, hasDistance, hasTime, hasReps, METRICS, type State, type WSet } from '@/lib/seed';
 import { presetEquipment, availability, capsOf, equipById, CAP_LABEL, EQUIP_FILL2, presetHint, fillEquip2 } from '@/lib/equipment';
@@ -45,13 +46,13 @@ describe('dane: katalog zgodny z researchem L1–L6 (każdy rekord wdrożony alb
   test('854 rekordy researchu; w bibliotece 709 = ZOSTAJE + NISZOWE; scalone i usunięte znikają (krok danych je zna)', () => {
     expect(research).toHaveLength(854); expect(new Set(research.map(r => r.name)).size).toBe(854);
     const kept = research.filter(r => r.verdict !== 'SCALIĆ' && r.verdict !== 'USUNĄĆ');
-    expect(LIB).toHaveLength(kept.length); expect(LIB).toHaveLength(709); expect(new Set(kept.map(r => final(r.name)))).toEqual(new Set(LIB.map(r => r[0])));
+    expect(LIB).toHaveLength(kept.length - LIB_WYCOFANE.length); expect(LIB).toHaveLength(708); /* 02.11.2026: Wide-Grip Pulldown Behind The Neck wycofane (lib/catalog-wycofane.ts) */ expect(new Set(kept.map(r => final(r.name)).filter(n => !LIB_WYCOFANE.includes(n)))).toEqual(new Set(LIB.map(r => r[0])));
     expect(CATALOG_NICHE.size).toBe(kept.filter(r => r.scope === 'NISZOWE').length);
     for (const r of research) {
       const where = `${r.part} ${r.name}`;
       if (r.verdict === 'USUNĄĆ') { expect([where, LIB_KEYS.has(r.name), LIB_REMOVED.has(r.name)]).toEqual([where, false, true]); continue; }
       if (r.verdict === 'SCALIĆ') { expect([where, LIB_KEYS.has(r.name), LIB_MERGED[r.name]]).toEqual([where, false, final(r.mergeInto!)]); expect(LIB_KEYS.has(LIB_MERGED[r.name])).toBe(true); continue; }
-      const n = final(r.name); expect([where, LIB_KEYS.has(n)]).toEqual([where, true]);
+      const n = final(r.name); if (LIB_WYCOFANE.includes(n)) { expect([where, LIB_KEYS.has(n), LIB_REMOVED.has(n)]).toEqual([where, false, true]); continue; } expect([where, LIB_KEYS.has(n)]).toEqual([where, true]);
       if (r.fixes.name) expect([where, LIB_RENAMED[r.name]]).toEqual([where, r.fixes.name]);
       expect([where, CATALOG_NICHE.has(n)]).toEqual([where, r.scope === 'NISZOWE']);
       expect([where, CATALOG_RESEARCH[n]]).toEqual([where, [r.part, r.confidence, r.sources]]);

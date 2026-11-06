@@ -1,0 +1,133 @@
+[
+ {"cwiczenie":"Cable Y Raise","stan":"komplet – praktyka (setup, move); szczebel 5, do recenzji niezależnej","zmiana_statusu":"1 źródło → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Stań przodem między dolnymi wyciągami i chwyć skrzyżowane linki: każda ręka trzyma uchwyt z przeciwnej strony.","en":"Stand between two low pulleys and cross the cables: each hand holds the handle from the opposite side.",
+    "zrodla":[{"szczebel":5,"url":"https://weighttraining.guide/exercises/cable-y-raise/","cytat":"Stand facing between two low cable pulleys, with each hand holding the handle of the cable of the opposite pulley."},
+              {"szczebel":5,"url":"https://fitvibe.gr/askiseis/cable-y-raise-668","miejsce":"krok 1 (po grecku)","cytat":"Πιάστε από μια λαβή με αντίθετα χέρια ώστε τα καλώδια να διασταυρώνονται μπροστά σας."}]},
+   {"rola":"move","pl":"Unieś ręce w górę i na boki, tak by ułożyły się w literę Y.","en":"Raise your arms up and out into a Y.",
+    "zrodla":[{"szczebel":5,"url":"https://weighttraining.guide/exercises/cable-y-raise/","cytat":"exhale as you raise your arms upwards and outwards, forming the letter 'Y' with your whole body."},
+              {"szczebel":5,"url":"https://fitvibe.gr/askiseis/cable-y-raise-668","miejsce":"krok 3 (po grecku)","cytat":"Ανεβάστε τις λαβές σχηματίζοντας το γράμμα \"Y\" με τα χέρια"}]}],
+  "uwagi":"Angielski cytat Gemini dla fitvibe nie istnieje (strona po grecku; Gemini podał przekład) — liczę oryginalny tekst grecki, który opisuje ten sam ruch. Strona aplikacji (decyzja właściciela 03.11.2026, docs/18-przekazanie.md:201)."},
+
+ {"cwiczenie":"Copenhagen Plank","stan":"komplet – praktyka (setup, move); szczebel 5, do recenzji niezależnej","zmiana_statusu":"1 źródło → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Połóż się bokiem, przedramię pod barkiem, górną nogę oprzyj na ławce.","en":"Lie on your side, forearm under your shoulder, top leg resting on a bench.",
+    "zrodla":[{"szczebel":5,"url":"https://julielohre.com/copenhagen-plank/","autor":"Julie Lohre","cytat":"Place your forearm on the floor with your elbow under your shoulder."},
+              {"szczebel":5,"url":"https://www.strengthlog.com/copenhagen-plank/","cytat":"Lie on your side with your top leg resting on a bench. Place your forearm on the floor directly below your shoulder for support."}]},
+   {"rola":"move","pl":"Dociśnij górną nogę do ławki i unieś biodra, aż ciało ułoży się w prostą linię.","en":"Press your top leg into the bench and lift your hips until your body forms a straight line.",
+    "zrodla":[{"szczebel":5,"url":"https://julielohre.com/copenhagen-plank/","cytat":"Press your top leg into the bench and raise your hips until your body forms a long line from head to feet."},
+              {"szczebel":5,"url":"https://www.strengthlog.com/copenhagen-plank/","cytat":"Engage your core and lift your bottom hip off the ground so your body forms a straight line."}]}],
+  "uwagi":"Strona aplikacji bez autora. Czas utrzymania — liczba, pominięta."},
+
+ {"cwiczenie":"Crunch - Hands Overhead","stan":"komplet – praktyka (setup, move); szczebel 5, do recenzji niezależnej","zmiana_statusu":"1 źródło → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Połóż się na plecach, nogi ugięte, stopy na podłodze, ręce wyciągnięte za głowę.","en":"Lie on your back, knees bent, feet flat, arms reaching overhead.",
+    "zrodla":[{"szczebel":5,"url":"https://weighttraining.guide/exercises/long-arm-crunch/","cytat":"Bend your knees with your feet flat on the floor and arms extended over your head."},
+              {"szczebel":5,"url":"https://loadmuscle.com/exercises/crunch-hands-overhead","cytat":"Lie on your back with your knees bent and feet flat on the ground. Raise your arms overhead with your elbows slightly bent."}]},
+   {"rola":"move","pl":"Unieś ręce i górną część pleców, napinając brzuch; wróć powoli.","en":"Lift your arms and upper back by tightening your abs; lower slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://weighttraining.guide/exercises/long-arm-crunch/","cytat":"exhale as you lift your arms and upper back off the floor."},
+              {"szczebel":5,"url":"https://loadmuscle.com/exercises/crunch-hands-overhead","cytat":"Engage your core and lift your upper body towards your thighs."}]}],
+  "uwagi":"Strona aplikacji bez autora. Błąd „ciągnięcie szyi” jest tylko na stronie aplikacji — „czego unikać” wnioskować z ruchu."},
+
+ {"cwiczenie":"Decline Oblique Crunch","stan":"komplet – praktyka (setup, move); szczebel 5, do recenzji niezależnej","zmiana_statusu":"1 źródło → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Połóż się na ławce skośnej głową w dół, stopy zablokuj pod wałkami.","en":"Lie face up on a decline bench with your feet locked under the pads.",
+    "zrodla":[{"szczebel":5,"url":"https://www.makeoverfitness.com/good-obliques-exercises/2211-decline-oblique-crunch","cytat":"Position yourself on a decline bench with your feet locked in."},
+              {"szczebel":5,"url":"https://www.jefit.com/exercises/303/decline-oblique-crunch","cytat":"Start by lying on a decline bench face up, placing your feet securely under the pads"}]},
+   {"rola":"move","pl":"Unoś tułów ze skrętem, prowadząc łokieć do przeciwnego kolana; wróć i zmień stronę.","en":"Curl up with a twist, bringing your elbow toward the opposite knee; lower and switch sides.",
+    "zrodla":[{"szczebel":5,"url":"https://www.makeoverfitness.com/good-obliques-exercises/2211-decline-oblique-crunch","cytat":"Raise your upper body slowly while turning your torso to the left. Continue crunching up until your right elbow touches your left knee."},
+              {"szczebel":5,"url":"https://www.jefit.com/exercises/303/decline-oblique-crunch","cytat":"Raise your shoulders and chest up, keeping your back straight and bringing your left elbow to your right knee"}]}],
+  "uwagi":"Teksty różne (brak kopiowania). Ułożenie rąk różni się (Makeover: dłoń przy uchu i na udzie; druga strona: na piersi albo przy głowie) — do zdania nie wchodzi."},
+
+ {"cwiczenie":"Decline Reverse Crunch","stan":"komplet – praktyka (setup, move); szczebel 5, do recenzji niezależnej","zmiana_statusu":"1 źródło → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Połóż się na ławce skośnej głową wyżej i chwyć ławkę nad głową.","en":"Lie on a decline bench, head at the high end, and hold the bench above your head.",
+    "zrodla":[{"szczebel":5,"url":"https://fitnessvolt.com/substitute-exercises/decline-reverse-crunch-alternatives/","cytat":"Lie on your back on a decline bench and hold on to the top of the bench with both hands."},
+              {"szczebel":5,"url":"https://www.jefit.com/exercises/65/decline-reverse-crunch","cytat":"Grip the handles or the sides of the bench above your head for support."}]},
+   {"rola":"move","pl":"Podwiń miednicę i unieś biodra z ławki, kolana w stronę klatki; opuszczaj powoli.","en":"Curl your pelvis up and lift your hips off the bench, knees toward your chest; lower slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://fitnessvolt.com/substitute-exercises/decline-reverse-crunch-alternatives/","cytat":"move your legs towards the torso as you roll your pelvis backwards and you raise your hips off the bench."},
+              {"szczebel":5,"url":"https://www.jefit.com/exercises/65/decline-reverse-crunch","cytat":"Using your lower abdominal muscles, lift your hips off the bench and curl your pelvis towards your chest."}]}],
+  "uwagi":"Cytat Gemini dla setup strony aplikacji („Engage your core…”) dosłowny, ale nie opisuje ustawienia — użyty inny, przeczytany cytat. Kąt ławki/ud — liczby pominięte."},
+
+ {"cwiczenie":"Drop Push","stan":"komplet – praktyka (setup, move); szczebel 5, jedno ze źródeł słabe; do recenzji niezależnej","zmiana_statusu":"1 źródło → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Ustaw się w podporze przodem z dłońmi na dwóch podwyższeniach.","en":"Get into a push-up position with your hands on two raised platforms.",
+    "zrodla":[{"szczebel":5,"url":"https://liftmanual.com/drop-push-up/","cytat":"Get into a high-plank position with one hand on each platform."},
+              {"szczebel":5,"url":"https://www.jefit.com/exercises/845/drop-push-up","cytat":"get into a push-up position with your feet extended behind you and placing your hands on the boxes."}]},
+   {"rola":"move","pl":"Zeskocz dłońmi na podłogę, zamortyzuj i wybij się z powrotem na podwyższenia.","en":"Drop your hands to the floor, absorb the landing and push back up onto the platforms.",
+    "zrodla":[{"szczebel":5,"url":"https://liftmanual.com/drop-push-up/","cytat":"Explosively press up off the floor, lifting your hands back up onto the platforms."},
+              {"szczebel":5,"url":"https://www.jefit.com/exercises/845/drop-push-up","cytat":"Push yourself back up and extend your arms back onto the boxes."}]}],
+  "uwagi":"Gdzie lądują dłonie (między podwyższeniami) — tylko jedno źródło; odstęp „2 stopy” — liczba, pominięta."},
+
+ {"cwiczenie":"Belt Squat Machine","stan":"setup komplet – praktyka (część wspólna); move komplet warunkowo (recenzent: zdanie drugiego źródła stoi w sekcji błędów)","zmiana_statusu":"1 źródło → komplet (warunkowo)",
+  "zdania":[
+   {"rola":"setup","pl":"Załóż pas i przypnij go do maszyny; stań jak do zwykłego przysiadu.","en":"Put on the belt and attach it to the machine; take your normal squat stance.",
+    "zrodla":[{"szczebel":5,"url":"https://www.jackbradleyfitness.co.uk/personal-training-york-blog/the-belt-squat-benefits-muscles-worked-and-why-i-use-it","cytat":"Place the belt securely around your hips rather than high around your waist."},
+              {"szczebel":5,"url":"https://www.strengthlog.com/belt-squats/","cytat":"Place the belt around your waist properly, and attach it to the machine."}]},
+   {"rola":"move","pl":"Zejdź w przysiad pod kontrolą i wstań, prostując biodra i kolana.","en":"Squat down under control and stand back up by extending your hips and knees.",
+    "zrodla":[{"szczebel":5,"url":"https://www.jackbradleyfitness.co.uk/personal-training-york-blog/the-belt-squat-benefits-muscles-worked-and-why-i-use-it","cytat":"Lower under control, reach a consistent depth and then drive back up."},
+              {"szczebel":5,"url":"https://www.strengthlog.com/belt-squats/","cytat":"With control, stop and reverse the movement, extending your hips and legs again."}]}],
+  "uwagi":"Różnica: biodra (Bradley) vs talia (druga strona) — do zdania tylko „załóż pas”, bez miejsca. „Stopy jak do przysiadu” tylko na stronie aplikacji — przy rygorze usunąć z PL/EN. Zdanie Bradleya o ruchu stoi w sekcji błędów (ustalenie z wyniki-gemini-1) — recenzent rozstrzyga, czy liczy się jako opis ruchu."},
+
+ {"cwiczenie":"Frog Sit-Ups","stan":"komplet – praktyka (setup, move); szczebel 5, do recenzji niezależnej","zmiana_statusu":"brak → komplet",
+  "zdania":[
+   {"rola":"setup","pl":"Połóż się na plecach, złącz podeszwy stóp i rozłóż kolana na boki.","en":"Lie on your back with the soles of your feet together and knees falling out wide.",
+    "zrodla":[{"szczebel":5,"url":"https://julielohre.com/frog-crunch/","autor":"Julie Lohre","cytat":"Draw your heels toward your body, place the soles of your feet together, and allow your knees to open comfortably to the sides."},
+              {"szczebel":5,"url":"https://www.kovofitness.com/exercises/frog-crunch","cytat":"Lie on your back with the soles of your feet together and knees dropped out wide in a frog position."}]},
+   {"rola":"move","pl":"Zwiń tułów w górę w stronę miednicy, napinając brzuch; wróć powoli.","en":"Curl your upper body up toward your pelvis by tightening your abs; lower slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://julielohre.com/frog-crunch/","cytat":"As you exhale, curl your torso upward while drawing your knees and pelvis slightly toward your upper body."},
+              {"szczebel":5,"url":"https://www.kovofitness.com/exercises/frog-crunch","cytat":"Crunch your upper body up toward your pelvis, squeezing your abs, then lower under control."}]}],
+  "uwagi":"julielohre.com/frog-crunch teraz czytelna (w r1 blokada botów). Uniesione stopy tylko u Lohre (druga strona nie mówi) — do zdania nie wchodzi; recenzent porównuje z rysunkiem."},
+
+ {"cwiczenie":"Donkey Calf Raise","stan":"move komplet – praktyka; setup komplet – uproszczenie (wariant z oparciem o ławkę zamiast maszyny), do potwierdzenia recenzenta","zmiana_statusu":"brak → komplet (setup jako uproszczenie)",
+  "zdania":[
+   {"rola":"setup","pl":"Pochyl się w biodrach i oprzyj ręce o stabilną podporę.","en":"Hinge forward at the hips and rest your hands on a stable support.",
+    "zrodla":[{"szczebel":5,"url":"https://www.jefit.com/exercises/300/bodypart.php?id=9&exercise=Lower%20Legs","cytat":"Start by bending at your waist and lean your arms against a weight rack or bench that is waist height."},
+              {"szczebel":5,"url":"https://www.strengthlog.com/how-to-build-big-calves/","autor":"Andreas Abelsson","cytat":"with your hands/forearms resting on a stable surface, like a bench or machine, and keep your feet together with your hips hinged forward"}]},
+   {"rola":"move","pl":"Wspinaj się na palce jak najwyżej, potem powoli opuść pięty.","en":"Rise onto your toes as high as you can, then lower your heels slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://www.jefit.com/exercises/300/bodypart.php?id=9&exercise=Lower%20Legs","cytat":"Raise up on your toes leaning slightly forward until you feel a stretch in your calve muscles."},
+              {"szczebel":5,"url":"https://www.strengthlog.com/how-to-build-big-calves/","cytat":"Raise your heels as high as possible by pushing up onto your toes and contracting your calf muscles."}]}],
+  "uwagi":"Katalog: sprzęt „maszyna”; obie strony opisują wersję z obciążeniem na plecach / pasem i oparciem o ławkę (druga wymienia maszynę jako wariant). Cytat Gemini „If your gym doesn't have…” niemal dosłowny, ale z opisu, nie z instrukcji — użyty cytat z kroku 1. Zdanie o kolanach (przeprost) — zdrowie, pominięte."},
+
+ {"cwiczenie":"Cable Fly (high to low)","stan":"komplet – uproszczenie (drugie źródło w wersji jednorącz), do potwierdzenia recenzenta","zmiana_statusu":"1 z 3 → komplet (uproszczenie, warunkowo)",
+  "zdania":[
+   {"rola":"setup","pl":"Ustaw wyciągi wysoko i chwyć uchwyty.","en":"Set the pulleys high and grab the handles.",
+    "zrodla":[{"szczebel":5,"url":"https://potreningu.pl/atlas-cwiczen/dla-kobiet/323/krzyzowanierozpietki-linek-wyciagu-gornego","cytat":"Stań w lekkim rozkroku pomiędzy linkami wyciągów górnych.","pochodzenie":"etap 2 (S)"},
+              {"szczebel":5,"url":"https://smartworkout.app/en/exercise-library/chest/one-arm-high-to-low-cable-fly","cytat":"Set the cable machine to a high position and attach a single handle."}]},
+   {"rola":"move","pl":"Ściągaj uchwyty łukiem w dół i do środka, przed siebie; wracaj powoli.","en":"Bring the handles down and in, in an arc in front of you; return slowly.",
+    "zrodla":[{"szczebel":5,"url":"https://atlas.kulturystyka.pl/klatka.asp","miejsce":"poz. 13","cytat":"Chwytamy rączki wyciągów i ściągamy je do wewnątrz w dół","pochodzenie":"etap 2 (S)"},
+              {"szczebel":5,"url":"https://smartworkout.app/en/exercise-library/chest/one-arm-high-to-low-cable-fly","cytat":"Pull the handle down and across your body in a controlled motion until it reaches hip level."}]}],
+  "uwagi":"Strona aplikacji opisuje wersję jednorącz (bokiem do maszyny); katalog — oburącz. Wariant: nazwane uproszczenie; recenzent potwierdza, że tor ręki się nie różni. Uwaga z etapu 2: potreningu.pl i atlas.kulturystyka.pl liczone jako jeden serwis (S)."},
+
+ {"cwiczenie":"Dragon Flag","stan":"bez zmiany statusu (komplet); rozszerzenie możliwe","zmiana_statusu":null,
+  "dodatkowe":[{"rola":"move","szczebel":5,"url":"https://www.strengthlog.com/dragon-flag/","cytat":"Pause at the bottom, then raise your legs and torso back to the starting position."}],
+  "uwagi":"Powrót w górę miał tylko 1 źródło (Catalyst); teraz 2 — zdanie move może objąć powrót. Strona ma niespójność (ławka vs „off the ground”)."},
+
+ {"cwiczenie":"Bosu Ball Cable Crunch With Side Bends","stan":"1 źródło","zmiana_statusu":"brak → 1 źródło",
+  "jedno_zrodlo":[{"szczebel":5,"url":"https://bearly.fit/exercise/bosu_ball_cable_crunch","cytat":"When you reach the top of the crunch, bend to one side to engage the oblique muscles."}]},
+ {"cwiczenie":"Butt-Ups","stan":"1 źródło","zmiana_statusu":"brak → 1 źródło",
+  "jedno_zrodlo":[{"szczebel":5,"url":"https://bearly.fit/exercise/butt-ups","cytat":"Start in a plank position with forearms and toes on the ground."},{"szczebel":5,"url":"https://bearly.fit/exercise/butt-ups","cytat":"Lift your hips towards the ceiling to form an inverted V-shape."}],
+  "uwagi":"Wariant zgodny z katalogiem (podpór na przedramionach); Fitness Volt nadal odrzucony (inny wariant)."},
+ {"cwiczenie":"Body-Up","stan":"1 źródło (tekst wygląda na kopię free-exercise-db)","zmiana_statusu":"brak → 1 źródło",
+  "jedno_zrodlo":[{"szczebel":5,"url":"https://getwrkout.com/exercises/body-up","cytat":"Pressing your palms firmly into the ground, extend through the elbows to raise your body from the ground."}],
+  "uwagi":"[OTWARTE] Zdania brzmią jak tekst katalogu free-exercise-db (szczebel 5) — przy parze nie liczyć razem z innym lustrem tego tekstu; porównania z bazą nie wykonano."},
+ {"cwiczenie":"Dynamic Back Stretch","stan":"1 źródło (zgodność z rysunkiem do sprawdzenia)","zmiana_statusu":"brak → 1 źródło",
+  "jedno_zrodlo":[{"szczebel":5,"url":"https://loadmuscle.com/exercises/dynamic-back-stretch","cytat":"Lean to one side, holding the stretch for a few seconds."}],
+  "uwagi":"Skłon boczny z rękami nad głową — czy to ruch z rysunku katalogu, nie sprawdzono. Czas utrzymania — liczba, pominięty."},
+ {"cwiczenie":"Fast Skipping","stan":"1 źródło (tekst wygląda na kopię free-exercise-db)","zmiana_statusu":"brak → 1 źródło",
+  "jedno_zrodlo":[{"szczebel":5,"url":"https://health-os.app/en/exercises/fast-skipping/","cytat":"Perform fast skips by maintaining close contact with the ground and reduce air time, moving as quickly as possible."}],
+  "uwagi":"[OTWARTE] jak Body-Up — prawdopodobne lustro tekstu katalogu."},
+
+ {"cwiczenie":"Clock Push-Up","stan":"otwarte (sprzeczność wariantu)","zmiana_statusu":null,
+  "zrodla_sprzeczne":[{"szczebel":5,"url":"https://www.caliverse.app/exercises/clock-work-push-up-1191","cytat":"rotate clockwise by crossing one arm over the other to change direction."},
+                      {"szczebel":5,"url":"https://maniacmuscle.com/clock-push-up/","cytat":"Walk the hand: Move the working hand to the next clock position (a small \"step\" or slide)."}],
+  "uwagi":"Dwie różne wersje: obrót całego ciała przez krzyżowanie rąk vs przestawianie jednej dłoni po „tarczy” bez skrętu bioder. Część wspólna: pompka z podporu przodem. Rozstrzyga rysunek."},
+ {"cwiczenie":"Chain Handle Extension","stan":"brak (zgodność ćwiczenia otwarta)","zmiana_statusu":null,
+  "odrzucone":[{"url":"https://getwrkout.com/exercises/sled-overhead-triceps-extension","powod":"strona czytelna, cytaty dosłowne (Gemini skleił zdania z kroków 1 i 2); opisuje prostowanie ramion nad głową z linką od sanek, tyłem do sanek — [OTWARTE] czy to ćwiczenie z katalogu „Chain Handle Extension”"}]},
+ {"cwiczenie":"Cable Seated Crunch","stan":"brak (bez zmian)","zmiana_statusu":null,
+  "odrzucone":[{"url":"https://www.strengthlog.com/cable-crunch/","powod":"strona czytelna; opisuje wyłącznie wersję w klęku („Sit down on your knees…”), nie w siadzie"}]},
+
+ {"cwiczenie":"Behind-the-Back Barbell Wrist Curl","stan":"1 źródło (bez zmian)","zmiana_statusu":null,"odrzucone":[{"url":"https://www.skimble.com/exercises/46407-behind-the-back-barbell-wrist-curl-forearms-how-to-do-exercise","powod":"403 — nieprzeczytana"}]},
+ {"cwiczenie":"Cocoons","stan":"1 źródło (bez zmian)","zmiana_statusu":null,"odrzucone":[{"url":"https://fitbod.me/exercises/cocoon-crunch","powod":"403 — nieprzeczytana"}]},
+ {"cwiczenie":"Barbell Rollout from Bench","stan":"brak (bez zmian)","zmiana_statusu":null,"odrzucone":[{"url":"https://fitwill.app/exercise/0083/barbell-rollout-from-bench/","powod":"403 — nieprzeczytana"}]}
+]

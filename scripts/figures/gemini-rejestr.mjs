@@ -30,7 +30,7 @@ export const ZAPOBIEGANIE = {
   'blad-cue': 'identyfikator błędu tylko z listy podanej przy ćwiczeniu; brak listy = bledy: [].',
   'geometria:uarm × bar': 'ramię nie może przenikać drążka (max {pen} cm): przy mijaniu drążka w przejściu nad drążek (np. muscle-up) odsuń łokcie od osi drążka i zadbaj o klatki pośrednie co 0,05 w tej fazie.',
   'geometria:farm × bar': 'przedramię nie może przenikać drążka (max {pen} cm): chwyt na osi, łokieć poza drążkiem.',
-  'sens:broda_nad_drazkiem': 'w u = 1 broda ≥ drążek + {chinMargin} cm: miednica.y ≥ wartość z tabeli „u = 1” (punkty odniesienia); nie kończ ruchu, gdy głowa dochodzi tylko do drążka.',
+  'sens:broda_nad_drazkiem': 'w u = 1 broda ≥ drążek + {chinMargin} cm: miednica.y ≥ wartość z tabeli „u = 1” (punkty odniesienia); nie kończ ruchu, gdy broda jest poniżej wysokości drążka.',
   'sens:dol_rece_proste': 'w u = 0 łokcie ≤ {armsStraight}° (ramię prawie proste): miednica.y z tabeli „u = 0”, nie niżej.',
   'sens:miednica_nie_buja': 'poprawna poza NIE buja: miednica.x i miednica.z prawie stałe (≤ {swingPelvis} cm w całym ruchu); bujanie to osobny błąd (pu.noSwing).',
   'sens:nogi_nieruchome': 'kostki względem miednicy: x kostki − x miednicy w {ankleRel} cm (stopy pod lub za biodrami), prawie stałe w ruchu; nie wyrzucaj nóg do przodu.',

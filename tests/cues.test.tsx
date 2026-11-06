@@ -18,6 +18,11 @@ import { light } from '@/lib/theme';
 import * as store from '@/lib/store';
 import { fresh } from './helpers';
 import { renderApp, screen as appScreen, tap, flushAll } from './app';
+import P2_MOC from './fixtures/cues-p2-moc.json';
+
+import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
+import T1_DELT from './fixtures/cues-t1-delt-raise.json';
+import T1_TRI from './fixtures/cues-t1-triceps.json';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
@@ -26,13 +31,16 @@ describe('dane wskazówek', () => {
   test('każde ćwiczenie bazowe ma wskazówki albo jest na liście otwartych z powodem; poza bazą — nic', () => {
     const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open, ...CUE_DATA.hidden]); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
     expect([...LIB_BASE_NAMES].filter(n => !covered.has(n))).toEqual([]);
-    expect([...covered].filter(n => !LIB_BASE_NAMES.has(n))).toEqual([]);
+    /* poza bazą tylko karty własne z partii P1 (G2 mobilność, 02.11.2026; tests/fixtures/cues-p1-mobilnosc.json) i P2 (G3 moc, 03.11.2026; tests/fixtures/cues-p2-moc.json) integracji badań */
+    expect([...covered].filter(n => !LIB_BASE_NAMES.has(n) && !P1_MOBILNOSC.cwiczenia.includes(n) && !P2_MOC.cwiczenia.includes(n) && !T1_DELT.cwiczenia.includes(n) && !T1_TRI.cwiczenia.includes(n))).toEqual([]);
     for (const k of CUE_DATA.open) expect(CUE_DATA.exercises[k]).toBeUndefined(); /* powody otwartych — tests/zrodla-pelne-cues.test.ts */
     expect(Object.keys(CUE_DATA.exercises).length).toBeGreaterThanOrEqual(70);
   });
   test('sekcje: ustawienie i ruch ≥ 1, wskazówki 2–4, błędy 0–4; bez powtórzeń w sekcji (ćwiczenia z listy „partial” z 0.14.0: łącznie ≥ 2 — patrz tests/cues-014)', () => {
     const partial = new Set(CUE_DATA.partial);
-    for (const [ex, x] of Object.entries(CUE_DATA.exercises)) {
+    for (const [ex, x0] of Object.entries(CUE_DATA.exercises)) {
+      /* 04.11.2026 (T1b): karta „partial” może nie mieć pustej sekcji w danych runtime — ekran czyta `x[id] ?? []` (lib/cues/index.ts cuesFor) */
+      const x = Object.fromEntries(CUE_SECTIONS.map(s => [s, (x0 as Record<string, { c: string }[]>)[s] ?? []])) as Record<(typeof CUE_SECTIONS)[number], { c: string }[]>;
       if (partial.has(ex)) { expect([ex, x.setup.length + x.move.length + x.tips.length >= 2, x.tips.length <= 4, x.mistakes.length <= 4]).toEqual([ex, true, true, true]); }
       else expect([ex, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2 && x.tips.length <= 4, x.mistakes.length <= 4]).toEqual([ex, true, true, true, true]);
       for (const sec of CUE_SECTIONS) expect(new Set(x[sec].map(r => r.c)).size).toBe(x[sec].length);
@@ -115,7 +123,7 @@ describe('komponent ExerciseCues', () => {
     expect(screen.queryByText('Ustawienie')).toBeNull();
     await fireEvent.press(btn);
     expect(screen.getByRole('button', { name: 'Technika' }).props.accessibilityState).toEqual({ expanded: true });
-    for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Częste błędy']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
+    for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Czego unikać']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
     const first = cueText(CUE_DATA.exercises['Deadlift (sztanga)'].setup[0].c, 'pl');
     expect(screen.getByText(`• ${first}`).props.accessibilityLabel).toBe(first);
     /* 23.10.2026 (docs/18): źródła tylko w Ustawienia → Źródła wiedzy; przy ćwiczeniu nie ma stopki „Na podstawie…” — tests/audit-k1-bl-mer */
@@ -143,7 +151,7 @@ describe('komponent ExerciseCues', () => {
     await render(<ExerciseCues exercise={lib('Plank')} />);
     await fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
     expect(t('Technika')).toBe('Technique');
-    expect(screen.getByRole('header', { name: 'Common mistakes' })).toBeTruthy();
+    expect(screen.getByRole('header', { name: 'What to avoid' })).toBeTruthy();
     expect(screen.getByText(`• ${cueDict('en')[CUE_DATA.exercises['Plank'].setup[0].c]}`)).toBeTruthy();
     expect(screen.getByText(/^The app does not give medical advice\./)).toBeTruthy();
   });

@@ -1,0 +1,14 @@
+{
+ "karty": {
+  "Power Snatch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — potwierdzenie treści po poprawce nr 1 z rundy 2 (zaimek), partia P2 moc, L-047-A (ZB-038)",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047, ZB-038 (03.11.2026), gałąź proces/zb038-pliki-recenzenta @ f46d56b7; porównanie z treścią @ 8ab80e88 (recenzja-p2-r2.md)",
+   "sha": "180a76738d4d",
+   "uwagi": "Względem 8ab80e88 (sha 1dc67c6bfee5) zmieniło się tylko PL olympic.snatchPowerMove: „wejdź pod nią” → „wejdź pod sztangę”, dokładnie brzmienie zatwierdzone w recenzja-p2-r2.md nr 1; „złap ją” odnosi się teraz do sztangi. Pozostałe 7 zdań PL i 8 EN bez zmian; zdanie używane tylko przez tę kartę. Liczby (wyżej niż przysiad równoległy, biodra nad kolanami) bez zmian. Bez nazw źródeł i twierdzeń o zdrowiu."
+  }
+ }
+}

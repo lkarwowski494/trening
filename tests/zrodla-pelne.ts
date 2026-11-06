@@ -8,12 +8,12 @@ import * as path from 'path';
 
 export const ZRODLA_DIR = path.join(__dirname, '..', 'data', 'zrodla');
 export type FullRef = [string, string] | [string, string, 'analogia'];
-export type FullCueRef = { c: string; s: FullRef[] };
+export type FullCueRef = { c: string; s: FullRef[]; uproszczenie?: string; jedno_zrodlo?: true };
 export type CueFull = {
-  orgs: Record<string, { name: string; level: 2 | 3 | 4; kind: 'org' | 'site' | 'maker' | 'study' }>;
-  sources: Record<string, { org: string; title: string; url: string; archive?: string; level: 2 | 3 | 4 }>;
+  orgs: Record<string, { name: string; level: 2 | 3 | 4 | 5; kind: 'org' | 'site' | 'maker' | 'study' | 'book' | 'app'; warunkowo?: string }>;
+  sources: Record<string, { org: string; title: string; url?: string; archive?: string; level: 2 | 3 | 4 | 5; strona?: string }>;
   exercises: Record<string, Record<'setup' | 'move' | 'tips' | 'mistakes', FullCueRef[]>>;
-  open: Record<string, string>; partial?: string[]; partialNote?: string;
+  open: Record<string, string>; partial?: string[]; partialNote?: string; luki?: Record<string, string>;
 };
 export type FigFull = { rom: { note: string; side: Record<string, { min: number; max: number; src: string }>; front: Record<string, { min: number; max: number; src: string }> }; exercises: Record<string, unknown>; open: Record<string, string> };
 export const CUE_FULL: CueFull = JSON.parse(fs.readFileSync(path.join(ZRODLA_DIR, 'cues.json'), 'utf8'));

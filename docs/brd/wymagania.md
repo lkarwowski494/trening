@@ -42,10 +42,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest na ekranie Kolejność (szablon albo trening w toku)
     - Gdy stuka „⋯” przy wierszu (ćwiczenie, superset albo ćwiczenie w supersecie) i wybiera „Przesuń wyżej” albo „Przesuń niżej”
     - Wtedy kolejność zmienia się tak samo jak po przeciągnięciu uchwytu „≡” o jedno miejsce; arkusz pokazuje tylko możliwe kierunki i „Anuluj”
-  - Scenariusz: „Pierwsze kroki” prowadzą do przycisków, które są na ekranie (M1-audytor-generalny-025, 27.10.2026)
-    - Zakładając, że nowa osoba nie ma jeszcze szablonu z ćwiczeniami ani planu
-    - Gdy patrzy na „Pierwsze kroki” na ekranie Trening
-    - Wtedy krok 1 ma przycisk „Szablony i plan”, krok 2 „Planowanie” (oba otwierają ekran planu), krok 3 wskazuje duży przycisk „Pusty trening” (z szablonem — „Start”), przyciski kroków są jednego rodzaju, a zdanie o „Miejscach i sprzęcie” ma „›”
+  - Scenariusz: Kafelki „Przygotuj się do pierwszej serii” prowadzą do ekranów, które istnieją (M1-audytor-generalny-025, 27.10.2026; zmiana 05.11.2026)
+    - Zakładając, że nowa osoba nie zakończyła jeszcze treningu
+    - Gdy patrzy na „Przygotuj się do pierwszej serii” na ekranie Trening
+    - Wtedy kafelek „Szablony i plan” otwiera ekran planu, „Miejsca i sprzęt” — miejsca, „Historia z CSV” — import, „Przewodnik” — Przewodnik; wszystkie są przyciskami jednego rodzaju z „›” (BR-POM-001)
 
 ### BR-TRN-002: Typy serii: rozgrzewka, drop set, do upadku, notatka
 - Przepływ: PR-01
@@ -444,7 +444,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Wskazówki w języku aplikacji
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera ćwiczenie
-    - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Częste błędy” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
+    - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Czego unikać” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
   - Scenariusz: Sekcja „Technika” w karcie ćwiczenia jest domyślnie rozwinięta (decyzja właściciela 2026-10-27, wariant B; wyjątek od zamrożenia zakresu 1.0)
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera kartę ćwiczenia z biblioteki, z historii albo z Postępów (wejście poza treningiem na żywo)
@@ -453,6 +453,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
     - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
     - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Skrót recenzji rodziny obejmuje dobór po kartach (fix4 R2, decyzja koordynatora 04.11.2026; `scripts/skrot-v2-dobor.mjs`, test `tests/skrot-v2-dobor.test.ts`)
+    - Zakładając, że zmiana zestawu wskazówek albo karty zmienia linie odniesienia, elementy nakładki albo pozy „częsty błąd” ćwiczenia rodziny
+    - Gdy liczony jest skrót recenzji tej rodziny
+    - Wtedy skrót jest inny i rysunek rodziny czeka na nową recenzję; zmiana samego zdania karty albo wskazówka bez wpływu na rysunek skrótu nie zmienia
+  - Scenariusz: Element nakładki techniki tylko z regułą „ustalone” wariantu (fix4 R1, decyzja koordynatora 04.11.2026; `lib/figures/v2/reguly-cwiczen.json`, test `tests/figures-v2-nakladka-fix4.test.tsx`)
+    - Zakładając, że karta ćwiczenia ma wskazówkę elementu, ale reguła elementu nie należy do reguł wariantu ćwiczenia albo ma tam pewność inną niż „ustalone” (np. Single Leg RDL)
+    - Gdy użytkownik ogląda rysunek tego ćwiczenia
+    - Wtedy element nakładki nie jest rysowany; ćwiczenia z regułą „ustalone” pokazują go jak dotąd
   - Scenariusz: Wskazówki techniki tylko po recenzji treści karty (bramka 4; decyzja DEC-10 a, 2026-10-28; zadanie M1-audytor-generalny-038; zapis `docs/research/figury-recenzja.json`, sekcje „karty” i „zestawy”; test `tests/karty-recenzja.test.tsx`)
     - Zakładając, że karta ćwiczenia ze wskazówkami (własnymi albo ogólnymi wzorca ruchu przy rysunku v2) nie ma zapisu niezależnej recenzji treści z werdyktem „wyświetlana”, zmieniła się po recenzji (inny skrót wskazówek, tekstów polskich albo przypisania zestawu) albo recenzja oznaczyła ją „do poprawy” (np. Hack Squat, Pistol Squat)
     - Gdy użytkownik otwiera to ćwiczenie
@@ -470,10 +478,26 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Pendlay Row, a rysunek i karta mają aktualną recenzję niezależną
     - Gdy rysunek odtwarza ruch
     - Wtedy sztanga startuje z podłogi w każdym powtórzeniu (dolna krawędź talerza przy podłodze, ±0,5 j.), tułów jest prawie równolegle do podłogi (≤ 15° od poziomu, wyraźnie niżej niż w wiosłowaniu sztangą w opadzie) i nie unosi się w czasie ruchu (zmiana ≤ 5°), kolana są lekko ugięte, stopy nie ślizgają się (≤ 2 j.), a sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha; karta mówi o sztandze leżącej na podłodze, dynamicznym przyciągnięciu, starcie od nieruchomej sztangi i błędzie unoszenia tułowia (bez liczby kąta)
+  - Scenariusz: Hantel w chwycie młotkowym i ślad toru w dłoni (poprawki wspólne figur v2 po recenzji rodziny curl, 03.11.2026; test `tests/figury-curl-wspolne-w1-w2.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że ćwiczenie z hantlami (np. Hammer Curl) albo ze sztangą łamaną ma rysunek v2 z aktualną recenzją niezależną
+    - Gdy rysunek odtwarza ruch
+    - Wtedy oś hantla wynika z obrotu przedramienia (przy chwycie neutralnym leży w płaszczyźnie przód–tył i jest prostopadła do przedramienia — z boku widać poprzeczkę z dwiema główkami, z przodu hantel wzdłuż osi bez poprzeczki w poprzek ciała), ślad toru ciężaru trzymanego w dłoni leży w chwycie (przy dwóch rękach w środku między chwytami, nie w miednicy), a talerze gryfu łamanego stoją na końcach gryfu
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
     - Wtedy pod rysunkiem widzi zdanie „Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.” (w języku interfejsu, także gdy zestaw ogólny wskazówek nie jest wyświetlany); przy pozostałych podciąganiach i w innych rodzinach tego zdania nie ma
+  - Scenariusz: Nagłówek sekcji błędów to „Czego unikać” (decyzja właściciela 02.11.2026; test `tests/czego-unikac-2026-11-02.test.tsx`)
+    - Zakładając, że ćwiczenie ma w karcie sekcję błędów (ze źródeł albo wnioskowanych ze zdania ustawienia lub ruchu)
+    - Gdy użytkownik otwiera sekcję „Technika” (po polsku albo po angielsku)
+    - Wtedy sekcja nazywa się „Czego unikać” („What to avoid”), nie „Częste błędy”, bo wniosek z potwierdzonego ruchu nie dowodzi częstości; to samo na stronie z ćwiczeniami
+  - Scenariusz: Ćwiczenie ukryte w aplikacji nie znika z danych użytkownika (decyzja właściciela 02.11.2026 o „Wide-Grip Pulldown Behind The Neck”; test `tests/wide-grip-pulldown-behind-neck-2026-11-02.test.ts`)
+    - Zakładając, że ćwiczenie jest wycofane z biblioteki (źródło odradza wariant), a użytkownik ma je w treningu lub szablonie
+    - Gdy aplikacja startuje po aktualizacji
+    - Wtedy nowy użytkownik i lista wyboru go nie mają, a u istniejącego użytkownika użyte ćwiczenie zostaje jako ćwiczenie własne (nazwa, historia i szablony bez zmian), nieużyte i nietknięte znika
+  - Scenariusz: Zasady źródeł wskazówek w danych (decyzje 02.11.2026; test `tests/cues-reguly-2026-11-02.test.ts`, strażnik `npm run check:cues`)
+    - Zakładając, że zdanie wskazówki trafia do danych kart
+    - Gdy sprawdzana jest para źródeł
+    - Wtedy liczą się źródła szczebla 2–4 z różnych organizacji (szczebel 5 i odwołanie „analogia” nie), książka uznanego autora to szczebel 3 z nieprzezroczystym identyfikatorem bez adresu, ustawienie i ruch mogą mieć znacznik „jedno_zrodlo” przy jednym źródle szczebla 3 lub wyższym, błąd może być wnioskowany ze zdania ustawienia, ruchu lub wskazówki tej samej karty (`["wniosek", "<id>"]`), a wskazówka bez pary może stać tylko na jawnej liście `luki` z powodem
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu
@@ -642,6 +666,38 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy uruchamiane są testy
     - Wtedy nazwa z nawiasem, separatorem „ - ”, ukośnikiem, „Push Up”, „One-Arm”, „SMR”, „Leverage”, „Pulley”, błędną wielkością liter, liczbą mnogą spoza listy wyjątków albo duplikatem po złożeniu nie przechodzi
 
+### BR-BIB-011: Rysunek ćwiczenia pokazuje technikę linią i łukiem kąta, bez liczb (04.11.2026, etap 1: wyciskanie leżąc; etap 2: przysiad, zawias, uginanie ramion, podciąganie)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 04.11.2026 (w 1.1 rysunki ćwiczeń graficznie pokazują technikę); reguły `pelny_zakres`, `lokcie_nie_szeroko`, `lokcie_przy_tulowiu` w `data/zrodla/figury-sens.json` (pewność „ustalone”); kąty jako opis figury, nie zalecenie (decyzja 25.10.2026, linie bez liczb); `lib/figures/v2/overlay.ts`, dane `lib/figures/v2/overlay/bench_press.ts`, grupy reguł i błędów `lib/figures/v2/grupy.json`; dane rodzin etapu 2 `lib/figures/v2/overlay/{squat,hinge,curl,pull_up}.ts` (linia odniesienia z regułą `kind: 'ref'` — pion, poziom, segment — i kolor błędu linii odniesienia `GuideDef.rule` w `lib/figures/v2/guides.ts`); testy `tests/figures-v2-nakladka.test.tsx`, `tests/figures-v2-nakladka-e3.test.tsx`, `tests/figures-v2-nakladka-squat-hinge.test.tsx`, `tests/figures-v2-nakladka-curl-pullup.test.tsx`, strażnik S20 w `tests/interaction-guards.test.ts` (docs/32 wzorzec 33)
+- Ekrany: `components/ExerciseFigureV2.tsx` (sekcja „Technika” karty ćwiczenia)
+- Test: `tests/figures-v2-nakladka.test.tsx`, `.maestro/17-biblioteka-technika.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Linia i łuk kąta łokcia
+    - Zakładając, że karta ćwiczenia z rodziny wyciskania leżąc ma wskazówkę o pełnym zakresie ruchu, a łokieć jest mierzonym stawem rysunku
+    - Gdy użytkownik widzi rysunek z boku
+    - Wtedy przez ramię i łokieć biegnie ciągła linia (grubsza od przerywanego śladu toru), a w łokciu łuk kąta zgięcia w każdej klatce animacji (rozwarcie łuku = „Kąt na rysunku” ±1°); na rysunku nie ma żadnych liczb ani napisów
+  - Scenariusz: Element tylko z wskazówką na karcie
+    - Zakładając, że wskazówka powiązana z elementem (np. o ustawieniu łokci) nie należy do zestawu ćwiczenia
+    - Gdy użytkownik widzi rysunek tego ćwiczenia
+    - Wtedy tego elementu nie ma (np. łuk odwiedzenia ramienia w rzucie z góry pojawia się tylko przy ćwiczeniach z tą wskazówką); do 3 linii (łącznie z liniami odniesienia) i 1 łuku na rzut; łuk odwiedzenia liczony w płaszczyźnie rzutu z góry i rysowany tylko, gdy jest widoczny (cięciwa ≥ 4 cm rysunku)
+  - Scenariusz: Błąd łamie regułę elementu
+    - Zakładając, że użytkownik pokazuje częsty błąd, który łamie regułę z tej samej grupy co element
+    - Gdy rysunek przechodzi w pozę błędu
+    - Wtedy ten element ma kolor błędu (danger), a elementy innych reguł zostają bez zmiany
+  - Scenariusz: Linia odniesienia z regułą (etap 2)
+    - Zakładając, że karta ćwiczenia z rodziny przysiadu, zawiasu, uginania ramion albo podciągania ma wskazówkę reguły „ustalone” (np. łokcie przy bokach, wyprost na górze, broda nad drążkiem, bez bujania — ta ostatnia tylko w Pull Up i Chin Up, gdzie reguła jest „ustalone”)
+    - Gdy użytkownik widzi rysunek z boku (elementy podciągania tylko z boku)
+    - Wtedy obok linii odniesienia do ciała (poziom uda, linia pleców, pion przez palce) rysunek ma ciągłą linię tej reguły: pion przez kostkę (wyprost na górze), pion od barku w dół do wysokości miednicy (łokieć przy boku), poziom drążka przez chwyt, pion pod drążkiem; razem nadal do 3 linii i 1 łuku na rzut
+  - Scenariusz: Kolor błędu linii odniesienia (etap 2)
+    - Zakładając, że użytkownik pokazuje częsty błąd łamiący regułę linii odniesienia (zaokrąglone plecy, kolana do środka, łokcie do przodu, skracanie ruchu, bujanie)
+    - Gdy rysunek przechodzi w pozę błędu
+    - Wtedy linia tej reguły (linia pleców, linia kolan nad stopami, pion łokcia, poziom drążka, pion pod drążkiem) ma kolor błędu (danger), a pozostałe linie zostają bez zmiany
+  - Scenariusz: Czytnik ekranu
+    - Zakładając, że rysunek ma widoczne linie lub łuki
+    - Gdy użytkownik czyta obraz czytnikiem ekranu
+    - Wtedy etykieta to „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same zdania co na karcie)
+    - Wtedy zdania w etykiecie łączy spacja, gdy poprzednie kończy się znakiem końca zdania (także „。”, „।”, „؟”), w pozostałych przypadkach średnik — bez „.;” (04.11.2026)
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01, OG-09; docs/28-healthkit-etap0.md; `site/privacy.html`
@@ -728,6 +784,20 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wybrał „W słuchawkach” i podłączył słuchawki
     - Gdy zaczyna się przerwa po odhaczeniu serii
     - Wtedy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia
+
+### BR-GLS-002: Zapowiedzi głosowe używają zainstalowanego głosu o najwyższej jakości; wskazówka, jak pobrać lepszy
+- Przepływ: PR-02
+- Dowód potrzeby: docs/18 (03.11.2026 ~17:30 PL, ZB-039); docs/36-glos.md
+- Test: `tests/voice.test.ts`, `tests/voice-ui.test.tsx`, `tests/voice-native.test.ts`, `tests/voice-module.test.ts`, `.maestro/51-glos-ustawienia.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Głos o najwyższej jakości spośród zainstalowanych
+    - Zakładając, że telefon ma dla języka aplikacji głos podstawowy i premium
+    - Gdy telefon zapowiada serię
+    - Wtedy mówi głosem premium (kolejność: premium, rozszerzony, podstawowy; najpierw pełny kod języka, potem język podstawowy)
+  - Scenariusz: Wskazówka tylko przy głosie podstawowym
+    - Zakładając, że głos o najwyższej jakości dla języka jest podstawowy
+    - Gdy użytkownik otwiera Ustawienia
+    - Wtedy pod „Zapowiedzi głosowe” widzi, że lepszy głos pobierze w Ustawieniach iOS (Dostępność); przy głosie rozszerzonym lub premium wskazówki nie ma
 
 ### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
 - Przepływ: PR-08

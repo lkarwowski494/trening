@@ -18,7 +18,7 @@ name: Eksperyment — odmowa zgody na powiadomienia
 - launchApp:
     clearState: true
     permissions: { all: allow, notifications: deny }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- pierwszy dzień planu bez zgody na powiadomienia ---
 - tapOn: "Plan, tab.*"

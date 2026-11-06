@@ -1,0 +1,54 @@
+{
+ "karty": {
+  "Biceps Curl (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "a0799f84e329",
+   "uwagi": "Ustawienie (curl.dbSetup), ruch z obrotem dłoni w stronę barku (curl.dbMove), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne z figurą v2: łokcie przy bokach, obrót przedramienia 0° (neutralnie) w dole → 70° (podchwyt) u góry, łokieć 7° → 134°. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "Barbell Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "c262b156adeb",
+   "uwagi": "Podchwyt na szerokość barków (curl.bbGrip), zgięcie do przedramion ~pionowo (curl.bbMove; figura u góry ok. 19° od pionu, łokieć 13° → 149°), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne z figurą v2. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "EZ Bar Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "eb090c667ee2",
+   "uwagi": "Gryf łamany podchwytem (curl.ezGrip; figura: obrót przedramienia 25° — półpodchwyt jak na gryfie łamanym), curl.bbMove (u góry ok. 17° od pionu), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne. Dół ruchu łokieć 16° przy tekście „do pełnego wyprostu” — w granicy „prawie wyprostowana” (W4); ocena ruchu u drugiego audytora. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "Hammer Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "fd2226f3b461",
+   "uwagi": "Chwyt neutralny (curl.hammerSetup; figura: obrót 0° w całym ruchu, oś hantla po H1), kciuk w stronę barku do przedramienia ~pionowo (u góry ok. 19° od pionu), curl.elbows, curl.noSwing, curl.mis.elbows — zgodne. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  },
+  "Cable Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej ćwiczenia przy figurze v2 rodziny curl, 03.11.2026)",
+   "autor": "badacz merytoryczny (agent; wskazówki ćwiczeń 25.10.2026; data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (recenzja niezależna treści kart curl, 03.11.2026; nie pisał kart ani rysunków)",
+   "kto": "audytor — recenzja niezależna karty własnej po zastąpieniu wpisu v1 (figura v1 → v2 curl; bramka 4, L-047), 03.11.2026",
+   "sha": "db8b6290098b",
+   "uwagi": "Uchwyt dolnego wyciągu podchwytem (curl.cableSetup; figura: obrót 70°), ruch w stronę barków (curl.cableMove; łokieć 13° → 135°), curl.elbows, curl.control — zgodne z figurą v2. Teksty PL/EN zgodne znaczeniowo; każda wskazówka ma ≥ 2 źródła z miejscem w data/zrodla/cues.json."
+  }
+ }
+}

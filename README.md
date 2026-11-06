@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-7585-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-8280-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -56,14 +56,14 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Minimalny watchOS (Apple Watch) | 10.0 | `targets/watch-app/expo-target.config.js`, docs/35-zegarek-apple.md |
 | Platforma | Expo SDK 58 · React Native 0.88 · React 19.3 · TypeScript 6.0 | `package.json` |
 | Języki interfejsu | 35 | `lib/i18n.ts` (`LANGS`), `app.json`, docs/16-jezyki-i-marka.md |
-| Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
+| Ćwiczenia w bibliotece | 708 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
-| Elementy UI (przyciski, pola, przełączniki) | 356 (z testem: 356) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1082 (z testem: 1082) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 1137 (z testem: 1137) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 166 (z testem: 166) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 664 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 7585 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Elementy UI (przyciski, pola, przełączniki) | 359 (z testem: 359) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1083 (z testem: 1083) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 1161 (z testem: 1161) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 177 (z testem: 177) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 715 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 8280 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -162,25 +162,27 @@ Kroki `npm run verify` (generowane z `package.json`):
 
 <!-- gen:verify-steps -->
 1. `node scripts/hooks/sprawdz-instalacje.mjs`
-2. `npm run typecheck`
-3. `npm run lint`
-4. `npm run check:i18n`
-5. `npm run check:cues`
-6. `npm run check:claims`
-7. `npm run check:decyzje`
-8. `npm run check:figures`
-9. `npm run check:figures-v2`
-10. `npm run check:zrodla-runtime`
-11. `npm run check:pokrycie`
-12. `npm run check:readme`
-13. `node scripts/jest-ponow.mjs`
-14. `npm run check:matrix`
-15. `npm run check:licenses`
-16. `npx expo export --platform ios --output-dir .expo/verify-export`
-17. `npm run check:bundle`
-18. sprzątanie katalogu tymczasowego eksportu
-19. `npm run verify:native`
-20. `node scripts/verify-znacznik.mjs --zapisz pelne`
+2. `node scripts/verify-znacznik.mjs --czysta`
+3. `npm run typecheck`
+4. `npm run lint`
+5. `npm run check:i18n`
+6. `npm run check:cues`
+7. `npm run check:claims`
+8. `npm run check:decyzje`
+9. `npm run check:figures`
+10. `npm run check:figures-v2`
+11. `npm run check:zrodla-runtime`
+12. `npm run check:pokrycie`
+13. `npm run check:readme`
+14. `npm run check:znaczniki`
+15. `node scripts/jest-ponow.mjs`
+16. `npm run check:matrix`
+17. `npm run check:licenses`
+18. `npx expo export --platform ios --output-dir .expo/verify-export`
+19. `npm run check:bundle`
+20. sprzątanie katalogu tymczasowego eksportu
+21. `npm run verify:native`
+22. `node scripts/verify-znacznik.mjs --zapisz pelne`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
@@ -353,6 +355,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `asc-iap-localizations.yml` | ASC lokalizacje produktów zakupu | ręcznie | lokalizacje produktów zakupu w App Store Connect |
 | `asc-kontrola.yml` | ASC kontrola ustawień | ręcznie | kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia) |
 | `asc-metadane.yml` | ASC metadane sklepu | ręcznie | wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release) |
+| `asc-status-wersji.yml` | ASC status wersji | ręcznie | status wersji iOS w App Store Connect: stan recenzji (tylko odczyt; ręcznie) |
 | `asc-zrzuty.yml` | ASC zrzuty ekranu | ręcznie | wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release) |
 | `check-urls.yml` | Sprawdzenie adresów (ręcznie) | ręcznie | sprawdzenie adresów wydania: kod 200 i zgodność stron apps4brew.com z site/ (ręcznie, tylko odczyt; krok bramki wydania) |
 | `e2e-ios.yml` | E2E iOS (symulator) | wypchnięcie, ręcznie, wywołanie z innego workflow | scenariusze Maestro na symulatorze iPhone |

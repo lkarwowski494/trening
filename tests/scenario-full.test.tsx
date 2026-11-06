@@ -56,13 +56,13 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(st.settings.unit).toBe('kg'); expect(st.settings.theme).toBe('dark'); expect(st.settings.language).toBe('auto');
     expect(st.bands.map(b => [b.color, b.level])).toEqual([['czerwona', 2], ['czarna', 4], ['fioletowa', 6]]);
     expect(st.exercises.length).toBeGreaterThan(500);
-    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): „Pierwsze kroki” */
+    expect(screen.getByLabelText('Szablony i plan. Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); /* UX-12 A (audyt 0.10): „Pierwsze kroki” */
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull(); /* bez powtórzenia przy „Pierwszych krokach” */
-    expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): krok 1 „Szablony i plan”, krok 2 „Planowanie” */ expect(screen.queryByText('+ Nowy szablon')).toBeNull(); /* 11.10.2026 (P4 A): Pierwsze kroki — przyciski Planowanie */ expect(screen.getByText('Pusty trening')).toBeTruthy();
+    expect(within(screen.getByTestId('first-steps')).queryAllByText('Planowanie')).toHaveLength(0); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): „Szablony i plan”; 05.11.2026: kafelki zamiast kroków */ expect(screen.queryByText('+ Nowy szablon')).toBeNull(); /* 11.10.2026 (P4 A): Pierwsze kroki — przyciski Planowanie */ expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(); expect(screen.queryByText('Pusty trening')).toBeNull(); /* 05.11.2026: ekran nowej osoby 1.1 */
     expect(screen.queryByText(/^Powtórz ostatni/)).toBeNull(); expect(screen.queryByLabelText(/^Start: /)).toBeNull();
     for (const tab of ['Trening', 'Plan', 'Postępy', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
     /* pusty trening bez serii → „Brak odhaczonych serii” → odrzucenie; nic nie zostaje w historii */
-    await tap(screen.getByText('Pusty trening')); await flushAll(10);
+    await tap(screen.getByText('Zacznij pierwszy trening')); await flushAll(10);
     expect(S().active).not.toBeNull(); expect(S().active!.templateId).toBeNull(); expect(screen.getAllByText('Zakończ').length).toBe(1);
     expect(screen.queryByText(/^📍/)).toBeNull(); /* bez miejsc — bez wyboru miejsca */
     await tap(screen.getByText('Zakończ'));
@@ -71,11 +71,11 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByText('Zakończ')); pressAlert('Brak odhaczonych serii', 'Odrzuć trening'); await flushAll(10);
     expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(0);
     /* drugi pusty trening — „Odrzuć trening” z potwierdzeniem */
-    await tap(screen.getByText('Pusty trening')); await flushAll(10);
+    await tap(screen.getByText('Zacznij pierwszy trening')); await flushAll(10);
     await tap(screen.getByText('Odrzuć trening')); expect(lastAlert().title).toBe('Odrzucić trening?');
     pressAlert('Odrzucić trening?', 'Anuluj'); expect(S().active).not.toBeNull();
     await tap(screen.getByText('Odrzuć trening')); pressAlert('Odrzucić trening?', 'Odrzuć trening'); await flushAll(10);
-    expect(S().active).toBeNull(); expect(screen.getByText('Pusty trening')).toBeTruthy();
+    expect(S().active).toBeNull(); expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy();
     /* zakładki: puste listy */
     await go('/templates'); await flushAll(10); expect(screen.getByText('Brak szablonów — dodaj pierwszy.')).toBeTruthy();
     await go('/history'); await flushAll(10); expect(screen.getByText('Jeszcze pusto — pierwszy trening czeka.')).toBeTruthy(); expect(screen.getByText(/^0 sesji$/)).toBeTruthy();
@@ -97,7 +97,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.queryByText('Wygląd')).toBeNull();
     /* EN: nazwy z biblioteki po angielsku, interfejs po angielsku */
     await go('/exercises'); await flushAll(10); expect(screen.getByPlaceholderText('Search exercises…')).toBeTruthy(); /* 11.10.2026: tytuł ekranu jest w nagłówku stosu (w Jest się nie renderuje) */
-    await go('/'); await flushAll(10); expect(screen.getAllByText('Planning')).toHaveLength(1); expect(screen.getAllByText('Templates and plan')).toHaveLength(1); /* M1-audytor-generalny-025 */ expect(screen.getByText('Empty workout')).toBeTruthy();
+    await go('/'); await flushAll(10); expect(screen.queryByText('Planning')).toBeNull(); expect(screen.getAllByText('Templates and plan')).toHaveLength(1); /* M1-audytor-generalny-025 */ expect(screen.getByText('Start your first workout')).toBeTruthy(); /* 05.11.2026: ekran nowej osoby 1.1 */
     /* z powrotem na polski */
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Language')); await flushAll(10); expect(screen.getByLabelText('English, selected')).toBeTruthy();
@@ -509,7 +509,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* lista szablonów i ekran główny */
     await go('/templates'); await flushAll(10); expect(screen.getByLabelText('Push A, Bench Press (hantle), Cable Curl, Pull Up, Band Pull Apart…')).toBeTruthy();
     await go('/'); await flushAll(10);
-    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.')).toBeTruthy();
+    expect(screen.getByTestId('first-tile-plan')).toBeTruthy(); expect(screen.getAllByText(/^Start: /).length).toBeGreaterThan(0); expect(screen.queryByText(/duży przycisk/)).toBeNull(); /* ekran nowej osoby 1.1 (05.11.2026): kafelki zamiast kroków ze statusem; duży przycisk „Start: …” */
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* 11.10.2026: lista szablonów w wyborze szablonu (P2 B) */
     expect(screen.getByLabelText('Push A, 5 ćw. · 14 serii')).toBeTruthy(); expect(screen.getByLabelText('Start: Push A')).toBeTruthy();
   });
@@ -913,10 +913,10 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(S().settings.locations).toEqual([]); expect(S().settings.mainLocationId).toBeNull();
     expect(S().settings).toMatchObject({ language: 'auto', unit: 'kg', defaultRest: 90, showRpe: false, theme: 'dark' });
     expect(S().bands.map(b => b.level)).toEqual([2, 4, 6]); expect(S().exercises.some(e => e.name === 'Wiosło z ręcznikiem')).toBe(false);
-    await go('/'); await flushAll(10); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getAllByText('Planowanie')).toHaveLength(1); expect(screen.getAllByText('Szablony i plan')).toHaveLength(1);
+    await go('/'); await flushAll(10); expect(screen.getByLabelText('Szablony i plan. Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.queryAllByText('Planowanie')).toHaveLength(0); expect(screen.getAllByText('Szablony i plan')).toHaveLength(1);
     /* restart po wyczyszczeniu — nadal pusto */
     await act(async () => { await store.flush(); }); carry = saved(); await boot('/');
-    expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* jak po instalacji: „Pierwsze kroki” */
+    expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(screen.getByLabelText('Szablony i plan. Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); /* jak po instalacji: „Pierwsze kroki” */
     /* kopia sprzed czyszczenia wraca importem */
     await go('/more/backup'); await flushAll(10);
     (DP.getDocumentAsync as jest.Mock).mockImplementationOnce(async () => ({ canceled: false, assets: [{ uri: 'file:///doc/Backup/x.json' }] })); (FS.readAsStringAsync as jest.Mock).mockImplementationOnce(async () => safety);

@@ -12,6 +12,7 @@
 #   "Setup" / "The app does not give medical advice.*"  ← 'Ustawienie' / zdanie o poradach medycznych na końcu sekcji (stopka „Na podstawie…” usunięta 23.10.2026 — źródła są w Ustawienia → Źródła wiedzy)
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
 #   lib-row-1 / exercises-search / exercise-cues / exercise-figure-v2-image  ← testID: wiersz listy Ćwiczenia (jeden wynik), pole wyszukiwania (app/exercises.tsx), sekcja Technika, obraz figury v2 (101-22: Deadlift)
+#   "Movement drawing: .*On the drawing: .*"          ← 'Rysunek ruchu: {opis}. Na rysunku: {lista}' (04.11.2026, nakładka techniki: etykieta obrazu wymienia wskazówki widocznych linii i łuków; Deadlift (sztanga) ma linię nad środkiem stopy, dl.feet)
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
 # Audyt kontrolny 1, fala 2b (09.10.2026):
 #   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
@@ -25,7 +26,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 30000 }
@@ -69,7 +70,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
@@ -108,15 +109,52 @@ name: Filtr „Podstawowe” i sekcja „Technika”
     commands:
       - scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
       - assertVisible: { id: "exercise-figure-v2-image" }
+      - assertVisible: "Movement drawing: .*On the drawing: .*"   # 04.11.2026: nakładka techniki — etykieta „Na rysunku: …” (linia nad środkiem stopy)
 - takeScreenshot: 87-deadlift-sztanga-technika
+
+# --- 04.11.2026 (W7, recenzja 1R): nakładka techniki na wyciskaniu (Close Grip: odwiedzenie ramienia z góry, łuk i linia nakładki); rodzina bench_press ukryta do recenzji (bramka 4) — krok warunkowy jak wyżej ---
+# powrót z karty Deadlift do listy gestem krawędzi (karta ma gestureEnabled: true, app/exercise/[id].tsx) — bez ponownego uruchomienia i bez stuknięć po tekście (M1-034)
+- swipe: { start: "2%, 50%", end: "80%, 50%", duration: 300 }
+- extendedWaitUntil: { visible: { id: "exercises-search" }, timeout: 15000 }
+- tapOn: { id: "exercises-search" }
+- eraseText: 40
+- inputText: "Close Grip Bench"
+- pressKey: Enter
+- pressKey: Enter   # chowa klawiaturę (L-013)
+- tapOn: { id: "lib-row-1" }
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 8000, optional: true }
+- runFlow:
+    when: { visible: "Movement drawing: .*" }
+    commands:
+      - scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
+      - assertVisible: "Movement drawing: .*On the drawing: .*"   # etykieta z listą wskazówek elementów nakładki (cgbp.*), nie tylko starych linii
+- takeScreenshot: 88-close-grip-nakladka
+
+# --- 04.11.2026 (S4, recenzja 2R): nakładka techniki etapu 2 na uginaniu ramion (Barbell Curl: łuk i pion łokcia, zdania curl.* w etykiecie); rodzina curl ukryta do recenzji (bramka 4) — krok warunkowy jak wyżej ---
+- swipe: { start: "2%, 50%", end: "80%, 50%", duration: 300 }   # powrót gestem krawędzi, bez stuknięć po tekście (M1-034)
+- extendedWaitUntil: { visible: { id: "exercises-search" }, timeout: 15000 }
+- tapOn: { id: "exercises-search" }
+- eraseText: 40
+- inputText: "Barbell Curl"
+- pressKey: Enter
+- pressKey: Enter   # chowa klawiaturę (L-013)
+- tapOn: { id: "lib-row-1" }
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 8000, optional: true }
+- runFlow:
+    when: { visible: "Movement drawing: .*" }
+    commands:
+      - scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
+      - assertVisible: "Movement drawing: .*On the drawing: .*"   # etykieta z listą wskazówek elementów nakładki etapu 2
+- takeScreenshot: 89-barbell-curl-nakladka
 
 # --- UX2-05: „Technika ›” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
+- tapOn: { id: "start-main" }
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - tapOn: "Search exercises…"

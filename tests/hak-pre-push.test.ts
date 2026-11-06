@@ -47,6 +47,8 @@ function repoProbne(): { dir: string; zdalne: string } {
   copyFileSync(join(root, 'scripts/numeruj-lekcje.mjs'), join(dir, 'scripts/numeruj-lekcje.mjs'));
   copyFileSync(ZNACZNIK, join(dir, 'scripts/verify-znacznik.mjs'));
   copyFileSync(join(root, 'scripts/dokumenty.mjs'), join(dir, 'scripts/dokumenty.mjs'));
+  copyFileSync(join(root, 'scripts/testy-dla-plikow.mjs'), join(dir, 'scripts/testy-dla-plikow.mjs'));
+  copyFileSync(join(root, 'scripts/ci-wynik.mjs'), join(dir, 'scripts/ci-wynik.mjs')); /* ZB-041 G4: wspólny odczyt wyniku tests.yml */
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
   git(dir, ['add', '-A']);
@@ -329,7 +331,7 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
       const tools = /^tools:\s*(.*)$/m.exec(t.split('---')[1] || '')?.[1];
       return !tools || /\bBash\b/.test(tools);
     });
-    const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha', 'recenzent-lokalizacji': 'czyta teksty i zwraca listę poprawek, niczego nie edytuje ani nie wypycha' };
+    const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha', 'recenzent-lokalizacji': 'czyta teksty i zwraca listę poprawek, niczego nie edytuje ani nie wypycha', 'studio-projektowe': 'makiety w docs/design, commit bez wypychania — wypycha koordynator (05.11.2026)' };
     expect(zBash.filter(r => !WYPYCHAJA.includes(r) && !(r in WYJATKI))).toEqual([]);
   });
 });
@@ -338,7 +340,7 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
 describe('verify sprawdza zainstalowany hak pre-push (L-014)', () => {
   const sprawdz = (dir: string, env: NodeJS.ProcessEnv = bezCI()) => spawnSync(process.execPath, [join(dir, 'scripts/hooks/sprawdz-instalacje.mjs')], { cwd: dir, env, encoding: 'utf8' });
   test('pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck', () => {
-    expect(pkg.scripts.verify.startsWith('node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck')).toBe(true);
+    expect(pkg.scripts.verify.startsWith('node scripts/hooks/sprawdz-instalacje.mjs && node scripts/verify-znacznik.mjs --czysta && npm run typecheck')).toBe(true);
     expect(existsSync(SPRAWDZ)).toBe(true);
   });
   test('hak niezainstalowany: kod 1 i polecenie instalacji', () => {
@@ -451,7 +453,7 @@ describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego 
   test('commit po verify (inne drzewo) → zatrzymane, gałąź nie trafia na zdalne', () => {
     const x = galaz('kod'); oznacz(x.dir, x.npm);
     writeFileSync(join(x.dir, 'plik.txt'), 'c\n'); git(x.dir, ['commit', '-q', '-am', 'po verify']);
-    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('brak zielonego pełnego verify'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('brak zielonego verify'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
   });
   test('verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika', () => {
     const x = galaz('kod'); writeFileSync(join(x.dir, 'nowy.test.ts'), 'x\n');
@@ -499,5 +501,94 @@ describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego 
   test('w CI zapis nic nie robi (verify w tests.yml nie zostawia znaczników)', () => {
     const x = galaz('kod'); const r = spawnSync(process.execPath, [ZNACZNIK, '--zapisz', 'pelne'], { cwd: x.dir, env: { ...zNpm(x.npm), CI: 'true' }, encoding: 'utf8' });
     expect(r.status).toBe(0); expect(existsSync(join(x.npm.bin, 'znaczniki.json'))).toBe(false);
+  });
+});
+
+/* Decyzja właściciela 03.11.2026 ~21:45 PL (wariant A): „testy tylko tam, gdzie zmiana ma wpływ, pełne w CI” — znacznik „szybkie” (npm run verify:szybkie) wystarcza w haku;
+   pełne verify zostaje dla scalenia do main (scal-galaz --do main wymaga znacznika „pelne”). Zastępuje znacznik pełnego verify w haku z L-049 (28.10.2026). */
+describe('hak pre-push — znacznik „szybkie” (03.11.2026)', () => {
+  function galaz(zmiana: 'kod' | 'docs') {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    mkdirSync(join(r.dir, 'docs'), { recursive: true }); writeFileSync(join(r.dir, 'docs/a.md'), 'a\n');
+    git(r.dir, ['add', '-A']); git(r.dir, ['commit', '-q', '-m', 'docs']);
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    git(r.dir, ['checkout', '-q', '-b', 'g']);
+    writeFileSync(join(r.dir, zmiana === 'docs' ? 'docs/a.md' : 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm };
+  }
+  const pchnij = (x: ReturnType<typeof galaz>) => git(x.dir, ['push', 'origin', 'g'], zNpm(x.npm));
+  const dopisz = (x: ReturnType<typeof galaz>, plik: string, tresc: string) => { writeFileSync(join(x.dir, plik), tresc); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'dalej']); };
+  test('znacznik szybki dla tego drzewa → przechodzi', () => {
+    const x = galaz('kod'); expect(oznacz(x.dir, x.npm, 'szybkie').stdout).toContain('szybkie');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('brak znacznika → odrzucone, komunikat wymienia verify:szybkie', () => {
+    const x = galaz('kod'); const r = pchnij(x);
+    expect(r.status).not.toBe(0); expect(r.stderr).toContain('verify:szybkie'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('znacznik szybki dla innego drzewa (commit po verify) → odrzucone', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie'); dopisz(x, 'plik.txt', 'c\n');
+    expect(pchnij(x).status).not.toBe(0); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('H1 (03.11.2026, L-080): gałąź z wcześniejszymi zmianami względem main — kod ze znacznikiem szybkim, potem commit tylko z dokumentami ze znacznikiem verify:docs → przechodzi', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie'); dopisz(x, 'docs/a.md', 'c\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('H1 (03.11.2026, L-080): po znaczniku szybkim zmiana kodu ze znacznikiem verify:docs → zatrzymane; bez żadnego znacznika kodu → zatrzymane', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie'); dopisz(x, 'docs/a.md', 'c\n'); dopisz(x, 'plik.txt', 'd\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x).status).not.toBe(0);
+    const y = galaz('kod'); dopisz(y, 'docs/a.md', 'c\n'); oznacz(y.dir, y.npm, 'dokumenty'); expect(pchnij(y).status).not.toBe(0);
+  });
+  test('--wymagaj pelne (scalenie do main): szybki nie wystarcza, pełny tak', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm, 'szybkie');
+    const sprawdz = () => spawnSync(process.execPath, [ZNACZNIK, '--sprawdz', 'HEAD', '--wymagaj', 'pelne'], { cwd: x.dir, env: zNpm(x.npm), encoding: 'utf8' });
+    expect(sprawdz().status).toBe(1); oznacz(x.dir, x.npm, 'pelne'); expect(sprawdz().status).toBe(0);
+  });
+  test('skrypty: verify:szybkie kończy się zapisem znacznika „szybkie”, używa test:fast od bazy gałęzi; jego kroki check:* są podzbiorem verify; pełne verify bez zmian', () => {
+    const v: string = pkg.scripts['verify:szybkie']; const pelne: string = pkg.scripts.verify;
+    expect(v).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz szybkie$/);
+    expect(v).toContain('node scripts/test-fast.mjs --od-bazy');
+    expect(v).not.toMatch(/expo export|verify:native|jest-ponow|check:bundle/);
+    for (const k of v.match(/npm run [\w:-]+/g)!) expect(pelne).toContain(k);
+    expect(pelne).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz pelne$/);
+  });
+  test('scal-galaz: scalenie do main wymaga znacznika „pelne”', () => {
+    const t = readFileSync(join(root, 'scripts/scal-galaz.mjs'), 'utf8');
+    expect(t).toMatch(/docelowa === 'main'/); expect(t).toContain("'--wymagaj', 'pelne'");
+  });
+});
+
+/* ZB-041 G4 (decyzja właściciela 04.11.2026 ~06:00 PL; L-080): gałąź integracji ma kod względem main i żadnego znacznika (commity scaleń), a zielony tests.yml jej zdalnej głowy
+   (tu: plik zamiast API, CI_RUNY_PLIK) jest bazą — commit tylko z dokumentami ze znacznikiem verify:docs przechodzi na prawdziwym git push; kod po tej bazie nadal nie. */
+describe('hak pre-push — baza z zielonego tests.yml gałęzi integracji (04.11.2026)', () => {
+  function integracja() {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    mkdirSync(join(r.dir, 'docs'), { recursive: true }); writeFileSync(join(r.dir, 'docs/a.md'), 'a\n'); writeFileSync(join(r.dir, 'docs/40-lekcje.md'), '# Lekcje\n');
+    git(r.dir, ['add', '-A']); git(r.dir, ['commit', '-q', '-m', 'docs']);
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    git(r.dir, ['checkout', '-q', '-b', 'integracja-1-1']);
+    writeFileSync(join(r.dir, 'plik.txt'), 'kod\n'); git(r.dir, ['commit', '-q', '-am', 'scalenie z kodem']);
+    expect(git(r.dir, ['push', '--no-verify', 'origin', 'integracja-1-1']).status).toBe(0);
+    const zdalny = git(r.dir, ['rev-parse', 'HEAD']).stdout.trim();
+    return { ...r, npm, zdalny };
+  }
+  const ciPlik = (npm: { bin: string }, sha: string, conclusion: string) => {
+    const f = join(npm.bin, 'runy.json');
+    writeFileSync(f, JSON.stringify({ workflow_runs: [{ id: 9, path: '.github/workflows/tests.yml', head_sha: sha, status: 'completed', conclusion, created_at: '2026-11-04T05:00:00Z', run_number: 1 }] }));
+    return f;
+  };
+  const dokument = (x: ReturnType<typeof integracja>) => { writeFileSync(join(x.dir, 'docs/a.md'), 'b\n'); git(x.dir, ['commit', '-q', '-am', 'dokument']); oznacz(x.dir, x.npm, 'dokumenty'); };
+  const pchnij = (x: ReturnType<typeof integracja>, ci: string) => git(x.dir, ['push', 'origin', 'integracja-1-1'], { ...zNpm(x.npm), CI_RUNY_PLIK: ci });
+  test('zielony tests.yml zdalnej głowy + commit tylko z dokumentami (znacznik verify:docs) → przechodzi', () => {
+    const x = integracja(); dokument(x);
+    expect(pchnij(x, ciPlik(x.npm, x.zdalny, 'success')).status).toBe(0);
+  });
+  test('czerwony tests.yml zdalnej głowy → zatrzymane jak dotąd', () => {
+    const x = integracja(); dokument(x);
+    const r = pchnij(x, ciPlik(x.npm, x.zdalny, 'failure')); expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs');
+  });
+  test('kod po zielonej bazie, nawet ze znacznikiem verify:docs → zatrzymane', () => {
+    const x = integracja(); dokument(x); writeFileSync(join(x.dir, 'plik.txt'), 'kod2\n'); git(x.dir, ['commit', '-q', '-am', 'kod']); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x, ciPlik(x.npm, x.zdalny, 'success')).status).not.toBe(0);
   });
 });

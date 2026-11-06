@@ -19,7 +19,7 @@ describe('katalog ćwiczeń — spójność', () => {
     expect(new Set(names.map(fold)).size).toBe(names.length);
     applyLang('en'); const en = lib().map(e => fold(exName(e))); applyLang('pl');
     expect(new Set(en).size).toBe(en.length);
-    expect(CATALOG_LIB_EXTRA.length).toBe(LIB_EXTRA_NAMES.length); expect(names.length).toBe(LIB_BASE_NAMES.size + LIB_EXTRA_NAMES.length); expect(LIB_BASE_NAMES.size).toBe(124); /* research 09.10.2026: Rear Delt Raise (hantle) scalone z Reverse Fly (hantle) */
+    expect(CATALOG_LIB_EXTRA.length - 1).toBe(LIB_EXTRA_NAMES.length); /* 02.11.2026: jedno ćwiczenie wycofane z biblioteki */ expect(names.length).toBe(LIB_BASE_NAMES.size + LIB_EXTRA_NAMES.length); expect(LIB_BASE_NAMES.size).toBe(124); /* research 09.10.2026: Rear Delt Raise (hantle) scalone z Reverse Fly (hantle) */
   });
 
   test('obciążenie partii zgodne z partiami ćwiczenia: główna → region z wagą 1, pomocnicza → region ≥ 0,5', () => {
@@ -191,7 +191,7 @@ describe('katalog ćwiczeń — audyt kroku b (MEDIUM: powrót do starszego buil
 
 describe('pełna baza (krok 05.10, „dodawaj resztę”) — migracja', () => {
   test('dane po kroku b: dopisane tylko ćwiczenia kroku c; usunięte z kroku b nie wracają; nowa instalacja ma wszystko', async () => {
-    const c = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-05').map(r => r[0])); expect(c.size).toBe(440); /* 584 przed researchem biblioteki 09.10.2026 (scalone i usunięte znikają) */
+    const c = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-05').map(r => r[0])); expect(c.size).toBe(440); c.delete('Wide-Grip Pulldown Behind The Neck'); /* wycofane 02.11.2026 */ /* 584 przed researchem biblioteki 09.10.2026 (scalone i usunięte znikają) */
     await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtraStep = 'katalog-2026-10-04b';
     raw.exercises = raw.exercises.filter((e: any) => !c.has(e.name) && e.name !== 'Machine Row');
     const m = store.migrate(raw); const names = new Set(m.exercises.map(e => e.libKey ?? e.name)); /* SEC2-01: po kluczu katalogu — nazwa wyświetlana bywa ogólna (LIB_DISPLAY_NAME) */

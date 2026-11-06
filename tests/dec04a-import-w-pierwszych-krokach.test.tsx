@@ -1,6 +1,7 @@
 /*
  * DEC-04 a (właściciel 23.10.2026; wdrożenie 1.0.1, docs/21 „Backlog 1.0.1 — decyzje DEC-01 a i DEC-04 a”): w „Pierwszych krokach” czwarty, pomijalny krok
  * „Masz historię w innej aplikacji?” z przyciskiem „Importuj historię z pliku CSV” — tylko wejście do istniejącego importu (/more/import), bez zmian w samym imporcie.
+ * Od 05.11.2026 (docs/18, ekran nowej osoby 1.1) wejście to kafelek „Historia z CSV” (testID first-steps-import) w „Przygotuj się do pierwszej serii”: ten sam cel, ten sam opis, bez numeru i statusu „do zrobienia”.
  * Realność: realny (nowa osoba przychodzi z innego dziennika). Kroki: pierwsze uruchomienie → ekran Trening → karta „Pierwsze kroki” → krok 4 → przycisk → ekran importu.
  * Wzorzec docs/32 nr 18 (przycisk drugorzędny jak w krokach 1–3), nr 17 (przejście na inny ekran), nr 23 (etykieta/rola).
  */
@@ -23,27 +24,27 @@ const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten((typeof 
 const STEP4 = 'Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.';
 
 describe('DEC-04 a: krok „zaimportuj historię” w Pierwszych krokach', () => {
-  test('nowa osoba: krok 4 jest na karcie, nigdy „zrobiony”, z jednym przyciskiem; etykieta VoiceOver z numerem i stanem', async () => {
+  test('nowa osoba: kafelek „Historia z CSV” jest na ekranie, jeden, z opisem; etykieta VoiceOver „tytuł. opis” bez numeru i stanu', async () => {
     await boot();
-    expect(screen.getByLabelText(`4. ${STEP4} do zrobienia`)).toBeTruthy();
-    expect(box().getByText(STEP4)).toBeTruthy();
-    expect(box().getAllByRole('button', { name: 'Importuj historię z pliku CSV' })).toHaveLength(1);
+    expect(screen.getByLabelText(`Historia z CSV. ${STEP4}`)).toBeTruthy(); expect(screen.queryByLabelText(/^4\. /)).toBeNull();
+    expect(box().getByText(STEP4)).toBeTruthy(); expect(box().getAllByText('Historia z CSV')).toHaveLength(1);
+    expect(box().getAllByRole('button', { name: `Historia z CSV. ${STEP4}` })).toHaveLength(1);
   });
-  test('przycisk prowadzi do istniejącego ekranu importu CSV (bez zmian w imporcie)', async () => {
+  test('kafelek prowadzi do istniejącego ekranu importu CSV (bez zmian w imporcie)', async () => {
     await boot();
-    await tap(box().getByRole('button', { name: 'Importuj historię z pliku CSV' })); await flushAll(10);
+    await tap(screen.getByTestId('first-steps-import')); await flushAll(10);
     expect(screen.getByText('Wybierz plik CSV')).toBeTruthy();
     expect(screen.getByText('Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.')).toBeTruthy();
   });
-  test('krok jest też przy gotowym szablonie (pomijalny, nie odhaczany); przycisk tego samego rodzaju co „Przewodnik”', async () => {
+  test('kafelek jest też przy gotowym szablonie (pomijalny); tego samego rodzaju co „Przewodnik”', async () => {
     await boot(() => { withDemoTemplates(); });
-    expect(screen.getByLabelText(`4. ${STEP4} do zrobienia`)).toBeTruthy();
-    const imp = flat(box().getByRole('button', { name: 'Importuj historię z pliku CSV' })); const ref = flat(box().getByRole('button', { name: 'Przewodnik po funkcjach' }));
-    expect([imp.backgroundColor, imp.borderColor]).toEqual([ref.backgroundColor, ref.borderColor]);
+    expect(screen.getByLabelText(`Historia z CSV. ${STEP4}`)).toBeTruthy();
+    const imp = flat(screen.getByTestId('first-steps-import')); const ref = flat(screen.getByTestId('first-tile-guide'));
+    expect([imp.backgroundColor, imp.borderColor, imp.borderRadius]).toEqual([ref.backgroundColor, ref.borderColor, ref.borderRadius]);
   });
-  test('EN: tekst i przycisk po angielsku', async () => {
+  test('EN: tekst i kafelek po angielsku', async () => {
     await boot(() => {}, 'en');
     expect(box().getByText('Already logging workouts in another app? You can add your history from a CSV file.')).toBeTruthy();
-    expect(box().getByRole('button', { name: 'Import history from a CSV file' })).toBeTruthy();
+    expect(box().getByRole('button', { name: 'History from CSV. Already logging workouts in another app? You can add your history from a CSV file.' })).toBeTruthy();
   });
 });

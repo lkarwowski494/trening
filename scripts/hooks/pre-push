@@ -2,8 +2,10 @@
 # Hak pre-push (L-009, decyzja właściciela 21.10.2026): zatrzymuje wypchnięcie, gdy lint nie przechodzi albo któryś plik pochodny (README, macierz testów, konteksty, zegarek…) jest nieaktualny.
 # Dwa sprawdzenia, w tej kolejności, przerwanie przy pierwszym błędzie: lint, check:pochodne (README, macierz, konteksty, pliki pochodne, strażniki tekstowe); do tego (L-037) przy zmianach w docs/: numeracja lekcji i testy dokumentów.
 # Wyjątek: gdy zmiany względem origin/main (albo — H1, 31.10.2026 — od najbliższego commitu z pełnym verify) to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
-# Pełne `npm run verify` jest obowiązkiem przed wypchnięciem (CLAUDE.md), a od L-049 (opcja A, decyzja właściciela 28.10.2026) pierwszy krok haka to sprawdza:
-# drzewo wypychanego commitu musi mieć znacznik zielonego verify (scripts/verify-znacznik.mjs; commit tylko z dokumentami — znacznik verify:docs, także po pełnym verify wcześniejszego kodu — H1, 31.10.2026). Ok. 0,1 s.
+# Od 03.11.2026 (decyzja właściciela ~21:45 PL, wariant A: „testy tylko tam, gdzie zmiana ma wpływ, pełne w CI”) przed wypchnięciem wystarczy `npm run verify:szybkie`
+# (typecheck + szybkie check:* + test:fast od bazy gałęzi); pełne testy biegną w CI (tests.yml), a scalenie do main wymaga lokalnego pełnego verify (scal-galaz --do main).
+# Pierwszy krok haka (L-049, 28.10.2026) sprawdza: drzewo wypychanego commitu musi mieć znacznik zielonego verify — pelne albo szybkie (scripts/verify-znacznik.mjs;
+# commit tylko z dokumentami — znacznik verify:docs, także po verify wcześniejszego kodu — H1, 31.10.2026). Ok. 0,1 s.
 # Instaluje go `npm ci` (skrypt `prepare` → scripts/hooks/instaluj.mjs ustawia core.hooksPath na scripts/hooks; nie w CI i nie w katalogu bez .git).
 # Czas (pomiar 28.10.2026, 4 rdzenie, maszyna współdzielona): lint ok. 25 s + check:pochodne ok. 55 s (kroki równolegle, jest --maxWorkers=1); ok. 35 s przed decyzją 8a.
 # Obejście — tylko świadomie (np. wypychasz gałąź roboczą, której i tak nie scalasz): git push --no-verify
@@ -32,14 +34,17 @@ start=$(date +%s)
 # L-049 (opcja A, 28.10.2026): znacznik zielonego verify dla każdego wypychanego commitu (bez danych wejściowych — HEAD).
 [ -n "$refy" ] || refy="$(git rev-parse HEAD) - -
 "
-bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha _ _; do
+# ZB-041 G4 (04.11.2026): dla wypychanej gałęzi baza dokumentów może być też origin/<gałąź> z zielonym tests.yml (--galaz).
+bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha zdalny_ref _; do
   [ -n "$lokalny_sha" ] || continue
-  node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" >&2 || echo "$lokalny_sha"
+  case "$zdalny_ref" in refs/heads/*) galaz="${zdalny_ref#refs/heads/}" ;; *) galaz="" ;; esac
+  if [ -n "$galaz" ]; then node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" --galaz "$galaz" >&2 || echo "$lokalny_sha"
+  else node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" >&2 || echo "$lokalny_sha"; fi
 done)
 if [ -n "$bez_znacznika" ]; then
   echo "" >&2
-  echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — brak zielonego pełnego verify dla wypychanego stanu plików (L-049, decyzja właściciela 28.10.2026)." >&2
-  echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify (commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
+  echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — brak zielonego verify dla wypychanego stanu plików (L-049, 28.10.2026; zmiana: decyzja właściciela 03.11.2026)." >&2
+  echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify:szybkie (albo pełne npm run verify; commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
   exit 1
 fi
 

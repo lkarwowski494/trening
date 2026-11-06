@@ -11,16 +11,16 @@ name: Duży tekst dostępności — ekran Trening
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- bez planu: początek ekranu i przewinięcie do końca ---
 - takeScreenshot: 580-bez-planu-gora
-- scrollUntilVisible: { element: "Other workout", direction: DOWN, timeout: 20000, centerElement: true }
+- scrollUntilVisible: { element: "Start your first workout", direction: DOWN, timeout: 20000, centerElement: true }
 - takeScreenshot: 581-bez-planu-przycisk-startu
 - swipe: { start: "50%, 80%", end: "50%, 15%", duration: 500 }
 - takeScreenshot: 582-bez-planu-dol
 # --- z planem: generator szablonów i planu z kroków startowych (jak 31; bez wspólnego podprzepływu szablonu — jego wybór ćwiczenia w pickerze nie działa przy największym tekście) ---
 # Dzień tygodnia bywa dniem planu albo nie (karta „Dziś” albo „Następny trening”) — asercji na treść karty nie ma, oceniają ją zrzuty 583–585.
-- scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
+- scrollUntilVisible: { element: { id: "first-tile-plan" }, direction: DOWN, timeout: 30000, centerElement: true }
 - runFlow: subflows/generator-plan-duzy-tekst.yaml
 - swipe: { start: "50%, 20%", end: "50%, 85%", duration: 500 }
 - takeScreenshot: 583-z-planem-gora

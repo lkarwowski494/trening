@@ -1,0 +1,284 @@
+{
+ "karty": {
+  "Barbell Snatch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "902ba4a32345",
+   "uwagi": "Sprawdzone: Catalyst #58 („snatch-width grip”, „shoulder joint above the bar”, „Make sure the bar is stable and secure overhead and then stand.”). Drugie źródło Rogue/BarBend z nazwanym uproszczeniem wariantu."
+  },
+  "Block Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "8acfe0d687b2",
+   "uwagi": "Sprawdzone: Catalyst #379 („Most commonly the lift is done with the bar starting at knee height”, „initiate the lift by pushing with the legs through the floor”, „Drive back up from the bottom of the squat immediately and aggressively.”). „Gdy sztanga minie kolana” zgodne z typowym startem z wysokości kolan. Źródła BarBend jako ruch bazowy (uproszczenie nazwane)."
+  },
+  "Block Power Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "22b60748d197",
+   "uwagi": "Sprawdzone: Catalyst #380 („Start in the same position you would be in at that point of a power clean from the floor.”, „to ensure you remain above a parallel squat”, „Spin the elbows around the bar”). Drugie źródło BarBend/Experience Life jako ruch bazowy (power clean z ziemi) — uproszczenie nazwane w miejscu."
+  },
+  "Block Snatch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "0fd7d39fb6f6",
+   "uwagi": "Sprawdzone: Catalyst #207 („Most commonly the lift is done with the bar starting at knee height.”, „Start in the same position you would be in during a snatch with the bar at that height.”, „Make sure the bar is stable and secure overhead and then stand.”). Drugie źródło BarBend blocks-vs-hang."
+  },
+  "Broad Jump": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "24144cd78046",
+   "uwagi": "Sprawdzone: Catalyst #549 („bend at the knees and hips to load the legs and swing the arms back”, „push as aggressively as possible against the ground with the legs”, „lift and reach the feet in front of yourself to absorb the impact by bending the knees and hips”). Drugie źródło ACE #177."
+  },
+  "Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "86b3cd5106dc",
+   "uwagi": "Sprawdzone: Catalyst #59 („trunk braced forcefully with the back extended”, „Drive back up from the bottom of the squat immediately and aggressively.”). Drugie źródło BarBend/CrossFit."
+  },
+  "Clean Pull": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "b3a5a8382e26",
+   "uwagi": "Sprawdzone: Rogue clean-pull („Do NOT pull with the arms — this isn't a high pull”, „Maintain a flat back”, „explode through hips, knees, and ankles (triple extension)”) — miejsce opisane w cues.json jako „wg notatki z sesji 1” potwierdzone na stronie. Drugie źródło BarBend/Catalyst #98."
+  },
+  "Clean and Jerk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "3a85656d4b68",
+   "uwagi": "Sprawdzone: Catalyst #76 („trunk braced forcefully with the back extended”, „Dip by bending at the knees only with the trunk vertical”, „quickly move the feet into the split position as you punch the elbows”). Pytanie o przyjęcie po usunięciu olympic.catchLow: karta nadal opisuje przyjęcie sztangi na barkach (olympic.under „przyjmij ją na przód barków”), ale nie mówi, na jakiej głębokości ani że trzeba wstać przed podrzutem. To luka, nie błąd: w podrzucie dwuboju dozwolone jest przyjęcie na dowolnej głębokości, a olympic.splitMove zaczyna od stania („Ugnij kolana…”). Propozycja (NISKIE, bez blokady): przy limicie 4 zdań ruchu zamienić wskazówkę oly.close (pokrywa ją błąd mis.barAway) na olympic.catchLow — źródła Catalyst #76 „Drive back up from the bottom of the squat immediately”."
+  },
+  "Double Kettlebell Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "9741b4eba017",
+   "uwagi": "Sprawdzone: BarBend kettlebell-clean („you’ll need to widen your stance to hike both bells between your legs”, „performed in the same way as the single-arm kettlebell clean”). Uwaga: miejsce w ACE 5386 dla kbb.dblStance to opis swingu oburącz, nie zarzutu — ta sama pozycja wyjściowa (zamach między nogami), akceptowalne. Karta partial."
+  },
+  "Double Kettlebell Jerk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "15a14aabe7a5",
+   "uwagi": "Sprawdzone: CrossFit double-kettlebell-push-press-and-jerk („Your wrist should be straight or just slightly flexed.”, „Make sure to extend the hips completely before making the second dip into the catch position.”, „Drop and lock”). Drugie źródło StrongFirst. Zgodne."
+  },
+  "Hang Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047, runda 2 po poprawce",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, runda 2)",
+   "kto": "audytor — recenzja niezależna L-047, runda 2 poprawek partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 8ab80e88; źródła sprawdzone WebFetch",
+   "sha": "6d4aeefcbd8e",
+   "uwagi": "Sprawdzone: Catalyst #68 („if no position is specified, 'hang' implies knee height”; „extend the hips violently”), Rogue Hang Squat Clean („Barbell is held just above the knees”; „explosively extend the hips and knees reaching triple extension”). Wada z rundy 1 usunięta: olympic.extend (warunek „gdy sztanga minie kolana”) zastąpione olympic.hangExtend „Ze zwisu mocno wyprostuj biodra i nogi.”, co pasuje do startu tuż nad kolanami (olympic.hangStart). Pozostałe zdania bez zmian treści względem rundy 1 (poza scaleniem olympic.mis.arms, brzmienie poprawne)."
+  },
+  "Hang Snatch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "a91710c16eaf",
+   "uwagi": "Sprawdzone: Rogue hang-squat-snatch („Shoulders and chest stay over the bar for as long as possible.”, „Initiate movement with leg drive and the arms remaining straight.”, „receive the barbell with locked out arms in a full depth overhead squat”). Zdanie ruchu bez warunku kolan — pasuje do startu ze zwisu. Drugie źródło Catalyst #62/#58 (nazwane uproszczenie)."
+  },
+  "Jerk Balance": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "489d1780af9d",
+   "uwagi": "Sprawdzone: Catalyst #193 („step about a foot-length back with the front foot into a partial split position”, „dip straight down, drive straight up, and step the front foot forward into the full split position”). Drugie źródło BarBend. Karta przeniesiona z „open”."
+  },
+  "Jerk Dip Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "0f7aacdf6bc6",
+   "uwagi": "Sprawdzone: Catalyst #194 („Brace your trunk as you would for a jerk, then dip as you do for a jerk”, „it does not involve a drive or speed at any point”). Sygnał pp.legs: zestaw ogólny pushPress (pp.dip, pp.legs „Siła wybicia idzie z nóg i bioder…”) przeczył temu ćwiczeniu (bez wybicia); karta własna (b: own) go zastępuje — pp.legs nie ma na karcie ani w pozie v2 (bledy: []). Poprawne."
+  },
+  "Kettlebell Thruster": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "175baa530c3a",
+   "uwagi": "Sprawdzone: Experience Life thruster („front rack position”, „forcefully pressing the kettlebells straight overhead as you rise”, „Keep your heels down throughout the movement.”, „thighs are parallel (or below parallel)”), CrossFit („two dumbbells or two kettlebells”). sq.mis.heels — bezpośrednie źródła. Figura v2 (planned): ruch bez zmian; arkusz /home/user/recenzja-p2/arkusze/Kettlebell-Thruster-side.png zgodny z kartą. Jak przy Thruster (hantle): po wdrożeniu wpisu regeneracja thruster.json przywraca pozę błędu „pięty”."
+  },
+  "Muscle Snatch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "73dd69c0b004",
+   "uwagi": "Sprawdzone: Catalyst #96 („Extend the entire body close to vertically rather than leaning the trunk farther back as you would in a snatch.”, „As the elbows reach approximately shoulder height, turn the bar over.”). „Bez ponownego ugięcia kolan” — BarBend („without re-bending your legs”), Catalyst „Keep the legs tight and pushing into the floor”."
+  },
+  "Power Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "8c1429ed1b57",
+   "uwagi": "Sprawdzone: Catalyst #67 („feet approximately hip width and toes turned out”, „brake hard with the legs … to ensure you remain above a parallel squat”, „Spin the elbows around the bar”). Drugie i trzecie źródło BarBend, Experience Life."
+  },
+  "Power Jerk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "c139725fa438",
+   "uwagi": "Sprawdzone: Catalyst #72 („quickly move the feet into your squat stance”, „any depth above a parallel squat is considered a power jerk”). Liczba/próg „nie niżej niż do równoległego ud” — 2 źródła (Catalyst, CrossFit „parallel or above”)."
+  },
+  "Sled Push": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "ef9ee9fdcec0",
+   "uwagi": "Sprawdzone: REP sled-push („Don't push with your arms since they are not nearly as strong as your legs.”, „Avoid rounding your lower back”; pochylenie ok. 45° — karta słusznie bez liczby, tylko „Pochyl się w przód”). Twierdzenia zdrowotne strony (bezpieczne dla starszych, tętno) nie trafiły do karty — dobrze. Drugie źródło BarBend, EliteFTS, Torque."
+  },
+  "Snatch (hantel)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "4324b03aab39",
+   "uwagi": "Sprawdzone: BarBend dumbbell-snatch („Squat down so that you are in a similar start position to a deadlift.”, „keeping your arm relaxed and allowing your legs and hips to do the work in the first half”, „your elbow is locked out”). Drugie źródło Rogue (różna organizacja). Bez liczb i twierdzeń o zdrowiu."
+  },
+  "Snatch Balance": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "4b798318dab4",
+   "uwagi": "Sprawdzone: Catalyst #80 („barbell behind your neck with a snatch-width grip”, „Punch the arms aggressively up into the bar”, „move your feet into your receiving stance and squat as quickly as possible”, „Making sure it's stable and secure, stand again with the bar overhead.”). Błędy jako zaprzeczenie standardu + Torokhtiy — zgodne."
+  },
+  "Snatch Pull": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "2b3fe9cfd271",
+   "uwagi": "Sprawdzone: Catalyst #97 („arms relaxed and stretched long”, „Push with the legs through the whole foot”, „shrug up and back”; strona nie opisuje wchodzenia pod sztangę — zgodne z „bez wchodzenia pod sztangę”). Drugie źródło Rogue."
+  },
+  "Split Clean": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "b387e35c4cdc",
+   "uwagi": "Sprawdzone: Catalyst #211 („rather than moving under the barbell into a squat receiving position, the athlete moves under in a split position”). Drugie źródło IronMind (Schmitz). Zdania ciągu stoją na źródłach zarzutu bazowego (uproszczenie: ten sam ciąg, potwierdzone przez #211)."
+  },
+  "Split Jerk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "1a7a3827dd0a",
+   "uwagi": "Sprawdzone: Catalyst #60 („Stand with the heels approximately hip-width”, „Dip by bending at the knees only with the trunk vertical”, „quickly move the feet into the split position”). Drugie źródło CrossFit (Burgener)."
+  },
+  "Split Snatch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "ddb6f2c695b0",
+   "uwagi": "Sprawdzone: IronMind/Schmitz („performed by pulling the bar just as you would for a power or squat lift”, „you split one leg forward about one foot, and the other leg backward about two feet”, „You then recover to the standing position.”). Karta nie podaje odległości stóp (słusznie, liczba bez drugiego źródła). Drugie źródło Catalyst (Performance Menu)."
+  },
+  "Squat Jerk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "d2a548469d36",
+   "uwagi": "Sprawdzone: Catalyst #75 („punch the elbows into a secure overhead position to drive yourself down into a squat”, „Secure and stabilize the bar before recovering into a standing position with the bar overhead.”). Drugie źródło CrossFit."
+  },
+  "Standing Two-Arm Overhead Throw": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "85de3b2b60b3",
+   "uwagi": "Sprawdzone: ACE #178 („contract and brace the abdominals”, „lift the medicine ball overhead and bend your elbows to reach the medicine ball behind your head”, „quickly bring your arms forward over your head”). Drugie źródło World Athletics overarm throw."
+  },
+  "Thruster (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-03",
+   "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
+   "autor": "programista P2 (sesja koordynatora 1.1)",
+   "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
+   "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+   "sha": "6606839c306f",
+   "uwagi": "Sprawdzone: ACE #357 („hold them in front of each shoulder”, „When the hips are below the knees in the squat”, „stand up and at the same time press the dumbbells overhead”), CrossFit thruster („The heels remain down until the hips and knees fully extend.”, „heels lifting from the floor prematurely”). sq.mis.heels ma bezpośrednie źródła (CrossFit, Experience Life) — nie jest analogią. Figura v2 (rodzina thruster, planned — nie wyświetlana): ruch identyczny z wersją sprzed regeneracji (JSON bez bledy równy), arkusz /home/user/recenzja-p2/arkusze/Thruster-hantle-side.png: przysiad ok. do równoległego, pięty na podłodze, wypchnięcie w trakcie wstawania, hantel na górze nad przodostopiem — zgodne z kartą. Zniknięcie pozy błędu „pięty” wynika z ukrycia karty (bledyCwiczenia czyta lib/cues/data.json, karta w „hidden” → brak błędów); po wdrożeniu tego wpisu generator rysuje ją znowu (sprawdzone na kopii: odtwarzanie-poz.mjs thruster → „błędów: generator 1, plik 0”) — przywrócić pozę błędu przez regenerację thruster.json w tym samym commicie."
+  }
+ }
+}

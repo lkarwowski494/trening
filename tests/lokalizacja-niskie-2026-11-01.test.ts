@@ -23,6 +23,8 @@ const ui = (l: string, k: string): string | undefined => {
 };
 const cue = (l: string, id: string): string | undefined => cueFile(l)[id] ?? (BAZA[l] ? cueFile(BAZA[l])[id] : undefined);
 const jestUI = (p: Poz) => p.grupa.startsWith('UI');
+/** Klucze UI usunięte decyzją właściciela 05.11.2026 (docs/18, ekran nowej osoby 1.1: karta „Pierwsze kroki” zastąpiona tablicą i kafelkami) — naniesione 01.11.2026 tłumaczenie nie ma już czego pokazywać; test niżej pilnuje, że klucza NIE MA w słownikach. */
+const USUNIETE_05_11_2026 = new Set(['Pierwszy trening: duży przycisk „Pusty trening” u góry.']);
 
 describe('01.11.2026: średnie (wskazówki) i niskie uwagi API — decyzje', () => {
   test('zestaw: 166 pozycji (17 średnich wskazówek, 140 niskich, 9 dodatkowych skull.depth), każda z powodem', () => {
@@ -34,9 +36,13 @@ describe('01.11.2026: średnie (wskazówki) i niskie uwagi API — decyzje', () 
     for (const p of poz) expect(['naniesione', 'odrzucone', 'odłożone', 'do decyzji (EN)']).toContain(p.decyzja);
   });
   test('każda naniesiona decyzja jest w tekstach (UI: słownik języka lub nakładki; wskazówki: lib/cues/text)', () => {
-    const bad = poz.filter(p => p.decyzja === 'naniesione')
+    const bad = poz.filter(p => p.decyzja === 'naniesione' && !USUNIETE_05_11_2026.has(p.klucz))
       .filter(p => (jestUI(p) ? ui(p.jezyk, p.klucz) : cue(p.jezyk, p.klucz)) !== p.nowe).map(p => `${p.jezyk}: ${p.klucz.slice(0, 40)}`);
     expect(bad).toEqual([]);
+  });
+  test('klucze usunięte 05.11.2026 (ekran nowej osoby 1.1) nie wróciły do żadnego słownika UI', () => {
+    for (const k of USUNIETE_05_11_2026) for (const l of Object.keys(LOCALES)) expect([l, k, (LOCALES[l as Lang] as Record<string, string>)[k]]).toEqual([l, k, undefined]);
+    for (const k of USUNIETE_05_11_2026) expect((EN as Record<string, string>)[k]).toBeUndefined();
   });
   test('skull.depth: we wszystkich językach zdanie ma polecenie „zatrzymaj się wcześniej”, nie dwa równorzędne cele ruchu', () => {
     const langs = Object.keys(LOCALES).filter(l => l !== 'es-419');

@@ -20,25 +20,30 @@ const NEW = [...NEW_P1, ...NEW_P2];
 function cueOrgsFull(key: string): string[] {
   const x = CUE_FULL.exercises[key]; if (!x) return [];
   const out: string[] = [];
-  for (const sec of CUE_SECTIONS) for (const r of x[sec] ?? []) for (const [sid] of r.s) { const o = CUE_FULL.sources[sid]?.org; if (o && !out.includes(o)) out.push(o); }
+  for (const sec of CUE_SECTIONS) for (const r of x[sec] ?? []) for (const [sid] of r.s) { const src = CUE_FULL.sources[sid]; const o = src && src.level <= 4 ? src.org : undefined; if (o && !out.includes(o)) out.push(o); }
   return out;
 }
 
 describe('pełne dane wskazówek (data/zrodla/cues.json)', () => {
   test('każda wskazówka: ≥ 2 przeczytane źródła z różnych organizacji, z miejscem w źródle; źródło ma adres https', () => {
     for (const [ex, x] of Object.entries(CUE_FULL.exercises)) for (const sec of CUE_SECTIONS) for (const r of x[sec] ?? []) {
-      const orgs = new Set<string | undefined>(r.s.map(([sid]) => CUE_FULL.sources[sid]?.org));
+      /* 02.11.2026: szczebel 5 nie liczy się do pary; wyjątki jawne — błąd wnioskowany („wniosek”), „jedno źródło” (ustawienie/ruch), luka z powodem (cues.json `luki`) */
+      const real = r.s.filter(([sid]) => sid !== 'wniosek');
+      const orgs = new Set<string | undefined>(real.map(([sid]) => CUE_FULL.sources[sid]?.org));
       expect([ex, r.c, orgs.has(undefined)]).toEqual([ex, r.c, false]);
-      expect([ex, r.c, orgs.size >= 2]).toEqual([ex, r.c, true]);
-      for (const [, at] of r.s) expect(at.trim().length).toBeGreaterThan(2);
+      const liczace = new Set(real.filter(x => x[2] === undefined && (CUE_FULL.sources[x[0]].level ?? 5) <= 4).map(([sid]) => CUE_FULL.sources[sid].org));
+      const wyjatek = r.s.length > real.length || !!r.jedno_zrodlo || `${ex}::${r.c}` in (CUE_FULL.luki ?? {});
+      expect([ex, r.c, liczace.size >= 2 || wyjatek]).toEqual([ex, r.c, true]);
+      for (const [, at] of real) expect(at.trim().length).toBeGreaterThan(2);
     }
-    for (const s of Object.values(CUE_FULL.sources)) { expect(s.url).toMatch(/^https:\/\//); expect(CUE_FULL.orgs[s.org]).toBeDefined(); if (s.archive) expect(s.archive).toMatch(/^https:\/\/web\.archive\.org\/web\/\d+\//); }
+    for (const s of Object.values(CUE_FULL.sources)) { if (['book', 'app'].includes(CUE_FULL.orgs[s.org].kind)) { expect(s.url).toBeUndefined(); continue; } expect(s.url).toMatch(/^https:\/\//); expect(CUE_FULL.orgs[s.org]).toBeDefined(); if (s.archive) expect(s.archive).toMatch(/^https:\/\/web\.archive\.org\/web\/\d+\//); }
   });
   test('żadne źródło ze spornego szczebla (uczelniane centra sportu, DAN, WebMD Ignite, przedruk NSCA ETM) nie wchodzi do danych', () => {
     const HOSTS = /cse\.hku\.hk|uwo\.ca|sussex\.ac\.uk|ummhealth\.org|dan\.org|coachesontario\.ca|exrx\.net/;
-    const bad = Object.entries(CUE_FULL.sources).filter(([id, s]) => !id.startsWith('exrx-') && HOSTS.test(s.url)).map(([id]) => id);
+    const bad = Object.entries(CUE_FULL.sources).filter(([id, s]) => !id.startsWith('exrx-') && HOSTS.test(s.url ?? '')).map(([id]) => id);
     expect(bad).toEqual([]);
-    for (const o of Object.keys(CUE_FULL.orgs)) expect(o).not.toMatch(/HKU|Western SRS|Sussex|WebMD|^DAN$|NSCA ETM/);
+    /* WebMD Ignite wyjęte z zakazu (decyzja koordynatora 02.11.2026, uzupełnienie 2): strona placówki medycznej z datą = szczebel 4, jedna organizacja niezależnie od hosta; strony bez daty lub na portalu ubezpieczyciela (UMass, Centene) = 5 i nie wchodzą do danych (ummhealth.org w HOSTS) */
+    for (const o of Object.keys(CUE_FULL.orgs)) expect(o).not.toMatch(/HKU|Western SRS|Sussex|^DAN$|NSCA ETM/);
   });
   test('każda nowa wskazówka: ≥ 2 różne organizacje bez „analogii”; miejsce w źródle; Wall Sit „oddech” nie liczy zespołu Wilesa podwójnie', () => {
     for (const k of NEW) for (const sec of CUE_SECTIONS) for (const r of CUE_FULL.exercises[k][sec]) {
@@ -62,8 +67,8 @@ describe('pełne dane wskazówek (data/zrodla/cues.json)', () => {
     const o = cueOrgsFull('Deadlift (sztanga)'); expect(o[0]).toBe('ACE'); expect(new Set(o).size).toBe(o.length); expect(o.length).toBeGreaterThanOrEqual(2);
     expect(cueOrgsFull('xyz')).toEqual([]);
   });
-  test('każda organizacja ma szczebel 2–4 i rodzaj z CUE_BASIS_KINDS', () => {
-    for (const [id, o] of Object.entries(CUE_FULL.orgs)) expect([id, [2, 3, 4].includes(o.level), (CUE_BASIS_KINDS as readonly string[]).includes(o.kind)]).toEqual([id, true, true]);
+  test('każda organizacja ma szczebel 2–5 i rodzaj z CUE_BASIS_KINDS albo `app` (strona aplikacji, szczebel 5)', () => {
+    for (const [id, o] of Object.entries(CUE_FULL.orgs)) expect([id, [2, 3, 4, 5].includes(o.level), ([...CUE_BASIS_KINDS, 'app'] as readonly string[]).includes(o.kind)]).toEqual([id, true, true]);
   });
 });
 
@@ -82,7 +87,7 @@ describe('plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw', 
   });
   test('podpis (basis) = rodzaje organizacji ze wszystkich odwołań ćwiczenia (też „analogia”), w kolejności CUE_BASIS_KINDS — niezależne przeliczenie', () => {
     for (const ex of Object.keys(CUE_FULL.exercises).filter(e => !CUE_DATA.hidden.includes(e))) {
-      const kinds = new Set<CueBasisKind>(cueOrgsFull(ex).map(o => CUE_FULL.orgs[o].kind));
+      const kinds = new Set<string>(cueOrgsFull(ex).map(o => CUE_FULL.orgs[o].kind)) /* 'app' (szczebel 5) nie wchodzi do podpisu */;
       expect([ex, cueBasis(ex)]).toEqual([ex, CUE_BASIS_KINDS.filter(k => kinds.has(k))]);
     }
   });

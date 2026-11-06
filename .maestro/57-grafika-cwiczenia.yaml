@@ -16,7 +16,7 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }

@@ -38,10 +38,10 @@ describe('strażnik wersalików', () => {
   });
   test('upperText() używany tylko w components/ui.tsx (SectionTitle) i wskazanych wyjątkach', () => {
     const users = src.filter((f) => /\bupperText\(/.test(code(f))).sort();
-    expect(users).toEqual(['components/NowBoard.tsx', 'components/TodayPlan.tsx', 'components/ui.tsx']); /* M3 p2 (W3 a, wz. 28 pkt 4): nazwa ćwiczenia na tablicy „teraz” i „Dziś: …” na starcie */
+    expect(users).toEqual(['components/FirstBoard.tsx', 'components/NowBoard.tsx', 'components/TodayPlan.tsx', 'components/ui.tsx']); /* M3 p2 (W3 a, wz. 28 pkt 4): nazwa ćwiczenia na tablicy „teraz” i „Dziś: …” na starcie; ekran nowej osoby 1.1 (05.11.2026): tytuł tablicy „Pierwszy trening” (FirstBoard) */
   });
-  test('upper() z lib/i18n tylko w miejscach znanych (ui.tsx, tytuł grupy w GuardSection.tsx, skrót koloru gumy w lib/state/sets.ts)', () => {
+  test('upper() z lib/i18n tylko w miejscach znanych (ui.tsx, tytuł grupy w GuardSection.tsx, skrót koloru gumy w lib/state/sets.ts, pola tablicy „Pierwszy trening” w lib/dashboard.ts)', () => {
     const users = src.filter((f) => /[^\w.]upper\(/.test(code(f)) && f !== 'lib/i18n.ts').sort();
-    expect(users).toEqual(['components/GuardSection.tsx', 'components/ui.tsx', 'lib/state/sets.ts']);
+    expect(users).toEqual(['components/GuardSection.tsx', 'components/ui.tsx', 'lib/dashboard.ts', 'lib/state/sets.ts']); /* lib/dashboard.ts: firstBoardParts — skrót dnia i miesiąca na tablicy „Pierwszy trening” (05.11.2026) */
   });
 });

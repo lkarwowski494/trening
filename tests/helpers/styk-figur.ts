@@ -4,7 +4,7 @@
  * Powierzchnia nogi jak na rysunku (`legRadius`: udo i podudzie z obwodów, spodenki), tułów i miednica jak w kolizjach (GIRTH.trunkCollide, GIRTH.pelvis).
  * „Dwie miary” (L-056 A): poprawka figury ma w teście miarę naprawianej cechy ORAZ styk — strażnik jednej cechy przepuszcza regres innej.
  */
-import { figureSpec, frameAt, equipColliders, legRadius, distSegSeg, GIRTH, SIDES, type Frame, type V3 } from '@/lib/figures/v2';
+import { figureSpec, frameAt, keyframeFrame, equipColliders, legRadius, distSegSeg, GIRTH, SIDES, type Frame, type PoseData, type V3 } from '@/lib/figures/v2';
 
 /** Kadry co 0,05: u = 0, 0,05, … 1 (21 kadrów). */
 export const KADRY_STYKU: readonly number[] = Array.from({ length: 21 }, (_, i) => +(i / 20).toFixed(2));
@@ -27,7 +27,11 @@ export function elementyCiezaru(f: Frame): Kapsula[] {
   /* osobne uchwyty w dłoniach (Band Bench Press, Chain Press — 101-05/06): każdy uchwyt to punkt o promieniu 2 cm; odcinek między dłońmi dotyczy tylko uchwytu linki (koordynator 29.10.2026, po scaleniu A i B) */
   const uchwyty = f.props.filter((p): p is typeof p & { k: 'handle'; c: V3 } => p.k === 'handle' && Array.isArray((p as { c?: unknown }).c));
   if (uchwyty.length) return uchwyty.map(p => ({ a: p.c, b: p.c, r: 2 }));
-  const c = f.info.load; const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); /* uchwyt linki: odcinek w osi z o połowie rozstawu dłoni (jak items() w rigu hinge) */
+  /* linka z uchwytem w dłoni (curl na wyciągu): każdy koniec linki (`ends`) to uchwyt w trzymającej dłoni — punkt o promieniu 2 cm; wolna ręka nie jest końcem, więc nie daje fałszywego styku z udem (linia 1.1, pilotaż curl 02.11.2026) */
+  const konce = f.props.flatMap(p => (p.k === 'cable' && Array.isArray((p as { ends?: unknown }).ends) ? (p as unknown as { ends: V3[] }).ends : []));
+  if (konce.length && !f.info.load) return konce.map(c => ({ a: c, b: c, r: 2 }));
+  const c = f.info.load ?? f.info.trail; if (!c) return []; /* FW1 (04.11.2026): guma, talerz, łańcuchy w dłoniach — bez info.load; uchwyt w śladzie (chwyt) */
+  const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); /* uchwyt linki: odcinek w osi z o połowie rozstawu dłoni (jak items() w rigu hinge) */
   return [{ a: [c[0], c[1], -h], b: [c[0], c[1], h], r: 2 }];
 }
 
@@ -53,6 +57,11 @@ export function stykKlatki(f: Frame, u = 0): Styk {
 export function stykTora(klucz: string, kadry: readonly number[] = KADRY_STYKU): Styk[] {
   const spec = figureSpec(klucz); if (!spec) throw new Error(`brak figury v2: ${klucz}`);
   return kadry.map(u => stykKlatki(frameAt(spec, u), u));
+}
+
+/** Styk w kadrach co 0,05 dla pozy z pliku danych (rodzina jeszcze niepodłączona do aplikacji: figureSpec = null, więc klatki z keyframeFrame — ta sama geometria co frameAt). */
+export function stykPozy(d: PoseData, kadry: readonly number[] = KADRY_STYKU): Styk[] {
+  return kadry.map(u => stykKlatki(keyframeFrame(d, u), u));
 }
 
 export type PodsumowanieStyku = { maxOdstep: number; uMaxOdstep: number; minOdstep: number; maxPrzenikanie: number };

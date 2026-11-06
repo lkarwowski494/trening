@@ -537,9 +537,9 @@ describe('runda 8', () => {
   test('R8-04 EN: przycisk przerwy „This time only”', () => {
     expect(require('@/lib/i18n.en').EN?.['Tylko teraz'] ?? require('@/lib/i18n.en').default?.['Tylko teraz']).toBe('This time only');
   });
-  test('R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Planowanie” → dzień → „+ Nowy szablon”', async () => {
+  test('R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Szablony i plan” (kafelek; dawniej „Planowanie”, zmiana 05.11.2026) → dzień → „+ Nowy szablon”', async () => {
     await renderApp(); await act(async () => { store.getState().templates = []; store.save(); }); await flushAll(10);
-    await tap(screen.getAllByText('Planowanie')[0]); await flushAll(10); await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(store.getState().templates).toHaveLength(1);
+    await tap(screen.getByTestId('first-tile-plan')); await flushAll(10); await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(store.getState().templates).toHaveLength(1);
   });
 });
 
@@ -903,7 +903,7 @@ describe('runda 27', () => {
     await renderApp({ url: '/more/settings' }); const { router } = require('expo-router'); expect(router.canGoBack()).toBe(true);
   });
   test('R27-04 nieznany adres wraca na ekran główny (jeden zestaw zakładek, runda 28)', async () => {
-    await renderApp({ url: '/more/nieznane' }); await flushAll(10); expect(screen.queryByText(/Unmatched Route/)).toBeNull(); expect(screen.getAllByLabelText('Pusty trening')).toHaveLength(1);
+    await renderApp({ url: '/more/nieznane' }); await flushAll(10); expect(screen.queryByText(/Unmatched Route/)).toBeNull(); expect(screen.getAllByLabelText('Zacznij pierwszy trening')).toHaveLength(1); /* 05.11.2026: nowa osoba */
     const { router } = require('expo-router'); expect(router.canGoBack()).toBe(false);
   });
 });
@@ -935,6 +935,7 @@ describe('runda 30', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R30-01 powrót z tła następnego dnia odświeża ekran główny', async () => {
     await renderApp(); const t0 = new Date(2026, 8, 30, 22).getTime(); jest.setSystemTime(t0);
+    addWorkout(t0 - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); /* 06.11.2026: nowa osoba (bez treningów i planu) nie ma daty w nagłówku — data jest u osoby z historią */
     /* 05.10.2026: poranny wpis usunięty — odświeżenie sprawdzane na dacie w nagłówku ekranu głównego */
     await act(async () => { store.refreshViews(); }); await flushAll(10);
     const day = (ms: number) => new Date(ms).toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' });

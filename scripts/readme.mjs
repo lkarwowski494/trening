@@ -62,7 +62,7 @@ function arrayLen(file, name) {
   };
   visit(sf); if (n < 0) fail(`${file}: brak ${name}`); return n;
 }
-const libraryCount = () => arrayLen('lib/seed.ts', 'LIB_BASE') + arrayLen('lib/catalog.generated.ts', 'CATALOG_LIB_EXTRA');
+const libraryCount = () => arrayLen('lib/seed.ts', 'LIB_BASE') + arrayLen('lib/catalog.generated.ts', 'CATALOG_LIB_EXTRA') - arrayLen('lib/catalog-wycofane.ts', 'LIB_WYCOFANE'); /* wycofane z biblioteki 02.11.2026 */
 
 /** Przypadki testowe liczone STATYCZNIE (bez uruchamiania Jesta): wywołania test( / it( z .only/.skip/.each(…)( ; pętla z test( w środku liczy się raz. */
 function staticTestCalls(files) {
@@ -164,6 +164,7 @@ const WORKFLOW_ROLE = {
   'asc-metadane.yml': 'wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release)',
   'asc-zrzuty.yml': 'wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release)',
   'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia)',
+  'asc-status-wersji.yml': 'status wersji iOS w App Store Connect: stan recenzji (tylko odczyt; ręcznie)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
   'przeklad-tlumaczen.yml': 'przekład kluczy słownika na 33 języki przez API Anthropic (ręcznie, płatny, limit 6 USD; propozycje jako artefakt)',

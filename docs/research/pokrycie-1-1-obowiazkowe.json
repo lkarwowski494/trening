@@ -1,5 +1,5 @@
 {
- "_opis": "Ćwiczenia obowiązkowe w 1.1 na poziomie co najmniej „Pełna karta” (decyzja właściciela 02.11.2026, docs/18). Lista z analizy popularności (przybliżenie: katalog bazowy generatora, zrzuty sklepu, klasyczne boje) w backlogu standardu; cardio — osobny lżejszy standard (ta sama decyzja).",
+ "_opis": "Ćwiczenia obowiązkowe w 1.1 na poziomie co najmniej „Pełna karta” (decyzja właściciela 02.11.2026, docs/18). Lista z analizy popularności (przybliżenie: katalog bazowy generatora, zrzuty sklepu, klasyczne boje) w backlogu standardu; cardio — osobny lżejszy standard (ta sama decyzja). Wide-Grip Pulldown Behind The Neck usunięte z listy (ukryte w aplikacji, decyzja właściciela 02.11.2026 ~17:20): zostaje 57 (docs/18). Dodatkowo 02.11.2026 (~18:00 PL, właściciel) z listy zeszło 6 ćwiczeń bez źródeł, wszystkich niszowych (Standing Concentration Curl, Lying Cable Curl, Lying Close-Grip Bar Curl On High Pulley, Lying Supine Dumbbell Curl, Standing Inner-Biceps Curl, Full Range-Of-Motion Lat Pulldown) — zostają w aplikacji bez zmian; razem z Wide-Grip Pulldown Behind The Neck lista ma 51 pozycji.",
  "data": "2026-11-02",
  "cwiczenia": [
   {
@@ -201,52 +201,7 @@
    "danePozV2": true
   },
   {
-   "cwiczenie": "Lying Cable Curl",
-   "rodzina": "curl",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
-   "cwiczenie": "Lying Close-Grip Bar Curl On High Pulley",
-   "rodzina": "curl",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
-   "cwiczenie": "Lying Supine Dumbbell Curl",
-   "rodzina": "curl",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
    "cwiczenie": "Reverse Cable Curl",
-   "rodzina": "curl",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
-   "cwiczenie": "Standing Concentration Curl",
-   "rodzina": "curl",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
-   "cwiczenie": "Standing Inner-Biceps Curl",
    "rodzina": "curl",
    "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
    "braki": [
@@ -264,25 +219,7 @@
    "danePozV2": true
   },
   {
-   "cwiczenie": "Full Range-Of-Motion Lat Pulldown",
-   "rodzina": "pulldown",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
    "cwiczenie": "Single Arm Lat Pulldown",
-   "rodzina": "pulldown",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
-   "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
    "rodzina": "pulldown",
    "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
    "braki": [

@@ -1,0 +1,1806 @@
+[
+ {
+  "cwiczenie": "Bird Dog",
+  "stan": "komplet 3 — praktyka (mis)",
+  "zdania": [
+   {
+    "rola": "mis",
+    "pl": "Przekręcanie albo przechylanie bioder przy unoszeniu nogi.",
+    "en": "Twisting or tilting your hips as you lift the leg.",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bird-dog/",
+      "cytat": "Common mistakes: arching the low back, letting the stomach sag, twisting the hips, lifting the leg too high, shrugging the shoulder, and moving too fast to control alignment."
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/ogolne/naprzemienne-wznosy-reki-i-nogi-w-kleku-podpartym",
+      "cytat": "Utrzymuj biodra na jednej wysokości podczas podnoszenia kończyn."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/bird-dog-with-mini-band/",
+      "cytat": "utrzymując stabilny korpus i kontrolując napięcie gumy."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Wyginanie dolnej części pleców w łuk.",
+    "en": "Arching your lower back.",
+    "wniosek": [
+     "wniosek",
+     "bd.setup"
+    ],
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bird-dog/",
+      "cytat": "arching the low back"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/bird-dog-with-mini-band/",
+      "cytat": "Po wykonaniu ruchu obie kończyny powinny być wyprostowane i ustawione w przedłużeniu tułowia."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Pośpiech zamiast spokojnego, kontrolowanego ruchu.",
+    "en": "Rushing instead of moving slowly and with control.",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/bird-dog/",
+      "cytat": "moving too fast to control alignment"
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/ogolne/naprzemienne-wznosy-reki-i-nogi-w-kleku-podpartym",
+      "cytat": "Ćwiczenie wykonuj powoli, z pełnym zaangażowaniem."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/264/naprzemienne-unoszenie-reki-i-nogi-w-kleku-podpartym",
+      "cytat": "Ruch ma być płynny.",
+      "uwaga": "streszczenie narzędzia, cytat do sprawdzenia"
+     }
+    ]
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/cwiczenia/domowe/naprzemienne-wznosy-reki-i-nogi",
+    "powod": "start z podporu przodem (nogi proste) — inna pozycja ciała"
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Lying Leg Raise",
+  "stan": "komplet 3 — praktyka (część wspólna)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Połóż się na plecach, ręce wzdłuż tułowia, nogi złączone, proste albo lekko ugięte w kolanach.",
+    "en": "Lie on your back, arms by your sides, legs together, straight or with a slight knee bend.",
+    "uwaga": "'ręce wzdłuż tułowia' tylko S — usunąć, jeśli recenzent wymaga 3",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lying-leg-raise/",
+      "cytat": "Start flat on the floor with your legs extended and together."
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/treningi/zrzuc-beben-najlepsze-cwiczenia-na-brzuch",
+      "cytat": "Ponownie ruch zaczynamy od położenia się na plecach na macie lub podłodze."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/637/unoszenie-nog-lezac",
+      "cytat": "(leżenie na plecach, ramiona wzdłuż tułowia, nogi lekko ugięte)",
+      "uwaga": "streszczenie narzędzia, cytat do sprawdzenia"
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "pl": "Unieś nogi w górę nad biodra jednym płynnym ruchem, potem powoli je opuść.",
+    "en": "Raise your legs up over your hips in one smooth motion, then lower them slowly.",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lying-leg-raise/",
+      "cytat": "Raise your legs upward in one smooth motion while keeping them mostly straight."
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/treningi/zrzuc-beben-najlepsze-cwiczenia-na-brzuch",
+      "cytat": "Wyprostowane nogi unosimy jak do świecy, czyli aż nogi utworzą z tułowiem kąt prosty."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/637/unoszenie-nog-lezac",
+      "cytat": "(unoś nogi w stronę klatki piersiowej; ruch płynny)",
+      "uwaga": "streszczenie narzędzia, cytat do sprawdzenia"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Wymachiwanie nogami z rozpędu.",
+    "en": "Swinging your legs with momentum.",
+    "wniosek": [
+     "wniosek",
+     "<id move>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/lying-leg-raise/",
+      "cytat": "Avoid swinging: Momentum reduces core tension and makes the exercise less effective."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "cwiczenie": "Bicycle Crunch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 4 domeny: 'rowerek brzuszki skośne łokieć do przeciwnego kolana'",
+   "WebSearch maniacmuscle.com, potreningu.pl, centrumrespo.pl: 'bicycle crunch'",
+   "https://maniacmuscle.com/bicycle-crunch/ (404)"
+  ],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-brzuch/naprzemienne-przyciaganie-lokci-do-kolan-lezac",
+    "powod": "stopy na podłodze, bez pracy nóg w powietrzu — inna pozycja nóg"
+   }
+  ],
+  "nie_sprawdzone": [
+   "potreningu.pl 'rowerek'",
+   "https://centrumrespo.pl/atlas/21-crunch/"
+  ]
+ },
+ {
+  "nr": 1,
+  "cwiczenie": "Lower Back Curl",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "https://maniacmuscle.com/lower-back-curl/ (404)",
+   "WebSearch maniacmuscle.com: prone back extension floor",
+   "WebSearch R/F/S: wznosy/prostowanie tułowia w leżeniu przodem"
+  ],
+  "odrzucone": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/147/unoszenie-tulowia-w-lezeniu-przodem",
+    "powod": "unosi tułów i nogi jednocześnie — inny ruch"
+   }
+  ]
+ },
+ {
+  "nr": 2,
+  "cwiczenie": "Reverse Hyperextension",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/dwuglowe-uda-posladki/unoszenie-nog-na-lawce-poziomej",
+    "cytat": "Pozycja leżąca przodem na ławce poziomej, biodra wysunięte poza ławkę."
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "https://maniacmuscle.com/reverse-hyperextension/ (404)",
+   "WebSearch maniacmuscle.com: reverse hyperextension machine",
+   "WebSearch R/S: unoszenie nóg leżąc przodem, biodra poza ławką"
+  ]
+ },
+ {
+  "nr": 3,
+  "cwiczenie": "Weighted Ball Hyperextension",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: prostowanie tułowia na piłce gimnastycznej leżąc przodem"
+  ]
+ },
+ {
+  "nr": 4,
+  "cwiczenie": "Carioca Quick Step",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: carioca krok skrzyżny bokiem"
+  ]
+ },
+ {
+  "nr": 5,
+  "cwiczenie": "Fast Skipping",
+  "stan": "brak",
+  "zdania": [],
+  "uwaga": "serwisy opisują skip A (= High Knees); krok-podskok w przód nieopisany",
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skip A bieganie w miejscu"
+  ]
+ },
+ {
+  "nr": 6,
+  "cwiczenie": "High Knees",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Stań prosto, plecy wyprostowane, ręce ugięte w łokciach.",
+    "en": "Stand tall with a straight back and your elbows bent.",
+    "uwaga": "nie wdrażać przed 3. źródłem",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/skip-a-w-miejscu-z-rekami-pracujacymi/",
+      "cytat": "Pilnuj, żeby brzuch był napięty, a plecy proste!"
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/587/bieg-z-wysokim-unoszeniem-kolan-skip-a",
+      "cytat": "Wzrok skieruj przed siebie (nie patrz na nogi), plecy wyprostowane, ramiona ugięte."
+     }
+    ]
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "https://maniacmuscle.com/high-knees/ (404)",
+   "WebSearch maniacmuscle.com: high knees run in place",
+   "F https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/bieg-w-miejscu-kolana-wysoko — tylko ruch, bez ustawienia"
+  ]
+ },
+ {
+  "nr": 7,
+  "cwiczenie": "Jumping Jacks",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Stań prosto, ręce wzdłuż tułowia.",
+    "en": "Stand tall with your arms by your sides.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/pajacyki",
+      "cytat": "Pozycja wyjściowa stojąca, z ramionami wzdłuż tułowia."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jumping-jacks/",
+      "cytat": "Stań z kończynami górnymi wzdłuż ciała."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "pl": "Podskocz, rozstawiając nogi na boki i unosząc ręce bokiem nad głowę, potem przeskokiem wróć.",
+    "en": "Jump your feet out to the sides as you raise your arms overhead, then jump back.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/cwiczenia-domowe/pajacyki",
+      "cytat": "Ćwiczenie polega na wykonywaniu przeskoków nogami na boki wraz z uniesieniem ramion bokiem."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jumping-jacks/",
+      "cytat": "Na wdechu wykonaj dynamiczny podskok, odwodząc nogi w stawach biodrowych",
+      "uwaga": "fragment zdania; liczba szerokości pominięta"
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Ciężkie, głośne lądowanie.",
+    "en": "Landing heavily and loudly.",
+    "wniosek": [
+     "wniosek",
+     "<id move>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jumping-jacks/",
+      "cytat": "W trakcie ćwiczenia unikaj mocnego stawiania stóp na ziemi. Przeskoki wykonuj lekko i możliwie cicho."
+     }
+    ]
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "https://maniacmuscle.com/jumping-jacks/ (404)",
+   "WebSearch potreningu.pl + atlas.kulturystyka.pl: pajacyki — tylko wzmianki w artykułach"
+  ]
+ },
+ {
+  "nr": 8,
+  "cwiczenie": "Ski Erg",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: ski erg ergometr narciarski"
+  ]
+ },
+ {
+  "nr": 9,
+  "cwiczenie": "Stair Climber",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: stepper schody stair climber — tylko step-up i bieg po schodach"
+  ]
+ },
+ {
+  "nr": 10,
+  "cwiczenie": "Treadmill Walking",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/738/bieznia-66kmh-6-pod-gore",
+    "cytat": "Trzymaj się środkowej części pasa."
+   },
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/treningi/marsz-rekreacyjny-chod-sportowy-i-nordic-walking",
+    "cytat": "proste (tzn. równoległe) stawianie stóp",
+    "uwaga": "marsz w terenie, nie bieżnia — decyzja recenzenta"
+   }
+  ]
+ },
+ {
+  "nr": 11,
+  "cwiczenie": "Butt-Ups",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "M",
+    "url": "https://maniacmuscle.com/plank-to-pike/",
+    "powod": "podpór na dłoniach, nie na przedramionach"
+   },
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/pike-trx",
+    "powod": "stopy w taśmach TRX"
+   }
+  ]
+ },
+ {
+  "nr": 12,
+  "cwiczenie": "Cable Reverse Crunch",
+  "stan": "komplet – uproszczenie (do potwierdzenia przez recenzenta)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Połóż się na plecach, ręce wzdłuż tułowia, nogi ugięte w kolanach i uniesione nad podłogę.",
+    "en": "Lie on your back, arms by your sides, knees bent and feet off the floor.",
+    "uproszczenie": "źródła wersji bez linki (Reverse Crunch); zaczepienie linki — [OTWARTE]",
+    "zrodla_jak": "Reverse Crunch (nr 76)"
+   }
+  ]
+ },
+ {
+  "nr": 13,
+  "cwiczenie": "Cable Seated Crunch",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/309/sklony-tulowia-z-linka-wyciagu-siedzac",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/spiecia-brzucha-z-linkami-wyciagu-gornego",
+    "powod": "klęk przodem do wyciągu — inna pozycja"
+   }
+  ]
+ },
+ {
+  "nr": 14,
+  "cwiczenie": "Cocoons",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen",
+   "WebSearch maniacmuscle.com: cocoon crunch"
+  ]
+ },
+ {
+  "nr": 15,
+  "cwiczenie": "Crunch - Hands Overhead",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: spięcia z rękami nad głową — S 316 inny ruch, atlas.kulturystyka pełny siad"
+  ]
+ },
+ {
+  "nr": 16,
+  "cwiczenie": "Crunch - Legs On Exercise Ball",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-brzuch/spiecia-brzucha-z-nogami-opartymi",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch maniacmuscle.com + centrumrespo.pl: crunch legs on stability ball"
+  ]
+ },
+ {
+  "nr": 17,
+  "cwiczenie": "Decline Crunch",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Połóż się na ławce skośnej głową w dół, stopy zaprzyj pod wałkami, dłonie przy skroniach albo skrzyżowane na klatce.",
+    "en": "Lie on a decline bench, head down, feet hooked under the pads, hands by your temples or crossed on your chest.",
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/decline-crunch/",
+      "cytat": "Place your feet under the pads so your lower body stays stable without excessive pulling."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/310/sklony-w-lezeniu-glowa-w-dol",
+      "cytat": "Nogi zaprzyj o poduszki znajdujące się na końcu ławki."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 18,
+  "cwiczenie": "Decline Oblique Crunch",
+  "stan": "brak",
+  "zdania": []
+ },
+ {
+  "nr": 19,
+  "cwiczenie": "Decline Reverse Crunch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "https://maniacmuscle.com/decline-reverse-crunch/ (404)",
+   "WebSearch R/F/S: odwrotne spięcia na ławce skośnej"
+  ]
+ },
+ {
+  "nr": 20,
+  "cwiczenie": "Dragon Flag",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/street-workout/dragon-flag-samo-opuszczanie",
+    "cytat": "Nie doprowadzaj do wyginania się kręgosłupa w odcinku lędźwiowym."
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "https://maniacmuscle.com/dragon-flag/ (404)",
+   "WebSearch centrumrespo.pl, potreningu.pl, maniacmuscle.com: dragon flag"
+  ]
+ },
+ {
+  "nr": 76,
+  "cwiczenie": "Reverse Crunch",
+  "stan": "komplet 3 — praktyka (setup, mis)",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Połóż się na plecach, ręce wzdłuż tułowia, nogi ugięte w kolanach i uniesione nad podłogę.",
+    "en": "Lie on your back, arms by your sides, knees bent and feet off the floor.",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/reverse-crunch/",
+      "cytat": "Ramiona ułóż wzdłuż ciała."
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy",
+      "cytat": "Kończyny dolne uniesione z podłoża, ugięte w kolanach."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/reverse-crunch/",
+      "cytat": "Bend your knees: Bring your knees to roughly 90 degrees and lift your feet off the floor."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Zarzucanie nóg z rozpędu zamiast podwijania miednicy.",
+    "en": "Swinging your legs up with momentum instead of curling your pelvis.",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/reverse-crunch/",
+      "cytat": "Kontroluj ruch, nie używaj rozpędu."
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy",
+      "cytat": "Postaraj się aby ruch wykonać przez mocną pracę mięśni brzucha, a nie poprzez dynamiczny ruch nogami."
+     },
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/reverse-crunch/",
+      "cytat": "Think 'curl the pelvis,' not 'throw the legs': This keeps the abs as the main driver."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Opadanie biodrami bez kontroli.",
+    "en": "Dropping your hips without control.",
+    "wniosek": [
+     "wniosek",
+     "<id move>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "M",
+      "url": "https://maniacmuscle.com/reverse-crunch/",
+      "cytat": "Lower slowly: The eccentric phase is where many people lose tension."
+     },
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy",
+      "cytat": "Następnie powoli powróć do pozycji początkowej."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/reverse-crunch/",
+      "cytat": "Kontroluj ruch, nie używaj rozpędu."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 21,
+  "cwiczenie": "Frog Sit-Ups",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/cwiczenia/na-brzuch/spiecia-brzucha-lezac-macie-ze-zlaczonymi",
+    "powod": "spięcie (częściowy zakres), nie pełny siad; nieprzeczytana"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: brzuszki żabka stopy złączone",
+   "WebSearch maniacmuscle.com, centrumrespo.pl, potreningu.pl: frog sit-up butterfly"
+  ]
+ },
+ {
+  "nr": 22,
+  "cwiczenie": "GHD Sit Up",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: GHD sit-up — tylko prostowanie tułowia na ławce rzymskiej (inny ruch)"
+  ]
+ },
+ {
+  "nr": 23,
+  "cwiczenie": "Janda Sit-Up",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/janda-sit-up",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: brzuszki Jandy"
+  ]
+ },
+ {
+  "nr": 24,
+  "cwiczenie": "Kneeling Cable Crunch With Alternating Oblique Twists",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/spiecia-brzucha-z-linkami-wyciagu-gornego",
+    "powod": "bez skrętu"
+   },
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/exercises/man/317/spiecia-brzucha-na-wyciagu-kleczac-allaszki",
+    "powod": "bez skrętu"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: spięcia z linką w klęku ze skrętem"
+  ]
+ },
+ {
+  "nr": 25,
+  "cwiczenie": "Leg Pull-In",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rewersy",
+    "powod": "nogi nie prostują się między powtórzeniami — inny przebieg"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: przyciąganie kolan do klatki leżąc"
+  ]
+ },
+ {
+  "nr": 26,
+  "cwiczenie": "Oblique Crunches - On The Floor",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/132/spiecia-brzucha-lezac-bokiem",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/standing-oblique-crunches/",
+    "powod": "stojąc — inna pozycja"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: spięcia skośne leżąc kolana na bok",
+   "WebSearch maniacmuscle.com + centrumrespo.pl: oblique crunch lying knees to side"
+  ]
+ },
+ {
+  "nr": 27,
+  "cwiczenie": "Otis-Up",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: brzuszki z talerzem i wypchnięciem nad głowę"
+  ]
+ },
+ {
+  "nr": 28,
+  "cwiczenie": "Press Sit-Up",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: brzuszki z talerzem i wypchnięciem nad głowę (wspólne z #27)"
+  ]
+ },
+ {
+  "nr": 29,
+  "cwiczenie": "Seated Flat Bench Leg Pull-In",
+  "stan": "brak",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/728/przyciaganie-kolan-do-klatki-piersiowej-w-siadzie",
+    "cytat": "(nieprzeczytana — wersja na podłodze; czy ten sam ruch — recenzent)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: przyciąganie kolan siedząc na ławce",
+   "WebSearch M/R/F: seated knee tuck bench"
+  ]
+ },
+ {
+  "nr": 30,
+  "cwiczenie": "Side Jackknife",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: scyzoryk bokiem / side jackknife — tylko deska bokiem (statyczna)"
+  ]
+ },
+ {
+  "nr": 31,
+  "cwiczenie": "Smith Machine Hip Raise",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: unoszenie bioder na suwnicy Smitha — tylko unoszenie bioder/świeca bez suwnicy"
+  ]
+ },
+ {
+  "nr": 32,
+  "cwiczenie": "Stability Ball Knee Tuck",
+  "stan": "komplet 3 — praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Podpór przodem, nogi oparte na piłce.",
+    "en": "Get into a push-up position with your legs resting on the ball.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/przyciaganie-kolan-pod-klatke-na-pilce",
+      "miejsce": "Pozycja wyjściowa",
+      "cytat": "Podpór przodem z nogami ustawionymi na piłce."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jackknife-on-exercise-ball/",
+      "miejsce": "Instrukcja / Pozycja wyjściowa",
+      "cytat": "Wykonaj podpór przodem na rękach. Stopy oprzyj na dużej piłce do ćwiczeń."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/209/scyzoryk-z-pilka-w-podporze-przodem",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Wykonaj podpór przodem. Podudzia oprzyj na piłce gimnastycznej."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "pl": "Przyciągnij nogi do klatki piersiowej, potem wróć do podporu.",
+    "en": "Pull your legs in toward your chest, then return to the plank.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/przyciaganie-kolan-pod-klatke-na-pilce",
+      "miejsce": "Ruch",
+      "cytat": "Równocześnie uginaj kolana, kierując je do klatki piersiowej."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jackknife-on-exercise-ball/",
+      "miejsce": "Instrukcja / Ruch",
+      "cytat": "Wraz z wydechem przyciągnij kończyny dolne do klatki piersiowej, mocno zginając stawy kolanowe i biodrowe."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/209/scyzoryk-z-pilka-w-podporze-przodem",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Wykonaj wdech, a następnie z wydechem przyciągnij nogi do klatki piersiowej."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Opadanie bioder.",
+    "en": "Letting your hips sag.",
+    "wniosek": [
+     "wniosek",
+     "<id setup>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/przyciaganie-kolan-pod-klatke-na-pilce",
+      "miejsce": "Wskazówki",
+      "cytat": "W pozycji początkowej pilnuj, aby biodra nie opadały poniżej linii ciała."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jackknife-on-exercise-ball/",
+      "miejsce": "Wskazówki",
+      "cytat": "W trakcie ćwiczenia unikaj opuszczania bioder, utrzymuj aktywną pozycję."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Szybkie, niekontrolowane powtórzenia.",
+    "en": "Rushing the reps without control.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/przyciaganie-kolan-pod-klatke-na-pilce",
+      "miejsce": "Wskazówki",
+      "cytat": "Zbyt szybkie wykonywanie ćwiczenia jest błędem technicznym."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/jackknife-on-exercise-ball/",
+      "miejsce": "Instrukcja / Ruch",
+      "cytat": "Nie trać kontroli nad ruchem."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/209/scyzoryk-z-pilka-w-podporze-przodem",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Ruch powinien być płynny."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 33,
+  "cwiczenie": "Standing Rope Crunch",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/spiecia-brzucha-z-linkami-wyciagu-gornego",
+    "powod": "w klęku — inna pozycja"
+   },
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/exercises/man/317/spiecia-brzucha-na-wyciagu-kleczac-allaszki",
+    "powod": "w klęku — inna pozycja"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: spięcia z linką wyciągu górnego stojąc"
+  ]
+ },
+ {
+  "nr": 34,
+  "cwiczenie": "Toe Touchers",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/cross-toe-touch/",
+    "powod": "ręce nad głową, sięganie po skosie, nogi na podłodze — inny ruch"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: spięcia z nogami pionowo, sięganie do stóp",
+   "WebSearch maniacmuscle.com + centrumrespo.pl: toe touch crunch"
+  ]
+ },
+ {
+  "nr": 35,
+  "cwiczenie": "Weighted Sit-Ups - With Bands",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: brzuszki z gumą na ławce skośnej"
+  ]
+ },
+ {
+  "nr": 36,
+  "cwiczenie": "Bent Press",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: bent press wyciskanie w skłonie bocznym — tylko wyciskanie jednorącz bez skłonu"
+  ]
+ },
+ {
+  "nr": 37,
+  "cwiczenie": "Bosu Ball Cable Crunch With Side Bends",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: bosu spięcia z linką skłony boczne"
+  ]
+ },
+ {
+  "nr": 38,
+  "cwiczenie": "Cable Judo Flip",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/rotacje-boczne-po-skosie-woodchoper",
+    "powod": "woodchop — inny ruch"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: cable judo flip rotacja z wyciągu dolnego"
+  ]
+ },
+ {
+  "nr": 39,
+  "cwiczenie": "Medicine Ball Full Twist",
+  "stan": "brak",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/artykuly/trening/trening-z-pilka-lekarska-853",
+    "cytat": "(nieprzeczytany artykuł — wzmianka o wersji stojąc)"
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/russian-twist/",
+    "powod": "w siadzie — inna pozycja"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skręty tułowia stojąc z piłką lekarską"
+  ]
+ },
+ {
+  "nr": 40,
+  "cwiczenie": "One-Arm High-Pulley Cable Side Bends",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/305/sklony-boczne",
+    "powod": "hantla — opór z przeciwnego kierunku niż wyciąg górny; nie wariant sprzętu"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skłony boczne z linką wyciągu górnego"
+  ]
+ },
+ {
+  "nr": 41,
+  "cwiczenie": "Seated Barbell Twist",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Usiądź na ławce, sztangę połóż na karku.",
+    "en": "Sit on a bench with the bar across your upper back.",
+    "uwaga": "nie wdrażać przed 3. źródłem",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/treningi/jak-schudnac-z-brzucha-jak-wzmocnic-brzuch",
+      "miejsce": "1. Zbiór najlepszych ćwiczeń na brzuch / Skręty tułowia ze sztangą stojąc (A. Drężek, 2017-02-23)",
+      "cytat": "Ćwiczenie to można wykonywać na siedząco lub stojąco. Gryf prosty należy trzymać na mięśniach czworobocznych, czyli na karku."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/134/skret-tulowia-z-kijem-siedzac",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Usiądź stabilnie na piłce lub ławce. Złap gryf nachwytem i umieść go na górnej części mięśni czworobocznych."
+     }
+    ]
+   },
+   {
+    "rola": "move",
+    "pl": "Skręcaj tułów na przemian w lewo i w prawo.",
+    "en": "Twist your torso left and right, alternating sides.",
+    "uwaga": "nie wdrażać przed 3. źródłem",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/treningi/jak-schudnac-z-brzucha-jak-wzmocnic-brzuch",
+      "cytat": "Kolejnym krokiem jest wykonywanie naprzemiennych skrętów w lewą stronę, a następnie w prawą."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/134/skret-tulowia-z-kijem-siedzac",
+      "cytat": "Następnie zrób wydech i wykonaj rotację tułowia w drugą stronę."
+     }
+    ]
+   }
+  ],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "F",
+    "rola": "mis",
+    "cytat": "Głowa pozostaje w niezmienionej pozycji, aby optymalnie angażować mięśnie skośne brzucha."
+   },
+   {
+    "serwis": "S",
+    "rola": "mis",
+    "cytat": "Nie należy zbyt mocno rotować tułowia.",
+    "uwaga": "liczba stopni z tej strony pominięta"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skręty ze sztangą na karku siedząc",
+   "WebSearch maniacmuscle.com + centrumrespo.pl: seated barbell twist"
+  ]
+ },
+ {
+  "nr": 42,
+  "cwiczenie": "Spell Caster",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: spell caster hantle"
+  ]
+ },
+ {
+  "nr": 43,
+  "cwiczenie": "Weighted Ball Side Bend",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skłony boczne leżąc bokiem na piłce"
+  ]
+ },
+ {
+  "nr": 75,
+  "cwiczenie": "Crunch",
+  "stan": "komplet 3 — praktyka",
+  "zdania": [
+   {
+    "rola": "mis",
+    "pl": "Szybkie, szarpane powtórzenia.",
+    "en": "Jerking through fast reps.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/brzuszki-z-rekami-na-klatce-piersiowej",
+      "miejsce": "Wskazówki",
+      "cytat": "Ćwiczenie wykonuj powoli, z pełnym wyczuciem zaangażowanej grupy mięśniowej."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/crunches/",
+      "miejsce": "Ruch",
+      "cytat": "Staraj się kontrolować ruch, nie zaczynaj powtórzenia od zginania szyi i głowy i nie wypychaj brzucha do góry."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/108/spiecia-brzucha-lezac-brzuszki",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Ruch powinien być płynny."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Ciągnięcie głowy rękami.",
+    "en": "Pulling on your head with your hands.",
+    "wniosek": [
+     "wniosek",
+     "<id setup>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/crunches/",
+      "miejsce": "Wskazówki",
+      "cytat": "Nie ciągnij rękami za szyję."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/108/spiecia-brzucha-lezac-brzuszki",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Ramiona trzymaj na skroniach lub klatce piersiowej."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Odrywanie stóp od podłogi.",
+    "en": "Lifting your feet off the floor.",
+    "uwaga": "opcjonalne; tylko gdy setup karty ma stopy na podłodze",
+    "wniosek": [
+     "wniosek",
+     "<id setup>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/brzuszki-z-rekami-na-klatce-piersiowej",
+      "miejsce": "Wskazówki",
+      "cytat": "Staraj się nie odrywać stóp od podłoża podczas wykonywania spięcia brzucha."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 78,
+  "cwiczenie": "Russian Twist",
+  "stan": "komplet (mis) — praktyka",
+  "zdania": [
+   {
+    "rola": "mis",
+    "pl": "Kołysanie się w przód i w tył.",
+    "en": "Rocking back and forth.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/kettlebell/russian-twist",
+      "miejsce": "Wskazówki",
+      "cytat": "(cytat do sprawdzenia — parafraza: nie pozwól, by ciało kołysało się w przód i w tył)"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/russian-twist/",
+      "miejsce": "Ruch",
+      "cytat": "Utrzymuj stabilną pozycję reszty ciała."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Przenoszenie ciężaru samymi rękami, bez skrętu tułowia.",
+    "en": "Moving the weight with just your arms instead of turning your torso.",
+    "wniosek": [
+     "wniosek",
+     "<id move>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/kettlebell/russian-twist",
+      "miejsce": "Wskazówki",
+      "cytat": "(cytat do sprawdzenia — parafraza: skręcaj cały tułów, nie przenoś ciężaru samymi rękami)"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/russian-twist/",
+      "miejsce": "Ruch",
+      "cytat": "Skręcaj tułów, dotykając ciężarem podłogi po prawej i lewej stronie."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Uderzanie ciężarem o podłogę.",
+    "en": "Banging the weight on the floor.",
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/russian-twist/",
+      "miejsce": "Ruch",
+      "cytat": "Nie uderzaj ciężarem o podłogę, trzymaj go blisko ciała."
+     }
+    ]
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/660/przenoszenie-obciazenia-na-boki---russian-twist",
+    "powod": "„Nie należy zbyt mocno rotować tułowia” — rozbieżne z R (dotykanie podłogi po bokach); pominięte"
+   }
+  ]
+ },
+ {
+  "nr": 77,
+  "cwiczenie": "Pallof Press",
+  "stan": "brak",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/brzuch/pallof-press-na-wyciagu",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/pallof-press-with-power-band/",
+    "powod": "klęk prosty z gumą — inna pozycja ciała; nieprzeczytana"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch potreningu.pl, centrumrespo.pl, maniacmuscle.com, atlas.kulturystyka.pl: pallof press antyrotacja",
+   "WebSearch maniacmuscle.com, potreningu.pl, atlas.kulturystyka.pl: pallof press anti-rotation"
+  ]
+ },
+ {
+  "nr": 72,
+  "cwiczenie": "Burpees",
+  "stan": "komplet 3 — praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Zacznij w pozycji stojącej.",
+    "en": "Start standing up.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/dla-kobiet/ogolne/burpees",
+      "miejsce": "Pozycja wyjściowa",
+      "cytat": "Pozycja stojąca, tułów wyprostowany."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/burpee/",
+      "miejsce": "Pozycja wyjściowa",
+      "cytat": "Zacznij z pozycji stojącej."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/artykuly/odchudzanie/burpees-prosty-sposob-na-solidny-wycisk-5270",
+      "miejsce": "opis wykonania (K. Żuralska, 03.04.2017)",
+      "cytat": "Zaczynamy od pozycji stojącej."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 69,
+  "cwiczenie": "Back Extension",
+  "stan": "komplet 3 — praktyka",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Ułóż się na ławce rzymskiej, ręce skrzyżuj na klatce piersiowej.",
+    "en": "Set up on the back extension bench with your arms crossed over your chest.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/na-plecy/unoszenie-tulowia-na-lawce-rzymskiej-hyperextensions",
+      "miejsce": "Pozycja wyjściowa",
+      "cytat": "Leżenie na ławeczce rzymskiej, biodra na oparciach ławeczki. Ciało w linii prostej, ramiona skrzyżowane na klatce piersiowej."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/unoszenie-tulowia-lawce-rzymskiej/",
+      "miejsce": "Pozycja wyjściowa",
+      "cytat": "Ustaw się na ławce rzymskiej, opierając się udami o oparcie. Przedramiona skrzyżuj na klatce piersiowej."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/146/prostowanie-tulowia-na-lawce-rzymskiej",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Połóż się na ławce rzymskiej. Skrzyżuj ręce na klatce piersiowej."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Zaokrąglanie pleców.",
+    "en": "Rounding your back.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/na-plecy/unoszenie-tulowia-na-lawce-rzymskiej-hyperextensions",
+      "miejsce": "Wskazówki",
+      "cytat": "Postaraj się zachować proste plecy podczas wykonywania ćwiczenia."
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/unoszenie-tulowia-lawce-rzymskiej/",
+      "miejsce": "Błędy",
+      "cytat": "(cytat do sprawdzenia — nagłówek błędu: zaokrąglony odcinek piersiowy)"
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/146/prostowanie-tulowia-na-lawce-rzymskiej",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Pamiętaj o prostych plecach."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Przeginanie się do tyłu na górze.",
+    "en": "Arching back past straight at the top.",
+    "wniosek": [
+     "wniosek",
+     "<id move>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/unoszenie-tulowia-lawce-rzymskiej/",
+      "miejsce": "Wskazówki",
+      "cytat": "Unikaj nadmiernego wyprostu kręgosłupa."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Szarpanie zamiast płynnego ruchu.",
+    "en": "Jerking instead of moving smoothly.",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/cwiczenia/na-plecy/unoszenie-tulowia-na-lawce-rzymskiej-hyperextensions",
+      "miejsce": "Wskazówki",
+      "cytat": "Ćwiczenie wykonuj powoli, z pełnym wyczuciem zaangażowanej grupy mięśniowej."
+     },
+     {
+      "serwis": "S",
+      "url": "https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/146/prostowanie-tulowia-na-lawce-rzymskiej",
+      "miejsce": "Poprawne wykonanie ćwiczenia",
+      "cytat": "Ruch powinien być płynny."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Zadzieranie głowy.",
+    "en": "Craning your head up.",
+    "uwaga": "opcjonalne",
+    "wniosek": [
+     "wniosek",
+     "<id setup>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/atlas/unoszenie-tulowia-lawce-rzymskiej/",
+      "miejsce": "Błędy",
+      "cytat": "(cytat do sprawdzenia — nagłówek błędu: zadarta głowa)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 68,
+  "cwiczenie": "Reverse Flyes With External Rotation",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: odwodzenie ramion w opadzie tułowia z rotacją zewnętrzną",
+   "WebSearch maniacmuscle.com, centrumrespo.pl: reverse fly external rotation dumbbell — tylko osobne ćwiczenia"
+  ]
+ },
+ {
+  "nr": 59,
+  "cwiczenie": "One Knee To Chest",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: przyciąganie kolana do klatki leżąc rozciąganie",
+   "WebSearch 5 domen: przyciąganie kolana do klatki stojąc knee hug"
+  ]
+ },
+ {
+  "nr": 48,
+  "cwiczenie": "Runner's Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rozciąganie biegacza wykrok dwugłowe klęk — brak strony o tej nazwie; wariant karty nieznany"
+  ]
+ },
+ {
+  "nr": 50,
+  "cwiczenie": "Chest Stretch on Stability Ball",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rozciąganie klatki piersiowej dynamiczne wymachy piłka"
+  ]
+ },
+ {
+  "nr": 52,
+  "cwiczenie": "Dynamic Chest Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/742/wymachy-ramion-w-przod-i-tyl",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch fabrykasily.pl, centrumrespo.pl, maniacmuscle.com: wymachy ramion w poziomie otwieranie klatki"
+  ]
+ },
+ {
+  "nr": 64,
+  "cwiczenie": "Torso Rotation",
+  "stan": "brak",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/747/skrety-tulowia",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/wykrok-ze-skretem-tulowia/",
+    "powod": "wykrok ze skrętem — inny ruch"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skręty tułowia stojąc rozgrzewka"
+  ]
+ },
+ {
+  "nr": 57,
+  "cwiczenie": "Leg Swings (Side-to-Side)",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: wymachy nóg w bok stojąc rozgrzewka — tylko wzmianki w artykułach"
+  ]
+ },
+ {
+  "nr": 58,
+  "cwiczenie": "Lying Leg Crossover Swings",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: wymachy nóg (wspólne z #57)"
+  ]
+ },
+ {
+  "nr": 61,
+  "cwiczenie": "Shoulder Circles",
+  "stan": "brak + rozbieżność",
+  "zdania": [],
+  "przeczy": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/artykuly/trening/rozgrzewka-przed-treningiem-dlaczego-warto-i-jak-prawidlowo-ja-wykonac-7510",
+    "miejsce": "Jakie ćwiczenia wybrać? / Czego należy unikać? (T. Maciołek, 04.11.2022)",
+    "cytat": "Powinniśmy unikać krążenia w stawach kolanowych, barkowych oraz wykonywanie krążeń głową."
+   }
+  ],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/mobilizacje/krazenia-ramion-z-guma",
+    "powod": "z gumą (opór) — nie wariant sprzętu; nieprzeczytana"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: krążenia ramion stojąc w przód i w tył"
+  ]
+ },
+ {
+  "nr": 54,
+  "cwiczenie": "Hip Circles (Prone)",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/mobilizacja-biodra/",
+    "cytat": "(nieprzeczytana — krążenie nogą na czworakach)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 4 domeny bez R: krążenia nogą w klęku podpartym"
+  ]
+ },
+ {
+  "nr": 56,
+  "cwiczenie": "Knee Circles",
+  "stan": "brak + rozbieżność",
+  "zdania": [],
+  "przeczy": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/artykuly/trening/rozgrzewka-przed-treningiem-dlaczego-warto-i-jak-prawidlowo-ja-wykonac-7510",
+    "miejsce": "Jakie ćwiczenia wybrać? / Czego należy unikać?",
+    "cytat": "Powinniśmy unikać krążenia w stawach kolanowych, barkowych oraz wykonywanie krążeń głową."
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: krążenia ramion/kolan/bioder atlas"
+  ]
+ },
+ {
+  "nr": 80,
+  "cwiczenie": "Supine Figure-Four Stretch",
+  "stan": "komplet (mis) — praktyka",
+  "zdania": [
+   {
+    "rola": "mis",
+    "pl": "Kolano założonej nogi ucieka do środka.",
+    "en": "Letting the crossed knee drift inward.",
+    "wniosek": [
+     "wniosek",
+     "<id setup>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/rozciaganie/rozciaganie-miesni-posladkowych-w-lezeniu",
+      "miejsce": "Pozycja wyjściowa",
+      "cytat": "(cytat do sprawdzenia — parafraza: kolano zgiętej nogi skierowane na zewnątrz)"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/trening/rozciaganie-wplyw-efektywnosc-tredningu/",
+      "miejsce": "Rozciąganie pośladków / Ćwiczenia na rozciąganie pośladków (Zespół Respo, 28.04.2023)",
+      "cytat": "Stopę jednej nogi połóż na kolanie drugiej i skieruj kolano na zewnątrz w stronę podłoża."
+     }
+    ]
+   },
+   {
+    "rola": "mis",
+    "pl": "Opieranie nogi kostką zamiast okolicą kolana.",
+    "en": "Resting your ankle, not the area near your knee, on the other leg.",
+    "uwaga": "jedno źródło wprost; recenzent porównuje z rysunkiem",
+    "wniosek": [
+     "wniosek",
+     "<id setup>"
+    ],
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/atlas-cwiczen/rozciaganie/rozciaganie-miesni-posladkowych-w-lezeniu",
+      "miejsce": "Wskazówki",
+      "cytat": "tak by okolice kolana były oparciem, a nie okolice kostki"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 71,
+  "cwiczenie": "Bieg",
+  "stan": "2 z 3",
+  "zdania": [
+   {
+    "rola": "setup",
+    "pl": "Barki rozluźnione, dłonie luźne, bez zaciskania pięści.",
+    "en": "Keep your shoulders relaxed and your hands loose, not clenched.",
+    "uwaga": "nie wdrażać przed 3. źródłem",
+    "zrodla": [
+     {
+      "serwis": "F",
+      "url": "https://www.fabrykasily.pl/treningi/popraw-swoj-biegowy-styl",
+      "miejsce": "3. Praca ramion (S. Bednarczyk, 16.11.2015)",
+      "cytat": "(cytat do sprawdzenia — parafraza: barki rozluźnione, nie uniesione; dłonie nigdy zaciśnięte w pięść)"
+     },
+     {
+      "serwis": "R",
+      "url": "https://centrumrespo.pl/trening/moda-na-bieganie/",
+      "miejsce": "Jak biegać bezpiecznie? / Jaka jest prawidłowa technika biegania? (Zespół Respo, 01.06.2023)",
+      "cytat": "(cytat do sprawdzenia — parafraza: nie unoś barków, nie zaciskaj pięści)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "nr": 73,
+  "cwiczenie": "Incline Walk (bieżnia)",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/atlas-cwiczen/dla-kobiet/738/bieznia-66kmh-6-pod-gore",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: marsz pod górę na bieżni technika poręcze"
+  ]
+ },
+ {
+  "nr": 74,
+  "cwiczenie": "Rower",
+  "stan": "brak",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://potreningu.pl/artykuly/trening/czy-warto-trenowac-na-wioslarzu-ergometrze-6992",
+    "cytat": "(nieprzeczytany artykuł)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: ergometr wioślarski technika / air bike"
+  ]
+ },
+ {
+  "nr": 70,
+  "cwiczenie": "Assault Bike",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: ergometr wioślarski technika / air bike (wspólne z #74)"
+  ]
+ },
+ {
+  "nr": 79,
+  "cwiczenie": "Foot-SMR",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rolowanie stopy piłeczka — tylko artykuły F i S"
+  ]
+ },
+ {
+  "nr": 45,
+  "cwiczenie": "Intermediate Groin Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rozciąganie przywodzicieli leżąc na boku / motyl — wariant karty nieznany"
+  ]
+ },
+ {
+  "nr": 49,
+  "cwiczenie": "Side Lying Groin Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen (wspólne z #45): brak wersji leżąc na boku"
+  ]
+ },
+ {
+  "nr": 46,
+  "cwiczenie": "Kneeling Forearm Stretch",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "S",
+    "url": "https://atlas.kulturystyka.pl/stretching.asp",
+    "cytat": "(nieprzeczytana — tylko wynik wyszukiwania)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rozciąganie przedramion w klęku podpartym"
+  ]
+ },
+ {
+  "nr": 62,
+  "cwiczenie": "Standing Elevated Quad Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "F",
+    "url": "https://www.fabrykasily.pl/atlas-cwiczen/rozciaganie/rozciaganie-miesni-czworoglowych-w-kleku-przy-podwyzszeniu",
+    "powod": "klęk — inna pozycja"
+   },
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/rozciaganie-miesni-czworoglowych-uda/",
+    "powod": "stanie bez podwyższenia — inna pozycja; nieprzeczytana"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rozciąganie czworogłowego stojąc noga na podwyższeniu"
+  ]
+ },
+ {
+  "nr": 63,
+  "cwiczenie": "Standing Pelvic Tilt",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: przodopochylenie tyłopochylenie miednicy stojąc"
+  ]
+ },
+ {
+  "nr": 53,
+  "cwiczenie": "Groiners",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: groiners / spiderman — tylko pompki spidermana"
+  ]
+ },
+ {
+  "nr": 55,
+  "cwiczenie": "Iron Crosses (Stretch)",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: skorpion leżąc przodem przenoszenie nogi"
+  ]
+ },
+ {
+  "nr": 44,
+  "cwiczenie": "Downward Facing Balance",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: podpór przodem na piłce równowaga unoszenie nogi"
+  ]
+ },
+ {
+  "nr": 47,
+  "cwiczenie": "Middle Back Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: rozciąganie środkowej części pleców skręt stojąc"
+  ]
+ },
+ {
+  "nr": 51,
+  "cwiczenie": "Dynamic Back Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: dynamiczne rozciąganie pleców stojąc"
+  ]
+ },
+ {
+  "nr": 60,
+  "cwiczenie": "Round The World Shoulder Stretch",
+  "stan": "brak",
+  "zdania": [],
+  "odrzucone": [
+   {
+    "serwis": "R",
+    "url": "https://centrumrespo.pl/atlas/mobilizacja-barkow/",
+    "powod": "leżąc przodem, splecione dłonie — inna pozycja; nieprzeczytana"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: przekładanie kija nad głową / rozgrzewka barków"
+  ]
+ },
+ {
+  "nr": 65,
+  "cwiczenie": "Lying Neck Extension (talerz)",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "M",
+    "url": "(adres nieznany — tylko wzmianka „Weighted Lying Neck Extension (with Plate)” w wyniku)",
+    "cytat": "(nieprzeczytana)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "WebSearch 5 domen: ćwiczenia na szyję z talerzem / uprząż",
+   "WebSearch maniacmuscle.com, centrumrespo.pl, fabrykasily.pl: lying neck flexion extension plate harness"
+  ]
+ },
+ {
+  "nr": 66,
+  "cwiczenie": "Lying Neck Flexion (talerz)",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "M",
+    "url": "(adres nieznany — tylko wzmianka „Weighted Lying Neck Flexion” w wyniku)",
+    "cytat": "(nieprzeczytana)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "jak #65"
+  ]
+ },
+ {
+  "nr": 67,
+  "cwiczenie": "Neck Harness Extension",
+  "stan": "brak (1 z 3)",
+  "zdania": [],
+  "zrodla_czesciowe": [
+   {
+    "serwis": "M",
+    "url": "https://maniacmuscle.com/weighted-standing-neck-extension-head-harness/",
+    "cytat": "(nieprzeczytana)"
+   }
+  ],
+  "sprawdzone_bez_wyniku": [
+   "jak #65"
+  ]
+ }
+]

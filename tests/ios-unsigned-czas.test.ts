@@ -16,9 +16,9 @@ describe('ios-unsigned.yml: bez zdublowanego Jesta (30.10.2026)', () => {
   test('zostają typy, tłumaczenia, konfiguracja natywna, Swift i kompilacja', () => {
     for (const s of ['npm run typecheck', 'npm run check:i18n', 'npm run verify:native', 'swift test', 'xcodebuild']) expect(ios).toContain(s);
   });
-  test('tests.yml uruchamia pełne verify (z Jestem) przy każdym wypchnięciu', () => {
+  test('tests.yml uruchamia pełne verify (kontrole + Jest w częściach) przy każdym wypchnięciu', () => {
     const t = wf('tests.yml');
     expect(t).toMatch(/on:\s*\n\s*push:/);
-    expect(t).toMatch(/run: npm run verify\s*$/m);
+    expect(t).toMatch(/run: npm run verify:kontrole\s*$/m); expect(t).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=/); /* ZB-029 T1: to samo verify w zadaniach: kontrole + Jest w częściach */
   });
 });

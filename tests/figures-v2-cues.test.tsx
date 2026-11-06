@@ -9,6 +9,11 @@ import { CUE_DATA } from '@/lib/cues';
 import { assignAll, FAMILIES, VARIANTS } from '@/lib/figures/v2';
 import { CUE_SETS, CUE_POLICY, CUE_REQUIRES, CUE_NOT_IN_FAMILY, cueSelection, cueTextGaps, generalCueNote } from '@/lib/figures/v2/cueSets';
 import { applyLang, t } from '@/lib/i18n';
+import P2_MOC from './fixtures/cues-p2-moc.json';
+import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
+import { CUE_FULL } from './zrodla-pelne';
+import T1_DELT from './fixtures/cues-t1-delt-raise.json';
+import T1_TRI from './fixtures/cues-t1-triceps.json';
 
 const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
 const EN: Record<string, string> = require('@/lib/cues/text/en.json');
@@ -16,10 +21,10 @@ const KEYS = Object.keys(CATALOG);
 afterEach(() => applyLang('pl'));
 
 describe('dane zestawów wskazówek (cue-sets.json)', () => {
-  test('709 ćwiczeń: 102 własne, 538 ogólnych (wariant A), 69 otwartych (grafika bez tekstu); własne = dokładnie ćwiczenia z lib/cues/data.json', () => {
+  test('709 ćwiczeń: 102 własne + 36 z partii P2 (G3 moc, 03.11.2026; w tym 2 przeniesione z „open”: Jerk Balance, Medicine Ball Chest Pass) = 138 własnych, 504 ogólne (wariant A), 67 otwartych (grafika bez tekstu); własne = dokładnie ćwiczenia z lib/cues/data.json', () => {
     expect(Object.keys(CUE_SETS.items).sort()).toEqual([...KEYS].sort());
     const n = (b: string) => Object.values(CUE_SETS.items).filter(e => e.b === b).length;
-    expect([n('own'), n('general'), n('open')]).toEqual([102, 538, 69]);
+    expect([n('own'), n('general'), n('open')]).toEqual([102 + P1_MOBILNOSC.cwiczenia.length + P2_MOC.cwiczenia.length + T1_DELT.cwiczenia.length + T1_TRI.cwiczenia.length, 538 - P1_MOBILNOSC.cwiczenia.length - (P2_MOC.cwiczenia.length - 2) - (T1_DELT.cwiczenia.length - 3) - T1_TRI.cwiczenia.length, 69 - 2 - 3]); /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */
     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   /* OTWARTE (27.10.2026, badacz): zdanie o rzucie z nóg (mb.legs) nie pasuje do slamu — zdanie zastępcze do ustalenia; do tego czasu zestaw bez zaleceń (docs/16) */
@@ -122,18 +127,20 @@ describe('strażnik: rodzina gotowa (ready) nie używa identyfikatora wskazówki
 });
 
 describe('B3 (recenzja treści 1.1): wskazówka o zakresie opuszczania nie mówi „gryf” przy hantlach i gumie', () => {
-  test('Skullcrusher (hantle), Decline Dumbbell Triceps Extension i Band Skull Crusher dostają zdanie neutralne sprzętowo (skull.depthFree: „dłonie”); ćwiczenia z gryfem zostają przy skull.depth', () => {
-    for (const k of ['Skullcrusher (hantle)', 'Decline Dumbbell Triceps Extension', 'Band Skull Crusher']) { const c = cueSelection(k); expect([k, c.ok.includes('skull.depthFree'), c.ok.includes('skull.depth')]).toEqual([k, true, false]); }
-    for (const k of ['Skullcrusher (sztanga)', 'Decline EZ Bar Triceps Extension']) expect([k, cueSelection(k).ok.includes('skull.depth')]).toEqual([k, true]);
+  test('zdanie neutralne sprzętowo skull.depthFree („dłonie”) zostaje przy Skullcrusher (hantle) jako wskazówka własnej karty (04.11.2026, T1 triceps: Decline Dumbbell i Band Skull Crusher mają karty własne bez tego zdania); wszystkie pięć odmian ma własne karty, więc zestaw ogólny nie dokłada skull.depth', () => {
+    expect(CUE_FULL.exercises['Skullcrusher (hantle)'].tips.map(r => r.c)).toContain('skull.depthFree');
+    for (const k of ['Skullcrusher (hantle)', 'Decline Dumbbell Triceps Extension', 'Band Skull Crusher', 'Skullcrusher (sztanga)', 'Decline EZ Bar Triceps Extension']) expect([k, cueSelection(k).ok.includes('skull.depth')]).toEqual([k, false]);
     expect(PL['skull.depthFree']).not.toMatch(/gryf|sztang/i); expect(EN['skull.depthFree']).not.toMatch(/\bbar\b/i);
   });
 });
 
 describe('Upright Row (badacz 27.10.2026): wysokość dotyczy łokci (ur.height zamiast dwuznacznego lat.height)', () => {
-  test('7 ćwiczeń rodziny uprightRow ma ur.elbows + ur.height, bez lat.height; Straight Raises on Incline Bench zachowuje lat.height', () => {
-    const ur = Object.entries(CUE_SETS.items).filter(([, e]) => e.f === 'uprightRow'); expect(ur.length).toBe(7);
-    for (const [k, e] of ur) expect([k, e.ok]).toEqual([k, ['ur.elbows', 'ur.height']]);
-    expect(PL['ur.height']).toMatch(/łokci/); expect(EN['ur.height']).toMatch(/elbows/);
-    expect(cueSelection('Straight Raises on Incline Bench').ok).toContain('lat.height');
+  test('7 ćwiczeń Upright Row ma ur.elbows + urow.height, bez lat.height (od 04.11.2026 karty własne partii T1 zamiast zestawu ogólnego uprightRow); Straight Raises on Incline Bench ma od 04.11.2026 kartę własną (źródła typu strona aplikacji), bez zestawu ogólnego', () => {
+    const UR = ['Upright Row (sztanga)', 'Upright Row (hantle)', 'Upright Row (linki)', 'Smith Machine Upright Row', 'Dumbbell One-Arm Upright Row', 'Smith Machine One-Arm Upright Row', 'Band Upright Row'];
+    expect(Object.values(CUE_SETS.items).filter(e => e.f === 'uprightRow')).toEqual([]);
+    for (const k of UR) { expect([k, CUE_SETS.items[k].b]).toEqual([k, 'own']); expect([k, CUE_FULL.exercises[k].tips.map(r => r.c)]).toEqual([k, ['ur.elbows', 'urow.height']]); }
+    expect(PL['ur.height']).toBeUndefined(); /* 04.11.2026: zdanie zestawu ogólnego uprightRow bez zestawu i bez karty — usunięte (check:cues: nieużywane zdanie); karty mają urow.height */
+    expect(PL['urow.height']).toMatch(/łokcie prowadzą/); expect(EN['urow.height']).toMatch(/shoulder height/);
+    expect(CUE_SETS.items['Straight Raises on Incline Bench'].b).toBe('own');
   });
 });

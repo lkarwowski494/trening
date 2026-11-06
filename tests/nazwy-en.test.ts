@@ -5,6 +5,7 @@
  * (gałąź przekazanie-konta). Zakres testów: (a) źródło i generator, (b) macierz: każda zmieniona nazwa × każdy język poza polskim, polski bez zmian,
  * (c) P1–P4 na przykładach, (d) strażnik regex wszystkich 709 nazw EN, (e) stare nazwy EN jako aliasy wyszukiwania, (f) VoiceOver, ćwiczenie własne, slug eksportu.
  */
+import { LIB_WYCOFANE } from '@/lib/catalog-wycofane';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { execFileSync } from 'child_process';
@@ -19,6 +20,8 @@ type Wpis = { rid: string; dawna: string; nazwa: string; reguly: string[]; wyswi
 const zrodlo = JSON.parse(read('docs/research/equipment/nazwy-en.json')) as { wpisy: Wpis[]; recenzja: { badacz: unknown; lokalizacja: unknown } };
 const katalog = JSON.parse(read('docs/research/equipment/catalog.json')) as { name: string; rid: string }[];
 const kluczOd = Object.fromEntries(katalog.map(c => [c.rid, c.name]));
+const WSZYSTKIE = zrodlo.wpisy.slice(); /* 02.11.2026: ćwiczenie wycofane z biblioteki zostaje w tabeli źródła (rid), ale nie w LIB — dalsze testy dotyczą biblioteki */
+zrodlo.wpisy = zrodlo.wpisy.filter(w => !LIB_WYCOFANE.includes(kluczOd[w.rid]));
 const wiersz = (klucz: string) => LIB.find(r => r[0] === klucz)!;
 const nazwaEn = (klucz: string, lang: Parameters<typeof applyLang>[0] = 'en') => { applyLang(lang); return exName(libExercise(wiersz(klucz))); };
 const wpis = (rid: string) => zrodlo.wpisy.find(w => w.rid === rid)!;
@@ -26,9 +29,9 @@ afterEach(() => { applyLang('pl'); });
 
 describe('nazwy EN po rid: źródło i generator', () => {
   test('267 zmienionych nazw (442 bez zmian z 709); rid istnieją w katalogu, są unikalne; każda nowa nazwa różni się od dawnej', () => {
-    expect(zrodlo.wpisy).toHaveLength(267);
-    expect(LIB).toHaveLength(709);
-    const rids = zrodlo.wpisy.map(w => w.rid);
+    expect(WSZYSTKIE).toHaveLength(267);
+    expect(LIB).toHaveLength(708);
+    const rids = WSZYSTKIE.map(w => w.rid);
     expect(new Set(rids).size).toBe(267);
     for (const w of zrodlo.wpisy) { expect(kluczOd[w.rid]).toBeDefined(); expect(w.nazwa).not.toBe(w.dawna); expect(w.reguly.length).toBeGreaterThan(0); }
   });
@@ -204,9 +207,12 @@ describe('nazwy EN: scenariusze Maestro szukają po nowych nazwach', () => {
   const warianty = (d: string) => [d, d.replace(/[()]/g, c => `\\${c}`), d.replace(/[()]/g, c => `\\\\${c}`)];
   test('żaden plik ani podprzepływ Maestro nie zawiera dawnej nazwy EN ćwiczenia zmienionego w tabeli (ekran pokazuje już nową)', () => {
     const trafienia: string[] = [];
+    /* Wyjątek L-091 (02.11.2026, do usunięcia z ZB-036): scenariusz 33 i jego podprzepływ biegną na POPRZEDNIEJ wersji aplikacji (plik wydania v1.0.1-b1035), która jeszcze
+     * pokazuje dawne nazwy; selektor ma obie postacie (nowa|stara), pilnuje tego tests/maestro-33-stare-nazwy.test.ts. Reszta zakazu bez zmian. */
+    const L091: Record<string, string[]> = { '.maestro/33-aktualizacja-przygotuj.yaml': ['Bench Press (Dumbbell)'], '.maestro/subflows/szablon-testowy.yaml': ['Bench Press (Dumbbell)', 'Bent Over Row (Dumbbell)'] };
     for (const f of pliki) {
       const t = read(f);
-      for (const w of zrodlo.wpisy) for (const v of warianty(w.dawna)) if (new RegExp(`(?<![\\w-])${esc(v)}(?![\\w-])`).test(t)) trafienia.push(`${f}: ${w.dawna}`);
+      for (const w of zrodlo.wpisy) for (const v of warianty(w.dawna)) if (!L091[f]?.includes(w.dawna) && new RegExp(`(?<![\\w-])${esc(v)}(?![\\w-])`).test(t)) trafienia.push(`${f}: ${w.dawna}`);
     }
     expect(trafienia).toEqual([]);
   });

@@ -11,7 +11,7 @@ import { LOCALES } from '@/lib/locales';
 import { CUE_DATA, cueText } from '@/lib/cues';
 import * as RN from 'react-native';
 import { renderApp, flushAll, screen, go, tap } from './app';
-import { seedWithDemo } from './helpers';
+import { seedWithDemo, intlDateAbbrevs } from './helpers';
 
 const S = () => store.getState();
 afterEach(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
@@ -44,7 +44,7 @@ describe('dane: ustawienie języka przeżywa restart, migrację i kopię', () =>
 
 describe('„Jak w telefonie”: telefon z Indonezji, Malezji, Wietnamu', () => {
   /** Teksty na ekranie, które są polskim kluczem z tłumaczeniem w języku `l` (powinny być przetłumaczone). */
-  const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
+  const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s && !intlDateAbbrevs().has(s) /* „Sen” (id: poniedziałek z Intl) = polski klucz „Sen”; skróty dat z Intl nie są tekstami słownika (05.11.2026) */); };
   test.each([['id', 'id', 'id-ID'], ['ms', 'ms', 'ms-MY'], ['vi', 'vi', 'vi-VN'], ['id', 'in', 'in-ID'] /* przestarzały kod CLDR */] as const)('%s na telefonie %s / %s (start aplikacji): ekran Treningu i zakładki w tym języku, bez tekstów po polsku', async (l, code, tag) => {
     const s = seedWithDemo(l); s.settings.language = 'auto';
     await renderApp({ saved: s, code, tag }); await flushAll(10);
@@ -76,6 +76,6 @@ describe('ekran ćwiczenia: sekcja „Technika” po wietnamsku', () => {
     await act(async () => { router.push(`/exercise/${ex.id}`); }); await flushAll();
     expect(screen.getByRole('button', { name: 'Kỹ thuật' }).props.accessibilityState).toMatchObject({ expanded: true }); /* 27.10.2026 (wariant B): sekcja rozwinięta od razu */
     expect(screen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'vi')}`)).toBeTruthy();
-    expect(screen.getByRole('header', { name: 'Lỗi thường gặp' })).toBeTruthy();
+    expect(screen.getByRole('header', { name: 'What to avoid' })).toBeTruthy(); /* 02.11.2026: nagłówek „Czego unikać” czeka na przekład (zestaw-przekladu-2026-10-23.json) — do tego czasu angielski w zastępstwie */
   });
 });

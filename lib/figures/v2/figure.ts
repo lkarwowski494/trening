@@ -16,7 +16,7 @@ import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
 import { SIDES, jointAngles, type Side } from './skeleton';
 import type { V3 } from './math';
-import { GUIDES, trailShapes, type GuideId } from './guides';
+import { trailShapes } from './guides';
 import { phasesOf, walkPhases, oneWayPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
@@ -42,9 +42,13 @@ export function figureSpec(key: string): FigureSpec | null {
  * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
  * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
  * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
- * Stan 29.10.2026: pusty — 18 figur (JM Press, Skull Crusher, 11 martwych ciągów, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat z hantlem)
+ * Stan 04.11.2026: tylko Clean Shrug i Snatch Shrug (olympic, do kart T2). Stan 29.10.2026: pusty — 18 figur (JM Press, Skull Crusher, 11 martwych ciągów, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat z hantlem)
  * zdjęto po poprawionych rigach i niezależnych recenzjach (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
-export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {};
+export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
+  /* 04.11.2026 (koordynator, recenzja olympic r4, warunek 1): wzruszenia mają dziś tylko zestaw ogólny `oly` — rysunek dopiero z kartami T2 (po wpisie kart zdjąć stąd) */
+  'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
+  'Snatch Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
+};
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
 /** Rodzina v2 z aktualnym wpisem recenzji ruchu (docs/research/figury-recenzja.json, sekcja v2; bramka 4, fail-closed): bez wpisu albo po zmianie rigu/póz od recenzji rodzina nie jest rysowana — lista w lib/figures/data.json (scripts/zrodla-runtime.mjs). */
@@ -101,7 +105,7 @@ function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return {
 function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
   if (!('data' in spec.variant)) return null;
   const u = DATA_UI[spec.family] ?? (loopOf(spec) === 'jednokierunkowa' ? ONE_WAY_UI[spec.family] : undefined) ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
-  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
+  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
  * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;
@@ -208,10 +212,8 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
   const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : loopSpan(spec) * i / 24));
   const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
 }
-/** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
-export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: FigError): Shape[] {
-  const f = frameAt(spec, u, error); return ids.flatMap(id => GUIDES[id].views.includes(view) ? GUIDES[id].build(f, view) : []);
-}
+/** Strona mierzonego stawu na rysunku (rzut z boku: strona bliższa kamerze, R; dane: strona, która pracuje). */
+export const measuredSide = (spec: FigureSpec): Side => measureOf(spec).sides[0];
 
 /** Poświaty stref styku klatki (poza poprawna: styki „dobrze”; poza błędu: styk utracony względem pozy poprawnej w tej samej pozycji — „błąd”). Poza kadrem `shapesAt`. */
 export function contactShapes(spec: FigureSpec, u: number, view: View, error?: FigError): Shape[] {

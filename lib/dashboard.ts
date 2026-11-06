@@ -2,6 +2,8 @@ import { getRev, wallTs, finishedWorkouts, getState, isWorking, exById, volume, 
 import { dayStatus, hasPlan, addDays, dayKeyOf, type DayStatus, plannedOn, planInForce } from '@/lib/plan';
 import { periodSummary } from '@/lib/period';
 import { thisMonday, prCount } from '@/lib/stats';
+import { fmtWeekdayShort, fmtMonthShort } from '@/lib/calendar';
+import { lang, upper } from '@/lib/i18n';
 
 /*
  * Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A): karta „Dziś” z paskiem bieżącego tygodnia (pon…nd: zrobione /
@@ -35,8 +37,25 @@ export function lastWorkout() {
   /* audyt 0.10: serie jak wszędzie (D3, store.workingSets), rekordy jak okno po treningu (E3, stats.prCount — liczba rekordów, nie serii) */
   return { id: w.id, name: w.templateName, startedAt: wallTs(w) /* J3: data w strefie startu */, durationSec: Math.round(workoutDurSec(w)), sets: workingSets(w), volume: volume(w), prs: prCount(w) };
 }
-/** „Pierwsze kroki” — widoczne do pierwszego zakończonego treningu. */
+/** Ekran nowej osoby (05.11.2026, docs/18): tablica „Pierwszy trening” i kafelki „Przygotuj się do pierwszej serii” — widoczne do pierwszego zakończonego treningu. */
+/** Nowa osoba (decyzja właściciela 06.11.2026, docs/18): bez zakończonych treningów i bez planu — ten sam warunek co tablica „Pierwszy trening”; na ekranie Trening nie ma wtedy daty, nagłówka planu ani paska tygodnia. */
+export function isNewPerson(): boolean { return !finishedWorkouts().length && !hasPlan(); }
 export function firstSteps() {
   if (finishedWorkouts().length) return null;
   return { template: getState().templates.some(x => !x.archived && x.items.length), plan: hasPlan() };
+}
+
+/* Kafelki „Przygotuj się do pierwszej serii” 2 × 2 (makieta docs/design/kierunki/start-1-1-r4.css): jedna kolumna, gdy kafelek byłby węższy niż próg (pl i inne krótkie języki 144 pt, de i el 156 pt)
+ * albo przy dużym tekście (próg rośnie z krojem: 8,5 rem = 136 pt × skala tekstu). Wszystkie liczby tylko tutaj. */
+export const SETUP_TILE_MIN_PT = 144; export const SETUP_TILE_MIN_LONG_PT = 156; export const SETUP_TILE_TEXT_PT = 136; export const SETUP_TILE_GAP = 8; export const SETUP_TILE_TEXT_SCALE_MAX = 2;
+const LONG_TILE_LANGS: readonly string[] = ['de', 'el'];
+/** Ile kolumn kafelków przy szerokości `inner` (pt, bez marginesów ekranu), skali tekstu `fontScale` i języku `l`. */
+export function setupTileColumns(inner: number, fontScale: number, l: string = lang()): 1 | 2 {
+  const min = Math.max(LONG_TILE_LANGS.includes(l) ? SETUP_TILE_MIN_LONG_PT : SETUP_TILE_MIN_PT, SETUP_TILE_TEXT_PT * Math.min(Math.max(fontScale, 1), SETUP_TILE_TEXT_SCALE_MAX));
+  return (inner - SETUP_TILE_GAP) / 2 >= min ? 2 : 1;
+}
+/** Pola tablicy „Pierwszy trening”: skrót dnia (bez kropki), dzień z zerem, miesiąc skrótem — wersaliki wg reguł języka aplikacji. */
+export function firstBoardParts(d: Date | number) {
+  const x = new Date(d); const strip = (s: string) => upper(s.replace(/\.$/, ''));
+  return { weekday: strip(fmtWeekdayShort(x)), day: String(x.getDate()).padStart(2, '0'), month: strip(fmtMonthShort(x)) };
 }

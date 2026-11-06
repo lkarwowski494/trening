@@ -4,9 +4,10 @@
 import { solveSkeleton } from './skeleton.js';
 import { bodyShapes, propShapes } from './draw.js';
 import { boundsOf, svgInner } from './render.js';
-import { uAt, TEMPO } from './anim.js';
+import { uAt, oneWayAt, TEMPO } from './anim.js';
 
-export { uAt, TEMPO, boundsOf };
+/* oneWayAt: pętla jednokierunkowa (skok, rzut, boje olympic; wpis figury `loop: 'jednokierunkowa'`) — ta sama funkcja co w aplikacji (components/ExerciseFigureV2.tsx), bez kopii wzoru w stronie */
+export { uAt, oneWayAt, TEMPO, boundsOf };
 /** Role kolorów rysunku (= klucze figurePalette; sprawdza je test w repo aplikacji). */
 export const ROLES = ['skinHi', 'clothHi', 'error', 'floor', 'frame', 'pad', 'steel', 'plate', 'load', 'skin', 'skinFar', 'cloth', 'clothFar', 'shoe', 'hair', 'guide', 'cable', 'muscleMain', 'muscleAux', 'contactOk', 'contactBad'];
 /** Paleta „rola → var(--f-rola)”. */

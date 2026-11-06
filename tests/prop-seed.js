@@ -10,4 +10,19 @@ function resolvePropSeed(v) {
   if (/^\d+$/.test(v) && Number(v) < 2 ** 31) return { seed: Number(v), mode: 'podane' };
   throw new Error(`PROP_SEED: oczekiwano liczby całkowitej albo „random”, jest „${v}”`);
 }
-module.exports = { PROP_SEED_DEFAULT, resolvePropSeed };
+
+/* Skala liczby przypadków testów własności (ZB-029 T2, decyzja właściciela 31.10.2026): JEDNO miejsce na liczby. Pliki z dużą liczbą przypadków na stałym ziarnie
+ * (audit-r72-c, migrate-idem, invariants — dawniej 3000) liczą `propRuns(3000)`. PROP_RUNS_SKALA nieustawione → PROP_RUNS_SKALA_DEFAULT (verify, każde wypchnięcie, testflight:
+ * te same przypadki co dotąd, tylko ich początek — przy stałym ziarnie fast-check generuje przypadki w tej samej kolejności); nocny przebieg (nightly.yml) ustawia
+ * PROP_RUNS_SKALA=1 (PROP_RUNS_SKALA_NOC) i liczy pełną liczbę na losowym ziarnie. */
+const PROP_RUNS_SKALA_DEFAULT = 0.25;
+const PROP_RUNS_SKALA_NOC = 1;
+function resolveRunsScale(v) {
+  if (v == null || v === '') return PROP_RUNS_SKALA_DEFAULT;
+  const n = Number(v);
+  if (!Number.isFinite(n) || n <= 0 || n > 1) throw new Error(`PROP_RUNS_SKALA: oczekiwano liczby z przedziału (0, 1], jest „${v}”`);
+  return n;
+}
+/** Liczba przypadków: pełna liczba × skala (min. 1), zaokrąglona. */
+function propRuns(pelna, skala = resolveRunsScale(process.env.PROP_RUNS_SKALA)) { return Math.max(1, Math.round(pelna * skala)); }
+module.exports = { PROP_SEED_DEFAULT, resolvePropSeed, PROP_RUNS_SKALA_DEFAULT, PROP_RUNS_SKALA_NOC, resolveRunsScale, propRuns };

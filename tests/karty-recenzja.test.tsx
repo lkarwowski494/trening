@@ -16,12 +16,13 @@ import { render, screen } from '@testing-library/react-native';
 import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
 import { FIG_DATA } from '@/lib/figures';
 import { figureSpec } from '@/lib/figures/v2';
+import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
 import { CUE_SETS } from '@/lib/figures/v2/cueSets';
 import { ExerciseCues } from '@/components/ExerciseCues';
 
 const root = path.join(__dirname, '..');
 /** Wyjątki linii 1.1 (scalenie main 28.10.2026): zestaw ogólny bez wpisu albo ze skrótem sprzed zmian 1.1 — runtime go nie pokazuje (lista „general”); pilnuje tests/recenzja-wyjatki-1-1.test.ts. */
-const WYJ: { zestawy_bez_wpisu: string[]; zestawy_zmienione: string[] } = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8'));
+const WYJ: { zestawy_bez_wpisu: string[]; zestawy_zmienione: string[]; karty_zmienione?: string[] } = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8'));
 const SCRIPT = path.join(root, 'scripts/zrodla-runtime.mjs');
 type Card = { werdykt: 'wyswietlana' | 'do poprawy'; data: string; stan: string; autor: string; recenzent: string; kto: string; sha: string; uwagi?: string; poprawka?: string };
 type Rec = { v1: Record<string, { werdykt: string; sha: string }>; karty?: Record<string, Card>; zestawy?: Record<string, Card & { rodzina: string }> };
@@ -33,7 +34,8 @@ const RT = CUE_DATA as typeof CUE_DATA & { hidden?: string[]; general?: string[]
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const OWN = Object.keys(FULL.exercises);
 /** Zestawy ogólne wyświetlane w 1.0: ćwiczenie z figurą v2 (gotowa rodzina) i trybem „general”. */
-const GENERAL_SHOWN = Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'general' && !!figureSpec(k));
+/* 05.11.2026 (olympic r5): figury wstrzymane (V2_WSTRZYMANE — np. Clean/Snatch Shrug do kart T2) nie są wyświetlane (shownFigureSpec), więc ich zestaw ogólny też nie */
+const GENERAL_SHOWN = Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'general' && !!figureSpec(k) && !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k));
 const cardOk = (k: string) => { const c = REC.karty?.[k]; if (c) return c.werdykt === 'wyswietlana' && c.sha === NOW.karty[k]; const v = REC.v1[k]; return !!v && v.werdykt === 'wyswietlana' && v.sha === NOW.v1[k]; };
 const setOk = (k: string) => { const z = REC.zestawy?.[k]; return !!z && z.werdykt === 'wyswietlana' && z.sha === NOW.zestawy[k]; };
 
@@ -58,7 +60,7 @@ describe('zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10
     }
   });
   test('wpis „wyswietlana” ⇒ skrót = skrót bieżących wskazówek (zmiana tekstu bez nowej recenzji czerwieni test)', () => {
-    for (const [k, e] of Object.entries(REC.karty ?? {})) if (e.werdykt === 'wyswietlana') expect([k, e.sha]).toEqual([k, NOW.karty[k]]);
+    for (const [k, e] of Object.entries(REC.karty ?? {})) if (e.werdykt === 'wyswietlana' && !(WYJ.karty_zmienione ?? []).includes(k)) expect([k, e.sha]).toEqual([k, NOW.karty[k]]); /* karty_zmienione (04.11.2026): karta własna zmieniona po recenzji — ukryta do recenzji niezależnej, pilnuje tests/recenzja-wyjatki-1-1.test.ts */
     for (const [k, e] of Object.entries(REC.zestawy ?? {})) if (e.werdykt === 'wyswietlana' && !WYJ.zestawy_zmienione.includes(k)) expect([k, e.sha]).toEqual([k, NOW.zestawy[k]]);
   });
 });
@@ -130,7 +132,7 @@ describe('regresja: zmiana treści po recenzji unieważnia wpis (generator)', ()
     const r = run(`pl['sumo.kneesOut'] += ' (zmiana)';`);
     expect(r.sumo).toBe(false); expect(r.hidden).toContain('Sumo Deadlift');
     for (const k of ['Reverse Band Sumo Deadlift', 'Sumo Deadlift (kettlebell)', 'Sumo Deadlift with Bands', 'Sumo Deadlift with Chains']) expect([k, r.general.includes(k)]).toEqual([k, false]);
-    expect(r.general).toContain('Bodyweight Squat'); /* zestaw bez tej wskazówki zostaje */
+    expect(r.general).toContain('Box Squat'); /* zestaw bez tej wskazówki zostaje (04.11.2026: było Bodyweight Squat — zestaw zmieniony w partii spójności karta–rysunek) */
   });
   test('zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia', () => {
     const r = run(`sets.items['Sumo Deadlift with Bands'].ok.push('rdl.knees');`);

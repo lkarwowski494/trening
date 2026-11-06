@@ -1,0 +1,27 @@
+/* C′ v4 (05.11.2026, wybór właściciela „Dobra to dobry kierunek” + poprawki): kafelki „Zacznij od ustawień” 2 × 2.
+ * Kafelki spójne z kafelkami „Ten tydzień” (obwódka line 1 pt, promień RADIUS_PRZEJSCIOWE.tile 10, tło ekranu); ikony w siatce ICON (24, linia 1,8, zaokrąglone).
+ * 2 × 2 przechodzi w 1 kolumnę, gdy kafelek byłby węższy niż --kmin (dłuższy język) albo przy dużym tekście (min. rośnie z --dt-opis). */
+.g-inny2 { margin: 8px 16px 0; width: calc(100% - 32px); min-height: 60px; border-radius: 8px; background: var(--surface2); color: var(--tekst); text-align: left; padding: 8px 16px; display: flex; align-items: center; gap: 12px; }
+.g-inny2 span { flex: 1; } .g-inny2 b { display: block; font-weight: 600; font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.g-inny2 small { display: block; color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); line-height: 1.3; }
+.g-inny2 i { font-style: normal; color: var(--tekst2); font-family: var(--krój-tytul); font-size: 1.25rem; }
+.kaf { --kmin: 144px; display: grid; grid-template-columns: repeat(auto-fill, minmax(max(var(--kmin), calc(8.5rem * var(--dt-opis))), 1fr)); gap: 8px; padding: 8px 16px 16px; }
+[lang="de"] .kaf, [lang="el"] .kaf { --kmin: 156px; }
+.kaf a { position: relative; display: flex; flex-direction: column; gap: 4px; min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 12px; color: var(--tekst); text-decoration: none; }
+.kaf svg { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; color: var(--tekst); }
+.kaf .t { font-weight: 600; font-size: calc(1rem * var(--dt-opis)); line-height: 1.25; padding-right: 16px; overflow-wrap: anywhere; hyphens: auto; }
+.kaf .z { color: var(--tekst2); font-size: calc(0.8125rem * var(--dt-opis)); line-height: 1.38; hyphens: auto; }
+.kaf .s { position: absolute; right: 12px; top: 10px; color: var(--tekst2); font-family: var(--krój-tytul); font-size: calc(1.25rem * var(--dt-tytul)); }
+/* W1: jak kafelek „Ten tydzień” — ikona i tytuł w jednym wierszu */
+.kaf.w1 a .gl { display: flex; align-items: center; gap: 8px; }
+/* W2: wyższy, ikona na górze w kółku, tytuł Barlow */
+.kaf.w2 a { min-height: 148px; padding: 14px 12px 12px; }
+.kaf.w2 svg { width: 24px; height: 24px; box-sizing: content-box; padding: 8px; border-radius: 999px; background: var(--surface2); }
+.kaf.w2 a .gl { display: flex; flex-direction: column; gap: 10px; }
+.kaf.w2 .t { font-family: var(--krój-tytul); font-weight: 700; font-size: calc(1.375rem * var(--dt-tytul)); line-height: 1.05; }
+.kaf.w2 .s { top: auto; bottom: 8px; }
+.kaf.w2 .z { padding-right: 12px; }
+/* poprawka po krytyce: w W1 tytuł zawijał się przez „›” w rogu — „›” w prawym dolnym rogu, tytuł na całą szerokość */
+.kaf.w1 .t { padding-right: 0; }
+.kaf.w1 .s { top: auto; bottom: 8px; }
+.kaf.w1 .z { padding-right: 14px; }

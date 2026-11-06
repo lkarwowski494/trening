@@ -36,3 +36,8 @@ Trening-sim.zip
 # SwiftPM (targets/Package.swift, testy logiki zegarka)
 targets/.build/
 targets/.swiftpm/
+STAN-AGENTA.md
+
+# 04.11.2026: pliki tymczasowe testu sterty Jest (poza tests/)
+.jest-sterta-tmp-*/
+.jest-limity-tmp-*/

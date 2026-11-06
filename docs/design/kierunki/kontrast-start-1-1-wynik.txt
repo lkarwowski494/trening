@@ -1,0 +1,17 @@
+OK   15.00:1 (min 4.5) jasny: tekst na surface (kroki, rubryki) #18202B na #F4F5F3
+OK   7.11:1 (min 4.5) jasny: tekst2 na surface (podpis rubryki, skrót dnia) #4A5361 na #F4F5F3
+OK   6.31:1 (min 4.5) jasny: tekst2 na bg (data, pusty stan) #4A5361 na #E6E8E5
+OK   4.37:1 (min 3) jasny: ramka rubryki ctrlLine na surface (element) #6B7380 na #F4F5F3
+OK   3.88:1 (min 3) jasny: ramka rubryki ctrlLine na bg (element) #6B7380 na #E6E8E5
+OK   15.00:1 (min 3) jasny: ramka dziś = tekst na surface (element) #18202B na #F4F5F3
+OK   12.86:1 (min 4.5) jasny: boardText na board (wiersze tablicy dnia) #F5F1E6 na #13294B
+OK   12.86:1 (min 4.5) jasny: accentInk na accent (przycisk startu) #F5F1E6 na #13294B
+OK   12.79:1 (min 4.5) ciemny: tekst na surface #E8EAED na #1E2530
+OK   6.72:1 (min 4.5) ciemny: tekst2 na surface #A3ACB8 na #1E2530
+OK   7.47:1 (min 4.5) ciemny: tekst2 na bg #A3ACB8 na #161C24
+OK   4.14:1 (min 3) ciemny: ramka rubryki ctrlLine na surface (element) #7C8594 na #1E2530
+OK   4.60:1 (min 3) ciemny: ramka rubryki ctrlLine na bg (element) #7C8594 na #161C24
+OK   12.79:1 (min 3) ciemny: ramka dziś = tekst na surface (element) #E8EAED na #1E2530
+OK   13.58:1 (min 4.5) ciemny: boardText na board #F5F1E6 na #102544
+OK   3.68:1 (min 3) ciemny: krawędź tablicy boardEdge na bg (element) #5675A8 na #161C24
+OK   12.86:1 (min 4.5) ciemny: accentInk na accent #13294B na #F5F1E6
