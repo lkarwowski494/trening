@@ -137,6 +137,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
   albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
 
+### Backlog 1.1 — ekran startowy nowego użytkownika „bardziej wow” (właściciel 05.11.2026)
+- Zakładka Trening przed pierwszym treningiem („Pusty trening”, „Inny trening”, „Pierwsze kroki” 1–4) — pierwsze wrażenie po instalacji; do przeprojektowania w 1.1. Najpierw specyfikacja z ≥ 2 wariantami i makietami (analityk-produktu), zgodność z docs/32; decyzja w docs/18 (05.11.2026).
+
 ### Backlog 1.1 — proces (noc 03/04.11, koordynator)
 - `jest-ponow` ponawia też pliki zakończone przekroczeniem limitu czasu testu (dziś tylko przerwane z zewnątrz).
 - `figures-v2-ui` (kąt): wyższy limit czasu testu — pełne verify 2× czerwone tylko przez timeout (gałąź `ci/przyspieszenie`).
