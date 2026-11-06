@@ -5,7 +5,7 @@
  */
 import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
-import { applyLang } from '@/lib/i18n';
+import { applyLang, t } from '@/lib/i18n';
 import { setupTileColumns, firstBoardParts, SETUP_TILE_MIN_PT, SETUP_TILE_MIN_LONG_PT } from '@/lib/dashboard';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
@@ -237,5 +237,20 @@ describe('06.11.2026: próg zmniejszania tekstu pól daty tablicy „Pierwszy tr
     expect(SIZE.boardFieldMinScale).toBe(0.55); expect(SIZE.boardFieldMinScale).toBeLessThanOrEqual(0.58);
     await boot();
     for (const id of ['weekday', 'day', 'month']) { const f = screen.getByTestId(`first-board-${id}`, { includeHiddenElements: true }); const txt = within(f).getByText(/./, { includeHiddenElements: true }); expect([id, txt.props.adjustsFontSizeToFit, txt.props.minimumFontScale]).toEqual([id, true, SIZE.boardFieldMinScale]); }
+  });
+});
+
+/* Kontrola zastępcza 06.11.2026 (docs/18): zamiast native speakera — ślepe tłumaczenie zwrotne + recenzent-lokalizacji. Poprawki: podpis przy „1” w ko/ja to licznik sesji; opis kafelka Przewodnik w id/ms/et. */
+describe('06.11.2026: kontrola zastępcza — podpis przy numerze tablicy i opis kafelka Przewodnik', () => {
+  test.each([['ko', '회차'], ['ja', '回目'], ['en', 'workout'], ['pl', 'trening']] as const)('podpis przy dużej „1” (%s) = %s', (lang, want) => {
+    applyLang(lang); expect(t('trening')).toBe(want);
+  });
+  test.each([
+    ['id', 'Temukan letak setiap fitur dan cara kerjanya.'], ['ms', 'Ketahui letak setiap ciri dan cara ia berfungsi.'], ['et', 'Mis kus asub ja kuidas kõik töötab.'],
+  ] as const)('opis kafelka Przewodnik (%s)', (lang, want) => {
+    applyLang(lang); expect(t('Co gdzie jest i jak działa.')).toBe(want);
+  });
+  test('tablica w ko pokazuje licznik „회차”', async () => {
+    await boot(() => {}, { locale: 'ko' as 'pl' }); expect(screen.getByText('회차', { includeHiddenElements: true })).toBeTruthy();
   });
 });

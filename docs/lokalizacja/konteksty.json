@@ -704,7 +704,7 @@
  "To miejsce główne": "app/more/locations.tsx:25",
  "To ostatnia seria": "components/SwipeRow.tsx:40",
  "trap bar": "lib/swap.ts:60",
- "trening": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu [components/FirstBoard.tsx:49]",
+ "trening": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu; w językach z licznikami (ko, ja) słowo-licznik numeru sesji: 회차, 回目 [components/FirstBoard.tsx:49]",
  "Trening": "app/(tabs)/_layout.tsx:51, app/(tabs)/history.tsx:53, app/(tabs)/index.tsx:48",
  "Trening — opinia": "lib/support.ts:21",
  "Trening i serie": "lib/guide.ts:14",
