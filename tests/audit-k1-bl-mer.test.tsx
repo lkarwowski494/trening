@@ -72,12 +72,17 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
     for (const [k, v] of Object.entries(EN)) if (SOURCE_NAMES.test(k) || SOURCE_NAMES.test(v)) bad.push(`en: ${k}`);
     for (const [l, d] of Object.entries(LOCALES)) for (const [k, v] of Object.entries(d ?? {})) if (SOURCE_NAMES.test(v)) bad.push(`${l}: ${k}`);
     for (const l of LANGS) for (const [id, v] of Object.entries(cueDict(l))) if (SOURCE_NAMES.test(v)) bad.push(`cue ${l}: ${id}`);
-    for (const l of LANGS) { applyLang(l); for (const k of Object.keys(CUE_DATA.exercises)) { const { unmount } = await render(<ExerciseCues exercise={lib(k)} />); await fireEvent.press(screen.getByRole('button', { name: t('Technika') })); for (const x of screen.container.queryAll((n: { type: unknown }) => n.type === 'Text')) { const s = JSON.stringify(x.props.children); if (SOURCE_NAMES.test(s)) bad.push(`${l} ${k}: ${s.slice(0, 60)}`); } await unmount(); } }
     expect(bad).toEqual([]);
     /* bramka działa: nazwy są w dokumencie źródeł (docs/research/27), tylko nie w aplikacji */
     expect(SOURCE_NAMES.test(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8'))).toBe(true);
     expect(fs.readFileSync(path.join(root, 'components/ExerciseCues.tsx'), 'utf8')).not.toMatch(/c\.orgs|cueOrgs/);
   }, 480000); /* RNTL 14: render i press asynchroniczne — 26 języków × wszystkie ćwiczenia; pomiar 02.11.2026 (ZB-010): ponad 120 s (126 s i przekroczony limit przy 120 s), pamięć rośnie ok. 160 KB na otwartą kartę po unmount */
+  /* 05.11.2026 (koordynator 1.1, figury/triceps): podpis każdego ćwiczenia renderowany osobnym testem na język — po podłączeniu triceps jeden test 26 języków trwał w CI 526 s (> 480 s limitu; olympic 371 s, T1b 327 s), a ponowienie przez jest-ponow wypychało część Jest 2 poza limit zadania 20 min (przebieg 42004324653 dwa razy). Zakres i warunek bez zmian: każdy język × każde ćwiczenie, zero nazw źródeł. */
+  test.each(LANGS)('regresja: podpis i teksty karty każdego ćwiczenia w języku %s bez nazw źródeł', async (l) => {
+    const bad: string[] = []; applyLang(l);
+    for (const k of Object.keys(CUE_DATA.exercises)) { const { unmount } = await render(<ExerciseCues exercise={lib(k)} />); await fireEvent.press(screen.getByRole('button', { name: t('Technika') })); for (const x of screen.container.queryAll((n: { type: unknown }) => n.type === 'Text')) { const s = JSON.stringify(x.props.children); if (SOURCE_NAMES.test(s)) bad.push(`${l} ${k}: ${s.slice(0, 60)}`); } await unmount(); }
+    expect(bad).toEqual([]);
+  }, 120000);
 });
 
 /*

@@ -2,13 +2,26 @@
 // scripts/verify-docs.mjs i scripts/verify-znacznik.mjs (baza H1 = origin/<gałąź> z zielonym CI). Publiczne API Actions, bez tokenu.
 // Testy bez sieci: SCAL_API_BAZA (lokalny serwer HTTP) albo CI_RUNY_PLIK (plik JSON z przebiegami: tablica albo { workflow_runs }, filtrowany po head_sha).
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 
 export const REPO = 'lkarwowski494/trening';
 export const WORKFLOW = 'tests.yml';
 const API = () => process.env.SCAL_API_BAZA || 'https://api.github.com';
 export const urlPrzebiegow = (repo, sha) => `${API()}/repos/${repo}/actions/runs?head_sha=${sha}&per_page=100`;
-export const domyslnyFetch = async (url) => {
-  const r = await fetch(url, { headers: { accept: 'application/vnd.github+json', 'user-agent': 'scal-galaz' }, signal: AbortSignal.timeout(10000) });
+const NAGLOWKI = { accept: 'application/vnd.github+json', 'user-agent': 'scal-galaz' };
+/** Proxy ze środowiska (sesje w kontenerze z proxy wychodzącym). Wbudowany fetch Node 22 go nie używa — bez proxy API zwraca 403 (05.11.2026, właściciel: A). */
+export const proxyZeSrodowiska = (env = process.env) => env.HTTPS_PROXY || env.https_proxy || '';
+/** Pobranie przez proxy: curl (honoruje HTTPS_PROXY), tylko dla adresów https — lokalny serwer testowy SCAL_API_BAZA idzie przez fetch. */
+export const przezProxy = (url, env = process.env) => !!proxyZeSrodowiska(env) && url.startsWith('https://');
+export const curlJson = (url, exec = execFileSync) => {
+  const out = exec('curl', ['-sS', '-f', '--max-time', '10', ...Object.entries(NAGLOWKI).flatMap(([k, v]) => ['-H', `${k}: ${v}`]), url], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  return JSON.parse(out);
+};
+export const domyslnyFetch = async (url, { env = process.env, exec = execFileSync } = {}) => {
+  if (przezProxy(url, env)) {
+    try { return curlJson(url, exec); } catch (e) { throw new Error(`API Actions przez proxy: ${String(e.stderr || e.message).trim().split('\n')[0]}`); }
+  }
+  const r = await fetch(url, { headers: NAGLOWKI, signal: AbortSignal.timeout(10000) });
   if (!r.ok) throw new Error(`API Actions: HTTP ${r.status}`);
   return r.json();
 };

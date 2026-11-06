@@ -13,6 +13,7 @@ import P2_MOC from './fixtures/cues-p2-moc.json';
 import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
 import { CUE_FULL } from './zrodla-pelne';
 import T1_DELT from './fixtures/cues-t1-delt-raise.json';
+import T1_TRI from './fixtures/cues-t1-triceps.json';
 
 const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
 const EN: Record<string, string> = require('@/lib/cues/text/en.json');
@@ -23,7 +24,7 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
   test('709 ćwiczeń: 102 własne + 36 z partii P2 (G3 moc, 03.11.2026; w tym 2 przeniesione z „open”: Jerk Balance, Medicine Ball Chest Pass) = 138 własnych, 504 ogólne (wariant A), 67 otwartych (grafika bez tekstu); własne = dokładnie ćwiczenia z lib/cues/data.json', () => {
     expect(Object.keys(CUE_SETS.items).sort()).toEqual([...KEYS].sort());
     const n = (b: string) => Object.values(CUE_SETS.items).filter(e => e.b === b).length;
-    expect([n('own'), n('general'), n('open')]).toEqual([102 + P1_MOBILNOSC.cwiczenia.length + P2_MOC.cwiczenia.length + T1_DELT.cwiczenia.length, 538 - P1_MOBILNOSC.cwiczenia.length - (P2_MOC.cwiczenia.length - 2) - (T1_DELT.cwiczenia.length - 3), 69 - 2 - 3]); /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */
+    expect([n('own'), n('general'), n('open')]).toEqual([102 + P1_MOBILNOSC.cwiczenia.length + P2_MOC.cwiczenia.length + T1_DELT.cwiczenia.length + T1_TRI.cwiczenia.length, 538 - P1_MOBILNOSC.cwiczenia.length - (P2_MOC.cwiczenia.length - 2) - (T1_DELT.cwiczenia.length - 3) - T1_TRI.cwiczenia.length, 69 - 2 - 3]); /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */
     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   /* OTWARTE (27.10.2026, badacz): zdanie o rzucie z nóg (mb.legs) nie pasuje do slamu — zdanie zastępcze do ustalenia; do tego czasu zestaw bez zaleceń (docs/16) */
@@ -126,9 +127,9 @@ describe('strażnik: rodzina gotowa (ready) nie używa identyfikatora wskazówki
 });
 
 describe('B3 (recenzja treści 1.1): wskazówka o zakresie opuszczania nie mówi „gryf” przy hantlach i gumie', () => {
-  test('Skullcrusher (hantle), Decline Dumbbell Triceps Extension i Band Skull Crusher dostają zdanie neutralne sprzętowo (skull.depthFree: „dłonie”); ćwiczenia z gryfem zostają przy skull.depth', () => {
-    for (const k of ['Skullcrusher (hantle)', 'Decline Dumbbell Triceps Extension', 'Band Skull Crusher']) { const c = cueSelection(k); expect([k, c.ok.includes('skull.depthFree'), c.ok.includes('skull.depth')]).toEqual([k, true, false]); }
-    for (const k of ['Skullcrusher (sztanga)', 'Decline EZ Bar Triceps Extension']) expect([k, cueSelection(k).ok.includes('skull.depth')]).toEqual([k, true]);
+  test('zdanie neutralne sprzętowo skull.depthFree („dłonie”) zostaje przy Skullcrusher (hantle) jako wskazówka własnej karty (04.11.2026, T1 triceps: Decline Dumbbell i Band Skull Crusher mają karty własne bez tego zdania); wszystkie pięć odmian ma własne karty, więc zestaw ogólny nie dokłada skull.depth', () => {
+    expect(CUE_FULL.exercises['Skullcrusher (hantle)'].tips.map(r => r.c)).toContain('skull.depthFree');
+    for (const k of ['Skullcrusher (hantle)', 'Decline Dumbbell Triceps Extension', 'Band Skull Crusher', 'Skullcrusher (sztanga)', 'Decline EZ Bar Triceps Extension']) expect([k, cueSelection(k).ok.includes('skull.depth')]).toEqual([k, false]);
     expect(PL['skull.depthFree']).not.toMatch(/gryf|sztang/i); expect(EN['skull.depthFree']).not.toMatch(/\bbar\b/i);
   });
 });

@@ -20,6 +20,12 @@ test('są fixture’y z wydanych buildów dla schematów 18 i 19', () => {
   expect(schemas).toContain(18); expect(schemas).toContain(19); expect(FILES.length).toBeGreaterThanOrEqual(3);
 });
 
+/* 05.11.2026 (właściciel, wariant A): zapis z buildu wydanego w App Store (1.0, b1033) musi być w katalogu — test migracji nie może mieć tylko TestFlight (b1032). */
+test('jest zapis z wydanego buildu 1.0 (b1033, App Store, 05.11.2026), schemat 19', () => {
+  expect(FILES).toContain('state-v1.0.0-b1033-schema19.json');
+  expect(JSON.parse(fs.readFileSync(path.join(DIR, 'state-v1.0.0-b1033-schema19.json'), 'utf8')).schemaVersion).toBe(19);
+});
+
 describe.each(FILES)('zapis z wydanego builda: %s', file => {
   const fx = JSON.parse(fs.readFileSync(path.join(DIR, file), 'utf8'));
   const load = async () => {

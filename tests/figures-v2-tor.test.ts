@@ -27,8 +27,10 @@ export function ksztaltToru(pts: [number, number][]): { odchylenie: number; zawr
 const tor = (k: string, v: View) => ksztaltToru(Array.from({ length: 25 }, (_, i) => { const f = frameAt(figureSpec(k)!, i / 24); return f.info.load ?? f.info.trail; }).filter(Boolean).map(p => proj(p!, v) as [number, number]));
 /* Ruch po łuku wokół stawu (curl, 03.11.2026): chwyt kreśli łuk o promieniu przedramienia (ok. 15–24 cm odchylenia od cięciwy — fizycznie poprawne), więc próg 4 cm (tor prostoliniowy gryfu) go nie dotyczy;
    dla łuku obowiązuje: najwyżej jedna zmiana kierunku w poziomie (bez „S”) i odchylenie ≤ PROG_LUK cm (ochrona przed ucieczką toru). Do potwierdzenia przez recenzenta niezależnego razem z arkuszem śladu. */
-const LUKOWE = new Set(['curl']); const PROG_LUK = 26; /* C1 (recenzja niezależna 03.11.2026): geometria — strzałka łuku r·(1 − cos(Δθ/2)) ≈ 21 cm + dryf łokcia ≈ 4 cm; pomiar max 23,8 cm; 30 cm dawało ok. 6 cm luzu */ const FAM = assignAll() as Record<string, string>;
-const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string) => (k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
+const LUKOWE = new Set(['curl', 'triceps']); const PROG_LUK = 26; /* C1 (recenzja niezależna 03.11.2026): geometria — strzałka łuku r·(1 − cos(Δθ/2)) ≈ 21 cm + dryf łokcia ≈ 4 cm; pomiar max 23,8 cm; 30 cm dawało ok. 6 cm luzu */ const FAM = assignAll() as Record<string, string>;
+/* triceps (04.11.2026): górna granica łuku rodziny; dokładny próg z geometrii każdego ćwiczenia — tests/figures-v2-triceps-tor.test.ts */
+const PROG_LUK_RODZINY: Record<string, number> = { curl: PROG_LUK, triceps: 17 };
+const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string) => (k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK_RODZINY[FAM[k]] : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
 
 describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => {
   test('miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze', () => {
