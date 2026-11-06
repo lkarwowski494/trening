@@ -74,10 +74,14 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: { id: "sw-Keep screen on during workout" }
 - scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Progression hint" }
+# E2E 42131719080 (iPhone 17, nagłówek nieprzezroczysty — ZB-010): po przewinięciu do „Progression hint” wiersz „RPE / RIR per set” leżał na y=53 (nagłówek kończy się na y=116), Maestro uważa go
+# za widoczny (centerElement go nie przewija), a stuknięcie w (354, 67) trafiało w nagłówek — przełącznik się nie zmieniał, segment „Skala wysiłku” nigdy się nie pojawiał
+# (maestro.log: Tapping on element … sw-RPE / RIR per set bounds=[323,53][386,81]; hierarchia: brak effort-scale-*). Zsuwamy listę w dół o ok. 100 pt PRZED przewinięciem do przełącznika i stuknięciem.
+- swipe: { start: "50%, 40%", end: "50%, 52%", duration: 400 }
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
 # E2E-35 (run 39676394005): „RIR” po tekście trafiało w nieostry cel (trening pokazał potem RPE) — segment ma testID `effort-scale-rir`; zaznaczenie sprawdzamy przed dalszymi krokami
-# Run 42103163923 (standardowy iPhone): przewijanie tylko w DÓŁ kończyło na dole listy, a segment (zaraz pod przełącznikiem) został wyżej — „No visible element found: id: effort-scale-rir”. Najpierw sprawdzamy, czy segment już jest na ekranie; jeśli nie — szukamy w GÓRĘ.
+# Run 42103163923/42131719080: segment nie pojawiał się, bo stuknięcie w przełącznik wyżej trafiało w nagłówek (patrz wyżej). Gdyby segment był na ekranie, nie szukamy go; w razie potrzeby szukamy też w GÓRĘ.
 - runFlow:
     when: { notVisible: { id: "effort-scale-rir" } }
     commands:
