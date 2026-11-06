@@ -45,15 +45,15 @@
   },
   {
    "id": "NU-02",
-   "tytul": "„Co nowego” w 1.0: historia pusta — bez przycisku ✦ i panelu (pierwsza wersja w App Store)",
+   "tytul": "„Co nowego” w 1.0.1: nowa osoba widzi przycisk ✦ bez kropki i panel z wpisem (decyzja 06.11.2026)",
    "stan": "nowy",
    "wersja": "1.0",
    "realnosc": "realny",
    "kroki": [
     "Otwórz ekran Trening po pierwszym uruchomieniu",
-    "Sprawdź nagłówek ekranu"
+    "Stuknij ✦ w nagłówku i zamknij panel"
    ],
-   "wynik": "Nagłówek bez przycisku ✦ i bez kropki; panel „Co nowego” niedostępny (decyzja właściciela 14.10.2026, docs/18). Od pierwszego wpisu 1.1 przycisk wraca (tests/whats-new.test.tsx).",
+   "wynik": "Przycisk ✦ bez kropki; panel „W tej wersji” z dopiskiem dla nowej osoby i punktami wpisu, „Zamknij” go chowa (decyzja właściciela 06.11.2026, docs/18; wcześniej w 1.0.0 historia była pusta). Test: tests/whats-new.test.tsx.",
    "ekrany": [
     "/"
    ],
@@ -2856,15 +2856,15 @@
   },
   {
    "id": "AK-04",
-   "tytul": "„Co nowego” po aktualizacji do 1.0: bez przycisku ✦ i kropki (historia pusta)",
+   "tytul": "„Co nowego” po aktualizacji z 1.0 do 1.0.1: przycisk ✦ i panel z wpisem (decyzja 06.11.2026)",
    "stan": "aktualizacja",
    "wersja": "1.0",
    "realnosc": "realny",
    "kroki": [
-    "Po aktualizacji z 0.20 otwórz ekran Trening",
-    "Sprawdź nagłówek ekranu"
+    "Po aktualizacji z 1.0 otwórz ekran Trening",
+    "Stuknij ✦ w nagłówku i zamknij panel"
    ],
-   "wynik": "Nagłówek bez przycisku ✦ i kropki mimo zapisanego id starego wpisu; dane bez zmian.",
+   "wynik": "Przycisk ✦ otwiera panel „W tej wersji” z punktami wpisu 1.0.1; dane bez zmian.",
    "ekrany": [
     "/"
    ],

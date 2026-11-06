@@ -55,7 +55,7 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
         </View>); })}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         <Btn nav small title={t('Przewodnik po funkcjach')} onPress={() => { onClose(); router.push('/guide'); }} />{/* 08.10.2026: po aktualizacji — przewodnik */}
-        <Btn small kind="ghost" title={t('Zamknij')} onPress={onClose} />
+        <Btn small kind="ghost" testID="whats-new-close" title={t('Zamknij')} onPress={onClose} />
       </View>
     </View>
   );

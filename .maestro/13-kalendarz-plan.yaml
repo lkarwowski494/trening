@@ -141,8 +141,18 @@ name: Kalendarz z planem tygodnia
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Today: Upper A", timeout: 30000 }
 - takeScreenshot: 63-dzis
-# --- „Co nowego”: 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma; od pierwszego wpisu 1.1 wraca stuknięcie „i” (historia git: E2E 105, tests/maestro-e2e105.test.tsx) ---
-- assertNotVisible: { id: "whats-new-i" }
+# --- „i” — Co nowego (nowa instalacja: bez kropki); od 1.0.1 (decyzja właściciela 06.11.2026, docs/18) historia ma wpis, przycisk ✦ wrócił ---
+# E2E 105 (run 38014484054): ekran Trening został przewinięty w podscenariuszu i zakładka trzyma przewinięcie — „i” leżało pod paskiem stanu, Maestro stuknął w pasek
+# stanu. Najpierw przesunięcie palcem w dół (lista do góry), potem „i”. Test: tests/maestro-e2e105.test.tsx
+- swipe: { start: "50%, 30%", end: "50%, 80%", duration: 400 }
+- waitForAnimationToEnd
+- tapOn: { id: "whats-new-i" }  # przycisk po testID (etykieta z kropką „nowe zmiany” byłaby inna)
+- extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 15000 }  # bieżący wpis: niewydany albo z numerem buildu
+- takeScreenshot: 65-co-nowego
+# rozwinięta sekcja spycha „Close” pod pasek zakładek (run 37900617167): przewinięcie z wyśrodkowaniem przed stuknięciem
+- scrollUntilVisible: { element: "Close", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "whats-new-close" }
+- assertNotVisible: "In this version|Test build [0-9]+ · .*"
 - scrollUntilVisible: { element: "Start planned workout: Upper A", direction: UP, timeout: 30000, centerElement: true }
 - tapOn: "Start planned workout: Upper A"
 - tapOn: { text: "Not now", optional: true }   # run 39399241275 (M1-035): karta zgody na powiadomienia spycha przycisk „Set done” poza ekran

@@ -1231,6 +1231,11 @@ export const EN: Record<string, string> = {
   'Historia jest już w telefonie': 'Your history is now on your phone',
   'Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.': 'Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too.',
   'Skąd ta cena? Poznaj indeks espresso.': 'Why this price? See the espresso index.',
+  /* 1.0.1 „Co nowego” (decyzja właściciela 06.11.2026, docs/18): wpis wersji testowej dla właściciela; przekład na 33 języki czeka w docs/lokalizacja/zestaw-przekladu-2026-11-06-co-nowego.json */
+  'Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.': 'New movement drawings for triceps exercises and for cleans, snatches and their variations.',
+  'Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.': 'New and refined technique tips, including shoulders, power exercises and mobility.',
+  'Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.': 'Voice announcements use the best voice installed on your phone.',
+  'Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.': 'A new user starts on the Workout screen with the “Start your first workout” button and the “First workout” board.',
   /* ROLE-MIESNI:BEGIN — generowane przez scripts/zrodla-runtime.mjs z data/zrodla/role-miesni.json, nie edytować ręcznie */
   'Odciąga ramię do tyłu, gdy przyciągasz.': 'Draws your arm back as you pull.',
   'Odciąga ramię do tyłu.': 'Draws your arm back.',

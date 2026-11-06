@@ -878,10 +878,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Przepływ: PR-06
 - Dowód potrzeby: J-04; decyzja właściciela 14.10.2026 (docs/18: przy 1.0 czyścimy „Co nowego”); kod `lib/whatsnew.ts`, `components/WhatsNew.tsx`; test `tests/whats-new.test.tsx`
 - Kryteria akceptacji:
-  - Scenariusz: Wersja 1.0 bez historii zmian
+  - Scenariusz: Wersja 1.0.0 bez historii zmian (zachowanie przy pustej historii)
     - Zakładając, że historia „Co nowego” jest pusta (pierwsza wersja w App Store)
     - Gdy użytkownik, nowy albo po aktualizacji z wersji testowej, otwiera ekran Trening
     - Wtedy nagłówek nie ma przycisku „Co nowego” ani kropki, a zapisane dane pozostają bez zmian
+  - Scenariusz: Wersja 1.0.1 z wpisem (decyzja właściciela 06.11.2026)
+    - Zakładając, że historia ma jeden wpis, a użytkownik jest nową osobą
+    - Gdy otwiera ekran Trening i stuka przycisk „Co nowego”
+    - Wtedy przycisk nie ma kropki, panel pokazuje punkty wpisu i można go zamknąć
   - Scenariusz: Kropka po aktualizacji z nowym wpisem
     - Zakładając, że historia ma wpis, którego użytkownik z co najmniej jednym treningiem jeszcze nie otworzył
     - Gdy otwiera ekran Trening

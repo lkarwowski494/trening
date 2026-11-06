@@ -3199,6 +3199,10 @@
   "en": "new"
  },
  {
+  "pl": "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.",
+  "en": "A new user starts on the Workout screen with the “Start your first workout” button and the “First workout” board."
+ },
+ {
   "pl": "nowe",
   "en": "new"
  },
@@ -3219,12 +3223,20 @@
   "en": "new custom exercise"
  },
  {
+  "pl": "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.",
+  "en": "New and refined technique tips, including shoulders, power exercises and mobility."
+ },
+ {
   "pl": "Nowe miejsce",
   "en": "New place"
  },
  {
   "pl": "Nowe rekordy: {n}",
   "en": "New records: {n}"
+ },
+ {
+  "pl": "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.",
+  "en": "New movement drawings for triceps exercises and for cleans, snatches and their variations."
  },
  {
   "pl": "Nowe szablony i plan",
@@ -6947,6 +6959,10 @@
  {
   "pl": "Zapowiedzi głosowe",
   "en": "Voice announcements"
+ },
+ {
+  "pl": "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.",
+  "en": "Voice announcements use the best voice installed on your phone."
  },
  {
   "pl": "Zapowiedzi głosowe: {mode}",
