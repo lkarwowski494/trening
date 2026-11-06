@@ -7,7 +7,7 @@ import { IconRow } from '@/components/Icon';
 import { useTheme, NUM_SCALE_MAX, FW, font, maxScale, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { getState, useForegroundTick, isDeloadWeek, fmtDayKey, exById, reps } from '@/lib/store';
 import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
-import { weekStrip } from '@/lib/dashboard';
+import { weekStrip, isNewPerson } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
 import { t, tp, lang, exName } from '@/lib/i18n';
@@ -56,6 +56,7 @@ export function TodayPlan() {
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
   const showTpl = tpl && pending(cur) ? tpl : undefined; const shown = showTpl ? showTpl.items.slice(0, PREVIEW) : []; const n = showTpl ? showTpl.items.length - shown.length : 0; /* ile ćwiczeń ponad podgląd */
   const u = upperText(title); /* W3 (wz. 28 pkt 4): „Dziś: …” wersalikami jak nazwisko na tablicy podejść; A11-02: reguły języka */
+  if (isNewPerson()) return null; /* 06.11.2026 (docs/18): nowa osoba bez nagłówka planu i paska tygodnia — zastępuje je tablica „Pierwszy trening” */
   return (
     <View testID="today-plan" style={{ marginTop: SPACE.xs, gap: SPACE.m }}>
       <View testID="plan-header"><Txt accessibilityRole="header" style={{ ...font('callout'), color: th.muted }}>{planTitle}</Txt></View>

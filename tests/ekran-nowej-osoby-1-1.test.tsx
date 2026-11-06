@@ -13,7 +13,8 @@ import { within } from '@testing-library/react-native';
 import * as RN from 'react-native';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
 import * as plan from '@/lib/plan';
-import { MOTION } from '@/lib/theme';
+import { MOTION, SIZE } from '@/lib/theme';
+import { isNewPerson } from '@/lib/dashboard';
 
 jest.setTimeout(60000);
 const NOW = new Date(2026, 10, 5, 9, 0); /* czwartek 5 listopada 2026 — dzień decyzji */
@@ -40,9 +41,9 @@ describe('lib/dashboard — kolumny kafelków (próg z makiety: kafelek < 144 pt
 });
 
 describe('ekran nowej osoby (bez treningów, szablonów i planu)', () => {
-  test('układ: pasek tygodnia „Bez planu tygodnia” z dziś w ramce, tablica „Pierwszy trening”, przycisk, 4 kafelki; bez „Inny trening” i dawnej karty', async () => {
+  test('układ (od 06.11.2026 bez paska tygodnia, daty i „Bez planu tygodnia” — zob. niżej): tablica „Pierwszy trening”, przycisk, 4 kafelki; bez „Inny trening” i dawnej karty', async () => {
     await boot();
-    expect(screen.getByText('Bez planu tygodnia')).toBeTruthy(); expect(screen.getByTestId('week-strip')).toBeTruthy(); expect(screen.getByTestId('strip-2026-11-05')).toBeTruthy();
+    expect(screen.queryByText('Bez planu tygodnia')).toBeNull(); expect(screen.queryByTestId('week-strip')).toBeNull();
     const board = screen.getByTestId('first-board'); expect(board.props.accessibilityLabel).toBe('Pierwszy trening, dziś, czwartek, 5 listopada');
     expect(within(screen.getByTestId('first-board')).queryAllByText(/./, { includeHiddenElements: false })).toHaveLength(0); /* dekoracja ukryta, jeden opis tekstowy */
     expect(screen.getByText('Zacznij pierwszy trening')).toBeTruthy(); expect(screen.getByText('ćwiczenia dodasz w trakcie')).toBeTruthy();
@@ -84,7 +85,7 @@ describe('„Inny trening” — reguła ogólna: tylko gdy są inne sposoby sta
   });
 });
 
-describe('niezmiennik: po pierwszym zakończonym treningu tablica i kafelki znikają (pasek tygodnia zostaje)', () => {
+describe('niezmiennik: po pierwszym zakończonym treningu tablica i kafelki znikają (pojawia się pasek tygodnia)', () => {
   test('nowa osoba → trening zakończony → zwykły ekran główny', async () => {
     await boot(); expect(screen.getByTestId('first-board')).toBeTruthy();
     await act(async () => { addWorkout(NOW.getTime() - 3600000, [['Plank', [{ done: true, durationSec: 30 }]]]); }); await flushAll(10);
@@ -183,5 +184,58 @@ describe('osoba z historią: kafelki i tablica nie wracają', () => {
   test('trwający trening bez zakończonych: „Wróć do treningu”, bez „Zacznij pierwszy trening”', async () => {
     await boot(); await tap(screen.getByTestId('start-main')); await flushAll(10); await act(async () => { await store.flush(); });
     expect(screen.queryByText('Zacznij pierwszy trening')).toBeNull();
+  });
+});
+
+/* Decyzja właściciela 06.11.2026 ~07:00 PL (wariant A, docs/18; cofa część C′ „pasek od pierwszego dnia” z 05.11.2026): nowa osoba (bez zakończonych treningów i bez planu) NIE widzi
+ * daty pod tytułem, nagłówka „Bez planu tygodnia” ani paska tygodnia; po pierwszym treningu albo po ustawieniu planu układ bez zmian. Rodzaje: logika (isNewPerson), ekran, macierz stanów (EN), niezmiennik. */
+describe('06.11.2026: nowa osoba bez daty, nagłówka planu i paska tygodnia', () => {
+  const DATE_PL = /czwartek, 5 listopada/; /* fmtWeekdayDayMonth(NOW) w pl */
+  test('nowa osoba: jest tytuł „Trening” (nagłówek), tablica, start i kafelki; BRAK daty, „Bez planu tygodnia”, plan-header i week-strip', async () => {
+    await boot();
+    expect(within(screen.getByTestId('title-row')).getByText('Trening')).toBeTruthy();
+    expect(screen.getByTestId('first-board')).toBeTruthy(); expect(screen.getByTestId('start-main')).toBeTruthy(); expect(screen.getByText('Przygotuj się do pierwszej serii')).toBeTruthy();
+    expect(screen.queryByText('Bez planu tygodnia')).toBeNull(); expect(screen.queryByTestId('plan-header')).toBeNull(); expect(screen.queryByTestId('week-strip')).toBeNull(); expect(screen.queryByTestId('strip-2026-11-05')).toBeNull();
+    expect(screen.queryByText(DATE_PL)).toBeNull(); /* data tylko w opisie tablicy (accessibilityLabel), nie jako tekst */
+    expect(screen.getByTestId('first-board').props.accessibilityLabel).toMatch(DATE_PL);
+  });
+  test('EN: ten sam układ — brak „No weekly plan”, daty i paska', async () => {
+    await boot(() => {}, { locale: 'en' });
+    expect(screen.getByTestId('first-board')).toBeTruthy(); expect(screen.queryByText('No weekly plan')).toBeNull(); expect(screen.queryByTestId('week-strip')).toBeNull(); expect(screen.queryByText(/Thursday, 5 November/)).toBeNull();
+  });
+  test('po jednym zakończonym treningu: data, nagłówek planu i pasek wracają', async () => {
+    await boot(() => { addWorkout(NOW.getTime() - 3600000, [['Plank', [{ done: true, durationSec: 30 }]]]); });
+    expect(screen.getByText(DATE_PL)).toBeTruthy(); expect(screen.getByTestId('plan-header')).toBeTruthy(); expect(screen.getByText(/^Dziś zrobione/)).toBeTruthy(); expect(screen.getByTestId('week-strip')).toBeTruthy(); expect(screen.getByTestId('strip-2026-11-05')).toBeTruthy();
+  });
+  test('przejście: trening zakończony na żywo → pasek i data pojawiają się w miejscu tablicy', async () => {
+    await boot(); expect(screen.queryByTestId('week-strip')).toBeNull();
+    await act(async () => { addWorkout(NOW.getTime() - 3600000, [['Plank', [{ done: true, durationSec: 30 }]]]); }); await flushAll(10);
+    expect(screen.getByTestId('week-strip')).toBeTruthy(); expect(screen.getByTestId('plan-header')).toBeTruthy(); expect(screen.getByText(DATE_PL)).toBeTruthy(); expect(screen.queryByTestId('first-board')).toBeNull();
+  });
+  test('z planem, bez treningów: data, „Plan: …”, pasek i tablica „Dziś” jak dotąd', async () => {
+    await boot(() => { const t = withDemoTemplates(); plan.setWeekDay(3, t[0].id); });
+    expect(screen.getByText(DATE_PL)).toBeTruthy(); expect(within(screen.getByTestId('plan-header')).getByText(/^Plan: /)).toBeTruthy(); expect(screen.getByTestId('week-strip')).toBeTruthy(); expect(screen.getByTestId('today-board')).toBeTruthy();
+  });
+  test('szablony bez planu i bez treningów: wciąż nowa osoba — bez daty, nagłówka i paska', async () => {
+    await boot(() => { withDemoTemplates(); });
+    expect(screen.getByTestId('first-board')).toBeTruthy(); expect(screen.queryByTestId('week-strip')).toBeNull(); expect(screen.queryByTestId('plan-header')).toBeNull(); expect(screen.queryByText(DATE_PL)).toBeNull();
+  });
+  test('trwający pierwszy trening skończony i usunięty: stan wynika z historii (znów nowa osoba — bez paska)', async () => {
+    await boot(() => { addWorkout(NOW.getTime() - 86400000, [['Plank', [{ done: true, durationSec: 30 }]]]); }); expect(screen.getByTestId('week-strip')).toBeTruthy();
+    await act(async () => { const st = store.getState(); st.workouts = []; store.save(); }); await flushAll(10);
+    expect(screen.queryByTestId('week-strip')).toBeNull(); expect(screen.getByTestId('first-board')).toBeTruthy();
+  });
+  test('logika: isNewPerson = brak zakończonych treningów i brak planu', async () => {
+    await boot(); expect(isNewPerson()).toBe(true);
+    await act(async () => { const t = withDemoTemplates(); plan.setWeekDay(3, t[0].id); }); await flushAll(5); expect(isNewPerson()).toBe(false);
+  });
+});
+
+/* Decyzja właściciela 06.11.2026 ~07:05 PL (docs/18): pola daty tablicy „Pierwszy trening” zmniejszają tekst do progu z tokenu (0,55; było 0,7 — najdłuższe skróty w vi/lv/pt/fi nie mieściły się przy 320 pt i 130% tekstu). */
+describe('06.11.2026: próg zmniejszania tekstu pól daty tablicy „Pierwszy trening”', () => {
+  test('token SIZE.boardFieldMinScale = 0,55 (≤ 0,58, pomiar w docs/18) i pola go używają', async () => {
+    expect(SIZE.boardFieldMinScale).toBe(0.55); expect(SIZE.boardFieldMinScale).toBeLessThanOrEqual(0.58);
+    await boot();
+    for (const id of ['weekday', 'day', 'month']) { const f = screen.getByTestId(`first-board-${id}`, { includeHiddenElements: true }); const txt = within(f).getByText(/./, { includeHiddenElements: true }); expect([id, txt.props.adjustsFontSizeToFit, txt.props.minimumFontScale]).toEqual([id, true, SIZE.boardFieldMinScale]); }
   });
 });

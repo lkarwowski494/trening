@@ -31,7 +31,7 @@
    "kroki": [
     "Zainstaluj i uruchom aplikację (pusta baza)",
     "Poczekaj na koniec animacji startowej",
-    "Na zakładce Trening: pasek tygodnia „Bez planu tygodnia”, tablica „Pierwszy trening” z datą, przycisk „Zacznij pierwszy trening” (bez „Inny trening”) i cztery kafelki „Przygotuj się do pierwszej serii” (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik)"
+    "Na zakładce Trening: tytuł „Trening” (bez daty, nagłówka „Bez planu tygodnia” i paska tygodnia — 06.11.2026), tablica „Pierwszy trening” z datą, przycisk „Zacznij pierwszy trening” (bez „Inny trening”) i cztery kafelki „Przygotuj się do pierwszej serii” (szablony i plan, miejsca i sprzęt, historia z CSV, przewodnik)"
    ],
    "wynik": "Brak szablonów i treningów; widać tablicę „Pierwszy trening” i kafelki, a duży przycisk startu to „Zacznij pierwszy trening” (pusty trening).",
    "ekrany": [

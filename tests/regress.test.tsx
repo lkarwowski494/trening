@@ -935,6 +935,7 @@ describe('runda 30', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R30-01 powrót z tła następnego dnia odświeża ekran główny', async () => {
     await renderApp(); const t0 = new Date(2026, 8, 30, 22).getTime(); jest.setSystemTime(t0);
+    addWorkout(t0 - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); /* 06.11.2026: nowa osoba (bez treningów i planu) nie ma daty w nagłówku — data jest u osoby z historią */
     /* 05.10.2026: poranny wpis usunięty — odświeżenie sprawdzane na dacie w nagłówku ekranu głównego */
     await act(async () => { store.refreshViews(); }); await flushAll(10);
     const day = (ms: number) => new Date(ms).toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' });

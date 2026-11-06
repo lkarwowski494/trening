@@ -38,6 +38,8 @@ export function lastWorkout() {
   return { id: w.id, name: w.templateName, startedAt: wallTs(w) /* J3: data w strefie startu */, durationSec: Math.round(workoutDurSec(w)), sets: workingSets(w), volume: volume(w), prs: prCount(w) };
 }
 /** Ekran nowej osoby (05.11.2026, docs/18): tablica „Pierwszy trening” i kafelki „Przygotuj się do pierwszej serii” — widoczne do pierwszego zakończonego treningu. */
+/** Nowa osoba (decyzja właściciela 06.11.2026, docs/18): bez zakończonych treningów i bez planu — ten sam warunek co tablica „Pierwszy trening”; na ekranie Trening nie ma wtedy daty, nagłówka planu ani paska tygodnia. */
+export function isNewPerson(): boolean { return !finishedWorkouts().length && !hasPlan(); }
 export function firstSteps() {
   if (finishedWorkouts().length) return null;
   return { template: getState().templates.some(x => !x.archived && x.items.length), plan: hasPlan() };

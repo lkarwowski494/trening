@@ -5,7 +5,7 @@
 # od dnia tygodnia ani od północy (dzień uruchomienia bywa poniedziałkiem lub niedzielą; „wczoraj” bywa w poprzednim tygodniu).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "No weekly plan", "First workout, today.*" (id first-board), "Start your first workout", "Get ready for your first set", "Templates and plan. Create your first template or generate templates and a plan." ← ekran nowej osoby 1.1 (components/FirstBoard.tsx, Dashboard.tsx FirstSteps, StartPanel.tsx)
+#   (brak: "No weekly plan", pasek tygodnia i data — od 06.11.2026 nie ma ich u nowej osoby), "First workout, today.*" (id first-board), "Start your first workout", "Get ready for your first set", "Templates and plan. Create your first template or generate templates and a plan." ← ekran nowej osoby 1.1 (components/FirstBoard.tsx, Dashboard.tsx FirstSteps, StartPanel.tsx)
 #   "What's new.*", "In this version", "Close"            ← components/WhatsNew.tsx ('Co nowego', 'W tej wersji', 'Zamknij')
 #   "Full Body A", "Full Body B"                           ← szablony z generatora (subflows/generator-plan.yaml)
 #   "Previous day"                                          ← components/WhenFields.tsx ('Dzień wcześniej')
@@ -18,7 +18,9 @@ name: Pierwszy tydzień nowego użytkownika
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- pierwsze uruchomienie: ekran nowej osoby 1.1 (05.11.2026): pasek tygodnia, tablica „Pierwszy trening”, „Przygotuj się do pierwszej serii” (bez „Co nowego” w 1.0.0) ---
-- assertVisible: "No weekly plan"
+- assertNotVisible: "No weekly plan"  # 06.11.2026: nowa osoba bez nagłówka planu, daty i paska tygodnia
+- assertNotVisible: { id: "week-strip" }
+- assertNotVisible: { id: "plan-header" }
 - assertVisible: { id: "first-board" }
 - assertVisible: "First workout, today.*"
 - assertVisible: "Start your first workout"

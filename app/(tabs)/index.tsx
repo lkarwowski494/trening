@@ -17,7 +17,7 @@ import { WeekStats, FirstSteps } from '@/components/Dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
 import { StartPanel } from '@/components/StartPanel';
 import { FirstBoard } from '@/components/FirstBoard';
-import { firstSteps } from '@/lib/dashboard';
+import { firstSteps, isNewPerson } from '@/lib/dashboard';
 import { t } from '@/lib/i18n';
 import { cancelButton } from '@/lib/confirm';
 import { setAutoSavedNotice, useAutoSavedNotice } from '@/lib/notices';
@@ -35,7 +35,7 @@ function DataBanners() {
 }
 
 function Home() {
-  const plan = hasPlan(); const showPlanning = plan || finishedWorkouts().length > 0; /* jak karta „Dziś” (components/TodayPlan) */
+  const plan = hasPlan(); const newPerson = isNewPerson(); const showPlanning = plan || finishedWorkouts().length > 0; /* jak karta „Dziś” (components/TodayPlan) */
   /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026, docs/18) po zmianach z 11.10.2026 (docs/22 krok 3; P2–P4, P8): nagłówek planu z „Planowaniem”
    * nad kalendarzem tygodnia (components/TodayPlan) → duży przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu — pełnoekranowy
    * wybór ze Startem, pusty) → „Pierwsze kroki” (tylko nowa osoba) → „Ten tydzień” (kafelki, stosy planu, sylwetka i serie na partię: wykonane + zaplanowane)
@@ -46,11 +46,11 @@ function Home() {
         {/* M3 p2 (W1 c) i DEC-07 K3 a (23.10.2026; M1-audytor-generalny-024): „Planowanie” w linii tytułu po prawej — jak w zakładce Plan (docs/32 wzorzec 19 c);
          * bez planu „Ustaw plan”; tylko gdy jest karta planu (jak dotąd). Wiersz się zawija: przy wąskim ekranie i dużym tekście przycisk przechodzi pod tytuł. */}
         <View testID="title-row" style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: SPACE.s }}><View style={{ flexShrink: 1 }}><H1>{t('Trening')}</H1></View><TitleBarbell />{showPlanning ? <View style={{ marginLeft: 'auto' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}</View>
-        <Muted>{fmtWeekdayDayMonth(new Date())}</Muted>
+        {newPerson ? null : <Muted>{fmtWeekdayDayMonth(new Date())}</Muted> /* 06.11.2026: nowa osoba bez daty — data jest na tablicy „Pierwszy trening” */}
       </WhatsNewHeader>
       <DataBanners />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A); 11.10.2026: z nagłówkiem planu i „Planowaniem” */}
-      {firstSteps() && !plan ? <FirstBoard /> : null /* 05.11.2026: tablica „Pierwszy trening”; z planem jest tablica „Dziś” */}
+      {newPerson ? <FirstBoard /> : null /* 05.11.2026: tablica „Pierwszy trening”; z planem jest tablica „Dziś” */}
       <StartPanel />
       <FirstSteps />
       <WeekStats />

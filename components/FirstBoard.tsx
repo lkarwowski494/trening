@@ -32,7 +32,7 @@ export function FirstBoard() {
   const label = t('Pierwszy trening, dziś, {date}', { date: fmtWeekdayDayMonth(new Date()) });
   const field = (txt: string, i: number, id: string) => (
     <Animated.View key={id} testID={`first-board-${id}`} style={[{ flexGrow: id === 'day' ? 0.8 : 1, flexBasis: 0, minHeight: SIZE.boardFieldMin, borderRadius: RADIUS.field, borderWidth: 1, borderColor: th.boardMuted, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 2 }, flip[i]]}>
-      <Text accessible={false} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} maxFontSizeMultiplier={maxScale('boardField')} style={{ ...font('boardField'), color: th.boardText, letterSpacing: 4 }}>{txt}</Text>
+      <Text accessible={false} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={SIZE.boardFieldMinScale} maxFontSizeMultiplier={maxScale('boardField')} style={{ ...font('boardField'), color: th.boardText, letterSpacing: 4 }}>{txt}</Text>
     </Animated.View>);
   return (
     <View testID="first-board" accessible accessibilityRole="image" accessibilityLanguage={lang()} accessibilityLabel={label} style={{ marginTop: SPACE.m, backgroundColor: th.board, borderColor: th.boardEdge, borderWidth: 1, borderRadius: RADIUS.board, padding: SPACE.l, gap: SPACE.s }}>

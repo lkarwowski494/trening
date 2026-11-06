@@ -437,7 +437,11 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
   - Scenariusz: Pierwsze uruchomienie
     - Zakładając, że baza jest pusta (nowa instalacja albo po wyczyszczeniu danych)
     - Gdy użytkownik otwiera ekran Trening
-    - Wtedy widzi tytuł i datę, pasek tygodnia „Bez planu tygodnia” z dzisiejszym dniem w ramce, tablicę „Pierwszy trening” (granatowa tablica z datą na klapkach, czytana przez VoiceOver jako jeden opis), duży przycisk „Zacznij pierwszy trening” z podpisem „ćwiczenia dodasz w trakcie” (uruchamia pusty trening) i sekcję „Przygotuj się do pierwszej serii”; przycisku „Inny trening” nie ma, bo nie ma innych sposobów startu
+    - Wtedy widzi tytuł „Trening” (bez daty pod nim, bez nagłówka „Bez planu tygodnia” i bez paska tygodnia — decyzja 06.11.2026; po pierwszym zakończonym treningu albo po ustawieniu planu data, nagłówek planu i pasek wracają), tablicę „Pierwszy trening” (granatowa tablica z datą na klapkach, czytana przez VoiceOver jako jeden opis), duży przycisk „Zacznij pierwszy trening” z podpisem „ćwiczenia dodasz w trakcie” (uruchamia pusty trening) i sekcję „Przygotuj się do pierwszej serii”; przycisku „Inny trening” nie ma, bo nie ma innych sposobów startu
+  - Scenariusz: Pola daty tablicy „Pierwszy trening” na wąskim ekranie (decyzja właściciela 06.11.2026 ~07:05 PL)
+    - Zakładając, że nowa osoba ma ekran 320 pt, duży tekst (do limitu skali liczb) i język z długimi skrótami dnia lub miesiąca (np. wietnamski, łotewski, portugalski)
+    - Gdy patrzy na tablicę „Pierwszy trening”
+    - Wtedy skrót dnia, numer dnia i skrót miesiąca stoją każdy w jednej linii w swoim polu; tekst zmniejsza się do 0,55 rozmiaru (stała `SIZE.boardFieldMinScale` w `lib/tokens.ts`), zamiast się ucinać
   - Scenariusz: Kafelki „Przygotuj się do pierwszej serii” (decyzja właściciela 05.11.2026, kafelki W1)
     - Zakładając, że nowa osoba nie ma jeszcze zakończonego treningu
     - Gdy patrzy na cztery kafelki „Szablony i plan”, „Miejsca i sprzęt”, „Historia z CSV”, „Przewodnik” i stuka jeden z nich
@@ -449,7 +453,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
   - Scenariusz: Po pierwszym treningu
     - Zakładając, że użytkownik zakończył pierwszy trening
     - Gdy wraca na ekran Trening
-    - Wtedy tablica „Pierwszy trening” i kafelki znikają, a ekran jest zwykłym ekranem głównym (pasek tygodnia zostaje na miejscu)
+    - Wtedy tablica „Pierwszy trening” i kafelki znikają, a ekran jest zwykłym ekranem głównym (w ich miejsce wchodzą data, nagłówek planu i pasek tygodnia z pierwszym znaczkiem)
 
 ### BR-POM-002: Przewodnik po funkcjach
 - Przepływ: PR-10
