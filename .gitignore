@@ -40,3 +40,4 @@ STAN-AGENTA.md
 
 # 04.11.2026: pliki tymczasowe testu sterty Jest (poza tests/)
 .jest-sterta-tmp-*/
+.jest-limity-tmp-*/
