@@ -65,4 +65,14 @@ describe('L-091: scenariusz 33 na nazwach ćwiczeń POPRZEDNIEJ wersji (v1.0.1-b
     const txt = readFileSync(join(DIR, '35-ustawienia-dostepnosc.yaml'), 'utf8');
     expect(txt).toMatch(/when: \{ notVisible: \{ id: "effort-scale-rir" \} \}[\s\S]*?direction: UP/);
   });
+  // Run 42131719080 (06.11.2026), zrzut i maestro.log: stuknięcie w „sw-RPE / RIR per set” trafiało w nagłówek (wiersz na y=53 < koniec nagłówka y=116, Maestro
+  // uznaje go za widoczny), przełącznik nie zmieniał stanu, więc segmentu skali wysiłku nie było ani nad, ani pod. Przed stuknięciem lista musi być zsunięta w dół.
+  it('35: przed przewinięciem do przełącznika RPE / RIR i stuknięciem lista jest zsunięta swipe w dół (wiersz nie leży pod nagłówkiem)', () => {
+    const cmds = load('35-ustawienia-dostepnosc.yaml') as any[];
+    const i = cmds.findIndex(c => c && c.scrollUntilVisible && c.scrollUntilVisible.element?.id === 'sw-RPE / RIR per set');
+    expect(i).toBeGreaterThan(0); expect(cmds[i + 1]?.tapOn?.id).toBe('sw-RPE / RIR per set');
+    const sw = cmds[i - 1]?.swipe; expect(sw).toBeTruthy();
+    const y = (v: string) => parseFloat(String(v).split(',')[1]);
+    expect(y(sw.end)).toBeGreaterThan(y(sw.start)); // w dół = treść jedzie w dół, wiersz spod nagłówka wraca na ekran
+  });
 });
