@@ -9,6 +9,7 @@ Klucze `state`, `live` i `cfg` tabeli `kv` zapisane przez **kod wydanych tagów*
 | `state-v0.18.0-b1017-schema18.json` | `v0.18.0-b1017` (najnowszy wydany z 18) | 18 |
 | `state-v0.20.0-b1018-schema19.json` | `v0.20.0-b1018` | 19 |
 | `state-v1.0.0-b1032-schema19.json` | `v1.0.0-b1032` (1.0, build 2; generator `gen-fixture-1.0.ts.txt`) | 19 |
+| `state-v1.0.0-b1033-schema19.json` | `v1.0.0-b1033` (1.0, build 3 — build w App Store, 05.11.2026; ten sam generator) | 19 |
 
 Jak powstały: `git worktree add --detach <katalog> <tag>`, `node_modules` podlinkowane z bieżącego repo, `gen-fixture.ts.txt` skopiowany jako `tests/gen-fixture.test.ts`
 w worktree tagu i uruchomiony `FIXTURE_TAG=<tag> FIXTURE_OUT=<plik> npx jest tests/gen-fixture.test.ts`. Generator używa interfejsu magazynu z danego tagu
@@ -17,7 +18,8 @@ w worktree tagu i uruchomiony `FIXTURE_TAG=<tag> FIXTURE_OUT=<plik> npx jest tes
 **1.0 (M1-audytor-generalny-014, DEC-03 b, 27.10.2026):** `state-v1.0.0-b1032-schema19.json` powstał tak samo, z kopii tagu wypakowanej przez `git archive`
 zamiast worktree, generatorem `gen-fixture-1.0.ts.txt` (to co `gen-fixture.ts.txt` plus pola dodane w 0.20–1.0 bez podbicia schematu: trening na żywo
 i `liveDays`, pauzy, własne ćwiczenie, ćwiczenie z biblioteki zmienione przez użytkownika, `voice`, `haptics`, tydzień deload, zmiana dnia planu). Lista
-`features` w pliku mówi, co weszło.
+`features` w pliku mówi, co weszło. `state-v1.0.0-b1033-schema19.json` (build 1033 = wydanie w App Store, 05.11.2026; decyzja właściciela 05.11.2026, wariant A) powstał tym samym
+sposobem z kodu tagu `v1.0.0-b1033`; plik b1032 zostaje (build był na TestFlight).
 
 **Odciski normalizacji:** `tests/fixtures/odciski-normalizacji.json` trzyma odcisk wyniku startu aplikacji na każdym pliku stąd, z numerem schematu.
 Reguła: zmiana normalizacji danych = podbicie `SCHEMA_VERSION` (docs/brd/wymagania.md NFR-DAN-001). Inny wynik przy tym samym schemacie → czerwony
