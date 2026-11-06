@@ -17,7 +17,7 @@ const kroki = (v: string) => v.split(/\s+&&\s+/).map(s => s.trim()).filter(Boole
 
 /** Próbne repozytorium: scripts/ci/kontrole.mjs (kopia) + package.json z podanym łańcuchem verify; ROOT skryptu = to repozytorium. */
 function probne(verify: string) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kontrole-'));
+  const dir = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'kontrole-')) /* realpath: macOS /var → /private/var (06.11.2026) */;
   fs.mkdirSync(path.join(dir, 'scripts/ci'), { recursive: true });
   fs.copyFileSync(SKRYPT, path.join(dir, 'scripts/ci/kontrole.mjs'));
   fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify({ scripts: { verify } }));

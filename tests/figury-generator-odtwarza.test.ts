@@ -8,10 +8,11 @@
  */
 import * as path from 'path';
 import { execFileSync } from 'child_process';
+import { INNA_ARYTMETYKA, TOLERANCJA_POZ } from './helpers/inna-arytmetyka';
 
 jest.setTimeout(240000);
 const ROOT = path.join(__dirname, '..');
-const skan = (rodziny: string[]) => JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/odtwarzanie-poz.mjs'), ...rodziny], { cwd: ROOT, env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 1 << 26, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() || '{}');
+const skan = (rodziny: string[]) => JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/odtwarzanie-poz.mjs'), ...rodziny], { cwd: ROOT, env: { PATH: process.env.PATH ?? '', ...(INNA_ARYTMETYKA ? { ODTWARZANIE_TOLERANCJA: String(TOLERANCJA_POZ) } : {}) } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 1 << 26, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() || '{}');
 const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); } catch (e) { const out = (e as { stdout?: Buffer | string }).stdout; if (!out) throw e; return JSON.parse(out.toString()); } };
 
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
@@ -36,10 +37,22 @@ const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_thr
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
   test.each(W_ZAKRESIE)('%s: generuj() = plik póz, każda poza ważna', (r) => { expect(skanDozwolonyKod1([r])).toEqual({ [r]: {} }); });
 
+  test('06.11.2026 (macOS): symulacja innej arytmetyki (sin/cos/atan2/acos +1 ulp w co 10. wywołaniu) — porównanie bajtowe ją wykrywa, tolerancja TOLERANCJA_POZ ją przyjmuje, a prawdziwa zmiana pozy nadal jest rozbieżnością', () => {
+    const zaburzone = (tol: string) => JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/odtwarzanie-poz.mjs'), 'plyo'], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024,
+      env: { PATH: process.env.PATH ?? '', NODE_OPTIONS: `--import ${path.join(ROOT, 'tests/helpers/zaburz-libm.mjs')}`, SEED: '1', MOD: '10', ODTWARZANIE_TOLERANCJA: tol } as unknown as NodeJS.ProcessEnv }));
+    let bajtowo: { plyo: Record<string, string> } = { plyo: {} };
+    try { zaburzone('0'); } catch (e) { bajtowo = JSON.parse(String((e as { stdout?: Buffer | string }).stdout)); }
+    expect(Object.keys(bajtowo.plyo).length).toBeGreaterThan(0);
+    expect(zaburzone(String(TOLERANCJA_POZ))).toEqual({ plyo: {} });
+    expect(Object.keys(skanDozwolonyKod1(['plyo']).plyo)).toHaveLength(0); /* bez zaburzenia nadal bajtowo zgodne */
+  });
+
   test('rodziny spoza zakresu: rozbieżności dokładnie jak na liście (lista nie rośnie i nie zalega)', () => {
     const wszystkie = skanDozwolonyKod1([]) as Record<string, Record<string, string>>;
     const stan = Object.fromEntries(Object.entries(wszystkie).filter(([r, v]) => !W_ZAKRESIE.includes(r) && Object.keys(v).length).map(([r, v]) => [r, Object.keys(v).sort()]));
     const oczekiwane = Object.fromEntries(Object.entries(ROZJAZDY_POZA_ZAKRESEM).map(([r, v]) => [r, [...v].sort()]));
-    expect(stan).toEqual(oczekiwane);
+    if (INNA_ARYTMETYKA) { /* macOS (06.11.2026): tolerancja może zagoić wpis z listy (rozjazd mniejszy niż TOLERANCJA_POZ), ale lista nadal nie może rosnąć */
+      for (const [r, cwiczenia] of Object.entries(stan)) { expect(Object.keys(oczekiwane)).toContain(r); for (const cw of cwiczenia as string[]) expect(oczekiwane[r]).toContain(cw); }
+    } else expect(stan).toEqual(oczekiwane);
   });
 });

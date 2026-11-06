@@ -10,6 +10,15 @@ import { waliduj } from './v2-validate.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DIR = join(ROOT, 'scripts/figures/agent-pozy');
+/** Tolerancja liczb (jednostki modelu) tylko gdy ODTWARZANIE_TOLERANCJA > 0 — inna arytmetyka zmiennoprzecinkowa niż na Linuksie (macOS arm64, tests/helpers/inna-arytmetyka.ts). Domyślnie 0 = porównanie bajtowe. */
+const TOL = Number(process.env.ODTWARZANIE_TOLERANCJA) || 0;
+/** Struktura, napisy i klucze identyczne; liczby równe z dokładnością TOL. */
+export function zgodne(a, b, tol) {
+  if (typeof a === 'number' && typeof b === 'number') return Math.abs(a - b) <= tol;
+  if (Array.isArray(a) || Array.isArray(b)) return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((x, i) => zgodne(x, b[i], tol));
+  if (a && b && typeof a === 'object' && typeof b === 'object') { const ka = Object.keys(a); return ka.length === Object.keys(b).length && ka.every((k, i) => k === Object.keys(b)[i] && zgodne(a[k], b[k], tol)); }
+  return a === b;
+}
 
 export async function rozjazdy(rodziny = []) {
   const wynik = {};
@@ -23,7 +32,7 @@ export async function rozjazdy(rodziny = []) {
       let p; try { p = fn(); } catch (e) { roz[cw] = `generator zgłasza błąd: ${e.message.slice(0, 80)}`; continue; }
       const w = plik.cwiczenia[cw]; if (!w) { roz[cw] = 'brak w pliku póz'; continue; }
       const v = waliduj(p, { rodzina: r, cwiczenie: cw });
-      if (JSON.stringify(JSON.parse(JSON.stringify(p))) !== JSON.stringify(w)) roz[cw] = `${v.ok ? '' : 'poza NIEWAŻNA; '}${JSON.stringify(p.klatki) === JSON.stringify(w.klatki) ? 'różne błędy lub sprzęt' : 'różne klatki'} (błędów: generator ${p.bledy.length}, plik ${(w.bledy ?? []).length})`;
+      if (!(TOL > 0 ? zgodne(JSON.parse(JSON.stringify(p)), w, TOL) : JSON.stringify(JSON.parse(JSON.stringify(p))) === JSON.stringify(w))) roz[cw] = `${v.ok ? '' : 'poza NIEWAŻNA; '}${JSON.stringify(p.klatki) === JSON.stringify(w.klatki) ? 'różne błędy lub sprzęt' : 'różne klatki'} (błędów: generator ${p.bledy.length}, plik ${(w.bledy ?? []).length})`;
       else if (!v.ok) roz[cw] = 'identyczna z plikiem, ale NIEWAŻNA';
     }
     for (const cw of Object.keys(plik.cwiczenia)) if (!(cw in gen)) roz[cw] = 'w pliku póz, brak w generatorze';
