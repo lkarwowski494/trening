@@ -62,3 +62,24 @@ Decyzja `2026-11-02-jaratlas-model-grup` (tablica JarAtlas), plan Z0 w `jaratlas
 
 Teksty pl i en do przeglądu tłumacza/recenzenta lokalizacji (kryterium: „czy tak powie kolega na siłowni”).
 
+
+## Problemy, które rozwiązuje Trening (07.11.2026, lista zaakceptowana przez właściciela)
+Źródło funkcji: opis PL w `store/app-store-metadata.json`; sformułowania problemów — hipotezy (do sprawdzenia testem ZB-009). Zastosowanie: tematy krótkich filmów (2–3 na problem, ZB-047), test nazwy/podtytułu (ZB-045).
+1. Zapis serii wybija z rytmu → szybki zapis, widok „Skupiony”, serie z Apple Watch.
+2. Nie pilnuję przerw → timer przerw z powiadomieniem i odliczaniem na zegarku.
+3. Maszyna zajęta / brak sprzętu → zamiana ćwiczenia w trakcie, „Dostosuj do miejsca”.
+4. Nie wiem, czy dobrze robię ćwiczenie → animacje ruchu (100+ ćwiczeń), „Technika”, częste błędy, pracujące mięśnie.
+5. Nie wiem, czy robię postępy → rekordy, wykresy, e1RM, podsumowania, porównanie okresów.
+6. Zaniedbuję partie mięśni → mapa mięśni, serie na partię, „Strażnik progresji”.
+7. Nie wiem, ile dołożyć → podpowiedź progresji.
+8. Nie mam planu → generator szablonu i planu tygodnia z podglądem.
+9. Ćwiczę w różnych miejscach → miejsca i sprzęt, gumy oporowe.
+10. Zapominam o treningu → plan tygodnia, przypomnienie rano.
+11. Nie chcę konta, reklam, śledzenia → wszystko na telefonie.
+12. Boję się utraty zapisów → automatyczna kopia w Plikach, eksport JSON/CSV.
+13. Przechodzę z innego dziennika → import CSV z podglądem.
+14. Aplikacja nie w moim języku → 35 języków.
+15. Nie chcę płacić w ciemno → za darmo 5 dni treningowych w miesiącu, historia/kopia/eksport zawsze.
+
+### Pierwsza seria filmów — technika (właściciel 07.11.2026)
+Haki: (1) „Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?”; (2) „Nigdy nie ćwiczyłeś i nie wiesz, jak wykonać ćwiczenie?”; (3) „Masz dość ładnych grafik ćwiczeń, które nic nie tłumaczą?”. Odpowiedź: aplikacja pokazuje poprawną technikę i częste błędy na rysunku. Prototyp: 3 filmy próbne (przysiad ze sztangą, rodzina `squat` po recenzji) — programista, scratchpad sesji 07.11. Kanały: Instagram, TikTok, YouTube — wszystkie „apps4brew”.
