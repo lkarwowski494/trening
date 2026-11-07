@@ -20,3 +20,4 @@ Repo jest publiczne: bez danych osobowych (imię i nazwisko, e-mail, telefon, UD
 | Na Dysku w „Trening App” ma podfolder „06 Źródła merytoryczne (prywatne)” z książkami (m.in. cztery pozycje NSCA i atlas ćwiczeń); wyciągi z książek trafiają tylko tam, nie do repo | właściciel, 02.11.2026 (docs/18) |
 | Jego komputer z Claude nie udostępniał folderów sesjom w chmurze w nocy 01/02.11.2026 (przyczyna nieustalona — otwarte) | sesja koordynatora 1.1, 02.11.2026 |
 | Ma zegarek Garmin fēnix 8 AMOLED i komputer z USB (wersje testowe aplikacji Connect IQ wgrywa sam); Garmin odłożony na po App Store | `docs/35-zegarek-garmin.md` §1 w tagu `archiwum/f020-garmin` (13.10.2026); docs/18, 13.10.2026 |
+| Ma profil studia „apps4brew” na Instagramie (założony 07.11.2026 pod krótkie filmy, ZB-047); TikToka i YouTube jeszcze nie ma | rozmowa monetyzacja-marketing, 07.11.2026 (docs/18 ~20:30 PL) |
