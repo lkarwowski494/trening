@@ -87,3 +87,5 @@ Haki: (1) „Ćwiczysz od dawna, ale nie masz pewności, czy technika jest popra
 
 ### Stan filmów (07.11.2026 ~21:30)
 Prototyp: 3 filmy (Back Squat, błąd „kolana do środka”, haki 1–3), 17,5 s, render ok. 45 s/film; skrypt i wyniki w scratchpadzie sesji (`shorts/render.mjs`, `shorts/out/`) — przy wdrożeniu przenieść do `scripts/`. Uwagi: rysunek zajmuje ok. 1/3 wysokości (powiększyć), znaczniki błędu pojawiają się dopiero przy uginaniu kolan. W 1.0 błąd na rysunku mają: Back Squat, Goblet Squat, Front Squat, Deadlift (sztanga), Trap Bar Deadlift, Bench Press (sztanga, hantle), Incline Bench Press — lista odrzucona jako niepełna; kampania po 1.1 (docs/18 07.11 ~21:30).
+
+**Filmy o technice — nazwa ćwiczenia od pierwszej sekundy (właściciel 07.11.2026):** nazwa ćwiczenia widoczna od 0 s, razem z hakiem (przyciąga widza szukającego tego ćwiczenia). Zapis nazwy jak na karcie w aplikacji: nazwa angielska + nazwa lokalna pod nią (decyzja 07.11.2026 o nazwach biblioteki, ZB-044).
