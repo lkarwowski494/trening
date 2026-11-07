@@ -1,5 +1,7 @@
 # Scenariusze krótkich filmów — tematy 1–3 na wersji 1.0 (07.11.2026)
 
+Akceptacja właściciela 07.11.2026: 1a, 1b, 1c, 2a, 2c — tak; 2b — usunięty; temat 3 — do potwierdzenia.
+
 Decyzje: docs/18 07.11.2026 ~21:45 i ~22:00 (obraz: nagranie ekranu z symulatora w 6 językach — wariant A, ZB-048). Języki: EN, ES, PT-BR, DE, FR, PL.
 Zasady: hak = problem widza (właściciel 07.11); funkcje tylko z opisu App Store (`store/app-store-metadata.json`, pl) i etykiety z interfejsu (klucze `lib/locales/_source.json`); bez liczb (czasy przerw, liczba stuknięć) i bez twierdzeń zdrowotnych; bez nazw innych aplikacji; koniec: ikona + „Trening — dziennik treningowy · App Store”, w opisie filmu jedno zdanie o autorstwie (`docs/wzrost.md` pkt 6.1). Długość 12–16 s, pion, napisy duże, bez dźwięku (muzyka w aplikacji platformy). Dane w nagraniu: zmyślone, jak przy zrzutach do sklepu.
 
@@ -10,7 +12,7 @@ Zasady: hak = problem widza (właściciel 07.11); funkcje tylko z opisu App Stor
 
 ## Temat 2 — „Przerwa liczona w głowie”
 **2a.** Hak: „Liczysz przerwę w głowie i zawsze wychodzi za krótko?” → odhaczenie serii → start odliczania przerwy → ekran blokady z odliczaniem → powiadomienie „Przerwa minęła”. Napis: „Timer przerw, także na ekranie blokady.” Koniec. *Wykonalność ekranu blokady w nagraniu z symulatora — do sprawdzenia.*
-**2b.** Hak: „Telefon w szafce, a przerwa?” → zegarek: odhaczenie serii na nadgarstku → odliczanie przerwy na zegarku. Napis: „Serie i przerwa na Apple Watch.” Koniec. *Nagranie zegarka z symulatora (jak `watch-sim.yml`) — do sprawdzenia.*
+**2b.** — usunięty (właściciel 07.11.2026: zegarek wymaga iPhone'a z Treningiem — opis App Store — więc „telefon w szafce” wprowadzałby w błąd).
 **2c.** Hak: „Jeden scroll między seriami i przerwa się rozjeżdża?” → odliczanie przerwy → powiadomienie na koniec (dźwięk i wibracje osobno w ustawieniach). Napis: „Aplikacja pilnuje przerwy za Ciebie.” Koniec.
 
 ## Temat 3 — „Bez konta, dane u Ciebie”
