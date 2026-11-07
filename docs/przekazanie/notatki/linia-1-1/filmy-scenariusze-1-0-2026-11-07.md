@@ -3,7 +3,7 @@
 Akceptacja właściciela 07.11.2026: 1a, 1b, 1c, 2a, 2c — tak; 2b — usunięty; 3a, 3b — tak; 3c — odrzucony. Razem 7 scenariuszy × 6 języków = 42 filmy.
 
 Decyzje: docs/18 07.11.2026 ~21:45 i ~22:00 (obraz: nagranie ekranu z symulatora w 6 językach — wariant A, ZB-048). Języki: EN, ES, PT-BR, DE, FR, PL.
-Zasady: hak = problem widza (właściciel 07.11); funkcje tylko z opisu App Store (`store/app-store-metadata.json`, pl) i etykiety z interfejsu (klucze `lib/locales/_source.json`); bez liczb (czasy przerw, liczba stuknięć) i bez twierdzeń zdrowotnych; bez nazw innych aplikacji; koniec: ikona + „Trening — dziennik treningowy · App Store”, w opisie filmu jedno zdanie o autorstwie (`docs/wzrost.md` pkt 6.1). Długość 12–16 s, pion, napisy duże, bez dźwięku (muzyka w aplikacji platformy). Dane w nagraniu: zmyślone, jak przy zrzutach do sklepu.
+Zasady: hak = problem widza (właściciel 07.11); funkcje tylko z opisu App Store (`store/app-store-metadata.json`, pl) i etykiety z interfejsu (klucze `lib/locales/_source.json`); bez liczb (czasy przerw, liczba stuknięć) i bez twierdzeń zdrowotnych; bez nazw innych aplikacji; koniec: ikona + „Trening — dziennik treningowy · App Store”, w opisie filmu jedno zdanie o autorstwie (`docs/wzrost.md` pkt 6.1). Długość 12–14 s (właściciel 07.11.2026), pion, napisy duże, bez dźwięku (muzyka w aplikacji platformy). Dane w nagraniu: zmyślone, jak przy zrzutach do sklepu.
 
 ## Temat 1 — „Maszyna zajęta, a plan się sypie”
 **1a.** Hak: „Maszyna zajęta, a cały plan się sypie?” → trening w toku → przycisk „Zamień ćwiczenie” → lista zamienników → wybór → kolejna seria. Napis: „Zamień ćwiczenie w trakcie treningu.” Koniec.
