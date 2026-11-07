@@ -83,3 +83,4 @@ Teksty pl i en do przeglądu tłumacza/recenzenta lokalizacji (kryterium: „czy
 
 ### Pierwsza seria filmów — technika (właściciel 07.11.2026)
 Haki: (1) „Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?”; (2) „Nigdy nie ćwiczyłeś i nie wiesz, jak wykonać ćwiczenie?”; (3) „Masz dość ładnych grafik ćwiczeń, które nic nie tłumaczą?”. Odpowiedź: aplikacja pokazuje poprawną technikę i częste błędy na rysunku. Prototyp: 3 filmy próbne (przysiad ze sztangą, rodzina `squat` po recenzji) — programista, scratchpad sesji 07.11. Kanały: Instagram, TikTok, YouTube — wszystkie „apps4brew”.
+**Zasada każdego filmu (właściciel 07.11.2026):** film zaczyna się od problemu użytkownika, z którym widz się utożsamia (hak = pytanie o jego sytuację), potem pokazuje, jak aplikacja go rozwiązuje. Plansza końcowa: ikona aplikacji Trening + „Trening — dziennik treningowy · App Store”, bez „apps4brew”.
