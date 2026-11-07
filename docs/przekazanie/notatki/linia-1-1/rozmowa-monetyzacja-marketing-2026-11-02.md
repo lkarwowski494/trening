@@ -18,3 +18,46 @@ Stosujemy już: limit dni bez próby, „Co nowego” we wszystkich językach (w
 
 ## Powiązane: JarAtlas (ta sama rozmowa)
 Decyzja `2026-11-02-jaratlas-model-grup` (tablica JarAtlas), plan Z0 w `jaratlas-www/docs/WZNOWIENIE.md`, lista literatury `jaratlas-www/docs/tresci/L1-literatura-2026-11-02.md`; indeks książki w repo `prywatne/indeksy/`.
+
+## Po wydaniu 1.0 (06–07.11.2026)
+- Decyzje: docs/18 06.11 (czekamy — zastąpione), 07.11 (B1 — zastąpione; bez wpisów na forach, reguły `docs/wzrost.md` pkt 6 dosłownie), 07.11 ~20:00 (Apple Ads po 1.1 → ZB-046; nazwa/podtytuł/słowa kluczowe z metadanymi 1.1 po pomiarach → ZB-045). Lekcje L-NNN w docs/40 (06.11 i 07.11).
+- Pomiar 07.11 (iTunes Search API, przybliżenie): poza top 200 dla głównych fraz w PL/US i w 15 z 24 storefrontów; nowe małe aplikacje z frazą „Workout Tracker” w nazwie stoją w PL na 16.–17. mimo 1–5 ocen; my nie jesteśmy w czołówce nawet na pełny tekst własnej nazwy (US). Analiza z nazwami innych aplikacji — tylko poza repo (scratchpad sesji 07.11; do przeniesienia na Dysk „05 Research konkurencji”).
+
+### Warianty ASO (analiza roli marketing 07.11.2026, do wyboru przy ZB-045)
+Żaden wariant nie zmienia części przed dwukropkiem (APP_NAME) — bez zmiany w aplikacji.
+
+### en-US
+- **A — bez zmian nazwy i podtytułu** (obecne): „Training: Gym Log & Rest Timer” (30) / „Workout tracker. No account.” (28);
+  keywords obecne (100 B). Kompromis: zero pracy; ogon identyczny jak u dwóch małych aplikacji, z którymi idziemy łeb w łeb.
+- **B**: „Training: Workout Log & Timer” (29) / „Gym tracker. No account.” (24) /
+  `weight,lifting,strength,exercise,journal,planner,routine,barbell,dumbbell,sets,reps,1RM,RPE,rest` (89 B).
+  Kompromis: „workout log” w nazwie; „gym log” tylko przez łączenie pól (przybliżenie); „rest timer” słabiej.
+- **C (rekomendacja, po pomiarze kontrolnym)**: „Training: Workout Tracker” (25) / „Gym Log & Rest Timer, No Login” (30) /
+  `weight,lifting,strength,exercise,journal,planner,routine,barbell,dumbbell,sets,reps,1RM,RPE,watch` (97 B).
+  Dlaczego: „workout tracker” ma najsilniejszy sygnał popytu (największe aplikacje celują w tę frazę nazwą), a nowe aplikacje
+  z 4–8 ocen i tą frazą w nazwie stoją na 4.–17. miejscu (GB, PL). „Gym log” i „rest timer” zostają dokładnie w podtytule.
+  Kompromis: „No account” → „No Login” (to samo znaczenie, ale inne brzmienie niż hasło DEC-07 K6 „bez konta” — **decyzja właściciela**;
+  alternatywa bez „No Login”: „Gym Log & Rest Timer. Offline” 29 zn., wtedy „bez konta” zostaje w tekście promocyjnym). Usunięte z keywords: RIR, bands (nisza); dodane: weight.
+
+### en-GB (warstwa angielska także w PL, FI, ID, CZ, HU, RO, PT)
+- **A — bez zmian.**
+- **C (rekomendacja)**: „Training: Workout Tracker” (25) / „Gym Diary & Rest Timer” (22) /
+  `log,weights,lifting,strength,exercise,journal,planner,routine,barbell,sets,reps,1RM,RPE,watch` (93 B).
+  Dlaczego: GB mówi „diary” — „gym diary” ma w top 7 dwie aplikacje z 5 i 45 ocen; „workout tracker” w nazwie działa dla małych
+  aplikacji w GB (#4, #7) i w PL (#16, #17 wg koord.). „log” w keywords łączy się z „Gym” i „Workout” (przybliżenie).
+  Kompromis: brak „bez konta” w polach indeksowanych (zostaje w promotional text i opisie); 8 wolnych bajtów.
+
+### pl
+- **A (rekomendacja)** — nazwa bez zmian „Trening: dziennik treningowy” (28), podtytuł **„Timer przerw i serie. Bez konta”** (30),
+  keywords `siłownia,plan,ćwiczenia,domu,stoper,progres,hantle,sztanga,rekordy,1RM,offline,gumy,siłowy` (93 B; ł, ć = 2 B).
+  Dlaczego: „dziennik treningowy” — średnia konkurencja, 0-ocenowa aplikacja w top 10; „timer przerw” — nisza z 6 wynikami, wszystkie 0 ocen,
+  a nas tam nie ma (dokładna forma „przerw” brak w naszych polach); „siłowy” + „Trening” z nazwy → „trening siłowy” (7 z 10 w top 10 z 0 ocen).
+  „Bez konta” zostaje (DEC-07 K6). Usunięte z keywords: timer (jest w podtytule), rekordy zostają.
+- **B**: „Trening: timer przerw i serie” (29) / „Dziennik treningowy. Bez konta” (30) / keywords jak A.
+  Kompromis: nisza „timer przerw” w nazwie (silniejsza waga), ale fraza z popytem („dziennik treningowy” — duzi gracze w nazwie) spada do podtytułu;
+  popyt „timer przerw” nieznany i prawdopodobnie mały (żaden duży gracz nie celuje). Nie polecam.
+- **C**: „Trening: dziennik na siłownię” (30) / „Timer przerw i serie. Bez konta” (30). Kompromis: ryzyko, że Apple nie łączy „siłownię”↔„siłownia”;
+  tracimy dokładną frazę „dziennik treningowy” z nazwy. Nie polecam.
+
+Teksty pl i en do przeglądu tłumacza/recenzenta lokalizacji (kryterium: „czy tak powie kolega na siłowni”).
+
