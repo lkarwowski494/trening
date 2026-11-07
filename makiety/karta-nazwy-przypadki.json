@@ -1,0 +1,122 @@
+{
+ "CASES": {
+  "pl-390": {
+   "l": "pl",
+   "w": 390,
+   "th": "light",
+   "en": "Standing Cable Chest Press",
+   "lok": "Wyciskanie na linkach (stojąc)",
+   "group": "klatka",
+   "eq": "linki",
+   "note": "nazwa lokalna = obecna nazwa z katalogu (lib/i18n.ts:133, EX_FULL)"
+  },
+  "pl-390-ciemny": {
+   "l": "pl",
+   "w": 390,
+   "th": "dark",
+   "en": "Standing Cable Chest Press",
+   "lok": "Wyciskanie na linkach (stojąc)",
+   "group": "klatka",
+   "eq": "linki"
+  },
+  "pl-320-dluga": {
+   "l": "pl",
+   "w": 320,
+   "th": "dark",
+   "en": "Lying Close-Grip Barbell Triceps Extension Behind the Head",
+   "lok": "Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt",
+   "przyklad": true,
+   "group": "triceps",
+   "eq": "sztanga",
+   "note": "najdłuższa nazwa EN w katalogu (58 znaków); polska nazwa [PRZYKŁAD] — w katalogu jest prawie ta sama angielska"
+  },
+  "pl-390-duplikat": {
+   "l": "pl",
+   "w": 390,
+   "th": "light",
+   "en": "Bench Press",
+   "lok": "Bench Press (sztanga)",
+   "group": "klatka",
+   "eq": "sztanga",
+   "note": "typowy stan katalogu PL dziś: „polska” nazwa = angielska + dopisek sprzętu"
+  },
+  "de-320": {
+   "l": "de",
+   "w": 320,
+   "th": "dark",
+   "en": "Lying Close-Grip Barbell Triceps Extension Behind the Head",
+   "lok": "Enges Langhantel-Trizepsdrücken im Liegen hinter den Kopf",
+   "przyklad": true,
+   "group": "triceps",
+   "eq": "sztanga",
+   "note": "brak niemieckich nazw w repo — nazwa [PRZYKŁAD]"
+  },
+  "wlasne-390": {
+   "l": "pl",
+   "w": 390,
+   "th": "light",
+   "en": null,
+   "own": "Wiosłowanie na TRX przy drzwiach",
+   "przyklad": true,
+   "group": "plecy",
+   "eq": "masa ciała",
+   "note": "ćwiczenie własne: jedna nazwa, jak wpisana"
+  },
+  "lv-390": {
+   "l": "lv",
+   "w": 390,
+   "th": "light",
+   "en": "Standing Cable Chest Press",
+   "lok": null,
+   "group": "klatka",
+   "eq": "linki",
+   "note": "język bez nazwy lokalnej: sama angielska"
+  },
+  "pl-390-ax5": {
+   "l": "pl",
+   "w": 390,
+   "th": "light",
+   "ax5": true,
+   "en": "Standing Cable Chest Press",
+   "lok": "Wyciskanie na linkach (stojąc)",
+   "group": "klatka",
+   "eq": "linki",
+   "note": "tekst AX5: tytuł do 13% szerokości (titleMaxScale), opis do 200%"
+  },
+  "pl-390-hc": {
+   "l": "pl",
+   "w": 390,
+   "th": "lightHC",
+   "en": "Standing Cable Chest Press",
+   "lok": "Wyciskanie na linkach (stojąc)",
+   "group": "klatka",
+   "eq": "linki",
+   "note": "Zwiększ kontrast (lightHC)"
+  },
+  "pl-320-ciemny-hc": {
+   "l": "pl",
+   "w": 320,
+   "th": "darkHC",
+   "en": "Lying Close-Grip Barbell Triceps Extension Behind the Head",
+   "lok": "Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt",
+   "przyklad": true,
+   "group": "triceps",
+   "eq": "sztanga",
+   "note": "Zwiększ kontrast (darkHC), długa nazwa"
+  }
+ },
+ "VAR": {
+  "A": {
+   "nazwa": "A „Podpis”",
+   "opis": "Nazwa lokalna pod tytułem: callout 15/20, kolor muted, w kolumnie tytułu obok „Edytuj”."
+  },
+  "B": {
+   "nazwa": "B „Podpis z językiem”",
+   "opis": "Pod tytułem „Po polsku: …” — etykieta muted, nazwa w kolorze tekstu, callout 15/20."
+  },
+  "C": {
+   "nazwa": "C „Drugi tytuł”",
+   "opis": "Nazwa lokalna krojem tytułu (navTitle 20/24, Barlow 700, muted) na całej szerokości pod wierszem z „Edytuj”."
+  }
+ }
+}
