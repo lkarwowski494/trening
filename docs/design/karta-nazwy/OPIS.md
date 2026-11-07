@@ -5,9 +5,9 @@ Inne decyzje o tym ekranie: docs/32 wzorzec 19 (szczegóły: tytuł paska = rodz
 
 ## Pliki
 - Generator: `docs/design/narzedzia/karta-nazwy-gen.mjs` (barwy z `lib/tokens.ts`, skala z `TYPE`, teksty z `lib/locales`), zrzuty: `docs/design/narzedzia/karta-nazwy-zrzuty.mjs` (każdy ekran osobno, 3×).
-- Makieta: `makiety/karta-nazwy.html`; zrzuty: `makiety/zrzuty/{A,B,C}-{przypadek}.png` (+ `-szarosc` dla pl-390 i pl-320-dluga); AS IS z prawdziwej aplikacji (eksport web): `makiety/as-is/`.
-- Porównanie: `makiety/porownanie.html` + `makiety/porownanie.png`; kontrast: `makiety/karta-nazwy-kontrast.txt` (wszystkie pary ≥ 6,3:1).
-- Odtworzenie: `node docs/design/narzedzia/karta-nazwy-gen.mjs makiety && node docs/design/narzedzia/karta-nazwy-zrzuty.mjs makiety/karta-nazwy.html makiety/zrzuty` (Playwright globalny).
+- Makieta: `docs/design/karta-nazwy/karta-nazwy.html`; zrzuty: `docs/design/karta-nazwy/zrzuty/{A,B,C}-{przypadek}.png` (+ `-szarosc` dla pl-390 i pl-320-dluga); AS IS z prawdziwej aplikacji (eksport web): `docs/design/karta-nazwy/as-is/`.
+- Porównanie: `docs/design/karta-nazwy/porownanie.html` + `docs/design/karta-nazwy/porownanie.png`; kontrast: `docs/design/karta-nazwy/karta-nazwy-kontrast.txt` (wszystkie pary ≥ 6,3:1).
+- Odtworzenie: `node docs/design/narzedzia/karta-nazwy-gen.mjs docs/design/karta-nazwy && node docs/design/narzedzia/karta-nazwy-zrzuty.mjs docs/design/karta-nazwy/karta-nazwy.html docs/design/karta-nazwy/zrzuty` (Playwright globalny).
 
 ## Przypadki
 pl-390 (jasny) i pl-390-ciemny: Standing Cable Chest Press / Wyciskanie na linkach (stojąc) — prawdziwa nazwa z katalogu (`lib/i18n.ts:133`). pl-320-dluga: najdłuższa nazwa EN w katalogu (58 znaków, „Lying Close-Grip Barbell Triceps Extension Behind the Head”) + polska [PRZYKŁAD]. de-320: ta sama + niemiecka [PRZYKŁAD]. wlasne-390: ćwiczenie własne. lv-390: język bez nazwy lokalnej. pl-390-duplikat: Bench Press / „Bench Press (sztanga)” — typowa dzisiejsza „polska” nazwa z katalogu. pl-390-ax5 (tytuł do 13% szerokości, opis do 200%), pl-390-hc i pl-320-ciemny-hc (Zwiększ kontrast).
@@ -23,6 +23,6 @@ H1: rola nagłówka, `accessibilityLanguage="en"` (po decyzji także w PL — dz
 
 ## Usterki znalezione w zrzutach i stan
 1. Przycisk „Edytuj” w makiecie miał 15 pt zamiast 17 jak w aplikacji — poprawione.
-2. Przy 320 pt „Bearbeiten” (DE) zwęża tytuł do ok. 150 pt → 6 wierszy (tak samo dziś w AS IS, `makiety/as-is/asis-de-320-dark-lying.png`) — pytanie do właściciela, nie poprawione.
+2. Przy 320 pt „Bearbeiten” (DE) zwęża tytuł do ok. 150 pt → 6 wierszy (tak samo dziś w AS IS, `docs/design/karta-nazwy/as-is/asis-de-320-dark-lying.png`) — pytanie do właściciela, nie poprawione.
 3. Polskie jednoliterowe wyrazy na końcu wiersza („sztangą w / leżeniu”) — do rozważenia twarda spacja w danych nazw lokalnych.
 4. Dzisiejsza „polska” nazwa katalogu to zwykle angielska z dopiskiem („Bench Press (sztanga)”) — w B daje nieprawdziwe „Po polsku: …”; pełne polskie nazwy ma tylko ok. 11 pozycji (`EX_FULL`, `lib/i18n.ts:133-137`).

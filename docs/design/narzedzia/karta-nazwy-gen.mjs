@@ -7,7 +7,7 @@ import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
-const OUT = resolve(process.argv[2] ?? resolve(ROOT, 'makiety'));
+const OUT = resolve(process.argv[2] ?? resolve(ROOT, 'docs/design/karta-nazwy'));
 mkdirSync(OUT, { recursive: true });
 const FONTY = relative(OUT, resolve(ROOT, 'docs/design/fonty'));
 
