@@ -21,7 +21,8 @@ Decyzja `2026-11-02-jaratlas-model-grup` (tablica JarAtlas), plan Z0 w `jaratlas
 
 ## Po wydaniu 1.0 (06–07.11.2026)
 - Decyzje: docs/18 06.11 (czekamy — zastąpione), 07.11 (B1 — zastąpione; bez wpisów na forach, reguły `docs/wzrost.md` pkt 6 dosłownie), 07.11 ~20:00 (Apple Ads po 1.1 → ZB-046; nazwa/podtytuł/słowa kluczowe z metadanymi 1.1 po pomiarach → ZB-045). Lekcje L-NNN w docs/40 (06.11 i 07.11).
-- Pomiar 07.11 (iTunes Search API, przybliżenie): poza top 200 dla głównych fraz w PL/US i w 15 z 24 storefrontów; nowe małe aplikacje z frazą „Workout Tracker” w nazwie stoją w PL na 16.–17. mimo 1–5 ocen; my nie jesteśmy w czołówce nawet na pełny tekst własnej nazwy (US). Analiza z nazwami innych aplikacji — tylko poza repo (scratchpad sesji 07.11; do przeniesienia na Dysk „05 Research konkurencji”).
+- Pomiar 07.11 (iTunes Search API, przybliżenie): poza top 200 dla głównych fraz w PL/US i w 15 z 24 storefrontów; nowe małe aplikacje z frazą „Workout Tracker” w nazwie stoją w PL na 16.–17. mimo 1–5 ocen; my nie jesteśmy w czołówce nawet na pełny tekst własnej nazwy (US). Analiza z nazwami innych aplikacji — tylko na Dysku: „05 Research konkurencji” / „Trening — ASO nazwa, podtytuł, słowa kluczowe (07.11.2026)” (przeniesione 07.11.2026).
+- Sprostowanie 07.11.2026: we wpisach docs/18 z 06.11 i 07.11 (B1) napisałem „wpisy wracają przy 1.1 razem z nominacją ZB-019” — nominacja ZB-019 jest anulowana od 03.11.2026 (właściciel, docs/18); przy 1.1 nominacji nie ma. Druga odsłona luki z lekcji L-NNN (06.11) — stan z integracji czytany z pamięci sesji.
 
 ### Warianty ASO (analiza roli marketing 07.11.2026, do wyboru przy ZB-045)
 Żaden wariant nie zmienia części przed dwukropkiem (APP_NAME) — bez zmiany w aplikacji.
