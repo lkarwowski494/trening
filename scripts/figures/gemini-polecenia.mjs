@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt, deklaracjeCwiczenia, KOLANO_LEKKO_MAX_DEG } from './v2-sens.mjs';
+import { kartaWlasna, regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt, deklaracjeCwiczenia, KOLANO_LEKKO_MAX_DEG } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 import { PROGI } from './v2-jakosc.mjs';
 
@@ -354,8 +354,8 @@ export function opisCwiczenia(cw, { root = ROOT, bledyCwiczenia, catalog = null,
   const tekst = existsSync(join(root, 'lib/cues/text/pl.json')) ? czytaj(join(root, 'lib/cues/text/pl.json')) : {};
   const bez = bledyBezAnimacji(rodzina, root); const wszystkie = bledyCwiczenia(cw, root); const bledy = wszystkie.filter((id) => !(id in bez)).map((id) => (tekst[id] ? `${id} (${tekst[id]})` : id));
   const bezAnim = wszystkie.filter((id) => id in bez);
-  const cd = join(root, 'lib/cues/data.json'); const ruch = [];
-  const own = existsSync(cd) ? czytaj(cd).exercises?.[cw] : null;
+  const ruch = [];
+  const own = kartaWlasna(cw, root); /* karta ukryta do recenzji — z pełnych danych (08.11.2026) */
   for (const c of (own?.move ?? []).slice(0, 2)) if (tekst[c.c]) ruch.push(tekst[c.c]);
   if (!ruch.length) { const cs = czytaj(join(root, 'lib/figures/v2/cue-sets.json')).items?.[cw]; for (const id of (cs?.ok ?? []).slice(0, 2)) if (tekst[id]) ruch.push(tekst[id]); }
   return { klucz: cw, bledy, bezAnim, ruch, sens: sensZKatalogu(cw, catalog), deklaracje: rodzina ? deklaracjeCwiczenia(rodzina, cw, root) : [] };

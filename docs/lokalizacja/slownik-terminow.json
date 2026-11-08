@@ -11254,6 +11254,61 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "miniguma",
+   "pl": "miniguma",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "mała zamknięta guma zakładana na nogi (nad kolana albo na kostki) — nie długa guma z uchwytami (guma_oporowa obejmuje każdą gumę); recenzja lokalizacji A2, 08.11.2026",
+   "kanon": null,
+   "wykrywaj": "minigum|mał(a|ą|ej) gum",
+   "jezyki": {
+    "pl": {
+     "zalecany": "miniguma",
+     "zakazane": [
+      {
+       "wzorzec": "mał(a|ą|ej) gum",
+       "powod": "ten sam sprzęt miał w partii A2 dwie nazwy; jedna nazwa: miniguma"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "pytanie do native speakera: „miniguma” czy „mini band” na polskiej siłowni (recenzja lokalizacji A2, pytanie 2)"
+    },
+    "en": {
+     "zalecany": "mini band",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "blokowanie_kolan_przeprost",
+   "pl": "blokowanie kolan w przeproście",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "błąd albo wskazówka na prasie do nóg: blokowanie kolan w przeproście na górze; pełny wyprost sam nie jest błędem (recenzja lokalizacji A2, 08.11.2026; ta sama logika co gwałtowne blokowanie łokci z A1)",
+   "kanon": null,
+   "wykrywaj": "blokow\\w* kolan",
+   "jezyki": {
+    "pl": {
+     "zalecany": "w przeproście",
+     "zakazane": [
+      {
+       "wzorzec": "blokow\\w* kolan\\w* w pełnym wyproście",
+       "powod": "pełny wyprost nie jest błędem — błędem jest blokowanie w przeproście"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "lock",
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }

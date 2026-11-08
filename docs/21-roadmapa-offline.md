@@ -157,6 +157,15 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
 
+### Backlog 1.2 — karty A2 (nogi): NISKIE z recenzji niezależnej (08.11.2026; `docs/research/recenzje/a2-nogi-karty-badacz-2026-11-08.md`, `a2-nogi-lokalizacja-2026-11-08.md`; nie blokują)
+- [OTWARTE] `calf.band` (Band Calf Raise): drugie źródło szczebla 4 dla położenia gumy pod przednią częścią stóp (recenzja lokalizacji: blokujące — karta nie mówi, że guma idzie pod stopy; runda 2 badacza 08.11.2026: tylko Thera-Band, Bodylastics zaczepia o drzwi, ACE 5771 — wariant w siadzie). Do czasu źródła brzmienie rundy 1; karta i tak ukryta do przekładu.
+- `calf.pause` w kartach wspięć siedząc (Barbell Seated, Seated (hantle), Dumbbell Seated One-Leg): dopisanie ISSA „top 6” Seated nic nie wnosi do pary — ISSA już jest (artykuł 25-min); para zostaje ISSA + ACE 51 (wariant stojąc). Do zastąpienia ACE 51 drugą organizacją o wersji siedzącej.
+- `bandcurl.setup` „pętlę na kostkę”: źródło gumowe mówi o pięcie, maszynowe (wałek) o kostce — zostaje część wspólna; ewentualnie osobne zdanie „na piętę” po drugim źródle.
+- `slp.setup` „drugą zdejmij z platformy i trzymaj nieruchomo” — bez źródła wprost (zdroworozsądkowe uzupełnienie).
+- Karty wspięć siedząc nie mówią, gdzie leży ciężar (hantel/sztanga na kolanach) — brak zdania ze źródłami.
+- Pytania do native speakera: „ankle cuff” czy „ankle strap” (EN, Cable Kickback); „miniguma” czy „mini band” (PL; termin w słowniku z pewnością „średnia”).
+- Apostrof typograficzny ’ w starszych zdaniach EN (`jm.elbows`, `olympic.*`, `press1.noLock`) — ujednolicić.
+
 ### Backlog 1.2 — figury: NISKIE z recenzji B0 (nakładka olympic i triceps, 08.11.2026; `docs/research/recenzje/b0-olympic-triceps-roznica-5-rodzin-2026-11-08.md`; nie blokują)
 - N1: Barbell Snatch, Hang Snatch — linie piszczeli i uda przedłużone za kolano krzyżują się w „X” w kadrach wyprostu (u 0,40–0,80); porządek rysunku, nie treść.
 - N2: linia odniesienia piszczeli w olympic rysowana także w odbiorze na barkach i nad głową, gdzie zdanie o sztandze blisko ciała już nie dotyczy; ograniczyć do fazy ciągu.

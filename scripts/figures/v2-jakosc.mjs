@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { wskazowkiCwiczenia } from './v2-sens.mjs';
+import { wskazowkiCwiczenia, kartaWlasna } from './v2-sens.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const R = Math.PI / 180;
@@ -116,7 +116,7 @@ export const WSKAZOWKA_LEDZWIE = /Lędźwi\w* przy podłodze|Dolna część plec
 /** Czy wskazówki ćwiczenia (zestaw ogólny cue-sets.json albo własne lib/cues/data.json; teksty `teksty`) zawierają warunek „lędźwie przy podłodze”. */
 export function maWskazowkeLedzwie(cwiczenie, teksty, root = ROOT) { return maWskazowke(cwiczenie, teksty, WSKAZOWKA_LEDZWIE, root); }
 function maWskazowkeLedzwieStare(cwiczenie, teksty, root = ROOT) {
-  const set = JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items?.[cwiczenie]; const wlasne = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/data.json'), 'utf8')).exercises?.[cwiczenie];
+  const set = JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items?.[cwiczenie]; const wlasne = kartaWlasna(cwiczenie, root);
   const ids = [...(set?.ok ?? []), ...Object.values(wlasne ?? {}).flat().map((c) => c.c).filter(Boolean)]; return ids.some((id) => WSKAZOWKA_LEDZWIE.test(teksty[id] ?? ''));
 }
 /** Przyciąganie w poziomie (łokieć kończy za plecami): tylko ćwiczenia z tej listy. */
@@ -760,7 +760,7 @@ export const wczytajCechy = (root = ROOT) => { const p = path.join(root, 'data/z
 const maDeklarowana = (cecha, cwiczenie, root, rodzina) => { const c = wczytajCechy(root)[cecha]; return !!c && (c.cwiczenia.includes(cwiczenie) || (!c.wzorce_rodziny || c.wzorce_rodziny.includes(rodzina)) && (c.wzorce_nazw ?? []).some((w) => new RegExp(w).test(cwiczenie))); };
 /** Czy wskazówki ćwiczenia (zestaw ogólny albo własne; teksty `teksty`) zawierają tekst pasujący do wzorca. */
 export function maWskazowke(cwiczenie, teksty, wzorzec, root = ROOT) {
-  const set = JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items?.[cwiczenie]; const wlasne = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/data.json'), 'utf8')).exercises?.[cwiczenie];
+  const set = JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items?.[cwiczenie]; const wlasne = kartaWlasna(cwiczenie, root);
   return [...(set?.ok ?? []), ...Object.values(wlasne ?? {}).flat().map((c) => c.c).filter(Boolean)].some((id) => wzorzec.test(teksty[id] ?? ''));
 }
 export const WSKAZOWKA_RECE_PROSTE = /Ręce proste przez cały ruch|nie zginaj łokci/i;

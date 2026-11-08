@@ -58,9 +58,18 @@ export function deklaracjeCwiczenia(rodzina, cwiczenie, root = ROOT) {
   return o;
 }
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
-/** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
+/** Karta własna ćwiczenia dla narzędzi figur: z pliku runtime (lib/cues/data.json), a gdy karta jest ukryta do recenzji treści (lista „hidden”) — z pełnych danych
+ *  (data/zrodla/cues.json). Rysunek sprawdzamy względem treści karty, którą recenzent ocenia razem z nim (bramka 4, L-047), nie względem braku karty
+ *  (partia A2, 08.11.2026: nowe karty ukryte do recenzji odcinały pozy od ich wskazówek i błędów). null — ćwiczenie bez karty własnej. */
+export function kartaWlasna(cwiczenie, root = ROOT) {
+  const pc = path.join(root, 'lib/cues/data.json'); const rt = fs.existsSync(pc) ? JSON.parse(fs.readFileSync(pc, 'utf8')) : {};
+  if (rt.exercises && Object.prototype.hasOwnProperty.call(rt.exercises, cwiczenie)) return rt.exercises[cwiczenie];
+  if (!(rt.hidden ?? []).includes(cwiczenie)) return null;
+  const pf = path.join(root, 'data/zrodla/cues.json'); return fs.existsSync(pf) ? JSON.parse(fs.readFileSync(pf, 'utf8')).exercises?.[cwiczenie] ?? null : null;
+}
+/** Identyfikatory wskazówek ćwiczenia: własne (kartaWlasna: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {
-  const pc = path.join(root, 'lib/cues/data.json'); const own = fs.existsSync(pc) ? JSON.parse(fs.readFileSync(pc, 'utf8')).exercises?.[cwiczenie] : null;
+  const own = kartaWlasna(cwiczenie, root);
   if (own) return Object.values(own).flat().map((x) => x.c);
   const ps = path.join(root, 'lib/figures/v2/cue-sets.json'); const set = fs.existsSync(ps) ? JSON.parse(fs.readFileSync(ps, 'utf8')).items?.[cwiczenie] : null;
   return [...(set?.ok ?? []), ...(set?.err ?? [])];

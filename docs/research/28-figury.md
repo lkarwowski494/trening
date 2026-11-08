@@ -952,13 +952,13 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (147)
+## Bez figury — lista otwarta (166)
 
 | Ćwiczenie | Powód |
 |---|---|
 | Inverted Row | Pięty są osią obrotu, a drążek stoi w miejscu — w szkielecie bez grubości tułowia klatka nie dochodzi do drążka bez przesuwania stóp; rysunek wymagałby modelu grubości klatki. Do zrobienia z rozszerzonym modelem. |
 | Sumo Deadlift | Różnica względem martwego ciągu klasycznego (szerokie ustawienie stóp, kolana na zewnątrz) jest widoczna tylko z przodu, a ruch bioder i kolan — tylko z boku; jeden widok 2D pokazałby zwykły martwy ciąg. Potrzebny widok z przodu dla kończyn dolnych. |
-| Hack Squat | Ruch po prowadnicy maszyny z oparciem pod stałym kątem — wymaga modelu prowadnicy (biodro i barki przesuwają się wzdłuż oparcia); bez niego rysunek byłby zwykłym przysiadem. |
+| Hack Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Chest Fly (hantle) | Ruch w płaszczyźnie poziomej (odwodzenie poziome ramion) — z boku i z przodu ramię tylko się skraca; potrzebny widok z góry albo 3D. |
 | Cable Fly | Ruch w płaszczyźnie poziomej (przywodzenie poziome ramion) — z boku i z przodu niewidoczny; potrzebny widok z góry albo 3D. |
 | Reverse Fly (hantle) | Odwodzenie poziome ramion w opadzie tułowia — z boku ramię tylko się skraca; potrzebny widok z góry albo 3D. |
@@ -1103,5 +1103,24 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Lying Close-Grip Barbell Triceps Extension Behind The Head | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | One-Arm Lying Dumbbell Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Chain Handle Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Single Leg Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Seated Calf Raise (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Smith Machine Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Calf Raise (sztanga) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Calf Raise (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Barbell Seated Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Band Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Dumbbell Seated One-Leg Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Cable Kickback | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Fire Hydrant | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Donkey Kick | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Clamshell | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Hip Extension with Bands | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Lateral Band Walk | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Single Leg Glute Bridge | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Single Leg Hip Thrust | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Glute Bridge (sztanga) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Seated Band Hamstring Curl | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Single Leg Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 
-Poza tym bez figury: 19 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
+Poza tym bez figury: 18 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
