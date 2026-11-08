@@ -2,7 +2,7 @@
 // warstwami — decyzja właściciela 08.11.2026), napisy filmu wg scenariusza 1 (docs/18 08.11.2026 ~20:30): 0–0,5 s hak + nazwa + rysunek z błędem,
 // 0,5–5 s napis błędu (✕ wyróżniony), 5–11,5 s ruch poprawny (✓ wskazówki wyróżniony), ostatnie 1,5 s logo i podpis na trwającej animacji.
 // Użycie:
-//   node scripts/filmy/render.mjs --film <id> --jezyk pl,en [--out .filmy] [--uklad poziom|pion] [--bez-eksportu] [--konfig scripts/filmy/filmy.json]
+//   node scripts/filmy/render.mjs --film <id> [--jezyk en (domyślnie; pl tylko podgląd)] [--out .filmy] [--uklad poziom|pion] [--bez-eksportu] [--konfig scripts/filmy/filmy.json]
 //   node scripts/filmy/render.mjs --wszystkie --jezyk pl,en
 //   node scripts/filmy/render.mjs --film <id> --jezyk pl --plan        → tylko kontrola i plan (JSON, bez przeglądarki)
 //   node scripts/filmy/render.mjs --film <id> --jezyk pl --strona N    → HTML kompozycji klatki N bez rysunku (test)
@@ -22,7 +22,7 @@ const argv = process.argv.slice(2);
 const arg = (n, d) => { const i = argv.indexOf('--' + n); return i >= 0 ? argv[i + 1] : d; };
 const has = n => argv.includes('--' + n);
 const cfg = JSON.parse(fs.readFileSync(path.resolve(arg('konfig', path.join(ROOT, 'scripts/filmy/filmy.json'))), 'utf8'));
-const langs = String(arg('jezyk', 'pl')).split(',');
+const langs = String(arg('jezyk', 'en')).split(','); /* domyślnie angielski — filmy tylko po angielsku (właściciel 08.11.2026 ~22:20, docs/18) */
 const filmy = has('wszystkie') ? cfg.filmy : cfg.filmy.filter(f => f.id === arg('film'));
 if (!filmy.length) { console.error(`Nie ma filmu „${arg('film')}” w konfiguracji (dostępne: ${cfg.filmy.map(f => f.id).join(', ')})`); process.exit(2); }
 

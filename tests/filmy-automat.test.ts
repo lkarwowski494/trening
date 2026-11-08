@@ -96,6 +96,12 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(out.stderr).toMatch(/obcy-blad \[pl\]: wskazówka błędu „sq.mis.kneesIn” nie należy do częstych błędów „Barbell Curl”/);
   });
 
+  test('domyślny język filmu: angielski (filmy tylko po angielsku — właściciel 08.11.2026 ~22:20)', () => {
+    const r3 = run(['--film', FILM.id, '--plan']);
+    expect(r3.status).toBe(0);
+    expect(JSON.parse(r3.stdout).map((x: { jezyk: string }) => x.jezyk)).toEqual(['en']);
+  });
+
   test('odmowa: rodzina bez recenzji (L-047) i wskazówka spoza ćwiczenia', () => {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'filmy-test-'));
     const zly = { ...CFG, filmy: [
