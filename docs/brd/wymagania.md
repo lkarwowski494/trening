@@ -724,6 +724,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma historię i szablony z ćwiczeniami z biblioteki
     - Gdy aktualizuje aplikację
     - Wtedy zapisane nazwy i klucze katalogu nie są migrowane; zmienia się tylko nazwa wyświetlana
+  - Scenariusz: Ćwiczenie biblioteki przemianowane przez użytkownika (domyślnie do weta właściciela, 08.11.2026, rekomendacje A i A)
+    - Zakładając, że użytkownik przemianował ćwiczenie z biblioteki, a wyszukiwanie obejmuje też nazwę zapisaną w danych
+    - Gdy ekran pokazuje to ćwiczenie albo użytkownik je wyszukuje
+    - Wtedy widzi nazwę angielską z katalogu (zapisana nazwa zostaje w danych bez migracji i dalej służy do wyszukiwania), jak w innych językach od początku
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
