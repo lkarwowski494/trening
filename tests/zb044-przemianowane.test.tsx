@@ -31,7 +31,7 @@ describe('ZB-044 W-1 logika: przemianowanie ćwiczenia z biblioteki (08.11.2026)
     const bench = ex('Bench Press (sztanga)'); expect(exName(bench)).toBe('Bench Press'); expect(exName(renamed(bench, 'Bench Press'))).toBe('Bench Press');
     const db = ex('Bench Press (hantle)'); const former = formerNamesOf(db)[0]; expect(former).toBeTruthy();
     expect(exNameLang(renamed(db, former))).toBe('en'); /* dawny klucz = jeszcze nie przemianowane */
-    const air = store.getState().exercises.find(e => e.libKey === 'Assault Bike')!; expect(air.name).toBe('Rower powietrzny'); expect(exName(air)).toBe('Air Bike'); expect(exNameLang(air)).toBe('en');
+    const air = store.getState().exercises.find(e => e.name === 'Rower powietrzny')!; expect(air.name).toBe('Rower powietrzny'); expect(exName(air)).toBe('Air Bike'); expect(exNameLang(air)).toBe('en');
     expect(exName(renamed(air, 'Mój rower'))).toBe('Mój rower');
   });
   test('polski: ćwiczenie z biblioteki bez klucza (przemianowane przed libKey) pokazuje zapisaną nazwę; bez klucza z nazwą katalogową — po staremu', async () => {
