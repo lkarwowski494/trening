@@ -37,7 +37,7 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela. 04.11.2026 (T1, przekład API 52 zdań kart delt_raise): 33 liczb kompletu kart języków podniesione do 572 (stan po przekładzie) — nadal cel startowy. 08.11.2026 (Z0, C-1/C-2; decyzja właściciela 02.11.2026 ~15:30 „dwa standardy publikacji”, ~17:00 „pełna karta dla każdego ćwiczenia, dla którego mamy dane” + lista obowiązkowych, 04.11.2026 (4) B mobilność bez ról): pelnaKarta = standard 1 (wskazówki + figura v2 + role mięśni; mobilność bez ról), cel pelnaKarta 465 = 452 ćwiczeń z danymi póz v2 i rolami mięśni albo mobilnością (bez 2 wstrzymanych w V2_WSTRZYMANE) + 13 spośród 51 obowiązkowych (docs/research/pokrycie-1-1-obowiazkowe.json), których ten warunek nie obejmuje (9 bez danych póz: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up; 4 z danymi, ale bez ról mięśni: Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam — role i pozy dochodzą w D-7); stan w chwili ustalenia: 179 w standardzie 1, 125 w standardzie 2. Pozostałe liczby bez zmian (cel startowy).
 
-Cel osiągnięty: **nie** (8 z 47 liczb).
+Cel osiągnięty: **nie** (41 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
@@ -47,39 +47,6 @@ Cel osiągnięty: **nie** (8 z 47 liczb).
 | pełna karta | 465 | 179 | 286 |
 | komplet tekstów karty: pl | 671 | 573 | 98 |
 | komplet tekstów karty: en | 671 | 573 | 98 |
-| komplet tekstów karty: cs | 572 | 570 | 2 |
-| komplet tekstów karty: sk | 572 | 570 | 2 |
-| komplet tekstów karty: hu | 572 | 570 | 2 |
-| komplet tekstów karty: ro | 572 | 570 | 2 |
-| komplet tekstów karty: bg | 572 | 570 | 2 |
-| komplet tekstów karty: hr | 572 | 570 | 2 |
-| komplet tekstów karty: sl | 572 | 570 | 2 |
-| komplet tekstów karty: sr | 572 | 570 | 2 |
-| komplet tekstów karty: lt | 572 | 570 | 2 |
-| komplet tekstów karty: lv | 572 | 570 | 2 |
-| komplet tekstów karty: et | 572 | 570 | 2 |
-| komplet tekstów karty: uk | 572 | 570 | 2 |
-| komplet tekstów karty: es | 572 | 570 | 2 |
-| komplet tekstów karty: es-419 | 572 | 570 | 2 |
-| komplet tekstów karty: pt | 572 | 570 | 2 |
-| komplet tekstów karty: pt-BR | 572 | 570 | 2 |
-| komplet tekstów karty: de | 572 | 570 | 2 |
-| komplet tekstów karty: fr | 572 | 570 | 2 |
-| komplet tekstów karty: it | 572 | 570 | 2 |
-| komplet tekstów karty: nl | 572 | 570 | 2 |
-| komplet tekstów karty: sv | 572 | 570 | 2 |
-| komplet tekstów karty: da | 572 | 570 | 2 |
-| komplet tekstów karty: nb | 572 | 570 | 2 |
-| komplet tekstów karty: fi | 572 | 570 | 2 |
-| komplet tekstów karty: tr | 572 | 570 | 2 |
-| komplet tekstów karty: el | 572 | 570 | 2 |
-| komplet tekstów karty: id | 572 | 570 | 2 |
-| komplet tekstów karty: ms | 572 | 570 | 2 |
-| komplet tekstów karty: vi | 572 | 570 | 2 |
-| komplet tekstów karty: ru | 572 | 570 | 2 |
-| komplet tekstów karty: ja | 572 | 570 | 2 |
-| komplet tekstów karty: ko | 572 | 570 | 2 |
-| komplet tekstów karty: zh-Hant | 572 | 570 | 2 |
 
 ## Rodziny ruchu
 
@@ -137,39 +104,39 @@ Kart z tekstami (wskazówki albo role mięśni): **573**. „Komplet” = karta 
 |---|---:|---:|---:|---:|
 | pl | 573 | 0 | 0 | 0 |
 | en | 573 | 0 | 0 | 0 |
-| cs | 570 | 3 | 3 | 0 |
-| sk | 570 | 3 | 3 | 0 |
-| hu | 570 | 3 | 3 | 0 |
-| ro | 570 | 3 | 3 | 0 |
-| bg | 570 | 3 | 3 | 0 |
-| hr | 570 | 3 | 3 | 0 |
-| sl | 570 | 3 | 3 | 0 |
-| sr | 570 | 3 | 3 | 0 |
-| lt | 570 | 3 | 3 | 0 |
-| lv | 570 | 3 | 3 | 0 |
-| et | 570 | 3 | 3 | 0 |
-| uk | 570 | 3 | 3 | 0 |
-| es | 570 | 3 | 3 | 0 |
-| es-419 | 570 | 3 | 3 | 0 |
-| pt | 570 | 3 | 3 | 0 |
-| pt-BR | 570 | 3 | 3 | 0 |
-| de | 570 | 3 | 3 | 0 |
-| fr | 570 | 3 | 3 | 0 |
-| it | 570 | 3 | 3 | 0 |
-| nl | 570 | 3 | 3 | 0 |
-| sv | 570 | 3 | 3 | 0 |
-| da | 570 | 3 | 3 | 0 |
-| nb | 570 | 3 | 3 | 0 |
-| fi | 570 | 3 | 3 | 0 |
-| tr | 570 | 3 | 3 | 0 |
-| el | 570 | 3 | 3 | 0 |
-| id | 570 | 3 | 3 | 0 |
-| ms | 570 | 3 | 3 | 0 |
-| vi | 570 | 3 | 3 | 0 |
-| ru | 570 | 3 | 3 | 0 |
-| ja | 570 | 3 | 3 | 0 |
-| ko | 570 | 3 | 3 | 0 |
-| zh-Hant | 570 | 3 | 3 | 0 |
+| cs | 573 | 0 | 0 | 0 |
+| sk | 573 | 0 | 0 | 0 |
+| hu | 573 | 0 | 0 | 0 |
+| ro | 573 | 0 | 0 | 0 |
+| bg | 573 | 0 | 0 | 0 |
+| hr | 573 | 0 | 0 | 0 |
+| sl | 573 | 0 | 0 | 0 |
+| sr | 573 | 0 | 0 | 0 |
+| lt | 573 | 0 | 0 | 0 |
+| lv | 573 | 0 | 0 | 0 |
+| et | 573 | 0 | 0 | 0 |
+| uk | 573 | 0 | 0 | 0 |
+| es | 573 | 0 | 0 | 0 |
+| es-419 | 573 | 0 | 0 | 0 |
+| pt | 573 | 0 | 0 | 0 |
+| pt-BR | 573 | 0 | 0 | 0 |
+| de | 573 | 0 | 0 | 0 |
+| fr | 573 | 0 | 0 | 0 |
+| it | 573 | 0 | 0 | 0 |
+| nl | 573 | 0 | 0 | 0 |
+| sv | 573 | 0 | 0 | 0 |
+| da | 573 | 0 | 0 | 0 |
+| nb | 573 | 0 | 0 | 0 |
+| fi | 573 | 0 | 0 | 0 |
+| tr | 573 | 0 | 0 | 0 |
+| el | 573 | 0 | 0 | 0 |
+| id | 573 | 0 | 0 | 0 |
+| ms | 573 | 0 | 0 | 0 |
+| vi | 573 | 0 | 0 | 0 |
+| ru | 573 | 0 | 0 | 0 |
+| ja | 573 | 0 | 0 | 0 |
+| ko | 573 | 0 | 0 | 0 |
+| zh-Hant | 573 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
