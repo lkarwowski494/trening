@@ -342,7 +342,7 @@ describe('seed.blankTimer', () => {
 describe('seed.libExercise', () => {
   test('pola z katalogu: metryka, tryb liczenia, partie, asysta gumą, wymagania; właściciel', () => {
     const bp = libExercise(['Bench Press (sztanga)', 'klatka', 'sztanga']);
-    expect(bp).toMatchObject({ name: 'Bench Press', group: 'klatka', equipment: 'sztanga', metric: 'weight_reps', loadMode: 'total', muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'], bandAssistable: false, lib: true, ownerId: 'local', restSec: null, tempo: '', notes: '' });
+    expect(bp).toMatchObject({ name: 'Bench Press (sztanga)', group: 'klatka', equipment: 'sztanga', metric: 'weight_reps', loadMode: 'total', muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'], bandAssistable: false, lib: true, ownerId: 'local', restSec: null, tempo: '', notes: '' });
     expect(bp.requires!.length).toBeGreaterThan(0); expect(bp.pattern).toBeTruthy(); expect(bp.id).toMatch(/^[0-9a-f-]{32,}$/);
     expect(libExercise(['Bench Press (hantle)', 'klatka', 'hantle']).loadMode).toBe('per_dumbbell');
     expect(libExercise(['Goblet Squat', 'nogi', 'hantle']).loadMode).toBe('total'); /* jeden ciężar */

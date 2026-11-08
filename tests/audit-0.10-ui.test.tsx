@@ -187,7 +187,7 @@ describe('H5 — „Zapisz jako szablon” i „Zaktualizować szablon?” (tylk
     expect(templateDiff(t, run(t, w => { w.exercises[1].swappedFrom = w.exercises[1].exerciseId; w.exercises[1].exerciseId = ex('Lat Pulldown').id; w.exercises[1].sets.push(store.emptySet()); }))).toBeNull(); store.cancelWorkout();
     expect(templateDiff(t, run(t, w => { w.deload = true; w.exercises[0].sets.pop(); }))).toBeNull(); store.cancelWorkout();
     const d = templateDiff(t, run(t, w => { w.exercises.splice(1, 1); w.exercises[0].sets.push({ ...store.emptySet(), kind: 'normal' }); w.exercises.unshift({ ...w.exercises[0], id: 'n', tplItemId: undefined, exerciseId: ex('Plank').id }); }))!;
-    expect(d).toEqual({ added: ['Plank'], removed: ['Pull-Up'], sets: ['Bench Press (Barbell)'.replace('(Barbell)', '(sztanga)')], order: false }); store.cancelWorkout();
+    expect(d).toEqual({ added: ['Plank'], removed: ['Pull-Up'], sets: ['Bench Press'], order: false }); store.cancelWorkout();
     expect(templateDiffText(d)).toBe('Dodane: Plank.\nUsunięte: Pull-Up.\nInne serie: Bench Press.'); expect(templateDiffText({ added: [], removed: [], sets: [], order: true })).toBe('Inna kolejność ćwiczeń.');
     expect(templateDiff(t, run(t, w => { w.exercises.reverse(); }))).toMatchObject({ order: true }); store.cancelWorkout();
     expect(templateDiff(undefined, run(t))).toBeNull(); store.cancelWorkout(); t.archived = true; expect(templateDiff(t, run(t))).toBeNull();

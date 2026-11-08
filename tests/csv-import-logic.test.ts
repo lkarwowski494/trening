@@ -90,7 +90,7 @@ describe('CSV: dopasowanie nazw', () => {
     const f = parseImport(A, NOW); const a = analyze(f, store.getState());
     expect(a).toMatchObject({ total: 3, duplicates: 0, firstDay: '2026-03-02', lastDay: '2026-03-09', badRows: 0 }); expect(a.fresh).toHaveLength(3);
     const byName = Object.fromEntries(a.names.map(r => [r.name, r.auto?.name ?? null]));
-    expect(byName).toMatchObject({ 'Bench Press (Barbell)': 'Bench Press', 'pull up': 'Pull-Up', Plank: 'Plank', 'Fikcyjny Wyciąg Testowy': null, 'Squat (Barbell)': null });
+    expect(byName).toMatchObject({ 'Bench Press (Barbell)': 'Bench Press (sztanga)', 'pull up': 'Pull Up', Plank: 'Plank', 'Fikcyjny Wyciąg Testowy': null, 'Squat (Barbell)': null });
     expect(a.names).toHaveLength(6); expect(a.matched).toBe(4); expect(a.created).toBe(2); /* Pull-Up i pull up to dwie nazwy w pliku */
     const sq = store.getState().exercises.find(e => e.name === 'Back Squat')!;
     const b = analyze(f, store.getState(), { 'Squat (Barbell)': sq.id, Plank: 'new' }); expect(b.matched).toBe(4); expect(b.created).toBe(2); /* Squat → istniejące, Plank → nowe */
@@ -154,7 +154,7 @@ describe('CSV: zapis', () => {
   });
   test('metryki nowych ćwiczeń: dystans+czas (bieg), czas, tylko powtórzenia; grupa cardio dla dystansu', async () => {
     await commitCsvImport(parseImport(B, NOW), { unit: 'kg' }); const ex = (n: string) => store.getState().exercises.find(e => e.name === n)!;
-    expect(ex('Fikcyjny Running Testowy')).toMatchObject({ metric: 'distance_time', group: 'cardio' }); expect(ex('Bench Press').metric).toBe('weight_reps');
+    expect(ex('Fikcyjny Bieg Testowy')).toMatchObject({ metric: 'distance_time', group: 'cardio' }); expect(ex('Bench Press (sztanga)').metric).toBe('weight_reps');
     await commitCsvImport(parseImport([HA, '2026-05-01 10:00:00,T,,Tylko Powt,1,,12,0,0,,,'].join('\n'), NOW), { unit: 'kg' }); expect(ex('Tylko Powt').metric).toBe('reps');
   });
   test('bezpieczeństwo: nieudana kopia bezpieczeństwa przerywa import — stan bez zmian; trening w toku i dane istniejące nietknięte', async () => {

@@ -58,7 +58,7 @@ describe('LIVE2-01: zamiana w trakcie ćwiczenia (podział bloku) a „Zaktualiz
     expect(store.swapImpl(a.exercises[0].id, 'electric')).toBeTruthy();
     expect(a.exercises.map(e => [e.tplItemId, e.impl, e.sets.length, e.swappedFrom])).toEqual([['a', 'dumbbell', 1, undefined], ['a', 'electric', 2, undefined]]);
     expect(templateDiff(t, J(a))).toBeNull();
-    store.addSet(1); expect(templateDiff(t, J(a))).toEqual({ added: [], removed: [], sets: [ex(RDL).name], order: false });
+    store.addSet(1); expect(templateDiff(t, J(a))).toEqual({ added: [], removed: [], sets: [require('@/lib/i18n').exName(ex(RDL))], order: false });
     updateTemplateFromWorkout(t, J(a)); expect(ids(t)).toEqual(['a']); expect(t.items[0].sets).toBe(4); expect(store.tplRows(t.items[0])).toHaveLength(4);
     store.cancelWorkout(); store.startFromTemplate(t); expect(S().active!.exercises.map(e => [e.tplItemId, e.sets.length])).toEqual([['a', 4]]); /* start — jeden blok */
   });

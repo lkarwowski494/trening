@@ -237,7 +237,7 @@ describe('logika listy domyślnej (wariant B)', () => {
 });
 
 describe('ekran: filtr „Podstawowe” (lista Ćwiczeń, wybór ćwiczenia, zamiana)', () => {
-  const niche = 'Svend Press'; const core = 'Bench Press (sztanga)';
+  const niche = 'Svend Press'; const core = 'Bench Press';
   test('lista Ćwiczeń: niszowe ukryte (licznik), wyszukiwanie je pokazuje, „+ Podstawowe” pokazuje wszystkie — zapamiętane; użyte i własne zawsze', async () => {
     await fresh(); expect(isNiche(store.getState().exercises.find(e => e.name === niche)!)).toBe(true);
     const mine = store.newExercise('Moje ćwiczenie'); void mine; const used = store.getState().exercises.find(e => e.name === 'Floor Press with Chains')!; addWorkout(Date.UTC(2026, 9, 1), [['Floor Press with Chains', [{ weight: 60, reps: 5 }]]]); void used;
