@@ -452,9 +452,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} kg | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts +147 |
 | {n} kilokalorii aktywnych | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +15 |
-| {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +158 |
+| {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +159 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +442 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +443 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +91 |
@@ -703,7 +703,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | guma: {v} | components/EquipVisual.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/gemini-polecenia.test.ts, tests/matrix-data-shared.ts +1 |
 | Gumy | app/_layout.tsx | tests/guide.test.tsx, tests/m3-p5-delete.test.tsx, tests/matrix-i18n.test.tsx +6 |
 | Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo. | lib/guide.ts | tests/guide.test.tsx |
-| hantle | lib/swap.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +129 |
+| hantle | lib/swap.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +130 |
 | hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower | lib/equipment.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/scenario-full.test.tsx |
 | hantle: {v} | components/EquipVisual.tsx | tests/figury-recenzja-p1.test.ts, tests/karta-sprzet.test.tsx, tests/matrix-karta.test.tsx |
 | Historia jest już w telefonie | components/ImportProCard.tsx | tests/monetyzacja-ui.test.tsx |
@@ -1432,7 +1432,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | zakładka, {i} z {n} | app/(tabs)/_layout.tsx | tests/matrix-a11y.test.tsx, tests/motyw.test.tsx, tests/regress.test.tsx +3 |
 | Zakończ trening na telefonie | lib/watch/labels.ts | tests/watch-last-rest.test.ts, tests/watch-protocol.test.ts |
 | Zakończyć trening? | components/ActiveWorkout.tsx | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +28 |
-| zakres | app/template/[id].tsx | tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +41 |
+| zakres | app/template/[id].tsx | tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +42 |
 | Zakres dat: {a} – {b} | app/more/import.tsx | tests/csv-import-ui.test.tsx, tests/slownik-terminow.test.ts |
 | Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Zakres jest niepoprawny: „max” musi być ≥ „min”, krok > 0. Ciężary nie są liczone. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
