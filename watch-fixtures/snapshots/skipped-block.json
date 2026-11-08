@@ -10,7 +10,7 @@
  "now": {
   "setId": "set-1-0",
   "blockId": "block-1",
-  "title": "Pull Up",
+  "title": "Pull-Up",
   "counter": "seria 1 z 2",
   "load": "+10 kg × 8",
   "group": null,
@@ -20,12 +20,12 @@
  "rest": null,
  "after": {
   "restSec": 60,
-  "cue": "Pull Up · seria 2, +10 kg, 8 powtórzeń",
+  "cue": "Pull-Up · seria 2, +10 kg, 8 powtórzeń",
   "last": false,
   "now": {
    "setId": "set-1-1",
    "blockId": "block-1",
-   "title": "Pull Up",
+   "title": "Pull-Up",
    "counter": "seria 2 z 2",
    "load": "+10 kg × 8",
    "group": null,
