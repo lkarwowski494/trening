@@ -605,3 +605,61 @@ describe('hak pre-push — baza z zielonego tests.yml gałęzi integracji (04.11
     expect(pchnij(x, ciPlik(x.npm, x.zdalny, 'success')).status).not.toBe(0);
   });
 });
+
+/* Decyzja właściciela 08.11.2026 („A + B mądrze”, wariant A): znacznik „lekkie” (npm run verify:lekkie = verify:szybkie bez testów Jest; pełne testy w tests.yml na 4 maszynach)
+   wystarcza w haku na gałęzie funkcji i integracja-*, ale nie na main (tam zostaje szybkie/pełne; scal-galaz --do main wymaga „pelne”). Zmienia stan z 03.11.2026 („pelne albo szybkie”). */
+describe('hak pre-push — znacznik „lekkie” (08.11.2026)', () => {
+  function repoZGalezia(nazwa: string) {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    if (nazwa !== 'main') git(r.dir, ['checkout', '-q', '-b', nazwa]);
+    writeFileSync(join(r.dir, 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm, nazwa };
+  }
+  const pchnij = (x: ReturnType<typeof repoZGalezia>) => git(x.dir, ['push', 'origin', x.nazwa], zNpm(x.npm));
+  test('gałąź funkcji ze znacznikiem „lekkie” → przechodzi', () => {
+    const x = repoZGalezia('g'); expect(oznacz(x.dir, x.npm, 'lekkie').stdout).toContain('lekkie');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('integracja-1-1 ze znacznikiem „lekkie” → przechodzi', () => {
+    const x = repoZGalezia('integracja-1-1'); oznacz(x.dir, x.npm, 'lekkie');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('integracja-1-1');
+  });
+  test('main ze znacznikiem „lekkie” → odmowa (bez zmian: tylko pełne/szybkie); z „pelne” → przechodzi', () => {
+    const x = repoZGalezia('main'); oznacz(x.dir, x.npm, 'lekkie');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE');
+    oznacz(x.dir, x.npm, 'pelne'); expect(pchnij(x).status).toBe(0);
+  });
+  test('bez znacznika → odmowa, komunikat wymienia verify:lekkie; znacznik dla innego drzewa (commit po verify) → odmowa', () => {
+    const x = repoZGalezia('g'); const r = pchnij(x);
+    expect(r.status).not.toBe(0); expect(r.stderr).toContain('verify:lekkie'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+    oznacz(x.dir, x.npm, 'lekkie'); writeFileSync(join(x.dir, 'plik.txt'), 'c\n'); git(x.dir, ['commit', '-q', '-am', 'dalej']);
+    expect(pchnij(x).status).not.toBe(0);
+  });
+  test('gałąź z wcześniejszymi zmianami: kod ze znacznikiem „lekkie”, potem commit tylko z dokumentami ze znacznikiem verify:docs → przechodzi (H1)', () => {
+    const x = repoZGalezia('g'); oznacz(x.dir, x.npm, 'lekkie');
+    mkdirSync(join(x.dir, 'docs'), { recursive: true }); writeFileSync(join(x.dir, 'docs/a.md'), 'c\n'); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'docs']);
+    oznacz(x.dir, x.npm, 'dokumenty'); expect(pchnij(x).status).toBe(0);
+  });
+  test('scal-galaz --do main: „lekkie” nie wystarcza (--wymagaj pelne)', () => {
+    const x = repoZGalezia('g'); oznacz(x.dir, x.npm, 'lekkie');
+    const s = () => spawnSync(process.execPath, [ZNACZNIK, '--sprawdz', 'HEAD', '--wymagaj', 'pelne'], { cwd: x.dir, env: zNpm(x.npm), encoding: 'utf8' });
+    expect(s().status).toBe(1); oznacz(x.dir, x.npm, 'pelne'); expect(s().status).toBe(0);
+  });
+  test('skrypt verify:lekkie = verify:szybkie bez test-fast, kończy się zapisem „lekkie”; kroki check:* są podzbiorem verify; bez testów Jest', () => {
+    const l: string = pkg.scripts['verify:lekkie']; const sz: string = pkg.scripts['verify:szybkie'];
+    expect(l).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz lekkie$/);
+    expect(l).not.toMatch(/test-fast|jest|expo export|verify:native|check:bundle/);
+    expect(sz.replace(' && node scripts/test-fast.mjs --od-bazy', '').replace('--zapisz szybkie', '--zapisz lekkie')).toBe(l);
+    expect(l).toMatch(/^node scripts\/hooks\/sprawdz-instalacje\.mjs && node scripts\/verify-znacznik\.mjs --czysta && /);
+    for (const k of l.match(/npm run [\w:-]+/g)!) expect(pkg.scripts.verify).toContain(k);
+  });
+  test('08.11.2026: CLAUDE.md, docs/18 i nagłówek haka opisują decyzję (A + B mądrze, odrzucone C, kompromis CI, analogia z wzorcem)', () => {
+    const claude = readFileSync(join(root, 'CLAUDE.md'), 'utf8'); const d18 = readFileSync(join(root, 'docs/18-przekazanie.md'), 'utf8');
+    expect(claude).toContain('verify:lekkie'); expect(claude).toMatch(/08\.11\.2026/); expect(claude).toMatch(/najwyżej 2 dodatkowe sesje/);
+    const wpis = d18.split('\n').find(l => l.includes('verify:lekkie') && l.includes('08.11.2026'));
+    expect(wpis).toBeTruthy(); expect(wpis).toMatch(/\[wdrożenie: kod\]/); expect(wpis).toMatch(/\[test: tests\/hak-pre-push\.test\.ts\]/);
+    expect(wpis).toMatch(/Odrzucone: C/); expect(wpis).toContain('scripts/pre-push-check.mjs');
+    expect(hakTekst()).toContain('verify:lekkie');
+  });
+});

@@ -459,6 +459,8 @@ export function prosteReceRollout(v2, poza) {
   for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const e = v2.jointAngles(s, k).elbow; if (e > PROGI.prosteReceDeg) return [`łokieć ${k} jest zgięty o ${f1(e)}° (u = ${u}), a ma ≤ ${PROGI.prosteReceDeg}° (ręce proste w rolloucie, łokieć ≥ ${180 - PROGI.prosteReceDeg}°)`]; } }
   return [];
 }
+/** Ćwiczenia przyciągania pominięte w regule 16d (tor łokcia w środku ruchu): ćwiczenie → powód. Inverted Row: rachunek (ustalone, szczebel 1) — łokieć leży przed płaszczyzną pleców co najmniej o r − b (r: odległość chwytu od płaszczyzny pleców, b: łokieć → chwyt ≈ 28–30 cm), więc ≤ 2 cm wymaga pokonania ok. 55–60% drogi chwytu: w u = 0,3 i 0,5 fizycznie niemożliwe; koniec ruchu pilnuje reguła 16 (torLokciaPrzyciagania). Odrzucone: monotoniczność (a2), „u ≥ 0,8” (konwencja bez źródła). Badacz 08.11.2026: docs/research/recenzje/d1-inverted-row-tor-lokcia-2026-11-08.md */
+export const TOR_SRODEK_POMIJA = { 'Inverted Row': 'rachunek: łokieć ≥ r − b przed płaszczyzną pleców (ustalone); koniec ruchu sprawdza torLokciaPrzyciagania' };
 /** 16d. Tor łokcia w środku ruchu przyciągania (u 0,3…0,7): łokieć nie leży po stronie klatki (≤ lokiecPrzedPlecamiMaxCm przed płaszczyzną pleców). */
 export function torLokciaSrodek(v2, poza) {
   const o = [];
@@ -812,7 +814,7 @@ export function sprawdzJakosc(poza, ctx) {
   dodaj('czesc_ciala_nie_znika', czescCialaNieZnika(v2, poza)); /* R9 i R10: bramka dla WSZYSTKICH rodzin (backlog figur 28.10.2026; było: tylko mobilność) */
   dodaj('os_stopy_w_plaszczyznie', osStopyWPlaszczyznie(v2, poza)); /* R11 (L2): bramka dla WSZYSTKICH rodzin; znane odstępstwa: OS_STOPY_WYJATKI z powodem */
   dodaj('rzad_bledu_dotyczy', rzadBleduDotyczy(v2, poza));
-  if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
+  if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); if (!(cwiczenie in TOR_SRODEK_POMIJA)) dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (rodzina === 'delt_raise' && wskazowkiLatHeight(cwiczenie) && !(cwiczenie in DLON_NA_WYSOKOSCI_BARKOW_WYJATKI)) dodaj('dlon_na_wysokosci_barkow_swiat', dlonNaWysokosciBarkowSwiat(v2, poza));
   if (LEZENIE_PRZODEM.includes(cwiczenie)) { dodaj('tulow_przodem_do_lawki', tulowPrzodemDoLawki(v2, poza)); dodaj('zwis_przedramie_u0', zwisPrzedramieU0(v2, poza)); }
   if (cechy.has('rollout')) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));

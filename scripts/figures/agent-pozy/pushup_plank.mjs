@@ -132,6 +132,8 @@ function plyo(cw) {
 }
 
 /* ---------- Inverted Row (leżąc pod drążkiem, pięty na podłodze) ---------- */
+/** Parametry wiosłowania odwróconego po regule zwisu (08.11.2026): drążek 72 cm, pięty 110 cm od drążka (ręka ok. 20° ku stopom — UPROSZCZENIE, v2-jakosc ZWIS_KU_STOPOM), zgięcie do 135°, zwolnienie 0,5, łokieć ku podłodze. */
+export const IR_PARAMETRY = { by: 72, axOverride: 110, thetaEnd: 135, pole: [0, -1, 0.15], ease: 0.5 };
 /** Wiosłowanie odwrócone: pięty na podłodze w odległości ax od drążka (ciało sztywne, obrót wokół pięt); na końcu mostek przy drążku (bark ok. 15 cm pod nim, thetaEnd) i łokieć ku podłodze, za linią pleców (v2-jakosc: tor_lokcia_przyciaganie). */
 export function inverted(cw, { thetaEnd = 142, pole = [0, 1, 0.2], axOverride, by = 80, thetaStart = 12, ease = 1 } = {}) {
   const B = BODY(); const hz = 24; const f0 = 9; const Ay = r1(7 + 2); /* pięty na podłodze, palce w górę (podbicie 25) */
@@ -199,7 +201,6 @@ export function rolloutStojac(cw, { fi1 = 10, start = 'stojac', uchwytY0 = 100, 
 
 /** Ćwiczenia, których kontrakt v2 nie potrafi narysować (powód obowiązkowy; do decyzji koordynatora). */
 export const WYJATKI = {
-  'Inverted Row': 'model po regule zwisu z 08.11.2026 (ręka prosta, ku stopom 0–25° od pionu, nigdy ku głowie; zwisStartowy, ZWIS_KU_STOPOM) pozwala na zwis, ale nie na ruch: bez pliku wspólnych silnika da się spełnić tor łokcia na końcu ruchu, ale nie tor łokcia w środku ruchu (u 0,3–0,7: łokieć ≤ 2 cm przed płaszczyzną pleców) razem z klatkami różnymi do końca ruchu, klatką przy drążku i podłogą (przeszukanie 08.11.2026: najlepsze ułożenie by 72, ax 110, zwolnienie 0,5 spełnia wszystkie reguły poza torem w środku — łokieć 20,7 cm przed plecami w u = 0,3; przyspieszenie zgięcia do u = 0,3 łamie klatki_rozne, pod_podloga albo odległość klatki od drążka); generator inverted() zostaje do ponownej próby po zmianie proporcji, kontraktu albo reguły toru w środku ruchu',
   'Clock Push-Up': 'brak cechy rozpoznawczej: pompka z dłońmi przesuniętymi przód/tył nie pokazuje, że dłonie wędrują po okręgu (zegar), a ciało obraca się wokół stóp; wymagany widok z góry albo sekwencja kilku powtórzeń z obrotem tułowia (recenzja n3, 26.10.2026)',
   'Side Plank': 'potrzebny obrót tułowia wokół osi długiej (roll): kontrakt ma tylko pochylenie w płaszczyźnie strzałkowej i barki zawsze w poziomie (z = ±19)',
   'Copenhagen Plank': 'deska boczna z nogą na ławce — jak Side Plank wymaga obrotu tułowia wokół osi długiej (roll)',
@@ -217,7 +218,7 @@ export const PRZYBLIZENIA = {
   'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)',
   'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)',
   'Suspended Fallout': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie',
-  'Inverted Row': 'drążek w stojaku na wysokości 80 cm (zwis od podłogi: ręce w pionie), chwyt nachwytem szeroki (z = ±24); łokieć kończy za linią pleców, ale tor łokcia w środku ruchu jest uproszczony (biegun łokcia stały)',
+  'Inverted Row': 'drążek w stojaku na wysokości 72 cm, pięty 110 cm od drążka; chwyt nachwytem szeroki (z = ±24); UPROSZCZENIE: ręka w zwisie startowym ok. 20° ku stopom (reguła zwisu 08.11.2026: 0–25° ku stopom, nigdy ku głowie); odwiedzenie ramienia ≤ 45° to konwencja rysunku [OTWARTE: brak źródła ze stopniami]; łokieć w środku ruchu leży przed płaszczyzną pleców (rachunek, tor_lokcia_srodek nie dotyczy tego ćwiczenia), za linią pleców dopiero na końcu',
 };
 
 /** Wszystkie pozy rodziny: { ćwiczenie: poza }. Każde ćwiczenie to wywołanie typu z parametrami (chwyt, rozstaw, sprzęt, zakres). */
@@ -238,7 +239,7 @@ export function generuj() {
     'Clock Push-Up': () => pompka('Clock Push-Up', { hz: 22, thetaTop: 24, blady: ['partial'], rece: (u, k, h) => ({ R: { g: [h[0] + 9, h[1], 24], pole: [-1, -0.3, 0.35], obrot: -20 }, L: { g: [h[0] - 9, h[1], -20], pole: [-1, -0.3, -0.35], obrot: -20 } }) }), /* zegar: jedna dłoń o 9 cm przed osią barków, druga 9 cm za nią (godziny 12 i 6); pronacja przedramion */
     'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 33, hy: 45, off: -18, sprzetRece: (H) => ({ rodzaj: 'zawieszenie', x: r1(H[0] + (0)), y: 300, punkt: 'dlonie' }), blady: ['partial', 'sag'] }), /* taśmy od punktu zaczepu (y = 300) nad dłońmi; ostatnie 15 cm taśmy przy uchwycie bez kolizji (EQUIP.suspensionFree); uchwyty szeroko (z = ±33), bo przy węższych taśma przenika ramię */
     'Suspended Fallout': () => rolloutStojac('Suspended Fallout', { start: 'zaw', fi1: 18, fi0: 43, tasma: { ax: 160, L: 155, wybor: 'dol' } }),
-    'Inverted Row': () => inverted('Inverted Row'),
+    'Inverted Row': () => inverted('Inverted Row', IR_PARAMETRY),
     'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3, theta: 8 }),
     'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { theta: 10, ławka: 42, fi1: 10, dgSag: 7, fM: 4 }),
     'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac', th: 4 }),
