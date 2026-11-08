@@ -101,7 +101,7 @@ describe('D6 — ekrany', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/history/edit/${w.id}`); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     expect(screen.getByText('Propozycje')).toBeTruthy(); expect(screen.getByText(/Poprawka zapisu/)).toBeTruthy();
-    await tap(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\)/)); await flushAll(20);
+    await tap(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press/)); await flushAll(20);
     const d = edit.draftOf(w.id)!; expect(d.w.exercises[0].exerciseId).toBe(ex(DB).id);
     expect(screen.getByText('Dumbbell Bench Press')).toBeTruthy();
     await tap(screen.getByLabelText('Zamień ćwiczenie: Dumbbell Bench Press')); await flushAll(20);

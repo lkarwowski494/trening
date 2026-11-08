@@ -154,7 +154,7 @@ describe('CSV: zapis', () => {
   });
   test('metryki nowych ćwiczeń: dystans+czas (bieg), czas, tylko powtórzenia; grupa cardio dla dystansu', async () => {
     await commitCsvImport(parseImport(B, NOW), { unit: 'kg' }); const ex = (n: string) => store.getState().exercises.find(e => e.name === n)!;
-    expect(ex('Fikcyjny Bieg Testowy')).toMatchObject({ metric: 'distance_time', group: 'cardio' }); expect(ex('Bench Press').metric).toBe('weight_reps');
+    expect(ex('Fikcyjny Running Testowy')).toMatchObject({ metric: 'distance_time', group: 'cardio' }); expect(ex('Bench Press').metric).toBe('weight_reps');
     await commitCsvImport(parseImport([HA, '2026-05-01 10:00:00,T,,Tylko Powt,1,,12,0,0,,,'].join('\n'), NOW), { unit: 'kg' }); expect(ex('Tylko Powt').metric).toBe('reps');
   });
   test('bezpieczeństwo: nieudana kopia bezpieczeństwa przerywa import — stan bez zmian; trening w toku i dane istniejące nietknięte', async () => {

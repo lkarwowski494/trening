@@ -119,7 +119,7 @@ describe('liczniki i pominięcia', () => {
   });
 });
 describe('teksty: jednostki, nazwy, język', () => {
-  test('funty: ciężar w migawce w lb (jak karta „teraz”)', async () => { await world(); applyUnit('lb'); expect(snap().now!.load).toBe('176,4 lb × 8'); expect(snap().after!.cue).toBe('Bench Press (sztanga) · seria 2, 176,4 lb, 8 powtórzeń'); });
+  test('funty: ciężar w migawce w lb (jak karta „teraz”)', async () => { await world(); applyUnit('lb'); expect(snap().now!.load).toBe('176,4 lb × 8'); expect(snap().after!.cue).toBe('Bench Press · seria 2, 176,4 lb, 8 powtórzeń'); });
   test('długie nazwy są skracane z „…” bez rozcinania pary zastępczej; limity pól', async () => {
     await world(); A().templateName = 'Ż'.repeat(100); const e = store.getState().exercises.find(x => x.id === A().exercises[0].exerciseId)!; const old = e.name; e.name = '😀'.repeat(80); (e as { lib?: boolean }).lib = false;
     const s = snap(); expect(Array.from(s.title)).toHaveLength(WATCH.TITLE_MAX); expect(s.title.endsWith('…')).toBe(true); expect(Array.from(s.now!.title)).toHaveLength(WATCH.TITLE_MAX); expect(s.now!.title).not.toMatch(/[\ud800-\udbff]$/);

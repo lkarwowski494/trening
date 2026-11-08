@@ -33,9 +33,9 @@ test('Hotel w poniedziałek: okno → Pomiń + wybór ręczny + domyślna → Za
 
   await startTpl('FBW'); expect(S().active!.locationId).toBe('gym'); expect(screen.queryByTestId('adapt-line')).toBeNull();
   await pickPlace('Hotel'); expect(top()).toBe('adapt');
-  /* ręcznie: Overhead Press → druga propozycja; Pull Up → Pomiń dziś; Bench Press zostaje z domyślną propozycją */
-  const benchTo = (screen.getAllByText(/^Bench Press \(sztanga\) → /)[0].props.children as string).split(' → ')[1];
-  await tap(screen.getAllByText(/^Overhead Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
+  /* ręcznie: Overhead Press → druga propozycja; Pull-Up → Pomiń dziś; Bench Press zostaje z domyślną propozycją */
+  const benchTo = (screen.getAllByText(/^Bench Press → /)[0].props.children as string).split(' → ')[1];
+  await tap(screen.getAllByText(/^Overhead Press → /)[0]); await flushAll(20); expect(top()).toBe('swap');
   const props = screen.getAllByLabelText(/^Propozycja \d: /); const manual = /^Propozycja \d: ([^,]+)/.exec(props[Math.min(1, props.length - 1)].props.accessibilityLabel)![1]; await tap(props[Math.min(1, props.length - 1)]); await flushAll(20);
   await tap(screen.getAllByText(/^Pull-Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull-Up')); await flushAll(20);
   expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (3)'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);

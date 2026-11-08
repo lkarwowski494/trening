@@ -775,7 +775,7 @@ describe('EKRAN /swap', () => {
     const id0 = blk(0).id; await go(swapUrl('active:' + id0)); await flushAll(20);
     expect(screen.getByText('Zamiana tylko w tym treningu: Bench Press')).toBeTruthy(); expect(screen.getByText('Propozycje')).toBeTruthy();
     expect(screen.getAllByLabelText(/^Propozycja \d: /)).toHaveLength(3);
-    expect(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\).*już w treningu/)).toBeTruthy();
+    expect(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press.*już w treningu/)).toBeTruthy();
     expect(screen.queryByText(/↺ przywróć/)).toBeNull();
     /* Zamknij — bez zmian, drugie tapnięcie bez efektu */
     const cancel = screen.getByText('Anuluj'); await tap(cancel); await tap(cancel); await flushAll(10);
@@ -879,7 +879,7 @@ describe('EKRAN /swap', () => {
     await go(swapUrl(`edit:${d.key}:${b0}`)); await flushAll(20);
     expect(screen.getByText('Poprawka zapisu: wszystkie serie bloku „Bench Press” przejdą pod wybrane ćwiczenie (wartości bez zmian).')).toBeTruthy();
     expect(screen.getByText('Propozycje')).toBeTruthy(); expect(screen.queryByText(/↺ przywróć/)).toBeNull();
-    await tap(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\)/)); await flushAll(20);
+    await tap(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press/)); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Bench Press (hantle)').id); expect(d.w.exercises[0].sets[0].weight).toBe(60);
     expect(store.getState().workouts.find(x => x.id === w.id)!.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id);
     expect(edit.isDirty(d)).toBe(true);

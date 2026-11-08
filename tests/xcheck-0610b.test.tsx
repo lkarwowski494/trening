@@ -34,7 +34,7 @@ test('ŚREDNIE (parytet #3): w treningu da się usunąć wybraną serię (np. ro
   e0.sets[0].weight = 80; e0.sets[0].reps = 8; store.addSet(0); store.addSet(0, 'warmup'); await store.flush();
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
   expect(store.getState().active!.exercises[0].sets.map(s => s.kind)).toEqual(['warmup', 'normal', 'normal']);
-  await swipeDelete('Usuń serię W — Bench Press (sztanga)'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5);
+  await swipeDelete('Usuń serię W — Bench Press'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5);
   expect(store.getState().active!.exercises[0].sets.map(s => [s.kind, s.weight])).toEqual([['normal', 80], ['normal', 80]]);
   /* ostatnia seria bloku zostaje — bez akcji usuwania, gdy w bloku jedna seria */
   store.removeSetById(0, store.getState().active!.exercises[0].sets[0].id); expect(store.getState().active!.exercises[0].sets).toHaveLength(1);

@@ -333,7 +333,7 @@ describe('runda 4', () => {
   });
   test('R4-06 postępy pokazują usunięte ćwiczenie z historią', async () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
-    await go('/progress'); await flushAll(10); expect(screen.getByText(/Bench Press \(hantle\) \(usunięte\)/)).toBeTruthy();
+    await go('/progress'); await flushAll(10); expect(screen.getByText(/Dumbbell Bench Press \(usunięte\)/)).toBeTruthy();
   });
   test('R4-07 serie per partia z przecinkiem', async () => {
     await renderApp(); addWorkout(Math.max(Date.now() - 3600e3, stats.thisMonday()), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); /* L-031: „godzinę temu” nie może wypaść w poprzednim tygodniu (poniedziałek 00:00–01:00) */ await go('/progress'); await flushAll(10);
@@ -1897,9 +1897,9 @@ describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwic
     const { parseImport } = require('@/lib/csvparse'); const { commitCsvImport } = require('@/lib/csvimport');
     await commitCsvImport(parseImport(txt, at(2026, 10, 12)), { unit: 'kg' });
   };
-  test('(a) formatA: Pull Up 0×10 i +20×5, Push Up 0×20 — rekordy jak dla treningu wpisanego ręcznie', async () => {
+  test('(a) formatA: Pull-Up 0×10 i +20×5, Push-Up 0×20 — rekordy jak dla treningu wpisanego ręcznie', async () => {
     await fresh(); const d = '2026-03-02 18:05:00';
-    await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`, `${d},T,50m,Pull Up,2,20.0,5.0,0,0,,,`, `${d},T,50m,Push Up,1,0.0,20.0,0,0,,,`].join('\n') + '\n');
+    await importText([HA, `${d},T,50m,Pull-Up,1,0.0,10.0,0,0,,,`, `${d},T,50m,Pull-Up,2,20.0,5.0,0,0,,,`, `${d},T,50m,Push-Up,1,0.0,20.0,0,0,,,`].join('\n') + '\n');
     const imp = { pu: recs('Pull Up'), pp: recs('Push Up') };
     const w = store.getState().workouts[0]; for (const b of w.exercises) for (const s of b.sets) expect([s.weight, typeof s.addKg]).toEqual(['', 'number']);
     await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: 0, reps: 20 }]]]);
@@ -2065,18 +2065,18 @@ describe('audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia n
     const ws = store.getState().workouts; expect(ws).toHaveLength(2);
     for (const w of ws) { expect(w.finishedAt).toBe(w.startedAt); expect(store.workoutDurSec(w)).toBe(0); expect(store.noClock(w)).toBe(true); }
     const { totals } = require('@/lib/period'); expect(totals(at(2026, 3, 1, 0), at(2026, 4, 1, 0)).durationSec).toBe(0);
-    await fresh(); const d = '2026-03-02 18:05:00'; await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`].join('\n') + '\n');
+    await fresh(); const d = '2026-03-02 18:05:00'; await importText([HA, `${d},T,50m,Pull-Up,1,0.0,10.0,0,0,,,`].join('\n') + '\n');
     const w = store.getState().workouts[0]; expect(w.finishedAt! - w.startedAt).toBe(50 * 60e3); expect(store.noClock(w)).toBe(false);
   });
   test('formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start)', async () => {
-    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull-Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
     const w = store.getState().workouts[0]; expect(w.finishedAt).toBe(w.startedAt);
   });
   /* Audyt 0.14.0 ŚREDNIE: plik z godziną, ale bez Duration, miał koniec = start, więc noClock ukrywał godzinę, a eksport ją gubił (powrót do 12:00).
    * Naprawa: noClock tylko dla startu dokładnie o 12:00:00 (godzina, którą import samej daty sam ustawia) — bez zmiany schematu i bez sztucznej długości.
    * Realność: realny (import pliku formatu z godziną, w którym Duration jest puste albo „0m”). */
   test('formatA z godziną, bez Duration: godzina zostaje w Historii i w eksporcie; ponowny import zachowuje godzinę (także z „0m”)', async () => {
-    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,', '2026-03-03 07:30:00,T,0m,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull-Up,1,0.0,10.0,0,0,,,', '2026-03-03 07:30:00,T,0m,Pull-Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
     const ws = store.getState().workouts; expect(ws).toHaveLength(2); expect(ws.every(w => !store.noClock(w))).toBe(true);
     for (const w of ws) expect(store.whenText(w)).toBe(`${store.fmtDate(store.wallTs(w))} ${store.fmtTime(store.wallTs(w))}`);
     const csv = buildCsv(); const dates = csv.trim().split('\n').slice(1).map(l => l.split(',')[0]).sort(); expect(dates).toEqual(['2026-03-02 18:05:00', '2026-03-03 07:30:00']);

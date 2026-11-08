@@ -39,15 +39,15 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
   });
 
   test('arkusz: top-3, „już w treningu”, „Inne” z filtrami; linijka „zamiast: …”; cofnij', async () => {
-    await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Incline Bench Press (hantle)']) }); await flushAll(20);
+    await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Incline Dumbbell Bench Press']) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     expect(screen.getByText('Propozycje')).toBeTruthy();
     const props = screen.getAllByLabelText(/^Propozycja \d: /); expect(props).toHaveLength(3);
     expect(screen.getByText(/już w treningu/)).toBeTruthy(); /* Incline Dumbbell Bench Press jest w treningu i jest wśród propozycji */
     expect(screen.getByLabelText('Pokaż inne ćwiczenia')).toBeTruthy();
-    await tap(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\)/)); await flushAll(20);
+    await tap(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press/)); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id); expect(blk(0).sets.map(s => s.weight)).toEqual([22.5, 22.5, 22.5]);
-    expect(screen.getByText(/zamiast: Bench Press \(sztanga\)/)).toBeTruthy();
+    expect(screen.getByText(/zamiast: Bench Press/)).toBeTruthy();
     await tap(screen.getByLabelText('Cofnij zamianę: Dumbbell Bench Press')); await flushAll(10);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(screen.queryByText(/zamiast:/)).toBeNull();
     /* „Inne” (decyzja 04.10.2026): filtry-etykiety partii i miejsca, zdejmowane ✕; zawsze bez bieżącego i bez innej miary */
@@ -75,9 +75,9 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     /* audyt 0.10 (LIVE-04): podpis przerwy = następna seria jak na karcie „teraz” — ławka przed plankiem, inaczej podpis wskazywałby nieodhaczony plank */
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Plank'], { places: false }) }); await flushAll(20);
     /* przerwa po serii 1 ławki, potem stoper planka; zamiana ławki (podział) w trakcie przerwy */
-    await act(async () => { blk(0).sets[0].weight = 100; blk(0).sets[0].reps = 5; }); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Bench Press \(sztanga\)/)[0]); await flushAll(5);
+    await act(async () => { blk(0).sets[0].weight = 100; blk(0).sets[0].reps = 5; }); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Bench Press/)[0]); await flushAll(5);
     expect(timer.T.on).toBe(true); const restSet = timer.T.setId;
-    expect(timer.T.sub).toMatch(/Bench Press \(sztanga\) · seria 2/);
+    expect(timer.T.sub).toMatch(/Bench Press · seria 2/);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);
     const B = blk(1); expect(B.splitFrom).toBe(blk(0).id);

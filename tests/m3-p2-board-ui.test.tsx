@@ -239,7 +239,7 @@ describe('VoiceOver: opis tablicy i podgląd liczb', () => {
   test('część z nazwą i liczbami to jeden element (rola obrazu) z opisem: ćwiczenie, seria, wartości, postęp serii', async () => {
     await fresh(); const a = startBench(3); vals(a, 0, { weight: 80, reps: 6 }); vals(a, 1, { weight: 80, reps: 6 }); store.toggleDone(0, 0); await boot();
     const d = screen.getByTestId('board-desc'); expect(d.props.accessibilityRole).toBe('image'); expect(d.props.accessible).toBe(true);
-    expect(d.props.accessibilityLabel).toMatch(/^Bench Press \(sztanga\), seria 2 z 3\. 80 kilogramów, 6 powtórzeń\. Serie: 1 z 3 zrobione/);
+    expect(d.props.accessibilityLabel).toMatch(/^Bench Press, seria 2 z 3\. 80 kilogramów, 6 powtórzeń\. Serie: 1 z 3 zrobione/);
   });
   test('rozgrzewki w opisie osobno; > 12 serii dopisek „lista serii przewijana”', async () => {
     await fresh(); const a = startBench(14); store.addSet(0, 'warmup'); vals(a, 1, { weight: 80, reps: 6 }); await boot();

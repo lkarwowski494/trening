@@ -1,7 +1,7 @@
 /*
  * Zrzuty zegarka do App Store (A7, 27.10.2026): dane pokazowe w języku zrzutu i Apple bez kanału alfa.
  * Błędy z przeglądu zestawu z 27.10.2026 (watch-sim run 40457515962): (1) wszystkie PNG miały kanał alfa — Apple odrzuca takie zrzuty; (2) dane treningu
- * („Bench Press (sztanga)”, „seria 1 z 3”) po polsku we wszystkich 35 lokalizacjach.
+ * („Bench Press”, „seria 1 z 3”) po polsku we wszystkich 35 lokalizacjach.
  */
 import * as fs from 'fs';
 import * as path from 'path';
