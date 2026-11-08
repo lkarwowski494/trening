@@ -44,7 +44,7 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
   });
   /* 08.11.2026 (decyzja koordynatora w nocy 08/09.11 z upoważnienia właściciela — do weta rano; partie A1 i A2): karta własna ukryta czeka na recenzję niezależną (L-047) albo, po recenzji, na przekład zdań */
   const kartaNowaOk = (k: string, full: Record<string, unknown>, rec: typeof REC, hidden: string[], runtime: Record<string, unknown>) =>
-    [(rec.karty?.[k] as { werdykt?: string } | undefined)?.werdykt === 'wyswietlana', k in full, hidden.includes(k), k in runtime];
+    [!!rec.karty?.[k] && (rec.karty[k] as { werdykt?: string }).werdykt === 'wyswietlana', k in full, hidden.includes(k), k in runtime];
   test('karty_nowe (08.11.2026): karta w pełnych danych, na liście „hidden”, nie w runtime i bez wpisu „wyswietlana” (powód: czeka na recenzję albo po recenzji na przekład); wpis „wyswietlana” ⇒ pozycję usunąć', () => {
     const full = (JSON.parse(fs.readFileSync(path.join(root, 'data/zrodla/cues.json'), 'utf8')) as { exercises: Record<string, unknown> }).exercises;
     const l = WYJ.karty_nowe ?? [], hidden = (CUE_DATA as typeof CUE_DATA & { hidden: string[] }).hidden;
