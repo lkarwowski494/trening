@@ -1,11 +1,12 @@
 // Znacznik zielonego verify (L-049, decyzja właściciela 28.10.2026, opcja A): reguła „pełne verify przed wypchnięciem” z CLAUDE.md jako mechanizm.
-//   node scripts/verify-znacznik.mjs --zapisz pelne|szybkie|dokumenty — koniec `npm run verify` / `npm run verify:szybkie` / `npm run verify:docs`: zapisuje drzewo HEAD (git rev-parse HEAD^{tree}),
+//   node scripts/verify-znacznik.mjs --zapisz pelne|szybkie|lekkie|dokumenty — koniec `npm run verify` / `npm run verify:szybkie` / `npm run verify:lekkie` / `npm run verify:docs`: zapisuje drzewo HEAD (git rev-parse HEAD^{tree}),
 //                                                                  tylko przy czystej kopii roboczej (bez zmian i bez nieśledzonych plików); w CI nic nie robi
 //   node scripts/verify-znacznik.mjs --czysta — start verify / verify:szybkie / verify:docs (ZB-041 G2, 04.11.2026): kod 1 z listą plików, gdy kopia robocza ma zmiany albo nieśledzone pliki
 //                                                                  (inaczej przebieg skończyłby się zielony, ale bez znacznika — i trzeba by go powtarzać); w CI nic nie robi
 //   node scripts/verify-znacznik.mjs --sprawdz <sha> [--wymagaj pelne] [--galaz <nazwa>] — hak pre-push: kod 0, gdy drzewo commitu <sha> ma znacznik „pelne” albo „szybkie” (od 03.11.2026,
 //                                                                  decyzja właściciela ~21:45 PL, wariant A: pełne testy w CI), albo „dokumenty” i zmiany od origin/main albo od najbliższego
 //                                                                  przodka ze znacznikiem „pelne”/„szybkie” to same dokumenty (H1, 31.10.2026, ZB-028); inaczej kod 1 z poleceniem naprawy.
+//                                                                  „lekkie” (verify:lekkie, 08.11.2026, wariant A „A + B mądrze”: bez testów Jest, pełne w tests.yml) wystarcza tylko, gdy wypychana gałąź (--galaz) to nie main;
 //                                                                  --wymagaj pelne (scal-galaz --do main): „szybkie” nie wystarcza, baza dla dokumentów tylko „pelne"
 //                                                                  --galaz (hak: wypychana gałąź): baza dla dokumentów może być też origin/<gałąź> z zielonym tests.yml (ZB-041 G4, 04.11.2026)
 // Plik: <wspólny katalog .git>/verify-znaczniki.json (wspólny dla worktree), ostatnie MAKS wpisów; VERIFY_ZNACZNIK_PLIK zastępuje ścieżkę (testy).
@@ -17,7 +18,7 @@ import { jestDokumentem } from './dokumenty.mjs';
 import { zielonyTests } from './ci-wynik.mjs';
 
 const MAKS = 50;
-const RODZAJE = ['pelne', 'szybkie', 'dokumenty'];
+const RODZAJE = ['pelne', 'szybkie', 'lekkie', 'dokumenty'];
 const git = (...a) => execFileSync('git', a, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 const sprobuj = (...a) => { try { return git(...a); } catch { return null; } };
 const GLEBIA = 500; /* ilu przodków przeglądamy w poszukiwaniu commitu z pełnym verify */
@@ -91,14 +92,17 @@ function tylkoDokumentyOd(baza, sha) {
 /** Baza origin/main (jak dotąd) albo — H1 — najbliższy przodek z pełnym verify. */
 const tylkoDokumenty = (sha, rodzaje, zdalne = []) => tylkoDokumentyOd(sprobuj('merge-base', 'origin/main', sha), sha) || tylkoDokumentyOd(bazaPelnego(sha, rodzaje), sha) || zdalne.some(b => tylkoDokumentyOd(b, sha));
 
-export function sprawdz(sha, wymagaj = null, zdalne = [], cicho = false) {
-  const rodzaje = wymagaj === 'pelne' ? ['pelne'] : ['pelne', 'szybkie'];
+/** Rodzaje znaczników wystarczające dla gałęzi docelowej: main i scalenie (--wymagaj pelne) bez „lekkie” (08.11.2026). */
+export const rodzajeDla = (wymagaj = null, galaz = null) => wymagaj === 'pelne' ? ['pelne'] : galaz && galaz !== 'main' ? ['pelne', 'szybkie', 'lekkie'] : ['pelne', 'szybkie'];
+
+export function sprawdz(sha, wymagaj = null, zdalne = [], cicho = false, galaz = null) {
+  const rodzaje = rodzajeDla(wymagaj, galaz);
   const drzewo = sha && sprobuj('rev-parse', `${sha}^{tree}`);
   if (!drzewo) { console.error(`verify-znacznik: nie znam commitu ${sha}`); return 1; }
   const wpisy = czytaj().filter(w => w.drzewo === drzewo);
   if (wpisy.some(w => rodzaje.includes(w.rodzaj))) return 0;
   if (wpisy.some(w => w.rodzaj === 'dokumenty') && tylkoDokumenty(sha, rodzaje, zdalne)) return 0;
-  if (!cicho) console.error(`verify-znacznik: commit ${sha.slice(0, 7)} nie ma zielonego ${wymagaj === 'pelne' ? 'PEŁNEGO verify' : 'verify (verify:szybkie)'} dla tego stanu plików${wpisy.length ? ' (znacznik verify:docs, a zmiany to nie same dokumenty)' : ''}.`);
+  if (!cicho) console.error(`verify-znacznik: commit ${sha.slice(0, 7)} nie ma zielonego ${wymagaj === 'pelne' ? 'PEŁNEGO verify' : galaz === 'main' || !galaz ? 'verify (verify:szybkie)' : 'verify (verify:lekkie)'} dla tego stanu plików${wpisy.length ? ' (znacznik verify:docs, a zmiany to nie same dokumenty)' : ''}.`);
   return 1;
 }
 
@@ -111,12 +115,12 @@ if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.
     const wymagaj = a[a.indexOf('--wymagaj') + 1] === 'pelne' && a.includes('--wymagaj') ? 'pelne' : null;
     const galaz = a.includes('--galaz') ? a[a.indexOf('--galaz') + 1] : null;
     /* G4: najpierw bez sieci; baza z zielonym tests.yml gałęzi (zapytanie do API) dopiero, gdy to nie wystarcza — nie dla scalenia do main (--wymagaj pelne) */
-    let kod = sprawdz(a[j + 1], wymagaj, [], Boolean(galaz) && !wymagaj);
+    let kod = sprawdz(a[j + 1], wymagaj, [], Boolean(galaz) && !wymagaj, galaz);
     if (kod !== 0 && galaz && !wymagaj) {
       const b = await bazaZdalna(galaz, a[j + 1]);
-      kod = b ? sprawdz(a[j + 1], wymagaj, [b]) : sprawdz(a[j + 1], wymagaj);
+      kod = b ? sprawdz(a[j + 1], wymagaj, [b], false, galaz) : sprawdz(a[j + 1], wymagaj, [], false, galaz);
     }
     process.exit(kod);
   }
-  console.error('użycie: --czysta | --zapisz pelne|szybkie|dokumenty | --sprawdz <sha> [--wymagaj pelne] [--galaz <nazwa>]'); process.exit(2);
+  console.error('użycie: --czysta | --zapisz pelne|szybkie|lekkie|dokumenty | --sprawdz <sha> [--wymagaj pelne] [--galaz <nazwa>]'); process.exit(2);
 }
