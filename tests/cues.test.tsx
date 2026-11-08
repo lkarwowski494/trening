@@ -23,6 +23,7 @@ import P2_MOC from './fixtures/cues-p2-moc.json';
 import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
 import T1_DELT from './fixtures/cues-t1-delt-raise.json';
 import T1_TRI from './fixtures/cues-t1-triceps.json';
+import A2_NOGI from './fixtures/cues-a2-nogi.json';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
@@ -32,7 +33,7 @@ describe('dane wskazówek', () => {
     const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open, ...CUE_DATA.hidden]); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
     expect([...LIB_BASE_NAMES].filter(n => !covered.has(n))).toEqual([]);
     /* poza bazą tylko karty własne z partii P1 (G2 mobilność, 02.11.2026; tests/fixtures/cues-p1-mobilnosc.json) i P2 (G3 moc, 03.11.2026; tests/fixtures/cues-p2-moc.json) integracji badań */
-    expect([...covered].filter(n => !LIB_BASE_NAMES.has(n) && !P1_MOBILNOSC.cwiczenia.includes(n) && !P2_MOC.cwiczenia.includes(n) && !T1_DELT.cwiczenia.includes(n) && !T1_TRI.cwiczenia.includes(n))).toEqual([]);
+    expect([...covered].filter(n => !LIB_BASE_NAMES.has(n) && !P1_MOBILNOSC.cwiczenia.includes(n) && !P2_MOC.cwiczenia.includes(n) && !T1_DELT.cwiczenia.includes(n) && !T1_TRI.cwiczenia.includes(n) && !A2_NOGI.cwiczenia.includes(n))).toEqual([]);
     for (const k of CUE_DATA.open) expect(CUE_DATA.exercises[k]).toBeUndefined(); /* powody otwartych — tests/zrodla-pelne-cues.test.ts */
     expect(Object.keys(CUE_DATA.exercises).length).toBeGreaterThanOrEqual(70);
   });

@@ -552,6 +552,11 @@
    "name": "app-s8",
    "level": 5,
    "kind": "app"
+  },
+  "Thera-Band": {
+   "name": "Thera-Band (Performance Health) — instrukcje ćwiczeń z gumami (producent gum)",
+   "level": 4,
+   "kind": "maker"
   }
  },
  "sources": {
@@ -1502,13 +1507,6 @@
    "title": "SL45LegPress",
    "url": "https://exrx.net/WeightExercises/Quadriceps/SL45LegPress",
    "archive": "https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress",
-   "level": 4
-  },
-  "exrx-Quadriceps/SLHackSquat": {
-   "org": "ExRx.net",
-   "title": "SLHackSquat",
-   "url": "https://exrx.net/WeightExercises/Quadriceps/SLHackSquat",
-   "archive": "https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat",
    "level": 4
   },
   "exrx-RectusAbdominis/BWCrunch": {
@@ -3205,6 +3203,174 @@
    "url": "https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/",
    "level": 5,
    "strona": "odczyt 04.11.2026: strona biblioteki ćwiczeń bez podpisu autora i biogramu → szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2); do potwierdzenia przez badacza"
+  },
+  "ace-145": {
+   "org": "ACE",
+   "title": "glute bridge single leg progression",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/",
+   "level": 4
+  },
+  "ace-270": {
+   "org": "ACE",
+   "title": "quadruped bent knee hip extensions",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/",
+   "level": 4
+  },
+  "ace-pro-5043": {
+   "org": "ACE",
+   "title": "how to self care for the it band",
+   "url": "https://www.acefitness.org/resources/pros/expert-articles/5043/how-to-self-care-for-the-it-band/",
+   "level": 4
+  },
+  "ace-pro-6315": {
+   "org": "ACE",
+   "title": "8 hip strengthening exercises using the versa loop",
+   "url": "https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/",
+   "level": 4
+  },
+  "ace-pro-6355": {
+   "org": "ACE",
+   "title": "8 butt toning moves",
+   "url": "https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/",
+   "level": 4
+  },
+  "ace-pro-6402": {
+   "org": "ACE",
+   "title": "5 ab exercises no crunches no equipment",
+   "url": "https://www.acefitness.org/resources/pros/expert-articles/6402/5-ab-exercises-no-crunches-no-equipment/",
+   "level": 4
+  },
+  "ace-pro-7409": {
+   "org": "ACE",
+   "title": "7 new moves to challenge your glutes and hamstrings",
+   "url": "https://www.acefitness.org/resources/pros/expert-articles/7409/7-new-moves-to-challenge-your-glutes-and-hamstrings/",
+   "level": 4
+  },
+  "barbend-band-glutes": {
+   "org": "BarBend",
+   "title": "resistance band exercises for glutes",
+   "url": "https://barbend.com/resistance-band-exercises-for-glutes/",
+   "level": 4
+  },
+  "barbend-glute-kickbacks": {
+   "org": "BarBend",
+   "title": "glute kickbacks",
+   "url": "https://barbend.com/glute-kickbacks/",
+   "level": 4
+  },
+  "barbend-hack-squat-machine": {
+   "org": "BarBend",
+   "title": "hack squat machine",
+   "url": "https://barbend.com/hack-squat-machine/",
+   "level": 4
+  },
+  "bodylastics-standing-calf-raise-flat-bands": {
+   "org": "Bodylastics",
+   "title": "standing calf raises with flat bands",
+   "url": "https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands",
+   "level": 4
+  },
+  "catalyst-496": {
+   "org": "Catalyst Athletics",
+   "title": "Single Leg Glute Bridge",
+   "url": "https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/",
+   "level": 4
+  },
+  "catalyst-723": {
+   "org": "Catalyst Athletics",
+   "title": "Single Leg Bench Supported Glute Bridge",
+   "url": "https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/",
+   "level": 4
+  },
+  "catalyst-766": {
+   "org": "Catalyst Athletics",
+   "title": "Clamshell",
+   "url": "https://catalystathletics.com/exercise/766/Clamshell/",
+   "level": 4
+  },
+  "hss-mini-band-hip-ext": {
+   "org": "HSS",
+   "title": "mini band exercises for runners",
+   "url": "https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners",
+   "level": 4
+  },
+  "issa-25min-calves": {
+   "org": "ISSA",
+   "title": "25 minute calf workout",
+   "url": "https://issaonline.com/blog/post/25-minute-calf-workout",
+   "level": 4
+  },
+  "issa-donkey-kicks": {
+   "org": "ISSA",
+   "title": "donkey kicks benefits and variations for strong glutes",
+   "url": "https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes",
+   "level": 4
+  },
+  "issa-hip-abduction": {
+   "org": "ISSA",
+   "title": "hip abduction exercises for stronger hips and glutes",
+   "url": "https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes",
+   "level": 4
+  },
+  "issa-hip-thrust-variations": {
+   "org": "ISSA",
+   "title": "hip thrusts benefits and variations for stronger glutes",
+   "url": "https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes",
+   "level": 4
+  },
+  "issa-top6-calves": {
+   "org": "ISSA",
+   "title": "top six exercises for building bigger calves",
+   "url": "https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves",
+   "level": 4
+  },
+  "nasm-blog-active-recovery": {
+   "org": "NASM",
+   "title": "active recovery",
+   "url": "https://www.nasm.org/resource-center/blog/active-recovery",
+   "level": 4
+  },
+  "nasm-blog-banded-clamshell": {
+   "org": "NASM",
+   "title": "the banded clamshell a simple move for stronger glutes",
+   "url": "https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes",
+   "level": 4
+  },
+  "nasm-single-leg-press": {
+   "org": "NASM",
+   "title": "single leg press",
+   "url": "https://www.nasm.org/resource-center/exercise-library/single-leg-press",
+   "level": 4
+  },
+  "nfpt-hack-squat": {
+   "org": "NFPT",
+   "title": "how to do hack squats",
+   "url": "https://nfpt.com/how-to-do-hack-squats/",
+   "level": 4
+  },
+  "nsca-scj-hip-thrust": {
+   "org": "NSCA",
+   "title": "barbell hip thrust",
+   "url": "https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf",
+   "level": 4
+  },
+  "ph-wobble-hip-ext": {
+   "org": "Thera-Band",
+   "title": "thera band wobble board hip extension with band",
+   "url": "https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html",
+   "level": 4
+  },
+  "staywell-seated-hamstring-curl": {
+   "org": "WebMD Ignite",
+   "title": "3,S,90814",
+   "url": "https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814",
+   "level": 4
+  },
+  "theraband-ankle-calf-raise-standing": {
+   "org": "Thera-Band",
+   "title": "thera band ankle calf raise in standing",
+   "url": "https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html",
+   "level": 4
   }
  },
  "exercises": {
@@ -7505,15 +7671,15 @@
   "Hack Squat": {
    "setup": [
     {
-     "c": "hack.setup",
+     "c": "hack.setup2",
      "s": [
       [
-       "exrx-Quadriceps/SLHackSquat",
-       "Preparation"
+       "barbend-hack-squat-machine",
+       "Step 2: Set Your Stance (back against the backrest; head between the shoulder pads; typical squat stance)"
       ],
       [
-       "ace-154",
-       "Step 1 (prasa — ta sama zasada oparcia)"
+       "nfpt-hack-squat",
+       "Setup (shoulders against the shoulder pads, feet on the platform); Options (medium stance: feet shoulder width apart)"
       ]
      ]
     }
@@ -7523,58 +7689,31 @@
      "c": "hack.move",
      "s": [
       [
-       "exrx-Quadriceps/SLHackSquat",
-       "Execution"
+       "barbend-hack-squat-machine",
+       "Step 3: Squat (slide down into a deep squat; push into the plate to return)"
       ],
       [
-       "ace-154",
-       "Step 2–4"
+       "nfpt-hack-squat",
+       "Movement (bending at the hips and knees, lower the weight)"
       ]
      ]
     }
    ],
-   "tips": [
+   "mistakes": [
     {
-     "c": "lp.heels",
+     "c": "hack.mis.hips",
      "s": [
       [
-       "exrx-Quadriceps/SLHackSquat",
-       "Comments (do not allow heels to raise)"
+       "barbend-hack-squat-machine",
+       "Common Mistakes (hips and torso connected with the pad at all times; pelvis or lower-back drift)"
       ],
       [
-       "ace-154",
-       "Step 2; Step 3"
-      ]
-     ]
-    },
-    {
-     "c": "lp.hips",
-     "s": [
-      [
-       "exrx-Quadriceps/SLHackSquat",
-       "Comments (pelvis pulls away from back pad)"
-      ],
-      [
-       "ace-154",
-       "Step 3; Step 4"
-      ]
-     ]
-    },
-    {
-     "c": "sq.kneesToes",
-     "s": [
-      [
-       "exrx-Quadriceps/SLHackSquat",
-       "Comments (knees pointed same direction as feet)"
-      ],
-      [
-       "nasm-leg-press",
-       "Common Mistakes (knees cave inward; prasa — ta sama zasada)"
+       "nfpt-hack-squat",
+       "Cautions (do not let your hips come off the pad or arch your back)"
       ]
      ]
     }
-   ],
-   "mistakes": []
+   ]
   },
   "Plank": {
    "setup": [
@@ -18645,6 +18784,1305 @@
      ]
     }
    ]
+  },
+  "Single Leg Calf Raise": {
+   "setup": [
+    {
+     "c": "calf.stepOne",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Single-Leg Calf Raises (także „on … an elevated platform”); Elevated Calf Raises (pięty poza krawędzią)"
+      ],
+      [
+       "ace-73",
+       "Exercise Variation (1): Single-leg Calf Raise („bend your left knee to lift your left foot off the floor”; wariant: z podłogi)"
+      ],
+      [
+       "nasm-calf-blog",
+       "The Exercise Menu („dumbbell on a step”; wariant: obunóż)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises („until the heels are slightly below the raised platform”; uproszczenie: wariant jednonóż)"
+      ],
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (wariant: obunóż)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "ace-73",
+       "Step 2 („keeping your knees extended”); Variation (1)"
+      ],
+      [
+       "issa-top6-calves",
+       "Standing Calf Raises („a straight knee”)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "ace-73",
+       "Step 2–3 („Hold your raised position briefly.”; „slowly lower your heels”)"
+      ],
+      [
+       "issa-top6-calves",
+       "Standing Calf Raises (slight pause at the top)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything"
+      ],
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises (standard pełnego zakresu; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Seated Calf Raise (hantle)": {
+   "setup": [
+    {
+     "c": "calf.seatedEdge",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Seated Calf Raises („Heels should be hanging with the balls of the feet pressing into the foot platform on the machine.”; uproszczenie: wariant sprzętu — maszyna)"
+      ],
+      [
+       "pmc-10753835",
+       "Methods, Participants and overview („seated/knee 90°-flexed position”); ryc. 1 (zakres od 20° zgięcia grzbietowego — pięty niżej niż palce; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "pmc-10753835",
+       "ryc. 1 (zakres od 20° zgięcia grzbietowego do 30° podeszwowego, kolano 90°; parafraza)"
+      ],
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise („let your heels drop below the foot platform”; uproszczenie: wariant sprzętu — maszyna)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise („squeeze the back of the legs at the top of the motion”)"
+      ],
+      [
+       "ace-51",
+       "opis (pauza na górze, powolne opuszczanie; wariant: stojąc)"
+      ],
+      [
+       "pmc-10753835",
+       "Methods, Training program (2 s opuszczania; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (wariant: stojąc)"
+      ],
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise (standard: pięty poniżej podestu, napięcie na górze; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Smith Machine Calf Raise": {
+   "setup": [
+    {
+     "c": "calf.edge",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises („heels of both feet hanging off the edge of the platform”; uproszczenie: wariant sprzętu — wspięcia stojąc na podeście)"
+      ],
+      [
+       "nasm-calf-blog",
+       "The Exercise Menu („Standing calf raise (machine, smith, or dumbbell on a step)”); Technique Standards (pięty poniżej palców)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises (opuszczanie „until the heels are slightly below the raised platform”)"
+      ],
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "issa-25min-calves",
+       "Standing Calf Raise („Keep your legs straight without locking out your knees completely.”)"
+      ],
+      [
+       "ace-51",
+       "opis („Keep a slight bend in knees”; wariant: sztanga)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Standing Calf Raises („…with a slight pause at the top of the contraction.”)"
+      ],
+      [
+       "ace-51",
+       "opis („Pause at the top, and slowly roll the heels back down”; wariant: sztanga)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (szybkie, niepełne powtórzenia jako częsty błąd)"
+      ],
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises (standard: wspięcie z pauzą na górze i opuszczenie pięt poniżej podestu; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Calf Raise (sztanga)": {
+   "setup": [
+    {
+     "c": "calf.edge",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises (uproszczenie: wariant sprzętu — wspięcia stojąc na podeście); ISSA 25-min: obciążenie „place a barbell on your back”"
+      ],
+      [
+       "nasm-calf-blog",
+       "The Exercise Menu; Technique Standards (pięty poniżej palców; wariant: maszyna/Smith/hantle)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises („until the heels are slightly below the raised platform”)"
+      ],
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "ace-51",
+       "opis („Keep a slight bend in knees”)"
+      ],
+      [
+       "issa-25min-calves",
+       "Standing Calf Raise („Keep your legs straight without locking out your knees completely.”)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "ace-51",
+       "opis („Pause at the top, and slowly roll the heels back down”)"
+      ],
+      [
+       "issa-top6-calves",
+       "Standing Calf Raises (slight pause at the top)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (szybkie, niepełne powtórzenia)"
+      ],
+      [
+       "issa-top6-calves",
+       "Elevated Calf Raises (standard pełnego zakresu; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Calf Raise (linki)": {
+   "setup": [
+    {
+     "c": "calf.stand",
+     "s": [
+      [
+       "ace-51",
+       "opis („toes pointed forward”; uproszczenie: wariant sprzętu — sztanga)"
+      ],
+      [
+       "issa-top6-calves",
+       "Standing Calf Raises („toes pointed forward and a straight knee”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.rise",
+     "s": [
+      [
+       "ace-51",
+       "opis („press the toes into the ground while lifting the heels up”; „slowly roll the heels back down to the floor”)"
+      ],
+      [
+       "issa-25min-calves",
+       "Standing Calf Raise („slowly raise your heels off the ground”; obciążenie trzymane przy bokach)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "ace-51",
+       "opis („Keep a slight bend in knees”)"
+      ],
+      [
+       "issa-25min-calves",
+       "Standing Calf Raise („Keep your legs straight without locking out your knees completely.”)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "ace-51",
+       "opis („Pause at the top…”)"
+      ],
+      [
+       "issa-top6-calves",
+       "Standing Calf Raises (slight pause at the top)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (szybkie, niepełne powtórzenia; wariant: na podeście)"
+      ],
+      [
+       "ace-51",
+       "opis (pełne wspięcie i opuszczenie pięt do podłogi; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Seated Calf Raise": {
+   "setup": [
+    {
+     "c": "calf.seatedEdge",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Seated Calf Raises (pięty poza podestem; uproszczenie: wariant sprzętu — maszyna)"
+      ],
+      [
+       "pmc-10753835",
+       "Methods („seated/knee 90°-flexed position”); ryc. 1 (parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "pmc-10753835",
+       "ryc. 1 (zakres zgięcia grzbietowego i podeszwowego w siadzie; parafraza)"
+      ],
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise („let your heels drop below the foot platform”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise (squeeze at the top)"
+      ],
+      [
+       "ace-51",
+       "opis (wariant: stojąc)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (wariant: stojąc)"
+      ],
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise (standard pełnego zakresu; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Band Calf Raise": {
+   "setup": [
+    {
+     "c": "calf.band",
+     "s": [
+      [
+       "bodylastics-standing-calf-raise-flat-bands",
+       "Setup (uchwyt w każdej dłoni, tułów wyprostowany)"
+      ],
+      [
+       "theraband-ankle-calf-raise-standing",
+       "Step One–Two (guma pod przednią częścią stóp, końce w dłoniach przy biodrach)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.rise",
+     "s": [
+      [
+       "bodylastics-standing-calf-raise-flat-bands",
+       "Movement („as high on your toes as you can go”; „Lower your heels back to the floor under control.”)"
+      ],
+      [
+       "theraband-ankle-calf-raise-standing",
+       "Step Three–Four"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "theraband-ankle-calf-raise-standing",
+       "Step Four („Hold and slowly return.”)"
+      ],
+      [
+       "ace-51",
+       "opis (wariant: sztanga)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (wariant: stojąc na podeście)"
+      ],
+      [
+       "bodylastics-standing-calf-raise-flat-bands",
+       "Movement (pełne wspięcie i opuszczenie pięt; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dumbbell Seated One-Leg Calf Raise": {
+   "setup": [
+    {
+     "c": "calf.seatedEdge",
+     "s": [
+      [
+       "issa-top6-calves",
+       "Seated Calf Raises (uproszczenie: wariant sprzętu — maszyna; wariant: obunóż)"
+      ],
+      [
+       "pmc-10753835",
+       "Methods („seated/knee 90°-flexed position”, trening jednej nogi w siadzie); ryc. 1 (parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "pmc-10753835",
+       "ryc. 1 (parafraza)"
+      ],
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise („let your heels drop below the foot platform”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise (squeeze at the top)"
+      ],
+      [
+       "ace-51",
+       "opis (wariant: stojąc)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-calf-blog",
+       "Technique Standards That Change Everything (wariant: stojąc)"
+      ],
+      [
+       "issa-25min-calves",
+       "Seated Calf Raise (standard pełnego zakresu; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Cable Kickback": {
+   "setup": [
+    {
+     "c": "ck.setup",
+     "s": [
+      [
+       "ace-pro-6355",
+       "Single-leg cable extension (mankiet na kostce, niski wyciąg)"
+      ],
+      [
+       "barbend-glute-kickbacks",
+       "How to Do the Glute Kickback, kroki 1–2 (lowest position; face the cable machine)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ck.move",
+     "s": [
+      [
+       "ace-pro-6355",
+       "Single-leg cable extension (Slowly raise the heel by initiating the movement from the glutes)"
+      ],
+      [
+       "barbend-glute-kickbacks",
+       "How to Do the Glute Kickback (Squeeze your glute… as you drive your leg backward)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hab.hips",
+     "s": [
+      [
+       "barbend-glute-kickbacks",
+       "Common mistakes: Not Bracing Properly (only contract your glutes)"
+      ],
+      [
+       "ace-pro-6355",
+       "Single-leg cable extension (keeping an erect torso)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ck.mis.sway",
+     "s": [
+      [
+       "barbend-glute-kickbacks",
+       "Common mistakes: Not Bracing Properly (don't flare your upper back, or sway your hips)"
+      ],
+      [
+       "ace-pro-6355",
+       "Single-leg cable extension (keeping an erect torso — błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    },
+    {
+     "c": "hext.mis.arch",
+     "s": [
+      [
+       "barbend-glute-kickbacks",
+       "Common mistakes: Not Bracing Properly (Do not allow your lower back to arch)"
+      ],
+      [
+       "hss-mini-band-hip-ext",
+       "Diagonal hip extension, Cautions (Don't arch your lower back to get more range) — uproszczenie: wariant sprzętu guma"
+      ]
+     ]
+    }
+   ]
+  },
+  "Fire Hydrant": {
+   "setup": [
+    {
+     "c": "bd.setup",
+     "s": [
+      [
+       "ace-pro-7409",
+       "Fire Hydrant (Start in a quadruped position with the hands under the shoulders and knees under the hips)"
+      ],
+      [
+       "issa-hip-abduction",
+       "Fire Hydrant (klęk podparty, dłonie w linii barków)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "fh.move",
+     "s": [
+      [
+       "ace-pro-7409",
+       "Fire Hydrant (slowly lifting the right leg out to the side… keeping the knee bent)"
+      ],
+      [
+       "issa-hip-abduction",
+       "Fire Hydrant (raising your right knee away from the body keeping the leg flexed)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "fh.level",
+     "s": [
+      [
+       "ace-pro-6402",
+       "Two-legged Fire Hydrant (keep your hips level) — wariant z uniesioną ręką"
+      ],
+      [
+       "issa-hip-abduction",
+       "Fire Hydrant (without rotating or twisting the hips)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "fh.mis.twist",
+     "s": [
+      [
+       "issa-hip-abduction",
+       "Fire Hydrant (Raise the leg up as far as you can without rotating or twisting the hips — błąd = zaprzeczenie standardu)"
+      ],
+      [
+       "ace-pro-6402",
+       "Two-legged Fire Hydrant (keep your hips level — błąd = zaprzeczenie standardu; wariant)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Donkey Kick": {
+   "setup": [
+    {
+     "c": "bd.setup",
+     "s": [
+      [
+       "ace-270",
+       "Step 1 (knees directly under your hips, hands directly under your shoulders)"
+      ],
+      [
+       "issa-donkey-kicks",
+       "How to Do a Donkey Kick Correctly (Start on all fours…)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dk.move",
+     "s": [
+      [
+       "issa-donkey-kicks",
+       "How to Do a Donkey Kick Correctly (stopa w stronę sufitu; The movement should be slow.)"
+      ],
+      [
+       "ace-270",
+       "Step 2 (while maintaining your bent-knee position)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-270",
+       "Step 1/2 (Stiffen your core and abdominal muscles)"
+      ],
+      [
+       "issa-donkey-kicks",
+       "How to Do… (Engage and tighten your core)"
+      ]
+     ]
+    },
+    {
+     "c": "hext.range",
+     "s": [
+      [
+       "ace-270",
+       "uwaga po kroku 3 (Only raise the leg to a height where the low back position can be maintained)"
+      ],
+      [
+       "issa-donkey-kicks",
+       "How to Do… (Don't lift so high that your back starts to arch)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "hext.mis.arch",
+     "s": [
+      [
+       "issa-donkey-kicks",
+       "How to Do… (za wysoko unoszona noga wygina plecy)"
+      ],
+      [
+       "ace-270",
+       "uwaga po kroku 3 (an increase in lumbar lordosis)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Clamshell": {
+   "setup": [
+    {
+     "c": "clam.setup",
+     "s": [
+      [
+       "nasm-blog-banded-clamshell",
+       "How to Perform a Banded Clamshell (lie on one side with the knees bent and stacked)"
+      ],
+      [
+       "ace-pro-6315",
+       "Clam Shells (leżenie na boku, kolana ugięte, nogi jedna na drugiej)"
+      ],
+      [
+       "catalyst-766",
+       "opis (Lie on one side with the knees bent to approximately 90 degrees)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "clam.move",
+     "s": [
+      [
+       "nasm-blog-banded-clamshell",
+       "How to Perform a Banded Clamshell (Keeping the feet together… lifts the top knee as high as possible; slow and controlled)"
+      ],
+      [
+       "ace-pro-6315",
+       "Clam Shells (Keeping the inner arches of the feet together, externally rotate the top leg)"
+      ],
+      [
+       "catalyst-766",
+       "opis (lift the top knee as far as possible and return under control)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "clam.noRoll",
+     "s": [
+      [
+       "nasm-blog-banded-clamshell",
+       "How to Perform a Banded Clamshell (without allowing the hips to rotate backward)"
+      ],
+      [
+       "catalyst-766",
+       "opis (Without rolling the body)"
+      ]
+     ]
+    },
+    {
+     "c": "llc.control",
+     "s": [
+      [
+       "nasm-blog-banded-clamshell",
+       "How to Perform; Coaching (avoid using momentum)"
+      ],
+      [
+       "catalyst-766",
+       "opis (return under control)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "clam.mis.roll",
+     "s": [
+      [
+       "nasm-blog-banded-clamshell",
+       "How to Perform; FAQ (bez odchylania miednicy do tyłu — błąd = zaprzeczenie standardu)"
+      ],
+      [
+       "catalyst-766",
+       "opis (Without rolling the body — błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hip Extension with Bands": {
+   "setup": [
+    {
+     "c": "hexb.setup",
+     "s": [
+      [
+       "hss-mini-band-hip-ext",
+       "Diagonal hip extension: Setup (mini band around both ankles); shift your weight onto one leg"
+      ],
+      [
+       "barbend-band-glutes",
+       "5. Resistance Band Glute Kickback (band at your ankles; shift your weight onto one leg)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ck.move",
+     "s": [
+      [
+       "hss-mini-band-hip-ext",
+       "Diagonal hip extension (Reach the other heel back… squeeze the glute… return slowly)"
+      ],
+      [
+       "barbend-band-glutes",
+       "5. Resistance Band Glute Kickback (flex your glute to move it away from your body)"
+      ],
+      [
+       "ph-wobble-hip-ext",
+       "Step Two (Extend your hip against the band and slowly return) — wariant: na desce balansowej"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "hss-mini-band-hip-ext",
+       "Diagonal hip extension (core engaged)"
+      ],
+      [
+       "barbend-band-glutes",
+       "5. Resistance Band Glute Kickback (a solid core brace)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "hext.mis.arch",
+     "s": [
+      [
+       "hss-mini-band-hip-ext",
+       "Cautions (Don't arch your lower back to get more range)"
+      ],
+      [
+       "ph-wobble-hip-ext",
+       "Step Two (Keep your back and neck straight — błąd = zaprzeczenie standardu; wariant: na desce balansowej)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Lateral Band Walk": {
+   "setup": [
+    {
+     "c": "bw.setup",
+     "s": [
+      [
+       "nasm-blog-active-recovery",
+       "Lateral Band Walk — minigumę „just above your knees (or lower…)”, stopy na szerokość bioder"
+      ],
+      [
+       "ace-pro-5043",
+       "Lateral Band Walks — „Place a band of appropriate resistance around the shins, above the ankles.”"
+      ],
+      [
+       "ace-pro-6315",
+       "Monster Walks (chód w bok) — „Place the Versa Loop just above the knee.”"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bw.move",
+     "s": [
+      [
+       "nasm-blog-active-recovery",
+       "Lateral Band Walk — „sidestep in one direction with slow and controlled steps”"
+      ],
+      [
+       "ace-pro-6315",
+       "Monster Walks — „Laterally walk to the right, with the right leg initiating the step.”"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bw.squat",
+     "s": [
+      [
+       "nasm-blog-active-recovery",
+       "Lateral Band Walk — kolana ugięte, pozycja atletyczna („almost a squat”)"
+      ],
+      [
+       "ace-pro-6315",
+       "Monster Walks — „keep a soft bend at the knees”"
+      ]
+     ]
+    },
+    {
+     "c": "bw.tension",
+     "s": [
+      [
+       "nasm-blog-active-recovery",
+       "Lateral Band Walk — stopy co najmniej na szerokość bioder, by utrzymać opór gumy"
+      ],
+      [
+       "ace-pro-6315",
+       "Monster Walks — „Maintain resistance with the band”"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "bw.mis.sway",
+     "s": [
+      [
+       "nasm-blog-active-recovery",
+       "Lateral Band Walk — „Keep your core tight so that your upper body does not sway.”"
+      ],
+      [
+       "ace-pro-6315",
+       "Monster Walks — „Begin in an upright, athletic stance…” (błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Leg Glute Bridge": {
+   "setup": [
+    {
+     "c": "gb.slSetup",
+     "s": [
+      [
+       "ace-145",
+       "Step 1"
+      ],
+      [
+       "catalyst-496",
+       "opis (one knee bent, other leg straight)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "gb.slMove",
+     "s": [
+      [
+       "ace-145",
+       "Step 2; Step 3"
+      ],
+      [
+       "catalyst-496",
+       "opis (press through the whole foot, emphasizing the heel; lower under control)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ht.rigid",
+     "s": [
+      [
+       "ace-145",
+       "Step 1 (brace abs); Step 2 (avoid pushing your hips too high … arching)"
+      ],
+      [
+       "catalyst-496",
+       "opis (ensure the motion is at the hip)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ht.mis.arch",
+     "s": [
+      [
+       "ace-145",
+       "Step 2"
+      ],
+      [
+       "catalyst-496",
+       "opis (not excessive lumbar extension)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Leg Hip Thrust": {
+   "setup": [
+    {
+     "c": "ht.slSetup",
+     "s": [
+      [
+       "catalyst-723",
+       "opis (upper back on a padded bench, one leg bent and foot flat on the floor, the other extended straight forward)"
+      ],
+      [
+       "issa-hip-thrust-variations",
+       "4. Single-Leg Hip Thrust (one foot lifted slightly off the ground) + Basic Hip Thrust Technique (back on a bench, feet flat)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ht.move",
+     "s": [
+      [
+       "catalyst-723",
+       "opis (push through the floor… extend your hip maximally; return to the floor under control)"
+      ],
+      [
+       "issa-hip-thrust-variations",
+       "4. Single-Leg Hip Thrust (opposite glute controls the hip extension) + Basic Hip Thrust Technique (press hips up, pause, lower)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ht.rigid",
+     "s": [
+      [
+       "catalyst-723",
+       "opis (ensure the motion is at the hip and not excessive lumbar extension)"
+      ],
+      [
+       "nsca-scj-hip-thrust",
+       "Exercise Technique, s. 59 (extension movement comes from the hips, not from the lumbopelvic region; uproszczenie: wersja obunóż — ISSA: poza jedną nogą jak w podstawowym)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ht.mis.arch",
+     "s": [
+      [
+       "catalyst-723",
+       "opis (not excessive lumbar extension)"
+      ],
+      [
+       "nsca-scj-hip-thrust",
+       "Exercise Technique, s. 59 (excessive lumbar hyperextension; uproszczenie: wersja obunóż)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Glute Bridge (sztanga)": {
+   "setup": [
+    {
+     "c": "gb.bbSetup",
+     "s": [
+      [
+       "ace-318",
+       "opis, zdania 1–2 (lie underneath the bar, top of the hips directly under the bar; feet flat on the ground hip-width apart)"
+      ],
+      [
+       "acecert-7403",
+       "The Origins of the Hip Thrust (lying face-up on the floor… knees bent and feet flat; barbell across the top of the hips, usually on a pad) — ta sama organizacja co ace-318"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Step 1: Setup (uproszczenie: wariant sprzętu Glute Bridge — bez sztangi)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "gb.move",
+     "s": [
+      [
+       "ace-318",
+       "opis, zdania 4–5 (press the feet into the floor and lift the hips; slowly lower the tailbone)"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Step 3; Step 4 (uproszczenie: wariant sprzętu Glute Bridge)"
+      ],
+      [
+       "ace-49",
+       "Step 2; Step 3 (linia barki–biodra–kolana; uproszczenie: wariant sprzętu Glute Bridge)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "gb.heels",
+     "s": [
+      [
+       "ace-49",
+       "Step 2 (press your heels into the floor; uproszczenie: wariant sprzętu Glute Bridge)"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Step 3; FAQ (driving through your heels; uproszczenie: wariant sprzętu Glute Bridge)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ht.mis.arch",
+     "s": [
+      [
+       "ace-49",
+       "wskazówka końcowa (uproszczenie: wariant sprzętu Glute Bridge)"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Common Mistakes; FAQ (uproszczenie: wariant sprzętu Glute Bridge)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Seated Band Hamstring Curl": {
+   "setup": [
+    {
+     "c": "bandcurl.setup",
+     "s": [
+      [
+       "staywell-seated-hamstring-curl",
+       "kroki 1–3 („Sit in a chair facing the closed door. Slip the loop of the elastic exercise band around the heel of your leg.”)"
+      ],
+      [
+       "nasm-single-leg-seated-leg-curl",
+       "uproszczenie: wariant sprzętu Seated Leg Curl (maszyna); Step 1–2 (siad, opór z przodu tuż nad kostką; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bandcurl.move",
+     "s": [
+      [
+       "staywell-seated-hamstring-curl",
+       "kroki („Slowly pull the elastic band backward along the floor with your heel”; „Slowly return your leg to the starting position.”)"
+      ],
+      [
+       "nasm-single-leg-seated-leg-curl",
+       "uproszczenie: wariant sprzętu; Step 3–4 (pięta w stronę pośladka, powrót z kontrolą; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lcurl.full",
+     "s": [
+      [
+       "staywell-seated-hamstring-curl",
+       "kroki („Stop when you can't pull it any farther.”)"
+      ],
+      [
+       "nasm-single-leg-seated-leg-curl",
+       "uproszczenie: wariant sprzętu; Common Mistakes („Not achieving full range of motion…”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lcurl.mis.partial",
+     "s": [
+      [
+       "nasm-single-leg-seated-leg-curl",
+       "uproszczenie: wariant sprzętu; Common Mistakes („Not achieving full range of motion…”)"
+      ],
+      [
+       "staywell-seated-hamstring-curl",
+       "kroki (ciągnij, aż nie da się dalej) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Leg Press": {
+   "setup": [
+    {
+     "c": "slp.setup",
+     "s": [
+      [
+       "nasm-single-leg-press",
+       "Setup (back and head against the backrest; one foot on the platform)"
+      ],
+      [
+       "ace-154",
+       "Step 1 (uproszczenie: analogia Leg Press — back flat against the backrest)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lp.move",
+     "s": [
+      [
+       "nasm-single-leg-press",
+       "Movement (press the platform by extending the leg; lower under control)"
+      ],
+      [
+       "ace-154",
+       "Step 2; Step 4 (uproszczenie: analogia Leg Press)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lp.mis.lock",
+     "s": [
+      [
+       "nasm-single-leg-press",
+       "Movement; Common Mistakes (locking the knee at full extension)"
+      ],
+      [
+       "ace-154",
+       "Step 3 (uproszczenie: analogia Leg Press — do not hyperextend/lock-out)"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -18657,7 +20095,6 @@
   "Spider Curl": "brak źródeł szczebla do 4 (docs/research/33)",
   "Box Squat": "wspólna tylko jedna wskazówka (siad na skrzyni bez odbicia); szeroki rozstaw i pionowe piszczele — jedno źródło (docs/research/33)",
   "Sissy Squat": "brak źródeł (docs/research/33)",
-  "Cable Kickback": "dwa źródła tylko w materiałach uczelnianych centrów sportu (HKU, Western) lub badanie maszyny; szczebel otwarty (docs/research/33, pyt. 1)",
   "Hip Abduction": "wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33)",
   "Hip Adduction": "oba źródła (ACE, HKU) opisują przywodzenie na wyciągu stojąc, nie maszynę; komplet zależy też od szczebla HKU (docs/research/33, pyt. 1)",
   "Ab Wheel": "tylko jedna wskazówka bez materiałów uczelnianych (Sussexsport); szczebel otwarty (docs/research/33, pyt. 1)",
@@ -18762,7 +20199,20 @@
   "Decline EZ Bar Triceps Extension",
   "Lying Close-Grip Barbell Triceps Extension Behind The Head",
   "One-Arm Lying Dumbbell Triceps Extension",
-  "Chain Handle Extension"
+  "Chain Handle Extension",
+  "Seated Calf Raise (hantle)",
+  "Barbell Seated Calf Raise",
+  "Band Calf Raise",
+  "Dumbbell Seated One-Leg Calf Raise",
+  "Cable Kickback",
+  "Fire Hydrant",
+  "Hip Extension with Bands",
+  "Single Leg Glute Bridge",
+  "Single Leg Hip Thrust",
+  "Glute Bridge (sztanga)",
+  "Seated Band Hamstring Curl",
+  "Hack Squat",
+  "Single Leg Press"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {

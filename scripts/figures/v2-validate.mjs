@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens, izometryczne, bezBramkiRuchu, zakresWyjatek, dynamiczne, grupaBledu, wczytajSens, regulyDla } from './v2-sens.mjs';
+import { sprawdzSens, izometryczne, bezBramkiRuchu, zakresWyjatek, dynamiczne, grupaBledu, wczytajSens, regulyDla, kartaWlasna } from './v2-sens.mjs';
 import { sprawdzJakosc, krawedzJakosci, wczytajTeksty, GRUPY_POSTAWY, GRUPY_DOL, wierszeWJednejLinii, klatkiZHtml } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -30,7 +30,7 @@ const rom = (root = ROOT) => czytaj(path.join(root, 'lib/figures/data.json')).ro
 export function bledyCwiczenia(cwiczenie, root = ROOT) {
   const set = czytaj(path.join(root, 'lib/figures/v2/cue-sets.json')).items?.[cwiczenie];
   if (!set || set.b === 'open') return [];
-  if (set.b === 'own') return (czytaj(path.join(root, 'lib/cues/data.json')).exercises?.[cwiczenie]?.mistakes ?? []).map((m) => m.c);
+  if (set.b === 'own') return (kartaWlasna(cwiczenie, root)?.mistakes ?? []).map((m) => m.c); /* karta ukryta do recenzji — z pełnych danych (kartaWlasna, 08.11.2026) */
   return set.err ?? [];
 }
 

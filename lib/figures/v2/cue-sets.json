@@ -131,15 +131,7 @@
       ]
     },
     "Band Calf Raise": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Band Chest Fly": {
       "b": "general",
@@ -304,15 +296,7 @@
       ]
     },
     "Barbell Seated Calf Raise": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Barbell Shrug Behind The Back": {
       "b": "general",
@@ -782,15 +766,7 @@
       ]
     },
     "Cable Kickback": {
-      "b": "general",
-      "f": "hipExt",
-      "ok": [
-        "hext.range",
-        "plank.brace"
-      ],
-      "err": [
-        "hext.mis.arch"
-      ]
+      "b": "own"
     },
     "Cable Lateral Raise": {
       "b": "own"
@@ -926,26 +902,10 @@
       "b": "own"
     },
     "Calf Raise (linki)": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Calf Raise (sztanga)": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Calf-Machine Shoulder Shrug": {
       "b": "general",
@@ -1031,15 +991,7 @@
       "b": "open"
     },
     "Clamshell": {
-      "b": "general",
-      "f": "hipAbd",
-      "ok": [
-        "hab.hips",
-        "llc.control"
-      ],
-      "err": [
-        "hab.mis.high"
-      ]
+      "b": "own"
     },
     "Clean": {
       "b": "own"
@@ -1480,15 +1432,7 @@
       ]
     },
     "Donkey Kick": {
-      "b": "general",
-      "f": "hipExt",
-      "ok": [
-        "hext.range",
-        "plank.brace"
-      ],
-      "err": [
-        "hext.mis.arch"
-      ]
+      "b": "own"
     },
     "Double Kettlebell Clean": {
       "b": "own"
@@ -1652,15 +1596,7 @@
       ]
     },
     "Dumbbell Seated One-Leg Calf Raise": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Dumbbell Squat": {
       "b": "general",
@@ -1765,15 +1701,7 @@
       ]
     },
     "Fire Hydrant": {
-      "b": "general",
-      "f": "hipAbd",
-      "ok": [
-        "hab.hips",
-        "bd.level"
-      ],
-      "err": [
-        "hab.mis.high"
-      ]
+      "b": "own"
     },
     "Flat Bench Cable Fly": {
       "b": "general",
@@ -1924,16 +1852,7 @@
       "b": "own"
     },
     "Glute Bridge (sztanga)": {
-      "b": "general",
-      "f": "bridge",
-      "ok": [
-        "gb.move",
-        "ht.rigid",
-        "gb.heels"
-      ],
-      "err": [
-        "ht.mis.arch"
-      ]
+      "b": "own"
     },
     "Glute Ham Raise": {
       "b": "general",
@@ -2091,15 +2010,7 @@
       ]
     },
     "Hip Extension with Bands": {
-      "b": "general",
-      "f": "hipExt",
-      "ok": [
-        "hext.range",
-        "plank.brace"
-      ],
-      "err": [
-        "hext.mis.arch"
-      ]
+      "b": "own"
     },
     "Hip Flexion with Band": {
       "b": "open"
@@ -2592,14 +2503,7 @@
       "b": "own"
     },
     "Lateral Band Walk": {
-      "b": "general",
-      "f": "bandWalk",
-      "ok": [
-        "bw.squat"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Lateral Bound": {
       "b": "general",
@@ -3962,15 +3866,7 @@
       ]
     },
     "Seated Band Hamstring Curl": {
-      "b": "general",
-      "f": "legCurl",
-      "ok": [
-        "lcurl.still",
-        "llc.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Seated Barbell Military Press": {
       "b": "general",
@@ -4026,15 +3922,7 @@
       "b": "own"
     },
     "Seated Calf Raise (hantle)": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Seated Calf Stretch": {
       "b": "general",
@@ -4304,51 +4192,16 @@
       ]
     },
     "Single Leg Calf Raise": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Single Leg Glute Bridge": {
-      "b": "general",
-      "f": "bridge",
-      "ok": [
-        "gb.move",
-        "ht.rigid",
-        "gb.heels"
-      ],
-      "err": [
-        "ht.mis.arch"
-      ]
+      "b": "own"
     },
     "Single Leg Hip Thrust": {
-      "b": "general",
-      "f": "bridge",
-      "ok": [
-        "gb.move",
-        "ht.rigid",
-        "gb.heels"
-      ],
-      "err": [
-        "ht.mis.arch"
-      ]
+      "b": "own"
     },
     "Single Leg Press": {
-      "b": "general",
-      "f": "legPress",
-      "ok": [
-        "lp.move",
-        "lp.heels",
-        "lp.noLock"
-      ],
-      "err": [
-        "sq.mis.kneesIn"
-      ]
+      "b": "own"
     },
     "Single Leg Push-Off": {
       "b": "general",
@@ -4598,15 +4451,7 @@
       ]
     },
     "Smith Machine Calf Raise": {
-      "b": "general",
-      "f": "calf",
-      "ok": [
-        "calf.move",
-        "calf.pause"
-      ],
-      "err": [
-        "calf.mis.partial"
-      ]
+      "b": "own"
     },
     "Smith Machine Close-Grip Bench Press": {
       "b": "general",

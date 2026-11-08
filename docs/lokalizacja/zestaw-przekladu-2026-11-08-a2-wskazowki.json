@@ -1,0 +1,204 @@
+{
+  "_opis": "Zdania wskazówek techniki z partii A2 (nogi i biodra; linia 1.1, 08.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+  "data": "2026-11-08",
+  "klucze": [
+    {
+      "rodzaj": "nowy",
+      "id": "bandcurl.move",
+      "pl": "Zegnij kolano, ciągnąc piętą gumę w tył; potem powoli wyprostuj nogę.",
+      "en": "Bend your knee, pulling the band back with your heel; then slowly straighten your leg."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "bandcurl.setup",
+      "pl": "Usiądź przodem do miejsca, gdzie zaczepiona jest guma; pętlę załóż na kostkę, noga wysunięta w przód.",
+      "en": "Sit facing the band's anchor point, loop around your ankle, leg out in front."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "bw.mis.sway",
+      "pl": "Tułów buja się na boki przy każdym kroku.",
+      "en": "Swaying your upper body side to side with each step."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "bw.move",
+      "pl": "Zrób krok w bok, a drugą nogę dostaw spokojnie.",
+      "en": "Step to the side, then bring the other foot over slowly."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "bw.setup",
+      "pl": "Minigumę załóż nad kolanami albo niżej, nad kostkami; stopy na szerokość bioder.",
+      "en": "Put the mini band above your knees or lower, above your ankles; feet hip-width apart."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "bw.tension",
+      "pl": "Guma ma być napięta przez cały czas — nie pozwól jej się poluzować.",
+      "en": "Keep the band tight the whole time — don't let it go slack."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "calf.band",
+      "pl": "Stań prosto, trzymając w dłoniach końce gumy albo uchwyty.",
+      "en": "Stand tall, holding the band ends or handles."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "calf.rise",
+      "pl": "Wspinaj się na palce, potem pod kontrolą opuść pięty.",
+      "en": "Rise up onto your toes, then lower your heels under control."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "calf.seatedEdge",
+      "pl": "Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią.",
+      "en": "Sit with your knees bent, the balls of your feet on a raised edge and your heels hanging off."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "calf.stand",
+      "pl": "Stań prosto, palce stóp skierowane do przodu.",
+      "en": "Stand tall with your toes pointing forward."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "calf.stepOne",
+      "pl": "Stań jedną stopą na krawędzi stopnia, pięta poza krawędzią.",
+      "en": "Stand on one foot on the edge of a step, heel hanging off."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ck.mis.sway",
+      "pl": "Biodra i tułów się bujają, żeby noga poszła dalej w tył.",
+      "en": "Your hips and torso sway to get the leg further back."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ck.move",
+      "pl": "Odprowadź nogę w tył, prowadząc ruch pośladkiem, i wróć.",
+      "en": "Drive your leg back, leading with your glute, then return."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ck.setup",
+      "pl": "Ustaw wyciąg nisko, załóż mankiet na kostkę i stań przodem do maszyny, trzymając się jej.",
+      "en": "Set the pulley low, strap the cuff to your ankle and face the machine, holding on."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "clam.mis.roll",
+      "pl": "Biodra uciekają do tyłu, żeby kolano poszło wyżej.",
+      "en": "Your hips roll back to get the knee higher."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "clam.move",
+      "pl": "Trzymając stopy razem, unieś górne kolano jak najwyżej i opuść je powoli.",
+      "en": "Keep your feet together, lift your top knee as high as you can, then lower it slowly."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "clam.noRoll",
+      "pl": "Biodra nie uciekają do tyłu — zostań na boku.",
+      "en": "Don't let your hips roll back — stay on your side."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "clam.setup",
+      "pl": "Połóż się na boku, kolana ugięte, nogi ułożone jedna na drugiej.",
+      "en": "Lie on your side, knees bent, legs stacked."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "dk.move",
+      "pl": "Nie prostując kolana, unieś nogę w tył i w górę, podeszwą w stronę sufitu; potem powoli ją opuść.",
+      "en": "Keeping your knee bent, lift your leg back and up, sole toward the ceiling, then lower it slowly."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "fh.level",
+      "pl": "Ruch tylko w biodrze — nie przechylaj się i nie skręcaj bioder, żeby unieść nogę wyżej.",
+      "en": "Move only at the hip — don't lean or twist your hips to get the leg higher."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "fh.mis.twist",
+      "pl": "Biodra skręcają się albo przechylają, żeby noga poszła wyżej.",
+      "en": "Your hips twist or tip to get the leg higher."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "fh.move",
+      "pl": "Nie prostując kolana, unieś nogę w bok i opuść ją z powrotem.",
+      "en": "Keeping your knee bent, lift your leg out to the side, then bring it back down."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "gb.bbSetup",
+      "pl": "Połóż się na plecach pod sztangą, tak żeby leżała na biodrach; kolana ugięte, stopy płasko na podłodze na szerokość bioder.",
+      "en": "Lie on your back under the bar so it rests across your hips; knees bent, feet flat on the floor, hip-width apart."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "gb.slMove",
+      "pl": "Dociskając stopę do podłogi, zwłaszcza piętę, unieś biodra; opuść je powoli.",
+      "en": "Press your foot into the floor, especially the heel, and lift your hips; lower them slowly."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "gb.slSetup",
+      "pl": "Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij kolano do klatki.",
+      "en": "Lie on your back, one knee bent with that foot flat on the floor; straighten the other leg or pull that knee toward your chest."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "hack.mis.hips",
+      "pl": "Odrywanie bioder albo dolnej części pleców od oparcia.",
+      "en": "Hips or lower back coming off the pad."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "hack.setup2",
+      "pl": "Oprzyj plecy o oparcie, a barki o poduszki; stopy na platformie jak do zwykłego przysiadu.",
+      "en": "Rest your back against the pad and your shoulders under the shoulder pads; feet on the platform in your usual squat stance."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "hexb.setup",
+      "pl": "Załóż małą gumę na obie kostki i przenieś ciężar ciała na jedną nogę.",
+      "en": "Loop a mini band around both ankles and shift your weight onto one leg."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ht.slSetup",
+      "pl": "Oprzyj plecy o ławkę, jedną stopę postaw płasko na podłodze, drugą nogę unieś nad podłogę.",
+      "en": "Rest your back against a bench, one foot flat on the floor, the other leg lifted off the floor."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lcurl.full",
+      "pl": "Zginaj kolano tak daleko, jak dasz radę.",
+      "en": "Bend your knee as far as you can."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lcurl.mis.partial",
+      "pl": "Zginanie kolana tylko do połowy zamiast tak daleko, jak się da.",
+      "en": "Only bending your knee halfway instead of as far as it goes."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lp.mis.lock",
+      "pl": "Blokowanie kolana w pełnym wyproście na górze.",
+      "en": "Locking the knee out straight at the top."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "slp.setup",
+      "pl": "Usiądź w maszynie plecami na oparciu; jedną stopę postaw na platformie, drugą nogę zdejmij i trzymaj spokojnie.",
+      "en": "Sit in the machine with your back against the backrest; put one foot on the platform, take the other leg off and keep it still."
+    }
+  ]
+}

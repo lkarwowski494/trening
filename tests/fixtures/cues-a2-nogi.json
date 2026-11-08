@@ -1,0 +1,387 @@
+{
+ "_opis": "Partia A2 integracji badań (nogi i biodra: calf_raise, glute_floor, hip_abd_add, hip_bridge, leg_isolation, leg_machine, lunge; linia 1.1, 08.11.2026): ćwiczenia z nowymi kartami własnymi, karty niepełne (partial), nowe zdania, błędy i zdania odrzucone (mniej niż dwie organizacje szczebla ≤ 4 — także błędy wnioskowane) oraz odwołania do źródeł o nierozstrzygniętym szczeblu (usunięte z kart). Źródło: badania W1 (badania/g4-nogi — tylko blok po przeliczeniu szczebli; badania/lokalne-0211 lunge.md — blok po przeliczeniu) i W2 (badania/w2-nogi, badania/w2-ramiona lunge.md) z 02.11.2026. Hack Squat: dotychczasowa karta ukryta „do poprawy” zastąpiona kartą W2 (zdanie hack.setup i źródło ExRx usunięte jako nieużywane). Niewdrożone: karty, których animowany błąd w pozach v2 nie jest błędem karty (konfliktPozy — zmiana póz należy do partii figur B2: wykroki z lunge.mis.kneeIn, Slider Hamstring Curl z ht.mis.arch), Machine Hip Thrust i Curtsy Lunge (po odrzuceniu zdań bez dwóch organizacji brak ustawienia albo ruchu), Cable Hip Adduction i Smith Machine Hip Thrust (bez błędu przy pozach v2 — decyzja z 02.11.2026), ćwiczenia bez bloku w badaniach (otwarte), squat i hinge (rodziny ready na zrecenzowanych zestawach ogólnych — karta własna byłaby ukryta do recenzji i obniżyłaby pokrycie; osobna partia), błędy W2 dla istniejących kart (zmiana karty = ponowna recenzja).",
+ "rodzina": "nogi",
+ "cwiczenia": [
+  "Single Leg Calf Raise",
+  "Seated Calf Raise (hantle)",
+  "Smith Machine Calf Raise",
+  "Calf Raise (sztanga)",
+  "Calf Raise (linki)",
+  "Barbell Seated Calf Raise",
+  "Band Calf Raise",
+  "Dumbbell Seated One-Leg Calf Raise",
+  "Cable Kickback",
+  "Fire Hydrant",
+  "Donkey Kick",
+  "Clamshell",
+  "Hip Extension with Bands",
+  "Lateral Band Walk",
+  "Single Leg Glute Bridge",
+  "Single Leg Hip Thrust",
+  "Glute Bridge (sztanga)",
+  "Seated Band Hamstring Curl",
+  "Hack Squat",
+  "Single Leg Press"
+ ],
+ "partial": [
+  "Seated Calf Raise (hantle)",
+  "Barbell Seated Calf Raise",
+  "Band Calf Raise",
+  "Dumbbell Seated One-Leg Calf Raise",
+  "Cable Kickback",
+  "Fire Hydrant",
+  "Hip Extension with Bands",
+  "Single Leg Glute Bridge",
+  "Single Leg Hip Thrust",
+  "Glute Bridge (sztanga)",
+  "Seated Band Hamstring Curl",
+  "Hack Squat",
+  "Single Leg Press"
+ ],
+ "zdania": [
+  "bandcurl.move",
+  "bandcurl.setup",
+  "bw.mis.sway",
+  "bw.move",
+  "bw.setup",
+  "bw.tension",
+  "calf.band",
+  "calf.rise",
+  "calf.seatedEdge",
+  "calf.stand",
+  "calf.stepOne",
+  "ck.mis.sway",
+  "ck.move",
+  "ck.setup",
+  "clam.mis.roll",
+  "clam.move",
+  "clam.noRoll",
+  "clam.setup",
+  "dk.move",
+  "fh.level",
+  "fh.mis.twist",
+  "fh.move",
+  "gb.bbSetup",
+  "gb.slMove",
+  "gb.slSetup",
+  "hack.mis.hips",
+  "hack.setup2",
+  "hexb.setup",
+  "ht.slSetup",
+  "lcurl.full",
+  "lcurl.mis.partial",
+  "lp.mis.lock",
+  "slp.setup"
+ ],
+ "zastapione": [
+  "Hack Squat"
+ ],
+ "odrzucone": [
+  [
+   "Single Leg Calf Raise",
+   "mistakes",
+   "calf.mis.otherLeg",
+   [
+    "ISSA"
+   ]
+  ],
+  [
+   "Donkey Kick",
+   "mistakes",
+   "dk.mis.straight",
+   []
+  ],
+  [
+   "Clamshell",
+   "mistakes",
+   "clam.mis.feet",
+   []
+  ],
+  [
+   "Lateral Band Walk",
+   "mistakes",
+   "bw.mis.straight",
+   []
+  ],
+  [
+   "Lateral Band Walk",
+   "mistakes",
+   "bw.mis.narrow",
+   []
+  ],
+  [
+   "Cable Hip Adduction",
+   "mistakes",
+   "hadd.mis.short",
+   []
+  ],
+  [
+   "Smith Machine Hip Thrust",
+   "tips",
+   "ht.rigid",
+   [
+    "NSCA"
+   ]
+  ],
+  [
+   "Smith Machine Hip Thrust",
+   "mistakes",
+   "ht.mis.arch",
+   [
+    "NSCA"
+   ]
+  ],
+  [
+   "Machine Hip Thrust",
+   "setup",
+   "ht.machSetup",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Machine Hip Thrust",
+   "tips",
+   "ht.rigid",
+   [
+    "NSCA"
+   ]
+  ],
+  [
+   "Machine Hip Thrust",
+   "mistakes",
+   "ht.mis.arch",
+   [
+    "NSCA"
+   ]
+  ],
+  [
+   "Slider Hamstring Curl",
+   "tips",
+   "llc.control",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "setup",
+   "lext.setup",
+   [
+    "Hoist Fitness"
+   ]
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "setup",
+   "lext.back",
+   [
+    "Hoist Fitness"
+   ]
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "move",
+   "lext.move",
+   [
+    "Hoist Fitness"
+   ]
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "mistakes",
+   "lext.mis.back",
+   [
+    "Hoist Fitness"
+   ]
+  ],
+  [
+   "Curtsy Lunge",
+   "setup",
+   "lunge.stand",
+   []
+  ],
+  [
+   "Curtsy Lunge",
+   "move",
+   "curtsy.move",
+   []
+  ],
+  [
+   "Curtsy Lunge",
+   "tips",
+   "lunge.torso",
+   []
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Smith Machine Hip Thrust",
+   "ht.rigid",
+   "bos-hip-thrust-machine"
+  ],
+  [
+   "Smith Machine Hip Thrust",
+   "ht.mis.arch",
+   "bos-hip-thrust-machine"
+  ],
+  [
+   "Machine Hip Thrust",
+   "ht.machSetup",
+   "bos-hip-thrust-machine"
+  ],
+  [
+   "Machine Hip Thrust",
+   "ht.move",
+   "bos-hip-thrust-machine"
+  ],
+  [
+   "Machine Hip Thrust",
+   "ht.rigid",
+   "bos-hip-thrust-machine"
+  ],
+  [
+   "Machine Hip Thrust",
+   "ht.mis.arch",
+   "bos-hip-thrust-machine"
+  ],
+  [
+   "Slider Hamstring Curl",
+   "llc.control",
+   "rts-valslide-leg-curl"
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "lext.setup",
+   "nfpt-leg-extensions"
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "lext.back",
+   "nfpt-leg-extensions"
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "lext.move",
+   "nfpt-leg-extensions"
+  ],
+  [
+   "Single-Leg Leg Extension",
+   "lext.mis.back",
+   "nfpt-leg-extensions"
+  ],
+  [
+   "Curtsy Lunge",
+   "lunge.stand",
+   "ama-curtsy"
+  ],
+  [
+   "Curtsy Lunge",
+   "lunge.stand",
+   "canfitpro-curtsey"
+  ],
+  [
+   "Curtsy Lunge",
+   "curtsy.move",
+   "ama-curtsy"
+  ],
+  [
+   "Curtsy Lunge",
+   "curtsy.move",
+   "canfitpro-curtsey"
+  ],
+  [
+   "Curtsy Lunge",
+   "lunge.torso",
+   "ama-curtsy"
+  ],
+  [
+   "Curtsy Lunge",
+   "lunge.torso",
+   "canfitpro-curtsey"
+  ]
+ ],
+ "bezUstawieniaLubRuchu": [
+  "Machine Hip Thrust",
+  "Single-Leg Leg Extension",
+  "Curtsy Lunge"
+ ],
+ "pominieteBezBledu": [
+  "Cable Hip Adduction",
+  "Smith Machine Hip Thrust"
+ ],
+ "konfliktPozy": [
+  [
+   "Slider Hamstring Curl",
+   [
+    "ht.mis.arch"
+   ]
+  ],
+  [
+   "Split Squat",
+   [
+    "lunge.mis.kneeIn"
+   ]
+  ],
+  [
+   "Lunges (sztanga)",
+   [
+    "lunge.mis.kneeIn"
+   ]
+  ],
+  [
+   "Barbell Walking Lunge",
+   [
+    "lunge.mis.kneeIn"
+   ]
+  ],
+  [
+   "Barbell Step Up",
+   [
+    "lunge.mis.kneeIn"
+   ]
+  ],
+  [
+   "Bulgarian Split Squat (sztanga)",
+   [
+    "lunge.mis.kneeIn"
+   ]
+  ],
+  [
+   "Smith Machine Bulgarian Split Squat",
+   [
+    "lunge.mis.kneeIn"
+   ]
+  ]
+ ],
+ "noweZrodla": [
+  "ace-145",
+  "ace-270",
+  "ace-pro-5043",
+  "ace-pro-6315",
+  "ace-pro-6355",
+  "ace-pro-6402",
+  "ace-pro-7409",
+  "barbend-band-glutes",
+  "barbend-glute-kickbacks",
+  "barbend-hack-squat-machine",
+  "bodylastics-standing-calf-raise-flat-bands",
+  "catalyst-496",
+  "catalyst-723",
+  "catalyst-766",
+  "hss-mini-band-hip-ext",
+  "issa-25min-calves",
+  "issa-donkey-kicks",
+  "issa-hip-abduction",
+  "issa-hip-thrust-variations",
+  "issa-top6-calves",
+  "nasm-blog-active-recovery",
+  "nasm-blog-banded-clamshell",
+  "nasm-single-leg-press",
+  "nfpt-hack-squat",
+  "nsca-scj-hip-thrust",
+  "ph-wobble-hip-ext",
+  "staywell-seated-hamstring-curl",
+  "theraband-ankle-calf-raise-standing"
+ ]
+}

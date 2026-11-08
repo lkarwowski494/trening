@@ -376,6 +376,11 @@
    "path": "tests/whats-new.test.tsx",
    "name": "JEFIT",
    "reason": "test negatywny (06.11.2026, wpis „Co nowego” 1.0.1): wzorzec sprawdza, że teksty panelu NIE zawierają nazw innych aplikacji — nazwa występuje tylko w wyrażeniu regularnym asercji"
+  },
+  {
+   "path": "data/zrodla/cues.json",
+   "name": "Thera-Band",
+   "reason": "organizacja źródła wskazówek techniki (producent gum — instrukcje ćwiczeń z gumami; jeden klucz organizacji w danych źródeł, partia A2 nóg, 08.11.2026, docs/18); podpis w aplikacji neutralny (rodzaj źródła) — jak Eleiko, Rogue Fitness i Life Fitness, decyzja MER2-07 = SEC2-02 wariant A"
   }
  ]
 }

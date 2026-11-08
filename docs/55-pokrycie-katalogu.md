@@ -17,7 +17,7 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 44 | 6,2% |
 | Bez figury w aplikacji | 481 | 67,9% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 351 | 49,6% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 101 | 14,3% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 120 | 16,9% |
 | Animowany błąd | 127 | 17,9% |
 | Własne wskazówki (źródłowe) | 215 | 30,4% |
 | — z czego z częstymi błędami | 112 | 15,8% |
