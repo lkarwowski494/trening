@@ -61,7 +61,7 @@ describe('ekran szablonu jak trening', () => {
   test('nowe ćwiczenie w szablonie: 3 wiersze, bez zakresu; „Zakres powtórzeń” dodaje pola od–do', async () => {
     await fresh(); const st = store.getState(); st.templates.push({ ...st.templates[0], id: 'tn', name: 'N', items: [] } as any); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/picker?target=template:tn'); await flushAll(10);
-    await typeText(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press (sztanga)'); await flushAll(5); await tap(screen.getAllByText('Bench Press (sztanga)')[0]); await flushAll(10);
+    await typeText(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press'); await flushAll(5); await tap(screen.getAllByText('Bench Press')[0]); await flushAll(10);
     const it = store.getState().templates.find(x => x.id === 'tn')!.items[0]; expect(it.repMin).toBeNull(); expect(it.repMax).toBeNull(); expect(store.tplRows(it).length).toBe(3);
     await go('/template/tn'); await flushAll(10); await startEdit(); await openCard(0); await tap(screen.getByText('+ zakres powtórzeń')); await flushAll(5);
     expect(screen.getAllByLabelText(/powtórzenia od/).length).toBeGreaterThan(0);

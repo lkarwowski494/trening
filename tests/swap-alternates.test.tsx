@@ -110,20 +110,20 @@ describe('W3 — ekrany', () => {
   }
   test('podpowiedź „Zwykle w: Dom — B. Zamienić?”: Zamień i ✕; po zamianie „Zawsze w: Dom”', async () => {
     await renderApp({ saved: await savedActive(true) }); await flushAll(20);
-    expect(screen.getByText('Zwykle w: Dom — Bench Press (hantle). Zamienić?')).toBeTruthy();
-    await tap(screen.getByLabelText('Zamień na zamiennik: Bench Press (hantle)')); await flushAll(20); /* decyzja 11.10.2026: tekst otwiera arkusz zamiany (jedno wejście), nie zamienia od razu */
+    expect(screen.getByText('Zwykle w: Dom — Dumbbell Bench Press. Zamienić?')).toBeTruthy();
+    await tap(screen.getByLabelText('Zamień na zamiennik: Dumbbell Bench Press')); await flushAll(20); /* decyzja 11.10.2026: tekst otwiera arkusz zamiany (jedno wejście), nie zamienia od razu */
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(screen.getByText('Anuluj')).toBeTruthy(); /* arkusz zamiany otwarty */
     await tap(screen.getByText('Anuluj')); await flushAll(10); await act(async () => { store.acceptAlt(blk(0).id); }); await flushAll(10);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id); expect(screen.queryByText(/Zwykle w:/)).toBeNull();
     expect(screen.queryByLabelText(/^Zawsze w: Dom/)).toBeNull(); /* wpis już jest */
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (hantle)')); await flushAll(20); await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Dumbbell Bench Press')); await flushAll(20); await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);
     expect(screen.getByLabelText(/^Zawsze w: Dom/)).toBeTruthy(); await tap(screen.getByLabelText(/^Zawsze w: Dom/)); await flushAll(5);
     expect(st().templates[0].items[0].alternates![0].exerciseId).toBe(blk(0).exerciseId);
     /* ✕ na drugim bloku tej pozycji — w innym treningu */
   });
   test('✕ chowa podpowiedź', async () => {
     await renderApp({ saved: await savedActive(true) }); await flushAll(20);
-    await tap(screen.getByLabelText('Nie zamieniaj: Bench Press (hantle)')); await flushAll(5);
+    await tap(screen.getByLabelText('Nie zamieniaj: Dumbbell Bench Press')); await flushAll(5);
     expect(screen.queryByText(/Zwykle w:/)).toBeNull(); expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id);
   });
   test('edytor szablonu: lista „📍 Dom: B”, pole przerwy, „✕” z potwierdzeniem; usunięte miejsce i brak sprzętu', async () => {
@@ -131,11 +131,11 @@ describe('W3 — ekrany', () => {
     tpl.items[1].alternates = [{ locationId: 'home', exerciseId: ex('Leg Press').id, restSec: null }];
     tpl.items[2].alternates = [{ locationId: 'home', exerciseId: ex('RDL (hantle/linki)').id, restSec: null, impl: 'electric' }]; store.save(tpl); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(st())) }); await go(`/template/${tpl.id}`); await flushAll(20); await startEdit();
-    /* 06.10.2026: karty zwinięte, otwarta jedna */ await openCard(2); expect(screen.getByText('Dom: RDL (hantle/linki) — stacja')).toBeTruthy();
+    /* 06.10.2026: karty zwinięte, otwarta jedna */ await openCard(2); expect(screen.getByText('Dom: Dumbbell or Cable Romanian Deadlift — stacja')).toBeTruthy();
     await openCard(1); expect(screen.getByText(/brak sprzętu w: Dom/)).toBeTruthy(); /* Leg Press w Domu */
-    await openCard(0); expect(screen.getByText('Dom: Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText('(usunięte miejsce): Push Up')).toBeTruthy();
-    await type(screen.getByLabelText('Przerwa zamiennika (s): Dom — Bench Press (hantle)'), '75'); expect(tplDraft(tpl.id).items[0].alternates![0].restSec).toBe(75);
-    await swipeDelete('Usuń zamiennik: Dom — Bench Press (hantle)'); expect(tplDraft(tpl.id).items[0].alternates).toHaveLength(2);
+    await openCard(0); expect(screen.getByText('Dom: Dumbbell Bench Press')).toBeTruthy(); expect(screen.getByText('(usunięte miejsce): Push-Up')).toBeTruthy();
+    await type(screen.getByLabelText('Przerwa zamiennika (s): Dom — Dumbbell Bench Press'), '75'); expect(tplDraft(tpl.id).items[0].alternates![0].restSec).toBe(75);
+    await swipeDelete('Usuń zamiennik: Dom — Dumbbell Bench Press'); expect(tplDraft(tpl.id).items[0].alternates).toHaveLength(2);
     await act(async () => pressAlert('Usunąć zamiennik?', 'Usuń')); await flushAll(5); await saveEdit();
     expect(st().templates.find(x => x.id === tpl.id)!.items[0].alternates![0].restSec).toBe(null);
     expect(st().templates.find(x => x.id === tpl.id)!.items[0].alternates!.map(a => a.locationId)).toEqual(['gone']);

@@ -49,7 +49,7 @@ test('Hotel piątek–niedziela: ustawienie w panelu dnia → przypomnienie z �
   const benchTo = (screen.getAllByText(/^Bench Press \(sztanga\) → /)[0].props.children as string).split(' → ')[1];
   await tap(screen.getAllByText(/^Overhead Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
   const props = screen.getAllByLabelText(/^Propozycja \d: /); const k = Math.min(1, props.length - 1); const manual = /^Propozycja \d: ([^,]+)/.exec(props[k].props.accessibilityLabel)![1]; await tap(props[k]); await flushAll(20);
-  await tap(screen.getAllByText(/^Pull Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull Up')); await flushAll(20);
+  await tap(screen.getAllByText(/^Pull-Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull-Up')); await flushAll(20);
   expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (3)'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
   expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(S().exercises.find(e => e.name === benchTo)!.id); expect(blk(1).exerciseId).toBe(S().exercises.find(e => e.name === manual)!.id);
   expect(blk(2).skipped).toBe(true); expect(blk(3).exerciseId).toBe(ex('RDL (hantle/linki)').id);

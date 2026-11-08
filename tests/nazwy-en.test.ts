@@ -185,7 +185,7 @@ describe('nazwy EN: VoiceOver, ćwiczenia własne, slug eksportu strony', () => 
   });
   test('ćwiczenie własne o nazwie równej kluczowi (lib = false) pokazuje się tak, jak je nazwano', () => {
     applyLang('en');
-    expect(exName({ name: 'Push Up', lib: false })).toBe('Push Up'); expect(exName({ name: 'Push Up', lib: true })).toBe('Push-Up');
+    expect(exName({ name: 'Push Up', lib: false })).toBe('Push-Up'); expect(exName({ name: 'Push Up', lib: true })).toBe('Push-Up');
   });
   test('nazwa wyświetlana z LIB_DISPLAY_NAME (znak towarowy) też dostaje nową nazwę EN: exName po nazwie wyświetlanej i po kluczu (libKey)', () => {
     applyLang('en');

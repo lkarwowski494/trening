@@ -24,9 +24,9 @@ describe('scenariusze', () => {
   test('basic-apple: hello, bieżąca seria, „zrobione” → natychmiast przerwa z zapowiedzią (bez czekania na telefon), ack po migawce zdejmuje „czekam”', () => {
     const p = play('basic-apple');
     expect(p[0].out).toEqual([{ v: 1, kind: 'hello', client: 'apple', protocol: 1, app: '0.20.0', caps: { session: true } }]);
-    expect(p[2].view).toMatchObject({ screen: 'set', title: 'Bench Press (sztanga)', counter: 'seria 1 z 3', load: '80 kg × 8', cue: null, actions: ['done', 'differ', 'skip'], busy: false });
+    expect(p[2].view).toMatchObject({ screen: 'set', title: 'Bench Press', counter: 'seria 1 z 3', load: '80 kg × 8', cue: null, actions: ['done', 'differ', 'skip'], busy: false });
     expect(p[3].out).toEqual([{ v: 1, kind: 'event', eventId: 'apple-1', workoutId: 'workout-1', baseRev: 1, at: p[3].at, client: 'apple', type: 'done', setId: 'set-0-0' }]);
-    expect(p[3].view).toMatchObject({ screen: 'rest', counter: 'seria 2 z 3', cue: 'Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń', restTotalSec: 90, restEndsAt: p[3].at + 90e3, undoUntil: p[3].at + WATCH.UNDO_SEC * 1000, busy: true, doneCount: 1 });
+    expect(p[3].view).toMatchObject({ screen: 'rest', counter: 'seria 2 z 3', cue: 'Bench Press · seria 2, 80 kg, 8 powtórzeń', restTotalSec: 90, restEndsAt: p[3].at + 90e3, undoUntil: p[3].at + WATCH.UNDO_SEC * 1000, busy: true, doneCount: 1 });
     expect(p[3].view.actions).toEqual(['done', 'differ', 'skip', 'undo']);
     expect(p[4].view).toMatchObject({ screen: 'rest', busy: true }); /* migawka przyszła, ack jeszcze nie */
     expect(p[5].view).toMatchObject({ screen: 'rest', busy: false, restEndsAt: S.rest1.rest!.endsAt }); /* po migawce odliczanie z telefonu */
@@ -49,7 +49,7 @@ describe('scenariusze', () => {
   });
   test('skip-confirm: pytanie → Anuluj nic nie wysyła → Pomiń wysyła skip bloku; potwierdzenie bez pytania nic nie robi', () => {
     const p = play('skip-confirm'); expect(p[2].view.confirmSkip).toBe(true); expect(p[3].view.confirmSkip).toBe(false); expect(p[4].out).toEqual([]);
-    expect(evs(p)).toEqual(['skip:block-0']); expect(p[6].view).toMatchObject({ screen: 'set', busy: true, actions: [], confirmSkip: false }); expect(p[7].view).toMatchObject({ title: 'Pull Up', actions: ['done', 'differ', 'skip'] });
+    expect(evs(p)).toEqual(['skip:block-0']); expect(p[6].view).toMatchObject({ screen: 'set', busy: true, actions: [], confirmSkip: false }); expect(p[7].view).toMatchObject({ title: 'Pull-Up', actions: ['done', 'differ', 'skip'] });
   });
   test('main-in-rest: przycisk główny w przerwie odhacza NASTĘPNĄ serię (set-0-1)', () => {
     const p = play('main-in-rest'); expect(evs(p)).toEqual(['done:set-0-1']); expect(p[2].view).toMatchObject({ screen: 'rest', counter: 'seria 3 z 3', doneCount: 2 });
@@ -60,7 +60,7 @@ describe('scenariusze', () => {
   });
   test('offline-two-done: dwa „zrobione” bez telefonu, trzecie ignorowane; „Połącz z telefonem” bez akcji; po powrocie zdarzenia i zgodność z migawką', () => {
     const p = play('offline-two-done'); expect(evs(p)).toEqual(['done:set-0-0', 'done:set-0-1']);
-    expect(p[3].view).toMatchObject({ screen: 'rest', offline: true, cue: 'Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń' });
+    expect(p[3].view).toMatchObject({ screen: 'rest', offline: true, cue: 'Bench Press · seria 2, 80 kg, 8 powtórzeń' });
     expect(p[4].view).toMatchObject({ screen: 'connect', actions: [], offline: true }); expect(p[5].out).toEqual([]); expect(p[5].view.screen).toBe('connect');
     expect(p[6].out).toMatchObject([{ kind: 'hello' }]); expect(p[6].view).toMatchObject({ offline: false, busy: true });
     expect(p[7].view).toMatchObject({ screen: 'rest', counter: 'seria 3 z 3' }); expect(p[9].view).toMatchObject({ busy: false, doneCount: 2 });

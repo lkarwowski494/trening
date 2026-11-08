@@ -26,7 +26,7 @@ describe('hello i welcome', () => {
   test('start łącza wysyła migawkę; hello → welcome ok + migawka (rev nie rośnie bez zmiany treści); śmieci są pomijane', async () => {
     const { fw, link: l } = await pair(); const first = snaps(fw);
     expect(first[0].rev).toBe(1); expect(fw.sent.find(m => m.kind === 'welcome')).toEqual({ v: 1, kind: 'welcome', ok: true, protocol: 1, upgrade: null });
-    expect(first.every(s => s.rev === 1)).toBe(true); expect(fw.view()).toMatchObject({ screen: 'set', title: 'Bench Press (sztanga)' });
+    expect(first.every(s => s.rev === 1)).toBe(true); expect(fw.view()).toMatchObject({ screen: 'set', title: 'Bench Press' });
     const n = fw.sent.length; for (const bad of [null, 'x', { v: 9 }, { v: 1, kind: 'event' }, '{zepsuty']) await l.receive(bad); expect(fw.sent).toHaveLength(n);
   });
   test('protokół zegarka starszy / nowszy niż obsługiwany: welcome ok=false z upgrade watch / phone, bez migawki', async () => {
@@ -64,11 +64,11 @@ describe('zdarzenia end-to-end', () => {
   });
   test('„Pomiń” z potwierdzeniem na zegarku: blok pominięty bez drugiego pytania na telefonie; zegarek pokazuje następne ćwiczenie', async () => {
     const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'skip' }); fw.input({ t: 'press', button: 'confirmSkip' }); await settle(l);
-    expect(A().exercises[0].skipped).toBe(true); expect(global.__alerts).toEqual([]); expect(fw.view()).toMatchObject({ title: 'Pull Up', busy: false });
+    expect(A().exercises[0].skipped).toBe(true); expect(global.__alerts).toEqual([]); expect(fw.view()).toMatchObject({ title: 'Pull-Up', busy: false });
   });
   test('przycisk główny w przerwie odhacza następną serię (kolejne przerwy), do końca bloku', async () => {
     const { fw, link: l } = await pair(); for (let i = 0; i < 3; i++) { jest.setSystemTime(NOW + 1000 * (i + 1)); fw.input({ t: 'press', button: 'main' }); await settle(l); }
-    expect(A().exercises[0].sets.map(s => s.done)).toEqual([true, true, true]); expect(fw.view()).toMatchObject({ title: 'Pull Up', counter: 'seria 1 z 2', screen: 'rest' });
+    expect(A().exercises[0].sets.map(s => s.done)).toEqual([true, true, true]); expect(fw.view()).toMatchObject({ title: 'Pull-Up', counter: 'seria 1 z 2', screen: 'rest' });
   });
   test('koniec przerwy: zegarek wysyła restEnded w chwili końca, telefon przyjmuje (applied) i jego alarm jest zgodny', async () => {
     const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l); const end = timer.T.endAt;

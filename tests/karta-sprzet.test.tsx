@@ -35,23 +35,23 @@ describe('logika (lib/equipvis.ts)', () => {
     const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id;
     const st = block('Pec Deck', { weight: 45 }); expect(implFor(st.a, st.e)).toBe('machine');
     const v = equipVisFor(st.a, st.e, st.set)[0]; expect(v.kind).toBe('stack');
-    const db = block('Bench Press (hantle)', { weight: 22.5 }); expect(equipVisFor(db.a, db.e, db.set)).toEqual([{ kind: 'dumbbell', n: 2, eachKg: 22.5 }]);
+    const db = block('Dumbbell Bench Press', { weight: 22.5 }); expect(equipVisFor(db.a, db.e, db.set)).toEqual([{ kind: 'dumbbell', n: 2, eachKg: 22.5 }]);
     const kb = block('Kettlebell Press', { weight: 16 }); expect(equipVisFor(kb.a, kb.e, kb.set)).toEqual([{ kind: 'kettlebell', n: 1, eachKg: 16 }]);
-    const bb = block('Bench Press (sztanga)', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* DEC-06: sztanga bez grafiki */
+    const bb = block('Bench Press', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* DEC-06: sztanga bez grafiki */
     const empty = block('Pec Deck'); expect(equipVisFor(empty.a, empty.e, empty.set)).toEqual([]);
   });
   test('stacja elektryczna: wartość „na urządzeniu”; masa ciała: dociążenie i asysta; guma: kolor, poziom, rola', () => {
     const l = addLocation('bodyweight'); setEquip(l, 'electric', true); store.startEmpty(); S().active!.locationId = l.id;
     const c = block('Cable Fly', { weight: 12 }); expect(implFor(c.a, c.e)).toBe('electric'); expect(equipVisFor(c.a, c.e, c.set)).toEqual([{ kind: 'electric', kg: 12 }]);
-    const pu = block('Pull Up', { addKg: 10 }); expect(equipVisFor(pu.a, pu.e, pu.set)).toEqual([{ kind: 'bodyweight', addKg: 10 }]);
+    const pu = block('Pull-Up', { addKg: 10 }); expect(equipVisFor(pu.a, pu.e, pu.set)).toEqual([{ kind: 'bodyweight', addKg: 10 }]);
     const b = S().bands[0]; const pa = block('Pull Up', { addKg: -15, bandId: b.id });
     expect(equipVisFor(pa.a, pa.e, pa.set)).toEqual([{ kind: 'bodyweight', addKg: -15 }, { kind: 'band', color: b.color, level: b.level, role: ex('Pull Up').bandAssistable ? 'assist' : 'resist' }]);
-    const bw0 = block('Pull Up'); expect(equipVisFor(bw0.a, bw0.e, bw0.set)).toEqual([]);
+    const bw0 = block('Pull-Up'); expect(equipVisFor(bw0.a, bw0.e, bw0.set)).toEqual([]);
   });
   test('bez miejsc treningu: przyrząd z rodzaju obciążenia ćwiczenia; stos bez listy (okno null)', () => {
     store.startEmpty(); const m = block('Pec Deck', { weight: 45 }); expect(implFor(m.a, m.e)).toBe('machine');
     expect(equipVisFor(m.a, m.e, m.set)).toEqual([{ kind: 'stack', kg: 45, window: null }]);
-    const bb = block('Bench Press (sztanga)', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* talerze tylko z opisem w miejscu */
+    const bb = block('Bench Press', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* talerze tylko z opisem w miejscu */
   });
   test('equipSlotFor (decyzja A 07.10, E2E run 37611882320): miejsce na grafikę z przyrządu, niezależne od wpisanej wartości — karta nie zmienia wysokości przy wpisywaniu', () => {
     const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id;
@@ -60,12 +60,12 @@ describe('logika (lib/equipvis.ts)', () => {
     const st = block('Pec Deck'); expect(equipSlotFor(st.a, st.e, st.set)).toEqual([{ kind: 'stack', kg: 10, window: null }]); /* preset: lista stosu pusta (nieznane ciężary) */
     g.equipment.find(x => x.item === 'pec_deck')!.load = { kind: 'list', unit: 'kg', items: [5, 10, 15, 20, 25, 30, 35, 40].map(w => ({ w, on: true })) };
     const sv = equipSlotFor(st.a, st.e, st.set)[0]; expect(sv).toEqual({ kind: 'stack', kg: 15, window: [5, 10, 15, 20, 25].map(kg => ({ kg, pin: kg === 15 })) });
-    const db = block('Bench Press (hantle)'); expect(equipSlotFor(db.a, db.e, db.set)).toEqual([{ kind: 'dumbbell', n: 2, eachKg: 10 }]);
-    const pu = block('Pull Up'); expect(equipSlotFor(pu.a, pu.e, pu.set)).toEqual([{ kind: 'bodyweight', addKg: 10 }]);
+    const db = block('Dumbbell Bench Press'); expect(equipSlotFor(db.a, db.e, db.set)).toEqual([{ kind: 'dumbbell', n: 2, eachKg: 10 }]);
+    const pu = block('Pull-Up'); expect(equipSlotFor(pu.a, pu.e, pu.set)).toEqual([{ kind: 'bodyweight', addKg: 10 }]);
     const pl = block('Plank'); expect(equipSlotFor(pl.a, pl.e, pl.set)).toEqual([]);
   });
   test('equipSlotFor bez miejsc: sztanga bez opisu talerzy — bez miejsca (jak equipVisFor); stos bez listy — pojedynczy pasek', () => {
-    store.startEmpty(); const bb = block('Bench Press (sztanga)'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([]);
+    store.startEmpty(); const bb = block('Bench Press'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([]);
     const m = block('Pec Deck'); expect(equipSlotFor(m.a, m.e, m.set)).toEqual([{ kind: 'stack', kg: 10, window: null }]);
   });
 });
@@ -100,7 +100,7 @@ describe('ekran: karta „teraz”', () => {
   });
   test('widok listy: przerwa w dolnym pasku jak dotąd (bez karty)', async () => {
     await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); block('Bench Press (hantle)', { weight: 22.5, reps: 10 }); store.addSet(0); });
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (hantle)')); await flushAll(10);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Dumbbell Bench Press')); await flushAll(10);
     expect(screen.getAllByLabelText('Skróć przerwę o 15 sekund')).toHaveLength(1); expect(screen.queryByText(/^dalej: /)).toBeNull();
   });
   test('seria na czas: pierścień postępu w karcie podczas pomiaru', async () => {

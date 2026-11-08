@@ -142,7 +142,7 @@ describe('(3) wybór ćwiczenia w edytorze (target edit:<klucz>)', () => {
     await go(`/history/${h2.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
     await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(20);
     expect(screen.getByText(/tylko dostępne w: Dom/)).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull();
-    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Pull Up'); await flushAll(5); /* pełna baza: lista wirtualizowana */ await tap(screen.getByText('Pull Up')); await flushAll(20);
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Pull-Up'); await flushAll(5); /* pełna baza: lista wirtualizowana */ await tap(screen.getByText('Pull-Up')); await flushAll(20);
     expect(edit.draftOf(h2.id)!.w.exercises.map(e => e.exerciseId)).toEqual([ex(DB).id, ex('Pull Up').id]);
     expect(store.getState().settings.pickerShowAll).toBe(false); // sam wybór nie zmienia ustawienia filtra
   });
@@ -152,7 +152,7 @@ describe('(3) wybór ćwiczenia w edytorze (target edit:<klucz>)', () => {
     const d = edit.beginPast(null, day(3), day(3) + 3600e3); await renderApp({ saved: snapshot() });
     await go(`/picker?target=${encodeURIComponent('edit:' + d.key)}`); await flushAll(20);
     expect(screen.getByText(/tylko dostępne w: Dom/)).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull();
-    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Pull Up'); await flushAll(5); /* pełna baza: lista wirtualizowana */ await tap(screen.getByText('Pull Up')); await flushAll(20); expect(edit.draftOf(d.key)!.w.exercises).toHaveLength(1);
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Pull-Up'); await flushAll(5); /* pełna baza: lista wirtualizowana */ await tap(screen.getByText('Pull-Up')); await flushAll(20); expect(edit.draftOf(d.key)!.w.exercises).toHaveLength(1);
     const d2 = edit.beginEdit(h1.id)!; await go(`/picker?target=${encodeURIComponent('edit:' + d2.key)}`); await flushAll(20);
     expect(screen.queryByLabelText(/^Filtr miejsca/)).toBeNull(); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Leg Press'); await flushAll(5); expect(screen.getByText('Leg Press')).toBeTruthy();
   });

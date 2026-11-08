@@ -669,7 +669,7 @@ describe('runda 12', () => {
   test('R12-03 ▶ i guma mówią, której serii dotyczą', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); store.addExerciseToActive(ex('Chin Up')); }); await flushAll(10);
     expect(screen.getAllByLabelText('Start stopera serii')[0].props.accessibilityHint).toMatch(/Seria 1 — Plank/);
-    expect(screen.getAllByLabelText(/^Guma: /)[0].props.accessibilityHint).toMatch(/Seria 1 — Chin Up/);
+    expect(screen.getAllByLabelText(/^Guma: /)[0].props.accessibilityHint).toMatch(/Seria 1 — Chin-Up/);
   });
   test('R12-04 czas serii od godziny w formacie h:mm:ss', () => { expect(store.fmtSec(5700)).toBe('1:35:00'); expect(store.fmtSec(95)).toBe('1:35'); });
   test('R12-05 szczegóły sesji bez objętości nie pokazują „0 kg”', async () => {
@@ -977,7 +977,7 @@ describe('runda 32', () => {
   });
   test('R32-03 wyszukiwanie bez polskich znaków', async () => {
     await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lydki na'); await flushAll(10);
-    expect(screen.getByText('Łydki na stopniu')).toBeTruthy();
+    expect(screen.getByText('Calf Raise on Step')).toBeTruthy();
   });
 });
 
@@ -1250,7 +1250,7 @@ describe('runda 49', () => {
     const name = store.exById(tpl.items[0].exerciseId)!.name;
     expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
     await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
-    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
+    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull-Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull-Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {
@@ -1903,17 +1903,17 @@ describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwic
     const imp = { pu: recs('Pull Up'), pp: recs('Push Up') };
     const w = store.getState().workouts[0]; for (const b of w.exercises) for (const s of b.sets) expect([s.weight, typeof s.addKg]).toEqual(['', 'number']);
     await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: 0, reps: 20 }]]]);
-    expect(imp).toEqual({ pu: recs('Pull Up'), pp: recs('Push Up') });
+    expect(imp).toEqual({ pu: recs('Pull-Up'), pp: recs('Push-Up') });
     expect(imp.pu.maxRepsFree).toBeGreaterThan(0); expect(imp.pu.maxLoad).toBe(20); expect(imp.pu.bestTotal).toBeGreaterThan(0); expect(imp.pp.maxRepsFree).toBe(20);
   });
   test('(b)+(c) eksport CSV → import do świeżego stanu: rekordy identyczne, asysta (ujemny) zachowuje znak', async () => {
     await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: -10, reps: 12 }]], ['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
     const before = { pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }; const csv = buildCsv();
     await fresh(); await importText(csv);
-    expect({ pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }).toEqual(before);
+    expect({ pu: recs('Pull-Up'), pp: recs('Push-Up'), bp: recs('Bench Press') }).toEqual(before);
     const w = store.getState().workouts[0]; const sets = (n: string) => w.exercises.find(b => b.exerciseId === ex(n).id)!.sets;
-    expect(sets('Push Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
-    expect(sets('Bench Press (sztanga)').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
+    expect(sets('Push-Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull-Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
+    expect(sets('Bench Press').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
   });
 });
 
@@ -1930,7 +1930,7 @@ describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Li
   };
   const pickEnglish = async () => { await go('/more/language'); await flushAll(10); await tap(screen.getByLabelText('English')); await flushAll(10); };
   test('przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku', async () => {
-    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
+    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull-Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
     await pickEnglish();
     const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
     expect(starts[0][2]).toBe('next: Pull-Up, body weight'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull-Up, body weight');

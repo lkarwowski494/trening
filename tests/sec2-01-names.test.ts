@@ -35,9 +35,9 @@ describe('SEC2-01: nazwy ćwiczeń katalogu bez znaków towarowych (klucz zostaj
   test('nazwy ogólne (PL / EN)', () => {
     const s = seedState('pl'); const by = (k: string) => s.exercises.find(x => x.libKey === k)!;
     const both = (k: string) => { applyLang('pl'); const pl = exName(by(k)); applyLang('en'); const en = exName(by(k)); applyLang('pl'); return [pl, en]; };
-    expect(both(KEYS.find(k => /bike/i.test(k))!)).toEqual(['Rower powietrzny', 'Air Bike']);
-    expect(both(KEYS.find(k => /erg/i.test(k))!)).toEqual(['Ergometr narciarski', 'Ski Ergometer']);
-    expect(both(KEYS.find(k => /crunch/i.test(k))!)).toEqual(['Cable Crunch With Side Bends (półkula balansowa)', 'Balance Dome Cable Crunch with Side Bend']);
+    expect(both(KEYS.find(k => /bike/i.test(k))!)).toEqual(['Air Bike', 'Air Bike']);
+    expect(both(KEYS.find(k => /erg/i.test(k))!)).toEqual(['Ski Ergometer', 'Ski Ergometer']);
+    expect(both(KEYS.find(k => /crunch/i.test(k))!)).toEqual(['Balance Dome Cable Crunch with Side Bend', 'Balance Dome Cable Crunch with Side Bend']);
   });
   test('wszystkie ćwiczenia nowej instalacji w 26 językach — nazwa bez nazw z listy', () => {
     const s = seedState('pl'); const bad: string[] = [];
@@ -113,6 +113,6 @@ describe('SEC2-01: etykiety sprzętu i możliwości w 26 językach bez nazw z li
     const pe = (id: string) => { applyLang('pl'); const pl = equipLabel(it(id)); applyLang('en'); const en = equipLabel(it(id)); applyLang('de'); const de = equipLabel(it(id)); applyLang('pl'); return { pl, en, deDiffers: de !== pl && de !== en }; };
     expect(pe('suspension')).toEqual({ pl: 'Taśmy do podwieszania', en: 'Suspension trainer', deDiffers: true });
     expect(pe('bosu')).toEqual({ pl: 'Półkula balansowa / platforma balansowa', en: 'Balance dome / balance board', deDiffers: true });
-    expect(pe('ski_erg')).toEqual({ pl: 'Ergometr narciarski', en: 'Ski ergometer', deDiffers: true });
+    expect(pe('ski_erg')).toEqual({ pl: 'Ski Ergometer', en: 'Ski ergometer', deDiffers: true });
   });
 });

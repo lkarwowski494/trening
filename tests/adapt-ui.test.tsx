@@ -40,7 +40,7 @@ describe('okno „Dostosuj do: X”', () => {
     await boot(); expect(top()).toBe('(tabs)'); await pickPlace('Hotel');
     expect(top()).toBe('adapt'); expect(screen.getByText('Zamiany tylko w tym treningu — szablon i plan bez zmian.')).toBeTruthy();
     expect(screen.getByText('Ćwiczenia bez sprzętu')).toBeTruthy();
-    const r = rowsText(); expect(r).toHaveLength(3); expect(r[0]).toMatch(/^Bench Press \(sztanga\) → .+/); expect(r[1]).toMatch(/^Overhead Press \(sztanga\) → /); expect(r[2]).toMatch(/^Pull Up → /);
+    const r = rowsText(); expect(r).toHaveLength(3); expect(r[0]).toMatch(/^Bench Press \(sztanga\) → .+/); expect(r[1]).toMatch(/^Overhead Press \(sztanga\) → /); expect(r[2]).toMatch(/^Pull-Up → /);
     expect(screen.getAllByText(/brak: /).length).toBe(3);
     const close = screen.getByTestId('close-modal'); expect(close.props.accessibilityLabel).toBe('Anuluj'); const ap = screen.getByTestId('adapt-apply'); expect(ap.props.accessibilityLabel).toBe('Zastosuj (3)'); expect(ap.props.accessibilityRole).toBe('button');
     expect(S().active!.locationId).toBe(HOTEL); expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); /* sama zmiana miejsca niczego nie zamienia */
@@ -59,10 +59,10 @@ describe('okno „Dostosuj do: X”', () => {
     await pickPlace('Siłownia'); expect(top()).toBe('(tabs)'); expect(screen.queryByTestId('adapt-line')).toBeNull(); /* siłownia: wszystko dostępne — bez okna i bez wiersza */
   });
   test('zmiana miejsca na takie bez braków (np. tylko ćwiczenia z masą ciała) — okno się nie otwiera i wiersza nie ma', async () => {
-    await boot([['Push Up', 'p1'], ['Plank', 'p2']]); await pickPlace('Hotel'); expect(top()).toBe('(tabs)'); expect(screen.queryByTestId('adapt-line')).toBeNull();
+    await boot([['Push-Up', 'p1'], ['Plank', 'p2']]); await pickPlace('Hotel'); expect(top()).toBe('(tabs)'); expect(screen.queryByTestId('adapt-line')).toBeNull();
   });
   test('liczba mnoga wiersza pod chipem: 1 ćwiczenie / 3 ćwiczenia / 5 ćwiczeń (tp)', async () => {
-    await boot([['Bench Press (sztanga)', 'b'], ['RDL (hantle/linki)', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('close-modal')); await flushAll(20);
+    await boot([['Bench Press', 'b'], ['Dumbbell or Cable Romanian Deadlift', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('close-modal')); await flushAll(20);
     expect(screen.getByTestId('adapt-line').props.accessibilityLabel).toBe('1 ćwiczenie bez sprzętu · Dostosuj');
   });
   test('5 ćwiczeń bez sprzętu: „5 ćwiczeń bez sprzętu · Dostosuj”', async () => {
@@ -75,7 +75,7 @@ describe('arkusz zamiany z celem adapt: i zastosowanie', () => {
   test('stuknięcie wiersza otwiera arkusz: „Bez zmian” i „Pomiń dziś”, propozycje od ćwiczenia z planu, brak „cofnij zamianę”; wybór wraca do okna i NIC nie zapisuje', async () => {
     await boot(); await pickPlace('Hotel'); const before = JSON.stringify(S().active!.exercises);
     await tap(screen.getAllByText(/^Bench Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
-    expect(screen.getByText('Bez zmian')).toBeTruthy(); expect(screen.getByLabelText('Pomiń dziś: Bench Press (sztanga)')).toBeTruthy(); expect(screen.queryByLabelText(/^Cofnij zamianę/)).toBeNull();
+    expect(screen.getByText('Bez zmian')).toBeTruthy(); expect(screen.getByLabelText('Pomiń dziś: Bench Press')).toBeTruthy(); expect(screen.queryByLabelText(/^Cofnij zamianę/)).toBeNull();
     const props = screen.getAllByLabelText(/^Propozycja \d: /); expect(props.length).toBeGreaterThan(0); expect(screen.queryByLabelText(/^Propozycja \d: Bench Press \(sztanga\)/)).toBeNull();
     const second = props[Math.min(1, props.length - 1)]; const label = second.props.accessibilityLabel as string; const name = /^Propozycja \d: ([^,]+)/.exec(label)![1];
     await tap(second); await flushAll(20); expect(top()).toBe('adapt'); expect(screen.getByText(new RegExp(`^Bench Press \\(sztanga\\) → ${name.replace(/[()]/g, '\\$&')}`))).toBeTruthy(); expect(screen.getByText(/wybrane ręcznie/)).toBeTruthy();
@@ -84,16 +84,16 @@ describe('arkusz zamiany z celem adapt: i zastosowanie', () => {
   test('„Bez zmian” zdejmuje blok z listy zastosowań (Zastosuj (2)); „Pomiń dziś” pomija blok po „Zastosuj”', async () => {
     await boot(); await pickPlace('Hotel');
     await tap(screen.getAllByText(/^Bench Press \(sztanga\) → /)[0]); await flushAll(20); await tap(screen.getByText('Bez zmian')); await flushAll(20);
-    expect(top()).toBe('adapt'); expect(screen.getByText('Bench Press (sztanga) → Bez zmian')).toBeTruthy(); expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (2)');
-    await tap(screen.getAllByText(/^Pull Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull Up')); await flushAll(20);
-    expect(screen.getByText('Pull Up → Pomiń dziś')).toBeTruthy(); expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (2)');
+    expect(top()).toBe('adapt'); expect(screen.getByText('Bench Press → Bez zmian')).toBeTruthy(); expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (2)');
+    await tap(screen.getAllByText(/^Pull-Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull-Up')); await flushAll(20);
+    expect(screen.getByText('Pull-Up → Pomiń dziś')).toBeTruthy(); expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (2)');
     await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
     expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(blk(0).swappedFrom).toBeUndefined();
     expect(blk(1).swappedFrom).toBe(ex('Overhead Press (sztanga)').id); expect(blk(2).skipped).toBe(true); expect(blk(3).exerciseId).toBe(ex('RDL (hantle/linki)').id);
   });
   test('spójność (docs/32): „Pomiń dziś” w oknie przy trwającym stoperze serii pyta jak pojedyncze „Pomiń dziś”; Anuluj → bez zmian i bez zapisu; potwierdzenie → pominięto, stoper zatrzymany', async () => {
     await boot(); await pickPlace('Hotel');
-    await tap(screen.getAllByText(/^Pull Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull Up')); await flushAll(20);
+    await tap(screen.getAllByText(/^Pull-Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull-Up')); await flushAll(20);
     await act(async () => { await timer.startSet(blk(2).sets[0].id, 0); }); expect(timer.S.on).toBe(true);
     const saves = jest.spyOn(store, 'save'); const before = JSON.stringify(S().active);
     await tap(screen.getByTestId('adapt-apply')); await flushAll(5);
@@ -113,7 +113,7 @@ describe('arkusz zamiany z celem adapt: i zastosowanie', () => {
   });
   test('liczba mnoga ogłoszenia: 1 ćwiczenie', async () => {
     const spy = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});
-    await boot([['Bench Press (sztanga)', 'b'], ['RDL (hantle/linki)', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
+    await boot([['Bench Press', 'b'], ['Dumbbell or Cable Romanian Deadlift', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
     expect(spy).toHaveBeenCalledWith('Zamieniono 1 ćwiczenie'); spy.mockRestore();
   });
 });
@@ -194,14 +194,14 @@ describe('dopiski wierszy, podpowiedzi i tytuł okna', () => {
   }
   test('zamiennik z szablonu dla miejsca (W3) — wiersz z dopiskiem „zamiennik z szablonu dla tego miejsca”, domyślnie zaznaczony; po ręcznej zmianie dopisek znika', async () => {
     await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Bench Press (hantle)').id, restSec: 75 }]; });
-    await pickPlace('Hotel'); expect(screen.getByText('Bench Press (sztanga) → Incline Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText(/zamiennik z szablonu dla tego miejsca/)).toBeTruthy();
-    await tap(screen.getByText('Bench Press (sztanga) → Incline Bench Press (hantle)')); await flushAll(20); await tap(screen.getByText('Bez zmian')); await flushAll(20);
-    expect(screen.queryByText(/zamiennik z szablonu dla tego miejsca/)).toBeNull(); expect(screen.getByText('Bench Press (sztanga) → Bez zmian')).toBeTruthy();
+    await pickPlace('Hotel'); expect(screen.getByText('Bench Press → Incline Dumbbell Bench Press')).toBeTruthy(); expect(screen.getByText(/zamiennik z szablonu dla tego miejsca/)).toBeTruthy();
+    await tap(screen.getByText('Bench Press → Incline Dumbbell Bench Press')); await flushAll(20); await tap(screen.getByText('Bez zmian')); await flushAll(20);
+    expect(screen.queryByText(/zamiennik z szablonu dla tego miejsca/)).toBeNull(); expect(screen.getByText('Bench Press → Bez zmian')).toBeTruthy();
     await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).restSec).toBe(120); /* wybrano „Bez zmian” dla bloku 0 — bez przerwy z zamiennika */
   });
   test('zastosowanie zamiennika z szablonu niesie jego przerwę (75 s)', async () => {
     await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Bench Press (hantle)').id, restSec: 75 }]; });
-    await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).exerciseId).toBe(ex('Incline Bench Press (hantle)').id); expect(blk(0).restSec).toBe(75);
+    await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).exerciseId).toBe(ex('Incline Dumbbell Bench Press').id); expect(blk(0).restSec).toBe(75);
   });
   test('P3 A: trzy bloki tego samego ćwiczenia — drugi i trzeci z dopiskiem „następna propozycja — pierwsza jest już zajęta…”', async () => {
     await bootWith(() => {}, [['Bench Press (sztanga)', 'b1'], ['Bench Press (sztanga)', 'b2'], ['Bench Press (sztanga)', 'b3']]);
@@ -219,8 +219,8 @@ describe('dopiski wierszy, podpowiedzi i tytuł okna', () => {
   });
   test('wiersze mają podpowiedź „Otwiera wybór zamiennika.”, „Bez zmian” w arkuszu — podpis „zostaje to ćwiczenie” i etykietę z nazwą ćwiczenia', async () => {
     await boot(); await pickPlace('Hotel'); const row = screen.getAllByLabelText(/^Bench Press \(sztanga\) → /)[0]; expect(row.props.accessibilityHint).toBe('Otwiera wybór zamiennika.'); expect(row.props.accessibilityRole).toBe('button');
-    await tap(row); await flushAll(20); expect(screen.getByText('zostaje to ćwiczenie')).toBeTruthy(); const none = screen.getByLabelText('Bez zmian: Bench Press (sztanga)'); expect(none.props.accessibilityRole).toBe('button');
-    await tap(none); await flushAll(20); expect(screen.getByText('Bench Press (sztanga) → Bez zmian')).toBeTruthy();
+    await tap(row); await flushAll(20); expect(screen.getByText('zostaje to ćwiczenie')).toBeTruthy(); const none = screen.getByLabelText('Bez zmian: Bench Press'); expect(none.props.accessibilityRole).toBe('button');
+    await tap(none); await flushAll(20); expect(screen.getByText('Bench Press → Bez zmian')).toBeTruthy();
   });
   test('„Wraca z planu”: podpis przełącznika „wraca do ćwiczenia z planu”, a przy wpisanych wartościach „wpisane wartości zamiennika przepadną”', async () => {
     await boot(); await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);

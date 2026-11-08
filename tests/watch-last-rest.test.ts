@@ -27,7 +27,7 @@ describe('ostatnia przerwa na zegarku: informacja „zakończ na telefonie” ra
   });
   test('zwykła przerwa zachowuje zapowiedź następnego ćwiczenia (zmiana dotyczy tylko ostatniej)', () => {
     const p = runScenario(SC['basic-apple']);
-    expect(p[3].view.cue).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń');
+    expect(p[3].view.cue).toBe('Bench Press · seria 2, 80 kg, 8 powtórzeń');
   });
   test('po końcu ostatniej przerwy (ekran done) widok też bez zapowiedzi', () => {
     const p = runScenario(SC['last-set-and-done']);

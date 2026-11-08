@@ -52,7 +52,7 @@ describe('ZB-044 logika: exName / exNameLang / exLocal w każdym języku', () =>
 });
 
 describe('ZB-044 ekran: karta ćwiczenia (wariant A „Podpis”)', () => {
-  const boot = async (locale: 'pl' | 'en' | 'de', url: string) => { await fresh(undefined, 'pl'); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: locale as never, url }); await flushAll(20); };
+  const boot = async (locale: 'pl' | 'en' | 'de', url: string) => { await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: locale as never, url }); await flushAll(20); };
   test.each(['pl', 'de', 'en'] as const)('%s, bez listy nazw: tytuł angielski z głosem en, bez drugiej linii', async l => {
     await fresh(undefined, 'pl'); const id = ex('Wyciskanie na linkach (stojąc)').id; await boot(l, `/exercise/${id}`);
     const h = screen.getByText('Standing Cable Chest Press'); expect(h.props.accessibilityLanguage).toBe('en'); expect(h.props.accessibilityRole).toBe('header');

@@ -47,7 +47,7 @@ describe('E2E-05: Postępy — ⓘ nie zmienia przewinięcia', () => {
     expect(screen.getByTestId('info-text-sets-part')).toBeTruthy(); expect(offset()).toBe(before);
   });
   test('wybór chipa ćwiczenia nadal pokazuje wykres tego ćwiczenia', async () => {
-    await boot(); await tap(screen.getByLabelText('Bench Press (sztanga)')); await flushAll(10);
+    await boot(); await tap(screen.getByLabelText('Bench Press')); await flushAll(10);
     expect(screen.getByTestId('progress-chooser')).toBeTruthy(); expect(screen.getAllByText(/Bench Press/).length).toBeGreaterThan(0);
   });
 });

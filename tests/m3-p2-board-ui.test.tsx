@@ -29,7 +29,7 @@ const text = (id: string) => { const n = screen.getByTestId(id); /* RNTL 14: wit
 describe('ZM-01: tablica „teraz” — dane i wpis', () => {
   test('nazwa ćwiczenia wersalikami przez upperText (pl: styl wersalików, tekst bez zmian), liczby „—” gdy brak wyniku (nie „0”), „seria n z m”', async () => {
     await fresh(); startBench(3); await boot();
-    const card = within(screen.getByTestId('focus-card')); const name = card.getByText('Bench Press (sztanga)');
+    const card = within(screen.getByTestId('focus-card')); const name = card.getByText('Bench Press');
     expect(([] as { textTransform?: string }[]).concat(name.props.style).flat(3).some(x => x?.textTransform === 'uppercase')).toBe(true);
     expect(within(screen.getByTestId('board-value-weight')).getByText('—')).toBeTruthy(); expect(within(screen.getByTestId('board-value-reps')).getByText('—')).toBeTruthy();
     expect(card.getByText('seria 1 z 3')).toBeTruthy();
@@ -112,7 +112,7 @@ describe('ZM-01: „Seria zrobiona” bez wyniku', () => {
   });
   test('wiersz serii (✓ w wierszu) działa jak dotąd — odhacza bez blokady (zmiana dotyczy przycisku „Seria zrobiona” na tablicy)', async () => {
     await fresh(); const a = startBench(2); await boot();
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(20); expect(A().exercises[0].sets[0].done).toBe(true);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press')); await flushAll(20); expect(A().exercises[0].sets[0].done).toBe(true);
   });
 });
 

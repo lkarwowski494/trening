@@ -21,8 +21,8 @@ const fromWatch = async (type: 'done' | 'differ', si: number, at = Date.now()) =
 
 test('seria odhaczona jako „zrobione inaczej”: w wierszu „do uzupełnienia” i „Gotowe” (etykiety VoiceOver z numerem serii i ćwiczeniem); seria „zrobione według planu” bez oznaczenia', async () => {
   await boot(); await fromWatch('differ', 0); await fromWatch('done', 1);
-  expect(screen.getAllByText('do uzupełnienia')).toHaveLength(1); expect(screen.getByLabelText('Seria 1 do uzupełnienia — Bench Press (sztanga)')).toBeTruthy();
-  expect(screen.getByLabelText('Seria 1 uzupełniona — Bench Press (sztanga)')).toBeTruthy(); expect(screen.queryByLabelText(/^Seria 2 do uzupełnienia/)).toBeNull(); expect(screen.getByTestId('tofill-0-0')).toBeTruthy();
+  expect(screen.getAllByText('do uzupełnienia')).toHaveLength(1); expect(screen.getByLabelText('Seria 1 do uzupełnienia — Bench Press')).toBeTruthy();
+  expect(screen.getByLabelText('Seria 1 uzupełniona — Bench Press')).toBeTruthy(); expect(screen.queryByLabelText(/^Seria 2 do uzupełnienia/)).toBeNull(); expect(screen.getByTestId('tofill-0-0')).toBeTruthy();
 });
 test('„Gotowe” zdejmuje znacznik (dane i ekran); po „Gotowe” zwykłe „Zakończ” bez prośby', async () => {
   await boot(); await fromWatch('differ', 0); await tap(screen.getByText('Gotowe'));
