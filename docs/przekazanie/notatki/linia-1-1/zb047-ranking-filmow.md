@@ -72,7 +72,7 @@ Automat filmów obsługuje wszystkie 38 (gałąź `filmy/automat-zb047`, e2a4419
 - **Opcja 3: Opcja 1 + Z7 (konto planera słów kluczowych).** Wolumeny bezwzględne PL/EN. Kompromis: nowe konto reklamowe (decyzja i dane właściciela), przedziały zamiast liczb, ryzyko pokusy płatnej kampanii.
 - Wykonalność: Z1–Z5 odczytane 08.11.2026 (adresy wyżej / D1–D4); Z6 — wykonalność ręczna niesprawdzona przeze mnie (automat dostał 429), interfejs opisany z pamięci → przed sesją właściciela przeczytać pomoc Trends.
 
-## Propozycja kolejności i haki PL/EN (szkic — haki do przeglądu właściciela i recenzenta lokalizacji)
+## Propozycja kolejności (haki per ćwiczenie nieaktualne — jeden wspólny hak, właściciel 08.11.2026 ~22:45, docs/18)
 
 ### Zasada układania
 1. Najpierw po jednym „wielkim” ruchu z każdej rodziny (wyciskanie, przysiad, martwy ciąg, uginanie, podciąganie) — kolejność wg Z1 (udział w zapisanych seriach).
