@@ -61,8 +61,8 @@ describe('UX2-01: wyszukiwanie po dawnej nazwie — ekrany', () => {
     await go(`/picker?target=template:${id}`); await flushAll(10);
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Seated Dumbbell Curl'); await flushAll(5);
     expect(screen.queryByText('Utwórz „Seated Dumbbell Curl”')).toBeNull(); expect(screen.queryByText('Nic nie pasuje.')).toBeNull();
-    expect(screen.getByText('Biceps Curl (hantle)')).toBeTruthy(); expect(screen.getByText(/dawniej: Seated Dumbbell Curl/)).toBeTruthy();
-    await tap(screen.getByText('Biceps Curl (hantle)')); await flushAll(10);
+    expect(screen.getByText('Dumbbell Curl')).toBeTruthy(); expect(screen.getByText(/dawniej: Seated Dumbbell Curl/)).toBeTruthy();
+    await tap(screen.getByText('Dumbbell Curl')); await flushAll(10);
     expect(draft.objDraft<Template>('template', id)!.items.map(i => i.exerciseId)).toContain(ex('Biceps Curl (hantle)').id); expect(S().exercises.length).toBe(n0);
   });
   test('zakładka Ćwiczenia: dawna nazwa znajduje obecne ćwiczenie, bez przycisku „Utwórz …”; zwykłe trafienie nazwy — bez dopisku', async () => {
@@ -95,7 +95,7 @@ describe('UX2-01: wyszukiwanie po dawnej nazwie — ekrany', () => {
     await act(async () => { store.startEmpty(); }); await flushAll(5); await go('/picker?target=active'); await flushAll(10);
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Seated Dumbbell Curl'); await flushAll(5);
     expect(screen.queryByText('Utwórz „Seated Dumbbell Curl”')).toBeNull();
-    await tap(screen.getByText('Biceps Curl (hantle)')); await flushAll(10);
+    await tap(screen.getByText('Dumbbell Curl')); await flushAll(10);
     expect(S().active!.exercises.map(b => b.exerciseId)).toEqual([target.id]); expect(S().exercises.filter(e => /Seated Dumbbell Curl/i.test(e.name))).toEqual([]);
   });
 });

@@ -77,8 +77,8 @@ describe('ekran treningu: karta „teraz”', () => {
   });
   test('przycisk karty ma własną etykietę VoiceOver (inna niż ✓ w wierszu — dwa przyciski o tej samej nazwie mylą); „↑” tylko w nagłówku ćwiczenia', async () => {
     await gymWorkout();
-    expect(screen.getAllByLabelText('Seria zrobiona: Bench Press (sztanga), seria 1')).toHaveLength(1);
-    expect(screen.getAllByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')).toHaveLength(1); /* pole wyboru w wierszu */
+    expect(screen.getAllByLabelText('Seria zrobiona: Bench Press, seria 1')).toHaveLength(1);
+    expect(screen.getAllByLabelText('Seria 1 zrobiona — Bench Press')).toHaveLength(1); /* pole wyboru w wierszu */
   });
   test('ciężar wpisany w wierszu zmienia kartę (wartości tylko w wierszu)', async () => {
     await gymWorkout();

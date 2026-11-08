@@ -156,6 +156,7 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.2 — karta ćwiczenia na wąskim ekranie (właściciel 08.11.2026, ZB-044)
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
+- ZB-044-B1 (ZB-044, recenzja audytora Ś-2, 09.11.2026): dwa identyczne „Bench Press” na listach (własne z 1.0 obok ćwiczenia z biblioteki) — dopisek rozróżniający tylko przy kolizji nazw (np. „własne”) w liście, wyborze i treningu; wzorca w docs/32 brak, wymaga decyzji o wzorcu (jedno miejsce `exName` nie zna listy) — 1.2. Import CSV już wybiera własne przed biblioteką (naprawione).
 
 ### Backlog 1.2 — karty A2 (nogi): NISKIE z recenzji niezależnej (08.11.2026; `docs/research/recenzje/a2-nogi-karty-badacz-2026-11-08.md`, `a2-nogi-lokalizacja-2026-11-08.md`; nie blokują)
 - [OTWARTE] `calf.band` (Band Calf Raise): drugie źródło szczebla 4 dla położenia gumy pod przednią częścią stóp (recenzja lokalizacji: blokujące — karta nie mówi, że guma idzie pod stopy; runda 2 badacza 08.11.2026: tylko Thera-Band, Bodylastics zaczepia o drzwi, ACE 5771 — wariant w siadzie). Do czasu źródła brzmienie rundy 1; karta i tak ukryta do przekładu.

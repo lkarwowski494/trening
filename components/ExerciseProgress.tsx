@@ -6,7 +6,7 @@ import { sessionsFor, recordsFor, chartKeysFor, totalKind, fmtTotal, fmtE1, bwSh
 import { hasWeight, hasReps, hasTime, hasDistance, type Exercise } from '@/lib/seed';
 import { LineChart, TIME_STEPS } from '@/components/Chart';
 import { useTheme, FW, font, maxScale, RADIUS, SPACE } from '@/lib/theme';
-import { t, exName, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { fmtW, fmtVol } from '@/lib/units';
 
 /** Wykres i rekordy jednego ćwiczenia (M3 p3, ZM-06): `top` — karta z nazwą, wyborem metryki, wartością ostatniej sesji i wykresem oraz grupa „REKORDY”;
@@ -35,7 +35,7 @@ export function exerciseParts({ ex, key, setKey, th, shortY }: { ex: Exercise; k
   const last = points[points.length - 1];
   const top = <>
     <View testID="progress-hero" style={{ backgroundColor: th.surface, borderRadius: RADIUS.group, padding: SPACE.l, marginTop: SPACE.s }}>
-      <Txt accessibilityRole="header" style={{ ...font('sectionTitle') }}>{exName(ex)}</Txt>
+      <Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ ...font('sectionTitle') }}>{exName(ex)}</Txt>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s - 2, marginTop: SPACE.s }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>
       {active && last ? <View accessible accessibilityLanguage={lang()} accessibilityLabel={`${active.label}: ${active.fmt(last.y)}`} style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end', marginTop: SPACE.m }}><Txt maxFontSizeMultiplier={maxScale('stat')} style={{ ...font('stat'), flexShrink: 1, textAlign: 'right' }}>{monoSafe(active.fmt(last.y), true)}</Txt></View> : null}
       <View style={{ marginTop: SPACE.s }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>

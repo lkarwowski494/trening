@@ -38,7 +38,7 @@ describe('rozmowa z zegarkiem po JSON', () => {
     w.emit(JSON.stringify(fx('messages/valid/hello-apple.json'))); await settle(); await Promise.resolve();
     const m = sent(w);
     expect(m.find(x => x.kind === 'welcome')).toEqual({ v: 1, kind: 'welcome', ok: true, protocol: 1, upgrade: null });
-    const snap = m.filter(x => x.kind === 'snapshot').pop(); expect(snap).toMatchObject({ phase: 'set', now: { title: 'Bench Press (sztanga)', counter: 'seria 1 z 3', load: '80 kg × 8' }, after: { restSec: 90 } });
+    const snap = m.filter(x => x.kind === 'snapshot').pop(); expect(snap).toMatchObject({ phase: 'set', now: { title: 'Bench Press', counter: 'seria 1 z 3', load: '80 kg × 8' }, after: { restSec: 90 } });
     expect(m.find(x => x.kind === 'session')).toMatchObject({ action: 'start', workoutId: A().id, save: false });
     expect(w.started).toBe(1);
   });

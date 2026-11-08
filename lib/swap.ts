@@ -1,6 +1,6 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
-import { t, exName, locale, fold, collator } from './i18n';
+import { t, exName, exLocalFold, locale, fold, collator } from './i18n';
 import { SWAP_WEIGHTS, similarity, orderSwaps, FULL_BASE_REV, type SwapReason } from './swapScore';
 import { type Exercise, type Impl, type Location, type Workout } from './seed';
 
@@ -51,7 +51,7 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
 /** Lista „Inne” w arkuszu zamiany: dokładne trafienie nazwy (w języku interfejsu albo kanonicznej) na początku, reszta alfabetycznie
  * (audyt pełnej bazy, LOW 4: przy porcjach SWAP_PAGE dokładne trafienie nie może utknąć za „Pokaż więcej”). `ql` — zapytanie po fold(). */
 export function sortOthers(list: readonly Exercise[], ql: string): Exercise[] {
-  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
+  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql || (!!ql && exLocalFold(e) === ql));
   return [...list].sort((x, y) => Number(exact(y)) - Number(exact(x)) || collator().compare(exName(x), exName(y)));
 }
 /** Nazwa przyrządu (decyzja 8c) do arkusza i tabeli D7. */

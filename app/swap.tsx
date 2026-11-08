@@ -13,7 +13,7 @@ import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRest
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
 import { emitAdaptPick } from '@/lib/adaptPick';
-import { t, exName, exNameLang, locale, fold, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, exLocalFold, locale, fold, lang } from '@/lib/i18n';
 import type { Exercise, Impl, WExercise } from '@/lib/seed';
 
 /**
@@ -53,13 +53,13 @@ export default function SwapScreen() {
     : (d && canRestoreExercise(d, e) ? { ex: exById(d.origEx[e.id].exerciseId)!, go: () => once(() => { draftRestoreExercise(tg.key, tg.blockId); close(); }) } : null);
   const place = locationById(w.locationId); const caps = place ? capsOf(place) : null; const ql = fold(q.trim());
   const okEx = (b: Exercise) => d ? swapTargetOk(d, e, b, b.archived === true) : !!ex && b.id !== ex.id && (b.metric ?? 'weight_reps') === (ex.metric ?? 'weight_reps');
-  const hit = (b: Exercise) => !!ql && (fold(b.name).includes(ql) || fold(exName(b)).includes(ql));
+  const hit = (b: Exercise) => !!ql && (fold(b.name).includes(ql) || fold(exName(b)).includes(ql) || exLocalFold(b).includes(ql));
   /* audyt 04.10 (MEDIUM 2): jak w pickerze — „Przywróć …” usuniętego ćwiczenia (z historią) i „Utwórz …” z miarą bieżącego ćwiczenia */
   const archived = open && ql ? getState().exercises.filter(b => b.archived && okEx(b) && hit(b)) : [];
-  const exact = (b: Exercise) => fold(b.name) === ql || fold(exName(b)) === ql;
+  const exact = (b: Exercise) => fold(b.name) === ql || fold(exName(b)) === ql || (!!ql && exLocalFold(b) === ql);
   const canCreate = open && !!ql && !getState().exercises.some(exact);
   const used = open ? exercisesInUse() : null; /* research biblioteki (09.10.2026): filtr „Podstawowe” jak na liście i w wyborze */
-  const others = open ? visibleExercises().filter(b => okEx(b) && (!grpOn || !ex || b.group === ex.group) && (!locOn || !caps || availability(b, place, caps).ok) && (libAll || !!ql || inCoreList(b, used!)) && (!ql || fold(b.name).includes(ql) || fold(exName(b)).includes(ql)))
+  const others = open ? visibleExercises().filter(b => okEx(b) && (!grpOn || !ex || b.group === ex.group) && (!locOn || !caps || availability(b, place, caps).ok) && (libAll || !!ql || inCoreList(b, used!)) && (!ql || fold(b.name).includes(ql) || fold(exName(b)).includes(ql) || exLocalFold(b).includes(ql)))
      : []; const othersSorted = sortOthers(others, ql);
   return (
     <Screen style={{ paddingTop: 10 }}>

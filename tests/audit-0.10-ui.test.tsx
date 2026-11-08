@@ -187,8 +187,8 @@ describe('H5 — „Zapisz jako szablon” i „Zaktualizować szablon?” (tylk
     expect(templateDiff(t, run(t, w => { w.exercises[1].swappedFrom = w.exercises[1].exerciseId; w.exercises[1].exerciseId = ex('Lat Pulldown').id; w.exercises[1].sets.push(store.emptySet()); }))).toBeNull(); store.cancelWorkout();
     expect(templateDiff(t, run(t, w => { w.deload = true; w.exercises[0].sets.pop(); }))).toBeNull(); store.cancelWorkout();
     const d = templateDiff(t, run(t, w => { w.exercises.splice(1, 1); w.exercises[0].sets.push({ ...store.emptySet(), kind: 'normal' }); w.exercises.unshift({ ...w.exercises[0], id: 'n', tplItemId: undefined, exerciseId: ex('Plank').id }); }))!;
-    expect(d).toEqual({ added: ['Plank'], removed: ['Pull Up'], sets: ['Bench Press (Barbell)'.replace('(Barbell)', '(sztanga)')], order: false }); store.cancelWorkout();
-    expect(templateDiffText(d)).toBe('Dodane: Plank.\nUsunięte: Pull Up.\nInne serie: Bench Press (sztanga).'); expect(templateDiffText({ added: [], removed: [], sets: [], order: true })).toBe('Inna kolejność ćwiczeń.');
+    expect(d).toEqual({ added: ['Plank'], removed: ['Pull-Up'], sets: ['Bench Press'], order: false }); store.cancelWorkout();
+    expect(templateDiffText(d)).toBe('Dodane: Plank.\nUsunięte: Pull-Up.\nInne serie: Bench Press.'); expect(templateDiffText({ added: [], removed: [], sets: [], order: true })).toBe('Inna kolejność ćwiczeń.');
     expect(templateDiff(t, run(t, w => { w.exercises.reverse(); }))).toMatchObject({ order: true }); store.cancelWorkout();
     expect(templateDiff(undefined, run(t))).toBeNull(); store.cancelWorkout(); t.archived = true; expect(templateDiff(t, run(t))).toBeNull();
   });
@@ -238,7 +238,7 @@ describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyc
     await boot(() => { const t = mkTpl(); store.startFromTemplate(t); });
     /* M3 p2 (ZM-02): notatka szablonu jest w menu „⋯” (alert z treścią), nie w osobnym wierszu */
     await menuPick('Notatka szablonu'); expect((global as any).__alerts.at(-1)).toMatchObject({ title: 'Notatka szablonu', msg: 'Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.' });
-    /* Bench: W + 2 normalne + drop = 2 robocze; Pull Up: 2 → 4 */
+    /* Bench: W + 2 normalne + drop = 2 robocze; Pull-Up: 2 → 4 */
     expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy();
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].done = true; store.save(a); }); await flushAll(5); expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy(); /* rozgrzewka */
     await act(async () => { const a = S().active!; a.exercises[0].sets[1].done = true; a.exercises[0].sets[2].done = true; a.exercises[0].sets[3].done = true; store.save(a); }); await flushAll(5);

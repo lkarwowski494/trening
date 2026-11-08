@@ -12,7 +12,7 @@ import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dro
 import type { Exercise } from '@/lib/seed';
 import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, formerNamesOf, formerEnNamesOf, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
-import { t, exName, exNameLang, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, exLocal, lang } from '@/lib/i18n';
 import { ExerciseCues } from '@/components/ExerciseCues';
 import { MuscleRoles } from '@/components/MuscleRoles';
 import { font } from '@/lib/theme';
@@ -65,10 +65,12 @@ const HISTORY_ROWS = 5;
 function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exercise; onClose: () => void; /** sekcja „Technika” rozwinięta (domyślnie; zwinięta przy ?cues=0) */ cuesOpen?: boolean; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
   const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
   const hist = finishedWorkouts().filter(w => w.exercises.some(x => x.exerciseId === e.id)).slice(0, HISTORY_ROWS);
+  const local = exLocal(e);
   const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1 a11yLang={exNameLang(e)}>{exName(e)}</H1></View>{/* podgląd: tylko nazwa w języku aplikacji (nazwa katalogowa — w edycji, przy „Wyświetlane jako”) */}<Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
+      {/* ZB-044 (08.11.2026, wariant A „Podpis”): tytuł = nazwa angielska (largeTitle, głos en), pod nim nazwa lokalna (callout, muted, 4 pt) z listy po recenzji — osobny element w języku interfejsu; „Edytuj” przy pierwszym wierszu tytułu */}
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1 a11yLang={exNameLang(e)}>{exName(e)}</H1>{local ? <Muted testID="exercise-local-name" style={{ marginTop: 4 }}>{local}</Muted> : null}</View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
       <ExerciseCues exercise={e} initialOpen={cuesOpen} />{/* wskazówki techniki, etap 1 (docs/18 08.10.2026 ok. 23:50) — UX2-05 (audyt kontrolny 1, wariant B): na górze podglądu, przed danymi konfiguracji */}
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />
@@ -100,7 +102,7 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exer
 /** Edycja na szkicu — pola jak dotąd; zmiany trafiają do ćwiczenia dopiero po „Zapisz”. */
 function EditForm({ e }: { e: Exercise }) {
   const p = previousFor(e.id);
-  const translated = lang() !== 'pl' && exName(e) !== e.name;
+  const translated = exName(e) !== e.name; /* ZB-044: także po polsku */
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={e.name} onChangeText={v => { e.name = v; save(e); }} /* G2 (audyt 0.10): pusta nazwa przy „Zapisz” wraca do poprzedniej (lib/draft.cleanName) */ /></Field>

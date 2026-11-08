@@ -441,7 +441,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     global.__notifications.length = 0;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Back Squat/)[0]); await flushAll(10);
     expect(timer.T.on).toBe(true); expect((global.__notifications as any[]).find(n => n.content.title === 'Przerwa minęła').content.body).toBe('Następna seria.');
-    expect(timer.labels.subtitle).toBe('dalej: Push Up, masa ciała'); /* 0.20: zapowiedź = restCue (ciężar i powtórzenia) */
+    expect(timer.labels.subtitle).toBe('dalej: Push-Up, masa ciała'); /* 0.20: zapowiedź = restCue (ciężar i powtórzenia) */
   });
 
   test('menu „⋯” → miejsce: arkusz „Miejsce tego treningu” zmienia miejsce sesji', async () => {
@@ -588,7 +588,7 @@ describe('/swap', () => {
 
   test('brak propozycji w miejscu → „Brak podobnych ćwiczeń…”; „Inne ▾/▴” z opisem; „Pokaż więcej (n)” dokłada ćwiczenia', async () => {
     await startIn('home', ['Bent Over Row (sztanga)']);
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Bent Over Row (sztanga)')); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Bent-Over Row')); await flushAll(20);
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
     expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByText('Pokaż inne ćwiczenia')).toBeTruthy(); /* UI-15: nagłówek „Inne”, wiersz ze znakiem ▸/▾ */
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
@@ -605,8 +605,8 @@ describe('/swap', () => {
     await tap(screen.getByLabelText('Zamień ćwiczenie: Chest Dip')); await flushAll(20);
     expect(screen.getAllByText(/^te same mięśnie, /) /* M1-audytor-generalny-029: powody po przecinku */.length).toBeGreaterThan(0);
     await tap(screen.getByText('Anuluj')); await flushAll(10);
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Upright Row (sztanga)')); await flushAll(20);
-    expect(screen.getByText('Upright Row (sztanga) — gryf łamany')).toBeTruthy();
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Barbell Upright Row')); await flushAll(20);
+    expect(screen.getByText('Barbell Upright Row — gryf łamany')).toBeTruthy();
     await tap(screen.getByLabelText('Inny przyrząd: gryf łamany')); await flushAll(10);
     expect(blk(1).impl).toBe('ez_bar');
   });
@@ -691,7 +691,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
     await act(async () => { pressAlert('Zapisać zmiany?', 'Zapisz'); }); await flushAll(50);
     expect(store.getState().workouts.find(x => x.id === w1.id)!.note).toBe('dobrze');
     await go(`/history/edit/${w2.id}`); await flushAll(20);
-    await swipeDelete('Usuń ćwiczenie: Push Up'); await act(async () => { pressAlert('Usunąć z treningu?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz')); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie tak */
+    await swipeDelete('Usuń ćwiczenie: Push-Up'); await act(async () => { pressAlert('Usunąć z treningu?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz')); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie tak */
     expect(lastAlert()).toMatchObject({ title: 'Pusty trening', msg: 'Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?' });
     await act(async () => { pressAlert('Pusty trening', 'Usuń sesję'); }); await flushAll(50);
     expect(store.getState().workouts.some(x => x.id === w2.id)).toBe(false);

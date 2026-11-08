@@ -33,14 +33,14 @@ test('Hotel w poniedziałek: okno → Pomiń + wybór ręczny + domyślna → Za
 
   await startTpl('FBW'); expect(S().active!.locationId).toBe('gym'); expect(screen.queryByTestId('adapt-line')).toBeNull();
   await pickPlace('Hotel'); expect(top()).toBe('adapt');
-  /* ręcznie: Overhead Press → druga propozycja; Pull Up → Pomiń dziś; Bench Press zostaje z domyślną propozycją */
-  const benchTo = (screen.getAllByText(/^Bench Press \(sztanga\) → /)[0].props.children as string).split(' → ')[1];
-  await tap(screen.getAllByText(/^Overhead Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
+  /* ręcznie: Overhead Press → druga propozycja; Pull-Up → Pomiń dziś; Bench Press zostaje z domyślną propozycją */
+  const benchTo = (screen.getAllByText(/^Bench Press → /)[0].props.children as string).split(' → ')[1];
+  await tap(screen.getAllByText(/^Overhead Press → /)[0]); await flushAll(20); expect(top()).toBe('swap');
   const props = screen.getAllByLabelText(/^Propozycja \d: /); const manual = /^Propozycja \d: ([^,]+)/.exec(props[Math.min(1, props.length - 1)].props.accessibilityLabel)![1]; await tap(props[Math.min(1, props.length - 1)]); await flushAll(20);
-  await tap(screen.getAllByText(/^Pull Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull Up')); await flushAll(20);
+  await tap(screen.getAllByText(/^Pull-Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull-Up')); await flushAll(20);
   expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (3)'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
-  expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(S().exercises.find(e => e.name === benchTo)!.id); expect(blk(0).swappedFrom).toBe(ex('Bench Press (sztanga)').id);
-  expect(blk(1).exerciseId).toBe(S().exercises.find(e => e.name === manual)!.id); expect(blk(2).skipped).toBe(true); expect(blk(3).exerciseId).toBe(ex('RDL (hantle/linki)').id);
+  expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(S().exercises.find(e => require('@/lib/i18n').exName(e) === benchTo)!.id); expect(blk(0).swappedFrom).toBe(ex('Bench Press (sztanga)').id);
+  expect(blk(1).exerciseId).toBe(S().exercises.find(e => require('@/lib/i18n').exName(e) === manual)!.id); expect(blk(2).skipped).toBe(true); expect(blk(3).exerciseId).toBe(ex('RDL (hantle/linki)').id);
   expect(screen.getAllByText(/zamiast: /).length).toBe(2);
 
   await doSet(0, 0); await doSet(0, 1); expect(blk(0).sets.filter(x => x.done)).toHaveLength(2);

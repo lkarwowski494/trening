@@ -98,11 +98,11 @@ describe('Postępy — wykres i rekordy na górze, wybór pod nimi (ZM-06, DEC-0
   test('z historią: bez wyboru pokazany jest ostatnio trenowane ćwiczenie — wykres i rekordy, potem wybór, potem reszta', async () => {
     await boot(seed, '/progress'); await flushAll(10);
     const [hero, rec, pick, over] = order('progress-hero', 'progress-records', 'progress-chooser', 'progress-overview'); expect([hero, rec, pick, over].every(i => i >= 0)).toBe(true); expect(hero).toBeLessThan(rec); expect(rec).toBeLessThan(pick); expect(pick).toBeLessThan(over);
-    expect(screen.getByTestId('progress-hero')).toBeTruthy(); expect(screen.getAllByText('Bench Press (sztanga)').length).toBeGreaterThan(0); /* najnowszy trening */
+    expect(screen.getByTestId('progress-hero')).toBeTruthy(); expect(screen.getAllByText('Bench Press').length).toBeGreaterThan(0); /* najnowszy trening */
   });
   test('wybór ćwiczenia: chipy tylko ćwiczeń z danymi; reszta przez wyszukiwanie („Nic nie pasuje.” bez wyników)', async () => {
     await boot(seed, '/progress'); await flushAll(10);
-    const t = textsIn('progress-chooser'); expect(t).toContain('Back Squat'); expect(t).toContain('Bench Press (sztanga)'); expect(t).not.toContain('Plank'); expect(t).not.toContain('Pull Up');
+    const t = textsIn('progress-chooser'); expect(t).toContain('Back Squat'); expect(t).toContain('Bench Press'); expect(t).not.toContain('Plank'); expect(t).not.toContain('Pull-Up');
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank'); await flushAll(5); expect(screen.getByLabelText('Plank')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); await flushAll(5); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
   });
@@ -114,7 +114,7 @@ describe('Postępy — wykres i rekordy na górze, wybór pod nimi (ZM-06, DEC-0
   });
   test('chipy: wybrane ćwiczenie jest zaznaczone i bez podpowiedzi, pozostałe mają podpowiedź „Tapnij, by wybrać inne ćwiczenie.”', async () => {
     await boot(seed, '/progress'); await flushAll(10);
-    const sel = screen.getByLabelText('Bench Press (sztanga)'); const other = screen.getByLabelText('Back Squat');
+    const sel = screen.getByLabelText('Bench Press'); const other = screen.getByLabelText('Back Squat');
     expect(sel.props.accessibilityState.selected).toBe(true); expect(sel.props.accessibilityHint).toBeUndefined();
     expect(other.props.accessibilityState.selected).toBe(false); expect(other.props.accessibilityHint).toBe('Tapnij, by wybrać inne ćwiczenie.');
   });

@@ -62,7 +62,7 @@ describe('MEDIUM 1 — historia bez miejsca: wartość zostaje, dopisek „nie m
     e.sets[0].weight = 24; expect(edit.prefilledOffList(d, e)).toBeNull(); /* wpisane ręcznie — bez dopisku */
     edit.__resetDrafts(); await store.flush();
     await renderApp({ saved: snapshot() }); await go('/history/add'); await flushAll(20); await tap(screen.getByText('Pusty trening')); await flushAll(50);
-    await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(20); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), DB); await tap(screen.getByText(DB)); await flushAll(50);
+    await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(20); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), DB); await tap(screen.getByText('Dumbbell Bench Press')); await flushAll(50);
     expect(screen.getByText(NOTE(32))).toBeTruthy(); expect(screen.getAllByLabelText('kg/hantel')[0].props.value).toBe('32');
     await type(screen.getAllByLabelText('kg/hantel')[0], '24'); await flushAll(10); expect(screen.queryByText(/nie ma tutaj/)).toBeNull();
   });

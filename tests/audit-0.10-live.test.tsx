@@ -63,9 +63,9 @@ describe('F4 (LIVE-03): „Pomiń dziś” nie zatrzymuje przerwy po odhaczonej 
   test('F4 (LIVE-03): ✓ serii 1 → przerwa; „Pomiń dziś” → przerwa trwa (bez odwołania powiadomienia), podpis przeliczony na następne ćwiczenie', async () => {
     await fresh(); S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); store.addSet(0); store.addExerciseToActive(ex('Plank'));
     S().active!.exercises[0].sets.forEach(s => { s.weight = 80; s.reps = 8; }); await boot();
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(10);
-    expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); const n0 = global.__cancelled.length; const la0 = global.__la.length; /* 0.20: zapowiedź przerwy = restCue (ciężar i powtórzenia) */
-    await tap(screen.getByLabelText('Pomiń dziś: Bench Press (sztanga)')); await flushAll(10);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press')); await flushAll(10);
+    expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('Bench Press · seria 2, 80 kg, 8 powtórzeń'); const n0 = global.__cancelled.length; const la0 = global.__la.length; /* 0.20: zapowiedź przerwy = restCue (ciężar i powtórzenia) */
+    await tap(screen.getByLabelText('Pomiń dziś: Bench Press')); await flushAll(10);
     expect(S().active!.exercises[0].skipped).toBe(true); expect(timer.T.on).toBe(true); expect(global.__cancelled.slice(n0)).not.toContain('rest-end');
     expect(timer.T.sub).toBe('dalej: Plank'); expect(global.__la.slice(la0)).toContainEqual(['update', 'dalej: Plank', timer.T.endAt, timer.T.total, 'pl']);
   });
@@ -86,24 +86,24 @@ describe('F5 (LIVE-04 / LIVE-15): podpis przerwy i powiadomienie', () => {
     jest.useFakeTimers({ now: T0 }); await fresh(); S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0);
     S().active!.exercises[0].sets.forEach(s => { s.weight = 60; s.reps = 8; }); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); jest.setSystemTime(T0); await flushAll(10);
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(10);
-    expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 2, 60 kg, 8 powtórzeń');
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press')); await flushAll(10);
+    expect(timer.T.sub).toBe('Bench Press · seria 2, 60 kg, 8 powtórzeń');
     await act(async () => { await store.flush(); }); const st = JSON.parse(JSON.stringify(saved())); jest.setSystemTime(T0 + 40 * SEC);
     await renderApp({ saved: st }); jest.setSystemTime(T0 + 40 * SEC); await flushAll(10);
-    expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 2, 60 kg, 8 powtórzeń');
-    expect(global.__la.filter((x: any) => x[0] === 'start').at(-1)).toEqual(['start', 'Trening', 'Bench Press (sztanga) · seria 2, 60 kg, 8 powtórzeń', timer.T.endAt, 90, 'rest|Przerwa', 'pl']);
+    expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('Bench Press · seria 2, 60 kg, 8 powtórzeń');
+    expect(global.__la.filter((x: any) => x[0] === 'start').at(-1)).toEqual(['start', 'Trening', 'Bench Press · seria 2, 60 kg, 8 powtórzeń', timer.T.endAt, 90, 'rest|Przerwa', 'pl']);
     expect(lastNotif('rest-end')?.content.body).toBe('Następna seria.');
   });
   test('F5 (LIVE-04, decyzja B): po ostatniej serii treningu przerwa zostaje, a powiadomienie nie mówi „Następna seria.”', async () => {
     await fresh(); S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0);
     S().active!.exercises[0].sets.forEach(s => { s.weight = 60; s.reps = 8; }); await boot();
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(10);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press')); await flushAll(10);
     expect(lastNotif('rest-end')?.content).toMatchObject({ title: 'Przerwa minęła', body: 'Następna seria.' });
-    await tap(screen.getByLabelText('Seria 2 zrobiona — Bench Press (sztanga)')); await flushAll(10);
+    await tap(screen.getByLabelText('Seria 2 zrobiona — Bench Press')); await flushAll(10);
     expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('nic więcej do zrobienia');
     expect(lastNotif('rest-end')?.content).toMatchObject({ title: 'Przerwa minęła', body: 'Nic więcej do zrobienia — możesz zakończyć trening.' });
     await tap(screen.getByText('+ seria')); await flushAll(10); /* nowa seria: podpis i treść powiadomienia wracają */
-    expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 3, 60 kg, 8 powtórzeń'); expect(lastNotif('rest-end')?.content.body).toBe('Następna seria.');
+    expect(timer.T.sub).toBe('Bench Press · seria 3, 60 kg, 8 powtórzeń'); expect(lastNotif('rest-end')?.content.body).toBe('Następna seria.');
   });
 });
 
@@ -123,7 +123,7 @@ describe('F6 (LIVE-06 / LIVE-07): widok skupiony', () => {
   test('F6 (LIVE-07, wariant A): przerwa po ✓ w wierszu niżej — dolny pasek przerwy, gdy karta jest poza ekranem', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); store.addSet(0);
     S().active!.exercises[0].sets.forEach(s => { s.weight = 80; s.reps = 8; }); await boot();
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(10); expect(timer.T.on).toBe(true);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press')); await flushAll(10); expect(timer.T.on).toBe(true);
     expect(screen.getAllByText('Pomiń')).toHaveLength(1); /* przerwa w karcie */
     await act(async () => { fireEvent(screen.getByTestId('focus-card'), 'layout', { nativeEvent: { layout: { x: 0, y: 120, width: 360, height: 420 } } }); fireEvent(screen.getByTestId('board-face'), 'layout', { nativeEvent: { layout: { x: 16, y: 16, width: 320, height: 64 } } }); });
     const sv = screen.getByTestId('workout-scroll');
@@ -198,7 +198,7 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
   test('F9 (LIVE-11): usunięcie ćwiczenia z odhaczonymi seriami — okno mówi, ile odhaczonych serii przepadnie', async () => {
     await fresh(); S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); store.addSet(0); store.addExerciseToActive(ex('Back Squat'));
     S().active!.exercises[0].sets.forEach((s, i) => { s.weight = 50; s.reps = 8; if (i < 2) { s.done = true; s.completedAt = Date.now(); } }); await boot();
-    await swipeDelete('Usuń ćwiczenie: Bench Press (sztanga)'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z treningu?', msg: 'Bench Press (sztanga)\nOdhaczone serie: 2 — przepadną.' });
+    await swipeDelete('Usuń ćwiczenie: Bench Press'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z treningu?', msg: 'Bench Press\nOdhaczone serie: 2 — przepadną.' });
     await swipeDelete('Usuń ćwiczenie: Back Squat'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z treningu?', msg: 'Back Squat' });
   });
   test('F9 (LIVE-13 / UI-11): „Poprzednio” w wierszu serii i plakietka przerwy na zakładce w kroju aplikacji', async () => {

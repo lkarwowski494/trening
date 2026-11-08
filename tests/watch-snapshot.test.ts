@@ -28,20 +28,20 @@ describe('faza set', () => {
   test('pierwsza seria: ćwiczenie, licznik, ciężar × powtórzenia, id serii i bloku; po odhaczeniu — przerwa 90 s i zapowiedź następnej serii', async () => {
     await world(); const s = snap(); const e = A().exercises[0];
     expect(s).toMatchObject({ phase: 'set', paused: false, workoutId: A().id, title: 'Push', rest: null, doneCount: 0, totalCount: 7, toFillCount: 0, lang: 'pl' });
-    expect(s.now).toEqual({ setId: sid(0, 0), blockId: e.id, title: 'Bench Press (sztanga)', counter: 'seria 1 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null });
-    expect(s.after).toEqual({ restSec: 90, cue: 'Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń', last: false,
-      now: { setId: sid(0, 1), blockId: e.id, title: 'Bench Press (sztanga)', counter: 'seria 2 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null } });
+    expect(s.now).toEqual({ setId: sid(0, 0), blockId: e.id, title: 'Bench Press', counter: 'seria 1 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null });
+    expect(s.after).toEqual({ restSec: 90, cue: 'Bench Press · seria 2, 80 kg, 8 powtórzeń', last: false,
+      now: { setId: sid(0, 1), blockId: e.id, title: 'Bench Press', counter: 'seria 2 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null } });
   });
   test('ostatnia seria bloku: `after` pokazuje następne ćwiczenie („dalej: …”) z jego przerwą', async () => {
     await world(); A().exercises[0].sets[0].done = true; A().exercises[0].sets[1].done = true;
-    const s = snap(); expect(s.now!.setId).toBe(sid(0, 2)); expect(s.after).toMatchObject({ restSec: 90, cue: 'dalej: Pull Up, +10 kg, 8 powtórzeń', last: false, now: { title: 'Pull Up', counter: 'seria 1 z 2', load: '+10 kg × 8' } });
+    const s = snap(); expect(s.now!.setId).toBe(sid(0, 2)); expect(s.after).toMatchObject({ restSec: 90, cue: 'dalej: Pull-Up, +10 kg, 8 powtórzeń', last: false, now: { title: 'Pull-Up', counter: 'seria 1 z 2', load: '+10 kg × 8' } });
   });
   test('seria na czas: stoper i cel; pusty ciężar „—”; masa ciała bez dociążenia', async () => {
     await world(); A().exercises.slice(0, 2).forEach(e => e.sets.forEach(x => { x.done = true; }));
     expect(snap().now).toMatchObject({ title: 'Plank', counter: 'seria 1 z 2', load: '45 s', timed: true, targetSec: 45 });
     A().exercises[2].sets[0].durationSec = ''; expect(snap().now).toMatchObject({ load: '—', timed: true, targetSec: null });
     A().exercises[1].sets.forEach(x => { x.done = false; x.addKg = ''; }); A().exercises[0].sets.forEach(x => { x.done = true; });
-    expect(snap().now).toMatchObject({ title: 'Pull Up', load: 'masa ciała × 8' });
+    expect(snap().now).toMatchObject({ title: 'Pull-Up', load: 'masa ciała × 8' });
   });
   test('M3 p6 / ZM-05: pole `measuring` tylko w trakcie pomiaru TEJ serii na czas (inaczej pola nie ma); `after.now` go nie niesie', async () => {
     await world(); A().exercises.slice(0, 2).forEach(e => e.sets.forEach(x => { x.done = true; }));
@@ -69,16 +69,16 @@ describe('faza set', () => {
 });
 describe('superset', () => {
   test('środek rundy: po A1 brak przerwy (restSec null), następna seria to B1; po B1 przerwa rundy 75 s i etykieta grupy', async () => {
-    await world({ ss: true }); let s = snap(); expect(s.now).toMatchObject({ title: 'Bench Press (sztanga)', group: 'SS A' });
-    expect(s.after).toMatchObject({ restSec: null, cue: '', now: { title: 'Pull Up', group: 'SS A' } });
-    A().exercises[0].sets[0].done = true; s = snap(); expect(s.now).toMatchObject({ title: 'Pull Up' });
-    expect(s.after).toMatchObject({ restSec: 75, cue: 'Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń', now: { title: 'Bench Press (sztanga)', counter: 'seria 2 z 3' } });
+    await world({ ss: true }); let s = snap(); expect(s.now).toMatchObject({ title: 'Bench Press', group: 'SS A' });
+    expect(s.after).toMatchObject({ restSec: null, cue: '', now: { title: 'Pull-Up', group: 'SS A' } });
+    A().exercises[0].sets[0].done = true; s = snap(); expect(s.now).toMatchObject({ title: 'Pull-Up' });
+    expect(s.after).toMatchObject({ restSec: 75, cue: 'Bench Press · seria 2, 80 kg, 8 powtórzeń', now: { title: 'Bench Press', counter: 'seria 2 z 3' } });
   });
 });
 describe('faza rest', () => {
   test('po odhaczeniu: przerwa ze znacznikami, zapowiedź = podpis timera = restCue; `now` = następna seria; `after` liczone dla następnej', async () => {
     await world(); await completeSet(0, 0); const s = snap({ rest: restOf() });
-    expect(s.phase).toBe('rest'); expect(s.rest).toEqual({ setId: sid(0, 0), startedAt: NOW, endsAt: NOW + 90e3, totalSec: 90, cue: 'Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń', last: false });
+    expect(s.phase).toBe('rest'); expect(s.rest).toEqual({ setId: sid(0, 0), startedAt: NOW, endsAt: NOW + 90e3, totalSec: 90, cue: 'Bench Press · seria 2, 80 kg, 8 powtórzeń', last: false });
     expect(s.rest!.cue).toBe(timer.T.sub); expect(s.rest!.cue).toBe(restCue(A(), sid(0, 0)).text);
     expect(s.now!.setId).toBe(sid(0, 1)); expect(s.after!.now!.setId).toBe(sid(0, 2)); expect(s).toMatchObject({ doneCount: 1, totalCount: 7 });
   });
@@ -119,7 +119,7 @@ describe('liczniki i pominięcia', () => {
   });
 });
 describe('teksty: jednostki, nazwy, język', () => {
-  test('funty: ciężar w migawce w lb (jak karta „teraz”)', async () => { await world(); applyUnit('lb'); expect(snap().now!.load).toBe('176,4 lb × 8'); expect(snap().after!.cue).toBe('Bench Press (sztanga) · seria 2, 176,4 lb, 8 powtórzeń'); });
+  test('funty: ciężar w migawce w lb (jak karta „teraz”)', async () => { await world(); applyUnit('lb'); expect(snap().now!.load).toBe('176,4 lb × 8'); expect(snap().after!.cue).toBe('Bench Press · seria 2, 176,4 lb, 8 powtórzeń'); });
   test('długie nazwy są skracane z „…” bez rozcinania pary zastępczej; limity pól', async () => {
     await world(); A().templateName = 'Ż'.repeat(100); const e = store.getState().exercises.find(x => x.id === A().exercises[0].exerciseId)!; const old = e.name; e.name = '😀'.repeat(80); (e as { lib?: boolean }).lib = false;
     const s = snap(); expect(Array.from(s.title)).toHaveLength(WATCH.TITLE_MAX); expect(s.title.endsWith('…')).toBe(true); expect(Array.from(s.now!.title)).toHaveLength(WATCH.TITLE_MAX); expect(s.now!.title).not.toMatch(/[\ud800-\udbff]$/);

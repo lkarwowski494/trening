@@ -15,7 +15,7 @@ import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/li
 import { templateForEdit, noteDraftEffect } from '@/lib/draft';
 import { parseSwapTarget } from '@/lib/swap';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, formerMatch, formerExact, formerEnNamesOf, type Exercise } from '@/lib/seed';
-import { t, exName, exNameLang, locale, fold, lang, collator } from '@/lib/i18n';
+import { t, exName, exNameLang, exLocalFold, locale, fold, lang, collator } from '@/lib/i18n';
 
 /** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12)
  *  | 'swap:active:<id bloku>' (E2: zamiana ćwiczenia bloku treningu w toku — „Cała biblioteka” z arkusza app/swap.tsx)
@@ -28,9 +28,9 @@ export default function PickerScreen() {
   const headerOpts = useCloseHeader(() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Zamknij” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); });
   const ql = fold(q.trim());
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
-  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql || formerExact(e, ql) /* UX2-01: dawna nazwa z katalogu */);
+  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql || (!!ql && exLocalFold(e) === ql) || formerExact(e, ql) /* UX2-01: dawna nazwa z katalogu */);
   /* UX2-01 (audyt kontrolny 1, wariant a): dawna nazwa scalonego/przemianowanego ćwiczenia (seed.formerMatch) znajduje obecne ćwiczenie — z dopiskiem „dawniej: …” */
-  const byName = (e: Exercise) => fold(e.name).includes(ql) || fold(exName(e)).includes(ql); const former = (e: Exercise) => byName(e) ? undefined : formerMatch(e, ql);
+  const byName = (e: Exercise) => fold(e.name).includes(ql) || fold(exName(e)).includes(ql) || exLocalFold(e).includes(ql); const former = (e: Exercise) => byName(e) ? undefined : formerMatch(e, ql);
   /* P-003 E1 (decyzja 3a): miejsce treningu w toku albo miejsce domyślne edytowanego szablonu — domyślnie tylko dostępne ćwiczenia,
    * przełącznik „Pokaż wszystkie” zapamiętany; niedostępne wyszarzone z dopiskiem „brak: …”. Bez miejsca — lista jak dotąd.
    * Integracja 0.9.0: edytor historii ('edit:<klucz>') jak trening w toku — filtr po miejscu edytowanego treningu, gdy je ma (i miejsce
@@ -65,9 +65,9 @@ export default function PickerScreen() {
     const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : ''; const safe = a && a.ok && a.missingRecommended.includes(SAFETY_CAP) ? ' · ' + t('bez asekuracji w stojakach') : '' /* audyt M1-015 */; const was = ql ? former(e) : undefined;
     rows.push(<Item key={e.id} titleLang={exNameLang(e)} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${was ? ' · ' + t('dawniej: {n}', { n: exName({ name: was, lib: true }) }) : ''}${miss}${safe}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).
-  const archived = ql ? st.exercises.filter(e => e.archived && swapOk(e) && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql) || formerEnNamesOf(e).some(n => fold(n).includes(ql)) /* ZB-025 b: dawna nazwa EN */)) : [];
+  const archived = ql ? st.exercises.filter(e => e.archived && swapOk(e) && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql) || exLocalFold(e).includes(ql) || formerEnNamesOf(e).some(n => fold(n).includes(ql)) /* ZB-025 b: dawna nazwa EN */)) : [];
   archived.forEach(e => rows.push(<Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} onPress={() => { if (chosen.current) return; restoreExercise(e); fxNote('restored', e.id); choose(e); }} icon="↺" />));
-  if (ql && !list.some(exact) && !archived.some(e => fold(e.name) === ql || fold(exName(e)) === ql || formerEnNamesOf(e).some(n => fold(n) === ql))) rows.push(<Item key="new" title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} onPress={() => { if (chosen.current) return; const e = newExercise(q.replace(/\s+/g, ' ').trim()); fxNote('created', e.id); if (swapEx) { e.metric = swapEx.metric; save(e); } /* E2: „Utwórz …” przy zamianie — z miarą A */ if (g) { e.group = g as Exercise['group']; const mu = GROUP_TO_MUSCLE[e.group]; e.muscles = mu ? [mu] : []; save(e); } /* runda 6: partia jak przy zmianie grupy w edycji */ choose(e); }} icon="+" />);
+  if (ql && !list.some(exact) && !archived.some(e => fold(e.name) === ql || fold(exName(e)) === ql || (!!ql && exLocalFold(e) === ql) || formerEnNamesOf(e).some(n => fold(n) === ql))) rows.push(<Item key="new" title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} onPress={() => { if (chosen.current) return; const e = newExercise(q.replace(/\s+/g, ' ').trim()); fxNote('created', e.id); if (swapEx) { e.metric = swapEx.metric; save(e); } /* E2: „Utwórz …” przy zamianie — z miarą A */ if (g) { e.group = g as Exercise['group']; const mu = GROUP_TO_MUSCLE[e.group]; e.muscles = mu ? [mu] : []; save(e); } /* runda 6: partia jak przy zmianie grupy w edycji */ choose(e); }} icon="+" />);
   return (
     <Screen style={{ paddingTop: 10 }}>
       {/* Audyt przed telefonem: okno zamykało się tylko gestem w dół (niedostępnym dla VoiceOver) — przycisk w nagłówku */}

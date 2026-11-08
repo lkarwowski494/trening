@@ -10,7 +10,7 @@ import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTpl
 import { weekStrip, isNewPerson } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
-import { t, tp, lang, exName } from '@/lib/i18n';
+import { t, tp, lang, exName, exNameLang } from '@/lib/i18n';
 import { fmtWeekdayShort, fmtWeekdayNarrow, fmtWeekdayDayMonth, fmtDayNum, stripColumnPt, stripLabelsFit, STRIP_GAP, STRIP_PAD, STRIP_BORDER } from '@/lib/calendar';
 
 /*
@@ -81,7 +81,7 @@ export function TodayPlan() {
         {deload ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), ...FW.semibold, color: th.boardMuted }}>{t('Tydzień deload')}</Text> : null}
         {cur.status === 'other' ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Text> : null}
         {shown.map(it => { const x = exById(it.exerciseId); return x ? <View key={it.id} testID="today-item" style={{ flexDirection: 'row', justifyContent: 'space-between', gap: SPACE.s, borderTopWidth: 1, borderTopColor: th.boardField, paddingTop: SPACE.s }}>
-          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardText, flexShrink: 1 }}>{exName(x)}</Text>
+          <Text accessibilityLanguage={exNameLang(x)} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardText, flexShrink: 1 }}>{exName(x)}</Text>
           <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('callout')} style={{ ...font('callout'), color: th.boardMuted }}>{`${it.sets} × ${reps(it.repMin, it.repMax)}`}</Text></View> : null; })}
         {n > 0 ? <Text testID="today-more" accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardMuted, borderTopWidth: 1, borderTopColor: th.boardField, paddingTop: SPACE.s }}>{t('+ {n} {w}', { n, w: tp(n, 'ćwiczenie|ćwiczenia|ćwiczeń') })}</Text> : null}
         {plannedPlaceName(today) ? <IconRow icon="pin" color={th.boardMuted} size={14}><Text testID="today-place" accessibilityLanguage={lang()} accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{plannedPlaceName(today)}</Text></IconRow> : null}
