@@ -60,8 +60,8 @@ describe('nazwy EN po rid: macierz — nazwa × język', () => {
     const zle = zrodlo.wpisy.filter(w => nazwaEn(kluczOd[w.rid], l) !== w.nazwa).map(w => w.rid);
     expect(zle).toEqual([]);
   });
-  test('polski: nazwy bez zmian (klucz katalogu albo nazwa wyświetlana z LIB_DISPLAY_NAME)', () => {
-    for (const w of zrodlo.wpisy) { const k = kluczOd[w.rid]; expect([k, nazwaEn(k, 'pl')]).toEqual([k, Object.prototype.hasOwnProperty.call(LIB_DISPLAY_NAME, k) ? LIB_DISPLAY_NAME[k] : k]); }
+  test('polski (ZB-044, decyzje 07.11.2026 i 08.11.2026, docs/18; zastępuje DEC-13): nazwa po polsku = nazwa angielska z katalogu', () => {
+    for (const w of zrodlo.wpisy) { const k = kluczOd[w.rid]; expect([k, nazwaEn(k, 'pl')]).toEqual([k, w.nazwa]); }
   });
   test('nazwy spoza tabeli (442) bez zmian względem poprzedniego zachowania: równe kluczowi (albo wcześniejszej nazwie EN z EX_FULL/EX_PAREN)', () => {
     const wTabeli = new Set(zrodlo.wpisy.map(w => kluczOd[w.rid]));
@@ -180,12 +180,12 @@ describe('nazwy EN: stare nazwy jako aliasy wyszukiwania', () => {
 describe('nazwy EN: VoiceOver, ćwiczenia własne, slug eksportu strony', () => {
   test('exNameLang bez zmian: biblioteka poza polskim czytana głosem angielskim (nowa nazwa jest angielska), własne — język interfejsu', () => {
     const e = libExercise(wiersz(kluczOd['96e58da0']));
-    for (const [l, want] of [['pl', 'pl'], ['en', 'en'], ['de', 'en'], ['ja', 'en']] as const) { applyLang(l); expect([l, exNameLang(e)]).toEqual([l, want]); }
+    for (const [l, want] of [['pl', 'en'], ['en', 'en'], ['de', 'en'], ['ja', 'en']] as const) { applyLang(l); expect([l, exNameLang(e)]).toEqual([l, want]); }
     applyLang('de'); expect(exNameLang({ lib: false })).toBe('de');
   });
   test('ćwiczenie własne o nazwie równej kluczowi (lib = false) pokazuje się tak, jak je nazwano', () => {
     applyLang('en');
-    expect(exName({ name: 'Push Up', lib: false })).toBe('Push-Up'); expect(exName({ name: 'Push Up', lib: true })).toBe('Push-Up');
+    expect(exName({ name: 'Push Up', lib: false })).toBe('Push Up'); expect(exName({ name: 'Push Up', lib: true })).toBe('Push-Up');
   });
   test('nazwa wyświetlana z LIB_DISPLAY_NAME (znak towarowy) też dostaje nową nazwę EN: exName po nazwie wyświetlanej i po kluczu (libKey)', () => {
     applyLang('en');

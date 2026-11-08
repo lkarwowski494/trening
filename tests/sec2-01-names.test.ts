@@ -113,6 +113,6 @@ describe('SEC2-01: etykiety sprzętu i możliwości w 26 językach bez nazw z li
     const pe = (id: string) => { applyLang('pl'); const pl = equipLabel(it(id)); applyLang('en'); const en = equipLabel(it(id)); applyLang('de'); const de = equipLabel(it(id)); applyLang('pl'); return { pl, en, deDiffers: de !== pl && de !== en }; };
     expect(pe('suspension')).toEqual({ pl: 'Taśmy do podwieszania', en: 'Suspension trainer', deDiffers: true });
     expect(pe('bosu')).toEqual({ pl: 'Półkula balansowa / platforma balansowa', en: 'Balance dome / balance board', deDiffers: true });
-    expect(pe('ski_erg')).toEqual({ pl: 'Ski Ergometer', en: 'Ski ergometer', deDiffers: true });
+    expect(pe('ski_erg')).toEqual({ pl: 'Ergometr narciarski', en: 'Ski ergometer', deDiffers: true });
   });
 });
