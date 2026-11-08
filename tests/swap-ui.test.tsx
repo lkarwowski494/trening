@@ -39,7 +39,7 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
   });
 
   test('arkusz: top-3, „już w treningu”, „Inne” z filtrami; linijka „zamiast: …”; cofnij', async () => {
-    await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Incline Dumbbell Bench Press']) }); await flushAll(20);
+    await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Incline Bench Press (hantle)']) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     expect(screen.getByText('Propozycje')).toBeTruthy();
     const props = screen.getAllByLabelText(/^Propozycja \d: /); expect(props).toHaveLength(3);

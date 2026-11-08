@@ -32,8 +32,8 @@ const EXCEPTIONS: Record<string, string> = {
 /** Zmiany spoza rekordów — rozstrzygnięcia pytań otwartych (docs/18, 09.10.2026), scripts/equipment/apply-library-25.mjs DECISION_FIXES. */
 const DECISIONS: [string, (n: string) => unknown, unknown, string][] = [
   ...['One Arm Row (hantle)', 'Bent Over Row (hantle)', 'Floor Press (hantle)'].map(n => [n, (x: string) => CATALOG[x].requires.some(g => g.includes('db') && g.includes('kb')), true, 'L5 Q1 A: kettlebell jako drugi przyrząd'] as [string, (n: string) => unknown, unknown, string]),
-  ...['Wrist Curl (hantle)', 'Reverse Dumbbell Wrist Curl'].map(n => [n, (x: string) => row(x)[1], 'biceps', 'L1 Q1 A: przedramiona w grupie „biceps”'] as [string, (n: string) => unknown, unknown, string]),
-  ...['Handstand Push-Up', 'Wall Sit', 'Wall Calf Stretch', 'Wall Lat Stretch', 'Wall Ball'].map(n => [n, (x: string) => CATALOG[x].requires.some(g => g.length === 1 && g[0] === 'wall'), true, 'L5 Q7: ściana'] as [string, (n: string) => unknown, unknown, string]),
+  ...['Wrist Curl (hantle)', 'Reverse Wrist Curl (hantle)'].map(n => [n, (x: string) => row(x)[1], 'biceps', 'L1 Q1 A: przedramiona w grupie „biceps”'] as [string, (n: string) => unknown, unknown, string]),
+  ...['Handstand Push Up', 'Wall Sit', 'Wall Calf Stretch', 'Wall Lat Stretch', 'Wall Ball'].map(n => [n, (x: string) => CATALOG[x].requires.some(g => g.length === 1 && g[0] === 'wall'), true, 'L5 Q7: ściana'] as [string, (n: string) => unknown, unknown, string]),
   ['Dip Machine', (x: string) => CATALOG[x].requires, [['dip_machine']], 'L5 Q7: maszyna do dipów'],
   ['Back Squat', (x: string) => musclesFor(x, 'nogi'), [['czworogłowe'], ['pośladki', 'przywodziciele']], 'docs/24 Q1 B: przywodziciele (S1, S2)'],
   ['Leg Press', (x: string) => musclesFor(x, 'nogi'), [['czworogłowe'], ['pośladki', 'przywodziciele']], 'docs/24 Q1 B: przywodziciele (S3)'],
@@ -180,7 +180,7 @@ describe('sprzęt: circus bell, maszyna do dipów, ściana (L5 Q7)', () => {
     expect(presetHint('bodyweight')).toBe('mata i ściana');
     const lib = seedState('pl').exercises; const av = (n: string, l: ReturnType<typeof loc>) => availability(lib.find(e => e.name === n)!, l).ok;
     const bare = loc('Park', [{ item: 'floor_mat', opts: [] }]); const wall = loc('Dom', [{ item: 'wall', opts: [] }]);
-    expect(av('Handstand Push-Up', bare)).toBe(false); expect(av('Handstand Push-Up', wall)).toBe(true); expect(av('Push Up', bare)).toBe(true);
+    expect(av('Handstand Push Up', bare)).toBe(false); expect(av('Handstand Push Up', wall)).toBe(true); expect(av('Push Up', bare)).toBe(true);
     expect(av('Dip Machine', loc('S', [{ item: 'triceps_ext_machine', opts: [] }]))).toBe(false); expect(av('Dip Machine', loc('S', [{ item: 'dip_machine', opts: [] }]))).toBe(true);
     expect(av('Circus Bell', loc('D', [{ item: 'db_fixed', opts: [] }]))).toBe(false); expect(av('Circus Bell', loc('D', [{ item: 'circus_bell', opts: [] }]))).toBe(true);
   });

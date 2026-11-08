@@ -193,15 +193,15 @@ describe('dopiski wierszy, podpowiedzi i tytuł okna', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(S())) }); await flushAll(20);
   }
   test('zamiennik z szablonu dla miejsca (W3) — wiersz z dopiskiem „zamiennik z szablonu dla tego miejsca”, domyślnie zaznaczony; po ręcznej zmianie dopisek znika', async () => {
-    await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Dumbbell Bench Press').id, restSec: 75 }]; });
+    await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Bench Press (hantle)').id, restSec: 75 }]; });
     await pickPlace('Hotel'); expect(screen.getByText('Bench Press → Incline Dumbbell Bench Press')).toBeTruthy(); expect(screen.getByText(/zamiennik z szablonu dla tego miejsca/)).toBeTruthy();
     await tap(screen.getByText('Bench Press → Incline Dumbbell Bench Press')); await flushAll(20); await tap(screen.getByText('Bez zmian')); await flushAll(20);
     expect(screen.queryByText(/zamiennik z szablonu dla tego miejsca/)).toBeNull(); expect(screen.getByText('Bench Press → Bez zmian')).toBeTruthy();
     await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).restSec).toBe(120); /* wybrano „Bez zmian” dla bloku 0 — bez przerwy z zamiennika */
   });
   test('zastosowanie zamiennika z szablonu niesie jego przerwę (75 s)', async () => {
-    await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Dumbbell Bench Press').id, restSec: 75 }]; });
-    await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).exerciseId).toBe(ex('Incline Dumbbell Bench Press').id); expect(blk(0).restSec).toBe(75);
+    await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Bench Press (hantle)').id, restSec: 75 }]; });
+    await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).exerciseId).toBe(ex('Incline Bench Press (hantle)').id); expect(blk(0).restSec).toBe(75);
   });
   test('P3 A: trzy bloki tego samego ćwiczenia — drugi i trzeci z dopiskiem „następna propozycja — pierwsza jest już zajęta…”', async () => {
     await bootWith(() => {}, [['Bench Press (sztanga)', 'b1'], ['Bench Press (sztanga)', 'b2'], ['Bench Press (sztanga)', 'b3']]);
