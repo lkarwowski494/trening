@@ -18,12 +18,15 @@
       "Agent",
       "SendMessage",
       "mcp__claude-code-remote__send_message",
-      "mcp__claude-code-remote__send_later"
+      "mcp__claude-code-remote__send_later",
+      "Bash(git push origin --delete:*)"
     ],
     "deny": [
       "Bash(git push origin main:*)",
       "Bash(git push -u origin main:*)",
-      "Bash(git push --force:*)"
+      "Bash(git push --force:*)",
+      "Bash(git push origin --delete main:*)",
+      "Bash(git push origin --delete integracja-1-1:*)"
     ]
   },
   "hooks": {

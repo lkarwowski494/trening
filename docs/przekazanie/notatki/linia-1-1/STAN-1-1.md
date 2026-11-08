@@ -1,5 +1,12 @@
 # Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 08.11.2026)
 
+## Teraz (08.11.2026 noc, koordynator linii 1.1 — sesja po /clear; poprzednia wersja tej sekcji: git log tego pliku)
+- **Plan 1.1 (fazy 0–4, równoległość, pytania na rano):** `plan-1-1-i-1-2-2026-11-08.md` (przepisany 08.11 noc). Decyzje 08.11 wieczór w docs/18: model pracy A+B (bramka lekka, sesje równoległe — ZB-045), pełny audyt na kandydacie 1.1 zamiast ZB-043, reguła usuwania gałęzi (pośrednik git sesji chmurowej i tak zwraca 403 — 42 scalone gałęzie usuwa właściciel „później”; lista: `git rev-list --count origin/integracja-1-1..gałąź` = 0).
+- **Gałęzie w toku (stan agentów poza repo: /home/user/stan-*):** `figury/nakladka-b0` @ b7036fad (recenzja audytora 7 rodzin wpisana, 0 KRYT/WYS; N1–N3 NISKIE → backlog 1.2) — verify w kolejce → push → scalenie; `pomiar/z0-standardy` @ d33215da wypchnięte (cel 465) — tests.yml → scalenie (konflikt plików generowanych z B0 — przeliczyć); `proces/l117-noc` — czeka na mutacje `access` (nightly 42499207577); `funkcja/zb044-nazwy` (programista); `tekst/a1-pchanie` (programista, bez przekładu API); `proces/bramka-lekka` (programista: A + L-118). D-1 analiza: `d1-wykonalnosc-2026-11-08.md` (IR-A po rozstrzygnięciu badacza, CP-B).
+- **Następne:** po bramce A — sesja B #1 (tekst A2 nogi); po B0 — B0′ delt_raise; D-1 (IR-0 → IR-A, CP-B); recenzja niezależna A1.
+- **Zadania właściciela (po jednym):** Z-36 ceny na ekranie zakupu (4,99/19,99/59,99 zł), Z-32, Z-37, Z-33 (opcjonalne), ZB-005, usunięcie 42 gałęzi.
+- **Pułapki tej maszyny:** jak w poprzedniej wersji (node_modules w worktree, bez `NODE_USE_ENV_PROXY` przy verify, `remote.origin.tagOpt --no-tags`); usuwanie gałęzi zdalnych — 403 z pośrednika sesji chmurowej.
+
 ## Teraz (08.11.2026 wieczór, koordynator linii 1.1 — przekazanie przed /clear; poprzednia wersja tej sekcji: git log tego pliku)
 - **Plan 1.1 i 1.2 (lista zadań A–G, cel, czasy):** `docs/przekazanie/notatki/linia-1-1/plan-1-1-i-1-2-2026-11-08.md` — źródło kolejki. Decyzje 08.11 w docs/18 (organizacja, L-117 A, gałęzie, Inverted Row/Calf Press — silnik teraz, L-118 A, ZB-044 wariant A).
 - **Integracja:** `integracja-1-1` @ cf7d1548 (tylko dokumenty od b058f5b0, którego tests.yml 42500070726 zielony); tests.yml dla cf7d1548 w toku — sprawdzić (L-009).

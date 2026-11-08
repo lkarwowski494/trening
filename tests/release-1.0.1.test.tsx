@@ -27,7 +27,9 @@ describe('wersja 1.0.1 (TestFlight dla właściciela, 06.11.2026)', () => {
   });
   test('docs/18: wpis decyzji 06.11.2026 (B wersja 1.0.1, A wyjątek od audytu) i ZB-043 w zobowiązaniach', () => {
     expect(R('docs/18-przekazanie.md')).toMatch(/06\.11\.2026[^\n]*wersja 1\.0\.1 TestFlight dla właściciela/);
-    expect(R('docs/zobowiazania.md')).toMatch(/\| ZB-043 \| przed następnym buildem TestFlight/);
+    // 08.11.2026 (właściciel, docs/18): ZB-043 zmienione — zamiast audytu zmian przed następnym buildem pełny głęboki audyt na kandydacie 1.1;
+    // build pośredni tylko dla właściciela z kontrolą zastępczą jak 06.11.2026.
+    expect(R('docs/zobowiazania.md')).toMatch(/\| ZB-043 \| przed wydaniem 1\.1 — na kandydacie[^\n]*Pełny głęboki audyt całości[^\n]*zmiana 08\.11\.2026/);
   });
   test('dziennik wydań (docs/09) ma wiersz 1.0.1 (TestFlight dla właściciela)', () => {
     expect(R('docs/09-plan-testow.md')).toMatch(/\| Wydanie 1\.0\.1 \(TestFlight dla właściciela/);

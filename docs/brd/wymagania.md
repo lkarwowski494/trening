@@ -646,7 +646,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Test: `tests/nazwy-en.test.ts`, `.maestro/07-zamiana.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Nowa nazwa w angielskim i w językach z nazwami angielskimi
-    - Zakładając, że ćwiczenie z biblioteki ma kanoniczną nazwę (od 07.11.2026 we wszystkich językach, także polskim — BR-BIB-012) (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
+    - Zakładając, że ćwiczenie z biblioteki ma kanoniczną nazwę (od 07.11.2026 we wszystkich językach, także polskim — BR-BIB-013) (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
     - Gdy użytkownik widzi nazwę ćwiczenia na liście, w treningu, szablonie, historii albo w wyborze ćwiczenia
     - Wtedy widzi nową nazwę według przewodnika stylu (jednostronność „Single-Arm / Single-Leg”, liczba pojedyncza z zamkniętą listą wyjątków, bez „Barbell” w klasycznych bojach, przyrząd jako przedrostek, łączniki w przymiotnikach złożonych); VoiceOver czyta ją głosem angielskim jak dotąd
   - Scenariusz: Dane użytkownika bez zmian
@@ -656,7 +656,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Wyszukiwanie po dawnej nazwie
     - Zakładając, że język aplikacji jest inny niż polski
     - Gdy użytkownik wpisuje w wyszukiwarce dawną angielską nazwę (np. „Bench Press (Barbell)” albo „RDL”)
-    - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece” (od 07.11.2026 także w polskim — BR-BIB-012)
+    - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece” (od 07.11.2026 także w polskim — BR-BIB-013)
   - Scenariusz: Usunięte ćwiczenie po dawnej nazwie (01.11.2026)
     - Zakładając, że użytkownik usunął ćwiczenie z biblioteki (archiwum), a język aplikacji jest inny niż polski
     - Gdy w wyborze ćwiczenia wpisuje jego dawną angielską nazwę (np. „Bench Press (Dumbbell)”)
@@ -670,7 +670,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Przepływ: PR-01
 - Dowód potrzeby: decyzja właściciela 04.11.2026 (w 1.1 rysunki ćwiczeń graficznie pokazują technikę); reguły `pelny_zakres`, `lokcie_nie_szeroko`, `lokcie_przy_tulowiu` w `data/zrodla/figury-sens.json` (pewność „ustalone”); kąty jako opis figury, nie zalecenie (decyzja 25.10.2026, linie bez liczb); `lib/figures/v2/overlay.ts`, dane `lib/figures/v2/overlay/bench_press.ts`, grupy reguł i błędów `lib/figures/v2/grupy.json`; dane rodzin etapu 2 `lib/figures/v2/overlay/{squat,hinge,curl,pull_up}.ts` (linia odniesienia z regułą `kind: 'ref'` — pion, poziom, segment — i kolor błędu linii odniesienia `GuideDef.rule` w `lib/figures/v2/guides.ts`); testy `tests/figures-v2-nakladka.test.tsx`, `tests/figures-v2-nakladka-e3.test.tsx`, `tests/figures-v2-nakladka-squat-hinge.test.tsx`, `tests/figures-v2-nakladka-curl-pullup.test.tsx`, strażnik S20 w `tests/interaction-guards.test.ts` (docs/32 wzorzec 33)
 - Ekrany: `components/ExerciseFigureV2.tsx` (sekcja „Technika” karty ćwiczenia)
-- Test: `tests/figures-v2-nakladka.test.tsx`, `.maestro/17-biblioteka-technika.yaml`
+- Test: `tests/figures-v2-nakladka.test.tsx`, `tests/figures-v2-nakladka-triceps-olympic.test.tsx`, `tests/figures-v2-nakladka-kazda-rodzina.test.tsx`, `.maestro/17-biblioteka-technika.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Linia i łuk kąta łokcia
     - Zakładając, że karta ćwiczenia z rodziny wyciskania leżąc ma wskazówkę o pełnym zakresie ruchu, a łokieć jest mierzonym stawem rysunku
@@ -680,6 +680,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że wskazówka powiązana z elementem (np. o ustawieniu łokci) nie należy do zestawu ćwiczenia
     - Gdy użytkownik widzi rysunek tego ćwiczenia
     - Wtedy tego elementu nie ma (np. łuk odwiedzenia ramienia w rzucie z góry pojawia się tylko przy ćwiczeniach z tą wskazówką); do 3 linii (łącznie z liniami odniesienia) i 1 łuku na rzut; łuk odwiedzenia liczony w płaszczyźnie rzutu z góry i rysowany tylko, gdy jest widoczny (cięciwa ≥ 4 cm rysunku)
+  - Scenariusz: Każda wyświetlana rodzina ma nakładkę (04.11.2026, decyzja właściciela „bez zaworu”; podrzut i rwanie, prostowanie ramion)
+    - Zakładając, że rodzina rysunków ma status „ready” (dziś także podrzut i rwanie oraz prostowanie ramion)
+    - Gdy użytkownik widzi rysunek ćwiczenia tej rodziny, którego karta ma zdanie reguły „ustalone” (np. „Sztanga blisko ciała”, „Prostuj łokcie…”, „Łokcie przy bokach”)
+    - Wtedy rysunek z boku ma ciągłą linię i łuk kąta w mierzonym stawie albo linię odniesienia tej reguły (też w pętli jednokierunkowej podrzutu); ćwiczenie bez takiego zdania albo z regułą bez statusu „ustalone” nie ma elementu; rodzina `ready` bez elementu czerwieni test
   - Scenariusz: Błąd łamie regułę elementu
     - Zakładając, że użytkownik pokazuje częsty błąd, który łamie regułę z tej samej grupy co element
     - Gdy rysunek przechodzi w pozę błędu
@@ -698,7 +702,28 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy etykieta to „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same zdania co na karcie)
     - Wtedy zdania w etykiecie łączy spacja, gdy poprzednie kończy się znakiem końca zdania (także „。”, „।”, „؟”), w pozostałych przypadkach średnik — bez „.;” (04.11.2026)
 
-### BR-BIB-012: Nazwy ćwiczeń z biblioteki po angielsku we wszystkich językach, nazwa lokalna tylko na karcie (07.11.2026 i 08.11.2026, ZB-044; zastępuje DEC-13)
+### BR-BIB-012: Ćwiczenie ma poziom karty według dwóch standardów publikacji, liczony jedną funkcją dla licznika i strony (08.11.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 02.11.2026 ~15:30 („dwa standardy publikacji”: „Pełna karta” i „Pełna karta + błąd”), wariant A z 02.11.2026 (pole `pelna` liczone w eksporcie aplikacji tą samą funkcją co licznik), 04.11.2026 (4) B (mobilność bez ról mięśni); `scripts/pokrycie-katalogu.mjs` (`elementyKarty`, `wejscieKarty`), `scripts/strona/eksport.mjs`, `scripts/strona/kontrakt.json`; testy `tests/pokrycie-katalogu.test.ts`, `tests/strona-eksport.test.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Pełna karta (standard 1)
+    - Zakładając, że ćwiczenie ma wskazówki (własne albo zrecenzowany zestaw ogólny), rysunek v2 pokazywany w aplikacji i role mięśni
+    - Gdy licznik pokrycia albo eksport dla strony liczy poziom karty
+    - Wtedy ćwiczenie spełnia standard 1, także bez częstych błędów (tekst) i bez animowanego błędu
+  - Scenariusz: Pełna karta + błąd (standard 2)
+    - Zakładając, że ćwiczenie spełnia standard 1 i ma częste błędy (tekst) oraz animowany błąd
+    - Gdy licznik liczy poziom karty
+    - Wtedy ćwiczenie spełnia też standard 2 (standard 2 jest podzbiorem standardu 1)
+  - Scenariusz: Mobilność bez ról
+    - Zakładając, że ćwiczenie ma wzorzec ruchu „mobilność” (rozciąganie)
+    - Gdy liczony jest standard 1
+    - Wtedy role mięśni nie są wymagane, a wskazówki i rysunek v2 nadal tak
+  - Scenariusz: Pole dla strony
+    - Zakładając, że powstaje eksport dla strony z ćwiczeniami
+    - Gdy eksport zapisuje ćwiczenie
+    - Wtedy ma ono pole `pelna` (prawda/fałsz) równe wynikowi licznika dla tego ćwiczenia, jednakowe we wszystkich językach
+
+### BR-BIB-013: Nazwy ćwiczeń z biblioteki po angielsku we wszystkich językach, nazwa lokalna tylko na karcie (07.11.2026 i 08.11.2026, ZB-044; zastępuje DEC-13)
 - Przepływ: PR-01
 - Dowód potrzeby: decyzje właściciela 07.11.2026 i 08.11.2026 (docs/18: wariant A „Podpis”); `lib/i18n.ts` (`exName`, `exNameLang`, `exLocal`, `exLocalFold`), lista nazw po recenzji `lib/nazwy-lokalne.ts` (dziś pusta), karta `app/exercise/[id].tsx`; makieta `docs/design/karta-nazwy/` (gałąź `studio/naglowek-karty-nazwy`)
 - Ekrany: `app/exercise/[id].tsx`, `app/exercises.tsx`, `app/picker.tsx`, `app/swap.tsx`, `app/(tabs)/progress.tsx`, `app/more/import.tsx`, wszystkie miejsca z nazwą ćwiczenia (`exName`), zegarek (`lib/watch/snapshot.ts`), eksport CSV (`lib/backup.ts`)
@@ -1121,4 +1146,4 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### NFR-WYG-001: Wygląd z jednego modułu tokenów
 - Miara: liczba literałów liczbowych `fontSize` i `borderRadius` w kodzie interfejsu poza `lib/theme.ts` i `lib/tokens.ts`; osobno liczba par barw palet (jasna, ciemna, obie „Zwiększ kontrast”) poniżej progu kontrastu (tekst 4,5:1, duży tekst i elementy 3:1, w „Zwiększ kontrast” tekst pomocniczy i akcent 7:1). Próg: literały — nie więcej niż w wykazie `tests/token-baseline.json` (zapadka, docelowo 0 po partiach p2–p5 redesignu M3); pary poniżej progu — 0 z 210. Metoda: testy `tests/m3-token-guard.test.ts`, `tests/m3-contrast.test.ts`, `tests/m3-theme.test.ts` (decyzje STOP E3 z 21.10.2026, docs/18; M1-036, M1-031). Od 22.10.2026 (uwagi właściciela z telefonu, docs/18): nagłówek ekranu zakładki ze wspólnego `TabHeader` (`HEADER` w tokenach), na starcie mała ikonka sztangi po tytule zamiast sylwetki w rogu (nie nachodzi na tekst; ukryta dla VoiceOver), wskaźnik przewijania ukryty na wszystkich przewijanych ekranach (`components/Scroll.tsx`, strażnik S18; docs/32 wzorzec 31); testy `tests/trening-naglowek.test.tsx`, `tests/interaction-guards.test.ts`.
 ### NFR-KAT-001: Pokrycie katalogu ćwiczeń nie spada
-- Miara: liczba „dobrych” wskaźników pokrycia katalogu (pełne karty, figury v2, karty z własnymi wskazówkami, animowane błędy, role mięśni, komplet tekstów karty w każdym z 35 języków, figury z aktualną recenzją ruchu, nazwy lokalne) poniżej zapisanego minimum. Próg: 0 (spadek tylko świadomie, z polem `powod`); cel wersji z `docs/research/pokrycie-cele.json` sprawdza lista kontrolna wydania (`docs/39`, PK-01). Metoda: generowany licznik `scripts/pokrycie-katalogu.mjs` (`docs/55`, `npm run check:pokrycie`) i test `tests/pokrycie-katalogu.test.ts` (decyzja właściciela 28.10.2026, M-B, docs/18).
+- Miara: liczba „dobrych” wskaźników pokrycia katalogu (pełne karty w obu standardach, figury v2, karty z własnymi wskazówkami, animowane błędy, role mięśni, komplet tekstów karty w każdym z 35 języków, figury z aktualną recenzją ruchu, nazwy lokalne) poniżej zapisanego minimum. Próg: 0 (spadek tylko świadomie, z polem `powod`); cel wersji z `docs/research/pokrycie-cele.json` sprawdza lista kontrolna wydania (`docs/39`, PK-01). Metoda: generowany licznik `scripts/pokrycie-katalogu.mjs` (`docs/55`, `npm run check:pokrycie`) i test `tests/pokrycie-katalogu.test.ts` (decyzja właściciela 28.10.2026, M-B, docs/18).

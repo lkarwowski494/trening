@@ -282,6 +282,14 @@ jobs:
           gh release create "$T" --verify-tag --latest=false --title "$T" --notes "Mapa źródeł JS buildu (symbolikacja stosu błędu: npx metro-symbolicate main.jsbundle.map < stos.txt)." mapy/main.jsbundle.map
           echo "## Tag $T" >> "$GITHUB_STEP_SUMMARY"
           echo "T=$T" >> "$GITHUB_ENV"
+      - name: Dziennik wydań — wiersz w docs/09 dopisany po tagu i wypchnięty na gałąź builda (L-117, tag bez wiersza zaczerwieniał tests.yml)
+        # Błąd tego kroku nie unieważnia wydania (tag i build już są): continue-on-error + skrypt kończy się kodem 0 z ostrzeżeniem i instrukcją w podsumowaniu.
+        # Skrypt: scripts/ci/dziennik-wydan-push.sh (wyścig z przesuniętą gałęzią — jedno powtórzenie; hak pre-push wyłączony jawnie, bo CI nie ma `npm ci`).
+        continue-on-error: true
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
+        run: bash scripts/ci/dziennik-wydan-push.sh
       - name: Plik wydania Trening-sim.zip — build symulatora z zielonego przebiegu E2E (poprzednia wersja dla testu aktualizacji; M1-062, DEC-27)
         # Build symulatora jest bez podpisu i bez sekretów (publiczne repozytorium). Artefakt przebiegu żyje 1 dzień, plik wydania — bez limitu.
         # Brak numeru przebiegu = bramka pominięta awaryjnie (ostrzeżenie); numer jest, a pliku nie ma = błąd (build w TestFlight już wysłany, tag zostaje).

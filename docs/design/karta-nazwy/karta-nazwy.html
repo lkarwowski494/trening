@@ -1,0 +1,364 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><title>Karta ćwiczenia — nazwa EN + lokalna</title><style>
+@font-face { font-family: 'Barlow Condensed'; src: url('../docs/design/fonty/barlow-condensed/BarlowCondensed-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Tresc'; src: url('../docs/design/fonty/source-sans-3/SourceSans3-var.ttf'); font-weight: 200 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #d9dbdd; padding: 24px; font-family: 'Tresc', sans-serif; }
+.uklad { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.tel { width: var(--w); background: var(--bg); color: var(--text); display: flex; flex-direction: column; --dt-tytul: 1; --dt-opis: 1; }
+.tel[data-ax5] { --dt-opis: 2; }
+.tel[data-th="light"] { --bg:#E6E8E5;--surface:#F4F5F3;--surface2:#D3D8D3;--line:#CBD0CB;--ctrlLine:#6B7380;--text:#18202B;--muted:#4A5361;--accent:#13294B;--accentInk:#F5F1E6;--done:#D5E3D8;--doneLine:#2A7248;--danger:#7F1D1D;--dangerInk:#FFFFFF;--band:#0F6469;--less:#A35200;--board:#13294B;--boardEdge:#13294B;--boardText:#F5F1E6;--boardMuted:#B7C1D0;--boardField:#26446F;--now:#F2A900;--motifBar:#C2C8C2;--motif25:#E4C9CA;--motif20:#C6D2E2;--motif15:#E8E2C8;--motif10:#C9DCCF }
+.tel[data-th="dark"] { --bg:#161C24;--surface:#1E2530;--surface2:#283244;--line:#2C3440;--ctrlLine:#7C8594;--text:#E8EAED;--muted:#A3ACB8;--accent:#F5F1E6;--accentInk:#13294B;--done:#1F2E26;--doneLine:#5FA97C;--danger:#EC7A72;--dangerInk:#161C24;--band:#5FC3C9;--less:#F0A050;--board:#102544;--boardEdge:#5675A8;--boardText:#F5F1E6;--boardMuted:#AEB9CA;--boardField:#22416D;--now:#F5B21C;--motifBar:#333C49;--motif25:#40232D;--motif20:#20304D;--motif15:#423D26;--motif10:#1E3C34 }
+.tel[data-th="lightHC"] { --bg:#E6E8E5;--surface:#F4F5F3;--surface2:#D3D8D3;--line:#545B66;--ctrlLine:#4A5361;--text:#18202B;--muted:#353C47;--accent:#13294B;--accentInk:#F5F1E6;--done:#D5E3D8;--doneLine:#1F5A38;--danger:#7F1D1D;--dangerInk:#FFFFFF;--band:#08454A;--less:#8A4300;--board:#13294B;--boardEdge:#13294B;--boardText:#F5F1E6;--boardMuted:#D3DAE4;--boardField:#2E4F7E;--now:#FFC233;--motifBar:#C2C8C2;--motif25:#E4C9CA;--motif20:#C6D2E2;--motif15:#E8E2C8;--motif10:#C9DCCF }
+.tel[data-th="darkHC"] { --bg:#161C24;--surface:#1E2530;--surface2:#283244;--line:#959EAB;--ctrlLine:#A3ACB8;--text:#E8EAED;--muted:#C9CED6;--accent:#F5F1E6;--accentInk:#13294B;--done:#1F2E26;--doneLine:#74C08F;--danger:#F5A39D;--dangerInk:#161C24;--band:#8FDADF;--less:#F7C080;--board:#102544;--boardEdge:#8FA6CC;--boardText:#F5F1E6;--boardMuted:#D3DAE4;--boardField:#22416D;--now:#FFC233;--motifBar:#333C49;--motif25:#40232D;--motif20:#20304D;--motif15:#423D26;--motif10:#1E3C34 }
+.sb { display: flex; justify-content: space-between; height: 44px; align-items: center; padding: 0 24px; font-weight: 600; font-size: 15px; }
+.nav { display: flex; align-items: center; gap: 24px; height: 44px; padding: 0 16px; }
+.wroc { font-size: 24px; width: 28px; }
+.nav-t { font-family: 'Barlow Condensed'; font-weight: 700; font-size: calc(20px * min(var(--dt-opis), 1.4)); }
+.tresc { padding: 10px 16px 16px; }
+.wiersz { display: flex; align-items: flex-start; gap: 8px; }
+.kol { flex: 1; min-width: 0; }
+.h1 { font-family: 'Barlow Condensed'; font-weight: 700; font-size: calc(34px * var(--dt-tytul)); line-height: 1.1176; overflow-wrap: break-word; }
+.edytuj { flex: none; margin-top: calc((38px * var(--dt-tytul) - 44px) / 2); min-height: 44px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--surface2); color: var(--text); font: 600 calc(17px * min(var(--dt-opis), 1.4))/1.2 'Tresc'; }
+.lok-a, .lok-b { margin-top: 4px; font-size: calc(15px * var(--dt-opis)); line-height: 1.3333; overflow-wrap: break-word; }
+.lok-a { color: var(--muted); }
+.lok-b { color: var(--text); } .lok-b .et { color: var(--muted); }
+.lok-c { margin-top: 4px; font-family: 'Barlow Condensed'; font-weight: 700; font-size: calc(20px * var(--dt-tytul)); line-height: 1.2; color: var(--muted); overflow-wrap: break-word; }
+.linia { height: 1px; background: var(--line); margin: 12px 0 0; }
+.tech { display: flex; justify-content: space-between; align-items: center; min-height: 52px; font-size: calc(17px * var(--dt-opis)); font-weight: 600; }
+.tech .m { color: var(--muted); font-weight: 400; }
+.row { margin-bottom: 10px; font-size: calc(17px * var(--dt-opis)); line-height: 1.3; }
+.row .lab { color: var(--muted); font-size: calc(13px * var(--dt-opis)); }
+.przyklad { margin-top: auto; padding: 8px 16px 12px; font-size: 11px; color: var(--muted); border-top: 1px dashed var(--line); }
+
+.tel[data-ax5][data-w="390"] { --dt-tytul: 1.4912; }</style></head><body><div class="uklad">
+<main data-ekran="A-pl-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="A „Podpis”, pl-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-a" lang="pl">Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-390</p>
+</main>
+<main data-ekran="A-pl-390-ciemny" data-w="390" data-th="dark"  class="tel" style="--w:390px" aria-label="A „Podpis”, pl-390-ciemny">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-a" lang="pl">Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-390-ciemny</p>
+</main>
+<main data-ekran="A-pl-320-dluga" data-w="320" data-th="dark"  class="tel" style="--w:320px" aria-label="A „Podpis”, pl-320-dluga">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1><p class="lok-a" lang="pl">Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>triceps</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-320-dluga · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="A-pl-390-duplikat" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="A „Podpis”, pl-390-duplikat">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Bench Press</h1><p class="lok-a" lang="pl">Bench Press (sztanga)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-390-duplikat</p>
+</main>
+<main data-ekran="A-de-320" data-w="320" data-th="dark"  class="tel" style="--w:320px" aria-label="A „Podpis”, de-320">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Zurück">←</span><span class="nav-t">Übung</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1><p class="lok-a" lang="de">Enges Langhantel-Trizepsdrücken im Liegen hinter den Kopf</p></div><button class="edytuj">Bearbeiten</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technik</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Muskelgruppe</div><div>Trizeps</div></div>
+<div class="row"><div class="lab">Ausrüstung</div><div>Langhantel</div></div>
+</div>
+<p class="przyklad">A „Podpis” · de-320 · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="A-wlasne-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="A „Podpis”, wlasne-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="pl">Wiosłowanie na TRX przy drzwiach</h1></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>plecy</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>masa ciała</div></div>
+</div>
+<p class="przyklad">A „Podpis” · wlasne-390 · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="A-lv-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="A „Podpis”, lv-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Atpakaļ">←</span><span class="nav-t">Vingrinājums</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Rediģēt</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Tehnika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Muskuļu grupa</div><div>krūtis</div></div>
+<div class="row"><div class="lab">Aprīkojums</div><div>bloki</div></div>
+</div>
+<p class="przyklad">A „Podpis” · lv-390</p>
+</main>
+<main data-ekran="A-pl-390-ax5" data-w="390" data-th="light" data-ax5="1" class="tel" style="--w:390px" aria-label="A „Podpis”, pl-390-ax5">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-a" lang="pl">Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-390-ax5</p>
+</main>
+<main data-ekran="A-pl-390-hc" data-w="390" data-th="lightHC"  class="tel" style="--w:390px" aria-label="A „Podpis”, pl-390-hc">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-a" lang="pl">Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-390-hc</p>
+</main>
+<main data-ekran="A-pl-320-ciemny-hc" data-w="320" data-th="darkHC"  class="tel" style="--w:320px" aria-label="A „Podpis”, pl-320-ciemny-hc">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1><p class="lok-a" lang="pl">Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>triceps</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">A „Podpis” · pl-320-ciemny-hc · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="B-pl-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, pl-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-390</p>
+</main>
+<main data-ekran="B-pl-390-ciemny" data-w="390" data-th="dark"  class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, pl-390-ciemny">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-390-ciemny</p>
+</main>
+<main data-ekran="B-pl-320-dluga" data-w="320" data-th="dark"  class="tel" style="--w:320px" aria-label="B „Podpis z językiem”, pl-320-dluga">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>triceps</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-320-dluga · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="B-pl-390-duplikat" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, pl-390-duplikat">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Bench Press</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Bench Press (sztanga)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-390-duplikat</p>
+</main>
+<main data-ekran="B-de-320" data-w="320" data-th="dark"  class="tel" style="--w:320px" aria-label="B „Podpis z językiem”, de-320">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Zurück">←</span><span class="nav-t">Übung</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1><p class="lok-b" lang="de"><span class="et">Auf Deutsch:</span> Enges Langhantel-Trizepsdrücken im Liegen hinter den Kopf</p></div><button class="edytuj">Bearbeiten</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technik</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Muskelgruppe</div><div>Trizeps</div></div>
+<div class="row"><div class="lab">Ausrüstung</div><div>Langhantel</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · de-320 · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="B-wlasne-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, wlasne-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="pl">Wiosłowanie na TRX przy drzwiach</h1></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>plecy</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>masa ciała</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · wlasne-390 · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="B-lv-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, lv-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Atpakaļ">←</span><span class="nav-t">Vingrinājums</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Rediģēt</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Tehnika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Muskuļu grupa</div><div>krūtis</div></div>
+<div class="row"><div class="lab">Aprīkojums</div><div>bloki</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · lv-390</p>
+</main>
+<main data-ekran="B-pl-390-ax5" data-w="390" data-th="light" data-ax5="1" class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, pl-390-ax5">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-390-ax5</p>
+</main>
+<main data-ekran="B-pl-390-hc" data-w="390" data-th="lightHC"  class="tel" style="--w:390px" aria-label="B „Podpis z językiem”, pl-390-hc">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Wyciskanie na linkach (stojąc)</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-390-hc</p>
+</main>
+<main data-ekran="B-pl-320-ciemny-hc" data-w="320" data-th="darkHC"  class="tel" style="--w:320px" aria-label="B „Podpis z językiem”, pl-320-ciemny-hc">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1><p class="lok-b" lang="pl"><span class="et">Po polsku:</span> Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt</p></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>triceps</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">B „Podpis z językiem” · pl-320-ciemny-hc · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="C-pl-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, pl-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Wyciskanie na linkach (stojąc)</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-390</p>
+</main>
+<main data-ekran="C-pl-390-ciemny" data-w="390" data-th="dark"  class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, pl-390-ciemny">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Wyciskanie na linkach (stojąc)</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-390-ciemny</p>
+</main>
+<main data-ekran="C-pl-320-dluga" data-w="320" data-th="dark"  class="tel" style="--w:320px" aria-label="C „Drugi tytuł”, pl-320-dluga">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>triceps</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-320-dluga · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="C-pl-390-duplikat" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, pl-390-duplikat">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Bench Press</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Bench Press (sztanga)</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-390-duplikat</p>
+</main>
+<main data-ekran="C-de-320" data-w="320" data-th="dark"  class="tel" style="--w:320px" aria-label="C „Drugi tytuł”, de-320">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Zurück">←</span><span class="nav-t">Übung</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1></div><button class="edytuj">Bearbeiten</button></div><p class="lok-c" lang="de">Enges Langhantel-Trizepsdrücken im Liegen hinter den Kopf</p>
+<div class="linia"></div>
+<div class="tech"><span>Technik</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Muskelgruppe</div><div>Trizeps</div></div>
+<div class="row"><div class="lab">Ausrüstung</div><div>Langhantel</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · de-320 · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="C-wlasne-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, wlasne-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="pl">Wiosłowanie na TRX przy drzwiach</h1></div><button class="edytuj">Edytuj</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>plecy</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>masa ciała</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · wlasne-390 · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+<main data-ekran="C-lv-390" data-w="390" data-th="light"  class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, lv-390">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Atpakaļ">←</span><span class="nav-t">Vingrinājums</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Rediģēt</button></div>
+<div class="linia"></div>
+<div class="tech"><span>Tehnika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Muskuļu grupa</div><div>krūtis</div></div>
+<div class="row"><div class="lab">Aprīkojums</div><div>bloki</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · lv-390</p>
+</main>
+<main data-ekran="C-pl-390-ax5" data-w="390" data-th="light" data-ax5="1" class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, pl-390-ax5">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Wyciskanie na linkach (stojąc)</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-390-ax5</p>
+</main>
+<main data-ekran="C-pl-390-hc" data-w="390" data-th="lightHC"  class="tel" style="--w:390px" aria-label="C „Drugi tytuł”, pl-390-hc">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Standing Cable Chest Press</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Wyciskanie na linkach (stojąc)</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>klatka</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>linki</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-390-hc</p>
+</main>
+<main data-ekran="C-pl-320-ciemny-hc" data-w="320" data-th="darkHC"  class="tel" style="--w:320px" aria-label="C „Drugi tytuł”, pl-320-ciemny-hc">
+<div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+<div class="nav"><span class="wroc" aria-label="Wróć">←</span><span class="nav-t">Ćwiczenie</span></div>
+<div class="tresc"><div class="wiersz"><div class="kol"><h1 class="h1" lang="en">Lying Close-Grip Barbell Triceps Extension Behind the Head</h1></div><button class="edytuj">Edytuj</button></div><p class="lok-c" lang="pl">Wyprost ramion ze sztangą w leżeniu za głowę, wąski chwyt</p>
+<div class="linia"></div>
+<div class="tech"><span>Technika</span><span class="m">▸</span></div>
+<div class="row"><div class="lab">Partia</div><div>triceps</div></div>
+<div class="row"><div class="lab">Sprzęt</div><div>sztanga</div></div>
+</div>
+<p class="przyklad">C „Drugi tytuł” · pl-320-ciemny-hc · [PRZYKŁAD] nazwa spoza katalogu</p>
+</main>
+</div></body></html>
