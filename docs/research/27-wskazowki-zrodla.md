@@ -134,7 +134,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 237; zdań (z powtórzeniami między ćwiczeniami): 1042; unikalnych zdań: 620; źródeł: 458.
+- Ćwiczenia ze wskazówkami: 237; zdań (z powtórzeniami między ćwiczeniami): 1042; unikalnych zdań: 621; źródeł: 458.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 18.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 107 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press.
 
@@ -1203,7 +1203,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Oprzyj plecy o oparcie, a barki o poduszki; stopy na platformie jak do zwykłego przysiadu. — BarBend: [hack squat machine](https://barbend.com/hack-squat-machine/) (Step 2: Set Your Stance (back against the backrest; head between the shoulder pads; typical squat stance)); NFPT: [how to do hack squats](https://nfpt.com/how-to-do-hack-squats/) (Setup (shoulders against the shoulder pads, feet on the platform); Options (medium stance: feet shoulder width apart)) `hack.setup2`
+- Oprzyj plecy o oparcie, barki pod poduszkami; stopy na platformie jak do zwykłego przysiadu. — BarBend: [hack squat machine](https://barbend.com/hack-squat-machine/) (Step 2: Set Your Stance (back against the backrest; head between the shoulder pads; typical squat stance)); NFPT: [how to do hack squats](https://nfpt.com/how-to-do-hack-squats/) (Setup (shoulders against the shoulder pads, feet on the platform); Options (medium stance: feet shoulder width apart)) `hack.setup2`
 
 **Ruch**
 
@@ -3751,7 +3751,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań jedną stopą na krawędzi stopnia, pięta poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Single-Leg Calf Raises (także „on … an elevated platform”); Elevated Calf Raises (pięty poza krawędzią)); ACE: [Standing Calf Raises Wall (#73)](https://www.acefitness.org/resources/everyone/exercise-library/73/standing-calf-raises-wall/) (Exercise Variation (1): Single-leg Calf Raise („bend your left knee to lift your left foot off the floor”; wariant: z podłogi)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (The Exercise Menu („dumbbell on a step”; wariant: obunóż)) `calf.stepOne`
+- Stań przednią częścią jednej stopy na krawędzi stopnia, pięta poza krawędzią; drugą nogę unieś. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Single-Leg Calf Raises (także „on … an elevated platform”); Elevated Calf Raises (pięty poza krawędzią)); ACE: [Standing Calf Raises Wall (#73)](https://www.acefitness.org/resources/everyone/exercise-library/73/standing-calf-raises-wall/) (Exercise Variation (1): Single-leg Calf Raise („bend your left knee to lift your left foot off the floor”; wariant: z podłogi)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (The Exercise Menu („dumbbell on a step”; wariant: obunóż)) `calf.stepOne`
 
 **Ruch**
 
@@ -3770,7 +3770,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises („Heels should be hanging with the balls of the feet pressing into the foot platform on the machine.”; uproszczenie: wariant sprzętu — maszyna)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods, Participants and overview („seated/knee 90°-flexed position”); ryc. 1 (zakres od 20° zgięcia grzbietowego — pięty niżej niż palce; parafraza)) `calf.seatedEdge`
+- Usiądź z ugiętymi kolanami, przednią część stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises („Heels should be hanging with the balls of the feet pressing into the foot platform on the machine.”; uproszczenie: wariant sprzętu — maszyna)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods, Participants and overview („seated/knee 90°-flexed position”); ryc. 1 (zakres od 20° zgięcia grzbietowego — pięty niżej niż palce; parafraza)) `calf.seatedEdge`
 
 **Ruch**
 
@@ -3845,7 +3845,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises (pięty poza podestem; uproszczenie: wariant sprzętu — maszyna)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods („seated/knee 90°-flexed position”); ryc. 1 (parafraza)) `calf.seatedEdge`
+- Usiądź z ugiętymi kolanami, przednią część stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises (pięty poza podestem; uproszczenie: wariant sprzętu — maszyna)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods („seated/knee 90°-flexed position”); ryc. 1 (parafraza)) `calf.seatedEdge`
 
 **Ruch**
 
@@ -3863,7 +3863,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań prosto, trzymając w dłoniach końce gumy albo uchwyty. — Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Setup (uchwyt w każdej dłoni, tułów wyprostowany)); Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step One–Two (guma pod przednią częścią stóp, końce w dłoniach przy biodrach)) `calf.band`
+- Stań przednią częścią stóp na gumie i chwyć jej końce albo uchwyty. — Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Setup (uchwyt w każdej dłoni, tułów wyprostowany)); Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step One–Two (guma pod przednią częścią stóp, końce w dłoniach przy biodrach)) `calf.band`
 
 **Ruch**
 
@@ -3881,7 +3881,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises (uproszczenie: wariant sprzętu — maszyna; wariant: obunóż)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods („seated/knee 90°-flexed position”, trening jednej nogi w siadzie); ryc. 1 (parafraza)) `calf.seatedEdge`
+- Usiądź z ugiętym kolanem, przednią część stopy oprzyj na podwyższeniu, piętę poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises (uproszczenie: wariant sprzętu — maszyna; wariant: obunóż)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods („seated/knee 90°-flexed position”, trening jednej nogi w siadzie); ryc. 1 (parafraza)) `calf.seatedEdge1`
 
 **Ruch**
 
@@ -3903,7 +3903,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Odprowadź nogę w tył, prowadząc ruch pośladkiem, i wróć. — ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (Slowly raise the heel by initiating the movement from the glutes)); BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (How to Do the Glute Kickback (Squeeze your glute… as you drive your leg backward)) `ck.move`
+- Odprowadź nogę w tył, napinając pośladek, i powoli wróć. — ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (Slowly raise the heel by initiating the movement from the glutes)); BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (How to Do the Glute Kickback (Squeeze your glute… as you drive your leg backward)) `ck.move`
 
 **Wskazówki**
 
@@ -3912,7 +3912,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Czego unikać**
 
 - Biodra i tułów się bujają, żeby noga poszła dalej w tył. — BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (Common mistakes: Not Bracing Properly (don't flare your upper back, or sway your hips)); ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (keeping an erect torso — błąd = zaprzeczenie standardu)) `ck.mis.sway`
-- Plecy wyginają się w łuk, gdy noga idzie w górę. — BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (Common mistakes: Not Bracing Properly (Do not allow your lower back to arch)); HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension, Cautions (Don't arch your lower back to get more range) — uproszczenie: wariant sprzętu guma) `hext.mis.arch`
+- Plecy wyginają się w łuk, gdy noga idzie w górę. — BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (Common mistakes: Not Bracing Properly (Do not allow your lower back to arch)); HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension, krok („…without arching your low back.”) — uproszczenie: wariant sprzętu guma) `hext.mis.arch`
 
 ### Fire Hydrant
 
@@ -3959,7 +3959,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Trzymając stopy razem, unieś górne kolano jak najwyżej i opuść je powoli. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform a Banded Clamshell (Keeping the feet together… lifts the top knee as high as possible; slow and controlled)); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Clam Shells (Keeping the inner arches of the feet together, externally rotate the top leg)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (lift the top knee as far as possible and return under control)) `clam.move`
+- Trzymając stopy razem, unieś górne kolano jak najwyżej bez odchylania bioder i opuść je powoli. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform a Banded Clamshell (Keeping the feet together… lifts the top knee as high as possible; slow and controlled)); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Clam Shells (Keeping the inner arches of the feet together, externally rotate the top leg)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (lift the top knee as far as possible and return under control)) `clam.move`
 
 **Wskazówki**
 
@@ -3974,11 +3974,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Załóż małą gumę na obie kostki i przenieś ciężar ciała na jedną nogę. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension: Setup (mini band around both ankles); shift your weight onto one leg); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (band at your ankles; shift your weight onto one leg)) `hexb.setup`
+- Załóż minigumę na kostki i przenieś ciężar ciała na jedną nogę. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension: Setup (mini band around both ankles); shift your weight onto one leg); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (band at your ankles; shift your weight onto one leg)) `hexb.setup`
 
 **Ruch**
 
-- Odprowadź nogę w tył, prowadząc ruch pośladkiem, i wróć. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension (Reach the other heel back… squeeze the glute… return slowly)); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (flex your glute to move it away from your body)); Thera-Band: [thera band wobble board hip extension with band](https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html) (Step Two (Extend your hip against the band and slowly return) — wariant: na desce balansowej) `ck.move`
+- Odprowadź nogę w tył, napinając pośladek, i powoli wróć. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension (Reach the other heel back… squeeze the glute… return slowly)); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (flex your glute to move it away from your body)); Thera-Band: [thera band wobble board hip extension with band](https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html) (Step Two (Extend your hip against the band and slowly return) — wariant: na desce balansowej) `ck.move`
 
 **Wskazówki**
 
@@ -3986,22 +3986,22 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Plecy wyginają się w łuk, gdy noga idzie w górę. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Cautions (Don't arch your lower back to get more range)); Thera-Band: [thera band wobble board hip extension with band](https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html) (Step Two (Keep your back and neck straight — błąd = zaprzeczenie standardu; wariant: na desce balansowej)) `hext.mis.arch`
+- Plecy wyginają się w łuk, gdy noga idzie w górę. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension, krok („…without arching your low back.”)); Thera-Band: [thera band wobble board hip extension with band](https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html) (Step Two (Keep your back and neck straight — błąd = zaprzeczenie standardu; wariant: na desce balansowej)) `hext.mis.arch`
 
 ### Lateral Band Walk
 
 **Ustawienie**
 
-- Minigumę załóż nad kolanami albo niżej, nad kostkami; stopy na szerokość bioder. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — minigumę „just above your knees (or lower…)”, stopy na szerokość bioder); ACE: [how to self care for the it band](https://www.acefitness.org/resources/pros/expert-articles/5043/how-to-self-care-for-the-it-band/) (Lateral Band Walks — „Place a band of appropriate resistance around the shins, above the ankles.”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks (chód w bok) — „Place the Versa Loop just above the knee.”) `bw.setup`
+- Załóż minigumę tuż nad kolana albo niżej, nad kostki; stopy na szerokość bioder. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — minigumę „just above your knees (or lower…)”, stopy na szerokość bioder); ACE: [how to self care for the it band](https://www.acefitness.org/resources/pros/expert-articles/5043/how-to-self-care-for-the-it-band/) (Lateral Band Walks — „Place a band of appropriate resistance around the shins, above the ankles.”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks (chód w bok) — „Place the Versa Loop just above the knee.”) `bw.setup`
 
 **Ruch**
 
-- Zrób krok w bok, a drugą nogę dostaw spokojnie. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — „sidestep in one direction with slow and controlled steps”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Laterally walk to the right, with the right leg initiating the step.”) `bw.move`
+- Zrób krok w bok, potem powoli dociągnij drugą nogę. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — „sidestep in one direction with slow and controlled steps”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Laterally walk to the right, with the right leg initiating the step.”) `bw.move`
 
 **Wskazówki**
 
 - Zejdź do lekkiego przysiadu i trzymaj go przez cały marsz. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — kolana ugięte, pozycja atletyczna („almost a squat”)); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „keep a soft bend at the knees”) `bw.squat`
-- Guma ma być napięta przez cały czas — nie pozwól jej się poluzować. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — stopy co najmniej na szerokość bioder, by utrzymać opór gumy); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Maintain resistance with the band”) `bw.tension`
+- Guma napięta przez cały czas — nie luzuj jej. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — stopy co najmniej na szerokość bioder, by utrzymać opór gumy); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Maintain resistance with the band”) `bw.tension`
 
 **Czego unikać**
 
@@ -4011,7 +4011,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij kolano do klatki. — ACE: [glute bridge single leg progression](https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/) (Step 1); Catalyst Athletics: [Single Leg Glute Bridge](https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/) (opis (one knee bent, other leg straight)) `gb.slSetup`
+- Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij do klatki. — ACE: [glute bridge single leg progression](https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/) (Step 1); Catalyst Athletics: [Single Leg Glute Bridge](https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/) (opis (one knee bent, other leg straight)) `gb.slSetup`
 
 **Ruch**
 
@@ -4029,7 +4029,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Oprzyj plecy o ławkę, jedną stopę postaw płasko na podłodze, drugą nogę unieś nad podłogę. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (upper back on a padded bench, one leg bent and foot flat on the floor, the other extended straight forward)); ISSA: [hip thrusts benefits and variations for stronger glutes](https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes) (4. Single-Leg Hip Thrust (one foot lifted slightly off the ground) + Basic Hip Thrust Technique (back on a bench, feet flat)) `ht.slSetup`
+- Oprzyj górną część pleców o ławkę, jedną stopę postaw płasko na podłodze, drugą nogę oderwij od podłogi. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (upper back on a padded bench, one leg bent and foot flat on the floor, the other extended straight forward)); ISSA: [hip thrusts benefits and variations for stronger glutes](https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes) (4. Single-Leg Hip Thrust (one foot lifted slightly off the ground) + Basic Hip Thrust Technique (back on a bench, feet flat)) `ht.slSetup`
 
 **Ruch**
 
@@ -4037,11 +4037,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Wskazówki**
 
-- Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (ensure the motion is at the hip and not excessive lumbar extension)); NSCA: [barbell hip thrust](https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf) (Exercise Technique, s. 59 (extension movement comes from the hips, not from the lumbopelvic region; uproszczenie: wersja obunóż — ISSA: poza jedną nogą jak w podstawowym)) `ht.rigid`
+- Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (ensure the motion is at the hip and not excessive lumbar extension)); NSCA: [Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026](https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf) (Exercise Technique, s. 59 (extension movement comes from the hips, not from the lumbopelvic region; uproszczenie: wersja obunóż — ISSA: poza jedną nogą jak w podstawowym)) `ht.rigid`
 
 **Czego unikać**
 
-- Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (not excessive lumbar extension)); NSCA: [barbell hip thrust](https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf) (Exercise Technique, s. 59 (excessive lumbar hyperextension; uproszczenie: wersja obunóż)) `ht.mis.arch`
+- Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (not excessive lumbar extension)); NSCA: [Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026](https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf) (Exercise Technique, s. 59 (excessive lumbar hyperextension; uproszczenie: wersja obunóż)) `ht.mis.arch`
 
 ### Glute Bridge (sztanga)
 
@@ -4051,7 +4051,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Unieś biodra, napinając pośladki, aż barki, biodra i kolana utworzą linię; opuść powoli. — ACE: [Hip Bridge (#318)](https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/) (opis, zdania 4–5 (press the feet into the floor and lift the hips; slowly lower the tailbone)); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Step 3; Step 4 (uproszczenie: wariant sprzętu Glute Bridge)); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2; Step 3 (linia barki–biodra–kolana; uproszczenie: wariant sprzętu Glute Bridge)) `gb.move`
+- Unieś biodra, napinając pośladki, aż barki, biodra i kolana utworzą linię; opuść powoli. — ACE: [Hip Bridge (#318)](https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/) (opis, zdania 4–5 (press the feet into the floor and lift the hips; slowly lower the tailbone)); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Step 3 (linia kolana–biodra–barki); Step 4 (uproszczenie: wariant sprzętu Glute Bridge)); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2; Step 3 (press your hips upwards… into extension; slowly lower; uproszczenie: wariant sprzętu Glute Bridge)) `gb.move`
 
 **Wskazówki**
 
@@ -4065,7 +4065,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź przodem do miejsca, gdzie zaczepiona jest guma; pętlę załóż na kostkę, noga wysunięta w przód. — WebMD Ignite: [3,S,90814](https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814) (kroki 1–3 („Sit in a chair facing the closed door. Slip the loop of the elastic exercise band around the heel of your leg.”)); NASM: [Single-Leg Seated Leg Curl](https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl) (uproszczenie: wariant sprzętu Seated Leg Curl (maszyna); Step 1–2 (siad, opór z przodu tuż nad kostką; parafraza)) `bandcurl.setup`
+- Usiądź przodem do zaczepu gumy, załóż pętlę na kostkę; noga wyprostowana przed sobą. — WebMD Ignite: [3,S,90814](https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814) (kroki 1–3 („Sit in a chair facing the closed door. Slip the loop of the elastic exercise band around the heel of your leg.”)); NASM: [Single-Leg Seated Leg Curl](https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl) (uproszczenie: wariant sprzętu Seated Leg Curl (maszyna); Step 1–2 (siad, opór z przodu tuż nad kostką; parafraza)) `bandcurl.setup`
 
 **Ruch**
 
@@ -4083,7 +4083,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź w maszynie plecami na oparciu; jedną stopę postaw na platformie, drugą nogę zdejmij i trzymaj spokojnie. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Setup (back and head against the backrest; one foot on the platform)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 1 (uproszczenie: analogia Leg Press — back flat against the backrest)) `slp.setup`
+- Usiądź na maszynie, plecy na oparciu; jedną stopę postaw na platformie, drugą zdejmij z platformy i trzymaj nieruchomo. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Setup (back and head against the backrest; one foot on the platform)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 1 (uproszczenie: analogia Leg Press — back flat against the backrest)) `slp.setup`
 
 **Ruch**
 
@@ -4091,7 +4091,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Blokowanie kolana w pełnym wyproście na górze. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Movement; Common Mistakes (locking the knee at full extension)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 3 (uproszczenie: analogia Leg Press — do not hyperextend/lock-out)) `lp.mis.lock`
+- Blokowanie kolana w przeproście na górze. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Movement; Common Mistakes (locking the knee at full extension)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 3 (uproszczenie: analogia Leg Press — do not hyperextend/lock-out)) `lp.mis.lock`
 
 ## Źródła
 
@@ -4486,7 +4486,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nordictrack-incline | NordicTrack | Incline treadmill benefits… (15.07.2025) | https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | — |
 | nsca-basics-2012 | NSCA | Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012 | https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | — |
 | nsca-coach-7-3 | NSCA | Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3 | https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | — |
-| nsca-scj-hip-thrust | NSCA | barbell hip thrust | https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf | — |
+| nsca-scj-hip-thrust | NSCA | Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026 | https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf | — |
 | orthobethesda-foam-rolling | OrthoBethesda Therapy Services | Foam Rolling (FR) Exercises (PDF, 2 s., 2015) | https://www.orthobethesda.com/foam-rolling-exercises/ | — |
 | orthoindy-itb-program | OrthoIndy Physical Therapy | IT Band Home Exercise Program (PDF, rev. 8/15) | https://orthoindy.com/wp-content/uploads/IT-Band-Program.pdf | — |
 | osu-foam-rolling | Ohio State University Wexner Medical Center | Foam Rolling Exercises (transkrypcja filmu) | https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt | — |

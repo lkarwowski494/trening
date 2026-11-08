@@ -3350,7 +3350,7 @@
   },
   "nsca-scj-hip-thrust": {
    "org": "NSCA",
-   "title": "barbell hip thrust",
+   "title": "Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026",
    "url": "https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf",
    "level": 4
   },
@@ -19282,7 +19282,7 @@
   "Dumbbell Seated One-Leg Calf Raise": {
    "setup": [
     {
-     "c": "calf.seatedEdge",
+     "c": "calf.seatedEdge1",
      "s": [
       [
        "issa-top6-calves",
@@ -19410,7 +19410,7 @@
       ],
       [
        "hss-mini-band-hip-ext",
-       "Diagonal hip extension, Cautions (Don't arch your lower back to get more range) — uproszczenie: wariant sprzętu guma"
+       "Diagonal hip extension, krok („…without arching your low back.”) — uproszczenie: wariant sprzętu guma"
       ]
      ]
     }
@@ -19692,7 +19692,7 @@
      "s": [
       [
        "hss-mini-band-hip-ext",
-       "Cautions (Don't arch your lower back to get more range)"
+       "Diagonal hip extension, krok („…without arching your low back.”)"
       ],
       [
        "ph-wobble-hip-ext",
@@ -19935,11 +19935,11 @@
       ],
       [
        "nasm-floor-bridge",
-       "Step 3; Step 4 (uproszczenie: wariant sprzętu Glute Bridge)"
+       "Step 3 (linia kolana–biodra–barki); Step 4 (uproszczenie: wariant sprzętu Glute Bridge)"
       ],
       [
        "ace-49",
-       "Step 2; Step 3 (linia barki–biodra–kolana; uproszczenie: wariant sprzętu Glute Bridge)"
+       "Step 2; Step 3 (press your hips upwards… into extension; slowly lower; uproszczenie: wariant sprzętu Glute Bridge)"
       ]
      ]
     }

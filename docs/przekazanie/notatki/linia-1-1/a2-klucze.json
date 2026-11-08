@@ -1,13 +1,13 @@
 {
- "_opis": "Partia A2 (nogi i biodra, linia 1.1, 08.11.2026) — lista dla recenzenta niezależnego (L-047; autor: programista A2, sesja B #1 — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce). Do sprawdzenia: zgodność z rysunkiem (pozy v2 rodzin planned), biogram autora NFPT hack squat (wpis 02.11.2026, triceps pkt 1), uproszczenia wariantu sprzętu wpisane w miejscu źródła, teksty jak trener na siłowni. Karty wstrzymane do B2 (konfliktPozy) nie są w danych aplikacji.",
+ "_opis": "Partia A2 (nogi i biodra, linia 1.1, 08.11.2026) — lista dla recenzenta niezależnego (L-047; autor: programista A2, sesja B #1 — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce). Do sprawdzenia: zgodność z rysunkiem (pozy v2 rodzin planned), biogram autora NFPT hack squat (wpis 02.11.2026, triceps pkt 1), uproszczenia wariantu sprzętu wpisane w miejscu źródła, teksty jak trener na siłowni. Karty wstrzymane do B2 (konfliktPozy) nie są w danych aplikacji. Runda 2 (08.11.2026): naniesione poprawki z docs/research/recenzje/a2-nogi-karty-badacz-2026-11-08.md i a2-nogi-lokalizacja-2026-11-08.md.",
  "galaz": "tekst/a2-nogi",
  "karty": {
   "Single Leg Calf Raise": {
    "setup": [
     {
      "id": "calf.stepOne",
-     "pl": "Stań jedną stopą na krawędzi stopnia, pięta poza krawędzią.",
-     "en": "Stand on one foot on the edge of a step, heel hanging off.",
+     "pl": "Stań przednią częścią jednej stopy na krawędzi stopnia, pięta poza krawędzią; drugą nogę unieś.",
+     "en": "Stand on the edge of a step on the ball of one foot, heel hanging off; lift the other foot.",
      "nowe": true,
      "zrodla": [
       {
@@ -133,7 +133,7 @@
    "setup": [
     {
      "id": "calf.seatedEdge",
-     "pl": "Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią.",
+     "pl": "Usiądź z ugiętymi kolanami, przednią część stóp oprzyj na podwyższeniu, pięty poza krawędzią.",
      "en": "Sit with your knees bent, the balls of your feet on a raised edge and your heels hanging off.",
      "nowe": true,
      "zrodla": [
@@ -598,7 +598,7 @@
    "setup": [
     {
      "id": "calf.seatedEdge",
-     "pl": "Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią.",
+     "pl": "Usiądź z ugiętymi kolanami, przednią część stóp oprzyj na podwyższeniu, pięty poza krawędzią.",
      "en": "Sit with your knees bent, the balls of your feet on a raised edge and your heels hanging off.",
      "nowe": true,
      "zrodla": [
@@ -696,8 +696,8 @@
    "setup": [
     {
      "id": "calf.band",
-     "pl": "Stań prosto, trzymając w dłoniach końce gumy albo uchwyty.",
-     "en": "Stand tall, holding the band ends or handles.",
+     "pl": "Stań przednią częścią stóp na gumie i chwyć jej końce albo uchwyty.",
+     "en": "Stand on the band with the balls of your feet and hold its ends or handles.",
      "nowe": true,
      "zrodla": [
       {
@@ -793,9 +793,9 @@
   "Dumbbell Seated One-Leg Calf Raise": {
    "setup": [
     {
-     "id": "calf.seatedEdge",
-     "pl": "Usiądź z ugiętymi kolanami, przód stóp oprzyj na podwyższeniu, pięty poza krawędzią.",
-     "en": "Sit with your knees bent, the balls of your feet on a raised edge and your heels hanging off.",
+     "id": "calf.seatedEdge1",
+     "pl": "Usiądź z ugiętym kolanem, przednią część stopy oprzyj na podwyższeniu, piętę poza krawędzią.",
+     "en": "Sit with your knee bent, the ball of your foot on a raised surface and your heel hanging off the edge.",
      "nowe": true,
      "zrodla": [
       {
@@ -893,7 +893,7 @@
     {
      "id": "ck.setup",
      "pl": "Ustaw wyciąg nisko, załóż mankiet na kostkę i stań przodem do maszyny, trzymając się jej.",
-     "en": "Set the pulley low, strap the cuff to your ankle and face the machine, holding on.",
+     "en": "Set the pulley low, strap the cuff around your ankle and face the machine, holding on to it.",
      "nowe": true,
      "zrodla": [
       {
@@ -916,8 +916,8 @@
    "move": [
     {
      "id": "ck.move",
-     "pl": "Odprowadź nogę w tył, prowadząc ruch pośladkiem, i wróć.",
-     "en": "Drive your leg back, leading with your glute, then return.",
+     "pl": "Odprowadź nogę w tył, napinając pośladek, i powoli wróć.",
+     "en": "Push your leg back by squeezing your glute, then slowly return.",
      "nowe": true,
      "zrodla": [
       {
@@ -965,7 +965,7 @@
     {
      "id": "ck.mis.sway",
      "pl": "Biodra i tułów się bujają, żeby noga poszła dalej w tył.",
-     "en": "Your hips and torso sway to get the leg further back.",
+     "en": "Swinging your hips and torso to get your leg further back.",
      "nowe": true,
      "zrodla": [
       {
@@ -1002,7 +1002,7 @@
        "org": "HSS",
        "szczebel": 4,
        "url": "https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners",
-       "miejsce": "Diagonal hip extension, Cautions (Don't arch your lower back to get more range) — uproszczenie: wariant sprzętu guma"
+       "miejsce": "Diagonal hip extension, krok („…without arching your low back.”) — uproszczenie: wariant sprzętu guma"
       }
      ]
     }
@@ -1061,7 +1061,7 @@
     {
      "id": "fh.level",
      "pl": "Ruch tylko w biodrze — nie przechylaj się i nie skręcaj bioder, żeby unieść nogę wyżej.",
-     "en": "Move only at the hip — don't lean or twist your hips to get the leg higher.",
+     "en": "Move only at the hip — don’t lean or twist your hips to get the leg higher.",
      "nowe": true,
      "zrodla": [
       {
@@ -1261,8 +1261,8 @@
    "move": [
     {
      "id": "clam.move",
-     "pl": "Trzymając stopy razem, unieś górne kolano jak najwyżej i opuść je powoli.",
-     "en": "Keep your feet together, lift your top knee as high as you can, then lower it slowly.",
+     "pl": "Trzymając stopy razem, unieś górne kolano jak najwyżej bez odchylania bioder i opuść je powoli.",
+     "en": "Keeping your feet together, lift your top knee as high as you can without rolling your hips back, then lower it slowly.",
      "nowe": true,
      "zrodla": [
       {
@@ -1293,7 +1293,7 @@
     {
      "id": "clam.noRoll",
      "pl": "Biodra nie uciekają do tyłu — zostań na boku.",
-     "en": "Don't let your hips roll back — stay on your side.",
+     "en": "Don’t let your hips roll back — stay on your side.",
      "nowe": true,
      "zrodla": [
       {
@@ -1364,7 +1364,7 @@
    "setup": [
     {
      "id": "hexb.setup",
-     "pl": "Załóż małą gumę na obie kostki i przenieś ciężar ciała na jedną nogę.",
+     "pl": "Załóż minigumę na kostki i przenieś ciężar ciała na jedną nogę.",
      "en": "Loop a mini band around both ankles and shift your weight onto one leg.",
      "nowe": true,
      "zrodla": [
@@ -1388,8 +1388,8 @@
    "move": [
     {
      "id": "ck.move",
-     "pl": "Odprowadź nogę w tył, prowadząc ruch pośladkiem, i wróć.",
-     "en": "Drive your leg back, leading with your glute, then return.",
+     "pl": "Odprowadź nogę w tył, napinając pośladek, i powoli wróć.",
+     "en": "Push your leg back by squeezing your glute, then slowly return.",
      "nowe": true,
      "zrodla": [
       {
@@ -1452,7 +1452,7 @@
        "org": "HSS",
        "szczebel": 4,
        "url": "https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners",
-       "miejsce": "Cautions (Don't arch your lower back to get more range)"
+       "miejsce": "Diagonal hip extension, krok („…without arching your low back.”)"
       },
       {
        "id": "ph-wobble-hip-ext",
@@ -1469,8 +1469,8 @@
    "setup": [
     {
      "id": "bw.setup",
-     "pl": "Minigumę załóż nad kolanami albo niżej, nad kostkami; stopy na szerokość bioder.",
-     "en": "Put the mini band above your knees or lower, above your ankles; feet hip-width apart.",
+     "pl": "Załóż minigumę tuż nad kolana albo niżej, nad kostki; stopy na szerokość bioder.",
+     "en": "Loop a mini band just above your knees or around your ankles; feet hip-width apart.",
      "nowe": true,
      "zrodla": [
       {
@@ -1500,8 +1500,8 @@
    "move": [
     {
      "id": "bw.move",
-     "pl": "Zrób krok w bok, a drugą nogę dostaw spokojnie.",
-     "en": "Step to the side, then bring the other foot over slowly.",
+     "pl": "Zrób krok w bok, potem powoli dociągnij drugą nogę.",
+     "en": "Step to the side, then slowly follow with the other foot.",
      "nowe": true,
      "zrodla": [
       {
@@ -1546,8 +1546,8 @@
     },
     {
      "id": "bw.tension",
-     "pl": "Guma ma być napięta przez cały czas — nie pozwól jej się poluzować.",
-     "en": "Keep the band tight the whole time — don't let it go slack.",
+     "pl": "Guma napięta przez cały czas — nie luzuj jej.",
+     "en": "Keep the band tight the whole time — don’t let it go slack.",
      "nowe": true,
      "zrodla": [
       {
@@ -1596,7 +1596,7 @@
    "setup": [
     {
      "id": "gb.slSetup",
-     "pl": "Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij kolano do klatki.",
+     "pl": "Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij do klatki.",
      "en": "Lie on your back, one knee bent with that foot flat on the floor; straighten the other leg or pull that knee toward your chest.",
      "nowe": true,
      "zrodla": [
@@ -1694,8 +1694,8 @@
    "setup": [
     {
      "id": "ht.slSetup",
-     "pl": "Oprzyj plecy o ławkę, jedną stopę postaw płasko na podłodze, drugą nogę unieś nad podłogę.",
-     "en": "Rest your back against a bench, one foot flat on the floor, the other leg lifted off the floor.",
+     "pl": "Oprzyj górną część pleców o ławkę, jedną stopę postaw płasko na podłodze, drugą nogę oderwij od podłogi.",
+     "en": "Rest your upper back against a bench, one foot flat on the floor, the other foot off the floor.",
      "nowe": true,
      "zrodla": [
       {
@@ -1839,14 +1839,14 @@
        "org": "NASM",
        "szczebel": 4,
        "url": "https://www.nasm.org/resource-center/exercise-library/floor-bridge",
-       "miejsce": "Step 3; Step 4 (uproszczenie: wariant sprzętu Glute Bridge)"
+       "miejsce": "Step 3 (linia kolana–biodra–barki); Step 4 (uproszczenie: wariant sprzętu Glute Bridge)"
       },
       {
        "id": "ace-49",
        "org": "ACE",
        "szczebel": 4,
        "url": "https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/",
-       "miejsce": "Step 2; Step 3 (linia barki–biodra–kolana; uproszczenie: wariant sprzętu Glute Bridge)"
+       "miejsce": "Step 2; Step 3 (press your hips upwards… into extension; slowly lower; uproszczenie: wariant sprzętu Glute Bridge)"
       }
      ]
     }
@@ -1904,8 +1904,8 @@
    "setup": [
     {
      "id": "bandcurl.setup",
-     "pl": "Usiądź przodem do miejsca, gdzie zaczepiona jest guma; pętlę załóż na kostkę, noga wysunięta w przód.",
-     "en": "Sit facing the band's anchor point, loop around your ankle, leg out in front.",
+     "pl": "Usiądź przodem do zaczepu gumy, załóż pętlę na kostkę; noga wyprostowana przed sobą.",
+     "en": "Sit facing the band’s anchor, loop the band around your ankle, leg straight out in front.",
      "nowe": true,
      "zrodla": [
       {
@@ -1977,7 +1977,7 @@
     {
      "id": "lcurl.mis.partial",
      "pl": "Zginanie kolana tylko do połowy zamiast tak daleko, jak się da.",
-     "en": "Only bending your knee halfway instead of as far as it goes.",
+     "en": "Bending your knee only halfway instead of all the way.",
      "nowe": true,
      "zrodla": [
       {
@@ -2002,8 +2002,8 @@
    "setup": [
     {
      "id": "hack.setup2",
-     "pl": "Oprzyj plecy o oparcie, a barki o poduszki; stopy na platformie jak do zwykłego przysiadu.",
-     "en": "Rest your back against the pad and your shoulders under the shoulder pads; feet on the platform in your usual squat stance.",
+     "pl": "Oprzyj plecy o oparcie, barki pod poduszkami; stopy na platformie jak do zwykłego przysiadu.",
+     "en": "Lean back against the pad, shoulders under the shoulder pads; feet on the platform in your usual squat stance.",
      "nowe": true,
      "zrodla": [
       {
@@ -2076,8 +2076,8 @@
    "setup": [
     {
      "id": "slp.setup",
-     "pl": "Usiądź w maszynie plecami na oparciu; jedną stopę postaw na platformie, drugą nogę zdejmij i trzymaj spokojnie.",
-     "en": "Sit in the machine with your back against the backrest; put one foot on the platform, take the other leg off and keep it still.",
+     "pl": "Usiądź na maszynie, plecy na oparciu; jedną stopę postaw na platformie, drugą zdejmij z platformy i trzymaj nieruchomo.",
+     "en": "Sit in the machine with your back against the backrest; put one foot on the platform, take the other foot off and keep it still.",
      "nowe": true,
      "zrodla": [
       {
@@ -2124,8 +2124,8 @@
    "mistakes": [
     {
      "id": "lp.mis.lock",
-     "pl": "Blokowanie kolana w pełnym wyproście na górze.",
-     "en": "Locking the knee out straight at the top.",
+     "pl": "Blokowanie kolana w przeproście na górze.",
+     "en": "Locking your knee out at the top.",
      "nowe": true,
      "zrodla": [
       {
@@ -2157,6 +2157,7 @@
   "calf.band",
   "calf.rise",
   "calf.seatedEdge",
+  "calf.seatedEdge1",
   "calf.stand",
   "calf.stepOne",
   "ck.mis.sway",

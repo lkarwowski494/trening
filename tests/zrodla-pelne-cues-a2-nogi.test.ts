@@ -93,8 +93,8 @@ describe('A2 nogi: źródła i reguły szczebli', () => {
 });
 
 describe('A2 nogi: zdania', () => {
-  test('33 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A2 (pozostałe języki — angielski w zastępstwie)', () => {
-    expect(A2.zdania.length).toBe(33);
+  test('34 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A2 (pozostałe języki — angielski w zastępstwie)', () => {
+    expect(A2.zdania.length).toBe(34);
     for (const c of A2.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-08-a2-wskazowki.json');
     expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...A2.zdania].sort());
@@ -122,5 +122,25 @@ console.log(JSON.stringify({ ukryta: ids(kartaWlasna('Smith Machine Calf Raise')
     expect(R.bledy).toEqual(['calf.mis.partial']);
     expect([R.widoczna, R.brak]).toEqual([true, null]);
     expect(R.ogolny).toEqual(json('lib/figures/v2/cue-sets.json').items['Stability Ball Hamstring Curl'].ok.concat(json('lib/figures/v2/cue-sets.json').items['Stability Ball Hamstring Curl'].err ?? []));
+  });
+});
+
+describe('A2 nogi: poprawki recenzji niezależnej (08.11.2026, runda 1: badacz i lokalizacja PL/EN)', () => {
+  test('Band Calf Raise: guma pod przednią częścią stóp (blokujące); karta jednonóż siedząc ma zdanie w liczbie pojedynczej (calf.seatedEdge1)', () => {
+    expect(pl['calf.band']).toMatch(/przednią częścią stóp na gumie/); expect(en['calf.band']).toMatch(/Stand on the band/);
+    expect(CUE_FULL.exercises['Dumbbell Seated One-Leg Calf Raise'].setup.map(r => r.c)).toEqual(['calf.seatedEdge1']);
+    expect(pl['calf.seatedEdge1']).toMatch(/ugiętym kolanem.*stopy.*piętę/);
+    for (const k of ['Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise']) expect(CUE_FULL.exercises[k].setup.map(r => r.c)).toContain('calf.seatedEdge');
+  });
+  test('słownik (08.11.2026): „miniguma” zamiast „mała guma”, błąd prasy „w przeproście”, nie „w pełnym wyproście”', () => {
+    for (const [id, t] of Object.entries(pl)) { expect([id, /mał(a|ą|ej) gum/i.test(t)]).toEqual([id, false]); expect([id, /blokow\w* kolan\w* w pełnym wyproście/i.test(t)]).toEqual([id, false]); }
+    expect(pl['hexb.setup']).toMatch(/minigumę/); expect(pl['lp.mis.lock']).toMatch(/przeproście/);
+  });
+  test('miejsca źródeł poprawione: HSS przy hext.mis.arch bez nieistniejącej sekcji „Cautions”; linia barki–biodra–kolana przy gb.move na NASM, nie na ACE 49', () => {
+    for (const k of ['Cable Kickback', 'Hip Extension with Bands']) for (const r of CUE_FULL.exercises[k].mistakes) for (const [sid, at] of r.s) if (sid === 'hss-mini-band-hip-ext') expect([k, /Cautions/.test(at)]).toEqual([k, false]);
+    const gb = CUE_FULL.exercises['Glute Bridge (sztanga)'].move.find(r => r.c === 'gb.move')!;
+    expect(gb.s.find(([sid]) => sid === 'ace-49')![1]).not.toMatch(/linia/);
+    expect(gb.s.find(([sid]) => sid === 'nasm-floor-bridge')![1]).toMatch(/linia/);
+    expect(CUE_FULL.sources['nsca-scj-hip-thrust'].title).toMatch(/Strength and Conditioning Journal 33\(5\):58–61/);
   });
 });

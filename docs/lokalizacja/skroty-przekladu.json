@@ -86,7 +86,7 @@
    }
   },
   "bandcurl.setup": {
-   "s": "413a64077f5e",
+   "s": "52e4be9383e6",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -1416,7 +1416,7 @@
    }
   },
   "bw.move": {
-   "s": "3e484d253b66",
+   "s": "41cbfe3fe7c4",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -1454,7 +1454,7 @@
    }
   },
   "bw.setup": {
-   "s": "5991d3e7e494",
+   "s": "de936eb95f5d",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -1530,7 +1530,7 @@
    }
   },
   "bw.tension": {
-   "s": "55b9c9172c51",
+   "s": "0824fa205002",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -1568,7 +1568,7 @@
    }
   },
   "calf.band": {
-   "s": "16cc6958802d",
+   "s": "3403b865ddc7",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -1910,7 +1910,45 @@
    }
   },
   "calf.seatedEdge": {
-   "s": "570a7f038b0b",
+   "s": "1b9761a6198d",
+   "t": {
+    "cs": "e3b0c44298fc",
+    "sk": "e3b0c44298fc",
+    "hu": "e3b0c44298fc",
+    "ro": "e3b0c44298fc",
+    "bg": "e3b0c44298fc",
+    "hr": "e3b0c44298fc",
+    "sl": "e3b0c44298fc",
+    "sr": "e3b0c44298fc",
+    "lt": "e3b0c44298fc",
+    "lv": "e3b0c44298fc",
+    "et": "e3b0c44298fc",
+    "uk": "e3b0c44298fc",
+    "es": "e3b0c44298fc",
+    "es-419": "e3b0c44298fc",
+    "pt": "e3b0c44298fc",
+    "pt-BR": "e3b0c44298fc",
+    "de": "e3b0c44298fc",
+    "fr": "e3b0c44298fc",
+    "it": "e3b0c44298fc",
+    "nl": "e3b0c44298fc",
+    "sv": "e3b0c44298fc",
+    "da": "e3b0c44298fc",
+    "nb": "e3b0c44298fc",
+    "fi": "e3b0c44298fc",
+    "tr": "e3b0c44298fc",
+    "el": "e3b0c44298fc",
+    "id": "e3b0c44298fc",
+    "ms": "e3b0c44298fc",
+    "vi": "e3b0c44298fc",
+    "ru": "e3b0c44298fc",
+    "ja": "e3b0c44298fc",
+    "ko": "e3b0c44298fc",
+    "zh-Hant": "e3b0c44298fc"
+   }
+  },
+  "calf.seatedEdge1": {
+   "s": "097aaadbec8e",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -2024,7 +2062,7 @@
    }
   },
   "calf.stepOne": {
-   "s": "dbb03bf4dd29",
+   "s": "9d18aa2ecb14",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -2670,7 +2708,7 @@
    }
   },
   "ck.mis.sway": {
-   "s": "68f4a8e31841",
+   "s": "5d4daa8ac9a3",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -2708,7 +2746,7 @@
    }
   },
   "ck.move": {
-   "s": "a10ddd37e21d",
+   "s": "dffd466c7dc2",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -2746,7 +2784,7 @@
    }
   },
   "ck.setup": {
-   "s": "8cf9add33c1e",
+   "s": "f8e2467187bb",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -2822,7 +2860,7 @@
    }
   },
   "clam.move": {
-   "s": "3ca83a0e0c8a",
+   "s": "0f66c57a39dc",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -2860,7 +2898,7 @@
    }
   },
   "clam.noRoll": {
-   "s": "1e5b441a2fe8",
+   "s": "8593d1308212",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -5444,7 +5482,7 @@
    }
   },
   "fh.level": {
-   "s": "5a19be2ca39e",
+   "s": "75981722bdc1",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -7268,7 +7306,7 @@
    }
   },
   "gb.slSetup": {
-   "s": "5820327a0e3b",
+   "s": "e48364bc49fb",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -7914,7 +7952,7 @@
    }
   },
   "hack.setup2": {
-   "s": "06c961b3025d",
+   "s": "2f7165b1b4ca",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -8256,7 +8294,7 @@
    }
   },
   "hexb.setup": {
-   "s": "ff86244280ef",
+   "s": "edddfcf82954",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -8636,7 +8674,7 @@
    }
   },
   "ht.slSetup": {
-   "s": "99970fed9380",
+   "s": "419a5d01da7d",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10422,7 +10460,7 @@
    }
   },
   "lcurl.mis.partial": {
-   "s": "1beebd06f394",
+   "s": "6f2a707bfd0d",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -10802,7 +10840,7 @@
    }
   },
   "lp.mis.lock": {
-   "s": "75160f80952d",
+   "s": "e5f1cc4c79a3",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -21176,7 +21214,7 @@
    }
   },
   "slp.setup": {
-   "s": "c06d395be692",
+   "s": "f9449c377754",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
