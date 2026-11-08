@@ -646,7 +646,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Test: `tests/nazwy-en.test.ts`, `.maestro/07-zamiana.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Nowa nazwa w angielskim i w językach z nazwami angielskimi
-    - Zakładając, że język aplikacji jest inny niż polski, a ćwiczenie z biblioteki ma kanoniczną nazwę (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
+    - Zakładając, że ćwiczenie z biblioteki ma kanoniczną nazwę (od 07.11.2026 we wszystkich językach, także polskim — BR-BIB-012) (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
     - Gdy użytkownik widzi nazwę ćwiczenia na liście, w treningu, szablonie, historii albo w wyborze ćwiczenia
     - Wtedy widzi nową nazwę według przewodnika stylu (jednostronność „Single-Arm / Single-Leg”, liczba pojedyncza z zamkniętą listą wyjątków, bez „Barbell” w klasycznych bojach, przyrząd jako przedrostek, łączniki w przymiotnikach złożonych); VoiceOver czyta ją głosem angielskim jak dotąd
   - Scenariusz: Dane użytkownika bez zmian
@@ -656,7 +656,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Wyszukiwanie po dawnej nazwie
     - Zakładając, że język aplikacji jest inny niż polski
     - Gdy użytkownik wpisuje w wyszukiwarce dawną angielską nazwę (np. „Bench Press (Barbell)” albo „RDL”)
-    - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece”; w polskim nic się nie zmienia
+    - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece” (od 07.11.2026 także w polskim — BR-BIB-012)
   - Scenariusz: Usunięte ćwiczenie po dawnej nazwie (01.11.2026)
     - Zakładając, że użytkownik usunął ćwiczenie z biblioteki (archiwum), a język aplikacji jest inny niż polski
     - Gdy w wyborze ćwiczenia wpisuje jego dawną angielską nazwę (np. „Bench Press (Dumbbell)”)
@@ -697,6 +697,33 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik czyta obraz czytnikiem ekranu
     - Wtedy etykieta to „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same zdania co na karcie)
     - Wtedy zdania w etykiecie łączy spacja, gdy poprzednie kończy się znakiem końca zdania (także „。”, „।”, „؟”), w pozostałych przypadkach średnik — bez „.;” (04.11.2026)
+
+### BR-BIB-012: Nazwy ćwiczeń z biblioteki po angielsku we wszystkich językach, nazwa lokalna tylko na karcie (07.11.2026 i 08.11.2026, ZB-044; zastępuje DEC-13)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzje właściciela 07.11.2026 i 08.11.2026 (docs/18: wariant A „Podpis”); `lib/i18n.ts` (`exName`, `exNameLang`, `exLocal`, `exLocalFold`), lista nazw po recenzji `lib/nazwy-lokalne.ts` (dziś pusta), karta `app/exercise/[id].tsx`; makieta `docs/design/karta-nazwy/` (gałąź `studio/naglowek-karty-nazwy`)
+- Ekrany: `app/exercise/[id].tsx`, `app/exercises.tsx`, `app/picker.tsx`, `app/swap.tsx`, `app/(tabs)/progress.tsx`, `app/more/import.tsx`, wszystkie miejsca z nazwą ćwiczenia (`exName`), zegarek (`lib/watch/snapshot.ts`), eksport CSV (`lib/backup.ts`)
+- Test: `tests/zb044-nazwy-biblioteki.test.tsx`, `.maestro/37-jezyk-motyw-trwale.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Polski interfejs, nazwa angielska
+    - Zakładając, że język aplikacji to polski, a ćwiczenie pochodzi z biblioteki (np. „Bench Press (sztanga)”)
+    - Gdy użytkownik widzi nazwę na liście, w treningu, szablonie, historii, planie, na zegarku albo w eksporcie
+    - Wtedy widzi nazwę angielską („Bench Press”), a VoiceOver czyta ją głosem angielskim; ćwiczenie własne ma jedną nazwę, jak wpisana, w języku interfejsu
+  - Scenariusz: Karta ćwiczenia z nazwą lokalną
+    - Zakładając, że język nie jest angielski, a nazwa lokalna ćwiczenia jest na liście po recenzji i różni się od angielskiej
+    - Gdy użytkownik otwiera kartę ćwiczenia
+    - Wtedy tytuł jest angielski (bez zmian), pod nim w odstępie 4 pt widnieje nazwa lokalna (krój opisu, kolor przytłumiony) czytana osobnym elementem w języku interfejsu, a „Edytuj” jest wyrównane do pierwszego wiersza tytułu
+  - Scenariusz: Brak nazwy lokalnej
+    - Zakładając, że ćwiczenia nie ma na liście po recenzji (dziś lista jest pusta we wszystkich językach), jest własne albo język to angielski
+    - Gdy użytkownik otwiera kartę
+    - Wtedy karta pokazuje samą nazwę angielską; nazw z dawnego katalogu polskiego nie używamy bez recenzji
+  - Scenariusz: Wyszukiwanie
+    - Zakładając, że użytkownik wpisuje w wyszukiwarce ćwiczeń nazwę angielską, nazwę zapisaną w danych albo nazwę lokalną z listy
+    - Gdy lista się filtruje
+    - Wtedy znajduje to samo ćwiczenie, a wiersz pokazuje nazwę angielską
+  - Scenariusz: Dane użytkownika bez zmian
+    - Zakładając, że użytkownik ma historię i szablony z ćwiczeniami z biblioteki
+    - Gdy aktualizuje aplikację
+    - Wtedy zapisane nazwy i klucze katalogu nie są migrowane; zmienia się tylko nazwa wyświetlana
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

@@ -18,7 +18,7 @@ import { ProgressTiles } from '@/components/Dashboard';
 import { GuardSection } from '@/components/GuardSection';
 import { useTheme, font, SPACE } from '@/lib/theme';
 
-import { t, exName, fold, collator } from '@/lib/i18n';
+import { t, exName, exLocalFold, fold, collator } from '@/lib/i18n';
 import { fmtW, volOut, wu, unitLabel, fmtNum, KG_PER_LB } from '@/lib/units';
 import { fmtDayMonth, fmtDayMonthYear } from '@/lib/calendar';
 
@@ -71,7 +71,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
   const pool = getState().exercises.filter(e => !e.archived || withHist(e));
   const ql = fold(q.trim()); // runda 6: spacja na końcu nie gubi wyników
   /* ZM-06: bez wpisanego tekstu chipy tylko ćwiczeń z danymi; reszta biblioteki — przez wyszukiwanie (wyniki: z danymi najpierw) */
-  const all = pool.filter(e => ql ? fold(e.name).includes(ql) || fold(exName(e)).includes(ql) : withHist(e)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || collator().compare(exName(a), exName(b)));
+  const all = pool.filter(e => ql ? fold(e.name).includes(ql) || fold(exName(e)).includes(ql) || exLocalFold(e).includes(ql) : withHist(e)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || collator().compare(exName(a), exName(b)));
   const opts = all.slice(0, 40); if (ex && !opts.some(o => o.id === ex.id)) opts.unshift(ex); /* wybrane ćwiczenie zawsze widać wśród chipów */
   const short = (ts: number) => fmtDayMonth(ts);
   // Runda 14: etykiety osi wykresu z rokiem, gdy nie bieżący (wykres ponad rok: „29 wrz 2025 … 29 wrz”).

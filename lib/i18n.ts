@@ -2,6 +2,7 @@ import { EN } from './i18n.en';
 import { LOCALES } from './locales';
 import { pluralIndex } from './plural';
 import { NAME_EN } from './nazwy-en.generated';
+import { NAZWY_LOKALNE } from './nazwy-lokalne';
 
 /*
  * Języki (T-040, LOC-01, ADR-027). Kluczem jest polski tekst źródłowy — kod czyta się jak dotąd,
@@ -138,16 +139,25 @@ const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumb
 /** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane pokazujemy tak, jak je nazwał użytkownik. */
 export function exName(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string {
   if (!e) return '?';
-  if (current === 'pl' || !e.lib) return e.name; /* inne języki: nazwy biblioteki po angielsku (jak na siłowniach) */
+  if (!e.lib) return e.name; /* ZB-044 (07.11.2026, zastępuje DEC-13): nazwy biblioteki po angielsku we WSZYSTKICH językach, także polskim (jak na siłowniach) */
   /* ZB-025 b (31.10.2026): kanoniczna nazwa EN po kluczu katalogu (przewodnik stylu; klucze i dane użytkownika bez zmian) — przed tłumaczeniem dopisków EX_PAREN/EX_FULL */
   { const k = e.libKey ?? e.name; const n = Object.prototype.hasOwnProperty.call(NAME_EN, k) ? NAME_EN[k] : undefined; if (n) return n; }
   { const f = Object.prototype.hasOwnProperty.call(EX_FULL, e.name) ? EX_FULL[e.name] : undefined; if (f) return f; }
   return e.name.replace(/\(([^)]+)\)/g, (m, inner: string) => Object.prototype.hasOwnProperty.call(EX_PAREN, inner) ? `(${EX_PAREN[inner]})` : m);
 }
 
-/** M1-audytor-generalny-038: język wymowy (VoiceOver) dla samej nazwy ćwiczenia. Nazwy biblioteki są po angielsku w każdym języku poza polskim (DEC-13), więc czyta je
+/** M1-audytor-generalny-038: język wymowy (VoiceOver) dla samej nazwy ćwiczenia. Nazwy biblioteki są po angielsku w każdym języku, także polskim (ZB-044, 07.11.2026), więc czyta je
  * głos angielski; ćwiczenia własne i przemianowane (lib = false) — głos języka interfejsu. Dotyczy tylko elementów z samą nazwą (nagłówek, tytuł wiersza). */
-export function exNameLang(e: { lib?: boolean } | undefined | null): Lang { return current !== 'pl' && e?.lib ? 'en' : current; }
+export function exNameLang(e: { lib?: boolean } | undefined | null): Lang { return e?.lib ? 'en' : current; }
+
+/** ZB-044 (08.11.2026, wariant A „Podpis”): nazwa lokalna (język interfejsu) ćwiczenia z biblioteki — tylko z listy po recenzji (lib/nazwy-lokalne.ts); brak wpisu, ćwiczenie własne,
+ * język angielski albo nazwa identyczna z angielską (bez wielkości liter) → undefined. Pokazuje ją tylko karta ćwiczenia; wyszukiwanie używa jej też (exLocalFold). */
+export function exLocal(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string | undefined {
+  if (!e || !e.lib || current === 'en') return undefined;
+  const m = Object.prototype.hasOwnProperty.call(NAZWY_LOKALNE, current) ? NAZWY_LOKALNE[current] : undefined; const k = e.libKey ?? e.name;
+  const n = m && Object.prototype.hasOwnProperty.call(m, k) ? m[k].trim() : '';
+  return n && n.toLowerCase() !== exName(e).toLowerCase() ? n : undefined;
+}
 
 // Język systemu od razu przy starcie modułu — ekran błędu startu (zanim wczytają się ustawienia) też jest przetłumaczony (runda 3).
 applyLang('auto');
@@ -158,6 +168,8 @@ const FOLD: Record<string, string> = { ł: 'l', đ: 'd', ø: 'o', ß: 'ss' };
 let coll: { tag: string; c: Intl.Collator } | null = null;
 export const collator = (): Intl.Collator => { const tag = locale(); if (!coll || coll.tag !== tag) coll = { tag, c: new Intl.Collator(tag) }; return coll.c; };
 export const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[łđøß]/g, ch => FOLD[ch] ?? ch).replace(/\s+/g, ' ').trim();
+/** ZB-044: nazwa lokalna po fold — do wyszukiwania także po niej (puste, gdy brak). */
+export const exLocalFold = (e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string => { const n = exLocal(e); return n ? fold(n) : ''; };
 /**
  * Audyt 0.10 (A11-02): wielkie litery zgodnie z językiem — zamiast `textTransform: 'uppercase'`, które iOS robi bez języka
  * ([NSString uppercaseString]): po grecku wersaliki bez tonosu (ΓΕΝΙΚΑ, nie ΓΕΝΙΚΆ; dialytika zostaje, „άι” → „ΑΪ”), po turecku i → İ.
