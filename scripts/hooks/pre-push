@@ -49,7 +49,7 @@ done)
 if [ -n "$bez_znacznika" ]; then
   echo "" >&2
   echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — brak zielonego verify dla wypychanego stanu plików (L-049, 28.10.2026; zmiana: decyzja właściciela 03.11.2026)." >&2
-  echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify:lekkie (gałąź funkcji i integracja-*; na main tylko npm run verify; commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
+  echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify:lekkie (albo verify:szybkie; gałąź funkcji i integracja-*; na main tylko npm run verify; commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
   exit 1
 fi
 
