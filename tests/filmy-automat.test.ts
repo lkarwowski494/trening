@@ -35,6 +35,12 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(p.zmianaMs).toBeLessThan(p.koniecOdMs);
   });
 
+  test('wszystkie widoki ćwiczenia na każdej klatce (profil i przód — właściciel 08.11.2026), bez pola „widoki” w definicji', () => {
+    expect(CFG.filmy.every((f: object) => !('widoki' in f))).toBe(true);
+    const html = run(['--film', FILM.id, '--jezyk', 'pl', '--klatka', '0']).stdout;
+    expect((html.match(/<svg/g) ?? []).length).toBe(2); /* Back Squat: side + front */
+  });
+
   test('teksty z danych: wskazówki z lib/cues/text, nazwa aplikacji ze sklepu, plansza bez „apps4brew” i bez „pobierz”', () => {
     const pl = plan.find((x: { jezyk: string }) => x.jezyk === 'pl').teksty;
     const cues = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/cues/text/pl.json'), 'utf8'));
@@ -54,12 +60,14 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     const zly = { ...CFG, filmy: [
       { ...FILM, id: 'bez-recenzji', cwiczenie: 'Clean Shrug' },
       { ...FILM, id: 'obca-wskazowka', wskazowka_poprawna: 'splank.noSag' },
+      { ...FILM, id: 'jeden-widok', widoki: ['front'] },
     ] };
     const f = path.join(tmp, 'filmy.json'); fs.writeFileSync(f, JSON.stringify(zly));
     const out = run(['--wszystkie', '--jezyk', 'pl', '--plan', '--konfig', f]);
     fs.rmSync(tmp, { recursive: true, force: true });
     expect(out.status).toBe(1);
     expect(out.stderr).toMatch(/bez-recenzji \[pl\]: (rodzina .* bez aktualnej recenzji|ćwiczenie „Clean Shrug” nie ma figury v2)/);
+    expect(out.stderr).toMatch(/jeden-widok \[pl\]: pole „widoki” niedozwolone/);
     expect(out.stderr).toMatch(/obca-wskazowka \[pl\]: wskazówka „splank.noSag” nie należy do wskazówek „Back Squat”/);
   });
 });

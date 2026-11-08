@@ -29,7 +29,7 @@ export function problemyFilmu(film, lang, cfg, v2, dane) {
   if (!spec) p.push(`ćwiczenie „${film.cwiczenie}” nie ma figury v2`);
   else if (!v2.shownFigureSpec(film.cwiczenie)) p.push(`rodzina „${spec.family}” bez aktualnej recenzji — film tylko z rodzin po recenzji (L-047, CLAUDE.md)`);
   else if (!v2.faultApplicable(spec, film.blad)) p.push(`błąd „${film.blad}” nie dotyczy rysunku „${film.cwiczenie}”`);
-  else if (film.widoki && !film.widoki.every(v => spec.views.includes(v))) p.push(`widoki ${JSON.stringify(film.widoki)} spoza rysunku „${film.cwiczenie}” (${spec.views.join(', ')})`);
+  if ('widoki' in film) p.push('pole „widoki” niedozwolone — film pokazuje wszystkie widoki ćwiczenia (właściciel 08.11.2026)');
   const own = dane.cues.exercises?.[film.cwiczenie];
   if (!own) p.push(`ćwiczenie „${film.cwiczenie}” nie ma własnych wskazówek w lib/cues/data.json`);
   else {
@@ -76,9 +76,9 @@ export function planKlatek(film, cfg, v2) {
   return { spec, klatki, startMs: Math.round(start), zmianaMs: Math.round(zmiana), koniecOdMs: koniecOd };
 }
 
-/** SVG figury (wszystkie widoki obok siebie, wspólny kadr całej pętli z pozą błędu — rysunek nie skacze). */
-export function svgFigury(v2, spec, u, error, kadrBledu, pal, maxW, maxH, widoki) {
-  const views = widoki?.length ? widoki : spec.views; const boxes = views.map(v => v2.boxFor(spec, v, [kadrBledu]));
+/** SVG figury: wszystkie widoki ćwiczenia obok siebie, jak na karcie w aplikacji (właściciel 08.11.2026), wspólny kadr całej pętli z pozą błędu — rysunek nie skacze. */
+export function svgFigury(v2, spec, u, error, kadrBledu, pal, maxW, maxH) {
+  const views = spec.views; const boxes = views.map(v => v2.boxFor(spec, v, [kadrBledu]));
   const gap = 0.06; const sumW = boxes.reduce((a, b) => a + b.w, 0) * (1 + gap * (views.length - 1) / views.length); const h = Math.max(...boxes.map(b => b.h));
   const scale = Math.min(maxW / sumW, maxH / h);
   const parts = views.map((v, k) => v2.svgDocument(v2.shapesAt(spec, u, v, false, error), boxes[k], pal, scale));

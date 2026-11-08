@@ -36,7 +36,7 @@ if (bledy.length) { console.error('Odmowa — definicja filmu niezgodna z danymi
 
 const FIG_W = d.szerokosc - 80, FIG_H = 840;
 const strona = (f, l) => htmlStrony(tekstyFilmu(f, l, cfg, dane), tokens, d, dataUri('assets/icon.png', 'image/png'), dataUri('assets/fonts/BarlowCondensed-Bold.ttf', 'font/ttf'));
-const figura = (plan, f, k) => svgFigury(v2, plan.spec, k.u, k.faza === 'blad' ? f.blad : undefined, f.blad, pal, FIG_W, FIG_H, f.widoki);
+const figura = (plan, f, k) => svgFigury(v2, plan.spec, k.u, k.faza === 'blad' ? f.blad : undefined, f.blad, pal, FIG_W, FIG_H);
 
 if (has('plan')) {
   const out = filmy.flatMap(f => langs.map(l => {
@@ -44,7 +44,7 @@ if (has('plan')) {
     return { film: f.id, jezyk: l, klatek: plan.klatki.length, fps: d.fps, startMs: plan.startMs, zmianaMs: plan.zmianaMs, koniecOdMs: plan.koniecOdMs,
       fazy: [...new Set(plan.klatki.map(k => k.faza))], klatki_koniec: plan.klatki.filter(k => k.koniec).length,
       /* liczba znaczników ✕ na pierwszej klatce (wszystkie widoki) — błąd widoczny pod hakiem od 0 s */
-      znaczniki_bledu_klatka0: (f.widoki ?? plan.spec.views).reduce((n, v) => n + v2.shapesAt(plan.spec, plan.klatki[0].u, v, false, f.blad).filter(s => s.id === 'errorRing').length, 0),
+      znaczniki_bledu_klatka0: plan.spec.views.reduce((n, v) => n + v2.shapesAt(plan.spec, plan.klatki[0].u, v, false, f.blad).filter(s => s.id === 'errorRing').length, 0),
       waga_bledu_klatka0: Math.round(v2.faultWeight(plan.spec, plan.klatki[0].u) * 100) / 100,
       teksty: tx, stan_haka: f.haki[l].stan, stan_tekstow: cfg.teksty_stan?.[l] ?? null };
   }));

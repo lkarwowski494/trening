@@ -13,7 +13,6 @@
       "blad": "kneesIn",
       "wskazowka_bledu": "sq.mis.kneesIn",
       "wskazowka_poprawna": "sq.kneesToes",
-      "widoki": ["front"],
       "haki": {
         "pl": { "tekst": "Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?", "stan": "zatwierdzony — właściciel 07.11.2026 (hak 1)" },
         "en": { "tekst": "Been training for years but not sure your technique is right?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026" }
