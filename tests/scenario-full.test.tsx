@@ -18,6 +18,9 @@ import * as Sharing from 'expo-sharing';
 import { within } from '@testing-library/react-native';
 import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, openPlaceSheet, placeInMenu, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl, openInfo } from './app';
 import { ex, pressAlert, saved } from './helpers';
+import { exName } from '@/lib/i18n';
+/** ZB-044 (07.11.2026, docs/18): ekran pokazuje nazwę wyświetlaną (angielską), a dane trzymają nazwę zapisaną — D(n) tłumaczy zapisaną na wyświetlaną. */
+const D = (n: string) => { const e = store.getState().exercises.find(x => x.name === n); return e ? exName(e) : n; };
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
 import { equipById } from '@/lib/equipment';
@@ -36,10 +39,10 @@ const lastAlert = () => global.__alerts[global.__alerts.length - 1];
 const loc = (name: string) => { const l = S().settings.locations.find(x => x.name === name); if (!l) throw new Error('no location ' + name); return l; };
 const equip = (place: string, item: string) => loc(place).equipment.find(e => e.item === item);
 /** Pole w wierszu serii po podpowiedzi VoiceOver (np. „Seria 1 — Dumbbell Bench Press”). */
-const field = (label: string, hint: string) => { const f = screen.getAllByLabelText(label).find(x => x.props.accessibilityHint === hint); if (!f) throw new Error(`no field ${label} / ${hint}`); return f; };
+const field = (label: string, hint: string) => { const f = screen.getAllByLabelText(label).find(x => x.props.accessibilityHint === hint.replace(/(— )(.+)$/, (_m, a, b) => a + D(b))); if (!f) throw new Error(`no field ${label} / ${hint}`); return f; };
 /** Podsumowanie edytora ciężarów — tekst z tej samej funkcji co ekran, liczony z danych miejsca (spójność ekran ↔ dane). */
 const summary = (place: string, item: string) => screen.getAllByText(loadSummary(equipById(item)!, equip(place, item)!.load!))[0];
-const byHint = (title: string, hint: string) => { const b = screen.getAllByText(title).map(x => { let p: any = x; while (p && p.props?.accessibilityRole !== 'button') p = p.parent; return p; }).find(p => p?.props.accessibilityHint === hint); if (!b) throw new Error(`no button ${title} / ${hint}`); return b; };
+const byHint = (title: string, hint: string) => { const b = screen.getAllByText(title).map(x => { let p: any = x; while (p && p.props?.accessibilityRole !== 'button') p = p.parent; return p; }).find(p => p?.props.accessibilityHint === D(hint)); if (!b) throw new Error(`no button ${title} / ${hint}`); return b; };
 
 afterEach(async () => {
   /* stan przechodzi do następnego kroku także wtedy, gdy krok się wywrócił (kolejne kroki widzą to, co zostało) */
@@ -193,13 +196,13 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(dbl().items).toHaveLength(15); expect(summary('Dom testowy', 'db_fixed').props.children).toMatch(/15.*2,5–24 kg/);
     await tap(screen.getByLabelText('24 kg')); expect(dbl().items.find(x => x.w === 24)!.on).toBe(false); expect(screen.getByLabelText('24 kg').props.accessibilityState.checked).toBe(false);
     expect(summary('Dom testowy', 'db_fixed').props.children).toMatch(/14.*2,5–22,5 kg/);
-    await tap(screen.getByLabelText(`Usuń odznaczone — ${DB}`)); expect(lastAlert()).toMatchObject({ title: 'Usunąć odznaczone ciężary?' }); expect(dbl().items).toHaveLength(15); /* G1 (audyt 0.10): z potwierdzeniem */
+    await tap(screen.getByLabelText(`Usuń odznaczone — ${D(DB)}`)); expect(lastAlert()).toMatchObject({ title: 'Usunąć odznaczone ciężary?' }); expect(dbl().items).toHaveLength(15); /* G1 (audyt 0.10): z potwierdzeniem */
     pressAlert('Usunąć odznaczone ciężary?', 'Usuń'); await flushAll(5); expect(dbl().items.map(x => x.w)).not.toContain(24); expect(dbl().items).toHaveLength(14);
-    await type(field('dodaj ciężar', DB), '0'); await tap(screen.getByLabelText(`Dodaj ciężar — ${DB}`)); expect(screen.getByText(/^Ciężar od 0,001 do 1000\.$/)).toBeTruthy(); expect(dbl().items).toHaveLength(14);
-    await type(field('dodaj ciężar', DB), '26'); await tap(screen.getByLabelText(`Dodaj ciężar — ${DB}`)); expect(dbl().items.map(x => x.w)).toContain(26); expect(summary('Dom testowy', 'db_fixed').props.children).toMatch(/15.*2,5–26 kg/);
-    await type(field('od', DB), '40'); await type(field('do', DB), '30'); await type(field('co', DB), '2'); await tap(screen.getByLabelText(`Wypełnij zakresem — ${DB}`));
+    await type(field('dodaj ciężar', DB), '0'); await tap(screen.getByLabelText(`Dodaj ciężar — ${D(DB)}`)); expect(screen.getByText(/^Ciężar od 0,001 do 1000\.$/)).toBeTruthy(); expect(dbl().items).toHaveLength(14);
+    await type(field('dodaj ciężar', DB), '26'); await tap(screen.getByLabelText(`Dodaj ciężar — ${D(DB)}`)); expect(dbl().items.map(x => x.w)).toContain(26); expect(summary('Dom testowy', 'db_fixed').props.children).toMatch(/15.*2,5–26 kg/);
+    await type(field('od', DB), '40'); await type(field('do', DB), '30'); await type(field('co', DB), '2'); await tap(screen.getByLabelText(`Wypełnij zakresem — ${D(DB)}`));
     expect(screen.getByText(/^Zakres jest niepoprawny/)).toBeTruthy(); expect(dbl().items).toHaveLength(15);
-    const pre = dbl().items.map(x => x.w); await type(field('od', DB), '2'); await type(field('do', DB), '30'); await tap(screen.getByLabelText(`Wypełnij zakresem — ${DB}`));
+    const pre = dbl().items.map(x => x.w); await type(field('od', DB), '2'); await type(field('do', DB), '30'); await tap(screen.getByLabelText(`Wypełnij zakresem — ${D(DB)}`));
     /* G1 (audyt 0.10, wariant A): zakres dopisuje — wpisane ciężary (preset i 26) zostają, dochodzą parzyste 2…30 */
     const merged = [...new Set([...pre, ...Array.from({ length: 15 }, (_, i) => 2 + 2 * i)])].sort((a, b) => a - b);
     expect(dbl().items.map(x => x.w)).toEqual(merged); expect(pre.every(w => dbl().items.some(x => x.w === w))).toBe(true); expect(screen.queryByText(/^Zakres jest niepoprawny/)).toBeNull();
@@ -207,9 +210,9 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     pressAlert('Zastąpić wpisane ciężary?', 'Anuluj'); await flushAll(5); expect(dbl().items).toHaveLength(merged.length); expect(dbl().items[0].w).toBe(2);
     await tap(screen.getByText('Hantle stałe 2,5–24 kg (15 par)')); pressAlert('Zastąpić wpisane ciężary?', 'Zastąp'); await flushAll(5); expect(dbl().items[0].w).toBe(2.5); expect(dbl().items).toHaveLength(15);
     await tap(screen.getByLabelText('24 kg')); expect(dbl().items.find(x => x.w === 24)!.on).toBe(false); /* 24 kg zostaje odznaczone (nie mam) */
-    const unitSeg = () => screen.getAllByLabelText('lb').find(x => x.props.accessibilityHint === `Jednostka sprzętu — ${DB}`)!;
+    const unitSeg = () => screen.getAllByLabelText('lb').find(x => x.props.accessibilityHint === `Jednostka sprzętu — ${D(DB)}`)!;
     await tap(unitSeg()); expect(dbl().unit).toBe('lb'); expect(dbl().items[0].w).toBe(5.5);
-    await tap(screen.getAllByLabelText('kg').find(x => x.props.accessibilityHint === `Jednostka sprzętu — ${DB}`)!); expect(dbl().unit).toBe("kg"); expect(dbl().items.map(x => x.w)).toEqual([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]); /* kg → lb → kg bez strat */ expect(dbl().items.find(x => x.w === 24)!.on).toBe(false);
+    await tap(screen.getAllByLabelText('kg').find(x => x.props.accessibilityHint === `Jednostka sprzętu — ${D(DB)}`)!); expect(dbl().unit).toBe("kg"); expect(dbl().items.map(x => x.w)).toEqual([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]); /* kg → lb → kg bez strat */ expect(dbl().items.find(x => x.w === 24)!.on).toBe(false);
     /* odznaczenie pozycji zachowuje ciężary (audyt M5) */
     await toggle(DB, false); expect(equip('Dom testowy', 'db_fixed')!.off).toBe(true); expect(screen.queryByText('Hantle stałe 2,5–24 kg (15 par)')).toBeNull();
     await toggle(DB, true); expect(equip('Dom testowy', 'db_fixed')!.off).toBeUndefined(); expect(dbl().items).toHaveLength(15);
@@ -404,12 +407,12 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Band Pull-Apart')).toBeTruthy(); expect(screen.queryByText('Dumbbell Bench Press')).toBeNull();
     await tap(screen.getByLabelText('Wszystkie'));
     await tap(screen.getByText('Anuluj')); await flushAll(10); expect(tpl.items).toHaveLength(0); expect(screen.getByLabelText('Nazwa')).toBeTruthy();
-    const add = async (n: string) => { await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(search(), n); await tap(screen.getAllByText(n)[0]); await flushAll(10); };
+    const add = async (n: string) => { await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(search(), D(n)); await tap(screen.getAllByText(D(n))[0]); await flushAll(10); };
     for (const n of ['Bench Press (hantle)', 'Cable Curl', 'Pull Up', 'Plank', 'Band Pull Apart', 'Back Squat']) await add(n);
     expect(tpl.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Bench Press (hantle)', 'Cable Curl', 'Pull Up', 'Plank', 'Band Pull Apart', 'Back Squat']);
     expect(tpl.items.every(i => i.sets === 3 && i.repMin === null && i.restSec === null && i.groupId === null)).toBe(true);
     /* ostatnio dodane ćwiczenie otwiera się samo, reszta zwinięta */
-    const card = (n: string) => screen.getByLabelText(n, { exact: true }); const isOpen = (n: string) => card(n).props.accessibilityState.expanded;
+    const card = (n: string) => screen.getByLabelText(D(n), { exact: true }); const isOpen = (n: string) => card(n).props.accessibilityState.expanded;
     expect(isOpen('Back Squat')).toBe(true); expect(isOpen('Bench Press (hantle)')).toBe(false);
     expect(card('Bench Press (hantle)').props.accessibilityValue.text).toBe('3 serie · 1:40'); /* przerwa z ćwiczenia (krok 04) */
     /* usunięcie ćwiczenia z potwierdzeniem */
@@ -425,14 +428,14 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ seria', B)); expect(kinds()).toEqual(['normal', 'normal', 'normal', 'normal']); expect(it0().sets).toBe(4);
     await tap(byHint('+ rozgrzewka', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']); expect(kindBtn('W', 'rozgrzewkowa')).toBeTruthy();
     await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal', 'drop']); expect(kindBtn('4D', 'drop set')).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop set z numerem swojej serii (wcześniej „5D”) */
-    await swipeDelete(`Usuń serię 4D — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']);
+    await swipeDelete(`Usuń serię 4D — ${D(B)}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']);
     await tap(kindBtn('4', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Usuń serię', 'Anuluj']); /* 04-studio-projektowe-003: „Usuń serię” w menu serii szablonu (zmiana oczekiwania, było bez niej) */
     await sheet(3); expect(kinds()[4]).toBe('failure'); expect(kindBtn('4F', 'do upadku')).toBeTruthy();
     await tap(kindBtn('4F', 'do upadku')); await sheet(5); expect(kinds()[4]).toBe('failure'); /* Anuluj (indeks 5 po dodaniu „Usuń serię”) */
-    await swipeDelete(`Usuń serię 4F — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal']); /* usunięcie przesunięciem */
+    await swipeDelete(`Usuń serię 4F — ${D(B)}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal']); /* usunięcie przesunięciem */
     await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']);
     const wl = store.loadLabel(ex(B), store.implAtLoc(ex(B), store.startLocationId(tpl.locationId))); expect(wl).toBe('kg/hantel');
-    const wF = () => screen.getAllByLabelText(wl).filter(x => x.props.accessibilityHint === B); const rF = () => screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === B);
+    const wF = () => screen.getAllByLabelText(wl).filter(x => x.props.accessibilityHint === D(B)); const rF = () => screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === D(B));
     expect(wF()).toHaveLength(5); expect(rF()).toHaveLength(5);
     await type(wF()[0], '10'); await type(rF()[0], '12');
     for (const k of [1, 2, 3]) { await type(wF()[k], '22,5'); await type(rF()[k], '10'); }
@@ -441,11 +444,11 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(it0().startWeight).toBe(22.5); expect(it0().sets).toBe(5); expect(wF()[1].props.value).toBe('22,5');
     /* zakres powtórzeń: dodanie, odwrócony zakres, usunięcie, ponowne dodanie */
     await tap(byHint('+ zakres powtórzeń', B));
-    await type(screen.getByLabelText(`powtórzenia od — ${B}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${B}`), '6');
+    await type(screen.getByLabelText(`powtórzenia od — ${D(B)}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${D(B)}`), '6');
     expect(screen.getByText('„do” jest mniejsze niż „od” — zakres pokaże się jako 8+')).toBeTruthy();
-    await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12'); expect([it0().repMin, it0().repMax]).toEqual([8, 12]); expect(screen.getByText(/^Zakres 8–12: gdy ostatnio/)).toBeTruthy();
-    await tap(screen.getAllByLabelText('Usuń zakres powtórzeń').find(x => x.props.accessibilityHint === B)!); expect([it0().repMin, it0().repMax]).toEqual([null, null]); expect(screen.queryByText(/^Zakres (powtórzeń: )?\d/)).toBeNull();
-    await tap(byHint('+ zakres powtórzeń', B)); await type(screen.getByLabelText(`powtórzenia od — ${B}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12');
+    await type(screen.getByLabelText(`powtórzenia do — ${D(B)}`), '12'); expect([it0().repMin, it0().repMax]).toEqual([8, 12]); expect(screen.getByText(/^Zakres 8–12: gdy ostatnio/)).toBeTruthy();
+    await tap(screen.getAllByLabelText('Usuń zakres powtórzeń').find(x => x.props.accessibilityHint === D(B))!); expect([it0().repMin, it0().repMax]).toEqual([null, null]); expect(screen.queryByText(/^Zakres (powtórzeń: )?\d/)).toBeNull();
+    await tap(byHint('+ zakres powtórzeń', B)); await type(screen.getByLabelText(`powtórzenia od — ${D(B)}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${D(B)}`), '12');
     expect(rF()[1].props.placeholder).toBe('8–12');
     /* przerwa pozycji: pusta = z ćwiczenia (100 s), wpisana wygrywa */
     const rest = screen.getByLabelText('Przerwa (s)'); expect(rest.props.placeholder).toBe('100');
@@ -460,12 +463,12 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
 
     /* Cable Curl: ciężar w kolumnie przyrządu z domu (wyciąg albo stacja) */
     const C = 'Cable Curl'; await tap(card(C)); const cl = store.loadLabel(ex(C), store.implAtLoc(ex(C), store.startLocationId(tpl.locationId)));
-    for (const k of [0, 1, 2]) { await type(screen.getAllByLabelText(cl).filter(x => x.props.accessibilityHint === C)[k], '15'); await type(screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === C)[k], '12'); }
+    for (const k of [0, 1, 2]) { await type(screen.getAllByLabelText(cl).filter(x => x.props.accessibilityHint === D(C))[k], '15'); await type(screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === D(C))[k], '12'); }
     expect(store.tplRows(tpl.items[1]).map(r => [r.weight, r.reps])).toEqual([[15, 12], [15, 12], [15, 12]]);
     /* Pull-Up (masa ciała + asysta gumą): ± kg i przycisk gumy z poziomami domu */
     const P = 'Pull Up'; await tap(card(P));
-    const pw = () => screen.getAllByLabelText('±kg').filter(x => x.props.accessibilityHint === P); const pr = () => screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === P);
-    const bandBtn = (i: number) => screen.getAllByLabelText(/^Guma: /).filter(x => String(x.props.accessibilityHint).startsWith(P))[i];
+    const pw = () => screen.getAllByLabelText('±kg').filter(x => x.props.accessibilityHint === D(P)); const pr = () => screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === D(P));
+    const bandBtn = (i: number) => screen.getAllByLabelText(/^Guma: /).filter(x => String(x.props.accessibilityHint).startsWith(D(P)))[i];
     expect(bandBtn(0).props.accessibilityLabel).toBe('Guma: brak');
     await tap(bandBtn(0)); expect(bandBtn(0).props.accessibilityLabel).toBe('Guma: zielona, poziom 1');
     await tap(bandBtn(0)); expect(bandBtn(0).props.accessibilityLabel).toBe('Guma: czerwona, poziom 2');
@@ -475,18 +478,18 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     for (const k of [0, 1, 2]) await type(pr()[k], '6');
     const prow = store.tplRows(tpl.items[2]); expect(prow.map(r => [r.reps, r.bandId ? store.bandById(r.bandId)!.level : null])).toEqual([[6, 2], [6, null], [6, null]]); expect(prow[2].weight).toBe(-5);
     /* Plank: tylko „cel s”, bez ciężaru i powtórzeń */
-    const PL = 'Plank'; await tap(card(PL)); expect(screen.queryAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === PL)).toHaveLength(0);
-    for (const f of screen.getAllByLabelText('cel s').filter(x => x.props.accessibilityHint === PL)) await type(f, '45');
-    await swipeDelete(`Usuń serię 3 — ${PL}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(store.tplRows(tpl.items[3]).map(r => r.durationSec)).toEqual([45, 45]); expect(tpl.items[3].targetSec).toBe(45);
+    const PL = 'Plank'; await tap(card(PL)); expect(screen.queryAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === D(PL))).toHaveLength(0);
+    for (const f of screen.getAllByLabelText('cel s').filter(x => x.props.accessibilityHint === D(PL))) await type(f, '45');
+    await swipeDelete(`Usuń serię 3 — ${D(PL)}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(store.tplRows(tpl.items[3]).map(r => r.durationSec)).toEqual([45, 45]); expect(tpl.items[3].targetSec).toBe(45);
     /* Band Pull-Apart: guma oporowa i powtórzenia */
     const BP = 'Band Pull Apart'; await tap(card(BP));
-    await tap(screen.getAllByLabelText(/^Guma: /).filter(x => String(x.props.accessibilityHint).startsWith(BP))[0]);
-    for (const f of screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === BP)) await type(f, '15');
+    await tap(screen.getAllByLabelText(/^Guma: /).filter(x => String(x.props.accessibilityHint).startsWith(D(BP)))[0]);
+    for (const f of screen.getAllByLabelText('Powtórzenia').filter(x => x.props.accessibilityHint === D(BP))) await type(f, '15');
     expect(store.tplRows(tpl.items[4]).map(r => r.reps)).toEqual([15, 15, 15]); expect(store.tplRows(tpl.items[4])[0].bandId).toBeTruthy();
 
     /* kolejność: Plank niżej (pod Band Pull-Apart), w supersecie Cable Curl wyżej i z powrotem; „Gotowe” */
     await tap(screen.getByLabelText('Zmień kolejność ćwiczeń')); await flushAll(10);
-    expect(screen.getByLabelText(`Zmień kolejność: superset A: ${B}, ${C}`)).toBeTruthy();
+    expect(screen.getByLabelText(`Zmień kolejność: superset A: ${D(B)}, ${D(C)}`)).toBeTruthy();
     const plankId = tpl.items[3].id; const cableId = tpl.items[1].id;
     await act(async () => { fireEvent(screen.getByTestId('drag-i:' + plankId), 'accessibilityAction', { nativeEvent: { actionName: 'down' } }); }); await flushAll(5);
     expect(tpl.items.map(i => store.exById(i.exerciseId)!.name)).toEqual([B, C, P, BP, PL]);
@@ -548,19 +551,19 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* 0.18 (docs/33, P2 A): miejsce z brakami otwiera okno „Dostosuj do: X” samo — „Anuluj” nic nie zmienia, wiersz pod chipem zostaje */
     expect(screen.getByTestId('adapt-apply')).toBeTruthy(); await tap(screen.getByTestId('close-modal')); await flushAll(10); expect(screen.getByTestId('adapt-line')).toBeTruthy();
     expect(await placeInMenu()).toBe('Miejsce treningu: Tylko masa ciała');
-    expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${B}`)).toBeTruthy();
+    expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${D(B)}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${D(B)}`)).toBeTruthy();
     await chipLoc(); await sheet(5); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj (0.19: po „Inne miejsce (tylko dziś)…” — indeks 5) */
     await chipLoc(); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
     expect(tpl.locationId).toBe(loc('Dom testowy').id); /* szablon bez zmian */
 
     /* wpisy w serii Bench 1: ciężar, powtórzenia, RPE */
-    const h = (n: string | number, e: string) => `Seria ${n} — ${e}`;
+    const h = (n: string | number, e: string) => `Seria ${n} — ${D(e)}`;
     const wB = (n: number | string) => field('kg/hantel', h(n, B));
     expect(wB(1).props.value).toBe('22,5'); await type(wB(1), '24'); expect(blk(B).sets[1].weight).toBe(24); expect(blk(B).sets[1].edited).toBe(true);
     await type(field('Powtórzenia', h(1, B)), '11'); expect(blk(B).sets[1].reps).toBe(11);
     await type(field('RPE', h(1, B)), '8,5'); expect(blk(B).sets[1].rpe).toBe(8.5); await type(field('RPE', h(1, B)), '12'); expect(blk(B).sets[1].rpe).toBe(10); await type(field('RPE', h(1, B)), '8');
     /* ✓ rozgrzewka: przerwa po rozgrzewce z ćwiczenia (45 s), bo w rundzie nic jeszcze nie zrobiono */
-    const done = (n: string | number, e: string) => tap(screen.getByLabelText(`Seria ${n} zrobiona — ${e}`));
+    const done = (n: string | number, e: string) => tap(screen.getByLabelText(`Seria ${n} zrobiona — ${D(e)}`));
     await done('W', B); expect(blk(B).sets[0].done).toBe(true); expect(screen.getByLabelText('Postęp treningu: 0 z 14 serii')).toBeTruthy(); /* rozgrzewka nie jest serią roboczą */
     expect(timer.T.on).toBe(false); /* rozgrzewka w trwającej rundzie supersetu — bez przerwy (Q-006) */
     /* ✓ Bench 1 (superset): bez przerwy w środku rundy; ✓ Cable 1 zamyka rundę → przerwa rundy 2:00 */
@@ -580,8 +583,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(bandP(2)); expect(store.bandById(blk(P).sets[1].bandId)!.level).toBe(2);
     expect(field('±kg', h(3, P)).props.value).toBe('-5'); await type(field('±kg', h(2, P)), '2,5'); expect(blk(P).sets[1].addKg).toBe(2.5);
     await tap(byHint('+ rozgrzewka', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); expect(field('±kg', h('W', P))).toBeTruthy();
-    await tap(byHint('+ drop set', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(screen.getByLabelText(`Seria 3D zrobiona — ${P}`)).toBeTruthy(); /* audyt 0.10 (LIVE-14): „3D” (wcześniej „4D”) */
-    await swipeDelete(`Usuń serię 3D — ${P}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć serię?', msg: undefined }); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); /* 07.10.2026 wieczór: potwierdzenie zawsze */
+    await tap(byHint('+ drop set', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(screen.getByLabelText(`Seria 3D zrobiona — ${D(P)}`)).toBeTruthy(); /* audyt 0.10 (LIVE-14): „3D” (wcześniej „4D”) */
+    await swipeDelete(`Usuń serię 3D — ${D(P)}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć serię?', msg: undefined }); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); /* 07.10.2026 wieczór: potwierdzenie zawsze */
     const kindP = (n: string, k: string) => screen.getAllByLabelText(`Seria ${n}, typ: ${k}`).find(x => String(x.props.accessibilityHint).startsWith(h(n, P)))! /* A11-18: podpowiedź = kontekst + instrukcja */;
     await tap(kindP('1', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Dodaj notatkę', 'Usuń serię', 'Anuluj']);
     await sheet(4); expect(lastAlert()).toMatchObject({ title: 'Notatka do serii', prompt: true, def: '' });
@@ -594,33 +597,33 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await done('1F', P); expect(timer.T.on).toBe(true); expect(timer.T.total).toBe(120); await tap(screen.getByText('Pomiń'));
 
     /* zamiana Band Pull-Apart → propozycja; „Zawsze w: Dom testowy” (zamiennik w szablonie); cofnięcie; podpowiedź zamiennika i „✕” */
-    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${BP}`)); await flushAll(10);
-    expect(screen.getByText(`Zamiana tylko w tym treningu: ${BP}`)).toBeTruthy(); expect(screen.getByText('Propozycje')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy();
+    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${D(BP)}`)); await flushAll(10);
+    expect(screen.getByText(`Zamiana tylko w tym treningu: ${D(BP)}`)).toBeTruthy(); expect(screen.getByText('Propozycje')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy();
     const propLabel: string = screen.getAllByLabelText(/^Propozycja 1: /)[0].props.accessibilityLabel; await tap(screen.getAllByLabelText(/^Propozycja 1: /)[0]); await flushAll(10);
     const swapped = S().active!.exercises.find(e => e.swappedFrom === ex(BP).id)!; expect(swapped).toBeTruthy(); const XN = store.exById(swapped.exerciseId)!.name;
-    expect(propLabel.startsWith(`Propozycja 1: ${XN}`)).toBe(true);
-    expect(screen.getByText(new RegExp(`^zamiast: ${BP.replace(/[()]/g, '\\$&')}`))).toBeTruthy();
-    await tap(screen.getByLabelText(`Zawsze w: Dom testowy — ${XN}`)); expect(tpl.items.find(i => i.exerciseId === ex(BP).id)!.alternates).toEqual([{ locationId: loc('Dom testowy').id, exerciseId: swapped.exerciseId, restSec: null }]);
-    expect(screen.queryByLabelText(`Zawsze w: Dom testowy — ${XN}`)).toBeNull();
-    await tap(screen.getByLabelText(`Cofnij zamianę: ${XN}`)); await flushAll(5);
+    expect(propLabel.startsWith(`Propozycja 1: ${D(XN)}`)).toBe(true);
+    expect(screen.getByText(new RegExp(`^zamiast: ${D(BP).replace(/[()]/g, '\\$&')}`))).toBeTruthy();
+    await tap(screen.getByLabelText(`Zawsze w: Dom testowy — ${D(XN)}`)); expect(tpl.items.find(i => i.exerciseId === ex(BP).id)!.alternates).toEqual([{ locationId: loc('Dom testowy').id, exerciseId: swapped.exerciseId, restSec: null }]);
+    expect(screen.queryByLabelText(`Zawsze w: Dom testowy — ${D(XN)}`)).toBeNull();
+    await tap(screen.getByLabelText(`Cofnij zamianę: ${D(XN)}`)); await flushAll(5);
     expect(names()[3]).toBe(BP); expect(S().active!.exercises[3].swappedFrom).toBeUndefined(); expect(S().active!.exercises[3].sets).toHaveLength(3);
-    expect(screen.getByText(`Zwykle w: Dom testowy — ${XN}. Zamienić?`)).toBeTruthy();
-    await tap(screen.getByLabelText(`Nie zamieniaj: ${XN}`)); expect(S().active!.exercises[3].altSkip).toBe(true); expect(screen.queryByText(/^Zwykle w:/)).toBeNull();
+    expect(screen.getByText(`Zwykle w: Dom testowy — ${D(XN)}. Zamienić?`)).toBeTruthy();
+    await tap(screen.getByLabelText(`Nie zamieniaj: ${D(XN)}`)); expect(S().active!.exercises[3].altSkip).toBe(true); expect(screen.queryByText(/^Zwykle w:/)).toBeNull();
     /* „Inne”: lista z filtrami partii i miejsca (bez wyboru — „Anuluj”) */
-    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${BP}`)); await flushAll(10);
+    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${D(BP)}`)); await flushAll(10);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); expect(screen.getByLabelText('Filtr partii: barki')).toBeTruthy(); expect(screen.getByLabelText('Filtr miejsca: Dom testowy')).toBeTruthy();
     await tap(screen.getByLabelText('Filtr partii: barki')); expect(screen.getByLabelText('Filtr partii wyłączony: barki')).toBeTruthy();
     await tap(screen.getByText('Anuluj')); await flushAll(10); expect(names()[3]).toBe(BP);
 
     /* Cable Curl: ten sam ruch, inny przyrząd — seria 1 odhaczona, więc podział bloku */
     const impl0 = blk(C).impl; expect(['cable', 'electric']).toContain(impl0); const other = impl0 === 'cable' ? 'stacja' : 'wyciąg';
-    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${C}`)); await flushAll(10);
+    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${D(C)}`)); await flushAll(10);
     expect(screen.getByText('Ten sam ruch, inny przyrząd')).toBeTruthy();
     await tap(screen.getByLabelText(`Inny przyrząd: ${other}`)); await flushAll(10);
     expect(names()).toEqual([B, C, C, P, BP, PL]); expect(blk(C, 0).sets).toHaveLength(1); expect(blk(C, 0).sets[0].done).toBe(true);
     expect(blk(C, 1).sets).toHaveLength(2); expect(blk(C, 1).implPinned).toBe(true); expect(blk(C, 1).impl).not.toBe(impl0); expect(blk(C, 1).groupId).toBe(blk(B).groupId); expect(blk(C, 1).splitFrom).toBe(blk(C, 0).id);
     expect(screen.getAllByText('SS A · ')).toHaveLength(3); expect(screen.getByText(new RegExp(`^${other}, `))).toBeTruthy();
-    expect(screen.queryByLabelText(`Zamień ćwiczenie: ${C} (1)`)).toBeNull(); /* blok z samymi odhaczonymi seriami — bez „⇄ zamień” */
+    expect(screen.queryByLabelText(`Zamień ćwiczenie: ${D(C)} (1)`)).toBeNull(); /* blok z samymi odhaczonymi seriami — bez „⇄ zamień” */
 
     /* dodanie ćwiczeń w trakcie: filtr partii w oknie wyboru; usunięcie jednego z potwierdzeniem */
     await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10);
@@ -629,16 +632,16 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); await tap(screen.getByText('Dumbbell Lateral Raise')); await flushAll(10);
     const LR = 'Lateral Raise (hantle)'; expect(names().at(-1)).toBe(LR); expect(blk(LR).sets).toHaveLength(1); expect(blk(LR).restSec).toBe(120); expect(blk(LR).tplItemId).toBeUndefined();
     await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Push-Up'); await tap(screen.getByText('Push-Up')); await flushAll(10);
-    expect(names().at(-1)).toBe('Push-Up');
+    expect(names().at(-1)).toBe('Push Up');
     await swipeDelete('Usuń ćwiczenie: Push-Up'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z treningu?', msg: 'Push-Up' });
-    pressAlert('Usunąć z treningu?', 'Anuluj'); await flushAll(5); expect(names().at(-1)).toBe('Push-Up');
-    await swipeDelete('Usuń ćwiczenie: Push-Up'); pressAlert('Usunąć z treningu?', 'Usuń'); await flushAll(5); expect(names().at(-1)).toBe(LR); expect(S().exercises.some(e => e.name === 'Push-Up')).toBe(true);
+    pressAlert('Usunąć z treningu?', 'Anuluj'); await flushAll(5); expect(names().at(-1)).toBe('Push Up');
+    await swipeDelete('Usuń ćwiczenie: Push-Up'); pressAlert('Usunąć z treningu?', 'Usuń'); await flushAll(5); expect(names().at(-1)).toBe(LR); expect(S().exercises.some(e => e.name === 'Push Up')).toBe(true);
     /* Lateral Raise: + seria ×2, − seria, wpis, ✓ przenosi wpisane wartości na następną serię */
-    await tap(byHint('+ seria', LR)); await tap(byHint('+ seria', LR)); expect(blk(LR).sets).toHaveLength(3); await swipeDelete(`Usuń serię 3 — ${LR}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(LR).sets).toHaveLength(2);
+    await tap(byHint('+ seria', LR)); await tap(byHint('+ seria', LR)); expect(blk(LR).sets).toHaveLength(3); await swipeDelete(`Usuń serię 3 — ${D(LR)}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(LR).sets).toHaveLength(2);
     await type(field('kg/hantel', h(1, LR)), '8'); await type(field('Powtórzenia', h(1, LR)), '15');
     await done(1, LR); expect(blk(LR).sets[1]).toMatchObject({ weight: 8, reps: 15, done: false }); expect(timer.T.total).toBe(120); await tap(screen.getByText('Pomiń'));
     /* ⏱ przerwa: „Tylko teraz”, „Zapamiętaj” (ćwiczenie spoza szablonu → ćwiczenie), „Anuluj”; Pull-Up z szablonu → pozycja szablonu */
-    const restBtn = (e: string) => screen.getAllByLabelText(/^Przerwa: .*$/).find(x => String(x.props.accessibilityHint).startsWith(e))! /* A11-18 */;
+    const restBtn = (e: string) => screen.getAllByLabelText(/^Przerwa: .*$/).find(x => String(x.props.accessibilityHint).startsWith(D(e)))! /* A11-18 */;
     await tap(restBtn(LR)); expect(lastAlert()).toMatchObject({ title: 'Przerwa (s)', msg: 'Zapamiętać dla tego ćwiczenia?', prompt: true, def: '120' });
     await act(async () => { pressAlert('Przerwa (s)', 'Tylko teraz', '75'); }); await flushAll(5); expect(blk(LR).restSec).toBe(75); expect(ex(LR).restSec).toBeNull();
     expect(restBtn(LR).props.accessibilityLabel).toBe('Przerwa: 1:15');
@@ -662,8 +665,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* notatka do treningu */
     await type(screen.getByLabelText('Notatka do treningu'), 'dobry dzień'); expect(S().active!.note).toBe('dobry dzień');
     /* reszta serii: Bench 2, 3 i drop (24 kg przeszło z serii 1), Cable (stacja/wyciąg), Pull-Up 2–3, Band Pull-Apart, Lateral Raise 2 */
-    await flushAll(60000); await done(2, B); await done(1, `${C} (2)`); expect(timer.T.on).toBe(true); /* runda 2 zamknięta zamiennikiem przyrządu */
-    await done(3, B); await done('3D' /* audyt 0.10 (LIVE-14) */, B); await done(2, `${C} (2)`); await tap(screen.getByText('Pomiń'));
+    await flushAll(60000); await done(2, B); await done(1, `${D(C)} (2)`); expect(timer.T.on).toBe(true); /* runda 2 zamknięta zamiennikiem przyrządu */
+    await done(3, B); await done('3D' /* audyt 0.10 (LIVE-14) */, B); await done(2, `${D(C)} (2)`); await tap(screen.getByText('Pomiń'));
     expect(blk(B).sets.map(x => [x.kind, x.weight, x.reps, x.done])).toEqual([['warmup', 10, 12, true], ['normal', 24, 11, true], ['normal', 24, 11, true], ['normal', 24, 11, true], ['drop', 16, 8, true]]); /* wpis w serii 1 zastępuje wartości wstawione z szablonu w kolejnych seriach */
     await done(2, P); await done(3, P); await tap(screen.getByText('Pomiń'));
     for (const n of [1, 2]) await done(n, BP);
@@ -735,7 +738,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* edycja i zapis */
     await flushAll(1100); await tap(screen.getByLabelText('Edytuj sesję')); await flushAll(10);
     await type(screen.getByLabelText('Nazwa'), 'Push A — poprawione');
-    const h = (n: string | number, e: string) => `Seria ${n} — ${e}`;
+    const h = (n: string | number, e: string) => `Seria ${n} — ${D(e)}`;
     await type(field('Powtórzenia', h(1, B)), '12');
     await type(field('kg/hantel', h(2, B)), '25');
     await tap(screen.getAllByLabelText(/^Seria 1, typ: /).find(x => String(x.props.accessibilityHint).startsWith(h(1, LR)))!); await sheet(3);
@@ -743,18 +746,18 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await act(async () => { pressAlert('Notatka do serii', 'Zapisz', 'barki zmęczone'); }); await flushAll(5); expect(screen.getByText('barki zmęczone')).toBeTruthy();
     const bandP = screen.getAllByLabelText(/^Guma: /).find(x => String(x.props.accessibilityHint).startsWith(h(2, P)))!; const before = bandP.props.accessibilityLabel; await tap(bandP);
     expect(screen.getAllByLabelText(/^Guma: /).find(x => String(x.props.accessibilityHint).startsWith(h(2, P)))!.props.accessibilityLabel).not.toBe(before);
-    await swipeDelete(`Usuń serię 2 — ${PL}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(screen.getAllByText('1 seria').length).toBeGreaterThan(0);
+    await swipeDelete(`Usuń serię 2 — ${D(PL)}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(screen.getAllByText('1 seria').length).toBeGreaterThan(0);
     await tap(byHint('+ seria', LR)); expect(field('Powtórzenia', h(3, LR)).props.value).toBe('15'); /* nowa seria z wartościami ostatniej */
     await type(field('kg/hantel', h(3, LR)), ''); await type(field('Powtórzenia', h(3, LR)), ''); /* pusta seria — zostanie pominięta przy zapisie */
     const dateF = () => screen.getByLabelText('Data (RRRR-MM-DD)'); const d0 = dateF().props.value;
     await tap(screen.getByLabelText('Dzień wcześniej')); expect(dateF().props.value).not.toBe(d0); await tap(screen.getByLabelText('Dzień później')); expect(dateF().props.value).toBe(d0);
     /* zamiana ćwiczenia w zapisie (poprawka) i „↺ przywróć” */
-    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${LR}`)); await flushAll(10);
-    expect(screen.getByText(`Poprawka zapisu: wszystkie serie bloku „${LR}” przejdą pod wybrane ćwiczenie (wartości bez zmian).`)).toBeTruthy();
+    await tap(screen.getByLabelText(`Zamień ćwiczenie: ${D(LR)}`)); await flushAll(10);
+    expect(screen.getByText(`Poprawka zapisu: wszystkie serie bloku „${D(LR)}” przejdą pod wybrane ćwiczenie (wartości bez zmian).`)).toBeTruthy();
     const pl1: string = screen.getAllByLabelText(/^Propozycja 1: /)[0].props.accessibilityLabel; const swappedName = pl1.slice('Propozycja 1: '.length).split(', ')[0];
-    await tap(screen.getAllByLabelText(/^Propozycja 1: /)[0]); await flushAll(10); expect(screen.queryByLabelText(`Zamień ćwiczenie: ${LR}`)).toBeNull();
+    await tap(screen.getAllByLabelText(/^Propozycja 1: /)[0]); await flushAll(10); expect(screen.queryByLabelText(`Zamień ćwiczenie: ${D(LR)}`)).toBeNull();
     await tap(screen.getByLabelText(`Zamień ćwiczenie: ${swappedName}`)); await flushAll(10);
-    await tap(screen.getByText(`↺ cofnij zamianę: ${LR}`)); await flushAll(10); expect(screen.getAllByText(LR).length).toBeGreaterThan(0);
+    await tap(screen.getByText(`↺ cofnij zamianę: ${D(LR)}`)); await flushAll(10); expect(screen.getAllByText(D(LR)).length).toBeGreaterThan(0);
     /* dodanie i usunięcie ćwiczenia w zapisie */
     await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Push-Up'); await tap(screen.getByText('Push-Up')); await flushAll(10);
     await type(field('Powtórzenia', h(1, 'Push Up')), '20');
@@ -839,22 +842,22 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
 
   test('09 ćwiczenie z historią: ostrzeżenie o przeliczeniu, „Ostatnio”, usunięcie = archiwum (historia i wykresy zostają), przywrócenie', async () => {
     await boot('/exercises'); const LR = 'Lateral Raise (hantle)';
-    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); await tap(screen.getByText(LR)); await flushAll(10);
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); await tap(screen.getByText(D(LR))); await flushAll(10);
     expect(screen.getByRole('header', { name: 'Ostatnie treningi' })).toBeTruthy(); await startEdit(); /* edycja na żądanie (08.10.2026): pola po „Edytuj” */
     expect(screen.getByText(/^Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi/)).toBeTruthy();
     expect(screen.getByText(/^Ostatnio /)).toBeTruthy(); expect(screen.getByLabelText('Przerwa robocza (s)').props.value).toBe('80'); /* „Zapamiętaj” z treningu */
-    await back(); await swipeDelete(`Usuń z biblioteki: ${LR}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów; historia, wykresy i eksport zostaną.' }); /* 07.10.2026 wieczór: z listy, przesunięciem */
+    await back(); await swipeDelete(`Usuń z biblioteki: ${D(LR)}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów; historia, wykresy i eksport zostaną.' }); /* 07.10.2026 wieczór: z listy, przesunięciem */
     pressAlert('Usunąć ćwiczenie?', 'Usuń'); await flushAll(10);
     const lr = S().exercises.find(e => e.name === LR)!; expect(lr.archived).toBe(true); expect(store.visibleExercises().some(e => e.id === lr.id)).toBe(false);
     expect(S().workouts.some(w => w.exercises.some(e => e.exerciseId === lr.id))).toBe(true);
     /* historia i postępy dalej je znają */
-    await go(`/history/${S().workouts.find(w => w.exercises.some(e => e.exerciseId === lr.id))!.id}`); await flushAll(10); expect(screen.getAllByText(LR).length).toBeGreaterThan(0);
-    await go('/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); expect(screen.getByText(`${LR} (usunięte)`)).toBeTruthy();
+    await go(`/history/${S().workouts.find(w => w.exercises.some(e => e.exerciseId === lr.id))!.id}`); await flushAll(10); expect(screen.getAllByText(D(LR)).length).toBeGreaterThan(0);
+    await go('/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); expect(screen.getByText(`${D(LR)} (usunięte)`)).toBeTruthy();
     /* w oknie wyboru i na liście: „Przywróć „…”” */
     await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h');
-    expect(screen.getByLabelText(`Przywróć „${LR}”, usunięte ćwiczenie z historią`)).toBeTruthy();
-    await tap(screen.getByLabelText(`Przywróć „${LR}”, usunięte ćwiczenie z historią`)); await flushAll(10);
-    expect(lr.archived).toBeUndefined(); /* restoreExercise (06.10) */ expect(screen.getAllByText(LR).length).toBeGreaterThan(0); expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy(); /* ekran ćwiczenia w podglądzie */ expect(store.visibleExercises().some(e => e.id === lr.id)).toBe(true);
+    expect(screen.getByLabelText(`Przywróć „${D(LR)}”, usunięte ćwiczenie z historią`)).toBeTruthy();
+    await tap(screen.getByLabelText(`Przywróć „${D(LR)}”, usunięte ćwiczenie z historią`)); await flushAll(10);
+    expect(lr.archived).toBeUndefined(); /* restoreExercise (06.10) */ expect(screen.getAllByText(D(LR)).length).toBeGreaterThan(0); expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy(); /* ekran ćwiczenia w podglądzie */ expect(store.visibleExercises().some(e => e.id === lr.id)).toBe(true);
   });
 
   test('10 backup: eksport JSON, CSV, import (anulowany, zły plik, nowszy schemat, poprawny) przywraca dane; kopia bezpieczeństwa przed importem', async () => {
