@@ -42,6 +42,16 @@
         ]
       },
       {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || exit 0; T=''; command -v timeout >/dev/null 2>&1 && T='timeout 6'; if $T git fetch -q --no-tags origin integracja-1-1 >/dev/null 2>&1; then d=$(git diff HEAD origin/integracja-1-1 -- CLAUDE.md 2>/dev/null | head -n 300); if [ -n \"$d\" ]; then echo 'UWAGA (L-118): CLAUDE.md tej gałęzi różni się od origin/integracja-1-1 — obowiązują zasady z integracji (różnica HEAD → integracja-1-1, do 300 linii; przeczytaj cały plik: git show origin/integracja-1-1:CLAUDE.md):'; echo \"$d\"; fi; else echo 'Ostrzeżenie (L-118): nie udało się pobrać origin/integracja-1-1 (brak sieci?) — nie wiadomo, czy CLAUDE.md tej gałęzi jest aktualny; sprawdź git show origin/integracja-1-1:CLAUDE.md, jeśli gałąź istnieje lokalnie.'; fi; true",
+            "timeout": 12
+          }
+        ]
+      },
+      {
         "matcher": "startup|resume|compact",
         "hooks": [
           {
