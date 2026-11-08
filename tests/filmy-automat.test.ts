@@ -61,6 +61,41 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(koniec.includes(`<div class="sklep-nazwa">${nazwy.pl}</div>`)).toBe(true);
   });
 
+  /* rozszerzenie 08.11.2026 (wybór właściciela „Ranking + rozszerzenie”): błędy z danych pozy (data:N = wpis bledy[N] wariantu rysunku) — podciągania i uginania,
+     także ćwiczenia z ogólnymi wskazówkami wzorca po recenzji (karta: cueIdsOf w lib/figures/v2/ui.ts) */
+  const zKonfigiem = (filmy: object[]) => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'filmy-test-')); const f = path.join(tmp, 'filmy.json');
+    fs.writeFileSync(f, JSON.stringify({ ...CFG, filmy }));
+    const out = run(['--wszystkie', '--jezyk', 'pl,en', '--plan', '--konfig', f]); fs.rmSync(tmp, { recursive: true, force: true }); return out;
+  };
+  const CURL = CFG.filmy.find((f: { blad: string }) => f.blad.startsWith('data:'));
+
+  test('błąd z danych pozy (08.11.2026): film uginania z „data:0” — plan bez odmowy, błąd widoczny od pierwszej klatki, wskazówki z karty', () => {
+    expect(CURL).toBeDefined();
+    const r2 = run(['--film', CURL.id, '--jezyk', 'pl,en', '--plan']);
+    expect(r2.stderr).toBe(''); expect(r2.status).toBe(0);
+    const p = JSON.parse(r2.stdout);
+    const cues = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/cues/text/en.json'), 'utf8'));
+    expect(p.map((x: { jezyk: string }) => x.jezyk)).toEqual(['pl', 'en']);
+    expect(p[0].waga_bledu_klatka0).toBeGreaterThanOrEqual(0.6);
+    expect(p[0].fazy).toEqual(['blad', 'poprawnie']);
+    expect(p[1].teksty.blad).toBe(cues[CURL.wskazowka_bledu]);
+  });
+
+  test('błąd z danych pozy (08.11.2026): ćwiczenie z ogólnymi wskazówkami po recenzji przechodzi; indeks spoza bledy[] i błąd rigowy w rodzinie z danych — odmowa', () => {
+    const ogolne = { ...CURL, id: 'ogolne', cwiczenie: 'Incline Curl (hantle)', wskazowka_poprawna: 'curl.elbows' };
+    expect(zKonfigiem([ogolne]).status).toBe(0);
+    const out = zKonfigiem([
+      { ...CURL, id: 'poza-zakresem', blad: 'data:5' },
+      { ...CURL, id: 'rig-w-danych', blad: 'kneesIn' },
+      { ...CURL, id: 'obcy-blad', wskazowka_bledu: 'sq.mis.kneesIn' },
+    ]);
+    expect(out.status).toBe(1);
+    expect(out.stderr).toMatch(/poza-zakresem \[pl\]: błąd „data:5” nie dotyczy rysunku „Barbell Curl”/);
+    expect(out.stderr).toMatch(/rig-w-danych \[pl\]: błąd „kneesIn” nie dotyczy rysunku/);
+    expect(out.stderr).toMatch(/obcy-blad \[pl\]: wskazówka błędu „sq.mis.kneesIn” nie należy do częstych błędów „Barbell Curl”/);
+  });
+
   test('odmowa: rodzina bez recenzji (L-047) i wskazówka spoza ćwiczenia', () => {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'filmy-test-'));
     const zly = { ...CFG, filmy: [

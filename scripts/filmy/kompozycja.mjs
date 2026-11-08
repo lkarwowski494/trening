@@ -1,6 +1,7 @@
 // Automat krótkich filmów o technice (ZB-047) — część bez przeglądarki: kontrola definicji filmu, plan klatek, teksty i strona HTML kompozycji.
 // Obraz rysunku: nagranie eksportu web aplikacji (komponent ExerciseFigureV2, wszystkie warstwy — właściciel 08.11.2026), render MP4: scripts/filmy/render.mjs. Decyzje właściciela (docs/18, 07.11.2026 ~20:30, ~21:45, ~23:00):
-//  - tylko rodziny po recenzji (L-047) i wskazówki z danych ćwiczenia (rejestr twierdzeń), nic dopisanego ręcznie;
+//  - tylko rodziny po recenzji (L-047) i wskazówki z karty ćwiczenia (rejestr twierdzeń), nic dopisanego ręcznie;
+//  - błąd rysunku: rigowy (CUE_TO_ERROR) albo z danych pozy „data:N” (wpis bledy[N] wariantu — podciągania, uginania; wybór właściciela 08.11.2026);
 //  - animacja od pierwszej klatki, błąd (✕) widoczny już pod hakiem, bez statycznej planszy;
 //  - nazwa ćwiczenia od 0 s: angielska + lokalna pod nią (lokalna tylko po recenzji nazw, ZB-044);
 //  - logo i podpis „Animacja: aplikacja …” na ostatnich ok. 1,5 s animacji, bez zachęty „pobierz” i bez „apps4brew”.
@@ -14,13 +15,33 @@ const readJson = rel => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8')
 /** Dane wejściowe z repo (jedno miejsce): wskazówki ćwiczeń, teksty wskazówek w języku, nazwy aplikacji w sklepie. */
 export function daneRepo() {
   const cues = readJson('lib/cues/data.json');
+  const cueSets = readJson('lib/figures/v2/cue-sets.json');
   const names = readJson('store/app-store-names.json');
   const textCache = new Map();
   const cueText = lang => { if (!textCache.has(lang)) { const f = path.join(ROOT, 'lib/cues/text', `${lang}.json`); textCache.set(lang, fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : null); } return textCache.get(lang); };
   /* nazwa aplikacji w języku = część nazwy w sklepie przed dwukropkiem (APP_NAME, store/app-store-names.json) */
   const storeName = lang => { const map = names.names ?? names; const k = Object.keys(map).find(x => x === lang || x.startsWith(lang + '-')); return k ? String(map[k]) : null; };
   const appName = lang => storeName(lang)?.split(':')[0].trim() ?? null;
-  return { cues, cueText, appName, storeName };
+  return { cues, cueSets, cueText, appName, storeName };
+}
+
+/**
+ * Wskazówki ćwiczenia tak, jak pokazuje je karta (lib/figures/v2/ui.ts: cueIdsOf): własne z lib/cues/data.json albo zestaw ogólny wzorca ruchu
+ * (cue-sets.json, b = general) tylko po recenzji treści (lib/cues data.json: general). Zwraca null, gdy karta nie ma wskazówek.
+ * `ogolne` = karta pokazuje dopisek „Ogólne wskazówki dla tego ruchu” (decyzja właściciela 25.10.2026, wariant A).
+ */
+export function wskazowkiCwiczenia(key, dane) {
+  const own = dane.cues.exercises?.[key];
+  if (own) return { bledy: (own.mistakes ?? []).map(r => r.c), dobre: ['setup', 'move', 'tips'].flatMap(s => (own[s] ?? []).map(r => r.c)), ogolne: false };
+  const e = dane.cueSets.items?.[key];
+  if (e && e.b === 'general' && (dane.cues.general ?? []).includes(key)) return { bledy: e.err ?? [], dobre: e.ok ?? [], ogolne: true };
+  return null;
+}
+
+/** Czy wskazówka „częsty błąd” opisuje błąd pokazany na rysunku: rigowy przez CUE_TO_ERROR, z danych pozy (data:N) — wpis bledy[N] ćwiczenia (errorDefOf). */
+export function wskazowkaOpisujeBlad(v2, spec, cue, blad) {
+  if (v2.isDataError(blad)) return !!v2.errorDefOf(spec, blad)?.cue.includes(cue);
+  return v2.CUE_TO_ERROR[cue] === blad;
 }
 
 /** Lista problemów definicji filmu w języku (pusta = film można zrobić). */
@@ -31,13 +52,12 @@ export function problemyFilmu(film, lang, cfg, v2, dane) {
   else if (!v2.shownFigureSpec(film.cwiczenie)) p.push(`rodzina „${spec.family}” bez aktualnej recenzji — film tylko z rodzin po recenzji (L-047, CLAUDE.md)`);
   else if (!v2.faultApplicable(spec, film.blad)) p.push(`błąd „${film.blad}” nie dotyczy rysunku „${film.cwiczenie}”`);
   if ('widoki' in film) p.push('pole „widoki” niedozwolone — film pokazuje wszystkie widoki ćwiczenia (właściciel 08.11.2026)');
-  const own = dane.cues.exercises?.[film.cwiczenie];
-  if (!own) p.push(`ćwiczenie „${film.cwiczenie}” nie ma własnych wskazówek w lib/cues/data.json`);
+  const own = wskazowkiCwiczenia(film.cwiczenie, dane);
+  if (!own) p.push(`ćwiczenie „${film.cwiczenie}” nie ma wskazówek na karcie (własnych w lib/cues/data.json ani ogólnych po recenzji)`);
   else {
-    const mistakes = (own.mistakes ?? []).map(r => r.c); const ok = ['setup', 'move', 'tips'].flatMap(s => (own[s] ?? []).map(r => r.c));
-    if (!mistakes.includes(film.wskazowka_bledu)) p.push(`wskazówka błędu „${film.wskazowka_bledu}” nie należy do częstych błędów „${film.cwiczenie}”`);
-    else if (v2.CUE_TO_ERROR[film.wskazowka_bledu] !== film.blad) p.push(`wskazówka „${film.wskazowka_bledu}” nie opisuje błędu rysunku „${film.blad}”`);
-    if (!ok.includes(film.wskazowka_poprawna)) p.push(`wskazówka „${film.wskazowka_poprawna}” nie należy do wskazówek „${film.cwiczenie}”`);
+    if (!own.bledy.includes(film.wskazowka_bledu)) p.push(`wskazówka błędu „${film.wskazowka_bledu}” nie należy do częstych błędów „${film.cwiczenie}”`);
+    else if (spec && !wskazowkaOpisujeBlad(v2, spec, film.wskazowka_bledu, film.blad)) p.push(`wskazówka „${film.wskazowka_bledu}” nie opisuje błędu rysunku „${film.blad}”`);
+    if (!own.dobre.includes(film.wskazowka_poprawna)) p.push(`wskazówka „${film.wskazowka_poprawna}” nie należy do wskazówek „${film.cwiczenie}”`);
   }
   const texts = dane.cueText(lang);
   if (!texts) p.push(`brak tekstów wskazówek w języku „${lang}” (lib/cues/text)`);

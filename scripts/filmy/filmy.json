@@ -1,5 +1,5 @@
 {
-  "_opis": "Definicje krótkich filmów o technice (ZB-047, decyzje właściciela 07.11.2026 w docs/18). Ćwiczenie tylko z rodziny po recenzji (shownFigureSpec, L-047), błąd i wskazówki — id z lib/cues/data.json tego ćwiczenia, teksty z lib/cues/text/<język>.json (rejestr twierdzeń). Haki: tekst marketingowy; stan „zatwierdzony” tylko po akceptacji właściciela, inne języki przez przekład API + recenzent lokalizacji. Nazwa lokalna ćwiczenia: tylko po recenzji nazw (ZB-044) — do tego czasu pusta.",
+  "_opis": "Definicje krótkich filmów o technice (ZB-047, decyzje właściciela 07.11.2026 w docs/18). Ćwiczenie tylko z rodziny po recenzji (shownFigureSpec, L-047), błąd rysunku — rigowy (np. „kneesIn”) albo z danych pozy („data:N” = wpis bledy[N] wariantu; 08.11.2026), wskazówki — id wskazówek z karty ćwiczenia (własne z lib/cues/data.json albo ogólne po recenzji, cue-sets.json), teksty z lib/cues/text/<język>.json (rejestr twierdzeń). Haki: tekst marketingowy; stan „zatwierdzony” tylko po akceptacji właściciela, inne języki przez przekład API + recenzent lokalizacji. Nazwa lokalna ćwiczenia: tylko po recenzji nazw (ZB-044) — do tego czasu pusta.",
   "domyslne": { "fps": 30, "sekundy": 13, "napis_od_s": 0.5, "blad_do_s": 5.0, "koniec_s": 1.5, "motyw": "dark", "szerokosc": 1080, "wysokosc": 1920,
     "uklad": "poziom", "rysunek": { "top": 600, "left": 30, "w": 1020, "h": 800 }, "skala_web": 4, "ekran_web": [430, 932] },
   "teksty": {
@@ -17,6 +17,18 @@
       "haki": {
         "pl": { "tekst": "Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?", "stan": "zatwierdzony — właściciel 07.11.2026 (hak 1)" },
         "en": { "tekst": "Been training for years but not sure your technique is right?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026" }
+      },
+      "nazwa_lokalna": {}
+    },
+    {
+      "id": "technika-barbell-curl-lokcie",
+      "cwiczenie": "Barbell Curl",
+      "blad": "data:0",
+      "wskazowka_bledu": "curl.mis.elbows",
+      "wskazowka_poprawna": "curl.elbows",
+      "haki": {
+        "pl": { "tekst": "Uginasz ramiona ze sztangą — czy łokcie zostają w miejscu?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026 (film dowodowy błędu z danych pozy)" },
+        "en": { "tekst": "Curling the bar — do your elbows stay put?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026 (film dowodowy błędu z danych pozy)" }
       },
       "nazwa_lokalna": {}
     }
