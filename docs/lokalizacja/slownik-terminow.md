@@ -95,6 +95,8 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `uda` | uda (część ciała) | uda jako miejsce przy którym zawisa ciężar (przed udami, przy udach, do ud); NIE nogi ani stopy |
 | `funkcja_aplikacji` | funkcja aplikacji | funkcja (feature) aplikacji, np. opis kafelka Przewodnik „Co gdzie jest i jak działa”; NIE funkcja matematyczna |
 | `lawka_skosna_glowa_w_dol` | ławka skośna głową w dół (ang. decline bench) | ławka z głową niżej niż biodra (decline bench); NIE ławka skośna głową w górę (incline), NIE ławka płaska |
+| `tasmy_podwieszane` | taśmy do podwieszania | taśmy do ćwiczeń w podwieszeniu (sprzęt, na którym się ćwiczy: Suspended Push-Up); NIE taśma do rozciągania, NIE guma oporowa. Pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów) |
+| `gwaltowne_blokowanie_lokci` | gwałtowne blokowanie łokci | błąd przy wyciskaniu: łokcie zatrzaskiwane w wyproście (wyprost sam w sobie jest celem ruchu); NIE „prostowanie rąk do końca”. Spójne z ohp.mis.lock i press.noLock. Pozostałe 33 języki wg przekładu z PL/EN |
 
 ## Terminy zalecane (rdzeń)
 
@@ -149,6 +151,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pl` | `tasma_rozciaganie` | (?<![\p{L}])pas(a\|em\|ie\|y\|ów)?(?![\p{L}]) | w aplikacji „pas” to pas obciążeniowy; do rozciągania mówi się „taśma” |
 | `pl` | `krazenia` | zataczaj\|(?<![\p{L}])koła(?![\p{L}]) | na sali mówi się „krążenia / krąż”, nie „zataczaj koła” |
 | `pl` | `podwijanie_miednicy` | odchylani\w*\s+miednicy\|tyłopochyl | język podręcznika; w siłowni mówi się „podwijać miednicę” |
+| `pl` | `gwaltowne_blokowanie_lokci` | (?<!wałtowne )blokowanie łokci | samo „blokowanie łokci” czyta się jak „nie prostuj rąk do końca”; błędem jest gwałtowne zatrzaśnięcie |
 | `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
 | `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
 | `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
@@ -156,6 +159,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `en` | `ciezar` | (?<![\p{L}])shift(ing)?\s+(your\s+)?weight(?![\p{L}]) | w aplikacji „weight” to obciążenie, nie masa ciała; przeniesienie masy ciała opisz ruchem („lean toward the wall”) |
 | `en` | `tasma_rozciaganie` | (?<![\p{L}])(belt\|sash)s?(?![\p{L}]) | „belt” to pas obciążeniowy; do rozciągania „strap” |
 | `en` | `podwijanie_miednicy` | posterior\s+pelvic\s+tilt\|tilt(ing)?\s+(your\s+)?pelvis\s+back | język podręcznika; potocznie „tuck your pelvis” |
+| `en` | `gwaltowne_blokowanie_lokci` | locking out (the \|your )?elbows | w EN „lockout” to cel wyciskania; błędem jest gwałtowne zatrzaśnięcie (snapping into lockout) |
 | `cs` | `przerwa` | přestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |

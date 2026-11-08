@@ -3762,7 +3762,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Wskazówki**
 
-- Obracaj i wyciskaj jednocześnie, a nie najpierw obrót, potem wyciśnięcie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (Coach's tip (rotate and press at the same time)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (in one controlled motion)) `arnold.together`
+- Obracaj i wyciskaj naraz — nie najpierw obrót, a potem wyciskanie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (Coach's tip (rotate and press at the same time)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (in one controlled motion)) `arnold.together`
 
 **Czego unikać**
 
@@ -3780,18 +3780,18 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Łokcie uciekają na boki zamiast iść do przodu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Elbow flare (the elbows should point forward)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 3 (keep the elbows pointed forward) — błąd = zaprzeczenie standardu) `ohp.mis.flare`
+- Łokcie uciekają na boki, zamiast być skierowane do przodu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Elbow flare (the elbows should point forward)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 3 (keep the elbows pointed forward) — błąd = zaprzeczenie standardu) `ohp.mis.flare`
 - Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Lower back arch; Seated Variations (seated helps minimize the arch)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 1 (keep the back straight) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
 
 ### Kettlebell Press
 
 **Ustawienie**
 
-- Kettlebell przy barku, oparty o przedramię; łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell in front of the chest near the shoulder; elbow close to the rib cage) — przeczytane w rundzie 1); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (a kettlebell in each hand at the shoulders… and the arms against the ribs)) [uproszczenie: Catalyst opisuje wersję z dwoma kettlebellami — pozycja każdej ręki (kettlebell przy barku, ramię przy żebrach) jest ta sama] `kbp.setup`
+- Kettlebell przy barku, łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell in front of the chest near the shoulder; elbow close to the rib cage) — przeczytane w rundzie 1); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (a kettlebell in each hand at the shoulders… and the arms against the ribs)) [uproszczenie: Catalyst opisuje wersję z dwoma kettlebellami — pozycja każdej ręki (kettlebell przy barku, ramię przy żebrach) jest ta sama] `kbp.setup`
 
 **Ruch**
 
-- Wypchnij kettlebell prosto nad głowę; opuść go wzdłuż boku z powrotem do barku, łokieć blisko tułowia. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control)); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press the arm straight overhead; pull the elbow back down to the rib cage)) `kbp.move`
+- Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control)); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press the arm straight overhead; pull the elbow back down to the rib cage)) `kbp.move`
 
 **Czego unikać**
 
@@ -3802,11 +3802,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Kettlebell przy barku, oparty o przedramię; łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell near the shoulder; elbow close to the rib cage)); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (at the shoulders… arms against the ribs)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (seated kettlebell press; the upper body form is very similar… to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ISSA: górna część ciała pracuje w wersji siedzącej bardzo podobnie jak na stojąco; zmienia się tylko podparcie (ławka zamiast stóp i bioder)] `kbp.setup`
+- Kettlebell przy barku, łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell near the shoulder; elbow close to the rib cage)); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (at the shoulders… arms against the ribs)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (seated kettlebell press; the upper body form is very similar… to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ISSA: górna część ciała pracuje w wersji siedzącej bardzo podobnie jak na stojąco; zmienia się tylko podparcie (ławka zamiast stóp i bioder)] `kbp.setup`
 
 **Ruch**
 
-- Wypchnij kettlebell prosto nad głowę; opuść go wzdłuż boku z powrotem do barku, łokieć blisko tułowia. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement; Downward Movement); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press straight overhead; elbow back down to the rib cage)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (very similar to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ten sam tor ręki nad głowę i powrót do barku (ISSA, Seated Variations)] `kbp.move`
+- Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement; Downward Movement); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press straight overhead; elbow back down to the rib cage)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (very similar to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ten sam tor ręki nad głowę i powrót do barku (ISSA, Seated Variations)] `kbp.move`
 
 **Czego unikać**
 
@@ -3816,11 +3816,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań na gumie i chwyć jej końce. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; handles at shoulder level) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
+- Stań na gumie, chwyć jej końce i unieś dłonie do wysokości barków. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; handles at shoulder level) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
 
 **Ruch**
 
-- Wypchnij dłonie nad głowę; wracaj powoli do pozycji startowej. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower under control) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
+- Wypchnij dłonie nad głowę, potem powoli wróć do barków. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower under control) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
 
 **Wskazówki**
 
@@ -3852,7 +3852,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Powoli wytocz kółko do przodu, opuszczając tułów ku podłodze, i wróć do klęku. — Echelon Fitness: [ECHELON AB WHEEL EXERCISE GUIDE.pdf](https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf) (s. 1, AB ROLL — FINISH); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.wheel.move`
+- Powoli wytocz kółko do przodu, opuszczając tułów w stronę podłogi, i wróć do klęku. — Echelon Fitness: [ECHELON AB WHEEL EXERCISE GUIDE.pdf](https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf) (s. 1, AB ROLL — FINISH); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.wheel.move`
 
 ### Renegade Row
 
@@ -3876,7 +3876,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Wytocz sztangę do przodu, opuszczając tułów ku podłodze, i przyciągnij ją z powrotem. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Steps 2–4); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.bar.move`
+- Wytocz sztangę do przodu, opuszczając tułów w stronę podłogi, i przyciągnij ją z powrotem. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Steps 2–4); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.bar.move`
 
 **Wskazówki**
 
@@ -3930,7 +3930,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź plecami przy oparciu, stopy na podłodze; uchwyty przy klatce, łokcie ugięte. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (back firmly supported against the backrest; hands level with your mid-chest region; feet firmly on the floor)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 1: Setup (back firmly against the backrest; handles align with mid-chest height; feet on the floor) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `cpress.seated`
+- Usiądź, plecy przy oparciu, stopy na podłodze; uchwyty przy klatce, łokcie ugięte. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (back firmly supported against the backrest; hands level with your mid-chest region; feet firmly on the floor)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 1: Setup (back firmly against the backrest; handles align with mid-chest height; feet on the floor) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `cpress.seated`
 
 **Ruch**
 
@@ -3943,7 +3943,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Blokowanie łokci na końcu ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (locking out elbows at the top) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (fully extended, but not locked) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `press.mis.lock`
+- Gwałtowne blokowanie łokci na końcu ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (locking out elbows at the top) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (fully extended, but not locked) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `press.mis.lock`
 - Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (jerky or uncontrolled movements) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (slow, controlled manner); Step 4 (control the speed, range and direction of movement) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `mis.jerk`
 
 ### Decline Push Up
@@ -3962,17 +3962,17 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Biodra opadają — ciało przestaje być proste. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Common Mistakes (Allowing hips to sag)); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (zaprzeczenie standardu: „With your body in a straight line and butt lifted”); wniosek ze zdania `dpush.setup` tej karty `push.mis.sag`
+- Biodra opadają i ciało przestaje być w linii. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Common Mistakes (Allowing hips to sag)); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (zaprzeczenie standardu: „With your body in a straight line and butt lifted”); wniosek ze zdania `dpush.setup` tej karty `push.mis.sag`
 
 ### Suspended Push-Up
 
 **Ustawienie**
 
-- Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 3–6); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)) `spush.setup`
+- Chwyć uchwyty taśm albo kółka, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 3–6); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)) `spush.setup`
 
 **Ruch**
 
-- Opuść klatkę w stronę uchwytów, zginając łokcie; wypchnij się z powrotem do wyprostu rąk. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 7–9); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 5; Step 6) `spush.move`
+- Opuść klatkę w stronę dłoni, zginając łokcie; wypchnij się z powrotem do wyprostu rąk. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 7–9); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 5; Step 6) `spush.move`
 
 **Wskazówki**
 
