@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 359 | 359 | 0 |
 | TEKST | 1087 | 1087 | 0 |
-| LOGIKA | 1164 | 1164 | 0 |
+| LOGIKA | 1165 | 1165 | 0 |
 | WYMIAR | 180 | 180 | 0 |
 
 ## EKRAN
@@ -454,7 +454,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +15 |
 | {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +159 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +445 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +446 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +93 |
@@ -909,7 +909,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | niszowe ukryte: {n} — znajdziesz je wyszukiwaniem | components/LibScope.tsx | tests/catalog-library25.test.tsx |
 | Notatka do serii | app/history/edit/[id].tsx | tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx, tests/scenario-full.test.tsx |
 | Notatka szablonu | components/ActiveWorkout.tsx | tests/audit-0.10-ui.test.tsx, tests/m3-p2-board-ui.test.tsx |
-| nowa | app/more/bands.tsx | tests/asc-metadane.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx +51 |
+| nowa | app/more/bands.tsx | tests/asc-metadane.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx +52 |
 | Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”. | lib/whatsnew.ts | tests/release-1.0.1.test.tsx |
 | nowe | lib/guard.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst.test.ts +21 |
 | Nowe ćwiczenia: {n} | app/more/import.tsx | tests/csv-import-ui.test.tsx |
@@ -2046,7 +2046,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +282 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +29 |
-| i18n.exRenamed | lib/i18n.ts | tests/zb044-przemianowane.test.tsx |
 | i18n.exName | lib/i18n.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +42 |
 | i18n.exNameLang | lib/i18n.ts | tests/audit-m1-038-exname-lang.test.tsx, tests/nazwy-en.test.ts, tests/zb044-nazwy-biblioteki.test.tsx +1 |
 | i18n.exLocal | lib/i18n.ts | tests/zb044-nazwy-biblioteki.test.tsx, tests/zb044-przemianowane.test.tsx |
@@ -2222,6 +2221,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | progress.compareCached | lib/progress.ts | tests/progress.test.ts |
 | progress.pctText | lib/progress.ts | tests/progress.test.ts |
 | progress.signedNum | lib/progress.ts | tests/progress.test.ts |
+| przemianowane.setRenamedCheck | lib/przemianowane.ts | tests/zb044-przemianowane.test.tsx |
+| przemianowane.exRenamed | lib/przemianowane.ts | tests/zb044-przemianowane.test.tsx |
 | rescue.rescueDbCopy | lib/rescue.ts | tests/audit-m1-2026-10-27-004-ratunek.test.tsx |
 | review-run.markJustFinished | lib/review-run.ts | tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx, tests/idea-request.test.tsx, tests/review-run.test.tsx |
 | review-run.takeJustFinished | lib/review-run.ts | tests/review-run.test.tsx |

@@ -3,7 +3,8 @@
 // Backup z wersji webowej v0.3 (bez tych pól) jest nadal importowalny — migrate() w store.ts dopisuje brakujące pola.
 import * as Crypto from 'expo-crypto';
 import { fold, exName, lang, type LangSetting, type Lang } from './i18n';
-import { NAME_EN_FORMER } from './nazwy-en.generated';
+import { setRenamedCheck } from './przemianowane';
+import { NAME_EN, NAME_EN_FORMER } from './nazwy-en.generated';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { GYM_FILL, OPT_FILL, EQUIP_FILL2 } from './equipment';
@@ -243,6 +244,12 @@ export const formerNamesOf = (e: Pick<Exercise, 'lib' | 'libKey'>): readonly str
 /** ZB-025 b (31.10.2026): dawne ANGIELSKIE nazwy wyświetlane ćwiczenia z biblioteki, zastąpione kanoniczną nazwą EN (lib/nazwy-en.generated.ts) — aliasy wyszukiwania i wiersz „Dawne nazwy”.
  * Tylko poza polskim (po polsku nazwa = klucz, bez zmian); nie zmieniają klucza katalogu ani danych użytkownika. */
 export const formerEnNamesOf = (e: Pick<Exercise, 'lib' | 'libKey'>): readonly string[] => { const k = catalogKey(e); return k && lang() !== 'pl' ? own(NAME_EN_FORMER, k) ?? [] : []; };
+/** ZB-044 W-1: reguła przemianowania (lib/przemianowane.ts) — nazwa spoza nazw katalogowych ćwiczenia. */
+setRenamedCheck(e => {
+  const n = e.name; const k = catalogKey({ lib: true, libKey: e.libKey });
+  if (k === undefined) return !(LIB_KEYS.has(n) || LIB_RETIRED.has(n) || own(LIB_RENAMED, n) !== undefined || Object.values(LIB_DISPLAY_NAME).includes(n));
+  return !(n === k || n === own(LIB_DISPLAY_NAME, k) || formerNamesOf({ lib: true, libKey: k }).includes(n) || n === own(NAME_EN, k) || (own(NAME_EN_FORMER as Record<string, readonly string[]>, k) ?? []).includes(n));
+});
 /** Dawna nazwa ćwiczenia pasująca do szukanego tekstu (już po fold) — po kluczu albo po nazwie wyświetlanej w języku aplikacji (exName). */
 export const formerMatch = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): string | undefined => q ? formerNamesOf(e).find(n => fold(n).includes(q) || fold(exName({ name: n, lib: true })).includes(q)) ?? formerEnNamesOf(e).find(n => fold(n).includes(q)) : undefined;
 /** Dokładne trafienie dawnej nazwy — wybór ćwiczenia i lista nie proponują wtedy „Utwórz …”. */

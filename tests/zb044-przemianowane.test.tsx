@@ -44,6 +44,12 @@ describe('ZB-044 W-1 logika: przemianowanie ćwiczenia z biblioteki (08.11.2026)
     expect(exRenamed(renamed(e, 'Wyciskanie płaskie'))).toBe(true); expect(exRenamed(e)).toBe(false); expect(exRenamed(renamed(e, 'Bench Press'))).toBe(false);
     expect(exRenamed({ name: 'Moje', lib: false })).toBe(false); expect(exRenamed(undefined)).toBe(false); expect(exRenamed(null)).toBe(false);
   });
+  test('setRenamedCheck: bez zarejestrowanej reguły nic nie jest przemianowane; reguła działa tylko dla ćwiczeń z biblioteki (moduł w izolacji)', () => {
+    jest.isolateModules(() => {
+      const m = require('@/lib/przemianowane') as typeof import('@/lib/przemianowane'); const x = { name: 'X', lib: true as const };
+      expect(m.exRenamed(x)).toBe(false); m.setRenamedCheck(e => e.name === 'X'); expect(m.exRenamed(x)).toBe(true); expect(m.exRenamed({ name: 'X', lib: false })).toBe(false); expect(m.exRenamed({ name: 'Y', lib: true })).toBe(false);
+    });
+  });
   test('zapis przemianowania w stanie: e.name = nazwa użytkownika, libKey i lib bez zmian (bez migracji)', async () => {
     await fresh(); const e = ex('Bench Press (sztanga)'); e.name = 'Wyciskanie płaskie'; store.save(e);
     const s = store.getState().exercises.find(x => x.id === e.id)!; expect([s.lib, s.libKey]).toEqual([true, 'Bench Press (sztanga)']); applyLang('pl'); expect(exName(s)).toBe('Wyciskanie płaskie');
