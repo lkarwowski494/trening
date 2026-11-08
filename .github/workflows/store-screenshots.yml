@@ -211,7 +211,7 @@ jobs:
           MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
         run: |
           [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
-          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          bash scripts/ci/instaluj-maestro.sh  # trzy próby z pauzą 20 s; pobranie do pliku, kod błędu nie ginie w potoku (nocne 08.11.2026: 504 → kod 127)
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
           bash scripts/ci/sprawdz-wersje.sh maestro "$("$HOME/.maestro/bin/maestro" --version 2>&1 | tail -1)"  # minimum z scripts/ci/wersje-minimalne.json (audyt jakości 009)
       - name: Zrzuty ekranu
