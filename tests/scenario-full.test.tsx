@@ -321,7 +321,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const bench = ex('Bench Press (hantle)');
     /* edycja na żądanie (decyzja właściciela 08.10.2026): najpierw podgląd, „Edytuj” → szkic, „Zapisz” — dopiero wtedy dane */
     expect(screen.getByLabelText('Partia: klatka')).toBeTruthy(); expect(screen.queryByLabelText('Nazwa')).toBeNull(); await startEdit(); const bd = () => exDraft(bench.id);
-    expect(screen.getByLabelText('Nazwa').props.value).toBe('Dumbbell Bench Press');
+    expect(screen.getByLabelText('Nazwa').props.value).toBe('Bench Press (hantle)');
     const chip = (label: string, i: number) => { /* 13.10.2026: partie główne/pomocnicze to Chip toggle (rola switch; nazwa pola + wartość) — kolejność jak dawniej: [Partia (przycisk), główne, pomocnicze] */ const btns = screen.queryAllByLabelText(label).filter(x => x.props.accessibilityRole === 'button'); const tg = (f: string) => screen.queryAllByLabelText(f).find(x => x.props.accessibilityValue?.text === label); return ([...btns, tg('Partie główne (1 seria)'), tg('Partie pomocnicze (0,5 serii)')].filter(Boolean) as ReturnType<typeof screen.getByText>[])[i]; };
     /* „barki”: [Partia, Partie główne, Partie pomocnicze] */
     expect(chip('barki', 2).props.accessibilityState.checked).toBe(true); expect(chip('barki', 1).props.accessibilityState.checked).toBe(false);
@@ -406,19 +406,19 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByText('Anuluj')); await flushAll(10); expect(tpl.items).toHaveLength(0); expect(screen.getByLabelText('Nazwa')).toBeTruthy();
     const add = async (n: string) => { await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(search(), n); await tap(screen.getAllByText(n)[0]); await flushAll(10); };
     for (const n of ['Bench Press (hantle)', 'Cable Curl', 'Pull Up', 'Plank', 'Band Pull Apart', 'Back Squat']) await add(n);
-    expect(tpl.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Dumbbell Bench Press', 'Cable Curl', 'Pull-Up', 'Plank', 'Band Pull-Apart', 'Back Squat']);
+    expect(tpl.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Bench Press (hantle)', 'Cable Curl', 'Pull Up', 'Plank', 'Band Pull Apart', 'Back Squat']);
     expect(tpl.items.every(i => i.sets === 3 && i.repMin === null && i.restSec === null && i.groupId === null)).toBe(true);
     /* ostatnio dodane ćwiczenie otwiera się samo, reszta zwinięta */
     const card = (n: string) => screen.getByLabelText(n, { exact: true }); const isOpen = (n: string) => card(n).props.accessibilityState.expanded;
-    expect(isOpen('Back Squat')).toBe(true); expect(isOpen('Dumbbell Bench Press')).toBe(false);
-    expect(card('Dumbbell Bench Press').props.accessibilityValue.text).toBe('3 serie · 1:40'); /* przerwa z ćwiczenia (krok 04) */
+    expect(isOpen('Back Squat')).toBe(true); expect(isOpen('Bench Press (hantle)')).toBe(false);
+    expect(card('Bench Press (hantle)').props.accessibilityValue.text).toBe('3 serie · 1:40'); /* przerwa z ćwiczenia (krok 04) */
     /* usunięcie ćwiczenia z potwierdzeniem */
     await swipeDelete('Usuń ćwiczenie: Back Squat'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z szablonu?', msg: 'Back Squat' });
     pressAlert('Usunąć z szablonu?', 'Anuluj'); await flushAll(5); expect(tpl.items).toHaveLength(6);
     await swipeDelete('Usuń ćwiczenie: Back Squat'); pressAlert('Usunąć z szablonu?', 'Usuń'); await flushAll(5); expect(tpl.items).toHaveLength(5); expect(screen.queryByLabelText('Back Squat')).toBeNull();
 
     /* Bench Press (hantle): wiersze serii */
-    const B = 'Dumbbell Bench Press'; await tap(card(B)); expect(isOpen(B)).toBe(true); expect(isOpen('Band Pull-Apart')).toBe(false); /* jedna karta otwarta */
+    const B = 'Bench Press (hantle)'; await tap(card(B)); expect(isOpen(B)).toBe(true); expect(isOpen('Band Pull Apart')).toBe(false); /* jedna karta otwarta */
     const it0 = () => tpl.items[0]; const kinds = () => store.tplRows(it0()).map(r => r.kind);
     const kindBtn = (n: string, k: string) => screen.getByLabelText(`Seria ${n}, typ: ${k}`);
     expect(screen.getAllByLabelText(/^Seria [123], typ: normalna/)).toHaveLength(3);
@@ -627,12 +627,12 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Filtr miejsca: Dom testowy')).toBeTruthy();
     await tap(screen.getAllByLabelText('barki').find(x => x.props.accessibilityRole === 'button')!); expect(screen.queryByText('Dumbbell Bench Press')).toBeNull();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); await tap(screen.getByText('Dumbbell Lateral Raise')); await flushAll(10);
-    const LR = 'Dumbbell Lateral Raise'; expect(names().at(-1)).toBe(LR); expect(blk(LR).sets).toHaveLength(1); expect(blk(LR).restSec).toBe(120); expect(blk(LR).tplItemId).toBeUndefined();
+    const LR = 'Lateral Raise (hantle)'; expect(names().at(-1)).toBe(LR); expect(blk(LR).sets).toHaveLength(1); expect(blk(LR).restSec).toBe(120); expect(blk(LR).tplItemId).toBeUndefined();
     await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Push-Up'); await tap(screen.getByText('Push-Up')); await flushAll(10);
     expect(names().at(-1)).toBe('Push-Up');
-    await swipeDelete('Usuń ćwiczenie: Push-Up'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z treningu?', msg: 'Push-Up' });
+    await swipeDelete('Usuń ćwiczenie: Push Up'); expect(lastAlert()).toMatchObject({ title: 'Usunąć z treningu?', msg: 'Push-Up' });
     pressAlert('Usunąć z treningu?', 'Anuluj'); await flushAll(5); expect(names().at(-1)).toBe('Push-Up');
-    await swipeDelete('Usuń ćwiczenie: Push-Up'); pressAlert('Usunąć z treningu?', 'Usuń'); await flushAll(5); expect(names().at(-1)).toBe(LR); expect(S().exercises.some(e => e.name === 'Push Up')).toBe(true);
+    await swipeDelete('Usuń ćwiczenie: Push Up'); pressAlert('Usunąć z treningu?', 'Usuń'); await flushAll(5); expect(names().at(-1)).toBe(LR); expect(S().exercises.some(e => e.name === 'Push-Up')).toBe(true);
     /* Lateral Raise: + seria ×2, − seria, wpis, ✓ przenosi wpisane wartości na następną serię */
     await tap(byHint('+ seria', LR)); await tap(byHint('+ seria', LR)); expect(blk(LR).sets).toHaveLength(3); await swipeDelete(`Usuń serię 3 — ${LR}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(LR).sets).toHaveLength(2);
     await type(field('kg/hantel', h(1, LR)), '8'); await type(field('Powtórzenia', h(1, LR)), '15');
@@ -697,7 +697,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByText('Zakończ')); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
     expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(1); const w = S().workouts[0];
     expect(w.finishedAt).toBeGreaterThan(w.startedAt); expect(w.templateName).toBe('Push A'); expect(w.note).toBe('dobry dzień'); expect(w.locationId).toBe(loc('Dom testowy').id);
-    expect(w.exercises.map(e => [store.exById(e.exerciseId)!.name, e.sets.length])).toEqual([['Dumbbell Bench Press', 5], ['Cable Curl', 1], ['Cable Curl', 2], ['Pull-Up', 3], ['Band Pull-Apart', 2], ['Dumbbell Lateral Raise', 2], ['Plank', 2]]);
+    expect(w.exercises.map(e => [store.exById(e.exerciseId)!.name, e.sets.length])).toEqual([['Bench Press (hantle)', 5], ['Cable Curl', 1], ['Cable Curl', 2], ['Pull Up', 3], ['Band Pull Apart', 2], ['Lateral Raise (hantle)', 2], ['Plank', 2]]);
     expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); expect(store.workingSets(w)).toBe(15); /* LIVE2-02: = liczba z okna „Zakończyć” */ /* nieodhaczone serie nie trafiają do historii */
     expect(global.__alerts.some(x => /rekord/i.test(x.title))).toBe(false); /* pierwszy trening nie jest rekordem */
     /* szczegóły sesji otwarte od razu */
@@ -806,7 +806,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await go('/history'); await flushAll(10); expect(screen.getByText('2 sesje')).toBeTruthy();
     /* „Powtórz ostatni”: to, co faktycznie zrobiono (także Push Up dodane w edycji), potem anulowanie */
     await go('/'); await flushAll(10); await fromHome('Powtórz ostatni (Push A — poprawione)'); await flushAll(10);
-    const r = S().active!; expect(r.templateName).toBe('Push A — poprawione'); expect(r.exercises.map(e => store.exById(e.exerciseId)!.name)).toContain('Push-Up');
+    const r = S().active!; expect(r.templateName).toBe('Push A — poprawione'); expect(r.exercises.map(e => store.exById(e.exerciseId)!.name)).toContain('Push Up');
     expect(r.exercises.every(e => e.sets.every(x => !x.done))).toBe(true);
     await tap(screen.getByText('Odrzuć trening')); pressAlert('Odrzucić trening?', 'Odrzuć trening'); await flushAll(10); expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(2);
   });
@@ -868,7 +868,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByText('Eksportuj historię do CSV')); await flushAll(10);
     const [cp, csv] = write.mock.calls.at(-1)!; expect(cp).toMatch(/\.csv$/); expect(csv.startsWith('﻿Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE\n')).toBe(true);
     const rows = csv.trim().split('\n').slice(1); const nSets = S().workouts.reduce((a, w) => a + w.exercises.reduce((b, e) => b + e.sets.length, 0), 0); expect(rows).toHaveLength(nSets);
-    expect(rows.some((r: string) => r.includes('Dumbbell Bench Press,2,25,'))).toBe(true); expect(rows.some((r: string) => r.includes(',W,10,12,'))).toBe(true);
+    expect(rows.some((r: string) => r.includes('Bench Press (hantle),2,25,'))).toBe(true); expect(rows.some((r: string) => r.includes(',W,10,12,'))).toBe(true);
     expect(rows.some((r: string) => r.includes('chwyt nachwytem') && r.split(',')[4] === 'F')).toBe(true); /* LOG-14 (audyt 0.10): seria do upadku — „F” w Set Order, jak w popularnych dziennikach */ expect(rows.some((r: string) => /guma (czerwona|zielona) \d/.test(r))).toBe(true);
     /* zmiana po eksporcie: usunięcie szablonu */
     await go('/templates'); await flushAll(10); await swipeDelete(`Usuń szablon: ${S().templates[0].name}`); pressAlert('Usunąć szablon?', 'Usuń'); await flushAll(10); expect(S().templates).toHaveLength(0);

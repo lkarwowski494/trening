@@ -59,7 +59,7 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     const find = async (q: string) => { await type(screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!, q); await flushAll(5); }; /* pełna baza: lista „Inne” porcjami (SWAP_PAGE) */
     await find('Goblet Squat'); expect(screen.getByText('Goblet Squat')).toBeTruthy(); await find('Leg Press'); expect(screen.queryByText('Leg Press')).toBeNull(); /* niedostępne w Domu */
     await tap(screen.getByLabelText('Filtr miejsca: Dom')); await flushAll(5);
-    expect(screen.getByText('Leg Press')).toBeTruthy(); await find('Plank'); expect(screen.queryByText('Plank')).toBeNull(); await find('Bench Press'); expect(screen.queryAllByText('Bench Press').length).toBe(0); /* inna miara; bieżące */
+    expect(screen.getByText('Leg Press')).toBeTruthy(); await find('Plank'); expect(screen.queryByText('Plank')).toBeNull(); await find('Bench Press (sztanga)'); expect(screen.queryAllByText('Bench Press').length).toBe(0); /* inna miara; bieżące */
     await find('Goblet Squat'); await tap(screen.getByText('Goblet Squat')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Goblet Squat').id); expect(blk(0).swappedFrom).toBe(ex('Bench Press (sztanga)').id);
   });

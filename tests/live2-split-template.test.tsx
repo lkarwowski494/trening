@@ -75,7 +75,7 @@ describe('LIVE2-01: zamiana w trakcie ćwiczenia (podział bloku) a „Zaktualiz
   test('fuzz niezmienników (znalezisko przy LIVE2-01): ćwiczenie dodane w treningu i usunięte z biblioteki w trakcie (archiwum) — bez pytania i nie trafia do szablonu', async () => {
     await fresh(); const t = mkTpl([item('a', 'Bench Press (sztanga)', 1)]); store.startFromTemplate(t); store.addExerciseToActive(ex('Plank')); const a = S().active!;
     store.toggleDone(1, 0); store.deleteExercise(ex('Plank').id); expect(ex('Plank').archived).toBe(true);
-    expect(templateDiff(t, J(a))).toBeNull(); updateTemplateFromWorkout(t, J(a)); expect(t.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Bench Press']);
+    expect(templateDiff(t, J(a))).toBeNull(); updateTemplateFromWorkout(t, J(a)); expect(t.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Bench Press (sztanga)']);
   });
   test('N5 (ekran): zamiana w trakcie, „Zakończ” — bez okna i bez przycisku „Zapisz zmiany w szablonie”', async () => {
     await fresh(); const { a } = splitSwap(false); a.exercises[1].sets.forEach(s => { s.weight = 20; s.reps = 8; }); store.toggleDone(1, 0); store.toggleDone(1, 1);

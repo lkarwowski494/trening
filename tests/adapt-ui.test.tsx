@@ -59,10 +59,10 @@ describe('okno „Dostosuj do: X”', () => {
     await pickPlace('Siłownia'); expect(top()).toBe('(tabs)'); expect(screen.queryByTestId('adapt-line')).toBeNull(); /* siłownia: wszystko dostępne — bez okna i bez wiersza */
   });
   test('zmiana miejsca na takie bez braków (np. tylko ćwiczenia z masą ciała) — okno się nie otwiera i wiersza nie ma', async () => {
-    await boot([['Push-Up', 'p1'], ['Plank', 'p2']]); await pickPlace('Hotel'); expect(top()).toBe('(tabs)'); expect(screen.queryByTestId('adapt-line')).toBeNull();
+    await boot([['Push Up', 'p1'], ['Plank', 'p2']]); await pickPlace('Hotel'); expect(top()).toBe('(tabs)'); expect(screen.queryByTestId('adapt-line')).toBeNull();
   });
   test('liczba mnoga wiersza pod chipem: 1 ćwiczenie / 3 ćwiczenia / 5 ćwiczeń (tp)', async () => {
-    await boot([['Bench Press', 'b'], ['Dumbbell or Cable Romanian Deadlift', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('close-modal')); await flushAll(20);
+    await boot([['Bench Press (sztanga)', 'b'], ['RDL (hantle/linki)', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('close-modal')); await flushAll(20);
     expect(screen.getByTestId('adapt-line').props.accessibilityLabel).toBe('1 ćwiczenie bez sprzętu · Dostosuj');
   });
   test('5 ćwiczeń bez sprzętu: „5 ćwiczeń bez sprzętu · Dostosuj”', async () => {
@@ -113,7 +113,7 @@ describe('arkusz zamiany z celem adapt: i zastosowanie', () => {
   });
   test('liczba mnoga ogłoszenia: 1 ćwiczenie', async () => {
     const spy = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});
-    await boot([['Bench Press', 'b'], ['Dumbbell or Cable Romanian Deadlift', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
+    await boot([['Bench Press (sztanga)', 'b'], ['RDL (hantle/linki)', 'r']]); await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
     expect(spy).toHaveBeenCalledWith('Zamieniono 1 ćwiczenie'); spy.mockRestore();
   });
 });
@@ -201,7 +201,7 @@ describe('dopiski wierszy, podpowiedzi i tytuł okna', () => {
   });
   test('zastosowanie zamiennika z szablonu niesie jego przerwę (75 s)', async () => {
     await bootWith(tpl => { tpl.items[0].alternates = [{ locationId: HOTEL, exerciseId: ex('Incline Bench Press (hantle)').id, restSec: 75 }]; });
-    await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).exerciseId).toBe(ex('Incline Dumbbell Bench Press').id); expect(blk(0).restSec).toBe(75);
+    await pickPlace('Hotel'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20); expect(blk(0).exerciseId).toBe(ex('Incline Bench Press (hantle)').id); expect(blk(0).restSec).toBe(75);
   });
   test('P3 A: trzy bloki tego samego ćwiczenia — drugi i trzeci z dopiskiem „następna propozycja — pierwsza jest już zajęta…”', async () => {
     await bootWith(() => {}, [['Bench Press (sztanga)', 'b1'], ['Bench Press (sztanga)', 'b2'], ['Bench Press (sztanga)', 'b3']]);

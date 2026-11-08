@@ -1903,17 +1903,17 @@ describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwic
     const imp = { pu: recs('Pull Up'), pp: recs('Push Up') };
     const w = store.getState().workouts[0]; for (const b of w.exercises) for (const s of b.sets) expect([s.weight, typeof s.addKg]).toEqual(['', 'number']);
     await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: 0, reps: 20 }]]]);
-    expect(imp).toEqual({ pu: recs('Pull-Up'), pp: recs('Push-Up') });
+    expect(imp).toEqual({ pu: recs('Pull Up'), pp: recs('Push Up') });
     expect(imp.pu.maxRepsFree).toBeGreaterThan(0); expect(imp.pu.maxLoad).toBe(20); expect(imp.pu.bestTotal).toBeGreaterThan(0); expect(imp.pp.maxRepsFree).toBe(20);
   });
   test('(b)+(c) eksport CSV → import do świeżego stanu: rekordy identyczne, asysta (ujemny) zachowuje znak', async () => {
     await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: -10, reps: 12 }]], ['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
     const before = { pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }; const csv = buildCsv();
     await fresh(); await importText(csv);
-    expect({ pu: recs('Pull-Up'), pp: recs('Push-Up'), bp: recs('Bench Press') }).toEqual(before);
+    expect({ pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }).toEqual(before);
     const w = store.getState().workouts[0]; const sets = (n: string) => w.exercises.find(b => b.exerciseId === ex(n).id)!.sets;
-    expect(sets('Push-Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull-Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
-    expect(sets('Bench Press').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
+    expect(sets('Push Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
+    expect(sets('Bench Press (sztanga)').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
   });
 });
 

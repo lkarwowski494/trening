@@ -76,10 +76,10 @@ describe('dane: katalog zgodny z researchem L1–L6 (każdy rekord wdrożony alb
     expect(musclesFor('Smith Machine Reverse Calf Raise', 'łydki')[0]).toEqual([]); expect(MUSCLE_LOAD['Smith Machine Reverse Calf Raise']).toEqual({});
   });
   test('ćwiczenia bazowe po researchu (docs/research/24 pkt 5.2): 124 (Rear Delt Raise scalone), partie, tryb, miara', () => {
-    expect(LIB_BASE_NAMES.size).toBe(124); expect(LIB_BASE_NAMES.has('Dumbbell Upright Row')).toBe(true); expect(LIB_BASE_NAMES.has('Rear Delt Raise (hantle)')).toBe(false);
-    expect(musclesFor('Back Squat', 'nogi')).toEqual([['czworogłowe'], ['pośladki', 'przywodziciele']]); expect(musclesFor('Deadlift', 'plecy')).toEqual([['dwugłowe', 'pośladki'], ['plecy', 'czworogłowe']]);
-    expect(musclesFor('Back Extension', 'plecy')).toEqual([['plecy', 'dwugłowe'], ['pośladki']]); expect(musclesFor('Hip Thrust', 'pośladki')).toEqual([['pośladki'], []]);
-    expect(loadModeFor('hantle', 'Dumbbell Concentration Curl')).toBe('unilateral'); expect(loadModeFor('sztanga', 'Dumbbell Concentration Curl')).toBe('total'); /* inny sprzęt — tryb za sprzętem */
+    expect(LIB_BASE_NAMES.size).toBe(124); expect(LIB_BASE_NAMES.has('Upright Row (hantle)')).toBe(true); expect(LIB_BASE_NAMES.has('Rear Delt Raise (hantle)')).toBe(false);
+    expect(musclesFor('Back Squat', 'nogi')).toEqual([['czworogłowe'], ['pośladki', 'przywodziciele']]); expect(musclesFor('Deadlift (sztanga)', 'plecy')).toEqual([['dwugłowe', 'pośladki'], ['plecy', 'czworogłowe']]);
+    expect(musclesFor('Back Extension', 'plecy')).toEqual([['plecy', 'dwugłowe'], ['pośladki']]); expect(musclesFor('Hip Thrust (sztanga)', 'pośladki')).toEqual([['pośladki'], []]);
+    expect(loadModeFor('hantle', 'Concentration Curl (hantle)')).toBe('unilateral'); expect(loadModeFor('sztanga', 'Dumbbell Concentration Curl')).toBe('total'); /* inny sprzęt — tryb za sprzętem */
     expect(row('Box Jump')[1]).toBe('nogi'); expect(metricFor("Farmer's Walk")).toBe('weight_distance');
   });
 });
@@ -154,8 +154,8 @@ describe('migracja: zmiany nazw, scalenia, usunięcia (krok katalogu 09.10.2026)
     by("Farmer's Walk").metric = 'weight_time'; by('Suitcase Carry').metric = 'weight_time'; by('Box Jump').group = 'cardio';
     s.workouts = [W('w1', Date.UTC(2026, 8, 1), [[by('Suitcase Carry').id, [{ weight: 20, durationSec: 60 }]]])] as never;
     const m = idem(s); const mb = (n: string) => m.exercises.find(e => e.name === n)!;
-    expect(mb('Back Squat').secondaryMuscles).toEqual(['pośladki', 'przywodziciele']); expect(mb('Leg Press').secondaryMuscles).toEqual(['pośladki', 'przywodziciele']); expect(mb('Deadlift')).toMatchObject({ muscles: ['dwugłowe', 'pośladki'], secondaryMuscles: ['plecy', 'czworogłowe'] });
-    expect(mb('Hip Thrust').secondaryMuscles).toEqual(['core']); expect(mb('Dumbbell Concentration Curl').loadMode).toBe('unilateral'); expect(mb('Box Jump').group).toBe('nogi');
+    expect(mb('Back Squat').secondaryMuscles).toEqual(['pośladki', 'przywodziciele']); expect(mb('Leg Press').secondaryMuscles).toEqual(['pośladki', 'przywodziciele']); expect(mb('Deadlift (sztanga)')).toMatchObject({ muscles: ['dwugłowe', 'pośladki'], secondaryMuscles: ['plecy', 'czworogłowe'] });
+    expect(mb('Hip Thrust (sztanga)').secondaryMuscles).toEqual(['core']); expect(mb('Concentration Curl (hantle)').loadMode).toBe('unilateral'); expect(mb('Box Jump').group).toBe('nogi');
     expect(mb("Farmer's Walk").metric).toBe('weight_distance'); expect(mb('Suitcase Carry').metric).toBe('weight_time'); /* z historią czasu — nic nie znika z widoku */
     expect(m.libExtraStep).toBe(LIB_EXTRA_REV);
     const again: State = JSON.parse(JSON.stringify(m)); again.exercises.find(e => e.name === 'Back Squat')!.secondaryMuscles = ['pośladki', 'dwugłowe'];
@@ -180,8 +180,8 @@ describe('sprzęt: circus bell, maszyna do dipów, ściana (L5 Q7)', () => {
     expect(presetHint('bodyweight')).toBe('mata i ściana');
     const lib = seedState('pl').exercises; const av = (n: string, l: ReturnType<typeof loc>) => availability(lib.find(e => e.name === n)!, l).ok;
     const bare = loc('Park', [{ item: 'floor_mat', opts: [] }]); const wall = loc('Dom', [{ item: 'wall', opts: [] }]);
-    expect(av('Handstand Push-Up', bare)).toBe(false); expect(av('Handstand Push-Up', wall)).toBe(true); expect(av('Push-Up', bare)).toBe(true);
-    expect(av('Machine Dip', loc('S', [{ item: 'triceps_ext_machine', opts: [] }]))).toBe(false); expect(av('Machine Dip', loc('S', [{ item: 'dip_machine', opts: [] }]))).toBe(true);
+    expect(av('Handstand Push Up', bare)).toBe(false); expect(av('Handstand Push-Up', wall)).toBe(true); expect(av('Push Up', bare)).toBe(true);
+    expect(av('Dip Machine', loc('S', [{ item: 'triceps_ext_machine', opts: [] }]))).toBe(false); expect(av('Dip Machine', loc('S', [{ item: 'dip_machine', opts: [] }]))).toBe(true);
     expect(av('Circus Bell', loc('D', [{ item: 'db_fixed', opts: [] }]))).toBe(false); expect(av('Circus Bell', loc('D', [{ item: 'circus_bell', opts: [] }]))).toBe(true);
   });
   test('migracja raz: ściana do każdego zapisanego miejsca, maszyna do dipów tylko do miejsc z presetu siłowni; odznaczenie zostaje', () => {
@@ -221,7 +221,7 @@ describe('logika listy domyślnej (wariant B)', () => {
   test('exercisesInUse: treningi (historia, w toku, „zamienione z”) i szablony (pozycje, zamienniki); inCoreList: podstawowe, własne i użyte; libShowAll zapamiętany', async () => {
     await fresh(); const st = store.getState(); const by = (n: string) => st.exercises.find(e => e.name === n)!;
     const a = by('Svend Press'), b = by('Floor Press with Chains'), c = by('Bench Press with Chains'), d = by('Band Bench Press'), e = by('Clock Push-Up');
-    expect([a, b, c, d, e].every(isNiche)).toBe(true); expect(isNiche(by('Bench Press'))).toBe(false);
+    expect([a, b, c, d, e].every(isNiche)).toBe(true); expect(isNiche(by('Bench Press (sztanga)'))).toBe(false);
     addWorkout(Date.UTC(2026, 9, 1), [['Floor Press with Chains', [{ weight: 60, reps: 5 }]]]);
     st.workouts[0].exercises[0].swappedFrom = c.id; st.templates.push({ id: 't', ownerId: 'local', createdAt: 1, updatedAt: 1, name: 'A', items: [{ id: 'i', exerciseId: d.id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null, alternates: [{ locationId: 'L', exerciseId: e.id, restSec: null }] }] }); store.save();
     const used = store.exercisesInUse(); expect([a, b, c, d, e].map(x => used.has(x.id))).toEqual([false, true, true, true, true]);

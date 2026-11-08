@@ -342,14 +342,14 @@ describe('seed.blankTimer', () => {
 describe('seed.libExercise', () => {
   test('pola z katalogu: metryka, tryb liczenia, partie, asysta gumą, wymagania; właściciel', () => {
     const bp = libExercise(['Bench Press (sztanga)', 'klatka', 'sztanga']);
-    expect(bp).toMatchObject({ name: 'Bench Press (sztanga)', group: 'klatka', equipment: 'sztanga', metric: 'weight_reps', loadMode: 'total', muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'], bandAssistable: false, lib: true, ownerId: 'local', restSec: null, tempo: '', notes: '' });
+    expect(bp).toMatchObject({ name: 'Bench Press', group: 'klatka', equipment: 'sztanga', metric: 'weight_reps', loadMode: 'total', muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'], bandAssistable: false, lib: true, ownerId: 'local', restSec: null, tempo: '', notes: '' });
     expect(bp.requires!.length).toBeGreaterThan(0); expect(bp.pattern).toBeTruthy(); expect(bp.id).toMatch(/^[0-9a-f-]{32,}$/);
-    expect(libExercise(['Dumbbell Bench Press', 'klatka', 'hantle']).loadMode).toBe('per_dumbbell');
+    expect(libExercise(['Bench Press (hantle)', 'klatka', 'hantle']).loadMode).toBe('per_dumbbell');
     expect(libExercise(['Goblet Squat', 'nogi', 'hantle']).loadMode).toBe('total'); /* jeden ciężar */
     expect(libExercise(['Plank', 'core', 'masa ciała']).metric).toBe('time');
-    expect(libExercise(['Running', 'cardio', 'inne']).metric).toBe('distance_time');
-    expect(libExercise(['Chin-Up', 'plecy', 'masa ciała', true]).bandAssistable).toBe(true);
-    expect(libExercise(['Bench Press', 'klatka', 'sztanga'], 'trener').ownerId).toBe('trener');
+    expect(libExercise(['Bieg', 'cardio', 'inne']).metric).toBe('distance_time');
+    expect(libExercise(['Chin Up', 'plecy', 'masa ciała', true]).bandAssistable).toBe(true);
+    expect(libExercise(['Bench Press (sztanga)', 'klatka', 'sztanga'], 'trener').ownerId).toBe('trener');
     /* nazwa spoza katalogu: partia z grupy, bez wymagań (zawsze dostępne) */
     const own = libExercise(['Coś nowego', 'plecy', 'linki']); expect(own.muscles).toEqual(['plecy']); expect(own.requires).toEqual([]); expect(own.loadSource).toBe('cable');
     expect(libExercise(['Inne coś', 'cardio', 'inne']).muscles).toEqual([]);
@@ -389,7 +389,7 @@ describe('store.memoHist', () => {
   test('liczy raz do zmiany historii; zmiana samego treningu w toku nie unieważnia', async () => {
     await fresh(); let n = 0; const f = store.memoHist(() => { n++; return store.getState().workouts.length; });
     expect(f()).toBe(0); expect(f()).toBe(0); expect(n).toBe(1);
-    addWorkout(H, [['Bench Press', [{ weight: 60, reps: 8 }]]]); expect(f()).toBe(1); expect(n).toBe(2);
+    addWorkout(H, [['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]); expect(f()).toBe(1); expect(n).toBe(2);
     store.startEmpty(); f(); const k = n; store.save(store.getState().active); expect(f()).toBe(1); expect(n).toBe(k);
   });
 });
@@ -549,7 +549,7 @@ describe('store.exerciseInHistory', () => {
   test('tylko zakończone treningi (historia), nie sam trening w toku', async () => {
     await fresh(); const bp = ex('Bench Press (sztanga)').id, sq = ex('Back Squat').id;
     expect(store.exerciseInHistory(bp)).toBe(false);
-    addWorkout(H, [['Bench Press', [{ weight: 60, reps: 8 }]]]); expect(store.exerciseInHistory(bp)).toBe(true);
+    addWorkout(H, [['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]); expect(store.exerciseInHistory(bp)).toBe(true);
     store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); expect(store.exerciseInHistory(sq)).toBe(false);
     expect(store.exerciseInHistory('nie-ma')).toBe(false);
   });
@@ -560,7 +560,7 @@ describe('store.exerciseUsed', () => {
     await fresh(); const bp = ex('Bench Press (sztanga)').id, sq = ex('Back Squat').id;
     expect(store.exerciseUsed(sq)).toBe(false);
     store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); expect(store.exerciseUsed(sq)).toBe(true);
-    addWorkout(H, [['Bench Press', [{ weight: 60, reps: 8 }]]]); expect(store.exerciseUsed(bp)).toBe(true);
+    addWorkout(H, [['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]); expect(store.exerciseUsed(bp)).toBe(true);
     store.getState().active = null; expect(store.exerciseUsed(sq)).toBe(false);
     /* usunięcie ćwiczenia z historią — archiwum; bez historii — na stałe */
     store.deleteExercise(bp); expect(ex('Bench Press (sztanga)').archived).toBe(true);
