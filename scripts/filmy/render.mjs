@@ -47,7 +47,7 @@ if (has('plan')) {
     return { film: f.id, jezyk: l, klatek: plan.klatki.length, fps: d.fps, startMs: plan.startMs, zmianaMs: plan.zmianaMs, koniecOdMs: plan.koniecOdMs,
       fazy: [...new Set(plan.klatki.map(k => k.faza))], klatki_bez_napisu: plan.klatki.filter(k => !k.napis).length, klatki_koniec: plan.klatki.filter(k => k.koniec).length,
       widoki: plan.spec.views, waga_bledu_klatka0: Math.round(v2.faultWeight(plan.spec, plan.klatki[0].u) * 100) / 100,
-      teksty: tx, stan_haka: f.haki[l].stan, stan_tekstow: cfg.teksty_stan?.[l] ?? null };
+      teksty: tx, stan_haka: cfg.hak[l].stan, stan_tekstow: cfg.teksty_stan?.[l] ?? null };
   }));
   wyjdz(JSON.stringify(out, null, 2) + '\n'); await new Promise(() => {});
 }

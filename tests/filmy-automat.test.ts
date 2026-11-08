@@ -96,6 +96,23 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(out.stderr).toMatch(/obcy-blad \[pl\]: wskazówka błędu „sq.mis.kneesIn” nie należy do częstych błędów „Barbell Curl”/);
   });
 
+  test('jeden hak dla wszystkich filmów, pod nim nazwa ćwiczenia (właściciel 08.11.2026 ~22:45); pole „haki” w filmie — odmowa', () => {
+    expect(CFG.hak.en.tekst).toBe('Been training for years but not sure your technique is right?');
+    expect(CFG.filmy.every((f: object) => !('haki' in f))).toBe(true);
+    const r4 = run(['--wszystkie', '--plan']); expect(r4.status).toBe(0);
+    const p4 = JSON.parse(r4.stdout);
+    expect(p4.length).toBe(CFG.filmy.length);
+    for (const x of p4) { expect(x.teksty.hak).toBe(CFG.hak.en.tekst); expect(x.teksty.nazwa).not.toMatch(/\(|sztanga|hantle|linki/); }
+    expect(zKonfigiem([{ ...FILM, id: 'wlasny-hak', haki: { en: { tekst: 'x' } } }]).stderr).toMatch(/wlasny-hak \[en\]: pole „haki” niedozwolone/);
+  });
+
+  test('nazwa ćwiczenia w filmie EN jak na karcie po angielsku (lib/nazwy-en.generated.ts) — bez polskiego dopisku (08.11.2026)', () => {
+    const r5 = run(['--film', 'technika-bench-press-luk', '--jezyk', 'en,pl', '--plan']); expect(r5.status).toBe(0);
+    const [en, pl] = JSON.parse(r5.stdout);
+    expect(en.teksty.nazwa).toBe('Bench Press');
+    expect(pl.teksty.nazwa).toBe('Bench Press (sztanga)');
+  });
+
   test('domyślny język filmu: angielski (filmy tylko po angielsku — właściciel 08.11.2026 ~22:20)', () => {
     const r3 = run(['--film', FILM.id, '--plan']);
     expect(r3.status).toBe(0);

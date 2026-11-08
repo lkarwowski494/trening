@@ -1,12 +1,54 @@
 {
-  "_opis": "Definicje krótkich filmów o technice (ZB-047, decyzje właściciela 07.11.2026 w docs/18). Ćwiczenie tylko z rodziny po recenzji (shownFigureSpec, L-047), błąd rysunku — rigowy (np. „kneesIn”) albo z danych pozy („data:N” = wpis bledy[N] wariantu; 08.11.2026), wskazówki — id wskazówek z karty ćwiczenia (własne z lib/cues/data.json albo ogólne po recenzji, cue-sets.json), teksty z lib/cues/text/<język>.json (rejestr twierdzeń). Haki: tekst marketingowy; stan „zatwierdzony” tylko po akceptacji właściciela, inne języki przez przekład API + recenzent lokalizacji. Nazwa lokalna ćwiczenia: tylko po recenzji nazw (ZB-044) — do tego czasu pusta.",
-  "domyslne": { "fps": 30, "sekundy": 13, "napis_od_s": 0.5, "blad_do_s": 5.0, "koniec_s": 1.5, "motyw": "dark", "szerokosc": 1080, "wysokosc": 1920,
-    "uklad": "poziom", "rysunek": { "top": 600, "left": 30, "w": 1020, "h": 800 }, "skala_web": 4, "ekran_web": [430, 932] },
-  "teksty": {
-    "pl": { "podpis": "Animacja: aplikacja {app}", "blad": "Błąd", "poprawnie": "Poprawnie" },
-    "en": { "podpis": "Animation: {app} app", "blad": "Mistake", "poprawnie": "Correct" }
+  "_opis": "Definicje krótkich filmów o technice (ZB-047, decyzje właściciela 07.11.2026 w docs/18). Ćwiczenie tylko z rodziny po recenzji (shownFigureSpec, L-047), błąd rysunku — rigowy (np. „kneesIn”) albo z danych pozy („data:N” = wpis bledy[N] wariantu; 08.11.2026), wskazówki — id wskazówek z karty ćwiczenia (własne z lib/cues/data.json albo ogólne po recenzji, cue-sets.json), teksty z lib/cues/text/<język>.json (rejestr twierdzeń). Hak: jeden wspólny dla wszystkich filmów (pole „hak”, właściciel 08.11.2026 ~22:45); filmy tylko po angielsku (08.11.2026 ~22:20), PL — podgląd. Nazwa lokalna ćwiczenia: tylko po recenzji nazw (ZB-044) — do tego czasu pusta.",
+  "domyslne": {
+    "fps": 30,
+    "sekundy": 13,
+    "napis_od_s": 0.5,
+    "blad_do_s": 5.0,
+    "koniec_s": 1.5,
+    "motyw": "dark",
+    "szerokosc": 1080,
+    "wysokosc": 1920,
+    "uklad": "poziom",
+    "rysunek": {
+      "top": 600,
+      "left": 30,
+      "w": 1020,
+      "h": 800
+    },
+    "skala_web": 4,
+    "ekran_web": [
+      430,
+      932
+    ]
   },
-  "teksty_stan": { "pl": "do przeglądu — brzmienie agenta, 08.11.2026", "en": "do przeglądu — brzmienie agenta, 08.11.2026" },
+  "teksty": {
+    "pl": {
+      "podpis": "Animacja: aplikacja {app}",
+      "blad": "Błąd",
+      "poprawnie": "Poprawnie"
+    },
+    "en": {
+      "podpis": "Animation: {app} app",
+      "blad": "Mistake",
+      "poprawnie": "Correct"
+    }
+  },
+  "teksty_stan": {
+    "pl": "do przeglądu — brzmienie agenta, 08.11.2026",
+    "en": "do przeglądu — brzmienie agenta, 08.11.2026"
+  },
+  "hak": {
+    "_opis": "Jeden hak dla wszystkich filmów, pod nim nazwa ćwiczenia (właściciel 08.11.2026 ~22:45: „Wszędzie ma być taki sam”). Pole „haki” w definicji filmu niedozwolone.",
+    "en": {
+      "tekst": "Been training for years but not sure your technique is right?",
+      "stan": "publikuje właściciel bez przeglądu (08.11.2026 ~22:20)"
+    },
+    "pl": {
+      "tekst": "Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?",
+      "stan": "zatwierdzony — właściciel 07.11.2026 (hak 1)"
+    }
+  },
   "filmy": [
     {
       "id": "technika-back-squat-kolana",
@@ -14,10 +56,6 @@
       "blad": "kneesIn",
       "wskazowka_bledu": "sq.mis.kneesIn",
       "wskazowka_poprawna": "sq.kneesToes",
-      "haki": {
-        "pl": { "tekst": "Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?", "stan": "zatwierdzony — właściciel 07.11.2026 (hak 1)" },
-        "en": { "tekst": "Been training for years but not sure your technique is right?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026" }
-      },
       "nazwa_lokalna": {}
     },
     {
@@ -26,10 +64,22 @@
       "blad": "data:0",
       "wskazowka_bledu": "curl.mis.elbows",
       "wskazowka_poprawna": "curl.elbows",
-      "haki": {
-        "pl": { "tekst": "Uginasz ramiona ze sztangą — czy łokcie zostają w miejscu?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026 (film dowodowy błędu z danych pozy)" },
-        "en": { "tekst": "Curling the bar — do your elbows stay put?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026 (film dowodowy błędu z danych pozy)" }
-      },
+      "nazwa_lokalna": {}
+    },
+    {
+      "id": "technika-bench-press-luk",
+      "cwiczenie": "Bench Press (sztanga)",
+      "blad": "arch",
+      "wskazowka_bledu": "bp.mis.arch",
+      "wskazowka_poprawna": "bp.contact",
+      "nazwa_lokalna": {}
+    },
+    {
+      "id": "technika-deadlift-plecy",
+      "cwiczenie": "Deadlift (sztanga)",
+      "blad": "roundBack",
+      "wskazowka_bledu": "mis.roundBack",
+      "wskazowka_poprawna": "hinge.back",
       "nazwa_lokalna": {}
     }
   ]

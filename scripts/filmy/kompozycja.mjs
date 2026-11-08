@@ -22,7 +22,10 @@ export function daneRepo() {
   /* nazwa aplikacji w języku = część nazwy w sklepie przed dwukropkiem (APP_NAME, store/app-store-names.json) */
   const storeName = lang => { const map = names.names ?? names; const k = Object.keys(map).find(x => x === lang || x.startsWith(lang + '-')); return k ? String(map[k]) : null; };
   const appName = lang => storeName(lang)?.split(':')[0].trim() ?? null;
-  return { cues, cueSets, cueText, appName, storeName };
+  /* nazwa ćwiczenia jak na karcie (lib/i18n.ts exName): po polsku klucz katalogu, w innych językach kanoniczna nazwa EN (lib/nazwy-en.generated.ts, ZB-025 b) */
+  const nazwyEn = (() => { const src = fs.readFileSync(path.join(ROOT, 'lib/nazwy-en.generated.ts'), 'utf8'); const m = src.match(/export const NAME_EN[^=]*=\s*(\{[\s\S]*?\n\});/); return m ? JSON.parse(m[1].replace(/,(\s*\})/g, "$1")) : {}; })();
+  const nazwaCwiczenia = (key, lang) => (lang === 'pl' ? key : Object.prototype.hasOwnProperty.call(nazwyEn, key) ? nazwyEn[key] : key);
+  return { cues, cueSets, cueText, appName, storeName, nazwaCwiczenia };
 }
 
 /**
@@ -62,7 +65,9 @@ export function problemyFilmu(film, lang, cfg, v2, dane) {
   const texts = dane.cueText(lang);
   if (!texts) p.push(`brak tekstów wskazówek w języku „${lang}” (lib/cues/text)`);
   else for (const c of [film.wskazowka_bledu, film.wskazowka_poprawna]) if (!texts[c]) p.push(`brak tekstu „${c}” w lib/cues/text/${lang}.json`);
-  if (!film.haki?.[lang]?.tekst) p.push(`brak haka w języku „${lang}”`);
+  if ('haki' in film) p.push('pole „haki” niedozwolone — jeden hak dla wszystkich filmów w „hak” konfiguracji (właściciel 08.11.2026 ~22:45)');
+  if (lang !== 'pl' && /[ąćęłńóśźż]|\((sztanga|hantle|linki|dwie linki|maszyna|wyciąg)\)/i.test(dane.nazwaCwiczenia(film.cwiczenie, lang))) p.push(`nazwa „${dane.nazwaCwiczenia(film.cwiczenie, lang)}” nie jest nazwą angielską z lib/nazwy-en.generated.ts — film „${lang}” pokazałby polski dopisek`);
+  if (!cfg.hak?.[lang]?.tekst) p.push(`brak wspólnego haka w języku „${lang}”`);
   if (!cfg.teksty?.[lang]) p.push(`brak tekstów stałych (podpis, Błąd, Poprawnie) w języku „${lang}”`);
   if (!dane.storeName(lang)) p.push(`brak nazwy aplikacji dla „${lang}” w store/app-store-names.json`);
   return p;
@@ -102,7 +107,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 /** Teksty filmu w języku — wszystkie z danych (hak z filmy.json, wskazówki z lib/cues/text, nazwa aplikacji ze sklepu). */
 export function tekstyFilmu(film, lang, cfg, dane) {
   const t = cfg.teksty[lang]; const cue = dane.cueText(lang); const app = dane.appName(lang);
-  return { hak: film.haki[lang].tekst, nazwa: film.cwiczenie, nazwaLokalna: film.nazwa_lokalna?.[lang] ?? '', blad: cue[film.wskazowka_bledu], poprawnie: cue[film.wskazowka_poprawna],
+  return { hak: cfg.hak[lang].tekst, nazwa: dane.nazwaCwiczenia(film.cwiczenie, lang), nazwaLokalna: film.nazwa_lokalna?.[lang] ?? '', blad: cue[film.wskazowka_bledu], poprawnie: cue[film.wskazowka_poprawna],
     etykietaBlad: t.blad, etykietaOk: t.poprawnie, podpis: t.podpis.replace('{app}', app), app, nazwaSklepu: dane.storeName(lang), sklep: 'App Store' };
 }
 
