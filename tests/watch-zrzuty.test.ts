@@ -20,11 +20,11 @@ describe('zrzuty zegarka: dane w języku zrzutu', () => {
     for (const s of Object.values(snaps)) expect(s.lang).toBe(lang);
   }, 60e3);
 
-  test('licznik serii i nazwa ćwiczenia: polski tylko w pl, w en po angielsku', async () => {
+  test('licznik serii i nazwa ćwiczenia: licznik po polsku tylko w pl; nazwa ćwiczenia z biblioteki angielska w obu', async () => {
     const pl = (await watchSnapshotsFor('pl'))['set-first'] as any; const en = (await watchSnapshotsFor('en'))['set-first'] as any;
     expect(pl.now.counter).toMatch(/seria 1 z 3/);
     expect(en.now.counter).not.toMatch(/seria/i); expect(en.now.counter).toMatch(/1/);
-    expect(en.now.title).not.toBe(pl.now.title);
+    expect(en.now.title).toBe(pl.now.title); /* ZB-044 (07.11.2026 i 08.11.2026, docs/18; zastępuje DEC-13): nazwa biblioteki po angielsku we wszystkich językach */
     applyLang('en'); expect(t('Trening')).toBeTruthy();
   }, 60e3);
 

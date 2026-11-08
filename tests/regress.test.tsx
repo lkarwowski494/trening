@@ -1247,10 +1247,10 @@ describe('runda 49', () => {
   });
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
-    const name = store.exById(tpl.items[0].exerciseId)!.name;
+    const name = require('@/lib/i18n').exName(store.exById(tpl.items[0].exerciseId)!); /* ZB-044 (07.11.2026, docs/18): etykieta niesie nazwę wyświetlaną */
     expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
     await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
-    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull-Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull-Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
+    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull-Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {

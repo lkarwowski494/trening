@@ -82,7 +82,7 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);
     const B = blk(1); expect(B.splitFrom).toBe(blk(0).id);
     expect(timer.T.on).toBe(true); expect(timer.T.setId).toBe(restSet);
-    expect(timer.T.sub).toContain(store.exById(B.exerciseId)!.name); expect((global.__la as any[]).some(x => JSON.stringify(x).includes(store.exById(B.exerciseId)!.name))).toBe(true);
+    expect(timer.T.sub).toContain(require('@/lib/i18n').exName(store.exById(B.exerciseId)!)); expect((global.__la as any[]).some(x => JSON.stringify(x).includes(require('@/lib/i18n').exName(store.exById(B.exerciseId)!)))).toBe(true);
     /* stoper serii czasowej w bloku, który zamieniamy w miejscu */
     await act(async () => { await timer.startSet(blk(2).sets[0].id, 30); }); expect(timer.S.on).toBe(true);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Plank')); await flushAll(20);
