@@ -670,7 +670,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Przepływ: PR-01
 - Dowód potrzeby: decyzja właściciela 04.11.2026 (w 1.1 rysunki ćwiczeń graficznie pokazują technikę); reguły `pelny_zakres`, `lokcie_nie_szeroko`, `lokcie_przy_tulowiu` w `data/zrodla/figury-sens.json` (pewność „ustalone”); kąty jako opis figury, nie zalecenie (decyzja 25.10.2026, linie bez liczb); `lib/figures/v2/overlay.ts`, dane `lib/figures/v2/overlay/bench_press.ts`, grupy reguł i błędów `lib/figures/v2/grupy.json`; dane rodzin etapu 2 `lib/figures/v2/overlay/{squat,hinge,curl,pull_up}.ts` (linia odniesienia z regułą `kind: 'ref'` — pion, poziom, segment — i kolor błędu linii odniesienia `GuideDef.rule` w `lib/figures/v2/guides.ts`); testy `tests/figures-v2-nakladka.test.tsx`, `tests/figures-v2-nakladka-e3.test.tsx`, `tests/figures-v2-nakladka-squat-hinge.test.tsx`, `tests/figures-v2-nakladka-curl-pullup.test.tsx`, strażnik S20 w `tests/interaction-guards.test.ts` (docs/32 wzorzec 33)
 - Ekrany: `components/ExerciseFigureV2.tsx` (sekcja „Technika” karty ćwiczenia)
-- Test: `tests/figures-v2-nakladka.test.tsx`, `.maestro/17-biblioteka-technika.yaml`
+- Test: `tests/figures-v2-nakladka.test.tsx`, `tests/figures-v2-nakladka-triceps-olympic.test.tsx`, `tests/figures-v2-nakladka-kazda-rodzina.test.tsx`, `.maestro/17-biblioteka-technika.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Linia i łuk kąta łokcia
     - Zakładając, że karta ćwiczenia z rodziny wyciskania leżąc ma wskazówkę o pełnym zakresie ruchu, a łokieć jest mierzonym stawem rysunku
@@ -680,6 +680,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że wskazówka powiązana z elementem (np. o ustawieniu łokci) nie należy do zestawu ćwiczenia
     - Gdy użytkownik widzi rysunek tego ćwiczenia
     - Wtedy tego elementu nie ma (np. łuk odwiedzenia ramienia w rzucie z góry pojawia się tylko przy ćwiczeniach z tą wskazówką); do 3 linii (łącznie z liniami odniesienia) i 1 łuku na rzut; łuk odwiedzenia liczony w płaszczyźnie rzutu z góry i rysowany tylko, gdy jest widoczny (cięciwa ≥ 4 cm rysunku)
+  - Scenariusz: Każda wyświetlana rodzina ma nakładkę (04.11.2026, decyzja właściciela „bez zaworu”; podrzut i rwanie, prostowanie ramion)
+    - Zakładając, że rodzina rysunków ma status „ready” (dziś także podrzut i rwanie oraz prostowanie ramion)
+    - Gdy użytkownik widzi rysunek ćwiczenia tej rodziny, którego karta ma zdanie reguły „ustalone” (np. „Sztanga blisko ciała”, „Prostuj łokcie…”, „Łokcie przy bokach”)
+    - Wtedy rysunek z boku ma ciągłą linię i łuk kąta w mierzonym stawie albo linię odniesienia tej reguły (też w pętli jednokierunkowej podrzutu); ćwiczenie bez takiego zdania albo z regułą bez statusu „ustalone” nie ma elementu; rodzina `ready` bez elementu czerwieni test
   - Scenariusz: Błąd łamie regułę elementu
     - Zakładając, że użytkownik pokazuje częsty błąd, który łamie regułę z tej samej grupy co element
     - Gdy rysunek przechodzi w pozę błędu
