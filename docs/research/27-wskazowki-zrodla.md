@@ -3816,11 +3816,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań na gumie, chwyć jej końce i unieś dłonie do wysokości barków. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; handles at shoulder level) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
+- Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; raise your arms to a goal post position: upper arms parallel, forearms perpendicular to the floor) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
 
 **Ruch**
 
-- Wypchnij dłonie nad głowę, potem powoli wróć do barków. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower under control) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
+- Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower back to the goal post position under control) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
 
 **Wskazówki**
 
@@ -3968,7 +3968,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Chwyć uchwyty taśm albo kółka, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 3–6); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)) `spush.setup`
+- Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 3–6); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)) `spush.setup`
 
 **Ruch**
 

@@ -23,14 +23,14 @@
   {
    "rodzaj": "nowy",
    "id": "band.ohpMove",
-   "pl": "Wypchnij dłonie nad głowę, potem powoli wróć do barków.",
-   "en": "Press your hands overhead, then slowly lower them back to your shoulders."
+   "pl": "Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej.",
+   "en": "Press your hands overhead, then slowly return to the start position."
   },
   {
    "rodzaj": "nowy",
    "id": "band.ohpSetup",
-   "pl": "Stań na gumie, chwyć jej końce i unieś dłonie do wysokości barków.",
-   "en": "Stand on the band, grab both ends and bring your hands up to shoulder height."
+   "pl": "Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte.",
+   "en": "Stand on the band, grab both ends and raise your hands to about shoulder level, elbows bent."
   },
   {
    "rodzaj": "nowy",
@@ -221,8 +221,8 @@
   {
    "rodzaj": "nowy",
    "id": "spush.setup",
-   "pl": "Chwyć uchwyty taśm albo kółka, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem.",
-   "en": "Hold the strap handles or rings with straight arms in front of you; lean forward with your body straight and at an angle."
+   "pl": "Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem.",
+   "en": "Hold the strap handles with straight arms in front of you; lean forward with your body straight and at an angle."
   }
  ]
 }

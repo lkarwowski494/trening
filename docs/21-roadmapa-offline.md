@@ -157,6 +157,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
 
+### Backlog 1.2 — karty A1 pchanie, NISKIE z recenzji niezależnej (08.11.2026)
+- `ohp.tall` mówi „ciężar” także w karcie z gumą (Band Shoulder Press) oraz brak „usiądź” w ustawieniu Seated Barbell Military Press (`ohp.bbGrip`) — oba wspólne klucze, nie błędy merytoryczne; do poprawy brzmienia przez tłumacza.
+
 ### Backlog 1.2 — figury (audyt scalenia curl, 04.11.2026, NISKIE)
 - Błąd „szarpnięcie” (jerk) w 12 z 18 ćwiczeń curl bez `info.load` (hantle, linka, maszyna): znacznik błędu na miednicy zamiast na ciężarze (`lib/figures/v2/figure.ts:167`) — jedno spojrzenie recenzenta na arkusz hantlowy z błędem jerk.
 - (FW1, 04.11.2026, NISKIE) Druga noga ławki skośnej kończy się na wysokości siedziska i nie dotyka oparcia (`lib/figures/v2/draw.ts:194–195`; widać w Incline Curl, triceps na skosie). Poprawka w FW1 wycofana: łamie `tests/figury-p2-r2.test.ts:66` (ławka z siedziskiem — suwnica) i zmienia ok. 37 póz; potrzebne kryterium odróżnienia ławki skośnej od suwnicy. Decyzja koordynatora 04.11.2026: 1.2.

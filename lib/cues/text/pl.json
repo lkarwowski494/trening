@@ -631,8 +631,8 @@
  "kbp.setup": "Kettlebell przy barku, łokieć blisko żeber.",
  "kbp.move": "Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber.",
  "ohp.mis.sideLean": "Przechylanie się w bok, żeby wypchnąć ciężar.",
- "band.ohpSetup": "Stań na gumie, chwyć jej końce i unieś dłonie do wysokości barków.",
- "band.ohpMove": "Wypchnij dłonie nad głowę, potem powoli wróć do barków.",
+ "band.ohpSetup": "Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte.",
+ "band.ohpMove": "Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej.",
  "ohp.saSetup": "Stań stabilnie, hantel w jednej ręce przy barku.",
  "ohp.saMove": "Wypchnij hantel nad głowę do wyprostu ręki; opuść go spokojnie z powrotem do barku.",
  "rollout.wheel.setup": "Uklęknij i chwyć kółko oburącz przed kolanami, ręce proste.",
@@ -656,7 +656,7 @@
  "press.mis.lock": "Gwałtowne blokowanie łokci na końcu ruchu.",
  "dpush.setup": "Dłonie na podłodze, stopy na ławce albo stopniu; ciało proste od głowy do pięt.",
  "push.mis.sag": "Biodra opadają i ciało przestaje być w linii.",
- "spush.setup": "Chwyć uchwyty taśm albo kółka, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem.",
+ "spush.setup": "Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem.",
  "spush.move": "Opuść klatkę w stronę dłoni, zginając łokcie; wypchnij się z powrotem do wyprostu rąk.",
  "push.mis.flare": "Łokcie rozjeżdżają się szeroko na boki."
 }

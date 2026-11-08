@@ -631,8 +631,8 @@
  "kbp.setup": "Kettlebell at your shoulder, elbow close to your ribs.",
  "kbp.move": "Press the kettlebell straight overhead; lower it back to your shoulder, pulling your elbow down to your ribs.",
  "ohp.mis.sideLean": "Leaning to the side to get the weight up.",
- "band.ohpSetup": "Stand on the band, grab both ends and bring your hands up to shoulder height.",
- "band.ohpMove": "Press your hands overhead, then slowly lower them back to your shoulders.",
+ "band.ohpSetup": "Stand on the band, grab both ends and raise your hands to about shoulder level, elbows bent.",
+ "band.ohpMove": "Press your hands overhead, then slowly return to the start position.",
  "ohp.saSetup": "Stand steady with the dumbbell in one hand at your shoulder.",
  "ohp.saMove": "Press the dumbbell overhead until your arm is straight; lower it under control back to your shoulder.",
  "rollout.wheel.setup": "Kneel and grip the wheel with both hands in front of your knees, arms straight.",
@@ -656,7 +656,7 @@
  "press.mis.lock": "Snapping your elbows into lockout at the end of the press.",
  "dpush.setup": "Hands on the floor, feet on a bench or step; body straight from head to heels.",
  "push.mis.sag": "Letting your hips sag so your body is no longer in a straight line.",
- "spush.setup": "Hold the strap handles or rings with straight arms in front of you; lean forward with your body straight and at an angle.",
+ "spush.setup": "Hold the strap handles with straight arms in front of you; lean forward with your body straight and at an angle.",
  "spush.move": "Lower your chest toward your hands by bending your elbows; push back up until your arms are straight.",
  "push.mis.flare": "Elbows flaring wide to the sides."
 }
