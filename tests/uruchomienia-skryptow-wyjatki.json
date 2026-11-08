@@ -1,6 +1,7 @@
 {
   "_opis": "L-104 (04.11.2026): testy, które wywołują proces potomny (execFileSync/spawnSync/execSync/execFile/spawn/fork), a nie uruchamiają żadnego skryptu repo z scripts/** — wyjątki od wyboru testów przez zależności skryptu (scripts/testy-dla-plikow.mjs, skryptyUruchamianePrzezTest). Każdy wpis ma powód; strażnik tests/wybor-testow-l104.test.ts odrzuca wpis, który przestał być potrzebny.",
   "wyjatki": {
+    "hak-startup-claude-md.test.ts": "uruchamia polecenie haka SessionStart z .claude/settings.json (sh -c) i git w repozytoriach próbnych; żaden skrypt repo z scripts/**; plik settings.json wybiera test ścieżką w źródle testu",
     "audit-m1-050-release-log.test.ts": "uruchamia tylko git (tag -l, rev-list); żaden skrypt repo",
     "maestro-57-bramka.test.ts": "uruchamia tylko git show (plik scenariusza z konkretnego commitu); żaden skrypt repo",
     "maestro-58-przytrzymanie.test.ts": "uruchamia tylko git show (plik scenariusza z konkretnego commitu); żaden skrypt repo",
