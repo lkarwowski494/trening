@@ -97,6 +97,8 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `lawka_skosna_glowa_w_dol` | ławka skośna głową w dół (ang. decline bench) | ławka z głową niżej niż biodra (decline bench); NIE ławka skośna głową w górę (incline), NIE ławka płaska |
 | `tasmy_podwieszane` | taśmy do podwieszania | taśmy do ćwiczeń w podwieszeniu (sprzęt, na którym się ćwiczy: Suspended Push-Up); NIE taśma do rozciągania, NIE guma oporowa. Pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów) |
 | `gwaltowne_blokowanie_lokci` | gwałtowne blokowanie łokci | błąd przy wyciskaniu: łokcie zatrzaskiwane w wyproście (wyprost sam w sobie jest celem ruchu); NIE „prostowanie rąk do końca”. Spójne z ohp.mis.lock i press.noLock. Pozostałe 33 języki wg przekładu z PL/EN |
+| `miniguma` | miniguma | mała zamknięta guma zakładana na nogi (nad kolana albo na kostki) — nie długa guma z uchwytami (guma_oporowa obejmuje każdą gumę); recenzja lokalizacji A2, 08.11.2026 |
+| `blokowanie_kolan_przeprost` | blokowanie kolan w przeproście | błąd albo wskazówka na prasie do nóg: blokowanie kolan w przeproście na górze; pełny wyprost sam nie jest błędem (recenzja lokalizacji A2, 08.11.2026; ta sama logika co gwałtowne blokowanie łokci z A1) |
 
 ## Terminy zalecane (rdzeń)
 
@@ -152,6 +154,8 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pl` | `krazenia` | zataczaj\|(?<![\p{L}])koła(?![\p{L}]) | na sali mówi się „krążenia / krąż”, nie „zataczaj koła” |
 | `pl` | `podwijanie_miednicy` | odchylani\w*\s+miednicy\|tyłopochyl | język podręcznika; w siłowni mówi się „podwijać miednicę” |
 | `pl` | `gwaltowne_blokowanie_lokci` | (?<!wałtowne )blokowanie łokci | samo „blokowanie łokci” czyta się jak „nie prostuj rąk do końca”; błędem jest gwałtowne zatrzaśnięcie |
+| `pl` | `miniguma` | mał(a\|ą\|ej) gum | ten sam sprzęt miał w partii A2 dwie nazwy; jedna nazwa: miniguma |
+| `pl` | `blokowanie_kolan_przeprost` | blokow\w* kolan\w* w pełnym wyproście | pełny wyprost nie jest błędem — błędem jest blokowanie w przeproście |
 | `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
 | `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
 | `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |

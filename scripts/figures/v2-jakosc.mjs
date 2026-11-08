@@ -49,6 +49,7 @@ export const PROGI = {
   widocznoscBiodroMaxDeg: 30, /* R9: klatki ze zgięciem biodra pozy poprawnej > tyle (start rolloutu w skłonie) zwolnione z wymogu widoczności błędu postawy */
   zwisKatDeg: 10, /* przyciąganie, u = 0: ręce w pionie ± tyle */
   zwisMostekCm: 8, /* przyciąganie, u = 0: drążek nad mostkiem ± tyle (oś x) */
+  zwisKuStopomMaxDeg: 25, zwisKuGlowieMaxDeg: 0, /* wiosłowanie odwrócone (ZWIS_KU_STOPOM), u = 0: ręka prosta odchylona od pionu ku STOPOM najwyżej tyle, ku głowie najwyżej tyle (nigdy). UPROSZCZENIE rysunku (badacz 08.11.2026): drążek nad klatką — od mostka do dolnej części klatki / górnej części brzucha; liczba z rachunku geometrycznego na opisie źródeł (asin(d·cos θ / L), L ≈ 60 cm, d do 25 cm), nie z cytatu: docs/research/recenzje/d1-inverted-row-kat-zwisu-2026-11-08.md */
   prosteReceDeg: 15, /* rollout: zgięcie łokcia ≤ tyle (łokieć ≥ 165°) w każdej klatce pozy poprawnej */
   /* recenzja n4 (26.10.2026), R1–R10: progi to KONWENCJA RYSUNKU (do potwierdzenia przez badacza), nie twierdzenia merytoryczne */
   liniaPelnaCm: 11, /* R1: kolano i miednica najwyżej tyle od linii kostka–bark w każdej klatce (podpór na stopach z ciałem prostym) */
@@ -80,7 +81,7 @@ export const PROGI = {
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
 /** P2 (recenzja n5): kierunek progów (max: wielkość ≤ próg; min: wielkość ≥ próg). Progi bramkujące (rolloutRekaMaxCm, rolloutBarkiMinCm, stykPodparciaCm, widocznoscBiodroMaxDeg, tulowUnosiMinDeg, statyczneMaxKlatek) i obiekty nie są zaostrzane. */
-export const PROGI_MAX = ['declineNachylenieMaxDeg', 'lezenieUgniecenieCm', 'liniaPelnaCm', 'koloProsteMaxDeg', 'kolanoPodTulowiemCm', 'przedramieBokDeg', 'receProsteMaxDeg', 'rzadBleduKolanoDeg', 'rzadBleduTolDeg', 'wisiCm', 'lokiecPrzedPlecamiMaxCm', 'lokiecNadNadgarstkiemCm', 'ledzwieCm', 'prosteReceDeg', 'zwisKatDeg', 'zwisMostekCm', 'falloutLokiecMaxDeg', 'szyjaMaxDeg', 'rozstawTolerancja', 'stykFrontCm', 'kolanoStykCm', 'lokiecPodBarkiemCm'];
+export const PROGI_MAX = ['declineNachylenieMaxDeg', 'lezenieUgniecenieCm', 'liniaPelnaCm', 'koloProsteMaxDeg', 'kolanoPodTulowiemCm', 'przedramieBokDeg', 'receProsteMaxDeg', 'rzadBleduKolanoDeg', 'rzadBleduTolDeg', 'wisiCm', 'lokiecPrzedPlecamiMaxCm', 'lokiecNadNadgarstkiemCm', 'ledzwieCm', 'prosteReceDeg', 'zwisKatDeg', 'zwisMostekCm', 'zwisKuStopomMaxDeg', 'zwisKuGlowieMaxDeg', 'falloutLokiecMaxDeg', 'szyjaMaxDeg', 'rozstawTolerancja', 'stykFrontCm', 'kolanoStykCm', 'lokiecPodBarkiemCm'];
 export const PROGI_MIN = ['bladMinCm', 'rozneKlatkiCm', 'podstawaMinCm', 'kolanoNadPodlogaCm', 'kolanaUgieteMinDeg', 'bladGorszyCm', 'bladWidocznyDeg', 'falloutBarkMinDeg', 'podparcieMarginesCm', 'podlogaKonczyna', 'podlogaTulow', 'ksztaltPodPodlogaCm', 'kregoslupZwijaMinDeg', 'zwijanieMiednicaCm', 'zwijanieKregoslupDeg', 'vUpMinDeg'];
 export const marginesJakosci = (v) => Math.max(0.05 * Math.abs(v), Math.abs(v) >= 4 ? 1 : 0);
 /** Wykonuje `fn` z progami zaostrzonymi o margines (P2) i przywraca progi. */
@@ -458,15 +459,29 @@ export function prosteReceRollout(v2, poza) {
   for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const e = v2.jointAngles(s, k).elbow; if (e > PROGI.prosteReceDeg) return [`łokieć ${k} jest zgięty o ${f1(e)}° (u = ${u}), a ma ≤ ${PROGI.prosteReceDeg}° (ręce proste w rolloucie, łokieć ≥ ${180 - PROGI.prosteReceDeg}°)`]; } }
   return [];
 }
+/** Ćwiczenia przyciągania pominięte w regule 16d (tor łokcia w środku ruchu): ćwiczenie → powód. Inverted Row: rachunek (ustalone, szczebel 1) — łokieć leży przed płaszczyzną pleców co najmniej o r − b (r: odległość chwytu od płaszczyzny pleców, b: łokieć → chwyt ≈ 28–30 cm), więc ≤ 2 cm wymaga pokonania ok. 55–60% drogi chwytu: w u = 0,3 i 0,5 fizycznie niemożliwe; koniec ruchu pilnuje reguła 16 (torLokciaPrzyciagania). Odrzucone: monotoniczność (a2), „u ≥ 0,8” (konwencja bez źródła). Badacz 08.11.2026: docs/research/recenzje/d1-inverted-row-tor-lokcia-2026-11-08.md */
+export const TOR_SRODEK_POMIJA = { 'Inverted Row': 'rachunek: łokieć ≥ r − b przed płaszczyzną pleców (ustalone); koniec ruchu sprawdza torLokciaPrzyciagania' };
 /** 16d. Tor łokcia w środku ruchu przyciągania (u 0,3…0,7): łokieć nie leży po stronie klatki (≤ lokiecPrzedPlecamiMaxCm przed płaszczyzną pleców). */
 export function torLokciaSrodek(v2, poza) {
   const o = [];
   for (const u of siatka(poza).filter((x) => x >= 0.3 && x <= 0.7)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const a = s.arms[k]; const d = [a.elbow[0] - a.shoulder[0], a.elbow[1] - a.shoulder[1], a.elbow[2] - a.shoulder[2]]; const przodem = d[0] * s.front[0] + d[1] * s.front[1] + d[2] * s.front[2]; if (przodem > PROGI.lokiecPrzedPlecamiMaxCm) return [`łokieć ${k} w środku ruchu (u = ${u}) leży ${f1(przodem)} cm przed płaszczyzną pleców, a ma ≤ ${PROGI.lokiecPrzedPlecamiMaxCm} cm (nie po stronie klatki)`]; } }
   return o;
 }
-/** 16c. Zwis startowy w przyciąganiu (u = 0): ręce w pionie ± zwisKatDeg, drążek nad mostkiem ± zwisMostekCm (oś x; mostek = 15% drogi bark → miednica); tor łokcia w środku ruchu osobno (torLokciaSrodek). */
+/** Ćwiczenia, w których zwis startowy (u = 0) liczy się ku stopom: ręka prosta odchylona od pionu ku stopom 0–zwisKuStopomMaxDeg, NIGDY ku głowie (wiosłowanie odwrócone: drążek nad klatką, nie nad barkiem).
+ * UPROSZCZENIE rysunku (08.11.2026): żadne przeczytane źródło nie podaje kąta ramienia (ustalone jest tylko „drążek nad klatką, ręce proste”); przedział wynika z rachunku geometrycznego, a „prostopadła do tułowia” odrzucono (zależy od wysokości drążka).
+ * Dla tych ćwiczeń kąt zastępuje sprawdzenie „drążek nad mostkiem ± zwisMostekCm” (mostek to dolna granica przedziału). Badacz: docs/research/recenzje/d1-inverted-row-kat-zwisu-2026-11-08.md. */
+export const ZWIS_KU_STOPOM = ['Inverted Row'];
+/** 16c. Zwis startowy w przyciąganiu (u = 0): ręce w pionie ± zwisKatDeg, drążek nad mostkiem ± zwisMostekCm (oś x; mostek = 15% drogi bark → miednica); dla ZWIS_KU_STOPOM: kąt ze znakiem (dodatni = ku stopom) w przedziale [−zwisKuGlowieMaxDeg, zwisKuStopomMaxDeg], bez sprawdzenia mostka; tor łokcia w środku ruchu osobno (torLokciaSrodek). */
 export function zwisStartowy(v2, poza) {
-  const o = []; const s0 = v2.keyframeFrame(poza, poza.klatki[0].u).sk; const most = [s0.shoulderC[0] + (s0.pelvis[0] - s0.shoulderC[0]) * 0.15, s0.shoulderC[1] + (s0.pelvis[1] - s0.shoulderC[1]) * 0.15];
+  const o = []; const s0 = v2.keyframeFrame(poza, poza.klatki[0].u).sk;
+  if (ZWIS_KU_STOPOM.includes(poza.cwiczenie)) {
+    const dir = Math.sign(s0.pelvis[0] - s0.shoulderC[0]); const eps = 1e-6; /* + = ku stopom (kierunek bark → miednica w osi x) */
+    for (const k of ['R', 'L']) { const a = s0.arms[k]; const d = [a.grip[0] - a.shoulder[0], a.grip[1] - a.shoulder[1]]; const kat = (Math.atan2(d[0] * dir, d[1]) * 180) / Math.PI;
+      if (kat > PROGI.zwisKuStopomMaxDeg + eps) { o.push(`ręka ${k} w zwisie startowym odchyla się ${f1(kat)}° od pionu ku stopom, a ma ≤ ${PROGI.zwisKuStopomMaxDeg}° (uproszczenie: drążek nad klatką, nie nad brzuchem)`); break; }
+      if (kat < -PROGI.zwisKuGlowieMaxDeg - eps) { o.push(`ręka ${k} w zwisie startowym odchyla się ${f1(-kat)}° od pionu ku głowie, a ma być 0° albo ku stopom (drążek nie jest nad głową)`); break; } }
+    return o;
+  }
+  const most = [s0.shoulderC[0] + (s0.pelvis[0] - s0.shoulderC[0]) * 0.15, s0.shoulderC[1] + (s0.pelvis[1] - s0.shoulderC[1]) * 0.15];
   for (const k of ['R', 'L']) { const a = s0.arms[k]; const d = [a.grip[0] - a.shoulder[0], a.grip[1] - a.shoulder[1]]; const kat = (Math.atan2(Math.abs(d[0]), d[1]) * 180) / Math.PI; if (kat > PROGI.zwisKatDeg) o.push(`ręka ${k} w zwisie startowym odchyla się ${f1(kat)}° od pionu, a ma ≤ ${PROGI.zwisKatDeg}° (ręce proste w pionie)`); const dx = Math.abs(a.grip[0] - most[0]); if (dx > PROGI.zwisMostekCm) { o.push(`drążek jest ${f1(dx)} cm od mostka w osi x (u = ${poza.klatki[0].u}), a ma ≤ ${PROGI.zwisMostekCm} cm (drążek nad mostkiem)`); break; } }
   return o;
 }
@@ -799,7 +814,7 @@ export function sprawdzJakosc(poza, ctx) {
   dodaj('czesc_ciala_nie_znika', czescCialaNieZnika(v2, poza)); /* R9 i R10: bramka dla WSZYSTKICH rodzin (backlog figur 28.10.2026; było: tylko mobilność) */
   dodaj('os_stopy_w_plaszczyznie', osStopyWPlaszczyznie(v2, poza)); /* R11 (L2): bramka dla WSZYSTKICH rodzin; znane odstępstwa: OS_STOPY_WYJATKI z powodem */
   dodaj('rzad_bledu_dotyczy', rzadBleduDotyczy(v2, poza));
-  if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
+  if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); if (!(cwiczenie in TOR_SRODEK_POMIJA)) dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (rodzina === 'delt_raise' && wskazowkiLatHeight(cwiczenie) && !(cwiczenie in DLON_NA_WYSOKOSCI_BARKOW_WYJATKI)) dodaj('dlon_na_wysokosci_barkow_swiat', dlonNaWysokosciBarkowSwiat(v2, poza));
   if (LEZENIE_PRZODEM.includes(cwiczenie)) { dodaj('tulow_przodem_do_lawki', tulowPrzodemDoLawki(v2, poza)); dodaj('zwis_przedramie_u0', zwisPrzedramieU0(v2, poza)); }
   if (cechy.has('rollout')) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));

@@ -3,7 +3,9 @@
  "powod": "scalenie main 28.10.2026: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1",
  "v1": [],
  "v2": [],
- "zestawy_zmienione": [],
+ "zestawy_zmienione": [
+  "Calf Raise (linki)"
+ ],
  "zestawy_bez_wpisu": [],
  "karty_zmienione": [],
  "karty_nowe": [
@@ -20,6 +22,25 @@
   "Chest Dip",
   "Seated Cable Chest Press",
   "Decline Push Up",
-  "Suspended Push-Up"
+  "Suspended Push-Up",
+  "Single Leg Calf Raise",
+  "Seated Calf Raise (hantle)",
+  "Smith Machine Calf Raise",
+  "Calf Raise (sztanga)",
+  "Calf Raise (linki)",
+  "Barbell Seated Calf Raise",
+  "Band Calf Raise",
+  "Dumbbell Seated One-Leg Calf Raise",
+  "Cable Kickback",
+  "Fire Hydrant",
+  "Donkey Kick",
+  "Clamshell",
+  "Hip Extension with Bands",
+  "Lateral Band Walk",
+  "Single Leg Glute Bridge",
+  "Single Leg Hip Thrust",
+  "Glute Bridge (sztanga)",
+  "Seated Band Hamstring Curl",
+  "Single Leg Press"
  ]
 }

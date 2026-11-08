@@ -1430,11 +1430,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Band Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
   "Band Chest Fly": {
    "rodzina": "fly",
    "sprawdzenie": null,
@@ -1487,11 +1482,6 @@
   },
   "Barbell Rollout from Bench": {
    "rodzina": "rollout",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
-  "Barbell Seated Calf Raise": {
-   "rodzina": "calf",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
@@ -1665,11 +1655,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Cable Kickback": {
-   "rodzina": "hipExt",
-   "sprawdzenie": "wyprost biodra w tył przy stabilnych lędźwiach — jak ACE #270 (na czworakach), tu stojąc",
-   "plik": "wskazowki-cwiczenia-01"
-  },
   "Cable Preacher Curl": {
    "rodzina": "curl",
    "sprawdzenie": null,
@@ -1720,16 +1705,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Calf Raise (linki)": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Calf Raise (sztanga)": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Calf-Machine Shoulder Shrug": {
    "rodzina": "shrug",
    "sprawdzenie": null,
@@ -1744,11 +1719,6 @@
    "rodzina": "stretch",
    "sprawdzenie": "NASM static-latissimus-dorsi-ball-stretch — pokrewne",
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Clamshell": {
-   "rodzina": "hipAbd",
-   "sprawdzenie": "leżąc bokiem, miednica nie odchyla się w tył (ACE #38 — ta sama pozycja)",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Clean and Press": {
    "rodzina": "oly",
@@ -1915,11 +1885,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Donkey Kick": {
-   "rodzina": "hipExt",
-   "sprawdzenie": "ACE #270 opisuje to ćwiczenie wprost",
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Double Kettlebell Front Rack Carry": {
    "rodzina": "carry",
    "sprawdzenie": null,
@@ -1975,11 +1940,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Dumbbell Seated One-Leg Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
   "Dumbbell Squat": {
    "rodzina": "squat",
    "sprawdzenie": null,
@@ -2019,11 +1979,6 @@
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Fire Hydrant": {
-   "rodzina": "hipAbd",
-   "sprawdzenie": "na czworakach, odwodzenie — miednica równo jak w bird dog",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Flat Bench Cable Fly": {
    "rodzina": "fly",
@@ -2079,11 +2034,6 @@
    "rodzina": "vpull",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Glute Bridge (sztanga)": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Glute Ham Raise": {
    "rodzina": "legCurl",
@@ -2144,11 +2094,6 @@
    "rodzina": "mobility",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Hip Extension with Bands": {
-   "rodzina": "hipExt",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
   },
   "Hollow Hold": {
    "rodzina": "plank",
@@ -2314,11 +2259,6 @@
    "rodzina": "squat",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Lateral Band Walk": {
-   "rodzina": "bandWalk",
-   "sprawdzenie": "ISSA i ACE — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Lateral Bound": {
    "rodzina": "jump",
@@ -2825,11 +2765,6 @@
    "sprawdzenie": "klatka na ławce jak w Chest Supported Row",
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Seated Band Hamstring Curl": {
-   "rodzina": "legCurl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
   "Seated Barbell Twist": {
    "rodzina": "rotation",
    "sprawdzenie": null,
@@ -2839,11 +2774,6 @@
    "rodzina": "ohp",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Seated Calf Raise (hantle)": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Seated Calf Stretch": {
    "rodzina": "stretch",
@@ -2945,26 +2875,6 @@
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Single Leg Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg Glute Bridge": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg Hip Thrust": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg Press": {
-   "rodzina": "legPress",
-   "sprawdzenie": "NASM single-leg-press (sitemap) — można dodać jako bezpośrednie źródło",
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Single Leg Push-Off": {
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
@@ -3059,11 +2969,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Smith Machine Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Smith Machine Close-Grip Bench Press": {
    "rodzina": "bench",
