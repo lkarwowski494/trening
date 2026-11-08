@@ -45,11 +45,10 @@ describe('katalog — każde ćwiczenie ze świeżego stanu', () => {
     /* @matrix MUSCLES */
     for (const mu of MUSCLES) expect([mu, CATALOG0.some(e => e.muscles.includes(mu))]).toEqual([mu, true]);
   });
-  test('nazwa każdego ćwiczenia w każdym języku: po polsku — kanoniczna, w innych bez polskich słów i liter, unikalna', () => {
+  test('nazwa każdego ćwiczenia w każdym języku (ZB-044, decyzje 07.11.2026 i 08.11.2026, docs/18; zastępuje DEC-13: dawniej po polsku — kanoniczna): angielska także po polsku, bez polskich słów i liter, unikalna', () => {
     const bad: string[] = [];
     for (const l of LANGS) { applyLang(l); const names = CATALOG0.map(e => exName(e));
-      if (l === 'pl') names.forEach((n, i) => { if (n !== CATALOG0[i].name) bad.push(`pl: ${n}`); });
-      else names.forEach(n => { if (/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]|\((sztanga|hantle|hantel|linki|linka|ławka|bieżnia|dwie linki|stojąc|siedząc)[)/]/.test(n)) bad.push(`${l}: ${n}`); });
+      names.forEach(n => { if (/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]|\((sztanga|hantle|hantel|linki|linka|ławka|bieżnia|dwie linki|stojąc|siedząc)[)/]/.test(n)) bad.push(`${l}: ${n}`); });
       if (new Set(names.map(n => n.toLowerCase())).size !== names.length) bad.push(`${l}: nazwy nieunikalne`); }
     applyLang('pl'); expect(bad).toEqual([]);
   });

@@ -30,7 +30,7 @@ describe('faza set', () => {
     expect(s).toMatchObject({ phase: 'set', paused: false, workoutId: A().id, title: 'Push', rest: null, doneCount: 0, totalCount: 7, toFillCount: 0, lang: 'pl' });
     expect(s.now).toEqual({ setId: sid(0, 0), blockId: e.id, title: 'Bench Press', counter: 'seria 1 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null });
     expect(s.after).toEqual({ restSec: 90, cue: 'Bench Press · seria 2, 80 kg, 8 powtórzeń', last: false,
-      now: { setId: sid(0, 1), blockId: e.id, title: 'Bench Press (sztanga)', counter: 'seria 2 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null } });
+      now: { setId: sid(0, 1), blockId: e.id, title: 'Bench Press', counter: 'seria 2 z 3', load: '80 kg × 8', group: null, timed: false, targetSec: null } });
   });
   test('ostatnia seria bloku: `after` pokazuje następne ćwiczenie („dalej: …”) z jego przerwą', async () => {
     await world(); A().exercises[0].sets[0].done = true; A().exercises[0].sets[1].done = true;
