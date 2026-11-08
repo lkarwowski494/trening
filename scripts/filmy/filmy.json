@@ -1,0 +1,24 @@
+{
+  "_opis": "Definicje krótkich filmów o technice (ZB-047, decyzje właściciela 07.11.2026 w docs/18). Ćwiczenie tylko z rodziny po recenzji (shownFigureSpec, L-047), błąd i wskazówki — id z lib/cues/data.json tego ćwiczenia, teksty z lib/cues/text/<język>.json (rejestr twierdzeń). Haki: tekst marketingowy; stan „zatwierdzony” tylko po akceptacji właściciela, inne języki przez przekład API + recenzent lokalizacji. Nazwa lokalna ćwiczenia: tylko po recenzji nazw (ZB-044) — do tego czasu pusta.",
+  "domyslne": { "fps": 30, "sekundy": 13, "blad_do_s": 5.5, "koniec_s": 1.5, "motyw": "dark", "szerokosc": 1080, "wysokosc": 1920 },
+  "teksty": {
+    "pl": { "podpis": "Animacja: aplikacja {app}", "blad": "Błąd", "poprawnie": "Poprawnie" },
+    "en": { "podpis": "Animation: {app} app", "blad": "Mistake", "poprawnie": "Correct" }
+  },
+  "teksty_stan": { "pl": "do przeglądu — brzmienie agenta, 08.11.2026", "en": "do przeglądu — brzmienie agenta, 08.11.2026" },
+  "filmy": [
+    {
+      "id": "technika-back-squat-kolana",
+      "cwiczenie": "Back Squat",
+      "blad": "kneesIn",
+      "wskazowka_bledu": "sq.mis.kneesIn",
+      "wskazowka_poprawna": "sq.kneesToes",
+      "widoki": ["front"],
+      "haki": {
+        "pl": { "tekst": "Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?", "stan": "zatwierdzony — właściciel 07.11.2026 (hak 1)" },
+        "en": { "tekst": "Been training for years but not sure your technique is right?", "stan": "do przeglądu — brzmienie agenta, 08.11.2026" }
+      },
+      "nazwa_lokalna": {}
+    }
+  ]
+}
