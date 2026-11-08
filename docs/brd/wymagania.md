@@ -725,9 +725,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-BIB-013: Nazwy ćwiczeń z biblioteki po angielsku we wszystkich językach, nazwa lokalna tylko na karcie (07.11.2026 i 08.11.2026, ZB-044; zastępuje DEC-13)
 - Przepływ: PR-01
-- Dowód potrzeby: decyzje właściciela 07.11.2026 i 08.11.2026 (docs/18: wariant A „Podpis”); `lib/i18n.ts` (`exName`, `exNameLang`, `exLocal`, `exLocalFold`), lista nazw po recenzji `lib/nazwy-lokalne.ts` (dziś pusta), karta `app/exercise/[id].tsx`; makieta `docs/design/karta-nazwy/` (gałąź `studio/naglowek-karty-nazwy`)
+- Dowód potrzeby: decyzje właściciela 07.11.2026 i 08.11.2026 (docs/18: wariant A „Podpis”); `lib/i18n.ts` (`exName`, `exRenamed`, `exNameLang`, `exLocal`, `exLocalFold`), lista nazw po recenzji `lib/nazwy-lokalne.ts` (dziś pusta), karta `app/exercise/[id].tsx`; makieta `docs/design/karta-nazwy/` (gałąź `studio/naglowek-karty-nazwy`)
 - Ekrany: `app/exercise/[id].tsx`, `app/exercises.tsx`, `app/picker.tsx`, `app/swap.tsx`, `app/(tabs)/progress.tsx`, `app/more/import.tsx`, wszystkie miejsca z nazwą ćwiczenia (`exName`), zegarek (`lib/watch/snapshot.ts`), eksport CSV (`lib/backup.ts`)
-- Test: `tests/zb044-nazwy-biblioteki.test.tsx`, `.maestro/37-jezyk-motyw-trwale.yaml`
+- Test: `tests/zb044-nazwy-biblioteki.test.tsx`, `tests/zb044-przemianowane.test.tsx`, `.maestro/37-jezyk-motyw-trwale.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Polski interfejs, nazwa angielska
     - Zakładając, że język aplikacji to polski, a ćwiczenie pochodzi z biblioteki (np. „Bench Press (sztanga)”)
@@ -749,10 +749,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma historię i szablony z ćwiczeniami z biblioteki
     - Gdy aktualizuje aplikację
     - Wtedy zapisane nazwy i klucze katalogu nie są migrowane; zmienia się tylko nazwa wyświetlana
-  - Scenariusz: Ćwiczenie biblioteki przemianowane przez użytkownika (domyślnie do weta właściciela, 08.11.2026, rekomendacje A i A)
-    - Zakładając, że użytkownik przemianował ćwiczenie z biblioteki, a wyszukiwanie obejmuje też nazwę zapisaną w danych
-    - Gdy ekran pokazuje to ćwiczenie albo użytkownik je wyszukuje
-    - Wtedy widzi nazwę angielską z katalogu (zapisana nazwa zostaje w danych bez migracji i dalej służy do wyszukiwania), jak w innych językach od początku
+  - Scenariusz: Ćwiczenie biblioteki przemianowane przez użytkownika (W-1, 08.11.2026, decyzja koordynatora w nocy do weta właściciela; poprawia rekomendację A/A)
+    - Zakładając, że użytkownik przemianował ćwiczenie z biblioteki (zapisana nazwa różni się od nazw katalogowych: klucza, nazwy ogólnej, dawnych kluczy i nazw EN) — w dowolnym języku
+    - Gdy ekran pokazuje to ćwiczenie (lista, trening, historia, plan, Postępy, zegarek, eksport, karta) albo użytkownik je wyszukuje
+    - Wtedy widzi nazwę nadaną przez siebie, jak przy ćwiczeniu własnym (jedna nazwa, bez nazwy lokalnej, VoiceOver głosem języka interfejsu); nowa nazwa z pola „Nazwa” jest widoczna od razu, bez wiersza „Wyświetlane jako”; ćwiczenia nieprzemianowane dalej mają nazwę angielską z katalogu; dane bez migracji (`lib`, `libKey` bez zmian)
+  - Scenariusz: Import CSV — nazwa własna i biblioteczna (Ś-2, 09.11.2026)
+    - Zakładając, że użytkownik ma własne ćwiczenie „Bench Press” (z 1.0) obok „Bench Press” z biblioteki
+    - Gdy importuje plik z wierszami „Bench Press”
+    - Wtedy wiersze trafiają do ćwiczenia własnego (dokładna nazwa, własne przed biblioteką, aktywne przed zarchiwizowanym); nazwy biblioteki (z dopiskiem, dawne) dalej do biblioteki
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

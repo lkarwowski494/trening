@@ -1,8 +1,9 @@
 import { EN } from './i18n.en';
 import { LOCALES } from './locales';
 import { pluralIndex } from './plural';
-import { NAME_EN } from './nazwy-en.generated';
+import { NAME_EN, NAME_EN_FORMER } from './nazwy-en.generated';
 import { NAZWY_LOKALNE } from './nazwy-lokalne';
+import { LIB_DISPLAY_NAME, LIB_KEYS, LIB_RENAMED, LIB_RETIRED, catalogKey, formerNamesOf } from './seed';
 
 /*
  * Języki (T-040, LOC-01, ADR-027). Kluczem jest polski tekst źródłowy — kod czyta się jak dotąd,
@@ -136,10 +137,25 @@ const EX_FULL: Record<string, string> = {
   /* SEC2-01 (09.10.2026): nazwy ogólne zamiast znaków towarowych (lib/seed.ts LIB_DISPLAY_NAME) */ 'Rower powietrzny': 'Air Bike', 'Ergometr narciarski': 'Ski Ergometer',
 };
 const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumbbell', 'hantel': 'Dumbbell', 'linki': 'Cable', 'ławka': 'Bench', 'bieżnia': 'Treadmill', 'hantle/linki': 'Dumbbell/Cable', 'hantel/linka': 'Dumbbell/Cable', 'dwie linki': 'Two Cables' /* katalog 04.10.2026 */, 'talerz': 'Plate' /* research biblioteki 09.10.2026: Lying Neck Extension (talerz) */, 'półkula balansowa': 'Balance Dome' /* SEC2-01 */ };
-/** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane pokazujemy tak, jak je nazwał użytkownik. */
+/**
+ * ZB-044 W-1 (08.11.2026, recenzja audytora; decyzja koordynatora w nocy 08/09.11 do weta właściciela): ćwiczenie z biblioteki PRZEMIANOWANE przez użytkownika — zapisana nazwa różni się od
+ * wszystkich nazw katalogowych tego ćwiczenia: klucz katalogu (u starych danych bez klucza — sama nazwa), nazwa ogólna (LIB_DISPLAY_NAME), dawne klucze, nazwa EN i dawne nazwy EN.
+ * Bez migracji danych (e.name zostaje, flaga `lib` też). Przypadek niejednoznaczny rozstrzygamy na korzyść danych użytkownika: nazwa spoza katalogu jest jego nazwą.
+ */
+export function exRenamed(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): boolean {
+  if (!e || !e.lib) return false;
+  const n = e.name; const k = catalogKey(e);
+  if (k === undefined) return !(LIB_KEYS.has(n) || LIB_RETIRED.has(n) || Object.prototype.hasOwnProperty.call(LIB_RENAMED, n) || Object.values(LIB_DISPLAY_NAME).includes(n)); /* bez (prawidłowego) klucza: nazwa katalogowa = nie przemianowane */
+  if (n === k || n === (Object.prototype.hasOwnProperty.call(LIB_DISPLAY_NAME, k) ? LIB_DISPLAY_NAME[k] : undefined)) return false;
+  if (formerNamesOf({ lib: true, libKey: k }).includes(n)) return false;
+  if (n === (Object.prototype.hasOwnProperty.call(NAME_EN, k) ? NAME_EN[k] : undefined)) return false;
+  if ((Object.prototype.hasOwnProperty.call(NAME_EN_FORMER, k) ? NAME_EN_FORMER[k] : []).includes(n)) return false;
+  return true;
+}
+/** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane (exRenamed) pokazujemy tak, jak je nazwał użytkownik — w każdym języku. */
 export function exName(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string {
   if (!e) return '?';
-  if (!e.lib) return e.name; /* ZB-044 (07.11.2026, zastępuje DEC-13): nazwy biblioteki po angielsku we WSZYSTKICH językach, także polskim (jak na siłowniach) */
+  if (!e.lib || exRenamed(e)) return e.name; /* ZB-044 (07.11.2026, zastępuje DEC-13): nazwy biblioteki po angielsku we WSZYSTKICH językach, także polskim (jak na siłowniach); W-1: przemianowane = nazwa użytkownika */
   /* ZB-025 b (31.10.2026): kanoniczna nazwa EN po kluczu katalogu (przewodnik stylu; klucze i dane użytkownika bez zmian) — przed tłumaczeniem dopisków EX_PAREN/EX_FULL */
   { const k = e.libKey ?? e.name; const n = Object.prototype.hasOwnProperty.call(NAME_EN, k) ? NAME_EN[k] : undefined; if (n) return n; }
   { const f = Object.prototype.hasOwnProperty.call(EX_FULL, e.name) ? EX_FULL[e.name] : undefined; if (f) return f; }
@@ -148,12 +164,12 @@ export function exName(e: { name: string; lib?: boolean; libKey?: string } | und
 
 /** M1-audytor-generalny-038: język wymowy (VoiceOver) dla samej nazwy ćwiczenia. Nazwy biblioteki są po angielsku w każdym języku, także polskim (ZB-044, 07.11.2026), więc czyta je
  * głos angielski; ćwiczenia własne i przemianowane (lib = false) — głos języka interfejsu. Dotyczy tylko elementów z samą nazwą (nagłówek, tytuł wiersza). */
-export function exNameLang(e: { lib?: boolean } | undefined | null): Lang { return e?.lib ? 'en' : current; }
+export function exNameLang(e: { name?: string; lib?: boolean; libKey?: string } | undefined | null): Lang { return e?.lib && !(e.name !== undefined && exRenamed({ name: e.name, lib: true, libKey: e.libKey })) ? 'en' : current; }
 
 /** ZB-044 (08.11.2026, wariant A „Podpis”): nazwa lokalna (język interfejsu) ćwiczenia z biblioteki — tylko z listy po recenzji (lib/nazwy-lokalne.ts); brak wpisu, ćwiczenie własne,
  * język angielski albo nazwa identyczna z angielską (bez wielkości liter) → undefined. Pokazuje ją tylko karta ćwiczenia; wyszukiwanie używa jej też (exLocalFold). */
 export function exLocal(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string | undefined {
-  if (!e || !e.lib || current === 'en') return undefined;
+  if (!e || !e.lib || current === 'en' || exRenamed(e)) return undefined;
   const m = Object.prototype.hasOwnProperty.call(NAZWY_LOKALNE, current) ? NAZWY_LOKALNE[current] : undefined; const k = e.libKey ?? e.name;
   const n = m && Object.prototype.hasOwnProperty.call(m, k) ? m[k].trim() : '';
   return n && n.toLowerCase() !== exName(e).toLowerCase() ? n : undefined;

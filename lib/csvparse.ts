@@ -84,7 +84,8 @@ const aliased = (s: string) => EQUIP_ALIAS.reduce((a, [re, to]) => a.replace(re,
 export interface ExIndex { exact: Map<string, Exercise>; norm: Map<string, Exercise> }
 export function indexExercises(list: Exercise[]): ExIndex {
   const exact = new Map<string, Exercise>(), norm = new Map<string, Exercise>();
-  const put = (m: Map<string, Exercise>, k: string, e: Exercise) => { const o = m.get(k); if (!o || (o.archived && !e.archived)) m.set(k, e); };
+  /* ZB-044 Ś-2 (09.11.2026): przy tej samej nazwie aktywne przed zarchiwizowanym, a ćwiczenie własne przed biblioteką (np. własne „Bench Press” z 1.0 obok „Bench Press” z biblioteki) */
+  const put = (m: Map<string, Exercise>, k: string, e: Exercise) => { const o = m.get(k); if (!o || (o.archived && !e.archived) || (!!o.archived === !!e.archived && o.lib === true && e.lib !== true)) m.set(k, e); };
   /* ZB-025 b (31.10.2026): plik wyeksportowany przez wcześniejszą wersję w angielskim ma dawne nazwy EN (backup.ts zapisuje exName) — ćwiczenie z biblioteki rozpoznajemy też po nich */
   const dawneEn = (e: Exercise): readonly string[] => (e.lib === true && typeof e.libKey === 'string' && Object.prototype.hasOwnProperty.call(NAME_EN_FORMER, e.libKey) ? NAME_EN_FORMER[e.libKey] : []);
   for (const e of list) for (const nm of new Set([e.name, exName(e), ...dawneEn(e)])) { put(exact, nm, e); put(norm, normName(nm), e); }
