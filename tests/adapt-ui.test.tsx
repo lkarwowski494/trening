@@ -78,7 +78,7 @@ describe('arkusz zamiany z celem adapt: i zastosowanie', () => {
     expect(screen.getByText('Bez zmian')).toBeTruthy(); expect(screen.getByLabelText('Pomiń dziś: Bench Press')).toBeTruthy(); expect(screen.queryByLabelText(/^Cofnij zamianę/)).toBeNull();
     const props = screen.getAllByLabelText(/^Propozycja \d: /); expect(props.length).toBeGreaterThan(0); expect(screen.queryByLabelText(/^Propozycja \d: Bench Press/)).toBeNull();
     const second = props[Math.min(1, props.length - 1)]; const label = second.props.accessibilityLabel as string; const name = /^Propozycja \d: ([^,]+)/.exec(label)![1];
-    await tap(second); await flushAll(20); expect(top()).toBe('adapt'); expect(screen.getByText(new RegExp(`^Bench Press \\(sztanga\\) → ${name.replace(/[()]/g, '\\$&')}`))).toBeTruthy(); expect(screen.getByText(/wybrane ręcznie/)).toBeTruthy();
+    await tap(second); await flushAll(20); expect(top()).toBe('adapt'); expect(screen.getByText(new RegExp(`^Bench Press → ${name.replace(/[()]/g, '\\$&')}`))).toBeTruthy(); expect(screen.getByText(/wybrane ręcznie/)).toBeTruthy();
     expect(JSON.stringify(S().active!.exercises)).toBe(before);
   });
   test('„Bez zmian” zdejmuje blok z listy zastosowań (Zastosuj (2)); „Pomiń dziś” pomija blok po „Zastosuj”', async () => {
