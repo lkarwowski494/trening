@@ -18,7 +18,8 @@
     },
     "czesteBledyTekst": 222,
     "roleMiesni": 510,
-    "pelnaKarta": 125,
+    "pelnaKarta": 179,
+    "pelnaKartaBlad": 125,
     "recenzjaFigur": 183
   },
   "kartZTekstami": 573,
@@ -32,7 +33,8 @@
       "wlasne": 5,
       "ogolne": 20,
       "bezTekstu": 0,
-      "pelnaKarta": 23,
+      "pelnaKarta": 24,
+      "pelnaKartaBlad": 23,
       "recenzja": 25
     },
     "bench_press": {
@@ -44,7 +46,8 @@
       "wlasne": 5,
       "ogolne": 25,
       "bezTekstu": 0,
-      "pelnaKarta": 28,
+      "pelnaKarta": 30,
+      "pelnaKartaBlad": 28,
       "recenzja": 30
     },
     "hinge": {
@@ -56,7 +59,8 @@
       "wlasne": 7,
       "ogolne": 25,
       "bezTekstu": 0,
-      "pelnaKarta": 31,
+      "pelnaKarta": 32,
+      "pelnaKartaBlad": 31,
       "recenzja": 32
     },
     "pushup_plank": {
@@ -69,6 +73,7 @@
       "ogolne": 0,
       "bezTekstu": 23,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "dip": {
@@ -81,6 +86,7 @@
       "ogolne": 0,
       "bezTekstu": 4,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "overhead_press": {
@@ -93,6 +99,7 @@
       "ogolne": 0,
       "bezTekstu": 18,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "row": {
@@ -105,6 +112,7 @@
       "ogolne": 0,
       "bezTekstu": 7,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "cable_row": {
@@ -117,6 +125,7 @@
       "ogolne": 0,
       "bezTekstu": 7,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "pull_up": {
@@ -128,7 +137,8 @@
       "wlasne": 3,
       "ogolne": 8,
       "bezTekstu": 2,
-      "pelnaKarta": 8,
+      "pelnaKarta": 9,
+      "pelnaKartaBlad": 8,
       "recenzja": 11
     },
     "pulldown": {
@@ -141,6 +151,7 @@
       "ogolne": 0,
       "bezTekstu": 5,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "lunge": {
@@ -153,6 +164,7 @@
       "ogolne": 0,
       "bezTekstu": 18,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "leg_machine": {
@@ -165,6 +177,7 @@
       "ogolne": 0,
       "bezTekstu": 6,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "leg_isolation": {
@@ -177,6 +190,7 @@
       "ogolne": 0,
       "bezTekstu": 10,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "calf_raise": {
@@ -189,6 +203,7 @@
       "ogolne": 0,
       "bezTekstu": 10,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "hip_bridge": {
@@ -201,6 +216,7 @@
       "ogolne": 0,
       "bezTekstu": 8,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "kb_ballistic": {
@@ -213,6 +229,7 @@
       "ogolne": 0,
       "bezTekstu": 13,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "olympic": {
@@ -224,7 +241,8 @@
       "wlasne": 21,
       "ogolne": 1,
       "bezTekstu": 3,
-      "pelnaKarta": 0,
+      "pelnaKarta": 21,
+      "pelnaKartaBlad": 0,
       "recenzja": 22
     },
     "back_extension": {
@@ -237,6 +255,7 @@
       "ogolne": 0,
       "bezTekstu": 3,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "curl": {
@@ -248,7 +267,8 @@
       "wlasne": 6,
       "ogolne": 28,
       "bezTekstu": 2,
-      "pelnaKarta": 32,
+      "pelnaKarta": 34,
+      "pelnaKartaBlad": 32,
       "recenzja": 34
     },
     "triceps": {
@@ -260,7 +280,8 @@
       "wlasne": 26,
       "ogolne": 3,
       "bezTekstu": 3,
-      "pelnaKarta": 3,
+      "pelnaKarta": 29,
+      "pelnaKartaBlad": 3,
       "recenzja": 29
     },
     "delt_raise": {
@@ -273,6 +294,7 @@
       "ogolne": 0,
       "bezTekstu": 7,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "chest_fly": {
@@ -285,6 +307,7 @@
       "ogolne": 0,
       "bezTekstu": 18,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "shrug": {
@@ -297,6 +320,7 @@
       "ogolne": 0,
       "bezTekstu": 6,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "rotator_cuff": {
@@ -309,6 +333,7 @@
       "ogolne": 0,
       "bezTekstu": 5,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "core_floor": {
@@ -321,6 +346,7 @@
       "ogolne": 0,
       "bezTekstu": 40,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "core_hang": {
@@ -333,6 +359,7 @@
       "ogolne": 0,
       "bezTekstu": 4,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "core_standing": {
@@ -345,6 +372,7 @@
       "ogolne": 0,
       "bezTekstu": 17,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "carry": {
@@ -357,6 +385,7 @@
       "ogolne": 0,
       "bezTekstu": 5,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "cardio": {
@@ -369,6 +398,7 @@
       "ogolne": 0,
       "bezTekstu": 11,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "plyo": {
@@ -381,6 +411,7 @@
       "ogolne": 0,
       "bezTekstu": 22,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "sled_throw": {
@@ -393,6 +424,7 @@
       "ogolne": 0,
       "bezTekstu": 13,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "strongman": {
@@ -405,6 +437,7 @@
       "ogolne": 0,
       "bezTekstu": 10,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "glute_floor": {
@@ -417,6 +450,7 @@
       "ogolne": 0,
       "bezTekstu": 7,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "hip_abd_add": {
@@ -429,6 +463,7 @@
       "ogolne": 0,
       "bezTekstu": 8,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "mobility_stand": {
@@ -441,6 +476,7 @@
       "ogolne": 0,
       "bezTekstu": 26,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "mobility_floor": {
@@ -453,6 +489,7 @@
       "ogolne": 0,
       "bezTekstu": 13,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "foam_roll": {
@@ -465,6 +502,7 @@
       "ogolne": 0,
       "bezTekstu": 2,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "neck": {
@@ -477,6 +515,7 @@
       "ogolne": 0,
       "bezTekstu": 5,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "forearm": {
@@ -489,6 +528,7 @@
       "ogolne": 0,
       "bezTekstu": 13,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "thruster": {
@@ -501,6 +541,7 @@
       "ogolne": 0,
       "bezTekstu": 1,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "chest_press_machine": {
@@ -513,6 +554,7 @@
       "ogolne": 0,
       "bezTekstu": 3,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "cable_press": {
@@ -525,6 +567,7 @@
       "ogolne": 0,
       "bezTekstu": 3,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     },
     "kneeling_hinge": {
@@ -537,6 +580,7 @@
       "ogolne": 0,
       "bezTekstu": 2,
       "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
       "recenzja": 0
     }
   },
@@ -762,7 +806,8 @@
     "wskazowki.zTekstem": 325,
     "czesteBledyTekst": 222,
     "roleMiesni": 510,
-    "pelnaKarta": 125,
+    "pelnaKarta": 179,
+    "pelnaKartaBlad": 125,
     "recenzjaFigur": 183,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 573,

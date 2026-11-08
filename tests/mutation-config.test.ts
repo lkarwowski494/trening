@@ -52,6 +52,13 @@ describe('konfiguracja testów mutacyjnych (M1-055)', () => {
     expect(ignored('tests/backlog-0.10.1-dane.test.ts')).toBe(true);
     expect(ignored('tests/locations-catalog.test.ts')).toBe(true);
   });
+  /* Nocne 08.11.2026 (diagnoza main 2e4b0f82): „failed tests in the initial test run” dla modułu access — tests/m5s1-dni-treningowe.test.ts czyta tekst lib/access.ts regexem,
+     a kopia Strykera jest zinstrumentowana. Nazwany przypadek (nie tylko reguła ogólna): test zostaje w zwykłym Jest, w przebiegu Stryker go nie ma; logika access zostaje. */
+  test('08.11.2026: m5s1-dni-treningowe (regex na tekście lib/access.ts) jest poza przebiegiem Stryker, a testy logiki access w nim zostają', () => {
+    expect(ignored('tests/m5s1-dni-treningowe.test.ts')).toBe(true);
+    expect(readFileSync(join(root, 'tests/m5s1-dni-treningowe.test.ts'), 'utf8')).toMatch(/readFileSync\(path\.join\(__dirname, '\.\.\/lib\/access\.ts'\)/);
+    for (const f of ['access.test.ts', 'm5s1-dni-zapis.test.ts']) expect(ignored('tests/' + f)).toBe(false);
+  });
   test('testy logiki modułów mutowanych zostają w konfiguracji', () => {
     for (const f of ['stats', 'plan-calendar', 'units', 'generator'].flatMap(n => testy.filter(t => t.startsWith(n)))) expect(ignored('tests/' + f)).toBe(false);
     expect(testy.filter(f => !ignored('tests/' + f)).length).toBeGreaterThan(50);

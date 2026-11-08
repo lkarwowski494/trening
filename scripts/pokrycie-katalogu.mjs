@@ -7,8 +7,9 @@
 //   tests/fixtures/pokrycie-katalogu.json    — te same liczby dla testów; pole `dobre` = metryki, które nie mogą spadać (zapadka),
 //   tests/fixtures/pokrycie-katalogu-min.json — zapisane minimum zapadki; obniżka tylko z polem `powod` (tests/pokrycie-katalogu.test.ts).
 // Cele wersji: docs/research/pokrycie-cele.json (sekcja „Cele” w docs/55; krok listy kontrolnej wydania w docs/39).
-// Definicja „pełnej karty” (Z3, właściciel 31.10.2026, decyzja 3 w docs/18; ZB-025 a): wskazówki (własne ALBO zestaw ogólny wzorca ruchu, ale tylko z recenzją treści — `generalCuesReviewed`
-// — i przy rysowanej figurze) + częste błędy (tekst) + figura v2 w aplikacji + animowany błąd + role mięśni. Dotąd (28.10.2026) liczyły się tylko własne wskazówki (analiza: 17).
+// Dwa standardy publikacji ćwiczenia (właściciel 02.11.2026 ~15:30, docs/18; zastępują definicję Z3 z 31.10.2026): (1) „Pełna karta” = wskazówki (własne ALBO zestaw ogólny wzorca ruchu, ale tylko z recenzją
+// treści — `generalCuesReviewed` — i przy rysowanej figurze) + figura v2 w aplikacji + role mięśni; (2) „Pełna karta + błąd” = (1) + częste błędy (tekst) + animowany błąd. Mobilność (wzorzec katalogu
+// `mobility`) bez ról mięśni (właściciel 04.11.2026 (4) B). Metryka `pelnaKarta` = standard 1, `pelnaKartaBlad` = standard 2.
 // „Komplet tekstów w języku”: każdy tekst karty (zdania wskazówek, zdania animowanych błędów, zdania ról mięśni) jest w słowniku TEGO języka — angielski tekst zastępczy
 // nie liczy się jako przekład (dla angielskiego i polskiego słownik bazowy jest przekładem).
 // Użycie: node scripts/pokrycie-katalogu.mjs --write | --check | --podnies-minimum | --cel [wersja]
@@ -33,11 +34,28 @@ export const ELEMENTY = [
 /** Ile ćwiczeń z jednej grupy braków wypisać z nazwy (dłuższe grupy tylko liczbą). */
 const MAX_NAZW = 25;
 
-/** Elementy pełnej karty (definicja Z3) z wejścia policzonego dla jednego ćwiczenia; jedyne miejsce, które mówi, co składa się na „pełną kartę”.
- *  wskazowki: 'wlasne' | 'ogolne' (zestaw ogólny z recenzją treści, przy rysowanej figurze) | 'brak'. */
-export function elementyKarty({ wskazowki, bledyTekst, figuraV2, animowanyBlad, roleMiesni }) {
+/** Dwa standardy publikacji z wejścia policzonego dla jednego ćwiczenia; jedyne miejsce, które mówi, co składa się na „pełną kartę” (decyzja właściciela 02.11.2026 ~15:30).
+ *  wskazowki: 'wlasne' | 'ogolne' (zestaw ogólny z recenzją treści, przy rysowanej figurze) | 'brak'. mobilnosc: ćwiczenie mobilności/rozciągania — bez wymogu ról mięśni (04.11.2026 (4) B).
+ *  Zwraca: el (fakty o pięciu elementach), pelna (standard 1), pelnaBlad (standard 2 ⊂ 1), poziom ('pelna_blad' | 'pelna' | 'brak'), brakiPelna (czego brakuje do standardu 1). */
+export function elementyKarty({ wskazowki, bledyTekst, figuraV2, animowanyBlad, roleMiesni, mobilnosc = false }) {
   const el = { wskazowki: wskazowki === 'wlasne' || wskazowki === 'ogolne', czesteBledy: !!bledyTekst, figuraV2: !!figuraV2, animowanyBlad: !!animowanyBlad, roleMiesni: !!roleMiesni };
-  return { el, pelna: Object.values(el).every(Boolean) };
+  const wymagane = mobilnosc ? ['wskazowki', 'figuraV2'] : ['wskazowki', 'figuraV2', 'roleMiesni'];
+  const brakiPelna = wymagane.filter(id => !el[id]);
+  const pelna = brakiPelna.length === 0, pelnaBlad = pelna && el.czesteBledy && el.animowanyBlad;
+  return { el, pelna, pelnaBlad, poziom: pelnaBlad ? 'pelna_blad' : pelna ? 'pelna' : 'brak', brakiPelna };
+}
+
+/** Wejście `elementyKarty` dla ćwiczenia `key` przy figurze `spec` (pokazywanej w aplikacji albo null). Wspólne dla licznika (`policz`) i eksportu strony (`scripts/strona/eksport.mjs`, pole `pelna`),
+ *  żeby oba liczyły to samo (decyzja właściciela 02.11.2026, wariant A). M = moduły aplikacji { cues, cueSets, ui, roles, cat }; e = ćwiczenie z `seed.libExercise`. */
+export function wejscieKarty(M, key, spec, e) {
+  const { cues, cueSets, ui, roles, cat } = M;
+  const sel = cueSets.cueSelection(key), wl = own(cues.CUE_DATA.exercises, key);
+  const bledy = spec ? ui.errorsOf(spec) : [];
+  const rolki = roles.muscleRoleRows(e).map(r => r.role).filter(Boolean);
+  /* wskazówki jak ekran karty: własne tylko z lib/cues/data.json (karta ukryta po recenzji treści — brak), zestaw ogólny tylko z recenzją treści i przy rysowanej figurze */
+  const wskazowki = sel.mode === 'own' ? (wl ? 'wlasne' : 'brak') : sel.mode === 'general' && cues.generalCuesReviewed(key) && spec ? 'ogolne' : 'brak';
+  const bledyTekst = wskazowki === 'wlasne' ? (wl?.mistakes ?? []).length > 0 : wskazowki === 'ogolne' ? sel.err.length > 0 : false;
+  return { wskazowki, bledyTekst, figuraV2: !!spec, animowanyBlad: bledy.length > 0, roleMiesni: rolki.length > 0, mobilnosc: cat.CATALOG[key]?.pattern === 'mobility', bledy, rolki };
 }
 
 const own = (o, k) => (o && Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined);
@@ -48,7 +66,7 @@ const odczyt = p => JSON.parse(readFileSync(resolve(repoRoot, p), 'utf8'));
 export function policz() {
   const R = appRequire();
   const seed = R('lib/seed.ts'), i18n = R('lib/i18n.ts'), v2 = R('lib/figures/v2/index.ts'), ui = R('lib/figures/v2/ui.ts'), cues = R('lib/cues/index.ts');
-  const cueSets = R('lib/figures/v2/cueSets.ts'), roles = R('lib/muscleRoles.ts'), fig1 = R('lib/figures/index.ts'), EN = R('lib/i18n.en.ts').EN, LOCALES = R('lib/locales/index.ts').LOCALES;
+  const cat = R('lib/catalog.generated.ts'), cueSets = R('lib/figures/v2/cueSets.ts'), roles = R('lib/muscleRoles.ts'), fig1 = R('lib/figures/index.ts'), EN = R('lib/i18n.en.ts').EN, LOCALES = R('lib/locales/index.ts').LOCALES;
   i18n.applyLang('pl'); /* zdania ról: w polskim tekst = klucz słownika interfejsu */
   const LANGS = [...i18n.LANGS];
   const ready = v2.FAMILIES.filter(f => f.status === 'ready').map(f => f.id);
@@ -65,18 +83,14 @@ export function policz() {
   const cw = seed.LIB.map(row => {
     const key = row[0], e = seed.libExercise(row);
     const fam = v2.familyOf(key), spec = v2.shownFigureSpec(key); /* jak ekran karty (bramka 4, 29.10.2026): figura v2 tylko z rodziny z aktualną recenzją ruchu i bez wstrzymanych */
-    const sel = cueSets.cueSelection(key), wl = own(cues.CUE_DATA.exercises, key);
-    const bledy = spec ? ui.errorsOf(spec) : [];
-    const rolki = roles.muscleRoleRows(e).map(r => r.role).filter(Boolean);
+    const w = wejscieKarty({ cues, cueSets, ui, roles, cat }, key, spec, e), { bledy, rolki } = w;
     const cueIds = [...new Set([...ui.cueIdsOf(key).ids, ...bledy.map(b => b.cue)])];
-    /* wskazówki jak ekran karty: własne tylko z lib/cues/data.json (karta ukryta po recenzji treści — brak), zestaw ogólny tylko z recenzją treści i przy rysowanej figurze */
-    const wskazowki = sel.mode === 'own' ? (wl ? 'wlasne' : 'brak') : sel.mode === 'general' && cues.generalCuesReviewed(key) && spec ? 'ogolne' : 'brak';
-    const bledyTekst = wskazowki === 'wlasne' ? (wl?.mistakes ?? []).length > 0 : wskazowki === 'ogolne' ? sel.err.length > 0 : false;
-    const { el, pelna } = elementyKarty({ wskazowki, bledyTekst, figuraV2: !!spec, animowanyBlad: bledy.length > 0, roleMiesni: rolki.length > 0 });
+    const { wskazowki, bledyTekst } = w;
+    const { el, pelna, pelnaBlad, brakiPelna } = elementyKarty(w);
     const v1 = !spec && !v2.figureWithheld(key) && !!fig1.figureByKey(key);
     return {
       key, nazwa: dispName(key), rodzina: fam, spec: !!spec, v1, daneV2: !spec && pozy.has(key), wyjatek: !spec && !v1 && wyjatki.has(key), dane: !!spec || pozy.has(key),
-      wskazowki, bledyTekst, el, pelna, recenzja: !!spec && zRecenzja.has(fam), cueIds, rolki,
+      wskazowki, bledyTekst, el, pelna, pelnaBlad, brakiPelna, mobilnosc: w.mobilnosc, recenzja: !!spec && zRecenzja.has(fam), cueIds, rolki,
     };
   });
 
@@ -89,6 +103,7 @@ export function policz() {
     czesteBledyTekst: ile(c => c.bledyTekst),
     roleMiesni: ile(c => c.el.roleMiesni),
     pelnaKarta: ile(c => c.pelna),
+    pelnaKartaBlad: ile(c => c.pelnaBlad),
     recenzjaFigur: ile(c => c.recenzja),
   };
 
@@ -98,7 +113,7 @@ export function policz() {
     const c = cw.filter(x => x.rodzina === f.id);
     rodziny[f.id] = { status: f.status, cwiczen: c.length, figuraV2: c.filter(x => x.spec).length, daneV2NieWlaczone: c.filter(x => x.daneV2).length, v1: c.filter(x => x.v1).length,
       wlasne: c.filter(x => x.wskazowki === 'wlasne').length, ogolne: c.filter(x => x.wskazowki === 'ogolne').length, bezTekstu: c.filter(x => x.wskazowki === 'brak').length,
-      pelnaKarta: c.filter(x => x.pelna).length, recenzja: c.filter(x => x.recenzja).length };
+      pelnaKarta: c.filter(x => x.pelna).length, pelnaKartaBlad: c.filter(x => x.pelnaBlad).length, recenzja: c.filter(x => x.recenzja).length };
   }
 
   /* języki: komplet tekstów karty. Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie w każdym języku poza polskim, DEC-13) — liczone jako 0;
@@ -123,7 +138,7 @@ export function policz() {
     'figura.v2': razem.figura.v2, 'figura.wAplikacji': razem.figura.v2 + razem.figura.v1, 'figura.zDanymiV2': cw.filter(c => c.dane).length,
     animowanyBlad: razem.animowanyBlad, 'wskazowki.wlasne': razem.wskazowki.wlasne, 'wskazowki.wlasneZBledami': razem.wskazowki.wlasneZBledami,
     'wskazowki.zTekstem': razem.wskazowki.wlasne + razem.wskazowki.ogolne, czesteBledyTekst: razem.czesteBledyTekst, roleMiesni: razem.roleMiesni,
-    pelnaKarta: razem.pelnaKarta, recenzjaFigur: razem.recenzjaFigur,
+    pelnaKarta: razem.pelnaKarta, pelnaKartaBlad: razem.pelnaKartaBlad, recenzjaFigur: razem.recenzjaFigur,
     'nazwaLokalna.razem': Object.values(jezyki).reduce((s, j) => s + j.nazwaLokalna, 0),
     ...Object.fromEntries(LANGS.map(l => [`jezyk.${l}.kompletne`, jezyki[l].kompletne])),
   };
@@ -135,7 +150,7 @@ const proc = (a, b) => (b ? `${(Math.round((a / b) * 1000) / 10).toString().repl
 const nazwaMetryki = {
   'figura.v2': 'figura v2 w aplikacji', 'figura.wAplikacji': 'figura w aplikacji (v2 albo v1)', 'figura.zDanymiV2': 'ćwiczenia z danymi figury v2 (włączonymi albo nie)',
   animowanyBlad: 'animowany błąd', 'wskazowki.wlasne': 'własne wskazówki', 'wskazowki.wlasneZBledami': 'własne wskazówki z częstymi błędami', 'wskazowki.zTekstem': 'wskazówki (własne lub zestaw ogólny)',
-  czesteBledyTekst: 'częste błędy (tekst)', roleMiesni: 'role mięśni', pelnaKarta: 'pełna karta', recenzjaFigur: 'figura z aktualną recenzją ruchu', 'nazwaLokalna.razem': 'nazwy lokalne (suma po językach)',
+  czesteBledyTekst: 'częste błędy (tekst)', roleMiesni: 'role mięśni', pelnaKarta: 'pełna karta', pelnaKartaBlad: 'pełna karta + błąd', recenzjaFigur: 'figura z aktualną recenzją ruchu', 'nazwaLokalna.razem': 'nazwy lokalne (suma po językach)',
 };
 const etykieta = k => nazwaMetryki[k] ?? (k.startsWith('jezyk.') ? `komplet tekstów karty: ${k.split('.')[1]}` : k);
 
@@ -153,7 +168,7 @@ export function renderuj({ cw, fixture, LANGS }) {
   L.push('Wygenerowano z runtime aplikacji poleceniem `node scripts/pokrycie-katalogu.mjs --write` (te same moduły co ekran karty ćwiczenia i eksport strony). Decyzja właściciela 28.10.2026 (M-B): katalog ma być',
     'regularnie powiększany do pełnego — licznik jest generowany z kodu, zapadka `tests/pokrycie-katalogu.test.ts` (część `npm run verify`) nie pozwala, by „dobre” liczby spadły poniżej `tests/fixtures/pokrycie-katalogu-min.json`',
     '(obniżka tylko świadomie, z polem `powod`; podniesienie po fali prac: `node scripts/pokrycie-katalogu.mjs --podnies-minimum`), a lista kontrolna wydania (`docs/39`) wymaga celu wersji z sekcji „Cele”. Dane ćwiczeń, figur i tekstów skrypt tylko liczy.', '');
-  L.push(`**Pełna karta** = wskazówki (własne albo zrecenzowany zestaw ogólny wzorca ruchu — Z3, 31.10.2026) + częste błędy (tekst) + figura v2 w aplikacji + animowany błąd + role mięśni. **Komplet tekstów w języku** = wszystkie zdania karty (wskazówki, animowane błędy, role mięśni) są w słowniku tego języka;`,
+  L.push(`Dwa standardy publikacji ćwiczenia (decyzja właściciela 02.11.2026 ~15:30): **Pełna karta** = wskazówki (własne albo zrecenzowany zestaw ogólny wzorca ruchu) + figura v2 w aplikacji + role mięśni; **Pełna karta + błąd** = pełna karta + częste błędy (tekst) + animowany błąd. Dla ćwiczeń mobilności (rozciąganie) pełna karta jest bez ról mięśni (04.11.2026). **Komplet tekstów w języku** = wszystkie zdania karty (wskazówki, animowane błędy, role mięśni) są w słowniku tego języka;`,
     'angielski tekst zastępczy nie liczy się jako przekład.', '');
   L.push('## Sumy', '', `Ćwiczeń w katalogu: **${n}**.`, '', '| Co | Ćwiczeń | Udział |', '|---|---:|---:|');
   const w = (nazwa, x) => L.push(`| ${nazwa} | ${x} | ${proc(x, n)} |`);
@@ -161,7 +176,7 @@ export function renderuj({ cw, fixture, LANGS }) {
   w('— z czego: dane póz v2 są, rodzina jeszcze niewłączona', r.figura.daneV2NieWlaczone); w('— z czego: wyjątek bez animacji (brak źródła techniki, powód w danych)', r.figura.wyjatekBezAnimacji);
   w('Animowany błąd', r.animowanyBlad); w('Własne wskazówki (źródłowe)', r.wskazowki.wlasne); w('— z czego z częstymi błędami', r.wskazowki.wlasneZBledami);
   w('Zestaw ogólny wskazówek wzorca ruchu', r.wskazowki.ogolne); w('Bez tekstu wskazówek', r.wskazowki.bezTekstu); w('Częste błędy (własne albo zestaw ogólny)', r.czesteBledyTekst);
-  w('Role mięśni', r.roleMiesni); w('**Pełna karta**', r.pelnaKarta); w('Figura z aktualną recenzją ruchu (bramka 4)', r.recenzjaFigur);
+  w('Role mięśni', r.roleMiesni); w('**Pełna karta**', r.pelnaKarta); w('**Pełna karta + błąd**', r.pelnaKartaBlad); w('Figura z aktualną recenzją ruchu (bramka 4)', r.recenzjaFigur);
   L.push('');
 
   L.push('## Cele wersji', '', 'Źródło: `docs/research/pokrycie-cele.json`. Krok listy kontrolnej wydania (`docs/39`): cel wersji osiągnięty albo zgoda właściciela z datą; sprawdzenie: `node scripts/pokrycie-katalogu.mjs --cel <wersja>`.', '');
@@ -186,20 +201,20 @@ export function renderuj({ cw, fixture, LANGS }) {
   for (const l of LANGS) { const j = fixture.jezyki[l]; L.push(`| ${l} | ${j.kompletne} | ${j.zBrakiem} | ${j.brakTekstow} | ${j.nazwaLokalna} |`); }
   L.push('');
 
-  L.push('## Ćwiczenia najbliżej pełnej karty', '', `Pełnych kart: ${r.pelnaKarta}. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż ${MAX_NAZW} — tylko liczba).`, '');
+  L.push('## Ćwiczenia najbliżej pełnej karty', '', `Pełnych kart: ${r.pelnaKarta} (z błędem: ${r.pelnaKartaBlad}). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż ${MAX_NAZW} — tylko liczba).`, '');
   const bliskie = {};
-  for (const c of cw) { const brak = ELEMENTY.filter(([id]) => !c.el[id]); if (brak.length === 1) (bliskie[brak[0][0]] ??= []).push(c.nazwa); }
+  for (const c of cw) { if (c.brakiPelna.length === 1) (bliskie[c.brakiPelna[0]] ??= []).push(c.nazwa); }
   let cokolwiek = false;
-  for (const [id, opis] of ELEMENTY) {
+  for (const [id, opis] of ELEMENTY.filter(([id]) => id in bliskie)) {
     const lista = bliskie[id]; if (!lista) continue; cokolwiek = true;
     L.push(`- Brakuje tylko: ${opis} — ${lista.length}${lista.length <= MAX_NAZW ? `: ${lista.sort().join(', ')}` : ''}`);
   }
   if (!cokolwiek) L.push('- Brak ćwiczeń z jednym brakującym elementem.');
   L.push('');
   const rozklad = {};
-  for (const c of cw) { const b = ELEMENTY.filter(([id]) => !c.el[id]).length; rozklad[b] = (rozklad[b] ?? 0) + 1; }
+  for (const c of cw) { const b = c.brakiPelna.length; rozklad[b] = (rozklad[b] ?? 0) + 1; }
   L.push('| Brakujących elementów pełnej karty | Ćwiczeń |', '|---:|---:|');
-  for (let b = 0; b <= ELEMENTY.length; b++) L.push(`| ${b} | ${rozklad[b] ?? 0} |`);
+  for (let b = 0; b <= 3; b++) L.push(`| ${b} | ${rozklad[b] ?? 0} |`);
   L.push('');
   return L.join('\n');
 }

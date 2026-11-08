@@ -157,6 +157,11 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
 
+### Backlog 1.2 — figury: NISKIE z recenzji B0 (nakładka olympic i triceps, 08.11.2026; `docs/research/recenzje/b0-olympic-triceps-roznica-5-rodzin-2026-11-08.md`; nie blokują)
+- N1: Barbell Snatch, Hang Snatch — linie piszczeli i uda przedłużone za kolano krzyżują się w „X” w kadrach wyprostu (u 0,40–0,80); porządek rysunku, nie treść.
+- N2: linia odniesienia piszczeli w olympic rysowana także w odbiorze na barkach i nad głową, gdzie zdanie o sztandze blisko ciała już nie dotyczy; ograniczyć do fazy ciągu.
+- N3 (proces): normalizacja `overlay.ts` w skrócie rodziny zostawia przecinek po ostatnim własnym wpisie — dopisanie rodziny na końcu zmienia skrót pull_up; plus wspólny `reguly-cwiczen.json` w skrócie każdej rodziny unieważnia recenzje wszystkich przy dodaniu rodziny.
+
 ### Backlog 1.2 — karty A1 pchanie, NISKIE z recenzji niezależnej (08.11.2026)
 - `ohp.tall` mówi „ciężar” także w karcie z gumą (Band Shoulder Press) oraz brak „usiądź” w ustawieniu Seated Barbell Military Press (`ohp.bbGrip`) — oba wspólne klucze, nie błędy merytoryczne; do poprawy brzmienia przez tłumacza.
 

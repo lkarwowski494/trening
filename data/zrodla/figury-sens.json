@@ -662,6 +662,54 @@
         ],
         "cote.move": [
           "lokiec_prostuje_sie"
+        ],
+        "ote.moveLoad": [
+          "lokiec_prostuje_sie"
+        ],
+        "ote1.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "lpote.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "rgpd.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tpd1.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tate.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "kick.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "skullDb.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.bandOte.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.chainExt.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.kick2.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.skullBand.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.skullBb.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.skullBehind.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.skullCb.move": [
+          "lokiec_prostuje_sie"
+        ],
+        "tri.skullDb1.move": [
+          "lokiec_prostuje_sie"
         ]
       },
       "zawsze": [

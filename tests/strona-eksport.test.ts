@@ -217,6 +217,26 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
   });
 });
 
+describe('eksport dla strony: pole `pelna` = standard 1 „Pełna karta” liczony tą samą funkcją co licznik pokrycia (decyzja właściciela 02.11.2026, S6/F-20, wariant A)', () => {
+  /** Wynik `policz()` (scripts/pokrycie-katalogu.mjs) dla każdego ćwiczenia w osobnym procesie Node (moduł ES). */
+  const licznik = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { policz } from './scripts/pokrycie-katalogu.mjs'; process.stdout.write(JSON.stringify(Object.fromEntries(policz().cw.map(c => [c.key, c.pelna]))));`], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 24 })) as Record<string, boolean>;
+  test('każde ćwiczenie eksportu ma boolowskie `pelna` równe wynikowi policz() (pl i en)', () => {
+    for (const l of ['pl', 'en'] as const) {
+      const ex = data[l].exercises as unknown as { id: string; pelna: unknown }[];
+      expect(ex).toHaveLength(Object.keys(licznik).length);
+      expect(ex.filter(e => typeof e.pelna !== 'boolean').map(e => e.id)).toEqual([]);
+      expect(ex.filter(e => e.pelna !== licznik[e.id]).map(e => e.id)).toEqual([]);
+    }
+  });
+  test('`pelna` nie zależy od języka pliku (35 języków, te same ćwiczenia spełniają standard)', () => {
+    const baza = (data.pl.exercises as unknown as { id: string; pelna: boolean }[]).map(e => [e.id, e.pelna]);
+    for (const l of LANGS) expect([l, (data[l].exercises as unknown as { id: string; pelna: boolean }[]).map(e => [e.id, e.pelna])]).toEqual([l, baza]);
+  });
+  test('są ćwiczenia z pełną kartą i bez niej (pole nie jest stałą)', () => {
+    const v = Object.values(licznik); expect(v.some(Boolean)).toBe(true); expect(v.some(x => !x)).toBe(true);
+  });
+});
+
 describe('eksport dla strony: kontrakt pól (scripts/strona/kontrakt.json) — to samo sprawdza strona na prawdziwym eksporcie (L-NNN: rozjazd ról id/region)', () => {
   const KONTRAKT = path.join(root, 'scripts/strona/kontrakt.json'), WALID = path.join(root, 'scripts/strona/kontrakt.mjs');
   /** Walidator w osobnym procesie Node (moduł ES — Jest go nie ładuje): wejście = lista plików albo wstrzyknięty obiekt; wynik = błędy per wejście. */
