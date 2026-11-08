@@ -5,7 +5,7 @@
  */
 import * as store from '@/lib/store';
 import { indexExercises, matchExercise } from '@/lib/csvparse';
-import { exName, exNameLang, exLocal, applyLang, LANGS, type Lang } from '@/lib/i18n';
+import { exName, exRenamed, exNameLang, exLocal, applyLang, LANGS, type Lang } from '@/lib/i18n';
 import { NAZWY_LOKALNE } from '@/lib/nazwy-lokalne';
 import { formerNamesOf, type Exercise } from '@/lib/seed';
 import { fresh, saved, ex } from './helpers';
@@ -38,6 +38,11 @@ describe('ZB-044 W-1 logika: przemianowanie ćwiczenia z biblioteki (08.11.2026)
     await fresh(); applyLang('pl');
     expect(exName({ name: 'Wyciskanie płaskie', lib: true })).toBe('Wyciskanie płaskie'); expect(exNameLang({ name: 'Wyciskanie płaskie', lib: true } as Exercise)).toBe('pl');
     expect(exName({ name: 'Bench Press (sztanga)', lib: true })).toBe('Bench Press');
+  });
+  test('exRenamed: przemianowane tak, nazwa katalogowa/ogólna/dawna/EN i ćwiczenie własne lub brak — nie', async () => {
+    await fresh(); const e = ex('Bench Press (sztanga)');
+    expect(exRenamed(renamed(e, 'Wyciskanie płaskie'))).toBe(true); expect(exRenamed(e)).toBe(false); expect(exRenamed(renamed(e, 'Bench Press'))).toBe(false);
+    expect(exRenamed({ name: 'Moje', lib: false })).toBe(false); expect(exRenamed(undefined)).toBe(false); expect(exRenamed(null)).toBe(false);
   });
   test('zapis przemianowania w stanie: e.name = nazwa użytkownika, libKey i lib bez zmian (bez migracji)', async () => {
     await fresh(); const e = ex('Bench Press (sztanga)'); e.name = 'Wyciskanie płaskie'; store.save(e);
