@@ -1,0 +1,120 @@
+{
+ "_opis": "Partia A1 integracji badań (rodziny pchania: pushup_plank, overhead_press, chest_fly, dip, cable_press; linia 1.1, 08.11.2026): ćwiczenia z nowymi kartami własnymi, karty niepełne (partial), nowe zdania i błędy odrzucone. Źródło: badania W1 (badania/g5-pchanie) i W2 (badania/w2-pchanie) z 02.11.2026 po przeliczeniu szczebli. Niewdrożone: Cable Fly (low to high) (źródło szczebla 5 po korekcie 2), Svend Press i Plyo Push-Up (szczebel warunkowy), Landmine Press, Band Chest Fly, Pullover (hantel) i Suspended Fallout (po odrzuceniu błędów bez dwóch źródeł karta nie ma błędu, a ćwiczenie ma pozy v2 — decyzja z 02.11.2026), Pec Deck, Dip Machine, Triceps Dip, Ring Dips i pozostałe otwarte.",
+ "rodzina": "pchanie",
+ "cwiczenia": [
+  "Arnold Press",
+  "Seated Barbell Military Press",
+  "Kettlebell Press",
+  "Kettlebell Seated Press",
+  "Band Shoulder Press",
+  "Single Arm Overhead Press (hantel)",
+  "Ab Wheel",
+  "Renegade Row",
+  "Rollout (sztanga)",
+  "Incline Chest Fly (hantle)",
+  "Chest Dip",
+  "Seated Cable Chest Press",
+  "Decline Push Up",
+  "Suspended Push-Up"
+ ],
+ "partial": [
+  "Arnold Press",
+  "Seated Barbell Military Press",
+  "Kettlebell Press",
+  "Kettlebell Seated Press",
+  "Band Shoulder Press",
+  "Single Arm Overhead Press (hantel)",
+  "Ab Wheel",
+  "Renegade Row",
+  "Incline Chest Fly (hantle)",
+  "Decline Push Up",
+  "Suspended Push-Up"
+ ],
+ "zdania": [
+  "arnold.move",
+  "arnold.setup",
+  "arnold.together",
+  "band.ohpMove",
+  "band.ohpSetup",
+  "cpress.seated",
+  "cpress.seatedMove",
+  "dip.chestLean",
+  "dip.mis.depth",
+  "dip.mis.leanBack",
+  "dip.mis.overLean",
+  "dip.move",
+  "dip.setup",
+  "dpush.setup",
+  "fly.mis.elbows",
+  "kbp.move",
+  "kbp.setup",
+  "ohp.bbGrip",
+  "ohp.mis.arch",
+  "ohp.mis.flare",
+  "ohp.mis.sideLean",
+  "ohp.saMove",
+  "ohp.saSetup",
+  "press.mis.lock",
+  "push.mis.flare",
+  "push.mis.sag",
+  "renegade.mis.twist",
+  "renegade.move",
+  "renegade.setup",
+  "rollout.bar.move",
+  "rollout.bar.setup",
+  "rollout.mis.arch",
+  "rollout.range",
+  "rollout.wheel.move",
+  "rollout.wheel.setup",
+  "spush.move",
+  "spush.setup"
+ ],
+ "odrzuconeBledy": [
+  [
+   "Kettlebell Press",
+   "kbp.mis.elbowOut"
+  ],
+  [
+   "Kettlebell Seated Press",
+   "kbp.mis.elbowOut"
+  ],
+  [
+   "Landmine Press",
+   "lm.mis.vertical"
+  ],
+  [
+   "Ab Wheel",
+   "rollout.mis.bentArms"
+  ],
+  [
+   "Band Chest Fly",
+   "fly.mis.elbows"
+  ],
+  [
+   "Pullover (hantel)",
+   "po.mis.force"
+  ],
+  [
+   "Pullover (hantel)",
+   "po.mis.elbows"
+  ],
+  [
+   "Suspended Push-Up",
+   "push.mis.sag"
+  ],
+  [
+   "Suspended Fallout",
+   "push.mis.sag"
+  ],
+  [
+   "Suspended Fallout",
+   "rollout.mis.bentArms"
+  ]
+ ],
+ "pominieteBezBledu": [
+  "Landmine Press",
+  "Band Chest Fly",
+  "Pullover (hantel)",
+  "Suspended Fallout"
+ ]
+}

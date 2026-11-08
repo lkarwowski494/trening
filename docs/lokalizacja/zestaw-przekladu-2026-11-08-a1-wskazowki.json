@@ -1,0 +1,228 @@
+{
+ "_opis": "Zdania wskazówek techniki z partii A1 (rodziny pchania; linia 1.1, 08.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+ "data": "2026-11-08",
+ "klucze": [
+  {
+   "rodzaj": "nowy",
+   "id": "arnold.move",
+   "pl": "Wyciskaj hantle nad głowę, obracając dłonie — na górze patrzą do przodu; opuszczając, obróć je z powrotem do siebie.",
+   "en": "Press the dumbbells overhead while turning your palms so they face forward at the top; turn them back toward you on the way down."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "arnold.setup",
+   "pl": "Hantle przed twarzą, dłonie zwrócone do ciebie.",
+   "en": "Dumbbells in front of your face, palms facing you."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "arnold.together",
+   "pl": "Obracaj i wyciskaj jednocześnie, a nie najpierw obrót, potem wyciśnięcie.",
+   "en": "Rotate and press at the same time — not twist first, then press."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "band.ohpMove",
+   "pl": "Wypchnij dłonie nad głowę; wracaj powoli do pozycji startowej.",
+   "en": "Press your hands overhead; return slowly to the start."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "band.ohpSetup",
+   "pl": "Stań na gumie i chwyć jej końce.",
+   "en": "Stand on the band and hold its ends."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "cpress.seated",
+   "pl": "Usiądź plecami przy oparciu, stopy na podłodze; uchwyty przy klatce, łokcie ugięte.",
+   "en": "Sit with your back against the pad and feet on the floor; handles by your chest, elbows bent."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "cpress.seatedMove",
+   "pl": "Wypchnij uchwyty przed siebie, potem powoli wróć w stronę klatki.",
+   "en": "Press the handles straight out, then slowly bring them back toward your chest."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dip.chestLean",
+   "pl": "Pochyl tułów lekko w przód.",
+   "en": "Lean your torso slightly forward."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dip.mis.depth",
+   "pl": "Schodzenie za nisko albo zatrzymywanie się za wysoko.",
+   "en": "Dropping too low or stopping too high."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dip.mis.leanBack",
+   "pl": "Odchylanie tułowia do tyłu.",
+   "en": "Leaning back."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dip.mis.overLean",
+   "pl": "Za mocne pochylenie — klatka leci w dół między poręcze.",
+   "en": "Leaning too far forward and letting your chest sink between the bars."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dip.move",
+   "pl": "Zegnij łokcie i opuść się między poręczami, potem wypchnij się z powrotem do prostych rąk.",
+   "en": "Bend your elbows to lower yourself between the bars, then push back up to straight arms."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dip.setup",
+   "pl": "Chwyć poręcze i unieś się na prostych rękach, stopy nad podłogą.",
+   "en": "Grab the bars and push up onto straight arms, feet off the floor."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "dpush.setup",
+   "pl": "Dłonie na podłodze, stopy na ławce albo stopniu; ciało proste od głowy do pięt.",
+   "en": "Hands on the floor, feet on a bench or step; body straight from head to heels."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "fly.mis.elbows",
+   "pl": "Zginanie i prostowanie łokci w trakcie powtórzenia.",
+   "en": "Bending and straightening your elbows during the rep."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbp.move",
+   "pl": "Wypchnij kettlebell prosto nad głowę; opuść go wzdłuż boku z powrotem do barku, łokieć blisko tułowia.",
+   "en": "Press the kettlebell straight overhead; lower it along your side back to the shoulder, elbow close to your body."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "kbp.setup",
+   "pl": "Kettlebell przy barku, oparty o przedramię; łokieć blisko żeber.",
+   "en": "Kettlebell at your shoulder, resting on your forearm; elbow close to your ribs."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "ohp.bbGrip",
+   "pl": "Chwyt trochę szerzej niż barki; sztanga z przodu barków.",
+   "en": "Grip a little wider than your shoulders; bar in front of your shoulders."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "ohp.mis.arch",
+   "pl": "Wyginanie lędźwi w łuk przy wyciskaniu.",
+   "en": "Arching your lower back as you press."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "ohp.mis.flare",
+   "pl": "Łokcie uciekają na boki zamiast iść do przodu.",
+   "en": "Elbows flaring out to the sides instead of pointing forward."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "ohp.mis.sideLean",
+   "pl": "Przechylanie się w bok, żeby wypchnąć ciężar.",
+   "en": "Leaning to the side to get the weight up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "ohp.saMove",
+   "pl": "Wypchnij hantel nad głowę do wyprostu ręki; opuść go spokojnie z powrotem do barku.",
+   "en": "Press the dumbbell overhead until your arm is straight; lower it under control back to your shoulder."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "ohp.saSetup",
+   "pl": "Stań stabilnie, hantel w jednej ręce przy barku.",
+   "en": "Stand steady with the dumbbell in one hand at your shoulder."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "press.mis.lock",
+   "pl": "Blokowanie łokci na końcu ruchu.",
+   "en": "Locking out the elbows at the end of the press."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "push.mis.flare",
+   "pl": "Łokcie rozjeżdżają się szeroko na boki.",
+   "en": "Elbows flaring wide to the sides."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "push.mis.sag",
+   "pl": "Biodra opadają — ciało przestaje być proste.",
+   "en": "Hips sagging — the body stops being straight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "renegade.mis.twist",
+   "pl": "Skręcanie bioder i tułowia, żeby dźwignąć hantel.",
+   "en": "Twisting the hips and torso to heave the dumbbell up."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "renegade.move",
+   "pl": "Przyciągnij jeden hantel do boku tułowia, odłóż go spokojnie i zmień rękę.",
+   "en": "Row one dumbbell to the side of your torso, set it down with control and switch hands."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "renegade.setup",
+   "pl": "Podpór na hantlach ustawionych pod barkami, nogi proste, stopy na szerokość barków lub szerzej.",
+   "en": "Plank on dumbbells set under your shoulders, legs straight, feet shoulder-width or wider."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "rollout.bar.move",
+   "pl": "Wytocz sztangę do przodu, opuszczając tułów ku podłodze, i przyciągnij ją z powrotem.",
+   "en": "Roll the bar forward, lowering your torso toward the floor, then pull it back in."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "rollout.bar.setup",
+   "pl": "Uklęknij przed sztangą i chwyć ją oburącz.",
+   "en": "Kneel in front of the bar and grip it with both hands."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "rollout.mis.arch",
+   "pl": "Wygięte w łuk lędźwie przy wytaczaniu.",
+   "en": "Lower back arching as you roll out."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "rollout.range",
+   "pl": "Wytaczaj tylko tak daleko, jak dasz radę bez wyginania lędźwi.",
+   "en": "Roll out only as far as you can without arching your lower back."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "rollout.wheel.move",
+   "pl": "Powoli wytocz kółko do przodu, opuszczając tułów ku podłodze, i wróć do klęku.",
+   "en": "Slowly roll the wheel forward, lowering your torso toward the floor, then roll back to kneeling."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "rollout.wheel.setup",
+   "pl": "Uklęknij i chwyć kółko oburącz przed kolanami, ręce proste.",
+   "en": "Kneel and grip the wheel with both hands in front of your knees, arms straight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "spush.move",
+   "pl": "Opuść klatkę w stronę uchwytów, zginając łokcie; wypchnij się z powrotem do wyprostu rąk.",
+   "en": "Lower your chest toward the handles by bending your elbows; push back up until your arms are straight."
+  },
+  {
+   "rodzaj": "nowy",
+   "id": "spush.setup",
+   "pl": "Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem.",
+   "en": "Hold the strap handles with straight arms in front of you; lean forward with your body straight and at an angle."
+  }
+ ]
+}
