@@ -1,6 +1,7 @@
 // Scalanie gałęzi z kodem tylko przy zielonym tests.yml (L-090, wariant A, decyzja właściciela 02.11.2026).
 //   node scripts/scal-galaz.mjs <gałąź-źródłowa> [--do <gałąź-docelowa>] [--zostaw-worktree]
 // Po udanym scaleniu usuwa czysty worktree gałęzi źródłowej (L-105; --zostaw-worktree wyłącza).
+// Konflikty scalenia: tylko w plikach generowanych (ZB-041 G1) i w docs/18, docs/40 (L-120, 08.11.2026: suma wpisów obu stron, scripts/scal-dokumenty.mjs); każdy inny — odmowa.
 // Pobiera SHA głowy origin/<gałąź>, czyta przebiegi workflowu tests.yml dla tego SHA publicznym API Actions (bez tokenu) i:
 //   success → `git merge --no-ff origin/<gałąź>` na bieżącej gałęzi (musi być równa docelowej; drzewo czyste),
 //   w toku  → komunikat, kod 3 (bez scalenia; ponów po zakończeniu przebiegu),
@@ -9,11 +10,12 @@
 // z docelową to dokumenty (reguła scripts/dokumenty.mjs), scalenie nie czeka na tests.yml. Gałąź z wcześniejszym kodem NIE jest „samymi dokumentami”
 // — liczy się diff od wspólnego przodka z docelową, nie tylko ostatni commit (L-080). Wiele przebiegów dla SHA → najnowszy tests.yml.
 import { execFileSync } from 'node:child_process';
-import { existsSync, lstatSync, realpathSync, unlinkSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync, realpathSync, unlinkSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { jestDokumentem } from './dokumenty.mjs';
 import { generowane } from './pliki-generowane.mjs';
+import { DOKUMENTY_LACZONE, polaczWpisy } from './scal-dokumenty.mjs';
 import { REPO, WORKFLOW, najnowszyTests, ocen, urlPrzebiegow, domyslnyFetch } from './ci-wynik.mjs';
 
 export { REPO, WORKFLOW, najnowszyTests, ocen };
@@ -26,20 +28,31 @@ const znacznikPelny = (cwd) => (sha) => {
   try { execFileSync(process.execPath, [fileURLToPath(new URL('./verify-znacznik.mjs', import.meta.url)), '--sprawdz', sha, '--wymagaj', 'pelne'], { cwd, stdio: 'ignore' }); return true; } catch { return false; }
 };
 
-/** Konflikty tylko w plikach generowanych → ich wersja docelowa, generatory, `git add`; zwraca listę plików albo null (inny konflikt, brak konfliktu, błąd generatora). */
-function rozwiazGenerowane(git, cwd, log) {
+/**
+ * Konflikty tylko w plikach generowanych (wersja docelowa + generatory) i w docs/18, docs/40 (suma wpisów obu stron — scripts/scal-dokumenty.mjs; L-120, 08.11.2026), `git add`.
+ * Zwraca { generowane, dokumenty: [{ plik, wpisy }] } albo null (inny konflikt, brak konfliktu, konflikt wewnątrz wpisu, błąd generatora).
+ */
+function rozwiazKonflikty(git, cwd, log) {
   let konflikty;
   try { konflikty = git('diff', '--name-only', '--diff-filter=U').split('\n').filter(Boolean); } catch { return null; }
   const lista = generowane(); const znane = new Set(lista.map(g => g.plik));
-  if (!konflikty.length || konflikty.some(f => !znane.has(f))) return null;
+  if (!konflikty.length || konflikty.some(f => !znane.has(f) && !DOKUMENTY_LACZONE.includes(f))) return null;
+  const dokumenty = [];
   try {
-    for (const f of konflikty) { git('checkout', '--ours', '--', f); git('add', '--', f); }
+    for (const f of konflikty.filter(f => DOKUMENTY_LACZONE.includes(f))) {
+      git('checkout', '--conflict=diff3', '-m', '--', f);
+      const w = polaczWpisy(f, readFileSync(join(cwd ?? '.', f), 'utf8'));
+      if (!w) { log(`konflikt w ${f} dotyczy tego samego wpisu albo nie jest dopisaniem pełnych wpisów — nie łączę`); return null; }
+      writeFileSync(join(cwd ?? '.', f), w.tekst); git('add', '--', f); dokumenty.push({ plik: f, wpisy: w.wpisy });
+    }
+    const generowaneKonflikty = konflikty.filter(f => znane.has(f));
+    for (const f of generowaneKonflikty) { git('checkout', '--ours', '--', f); git('add', '--', f); }
     const polecenia = [...new Map(lista.map(g => [g.polecenie.join('\u0000'), g.polecenie])).values()];
     for (const [cmd, ...a] of polecenia) execFileSync(cmd === 'node' ? process.execPath : cmd, a, { cwd, stdio: ['ignore', 'ignore', 'pipe'] });
     for (const g of lista) if (existsSync(join(cwd ?? '.', g.plik))) git('add', '--', g.plik);
     if (git('diff', '--name-only', '--diff-filter=U')) return null;
-  } catch (e) { log(`generator nie przeliczył plików generowanych: ${String(e.stderr ?? e.message).split('\n')[0]}`); return null; }
-  return konflikty;
+    return { generowane: generowaneKonflikty, dokumenty };
+  } catch (e) { log(`generator nie przeliczył plików generowanych albo konflikt dokumentów nie dał się połączyć: ${String(e.stderr ?? e.message).split('\n')[0]}`); return null; }
 }
 
 /** Ścieżka worktree z wyewidencjonowaną gałęzią albo null (`git worktree list --porcelain`). */
@@ -135,12 +148,16 @@ export async function scal(argv, deps = {}) {
   }
   try { git('merge', '--no-ff', '-m', wiadomosc(opis), `origin/${zrodlo}`); }
   catch (e) {
-    /* ZB-041 G1 (04.11.2026): konflikt wyłącznie w plikach generowanych (scripts/pliki-generowane.mjs) → wersja docelowa + generatory + zatwierdzenie; inaczej przerwanie scalenia */
-    const przeliczone = rozwiazGenerowane(git, deps.cwd, log);
-    if (!przeliczone) { try { git('merge', '--abort'); } catch { /* scalenie mogło nie wystartować */ } log(`merge nie powiódł się (konflikt?): ${e.message.split('\n')[0]}\nScalenie przerwane (git merge --abort); drzewo bez zmian.`); return KOD.ODMOWA; }
-    try { git('commit', '-m', `${wiadomosc(opis)}; pliki generowane przeliczone: ${przeliczone.join(', ')}`); }
+    /* ZB-041 G1 (04.11.2026): konflikt wyłącznie w plikach generowanych → wersja docelowa + generatory; L-120 (08.11.2026): także docs/18 i docs/40 — suma wpisów obu stron; inaczej przerwanie scalenia */
+    const r = rozwiazKonflikty(git, deps.cwd, log);
+    if (!r) { try { git('merge', '--abort'); } catch { /* scalenie mogło nie wystartować */ } log(`merge nie powiódł się (konflikt?): ${e.message.split('\n')[0]}\nScalenie przerwane (git merge --abort); drzewo bez zmian.`); return KOD.ODMOWA; }
+    const czesci = [];
+    if (r.dokumenty.length) czesci.push(`konflikt w dokumentach rozwiązany jako suma wpisów (${r.dokumenty.map(d => `${d.plik}: ${d.wpisy}`).join(', ')})`);
+    if (r.generowane.length) czesci.push(`pliki generowane przeliczone: ${r.generowane.join(', ')}`);
+    if (!czesci.length) czesci.push('pliki generowane przeliczone');
+    try { git('commit', '-m', `${wiadomosc(opis)}; ${czesci.join('; ')}`); }
     catch (e2) { try { git('merge', '--abort'); } catch { /* nic */ } log(`nie zatwierdzono scalenia: ${e2.message.split('\n')[0]}`); return KOD.ODMOWA; }
-    opis += `; konflikt w plikach generowanych rozwiązany generatorami (${przeliczone.join(', ')})`;
+    opis += `; ${czesci.join('; ')}`;
   }
   log(`scalono origin/${zrodlo} (${sha.slice(0, 8)}) do ${biezaca}: ${opis}`);
   if (!zostaw) sprzatnijWorktree(git, zrodlo, deps.cwd, log);

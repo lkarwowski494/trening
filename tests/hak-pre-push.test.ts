@@ -663,3 +663,43 @@ describe('hak pre-push — znacznik „lekkie” (08.11.2026)', () => {
     expect(hakTekst()).toContain('verify:lekkie');
   });
 });
+
+/* Decyzja koordynatora w nocy 08/09.11.2026 z upoważnienia właściciela (do weta rano), wynika z decyzji właściciela 08.11.2026 „main pełne”: wypchnięcie na `main` przyjmuje TYLKO znacznik „pelne”
+   (wcześniej „szybkie” też — niezgodne z tą decyzją); gałęzie inne bez zmian (lekkie/szybkie/pelne, dokumenty — „dokumenty”). Odrzucone: B (zostawić „szybkie” na main — niezgodne z decyzją),
+   C (blokada po stronie GitHub — zmiana uprawnień, poza upoważnieniem). */
+describe('hak pre-push — na main tylko znacznik „pelne” (08.11.2026)', () => {
+  function repoZGalezia(nazwa: string) {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    if (nazwa !== 'main') git(r.dir, ['checkout', '-q', '-b', nazwa]);
+    writeFileSync(join(r.dir, 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm, nazwa };
+  }
+  const pchnij = (x: ReturnType<typeof repoZGalezia>) => git(x.dir, ['push', 'origin', x.nazwa], zNpm(x.npm));
+  test('main ze znacznikiem „szybkie” → odmowa z komunikatem o pełnym verify; z „pelne” → przechodzi', () => {
+    const x = repoZGalezia('main'); oznacz(x.dir, x.npm, 'szybkie');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE'); expect(r.stderr).toContain('PEŁNEGO verify');
+    oznacz(x.dir, x.npm, 'pelne'); expect(pchnij(x).status).toBe(0);
+  });
+  test('gałęzie inne niż main bez zmian: „szybkie”, „lekkie” i „pelne” przechodzą', () => {
+    for (const rodzaj of ['szybkie', 'lekkie', 'pelne']) {
+      const x = repoZGalezia('g'); oznacz(x.dir, x.npm, rodzaj); expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+    }
+  });
+  test('main: commit tylko z dokumentami ze znacznikiem verify:docs po kodzie z „szybkie” → odmowa; po kodzie z „pelne” → przechodzi', () => {
+    const dok = (x: ReturnType<typeof repoZGalezia>) => { writeFileSync(join(x.dir, 'README.md'), 'c\n'); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'docs']); oznacz(x.dir, x.npm, 'dokumenty'); };
+    const x = repoZGalezia('main'); oznacz(x.dir, x.npm, 'szybkie'); dok(x); expect(pchnij(x).status).not.toBe(0);
+    const y = repoZGalezia('main'); oznacz(y.dir, y.npm, 'pelne'); dok(y); expect(pchnij(y).status).toBe(0);
+  });
+  test('rodzajeDla: main → tylko pelne; inna gałąź → pelne/szybkie/lekkie; scalenie (--wymagaj pelne) → pelne', () => {
+    const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import { rodzajeDla } from ${JSON.stringify(join(root, 'scripts/verify-znacznik.mjs'))}; console.log(JSON.stringify([rodzajeDla(null, 'main'), rodzajeDla(null, 'integracja-1-1'), rodzajeDla('pelne', 'g')]));`], { encoding: 'utf8' });
+    expect(JSON.parse(r.stdout)).toEqual([['pelne'], ['pelne', 'szybkie', 'lekkie'], ['pelne']]);
+  });
+  test('CLAUDE.md i nagłówek haka opisują regułę; wpis docs/18 z 08.11.2026 ma kod, test i odrzucone B i C', () => {
+    const claude = readFileSync(join(root, 'CLAUDE.md'), 'utf8'); const d18 = readFileSync(join(root, 'docs/18-przekazanie.md'), 'utf8');
+    expect(claude).toMatch(/Na `main` hak przyjmuje tylko znacznik `pelne`/);
+    const wpis = d18.split('\n').find(l => l.includes('08.11.2026') && l.includes('hak pre-push') && l.includes('TYLKO znacznik `pelne`'));
+    expect(wpis).toBeTruthy(); expect(wpis).toMatch(/\[wdrożenie: kod\]/); expect(wpis).toMatch(/\[test: tests\/hak-pre-push\.test\.ts\]/); expect(wpis).toMatch(/B: zostawić/); expect(wpis).toMatch(/C: blokada/);
+    expect(hakTekst()).toMatch(/main[^\n]*tylko[^\n]*pelne/);
+  });
+});

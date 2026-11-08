@@ -7,6 +7,7 @@
 //                                                                  decyzja właściciela ~21:45 PL, wariant A: pełne testy w CI), albo „dokumenty” i zmiany od origin/main albo od najbliższego
 //                                                                  przodka ze znacznikiem „pelne”/„szybkie” to same dokumenty (H1, 31.10.2026, ZB-028); inaczej kod 1 z poleceniem naprawy.
 //                                                                  „lekkie” (verify:lekkie, 08.11.2026, wariant A „A + B mądrze”: bez testów Jest, pełne w tests.yml) wystarcza tylko, gdy wypychana gałąź (--galaz) to nie main;
+//                                                                  na main (--galaz main) tylko „pelne” (decyzja koordynatora 08/09.11.2026 z upoważnienia właściciela, do weta rano; „szybkie” już nie);
 //                                                                  --wymagaj pelne (scal-galaz --do main): „szybkie” nie wystarcza, baza dla dokumentów tylko „pelne"
 //                                                                  --galaz (hak: wypychana gałąź): baza dla dokumentów może być też origin/<gałąź> z zielonym tests.yml (ZB-041 G4, 04.11.2026)
 // Plik: <wspólny katalog .git>/verify-znaczniki.json (wspólny dla worktree), ostatnie MAKS wpisów; VERIFY_ZNACZNIK_PLIK zastępuje ścieżkę (testy).
@@ -92,8 +93,9 @@ function tylkoDokumentyOd(baza, sha) {
 /** Baza origin/main (jak dotąd) albo — H1 — najbliższy przodek z pełnym verify. */
 const tylkoDokumenty = (sha, rodzaje, zdalne = []) => tylkoDokumentyOd(sprobuj('merge-base', 'origin/main', sha), sha) || tylkoDokumentyOd(bazaPelnego(sha, rodzaje), sha) || zdalne.some(b => tylkoDokumentyOd(b, sha));
 
-/** Rodzaje znaczników wystarczające dla gałęzi docelowej: main i scalenie (--wymagaj pelne) bez „lekkie” (08.11.2026). */
-export const rodzajeDla = (wymagaj = null, galaz = null) => wymagaj === 'pelne' ? ['pelne'] : galaz && galaz !== 'main' ? ['pelne', 'szybkie', 'lekkie'] : ['pelne', 'szybkie'];
+/** Rodzaje znaczników wystarczające dla gałęzi docelowej: main i scalenie (--wymagaj pelne) tylko „pelne” (decyzja koordynatora 08/09.11.2026 z upoważnienia właściciela, do weta rano; zgodnie z decyzją 08.11 „main pełne”),
+ *  inne gałęzie „pelne”/„szybkie”/„lekkie”; bez nazwy gałęzi (nieznany cel) jak dotąd „pelne”/„szybkie”. */
+export const rodzajeDla = (wymagaj = null, galaz = null) => wymagaj === 'pelne' || galaz === 'main' ? ['pelne'] : galaz ? ['pelne', 'szybkie', 'lekkie'] : ['pelne', 'szybkie'];
 
 export function sprawdz(sha, wymagaj = null, zdalne = [], cicho = false, galaz = null) {
   const rodzaje = rodzajeDla(wymagaj, galaz);
@@ -102,7 +104,7 @@ export function sprawdz(sha, wymagaj = null, zdalne = [], cicho = false, galaz =
   const wpisy = czytaj().filter(w => w.drzewo === drzewo);
   if (wpisy.some(w => rodzaje.includes(w.rodzaj))) return 0;
   if (wpisy.some(w => w.rodzaj === 'dokumenty') && tylkoDokumenty(sha, rodzaje, zdalne)) return 0;
-  if (!cicho) console.error(`verify-znacznik: commit ${sha.slice(0, 7)} nie ma zielonego ${wymagaj === 'pelne' ? 'PEŁNEGO verify' : galaz === 'main' || !galaz ? 'verify (verify:szybkie)' : 'verify (verify:lekkie)'} dla tego stanu plików${wpisy.length ? ' (znacznik verify:docs, a zmiany to nie same dokumenty)' : ''}.`);
+  if (!cicho) console.error(`verify-znacznik: commit ${sha.slice(0, 7)} nie ma zielonego ${wymagaj === 'pelne' || galaz === 'main' ? 'PEŁNEGO verify (npm run verify)' : !galaz ? 'verify (verify:szybkie)' : 'verify (verify:lekkie)'} dla tego stanu plików${wpisy.length ? ' (znacznik verify:docs, a zmiany to nie same dokumenty)' : ''}.`);
   return 1;
 }
 
