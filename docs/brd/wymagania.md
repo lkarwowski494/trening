@@ -698,6 +698,27 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy etykieta to „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same zdania co na karcie)
     - Wtedy zdania w etykiecie łączy spacja, gdy poprzednie kończy się znakiem końca zdania (także „。”, „।”, „؟”), w pozostałych przypadkach średnik — bez „.;” (04.11.2026)
 
+### BR-BIB-012: Ćwiczenie ma poziom karty według dwóch standardów publikacji, liczony jedną funkcją dla licznika i strony (08.11.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 02.11.2026 ~15:30 („dwa standardy publikacji”: „Pełna karta” i „Pełna karta + błąd”), wariant A z 02.11.2026 (pole `pelna` liczone w eksporcie aplikacji tą samą funkcją co licznik), 04.11.2026 (4) B (mobilność bez ról mięśni); `scripts/pokrycie-katalogu.mjs` (`elementyKarty`, `wejscieKarty`), `scripts/strona/eksport.mjs`, `scripts/strona/kontrakt.json`; testy `tests/pokrycie-katalogu.test.ts`, `tests/strona-eksport.test.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Pełna karta (standard 1)
+    - Zakładając, że ćwiczenie ma wskazówki (własne albo zrecenzowany zestaw ogólny), rysunek v2 pokazywany w aplikacji i role mięśni
+    - Gdy licznik pokrycia albo eksport dla strony liczy poziom karty
+    - Wtedy ćwiczenie spełnia standard 1, także bez częstych błędów (tekst) i bez animowanego błędu
+  - Scenariusz: Pełna karta + błąd (standard 2)
+    - Zakładając, że ćwiczenie spełnia standard 1 i ma częste błędy (tekst) oraz animowany błąd
+    - Gdy licznik liczy poziom karty
+    - Wtedy ćwiczenie spełnia też standard 2 (standard 2 jest podzbiorem standardu 1)
+  - Scenariusz: Mobilność bez ról
+    - Zakładając, że ćwiczenie ma wzorzec ruchu „mobilność” (rozciąganie)
+    - Gdy liczony jest standard 1
+    - Wtedy role mięśni nie są wymagane, a wskazówki i rysunek v2 nadal tak
+  - Scenariusz: Pole dla strony
+    - Zakładając, że powstaje eksport dla strony z ćwiczeniami
+    - Gdy eksport zapisuje ćwiczenie
+    - Wtedy ma ono pole `pelna` (prawda/fałsz) równe wynikowi licznika dla tego ćwiczenia, jednakowe we wszystkich językach
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01, OG-09; docs/28-healthkit-etap0.md; `site/privacy.html`
@@ -1090,4 +1111,4 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### NFR-WYG-001: Wygląd z jednego modułu tokenów
 - Miara: liczba literałów liczbowych `fontSize` i `borderRadius` w kodzie interfejsu poza `lib/theme.ts` i `lib/tokens.ts`; osobno liczba par barw palet (jasna, ciemna, obie „Zwiększ kontrast”) poniżej progu kontrastu (tekst 4,5:1, duży tekst i elementy 3:1, w „Zwiększ kontrast” tekst pomocniczy i akcent 7:1). Próg: literały — nie więcej niż w wykazie `tests/token-baseline.json` (zapadka, docelowo 0 po partiach p2–p5 redesignu M3); pary poniżej progu — 0 z 210. Metoda: testy `tests/m3-token-guard.test.ts`, `tests/m3-contrast.test.ts`, `tests/m3-theme.test.ts` (decyzje STOP E3 z 21.10.2026, docs/18; M1-036, M1-031). Od 22.10.2026 (uwagi właściciela z telefonu, docs/18): nagłówek ekranu zakładki ze wspólnego `TabHeader` (`HEADER` w tokenach), na starcie mała ikonka sztangi po tytule zamiast sylwetki w rogu (nie nachodzi na tekst; ukryta dla VoiceOver), wskaźnik przewijania ukryty na wszystkich przewijanych ekranach (`components/Scroll.tsx`, strażnik S18; docs/32 wzorzec 31); testy `tests/trening-naglowek.test.tsx`, `tests/interaction-guards.test.ts`.
 ### NFR-KAT-001: Pokrycie katalogu ćwiczeń nie spada
-- Miara: liczba „dobrych” wskaźników pokrycia katalogu (pełne karty, figury v2, karty z własnymi wskazówkami, animowane błędy, role mięśni, komplet tekstów karty w każdym z 35 języków, figury z aktualną recenzją ruchu, nazwy lokalne) poniżej zapisanego minimum. Próg: 0 (spadek tylko świadomie, z polem `powod`); cel wersji z `docs/research/pokrycie-cele.json` sprawdza lista kontrolna wydania (`docs/39`, PK-01). Metoda: generowany licznik `scripts/pokrycie-katalogu.mjs` (`docs/55`, `npm run check:pokrycie`) i test `tests/pokrycie-katalogu.test.ts` (decyzja właściciela 28.10.2026, M-B, docs/18).
+- Miara: liczba „dobrych” wskaźników pokrycia katalogu (pełne karty w obu standardach, figury v2, karty z własnymi wskazówkami, animowane błędy, role mięśni, komplet tekstów karty w każdym z 35 języków, figury z aktualną recenzją ruchu, nazwy lokalne) poniżej zapisanego minimum. Próg: 0 (spadek tylko świadomie, z polem `powod`); cel wersji z `docs/research/pokrycie-cele.json` sprawdza lista kontrolna wydania (`docs/39`, PK-01). Metoda: generowany licznik `scripts/pokrycie-katalogu.mjs` (`docs/55`, `npm run check:pokrycie`) i test `tests/pokrycie-katalogu.test.ts` (decyzja właściciela 28.10.2026, M-B, docs/18).

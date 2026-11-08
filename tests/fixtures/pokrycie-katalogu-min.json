@@ -10,7 +10,7 @@
     "wskazowki.zTekstem": 298,
     "czesteBledyTekst": 196,
     "roleMiesni": 508,
-    "pelnaKarta": 122,
+    "pelnaKarta": 179,
     "recenzjaFigur": 98,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 572,
@@ -47,7 +47,8 @@
     "jezyk.ru.kompletne": 572,
     "jezyk.ja.kompletne": 572,
     "jezyk.ko.kompletne": 572,
-    "jezyk.zh-Hant.kompletne": 572
+    "jezyk.zh-Hant.kompletne": 572,
+    "pelnaKartaBlad": 125
   },
   "rekord": {
     "figura.v2": 132,
@@ -59,7 +60,7 @@
     "wskazowki.zTekstem": 640,
     "czesteBledyTekst": 557,
     "roleMiesni": 509,
-    "pelnaKarta": 122,
+    "pelnaKarta": 179,
     "recenzjaFigur": 132,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 671,
@@ -96,7 +97,8 @@
     "jezyk.ru.kompletne": 572,
     "jezyk.ja.kompletne": 572,
     "jezyk.ko.kompletne": 572,
-    "jezyk.zh-Hant.kompletne": 572
+    "jezyk.zh-Hant.kompletne": 572,
+    "pelnaKartaBlad": 125
   },
   "obnizenia": {
     "figura.v2": {
