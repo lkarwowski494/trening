@@ -135,6 +135,21 @@ W.ledzwie_zakres = { dobre: [J.maWskazowkeLedzwie('Crunch - Hands Overhead', tks
 /* 16c/d zwis startowy i tor łokcia w środku przyciągania (generator inverted: zwis od podłogi vs drążek 100 cm, start skośny) */
 const zwisOk = G.inverted('Inverted Row'), zwisZle = G.inverted('Inverted Row', { by: 100, axOverride: 94, pole: [0, -1, 0.15] });
 W.zwis_startowy = { dobre: J.zwisStartowy(v2, zwisOk), zle: J.zwisStartowy(v2, zwisZle) };
+/* IR-A (08.11.2026): zwis startowy wiosłowania odwróconego — ręka prosta, odchylona od pionu ku STOPOM 0–25°, nigdy ku głowie (uproszczenie rysunku; docs/research/recenzje/d1-inverted-row-kat-zwisu-2026-11-08.md) */
+const zwisKat = (deg) => { const p = klon(zwisOk); const s = v2.keyframeFrame(p, p.klatki[0].u).sk; const dir = Math.sign(s.pelvis[0] - s.shoulderC[0]);
+  for (const k of ['R', 'L']) { const a = s.arms[k]; p.klatki[0].rece[k].chwyt[0] = a.shoulder[0] + dir * Math.tan((deg * Math.PI) / 180) * (a.grip[1] - a.shoulder[1]); }
+  const s1 = v2.keyframeFrame(p, p.klatki[0].u).sk; const a1 = s1.arms.R; const zmierzony = (Math.atan2((a1.grip[0] - a1.shoulder[0]) * dir, a1.grip[1] - a1.shoulder[1]) * 180) / Math.PI; return { p, zmierzony: Math.round(zmierzony * 100) / 100 }; };
+const zk = [0, 10, 25, 26, 30, -5].map(zwisKat);
+W.zwis_kat_ku_stopom = { zmierzone: zk.map((x) => x.zmierzony), ok: [0, 10, 25].map((d) => J.zwisStartowy(v2, zwisKat(d).p).length), kuStopomZaDuzo: [26, 30].map((d) => J.zwisStartowy(v2, zwisKat(d).p)), kuGlowie: J.zwisStartowy(v2, zwisKat(-5).p),
+  niePrzyciaganie: J.zwisStartowy(v2, (() => { const p = klon(zwisKat(25).p); p.cwiczenie = 'Pull Up'; return p; })()).length,
+  wSprawdzJakosc: J.sprawdzJakosc(zwisKat(25).p, { v2, rodzina: 'pushup_plank', cwiczenie: 'Inverted Row', postural: new Set(), izometryczne: false, teksty: {} }).filter((x) => x.regula === 'zwis_startowy').length };
+/* IR-A (08.11.2026): Inverted Row pomija regułę środka (rachunek, badacz); inne wiosłowanie przyciągane nadal ją ma */
+{ const ctx = (cw) => ({ v2, rodzina: 'pushup_plank', cwiczenie: cw, postural: new Set(), izometryczne: false, teksty: {} }); const nazwa = (p, cw) => ({ ...klon(p), cwiczenie: cw });
+  const ile = (cw) => { const zmienione = J.PRZYCIAGANIE.includes(cw); if (!zmienione) J.PRZYCIAGANIE.push(cw); try { return J.sprawdzJakosc(nazwa(zwisOk, cw), ctx(cw)).filter((x) => x.regula === 'tor_lokcia_srodek').length; } finally { if (!zmienione) J.PRZYCIAGANIE.pop(); } };
+  W.tor_srodek_pomija = { inverted: [ile('Inverted Row')], inneWioslowanie: [ile('Test Row')], powod: Object.keys(J.TOR_SRODEK_POMIJA) }; }
+/* IR-A (08.11.2026, kontrola audytora P1): na końcu ruchu klatka (mostek) przy drążku — odległość mostka od drążka ≤ 15 cm (konwencja rysunku z opisem: kapsuła tułowia 9,5 cm + głębokość klatki 10,5 cm; maksymalne zgięcie łokcia w ROM 149°; [OTWARTE] brak źródła z liczbą) */
+{ const IRD = poza('pushup_plank', 'Inverted Row'); const sz = IRD.sprzet.find((g) => g.rodzaj === 'sztanga'); const odstMostka = (u) => { const s = v2.keyframeFrame(IRD, u).sk; const m = [s.shoulderC[0] + (s.pelvis[0] - s.shoulderC[0]) * 0.15, s.shoulderC[1] + (s.pelvis[1] - s.shoulderC[1]) * 0.15]; return Math.hypot(m[0] - sz.x, m[1] - sz.y); };
+  W.ir_klatka_przy_drazku = { koniec: Math.round(odstMostka(1) * 10) / 10, start: Math.round(odstMostka(0) * 10) / 10 }; }
 W.tor_lokcia_srodek = { dobre: J.torLokciaSrodek(v2, poza('core_floor', 'Lying Leg Raise')), zle: J.torLokciaSrodek(v2, zwisOk) };
 /* 16b proste ręce w rolloutach */
 W.proste_rece_rollout = { dobre: J.prosteReceRollout(v2, RO), zle: J.prosteReceRollout(v2, G.rolloutKolana('Rollout (sztanga)', { theta: 40 })) };
@@ -255,6 +270,20 @@ describe('reguły jakości po cechach ruchu', () => {
   test('klatki_rozne: poniżej progu obrotu przedramienia klatki są takie same (komunikaty są, bo reszta identyczna)', () => { expect(W.klatki_rozne_obrot.zle[0]).toBeGreaterThan(0); });
 });
 
+const ZK = W.zwis_kat_ku_stopom as unknown as Record<string, unknown>;
+describe('IR-A: zwis startowy wiosłowania odwróconego (08.11.2026, badacz: ręka prosta, ku stopom 0–25° od pionu, nigdy ku głowie)', () => {
+  test('0°, 10° i 25° ku stopom przechodzą (kąt zmierzony zgadza się z zadanym), reguła nie zgłasza zwis_startowy', () => { expect(ZK.zmierzone).toEqual([0, 10, 25, 26, 30, -5]); expect(ZK.ok).toEqual([0, 0, 0]); expect(ZK.wSprawdzJakosc).toBe(0); });
+  test('26° i 30° ku stopom są błędem z liczbami w komunikacie', () => { const z = ZK.kuStopomZaDuzo as string[][]; expect(z.every((m) => m.length > 0)).toBe(true); expect(String(z[0][0])).toMatch(/26[.,]0°.*ku stopom.*25°/); });
+  test('5° ku głowie jest błędem (nigdy ku głowie)', () => { const z = ZK.kuGlowie as string[]; expect(z.length).toBeGreaterThan(0); expect(String(z[0])).toMatch(/5[.,]0°.*ku głowie/); });
+  test('reguła ku stopom obowiązuje tylko wiosłowanie odwrócone: inne ćwiczenie z tą samą pozą (ręka 25° od pionu) nadal podlega progowi ±10° i mostka', () => { expect(ZK.niePrzyciaganie).toBeGreaterThan(0); });
+});
+
+describe('IR-A: tor łokcia w środku ruchu (08.11.2026, badacz: rachunek, łokieć ≥ r − b przed płaszczyzną pleców)', () => {
+  test('Inverted Row pomija regułę środka (tor_lokcia_srodek), inne wiosłowanie przyciągane ją ma; funkcja torLokciaSrodek nadal łamie złą pozę', () => { const T = W.tor_srodek_pomija as unknown as Record<string, unknown>; expect(T.inverted).toEqual([0]); expect((T.inneWioslowanie as number[])[0]).toBeGreaterThan(0); expect(T.powod).toEqual(['Inverted Row']); expect((W.tor_lokcia_srodek.zle as unknown[]).length).toBeGreaterThan(0); });
+});
+describe('IR-A: koniec ruchu wiosłowania odwróconego (08.11.2026, audytor P1: klatka przy drążku, nie 11 cm pod nim)', () => {
+  test('mostek na końcu ruchu najwyżej 15 cm od drążka (karta inv.pull: klatka do drążka) i wyraźnie bliżej niż na starcie', () => { const K = W.ir_klatka_przy_drazku as unknown as { koniec: number; start: number }; expect(K.koniec).toBeLessThanOrEqual(15); expect(K.start - K.koniec).toBeGreaterThan(30); });
+});
 describe('delt_raise (wysokość w świecie, leżenie przodem)', () => {
   test('Straight Raises on Incline Bench (leżenie przodem) i Front Incline Dumbbell Raise (siad tyłem do oparcia): zwis i unoszenie do wysokości barków — wszystkie pozy rodziny bez naruszeń reguł 17', () => { expect(W.delt_raise_dane.dobre).toEqual([]); });
   test('zakres reguł: leżenie przodem tylko Straight Raises (Front Incline [OTWARTE]), wyjątki z powodem, reguła w sprawdzJakosc', () => { expect(W.delt_raise_zakres.dobre).toEqual([0, 0, 0, 0]); });
