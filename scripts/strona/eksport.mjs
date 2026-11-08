@@ -14,6 +14,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appRequire, repoRoot } from './ts-loader.mjs';
 import { PLIK_RECENZJI, rodzinyZRecenzja } from './recenzja-figur.mjs';
+import { elementyKarty, wejscieKarty } from '../pokrycie-katalogu.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const SCHEMA = 'techniqueatlas-eksport@1';
@@ -148,6 +149,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       else cueBlock = { scope: 'none' };
       if (missing) cueBlock.missing = missing;
       const load = seed.muscleLoadOf(e);
+      /* standard 1 „Pełna karta” (decyzja właściciela 02.11.2026, wariant A): ta sama funkcja i to samo wejście co licznik pokrycia (scripts/pokrycie-katalogu.mjs, `policz`) — strona tylko czyta; fail-closed po stronie strony przy braku pola */
+      const { pelna } = elementyKarty(wejscieKarty({ cues, cueSets, ui, roles, cat }, key, shownSpec(key), e));
       return {
         id: key, slug: slugs[key], name: i18n.exName({ name: dispName(key), lib: true }),
         group: e.group, equipment: e.equipment, metric: e.metric, pattern: entry.pattern, loadSource: entry.loadSource,
@@ -156,7 +159,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         /* „Co robią mięśnie”: zdania ról tylko dla regionów z wyświetlaną rolą (jak sekcja w aplikacji, muscleRoleRows), w języku pliku */
         roles: roles.muscleRoleRows(e).filter(r => r.role).map(r => ({ id: r.region, text: r.role })), /* kontrakt: kontrakt.json — id jak regions[].id */
         requires: entry.requires, recommended: entry.recommended,
-        family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
+        pelna, family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
         figure: own(figures, slugs[key]) ? { phases: figurePhases(key), errors: figureErrors(key) } : null,
         cues: cueBlock,
         alternatives: alternativesFor(key),

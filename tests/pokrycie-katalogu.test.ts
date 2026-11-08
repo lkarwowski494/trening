@@ -51,7 +51,9 @@ describe('pokrycie katalogu: dokument i liczby z kodu', () => {
     expect(r.figura.v2 + r.figura.v1 + r.figura.bezFigury).toBe(r.cwiczen);
     expect(r.wskazowki.wlasne + r.wskazowki.ogolne + r.wskazowki.bezTekstu).toBe(r.cwiczen);
     expect(r.wskazowki.wlasneZBledami).toBeLessThanOrEqual(r.wskazowki.wlasne);
-    expect(r.pelnaKarta).toBeLessThanOrEqual(Math.min(r.wskazowki.wlasne + r.wskazowki.ogolne, r.czesteBledyTekst, r.figura.v2, r.animowanyBlad, r.roleMiesni));
+    /* dwa standardy (02.11.2026): standard 1 wymaga wskazówek i figury v2 (ról nie wymaga mobilność — 04.11.2026), standard 2 dodatkowo częstych błędów i animowanego błędu */
+    expect(r.pelnaKarta).toBeLessThanOrEqual(Math.min(r.wskazowki.wlasne + r.wskazowki.ogolne, r.figura.v2));
+    expect(r.pelnaKartaBlad).toBeLessThanOrEqual(Math.min(r.pelnaKarta, r.czesteBledyTekst, r.animowanyBlad));
     expect(Object.values(fix.rodziny).reduce((s, f) => s + f.cwiczen, 0)).toBe(r.cwiczen);
     expect(Object.values(fix.rodziny).reduce((s, f) => s + f.pelnaKarta, 0)).toBe(r.pelnaKarta);
   });
@@ -119,6 +121,12 @@ describe('pokrycie katalogu: cele wersji', () => {
     expect(Object.keys(c.min).length).toBeGreaterThan(0);
     for (const [m, v] of Object.entries(c.min)) { expect(Object.keys(fix.dobre)).toContain(m); expect(Number.isInteger(v) && v >= 0).toBe(true); }
   });
+  test('cel 1.1 „pełna karta” (standard 1) = 465, policzony 08.11.2026 z danych (decyzje właściciela 02.11.2026 ~15:30 i ~17:00, 04.11.2026 (4) B): 452 z danymi póz v2 i rolami albo mobilnością + 13 obowiązkowych spoza tego warunku; opis w pokrycie-cele.json', () => {
+    const c = cele.wersje['1.1'];
+    expect(c.min.pelnaKarta).toBe(465);
+    expect(c.opis).toMatch(/08\.11\.2026 \(Z0[^)]*\)[^]*465 = 452[^]*13 spośród 51 obowiązkowych/);
+    expect(c.min.pelnaKarta).toBeGreaterThanOrEqual(fix.dobre.pelnaKarta);
+  });
   test('cel wersji nie jest niższy niż minimum zapadki (cel nie może być łatwiejszy niż stan chroniony)', () => {
     for (const [wer, c] of Object.entries(cele.wersje)) for (const [m, v] of Object.entries(c.min)) expect({ wer, m, ok: v >= (min.minimum[m] ?? 0) || !!min.obnizenia?.[m] }).toEqual({ wer, m, ok: true });
   });
@@ -153,29 +161,55 @@ describe('pokrycie katalogu: cele wersji', () => {
   });
 });
 
-/** Definicja Z3 (ZB-025 a; właściciel 31.10.2026, decyzja 1.1 pkt 3): „pełna karta” liczy zrecenzowany zestaw ogólny wzorca ruchu jako wskazówki, własne wskazówki tylko tam,
- * gdzie ćwiczenie odbiega od wzorca. Funkcja czysta `elementyKarty` — macierz 3 trybów wskazówek × obecność każdego z pozostałych elementów. */
-type Wej = { wskazowki: 'wlasne' | 'ogolne' | 'brak'; bledyTekst: boolean; figuraV2: boolean; animowanyBlad: boolean; roleMiesni: boolean };
-const elementy = (w: Wej) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { elementyKarty } from './scripts/pokrycie-katalogu.mjs'; console.log(JSON.stringify(elementyKarty(${JSON.stringify(w)})));`], { cwd: root, encoding: 'utf8' })) as { el: Record<string, boolean>; pelna: boolean };
+/** Dwa standardy publikacji (właściciel 02.11.2026 ~15:30, zastępuje definicję Z3 z 31.10.2026): (1) „Pełna karta” = wskazówki (własne albo zrecenzowany zestaw ogólny) + figura v2 + role mięśni;
+ * (2) „Pełna karta + błąd” = (1) + częste błędy (tekst) + animowany błąd. Mobilność bez ról mięśni (04.11.2026 (4) B). Funkcja czysta `elementyKarty` — macierz 3 trybów wskazówek × obecność elementów × mobilność. */
+type Wej = { wskazowki: 'wlasne' | 'ogolne' | 'brak'; bledyTekst: boolean; figuraV2: boolean; animowanyBlad: boolean; roleMiesni: boolean; mobilnosc?: boolean };
+type Wyj = { el: Record<string, boolean>; pelna: boolean; pelnaBlad: boolean; poziom: string; brakiPelna: string[] };
+const elementy = (w: Wej) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { elementyKarty } from './scripts/pokrycie-katalogu.mjs'; console.log(JSON.stringify(elementyKarty(${JSON.stringify(w)})));`], { cwd: root, encoding: 'utf8' })) as Wyj;
 const pelneWej: Wej = { wskazowki: 'wlasne', bledyTekst: true, figuraV2: true, animowanyBlad: true, roleMiesni: true };
 
-describe('pokrycie katalogu: definicja pełnej karty Z3 (ZB-025 a, 31.10.2026)', () => {
+describe('pokrycie katalogu: dwa standardy publikacji (decyzja właściciela 02.11.2026 ~15:30)', () => {
   test.each([['wlasne', true], ['ogolne', true], ['brak', false]] as const)('tryb wskazówek %s → element „wskazówki” = %s (zestaw ogólny po recenzji liczy się jak własne; bez tekstu nie)', (tryb, ok) => {
     const r = elementy({ ...pelneWej, wskazowki: tryb });
-    expect(r.el.wskazowki).toBe(ok); expect(r.pelna).toBe(ok);
+    expect(r.el.wskazowki).toBe(ok); expect(r.pelna).toBe(ok); expect(r.pelnaBlad).toBe(ok);
   });
-  test('zestaw ogólny po recenzji, z częstymi błędami i figurą, animowanym błędem i rolami mięśni → pełna karta (to, czego stara definicja nie liczyła)', () => {
-    expect(elementy({ ...pelneWej, wskazowki: 'ogolne' }).pelna).toBe(true);
+  test('zestaw ogólny po recenzji z figurą, rolami, częstymi błędami i animowanym błędem → standard 2 (to, czego stara definicja nie liczyła)', () => {
+    expect(elementy({ ...pelneWej, wskazowki: 'ogolne' }).poziom).toBe('pelna_blad');
   });
-  test.each(['bledyTekst', 'figuraV2', 'animowanyBlad', 'roleMiesni'] as const)('brak elementu %s → karta niepełna, a pozostałe elementy bez zmian', brak => {
+  test.each(['figuraV2', 'roleMiesni'] as const)('brak elementu %s → ani standard 1, ani 2; brak wskazany w brakiPelna', brak => {
     const r = elementy({ ...pelneWej, [brak]: false });
-    expect(r.pelna).toBe(false); expect(Object.values(r.el).filter(v => !v)).toHaveLength(1);
+    expect(r.pelna).toBe(false); expect(r.pelnaBlad).toBe(false); expect(r.poziom).toBe('brak'); expect(r.brakiPelna).toEqual([brak]);
+  });
+  test.each(['bledyTekst', 'animowanyBlad'] as const)('brak elementu %s → standard 1 tak, standard 2 nie (bez wymogu błędów w pełnej karcie)', brak => {
+    const r = elementy({ ...pelneWej, [brak]: false });
+    expect(r.pelna).toBe(true); expect(r.pelnaBlad).toBe(false); expect(r.poziom).toBe('pelna'); expect(r.brakiPelna).toEqual([]);
+  });
+  test('bez żadnego błędu (tekst i animacja) nadal standard 1 — drugi standard to nadbudowa, nie warunek publikacji', () => {
+    expect(elementy({ ...pelneWej, bledyTekst: false, animowanyBlad: false }).poziom).toBe('pelna');
+  });
+  test.each([false, true])('mobilność (rozciąganie) bez ról mięśni (decyzja 04.11.2026 (4) B): standard 1 i 2 bez ról; element „roleMiesni” nadal faktem = %s', role => {
+    const r = elementy({ ...pelneWej, mobilnosc: true, roleMiesni: role });
+    expect(r.pelna).toBe(true); expect(r.pelnaBlad).toBe(true); expect(r.el.roleMiesni).toBe(role);
+  });
+  test('mobilność nadal wymaga wskazówek i figury v2 (wyjątek dotyczy tylko ról)', () => {
+    expect(elementy({ ...pelneWej, mobilnosc: true, roleMiesni: false, wskazowki: 'brak' }).brakiPelna).toEqual(['wskazowki']);
+    expect(elementy({ ...pelneWej, mobilnosc: true, roleMiesni: false, figuraV2: false }).brakiPelna).toEqual(['figuraV2']);
+  });
+  test('ćwiczenie nie-mobilnościowe bez ról nie dostaje wyjątku (mobilnosc domyślnie fałsz)', () => {
+    expect(elementy({ ...pelneWej, roleMiesni: false }).pelna).toBe(false);
   });
   test('wszystkie elementy z listy ELEMENTY (docs/55) mają wartość w wyniku', () => {
     expect(Object.keys(elementy(pelneWej).el).sort()).toEqual(['animowanyBlad', 'czesteBledy', 'figuraV2', 'roleMiesni', 'wskazowki']);
   });
-  test('docs/55 opisuje definicję Z3 (zrecenzowany zestaw ogólny albo własne wskazówki)', () => {
-    expect(read('docs/55-pokrycie-katalogu.md')).toMatch(/\*\*Pełna karta\*\* = wskazówki \(własne albo zrecenzowany zestaw ogólny wzorca ruchu — Z3, 31\.10\.2026\)/);
+  test('docs/55 opisuje oba standardy i wyjątek mobilności', () => {
+    const d = read('docs/55-pokrycie-katalogu.md');
+    expect(d).toMatch(/\*\*Pełna karta\*\* = wskazówki \(własne albo zrecenzowany zestaw ogólny wzorca ruchu\) \+ figura v2 w aplikacji \+ role mięśni/);
+    expect(d).toMatch(/\*\*Pełna karta \+ błąd\*\* = pełna karta \+ częste błędy \(tekst\) \+ animowany błąd/);
+    expect(d).toMatch(/mobilności[^.]*bez ról mięśni/);
+  });
+  test('fixture: standard 2 ⊆ standard 1, a metryka zapadki równa liczbie', () => {
+    expect(fix.razem.pelnaKartaBlad).toBeLessThanOrEqual(fix.razem.pelnaKarta);
+    expect(fix.dobre.pelnaKartaBlad).toBe(fix.razem.pelnaKartaBlad);
   });
 });
 
