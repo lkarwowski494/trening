@@ -130,7 +130,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Fit Father Project | Fit Father Project — poradnik o ćwiczeniach (fitfatherproject.com) | 5 | serwis specjalistyczny |
 | BodBot | BodBot — opisy ćwiczeń (bodbot.com) | 5 | serwis specjalistyczny |
 | app-s8 | app-s8 | 5 | ? |
-| ColumbiaDoctors | ColumbiaDoctors — biblioteka zdrowia (materiał WebMD Ignite, recenzja Clinical Review Board; columbiadoctors.org) | 4 | serwis specjalistyczny |
 | Echelon Fitness | Echelon Fitness — instrukcja ćwiczeń do własnego kółka (producent, PDF 2021) | 4 | producent sprzętu |
 | NSCA — Exercise Technique Manual (Human Kinetics) | NSCA — Exercise Technique Manual for Resistance Training, wyd. 4 (fragment u wydawcy Human Kinetics) | 3 | organizacja szkoleniowa (biblioteka ćwiczeń) |
 | TRX | TRX — blog producenta zawieszeń (trxtraining.com) | 4 | producent sprzętu |
@@ -3816,15 +3815,15 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; raise your arms to a goal post position: upper arms parallel, forearms perpendicular to the floor) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
+- Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; raise your arms to a goal post position: upper arms parallel, forearms perpendicular to the floor) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
 
 **Ruch**
 
-- Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower back to the goal post position under control) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
+- Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower back to the goal post position under control) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
 
 **Wskazówki**
 
-- Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (back straight, head straight, chest up) — przeczytane w W1); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (sit or stand up straight; press straight up)) `ohp.tall`
+- Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (back straight, head straight, chest up) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (sit or stand up straight; press straight up)) `ohp.tall`
 
 **Czego unikać**
 
@@ -3834,7 +3833,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań stabilnie, hantel w jednej ręce przy barku. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (stand with the feet hip-width apart; kettlebell in front of the chest near the shoulder)); ColumbiaDoctors: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (stand up straight; hands near your shoulders; small weights such as dumbbells instead of a band)) [uproszczenie: wariant sprzętu: ACE 395 — jednorącz z kettlebellem, ColumbiaDoctors — hantle oburącz; pozycja startowa (stoisz, ciężar przy barku) ta sama] `ohp.saSetup`
+- Stań stabilnie, hantel w jednej ręce przy barku. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (stand with the feet hip-width apart; kettlebell in front of the chest near the shoulder)); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (stand up straight; hands near your shoulders; small weights such as dumbbells instead of a band)) [uproszczenie: wariant sprzętu: ACE 395 — jednorącz z kettlebellem, ColumbiaDoctors — hantle oburącz; pozycja startowa (stoisz, ciężar przy barku) ta sama] `ohp.saSetup`
 
 **Ruch**
 
@@ -4183,7 +4182,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | cf-dkb-pp-jerk | CrossFit | Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008) | https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk | — |
 | coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
 | columbia-plantar-fasciitis | WebMD Ignite | Plantar Fasciitis Exercises (Health Library) | https://www.columbiadoctors.org/health-library/how-to/plantar-fasciitis-exercises | — |
-| columbia-shoulder-press-band | ColumbiaDoctors | shoulder press | https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/ | — |
+| columbia-shoulder-press-band | WebMD Ignite | shoulder press | https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/ | — |
 | covenant-lower-body-flex | Covenant HealthCare | Lower Body Flexibility (PDF, 2 s.) | https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf | — |
 | crossfit-cj | CrossFit | The Clean and Jerk (Essentials, 21.01.2020) | https://www.crossfit.com/essentials/the-clean-and-jerk | — |
 | crossfit-jerk | CrossFit | Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023) | https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk | — |

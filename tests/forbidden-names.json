@@ -376,6 +376,16 @@
    "path": "tests/whats-new.test.tsx",
    "name": "JEFIT",
    "reason": "test negatywny (06.11.2026, wpis „Co nowego” 1.0.1): wzorzec sprawdza, że teksty panelu NIE zawierają nazw innych aplikacji — nazwa występuje tylko w wyrażeniu regularnym asercji"
+  },
+  {
+   "path": "data/zrodla/cues.json",
+   "name": "TRX",
+   "reason": "organizacja źródła wskazówek techniki (producent zawieszeń — instrukcje ćwiczeń na zawieszeniach; jeden klucz organizacji w danych źródeł, partia A1 pchanie, 08.11.2026, docs/18); podpis w aplikacji neutralny (rodzaj źródła) — jak Eleiko, Rogue Fitness i Thera-Band, decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
+   "path": "tests/zrodla-pelne-cues-a1-pchanie.test.ts",
+   "name": "TRX",
+   "reason": "test negatywny (08.11.2026, partia A1 pchanie): wzorzec sprawdza, że teksty kart NIE zawierają nazw źródeł — nazwa występuje tylko w wyrażeniu regularnym asercji"
   }
  ]
 }
