@@ -696,8 +696,8 @@
    "setup": [
     {
      "id": "calf.band",
-     "pl": "Stań przednią częścią stóp na gumie i chwyć jej końce albo uchwyty.",
-     "en": "Stand on the band with the balls of your feet and hold its ends or handles.",
+     "pl": "Stań prosto, trzymając w dłoniach końce gumy albo uchwyty.",
+     "en": "Stand tall, holding the band ends or handles.",
      "nowe": true,
      "zrodla": [
       {

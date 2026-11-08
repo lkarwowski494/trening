@@ -126,8 +126,8 @@ console.log(JSON.stringify({ ukryta: ids(kartaWlasna('Smith Machine Calf Raise')
 });
 
 describe('A2 nogi: poprawki recenzji niezależnej (08.11.2026, runda 1: badacz i lokalizacja PL/EN)', () => {
-  test('Band Calf Raise: guma pod przednią częścią stóp (blokujące); karta jednonóż siedząc ma zdanie w liczbie pojedynczej (calf.seatedEdge1)', () => {
-    expect(pl['calf.band']).toMatch(/przednią częścią stóp na gumie/); expect(en['calf.band']).toMatch(/Stand on the band/);
+  test('Band Calf Raise: calf.band w brzmieniu rundy 1 (runda 2 badacza, 08.11.2026: położenie gumy pod stopami ma jedno źródło szczebla 4 — [OTWARTE] w docs/21); karta jednonóż siedząc ma zdanie w liczbie pojedynczej (calf.seatedEdge1)', () => {
+    expect([pl['calf.band'], en['calf.band']]).toEqual(['Stań prosto, trzymając w dłoniach końce gumy albo uchwyty.', 'Stand tall, holding the band ends or handles.']);
     expect(CUE_FULL.exercises['Dumbbell Seated One-Leg Calf Raise'].setup.map(r => r.c)).toEqual(['calf.seatedEdge1']);
     expect(pl['calf.seatedEdge1']).toMatch(/ugiętym kolanem.*stopy.*piętę/);
     for (const k of ['Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise']) expect(CUE_FULL.exercises[k].setup.map(r => r.c)).toContain('calf.seatedEdge');

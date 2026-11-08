@@ -3863,7 +3863,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań przednią częścią stóp na gumie i chwyć jej końce albo uchwyty. — Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Setup (uchwyt w każdej dłoni, tułów wyprostowany)); Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step One–Two (guma pod przednią częścią stóp, końce w dłoniach przy biodrach)) `calf.band`
+- Stań prosto, trzymając w dłoniach końce gumy albo uchwyty. — Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Setup (uchwyt w każdej dłoni, tułów wyprostowany)); Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step One–Two (guma pod przednią częścią stóp, końce w dłoniach przy biodrach)) `calf.band`
 
 **Ruch**
 

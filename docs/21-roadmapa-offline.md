@@ -158,6 +158,7 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
 
 ### Backlog 1.2 — karty A2 (nogi): NISKIE z recenzji niezależnej (08.11.2026; `docs/research/recenzje/a2-nogi-karty-badacz-2026-11-08.md`, `a2-nogi-lokalizacja-2026-11-08.md`; nie blokują)
+- [OTWARTE] `calf.band` (Band Calf Raise): drugie źródło szczebla 4 dla położenia gumy pod przednią częścią stóp (recenzja lokalizacji: blokujące — karta nie mówi, że guma idzie pod stopy; runda 2 badacza 08.11.2026: tylko Thera-Band, Bodylastics zaczepia o drzwi, ACE 5771 — wariant w siadzie). Do czasu źródła brzmienie rundy 1; karta i tak ukryta do przekładu.
 - `calf.pause` w kartach wspięć siedząc (Barbell Seated, Seated (hantle), Dumbbell Seated One-Leg): dopisanie ISSA „top 6” Seated nic nie wnosi do pary — ISSA już jest (artykuł 25-min); para zostaje ISSA + ACE 51 (wariant stojąc). Do zastąpienia ACE 51 drugą organizacją o wersji siedzącej.
 - `bandcurl.setup` „pętlę na kostkę”: źródło gumowe mówi o pięcie, maszynowe (wałek) o kostce — zostaje część wspólna; ewentualnie osobne zdanie „na piętę” po drugim źródle.
 - `slp.setup` „drugą zdejmij z platformy i trzymaj nieruchomo” — bez źródła wprost (zdroworozsądkowe uzupełnienie).
