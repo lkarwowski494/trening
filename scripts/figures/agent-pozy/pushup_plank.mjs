@@ -132,8 +132,8 @@ function plyo(cw) {
 }
 
 /* ---------- Inverted Row (leżąc pod drążkiem, pięty na podłodze) ---------- */
-/** Parametry wiosłowania odwróconego po regule zwisu (08.11.2026): drążek 72 cm, pięty 110 cm od drążka (ręka ok. 20° ku stopom — UPROSZCZENIE, v2-jakosc ZWIS_KU_STOPOM), zgięcie do 135°, zwolnienie 0,5, łokieć ku podłodze. */
-export const IR_PARAMETRY = { by: 72, axOverride: 110, thetaEnd: 135, pole: [0, -1, 0.15], ease: 0.5 };
+/** Parametry wiosłowania odwróconego po regule zwisu (08.11.2026): drążek 68 cm, pięty 108 cm od drążka (ręka ok. 22° ku stopom — UPROSZCZENIE, v2-jakosc ZWIS_KU_STOPOM), zgięcie łokcia do 149° (maksimum zakresu stawu; mostek ok. 13 cm od drążka, klatka przy drążku), zwolnienie 0,5, łokieć ku podłodze. */
+export const IR_PARAMETRY = { by: 68, axOverride: 108, thetaEnd: 149, pole: [0, -1, 0.15], ease: 0.5 };
 /** Wiosłowanie odwrócone: pięty na podłodze w odległości ax od drążka (ciało sztywne, obrót wokół pięt); na końcu mostek przy drążku (bark ok. 15 cm pod nim, thetaEnd) i łokieć ku podłodze, za linią pleców (v2-jakosc: tor_lokcia_przyciaganie). */
 export function inverted(cw, { thetaEnd = 142, pole = [0, 1, 0.2], axOverride, by = 80, thetaStart = 12, ease = 1 } = {}) {
   const B = BODY(); const hz = 24; const f0 = 9; const Ay = r1(7 + 2); /* pięty na podłodze, palce w górę (podbicie 25) */
@@ -218,7 +218,7 @@ export const PRZYBLIZENIA = {
   'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)',
   'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)',
   'Suspended Fallout': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie',
-  'Inverted Row': 'drążek w stojaku na wysokości 72 cm, pięty 110 cm od drążka; chwyt nachwytem szeroki (z = ±24); UPROSZCZENIE: ręka w zwisie startowym ok. 20° ku stopom (reguła zwisu 08.11.2026: 0–25° ku stopom, nigdy ku głowie); odwiedzenie ramienia ≤ 45° to konwencja rysunku [OTWARTE: brak źródła ze stopniami]; łokieć w środku ruchu leży przed płaszczyzną pleców (rachunek, tor_lokcia_srodek nie dotyczy tego ćwiczenia), za linią pleców dopiero na końcu',
+  'Inverted Row': 'drążek w stojaku na wysokości 68 cm, pięty 108 cm od drążka; chwyt nachwytem szeroki (z = ±24); UPROSZCZENIE: ręka w zwisie startowym ok. 22° ku stopom (reguła zwisu 08.11.2026: 0–25° ku stopom, nigdy ku głowie); odwiedzenie ramienia ≤ 45° to konwencja rysunku [OTWARTE: brak źródła ze stopniami]; łokieć w środku ruchu leży przed płaszczyzną pleców (rachunek, tor_lokcia_srodek nie dotyczy tego ćwiczenia), za linią pleców dopiero na końcu; na końcu mostek ok. 13 cm od drążka (klatka przy drążku w granicy zgięcia łokcia 149°); start prawie poziomy [backlog U1: większe nachylenie ciała]',
 };
 
 /** Wszystkie pozy rodziny: { ćwiczenie: poza }. Każde ćwiczenie to wywołanie typu z parametrami (chwyt, rozstaw, sprzęt, zakres). */

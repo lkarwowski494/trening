@@ -147,6 +147,9 @@ W.zwis_kat_ku_stopom = { zmierzone: zk.map((x) => x.zmierzony), ok: [0, 10, 25].
 { const ctx = (cw) => ({ v2, rodzina: 'pushup_plank', cwiczenie: cw, postural: new Set(), izometryczne: false, teksty: {} }); const nazwa = (p, cw) => ({ ...klon(p), cwiczenie: cw });
   const ile = (cw) => { const zmienione = J.PRZYCIAGANIE.includes(cw); if (!zmienione) J.PRZYCIAGANIE.push(cw); try { return J.sprawdzJakosc(nazwa(zwisOk, cw), ctx(cw)).filter((x) => x.regula === 'tor_lokcia_srodek').length; } finally { if (!zmienione) J.PRZYCIAGANIE.pop(); } };
   W.tor_srodek_pomija = { inverted: [ile('Inverted Row')], inneWioslowanie: [ile('Test Row')], powod: Object.keys(J.TOR_SRODEK_POMIJA) }; }
+/* IR-A (08.11.2026, kontrola audytora P1): na końcu ruchu klatka (mostek) przy drążku — odległość mostka od drążka ≤ 15 cm (konwencja rysunku z opisem: kapsuła tułowia 9,5 cm + głębokość klatki 10,5 cm; maksymalne zgięcie łokcia w ROM 149°; [OTWARTE] brak źródła z liczbą) */
+{ const IRD = poza('pushup_plank', 'Inverted Row'); const sz = IRD.sprzet.find((g) => g.rodzaj === 'sztanga'); const odstMostka = (u) => { const s = v2.keyframeFrame(IRD, u).sk; const m = [s.shoulderC[0] + (s.pelvis[0] - s.shoulderC[0]) * 0.15, s.shoulderC[1] + (s.pelvis[1] - s.shoulderC[1]) * 0.15]; return Math.hypot(m[0] - sz.x, m[1] - sz.y); };
+  W.ir_klatka_przy_drazku = { koniec: Math.round(odstMostka(1) * 10) / 10, start: Math.round(odstMostka(0) * 10) / 10 }; }
 W.tor_lokcia_srodek = { dobre: J.torLokciaSrodek(v2, poza('core_floor', 'Lying Leg Raise')), zle: J.torLokciaSrodek(v2, zwisOk) };
 /* 16b proste ręce w rolloutach */
 W.proste_rece_rollout = { dobre: J.prosteReceRollout(v2, RO), zle: J.prosteReceRollout(v2, G.rolloutKolana('Rollout (sztanga)', { theta: 40 })) };
@@ -277,6 +280,9 @@ describe('IR-A: zwis startowy wiosłowania odwróconego (08.11.2026, badacz: rę
 
 describe('IR-A: tor łokcia w środku ruchu (08.11.2026, badacz: rachunek, łokieć ≥ r − b przed płaszczyzną pleców)', () => {
   test('Inverted Row pomija regułę środka (tor_lokcia_srodek), inne wiosłowanie przyciągane ją ma; funkcja torLokciaSrodek nadal łamie złą pozę', () => { const T = W.tor_srodek_pomija as unknown as Record<string, unknown>; expect(T.inverted).toEqual([0]); expect((T.inneWioslowanie as number[])[0]).toBeGreaterThan(0); expect(T.powod).toEqual(['Inverted Row']); expect((W.tor_lokcia_srodek.zle as unknown[]).length).toBeGreaterThan(0); });
+});
+describe('IR-A: koniec ruchu wiosłowania odwróconego (08.11.2026, audytor P1: klatka przy drążku, nie 11 cm pod nim)', () => {
+  test('mostek na końcu ruchu najwyżej 15 cm od drążka (karta inv.pull: klatka do drążka) i wyraźnie bliżej niż na starcie', () => { const K = W.ir_klatka_przy_drazku as unknown as { koniec: number; start: number }; expect(K.koniec).toBeLessThanOrEqual(15); expect(K.start - K.koniec).toBeGreaterThan(30); });
 });
 describe('delt_raise (wysokość w świecie, leżenie przodem)', () => {
   test('Straight Raises on Incline Bench (leżenie przodem) i Front Incline Dumbbell Raise (siad tyłem do oparcia): zwis i unoszenie do wysokości barków — wszystkie pozy rodziny bez naruszeń reguł 17', () => { expect(W.delt_raise_dane.dobre).toEqual([]); });
