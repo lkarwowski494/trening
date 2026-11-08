@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 359 | 359 | 0 |
 | TEKST | 1087 | 1087 | 0 |
 | LOGIKA | 1161 | 1161 | 0 |
-| WYMIAR | 177 | 177 | 0 |
+| WYMIAR | 180 | 178 | 0 |
 
 ## EKRAN
 
@@ -2748,10 +2748,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | CURL_TECHNIQUE (2) | lib/figures/v2/overlay/curl.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | HINGE_GUIDES (2) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka.test.tsx, tests/figury-recenzja.test.tsx |
 | HINGE_TECHNIQUE (1) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka-squat-hinge.test.tsx |
+| OLYMPIC_HIP_EXERCISES (4) | lib/figures/v2/overlay/olympic.ts | tests/audit-m1-031-asekuracja-zakres.test.tsx |
+| OLYMPIC_TECHNIQUE (4) | lib/figures/v2/overlay/olympic.ts | WYJĄTEK: BRAK |
 | PULL_UP_PLUMB_EXERCISES (2) | lib/figures/v2/overlay/pull_up.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | PULL_UP_TECHNIQUE (2) | lib/figures/v2/overlay/pull_up.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | SQUAT_GUIDES (2) | lib/figures/v2/overlay/squat.ts | tests/figures-v2-nakladka.test.tsx, tests/figury-recenzja.test.tsx |
 | SQUAT_TECHNIQUE (1) | lib/figures/v2/overlay/squat.ts | tests/figures-v2-nakladka-squat-hinge.test.tsx |
+| TRICEPS_TECHNIQUE (2) | lib/figures/v2/overlay/triceps.ts | WYJĄTEK: BRAK |
 | TechniqueKind: limb \| abduction \| ref | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-nakladka.test.tsx |
 | RefPoint: grip \| wrist \| elbow \| shoulder \| hip \| knee \| ankle \| toe \| pelvis \| shoulderC \| head | lib/figures/v2/overlay.ts | tests/catalog-full.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +3 |
 | MeasuredJoint: knee \| elbow \| hip \| shElev \| shAbd \| shRot \| shrug \| protract \| wristFlex \| forearmRoll | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +2 |
