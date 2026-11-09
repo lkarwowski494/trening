@@ -305,13 +305,10 @@
     },
     "Lat Pulldown": {
       "rodzina": "pulldown",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "72f6a47c92d4",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie”: łokieć z przodu, dłoń pod bloczkiem; odchylenie toru 2,7 j. (było 18,9). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-      "wada": "Drążek odjeżdża łukiem do ok. 21 j. (ok. 37 cm) przed pionową linię bloczka — wskazówka: ściągaj drążek w dół przed twarzą (lpd.pull).",
-      "poprawka": "Pozycja pośrednia z dłonią pod bloczkiem; odchylenie toru dłoni ≤ 5 j."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "72f6a47c92d4"
     },
     "Pull Up": {
       "rodzina": "pull_up",
@@ -1075,6 +1072,90 @@
         "Middle Back Shrug": {
           "werdykt": "wyswietlana",
           "uwagi": "ruch bez zmian względem rundy 1 (łopatki 5 → −4 cm prostopadle do tułowia, ławka 45°, łokieć ~42° stały); nie obejmuje go bez_bramki_ruchu ani rece_proste"
+        }
+      }
+    },
+    "pulldown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — runda 2, recenzja różnicy a9c220be → d7dd7a84 (poprawka N1 Straight Arm Pulldown: kolumna wyciągu x 62 → 88); 8/8 wyświetlane; ŚREDNIE N2–N5 i NISKIE N6–N7 z rundy 1 do backlogu (N5: EN „Pulling” — decyzja koordynatora, wdrożenie osobno)",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rundy 2 (L-047, L-050) gałęzi figury/partia-3 @ d7dd7a84, czysta kopia git archive /tmp/rec-p3-r2, 09.11.2026; raport docs/research/recenzje/p3-pulldown-r2-audytor-2026-11-09.md",
+      "uwagi": "N1 naprawione: kolumna x 88 (= bark + ręka + 12 cm), przednia ściana kolumny x 83 (towerW 10), skrajny chwyt x 76,2 (u 0,375) — odstęp ok. 6,8 cm do ściany w każdej klatce (201 próbek); linka od bloczka (88, 215) do środka drążka, nie przecina kolumny ani ciała; drążek w rzucie z przodu przed kolumną. Pozostałe 7 ćwiczeń, kontrakt i rodzina bajtowo bez zmian wobec a9c220be; w Straight Arm Pulldown zmienione wyłącznie pole x wyciągu. Generator odtwarza plik (odtwarzanie-poz.mjs pulldown: brak rozjazdów, pozy ważne). Ruch rąk bez zmian (shElev 143°→27°).",
+      "slad": "arkusze scripts/figures/arkusz-slad.mjs --key \"Straight Arm Pulldown\", rzuty side i front, motyw light (/tmp/rec-p3-r2/ark) i dark (/tmp/rec-p3-r2/ark-dark), kadry co 0,05, kadr powiększony u 0,35–0,50 (/tmp/rec-p3-r2/c_sap_side_r2.png); nakładka arkusz-nakladka.mjs --family pulldown (16 arkuszy, /tmp/rec-p3-r2/nak); miara toru ksztaltToru (25 próbek frameAt) przeliczona w czystej kopii: side 31,63 cm / 1 zawrócenie, front 0 / 0",
+      "sha": "335199eb4c79",
+      "liczba": 8,
+      "cwiczenia": {
+        "Lat Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1 (pozy bajtowo te same); N4 — backlog"
+        },
+        "Close-Grip Front Lat Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1; N4, N6 — backlog"
+        },
+        "Underhand Lat Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1; N4, N6 — backlog"
+        },
+        "V-Bar Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1; N4, N7 — backlog"
+        },
+        "Single Arm Lat Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1; N4, N6 — backlog"
+        },
+        "Full Range-Of-Motion Lat Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1; N6 — backlog"
+        },
+        "Wide-Grip Pulldown Behind The Neck": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian wobec rundy 1; N2, N3 (ŚREDNIE) — backlog"
+        },
+        "Straight Arm Pulldown": {
+          "werdykt": "wyswietlana",
+          "uwagi": "N1 naprawione: kolumna x 88, chwyt najdalej x 76,2, ściana kolumny x 83 — drążek i linka nie przechodzą przez kolumnę w żadnym kadrze; łuk prostych rąk bez zmian (łokieć ≤ 20°)"
+        }
+      }
+    },
+    "hip_abd_add": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — runda 2, recenzja różnicy 7d298144 → d7dd7a84: Lateral Band Walk i Monster Walk wstrzymane (usunięte z pliku póz, wyjątek generatora z powodem H-1/H-2); wyświetlane 4 ćwiczenia; S-1, S-2, N-1…N-4 z rundy 1 do backlogu",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rundy 2 (L-047, L-050) gałęzi figury/partia-3 @ d7dd7a84 wobec 7d298144, czyste kopie git archive /tmp/rec-p3-r2 i /tmp/rec-p3-r2-base, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-r2-audytor-2026-11-09.md",
+      "uwagi": "Kontrakt, rodzina i 4 wpisy (Hip Abduction, Hip Adduction, Cable Hip Abduction, Cable Hip Adduction) bajtowo identyczne z 7d298144 (porównanie JSON.stringify), więc ocena ruchu z rundy 1 obowiązuje bez zmian. figureSpec('Lateral Band Walk') i figureSpec('Monster Walk') = null, figureFor (v1) = null — w aplikacji brak rysunku (ExerciseCues.tsx:45), karta tekstowa zostaje. Generator: oba marsze w WYJATKI z powodem; odtwarzanie-poz.mjs hip_abd_add — jedyny rozjazd Cable Hip Abduction, ten sam w 7d298144 i a9c220be, na liście znanych (tests/figury-generator-odtwarza.test.ts:25). Do backlogu: S-1, S-2, N-1, N-2, N-3, N-4; poprawka marszów (H-1/H-2) — backlog docs/21 wg powodu w generatorze.",
+      "slad": "runda 2 bez nowych arkuszy dla 4 ćwiczeń (pozy bajtowo te same co w rundzie 1 — arkusze śladu i nakładki z rundy 1: /tmp/rec-p3-hip/ark, /tmp/rec-p3-hip/arkd, /tmp/rec-p3-hip/nak); sprawdzenie różnicy: porównanie JSON wpisów, figureSpec/figureFor w czystej kopii, odtwarzanie-poz.mjs, skrót zrodla-runtime --skroty",
+      "sha": "086ae0c86f89",
+      "liczba": 4,
+      "cwiczenia": {
+        "Hip Abduction": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bajtowo jak w rundzie 1; S-1, N-1, N-3, N-4 — backlog"
+        },
+        "Hip Adduction": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bajtowo jak w rundzie 1; S-1, S-2 (EN), N-1, N-3, N-4 — backlog"
+        },
+        "Cable Hip Abduction": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bajtowo jak w rundzie 1; N-2 — backlog"
+        },
+        "Cable Hip Adduction": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bajtowo jak w rundzie 1; wyjątek toru (4,12 cm) potwierdzony w rundzie 1; S-2 (EN), N-2 — backlog"
+        },
+        "Lateral Band Walk": {
+          "werdykt": "wstrzymana",
+          "uwagi": "brak figury (figureSpec null, v1 brak) — H-1 do poprawki w backlogu; nie liczy się do 4"
+        },
+        "Monster Walk": {
+          "werdykt": "wstrzymana",
+          "uwagi": "brak figury (figureSpec null, v1 brak) — H-2 do poprawki w backlogu; nie liczy się do 4"
         }
       }
     }
@@ -3379,6 +3460,16 @@
       "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "5e140bf234c0",
       "uwagi": "Jak sztanga — hantle przy udach, bez odwiedzenia. Wpis v1 można przestawić na „zastapiona”."
+    },
+    "Lat Pulldown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 i źródeł z cues.json)",
+      "autor": "badacz merytoryczny i programista (karta własna; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json); rysunek v2: programista partii 3 (figury/partia-3 a9c220be)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+      "sha": "2ad35a7ac5a6",
+      "uwagi": "4 wskazówki, każda z 2 źródłami szczebla 4 (ACE #158, ExRx CBFrontPulldown); zgodne z rysunkiem v2 (przed twarzą, do górnej klatki −8 cm, wyprost 19°). Rysunek bez wałków ud z lpd.thighs (N4, ŚREDNIE, nie przeczy ruchowi). Wpis v1 72f6a47c92d4 → zastapiona przy włączeniu v2."
     }
   },
   "zestawy": {
@@ -4756,6 +4847,72 @@
       "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "ae52305bc674",
       "uwagi": "Zestaw row (csr.chest, scr.chest, mis.jerk) zgodny z rysunkiem; bez zmian względem rundy 1."
+    },
+    "Full Range-Of-Motion Lat Pulldown": {
+      "rodzina": "vpull",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu i teksty pl/en wobec rysunku v2)",
+      "autor": "programista partii 3 (figury/partia-3 a9c220be)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+      "sha": "82ac6379f373",
+      "uwagi": "pionowe ściąganie — vpull poprawny; pu.shoulders, pu.elbowsDown, lpd.fullStretch, mis.jerk zgodne z rysunkiem (łokcie 18 cm pod barkami na dole, wyprost 19°); EN wierne"
+    },
+    "Wide-Grip Pulldown Behind The Neck": {
+      "rodzina": "vpull",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu i teksty pl/en wobec rysunku v2)",
+      "autor": "programista partii 3 (figury/partia-3 a9c220be)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+      "sha": "d08a46fced0c",
+      "uwagi": "vpull poprawny; zestaw bez „do klatki” (słusznie, drążek za głowę); pu.shoulders, lpd.fullStretch, mis.jerk zgodne z rysunkiem; EN wierne. Uwagi do rysunku (N2, N3) nie dotyczą zestawu."
+    },
+    "Hip Abduction": {
+      "rodzina": "hipAbd",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+      "sha": "ac7f4cc69855",
+      "uwagi": "hab.hips, llc.control, mis.jerk — przypisanie i teksty PL/EN zgodne z rysunkiem (tułów i biodra nieruchome, ruch płynny); N-4 kosmetyczne."
+    },
+    "Hip Adduction": {
+      "rodzina": "hipAbd",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+      "sha": "ac7f4cc69855",
+      "uwagi": "Jak Hip Abduction; N-4 kosmetyczne."
+    },
+    "Cable Hip Adduction": {
+      "rodzina": "hipAbd",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+      "sha": "ac7f4cc69855",
+      "uwagi": "hab.hips zgodne z rysunkiem (tułów i miednica nieruchome), llc.control, mis.jerk ogólne i prawdziwe."
+    },
+    "Cable Hip Abduction": {
+      "rodzina": "hipAbd",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+      "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+      "sha": "659b60729fe0",
+      "uwagi": "hab.mis.high właściwe dla odwodzenia w staniu; rysunek pokazuje poprawną, umiarkowaną wysokość bez przechyłu."
     }
   }
 }
