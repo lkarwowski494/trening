@@ -193,6 +193,7 @@ describe('gemini-polecenia: macierz rodzin (--wszystkie) i bramka reguł sensu',
 describe('gemini-polecenia: ćwiczenia czekające na kontrakt (pole wymaga, r5)', () => {
   test('reguła z wymaga: „poza@2” i polem kontraktu (shrug) daje polecenie; ta sama reguła z „poza@3” albo polem spoza kontraktu wstrzymuje ćwiczenie z komunikatem „czeka na kontrakt” (nie trafia do polecenia)', () => {
     const r = tmpRoot(); const f = path.join(r, 'data/zrodla/figury-sens.json'); const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+    const dp = path.join(r, 'docs/51-figury-v2-pokrycie.md'); /* stały stan wejściowy: shrug „do zrobienia” (w repozytorium gotowa z danych od partii 3, 09.11.2026 — poses/shrug.json, którego fixture nie kopiuje) */ fs.writeFileSync(dp, fs.readFileSync(dp, 'utf8').replace('| `shrug` | gotowa |', '| `shrug` | do zrobienia |').replace(/### shrug \((\d+)\) — gotowa/, '### shrug ($1) — do zrobienia'));
     const reg = d.rodziny.shrug.reguly.barki_w_gore; reg.wymaga = 'poza@2';
     fs.writeFileSync(f, JSON.stringify(d));
     const ok = run(POL, `const k = m.klasyfikujCwiczenia('shrug', { root: ${JSON.stringify(r)} }); console.log(JSON.stringify({ robic: k.robic, czeka: k.wstrzymane.filter((x) => /czeka na kontrakt/.test(x.powod)).map((x) => x.klucz) }));`) as { robic: string[]; czeka: string[] };
