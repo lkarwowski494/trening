@@ -28,6 +28,8 @@ export type HingeParams = {
   yStart?: number;
   /** Wysokość na końcu; brak = wyprost („lockout”): wyliczona z długości nóg i tułowia, żeby ramiona zostały proste do końca ruchu. */
   yEnd?: number;
+  /** Najdalsze zejście toru ciężaru poniżej prostej między końcami (cm); brak = HINGE.dev. Mniejsze = ciężar bliżej ud (RDL schodzący pod kolano, 09.11.2026). */
+  dev?: number;
   /** Połowa rozstawu kostek, rotacja stóp, połowa rozstawu dłoni (cm). */
   stance: number; toeOut: number; grip: number;
   shin: ShinRule;
@@ -174,7 +176,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
       const touch = (uu: number): number => { let x = p.knees ? HINGE.xMin : 8, K0 = p.knees ? kneeFor(uu, x) : K; /* krzywa kolan: najmniejszy punkt stały (ciężar i biodro nie „dociągają się” wzajemnie do przodu) */ for (let it = 0; it < 8; it++) { x = Math.max(HINGE.xMin, contactX(p, at(uu).y, legsAt(K0, uu)) + 0.25); K0 = kneeFor(uu, x); } return x; };
       /* tor przy krzywej kolan: ciężar idzie za nogą (wąska dolina za kolanem), ale najdalej HINGE.dev poniżej prostej między końcami, z jedną zmianą kierunku */
       const ys = US.map(uu => at(uu).y);
-      const shape = (c: number[]): number[] => unimodal(c.map((x, i) => Math.max(x, c[0] + (c[c.length - 1] - c[0]) * (ys[i] - ys[0]) / (ys[ys.length - 1] - ys[0]) - HINGE.dev)));
+      const shape = (c: number[]): number[] => unimodal(c.map((x, i) => Math.max(x, c[0] + (c[c.length - 1] - c[0]) * (ys[i] - ys[0]) / (ys[ys.length - 1] - ys[0]) - (p.dev ?? HINGE.dev))));
       let xs = US.map(touch);
       for (let r = 0; r < 6; r++) {
         xs = p.impl === 'smith' ? US.map(() => Math.max(...xs)) : p.knees ? shape(xs) : upperHull(US, xs);
