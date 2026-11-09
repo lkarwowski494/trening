@@ -11,7 +11,8 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { CUE_DATA, CUE_SECTIONS } from '@/lib/cues';
+import { CUE_DATA, CUE_SECTIONS, cueDict } from '@/lib/cues';
+import { LANGS } from '@/lib/i18n';
 import { CUE_FULL } from './zrodla-pelne';
 import A4 from './fixtures/cues-a4-core.json';
 
@@ -65,6 +66,13 @@ describe('A4a core: karty własne (09.11.2026)', () => {
     for (const r of sentencesOf('Machine Crunch')) expect([r.c, typeof (r as { uproszczenie?: string }).uproszczenie]).toEqual([r.c, 'string']);
   });
 
+  test('karty zastąpiły zestawy ogólne, z których brały się reguły sensu póz core_floor — te same reguły przypisane jawnie w `warianty` (data/zrodla/figury-sens.json; stan przed kartami, a2db6739)', () => {
+    expect(Object.fromEntries(['Cable Crunch', 'Hollow Hold', 'Machine Crunch', 'Scissor Kick', 'Sit Up', 'Suspended Reverse Crunch', 'Tuck Crunch'].map(k => [k, json('data/zrodla/figury-sens.json').rodziny.core_floor.warianty[k]]))).toEqual({
+      'Cable Crunch': ['tulow_zwija_sie_biodra_stoja'], 'Hollow Hold': ['miednica_na_podlodze'], 'Machine Crunch': ['tulow_zwija_sie_biodra_stoja'], 'Scissor Kick': ['miednica_na_podlodze'], 'Sit Up': ['szyja_neutralna'],
+      'Suspended Reverse Crunch': ['miednica_unosi_sie', 'kolana_ku_barkom'], 'Tuck Crunch': ['szyja_neutralna', 'miednica_na_podlodze'],
+    });
+  });
+
   test('plik wspólny silnika rysunku bez zmian: reguły sensu póz tych ćwiczeń nie zależą od zestawu ogólnego (lib/figures/v2/reguly-cwiczen.json bez reguł dla kart A4a spoza wariantów)', () => {
     const reg = json('lib/figures/v2/reguly-cwiczen.json') as Record<string, Record<string, string[]>>;
     const sens = json('data/zrodla/figury-sens.json').rodziny as Record<string, { warianty?: Record<string, string[]> }>;
@@ -81,11 +89,9 @@ describe('A4a core: źródła i reguły szczebli', () => {
     }
   });
 
-  test('WebMD i WebMD Ignite (ta sama grupa) nigdy nie są w jednym zdaniu jako dwie organizacje', () => {
-    for (const k of A4.cwiczenia) for (const r of sentencesOf(k)) {
-      const o = new Set(r.s.map(([sid]) => orgOf(sid)));
-      expect([k, r.c, o.has('WebMD') && o.has('WebMD Ignite')]).toEqual([k, r.c, false]);
-    }
+  test('webmd.com (V-Up) należy do organizacji WebMD Ignite (jedna organizacja z Healthwise, StayWell, ColumbiaDoctors — ustalenie z 02.11.2026); osobnej organizacji WebMD nie ma', () => {
+    expect(orgOf('webmd-v-ups')).toBe('WebMD Ignite');
+    expect('WebMD' in CUE_FULL.orgs).toBe(false);
   });
 
   test('źródła szczebla 5 albo o nierozstrzygniętym szczeblu (Speediance, FIG, NFPT bez biogramu na stronie, Fitness Volt bez nazwiska autora, Institute of Motion) nie są w danych; ich odwołania zapisane w fixture', () => {
@@ -109,7 +115,7 @@ describe('A4a core: źródła i reguły szczebli', () => {
       if (CUE_FULL.orgs[s.org].warunkowo) expect([sid, s.level, typeof s.strona]).toEqual([sid, 4, 'string']);
     }
     expect(A4.noweZrodla.filter(sid => CUE_FULL.orgs[orgOf(sid)].warunkowo).sort()).toEqual(['healthline-hkr', 'healthline-scissor-kicks', 'healthline-stomach-vacuum']);
-    expect(A4.noweOrganizacje.sort()).toEqual(['Hoist Fitness', 'Virginia Mason Franciscan Health', 'WebMD']);
+    expect(A4.noweOrganizacje.sort()).toEqual(['Hoist Fitness', 'Virginia Mason Franciscan Health']);
   });
 });
 
@@ -131,7 +137,7 @@ describe('A4a core: zdania', () => {
   });
 
   test('zdanie zestawu ogólnego V-Up (vup.back) osierocone po karcie własnej — usunięte ze wszystkich słowników i z rejestru zestawów (precedens ur.height, 04.11.2026)', () => {
-    for (const f of fs.readdirSync(path.join(root, 'lib/cues/text')).filter(x => x.endsWith('.json'))) expect([f, 'vup.back' in json(`lib/cues/text/${f}`)]).toEqual([f, false]);
+    for (const l of LANGS) expect([l, Object.prototype.hasOwnProperty.call(cueDict(l), 'vup.back')]).toEqual([l, false]);
     expect('vup.back' in json('data/zrodla/cues-zestawy.json').wskazowki).toBe(false);
   });
 });

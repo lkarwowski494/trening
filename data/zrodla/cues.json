@@ -590,11 +590,6 @@
    "level": 3,
    "kind": "study"
   },
-  "WebMD": {
-   "name": "WebMD — artykuły o ćwiczeniach z recenzją lekarską i datą (webmd.com; ta sama grupa co WebMD Ignite — w jednym zdaniu nie liczyć obu jako niezależnych)",
-   "level": 4,
-   "kind": "site"
-  },
   "Hoist Fitness": {
    "name": "Hoist Fitness — instrukcje własnych maszyn (producent maszyn; przy maszynie innego producenta — uproszczenie)",
    "level": 4,
@@ -3741,7 +3736,7 @@
    "level": 4
   },
   "webmd-v-ups": {
-   "org": "WebMD",
+   "org": "WebMD Ignite",
    "title": "A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024",
    "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
    "level": 4

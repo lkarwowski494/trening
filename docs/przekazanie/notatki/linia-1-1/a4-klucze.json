@@ -1,5 +1,5 @@
 {
- "_opis": "Partia A4a (core: core_floor, core_standing, core_hang, carry; linia 1.1, 09.11.2026) — lista dla recenzenta niezależnego (L-047; autor: programista A4, sesja B #3 — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce). Do sprawdzenia: (1) zgodność z rysunkiem (pozy v2 rodzin core_floor, core_standing, core_hang) i torem ruchu; (2) źródła przyjęte per strona: Fitness Volt z nazwanym autorem z kwalifikacjami i datą bez recenzenta (Tuck Crunch, Scissor Kick, Cable Russian Twists, Kettlebell Figure 8 — M. Magnante ACE, P. Dale), BarBend z autorem z certyfikatem (t2b — M. Dewar CSCS; hlr/hkr — E. Bugera CSCS), Healthline z nazwanym recenzentem (pole strona), Experience Life (M. Fazeli Fard, RKC — jak lifetime-thruster), TRX (blog producenta zawieszeń, Suspended Reverse Crunch — jak trx-push-up w A1), Virginia Mason (system szpitali), WebMD (recenzja lekarska; ta sama grupa co WebMD Ignite — w kartach nie występują razem); (3) uproszczenie Machine Crunch (instrukcja maszyny Hoist HD-3600 przy maszynie ogólnej); (4) Stomach Vacuum — karta zakłada leżenie na plecach (źródła: Healthline, Virginia Mason), pozy rodziny core_floor; (5) Hanging Leg Raise — zakres ruchu w źródłach (do drążka) a figura; (6) Sit Up — część wspólna źródeł w core_floor.situpMove (bez rozstrzygania zaokrąglenia pleców); (7) brzmienie PL/EN 50 nowych zdań (recenzent lokalizacji).",
+ "_opis": "Partia A4a (core: core_floor, core_standing, core_hang, carry; linia 1.1, 09.11.2026) — lista dla recenzenta niezależnego (L-047; autor: programista A4, sesja B #3 — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce). Do sprawdzenia: (1) zgodność z rysunkiem (pozy v2 rodzin core_floor, core_standing, core_hang) i torem ruchu; (2) źródła przyjęte per strona: Fitness Volt z nazwanym autorem z kwalifikacjami i datą bez recenzenta (Tuck Crunch, Scissor Kick, Cable Russian Twists, Kettlebell Figure 8 — M. Magnante ACE, P. Dale), BarBend z autorem z certyfikatem (t2b — M. Dewar CSCS; hlr/hkr — E. Bugera CSCS), Healthline z nazwanym recenzentem (pole strona), Experience Life (M. Fazeli Fard, RKC — jak lifetime-thruster), TRX (blog producenta zawieszeń, Suspended Reverse Crunch — jak trx-push-up w A1), Virginia Mason (system szpitali), WebMD (webmd.com, recenzja lekarska — organizacja WebMD Ignite wg ustalenia z 02.11.2026); (3) uproszczenie Machine Crunch (instrukcja maszyny Hoist HD-3600 przy maszynie ogólnej); (4) Stomach Vacuum — karta zakłada leżenie na plecach (źródła: Healthline, Virginia Mason), pozy rodziny core_floor; (5) Hanging Leg Raise — zakres ruchu w źródłach (do drążka) a figura; (6) Sit Up — część wspólna źródeł w core_floor.situpMove (bez rozstrzygania zaokrąglenia pleców); (7) brzmienie PL/EN 50 nowych zdań (recenzent lokalizacji).",
  "galaz": "tekst/a4-core-moc",
  "karty": [
   [
@@ -467,7 +467,7 @@
        },
        {
         "id": "webmd-v-ups",
-        "org": "WebMD",
+        "org": "WebMD Ignite",
         "szczebel": 4,
         "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
         "miejsce": "How to do V-ups, krok 1"
@@ -491,7 +491,7 @@
        },
        {
         "id": "webmd-v-ups",
-        "org": "WebMD",
+        "org": "WebMD Ignite",
         "szczebel": 4,
         "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
         "miejsce": "How to do V-ups, kroki 3–4"
@@ -515,7 +515,7 @@
        },
        {
         "id": "webmd-v-ups",
-        "org": "WebMD",
+        "org": "WebMD Ignite",
         "szczebel": 4,
         "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
         "miejsce": "How to do V-ups, kroki 2–4; form tips (engage your core)"
@@ -532,7 +532,7 @@
       "zrodla": [
        {
         "id": "webmd-v-ups",
-        "org": "WebMD",
+        "org": "WebMD Ignite",
         "szczebel": 4,
         "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
         "miejsce": "How to do V-ups, krok 3 (keep both your arms and legs straight)"
@@ -1980,7 +1980,6 @@
   "crossfit-strict-t2b"
  ],
  "noweOrganizacje": [
-  "WebMD",
   "Hoist Fitness",
   "Virginia Mason Franciscan Health"
  ],
