@@ -46,7 +46,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(r.a + r.b + r.c + r.aB).toBe(r.przyrost);
     expect(Object.values(r.kombinacje).reduce((s, n) => s + n, 0)).toBe(r.przyrost);
     expect(sym.gain).toHaveLength(r.przyrost);
-    expect(r.c).toBe(3); /* ćwiczenia, którym dziś brakuje tylko ról mięśni */
+    expect(r.c).toBe(4); /* ćwiczenia, którym dziś brakuje tylko ról mięśni (09.11.2026, partia 3: + Middle Back Shrug — figura i zestaw zrecenzowane, brak ról) */
     expect(r.a).toBe(0);
   });
   test('rodziny wg zysku: suma przyrostów = przyrost pełnej karty; rodzina ma niemalejącą liczbę pełnych kart; lista posortowana malejąco', () => {

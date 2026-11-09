@@ -1125,10 +1125,10 @@
       "autor": "programista partii 3 (figury/partia-3 37333dc6)",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna rundy 3 (L-047, L-050) gałęzi figury/partia-3 @ 37333dc6 wobec d7dd7a84, czysta kopia git archive /tmp/rec-p3-leg, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-r3-audytor-2026-11-09.md",
-      "uwagi": "Plik póz hip_abd_add.json, nakładka i zestawy bez zmian względem d7dd7a84 (git diff --stat pusty). Zmiana: contract.ts:330–334 — ślad dźwigni z punktem „kostki” = kostka strony trzyma (R); DATA_UI.hip_abd_add: jawne lowerFirst: false w 4 wyjątkach — ta sama wartość co domyślna rodziny (Rozsuwanie/Ściąganie 1 s → Powrót 2 s bez zmian). Ruch bez zmian. Zamyka N-3 z rundy 1 (ślad 0 cm nic nie mówił o torze nogi).",
+      "uwagi": "Plik póz hip_abd_add.json, nakładka i zestawy bez zmian względem d7dd7a84 (git diff --stat pusty). Zmiana: contract.ts:330–334 — ślad dźwigni z punktem „kostki” = kostka strony trzyma (R); DATA_UI.hip_abd_add: jawne lowerFirst: false w 4 wyjątkach — ta sama wartość co domyślna rodziny (Rozsuwanie/Ściąganie 1 s → Powrót 2 s bez zmian). Ruch bez zmian. Zamyka N-3 z rundy 1 (ślad 0 cm nic nie mówił o torze nogi). | liczba = ćwiczeń rodziny w katalogu (8; recenzent podał liczbę ćwiczeń z rysunkiem — korekta pola przez programistę 09.11.2026, test figury-recenzja).",
       "slad": "arkusze arkusz-slad.mjs light i dark (/tmp/rec-p3-leg/ark/light, /tmp/rec-p3-leg/ark/dark) dla Hip Abduction, Hip Adduction, Cable Hip Abduction, Cable Hip Adduction (front, u co 0,05). Maszyny: ślad = kostka R (frameAt: trail = ankleR w u 0/0,5/1), kostka na okręgu dźwigni 41,63–41,75 cm od osi (12,7; 8,4; 18,8) w każdej klatce kluczowej; w rzucie z przodu ślad poziomy wzdłuż ruchu kostki, 0 zawróceń. Cable ×2 bez zmian (ślad przy kostce już wcześniej; Cable Hip Adduction front 4,12 cm — wyjątek toru z rundy 1 bez zmian).",
       "sha": "eddcd1af9d43",
-      "liczba": 4,
+      "liczba": 8,
       "cwiczenia": {
         "Hip Abduction": {
           "werdykt": "wyswietlana",
@@ -1155,10 +1155,10 @@
       "autor": "programista partii 3 (figury/partia-3 37333dc6)",
       "recenzent": "audytor",
       "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ 37333dc6, czysta kopia git archive /tmp/rec-p3-leg, 09.11.2026; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md",
-      "uwagi": "Ruch ciała poprawny we wszystkich 6 ćwiczeniach. Suwnice (Leg Press, Single Leg Press, tylko bok): miednica i tułów stałe (pochylenie −10°, plecy na oparciu), platforma jedzie po prostej −15° prostopadle do płyty, podeszwy płasko na płycie, kolano 86° (u=0) → 15° (u=1, bez blokowania). Single Leg Press: wolna noga nieruchomo, stopa na podłodze (zgodne ze slp.setup). Maszyny przysiadu (Hack, Pendulum, Lying): miednica sunie równolegle do oparcia (Hack 65°, Lying 42°), tułów stały, stopy płasko, kolano 21–22° → 100°. Belt Squat Machine: kolano 8° → 108°, tułów 4° → 30°, plecy neutralne, biodra w tył i w dół. Błędy: kolana do środka (Pendulum, Lying, Belt), pięty (Belt) — widoczne w kadrach błędu. DATA_UI poprawne (maszyny przysiadu: Opuszczanie 2 s → Wstawanie 1 s, lowerFirst true; suwnice: Wypychanie 1 s → Opuszczanie 2 s, lowerFirst false; staw: kolano). Sprzęt maszyn przysiadu i belt squat schematyczny i niezgodny z prawdziwą maszyną (S-1, S-2, ŚREDNIE) — nie przeczy ruchowi ani tekstom wskazówek. Calf Press (leg press) — bez v2, zostaje rysunek v1 (figureFor ≠ null); Smith Machine Leg Press — bez rysunku.",
+      "uwagi": "Ruch ciała poprawny we wszystkich 6 ćwiczeniach. Suwnice (Leg Press, Single Leg Press, tylko bok): miednica i tułów stałe (pochylenie −10°, plecy na oparciu), platforma jedzie po prostej −15° prostopadle do płyty, podeszwy płasko na płycie, kolano 86° (u=0) → 15° (u=1, bez blokowania). Single Leg Press: wolna noga nieruchomo, stopa na podłodze (zgodne ze slp.setup). Maszyny przysiadu (Hack, Pendulum, Lying): miednica sunie równolegle do oparcia (Hack 65°, Lying 42°), tułów stały, stopy płasko, kolano 21–22° → 100°. Belt Squat Machine: kolano 8° → 108°, tułów 4° → 30°, plecy neutralne, biodra w tył i w dół. Błędy: kolana do środka (Pendulum, Lying, Belt), pięty (Belt) — widoczne w kadrach błędu. DATA_UI poprawne (maszyny przysiadu: Opuszczanie 2 s → Wstawanie 1 s, lowerFirst true; suwnice: Wypychanie 1 s → Opuszczanie 2 s, lowerFirst false; staw: kolano). Sprzęt maszyn przysiadu i belt squat schematyczny i niezgodny z prawdziwą maszyną (S-1, S-2, ŚREDNIE) — nie przeczy ruchowi ani tekstom wskazówek. Calf Press (leg press) — bez v2, zostaje rysunek v1 (figureFor ≠ null); Smith Machine Leg Press — bez rysunku. | liczba = ćwiczeń rodziny w katalogu (8; recenzent podał liczbę ćwiczeń z rysunkiem — korekta pola przez programistę 09.11.2026, test figury-recenzja).",
       "slad": "arkusze arkusz-slad.mjs light (/tmp/rec-p3-leg/ark/light) i dark (/tmp/rec-p3-leg/ark/dark), 6 ćwiczeń, u co 0,05, PNG 2100 px; nakładka arkusz-nakladka.mjs (/tmp/rec-p3-leg/nak, 18 PNG). Ślad po D1 A: suwnice = kostka R (frameAt: trail = ankleR w u 0/0,5/1; prosta, odchylenie 0,02 cm, 0 zawróceń), maszyny przysiadu i belt squat = miednica (trail = pelvis; Hack 0,74 cm, Pendulum 1,14 cm, Lying 0,74 cm, Belt 6,82 cm / 0 zawróceń — wyjątek toru potwierdzony). Ślad sensowny: suwnica — tor platformy pod stopą; maszyny — tor wózka/pasa przy miednicy.",
       "sha": "39d2c2b68d32",
-      "liczba": 6,
+      "liczba": 8,
       "cwiczenia": {
         "Leg Press": {
           "werdykt": "wyswietlana",
@@ -4875,7 +4875,7 @@
       "uwagi": "Zestaw shrug zgodny z rysunkiem (W1 naprawione); brak poduszek na barkach (W6) — backlog, teksty zestawu mu nie przeczą."
     },
     "Middle Back Shrug": {
-      "rodzina": "shrug",
+      "rodzina": "row",
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
@@ -4952,26 +4952,35 @@
       "uwagi": "hab.mis.high właściwe dla odwodzenia w staniu; rysunek pokazuje poprawną, umiarkowaną wysokość bez przechyłu."
     },
     "Pendulum Squat": {
-      "rodzina": "leg_machine",
+      "rodzina": "squatMachine",
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny przy figurze v2 rodziny leg_machine, L-047)",
+      "autor": "badacz merytoryczny (przypisanie zestawu, lib/figures/v2/cue-sets.json) i programista partii 3 (rysunek v2, figury/partia-3 37333dc6)",
       "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny leg_machine 09.11.2026, czysta kopia 37333dc6; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md (pola stan/autor/kto uzupełnione przez programistę z raportu)",
       "sha": "91e221d3a561",
       "uwagi": "squatMachine: hack.move, sq.kneesToes, lp.heels, błąd sq.mis.kneesIn (animowany) — zgodne; „platforma” w lp.heels, rysunek: stopy na podłodze (N-2)."
     },
     "Lying Machine Squat": {
-      "rodzina": "leg_machine",
+      "rodzina": "squatMachine",
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny przy figurze v2 rodziny leg_machine, L-047)",
+      "autor": "badacz merytoryczny (przypisanie zestawu, lib/figures/v2/cue-sets.json) i programista partii 3 (rysunek v2, figury/partia-3 37333dc6)",
       "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny leg_machine 09.11.2026, czysta kopia 37333dc6; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md (pola stan/autor/kto uzupełnione przez programistę z raportu)",
       "sha": "91e221d3a561",
       "uwagi": "jak Pendulum Squat."
     },
     "Belt Squat Machine": {
-      "rodzina": "leg_machine",
+      "rodzina": "squat",
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny przy figurze v2 rodziny leg_machine, L-047)",
+      "autor": "badacz merytoryczny (przypisanie zestawu, lib/figures/v2/cue-sets.json) i programista partii 3 (rysunek v2, figury/partia-3 37333dc6)",
       "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny leg_machine 09.11.2026, czysta kopia 37333dc6; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md (pola stan/autor/kto uzupełnione przez programistę z raportu)",
       "sha": "9358e2eddadc",
       "uwagi": "squat: sq.down (biodra w tył i kolana razem), sq.back (kręgosłup 0°, tułów do 30°), sq.kneesToes; błędy sq.mis.kneesIn i sq.mis.heels animowane — zgodne."
     }
