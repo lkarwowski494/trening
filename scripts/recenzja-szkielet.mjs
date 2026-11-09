@@ -36,7 +36,7 @@ export function stanBiezacy(rodzina) {
   if (!V.FAMILIES.some(f => f.id === rodzina)) throw new Error(`recenzja-szkielet: nieznana rodzina „${rodzina}”`);
   const czytaj = p => JSON.parse(readFileSync(`${repoRoot}/${p}`, 'utf8'));
   const full = czytaj('data/zrodla/figures.json'), cues = czytaj('data/zrodla/cues.json');
-  const sk = skroty();
+  const sk = skroty(undefined, undefined, undefined, [rodzina]); /* skrót z wyniku rysunku: tylko ta rodzina (także planowana — recenzja przed podłączeniem) */
   const ready = V.FAMILY[rodzina].status === 'ready';
   const rysuje = k => !!V.figureSpec(k) || (!ready && (d => !!d && !!V.dataUiForPose(rodzina, d))(V.poseDataFor(k, rodzina)));
   const wszystkie = V.assignAll();

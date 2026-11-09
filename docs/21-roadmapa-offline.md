@@ -151,7 +151,7 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Polecenia figur (`scripts/figures/gemini-polecenia.mjs:22`, limit 36000): najdłuższy plik 35980 znaków — 20 znaków zapasu (04.11.2026).
 - Słownik „biodra” (recenzja różnicy P2, NISKIE): wzorzec ru łapie tylko „бёдр” z „ё” (bez „бедра”), wzorzec el nie łapie liczby pojedynczej „γοφό/γοφός” — poszerzyć z testem.
 - vi: „grip” w olympic.setup / olympic.sbSetup — w słowniku vi chwyt nadal „nieustalony” (recenzja różnicy P2).
-- Skrót recenzji v2 (audyt 1A, NISKIE): parser bloków `scripts/skrot-v2-norm.mjs` zakłada koniec bloku `};`; wzorzec LOAD nie sprawdza zgodności klucza z plikiem (skutek bezpieczny — brak figury).
+- Skrót recenzji v2 (audyt 1A, NISKIE) — ZAMKNIĘTE 09.11.2026: parser bloków `scripts/skrot-v2-norm.mjs` usunięty; skrót liczy się z wyniku rysunku rodziny (`scripts/skrot-v2-wynik.mjs`, docs/18 wpis 09.11.2026 „skrót per rodzina”), bez analizy tekstu `poseData.ts`.
 
 ### Backlog 1.2 — karta ćwiczenia na wąskim ekranie (właściciel 08.11.2026, ZB-044)
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
