@@ -1,0 +1,230 @@
+{
+ "v2": {
+  "chest_fly": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie r1 (bramka 4, L-047/L-050) — 3 WYSOKIE (W1 Band Chest Fly, W2 Crucifix, W3 Wide-Grip Decline Barbell Pullover); sha pominięte do czasu poprawki albo wstrzymania tych ćwiczeń",
+   "kto": "audytor (recenzja niezależna, partia 1, r1)",
+   "autor": "programista (partia 1, gałąź figury/partia-1-chest, 0b390518)",
+   "recenzent": "audytor",
+   "liczba": 20,
+   "slad": "34 arkusze arkusz-slad.mjs (17 ćw. × top/side, 21 kadrów co 0,05, motyw jasny) + 8 w motywie ciemnym (Chest Fly (hantle), Pec Deck, Cable Fly, Pullover (hantel)); kadry u=0/0,5/1 w pełnej rozdzielczości dla wszystkich 17; 34 arkusze nakładki. Tor: rozpiętki leżąc — pionowy odcinek nad barkiem w boku, poziomy w rzucie z góry; wyciągi stojąc — łuk w rzucie z góry, odcinek poziomy (Cable Fly), w dół (high-to-low) lub w górę (low-to-high) z boku; pullover — łuk za głowę w boku; ślad w chwycie R / środku gryfu, bez skoków.",
+   "uwagi": "WYSOKIE: W1 guma przez tułów (Band Chest Fly), W2 Crucifix bez ISOMETRIC (fazy pod nieruchomym rysunkiem), W3 brak szerokiego chwytu (Wide-Grip Decline Barbell Pullover). ŚREDNIE: S1 Pec Deck jedna dźwignia, S2 łuk flyArmArc w rzucie poprzecznym, S3 Cable Fly karta a rysunek. NISKIE: N1 próg toru 46 cm wspólny, N2 po.slow przy Front Raise And Pullover. Raport: partia1-chest_fly-r1-audytor-2026-11-09.md.",
+   "cwiczenia": {
+    "Chest Fly (hantle)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ruch i ślad poprawne (shAbd 90→2°, łokieć 14–18°, ślad w chwycie R); nakładka flyArmArc w rzucie z góry — artefakt rzutu poprzecznego (S2, backlog)."
+    },
+    "Incline Chest Fly (hantle)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Skos 55°, ramię pionowo na końcu (shElev 145° wobec tułowia); S2 jak wyżej."
+    },
+    "Decline Dumbbell Fly": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ławka −20° z wałkami, szczelina 0,7 cm; ślad R."
+    },
+    "One-Arm Flat Bench Dumbbell Fly": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ślad w chwycie R; wolna ręka odstawiona w bok (nietypowo, bez znaleziska)."
+    },
+    "Flat Bench Cable Fly": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Niskie bloczki po bokach ławki, linki do uchwytów; ruch jak rozpiętka leżąc."
+    },
+    "Incline Cable Fly": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Jak wyżej na skosie 55°."
+    },
+    "Cable Fly": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ruch poprawny; S3: bloczek y 160 (karta: wysokość barków), dłonie 35 cm od siebie przy u=1 (karta: złącz), tułów pionowo (karta: lekkie pochylenie) — backlog."
+    },
+    "Cable Fly (high to low)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bloczek 185, dłonie 142,6 → 107,6 przed klatką; łokieć 13–19°."
+    },
+    "Cable Fly (low to high)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bloczek 15, dłonie 121 → 170; łokieć 12–19°."
+    },
+    "Single Arm Cable Fly": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Jedna linka, ślad R, ręka przechodzi do linii środka; wolna ręka na biodrze."
+    },
+    "Band Chest Fly": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1 (WYSOKIE): jeden zaczep gumy w osi ciała 60 cm za plecami — oba odcinki gumy przechodzą przez tułów i głowę (top u 0,5/1, side)."
+    },
+    "Pec Deck": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ruch i oparcie poprawne (szczelina −0,5 cm); S1: tylko prawa dźwignia, lewa dłoń bez uchwytu — backlog/poprawka z delt_raise Ś-4."
+    },
+    "Crucifix": {
+     "werdykt": "do poprawy",
+     "uwagi": "W2 (WYSOKIE): utrzymanie (weight_time, poza stała) nie jest w ISOMETRIC — pod nieruchomym rysunkiem fazy „Unoszenie 1 s · Opuszczanie 2 s” i przycisk „Zatrzymaj animację”."
+    },
+    "Pullover (hantel)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Hantel pionowo, shElev 163 → 60°, łokieć 11–15°; bez przenikania głowy."
+    },
+    "Front Raise And Pullover": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Gryf od ud za głowę (shElev 29 → 165°), ślad w środku gryfu; N2 w zestawie."
+    },
+    "Wide-Grip Decline Barbell Pullover": {
+     "werdykt": "do poprawy",
+     "uwagi": "W3 (WYSOKIE): chwyt z ±19 (rozstaw barków) — brak szerokiego chwytu z nazwy."
+    },
+    "Bent-Arm Barbell Pullover": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Łokieć stale ok. 50°, gryf za głową poniżej poziomu ławki i nad klatkę."
+    }
+   }
+  }
+ },
+ "zestawy": {
+  "One-Arm Flat Bench Dumbbell Fly": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "fly.elbows (łokieć 14–19°, stały), fly.control, mis.jerk zgodne z ruchem jednej ręki."
+  },
+  "Flat Bench Cable Fly": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "fly.elbows, fly.control, mis.jerk zgodne; linki z niskich bloczków."
+  },
+  "Incline Cable Fly": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "fly.elbows, fly.control, mis.jerk zgodne; skos nie zmienia zdań."
+  },
+  "Cable Fly (high to low)": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "fly.elbows (13–19°), fly.control, mis.jerk zgodne."
+  },
+  "Cable Fly (low to high)": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "fly.elbows (12–19°), fly.control, mis.jerk zgodne."
+  },
+  "Single Arm Cable Fly": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "fly.elbows (14–20°), fly.control, mis.jerk zgodne."
+  },
+  "Band Chest Fly": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "815db3c89ef8",
+   "uwagi": "Zdania zgodne z ruchem (łokieć 14–18°); wada rysunku gumy (W1) nie dotyczy zestawu."
+  },
+  "Pec Deck": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "4b17dac24c84",
+   "uwagi": "fly.control i mcp.blades zgodne: plecy przy oparciu (szczelina −0,5 cm), barki bez wysuwania; fly.elbows słusznie pominięte."
+  },
+  "Crucifix": {
+   "rodzina": "raiseSide",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "7ff2316c5a09",
+   "uwagi": "lat.height (ramiona na wysokości barków, shElev 90°), front.elbows (łokieć 10° stały), plank.mis.breath zgodne z utrzymaniem; problem faz (W2) dotyczy UI rysunku, nie zdań."
+  },
+  "Pullover (hantel)": {
+   "rodzina": "pullover",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "8f971a753192",
+   "uwagi": "po.arms (łokieć 11–15°), po.slow (za głowę i z powrotem nad klatkę) zgodne."
+  },
+  "Front Raise And Pullover": {
+   "rodzina": "pullover",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "8f971a753192",
+   "uwagi": "po.arms zgodne (łokieć 6–15°); po.slow „wracaj nad klatkę” niepełne — rysunek wraca do ud (N2, NISKIE)."
+  },
+  "Wide-Grip Decline Barbell Pullover": {
+   "rodzina": "pullover",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "8f971a753192",
+   "uwagi": "po.arms (8–13°), po.slow zgodne; szerokość chwytu (W3) nie dotyczy zdań."
+  },
+  "Bent-Arm Barbell Pullover": {
+   "rodzina": "pullover",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
+   "sha": "3713336cd4ba",
+   "uwagi": "po.slow zgodne; po.arms słusznie pominięte przy łokciu ok. 50°."
+  }
+ }
+}

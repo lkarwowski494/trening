@@ -1,0 +1,20 @@
+{
+  "v2": {
+    "curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po poprawce stóp w Spider Curl ×2 (stopyNaPalcach, figury/partia-1 @ 0b390518, zmiana f4ec3263) względem wpisu v2.curl z integracji (bb1072f3), 09.11.2026; ruch, ślad, nakładka i dobór pozostałych 32 ćwiczeń z rysunkiem bez zmian; wcześniej: zrecenzowana niezależnie — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026",
+      "kto": "audytor — recenzja niezależna różnicy figury/partia-1 @ 0b390518 względem bb1072f3, czyste kopie git archive w /home/user/rev-p1/curl-roznica i /home/user/rev-p1/curl-baza, 09.11.2026; raport curl-roznica-spider-audytor-2026-11-09.md",
+      "autor": "programista partii 1 linii 1.1 (figury/partia-1, f4ec3263: stopyNaPalcach w gora.mjs, wywołanie w curl.mjs spider)",
+      "recenzent": "audytor",
+      "sha": "3380994ca6df",
+      "liczba": 36,
+      "slad": "Arkusze arkusz-slad.mjs (kadry co 0,05, 21 kadrów) dla 34/34 ćwiczeń curl z rysunkiem, widoki side i front, motyw jasny i ciemny, w obu kopiach (bb1072f3 i 0b390518): 136 PNG na kopię; cmp — 64/68 arkuszy na motyw identyczne bajtowo, różnią się tylko Spider Curl i Spider Curl (sztanga) (side, front). Dane póz: w curl.json zmieniły się wyłącznie nogi.R/L.kostka i nogi.R/L.podbicie obu Spider Curl (54 wartości na ćwiczenie), ręce, miednica, tułów i sprzęt bez zmian. Ślad toru w chwycie Spider Curl ×2 bez zmian: łuk przedramienia wokół stałego łokcia pod barkiem, od wyprostu (łokieć 1,5°) do 124,6° w stronę głowy, bez zawróceń i skoków (sztanga: środek gryfu). Stopy Spider Curl ×2 obejrzane w pełnej rozdzielczości (kadr u=0 powiększony, oba motywy): na palcach, pięta 24,5 cm nad podłogą, palce 0,3 cm, zgięcie podeszwowe 25° (frameAt, jointAngles.ankle −25,3°), kolano 25,2°, biodro −9,8° (limit kontraktu −17°), stałe w całym ruchu; nogi–ławka odstęp 3,9 cm (bez przenikania), checkFrame bez zgłoszeń w 201 kadrach. Nakładka (arkusz-nakladka.mjs --family curl, 96 PNG na kopię): różnią się tylko 4 arkusze Spider Curl; element curlElbowLimb bez zmian (łuk łokcia 1°→125°), nakładka nie dotyczy nóg.",
+      "uwagi": "Zmiana skrótu 39470f3a2918 → 3380994ca6df oczekiwana (rysunek 2 ćwiczeń). Zestawy i karty curl: skróty z --skroty identyczne w bb1072f3 i 0b390518 oraz zgodne z wpisami w figury-recenzja.json (28 zestawów, 6 kart) — bez nowych wpisów. Uwaga NISKIE (bez drogi przez UI): data/zrodla/figury-sens.json curl.zakres_wyjatki['Spider Curl'].hipMin = −45 z nieaktualnym powodem (uda na siedzisku) — biodro jest już −9,8°, wyjątek niepotrzebnie luzuje kontrolę zakresu biodra dla Spider Curl.",
+      "cwiczenia": {
+        "Spider Curl": { "werdykt": "wyswietlana", "uwagi": "stopy na palcach (pięta w górze, palce przy podłodze), kolana lekko ugięte ku podłodze, biodro −9,8°; ręce i ślad bez zmian; bez przenikania nóg z ławką i podłogą; oba widoki, oba motywy" },
+        "Spider Curl (sztanga)": { "werdykt": "wyswietlana", "uwagi": "jak Spider Curl (te same nogi); gryf, talerze i ślad środka gryfu bez zmian; oba widoki, oba motywy" }
+      }
+    }
+  }
+}

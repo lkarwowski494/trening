@@ -1,0 +1,178 @@
+{
+  "v2": {
+    "overhead_press": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (r1): 1 WYSOKIE (W1 — pozycja startowa i tor wyciskania za daleko przed barkami, 13 ćwiczeń), 3 ŚREDNIE (Ś1 zestaw Seated Cable ze zdaniem o hantlach; Ś2 zza karku: gryf ucieka 21 cm w przód na końcu; Ś3 landmine: poprzeczny odcinek gryfu w widoku z przodu), 1 NISKIE (N1 test styku zza karku pomija cały tułów i ramiona)",
+      "kto": "audytor (recenzja niezależna ruchu, nakładki, zestawów i kart, runda r1)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "liczba": 23,
+      "slad": "arkusz-slad.mjs: 21 ćwiczeń × widoki side i front × 21 kadrów (u co 0,05), motyw jasny (42 PNG) + ciemny dla 11 ćwiczeń (22 PNG); arkusz-nakladka.mjs --family overhead_press (44 PNG, w tym poza błędu Pike); kadry u=0/0,5/1 każdego ćwiczenia w obu widokach oglądane w pełnej rozdzielczości, liczby z frameAt co 0,05–0,1. Tor: w sztandze, hantlach, kettlebellach, linkach i gumie ślad pionowy ok. 22 cm przed barkami do u≈0,75, potem łuk 15 cm w tył nad głowę (szczyt 7 cm przed barkiem); zza karku −13 cm za barkami, w ostatniej ćwiartce 21 cm w przód; landmine — łuk wokół osi dźwigni; Pike — ślad miednicy ok. 25 cm. Ślad w chwycie: sztanga 0 cm od środka gryfu, hantle/kettlebelle/linki/guma 0 cm od chwytu R, landmine 6 cm (środek dwóch chwytów), Single-Arm Jammer 2 cm.",
+      "uwagi": "Bez sha (werdykt do poprawy). Poprawka W1 w generatorze wyciskanie() (scripts/figures/agent-pozy/overhead_press.mjs: x0, dy0, biegun łokcia) zmieni 13 ćwiczeń — r2 obejmie je wszystkie i ponownie zestawy See-Saw, Seated Cable, Double KB oraz 4 karty własne. Test K8 start_przy_barkach mierzy tylko wysokość — dodać miarę poziomą (odstęp ciężaru od tułowia/barku na dole) z przypadkiem negatywnym (dane sprzed poprawki).",
+      "cwiczenia": {
+        "Arnold Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Start przed twarzą (chwyt |z| 12), dłonie do siebie (obrót +80°) → nachwyt −75° na górze, łokcie rozchodzą się (odwiedzenie do 39° w u=0,5), łokieć 9° na szczycie; hantle nie kolidują (front u=0). Zgodne z kartą arnold.setup/move/together."
+        },
+        "Kettlebell Arnold Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Jak Arnold Press jednorącz (chwyt |z| 16→24, obrót 80°→−75°), wolna ręka na biodrze; łokieć 9° na szczycie. Ślad = chwyt R (0,0 cm)."
+        },
+        "Standing Barbell Press Behind Neck": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ruch poprawny co do stawów (łokieć 122°→16°, gryf zza karku, 4,2 cm od tułowia, ≥ 1,9 cm od głowy/szyi); Ś2: gryf w ostatniej ćwiartce przesuwa się do przodu o 21 cm (dx −13 → +8 cm względem barków), kończy nad czołem — zestaw ogólny mówi „prosto w górę”."
+        },
+        "Push Press - Behind the Neck": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ugięcie kolan do 50° przy gryfie zza karku, potem wyprost nóg i wyciskanie; łokieć 16° na górze. Ś2 jak w Standing Barbell Press Behind Neck (dx −13 → +8 cm)."
+        },
+        "Landmine Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Łuk wokół osi dźwigni, łokieć 141°→16°, ramię do 110° zgięcia (prowadzenie w górę i w przód); ślad = środek między chwytami (6 cm od chwytu R, chwyty razem). Ś3: w widoku z przodu poprzeczny odcinek gryfu 20 cm przy dłoniach (ograniczenie silnika)."
+        },
+        "Landmine Linear Jammer": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Start w ugięciu (kolano 67°, biodro 48°), wyprost nóg do u≈0,6 i wyciskanie po łuku dźwigni do łokcia 16° — zgodne z pp.legs. Ś3 jak w Landmine Press."
+        },
+        "Single-Arm Linear Jammer": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Jak Linear Jammer jednorącz, chwyt 2 cm od osi gryfu (ślad 2 cm), łokieć 133°→16°. Ś3 jak w Landmine Press."
+        },
+        "Pike Push Up": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Biodra w górze (biodro 118–126°), łokieć 15° → 115°, głowa schodzi przed dłonie blisko podłogi; ślad = miednica; poza błędu push.mis.partial skraca zejście. Fazy: najpierw Opuszczanie (lowerFirst) — zgodne z u 0→1."
+        },
+        "Overhead Press (sztanga)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Overhead Press (hantle)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Seated Shoulder Press (hantle)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Push Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Wyciskanie nad głowę (linki)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Single Arm Overhead Press (hantel)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Kettlebell Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Seated Barbell Military Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "See-Saw Press (Alternating Side Press)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Band Shoulder Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Seated Cable Shoulder Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14. Dodatkowo Ś1: zestaw ogólny ohp.seat mówi o hantlach."
+        },
+        "Kettlebell Seated Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Double Kettlebell Press": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1 (WYSOKIE): pozycja startowa/dolna i tor do u≈0,75 ok. 22 cm przed środkiem barków na wysokości brody (sztanga 15 cm od tułowia, hantle 21 cm, kettlebell 11,5 cm; łokieć 23–29 cm przed barkiem) — przeczy karcie („sztanga przy przedniej części barków”, „hantle przy barkach”, „łokieć blisko żeber”, „opuść z powrotem do barków”). Generator wyciskanie(): x0=22, dy0=14."
+        },
+        "Bradford Press": {
+          "werdykt": "bez rysunku",
+          "uwagi": "Brak figury v2 (WYJATKI w generatorze: brak źródła ruchu) — poza recenzją ruchu; wyjątek K3 do decyzji (autor nie dopisał do figury-wyjatki.json)."
+        },
+        "Handstand Push Up": {
+          "werdykt": "bez rysunku",
+          "uwagi": "Jak Bradford Press."
+        }
+      }
+    }
+  },
+  "zestawy": {
+    "Landmine Press": {
+      "rodzina": "press",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r1 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r1)",
+      "sha": "baa5d5500a39",
+      "uwagi": "press.noLock (łokieć 16° na górze, bez szarpnięcia), plank.brace (tułów sztywny, bez skłonu), mis.jerk (cecha tempa, bez pozy) — zgodne z ruchem."
+    },
+    "Pike Push Up": {
+      "rodzina": "pushup",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r1 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r1)",
+      "sha": "b0e7c88f31cb",
+      "uwagi": "plank.brace (tułów sztywny przy biodrach w górze — zdanie nie przeczy pozycji piki), push.mis.partial ma animowaną pozę błędu (płytsze zejście) — zgodne."
+    },
+    "Push Press - Behind the Neck": {
+      "rodzina": "pushPress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r1 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r1)",
+      "sha": "4baa1c1dba94",
+      "uwagi": "pp.dip (kolano do 50°, tułów pionowo), pp.legs (wyprost nóg przed wyciśnięciem), ohp.mis.lock — zgodne z ruchem. Ś2 (tor gryfu w przód na końcu) dotyczy rysunku, nie zdań zestawu."
+    },
+    "Kettlebell Arnold Press": {
+      "rodzina": "ohp",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r1 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r1)",
+      "sha": "519d45d66772",
+      "uwagi": "ohp.move, ohp.tall, ohp.fullExt (łokieć 9°), ohp.mis.lock — zgodne; zestaw nie opisuje obrotu (opisuje go rysunek), nie przeczy mu."
+    },
+    "Landmine Linear Jammer": {
+      "rodzina": "press",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r1 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r1)",
+      "sha": "f30a3b483ab7",
+      "uwagi": "pp.legs (ugięcie kolan 67° → wyprost przed dociśnięciem rąk), plank.brace, mis.jerk — zgodne z ruchem."
+    },
+    "Single-Arm Linear Jammer": {
+      "rodzina": "press",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r1 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r1)",
+      "sha": "f30a3b483ab7",
+      "uwagi": "Jak Landmine Linear Jammer, jednorącz — zgodne."
+    }
+  },
+  "karty": {}
+}

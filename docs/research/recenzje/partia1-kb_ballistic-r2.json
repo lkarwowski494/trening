@@ -1,0 +1,165 @@
+{
+  "v2": {
+    "kb_ballistic": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-09",
+      "stan": "recenzja niezależna r2 (bramka 4, L-047, L-050): 1 × WYSOKIE (W1-r2 — ciąg zarzutu i rwania nadal z wymachem: ręka zgina się w zawiasie, ciężar 24–31 cm od ciała; Snatch (hantel) bez startu z podłogi), 3 × NISKIE (testy, notatka o CUE_REQUIRES, ubogi zestaw oly)",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "liczba": "17",
+      "slad": "38 arkuszy własnych: arkusz-slad 16 (16 ćw. × side, jasny), slad-dark 4 (Kettlebell Clean, Kettlebell Snatch, Double Kettlebell Jerk, Snatch (hantel)), nakładka 18 (w tym pozy błędu One-Arm Swings i Sumo). Pełna rozdzielczość: Kettlebell Clean u = 0,50–0,65, Snatch (hantel), Sumo, Double Kettlebell Jerk, Kettlebell Snatch ciemny u = 0–0,65, poza błędu Sumo. Na torze zarzutu i rwania: start między nogami za kostkami (poprawny), potem łuk przed brzuchem na poziomym przedramieniu (odstęp 24–31 cm) i przewrót do racka albo nad głowę; podrzuty: łuk wokół głowy, koniec wstaniem; Sumo: ślad pionowy.",
+      "uwagi": "Bez sha — werdykt do poprawy. W1-r2: Kettlebell Clean, Double Kettlebell Clean, Dumbbell Clean, Kettlebell Snatch, Double Kettlebell Snatch, Snatch (hantel), One-Arm Kettlebell Clean and Jerk. v1 Kettlebell Swing bez zmiany (K10 dopiero przy przyjęciu v2).",
+      "cwiczenia": {
+        "Kettlebell Swing": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian ruchu od r1; biodro 86→5°, ciężar między nogami"
+        },
+        "One-Arm Kettlebell Swings": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian ruchu od r1"
+        },
+        "Kettlebell Clean": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2: łokieć zgina się w zawiasie (59° przy biodrze 53°, u = 0,45), poziome przedramię, odstęp ciężaru od ciała 28–31 cm (u = 0,50–0,65)"
+        },
+        "Double Kettlebell Clean": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2 jak Kettlebell Clean; sprzeczne z kartą („po wyproście bioder przyciągnij je blisko ciała”)"
+        },
+        "Dumbbell Clean": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2: odstęp 29,8 cm w ciągu, ręka ciągnie przed wyprostem bioder"
+        },
+        "Bottoms-Up Clean From The Hang Position": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian ruchu od r1"
+        },
+        "Kettlebell Snatch": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2: odstęp 30,6 cm (u = 0,35–0,4), łokieć 60° przy biodrze 53°"
+        },
+        "Double Kettlebell Snatch": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2 jak Kettlebell Snatch"
+        },
+        "Snatch (hantel)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2: start z zawisu 56 cm nad podłogą zamiast hantla na podłodze między stopami; ręka zgina się przed wyprostem bioder — sprzeczne z kartą (kbb.dbSnatchSetup, kbb.dbArmLate)"
+        },
+        "Double Kettlebell Push Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian ruchu od r1"
+        },
+        "Double Kettlebell Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "N1 z r1 poprawione: u = 1 kolano 0°, łokieć 10,6°; drugie ugięcie z zablokowanymi łokciami przed wstaniem"
+        },
+        "One-Arm Kettlebell Push Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian ruchu od r1"
+        },
+        "One-Arm Kettlebell Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "N1 z r1 poprawione, jak Double Kettlebell Jerk"
+        },
+        "One-Arm Kettlebell Split Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian ruchu od r1"
+        },
+        "Kettlebell Sumo High Pull": {
+          "werdykt": "wyswietlana",
+          "uwagi": "N2 z r1 poprawione: ruch bez zatrzymania, ślad pionowy (2,8 cm, skok maks. 2,6 cm na 1/48)"
+        },
+        "One-Arm Kettlebell Clean and Jerk": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r2 w części zarzutu (odstęp 31,6 cm)"
+        },
+        "Kettlebell Pirate Ships": {
+          "werdykt": "bez rysunku",
+          "uwagi": "N4 z r1 otwarte (wpis w figury-wyjatki.json albo potwierdzenie koordynatora)"
+        }
+      }
+    }
+  },
+  "zestawy": {
+    "One-Arm Kettlebell Swings": {
+      "rodzina": "kbSwing",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "37ceed504440",
+      "uwagi": "bez zmian od r1: kb.move, kb.hips, hinge.back zgodne; mis.roundBack animowany."
+    },
+    "Double Kettlebell Push Press": {
+      "rodzina": "pushPress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "4baa1c1dba94",
+      "uwagi": "pp.dip (kolano 35°, tułów pionowo), pp.legs (wybicie z nóg, ręce kończą), ohp.mis.lock — zgodne."
+    },
+    "One-Arm Kettlebell Push Press": {
+      "rodzina": "pushPress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "4baa1c1dba94",
+      "uwagi": "jak Double Kettlebell Push Press (kolano 32,6°)."
+    },
+    "One-Arm Kettlebell Split Jerk": {
+      "rodzina": "pushPress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "42579ee70605",
+      "uwagi": "pp.legs zgodne (wybicie z nóg, blokada łokcia z lądowaniem w wykroku)."
+    },
+    "Kettlebell Sumo High Pull": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "322d108d0345",
+      "uwagi": "sumo.kneesOut (szeroki rozstaw, start przy podłodze), hinge.back (kręgosłup prosty), mis.roundBack (poza błędu koloruje plecy) — zgodne po N2. Uwaga N2-r2: sumo.kneesOut jest wyświetlana (CUE_REQUIRES nie filtruje w czasie działania) — treść pasuje do ruchu."
+    },
+    "Bottoms-Up Clean From The Hang Position": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "20c8125fdfa2",
+      "uwagi": "po Ś1 tylko oly.back („Na starcie plecy proste, klatka do góry”) — zgodne z rysunkiem; sekcja błędów pusta (nie wyświetla się). Zestaw ubogi, ale nie błędny (N3-r2, backlog)."
+    }
+  },
+  "karty": {
+    "Kettlebell Swing": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność), runda r2",
+      "autor": "programista partii 1 (figury/partia-1)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 rodziny kb_ballistic, figury/partia-1 @ 0b390518 (poprawki 4e1a5d7e), czysta kopia git archive, 09.11.2026",
+      "sha": "aa1b9306d7dd",
+      "uwagi": "Ruch bez zmian od r1: kb.setup, kb.move (chwyt 7,4 cm za kostkami), kb.hips (biodro 86→5°), hinge.back zgodne. Sprzeczności brak."
+    }
+  }
+}
