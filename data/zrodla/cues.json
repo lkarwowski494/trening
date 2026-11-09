@@ -22501,7 +22501,7 @@
      "s": [
       [
        "nsca-ptq-lunge",
-       "s. 44, Starting Position (one foot in front and one behind the torso, similar to a split stance); Table 2, Completely Stationary"
+       "s. 44, Starting Position (one foot in front and one behind the torso, similar to a split stance); Teaching cues, s. 44–45 (Table 2, Completely Stationary — tylko uzasadnienie: wykrok w miejscu = przysiad wykroczny)"
       ],
       [
        "catalyst-174",
@@ -22520,7 +22520,7 @@
       ],
       [
        "nsca-ptq-lunge",
-       "s. 45, Lowering Phase (lower the hips until both knees are bent at about 90°); Upward Phase (push through the front heel); Table 2, Completely Stationary"
+       "s. 45, Lowering Phase (lower the hips until both knees are bent at about 90°); Upward Phase (push through the front heel); Teaching cues, s. 44–45 (Table 2, Completely Stationary — tylko uzasadnienie: wykrok w miejscu = przysiad wykroczny)"
       ]
      ]
     }
@@ -22741,19 +22741,6 @@
    ],
    "mistakes": [
     {
-     "c": "stepup.mis.push",
-     "s": [
-      [
-       "catalyst-560",
-       "opis (using the raised leg with minimal assistance from the other foot)"
-      ],
-      [
-       "hk-landow-stepup",
-       "Bottom-Up Step-Up (drive the foot into the box) — standard"
-      ]
-     ]
-    },
-    {
      "c": "stepup.mis.drop",
      "s": [
       [
@@ -22842,9 +22829,13 @@
       [
        "exrx-Quadriceps/DBSingleLegSplitSquat",
        "Comments"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Over-Pronation of the Foot/Knee Caves Inward (we wszystkich wersjach wykroku)"
       ]
      ],
-     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — do potwierdzenia przez recenzenta niezależnego)"
+     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — potwierdzone przez recenzenta niezależnego: badacz-merytoryczny i audytor, 09.11.2026, docs/research/recenzje/b2-nogi-karty-badacz-2026-11-09.md i b2-nogi-figury-audytor-2026-11-09.md)"
     }
    ]
   },
@@ -22922,9 +22913,13 @@
       [
        "exrx-Quadriceps/DBSingleLegSplitSquat",
        "Comments"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Over-Pronation of the Foot/Knee Caves Inward (we wszystkich wersjach wykroku)"
       ]
      ],
-     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — do potwierdzenia przez recenzenta niezależnego)"
+     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — potwierdzone przez recenzenta niezależnego: badacz-merytoryczny i audytor, 09.11.2026, docs/research/recenzje/b2-nogi-karty-badacz-2026-11-09.md i b2-nogi-figury-audytor-2026-11-09.md)"
     }
    ]
   },

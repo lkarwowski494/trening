@@ -2087,7 +2087,6 @@
       "bledy_bez_animacji": {
         "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
         "lunge2.mis.lean": "B2 09.11.2026: rodzina nie ma reguły kąta tułowia (plecy_proste mierzy zgięcie kręgosłupa; źródła różnią się kątem tułowia — bez reguły kąta), więc poza błędu nie dałaby się odróżnić regułą od poprawnej; błąd tylko w tekście karty (bledy: [])",
-        "stepup.mis.push": "B2 09.11.2026: odbijanie się nogą z podłogi to rozkład siły między nogami, nie poza (bledy: [])",
         "stepup.mis.drop": "B2 09.11.2026: opadanie zamiast kontrolowanego zejścia to cecha tempa, nie pozy (bledy: [])"
       },
       "warianty": {

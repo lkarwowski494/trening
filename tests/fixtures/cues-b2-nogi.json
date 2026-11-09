@@ -27,8 +27,7 @@
   "slcurl.move",
   "slcurl.setup",
   "split.setup",
-  "stepup.mis.drop",
-  "stepup.mis.push"
+  "stepup.mis.drop"
  ],
  "wycofaneZAnimacji": [
   [
@@ -67,7 +66,6 @@
  "bledyBezAnimacji": {
   "lunge": [
    "lunge2.mis.lean",
-   "stepup.mis.push",
    "stepup.mis.drop"
   ],
   "leg_isolation": [

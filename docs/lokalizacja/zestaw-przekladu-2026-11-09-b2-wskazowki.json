@@ -49,12 +49,6 @@
       "id": "stepup.mis.drop",
       "pl": "Opadanie z podwyższenia zamiast kontrolowanego zejścia.",
       "en": "Dropping off the box instead of stepping down under control."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "stepup.mis.push",
-      "pl": "Odbijanie się nogą z podłogi zamiast wchodzenia nogą na podwyższeniu.",
-      "en": "Pushing off the floor foot instead of stepping up with the leg on the box."
     }
   ]
 }

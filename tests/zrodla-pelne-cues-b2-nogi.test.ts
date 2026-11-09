@@ -80,7 +80,8 @@ describe('B2 nogi (09.11.2026): animowany błąd = błąd karty', () => {
     for (const [k, c, z] of B2.bladDodanyWariantSprzetu) {
       expect(z).toBe('Bulgarian Split Squat (hantle)');
       const m = CUE_FULL.exercises[k].mistakes!.find(x => x.c === c)!;
-      expect([k, m.s, /^wariant sprzętu: hantle/.test((m as { uproszczenie?: string }).uproszczenie ?? '')]).toEqual([k, baza.s, true]);
+      // źródła karty hantli + dopisane NSCA PTQ 4.4 tab. 1 (recenzja badacza 09.11.2026, b2-nogi-karty-badacz-2026-11-09.md)
+      expect([k, m.s, /^wariant sprzętu: hantle/.test((m as { uproszczenie?: string }).uproszczenie ?? '')]).toEqual([k, [...baza.s, ['nsca-ptq-lunge', expect.stringMatching(/^Table 1, .*Knee Caves Inward/)]], true]);
       expect([k, pozy('lunge')[k].bledy.map(b => b.cue)]).toEqual([k, ['lunge.mis.kneeIn']]);
     }
   });
@@ -97,8 +98,8 @@ describe('B2 nogi (09.11.2026): animowany błąd = błąd karty', () => {
 });
 
 describe('B2 nogi (09.11.2026): zdania', () => {
-  test('9 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie B2', () => {
-    expect(B2.zdania.length).toBe(9);
+  test('8 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie B2', () => {
+    expect(B2.zdania.length).toBe(8);
     for (const c of B2.zdania) expect([c, typeof pl[c], typeof en[c], pl[c] !== en[c]]).toEqual([c, 'string', 'string', true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-b2-wskazowki.json');
     expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...B2.zdania].sort());

@@ -949,6 +949,28 @@
         "Bodyweight Triceps Extension",
         "Sled Overhead Triceps Extension"
       ]
+    },
+    "lunge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+      "sha": "5e1117f7f637",
+      "slad": "arkusze side+front 21 kadrów, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor ciężaru/miednicy gładki, klatki 5 kart identyczne z integracja-1-1 (porównanie JSON); BSS (sztanga): tor sztangi pionowy, Smith: wzdłuż prowadnicy; Barbell Step Up: tor sztangi ukośny w górę i w przód nad stopę na podwyższeniu",
+      "uwagi": "wycofany lunge.mis.kneeIn z Split Squat, Lunges (sztanga), Barbell Walking Lunge, Barbell Step Up (zmienione tylko pole bledy; powody bledy_bez_animacji lean/push/drop sensowne); rząd lunge.mis.kneeIn w BSS (sztanga) i Smith identyczny z BSS (hantle), widoczny w widoku z przodu; uproszczenie wariant sprzętu uczciwe co do ruchu; 0 K/W; merytoryka źródeł u badacza"
+    },
+    "leg_isolation": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+      "sha": "bd7fc79f9bc6",
+      "slad": "arkusz 21 kadrów (u co 0,05), side, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor miednicy jednym gładkim łukiem 32,8 → 14,5 cm, barki 9,5–9,6 cm, pięty 9,6–11,2 cm; 01953ee4",
+      "uwagi": "Slider Hamstring Curl: most w całym ruchu — linia bark–biodro–kolano 2,5–3,3° (geometria), kolano 100 → 11,8°, checkFrame 0/41; jointAngles().hip bez znaku (|5,4–8,8°|); błąd ballcurl.mis.sag bez animacji — powód sensowny; 0 K/W"
     }
   },
   "karty": {

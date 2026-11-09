@@ -17,4 +17,81 @@
 - Narzędzia: import jak `narzedzia-a2.md` (`import_a2.py` z listą 7 kart, bez usuwania konfliktu póz, z dopisaniem `kneeIn` do BSS), potem `post` (figures.json open, wskazowki-ogolne, cue-sets own), `gen.mjs`, `zrodla-runtime --write`, `scripts/figures/gen.mjs`, `run.mjs --tylko … --zastosuj`, `UPDATE_SKROTY=1` (plik skrótów dopisany na końcu, kolejność zachowana), `ZLOTE_ZAPISZ=1`.
 - Pułapka: `figury-sens.json` → `grupy.json` to plik wspólny skrótu rodzin; `bledy_bez_animacji` go nie zmienia (sprawdzone).
 
+- **Recenzje niezależne 09.11.2026 (L-047):** audytor — ruch i ślad, 7/7 ZATWIERDZONE (`docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md`); badacz — źródła kart, 6 „wyswietlana”, Barbell Step Up „poprawki” (`docs/research/recenzje/b2-nogi-karty-badacz-2026-11-09.md`). Wpisy v2 `lunge` i `leg_isolation` w `docs/research/figury-recenzja.json` zapisane (rodziny nadal `planned`, status bez zmian).
+- **Barbell Step Up (koordynator 09.11.2026):** zdanie `stepup.mis.push` usunięte z karty (zostaje `stepup.mis.drop`); klucz `stepup.mis.push` usunięty też z `lib/cues/text/{pl,en}.json`, zestawu przekładu B2 (teraz 8 zdań), fixture i `figury-sens.json` — założenie „używa go karta Step Up” było błędne (karta Step Up go jeszcze nie ma; to właśnie P2), a strażnik `check:cues` odrzuca nieużywane zdanie. Sprzeczność z ACE 28 = otwarta pozycja P2 (uwaga w docs/21). Po zmianie zostaje wyłącznie materiał zatwierdzony przez badacza, więc ponowna weryfikacja niepotrzebna. Dopiski z raportu badacza wprowadzone (NSCA tab. 1 przy `lunge.mis.kneeIn` BSS sztanga/Smith; miejsce NSCA „Teaching cues” s. 44–45 przy `split.setup`/`bss.move`; dopisek „do potwierdzenia” zastąpiony potwierdzeniem).
+- **Karty nadal w `karty_nowe` (wpisy „karty” odłożone):** zdania kart B2 (8) mają przekład tylko PL i EN (33 języki czekają — `docs/lokalizacja/zestaw-przekladu-2026-11-09-b2-wskazowki.json`; 2 z 35 plików `lib/cues/text/*.json`). Po przekładzie: wpisać poniższy JSON do sekcji `karty` w `docs/research/figury-recenzja.json` (skróty `sha` z `node scripts/zrodla-runtime.mjs --skroty` — przeliczyć, jeśli karta lub tekst się zmieni), usunąć 7 kart z `karty_nowe` w `tests/recenzja-wyjatki-1-1.json` i z `hidden` oraz odsłonić po decyzji o statusie rodzin.
+
+```json
+{
+ "Split Squat": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 174",
+  "uwagi": "Niska: miejsce NSCA przy split.setup/bss.move to „Teaching cues” s. 44–45, nie „table 2”.",
+  "sha": "c778c8ec9faa"
+ },
+ "Lunges (sztanga)": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 354 + ACE 8",
+  "sha": "5d8455f12883"
+ },
+ "Barbell Walking Lunge": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 600 (uproszczenie: ciężar nad głową → sztanga na plecach, potwierdzone)",
+  "sha": "3818764a3055"
+ },
+ "Barbell Step Up": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana po usunięciu stepup.mis.push (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; stepup.mis.drop potwierdzone (Catalyst 560 + HK); stepup.mis.push usunięte z karty decyzją koordynatora 09.11.2026 (zostaje wyłącznie zatwierdzony materiał — bez rundy 2)",
+  "uwagi": "Usunięte stepup.mis.push (sprzeczność z ACE 28 „Push off with the trailing leg”); sprzeczność na karcie Step Up — otwarta pozycja P2 (docs/21).",
+  "sha": "f6d8ed690fd4"
+ },
+ "Bulgarian Split Squat (sztanga)": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; uproszczenie hantle → sztanga potwierdzone; lunge.mis.kneeIn: NASM BSS + NSCA PTQ tab. 1",
+  "uwagi": "Niska: dopisać nsca-ptq-lunge (tab. 1 „Knee Caves Inward”) przy lunge.mis.kneeIn; ExRx nieprzeczytane w tej recenzji (403).",
+  "sha": "b7d69b6803ae"
+ },
+ "Smith Machine Bulgarian Split Squat": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; uproszczenie hantle → suwnica Smitha potwierdzone; lunge.mis.kneeIn: NASM BSS + NSCA PTQ tab. 1",
+  "uwagi": "Niska: jak Bulgarian Split Squat (sztanga).",
+  "sha": "b7d69b6803ae"
+ },
+ "Slider Hamstring Curl": {
+  "werdykt": "wyswietlana",
+  "data": "2026-11-09",
+  "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+  "autor": "programista sesji B #4 (figury/b2-nogi)",
+  "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+  "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; „biodra cały czas w górze” i ballcurl.mis.sag: NISMAT + NCSF (wprost), ACE 59",
+  "uwagi": "Niska: „kolana ugięte” w slcurl.setup wprost tylko NISMAT; ACE 59/NCSF to wariant piłki (nazwane uproszczenie).",
+  "sha": "d4048f0a72f5"
+ }
+}
+```
+
 ## Historia
