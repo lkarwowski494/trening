@@ -1,4 +1,4 @@
-# Trening 🏋️
+# RepsGoat 🏋️
 
 <!-- gen:badges-ci -->
 [![Testy (każde wypchnięcie)](https://github.com/lkarwowski494/trening/actions/workflows/tests.yml/badge.svg)](https://github.com/lkarwowski494/trening/actions/workflows/tests.yml)
