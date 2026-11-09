@@ -116,29 +116,31 @@ export function tekstyFilmu(film, lang, cfg, dane) {
 /** Strona HTML jednej klatki: układ stały, zmienia się figura (#fig) i klasy body (faza, koniec). Czcionka i ikona z assets/. */
 export function htmlStrony(tx, tokens, d, ikonaDataUri, fontDataUri) {
   const c = tokens[d.motyw];
+  /* pionowe położenie napisów (właściciel 09.11.2026: górne niżej, dolne wyżej — poza paskami interfejsu aplikacji wideo); domyślne = układ z 08.11.2026 */
+  const y = { hak: 140, nazwa: 430, pasek: 1430, podpis: 1800, ...d.teksty_y };
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Barlow;src:url(${fontDataUri});font-weight:700}
 *{margin:0;box-sizing:border-box}
 body{width:${d.szerokosc}px;height:${d.wysokosc}px;overflow:hidden;background:${c.bg};color:${c.text};font-family:Barlow,sans-serif;font-weight:700;position:relative}
-.hak{position:absolute;top:140px;left:70px;right:70px;font-size:76px;line-height:1.08;text-align:center}
+.hak{position:absolute;top:${y.hak}px;left:70px;right:70px;font-size:76px;line-height:1.08;text-align:center}
 .hak-app{display:none;flex-direction:row;align-items:center;justify-content:center;gap:28px}
 .hak-app img{width:150px;height:150px;border-radius:34px}
 .hak-app .hak-nazwa{font-size:66px;line-height:1.04;text-align:left}
 .hak-app .hak-sklep{font-size:48px;color:${c.accent};margin-top:6px;text-align:left}
-.podpis-dol{position:absolute;left:0;right:0;top:1800px;font-size:34px;color:${c.muted};text-align:center;display:none}
+.podpis-dol{position:absolute;left:0;right:0;top:${y.podpis}px;font-size:34px;color:${c.muted};text-align:center;display:none}
 ${d.nazwa_w_haku ? 'body.poprawnie .hak-tekst{display:none} body.poprawnie .hak-app{display:flex} body.poprawnie .podpis-dol{display:block}' : ''}
-.nazwa{position:absolute;top:430px;left:70px;right:70px;text-align:center}
+.nazwa{position:absolute;top:${y.nazwa}px;left:70px;right:70px;text-align:center}
 .nazwa .en{font-size:64px;color:${c.accent};letter-spacing:.5px}
 .nazwa .lok{font-size:44px;color:${c.muted};margin-top:6px}
 #fig{position:absolute;top:${d.rysunek.top}px;left:${d.rysunek.left}px;width:${d.rysunek.w}px;height:${d.rysunek.h}px}
 #fig img{position:absolute}
 #fig .wyroz{position:absolute;border-radius:50%;border:8px solid;box-shadow:0 0 0 6px ${c.bg}}
 #fig .wyroz.err{border-color:${c.danger}} #fig .wyroz.ok{border-color:${c.doneLine}}
-.pasek{position:absolute;top:1430px;left:70px;right:70px;font-size:52px;line-height:1.12;text-align:center}
+.pasek{position:absolute;top:${y.pasek}px;left:70px;right:70px;font-size:52px;line-height:1.12;text-align:center}
 .pasek .znak{display:inline-block;margin-right:14px}
 .pasek.b{color:${c.danger}} .pasek.ok{color:${c.doneLine}}
 body.blad .pasek.ok,body.poprawnie .pasek.b,body:not(.napis) .pasek{display:none}
-.koniec{position:absolute;left:0;right:0;top:1420px;display:none;flex-direction:column;align-items:center;gap:14px}
+.koniec{position:absolute;left:0;right:0;top:${y.pasek - 10}px;display:none;flex-direction:column;align-items:center;gap:14px}
 body.na-koncu .koniec{display:flex} body.na-koncu .pasek{display:none}
 .koniec img{width:170px;height:170px;border-radius:38px;margin-bottom:8px}
 .koniec .sklep-nazwa{font-size:62px;color:${c.text};text-align:center;padding:0 60px;line-height:1.05}

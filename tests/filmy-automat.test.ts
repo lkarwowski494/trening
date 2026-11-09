@@ -52,6 +52,16 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(run(['--film', FILM.id, '--jezyk', 'en', '--strona', String(p.klatek - 1)]).stdout).toContain('<body class="poprawnie napis">');
   });
 
+  test('położenie napisów z filmy.json (właściciel 09.11.2026: górne niżej, dolne wyżej niż w układzie z 08.11.2026)', () => {
+    const y = CFG.domyslne.teksty_y;
+    expect(y.hak).toBeGreaterThan(140); expect(y.nazwa).toBeGreaterThan(430); expect(y.pasek).toBeLessThan(1430); expect(y.podpis).toBeLessThan(1800);
+    const html = run(['--film', FILM.id, '--jezyk', 'en', '--strona', '0']).stdout;
+    expect(html).toContain(`.hak{position:absolute;top:${y.hak}px;`);
+    expect(html).toContain(`.nazwa{position:absolute;top:${y.nazwa}px;`);
+    expect(html).toContain(`.pasek{position:absolute;top:${y.pasek}px;`);
+    expect(html).toContain(`.podpis-dol{position:absolute;left:0;right:0;top:${y.podpis}px;`);
+  });
+
   test('wszystkie widoki ćwiczenia (profil i przód — właściciel 08.11.2026), bez pola „widoki” w definicji', () => {
     expect(CFG.filmy.every((f: object) => !('widoki' in f))).toBe(true);
     expect(plan[0].widoki).toEqual(['side', 'front']); /* Back Squat: render bierze wszystkie svg karty, tu kontrola, że rysunek ma oba widoki */

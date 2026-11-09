@@ -7,6 +7,12 @@
     "blad_do_s": 4.0,
     "koniec_s": 0,
     "nazwa_w_haku": true,
+    "teksty_y": {
+      "hak": 240,
+      "nazwa": 530,
+      "pasek": 1380,
+      "podpis": 1620
+    },
     "motyw": "dark",
     "szerokosc": 1080,
     "wysokosc": 1920,
