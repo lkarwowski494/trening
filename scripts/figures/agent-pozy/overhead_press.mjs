@@ -31,26 +31,42 @@ export function lokiecPodChwytem(h) {
 /** Najmniejsze x chwytu (względem barku) na wysokości y, przy którym łokieć pod chwytem mieści się w m_max cm (zbiór dopuszczalnych x jest przedziałem). */
 export function xMinPodLokciem(y, dz, mMax = 7.5) { for (let x = -4; x <= 40; x += 0.25) { const r = lokiecPodChwytem([x, y, dz]); if (r && r.m <= mMax) return x; } return null; }
 
-/** Wyciskanie nad głowę. o: { zr (|z| chwytu), x0/dy0 (dłoń na dole względem barku), xTop, reach, pole, obrot (u → °), T (tułów {m,p,nogi,bend}), dod (sprzęt dodatkowy), sprzet, jedna ('R'/'L'), alt (see-saw), nad (przed głową: ruch x), us }. */
-function wyciskanie(cw, o) {
+/** Wyciskanie nad głowę. o: { zr (|z| chwytu), x0/dy0 (dłoń na dole względem barku), xTop, reach, pole, obrot (u → °), T (tułów {m,p,nogi,bend}), dod (sprzęt dodatkowy), sprzet, jedna ('R'/'L'), alt (see-saw), nad (przed głową: ruch x), us,
+ * mLok (największy poziomy odstęp łokcia od chwytu w cm, domyślnie 7,5), odchyl (odchył tułowia w tył przy mijaniu twarzy — patrz niżej; domyślnie włączony, gdy tułów nie jest podparty ławką) }.
+ * Odchył tułowia (W1-r2, recenzja 09.11.2026): łokieć pod chwytem (reguła ≤ 10 cm) wymusza przy twarzy chwyt ok. 22 cm przed barkami (xMinPodLokciem), ale ciężar ma iść w górę blisko twarzy: tułów odchyla się więc w tył o tyle, ile chwyt wychodzi przed barki
+ * (bark cofa się, chwyt w świecie stoi w miejscu), a na górze wraca przed chwyt ("głowa przez okno"). Dla ruchu obu rąk w przeciwfazie (see-saw) odchył liczy się ze średniej obu rąk, więc każda ręka ma po ok. 4 cm odchylenia zamiast jednej 12. */
+const ODCH_A = 2.5; /* cm: lekki wysuw chwytu w świecie przy mijaniu brody (o.odchA); na górze chwyt cofa się tak, by tułów wrócił do pionu (ramię nad głową ≤ limit zgięcia barku 171°) */
+const dChwytuOdBarku = (e, o, sg) => { void sg; const zrr = typeof o.zr === 'function' ? o.zr(e) : (o.zr ?? 26); const dz = zrr - 19; return { zrr, dz }; };
+function ruchReki(o, e, dopasuj) {
+  const { zrr, dz } = dChwytuOdBarku(e, o);
+  const yTop = Math.sqrt(Math.max(1, (o.reach ?? 63.4) ** 2 - (o.xTop ?? -2) ** 2 - dz * dz));
+  const yy = lerp(o.dy0 ?? (dopasuj ? DY0 : 14), yTop, e); let hxRel = lerp(o.x0 ?? (dopasuj ? X0 : 22), o.xTop ?? 6, sm((yy - (o.ys ?? 48)) / (yTop - (o.ys ?? 45))));
+  if (dopasuj) { const xm = xMinPodLokciem(yy, dz, o.mLok ?? 7.5); if (xm !== null) hxRel = Math.max(hxRel, xm + 0.25); }
+  return { zrr, dz, yy, hxRel };
+}
+export function wyciskanie(cw, o) {
   const T = o.T ?? { m: [0, Y_STOJ], p: 0, nogi: nogiStoj(0, 14) };
+  const dopasuj = o.fit !== false && !('pole' in o) && !('pdz' in o); /* W1: domyślny start przy przedniej części barków (x0/dy0 poniżej), tor chwytu nigdzie bliżej barku niż pozwala łokieć pod chwytem (xMinPodLokciem) */
+  const odchyl = (o.odchyl ?? !o.T) && dopasuj; const eOf = (s, u) => { const e0 = o.alt && s === 'L' ? 1 - u : u; return o.rytm ? o.rytm(e0) : e0; };
+  const prac = (s) => !o.jedna || o.jedna === s;
+  const srednia = (f) => { const l = SIDES.filter(prac).map(f); return l.reduce((a, b) => a + b, 0) / l.length; };
+  const rel0 = srednia((s) => ruchReki(o, eOf(s, 0), dopasuj).hxRel); const relK = srednia((s) => ruchReki(o, eOf(s, 1), dopasuj).hxRel);
+  const delta = (e) => (o.odchA ?? ODCH_A) * Math.sin(Math.PI * Math.min(1, e / 0.8)) - (rel0 - relK) * sm(e);
   const fr = (u) => {
-    const tu = o.tulowu ? o.tulowu(u) : {}; const m = tu.m ?? T.m; const p = tu.p ?? T.p ?? 0; const nogi = tu.nogi ?? T.nogi; const rece = {};
-    for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg); const prac = !o.jedna || o.jedna === s;
-      if (!prac) { rece[s] = o.wolna ? o.wolna(S, sg) : WOLNA(S, sg); continue; }
-      const e0 = o.alt && s === 'L' ? 1 - u : u; const e = o.rytm ? o.rytm(e0) : e0; const zrr = typeof o.zr === 'function' ? o.zr(e) : (o.zr ?? 26); const dz = zrr - 19; /* zr może zależeć od fazy (Arnold: dłonie z wąskiego chwytu przed klatką do chwytu nad głową) */
-      const dopasuj = o.fit !== false && !('pole' in o) && !('pdz' in o); /* W1: domyślny start przy przedniej części barków (x0/dy0 poniżej), tor chwytu nigdzie bliżej barku niż pozwala łokieć pod chwytem (xMinPodLokciem) */
-      const yTop = Math.sqrt(Math.max(1, (o.reach ?? 63.4) ** 2 - (o.xTop ?? -2) ** 2 - dz * dz));
-      const yy = lerp(o.dy0 ?? (dopasuj ? DY0 : 14), yTop, e); const hy = S[1] + yy; let hxRel = lerp(o.x0 ?? (dopasuj ? X0 : 22), o.xTop ?? 6, sm((yy - (o.ys ?? 48)) / (yTop - (o.ys ?? 45))));
-      if (dopasuj) { const xm = xMinPodLokciem(yy, dz); if (xm !== null) hxRel = Math.max(hxRel, xm + 0.25); } const hx = S[0] + hxRel;
+    const tu = o.tulowu ? o.tulowu(u) : {}; const m = tu.m ?? T.m; let p = tu.p ?? T.p ?? 0; const nogi = tu.nogi ?? T.nogi; const rece = {};
+    let pOdch = 0; if (odchyl) { const przes = rel0 - srednia((s) => ruchReki(o, eOf(s, u), dopasuj).hxRel) + srednia((s) => delta(eOf(s, u))); pOdch = Math.asin(Math.max(-0.9, Math.min(0.9, przes / BODY().trunk))) / R; }
+    p += pOdch;
+    for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg);
+      if (!prac(s)) { rece[s] = o.wolna ? o.wolna(S, sg) : WOLNA(S, sg); continue; }
+      const e = eOf(s, u); const { zrr, dz, yy, hxRel } = ruchReki(o, e, dopasuj); const hy = S[1] + yy; const hx = S[0] + hxRel;
       const ob = typeof o.obrot === 'function' ? o.obrot(e) : o.obrot ?? 0; const gz = sg * zrr; const pdz = typeof o.pdz === 'function' ? o.pdz(e) : (o.pdz ?? 0);
       /* biegun łokcia: punkt pod chwytem (przedramię pionowo) — łokieć pod dłonią (ohp.elbowsUnder) */
       const ep = dopasuj ? lokiecPodChwytem([hx - S[0], yy, dz]) : null; /* biegun = kierunek łokcia o najmniejszym odchyleniu od chwytu */
       const pv = o.pole ? [o.pole[0], o.pole[1], o.pole[2] * sg] : ep ? [ep.E[0], ep.E[1], sg * ep.E[2]] : [hx - S[0] + (o.pdx ?? 0), hy - 33 - S[1], gz - sg * 19 + sg * pdz]; const pl = Math.hypot(...pv) || 1; const pole = pv.map((c) => r1(c / pl * 3) );
       rece[s] = { g: [hx, hy, gz], pole, obrot: ob }; }
-    return poza({ u, tulow: { m, p, glowa: tu.glowa ?? p, bend: 0 }, nogi, rece }); };
+    return poza({ u, tulow: { m, p, glowa: tu.glowa ?? (T.p ?? 0), bend: 0 }, nogi, rece }); };
   const sprz = o.jedna ? sprzJ(o.sprzet, o.jedna) : o.sprzet;
-  return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), ...(o.dod ?? []), ...sprz], fr, us: o.us ?? U9 });
+  return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), ...(o.dod ?? []), ...sprz], fr, us: o.us ?? (odchyl ? U12 : U9) });
 }
 /** Siedząc na ławce (kat oparcia) — tułów wg oparcia. */
 function siedzac(kat = 85, top = 45) { const B = naLawce(kat, top, { zr: 24 }); return { T: { m: B.m, p: B.p, nogi: B.nogi }, lawka: { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, siedzisko: 40 } }; }
@@ -81,7 +97,7 @@ function landmine(cw, o) {
 /** Push press: ugięcie kolan (dip) przy dłoniach przy barkach, potem wyprost nóg i wyciskanie. */
 function pushPress(cw, o) {
   const dip = o.dip ?? 9; const lean = o.lean ?? 10;
-  const tulowu = (u) => { const d = u < 0.12 ? sm(u / 0.12) : u < 0.34 ? 1 - sm((u - 0.12) / 0.22) : 0; return { m: [-0.5 * dip * d, Y_STOJ - dip * d], p: lean * d, glowa: lean * d }; };
+  const tulowu = (u) => { const d = u < 0.12 ? sm(u / 0.12) : u < 0.34 ? 1 - sm((u - 0.12) / 0.22) : 0; return { m: [-BODY().trunk * Math.sin(lean * d * R), Y_STOJ - dip * d], p: lean * d, glowa: lean * d }; }; /* bark nie przesuwa się w poziomie w ugięciu (biodra cofają się o tyle, o ile tułów pochyla się do przodu): sztanga w ugięciu idzie pionowo (N3/W1-r2: dawne 3 zawrócenia toru) */
   const rytm = (u) => (u < 0.2 ? 0 : sm((u - 0.2) / 0.8));
   return wyciskanie(cw, { ...o, tulowu, rytm, us: o.us ?? [0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.38, 0.48, 0.6, 0.72, 0.85, 1] });
 }
@@ -115,8 +131,10 @@ const HW = -80;
 
 export function generuj() {
   const G = {}; const B = SPRZET.sztanga(); const H = SPRZET.hantle(); const KB = (x = {}) => ({ rodzaj: 'kettlebell', dzwon: 'tyl', ...x });
-  /* Kettlebell na dole: dzwon za rączką przenika ramię, gdy rączka leży niżej niż ok. 12 cm nad barkiem (przy 9 cm: 3,8 cm przenikania; walidator dopuszcza 0,3) — start nieco wyżej, ale tak samo blisko tułowia */
-  const KB_DOL = { x0: 12, dy0: 14 };
+  /* Kettlebell w racku (W2-r2, recenzja 09.11.2026): łokieć jak najbliżej żeber przy dzwonie 'tyl' (jedyny tryb dzwonu wokół rączki w silniku): dzwon za rączką przenika ramię, gdy rączka jest bliżej tułowia albo bliżej osi barku w z — przeszukanie siatki
+   * (zr 20–36, dy0 0–15, x0 8–18): poprawne (walidator geometrii 0,3 cm) są tylko starty z rączką 16,9 cm przed barkiem, 9 cm nad nim i |z| 30 (11 cm na zewnątrz od stawu barkowego); łokieć ok. 16 cm przed barkiem, zgięcie barku ok. 35° (było 52°, łokieć 23 cm przed).
+   * Chwyt schodzi do |z| 26 do końca ruchu (nad głową tak samo jak w pozostałych wyciskaniach). */
+  const KB_DOL = { x0: 16.9, dy0: 9, zr: (e) => lerp(30, 26, sm(e / 0.35)) };
   const RACK = { rodzaj: 'slupek', x: -45, h: 210, hak: 140 };
   G['Overhead Press (sztanga)'] = () => wyciskanie('Overhead Press (sztanga)', { sprzet: [B] });
   G['Overhead Press (hantle)'] = () => wyciskanie('Overhead Press (hantle)', { sprzet: [H], obrot: HW });
@@ -124,7 +142,7 @@ export function generuj() {
   G['Double Kettlebell Press'] = () => wyciskanie('Double Kettlebell Press', { sprzet: [KB({ trzyma: 'R' }), KB({ trzyma: 'L' })], ...KB_DOL });
   G['Kettlebell Press'] = () => wyciskanie('Kettlebell Press', { sprzet: [KB()], jedna: 'R', ...KB_DOL });
   G['Single Arm Overhead Press (hantel)'] = () => wyciskanie('Single Arm Overhead Press (hantel)', { sprzet: [H], jedna: 'R', obrot: HW });
-  G['See-Saw Press (Alternating Side Press)'] = () => wyciskanie('See-Saw Press (Alternating Side Press)', { sprzet: [{ ...H, trzyma: 'R' }, { ...H, trzyma: 'L' }], alt: true, us: U12, obrot: HW });
+  G['See-Saw Press (Alternating Side Press)'] = () => wyciskanie('See-Saw Press (Alternating Side Press)', { sprzet: [{ ...H, trzyma: 'R' }, { ...H, trzyma: 'L' }], alt: true, us: U12, obrot: HW, odchA: 1 });
   G['Arnold Press'] = () => wyciskanie('Arnold Press', { sprzet: [H], ...ARNOLD });
   G['Kettlebell Arnold Press'] = () => wyciskanie('Kettlebell Arnold Press', { sprzet: [KB()], jedna: 'R', ...ARNOLD, zr: (e) => lerp(16, 24, sm(e / 0.85)) });
   const sd = siedzac(85, 45);

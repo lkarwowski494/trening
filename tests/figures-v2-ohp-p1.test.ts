@@ -198,7 +198,9 @@ describe('overhead_press: błąd animowany tylko tam, gdzie jest tekst (K15)', (
   test('Pike Push Up: błąd „skracanie ruchu” (push.mis.partial) przesuwa miednicę/łokieć o ≥ 3 cm na dole; pozostałe ćwiczenia rodziny nie mają animowanego błędu (ohp.mis.* to cechy tempa i postawy bez osobnej pozy)', () => {
     const e = errorsOf(spec('Pike Push Up')); expect(e.length).toBe(1); expect(e[0].cue).toBe('push.mis.partial');
     const a = frameAt(spec('Pike Push Up'), 1).sk, b = frameAt(spec('Pike Push Up'), 1, e[0].error).sk; expect(Math.max(d3(a.pelvis, b.pelvis), d3(a.arms.R.elbow, b.arms.R.elbow), d3(a.shoulderC, b.shoulderC))).toBeGreaterThanOrEqual(3);
-    for (const k of KEYS.filter(x => x !== 'Pike Push Up')) expect([k, errorsOf(spec(k)).length]).toEqual([k, 0]);
+    /* N1 (r2, 09.11.2026): trzy ćwiczenia landmine mają z zestawu ogólnego `press` błąd tempa mis.jerk (cecha tempa, lib/figures/v2/ui.ts; wyświetlany od początku) — oczekujemy dokładnie tego jednego błędu, nie zera; reszta rodziny: zero */
+    const TEMPO = ['Landmine Press', 'Landmine Linear Jammer', 'Single-Arm Linear Jammer'];
+    for (const k of KEYS.filter(x => x !== 'Pike Push Up')) expect([k, errorsOf(spec(k)).map(x => x.cue)]).toEqual([k, TEMPO.includes(k) ? ['mis.jerk'] : []]);
   });
 });
 
@@ -226,8 +228,16 @@ describe('overhead_press: dół ruchu przy przedniej części barków, zza karku
   test('łokcie pod nadgarstkami: poziomy odstęp łokcia od chwytu ≤ 8 cm (reguła dopuszcza 10) w każdej klatce co 0,025 w 13 ćwiczeniach', () => {
     for (const k of W1) for (const s of PRAC(k)) { const m = Math.max(...US.map(u => { const a = frameAt(spec(k), u).sk.arms[s]; return Math.hypot(a.grip[0] - a.elbow[0], a.grip[2] - a.elbow[2]); })); expect([k, s, m <= 8]).toEqual([k, s, true]); }
   });
-  test('kettlebell: dół ruchu wyżej niż dłoń z hantlem (dzwon za rączką nie wchodzi w ramię: walidator geometrii 0,3 cm), ale tak samo blisko tułowia (≤ 17 cm przed barkiem)', () => {
-    for (const k of KETTLEBELL) { const m = dolR(k); expect([k, m.x <= PROG.chwytPrzod, m.y >= 12]).toEqual([k, true, true]); }
+  /* W2-r2 (recenzja 09.11.2026): rack — łokieć bliżej tułowia niż 23,2 cm przed barkiem (karta kbp.setup „łokieć blisko żeber”). Miara: łokieć przed środkiem barków i zgięcie barku (shSag) na dole. Poprawne wg walidatora geometrii (dzwon 'tyl' nie wchodzi w ramię) są tylko
+   * starty z rączką ≥ 16 cm przed barkiem i |z| 30 (przeszukanie siatki, decyzja w docs/18 z 10.11.2026), więc zgięcie barku spada z 52° do ok. 35° (cel recenzenta ≤ 25° wymagałby w silniku dzwonu na zewnętrznej stronie przedramienia — nie ma takiego trybu). */
+  const lokiecDol = (k: string, pose?: PoseData) => { const f = pose ? keyframeFrame(pose, 0) : frameAt(spec(k), 0); return { x: f.sk.arms.R.elbow[0] - f.sk.shoulderC[0], sag: jointAngles(f.sk, 'R').shSag }; };
+  test('W2-r2 kettlebell: rack — łokieć ≤ 18 cm przed środkiem barków i zgięcie barku ≤ 38° (było 23,2 cm i 52°), dzwon za rączką nie wchodzi w ramię (K7: odstęp ≥ 0), chwyt ≤ 17 cm przed barkiem', () => {
+    for (const k of KETTLEBELL) { const m = dolR(k); const e = lokiecDol(k); expect([k, e.x <= 18, e.sag <= 38, m.x <= PROG.chwytPrzod]).toEqual([k, true, true, true]); }
+  });
+  test('W2-r2 przypadek negatywny (dane sprzed poprawki: rączka 16,5 cm przed i 14 cm nad barkiem, |z| 26): łokieć > 18 cm przed barkiem i zgięcie barku > 38° — miary potrafią paść', () => {
+    for (const k of KETTLEBELL) { const stara = JSON.parse(JSON.stringify(POSY[k])) as PoseData; const k0 = stara.klatki[0] as unknown as { rece: { R: { chwyt: number[]; biegunLokcia: number[] } } };
+      const sh = keyframeFrame(stara, 0).sk.shoulderC; k0.rece.R.chwyt = [sh[0] + 16.5, sh[1] + 14, 26]; k0.rece.R.biegunLokcia = [2.2, -1.7, 0.6];
+      const e = lokiecDol(k, stara); expect([k, e.x > 18, e.sag > 38]).toEqual([k, true, true]); }
   });
   test('przypadek negatywny (dane sprzed poprawki, x0 = 22): chwyt i sztanga 8,7 cm dalej od tułowia niż dziś dają odstęp > 6 cm i chwyt > 17 cm przed barkiem — miary potrafią paść', () => {
     for (const k of SZTANGA) { const m = dolR(k, 8.7); expect([k, m.gapTulow! > PROG.sztangaTulow, m.x > PROG.chwytPrzod]).toEqual([k, true, true]); }
@@ -237,8 +247,40 @@ describe('overhead_press: dół ruchu przy przedniej części barków, zza karku
     for (const k of ['Standing Barbell Press Behind Neck', 'Push Press - Behind the Neck']) {
       const xs = US.map(u => { const f = frameAt(spec(k), u); return f.sk.arms.R.grip[0] - f.sk.shoulderC[0]; });
       expect([k, Math.max(...xs) - Math.min(...xs) <= 10, xs[xs.length - 1] <= 0]).toEqual([k, true, true]);
-      expect([k, 8 - Math.min(...xs) > 10, 8 <= 0]).toEqual([k, true, false]);
+      /* N2 (r2): przypadek negatywny na danych — ostatnia klatka z chwytem 8 cm przed barkiem (xTop sprzed poprawki) przechodzi przez tę samą miarę */
+      const stara = JSON.parse(JSON.stringify(POSY[k])) as PoseData; const ost = stara.klatki.length - 1; const sx = keyframeFrame(stara, stara.klatki[ost].u).sk.shoulderC[0];
+      (stara.klatki[ost] as unknown as { rece: { R: { chwyt: number[] } } }).rece.R.chwyt[0] = sx + 8;
+      const xsS = stara.klatki.map((_, i) => { const f = keyframeFrame(stara, stara.klatki[i].u); return f.sk.arms.R.grip[0] - f.sk.shoulderC[0]; });
+      expect([k, Math.max(...xsS) - Math.min(...xsS) > 10, xsS[xsS.length - 1] <= 0]).toEqual([k, true, false]);
     }
+  });
+  /* W1-r2 (recenzja r2, 09.11.2026): w drodze w górę ciężar idzie prosto w górę (tor w świecie, widok z boku). Łokieć pod chwytem (reguła ≤ 10 cm) wymusza przy twarzy chwyt ok. 22 cm przed barkami (xMinPodLokciem) — stojąc tułów odchyla się więc w tył o tyle,
+   * ile chwyt wychodzi przed barki, a na górze wraca (generator: odchył tułowia). Siedząc oparcie ławki nie pozwala na odchył: te cztery ćwiczenia mają wyjątek w tests/tor-wyjatki.json z pomiarem. */
+  const STOJACE = W1.filter(k => !/Seated/.test(k)); const SIEDZACE = W1.filter(k => /Seated/.test(k));
+  const tor = (k: string, kor?: (x: number, i: number) => number) => { const pts = Array.from({ length: 25 }, (_, i) => { const f = frameAt(spec(k), i / 24); return proj((f.info.load ?? f.info.trail) as V3, "side") as [number, number]; });
+    const [a, b] = [pts[0], pts[24]]; const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1; void kor;
+    return { odch: Math.max(...pts.map(q => Math.abs((q[0] - a[0]) * dy - (q[1] - a[1]) * dx) / L)), poz: pts }; };
+  test('W1-r2: tor ciężaru w widoku z boku ≤ 4 cm od prostej w 9 ćwiczeniach stojących i klatka tułowia w granicach reguły tulow_wysoko (−15…10°)', () => {
+    expect(STOJACE.length).toBe(9);
+    for (const k of STOJACE) { const t = tor(k); expect([k, t.odch <= 4]).toEqual([k, true]);
+      for (const u of US) { const f = frameAt(spec(k), u); const lean = Math.atan2(f.sk.shoulderC[0] - f.sk.pelvis[0], f.sk.shoulderC[1] - f.sk.pelvis[1]) * 180 / Math.PI; expect([k, u, lean >= -15 && lean <= 10]).toEqual([k, u, true]); } }
+  });
+  test('W1-r2 przypadek negatywny (dane sprzed poprawki: bark nie cofa się, chwyt w świecie idzie łukiem): chwyty przesunięte o położenie barków dają tor > 8 cm w każdym z 9 ćwiczeń — miara potrafi paść', () => {
+    for (const k of STOJACE) { const stara = JSON.parse(JSON.stringify(POSY[k])) as PoseData;
+      stara.klatki.forEach((kl, i) => { const sx = keyframeFrame(stara, stara.klatki[i].u).sk.shoulderC[0]; const r = (kl as unknown as { rece: Record<string, { chwyt: number[] }> }).rece; for (const sd of ['R', 'L']) r[sd].chwyt[0] += -sx; });
+      const pts = stara.klatki.map((_, i) => { const f = keyframeFrame(stara, stara.klatki[i].u); return f.sk.arms.R.grip; }); const a = pts[0], b = pts[pts.length - 1]; const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1;
+      const odch = Math.max(...pts.map(q => Math.abs((q[0] - a[0]) * dy - (q[1] - a[1]) * dx) / L)); expect([k, odch > 8]).toEqual([k, true]); }
+  });
+  test('W1-r2 siedzące (oparcie ławki, bez odchyłu tułowia): tor 9–13 cm, czyli tyle, ile wymusza reguła łokcia pod chwytem — jawny wyjątek w tor-wyjatki.json z górną granicą 13 cm', () => {
+    const WYJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/tor-wyjatki.json'), 'utf8')) as Record<string, string>;
+    for (const k of SIEDZACE) { const t = tor(k); expect([k, t.odch > 4 && t.odch <= 13, typeof WYJ[`${k}|side`]]).toEqual([k, true, 'string']); }
+  });
+  test('N3 Push Press - Behind the Neck: w ugięciu nóg gryf idzie pionowo (x chwytu zmienia się o ≤ 4,5 cm w całym ruchu); przypadek negatywny: miednica i chwyt przesunięte o 6 cm do przodu w ugięciu — zmiana > 4,5 cm', () => {
+    const k = 'Push Press - Behind the Neck'; const x = (pose: PoseData) => pose.klatki.map((kl) => keyframeFrame(pose, kl.u).sk.arms.R.grip[0]); const zakres = (v: number[]) => Math.max(...v) - Math.min(...v);
+    expect([k, zakres(x(POSY[k])) <= 4.5]).toEqual([k, true]);
+    const stara = JSON.parse(JSON.stringify(POSY[k])) as PoseData; const dno = stara.klatki.reduce((b, kl, i) => ((kl as unknown as { miednica: number[] }).miednica[1] < (stara.klatki[b] as unknown as { miednica: number[] }).miednica[1] ? i : b), 0);
+    const mk = stara.klatki[dno] as unknown as { miednica: number[]; rece: Record<string, { chwyt: number[] }> }; mk.miednica[0] += 6; for (const sd of ["R", "L"]) mk.rece[sd].chwyt[0] += 6;
+    expect([k, zakres(x(stara)) > 4.5]).toEqual([k, true]);
   });
   test('Ś1 Seated Cable Shoulder Press: zestaw ogólny bez zdania „hantle przy barkach” (ohp.seat; ćwiczenie z linkami, więc czytamy dane zestawu — karta pokazuje zestaw dopiero po recenzji treści); siedzące z hantlami je zachowują', () => {
     const items = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/cue-sets.json'), 'utf8')).items as Record<string, { ok?: string[] }>;
