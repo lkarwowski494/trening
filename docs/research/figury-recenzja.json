@@ -801,7 +801,21 @@
       "bez_rysunku": [
         "Muscle Up",
         "Rope Climb"
-      ]
+      ],
+      "do_recenzji": {
+        "data": "2026-11-09",
+        "autor": "programista (figury/pull-up-lokiec)",
+        "recenzent": null,
+        "zmiana": "Prowadnica prostej ręki obok ręki w rzucie z przodu (element pullArmStraightRef, Pull Up i Chin Up) — decyzja właściciela 09.11.2026 (docs/18), wariant B studia projektowego; zmiana plików wspólnych overlay.ts i overlayShapes.ts (skrót wszystkich rodzin v2 zmieniony).",
+        "arkusz": "/tmp/claude-0/sp/lokiec/arkusz/ (przód i profil, dół/góra/błąd, motyw ciemny i jasny, przed/po)",
+        "do_sprawdzenia": [
+          "ruch: Pull Up i Chin Up — łokieć na dole ≤ 8° (rysunek ma pokazywać ręce proste), na górze bez prowadnicy; ślad toru (L-050) bez zmian",
+          "element nie przecina ręki, leży po stronie zewnętrznej, 8 cm; w widoku błędu czerwony na dole",
+          "pozostałe 6 rodzin v2 i pozostałe rzuty/ćwiczenia pull_up: rysunek bez zmian (md5 przed/po; plik wspólny zmieniony)",
+          "wskazowki_na_reguly: dopisane cu.pull → dol_rece_proste (karta Chin Up „pełny wyprost rąk”) — czy zdanie wystarcza dla reguły"
+        ],
+        "otwarte_do_badacza": "8 odmian z regułą dol_rece_proste w statusie „analogia” (Neutral Grip Pull Up, Mixed Grip Chin, Wide-Grip Rear Pull-Up, One Arm Chin-Up, Side To Side Chins, Gorilla Chin/Crunch, Gironda Sternum Chins, Muscle Up) nie mają prowadnicy; rozszerzenie wymaga potwierdzenia reguły „ustalone” dla ich ruchu albo oznaczenia „uproszczenie” po recenzji niezależnej."
+      }
     },
     "curl": {
       "werdykt": "wyswietlana",

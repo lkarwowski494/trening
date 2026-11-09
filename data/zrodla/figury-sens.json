@@ -140,6 +140,9 @@
           "broda_nad_drazkiem",
           "dol_rece_proste"
         ],
+        "cu.pull": [
+          "dol_rece_proste"
+        ],
         "pu.noSwing": [
           "miednica_nie_buja",
           "nogi_nieruchome"
