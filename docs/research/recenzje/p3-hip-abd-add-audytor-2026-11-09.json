@@ -1,0 +1,185 @@
+{
+ "v2": {
+  "hip_abd_add": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — wyświetlana BEZ Lateral Band Walk i Monster Walk (WYSOKIE H-1, H-2: wahadło jednej nogi zamiast marszu); jeśli tych dwóch figur nie da się ukryć osobno, cała rodzina do_poprawy",
+   "autor": "programista partii 3 (figury/partia-3 7d298144)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "uwagi": "4 ćwiczenia poprawne: maszyny (siad, oparcie 80°, kolana symetrycznie 14→34 cm, tułów i miednica nieruchome), linki (mankiet na kostce, wyciąg po właściwej stronie, odwiedzenie ok. 30°, bez przechyłu). LBW i Monster Walk: prawa noga wychodzi i wraca tą samą drogą, lewa i miednica stoją — przeczy bw.move i „marszowi” z zestawu (H-1, H-2). ŚREDNIE do backlogu: S-1 (maszyna: jedna dźwignia przy prawej kostce, brak podkładek przy kolanach), S-2 (EN „Pulling back” dla przywodzenia). NISKIE: N-1 dłoń w udzie w 3D (niewidoczne z przodu), N-2 pion z przodu przypisany do reguły pochylenia strzałkowego, N-3 ślad = punkt stały w 4 ćwiczeniach, N-4 „tylko noga” przy maszynach. Nakładka bez artefaktów, pominięcia zasadne. Kąt ukryty — uzasadnione.",
+   "slad": "Arkusze scripts/figures/arkusz-slad.mjs (21 kadrów co 0,05, rzut front) dla 6 ćwiczeń: /tmp/rec-p3-hip/ark (jasny), /tmp/rec-p3-hip/arkd (ciemny); nakładka scripts/figures/arkusz-nakladka.mjs --family hip_abd_add: /tmp/rec-p3-hip/nak. Obejrzane w pełnej rozdzielczości z powiększeniami kadrów u 0/0,25/0,6/1. Ślad: Cable Hip Abduction łuk 3,2 cm 0 zawr.; Cable Hip Adduction łuk 4,1 cm 0 zawr. (wyjątek potwierdzony); maszyny i marsze — punkt śladu stały (N-3), tor kostki maszyn sprawdzony ręcznie na okręgu dźwigni.",
+   "sha": "e635233e9a44",
+   "liczba": 6,
+   "cwiczenia": {
+    "Hip Abduction": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ruch poprawny; S-1 (dźwignia tylko przy prawej kostce, brak podkładek), N-1, N-3, N-4 — backlog."
+    },
+    "Hip Adduction": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Jak Hip Abduction, kierunek odwrotny poprawny; S-1, S-2 (EN), N-1, N-3, N-4 — backlog."
+    },
+    "Cable Hip Abduction": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Mankiet na kostce, wyciąg po stronie przeciwnej, odwiedzenie umiarkowane, miednica bez przechyłu; nakładka pion OK; N-2."
+    },
+    "Cable Hip Adduction": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Wyciąg po stronie nogi pracującej, ściąganie do środka i lekko przed nogę podporową; wyjątek toru potwierdzony; S-2 (EN), N-2."
+    },
+    "Lateral Band Walk": {
+     "werdykt": "do_poprawy",
+     "uwagi": "H-1 WYSOKIE: wahadło jednej nogi (krok w bok i powrót tą samą nogą), druga noga nigdy nie dociągnięta, miednica stoi — przeczy bw.move. Poprawka: marsz (krok + dostawienie, przesunięcie miednicy w bok; tryb cyklu/marsz), nazwy faz marszu; zaktualizować wpis w figury-ograniczenia-silnika.json."
+    },
+    "Monster Walk": {
+     "werdykt": "do_poprawy",
+     "uwagi": "H-2 WYSOKIE: ten sam wzór — wymach nogi po skosie i powrót, bez marszu; zestaw bandWalk mówi o marszu."
+    }
+   }
+  }
+ },
+ "karty": {
+  "Lateral Band Walk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "treść karty bez zmian (b30c831906fe) i poprawna; spójność z rysunkiem v2: NIESPÓJNA w ruchu (bw.move) — błąd rysunku (H-1), figura v2 tego ćwiczenia nie jest wyświetlana do poprawy",
+   "autor": "programista A2",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "sha": "b30c831906fe",
+   "uwagi": "Setup (guma przy kostkach), lekki przysiad, napięcie gumy, brak bujania — zgodne z rysunkiem; bw.move „Zrób krok w bok, potem powoli dociągnij drugą nogę” — rysunek przeczy (H-1)."
+  }
+ },
+ "zestawy": {
+  "Hip Abduction": {
+   "rodzina": "hipAbd",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "sha": "ac7f4cc69855",
+   "uwagi": "hab.hips, llc.control, mis.jerk — przypisanie i teksty PL/EN zgodne z rysunkiem (tułów i biodra nieruchome, ruch płynny); N-4 kosmetyczne."
+  },
+  "Hip Adduction": {
+   "rodzina": "hipAbd",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "sha": "ac7f4cc69855",
+   "uwagi": "Jak Hip Abduction; N-4 kosmetyczne."
+  },
+  "Cable Hip Adduction": {
+   "rodzina": "hipAbd",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "sha": "ac7f4cc69855",
+   "uwagi": "hab.hips zgodne z rysunkiem (tułów i miednica nieruchome), llc.control, mis.jerk ogólne i prawdziwe."
+  },
+  "Cable Hip Abduction": {
+   "rodzina": "hipAbd",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "sha": "659b60729fe0",
+   "uwagi": "hab.mis.high właściwe dla odwodzenia w staniu; rysunek pokazuje poprawną, umiarkowaną wysokość bez przechyłu."
+  },
+  "Monster Walk": {
+   "rodzina": "bandWalk",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek wobec rysunku v2 hip_abd_add, L-047)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani rysunku v2)",
+   "kto": "audytor — recenzja niezależna L-047/L-050 rodziny hip_abd_add, czysta kopia git archive 7d298144 w /tmp/rec-p3-hip, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-audytor-2026-11-09.md",
+   "sha": "9782f2bca6c8",
+   "uwagi": "bw.squat i mis.jerk — przypisanie do marszu z gumą właściwe, teksty PL/EN poprawne; niezgodność z wahadłem na rysunku to błąd rysunku (H-2), nie zestawu."
+  }
+ },
+ "tor_wyjatki": {
+  "Cable Hip Adduction|front": {
+   "werdykt": "potwierdzony",
+   "data": "2026-11-09",
+   "recenzent": "audytor",
+   "uwagi": "Pomiar w czystej kopii: 4,12 cm, 0 zawróceń (próg 4 cm). Strzałka łuku kostki wokół biodra (cięciwa ok. 48 cm, promień ok. 82 cm) ≈ 3,6 cm plus wysunięcie nogi przed podporową; na arkuszu gładki łuk. Odwodzenie 3,2 cm bez wyjątku — spójne."
+  }
+ },
+ "znaleziska": [
+  {
+   "id": "H-1",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Lateral Band Walk",
+   "rzut": "front",
+   "opis": "Wahadło jednej nogi (krok w bok i powrót tą samą nogą, u 0→1→0), lewa noga i miednica stałe — przeczy karcie bw.move (krok w bok + dociągnięcie drugiej nogi). Pewność 95%, realny.",
+   "dowod": "/tmp/rec-p3-hip/ark/Lateral-Band-Walk-front.png (u 0,25–1,0); lib/figures/v2/poses/hip_abd_add.json"
+  },
+  {
+   "id": "H-2",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Monster Walk",
+   "rzut": "front",
+   "opis": "Wymach prawej nogi po skosie i powrót tą samą drogą, bez marszu; zestaw bandWalk: „…przez cały marsz”. Pewność 90%, realny.",
+   "dowod": "/tmp/rec-p3-hip/ark/Monster-Walk-front.png; lib/figures/v2/poses/hip_abd_add.json"
+  },
+  {
+   "id": "S-1",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Hip Abduction, Hip Adduction",
+   "rzut": "front",
+   "opis": "Maszyna: jedna dźwignia przy prawej kostce (trzyma R), lewa noga bez oporu, brak podkładek przy kolanach — sprzęt niekompletny i asymetryczny; ruch nóg poprawny, treści nie przeczy. Backlog.",
+   "dowod": "/tmp/rec-p3-hip/ark/Hip-Abduction-front.png, /tmp/rec-p3-hip/ark/Hip-Adduction-front.png"
+  },
+  {
+   "id": "S-2",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Hip Adduction, Cable Hip Adduction",
+   "rzut": "front",
+   "opis": "EN faza „Pulling back” (przekład wspólny „Ściąganie”) — przy przywodzeniu ruch do środka, nie do tyłu. Backlog.",
+   "dowod": "lib/i18n.en.ts:794; lib/figures/v2/poseData.ts DATA_UI.hip_abd_add"
+  },
+  {
+   "id": "N-1",
+   "waga": "NISKIE",
+   "cwiczenie": "Hip Abduction, Hip Adduction",
+   "rzut": "front",
+   "opis": "Chwyt 5,3 cm od osi uda przy pełnym odwiedzeniu (promień uda ok. 8,6 cm) — dłoń w udzie w 3D; z przodu wygląda jak dłoń na udzie, niewidoczne.",
+   "dowod": "frameAt w czystej kopii; lib/figures/v2/skeleton.ts:20 (GIRTH.thigh)"
+  },
+  {
+   "id": "N-2",
+   "waga": "NISKIE",
+   "cwiczenie": "Cable Hip Abduction, Cable Hip Adduction",
+   "rzut": "front",
+   "opis": "Pion z przodu pokazuje przechył boczny tułowia, a reguła tulow_stoi mierzy pochylenie strzałkowe; przechyłu bocznego żadna reguła nie pilnuje. Treść i rysunek zgodne.",
+   "dowod": "scripts/figures/v2-sens.mjs:256; /tmp/rec-p3-hip/nak/Cable-Hip-Abduction-front.png"
+  },
+  {
+   "id": "N-3",
+   "waga": "NISKIE",
+   "cwiczenie": "Hip Abduction, Hip Adduction, Lateral Band Walk, Monster Walk",
+   "rzut": "front",
+   "opis": "Punkt śladu stały (chwyt / miednica) — strażnik toru i arkusz śladu nie mierzą toru nogi.",
+   "dowod": "ksztaltToru w czystej kopii: 0 cm, 0 zawr.; tests/figures-v2-tor.test.ts"
+  },
+  {
+   "id": "N-4",
+   "waga": "NISKIE",
+   "cwiczenie": "Hip Abduction, Hip Adduction",
+   "rzut": "front",
+   "opis": "hab.hips „pracuje tylko noga” przy maszynie na obie nogi — liczba pojedyncza, kosmetyczne.",
+   "dowod": "lib/cues/text/pl.json:160, lib/cues/text/en.json:160"
+  }
+ ]
+}
