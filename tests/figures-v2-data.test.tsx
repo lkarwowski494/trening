@@ -109,7 +109,7 @@ describe('błędy z danych (bledy[])', () => {
 });
 
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps') && cue === 'mis.jerk';
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => ['curl', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine'].includes(f) && cue === 'mis.jerk'; /* partia 3 (09.11.2026): zestawy ogólne vpull, shrug, row, hipAbd z błędem tempa mis.jerk — jak curl (recenzje niezależne partii 3 przyjęły zestawy) */
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
     expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
