@@ -34,13 +34,13 @@ describe('R1 (fix4): element nakładki tylko z regułą wariantu o pewności „
       const d = TECHNIQUE[f].find(x => x.id === id)!; expect([k, id, ustalone(f, k).includes(d.rule)]).toEqual([k, id, true]);
     }
   });
-  test('scenariusz: Single Leg RDL (hantel) i (linki) — karta ma rdl.dbMove, ale wariant jednonóż ma wyprost na górze tylko jako „analogia” → bez pionu; RDL i Single Arm RDL zostają', () => {
-    for (const k of ['Single Leg RDL (hantel)', 'Single Leg RDL (linki)']) { expect([k, cueIdsOf(k).ids.includes('rdl.dbMove')]).toEqual([k, true]); expect([k, techniquesOf(k)]).toEqual([k, []]); }
+  test('scenariusz: Single Leg RDL (hantel) i (linki) — wariant jednonóż ma wyprost na górze tylko jako „analogia” → bez pionu, nawet gdy karta ma rdl.dbMove (techniquesFor); od 09.11.2026 (partia P1) karty własne slrdl.* bez rdl.dbMove — też bez pionu; RDL i Single Arm RDL zostają', () => {
+    for (const k of ['Single Leg RDL (hantel)', 'Single Leg RDL (linki)']) { expect([k, cueIdsOf(k).ids.includes('rdl.dbMove'), techniquesFor('hinge', ['rdl.dbMove'], k).map(d => d.id)]).toEqual([k, false, []]); expect([k, techniquesOf(k)]).toEqual([k, []]); }
     for (const k of ['RDL (sztanga)', 'RDL (hantle/linki)', 'Single Arm RDL (hantel/linka)', 'Stiff-Legged Barbell Deadlift', 'Deadlift (sztanga)', 'Good Morning']) expect([k, techniquesOf(k)]).toEqual([k, ['hingeUprightRef']]);
   });
-  test('macierz: różnica między „wskazówka na karcie” a „element rysowany” to dokładnie te dwa ćwiczenia jednonóż (reszta 101 ćwiczeń bez zmian)', () => {
+  test('macierz: różnica między „wskazówka na karcie” a „element rysowany” — dziś żadna (09.11.2026, P1: karty Single Leg RDL ×2 bez rdl.dbMove; odcięcie po regule sprawdza scenariusz wyżej przez techniquesFor)', () => {
     const odciete = FAMS.flatMap(f => KEYS[f].filter(k => TECHNIQUE[f].filter(d => !d.exercises && d.cue.some(c => cueIdsOf(k).ids.includes(c))).length > techniquesOf(k).filter(id => !TECHNIQUE[f].find(d => d.id === id)!.exercises).length));
-    expect(odciete.sort()).toEqual(['Single Leg RDL (hantel)', 'Single Leg RDL (linki)']);
+    expect(odciete.sort()).toEqual([]);
   });
   test('logika techniquesFor: z ćwiczeniem filtruje po regułach (reguly-cwiczen.json), bez ćwiczenia — tylko po wskazówkach (wywołanie na poziomie rodziny); ćwiczenie bez wpisu reguł → brak elementu', () => {
     expect(techniquesFor('hinge', ['rdl.dbMove'], 'Single Leg RDL (hantel)').map(d => d.id)).toEqual([]);

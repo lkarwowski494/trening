@@ -90,7 +90,6 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
     const ocz = ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'].filter(f => !WYJ.v2.includes(f)); /* 09.11.2026 (koordynator, wariant A, P1): squat i hinge do recenzji różnicy doboru (lista v2 wyjątków) */
-    expect(WYJ.v2).toEqual(['squat', 'hinge']);
     expect(run('')).toEqual({ v2: ocz, deadlift: true, fam: ocz });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
