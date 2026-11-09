@@ -10,7 +10,7 @@ export type Pending = { rodzaj: 'nowy' | 'zmieniony'; pl: string; en: string; po
 /** Dalsze zestawy interfejsu (zestaw-przekladu-<data>-<temat>.json z kluczami rodzaju nowy/zmieniony; bez zestawów wskazówek) — dopisywane do głównego. */
 const LOK_UI = path.join(__dirname, '..', 'docs', 'lokalizacja');
 const DALSZE = fs.readdirSync(LOK_UI).filter(f => /^zestaw-przekladu-.*\.json$/.test(f) && !/-wskazowki\.json$/.test(f) && path.join(LOK_UI, f) !== PENDING_FILE)
-  .flatMap(f => ((JSON.parse(fs.readFileSync(path.join(LOK_UI, f), 'utf8')) as { klucze?: Pending[] }).klucze ?? []).filter(k => k.rodzaj === 'nowy' || k.rodzaj === 'zmieniony'));
+  .flatMap(f => ((JSON.parse(fs.readFileSync(path.join(LOK_UI, f), 'utf8')) as { klucze?: Pending[] }).klucze ?? []).filter(k => (k.rodzaj === 'nowy' || k.rodzaj === 'zmieniony') && !(k as { zrodlo?: string }).zrodlo)); /* pozycja z polem „zrodlo” pochodzi z niescalonej gałęzi (klucza nie ma jeszcze w źródle) — przekładana razem, ale bez wyjątku testów, dopóki gałąź nie wejdzie */
 export const PENDING: Pending[] = [...(JSON.parse(fs.readFileSync(PENDING_FILE, 'utf8')) as { klucze: Pending[] }).klucze, ...DALSZE];
 export const PENDING_NEW = new Set(PENDING.filter(p => p.rodzaj === 'nowy').map(p => p.pl));
 export const PENDING_CHANGED = new Set(PENDING.filter(p => p.rodzaj === 'zmieniony').map(p => p.pl));

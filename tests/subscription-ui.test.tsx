@@ -5,6 +5,7 @@
  * Sztuczny sklep w miejscu modułu natywnego (lib/store-fake.ts). Rodzaje (docs/20): ekran, scenariusz, języki i wygląd. E2E: .maestro/21.
  */
 import { Linking } from 'react-native';
+import { BRAND_NAME } from '@/lib/brand';
 import * as store from '@/lib/store';
 import { applyLang } from '@/lib/i18n';
 import { PAYWALL, type Entitlement } from '@/lib/access';
@@ -115,7 +116,7 @@ describe('ekran zakupu: zakup, przywracanie, kod, linki', () => {
 
 describe('ekran zakupu: powód otwarcia', () => {
   const PROUD = "You've trained hard this month and used all 5 free training days. Good job!";
-  const ABOUT = 'Training is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on Sun 1 Nov.';
+  const ABOUT = BRAND_NAME + ' is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on Sun 1 Nov.';
   test('limit (wariant B, 22.10.2026): pochwała, 5 darmowych dni, autor bez reklam i zbierania danych, data powrotu dni z i18n; „Dopisz trening wstecz” prowadzi do trybu wstecz', async () => {
     await boot({ locale: 'en', live: 5, url: '/paywall?reason=limit' });
     expect(screen.getByTestId('paywall-limit')).toBeTruthy(); expect(screen.getByText("We're proud of you!").props.accessibilityRole).toBe('header'); expect(screen.getByText(PROUD)).toBeTruthy(); expect(screen.getByText(ABOUT)).toBeTruthy();
@@ -125,7 +126,7 @@ describe('ekran zakupu: powód otwarcia', () => {
   test('limit (PL): te same trzy części po polsku, data 1. dnia następnego miesiąca', async () => {
     await boot({ locale: 'pl', live: 5, url: '/paywall?reason=limit' });
     expect(screen.getByText('Jesteśmy z Ciebie dumni!')).toBeTruthy(); expect(screen.getByText('W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe (5). Dobra robota!')).toBeTruthy();
-    expect(screen.getByText(/^Trening tworzy niezależny deweloper: bez reklam, bez zbierania danych\. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu\. Darmowe dni wracają .*1 lis/)).toBeTruthy();
+    expect(screen.getByText(new RegExp(`^${BRAND_NAME} tworzy niezależny deweloper: bez reklam, bez zbierania danych\\. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu\\. Darmowe dni wracają .*1 lis`))).toBeTruthy();
   });
   test('limit: „Nie teraz” zamyka ekran; z Ustawień — nagłówek „Train 5 days a month for free…”, bez tekstu limitu i bez „Nie teraz”; nieznany powód (dawne first) = jak Ustawienia', async () => {
     await boot({ locale: 'en', live: 5, url: '/more/settings' }); const { router } = require('expo-router'); await act(async () => { router.push('/paywall?reason=limit'); }); await settle(); await tap(screen.getByText('Not now')); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByLabelText(/^See Pro plans\./)).toBeTruthy();

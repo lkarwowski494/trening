@@ -4,7 +4,7 @@
 - Na tej maszynie pracuje równolegle inny programista. Testy:
   - pojedyncze pliki: `flock -s /home/user/verify.lock npx jest <plik> --runInBand` (blokada współdzielona);
   - pełne verify (raz, na końcu, przed wypchnięciem): `flock -x /home/user/verify.lock npm run verify > <twój log> 2>&1` (blokada wyłączna — czeka, aż nikt nie testuje; L-085). Nie uruchamiaj `test:fast` całości.
-  - commit z samymi dokumentami: `flock -x /home/user/verify.lock npm run verify:docs`.
+  - commit z samymi dokumentami: `npm run verify:docs` BEZ blokady `verify.lock` (lekkie, 1–3 min; decyzja 03.11.2026, potwierdzona przez właściciela 09.11.2026 — docs/18). Pełne verify nadal pod blokadą wyłączną.
 - Dysk: ok. 1,2 GB wolne. Nie twórz dużych plików; usuń po sobie własne katalogi tymczasowe, jeśli je tworzysz.
 - Wypychasz tylko swoją gałąź: `git push -u origin <gałąź>` (hak pre-push wymaga znacznika zielonego verify dla drzewa; `--no-verify` zabronione). Nie scalaj do `integracja-1-1` ani `main` — scala koordynator po zielonym `tests.yml` gałęzi (L-090). Nie uruchamiaj `pages.yml`. `git config remote.origin.tagOpt --no-tags`.
 - Commit: komunikat po polsku, na końcu:

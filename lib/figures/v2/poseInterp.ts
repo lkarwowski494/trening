@@ -1,7 +1,7 @@
 /*
  * Figury v2 — interpolacja klatek kluczowych (poseAt, deltaAt, applyDelta), pozy → PoseIn (toPoseIn) i lustro (mirrorKey).
  * Wydzielone z contract.ts: podział strukturalny, bez zmiany zachowania (backlog 1.1). Typy danych zostają w contract.ts (import typów nie tworzy cyklu);
- * contract.ts re-eksportuje publiczne nazwy, więc importy z './contract' działają bez zmian. Plik jest w V2_WSPOLNE (skrót recenzji rodzin v2).
+ * contract.ts re-eksportuje publiczne nazwy, więc importy z './contract' działają bez zmian. Jego skutek na rysunku wchodzi do skrótu recenzji rodziny przez wynik klatek (scripts/skrot-v2-wynik.mjs).
  */
 import { add, type V3 } from './math';
 import { BODY, hipPoint, legJoints, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';

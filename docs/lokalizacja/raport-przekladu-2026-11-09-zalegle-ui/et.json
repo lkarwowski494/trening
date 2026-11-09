@@ -1,0 +1,21 @@
+{
+ "jezyk": "et",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "Joonisel: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Uued liikumisjoonised triitsepsiharjutustes ning rinnalevõttudes, rebimistes ja nende variantides.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Uued ja täiendatud tehnikanõuanded, muu hulgas õlgadele, kiirjõuharjutustele ja liikuvusele.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Häälteated kasutavad parimat telefoni installitud häält.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Uus kasutaja alustab Treeningu kuval nupust „Alusta esimest treeningut” ja tahvlist „Esimene treening”.",
+  "Bokiem": "Küljele",
+  "Przodem": "Ette",
+  "Naprzemiennie": "Vaheldumisi",
+  "Pozycje na rysunku: {lista}": "Asendid joonisel: {lista}"
+ }
+}

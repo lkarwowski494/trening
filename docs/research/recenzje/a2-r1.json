@@ -1,0 +1,160 @@
+{
+ "karty": {
+  "Single Leg Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie obunóż → jednonóż potwierdzone",
+   "sha": "8a286d41591b"
+  },
+  "Seated Calf Raise (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → hantle potwierdzone",
+   "sha": "3aad793b63ec"
+  },
+  "Smith Machine Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "ba118e804b14"
+  },
+  "Calf Raise (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "ba118e804b14"
+  },
+  "Calf Raise (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie sztanga → linka potwierdzone",
+   "sha": "ecbc9d005955"
+  },
+  "Barbell Seated Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → sztanga potwierdzone",
+   "sha": "3aad793b63ec",
+   "uwagi": "Niska, backlog: calf.pause — dopisać ISSA top6 Seated jako źródło siedzące."
+  },
+  "Band Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "515cadf17b7d"
+  },
+  "Dumbbell Seated One-Leg Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna obunóż → hantel jednonóż potwierdzone",
+   "sha": "14eb7315f1d8"
+  },
+  "Fire Hydrant": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "9941c4ec90d1"
+  },
+  "Donkey Kick": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "90713799544e"
+  },
+  "Clamshell": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "eeb474aeef3c"
+  },
+  "Lateral Band Walk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "b30c831906fe"
+  },
+  "Single Leg Glute Bridge": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+   "sha": "31f568d6405f"
+  },
+  "Single Leg Hip Thrust": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; źródło NSCA SCJ 33(5):58–61 sprawdzone w PDF; uproszczenie obunóż → jednonóż potwierdzone",
+   "sha": "b35ad6424e1d",
+   "uwagi": "Niska, backlog: nsca-scj-hip-thrust — opis bibliograficzny i adres czasopisma zamiast kopii na stronie autora."
+  },
+  "Seated Band Hamstring Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → guma potwierdzone",
+   "sha": "4120ffb04282",
+   "uwagi": "Niska, backlog: bandcurl.setup „na kostkę” — źródło mówi o pięcie."
+  },
+  "Hack Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; NFPT z biogramem autora — szczebel 4 potwierdzony",
+   "sha": "3ad7ace7cd4d"
+  },
+  "Single Leg Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A2",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie Leg Press → jednonóż potwierdzone",
+   "sha": "31a48b7b300b"
+  }
+ }
+}

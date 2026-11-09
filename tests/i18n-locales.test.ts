@@ -6,6 +6,7 @@ import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
 import { allLabels } from '@/lib/equipment';
 import { APP_NAME, LANGS } from '@/lib/i18n';
+import { BRAND_NAME } from '@/lib/brand';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS } from '@/lib/plural';
 import { PENDING, PENDING_NEW } from './pending-translation';
@@ -65,11 +66,11 @@ test('iOS zna wszystkie języki aplikacji: CFBundleLocalizations i opisy uprawni
   }
 });
 
-test('nazwa aplikacji w tekstach = APP_NAME danego języka (bez starej nazwy „Trening” tam, gdzie nazwa jest inna)', () => {
+test('nazwa aplikacji tylko przez {app} (APP_NAME): żaden słownik nie wpisuje marki na sztywno (od 1.1, ZB-056)', () => {
   for (const l of LANGS) {
-    if (l === 'pl' || APP_NAME[l] === 'Trening') continue;
+    if (l === 'pl') continue;
     const d: Record<string, string> = l === 'en' ? EN : (LOCALES as Record<string, Record<string, string>>)[l];
-    expect([l, Object.values(d).filter(v => /\bTrening\b/.test(v))]).toEqual([l, []]);
+    expect([l, Object.values(d).filter(v => v.includes(BRAND_NAME))]).toEqual([l, []]);
   }
 });
 

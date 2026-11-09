@@ -1,0 +1,13 @@
+{
+ "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN): punkt „Co nowego” 1.1 o nowej nazwie aplikacji (09.11.2026, docs/18, ZB-056). Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności, wczytywany przez tests/pending-translation.ts). Parametr {app} zostaje bez zmian (marka RepsGoat nie jest tłumaczona). Przekład robi koordynator przez API (scripts/i18n/przeklad-api.mjs), po przekładzie wpisać do lib/locales/<kod>.json i opróżnić listę.",
+ "data": "2026-11-09",
+ "status": "otwarty - czeka na przekład API (1 klucz)",
+ "klucze": [
+  {
+   "rodzaj": "nowy",
+   "pl": "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.",
+   "en": "The app is now called {app}. Your workouts, templates and settings stay unchanged.",
+   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką); {app} = marka, nie tłumaczyć"
+  }
+ ]
+}

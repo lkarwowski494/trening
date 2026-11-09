@@ -28,12 +28,12 @@ const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[
 const NIEBYLE = ['bellsofsteel-seal-row', 'bellsofsteel-rear-delt-cable', 'majorfitness-smith-row', 'majorfitness-cable-rear-delt-row', 'ritfit-smith-row', 'rxsg-rope-foot-locks', 'fitnessvolt-cable-rear-delt-row-rope'];
 
 describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
-  test('16 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
+  test('16 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime widoczne po przekładzie i recenzji (od 09.11.2026); nie są w otwartych; niepełne są na liście partial', () => {
     expect(A3.cwiczenia.length).toBe(16);
     for (const k of A3.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, false]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]); /* 09.11.2026: odsłonięte po przekładzie i recenzji niezależnej (docs/research/recenzje/a3-r2.json) */
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
     }
@@ -41,9 +41,9 @@ describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
     expect([...A3.partial].sort()).toEqual(A3.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
   });
 
-  test('karty ukryte do przekładu: wszystkie 16 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('09.11.2026: po przekładzie wszystkie 16 poza listą karty_nowe (tests/recenzja-wyjatki-1-1.json), z wpisem „wyswietlana” w docs/research/figury-recenzja.json (recenzja niezależna, L-047)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
-    for (const k of A3.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
+    for (const k of A3.cwiczenia) expect([k, wyj.karty_nowe.includes(k), rec.karty?.[k]?.werdykt]).toEqual([k, false, 'wyswietlana']); /* 09.11.2026: wpis recenzji badacza (a3-r2.json) */
   });
 
   test('cue-sets: 16 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2, wstrzymane) nie mają karty własnej', () => {
@@ -96,12 +96,12 @@ describe('A3 przyciąganie: źródła i reguły szczebli', () => {
 });
 
 describe('A3 przyciąganie: zdania', () => {
-  test('33 nowe zdania mają tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A3 (pozostałe języki — angielski w zastępstwie)', () => {
+  test('33 nowe zdania mają tekst PL i EN różny od siebie; wszystkie przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw A3 pusty', () => {
     expect(A3.zdania.length).toBe(33);
     for (const c of A3.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-a3-wskazowki.json');
-    expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...A3.zdania].sort());
-    for (const x of z.klucze as { id: string; pl: string; en: string }[]) expect([x.id, x.pl, x.en]).toEqual([x.id, pl[x.id], en[x.id]]);
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-051; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, A3.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
   });
 
   test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {
