@@ -5,6 +5,8 @@
 //  - animacja od pierwszej klatki, błąd (✕) widoczny już pod hakiem, bez statycznej planszy;
 //  - nazwa ćwiczenia od 0 s: angielska + lokalna pod nią (lokalna tylko po recenzji nazw, ZB-044);
 //  - logo i podpis „Animacja: aplikacja …” na ostatnich ok. 1,5 s animacji, bez zachęty „pobierz” i bez „apps4brew”.
+//  - format 8 s (właściciel 09.11.2026, A): jedno powtórzenie z błędem, jedno poprawne; po przejściu do poprawnego ruchu w miejscu haka ikona, pełna nazwa ze sklepu i „App Store”
+//    (nazwa_w_haku), podpis „Animacja: …” pod napisem; osobna plansza końcowa tylko przy koniec_s > 0.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -119,6 +121,12 @@ export function htmlStrony(tx, tokens, d, ikonaDataUri, fontDataUri) {
 *{margin:0;box-sizing:border-box}
 body{width:${d.szerokosc}px;height:${d.wysokosc}px;overflow:hidden;background:${c.bg};color:${c.text};font-family:Barlow,sans-serif;font-weight:700;position:relative}
 .hak{position:absolute;top:140px;left:70px;right:70px;font-size:76px;line-height:1.08;text-align:center}
+.hak-app{display:none;flex-direction:row;align-items:center;justify-content:center;gap:28px}
+.hak-app img{width:150px;height:150px;border-radius:34px}
+.hak-app .hak-nazwa{font-size:66px;line-height:1.04;text-align:left}
+.hak-app .hak-sklep{font-size:48px;color:${c.accent};margin-top:6px;text-align:left}
+.podpis-dol{position:absolute;left:0;right:0;top:1800px;font-size:34px;color:${c.muted};text-align:center;display:none}
+${d.nazwa_w_haku ? 'body.poprawnie .hak-tekst{display:none} body.poprawnie .hak-app{display:flex} body.poprawnie .podpis-dol{display:block}' : ''}
 .nazwa{position:absolute;top:430px;left:70px;right:70px;text-align:center}
 .nazwa .en{font-size:64px;color:${c.accent};letter-spacing:.5px}
 .nazwa .lok{font-size:44px;color:${c.muted};margin-top:6px}
@@ -137,12 +145,13 @@ body.na-koncu .koniec{display:flex} body.na-koncu .pasek{display:none}
 .koniec .sklep{font-size:50px;color:${c.accent}}
 .koniec .podpis{font-size:34px;color:${c.muted}}
 </style></head><body class="blad">
-<div class="hak">${esc(tx.hak)}</div>
+<div class="hak"><div class="hak-tekst">${esc(tx.hak)}</div><div class="hak-app"><img src="${ikonaDataUri}" alt=""><div><div class="hak-nazwa">${esc(tx.nazwaSklepu)}</div><div class="hak-sklep">${esc(tx.sklep)}</div></div></div></div>
 <div class="nazwa"><div class="en">${esc(tx.nazwa)}</div>${tx.nazwaLokalna ? `<div class="lok">${esc(tx.nazwaLokalna)}</div>` : ''}</div>
 <div id="fig"></div>
 <div class="pasek b"><span class="znak">✕</span>${esc(tx.etykietaBlad)}: ${esc(tx.blad)}</div>
 <div class="pasek ok"><span class="znak">✓</span>${esc(tx.etykietaOk)}: ${esc(tx.poprawnie)}</div>
 <div class="koniec"><img src="${ikonaDataUri}" alt=""><div class="sklep-nazwa">${esc(tx.nazwaSklepu)}</div><div class="sklep">${esc(tx.sklep)}</div><div class="podpis">${esc(tx.podpis)}</div></div>
+<div class="podpis-dol">${esc(tx.podpis)}</div>
 <script>${ukladKlatki.toString()}</script>
 </body></html>`;
 }

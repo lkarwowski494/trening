@@ -25,7 +25,7 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(plan).toHaveLength(2);
   });
 
-  test.each(['pl', 'en'])('[%s] scenariusz 1 (08.11.2026): błąd od 0 s, napis od 0,5 s, poprawnie od 5 s, koniec na ostatnich 1,5 s animacji', jezyk => {
+  test.each(['pl', 'en'])('[%s] format 8 s (właściciel 09.11.2026, A): błąd od 0 s, napis od 0,5 s, poprawnie od ok. 3–4 s, bez osobnej planszy końcowej', jezyk => {
     const p = plan.find((x: { jezyk: string }) => x.jezyk === jezyk);
     const d = CFG.domyslne;
     expect(p.klatek).toBe(Math.round(d.sekundy * d.fps));
@@ -33,8 +33,23 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(p.klatki_bez_napisu).toBe(Math.round(d.napis_od_s * d.fps));
     expect(Math.abs(p.zmianaMs - d.blad_do_s * 1000)).toBeLessThanOrEqual(1000);
     expect(p.waga_bledu_klatka0).toBeGreaterThanOrEqual(0.6);
-    expect(p.klatki_koniec).toBe(Math.round(d.koniec_s * d.fps));
-    expect(p.zmianaMs).toBeLessThan(p.koniecOdMs);
+    expect(d.sekundy).toBe(8);
+    expect(d.nazwa_w_haku).toBe(true);
+    expect(p.klatki_koniec).toBe(0);
+    expect(p.zmianaMs).toBeGreaterThanOrEqual(2500); expect(p.zmianaMs).toBeLessThanOrEqual(4000);
+  });
+
+  test('nazwa aplikacji w miejscu haka po przejściu do poprawnego ruchu (właściciel 09.11.2026): hak w fazie błędu, potem ikona, pełna nazwa ze sklepu i „App Store”', () => {
+    const nazwy = JSON.parse(fs.readFileSync(path.join(ROOT, 'store/app-store-names.json'), 'utf8')).names;
+    const p = plan.find((x: { jezyk: string }) => x.jezyk === 'en');
+    const html = run(['--film', FILM.id, '--jezyk', 'en', '--strona', '0']).stdout;
+    expect(html.includes(`<div class="hak-tekst">${CFG.hak.en.tekst}</div>`)).toBe(true);
+    expect(html.includes(`<div class="hak-nazwa">${nazwy['en-US'].replace(/&/g, '&amp;')}</div>`)).toBe(true);
+    expect(html).toMatch(/body\.poprawnie \.hak-tekst\{display:none\}/);
+    expect(html).toMatch(/body\.poprawnie \.hak-app\{display:flex\}/);
+    const zmiana = Math.ceil(p.zmianaMs / (1000 / CFG.domyslne.fps));
+    expect(run(['--film', FILM.id, '--jezyk', 'en', '--strona', String(zmiana - 1)]).stdout).toContain('<body class="blad napis">');
+    expect(run(['--film', FILM.id, '--jezyk', 'en', '--strona', String(p.klatek - 1)]).stdout).toContain('<body class="poprawnie napis">');
   });
 
   test('wszystkie widoki ćwiczenia (profil i przód — właściciel 08.11.2026), bez pola „widoki” w definicji', () => {
@@ -56,9 +71,7 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(html.includes('<div class="en">Back Squat</div>')).toBe(true);
     expect(html.includes('<body class="blad">')).toBe(true);
     expect(/apps4brew|pobierz/i.test(html.replace(/data:[^)"]+/g, ''))).toBe(false);
-    const koniec = run(['--film', FILM.id, '--jezyk', 'pl', '--strona', String(plan[0].klatek - 1)]).stdout;
-    expect(koniec.includes('<body class="poprawnie napis na-koncu">')).toBe(true);
-    expect(koniec.includes(`<div class="sklep-nazwa">${nazwy.pl}</div>`)).toBe(true);
+    expect(html.includes(`<div class="hak-nazwa">${nazwy.pl}</div>`)).toBe(true);
   });
 
   /* rozszerzenie 08.11.2026 (wybór właściciela „Ranking + rozszerzenie”): błędy z danych pozy (data:N = wpis bledy[N] wariantu rysunku) — podciągania i uginania,
