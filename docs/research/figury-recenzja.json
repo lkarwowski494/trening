@@ -2939,6 +2939,16 @@
       "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; ACE 68 + NFPT (E. Nitschke, kwalifikacje na stronie tej samej organizacji) szczebel 4; 5 nowych zdań potwierdzonych; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
       "uwagi": "Niska, lokalizacja: PL mis.ballPos „za daleko” gubi „back” z EN.",
       "sha": "d06094bd7bd6"
+    },
+    "Tuck Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — runda 3: zmiana brzmienia core_floor.mis.neckPull (wariant B badacza), partia A4a core; pozostałe zdania bez zmian względem rundy 2 (a4-core-karty-badacz-r2-2026-11-09.md); karta bez rysunku (rodzina core_floor planned)",
+      "autor": "badacz-merytoryczny (brzmienie) + tlumacz (naniesienie, 34 języki)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047, 09.11.2026, gałąź lok/przeklad-a4a @ f0dfbeac",
+      "sha": "8e96dc52326f",
+      "uwagi": "Źródła przeczytane 09.11.2026: FV Tuck Crunch, wskazówka po krokach: „Keep your head neutral and use your abs to control the movement.”; ACE #243 Step 2: „avoid flexing your head too far forward”. Oba popierają błąd: głowa prowadzi ruch zamiast brzucha (2 źródła szczebla 4, różne serwisy; autor FV ma certyfikat ACE, ale to osobny serwis i osobny tekst). Pole miejsce w data/zrodla/cues.json cytuje teraz właściwe zdanie FV. Niuans bez wagi blokującej: ACE mówi o zginaniu głowy „za daleko”, zdanie mówi o wysuwaniu; dla użytkownika kierunek ten sam (głowa nie wyprzedza tułowia), uproszczenie zgodne kierunkowo. Zdanie naturalne, jak u trenera; bez liczb, nazw źródeł i twierdzeń o zdrowiu. Nie przeczy setup/move/crunch.lowBack; karta nie mówi o dłoniach za głową, więc wariant B jest właściwy. Przekłady (próbka de, fr, es, ru, ja, zh-Hant oraz cs, ro, pt, pt-BR, ko, uk) znaczeniowo zgodne z PL/EN; cs i ro nie znaczą już „ciągnąć za szyję”; es-419 dziedziczy z es (lib/cues: scalenie es + es-419), brzmienie es poprawne także dla Ameryki Łacińskiej. Forma ru i zh-Hant zgodna z innymi błędami karty."
     }
   },
   "zestawy": {
