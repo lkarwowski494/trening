@@ -679,7 +679,7 @@
  "Szukam swojego rytmu": "components/SubscriptionCard.tsx:10",
  "szyja": "PARTIA mięśniowa (lib/seed.ts MUSCLES, REGION_LABEL; statystyki serii, mapa mięśni), nazwa ciała: mięśnie szyi [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "ściana": "SPRZĘT z listy wyposażenia miejsca (lib/equipment.ts): ściana jako oparcie do ćwiczeń [dynamiczny (lista, etykieta albo dane w kodzie)]",
- "Ściąganie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; ściąganie łopatek do tyłu, ku sobie (nie ściąganie drążka) [dynamiczny (lista, etykieta albo dane w kodzie)]",
+ "Ściąganie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; ogólne „ciągnięcie” w fazie wysiłku: ściąganie łopatek do tyłu (Middle Back Shrug), ściąganie drążka wyciągu w dół do klatki (pulldown), przyciąganie nogi do środka (przywodzenie) — jedno słowo pasujące do wszystkich trzech, bez kierunku (EN „Pulling”, decyzja koordynatora 09.11.2026) [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "ślizgacze": "SPRZĘT z listy wyposażenia miejsca (lib/equipment.ts): ślizgacze (sliders), krążki do ślizgania stóp i rąk po podłodze [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Ślizgacze (slidery)": "POZYCJA katalogu wyposażenia (lib/equipment.ts, ekran wyposażenia): ślizgacze (sliders), krążki do ślizgania stóp i rąk po podłodze [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "T-bar": "SPRZĘT z listy wyposażenia miejsca (lib/equipment.ts): gryf T-bar do wiosłowania [dynamiczny (lista, etykieta albo dane w kodzie)]",
