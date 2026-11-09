@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 183,
-      "v1": 44,
-      "bezFigury": 481,
-      "daneV2NieWlaczone": 352,
-      "wyjatekBezAnimacji": 168
+      "v2": 193,
+      "v1": 43,
+      "bezFigury": 472,
+      "daneV2NieWlaczone": 342,
+      "wyjatekBezAnimacji": 160
     },
-    "animowanyBlad": 127,
+    "animowanyBlad": 136,
     "wskazowki": {
       "wlasne": 265,
       "wlasneZBledami": 157,
-      "ogolne": 110,
-      "bezTekstu": 333
+      "ogolne": 111,
+      "bezTekstu": 332
     },
-    "czesteBledyTekst": 267,
+    "czesteBledyTekst": 268,
     "roleMiesni": 513,
-    "pelnaKarta": 180,
-    "pelnaKartaBlad": 126,
-    "recenzjaFigur": 183
+    "pelnaKarta": 190,
+    "pelnaKartaBlad": 135,
+    "recenzjaFigur": 193
   },
   "kartZTekstami": 577,
   "rodziny": {
@@ -196,15 +196,15 @@
     "calf_raise": {
       "status": "ready",
       "cwiczen": 13,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 12,
-      "v1": 2,
+      "figuraV2": 10,
+      "daneV2NieWlaczone": 2,
+      "v1": 1,
       "wlasne": 11,
-      "ogolne": 0,
-      "bezTekstu": 2,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 1,
+      "bezTekstu": 1,
+      "pelnaKarta": 10,
+      "pelnaKartaBlad": 9,
+      "recenzja": 10
     },
     "hip_bridge": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 183,
-    "figura.wAplikacji": 227,
+    "figura.v2": 193,
+    "figura.wAplikacji": 236,
     "figura.zDanymiV2": 535,
-    "animowanyBlad": 127,
+    "animowanyBlad": 136,
     "wskazowki.wlasne": 265,
     "wskazowki.wlasneZBledami": 157,
-    "wskazowki.zTekstem": 375,
-    "czesteBledyTekst": 267,
+    "wskazowki.zTekstem": 376,
+    "czesteBledyTekst": 268,
     "roleMiesni": 513,
-    "pelnaKarta": 180,
-    "pelnaKartaBlad": 126,
-    "recenzjaFigur": 183,
+    "pelnaKarta": 190,
+    "pelnaKartaBlad": 135,
+    "recenzjaFigur": 193,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 577,
     "jezyk.en.kompletne": 577,
