@@ -4902,11 +4902,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Zrób zamach jak przy swingu, ale prowadź kettlebell blisko ciała i na końcu oprzyj go przy barku. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Low Swing High Pull (clean = swing redirected vertically into the rack)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Steps 2–4 (hike between the legs, drive hips forward, bell to the front rack)) `kbb.cleanMove`
+- Zrób zamach jak przy swingu, a po wyproście bioder poprowadź kettlebell w górę i oprzyj go przy barku. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Low Swing High Pull (clean = swing redirected vertically into the rack)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Steps 2–4 (hike between the legs, drive hips forward, bell to the front rack)) `kbb.cleanMove`
 
 **Wskazówki**
 
-- Kettlebell oparty przy barku: łokieć przy tułowiu, przedramię pionowo, nadgarstek prosty. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Elbow and Hand (elbow attached to the rib cage)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Step 4 (elbow against your torso, bell in the rack)) `kbb.rack`
+- Kettlebell oparty przy barku, łokieć przy tułowiu. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Elbow and Hand (elbow attached to the rib cage)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Step 4 (elbow against your torso, bell in the rack)) `kbb.rack`
 - Siła idzie z bioder, nie z barków — ręce tylko prowadzą kettlebell. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Low Swing High Pull (arms assist the leg drive)); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Common Mistakes: Curling the bell (trust the power created by your hips)) `kb.hips`
 
 **Czego unikać**
@@ -5032,7 +5032,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Obejmij kamień przedramionami i dłońmi i mocno go ściśnij. — BarBend: [Strongman Atlas Stone Technique (M. Gill; aktualizacja M. Dewar, CSCS, 26.06.2024; recenzja M. Hooper, CSCS)](https://barbend.com/strongman-atlas-stone-technique/) (Step 2 Lap the Stone („Grip the stone as tightly as possible, as if you were performing a chest flye.”; Form tip: jak najwięcej ciała i klatki wokół kamienia)); Hindle i in. (Sports Med Open 2019): [Hindle i in., The Biomechanics and Applications of Strongman Exercises: a Systematic Review, Sports Medicine – Open 5:49 (2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/) (Discussion › Atlas Stone Lift, faza 1 (podniesienie kamienia z ziemi chwytem „hugged”, obejmując go)) `as.grip`
+- Obejmij kamień rękami i mocno go ściśnij. — BarBend: [Strongman Atlas Stone Technique (M. Gill; aktualizacja M. Dewar, CSCS, 26.06.2024; recenzja M. Hooper, CSCS)](https://barbend.com/strongman-atlas-stone-technique/) (Step 2 Lap the Stone („Grip the stone as tightly as possible, as if you were performing a chest flye.”; Form tip: jak najwięcej ciała i klatki wokół kamienia)); Hindle i in. (Sports Med Open 2019): [Hindle i in., The Biomechanics and Applications of Strongman Exercises: a Systematic Review, Sports Medicine – Open 5:49 (2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/) (Discussion › Atlas Stone Lift, faza 1 (podniesienie kamienia z ziemi chwytem „hugged”, obejmując go)) `as.grip`
 
 **Ruch**
 

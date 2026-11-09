@@ -11,8 +11,8 @@
     {
       "rodzaj": "nowy",
       "id": "as.grip",
-      "pl": "Obejmij kamień przedramionami i dłońmi i mocno go ściśnij.",
-      "en": "Wrap your forearms and hands around the stone and squeeze hard."
+      "pl": "Obejmij kamień rękami i mocno go ściśnij.",
+      "en": "Wrap your arms around the stone and squeeze hard."
     },
     {
       "rodzaj": "nowy",
@@ -29,8 +29,8 @@
     {
       "rodzaj": "nowy",
       "id": "kbb.cleanMove",
-      "pl": "Zrób zamach jak przy swingu, ale prowadź kettlebell blisko ciała i na końcu oprzyj go przy barku.",
-      "en": "Swing it like a swing, but keep the bell close and finish with it racked at your shoulder."
+      "pl": "Zrób zamach jak przy swingu, a po wyproście bioder poprowadź kettlebell w górę i oprzyj go przy barku.",
+      "en": "Swing it like a swing, then after the hip drive guide the bell up and rack it at your shoulder."
     },
     {
       "rodzaj": "nowy",
@@ -65,8 +65,8 @@
     {
       "rodzaj": "nowy",
       "id": "kbb.rack",
-      "pl": "Kettlebell oparty przy barku: łokieć przy tułowiu, przedramię pionowo, nadgarstek prosty.",
-      "en": "With the bell racked: elbow against your side, forearm vertical, wrist straight."
+      "pl": "Kettlebell oparty przy barku, łokieć przy tułowiu.",
+      "en": "With the bell racked, keep your elbow against your side."
     },
     {
       "rodzaj": "nowy",

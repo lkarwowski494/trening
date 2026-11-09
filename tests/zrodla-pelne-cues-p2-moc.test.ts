@@ -13,6 +13,7 @@ import * as path from 'path';
 import { CUE_DATA, CUE_SECTIONS } from '@/lib/cues';
 import { CUE_FULL } from './zrodla-pelne';
 import P2 from './fixtures/cues-p2-moc.json';
+import A4B_MOC from './fixtures/cues-a4b-moc.json';
 
 const root = path.join(__dirname, '..');
 const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
@@ -37,7 +38,8 @@ describe('P2 moc: karty własne', () => {
   test('cue-sets: 36 ćwiczeń ma własne karty (b = own); 3 ze zrecenzowanym zestawem ogólnym i 2 do decyzji zostają przy zestawie ogólnym, bez karty własnej', () => {
     for (const k of P2.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
     expect(Object.keys(P2.wylaczone_zestaw_ogolny).sort()).toEqual(['Block Power Snatch', 'One-Arm Kettlebell Jerk', 'Split Jump']);
-    for (const k of Object.keys(P2.wylaczone_zestaw_ogolny)) expect([k, sets[k].b, k in CUE_FULL.exercises, k in REC.zestawy]).toEqual([k, 'general', false, true]);
+    /* A4b (09.11.2026): zrecenzowany zestaw ogólny Split Jump zastąpiony kartą własną (zestawy_zmienione, tests/zrodla-pelne-cues-a4b-moc.test.ts) */
+    for (const k of Object.keys(P2.wylaczone_zestaw_ogolny)) expect([k, sets[k].b, k in CUE_FULL.exercises, k in REC.zestawy]).toEqual(A4B_MOC.zestawyZmienione.includes(k) ? [k, 'own', true, true] : [k, 'general', false, true]);
     expect(Object.keys(P2.pominiete_do_decyzji).sort()).toEqual(['Depth Jump', 'Turkish Get Up']);
     for (const k of Object.keys(P2.pominiete_do_decyzji)) expect([k, sets[k].b, k in CUE_FULL.exercises]).toEqual([k, 'general', false]);
     expect(Object.keys(P2.wylaczone_zestaw_ogolny).concat(Object.keys(P2.pominiete_do_decyzji)).some(k => P2.cwiczenia.includes(k))).toBe(false);
