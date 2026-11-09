@@ -1455,11 +1455,6 @@
    "sprawdzenie": "bez bp.elbowsMid — łokcie celowo szeroko",
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Barbell Hack Squat": {
-   "rodzina": "hingeFloor",
-   "sprawdzenie": "sztanga za nogami — bez dl.close/sq.down",
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Barbell Preacher Curl": {
    "rodzina": "curl",
    "sprawdzenie": null,
@@ -1554,11 +1549,6 @@
    "rodzina": "bench",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Bodyweight Squat": {
-   "rodzina": "squat",
-   "sprawdzenie": "ACE #135 Bodyweight Squat jest jednym ze źródeł tych zdań — prawie bezpośrednie",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Bottoms-Up Clean From The Hang Position": {
    "rodzina": "oly",
@@ -1709,11 +1699,6 @@
    "rodzina": "oly",
    "sprawdzenie": "ACE #383 Clean and Press — bezpośrednie źródło możliwe do dodania",
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Clean Deadlift": {
-   "rodzina": "hingeFloor",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
   },
   "Clean Shrug": {
    "rodzina": "oly",
@@ -1919,11 +1904,6 @@
    "rodzina": "jump",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Dumbbell Squat": {
-   "rodzina": "squat",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Dynamic Back Stretch": {
    "rodzina": "mobility",
@@ -2510,11 +2490,6 @@
    "sprawdzenie": "brak sprawdzonego ✕",
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Overhead Squat": {
-   "rodzina": "squat",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Overhead Stretch": {
    "rodzina": "stretch",
    "sprawdzenie": null,
@@ -2830,16 +2805,6 @@
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Single Leg RDL (hantel)": {
-   "rodzina": "rdl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg RDL (linki)": {
-   "rodzina": "rdl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Single-Arm Linear Jammer": {
    "rodzina": "press",
    "sprawdzenie": null,
@@ -2999,16 +2964,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Squat with Bands": {
-   "rodzina": "squat",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Squat with Chains": {
-   "rodzina": "squat",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Squeeze Press (hantle)": {
    "rodzina": "bench",

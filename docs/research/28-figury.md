@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (196)
+## Bez figury — lista otwarta (205)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1152,5 +1152,14 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | External Rotation (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 | Band Pull Apart | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 | Cuban Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Clean Deadlift | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Single Leg RDL (hantel) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Single Leg RDL (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Barbell Hack Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Bodyweight Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Dumbbell Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Overhead Squat | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Squat with Chains | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
+| Squat with Bands | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii P1 integracji badań (09.11.2026; rodziny squat i hinge z rysunkiem v2) — karta ukryta do recenzji niezależnej i przekładu. |
 
 Poza tym bez figury: 15 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.

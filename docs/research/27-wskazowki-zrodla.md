@@ -140,9 +140,9 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 267; zdań (z powtórzeniami między ćwiczeniami): 1170; unikalnych zdań: 691; źródeł: 502.
+- Ćwiczenia ze wskazówkami: 276; zdań (z powtórzeniami między ćwiczeniami): 1213; unikalnych zdań: 701; źródeł: 518.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 15.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 130 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press, Bent Over Row (linki), Meadows Row, Standing Cable Row, Machine Row, Single Arm Lat Pulldown, V-Bar Pulldown, Barbell Shrug Behind The Back, Leverage Shrug, Zottman Curl, Zottman Preacher Curl, Band Pull Apart, Cuban Press.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 136 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press, Bent Over Row (linki), Meadows Row, Standing Cable Row, Machine Row, Single Arm Lat Pulldown, V-Bar Pulldown, Barbell Shrug Behind The Back, Leverage Shrug, Zottman Curl, Zottman Preacher Curl, Band Pull Apart, Cuban Press, Single Leg RDL (hantel), Single Leg RDL (linki), Barbell Hack Squat, Bodyweight Squat, Dumbbell Squat, Overhead Squat.
 
 ## Otwarte — bez wskazówek
 
@@ -4596,6 +4596,175 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 - Obróć przedramiona w górę, nie opuszczając łokci — ramiona zostają poziomo. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 2 (goalpost position)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 3 (Without lowering your upper arms, externally rotate) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanRotate`
 - Wyciśnij hantle prosto nad głowę. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 3 (Press your arms overhead; Coach's Tip: press up straight)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 4 (Press the bar up to arms' length) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanPressUp`
 
+### Clean Deadlift
+
+**Ustawienie**
+
+- Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (starting position)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (start position (knees out, clean grip)) `cdl.setup`
+
+**Ruch**
+
+- Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (back angle until bar passes knees)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (back holding position as legs lift) `cdl.move`
+
+**Wskazówki**
+
+- Prowadź sztangę blisko nóg przez cały ruch. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (bar close to legs)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (keep bar close) `dl.close`
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (back braced and extended)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (back tension and position maintenance) `hinge.back`
+
+**Czego unikać**
+
+- Sztanga odjeżdża od ciała. — BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (shoulders in front → bar drifts forward); Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (bar as close as possible) — błąd = zaprzeczenie standardu) `mis.barAway`
+
+### Single Leg RDL (hantel)
+
+**Ustawienie**
+
+- Stań na jednej nodze, kolano lekko ugięte. — ACE: [Single-Arm Single-Leg Romanian Deadlift (#127)](https://www.acefitness.org/resources/everyone/exercise-library/127/single-arm-single-leg-romanian-dead-lift/) (instrukcja (balance on the left leg… keep the left knee slightly bent)); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Step 1: Stand on One Leg (wariant: dowolne obciążenie)) `slrdl.setup`
+
+**Ruch**
+
+- Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód. — ACE: [Single-Arm Single-Leg Romanian Deadlift (#127)](https://www.acefitness.org/resources/everyone/exercise-library/127/single-arm-single-leg-romanian-dead-lift/) (instrukcja (leaning forward on the left hip… straighten the right leg; stand up)); Coach: [How To Do The Single-Leg Romanian Deadlift](https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift) (The Hinge; The Return (wariant: sztanga, hantel)); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Step 2: Push Your Hips Back; Step 3) `slrdl.move`
+
+**Wskazówki**
+
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Single-Arm Single-Leg Romanian Deadlift (#127)](https://www.acefitness.org/resources/everyone/exercise-library/127/single-arm-single-leg-romanian-dead-lift/) (instrukcja (the back straight)); Coach: [How To Do The Single-Leg Romanian Deadlift](https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift) (The Hinge (keeping your back flat)); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Step 3 (keep the back flat)) `hinge.back`
+
+**Czego unikać**
+
+- Zaokrąglanie pleców, żeby dociągnąć ciężar. — Coach: [How To Do The Single-Leg Romanian Deadlift](https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift) (Common mistakes: Rounding Your Back); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Form tips, Step 2 (lower back rounds)) `mis.roundBack`
+
+### Single Leg RDL (linki)
+
+**Ustawienie**
+
+- Stań na jednej nodze, kolano lekko ugięte. — ACE: [Single-Leg Romanian Deadlift — cable (#350)](https://www.acefitness.org/resources/everyone/exercise-library/350/single-leg-romanian-dead-lift/) (instrukcja (balancing body weight on the right leg… slight bend in the right knee)); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Step 1 (wariant: wolne ciężary)) `slrdl.setup`
+
+**Ruch**
+
+- Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód. — ACE: [Single-Leg Romanian Deadlift — cable (#350)](https://www.acefitness.org/resources/everyone/exercise-library/350/single-leg-romanian-dead-lift/) (instrukcja (hinging forward on the right hip; stand up… lowering the left leg)); Coach: [How To Do The Single-Leg Romanian Deadlift](https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift) (The Hinge; The Return (wariant: sztanga, hantel)) `slrdl.move`
+
+**Wskazówki**
+
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Single-Leg Romanian Deadlift — cable (#350)](https://www.acefitness.org/resources/everyone/exercise-library/350/single-leg-romanian-dead-lift/) (instrukcja (the back straight)); Coach: [How To Do The Single-Leg Romanian Deadlift](https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift) (The Hinge (wariant)); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Step 3 (wariant)) `hinge.back`
+
+**Czego unikać**
+
+- Zaokrąglanie pleców, żeby dociągnąć ciężar. — Coach: [How To Do The Single-Leg Romanian Deadlift](https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift) (Common mistakes: Rounding Your Back (wariant)); BarBend: [Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)](https://barbend.com/single-leg-romanian-deadlift/) (Form tips, Step 2 (wariant)) `mis.roundBack`
+
+### Barbell Hack Squat
+
+**Ustawienie**
+
+- Sztanga za nogami, chwyt nachwytem w opuszczonych rękach; stopy na szerokość barków. — BarBend: [How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)](https://barbend.com/hack-squat/) (How to Do the Hack Squat — Setup/Grip (heels touching the bar behind you; feet shoulder-width; overhand grip behind you)); Coach: [How To Do The Hack Squat](https://www.coachweb.com/fitness/leg-exercises/hack-squat) (Barbell Hack Squat — Setup/Grip (back to the bar; overhand grip, palms facing behind; feet shoulder-width)) `bhs.setup`
+
+**Ruch**
+
+- Opuść się, uginając biodra i kolana, potem wstań, prostując nogi. — BarBend: [How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)](https://barbend.com/hack-squat/) (How to Do the Hack Squat — Descent (drop hips back and down); Ascent (push your feet into the floor to stand up)); Coach: [How To Do The Hack Squat](https://www.coachweb.com/fitness/leg-exercises/hack-squat) (Barbell Hack Squat — Descent (bend your knees to lower); Ascent (back to the start)) `hack.move`
+
+**Wskazówki**
+
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — BarBend: [How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)](https://barbend.com/hack-squat/) (How to Do the Hack Squat — Back (spine neutral); Mistakes: Rounding); Coach: [How To Do The Hack Squat](https://www.coachweb.com/fitness/leg-exercises/hack-squat) (Barbell Hack Squat — Back (shoulder blades to straighten your back)) `hinge.back`
+
+**Czego unikać**
+
+- Odrywanie pięt od podłogi. — BarBend: [How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)](https://barbend.com/hack-squat/) (Mistakes: Heels lifting); Coach: [How To Do The Hack Squat](https://www.coachweb.com/fitness/leg-exercises/hack-squat) (Barbell Hack Squat — Ascent (drive through midfoot and heels); Mistakes: pressing through the forefoot) `sq.mis.heels`
+
+### Bodyweight Squat
+
+**Ustawienie**
+
+- Stopy na szerokość bioder do barków. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 1 (feet slightly wider than hip-width)); ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (How to Perform a Proper Squat (feet just outside hip-width)) `gob.stance`
+
+**Ruch**
+
+- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 3 (hips backwards then downwards, knees bend); Step 6 (extend hips and knees, push through heels)); ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (How to Perform a Proper Squat (hinge from the hips and bend the knees, hips slightly back; press through your midfoot to return to standing)) `sq.down`
+
+**Wskazówki**
+
+- Kolana idą w linii palców stóp — nie zapadają się do środka. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 5 (knees aligned over the second toe)); ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (How to Perform a Proper Squat (knees track in the same direction as your big toes)) `sq.kneesToes`
+
+**Czego unikać**
+
+- Kolana zapadające się do środka. — ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (Common mistakes: Knees falling in or out (Valgus or Varus Collapse)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 5 (knees remain aligned over the second toe)) `sq.mis.kneesIn`
+
+### Dumbbell Squat
+
+**Ustawienie**
+
+- Stopy na szerokość bioder do barków. — BarBend: [Dumbbell Squat (J. Morris, CSCS, akt. 01.07.2024)](https://barbend.com/dumbbell-squat/) (How to do (feet about shoulder-width apart, maybe a little wider; one dumbbell in each hand)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (uproszczenie: wariant sprzętu Bodyweight Squat — Step 1 (slightly wider than hip-width)); ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (uproszczenie: wariant sprzętu Bodyweight Squat — How to Perform a Proper Squat (just outside hip-width)) [uproszczenie: wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)] `gob.stance`
+
+**Ruch**
+
+- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — BarBend: [Dumbbell Squat (J. Morris, CSCS, akt. 01.07.2024)](https://barbend.com/dumbbell-squat/) (How to do (unlock your knees and hips… sit back; push with your legs… standing tall)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (uproszczenie: wariant sprzętu Bodyweight Squat — Step 3; Step 6); ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (uproszczenie: wariant sprzętu Bodyweight Squat — How to Perform a Proper Squat) [uproszczenie: wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)] `sq.down`
+
+**Wskazówki**
+
+- Kolana idą w linii palców stóp — nie zapadają się do środka. — BarBend: [Dumbbell Squat (J. Morris, CSCS, akt. 01.07.2024)](https://barbend.com/dumbbell-squat/) (How to do (toes out; knees out)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (uproszczenie: wariant sprzętu Bodyweight Squat — Step 5); ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (uproszczenie: wariant sprzętu Bodyweight Squat — knees track with big toes) [uproszczenie: wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)] `sq.kneesToes`
+
+**Czego unikać**
+
+- Kolana zapadające się do środka. — ISSA: [Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)](https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes) (uproszczenie: wariant sprzętu Bodyweight Squat — Common mistakes: Knees falling in); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (uproszczenie: wariant sprzętu Bodyweight Squat — Step 5) [uproszczenie: wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)] `sq.mis.kneesIn`
+
+### Overhead Squat
+
+**Ustawienie**
+
+- Sztanga nad głową na wyprostowanych rękach, stopy ustawione jak do zwykłego przysiadu. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (bar overhead; elbows extended fully; feet in your squat stance)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — overhead squat assessment (arms extended overhead, aligned with ears)) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.setup`
+
+**Ruch**
+
+- Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wróć do stania. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (squat at a controlled speed into full depth and return to standing; bar not moving relative to upper body)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — squat as if sitting in a chair, return to standing, arms stay overhead) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.move`
+
+**Wskazówki**
+
+- Ręce przez cały ruch wyprostowane. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (elbows extended fully and forcefully)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — arms extended overhead; faults: arms stay in place or fall forward) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.arms`
+
+**Czego unikać**
+
+- Odrywanie pięt od podłogi. — ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — faults: Feet (does the heel come off the ground?)); Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (even balance over the whole foot) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `sq.mis.heels`
+
+### Squat with Chains
+
+**Ustawienie**
+
+- Sztanga na górze pleców, chwyt szerzej niż barki; zdejmij ją ze stojaka i cofnij się o krok lub dwa. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Preparation — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)] `sq.bar`
+- Zawieś łańcuchy na końcach sztangi tak, żeby po wstaniu prawie całe wisiały nad podłogą. — Catalyst Athletics: [Chain Back Squat (exercise library #609)](https://www.catalystathletics.com/exercise/609/Chain-Back-Squat/) (opis (hang the chains … completely hanging as you near the top)); EliteFTS: [Friday Technique Video: How to Set Up Chains (J. L. Holdsworth, 14.02.2014)](https://elitefts.com/blogs/training/friday-technique-video-how-to-set-up-chains) (opis (leader chain outside the collar; one link of the weight chain on the floor in the standing position)) `sqc.chains`
+
+**Ruch**
+
+- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — Catalyst Athletics: [Chain Back Squat (exercise library #609)](https://www.catalystathletics.com/exercise/609/Chain-Back-Squat/) (opis (Squat as usual)); ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Execution — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)] `sq.down`
+
+**Wskazówki**
+
+- Kolana idą w linii palców stóp — nie zapadają się do środka. — Stronger by Science: [How to Squat: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-squat/) (Foot Angle; FAQ (knees caving in) — uproszczenie: wariant sprzętu Back Squat); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4; Step 5 — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)] `sq.kneesToes`
+- Plecy proste, klatka uniesiona. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments (back straight) — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)] `sq.back`
+
+**Czego unikać**
+
+- Kolana zapadające się do środka. — Stronger by Science: [How to Squat: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-squat/) (FAQ: My knees are caving in — uproszczenie: wariant sprzętu Back Squat); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4 — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)] `sq.mis.kneesIn`
+- Odrywanie pięt od podłogi. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4; Step 6 (heels flat) — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments (feet flat on floor) — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)] `sq.mis.heels`
+
+### Squat with Bands
+
+**Ustawienie**
+
+- Sztanga na górze pleców, chwyt szerzej niż barki; zdejmij ją ze stojaka i cofnij się o krok lub dwa. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Preparation — uproszczenie: wariant sprzętu Back Squat); EliteFTS: [Friday Technique Video: Bands Setup (J. L. Holdsworth, 18.07.2014)](https://elitefts.com/blogs/training/friday-technique-video-bands-setup) (squat (walk the bar out until the bands are straight up and down)) [uproszczenie: wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)] `sq.bar`
+- Zaczep gumy przy końcach sztangi, a drugie końce przymocuj u dołu stojaka — tak samo po obu stronach. — BarBend: [Accommodating Resistance (T. Ramos, ACSM CPT, akt. 27.05.2025)](https://barbend.com/accommodating-resistance/) (sekcja o przysiadzie z gumami (anchor a band to the inside of the barbell … loop the other end to the bottom of the power rack; repeat on the other side)); EliteFTS: [Friday Technique Video: Bands Setup (J. L. Holdsworth, 18.07.2014)](https://elitefts.com/blogs/training/friday-technique-video-bands-setup) (squat (choke the band around band peg); test z pustą sztangą — równe napięcie po obu stronach) `sqb.bands`
+
+**Ruch**
+
+- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — BarBend: [Accommodating Resistance (T. Ramos, ACSM CPT, akt. 27.05.2025)](https://barbend.com/accommodating-resistance/) (sekcja o przysiadzie z gumami (perform standard back squats)); ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Execution — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)] `sq.down`
+
+**Wskazówki**
+
+- Kolana idą w linii palców stóp — nie zapadają się do środka. — Stronger by Science: [How to Squat: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-squat/) (Foot Angle; FAQ (knees caving in) — uproszczenie: wariant sprzętu Back Squat); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4; Step 5 — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)] `sq.kneesToes`
+- Plecy proste, klatka uniesiona. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments (back straight) — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)] `sq.back`
+
+**Czego unikać**
+
+- Kolana zapadające się do środka. — Stronger by Science: [How to Squat: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-squat/) (FAQ: My knees are caving in — uproszczenie: wariant sprzętu Back Squat); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4 — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)] `sq.mis.kneesIn`
+- Odrywanie pięt od podłogi. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4; Step 6 (heels flat) — uproszczenie: wariant sprzętu Back Squat); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments (feet flat on floor) — uproszczenie: wariant sprzętu Back Squat) [uproszczenie: wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)] `sq.mis.heels`
+
 ## Źródła
 
 | Id | Organizacja | Tytuł | Adres | Migawka (odczyt) |
@@ -4607,6 +4776,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-116 | ACE | Squat Jumps (#116) | https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/ | — |
 | ace-12 | ACE | Bent Over Row (#12) | https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | — |
 | ace-126 | ACE | Single Arm Row (#126) | https://www.acefitness.org/resources/everyone/exercise-library/126/single-arm-row/ | — |
+| ace-127 | ACE | Single-Arm Single-Leg Romanian Deadlift (#127) | https://www.acefitness.org/resources/everyone/exercise-library/127/single-arm-single-leg-romanian-dead-lift/ | — |
 | ace-131 | ACE | Prone (Lying) Hamstrings Curl (#131) | https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/ | — |
 | ace-135 | ACE | Bodyweight Squat (#135) | https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | — |
 | ace-139 | ACE | Walking Lunges With Twists (#139) | https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/ | — |
@@ -4666,6 +4836,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-336 | ACE | High Row (#336) | https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/ | — |
 | ace-338 | ACE | Single-arm Chest Press (#338) | https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/ | — |
 | ace-34 | ACE | Incline Reverse Fly (#34) | https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | — |
+| ace-350 | ACE | Single-Leg Romanian Deadlift — cable (#350) | https://www.acefitness.org/resources/everyone/exercise-library/350/single-leg-romanian-dead-lift/ | — |
 | ace-352 | ACE | Rotator Cuff External Rotation (#352) | https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/ | — |
 | ace-353 | ACE | Reverse Fly (#353) | https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/ | — |
 | ace-354 | ACE | Single Arm Lateral Raise (#354) | https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/ | — |
@@ -4724,6 +4895,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | app-s8 | app-s8 | app-s8 | — | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
+| barbend-accommodating-resistance | BarBend | Accommodating Resistance (T. Ramos, ACSM CPT, akt. 27.05.2025) | https://barbend.com/accommodating-resistance/ | — |
 | barbend-arnold-press | BarBend | arnold press | https://barbend.com/arnold-press/ | — |
 | barbend-band-glutes | BarBend | resistance band exercises for glutes | https://barbend.com/resistance-band-exercises-for-glutes/ | — |
 | barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |
@@ -4733,8 +4905,10 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | barbend-db-snatch | BarBend | Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024) | https://barbend.com/dumbbell-snatch/ | — |
 | barbend-dips | BarBend | dips | https://barbend.com/dips/ | — |
 | barbend-dumbbell-flye-variations | BarBend | dumbbell flye variations | https://barbend.com/dumbbell-flye-variations/ | — |
+| barbend-dumbbell-squat | BarBend | Dumbbell Squat (J. Morris, CSCS, akt. 01.07.2024) | https://barbend.com/dumbbell-squat/ | — |
 | barbend-fix-your-snatch | BarBend | Need to Fix Your Snatch? (R. Stefan, USAW-L1) | https://barbend.com/fix-your-snatch/ | — |
 | barbend-glute-kickbacks | BarBend | glute kickbacks | https://barbend.com/glute-kickbacks/ | — |
+| barbend-hack-squat | BarBend | How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024) | https://barbend.com/hack-squat/ | — |
 | barbend-hack-squat-machine | BarBend | hack squat machine | https://barbend.com/hack-squat-machine/ | — |
 | barbend-hang-clean | BarBend | How to Do a Hang Clean (akt. 19.12.2023) | https://barbend.com/hang-clean/ | — |
 | barbend-hang-lifts | BarBend | What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2) | https://barbend.com/what-are-hang-lifts-in-weightlifting/ | — |
@@ -4749,10 +4923,12 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | barbend-power-clean | BarBend | The Power Clean Exercise: How To… (akt. 25.03.2024) | https://barbend.com/power-clean/ | — |
 | barbend-power-snatch | BarBend | Power Snatch (R. Stefan, USAW-L1) | https://barbend.com/power-snatch/ | — |
 | barbend-renegade-row | BarBend | renegade row | https://www.barbend.com/renegade-row/ | — |
+| barbend-single-leg-romanian-deadlift | BarBend | Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024) | https://barbend.com/single-leg-romanian-deadlift/ | — |
 | barbend-sled-push | BarBend | How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024) | https://barbend.com/sled-push/ | — |
 | barbend-snatch-balance | BarBend | Snatch Balance (M. Dewar, CSCS) | https://barbend.com/snatch-balance/ | — |
 | barbend-tri-best | BarBend | Best triceps exercises | https://barbend.com/best-triceps-exercises/ | — |
 | barbend-unilateral | BarBend | The Best Unilateral Exercises… (S. McLean, CPT; akt. 04.06.2025) — Meadows Row | https://barbend.com/best-unilateral-exercises/ | — |
+| barbend-vaughn-clean-deadlift | BarBend | Chad Vaughn — clean deadlift technique (17.07.2023) | https://barbend.com/news/chad-vaughn-clean-deadlift/ | — |
 | berling-2006 | Berling i in. (University of Wisconsin–La Crosse) | …handrail support on oxygen uptake during steady-state treadmill exercise, J Cardiopulm Rehabil 2006 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/17135860 | — |
 | bini-2011 | Bini, Hume, Croft (Auckland University of Technology) | Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/21615188 | — |
 | bodbot-lying-one-arm-triceps-extension | BodBot | Tricep extension, lying, dumbbell, one arm | https://www.bodbot.com/Exercises/1010/Tricep-Extension-_-Lying,-Dumbbell-_-One-Arm | — |
@@ -4763,6 +4939,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
 | c2-technique | Concept2 | Indoor Rowing Technique | https://www.concept2.com/training/rowing-technique | — |
+| catalyst-176 | Catalyst Athletics | Clean Deadlift (exercise library #176) | https://www.catalystathletics.com/exercise/176/Clean-Deadlift/ | — |
 | catalyst-193 | Catalyst Athletics | Jerk Balance (Exercise Library #193) | https://catalystathletics.com/exercise/193/Jerk-Balance/ | — |
 | catalyst-194 | Catalyst Athletics | Jerk Dip Squat (Exercise Library #194) | https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/ | — |
 | catalyst-207 | Catalyst Athletics | Block Snatch (#207) | https://catalystathletics.com/exercise/207/Block-Snatch/ | — |
@@ -4786,6 +4963,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-75 | Catalyst Athletics | Squat Jerk (Exercise Library #75) | https://catalystathletics.com/exercise/75/Squat-Jerk/ | — |
 | catalyst-76 | Catalyst Athletics | Clean & Jerk | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | — |
 | catalyst-766 | Catalyst Athletics | Clamshell | https://catalystathletics.com/exercise/766/Clamshell/ | — |
+| catalyst-79-overhead-squat | Catalyst Athletics | Overhead Squat (exercise library #79) | https://catalystathletics.com/exercise/79/Overhead-Squat/ | — |
 | catalyst-80 | Catalyst Athletics | Snatch Balance (#80) | https://www.catalystathletics.com/exercise/80/Snatch-Balance/ | — |
 | catalyst-803 | Catalyst Athletics | Barbell Front Raise (#803) | https://catalystathletics.com/exercise/803/Barbell-Front-Raise/ | — |
 | catalyst-805 | Catalyst Athletics | Barbell Upright Row (#805) | https://catalystathletics.com/exercise/805/Barbell-Upright-Row/ | — |
@@ -4808,6 +4986,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-ab-rollout | Catalyst Athletics | Ab Rollout | https://catalystathletics.com/exercise/135/Ab-Rollout | — |
 | catalyst-art-1904 | Catalyst Athletics | Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution | https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/ | — |
 | catalyst-art-2076 | Catalyst Athletics | Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017) | https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making | — |
+| catalyst-chain-back-squat | Catalyst Athletics | Chain Back Squat (exercise library #609) | https://www.catalystathletics.com/exercise/609/Chain-Back-Squat/ | — |
 | catalyst-kettlebell-press | Catalyst Athletics | Ketllebell Press | https://catalystathletics.com/exercise/855/Ketllebell-Press/ | — |
 | catalyst-pm-815 | Catalyst Athletics | Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch | https://performancemenu.com/article/815/Greg-Everett | — |
 | catalyst-video-1499 | Catalyst Athletics | How To Stop Swinging Snatch & Clean Pulls (wideo z opisem) | https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls | — |
@@ -4818,7 +4997,9 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ccv-flexibility | Cancer Council Victoria | Flexibility exercises | https://www.cancervic.org.au/get-support/guides/managing-daily-life/exercise/flexibility-exercises | — |
 | centrumrespo-bus-driver-with-mini-band | Atlas ćwiczeń Centrum Respo | Bus driver with mini band | https://centrumrespo.pl/atlas/bus-driver-with-mini-band/ | — |
 | cf-dkb-pp-jerk | CrossFit | Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008) | https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk | — |
+| coach-hack-squat | Coach | How To Do The Hack Squat | https://www.coachweb.com/fitness/leg-exercises/hack-squat | — |
 | coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
+| coach-single-leg-romanian-deadlift | Coach | How To Do The Single-Leg Romanian Deadlift | https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift | — |
 | columbia-plantar-fasciitis | WebMD Ignite | Plantar Fasciitis Exercises (Health Library) | https://www.columbiadoctors.org/health-library/how-to/plantar-fasciitis-exercises | — |
 | columbia-shoulder-press-band | WebMD Ignite | shoulder press | https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/ | — |
 | covenant-lower-body-flex | Covenant HealthCare | Lower Body Flexibility (PDF, 2 s.) | https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf | — |
@@ -4837,6 +5018,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | eleiko-659842f4 | Eleiko | Dual Cable Straight Arm Pulldown – Straight Bar | https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866 | — |
 | eleiko-6598447e | Eleiko | Dual Cable Straight Arm Pulldown – Handles | https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8 | — |
 | eleiko-659d665d | Eleiko | Pallof Cable Press – Low Split Stance | https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7 | — |
+| elitefts-bands-setup | EliteFTS | Friday Technique Video: Bands Setup (J. L. Holdsworth, 18.07.2014) | https://elitefts.com/blogs/training/friday-technique-video-bands-setup | — |
+| elitefts-set-up-chains | EliteFTS | Friday Technique Video: How to Set Up Chains (J. L. Holdsworth, 14.02.2014) | https://elitefts.com/blogs/training/friday-technique-video-how-to-set-up-chains | — |
 | elitefts-shove | EliteFTS | Shove It! Top Pushing Moves (D. Balzarini, 05.07.2011) | https://elitefts.com/blogs/training/shove-it-top-pushing-moves | — |
 | experiencelife-power-clean | Experience Life | How to Power Clean (A. Heffernan, CSCS, 20.05.2019) | https://experiencelife.lifetime.life/article/learn-to-power-clean/ | — |
 | exrx-BackGeneral/BBBentOverRow | ExRx.net | BBBentOverRow | https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow |
@@ -4950,8 +5133,10 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | issa-band-20 | ISSA | 20-minute full-body resistance band workout | https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout | — |
 | issa-chest-dips | ISSA | chest dips form benefits variations what to avoid | https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid | — |
 | issa-donkey-kicks | ISSA | donkey kicks benefits and variations for strong glutes | https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes | — |
+| issa-dont-know-squat | ISSA | It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024) | https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat | — |
 | issa-hip-abduction | ISSA | hip abduction exercises for stronger hips and glutes | https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes | — |
 | issa-hip-thrust-variations | ISSA | hip thrusts benefits and variations for stronger glutes | https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes | — |
+| issa-mastering-squat | ISSA | Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025) | https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes | — |
 | issa-overhead-press-mistakes | ISSA | overhead press proper form variations and common mistakes | https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes | — |
 | issa-top6-calves | ISSA | top six exercises for building bigger calves | https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves | — |
 | issa-tri-top5 | ISSA | Top exercises to enhance your triceps workout | https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout | — |

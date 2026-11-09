@@ -1,0 +1,66 @@
+{
+  "_opis": "Zdania wskazówek techniki z partii P1 (squat i hinge; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt; uruchamia koordynator). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+  "data": "2026-11-09",
+  "klucze": [
+    {
+      "rodzaj": "nowy",
+      "id": "bhs.setup",
+      "pl": "Sztanga za nogami, chwyt nachwytem w opuszczonych rękach; stopy na szerokość barków.",
+      "en": "Bar behind your legs, overhand grip with arms hanging down; feet shoulder-width apart."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "cdl.move",
+      "pl": "Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana.",
+      "en": "Drive the bar up with your legs, holding the same back angle until it passes your knees."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "cdl.setup",
+      "pl": "Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.",
+      "en": "Set up like for a clean: clean grip, knees pushed out until they touch your arms."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ohs.arms",
+      "pl": "Ręce przez cały ruch wyprostowane.",
+      "en": "Keep your arms straight the whole time."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ohs.move",
+      "pl": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wróć do stania.",
+      "en": "Squat down with the bar overhead the whole time, then stand back up."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "ohs.setup",
+      "pl": "Sztanga nad głową na wyprostowanych rękach, stopy ustawione jak do zwykłego przysiadu.",
+      "en": "Bar overhead on straight arms, feet set as for a regular squat."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "slrdl.move",
+      "pl": "Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
+      "en": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "slrdl.setup",
+      "pl": "Stań na jednej nodze, kolano lekko ugięte.",
+      "en": "Stand on one leg with a slight bend in the knee."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "sqb.bands",
+      "pl": "Zaczep gumy przy końcach sztangi, a drugie końce przymocuj u dołu stojaka — tak samo po obu stronach.",
+      "en": "Hook the bands near the ends of the bar and anchor the other ends at the bottom of the rack — the same on both sides."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "sqc.chains",
+      "pl": "Zawieś łańcuchy na końcach sztangi tak, żeby po wstaniu prawie całe wisiały nad podłogą.",
+      "en": "Hang the chains from the ends of the bar so that when you stand up, almost all of the chain is off the floor."
+    }
+  ]
+}

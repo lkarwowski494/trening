@@ -3670,6 +3670,104 @@
    "title": "PMC8637269",
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8637269/",
    "level": 3
+  },
+  "catalyst-176": {
+   "org": "Catalyst Athletics",
+   "title": "Clean Deadlift (exercise library #176)",
+   "url": "https://www.catalystathletics.com/exercise/176/Clean-Deadlift/",
+   "level": 4
+  },
+  "barbend-vaughn-clean-deadlift": {
+   "org": "BarBend",
+   "title": "Chad Vaughn — clean deadlift technique (17.07.2023)",
+   "url": "https://barbend.com/news/chad-vaughn-clean-deadlift/",
+   "level": 4
+  },
+  "ace-127": {
+   "org": "ACE",
+   "title": "Single-Arm Single-Leg Romanian Deadlift (#127)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/127/single-arm-single-leg-romanian-dead-lift/",
+   "level": 4
+  },
+  "barbend-single-leg-romanian-deadlift": {
+   "org": "BarBend",
+   "title": "Single-Leg Romanian Deadlift (M. Dewar, CSCS, akt. 13.08.2024)",
+   "url": "https://barbend.com/single-leg-romanian-deadlift/",
+   "level": 4
+  },
+  "coach-single-leg-romanian-deadlift": {
+   "org": "Coach",
+   "title": "How To Do The Single-Leg Romanian Deadlift",
+   "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania W1 i przeliczenie szczebli, gałąź badania/g4-nogi): autor Sam Rider (REPS Level 3 PT, biogram na stronie), 11.04.2024 — autor z kwalifikacjami i data → 4 per strona (docs/18, 02.11.2026, uzupełnienie 2)"
+  },
+  "ace-350": {
+   "org": "ACE",
+   "title": "Single-Leg Romanian Deadlift — cable (#350)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/350/single-leg-romanian-dead-lift/",
+   "level": 4
+  },
+  "barbend-hack-squat": {
+   "org": "BarBend",
+   "title": "How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)",
+   "url": "https://barbend.com/hack-squat/",
+   "level": 4
+  },
+  "coach-hack-squat": {
+   "org": "Coach",
+   "title": "How To Do The Hack Squat",
+   "url": "https://www.coachweb.com/fitness/leg-exercises/hack-squat",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania W1 i przeliczenie szczebli, gałąź badania/g4-nogi): autor Sam Rider (REPS Level 3 PT, biogram na stronie), 11.01.2024 — autor z kwalifikacjami i data → 4 per strona (docs/18, 02.11.2026, uzupełnienie 2)"
+  },
+  "issa-mastering-squat": {
+   "org": "ISSA",
+   "title": "Mastering the Squat: A Trainer's Guide to Form, Function, and Fixes (24.07.2025)",
+   "url": "https://www.issaonline.com/blog/post/mastering-the-squat-a-trainers-guide-to-form-function-and-fixes",
+   "level": 4
+  },
+  "barbend-dumbbell-squat": {
+   "org": "BarBend",
+   "title": "Dumbbell Squat (J. Morris, CSCS, akt. 01.07.2024)",
+   "url": "https://barbend.com/dumbbell-squat/",
+   "level": 4
+  },
+  "catalyst-79-overhead-squat": {
+   "org": "Catalyst Athletics",
+   "title": "Overhead Squat (exercise library #79)",
+   "url": "https://catalystathletics.com/exercise/79/Overhead-Squat/",
+   "level": 4
+  },
+  "issa-dont-know-squat": {
+   "org": "ISSA",
+   "title": "It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)",
+   "url": "https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat",
+   "level": 4
+  },
+  "catalyst-chain-back-squat": {
+   "org": "Catalyst Athletics",
+   "title": "Chain Back Squat (exercise library #609)",
+   "url": "https://www.catalystathletics.com/exercise/609/Chain-Back-Squat/",
+   "level": 4
+  },
+  "elitefts-set-up-chains": {
+   "org": "EliteFTS",
+   "title": "Friday Technique Video: How to Set Up Chains (J. L. Holdsworth, 14.02.2014)",
+   "url": "https://elitefts.com/blogs/training/friday-technique-video-how-to-set-up-chains",
+   "level": 4
+  },
+  "elitefts-bands-setup": {
+   "org": "EliteFTS",
+   "title": "Friday Technique Video: Bands Setup (J. L. Holdsworth, 18.07.2014)",
+   "url": "https://elitefts.com/blogs/training/friday-technique-video-bands-setup",
+   "level": 4
+  },
+  "barbend-accommodating-resistance": {
+   "org": "BarBend",
+   "title": "Accommodating Resistance (T. Ramos, ACSM CPT, akt. 27.05.2025)",
+   "url": "https://barbend.com/accommodating-resistance/",
+   "level": 4
   }
  },
  "exercises": {
@@ -22416,6 +22514,711 @@
      ]
     }
    ]
+  },
+  "Clean Deadlift": {
+   "setup": [
+    {
+     "c": "cdl.setup",
+     "s": [
+      [
+       "catalyst-176",
+       "opis (starting position)"
+      ],
+      [
+       "barbend-vaughn-clean-deadlift",
+       "start position (knees out, clean grip)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cdl.move",
+     "s": [
+      [
+       "catalyst-176",
+       "opis (back angle until bar passes knees)"
+      ],
+      [
+       "barbend-vaughn-clean-deadlift",
+       "back holding position as legs lift"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "dl.close",
+     "s": [
+      [
+       "catalyst-176",
+       "opis (bar close to legs)"
+      ],
+      [
+       "barbend-vaughn-clean-deadlift",
+       "keep bar close"
+      ]
+     ]
+    },
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "catalyst-176",
+       "opis (back braced and extended)"
+      ],
+      [
+       "barbend-vaughn-clean-deadlift",
+       "back tension and position maintenance"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "barbend-vaughn-clean-deadlift",
+       "shoulders in front → bar drifts forward"
+      ],
+      [
+       "catalyst-176",
+       "opis (bar as close as possible) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Leg RDL (hantel)": {
+   "setup": [
+    {
+     "c": "slrdl.setup",
+     "s": [
+      [
+       "ace-127",
+       "instrukcja (balance on the left leg… keep the left knee slightly bent)"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Step 1: Stand on One Leg (wariant: dowolne obciążenie)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "slrdl.move",
+     "s": [
+      [
+       "ace-127",
+       "instrukcja (leaning forward on the left hip… straighten the right leg; stand up)"
+      ],
+      [
+       "coach-single-leg-romanian-deadlift",
+       "The Hinge; The Return (wariant: sztanga, hantel)"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Step 2: Push Your Hips Back; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-127",
+       "instrukcja (the back straight)"
+      ],
+      [
+       "coach-single-leg-romanian-deadlift",
+       "The Hinge (keeping your back flat)"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Step 3 (keep the back flat)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "coach-single-leg-romanian-deadlift",
+       "Common mistakes: Rounding Your Back"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Form tips, Step 2 (lower back rounds)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Leg RDL (linki)": {
+   "setup": [
+    {
+     "c": "slrdl.setup",
+     "s": [
+      [
+       "ace-350",
+       "instrukcja (balancing body weight on the right leg… slight bend in the right knee)"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Step 1 (wariant: wolne ciężary)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "slrdl.move",
+     "s": [
+      [
+       "ace-350",
+       "instrukcja (hinging forward on the right hip; stand up… lowering the left leg)"
+      ],
+      [
+       "coach-single-leg-romanian-deadlift",
+       "The Hinge; The Return (wariant: sztanga, hantel)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-350",
+       "instrukcja (the back straight)"
+      ],
+      [
+       "coach-single-leg-romanian-deadlift",
+       "The Hinge (wariant)"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Step 3 (wariant)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "coach-single-leg-romanian-deadlift",
+       "Common mistakes: Rounding Your Back (wariant)"
+      ],
+      [
+       "barbend-single-leg-romanian-deadlift",
+       "Form tips, Step 2 (wariant)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Hack Squat": {
+   "setup": [
+    {
+     "c": "bhs.setup",
+     "s": [
+      [
+       "barbend-hack-squat",
+       "How to Do the Hack Squat — Setup/Grip (heels touching the bar behind you; feet shoulder-width; overhand grip behind you)"
+      ],
+      [
+       "coach-hack-squat",
+       "Barbell Hack Squat — Setup/Grip (back to the bar; overhand grip, palms facing behind; feet shoulder-width)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "hack.move",
+     "s": [
+      [
+       "barbend-hack-squat",
+       "How to Do the Hack Squat — Descent (drop hips back and down); Ascent (push your feet into the floor to stand up)"
+      ],
+      [
+       "coach-hack-squat",
+       "Barbell Hack Squat — Descent (bend your knees to lower); Ascent (back to the start)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "barbend-hack-squat",
+       "How to Do the Hack Squat — Back (spine neutral); Mistakes: Rounding"
+      ],
+      [
+       "coach-hack-squat",
+       "Barbell Hack Squat — Back (shoulder blades to straighten your back)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "barbend-hack-squat",
+       "Mistakes: Heels lifting"
+      ],
+      [
+       "coach-hack-squat",
+       "Barbell Hack Squat — Ascent (drive through midfoot and heels); Mistakes: pressing through the forefoot"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bodyweight Squat": {
+   "setup": [
+    {
+     "c": "gob.stance",
+     "s": [
+      [
+       "ace-135",
+       "Step 1 (feet slightly wider than hip-width)"
+      ],
+      [
+       "issa-mastering-squat",
+       "How to Perform a Proper Squat (feet just outside hip-width)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "ace-135",
+       "Step 3 (hips backwards then downwards, knees bend); Step 6 (extend hips and knees, push through heels)"
+      ],
+      [
+       "issa-mastering-squat",
+       "How to Perform a Proper Squat (hinge from the hips and bend the knees, hips slightly back; press through your midfoot to return to standing)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "ace-135",
+       "Step 5 (knees aligned over the second toe)"
+      ],
+      [
+       "issa-mastering-squat",
+       "How to Perform a Proper Squat (knees track in the same direction as your big toes)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "issa-mastering-squat",
+       "Common mistakes: Knees falling in or out (Valgus or Varus Collapse)"
+      ],
+      [
+       "ace-135",
+       "Step 5 (knees remain aligned over the second toe)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dumbbell Squat": {
+   "setup": [
+    {
+     "c": "gob.stance",
+     "s": [
+      [
+       "barbend-dumbbell-squat",
+       "How to do (feet about shoulder-width apart, maybe a little wider; one dumbbell in each hand)"
+      ],
+      [
+       "ace-135",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — Step 1 (slightly wider than hip-width)"
+      ],
+      [
+       "issa-mastering-squat",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — How to Perform a Proper Squat (just outside hip-width)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)"
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "barbend-dumbbell-squat",
+       "How to do (unlock your knees and hips… sit back; push with your legs… standing tall)"
+      ],
+      [
+       "ace-135",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — Step 3; Step 6"
+      ],
+      [
+       "issa-mastering-squat",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — How to Perform a Proper Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "barbend-dumbbell-squat",
+       "How to do (toes out; knees out)"
+      ],
+      [
+       "ace-135",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — Step 5"
+      ],
+      [
+       "issa-mastering-squat",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — knees track with big toes"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "issa-mastering-squat",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — Common mistakes: Knees falling in"
+      ],
+      [
+       "ace-135",
+       "uproszczenie: wariant sprzętu Bodyweight Squat — Step 5"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)"
+    }
+   ]
+  },
+  "Overhead Squat": {
+   "setup": [
+    {
+     "c": "ohs.setup",
+     "s": [
+      [
+       "catalyst-79-overhead-squat",
+       "opis (bar overhead; elbows extended fully; feet in your squat stance)"
+      ],
+      [
+       "issa-dont-know-squat",
+       "uproszczenie: wariant sprzętu (bez sztangi) — overhead squat assessment (arms extended overhead, aligned with ears)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu"
+    }
+   ],
+   "move": [
+    {
+     "c": "ohs.move",
+     "s": [
+      [
+       "catalyst-79-overhead-squat",
+       "opis (squat at a controlled speed into full depth and return to standing; bar not moving relative to upper body)"
+      ],
+      [
+       "issa-dont-know-squat",
+       "uproszczenie: wariant sprzętu (bez sztangi) — squat as if sitting in a chair, return to standing, arms stay overhead"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu"
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohs.arms",
+     "s": [
+      [
+       "catalyst-79-overhead-squat",
+       "opis (elbows extended fully and forcefully)"
+      ],
+      [
+       "issa-dont-know-squat",
+       "uproszczenie: wariant sprzętu (bez sztangi) — arms extended overhead; faults: arms stay in place or fall forward"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "issa-dont-know-squat",
+       "uproszczenie: wariant sprzętu (bez sztangi) — faults: Feet (does the heel come off the ground?)"
+      ],
+      [
+       "catalyst-79-overhead-squat",
+       "opis (even balance over the whole foot) — błąd = zaprzeczenie standardu"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu"
+    }
+   ]
+  },
+  "Squat with Chains": {
+   "setup": [
+    {
+     "c": "sq.bar",
+     "s": [
+      [
+       "ace-11",
+       "opis — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Preparation — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
+    },
+    {
+     "c": "sqc.chains",
+     "s": [
+      [
+       "catalyst-chain-back-squat",
+       "opis (hang the chains … completely hanging as you near the top)"
+      ],
+      [
+       "elitefts-set-up-chains",
+       "opis (leader chain outside the collar; one link of the weight chain on the floor in the standing position)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "catalyst-chain-back-squat",
+       "opis (Squat as usual)"
+      ],
+      [
+       "ace-11",
+       "opis — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Execution — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "sbs-how-to-squat",
+       "Foot Angle; FAQ (knees caving in) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "ace-135",
+       "Step 4; Step 5 — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
+    },
+    {
+     "c": "sq.back",
+     "s": [
+      [
+       "ace-11",
+       "opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments (back straight) — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "sbs-how-to-squat",
+       "FAQ: My knees are caving in — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "ace-135",
+       "Step 4 — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
+    },
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "ace-135",
+       "Step 4; Step 6 (heels flat) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments (feet flat on floor) — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
+    }
+   ]
+  },
+  "Squat with Bands": {
+   "setup": [
+    {
+     "c": "sq.bar",
+     "s": [
+      [
+       "ace-11",
+       "opis — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Preparation — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "elitefts-bands-setup",
+       "squat (walk the bar out until the bands are straight up and down)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
+    },
+    {
+     "c": "sqb.bands",
+     "s": [
+      [
+       "barbend-accommodating-resistance",
+       "sekcja o przysiadzie z gumami (anchor a band to the inside of the barbell … loop the other end to the bottom of the power rack; repeat on the other side)"
+      ],
+      [
+       "elitefts-bands-setup",
+       "squat (choke the band around band peg); test z pustą sztangą — równe napięcie po obu stronach"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "barbend-accommodating-resistance",
+       "sekcja o przysiadzie z gumami (perform standard back squats)"
+      ],
+      [
+       "ace-11",
+       "opis — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Execution — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "sbs-how-to-squat",
+       "Foot Angle; FAQ (knees caving in) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "ace-135",
+       "Step 4; Step 5 — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
+    },
+    {
+     "c": "sq.back",
+     "s": [
+      [
+       "ace-11",
+       "opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments (back straight) — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "sbs-how-to-squat",
+       "FAQ: My knees are caving in — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "ace-135",
+       "Step 4 — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
+    },
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "ace-135",
+       "Step 4; Step 6 (heels flat) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments (feet flat on floor) — uproszczenie: wariant sprzętu Back Squat"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
+    }
+   ]
   }
  },
  "open": {
@@ -22565,7 +23368,13 @@
   "Zottman Curl",
   "Zottman Preacher Curl",
   "Band Pull Apart",
-  "Cuban Press"
+  "Cuban Press",
+  "Single Leg RDL (hantel)",
+  "Single Leg RDL (linki)",
+  "Barbell Hack Squat",
+  "Bodyweight Squat",
+  "Dumbbell Squat",
+  "Overhead Squat"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {

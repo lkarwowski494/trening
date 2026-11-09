@@ -724,5 +724,15 @@
  "rotator_cuff.cubanBlades": "Before you start, set your shoulder blades down and back.",
  "rotator_cuff.cubanRow": "Lift your elbows out to shoulder height, bent at a right angle, dumbbells hanging down.",
  "rotator_cuff.cubanRotate": "Rotate your forearms up without dropping your elbows; upper arms stay level.",
- "rotator_cuff.cubanPressUp": "Press the dumbbells straight overhead."
+ "rotator_cuff.cubanPressUp": "Press the dumbbells straight overhead.",
+ "cdl.setup": "Set up like for a clean: clean grip, knees pushed out until they touch your arms.",
+ "cdl.move": "Drive the bar up with your legs, holding the same back angle until it passes your knees.",
+ "slrdl.setup": "Stand on one leg with a slight bend in the knee.",
+ "slrdl.move": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand.",
+ "bhs.setup": "Bar behind your legs, overhand grip with arms hanging down; feet shoulder-width apart.",
+ "ohs.setup": "Bar overhead on straight arms, feet set as for a regular squat.",
+ "ohs.move": "Squat down with the bar overhead the whole time, then stand back up.",
+ "ohs.arms": "Keep your arms straight the whole time.",
+ "sqc.chains": "Hang the chains from the ends of the bar so that when you stand up, almost all of the chain is off the floor.",
+ "sqb.bands": "Hook the bands near the ends of the bar and anchor the other ends at the bottom of the rack — the same on both sides."
 }
