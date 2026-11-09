@@ -10,6 +10,11 @@ import { EN } from '@/lib/i18n.en';
 import { figureSpec, frameAt } from '@/lib/figures/v2';
 import { jointAngles } from '@/lib/figures/v2/skeleton';
 import { DATA_UI } from '@/lib/figures/v2/poseData';
+import { TECHNIQUE } from '@/lib/figures/v2/overlay';
+import { PULLDOWN_TECHNIQUE, PULLDOWN_STRAIGHT_ARM_EXERCISES } from '@/lib/figures/v2/overlay/pulldown';
+import { SHRUG_TECHNIQUE } from '@/lib/figures/v2/overlay/shrug';
+import { HIP_ABD_ADD_TECHNIQUE } from '@/lib/figures/v2/overlay/hip_abd_add';
+import { LEG_MACHINE_TECHNIQUE } from '@/lib/figures/v2/overlay/leg_machine';
 
 const root = path.join(__dirname, '..');
 const sens = JSON.parse(fs.readFileSync(path.join(root, 'data/zrodla/figury-sens.json'), 'utf8'));
@@ -28,5 +33,16 @@ describe('partia 3 (09.11.2026)', () => {
   test('hip_abd_add: marsze z gumą bez rysunku (do poprawki), pozostałe 4 z rysunkiem; kąt ukryty we wszystkich', () => {
     for (const k of ['Lateral Band Walk', 'Monster Walk']) expect([k, figureSpec(k)]).toEqual([k, null]);
     for (const k of ['Hip Abduction', 'Hip Adduction', 'Cable Hip Abduction', 'Cable Hip Adduction']) { expect([k, !!figureSpec(k)]).toEqual([k, true]); expect([k, DATA_UI.hip_abd_add.exceptions?.[k]?.hideAngle]).toEqual([k, true]); }
+  });
+  test('nakładki partii 3 w rejestrze TECHNIQUE: elementy w stałej kolejności, tylko reguły „ustalone” (recenzje niezależne 09.11.2026)', () => {
+    expect(TECHNIQUE.pulldown).toBe(PULLDOWN_TECHNIQUE); expect(PULLDOWN_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.views])).toEqual([['pulldownElbowLimb', 'limb', 'wyprost_u_gory', ['side']], ['pulldownChestRef', 'ref', 'do_gornej_klatki', ['side']], ['pulldownStraightArmSweep', 'abduction', 'ramie_w_dol', ['side']]]);
+    expect(PULLDOWN_STRAIGHT_ARM_EXERCISES).toEqual(['Straight Arm Pulldown']);
+    expect(TECHNIQUE.shrug).toBe(SHRUG_TECHNIQUE); expect(SHRUG_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.views])).toEqual([['shrugShoulderUpRef', 'ref', 'barki_w_gore', ['front']]]);
+    expect(TECHNIQUE.hip_abd_add).toBe(HIP_ABD_ADD_TECHNIQUE); expect(HIP_ABD_ADD_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.views])).toEqual([['hipAbdTorsoPlumb', 'ref', 'tulow_stoi', ['front']]]);
+    expect(TECHNIQUE.leg_machine).toBe(LEG_MACHINE_TECHNIQUE); expect(LEG_MACHINE_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.views])).toEqual([['legMachineKneeLimb', 'limb', 'zakres', ['side']]]);
+    for (const [fam, defs] of [['pulldown', PULLDOWN_TECHNIQUE], ['shrug', SHRUG_TECHNIQUE], ['hip_abd_add', HIP_ABD_ADD_TECHNIQUE], ['leg_machine', LEG_MACHINE_TECHNIQUE]] as const) for (const d of defs) {
+      expect([fam, d.id, sens.rodziny[fam].reguly[d.rule].pewnosc]).toEqual([fam, d.id, expect.stringMatching(/^ustalone/)]);
+      for (const c of d.cue) expect([fam, d.id, c, sens.rodziny[fam].wskazowki_na_reguly[c]]).toEqual([fam, d.id, c, expect.arrayContaining([d.rule])]);
+    }
   });
 });
