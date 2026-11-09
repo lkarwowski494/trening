@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 359 | 359 | 0 |
 | TEKST | 1088 | 1088 | 0 |
 | LOGIKA | 1166 | 1166 | 0 |
-| WYMIAR | 181 | 181 | 0 |
+| WYMIAR | 183 | 182 | 0 |
 
 ## EKRAN
 
@@ -2759,6 +2759,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | PULL_UP_PLUMB_EXERCISES (2) | lib/figures/v2/overlay/pull_up.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | PULL_UP_STRAIGHT_EXERCISES (2) | lib/figures/v2/overlay/pull_up.ts | tests/figures-v2-pull-up-lokiec.test.tsx |
 | PULL_UP_TECHNIQUE (3) | lib/figures/v2/overlay/pull_up.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-pull-up-lokiec.test.tsx |
+| ROW_SUPPORTED_EXERCISES (3) | lib/figures/v2/overlay/row.ts | tests/adapt-logic.test.ts, tests/audit-m1-031-asekuracja-zakres.test.tsx, tests/figury-generator-odtwarza.test.ts |
+| ROW_TECHNIQUE (2) | lib/figures/v2/overlay/row.ts | WYJĄTEK: BRAK |
 | SQUAT_GUIDES (2) | lib/figures/v2/overlay/squat.ts | tests/figures-v2-nakladka.test.tsx |
 | SQUAT_TECHNIQUE (1) | lib/figures/v2/overlay/squat.ts | tests/figures-v2-nakladka-squat-hinge.test.tsx |
 | TRICEPS_TECHNIQUE (2) | lib/figures/v2/overlay/triceps.ts | tests/figures-v2-nakladka-triceps-olympic.test.tsx |

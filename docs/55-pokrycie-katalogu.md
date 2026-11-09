@@ -114,7 +114,7 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 11 | 0 | 2 | 0 | 0 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 0 | 0 | 13 | 0 | 0 |
 | `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 8 | 2 | 10 | 11 |
-| `row` | do zrobienia | 13 | 0 | 12 | 6 | 8 | 0 | 5 | 0 | 0 |
+| `row` | gotowa | 13 | 0 | 12 | 6 | 8 | 0 | 5 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 6 | 0 | 5 | 0 | 0 |
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 5 | 0 | 5 | 0 | 0 |
 | `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 8 | 0 | 2 | 0 | 0 |
