@@ -201,3 +201,48 @@ describe('overhead_press: błąd animowany tylko tam, gdzie jest tekst (K15)', (
     for (const k of KEYS.filter(x => x !== 'Pike Push Up')) expect([k, errorsOf(spec(k)).length]).toEqual([k, 0]);
   });
 });
+
+describe('overhead_press: dół ruchu przy przedniej części barków, zza karku prosto w górę (poprawki r1, 09.11.2026: W1, Ś1, Ś2)', () => {
+  /* W1: 13 ćwiczeń z wyciskanie() w generatorze (sztanga, hantle, kettlebell, linki, guma; stojąc i siedząc; push press, see-saw). Arnold i zza karku mają własny tor. */
+  const W1 = ['Overhead Press (sztanga)', 'Overhead Press (hantle)', 'Seated Shoulder Press (hantle)', 'Push Press', 'Wyciskanie nad głowę (linki)', 'Single Arm Overhead Press (hantel)', 'Kettlebell Press', 'Seated Barbell Military Press',
+    'See-Saw Press (Alternating Side Press)', 'Band Shoulder Press', 'Seated Cable Shoulder Press', 'Kettlebell Seated Press', 'Double Kettlebell Press'];
+  const SZTANGA = ['Overhead Press (sztanga)', 'Seated Barbell Military Press', 'Push Press'];
+  const KETTLEBELL = ['Kettlebell Press', 'Kettlebell Seated Press', 'Double Kettlebell Press'];
+  /* progi z recenzji r1: sztanga ≤ ok. 3–5 cm od tułowia (z zapasem 1 cm, mierzone 5,0), chwyt przed barkiem ≤ 17 cm (było 22) i nad barkiem ≤ 15 cm (było 14; kettlebell 14, bo dzwon za rączką niżej przenika ramię), zgięcie łokcia ≤ 149° (limit silnika) */
+  const PROG = { sztangaTulow: 6, chwytPrzod: 17, chwytGora: 15 };
+  const dolR = (k: string, dx = 0) => {
+    const f = frameAt(spec(k), 0); const sh = f.sk.shoulderC; const g = f.sk.arms.R.grip;
+    const bar = equipColliders(f.props).find(c => c.id === 'bar'); const torso = bodyColliders(f.sk).find(b => b.id === 'torso');
+    const przesun = bar ? ({ ...bar, a: [bar.a[0] + dx, bar.a[1], bar.a[2]], b: [bar.b[0] + dx, bar.b[1], bar.b[2]] } as typeof bar) : null;
+    return { x: g[0] + dx - sh[0], y: g[1] - sh[1], gapTulow: bar && torso && przesun ? gap(torso, przesun) : null, lokiec: jointAngles(f.sk, 'R').elbow };
+  };
+  test('dół ruchu (u = 0): chwyt ≤ 17 cm przed środkiem barków i ≤ 15 cm nad nim, łokieć ≤ 149° — w 13 ćwiczeniach (przed poprawką: 22 cm przed, 14 cm nad, kettlebell 11,5 cm od tułowia)', () => {
+    expect(W1.length).toBe(13);
+    for (const k of W1) { const m = dolR(k); expect([k, m.x <= PROG.chwytPrzod, m.y <= PROG.chwytGora, m.lokiec <= 149]).toEqual([k, true, true, true]); }
+  });
+  test('sztanga na dole ≤ 6 cm od tułowia (mierzone ok. 5 cm; przed poprawką 15 cm) w trzech ćwiczeniach ze sztangą', () => {
+    for (const k of SZTANGA) { const m = dolR(k); expect([k, m.gapTulow !== null && m.gapTulow <= PROG.sztangaTulow]).toEqual([k, true]); }
+  });
+  test('łokcie pod nadgarstkami: poziomy odstęp łokcia od chwytu ≤ 8 cm (reguła dopuszcza 10) w każdej klatce co 0,025 w 13 ćwiczeniach', () => {
+    for (const k of W1) for (const s of PRAC(k)) { const m = Math.max(...US.map(u => { const a = frameAt(spec(k), u).sk.arms[s]; return Math.hypot(a.grip[0] - a.elbow[0], a.grip[2] - a.elbow[2]); })); expect([k, s, m <= 8]).toEqual([k, s, true]); }
+  });
+  test('kettlebell: dół ruchu wyżej niż dłoń z hantlem (dzwon za rączką nie wchodzi w ramię: walidator geometrii 0,3 cm), ale tak samo blisko tułowia (≤ 17 cm przed barkiem)', () => {
+    for (const k of KETTLEBELL) { const m = dolR(k); expect([k, m.x <= PROG.chwytPrzod, m.y >= 12]).toEqual([k, true, true]); }
+  });
+  test('przypadek negatywny (dane sprzed poprawki, x0 = 22): chwyt i sztanga 8,7 cm dalej od tułowia niż dziś dają odstęp > 6 cm i chwyt > 17 cm przed barkiem — miary potrafią paść', () => {
+    for (const k of SZTANGA) { const m = dolR(k, 8.7); expect([k, m.gapTulow! > PROG.sztangaTulow, m.x > PROG.chwytPrzod]).toEqual([k, true, true]); }
+    for (const k of W1.filter(x => !SZTANGA.includes(x))) { const m = dolR(k, 8.7); expect([k, m.x > PROG.chwytPrzod]).toEqual([k, true]); }
+  });
+  test('Ś2 zza karku: gryf idzie prosto w górę — chwyt względem barków zmienia x w całym ruchu o ≤ 10 cm (przed poprawką ok. 21 cm: gryf kończył nad czołem), na szczycie nad barkami lub za nimi (x ≤ 0); przypadek negatywny: szczyt 8 cm przed barkiem', () => {
+    for (const k of ['Standing Barbell Press Behind Neck', 'Push Press - Behind the Neck']) {
+      const xs = US.map(u => { const f = frameAt(spec(k), u); return f.sk.arms.R.grip[0] - f.sk.shoulderC[0]; });
+      expect([k, Math.max(...xs) - Math.min(...xs) <= 10, xs[xs.length - 1] <= 0]).toEqual([k, true, true]);
+      expect([k, 8 - Math.min(...xs) > 10, 8 <= 0]).toEqual([k, true, false]);
+    }
+  });
+  test('Ś1 Seated Cable Shoulder Press: zestaw ogólny bez zdania „hantle przy barkach” (ohp.seat; ćwiczenie z linkami, więc czytamy dane zestawu — karta pokazuje zestaw dopiero po recenzji treści); siedzące z hantlami je zachowują', () => {
+    const items = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/cue-sets.json'), 'utf8')).items as Record<string, { ok?: string[] }>;
+    expect(items['Seated Cable Shoulder Press'].ok).not.toContain('ohp.seat'); expect(items['Seated Cable Shoulder Press'].ok).toEqual(['ohp.move', 'ohp.fullExt']);
+    expect(items['Seated Shoulder Press (hantle)']?.ok ?? cueIdsOf('Seated Shoulder Press (hantle)').ids).toContain('ohp.seat');
+  });
+});

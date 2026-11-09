@@ -3643,7 +3643,6 @@
       "f": "ohp",
       "ok": [
         "ohp.move",
-        "ohp.seat",
         "ohp.fullExt"
       ],
       "err": [
