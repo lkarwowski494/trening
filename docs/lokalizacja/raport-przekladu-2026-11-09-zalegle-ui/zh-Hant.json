@@ -1,0 +1,21 @@
+{
+ "jezyk": "zh-Hant",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "圖中：{lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "新增三頭肌動作，以及上膊、抓舉與其變化式的動作示意圖。",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "新增並改進技巧提示，包括肩部、爆發力動作與活動度。",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "語音提示會使用手機上安裝的最佳語音。",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "新使用者會從「訓練」畫面的「開始第一次訓練」按鈕和「第一次訓練」看板開始。",
+  "Bokiem": "側向",
+  "Przodem": "向前",
+  "Naprzemiennie": "交替",
+  "Pozycje na rysunku: {lista}": "圖中姿勢：{lista}"
+ }
+}

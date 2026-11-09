@@ -8019,7 +8019,7 @@
    "pl": "ramię (górna część ręki, nie bark)",
    "znaczenie": "górna część ręki między barkiem a łokciem; NIE bark (partia „barki”) i NIE cała ręka",
    "kanon": null,
-   "wykrywaj": "(?<![\\p{L}])rami(ę|enia|eniu|eniem|onach)(?![\\p{L}])",
+   "wykrywaj": "(?<![\\p{L}])rami(ę|enia|eniu|eniem|ona|onach|onom|onami)(?![\\p{L}])",
    "jezyki": {
     "pl": {
      "zalecany": "ramię",
@@ -8030,154 +8030,352 @@
      "pewnosc": "srednia"
     },
     "cs": {
-     "zalecany": "upper arm",
+     "zalecany": "nadloktí",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "sk": {
-     "zalecany": "upper arm",
+     "zalecany": "nadlaktie",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "hu": {
-     "zalecany": "upper arm",
+     "zalecany": "felkar",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "ro": {
-     "zalecany": "upper arm",
+     "zalecany": "braț",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "bg": {
-     "zalecany": "upper arm",
+     "zalecany": "мишница",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "hr": {
-     "zalecany": "upper arm",
+     "zalecany": "nadlaktica",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "sl": {
-     "zalecany": "upper arm",
+     "zalecany": "nadlaket",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "sr": {
-     "zalecany": "upper arm",
+     "zalecany": "надлактица",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "lt": {
-     "zalecany": "upper arm",
+     "zalecany": "žastas",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "lv": {
-     "zalecany": "upper arm",
+     "zalecany": "augšdelms",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "et": {
      "zalecany": "õlavars",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "uk": {
      "zalecany": "плече",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "es": {
      "zalecany": "brazo",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "es-419": {
      "zalecany": "brazo",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "pt": {
      "zalecany": "braço",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "pt-BR": {
      "zalecany": "braço",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "de": {
      "zalecany": "Oberarm",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "fr": {
      "zalecany": "bras",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "it": {
      "zalecany": "braccio",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "nl": {
      "zalecany": "bovenarm",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "sv": {
      "zalecany": "överarm",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "da": {
      "zalecany": "overarm",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "nb": {
      "zalecany": "overarm",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "fi": {
      "zalecany": "olkavarsi",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "tr": {
-     "zalecany": "upper arm",
+     "zalecany": "üst kol",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "el": {
-     "zalecany": "upper arm",
+     "zalecany": "βραχίονας",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "id": {
-     "zalecany": "upper arm",
+     "zalecany": "lengan atas",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "ms": {
-     "zalecany": "upper arm",
+     "zalecany": "lengan atas",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "vi": {
-     "zalecany": "upper arm",
+     "zalecany": "cánh tay trên",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "ru": {
      "zalecany": "плечо",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "ja": {
-     "zalecany": "upper arm",
+     "zalecany": "上腕",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "ko": {
-     "zalecany": "upper arm",
+     "zalecany": "위팔",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     },
     "zh-Hant": {
-     "zalecany": "upper arm",
+     "zalecany": "上臂",
      "pewnosc": "niska",
-     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+     "uwaga": "Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])upper arms?(?![\\p{L}])",
+       "powod": "Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka."
+      }
+     ]
     }
    }
   },
@@ -8274,7 +8472,7 @@
      "uwaga": "Rodzaj męski: „o kettlebell”, „do kettlebell” (pt-BR); nie żeński jak w pt (recenzja 01.11.2026)."
     },
     "de": {
-     "zalecany": "kettlebell",
+     "zalecany": "Kettlebell",
      "pewnosc": "srednia"
     },
     "fr": {
@@ -11428,6 +11626,98 @@
        "powod": "jak w PL: przy wyciągu „stack” albo „cable”, nie „machine”"
       }
      ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "cofnij_biodra_zawias",
+   "pl": "cofnij biodro/biodra",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "zawias biodrowy (ruch bioder w tył); w aplikacji „wypychając biodra w przód” to ruch swingu, a „wypchnij” to wyciskanie ciężaru nad głowę — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "biodr\\w* (w tył|back)",
+   "jezyki": {
+    "pl": {
+     "zalecany": "cofnij biodra",
+     "zakazane": [
+      {
+       "wzorzec": "wypchn\\w* biodr\\w* w tył",
+       "powod": "„wypchnij” myli się z wyciskaniem i ruchem swingu; zawias to „cofnij biodra”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "push your hips back",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "lower_yourself_back_down",
+   "pl": "wróć / opuść się",
+   "tylko": [
+    "en"
+   ],
+   "znaczenie": "EN „lower back down” czyta się jak „lower back” (lędźwie, pojęcie ledzwie) — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "lower (yourself )?back (down|up)",
+   "jezyki": {
+    "en": {
+     "zalecany": "lower yourself back down",
+     "zakazane": [
+      {
+       "wzorzec": "lower back (down|up)(?![\\p{L}])",
+       "powod": "zderza się z terminem „lower back” (lędźwie)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "podloga_nie_podloze",
+   "pl": "podłoga",
+   "tylko": [
+    "pl"
+   ],
+   "znaczenie": "we wskazówkach o lędźwiach odrywających się od podłoża mówimy „podłoga” (jak w pozostałych zdaniach partii) — recenzja lokalizacji A4a, 09.11.2026; inne użycia „podłoża” (miękkie podłoże, odpychanie się od podłoża) zostają",
+   "kanon": null,
+   "wykrywaj": "od podło(g|ż)",
+   "jezyki": {
+    "pl": {
+     "zalecany": "od podłogi",
+     "zakazane": [
+      {
+       "wzorzec": "odryw\\w* się od podłoża",
+       "powod": "„podłoże” brzmi jak instrukcja; w zdaniach o odrywaniu się od podłogi — „podłoga”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "pilka_gimnastyczna",
+   "pl": "piłka gimnastyczna",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "piłk\\w* gimnastyczn|stability ball",
+   "jezyki": {
+    "pl": {
+     "zalecany": "piłka gimnastyczna",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "stability ball",
      "pewnosc": "srednia"
     }
    }

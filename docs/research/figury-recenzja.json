@@ -1217,15 +1217,13 @@
       "uwagi": "Sztanga na górze pleców, zawias z lekko ugiętymi kolanami, plecy neutralne, błędy — przeczytana biblioteka o tym ćwiczeniu. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (gm.depth „nie dalej niż poziomo”, gm.light „zacznij od lekkiego”)."
     },
     "Hack Squat": {
-      "werdykt": "do poprawy",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "88c73f16703e",
-      "uwagi": "Podstawa: każde z 5 zdań ma jedno źródło o tym ćwiczeniu (ExRx — niedostępne 28.10) i drugie o innym ćwiczeniu (prasa nóg: „prasa — ta sama zasada”) bez znacznika „analogia”; wg docs/research/27 (MER2-04) analogia nie liczy się do minimum 2 źródeł. Treść kierunkowo poprawna, karta pokazana jako własna (bez dopisku „ogólne”). Też EN lp.hips „seat” — maszyna nie ma siedziska (PL „od oparcia” dobrze).",
-      "poprawka": "Bez zmiany brzmienia PL: drugie przeczytane źródło o hack squat dla hack.setup, hack.move, lp.heels, lp.hips, sq.kneesToes (badacz) i nowa recenzja; do tego czasu karta ukryta. Tłumacz: EN lp.hips „seat” → „backrest/pad” (przy Hack Squat; sprawdzić użycie lp.hips przy Leg Press)."
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; NFPT z biogramem autora — szczebel 4 potwierdzony",
+      "sha": "3ad7ace7cd4d"
     },
     "Incline Bench Press (hantle)": {
       "werdykt": "wyswietlana",
@@ -2869,6 +2867,454 @@
       "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 triceps, recenzja v2 sha 7893f56835ab), gałąź figury/triceps @ 30be67f8, 04.11.2026",
       "sha": "53e2f75bfad4",
       "uwagi": "ExRx CBTriExt i CBStandingTricepsExtensionRope: treść potwierdzona odczytem 02.11.2026 (kopia właściciela; exrx-otwarte.md sekcja 6: „łokcie nad głową, drążek za szyją, prostowanie do pionu i opuszczanie za szyję”, lina: „plecami do wyciągu… łokcie w górę nad głową”). ACE #74 (wersja z hantlem) przeczytane 04.11.2026 — Step 2 „elbows pointing forward, but not completely locked”. Wariant sprzętu (L-047): potwierdzam, że ruch nie różni się od wersji z hantlem — rysunek v2 obu ćwiczeń: ramię nieruchome nad głową (kąt ramię–tułów 156° wobec 151°), łokieć 57→159° wobec 60→163°; zdania z ACE #74 (cote.setup, cote.move, ote.upperArm, press.noLock) to nazwane uproszczenie (wariant sprzętu). Rysunek: wyciąg z tyłu, uchwyt za głową, łokcie w górę — cote.setup spełnione; wysokości bloczka karta nie podaje, więc bloczek na wysokości głowy jej nie przeczy. Końcowe zgięcie ok. 21° — R1 N-2 (backlog)."
+    },
+    "Arnold Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "47c9759b2227"
+    },
+    "Seated Barbell Military Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "0236aabaa05f",
+      "uwagi": "Niska, backlog: ustawienie (ohp.bbGrip, wspólny) bez słowa o siadzie."
+    },
+    "Kettlebell Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f; kbp.setup poprawione w fbc2c450), 08.11.2026",
+      "sha": "6cd6a89aee87"
+    },
+    "Kettlebell Seated Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie siedząco = stojąco potwierdzone",
+      "sha": "552d3b011646"
+    },
+    "Band Shoulder Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f; band.ohpSetup/ohpMove poprawione), 08.11.2026",
+      "sha": "e44c329d8d28",
+      "uwagi": "Niska, backlog: ohp.tall (wspólny) — słowo „ciężar” przy gumie."
+    },
+    "Single Arm Overhead Press (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie kettlebell → hantel potwierdzone",
+      "sha": "2005e05ec4e0"
+    },
+    "Ab Wheel": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "6167d642c4d0"
+    },
+    "Renegade Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "c775cdeb3566"
+    },
+    "Rollout (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "5de2373a86be"
+    },
+    "Incline Chest Fly (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "0c22493e2ff8"
+    },
+    "Chest Dip": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "58bc2ad0a6ce"
+    },
+    "Seated Cable Chest Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie maszyna ↔ wyciąg potwierdzone",
+      "sha": "8a64c572d245"
+    },
+    "Decline Push Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "sha": "e14e9f24d54d"
+    },
+    "Suspended Push-Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A1",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f; spush.setup bez „kółek”), 08.11.2026",
+      "sha": "375b214c380b"
+    },
+    "Single Leg Calf Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie obunóż → jednonóż potwierdzone",
+      "sha": "8a286d41591b"
+    },
+    "Seated Calf Raise (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → hantle potwierdzone",
+      "sha": "3aad793b63ec"
+    },
+    "Smith Machine Calf Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "ba118e804b14"
+    },
+    "Calf Raise (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "ba118e804b14"
+    },
+    "Calf Raise (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie sztanga → linka potwierdzone",
+      "sha": "ecbc9d005955"
+    },
+    "Barbell Seated Calf Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → sztanga potwierdzone",
+      "sha": "3aad793b63ec",
+      "uwagi": "Niska, backlog: calf.pause — dopisać ISSA top6 Seated jako źródło siedzące."
+    },
+    "Band Calf Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "515cadf17b7d"
+    },
+    "Dumbbell Seated One-Leg Calf Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna obunóż → hantel jednonóż potwierdzone",
+      "sha": "14eb7315f1d8"
+    },
+    "Fire Hydrant": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "9941c4ec90d1"
+    },
+    "Donkey Kick": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "90713799544e"
+    },
+    "Clamshell": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "eeb474aeef3c"
+    },
+    "Lateral Band Walk": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "b30c831906fe"
+    },
+    "Single Leg Glute Bridge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026",
+      "sha": "31f568d6405f"
+    },
+    "Single Leg Hip Thrust": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; źródło NSCA SCJ 33(5):58–61 sprawdzone w PDF; uproszczenie obunóż → jednonóż potwierdzone",
+      "sha": "b35ad6424e1d",
+      "uwagi": "Niska, backlog: nsca-scj-hip-thrust — opis bibliograficzny i adres czasopisma zamiast kopii na stronie autora."
+    },
+    "Seated Band Hamstring Curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → guma potwierdzone",
+      "sha": "4120ffb04282",
+      "uwagi": "Niska, backlog: bandcurl.setup „na kostkę” — źródło mówi o pięcie."
+    },
+    "Single Leg Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie Leg Press → jednonóż potwierdzone",
+      "sha": "31a48b7b300b"
+    },
+    "Bent Over Row (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie sztanga → linka potwierdzone",
+      "sha": "83160f950e31"
+    },
+    "Meadows Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; Generation Iron (autor ACSM CPT, data) — szczebel 4 (K3)",
+      "sha": "adefe11784b0"
+    },
+    "Standing Cable Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
+      "sha": "42d8d9fa1a34"
+    },
+    "Machine Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; Healthline z nazwanym recenzentem DPT — szczebel 4; mrow.setup bez wysokości uchwytów (część wspólna źródeł)",
+      "sha": "b027d28f1998"
+    },
+    "Single Arm Lat Pulldown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; lpd.thighsOnly potwierdzone; uproszczenie oburącz → jednorącz potwierdzone",
+      "sha": "2e9c7470fe9e"
+    },
+    "Close-Grip Front Lat Pulldown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: catalyst-861 (wąski chwyt) zamiast catalyst-725 — miejsca zgodne ze stroną",
+      "sha": "1e21937a5a34"
+    },
+    "Underhand Lat Pulldown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; własne źródło ruchu podchwytem, ustawienie i błędy niezależne od chwytu",
+      "sha": "9ae90b1e6ea3"
+    },
+    "V-Bar Pulldown": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie drążek → uchwyt V potwierdzone",
+      "sha": "e571966124a6"
+    },
+    "Shrugs (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie sztanga/hantle → linka potwierdzone",
+      "sha": "2a27c76a6ad6"
+    },
+    "Barbell Shrug Behind The Back": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; fv-13180 szczebel 4 (K1); uproszczenie położenia gryfu potwierdzone",
+      "sha": "e5d7a98886ed",
+      "uwagi": "Niska, backlog: barbend-db-shrug — nagłówek wariantu „Behind-the-Back Shrug”."
+    },
+    "Leverage Shrug": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie maszyna → hantle potwierdzone",
+      "sha": "2e70f293d7f6"
+    },
+    "Zottman Curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
+      "sha": "b53b6b02436b"
+    },
+    "Zottman Preacher Curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie stojąc → modlitewnik (obrót dłoni ten sam) potwierdzone",
+      "sha": "96a105b33a89"
+    },
+    "External Rotation (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: rotator_cuff.erStartCable (wyciąg) zamiast erStart (guma); FV (Dr. Malik, MD, data) szczebel 4",
+      "sha": "ac32385ebf31"
+    },
+    "Band Pull Apart": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
+      "sha": "0e4e5181b837"
+    },
+    "Cuban Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A3",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; FV (Patrick Dale, PT, data) szczebel 4; uproszczenie sztanga → hantle potwierdzone",
+      "sha": "4f184a6c0be2"
+    },
+    "Cable Kickback": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; miejsce hss-mini-band-hip-ext przy hext.mis.arch poprawione na krok Diagonal hip extension, uproszczenie guma → linka potwierdzone; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
+      "sha": "00c3363b505c"
+    },
+    "Hip Extension with Bands": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; miejsce hss-mini-band-hip-ext przy hext.mis.arch poprawione na krok 3 Diagonal hip extension; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
+      "sha": "8c83adfcf23f"
+    },
+    "Glute Bridge (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; ace-49 przy gb.move bez twierdzenia o linii, linia przy NASM Step 3; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: linię w gb.move wprost niesie tylko NASM; opcjonalnie dopisać acecert-7403 (full extension) przy gb.move.",
+      "sha": "67dad95fa67f"
     }
   },
   "zestawy": {

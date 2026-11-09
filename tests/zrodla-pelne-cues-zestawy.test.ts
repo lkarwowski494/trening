@@ -14,7 +14,7 @@ const EN: Record<string, string> = JSON.parse(fs.readFileSync(path.join(root, 'l
 describe('źródła wskazówek zestawów ogólnych (data/zrodla/cues-zestawy.json)', () => {
   test('wdrożone id: tekst w pl i en zgodny z wpisem, ≥ 2 źródła (adres albo miejsce + cytat), bez liczb w treści', () => {
     const ids = Object.entries(FILE.wskazowki).filter(([, v]) => v.status === 'wdrozony').map(([k]) => k);
-    expect(ids.length).toBe(53); /* 54 − ur.height (04.11.2026: zestaw uprightRow zastąpiony kartami własnymi, zdanie osierocone usunięte) */
+    expect(ids.length).toBe(52); /* 54 − ur.height (04.11.2026: zestaw uprightRow zastąpiony kartami własnymi, zdanie osierocone usunięte) − vup.back (09.11.2026, partia A4: zestaw V-Up zastąpiony kartą własną) */
     for (const id of ids) {
       const v = FILE.wskazowki[id];
       expect([id, PL[id]]).toEqual([id, v.pl]); expect([id, !!EN[id]?.trim()]).toEqual([id, true]);

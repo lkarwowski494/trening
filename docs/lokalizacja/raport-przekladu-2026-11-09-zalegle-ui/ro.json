@@ -1,0 +1,21 @@
+{
+ "jezyk": "ro",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "În desen: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Desene noi ale mișcării pentru exercițiile de triceps, precum și pentru aruncări, smulgeri și variantele lor.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Sfaturi de tehnică noi și îmbunătățite, inclusiv pentru umeri, exerciții de forță explozivă și mobilitate.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Anunțurile vocale folosesc cea mai bună voce instalată pe telefon.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Un utilizator nou începe pe ecranul Antrenament cu butonul „Începe primul antrenament” și panoul „Primul antrenament”.",
+  "Bokiem": "Lateral",
+  "Przodem": "Frontal",
+  "Naprzemiennie": "Alternativ",
+  "Pozycje na rysunku: {lista}": "Poziții în desen: {lista}"
+ }
+}
