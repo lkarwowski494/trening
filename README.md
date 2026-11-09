@@ -1,4 +1,4 @@
-# Trening 🏋️
+# RepsGoat 🏋️
 
 <!-- gen:badges-ci -->
 [![Testy (każde wypchnięcie)](https://github.com/lkarwowski494/trening/actions/workflows/tests.yml/badge.svg)](https://github.com/lkarwowski494/trening/actions/workflows/tests.yml)
@@ -21,7 +21,7 @@
 
 > **Dziennik treningu siłowego na iPhone'a i Apple Watch — prywatny, działający bez internetu, bez konta.**
 
-Trening to natywna aplikacja (Expo / React Native, TypeScript) do zapisywania treningów siłowych i cardio: szablony i trening z kartą bieżącej serii,
+RepsGoat to natywna aplikacja (Expo / React Native, TypeScript) do zapisywania treningów siłowych i cardio: szablony i trening z kartą bieżącej serii,
 przerwy z powiadomieniem i Live Activity, plan tygodnia z kalendarzem, postępy z wykresami i rekordami oraz opcjonalny zapis do Apple Health.
 Powstaje w ekosystemie Apps4Brew. Dane zostają w telefonie (SQLite); stan prac, decyzje właściciela i dokumentacja: [`docs/`](docs/) (po polsku),
 zasady pracy nad kodem: [`CLAUDE.md`](CLAUDE.md).
