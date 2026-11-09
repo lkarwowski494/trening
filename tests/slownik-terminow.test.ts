@@ -172,6 +172,21 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     const b: string = S.blokPromptu(slownik, 'el'); expect(b).toContain('→ squat'); expect(b).toContain('→ bench press'); expect(b).toContain('→ deadlift');
     expect(S.blokPromptu(slownik, 'ms')).toContain('Animasi pergerakan'); expect(S.blokPromptu(slownik, 'ms')).not.toContain('→ squat');
   });
+  /* Recenzja lokalizacji 09.11.2026: „nachwyt” jako övergrepp / overgreb / overgrep = nadużycie, napaść (fałszywy przyjaciel); poprawnie złożenie z „ręka” */
+  test('sv/da/nb: nachwyt = överhandsgrepp / overhåndsgreb / overhåndsgrep (zakazane: övergrepp, overgreb, overgrep, także odmienione)', () => {
+    const wzor: Record<string, [string, string[], string]> = {
+      sv: ['Greppa stången i övergrepp.', ['övergreppet', 'övergrepp'], 'Greppa stången i överhandsgrepp.'],
+      da: ['Tag fat i stangen i overgreb.', ['overgrebet', 'overgreb'], 'Tag fat i stangen i overhåndsgreb.'],
+      nb: ['Grip stangen i overgrep.', ['overgrepet', 'overgrep'], 'Grip stangen i overhåndsgrep.'],
+    };
+    for (const [kod, [zle, formy, dobre]] of Object.entries(wzor)) {
+      expect(S.sprawdz(slownik, kod, 'Chwyć sztangę nachwytem.', zle).length).toBe(1);
+      for (const f of formy) expect(S.sprawdz(slownik, kod, 'nachwyt', `i ${f}`).length).toBe(1);
+      expect(S.sprawdz(slownik, kod, 'Chwyć sztangę nachwytem.', dobre)).toEqual([]);
+      const cues = JSON.parse(fs.readFileSync(path.join(root, `lib/cues/text/${kod}.json`), 'utf8')) as Record<string, string>;
+      expect(cues['dl.grip']).toMatch(/överhandsgrepp|overhåndsgreb|overhåndsgrep/);
+    }
+  });
   /* 101-17 (recenzja lokalizacji el, 29.10.2026): ogólne „άρσεις” (podnoszenia) i „πιέσεις πάγκου” zamiast zalecanych angielskich deadlift / bench press */
   test('el: martwy ciąg = deadlift, wyciskanie leżąc = bench press (zakazane: άρσεις, νεκρή άρση, πιέσεις πάγκου); teksty z recenzji poprawione', () => {
     const el = JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/el.json'), 'utf8')) as Record<string, string>;
