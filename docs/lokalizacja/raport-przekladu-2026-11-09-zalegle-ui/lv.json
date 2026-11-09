@@ -1,0 +1,21 @@
+{
+ "jezyk": "lv",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "Zīmējumā: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Jauni kustību zīmējumi tricepsa vingrinājumiem, kā arī uzcelšanai uz krūtīm, rāvienam un to variantiem.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Jauni un uzlaboti tehnikas padomi, tostarp plecu, jaudas un mobilitātes vingrinājumiem.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Balss paziņojumos tiek izmantota labākā tālrunī instalētā balss.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Jauns lietotājs sāk ekrānā „Treniņš” ar pogu „Sākt pirmo treniņu” un paneli „Pirmais treniņš”.",
+  "Bokiem": "Uz sāniem",
+  "Przodem": "Uz priekšu",
+  "Naprzemiennie": "Pamīšus",
+  "Pozycje na rysunku: {lista}": "Pozīcijas zīmējumā: {lista}"
+ }
+}

@@ -1,31 +1,6 @@
 {
  "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN): wpis „Co nowego” 1.0.1 (06.11.2026, docs/18). Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności, wczytywany przez tests/pending-translation.ts). Przekład robi koordynator przez API (scripts/i18n/przeklad-api.mjs; w tej sesji brak ANTHROPIC_API_KEY), po przekładzie wpisać do lib/locales/<kod>.json i opróżnić listę.",
  "data": "2026-11-06",
- "status": "otwarty - czeka na przekład API (4 klucze)",
- "klucze": [
-  {
-   "rodzaj": "nowy",
-   "pl": "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.",
-   "en": "New movement drawings for triceps exercises and for cleans, snatches and their variations.",
-   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.",
-   "en": "New and refined technique tips, including shoulders, power exercises and mobility.",
-   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.",
-   "en": "Voice announcements use the best voice installed on your phone.",
-   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.",
-   "en": "A new user starts on the Workout screen with the “Start your first workout” button and the “First workout” board.",
-   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
-  }
- ]
+ "status": "przeniesione do zestaw-przekladu-2026-11-09-zalegle-ui.json (09.11.2026)",
+ "klucze": []
 }

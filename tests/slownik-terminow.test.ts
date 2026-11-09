@@ -131,6 +131,23 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     }
     expect(S.sprawdz(slownik, 'ja', wsk, '肘を狭く保ちます').length).toBe(1); expect(S.sprawdz(slownik, 'ja', wsk, '肘を締めておきます')).toEqual([]);
   });
+  /* 09.11.2026, recenzja lokalizacji przekładu A1–A3 (lokalna lekcja): przekład API wstawił do vi dosłownie „upper arm” (placeholder słownika) — preacher.arms, rotator_cuff.cubanRotate;
+     test słownika tego nie łapał (brak zakazu, a wykrywanie pomijało „ramiona”). Zakaz we wszystkich językach poza pl/en; „grip” w vi zostaje do odpowiedzi native speakera (pytanie 2 w docs/research/recenzje/lok-a1-a3-przeklad-2026-11-09.md). */
+  test('09.11.2026: ramię — „upper arm” zakazane we wszystkich językach poza en; „ramiona” wykrywane; kettlebell.de wielką literą', () => {
+    const ra = slownik.pojecia.find(x => x.id === 'ramie')!;
+    expect(S.wykryte(ra, 'Obróć przedramiona w górę — ramiona zostają poziomo.')).toBe(true);
+    expect(S.wykryte(ra, 'Oprzyj ramię na podpórce.')).toBe(true);
+    for (const kod of LANGS as readonly string[]) {
+      if (kod === 'pl' || kod === 'en') continue;
+      expect([kod, S.sprawdz(slownik, kod, 'Oprzyj ramię na podpórce.', 'Rest your upper arm on the pad.').some((n: { pojecie: string }) => n.pojecie === 'ramie')]).toEqual([kod, true]);
+      expect([kod, S.sprawdz(slownik, kod, 'Oprzyj ramię na podpórce.', ra.jezyki[kod].zalecany).some((n: { pojecie: string }) => n.pojecie === 'ramie')]).toEqual([kod, false]);
+    }
+    expect(S.sprawdz(slownik, 'vi', 'Obróć przedramiona w górę — ramiona zostają poziomo.', 'upper arm giữ ngang').length).toBe(1);
+    expect(S.sprawdz(slownik, 'vi', 'Obróć przedramiona w górę — ramiona zostają poziomo.', 'cánh tay trên giữ ngang')).toEqual([]);
+    const vi = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/vi.json'), 'utf8')) as Record<string, string>;
+    expect([vi['preacher.arms'], vi['rotator_cuff.cubanRotate']].some(x => /upper arm/i.test(x))).toBe(false);
+    expect(slownik.pojecia.find(x => x.id === 'kettlebell')!.jezyki.de.zalecany).toBe('Kettlebell');
+  });
   /* 101-15 (1.0.1, recenzja lokalizacji ms/el): ms „Lukisan pergerakan” (rysunek) zamiast „Animasi pergerakan” użytego w opisie sklepu; el „κινούμενα σχέδια” = kreskówki; el: angielskie nazwy ćwiczeń */
   test('animacja ruchu: ms „Animasi pergerakan” (nie „Lukisan pergerakan”); el bez „κινούμενα σχέδια” (kreskówki)', () => {
     const rr = 'Rysunek ruchu: {opis}';

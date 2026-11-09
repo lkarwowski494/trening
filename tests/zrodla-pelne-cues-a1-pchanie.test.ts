@@ -87,9 +87,10 @@ describe('A1 pchanie: zdania', () => {
     for (const c of A1.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
   });
 
-  test('zestaw przekładu A1 zawiera dokładnie nowe zdania (przekład na pozostałe języki czeka na zgodę właściciela)', () => {
+  test('nowe zdania A1 przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw przekładu pusty', () => {
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-08-a1-wskazowki.json');
-    expect(z.klucze.map((k: { id: string }) => k.id).sort()).toEqual([...A1.zdania].sort());
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-051; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, A1.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
   });
 
   test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {

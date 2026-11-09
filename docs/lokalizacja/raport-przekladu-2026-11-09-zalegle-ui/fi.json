@@ -1,0 +1,21 @@
+{
+ "jezyk": "fi",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "Kuvassa: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Uudet liikepiirrokset ojentajaliikkeisiin sekä rinnallevetoihin, tempauksiin ja niiden muunnelmiin.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Uusia ja hiottuja tekniikkavinkkejä mm. olkapäille, räjähtäviin liikkeisiin ja liikkuvuuteen.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Ääniopasteet käyttävät parasta puhelimeesi asennettua ääntä.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Uusi käyttäjä aloittaa Treeni-näytöltä painikkeella ”Aloita ensimmäinen treeni” ja ”Ensimmäinen treeni” -taululla.",
+  "Bokiem": "Sivulle",
+  "Przodem": "Eteen",
+  "Naprzemiennie": "Vuorotellen",
+  "Pozycje na rysunku: {lista}": "Asennot kuvassa: {lista}"
+ }
+}

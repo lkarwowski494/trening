@@ -1,0 +1,149 @@
+{
+ "karty": {
+  "Bent Over Row (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie sztanga → linka potwierdzone",
+   "sha": "83160f950e31"
+  },
+  "Meadows Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; Generation Iron (autor ACSM CPT, data) — szczebel 4 (K3)",
+   "sha": "adefe11784b0"
+  },
+  "Standing Cable Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
+   "sha": "42d8d9fa1a34"
+  },
+  "Machine Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; Healthline z nazwanym recenzentem DPT — szczebel 4; mrow.setup bez wysokości uchwytów (część wspólna źródeł)",
+   "sha": "b027d28f1998"
+  },
+  "Single Arm Lat Pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; lpd.thighsOnly potwierdzone; uproszczenie oburącz → jednorącz potwierdzone",
+   "sha": "2e9c7470fe9e"
+  },
+  "Close-Grip Front Lat Pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: catalyst-861 (wąski chwyt) zamiast catalyst-725 — miejsca zgodne ze stroną",
+   "sha": "1e21937a5a34"
+  },
+  "Underhand Lat Pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; własne źródło ruchu podchwytem, ustawienie i błędy niezależne od chwytu",
+   "sha": "9ae90b1e6ea3"
+  },
+  "V-Bar Pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie drążek → uchwyt V potwierdzone",
+   "sha": "e571966124a6"
+  },
+  "Shrugs (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie sztanga/hantle → linka potwierdzone",
+   "sha": "2a27c76a6ad6"
+  },
+  "Barbell Shrug Behind The Back": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; fv-13180 szczebel 4 (K1); uproszczenie położenia gryfu potwierdzone",
+   "sha": "e5d7a98886ed",
+   "uwagi": "Niska, backlog: barbend-db-shrug — nagłówek wariantu „Behind-the-Back Shrug”."
+  },
+  "Leverage Shrug": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie maszyna → hantle potwierdzone",
+   "sha": "2e70f293d7f6"
+  },
+  "Zottman Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
+   "sha": "b53b6b02436b"
+  },
+  "Zottman Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; uproszczenie stojąc → modlitewnik (obrót dłoni ten sam) potwierdzone",
+   "sha": "96a105b33a89"
+  },
+  "External Rotation (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: rotator_cuff.erStartCable (wyciąg) zamiast erStart (guma); FV (Dr. Malik, MD, data) szczebel 4",
+   "sha": "ac32385ebf31"
+  },
+  "Band Pull Apart": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
+   "sha": "0e4e5181b837"
+  },
+  "Cuban Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A3",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; FV (Patrick Dale, PT, data) szczebel 4; uproszczenie sztanga → hantle potwierdzone",
+   "sha": "4f184a6c0be2"
+  }
+ }
+}
