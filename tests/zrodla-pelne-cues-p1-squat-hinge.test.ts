@@ -152,6 +152,7 @@ describe('P1 squat i hinge: poprawki rundy 2 recenzji niezależnej (badacz, 09.1
     }
     expect(refs('Back Squat', 'sq.bar')).toEqual(['ace-11', 'barbend-back-squat']);
     expect(refs('Back Squat', 'sq.back')).toEqual(['ace-11', 'barbend-back-squat', 'sbs-how-to-squat']);
+    expect(refs('Back Squat', 'sq.down')).toEqual(['ace-11', 'ace-135', 'barbend-back-squat']); /* 09.11.2026: ExRx → BarBend; „cofając biodra” — jedno źródło (ACE), otwarte */
   });
 });
 

@@ -775,7 +775,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Execution); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 3; Step 6 (ten sam wzorzec bez obciążenia)) `sq.down`
+- Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 3; Step 6 (ten sam wzorzec bez obciążenia)); BarBend: [How to Do the Back Squat (M. Dewar, CSCS; weryfikacja J. Dickson, USAW-L2)](https://barbend.com/back-squat/) (Step 5 („Squat down by unlocking your knees and hips simultaneously”; „push through the floor to stand back up”); Common Mistakes („body’s weight evenly-distributed across your whole foot”) (runda 2 recenzji niezależnej, 09.11.2026; „cofając biodra” — tylko ACE, otwarte)) `sq.down`
 
 **Wskazówki**
 
