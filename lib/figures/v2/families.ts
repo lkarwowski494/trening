@@ -38,7 +38,7 @@ export const FAMILIES: Family[] = [
   { id: 'leg_machine', status: 'planned', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side', 'front'], effort: 3 },
   { id: 'leg_isolation', status: 'planned', label: 'Prostowanie i uginanie nóg, nordic, sissy', views: ['side'], effort: 3 },
   { id: 'calf_raise', status: 'planned', label: 'Wspięcia na palce', views: ['side'], effort: 2 },
-  { id: 'hip_bridge', status: 'planned', label: 'Hip thrust i mostki', views: ['side'], effort: 3 },
+  { id: 'hip_bridge', status: 'ready', label: 'Hip thrust i mostki', views: ['side'], effort: 3 },
   { id: 'kb_ballistic', status: 'planned', label: 'Kettlebell: swing, clean, snatch, wyciskania balistyczne', views: ['side'], effort: 3 },
   { id: 'olympic', status: 'ready', label: 'Podrzut, rwanie i ich odmiany', views: ['side'], effort: 6 },
   { id: 'back_extension', status: 'planned', label: 'Prostowanie tułowia na ławce, reverse hyper', views: ['side'], effort: 2 },

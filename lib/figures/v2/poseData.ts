@@ -15,6 +15,7 @@ const LOAD: Record<string, () => PoseFile> = {
   curl: () => require('./poses/curl.json'),
   olympic: () => require('./poses/olympic.json'),
   triceps: () => require('./poses/triceps.json'),
+  hip_bridge: () => require('./poses/hip_bridge.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -71,6 +72,8 @@ export const DATA_UI: Record<string, DataUi> = {
         'Power Jerk', 'Split Jerk', 'Squat Jerk', 'Muscle Snatch', 'Clean and Jerk', 'Jerk Balance', 'Snatch Balance'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) } },
   triceps: { names: { first: 'Prostowanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
+  /* hip_bridge (09.11.2026): u = 0 miednica nisko (podłoga, ławka), u = 1 pełny wyprost bioder; unoszenie 1 s, opuszczanie 2 s; mierzone biodro */
+  hip_bridge: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true } } },
