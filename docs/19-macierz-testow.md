@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 359 | 359 | 0 |
 | TEKST | 1088 | 1088 | 0 |
 | LOGIKA | 1166 | 1166 | 0 |
-| WYMIAR | 182 | 182 | 0 |
+| WYMIAR | 183 | 182 | 0 |
 
 ## EKRAN
 
@@ -2755,6 +2755,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | CURL_TECHNIQUE (2) | lib/figures/v2/overlay/curl.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | HINGE_GUIDES (2) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka.test.tsx |
 | HINGE_TECHNIQUE (1) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka-squat-hinge.test.tsx |
+| KB_BALLISTIC_TECHNIQUE (2) | lib/figures/v2/overlay/kb_ballistic.ts | WYJĄTEK: BRAK |
 | OLYMPIC_HIP_EXERCISES (4) | lib/figures/v2/overlay/olympic.ts | tests/figures-v2-nakladka-triceps-olympic.test.tsx |
 | OLYMPIC_TECHNIQUE (4) | lib/figures/v2/overlay/olympic.ts | tests/figures-v2-nakladka-triceps-olympic.test.tsx |
 | PULL_UP_PLUMB_EXERCISES (2) | lib/figures/v2/overlay/pull_up.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |

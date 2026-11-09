@@ -16,6 +16,7 @@ const LOAD: Record<string, () => PoseFile> = {
   olympic: () => require('./poses/olympic.json'),
   triceps: () => require('./poses/triceps.json'),
   calf_raise: () => require('./poses/calf_raise.json'),
+  kb_ballistic: () => require('./poses/kb_ballistic.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -85,6 +86,9 @@ export const DATA_UI: Record<string, DataUi> = {
   /* calf_raise (09.11.2026): wspięcie na palce — u = 0 pięty na dole, u = 1 pięty w górze (1 s), opuszczanie 2 s. Mierzonym stawem byłaby kostka, ale MeasuredJoint jej nie ma (silnik, bez zmian w tej partii — zgłoszone w raporcie);
    * kandydat 'knee' (ruch kolana w wspięciu < 15°) powoduje, że linia „Kąt na rysunku” się nie pokazuje (MIN_MEASURED_ROM) — zamiast liczby, która nie jest ruchem wspięcia. */
   calf_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'] },
+  /* kb_ballistic (09.11.2026): u = 0 dół (zawias, zawis między nogami, rack przed wyrzutem) → u = 1 góra (swing: ręce przed sobą; zarzut: rack; rwanie i wyciskania: nad głową); powrót tą samą drogą (wahadło, petla bez wpisu).
+   * Mierzone biodro (swing, zarzut, rwanie napędza biodro) albo kolano (dip w push press i podrzucie) — pokazany jest staw, który rusza się najbardziej. */
+  kb_ballistic: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'] },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
