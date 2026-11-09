@@ -1,3 +1,4 @@
+// skanuje: tests
 /* L-103 (04.11.2026, koordynator 1.1): wybór testów czytających pliki przez fs (scripts/testy-dla-plikow.mjs) rozpoznaje też ścieżkę budowaną jako
    join(…, '<katalog>', <zmienna|szablon|konkatenacja>) — katalog jako osobny argument join, bez listowania (tests/figury-recenzja-p4a.test.ts:12 dla lib/figures/v2/poses/olympic.json).
    Strażnik na całym katalogu tests/: dla każdego testu z takim odczytem wybór dla istniejącego pliku z tego katalogu zawiera ten test (wyliczane z repo, bez listy ręcznej).

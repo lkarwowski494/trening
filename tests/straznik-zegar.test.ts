@@ -1,3 +1,4 @@
+// skanuje: tests
 /*
  * Strażnik zegara w testach (07-jakosc-001/-005, 01.11.2026; mechanizm, nie postanowienie). Dwie reguły dla plików tests/*.test.ts(x):
  *  (1) KALENDARZ NA PRAWDZIWYM ZEGARZE: test, który z bieżącej daty buduje daty kalendarza (new Date().getMonth()/getFullYear()/getDate()/getDay(), `const now|today = new Date()`),
