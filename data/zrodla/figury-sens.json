@@ -601,7 +601,13 @@
       "bledy_bez_animacji": {
         "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
       },
-      "warianty": {},
+      "warianty": {
+        "Zottman Curl": [
+          "lokiec_zgina_sie",
+          "lokiec_przy_tulowiu",
+          "tulow_nieruchomy"
+        ]
+      },
       "otwarte": {},
       "pomin": {}
     },

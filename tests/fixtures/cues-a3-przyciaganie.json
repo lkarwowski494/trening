@@ -1,0 +1,460 @@
+{
+ "_opis": "Partia A3 integracji badań (przyciąganie i ramiona: row, cable_row, pulldown, pull_up, shrug, back_extension, delt_raise, curl, triceps, rotator_cuff; linia 1.1, 09.11.2026): ćwiczenia z nowymi kartami własnymi, karty niepełne (partial), nowe zdania, zdania odrzucone (mniej niż dwie organizacje szczebla ≤ 4 — także błędy wnioskowane) i odwołania do źródeł szczebla 5 albo o nierozstrzygniętym szczeblu (usunięte z kart). Źródło: badania W1 (badania/g6-przyciaganie, g1-core, g2-mobilnosc — bloki po przeliczeniu szczebli; bloki „NIEAKTUALNY”, „warunkowo” i „wstrzymane” pominięte), W2 (badania/w2-przyciaganie, w2-ramiona, w2-core, w2-mobilnosc) i obowiązkowe 1.1 (badania/obowiazkowe-1-1: mieszane.md — Meadows Row, ramiona-ciagi.md — Single Arm Lat Pulldown) z 02.11.2026. Niewdrożone: karty bez ustawienia albo ruchu po odrzuceniu zdań (bezUstawieniaLubRuchu), karty bez błędu przy ćwiczeniu z pozami v2 (pominieteBezBledu — decyzja z 02.11.2026), karta wstrzymana do decyzji otwartej w badaniach (wstrzymane), ćwiczenia bez bloku w badaniach (otwarte: delt_raise 7, triceps 3, Barbell Rear Delt Row, Kneeling High Pulley Row, Leverage High Row, Sled Row, Full Range-Of-Motion Lat Pulldown, Calf-Machine Shoulder Shrug, Middle Back Shrug, Weighted Ball Hyperextension, Reverse Flyes With External Rotation, Muscle Up — blok W1 nieaktualny), role mięśni (12 — bez zmian w tej partii, powody w docs/18).",
+ "rodzina": "przyciąganie i ramiona",
+ "cwiczenia": [
+  "Bent Over Row (linki)",
+  "Meadows Row",
+  "Reverse Grip Bent Over Row",
+  "Standing Cable Row",
+  "Machine Row",
+  "Single Arm Lat Pulldown",
+  "Close-Grip Front Lat Pulldown",
+  "Underhand Lat Pulldown",
+  "V-Bar Pulldown",
+  "Shrugs (linki)",
+  "Barbell Shrug Behind The Back",
+  "Leverage Shrug",
+  "Zottman Curl",
+  "Zottman Preacher Curl",
+  "External Rotation (linki)",
+  "Band Pull Apart",
+  "Cuban Press"
+ ],
+ "partial": [
+  "Bent Over Row (linki)",
+  "Meadows Row",
+  "Reverse Grip Bent Over Row",
+  "Standing Cable Row",
+  "Machine Row",
+  "Single Arm Lat Pulldown",
+  "V-Bar Pulldown",
+  "Barbell Shrug Behind The Back",
+  "Leverage Shrug",
+  "Zottman Curl",
+  "Zottman Preacher Curl",
+  "Band Pull Apart",
+  "Cuban Press"
+ ],
+ "zdania": [
+  "curl2.zottSetup",
+  "lpd.mis.lean",
+  "lpd.mis.shrug",
+  "lpd.still",
+  "lpd.vbarPull",
+  "lpd.vbarSetup",
+  "lpd1.blade",
+  "lpd1.pull",
+  "lpd1.setup",
+  "meadows.pull",
+  "meadows.setup2",
+  "mrow.pull",
+  "mrow.setup",
+  "preacher.arms",
+  "rotator_cuff.cableSetup",
+  "rotator_cuff.cubanBlades",
+  "rotator_cuff.cubanPressUp",
+  "rotator_cuff.cubanRotate",
+  "rotator_cuff.cubanRow",
+  "rotator_cuff.cubanStand",
+  "rotator_cuff.mis.shrug",
+  "rotator_cuff.pullHold",
+  "rotator_cuff.pullMove",
+  "row.bbPullCtrl",
+  "row.cbPull",
+  "row.revGrip",
+  "scrow.mis.lean",
+  "scrow.pull",
+  "scrow.setup",
+  "shrug.mis.elbows",
+  "shrug.mis.roll",
+  "shrug.setupBehind",
+  "zottman.move"
+ ],
+ "odrzucone": [
+  [
+   "Seal Row (sztanga)",
+   "setup",
+   "seal.setup",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Seal Row (sztanga)",
+   "move",
+   "seal.pull",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Seal Row (sztanga)",
+   "tips",
+   "row.pauseTop",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Seal Row (sztanga)",
+   "mistakes",
+   "row.mis.chestOff",
+   []
+  ],
+  [
+   "Lying T-Bar Row",
+   "mistakes",
+   "row.mis.chestOff",
+   []
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "setup",
+   "smith.rowSetup",
+   []
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "setup",
+   "row.bbGrip",
+   []
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "move",
+   "row.bbPullCtrl",
+   []
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "tips",
+   "hinge.back",
+   []
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "tips",
+   "row.elbowsLead",
+   []
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "setup",
+   "rdcr.setup",
+   []
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "move",
+   "rdcr.pull",
+   []
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "mistakes",
+   "rdcr.mis.elbowsIn",
+   []
+  ],
+  [
+   "Close-Grip Front Lat Pulldown",
+   "mistakes",
+   "lpd.mis.thighs",
+   []
+  ],
+  [
+   "Underhand Lat Pulldown",
+   "mistakes",
+   "lpd.mis.thighs",
+   []
+  ],
+  [
+   "Rope Climb",
+   "setup",
+   "rope.lock",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Rope Climb",
+   "move",
+   "rope.legs",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Rope Climb",
+   "move",
+   "rope.rewrap",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Rope Climb",
+   "mistakes",
+   "rope.mis.arms",
+   []
+  ],
+  [
+   "Barbell Shrug Behind The Back",
+   "mistakes",
+   "shrug.mis.elbows",
+   []
+  ],
+  [
+   "Smith Machine Behind the Back Shrug",
+   "mistakes",
+   "shrug.mis.elbows",
+   []
+  ],
+  [
+   "Lower Back Curl",
+   "move",
+   "lbc.move",
+   []
+  ],
+  [
+   "Lower Back Curl",
+   "tips",
+   "lbc.neck",
+   []
+  ],
+  [
+   "Lower Back Curl",
+   "mistakes",
+   "lbc.mis.headUp",
+   []
+  ],
+  [
+   "Lower Back Curl",
+   "mistakes",
+   "lbc.mis.tooHigh",
+   []
+  ],
+  [
+   "Zottman Curl",
+   "mistakes",
+   "curl2.mis.zottNoTurn",
+   []
+  ],
+  [
+   "Zottman Preacher Curl",
+   "mistakes",
+   "curl2.mis.preacherLift",
+   []
+  ],
+  [
+   "Zottman Preacher Curl",
+   "mistakes",
+   "curl2.mis.zottNoTurn",
+   []
+  ],
+  [
+   "External Rotation (linki)",
+   "mistakes",
+   "rotator_cuff.mis.elbowOpens",
+   []
+  ],
+  [
+   "Band Pull Apart",
+   "mistakes",
+   "rotator_cuff.mis.handsDrop",
+   []
+  ],
+  [
+   "Cuban Press",
+   "mistakes",
+   "rotator_cuff.mis.elbowsDrop",
+   []
+  ],
+  [
+   "Cable Internal Rotation",
+   "mistakes",
+   "rot.mis.elbowAway",
+   []
+  ],
+  [
+   "Cable Internal Rotation",
+   "mistakes",
+   "rotator_cuff.mis.elbowOpens",
+   []
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Seal Row (sztanga)",
+   "seal.setup",
+   "bellsofsteel-seal-row"
+  ],
+  [
+   "Seal Row (sztanga)",
+   "seal.pull",
+   "bellsofsteel-seal-row"
+  ],
+  [
+   "Seal Row (sztanga)",
+   "row.pauseTop",
+   "bellsofsteel-seal-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "smith.rowSetup",
+   "majorfitness-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "smith.rowSetup",
+   "ritfit-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "row.bbGrip",
+   "majorfitness-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "row.bbGrip",
+   "ritfit-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "row.bbPullCtrl",
+   "ritfit-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "row.bbPullCtrl",
+   "majorfitness-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "hinge.back",
+   "majorfitness-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "hinge.back",
+   "ritfit-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "row.elbowsLead",
+   "majorfitness-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "row.elbowsLead",
+   "ritfit-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "mis.roundBack",
+   "majorfitness-smith-row"
+  ],
+  [
+   "Smith Machine Bent Over Row",
+   "mis.roundBack",
+   "ritfit-smith-row"
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "rdcr.setup",
+   "majorfitness-cable-rear-delt-row"
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "rdcr.setup",
+   "bellsofsteel-rear-delt-cable"
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "rdcr.setup",
+   "fitnessvolt-cable-rear-delt-row-rope"
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "rdcr.pull",
+   "majorfitness-cable-rear-delt-row"
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "rdcr.pull",
+   "bellsofsteel-rear-delt-cable"
+  ],
+  [
+   "Cable Rope Rear-Delt Rows",
+   "rdcr.pull",
+   "fitnessvolt-cable-rear-delt-row-rope"
+  ],
+  [
+   "Rope Climb",
+   "rope.lock",
+   "rxsg-rope-foot-locks"
+  ],
+  [
+   "Rope Climb",
+   "rope.legs",
+   "rxsg-rope-foot-locks"
+  ],
+  [
+   "Rope Climb",
+   "rope.rewrap",
+   "rxsg-rope-foot-locks"
+  ]
+ ],
+ "bezUstawieniaLubRuchu": [
+  "Seal Row (sztanga)",
+  "Smith Machine Bent Over Row",
+  "Cable Rope Rear-Delt Rows",
+  "Rope Climb",
+  "Reverse Hyperextension",
+  "Lower Back Curl"
+ ],
+ "pominieteBezBledu": [
+  "Lying T-Bar Row",
+  "Smith Machine Behind the Back Shrug",
+  "Cable Internal Rotation"
+ ],
+ "wstrzymane": [
+  [
+   "Single Arm Cable Row",
+   "decyzja 4 W2 G6 otwarta: czy krótka wzmianka o wersji jednorącz (Healthline) wystarcza jako drugie źródło ustawienia i ruchu"
+  ]
+ ],
+ "konfliktPozy": [],
+ "noweZrodla": [
+  "ace-335",
+  "ace-352",
+  "barbend-db-shrug",
+  "barbend-unilateral",
+  "catalyst-725",
+  "catalyst-861",
+  "catalyst-876",
+  "catalyst-889",
+  "catalyst-895",
+  "catalyst-915",
+  "catalyst-reverse-grip-bent-row",
+  "fitnessvolt-cable-standing-row",
+  "fitnessvolt-reverse-grip-row",
+  "fv-13180",
+  "fv-barbell-shrugs",
+  "generationiron-meadows-row",
+  "healthline-seated-row",
+  "healthwise-kaiser-band-exercises",
+  "issa-12-curls",
+  "nasm-lpd-biomech",
+  "w2g2-rc-barbend-cuban",
+  "w2g2-rc-catalyst-pullapart",
+  "w2g2-rc-fv-cable-er",
+  "w2g2-rc-fv-cuban",
+  "w2g2-rc-throwers10"
+ ]
+}

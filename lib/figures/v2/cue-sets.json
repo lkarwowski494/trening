@@ -157,15 +157,7 @@
       "b": "own"
     },
     "Band Pull Apart": {
-      "b": "general",
-      "f": "raiseRear",
-      "ok": [
-        "rear.elbows",
-        "rear.arms"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Band Shoulder Press": {
       "b": "own"
@@ -273,15 +265,7 @@
       "b": "own"
     },
     "Barbell Shrug Behind The Back": {
-      "b": "general",
-      "f": "shrug",
-      "ok": [
-        "shrug.move",
-        "shrug.tall"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Barbell Side Bend": {
       "b": "general",
@@ -417,16 +401,7 @@
       "b": "own"
     },
     "Bent Over Row (linki)": {
-      "b": "general",
-      "f": "rowBent",
-      "ok": [
-        "row.hinge",
-        "hinge.back",
-        "row.fullStretch"
-      ],
-      "err": [
-        "mis.roundBack"
-      ]
+      "b": "own"
     },
     "Bent Over Row (sztanga)": {
       "b": "own"
@@ -1043,16 +1018,7 @@
       ]
     },
     "Close-Grip Front Lat Pulldown": {
-      "b": "general",
-      "f": "vpull",
-      "ok": [
-        "pu.shoulders",
-        "lpd.toChest",
-        "lpd.fullStretch"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Close-Grip Push-Up": {
       "b": "general",
@@ -1180,7 +1146,7 @@
       ]
     },
     "Cuban Press": {
-      "b": "open"
+      "b": "own"
     },
     "Curtsy Lunge": {
       "b": "general",
@@ -1607,15 +1573,7 @@
       "b": "own"
     },
     "External Rotation (linki)": {
-      "b": "general",
-      "f": "rotCuff",
-      "ok": [
-        "rot.elbow",
-        "rot.slow"
-      ],
-      "err": [
-        "rot.mis.elbowAway"
-      ]
+      "b": "own"
     },
     "External Rotation with Band": {
       "b": "own"
@@ -2586,15 +2544,7 @@
       ]
     },
     "Leverage Shrug": {
-      "b": "general",
-      "f": "shrug",
-      "ok": [
-        "shrug.move",
-        "shrug.tall"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Log Lift": {
       "b": "open"
@@ -2795,16 +2745,7 @@
       "b": "open"
     },
     "Machine Row": {
-      "b": "general",
-      "f": "row",
-      "ok": [
-        "scr.chest",
-        "row.fullStretch",
-        "scr.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Machine Shoulder Press": {
       "b": "own"
@@ -2821,16 +2762,7 @@
       ]
     },
     "Meadows Row": {
-      "b": "general",
-      "f": "rowBent",
-      "ok": [
-        "row.hinge",
-        "hinge.back",
-        "row.fullStretch"
-      ],
-      "err": [
-        "mis.roundBack"
-      ]
+      "b": "own"
     },
     "Medicine Ball Chest Pass": {
       "b": "own"
@@ -3614,16 +3546,7 @@
       ]
     },
     "Reverse Grip Bent Over Row": {
-      "b": "general",
-      "f": "rowBent",
-      "ok": [
-        "row.hinge",
-        "hinge.back",
-        "row.fullStretch"
-      ],
-      "err": [
-        "mis.roundBack"
-      ]
+      "b": "own"
     },
     "Reverse Grip Triceps Pushdown": {
       "b": "own"
@@ -3918,15 +3841,7 @@
       "b": "own"
     },
     "Shrugs (linki)": {
-      "b": "general",
-      "f": "shrug",
-      "ok": [
-        "shrug.move",
-        "shrug.tall"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Shrugs (sztanga)": {
       "b": "own"
@@ -4035,16 +3950,7 @@
       ]
     },
     "Single Arm Lat Pulldown": {
-      "b": "general",
-      "f": "vpull",
-      "ok": [
-        "pu.shoulders",
-        "pu.elbowsDown",
-        "lpd.fullStretch"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Single Arm Overhead Press (hantel)": {
       "b": "own"
@@ -4705,16 +4611,7 @@
       ]
     },
     "Standing Cable Row": {
-      "b": "general",
-      "f": "row",
-      "ok": [
-        "scr.chest",
-        "row.fullStretch",
-        "scr.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Standing Calf Raise": {
       "b": "own"
@@ -5160,16 +5057,7 @@
       "b": "own"
     },
     "Underhand Lat Pulldown": {
-      "b": "general",
-      "f": "vpull",
-      "ok": [
-        "pu.shoulders",
-        "lpd.toChest",
-        "lpd.fullStretch"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Upper Back Stretch": {
       "b": "general",
@@ -5193,16 +5081,7 @@
       "b": "own"
     },
     "V-Bar Pulldown": {
-      "b": "general",
-      "f": "vpull",
-      "ok": [
-        "pu.shoulders",
-        "lpd.toChest",
-        "lpd.fullStretch"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "V-Up": {
       "b": "general",
@@ -5390,28 +5269,10 @@
       ]
     },
     "Zottman Curl": {
-      "b": "general",
-      "f": "curl",
-      "ok": [
-        "curl.elbows",
-        "curl.noSwing",
-        "curl.control"
-      ],
-      "err": [
-        "curl.mis.elbows"
-      ]
+      "b": "own"
     },
     "Zottman Preacher Curl": {
-      "b": "general",
-      "f": "curl",
-      "ok": [
-        "preacher.setup",
-        "preacher.range",
-        "curl.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     }
   }
 }
