@@ -13,21 +13,21 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
-| Figura v2 w aplikacji (rodzina gotowa) | 198 | 28% |
-| Figura v1 w aplikacji (bez v2) | 41 | 5,8% |
-| Bez figury w aplikacji | 469 | 66,2% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 335 | 47,3% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 160 | 22,6% |
-| Animowany błąd | 131 | 18,5% |
+| Figura v2 w aplikacji (rodzina gotowa) | 208 | 29,4% |
+| Figura v1 w aplikacji (bez v2) | 40 | 5,6% |
+| Bez figury w aplikacji | 460 | 65% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 325 | 45,9% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 158 | 22,3% |
+| Animowany błąd | 137 | 19,4% |
 | Własne wskazówki (źródłowe) | 265 | 37,4% |
 | — z czego z częstymi błędami | 157 | 22,2% |
-| Zestaw ogólny wskazówek wzorca ruchu | 114 | 16,1% |
-| Bez tekstu wskazówek | 329 | 46,5% |
-| Częste błędy (własne albo zestaw ogólny) | 271 | 38,3% |
+| Zestaw ogólny wskazówek wzorca ruchu | 121 | 17,1% |
+| Bez tekstu wskazówek | 322 | 45,5% |
+| Częste błędy (własne albo zestaw ogólny) | 278 | 39,3% |
 | Role mięśni | 513 | 72,5% |
-| **Pełna karta** | 194 | 27,4% |
-| **Pełna karta + błąd** | 129 | 18,2% |
-| Figura z aktualną recenzją ruchu (bramka 4) | 198 | 28% |
+| **Pełna karta** | 204 | 28,8% |
+| **Pełna karta + błąd** | 135 | 19,1% |
+| Figura z aktualną recenzją ruchu (bramka 4) | 208 | 29,4% |
 
 ## Cele wersji
 
@@ -41,17 +41,17 @@ Cel osiągnięty: **nie** (1 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 533 | 198 | 335 |
-| figura w aplikacji (v2 albo v1) | 535 | 239 | 296 |
+| figura v2 w aplikacji | 533 | 208 | 325 |
+| figura w aplikacji (v2 albo v1) | 535 | 248 | 287 |
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 535 | 533 | 2 |
-| animowany błąd | 264 | 131 | 133 |
+| animowany błąd | 264 | 137 | 127 |
 | własne wskazówki | 285 | 265 | 20 |
 | własne wskazówki z częstymi błędami | 176 | 157 | 19 |
-| wskazówki (własne lub zestaw ogólny) | 572 | 379 | 193 |
-| częste błędy (tekst) | 451 | 271 | 180 |
+| wskazówki (własne lub zestaw ogólny) | 572 | 386 | 186 |
+| częste błędy (tekst) | 451 | 278 | 173 |
 | role mięśni | 516 | 513 | 3 |
-| pełna karta | 457 | 194 | 263 |
-| figura z aktualną recenzją ruchu | 533 | 198 | 335 |
+| pełna karta | 457 | 204 | 253 |
+| figura z aktualną recenzją ruchu | 533 | 208 | 325 |
 | komplet tekstów karty: pl | 631 | 578 | 53 |
 | komplet tekstów karty: en | 631 | 578 | 53 |
 | komplet tekstów karty: cs | 631 | 578 | 53 |
@@ -120,8 +120,8 @@ Cel osiągnięty: **nie** (1 z 47 liczb).
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 5 | 0 | 5 | 0 | 0 |
 | `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 8 | 0 | 2 | 0 | 0 |
 | `strongman` | do zrobienia | 10 | 0 | 1 | 0 | 0 | 0 | 10 | 0 | 0 |
-| `hip_abd_add` | gotowa | 8 | 0 | 4 | 0 | 1 | 0 | 7 | 0 | 0 |
-| `leg_machine` | gotowa | 8 | 0 | 6 | 2 | 4 | 0 | 4 | 0 | 0 |
+| `hip_abd_add` | gotowa | 8 | 4 | 0 | 0 | 1 | 4 | 3 | 4 | 4 |
+| `leg_machine` | gotowa | 8 | 6 | 0 | 1 | 4 | 3 | 1 | 6 | 6 |
 | `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 6 | 0 | 2 | 0 | 0 |
 | `shrug` | gotowa | 8 | 8 | 0 | 0 | 5 | 3 | 0 | 7 | 8 |
 | `carry` | do zrobienia | 7 | 0 | 7 | 0 | 2 | 0 | 5 | 0 | 0 |
@@ -180,14 +180,14 @@ Kart z tekstami (wskazówki albo role mięśni): **578**. „Komplet” = karta 
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 194 (z błędem: 129). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 204 (z błędem: 135). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: figura v2 w aplikacji — 152
+- Brakuje tylko: figura v2 w aplikacji — 149
 - Brakuje tylko: role mięśni — 4: Jerk Balance, Middle Back Shrug, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 194 |
-| 1 | 156 |
-| 2 | 264 |
+| 0 | 204 |
+| 1 | 153 |
+| 2 | 257 |
 | 3 | 94 |
