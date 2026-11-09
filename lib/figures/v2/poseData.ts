@@ -17,6 +17,7 @@ const LOAD: Record<string, () => PoseFile> = {
   triceps: () => require('./poses/triceps.json'),
   pulldown: () => require('./poses/pulldown.json'),
   shrug: () => require('./poses/shrug.json'),
+  hip_abd_add: () => require('./poses/hip_abd_add.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -76,6 +77,11 @@ export const DATA_UI: Record<string, DataUi> = {
   /* pulldown (partia 3, 09.11.2026): u = 0 ręce w górze (rozciągnięcie), u = 1 drążek przy górnej klatce — ściąganie 1 s, powrót 2 s (tempo ilustracyjne, anim.ts); Straight Arm Pulldown: łokieć prosty, rusza się bark */
   pulldown: { names: { first: 'Ściąganie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'],
     exceptions: { 'Straight Arm Pulldown': { joints: ['shElev'] } } },
+  /* hip_abd_add (partia 3, 09.11.2026): u = 0 start, u = 1 noga(i) odwiedzione / przywiedzione; wysiłek 1 s, powrót 2 s. Kąt ukryty we wszystkich ćwiczeniach: jedyny staw biodra w silniku
+   * („hip”) nazywa się w podpisie „zgięcie biodra”, a ruch tej rodziny to odwodzenie/przywodzenie — podpis byłby nieprawdziwy (brak stawu „odwiedzenie biodra” w MeasuredJoint). */
+  hip_abd_add: { names: { first: 'Rozsuwanie', second: 'Powrót' }, lowerFirst: false, joints: ['hip'],
+    exceptions: { 'Hip Abduction': { hideAngle: true }, 'Cable Hip Abduction': { hideAngle: true }, 'Lateral Band Walk': { hideAngle: true }, 'Monster Walk': { hideAngle: true },
+      'Hip Adduction': { hideAngle: true, names: { first: 'Ściąganie', second: 'Powrót' } }, 'Cable Hip Adduction': { hideAngle: true, names: { first: 'Ściąganie', second: 'Powrót' } } } },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true } } },
