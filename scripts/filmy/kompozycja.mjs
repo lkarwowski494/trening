@@ -6,7 +6,8 @@
 //  - nazwa ćwiczenia od 0 s: angielska + lokalna pod nią (lokalna tylko po recenzji nazw, ZB-044);
 //  - logo i podpis „Animacja: aplikacja …” na ostatnich ok. 1,5 s animacji, bez zachęty „pobierz” i bez „apps4brew”.
 //  - format 8 s (właściciel 09.11.2026, A): jedno powtórzenie z błędem, jedno poprawne; po przejściu do poprawnego ruchu w miejscu haka ikona, pełna nazwa ze sklepu i „App Store”
-//    (nazwa_w_haku), podpis „Animacja: …” pod napisem; osobna plansza końcowa tylko przy koniec_s > 0.
+//    (nazwa_w_haku), bez podpisu „Animacja: …” (09.11.2026: nazwa już na ekranie, podpis wchodził pod opis filmu); osobna plansza końcowa tylko przy koniec_s > 0;
+//  - pas treści 60–880 px (pas_x) poza kolumną przycisków; inny hak tylko jako wariant z hak_warianty (hak_wariant) — 09.11.2026.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -70,6 +71,7 @@ export function problemyFilmu(film, lang, cfg, v2, dane) {
   if ('haki' in film) p.push('pole „haki” niedozwolone — jeden hak dla wszystkich filmów w „hak” konfiguracji (właściciel 08.11.2026 ~22:45)');
   if (lang !== 'pl' && /[ąćęłńóśźż]|\((sztanga|hantle|linki|dwie linki|maszyna|wyciąg)\)/i.test(dane.nazwaCwiczenia(film.cwiczenie, lang))) p.push(`nazwa „${dane.nazwaCwiczenia(film.cwiczenie, lang)}” nie jest nazwą angielską z lib/nazwy-en.generated.ts — film „${lang}” pokazałby polski dopisek`);
   if (!cfg.hak?.[lang]?.tekst) p.push(`brak wspólnego haka w języku „${lang}”`);
+  if (film.hak_wariant !== undefined && !cfg.hak_warianty?.[film.hak_wariant]?.[lang]?.tekst) p.push(`brak wariantu haka „${film.hak_wariant}” w języku „${lang}” (hak_warianty w filmy.json)`);
   if (!cfg.teksty?.[lang]) p.push(`brak tekstów stałych (podpis, Błąd, Poprawnie) w języku „${lang}”`);
   if (!dane.storeName(lang)) p.push(`brak nazwy aplikacji dla „${lang}” w store/app-store-names.json`);
   return p;
@@ -116,7 +118,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 /** Teksty filmu w języku — wszystkie z danych (hak z filmy.json, wskazówki z lib/cues/text, nazwa aplikacji ze sklepu). */
 export function tekstyFilmu(film, lang, cfg, dane) {
   const t = cfg.teksty[lang]; const cue = dane.cueText(lang); const app = dane.appName(lang);
-  return { hak: cfg.hak[lang].tekst, nazwa: dane.nazwaCwiczenia(film.cwiczenie, lang), nazwaLokalna: film.nazwa_lokalna?.[lang] ?? '', blad: cue[film.wskazowka_bledu], poprawnie: cue[film.wskazowka_poprawna],
+  return { hak: (film.hak_wariant ? cfg.hak_warianty[film.hak_wariant] : cfg.hak)[lang].tekst, nazwa: dane.nazwaCwiczenia(film.cwiczenie, lang), nazwaLokalna: film.nazwa_lokalna?.[lang] ?? '', blad: cue[film.wskazowka_bledu], poprawnie: cue[film.wskazowka_poprawna],
     etykietaBlad: t.blad, etykietaOk: t.poprawnie, podpis: t.podpis.replace('{app}', app), app, nazwaSklepu: dane.storeName(lang), sklep: 'App Store' };
 }
 
@@ -124,26 +126,27 @@ export function tekstyFilmu(film, lang, cfg, dane) {
 export function htmlStrony(tx, tokens, d, ikonaDataUri, fontDataUri) {
   const c = tokens[d.motyw];
   /* pionowe położenie napisów (właściciel 09.11.2026: górne niżej, dolne wyżej — poza paskami interfejsu aplikacji wideo); domyślne = układ z 08.11.2026 */
-  const y = { hak: 140, nazwa: 430, pasek: 1430, podpis: 1800, ...d.teksty_y };
+  const y = { hak: 140, nazwa: 430, pasek: 1430, ...d.teksty_y };
+  /* pas treści w poziomie (właściciel 09.11.2026, A): poza obciętymi bokami i kolumną przycisków aplikacji wideo — pomiar na zrzutach właściciela; domyślnie 70 px z obu stron */
+  const [px0, px1] = d.pas_x ?? [70, d.szerokosc - 70]; const pas = `left:${px0}px;right:${d.szerokosc - px1}px;`;
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Barlow;src:url(${fontDataUri});font-weight:700}
 *{margin:0;box-sizing:border-box}
 body{width:${d.szerokosc}px;height:${d.wysokosc}px;overflow:hidden;background:${c.bg};color:${c.text};font-family:Barlow,sans-serif;font-weight:700;position:relative}
-.hak{position:absolute;top:${y.hak}px;left:70px;right:70px;font-size:76px;line-height:1.08;text-align:center}
-.hak-app{display:none;flex-direction:row;align-items:center;justify-content:center;gap:28px}
-.hak-app img{width:150px;height:150px;border-radius:34px}
-.hak-app .hak-nazwa{font-size:66px;line-height:1.04;text-align:left}
-.hak-app .hak-sklep{font-size:48px;color:${c.accent};margin-top:6px;text-align:left}
-.podpis-dol{position:absolute;left:0;right:0;top:${y.podpis}px;font-size:34px;color:${c.muted};text-align:center;display:none}
-${d.nazwa_w_haku ? 'body.poprawnie .hak-tekst{display:none} body.poprawnie .hak-app{display:flex} body.poprawnie .podpis-dol{display:block}' : ''}
-.nazwa{position:absolute;top:${y.nazwa}px;left:70px;right:70px;text-align:center}
+.hak{position:absolute;top:${y.hak}px;${pas}font-size:76px;line-height:1.08;text-align:center}
+.hak-app{display:none;flex-direction:row;align-items:center;justify-content:center;gap:22px}
+.hak-app img{width:120px;height:120px;border-radius:27px}
+.hak-app .hak-nazwa{font-size:56px;line-height:1.04;text-align:left}
+.hak-app .hak-sklep{font-size:42px;color:${c.accent};margin-top:6px;text-align:left}
+${d.nazwa_w_haku ? 'body.poprawnie .hak-tekst{display:none} body.poprawnie .hak-app{display:flex}' : ''}
+.nazwa{position:absolute;top:${y.nazwa}px;${pas}text-align:center}
 .nazwa .en{font-size:64px;color:${c.accent};letter-spacing:.5px}
 .nazwa .lok{font-size:44px;color:${c.muted};margin-top:6px}
 #fig{position:absolute;top:${d.rysunek.top}px;left:${d.rysunek.left}px;width:${d.rysunek.w}px;height:${d.rysunek.h}px}
 #fig img{position:absolute}
 #fig .wyroz{position:absolute;border-radius:50%;border:8px solid;box-shadow:0 0 0 6px ${c.bg}}
 #fig .wyroz.err{border-color:${c.danger}} #fig .wyroz.ok{border-color:${c.doneLine}}
-.pasek{position:absolute;top:${y.pasek}px;left:70px;right:70px;font-size:52px;line-height:1.12;text-align:center}
+.pasek{position:absolute;top:${y.pasek}px;${pas}font-size:52px;line-height:1.12;text-align:center}
 .pasek .znak{display:inline-block;margin-right:14px}
 .pasek.b{color:${c.danger}} .pasek.ok{color:${c.doneLine}}
 body.blad .pasek.ok,body.poprawnie .pasek.b,body:not(.napis) .pasek{display:none}
@@ -159,8 +162,7 @@ body.na-koncu .koniec{display:flex} body.na-koncu .pasek{display:none}
 <div id="fig"></div>
 <div class="pasek b"><span class="znak">✕</span>${esc(tx.etykietaBlad)}: ${esc(tx.blad)}</div>
 <div class="pasek ok"><span class="znak">✓</span>${esc(tx.etykietaOk)}: ${esc(tx.poprawnie)}</div>
-<div class="koniec"><img src="${ikonaDataUri}" alt=""><div class="sklep-nazwa">${esc(tx.nazwaSklepu)}</div><div class="sklep">${esc(tx.sklep)}</div><div class="podpis">${esc(tx.podpis)}</div></div>
-<div class="podpis-dol">${esc(tx.podpis)}</div>
+${d.koniec_s > 0 ? `<div class="koniec"><img src="${ikonaDataUri}" alt=""><div class="sklep-nazwa">${esc(tx.nazwaSklepu)}</div><div class="sklep">${esc(tx.sklep)}</div><div class="podpis">${esc(tx.podpis)}</div></div>` : ''}
 <script>${ukladKlatki.toString()}</script>
 </body></html>`;
 }

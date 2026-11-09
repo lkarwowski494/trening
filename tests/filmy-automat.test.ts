@@ -65,14 +65,31 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(run(['--film', FILM.id, '--jezyk', 'en', '--strona', String(p.klatek - 1)]).stdout).toContain('<body class="poprawnie napis">');
   });
 
+  test('pas treści 60–880 px poza kolumną przycisków aplikacji wideo i bez podpisu „Animacja: …” (właściciel 09.11.2026, A, A)', () => {
+    const d = CFG.domyslne; expect(d.pas_x).toEqual([60, 880]);
+    expect(d.rysunek.left).toBe(60); expect(d.rysunek.left + d.rysunek.w).toBe(880);
+    const html = run(['--film', FILM.id, '--jezyk', 'en', '--strona', '0']).stdout;
+    for (const k of ['hak', 'nazwa', 'pasek']) expect(html).toMatch(new RegExp(`\\.${k}\\{position:absolute;top:\\d+px;left:60px;right:200px;`));
+    expect(html).not.toContain('podpis-dol');
+    expect(html).not.toMatch(/Animation: |Animacja: /);
+  });
+
+  test('wariant haka per film (właściciel 09.11.2026: inny hak, żeby film nie był duplikatem): „hak_wariant” z „hak_warianty”, nieznany wariant — odmowa', () => {
+    const f = CFG.filmy.find((x: { hak_wariant?: string }) => x.hak_wariant === 'popularny-blad');
+    expect(f).toBeDefined(); expect(f.cwiczenie).toBe('Back Squat');
+    expect(CFG.hak_warianty['popularny-blad'].en.tekst).toBe('Do you know this popular mistake?');
+    const r7 = run(['--film', f.id, '--plan']); expect(r7.status).toBe(0);
+    expect(JSON.parse(r7.stdout)[0].teksty.hak).toBe('Do you know this popular mistake?');
+    expect(zKonfigiem([{ ...FILM, id: 'zly-wariant', hak_wariant: 'brak' }]).stderr).toMatch(/zly-wariant \[pl\]: brak wariantu haka „brak”/);
+  });
+
   test('położenie napisów z filmy.json (właściciel 09.11.2026: górne niżej, dolne wyżej niż w układzie z 08.11.2026)', () => {
     const y = CFG.domyslne.teksty_y;
-    expect(y.hak).toBeGreaterThan(140); expect(y.nazwa).toBeGreaterThan(430); expect(y.pasek).toBeLessThan(1430); expect(y.podpis).toBeLessThan(1800);
+    expect(y.hak).toBeGreaterThan(140); expect(y.nazwa).toBeGreaterThan(430); expect(y.pasek).toBeLessThan(1430);
     const html = run(['--film', FILM.id, '--jezyk', 'en', '--strona', '0']).stdout;
     expect(html).toContain(`.hak{position:absolute;top:${y.hak}px;`);
     expect(html).toContain(`.nazwa{position:absolute;top:${y.nazwa}px;`);
     expect(html).toContain(`.pasek{position:absolute;top:${y.pasek}px;`);
-    expect(html).toContain(`.podpis-dol{position:absolute;left:0;right:0;top:${y.podpis}px;`);
   });
 
   test('wszystkie widoki ćwiczenia (profil i przód — właściciel 08.11.2026), bez pola „widoki” w definicji', () => {
@@ -138,7 +155,7 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     const r4 = run(['--wszystkie', '--plan']); expect(r4.status).toBe(0);
     const p4 = JSON.parse(r4.stdout);
     expect(p4.length).toBe(CFG.filmy.length);
-    for (const x of p4) { expect(x.teksty.hak).toBe(CFG.hak.en.tekst); expect(x.teksty.nazwa).not.toMatch(/\(|sztanga|hantle|linki/); }
+    for (const x of p4) { const w = CFG.filmy.find((f: { id: string }) => f.id === x.film).hak_wariant; expect(x.teksty.hak).toBe(w ? CFG.hak_warianty[w].en.tekst : CFG.hak.en.tekst); expect(x.teksty.nazwa).not.toMatch(/\(|sztanga|hantle|linki/); }
     expect(zKonfigiem([{ ...FILM, id: 'wlasny-hak', haki: { en: { tekst: 'x' } } }]).stderr).toMatch(/wlasny-hak \[en\]: pole „haki” niedozwolone/);
   });
 

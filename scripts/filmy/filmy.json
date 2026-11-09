@@ -7,12 +7,15 @@
     "blad_do_s": 4.0,
     "koniec_s": 0,
     "nazwa_w_haku": true,
+    "pas_x": [
+      60,
+      880
+    ],
     "pauza_bledu_s": 1.0,
     "teksty_y": {
       "hak": 240,
       "nazwa": 530,
-      "pasek": 1380,
-      "podpis": 1620
+      "pasek": 1380
     },
     "motyw": "dark",
     "szerokosc": 1080,
@@ -20,8 +23,8 @@
     "uklad": "poziom",
     "rysunek": {
       "top": 600,
-      "left": 30,
-      "w": 1020,
+      "left": 60,
+      "w": 820,
       "h": 800
     },
     "skala_web": 4,
@@ -47,7 +50,7 @@
     "en": "do przeglądu — brzmienie agenta, 08.11.2026"
   },
   "hak": {
-    "_opis": "Jeden hak dla wszystkich filmów, pod nim nazwa ćwiczenia (właściciel 08.11.2026 ~22:45: „Wszędzie ma być taki sam”). Pole „haki” w definicji filmu niedozwolone.",
+    "_opis": "Jeden hak dla wszystkich filmów, pod nim nazwa ćwiczenia (właściciel 08.11.2026 ~22:45: „Wszędzie ma być taki sam”). Pole „haki” w definicji filmu niedozwolone; inny hak tylko jako nazwany wariant z „hak_warianty” (pole filmu „hak_wariant”, właściciel 09.11.2026).",
     "en": {
       "tekst": "Been training for years but not sure your technique is right?",
       "stan": "publikuje właściciel bez przeglądu (08.11.2026 ~22:20)"
@@ -55,6 +58,19 @@
     "pl": {
       "tekst": "Ćwiczysz od dawna, ale nie masz pewności, czy technika jest poprawna?",
       "stan": "zatwierdzony — właściciel 07.11.2026 (hak 1)"
+    }
+  },
+  "hak_warianty": {
+    "_opis": "Warianty haka dla kolejnych filmów tego samego ćwiczenia (właściciel 09.11.2026: inny hak, żeby film nie był uznany za duplikat). Brzmienie właściciela.",
+    "popularny-blad": {
+      "en": {
+        "tekst": "Do you know this popular mistake?",
+        "stan": "brzmienie właściciela (09.11.2026)"
+      },
+      "pl": {
+        "tekst": "Znasz ten popularny błąd?",
+        "stan": "podgląd"
+      }
     }
   },
   "filmy": [
@@ -65,6 +81,15 @@
       "wskazowka_bledu": "sq.mis.kneesIn",
       "wskazowka_poprawna": "sq.kneesToes",
       "nazwa_lokalna": {}
+    },
+    {
+      "id": "technika-back-squat-kolana-hak2",
+      "cwiczenie": "Back Squat",
+      "blad": "kneesIn",
+      "wskazowka_bledu": "sq.mis.kneesIn",
+      "wskazowka_poprawna": "sq.kneesToes",
+      "nazwa_lokalna": {},
+      "hak_wariant": "popularny-blad"
     },
     {
       "id": "technika-barbell-curl-lokcie",
