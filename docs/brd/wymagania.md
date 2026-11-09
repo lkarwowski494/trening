@@ -482,6 +482,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie z hantlami (np. Hammer Curl) albo ze sztangą łamaną ma rysunek v2 z aktualną recenzją niezależną
     - Gdy rysunek odtwarza ruch
     - Wtedy oś hantla wynika z obrotu przedramienia (przy chwycie neutralnym leży w płaszczyźnie przód–tył i jest prostopadła do przedramienia — z boku widać poprzeczkę z dwiema główkami, z przodu hantel wzdłuż osi bez poprzeczki w poprzek ciała), ślad toru ciężaru trzymanego w dłoni leży w chwycie (przy dwóch rękach w środku między chwytami, nie w miednicy), a talerze gryfu łamanego stoją na końcach gryfu
+  - Scenariusz: Nakładka techniki na rysunku wiosłowania na linkach i face pull (rodzina cable_row, 09.11.2026; decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”; test `tests/figures-v2-nakladka-cable-row.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_row (np. Seated Cable Row, Face Pull), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy ćwiczenie ma na karcie zdanie ruchu, tułowia albo łokci z regułą „ustalone” (Seated Cable Row: przyciąganie, tułów i plecy; Face Pull: przyciąganie i łokcie za plecami)
+    - Wtedy z boku widać łuk zgięcia łokcia z podpisem „Kąt na rysunku”, pion przez miednicę (tułów bez bujania), a w face pull pion przez bark, za który łokieć przechodzi na końcu ruchu; linia pleców dla zdań o plecach; razem nie więcej niż 3 linie i 1 łuk; z przodu dźwignia maszyny nie jest rysowana, gdy w części ruchu przechodzi przez głowę (Leverage High Row)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

@@ -39,14 +39,14 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });
   test('gotowe rodziny z rigiem (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
-    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'pull_up', 'olympic', 'curl', 'triceps']);
+    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'cable_row', 'pull_up', 'olympic', 'curl', 'triceps']); /* cable_row ready 09.11.2026 (partia 2) */
     const rig = ready.filter(f => !POSE_FAMILIES.includes(f)); expect(rig).toEqual(['squat', 'bench_press', 'hinge']);
     const keys = KEYS.filter(k => rig.includes(ALL[k])); expect(keys.length).toBe(87);
     for (const k of keys) { expect([k, VARIANTS[k]?.family]).toEqual([k, ALL[k]]); expect([k, figureSpec(k)?.family]).toEqual([k, ALL[k]]); }
     expect(Object.keys(VARIANTS).sort()).toEqual([...keys].sort());
   });
   test('gotowe rodziny z danych (poses/<rodzina>.json): figura tylko dla ćwiczeń z wpisem w danych (11 z 13 w pull_up), reszta bez figury v2 (v1 albo brak); status „gotowa” = plik póz', () => {
-    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps']);
+    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'cable_row']); /* cable_row 09.11.2026 */
     for (const f of POSE_FAMILIES) {
       expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]);
       const keys = KEYS.filter(k => ALL[k] === f); const have = poseKeys(f);

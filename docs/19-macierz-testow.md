@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 359 | 359 | 0 |
 | TEKST | 1088 | 1088 | 0 |
 | LOGIKA | 1166 | 1166 | 0 |
-| WYMIAR | 181 | 181 | 0 |
+| WYMIAR | 184 | 183 | 0 |
 
 ## EKRAN
 
@@ -2738,7 +2738,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | FamilyId: squat \| bench_press \| hinge \| pushup_plank \| dip \| overhead_press \| row \| cable_row \| pull_up \| pulldown \| lunge \| leg_machine \| leg_isolation \| calf_raise \| hip_bridge \| kb_ballistic \| olympic \| back_extension \| curl \| triceps \| delt_raise \| chest_fly \| shrug \| rotator_cuff \| core_floor \| core_hang \| core_standing \| carry \| cardio \| plyo \| sled_throw \| strongman \| glute_floor \| hip_abd_add \| mobility_stand \| mobility_floor \| foam_roll \| neck \| forearm \| thruster \| chest_press_machine \| cable_press \| kneeling_hinge | lib/figures/v2/families.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts +9 |
 | FamilyStatus: ready \| planned | lib/figures/v2/families.ts | tests/audit-0.10-plan.test.ts, tests/figures-v2-chod-cykliczny.test.tsx |
 | FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-cues.test.tsx, tests/figures-v2-engine.test.ts +11 |
-| DZWIGNIA_BEZ_GLOWY (1) | lib/figures/v2/families.ts | tests/figures-v2-engine.test.ts |
+| DZWIGNIA_BEZ_GLOWY (2) | lib/figures/v2/families.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-engine.test.ts |
 | GEAR (34) | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | GEAR_EXTRA_FIELDS (16) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | BELL_MODES (5) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
@@ -2751,6 +2751,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | MuscleId: chest \| triceps \| front_delt \| biceps \| abs \| lower_back \| hamstrings \| glutes \| quads \| upper_back \| forearms \| lats \| adductors \| rear_delt \| obliques \| side_delt \| calves \| abductors \| neck | lib/figures/v2/muscles.ts | tests/audit-0.10-gen.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
 | MUSCLES (19) | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts, tests/guard.test.ts, tests/logic.test.ts +9 |
 | BENCH_TECHNIQUE (3) | lib/figures/v2/overlay/bench_press.ts | tests/figures-v2-nakladka.test.tsx |
+| CABLE_ROW_ELBOW_BACK_EXERCISES (2) | lib/figures/v2/overlay/cable_row.ts | tests/figury-recenzja-p3.test.ts |
+| CABLE_ROW_TORSO_EXERCISES (5) | lib/figures/v2/overlay/cable_row.ts | tests/catalog-v2.test.ts, tests/figury-recenzja-p3.test.ts |
+| CABLE_ROW_TECHNIQUE (3) | lib/figures/v2/overlay/cable_row.ts | WYJĄTEK: BRAK |
 | CURL_TECHNIQUE (2) | lib/figures/v2/overlay/curl.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | HINGE_GUIDES (2) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka.test.tsx |
 | HINGE_TECHNIQUE (1) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka-squat-hinge.test.tsx |
