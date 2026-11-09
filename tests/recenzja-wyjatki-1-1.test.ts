@@ -88,7 +88,9 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
   test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'] });
+    /* 09.11.2026: lunge i leg_isolation — wpisy audytora (partia B2, rodziny planned jak curl; podłączenie = osobna decyzja) */
+    const RODZINY = ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'lunge', 'leg_isolation'];
+    expect(run('')).toEqual({ v2: RODZINY, deadlift: true, fam: RODZINY });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";
