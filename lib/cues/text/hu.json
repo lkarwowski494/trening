@@ -636,7 +636,7 @@
  "core_floor.mis.headUp": "Felemeled a fejed.",
  "core_floor.mis.lowBackUp": "A derék elemelkedik a padlótól.",
  "core_floor.mis.momentum": "Lendületből csinálod az ismétléseket kontrollált mozgás helyett.",
- "core_floor.mis.neckPull": "A nyakaddal húzol ahelyett, hogy a vállad emelnéd.",
+ "core_floor.mis.neckPull": "Előretolod a fejed ahelyett, hogy a hasizmaiddal emelnéd a vállad.",
  "core_floor.mis.situpFeet": "Lendíted a lábad, és a talpad elemelkedik a padlótól.",
  "core_floor.mis.vupKnees": "Behajlítod a térded ahelyett, hogy nyújtott lábat emelnél.",
  "core_floor.scissor.lift": "Nyomd a derekad a padlóba, és emeld a lábad épp csak a padló fölé.",

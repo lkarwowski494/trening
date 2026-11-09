@@ -636,7 +636,7 @@
  "core_floor.mis.headUp": "Pea ülespoole kallutamine.",
  "core_floor.mis.lowBackUp": "Alaselg tõuseb põrandalt.",
  "core_floor.mis.momentum": "Korduste tegemine hoo pealt, mitte kontrolli all.",
- "core_floor.mis.neckPull": "Kaelaga tõmbamine õlgade tõstmise asemel.",
+ "core_floor.mis.neckPull": "Pea ettepoole upitamine õlgade tõstmise asemel kõhulihastega.",
  "core_floor.mis.situpFeet": "Jalgadega hoo võtmine — jalad tõusevad põrandalt.",
  "core_floor.mis.vupKnees": "Põlvede kõverdamine sirgete jalgade tõstmise asemel.",
  "core_floor.scissor.lift": "Suru alaselg vastu põrandat ja tõsta jalad veidi põrandast kõrgemale.",

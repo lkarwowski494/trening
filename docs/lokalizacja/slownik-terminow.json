@@ -11508,11 +11508,16 @@
    "pl": "piłka gimnastyczna",
    "tylko": [
     "pl",
-    "en"
+    "en",
+    "ja",
+    "ko",
+    "it",
+    "es",
+    "es-419"
    ],
-   "znaczenie": "duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026",
+   "znaczenie": "duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026; rozszerzone o ja, ko, it, es, es-419 — recenzja lokalizacji A4a, 09.11.2026: nazwa sprzętu w interfejsie (it „fitball”, es-419 „pelota de estabilidad”) i we wskazówkach ma być identyczna; w it samo „palla” po pierwszym wspomnieniu jest dopuszczalne",
    "kanon": null,
-   "wykrywaj": "piłk\\w* gimnastyczn|stability ball",
+   "wykrywaj": "pił[kc]\\w* gimnastyczn|stability ball",
    "jezyki": {
     "pl": {
      "zalecany": "piłka gimnastyczna",
@@ -11520,6 +11525,104 @@
     },
     "en": {
      "zalecany": "stability ball",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "バランスボール",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "짐볼",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "fitball",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "fitball",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "pelota de estabilidad",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera: interfejs ma „pelota de estabilidad” (kalka z angielskiego) — czy w Ameryce Łacińskiej naturalniejsze jest „pelota de ejercicio” albo „pelota suiza”? Zmiana wymaga zmiany także etykiety sprzętu w UI"
+    }
+   }
+  },
+  {
+   "id": "pozycja_pompki",
+   "pl": "podpór jak do pompki",
+   "tylko": [
+    "es",
+    "pt",
+    "pt-BR",
+    "zh-Hant"
+   ],
+   "znaczenie": "pozycja wyjściowa jak do pompki (ręce wyprostowane, ciało w linii) w kartach suspRevCrunch i burpee; NIE deska na przedramionach (plank) — recenzja lokalizacji A4a, 09.11.2026; zakaz działa tylko przy polskim tekście z „podpór jak do pompki”, więc nie dotyka kart plank",
+   "kanon": null,
+   "wykrywaj": "podp[oó]r\\w* jak do pompki|do podporu",
+   "jezyki": {
+    "es": {
+     "zalecany": "posición de flexión",
+     "zakazane": [
+      {
+       "wzorzec": "plancha",
+       "powod": "„plancha” to deska na przedramionach (plank), nie podpór jak do pompki; karta ma w setupie „posición de flexión”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "posição de flexão",
+     "zakazane": [
+      {
+       "wzorzec": "prancha",
+       "powod": "„prancha” to deska (plank), nie podpór jak do pompki; karta ma w setupie „posição de flexão”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "posição de flexão",
+     "zakazane": [
+      {
+       "wzorzec": "prancha",
+       "powod": "„prancha” to deska (plank), nie podpór jak do pompki; karta ma w setupie „posição de flexão”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "伏地挺身姿勢",
+     "zakazane": [
+      {
+       "wzorzec": "撐體",
+       "powod": "„撐體姿勢” zmienia termin w obrębie karty; setup i burpee mają „伏地挺身姿勢”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "wyciag_gorny",
+   "pl": "górny wyciąg",
+   "tylko": [
+    "ja"
+   ],
+   "znaczenie": "górny wyciąg (linka u góry), para do dolnego wyciągu (ja „ローケーブル” w kartach clat, cohp) — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "górn\\w+ wyciąg",
+   "jezyki": {
+    "ja": {
+     "zalecany": "ハイケーブル",
+     "zakazane": [
+      {
+       "wzorzec": "上のケーブル",
+       "powod": "nienaturalne w siłowni; para do istniejącego „ローケーブル” to „ハイケーブル”"
+      }
+     ],
      "pewnosc": "srednia"
     }
    }

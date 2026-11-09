@@ -1,62 +1,40 @@
-# Do recenzji lokalizacji — przekład API 09.11.2026 (A4a core i moc)
+# Do recenzji przez native speakerów: partia A4a (core i moc), 09.11.2026
 
-Przebieg 42583949826 (zestaw A4, 54 zdania × 33 języki poza pl, en); 0 odrzuconych, wszystkie już w `lib/cues/text/<język>.json` (klucz = id), strażnik słownika zielony. Karty nie odsłonięte (`karty_nowe` bez zmian) — to po tej recenzji.
+Źródło: recenzja lokalizacji partii A4a (wewnętrzna, bez native speakera), poprawki naniesione na gałęzi `lok/przeklad-a4a`. Pytanie kontrolne do każdego zdania: czy tak powiedziałby trener albo kolega na siłowni w tym języku?
 
-## A4a (54 zdań × 33 języków)
-- core_floor.ballMove
-- core_floor.ballSetup
-- core_floor.ballStill
-- core_floor.ccMove
-- core_floor.ccSetup
-- core_floor.headNeutral
-- core_floor.hollowMove
-- core_floor.mcMove
-- core_floor.mcSetup
-- core_floor.mis.archBack
-- core_floor.mis.ballPos
-- core_floor.mis.ccArms
-- core_floor.mis.fastReturn
-- core_floor.mis.headUp
-- core_floor.mis.lowBackUp
-- core_floor.mis.momentum
-- core_floor.mis.neckPull
-- core_floor.mis.situpFeet
-- core_floor.mis.vupKnees
-- core_floor.scissor.lift
-- core_floor.scissor.move
-- core_floor.scissor.setup
-- core_floor.situpMove
-- core_floor.supermanMove
-- core_floor.supermanSetup
-- core_floor.supineArms
-- core_floor.supineReach
-- core_floor.suspRevCrunch.move
-- core_floor.suspRevCrunch.setup
-- core_floor.tuckCrunch.move
-- core_floor.tuckCrunch.setup
-- core_floor.vacuum.breathe
-- core_floor.vacuum.move
-- core_floor.vupMove
-- core_standing.cabletwist.hips
-- core_standing.cabletwist.mis.hipsDrop
-- core_standing.cabletwist.move
-- core_standing.cabletwist.setup
-- core_standing.figure8.move
-- core_standing.figure8.setup
-- core_standing.windmill.dblMove
-- core_standing.windmill.dblSetup
-- core_standing.windmill.knees
-- core_standing.windmill.mis.elbow
-- core_standing.windmill.mis.topElbow
-- core_standing.windmill.move
-- core_standing.windmill.setup
-- core_standing.windmill.up
-- hang.knees.move
-- hang.legs.move
-- hang.pressBar
-- hang.setup
-- hang.t2b.move
-- hang.t2b.straight
+## Japoński (priorytet: 15 zdań pisanych ręcznie)
 
-## Do sprawdzenia przez native speakera
-- ja: 15 zdań (błędy `*.mis.*` i `windmill.knees`) przepisanych ręcznie na formę grzeczną/równoważnik „こと。” (strażnik です/ます); `core_standing.windmill.knees` — „まっすぐに保ちます”.
+- `core_floor.mis.ballPos`: „ボールに寝る位置が低すぎたり後ろすぎたりして、背中の中央がボールの頂点に乗っていないこと。” Jedno zdanie z przyczyną i skutkiem czy dwa krótkie zdania z „こと”?
+- `core_floor.mis.headUp`: „顔を上げてしまうこと。” Czy przy ćwiczeniu na brzuchu mówi się „顔を上げる”, czy „頭を上げる”?
+- `core_floor.ballSetup`: „…足を少しずつ前に出しながら、背中の中央がボールに乗るように仰向けになります。” Czy naturalne?
+- `core_floor.ccSetup`: „ハイケーブル” (para do „ローケーブル” w innych kartach) zamiast „上のケーブル”.
+- `core_floor.mis.neckPull` (nowe brzmienie, głowa wysunięta do przodu): „腹筋で肩を浮かせずに、頭を前に突き出してしまうこと。”
+- `core_standing.windmill.knees`: „脚はほぼまっすぐに保ちます。膝は軽く曲げる程度にします。” Dwa zdania czy jedno: „脚はほぼまっすぐ、膝は軽く曲げる程度に保ちます。”?
+- `core_floor.mis.situpFeet`: „脚を振って反動をつけ、足が床から浮いてしまうこと。”
+
+## Hiszpański (Ameryka Łacińska, es-419)
+
+- Piłka gimnastyczna: interfejs ma „pelota de estabilidad” (kalka z angielskiego). Czy w Ameryce Łacińskiej naturalniejsze jest „pelota de ejercicio” albo „pelota suiza”? Zmiana wymaga też zmiany etykiety sprzętu w UI (wpis słownika `pilka_gimnastyczna`, pewność niska).
+- Pompka: es-419 ma „posición de lagartija” (Meksyk) w `suspRevCrunch`, a burpee (z bazy es) „flexión”. Czy „lagartija” jest zrozumiałe w całej Ameryce Łacińskiej, czy lepiej „flexión (de brazos)”?
+- `core_floor.mis.neckPull`: tekst z bazy es („Adelantar la cabeza en vez de levantar los hombros con el abdomen.”), bez nakładki es-419. Czy brzmi naturalnie?
+
+## Rosyjski (rejestr opisów błędów)
+
+- Opisy błędów w partii przepisano na rzeczowniki odczasownikowe („Задирание головы.”, „Тяга каната руками вместо скручивания корпуса.”, „Выдвигание головы вперёд вместо подъёма плеч животом.”), jak w istniejących kartach. Czy to naturalny rejestr, czy trener powie raczej „Задираешь голову”?
+- `core_standing.windmill.dblMove` (poprawiony błąd: ciężar na nogę, nie na rękę): „Отведи таз назад со стороны верхней руки, перенеси вес тела на ногу с этой стороны, а нижнюю руку веди вниз по внутренней стороне ноги.”
+
+## Chiński tradycyjny (zh-Hant)
+
+- Pozycja pompki: „伏地挺身姿勢” (setup, burpee i `suspRevCrunch.move`) zamiast „撐體姿勢”. Czy naturalne?
+- `core_standing.figure8.setup`: „膝蓋彎曲” zamiast „微彎” (kettlebell przechodzi między nogami). Czy dobra siła wyrazu?
+- `core_floor.mis.neckPull`: „頭往前伸，而不是用腹部把肩膀抬起來。”
+
+## Koreański
+
+- `core_floor.ballMove`: „상체를 말아 올려 등 윗부분이 볼에서 떨어지게 한 뒤 천천히 내려오세요.” Jedno zdanie zamiast dwóch z powtórzeniem „내려오”.
+- `core_floor.mis.ballPos` kończy się „…있지 않음.” (jak `calf.mis.partial`). Czy styl zgodny z opisami błędów w aplikacji?
+- `core_floor.mis.neckPull`: „복근으로 어깨를 들지 않고 고개를 앞으로 내미는 것.”
+
+## Pozostałe języki (zmiana zdania `core_floor.mis.neckPull`, bez recenzji)
+
+Zdanie zmieniło znaczenie z „ciągnąć szyją” na „wysuwać głowę do przodu zamiast unosić barki brzuchem” (cs i ro miały wcześniej „ciągnąć za szyję”). Teksty 33 języków w raporcie koordynatora; do sprawdzenia w pierwszej kolejności: cs, ro, tr (poprzednio inne znaczenie).

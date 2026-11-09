@@ -363,3 +363,27 @@ describe('04.11.2026, recenzja lokalizacji T1 (delt_raise): uchwyt, nachwyt, uda
     expect([zal('uchwyt', 'cs'), zal('uchwyt', 'es'), zal('uchwyt', 'nl'), zal('sztanga', 'sl'), zal('sztanga', 'ro')]).toEqual(['rukojeť', 'agarre', 'handgreep', 'palica', 'halteră']);
   });
 });
+
+/* Recenzja lokalizacji A4a (core i moc), 09.11.2026: es/pt-BR/zh-Hant zmieniły termin pozycji pompki w obrębie jednej karty (plancha / prancha / 撐體),
+   ja „上のケーブル” zamiast „ハイケーブル”, piłka gimnastyczna rozjeżdżała się między interfejsem a kartami (rozszerzenie pojęcia o ja, ko, it, es, es-419). Zakaz pozycji pompki działa tylko przy polskim
+   „podpór jak do pompki”, więc nie dotyka kart plank (deska na przedramionach). */
+describe('09.11.2026, recenzja lokalizacji A4a: pozycja pompki, górny wyciąg ja, piłka gimnastyczna', () => {
+  const nar = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+  test('pozycja pompki: es plancha, pt-BR prancha, zh-Hant 撐體 są wykrywane; flexión/flexão/伏地挺身姿勢 przechodzą; plank (deska) nie jest dotknięty', () => {
+    const pl = 'Przyciągnij kolana pod tułów, potem wyprostuj nogi z powrotem do podporu.', pl2 = 'Włóż stopy w uchwyty taśm i wejdź w podpór jak do pompki.';
+    expect(nar('es', pl2, 'ponte en la plancha')).toContain('pozycja_pompki'); expect(nar('es', pl2, 'ponte en posición de flexión')).not.toContain('pozycja_pompki');
+    expect(nar('pt-BR', pl, 'de volta à posição de prancha')).toContain('pozycja_pompki'); expect(nar('pt-BR', pl, 'de volta à posição de flexão')).not.toContain('pozycja_pompki');
+    expect(nar('zh-Hant', pl, '回到撐體姿勢')).toContain('pozycja_pompki'); expect(nar('zh-Hant', pl, '回到伏地挺身姿勢')).not.toContain('pozycja_pompki');
+    const plank = 'Oprzyj się na przedramionach, ciało w jednej linii.'; expect(nar('es', plank, 'Apóyate en los antebrazos en plancha')).toEqual([]); expect(nar('pt-BR', plank, 'Apoie-se em prancha')).toEqual([]);
+  });
+  test('górny wyciąg ja: „上のケーブル” jest wykrywane, „ハイケーブル” przechodzi', () => {
+    const pl = 'Załóż linę na górny wyciąg, uklęknij i trzymaj końce liny przy głowie.';
+    expect(nar('ja', pl, '上のケーブルにロープを取り付け')).toContain('wyciag_gorny'); expect(nar('ja', pl, 'ハイケーブルにロープを取り付け')).not.toContain('wyciag_gorny');
+  });
+  test('piłka gimnastyczna: nazwa sprzętu z interfejsu jest też zalecana w kartach (ja, ko, it, es, es-419); wskazówki 09.11.2026 (ja ハイケーブル, zh-Hant 伏地挺身姿勢) w słowniku wskazówek', () => {
+    const zal = (k: string) => slownik.pojecia.find(x => x.id === 'pilka_gimnastyczna')!.jezyki[k].zalecany;
+    expect(['ja', 'ko', 'it', 'es', 'es-419'].map(zal)).toEqual(['バランスボール', '짐볼', 'fitball', 'fitball', 'pelota de estabilidad']);
+    for (const k of ['ja', 'ko', 'it', 'es', 'es-419']) expect([k, (LOCALES[k as Lang] as Record<string, string>)['piłka gimnastyczna'].toLowerCase()]).toEqual([k, zal(k).toLowerCase()]);
+    expect(cueDict('ja' as Lang)['core_floor.ccSetup']).toContain('ハイケーブル'); expect(cueDict('zh-Hant' as Lang)['core_floor.suspRevCrunch.move']).toContain('伏地挺身姿勢');
+  });
+});

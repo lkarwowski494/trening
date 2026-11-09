@@ -636,7 +636,7 @@
  "core_floor.mis.headUp": "Du løfter hovedet.",
  "core_floor.mis.lowBackUp": "Lænden slipper gulvet.",
  "core_floor.mis.momentum": "Du tager gentagelserne med fart i stedet for kontrol.",
- "core_floor.mis.neckPull": "Du trækker med nakken i stedet for at løfte skuldrene.",
+ "core_floor.mis.neckPull": "Du skubber hovedet frem i stedet for at løfte skuldrene med maven.",
  "core_floor.mis.situpFeet": "Du svinger med benene — fødderne slipper gulvet.",
  "core_floor.mis.vupKnees": "Du bøjer knæene i stedet for at løfte strakte ben.",
  "core_floor.scissor.lift": "Pres lænden ned i gulvet, og løft benene lige over det.",

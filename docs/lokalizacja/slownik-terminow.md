@@ -104,7 +104,9 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `cofnij_biodra_zawias` | cofnij biodro/biodra | zawias biodrowy (ruch bioder w tył); w aplikacji „wypychając biodra w przód” to ruch swingu, a „wypchnij” to wyciskanie ciężaru nad głowę — recenzja lokalizacji A4a, 09.11.2026 |
 | `lower_yourself_back_down` | wróć / opuść się | EN „lower back down” czyta się jak „lower back” (lędźwie, pojęcie ledzwie) — recenzja lokalizacji A4a, 09.11.2026 |
 | `podloga_nie_podloze` | podłoga | we wskazówkach o lędźwiach odrywających się od podłoża mówimy „podłoga” (jak w pozostałych zdaniach partii) — recenzja lokalizacji A4a, 09.11.2026; inne użycia „podłoża” (miękkie podłoże, odpychanie się od podłoża) zostają |
-| `pilka_gimnastyczna` | piłka gimnastyczna | duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026 |
+| `pilka_gimnastyczna` | piłka gimnastyczna | duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026; rozszerzone o ja, ko, it, es, es-419 — recenzja lokalizacji A4a, 09.11.2026: nazwa sprzętu w interfejsie (it „fitball”, es-419 „pelota de estabilidad”) i we wskazówkach ma być identyczna; w it samo „palla” po pierwszym wspomnieniu jest dopuszczalne |
+| `pozycja_pompki` | podpór jak do pompki | pozycja wyjściowa jak do pompki (ręce wyprostowane, ciało w linii) w kartach suspRevCrunch i burpee; NIE deska na przedramionach (plank) — recenzja lokalizacji A4a, 09.11.2026; zakaz działa tylko przy polskim tekście z „podpór jak do pompki”, więc nie dotyka kart plank |
+| `wyciag_gorny` | górny wyciąg | górny wyciąg (linka u góry), para do dolnego wyciągu (ja „ローケーブル” w kartach clat, cohp) — recenzja lokalizacji A4a, 09.11.2026 |
 
 ## Terminy zalecane (rdzeń)
 
@@ -244,6 +246,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `es` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `es` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
+| `es` | `pozycja_pompki` | plancha | „plancha” to deska na przedramionach (plank), nie podpór jak do pompki; karta ma w setupie „posición de flexión” |
 | `es-419` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es-419` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es-419` | `trening` | entrenos?(?![\p{L}]) | „entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento” |
@@ -258,12 +261,14 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pt` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `pt` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
 | `pt` | `uchwyt` | (?<![\p{L}])punhos?(?![\p{L}]) | „punho” to pięść albo mankiet (w pt-BR nadgarstek), nie uchwyt wyciągu; uchwyt to „pega” |
+| `pt` | `pozycja_pompki` | prancha | „prancha” to deska (plank), nie podpór jak do pompki; karta ma w setupie „posição de flexão” |
 | `pt-BR` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt-BR` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `pt-BR` | `zakres_powtorzen` | intervalo | w Brazylii „intervalo” to przerwa między seriami (i przerwa w pracy/szkole); zakres to „faixa” |
 | `pt-BR` | `zakres_ruchu` | intervalo | „intervalo” to przerwa; zakres ruchu to „amplitude” |
 | `pt-BR` | `deload` | descarga | „descarga” to spłuczka/wyładowanie; w Brazylii mówi się „deload” |
 | `pt-BR` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
+| `pt-BR` | `pozycja_pompki` | prancha | „prancha” to deska (plank), nie podpór jak do pompki; karta ma w setupie „posição de flexão” |
 | `de` | `przerwa` | Unterbrechung\|Arbeitspause | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `de` | `przerwa_robocza` | Arbeitspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `de` | `pauza_treningu` | Pause | „Pause” to przerwa między seriami; pauzę treningu opisuje „anhalten” |
@@ -351,6 +356,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `lokcie_waskie` | 肘を狭く | kalka z „wąsko”; na siłowni mówi się 肘を締める |
 | `ja` | `rysunek_zdanie` | イラスト | w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki |
 | `ja` | `nachwyt` | オーバーハンド | w pozostałych kartach jest „順手”, nie katakanowe „オーバーハンドグリップ” |
+| `ja` | `wyciag_gorny` | 上のケーブル | nienaturalne w siłowni; para do istniejącego „ローケーブル” to „ハイケーブル” |
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ko` | `szablon` | 템플릿 | w koreańskich siłowniach „루틴” |
@@ -361,8 +367,9 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `przerwa_robocza` | 工作休息\|上班 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
+| `zh-Hant` | `pozycja_pompki` | 撐體 | „撐體姿勢” zmienia termin w obrębie karty; setup i burpee mają „伏地挺身姿勢” |
 
-## Do potwierdzenia przez native speakera (153)
+## Do potwierdzenia przez native speakera (154)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -454,6 +461,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `uk` | `lawka_skosna_glowa_w_dol` | лава зі зворотним нахилом | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): лава зі зворотним нахилом (do potwierdzenia) |
 | `es` | `zegarek` | reloj | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `es-419` | `zegarek` | reloj | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `es-419` | `pilka_gimnastyczna` | pelota de estabilidad | do potwierdzenia przez native speakera: interfejs ma „pelota de estabilidad” (kalka z angielskiego) — czy w Ameryce Łacińskiej naturalniejsze jest „pelota de ejercicio” albo „pelota suiza”? Zmiana wymaga zmiany także etykiety sprzętu w UI |
 | `pt` | `zakres_powtorzen` | gama de repetições | w Portugalii „intervalo” = przerwa między seriami, więc „gama”; do potwierdzenia przez native speakera |
 | `pt` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha/plano de treino” — do potwierdzenia |
 | `pt` | `chwyt` | pega | do sprawdzenia przez native speakera: czy „pega” to potoczny termin siłowni (recenzja P2, 04.11.2026); dotąd tymczasowo angielskie „grip” |

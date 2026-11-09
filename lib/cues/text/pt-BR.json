@@ -623,7 +623,7 @@
  "core_floor.supermanSetup": "Deite de bruços, pernas esticadas, braços estendidos à frente da cabeça.",
  "core_floor.supineArms": "Deite de costas com os braços estendidos acima da cabeça.",
  "core_floor.supineReach": "Deite de costas, pernas esticadas, braços estendidos acima da cabeça.",
- "core_floor.suspRevCrunch.move": "Puxe os joelhos para baixo do tronco e depois estique as pernas de volta à posição de prancha.",
+ "core_floor.suspRevCrunch.move": "Puxe os joelhos para baixo do tronco e depois estique as pernas de volta à posição de flexão.",
  "core_floor.suspRevCrunch.setup": "Coloque os pés nos apoios das fitas e fique em posição de flexão.",
  "core_floor.tuckCrunch.move": "Enrole o tronco em direção aos joelhos e depois desça devagar.",
  "core_floor.tuckCrunch.setup": "Deite de costas e levante as pernas, deixando as coxas na vertical.",
@@ -647,5 +647,6 @@
  "hang.pressBar": "Ao subir as pernas, empurre a barra para baixo.",
  "hang.setup": "Pendure-se na barra com o corpo esticado.",
  "hang.t2b.move": "Pendurado, suba as pernas até os dedos dos pés tocarem a barra e depois desça.",
- "hang.t2b.straight": "Mantenha as pernas o mais esticadas que sua flexibilidade permitir."
+ "hang.t2b.straight": "Mantenha as pernas o mais esticadas que sua flexibilidade permitir.",
+ "core_floor.mis.neckPull": "Esticar a cabeça para a frente em vez de levantar os ombros com o abdômen."
 }

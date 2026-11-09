@@ -636,7 +636,7 @@
  "core_floor.mis.headUp": "Dvigovanje glave.",
  "core_floor.mis.lowBackUp": "Ledveni del hrbta se odlepi od tal.",
  "core_floor.mis.momentum": "Ponovitve z zamahom namesto nadzorovano.",
- "core_floor.mis.neckPull": "Vlečenje z vratom namesto dvigovanja ramen.",
+ "core_floor.mis.neckPull": "Potiskanje glave naprej namesto dvigovanja ramen s trebuhom.",
  "core_floor.mis.situpFeet": "Zamahovanje z nogami, da se stopala odlepijo od tal.",
  "core_floor.mis.vupKnees": "Krčenje kolen namesto dvigovanja iztegnjenih nog.",
  "core_floor.scissor.lift": "Ledveni del hrbta pritisni ob tla in dvigni noge tik nad tla.",
