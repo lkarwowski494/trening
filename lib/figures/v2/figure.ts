@@ -42,15 +42,14 @@ export function figureSpec(key: string): FigureSpec | null {
  * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
  * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
  * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
- * Stan 09.11.2026: Clean Shrug i Snatch Shrug (olympic, do kart T2) oraz Standing Calf Raise i Seated Calf Raise (calf_raise, recenzja r1 W1/W2 — silnik bez punktów „barki” i „uda”; koordynator, decyzja A). Stan 04.11.2026: tylko Clean Shrug i Snatch Shrug (olympic, do kart T2). Stan 29.10.2026: pusty — 18 figur (JM Press, Skull Crusher, 11 martwych ciągów, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat z hantlem)
+ * 09.11.2026: + 2 calf_raise (P1-CALF-1). Stan 04.11.2026: tylko Clean Shrug i Snatch Shrug (olympic, do kart T2). Stan 29.10.2026: pusty — 18 figur (JM Press, Skull Crusher, 11 martwych ciągów, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat z hantlem)
  * zdjęto po poprawionych rigach i niezależnych recenzjach (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   /* 04.11.2026 (koordynator, recenzja olympic r4, warunek 1): wzruszenia mają dziś tylko zestaw ogólny `oly` — rysunek dopiero z kartami T2 (po wpisie kart zdjąć stąd) */
   'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
   'Snatch Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
-  /* 09.11.2026 (koordynator, decyzja A po recenzji calf_raise r1): maszyny z dźwignią, której punkt nie jest dłonią — do poprawki w silniku (punkty „barki”, „uda”) */
-  'Standing Calf Raise': 'dźwignia maszyny na barkach — silnik bez punktu „barki” (recenzja calf_raise r1 W1, 09.11.2026)',
-  'Seated Calf Raise': 'poduszka maszyny na udach — silnik bez punktu „uda”, pręt przy kostkach przenika stopy (recenzja calf_raise r1 W2, 09.11.2026)',
+  'Standing Calf Raise': 'dźwignia: brak punktu „barki” (P1-CALF-1)',
+  'Seated Calf Raise': 'dźwignia: brak punktu „uda” (P1-CALF-1)',
 };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
