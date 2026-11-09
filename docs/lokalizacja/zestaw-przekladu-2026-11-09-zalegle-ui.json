@@ -1,0 +1,61 @@
+{
+ "_opis": "Zaległe klucze interfejsu do przekładu na 33 języki (poza PL i EN), zebrane w jeden zestaw (09.11.2026, zgoda właściciela na przekład API do 20 USD, ZB-051): VoiceOver „Na rysunku” (z zestawu 04.11 nakładka), 4 punkty „Co nowego” 1.0.1 (z zestawu 06.11) i 4 klucze delt_raise (z gałęzi figury/delt_raise; pozycje z polem „zrodlo”). Rodzaj nowy: klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności, wczytywany przez tests/pending-translation.ts). Po przekładzie: node scripts/i18n/przeklad-api.mjs --zastosuj <raport> --zestaw <ten plik>; na gałęzi figury/delt_raise ten sam raport nakłada się z --zestaw docs/lokalizacja/zestaw-przekladu-2026-11-05-delt-raise.json (klucze spoza tamtego zestawu są pomijane).",
+ "data": "2026-11-09",
+ "status": "otwarty - czeka na przekład API (9 kluczy)",
+ "klucze": [
+  {
+   "rodzaj": "nowy",
+   "pl": "Na rysunku: {lista}",
+   "en": "On the drawing: {lista}",
+   "kontekst": "etykieta VoiceOver obrazu figury; {lista} to wyliczenie wskazówek (zachowaj zmienną)"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.",
+   "en": "New movement drawings for triceps exercises and for cleans, snatches and their variations.",
+   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.",
+   "en": "New and refined technique tips, including shoulders, power exercises and mobility.",
+   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.",
+   "en": "Voice announcements use the best voice installed on your phone.",
+   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.",
+   "en": "A new user starts on the Workout screen with the “Start your first workout” button and the “First workout” board.",
+   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką)"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Bokiem",
+   "en": "To the side",
+   "zrodlo": "gałąź figury/delt_raise (zestaw-przekladu-2026-11-05-delt-raise.json); w integracji kluczy jeszcze nie ma"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Przodem",
+   "en": "Forward",
+   "zrodlo": "gałąź figury/delt_raise (zestaw-przekladu-2026-11-05-delt-raise.json); w integracji kluczy jeszcze nie ma"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Naprzemiennie",
+   "en": "Alternating",
+   "zrodlo": "gałąź figury/delt_raise (zestaw-przekladu-2026-11-05-delt-raise.json); w integracji kluczy jeszcze nie ma"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Pozycje na rysunku: {lista}",
+   "en": "Positions in the drawing: {lista}",
+   "zrodlo": "gałąź figury/delt_raise (zestaw-przekladu-2026-11-05-delt-raise.json); w integracji kluczy jeszcze nie ma"
+  }
+ ]
+}
