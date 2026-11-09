@@ -6,7 +6,8 @@
 - **Dane:** 10 kart (Kettlebell Clean, Kettlebell Snatch, Double/One-Arm Kettlebell Push Press, Double Kettlebell Snatch, Split Jump, Lateral Cone Hops, Backward Drag,
   Atlas Stones, Plate Pinch), 9 niepełnych, 24 zdania PL/EN, 18 źródeł, 3 nowe organizacje — fixture `tests/fixtures/cues-a4b-moc.json`, test `tests/zrodla-pelne-cues-a4b-moc.test.ts`,
   zestaw przekładu `docs/lokalizacja/zestaw-przekladu-2026-11-09-a4b-wskazowki.json`, lista dla recenzenta `a4b-klucze.json`.
-- Następny krok: strażniki liczności (wzór A4a ff923dd), wpis docs/18, bramka (check:pochodne, test-fast --od-bazy, verify:lekkie), push, tests.yml.
+- 09.11.2026: strażniki liczności (cues, cues-014, figures-v2-cues, strona-eksport, P2 — Split Jump w zestawy_zmienione, docs/09, L-103 +1), skróty przekładu, pliki generowane; zawężone `kbb.cleanMove`, `kbb.rack`, `as.grip` do przeczytanych miejsc źródeł (lekcja recenzji A4a); scalone poprawki rundy 1 A4a (dane A4b odtworzone importerem na wersji A4a); zapadka kompletu kart języków 574 → 573 z powodem (Split Jump ukryty do przekładu — decyzja do potwierdzenia przez koordynatora; alternatywa: wstrzymać Split Jump). Bramka: test-fast --od-bazy 276/276 zielone, verify:lekkie zielone; push 01a306d3 → tests.yml 42578614502 (w toku przy zapisie).
+- Następny krok: zielony tests.yml → recenzja niezależna (badacz + recenzent lokalizacji PL/EN wg a4b-klucze.json) → przekład (osobna zgoda); role plyo/sled_throw — osobne zadanie.
 
 ## Wstrzymane do decyzji koordynatora (karty spełniają albo prawie spełniają regułę)
 - One-Arm Kettlebell Clean and Jerk — „ta sama faza” (decyzja audytora z W1, nierozstrzygnięta).
