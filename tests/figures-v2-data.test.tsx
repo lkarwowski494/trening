@@ -43,12 +43,14 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic')) { /* olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
+      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, f === 'chest_fly' ? (/Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd') : ui.joints[0]]); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia w bok (shAbd), pullover i Crucifix (utrzymanie, pierwszy staw z DATA_UI) — zgięcie w płaszczyźnie strzałkowej (shElev); DATA_UI ma oba, wybór po ruchu (measureOf) */
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
       else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki, 90° → ≤ 14°) i zgięcie ramienia (pullover, ≥ 140° → ≤ 70°) maleją */
+      else if (f === 'chest_fly') { expect([k, k === 'Crucifix' ? Math.abs(measuredAngle(s, 1).deg - measuredAngle(s, 0).deg) < 1 : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); } /* Crucifix: utrzymanie ramion w bok — kąt stały */
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
@@ -97,17 +99,17 @@ describe('błędy z danych (bledy[])', () => {
     }
   });
   test('macierz: kadr obejmuje poprawną pozę i pozy błędów; kształty w obu widokach i oba motywy istnieją dla każdego ćwiczenia z danymi', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && b.h > 50]).toEqual([k, v, true]); expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && (b.h > 50 || (k === 'Crucifix' && v === 'top'))]).toEqual([k, v, true]); /* Crucifix z góry (09.11.2026, partia 1): osoba stojąca widziana z góry ma głębokość ok. 30 cm (< 50) — widok „top” rodziny chest_fly jest sensowny tylko dla leżących; zgłoszone koordynatorowi (widoki ćwiczenia = widoki rodziny, silnik wspólny) */ expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
     expect(light.bg).not.toBe(dark.bg);
   });
   test('tempo: błąd z danych używa tempa domyślnego (jak poprawna poza)', () => { const s = figureSpec('Pull Up')!; expect(tempoFor(s, 'data:0')).toEqual(tempoFor(s)); expect(uAt(TEMPO.holdMs + TEMPO.upMs, false, tempoFor(s))).toBeCloseTo(1, 6); });
 });
 
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps') && cue === 'mis.jerk';
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps' || f === 'chest_fly') && cue === 'mis.jerk'; /* + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia (K15: jawna lista) */
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
-    expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
+    expect(JERK_TEMPO_RODZINY('chest_fly', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_fly', 'fly.elbows')).toBe(false); expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
     expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false);
   });
 });
