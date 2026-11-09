@@ -10549,6 +10549,10 @@
       {
        "wzorzec": "like\\s+for\\s+(a|an|the)\\s",
        "powod": "kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift”"
+      },
+      {
+       "wzorzec": "as\\s+for\\s+(a|an|the)\\s",
+       "powod": "kalka z polskiego „jak do …” w wersji „as for a …” (recenzja lokalizacji P1, 09.11.2026); rodzimy mówca mówi „like a clean”"
       }
      ],
      "pewnosc": "wysoka"

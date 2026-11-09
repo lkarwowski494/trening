@@ -127,7 +127,7 @@ describe('P1 squat i hinge: poprawki rundy 1 recenzji niezależnej (badacz, 09.1
   const ref = (k: string, c: string) => (sentencesOf(k).find(r => r.c === c)?.s ?? []).map(([sid]) => sid);
   test('Overhead Squat: sq.mis.heels bez Catalyst (nie mówi o piętach) — ISSA + przysiad ze sztangą jako uproszczenie; ohs.setup skrócone do części wspólnej (bez rozstawu stóp)', () => {
     expect(ref('Overhead Squat', 'sq.mis.heels').sort()).toEqual(['issa-dont-know-squat', 'sbs-how-to-squat']);
-    expect([pl['ohs.setup'], en['ohs.setup']]).toEqual(['Sztanga nad głową na wyprostowanych rękach.', 'Bar overhead on straight arms.']);
+    expect([pl['ohs.setup'], en['ohs.setup']]).toEqual(['Sztanga nad głową na prostych rękach.', 'Bar overhead on straight arms.']);
   });
   test('Squat with Chains/Bands: sq.mis.heels bez ExRx (nieprzeczytane w recenzji Back Squat, 403) — ACE + SBS; karty bez zdań o łańcuchach i gumach (jedna organizacja)', () => {
     for (const k of ['Squat with Chains', 'Squat with Bands']) {

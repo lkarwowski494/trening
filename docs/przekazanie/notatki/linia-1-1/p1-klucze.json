@@ -6,8 +6,8 @@
    "setup": [
     {
      "id": "cdl.setup",
-     "pl": "Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.",
-     "en": "Set up as for a clean: clean grip, knees pushed out until they touch your arms.",
+     "pl": "Ustaw się i chwyć sztangę jak do zarzutu; kolana wypchnięte na zewnątrz, aż dotkną rąk.",
+     "en": "Set up and grip the bar like a clean; push your knees out until they touch your arms.",
      "nowe": true,
      "zrodla": [
       {
@@ -30,7 +30,7 @@
    "move": [
     {
      "id": "cdl.move",
-     "pl": "Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana.",
+     "pl": "Odepchnij się nogami od podłogi i trzymaj ten sam kąt pleców, aż sztanga minie kolana.",
      "en": "Drive the bar up with your legs, holding the same back angle until it passes your knees.",
      "nowe": true,
      "zrodla": [
@@ -151,7 +151,7 @@
     {
      "id": "slrdl.move",
      "pl": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
-     "en": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand.",
+     "en": "Hinge at the hips and let your free leg travel straight back; drive your hips forward to stand.",
      "nowe": true,
      "zrodla": [
       {
@@ -263,7 +263,7 @@
     {
      "id": "slrdl.move",
      "pl": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
-     "en": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand.",
+     "en": "Hinge at the hips and let your free leg travel straight back; drive your hips forward to stand.",
      "nowe": true,
      "uproszczenie": "wariant sprzętu (wyciąg): źródła opisują wersję z wolnym ciężarem; wersję z wyciągiem opisuje wprost ACE (#350)",
      "zrodla": [
@@ -345,7 +345,7 @@
    "setup": [
     {
      "id": "bhs.setup",
-     "pl": "Sztanga za nogami, chwyt nachwytem w opuszczonych rękach; stopy na szerokość barków.",
+     "pl": "Sztanga za nogami, trzymaj ją nachwytem w opuszczonych rękach; stopy na szerokość barków.",
      "en": "Bar behind your legs, overhand grip with arms hanging down; feet shoulder-width apart.",
      "nowe": true,
      "zrodla": [
@@ -664,7 +664,7 @@
    "setup": [
     {
      "id": "ohs.setup",
-     "pl": "Sztanga nad głową na wyprostowanych rękach.",
+     "pl": "Sztanga nad głową na prostych rękach.",
      "en": "Bar overhead on straight arms.",
      "nowe": true,
      "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu",
@@ -689,7 +689,7 @@
    "move": [
     {
      "id": "ohs.move",
-     "pl": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wróć do stania.",
+     "pl": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wstań.",
      "en": "Squat down with the bar overhead the whole time, then stand back up.",
      "nowe": true,
      "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu",
@@ -715,7 +715,7 @@
     {
      "id": "ohs.arms",
      "pl": "Ręce przez cały ruch wyprostowane.",
-     "en": "Keep your arms straight the whole time.",
+     "en": "Keep your arms straight throughout.",
      "nowe": true,
      "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu",
      "zrodla": [

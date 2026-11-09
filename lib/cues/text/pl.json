@@ -725,12 +725,12 @@
  "rotator_cuff.cubanRow": "Unieś łokcie bokiem do wysokości barków, zgięte pod kątem prostym; hantle zwisają.",
  "rotator_cuff.cubanRotate": "Obróć przedramiona w górę, nie opuszczając łokci — ramiona zostają poziomo.",
  "rotator_cuff.cubanPressUp": "Wyciśnij hantle prosto nad głowę.",
- "cdl.setup": "Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.",
- "cdl.move": "Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana.",
+ "cdl.setup": "Ustaw się i chwyć sztangę jak do zarzutu; kolana wypchnięte na zewnątrz, aż dotkną rąk.",
+ "cdl.move": "Odepchnij się nogami od podłogi i trzymaj ten sam kąt pleców, aż sztanga minie kolana.",
  "slrdl.setup": "Stań na jednej nodze, kolano lekko ugięte.",
  "slrdl.move": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
- "bhs.setup": "Sztanga za nogami, chwyt nachwytem w opuszczonych rękach; stopy na szerokość barków.",
- "ohs.setup": "Sztanga nad głową na wyprostowanych rękach.",
- "ohs.move": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wróć do stania.",
+ "bhs.setup": "Sztanga za nogami, trzymaj ją nachwytem w opuszczonych rękach; stopy na szerokość barków.",
+ "ohs.setup": "Sztanga nad głową na prostych rękach.",
+ "ohs.move": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wstań.",
  "ohs.arms": "Ręce przez cały ruch wyprostowane."
 }

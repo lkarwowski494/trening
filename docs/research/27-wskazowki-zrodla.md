@@ -4600,11 +4600,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (starting position)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (start position (knees out, clean grip)) `cdl.setup`
+- Ustaw się i chwyć sztangę jak do zarzutu; kolana wypchnięte na zewnątrz, aż dotkną rąk. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (starting position)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (start position (knees out, clean grip)) `cdl.setup`
 
 **Ruch**
 
-- Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (back angle until bar passes knees)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (back holding position as legs lift) `cdl.move`
+- Odepchnij się nogami od podłogi i trzymaj ten sam kąt pleców, aż sztanga minie kolana. — Catalyst Athletics: [Clean Deadlift (exercise library #176)](https://www.catalystathletics.com/exercise/176/Clean-Deadlift/) (opis (back angle until bar passes knees)); BarBend: [Chad Vaughn — clean deadlift technique (17.07.2023)](https://barbend.com/news/chad-vaughn-clean-deadlift/) (back holding position as legs lift) `cdl.move`
 
 **Wskazówki**
 
@@ -4655,7 +4655,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Sztanga za nogami, chwyt nachwytem w opuszczonych rękach; stopy na szerokość barków. — BarBend: [How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)](https://barbend.com/hack-squat/) (How to Do the Hack Squat — Setup/Grip (heels touching the bar behind you; feet shoulder-width; overhand grip behind you)); Coach: [How To Do The Hack Squat](https://www.coachweb.com/fitness/leg-exercises/hack-squat) (Barbell Hack Squat — Setup/Grip (back to the bar; overhand grip, palms facing behind; feet shoulder-width); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu) `bhs.setup`
+- Sztanga za nogami, trzymaj ją nachwytem w opuszczonych rękach; stopy na szerokość barków. — BarBend: [How to Do the Hack Squat (J. Zucker, NCSF CPT; recenzja J. Dickson, CPT-NASM; akt. 12.01.2024)](https://barbend.com/hack-squat/) (How to Do the Hack Squat — Setup/Grip (heels touching the bar behind you; feet shoulder-width; overhand grip behind you)); Coach: [How To Do The Hack Squat](https://www.coachweb.com/fitness/leg-exercises/hack-squat) (Barbell Hack Squat — Setup/Grip (back to the bar; overhand grip, palms facing behind; feet shoulder-width); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu) `bhs.setup`
 
 **Ruch**
 
@@ -4709,11 +4709,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Sztanga nad głową na wyprostowanych rękach. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (bar overhead; elbows extended fully; feet in your squat stance) — rozstaw stóp poza zdaniem: tu „your squat stance”, w drugim źródle stopy na wprost w teście (recenzja niezależna rundy 1, 09.11.2026)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — overhead squat assessment (arms extended overhead, aligned with ears)) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.setup`
+- Sztanga nad głową na prostych rękach. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (bar overhead; elbows extended fully; feet in your squat stance) — rozstaw stóp poza zdaniem: tu „your squat stance”, w drugim źródle stopy na wprost w teście (recenzja niezależna rundy 1, 09.11.2026)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — overhead squat assessment (arms extended overhead, aligned with ears)) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.setup`
 
 **Ruch**
 
-- Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wróć do stania. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (squat at a controlled speed into full depth and return to standing; bar not moving relative to upper body)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — squat as if sitting in a chair, return to standing, arms stay overhead) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.move`
+- Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wstań. — Catalyst Athletics: [Overhead Squat (exercise library #79)](https://catalystathletics.com/exercise/79/Overhead-Squat/) (opis (squat at a controlled speed into full depth and return to standing; bar not moving relative to upper body)); ISSA: [It's Not Your Fault That You Don't Know Squat — overhead squat assessment (05.02.2024)](https://www.issaonline.com/blog/post/its-not-your-fault-that-you-dont-know-squat) (uproszczenie: wariant sprzętu (bez sztangi) — squat as if sitting in a chair, return to standing, arms stay overhead) [uproszczenie: wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu] `ohs.move`
 
 **Wskazówki**
 
