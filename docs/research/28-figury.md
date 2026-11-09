@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (197)
+## Bez figury — lista otwarta (196)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1138,7 +1138,6 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Single Leg Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Bent Over Row (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 | Meadows Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
-| Reverse Grip Bent Over Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 | Standing Cable Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 | Machine Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 | Single Arm Lat Pulldown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |

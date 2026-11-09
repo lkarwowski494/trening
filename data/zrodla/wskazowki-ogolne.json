@@ -2665,6 +2665,11 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
+  "Reverse Grip Bent Over Row": {
+   "rodzina": "rowBent",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
   "Reverse Hyperextension": {
    "rodzina": "hipExt",
    "sprawdzenie": null,

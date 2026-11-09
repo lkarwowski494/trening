@@ -3546,7 +3546,16 @@
       ]
     },
     "Reverse Grip Bent Over Row": {
-      "b": "own"
+      "b": "general",
+      "f": "rowBent",
+      "ok": [
+        "row.hinge",
+        "hinge.back",
+        "row.fullStretch"
+      ],
+      "err": [
+        "mis.roundBack"
+      ]
     },
     "Reverse Grip Triceps Pushdown": {
       "b": "own"

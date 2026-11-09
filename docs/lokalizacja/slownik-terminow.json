@@ -11363,6 +11363,74 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "lopatki_w_dol_i_do_tylu",
+   "pl": "łopatki w dół i do tyłu",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "stała kolejność wskazówki o ustawieniu łopatek (ściągnięcie w dół i do tyłu); jedno brzmienie ułatwia przekład na 33 języki — recenzja lokalizacji A3, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "łopatk\\w* (w dół i do tyłu|do tyłu i w dół)",
+   "jezyki": {
+    "pl": {
+     "zalecany": "łopatki w dół i do tyłu",
+     "zakazane": [
+      {
+       "wzorzec": "do tyłu i w dół",
+       "powod": "w partii A3 pojawiły się obie kolejności; jedno brzmienie: w dół i do tyłu"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "shoulder blades down and back",
+     "zakazane": [
+      {
+       "wzorzec": "shoulder blades back and down",
+       "powod": "jedno brzmienie jak w PL: down and back (recenzja lokalizacji A3)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "przodem_do_wyciagu",
+   "pl": "stań przodem/bokiem do wyciągu",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "ustawienie przy wyciągu (linka, bloczek) — nie „maszyna”, bo maszyna z prowadnicą to w aplikacji osobny rodzaj sprzętu (pojęcia maszyna i wyciag); recenzja lokalizacji A3, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "przodem do (maszyny|wyciągu)",
+   "wyklucz": "trzymając się jej",
+   "jezyki": {
+    "pl": {
+     "zalecany": "przodem do wyciągu",
+     "zakazane": [
+      {
+       "wzorzec": "przodem do maszyny",
+       "powod": "w zdaniu o wyciągu „maszyna” myli się z maszyną z prowadnicą (osobny sprzęt)"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "wyjątek: „stań przodem do maszyny, trzymając się jej” (rama wyciągu jako podparcie, ck.setup z A2)"
+    },
+    "en": {
+     "zalecany": "facing the stack",
+     "zakazane": [
+      {
+       "wzorzec": "facing the machine",
+       "powod": "jak w PL: przy wyciągu „stack” albo „cable”, nie „machine”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }

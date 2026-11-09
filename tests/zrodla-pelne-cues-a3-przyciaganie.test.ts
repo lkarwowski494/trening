@@ -28,8 +28,8 @@ const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[
 const NIEBYLE = ['bellsofsteel-seal-row', 'bellsofsteel-rear-delt-cable', 'majorfitness-smith-row', 'majorfitness-cable-rear-delt-row', 'ritfit-smith-row', 'rxsg-rope-foot-locks', 'fitnessvolt-cable-rear-delt-row-rope'];
 
 describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
-  test('17 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
-    expect(A3.cwiczenia.length).toBe(17);
+  test('16 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
+    expect(A3.cwiczenia.length).toBe(16);
     for (const k of A3.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
@@ -37,19 +37,19 @@ describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
     }
-    expect(A3.partial.length).toBe(13);
+    expect(A3.partial.length).toBe(12);
     expect([...A3.partial].sort()).toEqual(A3.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
   });
 
-  test('karty ukryte do przekładu: wszystkie 17 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('karty ukryte do przekładu: wszystkie 16 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
     for (const k of A3.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
   });
 
-  test('cue-sets: 17 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2, wstrzymane) nie mają karty własnej', () => {
+  test('cue-sets: 16 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2, wstrzymane) nie mają karty własnej', () => {
     for (const k of A3.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
     const pominiete = [...A3.bezUstawieniaLubRuchu, ...A3.pominieteBezBledu, ...A3.wstrzymane.map(([k]) => k as string), ...(A3.konfliktPozy as unknown as [string, string[]][]).map(([k]) => k)];
-    expect(pominiete.sort()).toEqual(['Cable Internal Rotation', 'Cable Rope Rear-Delt Rows', 'Lower Back Curl', 'Lying T-Bar Row', 'Reverse Hyperextension', 'Rope Climb', 'Seal Row (sztanga)', 'Single Arm Cable Row', 'Smith Machine Behind the Back Shrug', 'Smith Machine Bent Over Row']);
+    expect(pominiete.sort()).toEqual(['Cable Internal Rotation', 'Cable Rope Rear-Delt Rows', 'Lower Back Curl', 'Lying T-Bar Row', 'Reverse Grip Bent Over Row', 'Reverse Hyperextension', 'Rope Climb', 'Seal Row (sztanga)', 'Single Arm Cable Row', 'Smith Machine Behind the Back Shrug', 'Smith Machine Bent Over Row']);
     for (const k of pominiete) expect([k, sets[k]?.b !== 'own', k in CUE_FULL.exercises, A3.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
   });
 
@@ -80,7 +80,7 @@ describe('A3 przyciąganie: źródła i reguły szczebli', () => {
   });
 
   test('nowe źródła: adres https, organizacja z danych; organizacje warunkowe (Generation Iron, Healthline) — źródło ma własny szczebel 4 i opis strony', () => {
-    expect(A3.noweZrodla.length).toBe(25);
+    expect(A3.noweZrodla.length).toBe(22);
     for (const sid of A3.noweZrodla) {
       const s = CUE_FULL.sources[sid] as { url?: string; org: string; level?: number; strona?: string };
       expect([sid, /^https:\/\//.test(s.url ?? ''), s.org in CUE_FULL.orgs]).toEqual([sid, true, true]);
@@ -127,5 +127,34 @@ describe('A3 przyciąganie: role mięśni z istniejących funkcji (09.11.2026; b
       expect([k, reg.some(r => r.exercises.includes(k))]).toEqual([k, false]);
     expect(rm.functions['rear_delt.shoulder_er']).toBeUndefined();
     expect(rm.functions['front_delt.shoulder_ir']).toBeUndefined();
+  });
+});
+
+describe('A3 przyciąganie: poprawki rundy 1 recenzji niezależnej (09.11.2026: badacz i lokalizacja PL/EN)', () => {
+  const ids = (k: string, sec: 'setup' | 'move' | 'tips' | 'mistakes') => (CUE_FULL.exercises[k][sec] ?? []).map(r => r.c);
+  test('External Rotation (linki): ustawienie mówi o uchwycie wyciągu (rotator_cuff.erStartCable), nie o gumie; karta z gumą zostaje przy rotator_cuff.erStart', () => {
+    expect(ids('External Rotation (linki)', 'setup')).toEqual(['rotator_cuff.cableSetup', 'rotator_cuff.erStartCable']);
+    for (const t of [pl['rotator_cuff.erStartCable'], en['rotator_cuff.erStartCable']]) expect(/gum|band|zaczep|anchor/i.test(t)).toBe(false);
+    expect(CUE_FULL.exercises['External Rotation (linki)'].setup[1].s.map(([sid]) => orgOf(sid)).sort()).toEqual(['ACE', 'Fitness Volt']);
+  });
+  test('Single Arm Lat Pulldown: ustawienie bez „chwyć drążek” (lpd.thighsOnly), potem uchwyt jedną ręką', () => {
+    expect(ids('Single Arm Lat Pulldown', 'setup')).toEqual(['lpd.thighsOnly', 'lpd1.setup']);
+    expect(/drążek|bar\b/i.test(pl['lpd.thighsOnly'] + ' ' + en['lpd.thighsOnly'])).toBe(false);
+  });
+  test('Close-Grip Front Lat Pulldown: strona wąskiego chwytu (catalyst-861) zamiast strony chwytu szerokiego (catalyst-725 — źródło usunięte z danych)', () => {
+    const refs = CUE_SECTIONS.flatMap(s => CUE_FULL.exercises['Close-Grip Front Lat Pulldown'][s] ?? []).flatMap(r => r.s.map(([sid]) => sid));
+    expect(refs).toContain('catalyst-861'); expect(refs).not.toContain('catalyst-725');
+    expect(CUE_FULL.sources['catalyst-725']).toBeUndefined();
+  });
+  test('Reverse Grip Bent Over Row wycofana (Fitness Volt „Ash” bez nazwiska = szczebel 5, wariant B koordynatora): bez karty własnej, zestaw ogólny wraca; zdania row.revGrip i row.bbPullCtrl oraz źródła tej karty usunięte', () => {
+    expect(['Reverse Grip Bent Over Row' in CUE_FULL.exercises, sets['Reverse Grip Bent Over Row'].b]).toEqual([false, 'general']);
+    for (const c of ['row.revGrip', 'row.bbPullCtrl']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
+    for (const sid of ['fitnessvolt-reverse-grip-row', 'catalyst-reverse-grip-bent-row']) expect(CUE_FULL.sources[sid]).toBeUndefined();
+  });
+  test('lokalizacja: łopatki „w dół i do tyłu”, wyciąg — „przodem do wyciągu”, tryb rozkazujący, bez „chwyt nachwytem”', () => {
+    expect(pl['rotator_cuff.cubanBlades']).toMatch(/w dół i do tyłu/); expect(en['rotator_cuff.cubanBlades']).toMatch(/down and back/);
+    expect(pl['scrow.setup']).toMatch(/przodem do wyciągu/); expect(en['scrow.setup']).not.toMatch(/machine/);
+    expect(pl['preacher.arms']).toMatch(/^Oprzyj/); expect(pl['shrug.setupBehind']).not.toMatch(/chwyt nachwytem/);
+    expect(pl['curl2.zottSetup']).toMatch(/^Trzymaj/);
   });
 });

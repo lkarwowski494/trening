@@ -4,7 +4,6 @@
  "cwiczenia": [
   "Bent Over Row (linki)",
   "Meadows Row",
-  "Reverse Grip Bent Over Row",
   "Standing Cable Row",
   "Machine Row",
   "Single Arm Lat Pulldown",
@@ -23,7 +22,6 @@
  "partial": [
   "Bent Over Row (linki)",
   "Meadows Row",
-  "Reverse Grip Bent Over Row",
   "Standing Cable Row",
   "Machine Row",
   "Single Arm Lat Pulldown",
@@ -40,6 +38,7 @@
   "lpd.mis.lean",
   "lpd.mis.shrug",
   "lpd.still",
+  "lpd.thighsOnly",
   "lpd.vbarPull",
   "lpd.vbarSetup",
   "lpd1.blade",
@@ -56,12 +55,11 @@
   "rotator_cuff.cubanRotate",
   "rotator_cuff.cubanRow",
   "rotator_cuff.cubanStand",
+  "rotator_cuff.erStartCable",
   "rotator_cuff.mis.shrug",
   "rotator_cuff.pullHold",
   "rotator_cuff.pullMove",
-  "row.bbPullCtrl",
   "row.cbPull",
-  "row.revGrip",
   "scrow.mis.lean",
   "scrow.pull",
   "scrow.setup",
@@ -425,6 +423,10 @@
  ],
  "wstrzymane": [
   [
+   "Reverse Grip Bent Over Row",
+   "recenzja niezależna 09.11.2026 + decyzja koordynatora (wariant B): Fitness Volt „Ash, ACE, MSc” bez nazwiska = szczebel 5; każde zdanie zostaje z jednym źródłem szczebla 4 (Catalyst), drugiego źródła szczebla 4 brak (Breaking Muscle = 5) — karta wycofana"
+  ],
+  [
    "Single Arm Cable Row",
    "decyzja 4 W2 G6 otwarta: czy krótka wzmianka o wersji jednorącz (Healthline) wystarcza jako drugie źródło ustawienia i ruchu"
   ]
@@ -435,15 +437,12 @@
   "ace-352",
   "barbend-db-shrug",
   "barbend-unilateral",
-  "catalyst-725",
   "catalyst-861",
   "catalyst-876",
   "catalyst-889",
   "catalyst-895",
   "catalyst-915",
-  "catalyst-reverse-grip-bent-row",
   "fitnessvolt-cable-standing-row",
-  "fitnessvolt-reverse-grip-row",
   "fv-13180",
   "fv-barbell-shrugs",
   "generationiron-meadows-row",

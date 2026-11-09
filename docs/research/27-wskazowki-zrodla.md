@@ -140,9 +140,9 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 268; zdań (z powtórzeniami między ćwiczeniami): 1175; unikalnych zdań: 691; źródeł: 505.
+- Ćwiczenia ze wskazówkami: 267; zdań (z powtórzeniami między ćwiczeniami): 1170; unikalnych zdań: 691; źródeł: 502.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 15.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 131 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press, Bent Over Row (linki), Meadows Row, Reverse Grip Bent Over Row, Standing Cable Row, Machine Row, Single Arm Lat Pulldown, V-Bar Pulldown, Barbell Shrug Behind The Back, Leverage Shrug, Zottman Curl, Zottman Preacher Curl, Band Pull Apart, Cuban Press.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 130 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press, Bent Over Row (linki), Meadows Row, Standing Cable Row, Machine Row, Single Arm Lat Pulldown, V-Bar Pulldown, Barbell Shrug Behind The Back, Leverage Shrug, Zottman Curl, Zottman Preacher Curl, Band Pull Apart, Cuban Press.
 
 ## Otwarte — bez wskazówek
 
@@ -4350,40 +4350,21 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań bokiem do gryfu w wykroku, pochyl tułów w biodrach i chwyć końcówkę gryfu nachwytem; drugie przedramię oprzyj o udo z przodu. — BarBend: [The Best Unilateral Exercises… (S. McLean, CPT; akt. 04.06.2025) — Meadows Row](https://barbend.com/best-unilateral-exercises/) (Meadows Row (staggered stance; hinge; overhand grip on the end of the barbell; forearm on forward leg)); Generation Iron: [Meadows Row Exercise Guide (T. Ramos, ACSM-CPT, ISSA CSCS; akt. 24.01.2025)](https://generationiron.com/meadows-row-exercise-guide/) (Steps 1–3 (staggered stance; hinge; overhand grip on the end; forearm on forward leg)) `meadows.setup2`
+- Stań bokiem do gryfu w lekkim wykroku, pochyl tułów w biodrach i chwyć końcówkę gryfu nachwytem; drugie przedramię oprzyj o udo wysuniętej nogi. — BarBend: [The Best Unilateral Exercises… (S. McLean, CPT; akt. 04.06.2025) — Meadows Row](https://barbend.com/best-unilateral-exercises/) (Meadows Row (staggered stance; hinge; overhand grip on the end of the barbell; forearm on forward leg)); Generation Iron: [Meadows Row Exercise Guide (T. Ramos, ACSM-CPT, ISSA CSCS; akt. 24.01.2025)](https://generationiron.com/meadows-row-exercise-guide/) (Steps 1–3 (staggered stance; hinge; overhand grip on the end; forearm on forward leg)) `meadows.setup2`
 
 **Ruch**
 
-- Ciągnij łokieć w tył, prowadząc gryf w stronę biodra; opuść powoli do wyprostu ręki. — BarBend: [The Best Unilateral Exercises… (S. McLean, CPT; akt. 04.06.2025) — Meadows Row](https://barbend.com/best-unilateral-exercises/) (Meadows Row (drive your elbow behind your body; pull toward your back hip; slowly lower)); Generation Iron: [Meadows Row Exercise Guide (T. Ramos, ACSM-CPT, ISSA CSCS; akt. 24.01.2025)](https://generationiron.com/meadows-row-exercise-guide/) (Steps 5–7 (pull to your back hip; slowly lower until your elbow is straight)) `meadows.pull`
-
-### Reverse Grip Bent Over Row
-
-**Ustawienie**
-
-- Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste. — Catalyst Athletics: [Reverse Grip Bent Row](https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/) (opis (hinge forward at the hips while bending the knees; torso just above horizontal)); Fitness Volt: [barbell reverse grip bent over row guide](https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/) (How to Do a Barbell Reverse Grip Bent Over Row, ustawienie (hinge at your hips… keeping your back straight and knees slightly bent)) `row.hinge`
-- Chwyć sztangę podchwytem. — Catalyst Athletics: [Reverse Grip Bent Row](https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/) (opis (palms facing forward)); Fitness Volt: [barbell reverse grip bent over row guide](https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/) (How to Do…, ustawienie (underhand (supinated) grip)) `row.revGrip`
-
-**Ruch**
-
-- Przyciągnij sztangę do brzucha, potem opuść ją pod kontrolą. — Catalyst Athletics: [Reverse Grip Bent Row](https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/) (opis (pull the bar to the abdomen; lower the bar to full elbow extension)); Fitness Volt: [barbell reverse grip bent over row guide](https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/) (How to Do…, kroki 2 i 4 (pull towards your lower ribcage; lower in a controlled manner)) `row.bbPullCtrl`
-
-**Wskazówki**
-
-- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — Catalyst Athletics: [Reverse Grip Bent Row](https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/) (opis (brace your trunk; braced back position throughout the lowering)); Fitness Volt: [barbell reverse grip bent over row guide](https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/) (How to Do…, ustawienie (keeping your back straight)) `hinge.back`
-
-**Czego unikać**
-
-- Zaokrąglanie pleców, żeby dociągnąć ciężar. — Fitness Volt: [barbell reverse grip bent over row guide](https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/) (Common Mistakes — Poor Posture (rounding your back)); Catalyst Athletics: [Reverse Grip Bent Row](https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/) (opis (standard: brace your trunk, braced back throughout) — błąd = zaprzeczenie standardu) `mis.roundBack`
+- Przyciągnij gryf do biodra, prowadząc łokieć w tył; opuść powoli do wyprostu ręki. — BarBend: [The Best Unilateral Exercises… (S. McLean, CPT; akt. 04.06.2025) — Meadows Row](https://barbend.com/best-unilateral-exercises/) (Meadows Row (drive your elbow behind your body; pull toward your back hip; slowly lower)); Generation Iron: [Meadows Row Exercise Guide (T. Ramos, ACSM-CPT, ISSA CSCS; akt. 24.01.2025)](https://generationiron.com/meadows-row-exercise-guide/) (Steps 5–7 (pull to your back hip; slowly lower until your elbow is straight)) `meadows.pull`
 
 ### Standing Cable Row
 
 **Ustawienie**
 
-- Ustaw wyciąg mniej więcej na wysokości klatki, chwyć uchwyt oburącz i stań przodem do maszyny, kolana lekko ugięte. — ACE: [standing row](https://www.acefitness.org/resources/everyone/exercise-library/335/standing-row/) (Starting position (cable pulley at about chest-height; two handles, one in each hand; feet hip-width, knees slightly bent)); Fitness Volt: [cable standing row](https://fitnessvolt.com/cable-standing-row/) (How to (V bar about lower chest height; grip with both hands, step back; feet hip-width, knees slightly bent)) `scrow.setup`
+- Ustaw wyciąg mniej więcej na wysokości klatki, chwyć uchwyt oburącz i stań przodem do wyciągu, kolana lekko ugięte. — ACE: [standing row](https://www.acefitness.org/resources/everyone/exercise-library/335/standing-row/) (Starting position (cable pulley at about chest-height; two handles, one in each hand; feet hip-width, knees slightly bent)); Fitness Volt: [cable standing row](https://fitnessvolt.com/cable-standing-row/) (How to (V bar about lower chest height; grip with both hands, step back; feet hip-width, knees slightly bent)) `scrow.setup`
 
 **Ruch**
 
-- Przyciągnij uchwyt do tułowia, potem wróć powoli, pod kontrolą. — ACE: [standing row](https://www.acefitness.org/resources/everyone/exercise-library/335/standing-row/) (Pulling; Return (pull back until the hands reach the front of the stomach; slowly straighten the elbows)); Fitness Volt: [cable standing row](https://fitnessvolt.com/cable-standing-row/) (How to (drive your elbows behind your body, pull just below your chest; slowly extend your arms forward)) `scrow.pull`
+- Przyciągnij uchwyt do tułowia, potem powoli wróć. — ACE: [standing row](https://www.acefitness.org/resources/everyone/exercise-library/335/standing-row/) (Pulling; Return (pull back until the hands reach the front of the stomach; slowly straighten the elbows)); Fitness Volt: [cable standing row](https://fitnessvolt.com/cable-standing-row/) (How to (drive your elbows behind your body, pull just below your chest; slowly extend your arms forward)) `scrow.pull`
 
 **Czego unikać**
 
@@ -4393,7 +4374,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Ustaw siedzisko pod uchwyty, usiądź prosto i chwyć uchwyty. — NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Step 1–2 (adjust seat to the handles, feet on the platform, grip the handles)); Healthline: [seated row](https://www.healthline.com/health/seated-row) (How to do a seated row, setup (adjust seat and chest pad so shoulders are level with the handles; sit upright; hold the handle)) `mrow.setup`
+- Dopasuj wysokość siedziska do uchwytów, usiądź prosto i chwyć je. — NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Step 1–2 (adjust seat to the handles, feet on the platform, grip the handles)); Healthline: [seated row](https://www.healthline.com/health/seated-row) (How to do a seated row, setup (adjust seat and chest pad so shoulders are level with the handles; sit upright; hold the handle)) `mrow.setup`
 
 **Ruch**
 
@@ -4407,8 +4388,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź i ustaw wałki tak, żeby mocno przytrzymywały uda; chwyć drążek. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 1 (wałek na udach)); ExRx.net: [CBFrontPulldown](https://web.archive.org/web/20221216151339/https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown) (Preparation) [uproszczenie: karta Lat Pulldown (oburącz → jednorącz); siedzisko z wałkami jak na figurze] `lpd.thighs`
-- Chwyć uchwyt jedną ręką; ręka wyprostowana nad głową. — Catalyst Athletics: [Single-Arm Pulldown (#895)](https://catalystathletics.com/exercise/895/Single-Arm-Pulldown/) (opis zd. 1 („Hold a cable attachment overhead with a single hand.”)); ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 1 (chwyt nad głową, ręce wyprostowane)) [uproszczenie: ACE 158: drążek oburącz → uchwyt jednorącz] `lpd1.setup`
+- Usiądź i ustaw wałki tak, żeby mocno przytrzymywały uda. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 1 (wałek na udach)); ExRx.net: [CBFrontPulldown](https://web.archive.org/web/20221216151339/https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown) (Preparation) [uproszczenie: karta Lat Pulldown (oburącz → jednorącz); siedzisko z wałkami jak na figurze] `lpd.thighsOnly`
+- Chwyć uchwyt jedną ręką, wyprostowaną nad głową. — Catalyst Athletics: [Single-Arm Pulldown (#895)](https://catalystathletics.com/exercise/895/Single-Arm-Pulldown/) (opis zd. 1 („Hold a cable attachment overhead with a single hand.”)); ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 1 (chwyt nad głową, ręce wyprostowane)) [uproszczenie: ACE 158: drążek oburącz → uchwyt jednorącz] `lpd1.setup`
 
 **Ruch**
 
@@ -4431,13 +4412,13 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Ściągnij drążek w dół przed twarzą do górnej części klatki. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 2 (wariant: chwyt nieokreślony)); Catalyst Athletics: [Lat Pulldown](https://www.catalystathletics.com/exercise/725/Lat-Pulldown/) (opis (wariant: chwyt; strona dopuszcza dowolną szerokość chwytu)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.pull`
+- Ściągnij drążek w dół przed twarzą do górnej części klatki. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 2 (wariant: chwyt nieokreślony)); Catalyst Athletics: [Neutral Grip Lat Pulldown](https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/) (opis („most commonly this will be a narrow grip”; „pull the handles to the upper chest”)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.pull`
 
 **Wskazówki**
 
-- Na górze wyprostuj ręce do końca. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 4 (wariant: chwyt nieokreślony)); Catalyst Athletics: [Lat Pulldown](https://www.catalystathletics.com/exercise/725/Lat-Pulldown/) (opis (powrót do pełnego wyprostu rąk; wariant: chwyt)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.fullStretch`
-- Ściągaj do górnej części klatki — nie dalej. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 3 (wariant: chwyt nieokreślony)); Catalyst Athletics: [Lat Pulldown](https://www.catalystathletics.com/exercise/725/Lat-Pulldown/) (opis (drążek przy obojczykach; wariant: chwyt)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.toChest`
-- Tułów stabilny — bez bujania. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 2 (nie odchylaj się dalej w trakcie ściągania; wariant: chwyt nieokreślony)); Catalyst Athletics: [Lat Pulldown](https://www.catalystathletics.com/exercise/725/Lat-Pulldown/) (opis (tułów napięty, bez zaokrąglania i bujania; wariant: chwyt)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.still`
+- Na górze wyprostuj ręce do końca. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 4 (wariant: chwyt nieokreślony)); Catalyst Athletics: [Neutral Grip Lat Pulldown](https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/) (opis („return to the extended position under control”)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.fullStretch`
+- Ściągaj do górnej części klatki — nie dalej. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 3 (wariant: chwyt nieokreślony)); Catalyst Athletics: [Neutral Grip Lat Pulldown](https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/) (opis („pull the handles to the upper chest”)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.toChest`
+- Tułów stabilny — bez bujania. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 2 (nie odchylaj się dalej w trakcie ściągania; wariant: chwyt nieokreślony)); Catalyst Athletics: [Neutral Grip Lat Pulldown](https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/) (opis („Keeping the trunk braced”)) [uproszczenie: wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch] `lpd.still`
 
 **Czego unikać**
 
@@ -4468,7 +4449,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Usiądź, ustaw wałki mocno na udach i chwyć uchwyt V — dłonie zwrócone do siebie. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 1 (thigh pad to fit firmly; uproszczenie: wariant sprzętu Lat Pulldown)); Catalyst Athletics: [Neutral Grip Lat Pulldown](https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/) (opis (Hold a neutral-grip cable attachment overhead)) [uproszczenie: wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch] `lpd.vbarSetup`
+- Usiądź, ustaw wałki tak, żeby mocno przytrzymywały uda, i chwyć uchwyt V, dłonie zwrócone do siebie. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 1 (thigh pad to fit firmly; uproszczenie: wariant sprzętu Lat Pulldown)); Catalyst Athletics: [Neutral Grip Lat Pulldown](https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/) (opis (Hold a neutral-grip cable attachment overhead)) [uproszczenie: wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch] `lpd.vbarSetup`
 
 **Ruch**
 
@@ -4507,7 +4488,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Stań prosto, sztanga za udami, chwyt nachwytem, ręce proste. — BarBend: [dumbbell shrug](https://barbend.com/dumbbell-shrug/) (Variations — Behind-the-Back Barbell Shrug (facing away; bar against the backs of the legs; close, overhand grip; stand upright)); Fitness Volt: [front barbell shrugs vs behind the back shrugs](https://fitnessvolt.com/13180/front-barbell-shrugs-vs-behind-the-back-shrugs/) (behind-the-back shrug — instrukcja (overhand grip, barbell behind your thighs; arms straight)) `shrug.setupBehind`
+- Stań prosto, sztangę trzymaj nachwytem za udami, ręce proste. — BarBend: [dumbbell shrug](https://barbend.com/dumbbell-shrug/) (Variations — Behind-the-Back Barbell Shrug (facing away; bar against the backs of the legs; close, overhand grip; stand upright)); Fitness Volt: [front barbell shrugs vs behind the back shrugs](https://fitnessvolt.com/13180/front-barbell-shrugs-vs-behind-the-back-shrugs/) (behind-the-back shrug — instrukcja (overhand grip, barbell behind your thighs; arms straight)) `shrug.setupBehind`
 
 **Ruch**
 
@@ -4544,11 +4525,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Hantle w opuszczonych rękach, dłonie zwrócone do przodu. — Catalyst Athletics: [Zottman Curl (#915)](https://www.catalystathletics.com/exercise/915/Zottman-Curl/) (opis zd. 1 („…at arm's length and the palms facing forward”)); ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (8. Zottman Curl („Start with dumbbells held in a supinated grip”)) `curl2.zottSetup`
+- Trzymaj hantle w opuszczonych rękach, dłonie zwrócone do przodu. — Catalyst Athletics: [Zottman Curl (#915)](https://www.catalystathletics.com/exercise/915/Zottman-Curl/) (opis zd. 1 („…at arm's length and the palms facing forward”)); ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (8. Zottman Curl („Start with dumbbells held in a supinated grip”)) `curl2.zottSetup`
 
 **Ruch**
 
-- Unieś hantle podchwytem, na górze obróć dłonie w dół i opuszczaj nachwytem. — Catalyst Athletics: [Zottman Curl (#915)](https://www.catalystathletics.com/exercise/915/Zottman-Curl/) (opis zd. 2–3); ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (8. Zottman Curl) `zottman.move`
+- Uginaj ręce podchwytem, na górze obróć dłonie w dół i opuść hantle nachwytem. — Catalyst Athletics: [Zottman Curl (#915)](https://www.catalystathletics.com/exercise/915/Zottman-Curl/) (opis zd. 2–3); ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (8. Zottman Curl) `zottman.move`
 
 **Wskazówki**
 
@@ -4558,18 +4539,18 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Ramię opierasz o podpórkę modlitewnika i nie odrywasz go przez cały ruch. — ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (9. Preacher Curl (hantle)); Catalyst Athletics: [Single-Arm Dumbbell Preacher Curl (#889)](https://www.catalystathletics.com/exercise/889/) (opis zd. 1) `preacher.arms`
+- Oprzyj ramię o podpórkę modlitewnika i nie odrywaj go przez cały ruch. — ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (9. Preacher Curl (hantle)); Catalyst Athletics: [Single-Arm Dumbbell Preacher Curl (#889)](https://www.catalystathletics.com/exercise/889/) (opis zd. 1) `preacher.arms`
 
 **Ruch**
 
-- Unieś hantle podchwytem, na górze obróć dłonie w dół i opuszczaj nachwytem. — Catalyst Athletics: [Zottman Curl (#915)](https://www.catalystathletics.com/exercise/915/Zottman-Curl/) (opis zd. 2–3); ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (8. Zottman Curl) [uproszczenie: wariant pozycji Zottman Curl (stojąc → modlitewnik); obrót dłoni ten sam] `zottman.move`
+- Uginaj ręce podchwytem, na górze obróć dłonie w dół i opuść hantle nachwytem. — Catalyst Athletics: [Zottman Curl (#915)](https://www.catalystathletics.com/exercise/915/Zottman-Curl/) (opis zd. 2–3); ISSA: [12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)](https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged) (8. Zottman Curl) [uproszczenie: wariant pozycji Zottman Curl (stojąc → modlitewnik); obrót dłoni ten sam] `zottman.move`
 
 ### External Rotation (linki)
 
 **Ustawienie**
 
-- Ustaw wyciąg z jednym uchwytem na wysokości pasa i stań do niego bokiem. — ACE: [Rotator Cuff External Rotation (#352)](https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/) (instrukcja, zdania 1–2); Fitness Volt: [cable external shoulder rotation](https://fitnessvolt.com/cable-external-shoulder-rotation/) (Setup (single handle, approximately elbow height)); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation — uproszczenie: wariant sprzętu External Rotation with Band); WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja, akapity 1–2 — uproszczenie: wariant sprzętu External Rotation with Band) `rotator_cuff.cableSetup`
-- Chwyć gumę ręką dalej od zaczepu; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem. — ACE: [Rotator Cuff External Rotation (#352)](https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/) (instrukcja (left hand, right side closest; cable in front of the stomach)); Fitness Volt: [cable external shoulder rotation](https://fitnessvolt.com/cable-external-shoulder-rotation/) (Setup (working arm farther from the stack; about 90 degrees; upper arm close to your side)) `rotator_cuff.erStart`
+- Załóż pojedynczy uchwyt, ustaw wyciąg na wysokości pasa i stań do niego bokiem. — ACE: [Rotator Cuff External Rotation (#352)](https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/) (instrukcja, zdania 1–2); Fitness Volt: [cable external shoulder rotation](https://fitnessvolt.com/cable-external-shoulder-rotation/) (Setup (single handle, approximately elbow height)); HSS: [Shoulder Rotator Cuff and Scapular Strengthening Program](https://hss.edu/sutton/shoulder-strengthening-program.pdf) (s. 1, External Rotation — uproszczenie: wariant sprzętu External Rotation with Band); WebMD Ignite: [Shoulder external rotation (resisted)](https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/) (instrukcja, akapity 1–2 — uproszczenie: wariant sprzętu External Rotation with Band) `rotator_cuff.cableSetup`
+- Chwyć uchwyt ręką dalej od wyciągu; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem. — ACE: [Rotator Cuff External Rotation (#352)](https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/) (Steps („Keep the left elbow tucked in to the body”; „the cable should pass in front of the stomach”; wyciąg na wysokości pasa, pojedynczy uchwyt)); Fitness Volt: [cable external shoulder rotation](https://fitnessvolt.com/cable-external-shoulder-rotation/) (How to („The working arm should be farther from the weight stack”; „Bend it to about 90 degrees and keep the upper arm close to your side.”)) `rotator_cuff.erStartCable`
 
 **Ruch**
 
@@ -4607,11 +4588,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Ustawienie**
 
 - Stań prosto z hantlami w dłoniach. — BarBend: [cuban press](https://barbend.com/cuban-press/) (How to, Step 1 (Grab light dumbbells in both hands)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Setup (Stand with your feet about hip-width apart) — uproszczenie: wariant sprzętu (sztanga)) `rotator_cuff.cubanStand`
-- Zanim zaczniesz, ściągnij łopatki do tyłu i w dół. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 1, Coach's Tip; Common mistakes: Not Setting Your Scapula); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Setup (shoulders pulled down and back)) `rotator_cuff.cubanBlades`
+- Zanim zaczniesz, ściągnij łopatki w dół i do tyłu. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 1, Coach's Tip; Common mistakes: Not Setting Your Scapula); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Setup (shoulders pulled down and back)) `rotator_cuff.cubanBlades`
 
 **Ruch**
 
-- Unieś łokcie bokiem do wysokości barków; łokcie zgięte pod kątem prostym, hantle zwisają w dół. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 1 (elbows up to a 90-degree angle, parallel to the floor)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 2 (upper arms roughly parallel to the floor, elbows bent to 90-degrees) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanRow`
+- Unieś łokcie bokiem do wysokości barków, zgięte pod kątem prostym; hantle zwisają. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 1 (elbows up to a 90-degree angle, parallel to the floor)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 2 (upper arms roughly parallel to the floor, elbows bent to 90-degrees) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanRow`
 - Obróć przedramiona w górę, nie opuszczając łokci — ramiona zostają poziomo. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 2 (goalpost position)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 3 (Without lowering your upper arms, externally rotate) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanRotate`
 - Wyciśnij hantle prosto nad głowę. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 3 (Press your arms overhead; Coach's Tip: press up straight)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 4 (Press the bar up to arms' length) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanPressUp`
 
@@ -4802,7 +4783,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-68 | Catalyst Athletics | Hang Clean | https://www.catalystathletics.com/exercise/68/Hang-Clean/ | — |
 | catalyst-72 | Catalyst Athletics | Power Jerk (Exercise Library #72) | https://catalystathletics.com/exercise/72/Power-Jerk/ | — |
 | catalyst-723 | Catalyst Athletics | Single Leg Bench Supported Glute Bridge | https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/ | — |
-| catalyst-725 | Catalyst Athletics | Lat Pulldown | https://www.catalystathletics.com/exercise/725/Lat-Pulldown/ | — |
 | catalyst-75 | Catalyst Athletics | Squat Jerk (Exercise Library #75) | https://catalystathletics.com/exercise/75/Squat-Jerk/ | — |
 | catalyst-76 | Catalyst Athletics | Clean & Jerk | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | — |
 | catalyst-766 | Catalyst Athletics | Clamshell | https://catalystathletics.com/exercise/766/Clamshell/ | — |
@@ -4830,7 +4810,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-art-2076 | Catalyst Athletics | Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017) | https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making | — |
 | catalyst-kettlebell-press | Catalyst Athletics | Ketllebell Press | https://catalystathletics.com/exercise/855/Ketllebell-Press/ | — |
 | catalyst-pm-815 | Catalyst Athletics | Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch | https://performancemenu.com/article/815/Greg-Everett | — |
-| catalyst-reverse-grip-bent-row | Catalyst Athletics | Reverse Grip Bent Row | https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/ | — |
 | catalyst-video-1499 | Catalyst Athletics | How To Stop Swinging Snatch & Clean Pulls (wideo z opisem) | https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls | — |
 | catalyst-video-1539 | Catalyst Athletics | Arm Bend In Snatch & Clean Pulls? (wideo z opisem) | https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/ | — |
 | cc-seated-warmup | Cleveland Clinic | Seated Warm-Up/Cool-Down Exercises (Rev. 7/19) | https://my.clevelandclinic.org/-/scassets/files/org/heart/patient-education/hvti-files/seated-warm-up-exercises.pdf | — |
@@ -4946,7 +4925,6 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | fitnessvolt-cable-rear-delt-exercises | Fitness Volt | Cable rear delt exercises | https://fitnessvolt.com/cable-rear-delt-exercises/ | — |
 | fitnessvolt-cable-standing-row | Fitness Volt | cable standing row | https://fitnessvolt.com/cable-standing-row/ | — |
 | fitnessvolt-decline-skull-crusher | Fitness Volt | Decline skull crusher | https://fitnessvolt.com/23999/decline-skull-crusher/ | — |
-| fitnessvolt-reverse-grip-row | Fitness Volt | barbell reverse grip bent over row guide | https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/ | — |
 | fitvibe-cable-y-raise-668 | FitVibe | Cable y raise 668 | https://fitvibe.gr/askiseis/cable-y-raise-668 | — |
 | fv-13180 | Fitness Volt | front barbell shrugs vs behind the back shrugs | https://fitnessvolt.com/13180/front-barbell-shrugs-vs-behind-the-back-shrugs/ | — |
 | fv-barbell-shrugs | Fitness Volt | barbell shrugs guide | https://fitnessvolt.com/barbell-shrugs-guide/ | — |

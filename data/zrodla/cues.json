@@ -3561,12 +3561,6 @@
    "url": "https://barbend.com/best-unilateral-exercises/",
    "level": 4
   },
-  "catalyst-725": {
-   "org": "Catalyst Athletics",
-   "title": "Lat Pulldown",
-   "url": "https://www.catalystathletics.com/exercise/725/Lat-Pulldown/",
-   "level": 4
-  },
   "catalyst-861": {
    "org": "Catalyst Athletics",
    "title": "Neutral Grip Lat Pulldown",
@@ -3597,22 +3591,10 @@
    "url": "https://www.catalystathletics.com/exercise/915/Zottman-Curl/",
    "level": 4
   },
-  "catalyst-reverse-grip-bent-row": {
-   "org": "Catalyst Athletics",
-   "title": "Reverse Grip Bent Row",
-   "url": "https://catalystathletics.com/exercise/875/Reverse-Grip-Bent-Row/",
-   "level": 4
-  },
   "fitnessvolt-cable-standing-row": {
    "org": "Fitness Volt",
    "title": "cable standing row",
    "url": "https://fitnessvolt.com/cable-standing-row/",
-   "level": 4
-  },
-  "fitnessvolt-reverse-grip-row": {
-   "org": "Fitness Volt",
-   "title": "barbell reverse grip bent over row guide",
-   "url": "https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/",
    "level": 4
   },
   "fv-13180": {
@@ -21399,81 +21381,6 @@
     }
    ]
   },
-  "Reverse Grip Bent Over Row": {
-   "setup": [
-    {
-     "c": "row.hinge",
-     "s": [
-      [
-       "catalyst-reverse-grip-bent-row",
-       "opis (hinge forward at the hips while bending the knees; torso just above horizontal)"
-      ],
-      [
-       "fitnessvolt-reverse-grip-row",
-       "How to Do a Barbell Reverse Grip Bent Over Row, ustawienie (hinge at your hips… keeping your back straight and knees slightly bent)"
-      ]
-     ]
-    },
-    {
-     "c": "row.revGrip",
-     "s": [
-      [
-       "catalyst-reverse-grip-bent-row",
-       "opis (palms facing forward)"
-      ],
-      [
-       "fitnessvolt-reverse-grip-row",
-       "How to Do…, ustawienie (underhand (supinated) grip)"
-      ]
-     ]
-    }
-   ],
-   "move": [
-    {
-     "c": "row.bbPullCtrl",
-     "s": [
-      [
-       "catalyst-reverse-grip-bent-row",
-       "opis (pull the bar to the abdomen; lower the bar to full elbow extension)"
-      ],
-      [
-       "fitnessvolt-reverse-grip-row",
-       "How to Do…, kroki 2 i 4 (pull towards your lower ribcage; lower in a controlled manner)"
-      ]
-     ]
-    }
-   ],
-   "tips": [
-    {
-     "c": "hinge.back",
-     "s": [
-      [
-       "catalyst-reverse-grip-bent-row",
-       "opis (brace your trunk; braced back position throughout the lowering)"
-      ],
-      [
-       "fitnessvolt-reverse-grip-row",
-       "How to Do…, ustawienie (keeping your back straight)"
-      ]
-     ]
-    }
-   ],
-   "mistakes": [
-    {
-     "c": "mis.roundBack",
-     "s": [
-      [
-       "fitnessvolt-reverse-grip-row",
-       "Common Mistakes — Poor Posture (rounding your back)"
-      ],
-      [
-       "catalyst-reverse-grip-bent-row",
-       "opis (standard: brace your trunk, braced back throughout) — błąd = zaprzeczenie standardu"
-      ]
-     ]
-    }
-   ]
-  },
   "Standing Cable Row": {
    "setup": [
     {
@@ -21571,7 +21478,7 @@
   "Single Arm Lat Pulldown": {
    "setup": [
     {
-     "c": "lpd.thighs",
+     "c": "lpd.thighsOnly",
      "uproszczenie": "karta Lat Pulldown (oburącz → jednorącz); siedzisko z wałkami jak na figurze",
      "s": [
       [
@@ -21690,8 +21597,8 @@
        "Step 2 (wariant: chwyt nieokreślony)"
       ],
       [
-       "catalyst-725",
-       "opis (wariant: chwyt; strona dopuszcza dowolną szerokość chwytu)"
+       "catalyst-861",
+       "opis („most commonly this will be a narrow grip”; „pull the handles to the upper chest”)"
       ]
      ],
      "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
@@ -21706,8 +21613,8 @@
        "Step 4 (wariant: chwyt nieokreślony)"
       ],
       [
-       "catalyst-725",
-       "opis (powrót do pełnego wyprostu rąk; wariant: chwyt)"
+       "catalyst-861",
+       "opis („return to the extended position under control”)"
       ]
      ],
      "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
@@ -21720,8 +21627,8 @@
        "Step 3 (wariant: chwyt nieokreślony)"
       ],
       [
-       "catalyst-725",
-       "opis (drążek przy obojczykach; wariant: chwyt)"
+       "catalyst-861",
+       "opis („pull the handles to the upper chest”)"
       ]
      ],
      "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
@@ -21734,8 +21641,8 @@
        "Step 2 (nie odchylaj się dalej w trakcie ściągania; wariant: chwyt nieokreślony)"
       ],
       [
-       "catalyst-725",
-       "opis (tułów napięty, bez zaokrąglania i bujania; wariant: chwyt)"
+       "catalyst-861",
+       "opis („Keeping the trunk braced”)"
       ]
      ],
      "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
@@ -22293,15 +22200,15 @@
      ]
     },
     {
-     "c": "rotator_cuff.erStart",
+     "c": "rotator_cuff.erStartCable",
      "s": [
       [
        "ace-352",
-       "instrukcja (left hand, right side closest; cable in front of the stomach)"
+       "Steps („Keep the left elbow tucked in to the body”; „the cable should pass in front of the stomach”; wyciąg na wysokości pasa, pojedynczy uchwyt)"
       ],
       [
        "w2g2-rc-fv-cable-er",
-       "Setup (working arm farther from the stack; about 90 degrees; upper arm close to your side)"
+       "How to („The working arm should be farther from the weight stack”; „Bend it to about 90 degrees and keep the upper arm close to your side.”)"
       ]
      ]
     }
@@ -22649,7 +22556,6 @@
   "Single Leg Press",
   "Bent Over Row (linki)",
   "Meadows Row",
-  "Reverse Grip Bent Over Row",
   "Standing Cable Row",
   "Machine Row",
   "Single Arm Lat Pulldown",
