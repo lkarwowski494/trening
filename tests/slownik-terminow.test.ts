@@ -363,3 +363,52 @@ describe('04.11.2026, recenzja lokalizacji T1 (delt_raise): uchwyt, nachwyt, uda
     expect([zal('uchwyt', 'cs'), zal('uchwyt', 'es'), zal('uchwyt', 'nl'), zal('sztanga', 'sl'), zal('sztanga', 'ro')]).toEqual(['rukojeť', 'agarre', 'handgreep', 'palica', 'halteră']);
   });
 });
+
+describe('09.11.2026, recenzja lokalizacji A4b (moc i przedramiona): fałszywi przyjaciele — pięść (punch), sanki, podrzut, swing, odmiana kettlebell lv, uda ru/uk', () => {
+  const nar = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+  test('pięść (punch): nb „stanser”, da „standser” (zatrzymać) i pt-BR „punho” (nadgarstek) są wykrywane; nb „støter”, da „støder”, pt-BR „dê um soco” przechodzą', () => {
+    const pl = 'Gdy kettlebell mija twarz, wsuń dłoń w uchwyt i wypchnij pięść w sufit.';
+    expect(nar('nb', pl, 'og stanser knyttneven mot taket')).toContain('piesc_punch');
+    expect(nar('da', pl, 'og standser knytnæven mod loftet')).toContain('piesc_punch');
+    expect(nar('pt-BR', pl, 'e empurre o punho em direção ao teto')).toContain('piesc_punch');
+    expect(nar('nb', pl, 'og støter knyttneven opp mot taket')).not.toContain('piesc_punch');
+    expect(nar('da', pl, 'og stød knytnæven op mod loftet')).not.toContain('piesc_punch');
+    expect(nar('pt-BR', pl, 'e dê um soco em direção ao teto')).not.toContain('piesc_punch');
+    expect(nar('pt-BR', 'Trzymaj nadgarstek prosto.', 'Mantenha o punho reto.')).not.toContain('piesc_punch');
+  });
+  test('sanki treningowe: ja „そり” (sanki na śnieg) jest wykrywane, „スレッド” przechodzi; hu „szánkó”', () => {
+    const pl = 'Chwyć linę sanek w obie ręce.';
+    expect(nar('ja', pl, 'そりのロープを両手で握ります。')).toContain('sanki_treningowe');
+    expect(nar('ja', pl, 'スレッドのロープを両手で握ります。')).not.toContain('sanki_treningowe');
+    expect(nar('hu', pl, 'Fogd meg két kézzel a szánkó kötelét.')).not.toContain('sanki_treningowe'); /* hu: interfejs ma „Szán”, więc bez zakazu — tylko termin zalecany */
+  });
+  test('podrzut (jerk): sv/nb/da „jerk” i ro „aruncare” są wykrywane; „stöt”, „støt”, „stød”, „jerk” (ro) przechodzą', () => {
+    const pl = 'Drugie ugięcie nóg pod ciężar — to już podrzut, nie push press.';
+    expect(nar('sv', pl, 'då blir det en jerk, inte en push press')).toContain('podrzut_jerk');
+    expect(nar('nb', pl, 'da blir det et jerk, ikke en push press')).toContain('podrzut_jerk');
+    expect(nar('da', pl, 'så bliver det et jerk, ikke et push press')).toContain('podrzut_jerk');
+    expect(nar('ro', pl, 'asta e deja aruncare, nu push press')).toContain('podrzut_jerk');
+    expect(nar('sv', pl, 'då blir det en stöt, inte en push press')).not.toContain('podrzut_jerk');
+    expect(nar('nb', pl, 'da blir det et støt, ikke en push press')).not.toContain('podrzut_jerk');
+    expect(nar('da', pl, 'så bliver det et stød, ikke et push press')).not.toContain('podrzut_jerk');
+    expect(nar('ro', pl, 'asta e deja jerk, nu push press')).not.toContain('podrzut_jerk');
+  });
+  test('swing kettlebell: uk „свінг” jest wykrywany (ma być „махи”, jak w kbb.dblCleanMove), „махи” przechodzi', () => {
+    const pl = 'Zrób zamach jak przy swingu, a po wyproście bioder poprowadź kettlebell w górę.';
+    expect(nar('uk', pl, 'Зроби замах, як при свінгу, а після розгинання таза веди гирю вгору.')).toContain('zamach_kettlebell');
+    expect(nar('uk', pl, 'Зроби замах, як при махах, а після розгинання таза веди гирю вгору.')).not.toContain('zamach_kettlebell');
+  });
+  test('kettlebell lv: nieodmienione „kettlebell” jest wykrywane; „kettlebellu”, „kettlebells” przechodzą', () => {
+    const pl = 'Gdy kettlebell mija twarz, wsuń dłoń w uchwyt.';
+    expect(nar('lv', pl, 'Kad kettlebell paiet garām sejai')).toContain('kettlebell');
+    expect(nar('lv', pl, 'Kad kettlebells paiet garām sejai')).not.toContain('kettlebell');
+    expect(nar('lv', 'Połóż kettlebell na podłodze.', 'Novieto kettlebellu uz grīdas.')).not.toContain('kettlebell');
+  });
+  test('uda ru/uk: „на ногах” (zamiast „на бёдрах/стегнах”) jest wykrywane; „на коленях” w zdaniu o udach i biodrach przechodzi', () => {
+    const pl = 'Z kamieniem na udach wypchnij biodra w przód.';
+    expect(nar('ru', pl, 'С камнем на ногах подай таз вперёд.')).toContain('uda');
+    expect(nar('uk', pl, 'З каменем на ногах подай таз уперед.')).toContain('uda');
+    expect(nar('ru', pl, 'Держа камень на коленях, подай таз вперёд.')).not.toContain('uda');
+    expect(nar('uk', pl, 'Тримаючи камінь на колінах, подай таз уперед.')).not.toContain('uda');
+  });
+});

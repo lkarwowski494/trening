@@ -8244,7 +8244,13 @@
     "lv": {
      "zalecany": "kettlebell",
      "pewnosc": "niska",
-     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli."
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli.",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])kettlebell(?![\\p{L}])",
+       "powod": "łotewski odmienia „kettlebell” (kettlebells, kettlebella, kettlebellu, kettlebelli, kettlebellus, kettlebelliem); goły temat to błąd gramatyczny (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ]
     },
     "et": {
      "zalecany": "kettlebell",
@@ -11027,8 +11033,8 @@
      "pewnosc": "srednia",
      "zakazane": [
       {
-       "wzorzec": "(?<![\\p{L}])(перед|к|у) ног(ами|ам|и|ой|е)?(?![\\p{L}])",
-       "powod": "„ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup)"
+       "wzorzec": "(?<![\\p{L}])(перед|к|у) ног(ами|ам|и|ой|е)?(?![\\p{L}])|(?<![\\p{L}])на ногах(?![\\p{L}])",
+       "powod": "„ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup); „на ногах” też znaczy „stojąc/na stopach” — dla ud „на бёдрах”, a gdy w zdaniu jest też „таз” (zakaz „бёдра” dla bioder), opisz „на коленях” (recenzja lokalizacji A4b, 09.11.2026)"
       }
      ]
     },
@@ -11037,8 +11043,8 @@
      "pewnosc": "srednia",
      "zakazane": [
       {
-       "wzorzec": "(?<![\\p{L}])(перед|до|біля) ног(ами|ам|и|ою|і)?(?![\\p{L}])|біля ніг",
-       "powod": "„ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup)"
+       "wzorzec": "(?<![\\p{L}])(перед|до|біля) ног(ами|ам|и|ою|і)?(?![\\p{L}])|біля ніг|(?<![\\p{L}])на ногах(?![\\p{L}])",
+       "powod": "„ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup); „на ногах” też znaczy „stojąc/na stopach” — dla ud „на стегнах”, a gdy w zdaniu jest też „таз” (zakaz „стегна” dla bioder), opisz „на колінах” (recenzja lokalizacji A4b, 09.11.2026)"
       }
      ]
     }
@@ -11589,11 +11595,15 @@
    "pl": "zamach kettlebellem między nogami (jak przy swingu)",
    "tylko": [
     "pl",
-    "en"
+    "en",
+    "ru",
+    "uk",
+    "bg",
+    "sr"
    ],
    "znaczenie": "faza swingu, zarzutu i rwania kettlebellem: kettlebell wędruje między nogi i z powrotem; po polsku „zrób zamach”, nie „przerzuć” (przerzucenie = rzut przez coś) — recenzja lokalizacji A4b, 09.11.2026",
    "kanon": null,
-   "wykrywaj": "między nogami",
+   "wykrywaj": "między nogami|(?<![\\p{L}])swing\\w*",
    "jezyki": {
     "pl": {
      "zalecany": "zrób zamach … między nogami",
@@ -11607,6 +11617,283 @@
     },
     "en": {
      "zalecany": "swing / hike between the legs",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "махи",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "махи",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])свінг\\p{L}*",
+       "powod": "w ukraińskich wskazówkach kettlebell (kbb.dblCleanMove) zamach to „махи”, nie „свінг” (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "суинг",
+     "pewnosc": "niska",
+     "uwaga": "Termin z istniejących wskazówek; do potwierdzenia przez native speakera."
+    },
+    "sr": {
+     "zalecany": "свинг",
+     "pewnosc": "niska",
+     "uwaga": "Termin z istniejących wskazówek; do potwierdzenia przez native speakera."
+    }
+   }
+  },
+  {
+   "id": "piesc_punch",
+   "pl": "wypchnij pięść w górę (punch)",
+   "tylko": [
+    "pl",
+    "en",
+    "nb",
+    "da",
+    "pt-BR"
+   ],
+   "znaczenie": "ruch pięści w górę przy rwaniu kettlebellem; „stanse/standse” (nb/da) znaczą zatrzymać, a „punho” w pt-BR to nadgarstek (jak we wszystkich wskazówkach pt-BR) — pięść to „soco”/„mão fechada” (recenzja lokalizacji A4b, 09.11.2026)",
+   "kanon": null,
+   "wykrywaj": "pi[eę]ś\\w*",
+   "jezyki": {
+    "pl": {
+     "zalecany": "wypchnij pięść",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "punch your fist",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "støt/skyv knyttneven",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])stans(e|er|et)?(?![\\p{L}])",
+       "powod": "„stanse” znaczy zatrzymać (fałszywy przyjaciel „punch”); pięść się wybija: „støt knyttneven” (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "„støter” czy „skyver” — do sprawdzenia przez native speakera."
+    },
+    "da": {
+     "zalecany": "stød knytnæven",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])stands(e|er|et)?(?![\\p{L}])",
+       "powod": "„standse” znaczy zatrzymać, nie wybić pięść; użyj „stød knytnæven” (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "dê um soco / mão fechada",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])punhos?(?![\\p{L}])",
+       "powod": "w pt-BR „punho” to nadgarstek (tak używają go wskazówki aplikacji); pięść to „soco” albo „mão fechada” (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "sanki_treningowe",
+   "pl": "sanki treningowe (sled)",
+   "tylko": [
+    "pl",
+    "en",
+    "ja",
+    "hu"
+   ],
+   "znaczenie": "sanki do pchania i ciągnięcia z obciążeniem; w ja „そり” to sanki na śnieg — na siłowni „スレッド”; w hu „szánkó” (recenzja lokalizacji A4b, 09.11.2026)",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])(sank|sanek|sanie|sani)\\p{L}*|(?<![\\p{L}])sled(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "sanki",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "sled",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "スレッド",
+     "zakazane": [
+      {
+       "wzorzec": "そり|ソリ",
+       "powod": "„そり” to sanki na śnieg; sanki treningowe to „スレッド” (jak w sled.pushGrip) (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "szánkó",
+     "pewnosc": "niska",
+     "uwaga": "W zdaniach wskazówek „szánkó”; interfejs ma „Szán” (Sanki) — brak zakazu, do ujednolicenia przez native speakera."
+    }
+   }
+  },
+  {
+   "id": "podrzut_jerk",
+   "pl": "podrzut (jerk)",
+   "tylko": [
+    "pl",
+    "en",
+    "sv",
+    "nb",
+    "da",
+    "de",
+    "fr",
+    "it",
+    "es",
+    "es-419",
+    "fi",
+    "et",
+    "lv",
+    "lt",
+    "cs",
+    "sk",
+    "hu",
+    "hr",
+    "sr",
+    "sl",
+    "bg",
+    "ru",
+    "uk",
+    "zh-Hant",
+    "ro"
+   ],
+   "znaczenie": "ruch podrzutu w podnoszeniu ciężarów (jerk) w odróżnieniu od push pressu; jedno brzmienie we wszystkich wskazówkach języka, jak w olympic.dipSquat (recenzja lokalizacji A4b, 09.11.2026)",
+   "kanon": null,
+   "wykrywaj": "podrzut\\w*",
+   "jezyki": {
+    "pl": {
+     "zalecany": "podrzut",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "jerk",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "stöt",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])jerk(?![\\p{L}])",
+       "powod": "w szwedzkich wskazówkach podrzut to „stöt” (olympic.dipSquat) (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "støt",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])jerk(?![\\p{L}])",
+       "powod": "w norweskich wskazówkach podrzut to „støt” (olympic.dipSquat) (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "stød",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])jerk(?![\\p{L}])",
+       "powod": "w duńskich wskazówkach podrzut to „stød” (olympic.dipSquat) (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Stoßen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "jeté",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "slancio",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "envión",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "envión",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "työntö",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "tõukamine",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "grūšana",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "stūmimas",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "nadhoz",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "nadhod",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "lökés",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "izbačaj",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "избачај",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "sunek",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "изтласкване",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "толчок",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "поштовх",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "上挺",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "jerk",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])aruncare(?![\\p{L}])",
+       "powod": "„aruncare” to rzut; w rumuńskich wskazówkach podrzut to „jerk” (olympic.dipSquat) (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
      "pewnosc": "srednia"
     }
    }
