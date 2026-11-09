@@ -6,16 +6,19 @@ Brief autora rodziny: `briefy/partia-1-autor.md`. Recenzja: subagent `audytor` (
 
 Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą): overhead_press +21, chest_fly +17, kb_ballistic +16, calf_raise +12, row +12 (pełna karta).
 
-Stan 09.11.2026 ~22:45 UTC (sesja kontynuacji). **Wszystkie gałęzie rodzin scalone do `figury/partia-1`** (+ integracja bb1072f3); dalsza praca na `figury/partia-1`, gałęzie `figury/partia-1-{calf,row,chest,ohp}` są historyczne.
+Stan 09.11.2026 ~23:20 UTC (przekazanie sesji — limit kontekstu). `figury/partia-1` zawiera: integrację 55c9f206 (ślad dźwigni), wszystkie gałęzie rodzin, poprawki chest_fly r1 (c537f8a4) i overhead_press r1 (b8890ffa).
 
-| Rodzina | Status | Recenzja | Wpisy w figury-recenzja.json | Następny krok |
-|---|---|---|---|---|
-| calf_raise | ready | r2 **wyswietlana** (10 z 13; Standing/Seated w V2_WSTRZYMANE) | przeniesione | po scaleniu integracji 55c9f206 (ślad dźwigni): recenzja różnicy, nowe sha z `--skroty` |
-| row | ready | r3 **wyswietlana** (`partia1-row-r3*`, sha 94a4a8448fe9); W1-r2 stopy → `stopyNaPalcach` (gora.mjs) | v2, 5 zestawów, 5 kart, K10: 6 × v1 zastapiona | po 55c9f206: recenzja różnicy Lying T-Bar Row (dźwignia) |
-| curl | ready (integracja) | różnica Spider Curl **wyswietlana** (`curl-roznica-spider*`, sha 3380994ca6df) | v2 curl | — |
-| kb_ballistic | **planned** | r2 do poprawy (W1-r2 ciąg zarzutu/rwania, 7 ćw.; Snatch (hantel) z podłogi) | 6 zestawów, karta KB Swing | poprawki: programista na `figury/partia-1-kb-r2` (worktree), potem r3 |
-| chest_fly | **planned** | r1 do poprawy (W1 Band — guma przez tułów, W2 Crucifix nie w ISOMETRIC, W3 Wide-Grip pullover) | 13 zestawów | poprawki: `figury/partia-1-chest-r1`, potem r2 (+ Pec Deck po śladzie dźwigni) |
-| overhead_press | **planned** | r1 do poprawy (W1 dół ruchu 22 cm przed barkami, 13 ćw.) | 6 zestawów | poprawki: `figury/partia-1-ohp-r1`; ryzyko: limit łokcia silnika 149° / reguła lokcie_pod_dlonmi — opcje do koordynatora; potem r2 |
+| Rodzina | Status | Recenzja | Następny krok |
+|---|---|---|---|
+| calf_raise | ready | r2 wyswietlana | **recenzja różnicy po śladzie dźwigni 55c9f206** (Donkey/maszyny), nowe sha z `--skroty` |
+| row | ready | r3 wyswietlana (K10 zrobione) | **recenzja różnicy Lying T-Bar Row po 55c9f206** |
+| curl | ready | różnica Spider Curl wyswietlana | — |
+| chest_fly | planned | r1 do poprawy → poprawki W1–W3 + S3 zrobione (c537f8a4: guma 2 zaczepy z ±75, Crucifix w ISOMETRIC, Wide-Grip ±35 cm, Cable Fly bloczek 140/pochylenie 12°) | **r2 audytora** (+ Pec Deck po śladzie dźwigni); przy czystej r2: `ready`, listy w testach, wpisy 1:1 |
+| overhead_press | planned | r1 do poprawy → poprawki W1, Ś1, Ś2 (b8890ffa: dół 13,3/9 cm przed/nad barkiem, sztanga–tułów 5 cm, łokieć–chwyt ≤ 8 cm, KB start 12/14; zza karku xTop −9; ohp.seat usunięte z Seated Cable) | **r2 audytora** (ślad zmienił kształt; landmine po 55c9f206). Przy włączeniu: tor side 12,5 cm (wyjątek z powodem w tests/tor-wyjatki.json albo próg łuku rodziny — rekomendacja autora a), listy `figures-v2-kierunek-u`/`-petla-jednokierunkowa`, K15 Landmine Press (animowany błąd), Bradford Press i Handstand Push Up bez wpisu w figury-wyjatki.json |
+| kb_ballistic | planned | r2 do poprawy (W1-r2) | poprawki W1-r2 robi subagent na `figury/partia-1-kb-r2` (polecenie: wypchnąć gałąź po verify:lekkie) — `git fetch origin figury/partia-1-kb-r2`, scal, potem **r3**. Też: zapadka `figury-mobilnosc-reguly` (R6_palce_nie_slizgaja_sie|kb_ballistic) i `figury-recenzja-p4a` „regresja: pozy bez zmian” — do zaktualizowania świadomie po poprawce |
+
+Czerwone testy znane na tej gałęzi (stan 86d5ce29, przed pełnym przebiegiem): kb (p4a regresja póz, mobilnosc R6), ohp (kierunek-u, petla — strażniki iterują pliki póz także rodzin planned). Wspólne listy po powrocie do planned poprawione (mapping, recenzja-wyjatki, strona-eksport 236, ACG-002, p2 baza, cel animowanyBlad 266). Uruchom: `npx jest tests/figures-v2 tests/figury tests/strona-eksport tests/recenzja-wyjatki-1-1 tests/cel-1-1 tests/skrot-v2 tests/l047 tests/karty-recenzja --runInBand` i domknij.
+Kolejność dla następnej sesji: (1) pełny przebieg testów figur i poprawki list; (2) recenzje: chest r2, ohp r2, różnica calf i row po śladzie dźwigni — audytor przez `briefy/partia-1-recenzent.md`; (3) kb: scal gałąź kb-r2, r3; (4) wpisy 1:1, włączenie rodzin z czystą recenzją, `zrodla-runtime --write`, pokrycie, cel = symulacja; (5) zestaw przekładu (nowych kluczy UI: brak) — szacunek 0 USD; (6) `verify:szybkie`, push, zielony tests.yml, raport do koordynatora.
 
 Zadanie poza partią (koordynator): `delt_raise.json` ≠ generator w „Straight Raises on Incline Bench” (stara poza leżąca; po regeneracji potrzebne `stopyNaPalcach`). Backlog z recenzji: docs/21 P1-ROW-1, P1-CURL-1, P1-KB-1, P1-CHEST-1, P1-OHP-1.
 Zgłoszenia silnika (nie ruszane): punkty dźwigni „barki”/„uda” (P1-CALF-1), kostka w MeasuredJoint (P1-CALF-3), nakładka „limb” wymaga pokazanego stawu, widoki ćwiczenia = widoki rodziny, gryf landmine zawsze poprzeczny, kąt kostki bez znaku, limit zgięcia łokcia 149° (ohp).
