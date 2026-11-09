@@ -96,7 +96,7 @@ describe('wyjątki: lista po nazwie i ćwiczenia na czas', () => {
     expect(bad).toEqual([]);
   });
   test('lista po nazwie (szrugsy, nadgarstek): nazwy istnieją, region i rola zgodne z katalogiem, wynik wg listy; spoza listy — brak', () => {
-    expect(ROLE_DATA.names.length).toBe(5); /* + 2 reguły deski bocznej (A1 pchanie, 08.11.2026) */
+    expect(ROLE_DATA.names.length).toBe(7); /* + 2 reguły deski bocznej (A1 pchanie, 08.11.2026) + Dead Hang i Lower Back Curl (A3 przyciąganie, 09.11.2026) */
     const want: Record<string, string> = { 'upper_back.scap_elevate': 'Unosi barki.', 'forearms.wrist_flex': 'Zgina nadgarstek.', 'forearms.wrist_ext': 'Prostuje nadgarstek.' };
     for (const n of ROLE_DATA.names.filter(r => want[r.f] !== undefined)) for (const k of n.x) {
       expect(KEYS).toContain(k);

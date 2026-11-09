@@ -1,0 +1,204 @@
+{
+  "_opis": "Zdania wskazówek techniki z partii A3 (przyciąganie i ramiona; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt). Do czasu przekładu karty są ukryte (lista karty_nowe w tests/recenzja-wyjatki-1-1.json), a aplikacja przy pokazaniu użyłaby angielskiego (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+  "data": "2026-11-09",
+  "klucze": [
+    {
+      "rodzaj": "nowy",
+      "id": "curl2.zottSetup",
+      "pl": "Trzymaj hantle w opuszczonych rękach, dłonie zwrócone do przodu.",
+      "en": "Hold the dumbbells at your sides, palms facing forward."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd.mis.lean",
+      "pl": "Bujanie i odchylanie się do tyłu, żeby ściągnąć ciężar.",
+      "en": "Swinging and leaning back to get the weight down."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd.mis.shrug",
+      "pl": "Barki uciekają w górę, do uszu.",
+      "en": "Shoulders creeping up toward your ears."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd.still",
+      "pl": "Tułów stabilny — bez bujania.",
+      "en": "Keep your torso steady — no swinging."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd.thighsOnly",
+      "pl": "Usiądź i ustaw wałki tak, żeby mocno przytrzymywały uda.",
+      "en": "Sit down and set the pads so they hold your thighs firmly."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd.vbarPull",
+      "pl": "Ściągnij uchwyt do górnej części klatki, łopatki w dół i do tyłu; wróć powoli do wyprostu rąk.",
+      "en": "Pull the handle to your upper chest, shoulder blades down and back; return slowly until your arms are straight."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd.vbarSetup",
+      "pl": "Usiądź, ustaw wałki tak, żeby mocno przytrzymywały uda, i chwyć uchwyt V, dłonie zwrócone do siebie.",
+      "en": "Sit down, set the pads so they hold your thighs firmly and grab the V-bar, palms facing each other."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd1.blade",
+      "pl": "Zacznij ruch od ściągnięcia łopatki w dół i do tyłu.",
+      "en": "Start by drawing your shoulder blade down and back."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd1.pull",
+      "pl": "Ściągnij uchwyt w dół do barku; wróć powoli do wyprostu ręki.",
+      "en": "Pull the handle down to your shoulder; return slowly until your arm is straight."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lpd1.setup",
+      "pl": "Chwyć uchwyt jedną ręką, wyprostowaną nad głową.",
+      "en": "Hold the handle in one hand, arm straight overhead."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "meadows.pull",
+      "pl": "Przyciągnij gryf do biodra, prowadząc łokieć w tył; opuść powoli do wyprostu ręki.",
+      "en": "Drive your elbow back and pull the bar toward your hip; lower slowly until your arm is straight."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "meadows.setup2",
+      "pl": "Stań bokiem do gryfu w lekkim wykroku, pochyl tułów w biodrach i chwyć końcówkę gryfu nachwytem; drugie przedramię oprzyj o udo wysuniętej nogi.",
+      "en": "Stand side-on to the bar in a staggered stance, hinge at the hips and grab the end of the bar overhand; rest your other forearm on your front thigh."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "mrow.pull",
+      "pl": "Przyciągnij uchwyty do tułowia, łokcie w tył; wróć do pozycji wyjściowej.",
+      "en": "Pull the handles to your torso, elbows back; return to the start."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "mrow.setup",
+      "pl": "Dopasuj wysokość siedziska do uchwytów, usiądź prosto i chwyć je.",
+      "en": "Adjust the seat height to the handles, sit tall and grab them."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "preacher.arms",
+      "pl": "Oprzyj ramię o podpórkę modlitewnika i nie odrywaj go przez cały ruch.",
+      "en": "Keep your upper arm resting on the preacher pad the whole time."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.cableSetup",
+      "pl": "Załóż pojedynczy uchwyt, ustaw wyciąg na wysokości pasa i stań do niego bokiem.",
+      "en": "Set a single handle on the cable at waist height and stand side-on to it."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.cubanBlades",
+      "pl": "Zanim zaczniesz, ściągnij łopatki w dół i do tyłu.",
+      "en": "Before you start, set your shoulder blades down and back."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.cubanPressUp",
+      "pl": "Wyciśnij hantle prosto nad głowę.",
+      "en": "Press the dumbbells straight overhead."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.cubanRotate",
+      "pl": "Obróć przedramiona w górę, nie opuszczając łokci — ramiona zostają poziomo.",
+      "en": "Rotate your forearms up without dropping your elbows; upper arms stay level."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.cubanRow",
+      "pl": "Unieś łokcie bokiem do wysokości barków, zgięte pod kątem prostym; hantle zwisają.",
+      "en": "Lift your elbows out to shoulder height, bent at a right angle, dumbbells hanging down."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.cubanStand",
+      "pl": "Stań prosto z hantlami w dłoniach.",
+      "en": "Stand tall with a dumbbell in each hand."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.erStartCable",
+      "pl": "Chwyć uchwyt ręką dalej od wyciągu; łokieć zgięty pod kątem prostym przy boku, przedramię przed brzuchem.",
+      "en": "Hold the handle in the hand farther from the machine, elbow bent at a right angle at your side, forearm across your stomach."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.mis.shrug",
+      "pl": "Unoszenie barków do uszu.",
+      "en": "Shrugging your shoulders up to your ears."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.pullHold",
+      "pl": "Chwyć gumę oburącz i trzymaj ręce przed sobą na wysokości klatki.",
+      "en": "Hold the band in both hands with your arms out in front at chest height."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "rotator_cuff.pullMove",
+      "pl": "Rozciągnij gumę na boki, ściągając łopatki; dłonie zostają na wysokości klatki.",
+      "en": "Pull the band apart, squeezing your shoulder blades together; keep your hands at chest height."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "row.cbPull",
+      "pl": "Przyciągnij uchwyty do brzucha, potem wróć do pełnego wyprostu rąk.",
+      "en": "Pull the handles to your stomach, then return until your arms are fully straight."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "scrow.mis.lean",
+      "pl": "Odchylanie albo pochylanie tułowia, żeby dociągnąć ciężar.",
+      "en": "Leaning back or forward to pull the weight in."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "scrow.pull",
+      "pl": "Przyciągnij uchwyt do tułowia, potem powoli wróć.",
+      "en": "Pull the handle to your torso, then return slowly."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "scrow.setup",
+      "pl": "Ustaw wyciąg mniej więcej na wysokości klatki, chwyć uchwyt oburącz i stań przodem do wyciągu, kolana lekko ugięte.",
+      "en": "Set the cable at about chest height, grab the handle with both hands and stand facing the stack, knees slightly bent."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "shrug.mis.elbows",
+      "pl": "Uginanie łokci — ciężar ciągną ręce zamiast barków.",
+      "en": "Bending your elbows and pulling with your arms instead of your shoulders."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "shrug.mis.roll",
+      "pl": "Krążenie barkami zamiast ruchu prosto w górę i w dół.",
+      "en": "Rolling your shoulders instead of moving straight up and down."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "shrug.setupBehind",
+      "pl": "Stań prosto, sztangę trzymaj nachwytem za udami, ręce proste.",
+      "en": "Stand tall with the bar behind your thighs, overhand grip, arms straight."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "zottman.move",
+      "pl": "Uginaj ręce podchwytem, na górze obróć dłonie w dół i opuść hantle nachwytem.",
+      "en": "Curl the dumbbells up palms-up, turn your palms down at the top and lower them with an overhand grip."
+    }
+  ]
+}

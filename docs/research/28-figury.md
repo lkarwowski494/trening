@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (180)
+## Bez figury — lista otwarta (196)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1136,5 +1136,21 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Glute Bridge (sztanga) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Seated Band Hamstring Curl | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Single Leg Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
+| Bent Over Row (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Meadows Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Standing Cable Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Machine Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Single Arm Lat Pulldown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Close-Grip Front Lat Pulldown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Underhand Lat Pulldown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| V-Bar Pulldown | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Shrugs (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Barbell Shrug Behind The Back | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Leverage Shrug | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Zottman Curl | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Zottman Preacher Curl | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| External Rotation (linki) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Band Pull Apart | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
+| Cuban Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A3 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B3) — karta ukryta do recenzji niezależnej. |
 
 Poza tym bez figury: 15 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.

@@ -572,6 +572,23 @@
    "name": "Thera-Band (Performance Health) — instrukcje ćwiczeń z gumami (producent gum)",
    "level": 4,
    "kind": "maker"
+  },
+  "Generation Iron": {
+   "name": "Generation Iron — przewodniki ćwiczeń (generationiron.com)",
+   "level": 4,
+   "kind": "site",
+   "warunkowo": "strona z autorem z kwalifikacjami i datą; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 3 i K3)"
+  },
+  "Healthline": {
+   "name": "Healthline — artykuły o ćwiczeniach (healthline.com)",
+   "level": 4,
+   "kind": "site",
+   "warunkowo": "strona z nazwanym recenzentem z kwalifikacjami i datą; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 3; odpowiedź 1 z 02.11.2026)"
+  },
+  "Mullaney i in. (Int J Sports Phys Ther 2021)": {
+   "name": "Mullaney i in. — program Thrower’s Ten, opis wykonania w załączniku (Int J Sports Phys Ther 2021;16(6))",
+   "level": 3,
+   "kind": "study"
   }
  },
  "sources": {
@@ -3519,6 +3536,140 @@
    "title": "thera band ankle calf raise in standing",
    "url": "https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html",
    "level": 4
+  },
+  "ace-335": {
+   "org": "ACE",
+   "title": "standing row",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/335/standing-row/",
+   "level": 4
+  },
+  "ace-352": {
+   "org": "ACE",
+   "title": "Rotator Cuff External Rotation (#352)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+   "level": 4
+  },
+  "barbend-db-shrug": {
+   "org": "BarBend",
+   "title": "dumbbell shrug",
+   "url": "https://barbend.com/dumbbell-shrug/",
+   "level": 4
+  },
+  "barbend-unilateral": {
+   "org": "BarBend",
+   "title": "The Best Unilateral Exercises… (S. McLean, CPT; akt. 04.06.2025) — Meadows Row",
+   "url": "https://barbend.com/best-unilateral-exercises/",
+   "level": 4
+  },
+  "catalyst-861": {
+   "org": "Catalyst Athletics",
+   "title": "Neutral Grip Lat Pulldown",
+   "url": "https://www.catalystathletics.com/exercise/861/Neutral-Grip-Lat-Pulldown/",
+   "level": 4
+  },
+  "catalyst-876": {
+   "org": "Catalyst Athletics",
+   "title": "Reverse Grip Lat Pulldown",
+   "url": "https://www.catalystathletics.com/exercise/876/Reverse-Grip-Lat-Pulldown/",
+   "level": 4
+  },
+  "catalyst-889": {
+   "org": "Catalyst Athletics",
+   "title": "Single-Arm Dumbbell Preacher Curl (#889)",
+   "url": "https://www.catalystathletics.com/exercise/889/",
+   "level": 4
+  },
+  "catalyst-895": {
+   "org": "Catalyst Athletics",
+   "title": "Single-Arm Pulldown (#895)",
+   "url": "https://catalystathletics.com/exercise/895/Single-Arm-Pulldown/",
+   "level": 4
+  },
+  "catalyst-915": {
+   "org": "Catalyst Athletics",
+   "title": "Zottman Curl (#915)",
+   "url": "https://www.catalystathletics.com/exercise/915/Zottman-Curl/",
+   "level": 4
+  },
+  "fitnessvolt-cable-standing-row": {
+   "org": "Fitness Volt",
+   "title": "cable standing row",
+   "url": "https://fitnessvolt.com/cable-standing-row/",
+   "level": 4
+  },
+  "fv-13180": {
+   "org": "Fitness Volt",
+   "title": "front barbell shrugs vs behind the back shrugs",
+   "url": "https://fitnessvolt.com/13180/front-barbell-shrugs-vs-behind-the-back-shrugs/",
+   "level": 4
+  },
+  "fv-barbell-shrugs": {
+   "org": "Fitness Volt",
+   "title": "barbell shrugs guide",
+   "url": "https://fitnessvolt.com/barbell-shrugs-guide/",
+   "level": 4
+  },
+  "generationiron-meadows-row": {
+   "org": "Generation Iron",
+   "title": "Meadows Row Exercise Guide (T. Ramos, ACSM-CPT, ISSA CSCS; akt. 24.01.2025)",
+   "url": "https://generationiron.com/meadows-row-exercise-guide/",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania obowiązkowe 1.1, mieszane.md): autor T. Ramos (B.S. Kinesiology, ACSM-CPT, ISSA CSCS) w podpisie, aktualizacja 24.01.2025; linki partnerskie nie czynią strony sprzedażową → 4 per strona (docs/18, 02.11.2026, K3)"
+  },
+  "healthline-seated-row": {
+   "org": "Healthline",
+   "title": "seated row",
+   "url": "https://www.healthline.com/health/seated-row",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania W2 G6, cable_row.md): „Medically reviewed by Gregory Minnis, DPT — Written by Kirsten Nunez on May 31, 2019” — nazwany recenzent z kwalifikacjami i data → 4 per strona (docs/18, 02.11.2026, uzupełnienie 3 i odpowiedź 1)"
+  },
+  "healthwise-kaiser-band-exercises": {
+   "org": "WebMD Ignite",
+   "title": "Resistance Training With Exercise Bands: Exercises",
+   "url": "https://healthy.kaiserpermanente.org/health-wellness/health-encyclopedia/he.resistance-training-with-exercise-bands-exercises.bz1003",
+   "level": 4
+  },
+  "issa-12-curls": {
+   "org": "ISSA",
+   "title": "12 Biceps Curl Variations to Keep Your Arms Engaged (ISSA, 22.09.2025)",
+   "url": "https://www.issaonline.com/blogs/performance/12-biceps-curl-variations-to-keep-your-arms-engaged",
+   "level": 4
+  },
+  "nasm-lpd-biomech": {
+   "org": "NASM",
+   "title": "the biomechanics of the lat pulldown muscles grip and form",
+   "url": "https://www.nasm.org/resource-center/blog/training/the-biomechanics-of-the-lat-pulldown-muscles-grip-and-form",
+   "level": 4
+  },
+  "w2g2-rc-barbend-cuban": {
+   "org": "BarBend",
+   "title": "cuban press",
+   "url": "https://barbend.com/cuban-press/",
+   "level": 4
+  },
+  "w2g2-rc-catalyst-pullapart": {
+   "org": "Catalyst Athletics",
+   "title": "Band Pull Apart",
+   "url": "https://www.catalystathletics.com/exercise/762/Band-Pull-Apart/",
+   "level": 4
+  },
+  "w2g2-rc-fv-cable-er": {
+   "org": "Fitness Volt",
+   "title": "cable external shoulder rotation",
+   "url": "https://fitnessvolt.com/cable-external-shoulder-rotation/",
+   "level": 4
+  },
+  "w2g2-rc-fv-cuban": {
+   "org": "Fitness Volt",
+   "title": "cuban press",
+   "url": "https://fitnessvolt.com/cuban-press/",
+   "level": 4
+  },
+  "w2g2-rc-throwers10": {
+   "org": "Mullaney i in. (Int J Sports Phys Ther 2021)",
+   "title": "PMC8637269",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8637269/",
+   "level": 3
   }
  },
  "exercises": {
@@ -21131,6 +21282,1140 @@
      ]
     }
    ]
+  },
+  "Bent Over Row (linki)": {
+   "setup": [
+    {
+     "c": "row.hinge",
+     "s": [
+      [
+       "ace-12",
+       "opis (sztanga — ten sam wzorzec; uproszczenie: wariant sprzętu)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Preparation (sztanga — ten sam wzorzec; uproszczenie: wariant sprzętu)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam zawias biodrowy i przyciąganie do brzucha, linka z dolnego bloczka zmienia tylko kierunek oporu"
+    }
+   ],
+   "move": [
+    {
+     "c": "row.cbPull",
+     "s": [
+      [
+       "ace-12",
+       "opis (towards the belly button; until the elbows are completely straight — sztanga, uproszczenie: wariant sprzętu)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution (to upper waist; arms extended — sztanga, uproszczenie: wariant sprzętu)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam zawias biodrowy i przyciąganie do brzucha, linka z dolnego bloczka zmienia tylko kierunek oporu"
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-12",
+       "opis (back straight/flat — sztanga, uproszczenie)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments (low back straight — sztanga, uproszczenie)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam zawias biodrowy i przyciąganie do brzucha, linka z dolnego bloczka zmienia tylko kierunek oporu"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments (low back rounded due to poor form — sztanga, uproszczenie)"
+      ],
+      [
+       "ace-12",
+       "opis (keep the back flat — sztanga, uproszczenie)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę; ten sam zawias biodrowy i przyciąganie do brzucha, linka z dolnego bloczka zmienia tylko kierunek oporu"
+    }
+   ]
+  },
+  "Meadows Row": {
+   "setup": [
+    {
+     "c": "meadows.setup2",
+     "s": [
+      [
+       "barbend-unilateral",
+       "Meadows Row (staggered stance; hinge; overhand grip on the end of the barbell; forearm on forward leg)"
+      ],
+      [
+       "generationiron-meadows-row",
+       "Steps 1–3 (staggered stance; hinge; overhand grip on the end; forearm on forward leg)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "meadows.pull",
+     "s": [
+      [
+       "barbend-unilateral",
+       "Meadows Row (drive your elbow behind your body; pull toward your back hip; slowly lower)"
+      ],
+      [
+       "generationiron-meadows-row",
+       "Steps 5–7 (pull to your back hip; slowly lower until your elbow is straight)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Standing Cable Row": {
+   "setup": [
+    {
+     "c": "scrow.setup",
+     "s": [
+      [
+       "ace-335",
+       "Starting position (cable pulley at about chest-height; two handles, one in each hand; feet hip-width, knees slightly bent)"
+      ],
+      [
+       "fitnessvolt-cable-standing-row",
+       "How to (V bar about lower chest height; grip with both hands, step back; feet hip-width, knees slightly bent)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "scrow.pull",
+     "s": [
+      [
+       "ace-335",
+       "Pulling; Return (pull back until the hands reach the front of the stomach; slowly straighten the elbows)"
+      ],
+      [
+       "fitnessvolt-cable-standing-row",
+       "How to (drive your elbows behind your body, pull just below your chest; slowly extend your arms forward)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "scrow.mis.lean",
+     "s": [
+      [
+       "fitnessvolt-cable-standing-row",
+       "How to / tips (avoid leaning too far back or forward)"
+      ],
+      [
+       "ace-335",
+       "Starting position (standard: hips straight, back tall) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Machine Row": {
+   "setup": [
+    {
+     "c": "mrow.setup",
+     "s": [
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 1–2 (adjust seat to the handles, feet on the platform, grip the handles)"
+      ],
+      [
+       "healthline-seated-row",
+       "How to do a seated row, setup (adjust seat and chest pad so shoulders are level with the handles; sit upright; hold the handle)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "mrow.pull",
+     "s": [
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 3–4 (pull toward your torso driving the elbows back; lower)"
+      ],
+      [
+       "healthline-seated-row",
+       "How to do a seated row, pull and return (bend the elbows keeping them tucked; slowly extend the arms)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.jerk",
+     "s": [
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Common mistakes (jerking the weight)"
+      ],
+      [
+       "healthline-seated-row",
+       "Common mistakes: swinging torso; rapid movements (wariant: seated row machine / cable)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Arm Lat Pulldown": {
+   "setup": [
+    {
+     "c": "lpd.thighsOnly",
+     "uproszczenie": "karta Lat Pulldown (oburącz → jednorącz); siedzisko z wałkami jak na figurze",
+     "s": [
+      [
+       "ace-158",
+       "Step 1 (wałek na udach)"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Preparation"
+      ]
+     ]
+    },
+    {
+     "c": "lpd1.setup",
+     "uproszczenie": "ACE 158: drążek oburącz → uchwyt jednorącz",
+     "s": [
+      [
+       "catalyst-895",
+       "opis zd. 1 („Hold a cable attachment overhead with a single hand.”)"
+      ],
+      [
+       "ace-158",
+       "Step 1 (chwyt nad głową, ręce wyprostowane)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lpd1.pull",
+     "uproszczenie": "ACE 158: drążek do klatki → uchwyt do barku (ten sam ruch jedną ręką)",
+     "s": [
+      [
+       "catalyst-895",
+       "opis zd. 2–3 („pull the handle to the shoulder… return to the extended position under control”)"
+      ],
+      [
+       "ace-158",
+       "Step 2–4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lpd1.blade",
+     "uproszczenie": "ACE 158: oburącz",
+     "s": [
+      [
+       "catalyst-895",
+       "opis (łopatka w dół i do tyłu)"
+      ],
+      [
+       "ace-158",
+       "Step 2 („initiate the downward pull by first depressing… your scapulae”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lpd.mis.lean",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: jednorącz)"
+      ],
+      [
+       "ace-158",
+       "Step 2 — standard"
+      ],
+      [
+       "catalyst-895",
+       "opis (tułów usztywniony) — standard"
+      ]
+     ]
+    },
+    {
+     "c": "lpd.mis.shrug",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: jednorącz)"
+      ],
+      [
+       "catalyst-895",
+       "opis (łopatka w dół) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Close-Grip Front Lat Pulldown": {
+   "setup": [
+    {
+     "c": "lpd.thighs",
+     "s": [
+      [
+       "ace-158",
+       "Step 1 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Preparation (wariant: chwyt szeroki)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    }
+   ],
+   "move": [
+    {
+     "c": "lpd.pull",
+     "s": [
+      [
+       "ace-158",
+       "Step 2 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-861",
+       "opis („most commonly this will be a narrow grip”; „pull the handles to the upper chest”)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lpd.fullStretch",
+     "s": [
+      [
+       "ace-158",
+       "Step 4 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-861",
+       "opis („return to the extended position under control”)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    },
+    {
+     "c": "lpd.toChest",
+     "s": [
+      [
+       "ace-158",
+       "Step 3 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-861",
+       "opis („pull the handles to the upper chest”)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    },
+    {
+     "c": "lpd.still",
+     "s": [
+      [
+       "ace-158",
+       "Step 2 (nie odchylaj się dalej w trakcie ściągania; wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-861",
+       "opis („Keeping the trunk braced”)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lpd.mis.lean",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: chwyt)"
+      ],
+      [
+       "ace-158",
+       "Step 2 — standard (wariant: chwyt nieokreślony)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    },
+    {
+     "c": "lpd.mis.shrug",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: chwyt)"
+      ],
+      [
+       "ace-158",
+       "Step 2 — standard (wariant: chwyt nieokreślony)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: wąski chwyt; ten sam ruch"
+    }
+   ]
+  },
+  "Underhand Lat Pulldown": {
+   "setup": [
+    {
+     "c": "lpd.thighs",
+     "s": [
+      [
+       "ace-158",
+       "Step 1 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Preparation (wariant: chwyt szeroki)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: podchwyt; ten sam ruch"
+    }
+   ],
+   "move": [
+    {
+     "c": "lpd.pull",
+     "s": [
+      [
+       "ace-158",
+       "Step 2 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-876",
+       "opis (do górnej części klatki)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: podchwyt; ten sam ruch"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lpd.toChest",
+     "s": [
+      [
+       "ace-158",
+       "Step 3 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-876",
+       "opis (drążek przy obojczykach)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: podchwyt; ten sam ruch"
+    },
+    {
+     "c": "lpd.fullStretch",
+     "s": [
+      [
+       "ace-158",
+       "Step 4 (wariant: chwyt nieokreślony)"
+      ],
+      [
+       "catalyst-876",
+       "opis (powrót do pełnego wyprostu rąk nad głową)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: podchwyt; ten sam ruch"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lpd.mis.lean",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: chwyt)"
+      ],
+      [
+       "ace-158",
+       "Step 2 — standard (wariant: chwyt nieokreślony)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: podchwyt; ten sam ruch"
+    },
+    {
+     "c": "lpd.mis.shrug",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: chwyt)"
+      ],
+      [
+       "ace-158",
+       "Step 2 — standard (wariant: chwyt nieokreślony)"
+      ]
+     ],
+     "uproszczenie": "wariant chwytu Lat Pulldown: podchwyt; ten sam ruch"
+    }
+   ]
+  },
+  "V-Bar Pulldown": {
+   "setup": [
+    {
+     "c": "lpd.vbarSetup",
+     "s": [
+      [
+       "ace-158",
+       "Step 1 (thigh pad to fit firmly; uproszczenie: wariant sprzętu Lat Pulldown)"
+      ],
+      [
+       "catalyst-861",
+       "opis (Hold a neutral-grip cable attachment overhead)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch"
+    }
+   ],
+   "move": [
+    {
+     "c": "lpd.vbarPull",
+     "s": [
+      [
+       "catalyst-861",
+       "opis (pull the handles to the upper chest, pulling the shoulder blades down and back; return to the extended position under control)"
+      ],
+      [
+       "ace-158",
+       "Step 2–4 (depress scapulae; bar nears the chest; slowly return; uproszczenie: wariant sprzętu Lat Pulldown)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lpd.fullStretch",
+     "s": [
+      [
+       "ace-158",
+       "Step 4 (until your elbows are fully extended; wariant sprzętu)"
+      ],
+      [
+       "catalyst-861",
+       "opis (return to the extended position)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lpd.mis.lean",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: uchwyt)"
+      ],
+      [
+       "ace-158",
+       "Step 2 — standard"
+      ],
+      [
+       "catalyst-861",
+       "opis (Keeping the trunk braced) — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch"
+    },
+    {
+     "c": "lpd.mis.shrug",
+     "s": [
+      [
+       "nasm-lpd-biomech",
+       "Common Compensations (wariant: uchwyt)"
+      ],
+      [
+       "catalyst-861",
+       "opis (shoulder blades down and back) — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu Lat Pulldown: uchwyt V zamiast drążka; ten sam ruch"
+    }
+   ]
+  },
+  "Shrugs (linki)": {
+   "setup": [
+    {
+     "c": "shrug.setup",
+     "s": [
+      [
+       "ace-72",
+       "opis (uproszczenie: wariant sprzętu sztanga)"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Preparation (uproszczenie: wariant sprzętu hantle)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; ciężar w opuszczonych, prostych rękach, ruch barków ten sam, linka zmienia tylko źródło oporu"
+    }
+   ],
+   "move": [
+    {
+     "c": "shrug.move",
+     "s": [
+      [
+       "ace-72",
+       "opis (uproszczenie: wariant sprzętu sztanga)"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Execution (uproszczenie: wariant sprzętu sztanga)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; ciężar w opuszczonych, prostych rękach, ruch barków ten sam, linka zmienia tylko źródło oporu"
+    }
+   ],
+   "tips": [
+    {
+     "c": "shrug.high",
+     "s": [
+      [
+       "ace-72",
+       "opis (as high as possible; wariant: sztanga)"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Execution (wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; ciężar w opuszczonych, prostych rękach, ruch barków ten sam, linka zmienia tylko źródło oporu"
+    },
+    {
+     "c": "shrug.tall",
+     "s": [
+      [
+       "ace-72",
+       "opis (back tall; only the shoulders; wariant: sztanga)"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Comments (wariant: hantle)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; ciężar w opuszczonych, prostych rękach, ruch barków ten sam, linka zmienia tylko źródło oporu"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "shrug.mis.roll",
+     "s": [
+      [
+       "ace-72",
+       "Tip (wariant: sztanga)"
+      ],
+      [
+       "fv-barbell-shrugs",
+       "How to (wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; ciężar w opuszczonych, prostych rękach, ruch barków ten sam, linka zmienia tylko źródło oporu"
+    },
+    {
+     "c": "shrug.mis.elbows",
+     "s": [
+      [
+       "ace-75",
+       "Step 2 (wariant: hantle)"
+      ],
+      [
+       "barbend-db-shrug",
+       "Common Mistakes — Bending Your Elbows (wariant: hantle)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; ciężar w opuszczonych, prostych rękach, ruch barków ten sam, linka zmienia tylko źródło oporu"
+    }
+   ]
+  },
+  "Barbell Shrug Behind The Back": {
+   "setup": [
+    {
+     "c": "shrug.setupBehind",
+     "s": [
+      [
+       "barbend-db-shrug",
+       "Variations — Behind-the-Back Barbell Shrug (facing away; bar against the backs of the legs; close, overhand grip; stand upright)"
+      ],
+      [
+       "fv-13180",
+       "behind-the-back shrug — instrukcja (overhand grip, barbell behind your thighs; arms straight)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "shrug.move",
+     "s": [
+      [
+       "fv-13180",
+       "behind-the-back shrug — instrukcja (barki w stronę uszu, przytrzymanie, opuszczenie)"
+      ],
+      [
+       "ace-72",
+       "opis (lowering slowly; wariant: sztanga z przodu)"
+      ]
+     ],
+     "uproszczenie": "wersja z przodu (sztanga, hantle) jako źródło ruchu barków; ten sam ruch, zmienia się tylko położenie gryfu"
+    }
+   ],
+   "tips": [
+    {
+     "c": "shrug.high",
+     "s": [
+      [
+       "ace-72",
+       "opis (wariant: sztanga z przodu)"
+      ],
+      [
+       "fv-barbell-shrugs",
+       "How to (shrug as high as you possibly can; wariant: sztanga z przodu)"
+      ]
+     ],
+     "uproszczenie": "wersja z przodu (sztanga, hantle) jako źródło ruchu barków; ten sam ruch, zmienia się tylko położenie gryfu"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "shrug.mis.roll",
+     "s": [
+      [
+       "ace-72",
+       "Tip (wariant: sztanga z przodu)"
+      ],
+      [
+       "fv-barbell-shrugs",
+       "How to (wariant: sztanga z przodu)"
+      ]
+     ],
+     "uproszczenie": "wersja z przodu (sztanga, hantle) jako źródło ruchu barków; ten sam ruch, zmienia się tylko położenie gryfu"
+    }
+   ]
+  },
+  "Leverage Shrug": {
+   "setup": [
+    {
+     "c": "shrug.setup",
+     "s": [
+      [
+       "ace-75",
+       "Step 1 (uproszczenie: wariant sprzętu hantle — uchwyty przy bokach, łokcie wyprostowane)"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Preparation (uproszczenie: wariant sprzętu hantle)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; uchwyty maszyny przy bokach jak hantle, ruch barków ten sam"
+    }
+   ],
+   "move": [
+    {
+     "c": "shrug.move",
+     "s": [
+      [
+       "ace-72",
+       "opis (uproszczenie: wariant sprzętu sztanga)"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Execution (uproszczenie: wariant sprzętu sztanga)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; uchwyty maszyny przy bokach jak hantle, ruch barków ten sam"
+    }
+   ],
+   "tips": [
+    {
+     "c": "shrug.high",
+     "s": [
+      [
+       "ace-72",
+       "opis (wariant: sztanga)"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Execution (wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; uchwyty maszyny przy bokach jak hantle, ruch barków ten sam"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "shrug.mis.roll",
+     "s": [
+      [
+       "ace-75",
+       "Step 2 (wariant: hantle)"
+      ],
+      [
+       "fv-barbell-shrugs",
+       "How to (wariant: sztanga)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; uchwyty maszyny przy bokach jak hantle, ruch barków ten sam"
+    },
+    {
+     "c": "shrug.mis.elbows",
+     "s": [
+      [
+       "ace-75",
+       "Step 2 (wariant: hantle)"
+      ],
+      [
+       "barbend-db-shrug",
+       "Common Mistakes — Bending Your Elbows (wariant: hantle)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: źródła opisują sztangę i hantle; uchwyty maszyny przy bokach jak hantle, ruch barków ten sam"
+    }
+   ]
+  },
+  "Zottman Curl": {
+   "setup": [
+    {
+     "c": "curl2.zottSetup",
+     "s": [
+      [
+       "catalyst-915",
+       "opis zd. 1 („…at arm's length and the palms facing forward”)"
+      ],
+      [
+       "issa-12-curls",
+       "8. Zottman Curl („Start with dumbbells held in a supinated grip”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "zottman.move",
+     "s": [
+      [
+       "catalyst-915",
+       "opis zd. 2–3"
+      ],
+      [
+       "issa-12-curls",
+       "8. Zottman Curl"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "curl.control",
+     "s": [
+      [
+       "catalyst-915",
+       "opis zd. 3"
+      ],
+      [
+       "issa-12-curls",
+       "8. Zottman Curl („slowly lower…”)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Zottman Preacher Curl": {
+   "setup": [
+    {
+     "c": "preacher.arms",
+     "s": [
+      [
+       "issa-12-curls",
+       "9. Preacher Curl (hantle)"
+      ],
+      [
+       "catalyst-889",
+       "opis zd. 1"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "zottman.move",
+     "uproszczenie": "wariant pozycji Zottman Curl (stojąc → modlitewnik); obrót dłoni ten sam",
+     "s": [
+      [
+       "catalyst-915",
+       "opis zd. 2–3"
+      ],
+      [
+       "issa-12-curls",
+       "8. Zottman Curl"
+      ]
+     ]
+    }
+   ]
+  },
+  "External Rotation (linki)": {
+   "setup": [
+    {
+     "c": "rotator_cuff.cableSetup",
+     "s": [
+      [
+       "ace-352",
+       "instrukcja, zdania 1–2"
+      ],
+      [
+       "w2g2-rc-fv-cable-er",
+       "Setup (single handle, approximately elbow height)"
+      ],
+      [
+       "hss-sutton-shoulder-program",
+       "s. 1, External Rotation — uproszczenie: wariant sprzętu External Rotation with Band"
+      ],
+      [
+       "healthwise-columbia-shoulder-er",
+       "instrukcja, akapity 1–2 — uproszczenie: wariant sprzętu External Rotation with Band"
+      ]
+     ]
+    },
+    {
+     "c": "rotator_cuff.erStartCable",
+     "s": [
+      [
+       "ace-352",
+       "Steps („Keep the left elbow tucked in to the body”; „the cable should pass in front of the stomach”; wyciąg na wysokości pasa, pojedynczy uchwyt)"
+      ],
+      [
+       "w2g2-rc-fv-cable-er",
+       "How to („The working arm should be farther from the weight stack”; „Bend it to about 90 degrees and keep the upper arm close to your side.”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rotator_cuff.erMove",
+     "s": [
+      [
+       "ace-352",
+       "instrukcja (move the left hand to the outside of the body)"
+      ],
+      [
+       "w2g2-rc-fv-cable-er",
+       "Movement (move the forearm away from the cable)"
+      ],
+      [
+       "aaos-rotator-cuff-program",
+       "ćw. 9 — uproszczenie: wariant sprzętu External Rotation with Band"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rot.elbow",
+     "s": [
+      [
+       "ace-352",
+       "instrukcja (elbow tucked in to the body)"
+      ],
+      [
+       "w2g2-rc-fv-cable-er",
+       "Setup; Movement (elbow stays near the same spot)"
+      ]
+     ]
+    },
+    {
+     "c": "rot.slow",
+     "s": [
+      [
+       "ace-352",
+       "instrukcja (slowly lowering the weight)"
+      ],
+      [
+       "w2g2-rc-fv-cable-er",
+       "Return (under control)"
+      ],
+      [
+       "aaos-rotator-cuff-program",
+       "ćw. 9 — uproszczenie: wariant sprzętu"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "rot.mis.elbowAway",
+     "s": [
+      [
+       "w2g2-rc-fv-cable-er",
+       "Common mistakes: Pulling the elbow away from the ribs"
+      ],
+      [
+       "ace-352",
+       "instrukcja (keep the left elbow tucked in) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Band Pull Apart": {
+   "setup": [
+    {
+     "c": "rotator_cuff.pullHold",
+     "s": [
+      [
+       "healthwise-kaiser-band-exercises",
+       "Chest-level pull, kroki 1–2"
+      ],
+      [
+       "w2g2-rc-catalyst-pullapart",
+       "opis, zdanie 1"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rotator_cuff.pullMove",
+     "s": [
+      [
+       "healthwise-kaiser-band-exercises",
+       "Chest-level pull, krok 3"
+      ],
+      [
+       "w2g2-rc-catalyst-pullapart",
+       "opis, zdanie 2 (arms remaining horizontal)"
+      ],
+      [
+       "w2g2-rc-throwers10",
+       "Appendix A, Standing horizontal abduction with neutral"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rot.slow",
+     "s": [
+      [
+       "healthwise-kaiser-band-exercises",
+       "Chest-level pull, krok 4"
+      ],
+      [
+       "w2g2-rc-throwers10",
+       "Appendix A (then slowly move your arms in)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "rotator_cuff.mis.shrug",
+     "s": [
+      [
+       "healthwise-kaiser-band-exercises",
+       "Chest-level pull, krok 3 (do not pull your shoulders up toward your ears)"
+      ],
+      [
+       "w2g2-rc-catalyst-pullapart",
+       "opis, zdanie 2 (keeping them down) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Cuban Press": {
+   "setup": [
+    {
+     "c": "rotator_cuff.cubanStand",
+     "s": [
+      [
+       "w2g2-rc-barbend-cuban",
+       "How to, Step 1 (Grab light dumbbells in both hands)"
+      ],
+      [
+       "w2g2-rc-fv-cuban",
+       "Setup (Stand with your feet about hip-width apart) — uproszczenie: wariant sprzętu (sztanga)"
+      ]
+     ]
+    },
+    {
+     "c": "rotator_cuff.cubanBlades",
+     "s": [
+      [
+       "w2g2-rc-barbend-cuban",
+       "Step 1, Coach's Tip; Common mistakes: Not Setting Your Scapula"
+      ],
+      [
+       "w2g2-rc-fv-cuban",
+       "Setup (shoulders pulled down and back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rotator_cuff.cubanRow",
+     "s": [
+      [
+       "w2g2-rc-barbend-cuban",
+       "Step 1 (elbows up to a 90-degree angle, parallel to the floor)"
+      ],
+      [
+       "w2g2-rc-fv-cuban",
+       "Step 2 (upper arms roughly parallel to the floor, elbows bent to 90-degrees) — uproszczenie: wariant sprzętu"
+      ]
+     ]
+    },
+    {
+     "c": "rotator_cuff.cubanRotate",
+     "s": [
+      [
+       "w2g2-rc-barbend-cuban",
+       "Step 2 (goalpost position)"
+      ],
+      [
+       "w2g2-rc-fv-cuban",
+       "Step 3 (Without lowering your upper arms, externally rotate) — uproszczenie: wariant sprzętu"
+      ]
+     ]
+    },
+    {
+     "c": "rotator_cuff.cubanPressUp",
+     "s": [
+      [
+       "w2g2-rc-barbend-cuban",
+       "Step 3 (Press your arms overhead; Coach's Tip: press up straight)"
+      ],
+      [
+       "w2g2-rc-fv-cuban",
+       "Step 4 (Press the bar up to arms' length) — uproszczenie: wariant sprzętu"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -21268,7 +22553,19 @@
   "Glute Bridge (sztanga)",
   "Seated Band Hamstring Curl",
   "Hack Squat",
-  "Single Leg Press"
+  "Single Leg Press",
+  "Bent Over Row (linki)",
+  "Meadows Row",
+  "Standing Cable Row",
+  "Machine Row",
+  "Single Arm Lat Pulldown",
+  "V-Bar Pulldown",
+  "Barbell Shrug Behind The Back",
+  "Leverage Shrug",
+  "Zottman Curl",
+  "Zottman Preacher Curl",
+  "Band Pull Apart",
+  "Cuban Press"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {

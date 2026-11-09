@@ -1445,11 +1445,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Band Pull Apart": {
-   "rodzina": "raiseRear",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Band Squat": {
    "rodzina": "squat",
    "sprawdzenie": null,
@@ -1484,11 +1479,6 @@
    "rodzina": "rollout",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Barbell Shrug Behind The Back": {
-   "rodzina": "shrug",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Barbell Side Bend": {
    "rodzina": "sideBend",
@@ -1539,11 +1529,6 @@
    "rodzina": "bench",
    "sprawdzenie": "NASM barbell-bench-press-with-chains (sitemap) — bezpośrednie źródło możliwe",
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Bent Over Row (linki)": {
-   "rodzina": "rowBent",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Bent Press": {
    "rodzina": "windmill",
@@ -1750,11 +1735,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Close-Grip Front Lat Pulldown": {
-   "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Close-Grip Push-Up": {
    "rodzina": "pushup",
    "sprawdzenie": null,
@@ -1959,11 +1939,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "External Rotation (linki)": {
-   "rodzina": "rotCuff",
-   "sprawdzenie": "ACE #352 opisuje wersję z linką — bezpośrednio",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Farmer's Walk (Farmers Handles)": {
    "rodzina": "carry",
@@ -2320,11 +2295,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Leverage Shrug": {
-   "rodzina": "shrug",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Lower Back Curl": {
    "rodzina": "cobra",
    "sprawdzenie": null,
@@ -2400,20 +2370,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Machine Row": {
-   "rodzina": "row",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Machine Triceps Extension": {
    "rodzina": "triPush",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Meadows Row": {
-   "rodzina": "rowBent",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Medicine Ball Full Twist": {
    "rodzina": "rotation",
@@ -2815,11 +2775,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
-  "Shrugs (linki)": {
-   "rodzina": "shrug",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Side Hop-Sprint": {
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
@@ -2857,11 +2812,6 @@
   },
   "Single Arm Cable Row": {
    "rodzina": "row",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Arm Lat Pulldown": {
-   "rodzina": "vpull",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
@@ -3110,11 +3060,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Standing Cable Row": {
-   "rodzina": "row",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Standing Chest Stretch": {
    "rodzina": "stretch",
    "sprawdzenie": null,
@@ -3270,20 +3215,10 @@
    "sprawdzenie": "ACE #388 i ISSA — bezpośrednie",
    "plik": "wskazowki-cwiczenia-08-korekty"
   },
-  "Underhand Lat Pulldown": {
-   "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Upper Back Stretch": {
    "rodzina": "stretch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "V-Bar Pulldown": {
-   "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "V-Up": {
    "rodzina": "vup",
@@ -3354,16 +3289,6 @@
    "rodzina": "squat",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Zottman Curl": {
-   "rodzina": "curl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Zottman Preacher Curl": {
-   "rodzina": "curl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   }
  },
  "katy": {

@@ -158,6 +158,17 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
 - ZB-044-B1 (ZB-044, recenzja audytora Ś-2, 09.11.2026): dwa identyczne „Bench Press” na listach (własne z 1.0 obok ćwiczenia z biblioteki) — dopisek rozróżniający tylko przy kolizji nazw (np. „własne”) w liście, wyborze i treningu; wzorca w docs/32 brak, wymaga decyzji o wzorcu (jedno miejsce `exName` nie zna listy) — 1.2. Import CSV już wybiera własne przed biblioteką (naprawione).
 
+### Backlog 1.2 — karty A3 (przyciąganie): NISKIE z recenzji niezależnej (09.11.2026; `docs/research/recenzje/a3-przyciaganie-karty-badacz-2026-11-09.md`, `a3-przyciaganie-lokalizacja-2026-11-09.md`; nie blokują)
+- Underhand Lat Pulldown i Close-Grip Front Lat Pulldown: żadne zdanie karty nie mówi o podchwycie ani o wąskim chwycie (cechę podaje tytuł). Kandydat: zdanie o chwycie po dwóch przeczytanych źródłach szczebla 4 (podchwyt: Catalyst 876 „palms facing back”; drugie — NASM „Choosing the Right Grip” do przeczytania; wąski chwyt: Catalyst 861 „narrow grip”, drugie źródło brak).
+- Bent Over Row (linki): karta nie mówi, że linka idzie z dolnego bloczka (pole „uproszczenie” tak to opisuje) — źródła opisują sztangę; zdanie po źródle o wiosłowaniu z dolnego wyciągu.
+- `barbend-db-shrug`: w danych nazwać wariant zgodnie z nagłówkiem strony („Behind-the-Back Shrug”).
+- `fv-13180`: w wpisie źródła podać obu autorów (byline Andrew Foster, C.S.C.S.; stopka Jim Stoppani, PhD).
+- [OTWARTE] Lower Back Curl → `lower_back.spine_ext`: potwierdzić opis ćwiczenia w katalogu jednym przeczytanym źródłem (zdanie ruchu karty odrzucone z braku źródeł; rola przypisana po nazwie).
+- `rotator_cuff.mis.shrug` i `lpd.mis.shrug`: ten sam błąd w dwóch brzmieniach (oba naturalne) — ujednolicić przed przekładem, jeśli koordynator zechce zmniejszyć liczbę zdań.
+- `mrow.setup`: propozycję lokalizacji „uchwyty na wysokości barków” odrzuciłem — źródła się różnią (Healthline: barki; NASM: środek klatki); zdanie mówi „dopasuj wysokość siedziska do uchwytów” (część wspólna).
+- Pytania do native speakera: PL „uchwyt V” czy „trójkąt”; EN Meadows Row „front thigh” czy „front knee” (plik recenzji lokalizacji).
+- Single Arm Cable Row — wstrzymane (decyzja 4 W2 G6); Reverse Grip Bent Over Row — wycofana (Fitness Volt „Ash” bez nazwiska = szczebel 5); szukać drugiego źródła szczebla 4.
+
 ### Backlog 1.2 — karty A2 (nogi): NISKIE z recenzji niezależnej (08.11.2026; `docs/research/recenzje/a2-nogi-karty-badacz-2026-11-08.md`, `a2-nogi-lokalizacja-2026-11-08.md`; nie blokują)
 - [OTWARTE] `calf.band` (Band Calf Raise): drugie źródło szczebla 4 dla położenia gumy pod przednią częścią stóp (recenzja lokalizacji: blokujące — karta nie mówi, że guma idzie pod stopy; runda 2 badacza 08.11.2026: tylko Thera-Band, Bodylastics zaczepia o drzwi, ACE 5771 — wariant w siadzie). Do czasu źródła brzmienie rundy 1; karta i tak ukryta do przekładu.
 - `calf.pause` w kartach wspięć siedząc (Barbell Seated, Seated (hantle), Dumbbell Seated One-Leg): dopisanie ISSA „top 6” Seated nic nie wnosi do pary — ISSA już jest (artykuł 25-min); para zostaje ISSA + ACE 51 (wariant stojąc). Do zastąpienia ACE 51 drugą organizacją o wersji siedzącej.
