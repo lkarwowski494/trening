@@ -188,3 +188,12 @@ describe('chest_fly: nakładka techniki', () => {
     expect(overlayShapes(spec('Band Chest Fly'), 0.5, 'top', ['flyArmArc']).length).toBe(0); /* r1 S3 (09.11.2026): Cable Fly ma teraz pochylony tułów (oś niepionowa w rzucie), więc negatyw przeniesiony na ćwiczenie z pionowym tułowiem; Cable Fly nie dostaje elementu przez listę `exercises` (techniquesOf, test wyżej) */
   });
 });
+
+describe('chest_fly: zestaw ogólny Crucifix ukryty do poprawy (recenzja r2 R2-S1, decyzja programisty partii 10.11.2026, docs/18)', () => {
+  test('lib/cues/data.json: Crucifix NIE jest na liście „general” (wpis „zestawy” r2 „do poprawy” bez sha — bramka 4), pozostałe zestawy rodziny tak (Pec Deck); przypadek negatywny: wpis zestawu Crucifix ma werdykt inny niż wyswietlana', () => {
+    const cues = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/cues/data.json'), 'utf8')) as { general: string[] };
+    const rec = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/research/figury-recenzja.json'), 'utf8')) as { zestawy: Record<string, { werdykt: string; sha?: string }> };
+    expect(cues.general).not.toContain('Crucifix'); expect(cues.general).toContain('Pec Deck');
+    expect(rec.zestawy.Crucifix.werdykt).toBe('do poprawy'); expect(rec.zestawy.Crucifix.sha).toBeUndefined();
+  });
+});

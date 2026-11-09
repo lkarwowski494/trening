@@ -1278,6 +1278,37 @@
           "uwagi": "W1-r2 zamknięte: stopy na palcach (palce 0,3 cm nad podłogą, pięta 24,5 cm, zgięcie podeszwowe ok. 25° — kąt goleń–stopa 64,6°), kolana 25,2° zgięte ku podłodze (pięty ku pośladkom), biodro −9,8°, checkFrame puste w u = 0…1; tułów, ręce, linia pleców (W2) bez zmian."
         }
       }
+    },
+    "chest_fly": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie r2 (bramka 4, L-047, L-050): W1, W2, W3 i S3 z r1 zamknięte; bez KRYTYCZNYCH i WYSOKICH; pozostają R2-S1 (zestaw Crucifix) i R2-N1 oraz S1, S2, N1, N2 z r1 w backlogu P1-CHEST-1",
+      "kto": "audytor — recenzja niezależna r2 rodziny chest_fly, figury/partia-1 @ 3044df5 (poprawki r1 c537f8a4, baza testów c537f8a^), czysta kopia git archive /home/user/rev-p1/chest_fly-r2 ze statusem ready ustawionym tylko w kopii (families.ts:48) dla arkuszy i --skroty, 09.11.2026; raport partia1-chest_fly-r2-audytor-2026-11-09.md",
+      "autor": "programista partii 1 (figury/partia-1, poprawki r1 c537f8a4)",
+      "recenzent": "audytor",
+      "sha": "8415d1a06aa5",
+      "liczba": 20,
+      "slad": "78 arkuszy własnych w kopii r2: arkusz-slad 34 (17 ćw. × top, side, jasny), ciemny 10 (Pec Deck, Band Chest Fly, Cable Fly, Wide-Grip, Crucifix × top, side), arkusz-nakladka 34 (--family chest_fly). W pełnej rozdzielczości: Band Chest Fly top/side 21 kadrów, Cable Fly top/side 21 kadrów, Wide-Grip top u 0–0,30 i side u 0–0,65, Pec Deck top u 0–0,30 (jasny) i side u 0–0,30 (ciemny), Crucifix top 21 kadrów i side u 0–0,30. Na torze: guma Band po bokach ramion, łuk w chwycie R; Cable Fly łuk w chwycie R kończący się 9 cm od osi, linki bez przenikania; Wide-Grip łuk środka gryfu zza głowy nad klatkę; Pec Deck łuk w chwycie R; Crucifix bez śladu (static). Ślad wszystkich 17 ćwiczeń sprawdzony liczbowo w 21 kadrach (0 cm od chwytu R albo środka). Pozostałe 13 ćwiczeń bez zmian danych od r1 — kadrów nie oglądałem ponownie.",
+      "uwagi": "R2-S1 ŚREDNIE (zestaw Crucifix: plank.mis.breath z jednego wskazania pośredniego, front.elbows „przez cały ruch” przy utrzymaniu; wpis docs/21:208 „przed włączeniem chest_fly”); R2-N1 NISKIE (tautologiczny negatyw ISOMETRIC w figures-v2-data). Przy przejściu na ready odwrócić tests/figures-v2-mapping.test.ts (PLANNED_Z_DANYMI). Ćwiczenia: Chest Fly (hantle) — wyswietlana (bez zmian danych od r1; ślad w chwycie R; S2 nakładki w backlogu P1-CHEST-1); Incline Chest Fly (hantle) — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Decline Dumbbell Fly — wyswietlana (bez zmian danych od r1; ślad w chwycie R); One-Arm Flat Bench Dumbbell Fly — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Flat Bench Cable Fly — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Incline Cable Fly — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Cable Fly — wyswietlana (r1 S3 zamknięte: bloczek y 140 przy barku 138,4, dłonie 9 cm od siebie przy u = 1, tułów 12° w przód; zgodne z cfly.setup, cfly.move i fly.posture); Cable Fly (high to low) — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Cable Fly (low to high) — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Single Arm Cable Fly — wyswietlana (bez zmian danych od r1; ślad w chwycie R); Band Chest Fly — wyswietlana (r1 W1 zamknięte: dwie gumy z zaczepów [-60,138,±75] do chwytów R/L, przy u = 1 ok. 28 cm na zewnątrz barku; nie przecinają tułowia ani głowy); Pec Deck — wyswietlana (ślad w chwycie R po scaleniu 55c9f206 (punkt dlonie); druga dźwignia (S1 r1) w backlogu P1-CHEST-1); Crucifix — wyswietlana (r1 W2 zamknięte: ISOMETRIC, jedna pozycja, bez faz i przycisku pauzy; zestaw ogólny — R2-S1 (do poprawy)); Pullover (hantel) — wyswietlana (bez zmian danych od r1; ślad w środku chwytów); Front Raise And Pullover — wyswietlana (bez zmian danych od r1; N2 (po.slow) w backlogu); Wide-Grip Decline Barbell Pullover — wyswietlana (r1 W3 zamknięte: chwyt z ±35,1 (70 cm przy barkach 38 cm), stały; ślad na środku gryfu); Bent-Arm Barbell Pullover — wyswietlana (bez zmian danych od r1; łokieć ok. 50° stale)",
+      "cwiczenia": [
+        "Chest Fly (hantle)",
+        "Incline Chest Fly (hantle)",
+        "Decline Dumbbell Fly",
+        "One-Arm Flat Bench Dumbbell Fly",
+        "Flat Bench Cable Fly",
+        "Incline Cable Fly",
+        "Cable Fly",
+        "Cable Fly (high to low)",
+        "Cable Fly (low to high)",
+        "Single Arm Cable Fly",
+        "Band Chest Fly",
+        "Pec Deck",
+        "Crucifix",
+        "Pullover (hantel)",
+        "Front Raise And Pullover",
+        "Wide-Grip Decline Barbell Pullover",
+        "Bent-Arm Barbell Pullover"
+      ]
     }
   },
   "karty": {
@@ -5260,14 +5291,13 @@
     },
     "Crucifix": {
       "rodzina": "raiseSide",
-      "werdykt": "wyswietlana",
+      "werdykt": "do poprawy",
       "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny wobec rysunku v2, r1 09.11.2026)",
+      "stan": "zrecenzowana niezależnie r2 (bramka 4, L-047); zastępuje ocenę r1 „wyswietlana”",
       "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
       "recenzent": "audytor",
-      "kto": "audytor (recenzja niezależna, partia 1 chest_fly r1)",
-      "sha": "7ff2316c5a09",
-      "uwagi": "lat.height (ramiona na wysokości barków, shElev 90°), front.elbows (łokieć 10° stały), plank.mis.breath zgodne z utrzymaniem; problem faz (W2) dotyczy UI rysunku, nie zdań."
+      "kto": "audytor (recenzja niezależna, partia 1 chest_fly r2)",
+      "uwagi": "R2-S1: plank.mis.breath „Wstrzymywanie oddechu.” ze źródeł deski — figury-sens.json:7902 „jedno wskazanie pośrednie, do potwierdzenia”, a wskazówka oddechu wymaga 2 zgodnych źródeł szczebla 4; front.elbows „przez cały ruch” przy utrzymaniu (rysunek ISOMETRIC); backlog docs/21:208 „do poprawy PRZED włączeniem chest_fly”. Bez sha: werdykt nie jest „wyswietlana”."
     },
     "Pullover (hantel)": {
       "rodzina": "pullover",
