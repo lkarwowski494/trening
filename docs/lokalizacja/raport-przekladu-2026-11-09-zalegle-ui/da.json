@@ -1,0 +1,21 @@
+{
+ "jezyk": "da",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "På tegningen: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nye bevægelsestegninger til triceps-øvelser og til cleans, snatches og varianter af dem.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Nye og forbedrede teknikråd, bl.a. til skuldre, eksplosive øvelser og mobilitet.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Stemmebeskeder bruger den bedste stemme, der er installeret på din telefon.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "En ny bruger starter på skærmen Træning med knappen „Start din første træning“ og tavlen „Første træning“.",
+  "Bokiem": "Til siden",
+  "Przodem": "Fremad",
+  "Naprzemiennie": "Skiftevis",
+  "Pozycje na rysunku: {lista}": "Positioner på tegningen: {lista}"
+ }
+}

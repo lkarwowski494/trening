@@ -96,12 +96,12 @@ describe('A3 przyciąganie: źródła i reguły szczebli', () => {
 });
 
 describe('A3 przyciąganie: zdania', () => {
-  test('33 nowe zdania mają tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A3 (pozostałe języki — angielski w zastępstwie)', () => {
+  test('33 nowe zdania mają tekst PL i EN różny od siebie; wszystkie przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw A3 pusty', () => {
     expect(A3.zdania.length).toBe(33);
     for (const c of A3.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-a3-wskazowki.json');
-    expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...A3.zdania].sort());
-    for (const x of z.klucze as { id: string; pl: string; en: string }[]) expect([x.id, x.pl, x.en]).toEqual([x.id, pl[x.id], en[x.id]]);
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-051; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, A3.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
   });
 
   test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {
