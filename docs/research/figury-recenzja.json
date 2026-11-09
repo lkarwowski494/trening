@@ -1028,11 +1028,11 @@
     "hip_bridge": {
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie r2 (bramka 4, L-047, L-050), linia 1.1 partia 2; 0 KRYTYCZNE/WYSOKIE w 9 wyświetlanych ćwiczeniach; Machine Hip Thrust wstrzymany (V2_WSTRZYMANE) po WYSOKIM z r1 — do ponownej recenzji rysunku i śladu dźwigni po scaleniu figury/slad-dzwignia",
-      "autor": "programista partii 2 (figury/partia-2 @ ddb6cbae) i programista poprawek r1 (8b4f6cab)",
+      "stan": "zrecenzowana niezależnie r3 — recenzja różnicy po scaleniu figury/slad-dzwignia (bramka 4, L-047, L-050), linia 1.1 partia 2; 0 KRYTYCZNE/WYSOKIE w 9 wyświetlanych ćwiczeniach (rysunek bajtowo bez zmian); Machine Hip Thrust nadal wstrzymany (V2_WSTRZYMANE): ślad dźwigni poprawny, WYSOKIE z r1 (prowadnica w płaszczyźnie środkowej przez ciało) nierozwiązane",
+      "autor": "programista partii 2 (figury/partia-2 @ ddb6cbae), programista poprawek r1 (8b4f6cab) i programista figury/slad-dzwignia (integracja 55c9f206, scalenie 3a80c913)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna r2 rodziny hip_bridge, worktree odłączony na 8b4f6cab (różnica 2cff6e31..8b4f6cab), 09.11.2026; raport docs/research/recenzje/partia2-hip_bridge-r2-audytor-2026-11-09.md",
-      "sha": "0d9b2af823b2",
+      "kto": "audytor — recenzja niezależna różnicy r3 rodziny hip_bridge, worktree odłączone 1be8ce3a (rodzic pierwszy) i 3a80c913, 09.11.2026; raport docs/research/recenzje/partia2-hip_bridge-r3-audytor-2026-11-09.md",
+      "sha": "8c56e365b9d3",
       "liczba": 11,
       "cwiczenia": [
         "Glute Bridge",
@@ -1050,8 +1050,8 @@
       "bez_rysunku": [
         "London Bridges"
       ],
-      "slad": "Arkusze r2: scripts/figures/arkusz-slad.mjs, widok side, 21 kadrów co 0,05, wszystkie 10 ćwiczeń z danymi — HTML i PNG bajtowo równe arkuszom r1 z ddb6cbae (cmp, 10/10; pozy lib/figures/v2/poses/hip_bridge.json bez zmian). Opis śladu i styków jak w r1: gryf ≤ 0 cm od chwytu, hantel — chwyt R, bez ciężaru — miednica; styki ławka ≥ 0,9 cm, piłka −0,1 cm (kontakt), podłoga ≥ −0,5 cm. Machine Hip Thrust (wstrzymany): ślad dźwigni wymaga ponownego arkusza po scaleniu figury/slad-dzwignia.",
-      "uwagi": "Skrót v2 zmienił się 76ab2ca8939b → 0d9b2af823b2 tylko przez wstrzymanie Machine Hip Thrust (rysunek 10 ćwiczeń bajtowo ten sam). Otwarte z r1 (nie blokują): ŚREDNIE Frog Pump (ustawienie „żaby” niewidoczne z boku), NISKIE Single Leg Glute Bridge (wolna noga zgięta 30,8°), NISKIE gryf −1,6 cm w u = 0. Zakresy i błąd ht.mis.arch jak w r1.",
+      "slad": "Arkusze r3: scripts/figures/arkusz-slad.mjs, widok side, 21 kadrów co 0,05, 10 ćwiczeń z danymi (z wstrzymanym Machine Hip Thrust) na 1be8ce3a i 3a80c913. Przez cmp HTML i PNG 9/10 bajtowo równe (opis śladu i styków jak w r1: gryf ≤ 0 cm od chwytu, hantel — chwyt R, bez ciężaru — miednica; ławka ≥ 0,9 cm, piłka −0,1 cm, podłoga ≥ −0,5 cm). Różni się tylko Machine Hip Thrust: elementy postaci i sprzętu identyczne (1079/1079), ślad = środek miednicy = punkt mocowania prowadnicy (0 cm, tests/figures-v2-slad-dzwignia.test.ts zielony), biegnie wzdłuż prowadnicy; wcześniej chwyt dłoni R.",
+      "uwagi": "Skrót v2 zmienił się 0d9b2af823b2 → 8c56e365b9d3 tylko przez nowy ślad dźwigni w wstrzymanym Machine Hip Thrust (contract.ts:330-334); 9 wyświetlanych ćwiczeń bajtowo bez zmian. Machine Hip Thrust: ślad poprawnie w punkcie styku dźwigni, ale WYSOKIE z r1 bez zmian (prowadnica z = 0 w płaszczyźnie środkowej, od u ≈ 0,45 wystaje spod tułowia; punkt styku w środku miednicy, 11,9 cm w głąb ciała zamiast na powierzchni bioder) — wstrzymanie zostaje do poprawki danych. Otwarte z r1 i r2 (nie blokują): ŚREDNIE Frog Pump, NISKIE Single Leg Glute Bridge (wolna noga 30,8°), NISKIE gryf −1,6 cm w u = 0.",
       "wstrzymane": [
         "Machine Hip Thrust"
       ]
