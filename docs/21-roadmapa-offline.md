@@ -221,6 +221,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - (Rear-Delt Rows, ŚREDNIE) tej samej klasy co W1/W2, poza zakresem poprawki: bloczek y = 55 cm, dłonie y ≈ 101–107 cm (linka ≈ 25–30° od poziomu); karta zestawu nie określa wysokości linki — decyzja leada.
 - (N1, NISKIE, teoretyczny) `obrotPrzedramienia: 0` przy prostym drążku (Seated, Standing, Kneeling) — niewidoczne (`wristFlex` = 0).
 - (N2, NISKIE, teoretyczny) wektor `palm` odwraca się o 180° w jednym kroku 0,01 w 7 z 9 ćwiczeń; zmiana kierunku dłoni ≤ 3,1° na krok, niewidoczna.
+- (r2, R2-1, ŚREDNIE) Seated Cable Row, Wiosłowanie na linkach (siedząc) — po poprawce W1 (bloczek 60 cm) uchwyt kończy na wysokości podbrzusza (y 61,8), 0,2–0,4 cm nad udami; karta „do brzucha” — dolna granica; propozycja recenzenta: bloczek ok. 66–70 cm przy lince ≤ 5° (`docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md`).
+- (r2, R2-2, NISKIE) Test „nie wchodzą w nogi (≥ 3 cm)” w `tests/figures-v2-cable-row-poprawki-r1.test.ts` mierzy od punktu stawu kolanowego, nie od powierzchni uda (rzeczywisty odstęp 0,2 cm) — przejść na `odstepCiezaru` (scripts/figures/odstep-ciezaru.mjs).
+- (r2, Rear-Delt Rows) recenzent r2: linka 23–41° wynika z wymaganego sprzętu (stacja siedząca z dolnym bloczkiem w katalogu), ŚREDNIE, nie WYSOKIE; zostaje w backlogu (wpis wyżej).
 
 ### Backlog 1.1 — zestawy ogólne i karty: sygnały badaczy źródeł (audyt sygnałów 02.11.2026; brak blokerów)
 - (T1 delt_raise, recenzja L-047 r2 04.11.2026, do 1.1) Front Incline Dumbbell Raise — `fidr.move` „mniej więcej do wysokości barków” przeczy drugiemu źródłu (wyżej niż barki) → część wspólna albo bez wysokości (WYSOKIE, karta ukryta do poprawki); Barbell Incline Shoulder Raise — para źródeł niezależna tylko pozornie → źródła wersji z hantlami jako nazwane uproszczenie (ŚREDNIE, karta ukryta). NISKIE: `sri.move` „prawie prostymi” vs źródła „prostymi”.

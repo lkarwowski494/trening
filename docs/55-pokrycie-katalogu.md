@@ -13,21 +13,21 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
-| Figura v2 w aplikacji (rodzina gotowa) | 183 | 25,8% |
-| Figura v1 w aplikacji (bez v2) | 44 | 6,2% |
-| Bez figury w aplikacji | 481 | 67,9% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 352 | 49,7% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 168 | 23,7% |
-| Animowany błąd | 127 | 17,9% |
+| Figura v2 w aplikacji (rodzina gotowa) | 192 | 27,1% |
+| Figura v1 w aplikacji (bez v2) | 41 | 5,8% |
+| Bez figury w aplikacji | 475 | 67,1% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 343 | 48,4% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 166 | 23,4% |
+| Animowany błąd | 132 | 18,6% |
 | Własne wskazówki (źródłowe) | 265 | 37,4% |
 | — z czego z częstymi błędami | 157 | 22,2% |
-| Zestaw ogólny wskazówek wzorca ruchu | 110 | 15,5% |
-| Bez tekstu wskazówek | 333 | 47% |
-| Częste błędy (własne albo zestaw ogólny) | 267 | 37,7% |
+| Zestaw ogólny wskazówek wzorca ruchu | 112 | 15,8% |
+| Bez tekstu wskazówek | 331 | 46,8% |
+| Częste błędy (własne albo zestaw ogólny) | 269 | 38% |
 | Role mięśni | 513 | 72,5% |
-| **Pełna karta** | 180 | 25,4% |
-| **Pełna karta + błąd** | 126 | 17,8% |
-| Figura z aktualną recenzją ruchu (bramka 4) | 183 | 25,8% |
+| **Pełna karta** | 187 | 26,4% |
+| **Pełna karta + błąd** | 131 | 18,5% |
+| Figura z aktualną recenzją ruchu (bramka 4) | 192 | 27,1% |
 
 ## Cele wersji
 
@@ -41,16 +41,16 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 533 | 183 | 350 |
-| figura w aplikacji (v2 albo v1) | 535 | 227 | 308 |
-| animowany błąd | 264 | 127 | 137 |
+| figura v2 w aplikacji | 533 | 192 | 341 |
+| figura w aplikacji (v2 albo v1) | 535 | 233 | 302 |
+| animowany błąd | 264 | 132 | 132 |
 | własne wskazówki | 285 | 265 | 20 |
 | własne wskazówki z częstymi błędami | 176 | 157 | 19 |
-| wskazówki (własne lub zestaw ogólny) | 572 | 375 | 197 |
-| częste błędy (tekst) | 451 | 267 | 184 |
+| wskazówki (własne lub zestaw ogólny) | 572 | 377 | 195 |
+| częste błędy (tekst) | 451 | 269 | 182 |
 | role mięśni | 516 | 513 | 3 |
-| pełna karta | 457 | 180 | 277 |
-| figura z aktualną recenzją ruchu | 533 | 183 | 350 |
+| pełna karta | 457 | 187 | 270 |
+| figura z aktualną recenzją ruchu | 533 | 192 | 341 |
 | komplet tekstów karty: pl | 631 | 577 | 54 |
 | komplet tekstów karty: en | 631 | 577 | 54 |
 | komplet tekstów karty: cs | 631 | 577 | 54 |
@@ -116,7 +116,7 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 | `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 8 | 2 | 10 | 11 |
 | `row` | do zrobienia | 13 | 0 | 12 | 6 | 8 | 0 | 5 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 6 | 0 | 5 | 0 | 0 |
-| `cable_row` | gotowa | 10 | 0 | 9 | 3 | 5 | 0 | 5 | 0 | 0 |
+| `cable_row` | gotowa | 10 | 9 | 0 | 0 | 5 | 2 | 3 | 7 | 9 |
 | `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 8 | 0 | 2 | 0 | 0 |
 | `strongman` | do zrobienia | 10 | 0 | 1 | 0 | 0 | 0 | 10 | 0 | 0 |
 | `hip_abd_add` | do zrobienia | 8 | 0 | 6 | 0 | 1 | 0 | 7 | 0 | 0 |
@@ -179,14 +179,15 @@ Kart z tekstami (wskazówki albo role mięśni): **577**. „Komplet” = karta 
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 180 (z błędem: 126). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 187 (z błędem: 131). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: figura v2 w aplikacji — 163
+- Brakuje tylko: wskazówki (własne albo zrecenzowany zestaw ogólny) — 2: Leverage High Row, Single Arm Cable Row
+- Brakuje tylko: figura v2 w aplikacji — 158
 - Brakuje tylko: role mięśni — 3: Jerk Balance, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 180 |
-| 1 | 166 |
-| 2 | 267 |
+| 0 | 187 |
+| 1 | 163 |
+| 2 | 263 |
 | 3 | 95 |
