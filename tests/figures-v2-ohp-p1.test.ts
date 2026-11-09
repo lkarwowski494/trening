@@ -213,7 +213,7 @@ describe('overhead_press: dół ruchu przy przedniej części barków, zza karku
   const dolR = (k: string, dx = 0) => {
     const f = frameAt(spec(k), 0); const sh = f.sk.shoulderC; const g = f.sk.arms.R.grip;
     const bar = equipColliders(f.props).find(c => c.id === 'bar'); const torso = bodyColliders(f.sk).find(b => b.id === 'torso');
-    const przesun = bar ? ({ ...bar, a: [bar.a[0] + dx, bar.a[1], bar.a[2]], b: [bar.b[0] + dx, bar.b[1], bar.b[2]] } as typeof bar) : null;
+    const przesun = bar && 'a' in bar && 'b' in bar ? ({ ...bar, a: [bar.a[0] + dx, bar.a[1], bar.a[2]], b: [bar.b[0] + dx, bar.b[1], bar.b[2]] } as typeof bar) : null; /* 09.11.2026: Collider ma też kształt „prism” (ślad dźwigni, integracja 55c9f206) — gryf to odcinek a–b */
     return { x: g[0] + dx - sh[0], y: g[1] - sh[1], gapTulow: bar && torso && przesun ? gap(torso, przesun) : null, lokiec: jointAngles(f.sk, 'R').elbow };
   };
   test('dół ruchu (u = 0): chwyt ≤ 17 cm przed środkiem barków i ≤ 15 cm nad nim, łokieć ≤ 149° — w 13 ćwiczeniach (przed poprawką: 22 cm przed, 14 cm nad, kettlebell 11,5 cm od tułowia)', () => {
