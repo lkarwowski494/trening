@@ -121,11 +121,24 @@ describe('pokrycie katalogu: cele wersji', () => {
     expect(Object.keys(c.min).length).toBeGreaterThan(0);
     for (const [m, v] of Object.entries(c.min)) { expect(Object.keys(fix.dobre)).toContain(m); expect(Number.isInteger(v) && v >= 0).toBe(true); }
   });
-  test('cel 1.1 „pełna karta” (standard 1) = 465, policzony 08.11.2026 z danych (decyzje właściciela 02.11.2026 ~15:30 i ~17:00, 04.11.2026 (4) B): 452 z danymi póz v2 i rolami albo mobilnością + 13 obowiązkowych spoza tego warunku; opis w pokrycie-cele.json', () => {
-    const c = cele.wersje['1.1'];
-    expect(c.min.pelnaKarta).toBe(465);
+  test('cel 1.1 „pełna karta” (standard 1) = 456 (decyzja właściciela 09.11.2026, ZB-053): 465 z 08.11.2026 (452 + 13 obowiązkowych) minus 9 ćwiczeń bez danych póz v2 przeniesionych do 1.2; liczba wynika z listy `poza11` w pokrycie-cele.json', () => {
+    const c = cele.wersje['1.1'] as any;
+    const poza: string[] = c.poza11.pelnaKarta;
+    const oblig = json<{ cwiczenia: { cwiczenie: string; danePozV2: boolean }[] }>('docs/research/pokrycie-1-1-obowiazkowe.json').cwiczenia;
+    expect(poza).toHaveLength(9);
+    expect(new Set(poza).size).toBe(9);
+    for (const n of poza) expect(oblig.find(o => o.cwiczenie === n)?.danePozV2).toBe(false); /* wypadają tylko te, którym brak ruchu silnika (danych póz) */
+    expect(c.min.pelnaKarta).toBe(465 - poza.length);
+    expect(c.min.pelnaKarta).toBe(456);
     expect(c.opis).toMatch(/08\.11\.2026 \(Z0[^)]*\)[^]*465 = 452[^]*13 spośród 51 obowiązkowych/);
+    expect(c.opis).toMatch(/09\.11\.2026 \(ZB-053[^)]*\)[^]*456 = 465 − 9/);
     expect(c.min.pelnaKarta).toBeGreaterThanOrEqual(fix.dobre.pelnaKarta);
+  });
+  test('9 ćwiczeń z `poza11` jest w backlogu 1.2 (docs/21, ZB-053, 09.11.2026)', () => {
+    const c = cele.wersje['1.1'] as any;
+    const blok = read('docs/21-roadmapa-offline.md').split('### Backlog 1.2 — pełna karta')[1]?.split('\n### ')[0] ?? '';
+    expect(blok).toMatch(/ZB-053/);
+    for (const n of c.poza11.pelnaKarta) expect(blok).toContain(n);
   });
   test('cel wersji nie jest niższy niż minimum zapadki (cel nie może być łatwiejszy niż stan chroniony)', () => {
     for (const [wer, c] of Object.entries(cele.wersje)) for (const [m, v] of Object.entries(c.min)) expect({ wer, m, ok: v >= (min.minimum[m] ?? 0) || !!min.obnizenia?.[m] }).toEqual({ wer, m, ok: true });
