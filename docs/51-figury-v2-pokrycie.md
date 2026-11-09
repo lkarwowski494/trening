@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 7, do zrobienia: 36); ćwiczeń z gotową figurą: **185** (26,1%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 8, do zrobienia: 35); ćwiczeń z gotową figurą: **216** (30,5%).
 
 ## Rodziny
 
@@ -29,7 +29,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `back_extension` | do zrobienia | 4 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
 | `curl` | gotowa | 36 | side, front | — | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
 | `triceps` | gotowa | 32 | side | — | Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył) |
-| `delt_raise` | do zrobienia | 38 | front, side | 4 | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
+| `delt_raise` | gotowa | 38 | front, side | — | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
 | `chest_fly` | do zrobienia | 20 | top, side | 3 | Rozpiętki, pec deck, przenoszenie za głowę |
 | `shrug` | do zrobienia | 8 | front, side | 1 | Szrugsy |
 | `rotator_cuff` | do zrobienia | 8 | front, side | 2 | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 36 rodzin, 516 ćwiczeń, ok. **109 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 35 rodzin, 478 ćwiczeń, ok. **105 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -61,6 +61,7 @@ Razem do zrobienia: 36 rodzin, 516 ćwiczeń, ok. **109 h pracy agenta** (rig + 
 - `olympic` (z figurą 24 z 25): Rack Delivery
 - `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
+- `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
 
 ## Ćwiczenia według rodzin
 
@@ -144,7 +145,7 @@ Barbell Curl; Barbell Preacher Curl; Bayesian Curl; Biceps Curl (hantle); Cable 
 
 Band Overhead Triceps Extension; Band Skull Crusher; Body-Up; Bodyweight Triceps Extension; Cable Incline Triceps Extension; Cable Lying Triceps Extension; Cable Overhead Extension; Chain Handle Extension; Decline Dumbbell Triceps Extension; Decline EZ Bar Triceps Extension; Dumbbell One-Arm Triceps Extension; Incline Barbell Triceps Extension; Kettlebell Overhead Triceps Extension; Kneeling Cable Triceps Extension; Lying Close-Grip Barbell Triceps Extension Behind The Head; Machine Triceps Extension; One-Arm Lying Dumbbell Triceps Extension; Overhead Triceps Extension (EZ); Overhead Triceps Extension (hantel); Reverse Grip Triceps Pushdown; Single Arm Triceps Pushdown; Skullcrusher (EZ); Skullcrusher (hantle); Skullcrusher (sztanga); Sled Overhead Triceps Extension; Standing Low-Pulley One-Arm Triceps Extension; Standing Overhead Barbell Triceps Extension; Tate Press; Triceps Kickback; Triceps Kickback (linki); Triceps Pushdown; Two-Arm Dumbbell Kickback
 
-### delt_raise (38) — do zrobienia
+### delt_raise (38) — gotowa
 
 Alternating Deltoid Raise; Band Lateral Raise; Band Upright Row; Barbell Front Raise to Overhead; Barbell Incline Shoulder Raise; Cable Front Raise; Cable Lateral Raise; Cable Reverse Fly; Cable Seated Lateral Raise; Cable Y Raise; Car Drivers; Dumbbell Front Raise to Overhead; Dumbbell Incline Shoulder Raise; Dumbbell Lying One-Arm Rear Lateral Raise; Dumbbell One-Arm Upright Row; Dumbbell Scaption; Front Incline Dumbbell Raise; Front Plate Raise; Front Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; Lateral Raise (hantle); Machine Lateral Raise; One-Arm Cable Rear Lateral Raise; One-Arm Incline Lateral Raise; One-Arm Lateral Raise (hantel); Reverse Fly (hantle); Reverse Pec Deck; Single Dumbbell Front Raise; Sled Reverse Flye; Smith Incline Shoulder Raise; Smith Machine One-Arm Upright Row; Smith Machine Upright Row; Straight Raises on Incline Bench; Upright Row (hantle); Upright Row (linki); Upright Row (sztanga); Y Raise (hantle)
 

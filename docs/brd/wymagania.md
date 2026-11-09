@@ -482,6 +482,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie z hantlami (np. Hammer Curl) albo ze sztangą łamaną ma rysunek v2 z aktualną recenzją niezależną
     - Gdy rysunek odtwarza ruch
     - Wtedy oś hantla wynika z obrotu przedramienia (przy chwycie neutralnym leży w płaszczyźnie przód–tył i jest prostopadła do przedramienia — z boku widać poprzeczkę z dwiema główkami, z przodu hantel wzdłuż osi bez poprzeczki w poprzek ciała), ślad toru ciężaru trzymanego w dłoni leży w chwycie (przy dwóch rękach w środku między chwytami, nie w miednicy), a talerze gryfu łamanego stoją na końcach gryfu
+  - Scenariusz: Rodzina unoszenia ramion (delt_raise) pokazuje rysunki 31 ćwiczeń (09.11.2026, ZB-042; testy `tests/figures-v2-mapping.test.ts`, `tests/figury-recenzja.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny delt_raise (np. Lateral Raise, Car Drivers), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
+    - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
