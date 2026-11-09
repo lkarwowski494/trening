@@ -5,6 +5,7 @@
  * przypięty do SHA narzędzia.
  */
 import * as fs from 'fs';
+import { BRAND_NAME } from '../lib/brand';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
 import { PRODUCT_IDS } from '@/lib/products';
@@ -74,7 +75,7 @@ describe('oczekiwane wartości kontroli generowane ze źródeł sklepu (właści
   test('notatki: kontrola porównuje tylko blok EN wklejany do pola Notes (przebieg 41009108485: „różnią się od pliku”), ≤ 4000 bajtów', () => {
     expect(config.uwagiRecenzenta.plik).toBe('store/review-notes.en.txt');
     const en = read('store/review-notes.en.txt');
-    expect(en.startsWith('Thank you for reviewing Trening.')).toBe(true); expect(Buffer.byteLength(en.trim())).toBeLessThanOrEqual(4000);
+    expect(en.startsWith(`Thank you for reviewing ${BRAND_NAME}.`)).toBe(true); expect(Buffer.byteLength(en.trim())).toBeLessThanOrEqual(4000);
     expect(read('store/review-notes.md')).toContain(en.trim()); expect(en).not.toMatch(/Dziękujemy/);
   });
 });

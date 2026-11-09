@@ -4,6 +4,7 @@
  * i wierszy), dane (klucz „cfg”, pliki w Caches), języki (EN). ID z docs/25 i raportów docs/audyt-0.10 w nazwach testów.
  */
 import * as store from '@/lib/store';
+import { BRAND_NAME } from '@/lib/brand';
 import * as health from '@/lib/health';
 import * as backup from '@/lib/backup';
 import { applyLang } from '@/lib/i18n';
@@ -31,7 +32,7 @@ describe('J2: Apple Health — licznik w Ustawieniach, ponowienie, stan w szczeg
     await go('/more/settings'); await flushAll(10);
     expect(screen.getByText('Czeka na zapis w Apple Health: 1. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.')).toBeTruthy();
     await tap(screen.getByText('Ponów teraz')); await flushAll(10);
-    expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nie udało się zapisać w Apple Health', msg: 'Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → Trening.' }); /* odmowa — trening dalej czeka */
+    expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nie udało się zapisać w Apple Health', msg: 'Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → ' + BRAND_NAME + '.' }); /* odmowa — trening dalej czeka */
     await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByText('Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.')).toBeTruthy();
     jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-1'));
     await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Ponów teraz')); await flushAll(10);

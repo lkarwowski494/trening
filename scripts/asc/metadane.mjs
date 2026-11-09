@@ -133,7 +133,7 @@ export async function run({ client, data, zapis = false, log = console.log, find
   let code = verr.length ? 1 : 0;
   if (!d.version) {
     log('### Brak edytowalnej wersji aplikacji w App Store Connect\n');
-    log(`Stany istniejących wersji: ${d.versionStates.join(', ') || 'brak wersji'}. Krok dla właściciela: w App Store Connect → Trening → „+” przy iOS App → utwórz wersję 1.0 (stan Prepare for Submission), potem uruchom workflow ponownie.\n`);
+    log(`Stany istniejących wersji: ${d.versionStates.join(', ') || 'brak wersji'}. Krok dla właściciela: w App Store Connect → RepsGoat → „+” przy iOS App → utwórz wersję 1.0 (stan Prepare for Submission), potem uruchom workflow ponownie.\n`);
   }
   if (zapis && (verr.length || !d.version)) { log('Zapis wstrzymany — nic nie zapisano.'); return { code: 1, rows: {} }; }
   const all = {};

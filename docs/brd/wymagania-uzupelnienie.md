@@ -465,3 +465,22 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Zakładając, że użytkownik otwiera Przewodnik z kafelka „Przewodnik” (ekran nowej osoby) albo z Więcej
     - Gdy wybiera temat, czyta kroki i stuka „Pokaż”
     - Wtedy przechodzi na właściwy ekran i może wrócić; temat jest zapamiętany jako przeczytany
+
+### BR-POM-003: Nazwa aplikacji „RepsGoat”
+- Przepływ: PR-10
+- Dowód potrzeby: decyzja właściciela 09.11.2026 (docs/18, „nowa nazwa aplikacji od wersji 1.1: marka RepsGoat”; ZB-056); `lib/brand.ts`
+- Ekrany: `app/(tabs)/more.tsx`, `app/more/about.tsx`, `app/more/settings.tsx`
+- Test: `tests/nazwa-repsgoat.test.ts`, `tests/i18n-locales.test.ts`, `tests/store-metadata.test.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Ta sama marka w każdym języku
+    - Zakładając, że użytkownik ma ustawiony dowolny z 35 języków aplikacji
+    - Gdy ogląda nazwę pod ikoną, stopkę w Więcej, ekran „O aplikacji”, folder aplikacji w Plikach albo prośbę o zgodę Zdrowia
+    - Wtedy widzi „RepsGoat” — marka nie jest tłumaczona; zakładka i ekran „Trening” zostają zwykłym słowem
+  - Scenariusz: Nazwa w sklepie
+    - Zakładając, że aplikacja ma lokalizację w App Store Connect
+    - Gdy sklep pokazuje nazwę
+    - Wtedy ma postać „RepsGoat: opis w języku lokalizacji” i nie przekracza 30 znaków (PL „RepsGoat: dziennik treningowy”, EN „RepsGoat: Gym Log & Rest Timer”)
+  - Scenariusz: Jedno miejsce pisowni
+    - Zakładając, że pisownia marki ma się zmienić (np. wielkość liter)
+    - Gdy zmienia się `BRAND_NAME` w `lib/brand.ts` i uruchamia `node scripts/marka.mjs --write`
+    - Wtedy wszystkie pliki zarządzane (zgody Zdrowia, sklep, strona, InfoPlist zegarka i widżetu) mają nową pisownię; kontrola `node scripts/marka.mjs` w `tests/nazwa-repsgoat.test.ts` blokuje rozjazd

@@ -3,6 +3,7 @@
  * asercja, że jest widoczny (tekst / etykieta dostępności / tytuł i treść alertu), a dla elementów interaktywnych — naciśnięcie albo wpis
  * i sprawdzenie skutku w danych lub na ekranie. Pogrupowane według ekranu (trasy). Teksty zapisane dosłownie (część stała jest w pliku). */
 import * as store from '@/lib/store';
+import { BRAND_NAME } from '@/lib/brand';
 import * as timer from '@/lib/timer';
 import * as edit from '@/lib/edit';
 import { AUTO_KEEP } from '@/lib/backup';
@@ -64,7 +65,7 @@ describe('/more/settings', () => {
   test('Apple Health bez zgody/HealthKit: komunikat i przełącznik zostaje wyłączony', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     await flip('Zapisuj zakończone treningi do Apple Health', true); await flushAll(10);
-    const a = alertOf('Apple Health niedostępne')!; expect(a.msg).toBe('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → Trening.');
+    const a = alertOf('Apple Health niedostępne')!; expect(a.msg).toBe('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → ' + BRAND_NAME + '.');
     expect(store.getState().settings.healthSync).toBe(false);
   });
 
@@ -74,7 +75,7 @@ describe('/more/settings', () => {
     expect(lastAlert()).toMatchObject({ title: 'Powiadomienia działają', msg: 'Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.' }); /* audyt 0.10 I1: komunikat obejmuje też przypomnienie z planu */
     (global as any).__notifDenied = true;
     await tap(screen.getByText('Sprawdź zgodę na powiadomienia')); await flushAll(10);
-    expect(lastAlert()).toMatchObject({ title: 'Brak zgody', msg: 'Włącz powiadomienia dla Trening w Ustawieniach iOS.' }); expect(lastAlert()!.buttons!.map((b: any) => b.text)).toEqual(['Anuluj', 'Otwórz Ustawienia iOS']); /* audyt 0.10 I1: droga do Ustawień iOS */
+    expect(lastAlert()).toMatchObject({ title: 'Brak zgody', msg: 'Włącz powiadomienia dla ' + BRAND_NAME + ' w Ustawieniach iOS.' }); expect(lastAlert()!.buttons!.map((b: any) => b.text)).toEqual(['Anuluj', 'Otwórz Ustawienia iOS']); /* audyt 0.10 I1: droga do Ustawień iOS */
   });
 
   test('Wyczyść wszystkie dane: ostrzeżenie (z dopiskiem o nieczytelnych danych) i reset po „Wyczyść”', async () => {
@@ -82,7 +83,7 @@ describe('/more/settings', () => {
     await act(async () => { store.getState().settings.defaultRest = 333; store.save(); });
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane'));
-    expect(lastAlert()).toMatchObject({ title: 'Wyczyścić wszystkie dane?', msg: 'Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować). Kopia obejmie też poprzednie, nieczytelne dane.' });
+    expect(lastAlert()).toMatchObject({ title: 'Wyczyścić wszystkie dane?', msg: 'Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: ' + BRAND_NAME + ' → Backup (można ją zaimportować). Kopia obejmie też poprzednie, nieczytelne dane.' });
     await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(store.getState().settings.defaultRest).not.toBe(333); expect(store.getRecovery()).toBeNull();
   });
@@ -109,7 +110,7 @@ describe('/more/backup', () => {
     expect(AUTO_KEEP).toBe(10);
     expect(store.getState().settings.autoBackup).toBe(true);
     expect(screen.getByText('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')).toBeTruthy(); /* utrata danych: ostrzeżenie zostaje na wierzchu */
-    await openInfo('backup-auto'); expect(screen.getByText('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.')).toBeTruthy();
+    await openInfo('backup-auto'); expect(screen.getByText('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → ' + BRAND_NAME + ' → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.')).toBeTruthy();
     Sharing.shareAsync.mockClear();
     await tap(screen.getByText('Eksportuj backup (plik JSON)')); await flushAll(20);
     expect(Sharing.shareAsync.mock.calls.pop()[1]).toMatchObject({ mimeType: 'application/json', dialogTitle: 'Backup treningów' });
@@ -122,7 +123,7 @@ describe('/more/backup', () => {
   test('Importuj: potwierdzenie; plik z nowszego schematu → komunikat; nieudana kopia bezpieczeństwa → import przerwany, dane bez zmian', async () => {
     await renderApp(); await go('/more/backup'); await flushAll(10);
     await tap(screen.getByText('Importuj backup'));
-    expect(lastAlert()).toMatchObject({ title: 'Nadpisać dane?', msg: 'Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.' });
+    expect(lastAlert()).toMatchObject({ title: 'Nadpisać dane?', msg: 'Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: ' + BRAND_NAME + ' → Backup.' });
     const file = (txt: string) => { Picker.getDocumentAsync.mockResolvedValueOnce({ canceled: false, assets: [{ uri: 'file:///cache/x.json' }] }); FS.readAsStringAsync.mockResolvedValueOnce(txt); };
     file(JSON.stringify({ format: 'trening-backup', schemaVersion: SCHEMA_VERSION + 5, state: { schemaVersion: SCHEMA_VERSION + 5 } }));
     await act(async () => { pressAlert('Nadpisać dane?', 'Importuj'); }); await flushAll(20);

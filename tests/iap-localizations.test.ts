@@ -2,6 +2,7 @@
  * Lokalizacje produktów zakupu w App Store Connect (decyzja właściciela 14.10.2026, wariant A): dane store/iap-localizations.json i skrypt
  * scripts/asc/iap-localizations.mjs. Skrypt działa na atrapie serwera API (fetch podstawiony w procesie potomnym — moduł jest ESM z import.meta).
  */
+import { BRAND_NAME } from '../lib/brand';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { execFileSync } from 'child_process';
@@ -58,7 +59,7 @@ describe('store/iap-localizations.json: dane', () => {
     const full = (LOCALES[l as keyof typeof LOCALES] as Record<string, string>)['Pełna wersja']; expect(full).toBeTruthy();
     for (const k of ['monthly', 'yearly', 'lifetime'] as const) expect([l, k, data.tlumaczenia[l][k].name.startsWith(`${full} — `)]).toEqual([l, k, true]);
     expect(data.tlumaczenia[l].group.name.toLowerCase()).toContain(full.toLowerCase());
-    expect(data.tlumaczenia[l].group.name.startsWith('Trening — ')).toBe(true);
+    expect(data.tlumaczenia[l].group.name.startsWith(`${BRAND_NAME} — `)).toBe(true);
   });
   test('trzy produkty mają w każdym języku różne nazwy i różne opisy', () => {
     for (const l of LANGS33) { const e = data.tlumaczenia[l]; for (const f of ['name', 'description'] as const) expect(new Set((['monthly', 'yearly', 'lifetime'] as const).map(k => e[k][f])).size).toBe(3); }

@@ -1,5 +1,5 @@
 {
-  "CFBundleDisplayName": "Treening",
-  "NSHealthShareUsageDescription": "Treening loeb Apple Healthist samme, treeninguid (ka kellalt), pulssi ja aktiivset energiat, et neid plaanis ja treeningute juures näidata. Andmed jäävad telefoni — rakendus ei saada neid kuhugi ega salvesta varukoopiatesse.",
-  "NSHealthUpdateUsageDescription": "Treening salvestab lõpetatud treeningud — jõu- ja kardiotreeningud — Apple Healthi. Kui sama treeningu salvestab kell, kustutab rakendus oma koopia."
+  "CFBundleDisplayName": "RepsGoat",
+  "NSHealthShareUsageDescription": "RepsGoat loeb Apple Healthist samme, treeninguid (ka kellalt), pulssi ja aktiivset energiat, et neid plaanis ja treeningute juures näidata. Andmed jäävad telefoni — rakendus ei saada neid kuhugi ega salvesta varukoopiatesse.",
+  "NSHealthUpdateUsageDescription": "RepsGoat salvestab lõpetatud treeningud — jõu- ja kardiotreeningud — Apple Healthi. Kui sama treeningu salvestab kell, kustutab rakendus oma koopia."
 }
