@@ -3203,6 +3203,34 @@
       "recenzent": "badacz-merytoryczny",
       "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; FV (Patrick Dale, PT, data) szczebel 4; uproszczenie sztanga → hantle potwierdzone",
       "sha": "4f184a6c0be2"
+    },
+    "Cable Kickback": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; miejsce hss-mini-band-hip-ext przy hext.mis.arch poprawione na krok Diagonal hip extension, uproszczenie guma → linka potwierdzone; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
+      "sha": "00c3363b505c"
+    },
+    "Hip Extension with Bands": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; miejsce hss-mini-band-hip-ext przy hext.mis.arch poprawione na krok 3 Diagonal hip extension; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
+      "sha": "8c83adfcf23f"
+    },
+    "Glute Bridge (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A2",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; ace-49 przy gb.move bez twierdzenia o linii, linia przy NASM Step 3; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: linię w gb.move wprost niesie tylko NASM; opcjonalnie dopisać acecert-7403 (full extension) przy gb.move.",
+      "sha": "67dad95fa67f"
     }
   },
   "zestawy": {
