@@ -1783,5 +1783,9 @@
  "Co gdzie jest i jak działa.": "Mis kus asub ja kuidas kõik töötab.",
  "Przygotuj się do pierwszej serii": "Valmistu esimeseks seeriaks",
  "Pomaga trzymać tułów prosto, żeby nie opadał na bok.": "Aitab hoida keha sirgena, et see ei vajuks küljele.",
- "Trzyma tułów prosto, żeby nie opadał na bok.": "Hoiab keha sirgena, et see ei vajuks küljele."
+ "Trzyma tułów prosto, żeby nie opadał na bok.": "Hoiab keha sirgena, et see ei vajuks küljele.",
+ "Bokiem": "Küljele",
+ "Przodem": "Ette",
+ "Naprzemiennie": "Vaheldumisi",
+ "Pozycje na rysunku: {lista}": "Asendid joonisel: {lista}"
 }

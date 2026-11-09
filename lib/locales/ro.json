@@ -1783,5 +1783,9 @@
  "Co gdzie jest i jak działa.": "Ce se află unde și cum funcționează.",
  "Przygotuj się do pierwszej serii": "Pregătiți-vă pentru prima serie",
  "Pomaga trzymać tułów prosto, żeby nie opadał na bok.": "Ajută la menținerea trunchiului drept, ca să nu cadă într-o parte.",
- "Trzyma tułów prosto, żeby nie opadał na bok.": "Menține trunchiul drept, ca să nu cadă într-o parte."
+ "Trzyma tułów prosto, żeby nie opadał na bok.": "Menține trunchiul drept, ca să nu cadă într-o parte.",
+ "Bokiem": "Lateral",
+ "Przodem": "Frontal",
+ "Naprzemiennie": "Alternativ",
+ "Pozycje na rysunku: {lista}": "Poziții în desen: {lista}"
 }

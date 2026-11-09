@@ -1,0 +1,21 @@
+{
+ "jezyk": "pt-BR",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "No desenho: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Novos desenhos de movimento nos exercícios de tríceps e em cleans, snatches e suas variações.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Dicas de técnica novas e aprimoradas, incluindo ombros, exercícios de potência e mobilidade.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Os avisos por voz usam a melhor voz instalada no seu celular.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Quem está começando abre a tela Treino com o botão “Iniciar seu primeiro treino” e o quadro “Primeiro treino”.",
+  "Bokiem": "Para o lado",
+  "Przodem": "Para a frente",
+  "Naprzemiennie": "Alternado",
+  "Pozycje na rysunku: {lista}": "Posições no desenho: {lista}"
+ }
+}

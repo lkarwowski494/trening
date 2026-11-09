@@ -1783,5 +1783,9 @@
  "Co gdzie jest i jak działa.": "Какво къде е и как работи.",
  "Przygotuj się do pierwszej serii": "Пригответе се за първата серия",
  "Pomaga trzymać tułów prosto, żeby nie opadał na bok.": "Помага да държите торса изправен, за да не пада настрани.",
- "Trzyma tułów prosto, żeby nie opadał na bok.": "Държи торса изправен, за да не пада настрани."
+ "Trzyma tułów prosto, żeby nie opadał na bok.": "Държи торса изправен, за да не пада настрани.",
+ "Bokiem": "Встрани",
+ "Przodem": "Напред",
+ "Naprzemiennie": "Редуващо",
+ "Pozycje na rysunku: {lista}": "Позиции на рисунката: {lista}"
 }

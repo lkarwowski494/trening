@@ -1,0 +1,21 @@
+{
+ "jezyk": "sl",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_017gwoFKexsFUPXYYUnw2YKR",
+ "pozycji": 9,
+ "przyjete": 9,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Na rysunku: {lista}": "Na sliki: {lista}",
+  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nove slike gibanja pri vajah za triceps ter pri dvigih na prsi, potegih in njihovih različicah.",
+  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Novi in izboljšani napotki za tehniko, med drugim za ramena, eksplozivne vaje in mobilnost.",
+  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Glasovna obvestila uporabljajo najboljši glas, nameščen v telefonu.",
+  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Nov uporabnik začne na zaslonu Trening z gumbom »Začni prvi trening« in kartico »Prvi trening«.",
+  "Bokiem": "Vstran",
+  "Przodem": "Naprej",
+  "Naprzemiennie": "Izmenično",
+  "Pozycje na rysunku: {lista}": "Položaji na sliki: {lista}"
+ }
+}

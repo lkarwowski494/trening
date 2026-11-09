@@ -1783,5 +1783,9 @@
  "Co gdzie jest i jak działa.": "Mikä on missä ja miten se toimii.",
  "Przygotuj się do pierwszej serii": "Valmistaudu ensimmäiseen sarjaan",
  "Pomaga trzymać tułów prosto, żeby nie opadał na bok.": "Auttaa pitämään vartalon suorana, jotta se ei painu sivulle.",
- "Trzyma tułów prosto, żeby nie opadał na bok.": "Pitää vartalon suorana, jotta se ei painu sivulle."
+ "Trzyma tułów prosto, żeby nie opadał na bok.": "Pitää vartalon suorana, jotta se ei painu sivulle.",
+ "Bokiem": "Sivulle",
+ "Przodem": "Eteen",
+ "Naprzemiennie": "Vuorotellen",
+ "Pozycje na rysunku: {lista}": "Asennot kuvassa: {lista}"
 }

@@ -858,16 +858,16 @@
       ]
     },
     "delt_raise": {
-      "werdykt": "do poprawy",
-      "data": "2026-11-05",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja ruchu r5 05.11.2026; r4-W1 i r4-N2 naprawione, r4-N1 w backlogu (docs/21); 1 WYSOKIE (Car Drivers: pasek faz 4 s „Unoszenie/Opuszczanie” przy animacji obrotu 2 s), 1 ŚREDNIE (Car Drivers: błąd szarpania bez zmiany tempa ruchu); Cable Reverse Fly i Cable Y Raise — r2-Ś1 w backlogu (bez zmian)",
-      "autor": "programista delt_raise (p4)",
-      "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna ruchu r5 rodziny delt_raise, 05.11.2026; figury/delt_raise @ 18d08164 (kopia git archive; do pomiarów i arkuszy tymczasowe podłączenie: families.ts ready, poseData.ts LOAD, data.json v2; skrót liczony na kopii bez podłączenia); porównanie z a509bfc1 (r4) i integracja-1-1 9ff9a3fe; worktree autora nietknięty",
-      "sha": "02b9601c8219",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna ruchu Car Drivers po naprawie r5-W1/r5-Ś1, 09.11.2026; figury/delt_raise @ b75b159d (poprawka 51042308), czysta kopia z tymczasowym podłączeniem do arkuszy i pomiarów (families.ts ready, poseData.ts LOAD), cofniętym przed liczeniem skrótu; autor poprawki nie recenzował własnej pracy",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja ruchu r5 po poprawce 09.11.2026; r5-W1 i r5-Ś1 (Car Drivers) naprawione; Cable Reverse Fly i Cable Y Raise — r2-Ś1 (ŚREDNIE) w backlogu decyzją koordynatora (próg wydania blokują tylko KRYTYCZNE i WYSOKIE); N-1 i N-2 (NISKIE) w backlogu docs/21",
+      "autor": "programista delt_raise (B0′, ZB-042; figury/delt_raise 51042308 r5)",
+      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+      "uwagi": "Recenzja niezależna r5-W1/r5-Ś1, 09.11.2026: Car Drivers jako wahadło (loopOf wahadlo); pasek i animacja na jednym zegarze uAt z tempem ćwiczenia i błędu (ExerciseFigureV2.tsx:82,92,97): Obrót 1000 · Pauza 500 · Powrót 2000 · Pauza 500 = okres 4000 ms, u rośnie tylko w „Obrót” i maleje tylko w „Powrót” (próbki co 250 ms); szarpanie: 350/500/450/500 = 1800 ms, rysunek u = 1 po 1000 ms (poprawny 0,50) — ruch szybszy, nie tylko liczby. Uwagi NISKIE do backlogu: N-1 tempo obrotu niesymetryczne 1 s / 2 s (konwencja T-059, bez źródła dla kierunku), N-2 podpis „Pozycja wyjściowa” w trybie statycznym przy kierownicy obróconej o 30° (bez zmian od r5). Pozostałe ćwiczenia rodziny: bez zmian względem r5 (recenzja 05.11.2026); Cable Reverse Fly i Cable Y Raise zostają z werdyktem „do poprawy” (r2-Ś1, ŚREDNIE, backlog).",
+      "slad": "Arkusze scripts/figures/arkusz-slad.mjs dla Car Drivers (figury/delt_raise @ b75b159d z tymczasowym podłączeniem families.ts ready i poseData.ts LOAD, cofniętym przed liczeniem skrótu) × front i side, 21 kadrów co 0,05, ślad toru, oba motywy, PNG obejrzane w kadrach 700×470 w pełnej rozdzielczości. Ślad = środek talerza: front punkt (0; 137,5), side kreska x 61,1→62,0 przy y 137,5 (obrót w miejscu, bez dryfu). Obrót ±30,0° (rozstaw dłoni stały 42,0 cm, środek talerza 2 cm pod barkami y 139,5), shElev 72–90°, łokieć 26–31°, odstęp ciężaru 49,6–50,5 cm. checkFrame co 1/400: 0 problemów; największy krok dłoni i łokci co 0,01: 0,22 cm. Klatki bajtowo równe stanowi sprzed poprawki, generator = plik póz. Arkusz błędu = poprawny (mis.jerk to tylko tempo, bledy: []).",
+      "sha": "4ebe9a6c45a9",
       "liczba": 38,
-      "slad": "Arkusze arkusz-slad.mjs (kopia 18d08164 z podłączeniem) dla Alternating Deltoid Raise, Car Drivers, Dumbbell Scaption, Front Incline Dumbbell Raise × front i side, 21 kadrów co 0,05, ślad toru, oba motywy: /home/user/stan-delt_raise-r5/arkusze-light, /home/user/stan-delt_raise-r5/arkusze-dark — 16/16 PNG bajtowo równe arkuszom r4 (cmp), więc ocena śladu r4 obowiązuje. md5 ruchu 31 ćwiczeń rysowanych a509bfc1 → 18d08164: 29 równych, 2 różne (Car Drivers, Dumbbell Front Raise to Overhead) wyłącznie przez nową pozę błędu mis.jerk z kart integracji (kształty poprawnej pozy i ślad bez zmian). Tryb statyczny Alternating: klatki u = 0, 1/6, 2/3 w pełnej rozdzielczości, oba motywy (/home/user/stan-delt_raise-r5/klatki/static-light.png, static-dark.png).",
-      "uwagi": "Testy w kopii (pojedynczo, --runInBand): figures-v2-delt-raise-p4 44/44, figures-v2-petla-jednokierunkowa 87/87, figures-v2-cykl-bez-marszu 3/3, figures-v2-delt-raise-p3 24/24. Dobór delt_raise (guidesOf, errorsOf, techniquesOf) a509bfc1 → 18d08164: zmiana tylko mis.jerk w 2 ćwiczeniach; linii odniesienia i nakładki techniki brak (jak w r4). Zmiana statusu rodziny na ready (families.ts w V2_WSPOLNE) zmieni skróty wszystkich rodzin — wtedy nowe skróty i sprawdzenie różnicy. Szczegóły: /home/user/stan-delt_raise-r5/STAN.md.",
       "cwiczenia": {
         "Alternating Deltoid Raise": {
           "werdykt": "wyswietlana",
@@ -911,13 +911,9 @@
           "poprawka": "Jak Cable Reverse Fly: krzyżowanie dwóch linek w silniku wspólnym (contract.ts:218)."
         },
         "Car Drivers": {
-          "werdykt": "do poprawy",
-          "poziom": "WYSOKIE",
-          "znaleziska": [
-            "r5-W1",
-            "r5-Ś1"
-          ],
-          "opis": "r5-W1: pętla cykl_lustro bez marszu animowana cycleAt (pełny cykl 2000 ms, tempo ignorowane), a pasek faz pokazuje fazy rodziny „Unoszenie 1 s · Pauza · Opuszczanie 2 s” (4000 ms, phaseIndexAt) — wyróżniana faza i podane sekundy nie odpowiadają rysunkowi (obrót kierownicą, bez unoszenia i opuszczania). r5-Ś1: błąd „szarpanie” (mis.jerk, doszedł z kartami przy scaleniu integracji) zmienia tylko sekundy w pasku (0,4 / 0,5 s) i dodaje znak X, ruch na rysunku ma to samo tempo co poprawny."
+          "werdykt": "wyswietlana",
+          "naprawione": "r5-W1: wahadło, fazy Obrót/Powrót, jeden zegar paska i animacji (okres 4000 ms = suma faz). r5-Ś1: szarpanie skraca ruch na rysunku (350/450 ms).",
+          "uwagi": "N-1 (NISKIE, backlog): tempo 1 s / 2 s przy symetrycznym obrocie — konwencja T-059. N-2 (NISKIE, backlog): „Pozycja wyjściowa” w trybie statycznym = kierownica obrócona o +30°."
         },
         "Dumbbell Front Raise to Overhead": {
           "werdykt": "wyswietlana",
