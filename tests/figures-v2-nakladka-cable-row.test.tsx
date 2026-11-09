@@ -23,7 +23,7 @@ const L = 'cableRowElbowLimb', T = 'cableRowTorsoPlumb', B = 'cableRowElbowBackP
  * ich elementy sprawdza test na id wskazówek zestawu (niżej). Standing Cable Row i Machine Row mają karty własne scrow.* / mrow.* (id spoza wskazowki_na_reguly) → bez elementu. */
 const WANT: Record<string, { t: string[]; g: string[] }> = {
   'Seated Cable Row': { t: [L, T], g: [] }, 'Wiosłowanie na linkach (siedząc)': { t: [L, T], g: [] }, 'Face Pull': { t: [L, B], g: [] },
-  'Cable Rope Rear-Delt Rows': { t: [], g: [] }, 'Single Arm Cable Row': { t: [], g: [] }, 'Leverage High Row': { t: [], g: [] }, 'Kneeling High Pulley Row': { t: [], g: [] },
+  'Cable Rope Rear-Delt Rows': { t: [B], g: [] }, /* 09.11.2026: zestaw ogólny po wpisie „zestawy” r2 (wyswietlana) liczy się na karcie → element łokci za plecami (jak w teście id wskazówek niżej) */ 'Single Arm Cable Row': { t: [], g: [] }, 'Leverage High Row': { t: [], g: [] }, 'Kneeling High Pulley Row': { t: [T], g: [] }, /* 09.11.2026: j.w. — zestaw po wpisie r2 → pion tułowia */
   'Standing Cable Row': { t: [], g: [] }, 'Machine Row': { t: [], g: [] },
 };
 
