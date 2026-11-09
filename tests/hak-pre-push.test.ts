@@ -651,7 +651,7 @@ describe('hak pre-push — znacznik „lekkie” (08.11.2026)', () => {
     expect(l).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz lekkie$/);
     expect(l).not.toMatch(/test-fast|jest|expo export|verify:native|check:bundle/);
     expect(sz.replace(' && node scripts/test-fast.mjs --od-bazy', '').replace('--zapisz szybkie', '--zapisz lekkie')).toBe(l);
-    expect(l).toMatch(/^(node scripts\/sprawdz-dysk\.mjs && )?node scripts\/hooks\/sprawdz-instalacje\.mjs && node scripts\/verify-znacznik\.mjs --czysta && /);
+    expect(l).toMatch(/^node scripts\/hooks\/sprawdz-instalacje\.mjs && node scripts\/verify-znacznik\.mjs --czysta && /);
     for (const k of l.match(/npm run [\w:-]+/g)!) expect(pkg.scripts.verify).toContain(k);
   });
   test('08.11.2026: CLAUDE.md, docs/18 i nagłówek haka opisują decyzję (A + B mądrze, odrzucone C, kompromis CI, analogia z wzorcem)', () => {
