@@ -213,31 +213,31 @@
     },
     "Bent Over Row (sztanga)": {
       "rodzina": "row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-11-01",
       "kto": "audytor — recenzja niezależna różnicy danych (bramka 4, L-047), 01.11.2026; poprzednia recenzja: 06-tresci, 27.10.2026",
       "sha": "c68db590960f",
       "stan": "zrecenzowana niezależnie (bramka 4, 1.1: odświeżenie skrótu po zmianie tolerancji kolana, rysunek bez zmian)",
-      "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Zawias w biodrach, kolana lekko ugięte (20°), plecy proste; sztanga z wyprostu rąk do brzucha, tor lekko ukośny ku biodrom (6 j.) — zgodny z row.bbPull. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+      "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Zawias w biodrach, kolana lekko ugięte (20°), plecy proste; sztanga z wyprostu rąk do brzucha, tor lekko ukośny ku biodrom (6 j.) — zgodny z row.bbPull. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). | 09.11.2026: zastąpiona rysunkiem v2 (row r3, audytor; partia 1, K10 — docs/research/recenzje/partia1-row-r3-audytor-2026-11-09.md).",
       "autor": "scalenie 088da78 (r101/klatka, 31.10.2026)",
       "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
       "slad": "bez arkusza: pozy, punkty at i sprzęt bez zmian względem wersji zatwierdzonej (porównanie danych f8429e6 → HEAD; skróty starych danych odtworzone bieżącą figuraSkrot) — tor identyczny z ocenionym 27.10.2026"
     },
     "Bent Over Row (hantle)": {
       "rodzina": "row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-11-01",
       "kto": "audytor — recenzja niezależna różnicy danych (bramka 4, L-047), 01.11.2026; poprzednia recenzja: 06-tresci, 27.10.2026",
       "sha": "5a447a42e01b",
       "stan": "zrecenzowana niezależnie (bramka 4, 1.1: odświeżenie skrótu po zmianie tolerancji kolana, rysunek bez zmian)",
-      "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Jak wiosłowanie sztangą w opadzie (ten sam wzorzec); hantle z wyprostu rąk do brzucha. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+      "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Jak wiosłowanie sztangą w opadzie (ten sam wzorzec); hantle z wyprostu rąk do brzucha. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). | 09.11.2026: zastąpiona rysunkiem v2 (row r3, audytor; partia 1, K10 — docs/research/recenzje/partia1-row-r3-audytor-2026-11-09.md).",
       "autor": "scalenie 088da78 (r101/klatka, 31.10.2026)",
       "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
       "slad": "bez arkusza: pozy, punkty at i sprzęt bez zmian względem wersji zatwierdzonej (porównanie danych f8429e6 → HEAD; skróty starych danych odtworzone bieżącą figuraSkrot) — tor identyczny z ocenionym 27.10.2026"
     },
     "Pendlay Row": {
       "rodzina": "row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-29",
       "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), 29.10.2026; poprzednia recenzja „ukryta”: 06-tresci, 27.10.2026",
       "sha": "74a518fe67a5",
@@ -245,35 +245,35 @@
       "autor": "programista r2/pendlay",
       "recenzent": "audytor (sesja 1.0.1, niezależny)",
       "slad": "arkusz PNG klatek kluczowych (start, mid, mid2, end), póz pośrednich 0,25/0,5/0,75 każdego przejścia i nałożonego śladu toru punktów (L-050) obok Bent Over Row; pomiar modułem geometrii aplikacji na 4 klatkach i 19 pozach pośrednich każdego przejścia: zakres stawów wobec rom (0 przekroczeń), dolna krawędź talerza na starcie 0,02 j., talerz nigdy pod podłogą, ślizg stóp 0 j., tułów stale 8°, tor gryfu 4,1 j. w poziomie na 27,8 j. w pionie, gryf zawsze przed linią goleni, w końcu 8 j. przed linią pleców w 60% długości tułowia",
-      "uwagi": "Cecha rozpoznawcza wobec wiosłowania w opadzie: tułów prawie poziomo (8°, uproszczenie ilustracyjne; źródła: „równolegle”/„prawie równolegle”, jedno 20–30°) i sztanga z podłogi w każdym powtórzeniu (pętla wraca do talerza na podłodze). Nachodzenie talerza na tułów w końcu — widok z boku, talerz z boku ciała, gryf poza kreską tułowia (jak w wiosłowaniu w opadzie). Podudzie odchylone do tyłu ok. 14° — konwencja rodziny row (to samo w wiosłowaniu w opadzie), uwaga do backlogu rodziny."
+      "uwagi": "Cecha rozpoznawcza wobec wiosłowania w opadzie: tułów prawie poziomo (8°, uproszczenie ilustracyjne; źródła: „równolegle”/„prawie równolegle”, jedno 20–30°) i sztanga z podłogi w każdym powtórzeniu (pętla wraca do talerza na podłodze). Nachodzenie talerza na tułów w końcu — widok z boku, talerz z boku ciała, gryf poza kreską tułowia (jak w wiosłowaniu w opadzie). Podudzie odchylone do tyłu ok. 14° — konwencja rodziny row (to samo w wiosłowaniu w opadzie), uwaga do backlogu rodziny. | 09.11.2026: zastąpiona rysunkiem v2 (row r3, audytor; partia 1, K10 — docs/research/recenzje/partia1-row-r3-audytor-2026-11-09.md)."
     },
     "T-Bar Row": {
       "rodzina": "row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-11-01",
       "kto": "audytor — recenzja niezależna różnicy danych (bramka 4, L-047), 01.11.2026; poprzednia recenzja: 06-tresci, 27.10.2026",
       "sha": "91f7e0300067",
       "stan": "zrecenzowana niezależnie (bramka 4, 1.1: odświeżenie skrótu po zmianie tolerancji kolana, rysunek bez zmian)",
-      "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Zawias jak w wiosłowaniu w opadzie; gryf od osi przy podłodze za ćwiczącym do uchwytu. Kosmetyka (backlog): talerz rysowany tuż przy dłoniach od strony osi zamiast na końcu gryfu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+      "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Zawias jak w wiosłowaniu w opadzie; gryf od osi przy podłodze za ćwiczącym do uchwytu. Kosmetyka (backlog): talerz rysowany tuż przy dłoniach od strony osi zamiast na końcu gryfu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). | 09.11.2026: zastąpiona rysunkiem v2 (row r3, audytor; partia 1, K10 — docs/research/recenzje/partia1-row-r3-audytor-2026-11-09.md).",
       "autor": "scalenie 088da78 (r101/klatka, 31.10.2026)",
       "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
       "slad": "bez arkusza: pozy, punkty at i sprzęt bez zmian względem wersji zatwierdzonej (porównanie danych f8429e6 → HEAD; skróty starych danych odtworzone bieżącą figuraSkrot) — tor identyczny z ocenionym 27.10.2026"
     },
     "One Arm Row (hantle)": {
       "rodzina": "row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
       "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
       "sha": "9998036bd3a9",
-      "uwagi": "Ruch i karta zgodne. Kolano i dłoń jednej strony na ławce, tułów prawie poziomo; hantel wzdłuż boku do biodra, ramię za linią pleców (row1.top). Dłoń 1,6 j. w obrysie ławki przy starcie ruchu — rzut z boku (hantel obok ławki), bez znaczenia. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "uwagi": "Ruch i karta zgodne. Kolano i dłoń jednej strony na ławce, tułów prawie poziomo; hantel wzdłuż boku do biodra, ramię za linią pleców (row1.top). Dłoń 1,6 j. w obrysie ławki przy starcie ruchu — rzut z boku (hantel obok ławki), bez znaczenia. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). | 09.11.2026: zastąpiona rysunkiem v2 (row r3, audytor; partia 1, K10 — docs/research/recenzje/partia1-row-r3-audytor-2026-11-09.md)."
     },
     "Chest Supported Row": {
       "rodzina": "row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
       "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
       "sha": "ee1ec9a77fde",
-      "uwagi": "Ruch i karta zgodne. Klatka na podporze przez cały ruch, łokcie za linię pleców, ręce proste na dole. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "uwagi": "Ruch i karta zgodne. Klatka na podporze przez cały ruch, łokcie za linię pleców, ręce proste na dole. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). | 09.11.2026: zastąpiona rysunkiem v2 (row r3, audytor; partia 1, K10 — docs/research/recenzje/partia1-row-r3-audytor-2026-11-09.md)."
     },
     "Seated Cable Row": {
       "rodzina": "cable_row",
