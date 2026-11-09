@@ -1395,11 +1395,6 @@
   }
  },
  "przypisania": {
-  "Ab Wheel": {
-   "rodzina": "rollout",
-   "sprawdzenie": "rollout z kółkiem = ten sam ruch co ACE #309 (sztanga)",
-   "plik": "wskazowki-cwiczenia-01"
-  },
   "Adductor-SMR": {
    "rodzina": "smr",
    "sprawdzenie": "NASM foam-roll-adductors — bezpośrednie",
@@ -1414,11 +1409,6 @@
    "rodzina": "jump",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Arnold Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": "rotacja dłoni w Arnoldzie nie jest opisana — zdania dotyczą tylko wyciskania nad głowę",
-   "plik": "wskazowki-cwiczenia-01"
   },
   "Assault Bike": {
    "rodzina": "bike",
@@ -1459,11 +1449,6 @@
    "rodzina": "raiseRear",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Band Shoulder Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Band Squat": {
    "rodzina": "squat",
@@ -1730,11 +1715,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Chest Dip": {
-   "rodzina": "dip",
-   "sprawdzenie": "zakres i ruch łokci jak przy dipach na ławce (analogia); bez zdań o pochyleniu tułowia (jedno źródło, docs/33)",
-   "plik": "wskazowki-cwiczenia-01"
-  },
   "Chest Stretch on Stability Ball": {
    "rodzina": "stretch",
    "sprawdzenie": "NASM static-latissimus-dorsi-ball-stretch — pokrewne",
@@ -1874,11 +1854,6 @@
    "rodzina": "crunch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Decline Push Up": {
-   "rodzina": "pushup",
-   "sprawdzenie": "NASM ma stronę decline-push-up (sitemap) — można dodać jako 3. źródło",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Decline Reverse Crunch": {
    "rodzina": "legRaiseFloor",
@@ -2140,11 +2115,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Incline Chest Fly (hantle)": {
-   "rodzina": "fly",
-   "sprawdzenie": "rozpiętki na skosie — ten sam łuk",
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Incline Curl (hantle)": {
    "rodzina": "curl",
    "sprawdzenie": "ramiona zwisają przy tułowiu oparte o ławkę — łokcie zostają w miejscu, zgodne",
@@ -2224,16 +2194,6 @@
    "rodzina": "halo",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-08-korekty"
-  },
-  "Kettlebell Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Kettlebell Seated Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   },
   "Kettlebell Snatch": {
    "rodzina": "oly",
@@ -2695,11 +2655,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Renegade Row": {
-   "rodzina": "pushup",
-   "sprawdzenie": "podpór jak w pompce + wiosłowanie hantlem bez skrętu tułowia",
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Reverse Band Bench Press": {
    "rodzina": "bench",
    "sprawdzenie": null,
@@ -2785,11 +2740,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Rollout (sztanga)": {
-   "rodzina": "rollout",
-   "sprawdzenie": "ACE #309 Roll Out — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Round The World Shoulder Stretch": {
    "rodzina": "mobility",
    "sprawdzenie": null,
@@ -2815,20 +2765,10 @@
    "sprawdzenie": "klatka na ławce jak w Chest Supported Row",
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Seated Barbell Military Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Seated Barbell Twist": {
    "rodzina": "rotation",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Seated Cable Chest Press": {
-   "rodzina": "machinePress",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Seated Cable Shoulder Press": {
    "rodzina": "ohp",
@@ -2922,11 +2862,6 @@
   },
   "Single Arm Lat Pulldown": {
    "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Arm Overhead Press (hantel)": {
-   "rodzina": "ohp",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
@@ -3289,11 +3224,6 @@
    "rodzina": "rollout",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Suspended Push-Up": {
-   "rodzina": "pushup",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Suspended Reverse Crunch": {
    "rodzina": "plank",

@@ -280,7 +280,7 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
     return [...sel.ok, ...sel.err];
   };
   /** Zdania P1 (02.11.2026) i P2 (03.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml); po przekładzie wpisy znikają z zestawów. */
-  const OCZEKUJE: string[] = ['2026-11-02-p1', '2026-11-03-p2', '2026-11-04-t1', '2026-11-04-t1b', '2026-11-08-a2'].flatMap(d => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', `docs/lokalizacja/zestaw-przekladu-${d}-wskazowki.json`), 'utf8')).klucze as { id: string }[]).map(k => k.id));
+  const OCZEKUJE: string[] = ['2026-11-02-p1', '2026-11-03-p2', '2026-11-04-t1', '2026-11-04-t1b', '2026-11-08-a1', '2026-11-08-a2'].flatMap(d => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', `docs/lokalizacja/zestaw-przekladu-${d}-wskazowki.json`), 'utf8')).klucze as { id: string }[]).map(k => k.id));
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
   test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {

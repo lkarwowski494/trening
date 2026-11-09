@@ -11256,6 +11256,60 @@
    }
   },
   {
+   "id": "tasmy_podwieszane",
+   "pl": "taśmy do podwieszania",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "taśmy do ćwiczeń w podwieszeniu (sprzęt, na którym się ćwiczy: Suspended Push-Up); NIE taśma do rozciągania, NIE guma oporowa. Pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów)",
+   "kanon": null,
+   "wykrywaj": "uchwyty taśm|taśm\\w* do podwieszania",
+   "jezyki": {
+    "pl": {
+     "zalecany": "taśmy do podwieszania",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "straps",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "gwaltowne_blokowanie_lokci",
+   "pl": "gwałtowne blokowanie łokci",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "błąd przy wyciskaniu: łokcie zatrzaskiwane w wyproście (wyprost sam w sobie jest celem ruchu); NIE „prostowanie rąk do końca”. Spójne z ohp.mis.lock i press.noLock. Pozostałe 33 języki wg przekładu z PL/EN",
+   "kanon": null,
+   "wykrywaj": "blokowani\\w* łokci",
+   "jezyki": {
+    "pl": {
+     "zalecany": "gwałtowne blokowanie łokci",
+     "zakazane": [
+      {
+       "wzorzec": "(?<!wałtowne )blokowanie łokci",
+       "powod": "samo „blokowanie łokci” czyta się jak „nie prostuj rąk do końca”; błędem jest gwałtowne zatrzaśnięcie"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "snapping your elbows into lockout",
+     "zakazane": [
+      {
+       "wzorzec": "locking out (the |your )?elbows",
+       "powod": "w EN „lockout” to cel wyciskania; błędem jest gwałtowne zatrzaśnięcie (snapping into lockout)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
    "id": "miniguma",
    "pl": "miniguma",
    "tylko": [

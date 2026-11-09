@@ -124,7 +124,7 @@ W.manifest_opis_bledu = { dobre: [...zm(mf(cw0), tk), ...zm(mf({ ...cw0, bledy_w
 /* 19 układ podglądu: jeden wiersz na rząd; HTML ma po jednej komórce na klatkę kluczową w obu widokach i nie zawija wiersza */
 W.podglad_jeden_wiersz = { dobre: J.wierszeWJednejLinii([{ etykieta: 'poza poprawna', dolne: [110, 110, 111.5, 110] }]), zle: J.wierszeWJednejLinii([{ etykieta: 'poza poprawna', dolne: [110, 110, 110, 310] }]) };
 const V = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))});
-const hp = (p) => V.htmlPodgladu(p, 'light'); const hRC = hp(RC), hPL = hp(PL), hRoll = hp(poza('pushup_plank', 'Rollout (sztanga)'));
+const hp = (p) => V.htmlPodgladu(p, 'light'); const hRC = hp(RC), hPL = hp(PL), hRoll = hp(poza('pushup_plank', 'Barbell Rollout from Bench')); /* 08.11.2026 (A1 pchanie): pozy o 9 klatkach i 1 wierszu błędu — dotąd Rollout (sztanga), któremu plik póz stracił wiersz błędu spoza karty; Barbell Rollout from Bench ma taki sam układ */
 const komorek = (h) => (h.html.match(/class="k"/g) || []).length;
 W.podglad_html = { dobre: [JSON.stringify(hPL.klatki) === JSON.stringify(PL.klatki.map((k) => k.u)) ? 0 : 1, komorek(hPL) === 2 * PL.klatki.length * (1 + PL.bledy.length) ? 0 : 1, komorek(hRoll) === 2 * 9 * (1 + 1) ? 0 : 1, /flex-wrap:nowrap/.test(hRC.html) && !/flex-wrap:wrap/.test(hRC.html) ? 0 : 1, hRoll.px < 1.5 ? 0 : 1], zle: [] };
 /* 14b lędźwie przy podłodze: spięcie z bend (lędźwie nisko) vs siad (tułów sztywno od miednicy); wskazówka z tekstów włącza regułę, V-Up/Cocoons/Tuck wyłączone jawnie */

@@ -77,7 +77,8 @@ describe('P1 mobilność: źródła i reguły szczebli', () => {
   });
 
   test('producent sprzętu z działem edukacji: organizacja warunkowo szczebla 4 — każde źródło ma własny szczebel i opis strony (docs/18, 02.11.2026, uzupełnienie 3)', () => {
-    const warunkowe = Object.entries(CUE_FULL.orgs).filter(([, o]) => typeof (o as { warunkowo?: string }).warunkowo === 'string').map(([k]) => k);
+    /* 08.11.2026 (A1 pchanie): organizacje warunkowe są dwóch rodzajów — producent sprzętu z działem edukacji (uzupełnienie 3, kind „maker”) i serwis z artykułami autorskimi (uzupełnienie 2, kind „site”: The Prehab Guys, karta Decline Push Up). Ten test pilnuje pierwszego rodzaju (jedna taka organizacja w danych), więc filtruje po kind „maker”; drugi rodzaj ma osobną kontrolę „strona” przy każdym źródle (tests/zrodla-pelne-cues-a1-pchanie.test.ts). */
+    const warunkowe = Object.entries(CUE_FULL.orgs).filter(([, o]) => typeof (o as { warunkowo?: string }).warunkowo === 'string' && (o as { kind?: string }).kind === 'maker').map(([k]) => k);
     // organizacje warunkowe szczebla 5 (np. serwis bez autora) nie wchodzą do danych jako szczebel 4 — tu tylko producent sprzętu z edukacją (szczebel 4)
     const org4 = warunkowe.filter(k => Object.values(CUE_FULL.sources).some(s => s.org === k && s.level === 4));
     expect(org4.length).toBe(1);

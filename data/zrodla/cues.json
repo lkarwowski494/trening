@@ -553,6 +553,21 @@
    "level": 5,
    "kind": "app"
   },
+  "Echelon Fitness": {
+   "name": "Echelon Fitness — instrukcja ćwiczeń do własnego kółka (producent, PDF 2021)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "NSCA — Exercise Technique Manual (Human Kinetics)": {
+   "name": "NSCA — Exercise Technique Manual for Resistance Training, wyd. 4 (fragment u wydawcy Human Kinetics)",
+   "level": 3,
+   "kind": "org"
+  },
+  "TRX": {
+   "name": "TRX — blog producenta zawieszeń (trxtraining.com)",
+   "level": 4,
+   "kind": "maker"
+  },
   "Thera-Band": {
    "name": "Thera-Band (Performance Health) — instrukcje ćwiczeń z gumami (producent gum)",
    "level": 4,
@@ -3203,6 +3218,139 @@
    "url": "https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/",
    "level": 5,
    "strona": "odczyt 04.11.2026: strona biblioteki ćwiczeń bez podpisu autora i biogramu → szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2); do potwierdzenia przez badacza"
+  },
+  "ace-309": {
+   "org": "ACE",
+   "title": "309",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/309/",
+   "level": 4
+  },
+  "ace-355": {
+   "org": "ACE",
+   "title": "renegade row",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/",
+   "level": 4
+  },
+  "ace-395": {
+   "org": "ACE",
+   "title": "single arm overhead press",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/",
+   "level": 4
+  },
+  "barbend-arnold-press": {
+   "org": "BarBend",
+   "title": "arnold press",
+   "url": "https://barbend.com/arnold-press/",
+   "level": 4
+  },
+  "barbend-dips": {
+   "org": "BarBend",
+   "title": "dips",
+   "url": "https://barbend.com/dips/",
+   "level": 4
+  },
+  "barbend-dumbbell-flye-variations": {
+   "org": "BarBend",
+   "title": "dumbbell flye variations",
+   "url": "https://barbend.com/dumbbell-flye-variations/",
+   "level": 4
+  },
+  "barbend-renegade-row": {
+   "org": "BarBend",
+   "title": "renegade row",
+   "url": "https://www.barbend.com/renegade-row/",
+   "level": 4
+  },
+  "bodylastics-standing-shoulder-press": {
+   "org": "Bodylastics",
+   "title": "standing shoulder press with bands",
+   "url": "https://bodylastics.com/standing-shoulder-press-with-bands",
+   "level": 4
+  },
+  "catalyst-ab-rollout": {
+   "org": "Catalyst Athletics",
+   "title": "Ab Rollout",
+   "url": "https://catalystathletics.com/exercise/135/Ab-Rollout",
+   "level": 4
+  },
+  "catalyst-kettlebell-press": {
+   "org": "Catalyst Athletics",
+   "title": "Ketllebell Press",
+   "url": "https://catalystathletics.com/exercise/855/Ketllebell-Press/",
+   "level": 4
+  },
+  "columbia-shoulder-press-band": {
+   "org": "WebMD Ignite",
+   "title": "shoulder press",
+   "url": "https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/",
+   "level": 4
+  },
+  "echelon-ab-wheel": {
+   "org": "Echelon Fitness",
+   "title": "ECHELON AB WHEEL EXERCISE GUIDE.pdf",
+   "url": "https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf",
+   "level": 4
+  },
+  "fv-decline-push-up": {
+   "org": "Fitness Volt",
+   "title": "?p=75039",
+   "url": "https://fitnessvolt.com/?p=75039",
+   "level": 4
+  },
+  "fv-suspension-chest-press": {
+   "org": "Fitness Volt",
+   "title": "suspension chest press",
+   "url": "https://fitnessvolt.com/suspension-chest-press/",
+   "level": 4
+  },
+  "issa-chest-dips": {
+   "org": "ISSA",
+   "title": "chest dips form benefits variations what to avoid",
+   "url": "https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid",
+   "level": 4
+  },
+  "issa-overhead-press-mistakes": {
+   "org": "ISSA",
+   "title": "overhead press proper form variations and common mistakes",
+   "url": "https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes",
+   "level": 4
+  },
+  "nasm-decline-push-up": {
+   "org": "NASM",
+   "title": "decline push up",
+   "url": "https://www.nasm.org/resource-center/exercise-library/decline-push-up",
+   "level": 4
+  },
+  "nfpt-incline-fly": {
+   "org": "NFPT",
+   "title": "how to do incline bench dumbbell flyes",
+   "url": "https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/",
+   "level": 4
+  },
+  "nsca-etm4-one-arm-kb-press": {
+   "org": "NSCA — Exercise Technique Manual (Human Kinetics)",
+   "title": "one arm kettlebell press",
+   "url": "https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press",
+   "level": 3
+  },
+  "prehab-pushup-variations": {
+   "org": "The Prehab Guys",
+   "title": "push up exercise variations",
+   "url": "https://theprehabguys.com/push-up-exercise-variations/",
+   "level": 4,
+   "strona": "odczyt 02.11.2026: warunkowo (uzup. 2: liczy się artykuł z autorem z kwalifikacjami)"
+  },
+  "strongfirst-mastering-your-press-1": {
+   "org": "StrongFirst",
+   "title": "mastering your press part i",
+   "url": "https://www.strongfirst.com/mastering-your-press-part-i/",
+   "level": 4
+  },
+  "trx-push-up": {
+   "org": "TRX",
+   "title": "trx push up",
+   "url": "https://www.trxtraining.com/blogs/news/trx-push-up",
+   "level": 4
   },
   "ace-145": {
    "org": "ACE",
@@ -18785,6 +18933,906 @@
     }
    ]
   },
+  "Arnold Press": {
+   "setup": [
+    {
+     "c": "arnold.setup",
+     "s": [
+      [
+       "barbend-arnold-press",
+       "How to: Set Up (palms facing you)"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Arnold Press (dumbbell in each hand, palms facing the body)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "arnold.move",
+     "s": [
+      [
+       "barbend-arnold-press",
+       "How to: Rotate and Press; Reverse It"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Arnold Press (rotate the weights about 180 degrees away from the face while pressing; slowly reverse to the start)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "arnold.together",
+     "s": [
+      [
+       "barbend-arnold-press",
+       "Coach's tip (rotate and press at the same time)"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Arnold Press (in one controlled motion)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ohp.mis.arch",
+     "s": [
+      [
+       "issa-overhead-press-mistakes",
+       "Common mistakes: Lower back arch"
+      ],
+      [
+       "barbend-arnold-press",
+       "FAQ — wersja stojąca (avoid overextending your lower back)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Seated Barbell Military Press": {
+   "setup": [
+    {
+     "c": "ohp.bbGrip",
+     "s": [
+      [
+       "ace-43",
+       "opis, zdania 1–2 (grip a little wider than shoulder-width; bar lowered to the front of the shoulders, about chin height)"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Standing Barbell Overhead Press (grip just outside shoulder width; bar across the front of the shoulders) + Seated Variations (upper-body form very similar)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.move",
+     "s": [
+      [
+       "ace-43",
+       "opis, zdania 3–4 (press directly overhead; slowly lower to chin height)"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Standing Barbell Overhead Press (press straight up until the elbows are extended; return to the start) + Seated Variations"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ohp.mis.flare",
+     "s": [
+      [
+       "issa-overhead-press-mistakes",
+       "Common mistakes: Elbow flare (the elbows should point forward)"
+      ],
+      [
+       "ace-43",
+       "opis, zdanie 3 (keep the elbows pointed forward) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.mis.arch",
+     "s": [
+      [
+       "issa-overhead-press-mistakes",
+       "Common mistakes: Lower back arch; Seated Variations (seated helps minimize the arch)"
+      ],
+      [
+       "ace-43",
+       "opis, zdanie 1 (keep the back straight) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Press": {
+   "setup": [
+    {
+     "c": "kbp.setup",
+     "s": [
+      [
+       "ace-395",
+       "opis (kettlebell in front of the chest near the shoulder; elbow close to the rib cage) — przeczytane w rundzie 1"
+      ],
+      [
+       "catalyst-kettlebell-press",
+       "Description (a kettlebell in each hand at the shoulders… and the arms against the ribs)"
+      ]
+     ],
+     "uproszczenie": "Catalyst opisuje wersję z dwoma kettlebellami — pozycja każdej ręki (kettlebell przy barku, ramię przy żebrach) jest ta sama"
+    }
+   ],
+   "move": [
+    {
+     "c": "kbp.move",
+     "s": [
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control)"
+      ],
+      [
+       "ace-395",
+       "opis (press the arm straight overhead; pull the elbow back down to the rib cage)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ohp.mis.sideLean",
+     "s": [
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "Upward Movement (do not allow the spine to flex laterally) — błąd = zaprzeczenie standardu"
+      ],
+      [
+       "strongfirst-mastering-your-press-1",
+       "When Things Get Heavy, punkt 5 (side lean increasing during the attempt)"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.mis.arch",
+     "s": [
+      [
+       "issa-overhead-press-mistakes",
+       "wstęp (dumbbell, kettlebell, and resistance band variations) + Common Mistakes, punkt 6 (Arching the lower back)"
+      ],
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "wskazówki tułowia (keep the spine neutral) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Seated Press": {
+   "setup": [
+    {
+     "c": "kbp.setup",
+     "uproszczenie": "pozycja siedząca Kettlebell Press — ISSA: górna część ciała pracuje w wersji siedzącej bardzo podobnie jak na stojąco; zmienia się tylko podparcie (ławka zamiast stóp i bioder)",
+     "s": [
+      [
+       "ace-395",
+       "opis (kettlebell near the shoulder; elbow close to the rib cage)"
+      ],
+      [
+       "catalyst-kettlebell-press",
+       "Description (at the shoulders… arms against the ribs)"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Seated Variations (seated kettlebell press; the upper body form is very similar… to the standing version)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbp.move",
+     "uproszczenie": "pozycja siedząca Kettlebell Press — ten sam tor ręki nad głowę i powrót do barku (ISSA, Seated Variations)",
+     "s": [
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "Upward Movement; Downward Movement"
+      ],
+      [
+       "ace-395",
+       "opis (press straight overhead; elbow back down to the rib cage)"
+      ],
+      [
+       "issa-overhead-press-mistakes",
+       "Seated Variations (very similar to the standing version)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ohp.mis.arch",
+     "s": [
+      [
+       "issa-overhead-press-mistakes",
+       "Seated Variations (seated kettlebell press; seated position can help minimize a client's lower back arch) + Common Mistakes, punkt 6 (Arching the lower back)"
+      ],
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "wskazówki tułowia (keep the spine neutral; wersja stojąca) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Band Shoulder Press": {
+   "setup": [
+    {
+     "c": "band.ohpSetup",
+     "s": [
+      [
+       "bodylastics-standing-shoulder-press",
+       "Start and Finish Positions (stand on the bands; raise your arms to a goal post position: upper arms parallel, forearms perpendicular to the floor) — przeczytane w W1"
+      ],
+      [
+       "columbia-shoulder-press-band",
+       "instrukcja (standing, pass the band under your feet; one end of the band in each hand)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "band.ohpMove",
+     "s": [
+      [
+       "bodylastics-standing-shoulder-press",
+       "Movement (press the handles overhead; lower back to the goal post position under control) — przeczytane w W1"
+      ],
+      [
+       "columbia-shoulder-press-band",
+       "instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohp.tall",
+     "s": [
+      [
+       "bodylastics-standing-shoulder-press",
+       "Start and Finish Positions (back straight, head straight, chest up) — przeczytane w W1"
+      ],
+      [
+       "columbia-shoulder-press-band",
+       "instrukcja (sit or stand up straight; press straight up)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ohp.mis.arch",
+     "uproszczenie": "wariant sprzętu Overhead Press — guma zamiast sztangi/hantli, ten sam pionowy wypych nad głowę na stojąco",
+     "s": [
+      [
+       "issa-overhead-press-mistakes",
+       "Common Mistakes (arching the lower back)"
+      ],
+      [
+       "bodylastics-standing-shoulder-press",
+       "Start and Finish Positions (keep your back straight) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Single Arm Overhead Press (hantel)": {
+   "setup": [
+    {
+     "c": "ohp.saSetup",
+     "uproszczenie": "wariant sprzętu: ACE 395 — jednorącz z kettlebellem, ColumbiaDoctors — hantle oburącz; pozycja startowa (stoisz, ciężar przy barku) ta sama",
+     "s": [
+      [
+       "ace-395",
+       "opis (stand with the feet hip-width apart; kettlebell in front of the chest near the shoulder)"
+      ],
+      [
+       "columbia-shoulder-press-band",
+       "instrukcja (stand up straight; hands near your shoulders; small weights such as dumbbells instead of a band)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.saMove",
+     "uproszczenie": "wariant sprzętu wyciskania jednorącz z kettlebellem — ten sam tor ręki nad głowę i powrót do barku; różni się tylko to, jak ciężar leży w dłoni",
+     "s": [
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control back to the starting position)"
+      ],
+      [
+       "ace-395",
+       "opis (press the right arm straight overhead; pull the elbow back down to the rib cage to lower)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ohp.mis.sideLean",
+     "uproszczenie": "wariant sprzętu wyciskania jednorącz z kettlebellem — ciężar po jednej stronie ciała tak samo przechyla tułów",
+     "s": [
+      [
+       "nsca-etm4-one-arm-kb-press",
+       "Upward Movement (do not allow the spine to flex laterally) — błąd = zaprzeczenie standardu"
+      ],
+      [
+       "strongfirst-mastering-your-press-1",
+       "When Things Get Heavy, punkt 5 (leg drive and side lean increasing during the attempt) — przeczytane w W1 i ponownie 02.11.2026"
+      ]
+     ]
+    }
+   ]
+  },
+  "Ab Wheel": {
+   "setup": [
+    {
+     "c": "rollout.wheel.setup",
+     "s": [
+      [
+       "catalyst-ab-rollout",
+       "opis (kneel, wheel close to the knees, arms straight)"
+      ],
+      [
+       "echelon-ab-wheel",
+       "s. 1, AB ROLL — START"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rollout.wheel.move",
+     "s": [
+      [
+       "echelon-ab-wheel",
+       "s. 1, AB ROLL — FINISH"
+      ],
+      [
+       "catalyst-ab-rollout",
+       "opis (roll out, pull back)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Renegade Row": {
+   "setup": [
+    {
+     "c": "renegade.setup",
+     "s": [
+      [
+       "ace-355",
+       "Preparation; Step 1"
+      ],
+      [
+       "barbend-renegade-row",
+       "Step 1 — Set Your Base (feet wider than shoulder-width)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "renegade.move",
+     "s": [
+      [
+       "ace-355",
+       "Steps 3–6"
+      ],
+      [
+       "barbend-renegade-row",
+       "Step 2 — Initiate the Row; Step 3 — Control the Eccentric"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "renegade.mis.twist",
+     "s": [
+      [
+       "barbend-renegade-row",
+       "Common Mistakes — Twisting Your Body"
+      ],
+      [
+       "nasm-best-abs",
+       "sekcja Renegade Row — Common Mistake (hips shift side to side; excessive rotation) i Coaching Tip (square hips)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Rollout (sztanga)": {
+   "setup": [
+    {
+     "c": "rollout.bar.setup",
+     "s": [
+      [
+       "ace-309",
+       "Preparation; Step 1"
+      ],
+      [
+       "catalyst-ab-rollout",
+       "opis (ab wheel or barbell with rotating sleeves; kneel)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rollout.bar.move",
+     "s": [
+      [
+       "ace-309",
+       "Steps 2–4"
+      ],
+      [
+       "catalyst-ab-rollout",
+       "opis (roll out, pull back)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rollout.range",
+     "s": [
+      [
+       "ace-309",
+       "Step 2 (keep the hips pressed forward and the back straight)"
+      ],
+      [
+       "catalyst-ab-rollout",
+       "opis (as close to the ground as possible while maintaining the brace)"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-309",
+       "Step 3 (hold the trunk in position)"
+      ],
+      [
+       "catalyst-ab-rollout",
+       "opis (brace the abs hard)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "rollout.mis.arch",
+     "s": [
+      [
+       "ace-309",
+       "Step 2 (back straight)"
+      ],
+      [
+       "catalyst-ab-rollout",
+       "opis (avoid hyperextension of the lower back)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Incline Chest Fly (hantle)": {
+   "setup": [
+    {
+     "c": "dfly.setup",
+     "s": [
+      [
+       "nfpt-incline-fly",
+       "instrukcja, krok 1 (lie back on the incline bench, arms extended straight up toward the ceiling)"
+      ],
+      [
+       "barbend-dumbbell-flye-variations",
+       "Incline Dumbbell Flye > How to Do the Incline Dumbbell Flye (lay back on the bench with dumbbells in your hands; slight bend in your elbows)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dfly.move",
+     "s": [
+      [
+       "nfpt-incline-fly",
+       "instrukcja (lower the weights out to the sides with elbows slightly bent; raise back to the start)"
+      ],
+      [
+       "barbend-dumbbell-flye-variations",
+       "Incline Dumbbell Flye > How to Do… (open the arms wide to a deep chest stretch; hugging motion back up)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "fly.elbows",
+     "s": [
+      [
+       "nfpt-incline-fly",
+       "instrukcja (keeping elbows slightly bent — przy opuszczaniu i unoszeniu)"
+      ],
+      [
+       "barbend-dumbbell-flye-variations",
+       "Incline Dumbbell Flye > How to Do… („Maintain a slight bend in your elbows.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "fly.mis.elbows",
+     "s": [
+      [
+       "wniosek",
+       "fly.elbows"
+      ],
+      [
+       "barbend-dumbbell-flye-variations",
+       "Incline Dumbbell Flye > How to Do… (hugging a tree rather than pressing them straight up)"
+      ],
+      [
+       "nfpt-incline-fly",
+       "lista błędów (avoid locking out your elbows after you have raised the dumbbells)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Chest Dip": {
+   "setup": [
+    {
+     "c": "dip.setup",
+     "s": [
+      [
+       "issa-chest-dips",
+       "How to Perform the Chest Dip (with your body in between two bars, place both hands on the dip bar; feet off the ground and arms are straight)"
+      ],
+      [
+       "barbend-dips",
+       "How to Do the Dip, krok 1 (set your hands evenly on the bars); akapit Ring Dips (start w wyproście — steady at lockout before dipping down)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dip.move",
+     "s": [
+      [
+       "issa-chest-dips",
+       "How to Perform the Chest Dip (bending at the elbows and lowering your body down; press your body back up to the starting position)"
+      ],
+      [
+       "barbend-dips",
+       "How to Do the Dip (flex your elbows and lower your body; drive through your palms to raise your body back to the starting position)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "dip.chestLean",
+     "s": [
+      [
+       "issa-chest-dips",
+       "How to Perform the Chest Dip (maintain a slight forward lean to emphasize the strain on your chest)"
+      ],
+      [
+       "barbend-dips",
+       "How to Do the Dip (nearly vertical, with perhaps a slight lean forward); Common Mistakes — Letting Your Chest Sink (slight forward lean)"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "issa-chest-dips",
+       "How to Perform the Chest Dip (keep your core engaged)"
+      ],
+      [
+       "barbend-dips",
+       "How to Do the Dip (your core tight)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "dip.mis.depth",
+     "s": [
+      [
+       "issa-chest-dips",
+       "What to Avoid When Performing Chest Dips (going too low, not going low enough)"
+      ],
+      [
+       "barbend-dips",
+       "Common Mistakes — Going Too Low; Not Going Low Enough"
+      ]
+     ]
+    },
+    {
+     "c": "dip.mis.leanBack",
+     "s": [
+      [
+       "issa-chest-dips",
+       "What to Avoid When Performing Chest Dips (leaning back)"
+      ],
+      [
+       "barbend-dips",
+       "How to Do the Dip (slight lean forward) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    },
+    {
+     "c": "dip.mis.overLean",
+     "s": [
+      [
+       "barbend-dips",
+       "Common Mistakes — Letting Your Chest Sink (leaning too far forward)"
+      ],
+      [
+       "issa-chest-dips",
+       "How to Perform the Chest Dip (slight forward lean) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Seated Cable Chest Press": {
+   "setup": [
+    {
+     "c": "cpress.seated",
+     "uproszczenie": "wariant sprzętu Machine Chest Press",
+     "s": [
+      [
+       "ace-165",
+       "Step 1 (back firmly supported against the backrest; hands level with your mid-chest region; feet firmly on the floor)"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 1: Setup (back firmly against the backrest; handles align with mid-chest height; feet on the floor) — wariant sprzętu"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cpress.seatedMove",
+     "uproszczenie": "wariant sprzętu Machine Chest Press",
+     "s": [
+      [
+       "ace-165",
+       "Step 2–3 (extending your arms forward at the level of your mid-chest; slowly return … moving the handles back towards your chest)"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 3: Execute (press the handles forward); Step 4: Return (with control) — wariant sprzętu"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "mcp.blades",
+     "uproszczenie": "wariant sprzętu Machine Chest Press",
+     "s": [
+      [
+       "ace-165",
+       "Step 1 (depress and retract your scapulae); Step 2 (contact with your back and shoulder blades against the backrest; minimize rounding your shoulder blades)"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 2: Brace (position your shoulders back and down) — wariant sprzętu"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "uproszczenie": "wariant sprzętu Machine Chest Press",
+     "s": [
+      [
+       "ace-165",
+       "Step 1 (stiffen („brace”) your abdominal muscles)"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 2: Brace (engage your core) — wariant sprzętu"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "press.mis.lock",
+     "uproszczenie": "wariant sprzętu Machine Chest Press",
+     "s": [
+      [
+       "nasm-chest-press-machine",
+       "Common Mistakes (locking out elbows at the top) — wariant sprzętu"
+      ],
+      [
+       "ace-165",
+       "Step 3 (fully extended, but not locked) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    },
+    {
+     "c": "mis.jerk",
+     "uproszczenie": "wariant sprzętu Machine Chest Press",
+     "s": [
+      [
+       "nasm-chest-press-machine",
+       "Common Mistakes (jerky or uncontrolled movements) — wariant sprzętu"
+      ],
+      [
+       "ace-165",
+       "Step 3 (slow, controlled manner); Step 4 (control the speed, range and direction of movement) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Decline Push Up": {
+   "setup": [
+    {
+     "c": "dpush.setup",
+     "s": [
+      [
+       "nasm-decline-push-up",
+       "Step 1; Step 2"
+      ],
+      [
+       "fv-decline-push-up",
+       "How-to: „place your feet up onto your chosen platform”; „With your body in a straight line”"
+      ],
+      [
+       "prehab-pushup-variations",
+       "Progressions → Decline Push Up („The biggest focus for this exercise needs to be on body alignment.”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "push.move",
+     "s": [
+      [
+       "nasm-decline-push-up",
+       "Step 3; Step 4"
+      ],
+      [
+       "fv-decline-push-up",
+       "How-to: „Lower yourself as far down as you can and then press yourself back up until arms are extended.”"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "nasm-decline-push-up",
+       "Step 2 (engage your core)"
+      ],
+      [
+       "fv-decline-push-up",
+       "How-to: „tense your core to maintain a rigid torso”"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "push.mis.sag",
+     "s": [
+      [
+       "nasm-decline-push-up",
+       "Common Mistakes (Allowing hips to sag)"
+      ],
+      [
+       "fv-decline-push-up",
+       "zaprzeczenie standardu: „With your body in a straight line and butt lifted”"
+      ],
+      [
+       "wniosek",
+       "dpush.setup"
+      ]
+     ]
+    }
+   ]
+  },
+  "Suspended Push-Up": {
+   "setup": [
+    {
+     "c": "spush.setup",
+     "s": [
+      [
+       "trx-push-up",
+       "Step 3–6"
+      ],
+      [
+       "fv-suspension-chest-press",
+       "Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "spush.move",
+     "s": [
+      [
+       "trx-push-up",
+       "Step 7–9"
+      ],
+      [
+       "fv-suspension-chest-press",
+       "Step 5; Step 6"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "trx-push-up",
+       "Form Cues"
+      ],
+      [
+       "fv-suspension-chest-press",
+       "Step 3 („Tighten your core muscles, glutes, and quadriceps”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "push.mis.flare",
+     "s": [
+      [
+       "fv-suspension-chest-press",
+       "Pro tip („Avoid flaring your elbows too wide”)"
+      ],
+      [
+       "trx-push-up",
+       "zaprzeczenie standardu: Form Cues (łokcie ok. 45° do tułowia)"
+      ]
+     ]
+    }
+   ]
+  },
   "Single Leg Calf Raise": {
    "setup": [
     {
@@ -20088,8 +21136,6 @@
  "open": {
   "Decline Bench Press": "wskazówki czekają na rozstrzygnięcie pytania o metodę: czy ławka płaska to wariant ławki skośnej w dół (docs/research/31, pyt. 1); jedyne źródło opisujące ławkę skośną w dół to Eleiko",
   "Pec Deck": "dwa źródła istnieją tylko w materiałach uczelnianych centrów sportu (HKU, Western), których szczebel (4 czy 5) jest otwarty (docs/research/33, pyt. 1)",
-  "Chest Dip": "wspólna tylko jedna wskazówka (ruch) w źródłach McKenzie 2022 i HKU; głębokość i pozycja tułowia po jednym źródle (docs/research/33)",
-  "Arnold Press": "brak opisu w ACE, NASM, Eleiko, HKU, Western ani w badaniach; zostają serwisy konsumenckie (odrzucone); ExRx niedostępny (docs/research/33)",
   "Incline Curl (hantle)": "opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33)",
   "Concentration Curl (hantle)": "jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33)",
   "Spider Curl": "brak źródeł szczebla do 4 (docs/research/33)",
@@ -20097,7 +21143,6 @@
   "Sissy Squat": "brak źródeł (docs/research/33)",
   "Hip Abduction": "wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33)",
   "Hip Adduction": "oba źródła (ACE, HKU) opisują przywodzenie na wyciągu stojąc, nie maszynę; komplet zależy też od szczebla HKU (docs/research/33, pyt. 1)",
-  "Ab Wheel": "tylko jedna wskazówka bez materiałów uczelnianych (Sussexsport); szczebel otwarty (docs/research/33, pyt. 1)",
   "Hanging Leg Raise": "NASM opisuje tylko progresję; źródła uczelniane niespójne (tekst i zdjęcie) (docs/research/33)",
   "Hanging Knee Raise": "komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1)",
   "Cable Crunch": "komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1)",
@@ -20200,6 +21245,17 @@
   "Lying Close-Grip Barbell Triceps Extension Behind The Head",
   "One-Arm Lying Dumbbell Triceps Extension",
   "Chain Handle Extension",
+  "Arnold Press",
+  "Seated Barbell Military Press",
+  "Kettlebell Press",
+  "Kettlebell Seated Press",
+  "Band Shoulder Press",
+  "Single Arm Overhead Press (hantel)",
+  "Ab Wheel",
+  "Renegade Row",
+  "Incline Chest Fly (hantle)",
+  "Decline Push Up",
+  "Suspended Push-Up",
   "Seated Calf Raise (hantle)",
   "Barbell Seated Calf Raise",
   "Band Calf Raise",

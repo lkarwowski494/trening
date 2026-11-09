@@ -5,15 +5,7 @@
   },
   "items": {
     "Ab Wheel": {
-      "b": "general",
-      "f": "rollout",
-      "ok": [
-        "ro.back",
-        "plank.brace"
-      ],
-      "err": [
-        "plank.mis.sag"
-      ]
+      "b": "own"
     },
     "Adductor-SMR": {
       "b": "general",
@@ -61,16 +53,7 @@
       "b": "own"
     },
     "Arnold Press": {
-      "b": "general",
-      "f": "ohp",
-      "ok": [
-        "ohp.move",
-        "ohp.tall",
-        "ohp.fullExt"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Around The Worlds": {
       "b": "open"
@@ -185,16 +168,7 @@
       ]
     },
     "Band Shoulder Press": {
-      "b": "general",
-      "f": "ohp",
-      "ok": [
-        "ohp.move",
-        "ohp.tall",
-        "ohp.fullExt"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Band Skull Crusher": {
       "b": "own"
@@ -950,15 +924,7 @@
       "b": "own"
     },
     "Chest Dip": {
-      "b": "general",
-      "f": "dip",
-      "ok": [
-        "bdip.move",
-        "bdip.range"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Chest Fly (hantle)": {
       "b": "own"
@@ -1346,16 +1312,7 @@
       ]
     },
     "Decline Push Up": {
-      "b": "general",
-      "f": "pushup",
-      "ok": [
-        "push.setup",
-        "plank.brace",
-        "push.rigid"
-      ],
-      "err": [
-        "push.mis.partial"
-      ]
+      "b": "own"
     },
     "Decline Reverse Crunch": {
       "b": "general",
@@ -2079,15 +2036,7 @@
       ]
     },
     "Incline Chest Fly (hantle)": {
-      "b": "general",
-      "f": "fly",
-      "ok": [
-        "fly.elbows",
-        "fly.control"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Incline Curl (hantle)": {
       "b": "general",
@@ -2312,28 +2261,10 @@
       "b": "open"
     },
     "Kettlebell Press": {
-      "b": "general",
-      "f": "ohp",
-      "ok": [
-        "ohp.move",
-        "ohp.tall",
-        "ohp.elbowsUnder"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Kettlebell Seated Press": {
-      "b": "general",
-      "f": "ohp",
-      "ok": [
-        "ohp.move",
-        "ohp.elbowsUnder",
-        "ohp.fullExt"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Kettlebell Snatch": {
       "b": "general",
@@ -3552,16 +3483,7 @@
       "b": "own"
     },
     "Renegade Row": {
-      "b": "general",
-      "f": "pushup",
-      "ok": [
-        "plank.brace",
-        "push.rigid",
-        "row1.noTwist"
-      ],
-      "err": [
-        "plank.mis.sag"
-      ]
+      "b": "own"
     },
     "Reverse Band Bench Press": {
       "b": "general",
@@ -3784,15 +3706,7 @@
       ]
     },
     "Rollout (sztanga)": {
-      "b": "general",
-      "f": "rollout",
-      "ok": [
-        "ro.back",
-        "plank.brace"
-      ],
-      "err": [
-        "plank.mis.sag"
-      ]
+      "b": "own"
     },
     "Rope Climb": {
       "b": "open"
@@ -3869,16 +3783,7 @@
       "b": "own"
     },
     "Seated Barbell Military Press": {
-      "b": "general",
-      "f": "ohp",
-      "ok": [
-        "ohp.move",
-        "ohp.seat",
-        "ohp.fullExt"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Seated Barbell Twist": {
       "b": "general",
@@ -3892,16 +3797,7 @@
       ]
     },
     "Seated Cable Chest Press": {
-      "b": "general",
-      "f": "machinePress",
-      "ok": [
-        "mcp.move",
-        "mcp.blades",
-        "press.noLock"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Seated Cable Row": {
       "b": "own"
@@ -4151,16 +4047,7 @@
       ]
     },
     "Single Arm Overhead Press (hantel)": {
-      "b": "general",
-      "f": "ohp",
-      "ok": [
-        "ohp.move",
-        "ohp.tall",
-        "ohp.elbowsUnder"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Single Arm RDL (hantel/linka)": {
       "b": "general",
@@ -5134,16 +5021,7 @@
       ]
     },
     "Suspended Push-Up": {
-      "b": "general",
-      "f": "pushup",
-      "ok": [
-        "plank.brace",
-        "push.rigid"
-      ],
-      "err": [
-        "push.mis.partial",
-        "plank.mis.sag"
-      ]
+      "b": "own"
     },
     "Suspended Reverse Crunch": {
       "b": "general",

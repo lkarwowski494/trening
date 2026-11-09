@@ -17,14 +17,14 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 44 | 6,2% |
 | Bez figury w aplikacji | 481 | 67,9% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 352 | 49,7% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 120 | 16,9% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 134 | 18,9% |
 | Animowany błąd | 127 | 17,9% |
 | Własne wskazówki (źródłowe) | 215 | 30,4% |
 | — z czego z częstymi błędami | 112 | 15,8% |
 | Zestaw ogólny wskazówek wzorca ruchu | 110 | 15,5% |
 | Bez tekstu wskazówek | 383 | 54,1% |
 | Częste błędy (własne albo zestaw ogólny) | 222 | 31,4% |
-| Role mięśni | 508 | 71,8% |
+| Role mięśni | 510 | 72% |
 | **Pełna karta** | 179 | 25,3% |
 | **Pełna karta + błąd** | 125 | 17,7% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 183 | 25,8% |
@@ -44,8 +44,8 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | wskazówki (własne lub zestaw ogólny) | 640 | 325 | 315 |
 | częste błędy (tekst) | 557 | 222 | 335 |
 | pełna karta | 465 | 179 | 286 |
-| komplet tekstów karty: pl | 671 | 572 | 99 |
-| komplet tekstów karty: en | 671 | 572 | 99 |
+| komplet tekstów karty: pl | 671 | 573 | 98 |
+| komplet tekstów karty: en | 671 | 573 | 98 |
 
 ## Rodziny ruchu
 
@@ -97,56 +97,56 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **572**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **573**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 572 | 0 | 0 | 0 |
-| en | 572 | 0 | 0 | 0 |
-| cs | 572 | 0 | 0 | 0 |
-| sk | 572 | 0 | 0 | 0 |
-| hu | 572 | 0 | 0 | 0 |
-| ro | 572 | 0 | 0 | 0 |
-| bg | 572 | 0 | 0 | 0 |
-| hr | 572 | 0 | 0 | 0 |
-| sl | 572 | 0 | 0 | 0 |
-| sr | 572 | 0 | 0 | 0 |
-| lt | 572 | 0 | 0 | 0 |
-| lv | 572 | 0 | 0 | 0 |
-| et | 572 | 0 | 0 | 0 |
-| uk | 572 | 0 | 0 | 0 |
-| es | 572 | 0 | 0 | 0 |
-| es-419 | 572 | 0 | 0 | 0 |
-| pt | 572 | 0 | 0 | 0 |
-| pt-BR | 572 | 0 | 0 | 0 |
-| de | 572 | 0 | 0 | 0 |
-| fr | 572 | 0 | 0 | 0 |
-| it | 572 | 0 | 0 | 0 |
-| nl | 572 | 0 | 0 | 0 |
-| sv | 572 | 0 | 0 | 0 |
-| da | 572 | 0 | 0 | 0 |
-| nb | 572 | 0 | 0 | 0 |
-| fi | 572 | 0 | 0 | 0 |
-| tr | 572 | 0 | 0 | 0 |
-| el | 572 | 0 | 0 | 0 |
-| id | 572 | 0 | 0 | 0 |
-| ms | 572 | 0 | 0 | 0 |
-| vi | 572 | 0 | 0 | 0 |
-| ru | 572 | 0 | 0 | 0 |
-| ja | 572 | 0 | 0 | 0 |
-| ko | 572 | 0 | 0 | 0 |
-| zh-Hant | 572 | 0 | 0 | 0 |
+| pl | 573 | 0 | 0 | 0 |
+| en | 573 | 0 | 0 | 0 |
+| cs | 573 | 0 | 0 | 0 |
+| sk | 573 | 0 | 0 | 0 |
+| hu | 573 | 0 | 0 | 0 |
+| ro | 573 | 0 | 0 | 0 |
+| bg | 573 | 0 | 0 | 0 |
+| hr | 573 | 0 | 0 | 0 |
+| sl | 573 | 0 | 0 | 0 |
+| sr | 573 | 0 | 0 | 0 |
+| lt | 573 | 0 | 0 | 0 |
+| lv | 573 | 0 | 0 | 0 |
+| et | 573 | 0 | 0 | 0 |
+| uk | 573 | 0 | 0 | 0 |
+| es | 573 | 0 | 0 | 0 |
+| es-419 | 573 | 0 | 0 | 0 |
+| pt | 573 | 0 | 0 | 0 |
+| pt-BR | 573 | 0 | 0 | 0 |
+| de | 573 | 0 | 0 | 0 |
+| fr | 573 | 0 | 0 | 0 |
+| it | 573 | 0 | 0 | 0 |
+| nl | 573 | 0 | 0 | 0 |
+| sv | 573 | 0 | 0 | 0 |
+| da | 573 | 0 | 0 | 0 |
+| nb | 573 | 0 | 0 | 0 |
+| fi | 573 | 0 | 0 | 0 |
+| tr | 573 | 0 | 0 | 0 |
+| el | 573 | 0 | 0 | 0 |
+| id | 573 | 0 | 0 | 0 |
+| ms | 573 | 0 | 0 | 0 |
+| vi | 573 | 0 | 0 | 0 |
+| ru | 573 | 0 | 0 | 0 |
+| ja | 573 | 0 | 0 | 0 |
+| ko | 573 | 0 | 0 | 0 |
+| zh-Hant | 573 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
 Pełnych kart: 179 (z błędem: 125). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: figura v2 w aplikacji — 115
+- Brakuje tylko: figura v2 w aplikacji — 116
 - Brakuje tylko: role mięśni — 4: Dead Hang, Jerk Balance, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
 | 0 | 179 |
-| 1 | 119 |
+| 1 | 120 |
 | 2 | 309 |
-| 3 | 101 |
+| 3 | 100 |

@@ -130,13 +130,16 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Fit Father Project | Fit Father Project — poradnik o ćwiczeniach (fitfatherproject.com) | 5 | serwis specjalistyczny |
 | BodBot | BodBot — opisy ćwiczeń (bodbot.com) | 5 | serwis specjalistyczny |
 | app-s8 | app-s8 | 5 | ? |
+| Echelon Fitness | Echelon Fitness — instrukcja ćwiczeń do własnego kółka (producent, PDF 2021) | 4 | producent sprzętu |
+| NSCA — Exercise Technique Manual (Human Kinetics) | NSCA — Exercise Technique Manual for Resistance Training, wyd. 4 (fragment u wydawcy Human Kinetics) | 3 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| TRX | TRX — blog producenta zawieszeń (trxtraining.com) | 4 | producent sprzętu |
 | Thera-Band | Thera-Band (Performance Health) — instrukcje ćwiczeń z gumami (producent gum) | 4 | producent sprzętu |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 237; zdań (z powtórzeniami między ćwiczeniami): 1042; unikalnych zdań: 621; źródeł: 458.
-- Ćwiczenia bazowe bez wskazówek (otwarte): 18.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 107 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press.
+- Ćwiczenia ze wskazówkami: 251; zdań (z powtórzeniami między ćwiczeniami): 1099; unikalnych zdań: 658; źródeł: 480.
+- Ćwiczenia bazowe bez wskazówek (otwarte): 15.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 118 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press.
 
 ## Otwarte — bez wskazówek
 
@@ -144,8 +147,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 |---|---|
 | Decline Bench Press | wskazówki czekają na rozstrzygnięcie pytania o metodę: czy ławka płaska to wariant ławki skośnej w dół (docs/research/31, pyt. 1); jedyne źródło opisujące ławkę skośną w dół to Eleiko |
 | Pec Deck | dwa źródła istnieją tylko w materiałach uczelnianych centrów sportu (HKU, Western), których szczebel (4 czy 5) jest otwarty (docs/research/33, pyt. 1) |
-| Chest Dip | wspólna tylko jedna wskazówka (ruch) w źródłach McKenzie 2022 i HKU; głębokość i pozycja tułowia po jednym źródle (docs/research/33) |
-| Arnold Press | brak opisu w ACE, NASM, Eleiko, HKU, Western ani w badaniach; zostają serwisy konsumenckie (odrzucone); ExRx niedostępny (docs/research/33) |
 | Incline Curl (hantle) | opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33) |
 | Concentration Curl (hantle) | jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33) |
 | Spider Curl | brak źródeł szczebla do 4 (docs/research/33) |
@@ -153,7 +154,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Sissy Squat | brak źródeł (docs/research/33) |
 | Hip Abduction | wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33) |
 | Hip Adduction | oba źródła (ACE, HKU) opisują przywodzenie na wyciągu stojąc, nie maszynę; komplet zależy też od szczebla HKU (docs/research/33, pyt. 1) |
-| Ab Wheel | tylko jedna wskazówka bez materiałów uczelnianych (Sussexsport); szczebel otwarty (docs/research/33, pyt. 1) |
 | Hanging Leg Raise | NASM opisuje tylko progresję; źródła uczelniane niespójne (tekst i zdjęcie) (docs/research/33) |
 | Hanging Knee Raise | komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1) |
 | Cable Crunch | komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1) |
@@ -3747,6 +3747,238 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 - Łokcie rozjeżdżają się na boki. — free-exercise-db: [Chain Handle Extension](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chain_Handle_Extension.json) (szczebel 5 — nie liczy się do pary; instructions[0] (your elbows should be pointing straight up)); app-s8 (szczebel 5 — nie liczy się do pary; Movement, krok 2 (without allowing the elbows to move)) `tri.mis.elbowsFlare`
 
+### Arnold Press
+
+**Ustawienie**
+
+- Hantle przed twarzą, dłonie zwrócone do ciebie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (How to: Set Up (palms facing you)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (dumbbell in each hand, palms facing the body)) `arnold.setup`
+
+**Ruch**
+
+- Wyciskaj hantle nad głowę, obracając dłonie — na górze patrzą do przodu; opuszczając, obróć je z powrotem do siebie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (How to: Rotate and Press; Reverse It); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (rotate the weights about 180 degrees away from the face while pressing; slowly reverse to the start)) `arnold.move`
+
+**Wskazówki**
+
+- Obracaj i wyciskaj naraz — nie najpierw obrót, a potem wyciskanie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (Coach's tip (rotate and press at the same time)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (in one controlled motion)) `arnold.together`
+
+**Czego unikać**
+
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Lower back arch); BarBend: [arnold press](https://barbend.com/arnold-press/) (FAQ — wersja stojąca (avoid overextending your lower back)) `ohp.mis.arch`
+
+### Seated Barbell Military Press
+
+**Ustawienie**
+
+- Chwyt trochę szerzej niż barki; sztanga z przodu barków. — ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdania 1–2 (grip a little wider than shoulder-width; bar lowered to the front of the shoulders, about chin height)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Standing Barbell Overhead Press (grip just outside shoulder width; bar across the front of the shoulders) + Seated Variations (upper-body form very similar)) `ohp.bbGrip`
+
+**Ruch**
+
+- Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków. — ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdania 3–4 (press directly overhead; slowly lower to chin height)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Standing Barbell Overhead Press (press straight up until the elbows are extended; return to the start) + Seated Variations) `ohp.move`
+
+**Czego unikać**
+
+- Łokcie uciekają na boki, zamiast być skierowane do przodu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Elbow flare (the elbows should point forward)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 3 (keep the elbows pointed forward) — błąd = zaprzeczenie standardu) `ohp.mis.flare`
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Lower back arch; Seated Variations (seated helps minimize the arch)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 1 (keep the back straight) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
+
+### Kettlebell Press
+
+**Ustawienie**
+
+- Kettlebell przy barku, łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell in front of the chest near the shoulder; elbow close to the rib cage) — przeczytane w rundzie 1); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (a kettlebell in each hand at the shoulders… and the arms against the ribs)) [uproszczenie: Catalyst opisuje wersję z dwoma kettlebellami — pozycja każdej ręki (kettlebell przy barku, ramię przy żebrach) jest ta sama] `kbp.setup`
+
+**Ruch**
+
+- Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control)); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press the arm straight overhead; pull the elbow back down to the rib cage)) `kbp.move`
+
+**Czego unikać**
+
+- Przechylanie się w bok, żeby wypchnąć ciężar. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (do not allow the spine to flex laterally) — błąd = zaprzeczenie standardu); StrongFirst: [mastering your press part i](https://www.strongfirst.com/mastering-your-press-part-i/) (When Things Get Heavy, punkt 5 (side lean increasing during the attempt)) `ohp.mis.sideLean`
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (wstęp (dumbbell, kettlebell, and resistance band variations) + Common Mistakes, punkt 6 (Arching the lower back)); NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (wskazówki tułowia (keep the spine neutral) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
+
+### Kettlebell Seated Press
+
+**Ustawienie**
+
+- Kettlebell przy barku, łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell near the shoulder; elbow close to the rib cage)); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (at the shoulders… arms against the ribs)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (seated kettlebell press; the upper body form is very similar… to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ISSA: górna część ciała pracuje w wersji siedzącej bardzo podobnie jak na stojąco; zmienia się tylko podparcie (ławka zamiast stóp i bioder)] `kbp.setup`
+
+**Ruch**
+
+- Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement; Downward Movement); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press straight overhead; elbow back down to the rib cage)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (very similar to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ten sam tor ręki nad głowę i powrót do barku (ISSA, Seated Variations)] `kbp.move`
+
+**Czego unikać**
+
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (seated kettlebell press; seated position can help minimize a client's lower back arch) + Common Mistakes, punkt 6 (Arching the lower back)); NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (wskazówki tułowia (keep the spine neutral; wersja stojąca) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
+
+### Band Shoulder Press
+
+**Ustawienie**
+
+- Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; raise your arms to a goal post position: upper arms parallel, forearms perpendicular to the floor) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
+
+**Ruch**
+
+- Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower back to the goal post position under control) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
+
+**Wskazówki**
+
+- Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (back straight, head straight, chest up) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (sit or stand up straight; press straight up)) `ohp.tall`
+
+**Czego unikać**
+
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common Mistakes (arching the lower back)); Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (keep your back straight) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Overhead Press — guma zamiast sztangi/hantli, ten sam pionowy wypych nad głowę na stojąco] `ohp.mis.arch`
+
+### Single Arm Overhead Press (hantel)
+
+**Ustawienie**
+
+- Stań stabilnie, hantel w jednej ręce przy barku. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (stand with the feet hip-width apart; kettlebell in front of the chest near the shoulder)); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (stand up straight; hands near your shoulders; small weights such as dumbbells instead of a band)) [uproszczenie: wariant sprzętu: ACE 395 — jednorącz z kettlebellem, ColumbiaDoctors — hantle oburącz; pozycja startowa (stoisz, ciężar przy barku) ta sama] `ohp.saSetup`
+
+**Ruch**
+
+- Wypchnij hantel nad głowę do wyprostu ręki; opuść go spokojnie z powrotem do barku. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control back to the starting position)); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press the right arm straight overhead; pull the elbow back down to the rib cage to lower)) [uproszczenie: wariant sprzętu wyciskania jednorącz z kettlebellem — ten sam tor ręki nad głowę i powrót do barku; różni się tylko to, jak ciężar leży w dłoni] `ohp.saMove`
+
+**Czego unikać**
+
+- Przechylanie się w bok, żeby wypchnąć ciężar. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (do not allow the spine to flex laterally) — błąd = zaprzeczenie standardu); StrongFirst: [mastering your press part i](https://www.strongfirst.com/mastering-your-press-part-i/) (When Things Get Heavy, punkt 5 (leg drive and side lean increasing during the attempt) — przeczytane w W1 i ponownie 02.11.2026) [uproszczenie: wariant sprzętu wyciskania jednorącz z kettlebellem — ciężar po jednej stronie ciała tak samo przechyla tułów] `ohp.mis.sideLean`
+
+### Ab Wheel
+
+**Ustawienie**
+
+- Uklęknij i chwyć kółko oburącz przed kolanami, ręce proste. — Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (kneel, wheel close to the knees, arms straight)); Echelon Fitness: [ECHELON AB WHEEL EXERCISE GUIDE.pdf](https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf) (s. 1, AB ROLL — START) `rollout.wheel.setup`
+
+**Ruch**
+
+- Powoli wytocz kółko do przodu, opuszczając tułów w stronę podłogi, i wróć do klęku. — Echelon Fitness: [ECHELON AB WHEEL EXERCISE GUIDE.pdf](https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf) (s. 1, AB ROLL — FINISH); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.wheel.move`
+
+### Renegade Row
+
+**Ustawienie**
+
+- Podpór na hantlach ustawionych pod barkami, nogi proste, stopy na szerokość barków lub szerzej. — ACE: [renegade row](https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/) (Preparation; Step 1); BarBend: [renegade row](https://www.barbend.com/renegade-row/) (Step 1 — Set Your Base (feet wider than shoulder-width)) `renegade.setup`
+
+**Ruch**
+
+- Przyciągnij jeden hantel do boku tułowia, odłóż go spokojnie i zmień rękę. — ACE: [renegade row](https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/) (Steps 3–6); BarBend: [renegade row](https://www.barbend.com/renegade-row/) (Step 2 — Initiate the Row; Step 3 — Control the Eccentric) `renegade.move`
+
+**Czego unikać**
+
+- Skręcanie bioder i tułowia, żeby dźwignąć hantel. — BarBend: [renegade row](https://www.barbend.com/renegade-row/) (Common Mistakes — Twisting Your Body); NASM: [Best Abs Exercises (blog, H. Cherry, akt. 23.07.2026)](https://www.nasm.org/resource-center/blog/training/best-abs-exercises) (sekcja Renegade Row — Common Mistake (hips shift side to side; excessive rotation) i Coaching Tip (square hips)) `renegade.mis.twist`
+
+### Rollout (sztanga)
+
+**Ustawienie**
+
+- Uklęknij przed sztangą i chwyć ją oburącz. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Preparation; Step 1); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (ab wheel or barbell with rotating sleeves; kneel)) `rollout.bar.setup`
+
+**Ruch**
+
+- Wytocz sztangę do przodu, opuszczając tułów w stronę podłogi, i przyciągnij ją z powrotem. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Steps 2–4); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.bar.move`
+
+**Wskazówki**
+
+- Wytaczaj tylko tak daleko, jak dasz radę bez wyginania lędźwi. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Step 2 (keep the hips pressed forward and the back straight)); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (as close to the ground as possible while maintaining the brace)) `rollout.range`
+- Napnij brzuch, żeby tułów był sztywny. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Step 3 (hold the trunk in position)); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (brace the abs hard)) `plank.brace`
+
+**Czego unikać**
+
+- Wygięte w łuk lędźwie przy wytaczaniu. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Step 2 (back straight)); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (avoid hyperextension of the lower back)) `rollout.mis.arch`
+
+### Incline Chest Fly (hantle)
+
+**Ustawienie**
+
+- Połóż się na ławce, hantle nad klatką, łokcie lekko ugięte. — NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (instrukcja, krok 1 (lie back on the incline bench, arms extended straight up toward the ceiling)); BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do the Incline Dumbbell Flye (lay back on the bench with dumbbells in your hands; slight bend in your elbows)) `dfly.setup`
+
+**Ruch**
+
+- Opuść hantle szerokim łukiem na boki do rozciągnięcia klatki; wróć tym samym łukiem nad klatkę. — NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (instrukcja (lower the weights out to the sides with elbows slightly bent; raise back to the start)); BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do… (open the arms wide to a deep chest stretch; hugging motion back up)) `dfly.move`
+
+**Wskazówki**
+
+- Łokcie lekko ugięte, w stałym kącie przez cały ruch. — NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (instrukcja (keeping elbows slightly bent — przy opuszczaniu i unoszeniu)); BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do… („Maintain a slight bend in your elbows.”)) `fly.elbows`
+
+**Czego unikać**
+
+- Zginanie i prostowanie łokci w trakcie powtórzenia. — wniosek ze zdania `fly.elbows` tej karty; BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do… (hugging a tree rather than pressing them straight up)); NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (lista błędów (avoid locking out your elbows after you have raised the dumbbells)) `fly.mis.elbows`
+
+### Chest Dip
+
+**Ustawienie**
+
+- Chwyć poręcze i unieś się na prostych rękach, stopy nad podłogą. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (with your body in between two bars, place both hands on the dip bar; feet off the ground and arms are straight)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip, krok 1 (set your hands evenly on the bars); akapit Ring Dips (start w wyproście — steady at lockout before dipping down)) `dip.setup`
+
+**Ruch**
+
+- Zegnij łokcie i opuść się między poręczami, potem wypchnij się z powrotem do prostych rąk. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (bending at the elbows and lowering your body down; press your body back up to the starting position)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (flex your elbows and lower your body; drive through your palms to raise your body back to the starting position)) `dip.move`
+
+**Wskazówki**
+
+- Pochyl tułów lekko w przód. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (maintain a slight forward lean to emphasize the strain on your chest)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (nearly vertical, with perhaps a slight lean forward); Common Mistakes — Letting Your Chest Sink (slight forward lean)) `dip.chestLean`
+- Napnij brzuch, żeby tułów był sztywny. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (keep your core engaged)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (your core tight)) `plank.brace`
+
+**Czego unikać**
+
+- Schodzenie za nisko albo zatrzymywanie się za wysoko. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (What to Avoid When Performing Chest Dips (going too low, not going low enough)); BarBend: [dips](https://barbend.com/dips/) (Common Mistakes — Going Too Low; Not Going Low Enough) `dip.mis.depth`
+- Odchylanie tułowia do tyłu. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (What to Avoid When Performing Chest Dips (leaning back)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (slight lean forward) — błąd = zaprzeczenie standardu) `dip.mis.leanBack`
+- Za mocne pochylenie — klatka leci w dół między poręcze. — BarBend: [dips](https://barbend.com/dips/) (Common Mistakes — Letting Your Chest Sink (leaning too far forward)); ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (slight forward lean) — błąd = zaprzeczenie standardu) `dip.mis.overLean`
+
+### Seated Cable Chest Press
+
+**Ustawienie**
+
+- Usiądź, plecy przy oparciu, stopy na podłodze; uchwyty przy klatce, łokcie ugięte. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (back firmly supported against the backrest; hands level with your mid-chest region; feet firmly on the floor)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 1: Setup (back firmly against the backrest; handles align with mid-chest height; feet on the floor) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `cpress.seated`
+
+**Ruch**
+
+- Wypchnij uchwyty przed siebie, potem powoli wróć w stronę klatki. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 2–3 (extending your arms forward at the level of your mid-chest; slowly return … moving the handles back towards your chest)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 3: Execute (press the handles forward); Step 4: Return (with control) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `cpress.seatedMove`
+
+**Wskazówki**
+
+- Łopatki zostają przy oparciu — nie wysuwaj barków w przód na końcu ruchu. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (depress and retract your scapulae); Step 2 (contact with your back and shoulder blades against the backrest; minimize rounding your shoulder blades)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 2: Brace (position your shoulders back and down) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `mcp.blades`
+- Napnij brzuch, żeby tułów był sztywny. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (stiffen („brace”) your abdominal muscles)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 2: Brace (engage your core) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `plank.brace`
+
+**Czego unikać**
+
+- Gwałtowne blokowanie łokci na końcu ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (locking out elbows at the top) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (fully extended, but not locked) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `press.mis.lock`
+- Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (jerky or uncontrolled movements) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (slow, controlled manner); Step 4 (control the speed, range and direction of movement) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `mis.jerk`
+
+### Decline Push Up
+
+**Ustawienie**
+
+- Dłonie na podłodze, stopy na ławce albo stopniu; ciało proste od głowy do pięt. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Step 1; Step 2); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (How-to: „place your feet up onto your chosen platform”; „With your body in a straight line”); The Prehab Guys: [push up exercise variations](https://theprehabguys.com/push-up-exercise-variations/) (Progressions → Decline Push Up („The biggest focus for this exercise needs to be on body alignment.”)) `dpush.setup`
+
+**Ruch**
+
+- Opuść klatkę prawie do podłogi, zginając łokcie; wypchnij się do wyprostu rąk. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Step 3; Step 4); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (How-to: „Lower yourself as far down as you can and then press yourself back up until arms are extended.”) `push.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Step 2 (engage your core)); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (How-to: „tense your core to maintain a rigid torso”) `plank.brace`
+
+**Czego unikać**
+
+- Biodra opadają i ciało przestaje być w linii. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Common Mistakes (Allowing hips to sag)); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (zaprzeczenie standardu: „With your body in a straight line and butt lifted”); wniosek ze zdania `dpush.setup` tej karty `push.mis.sag`
+
+### Suspended Push-Up
+
+**Ustawienie**
+
+- Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 3–6); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)) `spush.setup`
+
+**Ruch**
+
+- Opuść klatkę w stronę dłoni, zginając łokcie; wypchnij się z powrotem do wyprostu rąk. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 7–9); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 5; Step 6) `spush.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Form Cues); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Tighten your core muscles, glutes, and quadriceps”)) `plank.brace`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się szeroko na boki. — Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Pro tip („Avoid flaring your elbows too wide”)); TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (zaprzeczenie standardu: Form Cues (łokcie ok. 45° do tułowia)) `push.mis.flare`
+
 ### Single Leg Calf Raise
 
 **Ustawienie**
@@ -4150,6 +4382,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-305 | ACE | V Twist (#305) | https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/ | — |
 | ace-306 | ACE | Burpee (#306, wersja z BOSU) | https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/306/burpee/ | — |
 | ace-308 | ACE | Pistol Squat (#308) | https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/ | — |
+| ace-309 | ACE | 309 | https://www.acefitness.org/resources/everyone/exercise-library/309/ | — |
 | ace-311 | ACE | Close Grip Bench Press (#311) | https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/ | — |
 | ace-317 | ACE | Romanian Deadlift (#317) | https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | — |
 | ace-318 | ACE | Hip Bridge (#318) | https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/ | — |
@@ -4163,6 +4396,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-34 | ACE | Incline Reverse Fly (#34) | https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | — |
 | ace-353 | ACE | Reverse Fly (#353) | https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/ | — |
 | ace-354 | ACE | Single Arm Lateral Raise (#354) | https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/ | — |
+| ace-355 | ACE | renegade row | https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/ | — |
 | ace-357 | ACE | Squat to Overhead Press (#357) | https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/ | — |
 | ace-358 | ACE | Suitcase Carry (#358) | https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | — |
 | ace-359 | ACE | Farmer’s Carry (#359) | https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | — |
@@ -4174,6 +4408,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-385 | ACE | Push-jerk (#385; kettlebells) | https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/ | — |
 | ace-391 | ACE | Swing (#391) | https://www.acefitness.org/resources/everyone/exercise-library/391/swing/ | — |
 | ace-394 | ACE | Halo (#394) | https://www.acefitness.org/resources/everyone/exercise-library/394/halo/ | — |
+| ace-395 | ACE | single arm overhead press | https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/ | — |
 | ace-41 | ACE | Push Up (#41) | https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/ | — |
 | ace-43 | ACE | Seated Shoulder Press (#43) | https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/ | — |
 | ace-44 | ACE | Seated Biceps Curl (#44) | https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/ | — |
@@ -4216,11 +4451,14 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | app-s8 | app-s8 | app-s8 | — | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
+| barbend-arnold-press | BarBend | arnold press | https://barbend.com/arnold-press/ | — |
 | barbend-band-glutes | BarBend | resistance band exercises for glutes | https://barbend.com/resistance-band-exercises-for-glutes/ | — |
 | barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |
 | barbend-clean | BarBend | How to Do the Clean… (akt. 19.11.2024) | https://barbend.com/how-to-do-the-clean/ | — |
 | barbend-clean-pull | BarBend | Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024) | https://barbend.com/clean-pull-guide/ | — |
 | barbend-db-snatch | BarBend | Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024) | https://barbend.com/dumbbell-snatch/ | — |
+| barbend-dips | BarBend | dips | https://barbend.com/dips/ | — |
+| barbend-dumbbell-flye-variations | BarBend | dumbbell flye variations | https://barbend.com/dumbbell-flye-variations/ | — |
 | barbend-fix-your-snatch | BarBend | Need to Fix Your Snatch? (R. Stefan, USAW-L1) | https://barbend.com/fix-your-snatch/ | — |
 | barbend-glute-kickbacks | BarBend | glute kickbacks | https://barbend.com/glute-kickbacks/ | — |
 | barbend-hack-squat-machine | BarBend | hack squat machine | https://barbend.com/hack-squat-machine/ | — |
@@ -4236,6 +4474,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | barbend-pendlay-row | BarBend | Pendlay Row | https://barbend.com/Pendlay-row/ | — |
 | barbend-power-clean | BarBend | The Power Clean Exercise: How To… (akt. 25.03.2024) | https://barbend.com/power-clean/ | — |
 | barbend-power-snatch | BarBend | Power Snatch (R. Stefan, USAW-L1) | https://barbend.com/power-snatch/ | — |
+| barbend-renegade-row | BarBend | renegade row | https://www.barbend.com/renegade-row/ | — |
 | barbend-sled-push | BarBend | How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024) | https://barbend.com/sled-push/ | — |
 | barbend-snatch-balance | BarBend | Snatch Balance (M. Dewar, CSCS) | https://barbend.com/snatch-balance/ | — |
 | barbend-tri-best | BarBend | Best triceps exercises | https://barbend.com/best-triceps-exercises/ | — |
@@ -4244,6 +4483,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | bodbot-lying-one-arm-triceps-extension | BodBot | Tricep extension, lying, dumbbell, one arm | https://www.bodbot.com/Exercises/1010/Tricep-Extension-_-Lying,-Dumbbell-_-One-Arm | — |
 | bodylastics-lateral-raise-with-flat-bands | Bodylastics | Lateral raise with flat bands | https://bodylastics.com/exercise/lateral-raise-with-flat-bands | — |
 | bodylastics-standing-calf-raise-flat-bands | Bodylastics | standing calf raises with flat bands | https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands | — |
+| bodylastics-standing-shoulder-press | Bodylastics | standing shoulder press with bands | https://bodylastics.com/standing-shoulder-press-with-bands | — |
 | bodylastics-upright-row | Bodylastics | Upright row | https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row | — |
 | breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
@@ -4285,8 +4525,10 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-96 | Catalyst Athletics | Muscle Snatch (#96) | https://www.catalystathletics.com/exercise/96/Muscle-Snatch/ | — |
 | catalyst-97 | Catalyst Athletics | Snatch Pull (#97) | https://www.catalystathletics.com/exercise/97/Snatch-Pull/ | — |
 | catalyst-98 | Catalyst Athletics | Clean Pull | https://www.catalystathletics.com/exercise/98/Clean-Pull/ | — |
+| catalyst-ab-rollout | Catalyst Athletics | Ab Rollout | https://catalystathletics.com/exercise/135/Ab-Rollout | — |
 | catalyst-art-1904 | Catalyst Athletics | Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution | https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/ | — |
 | catalyst-art-2076 | Catalyst Athletics | Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017) | https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making | — |
+| catalyst-kettlebell-press | Catalyst Athletics | Ketllebell Press | https://catalystathletics.com/exercise/855/Ketllebell-Press/ | — |
 | catalyst-pm-815 | Catalyst Athletics | Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch | https://performancemenu.com/article/815/Greg-Everett | — |
 | catalyst-video-1499 | Catalyst Athletics | How To Stop Swinging Snatch & Clean Pulls (wideo z opisem) | https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls | — |
 | catalyst-video-1539 | Catalyst Athletics | Arm Bend In Snatch & Clean Pulls? (wideo z opisem) | https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/ | — |
@@ -4298,6 +4540,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | cf-dkb-pp-jerk | CrossFit | Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008) | https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk | — |
 | coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
 | columbia-plantar-fasciitis | WebMD Ignite | Plantar Fasciitis Exercises (Health Library) | https://www.columbiadoctors.org/health-library/how-to/plantar-fasciitis-exercises | — |
+| columbia-shoulder-press-band | WebMD Ignite | shoulder press | https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/ | — |
 | covenant-lower-body-flex | Covenant HealthCare | Lower Body Flexibility (PDF, 2 s.) | https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf | — |
 | crossfit-cj | CrossFit | The Clean and Jerk (Essentials, 21.01.2020) | https://www.crossfit.com/essentials/the-clean-and-jerk | — |
 | crossfit-jerk | CrossFit | Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023) | https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk | — |
@@ -4306,6 +4549,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | crossfit-wall-ball | CrossFit | The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning | https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon | — |
 | cuh-spinal-rom | Cambridge University Hospitals NHS FT | Spinal range of movement/stretching exercises | https://www.cuh.nhs.uk/patient-information/spinal-range-of-movementstretching-exercises/ | — |
 | duke-oeso-stretches | Duke University Health System, Occupational and Environmental Safety Office | Stretches (handout, 2011) | https://www.safety.duke.edu/sites/default/files/Stretches.pdf | — |
+| echelon-ab-wheel | Echelon Fitness | ECHELON AB WHEEL EXERCISE GUIDE.pdf | https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf | — |
 | ecu-pt-eversion-towel | East Carolina University Physical Therapy Clinic | Seated Ankle Eversion Stretch with Towel | https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138 | — |
 | ecu-pt-inversion-towel | East Carolina University Physical Therapy Clinic | Seated Ankle Inversion Stretch with Towel | https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=143 | — |
 | eleiko-65944cf0 | Eleiko | Horizontal Cable Press – Dual Cable, Standing | https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b | — |
@@ -4401,6 +4645,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | fitnessvolt-cable-rear-delt-exercises | Fitness Volt | Cable rear delt exercises | https://fitnessvolt.com/cable-rear-delt-exercises/ | — |
 | fitnessvolt-decline-skull-crusher | Fitness Volt | Decline skull crusher | https://fitnessvolt.com/23999/decline-skull-crusher/ | — |
 | fitvibe-cable-y-raise-668 | FitVibe | Cable y raise 668 | https://fitvibe.gr/askiseis/cable-y-raise-668 | — |
+| fv-decline-push-up | Fitness Volt | ?p=75039 | https://fitnessvolt.com/?p=75039 | — |
+| fv-suspension-chest-press | Fitness Volt | suspension chest press | https://fitnessvolt.com/suspension-chest-press/ | — |
 | hci-neck-exercises | Huntsman Cancer Institute, University of Utah Health | Neck Exercises (fact sheet, 2022) | https://hci-portal.hci.utah.edu/sites/factsheets/Shared%20Documents/neck-exercises.pdf | — |
 | healthwise-columbia-shoulder-er | WebMD Ignite | Shoulder external rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/ | — |
 | healthwise-columbia-shoulder-ir | WebMD Ignite | Shoulder internal rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/ | — |
@@ -4415,9 +4661,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ironmind-split | IronMind | Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada) | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/ | — |
 | issa-25min-calves | ISSA | 25 minute calf workout | https://issaonline.com/blog/post/25-minute-calf-workout | — |
 | issa-band-20 | ISSA | 20-minute full-body resistance band workout | https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout | — |
+| issa-chest-dips | ISSA | chest dips form benefits variations what to avoid | https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid | — |
 | issa-donkey-kicks | ISSA | donkey kicks benefits and variations for strong glutes | https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes | — |
 | issa-hip-abduction | ISSA | hip abduction exercises for stronger hips and glutes | https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes | — |
 | issa-hip-thrust-variations | ISSA | hip thrusts benefits and variations for stronger glutes | https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes | — |
+| issa-overhead-press-mistakes | ISSA | overhead press proper form variations and common mistakes | https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes | — |
 | issa-top6-calves | ISSA | top six exercises for building bigger calves | https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves | — |
 | issa-tri-top5 | ISSA | Top exercises to enhance your triceps workout | https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout | — |
 | issaonline-upright-row-muscles-worked-benefits-proper-form-m | ISSA | Upright row muscles worked benefits proper form more | https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more | — |
@@ -4445,6 +4693,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-chest-press-machine | NASM | Chest Press Machine | https://www.nasm.org/resource-center/exercise-library/chest-press-machine | — |
 | nasm-close-grip-bench-press | NASM | Close Grip Bench Press | https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press | — |
 | nasm-dead-bug | NASM | Dead Bug | https://www.nasm.org/resource-center/exercise-library/dead-bug | — |
+| nasm-decline-push-up | NASM | decline push up | https://www.nasm.org/resource-center/exercise-library/decline-push-up | — |
 | nasm-dumbbell-front-squat | NASM | Dumbbell Front Squat | https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | — |
 | nasm-dumbbell-romanian-deadlift | NASM | Dumbbell Romanian Deadlift | https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | — |
 | nasm-face-pull | NASM | Face Pull | https://www.nasm.org/resource-center/exercise-library/face-pull | — |
@@ -4478,6 +4727,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
 | nfpt-hack-squat | NFPT | how to do hack squats | https://nfpt.com/how-to-do-hack-squats/ | — |
 | nfpt-how-to-do-incline-side-lateral-dumbbell-raises | NFPT | How to do incline side lateral dumbbell raises | https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/ | — |
+| nfpt-incline-fly | NFPT | how to do incline bench dumbbell flyes | https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/ | — |
 | nfpt-reverse-tricep-pushdown | NFPT (wpisy gościnne) | How to do reverse tricep pushdown | https://nfpt.com/how-to-do-reverse-tricep-pushdown/ | — |
 | nhs-flexibility | NHS (nhs.uk) | Flexibility exercises | https://www.nhs.uk/live-well/exercise/flexibility-exercises/ | — |
 | nhs-shrops-calf | Shropshire Community Health NHS Trust | Calf Stretching Information Leaflet | https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf | — |
@@ -4486,6 +4736,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nordictrack-incline | NordicTrack | Incline treadmill benefits… (15.07.2025) | https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | — |
 | nsca-basics-2012 | NSCA | Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012 | https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | — |
 | nsca-coach-7-3 | NSCA | Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3 | https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | — |
+| nsca-etm4-one-arm-kb-press | NSCA — Exercise Technique Manual (Human Kinetics) | one arm kettlebell press | https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press | — |
 | nsca-scj-hip-thrust | NSCA | Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026 | https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf | — |
 | orthobethesda-foam-rolling | OrthoBethesda Therapy Services | Foam Rolling (FR) Exercises (PDF, 2 s., 2015) | https://www.orthobethesda.com/foam-rolling-exercises/ | — |
 | orthoindy-itb-program | OrthoIndy Physical Therapy | IT Band Home Exercise Program (PDF, rev. 8/15) | https://orthoindy.com/wp-content/uploads/IT-Band-Program.pdf | — |
@@ -4520,6 +4771,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | potreningu-odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac | Atlas ćwiczeń potreningu.pl | Odwodzenie ramion w tyl na wyciagu gornym stojac | https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac | — |
 | potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami | Atlas ćwiczeń potreningu.pl | Unoszenie ramion bokiem w opadzie tulowia w bramie | https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie | — |
 | prehab-heel-raise-off-step | The Prehab Guys | Heel Raise – Off Step | https://theprehabguys.com/vimeo-video/heel-raise-off-step/ | — |
+| prehab-pushup-variations | The Prehab Guys | push up exercise variations | https://theprehabguys.com/push-up-exercise-variations/ | — |
 | rep-sled-push | REP Fitness | Sled Push Technique Guide (2026) | https://repfitness.com/blogs/training/sled-push-technique | — |
 | rep-wall-balls | REP Fitness | How to Improve Your Wall Balls | https://uk.repfitness.com/blogs/training/wall-balls | — |
 | rfl-mb-chest-throw | RFL | Med Ball Chest Throw (karta PDF z oceną 1–5) | https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf | — |
@@ -4536,11 +4788,13 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | sf-go-ballistic-jerk | StrongFirst | Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia) | https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/ | — |
 | southtees-cat-stretch | South Tees Hospitals NHS Foundation Trust | Cat stretch (Physiotherapy) | https://www.southtees.nhs.uk/?p=31588 | — |
 | staywell-seated-hamstring-curl | WebMD Ignite | 3,S,90814 | https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814 | — |
+| strongfirst-mastering-your-press-1 | StrongFirst | mastering your press part i | https://www.strongfirst.com/mastering-your-press-part-i/ | — |
 | theprehabguys-overhead-tricep-extension-band | The Prehab Guys | Overhead Tricep Extension – Band | https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/ | — |
 | theraband-ankle-calf-raise-standing | Thera-Band | thera band ankle calf raise in standing | https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html | — |
 | torokhtiy-barbell-squat-jump | Torokhtiy | Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024) | https://torokhtiy.com/blogs/guides/barbell-squat-jump | — |
 | torokhtiy-snatch-balance | Torokhtiy | Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026) | https://store.torokhtiy.com/blogs/exercises/snatch-balance | — |
 | torque-utg-2024 | Torque Fitness | Ultimate TANK Training Guide (2024, PDF; kopia u dystrybutora) | https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf | — |
+| trx-push-up | TRX | trx push up | https://www.trxtraining.com/blogs/news/trx-push-up | — |
 | ucb-uhs-work-warmup | UC Berkeley University Health Services | Work Warm-Up | https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf | — |
 | uwmed-plantar-fasciitis | UW Medicine | Exercises for Plantar Fasciitis (Sports Medicine Clinic, PDF, 5 s.) | https://honline.s.uw.edu/sites/default/files/record_pdfs/Exercises-Plantar-Fasciitis.pdf | — |
 | vdhorst-2015 | van der Horst i in. (UMC Utrecht) | The Preventive Effect of the Nordic Hamstring Exercise… RCT, Am J Sports Med 2015 | https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | — |

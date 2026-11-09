@@ -1099,6 +1099,18 @@
         "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
       },
       "warianty": {
+        "Ab Wheel": [
+          "rollout_linia_kolana"
+        ],
+        "Rollout (sztanga)": [
+          "rollout_linia_kolana"
+        ],
+        "Renegade Row": [
+          "cialo_w_linii"
+        ],
+        "Suspended Push-Up": [
+          "cialo_w_linii"
+        ],
         "Standing Barbell Rollout": [
           "rollout_linia_kostki"
         ],

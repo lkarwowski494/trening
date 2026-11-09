@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (166)
+## Bez figury — lista otwarta (180)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1103,6 +1103,20 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Lying Close-Grip Barbell Triceps Extension Behind The Head | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | One-Arm Lying Dumbbell Triceps Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
 | Chain Handle Extension | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii T1 integracji badań (04.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 — karta ukryta do recenzji niezależnej. |
+| Arnold Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Seated Barbell Military Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Kettlebell Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Kettlebell Seated Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Band Shoulder Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Single Arm Overhead Press (hantel) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Ab Wheel | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Renegade Row | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Rollout (sztanga) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Incline Chest Fly (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Chest Dip | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Seated Cable Chest Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Decline Push Up | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
+| Suspended Push-Up | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A1 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B1) — karta ukryta do recenzji niezależnej. |
 | Single Leg Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Seated Calf Raise (hantle) | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Smith Machine Calf Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
@@ -1123,4 +1137,4 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Seated Band Hamstring Curl | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 | Single Leg Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A2 integracji badań (08.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B2) — karta ukryta do recenzji niezależnej. |
 
-Poza tym bez figury: 18 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
+Poza tym bez figury: 15 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
