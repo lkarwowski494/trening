@@ -1,7 +1,7 @@
 /*
  * Figury v2 — oś hantla w dłoni (wydzielone z contract.ts: podział strukturalny, bez zmiany zachowania; backlog 1.1).
  * FW2_AX (progi płynnego przejścia) i withDumbbellAxis (oś z obrotu przedramienia) — używa keyframeFrame w contract.ts.
- * Czysty moduł (bez React i aliasów); plik jest w V2_WSPOLNE (skrót recenzji rodzin v2).
+ * Czysty moduł (bez React i aliasów); jego skutek na rysunku wchodzi do skrótu recenzji rodziny przez wynik klatek (scripts/skrot-v2-wynik.mjs).
  */
 import type { V3 } from './math';
 import type { Prop } from './scene';

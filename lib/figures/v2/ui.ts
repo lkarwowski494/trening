@@ -35,8 +35,8 @@ export function techniquesOf(key: string): string[] {
 }
 
 /** Id wskazówek elementów WIDOCZNYCH na rysunku (linie odniesienia i nakładka techniki; bez powtórzeń, w kolejności): podstawa etykiety VoiceOver „Na rysunku: …”. Element jest widoczny, gdy jego rzut należy do rzutów figury (a łuk stawu — gdy staw jest mierzony). */
-export function onDrawingCues(spec: FigureSpec, guides: GuideId[], techniques: string[]): string[] {
-  const have = new Set(cueIdsOf(spec.key).ids); const out: string[] = []; const add = (cues: string[]) => { const c = cues.find(x => have.has(x)); if (c && !out.includes(c)) out.push(c); };
+export function onDrawingCues(spec: FigureSpec, guides: GuideId[], techniques: string[], cueIds: readonly string[] = cueIdsOf(spec.key).ids): string[] {
+  const have = new Set(cueIds); const out: string[] = []; const add = (cues: string[]) => { const c = cues.find(x => have.has(x)); if (c && !out.includes(c)) out.push(c); };
   for (const g of guides) if (GUIDES[g].views.some(v => spec.views.includes(v))) add(GUIDES[g].cue);
   for (const id of techniques) { const d = techniqueDef(id); if (d && d.views.some(v => spec.views.includes(v)) && (d.kind !== 'limb' || (angleLineShown(spec) && (!d.joint || d.joint === measuredJoint(spec))))) add(d.cue); }
   return out;

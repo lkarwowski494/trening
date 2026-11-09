@@ -53,6 +53,11 @@ const SKULL = { aHead: 3, clear: 8, inward: 0 } as const;
 const DL_KOLANA: Partial<HingeParams> = { knees: { s: [10, 0], late: 10, back: 0.4 }, sx: [6, -9] };
 /** RDL i martwy na prostych nogach ze sztangą i linką (101-03): krzywa kolan — podudzie prawie pionowo (0° → 2°), niezależnie od zgięcia kolana; gryf prowadzony tuż przy udach (tor z jedną zmianą kierunku). Uproszczenie ilustracyjne (kolano ≤ 27° pilnuje figury-1-0-recenzja). */
 const RDL_KOLANA: Partial<HingeParams> = { knees: { s: [0, 2] } };
+/** RDL (sztanga) i RDL (hantle/linki): ciężar na dole tuż pod kolanem (decyzja właściciela 09.11.2026; było 55 cm = 7 cm nad środkiem stawu kolanowego 48 cm). Przedział źródeł: okolica kolana – połowa piszczeli (praktyka, szczebel 4);
+ * punkt „tuż pod kolanem” (45 cm, 3 cm pod środkiem stawu) to konwencja rysunku — uproszczenie ilustracyjne. Głębokość zależy od gibkości (rdl.depth bez zmian). Inne zawiasy na prostych nogach (Single Leg, Pull Through, Stiff-Legged) zostają przy swoich wartościach. */
+const RDL_DOL: Partial<HingeParams> = { yEnd: 45 };
+/** Tor sztangi do 4 cm pod prostą między końcami (HINGE.dev 3,5): przy gryfie pod kolanem ciężar zostaje przy udach (odstęp ≤ 3,5 cm; tor ≤ 4 cm pilnuje tests/figury-styk.test.ts). Tylko ten wariant. */
+const RDL_SZTANGA_DOL: Partial<HingeParams> = { dev: 4 };
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
 /** Sumo ze sztangą (101-03, 101-04): krzywa kolan jak w martwym ciągu klasycznym, ale podudzie prawie pionowo (σ 6° na starcie), a kolana idą nad palcami (kierunek kolana = rotacja stóp 40°, było 2 × = 80°, czyli w bok) — gryf
  * przylega do goleni i ud (karta sumo.kneesOut: kolana na zewnątrz w linii stóp). Uproszczenie ilustracyjne. */
@@ -122,8 +127,8 @@ export const VARIANTS: Record<string, Variant> = {
   'Deadlift (hantle)': HG('floor', 'db', { grip: HINGE.dbFloorGrip }),
   'Sumo Deadlift': HG('floor', 'barbell', SUMO_SZTANGA),
   'Trap Bar Deadlift': HG('floor', 'trapbar', { yStart: 20, sx: TRAP_SX }),
-  'RDL (sztanga)': HG('rdl', 'barbell', { ...RDL_KOLANA, sx: [-2, 19] }), /* ramiona ok. 17° od pionu na dole — decyzja właściciela 29.10.2026 (było 23°, sx 25) */
-  'RDL (hantle/linki)': HG('rdl', 'db', RDL_KOLANA),
+  'RDL (sztanga)': HG('rdl', 'barbell', { ...RDL_KOLANA, ...RDL_DOL, ...RDL_SZTANGA_DOL, knees: { s: [0, -2] }, sx: [-2, 19] }), /* ramiona ok. 17° od pionu na dole — decyzja właściciela 29.10.2026 (było 23°, sx 25); podudzie −2° (nie +2°), by przy niższym gryfie kolano zostało ≤ 27° (maks. 25,9° w ruchu, 23° na dole); tor do 4 cm pod prostą (dev), by odstęp ud–gryf ≤ 3,5 cm */
+  'RDL (hantle/linki)': HG('rdl', 'db', { ...RDL_KOLANA, ...RDL_DOL }),
   'Good Morning': HG('goodMorning', 'barbell'),
   'Rack Pull': HG('floor', 'barbell', { ...DL_KOLANA, knees: { ...DL_KOLANA.knees!, s: [3, 0] }, yStart: 45, rack: true }),
   'Single Leg RDL (hantel)': HG('singleLeg', 'db', { ...RDL_KOLANA, grip: 13 }),

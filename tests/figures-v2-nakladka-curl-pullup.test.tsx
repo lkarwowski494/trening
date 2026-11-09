@@ -33,18 +33,18 @@ const sens = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/
 afterEach(() => { applyLang('pl'); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); });
 
 describe('dane: elementy rodzin curl i pull_up ← reguły ze źródłem', () => {
-  test('rejestr: curl = curlElbowLimb (limb, łokieć) + curlElbowPlumb (E3: pion od barku w dół do wysokości miednicy; linii tułowia nie ma — leżałaby na pionie, 2R W1); pull_up = pullChinBarRef (poziom drążka przez chwyt) + pullPlumbRef (pion pod drążkiem)', () => {
+  test('rejestr: curl = curlElbowLimb (limb, łokieć) + curlElbowPlumb (E3: pion od barku w dół do wysokości miednicy; linii tułowia nie ma — leżałaby na pionie, 2R W1); pull_up = pullChinBarRef (poziom drążka przez chwyt) + pullPlumbRef (pion pod drążkiem) + pullArmStraightRef (prowadnica prostej ręki, tylko z przodu; 09.11.2026)', () => {
     expect(CURL_TECHNIQUE.map(d => d.id)).toEqual(['curlElbowLimb', 'curlElbowPlumb']); expect(TECHNIQUE.curl).toBe(CURL_TECHNIQUE); expect(TECHNIQUE.pull_up).toBe(PULL_UP_TECHNIQUE);
     expect([CURL_TECHNIQUE[0].kind, CURL_TECHNIQUE[0].joint, CURL_TECHNIQUE[0].views]).toEqual(['limb', 'elbow', ['side']]);
     expect([CURL_TECHNIQUE[1].kind, CURL_TECHNIQUE[1].ref, CURL_TECHNIQUE[1].views]).toEqual(['ref', { shape: 'vertical', through: 'shoulder', dir: 'down', until: 'pelvis' }, ['side']]);
-    expect(PULL_UP_TECHNIQUE.map(d => [d.id, d.kind, d.ref, d.views])).toEqual([['pullChinBarRef', 'ref', { shape: 'horizontal', through: 'grip' }, ['side']], ['pullPlumbRef', 'ref', { shape: 'vertical', through: 'grip', dir: 'down' }, ['side']]]);
+    expect(PULL_UP_TECHNIQUE.map(d => [d.id, d.kind, d.ref, d.views])).toEqual([['pullChinBarRef', 'ref', { shape: 'horizontal', through: 'grip' }, ['side']], ['pullPlumbRef', 'ref', { shape: 'vertical', through: 'grip', dir: 'down' }, ['side']], ['pullArmStraightRef', 'ref', { shape: 'parallel', from: 'shoulder', to: 'grip' }, ['front']]]);
   });
   test.each([['curl', CURL_TECHNIQUE], ['pull_up', PULL_UP_TECHNIQUE]] as const)('%s: reguła każdego elementu istnieje i jest „ustalone”; każda wskazówka elementu należy do wskazowki_na_reguly reguły', (fam, defs) => {
     for (const d of defs) {
       const r = sens[fam].reguly[d.rule]; expect(r).toBeTruthy(); expect(r.pewnosc).toMatch(/^ustalone/); expect(d.cue.length).toBeGreaterThan(0);
       for (const c of d.cue) expect([c, sens[fam].wskazowki_na_reguly[c]]).toEqual([c, expect.arrayContaining([d.rule])]);
     }
-    expect(defs.map(d => d.rule)).toEqual(fam === 'curl' ? ['lokiec_zgina_sie', 'lokiec_przy_tulowiu'] : ['broda_nad_drazkiem', 'miednica_nie_buja']);
+    expect(defs.map(d => d.rule)).toEqual(fam === 'curl' ? ['lokiec_zgina_sie', 'lokiec_przy_tulowiu'] : ['broda_nad_drazkiem', 'miednica_nie_buja', 'dol_rece_proste']);
   });
   test('pull_up (łatka badacza po recenzji L-047, 04.11.2026): reguły mają pewnosc; próg brody 0 cm (część wspólna kart: broda co najmniej na wysokości drążka); w wariantach brak duplikatu dlonie_na_drazku', () => {
     const r = sens.pull_up.reguly; expect(r.broda_nad_drazkiem.pewnosc).toMatch(/^ustalone/); expect(r.broda_nad_drazkiem.parametry.margines_cm).toBe(0); expect(r.miednica_nie_buja.pewnosc).toMatch(/^ustalone/);
@@ -76,7 +76,7 @@ describe('geometria: łuk = kąt z jointAngles (±1°) w 21 klatkach', () => {
 describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element ⇔ wskazówka na karcie', () => {
   test('elementy to wyłącznie linie ciągłe i łuki (poly bez wypełnienia), w warstwie nad ciałem, bez pól tekstowych', () => {
     for (const k of [...CURL_KEYS, ...PULL_KEYS]) { const s = spec(k); const ts = techniquesOf(k); for (const v of s.views) for (const u of [0, 0.5, 1]) for (const x of overlayShapes(s, u, v, ts)) {
-      expect(['line', 'poly']).toContain(x.k); expect(x.z).toBeGreaterThan(3000); expect(x.id).toMatch(/^(curlElbowLimb(Line|Arc)|curlElbowPlumbLine|pullChinBarRefLine|pullPlumbRefLine)$/);
+      expect(['line', 'poly']).toContain(x.k); expect(x.z).toBeGreaterThan(3000); expect(x.id).toMatch(/^(curlElbowLimb(Line|Arc)|curlElbowPlumbLine|pullChinBarRefLine|pullPlumbRefLine|pullArmStraightRefBracket)$/);
       if (x.k === 'line') expect(x.dash).toBeUndefined(); else expect((x as { fill?: unknown }).fill).toBeUndefined();
       expect(JSON.stringify(x)).not.toMatch(/"(text|label|value)"/);
     } }
@@ -100,7 +100,7 @@ describe('niezmienniki: bez tekstu i liczb, limit elementów na rzut, element �
     const E = (...a: string[]) => a; const L = 'curlElbowLimb', P = 'curlElbowPlumb';
     const want: Record<string, string[]> = { 'Biceps Curl (hantle)': E(L, P), 'Barbell Curl': E(L, P), 'EZ Bar Curl': E(L, P), 'Hammer Curl': E(L, P), 'Preacher Curl': E(L), 'Spider Curl': E(L), 'Cable Curl': E(L, P),
       'Incline Curl (hantle)': E(P), 'Concentration Curl (hantle)': E(), 'Bayesian Curl': E(), 'High Cable Curl': E(), 'Drag Curl': E(), 'Reverse Curl': E(P), 'Nie ma takiego': E(),
-      'Pull Up': E('pullChinBarRef', 'pullPlumbRef'), 'Chin Up': E('pullPlumbRef'), 'Dead Hang': E() };
+      'Pull Up': E('pullChinBarRef', 'pullPlumbRef', 'pullArmStraightRef'), 'Chin Up': E('pullPlumbRef', 'pullArmStraightRef'), 'Dead Hang': E() };
     for (const [k, w] of Object.entries(want)) expect([k, techniquesOf(k)]).toEqual([k, w]);
     expect(techniquesFor('curl', ['dl.lift'])).toEqual([]); expect(techniquesFor('pull_up', ['pu.pull', 'pu.partial']).map(d => d.id)).toEqual(['pullChinBarRef']); expect(techniquesFor('pull_up', ['pu.partial'])).toEqual([]); expect(techniquesFor('squat', ['curl.dbMove'])).toEqual([]);
   });
@@ -114,7 +114,7 @@ describe('kolor błędu: element w roli error tylko wtedy, gdy błąd łamie jeg
     const sk = frameAt(spec('Barbell Curl'), 1).sk; const side = measuredSide(spec('Barbell Curl')); const ctx = (danger: (r: string) => boolean) => ({ joint: 'elbow' as const, side, limbShown: true, danger });
     for (const d of CURL_TECHNIQUE) { const red = techniqueShapes(sk, 'side', [d], ctx(r => r === d.rule)), ok = techniqueShapes(sk, 'side', [d], ctx(r => r === 'inna'));
       expect([d.id, red.length]).toEqual([d.id, d.kind === 'limb' ? 2 : 1]); for (const x of red) expect(role(x)).toBe('error'); for (const x of ok) expect(role(x)).toBe('guide'); }
-    const pk = frameAt(spec('Pull Up'), 1).sk; for (const d of PULL_UP_TECHNIQUE) { const red = techniqueShapes(pk, 'side', [d], { ...ctx(r => r === d.rule), side: measuredSide(spec('Pull Up')) }); expect([d.id, red.map(role)]).toEqual([d.id, ['error']]); }
+    const pk = frameAt(spec('Pull Up'), 1).sk; for (const d of PULL_UP_TECHNIQUE) { const fr = d.views[0] === 'front' ? frameAt(spec('Pull Up'), 0).sk : pk; const red = techniqueShapes(fr, d.views[0], [d], { ...ctx(r => r === d.rule), side: measuredSide(spec('Pull Up')) }); expect([d.id, red.map(role)]).toEqual([d.id, ['error']]); }
   });
   test('prawdziwe błędy ćwiczeń: kolor elementu = errorBreaksRule(błąd, lokiec_zgina_sie) w każdej pozie błędu (grupa „zakres” — dziś żaden błąd curl jej nie łamie; curl.mis.elbows to grupa „lokcie”)', () => {
     let par = 0;
@@ -207,8 +207,8 @@ describe('etap 2 po recenzji 2R: dwie linie nie leżą jedna pod drugą (W1), pi
     expect(PULL_KEYS.filter(k => techniquesOf(k).includes('pullPlumbRef')).sort()).toEqual(['Chin Up', 'Pull Up']);
     expect(techniquesFor('pull_up', ['pu.noSwing']).map(d => d.id)).toEqual([]); expect(techniquesFor('pull_up', ['pu.noSwing'], 'Pull Up').map(d => d.id)).toEqual(['pullPlumbRef']);
   });
-  test('S3: elementy pull_up tylko w rzucie z boku — front i top bez kształtów', () => {
-    for (const d of PULL_UP_TECHNIQUE) expect([d.id, d.views]).toEqual([d.id, ['side']]);
-    for (const k of ['Pull Up', 'Chin Up']) { const s = spec(k); for (const v of s.views.filter(x => x !== 'side')) for (const u of US) expect([k, v, u, overlayShapes(s, u, v, techniquesOf(k))]).toEqual([k, v, u, []]); }
+  test('S3 (zmiana 09.11.2026): poziom drążka i pion pod drążkiem tylko z boku; prowadnica prostej ręki (pullArmStraightRef) tylko z przodu — każdy element w rzutach spoza swojej listy bez kształtów', () => {
+    expect(PULL_UP_TECHNIQUE.map(d => [d.id, d.views])).toEqual([['pullChinBarRef', ['side']], ['pullPlumbRef', ['side']], ['pullArmStraightRef', ['front']]]);
+    for (const k of ['Pull Up', 'Chin Up']) { const s = spec(k); for (const d of PULL_UP_TECHNIQUE) for (const v of s.views.filter(x => !d.views.includes(x))) for (const u of US) expect([k, d.id, v, u, overlayShapes(s, u, v, [d.id])]).toEqual([k, d.id, v, u, []]); }
   });
 });

@@ -151,7 +151,11 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Polecenia figur (`scripts/figures/gemini-polecenia.mjs:22`, limit 36000): najdłuższy plik 35980 znaków — 20 znaków zapasu (04.11.2026).
 - Słownik „biodra” (recenzja różnicy P2, NISKIE): wzorzec ru łapie tylko „бёдр” z „ё” (bez „бедра”), wzorzec el nie łapie liczby pojedynczej „γοφό/γοφός” — poszerzyć z testem.
 - vi: „grip” w olympic.setup / olympic.sbSetup — w słowniku vi chwyt nadal „nieustalony” (recenzja różnicy P2).
-- Skrót recenzji v2 (audyt 1A, NISKIE): parser bloków `scripts/skrot-v2-norm.mjs` zakłada koniec bloku `};`; wzorzec LOAD nie sprawdza zgodności klucza z plikiem (skutek bezpieczny — brak figury).
+- Skrót recenzji v2 (audyt 1A, NISKIE) — ZAMKNIĘTE 09.11.2026: parser bloków `scripts/skrot-v2-norm.mjs` usunięty; skrót liczy się z wyniku rysunku rodziny (`scripts/skrot-v2-wynik.mjs`, docs/18 wpis 09.11.2026 „skrót per rodzina”), bez analizy tekstu `poseData.ts`.
+
+### Backlog 1.2 — skrót recenzji rodziny v2: NISKIE z kontroli audytora (09.11.2026, gałąź `figury/skrot-per-rodzina`; nie blokuje)
+- Stała `BADGE_GAP_PT` (`lib/figures/v2/badges.ts:51`, minimalny odstęp znaczków ✓/✕ na ekranie) poza skrótem: `scripts/skrot-v2-wynik.mjs` liczy `spaceBadges` ze stałą 8, aplikacja z `BADGE_GAP_PT/sc` (`components/ExerciseFigureV2.tsx:35`) — zmiana stałej przesuwa znaczki we wszystkich rodzinach bez zmiany skrótu (ruch i treść bez zmian). Realność: teoretyczny (tylko zmiana kodu). Naprawa: skrót bierze `BADGE_GAP_PT` z modułu albo tekst stałej do `V2_RENDER`.
+- Przed recenzją rodziny carry: połowa lustrzana `cykl_lustro` (u 1–2) wchodzi do skrótu tylko przez `boxFor` i `trailFor` — audytor nie pokazał zmiany rysunku bez zmiany skrótu (pewność < 80%), sprawdzić przy podłączaniu carry.
 
 ### Backlog 1.2 — pełna karta: 9 obowiązkowych wymagających nowego ruchu silnika (właściciel 09.11.2026, ZB-053)
 - Cel 1.1 „pełna karta” zmniejszony 465 → 456 (docs/18, 09.11.2026): te 9 ćwiczeń nie ma danych póz v2 i wymaga nowego ruchu silnika rysunku, więc przechodzi do 1.2: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up (lista maszynowa: `poza11` w `docs/research/pokrycie-cele.json`). Cel 1.2: pełna karta także dla nich; 4 obowiązkowe bez ról mięśni (Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam) zostają w 1.1.

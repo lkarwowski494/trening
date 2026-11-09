@@ -18,7 +18,7 @@ import { CURL_TECHNIQUE } from './overlay/curl';
 import { PULL_UP_TECHNIQUE } from './overlay/pull_up';
 import { OLYMPIC_TECHNIQUE } from './overlay/olympic';
 import { TRICEPS_TECHNIQUE } from './overlay/triceps';
-import { solid } from './overlay/common';
+import { solid, OVERLAY_LINE_W } from './overlay/common';
 import REGULY from './reguly-cwiczen.json';
 
 export const OVERLAY_MAX_LINES = 3, OVERLAY_MAX_ARCS = 1;
@@ -27,15 +27,23 @@ export const OVERLAY_EXTEND = 14, OVERLAY_ARC_R = 9, OVERLAY_REF_LEN = 22, OVERL
 /** Najmniejsza długość ramienia w rzucie (cm rysunku), od której pokazujemy odwiedzenie; łuk w rzucie ma co najmniej OVERLAY_ARC_R (jedno miejsce progu rozmiaru, W2). */
 export const OVERLAY_ARM_MIN_PROJ = 2, OVERLAY_ARC_MIN_CHORD = 4;
 export type TechniqueKind = 'limb' | 'abduction' | 'ref';
+/**
+ * Prowadnica prostej ręki (09.11.2026, decyzja właściciela, wariant B studia): odcinek bark → chwyt przesunięty NA ZEWNĄTRZ ciała o `offset` cm, z kreskami na końcach (rzut z przodu).
+ * Widoczność wg zgięcia łokcia: pełna do `fullDeg` (= max_lokiec_deg reguły dol_rece_proste, data/zrodla/figury-sens.json), liniowo do zera przy `zeroDeg`; w widoku błędu łamiącego regułę
+ * — pełna w dolnej części ruchu (u < `errorUBelow`), żeby było widać, jak zgięta ręka odstaje od prostej; w widoku błędu to cięciwa bark–chwyt (`errorOffset` 0 — tam leżałaby prosta ręka),
+ * bo odcinek przesunięty o `offset` przecinał zgiętą rękę (recenzja niezależna 09.11.2026, ŚREDNIE; decyzja właściciela 09.11.2026 A). Kolor i grubość jak inne elementy nakładki (guide/error, OVERLAY_LINE_W), bez liczb na rysunku.
+ */
+export const OVERLAY_ARM_REF = { offset: 8, errorOffset: 0, fullDeg: 8, zeroDeg: 20, errorUBelow: 0.5, tick: 1.8 } as const;
 /** Punkt szkieletu, przez który prowadzi linia odniesienia E3 (ręka/noga: strona pracująca rysunku, w rzucie z góry R). */
 export type RefPoint = 'grip' | 'wrist' | 'elbow' | 'shoulder' | 'hip' | 'knee' | 'ankle' | 'toe' | 'pelvis' | 'shoulderC' | 'head';
 /**
  * E3 — linia odniesienia z regułą (kind „ref”), jedna linia ciągła w rzucie (rzut z góry: tylko „segment”; pion i poziom to pojęcia rzutu bocznego i z przodu):
  * - vertical: pion przez punkt `through` (w górę `up`, w dół `down` albo w obie strony `both`) — dłonie/kostka/bark nad sobą;
  * - horizontal: poziom przez punkt `through` (np. przedłużony poziom drążka);
- * - segment: linia segmentu `from` → `to` przedłużona za `to` o OVERLAY_EXTEND (nieruchomy odcinek: ramię przy tułowiu, linia tułowia).
+ * - segment: linia segmentu `from` → `to` przedłużona za `to` o OVERLAY_EXTEND (nieruchomy odcinek: ramię przy tułowiu, linia tułowia);
+ * - parallel: odcinek `from` → `to` przesunięty na zewnątrz ciała o OVERLAY_ARM_REF.offset (prowadnica prostej ręki, tylko rzut z przodu; kreski końców i widoczność: parallelGuide).
  */
-export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down' | 'both'; /** pion kończy się na wysokości tego punktu (zamiast OVERLAY_PLUMB_LEN) — tylko dla dir „down”/„up” */ until?: RefPoint } | { shape: 'horizontal'; through: RefPoint } | { shape: 'segment'; from: RefPoint; to: RefPoint };
+export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down' | 'both'; /** pion kończy się na wysokości tego punktu (zamiast OVERLAY_PLUMB_LEN) — tylko dla dir „down”/„up” */ until?: RefPoint } | { shape: 'horizontal'; through: RefPoint } | { shape: 'segment'; from: RefPoint; to: RefPoint } | { shape: 'parallel'; from: RefPoint; to: RefPoint };
 export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint; /** linia odniesienia (kind „ref”, E3) */ ref?: RefSpec; /** element tylko dla tych ćwiczeń (klucz katalogu), gdy reguła ma pewność „ustalone” tylko dla części odmian rodziny */ exercises?: string[] };
 
 /** Elementy nakładki wg rodziny (dane: overlay/<rodzina>.ts). */
@@ -112,10 +120,16 @@ export function refPoint(sk: Skeleton, side: Side, p: RefPoint): V3 {
   }
 }
 /** Linia odniesienia E3 w rzucie (cm rysunku); null, gdy rzut nie ma sensu (pion/poziom w rzucie z góry) albo segment jest w rzucie punktem (< OVERLAY_ARM_MIN_PROJ cm). */
-export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec): [V2, V2] | null {
+export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec, offset: number = OVERLAY_ARM_REF.offset): [V2, V2] | null {
   if (ref.shape === 'segment') {
     const a = proj(refPoint(sk, side, ref.from), view), b = proj(refPoint(sk, side, ref.to), view); const d: V2 = [b[0] - a[0], b[1] - a[1]]; const l = Math.hypot(d[0], d[1]);
     if (l < OVERLAY_ARM_MIN_PROJ) return null; return [a, [b[0] + d[0] / l * OVERLAY_EXTEND, b[1] + d[1] / l * OVERLAY_EXTEND]];
+  }
+  if (ref.shape === 'parallel') {
+    if (view !== 'front') return null;
+    const a = proj(refPoint(sk, side, ref.from), view), b = proj(refPoint(sk, side, ref.to), view), d: V2 = [b[0] - a[0], b[1] - a[1]], l = Math.hypot(d[0], d[1]); if (l < OVERLAY_ARM_MIN_PROJ) return null;
+    const n: V2 = [-d[1] / l, d[0] / l], c = proj(sk.pelvis, view), out = n[0] * ((a[0] + b[0]) / 2 - c[0]) >= 0 ? 1 : -1, o: V2 = [n[0] * out * offset, n[1] * out * offset];
+    return [[a[0] + o[0], a[1] + o[1]], [b[0] + o[0], b[1] + o[1]]];
   }
   if (view === 'top') return null; const p = proj(refPoint(sk, side, ref.through), view);
   if (ref.shape === 'horizontal') return [[p[0] - OVERLAY_LEVEL_HALF, p[1]], [p[0] + OVERLAY_LEVEL_HALF, p[1]]];
@@ -123,13 +137,26 @@ export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec): [
   return [[p[0], ref.dir === 'up' ? p[1] : end ?? p[1] - OVERLAY_PLUMB_LEN], [p[0], ref.dir === 'down' ? p[1] : end ?? p[1] + OVERLAY_PLUMB_LEN]];
 }
 
-export type OverlayCtx = { joint: MeasuredJoint; side: Side; limbShown: boolean; /** czy reguła elementu jest złamana przez pokazany błąd (kolor danger) */ danger: (rule: string) => boolean; /** linie odniesienia (GUIDES) już narysowane w tym rzucie — wchodzą do limitu OVERLAY_MAX_LINES (W3) */ guideLines?: number };
+export type OverlayCtx = { joint: MeasuredJoint; side: Side; limbShown: boolean; /** czy reguła elementu jest złamana przez pokazany błąd (kolor danger) */ danger: (rule: string) => boolean; /** linie odniesienia (GUIDES) już narysowane w tym rzucie — wchodzą do limitu OVERLAY_MAX_LINES (W3) */ guideLines?: number; /** pozycja ruchu 0..1 (0 = start); tylko dla widoczności prowadnicy prostej ręki w widoku błędu */ u?: number };
+/** Przezroczystość prowadnicy prostej ręki (0 = niewidoczna): pełna przy zgięciu łokcia ≤ fullDeg, liniowo do zera przy zeroDeg; w widoku błędu łamiącego regułę pełna w dolnej części ruchu. */
+export function armGuideAlpha(elbowDeg: number, danger: boolean, u: number | undefined): number {
+  if (danger && (u ?? 0) < OVERLAY_ARM_REF.errorUBelow) return 1;
+  const { fullDeg, zeroDeg } = OVERLAY_ARM_REF; return Math.max(0, Math.min(1, (zeroDeg - elbowDeg) / (zeroDeg - fullDeg)));
+}
+/** Jeden kształt prowadnicy: odcinek z kreskami na końcach (jedna łamana — liczy się jako jedna linia nakładki); null, gdy niewidoczna w tej klatce. */
+function parallelGuide(sk: Skeleton, view: View, d: TechniqueDef, ctx: OverlayCtx): Shape | null {
+  if (!d.ref) return null; const danger = ctx.danger(d.rule); const g = refGeom2D(sk, ctx.side, view, d.ref, danger ? OVERLAY_ARM_REF.errorOffset : OVERLAY_ARM_REF.offset); const e = techniqueGeom('limb', sk, ctx.side, 'elbow'); if (!g || !e) return null;
+  const alpha = armGuideAlpha(e.sweepDeg, danger, ctx.u); if (alpha <= 0.02) return null;
+  const [s, t] = g, dx = t[0] - s[0], dy = t[1] - s[1], l = Math.hypot(dx, dy), k = OVERLAY_ARM_REF.tick / l, n: V2 = [-dy * k, dx * k];
+  return { k: 'poly', pts: [[s[0] - n[0], s[1] - n[1]], [s[0] + n[0], s[1] + n[1]], s, t, [t[0] - n[0], t[1] - n[1]], [t[0] + n[0], t[1] + n[1]]], stroke: danger ? 'error' : 'guide', w: OVERLAY_LINE_W, a: alpha / 2.2, close: false, z: 4000, id: d.id + 'Bracket' };
+}
 /** Kształty elementów nakładki w widoku; z limitem OVERLAY_MAX_LINES linii (łącznie ze starymi liniami odniesienia `ctx.guideLines`) i OVERLAY_MAX_ARCS łuku na rzut (kolejność = kolejność danych). */
 export function techniqueShapes(sk: Skeleton, view: View, defs: TechniqueDef[], ctx: OverlayCtx): Shape[] {
   const out: Shape[] = []; let lines = ctx.guideLines ?? 0, arcs = 0;
   for (const d of defs) {
     if (!d.views.includes(view) || (d.kind === 'limb' && (!ctx.limbShown || (d.joint && d.joint !== ctx.joint)))) continue;
     let line: [V2, V2], arc: V2[] | null;
+    if (d.kind === 'ref' && d.ref?.shape === 'parallel') { const p = lines < OVERLAY_MAX_LINES ? parallelGuide(sk, view, d, ctx) : null; if (p) { out.push(p); lines++; } continue; }
     if (d.kind === 'ref') { const g = d.ref ? refGeom2D(sk, view === 'top' ? 'R' : ctx.side, view, d.ref) : null; if (!g) continue; line = g; arc = null; }
     else if (d.kind === 'limb') { const g = techniqueGeom('limb', sk, ctx.side, ctx.joint); if (!g) continue; line = [proj(g.line[0], view), proj(g.line[1], view)]; arc = g.arc ? g.arc.map(p => proj(p, view)) : null; }
     else { const g = abductionGeom2D(sk, ctx.side, view); if (!g) continue; line = g.line; arc = g.arc; }
