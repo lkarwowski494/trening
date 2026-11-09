@@ -1,3 +1,4 @@
+// skanuje: tests
 /*
  * Decyzja koordynatora 02.11.2026 (zb010, wariant A): stała, jawna sterta workerów Jest, jedno miejsce na liczbę (scripts/ci/jest-sterta.json).
  * Powód: workery Jest kończyły się „out of memory” przy domyślnej stercie ~2 GB w równoległym verify (maestro-flows, matrix-dim-langs-routes3, audit-k1-bl-mer).

@@ -1,3 +1,4 @@
+// skanuje: tests
 /* M1-audytor-generalny-055: nocny job `mutacje` nie wykonywał mutantów, bo suche przejście Strykera padało na testach, które uruchamiają
    skrypty potomne (`--check` generatorów) w kopii projektu. Strażnik: testy z procesami potomnymi są poza konfiguracją mutacji,
    a konfiguracja dalej obejmuje testy logiki. */

@@ -1,3 +1,4 @@
+// skanuje: tests/setup-limity-czasu.js, tests/czas-testu-wyjatki.json
 /* Strażnik czasu pojedynczego testu (decyzja właściciela 05.11.2026 ~11:40 UTC, wariant A; lekcja o tests/audit-k1-bl-mer.test.tsx w docs/40).
  * Logika: scripts/kontrola-czasu-testu.mjs; źródło czasów: wynik JSON zapisany przez scripts/jest-ponow.mjs (JEST_PONOW_WYNIK); próg w scripts/ci/czasy-tests.json.
  * Poprawka 05.11.2026 po przebiegu dowodowym tests.yml 42039115183 (129 fałszywych zgłoszeń przy limicie wyznaczanym statycznie z tekstu pliku):

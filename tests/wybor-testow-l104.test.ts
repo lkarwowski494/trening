@@ -1,3 +1,4 @@
+// skanuje: tests
 /* L-104 (04.11.2026, koordynator 1.1, wariant A): test, który uruchamia skrypt repo (execFileSync/spawnSync/execSync/execFile/spawn/fork ze ścieżką scripts/**, także przez zmienną, join
    albo `npm run <skrypt z package.json>`), dziedziczy w wyborze testów (test:fast, verify:szybkie, verify:docs — scripts/testy-dla-plikow.mjs, testyUruchamiajaceSkrypty) zależności skryptu:
    graf importów (rekurencyjnie) i pliki oraz katalogi, które skrypt wymienia jako ścieżki. Przypadek wyjściowy: tests/figury-sens-pokrycie.test.ts uruchamia scripts/figures/pokrycie-sensu.mjs,

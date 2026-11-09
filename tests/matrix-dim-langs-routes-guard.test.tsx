@@ -1,3 +1,4 @@
+// skanuje: tests
 /*
  * Pokrycie macierzy LANGS × trasy po podziale na części (12.10.2026; tests/matrix-langs-routes-shared.tsx): żadna kombinacja nie może zginąć.
  * Sprawdza: (1) pliki części matrix-dim-langs-routes1…N istnieją, każdy wywołuje defineRouteLangsPart(własny numer), starego pliku zbiorczego brak;
