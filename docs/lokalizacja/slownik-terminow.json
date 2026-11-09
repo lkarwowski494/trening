@@ -11171,7 +11171,13 @@
    "tylko": [
     "ja",
     "id",
-    "bg"
+    "bg",
+    "ru",
+    "nl",
+    "vi",
+    "sv",
+    "da",
+    "nb"
    ],
    "znaczenie": "chwyt z dłońmi skierowanymi w dół; potoczna nazwa jak w innych kartach (martwy ciąg, podciąganie), bez terminu z podręcznika",
    "kanon": null,
@@ -11204,6 +11210,51 @@
       {
        "wzorzec": "пронир",
        "powod": "podręcznikowe; w pozostałych kartach jest „прав хват”"
+      }
+     ]
+    },
+    "ru": {
+     "zalecany": "прямой хват",
+     "pewnosc": "srednia",
+     "zakazane": []
+    },
+    "nl": {
+     "zalecany": "bovengreep",
+     "pewnosc": "srednia",
+     "zakazane": []
+    },
+    "vi": {
+     "zalecany": "kiểu úp tay",
+     "pewnosc": "srednia",
+     "zakazane": []
+    },
+    "sv": {
+     "zalecany": "överhandsgrepp",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])övergrep",
+       "powod": "fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „överhandsgrepp” (recenzja lokalizacji 09.11.2026)"
+      }
+     ]
+    },
+    "da": {
+     "zalecany": "overhåndsgreb",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])overgreb",
+       "powod": "fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „overhåndsgreb” (recenzja lokalizacji 09.11.2026)"
+      }
+     ]
+    },
+    "nb": {
+     "zalecany": "overhåndsgrep",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])overgrep",
+       "powod": "fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „overhåndsgrep” (recenzja lokalizacji 09.11.2026)"
       }
      ]
     }
