@@ -4,9 +4,10 @@
   {
    "rodzina": "cable_row",
    "cwiczenie": "Seated Cable Row",
-   "ograniczenie": "kontrakt nie ma rysunku stacji do wiosłowania",
-   "status": "do_przegladu",
-   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+   "ograniczenie": "uproszczenie: ławka płaska, podnóżek jako skrzynia (kontrakt nie ma siedziska maszyny z oparciem)",
+   "status": "przejrzane",
+   "przejrzane_przy": "cf8ba30acd1c",
+   "powod": "przegląd recenzenta niezależnego r1, 09.11.2026: stacja złożona z ławki (siedzisko 43 cm), skrzyni pod stopy (12 cm) i wyciągu jest poprawnym kierunkowo uproszczeniem (stopy oparte, kolana ≈ 30°, miednica na siedzisku — styk w 41/41 kadrach); poprzedni opis „kontrakt nie ma rysunku stacji” był nieaktualny"
   },
   {
    "rodzina": "chest_press_machine",

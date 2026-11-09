@@ -51,21 +51,24 @@ export const WYJATKI = {
   'Sled Row': 'OTWARTE — brak źródła ruchu (brak wskazówek, zestaw „open”; sanie; figury-sens.json → cable_row.otwarte); wstrzymane do czasu źródła',
 };
 export const PRZYBLIZENIA = {
-  'Seated Cable Row': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30° (kontrakt nie ma rysunku stacji do wiosłowania)',
+  'Seated Cable Row': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30° (kontrakt nie ma siedziska maszyny z oparciem)',
   'Wiosłowanie na linkach (siedząc)': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°',
   'Cable Rope Rear-Delt Rows': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°',
   'Machine Row': 'przybliżenie: dźwignia obrotowa jako schemat (oś przed osobą, dłonie na łuku), bez poduszki piersiowej; siedzisko jako ławka',
   'Leverage High Row': 'przybliżenie: dźwignia obrotowa jako schemat (uchwyty wysoko, ruch w dół i do tyłu), bez poduszki piersiowej',
 };
 
+/** Wiosłowanie na wyciągu: linka ≤ 5° od poziomu w całym ruchu (decyzja właściciela 27.10.2026, pkt 7a; recenzja niezależna r1, 09.11.2026, W1/W2). Siedząc: bloczek na dole stacji (cable.row_seat, ≤ 60 cm), dłonie z wyprostem na wysokości bloczka (dy od barku).
+ * Stojąc: bloczek na wysokości klatki (karta scrow.setup), dłonie od wyprostu do klatki na tej samej wysokości (dy od barku). */
+export const SIEDZ_BLOCZEK = 60, SIEDZ_DY0 = -40, SIEDZ_DY1 = -41, STOJ_BLOCZEK = 122, STOJ_DY = -17;
 export function generuj() {
   const G = {};
   const S = siedzWyc(); const sedz = (cw, o) => cw_(cw, { tulow: { m: S.m, p: 0, nogi: S.nogi }, dodatki: S.dodatki, ...o });
-  G['Seated Cable Row'] = () => sedz('Seated Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 132, y: 55 })], ruch: { zr: 11, dy0: -18, obrot: 0 } });
-  G['Wiosłowanie na linkach (siedząc)'] = () => sedz('Wiosłowanie na linkach (siedząc)', { sprzet: [wyc({ chwyt: 'uchwyt', x: 132, y: 55 })], ruch: { zr: 12, dy0: -18, obrot: 0 } });
+  G['Seated Cable Row'] = () => sedz('Seated Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 132, y: SIEDZ_BLOCZEK })], ruch: { zr: 11, dy0: SIEDZ_DY0, dy1: SIEDZ_DY1, obrot: 0 } });
+  G['Wiosłowanie na linkach (siedząc)'] = () => sedz('Wiosłowanie na linkach (siedząc)', { sprzet: [wyc({ chwyt: 'uchwyt', x: 132, y: SIEDZ_BLOCZEK })], ruch: { zr: 12, dy0: SIEDZ_DY0, dy1: SIEDZ_DY1, obrot: 0 } });
   G['Cable Rope Rear-Delt Rows'] = () => sedz('Cable Rope Rear-Delt Rows', { sprzet: [wyc({ chwyt: 'lina', x: 132, y: 55 })], ruch: { zr: 33, dy0: 4, dy1: -2, x1: 14, pole: [-1.3, 0, 1], obrot: 0 } });
-  G['Standing Cable Row'] = () => cw_('Standing Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 120, y: 100 })], ruch: { zr: 11, dy0: -3, obrot: 0 } });
-  G['Single Arm Cable Row'] = () => cw_('Single Arm Cable Row', { sprzet: [wyc({ chwyt: 'uchwyt', x: 120, y: 100, trzyma: 'R' })], ruch: { zr: 20, dy0: -3, jedna: 'R', obrot: 0 } });
+  G['Standing Cable Row'] = () => cw_('Standing Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 120, y: STOJ_BLOCZEK })], ruch: { zr: 11, dy0: STOJ_DY, dy1: STOJ_DY, obrot: 0 } });
+  G['Single Arm Cable Row'] = () => cw_('Single Arm Cable Row', { sprzet: [wyc({ chwyt: 'uchwyt', x: 120, y: STOJ_BLOCZEK, trzyma: 'R' })], ruch: { zr: 20, dy0: STOJ_DY, dy1: STOJ_DY, jedna: 'R', obrot: 0 } });
   G['Face Pull'] = () => cw_('Face Pull', { sprzet: [wyc({ chwyt: 'lina', x: 110, y: 150 })], ruch: { zr: 31, dy0: 8, dy1: 8, x1: 12, pole: [-1.3, 0, 1], obrot: 0 } });
   const klek = { m: [0, 50], p: 0, nogi: { R: noga3([-43, 20, 10], [1, 0, 0.05], { pod: -75, rot: 0 }), L: noga3([-43, 20, -10], [1, 0, -0.05], { pod: -75, rot: 0 }) } };
   G['Kneeling High Pulley Row'] = () => cw_('Kneeling High Pulley Row', { tulow: klek, sprzet: [wyc({ chwyt: 'drazek', x: 120, y: 190 })], ruch: { zr: 11, dy0: 4, dy1: -26, x1: 14, obrot: 0 } });
