@@ -2594,7 +2594,7 @@
    }
   },
   "cdl.setup": {
-   "s": "ec4f9cac4014",
+   "s": "753d4267c1b3",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -16084,7 +16084,7 @@
    }
   },
   "ohs.setup": {
-   "s": "846e1aabd26f",
+   "s": "6223fb601f77",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -24026,7 +24026,7 @@
    }
   },
   "slrdl.move": {
-   "s": "29973850ac0c",
+   "s": "69cf07509bea",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -24859,82 +24859,6 @@
     "ja": "5d8c45efd037",
     "ko": "bb2d67ddfe94",
     "zh-Hant": "a51e034c157a"
-   }
-  },
-  "sqb.bands": {
-   "s": "e0dbaad6857d",
-   "t": {
-    "cs": "e3b0c44298fc",
-    "sk": "e3b0c44298fc",
-    "hu": "e3b0c44298fc",
-    "ro": "e3b0c44298fc",
-    "bg": "e3b0c44298fc",
-    "hr": "e3b0c44298fc",
-    "sl": "e3b0c44298fc",
-    "sr": "e3b0c44298fc",
-    "lt": "e3b0c44298fc",
-    "lv": "e3b0c44298fc",
-    "et": "e3b0c44298fc",
-    "uk": "e3b0c44298fc",
-    "es": "e3b0c44298fc",
-    "es-419": "e3b0c44298fc",
-    "pt": "e3b0c44298fc",
-    "pt-BR": "e3b0c44298fc",
-    "de": "e3b0c44298fc",
-    "fr": "e3b0c44298fc",
-    "it": "e3b0c44298fc",
-    "nl": "e3b0c44298fc",
-    "sv": "e3b0c44298fc",
-    "da": "e3b0c44298fc",
-    "nb": "e3b0c44298fc",
-    "fi": "e3b0c44298fc",
-    "tr": "e3b0c44298fc",
-    "el": "e3b0c44298fc",
-    "id": "e3b0c44298fc",
-    "ms": "e3b0c44298fc",
-    "vi": "e3b0c44298fc",
-    "ru": "e3b0c44298fc",
-    "ja": "e3b0c44298fc",
-    "ko": "e3b0c44298fc",
-    "zh-Hant": "e3b0c44298fc"
-   }
-  },
-  "sqc.chains": {
-   "s": "7d50e7fb43d5",
-   "t": {
-    "cs": "e3b0c44298fc",
-    "sk": "e3b0c44298fc",
-    "hu": "e3b0c44298fc",
-    "ro": "e3b0c44298fc",
-    "bg": "e3b0c44298fc",
-    "hr": "e3b0c44298fc",
-    "sl": "e3b0c44298fc",
-    "sr": "e3b0c44298fc",
-    "lt": "e3b0c44298fc",
-    "lv": "e3b0c44298fc",
-    "et": "e3b0c44298fc",
-    "uk": "e3b0c44298fc",
-    "es": "e3b0c44298fc",
-    "es-419": "e3b0c44298fc",
-    "pt": "e3b0c44298fc",
-    "pt-BR": "e3b0c44298fc",
-    "de": "e3b0c44298fc",
-    "fr": "e3b0c44298fc",
-    "it": "e3b0c44298fc",
-    "nl": "e3b0c44298fc",
-    "sv": "e3b0c44298fc",
-    "da": "e3b0c44298fc",
-    "nb": "e3b0c44298fc",
-    "fi": "e3b0c44298fc",
-    "tr": "e3b0c44298fc",
-    "el": "e3b0c44298fc",
-    "id": "e3b0c44298fc",
-    "ms": "e3b0c44298fc",
-    "vi": "e3b0c44298fc",
-    "ru": "e3b0c44298fc",
-    "ja": "e3b0c44298fc",
-    "ko": "e3b0c44298fc",
-    "zh-Hant": "e3b0c44298fc"
    }
   },
   "srf.move": {
