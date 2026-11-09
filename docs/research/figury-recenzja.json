@@ -518,11 +518,10 @@
     },
     "Lateral Raise (hantle)": {
       "rodzina": "delt_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "40131a00c14b",
-      "uwagi": "Ruch i karta zgodne. Widok z przodu: unoszenie bokiem do wysokości barków, łokcie lekko ugięte i wyżej niż dłonie. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "40131a00c14b"
     },
     "Cable Lateral Raise": {
       "rodzina": "delt_raise",

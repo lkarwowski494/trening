@@ -12,6 +12,7 @@ import { CATALOG } from '@/lib/catalog.generated';
 import { figureSpec } from '@/lib/figures/v2';
 import { TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
 import { techniquesOf, cueIdsOf } from '@/lib/figures/v2/ui';
+import { DELT_RAISE_TECHNIQUE } from '@/lib/figures/v2/overlay/delt_raise';
 import REGULY from '@/lib/figures/v2/reguly-cwiczen.json';
 
 const root = path.join(__dirname, '..');
@@ -73,8 +74,11 @@ describe('delt_raise (09.11.2026, recenzja nakładki): łuk tylko w rzucie płas
     expect(d('deltArmElevationFront').exercises!.slice().sort()).toEqual(FRONT.slice().sort()); expect(d('deltArmElevationSide').exercises!.slice().sort()).toEqual(SIDE.slice().sort());
     expect(FRONT.filter(k => SIDE.includes(k))).toEqual([]);
   });
-  test('dobór: ćwiczenie z listy czołowej nigdy nie dostaje elementu bocznego i odwrotnie; rysowane są te z kartą i regułą „ustalone” (Machine Lateral Raise i Cable Seated Lateral Raise nie mają elementu — karta bez wskazówki ruchu); reszta rodziny bez łuku', () => {
-    const NIE_RYSUJE = ['Machine Lateral Raise', 'Cable Seated Lateral Raise'];
+  test('rejestr: TECHNIQUE.delt_raise = DELT_RAISE_TECHNIQUE z trzema elementami w stałej kolejności (czołowy, boczny, poziom barku)', () => {
+    expect(TECHNIQUE.delt_raise).toBe(DELT_RAISE_TECHNIQUE); expect(DELT_RAISE_TECHNIQUE.map(d => d.id)).toEqual(['deltArmElevationFront', 'deltArmElevationSide', 'deltShoulderLevelRef']);
+  });
+  test('dobór: ćwiczenie z listy czołowej nigdy nie dostaje elementu bocznego i odwrotnie; rysowane są te z kartą i regułą „ustalone” (po wpisach zestawów 09.11.2026 wszystkie z listy czołowej rysują element); reszta rodziny bez łuku', () => {
+    const NIE_RYSUJE: string[] = []; /* 09.11.2026: Machine Lateral Raise i Cable Seated Lateral Raise mają łuk po wpisach zestawów (recenzja audytora) — wszystkie ćwiczenia z listy czołowej rysują element */
     for (const k of FRONT) { const t = techniquesOf(k); expect([k, t.includes('deltArmElevationSide'), t.includes('deltArmElevationFront')]).toEqual([k, false, !NIE_RYSUJE.includes(k)]); }
     for (const k of SIDE) { const t = techniquesOf(k); expect([k, t.includes('deltArmElevationFront'), t.includes('deltArmElevationSide')]).toEqual([k, false, true]); }
     for (const k of KEYS.delt_raise.filter(x => !FRONT.includes(x) && !SIDE.includes(x))) expect([k, techniquesOf(k).filter(i => i.startsWith('deltArmElevation'))]).toEqual([k, []]);

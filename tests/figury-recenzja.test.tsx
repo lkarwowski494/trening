@@ -102,7 +102,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
       const f = kolejka.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
       for (const m of fs.readFileSync(path.join(root, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V2)) kolejka.push(c); }
     }
-    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(squat|hinge|bench_press|curl|pull_up|olympic|triceps)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(squat|hinge|bench_press|curl|pull_up|olympic|triceps|delt_raise)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
     const brak = [...domk].filter(f => !rodzinne(f) && !r.wspolne.includes(f) && !(f in r.poza)).sort();
     expect(brak).toEqual([]);
     for (const f of ['muscles.ts', 'muscles.generated.ts', 'guides.ts', 'contacts.ts', 'colliders.ts', 'render.ts', 'families.ts', 'poseData.ts']) expect(r.wspolne).toContain(V2 + f);

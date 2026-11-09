@@ -15,10 +15,8 @@ import type { TechniqueDef } from '../overlay';
 export const DELT_FRONTAL_EXERCISES = ['Lateral Raise (hantle)', 'Cable Lateral Raise', 'One-Arm Lateral Raise (hantel)', 'Band Lateral Raise', 'Machine Lateral Raise', 'Cable Seated Lateral Raise', 'Dumbbell Scaption', 'Cable Y Raise'];
 /** Ćwiczenia w płaszczyźnie strzałkowej (rzut z boku): unoszenie przodem; w rzucie z przodu ramię rzutuje się na pion. */
 export const DELT_SAGITTAL_EXERCISES = ['Front Raise', 'Cable Front Raise', 'Front Plate Raise', 'Single Dumbbell Front Raise', 'Barbell Front Raise to Overhead', 'Dumbbell Front Raise to Overhead'];
-const ELEVATION_CUES = ['lat.move', 'front.move', 'lat.height', 'lat.elbows', 'front.elbows', 'cyr.move', 'fro.move'];
-
 export const DELT_RAISE_TECHNIQUE: TechniqueDef[] = [
-  { id: 'deltArmElevationFront', kind: 'abduction', cue: ELEVATION_CUES, rule: 'ramie_unosi_sie', views: ['front'], exercises: DELT_FRONTAL_EXERCISES },
-  { id: 'deltArmElevationSide', kind: 'abduction', cue: ELEVATION_CUES, rule: 'ramie_unosi_sie', views: ['side'], exercises: DELT_SAGITTAL_EXERCISES },
+  { id: 'deltArmElevationFront', kind: 'abduction', cue: ['lat.move', 'front.move', 'lat.height', 'lat.elbows', 'front.elbows', 'cyr.move', 'fro.move'], rule: 'ramie_unosi_sie', views: ['front'], exercises: DELT_FRONTAL_EXERCISES },
+  { id: 'deltArmElevationSide', kind: 'abduction', cue: ['lat.move', 'front.move', 'lat.height', 'lat.elbows', 'front.elbows', 'cyr.move', 'fro.move'], rule: 'ramie_unosi_sie', views: ['side'], exercises: DELT_SAGITTAL_EXERCISES },
   { id: 'deltShoulderLevelRef', kind: 'ref', cue: ['lat.height', 'cdr.move'], rule: 'lokcie_na_wysokosci_barkow_u1', views: ['front'], ref: { shape: 'horizontal', through: 'shoulder' } },
 ];

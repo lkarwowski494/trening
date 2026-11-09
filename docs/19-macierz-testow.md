@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 359 | 359 | 0 |
 | TEKST | 1088 | 1088 | 0 |
 | LOGIKA | 1167 | 1167 | 0 |
-| WYMIAR | 180 | 180 | 0 |
+| WYMIAR | 183 | 183 | 0 |
 
 ## EKRAN
 
@@ -703,7 +703,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | guma: {v} | components/EquipVisual.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/gemini-polecenia.test.ts, tests/matrix-data-shared.ts +1 |
 | Gumy | app/_layout.tsx | tests/guide.test.tsx, tests/m3-p5-delete.test.tsx, tests/matrix-i18n.test.tsx +6 |
 | Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo. | lib/guide.ts | tests/guide.test.tsx |
-| hantle | lib/swap.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +136 |
+| hantle | lib/swap.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +137 |
 | hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower | lib/equipment.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/scenario-full.test.tsx |
 | hantle: {v} | components/EquipVisual.tsx | tests/figury-recenzja-p1.test.ts, tests/karta-sprzet.test.tsx, tests/matrix-karta.test.tsx |
 | Historia jest już w telefonie | components/ImportProCard.tsx | tests/monetyzacja-ui.test.tsx |
@@ -1725,7 +1725,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | fairrules.offerAudience | lib/fairrules.ts | tests/monetyzacja-ui.test.tsx |
 | fairrules.fairRulesDue | lib/fairrules.ts | tests/m1-046-monetyzacja-stany.test.tsx, tests/monetyzacja-ui.test.tsx |
 | fairrules.markFairRulesSeen | lib/fairrules.ts | tests/monetyzacja-ui.test.tsx |
-| figures/geom.side | lib/figures/geom.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-data.test.tsx +44 |
+| figures/geom.side | lib/figures/geom.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-data.test.tsx +45 |
 | figures/geom.norm | lib/figures/geom.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/geom.rawPoints | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.posePoints | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts |
@@ -2046,7 +2046,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +291 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +292 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +29 |
 | i18n.exName | lib/i18n.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +42 |
@@ -2719,7 +2719,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | View: side \| front | lib/figures/geom.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts |
 | FrameName: start \| mid \| mid2 \| end | lib/figures/geom.ts | tests/audit-0.10-live.test.tsx, tests/audit-final2-fg.test.tsx, tests/figures-v2-delt-raise-p4.test.tsx +1 |
 | Role: body \| far \| load \| fixed \| pad \| cable | lib/figures/geom.ts | tests/audit-backlog-r75.test.tsx, tests/audit-r82.test.tsx, tests/figures-v2-engine.test.ts +2 |
-| PhaseName: Podciąganie \| Opuszczanie \| Wypychanie \| Wstawanie \| Podnoszenie \| Prostowanie \| Unoszenie \| Obrót \| Powrót \| Rozsuwanie \| Ściąganie \| Uginanie \| Grzbiet w dół \| Koci grzbiet \| Marsz \| Skok \| Rzut \| Naprzemiennie \| Pauza | lib/figures/v2/anim.ts | tests/audit-0.10-lang.test.ts, tests/audit-0.10-stats.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +7 |
+| PhaseName: Podciąganie \| Opuszczanie \| Wypychanie \| Wstawanie \| Podnoszenie \| Prostowanie \| Unoszenie \| Obrót \| Powrót \| Rozsuwanie \| Ściąganie \| Uginanie \| Grzbiet w dół \| Koci grzbiet \| Marsz \| Skok \| Rzut \| Naprzemiennie \| Pauza | lib/figures/v2/anim.ts | tests/audit-0.10-lang.test.ts, tests/audit-0.10-stats.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +6 |
 | Anchor: knees \| heels \| back \| pelvis \| bar \| head \| shoulders \| elbows \| hands \| feet | lib/figures/v2/badges.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-styk.test.tsx |
 | ANCHORS (10) | lib/figures/v2/badges.ts | tests/figures-v2-styk.test.tsx |
 | ContactId: heelR \| heelL \| toeR \| toeL \| handR \| handL \| head \| back \| seat | lib/figures/v2/contacts.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-styk-skrzynia.test.ts +1 |
@@ -2753,6 +2753,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | MUSCLES (19) | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts, tests/guard.test.ts, tests/logic.test.ts +9 |
 | BENCH_TECHNIQUE (3) | lib/figures/v2/overlay/bench_press.ts | tests/figures-v2-nakladka.test.tsx |
 | CURL_TECHNIQUE (2) | lib/figures/v2/overlay/curl.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
+| DELT_FRONTAL_EXERCISES (8) | lib/figures/v2/overlay/delt_raise.ts | tests/audit-m1-031-hantle-asekuracja.test.tsx, tests/catalog-library25.test.tsx, tests/decisions-0310.test.tsx +3 |
+| DELT_SAGITTAL_EXERCISES (6) | lib/figures/v2/overlay/delt_raise.ts | tests/audit-m1-031-asekuracja-zakres.test.tsx, tests/audit-m1-031-hantle-asekuracja.test.tsx, tests/figures-v2-delt-raise-p2.test.ts +1 |
+| DELT_RAISE_TECHNIQUE (3) | lib/figures/v2/overlay/delt_raise.ts | tests/figures-v2-nakladka-fix4.test.tsx |
 | HINGE_GUIDES (2) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka.test.tsx, tests/figury-recenzja.test.tsx |
 | HINGE_TECHNIQUE (1) | lib/figures/v2/overlay/hinge.ts | tests/figures-v2-nakladka-squat-hinge.test.tsx |
 | OLYMPIC_HIP_EXERCISES (4) | lib/figures/v2/overlay/olympic.ts | tests/figures-v2-nakladka-triceps-olympic.test.tsx |
@@ -2764,7 +2767,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | TRICEPS_TECHNIQUE (2) | lib/figures/v2/overlay/triceps.ts | tests/figures-v2-nakladka-triceps-olympic.test.tsx |
 | TechniqueKind: limb \| abduction \| ref | lib/figures/v2/overlay.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-nakladka.test.tsx |
 | RefPoint: grip \| wrist \| elbow \| shoulder \| hip \| knee \| ankle \| toe \| pelvis \| shoulderC \| head | lib/figures/v2/overlay.ts | tests/catalog-full.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +3 |
-| MeasuredJoint: knee \| elbow \| hip \| shElev \| shAbd \| shRot \| shrug \| protract \| wristFlex \| forearmRoll | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +2 |
+| MeasuredJoint: knee \| elbow \| hip \| shElev \| shAbd \| shRot \| shrug \| protract \| wristFlex \| forearmRoll | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-data.test.tsx +2 |
 | TRUNK_EXT (6) | lib/figures/v2/poseInterp.ts | tests/figures-v2-poza2.test.ts |
 | ARM_EXT (4) | lib/figures/v2/poseInterp.ts | tests/figures-v2-poza2.test.ts |
 | BenchImpl: barbell \| smith \| db \| kb \| band \| chain | lib/figures/v2/rigs/benchPress.ts | tests/adapt-logic.test.ts, tests/audit-0.10-tst-ui.test.tsx, tests/catalog-library25.test.tsx +2 |
