@@ -123,7 +123,7 @@ describe('ACG-002 (audyt ćwiczeń 31.10.2026): każdy plik lib/figures/v2, z kt
       const f = kolejkaPlikow.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
       for (const m of fs.readFileSync(path.join(KORZEN, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V)) kolejkaPlikow.push(c); }
     }
-    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(bench_press|curl|pull_up|olympic|triceps)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(bench_press|curl|pull_up|olympic|triceps|chest_fly)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
     const brak = [...domk].filter(f => !rodzinne(f) && !(f.slice(V.length) in POKRYCIE)).sort();
     expect(brak).toEqual([]);
     for (const [f, p] of Object.entries(POKRYCIE)) {
@@ -145,11 +145,11 @@ describe('L-080 (09.11.2026): gałąź z wcześniejszymi zmianami względem main
     git(tmp, 'init', '-q', '-b', 'main'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'main'); const refs: Record<string, string> = { main: git(tmp, 'rev-parse', 'HEAD') };
     git(tmp, 'checkout', '-qb', 'galaz');
     zastosuj(tmp, [
-      { plik: V2 + 'families.ts', z: "{ id: 'chest_fly', status: 'planned'", na: "{ id: 'chest_fly', status: 'ready'" },
-      { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  chest_fly: () => require('./poses/chest_fly.json'),\n" },
-      { plik: V2 + 'poseData.ts', z: 'export const DATA_UI: Record<string, DataUi> = {\n', na: "export const DATA_UI: Record<string, DataUi> = {\n  chest_fly: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" },
+      { plik: V2 + 'families.ts', z: "{ id: 'leg_isolation', status: 'planned'", na: "{ id: 'leg_isolation', status: 'ready'" },
+      { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  leg_isolation: () => require('./poses/leg_isolation.json'),\n" },
+      { plik: V2 + 'poseData.ts', z: 'export const DATA_UI: Record<string, DataUi> = {\n', na: "export const DATA_UI: Record<string, DataUi> = {\n  leg_isolation: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" },
     ]);
-    git(tmp, 'commit', '-qam', 'podlaczenie chest_fly'); refs.c1 = git(tmp, 'rev-parse', 'HEAD');
+    git(tmp, 'commit', '-qam', 'podlaczenie leg_isolation'); refs.c1 = git(tmp, 'rev-parse', 'HEAD');
     fs.writeFileSync(path.join(tmp, 'dokument.md'), 'notatka\n'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'dokument'); refs.c2 = git(tmp, 'rev-parse', 'HEAD');
     zastosuj(tmp, SCEN.element.zmiany); git(tmp, 'commit', '-qam', 'prowadnica'); refs.c3 = git(tmp, 'rev-parse', 'HEAD');
     const r: Record<string, Wynik> = {};

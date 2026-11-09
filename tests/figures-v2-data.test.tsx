@@ -43,14 +43,14 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic')) { /* olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, f === 'chest_fly' ? (/Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd') : ui.joints[0]]); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia w bok (shAbd), pullover i Crucifix (utrzymanie, pierwszy staw z DATA_UI) — zgięcie w płaszczyźnie strzałkowej (shElev); DATA_UI ma oba, wybór po ruchu (measureOf) */
+      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, f === 'chest_fly' ? (/Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd') : ui.joints[0]]); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover i Crucifix (utrzymanie: pierwszy staw DATA_UI) — shElev; wybór po ruchu (measureOf) */
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
       else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
-      /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki, 90° → ≤ 14°) i zgięcie ramienia (pullover, ≥ 140° → ≤ 70°) maleją */
-      else if (f === 'chest_fly') { expect([k, k === 'Crucifix' ? Math.abs(measuredAngle(s, 1).deg - measuredAngle(s, 0).deg) < 1 : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); } /* Crucifix: utrzymanie ramion w bok — kąt stały */
+            /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki) i zgięcie ramienia (pullover) maleją; Crucifix (utrzymanie): kąt stały */
+      else if (f === 'chest_fly') { expect([k, k === 'Crucifix' ? Math.abs(measuredAngle(s, 1).deg - measuredAngle(s, 0).deg) < 1 : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });

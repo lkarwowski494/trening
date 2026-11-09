@@ -11,16 +11,16 @@ import { KORZEN, kopia, kolejka, skroty, usunKopie, type Wynik, type Zmiana } fr
 
 const FAM = ['squat', 'pull_up', 'curl', 'olympic'];
 const V2 = 'lib/figures/v2/';
-const STATUS_CHEST_FLY: Zmiana = { plik: V2 + 'families.ts', z: "{ id: 'chest_fly', status: 'planned'", na: "{ id: 'chest_fly', status: 'ready'" };
-const LOAD_CHEST_FLY: Zmiana = { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  chest_fly: () => require('./poses/chest_fly.json'),\n" };
-const UI_CHEST_FLY: Zmiana = { plik: V2 + 'poseData.ts', z: 'export const DATA_UI: Record<string, DataUi> = {\n', na: "export const DATA_UI: Record<string, DataUi> = {\n  chest_fly: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" };
+const STATUS_LEG_ISOLATION: Zmiana = { plik: V2 + 'families.ts', z: "{ id: 'leg_isolation', status: 'planned'", na: "{ id: 'leg_isolation', status: 'ready'" };
+const LOAD_LEG_ISOLATION: Zmiana = { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  leg_isolation: () => require('./poses/leg_isolation.json'),\n" };
+const UI_LEG_ISOLATION: Zmiana = { plik: V2 + 'poseData.ts', z: 'export const DATA_UI: Record<string, DataUi> = {\n', na: "export const DATA_UI: Record<string, DataUi> = {\n  leg_isolation: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" };
 const SCEN: Record<string, Zmiana[]> = {
-  statusInnej: [STATUS_CHEST_FLY],
+  statusInnej: [STATUS_LEG_ISOLATION],
   statusWlasnej: [{ plik: V2 + 'families.ts', z: "{ id: 'curl', status: 'ready'", na: "{ id: 'curl', status: 'planned'" }],
-  load: [LOAD_CHEST_FLY],
-  uiInnej: [{ plik: V2 + 'poseData.ts', z: "carry: { names: { first: 'Marsz'", na: "carry: { names: { first: 'Chód'" }, UI_CHEST_FLY],
+  load: [LOAD_LEG_ISOLATION],
+  uiInnej: [{ plik: V2 + 'poseData.ts', z: "carry: { names: { first: 'Marsz'", na: "carry: { names: { first: 'Chód'" }, UI_LEG_ISOLATION],
   uiWlasny: [{ plik: V2 + 'poseData.ts', z: "pull_up: { names: { first: 'Podciąganie'", na: "pull_up: { names: { first: 'Podciągnięcie'" }],
-  pelny: [STATUS_CHEST_FLY, LOAD_CHEST_FLY, UI_CHEST_FLY],
+  pelny: [STATUS_LEG_ISOLATION, LOAD_LEG_ISOLATION, UI_LEG_ISOLATION],
   widoki: [{ plik: V2 + 'families.ts', z: "label: 'Przysiad obustronny', views: ['side', 'front']", na: "label: 'Przysiad obustronny', views: ['side']" }],
   izometria: [{ plik: V2 + 'poseData.ts', z: "  'Dead Hang',\n", na: '' }],
 };

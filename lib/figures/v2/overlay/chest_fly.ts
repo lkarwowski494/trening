@@ -1,16 +1,16 @@
 /*
  * Nakładka techniki: rozpiętki i pullover (chest_fly; hantle leżąc, wyciągi, guma, pec deck, przenoszenie za głowę). 09.11.2026 (decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”, docs/18),
- * tylko reguły „ustalone” z data/zrodla/figury-sens.json (chest_fly) i wskazówki obecne na karcie ćwiczenia (id w `cue` = klucze wskazowki_na_reguly tej reguły); bez nowych liczb na rysunku —
- * tylko geometria (linia ramienia i łuk zgięcia łokcia), próg reguły zostaje w danych reguły:
- * - `lokiec_staly` (fly.elbows: „łokcie lekko ugięte przez cały ruch”): linia bark–łokieć przedłużona poza łokieć i łuk zgięcia łokcia (rodzaj „limb”, staw „elbow”) — łuk ma przez cały ruch
- *   zostać tej samej wielkości; rzut z góry i z boku (rodzina ma te dwa rzuty; w obu ramię wędruje w płaszczyźnie czołowej, więc w jednym rzucie bywa skrócone, w drugim czytelne);
- * - `pullover_rece_proste` (po.arms: „ręce proste”): ten sam element łokcia w rzucie z boku (ramię przenoszone w płaszczyźnie strzałkowej); Bent-Arm Barbell Pullover go nie dostaje (łokieć ugięty celowo, reguła nie dotyczy).
- * Bez elementu: `luk_dloni` (odległość dłoni — strefa liczbowa, kind „zone” nieobsługiwany, E5), `dol_na_wysokosci_barkow` (jedno źródło), `pullover_ramie` (jedno źródło),
- * `trzymanie_lokiec` i `trzymanie_wysokosc` (Crucifix; analogia do unoszenia ramion, nie „ustalone”).
+ * tylko reguły „ustalone” z data/zrodla/figury-sens.json (chest_fly) i wskazówki obecne na karcie ćwiczenia (id w `cue` = klucze wskazowki_na_reguly tej reguły); bez nowych liczb na rysunku — tylko geometria:
+ * - `luk_dloni` (dfly.move, cfly.move: „hantle szerokim łukiem na boki i z powrotem nad klatkę”): kąt ramię–tułów — linia osi tułowia od barku i łuk do ramienia (rodzaj „abduction”, rzut z góry: ramię wędruje od
+ *   prostopadłego do tułowia (ramiona w bok) do pionowego (nad klatką, w rzucie punkt — łuk znika, gdy ramię jest krótsze niż OVERLAY_ARM_MIN_PROJ)); tylko rozpiętki leżąc na ławce (`exercises`), bo w stojących i na pec decku
+ *   oś tułowia jest pionowa i w rzucie z góry jest punktem, a w rzucie z boku ramię jest prawie stałe względem niej.
+ * Bez elementu (rodzaju elementu nie ma w silniku albo reguła nie „ustalone”): `lokiec_staly` i `pullover_rece_proste` — łokieć stoi (zmiana ≤ 12°), nakładka „limb” rysuje się tylko przy mierzonym i pokazanym stawie (overlay.ts:158),
+ * a mierzone jest ramię; `luk_dloni` poza ćwiczeniami leżąc — strefa liczbowa (kind „zone” nieobsługiwany, E5); `dol_na_wysokosci_barkow` i `pullover_ramie` (jedno źródło); `trzymanie_*` (Crucifix; analogia).
  */
 import type { TechniqueDef } from '../overlay';
 
+/** Rozpiętki leżąc na ławce (płaska, skośna, ujemna): oś tułowia w rzucie z góry jest odcinkiem poziomym albo ukośnym, ramię w płaszczyźnie czołowej. */
+export const CHEST_FLY_LYING_EXERCISES = ['Chest Fly (hantle)', 'Incline Chest Fly (hantle)', 'Decline Dumbbell Fly', 'One-Arm Flat Bench Dumbbell Fly', 'Flat Bench Cable Fly', 'Incline Cable Fly'];
 export const CHEST_FLY_TECHNIQUE: TechniqueDef[] = [
-  { id: 'flyElbowLimb', kind: 'limb', cue: ['fly.elbows'], rule: 'lokiec_staly', views: ['top', 'side'], joint: 'elbow' },
-  { id: 'pulloverElbowLimb', kind: 'limb', cue: ['po.arms'], rule: 'pullover_rece_proste', views: ['side'], joint: 'elbow' },
+  { id: 'flyArmArc', kind: 'abduction', cue: ['dfly.move', 'cfly.move'], rule: 'luk_dloni', views: ['top'], exercises: CHEST_FLY_LYING_EXERCISES },
 ];

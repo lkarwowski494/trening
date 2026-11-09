@@ -6,9 +6,9 @@
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza rysunek i nakładkę, nie recenzję rodziny */
 import * as fs from 'fs';
 import * as path from 'path';
-import { assignAll, proj, figureSpec, frameAt, jointAngles, poseKeys, DATA_UI, FAMILY, measuredJoint, angleLineShown, phaseNames, equipColliders, bodyColliders, gap, checkFrame, type FigureSpec, type V3, type View } from '@/lib/figures/v2';
+import { assignAll, proj, overlayShapes, figureSpec, frameAt, jointAngles, poseKeys, DATA_UI, FAMILY, measuredJoint, angleLineShown, phaseNames, equipColliders, bodyColliders, gap, checkFrame, type FigureSpec, type V3, type View } from '@/lib/figures/v2';
 import { TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
-import { CHEST_FLY_TECHNIQUE } from '@/lib/figures/v2/overlay/chest_fly';
+import { CHEST_FLY_TECHNIQUE, CHEST_FLY_LYING_EXERCISES } from '@/lib/figures/v2/overlay/chest_fly';
 import { stykKlatki, KADRY_STYKU, PROG_STYKU } from './helpers/styk-figur';
 import { techniquesOf, cueIdsOf, errorText } from '@/lib/figures/v2/ui';
 
@@ -141,23 +141,21 @@ describe('chest_fly: zakres z tekstu karty (K8)', () => {
 });
 
 describe('chest_fly: nakładka techniki', () => {
-  test('rejestr: chest_fly = flyElbowLimb (limb, łokieć, z góry i z boku) + pulloverElbowLimb (limb, łokieć, z boku); reguły „ustalone”, cue = wskazówki tych reguł', () => {
-    expect(TECHNIQUE.chest_fly).toBe(CHEST_FLY_TECHNIQUE); expect(CHEST_FLY_TECHNIQUE.map(d => d.id)).toEqual(['flyElbowLimb', 'pulloverElbowLimb']);
-    expect(CHEST_FLY_TECHNIQUE.map(d => [d.kind, d.joint, d.views, d.rule])).toEqual([['limb', 'elbow', ['top', 'side'], 'lokiec_staly'], ['limb', 'elbow', ['side'], 'pullover_rece_proste']]);
-    for (const d of CHEST_FLY_TECHNIQUE) { expect(SENS.reguly[d.rule].pewnosc).toMatch(/^ustalone/); for (const c of d.cue) expect(SENS.wskazowki_na_reguly[c]).toContain(d.rule); }
+  test('rejestr: chest_fly = flyArmArc (abduction, z góry, reguła luk_dloni „ustalone”, cue = wskazówki tej reguły) tylko dla rozpiętek leżąc', () => {
+    expect(TECHNIQUE.chest_fly).toBe(CHEST_FLY_TECHNIQUE); expect(CHEST_FLY_TECHNIQUE.map(d => [d.id, d.kind, d.views, d.rule, d.exercises])).toEqual([['flyArmArc', 'abduction', ['top'], 'luk_dloni', CHEST_FLY_LYING_EXERCISES]]);
+    expect(SENS.reguly.luk_dloni.pewnosc).toMatch(/^ustalone/); for (const c of CHEST_FLY_TECHNIQUE[0].cue) expect(SENS.wskazowki_na_reguly[c]).toContain('luk_dloni');
+    for (const k of CHEST_FLY_LYING_EXERCISES) expect([k, (REGULY[k] ?? []).includes('luk_dloni')]).toEqual([k, true]);
   });
-  test('element ⇔ wskazówka (karta własna albo zestaw ogólny po recenzji zestawów) i reguła „ustalone” wariantu: techniquesOf = filtr definicji po wskazówkach, które karta pokazuje; zdanie elementu istnieje', () => {
-    for (const k of KEYS) { const have = new Set(cueIdsOf(k).ids); const want = CHEST_FLY_TECHNIQUE.filter(d => d.cue.some(c => have.has(c)) && (REGULY[k] ?? []).includes(d.rule)).map(d => d.id);
+  test('element ⇔ wskazówka karty (dfly.move / cfly.move) i reguła wariantu: techniquesOf = filtr definicji; zdanie elementu istnieje; po recenzji zestawów ogólnych (fly.control bez dfly.move) elementu nie przybywa', () => {
+    for (const k of KEYS) { const have = new Set(cueIdsOf(k).ids); const want = CHEST_FLY_TECHNIQUE.filter(d => d.cue.some(c => have.has(c)) && d.exercises!.includes(k) && (REGULY[k] ?? []).includes(d.rule)).map(d => d.id);
       expect([k, techniquesOf(k)]).toEqual([k, want]); expect(techniquesFor('chest_fly', have, k).map(d => d.id)).toEqual(want);
       for (const id of want) expect(errorText(CHEST_FLY_TECHNIQUE.find(d => d.id === id)!.cue.find(c => have.has(c))!).length).toBeGreaterThan(0); }
-    expect(techniquesOf('Chest Fly (hantle)')).toEqual(['flyElbowLimb']);
-  });
-  test('zestawy ogólne (cue-sets.json, b: general; zdania pokazuje karta dopiero po recenzji zestawów): po recenzji elementy dostają wszystkie rozpiętki z regułą lokiec_staly i pullovery z regułą pullover_rece_proste; Pec Deck, Crucifix i Bent-Arm bez elementu', () => {
-    const sets = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/cue-sets.json'), 'utf8')).items as Record<string, { b: string; ok?: string[] }>;
-    const po = (k: string) => techniquesFor('chest_fly', new Set([...cueIdsOf(k).ids, ...(sets[k]?.b === 'general' ? sets[k].ok ?? [] : [])]), k).map(d => d.id);
-    for (const k of KEYS) { const r = REGULY[k] ?? []; expect([k, po(k)]).toEqual([k, [...(r.includes('lokiec_staly') ? ['flyElbowLimb'] : []), ...(r.includes('pullover_rece_proste') ? ['pulloverElbowLimb'] : [])]]); }
-    for (const k of ['Pec Deck', 'Crucifix', 'Bent-Arm Barbell Pullover']) expect([k, po(k)]).toEqual([k, []]);
-    expect(po('Pullover (hantel)')).toEqual(['pulloverElbowLimb']); expect(po('Band Chest Fly')).toEqual(['flyElbowLimb']);
+    expect(techniquesOf('Chest Fly (hantle)')).toEqual(['flyArmArc']); expect(techniquesOf('Incline Chest Fly (hantle)')).toEqual(['flyArmArc']);
+    for (const k of ['Pec Deck', 'Crucifix', 'Pullover (hantel)', 'Cable Fly', 'Band Chest Fly']) expect([k, techniquesFor('chest_fly', ['dfly.move', 'cfly.move'], k)]).toEqual([k, []]);
     expect(techniquesFor('chest_fly', ['dl.lift'])).toEqual([]);
+  });
+  test('element się rysuje: rozpiętka hantlami z góry daje kształty w klatce środkowej (łuk ramię–tułów), z boku i w pozycji końcowej (ramię pionowe) — nie; przypadek negatywny: ćwiczenie spoza listy nie dostaje elementu', () => {
+    const s = spec('Chest Fly (hantle)'); expect(overlayShapes(s, 0.5, 'top', ['flyArmArc']).length).toBeGreaterThan(0); expect(overlayShapes(s, 0.5, 'side', ['flyArmArc']).length).toBe(0);
+    expect(overlayShapes(spec('Cable Fly'), 0.5, 'top', ['flyArmArc']).length).toBe(0);
   });
 });
