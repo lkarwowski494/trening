@@ -525,19 +525,17 @@
     },
     "Cable Lateral Raise": {
       "rodzina": "delt_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "ae6901c9352f",
-      "uwagi": "Ruch i karta zgodne. Jak unoszenie hantli bokiem; linka od dolnego bloczka po drugiej stronie ciała. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "ae6901c9352f"
     },
     "Front Raise": {
       "rodzina": "delt_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "46ce7d8f4449",
-      "uwagi": "Ruch i karta zgodne. Unoszenie przed sobą do wysokości barków, łokcie prawie proste przez cały ruch. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "46ce7d8f4449"
     },
     "Shrugs (sztanga)": {
       "rodzina": "shrug",
@@ -2934,6 +2932,36 @@
       "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 triceps, recenzja v2 sha 7893f56835ab), gałąź figury/triceps @ 30be67f8, 04.11.2026",
       "sha": "53e2f75bfad4",
       "uwagi": "ExRx CBTriExt i CBStandingTricepsExtensionRope: treść potwierdzona odczytem 02.11.2026 (kopia właściciela; exrx-otwarte.md sekcja 6: „łokcie nad głową, drążek za szyją, prostowanie do pionu i opuszczanie za szyję”, lina: „plecami do wyciągu… łokcie w górę nad głową”). ACE #74 (wersja z hantlem) przeczytane 04.11.2026 — Step 2 „elbows pointing forward, but not completely locked”. Wariant sprzętu (L-047): potwierdzam, że ruch nie różni się od wersji z hantlem — rysunek v2 obu ćwiczeń: ramię nieruchome nad głową (kąt ramię–tułów 156° wobec 151°), łokieć 57→159° wobec 60→163°; zdania z ACE #74 (cote.setup, cote.move, ote.upperArm, press.noLock) to nazwane uproszczenie (wariant sprzętu). Rysunek: wyciąg z tyłu, uchwyt za głową, łokcie w górę — cote.setup spełnione; wysokości bloczka karta nie podaje, więc bloczek na wysokości głowy jej nie przeczy. Końcowe zgięcie ok. 21° — R1 N-2 (backlog)."
+    },
+    "Lateral Raise (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "6943efc1ce5e",
+      "uwagi": "Wskazówki lat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i twierdzeń o zdrowiu). ACE #26 przeczytane 09.11.2026: Step 1 hantle przy udach, łokcie proste lub lekko ugięte; Step 2 „Stiffen your torso…”; Step 3 „slowly raise the dumbbells up and out to your sides”, łokcie prowadzą ruch, do wysokości barków; Step 4 opuszczanie, łokcie lekko ugięte — wszystkie cztery zdania zgodne. ExRx DBLateralRaise (drugie źródło szczebla 4) — wpis z archiwum w cues.json, nieotwarte ponownie (web.archive.org i exrx.net niedostępne z sesji, 403). Rysunek v2 (arkusze Lateral-Raise-hantle-front/side ze śladem; keyframeFrame): start hantle przy udach, łokieć 174° → 167° (lekko ugięty przez cały ruch), łokieć nad dłonią w każdej klatce (u=1: 8,6 cm), u=1 łokieć 1 cm pod wysokością barku, kąt ramię–tułów 10° → 88°, tułów nieruchomy, ślad — łuk od biodra w bok do barku. Karta i rysunek zgodne."
+    },
+    "Cable Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "a24bccc4cf67",
+      "uwagi": "Wskazówki clat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). Źródła: ExRx CBOneArmLateralRaise/CBLateralRaise (wpis z archiwum, nieotwarte ponownie — exrx.net i web.archive.org niedostępne z sesji) i ACE #26 (przeczytane 09.11.2026; wersja z hantlami). Wariant sprzętu (L-047): potwierdzam, że ruch się nie różni — rysunek v2 ręki pracującej ma te same liczby co Lateral Raise (hantle): łokieć 174° → 167°, łokieć nad dłonią (u=1: 8,6 cm), u=1 łokieć 1 cm pod barkiem, ramię 10° → 88°; zdania z ACE #26 to nazwane uproszczenie (wariant sprzętu). Rysunek: uchwyt dolnego wyciągu (bloczek 30 cm nad podłogą), jedna ręka pracuje, druga zwisa — clat.setup spełnione; miejsca bloczka karta nie podaje, więc rysunek jej nie przeczy. N-1 (NISKIE, backlog): lat.move/lat.elbows mówią w liczbie mnogiej („Unieś ramiona”, „Łokcie”), a karta i rysunek to wersja jednorącz (clat.setup: „uchwyt”, „łokieć”) — niespójność brzmienia, nie błąd ruchu. Uwaga dla recenzji ruchu (poniżej progu pewności): bloczek na rysunku stoi 60 cm przed ćwiczącym i tylko 10 cm na stronę ręki wolnej; wpis v1 opisywał linkę „od dolnego bloczka po drugiej stronie ciała” — do sprawdzenia z odczytem ExRx CBOneArmLateralRaise (Preparation), nie dotyczy treści karty."
+    },
+    "Front Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "51f3650d8db4",
+      "uwagi": "Wskazówki front.setup, front.move, front.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). ACE #54 przeczytane 09.11.2026: Step 1 „Position the dumbbells lightly touching the fronts of your thighs with your elbows extended or holding a slight bend”; Step 3 „raise the dumbbells up in front of your body… until your arms are level with your shoulders”; Step 4 „keeping your elbows slightly extended” — front.setup, front.move, front.elbows, lat.height zgodne. ExRx DBFrontRaise — wpis z archiwum w cues.json, nieotwarte ponownie (niedostępne z sesji). Rysunek v2 (arkusze Front-Raise-front/side ze śladem; keyframeFrame): start hantle przed udami (ramię 12°), łokieć 166° stały w każdej klatce (front.elbows „w tym samym ustawieniu” spełnione), u=1 łokieć na wysokości barku (−0,1 cm), dłonie 8 cm wyżej (ExRx: nieco powyżej poziomu), ramię 12° → 90°, tułów nieruchomy, ślad — łuk w przód do barku. Chwyt na rysunku (oś hantla w płaszczyźnie strzałkowej) — karta chwytu nie podaje, więc mu nie przeczy. Karta i rysunek zgodne."
     }
   },
   "zestawy": {
