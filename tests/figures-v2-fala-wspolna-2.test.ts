@@ -103,7 +103,7 @@ describe('FW2 / core_floor: ślad toru przy ciężarze trzymanym oburącz albo p
       for (const u of U) { const f = keyframeFrame(d, u); const t = f.info.trail as V; expect(dist(t, f.sk.legs.R.ankle)).toBeLessThanOrEqual(1.5); odDloni = Math.max(odDloni, dist(t, f.sk.arms.R.grip)); }
       expect(odDloni).toBeGreaterThan(15);
     });
-  test('bez zmiany: dźwignia poza dłońmi (Leg Press, punkt „podeszwy”, trzyma „obie”) — ślad jak w FW1 (brak), zgłoszone osobno', () => {
-    expect(keyframeFrame(dane('leg_machine', 'Leg Press'), 0.5).info.trail).toBeUndefined();
+  test('dźwignia poza dłońmi (Leg Press, punkt „podeszwy”, trzyma „obie”): od D1 A (09.11.2026) ślad = kostka R (było: brak śladu, zgłoszone w FW2); pełny strażnik tests/figures-v2-slad-dzwignia.test.ts', () => {
+    const f = keyframeFrame(dane('leg_machine', 'Leg Press'), 0.5); expect(f.info.trail).toEqual(f.sk.legs.R.ankle);
   });
 });
