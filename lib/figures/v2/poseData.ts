@@ -16,6 +16,7 @@ const LOAD: Record<string, () => PoseFile> = {
   olympic: () => require('./poses/olympic.json'),
   triceps: () => require('./poses/triceps.json'),
   pulldown: () => require('./poses/pulldown.json'),
+  shrug: () => require('./poses/shrug.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -79,7 +80,7 @@ export const DATA_UI: Record<string, DataUi> = {
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true } } },
   shrug: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shrug', 'protract'],
-    exceptions: { 'Middle Back Shrug': { names: { first: 'Ściąganie', second: 'Powrót' } } } },
+    exceptions: { 'Middle Back Shrug': { names: { first: 'Ściąganie', second: 'Powrót' }, joints: ['protract'] /* partia 3, 09.11.2026: łopatki ściągają się (wysunięcie barków), uniesienie stoi */ } } },
   rotator_cuff: { names: { first: 'Obrót', second: 'Powrót' }, lowerFirst: false, joints: ['shRot'],
     exceptions: { 'Band Pull Apart': { names: { first: 'Rozsuwanie', second: 'Powrót' }, joints: ['shAbd'] }, 'Reverse Flyes With External Rotation': { names: { first: 'Unoszenie', second: 'Opuszczanie' }, joints: ['shAbd'] } } },
   forearm: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['wristFlex', 'forearmRoll', 'elbow'],

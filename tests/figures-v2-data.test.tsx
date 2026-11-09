@@ -49,8 +49,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
-      /* Straight Arm Pulldown (partia 3, 09.11.2026): ręka prosta schodzi z góry do ud — uniesienie ramienia (shElev) maleje */
-      else if (f === 'triceps' || k === 'Straight Arm Pulldown') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* partia 3, 09.11.2026: Straight Arm Pulldown — ręka prosta schodzi z góry do ud, uniesienie ramienia (shElev) maleje; Middle Back Shrug — łopatki ściągają się, wysunięcie barków (protract) maleje */
+      else if (f === 'triceps' || k === 'Straight Arm Pulldown' || k === 'Middle Back Shrug') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
