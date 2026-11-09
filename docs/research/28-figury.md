@@ -138,7 +138,7 @@ Widok: z boku; kotwica: przód stopy; przyrządy: plate.
   - zgięcie kolana: 15° (±12°) ← `rdl.mis.knees`: „Zbyt mocno ugięte kolana — ruch zamienia się w przysiad.”
   - dłoń w pionie nad/pod: kostka (±9) ← `dl.close`: „Prowadź sztangę blisko nóg przez cały ruch.”
   - zgięcie łokcia: 0° (±3°) ← `rdl.move`: „Cofaj biodra i prowadź sztangę w dół blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne.
+- Uproszczenie ilustracyjne: pozostałe kąty. Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne. Na rysunku ciężar schodzi na dole tuż pod kolano (09.11.2026): konwencja rysunku w przedziale „okolica kolana – połowa piszczeli” (praktyka, kilka zgodnych źródeł szczebla 4), nie wymóg — głębokość zależy od gibkości.
 
 ### RDL (hantle/linki)
 
@@ -151,7 +151,7 @@ Widok: z boku; kotwica: przód stopy; na wzór: RDL (sztanga); przyrządy: db, d
   - zgięcie kolana: 15° (±12°) ← `rdl.mis.knees`: „Zbyt mocno ugięte kolana — ruch zamienia się w przysiad.”
   - dłoń w pionie nad/pod: kostka (±9) ← `rdl.dbMove`: „Cofaj biodra i opuszczaj ciężar blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.”
   - zgięcie łokcia: 0° (±3°) ← `rdl.dbMove`: „Cofaj biodra i opuszczaj ciężar blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne.
+- Uproszczenie ilustracyjne: pozostałe kąty. Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne. Na rysunku ciężar schodzi na dole tuż pod kolano (09.11.2026): konwencja rysunku w przedziale „okolica kolana – połowa piszczeli” (praktyka, kilka zgodnych źródeł szczebla 4), nie wymóg — głębokość zależy od gibkości.
 
 ### Good Morning
 

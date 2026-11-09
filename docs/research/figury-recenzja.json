@@ -64,15 +64,15 @@
       "rodzina": "hinge",
       "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1)",
-      "sha": "d08c77a6346a"
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1); skrót przeliczony 09.11.2026 po dopisaniu zdania o głębokości na rysunku v2 do notatki figury (figura v1 nadal niewyświetlana)",
+      "sha": "24cfd7e7873f"
     },
     "RDL (hantle/linki)": {
       "rodzina": "hinge",
       "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1)",
-      "sha": "2de2689449ea"
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1); skrót przeliczony 09.11.2026 po dopisaniu zdania o głębokości na rysunku v2 do notatki figury (figura v1 nadal niewyświetlana)",
+      "sha": "7251200018fb"
     },
     "Good Morning": {
       "rodzina": "hinge",
