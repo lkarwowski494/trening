@@ -44,7 +44,7 @@ describe('L-103: prawdziwe repo — zmiana pliku z katalogu czytanego przez join
   test('G3/L-100: rozszerzenie wzorca nie dokłada testów dla docs/research (pomiar 04.11.2026: 20 i 29 przed i po zmianie; wybierają je nazwy plików, nie katalog)', () => {
     /* 04.11.2026 (L-104): +1 — tests/wybor-testow-l104.test.ts czyta pliki docs/research w scenariuszach (pomiar: integracja 20/29, gałąź L-104 21/30; różnica = tylko ten test) */
     expect(wybor(['docs/research/rejestr-twierdzen.json']).length).toBeLessThanOrEqual(21);
-    expect(wybor(['docs/research/figury-recenzja.json']).length).toBeLessThanOrEqual(31); /* 04.11.2026 (L-104): +1 — ten sam test L-104 (ścieżki docs/research w scenariuszach); 09.11.2026 (A3): +1 — tests/zrodla-pelne-cues-a3-przyciaganie.test.ts czyta figury-recenzja.json (karty A3 bez wpisu „karty”, L-047; pomiar: 30 → 31, różnica = tylko ten test) */
+    expect(wybor(['docs/research/figury-recenzja.json']).length).toBeLessThanOrEqual(32); /* 09.11.2026 (A4a): +1 — tests/zrodla-pelne-cues-a4-core.test.ts czyta figury-recenzja.json (karty A4a bez wpisu „karty”, L-047; pomiar: 31 → 32, różnica = tylko ten test);  04.11.2026 (L-104): +1 — ten sam test L-104 (ścieżki docs/research w scenariuszach); 09.11.2026 (A3): +1 — tests/zrodla-pelne-cues-a3-przyciaganie.test.ts czyta figury-recenzja.json (karty A3 bez wpisu „karty”, L-047; pomiar: 30 → 31, różnica = tylko ten test) */
   });
 });
 

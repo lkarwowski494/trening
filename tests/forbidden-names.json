@@ -391,6 +391,21 @@
    "path": "data/zrodla/cues.json",
    "name": "Thera-Band",
    "reason": "organizacja źródła wskazówek techniki (producent gum — instrukcje ćwiczeń z gumami; jeden klucz organizacji w danych źródeł, partia A2 nóg, 08.11.2026, docs/18); podpis w aplikacji neutralny (rodzaj źródła) — jak Eleiko, Rogue Fitness i Life Fitness, decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
+   "path": "tests/fixtures/cues-a4-core.json",
+   "name": "Speediance",
+   "reason": "zapis odrzuconego źródła (09.11.2026, partia A4a core): id i powód źródła liczonego jako niebyłe (blog producenta z marketingiem) — fixture wewnętrznych danych źródeł, nie tekst aplikacji; jak Eleiko w teście P2"
+  },
+  {
+   "path": "tests/zrodla-pelne-cues-a4-core.test.ts",
+   "name": "Speediance",
+   "reason": "strażnik braku źródła niebyłego w danych (09.11.2026, partia A4a core) — nazwa tylko w opisie i liście id testu wewnętrznych danych źródeł; jak Eleiko w teście P2"
+  },
+  {
+   "path": "tests/zrodla-pelne-cues-a4-core.test.ts",
+   "name": "TRX",
+   "reason": "test negatywny (09.11.2026, partia A4a core): wzorzec sprawdza, że teksty kart NIE zawierają nazw źródeł — nazwa występuje tylko w wyrażeniu regularnym asercji; jak w teście A1"
   }
  ]
 }

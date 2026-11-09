@@ -11431,6 +11431,98 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "cofnij_biodra_zawias",
+   "pl": "cofnij biodro/biodra",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "zawias biodrowy (ruch bioder w tył); w aplikacji „wypychając biodra w przód” to ruch swingu, a „wypchnij” to wyciskanie ciężaru nad głowę — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "biodr\\w* (w tył|back)",
+   "jezyki": {
+    "pl": {
+     "zalecany": "cofnij biodra",
+     "zakazane": [
+      {
+       "wzorzec": "wypchn\\w* biodr\\w* w tył",
+       "powod": "„wypchnij” myli się z wyciskaniem i ruchem swingu; zawias to „cofnij biodra”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "push your hips back",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "lower_yourself_back_down",
+   "pl": "wróć / opuść się",
+   "tylko": [
+    "en"
+   ],
+   "znaczenie": "EN „lower back down” czyta się jak „lower back” (lędźwie, pojęcie ledzwie) — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "lower (yourself )?back (down|up)",
+   "jezyki": {
+    "en": {
+     "zalecany": "lower yourself back down",
+     "zakazane": [
+      {
+       "wzorzec": "lower back (down|up)(?![\\p{L}])",
+       "powod": "zderza się z terminem „lower back” (lędźwie)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "podloga_nie_podloze",
+   "pl": "podłoga",
+   "tylko": [
+    "pl"
+   ],
+   "znaczenie": "we wskazówkach o lędźwiach odrywających się od podłoża mówimy „podłoga” (jak w pozostałych zdaniach partii) — recenzja lokalizacji A4a, 09.11.2026; inne użycia „podłoża” (miękkie podłoże, odpychanie się od podłoża) zostają",
+   "kanon": null,
+   "wykrywaj": "od podło(g|ż)",
+   "jezyki": {
+    "pl": {
+     "zalecany": "od podłogi",
+     "zakazane": [
+      {
+       "wzorzec": "odryw\\w* się od podłoża",
+       "powod": "„podłoże” brzmi jak instrukcja; w zdaniach o odrywaniu się od podłogi — „podłoga”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "pilka_gimnastyczna",
+   "pl": "piłka gimnastyczna",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "piłk\\w* gimnastyczn|stability ball",
+   "jezyki": {
+    "pl": {
+     "zalecany": "piłka gimnastyczna",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "stability ball",
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }

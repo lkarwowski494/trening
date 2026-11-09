@@ -17,14 +17,14 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 44 | 6,2% |
 | Bez figury w aplikacji | 481 | 67,9% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 352 | 49,7% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 150 | 21,2% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 168 | 23,7% |
 | Animowany błąd | 127 | 17,9% |
 | Własne wskazówki (źródłowe) | 215 | 30,4% |
 | — z czego z częstymi błędami | 112 | 15,8% |
 | Zestaw ogólny wskazówek wzorca ruchu | 110 | 15,5% |
 | Bez tekstu wskazówek | 383 | 54,1% |
 | Częste błędy (własne albo zestaw ogólny) | 222 | 31,4% |
-| Role mięśni | 512 | 72,3% |
+| Role mięśni | 513 | 72,5% |
 | **Pełna karta** | 180 | 25,4% |
 | **Pełna karta + błąd** | 126 | 17,8% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 183 | 25,8% |
@@ -148,5 +148,5 @@ Pełnych kart: 180 (z błędem: 126). Poniżej ćwiczenia, którym brakuje jedne
 |---:|---:|
 | 0 | 180 |
 | 1 | 119 |
-| 2 | 310 |
-| 3 | 99 |
+| 2 | 311 |
+| 3 | 98 |
