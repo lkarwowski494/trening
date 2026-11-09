@@ -1,0 +1,2402 @@
+{
+ "_opis": "Partia A4a (core: core_floor, core_standing, core_hang, carry; linia 1.1, 09.11.2026) — lista dla recenzenta niezależnego (L-047; autor: programista A4, sesja B #3 — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce). Do sprawdzenia: (1) zgodność z rysunkiem (pozy v2 rodzin core_floor, core_standing, core_hang) i torem ruchu; (2) źródła przyjęte per strona: Fitness Volt z nazwanym autorem z kwalifikacjami i datą bez recenzenta (Tuck Crunch, Scissor Kick, Cable Russian Twists, Kettlebell Figure 8 — M. Magnante ACE, P. Dale), BarBend z autorem z certyfikatem (t2b — M. Dewar CSCS; hlr/hkr — E. Bugera CSCS), Healthline z nazwanym recenzentem (pole strona), Experience Life (M. Fazeli Fard, RKC — jak lifetime-thruster), TRX (blog producenta zawieszeń, Suspended Reverse Crunch — jak trx-push-up w A1), Virginia Mason (system szpitali), WebMD (recenzja lekarska; ta sama grupa co WebMD Ignite — w kartach nie występują razem); (3) uproszczenie Machine Crunch (instrukcja maszyny Hoist HD-3600 przy maszynie ogólnej); (4) Stomach Vacuum — karta zakłada leżenie na plecach (źródła: Healthline, Virginia Mason), pozy rodziny core_floor; (5) Hanging Leg Raise — zakres ruchu w źródłach (do drążka) a figura; (6) Sit Up — część wspólna źródeł w core_floor.situpMove (bez rozstrzygania zaokrąglenia pleców); (7) brzmienie PL/EN 50 nowych zdań (recenzent lokalizacji).",
+ "galaz": "tekst/a4-core-moc",
+ "karty": [
+  [
+   "Cable Crunch",
+   {
+    "setup": [
+     {
+      "id": "core_floor.ccSetup",
+      "pl": "Uklęknij przy wyciągu z liną zawieszoną wysoko; końce liny trzymaj przy głowie.",
+      "en": "Kneel at a high cable with a rope; hold the rope ends by your head.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-331",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+        "miejsce": "Steps 2–3 (wariant: stojąc tyłem do wyciągu; wyciąg w najwyższej pozycji, końce liny przy uszach)"
+       },
+       {
+        "id": "barbend-cable-crunch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://www.barbend.com/cable-crunch/",
+        "miejsce": "Setup (kneel; rope across traps)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.ccMove",
+      "pl": "Zwijaj tułów w dół, ściągając żebra w stronę podłogi.",
+      "en": "Curl your torso down, rolling your ribs toward the floor.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-331",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+        "miejsce": "Steps 5–6 (wariant: stojąc; roll rib cage down)"
+       },
+       {
+        "id": "barbend-cable-crunch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://www.barbend.com/cable-crunch/",
+        "miejsce": "Crunch (curl your torso towards the ground)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "cc.slow",
+      "pl": "Wracaj do góry powoli.",
+      "en": "Come back up slowly.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-331",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+        "miejsce": "Step 7; Tips (control the return)"
+       },
+       {
+        "id": "barbend-cable-crunch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://www.barbend.com/cable-crunch/",
+        "miejsce": "Reset (slowly straighten your torso)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.ccArms",
+      "pl": "Ciągnięcie liny rękami zamiast zwijania tułowia.",
+      "en": "Pulling the rope down with your arms instead of curling your torso.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-cable-crunch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://www.barbend.com/cable-crunch/",
+        "miejsce": "Form Cues (arms only hold the rope, not involved in the movement)"
+       },
+       {
+        "id": "ace-331",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+        "miejsce": "Steps 3–4, 6 (hands by the ears; roll the rib cage down against the cable) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     },
+     {
+      "id": "core_floor.mis.fastReturn",
+      "pl": "Puszczanie ciężaru do góry zamiast powolnego powrotu.",
+      "en": "Letting the weight pull you back up instead of returning slowly.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-331",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+        "miejsce": "Step 6 (slowly returning to the top)"
+       },
+       {
+        "id": "barbend-cable-crunch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://www.barbend.com/cable-crunch/",
+        "miejsce": "Reset (slowly straighten your torso) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Hollow Hold",
+   {
+    "setup": [
+     {
+      "id": "core_floor.supineArms",
+      "pl": "Połóż się na plecach, ręce wyciągnięte za głowę.",
+      "en": "Lie on your back with your arms reaching overhead.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-hollow-hold",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hollow-hold",
+        "miejsce": "Setup (arms extended behind head)"
+       },
+       {
+        "id": "catalyst-hollow-hold",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/712/Hollow-Hold",
+        "miejsce": "opis (lie on your back with your arms overhead)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.hollowMove",
+      "pl": "Dociśnij lędźwie do podłogi, unieś łopatki i nogi i trzymaj.",
+      "en": "Press your lower back into the floor, lift your shoulder blades and legs, and hold.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-hollow-hold",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hollow-hold",
+        "miejsce": "Position and Form Cues (lower back flat; lift shoulders and legs; hold)"
+       },
+       {
+        "id": "catalyst-hollow-hold",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/712/Hollow-Hold",
+        "miejsce": "opis (push your lower back flat into the floor; elevate your feet and upper back; isometric)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "db.back",
+      "pl": "Lędźwie przy podłodze — nie wyginaj pleców w łuk.",
+      "en": "Keep your lower back on the floor — don’t arch it.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "barbend-hollow-hold",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hollow-hold",
+        "miejsce": "Position and Form Cues; Common Mistakes (Arched back)"
+       },
+       {
+        "id": "catalyst-hollow-hold",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/712/Hollow-Hold",
+        "miejsce": "opis (push your lower back flat into the floor)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.lowBackUp",
+      "pl": "Lędźwie odrywają się od podłoża.",
+      "en": "Lower back lifting off the floor or bench.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-hollow-hold",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hollow-hold",
+        "miejsce": "Common Mistakes (Arched back)"
+       },
+       {
+        "id": "catalyst-hollow-hold",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/712/Hollow-Hold",
+        "miejsce": "opis (push your lower back flat into the floor) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Superman",
+   {
+    "setup": [
+     {
+      "id": "core_floor.supermanSetup",
+      "pl": "Połóż się na brzuchu, nogi wyprostowane, ręce wyciągnięte przed głową.",
+      "en": "Lie face down, legs straight, arms stretched out past your head.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-9",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+        "miejsce": "Step 1"
+       },
+       {
+        "id": "cc-superman",
+        "org": "Cleveland Clinic",
+        "szczebel": 4,
+        "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+        "miejsce": "instrukcja, start (lying on your stomach, arms stretched over your head)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.supermanMove",
+      "pl": "Unieś jednocześnie proste ręce i nogi nisko nad podłogę, chwilę przytrzymaj i powoli opuść.",
+      "en": "Lift your straight arms and legs a little off the floor together, hold briefly, then lower slowly.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-9",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+        "miejsce": "Steps 2–3 (a few inches off the floor; hold briefly; slowly lower)"
+       },
+       {
+        "id": "cc-superman",
+        "org": "Cleveland Clinic",
+        "szczebel": 4,
+        "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+        "miejsce": "instrukcja (lift both arms and both legs; hold a few seconds; only a few inches at first)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "core_floor.headNeutral",
+      "pl": "Głowa w przedłużeniu tułowia — patrz w podłogę, nie zadzieraj głowy.",
+      "en": "Keep your head in line with your body — eyes on the floor, don't lift your head.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-9",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+        "miejsce": "Steps 1–2 (head in line with spine; without lifting your head)"
+       },
+       {
+        "id": "cc-superman",
+        "org": "Cleveland Clinic",
+        "szczebel": 4,
+        "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+        "miejsce": "wskazówki (keep your neck in a neutral position)"
+       }
+      ]
+     },
+     {
+      "id": "cobra.control",
+      "pl": "Opuszczaj się powoli.",
+      "en": "Lower yourself slowly.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-9",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+        "miejsce": "Step 3 (slowly lower)"
+       },
+       {
+        "id": "cc-superman",
+        "org": "Cleveland Clinic",
+        "szczebel": 4,
+        "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+        "miejsce": "instrukcja (slowly lowering; go slow)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.headUp",
+      "pl": "Zadzieranie głowy.",
+      "en": "Lifting your head up.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-9",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+        "miejsce": "Step 2 (avoiding any ... raising of your head)"
+       },
+       {
+        "id": "cc-superman",
+        "org": "Cleveland Clinic",
+        "szczebel": 4,
+        "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+        "miejsce": "wskazówki (keep your neck in a neutral position) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     },
+     {
+      "id": "cobra.mis",
+      "pl": "Wyginanie pleców na siłę, za wysoko.",
+      "en": "Forcing your back up too high.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-9",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+        "miejsce": "Step 2 (a few inches off the floor; avoiding any arching in your back)"
+       },
+       {
+        "id": "cc-superman",
+        "org": "Cleveland Clinic",
+        "szczebel": 4,
+        "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+        "miejsce": "instrukcja (only a few inches at first) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Sit Up",
+   {
+    "setup": [
+     {
+      "id": "crunch.setup",
+      "pl": "Połóż się na plecach, kolana ugięte, dłonie przy głowie.",
+      "en": "Lie face up, knees bent, hands lightly beside your head.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-sit-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/432/Sit-Up/",
+        "miejsce": "opis (knees and hips bent, feet flat; fingers at the sides of the head)"
+       },
+       {
+        "id": "barbend-sit-up",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/sit-up/",
+        "miejsce": "How to — setup (bend your knees; heels in the floor; hands behind your head)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.situpMove",
+      "pl": "Napnij brzuch i unieś tułów aż do siadu; do leżenia wracaj powoli.",
+      "en": "Brace your abs and come all the way up to sitting; lower back down slowly.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-sit-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/432/Sit-Up/",
+        "miejsce": "opis (squeeze the abs, sit up completely; return maintaining tension)"
+       },
+       {
+        "id": "barbend-sit-up",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/sit-up/",
+        "miejsce": "How to — movement and lowering (pull the torso up with the abs; lower slowly)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.situpFeet",
+      "pl": "Wymach nogami — stopy odrywają się od podłogi.",
+      "en": "Swinging your legs so your feet leave the floor.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-sit-up",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/sit-up/",
+        "miejsce": "Common Mistakes (Swinging Your Feet)"
+       },
+       {
+        "id": "catalyst-sit-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/432/Sit-Up/",
+        "miejsce": "opis (feet flat on the floor) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "V-Up",
+   {
+    "setup": [
+     {
+      "id": "core_floor.supineReach",
+      "pl": "Połóż się na plecach, nogi wyprostowane, ręce wyciągnięte za głowę.",
+      "en": "Lie on your back, legs straight, arms reaching overhead.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-v-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://www.catalystathletics.com/exercise/313/V-Up/",
+        "miejsce": "opis (lie on your back, legs straight, arms extended overhead)"
+       },
+       {
+        "id": "webmd-v-ups",
+        "org": "WebMD",
+        "szczebel": 4,
+        "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
+        "miejsce": "How to do V-ups, krok 1"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.vupMove",
+      "pl": "Jednocześnie unieś tułów i proste nogi, potem opuść je z powrotem.",
+      "en": "Lift your torso and straight legs at the same time, then lower back down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-v-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://www.catalystathletics.com/exercise/313/V-Up/",
+        "miejsce": "opis (simultaneously perform a sit-up and lift your straight legs; return to fully extended)"
+       },
+       {
+        "id": "webmd-v-ups",
+        "org": "WebMD",
+        "szczebel": 4,
+        "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
+        "miejsce": "How to do V-ups, kroki 3–4"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "plank.brace",
+      "pl": "Napnij brzuch, żeby tułów był sztywny.",
+      "en": "Brace your abs to keep your torso rigid.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-v-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://www.catalystathletics.com/exercise/313/V-Up/",
+        "miejsce": "opis (maintaining ab tension)"
+       },
+       {
+        "id": "webmd-v-ups",
+        "org": "WebMD",
+        "szczebel": 4,
+        "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
+        "miejsce": "How to do V-ups, kroki 2–4; form tips (engage your core)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.vupKnees",
+      "pl": "Uginanie kolan zamiast unoszenia prostych nóg.",
+      "en": "Bending your knees instead of lifting straight legs.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "webmd-v-ups",
+        "org": "WebMD",
+        "szczebel": 4,
+        "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
+        "miejsce": "How to do V-ups, krok 3 (keep both your arms and legs straight)"
+       },
+       {
+        "id": "catalyst-v-up",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://www.catalystathletics.com/exercise/313/V-Up/",
+        "miejsce": "opis (lift your straight legs) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Machine Crunch",
+   {
+    "setup": [
+     {
+      "id": "core_floor.mcSetup",
+      "pl": "Ustaw siedzisko i ciężar przed serią.",
+      "en": "Set the seat and weight before you start the set.",
+      "nowe": true,
+      "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni",
+      "zrodla": [
+       {
+        "id": "ace-291",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/",
+        "miejsce": "Steps 1–2; Tips (set the seat and weight before you begin) (wariant: maszyna z wałkiem na piszczele)"
+       },
+       {
+        "id": "hoist-hd-3600",
+        "org": "Hoist Fitness",
+        "szczebel": 4,
+        "url": "https://www.hoistfitness.com/pages/hd-3600-ab-crunch-low-back",
+        "miejsce": "Ab Crunch — setup (seat height; select weight) (wariant: poduszka na klatce)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.mcMove",
+      "pl": "Napnij brzuch i pochyl tułów do przodu przeciw oporowi maszyny.",
+      "en": "Brace your abs and bend your torso forward against the machine.",
+      "nowe": true,
+      "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni",
+      "zrodla": [
+       {
+        "id": "ace-291",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/",
+        "miejsce": "Steps 5–7"
+       },
+       {
+        "id": "hoist-hd-3600",
+        "org": "Hoist Fitness",
+        "szczebel": 4,
+        "url": "https://www.hoistfitness.com/pages/hd-3600-ab-crunch-low-back",
+        "miejsce": "Ab Crunch — movement (bend at the waist, push upper torso forward)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "cc.slow",
+      "pl": "Wracaj do góry powoli.",
+      "en": "Come back up slowly.",
+      "nowe": false,
+      "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni",
+      "zrodla": [
+       {
+        "id": "ace-291",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/",
+        "miejsce": "Step 8; Tips (return slowly)"
+       },
+       {
+        "id": "hoist-hd-3600",
+        "org": "Hoist Fitness",
+        "szczebel": 4,
+        "url": "https://www.hoistfitness.com/pages/hd-3600-ab-crunch-low-back",
+        "miejsce": "Ab Crunch — movement (slowly return to the start position)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.fastReturn",
+      "pl": "Puszczanie ciężaru do góry zamiast powolnego powrotu.",
+      "en": "Letting the weight pull you back up instead of returning slowly.",
+      "nowe": true,
+      "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni",
+      "zrodla": [
+       {
+        "id": "ace-291",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/",
+        "miejsce": "Step 4 (return slowly to the starting position)"
+       },
+       {
+        "id": "hoist-hd-3600",
+        "org": "Hoist Fitness",
+        "szczebel": 4,
+        "url": "https://www.hoistfitness.com/pages/hd-3600-ab-crunch-low-back",
+        "miejsce": "Ab Crunch — return (slowly return to the start position) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Suspended Reverse Crunch",
+   {
+    "setup": [
+     {
+      "id": "core_floor.suspRevCrunch.setup",
+      "pl": "Włóż stopy w uchwyty taśm i wejdź w podpór jak do pompki.",
+      "en": "Put your feet in the strap cradles and get into a push-up position.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-87",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/87/trx-reg-suspended-knee-tucks/",
+        "miejsce": "Step 1–2 (stopy w uchwytach pod punktem zaczepienia; podpór jak do pompki — parafraza)"
+       },
+       {
+        "id": "trx-basics",
+        "org": "TRX",
+        "szczebel": 4,
+        "url": "https://www.trxtraining.com/blogs/news/trx-moves-of-the-week-the-basics",
+        "miejsce": "Move 4: TRX Reverse Crunch („Feet in foot cradles.”; „Rise up into a strong plank…”)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.suspRevCrunch.move",
+      "pl": "Przyciągnij kolana pod tułów, potem wyprostuj nogi z powrotem do podporu.",
+      "en": "Pull your knees in under your torso, then extend your legs back to the plank.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-87",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/87/trx-reg-suspended-knee-tucks/",
+        "miejsce": "Step 2–3 (wariant nazwy: knee tucks; „Slowly pull your knees toward your chest…”; powrót do podporu)"
+       },
+       {
+        "id": "trx-basics",
+        "org": "TRX",
+        "szczebel": 4,
+        "url": "https://www.trxtraining.com/blogs/news/trx-moves-of-the-week-the-basics",
+        "miejsce": "Move 4: TRX Reverse Crunch („Pull your knees toward your waist for a crunch.”)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "plank.mis.sag",
+      "pl": "Opadające biodra i wygięte w łuk lędźwie.",
+      "en": "Sagging hips and an arched lower back.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-87",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/87/trx-reg-suspended-knee-tucks/",
+        "miejsce": "Step 2 (unikać opadania lędźwi i unoszenia bioder) i Step 3 („Avoid any arching or sagging in your low back throughout the range of motion.”)"
+       },
+       {
+        "id": "trx-compound-2",
+        "org": "TRX",
+        "szczebel": 4,
+        "url": "https://www.trxtraining.com/blogs/news/trx-moves-of-the-week-compound-movements-part-2",
+        "miejsce": "TRX Crunch („come to an active plank”; „flex your feet to enable the best plank alignment”; powrót „to the active plank position”) — błąd = zaprzeczenie standardu, WARUNKOWO (p. 5 pyt. 1)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Tuck Crunch",
+   {
+    "setup": [
+     {
+      "id": "core_floor.tuckCrunch.setup",
+      "pl": "Połóż się na plecach i unieś nogi, tak żeby uda były pionowo.",
+      "en": "Lie on your back and lift your legs so your thighs are vertical.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-tuck-crunch",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/tuck-crunch/",
+        "miejsce": "How to, krok 2 („Lie on your back, then lift your knees up perpendicular to the floor, and bend your legs at a 90-degree angle.”)"
+       },
+       {
+        "id": "ace-243",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/243/vertical-toe-touches/",
+        "miejsce": "Step 1 (uda pionowo) — uproszczenie: wariant pozycji nóg (w ACE kolana wyprostowane)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.tuckCrunch.move",
+      "pl": "Zwiń tułów w stronę kolan, unosząc łopatki od podłogi; opuść się powoli.",
+      "en": "Curl your upper body toward your knees, lifting your shoulder blades off the floor; lower slowly.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-tuck-crunch",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/tuck-crunch/",
+        "miejsce": "How to, kroki 3–4 („…use your ab muscles to curl your upper body toward your knees”; powolne opuszczanie barków)"
+       },
+       {
+        "id": "ace-243",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/243/vertical-toe-touches/",
+        "miejsce": "Step 2–3 (zwijanie tułowia, łopatki od podłogi, powolny powrót) — uproszczenie: wariant pozycji nóg"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "crunch.lowBack",
+      "pl": "Dolna część pleców zostaje na podłodze.",
+      "en": "Your lower back stays on the floor.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "fv-tuck-crunch",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/tuck-crunch/",
+        "miejsce": "How to, krok 2 i wskazówki („Your lower back should not leave the ground during tuck crunches.”)"
+       },
+       {
+        "id": "ace-52",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/",
+        "miejsce": "Step 3 (stopy, kość ogonowa i lędźwie w kontakcie z matą) — uproszczenie: wariant pozycji nóg"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.neckPull",
+      "pl": "Ciągnięcie głowy szyją zamiast unoszenia barków.",
+      "en": "Pulling with your neck instead of lifting your shoulders.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-tuck-crunch",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/tuck-crunch/",
+        "miejsce": "How to, krok 3 („However, do not pull up on your neck.”)"
+       },
+       {
+        "id": "ace-243",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/243/vertical-toe-touches/",
+        "miejsce": "Step 2 i uwagi końcowe (głowa w linii z kręgosłupem, „avoid flexing your head too far forward”) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Stomach Vacuum",
+   {
+    "setup": [
+     {
+      "id": "core_floor.heelTouch.setup",
+      "pl": "Połóż się na plecach, kolana ugięte, stopy płasko na podłodze.",
+      "en": "Lie on your back, knees bent, feet flat on the floor.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "healthline-stomach-vacuum",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/stomach-vacuum",
+        "miejsce": "wersja leżąca („Lie on the floor with your spine neutral, knees bent, and feet flat.”)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-4.md): 4 warunkowo spełnione — autorka K. Davidson, MScFN, RD, CPT; „Medically reviewed by” J. Meacham, PhD, RD, CSCS; „Updated” 13.10.2026"
+       },
+       {
+        "id": "vm-ta-isometric",
+        "org": "Virginia Mason Franciscan Health",
+        "szczebel": 4,
+        "url": "https://www.vmfh.org/content/dam/vmfhorg/pdf/legacy-vm/workfiles/pmr/Transverse%20Abdominus%20Isometric.pdf",
+        "miejsce": "punkt 1 („Lie on your back with your knees bent and feet on the floor”) — uproszczenie: wariant nazwy (p. 5 pyt. 1)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.vacuum.move",
+      "pl": "Wciągnij brzuch do środka, w stronę kręgosłupa, i przytrzymaj.",
+      "en": "Draw your belly in toward your spine and hold.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "healthline-stomach-vacuum",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/stomach-vacuum",
+        "miejsce": "instrukcja (pępek przyciągany w stronę kręgosłupa; przytrzymanie)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-4.md): 4 warunkowo spełnione — autorka K. Davidson, MScFN, RD, CPT; „Medically reviewed by” J. Meacham, PhD, RD, CSCS; „Updated” 13.10.2026"
+       },
+       {
+        "id": "vm-ta-isometric",
+        "org": "Virginia Mason Franciscan Health",
+        "szczebel": 4,
+        "url": "https://www.vmfh.org/content/dam/vmfhorg/pdf/legacy-vm/workfiles/pmr/Transverse%20Abdominus%20Isometric.pdf",
+        "miejsce": "punkty 4–5 („Gently draw in the muscles under your fingers.”; przytrzymanie) — uproszczenie: wariant nazwy"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "core_floor.vacuum.breathe",
+      "pl": "Trzymając brzuch wciągnięty, oddychaj normalnie.",
+      "en": "Keep breathing normally while you hold your belly in.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "healthline-stomach-vacuum",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/stomach-vacuum",
+        "miejsce": "instrukcja („Continue to breathe normally as you hold your belly in.”)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-4.md): 4 warunkowo spełnione — autorka K. Davidson, MScFN, RD, CPT; „Medically reviewed by” J. Meacham, PhD, RD, CSCS; „Updated” 13.10.2026"
+       },
+       {
+        "id": "vm-ta-isometric",
+        "org": "Virginia Mason Franciscan Health",
+        "szczebel": 4,
+        "url": "https://www.vmfh.org/content/dam/vmfhorg/pdf/legacy-vm/workfiles/pmr/Transverse%20Abdominus%20Isometric.pdf",
+        "miejsce": "punkty 2 i 6 („Continue to breathe normally”)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "plank.mis.breath",
+      "pl": "Wstrzymywanie oddechu.",
+      "en": "Holding your breath.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "healthline-stomach-vacuum",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/stomach-vacuum",
+        "miejsce": "instrukcja („You shouldn't be holding your breath…”)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-4.md): 4 warunkowo spełnione — autorka K. Davidson, MScFN, RD, CPT; „Medically reviewed by” J. Meacham, PhD, RD, CSCS; „Updated” 13.10.2026"
+       },
+       {
+        "id": "vm-ta-isometric",
+        "org": "Virginia Mason Franciscan Health",
+        "szczebel": 4,
+        "url": "https://www.vmfh.org/content/dam/vmfhorg/pdf/legacy-vm/workfiles/pmr/Transverse%20Abdominus%20Isometric.pdf",
+        "miejsce": "punkty 2 i 6 (oddychaj normalnie) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Scissor Kick",
+   {
+    "setup": [
+     {
+      "id": "core_floor.scissor.setup",
+      "pl": "Połóż się na plecach z prostymi nogami, dłonie pod pośladkami albo wzdłuż ciała.",
+      "en": "Lie on your back with your legs straight and your hands under your glutes or by your sides.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-scissor-kicks",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/scissor-kicks/",
+        "miejsce": "How to, ustawienie kroki 1–2 („Lie on your back with your legs straight.”; dłonie pod pośladkami)"
+       },
+       {
+        "id": "healthline-scissor-kicks",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/scissor-kicks",
+        "miejsce": "instrukcja, krok 1 (na plecach, nogi wyprostowane; ręce wzdłuż ciała albo dłonie pod pośladkami)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-2.md): 4 warunkowo spełnione — autor S. Lindberg, „medically reviewed” D. Bubnis, M.S., NASM-CPT, 01.05.2019"
+       }
+      ]
+     },
+     {
+      "id": "core_floor.scissor.lift",
+      "pl": "Dociśnij lędźwie do podłogi i unieś nogi nisko nad nią.",
+      "en": "Press your lower back into the floor and lift your legs just off it.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-scissor-kicks",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/scissor-kicks/",
+        "miejsce": "ustawienie kroki 3–4 („Tilt your pelvis, press your lower back into the floor, and brace your core.”; nogi kilka cali nad podłogą)"
+       },
+       {
+        "id": "healthline-scissor-kicks",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/scissor-kicks",
+        "miejsce": "instrukcja, kroki 2–3 (dociśnięcie lędźwi do maty; obie nogi 15–30 cm nad podłogą)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-2.md): 4 warunkowo spełnione — autor S. Lindberg, „medically reviewed” D. Bubnis, M.S., NASM-CPT, 01.05.2019"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_floor.scissor.move",
+      "pl": "Na zmianę unoś jedną nogę wyżej, a drugą opuszczaj w stronę podłogi.",
+      "en": "Alternately raise one leg higher while lowering the other toward the floor.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-scissor-kicks",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/scissor-kicks/",
+        "miejsce": "ruch, kroki 1–3 (jedna noga do ok. 45°, potem w dół, jednocześnie druga w górę)"
+       },
+       {
+        "id": "healthline-scissor-kicks",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/scissor-kicks",
+        "miejsce": "ruch („lower one leg toward the floor as you lift the other leg up”)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-2.md): 4 warunkowo spełnione — autor S. Lindberg, „medically reviewed” D. Bubnis, M.S., NASM-CPT, 01.05.2019"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_floor.mis.archBack",
+      "pl": "Lędźwie odrywają się od podłogi i wyginają w łuk.",
+      "en": "Lower back lifting off the floor and arching.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fv-scissor-kicks",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/scissor-kicks/",
+        "miejsce": "wskazówki („Stop your set if you feel your lower back lifting off the floor…”)"
+       },
+       {
+        "id": "healthline-scissor-kicks",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/scissor-kicks",
+        "miejsce": "wskazówki formy („Make sure your back is not arching.”)",
+        "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-2.md): 4 warunkowo spełnione — autor S. Lindberg, „medically reviewed” D. Bubnis, M.S., NASM-CPT, 01.05.2019"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Kettlebell Windmill",
+   {
+    "setup": [
+     {
+      "id": "core_standing.windmill.setup",
+      "pl": "Wypchnij kettlebell nad głowę i trzymaj go na prostej ręce.",
+      "en": "Press the kettlebell overhead and hold it there on a straight arm.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-522",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/522/Windmill",
+        "miejsce": "opis („hold a dumbbell or kettlebell overhead with one arm”)"
+       },
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis („pressing the kettlebell straight overhead”)"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "kroki, krok 1 („press a single kettlebell overhead”)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_standing.windmill.move",
+      "pl": "Wypchnij biodra w tył, w stronę ręki z ciężarem, i zsuwaj wolną dłoń po wewnętrznej stronie przeciwnej nogi w dół; wróć tą samą drogą.",
+      "en": "Push your hips back toward the loaded side and slide your free hand down the inside of the opposite leg; come back up the same way.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-522",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/522/Windmill",
+        "miejsce": "opis („push the hips back and toward the side holding the weight”; wolna dłoń do podłogi po wewnętrznej stronie przeciwnej stopy)"
+       },
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis („sinking back into the left hip”; prawa ręka „along the inside of the right leg”; powrót: „push the hips forward”)"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "kroki, krok 4 (dolna ręka „trace the inside of your leg”)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "wm.arm",
+      "pl": "Górna ręka z ciężarem prosta, nad barkiem.",
+      "en": "Keep your top arm straight, with the weight over your shoulder.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-522",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/522/Windmill",
+        "miejsce": "opis („rotating the trunk to keep the loaded arm straight up”)"
+       },
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis („Keeping the left arm straight during the movement.”)"
+       }
+      ]
+     },
+     {
+      "id": "core_standing.windmill.knees",
+      "pl": "Nogi prawie proste — kolana tylko lekko ugięte.",
+      "en": "Legs nearly straight — just a soft bend in the knees.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-522",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/522/Windmill",
+        "miejsce": "opis („Keeping the knees close to straight”)"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "kroki, krok 2 („Keep a soft bend in the opposite knee.”)"
+       }
+      ]
+     },
+     {
+      "id": "wm.eyes",
+      "pl": "Patrz na górną dłoń.",
+      "en": "Look at your top hand.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis („Turn to look up at the left hand”)"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "kroki, krok 3 („Keep your eyes on the kettlebell.”)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_standing.windmill.mis.elbow",
+      "pl": "Uginanie łokcia ręki z ciężarem.",
+      "en": "Bending the elbow of the arm holding the weight.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "lista błędów we wstępie („Bending the elbow of your top arm.”)"
+       },
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis („Keeping the left arm straight during the movement.” — standard; błąd = zaprzeczenie standardu)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Cable Russian Twists",
+   {
+    "setup": [
+     {
+      "id": "core_standing.cabletwist.setup",
+      "pl": "Oprzyj górę pleców na piłce, unieś biodra do linii z tułowiem i trzymaj uchwyt na prostych rękach nad klatką.",
+      "en": "Rest your upper back on the ball, lift your hips in line with your torso and hold the handle on straight arms above your chest.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-65",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/",
+        "miejsce": "opis („upper back on the ball”, biodra w górze; wariant: bez wyciągu)"
+       },
+       {
+        "id": "fitnessvolt-cable-russian-twist",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/cable-russian-twists/",
+        "miejsce": "Setup (klatka na linii wyciągu na piłce; „extend your arm directly over your chest”, druga dłoń na uchwycie)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_standing.cabletwist.move",
+      "pl": "Obróć tułów w bok, nie uginając rąk, i wróć do środka.",
+      "en": "Rotate your torso to the side without bending your arms, then come back to the middle.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-65",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/",
+        "miejsce": "opis („Twist through the stomach and shoulders”; wariant: bez wyciągu)"
+       },
+       {
+        "id": "fitnessvolt-cable-russian-twist",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/cable-russian-twists/",
+        "miejsce": "Execution („Your arms should remain straight and extended in the same position throughout the exercise.”; obrót od wyciągu, powolny powrót)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "core_standing.cabletwist.hips",
+      "pl": "Biodra cały czas w górze — nie opuszczaj ich przy obrocie.",
+      "en": "Keep your hips up the whole time — don't let them drop as you rotate.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-65",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/",
+        "miejsce": "opis („with the hips up”)"
+       },
+       {
+        "id": "fitnessvolt-cable-russian-twist",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/cable-russian-twists/",
+        "miejsce": "Execution („Keep your hips high”)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_standing.cabletwist.mis.hipsDrop",
+      "pl": "Opadanie bioder w czasie obrotu.",
+      "en": "Letting your hips sag as you rotate.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "fitnessvolt-cable-russian-twist",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/cable-russian-twists/",
+        "miejsce": "wskazówki („Don't allow your hips and lower body to sink down during the exercise.”)"
+       },
+       {
+        "id": "ace-65",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/",
+        "miejsce": "opis („with the hips up” — standard; błąd = zaprzeczenie standardu)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Double Kettlebell Windmill",
+   {
+    "setup": [
+     {
+      "id": "core_standing.windmill.dblSetup",
+      "pl": "Weź kettlebell do każdej ręki: jeden wypchnij nad głowę na prostej ręce, drugi trzymaj w dole.",
+      "en": "Hold a kettlebell in each hand: press one overhead on a straight arm and let the other hang down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "Step 1 („press a single kettlebell overhead”) i wariant „Double-Loaded Kettlebell Windmill” (kettlebelle „in both the top and bottom hands”)"
+       },
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis, start (wariant: jeden kettlebell; kettlebell nad głową na prostej ręce) — nie opisuje drugiego kettlebella"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_standing.windmill.dblMove",
+      "pl": "Cofnij biodro po stronie górnej ręki i przenieś na nie ciężar, a dolną rękę prowadź w dół po wewnętrznej stronie nogi.",
+      "en": "Push the hip on the top-arm side back and shift your weight onto it, sliding the bottom hand down the inside of your leg.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis (wariant: jeden kettlebell; „sink back into the left hip”, wolna ręka w dół wzdłuż wewnętrznej strony nogi)"
+       },
+       {
+        "id": "catalyst-522",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/522/Windmill",
+        "miejsce": "opis (wariant: jeden ciężar; „push the hips back and toward the side holding the weight”; wolna dłoń w dół po wewnętrznej stronie przeciwnej stopy) — źródło przeczytane w core_standing-1.md"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "Step 4 (dolna ręka „trace the inside of your leg”; wariant: jeden kettlebell)"
+       }
+      ]
+     },
+     {
+      "id": "core_standing.windmill.up",
+      "pl": "Wróć do stania tą samą drogą.",
+      "en": "Return to standing the same way you came down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis, powrót (wariant: jeden kettlebell; wypchnięcie bioder w przód do pozycji stojącej)"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "Step 4 („then reverse the motion to come to standing”)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "wm.arm",
+      "pl": "Górna ręka z ciężarem prosta, nad barkiem.",
+      "en": "Keep your top arm straight, with the weight over your shoulder.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis, start (wariant: jeden kettlebell; ręka z kettlebellem prosta nad głową)"
+       },
+       {
+        "id": "catalyst-522",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/522/Windmill",
+        "miejsce": "opis (wariant: jeden ciężar; „rotating the trunk to keep the loaded arm straight up”) — źródło przeczytane w core_standing-1.md"
+       }
+      ]
+     },
+     {
+      "id": "wm.eyes",
+      "pl": "Patrz na górną dłoń.",
+      "en": "Look at your top hand.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis (wariant: jeden kettlebell; „look up at the left hand”)"
+       },
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "Step 3 („Keep your eyes on the kettlebell.”)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "core_standing.windmill.mis.topElbow",
+      "pl": "Uginanie łokcia górnej ręki.",
+      "en": "Bending the top elbow.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "lifetime-kb-windmill",
+        "org": "Experience Life",
+        "szczebel": 4,
+        "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+        "miejsce": "lista błędów we wstępie („Bending the elbow of your top arm.”)"
+       },
+       {
+        "id": "ace-386",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+        "miejsce": "opis, start (wariant: jeden kettlebell; górna ręka prosto — standard; błąd = zaprzeczenie standardu)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Kettlebell Figure 8",
+   {
+    "setup": [
+     {
+      "id": "core_standing.figure8.setup",
+      "pl": "Stań w szerokim rozkroku, ugnij kolana i zejdź w przysiad, kettlebell w jednej ręce.",
+      "en": "Take a wide stance, bend your knees and sit into a squat with the kettlebell in one hand.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-382",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/382/figure-eight/",
+        "miejsce": "Starting position (stopy „wider than shoulder-width apart”, kettlebell w lewej ręce, ugięcie kolan i przysiad do ud równolegle do podłogi)"
+       },
+       {
+        "id": "fitnessvolt-kb-figure-8",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/kettlebell-figure-8/",
+        "miejsce": "How to → setup („Stand close to the kettlebell with feet roughly shoulder-width apart.”; ugięcie kolan i zawias w biodrach)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "core_standing.figure8.move",
+      "pl": "Przekładaj kettlebell pod nogą z ręki do ręki, zataczając ósemkę wokół nóg.",
+      "en": "Pass the kettlebell under your leg from hand to hand, tracing a figure eight around your legs.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-382",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/382/figure-eight/",
+        "miejsce": "kroki 1–4 (przełożenie kettlebella pod nogą z ręki do ręki, „Complete the figure eight…”, kontynuacja z ręki do ręki)"
+       },
+       {
+        "id": "fitnessvolt-kb-figure-8",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/kettlebell-figure-8/",
+        "miejsce": "How to („Swing the weight between your legs toward the opposite arm and grab the handle using the empty hand.”)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Hanging Leg Raise",
+   {
+    "setup": [
+     {
+      "id": "hang.setup",
+      "pl": "Zawiśnij na drążku, ciało prosto w dół.",
+      "en": "Hang from the bar with your body straight down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis, zdanie 2 (Hang from a pull-up bar or stall bars; z zapisu W1)"
+       },
+       {
+        "id": "barbend-hlr",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hanging-leg-raises/",
+        "miejsce": "Step-by-step (hands about shoulder-width apart; completely dead hang)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "hang.legs.move",
+      "pl": "Ze zwisu unieś wyprostowane nogi przed siebie, potem opuść je z powrotem.",
+      "en": "From a hang, raise your straight legs in front of you, then lower them back down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis (unieś proste nogi; powrót pod kontrolą; z zapisu W1)"
+       },
+       {
+        "id": "barbend-hlr",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hanging-leg-raises/",
+        "miejsce": "Step-by-step (raise legs to ~90° hip flexion; slowly lower your legs back)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "hang.slow",
+      "pl": "Opuszczaj nogi powoli, z kontrolą.",
+      "en": "Lower your legs slowly, with control.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia (opuszczenie nóg do zwisu pod kontrolą; parafraza)"
+       },
+       {
+        "id": "nasm-best-abs",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+        "miejsce": "Hanging Knee Raise, Coaching Tip (wariant: ugięte kolana; „Focus on moving slowly and maintaining a stable torso throughout each repetition.”)"
+       }
+      ]
+     },
+     {
+      "id": "hang.ribs",
+      "pl": "Żebra w dół, tułów spokojny — podwijaj miednicę.",
+      "en": "Ribs down, torso still — curl your hips up.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia (napnij brzuch i podwiń miednicę jak w brzuszku, nie samo zgięcie w biodrach; parafraza)"
+       },
+       {
+        "id": "nasm-best-abs",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+        "miejsce": "Hanging Knee Raise, Why It Works (wariant: ugięte kolana; „The abdominals help posteriorly tilt the pelvis and lift the knees while the rest of the core works to stabilize the trunk.”)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "hang.noSwing",
+      "pl": "Bujanie się i wymachy nogami.",
+      "en": "Swinging and kicking the legs.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "Without swinging (z zapisu W1)"
+       },
+       {
+        "id": "barbend-hlr",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hanging-leg-raises/",
+        "miejsce": "Common Mistakes — Momentum"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Hanging Knee Raise",
+   {
+    "setup": [
+     {
+      "id": "hang.setup",
+      "pl": "Zawiśnij na drążku, ciało prosto w dół.",
+      "en": "Hang from the bar with your body straight down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-hkr",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hanging-knee-raises/",
+        "miejsce": "Step-by-step 1–2 (hands about shoulder-width apart or slightly wider; dead-hang)"
+       },
+       {
+        "id": "healthline-hkr",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/hanging-knee-raises",
+        "miejsce": "How-to (Grip your pullup bar… and start to hang)",
+        "strona": "odczyt 02.11.2026 (badania obowiazkowe-1-1, mieszane.md): 4"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "hang.knees.move",
+      "pl": "Ze zwisu unieś ugięte kolana przed siebie, potem opuść nogi.",
+      "en": "From a hang, bring your bent knees up in front of you, then lower your legs.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "nasm-best-abs",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+        "miejsce": "Hanging Knee Raise (z zapisu W1)"
+       },
+       {
+        "id": "barbend-hkr",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hanging-knee-raises/",
+        "miejsce": "Step-by-step 3–4 (pull the knees towards your chest; return under control)"
+       },
+       {
+        "id": "healthline-hkr",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/hanging-knee-raises",
+        "miejsce": "How-to (raise your knees upward toward your chest; slowly lower your legs)",
+        "strona": "odczyt 02.11.2026 (badania obowiazkowe-1-1, mieszane.md): 4"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "hang.slow",
+      "pl": "Opuszczaj nogi powoli, z kontrolą.",
+      "en": "Lower your legs slowly, with control.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "nasm-best-abs",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+        "miejsce": "Hanging Knee Raise, Coaching Tip („Focus on moving slowly and maintaining a stable torso throughout each repetition.”)"
+       },
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia (wariant: proste nogi, ugięte kolana jako łatwiejsza wersja; opuszczenie pod kontrolą; parafraza)"
+       }
+      ]
+     },
+     {
+      "id": "hang.ribs",
+      "pl": "Żebra w dół, tułów spokojny — podwijaj miednicę.",
+      "en": "Ribs down, torso still — curl your hips up.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "nasm-best-abs",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+        "miejsce": "Hanging Knee Raise, Why It Works („The abdominals help posteriorly tilt the pelvis…”)"
+       },
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia (wariant: proste nogi; podwinięcie miednicy jak w brzuszku; parafraza)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "hang.noSwing",
+      "pl": "Bujanie się i wymachy nogami.",
+      "en": "Swinging and kicking the legs.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "nasm-best-abs",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+        "miejsce": "Coaching Tip (Avoid using momentum to swing the legs upward)"
+       },
+       {
+        "id": "healthline-hkr",
+        "org": "Healthline",
+        "szczebel": 4,
+        "url": "https://www.healthline.com/health/fitness/hanging-knee-raises",
+        "miejsce": "Common mistakes (swinging their legs and using momentum)",
+        "strona": "odczyt 02.11.2026 (badania obowiazkowe-1-1, mieszane.md): 4"
+       },
+       {
+        "id": "barbend-hkr",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/hanging-knee-raises/",
+        "miejsce": "Common Mistakes — swaying"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Toes to Bar",
+   {
+    "setup": [
+     {
+      "id": "hang.setup",
+      "pl": "Zawiśnij na drążku, ciało prosto w dół.",
+      "en": "Hang from the bar with your body straight down.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia, zdanie 2 („Hang from a pull-up bar or stall bars.”; u Catalyst unoszenie nóg aż palce dotkną drążka — ten sam ruch co T2B)"
+       },
+       {
+        "id": "barbend-t2b",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/toes-to-bar/",
+        "miejsce": "instrukcja krok po kroku, krok 1 („Start by hanging from a bar with the hands slightly wider than shoulder-width apart.”)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "hang.t2b.move",
+      "pl": "Ze zwisu unieś nogi, aż palce stóp dotkną drążka, potem opuść je.",
+      "en": "From a hang, raise your legs until your toes touch the bar, then lower them.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia, zdania 3 i 5 (unieś proste nogi, aż palce dotkną drążka; „Return the legs to the hanging position under control.”)"
+       },
+       {
+        "id": "barbend-t2b",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/toes-to-bar/",
+        "miejsce": "instrukcja krok po kroku (wersja ścisła: unieś nogi aż do drążka; parafraza „bring your feet all the way up to the bar”)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "hang.t2b.straight",
+      "pl": "Trzymaj nogi tak proste, jak pozwala gibkość.",
+      "en": "Keep your legs as straight as your flexibility allows.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "crossfit-strict-t2b",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/the-strict-toes-to-bar",
+        "miejsce": "„Make sure to keep the legs together and as straight as flexibility will allow.”"
+       },
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia, zdanie 3 (unoszenie prostych nóg; parafraza)"
+       }
+      ]
+     },
+     {
+      "id": "hang.pressBar",
+      "pl": "Unosząc nogi, dociskaj drążek w dół.",
+      "en": "As you raise your legs, press down on the bar.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "crossfit-strict-t2b",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/the-strict-toes-to-bar",
+        "miejsce": "„Pushing into the bar with straight arms allows you to use the strength of the upper body to assist with elevating the legs.”"
+       },
+       {
+        "id": "barbend-t2b",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/toes-to-bar/",
+        "miejsce": "instrukcja krok po kroku (unosząc nogi, aktywnie ściągaj drążek dłońmi w dół; parafraza)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "hang.noSwing",
+      "pl": "Bujanie się i wymachy nogami.",
+      "en": "Swinging and kicking the legs.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "catalyst-45",
+        "org": "Catalyst Athletics",
+        "szczebel": 4,
+        "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+        "miejsce": "opis ćwiczenia, zdanie 3 („Without swinging, lift your straight legs up until the toes reach the bar…”)"
+       },
+       {
+        "id": "barbend-t2b",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/toes-to-bar/",
+        "miejsce": "instrukcja jest dla wersji ścisłej, krok z wymachem („kick”) pominąć w powtórzeniach ścisłych — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ ],
+ "noweZdania": [
+  "core_floor.ccMove",
+  "core_floor.ccSetup",
+  "core_floor.headNeutral",
+  "core_floor.heelTouch.setup",
+  "core_floor.hollowMove",
+  "core_floor.mcMove",
+  "core_floor.mcSetup",
+  "core_floor.mis.archBack",
+  "core_floor.mis.ccArms",
+  "core_floor.mis.fastReturn",
+  "core_floor.mis.headUp",
+  "core_floor.mis.lowBackUp",
+  "core_floor.mis.neckPull",
+  "core_floor.mis.situpFeet",
+  "core_floor.mis.vupKnees",
+  "core_floor.scissor.lift",
+  "core_floor.scissor.move",
+  "core_floor.scissor.setup",
+  "core_floor.situpMove",
+  "core_floor.supermanMove",
+  "core_floor.supermanSetup",
+  "core_floor.supineArms",
+  "core_floor.supineReach",
+  "core_floor.suspRevCrunch.move",
+  "core_floor.suspRevCrunch.setup",
+  "core_floor.tuckCrunch.move",
+  "core_floor.tuckCrunch.setup",
+  "core_floor.vacuum.breathe",
+  "core_floor.vacuum.move",
+  "core_floor.vupMove",
+  "core_standing.cabletwist.hips",
+  "core_standing.cabletwist.mis.hipsDrop",
+  "core_standing.cabletwist.move",
+  "core_standing.cabletwist.setup",
+  "core_standing.figure8.move",
+  "core_standing.figure8.setup",
+  "core_standing.windmill.dblMove",
+  "core_standing.windmill.dblSetup",
+  "core_standing.windmill.knees",
+  "core_standing.windmill.mis.elbow",
+  "core_standing.windmill.mis.topElbow",
+  "core_standing.windmill.move",
+  "core_standing.windmill.setup",
+  "core_standing.windmill.up",
+  "hang.knees.move",
+  "hang.legs.move",
+  "hang.pressBar",
+  "hang.setup",
+  "hang.t2b.move",
+  "hang.t2b.straight"
+ ],
+ "noweZrodla": [
+  "ace-331",
+  "barbend-cable-crunch",
+  "barbend-hollow-hold",
+  "catalyst-hollow-hold",
+  "ace-9",
+  "cc-superman",
+  "catalyst-sit-up",
+  "barbend-sit-up",
+  "catalyst-v-up",
+  "webmd-v-ups",
+  "ace-291",
+  "hoist-hd-3600",
+  "ace-87",
+  "trx-basics",
+  "trx-compound-2",
+  "fv-tuck-crunch",
+  "ace-243",
+  "healthline-stomach-vacuum",
+  "vm-ta-isometric",
+  "fv-scissor-kicks",
+  "healthline-scissor-kicks",
+  "catalyst-522",
+  "ace-386",
+  "lifetime-kb-windmill",
+  "fitnessvolt-cable-russian-twist",
+  "ace-382",
+  "fitnessvolt-kb-figure-8",
+  "catalyst-45",
+  "barbend-hlr",
+  "barbend-hkr",
+  "healthline-hkr",
+  "barbend-t2b",
+  "crossfit-strict-t2b"
+ ],
+ "noweOrganizacje": [
+  "WebMD",
+  "Hoist Fitness",
+  "Virginia Mason Franciscan Health"
+ ],
+ "odrzucone": [
+  [
+   "Decline Crunch",
+   "mistakes",
+   "core_floor.mis.lowBackUp",
+   []
+  ],
+  [
+   "GHD Sit Up",
+   "mistakes",
+   "core_floor.mis.ghdDeep",
+   []
+  ],
+  [
+   "Stability Ball Crunch",
+   "setup",
+   "core_floor.ballSetup",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "move",
+   "core_floor.ballMove",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "tips",
+   "core_floor.ballStill",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "mistakes",
+   "core_floor.mis.momentum",
+   [
+    "NASM"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "mistakes",
+   "core_floor.mis.ballPos",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "setup",
+   "core_floor.heelTouch.setup",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "move",
+   "core_floor.heelTouch.move",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "tips",
+   "core_floor.heelTouch.breath",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "mistakes",
+   "core_floor.mis.neckPull",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Cross-Body Crunch",
+   "mistakes",
+   "core_floor.mis.headPull",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Crunch - Hands Overhead",
+   "mistakes",
+   "core_floor.mis.archBack",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Crunch - Legs On Exercise Ball",
+   "mistakes",
+   "core_floor.mis.archBack",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Tuck Crunch",
+   "mistakes",
+   "core_floor.mis.thighsPast",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Cable Woodchop",
+   "setup",
+   "core_standing.woodchop.setup",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Landmine Rotation",
+   "mistakes",
+   "core_standing.landmine.mis.armsOnly",
+   []
+  ],
+  [
+   "Side Bend (hantel)",
+   "mistakes",
+   "core_standing.sidebend.mis.twist",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Barbell Side Bend",
+   "setup",
+   "core_standing.sidebend.barSetup",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Barbell Side Bend",
+   "move",
+   "core_standing.sidebend.move",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Barbell Side Bend",
+   "mistakes",
+   "core_standing.sidebend.mis.twist",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Cable Russian Twists",
+   "mistakes",
+   "core_standing.cabletwist.mis.bentArms",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Kettlebell Figure 8",
+   "mistakes",
+   "core_standing.figure8.mis.straightLegs",
+   []
+  ],
+  [
+   "Pallof Press With Rotation",
+   "move",
+   "core_standing.pallofrot.move",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Pallof Press With Rotation",
+   "mistakes",
+   "core_standing.pallofrot.mis.bentArms",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Toes to Bar",
+   "mistakes",
+   "hang.t2b.mis.short",
+   []
+  ],
+  [
+   "L-Sit",
+   "setup",
+   "lsit.setup",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "L-Sit",
+   "tips",
+   "lsit.legsTogether",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "L-Sit",
+   "mistakes",
+   "lsit.mis.legsDrop",
+   []
+  ],
+  [
+   "Overhead Carry (hantle)",
+   "setup",
+   "ohc.setup",
+   [
+    "StrongFirst"
+   ]
+  ],
+  [
+   "Overhead Carry (hantle)",
+   "move",
+   "ohc.walk",
+   [
+    "NSCA"
+   ]
+  ],
+  [
+   "Overhead Carry (hantle)",
+   "mistakes",
+   "ohc.mis.arms",
+   [
+    "StrongFirst"
+   ]
+  ],
+  [
+   "Farmer's Walk (trap bar)",
+   "mistakes",
+   "carry.mis.arms",
+   []
+  ],
+  [
+   "Farmer's Walk (Farmers Handles)",
+   "mistakes",
+   "carry.mis.arms",
+   []
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Stability Ball Crunch",
+   "core_floor.ballSetup",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.ballMove",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.ballStill",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "crunch.neck",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.mis.momentum",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.mis.ballPos",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.heelTouch.setup",
+   "fv-heel-touchers"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.heelTouch.move",
+   "fv-heel-touchers"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.heelTouch.breath",
+   "fv-heel-touchers"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.mis.neckPull",
+   "fv-heel-touchers"
+  ],
+  [
+   "Cable Woodchop",
+   "core_standing.woodchop.setup",
+   "iom-lx48264v"
+  ],
+  [
+   "Cable Woodchop",
+   "core_standing.woodchop.move",
+   "iom-lx48264v"
+  ],
+  [
+   "Cable Woodchop",
+   "core_standing.woodchop.trunk",
+   "iom-lx48264v"
+  ],
+  [
+   "Barbell Side Bend",
+   "core_standing.sidebend.barSetup",
+   "fitnessvolt-bb-side-bend"
+  ],
+  [
+   "Barbell Side Bend",
+   "core_standing.sidebend.move",
+   "fitnessvolt-bb-side-bend"
+  ],
+  [
+   "Pallof Press With Rotation",
+   "pallof.setup",
+   "speediance-pallof-training"
+  ],
+  [
+   "Pallof Press With Rotation",
+   "core_standing.pallofrot.move",
+   "speediance-pallof-training"
+  ],
+  [
+   "L-Sit",
+   "lsit.setup",
+   "fig-a202"
+  ],
+  [
+   "L-Sit",
+   "lsit.move",
+   "fig-a202"
+  ],
+  [
+   "L-Sit",
+   "lsit.legsTogether",
+   "fig-a202"
+  ]
+ ],
+ "niebyle": {
+  "speediance-pallof-training": "Speediance — blog producenta z elementem marketingu własnej maszyny; badania G1 W1: „źródło niewystarczające, nie przenosić”; uzupełnienie 3: blog producenta = 5",
+  "fig-a202": "FIG (kodeks gimnastyki aerobowej) — szczebel „4 warunkowo”, (a) szkolenie trenerów niepotwierdzone lekturą; nierozstrzygnięte w docs/18",
+  "nfpt-stability-ball-crunch": "NFPT (E. Nitschke) — kwalifikacje autorki tylko na stronie innej organizacji (ACE), nie na stronie NFPT; nierozstrzygnięte (jak strona NFPT o prostowaniu nóg w A2)",
+  "fv-heel-touchers": "Fitness Volt — w zapisie badań autor bez nazwiska („ACE CPT; MSc Exercise Science” — profil jak „Ash, ACE, MSc”); A3 09.11.2026: autor bez nazwiska = szczebel 5",
+  "fitnessvolt-bb-side-bend": "Fitness Volt „Ash, ACE, MSc” bez nazwiska = szczebel 5 (recenzja A3 i decyzja koordynatora 09.11.2026)",
+  "iom-lx48264v": "Institute of Motion — brak autora i daty, firmowanie tylko przez domenę platformy (warunek (b) „do potwierdzenia przez koordynatora”, nierozstrzygnięte)"
+ },
+ "niewdrozone": [
+  [
+   "bezUstawieniaLubRuchu",
+   [
+    "Decline Crunch",
+    "GHD Sit Up",
+    "Bicycle Crunch",
+    "Stability Ball Crunch",
+    "Alternate Heel Touchers",
+    "Cable Reverse Crunch",
+    "Crunch - Hands Overhead",
+    "Crunch - Legs On Exercise Ball",
+    "Decline Reverse Crunch",
+    "Cable Woodchop",
+    "Barbell Side Bend",
+    "Pallof Press With Rotation",
+    "L-Sit",
+    "Overhead Carry (hantle)"
+   ]
+  ],
+  [
+   "pominieteBezBledu",
+   [
+    "Cross-Body Crunch",
+    "Landmine Rotation",
+    "Side Bend (hantel)",
+    "Farmer's Walk (trap bar)",
+    "Farmer's Walk (Farmers Handles)"
+   ]
+  ]
+ ],
+ "zdaniaUsuniete": [
+  [
+   "vup.back",
+   "zestaw ogólny V-Up zastąpiony kartą własną — zdanie osierocone usunięte ze słowników i z data/zrodla/cues-zestawy.json (precedens ur.height, 04.11.2026)"
+  ]
+ ],
+ "role": [
+  [
+   "Superman",
+   "lower_back.spine_ext (main)"
+  ],
+  [
+   "Superman",
+   "glutes.hip_ext (aux)"
+  ]
+ ]
+}
