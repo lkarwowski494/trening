@@ -160,6 +160,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.2 — pełna karta: 9 obowiązkowych wymagających nowego ruchu silnika (właściciel 09.11.2026, ZB-053)
 - Cel 1.1 „pełna karta” zmniejszony 465 → 456 (docs/18, 09.11.2026): te 9 ćwiczeń nie ma danych póz v2 i wymaga nowego ruchu silnika rysunku, więc przechodzi do 1.2: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up (lista maszynowa: `poza11` w `docs/research/pokrycie-cele.json`). Cel 1.2: pełna karta także dla nich; 4 obowiązkowe bez ról mięśni (Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam) zostają w 1.1.
 
+### Backlog 1.2 — mobility_floor: nakładka techniki (09.11.2026, koordynator; MOB-F1)
+- MOB-F1: powiązanie wskazówki st.tension (i wskazówek kart własnych) z regułami „ustalone” rodziny mobility_floor w `data/zrodla/figury-sens.json` (`wskazowki_na_reguly`) — zadanie badacza (źródła, recenzja). Warunek zdjęcia wyjątku „nakładka bez elementów” (docs/18, 09.11.2026): po powiązaniu dodać elementy w `lib/figures/v2/overlay/mobility_floor.ts` i zmienić test `tests/figures-v2-nakladka-mobility-floor.test.tsx`. Wersja: 1.2.
+
 ### Backlog 1.2 — pokrycie: ćwiczenia „ciężkie” wyłączone z celu 1.1 (właściciel 09.11.2026)
 - Decyzja 09.11.2026 (docs/18): cel 1.1 liczony bez ćwiczeń, które wymagają nowych badań lub treści (brak tekstu wskazówek w źródłach i zestawu ogólnego, brak danych póz v2, nowy ruch silnika). Liczba ćwiczeń poza pełną kartą w symulowanym stanie końcowym 1.1: 252 z 708; lista i rozbicie powodów — `node scripts/pokrycie-symulacja.mjs --json` (pola `cwiczeniaCiezkie` i `gain`; test `tests/cel-1-1-bez-ciezkich.test.ts`), bez listy nazw tutaj. Cel 1.2: pełna karta także dla nich.
 
