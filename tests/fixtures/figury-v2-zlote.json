@@ -1241,8 +1241,8 @@
    "raw": "c361f940b40fd7a0b618"
   },
   "delt_raise/Front Raise": {
-   "svg": "3110c3959acfc78bbf84",
-   "raw": "e89830ff42c759093d46"
+   "svg": "bc0c9ac407d9b88b4cc8",
+   "raw": "546483fde8148a7411a3"
   },
   "delt_raise/Single Dumbbell Front Raise": {
    "svg": "50557992d03c89269543",
@@ -1253,28 +1253,28 @@
    "raw": "c9ea0b1592de44a6e721"
   },
   "delt_raise/Alternating Deltoid Raise": {
-   "svg": "fa56b93ed1575568eca8",
-   "raw": "371d16c7b04d5c782fd8"
+   "svg": "63eeea18938e1274b64d",
+   "raw": "4f19bec90e2526f1b2c3"
   },
   "delt_raise/Barbell Front Raise to Overhead": {
    "svg": "6273ef74f01b38f51144",
    "raw": "1f2fc159e3333ccac501"
   },
   "delt_raise/Dumbbell Front Raise to Overhead": {
-   "svg": "443866b19cc113858a34",
-   "raw": "797462ff4621b1e29f90"
+   "svg": "8d64068426a69f416a10",
+   "raw": "94a7cba26a9721364cfa"
   },
   "delt_raise/Cable Front Raise": {
-   "svg": "ad475ecdaf8f29cacec9",
-   "raw": "0305f8058cac2e28a61e"
+   "svg": "00973a83d50d28814e0b",
+   "raw": "2b24a3c74cb9aea73fbe"
   },
   "delt_raise/Cable Lateral Raise": {
    "svg": "07272fc0459e14ac65d8",
    "raw": "cf6896cbfaf6be74bb09"
   },
   "delt_raise/Cable Seated Lateral Raise": {
-   "svg": "1d84c29b421338be4636",
-   "raw": "906ba569ba5117abd878"
+   "svg": "46a02254af1af3a9c135",
+   "raw": "bcefe7f62a9ca11111c9"
   },
   "delt_raise/Upright Row (sztanga)": {
    "svg": "709ec46108bfb8fe1edf",
@@ -1301,8 +1301,8 @@
    "raw": "0d5bfb4d2e034a2167aa"
   },
   "delt_raise/Car Drivers": {
-   "svg": "563fe4869aa20f4e1898",
-   "raw": "6793c0d02738e3eab895"
+   "svg": "3b70eac5af310318d49a",
+   "raw": "21c5f08a8a234ce3e985"
   },
   "delt_raise/Reverse Fly (hantle)": {
    "svg": "00e45ce9e133b9b71942",
@@ -1317,16 +1317,16 @@
    "raw": "7360bf797a5cfc421393"
   },
   "delt_raise/Y Raise (hantle)": {
-   "svg": "a7f03e661617df271ab3",
-   "raw": "967db6b82d146ecd0d13"
+   "svg": "403d950b216f9d16b45e",
+   "raw": "f97b0c3df3e0463f5b61"
   },
   "delt_raise/Cable Y Raise": {
    "svg": "bd0123c8f23383e03ac6",
    "raw": "e35c537053ece323cf83"
   },
   "delt_raise/Machine Lateral Raise": {
-   "svg": "72aff3cc7ed03d1c359e",
-   "raw": "7f6b77e62eb709fd9ae5"
+   "svg": "ade3587d49a3ae473095",
+   "raw": "ad57f3894974b8690eca"
   },
   "delt_raise/Reverse Pec Deck": {
    "svg": "14a97cae255d928e2cfd",
@@ -1337,12 +1337,16 @@
    "raw": "d9050e196a40828bbdfa"
   },
   "delt_raise/Smith Machine One-Arm Upright Row": {
-   "svg": "010209dad40a4c1cb0cf",
-   "raw": "5536bfb78213d530ab4b"
+   "svg": "2045cc2290d829a55da2",
+   "raw": "14e8781d876579c92abe"
   },
   "delt_raise/Front Incline Dumbbell Raise": {
    "svg": "12f54be5cee1ea5a5fae",
    "raw": "d85685ca312296dfea76"
+  },
+  "delt_raise/Dumbbell Lying One-Arm Rear Lateral Raise": {
+   "svg": "1e479ddd156644a0e5b5",
+   "raw": "436e3f192b3f3aed9b51"
   },
   "dip/Chest Dip": {
    "svg": "55501a88c27ef20628f7",

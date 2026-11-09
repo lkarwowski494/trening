@@ -954,6 +954,9 @@
         ],
         "halo.torso": [
           "tulow_nieruchomy"
+        ],
+        "cdr.move": [
+          "lokcie_na_wysokosci_barkow_u1"
         ]
       },
       "grupy_bledow": {},
@@ -961,9 +964,14 @@
         "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
         "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy (bledy: [])"
       },
+      "dynamiczne": {
+        "Alternating Deltoid Raise": "pętla jednokierunkowa z dwoma powtórzeniami naraz (przód, potem bok; karta adr.move „Na zmianę: jedno powtórzenie … przed sobą, następne — bokiem”), 6 s (2 × [1 s w górę + 2 s w dół], ONE_WAY_REP_MS w anim.ts): w 1 s unoszenia dłoń przebywa łuk ok. 80 cm, czyli ok. 10 cm na 1/48 ruchu wobec 6 cm limitu ruchu zwykłego (maxJump); limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne; r2-W1, r3-W2, 04.11.2026)"
+      },
       "warianty": {
+        "Alternating Deltoid Raise": [
+          "lokiec_staly"
+        ],
         "Car Drivers": [
-          "lokiec_staly",
           "lokcie_na_wysokosci_barkow_u1"
         ],
         "One-Arm Incline Lateral Raise": [

@@ -33,7 +33,7 @@ export const CONTRACT = {
   /** Wcześniejsze wersje kontraktu przyjmowane przez walidator (dane zapisane w lib/figures/v2/poses/ mogą mieć poza@1). */
   legacy: ['figury-v2/poza@1'] as readonly string[],
   /** Liczba klatek kluczowych poprawnej pozy. */
-  frames: { min: 2, max: 12 },
+  frames: { min: 2, max: 12, /** Ćwiczenie z deklaracją „dynamiczne” (pętla z kilkoma ruchami w jednym przebiegu, np. Alternating Deltoid Raise: dwa powtórzenia po 4 odcinki w górę i w dół, r3-W1 04.11.2026) może mieć więcej klatek: interpolacja liniowa skraca promień ramienia na cięciwie łuku, więc łuk dzieli się na odcinki ≤ ok. 22°. */ maxDynamic: 20 },
   /** Liczba klatek błędu (delty) i liczba błędów na ćwiczenie. */
   errorFrames: { min: 2, max: 8 }, errorsMax: 3,
   /** Siatka sprawdzeń geometrii (liczba przedziałów ruchu) i ciągłości (krok 1/48, maks. skok stawu w cm). */
@@ -401,6 +401,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   if (!knownFamily(ctx.family)) return [{ kod: 'rodzina', szczegol: `nieznana rodzina „${ctx.family}”` }];
   const schema = poseSchema(ctx.family); const kontrakt = (data as { kontrakt?: unknown } | null)?.kontrakt; const stary = typeof kontrakt === 'string' && CONTRACT.legacy.includes(kontrakt);
   if (stary) (schema.properties as Record<string, Sch>).kontrakt = { type: 'string', enum: [CONTRACT.id, ...CONTRACT.legacy] }; /* poza@1 nadal przyjmowana */
+  if (ctx.dynamic) { const kl = (schema.properties as Record<string, Sch>).klatki; if (kl) kl.maxItems = CONTRACT.frames.maxDynamic; } /* deklaracja „dynamiczne” zwiększa też limit klatek (CONTRACT.frames.maxDynamic) */
   const sch = checkSchema(data, schema); if (sch.length) return sch.slice(0, CONTRACT.maxIssues);
   const d = data as PoseData;
   if (stary) { const uz = extFieldsUsed(d); if (uz.length) return [{ kod: 'kontrakt', szczegol: `pola ${uz.join(', ')} należą do ${CONTRACT.id}, a kontrakt = ${kontrakt as string} — ustaw kontrakt: ${CONTRACT.id}` }]; }
@@ -435,7 +436,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   for (let i = 1; i <= CONTRACT.step; i++) { const cur = pts(keyframeFrame(d, i / CONTRACT.step)); cur.forEach((p, j) => { const dd = dist(p, prev[j]); if (dd > maxJump) cont.add(`pt${j}`, i / CONTRACT.step, uu => `skok o ${f1(dd)} cm (limit ${maxJump} cm na 1/${CONTRACT.step} ruchu) w fazie u=${uu} — dodaj klatki pośrednie albo zmniejsz zmianę między sąsiednimi klatkami`); }); prev = cur; }
   cont.flush('ciaglosc', out);
   /* ruch istnieje */
-  const a = pts(keyframeFrame(d, 0)), b = pts(keyframeFrame(d, 1)); const moved = Math.max(...a.map((p, i) => dist(p, b[i])));
+  const a = pts(keyframeFrame(d, 0)), b = pts(keyframeFrame(d, 1)); const moved = Math.max(...a.map((p, i) => dist(p, b[i])), ...(d.petla === 'jednokierunkowa' ? d.klatki.map(k => { const c = pts(keyframeFrame(d, k.u)); return Math.max(...a.map((p, i) => dist(p, c[i]))); }) : [])); /* jednokierunkowa: całe powtórzenie (albo kilka) w jednym przebiegu — pętla zamknięta (u = 1 = u = 0, bez przeskoku przy restarcie) jest dozwolona, ruch mierzy najdalsza klatka */
   if (!ctx.isometric && moved < CONTRACT.minMotionCm) out.push({ kod: 'ruch', szczegol: `poza u = 1 prawie nie różni się od u = 0 (największe przemieszczenie punktu ${f1(moved)} cm, wymagane ≥ ${CONTRACT.minMotionCm} cm)` });
 
   /* tryb cykliczny: styk faz i reguła sensu marszu na całej pętli */

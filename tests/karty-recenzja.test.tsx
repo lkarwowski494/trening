@@ -13,7 +13,7 @@ import * as path from 'path';
 import { execFileSync } from 'child_process';
 import * as RN from 'react-native';
 import { render, screen } from '@testing-library/react-native';
-import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
+import { CUE_DATA, cuesFor, generalCuesReviewed } from '@/lib/cues';
 import { FIG_DATA } from '@/lib/figures';
 import { figureSpec } from '@/lib/figures/v2';
 import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
@@ -89,7 +89,10 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
   test('karta „do poprawy” (Front Incline Dumbbell Raise; 09.11.2026 Hack Squat odsłonięty po recenzji niezależnej) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {
     expect(REC.karty?.['Front Incline Dumbbell Raise']?.werdykt).toBe('do poprawy');
     await render(<ExerciseCues exercise={lib('Front Incline Dumbbell Raise')} initialOpen />);
-    expect(screen.queryByTestId('exercise-cues')).toBeNull();
+    /* 09.11.2026 (włączenie delt_raise): obie karty „do poprawy” należą do rodziny z rysunkiem v2, więc sekcja „Technika” zostaje z samym rysunkiem — bez tekstu karty (ustawienie, ruch, wskazówki, błędy) */
+    expect(cuesFor(lib('Front Incline Dumbbell Raise'))).toBeNull();
+    expect(screen.queryByTestId('exercise-figure-v2')).not.toBeNull();
+    for (const nazwa of ['Ustawienie', 'Ruch', 'Wskazówki', 'Czego unikać']) expect(screen.queryByText(nazwa)).toBeNull();
     /* od 28.10.2026 (decyzja właściciela „1a”, M1-audytor-generalny-038) żaden zestaw nie jest „do poprawy” — wtedy zestaw ogólny bez wpisu recenzji (Lateral Lunge) */
     const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0] ?? 'Lateral Lunge';
     expect(generalCuesReviewed(z)).toBe(false);

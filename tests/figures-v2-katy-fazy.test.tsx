@@ -1,7 +1,7 @@
 /*
- * Karta ćwiczenia: „Kąt na rysunku” i nazwy faz ruchu dla rodzin delt_raise, shrug, rotator_cuff, forearm, carry (63 ćwiczenia z danych póz; decyzja właściciela 27.10.2026, znalezisko S2).
+ * Karta ćwiczenia: „Kąt na rysunku” i nazwy faz ruchu dla rodzin delt_raise, shrug, rotator_cuff, forearm, carry (64 ćwiczenia z danych póz; decyzja właściciela 27.10.2026, znalezisko S2).
  * Rodziny mają status „planned” (nie zmieniamy go): w tym pliku czasowo „gotowe” i obsługiwane z plików poses/<rodzina>.json przez podmienione `poseDataFor`.
- * Rodzaje (docs/20): logika (wybór stawu z geometrii, próg ruchu, nazwy faz), silnik (rotacja barku), dane (63 ćwiczenia), ekran (linia kąta i licznik faz), dostępność, języki (PL/EN), niezmienniki.
+ * Rodzaje (docs/20): logika (wybór stawu z geometrii, próg ruchu, nazwy faz), silnik (rotacja barku), dane (64 ćwiczenia), ekran (linia kąta i licznik faz), dostępność, języki (PL/EN), niezmienniki.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
@@ -10,7 +10,7 @@ import { render, screen, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import {
   FAMILY, DATA_UI, MEASURE_UNIT, MIN_MEASURED_ROM, SIDES, assignAll, figureSpec, jointAngles, keyframeFrame, loopLength, measuredAngle, measuredJoint, angleLineShown,
-  phaseNames, phasesFor, solveSkeleton, TEMPO, walkPhases, type FamilyId, type MeasuredJoint, type Side, type Skeleton, type V3, type PoseData,
+  oneWayPhases, phaseNames, phasesFor, solveSkeleton, TEMPO, walkPhases, type FamilyId, type MeasuredJoint, type Side, type Skeleton, type V3, type PoseData,
 } from '@/lib/figures/v2';
 import { measureLine } from '@/lib/figures/v2/ui';
 import { EN } from '@/lib/i18n.en';
@@ -59,9 +59,9 @@ function expectedPick(f: Fam, k: string): { joint: MeasuredJoint; side: Side; ra
 }
 const spec = (k: string) => figureSpec(k)!;
 
-describe('dane: 63 ćwiczenia pięciu rodzin (logika)', () => {
-  test('rodziny mają 30 + 8 + 7 + 11 + 7 ćwiczeń z danymi; każde należy do swojej rodziny i ma figurę z danych (status rodziny w tym pliku „gotowa”)', () => {
-    expect(FAMS.map(f => Object.keys(FILES[f]).length)).toEqual([30, 8, 7, 11, 7]); expect(KEYS.length).toBe(63);
+describe('dane: 64 ćwiczenia pięciu rodzin (logika)', () => {
+  test('rodziny mają 31 + 8 + 7 + 11 + 7 ćwiczeń z danymi; każde należy do swojej rodziny i ma figurę z danych (status rodziny w tym pliku „gotowa”)', () => {
+    expect(FAMS.map(f => Object.keys(FILES[f]).length)).toEqual([31, 8, 7, 11, 7]); expect(KEYS.length).toBe(64);
     for (const [f, k] of KEYS) { expect([k, ALL[k]]).toEqual([k, f]); const s = spec(k); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); }
   });
   test('każda rodzina ma wpis DATA_UI; kandydaci stawów (także w wyjątkach) mają jedną jednostkę, a wyjątki dotyczą istniejących ćwiczeń', () => {
@@ -96,7 +96,7 @@ describe('dane: 63 ćwiczenia pięciu rodzin (logika)', () => {
     const tab: Record<string, Record<string, number>> = {};
     for (const [f, k] of KEYS) { const j = measuredJoint(spec(k)); tab[f] = tab[f] ?? {}; tab[f][j] = (tab[f][j] ?? 0) + 1; }
     expect(tab).toEqual({
-      delt_raise: { shElev: 26, shAbd: 4 }, shrug: { shrug: 7, protract: 1 }, rotator_cuff: { shRot: 5, shAbd: 2 }, forearm: { wristFlex: 8, elbow: 1, forearmRoll: 2 }, carry: { knee: 7 },
+      delt_raise: { shElev: 25, shAbd: 6 } /* r2-W1 04.11.2026: Alternating Deltoid Raise (dwa powtórzenia, przód i bok) — największy zakres ma odwiedzenie barku (przód 0° → bok 85°), więc 26/5 → 25/6 */, shrug: { shrug: 7, protract: 1 }, rotator_cuff: { shRot: 5, shAbd: 2 }, forearm: { wristFlex: 8, elbow: 1, forearmRoll: 2 }, carry: { knee: 7 },
     });
   });
   test('ćwiczenie jednoręczne: mierzona jest ręka, która pracuje (największy zakres), nie średnia z ręką nieruchomą', () => {
@@ -120,16 +120,22 @@ describe('dane: 63 ćwiczenia pięciu rodzin (logika)', () => {
 });
 
 describe('nazwy faz i licznik (logika)', () => {
+  test('naprzemienne cykl_lustro w delt_raise (Alternating Deltoid Raise, Car Drivers) nie mają fazy „Marsz” (wada naprawiona w FW3)', () => {
+    for (const k of ['Alternating Deltoid Raise', 'Car Drivers']) { expect(KEYS.some(([f, kk]) => f === 'delt_raise' && kk === k)).toBe(true); const n = phasesFor(spec(k)).map(p => p.name); expect([k, n.includes('Marsz')]).toEqual([k, false]);
+      /* r2-W1 04.11.2026: Alternating Deltoid Raise to pętla jednokierunkowa z dwoma powtórzeniami (przód, bok) — jedna faza „Naprzemiennie” bez sekund (jak skok i rzut; r3-W2 04.11.2026: „Unoszenie” opisywało też opuszczanie); Car Drivers od 08.11.2026 (r5-W1): wahadło Obrót/Pauza/Powrót/Pauza */
+      expect([k, n]).toEqual([k, k === 'Alternating Deltoid Raise' ? ['Naprzemiennie'] : ['Obrót', 'Pauza', 'Powrót', 'Pauza']]); }
+    expect(phasesFor(spec('Alternating Deltoid Raise'))).toEqual(oneWayPhases('Naprzemiennie'));
+  });
   test('nazwy faz per ćwiczenie: wznosy i szrugsy Unoszenie/Opuszczanie, rotacje Obrót/Powrót, przedramię Uginanie/Opuszczanie; wyjątki: rozsuwanie taśmy, ściąganie łopatek, nawracanie', () => {
     const exc: Record<string, [string, string]> = {
       'Band Pull Apart': ['Rozsuwanie', 'Powrót'], 'Middle Back Shrug': ['Ściąganie', 'Powrót'], 'Reverse Flyes With External Rotation': ['Unoszenie', 'Opuszczanie'],
-      'Dumbbell Lying Pronation': ['Obrót', 'Powrót'], 'Dumbbell Lying Supination': ['Obrót', 'Powrót'],
+      'Dumbbell Lying Pronation': ['Obrót', 'Powrót'], 'Dumbbell Lying Supination': ['Obrót', 'Powrót'], 'Alternating Deltoid Raise': ['Naprzemiennie', 'Naprzemiennie'], 'Car Drivers': ['Obrót', 'Powrót'] /* r5-W1 08.11.2026 */,
     };
     const fam: Record<string, [string, string]> = { delt_raise: ['Unoszenie', 'Opuszczanie'], shrug: ['Unoszenie', 'Opuszczanie'], rotator_cuff: ['Obrót', 'Powrót'], forearm: ['Uginanie', 'Opuszczanie'], carry: ['Marsz', 'Marsz'] };
     for (const [f, k] of KEYS) { const n = phaseNames(spec(k)); expect([k, [n.first, n.second]]).toEqual([k, exc[k] ?? fam[f]]); }
   });
   test('ruch z opuszczaniem: pętla Nazwa 1 s · Pauza · Nazwa 2 s · Pauza (tempo ilustracyjne jak w podciąganiu); noszenie: jedna faza „Marsz” bez sekund i bez pauz', () => {
-    for (const [f, k] of KEYS.filter(([f]) => f !== 'carry')) { const n = phaseNames(spec(k)); expect([k, phasesFor(spec(k)).map(p => [p.name, p.ms])]).toEqual([k, [[n.first, 1000], ['Pauza', 500], [n.second, 2000], ['Pauza', 500]]]); expect([f, spec(k).lowerFirst]).toEqual([f, false]); }
+    for (const [f, k] of KEYS.filter(([f, k]) => f !== 'carry' && k !== 'Alternating Deltoid Raise' /* jednokierunkowa: jedna faza, zob. test wyżej */)) { const n = phaseNames(spec(k)); expect([k, phasesFor(spec(k)).map(p => [p.name, p.ms])]).toEqual([k, [[n.first, 1000], ['Pauza', 500], [n.second, 2000], ['Pauza', 500]]]); expect([f, spec(k).lowerFirst]).toEqual([f, false]); }
     for (const [, k] of KEYS.filter(([f]) => f === 'carry')) { const ph = phasesFor(spec(k)); expect([k, ph]).toEqual([k, [{ name: 'Marsz', ms: loopLength(false), untimed: true }]]); expect(metricFor(k)).toMatch(/distance/); }
     expect(walkPhases()).toEqual([{ name: 'Marsz', ms: TEMPO.holdMs * 2 + TEMPO.downMs + TEMPO.upMs, untimed: true }]);
   });

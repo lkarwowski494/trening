@@ -41,7 +41,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic')) { /* olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       const ex = ui.exceptions?.[k]; /* wyjątek ćwiczenia (partia 3, 09.11.2026: Straight Arm Pulldown — łokieć prosty, mierzony bark shElev) */
@@ -55,6 +55,16 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       /* partia 3, 09.11.2026: Straight Arm Pulldown — ręka prosta schodzi z góry do ud, uniesienie ramienia (shElev) maleje; Middle Back Shrug — łopatki ściągają się, wysunięcie barków (protract) maleje */
       else if (f === 'triceps' || ['Straight Arm Pulldown', 'Middle Back Shrug', 'Leg Press', 'Single Leg Press'].includes(k)) { /* Leg Press, Single Leg Press (09.11.2026): u = 0 nogi zgięte, u = 1 platforma wypchnięta — zgięcie kolana maleje */ expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
+    }
+  });
+  test('delt_raise (09.11.2026, jak olympic: staw i fazy per ćwiczenie): staw mierzony ∈ ui.joints (shAbd tylko unoszenie w tył i Alternating Deltoid Raise, reszta shElev); fazy 1 s / pauza / 2 s / pauza z nazwami Unoszenie/Opuszczanie, wyjątki: Car Drivers (Obrót/Powrót), Alternating Deltoid Raise (jedna faza 2,5 s)', () => {
+    const ui = DATA_UI.delt_raise; const REAR = ['Reverse Fly (hantle)', 'One-Arm Cable Rear Lateral Raise', 'Cable Reverse Fly', 'Reverse Pec Deck', 'Dumbbell Lying One-Arm Rear Lateral Raise', 'Alternating Deltoid Raise'];
+    const keys = DATA_KEYS.filter(([f]) => f === 'delt_raise').map(([, k]) => k); expect(keys.length).toBe(31);
+    for (const k of keys) {
+      const sp = figureSpec(k)!; expect([k, sp.lowerFirst]).toEqual([k, false]); expect([k, measuredJoint(sp)]).toEqual([k, REAR.includes(k) ? 'shAbd' : 'shElev']); expect(ui.joints).toContain(measuredJoint(sp));
+      const ph = phasesFor(sp).map(p => [p.name, p.ms]);
+      if (k === 'Alternating Deltoid Raise') expect(ph).toEqual([['Naprzemiennie', 2500]]);
+      else expect([k, ph]).toEqual([k, [[k === 'Car Drivers' ? 'Obrót' : 'Unoszenie', 1000], ['Pauza', 500], [k === 'Car Drivers' ? 'Powrót' : 'Opuszczanie', 2000], ['Pauza', 500]]]);
     }
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
@@ -89,7 +99,7 @@ describe('błędy z danych (bledy[])', () => {
   });
   test('macierz: wszystkie ćwiczenia z danymi × poza poprawna i poza błędu × 13 pozycji: brak błędów geometrii (podłoga, zasięg, przenikanie, chwyt); błąd różni się od pozy poprawnej na końcu ruchu (błąd pokazany na dole — pu.partial — na początku ruchu)', () => {
     /* curl (03.11.2026): „szarpnięcie” (mis.jerk) to błąd tempa — nie zmienia pozy (różnica < 3 cm w miednicy, głowie, kolanie, kostce i łokciu R); jak pokazuje go rysunek, ocenia recenzent niezależny. */
-    const BLAD_NIEWIDOCZNY = ['Seated Close-Grip Concentration Barbell Curl|mis.jerk'];
+    const BLAD_NIEWIDOCZNY = ['Seated Close-Grip Concentration Barbell Curl|mis.jerk', 'Dumbbell Front Raise to Overhead|mis.jerk', 'Car Drivers|mis.jerk', 'Cable Seated Lateral Raise|mis.jerk', 'Machine Lateral Raise|mis.jerk', 'Y Raise (hantle)|mis.jerk']; /* delt_raise (09.11.2026; trzy ostatnie po wpisach „zestawy” z recenzji audytora — ten sam błąd tempa w zestawie ogólnym raiseSide): jerk to błąd tempa (errors.ts kind „tempo”, mods.tempo) — poza nie zmienia, jak w curl; tylko te dwa ćwiczenia mają go w zestawie; jak pokazuje go rysunek, ocenia recenzent niezależny */
     const JERK_CURL_TEMPO = JERK_TEMPO_RODZINY; /* 05.11.2026: rozszerzone na triceps (3 ćwiczenia z zestawem ogólnym, recenzja niezależna r5 przyjęła jak w curl); ta sama przyczyna dla całej rodziny curl (błąd tempa); asercja czerwona już na 67ceb782 przed scaleniem integracji, rozszerzona 03.11.2026 z listy pojedynczej na rodzinę */
     const NA_DOLE = ['pu.partial']; /* fala 25, 01.11.2026: „bez wyprostu rąk na dole” widać w u = 0, góra jak w pozie poprawnej (scripts/figures/v2-jakosc.mjs: BLAD_DOL) */
     for (const [f, k] of DATA_KEYS) {

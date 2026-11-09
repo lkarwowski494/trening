@@ -88,8 +88,9 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
   test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
+    /* 09.11.2026: delt_raise z wpisem v2 (audytor, Car Drivers po r5-W1/r5-Ś1) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — jak curl: na liście runtime, bez figur, dopóki rodzina nie zostanie podłączona */
     /* 09.11.2026 (partia 3): shrug, pulldown, hip_abd_add, leg_machine z wpisami v2 po recenzjach niezależnych */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'shrug', 'pulldown', 'hip_abd_add', 'leg_machine'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'shrug', 'pulldown', 'hip_abd_add', 'leg_machine'] });
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'shrug', 'pulldown', 'hip_abd_add', 'leg_machine'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'shrug', 'pulldown', 'hip_abd_add', 'leg_machine'] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";
