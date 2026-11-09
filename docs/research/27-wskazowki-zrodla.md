@@ -137,7 +137,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Generation Iron | Generation Iron — przewodniki ćwiczeń (generationiron.com) | 4 (warunkowo 4: strona z autorem z kwalifikacjami i datą; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 3 i K3)) | serwis specjalistyczny |
 | Healthline | Healthline — artykuły o ćwiczeniach (healthline.com) | 4 (warunkowo 4: strona z nazwanym recenzentem z kwalifikacjami i datą; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 3; odpowiedź 1 z 02.11.2026)) | serwis specjalistyczny |
 | Mullaney i in. (Int J Sports Phys Ther 2021) | Mullaney i in. — program Thrower’s Ten, opis wykonania w załączniku (Int J Sports Phys Ther 2021;16(6)) | 3 | badanie (czasopismo recenzowane) |
-| WebMD | WebMD — artykuły o ćwiczeniach z recenzją lekarską i datą (webmd.com; ta sama grupa co WebMD Ignite — w jednym zdaniu nie liczyć obu jako niezależnych) | 4 | serwis specjalistyczny |
 | Hoist Fitness | Hoist Fitness — instrukcje własnych maszyn (producent maszyn; przy maszynie innego producenta — uproszczenie) | 4 | producent sprzętu |
 | Virginia Mason Franciscan Health | Virginia Mason Franciscan Health — materiały fizjoterapii systemu szpitali (vmfh.org; jawne firmowanie placówki) | 4 | serwis specjalistyczny |
 
@@ -4670,19 +4669,19 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Połóż się na plecach, nogi wyprostowane, ręce wyciągnięte za głowę. — Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (lie on your back, legs straight, arms extended overhead)); WebMD: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, krok 1) `core_floor.supineReach`
+- Połóż się na plecach, nogi wyprostowane, ręce wyciągnięte za głowę. — Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (lie on your back, legs straight, arms extended overhead)); WebMD Ignite: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, krok 1) `core_floor.supineReach`
 
 **Ruch**
 
-- Jednocześnie unieś tułów i proste nogi, potem opuść je z powrotem. — Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (simultaneously perform a sit-up and lift your straight legs; return to fully extended)); WebMD: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, kroki 3–4) `core_floor.vupMove`
+- Jednocześnie unieś tułów i proste nogi, potem opuść je z powrotem. — Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (simultaneously perform a sit-up and lift your straight legs; return to fully extended)); WebMD Ignite: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, kroki 3–4) `core_floor.vupMove`
 
 **Wskazówki**
 
-- Napnij brzuch, żeby tułów był sztywny. — Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (maintaining ab tension)); WebMD: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, kroki 2–4; form tips (engage your core)) `plank.brace`
+- Napnij brzuch, żeby tułów był sztywny. — Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (maintaining ab tension)); WebMD Ignite: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, kroki 2–4; form tips (engage your core)) `plank.brace`
 
 **Czego unikać**
 
-- Uginanie kolan zamiast unoszenia prostych nóg. — WebMD: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, krok 3 (keep both your arms and legs straight)); Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (lift your straight legs) — błąd = zaprzeczenie standardu) `core_floor.mis.vupKnees`
+- Uginanie kolan zamiast unoszenia prostych nóg. — WebMD Ignite: [A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024](https://www.webmd.com/fitness-exercise/how-to-do-v-ups) (How to do V-ups, krok 3 (keep both your arms and legs straight)); Catalyst Athletics: [V Up](https://www.catalystathletics.com/exercise/313/V-Up/) (opis (lift your straight legs) — błąd = zaprzeczenie standardu) `core_floor.mis.vupKnees`
 
 ### Machine Crunch
 
@@ -5426,7 +5425,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | webmd-ignite-wrist-circles-fist | WebMD Ignite | Wrist Circles (Fist) (akt. 01.05.2026) | https://www.columbiadoctors.org/health-library/multimedia/wrist-circles-fist/ | — |
 | webmd-neck-stretch-front | WebMD Ignite | Neck stretch (front) | https://www.columbiadoctors.org/health-library/multimedia/neck-stretch-front/ | — |
 | webmd-shoulder-posterior | WebMD Ignite | Shoulder stretch (posterior) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-stretch-posterior/ | — |
-| webmd-v-ups | WebMD | A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024 | https://www.webmd.com/fitness-exercise/how-to-do-v-ups | — |
+| webmd-v-ups | WebMD Ignite | A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024 | https://www.webmd.com/fitness-exercise/how-to-do-v-ups | — |
 | weighttraining-cable-y-raise | weighttraining.guide | Cable y raise | https://weighttraining.guide/exercises/cable-y-raise/ | — |
 | weighttraining-incline-dumbbell-front-raise | weighttraining.guide | Incline dumbbell front raise | https://weighttraining.guide/exercises/incline-dumbbell-front-raise/ | — |
 | weighttraining-incline-dumbbell-shoulder-raise | weighttraining.guide | Incline dumbbell shoulder raise | https://weighttraining.guide/exercises/incline-dumbbell-shoulder-raise/ | — |
