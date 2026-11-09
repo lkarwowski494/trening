@@ -38,10 +38,17 @@ describe('ACG-019 (31.10.2026): Slider / Stability Ball Hamstring Curl — zesta
     expect(zakres(miednica)).toBeLessThanOrEqual(2); expect(zakres(biodro)).toBeGreaterThanOrEqual(30);
     expect(zakres(GRID.map(u => jointAngles(keyframeFrame(CW[K], u).sk, 'R').knee))).toBeGreaterThanOrEqual(45);
   });
-  test.each([K, 'Stability Ball Hamstring Curl'])('%s: zestaw bez zdań o ruchu tylko w biodrach, unoszeniu bioder i nieruchomych udach; zostają zdania zgodne z rysunkiem', k => {
+  test.each(['Stability Ball Hamstring Curl'])('%s: zestaw bez zdań o ruchu tylko w biodrach, unoszeniu bioder i nieruchomych udach; zostają zdania zgodne z rysunkiem', k => {
     const ok = SETS[k].ok ?? [];
     for (const id of ['ht.rigid', 'gb.move', 'lcurl.still']) expect([k, ok.includes(id), id]).toEqual([k, false, id]);
-    expect(ok).toEqual(k === K ? ['gb.heels', 'llc.control'] : ['llc.control']); /* lcurl.move pasowałoby lepiej, ale nie ma wpisu źródeł w wskazowki-ogolne.json — do badacza */
+    expect(ok).toEqual(['llc.control']); /* lcurl.move pasowałoby lepiej, ale nie ma wpisu źródeł w wskazowki-ogolne.json — do badacza */
+  });
+  /* 09.11.2026 (partia B2): Slider Hamstring Curl ma kartę własną z badań (most: „biodra cały czas w górze”, błąd ballcurl.mis.sag), która PRZECZY rysunkowi
+     (miednica nisko, biodro zgina się z kolanem). Karta zostaje ukryta (lista hidden, karty_nowe) do decyzji koordynatora: przebudowa rysunku na most albo powrót do zestawu ogólnego (STAN-B2.md). */
+  test('Slider Hamstring Curl (B2, 09.11.2026): karta własna przeczy rysunkowi — jest ukryta, a zestaw ogólny nie wraca', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const cues = require('../lib/cues/data.json') as { hidden: string[]; exercises: Record<string, unknown> };
+    expect([SETS[K], cues.hidden.includes(K), K in cues.exercises]).toEqual([{ b: 'own' }, true, false]);
   });
   test('Stability Ball Hamstring Curl (recenzja 31.10.2026): bez gb.heels — pięty leżą na piłce, nie na podłodze', () => {
     expect(SETS['Stability Ball Hamstring Curl'].ok).not.toContain('gb.heels');
