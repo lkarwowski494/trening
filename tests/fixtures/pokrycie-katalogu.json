@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 214,
-      "v1": 41,
-      "bezFigury": 453,
-      "daneV2NieWlaczone": 322,
-      "wyjatekBezAnimacji": 143
+      "v2": 232,
+      "v1": 35,
+      "bezFigury": 441,
+      "daneV2NieWlaczone": 304,
+      "wyjatekBezAnimacji": 138
     },
-    "animowanyBlad": 132,
+    "animowanyBlad": 148,
     "wskazowki": {
       "wlasne": 283,
       "wlasneZBledami": 174,
-      "ogolne": 113,
-      "bezTekstu": 312
+      "ogolne": 120,
+      "bezTekstu": 305
     },
-    "czesteBledyTekst": 287,
+    "czesteBledyTekst": 294,
     "roleMiesni": 513,
-    "pelnaKarta": 210,
-    "pelnaKartaBlad": 131,
-    "recenzjaFigur": 214
+    "pelnaKarta": 228,
+    "pelnaKartaBlad": 147,
+    "recenzjaFigur": 232
   },
   "kartZTekstami": 584,
   "rodziny": {
@@ -116,17 +116,17 @@
       "recenzja": 0
     },
     "cable_row": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 10,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 9,
-      "v1": 3,
+      "figuraV2": 9,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 5,
-      "ogolne": 0,
-      "bezTekstu": 5,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 4,
+      "bezTekstu": 1,
+      "pelnaKarta": 9,
+      "pelnaKartaBlad": 7,
+      "recenzja": 9
     },
     "pull_up": {
       "status": "ready",
@@ -207,17 +207,17 @@
       "recenzja": 0
     },
     "hip_bridge": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 11,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 10,
-      "v1": 3,
+      "figuraV2": 9,
+      "daneV2NieWlaczone": 1,
+      "v1": 0,
       "wlasne": 6,
-      "ogolne": 0,
-      "bezTekstu": 5,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 3,
+      "bezTekstu": 2,
+      "pelnaKarta": 9,
+      "pelnaKartaBlad": 9,
+      "recenzja": 9
     },
     "kb_ballistic": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 214,
-    "figura.wAplikacji": 255,
+    "figura.v2": 232,
+    "figura.wAplikacji": 267,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 132,
+    "animowanyBlad": 148,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
-    "wskazowki.zTekstem": 396,
-    "czesteBledyTekst": 287,
+    "wskazowki.zTekstem": 403,
+    "czesteBledyTekst": 294,
     "roleMiesni": 513,
-    "pelnaKarta": 210,
-    "pelnaKartaBlad": 131,
-    "recenzjaFigur": 214,
+    "pelnaKarta": 228,
+    "pelnaKartaBlad": 147,
+    "recenzjaFigur": 232,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 584,
     "jezyk.en.kompletne": 584,
