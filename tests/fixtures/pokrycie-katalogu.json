@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 232,
+      "v2": 223,
       "v1": 35,
-      "bezFigury": 441,
-      "daneV2NieWlaczone": 304,
-      "wyjatekBezAnimacji": 138
+      "bezFigury": 450,
+      "daneV2NieWlaczone": 313,
+      "wyjatekBezAnimacji": 141
     },
-    "animowanyBlad": 146,
+    "animowanyBlad": 137,
     "wskazowki": {
       "wlasne": 265,
       "wlasneZBledami": 157,
-      "ogolne": 118,
-      "bezTekstu": 325
+      "ogolne": 115,
+      "bezTekstu": 328
     },
-    "czesteBledyTekst": 275,
+    "czesteBledyTekst": 272,
     "roleMiesni": 513,
-    "pelnaKarta": 226,
-    "pelnaKartaBlad": 145,
-    "recenzjaFigur": 232
+    "pelnaKarta": 217,
+    "pelnaKartaBlad": 136,
+    "recenzjaFigur": 223
   },
   "kartZTekstami": 577,
   "rodziny": {
@@ -209,15 +209,15 @@
     "hip_bridge": {
       "status": "ready",
       "cwiczen": 11,
-      "figuraV2": 9,
-      "daneV2NieWlaczone": 1,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 10,
       "v1": 0,
       "wlasne": 6,
-      "ogolne": 3,
-      "bezTekstu": 2,
-      "pelnaKarta": 9,
-      "pelnaKartaBlad": 9,
-      "recenzja": 9
+      "ogolne": 0,
+      "bezTekstu": 5,
+      "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
+      "recenzja": 0
     },
     "kb_ballistic": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 232,
-    "figura.wAplikacji": 267,
+    "figura.v2": 223,
+    "figura.wAplikacji": 258,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 146,
+    "animowanyBlad": 137,
     "wskazowki.wlasne": 265,
     "wskazowki.wlasneZBledami": 157,
-    "wskazowki.zTekstem": 383,
-    "czesteBledyTekst": 275,
+    "wskazowki.zTekstem": 380,
+    "czesteBledyTekst": 272,
     "roleMiesni": 513,
-    "pelnaKarta": 226,
-    "pelnaKartaBlad": 145,
-    "recenzjaFigur": 232,
+    "pelnaKarta": 217,
+    "pelnaKartaBlad": 136,
+    "recenzjaFigur": 223,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 577,
     "jezyk.en.kompletne": 577,
