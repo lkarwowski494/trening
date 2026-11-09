@@ -809,21 +809,6 @@
    ],
    "status": "wdrozony"
   },
-  "vup.back": {
-   "pl": "Nie wyginaj lędźwi w łuk i nie garb się.",
-   "claim": "Neutralne lędźwie w V-up i podobnych.",
-   "src": [
-    [
-     "https://www.acefitness.org/resources/everyone/exercise-library/242/v-ups/",
-     "Cautions: avoid „arching” or „slumping” your low back"
-    ],
-    [
-     "data:Crunch",
-     "crunch.lowBack (ACE #52, ExRx) — analogia"
-    ]
-   ],
-   "status": "wdrozony"
-  },
   "wm.arm": {
    "pl": "Górna ręka z ciężarem prosta, nad barkiem.",
    "claim": "W wiatraku ramię z kettlebellem wyprostowane w pionie.",

@@ -7,7 +7,7 @@
       "v1": 44,
       "bezFigury": 481,
       "daneV2NieWlaczone": 352,
-      "wyjatekBezAnimacji": 150
+      "wyjatekBezAnimacji": 168
     },
     "animowanyBlad": 127,
     "wskazowki": {
@@ -17,7 +17,7 @@
       "bezTekstu": 336
     },
     "czesteBledyTekst": 264,
-    "roleMiesni": 512,
+    "roleMiesni": 513,
     "pelnaKarta": 180,
     "pelnaKartaBlad": 126,
     "recenzjaFigur": 183
@@ -805,7 +805,7 @@
     "wskazowki.wlasneZBledami": 154,
     "wskazowki.zTekstem": 372,
     "czesteBledyTekst": 264,
-    "roleMiesni": 512,
+    "roleMiesni": 513,
     "pelnaKarta": 180,
     "pelnaKartaBlad": 126,
     "recenzjaFigur": 183,

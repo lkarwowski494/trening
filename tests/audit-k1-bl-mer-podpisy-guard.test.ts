@@ -1,3 +1,4 @@
+// skanuje: tests
 /*
  * Pokrycie regresji MER2-07 „podpisy kart × języki” po podziale na grupy (06.11.2026, lekcja L-110; kod: tests/podpisy-jezyki-shared.tsx).
  * Sprawdza: (1) pliki grup audit-k1-bl-mer-podpisy1…N istnieją i wywołują własną grupę; (2) suma języków grup = wszystkie LANGS (z pl), każdy dokładnie raz,

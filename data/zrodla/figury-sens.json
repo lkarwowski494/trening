@@ -475,6 +475,32 @@
         "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy — nie pokazujemy go animacją (bledy: [])"
       },
       "warianty": {
+        "Cable Crunch": [
+          "tulow_zwija_sie_biodra_stoja"
+        ],
+        "Machine Crunch": [
+          "tulow_zwija_sie_biodra_stoja"
+        ],
+        "Scissor Kick": [
+          "miednica_na_podlodze"
+        ],
+        "Sit Up": [
+          "szyja_neutralna"
+        ],
+        "Suspended Reverse Crunch": [
+          "miednica_unosi_sie",
+          "kolana_ku_barkom"
+        ],
+        "Tuck Crunch": [
+          "szyja_neutralna",
+          "miednica_na_podlodze"
+        ],
+        "Hollow Hold": [
+          "miednica_na_podlodze"
+        ],
+        "Stability Ball Crunch": [
+          "szyja_neutralna"
+        ],
         "Superman": [
           "superman_konczyny_uniesione",
           "superman_konczyny_proste",

@@ -15,6 +15,7 @@ Jesteś programistą aplikacji Trening (Expo/React Native, TypeScript). Zasady: 
   przebiegi ubijają procesy Jest i dają fałszywe porażki); w razie wątpliwości `ps aux | grep jest`.
 - Miejsce na dysku (L-105, 04.11.2026): przed `npm ci` w nowym worktree sprawdź `df -h` — próg ≥ 3 GB wolne; poniżej: nie instaluj, zgłoś koordynatorowi (nie usuwaj cudzych worktree).
 - Po dwóch nieudanych podejściach do tej samej poprawki zatrzymaj się i opisz problem zamiast próbować dalej.
+- Dysk przed długimi testami (L-121, ZB-050, 09.11.2026): `df -h /` przed `test:fast`, `verify` i testami strony; poniżej 2 GB wolnego — nie uruchamiaj, zwolnij własne miejsce (zakończone worktree, własne `/tmp/atlas-dist-*`) albo zgłoś koordynatorowi; `verify:lekkie` sam przerywa poniżej progu (`scripts/sprawdz-dysk.mjs`).
 - Po wypchnięciu (L-009): sprawdź wynik `tests.yml` dla swojego SHA (`mcp__github__actions_list`, narzędzie ładuj przez ToolSearch) i czekaj na zielony; czerwony przebieg napraw, zanim zgłosisz ukończenie. Hak `scripts/hooks/pre-push` (lint, check:readme, check:matrix) zatrzymuje oczywiste braki przed wypchnięciem; `git push --no-verify` tylko świadomie.
 
 Wynik: lista zmienionych plików, testy dodane (nazwy), wynik verify (liczby), ryzyka do sprawdzenia w E2E, czego celowo nie zrobiłeś.
