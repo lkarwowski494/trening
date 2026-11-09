@@ -121,7 +121,7 @@ describe('calf_raise p1: nakładka techniki', () => {
 
 describe('calf_raise p1: poprawki recenzji r1 (09.11.2026)', () => {
   test('W3 Calf Raise (linki): wyciąg niski (bloczek przy stopach), linka do dłoni prawie pionowo (≤ 25° od pionu; było 28° pod poziomem = 62° od pionu)', () => {
-    const g = data('Calf Raise (linki)').sprzet.find(x => x.rodzaj === 'wyciag')!; expect([g.x <= 30, g.y <= 30]).toEqual([true, true]);
+    const g0 = data('Calf Raise (linki)').sprzet.find(x => x.rodzaj === 'wyciag')!; const g = { x: g0.x ?? NaN, y: g0.y ?? NaN }; expect([g.x <= 30, g.y <= 30]).toEqual([true, true]);
     for (const u of [0, 0.5, 1]) { const f = keyframeFrame(data('Calf Raise (linki)'), u); const h = f.sk.arms.R.grip; const dx = Math.abs(g.x - h[0]), dy = h[1] - g.y; expect([u, Math.atan2(dx, dy) * 180 / Math.PI <= 25]).toEqual([u, true]); }
   });
   test('N1 Łydki na stopniu: dłonie na ścianie przed osobą (karta: „przytrzymaj się czegoś”)', () => {
