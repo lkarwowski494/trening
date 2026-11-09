@@ -1597,6 +1597,50 @@
      "Copenhagen Plank",
      "Push Up to Side Plank"
     ]
+   },
+   {
+    "muscle": "forearms",
+    "roles": [
+     "main"
+    ],
+    "function": "forearms.grip",
+    "exercises": [
+     "Dead Hang"
+    ],
+    "uwaga": "Partia A3 (09.11.2026): zwis na drążku utrzymuje się chwytem — funkcja forearms.grip (S1, S9, dwa_zrodla) opisuje utrzymanie dłoni na uchwycie; podstawa przypisania w badaniach W1 G6 (role-miesni-fala-w1/pull_up.md, gałąź badania/g6-przyciaganie): dwa badania szczebla 3 o zwisie jako próbie chwytu (Sepehri Rahnama i in. 2025, rozdz. 2.3.3; Exel i in. 2026, rozdz. 2.3 — wariant na listwie). Najszerszy grzbietu w zwisie — bez opisu (zwis bierny, brak źródła)."
+   },
+   {
+    "muscle": "lower_back",
+    "roles": [
+     "main"
+    ],
+    "function": "lower_back.spine_ext",
+    "exercises": [
+     "Lower Back Curl"
+    ],
+    "uwaga": "Partia A3 (09.11.2026): unoszenie tułowia w leżeniu przodem = wyprost kręgosłupa — funkcja lower_back.spine_ext (S4, S10, dwa_zrodla); propozycja badań W1 G1 (role-miesni-fala-w1/core_floor.md, gałąź badania/g1-core; W2 bez zmian). Rodzina katalogu „other” jest mieszana — tylko jawna lista."
+   },
+   {
+    "muscle": "lower_back",
+    "roles": [
+     "main"
+    ],
+    "function": "lower_back.spine_ext",
+    "exercises": [
+     "Superman"
+    ],
+    "uwaga": "Partia A4 (09.11.2026): unoszenie klatki i nóg w leżeniu przodem = wyprost kręgosłupa — funkcja lower_back.spine_ext (dwa_zrodla); propozycja badań W1 G1 (role-miesni-fala-w1/core_floor.md, gałąź badania/g1-core, wiersz „Superman lower_back”), jak Lower Back Curl w A3. Rodzina katalogu „other” jest mieszana — tylko jawna lista."
+   },
+   {
+    "muscle": "glutes",
+    "roles": [
+     "aux"
+    ],
+    "function": "glutes.hip_ext",
+    "exercises": [
+     "Superman"
+    ],
+    "uwaga": "Partia A4 (09.11.2026): unoszenie prostych nóg w leżeniu przodem = wyprost biodra — funkcja glutes.hip_ext (ustalone); propozycja badań W1 G1 (role-miesni-fala-w1/core_floor.md, wiersz „Superman glutes”)."
    }
   ]
  }

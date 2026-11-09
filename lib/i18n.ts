@@ -1,3 +1,4 @@
+import { BRAND_NAME } from './brand';
 import { EN } from './i18n.en';
 import { LOCALES } from './locales';
 import { pluralIndex } from './plural';
@@ -23,11 +24,10 @@ export type Lang = typeof LANGS[number];
 export type LangSetting = 'auto' | Lang;
 /** Nazwa języka w nim samym (lista w ustawieniach). */
 export const LANG_NAME: Record<Lang, string> = { pl: 'Polski', en: 'English', cs: 'Čeština', sk: 'Slovenčina', hu: 'Magyar', ro: 'Română', bg: 'Български', hr: 'Hrvatski', sl: 'Slovenščina', sr: 'Српски', lt: 'Lietuvių', lv: 'Latviešu', et: 'Eesti', uk: 'Українська', es: 'Español (España)', 'es-419': 'Español (Latinoamérica)', pt: 'Português (Portugal)', 'pt-BR': 'Português (Brasil)', de: 'Deutsch', fr: 'Français', it: 'Italiano', nl: 'Nederlands', sv: 'Svenska', da: 'Dansk', nb: 'Norsk', fi: 'Suomi', tr: 'Türkçe', el: 'Ελληνικά', id: 'Bahasa Indonesia', ms: 'Bahasa Melayu', vi: 'Tiếng Việt', ru: 'Русский', ja: '日本語', ko: '한국어', 'zh-Hant': '繁體中文' };
-/** Nazwa aplikacji pod ikoną i w tekstach (folder w Plikach, Zdrowie, powiadomienia, stopka). Decyzja właściciela 05.10.2026 (potwierdzona 06.10):
- * lokalne słowo tam, gdzie jest podobne do „Trening” (to samo co nazwa zakładki), w pozostałych językach „Training”. Teksty biorą ją parametrem {app}
- * (jedno źródło); test i18n-locales pilnuje locales/<kod>.json (CFBundleDisplayName) i store/app-store-names.json. */
-export const APP_NAME: Record<Lang, string> = { pl: 'Trening', en: 'Training', cs: 'Trénink', sk: 'Tréning', hu: 'Training', ro: 'Training', bg: 'Training', hr: 'Trening', sl: 'Trening', sr: 'Тренинг', lt: 'Treniruotė', lv: 'Treniņš', et: 'Treening', uk: 'Training', es: 'Training', 'es-419': 'Training', pt: 'Treino', 'pt-BR': 'Treino', de: 'Training', fr: 'Training', it: 'Training', nl: 'Training', sv: 'Träning', da: 'Træning', nb: 'Trening', fi: 'Treeni', tr: 'Training', el: 'Training', id: 'Training', ms: 'Training', vi: 'Training', ru: 'Training' /* fala 3: „Тренировка” niepodobne do „Trening” (jak uk) */,
-  /* fala 4: lokalne słowa (トレーニング, 트레이닝, 訓練) w innym piśmie — niepodobne do „Trening” */ ja: 'Training', ko: 'Training', 'zh-Hant': 'Training' };
+/** Nazwa aplikacji pod ikoną i w tekstach (folder w Plikach, Zdrowie, powiadomienia, stopka). Od 1.1 (decyzja właściciela 09.11.2026, ZB-056) marka „RepsGoat”
+ * w każdym języku, nietłumaczona; pisownia w jednym miejscu: lib/brand.ts. Do 1.0.1 nazwa lokalna („Trening”, „Training”, …; decyzja 05.10.2026).
+ * Teksty biorą ją parametrem {app} (jedno źródło); test i18n-locales pilnuje locales/<kod>.json (CFBundleDisplayName) i store/app-store-names.json. */
+export const APP_NAME: Record<Lang, string> = Object.fromEntries(LANGS.map(l => [l, BRAND_NAME])) as Record<Lang, string>;
 /** Domyślny tag regionu do dat i liczb, gdy telefon ma inny region. */
 const TAG: Record<Lang, string> = { pl: 'pl-PL', en: 'en-US', cs: 'cs-CZ', sk: 'sk-SK', hu: 'hu-HU', ro: 'ro-RO', bg: 'bg-BG', hr: 'hr-HR', sl: 'sl-SI', sr: 'sr-RS', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE', uk: 'uk-UA', es: 'es-ES', 'es-419': 'es-419', pt: 'pt-PT', 'pt-BR': 'pt-BR', de: 'de-DE', fr: 'fr-FR', it: 'it-IT', nl: 'nl-NL', sv: 'sv-SE', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-GR', id: 'id-ID', ms: 'ms-MY', vi: 'vi-VN', ru: 'ru-RU', ja: 'ja-JP', ko: 'ko-KR', 'zh-Hant': 'zh-Hant-TW' /* fala 4: wariant tajwański */ };
 export const isLang = (x: unknown): x is Lang => typeof x === 'string' && (LANGS as readonly string[]).includes(x);

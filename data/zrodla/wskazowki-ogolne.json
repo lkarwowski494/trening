@@ -1183,20 +1183,6 @@
    "twierdzenie": "W wiosłowaniu pionowym łokieć nad przedramieniem.",
    "plik": "wskazowki-slownik-uzupelnienie"
   },
-  "vup.back": {
-   "zrodla": [
-    {
-     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/242/v-ups/",
-     "miejsce": "Cautions: avoid „arching” or „slumping” your low back"
-    },
-    {
-     "adres": "data:Crunch",
-     "miejsce": "crunch.lowBack (ACE #52, ExRx) — analogia"
-    }
-   ],
-   "twierdzenie": "Neutralne lędźwie w V-up i podobnych.",
-   "plik": "wskazowki-slownik"
-  },
   "walk.rails": {
    "cwiczenie": "Incline Walk (bieżnia)",
    "plik": "wskazowki-slownik"
@@ -1445,11 +1431,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Band Pull Apart": {
-   "rodzina": "raiseRear",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Band Squat": {
    "rodzina": "squat",
    "sprawdzenie": null,
@@ -1484,11 +1465,6 @@
    "rodzina": "rollout",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Barbell Shrug Behind The Back": {
-   "rodzina": "shrug",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Barbell Side Bend": {
    "rodzina": "sideBend",
@@ -1539,11 +1515,6 @@
    "rodzina": "bench",
    "sprawdzenie": "NASM barbell-bench-press-with-chains (sitemap) — bezpośrednie źródło możliwe",
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Bent Over Row (linki)": {
-   "rodzina": "rowBent",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Bent Press": {
    "rodzina": "windmill",
@@ -1604,11 +1575,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Cable Crunch": {
-   "rodzina": "cableCrunch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Cable Curl (dwie linki)": {
    "rodzina": "curl",
@@ -1674,11 +1640,6 @@
    "rodzina": "faceRow",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Cable Russian Twists": {
-   "rodzina": "rotation",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
   },
   "Cable Seated Crunch": {
    "rodzina": "cableCrunch",
@@ -1749,11 +1710,6 @@
    "rodzina": "bench",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Close-Grip Front Lat Pulldown": {
-   "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Close-Grip Push-Up": {
    "rodzina": "pushup",
@@ -1910,11 +1866,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Double Kettlebell Windmill": {
-   "rodzina": "windmill",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-08-korekty"
-  },
   "Double Leg Butt Kick": {
    "rodzina": "jump",
    "sprawdzenie": null,
@@ -1959,11 +1910,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "External Rotation (linki)": {
-   "rodzina": "rotCuff",
-   "sprawdzenie": "ACE #352 opisuje wersję z linką — bezpośrednio",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Farmer's Walk (Farmers Handles)": {
    "rodzina": "carry",
@@ -2060,16 +2006,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Hanging Knee Raise": {
-   "rodzina": "hanging",
-   "sprawdzenie": "NASM opisuje wprost Hanging Knee Raise",
-   "plik": "wskazowki-cwiczenia-01"
-  },
-  "Hanging Leg Raise": {
-   "rodzina": "hanging",
-   "sprawdzenie": "ISSA opisuje wprost Hanging Leg Raise",
-   "plik": "wskazowki-cwiczenia-01"
-  },
   "High Cable Curl": {
    "rodzina": "curl",
    "sprawdzenie": "bez curl.elbows — ramiona uniesione w bok",
@@ -2094,11 +2030,6 @@
    "rodzina": "mobility",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Hollow Hold": {
-   "rodzina": "plank",
-   "sprawdzenie": "leżenie na plecach z lędźwiami przy podłodze — jak dead bug (analogia); bez plank.noSag (inna pozycja)",
-   "plik": "wskazowki-cwiczenia-01"
   },
   "Inchworm": {
    "rodzina": "mobility",
@@ -2204,11 +2135,6 @@
    "rodzina": "oly",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Kettlebell Windmill": {
-   "rodzina": "windmill",
-   "sprawdzenie": "ACE #386 i ISSA — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Knee Circles": {
    "rodzina": "mobility",
@@ -2320,11 +2246,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Leverage Shrug": {
-   "rodzina": "shrug",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Lower Back Curl": {
    "rodzina": "cobra",
    "sprawdzenie": null,
@@ -2380,11 +2301,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Machine Crunch": {
-   "rodzina": "cableCrunch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-08-korekty"
-  },
   "Machine Glute Kickback": {
    "rodzina": "hipExt",
    "sprawdzenie": null,
@@ -2400,20 +2316,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Machine Row": {
-   "rodzina": "row",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Machine Triceps Extension": {
    "rodzina": "triPush",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Meadows Row": {
-   "rodzina": "rowBent",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Medicine Ball Full Twist": {
    "rodzina": "rotation",
@@ -2755,11 +2661,6 @@
    "sprawdzenie": "ruch to samo opuszczenie łopatek; 1 ✓",
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Scissor Kick": {
-   "rodzina": "legRaiseFloor",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Seal Row (sztanga)": {
    "rodzina": "row",
    "sprawdzenie": "klatka na ławce jak w Chest Supported Row",
@@ -2815,11 +2716,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
-  "Shrugs (linki)": {
-   "rodzina": "shrug",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Side Hop-Sprint": {
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
@@ -2857,11 +2753,6 @@
   },
   "Single Arm Cable Row": {
    "rodzina": "row",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Arm Lat Pulldown": {
-   "rodzina": "vpull",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
@@ -2924,11 +2815,6 @@
    "rodzina": "jump",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Sit Up": {
-   "rodzina": "crunch",
-   "sprawdzenie": "bez crunch.lowBack — w siadzie z leżenia plecy odrywają się; tylko 1 ✓",
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Skakanka": {
    "rodzina": "jump",
@@ -3065,11 +2951,6 @@
    "sprawdzenie": "bez bp.elbowsMid — hantle ściśnięte, łokcie blisko",
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Stability Ball Crunch": {
-   "rodzina": "crunch",
-   "sprawdzenie": "1 ✓",
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Stability Ball Hamstring Curl": {
    "rodzina": "bridge",
    "sprawdzenie": null,
@@ -3107,11 +2988,6 @@
   },
   "Standing Cable Leg Curl": {
    "rodzina": "legCurl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Standing Cable Row": {
-   "rodzina": "row",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
@@ -3210,11 +3086,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Superman": {
-   "rodzina": "cobra",
-   "sprawdzenie": "leżenie przodem, unoszenie tułowia — bez zdań „bez wyginania”, tylko „nie na siłę”",
-   "plik": "wskazowki-cwiczenia-08-korekty"
-  },
   "Supine Hamstring Stretch": {
    "rodzina": "stretch",
    "sprawdzenie": null,
@@ -3222,11 +3093,6 @@
   },
   "Suspended Fallout": {
    "rodzina": "rollout",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
-  "Suspended Reverse Crunch": {
-   "rodzina": "plank",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
@@ -3239,11 +3105,6 @@
    "rodzina": "crunch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Toes to Bar": {
-   "rodzina": "hanging",
-   "sprawdzenie": "NASM wymienia jako progresję uniesień w zwisie; bez kipu",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Torso Rotation": {
    "rodzina": "mobility",
@@ -3260,35 +3121,15 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Tuck Crunch": {
-   "rodzina": "crunch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
-  },
   "Turkish Get Up": {
    "rodzina": "tgu",
    "sprawdzenie": "ACE #388 i ISSA — bezpośrednie",
    "plik": "wskazowki-cwiczenia-08-korekty"
   },
-  "Underhand Lat Pulldown": {
-   "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Upper Back Stretch": {
    "rodzina": "stretch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "V-Bar Pulldown": {
-   "rodzina": "vpull",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "V-Up": {
-   "rodzina": "vup",
-   "sprawdzenie": "ACE #242 V-ups — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Wall Lat Stretch": {
    "rodzina": "stretch",
@@ -3354,16 +3195,6 @@
    "rodzina": "squat",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Zottman Curl": {
-   "rodzina": "curl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Zottman Preacher Curl": {
-   "rodzina": "curl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
   }
  },
  "katy": {

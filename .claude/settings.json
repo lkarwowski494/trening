@@ -52,6 +52,16 @@
         ]
       },
       {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || exit 0; command -v node >/dev/null 2>&1 || exit 0; NODE_USE_ENV_PROXY=1 node scripts/hooks/stan-nocny.mjs 2>/dev/null || true",
+            "timeout": 8
+          }
+        ]
+      },
+      {
         "matcher": "startup|resume|compact",
         "hooks": [
           {

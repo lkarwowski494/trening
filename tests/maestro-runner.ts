@@ -6,6 +6,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { Alert, AppState } from 'react-native';
 import * as store from '@/lib/store';
+import { BRAND_NAME } from '@/lib/brand';
 import { renderApp, flushAll, screen, act, fireEvent, navRef, hostRoot } from './app';
 import { saved } from './helpers';
 import { layout, flat, SCREEN, type LNode, type Box } from './maestro-layout';
@@ -338,7 +339,7 @@ export class Runner {
           (global as any).__sysPrompt = () => new Promise(res => {
             const cur = (global as any).__notifPerm ?? SIM_NOTIF_PERM; if (cur.status === 'denied' || cur.granted) { res(cur); return; }
             const set = (granted: boolean) => { (global as any).__notifPerm = granted ? { granted: true, canAskAgain: true, status: 'granted' } : { granted: false, canAskAgain: false, status: 'denied' }; res((global as any).__notifPerm); };
-            Alert.alert('“Trening” Would Like to Send You Notifications', 'Notifications may include alerts, sounds and icon badges.', [{ text: 'Don’t Allow', onPress: () => set(false) }, { text: 'Allow', onPress: () => set(true) }]);
+            Alert.alert(`“${BRAND_NAME}” Would Like to Send You Notifications`, 'Notifications may include alerts, sounds and icon badges.', [{ text: 'Don’t Allow', onPress: () => set(false) }, { text: 'Allow', onPress: () => set(true) }]);
           });
           /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
           const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;

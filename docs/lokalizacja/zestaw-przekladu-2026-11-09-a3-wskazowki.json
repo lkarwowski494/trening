@@ -1,0 +1,5 @@
+{
+ "_opis": "Zdania wskazówek techniki z partii A3 (przyciąganie i ramiona; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt). Do czasu przekładu karty są ukryte (lista karty_nowe w tests/recenzja-wyjatki-1-1.json), a aplikacja przy pokazaniu użyłaby angielskiego (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+ "data": "2026-11-09",
+ "klucze": []
+}

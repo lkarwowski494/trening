@@ -5,7 +5,7 @@
  * Maszyna Smitha: szyna stoi w miejscu, gryf na szynie (było: szyna rysowana w bieżącym x gryfu, tor ukośny 15–18 cm).
  * Wyjątki: tests/tor-wyjatki.json („ćwiczenie|widok” → powód); lista tylko maleje — wyjątek, który już spełnia progi, trzeba usunąć.
  */
-import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, HINGE, type View, type HingeParams } from '@/lib/figures/v2';
+import { VARIANTS, FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, HINGE, type View, type HingeParams } from '@/lib/figures/v2';
 import { keyframeFrame, type PoseData } from '@/lib/figures/v2';
 import { progLukuRamienia, DODATEK_SKRETU } from './helpers/tor-luk-ramienia';
 import * as fs from 'fs';
@@ -114,7 +114,7 @@ describe('101-12 (29.10.2026, hinge): wyjątki toru po krzywej kolan (`knees` w 
   });
   test('gryf z krzywą kolan: tor schodzi najwyżej HINGE.dev (3,5 cm) pod prostą między końcami — poniżej progu strażnika (4 cm)', () => {
     expect(HINGE.dev).toBeLessThan(PROG.odchylenie);
-    for (const k of ['Deadlift (sztanga)', 'Snatch Deadlift', 'Sumo Deadlift', 'RDL (sztanga)']) expect([k, tor(k, 'side').odchylenie <= HINGE.dev + 0.01, tor(k, 'side').zawrocenia <= PROG.zawrocenia]).toEqual([k, true, true]);
+    for (const k of ['Deadlift (sztanga)', 'Snatch Deadlift', 'Sumo Deadlift', 'RDL (sztanga)']) expect([k, tor(k, 'side').odchylenie <= ((VARIANTS[k] as { p: { dev?: number } }).p.dev ?? HINGE.dev) + 0.01, /* 09.11.2026: RDL (sztanga) ma jawne dev 4 (gryf pod kolanem; odstęp ud–gryf ≤ 3,5 cm) */ tor(k, 'side').zawrocenia <= PROG.zawrocenia]).toEqual([k, true, true]);
   });
 });
 

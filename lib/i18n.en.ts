@@ -1240,6 +1240,7 @@ export const EN: Record<string, string> = {
   'Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.': 'New and refined technique tips, including shoulders, power exercises and mobility.',
   'Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.': 'Voice announcements use the best voice installed on your phone.',
   'Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.': 'A new user starts on the Workout screen with the “Start your first workout” button and the “First workout” board.',
+  'Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.': 'The app is now called {app}. Your workouts, templates and settings stay unchanged.',
   /* ROLE-MIESNI:BEGIN — generowane przez scripts/zrodla-runtime.mjs z data/zrodla/role-miesni.json, nie edytować ręcznie */
   'Odciąga ramię do tyłu, gdy przyciągasz.': 'Draws your arm back as you pull.',
   'Odciąga ramię do tyłu.': 'Draws your arm back.',

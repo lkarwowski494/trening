@@ -8,6 +8,7 @@
  * E2E: .maestro/13, 31, 34, 35 (od 1.0.1 przycisk jest).
  */
 import * as store from '@/lib/store';
+import { BRAND_NAME } from '@/lib/brand';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen } from '@/lib/whatsnew';
 import { applyLang } from '@/lib/i18n';
 import { fresh, addWorkout, saved, withDemoTemplates } from './helpers';
@@ -22,14 +23,14 @@ const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => { 
 const withWorkout = () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); };
 
 describe('1.0.1 (decyzja właściciela 06.11.2026, wariant B): jeden wpis w kodzie', () => {
-  test('lista w kodzie: jeden wpis 2026-11-06 (bez numeru buildu), 4 punkty z kropką, bez nazw źródeł i marek', () => {
+  test('lista w kodzie: jeden wpis 2026-11-06 (bez numeru buildu), 5 punktów z kropką, bez nazw źródeł i marek', () => {
     expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-06']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-06');
     const it = WHATS_NEW[0].items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/));
     expect(it.join(' ')).not.toMatch(/Strong|Hevy|Fitbod|JEFIT|ExRx|Stronger by Science|ACSM|NSCA/i);
   });
   test('punkty mają angielski odpowiednik (słownik EN)', () => {
     const { EN } = require('@/lib/i18n.en');
-    WHATS_NEW[0].items().forEach(x => expect(EN[x]).toBeTruthy());
+    WHATS_NEW[0].items().forEach(x => expect(EN[x] ?? EN[x.replace(BRAND_NAME, '{app}')] /* punkt z parametrem {app} (nazwa 1.1) */).toBeTruthy());
   });
   test('kropka: nowa osoba — nie; po treningu i innym zapisanym id — tak; otwarcie zapisuje id wpisu', () => {
     expect(whatsNewUnseen()).toBe(false);

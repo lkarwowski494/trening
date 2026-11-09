@@ -99,6 +99,12 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `gwaltowne_blokowanie_lokci` | gwałtowne blokowanie łokci | błąd przy wyciskaniu: łokcie zatrzaskiwane w wyproście (wyprost sam w sobie jest celem ruchu); NIE „prostowanie rąk do końca”. Spójne z ohp.mis.lock i press.noLock. Pozostałe 33 języki wg przekładu z PL/EN |
 | `miniguma` | miniguma | mała zamknięta guma zakładana na nogi (nad kolana albo na kostki) — nie długa guma z uchwytami (guma_oporowa obejmuje każdą gumę); recenzja lokalizacji A2, 08.11.2026 |
 | `blokowanie_kolan_przeprost` | blokowanie kolan w przeproście | błąd albo wskazówka na prasie do nóg: blokowanie kolan w przeproście na górze; pełny wyprost sam nie jest błędem (recenzja lokalizacji A2, 08.11.2026; ta sama logika co gwałtowne blokowanie łokci z A1) |
+| `lopatki_w_dol_i_do_tylu` | łopatki w dół i do tyłu | stała kolejność wskazówki o ustawieniu łopatek (ściągnięcie w dół i do tyłu); jedno brzmienie ułatwia przekład na 33 języki — recenzja lokalizacji A3, 09.11.2026 |
+| `przodem_do_wyciagu` | stań przodem/bokiem do wyciągu | ustawienie przy wyciągu (linka, bloczek) — nie „maszyna”, bo maszyna z prowadnicą to w aplikacji osobny rodzaj sprzętu (pojęcia maszyna i wyciag); recenzja lokalizacji A3, 09.11.2026 |
+| `cofnij_biodra_zawias` | cofnij biodro/biodra | zawias biodrowy (ruch bioder w tył); w aplikacji „wypychając biodra w przód” to ruch swingu, a „wypchnij” to wyciskanie ciężaru nad głowę — recenzja lokalizacji A4a, 09.11.2026 |
+| `lower_yourself_back_down` | wróć / opuść się | EN „lower back down” czyta się jak „lower back” (lędźwie, pojęcie ledzwie) — recenzja lokalizacji A4a, 09.11.2026 |
+| `podloga_nie_podloze` | podłoga | we wskazówkach o lędźwiach odrywających się od podłoża mówimy „podłoga” (jak w pozostałych zdaniach partii) — recenzja lokalizacji A4a, 09.11.2026; inne użycia „podłoża” (miękkie podłoże, odpychanie się od podłoża) zostają |
+| `pilka_gimnastyczna` | piłka gimnastyczna | duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026 |
 
 ## Terminy zalecane (rdzeń)
 
@@ -156,6 +162,10 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pl` | `gwaltowne_blokowanie_lokci` | (?<!wałtowne )blokowanie łokci | samo „blokowanie łokci” czyta się jak „nie prostuj rąk do końca”; błędem jest gwałtowne zatrzaśnięcie |
 | `pl` | `miniguma` | mał(a\|ą\|ej) gum | ten sam sprzęt miał w partii A2 dwie nazwy; jedna nazwa: miniguma |
 | `pl` | `blokowanie_kolan_przeprost` | blokow\w* kolan\w* w pełnym wyproście | pełny wyprost nie jest błędem — błędem jest blokowanie w przeproście |
+| `pl` | `lopatki_w_dol_i_do_tylu` | do tyłu i w dół | w partii A3 pojawiły się obie kolejności; jedno brzmienie: w dół i do tyłu |
+| `pl` | `przodem_do_wyciagu` | przodem do maszyny | w zdaniu o wyciągu „maszyna” myli się z maszyną z prowadnicą (osobny sprzęt) |
+| `pl` | `cofnij_biodra_zawias` | wypchn\w* biodr\w* w tył | „wypchnij” myli się z wyciskaniem i ruchem swingu; zawias to „cofnij biodra” |
+| `pl` | `podloga_nie_podloze` | odryw\w* się od podłoża | „podłoże” brzmi jak instrukcja; w zdaniach o odrywaniu się od podłogi — „podłoga” |
 | `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
 | `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
 | `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
@@ -164,21 +174,27 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `en` | `tasma_rozciaganie` | (?<![\p{L}])(belt\|sash)s?(?![\p{L}]) | „belt” to pas obciążeniowy; do rozciągania „strap” |
 | `en` | `podwijanie_miednicy` | posterior\s+pelvic\s+tilt\|tilt(ing)?\s+(your\s+)?pelvis\s+back | język podręcznika; potocznie „tuck your pelvis” |
 | `en` | `gwaltowne_blokowanie_lokci` | locking out (the \|your )?elbows | w EN „lockout” to cel wyciskania; błędem jest gwałtowne zatrzaśnięcie (snapping into lockout) |
+| `en` | `lopatki_w_dol_i_do_tylu` | shoulder blades back and down | jedno brzmienie jak w PL: down and back (recenzja lokalizacji A3) |
+| `en` | `przodem_do_wyciagu` | facing the machine | jak w PL: przy wyciągu „stack” albo „cable”, nie „machine” |
+| `en` | `lower_yourself_back_down` | lower back (down\|up)(?![\p{L}]) | zderza się z terminem „lower back” (lędźwie) |
 | `cs` | `przerwa` | přestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |
 | `cs` | `pauza_treningu` | pauz | „pauza” to przerwa między seriami; pauzę treningu opisuje „pozastavit” |
 | `cs` | `faza_pauza` | pauz | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
 | `cs` | `faza_pauza` | pozastav | czasownik/przycisk wstrzymania, a faza to zatrzymanie w pozycji |
+| `cs` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sk` | `przerwa` | prestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `sk` | `przerwa_robocza` | pracovná pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sk` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |
 | `sk` | `pauza_treningu` | pauz | „pauza” to przerwa między seriami; pauzę treningu opisuje „pozastaviť” |
 | `sk` | `faza_pauza` | pauz | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
 | `sk` | `faza_pauza` | pozastav | czasownik/przycisk wstrzymania, a faza to zatrzymanie w pozycji |
+| `sk` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `hu` | `przerwa` | szünet | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `hu` | `przerwa_robocza` | munkapihenő\|munkaszünet | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `hu` | `faza_pauza` | szüneteltet | to polecenie przycisku pauzy treningu, a faza jest rzeczownikiem |
+| `hu` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `hu` | `plan_dozywotni` | örök(?!ös\|re) | „Örök” znaczy wieczny (poetycko); plan bez terminu to „örökös” |
 | `hu` | `rysunek_zdanie` | (?<![\p{L}])ábra | w pozostałych podpisach rysunku ćwiczenia plik hu używa „rajz”; „ábra” to wykres / rycina w publikacji |
 | `ro` | `przerwa` | recrea[țt]i | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
@@ -190,34 +206,42 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ro` | `faza_pauza` | oprire | brzmi jak przycisk stop, a nie zatrzymanie w pozycji |
 | `ro` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `ro` | `faza_ruchu` | ^\s*trac[țţ]iun[ei]?\s*$ | „tracțiuni” to w ro nazwa ćwiczenia (podciąganie na drążku); faza animacji to rzeczownik odczasownikowy jak Coborâre, Împingere (przegląd API 31.10.2026) |
+| `ro` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `bg` | `przerwa_robocza` | работна почивка | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `bg` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `bg` | `nachwyt` | пронир | podręcznikowe; w pozostałych kartach jest „прав хват” |
 | `hr` | `przerwa` | pauz | „pauza” to pauza treningu, nie przerwa między seriami (odmor) |
 | `hr` | `przerwa_robocza` | radni odmor\|radna pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `hr` | `faza_pauza` | pauziraj | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `hr` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `hr` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sl` | `przerwa` | odmor | „odmor” znaczy urlop/wakacje; między seriami „počitek” |
 | `sl` | `przerwa_robocza` | delovni počitek | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sl` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `sl` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sl` | `plan_subskrypcji` | načrt | „Načrt” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Paket” |
 | `sr` | `przerwa` | пауз | „пауза” to pauza treningu, nie przerwa między seriami (одмор) |
 | `sr` | `przerwa_robocza` | радни одмор\|радна пауза | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sr` | `faza_pauza` | паузирај | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
+| `sr` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sr` | `kettlebell` | kettlebell | serbski tekst jest cyrylicą; w kartach jest „кетлбел”, nie łacinka |
 | `lt` | `przerwa` | pertrauk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lt` | `przerwa_robocza` | darbinis poilsis | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lt` | `faza_pauza` | pristabd | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
+| `lt` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `lt` | `rysunek_zdanie` | brėžin | w pozostałych podpisach rysunku ćwiczenia plik lt używa „piešinys”; „brėžinys” to rysunek techniczny / kreślarski |
 | `lv` | `przerwa` | starpbr[īi]\|pārtraukum | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lv` | `przerwa_robocza` | darba atpūta | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lv` | `faza_pauza` | aptur | czasownik/przycisk zatrzymania, a faza jest rzeczownikiem |
 | `lv` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `lv` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `et` | `przerwa` | vaheaeg\|vahetund | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `et` | `przerwa_robocza` | tööpaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `et` | `pauza_treningu` | paus(?!eeri) | „paus” to przerwa między seriami; pauza treningu to „peata” |
 | `et` | `faza_pauza` | paus | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
 | `et` | `faza_pauza` | peat | czasownik/przycisk zatrzymania, a faza to zatrzymanie w pozycji |
 | `et` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `et` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `et` | `plan_subskrypcji` | plaan | „Plaan” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Pakett” |
 | `et` | `plan_dozywotni` | igavene | „Igavene” znaczy wieczny (religijnie/poetycko); plan bez terminu to „eluaegne” |
 | `uk` | `przerwa` | перерв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
@@ -225,15 +249,18 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `uk` | `faza_pauza` | призупин | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
 | `uk` | `seria` | серія | „серія” to odcinek; podejście to „підхід” |
 | `uk` | `zakres_powtorzen` | інтервал | „інтервал” to przerwa/trening interwałowy; zakres to „діапазон” |
+| `uk` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `uk` | `biodra` | (?<![\p{L}])стег(на\|он\|нами\|нах\|нам)(?![\p{L}]) | „стегна” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
 | `uk` | `uda` | (?<![\p{L}])(перед\|до\|біля) ног(ами\|ам\|и\|ою\|і)?(?![\p{L}])\|біля ніг | „ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup) |
 | `es` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
+| `es` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `es` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
 | `es-419` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es-419` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es-419` | `trening` | entrenos?(?![\p{L}]) | „entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento” |
+| `es-419` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `es-419` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
 | `es-419` | `telefon_es419` | teléfono | w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026) |
 | `es-419` | `uchwyt` | (?<![\p{L}])maneral(es)?(?![\p{L}]) | jedno słowo w całym pliku: uchwyt wyciągu to „agarre”, nie „maneral” (decyzja koordynatora 04.11.2026); „mangos” zostaje tylko przy sankach (sled.pushGrip) |
@@ -243,6 +270,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pt` | `zakres_powtorzen` | intervalo | „intervalo” w siłowni to przerwa między seriami; zakres to „gama” |
 | `pt` | `zakres_ruchu` | intervalo | „intervalo” to przerwa; zakres ruchu to „amplitude” |
 | `pt` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `pt` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `pt` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
 | `pt` | `uchwyt` | (?<![\p{L}])punhos?(?![\p{L}]) | „punho” to pięść albo mankiet (w pt-BR nadgarstek), nie uchwyt wyciągu; uchwyt to „pega” |
 | `pt-BR` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
@@ -250,6 +278,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pt-BR` | `zakres_powtorzen` | intervalo | w Brazylii „intervalo” to przerwa między seriami (i przerwa w pracy/szkole); zakres to „faixa” |
 | `pt-BR` | `zakres_ruchu` | intervalo | „intervalo” to przerwa; zakres ruchu to „amplitude” |
 | `pt-BR` | `deload` | descarga | „descarga” to spłuczka/wyładowanie; w Brazylii mówi się „deload” |
+| `pt-BR` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `pt-BR` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
 | `de` | `przerwa` | Unterbrechung\|Arbeitspause | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `de` | `przerwa_robocza` | Arbeitspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
@@ -258,10 +287,12 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `de` | `faza_pauza` | anhalt\|angehalten | czasownik/przycisk „anhalten”, a faza to zatrzymanie w pozycji |
 | `de` | `seria` | Serie | „Serie” to serial/seria produktów; podejście to „Satz” |
 | `de` | `zakres_powtorzen` | Intervall | „Intervall” to trening interwałowy; zakres to „Bereich” |
+| `de` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `fr` | `przerwa` | pause | „pause” to przerwa w pracy; w sali mówi się „repos” |
 | `fr` | `przerwa_robocza` | pause de travail | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `fr` | `faza_pauza` | mettre en pause | polecenie przycisku, a faza jest rzeczownikiem |
 | `fr` | `zakres_powtorzen` | intervalle | „intervalle” bywa przerwą; zakres to „plage”/„fourchette” |
+| `fr` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `fr` | `lokcie_otwarte` | très écartés | „très” znaczy „bardzo”; chodzi o „za bardzo” (trop écartés) |
 | `it` | `przerwa_robocza` | pausa (di )?lavoro | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `it` | `faza_pauza` | metti in pausa | polecenie przycisku, a faza jest rzeczownikiem |
@@ -269,35 +300,46 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `it` | `zakres_ruchu` | intervall | „intervallo” bywa przerwą; zakres ruchu to „escursione” |
 | `it` | `szablon` | modell | w włoskich siłowniach „scheda” |
 | `it` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `it` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `nl` | `przerwa` | pauze | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nl` | `przerwa_robocza` | werkpauze | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `nl` | `faza_pauza` | pauzeren | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `nl` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `nl` | `zakres_powtorzen` | interval | „interval” to trening interwałowy; zakres to „bereik” |
+| `nl` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sv` | `przerwa` | (?<![\p{L}])rast(?![\p{L}]) | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `sv` | `przerwa_robocza` | arbetspaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sv` | `faza_pauza` | pausa | bezokolicznik/polecenie przycisku, a faza jest rzeczownikiem |
 | `sv` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
+| `sv` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sv` | `rysunek_zdanie` | (?<![\p{L}])bild | w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek |
+| `sv` | `nachwyt` | (?<![\p{L}])övergrep | fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „överhandsgrepp” (recenzja lokalizacji 09.11.2026) |
 | `da` | `przerwa` | frikvarter | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `da` | `przerwa_robocza` | arbejdspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `da` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `da` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sæt” |
 | `da` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `da` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
+| `da` | `nachwyt` | (?<![\p{L}])overgreb | fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „overhåndsgreb” (recenzja lokalizacji 09.11.2026) |
 | `nb` | `przerwa` | friminutt\|lunsj | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nb` | `przerwa_robocza` | arbeidspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `nb` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `nb` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sett” |
+| `nb` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
+| `nb` | `nachwyt` | (?<![\p{L}])overgrep | fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „overhåndsgrep” (recenzja lokalizacji 09.11.2026) |
 | `fi` | `przerwa_robocza` | työtauko | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `fi` | `faza_pauza` | keskeytä | tryb rozkazujący to przycisk przerwania, a faza jest rzeczownikiem |
+| `fi` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `tr` | `przerwa` | (?<![\p{L}])mola | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `tr` | `przerwa_robocza` | iş molası\|çalışma molası | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `tr` | `faza_pauza` | duraklat | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `tr` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to seria/szybki; podejście to „set” |
 | `tr` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `tr` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `tr` | `lawka_skosna_glowa_w_dol` | (?<!ters )(?<![\p{L}])eğimli sehpa | samo „eğimli sehpa” to też ławka skośna głową w górę (incline); przy głowie w dół ma być „ters eğimli sehpa” (recenzja T1b, 05.11.2026) |
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `el` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `el` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
 | `el` | `animacja_ruchu` | κινούμενα σχέδια | „κινούμενα σχέδια” znaczy kreskówki / film animowany, nie rysunek ruchu ćwiczenia |
 | `el` | `wyciskanie_lezac` | πιέσεις\s+πάγκου | „πιέσεις πάγκου” to kalka; w el zalecane bench press, tak mówi się na siłowni |
@@ -307,24 +349,28 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `id` | `przerwa_robocza` | istirahat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `id` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to serial; podejście to „set” |
 | `id` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `id` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `id` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `id` | `nachwyt` | (?<![\p{L}])overhand(?![\p{L}]) | w pozostałych kartach jest „genggaman atas”, nie angielskie „overhand” |
 | `ms` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „rehat” |
 | `ms` | `przerwa_robocza` | rehat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ms` | `seria` | (?<![\p{L}])siri(?![\p{L}]) | „siri” to serial; podejście to „set” |
 | `ms` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
+| `ms` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `ms` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ms` | `animacja_ruchu` | lukisan pergerakan | termin marketingowy w opisie sklepu to „animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `ms` | `rysunek_zdanie` | lukisan | rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `ms` | `funkcja_aplikacji` | (?<![\p{L}])fungsi(?![\p{L}]) | „fungsi” to funkcja matematyczna/techniczna; funkcja aplikacji to „ciri” (czasownik „berfungsi” = działa jest poprawny) |
 | `vi` | `przerwa` | giải lao | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `vi` | `przerwa_robocza` | nghỉ giải lao\|nghỉ làm việc | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `vi` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `vi` | `pozycja_posrednia` | đang diễn ra | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `vi` | `rysunek_zdanie` | hình vẽ | w pozostałych podpisach rysunku ćwiczenia plik vi używa „hình minh họa” |
 | `ru` | `przerwa` | перерыв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `ru` | `przerwa_robocza` | рабочий отдых | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ru` | `seria` | серия | „серия” to odcinek/seria produktów; podejście to „подход” |
 | `ru` | `zakres_powtorzen` | интервал | „интервал” to przerwa/trening interwałowy; zakres to „диапазон” |
+| `ru` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `ru` | `pozycja_posrednia` | в процессе | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ru` | `biodra` | (?<![\p{L}])(бёдр\p{L}*\|бёдер)(?![\p{L}]) | „бёдра” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
 | `ru` | `uda` | (?<![\p{L}])(перед\|к\|у) ног(ами\|ам\|и\|ой\|е)?(?![\p{L}]) | „ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup) |
@@ -332,6 +378,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `przerwa` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni między seriami mówi się インターバル |
 | `ja` | `przerwa_robocza` | 仕事の\|休憩 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ja` | `przerwa_po_rozgrzewce` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni インターバル |
+| `ja` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `ja` | `plan_dozywotni` | 永久版 | „永久版” brzmi jak wersja edycji; zakup jednorazowy to „買い切り” |
 | `ja` | `zegarek` | 腕時計 | zwykły zegarek na rękę; dla Apple Watch w aplikacjach treningowych mówi się „ウォッチ” |
 | `ja` | `lokcie_otwarte` | 肘を広げ | o łokciach przy wyciskaniu mówi się 開く (otwierać), nie 広げる (rozkładać) |
@@ -341,12 +388,14 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ko` | `szablon` | 템플릿 | w koreańskich siłowniach „루틴” |
+| `ko` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `ko` | `plan_subskrypcji` | 플랜 | „플랜” to plan tygodnia (zakładka Plan); wariant subskrypcji to „요금제” |
 | `ko` | `plan_dozywotni` | 영구 | „영구” brzmi jak trwałe/nieodwracalne; zakup bez terminu to „평생 이용” |
 | `ko` | `zegarek` | 시계 | zwykły zegar/zegarek; dla Apple Watch w aplikacjach treningowych mówi się „워치” |
 | `ko` | `nastepne_powtorzenie` | 다음 횟수 | „횟수” to liczba razy (dosłownie „następna liczba”), nie kolejne powtórzenie; w słowniku powtórzenie to „반복” |
 | `zh-Hant` | `przerwa_robocza` | 工作休息\|上班 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
+| `zh-Hant` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
 ## Do potwierdzenia przez native speakera (153)
@@ -357,50 +406,50 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 |---|---|---|---|
 | `pl` | `zegarek` | zegarek | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `en` | `zegarek` | watch | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `cs` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `cs` | `ramie` | nadloktí | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `cs` | `zegarek` | hodinky | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `cs` | `lokcie_waskie` | lokty úzko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `cs` | `pozycja_posrednia` | Mezipoloha | „Mezipoloha” czy „Střední poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `cs` | `lawka_skosna_glowa_w_dol` | lavice s negativním sklonem | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavice s negativním sklonem czy lavice se sklonem hlavou dolů |
-| `sk` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `sk` | `ramie` | nadlaktie | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `sk` | `zegarek` | hodinky | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sk` | `lokcie_waskie` | lakte úzko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sk` | `pozycja_posrednia` | Medzipoloha | „Medzipoloha” czy „Stredná poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sk` | `lawka_skosna_glowa_w_dol` | lavička s negatívnym sklonom | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavička s negatívnym sklonom czy lavička so sklonom hlavou nadol |
 | `hu` | `seria` | Sorozat | w siłowniach używa się też „széria”/„szett”; do potwierdzenia przez native speakera |
 | `hu` | `asekuracja` | Biztosítás | „biztosítás” bywa ubezpieczeniem — do potwierdzenia |
-| `hu` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `hu` | `ramie` | felkar | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `hu` | `zegarek` | óra | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hu` | `lokcie_waskie` | szűk könyök | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hu` | `pozycja_posrednia` | Köztes helyzet | Szyk numeru: „Köztes helyzet 1” czy „1. köztes helyzet”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hu` | `lawka_skosna_glowa_w_dol` | negatív pad | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): negatív pad czy lefelé lejtő pad |
 | `ro` | `do_upadku` | Până la epuizare | w siłowniach też „până la cedare”; do potwierdzenia |
 | `ro` | `asekuracja` | Siguranță și asigurare | do potwierdzenia przez native speakera |
-| `ro` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `ro` | `ramie` | braț | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `ro` | `zegarek` | ceas | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `ro` | `lawka_skosna_glowa_w_dol` | bancă înclinată cu capul în jos | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
-| `bg` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `bg` | `ramie` | мишница | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `bg` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `bg` | `jednostka_dystansu_mi` | мили | Skrót nieodmienny „мили” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026) |
 | `bg` | `jednostka_dystansu_yd` | ярд | Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026) |
 | `bg` | `zegarek` | часовник | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `bg` | `lawka_skosna_glowa_w_dol` | наклонена пейка с главата надолу | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `hr` | `asekuracja` | Sigurnost i asistencija | do potwierdzenia przez native speakera |
-| `hr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `hr` | `ramie` | nadlaktica | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `hr` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `ledzwie` | donji dio leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `zegarek` | sat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hr` | `lokcie_waskie` | laktove usko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hr` | `lawka_skosna_glowa_w_dol` | kosa klupa | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): kosa klupa glavom prema dolje czy negativna klupa |
 | `sl` | `faza_pauza` | Premor | Tłumacz (31.10.2026) proponuje „Pavza” — „premor” bliższy przerwie/odpoczynkowi niż zatrzymaniu w ruchu; przegląd API tego nie zgłosił. Do sprawdzenia przez native speakera; bez zmiany. |
-| `sl` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `sl` | `ramie` | nadlaket | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `sl` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sl` | `ledzwie` | ledveni del hrbta | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sl` | `zegarek` | ura | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sl` | `lokcie_waskie` | komolce ozko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `sl` | `lawka_skosna_glowa_w_dol` | klop, nagnjena navzdol | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `sr` | `asekuracja` | Асистенција и безбедност | do potwierdzenia przez native speakera |
-| `sr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `sr` | `ramie` | надлактица | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `sr` | `ledzwie` | donji deo leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `sr` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `sr` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
@@ -413,14 +462,14 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `lt` | `zakres_powtorzen` | pakartojimų intervalas | „intervalas” bywa przerwą; w siłowniach też „diapazonas” — do potwierdzenia |
 | `lt` | `do_upadku` | Iki nesėkmės | do potwierdzenia przez native speakera |
 | `lt` | `asekuracja` | Pagalba ir saugumas | do potwierdzenia przez native speakera |
-| `lt` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `lt` | `ramie` | žastas | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `lt` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebell'as, kettlebell'ą, kettlebell'ai (z apostrofem). |
 | `lt` | `ledzwie` | apatinė nugaros dalis | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lt` | `zegarek` | laikrodis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `lt` | `lokcie_waskie` | alkūnes siaurai | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `lt` | `lawka_skosna_glowa_w_dol` | suolas, pasvirusio galva žemyn | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni |
 | `lv` | `seria` | Sērija | „sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia |
-| `lv` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `lv` | `ramie` | augšdelms | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `lv` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). Odmiana jak w pliku: kettlebells, kettlebellu, kettlebelli. |
 | `lv` | `ledzwie` | lejasmugura | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `lv` | `zegarek` | pulkstenis | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
@@ -465,26 +514,26 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `fi` | `lokcie_waskie` | kyynärpäät kapeasti | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `fi` | `lawka_skosna_glowa_w_dol` | alaviistopenkki | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): alaviistopenkki czy laskeva penkki |
 | `tr` | `do_upadku` | Tükenişe kadar | do potwierdzenia przez native speakera |
-| `tr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `tr` | `ramie` | üst kol | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `tr` | `zegarek` | saat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `el` | `do_upadku` | Έως αποτυχία | do potwierdzenia przez native speakera |
 | `el` | `chwyt` | λαβή | do sprawdzenia przez native speakera: czy „λαβή” to potoczny termin siłowni (recenzja P2, 04.11.2026); dotąd tymczasowo angielskie „grip” |
-| `el` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `el` | `ramie` | βραχίονας | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `el` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `el` | `ledzwie` | μέση | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `el` | `jednostka_masy_kg` | κιλά | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Grecki: „κιλά” (pełne słowo) czy „kg”? |
 | `el` | `zegarek` | ρολόι | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `el` | `lawka_skosna_glowa_w_dol` | αρνητικός πάγκος | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): αρνητικός πάγκος czy πάγκος με κλίση προς τα κάτω |
-| `id` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `id` | `ramie` | lengan atas | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `id` | `zegarek` | jam tangan | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
-| `ms` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `ms` | `ramie` | lengan atas | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `ms` | `ledzwie` | belakang bawah | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `ms` | `zegarek` | jam tangan | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `vi` | `faza_pauza` | Tạm dừng | Tạm dừng to zarazem polecenie przycisku; w tempie ćwiczenia dopuszczalne („tạm dừng ở dưới”) — do sprawdzenia przez native speakera. |
 | `vi` | `seria` | Hiệp | „hiệp” (też runda w boksie) obok „set” — do potwierdzenia |
 | `vi` | `asekuracja` | Hỗ trợ và an toàn | do potwierdzenia przez native speakera |
 | `vi` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
-| `vi` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `vi` | `ramie` | cánh tay trên | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `vi` | `zegarek` | đồng hồ | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `ru` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `ru` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
@@ -496,15 +545,15 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `ja` | `zakres_powtorzen` | レップ範囲 | „レップ” to żargon siłowni; do potwierdzenia |
 | `ja` | `szablon` | テンプレート | „テンプレート” vs „メニュー” w siłowniach — do potwierdzenia |
 | `ja` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
-| `ja` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `ja` | `ramie` | 上腕 | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `ja` | `pozycja_posrednia` | 途中の姿勢 | „途中の姿勢1” czy „途中の姿勢 1” (ze spacją)? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `ja` | `nastepne_powtorzenie` | 次の1回 | do potwierdzenia przez native speakera: „次の1回では” czy „次のレップでは”; „次の回” czyta się jak „następnym razem”, więc go unikamy |
 | `ko` | `faza_pauza` | 일시정지 | 일시정지 to przycisk odtwarzacza; tłumacz i przegląd API (niska) proponują 멈춤 (rzeczownik tempa). Uwaga niska — bez zmiany do polecenia. |
 | `ko` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
-| `ko` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `ko` | `ramie` | 위팔 | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `zh-Hant` | `szablon` | 範本 | „範本” brzmi jak szablon dokumentu; w siłowniach tajwańskich „課表” — do potwierdzenia |
 | `zh-Hant` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
-| `zh-Hant` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `zh-Hant` | `ramie` | 上臂 | Termin wzięty z tekstów przekładu API (09.11.2026; recenzja lokalizacji): angielskie „upper arm” było tylko placeholderem i jest zakazane; do potwierdzenia przez native speakera. |
 | `zh-Hant` | `zegarek` | 手錶 | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `zh-Hant` | `pozycja_posrednia` | 中間姿勢 | „中間姿勢 1” czy „中間姿勢1” (spacja)? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `zh-Hant` | `nastepne_powtorzenie` | 下一下 | do potwierdzenia przez native speakera (TW): „下一下” (kolejne powtórzenie, „下” liczy powtórzenia) czy „下一次” (może znaczyć „następnym razem”); zakazu „下一次” nie ustawiamy do czasu odpowiedzi |

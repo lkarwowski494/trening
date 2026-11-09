@@ -151,12 +151,33 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Polecenia figur (`scripts/figures/gemini-polecenia.mjs:22`, limit 36000): najdłuższy plik 35980 znaków — 20 znaków zapasu (04.11.2026).
 - Słownik „biodra” (recenzja różnicy P2, NISKIE): wzorzec ru łapie tylko „бёдр” z „ё” (bez „бедра”), wzorzec el nie łapie liczby pojedynczej „γοφό/γοφός” — poszerzyć z testem.
 - vi: „grip” w olympic.setup / olympic.sbSetup — w słowniku vi chwyt nadal „nieustalony” (recenzja różnicy P2).
-- Skrót recenzji v2 (audyt 1A, NISKIE): parser bloków `scripts/skrot-v2-norm.mjs` zakłada koniec bloku `};`; wzorzec LOAD nie sprawdza zgodności klucza z plikiem (skutek bezpieczny — brak figury).
+- Skrót recenzji v2 (audyt 1A, NISKIE) — ZAMKNIĘTE 09.11.2026: parser bloków `scripts/skrot-v2-norm.mjs` usunięty; skrót liczy się z wyniku rysunku rodziny (`scripts/skrot-v2-wynik.mjs`, docs/18 wpis 09.11.2026 „skrót per rodzina”), bez analizy tekstu `poseData.ts`.
+
+### Backlog 1.2 — skrót recenzji rodziny v2: NISKIE z kontroli audytora (09.11.2026, gałąź `figury/skrot-per-rodzina`; nie blokuje)
+- Stała `BADGE_GAP_PT` (`lib/figures/v2/badges.ts:51`, minimalny odstęp znaczków ✓/✕ na ekranie) poza skrótem: `scripts/skrot-v2-wynik.mjs` liczy `spaceBadges` ze stałą 8, aplikacja z `BADGE_GAP_PT/sc` (`components/ExerciseFigureV2.tsx:35`) — zmiana stałej przesuwa znaczki we wszystkich rodzinach bez zmiany skrótu (ruch i treść bez zmian). Realność: teoretyczny (tylko zmiana kodu). Naprawa: skrót bierze `BADGE_GAP_PT` z modułu albo tekst stałej do `V2_RENDER`.
+- Przed recenzją rodziny carry: połowa lustrzana `cykl_lustro` (u 1–2) wchodzi do skrótu tylko przez `boxFor` i `trailFor` — audytor nie pokazał zmiany rysunku bez zmiany skrótu (pewność < 80%), sprawdzić przy podłączaniu carry.
+
+### Backlog 1.2 — pełna karta: 9 obowiązkowych wymagających nowego ruchu silnika (właściciel 09.11.2026, ZB-053)
+- Cel 1.1 „pełna karta” zmniejszony 465 → 456 (docs/18, 09.11.2026): te 9 ćwiczeń nie ma danych póz v2 i wymaga nowego ruchu silnika rysunku, więc przechodzi do 1.2: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up (lista maszynowa: `poza11` w `docs/research/pokrycie-cele.json`). Cel 1.2: pełna karta także dla nich; 4 obowiązkowe bez ról mięśni (Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam) zostają w 1.1.
+
+### Backlog 1.2 — pokrycie: ćwiczenia „ciężkie” wyłączone z celu 1.1 (właściciel 09.11.2026)
+- Decyzja 09.11.2026 (docs/18): cel 1.1 liczony bez ćwiczeń, które wymagają nowych badań lub treści (brak tekstu wskazówek w źródłach i zestawu ogólnego, brak danych póz v2, nowy ruch silnika). Liczba ćwiczeń poza pełną kartą w symulowanym stanie końcowym 1.1: 251 z 708; lista i rozbicie powodów — `node scripts/pokrycie-symulacja.mjs --json` (pola `cwiczeniaCiezkie` i `gain`; test `tests/cel-1-1-bez-ciezkich.test.ts`), bez listy nazw tutaj. Cel 1.2: pełna karta także dla nich.
 
 ### Backlog 1.2 — karta ćwiczenia na wąskim ekranie (właściciel 08.11.2026, ZB-044)
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
 - ZB-044-B1 (ZB-044, recenzja audytora Ś-2, 09.11.2026): dwa identyczne „Bench Press” na listach (własne z 1.0 obok ćwiczenia z biblioteki) — dopisek rozróżniający tylko przy kolizji nazw (np. „własne”) w liście, wyborze i treningu; wzorca w docs/32 brak, wymaga decyzji o wzorcu (jedno miejsce `exName` nie zna listy) — 1.2. Import CSV już wybiera własne przed biblioteką (naprawione).
+
+### Backlog 1.2 — karty A3 (przyciąganie): NISKIE z recenzji niezależnej (09.11.2026; `docs/research/recenzje/a3-przyciaganie-karty-badacz-2026-11-09.md`, `a3-przyciaganie-lokalizacja-2026-11-09.md`; nie blokują)
+- Underhand Lat Pulldown i Close-Grip Front Lat Pulldown: żadne zdanie karty nie mówi o podchwycie ani o wąskim chwycie (cechę podaje tytuł). Kandydat: zdanie o chwycie po dwóch przeczytanych źródłach szczebla 4 (podchwyt: Catalyst 876 „palms facing back”; drugie — NASM „Choosing the Right Grip” do przeczytania; wąski chwyt: Catalyst 861 „narrow grip”, drugie źródło brak).
+- Bent Over Row (linki): karta nie mówi, że linka idzie z dolnego bloczka (pole „uproszczenie” tak to opisuje) — źródła opisują sztangę; zdanie po źródle o wiosłowaniu z dolnego wyciągu.
+- `barbend-db-shrug`: w danych nazwać wariant zgodnie z nagłówkiem strony („Behind-the-Back Shrug”).
+- `fv-13180`: w wpisie źródła podać obu autorów (byline Andrew Foster, C.S.C.S.; stopka Jim Stoppani, PhD).
+- [OTWARTE] Lower Back Curl → `lower_back.spine_ext`: potwierdzić opis ćwiczenia w katalogu jednym przeczytanym źródłem (zdanie ruchu karty odrzucone z braku źródeł; rola przypisana po nazwie).
+- `rotator_cuff.mis.shrug` i `lpd.mis.shrug`: ten sam błąd w dwóch brzmieniach (oba naturalne) — ujednolicić przed przekładem, jeśli koordynator zechce zmniejszyć liczbę zdań.
+- `mrow.setup`: propozycję lokalizacji „uchwyty na wysokości barków” odrzuciłem — źródła się różnią (Healthline: barki; NASM: środek klatki); zdanie mówi „dopasuj wysokość siedziska do uchwytów” (część wspólna).
+- Pytania do native speakera: PL „uchwyt V” czy „trójkąt”; EN Meadows Row „front thigh” czy „front knee” (plik recenzji lokalizacji).
+- Single Arm Cable Row — wstrzymane (decyzja 4 W2 G6); Reverse Grip Bent Over Row — wycofana (Fitness Volt „Ash” bez nazwiska = szczebel 5); szukać drugiego źródła szczebla 4.
 
 ### Backlog 1.2 — karty A2 (nogi): NISKIE z recenzji niezależnej (08.11.2026; `docs/research/recenzje/a2-nogi-karty-badacz-2026-11-08.md`, `a2-nogi-lokalizacja-2026-11-08.md`; nie blokują)
 - [OTWARTE] `calf.band` (Band Calf Raise): drugie źródło szczebla 4 dla położenia gumy pod przednią częścią stóp (recenzja lokalizacji: blokujące — karta nie mówi, że guma idzie pod stopy; runda 2 badacza 08.11.2026: tylko Thera-Band, Bodylastics zaczepia o drzwi, ACE 5771 — wariant w siadzie). Do czasu źródła brzmienie rundy 1; karta i tak ukryta do przekładu.
@@ -187,6 +208,11 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Crucifix (rodzina chest_fly, status planned): zestaw do poprawy PRZED włączeniem chest_fly — `front.elbows` „przez cały ruch” oraz `plank.mis.breath` (jedno źródło pośrednie).
 - Cable Lateral Raise: wskazówki `lat.move` i `lat.elbows` w liczbie mnogiej przy wersji jednorącz — dostosować brzmienie albo zestaw.
 - Cable Lateral Raise: położenie bloczka w pozie (x = 60, z = −10) porównać ze stroną ćwiczenia przy następnej recenzji ruchu (pewność < 80%).
+### Backlog 1.1.x — przekład A1–A3: NISKIE i pytania z recenzji lokalizacji (09.11.2026; `docs/research/recenzje/lok-a1-a3-przeklad-2026-11-09.md`; nie blokują)
+- Naniesione 09.11.2026: 3 BLOKUJĄCE, 12 ŚREDNICH i mechaniczna typografia NISKICH (ko kropki, it/uk/el apostrof ’, cudzysłowy UI da/es-419/et/lv/nl/sr). Pozostałe NISKIE (do rozważenia przy następnym przeglądzie języków): pt-BR `gb.slSetup` („leve o joelho ao peito” zamiast „puxe ela”); da/nb/sv `lp.mis.lock` (forma „At/Å/Att + bezokolicznik”); nb `ohp.mis.flare` („glippe”); sv `spush.setup` („rak och lutad”); fi `dip.mis.depth` (przysłówek); et `gb.slSetup` („tõmba põlv rinna poole”); tr `rollout.range` („öne yuvarlanın”, do sprawdzenia przez native speakera); it `push.mis.sag` / `renegade.mis.twist` („bacino” zamiast „fianchi”); el `zottman.move` („ανάποδη λαβή” zamiast „υπτία λαβή”); zh-Hant `calf.seatedEdge1` (wariant jednonóż identyczny z obunóż); uk punkt „Co nowego” („плечей” zamiast „дельт”); id punkt o rysunkach („latihan triceps”); de `dip.move` (przecinek).
+- Nowe terminy do słownika (z testem): el „γέρσιμο” (zakaz „γείρσιμο”), fi „käyntiasento” (zakaz „haara-asento”, pewność średnia), „chwyt” w vi — Latin „grip sấp/ngửa” w 6 wskazówkach (czeka na pytanie 2).
+- Pytania do native speakerów: (1) tr „silkme, koparma” w punkcie „Co nowego” i „hafif çapraz duruş” (`meadows.setup2`); (2) vi „grip sấp/ngửa” czy „nắm sấp/ngửa”; (3) pt-BR „segure eles” / „mantenha ele parado” czy z powtórzonym rzeczownikiem; (4) ro „calcă pe bandă” czy „urcă pe bandă” (`band.ohpSetup`); (5) fi lekki wykrok przy wiosłowaniu: „pieni käyntiasento” czy „porrastettu asento”.
+- Zakaz „upper arm” (ramię) we wszystkich językach poza en dopisany do słownika 09.11.2026 (test `tests/slownik-terminow.test.ts`, lokalna lekcja: vi `preacher.arms`, `rotator_cuff.cubanRotate`); terminy zalecane 18 języków wzięte z tekstów przekładu — do potwierdzenia przez native speakerów.
 
 ### Backlog 1.1.x — figury: rodzina olympic (recenzja ruchu r4, 04.11.2026, NISKIE; nie blokują)
 - r4-N1: Clean and Jerk — łokieć 149,9–150,7° między klatkami (u 0,515–0,5375) przy decyzji koordynatora „rack w ≤ 149°, bez `allow.elbow`”; walidator sprawdza tylko siatkę `gridU` i tego przejścia nie łapie; różnicy 1,7° nie widać na rysunku (wada z poprawki 3). Propozycja: rack Clean and Jerk w ≤ 149° także w przejściu albo gęstsza siatka walidatora. Realność: realny, niewidoczny.

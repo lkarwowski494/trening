@@ -1,4 +1,4 @@
-Thank you for reviewing Trening.
+Thank you for reviewing RepsGoat.
 
 NO ACCOUNT, NO SERVER
 - No sign-in and no backend. Everything is stored on the device; the app makes no network requests of its own. No demo account is needed.

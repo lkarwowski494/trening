@@ -12,6 +12,7 @@ import * as fs from 'fs';
 import { PENDING_NEW, PENDING_CUE_IDS } from './pending-translation';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, lang, locale, decimalComma, tp, detectLang, LANG_NAME, APP_NAME } from '@/lib/i18n';
+import { BRAND_NAME } from '@/lib/brand';
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS, pluralIndex } from '@/lib/plural';
@@ -53,7 +54,7 @@ describe('resolveLang / detectLang: telefon po rosyjsku (każdy region) i po ukr
   });
   test('LANGS: ru na końcu listy (kolejność w ustawieniach), nazwa „Русский”, nazwa aplikacji „Training” (jak uk — „Тренировка” niepodobne do „Trening”)', () => {
     expect(LANGS[LANGS.indexOf('vi') + 1]).toBe('ru'); /* fala 4 (ja, ko, zh-Hant) dopisana za nim */
-    expect([LANG_NAME.ru, APP_NAME.ru]).toEqual(['Русский', 'Training']);
+    expect([LANG_NAME.ru, APP_NAME.ru]).toEqual(['Русский', BRAND_NAME]);
   });
 });
 
@@ -93,7 +94,7 @@ describe('dane: komplet słownika UI i wskazówek techniki', () => {
   });
   test('locales/ru.json (iOS: nazwa pod ikoną, opisy uprawnień Zdrowia) — po rosyjsku, z nazwą aplikacji', () => {
     const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'locales', 'ru.json'), 'utf8'));
-    expect(f.CFBundleDisplayName).toBe('Training');
+    expect(f.CFBundleDisplayName).toBe(BRAND_NAME);
     expect(f.NSHealthShareUsageDescription).toMatch(/здоровье/); expect(f.NSHealthUpdateUsageDescription).toMatch(/Apple Health/);
     for (const v of Object.values(f) as string[]) expect(/[іїєґ’]/.test(v)).toBe(false);
   });

@@ -1,3 +1,4 @@
+// skanuje: tests
 /*
  * TST2-07 (audyt kontrolny 1, 09.10.2026; decyzja wg zasady z 20:20 — wariant A): testy własności (fast-check) przy każdym wypchnięciu na stałym
  * ziarnie (przewidywalne CI — porażka nie trafia na niezwiązany commit), nocą na losowym (nightly.yml), ziarno zawsze w logu.

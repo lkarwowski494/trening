@@ -1,0 +1,160 @@
+/*
+ * Partia A3 integracji badań (przyciąganie i ramiona: row, cable_row, pulldown, pull_up, shrug, back_extension, delt_raise, curl, triceps, rotator_cuff; linia 1.1, 09.11.2026):
+ * karty własne z badań W1 (po przeliczeniu szczebli), W2 i „obowiązkowe 1.1” z 02.11.2026. Lista ćwiczeń, kart niepełnych, zdań, odrzuconych zdań i odwołań — tests/fixtures/cues-a3-przyciaganie.json.
+ * Zakres strażnika źródeł (L-089): scripts/cues/gen.mjs `validate` (check:cues; MIN_ORGS = 2, MAX_COUNT_LEVEL = 4 — scripts/cues/gen.mjs:17 i :33) — ten plik sprawdza,
+ * że dane A3 spełniają regułę bez wyjątków partii: każde zdanie ma ≥ 2 organizacje szczebla ≤ 4 (bez luk „praktyka” i bez błędów „wniosek”), źródła szczebla 5 albo
+ * o nierozstrzygniętym szczeblu nie weszły, pominięte ćwiczenia nie mają karty własnej, a karta Zottman Curl nie zmienia reguł sensu póz (plik wspólny silnika).
+ * Rodzaje (docs/20): dane (karty, źródła), logika (≥ 2 organizacje), niezmienniki (bez „wniosek”, bez luk, reguły sensu bez zmian), języki (PL i EN; 33 języki — zestaw przekładu A3),
+ * regresja (cue-sets: własne karty; pominięte bez karty własnej; karty ukryte do przekładu — karty_nowe).
+ * Ocena realności: błąd „karta techniki z jednego źródła albo ze źródła szczebla 5” — realny (treść w aplikacji i na stronie z ćwiczeniami);
+ * karty są ukryte do recenzji niezależnej i przekładu (bramka 4, L-047, karty_nowe) — nie sprawdzamy tu ich wyświetlania.
+ */
+import * as fs from 'fs';
+import * as path from 'path';
+import { CUE_DATA, CUE_SECTIONS } from '@/lib/cues';
+import { CUE_FULL } from './zrodla-pelne';
+import A3 from './fixtures/cues-a3-przyciaganie.json';
+
+const root = path.join(__dirname, '..');
+const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
+const pl: Record<string, string> = json('lib/cues/text/pl.json'), en: Record<string, string> = json('lib/cues/text/en.json');
+const sets = json('lib/figures/v2/cue-sets.json').items as Record<string, { b: string }>;
+const orgOf = (sid: string) => CUE_FULL.sources[sid].org;
+/** Szczebel źródła: własny (organizacje warunkowe) albo szczebel organizacji — jak srcLevel() w scripts/cues/gen.mjs. */
+const lv = (sid: string): number => CUE_FULL.sources[sid].level ?? CUE_FULL.orgs[orgOf(sid)].level;
+const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[k][s] ?? []);
+
+/** Źródła szczebla 5 albo o szczeblu nierozstrzygniętym w docs/18 (blogi producentów wg uzupełnienia 3, Bells of Steel jak w A2, strona liny Fitness Volt „do decyzji” w W1). */
+const NIEBYLE = ['bellsofsteel-seal-row', 'bellsofsteel-rear-delt-cable', 'majorfitness-smith-row', 'majorfitness-cable-rear-delt-row', 'ritfit-smith-row', 'rxsg-rope-foot-locks', 'fitnessvolt-cable-rear-delt-row-rope'];
+
+describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
+  test('16 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime widoczne po przekładzie i recenzji (od 09.11.2026); nie są w otwartych; niepełne są na liście partial', () => {
+    expect(A3.cwiczenia.length).toBe(16);
+    for (const k of A3.cwiczenia) {
+      const x = CUE_FULL.exercises[k];
+      expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]); /* 09.11.2026: odsłonięte po przekładzie i recenzji niezależnej (docs/research/recenzje/a3-r2.json) */
+      expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
+      for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
+    }
+    expect(A3.partial.length).toBe(12);
+    expect([...A3.partial].sort()).toEqual(A3.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
+  });
+
+  test('09.11.2026: po przekładzie wszystkie 16 poza listą karty_nowe (tests/recenzja-wyjatki-1-1.json), z wpisem „wyswietlana” w docs/research/figury-recenzja.json (recenzja niezależna, L-047)', () => {
+    const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
+    for (const k of A3.cwiczenia) expect([k, wyj.karty_nowe.includes(k), rec.karty?.[k]?.werdykt]).toEqual([k, false, 'wyswietlana']); /* 09.11.2026: wpis recenzji badacza (a3-r2.json) */
+  });
+
+  test('cue-sets: 16 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2, wstrzymane) nie mają karty własnej', () => {
+    for (const k of A3.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
+    const pominiete = [...A3.bezUstawieniaLubRuchu, ...A3.pominieteBezBledu, ...A3.wstrzymane.map(([k]) => k as string), ...(A3.konfliktPozy as unknown as [string, string[]][]).map(([k]) => k)];
+    expect(pominiete.sort()).toEqual(['Cable Internal Rotation', 'Cable Rope Rear-Delt Rows', 'Lower Back Curl', 'Lying T-Bar Row', 'Reverse Grip Bent Over Row', 'Reverse Hyperextension', 'Rope Climb', 'Seal Row (sztanga)', 'Single Arm Cable Row', 'Smith Machine Behind the Back Shrug', 'Smith Machine Bent Over Row']);
+    for (const k of pominiete) expect([k, sets[k]?.b !== 'own', k in CUE_FULL.exercises, A3.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
+  });
+
+  test('karta Zottman Curl zastąpiła zestaw ogólny bez zmiany reguł sensu póz: reguły przypisane jawnie w `warianty` (data/zrodla/figury-sens.json), plik wspólny silnika lib/figures/v2/reguly-cwiczen.json ma te same reguły co przed kartą', () => {
+    expect(json('data/zrodla/figury-sens.json').rodziny.curl.warianty['Zottman Curl']).toEqual(['lokiec_zgina_sie', 'lokiec_przy_tulowiu', 'tulow_nieruchomy']);
+    expect(json('lib/figures/v2/reguly-cwiczen.json').curl['Zottman Curl']).toEqual(['lokiec_zgina_sie', 'lokiec_przy_tulowiu', 'tulow_nieruchomy']);
+  });
+});
+
+describe('A3 przyciąganie: źródła i reguły szczebli', () => {
+  test('każde zdanie ma ≥ 2 różne organizacje szczebla ≤ 4; bez luk „praktyka” i bez „wniosek”', () => {
+    for (const k of A3.cwiczenia) for (const r of sentencesOf(k)) {
+      const orgs4 = new Set(r.s.filter(([sid]) => sid !== 'wniosek' && lv(sid) <= 4).map(([sid]) => orgOf(sid)));
+      expect([k, r.c, orgs4.size >= 2]).toEqual([k, r.c, true]);
+      expect([k, r.c, r.s.some(([sid]) => sid === 'wniosek'), CUE_FULL.luki?.[`${k}::${r.c}`]]).toEqual([k, r.c, false, undefined]);
+    }
+  });
+
+  test('źródła szczebla 5 albo o nierozstrzygniętym szczeblu (blogi producentów, Bells of Steel, strona liny) nie są w danych; ich odwołania zapisane w fixture', () => {
+    for (const sid of NIEBYLE) expect([sid, sid in CUE_FULL.sources]).toEqual([sid, false]);
+    expect(new Set(A3.usunieteOdwolania.map(([, , sid]) => sid))).toEqual(new Set(NIEBYLE));
+  });
+
+  test('zdania odrzucone (mniej niż dwie organizacje, w tym błędy wnioskowane) nie są w kartach tych ćwiczeń; zdania tylko z odrzuconych kart nie weszły do słowników', () => {
+    expect(A3.odrzucone.length).toBe(34);
+    for (const [k, , c] of A3.odrzucone) if (A3.cwiczenia.includes(k as string)) expect([k, c, sentencesOf(k as string).some(r => r.c === c)]).toEqual([k, c, false]);
+    for (const c of ['row.mis.chestOff', 'rdcr.mis.elbowsIn', 'lpd.mis.thighs', 'rope.mis.arms', 'curl2.mis.zottNoTurn', 'curl2.mis.preacherLift', 'rotator_cuff.mis.elbowOpens', 'rotator_cuff.mis.handsDrop', 'rotator_cuff.mis.elbowsDrop', 'lbc.mis.tooHigh', 'seal.setup', 'smith.rowSetup', 'rope.lock']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
+  });
+
+  test('nowe źródła: adres https, organizacja z danych; organizacje warunkowe (Generation Iron, Healthline) — źródło ma własny szczebel 4 i opis strony', () => {
+    expect(A3.noweZrodla.length).toBe(22);
+    for (const sid of A3.noweZrodla) {
+      const s = CUE_FULL.sources[sid] as { url?: string; org: string; level?: number; strona?: string };
+      expect([sid, /^https:\/\//.test(s.url ?? ''), s.org in CUE_FULL.orgs]).toEqual([sid, true, true]);
+      if (CUE_FULL.orgs[s.org].warunkowo) expect([sid, s.level, typeof s.strona]).toEqual([sid, 4, 'string']);
+    }
+    expect(A3.noweZrodla.filter(sid => CUE_FULL.orgs[orgOf(sid)].warunkowo).sort()).toEqual(['generationiron-meadows-row', 'healthline-seated-row']);
+  });
+
+  test('wariant sprzętu lub chwytu (źródła wersji bazowej) ma jawne „uproszczenie” przy zdaniu — do potwierdzenia przez recenzenta niezależnego (docs/18, 02.11.2026, pkt 2)', () => {
+    for (const k of ['Bent Over Row (linki)', 'Shrugs (linki)', 'Leverage Shrug', 'V-Bar Pulldown']) for (const r of [...CUE_FULL.exercises[k].setup, ...CUE_FULL.exercises[k].move])
+      expect([k, r.c, typeof (r as { uproszczenie?: string }).uproszczenie]).toEqual([k, r.c, 'string']);
+  });
+});
+
+describe('A3 przyciąganie: zdania', () => {
+  test('33 nowe zdania mają tekst PL i EN różny od siebie; wszystkie przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw A3 pusty', () => {
+    expect(A3.zdania.length).toBe(33);
+    for (const c of A3.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
+    const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-a3-wskazowki.json');
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-051; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, A3.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
+  });
+
+  test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {
+    for (const c of A3.zdania) for (const t of [pl[c], en[c]]) {
+      expect([c, /\d/.test(t)]).toEqual([c, false]);
+      expect([c, /\b(boli|ból|bólu|kontuzj|pain|injur)/i.test(t)]).toEqual([c, false]);
+      expect([c, /NASM|\bACE\b|ISSA|Catalyst|BarBend|Fitness Volt|Generation Iron|Healthline|HSS|AAOS|ExRx|WebMD/i.test(t)]).toEqual([c, false]);
+    }
+  });
+});
+
+describe('A3 przyciąganie: role mięśni z istniejących funkcji (09.11.2026; bez nowych tekstów UI)', () => {
+  const rm = json('data/zrodla/role-miesni.json');
+  test('Dead Hang → przedramiona: forearms.grip (główna); Lower Back Curl → dolny odcinek pleców: lower_back.spine_ext (główna); obie funkcje wyświetlane (dwa_zrodla)', () => {
+    const reg = rm.nameRules.reguly as { muscle: string; roles: string[]; function: string; exercises: string[] }[];
+    expect(reg.filter(r => r.exercises.includes('Dead Hang')).map(r => [r.muscle, r.roles, r.function])).toEqual([['forearms', ['main'], 'forearms.grip']]);
+    expect(reg.filter(r => r.exercises.includes('Lower Back Curl')).map(r => [r.muscle, r.roles, r.function])).toEqual([['lower_back', ['main'], 'lower_back.spine_ext']]);
+    for (const f of ['forearms.grip', 'lower_back.spine_ext']) expect([f, rm.functions[f].status]).toEqual([f, 'dwa_zrodla']);
+  });
+  test('rotator_cuff (5 ćwiczeń) bez ról w tej partii — nowe funkcje rotacji wymagają tekstów UI w 31 językach (otwarte); Scapular Pull-Up, Middle Back Shrug, Incline Shoulder Raise ×3 — otwarte w badaniach', () => {
+    const reg = rm.nameRules.reguly as { function: string; exercises: string[] }[];
+    for (const k of ['External Rotation (linki)', 'External Rotation (hantel)', 'External Rotation with Band', 'Internal Rotation with Band', 'Cable Internal Rotation', 'Scapular Pull-Up', 'Middle Back Shrug'])
+      expect([k, reg.some(r => r.exercises.includes(k))]).toEqual([k, false]);
+    expect(rm.functions['rear_delt.shoulder_er']).toBeUndefined();
+    expect(rm.functions['front_delt.shoulder_ir']).toBeUndefined();
+  });
+});
+
+describe('A3 przyciąganie: poprawki rundy 1 recenzji niezależnej (09.11.2026: badacz i lokalizacja PL/EN)', () => {
+  const ids = (k: string, sec: 'setup' | 'move' | 'tips' | 'mistakes') => (CUE_FULL.exercises[k][sec] ?? []).map(r => r.c);
+  test('External Rotation (linki): ustawienie mówi o uchwycie wyciągu (rotator_cuff.erStartCable), nie o gumie; karta z gumą zostaje przy rotator_cuff.erStart', () => {
+    expect(ids('External Rotation (linki)', 'setup')).toEqual(['rotator_cuff.cableSetup', 'rotator_cuff.erStartCable']);
+    for (const t of [pl['rotator_cuff.erStartCable'], en['rotator_cuff.erStartCable']]) expect(/gum|band|zaczep|anchor/i.test(t)).toBe(false);
+    expect(CUE_FULL.exercises['External Rotation (linki)'].setup[1].s.map(([sid]) => orgOf(sid)).sort()).toEqual(['ACE', 'Fitness Volt']);
+  });
+  test('Single Arm Lat Pulldown: ustawienie bez „chwyć drążek” (lpd.thighsOnly), potem uchwyt jedną ręką', () => {
+    expect(ids('Single Arm Lat Pulldown', 'setup')).toEqual(['lpd.thighsOnly', 'lpd1.setup']);
+    expect(/drążek|bar\b/i.test(pl['lpd.thighsOnly'] + ' ' + en['lpd.thighsOnly'])).toBe(false);
+  });
+  test('Close-Grip Front Lat Pulldown: strona wąskiego chwytu (catalyst-861) zamiast strony chwytu szerokiego (catalyst-725 — źródło usunięte z danych)', () => {
+    const refs = CUE_SECTIONS.flatMap(s => CUE_FULL.exercises['Close-Grip Front Lat Pulldown'][s] ?? []).flatMap(r => r.s.map(([sid]) => sid));
+    expect(refs).toContain('catalyst-861'); expect(refs).not.toContain('catalyst-725');
+    expect(CUE_FULL.sources['catalyst-725']).toBeUndefined();
+  });
+  test('Reverse Grip Bent Over Row wycofana (Fitness Volt „Ash” bez nazwiska = szczebel 5, wariant B koordynatora): bez karty własnej, zestaw ogólny wraca; zdania row.revGrip i row.bbPullCtrl oraz źródła tej karty usunięte', () => {
+    expect(['Reverse Grip Bent Over Row' in CUE_FULL.exercises, sets['Reverse Grip Bent Over Row'].b]).toEqual([false, 'general']);
+    for (const c of ['row.revGrip', 'row.bbPullCtrl']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
+    for (const sid of ['fitnessvolt-reverse-grip-row', 'catalyst-reverse-grip-bent-row']) expect(CUE_FULL.sources[sid]).toBeUndefined();
+  });
+  test('lokalizacja: łopatki „w dół i do tyłu”, wyciąg — „przodem do wyciągu”, tryb rozkazujący, bez „chwyt nachwytem”', () => {
+    expect(pl['rotator_cuff.cubanBlades']).toMatch(/w dół i do tyłu/); expect(en['rotator_cuff.cubanBlades']).toMatch(/down and back/);
+    expect(pl['scrow.setup']).toMatch(/przodem do wyciągu/); expect(en['scrow.setup']).not.toMatch(/machine/);
+    expect(pl['preacher.arms']).toMatch(/^Oprzyj/); expect(pl['shrug.setupBehind']).not.toMatch(/chwyt nachwytem/);
+    expect(pl['curl2.zottSetup']).toMatch(/^Trzymaj/);
+  });
+});

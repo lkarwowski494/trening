@@ -1,0 +1,182 @@
+[
+ {
+  "plik": "lib/figures/v2/draw.ts",
+  "rodzina": "pull_up",
+  "z": "barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [66, 71] as [number, number], plateW: 2.8, chainZ: 73,",
+  "na": "barR: 3.19, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [66, 71] as [number, number], plateW: 2.8, chainZ: 73,"
+ },
+ {
+  "plik": "lib/figures/v2/anim.ts",
+  "rodzina": "pull_up",
+  "z": "export const TEMPO = { downMs: 2000, upMs: 1000, holdMs: 500, tickMs: 33 } as const;",
+  "na": "export const TEMPO = { downMs: 2741, upMs: 1000, holdMs: 500, tickMs: 33 } as const;"
+ },
+ {
+  "plik": "lib/figures/v2/errors.ts",
+  "rodzina": "curl",
+  "z": "jerk: { id: 'jerk', cue: ['mis.jerk'], kind: 'tempo', mods: { tempo: { downMs: 450, upMs: 350 } }, affects: [], mark: 'bar', why: 'szarpanie zamiast kontrolowanego ruchu' },",
+  "na": "jerk: { id: 'jerk', cue: ['mis.jerk'], kind: 'tempo', mods: { tempo: { downMs: 617.5, upMs: 350 } }, affects: [], mark: 'bar', why: 'szarpanie zamiast kontrolowanego ruchu' },"
+ },
+ {
+  "plik": "lib/figures/v2/muscles.ts",
+  "rodzina": "pull_up",
+  "z": "export const MUSCLE_MIN_LOAD = 0.5;",
+  "na": "export const MUSCLE_MIN_LOAD = 1.69;"
+ },
+ {
+  "plik": "lib/figures/v2/contacts.ts",
+  "rodzina": "pull_up",
+  "z": "export const CONTACT = { floor: 1.0, surface: 1.5, head: 3.5, glowAlpha: 0.55, haloAlpha: 0.2 } as const;",
+  "na": "export const CONTACT = { floor: 1.0, surface: 1.5, head: 3.5, glowAlpha: 1.75, haloAlpha: 0.2 } as const;"
+ },
+ {
+  "plik": "lib/figures/v2/overlayShapes.ts",
+  "rodzina": "pull_up",
+  "z": "const eg = Object.prototype.hasOwnProperty.call(g.bledy, def.cue[0]) ? g.bledy[def.cue[0]] : undefined;",
+  "na": "const eg = Object.prototype.hasOwnProperty.call(g.bledy, def.cue[1]) ? g.bledy[def.cue[0]] : undefined;"
+ },
+ {
+  "plik": "lib/figures/v2/badges.ts",
+  "rodzina": "pull_up",
+  "z": "export const BADGE_MAX = 3;",
+  "na": "export const BADGE_MAX = 5.11;"
+ },
+ {
+  "plik": "lib/figures/v2/guides.ts",
+  "rodzina": "pull_up",
+  "z": "export const TRAIL_ARROW = 4.2;",
+  "na": "export const TRAIL_ARROW = 6.75;"
+ },
+ {
+  "plik": "lib/figures/v2/scene.ts",
+  "rodzina": "pull_up",
+  "z": "export const LAYER = { back: -2, backEquip: -1, body: 0, frontEquip: 1, overlay: 2 } as const;",
+  "na": "export const LAYER = { back: -2, backEquip: -1, body: 1, frontEquip: 1, overlay: 2 } as const;"
+ },
+ {
+  "plik": "lib/figures/v2/skeleton.ts",
+  "rodzina": "pull_up",
+  "z": "thigh: 42, shank: 41, ankleH: 7, heelBack: 6, toeFwd: 19,",
+  "na": "thigh: 58.54, shank: 41, ankleH: 7, heelBack: 6, toeFwd: 19,"
+ },
+ {
+  "plik": "lib/figures/v2/math.ts",
+  "rodzina": "pull_up",
+  "z": "export const rad = (d: number): number => d * Math.PI / 180;",
+  "na": "export const rad = (d: number): number => d * Math.PI / 247.6;"
+ },
+ {
+  "plik": "lib/figures/v2/figure.ts",
+  "rodzina": "pull_up",
+  "z": "return { joint: m.joint, deg: a.reduce((x, y) => x + y, 0) / a.length, unit: MEASURE_UNIT[m.joint] };",
+  "na": "return { joint: m.joint, deg: a.reduce((x, y) => x + y, 1) / a.length, unit: MEASURE_UNIT[m.joint] };"
+ },
+ {
+  "plik": "lib/figures/v2/poseInterp.ts",
+  "rodzina": "pull_up",
+  "z": "const lerp3 = (a: V3, b: V3, t: number): V3 => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];",
+  "na": "const lerp3 = (a: V3, b: V3, t: number): V3 => [lerp(a[1], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];"
+ },
+ {
+  "plik": "lib/figures/v2/rigs/common.ts",
+  "rodzina": "squat",
+  "z": "return [hip[0] + up[0] * a + fr[0] * b, hip[1] + up[1] * a + fr[1] * b, z];",
+  "na": "return [hip[1] + up[0] * a + fr[0] * b, hip[1] + up[1] * a + fr[1] * b, z];"
+ },
+ {
+  "plik": "lib/figures/v2/overlay.ts",
+  "rodzina": "pull_up",
+  "z": "export const OVERLAY_ARM_REF = { offset: 8, errorOffset: 0, fullDeg: 8, zeroDeg: 20, errorUBelow: 0.5, tick: 1.8 } as const;",
+  "na": "export const OVERLAY_ARM_REF = { offset: 11.96, errorOffset: 0, fullDeg: 8, zeroDeg: 20, errorUBelow: 0.5, tick: 1.8 } as const;"
+ },
+ {
+  "plik": "lib/figures/v2/overlay/common.ts",
+  "rodzina": "pull_up",
+  "z": "export const OVERLAY_LINE_W = 1.5;",
+  "na": "export const OVERLAY_LINE_W = 3.06;"
+ },
+ {
+  "plik": "lib/figures/v2/overlay/hinge.ts",
+  "rodzina": "hinge",
+  "z": "{ id: 'plumbMidfoot', cue: ['dl.feet'], views: ['side'], build: (f, v) => { const m = f.info.midfoot ? proj(f.info.midfoot, v) : null; return m ? [dash([m[0], 0], [m[0], 150], 'guidePlumb')] : []; } },",
+  "na": "{ id: 'plumbMidfoot', cue: ['dl.feet'], views: ['side'], build: (f, v) => { const m = f.info.midfoot ? proj(f.info.midfoot, v) : null; return m ? [dash([m[1], 0], [m[0], 150], 'guidePlumb')] : []; } },"
+ },
+ {
+  "plik": "lib/figures/v2/overlay/squat.ts",
+  "rodzina": "squat",
+  "z": "{ id: 'thighParallel', cue: ['sq.depth'], rule: 'udo_rownolegle', views: ['side'], build: (f, v) => { const k = proj(f.sk.legs.R.knee, v), h = proj(f.sk.legs.R.hip, v); return [dash([Math.min(h[0], k[0]) - 14, k[1]], [Math.max(h[0], k[0]) + 14, k[1]], 'guideThigh')]; } },",
+  "na": "{ id: 'thighParallel', cue: ['sq.depth'], rule: 'udo_rownolegle', views: ['side'], build: (f, v) => { const k = proj(f.sk.legs.R.knee, v), h = proj(f.sk.legs.R.hip, v); return [dash([Math.min(h[1], k[0]) - 14, k[1]], [Math.max(h[0], k[0]) + 14, k[1]], 'guideThigh')]; } },"
+ },
+ {
+  "plik": "lib/figures/v2/dumbbellAxis.ts",
+  "rodzina": "curl",
+  "z": "const FW2_AX = { zOd: 0.15, gOd: 0.05, gDo: 0.25 } as const;",
+  "na": "const FW2_AX = { zOd: 0.15, gOd: 1.07, gDo: 0.25 } as const;"
+ },
+ {
+  "plik": "lib/figures/v2/variants.ts",
+  "rodzina": "hinge",
+  "z": "? { style, impl, yEnd: 55, stance: style === 'singleLeg' ? 8.5 : 14, toeOut: 8, grip: impl === 'db' ? 18 : 23, shin: HINGE.shin.rdl, sx: [-2, style === 'pullThrough' ? -2 : HINGE.rdlSxEnd] }",
+  "na": "? { style, impl, yEnd: 76.35, stance: style === 'singleLeg' ? 8.5 : 14, toeOut: 8, grip: impl === 'db' ? 18 : 23, shin: HINGE.shin.rdl, sx: [-2, style === 'pullThrough' ? -2 : HINGE.rdlSxEnd] }"
+ },
+ {
+  "plik": "lib/figures/v2/ui.ts",
+  "rodzina": "pull_up",
+  "z": "const main = pick(v => v >= 1), aux = pick(v => v < 1);",
+  "na": "const main = pick(v => v >= 2.37), aux = pick(v => v < 1);"
+ },
+ {
+  "plik": "lib/figures/v2/reguly-cwiczen.json",
+  "rodzina": "pull_up",
+  "z": "\"Pull Up\":[\"broda_nad_drazkiem\",\"dol_rece_proste\",",
+  "na": "\"Pull Up\":[\"broda_nad_drazkiem\","
+ },
+ {
+  "plik": "lib/figures/v2/grupy.json",
+  "rodzina": "pull_up",
+  "z": "\"dol_rece_proste\":\"pelna_amplituda\"",
+  "na": "\"dol_rece_proste\":\"bujanie\""
+ },
+ {
+  "plik": "lib/figures/v2/muscles.generated.ts",
+  "rodzina": "pull_up",
+  "z": "\"Pull Up\": {load:{abs:0.25,biceps:0.5,forearms:0.5,lats:1,",
+  "na": "\"Pull Up\": {load:{abs:0.25,biceps:0.5,forearms:0.5,lats:0.5,"
+ },
+ {
+  "plik": "lib/figures/v2/families.ts",
+  "rodzina": "squat",
+  "z": "label: 'Przysiad obustronny', views: ['side', 'front']",
+  "na": "label: 'Przysiad obustronny', views: ['side']"
+ },
+ {
+  "plik": "lib/figures/v2/poseData.ts",
+  "rodzina": "pull_up",
+  "z": "pull_up: { names: { first: 'Podciąganie'",
+  "na": "pull_up: { names: { first: 'Podciągnięcie'"
+ },
+ {
+  "plik": "lib/figures/v2/overlay/pull_up.ts",
+  "rodzina": "pull_up",
+  "z": "ref: { shape: 'parallel', from: 'shoulder', to: 'grip' } },",
+  "na": "ref: { shape: 'parallel', from: 'shoulder', to: 'elbow' } },"
+ },
+ {
+  "plik": "lib/figures/v2/contract.ts",
+  "rodzina": "pull_up",
+  "z": "fr.info.trail = fr.sk.pelvis;",
+  "na": "fr.info.trail = fr.sk.head;"
+ },
+ {
+  "plik": "lib/figures/v2/colliders.ts",
+  "rodzina": "pull_up",
+  "z": "[p.c[0], p.c[1], 60]), tol: 0.6 });",
+  "na": "[p.c[0], p.c[1], 60]), tol: 0.0001 });"
+ },
+ {
+  "plik": "lib/figures/v2/gear.ts",
+  "rodzina": "pull_up",
+  "z": "held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }]; },",
+  "na": "held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: (g.dlugosc ?? BAR_LEN) * 0.5 }]; },"
+ }
+]

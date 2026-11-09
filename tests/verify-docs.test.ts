@@ -94,7 +94,7 @@ describe('verify:docs — co jest uruchamiane dla dokumentów', () => {
     expect(plan(['docs/40-lekcje.md']).testy).toContain('tests/audit-m1-p4b-queue.test.ts');
     const v = readFileSync(join(root, 'scripts/verify-docs.mjs'), 'utf8');
     expect(v).toContain("import { testyCzytajace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs'");
-    expect(readFileSync(join(root, 'scripts/test-fast.mjs'), 'utf8')).toContain("import { testyCzytajace, testyRenderujaceRouter, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs'");
+    expect(readFileSync(join(root, 'scripts/test-fast.mjs'), 'utf8')).toContain("import { testyCzytajace, testyRenderujaceRouter, testySkanujace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs'");
   });
   test('lista testów bez powtórzeń, tylko pliki tests/*.test.ts(x), posortowana', () => {
     const t = plan(['docs/18-przekazanie.md', 'docs/40-lekcje.md', 'CLAUDE.md']).testy;

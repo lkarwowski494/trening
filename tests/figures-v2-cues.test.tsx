@@ -16,6 +16,8 @@ import T1_DELT from './fixtures/cues-t1-delt-raise.json';
 import T1_TRI from './fixtures/cues-t1-triceps.json';
 import A1_PCH from './fixtures/cues-a1-pchanie.json';
 import A2_NOGI from './fixtures/cues-a2-nogi.json';
+import A3_PRZ from './fixtures/cues-a3-przyciaganie.json';
+import A4_CORE from './fixtures/cues-a4-core.json';
 
 const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
 const EN: Record<string, string> = require('@/lib/cues/text/en.json');
@@ -26,7 +28,7 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
   test('709 ćwiczeń: 102 własne + 36 z partii P2 (G3 moc, 03.11.2026; w tym 2 przeniesione z „open”: Jerk Balance, Medicine Ball Chest Pass) = własne razem z kartami partii (A1 pchanie, 08.11.2026), ogólne (wariant A), 67 otwartych (grafika bez tekstu); własne = dokładnie ćwiczenia z lib/cues/data.json', () => {
     expect(Object.keys(CUE_SETS.items).sort()).toEqual([...KEYS].sort());
     const n = (b: string) => Object.values(CUE_SETS.items).filter(e => e.b === b).length;
-    expect([n('own'), n('general'), n('open')]).toEqual([102 + P1_MOBILNOSC.cwiczenia.length + P2_MOC.cwiczenia.length + T1_DELT.cwiczenia.length + T1_TRI.cwiczenia.length + A1_PCH.cwiczenia.length + (A2_NOGI.cwiczenia.length - A2_NOGI.zastapione.length), 538 - P1_MOBILNOSC.cwiczenia.length - (P2_MOC.cwiczenia.length - 2) - (T1_DELT.cwiczenia.length - 3) - T1_TRI.cwiczenia.length - A1_PCH.cwiczenia.length - (A2_NOGI.cwiczenia.length - A2_NOGI.zastapione.length), 69 - 2 - 3]); /* A1 (pchanie, 08.11.2026): 14 kart własnych zastępuje zestawy ogólne */ /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */ /* A2 (nogi, 08.11.2026): Hack Squat miał już kartę własną (ukrytą „do poprawy”) — zastąpiona, nie dochodzi */ /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */
+    expect([n('own'), n('general'), n('open')]).toEqual([102 + P1_MOBILNOSC.cwiczenia.length + P2_MOC.cwiczenia.length + T1_DELT.cwiczenia.length + T1_TRI.cwiczenia.length + A1_PCH.cwiczenia.length + (A2_NOGI.cwiczenia.length - A2_NOGI.zastapione.length) + A3_PRZ.cwiczenia.length + A4_CORE.cwiczenia.length, 538 - P1_MOBILNOSC.cwiczenia.length - (P2_MOC.cwiczenia.length - 2) - (T1_DELT.cwiczenia.length - 3) - T1_TRI.cwiczenia.length - A1_PCH.cwiczenia.length - (A2_NOGI.cwiczenia.length - A2_NOGI.zastapione.length) - (A3_PRZ.cwiczenia.length - 1) - (A4_CORE.cwiczenia.length - 2), 69 - 2 - 3 - 1 - 2]); /* A4a (core, 09.11.2026): 17 kart własnych — 15 zastępuje zestawy ogólne, Stomach Vacuum i Kettlebell Figure 8 przeniesione z „open” */ /* A3 (przyciąganie, 09.11.2026): 17 kart własnych — 16 zastępuje zestawy ogólne, Cuban Press przeniesiony z „open” */ /* A1 (pchanie, 08.11.2026): 14 kart własnych zastępuje zestawy ogólne */ /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */ /* A2 (nogi, 08.11.2026): Hack Squat miał już kartę własną (ukrytą „do poprawy”) — zastąpiona, nie dochodzi */ /* T1 (delt_raise, 04.11.2026): Sled Reverse Flye oraz dwa ćwiczenia z kartami na źródłach typu strona aplikacji przeniesione z „open” */
     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   /* OTWARTE (27.10.2026, badacz): zdanie o rzucie z nóg (mb.legs) nie pasuje do slamu — zdanie zastępcze do ustalenia; do tego czasu zestaw bez zaleceń (docs/16) */
@@ -88,7 +90,9 @@ describe('ACG-001 (audyt ćwiczeń 31.10.2026): zdanie zestawu nie przeczy kieru
     for (const k of ['Gironda Sternum Chins', 'Mixed Grip Chin', 'One Arm Chin-Up', 'Side To Side Chins', 'Wide-Grip Rear Pull-Up']) {
       expect([k, CUE_SETS.items[k].ok?.includes('lpd.fullStretch')]).toEqual([k, false]); expect([k, CUE_SETS.items[k].err?.includes('pu.partial')]).toEqual([k, true]);
     }
-    expect(CUE_SETS.items['V-Bar Pulldown'].ok).toContain('lpd.fullStretch');
+    /* V-Bar Pulldown ma od partii A3 (09.11.2026) kartę własną (ukrytą do przekładu) — lpd.fullStretch jest w jej wskazówkach; zestawy ogólne ściągania drążka nadal go mają */
+    expect(CUE_FULL.exercises['V-Bar Pulldown'].tips.map(r => r.c)).toContain('lpd.fullStretch');
+    expect(CUE_SETS.items['Full Range-Of-Motion Lat Pulldown'].ok).toContain('lpd.fullStretch');
   });
 });
 

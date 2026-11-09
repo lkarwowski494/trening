@@ -38,7 +38,9 @@ describe('test:fast (M1-059)', () => {
     expect(plan([]).files).toEqual([]);
   });
   test('zmiana pliku testu i kodu: pliki bez duplikatów', () => {
-    expect(plan(['lib/units.ts', 'lib/units.ts', 'tests/units.test.ts']).files.filter(bezDymnych)).toEqual(['lib/units.ts', 'tests/units.test.ts']);
+    const pliki: string[] = plan(['lib/units.ts', 'lib/units.ts', 'tests/units.test.ts']).files.filter(bezDymnych);
+    expect(new Set(pliki).size).toBe(pliki.length); /* 09.11.2026: zmiana pliku w tests/ dokłada też strażników skanujących tests/ (tests/straznicy-skan.test.ts) — bez duplikatów, a nie dokładnie dwa pliki */
+    expect(pliki).toEqual(expect.arrayContaining(['lib/units.ts', 'tests/units.test.ts']));
   });
   test('1.0.1 (lekcja L-NNN): zmiana słownika (lib/locales, locales, lib/i18n.en.ts) uruchamia testy plików generowanych z niego — jest ich nie wiąże import', () => {
     for (const f of ['lib/locales/pt-BR.json', 'locales/el.json', 'lib/i18n.en.ts']) {
