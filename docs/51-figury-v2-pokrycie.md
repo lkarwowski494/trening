@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 8, do zrobienia: 35); ćwiczeń z gotową figurą: **197** (27,8%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 9, do zrobienia: 34); ćwiczeń z gotową figurą: **213** (30,0%).
 
 ## Rodziny
 
@@ -24,7 +24,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
 | `calf_raise` | gotowa | 13 | side | — | Wspięcia na palce |
 | `hip_bridge` | do zrobienia | 11 | side | 3 | Hip thrust i mostki |
-| `kb_ballistic` | do zrobienia | 17 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
+| `kb_ballistic` | gotowa | 17 | side | — | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
 | `olympic` | gotowa | 25 | side | — | Podrzut, rwanie i ich odmiany |
 | `back_extension` | do zrobienia | 4 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
 | `curl` | gotowa | 36 | side, front | — | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
@@ -53,12 +53,13 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 35 rodzin, 503 ćwiczeń, ok. **107 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 34 rodzin, 486 ćwiczeń, ok. **104 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 - `calf_raise` (z figurą 12 z 13): Smith Machine Reverse Calf Raise
+- `kb_ballistic` (z figurą 16 z 17): Kettlebell Pirate Ships
 - `olympic` (z figurą 24 z 25): Rack Delivery
 - `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
@@ -125,7 +126,7 @@ Band Calf Raise; Barbell Seated Calf Raise; Calf Raise (linki); Calf Raise (szta
 
 Frog Pump; Glute Bridge; Glute Bridge (sztanga); Hip Thrust (hantel); Hip Thrust (sztanga); London Bridges; Machine Hip Thrust; Single Leg Glute Bridge; Single Leg Hip Thrust; Smith Machine Hip Thrust; Stability Ball Hip Bridge
 
-### kb_ballistic (17) — do zrobienia
+### kb_ballistic (17) — gotowa
 
 Bottoms-Up Clean From The Hang Position; Double Kettlebell Clean; Double Kettlebell Jerk; Double Kettlebell Push Press; Double Kettlebell Snatch; Dumbbell Clean; Kettlebell Clean; Kettlebell Pirate Ships; Kettlebell Snatch; Kettlebell Sumo High Pull; Kettlebell Swing; One-Arm Kettlebell Clean and Jerk; One-Arm Kettlebell Jerk; One-Arm Kettlebell Push Press; One-Arm Kettlebell Split Jerk; One-Arm Kettlebell Swings; Snatch (hantel)
 
