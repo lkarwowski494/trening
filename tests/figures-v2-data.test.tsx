@@ -43,12 +43,14 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic')) { /* olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
-      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
+      const ex = ui.exceptions?.[k]; /* wyjątek ćwiczenia (partia 3, 09.11.2026: Straight Arm Pulldown — łokieć prosty, mierzony bark shElev) */
+      expect([k, s.lowerFirst]).toEqual([k, ex?.lowerFirst ?? ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, (ex?.joints ?? ui.joints)[0]]);
+      const nm = ex?.names ?? ui.names; const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[nm.first, 1000], ['Pauza', 500], [nm.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
-      else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* Straight Arm Pulldown (partia 3, 09.11.2026): ręka prosta schodzi z góry do ud — uniesienie ramienia (shElev) maleje */
+      else if (f === 'triceps' || k === 'Straight Arm Pulldown') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
