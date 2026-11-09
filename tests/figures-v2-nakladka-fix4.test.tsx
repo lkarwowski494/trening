@@ -39,7 +39,7 @@ describe('R1 (fix4): element nakładki tylko z regułą wariantu o pewności „
     for (const k of ['RDL (sztanga)', 'RDL (hantle/linki)', 'Single Arm RDL (hantel/linka)', 'Stiff-Legged Barbell Deadlift', 'Deadlift (sztanga)', 'Good Morning']) expect([k, techniquesOf(k)]).toEqual([k, ['hingeUprightRef']]);
   });
   test('macierz: różnica między „wskazówka na karcie” a „element rysowany” to dokładnie te dwa ćwiczenia jednonóż i Alternating Deltoid Raise (delt_raise, 09.11.2026: reguły wariantu nie są „ustalone”) — reszta bez zmian', () => {
-    const odciete = FAMS.flatMap(f => KEYS[f].filter(k => TECHNIQUE[f].filter(d => !d.exercises && d.cue.some(c => cueIdsOf(k).ids.includes(c))).length > techniquesOf(k).filter(id => !TECHNIQUE[f].find(d => d.id === id)!.exercises).length));
+    const odciete = FAMS.flatMap(f => KEYS[f].filter(k => TECHNIQUE[f].filter(d => (!d.exercises || d.exercises.includes(k)) && d.cue.some(c => cueIdsOf(k).ids.includes(c))).length > techniquesOf(k).length));
     expect(odciete.sort()).toEqual(['Alternating Deltoid Raise', 'Single Leg RDL (hantel)', 'Single Leg RDL (linki)']);
   });
   test('logika techniquesFor: z ćwiczeniem filtruje po regułach (reguly-cwiczen.json), bez ćwiczenia — tylko po wskazówkach (wywołanie na poziomie rodziny); ćwiczenie bez wpisu reguł → brak elementu', () => {
@@ -61,5 +61,22 @@ describe('R1 (fix4): lib/figures/v2/reguly-cwiczen.json = reguły „ustalone”
   });
   test('plik nie zawiera nazw źródeł ani pewności (runtime bez źródeł, decyzja właściciela 25.10.2026): tylko id reguł', () => {
     const txt = JSON.stringify(REGULY); expect(txt).not.toMatch(/ExRx|NSCA|ACE|NASM|https?:/); expect(Object.values(REGULY).every(m => Object.values(m as Record<string, unknown>).every(l => Array.isArray(l) && l.every(x => typeof x === 'string')))).toBe(true);
+  });
+});
+
+describe('delt_raise (09.11.2026, recenzja nakładki): łuk tylko w rzucie płaszczyzny ruchu', () => {
+  const FRONT = ['Lateral Raise (hantle)', 'Cable Lateral Raise', 'One-Arm Lateral Raise (hantel)', 'Band Lateral Raise', 'Machine Lateral Raise', 'Cable Seated Lateral Raise', 'Dumbbell Scaption', 'Cable Y Raise'];
+  const SIDE = ['Front Raise', 'Cable Front Raise', 'Front Plate Raise', 'Single Dumbbell Front Raise', 'Barbell Front Raise to Overhead', 'Dumbbell Front Raise to Overhead'];
+  test('listy rozłączne; element czołowy tylko w rzucie front i tylko dla ćwiczeń z listy czołowej, boczny — side i lista boczna', () => {
+    const d = (id: string) => TECHNIQUE.delt_raise.find(x => x.id === id)!;
+    expect(d('deltArmElevationFront').views).toEqual(['front']); expect(d('deltArmElevationSide').views).toEqual(['side']);
+    expect(d('deltArmElevationFront').exercises!.slice().sort()).toEqual(FRONT.slice().sort()); expect(d('deltArmElevationSide').exercises!.slice().sort()).toEqual(SIDE.slice().sort());
+    expect(FRONT.filter(k => SIDE.includes(k))).toEqual([]);
+  });
+  test('dobór: ćwiczenie z listy czołowej nigdy nie dostaje elementu bocznego i odwrotnie; rysowane są te z kartą i regułą „ustalone” (Machine Lateral Raise i Cable Seated Lateral Raise nie mają elementu — karta bez wskazówki ruchu); reszta rodziny bez łuku', () => {
+    const NIE_RYSUJE = ['Machine Lateral Raise', 'Cable Seated Lateral Raise'];
+    for (const k of FRONT) { const t = techniquesOf(k); expect([k, t.includes('deltArmElevationSide'), t.includes('deltArmElevationFront')]).toEqual([k, false, !NIE_RYSUJE.includes(k)]); }
+    for (const k of SIDE) { const t = techniquesOf(k); expect([k, t.includes('deltArmElevationFront'), t.includes('deltArmElevationSide')]).toEqual([k, false, true]); }
+    for (const k of KEYS.delt_raise.filter(x => !FRONT.includes(x) && !SIDE.includes(x))) expect([k, techniquesOf(k).filter(i => i.startsWith('deltArmElevation'))]).toEqual([k, []]);
   });
 });
