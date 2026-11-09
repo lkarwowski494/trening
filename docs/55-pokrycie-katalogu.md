@@ -41,16 +41,16 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 533 | 183 | 350 |
-| figura w aplikacji (v2 albo v1) | 535 | 227 | 308 |
-| animowany błąd | 264 | 127 | 137 |
+| figura v2 w aplikacji | 531 | 183 | 348 |
+| figura w aplikacji (v2 albo v1) | 534 | 227 | 307 |
+| animowany błąd | 263 | 127 | 136 |
 | własne wskazówki | 285 | 265 | 20 |
 | własne wskazówki z częstymi błędami | 176 | 157 | 19 |
 | wskazówki (własne lub zestaw ogólny) | 572 | 375 | 197 |
 | częste błędy (tekst) | 451 | 267 | 184 |
 | role mięśni | 516 | 513 | 3 |
-| pełna karta | 457 | 180 | 277 |
-| figura z aktualną recenzją ruchu | 533 | 183 | 350 |
+| pełna karta | 455 | 180 | 275 |
+| figura z aktualną recenzją ruchu | 531 | 183 | 348 |
 | komplet tekstów karty: pl | 631 | 577 | 54 |
 | komplet tekstów karty: en | 631 | 577 | 54 |
 | komplet tekstów karty: cs | 631 | 577 | 54 |

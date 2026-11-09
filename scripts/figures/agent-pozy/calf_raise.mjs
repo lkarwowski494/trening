@@ -86,12 +86,14 @@ export const WYJATKI = {};
 export const PRZYBLIZENIA = {};
 export function generuj() {
   const smith = (fr) => [{ rodzaj: 'smith', x: r1(fr[0].m[0] - 12.8), h: 200 }];
-  const linki = () => [{ rodzaj: 'wyciag', dwa: true, x: 105, y: 22, z: 45, chwyt: 'uchwyt', h: 120 }];
+  /* niski wyciąg tuż przed stopami (recenzja r1 W3, 09.11.2026): opór wspięcia ma być prawie pionowy — bloczek 16 cm przed grzbietem stóp, linka do dłoni pod kątem ok. 16° od pionu (było 105 cm i 28° pod poziomem) */
+  const linki = () => [{ rodzaj: 'wyciag', dwa: true, x: 16, y: 22, z: 45, chwyt: 'uchwyt', h: 120 }];
   const sciana = () => { let y0 = null; return (tryb, m, p) => { y0 ??= S(m, p)[1] - 8; const g = (sg) => ({ g: [37, y0, sg * 16], pole: [-0.3, -1, sg * 0.6] }); return { hr: g(1), hl: g(-1), sprzet: [] }; }; };
   const wolna = (m) => { const a = [m[0] - 28, m[1] - 54, -ZS]; const kn = kolano2D(m, a, [1, -0.2]); return { a, pod: Math.max(-70, Math.min(20, katXY(a, kn) - 84)), pole: [1, -0.2, 0] }; };
   const pudlo = (fr) => { const Sx = S(fr[0].m, 84); return [{ rodzaj: 'skrzynia', x0: r1(Sx[0] + 8), x1: r1(Sx[0] + 40), top: 62 }, ...dzwigniaMiednica(fr)]; };
   return {
-    'Łydki na stopniu': () => stojac('Łydki na stopniu', { blok: 8, bledy: false }),
+    /* karta „przytrzymaj się czegoś dla równowagi” (calf.step; recenzja r1 N1, 09.11.2026): obie dłonie na ścianie przed osobą, jak w Single Leg Calf Raise */
+    'Łydki na stopniu': () => stojac('Łydki na stopniu', { blok: 8, bledy: false, recFn: sciana(), sprzetFn: () => [{ rodzaj: 'sciana', x: 40, h: 220, przed: true }] }),
     'Standing Calf Raise': () => stojac('Standing Calf Raise', { blok: 6, tryb: 'maszyna', sprzetFn: dzwigniaMiednica }),
     'Smith Machine Calf Raise': () => stojac('Smith Machine Calf Raise', { blok: 6, tryb: 'sztanga', sprzetFn: smith }),
     'Calf Raise (sztanga)': () => stojac('Calf Raise (sztanga)', { blok: 6, tryb: 'sztanga' }),
