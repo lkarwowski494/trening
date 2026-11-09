@@ -7,7 +7,7 @@
  * Rodzaje (docs/20): dane (karty, źródła, pozy), logika (≥ 2 organizacje; błąd w pozie ⊆ błędy karty), niezmienniki (każdy błąd karty: animowany albo z powodem
  * w bledy_bez_animacji), języki (PL i EN; 33 języki — zestaw przekładu B2), regresja (A2 „konfliktPozy” = karty B2; glute_floor wstrzymany — grupy błędów bez zmian).
  * Ocena realności: błąd „animacja pokazuje błąd, którego karta nie opisuje” — realny (niespójność karta–rysunek widoczna w aplikacji i na stronie);
- * karty zrecenzowane niezależnie i odsłonięte 09.11.2026 (bramka 4, L-047, L-050) — wpisy w docs/research/figury-recenzja.json.
+ * karty zrecenzowane niezależnie i odsłonięte 09.11.2026 (bramka 4, L-047, L-050).
  */
 import * as fs from 'fs';
 import * as path from 'path';
