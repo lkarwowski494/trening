@@ -64,11 +64,11 @@
     "_opis": "Warianty haka dla kolejnych filmów tego samego ćwiczenia (właściciel 09.11.2026: inny hak, żeby film nie był uznany za duplikat). Brzmienie właściciela.",
     "popularny-blad": {
       "en": {
-        "tekst": "Do you know this popular mistake?",
-        "stan": "brzmienie właściciela (09.11.2026)"
+        "tekst": "Do you know this common mistake?",
+        "stan": "brzmienie właściciela, „common” zamiast „popular” (09.11.2026)"
       },
       "pl": {
-        "tekst": "Znasz ten popularny błąd?",
+        "tekst": "Znasz ten częsty błąd?",
         "stan": "podgląd"
       }
     }

@@ -77,9 +77,9 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
   test('wariant haka per film (właściciel 09.11.2026: inny hak, żeby film nie był duplikatem): „hak_wariant” z „hak_warianty”, nieznany wariant — odmowa', () => {
     const f = CFG.filmy.find((x: { hak_wariant?: string }) => x.hak_wariant === 'popularny-blad');
     expect(f).toBeDefined(); expect(f.cwiczenie).toBe('Back Squat');
-    expect(CFG.hak_warianty['popularny-blad'].en.tekst).toBe('Do you know this popular mistake?');
+    expect(CFG.hak_warianty['popularny-blad'].en.tekst).toBe('Do you know this common mistake?');
     const r7 = run(['--film', f.id, '--plan']); expect(r7.status).toBe(0);
-    expect(JSON.parse(r7.stdout)[0].teksty.hak).toBe('Do you know this popular mistake?');
+    expect(JSON.parse(r7.stdout)[0].teksty.hak).toBe('Do you know this common mistake?');
     expect(zKonfigiem([{ ...FILM, id: 'zly-wariant', hak_wariant: 'brak' }]).stderr).toMatch(/zly-wariant \[pl\]: brak wariantu haka „brak”/);
   });
 
