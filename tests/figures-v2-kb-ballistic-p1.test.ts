@@ -89,7 +89,7 @@ const lokiecPrzedWyprostem = (d: PoseData): number => { const w = uWyprost(d) ??
 /** Największy odstęp ciężaru od ciała (powierzchnia) w ciągu: chwyt poniżej barku, u < 0,8 (potem ugięcie przed rackiem / wyrzut). */
 const odstepCiagu = (d: PoseData): number => { let m = -Infinity; for (let i = 0; i <= KROKI; i++) { const u = i / KROKI; if (u >= 0.8) break; const f = keyframeFrame(d, u); if (f.sk.arms.R.grip[1] < f.sk.shoulderC[1]) m = Math.max(m, stykKlatki(f, u).odstep); } return m; };
 /** Najniższy punkt ciężaru nad podłogą w u = 0, cm. */
-const spodCiezaru = (d: PoseData): number => Math.min(...equipColliders(keyframeFrame(d, 0).props).filter(c => c.k === 'capsule' && /^(db|kb)/.test(c.id)).map(c => Math.min(c.a[1], c.b[1]) - (c as { r: number }).r));
+const spodCiezaru = (d: PoseData): number => Math.min(...equipColliders(keyframeFrame(d, 0).props).flatMap(c => (c.k === 'capsule' && /^(db|kb)/.test(c.id) ? [Math.min(c.a[1], c.b[1]) - c.r] : [])));
 describe('kb_ballistic p1: start i ciąg zarzutu i rwania (W1 r1 i W1-r2, recenzja 09.11.2026; K5)', () => {
   test.each(DOLNY_START_KB)('%s: w u = 0 chwyt za linią kostek jak w swingu („przeszły między nogami”, „zamach jak przy swingu”), nie 30 cm przed nimi', k => {
     const f = fr(k, 0); const ankle = f.sk.legs.R.ankle[0]; const prog = k === 'Snatch (hantel)' ? BODY.toeFwd : 0; /* hantel z podłogi leży nad stopą (nie dalej niż linia palców; rzut z boku nie pokazuje „między stopami”, to z = 8 cm od osi) */ expect([k, f.sk.arms.R.grip[0] - ankle <= prog]).toEqual([k, true]);
