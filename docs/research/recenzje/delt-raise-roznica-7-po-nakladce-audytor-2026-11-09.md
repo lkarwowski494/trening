@@ -47,7 +47,7 @@ Dopisek do `kto` (wspólny, na końcu, po „; ”):
 „recenzja różnicy 09.11.2026 (audytor, nakładka delt_raise): delt-wlaczenie-wip @ a421cb8a względem figury/delt_raise @ 3a431da2 (kopie git archive) — skrót przeliczony z <STARY> na <NOWY>”
 
 Dopisek do `uwagi` (na końcu):
-„Recenzja różnicy 09.11.2026 (audytor, nakładka delt_raise): zmiana w plikach wspólnych tylko przez dodanie rodziny delt_raise (reguly-cwiczen.json — nowy klucz, overlay.ts — import i wpis DELT_RAISE_TECHNIQUE, families.ts/poseData.ts — podłączenie); components, scripts i złote dane bez zmian; md5 ruchu, śladu, błędów, nakładki (z kart i z aplikacji), VoiceOver, pozycji statycznych i czasu równe <N>/<N> po przeliczeniu data.json. Bez znalezisk dla rodziny.”
+„Bez znalezisk dla rodziny. …”
 
 Podstawienia:
 - squat: STARY b62f05ccc077, NOWY d353775e81c6, N 25

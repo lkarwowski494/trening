@@ -60,7 +60,7 @@ Informacyjnie, na wypadek włączenia rodziny chest_fly:
     "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-04, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
     "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
     "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise sha b882c034cdce",
-    "uwagi": "Unoszenie bokiem siedząc z linkami: lat.elbows i lat.height ze źródeł karty Lateral Raise (hantle) (dwa źródła szczebla 4; reguła lokiec_staly cytuje też wersję z linką), mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu i pozycji). Rysunek: tor ręki jak w zrecenzowanym Lateral Raise (hantle) obniżony o siedzenie, łokieć nad nadgarstkiem w u = 1, ramię do ok. barków — zgodny z obiema wskazówkami. Bez nazw źródeł, liczb i twierdzeń o zdrowiu."
+    "uwagi": "Unoszenie bokiem siedząc z linkami: lat.elbows i lat.height ze źródeł karty Lateral Raise (hantle) (dwa źródła szczebla 4; reguła lokiec_staly cytuje też wersję z linką), mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu i pozycji). …"
   },
   "Machine Lateral Raise": {
     "rodzina": "raiseSide",
@@ -70,7 +70,7 @@ Informacyjnie, na wypadek włączenia rodziny chest_fly:
     "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-03, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
     "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
     "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise sha b882c034cdce",
-    "uwagi": "Unoszenie bokiem na maszynie (dwie dźwignie wzdłuż ramion): lat.height ze źródeł karty Lateral Raise (hantle), llc.control ze źródeł Lying Leg Curl i mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu, zasada kontroli ruchu na maszynie). Rysunek do ok. wysokości barków — zgodny. Uwaga NISKA do backlogu: llc.control i mis.jerk powtarzają tę samą myśl (płynnie, bez szarpania); można zamienić llc.control na lat.elbows — nie jest to błąd treści."
+    "uwagi": "Unoszenie bokiem na maszynie (dwie dźwignie wzdłuż ramion): lat.height ze źródeł karty Lateral Raise (hantle), llc.control ze źródeł Lying Leg Curl i mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu, zasada kontroli ruchu na maszynie). …"
   },
   "Y Raise (hantle)": {
     "rodzina": "raise",
@@ -80,7 +80,7 @@ Informacyjnie, na wypadek włączenia rodziny chest_fly:
     "autor": "badacz merytoryczny (zestaw raise, wskazowki-cwiczenia-02, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
     "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
     "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise sha b882c034cdce",
-    "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu."
+    "uwagi": "Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). …"
   }
 }
 ```
