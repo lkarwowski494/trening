@@ -48,7 +48,7 @@ describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
 
   test('cue-sets: 17 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2, wstrzymane) nie mają karty własnej', () => {
     for (const k of A3.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
-    const pominiete = [...A3.bezUstawieniaLubRuchu, ...A3.pominieteBezBledu, ...A3.wstrzymane.map(([k]) => k as string), ...A3.konfliktPozy.map(([k]) => k as string)];
+    const pominiete = [...A3.bezUstawieniaLubRuchu, ...A3.pominieteBezBledu, ...A3.wstrzymane.map(([k]) => k as string), ...(A3.konfliktPozy as unknown as [string, string[]][]).map(([k]) => k)];
     expect(pominiete.sort()).toEqual(['Cable Internal Rotation', 'Cable Rope Rear-Delt Rows', 'Lower Back Curl', 'Lying T-Bar Row', 'Reverse Hyperextension', 'Rope Climb', 'Seal Row (sztanga)', 'Single Arm Cable Row', 'Smith Machine Behind the Back Shrug', 'Smith Machine Bent Over Row']);
     for (const k of pominiete) expect([k, sets[k]?.b !== 'own', k in CUE_FULL.exercises, A3.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
   });
