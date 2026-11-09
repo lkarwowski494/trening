@@ -30,9 +30,13 @@ describe('kb_ballistic p1: podłączenie (09.11.2026)', () => {
     const all = assignAll(); for (const k of KEYS) { expect([k, all[k]]).toEqual([k, FAM]); const s = figureSpec(k); expect([k, !!s, s && 'data' in s.variant]).toEqual([k, true, true]); }
     expect(figureSpec('Kettlebell Pirate Ships')).toBeNull();
   });
-  test('DATA_UI: Podnoszenie/Opuszczanie (wahadło: u 0 = dół, u 1 = góra), mierzone biodro albo kolano', () => {
+  const JEDNOKIERUNKOWE = ['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'];
+  test('DATA_UI: wahadło (swing, zarzut, wysoki ciąg): Podnoszenie 1 s / Opuszczanie 2 s; rwanie, wyciskania z nóg i podrzut (9, petla = jednokierunkowa): jedna faza „Podnoszenie” bez czasu; mierzone biodro albo kolano', () => {
     expect(DATA_UI[FAM].names).toEqual({ first: 'Podnoszenie', second: 'Opuszczanie' }); expect(DATA_UI[FAM].lowerFirst).toBe(false); expect(DATA_UI[FAM].joints).toEqual(['hip', 'knee']);
-    for (const k of KEYS) { const s = figureSpec(k)!; expect([k, phaseNames(s)]).toEqual([k, { first: 'Podnoszenie', second: 'Opuszczanie' }]); expect([k, phasesFor(s)[0].name]).toEqual([k, 'Podnoszenie']); }
+    expect(KEYS.filter(k => data(k).petla === 'jednokierunkowa').sort()).toEqual([...JEDNOKIERUNKOWE].sort());
+    for (const k of KEYS) { const s = figureSpec(k)!; const one = JEDNOKIERUNKOWE.includes(k);
+      expect([k, phaseNames(s)]).toEqual([k, one ? { first: 'Podnoszenie', second: 'Podnoszenie' } : { first: 'Podnoszenie', second: 'Opuszczanie' }]);
+      expect([k, phasesFor(s).map(p => [p.name, p.untimed ?? false])]).toEqual([k, one ? [['Podnoszenie', true]] : [['Podnoszenie', false], ['Pauza', false], ['Opuszczanie', false], ['Pauza', false]]]); }
   });
 });
 

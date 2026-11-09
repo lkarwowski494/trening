@@ -5095,6 +5095,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "Kettlebell Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -5919,6 +5920,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "Double Kettlebell Snatch",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -6748,6 +6750,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "Snatch (hantel)",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -7571,6 +7574,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "Double Kettlebell Push Press",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -8400,6 +8404,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "Double Kettlebell Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -9229,6 +9234,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "One-Arm Kettlebell Push Press",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -10053,6 +10059,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "One-Arm Kettlebell Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -10877,6 +10884,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "One-Arm Kettlebell Split Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -12628,6 +12636,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "kb_ballistic",
    "cwiczenie": "One-Arm Kettlebell Clean and Jerk",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",

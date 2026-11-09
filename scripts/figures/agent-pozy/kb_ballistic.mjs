@@ -4,7 +4,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu } from './dyn.mjs';
+import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu, jednokierunkowa } from './dyn.mjs';
 
 export const RODZINA = 'kb_ballistic';
 export const WYJATKI = {
@@ -123,6 +123,7 @@ function cleanJerk(cw) {
 }
 const SPLIT = () => { const hip = biodroZKostki([26, 7], -90 - 25 + 80, 80); return { A: [26, 7], al: 25, k: 80, AL: [hip[0] - 28, yP(-60) + 0.5], podL: -62 }; };
 
+export const JEDNOKIERUNKOWE = ['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'];
 export function generuj() {
   const G = {};
   G['Kettlebell Swing'] = () => swing('Kettlebell Swing', { sprz: SPRZ(KB()) });
@@ -143,5 +144,8 @@ export function generuj() {
   G['One-Arm Kettlebell Split Jerk'] = () => podrzut('One-Arm Kettlebell Split Jerk', k1({ split: true }));
   G['Kettlebell Sumo High Pull'] = () => sumoHighPull('Kettlebell Sumo High Pull');
   G['One-Arm Kettlebell Clean and Jerk'] = () => cleanJerk('One-Arm Kettlebell Clean and Jerk');
+  /* 09.11.2026 (partia 1): ćwiczenia z wyrzutem albo lotem ciężaru (rwanie, wyciskanie z nóg, podrzut: miednica nie monotoniczna — wyprost na palcach i ugięcie pod ciężarem) to pętla jednokierunkowa:
+   * u 0 → 1 = całe powtórzenie (jak olympic), bez powrotu tą samą drogą; swing, zarzut i wysoki ciąg zostają wahadłem (strażnik: tests/figures-v2-kierunek-u.test.ts). */
+  for (const k of JEDNOKIERUNKOWE) { const f = G[k]; G[k] = () => jednokierunkowa(f()); }
   return G;
 }

@@ -86,9 +86,11 @@ export const DATA_UI: Record<string, DataUi> = {
   /* calf_raise (09.11.2026): wspięcie na palce — u = 0 pięty na dole, u = 1 pięty w górze (1 s), opuszczanie 2 s. Mierzonym stawem byłaby kostka, ale MeasuredJoint jej nie ma (silnik, bez zmian w tej partii — zgłoszone w raporcie);
    * kandydat 'knee' (ruch kolana w wspięciu < 15°) powoduje, że linia „Kąt na rysunku” się nie pokazuje (MIN_MEASURED_ROM) — zamiast liczby, która nie jest ruchem wspięcia. */
   calf_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'] },
-  /* kb_ballistic (09.11.2026): u = 0 dół (zawias, zawis między nogami, rack przed wyrzutem) → u = 1 góra (swing: ręce przed sobą; zarzut: rack; rwanie i wyciskania: nad głową); powrót tą samą drogą (wahadło, petla bez wpisu).
-   * Mierzone biodro (swing, zarzut, rwanie napędza biodro) albo kolano (dip w push press i podrzucie) — pokazany jest staw, który rusza się najbardziej. */
-  kb_ballistic: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'] },
+  /* kb_ballistic (09.11.2026): swing, zarzut i wysoki ciąg to wahadło: u = 0 dół (zawias, zawis między nogami) → u = 1 góra (swing: ręce przed sobą; zarzut: rack), powrót tą samą drogą.
+   * Rwanie, wyciskanie z nóg i podrzut (9 ćwiczeń, miednica nie monotoniczna — wyrzut i ugięcie pod ciężarem) mają petla = jednokierunkowa (całe powtórzenie w jednym przebiegu, jak w olympic): jedna faza „Podnoszenie” bez opuszczania — wyjątki poniżej,
+   * wpis rodziny pozostaje jeden. Mierzone biodro (swing, zarzut, rwanie) albo kolano (dip w podrzucie) — pokazany jest staw, który rusza się najbardziej. */
+  kb_ballistic: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'],
+    exceptions: Object.fromEntries(['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
