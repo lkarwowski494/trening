@@ -518,27 +518,24 @@
     },
     "Lateral Raise (hantle)": {
       "rodzina": "delt_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "40131a00c14b",
-      "uwagi": "Ruch i karta zgodne. Widok z przodu: unoszenie bokiem do wysokości barków, łokcie lekko ugięte i wyżej niż dłonie. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "40131a00c14b"
     },
     "Cable Lateral Raise": {
       "rodzina": "delt_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "ae6901c9352f",
-      "uwagi": "Ruch i karta zgodne. Jak unoszenie hantli bokiem; linka od dolnego bloczka po drugiej stronie ciała. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "ae6901c9352f"
     },
     "Front Raise": {
       "rodzina": "delt_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "46ce7d8f4449",
-      "uwagi": "Ruch i karta zgodne. Unoszenie przed sobą do wysokości barków, łokcie prawie proste przez cały ruch. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "46ce7d8f4449"
     },
     "Shrugs (sztanga)": {
       "rodzina": "shrug",
@@ -914,6 +911,156 @@
           "data": "2026-11-09",
           "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
           "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
+      }
+    },
+    "delt_raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna nakładki techniki delt_raise (bramka 4, L-047, L-050), 09.11.2026; figury delt-wlaczenie-wip @ 1e8f9f8d i poprawka 64ebbbd4; wcześniej: audytor — recenzja niezależna ruchu Car Drivers po naprawie r5-W1/r5-Ś1, 09.11.2026; figury/delt_raise @ b75b159d (poprawka 51042308), czysta kopia z tymczasowym podłączeniem do arkuszy i pomiarów (families.ts ready, poseData.ts LOAD), cofniętym przed liczeniem skrótu; autor poprawki nie recenzował własnej pracy; recenzja różnicy 09.11.2026 (audytor): skrót przeliczony przy podłączeniu (families.ts ready, poseData.ts LOAD) na figury/delt_raise @ 3a431da2 — b882c034cdce, ten sam w b75b159d z podłączeniem; 4ebe9a6c45a9 liczono bez podłączenia (doborRodziny pomija dobór, gdy figureSpec = null); raport: docs/research/recenzje/delt-raise-podlaczenie-audytor-2026-11-09.md; recenzja różnicy formy kodu 09.11.2026 (koordynator, nie autor zmiany): e297b41b względem 24495a02 — w overlay/delt_raise.ts stała ELEVATION_CUES zastąpiona tą samą tablicą literałów (strażnik S20), wartości cue identyczne; skrót f80ea000ce69 → 6a23ec681234",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, włączenie rodziny z nakładką techniki 09.11.2026 (recenzja nakładki: runda 1 — ŚREDNIE naprawione w 64ebbbd4, runda 2 wyswietlana); wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja ruchu r5 po poprawce 09.11.2026; r5-W1 i r5-Ś1 (Car Drivers) naprawione; Cable Reverse Fly i Cable Y Raise — r2-Ś1 (ŚREDNIE) w backlogu decyzją koordynatora (próg wydania blokują tylko KRYTYCZNE i WYSOKIE); N-1 i N-2 (NISKIE) w backlogu docs/21",
+      "autor": "programista delt_raise (włączenie i nakładka, delt-wlaczenie-wip 1cd586a5, 1e8f9f8d, 64ebbbd4); wcześniej: programista delt_raise (B0′, ZB-042; figury/delt_raise 51042308 r5)",
+      "recenzent": "audytor (recenzja nakładki 09.11.2026, nie pisał nakładki); wcześniej: audytor (sesja koordynatora linii 1.1, niezależny)",
+      "uwagi": "Nakładka 09.11.2026: deltArmElevationFront (ramie_unosi_sie; przód: unoszenie bokiem ×6, Scaption, Cable Y Raise), deltArmElevationSide (ramie_unosi_sie; bok: unoszenie przodem ×4, Front Raise to Overhead ×2), deltShoulderLevelRef (lokcie_na_wysokosci_barkow_u1, przód; cel ±12 cm, nie granica). Runda 1 (1e8f9f8d): łuk także w rzucie poprzecznym — artefakt (bokiem z boku 0→70° przy u ≥ 0,9), poprawione w 64ebbbd4 (parser 62 arkuszy: łuk tylko w płaszczyźnie ruchu). Rear delt, upright row, Alternating, Front Incline, Straight Raises, Y Raise (hantle) bez elementu — zasadnie. Car Drivers: poziom barku zgodny z kartą (źródła ćwiczenia szczebla 5). Machine Lateral i Cable Seated Lateral mają element tylko na arkuszu (zestaw ogólny bez recenzji treści w aplikacji). Błędy: tylko mis.jerk (tempo, bez pozy). Wcześniej: Recenzja niezależna r5-W1/r5-Ś1, 09.11.2026: Car Drivers jako wahadło (loopOf wahadlo); pasek i animacja na jednym zegarze uAt z tempem ćwiczenia i błędu (ExerciseFigureV2.tsx:82,92,97): Obrót 1000 · Pauza 500 · Powrót 2000 · Pauza 500 = okres 4000 ms, u rośnie tylko w „Obrót” i maleje tylko w „Powrót” (próbki co 250 ms); szarpanie: 350/500/450/500 = 1800 ms, rysunek u = 1 po 1000 ms (poprawny 0,50) — ruch szybszy, nie tylko liczby. Uwagi NISKIE do backlogu: N-1 tempo obrotu niesymetryczne 1 s / 2 s (konwencja T-059, bez źródła dla kierunku), N-2 podpis „Pozycja wyjściowa” w trybie statycznym przy kierownicy obróconej o 30° (bez zmian od r5). Pozostałe ćwiczenia rodziny: bez zmian względem r5 (recenzja 05.11.2026); Cable Reverse Fly i Cable Y Raise zostają z werdyktem „do poprawy” (r2-Ś1, ŚREDNIE, backlog). Recenzja różnicy 09.11.2026: 3a431da2 a b75b159d (oba z podłączeniem) — lib/figures/v2, components, scripts, złote dane bez zmian; md5 ruchu, śladu, błędów, nakładki, VoiceOver, statycznych i czasu 216/216 równe (31 delt_raise); różnice tylko w przekładzie 4 kluczy UI i liście v2 w data.json. Zmiana formy 09.11.2026 (e297b41b): cue inline zamiast stałej — zachowanie bez zmian (te same identyfikatory w tej samej kolejności); pozostałe rodziny bez zmiany skrótu. | 09.11.2026 (programista, scalenie z integracja-1-1 po skrócie per rodzina, bez nowej recenzji): skrót przeliczony nowym algorytmem (z wyniku rysunku, scripts/zrodla-runtime.mjs --skroty) 6a23ec681234 → 6e35c9e239f1; dowód tożsamości rysunku: ten sam skrót 6e35c9e239f1 daje nowy skrypt na drzewie zrecenzowanym 067c8f90 i na drzewie po scaleniu.",
+      "slad": "Ślad toru ciężaru obejrzany w obu rzutach wszystkich 31 ćwiczeń (62 arkusze z nakładką, kadry co 0,05; runda 2 po 64ebbbd4): unoszenie bokiem — łuk od biodra na zewnątrz do wysokości barku (przód); przodem — łuk w przód do barku (bok), z przodu pion do linii barku; overhead — półokrąg nad głowę; Y/Scaption — po skosie; Car Drivers — ciężar stale na wysokości barków; bez skoków i przenikania. Wcześniej: Arkusze scripts/figures/arkusz-slad.mjs dla Car Drivers (figury/delt_raise @ b75b159d z tymczasowym podłączeniem families.ts ready i poseData.ts LOAD, cofniętym przed liczeniem skrótu) × front i side, 21 kadrów co 0,05, ślad toru, oba motywy, PNG obejrzane w kadrach 700×470 w pełnej rozdzielczości. Ślad = środek talerza: front punkt (0; 137,5), side kreska x 61,1→62,0 przy y 137,5 (obrót w miejscu, bez dryfu). Obrót ±30,0° (rozstaw dłoni stały 42,0 cm, środek talerza 2 cm pod barkami y 139,5), shElev 72–90°, łokieć 26–31°, odstęp ciężaru 49,6–50,5 cm. checkFrame co 1/400: 0 problemów; największy krok dłoni i łokci co 0,01: 0,22 cm. Klatki bajtowo równe stanowi sprzed poprawki, generator = plik póz. Arkusz błędu = poprawny (mis.jerk to tylko tempo, bledy: []).",
+      "sha": "6e35c9e239f1",
+      "liczba": 38,
+      "cwiczenia": {
+        "Alternating Deltoid Raise": {
+          "werdykt": "wyswietlana",
+          "naprawione": "r4-W1: tryb statyczny (pauza, Ogranicz ruch) rysuje u = 0 / 1/6 / 2/3 z podpisami „Pozycja wyjściowa” / „Przodem” / „Bokiem” (EN Starting position / Forward / To the side); klatki w pełnej rozdzielczości, oba motywy (stan-delt_raise-r5/klatki/static-light.png, static-dark.png): zwis, unoszenie przodem do ok. barków, unoszenie bokiem do ok. barków — trzy różne pozy; VoiceOver „Pozycje na rysunku: Pozycja wyjściowa, Przodem, Bokiem” tylko w trybie statycznym (test figures-v2-delt-raise-p4 44/44, negatyw dla Jump Squat i trybu animacji). Strażnik ogólny: żadna z 34 pętli jednokierunkowych nie ma identycznych pozycji statycznych. r4-N2: powód wyjątku v2-jakosc podaje 1/6 i 2/3. r4-N1: w backlogu docs/21 z wersją „przed eksportem delt_raise na stronę” — wystarczające (w aplikacji brak skutku).",
+          "uwagi": "Uwaga bez wagi: przy trybie statycznym linia „Kąt na rysunku” liczy u = 1 (8°, ta sama poza co „Pozycja wyjściowa”), nie szczyty (0° przodem, 85° bokiem); poprawna wobec pierwszego rysunku. EXPO_PUBLIC_FIGURA_STOP (tylko zrzuty) nadal rysuje u = 1 (zwis) — nie dotyczy użytkownika."
+        },
+        "Band Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-C naprawione: ślad przy chwycie R (0 cm); ruch jak Lateral Raise. N-1 z R1 (guma w podudziu) — backlog."
+        },
+        "Band Upright Row": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-C naprawione: ślad przy chwycie R; łokcie 7 cm wyżej niż dłonie (ur.elbows)."
+        },
+        "Barbell Front Raise to Overhead": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Cable Front Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-1 naprawione: odwiedzenie 0°, z = 19 cm stale; wyciąg z tyłu (x −55)."
+        },
+        "Cable Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1; przybliżenie wyciągu nazwane (N-3)."
+        },
+        "Cable Reverse Fly": {
+          "werdykt": "do poprawy (r2-Ś1 — backlog decyzją koordynatora; rysunek bez zmian od r2)",
+          "poziom": "ŚREDNIE",
+          "wada": "Karta crf.setup: „chwyć uchwyty na krzyż: lewą ręką ten z prawej…”, crf.move: „…potem wróć do skrzyżowania”. Rysunek: linka R z wyciągu z = +58 do dłoni R (z = 30 → 81), linki nieskrzyżowane, ręce w żadnej klatce się nie krzyżują.",
+          "poprawka": "Opcja silnika wspólnego dla wyciag dwa: true — wyciąg po stronie przeciwnej (na krzyż); start z dłońmi skrzyżowanymi przed ciałem (z R ≤ 0). Do tego czasu ukryć rysunek albo zdanie przybliżenia na karcie. Wykonalność: contract.ts:218 (dwa: kolumny w z = ±|z|, po jednej lince na dłoń) — brak parametru krzyżowania, potrzebna zmiana kontraktu."
+        },
+        "Cable Seated Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-3 naprawione: wyciągi za plecami (x −40, z ±14), linka ciągnie dłoń do środka i w dół od startu."
+        },
+        "Cable Y Raise": {
+          "werdykt": "do poprawy (r2-Ś1 — backlog decyzją koordynatora; rysunek bez zmian od r2)",
+          "poziom": "ŚREDNIE",
+          "wada": "Karta cyr.setup: „chwyć uchwyty na krzyż; cofnij się, aż linki się napną”. Rysunek: wyciągi z = ±70, każda linka do dłoni po swojej stronie (dłoń R z = 32–34) — bez skrzyżowania.",
+          "poprawka": "Jak Cable Reverse Fly: krzyżowanie dwóch linek w silniku wspólnym (contract.ts:218)."
+        },
+        "Car Drivers": {
+          "werdykt": "wyswietlana",
+          "naprawione": "r5-W1: wahadło, fazy Obrót/Powrót, jeden zegar paska i animacji (okres 4000 ms = suma faz). r5-Ś1: szarpanie skraca ruch na rysunku (350/450 ms).",
+          "uwagi": "N-1 (NISKIE, backlog): tempo 1 s / 2 s przy symetrycznym obrocie — konwencja T-059. N-2 (NISKIE, backlog): „Pozycja wyjściowa” w trybie statycznym = kierownica obrócona o +30°."
+        },
+        "Dumbbell Front Raise to Overhead": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Od scalenia integracji (karty) ma błąd „szarpanie” (mis.jerk, wahadło: tempo 350/450 ms działa jak w curl i bench_press, znak X przy ciężarze) — bez zastrzeżeń."
+        },
+        "Dumbbell Lying One-Arm Rear Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "poziom": null,
+          "wada": "r2-W2 naprawione: leżenie przodem (ławka 15°, przybliżenie nazwane — na płaskiej tułów z przodu znika, reguła czesc_ciala_nie_znika), ręka R od zwisu pionowo (θ 0°) bokiem do wysokości barku (u = 1: chwyt y 68 = bark y 68, z −82 przy barku −19, x stałe −45 → prostopadle do tułowia), łokieć stały 24–25°, ręka L zwisa. Zgodne z rear1.setup/rear1.move/rear1.mis.high, rear.elbows, rear.arms; sens t1 i gałęzi 0 naruszeń. Uwaga (bez znaleziska): hantel w zwisie dotyka podłogi (środek 5,8 cm, promień głowy 6 cm) — przy ławce 43 cm realistyczne; figures-v2-styk 24/24.",
+          "poprawka": "brak; przy następnej zmianie silnika — ławka płaska, gdy czesc_ciala_nie_znika pozwoli"
+        },
+        "Dumbbell One-Arm Upright Row": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Dumbbell Scaption": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1. r2-N2: łokieć 6–16° przy sapd.arms „Ręce proste przez cały ruch — nie zginaj łokci” — backlog.",
+          "uwagi_r4": "Ruch bez zmian (md5 pozy przed = po). Próg toru per widok + DODATEK_SKRETU (r3-Ś1): pomiar w widoku front równy modelowi z płaszczyzną φ liniowo (Scaption 70°→52°: 16,3 / 16,4 cm; Front Incline 30°→0°: 9,5 / 9,6 cm), ślad gładki, jedno wygięcie, bez „S”; dodatek pokrywa zaprojektowany skręt płaszczyzny, nie wadę (luz 0,2 i 0,5 cm)."
+        },
+        "Front Incline Dumbbell Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1. Karta na t1 ukryta (do poprawy, fidr.move); do czasu poprawki karty rysunek bez tekstu techniki, a zdanie reguły lokiec_staly jest tylko w ukrytej fidr.move.",
+          "uwagi_r4": "Ruch bez zmian (md5 pozy przed = po). Próg toru per widok + DODATEK_SKRETU (r3-Ś1): pomiar w widoku front równy modelowi z płaszczyzną φ liniowo (Scaption 70°→52°: 16,3 / 16,4 cm; Front Incline 30°→0°: 9,5 / 9,6 cm), ślad gładki, jedno wygięcie, bez „S”; dodatek pokrywa zaprojektowany skręt płaszczyzny, nie wadę (luz 0,2 i 0,5 cm)."
+        },
+        "Front Plate Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-C naprawione: ślad to łuk środka talerza od ud do wysokości barków. N-4 łokieć 28–31° (backlog z R1)."
+        },
+        "Front Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-1 naprawione: hantle przed udami, płaszczyzna strzałkowa (odwiedzenie 0°, z = 19 cm), do 90°; łokieć 14–17° stały."
+        },
+        "Lateral Raise (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-A naprawione: osie hantli lustrzane (asymetria 0°), oś ⟂ przedramienia 90°; ramię do 85°, łokieć 7 cm nad nadgarstkiem w u = 1."
+        },
+        "Machine Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś-4 naprawione: dwie dźwignie wzdłuż ramion."
+        },
+        "One-Arm Cable Rear Lateral Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1; linka na krzyż pod tułowiem (crear1.setup „uchwyt w dalszej ręce” — zgodne)."
+        },
+        "One-Arm Lateral Raise (hantel)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Reverse Fly (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-B naprawione: oś hantla 80–81° do przedramienia (próg walidatora ±80°)."
+        },
+        "Reverse Pec Deck": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Single Dumbbell Front Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Smith Machine One-Arm Upright Row": {
+          "werdykt": "wyswietlana",
+          "poziom": null,
+          "wada": "r2-N1 naprawione: szyna x = 18 = chwyt; figures-v2-tor (po podłączeniu) 216/216, p2 test „gryf na szynie” 0 cm w 21 kadrach.",
+          "poprawka": "brak"
+        },
+        "Smith Machine Upright Row": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1; gryf na szynie."
+        },
+        "Straight Raises on Incline Bench": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1. Łokieć 28–31° przy sri.setup „na prostych, zwisających rękach” i sri.move „prawie prostymi rękami” (N-4 z R1, backlog; poprawka 10–15° tania)."
+        },
+        "Upright Row (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "H-A naprawione (asymetria 0°)."
+        },
+        "Upright Row (linki)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Upright Row (sztanga)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Arkusze bajtowo równe R1."
+        },
+        "Y Raise (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Leżenie przodem na ławce skośnej 45° (przybliżenie nazwane), ramiona od zwisu do linii tułowia w „Y”, łokieć 14–18° stały."
         }
       }
     },
@@ -2868,6 +3015,36 @@
       "sha": "53e2f75bfad4",
       "uwagi": "ExRx CBTriExt i CBStandingTricepsExtensionRope: treść potwierdzona odczytem 02.11.2026 (kopia właściciela; exrx-otwarte.md sekcja 6: „łokcie nad głową, drążek za szyją, prostowanie do pionu i opuszczanie za szyję”, lina: „plecami do wyciągu… łokcie w górę nad głową”). ACE #74 (wersja z hantlem) przeczytane 04.11.2026 — Step 2 „elbows pointing forward, but not completely locked”. Wariant sprzętu (L-047): potwierdzam, że ruch nie różni się od wersji z hantlem — rysunek v2 obu ćwiczeń: ramię nieruchome nad głową (kąt ramię–tułów 156° wobec 151°), łokieć 57→159° wobec 60→163°; zdania z ACE #74 (cote.setup, cote.move, ote.upperArm, press.noLock) to nazwane uproszczenie (wariant sprzętu). Rysunek: wyciąg z tyłu, uchwyt za głową, łokcie w górę — cote.setup spełnione; wysokości bloczka karta nie podaje, więc bloczek na wysokości głowy jej nie przeczy. Końcowe zgięcie ok. 21° — R1 N-2 (backlog)."
     },
+    "Lateral Raise (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "6943efc1ce5e",
+      "uwagi": "Wskazówki lat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i twierdzeń o zdrowiu). ACE #26 przeczytane 09.11.2026: Step 1 hantle przy udach, łokcie proste lub lekko ugięte; Step 2 „Stiffen your torso…”; Step 3 „slowly raise the dumbbells up and out to your sides”, łokcie prowadzą ruch, do wysokości barków; Step 4 opuszczanie, łokcie lekko ugięte — wszystkie cztery zdania zgodne. ExRx DBLateralRaise (drugie źródło szczebla 4) — wpis z archiwum w cues.json, nieotwarte ponownie (web.archive.org i exrx.net niedostępne z sesji, 403). Rysunek v2 (arkusze Lateral-Raise-hantle-front/side ze śladem; keyframeFrame): start hantle przy udach, łokieć 174° → 167° (lekko ugięty przez cały ruch), łokieć nad dłonią w każdej klatce (u=1: 8,6 cm), u=1 łokieć 1 cm pod wysokością barku, kąt ramię–tułów 10° → 88°, tułów nieruchomy, ślad — łuk od biodra w bok do barku. Karta i rysunek zgodne."
+    },
+    "Cable Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "a24bccc4cf67",
+      "uwagi": "Wskazówki clat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). Źródła: ExRx CBOneArmLateralRaise/CBLateralRaise (wpis z archiwum, nieotwarte ponownie — exrx.net i web.archive.org niedostępne z sesji) i ACE #26 (przeczytane 09.11.2026; wersja z hantlami). Wariant sprzętu (L-047): potwierdzam, że ruch się nie różni — rysunek v2 ręki pracującej ma te same liczby co Lateral Raise (hantle): łokieć 174° → 167°, łokieć nad dłonią (u=1: 8,6 cm), u=1 łokieć 1 cm pod barkiem, ramię 10° → 88°; zdania z ACE #26 to nazwane uproszczenie (wariant sprzętu). Rysunek: uchwyt dolnego wyciągu (bloczek 30 cm nad podłogą), jedna ręka pracuje, druga zwisa — clat.setup spełnione; miejsca bloczka karta nie podaje, więc rysunek jej nie przeczy. N-1 (NISKIE, backlog): lat.move/lat.elbows mówią w liczbie mnogiej („Unieś ramiona”, „Łokcie”), a karta i rysunek to wersja jednorącz (clat.setup: „uchwyt”, „łokieć”) — niespójność brzmienia, nie błąd ruchu. Uwaga dla recenzji ruchu (poniżej progu pewności): bloczek na rysunku stoi 60 cm przed ćwiczącym i tylko 10 cm na stronę ręki wolnej; wpis v1 opisywał linkę „od dolnego bloczka po drugiej stronie ciała” — do sprawdzenia z odczytem ExRx CBOneArmLateralRaise (Preparation), nie dotyczy treści karty."
+    },
+    "Front Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "51f3650d8db4",
+      "uwagi": "Wskazówki front.setup, front.move, front.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). ACE #54 przeczytane 09.11.2026: Step 1 „Position the dumbbells lightly touching the fronts of your thighs with your elbows extended or holding a slight bend”; Step 3 „raise the dumbbells up in front of your body… until your arms are level with your shoulders”; Step 4 „keeping your elbows slightly extended” — front.setup, front.move, front.elbows, lat.height zgodne. ExRx DBFrontRaise — wpis z archiwum w cues.json, nieotwarte ponownie (niedostępne z sesji). Rysunek v2 (arkusze Front-Raise-front/side ze śladem; keyframeFrame): start hantle przed udami (ramię 12°), łokieć 166° stały w każdej klatce (front.elbows „w tym samym ustawieniu” spełnione), u=1 łokieć na wysokości barku (−0,1 cm), dłonie 8 cm wyżej (ExRx: nieco powyżej poziomu), ramię 12° → 90°, tułów nieruchomy, ślad — łuk w przód do barku. Chwyt na rysunku (oś hantla w płaszczyźnie strzałkowej) — karta chwytu nie podaje, więc mu nie przeczy. Karta i rysunek zgodne."
+    },
     "Arnold Press": {
       "werdykt": "wyswietlana",
       "data": "2026-11-08",
@@ -4659,6 +4836,39 @@
       "kto": "audytor — recenzja niezależna L-047 zestawu ogólnego wyświetlanego po podłączeniu rysunku v2 triceps (K1), gałąź figury/triceps @ 30be67f8, 04.11.2026",
       "sha": "4e6e6ddf03e3",
       "uwagi": "Przypisanie triPush (prostowanie łokci przy nieruchomym ramieniu) zgodne z ruchem: rysunek v2 — ramiona leżą na podpórce, nieruchome (dryf 1,6 cm), dźwignia z osią w łokciu, łokieć 76→167°. Zestaw (press.noLock, llc.control, mis.jerk) nie mówi o ustawieniu, tylko o kontroli i wyproście — ogólne, prawdziwe dla maszyny. Teksty jak na kartach-wzorcach (wskazowki-ogolne.json: ote.upperArm, ote.elbowsIn ← Overhead Triceps Extension (hantel), ACE #74 przeczytane 04.11.2026; press.noLock ← Machine Chest Press; mis.jerk ← Seated Cable Row, NASM + ExRx; llc.control ← Lying Leg Curl, ACE #153 + NASM). Bez liczb i twierdzeń o zdrowiu. Wpis pozostaje ważny po scaleniu T1b."
+    },
+    "Cable Seated Lateral Raise": {
+      "rodzina": "raiseSide",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-04, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
+      "uwagi": "Unoszenie bokiem siedząc z linkami: lat.elbows i lat.height ze źródeł karty Lateral Raise (hantle) (dwa źródła szczebla 4; reguła lokiec_staly cytuje też wersję z linką), mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu i pozycji). Rysunek: tor ręki jak w zrecenzowanym Lateral Raise (hantle) obniżony o siedzenie, łokieć nad nadgarstkiem w u = 1, ramię do ok. barków — zgodny z obiema wskazówkami. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "6449bf20ddac"
+    },
+    "Machine Lateral Raise": {
+      "rodzina": "raiseSide",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-03, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
+      "uwagi": "Unoszenie bokiem na maszynie (dwie dźwignie wzdłuż ramion): lat.height ze źródeł karty Lateral Raise (hantle), llc.control ze źródeł Lying Leg Curl i mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu, zasada kontroli ruchu na maszynie). Rysunek do ok. wysokości barków — zgodny. Uwaga NISKA do backlogu: llc.control i mis.jerk powtarzają tę samą myśl (płynnie, bez szarpania); można zamienić llc.control na lat.elbows — nie jest to błąd treści.",
+      "sha": "5e28ed79641e"
+    },
+    "Y Raise (hantle)": {
+      "rodzina": "raise",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw raise, wskazowki-cwiczenia-02, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
+      "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "4abd2e454900"
     }
   }
 }

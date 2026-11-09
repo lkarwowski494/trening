@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 183,
-      "v1": 44,
-      "bezFigury": 481,
-      "daneV2NieWlaczone": 352,
-      "wyjatekBezAnimacji": 168
+      "v2": 214,
+      "v1": 41,
+      "bezFigury": 453,
+      "daneV2NieWlaczone": 322,
+      "wyjatekBezAnimacji": 143
     },
-    "animowanyBlad": 127,
+    "animowanyBlad": 132,
     "wskazowki": {
       "wlasne": 265,
       "wlasneZBledami": 157,
-      "ogolne": 110,
-      "bezTekstu": 333
+      "ogolne": 113,
+      "bezTekstu": 330
     },
-    "czesteBledyTekst": 267,
+    "czesteBledyTekst": 270,
     "roleMiesni": 513,
-    "pelnaKarta": 180,
-    "pelnaKartaBlad": 126,
-    "recenzjaFigur": 183
+    "pelnaKarta": 210,
+    "pelnaKartaBlad": 131,
+    "recenzjaFigur": 214
   },
   "kartZTekstami": 577,
   "rodziny": {
@@ -285,17 +285,17 @@
       "recenzja": 29
     },
     "delt_raise": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 38,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 30,
-      "v1": 3,
+      "figuraV2": 31,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 31,
-      "ogolne": 0,
-      "bezTekstu": 7,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 3,
+      "bezTekstu": 4,
+      "pelnaKarta": 30,
+      "pelnaKartaBlad": 5,
+      "recenzja": 31
     },
     "chest_fly": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 183,
-    "figura.wAplikacji": 227,
-    "figura.zDanymiV2": 535,
-    "animowanyBlad": 127,
+    "figura.v2": 214,
+    "figura.wAplikacji": 255,
+    "figura.zDanymiV2": 536,
+    "animowanyBlad": 132,
     "wskazowki.wlasne": 265,
     "wskazowki.wlasneZBledami": 157,
-    "wskazowki.zTekstem": 375,
-    "czesteBledyTekst": 267,
+    "wskazowki.zTekstem": 378,
+    "czesteBledyTekst": 270,
     "roleMiesni": 513,
-    "pelnaKarta": 180,
-    "pelnaKartaBlad": 126,
-    "recenzjaFigur": 183,
+    "pelnaKarta": 210,
+    "pelnaKartaBlad": 131,
+    "recenzjaFigur": 214,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 577,
     "jezyk.en.kompletne": 577,
