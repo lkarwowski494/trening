@@ -55,7 +55,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     }
     expect(KEYS.filter(k => ALL[k] === 'pull_up' && !figureSpec(k)).sort()).toEqual(['Muscle Up', 'Rope Climb']);
     expect(KEYS.filter(k => ALL[k] === 'olympic' && !figureSpec(k))).toEqual(['Rack Delivery']);
-    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29); /* + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
+    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 9); /* + cable_row (09.11.2026, 9 z 10: Sled Row bez pozy); + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
   });
   test('planowane rodziny: brak figury (figureSpec = null), szacunek pracy i widoki opisane; klucz spoza katalogu → null', () => {
     for (const f of FAMILIES.filter(x => x.status === 'planned')) { expect([f.id, f.effort > 0, f.views.length > 0, f.label.length >= 5]).toEqual([f.id, true, true, true]); }
