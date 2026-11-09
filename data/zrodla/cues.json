@@ -3881,6 +3881,18 @@
    "title": "02.12.2019; czytane 02.11.2026",
    "url": "https://crossfit.com/essentials/the-strict-toes-to-bar",
    "level": 4
+  },
+  "nfpt-stability-ball-crunch": {
+   "org": "NFPT",
+   "title": "The Stability Ball Crunch (E. Nitschke, 10.08.2025; kwalifikacje autorki na stronie NFPT „Personal Trainer Spotlight: Dr. Erin Nitschke”, 12.06.2018 — szczebel 4 wg rozstrzygnięcia koordynatora 09.11.2026 (a))",
+   "url": "https://nfpt.com/stability-ball-crunch/",
+   "level": 4
+  },
+  "ace-68": {
+   "org": "ACE",
+   "title": "Stability Ball Sit-ups / Crunches (Exercise Library #68)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/68/stability-ball-sit-ups-crunches/",
+   "level": 4
   }
  },
  "exercises": {
@@ -22641,7 +22653,8 @@
        "barbend-cable-crunch",
        "Setup (kneel; rope across traps)"
       ]
-     ]
+     ],
+     "uproszczenie": "wariant pozycji (stojąc → klęcząc): ACE 331 opisuje wersję stojącą, BarBend — klęczącą; ruch (zgięcie tułowia przeciw wyciągowi z góry) się nie różni — potwierdzone w recenzji niezależnej 09.11.2026"
     }
    ],
    "move": [
@@ -22656,7 +22669,8 @@
        "barbend-cable-crunch",
        "Crunch (curl your torso towards the ground)"
       ]
-     ]
+     ],
+     "uproszczenie": "wariant pozycji (stojąc → klęcząc): ACE 331 opisuje wersję stojącą, BarBend — klęczącą; ruch (zgięcie tułowia przeciw wyciągowi z góry) się nie różni — potwierdzone w recenzji niezależnej 09.11.2026"
     }
    ],
    "tips": [
@@ -22671,7 +22685,8 @@
        "barbend-cable-crunch",
        "Reset (slowly straighten your torso)"
       ]
-     ]
+     ],
+     "uproszczenie": "wariant pozycji (stojąc → klęcząc): ACE 331 opisuje wersję stojącą, BarBend — klęczącą; ruch (zgięcie tułowia przeciw wyciągowi z góry) się nie różni — potwierdzone w recenzji niezależnej 09.11.2026"
     }
    ],
    "mistakes": [
@@ -22686,7 +22701,8 @@
        "ace-331",
        "Steps 3–4, 6 (hands by the ears; roll the rib cage down against the cable) — błąd = zaprzeczenie standardu"
       ]
-     ]
+     ],
+     "uproszczenie": "wariant pozycji (stojąc → klęcząc): ACE 331 opisuje wersję stojącą, BarBend — klęczącą; ruch (zgięcie tułowia przeciw wyciągowi z góry) się nie różni — potwierdzone w recenzji niezależnej 09.11.2026"
     },
     {
      "c": "core_floor.mis.fastReturn",
@@ -22699,7 +22715,8 @@
        "barbend-cable-crunch",
        "Reset (slowly straighten your torso) — błąd = zaprzeczenie standardu"
       ]
-     ]
+     ],
+     "uproszczenie": "wariant pozycji (stojąc → klęcząc): ACE 331 opisuje wersję stojącą, BarBend — klęczącą; ruch (zgięcie tułowia przeciw wyciągowi z góry) się nie różni — potwierdzone w recenzji niezależnej 09.11.2026"
     }
    ]
   },
@@ -22931,21 +22948,6 @@
      ]
     }
    ],
-   "tips": [
-    {
-     "c": "plank.brace",
-     "s": [
-      [
-       "catalyst-v-up",
-       "opis (maintaining ab tension)"
-      ],
-      [
-       "webmd-v-ups",
-       "How to do V-ups, kroki 2–4; form tips (engage your core)"
-      ]
-     ]
-    }
-   ],
    "mistakes": [
     {
      "c": "core_floor.mis.vupKnees",
@@ -23140,7 +23142,7 @@
   "Stomach Vacuum": {
    "setup": [
     {
-     "c": "core_floor.heelTouch.setup",
+     "c": "mobility_floor.t.supTwist.setup",
      "s": [
       [
        "healthline-stomach-vacuum",
@@ -23769,6 +23771,98 @@
       [
        "barbend-t2b",
        "instrukcja jest dla wersji ścisłej, krok z wymachem („kick”) pominąć w powtórzeniach ścisłych — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Stability Ball Crunch": {
+   "setup": [
+    {
+     "c": "core_floor.ballSetup",
+     "s": [
+      [
+       "ace-68",
+       "Step 1 (sit on the ball, walk out, mid-back on top of the ball, feet flat)"
+      ],
+      [
+       "nfpt-stability-ball-crunch",
+       "Starting Position (sit on the ball, feet flat; roll down so the mid to low back is on the ball)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.ballMove",
+     "s": [
+      [
+       "ace-68",
+       "Steps 3–4 (curl up until your upper back is lifted off the ball; slowly uncurl)"
+      ],
+      [
+       "nfpt-stability-ball-crunch",
+       "Upward Phase; Downward Phase (upper back off the ball; return slow and controlled)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "core_floor.ballStill",
+     "s": [
+      [
+       "ace-68",
+       "Steps 3–4 (keep feet planted, tailbone and low back on the ball)"
+      ],
+      [
+       "nfpt-stability-ball-crunch",
+       "Upward Phase (maintain the lower body position)"
+      ]
+     ]
+    },
+    {
+     "c": "crunch.neck",
+     "s": [
+      [
+       "ace-68",
+       "Step 3 (neck stays relaxed)"
+      ],
+      [
+       "nasm-best-abs",
+       "Stability Ball Crunch, Coaching Tip (avoid pulling on the neck)"
+      ],
+      [
+       "nfpt-stability-ball-crunch",
+       "Common Errors (Pulling on the neck)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.momentum",
+     "s": [
+      [
+       "nfpt-stability-ball-crunch",
+       "Downward Phase; Common Errors (Using momentum)"
+      ],
+      [
+       "nasm-best-abs",
+       "Stability Ball Crunch, Coaching Tip (excessive momentum)"
+      ]
+     ]
+    },
+    {
+     "c": "core_floor.mis.ballPos",
+     "s": [
+      [
+       "nfpt-stability-ball-crunch",
+       "Common Errors (Sitting too low or too far back on the ball)"
+      ],
+      [
+       "ace-68",
+       "Step 1 (mid-back on the top of the ball) — błąd = zaprzeczenie standardu"
       ]
      ]
     }

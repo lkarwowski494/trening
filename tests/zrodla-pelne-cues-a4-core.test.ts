@@ -27,8 +27,8 @@ const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[
 const NIEBYLE = Object.keys(A4.niebyle);
 
 describe('A4a core: karty własne (09.11.2026)', () => {
-  test('17 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
-    expect(A4.cwiczenia.length).toBe(17);
+  test('18 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
+    expect(A4.cwiczenia.length).toBe(18); /* 17 + Stability Ball Crunch po rozstrzygnięciu (a) koordynatora 09.11.2026 (NFPT = 4) */
     for (const k of A4.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
@@ -40,17 +40,17 @@ describe('A4a core: karty własne (09.11.2026)', () => {
     expect([...A4.partial].sort()).toEqual(A4.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
   });
 
-  test('karty ukryte do przekładu: wszystkie 17 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('karty ukryte do przekładu: wszystkie 18 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
     for (const k of A4.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
   });
 
-  test('cue-sets: 17 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2) nie mają karty własnej', () => {
+  test('cue-sets: 18 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2) nie mają karty własnej', () => {
     for (const k of A4.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
-    const pominiete = [...A4.bezUstawieniaLubRuchu, ...A4.pominieteBezBledu].sort();
+    const pominiete = [...A4.bezUstawieniaLubRuchu, ...A4.pominieteBezBledu, ...A4.wstrzymane.map(([k]) => k)].sort();
     expect(pominiete).toEqual(['Alternate Heel Touchers', 'Barbell Side Bend', 'Bicycle Crunch', 'Cable Reverse Crunch', 'Cable Woodchop', 'Cross-Body Crunch', 'Crunch - Hands Overhead',
       'Crunch - Legs On Exercise Ball', 'Decline Crunch', 'Decline Reverse Crunch', "Farmer's Walk (Farmers Handles)", "Farmer's Walk (trap bar)", 'GHD Sit Up', 'L-Sit', 'Landmine Rotation',
-      'Overhead Carry (hantle)', 'Pallof Press With Rotation', 'Side Bend (hantel)', 'Stability Ball Crunch']);
+      'Overhead Carry (hantle)', 'Pallof Press With Rotation', 'Side Bend (hantel)']);
     for (const k of pominiete) expect([k, sets[k]?.b !== 'own', k in CUE_FULL.exercises, A4.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
   });
 
@@ -94,21 +94,21 @@ describe('A4a core: źródła i reguły szczebli', () => {
     expect('WebMD' in CUE_FULL.orgs).toBe(false);
   });
 
-  test('źródła szczebla 5 albo o nierozstrzygniętym szczeblu (Speediance, FIG, NFPT bez biogramu na stronie, Fitness Volt bez nazwiska autora, Institute of Motion) nie są w danych; ich odwołania zapisane w fixture', () => {
-    expect(NIEBYLE.sort()).toEqual(['fig-a202', 'fitnessvolt-bb-side-bend', 'fv-heel-touchers', 'iom-lx48264v', 'nfpt-stability-ball-crunch', 'speediance-pallof-training']);
+  test('źródła szczebla 5 (Speediance, Fitness Volt bez nazwiska autora, Institute of Motion) nie są w danych; ich odwołania zapisane w fixture', () => {
+    expect(NIEBYLE.sort()).toEqual(['fitnessvolt-bb-side-bend', 'fv-heel-touchers', 'iom-lx48264v', 'speediance-pallof-training']); /* rozstrzygnięcia koordynatora 09.11.2026: (b) FV „Ash” = 5, (c) Institute of Motion = 5, (e) Speediance = 5; (a) NFPT = 4 i (d) FIG = 4 (opis pozycji) — poza listą */
     for (const sid of NIEBYLE) expect([sid, sid in CUE_FULL.sources]).toEqual([sid, false]);
     expect(new Set(A4.usunieteOdwolania.map(([, , sid]) => sid))).toEqual(new Set(NIEBYLE));
   });
 
   test('zdania odrzucone (mniej niż dwie organizacje, w tym błędy wnioskowane) nie są w kartach tych ćwiczeń; zdania tylko z odrzuconych kart nie weszły do słowników', () => {
-    expect(A4.odrzucone.length).toBe(34);
+    expect(A4.odrzucone.length).toBe(27);
     for (const [k, , c] of A4.odrzucone) if (A4.cwiczenia.includes(k as string)) expect([k, c, sentencesOf(k as string).some(r => r.c === c)]).toEqual([k, c, false]);
-    for (const c of ['core_floor.ballSetup', 'core_floor.mis.ghdDeep', 'core_floor.mis.thighsPast', 'core_standing.woodchop.setup', 'core_standing.sidebend.barSetup', 'core_standing.pallofrot.move', 'lsit.setup', 'ohc.setup', 'carry.mis.arms', 'core_standing.figure8.mis.straightLegs'])
+    for (const c of ['core_floor.mis.ghdDeep', 'core_floor.mis.thighsPast', 'core_standing.woodchop.setup', 'core_standing.sidebend.barSetup', 'core_standing.pallofrot.move', 'lsit.setup', 'ohc.setup', 'carry.mis.arms', 'core_standing.figure8.mis.straightLegs'])
       expect([c, c in pl, c in en]).toEqual([c, false, false]);
   });
 
   test('nowe źródła: adres https, organizacja z danych; organizacje warunkowe (Healthline) — źródło ma własny szczebel 4 i opis strony z nazwanym recenzentem', () => {
-    expect(A4.noweZrodla.length).toBe(33);
+    expect(A4.noweZrodla.length).toBe(35);
     for (const sid of A4.noweZrodla) {
       const s = CUE_FULL.sources[sid] as { url?: string; org: string; level?: number; strona?: string };
       expect([sid, /^https:\/\//.test(s.url ?? ''), s.org in CUE_FULL.orgs]).toEqual([sid, true, true]);
@@ -120,8 +120,8 @@ describe('A4a core: źródła i reguły szczebli', () => {
 });
 
 describe('A4a core: zdania', () => {
-  test('50 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A4 (pozostałe języki — angielski w zastępstwie)', () => {
-    expect(A4.zdania.length).toBe(50);
+  test('54 nowe zdania ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A4 (pozostałe języki — angielski w zastępstwie)', () => {
+    expect(A4.zdania.length).toBe(54);
     for (const c of A4.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-a4-wskazowki.json');
     expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...A4.zdania].sort());
@@ -153,5 +153,36 @@ describe('A4a core: role mięśni z istniejących funkcji (09.11.2026; bez nowyc
     for (const f of ['abs.brace', 'obliques.antirotation', 'obliques.side_bend']) expect([f, rm.functions[f]]).toEqual([f, undefined]);
     expect(rm.functions['abs.antilordosis'].status).toBe('jedno_zrodlo');
     expect(rm.exceptions.noRole.map((x: { exercise: string }) => x.exercise)).toContain('Scissor Kick');
+  });
+});
+
+describe('A4a core: poprawki rundy 1 recenzji niezależnej (09.11.2026: badacz i lokalizacja PL/EN; rozstrzygnięcia koordynatora (a)–(f))', () => {
+  const ids = (k: string, sec: 'setup' | 'move' | 'tips' | 'mistakes') => (CUE_FULL.exercises[k][sec] ?? []).map(r => r.c);
+  test('Cable Crunch: każde zdanie ze źródłem ace-331 (wersja stojąca) ma pole uproszczenie (stojąc → klęcząc)', () => {
+    for (const r of sentencesOf('Cable Crunch')) if (r.s.some(([sid]) => sid === 'ace-331')) expect([r.c, typeof (r as { uproszczenie?: string }).uproszczenie]).toEqual([r.c, 'string']);
+  });
+  test('V-Up bez plank.brace (tułów „sztywny” ponad źródła); Tuck Crunch bez „unosząc łopatki”; Figure 8 — część wspólna ustawienia (bez „szerokiego rozkroku” i przysiadu)', () => {
+    expect(ids('V-Up', 'tips')).not.toContain('plank.brace');
+    expect(/łopatk/.test(pl['core_floor.tuckCrunch.move']) || /shoulder blade/.test(en['core_floor.tuckCrunch.move'])).toBe(false);
+    expect(/szerok|przysiad/.test(pl['core_standing.figure8.setup']) || /wide|squat/.test(en['core_standing.figure8.setup'])).toBe(false);
+  });
+  test('Stomach Vacuum używa istniejącego zdania mobility_floor.t.supTwist.setup; duplikat core_floor.heelTouch.setup usunięty ze słowników', () => {
+    expect(ids('Stomach Vacuum', 'setup')).toEqual(['mobility_floor.t.supTwist.setup']);
+    expect(['core_floor.heelTouch.setup' in pl, 'core_floor.heelTouch.setup' in en]).toEqual([false, false]);
+  });
+  test('Stability Ball Crunch przywrócona (NFPT = 4): ustawienie i ruch na ACE + NFPT', () => {
+    expect(A4.cwiczenia).toContain('Stability Ball Crunch');
+    for (const r of [...CUE_FULL.exercises['Stability Ball Crunch'].setup, ...CUE_FULL.exercises['Stability Ball Crunch'].move]) expect([r.c, r.s.map(([sid]) => orgOf(sid)).sort()]).toEqual([r.c, ['ACE', 'NFPT']]);
+  });
+  test('L-Sit wstrzymana decyzją koordynatora (d) mimo FIG = 4 dla opisu pozycji; bez karty własnej', () => {
+    expect(A4.wstrzymane.map(([k]) => k)).toEqual(['L-Sit']);
+    expect('L-Sit' in CUE_FULL.exercises).toBe(false);
+  });
+  test('blokujące poprawki lokalizacji: PL bez „głowy szyją”, EN bez „lower back down” i bez „or bench”, PL vupMove „wróć do leżenia”, dblMove „ciężar ciała”', () => {
+    expect(pl['core_floor.mis.neckPull']).not.toMatch(/głowy szyją/);
+    for (const k of ['core_floor.situpMove', 'core_floor.vupMove']) expect([k, /lower back (down|up)/i.test(en[k])]).toEqual([k, false]);
+    expect(en['core_floor.mis.lowBackUp']).not.toMatch(/bench/);
+    expect(pl['core_floor.vupMove']).toMatch(/wróć do leżenia/);
+    expect(pl['core_standing.windmill.dblMove']).toMatch(/ciężar ciała/);
   });
 });

@@ -101,6 +101,10 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `blokowanie_kolan_przeprost` | blokowanie kolan w przeproście | błąd albo wskazówka na prasie do nóg: blokowanie kolan w przeproście na górze; pełny wyprost sam nie jest błędem (recenzja lokalizacji A2, 08.11.2026; ta sama logika co gwałtowne blokowanie łokci z A1) |
 | `lopatki_w_dol_i_do_tylu` | łopatki w dół i do tyłu | stała kolejność wskazówki o ustawieniu łopatek (ściągnięcie w dół i do tyłu); jedno brzmienie ułatwia przekład na 33 języki — recenzja lokalizacji A3, 09.11.2026 |
 | `przodem_do_wyciagu` | stań przodem/bokiem do wyciągu | ustawienie przy wyciągu (linka, bloczek) — nie „maszyna”, bo maszyna z prowadnicą to w aplikacji osobny rodzaj sprzętu (pojęcia maszyna i wyciag); recenzja lokalizacji A3, 09.11.2026 |
+| `cofnij_biodra_zawias` | cofnij biodro/biodra | zawias biodrowy (ruch bioder w tył); w aplikacji „wypychając biodra w przód” to ruch swingu, a „wypchnij” to wyciskanie ciężaru nad głowę — recenzja lokalizacji A4a, 09.11.2026 |
+| `lower_yourself_back_down` | wróć / opuść się | EN „lower back down” czyta się jak „lower back” (lędźwie, pojęcie ledzwie) — recenzja lokalizacji A4a, 09.11.2026 |
+| `podloga_nie_podloze` | podłoga | we wskazówkach o lędźwiach odrywających się od podłoża mówimy „podłoga” (jak w pozostałych zdaniach partii) — recenzja lokalizacji A4a, 09.11.2026; inne użycia „podłoża” (miękkie podłoże, odpychanie się od podłoża) zostają |
+| `pilka_gimnastyczna` | piłka gimnastyczna | duża piłka do ćwiczeń (stability ball) — przy pierwszym wspomnieniu na karcie z określeniem, bo gołe „piłka” to w aplikacji zwykle piłka lekarska (karty rzutów) — recenzja lokalizacji A4a, 09.11.2026 |
 
 ## Terminy zalecane (rdzeń)
 
@@ -160,6 +164,8 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `pl` | `blokowanie_kolan_przeprost` | blokow\w* kolan\w* w pełnym wyproście | pełny wyprost nie jest błędem — błędem jest blokowanie w przeproście |
 | `pl` | `lopatki_w_dol_i_do_tylu` | do tyłu i w dół | w partii A3 pojawiły się obie kolejności; jedno brzmienie: w dół i do tyłu |
 | `pl` | `przodem_do_wyciagu` | przodem do maszyny | w zdaniu o wyciągu „maszyna” myli się z maszyną z prowadnicą (osobny sprzęt) |
+| `pl` | `cofnij_biodra_zawias` | wypchn\w* biodr\w* w tył | „wypchnij” myli się z wyciskaniem i ruchem swingu; zawias to „cofnij biodra” |
+| `pl` | `podloga_nie_podloze` | odryw\w* się od podłoża | „podłoże” brzmi jak instrukcja; w zdaniach o odrywaniu się od podłogi — „podłoga” |
 | `en` | `nozyce` | (?<![\p{L}])lunge | pozycja przyjęcia sztangi w dwuboju to „split”; „lunge” to osobne ćwiczenie |
 | `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
 | `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
@@ -170,6 +176,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `en` | `gwaltowne_blokowanie_lokci` | locking out (the \|your )?elbows | w EN „lockout” to cel wyciskania; błędem jest gwałtowne zatrzaśnięcie (snapping into lockout) |
 | `en` | `lopatki_w_dol_i_do_tylu` | shoulder blades back and down | jedno brzmienie jak w PL: down and back (recenzja lokalizacji A3) |
 | `en` | `przodem_do_wyciagu` | facing the machine | jak w PL: przy wyciągu „stack” albo „cable”, nie „machine” |
+| `en` | `lower_yourself_back_down` | lower back (down\|up)(?![\p{L}]) | zderza się z terminem „lower back” (lędźwie) |
 | `cs` | `przerwa` | přestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |
