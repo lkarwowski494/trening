@@ -7,8 +7,8 @@ Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed): pushup_plank +
 
 | Rodzina | Autor (SHA) | Recenzja ruchu | Wpisy (sha) | Stan |
 |---|---|---|---|---|
-| hip_bridge | — | — | — | w toku (start 19:00 UTC) |
-| cable_row | — | — | — | otwarte |
+| hip_bridge | ddb6cbae, 4572d987 (autor 19:00–19:40 UTC) | r1 audytor w toku | — | czerwone: strona-eksport `pelna` (6 kart własnych; przypuszczalnie brak wpisu v2), dozwolone figury-/karty-recenzja |
+| cable_row | autor w toku (worktree /home/user/wt-p2-cable_row, gałąź figury/partia-2-cable_row) | — | — | w toku |
 | pushup_plank | — | — | — | otwarte |
 | mobility_floor | — | — | — | otwarte |
 | mobility_stand | — | — | — | otwarte |
