@@ -31,22 +31,22 @@ const LISTA_P1 = ['Stiff-Legged Barbell Deadlift', 'Smith Machine Stiff-Legged D
   'Single Leg RDL (hantel)', 'Single Leg RDL (linki)', 'Barbell Hack Squat', 'Bodyweight Squat', 'Dumbbell Squat', 'Overhead Squat', 'Zercher Squat', 'Double Kettlebell Front Squat', 'Squat with Chains', 'Squat with Bands'];
 
 describe('P1 squat i hinge: karty własne (09.11.2026)', () => {
-  test('9 z 17 ćwiczeń listy P1 ma komplet ustawienie + ruch + ≥ 1 błąd w pełnych danych; w runtime ukryte (hidden) do recenzji i przekładu; nie są w otwartych; niepełne na liście partial', () => {
+  test('9 z 17 ćwiczeń listy P1 ma komplet ustawienie + ruch + ≥ 1 błąd w pełnych danych; od 09.11.2026 (recenzja niezależna rund 1–2 i przekład) wyświetlane w runtime (nie hidden); nie są w otwartych; niepełne na liście partial', () => {
     expect([...P1.cwiczenia, ...P1.bezBledu].sort()).toEqual([...LISTA_P1].sort());
     expect(P1.cwiczenia.length).toBe(9);
     for (const k of P1.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, (x.mistakes ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, true, false]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, false]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]);
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
     }
     expect([...P1.partial].sort()).toEqual(P1.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
   });
 
-  test('karty ukryte do przekładu: wszystkie 9 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('karty po recenzji (09.11.2026): żadna z 9 nie jest na liście karty_nowe; każda ma wpis „karty” wyswietlana z recenzentem innym niż autor (L-047; wpis koordynatora, plik recenzenta docs/research/recenzje/p1sh-r2.json)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
-    for (const k of P1.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
+    for (const k of P1.cwiczenia) expect([k, wyj.karty_nowe.includes(k), rec.karty?.[k]?.werdykt, rec.karty?.[k]?.autor !== rec.karty?.[k]?.recenzent]).toEqual([k, false, 'wyswietlana', true]);
   });
 
   test('cue-sets: 9 ćwiczeń ma własne karty (b = own); 8 bez błędu z dwiema organizacjami zostaje przy zestawie ogólnym rodziny (z animowanym błędem) i bez karty własnej', () => {
