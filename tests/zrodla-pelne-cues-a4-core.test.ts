@@ -27,12 +27,12 @@ const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[
 const NIEBYLE = Object.keys(A4.niebyle);
 
 describe('A4a core: karty własne (09.11.2026)', () => {
-  test('18 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
+  test('18 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; po przekładzie i recenzji (09.11.2026) widoczne w runtime (nie na liście hidden); nie są w otwartych; niepełne są na liście partial', () => {
     expect(A4.cwiczenia.length).toBe(18); /* 17 + Stability Ball Crunch po rozstrzygnięciu (a) koordynatora 09.11.2026 (NFPT = 4) */
     for (const k of A4.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, false]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]);
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
     }
@@ -40,9 +40,9 @@ describe('A4a core: karty własne (09.11.2026)', () => {
     expect([...A4.partial].sort()).toEqual(A4.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
   });
 
-  test('karty ukryte do przekładu: wszystkie 18 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('karty odsłonięte po przekładzie i recenzji (09.11.2026): żadna z 18 nie jest na liście karty_nowe; każda ma wpis „karty” wyswietlana, którego recenzent ≠ autor (L-047)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
-    for (const k of A4.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
+    for (const k of A4.cwiczenia) expect([k, wyj.karty_nowe.includes(k), rec.karty?.[k]?.werdykt, rec.karty?.[k]?.recenzent !== rec.karty?.[k]?.autor]).toEqual([k, false, 'wyswietlana', true]);
   });
 
   test('cue-sets: 18 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2) nie mają karty własnej', () => {
@@ -120,12 +120,12 @@ describe('A4a core: źródła i reguły szczebli', () => {
 });
 
 describe('A4a core: zdania', () => {
-  test('54 nowe zdania ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A4 (pozostałe języki — angielski w zastępstwie)', () => {
+  test('54 nowe zdania ma tekst PL i EN różny od siebie; wszystkie przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw A4 pusty', () => {
     expect(A4.zdania.length).toBe(54);
     for (const c of A4.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-a4-wskazowki.json');
-    expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...A4.zdania].sort());
-    for (const x of z.klucze as { id: string; pl: string; en: string }[]) expect([x.id, x.pl, x.en]).toEqual([x.id, pl[x.id], en[x.id]]);
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-054; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, A4.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
   });
 
   test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {

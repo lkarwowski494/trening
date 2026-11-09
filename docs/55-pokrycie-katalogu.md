@@ -19,11 +19,11 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 304 | 42,9% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 138 | 19,5% |
 | Animowany błąd | 148 | 20,9% |
-| Własne wskazówki (źródłowe) | 265 | 37,4% |
-| — z czego z częstymi błędami | 157 | 22,2% |
+| Własne wskazówki (źródłowe) | 283 | 40% |
+| — z czego z częstymi błędami | 174 | 24,6% |
 | Zestaw ogólny wskazówek wzorca ruchu | 120 | 16,9% |
-| Bez tekstu wskazówek | 323 | 45,6% |
-| Częste błędy (własne albo zestaw ogólny) | 277 | 39,1% |
+| Bez tekstu wskazówek | 305 | 43,1% |
+| Częste błędy (własne albo zestaw ogólny) | 294 | 41,5% |
 | Role mięśni | 513 | 72,5% |
 | **Pełna karta** | 228 | 32,2% |
 | **Pełna karta + błąd** | 147 | 20,8% |
@@ -37,61 +37,59 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela. 04.11.2026 (T1, przekład API 52 zdań kart delt_raise): 33 liczb kompletu kart języków podniesione do 572 (stan po przekładzie) — nadal cel startowy. 08.11.2026 (Z0, C-1/C-2; decyzja właściciela 02.11.2026 ~15:30 „dwa standardy publikacji”, ~17:00 „pełna karta dla każdego ćwiczenia, dla którego mamy dane” + lista obowiązkowych, 04.11.2026 (4) B mobilność bez ról): pelnaKarta = standard 1 (wskazówki + figura v2 + role mięśni; mobilność bez ról), cel pelnaKarta 465 = 452 ćwiczeń z danymi póz v2 i rolami mięśni albo mobilnością (bez 2 wstrzymanych w V2_WSTRZYMANE) + 13 spośród 51 obowiązkowych (docs/research/pokrycie-1-1-obowiazkowe.json), których ten warunek nie obejmuje (9 bez danych póz: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up; 4 z danymi, ale bez ról mięśni: Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam — role i pozy dochodzą w D-7); stan w chwili ustalenia: 179 w standardzie 1, 125 w standardzie 2. Pozostałe liczby bez zmian (cel startowy). 09.11.2026 (ZB-053, decyzja właściciela 09.11.2026, docs/18): 9 ćwiczeń bez danych póz wypada z celu 1.1 do 1.2 (lista `poza11`), zostają 4 bez ról mięśni; cel pelnaKarta 456 = 465 − 9 (liczba wynika z listy `poza11`, pilnuje tego test). 09.11.2026 (decyzja właściciela 09.11.2026, docs/18: „Obniżmy próg wyciągając z niego ciężkie.”): cel każdej metryki = wartość w symulowanym stanie końcowym, który nie wymaga nowych badań ani treści (scripts/pokrycie-symulacja.mjs; zgodność celu z symulacją pilnuje tests/cel-1-1-bez-ciezkich.test.ts) — (b) wszystkie rodziny z danymi póz v2 włączone i zrecenzowane (poza V2_WSTRZYMANE) z zestawami ogólnymi zrecenzowanymi, (a) wszystkie karty z tekstem w data/zrodla/cues.json odsłonięte i przetłumaczone w każdym języku, (c) role mięśni dla ćwiczeń, którym dziś brakuje tylko ról; cel nie jest niższy niż minimum zapadki. „Ciężkie” (poza celem, backlog 1.2): ćwiczenia bez tekstu wskazówek w źródłach i bez zestawu ogólnego, bez danych póz v2 albo wymagające nowego ruchu silnika. Zmiany celu (stare → nowe): figura.v2 98 → 533, figura.wAplikacji 151 → 535, animowanyBlad 92 → 264, wskazowki.wlasne 102 → 285, wskazowki.wlasneZBledami 43 → 176, wskazowki.zTekstem 640 → 572, czesteBledyTekst 557 → 451, roleMiesni 508 → 516, pelnaKarta 456 → 457, recenzjaFigur 98 → 533, jezyk.pl i jezyk.en 671 → 631, pozostałe języki 574 (es-419: 572) → 631; figura.zDanymiV2 535 i nazwaLokalna.razem 0 bez zmian. 09.11.2026 (koordynator, tryb nocny, wariant B, do weta właściciela): symulacja nie liczy kart z werdyktem „do poprawy” w figury-recenzja.json (karty; dziś Front Incline Dumbbell Raise i Barbell Incline Shoulder Raise) — pelnaKarta zostaje 457 (karta nie jest pełna do czasu poprawki fidr.move), a metryki zależne od karty własnej spadają o 2 (wskazowki.wlasne 285 → 283, wskazowki.wlasneZBledami 176 → 174, wskazowki.zTekstem 572 → 570, czesteBledyTekst 451 → 449, komplet kart każdego języka 631 → 630); figura.v2, figura.wAplikacji, figura.zDanymiV2 i recenzjaFigur rosną o 1 (rysunek Front Incline Dumbbell Raise po włączeniu delt_raise). Naprawa karty (wariant A) podniosłaby pelnaKarta do 458 — osobne zadanie. 09.11.2026 (lead partii 2, scalenie integracji): Machine Hip Thrust wstrzymany (V2_WSTRZYMANE, recenzja r1 hip_bridge — WYSOKIE prowadnica dźwigni) wypada ze stanu końcowego — figura.v2, figura.wAplikacji, recenzjaFigur, animowanyBlad, wskazowki.zTekstem, czesteBledyTekst i pelnaKarta niższe o 1 (wynik symulacji; wraca po poprawce prowadnicy, backlog docs/21).
 
-Cel osiągnięty: **nie** (2 z 47 liczb).
+Cel osiągnięty: **nie** (4 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | figura v2 w aplikacji | 533 | 232 | 301 |
 | figura w aplikacji (v2 albo v1) | 535 | 267 | 268 |
 | animowany błąd | 263 | 148 | 115 |
-| własne wskazówki | 283 | 265 | 18 |
-| własne wskazówki z częstymi błędami | 174 | 157 | 17 |
-| wskazówki (własne lub zestaw ogólny) | 569 | 385 | 184 |
-| częste błędy (tekst) | 448 | 277 | 171 |
+| wskazówki (własne lub zestaw ogólny) | 569 | 403 | 166 |
+| częste błędy (tekst) | 448 | 294 | 154 |
 | role mięśni | 516 | 513 | 3 |
 | pełna karta | 456 | 228 | 228 |
 | figura z aktualną recenzją ruchu | 533 | 232 | 301 |
-| komplet tekstów karty: pl | 630 | 577 | 53 |
-| komplet tekstów karty: en | 630 | 577 | 53 |
-| komplet tekstów karty: cs | 630 | 577 | 53 |
-| komplet tekstów karty: sk | 630 | 577 | 53 |
-| komplet tekstów karty: hu | 630 | 577 | 53 |
-| komplet tekstów karty: ro | 630 | 577 | 53 |
-| komplet tekstów karty: bg | 630 | 577 | 53 |
-| komplet tekstów karty: hr | 630 | 577 | 53 |
-| komplet tekstów karty: sl | 630 | 577 | 53 |
-| komplet tekstów karty: sr | 630 | 577 | 53 |
-| komplet tekstów karty: lt | 630 | 577 | 53 |
-| komplet tekstów karty: lv | 630 | 577 | 53 |
-| komplet tekstów karty: et | 630 | 577 | 53 |
-| komplet tekstów karty: uk | 630 | 577 | 53 |
-| komplet tekstów karty: es | 630 | 577 | 53 |
-| komplet tekstów karty: es-419 | 630 | 577 | 53 |
-| komplet tekstów karty: pt | 630 | 577 | 53 |
-| komplet tekstów karty: pt-BR | 630 | 577 | 53 |
-| komplet tekstów karty: de | 630 | 577 | 53 |
-| komplet tekstów karty: fr | 630 | 577 | 53 |
-| komplet tekstów karty: it | 630 | 577 | 53 |
-| komplet tekstów karty: nl | 630 | 577 | 53 |
-| komplet tekstów karty: sv | 630 | 577 | 53 |
-| komplet tekstów karty: da | 630 | 577 | 53 |
-| komplet tekstów karty: nb | 630 | 577 | 53 |
-| komplet tekstów karty: fi | 630 | 577 | 53 |
-| komplet tekstów karty: tr | 630 | 577 | 53 |
-| komplet tekstów karty: el | 630 | 577 | 53 |
-| komplet tekstów karty: id | 630 | 577 | 53 |
-| komplet tekstów karty: ms | 630 | 577 | 53 |
-| komplet tekstów karty: vi | 630 | 577 | 53 |
-| komplet tekstów karty: ru | 630 | 577 | 53 |
-| komplet tekstów karty: ja | 630 | 577 | 53 |
-| komplet tekstów karty: ko | 630 | 577 | 53 |
-| komplet tekstów karty: zh-Hant | 630 | 577 | 53 |
+| komplet tekstów karty: pl | 630 | 584 | 46 |
+| komplet tekstów karty: en | 630 | 584 | 46 |
+| komplet tekstów karty: cs | 630 | 584 | 46 |
+| komplet tekstów karty: sk | 630 | 584 | 46 |
+| komplet tekstów karty: hu | 630 | 584 | 46 |
+| komplet tekstów karty: ro | 630 | 584 | 46 |
+| komplet tekstów karty: bg | 630 | 584 | 46 |
+| komplet tekstów karty: hr | 630 | 584 | 46 |
+| komplet tekstów karty: sl | 630 | 584 | 46 |
+| komplet tekstów karty: sr | 630 | 584 | 46 |
+| komplet tekstów karty: lt | 630 | 584 | 46 |
+| komplet tekstów karty: lv | 630 | 584 | 46 |
+| komplet tekstów karty: et | 630 | 584 | 46 |
+| komplet tekstów karty: uk | 630 | 584 | 46 |
+| komplet tekstów karty: es | 630 | 584 | 46 |
+| komplet tekstów karty: es-419 | 630 | 584 | 46 |
+| komplet tekstów karty: pt | 630 | 584 | 46 |
+| komplet tekstów karty: pt-BR | 630 | 584 | 46 |
+| komplet tekstów karty: de | 630 | 584 | 46 |
+| komplet tekstów karty: fr | 630 | 584 | 46 |
+| komplet tekstów karty: it | 630 | 584 | 46 |
+| komplet tekstów karty: nl | 630 | 584 | 46 |
+| komplet tekstów karty: sv | 630 | 584 | 46 |
+| komplet tekstów karty: da | 630 | 584 | 46 |
+| komplet tekstów karty: nb | 630 | 584 | 46 |
+| komplet tekstów karty: fi | 630 | 584 | 46 |
+| komplet tekstów karty: tr | 630 | 584 | 46 |
+| komplet tekstów karty: el | 630 | 584 | 46 |
+| komplet tekstów karty: id | 630 | 584 | 46 |
+| komplet tekstów karty: ms | 630 | 584 | 46 |
+| komplet tekstów karty: vi | 630 | 584 | 46 |
+| komplet tekstów karty: ru | 630 | 584 | 46 |
+| komplet tekstów karty: ja | 630 | 584 | 46 |
+| komplet tekstów karty: ko | 630 | 584 | 46 |
+| komplet tekstów karty: zh-Hant | 630 | 584 | 46 |
 
 ## Rodziny ruchu
 
 | Rodzina | Stan | Ćwiczeń | Figura v2 | Dane v2 (niewłączone) | Figura v1 | Własne wsk. | Zestaw ogólny | Bez tekstu | Pełne karty | Recenzja |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
+| `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 15 | 0 | 29 | 0 | 0 |
 | `delt_raise` | gotowa | 38 | 31 | 0 | 0 | 31 | 3 | 4 | 30 | 31 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 8 | 28 | 0 | 34 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
@@ -106,7 +104,7 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 11 | 0 | 12 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 3 | 0 | 17 | 0 | 0 |
-| `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 2 | 0 | 17 | 0 | 0 |
+| `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 6 | 0 | 13 | 0 | 0 |
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 6 | 0 | 13 | 0 | 0 |
 | `kb_ballistic` | do zrobienia | 17 | 0 | 16 | 1 | 4 | 0 | 13 | 0 | 0 |
 | `cardio` | do zrobienia | 16 | 0 | 0 | 1 | 5 | 0 | 11 | 0 | 0 |
@@ -131,63 +129,63 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 | `neck` | do zrobienia | 5 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 |
 | `back_extension` | do zrobienia | 4 | 0 | 3 | 0 | 1 | 0 | 3 | 0 | 0 |
 | `cable_press` | do zrobienia | 4 | 0 | 4 | 0 | 2 | 0 | 2 | 0 | 0 |
-| `core_hang` | do zrobienia | 4 | 0 | 3 | 0 | 0 | 0 | 4 | 0 | 0 |
+| `core_hang` | do zrobienia | 4 | 0 | 3 | 0 | 3 | 0 | 1 | 0 | 0 |
 | `thruster` | do zrobienia | 3 | 0 | 3 | 0 | 2 | 0 | 1 | 0 | 0 |
 | `kneeling_hinge` | do zrobienia | 2 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 |
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **577**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **584**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 577 | 0 | 0 | 0 |
-| en | 577 | 0 | 0 | 0 |
-| cs | 577 | 0 | 0 | 0 |
-| sk | 577 | 0 | 0 | 0 |
-| hu | 577 | 0 | 0 | 0 |
-| ro | 577 | 0 | 0 | 0 |
-| bg | 577 | 0 | 0 | 0 |
-| hr | 577 | 0 | 0 | 0 |
-| sl | 577 | 0 | 0 | 0 |
-| sr | 577 | 0 | 0 | 0 |
-| lt | 577 | 0 | 0 | 0 |
-| lv | 577 | 0 | 0 | 0 |
-| et | 577 | 0 | 0 | 0 |
-| uk | 577 | 0 | 0 | 0 |
-| es | 577 | 0 | 0 | 0 |
-| es-419 | 577 | 0 | 0 | 0 |
-| pt | 577 | 0 | 0 | 0 |
-| pt-BR | 577 | 0 | 0 | 0 |
-| de | 577 | 0 | 0 | 0 |
-| fr | 577 | 0 | 0 | 0 |
-| it | 577 | 0 | 0 | 0 |
-| nl | 577 | 0 | 0 | 0 |
-| sv | 577 | 0 | 0 | 0 |
-| da | 577 | 0 | 0 | 0 |
-| nb | 577 | 0 | 0 | 0 |
-| fi | 577 | 0 | 0 | 0 |
-| tr | 577 | 0 | 0 | 0 |
-| el | 577 | 0 | 0 | 0 |
-| id | 577 | 0 | 0 | 0 |
-| ms | 577 | 0 | 0 | 0 |
-| vi | 577 | 0 | 0 | 0 |
-| ru | 577 | 0 | 0 | 0 |
-| ja | 577 | 0 | 0 | 0 |
-| ko | 577 | 0 | 0 | 0 |
-| zh-Hant | 577 | 0 | 0 | 0 |
+| pl | 584 | 0 | 0 | 0 |
+| en | 584 | 0 | 0 | 0 |
+| cs | 584 | 0 | 0 | 0 |
+| sk | 584 | 0 | 0 | 0 |
+| hu | 584 | 0 | 0 | 0 |
+| ro | 584 | 0 | 0 | 0 |
+| bg | 584 | 0 | 0 | 0 |
+| hr | 584 | 0 | 0 | 0 |
+| sl | 584 | 0 | 0 | 0 |
+| sr | 584 | 0 | 0 | 0 |
+| lt | 584 | 0 | 0 | 0 |
+| lv | 584 | 0 | 0 | 0 |
+| et | 584 | 0 | 0 | 0 |
+| uk | 584 | 0 | 0 | 0 |
+| es | 584 | 0 | 0 | 0 |
+| es-419 | 584 | 0 | 0 | 0 |
+| pt | 584 | 0 | 0 | 0 |
+| pt-BR | 584 | 0 | 0 | 0 |
+| de | 584 | 0 | 0 | 0 |
+| fr | 584 | 0 | 0 | 0 |
+| it | 584 | 0 | 0 | 0 |
+| nl | 584 | 0 | 0 | 0 |
+| sv | 584 | 0 | 0 | 0 |
+| da | 584 | 0 | 0 | 0 |
+| nb | 584 | 0 | 0 | 0 |
+| fi | 584 | 0 | 0 | 0 |
+| tr | 584 | 0 | 0 | 0 |
+| el | 584 | 0 | 0 | 0 |
+| id | 584 | 0 | 0 | 0 |
+| ms | 584 | 0 | 0 | 0 |
+| vi | 584 | 0 | 0 | 0 |
+| ru | 584 | 0 | 0 | 0 |
+| ja | 584 | 0 | 0 | 0 |
+| ko | 584 | 0 | 0 | 0 |
+| zh-Hant | 584 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
 Pełnych kart: 228 (z błędem: 147). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
 - Brakuje tylko: wskazówki (własne albo zrecenzowany zestaw ogólny) — 1: Front Incline Dumbbell Raise
-- Brakuje tylko: figura v2 w aplikacji — 125
+- Brakuje tylko: figura v2 w aplikacji — 136
 - Brakuje tylko: role mięśni — 3: Jerk Balance, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
 | 0 | 228 |
-| 1 | 129 |
-| 2 | 256 |
-| 3 | 95 |
+| 1 | 140 |
+| 2 | 252 |
+| 3 | 88 |
