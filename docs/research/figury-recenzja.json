@@ -3015,6 +3015,170 @@
       "sha": "53e2f75bfad4",
       "uwagi": "ExRx CBTriExt i CBStandingTricepsExtensionRope: treść potwierdzona odczytem 02.11.2026 (kopia właściciela; exrx-otwarte.md sekcja 6: „łokcie nad głową, drążek za szyją, prostowanie do pionu i opuszczanie za szyję”, lina: „plecami do wyciągu… łokcie w górę nad głową”). ACE #74 (wersja z hantlem) przeczytane 04.11.2026 — Step 2 „elbows pointing forward, but not completely locked”. Wariant sprzętu (L-047): potwierdzam, że ruch nie różni się od wersji z hantlem — rysunek v2 obu ćwiczeń: ramię nieruchome nad głową (kąt ramię–tułów 156° wobec 151°), łokieć 57→159° wobec 60→163°; zdania z ACE #74 (cote.setup, cote.move, ote.upperArm, press.noLock) to nazwane uproszczenie (wariant sprzętu). Rysunek: wyciąg z tyłu, uchwyt za głową, łokcie w górę — cote.setup spełnione; wysokości bloczka karta nie podaje, więc bloczek na wysokości głowy jej nie przeczy. Końcowe zgięcie ok. 21° — R1 N-2 (backlog)."
     },
+    "Cable Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie wariantu pozycji (stojąc → klęcząc) przy ace-331 potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "8ae63d842ae3"
+    },
+    "Hollow Hold": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; zmiany lokalizacji bez zmiany treści; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "d583a06f36dc"
+    },
+    "Superman": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Cleveland Clinic (szpital) szczebel 4; role nieoceniane; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "0319cb1f4745"
+    },
+    "Sit Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; situpMove — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "5cbf9d0064b9"
+    },
+    "V-Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; plank.brace usunięte z karty (runda 1, opcja A); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "456583d8ab6a"
+    },
+    "Machine Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie instrukcji maszyny producenta przy maszynie ogólnej potwierdzone (ruch się nie różni); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "3a5f4deee0fa"
+    },
+    "Suspended Reverse Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; TRX (instrukcja na własnych taśmach) szczebel 4, liczony raz; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "7885e585ef30"
+    },
+    "Stomach Vacuum": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; pozycja leżąca potwierdzona; vacuum.move bez „pępka” (jedno źródło); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "ceccfb10aed0"
+    },
+    "Scissor Kick": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (P. Dale, PT, data) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "11123e836801"
+    },
+    "Kettlebell Windmill": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Experience Life szczebel 4 (kwalifikacje autorki na stronie tej samej organizacji); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "a318476c5b31"
+    },
+    "Cable Russian Twists": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (M. Magnante, ACE, JSON-LD) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "8b67938595ee"
+    },
+    "Double Kettlebell Windmill": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie jeden → dwa kettlebelle (tor ten sam) potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "a5abca82301a"
+    },
+    "Kettlebell Figure 8": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; figure8.setup — część wspólna ACE/FV; „między nogami” potwierdzone; karta bez błędu (minimum: ustawienie + ruch); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "05e5341dd018"
+    },
+    "Hanging Leg Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "063d8f4c9283"
+    },
+    "Hanging Knee Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "ac21253c514f"
+    },
+    "Toes to Bar": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "369a88554933"
+    },
+    "Stability Ball Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; ACE 68 + NFPT (E. Nitschke, kwalifikacje na stronie tej samej organizacji) szczebel 4; 5 nowych zdań potwierdzonych; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, lokalizacja: PL mis.ballPos „za daleko” gubi „back” z EN.",
+      "sha": "d06094bd7bd6"
+    },
+    "Tuck Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — runda 3: zmiana brzmienia core_floor.mis.neckPull (wariant B badacza), partia A4a core; pozostałe zdania bez zmian względem rundy 2 (a4-core-karty-badacz-r2-2026-11-09.md); karta bez rysunku (rodzina core_floor planned)",
+      "autor": "badacz-merytoryczny (brzmienie) + tlumacz (naniesienie, 34 języki)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047, 09.11.2026, gałąź lok/przeklad-a4a @ f0dfbeac",
+      "sha": "8e96dc52326f",
+      "uwagi": "Źródła przeczytane 09.11.2026: FV Tuck Crunch, wskazówka po krokach: „Keep your head neutral and use your abs to control the movement.”; ACE #243 Step 2: „avoid flexing your head too far forward”. Oba popierają błąd: głowa prowadzi ruch zamiast brzucha (2 źródła szczebla 4, różne serwisy; autor FV ma certyfikat ACE, ale to osobny serwis i osobny tekst). Pole miejsce w data/zrodla/cues.json cytuje teraz właściwe zdanie FV. Niuans bez wagi blokującej: ACE mówi o zginaniu głowy „za daleko”, zdanie mówi o wysuwaniu; dla użytkownika kierunek ten sam (głowa nie wyprzedza tułowia), uproszczenie zgodne kierunkowo. Zdanie naturalne, jak u trenera; bez liczb, nazw źródeł i twierdzeń o zdrowiu. Nie przeczy setup/move/crunch.lowBack; karta nie mówi o dłoniach za głową, więc wariant B jest właściwy. Przekłady (próbka de, fr, es, ru, ja, zh-Hant oraz cs, ro, pt, pt-BR, ko, uk) znaczeniowo zgodne z PL/EN; cs i ro nie znaczą już „ciągnąć za szyję”; es-419 dziedziczy z es (lib/cues: scalenie es + es-419), brzmienie es poprawne także dla Ameryki Łacińskiej. Forma ru i zh-Hant zgodna z innymi błędami karty."
+    },
     "Lateral Raise (hantle)": {
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
