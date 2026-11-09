@@ -28,8 +28,7 @@ export type HingeParams = {
   yStart?: number;
   /** Wysokość na końcu; brak = wyprost („lockout”): wyliczona z długości nóg i tułowia, żeby ramiona zostały proste do końca ruchu. */
   yEnd?: number;
-  /** Najdalsze zejście toru ciężaru poniżej prostej między końcami (cm); brak = HINGE.dev. Mniejsze = ciężar bliżej ud (RDL schodzący pod kolano, 09.11.2026). */
-  dev?: number;
+  /** Zejście toru pod prostą (cm); brak = HINGE.dev. */ dev?: number;
   /** Połowa rozstawu kostek, rotacja stóp, połowa rozstawu dłoni (cm). */
   stance: number; toeOut: number; grip: number;
   shin: ShinRule;

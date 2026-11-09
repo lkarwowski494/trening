@@ -27,6 +27,6 @@ Wpis `v2.hinge` w docs/research/figury-recenzja.json zostaje przy skrócie z rec
 Zmiana rysunku dotyczy tylko: RDL (sztanga) i RDL (hantle/linki). Pozostałe ćwiczenia — ruch bez zmian: md5 klatek (u 0, 0,25, 0,5, 0,75, 1; poprawnie, kneesBent, barAway) bazy `integracja-1-1` @ 9dc2b0a9 i tej gałęzi równe dla 183 z 185 ćwiczeń z rysunkiem v2; różnią się tylko RDL (sztanga) i RDL (hantle/linki). Skrót każdej z 7 rodzin zmienił się, bo `variants.ts` jest w `V2_WSPOLNE` — dla 6 pozostałych rodzin wystarczy recenzja różnicy (md5 równe) i nowe skróty; wszystkie 7 są na liście wyjątków.
 Szkic wpisu (autor ≠ recenzent; recenzent wypełnia `recenzent`, `werdykt`, `stan`, `sha`, `slad`):
 ```json
-{ "data": "2026-11-09", "autor": "programista (figury/rdl-glebokosc)", "recenzent": "", "kto": "recenzja niezależna zmiany RDL (sztanga) i RDL (hantle/linki) — ciężar na dole tuż pod kolanem", "slad": "arkusz ze śladem toru: /tmp/claude-0/sp/rdl/arkusz/ (przed i po; profil i przód, u 0–1 co 0,05)" }
+{ "data": "2026-11-09", "autor": "programista (figury/rdl-glebokosc)", "recenzent": "", "kto": "recenzja niezależna zmiany RDL (sztanga) i RDL (hantle/linki) — ciężar na dole tuż pod kolanem", "slad": "arkusz ze śladem toru gryfu przed i po (profil i przód, u 0–1 co 0,05; scripts/figures/arkusz-slad.mjs)" }
 ```
-Arkusze przed/po (profil i przód, kadry co 0,05 z nałożonym śladem toru gryfu): /tmp/claude-0/sp/rdl/arkusz/przed i /tmp/claude-0/sp/rdl/arkusz/po (poza repozytorium).
+Arkusze przed/po (profil i przód, kadry co 0,05 z nałożonym śladem toru gryfu): katalogi „przed” i „po” (PNG + HTML; skrypt scripts/figures/arkusz-slad.mjs, poza repozytorium — ścieżkę podaje koordynatorowi raport programisty).
