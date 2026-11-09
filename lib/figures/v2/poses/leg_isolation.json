@@ -2148,7 +2148,7 @@
       "R": {
        "kostka": [
         81.5,
-        39.0,
+        39,
         10
        ],
        "podbicie": 46.4,
@@ -2423,11 +2423,11 @@
      "nogi": {
       "R": {
        "kostka": [
-        43.0,
+        43,
         8.6,
         10
        ],
-       "podbicie": -5.0,
+       "podbicie": -5,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -2835,38 +2835,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "ht.mis.arch",
-     "znacznik": "back",
-     "dotyczy": [
-      "elbow",
-      "shoulder",
-      "spine"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.25,
-       "zgiecieKregoslupa": -5.5
-      },
-      {
-       "u": 0.5,
-       "zgiecieKregoslupa": -17.5
-      },
-      {
-       "u": 0.75,
-       "zgiecieKregoslupa": -29.5
-      },
-      {
-       "u": 1,
-       "zgiecieKregoslupa": -35
-      }
-     ]
-    }
-   ]
+   "bledy": []
   }
  }
 }

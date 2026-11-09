@@ -1490,16 +1490,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Barbell Step Up": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Barbell Walking Lunge": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Barbell Wrist Curl": {
    "rodzina": "wrist",
    "sprawdzenie": null,
@@ -1582,11 +1572,6 @@
   },
   "Box Squat with Chains": {
    "rodzina": "squat",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Bulgarian Split Squat (sztanga)": {
-   "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
@@ -2305,11 +2290,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Lunges (sztanga)": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Lying Cable Curl": {
    "rodzina": "curl",
    "sprawdzenie": null,
@@ -2890,11 +2870,6 @@
    "sprawdzenie": "ACE: „whether pulling or pushing” — te same zasady",
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Slider Hamstring Curl": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Slider Reverse Lunge": {
    "rodzina": "lunge",
    "sprawdzenie": null,
@@ -2914,11 +2889,6 @@
    "rodzina": "rowBent",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Smith Machine Bulgarian Split Squat": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Smith Machine Close-Grip Bench Press": {
    "rodzina": "bench",
@@ -2989,11 +2959,6 @@
    "rodzina": "jump",
    "sprawdzenie": "NASM lunge-jump (sitemap) — możliwe źródło bezpośrednie",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Split Squat": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Split Squat (linki)": {
    "rodzina": "lunge",

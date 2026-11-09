@@ -724,5 +724,14 @@
  "rotator_cuff.cubanBlades": "Zanim zaczniesz, ściągnij łopatki w dół i do tyłu.",
  "rotator_cuff.cubanRow": "Unieś łokcie bokiem do wysokości barków, zgięte pod kątem prostym; hantle zwisają.",
  "rotator_cuff.cubanRotate": "Obróć przedramiona w górę, nie opuszczając łokci — ramiona zostają poziomo.",
- "rotator_cuff.cubanPressUp": "Wyciśnij hantle prosto nad głowę."
+ "rotator_cuff.cubanPressUp": "Wyciśnij hantle prosto nad głowę.",
+ "split.setup": "Stań w wykroku: jedna stopa z przodu, druga z tyłu, oparta na palcach.",
+ "lunge2.mis.lean": "Pochylanie tułowia mocno w przód przy schodzeniu.",
+ "lunge.bbSetup": "Sztanga na górze pleców, stań prosto.",
+ "stepup.mis.push": "Odbijanie się nogą z podłogi zamiast wchodzenia nogą na podwyższeniu.",
+ "stepup.mis.drop": "Opadanie z podwyższenia zamiast kontrolowanego zejścia.",
+ "lunge2.mis.shallow": "Za płytkie zejście — tylne kolano zostaje wysoko nad podłogą.",
+ "slcurl.setup": "Połóż się na plecach, kolana ugięte, pięty na ślizgaczach.",
+ "slcurl.move": "Unieś biodra, wysuń nogi do wyprostu, potem przyciągnij pięty z powrotem — biodra cały czas w górze.",
+ "ballcurl.mis.sag": "Biodra opadające w trakcie ruchu."
 }

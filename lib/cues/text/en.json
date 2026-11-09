@@ -724,5 +724,14 @@
  "rotator_cuff.cubanBlades": "Before you start, set your shoulder blades down and back.",
  "rotator_cuff.cubanRow": "Lift your elbows out to shoulder height, bent at a right angle, dumbbells hanging down.",
  "rotator_cuff.cubanRotate": "Rotate your forearms up without dropping your elbows; upper arms stay level.",
- "rotator_cuff.cubanPressUp": "Press the dumbbells straight overhead."
+ "rotator_cuff.cubanPressUp": "Press the dumbbells straight overhead.",
+ "split.setup": "Split stance: one foot in front, the other behind you on the ball of the foot.",
+ "lunge2.mis.lean": "Tipping your torso far forward on the way down.",
+ "lunge.bbSetup": "Bar across your upper back, stand tall.",
+ "stepup.mis.push": "Pushing off the floor foot instead of stepping up with the leg on the box.",
+ "stepup.mis.drop": "Dropping off the box instead of stepping down under control.",
+ "lunge2.mis.shallow": "Not going deep enough — back knee stays well off the floor.",
+ "slcurl.setup": "Lie on your back, knees bent, heels on the sliders.",
+ "slcurl.move": "Lift your hips, slide your legs out until straight, then pull your heels back in — hips up the whole time.",
+ "ballcurl.mis.sag": "Hips sagging during the movement."
 }

@@ -589,6 +589,22 @@
    "name": "Mullaney i in. — program Thrower’s Ten, opis wykonania w załączniku (Int J Sports Phys Ther 2021;16(6))",
    "level": 3,
    "kind": "study"
+  },
+  "Human Kinetics": {
+   "name": "Human Kinetics — fragmenty książek o treningu (us.humankinetics.com)",
+   "level": 4,
+   "kind": "site",
+   "warunkowo": "fragment książki, którego autor jest trenerem z kwalifikacjami; strona bez takiego autora — szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)"
+  },
+  "NCSF": {
+   "name": "National Council on Strength and Fitness — blog szkoleniowy (ncsf.org)",
+   "level": 4,
+   "kind": "org"
+  },
+  "NISMAT": {
+   "name": "NISMAT — instytut medycyny sportowej przy szpitalu Lenox Hill (materiał edukacyjny placówki; nismat.org)",
+   "level": 4,
+   "kind": "site"
   }
  },
  "sources": {
@@ -3670,6 +3686,67 @@
    "title": "PMC8637269",
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8637269/",
    "level": 3
+  },
+  "ace-59": {
+   "org": "ACE",
+   "title": "stability ball hamstring curl",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/",
+   "level": 4
+  },
+  "ace-8": {
+   "org": "ACE",
+   "title": "forward lunge",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/",
+   "level": 4
+  },
+  "catalyst-174": {
+   "org": "Catalyst Athletics",
+   "title": "Split Squat",
+   "url": "https://catalystathletics.com/exercise/174/Split-Squat/",
+   "level": 4
+  },
+  "catalyst-354": {
+   "org": "Catalyst Athletics",
+   "title": "Lunge",
+   "url": "https://catalystathletics.com/exercise/354/Lunge/",
+   "level": 4
+  },
+  "catalyst-560": {
+   "org": "Catalyst Athletics",
+   "title": "Step up",
+   "url": "https://www.catalystathletics.com/exercise/560/Step-up/",
+   "level": 4
+  },
+  "catalyst-600": {
+   "org": "Catalyst Athletics",
+   "title": "Overhead Walking Lunge",
+   "url": "https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/",
+   "level": 4
+  },
+  "hk-landow-stepup": {
+   "org": "Human Kinetics",
+   "title": "want to boost your acceleration try this strength move",
+   "url": "https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move",
+   "level": 4,
+   "strona": "odczyt 02.11.2026: hk-landow-stepup | (blok W1) | Landow, Jarmon (Human Kinetics) | 4 | przeliczenie W1; miejsca jak w W1 (drive the foot into the box; controls his descent)"
+  },
+  "ncsf-single-leg-ball-curl": {
+   "org": "NCSF",
+   "title": "183 single leg stability ball leg curl",
+   "url": "https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl",
+   "level": 4
+  },
+  "nismat-hamstring-sliders": {
+   "org": "NISMAT",
+   "title": "amp",
+   "url": "https://nismat.org/2023/12/11/hamstring-sliders/amp/",
+   "level": 4
+  },
+  "nsca-ptq-lunge": {
+   "org": "NSCA",
+   "title": "ptq 4.4.9 the undervalued lunge",
+   "url": "https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf",
+   "level": 4
   }
  },
  "exercises": {
@@ -22416,6 +22493,510 @@
      ]
     }
    ]
+  },
+  "Split Squat": {
+   "setup": [
+    {
+     "c": "split.setup",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "s. 44, Starting Position (one foot in front and one behind the torso, similar to a split stance); Table 2, Completely Stationary"
+      ],
+      [
+       "catalyst-174",
+       "opis (split stance)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "catalyst-174",
+       "opis (bend both knees until the back knee lightly touches the floor; reverse)"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "s. 45, Lowering Phase (lower the hips until both knees are bent at about 90°); Upward Phase (push through the front heel); Table 2, Completely Stationary"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "catalyst-174",
+       "opis (trunk upright)"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "s. 45, Starting Position (torso should be straight)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.lean",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Forward Torso Lean; Table 2, Completely Stationary"
+      ],
+      [
+       "catalyst-174",
+       "opis (trunk upright) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Lunges (sztanga)": {
+   "setup": [
+    {
+     "c": "lunge.bbSetup",
+     "s": [
+      [
+       "ace-8",
+       "Step 1 (bar behind the neck, across the upper back)"
+      ],
+      [
+       "catalyst-354",
+       "opis (barbell on the back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.fwd",
+     "s": [
+      [
+       "ace-8",
+       "Step 2–3 (back knee almost to the floor; push through the front foot)"
+      ],
+      [
+       "catalyst-354",
+       "opis (back knee very lightly touches the floor; push off the front leg)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-8",
+       "Step 2 (back straight through the entire movement)"
+      ],
+      [
+       "catalyst-354",
+       "opis (upright trunk)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.lean",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Forward Torso Lean (Error/Solution); Table 3, Add Resistance (barbell)"
+      ],
+      [
+       "catalyst-354",
+       "opis (maintain an upright trunk) — standard"
+      ],
+      [
+       "ace-8",
+       "Step 2 (lift the chest) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Walking Lunge": {
+   "setup": [
+    {
+     "c": "lunge.bbSetup",
+     "s": [
+      [
+       "ace-8",
+       "Step 1 (wariant: wykrok w przód ze sztangą)"
+      ],
+      [
+       "catalyst-354",
+       "opis (barbell on the back; wariant)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.walk",
+     "s": [
+      [
+       "ace-139",
+       "Step 3–5"
+      ],
+      [
+       "catalyst-600",
+       "opis (one continuous step; wariant: ciężar nad głową)"
+      ],
+      [
+       "catalyst-354",
+       "opis (głębokość: back knee very lightly touches the floor)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "catalyst-600",
+       "opis (upright posture)"
+      ],
+      [
+       "ace-139",
+       "Step 3 (spine extended)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.lean",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Forward Torso Lean; Table 3, Make it Mobile (walking lunges)"
+      ],
+      [
+       "catalyst-600",
+       "opis (upright posture) — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: sztanga (NSCA — bez określonego ciężaru, Catalyst #600 — ciężar nad głową)"
+    }
+   ]
+  },
+  "Barbell Step Up": {
+   "setup": [
+    {
+     "c": "lunge.bbSetup",
+     "s": [
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (barbell back squat position along the upper back)"
+      ],
+      [
+       "catalyst-560",
+       "opis (barbell on the back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "stepup.move",
+     "s": [
+      [
+       "catalyst-560",
+       "opis (foot on a box or bench; lift with the raised leg to standing; control the motion back down)"
+      ],
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (drive the foot into the box; controls his descent)"
+      ],
+      [
+       "ace-28",
+       "Step 2–3 (wariant: hantle)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (upright posture through trunk and shoulders)"
+      ],
+      [
+       "ace-28",
+       "Step 2 (torso upright; wariant: hantle)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "stepup.mis.push",
+     "s": [
+      [
+       "catalyst-560",
+       "opis (using the raised leg with minimal assistance from the other foot)"
+      ],
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (drive the foot into the box) — standard"
+      ]
+     ]
+    },
+    {
+     "c": "stepup.mis.drop",
+     "s": [
+      [
+       "catalyst-560",
+       "opis (control the motion back down … instead of just dropping)"
+      ],
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (controls his descent) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bulgarian Split Squat (sztanga)": {
+   "setup": [
+    {
+     "c": "bss.setup",
+     "s": [
+      [
+       "ace-366",
+       "opis (rear foot on a bench or box about knee height)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 1"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 3; Step 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-366",
+       "opis (keep the back straight)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 2 (upright posture)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.shallow",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (not descending far enough)"
+      ],
+      [
+       "ace-366",
+       "opis (before the knee hits the floor, press the front foot) — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    },
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — do potwierdzenia przez recenzenta niezależnego)"
+    }
+   ]
+  },
+  "Smith Machine Bulgarian Split Squat": {
+   "setup": [
+    {
+     "c": "bss.setup",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 1"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 3; Step 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-366",
+       "opis (keep the back straight)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 2 (upright posture)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.shallow",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (not descending far enough)"
+      ],
+      [
+       "ace-366",
+       "opis — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    },
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — do potwierdzenia przez recenzenta niezależnego)"
+    }
+   ]
+  },
+  "Slider Hamstring Curl": {
+   "setup": [
+    {
+     "c": "slcurl.setup",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („Lie on your back, bend your knees and place a towel under your feet.”; biodra w górę „in a bridge position”)"
+      ],
+      [
+       "ace-59",
+       "uproszczenie: wariant sprzętu Stability Ball Hamstring Curl; Step 1–2 (na plecach, pięty na piłce, biodra w górę do linii z tułowiem; parafraza)"
+      ],
+      [
+       "ncsf-single-leg-ball-curl",
+       "uproszczenie: wariant sprzętu (piłka, jednonóż); pozycja wyjściowa (biodra w pełnym wyproście, pięty na piłce; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "slcurl.move",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („slide the towel away from your body while extending your legs”; powrót „without dropping your hips”)"
+      ],
+      [
+       "ace-59",
+       "uproszczenie: wariant sprzętu; Step 3–4 (pięty do bioder, powolny powrót; parafraza)"
+      ],
+      [
+       "ncsf-single-leg-ball-curl",
+       "uproszczenie: wariant sprzętu; ruch (pięta do pośladków, powolny wyprost; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („Engage your abdominals…”)"
+      ],
+      [
+       "ace-59",
+       "uproszczenie: wariant sprzętu; Step 1; Tips (napięty brzuch przez całe ćwiczenie; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ballcurl.mis.sag",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („…without dropping your hips”)"
+      ],
+      [
+       "ncsf-single-leg-ball-curl",
+       "uproszczenie: wariant sprzętu; („the hips should not sag”)"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -22565,7 +23146,14 @@
   "Zottman Curl",
   "Zottman Preacher Curl",
   "Band Pull Apart",
-  "Cuban Press"
+  "Cuban Press",
+  "Split Squat",
+  "Lunges (sztanga)",
+  "Barbell Walking Lunge",
+  "Barbell Step Up",
+  "Bulgarian Split Squat (sztanga)",
+  "Smith Machine Bulgarian Split Squat",
+  "Slider Hamstring Curl"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {

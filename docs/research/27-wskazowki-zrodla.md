@@ -137,12 +137,15 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Generation Iron | Generation Iron — przewodniki ćwiczeń (generationiron.com) | 4 (warunkowo 4: strona z autorem z kwalifikacjami i datą; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 3 i K3)) | serwis specjalistyczny |
 | Healthline | Healthline — artykuły o ćwiczeniach (healthline.com) | 4 (warunkowo 4: strona z nazwanym recenzentem z kwalifikacjami i datą; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 3; odpowiedź 1 z 02.11.2026)) | serwis specjalistyczny |
 | Mullaney i in. (Int J Sports Phys Ther 2021) | Mullaney i in. — program Thrower’s Ten, opis wykonania w załączniku (Int J Sports Phys Ther 2021;16(6)) | 3 | badanie (czasopismo recenzowane) |
+| Human Kinetics | Human Kinetics — fragmenty książek o treningu (us.humankinetics.com) | 4 (warunkowo 4: fragment książki, którego autor jest trenerem z kwalifikacjami; strona bez takiego autora — szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)) | serwis specjalistyczny |
+| NCSF | National Council on Strength and Fitness — blog szkoleniowy (ncsf.org) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| NISMAT | NISMAT — instytut medycyny sportowej przy szpitalu Lenox Hill (materiał edukacyjny placówki; nismat.org) | 4 | serwis specjalistyczny |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 267; zdań (z powtórzeniami między ćwiczeniami): 1170; unikalnych zdań: 691; źródeł: 502.
+- Ćwiczenia ze wskazówkami: 274; zdań (z powtórzeniami między ćwiczeniami): 1201; unikalnych zdań: 700; źródeł: 512.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 15.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 130 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press, Bent Over Row (linki), Meadows Row, Standing Cable Row, Machine Row, Single Arm Lat Pulldown, V-Bar Pulldown, Barbell Shrug Behind The Back, Leverage Shrug, Zottman Curl, Zottman Preacher Curl, Band Pull Apart, Cuban Press.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 137 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press, Bent Over Row (linki), Meadows Row, Standing Cable Row, Machine Row, Single Arm Lat Pulldown, V-Bar Pulldown, Barbell Shrug Behind The Back, Leverage Shrug, Zottman Curl, Zottman Preacher Curl, Band Pull Apart, Cuban Press, Split Squat, Lunges (sztanga), Barbell Walking Lunge, Barbell Step Up, Bulgarian Split Squat (sztanga), Smith Machine Bulgarian Split Squat, Slider Hamstring Curl.
 
 ## Otwarte — bez wskazówek
 
@@ -4596,6 +4599,135 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 - Obróć przedramiona w górę, nie opuszczając łokci — ramiona zostają poziomo. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 2 (goalpost position)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 3 (Without lowering your upper arms, externally rotate) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanRotate`
 - Wyciśnij hantle prosto nad głowę. — BarBend: [cuban press](https://barbend.com/cuban-press/) (Step 3 (Press your arms overhead; Coach's Tip: press up straight)); Fitness Volt: [cuban press](https://fitnessvolt.com/cuban-press/) (Step 4 (Press the bar up to arms' length) — uproszczenie: wariant sprzętu) `rotator_cuff.cubanPressUp`
 
+### Split Squat
+
+**Ustawienie**
+
+- Stań w wykroku: jedna stopa z przodu, druga z tyłu, oparta na palcach. — NSCA: [ptq 4.4.9 the undervalued lunge](https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf) (s. 44, Starting Position (one foot in front and one behind the torso, similar to a split stance); Table 2, Completely Stationary); Catalyst Athletics: [Split Squat](https://catalystathletics.com/exercise/174/Split-Squat/) (opis (split stance)) `split.setup`
+
+**Ruch**
+
+- Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą. — Catalyst Athletics: [Split Squat](https://catalystathletics.com/exercise/174/Split-Squat/) (opis (bend both knees until the back knee lightly touches the floor; reverse)); NSCA: [ptq 4.4.9 the undervalued lunge](https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf) (s. 45, Lowering Phase (lower the hips until both knees are bent at about 90°); Upward Phase (push through the front heel); Table 2, Completely Stationary) `bss.move`
+
+**Wskazówki**
+
+- Plecy proste przez cały ruch. — Catalyst Athletics: [Split Squat](https://catalystathletics.com/exercise/174/Split-Squat/) (opis (trunk upright)); NSCA: [ptq 4.4.9 the undervalued lunge](https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf) (s. 45, Starting Position (torso should be straight)) `lunge.torso`
+
+**Czego unikać**
+
+- Pochylanie tułowia mocno w przód przy schodzeniu. — NSCA: [ptq 4.4.9 the undervalued lunge](https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf) (Table 1, Forward Torso Lean; Table 2, Completely Stationary); Catalyst Athletics: [Split Squat](https://catalystathletics.com/exercise/174/Split-Squat/) (opis (trunk upright) — standard) `lunge2.mis.lean`
+
+### Lunges (sztanga)
+
+**Ustawienie**
+
+- Sztanga na górze pleców, stań prosto. — ACE: [forward lunge](https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/) (Step 1 (bar behind the neck, across the upper back)); Catalyst Athletics: [Lunge](https://catalystathletics.com/exercise/354/Lunge/) (opis (barbell on the back)) `lunge.bbSetup`
+
+**Ruch**
+
+- Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej. — ACE: [forward lunge](https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/) (Step 2–3 (back knee almost to the floor; push through the front foot)); Catalyst Athletics: [Lunge](https://catalystathletics.com/exercise/354/Lunge/) (opis (back knee very lightly touches the floor; push off the front leg)) `lunge.fwd`
+
+**Wskazówki**
+
+- Plecy proste przez cały ruch. — ACE: [forward lunge](https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/) (Step 2 (back straight through the entire movement)); Catalyst Athletics: [Lunge](https://catalystathletics.com/exercise/354/Lunge/) (opis (upright trunk)) `lunge.torso`
+
+**Czego unikać**
+
+- Pochylanie tułowia mocno w przód przy schodzeniu. — NSCA: [ptq 4.4.9 the undervalued lunge](https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf) (Table 1, Forward Torso Lean (Error/Solution); Table 3, Add Resistance (barbell)); Catalyst Athletics: [Lunge](https://catalystathletics.com/exercise/354/Lunge/) (opis (maintain an upright trunk) — standard); ACE: [forward lunge](https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/) (Step 2 (lift the chest) — standard) `lunge2.mis.lean`
+
+### Barbell Walking Lunge
+
+**Ustawienie**
+
+- Sztanga na górze pleców, stań prosto. — ACE: [forward lunge](https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/) (Step 1 (wariant: wykrok w przód ze sztangą)); Catalyst Athletics: [Lunge](https://catalystathletics.com/exercise/354/Lunge/) (opis (barbell on the back; wariant)) `lunge.bbSetup`
+
+**Ruch**
+
+- Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą. — ACE: [Walking Lunges With Twists (#139)](https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/) (Step 3–5); Catalyst Athletics: [Overhead Walking Lunge](https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/) (opis (one continuous step; wariant: ciężar nad głową)); Catalyst Athletics: [Lunge](https://catalystathletics.com/exercise/354/Lunge/) (opis (głębokość: back knee very lightly touches the floor)) `lunge.walk`
+
+**Wskazówki**
+
+- Plecy proste przez cały ruch. — Catalyst Athletics: [Overhead Walking Lunge](https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/) (opis (upright posture)); ACE: [Walking Lunges With Twists (#139)](https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/) (Step 3 (spine extended)) `lunge.torso`
+
+**Czego unikać**
+
+- Pochylanie tułowia mocno w przód przy schodzeniu. — NSCA: [ptq 4.4.9 the undervalued lunge](https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf) (Table 1, Forward Torso Lean; Table 3, Make it Mobile (walking lunges)); Catalyst Athletics: [Overhead Walking Lunge](https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/) (opis (upright posture) — standard) [uproszczenie: wariant sprzętu: sztanga (NSCA — bez określonego ciężaru, Catalyst #600 — ciężar nad głową)] `lunge2.mis.lean`
+
+### Barbell Step Up
+
+**Ustawienie**
+
+- Sztanga na górze pleców, stań prosto. — Human Kinetics: [want to boost your acceleration try this strength move](https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move) (Bottom-Up Step-Up (barbell back squat position along the upper back)); Catalyst Athletics: [Step up](https://www.catalystathletics.com/exercise/560/Step-up/) (opis (barbell on the back)) `lunge.bbSetup`
+
+**Ruch**
+
+- Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą. — Catalyst Athletics: [Step up](https://www.catalystathletics.com/exercise/560/Step-up/) (opis (foot on a box or bench; lift with the raised leg to standing; control the motion back down)); Human Kinetics: [want to boost your acceleration try this strength move](https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move) (Bottom-Up Step-Up (drive the foot into the box; controls his descent)); ACE: [Step Up (#28)](https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/) (Step 2–3 (wariant: hantle)) `stepup.move`
+
+**Wskazówki**
+
+- Plecy proste przez cały ruch. — Human Kinetics: [want to boost your acceleration try this strength move](https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move) (Bottom-Up Step-Up (upright posture through trunk and shoulders)); ACE: [Step Up (#28)](https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/) (Step 2 (torso upright; wariant: hantle)) `lunge.torso`
+
+**Czego unikać**
+
+- Odbijanie się nogą z podłogi zamiast wchodzenia nogą na podwyższeniu. — Catalyst Athletics: [Step up](https://www.catalystathletics.com/exercise/560/Step-up/) (opis (using the raised leg with minimal assistance from the other foot)); Human Kinetics: [want to boost your acceleration try this strength move](https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move) (Bottom-Up Step-Up (drive the foot into the box) — standard) `stepup.mis.push`
+- Opadanie z podwyższenia zamiast kontrolowanego zejścia. — Catalyst Athletics: [Step up](https://www.catalystathletics.com/exercise/560/Step-up/) (opis (control the motion back down … instead of just dropping)); Human Kinetics: [want to boost your acceleration try this strength move](https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move) (Bottom-Up Step-Up (controls his descent) — standard) `stepup.mis.drop`
+
+### Bulgarian Split Squat (sztanga)
+
+**Ustawienie**
+
+- Stań tyłem do ławki i oprzyj na niej grzbiet tylnej stopy; przednia stopa wysunięta. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (rear foot on a bench or box about knee height)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 1) [uproszczenie: wariant sprzętu: hantle] `bss.setup`
+
+**Ruch**
+
+- Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 3; Step 4) [uproszczenie: wariant sprzętu: hantle] `bss.move`
+
+**Wskazówki**
+
+- Plecy proste przez cały ruch. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (keep the back straight)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 2 (upright posture)) [uproszczenie: wariant sprzętu: hantle] `lunge.torso`
+
+**Czego unikać**
+
+- Za płytkie zejście — tylne kolano zostaje wysoko nad podłogą. — NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (not descending far enough)); ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (before the knee hits the floor, press the front foot) — standard) [uproszczenie: wariant sprzętu: hantle] `lunge2.mis.shallow`
+- Przednie kolano uciekające do środka. — NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes); ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments) [uproszczenie: wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — do potwierdzenia przez recenzenta niezależnego)] `lunge.mis.kneeIn`
+
+### Smith Machine Bulgarian Split Squat
+
+**Ustawienie**
+
+- Stań tyłem do ławki i oprzyj na niej grzbiet tylnej stopy; przednia stopa wysunięta. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 1) [uproszczenie: wariant sprzętu: hantle] `bss.setup`
+
+**Ruch**
+
+- Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 3; Step 4) [uproszczenie: wariant sprzętu: hantle] `bss.move`
+
+**Wskazówki**
+
+- Plecy proste przez cały ruch. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (keep the back straight)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 2 (upright posture)) [uproszczenie: wariant sprzętu: hantle] `lunge.torso`
+
+**Czego unikać**
+
+- Za płytkie zejście — tylne kolano zostaje wysoko nad podłogą. — NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (not descending far enough)); ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis — standard) [uproszczenie: wariant sprzętu: hantle] `lunge2.mis.shallow`
+- Przednie kolano uciekające do środka. — NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes); ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments) [uproszczenie: wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — do potwierdzenia przez recenzenta niezależnego)] `lunge.mis.kneeIn`
+
+### Slider Hamstring Curl
+
+**Ustawienie**
+
+- Połóż się na plecach, kolana ugięte, pięty na ślizgaczach. — NISMAT: [amp](https://nismat.org/2023/12/11/hamstring-sliders/amp/) (opis („Lie on your back, bend your knees and place a towel under your feet.”; biodra w górę „in a bridge position”)); ACE: [stability ball hamstring curl](https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/) (uproszczenie: wariant sprzętu Stability Ball Hamstring Curl; Step 1–2 (na plecach, pięty na piłce, biodra w górę do linii z tułowiem; parafraza)); NCSF: [183 single leg stability ball leg curl](https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl) (uproszczenie: wariant sprzętu (piłka, jednonóż); pozycja wyjściowa (biodra w pełnym wyproście, pięty na piłce; parafraza)) `slcurl.setup`
+
+**Ruch**
+
+- Unieś biodra, wysuń nogi do wyprostu, potem przyciągnij pięty z powrotem — biodra cały czas w górze. — NISMAT: [amp](https://nismat.org/2023/12/11/hamstring-sliders/amp/) (opis („slide the towel away from your body while extending your legs”; powrót „without dropping your hips”)); ACE: [stability ball hamstring curl](https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/) (uproszczenie: wariant sprzętu; Step 3–4 (pięty do bioder, powolny powrót; parafraza)); NCSF: [183 single leg stability ball leg curl](https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl) (uproszczenie: wariant sprzętu; ruch (pięta do pośladków, powolny wyprost; parafraza)) `slcurl.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — NISMAT: [amp](https://nismat.org/2023/12/11/hamstring-sliders/amp/) (opis („Engage your abdominals…”)); ACE: [stability ball hamstring curl](https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/) (uproszczenie: wariant sprzętu; Step 1; Tips (napięty brzuch przez całe ćwiczenie; parafraza)) `plank.brace`
+
+**Czego unikać**
+
+- Biodra opadające w trakcie ruchu. — NISMAT: [amp](https://nismat.org/2023/12/11/hamstring-sliders/amp/) (opis („…without dropping your hips”)); NCSF: [183 single leg stability ball leg curl](https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl) (uproszczenie: wariant sprzętu; („the hips should not sag”)) `ballcurl.mis.sag`
+
 ## Źródła
 
 | Id | Organizacja | Tytuł | Adres | Migawka (odczyt) |
@@ -4693,6 +4825,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-5386-adv-kb | ACE | Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015) | https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/ | — |
 | ace-54 | ACE | Front Raise (#54) | https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/ | — |
 | ace-55 | ACE | Triceps Kickback (#55) | https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/ | — |
+| ace-59 | ACE | stability ball hamstring curl | https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/ | — |
 | ace-6 | ACE | Deadlift (#6) | https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | — |
 | ace-65 | ACE | Russian Twist (#65) | https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/ | — |
 | ace-70 | ACE | Bicep Curl (#70) | https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/ | — |
@@ -4702,6 +4835,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-74 | ACE | Triceps Extension (#74) | https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/ | — |
 | ace-75 | ACE | Standing Shrug (#75) | https://www.acefitness.org/resources/everyone/exercise-library/75/standing-shrug/ | — |
 | ace-76 | ACE | Reverse Crunch (#76) | https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/ | — |
+| ace-8 | ACE | forward lunge | https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/ | — |
 | ace-84 | ACE | Trx Reg Back Row (#84) | https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | — |
 | ace-blog-5624 | ACE | Foam Rolling 101 (blog) | https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/ | — |
 | ace-pro-5043 | ACE | how to self care for the it band | https://www.acefitness.org/resources/pros/expert-articles/5043/how-to-self-care-for-the-it-band/ | — |
@@ -4763,20 +4897,24 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
 | c2-technique | Concept2 | Indoor Rowing Technique | https://www.concept2.com/training/rowing-technique | — |
+| catalyst-174 | Catalyst Athletics | Split Squat | https://catalystathletics.com/exercise/174/Split-Squat/ | — |
 | catalyst-193 | Catalyst Athletics | Jerk Balance (Exercise Library #193) | https://catalystathletics.com/exercise/193/Jerk-Balance/ | — |
 | catalyst-194 | Catalyst Athletics | Jerk Dip Squat (Exercise Library #194) | https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/ | — |
 | catalyst-207 | Catalyst Athletics | Block Snatch (#207) | https://catalystathletics.com/exercise/207/Block-Snatch/ | — |
 | catalyst-211 | Catalyst Athletics | Split Clean | https://www.catalystathletics.com/exercise/211/Split-Clean/ | — |
 | catalyst-353 | Catalyst Athletics | Back Squat Jump (#353) | https://catalystathletics.com/exercise/353/Back-Squat-Jump/ | — |
+| catalyst-354 | Catalyst Athletics | Lunge | https://catalystathletics.com/exercise/354/Lunge/ | — |
 | catalyst-379 | Catalyst Athletics | Block Clean | https://www.catalystathletics.com/exercise/379/Block-Clean/ | — |
 | catalyst-380 | Catalyst Athletics | Block Power Clean | https://www.catalystathletics.com/exercise/380/Block-Power-Clean/ | — |
 | catalyst-496 | Catalyst Athletics | Single Leg Glute Bridge | https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/ | — |
 | catalyst-549 | Catalyst Athletics | Broad Jump (#549) | https://www.catalystathletics.com/exercise/549/Broad-Jump/ | — |
 | catalyst-555 | Catalyst Athletics | Squat Vertical Jump (#555) | https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/ | — |
 | catalyst-558 | Catalyst Athletics | Tuck Jump (#558) | https://catalystathletics.com/exercise/558/Tuck-Jump/ | — |
+| catalyst-560 | Catalyst Athletics | Step up | https://www.catalystathletics.com/exercise/560/Step-up/ | — |
 | catalyst-58 | Catalyst Athletics | Snatch (#58) | https://www.catalystathletics.com/exercise/58/Snatch/ | — |
 | catalyst-59 | Catalyst Athletics | Clean | https://www.catalystathletics.com/exercise/59/Clean/ | — |
 | catalyst-60 | Catalyst Athletics | Split Jerk (Exercise Library #60) | https://catalystathletics.com/exercise/60/Split-Jerk | — |
+| catalyst-600 | Catalyst Athletics | Overhead Walking Lunge | https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/ | — |
 | catalyst-61 | Catalyst Athletics | Power Snatch (#61) | https://www.catalystathletics.com/exercise/61/ | — |
 | catalyst-62 | Catalyst Athletics | Hang Power Snatch (#62) | https://www.catalystathletics.com/exercise/62/Hang-Power-Snatch/ | — |
 | catalyst-67 | Catalyst Athletics | Power Clean | https://www.catalystathletics.com/exercise/67/Power-Clean/ | — |
@@ -4936,6 +5074,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | healthwise-columbia-shoulder-er | WebMD Ignite | Shoulder external rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/ | — |
 | healthwise-columbia-shoulder-ir | WebMD Ignite | Shoulder internal rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/ | — |
 | healthwise-kaiser-band-exercises | WebMD Ignite | Resistance Training With Exercise Bands: Exercises | https://healthy.kaiserpermanente.org/health-wellness/health-encyclopedia/he.resistance-training-with-exercise-bands-exercises.bz1003 | — |
+| hk-landow-stepup | Human Kinetics | want to boost your acceleration try this strength move | https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move | — |
 | hofmann-2014 | Hofmann i in. (Cybex Research Institute) | …handrail-use instructions… inclined treadmill walking, Int J Exerc Sci 7(4):339–345 (abstrakt) | https://digitalcommons.wku.edu/ijes/vol7/iss4/10 | — |
 | hss-back-neck-stretches | HSS | HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021) | https://www.hss.edu/health-library/move-better/back-neck-stretches | — |
 | hss-bike | HSS | A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020) | https://www.hss.edu/health-library/move-better/set-up-exercise-bike | — |
@@ -5013,6 +5152,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-tuck-jump | NASM | Tuck Jump | https://www.nasm.org/resource-center/exercise-library/tuck-jump | — |
 | nasm-two-arm-dumbbell-chest-press-with-band | NASM | Two Arm Dumbbell Chest Press With Band | https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | — |
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
+| ncsf-single-leg-ball-curl | NCSF | 183 single leg stability ball leg curl | https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl | — |
 | nfpt-hack-squat | NFPT | how to do hack squats | https://nfpt.com/how-to-do-hack-squats/ | — |
 | nfpt-how-to-do-incline-side-lateral-dumbbell-raises | NFPT | How to do incline side lateral dumbbell raises | https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/ | — |
 | nfpt-incline-fly | NFPT | how to do incline bench dumbbell flyes | https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/ | — |
@@ -5021,10 +5161,12 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nhs-shrops-calf | Shropshire Community Health NHS Trust | Calf Stretching Information Leaflet | https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf | — |
 | nhs-southtees-side-lying | South Tees Hospitals NHS Foundation Trust | Rotator cuff in side lying | https://www.southtees.nhs.uk/resources/rotator-cuff-in-side-lying/ | — |
 | nhs-wwl-neck | Wrightington, Wigan and Leigh Teaching Hospitals NHS FT | Neck and Upper Back Exercises Level 1 (Tpy 023, v2) | https://www.wwl.nhs.uk/pdfreader/accessiblePDF/cnv-wwl-68ca8bce9edd73.73954624 | — |
+| nismat-hamstring-sliders | NISMAT | amp | https://nismat.org/2023/12/11/hamstring-sliders/amp/ | — |
 | nordictrack-incline | NordicTrack | Incline treadmill benefits… (15.07.2025) | https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | — |
 | nsca-basics-2012 | NSCA | Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012 | https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | — |
 | nsca-coach-7-3 | NSCA | Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3 | https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | — |
 | nsca-etm4-one-arm-kb-press | NSCA — Exercise Technique Manual (Human Kinetics) | one arm kettlebell press | https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press | — |
+| nsca-ptq-lunge | NSCA | ptq 4.4.9 the undervalued lunge | https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf | — |
 | nsca-scj-hip-thrust | NSCA | Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026 | https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf | — |
 | orthobethesda-foam-rolling | OrthoBethesda Therapy Services | Foam Rolling (FR) Exercises (PDF, 2 s., 2015) | https://www.orthobethesda.com/foam-rolling-exercises/ | — |
 | orthoindy-itb-program | OrthoIndy Physical Therapy | IT Band Home Exercise Program (PDF, rev. 8/15) | https://orthoindy.com/wp-content/uploads/IT-Band-Program.pdf | — |

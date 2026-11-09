@@ -293,28 +293,10 @@
       "b": "own"
     },
     "Barbell Step Up": {
-      "b": "general",
-      "f": "lunge",
-      "ok": [
-        "stepup.move",
-        "stepup.knee",
-        "lunge.torso"
-      ],
-      "err": [
-        "lunge.mis.kneeIn"
-      ]
+      "b": "own"
     },
     "Barbell Walking Lunge": {
-      "b": "general",
-      "f": "lunge",
-      "ok": [
-        "lunge.walk",
-        "lunge.knee",
-        "lunge.torso"
-      ],
-      "err": [
-        "lunge.mis.kneeIn"
-      ]
+      "b": "own"
     },
     "Barbell Wrist Curl": {
       "b": "general",
@@ -574,16 +556,7 @@
       "b": "own"
     },
     "Bulgarian Split Squat (sztanga)": {
-      "b": "general",
-      "f": "lunge",
-      "ok": [
-        "bss.move",
-        "lunge.knee",
-        "lunge.torso"
-      ],
-      "err": [
-        "lunge.mis.kneeIn"
-      ]
+      "b": "own"
     },
     "Burpees": {
       "b": "own"
@@ -2578,15 +2551,7 @@
       "b": "own"
     },
     "Lunges (sztanga)": {
-      "b": "general",
-      "f": "lunge",
-      "ok": [
-        "lunge.knee",
-        "lunge.torso"
-      ],
-      "err": [
-        "lunge.mis.kneeIn"
-      ]
+      "b": "own"
     },
     "Łydki na stopniu": {
       "b": "own"
@@ -4180,15 +4145,7 @@
       "b": "open"
     },
     "Slider Hamstring Curl": {
-      "b": "general",
-      "f": "bridge",
-      "ok": [
-        "gb.heels",
-        "llc.control"
-      ],
-      "err": [
-        "ht.mis.arch"
-      ]
+      "b": "own"
     },
     "Slider Reverse Lunge": {
       "b": "general",
@@ -4241,16 +4198,7 @@
       ]
     },
     "Smith Machine Bulgarian Split Squat": {
-      "b": "general",
-      "f": "lunge",
-      "ok": [
-        "bss.move",
-        "lunge.knee",
-        "lunge.torso"
-      ],
-      "err": [
-        "lunge.mis.kneeIn"
-      ]
+      "b": "own"
     },
     "Smith Machine Calf Raise": {
       "b": "own"
@@ -4460,15 +4408,7 @@
       "b": "own"
     },
     "Split Squat": {
-      "b": "general",
-      "f": "lunge",
-      "ok": [
-        "lunge.knee",
-        "lunge.torso"
-      ],
-      "err": [
-        "lunge.mis.kneeIn"
-      ]
+      "b": "own"
     },
     "Split Squat (linki)": {
       "b": "general",

@@ -1,0 +1,60 @@
+{
+  "_opis": "Zdania wskazówek techniki z partii B2 (figury nóg: 7 kart z badań A2 wstrzymanych do uzgodnienia póz błędu; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+  "data": "2026-11-09",
+  "klucze": [
+    {
+      "rodzaj": "nowy",
+      "id": "ballcurl.mis.sag",
+      "pl": "Biodra opadające w trakcie ruchu.",
+      "en": "Hips sagging during the movement."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lunge.bbSetup",
+      "pl": "Sztanga na górze pleców, stań prosto.",
+      "en": "Bar across your upper back, stand tall."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lunge2.mis.lean",
+      "pl": "Pochylanie tułowia mocno w przód przy schodzeniu.",
+      "en": "Tipping your torso far forward on the way down."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "lunge2.mis.shallow",
+      "pl": "Za płytkie zejście — tylne kolano zostaje wysoko nad podłogą.",
+      "en": "Not going deep enough — back knee stays well off the floor."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "slcurl.move",
+      "pl": "Unieś biodra, wysuń nogi do wyprostu, potem przyciągnij pięty z powrotem — biodra cały czas w górze.",
+      "en": "Lift your hips, slide your legs out until straight, then pull your heels back in — hips up the whole time."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "slcurl.setup",
+      "pl": "Połóż się na plecach, kolana ugięte, pięty na ślizgaczach.",
+      "en": "Lie on your back, knees bent, heels on the sliders."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "split.setup",
+      "pl": "Stań w wykroku: jedna stopa z przodu, druga z tyłu, oparta na palcach.",
+      "en": "Split stance: one foot in front, the other behind you on the ball of the foot."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "stepup.mis.drop",
+      "pl": "Opadanie z podwyższenia zamiast kontrolowanego zejścia.",
+      "en": "Dropping off the box instead of stepping down under control."
+    },
+    {
+      "rodzaj": "nowy",
+      "id": "stepup.mis.push",
+      "pl": "Odbijanie się nogą z podłogi zamiast wchodzenia nogą na podwyższeniu.",
+      "en": "Pushing off the floor foot instead of stepping up with the leg on the box."
+    }
+  ]
+}
