@@ -125,7 +125,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `glute_floor` | do zrobienia | 7 | 0 | 7 | 0 | 5 | 0 | 2 | 0 | 0 |
 | `pulldown` | do zrobienia | 7 | 0 | 7 | 1 | 6 | 0 | 1 | 0 | 0 |
 | `chest_press_machine` | do zrobienia | 5 | 0 | 5 | 1 | 2 | 0 | 3 | 0 | 0 |
-| `dip` | do zrobienia | 5 | 0 | 5 | 1 | 2 | 0 | 3 | 0 | 0 |
+| `dip` | gotowa | 5 | 0 | 5 | 1 | 2 | 0 | 3 | 0 | 0 |
 | `neck` | do zrobienia | 5 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | 0 |
 | `back_extension` | do zrobienia | 4 | 0 | 3 | 0 | 1 | 0 | 3 | 0 | 0 |
 | `cable_press` | do zrobienia | 4 | 0 | 4 | 0 | 2 | 0 | 2 | 0 | 0 |

@@ -28,7 +28,7 @@ export const FAMILIES: Family[] = [
   { id: 'bench_press', status: 'ready', label: 'Wyciskanie leżąc (ławka płaska, skośna, ujemna, podłoga)', views: ['side', 'top'], effort: 0 },
   { id: 'hinge', status: 'ready', label: 'Zawias biodrowy (martwy ciąg, RDL, dzień dobry)', views: ['side', 'front'], effort: 0 },
   { id: 'pushup_plank', status: 'planned', label: 'Pompki, deski, rollouty, ruchy w podporze', views: ['side', 'front'], effort: 4, note: 'rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy' },
-  { id: 'dip', status: 'planned', label: 'Dipy (poręcze, ławka, maszyna, kółka)', views: ['side', 'front'], effort: 2 },
+  { id: 'dip', status: 'ready', label: 'Dipy (poręcze, ławka, maszyna, kółka)', views: ['side', 'front'], effort: 2 },
   { id: 'overhead_press', status: 'planned', label: 'Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk)', views: ['side', 'front'], effort: 4 },
   { id: 'row', status: 'planned', label: 'Wiosłowanie w pochyleniu / z podparciem / jednorącz', views: ['side', 'top'], effort: 4 },
   { id: 'cable_row', status: 'planned', label: 'Wiosłowanie na linkach i maszynie, face pull', views: ['side', 'front'], effort: 3 },

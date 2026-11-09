@@ -13,3 +13,7 @@ Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą; pełna k
 | cable_press | czeka | — | — |
 | back_extension | czeka | — | — |
 | thruster | czeka | — | — |
+
+## dip (autor, 09.11.2026)
+Zrobione: włączenie (families ready, LOAD, DATA_UI + wyjątek Dip Machine), nakładka `overlay/dip.ts` (zakres → łuk łokcia), testy (figures-v2-nakladka-dip, data, mapping, strona-eksport, generator W_ZAKRESIE), BRD, pochodne.
+Zostało: recenzja niezależna (v2/karty/zestawy, v1 ławka → zastapiona), test `strona-eksport` „pelna” czerwony do czasu wpisów recenzji.
