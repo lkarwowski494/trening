@@ -30,9 +30,10 @@ export type TechniqueKind = 'limb' | 'abduction' | 'ref';
 /**
  * Prowadnica prostej ręki (09.11.2026, decyzja właściciela, wariant B studia): odcinek bark → chwyt przesunięty NA ZEWNĄTRZ ciała o `offset` cm, z kreskami na końcach (rzut z przodu).
  * Widoczność wg zgięcia łokcia: pełna do `fullDeg` (= max_lokiec_deg reguły dol_rece_proste, data/zrodla/figury-sens.json), liniowo do zera przy `zeroDeg`; w widoku błędu łamiącego regułę
- * — pełna w dolnej części ruchu (u < `errorUBelow`), żeby było widać, jak zgięta ręka odstaje od prostej. Kolor i grubość jak inne elementy nakładki (guide/error, OVERLAY_LINE_W), bez liczb na rysunku.
+ * — pełna w dolnej części ruchu (u < `errorUBelow`), żeby było widać, jak zgięta ręka odstaje od prostej; w widoku błędu to cięciwa bark–chwyt (`errorOffset` 0 — tam leżałaby prosta ręka),
+ * bo odcinek przesunięty o `offset` przecinał zgiętą rękę (recenzja niezależna 09.11.2026, ŚREDNIE; decyzja właściciela 09.11.2026 A). Kolor i grubość jak inne elementy nakładki (guide/error, OVERLAY_LINE_W), bez liczb na rysunku.
  */
-export const OVERLAY_ARM_REF = { offset: 8, fullDeg: 8, zeroDeg: 20, errorUBelow: 0.5, tick: 1.8 } as const;
+export const OVERLAY_ARM_REF = { offset: 8, errorOffset: 0, fullDeg: 8, zeroDeg: 20, errorUBelow: 0.5, tick: 1.8 } as const;
 /** Punkt szkieletu, przez który prowadzi linia odniesienia E3 (ręka/noga: strona pracująca rysunku, w rzucie z góry R). */
 export type RefPoint = 'grip' | 'wrist' | 'elbow' | 'shoulder' | 'hip' | 'knee' | 'ankle' | 'toe' | 'pelvis' | 'shoulderC' | 'head';
 /**
@@ -119,7 +120,7 @@ export function refPoint(sk: Skeleton, side: Side, p: RefPoint): V3 {
   }
 }
 /** Linia odniesienia E3 w rzucie (cm rysunku); null, gdy rzut nie ma sensu (pion/poziom w rzucie z góry) albo segment jest w rzucie punktem (< OVERLAY_ARM_MIN_PROJ cm). */
-export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec): [V2, V2] | null {
+export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec, offset: number = OVERLAY_ARM_REF.offset): [V2, V2] | null {
   if (ref.shape === 'segment') {
     const a = proj(refPoint(sk, side, ref.from), view), b = proj(refPoint(sk, side, ref.to), view); const d: V2 = [b[0] - a[0], b[1] - a[1]]; const l = Math.hypot(d[0], d[1]);
     if (l < OVERLAY_ARM_MIN_PROJ) return null; return [a, [b[0] + d[0] / l * OVERLAY_EXTEND, b[1] + d[1] / l * OVERLAY_EXTEND]];
@@ -127,7 +128,7 @@ export function refGeom2D(sk: Skeleton, side: Side, view: View, ref: RefSpec): [
   if (ref.shape === 'parallel') {
     if (view !== 'front') return null;
     const a = proj(refPoint(sk, side, ref.from), view), b = proj(refPoint(sk, side, ref.to), view), d: V2 = [b[0] - a[0], b[1] - a[1]], l = Math.hypot(d[0], d[1]); if (l < OVERLAY_ARM_MIN_PROJ) return null;
-    const n: V2 = [-d[1] / l, d[0] / l], c = proj(sk.pelvis, view), out = n[0] * ((a[0] + b[0]) / 2 - c[0]) >= 0 ? 1 : -1, o: V2 = [n[0] * out * OVERLAY_ARM_REF.offset, n[1] * out * OVERLAY_ARM_REF.offset];
+    const n: V2 = [-d[1] / l, d[0] / l], c = proj(sk.pelvis, view), out = n[0] * ((a[0] + b[0]) / 2 - c[0]) >= 0 ? 1 : -1, o: V2 = [n[0] * out * offset, n[1] * out * offset];
     return [[a[0] + o[0], a[1] + o[1]], [b[0] + o[0], b[1] + o[1]]];
   }
   if (view === 'top') return null; const p = proj(refPoint(sk, side, ref.through), view);
@@ -144,8 +145,8 @@ export function armGuideAlpha(elbowDeg: number, danger: boolean, u: number | und
 }
 /** Jeden kształt prowadnicy: odcinek z kreskami na końcach (jedna łamana — liczy się jako jedna linia nakładki); null, gdy niewidoczna w tej klatce. */
 function parallelGuide(sk: Skeleton, view: View, d: TechniqueDef, ctx: OverlayCtx): Shape | null {
-  if (!d.ref) return null; const g = refGeom2D(sk, ctx.side, view, d.ref); const e = techniqueGeom('limb', sk, ctx.side, 'elbow'); if (!g || !e) return null;
-  const danger = ctx.danger(d.rule), alpha = armGuideAlpha(e.sweepDeg, danger, ctx.u); if (alpha <= 0.02) return null;
+  if (!d.ref) return null; const danger = ctx.danger(d.rule); const g = refGeom2D(sk, ctx.side, view, d.ref, danger ? OVERLAY_ARM_REF.errorOffset : OVERLAY_ARM_REF.offset); const e = techniqueGeom('limb', sk, ctx.side, 'elbow'); if (!g || !e) return null;
+  const alpha = armGuideAlpha(e.sweepDeg, danger, ctx.u); if (alpha <= 0.02) return null;
   const [s, t] = g, dx = t[0] - s[0], dy = t[1] - s[1], l = Math.hypot(dx, dy), k = OVERLAY_ARM_REF.tick / l, n: V2 = [-dy * k, dx * k];
   return { k: 'poly', pts: [[s[0] - n[0], s[1] - n[1]], [s[0] + n[0], s[1] + n[1]], s, t, [t[0] - n[0], t[1] - n[1]], [t[0] + n[0], t[1] + n[1]]], stroke: danger ? 'error' : 'guide', w: OVERLAY_LINE_W, a: alpha / 2.2, close: false, z: 4000, id: d.id + 'Bracket' };
 }

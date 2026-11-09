@@ -49,7 +49,7 @@ describe('prowadnica prostej ręki — dane i zakres (09.11.2026)', () => {
   });
   test('progi: przesunięcie 8 cm, pełna widoczność do max_lokiec_deg reguły (jedno miejsce), zero przy 20°', () => {
     expect(sens.reguly.dol_rece_proste.parametry.max_lokiec_deg).toBe(OVERLAY_ARM_REF.fullDeg); expect(OVERLAY_ARM_REF.fullDeg).toBe(8);
-    expect([OVERLAY_ARM_REF.offset, OVERLAY_ARM_REF.zeroDeg, OVERLAY_ARM_REF.errorUBelow]).toEqual([8, 20, 0.5]);
+    expect([OVERLAY_ARM_REF.offset, OVERLAY_ARM_REF.errorOffset, OVERLAY_ARM_REF.zeroDeg, OVERLAY_ARM_REF.errorUBelow]).toEqual([8, 0, 20, 0.5]);
   });
 });
 
@@ -95,12 +95,25 @@ describe('prowadnica prostej ręki — geometria (cm rysunku)', () => {
 });
 
 describe('prowadnica prostej ręki — widok „Pokaż częsty błąd” (pu.partial, skrócony zakres)', () => {
+  /* recenzja niezależna 09.11.2026 (audytor, ŚREDNIE) i decyzja właściciela 09.11.2026 (A — poprawka teraz): w widoku błędu czerwona prowadnica przesunięta o 8 cm
+     przecinała zgiętą rękę (u = 0,25 i 0,45; przy u = 0 dotykała łokcia). Teraz w widoku błędu to cięciwa bark–chwyt (OVERLAY_ARM_REF.errorOffset = 0 — tam leżałaby prosta ręka),
+     a zgięta ręka wygina się od niej na zewnątrz: łokieć i nadgarstek po jednej stronie odcinka, łokieć wyraźnie od niego odstaje. */
+  test('nie przecina ręki także w widoku błędu (09.11.2026): w każdej klatce z widoczną prowadnicą łokieć i nadgarstek leżą po jednej stronie odcinka, łokieć dalej niż 3 cm', () => {
+    for (const k of ['Pull Up', 'Chin Up']) { const e = errOf(k), s = spec(k), side = measuredSide(s); let n = 0;
+      for (const u of US.filter(x => bracket(k, x, 'front', e).length)) { n++; const A = frameAt(s, u, e).sk.arms[side], [p, q] = seg(bracket(k, u, 'front', e)[0]);
+        const sgn = (pt: [number, number]) => Math.sign((q[0] - p[0]) * (pt[1] - p[1]) - (q[1] - p[1]) * (pt[0] - p[0]));
+        const el = proj(A.elbow, 'front'), wr = proj(A.wrist, 'front');
+        expect([k, u, distToLine(el, p, q) > 3, sgn(el) !== 0 && sgn(el) === sgn(wr)]).toEqual([k, u, true, true]); }
+      expect(n).toBeGreaterThan(1); }
+  });
   test('Pull Up i Chin Up: błąd łamie regułę ⇒ element w roli error na dole (u < 0,5) mimo zgiętego łokcia; na górze go nie ma; zgięta ręka odstaje od prostej (łokieć dalej od odcinka niż w normie)', () => {
     for (const k of ['Pull Up', 'Chin Up']) { const e = errOf(k);
       for (const u of US) { const b = bracket(k, u, 'front', e); if (u < OVERLAY_ARM_REF.errorUBelow) expect([k, u, b.length, b[0]?.stroke, b[0]?.a]).toEqual([k, u, 1, 'error', 1 / 2.2]); else expect([k, u, b.length]).toEqual([k, u, 0]); }
       expect(elbow(k, 0, e)).toBeGreaterThan(OVERLAY_ARM_REF.zeroDeg); /* bez reguły błędu element by tu zgasł — widoczny wyłącznie dzięki trybowi błędu */
       expect(bracket(k, 0, 'front').length).toBe(1); expect(bracket(k, 0, 'front', e)[0].stroke).not.toBe(bracket(k, 0)[0].stroke);
-      const A = frameAt(spec(k), 0, e).sk.arms[measuredSide(spec(k))], [p, q] = seg(bracket(k, 0, 'front', e)[0]); expect([k, distToLine(proj(A.elbow, 'front'), p, q) < OVERLAY_ARM_REF.offset]).toEqual([k, true]); }
+      /* 09.11.2026: w widoku błędu odcinek to cięciwa bark–chwyt (errorOffset 0 — miejsce prostej ręki), zgięty łokieć odstaje od niej (było: odcinek przesunięty o 8 cm, przecinał rękę) */
+      const A = frameAt(spec(k), 0, e).sk.arms[measuredSide(spec(k))], [p, q] = seg(bracket(k, 0, 'front', e)[0]);
+      expect([k, +distToLine(proj(A.shoulder, 'front'), p, q).toFixed(6), +distToLine(proj(A.grip, 'front'), p, q).toFixed(6), distToLine(proj(A.elbow, 'front'), p, q) > 3]).toEqual([k, 0, 0, true]); }
   });
   test('błąd, który nie łamie reguły dol_rece_proste (np. bujanie), nie zapala koloru ani nie pokazuje elementu przy zgiętej ręce', () => {
     const s = spec('Pull Up'); const f = frameAt(s, 0, errOf('Pull Up')).sk;
