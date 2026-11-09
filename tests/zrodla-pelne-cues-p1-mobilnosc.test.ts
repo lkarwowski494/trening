@@ -11,6 +11,7 @@ import * as path from 'path';
 import { CUE_DATA, CUE_SECTIONS } from '@/lib/cues';
 import { CUE_FULL } from './zrodla-pelne';
 import P1 from './fixtures/cues-p1-mobilnosc.json';
+import A3 from './fixtures/cues-a3-przyciaganie.json';
 
 const root = path.join(__dirname, '..');
 const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
@@ -98,7 +99,8 @@ describe('P1 mobilność: zdania', () => {
     expect(P1.zdania.length).toBe(76);
     for (const c of idyP1Nowe()) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0]).toEqual([c, 'string', 'string', true, true]);
     expect(idyP1Nowe().size).toBe(76);
-    for (const c of P1.pominiete_zdania) expect([c, c in pl, c in en]).toEqual([c, false, false]);
+    /* zdanie pominięte w P1 (02.11.2026) może wejść w późniejszej partii z nowymi źródłami (A3 przyciąganie, 09.11.2026: rotator_cuff.cableSetup — badania W2 dały drugą organizację; reguła ≥ 2 organizacji pilnowana w tests/zrodla-pelne-cues-a3-przyciaganie.test.ts) */
+    for (const c of P1.pominiete_zdania.filter(c => !A3.zdania.includes(c))) expect([c, c in pl, c in en]).toEqual([c, false, false]);
     expect(P1.pominiete_zdania.length).toBe(48);
   });
 
