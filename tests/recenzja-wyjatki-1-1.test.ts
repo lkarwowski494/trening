@@ -67,12 +67,13 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
     const spy = jest.spyOn(lista, 'includes').mockImplementation((x: string) => x !== 'pull_up' && Array.prototype.indexOf.call(lista, x) >= 0);
     try { expect(familyReviewed('pull_up')).toBe(false); expect(figureSpec('Chin Up')).not.toBeNull(); expect(shownFigureSpec('Chin Up')).toBeNull(); }
     finally { spy.mockRestore(); }
-    expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X) */
+    /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X); 09.11.2026 (koordynator, wariant A, partia P1): squat i hinge na liście v2 do recenzji różnicy doboru — figura ukryta, po zdjęciu wyjątku znów pokazana */
+    expect([WYJ.v2.includes('squat'), shownFigureSpec('Back Squat') === null]).toEqual([WYJ.v2.includes('squat'), WYJ.v2.includes('squat')]);
   });
   test('figureWithheld: figura v1 „zastąpiona” wstrzymana dokładnie wtedy, gdy jej rodzina v2 nie ma aktualnej recenzji; od 01.11.2026 (squat, bench_press, hinge zrecenzowane) Back Squat i Deadlift pokazują v2; v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
     expect(FIG_DATA.replaced).toContain('Back Squat');
     for (const k of FIG_DATA.replaced) expect([k, figureWithheld(k)]).toEqual([k, !familyReviewed(figureSpec(k)!.family)]);
-    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([false, false]);
+    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([WYJ.v2.includes('squat'), WYJ.v2.includes('hinge')]); /* 09.11.2026 (P1): wstrzymane, dopóki squat/hinge są na liście v2 (recenzja różnicy doboru) */
     expect([figureWithheld('Pull Up'), figureWithheld('Crunch'), figureWithheld('Ćwiczenie własne')]).toEqual([false, false, false]);
   });
 });
@@ -88,7 +89,9 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
   test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'] });
+    const ocz = ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'].filter(f => !WYJ.v2.includes(f)); /* 09.11.2026 (koordynator, wariant A, P1): squat i hinge do recenzji różnicy doboru (lista v2 wyjątków) */
+    expect(WYJ.v2).toEqual(['squat', 'hinge']);
+    expect(run('')).toEqual({ v2: ocz, deadlift: true, fam: ocz });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";
