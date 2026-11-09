@@ -18,6 +18,7 @@ const LOAD: Record<string, () => PoseFile> = {
   pulldown: () => require('./poses/pulldown.json'),
   shrug: () => require('./poses/shrug.json'),
   hip_abd_add: () => require('./poses/hip_abd_add.json'),
+  leg_machine: () => require('./poses/leg_machine.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -82,6 +83,10 @@ export const DATA_UI: Record<string, DataUi> = {
   hip_abd_add: { names: { first: 'Rozsuwanie', second: 'Powrót' }, lowerFirst: false, joints: ['hip'],
     exceptions: { 'Hip Abduction': { hideAngle: true }, 'Cable Hip Abduction': { hideAngle: true }, 'Lateral Band Walk': { hideAngle: true }, 'Monster Walk': { hideAngle: true },
       'Hip Adduction': { hideAngle: true, names: { first: 'Ściąganie', second: 'Powrót' } }, 'Cable Hip Adduction': { hideAngle: true, names: { first: 'Ściąganie', second: 'Powrót' } } } },
+  /* leg_machine (partia 3, 09.11.2026): maszyny przysiadu (Hack, Pendulum, Lying Machine, Belt Squat) — u = 0 góra, u = 1 dół: opuszczanie 2 s, wstawanie 1 s (jak przysiad);
+   * suwnica (Leg Press, Single Leg Press) — u = 0 nogi zgięte, u = 1 platforma wypchnięta: wypychanie 1 s, opuszczanie 2 s. Staw: kolano. */
+  leg_machine: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
+    exceptions: { 'Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Single Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false } } },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true } } },

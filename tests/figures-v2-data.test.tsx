@@ -13,6 +13,7 @@ import {
   errorDefOf, dataErrorId, isDataError, dataErrorIndex, POSE_FAMILIES, poseKeys, poseFile, poseDataFor, hasPoseFile, dataUiFor, DATA_UI, ISOMETRIC, assignAll, FAMILY, type FigError,
 } from '@/lib/figures/v2';
 import { errorsOf, errorText, GAP_CUES, hasTechnique, legendOf } from '@/lib/figures/v2/ui';
+import { EXERCISE_VIEWS } from '@/lib/figures/v2/families';
 import { cueText, cueDict } from '@/lib/cues';
 import { metricFor } from '@/lib/seed';
 import { applyLang } from '@/lib/i18n';
@@ -33,7 +34,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
   test('każda rodzina z plikiem póz: status „gotowa”, wpis DATA_UI, ćwiczenia pliku należą do rodziny, spec z danych (nie z rigu); pull_up ma 11 ćwiczeń', () => {
     expect(DATA_KEYS.filter(([f]) => f === 'pull_up').length).toBe(11);
     for (const f of POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]); expect(poseFile(f)!.rodzina).toBe(f); }
-    for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(FAMILY[f as keyof typeof FAMILY].views); }
+    for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(EXERCISE_VIEWS[k]?.views ?? FAMILY[f as keyof typeof FAMILY].views); } /* widoki ćwiczenia nadpisują rodzinę (suwnice tylko z boku, families.ts EXERCISE_VIEWS) */
   });
   test('ćwiczenia rodziny bez danych (Muscle Up, Rope Climb) i spoza katalogu: brak figury v2 (zachowanie jak dotąd), sekcja Technika nie pojawia się z ich powodu', () => {
     for (const k of ['Muscle Up', 'Rope Climb', 'Ćwiczenie własne']) { expect([k, figureSpec(k)]).toEqual([k, null]); }
@@ -45,13 +46,14 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       const ex = ui.exceptions?.[k]; /* wyjątek ćwiczenia (partia 3, 09.11.2026: Straight Arm Pulldown — łokieć prosty, mierzony bark shElev) */
       expect([k, s.lowerFirst]).toEqual([k, ex?.lowerFirst ?? ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, (ex?.joints ?? ui.joints)[0]]);
-      const nm = ex?.names ?? ui.names; const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[nm.first, 1000], ['Pauza', 500], [nm.second, 2000], ['Pauza', 500]]);
+      const nm = ex?.names ?? ui.names; const [msA, msB] = s.lowerFirst ? [2000, 1000] : [1000, 2000]; /* leg_machine (09.11.2026): maszyny przysiadu zaczynają od opuszczania (2 s) */
+      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[nm.first, msA], ['Pauza', 500], [nm.second, msB], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (ex?.hideAngle) { /* kąt ukryty na rysunku (hip_abd_add, partia 3, 09.11.2026: podpis „zgięcie biodra” nie opisuje odwodzenia) — kierunek pomiaru nie jest pokazywany */ }
       else if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
       /* partia 3, 09.11.2026: Straight Arm Pulldown — ręka prosta schodzi z góry do ud, uniesienie ramienia (shElev) maleje; Middle Back Shrug — łopatki ściągają się, wysunięcie barków (protract) maleje */
-      else if (f === 'triceps' || k === 'Straight Arm Pulldown' || k === 'Middle Back Shrug') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      else if (f === 'triceps' || ['Straight Arm Pulldown', 'Middle Back Shrug', 'Leg Press', 'Single Leg Press'].includes(k)) { /* Leg Press, Single Leg Press (09.11.2026): u = 0 nogi zgięte, u = 1 platforma wypchnięta — zgięcie kolana maleje */ expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
