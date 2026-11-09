@@ -11431,6 +11431,102 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "wykrok_postawa",
+   "pl": "stań w wykroku (jedna stopa z przodu, druga z tyłu)",
+   "tylko": [
+    "hu",
+    "nl"
+   ],
+   "znaczenie": "pozycja wykroczna: jedna stopa z przodu, druga z tyłu (split stance) — NIE rozkrok na boki; recenzja lokalizacji B2, 09.11.2026 (decyzja właściciela 09.11.2026, L-123 wariant A: lista fałszywych przyjaciół)",
+   "kanon": null,
+   "wykrywaj": "w wykroku",
+   "wyklucz": null,
+   "jezyki": {
+    "hu": {
+     "zalecany": "kitöréses állás",
+     "zakazane": [
+      {
+       "wzorzec": "terpesz",
+       "powod": "„terpesz” to rozkrok na boki (szeroka postawa: sumo, swing), nie pozycja z jedną stopą z przodu"
+      }
+     ],
+     "pewnosc": "niska",
+     "uwaga": "do native speakera: „kitöréses állás” albo „lépőállás”"
+    },
+    "nl": {
+     "zalecany": "lunge-houding",
+     "zakazane": [
+      {
+       "wzorzec": "spreidstand",
+       "powod": "„spreidstand” to stopy rozstawione na boki, nie pozycja z jedną stopą z przodu"
+      }
+     ],
+     "pewnosc": "niska",
+     "uwaga": "do native speakera: „lunge-houding” albo „uitvalspas-houding”"
+    }
+   }
+  },
+  {
+   "id": "przodostopie",
+   "pl": "oparta na palcach / przodostopie (ball of the foot)",
+   "tylko": [
+    "sv"
+   ],
+   "znaczenie": "oparcie stopy na przodostopiu (palce i śródstopie) — NIE cała podeszwa; recenzja lokalizacji B2, 09.11.2026 (decyzja właściciela 09.11.2026, L-123 wariant A: lista fałszywych przyjaciół)",
+   "kanon": null,
+   "wykrywaj": "oparta na palcach|przodostopi",
+   "wyklucz": null,
+   "jezyki": {
+    "sv": {
+     "zalecany": "på tå",
+     "zakazane": [
+      {
+       "wzorzec": "fotblad",
+       "powod": "„fotblad” to cała podeszwa, a chodzi o oparcie na przodostopiu"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "do native speakera: „på tå” albo „på trampdynan”"
+    }
+   }
+  },
+  {
+   "id": "slidery",
+   "pl": "ślizgacze (krążki ślizgowe pod pięty)",
+   "tylko": [
+    "ms",
+    "ro"
+   ],
+   "znaczenie": "krążki ślizgowe pod pięty w ćwiczeniu na ślizgaczach — nie zjeżdżalnia ani część techniczna; recenzja lokalizacji B2, 09.11.2026 (decyzja właściciela 09.11.2026, L-123 wariant A: lista fałszywych przyjaciół)",
+   "kanon": null,
+   "wykrywaj": "ślizgacz",
+   "wyklucz": null,
+   "jezyki": {
+    "ms": {
+     "zalecany": "slider",
+     "zakazane": [
+      {
+       "wzorzec": "pelungsur",
+       "powod": "„pelungsur” to przede wszystkim zjeżdżalnia (plac zabaw), nie krążek ślizgowy"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "do native speakera: „slider” albo „cakera gelongsor”"
+    },
+    "ro": {
+     "zalecany": "discuri de alunecare",
+     "zakazane": [
+      {
+       "wzorzec": "glisoar",
+       "powod": "„glisor” to część techniczna (suwak, prowadnica), nie krążek ślizgowy"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "do native speakera: „discuri de alunecare” albo „sliders”"
+    }
+   }
   }
  ]
 }

@@ -363,3 +363,29 @@ describe('04.11.2026, recenzja lokalizacji T1 (delt_raise): uchwyt, nachwyt, uda
     expect([zal('uchwyt', 'cs'), zal('uchwyt', 'es'), zal('uchwyt', 'nl'), zal('sztanga', 'sl'), zal('sztanga', 'ro')]).toEqual(['rukojeť', 'agarre', 'handgreep', 'palica', 'halteră']);
   });
 });
+
+/* 09.11.2026, recenzja lokalizacji B2 (figury nóg), decyzja właściciela 09.11.2026 (lekcja L-123 nachwyt, wariant A): lista fałszywych przyjaciół w słowniku */
+describe('09.11.2026, recenzja lokalizacji B2: pozycja wykroczna hu/nl, przodostopie sv, slidery ms/ro', () => {
+  const nazwy = (kod: string, pl: string, tl: string) => (S.sprawdz(slownik, kod, pl, tl) as { pojecie: string }[]).map(n => n.pojecie);
+  const spl = 'Stań w wykroku: jedna stopa z przodu, druga z tyłu, oparta na palcach.', sl = 'Połóż się na plecach, kolana ugięte, pięty na ślizgaczach.';
+  test('wykrok: hu „terpesz”, nl „spreidstand” (rozkrok na boki) są wykrywane; kitöréses/lunge-houding przechodzą', () => {
+    expect(nazwy('hu', spl, 'Állj terpeszállásba: egyik lábad elöl, a másik hátul.')).toEqual(['wykrok_postawa']);
+    expect(nazwy('nl', spl, 'Ga in spreidstand staan: één voet voor, de andere achter je.')).toEqual(['wykrok_postawa']);
+    expect(nazwy('hu', spl, 'Állj kitöréses állásba: egyik lábad elöl, a másik hátul.')).toEqual([]);
+    expect(nazwy('nl', spl, 'Ga in een lunge-houding staan: één voet voor, de andere achter je.')).toEqual([]);
+    expect(nazwy('hu', 'Stopy szeroko, w pozycji sumo.', 'Terpeszállás, sumo.')).toEqual([]); /* terpesz jest poprawny dla szerokiej postawy */
+  });
+  test('przodostopie sv: „fotblad” jest wykrywany, „trampdyna”/„på tå” przechodzą', () => {
+    expect(nazwy('sv', spl, 'Stå i utfallsställning, den andra bak på fotbladet.')).toEqual(['przodostopie']);
+    expect(nazwy('sv', spl, 'Stå i utfallsställning, den andra bak på tå.')).toEqual([]);
+  });
+  test('slidery: ms „pelungsur” (zjeżdżalnia), ro „glisoare” (część techniczna) są wykrywane', () => {
+    expect(nazwy('ms', sl, 'tumit di atas pelungsur.')).toEqual(['slidery']);
+    expect(nazwy('ro', sl, 'și călcâiele pe glisoare.')).toEqual(['slidery']);
+    expect(nazwy('ms', sl, 'tumit di atas slider.')).toEqual([]); expect(nazwy('ro', sl, 'și călcâiele pe discurile de alunecare.')).toEqual([]);
+  });
+  test('teksty B2 (split.setup, slcurl.*) w hu/nl/sv/ms/ro nie zawierają zakazanych słów', () => {
+    for (const [kod, re] of [['hu', /terpesz/i], ['nl', /spreidstand/i], ['sv', /fotblad/i], ['ms', /pelungsur/i], ['ro', /glisoar/i]] as const)
+      for (const id of ['split.setup', 'slcurl.setup', 'slcurl.move']) expect([kod, id, re.test((cueDict(kod) as Record<string, string>)[id])]).toEqual([kod, id, false]);
+  });
+});

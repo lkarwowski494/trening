@@ -627,6 +627,6 @@
  "lunge2.mis.shallow": "Turun kurang dalam — lutut belakang masih jauh dari lantai.",
  "slcurl.move": "Angkat pinggul, luruskan kaki ke depan, lalu tarik tumit kembali — pinggul tetap di atas sepanjang gerakan.",
  "slcurl.setup": "Berbaring telentang, lutut ditekuk, tumit di atas slider.",
- "split.setup": "Berdiri dengan posisi kaki depan-belakang: satu kaki di depan, kaki lainnya di belakang, bertumpu pada ujung telapak kaki.",
- "stepup.mis.drop": "Menjatuhkan diri dari box, bukan turun dengan terkontrol."
+ "split.setup": "Berdiri dengan satu kaki di depan dan satu di belakang, bertumpu pada ujung telapak kaki.",
+ "stepup.mis.drop": "Menjatuhkan diri dari kotak, bukan turun dengan terkontrol."
 }

@@ -101,6 +101,9 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `blokowanie_kolan_przeprost` | blokowanie kolan w przeproście | błąd albo wskazówka na prasie do nóg: blokowanie kolan w przeproście na górze; pełny wyprost sam nie jest błędem (recenzja lokalizacji A2, 08.11.2026; ta sama logika co gwałtowne blokowanie łokci z A1) |
 | `lopatki_w_dol_i_do_tylu` | łopatki w dół i do tyłu | stała kolejność wskazówki o ustawieniu łopatek (ściągnięcie w dół i do tyłu); jedno brzmienie ułatwia przekład na 33 języki — recenzja lokalizacji A3, 09.11.2026 |
 | `przodem_do_wyciagu` | stań przodem/bokiem do wyciągu | ustawienie przy wyciągu (linka, bloczek) — nie „maszyna”, bo maszyna z prowadnicą to w aplikacji osobny rodzaj sprzętu (pojęcia maszyna i wyciag); recenzja lokalizacji A3, 09.11.2026 |
+| `wykrok_postawa` | stań w wykroku (jedna stopa z przodu, druga z tyłu) | pozycja wykroczna: jedna stopa z przodu, druga z tyłu (split stance) — NIE rozkrok na boki; recenzja lokalizacji B2, 09.11.2026 (decyzja właściciela 09.11.2026, L-123 wariant A: lista fałszywych przyjaciół) |
+| `przodostopie` | oparta na palcach / przodostopie (ball of the foot) | oparcie stopy na przodostopiu (palce i śródstopie) — NIE cała podeszwa; recenzja lokalizacji B2, 09.11.2026 (decyzja właściciela 09.11.2026, L-123 wariant A: lista fałszywych przyjaciół) |
+| `slidery` | ślizgacze (krążki ślizgowe pod pięty) | krążki ślizgowe pod pięty w ćwiczeniu na ślizgaczach — nie zjeżdżalnia ani część techniczna; recenzja lokalizacji B2, 09.11.2026 (decyzja właściciela 09.11.2026, L-123 wariant A: lista fałszywych przyjaciół) |
 
 ## Terminy zalecane (rdzeń)
 
@@ -187,6 +190,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `hu` | `faza_pauza` | szüneteltet | to polecenie przycisku pauzy treningu, a faza jest rzeczownikiem |
 | `hu` | `plan_dozywotni` | örök(?!ös\|re) | „Örök” znaczy wieczny (poetycko); plan bez terminu to „örökös” |
 | `hu` | `rysunek_zdanie` | (?<![\p{L}])ábra | w pozostałych podpisach rysunku ćwiczenia plik hu używa „rajz”; „ábra” to wykres / rycina w publikacji |
+| `hu` | `wykrok_postawa` | terpesz | „terpesz” to rozkrok na boki (szeroka postawa: sumo, swing), nie pozycja z jedną stopą z przodu |
 | `ro` | `przerwa` | recrea[țt]i | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `ro` | `przerwa_robocza` | pauz[ăa] de lucru | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ro` | `dzien_wolny` | pauz | „pauză” to pauza, nie dzień wolny („zi liberă”) |
@@ -196,6 +200,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ro` | `faza_pauza` | oprire | brzmi jak przycisk stop, a nie zatrzymanie w pozycji |
 | `ro` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `ro` | `faza_ruchu` | ^\s*trac[țţ]iun[ei]?\s*$ | „tracțiuni” to w ro nazwa ćwiczenia (podciąganie na drążku); faza animacji to rzeczownik odczasownikowy jak Coborâre, Împingere (przegląd API 31.10.2026) |
+| `ro` | `slidery` | glisoar | „glisor” to część techniczna (suwak, prowadnica), nie krążek ślizgowy |
 | `bg` | `przerwa_robocza` | работна почивка | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `bg` | `nachwyt` | пронир | podręcznikowe; w pozostałych kartach jest „прав хват” |
 | `hr` | `przerwa` | pauz | „pauza” to pauza treningu, nie przerwa między seriami (odmor) |
@@ -280,11 +285,13 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `nl` | `faza_pauza` | pauzeren | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `nl` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `nl` | `zakres_powtorzen` | interval | „interval” to trening interwałowy; zakres to „bereik” |
+| `nl` | `wykrok_postawa` | spreidstand | „spreidstand” to stopy rozstawione na boki, nie pozycja z jedną stopą z przodu |
 | `sv` | `przerwa` | (?<![\p{L}])rast(?![\p{L}]) | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `sv` | `przerwa_robocza` | arbetspaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sv` | `faza_pauza` | pausa | bezokolicznik/polecenie przycisku, a faza jest rzeczownikiem |
 | `sv` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `sv` | `rysunek_zdanie` | (?<![\p{L}])bild | w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek |
+| `sv` | `przodostopie` | fotblad | „fotblad” to cała podeszwa, a chodzi o oparcie na przodostopiu |
 | `da` | `przerwa` | frikvarter | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `da` | `przerwa_robocza` | arbejdspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `da` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
@@ -323,6 +330,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ms` | `animacja_ruchu` | lukisan pergerakan | termin marketingowy w opisie sklepu to „animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `ms` | `rysunek_zdanie` | lukisan | rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `ms` | `funkcja_aplikacji` | (?<![\p{L}])fungsi(?![\p{L}]) | „fungsi” to funkcja matematyczna/techniczna; funkcja aplikacji to „ciri” (czasownik „berfungsi” = działa jest poprawny) |
+| `ms` | `slidery` | pelungsur | „pelungsur” to przede wszystkim zjeżdżalnia (plac zabaw), nie krążek ślizgowy |
 | `vi` | `przerwa` | giải lao | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `vi` | `przerwa_robocza` | nghỉ giải lao\|nghỉ làm việc | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `vi` | `pozycja_posrednia` | đang diễn ra | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
@@ -355,7 +363,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
-## Do potwierdzenia przez native speakera (153)
+## Do potwierdzenia przez native speakera (155)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -380,6 +388,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `hu` | `lokcie_waskie` | szűk könyök | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hu` | `pozycja_posrednia` | Köztes helyzet | Szyk numeru: „Köztes helyzet 1” czy „1. köztes helyzet”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
 | `hu` | `lawka_skosna_glowa_w_dol` | negatív pad | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): negatív pad czy lefelé lejtő pad |
+| `hu` | `wykrok_postawa` | kitöréses állás | do native speakera: „kitöréses állás” albo „lépőállás” |
 | `ro` | `do_upadku` | Până la epuizare | w siłowniach też „până la cedare”; do potwierdzenia |
 | `ro` | `asekuracja` | Siguranță și asigurare | do potwierdzenia przez native speakera |
 | `ro` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
@@ -459,6 +468,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `it` | `zegarek` | orologio | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `nl` | `zegarek` | horloge | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `nl` | `lawka_skosna_glowa_w_dol` | declinebank | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): declinebank czy afhellende bank |
+| `nl` | `wykrok_postawa` | lunge-houding | do native speakera: „lunge-houding” albo „uitvalspas-houding” |
 | `sv` | `zegarek` | klocka | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `sv` | `lawka_skosna_glowa_w_dol` | lutande bänk | do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lutande bänk z dopiskiem o głowie czy declinebänk |
 | `da` | `ledzwie` | lænd | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
