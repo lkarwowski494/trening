@@ -25,7 +25,32 @@
    "broda_nad_drazkiem": "karta własna Chin Up ma cu.pull (łokcie w dół, pełny wyprost rąk) bez celu „broda nad drążkiem” (pu.pull); dopisanie zdania do karty własnej unieważnia jej recenzję i wraz ze skrótem v1 chowa kartę z rysunkiem (lib/figures/data.json) — do osobnej poprawki z recenzją niezależną; poziom NISKIE (audyt 04.11.2026, #12)"
   },
   "Barbell Hack Squat": {
-   "zejscie_biodra_i_kolana": "zapis badacza przy przypisaniu zestawu (data/zrodla/wskazowki-ogolne.json, przypisania): sztanga za nogami — bez dl.close/sq.down; sq.down („cofając biodra”) opisuje inny ruch niż ten przysiad; zdanie ruchu wariantu do napisania ze źródłami i tłumaczeniami (recenzja niezależna 04.11.2026, #1)"
+   "zejscie_biodra_i_kolana": "zapis badacza przy przypisaniu zestawu (data/zrodla/wskazowki-ogolne.json, przypisania): sztanga za nogami — bez dl.close/sq.down; sq.down („cofając biodra”) opisuje inny ruch niż ten przysiad; zdanie ruchu wariantu do napisania ze źródłami i tłumaczeniami (recenzja niezależna 04.11.2026, #1)",
+   "kolana_nad_stopami": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)",
+   "udo_rownolegle": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
+  },
+  "Bodyweight Squat": {
+   "plecy_neutralne": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)",
+   "udo_rownolegle": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
+  },
+  "Squat with Bands": {
+   "udo_rownolegle": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
+  },
+  "Squat with Chains": {
+   "udo_rownolegle": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
+  },
+  "Overhead Squat": {
+   "plecy_neutralne": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)",
+   "kolana_nad_stopami": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)",
+   "zejscie_biodra_i_kolana": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)",
+   "udo_rownolegle": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
+  },
+  "Dumbbell Squat": {
+   "plecy_neutralne": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)",
+   "udo_rownolegle": "karta własna P1: rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
+  },
+  "Clean Deadlift": {
+   "wyprost_na_gorze": "karta własna P1 kończy na „aż minie kolana” (cdl.move); wyprost na górze potwierdza tylko Catalyst 176 („finish extending the legs into a standing position”) — jedno źródło, bez zdania; rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"
   }
  },
  "ogolne_bez_ruchu": {
