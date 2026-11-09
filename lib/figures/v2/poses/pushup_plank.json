@@ -3787,6 +3787,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "pushup_plank",
    "cwiczenie": "Plyo Push-Up",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -4668,13 +4669,13 @@
     {
      "u": 0,
      "miednica": [
-      -21,
-      88.2,
+      0,
+      93.8,
       0
      ],
-     "pochylenieTulowia": 99.6,
+     "pochylenieTulowia": 106.2,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 74.7,
+     "pochylenieGlowy": 79.6,
      "nogi": {
       "R": {
        "kostka": [
@@ -4708,7 +4709,7 @@
      "rece": {
       "R": {
        "chwyt": [
-        56.1,
+        75.8,
         22.5,
         20
        ],
@@ -4720,7 +4721,7 @@
       },
       "L": {
        "chwyt": [
-        56.1,
+        75.8,
         22.5,
         -20
        ],
@@ -4735,13 +4736,13 @@
     {
      "u": 0.1,
      "miednica": [
-      -2.6,
-      93.7,
+      13.7,
+      91.5,
       0
      ],
-     "pochylenieTulowia": 107.8,
+     "pochylenieTulowia": 105.2,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 80.9,
+     "pochylenieGlowy": 78.9,
      "nogi": {
       "R": {
        "kostka": [
@@ -4775,7 +4776,7 @@
      "rece": {
       "R": {
        "chwyt": [
-        75.6,
+        92.5,
         22.5,
         20
        ],
@@ -4787,7 +4788,7 @@
       },
       "L": {
        "chwyt": [
-        75.6,
+        92.5,
         22.5,
         -20
        ],
@@ -4802,13 +4803,13 @@
     {
      "u": 0.2,
      "miednica": [
-      16.4,
-      90.5,
+      25.9,
+      84.9,
       0
      ],
-     "pochylenieTulowia": 105.7,
+     "pochylenieTulowia": 99.1,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 79.2,
+     "pochylenieGlowy": 74.3,
      "nogi": {
       "R": {
        "kostka": [
@@ -4842,7 +4843,7 @@
      "rece": {
       "R": {
        "chwyt": [
-        97.7,
+        108.4,
         22.5,
         20
        ],
@@ -4854,7 +4855,7 @@
       },
       "L": {
        "chwyt": [
-        97.7,
+        108.4,
         22.5,
         -20
        ],
@@ -4869,13 +4870,13 @@
     {
      "u": 0.3,
      "miednica": [
-      31.9,
-      79.1,
+      35.2,
+      74.7,
       0
      ],
-     "pochylenieTulowia": 94.1,
+     "pochylenieTulowia": 89,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 70.6,
+     "pochylenieGlowy": 66.8,
      "nogi": {
       "R": {
        "kostka": [
@@ -4909,7 +4910,7 @@
      "rece": {
       "R": {
        "chwyt": [
-        117.2,
+        120.6,
         22.5,
         20
        ],
@@ -4921,7 +4922,7 @@
       },
       "L": {
        "chwyt": [
-        117.2,
+        120.6,
         22.5,
         -20
        ],

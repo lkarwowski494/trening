@@ -18,6 +18,7 @@ const LOAD: Record<string, () => PoseFile> = {
   hip_bridge: () => require('./poses/hip_bridge.json'),
   cable_row: () => require('./poses/cable_row.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
+  pushup_plank: () => require('./poses/pushup_plank.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -88,6 +89,13 @@ export const DATA_UI: Record<string, DataUi> = {
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
   /* cable_row: u = 0 ręce wyprostowane (start), u = 1 uchwyt przy tułowiu albo twarzy; ściąganie 1 s, powrót 2 s (tempo ilustracyjne). Mierzony łokieć (zakres_lokcia). */
   cable_row: { names: { first: 'Ściąganie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },
+  /* pushup_plank (09.11.2026): pompki u = 0 góra (podpór na wyprostowanych rękach), u = 1 dół (klatka przy podłożu) → faza 0 → 1 to opuszczanie (2 s), powrót wypychanie (1 s); mierzony łokieć. */
+  pushup_plank: { names: { first: 'Opuszczanie', second: 'Wypychanie' }, lowerFirst: true, joints: ['elbow'],
+    /* ruchy naprzemienne w podporze: cykl bez opuszczania; rollouty: u = 0 start, u = 1 najdalsze wysunięcie (opuszczanie ciała, powrót), mierzone biodro (wysunięcie) albo ramię (Suspended Fallout); Inverted Row: u = 0 zwis, u = 1 klatka przy drążku */
+    exceptions: { 'Mountain Climbers': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' }, joints: ['hip', 'knee'], lowerFirst: false }, 'Plank Shoulder Taps': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' }, lowerFirst: false },
+      'Rollout (sztanga)': { joints: ['hip'] }, 'Barbell Rollout from Bench': { joints: ['hip'] }, 'Standing Barbell Rollout': { joints: ['hip'] }, 'Suspended Fallout': { joints: ['shElev'] },
+      'Plyo Push-Up': { names: { first: 'Skok', second: 'Skok' }, lowerFirst: false }, /* lot: pętla jednokierunkowa (jedna faza „Skok”) */
+      'Inverted Row': { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false } } },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
@@ -114,6 +122,8 @@ export const lowerFirstOf = (ui: DataUi, key: string): boolean => (ui.exceptions
 /** Ćwiczenia z danymi, które są izometrią (zwis, wytrzymanie): jedna pozycja statyczna bez animacji. Test: pomiar czasu w katalogu (metric „time”). */
 export const ISOMETRIC: ReadonlySet<string> = new Set([
   'Dead Hang',
+  /* deska: dwie identyczne klatki — utrzymanie pozycji (09.11.2026, pushup_plank) */
+  'Plank',
   /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow jest ruchem) */
   'Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Gastrocnemius Calf Stretch', 'Wall Calf Stretch', 'Standing Soleus And Achilles Stretch', 'Standing Lateral Stretch',
   'The Straddle', 'Seated Calf Stretch', 'Seated Floor Hamstring Stretch', 'Butterfly Stretch', "Child's Pose", 'Kneeling Hip Flexor Stretch', 'Supine Hamstring Stretch', 'Side-Lying Quad Stretch',

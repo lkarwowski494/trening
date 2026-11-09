@@ -40,8 +40,8 @@ const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZY
 const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
-  test('pilotaż z plików pozy (core_floor, pushup_plank) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji', () => {
-    const s = skroty(); expect(s.ready).not.toContain('core_floor'); expect(s.ready).not.toContain('pushup_plank');
+  test('pilotaż z plików pozy (core_floor) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji; pushup_plank ma status ready od 09.11.2026 (partia 2), eksport tylko z aktualnym wpisem recenzji (testy niżej)', () => {
+    const s = skroty(); expect(s.ready).not.toContain('core_floor'); expect(s.ready).toContain('pushup_plank');
     expect([...POZY.values()]).toEqual(expect.arrayContaining(['core_floor', 'pull_up', 'pushup_plank']));
   });
   test('fixture: recenzja squat, bench_press, hinge (aktualne skróty) + pull_up z nieaktualnym skrótem + brak wpisów pilotażu ⇒ figury dokładnie z tych trzech rodzin (parytet)', () => {

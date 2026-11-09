@@ -3,6 +3,7 @@
 // Błędy z cue: push.mis.partial (płytki dół — łamie tylko pompka_zakres), plank.mis.sag (opadające biodra — łamie tylko linię ciała), splank.mis.elbow (łokieć przed/za barkiem).
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, dChwytu, przeciecie, kostkaNaPalcach, barki, ZASIEG } from './model.mjs';
 
+import { jednokierunkowa } from './dyn.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 /** Wysokość podwyższenia pod stopami w Decline Push Up = siedzisko typowej ławki z danych sprzętu (UPROSZCZENIE: żadne źródło w repo nie podaje wysokości podwyższenia w tym ćwiczeniu, więc bierzemy typową ławkę/skrzynię z figury-sprzet.json, nie zgadujemy własnej liczby). */
@@ -127,8 +128,9 @@ function plyo(cw) {
   const A = [0, kostkaNaPalcach(0)]; const hz = 19; const hy0 = 2; const hx = dlonX({ A, hy: hy0, theta0: 12, hzR: hz }); const unosz = 12;
   const fr = [[0, 12, 0], [0.4, 142, 0], [1, 12, unosz]]; /* góra, dół, wypchnięcie z oderwaniem dłoni (12 cm nad podłogą) */
   const ok = (u) => { const f = fr.find((x) => x[0] === u); const H = [hx, hy0 + f[2]]; return trajPompki({ A, H, hzR: hz, theta: f[1] })(u); };
-  const us = fr.map((f) => f[0]); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(ok(u))),
-    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, 1) })] });
+  /* ruch z lotem (dłonie w powietrzu na końcu) → pętla jednokierunkowa (guard tests/figures-v2-kierunek-u.test.ts, 09.11.2026): wahadło cofałoby wybicie */
+  const us = fr.map((f) => f[0]); return jednokierunkowa(zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(ok(u))),
+    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, 1) })] }));
 }
 
 /* ---------- Inverted Row (leżąc pod drążkiem, pięty na podłodze) ---------- */
@@ -159,7 +161,7 @@ const BAR_Y = 22.5;
 export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, dgSag = 8.5, theta = 12, fM = 10, sYf = 0.9, bk = 0.4, lumb = 20 } = {}) {
   const B = BODY(); const PODK = -90; const K = [0, ky + ławka]; const ayk = kostkaNaPalcach(ławka, PODK); const al = Math.asin((ayk - K[1]) / B.shank); const A = [K[0] - B.shank * Math.cos(al), ayk];
   const th = theta; const d = dChwytu(th); const dp = Math.sqrt(d * d - (B.shHalf - 20) ** 2);
-  const thS = ławka ? 120 : 90; const sY = BAR_Y + dp * sYf; const phS = Math.asin(Math.max(-1, Math.min(1, (sY - K[1] - B.thigh * Math.sin(thS * R)) / B.trunk))) / R; /* start: bark nad sztangą (ręce proste), tułów z zapasu */
+  const thS = 90; const sY = BAR_Y + dp * sYf; const phS = Math.asin(Math.max(-1, Math.min(1, (sY - K[1] - B.thigh * Math.sin(thS * R)) / B.trunk))) / R; /* start: bark nad sztangą (ręce proste), tułów z zapasu */
   const fiM = fi1 + fM; const sYM = K[1] + (B.thigh + B.trunk) * Math.sin(fiM * R); /* do u = 0,6: udo i tułów schodzą do wspólnego kąta fiM (ciało prawie w linii), potem razem do fi1 (reguła „skrajna” ocenia całą końcówkę) */
   const frame = (u) => { const t = Math.min(1, u / bk); let th0, ph;
     if (u < bk) { th0 = thS + (fiM - thS) * t; const syT = sY + (sYM - sY) * t; ph = Math.asin(Math.max(-1, Math.min(1, (syT - K[1] - B.thigh * Math.sin(th0 * R)) / B.trunk))) / R; }
