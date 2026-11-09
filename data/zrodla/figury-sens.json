@@ -4613,6 +4613,9 @@
     },
     "kb_ballistic": {
       "dynamiczne": {
+        "Kettlebell Snatch": "rwanie jednym ciężarem w jednym przebiegu (zawis między nogami, wyprost bioder, ciężar blisko tułowia, wyrzut nad głowę): ciężar i łokieć pokonują ok. 125 cm po wyproście bioder, razem z wyprostem i wejściem na palce droga najszybszego punktu wynosi ok. 250 cm na cały ruch, tempo 6,5–7 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 09.11.2026, poprawka W1-r2 audytora) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)",
+        "Double Kettlebell Snatch": "rwanie dwoma ciężarami w jednym przebiegu: jak Kettlebell Snatch, droga ok. 270 cm, tempo ok. 6,4 cm na 1/48 wobec limitu 6 cm (pomiar generatora 09.11.2026, poprawka W1-r2) — limit CONTRACT.maxJumpDynamic",
+        "Snatch (hantel)": "rwanie hantlem z podłogi w jednym przebiegu (start między stopami jak do martwego ciągu, karta „postaw hantel między stopami”): ciężar pokonuje ok. 190 cm, droga najszybszego punktu ok. 300 cm na cały ruch, tempo ok. 8,5 cm na 1/48 wobec limitu 6 cm (pomiar generatora 09.11.2026, poprawka W1-r2) — limit CONTRACT.maxJumpDynamic",
         "One-Arm Kettlebell Clean and Jerk": "zarzut i podrzut jednym ciężarem w jednym przebiegu (zawis, rack, ugięcie, wyrzut, wykrok): sześć faz z przechwytem, tempo najszybszego punktu 7–8 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
       },
       "reguly": {
