@@ -84,15 +84,15 @@ describe('błędy z danych (bledy[])', () => {
   });
   test('macierz: wszystkie ćwiczenia z danymi × poza poprawna i poza błędu × 13 pozycji: brak błędów geometrii (podłoga, zasięg, przenikanie, chwyt); błąd różni się od pozy poprawnej na końcu ruchu (błąd pokazany na dole — pu.partial — na początku ruchu)', () => {
     /* curl (03.11.2026): „szarpnięcie” (mis.jerk) to błąd tempa — nie zmienia pozy (różnica < 3 cm w miednicy, głowie, kolanie, kostce i łokciu R); jak pokazuje go rysunek, ocenia recenzent niezależny. */
-    /* hip_bridge (09.11.2026): przeprost lędźwi przy ustalonej miednicy przesuwa głowę o 2,8 cm (7 z 10 ćwiczeń: wszystkie poza mostkiem z podłogi bez ciężaru i Frog Pump, gdzie ruszają się ramiona na podłodze, 3,4 cm) (punkty testu nie obejmują kręgosłupa); błąd widać jako łuk tułowia i znacznik na arkuszu (bledy-u1.png) — do oceny recenzenta (K14) */
-    const BLAD_NIEWIDOCZNY = ['Seated Close-Grip Concentration Barbell Curl|mis.jerk', ...['Glute Bridge (sztanga)', 'Hip Thrust (sztanga)', 'Hip Thrust (hantel)', 'Single Leg Hip Thrust', 'Smith Machine Hip Thrust', 'Machine Hip Thrust', 'Stability Ball Hip Bridge'].map(k => `${k}|ht.mis.arch`)];
+    /* hip_bridge (09.11.2026, r1 K14): przeprost lędźwi przy ustalonej miednicy zostaje wykryty miarą — do punktów testu należy środek kręgosłupa (spineMid, −35° vs 0°, ok. 7 cm); bez wyjątków */
+    const BLAD_NIEWIDOCZNY = ['Seated Close-Grip Concentration Barbell Curl|mis.jerk'];
     const JERK_CURL_TEMPO = JERK_TEMPO_RODZINY; /* 05.11.2026: rozszerzone na triceps (3 ćwiczenia z zestawem ogólnym, recenzja niezależna r5 przyjęła jak w curl); ta sama przyczyna dla całej rodziny curl (błąd tempa); asercja czerwona już na 67ceb782 przed scaleniem integracji, rozszerzona 03.11.2026 z listy pojedynczej na rodzinę */
     const NA_DOLE = ['pu.partial']; /* fala 25, 01.11.2026: „bez wyprostu rąk na dole” widać w u = 0, góra jak w pozie poprawnej (scripts/figures/v2-jakosc.mjs: BLAD_DOL) */
     for (const [f, k] of DATA_KEYS) {
       const s = figureSpec(k)!; const errs: (FigError | undefined)[] = [undefined, ...errorsOf(s).map(e => e.error)];
       for (const er of errs) for (const u of U) { const is = checkFrame(frameAt(s, u, er)); if (is.length) throw new Error(`${k} ${er ?? 'poprawna'} u=${u}: ${JSON.stringify(is)}`); }
       for (const e of errorsOf(s)) {
-        const uw = NA_DOLE.includes(e.cue) ? 0 : 1; const a = frameAt(s, uw).sk, b = frameAt(s, uw, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
+        const uw = NA_DOLE.includes(e.cue) ? 0 : 1; const a = frameAt(s, uw).sk, b = frameAt(s, uw, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.spineMid, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
         const dd = Math.max(...pts(a).map((p, i) => Math.hypot(p[0] - pts(b)[i][0], p[1] - pts(b)[i][1], p[2] - pts(b)[i][2]))); expect([k, e.error, dd > 3 || BLAD_NIEWIDOCZNY.includes(`${k}|${e.cue}`) || JERK_CURL_TEMPO(f, e.cue)]).toEqual([k, e.error, true]); /* widoczne: ≥ 3 cm (CONTRACT.visibleCm) */
       }
     }

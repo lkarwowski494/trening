@@ -60,7 +60,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
   });
   test('założenia symulacji: karty własne cue-sets (b = own) = karty w źródłach; wstrzymane figury (V2_WSTRZYMANE) poza stanem końcowym', () => {
     expect(sym.kontrola.cuesSetsOwnRownaZrodlu).toBe(true);
-    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Snatch Shrug']);
+    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Snatch Shrug']);
   });
   test('komplet kart języków: w stanie końcowym każdy język ma tyle samo kart kompletnych (wszystkie teksty przetłumaczone — założenie (a))', () => {
     const lang = Object.keys(cele.min).filter(k => /^jezyk\..+\.kompletne$/.test(k));
