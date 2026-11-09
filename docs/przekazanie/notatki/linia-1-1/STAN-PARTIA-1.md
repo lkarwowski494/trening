@@ -18,6 +18,7 @@ Sekcje szczegółowe rodzin (zrobione, zostało, pułapki) są w STAN-PARTIA-1.m
 | overhead_press | `figury/partia-1-ohp` @ 27dc6450 | **r1 nie zlecona**; autor obejrzał 15 z 21 (tylko jasny) | brak | pełny przebieg `npx jest tests/figures-v2 tests/figury` (nie dokończony — testy list, np. mapping +21, mogą być czerwone), potem r1 audytora |
 
 Decyzje i backlog: docs/18 (09.11.2026, wariant A calf_raise — na gałęzi calf), docs/21 P1-CALF-1…5 (gałąź calf). Otwarte K3 (wyjątki bez rysunku, decyzja właściciela/koordynatora): Smith Machine Reverse Calf Raise (decyzja: ukryte, backlog), Meadows Row, Kettlebell Pirate Ships, Bradford Press, Handstand Push Up, chest_fly: Around The Worlds, Machine Pullover, Svend Press (wyjątki już w generatorach, brak wpisów w figury-wyjatki.json).
+Uwaga koordynatora (09.11.2026 ~21:04 UTC): partia 2 zmienia `lib/figures/v2/cueSets.ts` — `row.fullStretch` wyłączony dla zestawów Single Arm Cable Row i Leverage High Row (przeczy ruchowi); przy row nie dublować, przy scaleniu (kb_ballistic też zmienia cueSets.ts: CUE_NOT_IN_FAMILY) — konflikt rozwiązać sumą obu stron.
 Poza zakresem do koordynatora: Spider Curl (curl, wyświetlana) ma te same odwrócone stopy co W1-r2 row (pomiar recenzenta r2 row).
 Zgłoszenia silnika (nie ruszane): punkty dźwigni „barki”/„uda” (P1-CALF-1), kostka w MeasuredJoint (P1-CALF-3), nakładka „limb” wymaga pokazanego stawu (stały łokieć w rozpiętkach), widoki ćwiczenia = widoki rodziny (Crucifix „top”), gryf landmine zawsze poprzeczny, kąt kostki bez znaku.
 
