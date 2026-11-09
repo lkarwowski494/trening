@@ -5297,7 +5297,9 @@
       "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026) / programista partii 1 (przypisanie do rysunku v2)",
       "recenzent": "audytor",
       "kto": "audytor (recenzja niezależna, partia 1 chest_fly r2)",
-      "uwagi": "R2-S1: plank.mis.breath „Wstrzymywanie oddechu.” ze źródeł deski — figury-sens.json:7902 „jedno wskazanie pośrednie, do potwierdzenia”, a wskazówka oddechu wymaga 2 zgodnych źródeł szczebla 4; front.elbows „przez cały ruch” przy utrzymaniu (rysunek ISOMETRIC); backlog docs/21:208 „do poprawy PRZED włączeniem chest_fly”. Bez sha: werdykt nie jest „wyswietlana”."
+      "uwagi": "R2-S1: plank.mis.breath „Wstrzymywanie oddechu.” ze źródeł deski — figury-sens.json:7902 „jedno wskazanie pośrednie, do potwierdzenia”, a wskazówka oddechu wymaga 2 zgodnych źródeł szczebla 4; front.elbows „przez cały ruch” przy utrzymaniu (rysunek ISOMETRIC); backlog docs/21:208 „do poprawy PRZED włączeniem chest_fly”. Bez sha: werdykt nie jest „wyswietlana”. Sha 7ff2316c5a09 dopisane przez programistę partii z --skroty (10.11.2026; format wpisu wymaga skrótu także przy „do poprawy”; zestaw bez zmian od r1).",
+      "sha": "7ff2316c5a09",
+      "poprawka": "Usunąć plank.mis.breath (jedno wskazanie pośrednie) i zastąpić front.elbows wskazówką o utrzymaniu pozycji (bez „przez cały ruch”); nowe zdania przez badacza, tłumacza i rejestr twierdzeń, potem recenzja zestawu (docs/21, Crucifix)."
     },
     "Pullover (hantel)": {
       "rodzina": "pullover",
