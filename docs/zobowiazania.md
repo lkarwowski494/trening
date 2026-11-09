@@ -48,6 +48,7 @@ Zasady:
 | ZB-050 | 09.11.2026 w dzień | Lekcja o pełnym dysku (docs/40): strażnik sprzątania `mkdtemp` w testach techniqueatlas, próg wolnego miejsca < 2 GB w `verify:lekkie` i w poleceniach agentów; usunięcie 101 katalogów `/tmp/atlas-dist-*` (17 GB) — zgoda właściciela albo reguła uprawnień | koordynator 09.11.2026 z upoważnienia nocnego, zatwierdzone przez właściciela 09.11 rano (docs/18) | programista + właściciel (zgoda na /tmp) | czeka |
 | ZB-051 | 09.11.2026 (zgoda właściciela na koszt do 20 USD, docs/18) | Przekład przez API partii A1–A3 i zaległych tekstów (VoiceOver „Na rysunku”, „Co nowego”, delt_raise): `tylko_szacuj` → przebieg → recenzja lokalizacji → wpisy „karty”, zdjęcie 50 pozycji z `karty_nowe` → scalenie delt_raise (ZB-042) | właściciel 09.11.2026 (docs/18) | koordynator + tłumacz + recenzent-lokalizacji | czeka |
 | ZB-052 | 09.11.2026 | Strona techniqueatlas: wyjątek z powodem w strażniku terminów dla 3 nazw grup (en/pl `nozyce`, uk `biodra`); przekierowanie ukrytego ćwiczenia na listę — zapis decyzji w docs/54 strony; zielone `npm test` strony (102/102) | właściciel 09.11.2026 (docs/18) | programista (repo strony) | czeka |
+| ZB-053 | 09.11.2026 | Cel 1.1 `pelnaKarta` 465 → 456: 9 obowiązkowych wymagających nowego ruchu silnika poza celem 1.1 (lista w `docs/research/pokrycie-cele.json`), test celu zaktualizowany z datą decyzji; 9 ćwiczeń → backlog 1.2 | właściciel 09.11.2026 (docs/18) | programista | czeka |
 
 ## Archiwum
 
