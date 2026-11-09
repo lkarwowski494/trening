@@ -10,7 +10,7 @@ import { poseDataFor } from '@/lib/figures/v2/poseData';
 
 const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
 const US = Array.from({ length: 21 }, (_, i) => i / 20);
-const ZAKRES_CHWYTU = (k: string) => (poseDataFor(k, 'cable_row') as { sprzet: Array<Record<string, number | string>> }).sprzet.find(g => g.rodzaj === 'wyciag') as { x: number; y: number; z: number };
+const ZAKRES_CHWYTU = (k: string) => (poseDataFor(k, 'cable_row') as unknown as { sprzet: Array<Record<string, number | string>> }).sprzet.find(g => g.rodzaj === 'wyciag') as { x: number; y: number; z: number };
 const kat = (k: string, u: number) => { const w = ZAKRES_CHWYTU(k); const g = frameAt(spec(k), u).sk.arms; const c = k === 'Single Arm Cable Row' ? g.R.grip : [0, 1, 2].map(i => (g.R.grip[i] + g.L.grip[i]) / 2);
   return Math.abs(Math.atan2(c[1] - w.y, w.x - c[0]) * 180 / Math.PI); };
 const SIEDZACE = ['Seated Cable Row', 'Wiosłowanie na linkach (siedząc)'], STOJACE = ['Standing Cable Row', 'Single Arm Cable Row'];
@@ -32,7 +32,7 @@ describe('W1/W2: linka od bloczka do uchwytu blisko poziomu w całym ruchu (≤ 
 
 describe('S2 (backlog 1.1.x): Leverage High Row — oś dźwigni u góry nie mieści się w danych rodziny', () => {
   test('stan znany: oś dźwigni z przodu i na dole, jak w Machine Row (oś u góry za ramieniem przenika głowę: head × barPivot 0,67–1,37 cm przy r 70–100 cm, dopuszczalne 0,3) — do czasu poprawki silnika dźwignia pozostaje schematem', () => {
-    for (const k of ['Machine Row', 'Leverage High Row']) { const d = poseDataFor(k, 'cable_row') as { sprzet: Array<Record<string, number | string>> }; const lv = d.sprzet.find(g => g.rodzaj === 'dzwignia') as { x: number; y: number };
+    for (const k of ['Machine Row', 'Leverage High Row']) { const d = poseDataFor(k, 'cable_row') as unknown as { sprzet: Array<Record<string, number | string>> }; const lv = d.sprzet.find(g => g.rodzaj === 'dzwignia') as { x: number; y: number };
       expect([k, lv.x > 60, lv.y < 60]).toEqual([k, true, true]); }
   });
 });
