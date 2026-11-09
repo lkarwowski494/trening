@@ -345,6 +345,7 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
 - Wydanie Health — biblioteka `@kingstinct/react-native-healthkit` 8 → 16: odczyt aktywnych kcal, ocena wysiłku (`workoutEffortScore`; RPE → ocena **[OTWARTE]**),
   prawdziwe zdarzenia pauzy z `Workout.pauses`, masa ciała i pomiary ciała.
 - Import CSV ze Strong i Hevy — **przeniesione do „Przed App Store” (11.10.2026)**, sekcja niżej.
+- Medicine Ball Scoop Throw a Backward Medicine Ball Throw — możliwy duplikat w katalogu (partia A4b, 09.11.2026): wyskok, jedyna różnica, stoi tylko na niebyłym źródle (fragment książki u Human Kinetics bez kwalifikacji i daty), więc karta Scoop byłaby kopią karty Backward; do rozstrzygnięcia: scalenie ćwiczeń albo drugie źródło wyskoku. Wersja 1.2 (decyzja koordynatora linii 1.1, 09.11.2026).
 - Karty P2 moc — NISKIE z rundy 2 recenzji niezależnej (03.11.2026, wersja 1.1, nie blokują): Power Jerk PL bez „nad głowę” i niezgrabne „na nieco szerszych stopach”; Muscle Snatch EN „no rebend of the knees”; Snatch Pull — różne brzmienie PL i EN przy tym samym sensie. Poprawka wymaga ponownej recenzji zmienionego zdania (L-047).
 - Grafiki ćwiczeń 1.1 — uwagi ŚREDNIE i NISKIE z ponownej recenzji partii p4a (olympic + kb_ballistic, 27.10.2026; wersja docelowa 1.1, nie blokują wydania; notatka: `docs/przekazanie/notatki/recenzje-1-1/ponowne/p4a.md`):
   B — nożyce za głębokie w Split Clean, Split Snatch, Clean and Jerk (tylne kolano 100,6°, miednica 65 cm; ŚREDNIE);

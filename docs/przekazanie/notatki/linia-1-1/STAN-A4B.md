@@ -8,6 +8,7 @@
   zestaw przekładu `docs/lokalizacja/zestaw-przekladu-2026-11-09-a4b-wskazowki.json`, lista dla recenzenta `a4b-klucze.json`.
 - 09.11.2026: strażniki liczności (cues, cues-014, figures-v2-cues, strona-eksport, P2 — Split Jump w zestawy_zmienione, docs/09, L-103 +1), skróty przekładu, pliki generowane; zawężone `kbb.cleanMove`, `kbb.rack`, `as.grip` do przeczytanych miejsc źródeł (lekcja recenzji A4a); scalone poprawki rundy 1 A4a (dane A4b odtworzone importerem na wersji A4a); zapadka kompletu kart języków 574 → 573 z powodem (Split Jump ukryty do przekładu — decyzja do potwierdzenia przez koordynatora; alternatywa: wstrzymać Split Jump). Bramka: test-fast --od-bazy 276/276 zielone, verify:lekkie zielone; push 01a306d3 (przebieg 42578614502 anulowany nowszym pushem), 2ad4d2fe → tests.yml 42578897590 **zielony**; raport do koordynatora wysłany 09.11.2026.
 - Następny krok: zielony tests.yml → recenzja niezależna (badacz + recenzent lokalizacji PL/EN wg a4b-klucze.json) → przekład (osobna zgoda); role plyo/sled_throw — osobne zadanie.
+- 09.11.2026 (koordynator): Split Jump zostaje (obniżenie zapadki przyjęte, odwrócenie po przekładzie — ZB-054 obejmuje A4b); wstrzymane bez zmian; Scoop Throw — backlog docs/21 (1.2). Recenzje niezależne zlecone przez koordynatora — czekam na poprawki rundy 1.
 
 ## Wstrzymane do decyzji koordynatora (karty spełniają albo prawie spełniają regułę)
 - One-Arm Kettlebell Clean and Jerk — „ta sama faza” (decyzja audytora z W1, nierozstrzygnięta).
