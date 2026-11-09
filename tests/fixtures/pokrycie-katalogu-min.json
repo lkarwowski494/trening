@@ -13,41 +13,41 @@
     "pelnaKarta": 179,
     "recenzjaFigur": 98,
     "nazwaLokalna.razem": 0,
-    "jezyk.pl.kompletne": 574,
-    "jezyk.en.kompletne": 574,
-    "jezyk.cs.kompletne": 574,
-    "jezyk.sk.kompletne": 574,
-    "jezyk.hu.kompletne": 574,
-    "jezyk.ro.kompletne": 574,
-    "jezyk.bg.kompletne": 574,
-    "jezyk.hr.kompletne": 574,
-    "jezyk.sl.kompletne": 574,
-    "jezyk.sr.kompletne": 574,
-    "jezyk.lt.kompletne": 574,
-    "jezyk.lv.kompletne": 574,
-    "jezyk.et.kompletne": 574,
-    "jezyk.uk.kompletne": 574,
-    "jezyk.es.kompletne": 574,
+    "jezyk.pl.kompletne": 573,
+    "jezyk.en.kompletne": 573,
+    "jezyk.cs.kompletne": 573,
+    "jezyk.sk.kompletne": 573,
+    "jezyk.hu.kompletne": 573,
+    "jezyk.ro.kompletne": 573,
+    "jezyk.bg.kompletne": 573,
+    "jezyk.hr.kompletne": 573,
+    "jezyk.sl.kompletne": 573,
+    "jezyk.sr.kompletne": 573,
+    "jezyk.lt.kompletne": 573,
+    "jezyk.lv.kompletne": 573,
+    "jezyk.et.kompletne": 573,
+    "jezyk.uk.kompletne": 573,
+    "jezyk.es.kompletne": 573,
     "jezyk.es-419.kompletne": 572,
-    "jezyk.pt.kompletne": 574,
-    "jezyk.pt-BR.kompletne": 574,
-    "jezyk.de.kompletne": 574,
-    "jezyk.fr.kompletne": 574,
-    "jezyk.it.kompletne": 574,
-    "jezyk.nl.kompletne": 574,
-    "jezyk.sv.kompletne": 574,
-    "jezyk.da.kompletne": 574,
-    "jezyk.nb.kompletne": 574,
-    "jezyk.fi.kompletne": 574,
-    "jezyk.tr.kompletne": 574,
-    "jezyk.el.kompletne": 574,
-    "jezyk.id.kompletne": 574,
-    "jezyk.ms.kompletne": 574,
-    "jezyk.vi.kompletne": 574,
-    "jezyk.ru.kompletne": 574,
-    "jezyk.ja.kompletne": 574,
-    "jezyk.ko.kompletne": 574,
-    "jezyk.zh-Hant.kompletne": 574,
+    "jezyk.pt.kompletne": 573,
+    "jezyk.pt-BR.kompletne": 573,
+    "jezyk.de.kompletne": 573,
+    "jezyk.fr.kompletne": 573,
+    "jezyk.it.kompletne": 573,
+    "jezyk.nl.kompletne": 573,
+    "jezyk.sv.kompletne": 573,
+    "jezyk.da.kompletne": 573,
+    "jezyk.nb.kompletne": 573,
+    "jezyk.fi.kompletne": 573,
+    "jezyk.tr.kompletne": 573,
+    "jezyk.el.kompletne": 573,
+    "jezyk.id.kompletne": 573,
+    "jezyk.ms.kompletne": 573,
+    "jezyk.vi.kompletne": 573,
+    "jezyk.ru.kompletne": 573,
+    "jezyk.ja.kompletne": 573,
+    "jezyk.ko.kompletne": 573,
+    "jezyk.zh-Hant.kompletne": 573,
     "pelnaKartaBlad": 125
   },
   "rekord": {
@@ -130,12 +130,12 @@
       "data": "29.10.2026"
     },
     "jezyk.pl.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
     },
     "jezyk.en.kompletne": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
-      "data": "02.11.2026"
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
     },
     "wskazowki.wlasne": {
       "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
@@ -152,6 +152,134 @@
     "recenzjaFigur": {
       "powod": "minimum zostaje na celu 1.1 (98) do decyzji właściciela o podniesieniu celu; rekord rośnie od wpisów recenzji kart T1 (rekord 132, 04.11.2026) — test „cel nie niższy niż minimum” wymaga zgodności celu z minimum",
       "data": "04.11.2026"
+    },
+    "jezyk.cs.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.sk.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.hu.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.ro.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.bg.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.hr.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.sl.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.sr.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.lt.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.lv.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.et.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.uk.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.es.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.pt.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.pt-BR.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.de.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.fr.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.it.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.nl.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.sv.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.da.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.nb.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.fi.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.tr.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.el.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.id.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.ms.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.vi.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.ru.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.ja.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.ko.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
+    },
+    "jezyk.zh-Hant.kompletne": {
+      "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
+      "data": "09.11.2026"
     }
   }
 }

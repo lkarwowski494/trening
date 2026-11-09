@@ -4383,14 +4383,7 @@
       ]
     },
     "Stability Ball Crunch": {
-      "b": "general",
-      "f": "crunch",
-      "ok": [
-        "crunch.neck"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Stability Ball Hamstring Curl": {
       "b": "general",

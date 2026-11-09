@@ -952,7 +952,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (223)
+## Bez figury — lista otwarta (224)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -1169,6 +1169,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Hanging Leg Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
 | Hanging Knee Raise | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
 | Toes to Bar | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
+| Stability Ball Crunch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4 integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
 | Kettlebell Clean | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4b integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
 | Kettlebell Snatch | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4b integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
 | Double Kettlebell Push Press | Figura v1 (etap 1) nie powstaje: ćwiczenie ma kartę własną z partii A4b integracji badań (09.11.2026), a rysunek należy do rodziny figur v2 albo czeka na figurę v2 (partia B4) — karta ukryta do recenzji niezależnej. |
