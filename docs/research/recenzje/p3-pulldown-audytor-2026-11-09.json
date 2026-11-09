@@ -1,0 +1,154 @@
+{
+ "v2": {
+  "pulldown": {
+   "werdykt": "do_poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — do poprawy: 1 × WYSOKIE (Straight Arm Pulldown, drążek przez kolumnę); 7 ćwiczeń bez blokera",
+   "autor": "programista partii 3 (figury/partia-3 a9c220be)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "uwagi": "Blokuje N1 (Straight Arm Pulldown). ŚREDNIE N2–N5 i NISKIE N6–N7 do backlogu. Nakładka i DATA_UI poprawne (poza przekładem EN fazy, N5). Walidator nie ma kolizji drążek–kolumna (colliders.ts:67–70).",
+   "slad": "arkusze arkusz-slad.mjs dla wszystkich 8 ćwiczeń, rzuty side i front, motyw light (/tmp/rec-p3-pulldown/ark) i dark (/tmp/rec-p3-pulldown/ark-dark), kadry co 0,05, kadry powiększone z pełnej rozdzielczości (c_*.png); arkusze nakładki arkusz-nakladka.mjs --family pulldown (16, /tmp/rec-p3-pulldown/nak); miara toru ksztaltToru przeliczona w czystej kopii",
+   "sha": "6953c14db395",
+   "liczba": 8,
+   "cwiczenia": {
+    "Lat Pulldown": {
+     "werdykt": "wyswietlana",
+     "uwagi": "nachwyt, drążek przed twarzą do −8 cm pod barkami, łokieć 19° na górze; N4 (brak wałków ud, oparcie nachodzi na ramię w rzucie z boku) — backlog"
+    },
+    "Close-Grip Front Lat Pulldown": {
+     "werdykt": "wyswietlana",
+     "uwagi": "wąski chwyt; N4, N6 (dół −17 cm wobec reguły −10) — backlog"
+    },
+    "Underhand Lat Pulldown": {
+     "werdykt": "wyswietlana",
+     "uwagi": "podchwyt widoczny (obrót +78); N4, N6 — backlog"
+    },
+    "V-Bar Pulldown": {
+     "werdykt": "wyswietlana",
+     "uwagi": "chwyt neutralny, −8 cm; N4, N7 (uchwyt V jako krótki drążek) — backlog"
+    },
+    "Single Arm Lat Pulldown": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jedna ręka, druga na udzie; N4, N6 (karta „do barku”, dół −17 cm) — backlog"
+    },
+    "Full Range-Of-Motion Lat Pulldown": {
+     "werdykt": "wyswietlana",
+     "uwagi": "dwa wyciągi z ±60, łokcie w dół do boków; N6 — backlog"
+    },
+    "Wide-Grip Pulldown Behind The Neck": {
+     "werdykt": "wyswietlana",
+     "uwagi": "drążek za głowę do karku, głowa w przód; N2 (rzut z przodu: drążek rysowany na twarzy) i N3 (tyłem do kolumny) — ŚREDNIE, backlog"
+    },
+    "Straight Arm Pulldown": {
+     "werdykt": "do_poprawy",
+     "uwagi": "N1 WYSOKIE: drążek przechodzi przez kolumnę wyciągu w u 0,05–0,70 (chwyt x do 75,8 przy kolumnie x 62±5); ruch rąk poprawny (łokieć ≤ 20°, shElev 143°→27°)"
+    }
+   }
+  }
+ },
+ "karty": {
+  "Lat Pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 i źródeł z cues.json)",
+   "autor": "badacz merytoryczny i programista (karta własna; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json); rysunek v2: programista partii 3 (figury/partia-3 a9c220be)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "sha": "2ad35a7ac5a6",
+   "uwagi": "4 wskazówki, każda z 2 źródłami szczebla 4 (ACE #158, ExRx CBFrontPulldown); zgodne z rysunkiem v2 (przed twarzą, do górnej klatki −8 cm, wyprost 19°). Rysunek bez wałków ud z lpd.thighs (N4, ŚREDNIE, nie przeczy ruchowi). Wpis v1 72f6a47c92d4 → zastapiona przy włączeniu v2."
+  }
+ },
+ "zestawy": {
+  "Full Range-Of-Motion Lat Pulldown": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu i teksty pl/en wobec rysunku v2)",
+   "autor": "programista partii 3 (figury/partia-3 a9c220be)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "sha": "82ac6379f373",
+   "uwagi": "pionowe ściąganie — vpull poprawny; pu.shoulders, pu.elbowsDown, lpd.fullStretch, mis.jerk zgodne z rysunkiem (łokcie 18 cm pod barkami na dole, wyprost 19°); EN wierne"
+  },
+  "Wide-Grip Pulldown Behind The Neck": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu i teksty pl/en wobec rysunku v2)",
+   "autor": "programista partii 3 (figury/partia-3 a9c220be)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "sha": "d08a46fced0c",
+   "uwagi": "vpull poprawny; zestaw bez „do klatki” (słusznie, drążek za głowę); pu.shoulders, lpd.fullStretch, mis.jerk zgodne z rysunkiem; EN wierne. Uwagi do rysunku (N2, N3) nie dotyczą zestawu."
+  }
+ },
+ "tor_wyjatki": {
+  "Lat Pulldown|side": "potwierdzam",
+  "Single Arm Lat Pulldown|side": "potwierdzam",
+  "Close-Grip Front Lat Pulldown|side": "potwierdzam",
+  "Full Range-Of-Motion Lat Pulldown|side": "potwierdzam",
+  "Underhand Lat Pulldown|side": "potwierdzam",
+  "V-Bar Pulldown|side": "potwierdzam",
+  "Wide-Grip Pulldown Behind The Neck|side": "potwierdzam",
+  "Straight Arm Pulldown|side": "potwierdzam (powód: łuk prostej ręki, 31,6 cm / 1 zawrócenie); po naprawie N1 przeliczyć liczbę w powodzie"
+ },
+ "znaleziska": [
+  {
+   "id": "N1",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Straight Arm Pulldown",
+   "rzut": "side (także front)",
+   "opis": "Drążek przechodzi przez kolumnę wyciągu w u 0,05–0,70: chwyt x 61,6→75,8→61,6 cm przy kolumnie x 62±5, z ±5 (drążek z ±12 ciągły przez z 0); linka biegnie do drążka za maszyną. Walidator nie ma kolidera drążka wyciągu. Realny: każde odtworzenie.",
+   "dowod": "/tmp/rec-p3-pulldown/ark/Straight-Arm-Pulldown-side.png; /tmp/rec-p3-pulldown/c_sap_side_035.png; lib/figures/v2/poses/pulldown.json (wyciag x 62); lib/figures/v2/colliders.ts:67-70"
+  },
+  {
+   "id": "N2",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
+   "rzut": "front",
+   "opis": "Drążek za głową (x ≈ −4, głowa x 12–17,6) rysowany na twarzy w u 0,45–0,70 — błędna kolejność głębi, rzut przeczy „za głowę”. Realny.",
+   "dowod": "/tmp/rec-p3-pulldown/ark/Wide-Grip-Pulldown-Behind-The-Neck-front.png; /tmp/rec-p3-pulldown/c_wg_front_060.png"
+  },
+  {
+   "id": "N3",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
+   "rzut": "side",
+   "opis": "Ćwiczący tyłem do kolumny (wyciag x −38), linka ukośnie w tył (35° od pionu na górze); zwykle przodem do stosu, linka prawie pionowo. Realny.",
+   "dowod": "/tmp/rec-p3-pulldown/ark/Wide-Grip-Pulldown-Behind-The-Neck-side.png"
+  },
+  {
+   "id": "N4",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Lat Pulldown, Close-Grip Front Lat Pulldown, Underhand Lat Pulldown, V-Bar Pulldown, Single Arm Lat Pulldown",
+   "rzut": "side",
+   "opis": "Karta: wałki przytrzymujące uda — rysunek ich nie ma (kontrakt nie zna wałków ud); jest oparcie 85°, na które w rzucie z boku nachodzi ramię na dole ruchu (bez kolizji 3D). Brak elementu, nie przeczenie ruchowi. Realny.",
+   "dowod": "/tmp/rec-p3-pulldown/c_lat_u1.png; lib/figures/v2/gear.ts:233"
+  },
+  {
+   "id": "N5",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "wszystkie 8",
+   "rzut": "etykieta faz",
+   "opis": "„Ściąganie” → EN „Pulling back” (lib/i18n.en.ts:794) pod ściąganiem drążka w dół. Realny (UI EN).",
+   "dowod": "lib/figures/v2/poseData.ts:76; components/ExerciseFigureV2.tsx:120"
+  },
+  {
+   "id": "N6",
+   "waga": "NISKIE",
+   "cwiczenie": "Close-Grip Front Lat Pulldown, Underhand Lat Pulldown, Single Arm Lat Pulldown, Full Range-Of-Motion Lat Pulldown",
+   "rzut": "side",
+   "opis": "Na dole chwyt 17 cm pod barkami wobec reguły do_gornej_klatki (−10…+15); ewaluator sprawdza p.some, więc nie łapie. Single Arm: karta „do barku”. Realny, mały.",
+   "dowod": "/tmp/rec-p3-pulldown/c_cg_front_u1.png; /tmp/rec-p3-pulldown/nak/Close-Grip-Front-Lat-Pulldown-side.png; scripts/figures/v2-sens.mjs:266"
+  },
+  {
+   "id": "N7",
+   "waga": "NISKIE",
+   "cwiczenie": "V-Bar Pulldown",
+   "rzut": "front",
+   "opis": "Uchwyt V rysowany jako krótki prosty drążek (kontrakt bez uchwytu V); uproszczenie. Realny, kosmetyczny.",
+   "dowod": "/tmp/rec-p3-pulldown/c_V-Bar-Pulldown_front_u0.png"
+  }
+ ]
+}
