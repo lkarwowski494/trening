@@ -356,7 +356,7 @@
  "rear.arms": "Lengan bergerak ke sisi, bukan ke belakang — tangan berakhir kira-kira segaris dengan bahu.",
  "rear.elbows": "Kekalkan bengkokan siku sama sepanjang pergerakan.",
  "rear.move": "Angkat lengan ke sisi hingga paras bahu, berserenjang dengan badan; turunkan perlahan-lahan.",
- "rear.setup": "Bongkokkan badan hingga hampir mendatar dengan belakang lurus (atau sandarkan dada pada bangku condong); dumbel tergantung, siku sedikit dibengkokkan.",
+ "rear.setup": "Condongkan badan hingga hampir mendatar dengan belakang lurus (atau sandarkan dada pada bangku condong); dumbel tergantung, siku sedikit dibengkokkan.",
  "ro.back": "Pinggul lurus, belakang rata — jangan biarkan belakang bawah melendut.",
  "rot.elbow": "Siku dibengkokkan dan rapat di sisi badan — hanya lengan bawah yang berputar.",
  "rot.mis.elbowAway": "Siku menjauh dari badan.",
@@ -627,6 +627,6 @@
  "ohs.arms": "Pastikan tangan lurus sepanjang pergerakan.",
  "ohs.move": "Turun ke posisi squat dengan barbel sentiasa di atas kepala, kemudian bangun semula.",
  "ohs.setup": "Barbel di atas kepala dengan tangan lurus.",
- "slrdl.move": "Bongkokkan badan sambil menolak pinggul ke belakang, dan bawa kaki bebas lurus ke belakang; kembali dengan menolak pinggul ke depan.",
+ "slrdl.move": "Condongkan badan ke depan sambil menolak pinggul ke belakang, dan bawa kaki bebas lurus ke belakang; kembali dengan menolak pinggul ke depan.",
  "slrdl.setup": "Berdiri dengan satu kaki, lutut dibengkokkan sedikit."
 }

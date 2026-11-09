@@ -10977,7 +10977,13 @@
    "tylko": [
     "ja",
     "id",
-    "bg"
+    "bg",
+    "ru",
+    "nl",
+    "vi",
+    "sv",
+    "da",
+    "nb"
    ],
    "znaczenie": "chwyt z dłońmi skierowanymi w dół; potoczna nazwa jak w innych kartach (martwy ciąg, podciąganie), bez terminu z podręcznika",
    "kanon": null,
@@ -11010,6 +11016,88 @@
       {
        "wzorzec": "пронир",
        "powod": "podręcznikowe; w pozostałych kartach jest „прав хват”"
+      }
+     ]
+    },
+    "ru": {
+     "zalecany": "прямой хват",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "хват(ом|ом|а|у)?\\s+сверху",
+       "powod": "w kartach jest „прямым хватом”, nie „хватом сверху” (decyzja recenzji P1, 09.11.2026)"
+      }
+     ]
+    },
+    "nl": {
+     "zalecany": "bovengreep",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "bovenhandse",
+       "powod": "w kartach jest „bovengreep”, nie „bovenhandse grip”"
+      }
+     ]
+    },
+    "vi": {
+     "zalecany": "úp tay",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "grip sấp",
+       "powod": "mieszanka angielskiego i wietnamskiego; w kartach jest „kiểu úp tay” (do sprawdzenia przez native speakera)"
+      }
+     ]
+    },
+    "sv": {
+     "zalecany": "överhandsgrepp",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])övergrepp",
+       "powod": "„övergrepp” to po szwedzku przemoc/nadużycie (fałszywy przyjaciel)"
+      }
+     ]
+    },
+    "da": {
+     "zalecany": "overhåndsgreb",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])overgreb",
+       "powod": "„overgreb” to po duńsku nadużycie (fałszywy przyjaciel)"
+      }
+     ]
+    },
+    "nb": {
+     "zalecany": "overhåndsgrep",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])overgrep",
+       "powod": "„overgrep” to po norwesku nadużycie (fałszywy przyjaciel)"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "pochylenie_z_biodra",
+   "pl": "pochylenie z bioder (hinge: pochyl się, cofając biodra)",
+   "tylko": [
+    "ms"
+   ],
+   "znaczenie": "pochylenie tułowia z prostymi plecami przez cofnięcie bioder; NIE garbienie",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])pochyl(ić|isz|aj|ając|enie|ony|a)?(?![\\p{L}])",
+   "jezyki": {
+    "ms": {
+     "zalecany": "condongkan badan",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])bongkokkan",
+       "powod": "„bongkok” to po malajsku garbienie się, czyli błąd, przed którym karta ostrzega (recenzja P1, 09.11.2026)"
       }
      ]
     }
