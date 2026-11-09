@@ -2,6 +2,7 @@
  * Figury v2, rodzina leg_isolation (planned) — ACG-019 (audyt ćwiczeń 31.10.2026, zadanie ACG-T-022), część „Seated Band Hamstring Curl”.
  * Zestaw legCurl mówi „Uda i biodra nieruchomo — ruch tylko w kolanach”, a rysunek opuszczał udo przy wyproście (kolano y 49,6 → 31,1; biodro 92° → 67°).
  * Slider / Stability Ball Hamstring Curl: zestaw ht.rigid („Ruch tylko w biodrach”) i gb.move („Unieś biodra…”) przeczył rysunkowi (miednica stoi, biodro zgina się z kolanem).
+ * 09.11.2026 (B2): Slider — rysunek przebudowany na most zgodny z kartą własną (biodra w górze w całym ruchu).
  * Miara: jointAngles na siatce u = 0…1 co 0,125 (pętla), ruchoma noga (R). Konwencje testowe: zakres biodra ≤ 5° (zadanie), zakres kolana ≥ 45° (ruch to zgięcie kolana), kostka nie schodzi pod podłogę.
  */
 import * as fs from 'fs';
@@ -34,8 +35,10 @@ describe('ACG-019 (31.10.2026): Slider / Stability Ball Hamstring Curl — zesta
   const K = 'Slider Hamstring Curl';
   const miednica = GRID.map(u => keyframeFrame(CW[K], u).sk.pelvis[1]);
   const biodro = GRID.map(u => jointAngles(keyframeFrame(CW[K], u).sk, 'R').hip);
-  test('rysunek: miednica stoi (≤ 2 cm), biodro zgina się z kolanem (zakres ≥ 30°), kolano zgina się ≥ 45°', () => {
-    expect(zakres(miednica)).toBeLessThanOrEqual(2); expect(zakres(biodro)).toBeGreaterThanOrEqual(30);
+  /* 09.11.2026 (B2, decyzja koordynatora wariant A): rysunek przebudowany na most zgodny z kartą („biodra cały czas w górze”) — zastępuje stan ACG-019 (miednica nieruchoma nisko, biodro zginało się z kolanem = błąd karty ballcurl.mis.sag „biodra opadające”). */
+  test('rysunek (B2, 09.11.2026): biodro blisko wyprostu w całym ruchu (|kąt| ≤ 10° — jointAngles().hip nie ma pewnego znaku przy małych kątach, figury-sens _uwaga_r4_biodro_bez_znaku; przed B2: do 28°), miednica wysoko przy ugiętych kolanach (≥ 12 cm wyżej niż przy wyprostowanych), kolano zgina się ≥ 45°', () => {
+    for (const h of biodro) expect(Math.abs(h)).toBeLessThanOrEqual(10);
+    expect(Math.max(...miednica) - keyframeFrame(CW[K], 1).sk.pelvis[1]).toBeGreaterThanOrEqual(12);
     expect(zakres(GRID.map(u => jointAngles(keyframeFrame(CW[K], u).sk, 'R').knee))).toBeGreaterThanOrEqual(45);
   });
   test.each(['Stability Ball Hamstring Curl'])('%s: zestaw bez zdań o ruchu tylko w biodrach, unoszeniu bioder i nieruchomych udach; zostają zdania zgodne z rysunkiem', k => {
@@ -43,9 +46,9 @@ describe('ACG-019 (31.10.2026): Slider / Stability Ball Hamstring Curl — zesta
     for (const id of ['ht.rigid', 'gb.move', 'lcurl.still']) expect([k, ok.includes(id), id]).toEqual([k, false, id]);
     expect(ok).toEqual(['llc.control']); /* lcurl.move pasowałoby lepiej, ale nie ma wpisu źródeł w wskazowki-ogolne.json — do badacza */
   });
-  /* 09.11.2026 (partia B2): Slider Hamstring Curl ma kartę własną z badań (most: „biodra cały czas w górze”, błąd ballcurl.mis.sag), która PRZECZY rysunkowi
-     (miednica nisko, biodro zgina się z kolanem). Karta zostaje ukryta (lista hidden, karty_nowe) do decyzji koordynatora: przebudowa rysunku na most albo powrót do zestawu ogólnego (STAN-B2.md). */
-  test('Slider Hamstring Curl (B2, 09.11.2026): karta własna przeczy rysunkowi — jest ukryta, a zestaw ogólny nie wraca', () => {
+  /* 09.11.2026 (partia B2): Slider Hamstring Curl ma kartę własną z badań (most: „biodra cały czas w górze”, błąd ballcurl.mis.sag bez animacji); rysunek przebudowany na most (test wyżej).
+     Karta ukryta (lista hidden, karty_nowe) do recenzji niezależnej (L-047). */
+  test('Slider Hamstring Curl (B2, 09.11.2026): karta własna ukryta do recenzji, zestaw ogólny nie wraca', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const cues = require('../lib/cues/data.json') as { hidden: string[]; exercises: Record<string, unknown> };
     expect([SETS[K], cues.hidden.includes(K), K in cues.exercises]).toEqual([{ b: 'own' }, true, false]);
