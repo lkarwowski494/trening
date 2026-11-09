@@ -103,7 +103,7 @@ describe('P1 squat i hinge: źródła i reguły szczebli', () => {
   });
 
   test('nowe źródła: adres https, organizacja z danych; Coach (organizacja warunkowa) — szczebel 4 z opisem strony (kwalifikacje autora na stronie autora); EliteFTS (blog trenerski z linkami do sklepu) = 5 — bez źródeł w danych (runda 1 recenzji, 09.11.2026)', () => {
-    expect(P1.noweZrodla.length).toBe(14);
+    expect(P1.noweZrodla.length).toBe(15); /* runda 2 (09.11.2026): + barbend-back-squat */
     for (const sid of P1.noweZrodla) {
       const s = CUE_FULL.sources[sid] as { url?: string; org: string; level?: number; strona?: string };
       expect([sid, /^https:\/\//.test(s.url ?? ''), s.org in CUE_FULL.orgs, lv(sid)]).toEqual([sid, true, true, 4]);
@@ -139,6 +139,19 @@ describe('P1 squat i hinge: poprawki rundy 1 recenzji niezależnej (badacz, 09.1
     for (const c of ['slrdl.move', 'mis.roundBack']) expect([c, /wyciąg/.test((sentencesOf('Single Leg RDL (linki)').find(r => r.c === c) as { uproszczenie?: string }).uproszczenie ?? '')]).toEqual([c, true]);
     expect(Object.keys(P1.otwarte).sort()).toEqual(['Barbell Hack Squat::sq.mis.roundBack', 'Overhead Squat::ohs.mis.armsForward']);
     expect(ref('Barbell Hack Squat', 'sq.mis.roundBack')).toEqual([]);
+  });
+});
+
+describe('P1 squat i hinge: poprawki rundy 2 recenzji niezależnej (badacz, 09.11.2026)', () => {
+  const refs = (k: string, c: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[k][s] ?? []).find(r => r.c === c)!.s.map(([sid]) => sid).sort();
+  test('Chains/Bands bez ExRx (nieprzeczytany): sq.bar = ACE 11 + BarBend back squat, sq.back = ACE 11 + BarBend + SBS; karta bazowa Back Squat — ta sama podmiana w sq.bar i sq.back (tylko źródła, tekst bez zmian)', () => {
+    for (const k of ['Squat with Chains', 'Squat with Bands']) {
+      for (const r of sentencesOf(k)) expect([k, r.c, r.s.some(([sid]) => sid.startsWith('exrx'))]).toEqual([k, r.c, false]);
+      expect([k, refs(k, 'sq.bar')]).toEqual([k, ['ace-11', 'barbend-back-squat']]);
+      expect([k, refs(k, 'sq.back')]).toEqual([k, ['ace-11', 'barbend-back-squat', 'sbs-how-to-squat']]);
+    }
+    expect(refs('Back Squat', 'sq.bar')).toEqual(['ace-11', 'barbend-back-squat']);
+    expect(refs('Back Squat', 'sq.back')).toEqual(['ace-11', 'barbend-back-squat', 'sbs-how-to-squat']);
   });
 });
 

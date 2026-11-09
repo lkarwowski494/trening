@@ -3756,6 +3756,12 @@
    "title": "Accommodating Resistance (T. Ramos, ACSM CPT, akt. 27.05.2025)",
    "url": "https://barbend.com/accommodating-resistance/",
    "level": 4
+  },
+  "barbend-back-squat": {
+   "org": "BarBend",
+   "title": "How to Do the Back Squat (M. Dewar, CSCS; weryfikacja J. Dickson, USAW-L2)",
+   "url": "https://barbend.com/back-squat/",
+   "level": 4
   }
  },
  "exercises": {
@@ -6199,8 +6205,8 @@
        "opis"
       ],
       [
-       "exrx-Quadriceps/BBFullSquat",
-       "Preparation"
+       "barbend-back-squat",
+       "Step 2 („hands clasping the bar just outside your shoulders”; „step out of the rack”) (runda 2 recenzji niezależnej, 09.11.2026)"
       ]
      ]
     },
@@ -6293,8 +6299,12 @@
        "opis (straight back, chest up)"
       ],
       [
-       "exrx-Quadriceps/BBFullSquat",
-       "Comments (back straight)"
+       "barbend-back-squat",
+       "Step 5 („Keep your chest up”) (runda 2 recenzji niezależnej, 09.11.2026)"
+      ],
+      [
+       "sbs-how-to-squat",
+       "„Your spine should remain rigid and extended” (runda 2 recenzji niezależnej, 09.11.2026)"
       ]
      ]
     }
@@ -22994,8 +23004,8 @@
        "opis — uproszczenie: wariant sprzętu Back Squat"
       ],
       [
-       "exrx-Quadriceps/BBFullSquat",
-       "Preparation — uproszczenie: wariant sprzętu Back Squat"
+       "barbend-back-squat",
+       "Step 2 („hands clasping the bar just outside your shoulders”; „step out of the rack”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       ]
      ],
      "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
@@ -23012,10 +23022,6 @@
       [
        "ace-11",
        "opis — uproszczenie: wariant sprzętu Back Squat"
-      ],
-      [
-       "exrx-Quadriceps/BBFullSquat",
-       "Execution — uproszczenie: wariant sprzętu Back Squat"
       ]
      ],
      "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
@@ -23044,8 +23050,12 @@
        "opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat"
       ],
       [
-       "exrx-Quadriceps/BBFullSquat",
-       "Comments (back straight) — uproszczenie: wariant sprzętu Back Squat"
+       "barbend-back-squat",
+       "Step 5 („Keep your chest up”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "sbs-how-to-squat",
+       "„Your spine should remain rigid and extended” (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       ]
      ],
      "uproszczenie": "wariant sprzętu Back Squat: łańcuchy zmieniają tylko rozkład oporu w zakresie ruchu, przysiad jak zwykle (źródło o tym wariancie mówi to wprost)"
@@ -23092,8 +23102,8 @@
        "opis — uproszczenie: wariant sprzętu Back Squat"
       ],
       [
-       "exrx-Quadriceps/BBFullSquat",
-       "Preparation — uproszczenie: wariant sprzętu Back Squat"
+       "barbend-back-squat",
+       "Step 2 („hands clasping the bar just outside your shoulders”; „step out of the rack”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       ]
      ],
      "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
@@ -23110,10 +23120,6 @@
       [
        "ace-11",
        "opis — uproszczenie: wariant sprzętu Back Squat"
-      ],
-      [
-       "exrx-Quadriceps/BBFullSquat",
-       "Execution — uproszczenie: wariant sprzętu Back Squat"
       ]
      ],
      "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"
@@ -23142,8 +23148,12 @@
        "opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat"
       ],
       [
-       "exrx-Quadriceps/BBFullSquat",
-       "Comments (back straight) — uproszczenie: wariant sprzętu Back Squat"
+       "barbend-back-squat",
+       "Step 5 („Keep your chest up”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
+      ],
+      [
+       "sbs-how-to-squat",
+       "„Your spine should remain rigid and extended” (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       ]
      ],
      "uproszczenie": "wariant sprzętu Back Squat: gumy zmieniają tylko rozkład oporu w zakresie ruchu, standardowy przysiad ze sztangą na plecach (źródło o tym wariancie mówi to wprost)"

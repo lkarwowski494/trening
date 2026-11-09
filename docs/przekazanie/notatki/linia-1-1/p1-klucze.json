@@ -779,11 +779,11 @@
        "miejsce": "opis — uproszczenie: wariant sprzętu Back Squat"
       },
       {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
+       "id": "barbend-back-squat",
+       "org": "BarBend",
        "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Preparation — uproszczenie: wariant sprzętu Back Squat"
+       "url": "https://barbend.com/back-squat/",
+       "miejsce": "Step 2 („hands clasping the bar just outside your shoulders”; „step out of the rack”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       }
      ]
     }
@@ -809,13 +809,6 @@
        "szczebel": 4,
        "url": "https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/",
        "miejsce": "opis — uproszczenie: wariant sprzętu Back Squat"
-      },
-      {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
-       "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Execution — uproszczenie: wariant sprzętu Back Squat"
       }
      ]
     }
@@ -859,11 +852,18 @@
        "miejsce": "opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat"
       },
       {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
+       "id": "barbend-back-squat",
+       "org": "BarBend",
        "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Comments (back straight) — uproszczenie: wariant sprzętu Back Squat"
+       "url": "https://barbend.com/back-squat/",
+       "miejsce": "Step 5 („Keep your chest up”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
+      },
+      {
+       "id": "sbs-how-to-squat",
+       "org": "Stronger by Science",
+       "szczebel": 4,
+       "url": "https://www.strongerbyscience.com/how-to-squat/",
+       "miejsce": "„Your spine should remain rigid and extended” (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       }
      ]
     }
@@ -934,11 +934,11 @@
        "miejsce": "opis — uproszczenie: wariant sprzętu Back Squat"
       },
       {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
+       "id": "barbend-back-squat",
+       "org": "BarBend",
        "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Preparation — uproszczenie: wariant sprzętu Back Squat"
+       "url": "https://barbend.com/back-squat/",
+       "miejsce": "Step 2 („hands clasping the bar just outside your shoulders”; „step out of the rack”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       }
      ]
     }
@@ -964,13 +964,6 @@
        "szczebel": 4,
        "url": "https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/",
        "miejsce": "opis — uproszczenie: wariant sprzętu Back Squat"
-      },
-      {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
-       "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Execution — uproszczenie: wariant sprzętu Back Squat"
       }
      ]
     }
@@ -1014,11 +1007,18 @@
        "miejsce": "opis (straight back, chest up) — uproszczenie: wariant sprzętu Back Squat"
       },
       {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
+       "id": "barbend-back-squat",
+       "org": "BarBend",
        "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Comments (back straight) — uproszczenie: wariant sprzętu Back Squat"
+       "url": "https://barbend.com/back-squat/",
+       "miejsce": "Step 5 („Keep your chest up”) (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
+      },
+      {
+       "id": "sbs-how-to-squat",
+       "org": "Stronger by Science",
+       "szczebel": 4,
+       "url": "https://www.strongerbyscience.com/how-to-squat/",
+       "miejsce": "„Your spine should remain rigid and extended” (runda 2 recenzji niezależnej, 09.11.2026) — uproszczenie: wariant sprzętu Back Squat"
       }
      ]
     }
@@ -1097,7 +1097,8 @@
   "catalyst-79-overhead-squat",
   "issa-dont-know-squat",
   "catalyst-chain-back-squat",
-  "barbend-accommodating-resistance"
+  "barbend-accommodating-resistance",
+  "barbend-back-squat"
  ],
  "odrzucone": [
   [
@@ -1541,5 +1542,6 @@
   "Barbell Hack Squat::sq.mis.roundBack": "dwie organizacje opisują zaokrąglenie dolnego odcinka (BarBend „Rounding”; Coach — „the lower back and tailbone to round, or curl under”), ale brak zdania o zaokrągleniu na dole przysiadu i pozy rigu (istniejące mis.roundBack mówi o dociąganiu ciężaru) — recenzja niezależna rundy 1, 09.11.2026",
   "Overhead Squat::ohs.mis.armsForward": "dwie organizacje, brak pozy rigu (zmiana silnika poza partią)"
  },
+ "runda2": "09.11.2026: R2-1 — w Squat with Chains/Bands ExRx (nieprzeczytany, 403) zastąpiony: sq.bar i sq.back + barbend-back-squat (Step 2, Step 5), sq.back + SBS („Your spine should remain rigid and extended”), sq.down bez ExRx. R2-2 — karta bazowa Back Squat zmieniona TYLKO w źródłach (sq.bar, sq.back: ExRx → barbend-back-squat, + SBS przy sq.back); tekst i skrót karty bez zmian. Back Squat sq.down zostaje z ExRx: bez niego ACE 11 + ACE 135 = jedna organizacja — do decyzji w rundzie z wpisem „karty”.",
  "runda1": "09.11.2026: poprawki rundy 1 recenzji niezależnej (badacz) naniesione — P-1…P-9 wg decyzji koordynatora (docs/18 09.11.2026)"
 }
