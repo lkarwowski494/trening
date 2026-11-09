@@ -29612,7 +29612,7 @@
    }
   },
   "as.extend": {
-   "s": "5aeeddf3ce1a",
+   "s": "0945f5bafa8d",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -29764,7 +29764,7 @@
    }
   },
   "kbb.cleanMove": {
-   "s": "70f65b27341e",
+   "s": "13e352674a68",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -29802,7 +29802,7 @@
    }
   },
   "kbb.dblSnatchMove": {
-   "s": "8a640bc69844",
+   "s": "f7c695dff85b",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -29840,7 +29840,7 @@
    }
   },
   "kbb.mis.armPull": {
-   "s": "48d8a92358ce",
+   "s": "0f6faa1c336d",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -29916,7 +29916,7 @@
    }
   },
   "kbb.mis.cast": {
-   "s": "df2209260ce0",
+   "s": "4de10a3e761f",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -29992,7 +29992,7 @@
    }
   },
   "kbb.rack": {
-   "s": "99dd3d8698af",
+   "s": "90101b79ac07",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30106,7 +30106,7 @@
    }
   },
   "kbb.snatchMove": {
-   "s": "91ef7d8ff397",
+   "s": "1079f8a3f803",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30144,7 +30144,7 @@
    }
   },
   "kbpp.mis.rebend": {
-   "s": "4455bc0d79ba",
+   "s": "73d50f980aad",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30182,7 +30182,7 @@
    }
   },
   "kbpp.move": {
-   "s": "302ededc11af",
+   "s": "8987fea25bf7",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30220,7 +30220,7 @@
    }
   },
   "pinch.hold": {
-   "s": "ead6586fac4d",
+   "s": "1dc70b5e950f",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30296,7 +30296,7 @@
    }
   },
   "plyo.coneLat.hop": {
-   "s": "7c76340409e9",
+   "s": "b44f55a967b0",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30410,7 +30410,7 @@
    }
   },
   "plyo.splitSwitch": {
-   "s": "0d144b3f6859",
+   "s": "ac634d0afa44",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
@@ -30448,7 +30448,7 @@
    }
   },
   "sled.backGrip": {
-   "s": "472b05bafa55",
+   "s": "e278c74e7aaf",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
