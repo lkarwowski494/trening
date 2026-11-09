@@ -48,8 +48,7 @@ export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   /* 04.11.2026 (koordynator, recenzja olympic r4, warunek 1): wzruszenia mają dziś tylko zestaw ogólny `oly` — rysunek dopiero z kartami T2 (po wpisie kart zdjąć stąd) */
   'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
   'Snatch Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
-  /* 09.11.2026 (lead partii 2, hip_bridge r1, WYSOKIE): prowadnica dźwigni w płaszczyźnie środkowej przez miednicę — poprawka danych razem z ponownym sprawdzeniem śladu dźwigni po scaleniu figury/slad-dzwignia */
-  'Machine Hip Thrust': 'prowadnica dźwigni w płaszczyźnie środkowej przez miednicę (hip_bridge r1, WYSOKIE) — poprawka danych razem z ponownym sprawdzeniem śladu dźwigni po scaleniu figury/slad-dzwignia',
+  'Machine Hip Thrust': '09.11.2026 hip_bridge r1 WYSOKIE: prowadnica dźwigni przez miednicę; poprawka danych ze śladem dźwigni po figury/slad-dzwignia',
 };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
