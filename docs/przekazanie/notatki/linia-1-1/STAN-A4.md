@@ -1,7 +1,7 @@
 # STAN partii A4 (tekst: core/moc + przedramiona) — linia 1.1
 
 ## Teraz
-- 09.11.2026 (sesja B #3, programista): **A4a (core) — dane gotowe**: 17 kart, 50 zdań PL/EN, 33 źródła, rola Superman (fixture `tests/fixtures/cues-a4-core.json`, test `tests/zrodla-pelne-cues-a4-core.test.ts`, zestaw przekładu `docs/lokalizacja/zestaw-przekladu-2026-11-09-a4-wskazowki.json`, wpis docs/18 09.11, lista dla recenzenta `a4-klucze.json`). Bramka przed wypchnięciem w toku.
+- 09.11.2026 (sesja B #3, programista): **A4a (core) — dane gotowe**: 17 kart, 50 zdań PL/EN, 33 źródła, rola Superman (fixture `tests/fixtures/cues-a4-core.json`, test `tests/zrodla-pelne-cues-a4-core.test.ts`, zestaw przekładu `docs/lokalizacja/zestaw-przekladu-2026-11-09-a4-wskazowki.json`, wpis docs/18 09.11, lista dla recenzenta `a4-klucze.json`). Bramka 09.11.2026: test-fast --od-bazy — czerwone strażniki liczności i 3 merytoryczne naprawione (WebMD pod WebMD Ignite, Cable Russian Twists w `zestawy_zmienione`, reguły sensu core_floor ×7 jawnie w `warianty` — identyczne z bazą), wyjątki strażnika nazw; verify:lekkie zielone; push 5fe24099 → tests.yml 42569321341 **zielony**.
 - Następny krok A4a: zielony tests.yml → recenzja niezależna (koordynator: badacz + recenzent lokalizacji PL/EN wg a4-klucze.json) → przekład (osobna zgoda — ZB-051 obejmuje A1–A3).
 - Następny krok A4b: osobna sesja albo kontynuacja od tego pliku (zakres niżej).
 
