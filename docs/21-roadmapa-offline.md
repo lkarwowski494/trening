@@ -156,6 +156,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.2 — pełna karta: 9 obowiązkowych wymagających nowego ruchu silnika (właściciel 09.11.2026, ZB-053)
 - Cel 1.1 „pełna karta” zmniejszony 465 → 456 (docs/18, 09.11.2026): te 9 ćwiczeń nie ma danych póz v2 i wymaga nowego ruchu silnika rysunku, więc przechodzi do 1.2: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up (lista maszynowa: `poza11` w `docs/research/pokrycie-cele.json`). Cel 1.2: pełna karta także dla nich; 4 obowiązkowe bez ról mięśni (Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam) zostają w 1.1.
 
+### Backlog 1.2 — pokrycie: ćwiczenia „ciężkie” wyłączone z celu 1.1 (właściciel 09.11.2026)
+- Decyzja 09.11.2026 (docs/18): cel 1.1 liczony bez ćwiczeń, które wymagają nowych badań lub treści (brak tekstu wskazówek w źródłach i zestawu ogólnego, brak danych póz v2, nowy ruch silnika). Liczba ćwiczeń poza pełną kartą w symulowanym stanie końcowym 1.1: 251 z 708; lista i rozbicie powodów — `node scripts/pokrycie-symulacja.mjs --json` (pola `cwiczeniaCiezkie` i `gain`; test `tests/cel-1-1-bez-ciezkich.test.ts`), bez listy nazw tutaj. Cel 1.2: pełna karta także dla nich.
+
 ### Backlog 1.2 — karta ćwiczenia na wąskim ekranie (właściciel 08.11.2026, ZB-044)
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
