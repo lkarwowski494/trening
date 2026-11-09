@@ -35,57 +35,57 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 ### Wersja 1.1 — potwierdzony przez właściciela 31.10.2026 (decyzja 2 = A, docs/18); od 09.11.2026 cel każdej metryki = stan końcowy linii 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026, docs/18; symulacja scripts/pokrycie-symulacja.mjs): pelnaKarta 457 (8.11.2026 standard 1 wg decyzji 02.11.2026 ~15:30: 465, po przeniesieniu 9 ćwiczeń do 1.2 — 456)
 
-Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela. 04.11.2026 (T1, przekład API 52 zdań kart delt_raise): 33 liczb kompletu kart języków podniesione do 572 (stan po przekładzie) — nadal cel startowy. 08.11.2026 (Z0, C-1/C-2; decyzja właściciela 02.11.2026 ~15:30 „dwa standardy publikacji”, ~17:00 „pełna karta dla każdego ćwiczenia, dla którego mamy dane” + lista obowiązkowych, 04.11.2026 (4) B mobilność bez ról): pelnaKarta = standard 1 (wskazówki + figura v2 + role mięśni; mobilność bez ról), cel pelnaKarta 465 = 452 ćwiczeń z danymi póz v2 i rolami mięśni albo mobilnością (bez 2 wstrzymanych w V2_WSTRZYMANE) + 13 spośród 51 obowiązkowych (docs/research/pokrycie-1-1-obowiazkowe.json), których ten warunek nie obejmuje (9 bez danych póz: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up; 4 z danymi, ale bez ról mięśni: Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam — role i pozy dochodzą w D-7); stan w chwili ustalenia: 179 w standardzie 1, 125 w standardzie 2. Pozostałe liczby bez zmian (cel startowy). 09.11.2026 (ZB-053, decyzja właściciela 09.11.2026, docs/18): 9 ćwiczeń bez danych póz wypada z celu 1.1 do 1.2 (lista `poza11`), zostają 4 bez ról mięśni; cel pelnaKarta 456 = 465 − 9 (liczba wynika z listy `poza11`, pilnuje tego test). 09.11.2026 (decyzja właściciela 09.11.2026, docs/18: „Obniżmy próg wyciągając z niego ciężkie.”): cel każdej metryki = wartość w symulowanym stanie końcowym, który nie wymaga nowych badań ani treści (scripts/pokrycie-symulacja.mjs; zgodność celu z symulacją pilnuje tests/cel-1-1-bez-ciezkich.test.ts) — (b) wszystkie rodziny z danymi póz v2 włączone i zrecenzowane (poza V2_WSTRZYMANE) z zestawami ogólnymi zrecenzowanymi, (a) wszystkie karty z tekstem w data/zrodla/cues.json odsłonięte i przetłumaczone w każdym języku, (c) role mięśni dla ćwiczeń, którym dziś brakuje tylko ról; cel nie jest niższy niż minimum zapadki. „Ciężkie” (poza celem, backlog 1.2): ćwiczenia bez tekstu wskazówek w źródłach i bez zestawu ogólnego, bez danych póz v2 albo wymagające nowego ruchu silnika. Zmiany celu (stare → nowe): figura.v2 98 → 533, figura.wAplikacji 151 → 535, animowanyBlad 92 → 264, wskazowki.wlasne 102 → 285, wskazowki.wlasneZBledami 43 → 176, wskazowki.zTekstem 640 → 572, czesteBledyTekst 557 → 451, roleMiesni 508 → 516, pelnaKarta 456 → 457, recenzjaFigur 98 → 533, jezyk.pl i jezyk.en 671 → 631, pozostałe języki 574 (es-419: 572) → 631; figura.zDanymiV2 535 i nazwaLokalna.razem 0 bez zmian.
+Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości. 04.11.2026 (scalenie przekładu P1 i P2, koordynator): 33 liczb kompletu kart języków podniesionych do minimum zapadki — nadal cel startowy, liczby docelowe w decyzji właściciela. 04.11.2026 (T1, przekład API 52 zdań kart delt_raise): 33 liczb kompletu kart języków podniesione do 572 (stan po przekładzie) — nadal cel startowy. 08.11.2026 (Z0, C-1/C-2; decyzja właściciela 02.11.2026 ~15:30 „dwa standardy publikacji”, ~17:00 „pełna karta dla każdego ćwiczenia, dla którego mamy dane” + lista obowiązkowych, 04.11.2026 (4) B mobilność bez ról): pelnaKarta = standard 1 (wskazówki + figura v2 + role mięśni; mobilność bez ról), cel pelnaKarta 465 = 452 ćwiczeń z danymi póz v2 i rolami mięśni albo mobilnością (bez 2 wstrzymanych w V2_WSTRZYMANE) + 13 spośród 51 obowiązkowych (docs/research/pokrycie-1-1-obowiazkowe.json), których ten warunek nie obejmuje (9 bez danych póz: Inverted Row, Nordic Curl, Side Plank, Sissy Squat, Calf Press (leg press), Ab Wheel, Cable Crunch, Meadows Row, Handstand Push Up; 4 z danymi, ale bez ról mięśni: Dead Bug, Hollow Hold, Bird Dog, Medicine Ball Slam — role i pozy dochodzą w D-7); stan w chwili ustalenia: 179 w standardzie 1, 125 w standardzie 2. Pozostałe liczby bez zmian (cel startowy). 09.11.2026 (ZB-053, decyzja właściciela 09.11.2026, docs/18): 9 ćwiczeń bez danych póz wypada z celu 1.1 do 1.2 (lista `poza11`), zostają 4 bez ról mięśni; cel pelnaKarta 456 = 465 − 9 (liczba wynika z listy `poza11`, pilnuje tego test). 09.11.2026 (decyzja właściciela 09.11.2026, docs/18: „Obniżmy próg wyciągając z niego ciężkie.”): cel każdej metryki = wartość w symulowanym stanie końcowym, który nie wymaga nowych badań ani treści (scripts/pokrycie-symulacja.mjs; zgodność celu z symulacją pilnuje tests/cel-1-1-bez-ciezkich.test.ts) — (b) wszystkie rodziny z danymi póz v2 włączone i zrecenzowane (poza V2_WSTRZYMANE) z zestawami ogólnymi zrecenzowanymi, (a) wszystkie karty z tekstem w data/zrodla/cues.json odsłonięte i przetłumaczone w każdym języku, (c) role mięśni dla ćwiczeń, którym dziś brakuje tylko ról; cel nie jest niższy niż minimum zapadki. „Ciężkie” (poza celem, backlog 1.2): ćwiczenia bez tekstu wskazówek w źródłach i bez zestawu ogólnego, bez danych póz v2 albo wymagające nowego ruchu silnika. Zmiany celu (stare → nowe): figura.v2 98 → 533, figura.wAplikacji 151 → 535, animowanyBlad 92 → 264, wskazowki.wlasne 102 → 285, wskazowki.wlasneZBledami 43 → 176, wskazowki.zTekstem 640 → 572, czesteBledyTekst 557 → 451, roleMiesni 508 → 516, pelnaKarta 456 → 457, recenzjaFigur 98 → 533, jezyk.pl i jezyk.en 671 → 631, pozostałe języki 574 (es-419: 572) → 631; figura.zDanymiV2 535 i nazwaLokalna.razem 0 bez zmian. 09.11.2026 (koordynator, tryb nocny, wariant B, do weta właściciela): symulacja nie liczy kart z werdyktem „do poprawy” w figury-recenzja.json (karty; dziś Front Incline Dumbbell Raise i Barbell Incline Shoulder Raise) — pelnaKarta zostaje 457 (karta nie jest pełna do czasu poprawki fidr.move), a metryki zależne od karty własnej spadają o 2 (wskazowki.wlasne 285 → 283, wskazowki.wlasneZBledami 176 → 174, wskazowki.zTekstem 572 → 570, czesteBledyTekst 451 → 449, komplet kart każdego języka 631 → 630); figura.v2, figura.wAplikacji, figura.zDanymiV2 i recenzjaFigur rosną o 1 (rysunek Front Incline Dumbbell Raise po włączeniu delt_raise). Naprawa karty (wariant A) podniosłaby pelnaKarta do 458 — osobne zadanie.
 
 Cel osiągnięty: **nie** (2 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 533 | 214 | 319 |
-| figura w aplikacji (v2 albo v1) | 535 | 255 | 280 |
+| figura v2 w aplikacji | 534 | 214 | 320 |
+| figura w aplikacji (v2 albo v1) | 536 | 255 | 281 |
 | animowany błąd | 264 | 132 | 132 |
-| własne wskazówki | 285 | 265 | 20 |
-| własne wskazówki z częstymi błędami | 176 | 157 | 19 |
-| wskazówki (własne lub zestaw ogólny) | 572 | 378 | 194 |
-| częste błędy (tekst) | 451 | 270 | 181 |
+| własne wskazówki | 283 | 265 | 18 |
+| własne wskazówki z częstymi błędami | 174 | 157 | 17 |
+| wskazówki (własne lub zestaw ogólny) | 570 | 378 | 192 |
+| częste błędy (tekst) | 449 | 270 | 179 |
 | role mięśni | 516 | 513 | 3 |
 | pełna karta | 457 | 210 | 247 |
-| figura z aktualną recenzją ruchu | 533 | 214 | 319 |
-| komplet tekstów karty: pl | 631 | 577 | 54 |
-| komplet tekstów karty: en | 631 | 577 | 54 |
-| komplet tekstów karty: cs | 631 | 577 | 54 |
-| komplet tekstów karty: sk | 631 | 577 | 54 |
-| komplet tekstów karty: hu | 631 | 577 | 54 |
-| komplet tekstów karty: ro | 631 | 577 | 54 |
-| komplet tekstów karty: bg | 631 | 577 | 54 |
-| komplet tekstów karty: hr | 631 | 577 | 54 |
-| komplet tekstów karty: sl | 631 | 577 | 54 |
-| komplet tekstów karty: sr | 631 | 577 | 54 |
-| komplet tekstów karty: lt | 631 | 577 | 54 |
-| komplet tekstów karty: lv | 631 | 577 | 54 |
-| komplet tekstów karty: et | 631 | 577 | 54 |
-| komplet tekstów karty: uk | 631 | 577 | 54 |
-| komplet tekstów karty: es | 631 | 577 | 54 |
-| komplet tekstów karty: es-419 | 631 | 577 | 54 |
-| komplet tekstów karty: pt | 631 | 577 | 54 |
-| komplet tekstów karty: pt-BR | 631 | 577 | 54 |
-| komplet tekstów karty: de | 631 | 577 | 54 |
-| komplet tekstów karty: fr | 631 | 577 | 54 |
-| komplet tekstów karty: it | 631 | 577 | 54 |
-| komplet tekstów karty: nl | 631 | 577 | 54 |
-| komplet tekstów karty: sv | 631 | 577 | 54 |
-| komplet tekstów karty: da | 631 | 577 | 54 |
-| komplet tekstów karty: nb | 631 | 577 | 54 |
-| komplet tekstów karty: fi | 631 | 577 | 54 |
-| komplet tekstów karty: tr | 631 | 577 | 54 |
-| komplet tekstów karty: el | 631 | 577 | 54 |
-| komplet tekstów karty: id | 631 | 577 | 54 |
-| komplet tekstów karty: ms | 631 | 577 | 54 |
-| komplet tekstów karty: vi | 631 | 577 | 54 |
-| komplet tekstów karty: ru | 631 | 577 | 54 |
-| komplet tekstów karty: ja | 631 | 577 | 54 |
-| komplet tekstów karty: ko | 631 | 577 | 54 |
-| komplet tekstów karty: zh-Hant | 631 | 577 | 54 |
+| figura z aktualną recenzją ruchu | 534 | 214 | 320 |
+| komplet tekstów karty: pl | 630 | 577 | 53 |
+| komplet tekstów karty: en | 630 | 577 | 53 |
+| komplet tekstów karty: cs | 630 | 577 | 53 |
+| komplet tekstów karty: sk | 630 | 577 | 53 |
+| komplet tekstów karty: hu | 630 | 577 | 53 |
+| komplet tekstów karty: ro | 630 | 577 | 53 |
+| komplet tekstów karty: bg | 630 | 577 | 53 |
+| komplet tekstów karty: hr | 630 | 577 | 53 |
+| komplet tekstów karty: sl | 630 | 577 | 53 |
+| komplet tekstów karty: sr | 630 | 577 | 53 |
+| komplet tekstów karty: lt | 630 | 577 | 53 |
+| komplet tekstów karty: lv | 630 | 577 | 53 |
+| komplet tekstów karty: et | 630 | 577 | 53 |
+| komplet tekstów karty: uk | 630 | 577 | 53 |
+| komplet tekstów karty: es | 630 | 577 | 53 |
+| komplet tekstów karty: es-419 | 630 | 577 | 53 |
+| komplet tekstów karty: pt | 630 | 577 | 53 |
+| komplet tekstów karty: pt-BR | 630 | 577 | 53 |
+| komplet tekstów karty: de | 630 | 577 | 53 |
+| komplet tekstów karty: fr | 630 | 577 | 53 |
+| komplet tekstów karty: it | 630 | 577 | 53 |
+| komplet tekstów karty: nl | 630 | 577 | 53 |
+| komplet tekstów karty: sv | 630 | 577 | 53 |
+| komplet tekstów karty: da | 630 | 577 | 53 |
+| komplet tekstów karty: nb | 630 | 577 | 53 |
+| komplet tekstów karty: fi | 630 | 577 | 53 |
+| komplet tekstów karty: tr | 630 | 577 | 53 |
+| komplet tekstów karty: el | 630 | 577 | 53 |
+| komplet tekstów karty: id | 630 | 577 | 53 |
+| komplet tekstów karty: ms | 630 | 577 | 53 |
+| komplet tekstów karty: vi | 630 | 577 | 53 |
+| komplet tekstów karty: ru | 630 | 577 | 53 |
+| komplet tekstów karty: ja | 630 | 577 | 53 |
+| komplet tekstów karty: ko | 630 | 577 | 53 |
+| komplet tekstów karty: zh-Hant | 630 | 577 | 53 |
 
 ## Rodziny ruchu
 
