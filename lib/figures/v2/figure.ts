@@ -60,7 +60,7 @@ export function shownFigureSpec(key: string): FigureSpec | null {
   return spec && familyReviewed(spec.family) ? spec : null;
 }
 
-/** Ćwiczenie ma figurę v2 w silniku, ale aplikacja jej nie pokazuje (wstrzymana albo rodzina bez aktualnej recenzji ruchu), a jego figura v1 została „zastąpiona” przez v2: karta zostaje bez rysunku — bez powrotu do figury v1, której nikt nie zatwierdził do samodzielnego wyświetlania (bramka 4, fail-closed). Figura v1 z werdyktem „wyswietlana” zostaje. */
+/** Figura v2 jest w silniku, ale aplikacja jej nie pokazuje (wstrzymana albo rodzina bez recenzji), a v1 jest „zastąpiona”: karta zostaje bez rysunku (bramka 4, fail-closed). */
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV1Replaced = (): readonly string[] => (require('../data.json') as { replaced?: string[] }).replaced ?? [];
 export const figureWithheld = (key: string): boolean => figureSpec(key) !== null && shownFigureSpec(key) === null && figV1Replaced().includes(key);
@@ -136,12 +136,12 @@ export function measuredAngle(spec: FigureSpec, u: number, error?: FigError): { 
 
 /** Tryb pętli figury: cykl_lustro (marsz) i jednokierunkowa (skok, rzut) tylko dla ćwiczeń z danych z polem `petla`; reszta wahadło. */
 export const loopOf = (spec: FigureSpec): LoopMode => { if (!('data' in spec.variant)) return 'wahadlo'; const p = spec.variant.data.petla; return p === 'cykl_lustro' || p === 'jednokierunkowa' ? p : 'wahadlo'; };
-/** Zakres pozycji u pętli: 2 w trybie cyklicznym (druga połowa w lustrze), 1 w wahadle. */
+/** Zakres u pętli: 2 w trybie cyklicznym (lustro), 1 w wahadle. */
 export const loopSpan = (spec: FigureSpec): number => 'data' in spec.variant ? poseLoopSpan(spec.variant.data) : 1;
 
-/** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii; pętla jednokierunkowa zamknięta — poza wyjściowa i szczyty, r4-W1). */
+/** Pozycje u statyczne: start i koniec (izometria: jedna; pętla zamknięta: ONE_WAY_STATIC). */
 export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1] : Object.prototype.hasOwnProperty.call(ONE_WAY_STATIC, spec.key) ? [...ONE_WAY_STATIC[spec.key].u] : [0, 1];
-/** Podpisy pozycji statycznych (nazwy do t()): wyjściowa / końcowa albo własne szczyty pętli zamkniętej (ONE_WAY_STATIC); pusta lista dla jednej pozycji. */
+/** Podpisy pozycji statycznych (klucze t()). */
 export const staticLabels = (spec: FigureSpec): string[] => spec.static ? [] : Object.prototype.hasOwnProperty.call(ONE_WAY_STATIC, spec.key) ? [...ONE_WAY_STATIC[spec.key].labels] : ['Pozycja wyjściowa', 'Pozycja końcowa'];
 
 /** Udział mięśni w ćwiczeniu z katalogu (docs/research/equipment/catalog.json → muscleLoad) wraz z pewnością; null, gdy brak. */

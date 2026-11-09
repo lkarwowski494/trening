@@ -1,7 +1,7 @@
 // Generator póz rodziny delt_raise po stronie agenta (26.10.2026): unoszenie ramion bokiem, przodem, w skaptacji, tyłem (pochylony), w „Y”, wiosłowanie pionowe, halo.
 // Ramiona prawie proste (lokiec_staly: stałe lekkie zgięcie łokcia), kierunek ramienia = elewacja (od pionu) i płaszczyzna (0 = przód, 90 = bok); błędów rysowanych brak (jedyny błąd katalogu to szarpanie = tempo).
 import { lezyPrzodem } from './gora.mjs';
-import { cyklLustro, jednokierunkowa } from './dyn.mjs';
+import { jednokierunkowa } from './dyn.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, naLawce, buduj, bark, ramieFK, kier, rekaProsta, noga3, wyc, U9, U12, wolna } from './gora.mjs';
 
 export const RODZINA = 'delt_raise';
@@ -140,7 +140,7 @@ export function generuj() {
   G['Dumbbell Lying One-Arm Rear Lateral Raise'] = () => przodemBok('Dumbbell Lying One-Arm Rear Lateral Raise', { sprzet: [{ ...H, trzyma: 'R' }] });
   /* --- Car Drivers --- */
   G['Car Drivers'] = () => { const cy = Y_STOJ + 50 - 2; const rr = (u) => { const a = lerp(30, -30, u) * R; const rad = 21; const dy = rad * Math.sin(a), dz = rad * Math.cos(a) - 19; const x = Math.sqrt(62 ** 2 - dy * dy - dz * dz); const sp = (s) => ({ g: [x, cy + POL(s) * dy, POL(s) * rad * Math.cos(a)], pole: [-0.2, -0.6, POL(s)] }); return { R: sp('R'), L: sp('L') }; };
-    return cyklLustro(wlasna('Car Drivers', { sprzet: [{ rodzaj: 'talerz' }], tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: rr }), { rece: true }); }; /* Ś-2: obrót ±30° w obie strony (pętla cykl_lustro: lustro klatek 0 → 1 to obrót z −30° do +30°) */
+    return wlasna('Car Drivers', { sprzet: [{ rodzaj: 'talerz' }], tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: rr }); }; /* Ś-2: obrót ±30° w obie strony; r5-W1 (08.11.2026): wahadło (u 0 → 1 → 0, ten sam zegar co pasek faz), nie cykl_lustro — zob. tests/figures-v2-delt-raise-r5.test.tsx */
   /* --- w tył (pochylony), w „Y” --- */
   const pochyl = (px = -20, py = 76, p = 68) => ({ m: [px, py], p, glowa: p * 0.45 });
   const nogiPoch = (zr = 17) => { const n = (s) => noga3([0, 7, POL(s) * zr], [1, 0.1, POL(s) * 0.05]); return { R: n('R'), L: n('L') }; };

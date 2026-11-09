@@ -109,13 +109,14 @@ describe('silnik: figure.ts — tryb pętli, fazy i prezentacja', () => {
 });
 
 describe('niezmienniki: liczba ćwiczeń z polem petla w całym katalogu póz', () => {
-  test('64 ćwiczenia z polem: 10 cykl_lustro (marsz) + 1 cykl_lustro naprzemienne (Car Drivers) + 53 jednokierunkowa (33 plyo i rzuty + 19 olympic + Alternating Deltoid Raise, r2-W1 04.11.2026); żadne inne', () => {
+  test('63 ćwiczenia z polem: 10 cykl_lustro (marsz) + 53 jednokierunkowa (33 plyo i rzuty + 19 olympic + Alternating Deltoid Raise, r2-W1 04.11.2026); żadne inne', () => {
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); const c: Record<string, number> = {}; const lustroDelt: string[] = [];
     for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const [cw, d] of Object.entries(j.cwiczenia)) if (d.petla !== undefined) { c[d.petla] = (c[d.petla] ?? 0) + 1; if (d.petla === 'cykl_lustro' && j.rodzina === 'delt_raise') lustroDelt.push(cw); } }
     /* Zmiana 04.11.2026 (R1 delt_raise Ś-2, decyzja koordynatora): cykl_lustro 10 → 12, dwa nowe to naprzemienne ćwiczenia delt_raise (jawna lista poniżej), nie marsz. */
-    expect(lustroDelt.sort()).toEqual(['Car Drivers']);
+    /* Zmiana 08.11.2026 (r5-W1): Car Drivers wrócił do wahadła (pasek faz = zegar animacji) — w rodzinie delt_raise nie ma pętli lustrzanej. */
+    expect(lustroDelt.sort()).toEqual([]);
     /* Zmiana 04.11.2026 (r2-W1): Alternating Deltoid Raise przeszło z cykl_lustro na jednokierunkową (dwa powtórzenia: przód, bok): cykl_lustro 12 → 11, jednokierunkowa 33 → 34; suma 45 bez zmian. */
-    expect(c).toEqual({ cykl_lustro: 10 + 1, jednokierunkowa: 33 + 19 + 1 });
+    expect(c).toEqual({ cykl_lustro: 10, jednokierunkowa: 33 + 19 + 1 });
   });
 });
 

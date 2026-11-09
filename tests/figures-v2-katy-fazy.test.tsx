@@ -120,16 +120,16 @@ describe('dane: 64 ćwiczenia pięciu rodzin (logika)', () => {
 });
 
 describe('nazwy faz i licznik (logika)', () => {
-  test('naprzemienne cykl_lustro w delt_raise (Alternating Deltoid Raise, Car Drivers) mają fazy Unoszenie/Opuszczanie, nie „Marsz” (wada naprawiona w FW3)', () => {
+  test('naprzemienne cykl_lustro w delt_raise (Alternating Deltoid Raise, Car Drivers) nie mają fazy „Marsz” (wada naprawiona w FW3)', () => {
     for (const k of ['Alternating Deltoid Raise', 'Car Drivers']) { expect(KEYS.some(([f, kk]) => f === 'delt_raise' && kk === k)).toBe(true); const n = phasesFor(spec(k)).map(p => p.name); expect([k, n.includes('Marsz')]).toEqual([k, false]);
-      /* r2-W1 04.11.2026: Alternating Deltoid Raise to pętla jednokierunkowa z dwoma powtórzeniami (przód, bok) — jedna faza „Naprzemiennie” bez sekund (jak skok i rzut; r3-W2 04.11.2026: „Unoszenie” opisywało też opuszczanie); Car Drivers nadal Unoszenie/Pauza/Opuszczanie/Pauza */
-      expect([k, n]).toEqual([k, k === 'Alternating Deltoid Raise' ? ['Naprzemiennie'] : ['Unoszenie', 'Pauza', 'Opuszczanie', 'Pauza']]); }
+      /* r2-W1 04.11.2026: Alternating Deltoid Raise to pętla jednokierunkowa z dwoma powtórzeniami (przód, bok) — jedna faza „Naprzemiennie” bez sekund (jak skok i rzut; r3-W2 04.11.2026: „Unoszenie” opisywało też opuszczanie); Car Drivers od 08.11.2026 (r5-W1): wahadło Obrót/Pauza/Powrót/Pauza */
+      expect([k, n]).toEqual([k, k === 'Alternating Deltoid Raise' ? ['Naprzemiennie'] : ['Obrót', 'Pauza', 'Powrót', 'Pauza']]); }
     expect(phasesFor(spec('Alternating Deltoid Raise'))).toEqual(oneWayPhases('Naprzemiennie'));
   });
   test('nazwy faz per ćwiczenie: wznosy i szrugsy Unoszenie/Opuszczanie, rotacje Obrót/Powrót, przedramię Uginanie/Opuszczanie; wyjątki: rozsuwanie taśmy, ściąganie łopatek, nawracanie', () => {
     const exc: Record<string, [string, string]> = {
       'Band Pull Apart': ['Rozsuwanie', 'Powrót'], 'Middle Back Shrug': ['Ściąganie', 'Powrót'], 'Reverse Flyes With External Rotation': ['Unoszenie', 'Opuszczanie'],
-      'Dumbbell Lying Pronation': ['Obrót', 'Powrót'], 'Dumbbell Lying Supination': ['Obrót', 'Powrót'], 'Alternating Deltoid Raise': ['Naprzemiennie', 'Naprzemiennie'],
+      'Dumbbell Lying Pronation': ['Obrót', 'Powrót'], 'Dumbbell Lying Supination': ['Obrót', 'Powrót'], 'Alternating Deltoid Raise': ['Naprzemiennie', 'Naprzemiennie'], 'Car Drivers': ['Obrót', 'Powrót'] /* r5-W1 08.11.2026 */,
     };
     const fam: Record<string, [string, string]> = { delt_raise: ['Unoszenie', 'Opuszczanie'], shrug: ['Unoszenie', 'Opuszczanie'], rotator_cuff: ['Obrót', 'Powrót'], forearm: ['Uginanie', 'Opuszczanie'], carry: ['Marsz', 'Marsz'] };
     for (const [f, k] of KEYS) { const n = phaseNames(spec(k)); expect([k, [n.first, n.second]]).toEqual([k, exc[k] ?? fam[f]]); }

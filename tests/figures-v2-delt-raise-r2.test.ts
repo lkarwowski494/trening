@@ -32,9 +32,9 @@ describe('delt_raise R1 Ś-2: obrót Car Drivers w obie strony (Alternating — 
   const yR = (d: PoseData, u: number) => keyframeFrame(d, u).sk.arms.R.grip[1], yL = (d: PoseData, u: number) => keyframeFrame(d, u).sk.arms.L.grip[1];
   /* r2-W1 04.11.2026: Alternating Deltoid Raise nie jest już naprzemienną pętlą rąk (cykl_lustro: prawa w górę, lewa w dół) — karta adr.move mówi o DWÓCH powtórzeniach obiema rękami (przód, potem bok);
      pętla jednokierunkowa, miary w tests/figures-v2-delt-raise-p2.test.ts. Zostaje pętla lustrzana Car Drivers. */
-  test('Car Drivers w pętli lustrzanej z zamianą rąk; Alternating Deltoid Raise nie (r2-W1)', () => { expect([DATA[CD].petla, (DATA[CD] as any).lustroRece]).toEqual(['cykl_lustro', true]); expect([DATA[ALT].petla, (DATA[ALT] as any).lustroRece]).toEqual(['jednokierunkowa', undefined]); });
+  test('Car Drivers w wahadle (od 08.11.2026, r5-W1: pętla lustrzana miała cykl 2 s przy pasku faz 4 s), bez zamiany rąk w danych; Alternating Deltoid Raise w pętli jednokierunkowej (r2-W1)', () => { expect([DATA[CD].petla, (DATA[CD] as any).lustroRece]).toEqual([undefined, undefined]); expect([DATA[ALT].petla, (DATA[ALT] as any).lustroRece]).toEqual(['jednokierunkowa', undefined]); });
   test('Car Drivers: talerz obraca się w obie strony — różnica wysokości chwytów R i L zmienia znak (każdy znak ≥ 10 cm) w pętli', () => {
-    const roz = (d: PoseData) => { const r = Array.from({ length: 41 }, (_, i) => yR(d, i / 20) - yL(d, i / 20)); return [Math.min(...r), Math.max(...r)]; };
+    const roz = (d: PoseData) => { const r = Array.from({ length: 21 }, (_, i) => yR(d, i / 20) - yL(d, i / 20)); /* wahadło: u 0 → 1 obejmuje obrót z +30° do −30° (08.11.2026), powrót to ten sam przebieg wstecz */ return [Math.min(...r), Math.max(...r)]; };
     const [mn, mx] = roz(DATA[CD]); expect(mn).toBeLessThanOrEqual(-10); expect(mx).toBeGreaterThanOrEqual(10);
   });
   test('negatyw: obrót w jedną stronę (stan sprzed poprawki) nie zmienia znaku; Front Raise nie jest naprzemienny', () => {

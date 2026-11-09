@@ -155,7 +155,6 @@
  "do upadku": "lib/live.ts:82",
  "Do upadku (F)": "app/history/edit/[id].tsx:111, app/template/[id].tsx:184, components/WorkoutBlocks.tsx:135",
  "do uzupełnienia": "components/WorkoutBlocks.tsx:202",
- "do zrobienia": "components/Dashboard.tsx:98",
  "Do: {day}": "components/DayPanel.tsx:155",
  "dociążenie: {v}": "components/EquipVisual.tsx:50",
  "dodaj ciężar": "components/LoadEditor.tsx:70",
@@ -243,6 +242,7 @@
  "Hack squat": "POZYCJA katalogu wyposażenia (lib/equipment.ts, ekran wyposażenia): maszyna do przysiadu hack squat; nazwa angielska maszyny [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "hantle": "lib/swap.ts:61",
  "hantle: {v}": "components/EquipVisual.tsx:33",
+ "Historia z CSV": "components/Dashboard.tsx:99",
  "Hotel": "nazwa PRESETU miejsca treningu (lib/equipment.ts LOCATION_PRESET_LABEL): trening w pokoju hotelowym albo hotelowej siłowni; obok „Dom” [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "i jeszcze {n}": "lib/guard.ts:157",
  "Import przerwany": "app/more/backup.tsx:26, app/more/import.tsx:36",
@@ -474,7 +474,7 @@
  "pendulum squat": "SPRZĘT z listy wyposażenia miejsca (lib/equipment.ts): maszyna wahadłowa do przysiadu (pendulum squat); nazwa angielska maszyny [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Pendulum squat": "POZYCJA katalogu wyposażenia (lib/equipment.ts, ekran wyposażenia): maszyna wahadłowa do przysiadu (pendulum squat); nazwa angielska maszyny [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "per hantel (×2)": "dynamiczny (lista, etykieta albo dane w kodzie)",
- "Pierwsze kroki": "components/Dashboard.tsx:108",
+ "Pierwszy trening": "nagłówek tablicy „Pierwszy trening” na ekranie głównym nowej osoby (granatowa tablica z datą, wersaliki wg języka): „pierwszy” = jeszcze nie odbyty trening w aplikacji; krótki tytuł, NIE zdanie i NIE przycisk (przycisk to „Zacznij pierwszy trening”) [components/FirstBoard.tsx:31]",
  "piłka gimnastyczna": "SPRZĘT z listy wyposażenia miejsca (lib/equipment.ts): duża piłka gimnastyczna (fitball) do stabilizacji [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "piłka lekarska": "SPRZĘT z listy wyposażenia miejsca (lib/equipment.ts): piłka lekarska (medicine ball) [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Piłka lekarska": "POZYCJA katalogu wyposażenia (lib/equipment.ts, ekran wyposażenia): piłka lekarska (medicine ball) [dynamiczny (lista, etykieta albo dane w kodzie)]",
@@ -707,6 +707,7 @@
  "To miejsce główne": "app/more/locations.tsx:25",
  "To ostatnia seria": "components/SwipeRow.tsx:40",
  "trap bar": "lib/swap.ts:60",
+ "trening": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu; w językach z licznikami (ko, ja) słowo-licznik numeru sesji: 회차, 回目 [components/FirstBoard.tsx:49]",
  "Trening": "app/(tabs)/_layout.tsx:51, app/(tabs)/history.tsx:53, app/(tabs)/index.tsx:48",
  "Trening — opinia": "lib/support.ts:21",
  "Trening i serie": "lib/guide.ts:14",
@@ -914,8 +915,5 @@
  "Zrobione: {name}": "components/DayPanel.tsx:54",
  "Zwiększ ciężar o {n}": "etykieta dostępności (VoiceOver) przycisku „+” przy polu ciężaru w serii: {n} = krok zmiany z jednostką (np. 2,5 kg); tryb rozkazujący [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Zwiększ czas o {n}": "etykieta dostępności (VoiceOver) przycisku „+” przy polu czasu w serii na czas: {n} = krok zmiany w sekundach; tryb rozkazujący [dynamiczny (lista, etykieta albo dane w kodzie)]",
- "Zwiń inne ćwiczenia": "app/swap.tsx:80",
- "Historia z CSV": "components/Dashboard.tsx:99",
- "Pierwszy trening": "nagłówek tablicy „Pierwszy trening” na ekranie głównym nowej osoby (granatowa tablica z datą, wersaliki wg języka): „pierwszy” = jeszcze nie odbyty trening w aplikacji; krótki tytuł, NIE zdanie i NIE przycisk (przycisk to „Zacznij pierwszy trening”) [components/FirstBoard.tsx:31]",
- "trening": "mały podpis jednostki pod dużą cyfrą „1” na tablicy „Pierwszy trening” (czytaj: „1 trening”, rzeczownik w mianowniku liczby pojedynczej, jak „1 workout”); NIE czasownik i NIE nazwa szablonu; w językach z licznikami (ko, ja) słowo-licznik numeru sesji: 회차, 回目 [components/FirstBoard.tsx:49]"
+ "Zwiń inne ćwiczenia": "app/swap.tsx:80"
 }
