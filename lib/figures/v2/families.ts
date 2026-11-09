@@ -44,7 +44,7 @@ export const FAMILIES: Family[] = [
   { id: 'back_extension', status: 'planned', label: 'Prostowanie tułowia na ławce, reverse hyper', views: ['side'], effort: 2 },
   { id: 'curl', status: 'ready', label: 'Uginanie ramion (sztanga, hantle, linka, modlitewnik)', views: ['side', 'front'], effort: 4 },
   { id: 'triceps', status: 'ready', label: 'Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył)', views: ['side'], effort: 4 },
-  { id: 'delt_raise', status: 'planned', label: 'Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe)', views: ['front', 'side'], effort: 4 },
+  { id: 'delt_raise', status: 'ready', label: 'Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe)', views: ['front', 'side'], effort: 4 },
   { id: 'chest_fly', status: 'planned', label: 'Rozpiętki, pec deck, przenoszenie za głowę', views: ['top', 'side'], effort: 3 },
   { id: 'shrug', status: 'planned', label: 'Szrugsy', views: ['front', 'side'], effort: 1 },
   { id: 'rotator_cuff', status: 'planned', label: 'Rotacje zewnętrzne/wewnętrzne, taśmy do ramion', views: ['front', 'side'], effort: 2 },

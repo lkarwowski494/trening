@@ -15,21 +15,24 @@ const SENS = path.join(ROOT, 'scripts/figures/v2-sens.mjs');
 const VAL = path.join(ROOT, 'scripts/figures/v2-validate.mjs');
 const run = (script: string, code: string) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(script)}; ${code}`], { env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 1 << 26 }));
 const DYN = ['olympic', 'plyo', 'kb_ballistic', 'sled_throw', 'strongman', 'core_hang'];
+/** Pojedyncze ćwiczenia spoza rodzin dynamicznych z deklaracją (r2-W1, 04.11.2026): pętla jednokierunkowa z dwoma powtórzeniami naraz — droga dłoni ok. 7–9 cm na 1/48 przy limicie 12 klatek. Reszta rodziny nadal ma limit 6 cm. */
+const DYN_POJEDYNCZE: Record<string, string[]> = { delt_raise: ['Alternating Deltoid Raise'] };
 const sens = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny as Record<string, { dynamiczne?: Record<string, string>; warianty?: Record<string, unknown> }>;
 
 describe('deklaracja „dynamiczne” w danych sensu (powód obowiązkowy)', () => {
   test('tylko rodziny ruchów dynamicznych; każdy wpis ma powód (co najmniej zdanie), gwiazdka = cała rodzina', () => {
     for (const [r, v] of Object.entries(sens)) {
       if (!v.dynamiczne) continue;
-      expect(DYN).toContain(r);
+      if (r in DYN_POJEDYNCZE) { expect(Object.keys(v.dynamiczne).sort()).toEqual(DYN_POJEDYNCZE[r]); } else expect(DYN).toContain(r);
       for (const [cw, powod] of Object.entries(v.dynamiczne)) { expect(typeof powod).toBe('string'); expect(powod.trim().length).toBeGreaterThan(25); expect(cw === '*' || cw in (v.warianty ?? {})).toBe(true); }
     }
   });
   test('zgodność wsteczna: v2-sens.dynamiczne jest fałszem dla każdego ćwiczenia z rodzin spoza listy dynamicznych', () => {
-    const pary = Object.entries(sens).filter(([r]) => !DYN.includes(r)).flatMap(([r, v]) => Object.keys(v.warianty ?? {}).filter((c) => !c.startsWith('_')).map((c) => [r, c]));
+    const pary = Object.entries(sens).filter(([r]) => !DYN.includes(r)).flatMap(([r, v]) => Object.keys(v.warianty ?? {}).filter((c) => !c.startsWith('_') && !(DYN_POJEDYNCZE[r] ?? []).includes(c)).map((c) => [r, c]));
     expect(pary.length).toBeGreaterThan(100);
     const wynik = run(SENS, `console.log(JSON.stringify(${JSON.stringify(pary)}.map(([r, c]) => m.dynamiczne(r, c))))`) as boolean[];
     expect(wynik.some(Boolean)).toBe(false);
+    expect(run(SENS, `console.log(JSON.stringify([m.dynamiczne('delt_raise', 'Alternating Deltoid Raise'), m.dynamiczne('delt_raise', 'Front Raise'), m.dynamiczne('delt_raise', 'Car Drivers')]))`)).toEqual([true, false, false]);
   });
   test('rodziny z pozami w poses/ i deklaracją: dynamiczne dla ćwiczeń z deklaracji i dla gwiazdki', () => {
     for (const r of DYN) {

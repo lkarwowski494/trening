@@ -17,6 +17,20 @@
    "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
   },
   {
+   "rodzina": "delt_raise",
+   "cwiczenie": "Cable Seated Lateral Raise",
+   "ograniczenie": "silnik prowadzi każdą linkę do dłoni po jej stronie, więc nie rysuje skrzyżowania linek",
+   "status": "do_przegladu",
+   "powod": "dodane 04.11.2026 (R1 delt_raise): nie przejrzane po zmianie schematu kontraktu; sprawdza recenzja ruchu rodziny delt_raise albo przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "delt_raise",
+   "cwiczenie": "Dumbbell Lying One-Arm Rear Lateral Raise",
+   "ograniczenie": "układ ciała leżącego na boku bez osobnego modelu nóg poza ławką (wspólne ułożenie z mob.mjs)",
+   "status": "do_przegladu",
+   "powod": "dodane 04.11.2026 (R1 delt_raise): nie przejrzane po zmianie schematu kontraktu; sprawdza recenzja ruchu rodziny delt_raise albo przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
    "rodzina": "glute_floor",
    "cwiczenie": "Hip Extension with Bands",
    "ograniczenie": "model gumy nie ma zaczepu do kostki",

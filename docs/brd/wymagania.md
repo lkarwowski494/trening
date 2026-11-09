@@ -490,6 +490,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_row (np. Seated Cable Row, Face Pull), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie ma na karcie zdanie ruchu, tułowia albo łokci z regułą „ustalone” (Seated Cable Row: przyciąganie, tułów i plecy; Face Pull: przyciąganie i łokcie za plecami)
     - Wtedy z boku widać łuk zgięcia łokcia z podpisem „Kąt na rysunku”, pion przez miednicę (tułów bez bujania), a w face pull pion przez bark, za który łokieć przechodzi na końcu ruchu; linia pleców dla zdań o plecach; razem nie więcej niż 3 linie i 1 łuk; z przodu dźwignia maszyny nie jest rysowana, gdy w części ruchu przechodzi przez głowę (Leverage High Row)
+  - Scenariusz: Rodzina unoszenia ramion (delt_raise) pokazuje rysunki 31 ćwiczeń (09.11.2026, ZB-042; testy `tests/figures-v2-mapping.test.ts`, `tests/figury-recenzja.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny delt_raise (np. Lateral Raise, Car Drivers), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
+    - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
+    - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
+    - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
