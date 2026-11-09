@@ -5017,27 +5017,25 @@
     },
     "Single Arm Cable Row": {
       "rodzina": "row",
-      "werdykt": "do poprawy",
+      "werdykt": "wyswietlana",
       "data": "2026-11-09",
-      "stan": "recenzja niezależna r1 — do poprawy",
-      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "stan": "zrecenzowana niezależnie r3 — wyswietlana (S3 zamknięte)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json); poprawka S3: programista, 0f069d93",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
-      "sha": "becb1cac20f7",
-      "uwagi": "S3: row.fullStretch „Na dole wyprostuj ręce…” — na rysunku wyprost jest z przodu, nie na dole (backlog 1.1.x, docs/21). Rysunek: W2 zamknięte.",
-      "poprawka": "zamiana zdania row.fullStretch na zdanie zgodne z kierunkiem wyprostu w tym ćwiczeniu albo wyłączenie go dla tego ćwiczenia (CUE_REQUIRES / CUE_NOT_IN_FAMILY w cueSets.ts — plik wspólny, osobna zmiana) i ponowna recenzja zestawu (S3, backlog docs/21) — uzupełnienie pola przez leada partii ze słów recenzenta, 09.11.2026"
+      "kto": "audytor — recenzja niezależna r3 zestawów cable_row po poprawce pliku wspólnego (commit 0f069d93, gałąź figury/partia-2-cueset-row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-zestawy-r3-audytor-2026-11-09.md",
+      "sha": "e8bcb0ee335b",
+      "uwagi": "Zestaw po 0f069d93: ok scr.chest, scr.control; err mis.jerk. row.fullStretch usunięte (CUE_NOT_IN_FAMILY cable_row). Arkusz side: ciąg poziomy, wyprost z przodu (u=0), łokieć za tułowiem u=1 — scr.chest i scr.control zgodne z ruchem; mis.jerk ogólny. Skrót rysunku cable_row 4376c0e6b911 bez zmian."
     },
     "Leverage High Row": {
       "rodzina": "row",
-      "werdykt": "do poprawy",
+      "werdykt": "wyswietlana",
       "data": "2026-11-09",
-      "stan": "recenzja niezależna r1 — do poprawy",
-      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "stan": "zrecenzowana niezależnie r3 — wyswietlana (S3 zamknięte)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json); poprawka S3: programista, 0f069d93",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
-      "sha": "becb1cac20f7",
-      "uwagi": "S3: row.fullStretch „Na dole wyprostuj ręce…” — na rysunku wyprost jest u góry (uchwyt 13 cm nad barkiem). scr.chest, scr.control zgodne.",
-      "poprawka": "zamiana zdania row.fullStretch na zdanie zgodne z kierunkiem wyprostu w tym ćwiczeniu albo wyłączenie go dla tego ćwiczenia (CUE_REQUIRES / CUE_NOT_IN_FAMILY w cueSets.ts — plik wspólny, osobna zmiana) i ponowna recenzja zestawu (S3, backlog docs/21) — uzupełnienie pola przez leada partii ze słów recenzenta, 09.11.2026"
+      "kto": "audytor — recenzja niezależna r3 zestawów cable_row po poprawce pliku wspólnego (commit 0f069d93, gałąź figury/partia-2-cueset-row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-zestawy-r3-audytor-2026-11-09.md",
+      "sha": "e8bcb0ee335b",
+      "uwagi": "Zestaw po 0f069d93: ok scr.chest, scr.control; err mis.jerk. row.fullStretch usunięte. Arkusz side: uchwyt z przodu-u góry po łuku do barku, łokieć za tułowiem u=1 — zdania zgodne; żadne nie dotyczy osi dźwigni, więc nie przeczy otwartemu CR-S2 (ŚREDNIE, backlog). Skrót rysunku cable_row 4376c0e6b911 bez zmian."
     },
     "Cable Seated Lateral Raise": {
       "rodzina": "raiseSide",
