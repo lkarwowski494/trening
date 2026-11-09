@@ -27,13 +27,13 @@ const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => (CUE_FULL.exercises
 const WSTRZYMANE = Object.keys(A4B.wstrzymane);
 
 describe('A4b moc i przedramiona: karty własne (09.11.2026)', () => {
-  test('10 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; niepełne są na liście partial', () => {
+  test('10 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; po przekładzie i recenzji (09.11.2026) widoczne w runtime (nie na liście hidden); niepełne są na liście partial', () => {
     expect([...A4B.cwiczenia].sort()).toEqual(['Atlas Stones', 'Backward Drag', 'Double Kettlebell Push Press', 'Double Kettlebell Snatch', 'Kettlebell Clean', 'Kettlebell Snatch',
       'Lateral Cone Hops', 'One-Arm Kettlebell Push Press', 'Plate Pinch', 'Split Jump']);
     for (const k of A4B.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, false]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]);
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
     }
@@ -41,9 +41,9 @@ describe('A4b moc i przedramiona: karty własne (09.11.2026)', () => {
     expect(A4B.partial.length).toBe(9);
   });
 
-  test('karty ukryte do przekładu: wszystkie 10 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('karty odsłonięte po przekładzie i recenzji (09.11.2026): żadna z 10 nie jest na liście karty_nowe; każda ma wpis „karty” wyswietlana, którego recenzent ≠ autor (L-047)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
-    for (const k of A4B.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
+    for (const k of A4B.cwiczenia) expect([k, wyj.karty_nowe.includes(k), rec.karty?.[k]?.werdykt, rec.karty?.[k]?.recenzent !== rec.karty?.[k]?.autor]).toEqual([k, false, 'wyswietlana', true]);
   });
 
   test('Split Jump: zrecenzowany zestaw ogólny (02.11.2026) zastąpiony kartą — na liście zestawy_zmienione (mechanizm z 08.11.2026, jak Cable Russian Twists w A4a)', () => {
