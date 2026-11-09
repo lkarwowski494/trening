@@ -8,6 +8,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, t } from '@/lib/i18n';
+import { BRAND_NAME } from '@/lib/brand';
 import { WATCH_LABEL_IDS, APPLE_ONLY_LABEL_IDS, WATCH_LABEL_KEYS, watchLabelTable, watchLabels, watchInfoPlist } from '@/lib/watchLabels';
 
 const root = path.join(__dirname, '..');
@@ -73,10 +74,10 @@ test('opisy zgód HealthKit zegarka: wszystkie języki, niepuste, Info.plist (pl
 test('etykiety Apple Watch: literały (polski i angielski) — wskaźnik sesji i opisy zgód HealthKit', () => {
   applyLang('pl');
   expect(watchLabels().workoutOn).toBe('Trening wciąż trwa');
-  expect(watchInfoPlist('pl')).toEqual({ CFBundleDisplayName: 'Trening', NSHealthShareUsageDescription: 'Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.', NSHealthUpdateUsageDescription: 'Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.' });
+  expect(watchInfoPlist('pl')).toEqual({ CFBundleDisplayName: BRAND_NAME, NSHealthShareUsageDescription: 'Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.', NSHealthUpdateUsageDescription: 'Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.' });
   applyLang('en');
   expect(watchLabels().workoutOn).toBe('Workout still in progress');
-  expect(watchInfoPlist('en')).toEqual({ CFBundleDisplayName: 'Training', NSHealthShareUsageDescription: 'Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.', NSHealthUpdateUsageDescription: 'Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.' });
+  expect(watchInfoPlist('en')).toEqual({ CFBundleDisplayName: BRAND_NAME, NSHealthShareUsageDescription: 'Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.', NSHealthUpdateUsageDescription: 'Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.' });
   applyLang('pl');
 });
 

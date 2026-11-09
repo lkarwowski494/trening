@@ -3,6 +3,7 @@
  * „Platform version information” (odczyt 21.10.2026): Subtitle ≤ 30 znaków; Keywords „One or more keywords (each greater than two characters)
  * … up to 100 bytes”; „you shouldn't duplicate” nazwy aplikacji w słowach kluczowych; App Store search: bez powtórzeń słów z nazwy i podtytułu. */
 import * as fs from 'fs';
+import { BRAND_NAME } from '../lib/brand';
 import * as path from 'path';
 import { namesIn } from './forbidden-names';
 import { PRIVACY_URL, TERMS_URL } from '@/lib/products';
@@ -46,9 +47,10 @@ describe('store/app-store-metadata.json', () => {
     }
   });
   test('decyzje właściciela (STOP 2, 21.10.2026): nazwa PL, podtytuły PL/EN zastępują D-4 z 14.10.2026; en-AU = en-GB, en-CA = en-US', () => {
-    expect(names.pl).toBe('Trening: dziennik treningowy');
-    expect(L.pl.subtitle).toBe('Serie i przerwy. Bez konta');
-    for (const l of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([l, L[l].subtitle]).toEqual([l, 'Workout tracker. No account.']);
+    /* 09.11.2026 (właściciel, docs/18 „nowa nazwa aplikacji od wersji 1.1: marka RepsGoat”, ZB-056) zastępuje nazwę PL i podtytuły z 21.10.2026; sprawdza je też tests/nazwa-repsgoat.test.ts */
+    expect(names.pl).toBe(`${BRAND_NAME}: dziennik treningowy`);
+    expect(L.pl.subtitle).toBe('Plan treningowy na siłownię');
+    for (const l of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([l, L[l].subtitle]).toEqual([l, 'Gym plan & workout tracker']);
     expect([names['en-AU'], L['en-AU']]).toEqual([names['en-GB'], L['en-GB']]);
     expect([names['en-CA'], L['en-CA']]).toEqual([names['en-US'], L['en-US']]);
   });

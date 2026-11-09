@@ -1,5 +1,5 @@
 import { getState, save, finishedWorkouts } from '@/lib/store';
-import { t } from '@/lib/i18n';
+import { t, appName } from '@/lib/i18n';
 
 /*
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję; po aktualizacji na „i” jest
@@ -24,6 +24,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
     t('Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.'),
     t('Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.'),
     t('Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.'),
+    t('Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.', { app: appName() }) /* nazwa 1.1: 09.11.2026, docs/18, ZB-056; przekład: docs/lokalizacja/zestaw-przekladu-2026-11-09-nazwa.json */,
   ] },
 ];
 

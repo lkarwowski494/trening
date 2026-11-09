@@ -4,6 +4,7 @@
  * Wersja w app.json, package.json i package-lock.json; wpis „Co nowego” (lib/whatsnew.ts) — przycisk ✦ wraca; zachowanie: tests/whats-new.test.tsx.
  */
 import { WHATS_NEW } from '@/lib/whatsnew';
+import { BRAND_NAME } from '@/lib/brand';
 
 const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path');
 const R = (f: string) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
@@ -14,12 +15,13 @@ describe('wersja 1.0.1 (TestFlight dla właściciela, 06.11.2026)', () => {
     const lock = J('package-lock.json');
     expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['1.0.1', '1.0.1', '1.0.1', '1.0.1']);
   });
-  test('historia „Co nowego” ma jeden wpis 1.0.1 (id 2026-11-06, 4 punkty, bez numeru buildu do czasu przebiegu testflight.yml)', () => {
+  test('historia „Co nowego” ma jeden wpis 1.0.1 (id 2026-11-06, 4 punkty z 1.0.1 + punkt o nazwie 1.1 z 09.11.2026, bez numeru buildu do czasu przebiegu testflight.yml)', () => {
     expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-06']); expect(WHATS_NEW[0].items()).toEqual([
       'Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.',
       'Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.',
       'Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.',
       'Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.',
+      `Aplikacja nazywa się teraz ${BRAND_NAME}. Treningi, szablony i ustawienia zostają bez zmian.` /* 09.11.2026, ZB-056 */,
     ]);
   });
   test('numer buildu liczy testflight.yml (BUILD_BASE + numer przebiegu), nie plik w repo', () => {

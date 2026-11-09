@@ -6,6 +6,7 @@
  * (dane pokazowe: store-seed.test.ts, wartość z t() w danym języku). Literały dozwolone tylko dla okien systemowych (język symulatora) i etykiet niezależnych od języka.
  */
 import { execFileSync } from 'child_process';
+import { BRAND_NAME } from '@/lib/brand';
 import { chmodSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
@@ -16,7 +17,7 @@ const dir = join(root, 'scripts/ci/maestro-sklep');
 const TEKSTY: Record<string, string> = JSON.parse(readFileSync(join(dir, 'teksty.json'), 'utf8'));
 const flows = readdirSync(dir).filter(f => f.endsWith('.yaml'));
 /** Literały dozwolone w scenariuszach: okna systemowe (język symulatora: angielski), nazwa folderu aplikacji w Plikach, etykieta e1RM (taka sama we wszystkich językach), nazwa pliku CSV. */
-const SYSTEMOWE = new Set(['Open', 'Don.t Allow', 'Browse|Recents|Cancel', 'Browse', 'On My iPhone', 'Trening|Training', 'e1RM', 'trening-historia, .*']);
+const SYSTEMOWE = new Set(['Open', 'Don.t Allow', 'Browse|Recents|Cancel', 'Browse', 'On My iPhone', BRAND_NAME, 'e1RM', 'trening-historia, .*']);
 /** Wskaźniki tekstu w kroku: `tapOn: "x"`, `visible: "x"`, `text: "x"`, `assertVisible: "x"`, `notVisible: "x"` (`id:` nie jest tekstem). */
 function literaly(src: string): string[] {
   const out: string[] = [];
