@@ -128,3 +128,18 @@ describe('A4b moc i przedramiona: zdania', () => {
     for (const c of A4B.zdania) expect([c, /pozycj\w*\s+rack|(?<![\p{L}])rack(?![\p{L}])/u.test(pl[c])]).toEqual([c, false]);
   });
 });
+
+describe('A4b: poprawki rundy 1 recenzji niezależnej (09.11.2026)', () => {
+  test('sled.backGrip bez „pasów” w rękach (źródła: lina w rękach albo pas na biodrach); zamach kettlebellem bez „przerzuć”; push press bez „wyciskania z wybiciem”', () => {
+    expect([pl['sled.backGrip'], en['sled.backGrip']]).toEqual(['Chwyć linę sanek w obie ręce.', 'Grab the sled rope with both hands.']);
+    for (const c of A4B.zdania) {
+      expect([c, /(?<![\p{L}])pas(y|ami|ów)?(?![\p{L}])/u.test(pl[c]) || /\bstraps?\b/i.test(en[c])]).toEqual([c, false]);
+      expect([c, /przerzu\w*[^.]*między nogami/u.test(pl[c]), /wyciskani\w* z wybicie/u.test(pl[c])]).toEqual([c, false, false]);
+    }
+  });
+  test('miejsca źródeł poprawione: barbend-kb-snatch przy kbb.bellSetup — progresja swingu; cf-dkb-pp-jerk przy pp.legs — sekcja Push Press', () => {
+    const miejsce = (k: string, c: string, sid: string) => sentencesOf(k).find(r => r.c === c)!.s.find(([s]) => s === sid)![1];
+    expect(miejsce('Kettlebell Snatch', 'kbb.bellSetup', 'barbend-kb-snatch')).toMatch(/progresji Kettlebell Swing/);
+    for (const k of ['Double Kettlebell Push Press', 'One-Arm Kettlebell Push Press']) expect(miejsce(k, 'pp.legs', 'cf-dkb-pp-jerk')).toMatch(/^Push Press \(push the floor away/);
+  });
+});

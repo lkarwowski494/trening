@@ -11523,6 +11523,93 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "push_press_pl",
+   "pl": "push press (wyciskanie nad głowę z ugięciem i wybiciem nóg)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "nazwa ruchu z wybiciem z nóg, w odróżnieniu od podrzutu (jerk); na polskiej siłowni mówi się „push press” (recenzja lokalizacji A4b, 09.11.2026)",
+   "kanon": null,
+   "wykrywaj": "push press|wyciskani\\w* z wybicie",
+   "jezyki": {
+    "pl": {
+     "zalecany": "push press",
+     "zakazane": [
+      {
+       "wzorzec": "wyciskani\\w* z wybicie",
+       "powod": "kalka opisowa; na siłowni mówi się „push press” (recenzja lokalizacji A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "push press",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "lina_sanek",
+   "pl": "lina sanek (trzymana w rękach)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "przy ciągnięciu sanek w rękach trzyma się linę; pas zakłada się na biodra (inny wariant zaczepienia) — zdania sanek nie mówią o „pasach” w rękach (recenzja A4b, 09.11.2026)",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])sank|(?<![\\p{L}])sled(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "lina sanek",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])pas(y|ami|ów)?(?![\\p{L}])",
+       "powod": "źródła mówią o linie w rękach albo pasie na biodrach; „pasy” w rękach nie mają źródła (recenzja A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "sled rope",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])straps?(?![\\p{L}])",
+       "powod": "jak w PL: w rękach lina, nie pasy (recenzja A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "zamach_kettlebell",
+   "pl": "zamach kettlebellem między nogami (jak przy swingu)",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "faza swingu, zarzutu i rwania kettlebellem: kettlebell wędruje między nogi i z powrotem; po polsku „zrób zamach”, nie „przerzuć” (przerzucenie = rzut przez coś) — recenzja lokalizacji A4b, 09.11.2026",
+   "kanon": null,
+   "wykrywaj": "między nogami",
+   "jezyki": {
+    "pl": {
+     "zalecany": "zrób zamach … między nogami",
+     "zakazane": [
+      {
+       "wzorzec": "przerzu\\w*[^.]*między nogami",
+       "powod": "„przerzucić” znaczy rzucić przez coś; zamach kettlebellem między nogami (recenzja A4b, 09.11.2026)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "swing / hike between the legs",
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }

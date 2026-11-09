@@ -5,8 +5,8 @@
     {
       "rodzaj": "nowy",
       "id": "as.extend",
-      "pl": "Z ud mocno wypchnij biodra i wyprostuj się, unosząc kamień wyżej.",
-      "en": "From your lap, drive your hips through and stand up, bringing the stone higher."
+      "pl": "Z kamieniem na udach mocno wypchnij biodra w przód i wstań, unosząc kamień wyżej.",
+      "en": "From your lap, drive your hips forward and stand up, bringing the stone higher."
     },
     {
       "rodzaj": "nowy",
@@ -30,18 +30,18 @@
       "rodzaj": "nowy",
       "id": "kbb.cleanMove",
       "pl": "Zrób zamach jak przy swingu, a po wyproście bioder poprowadź kettlebell w górę i oprzyj go przy barku.",
-      "en": "Swing it like a swing, then after the hip drive guide the bell up and rack it at your shoulder."
+      "en": "Swing the bell back between your legs, then as your hips snap through, guide it up and rack it at your shoulder."
     },
     {
       "rodzaj": "nowy",
       "id": "kbb.dblSnatchMove",
-      "pl": "Przerzuć oba kettlebelle między nogami jak przy swingu i jednym ruchem doprowadź je nad głowę.",
+      "pl": "Zrób zamach oboma kettlebellami między nogami jak przy swingu i jednym ruchem wyprowadź je nad głowę.",
       "en": "Hike both bells between your legs like a swing and take them overhead in one move."
     },
     {
       "rodzaj": "nowy",
       "id": "kbb.mis.armPull",
-      "pl": "Ciągniesz kettlebell ręką zamiast wypchnąć go biodrami.",
+      "pl": "Ciągnięcie kettlebella ręką zamiast pracy bioder.",
       "en": "Pulling the bell with your arm instead of driving it with your hips."
     },
     {
@@ -53,8 +53,8 @@
     {
       "rodzaj": "nowy",
       "id": "kbb.mis.cast",
-      "pl": "Kettlebell odjeżdża łukiem od ciała, zamiast iść w górę blisko ciebie.",
-      "en": "The bell swings out in an arc instead of travelling up close to you."
+      "pl": "Kettlebell odjeżdża łukiem od ciała, zamiast iść w górę.",
+      "en": "The bell swings out away from you in an arc instead of travelling up."
     },
     {
       "rodzaj": "nowy",
@@ -66,7 +66,7 @@
       "rodzaj": "nowy",
       "id": "kbb.rack",
       "pl": "Kettlebell oparty przy barku, łokieć przy tułowiu.",
-      "en": "With the bell racked, keep your elbow against your side."
+      "en": "Bell racked at your shoulder, elbow tucked in."
     },
     {
       "rodzaj": "nowy",
@@ -83,26 +83,26 @@
     {
       "rodzaj": "nowy",
       "id": "kbb.snatchMove",
-      "pl": "Przerzuć kettlebell między nogami jak przy swingu i jednym ruchem doprowadź go nad głowę.",
+      "pl": "Zrób zamach kettlebellem między nogami jak przy swingu i jednym ruchem wyprowadź go nad głowę.",
       "en": "Hike the bell between your legs like a swing and take it overhead in one move."
     },
     {
       "rodzaj": "nowy",
       "id": "kbpp.mis.rebend",
-      "pl": "Drugie ugięcie nóg pod ciężar — to już podrzut, nie wyciskanie z wybiciem.",
+      "pl": "Drugie ugięcie nóg pod ciężar — to już podrzut, nie push press.",
       "en": "Re-bending your knees under the weight — that turns it into a jerk, not a push press."
     },
     {
       "rodzaj": "nowy",
       "id": "kbpp.move",
-      "pl": "Krótko ugnij kolana, potem dynamicznie wyprostuj nogi i biodra i wypchnij ciężar nad głowę do pełnego wyprostu.",
+      "pl": "Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając ciężar nad głowę do pełnego wyprostu.",
       "en": "Dip briefly at the knees, then drive hard through your legs and hips and push the weight overhead to full lockout."
     },
     {
       "rodzaj": "nowy",
       "id": "pinch.hold",
-      "pl": "Wstań i ściskaj talerze, aż chwyt się zmęczy.",
-      "en": "Stand up and keep squeezing until your grip tires."
+      "pl": "Wstań i ściskaj talerze, aż chwyt zacznie słabnąć.",
+      "en": "Stand up and keep squeezing until your grip starts to fade."
     },
     {
       "rodzaj": "nowy",
@@ -114,7 +114,7 @@
       "rodzaj": "nowy",
       "id": "plyo.coneLat.hop",
       "pl": "Przeskakuj obunóż bokiem nad pachołkiem.",
-      "en": "Jump sideways over the cone, off both feet."
+      "en": "Hop sideways over the cone on both feet."
     },
     {
       "rodzaj": "nowy",
@@ -131,14 +131,14 @@
     {
       "rodzaj": "nowy",
       "id": "plyo.splitSwitch",
-      "pl": "Wybij się w górę, w powietrzu zamień nogi i wyląduj w wykroku z drugą nogą z przodu.",
+      "pl": "Wybij się w górę, w powietrzu zmień nogi i wyląduj w wykroku z drugą nogą z przodu.",
       "en": "Jump up, switch legs in the air and land in a split stance with the other leg in front."
     },
     {
       "rodzaj": "nowy",
       "id": "sled.backGrip",
-      "pl": "Chwyć linę albo pasy sanek w obie ręce.",
-      "en": "Hold the sled rope or straps in both hands."
+      "pl": "Chwyć linę sanek w obie ręce.",
+      "en": "Grab the sled rope with both hands."
     },
     {
       "rodzaj": "nowy",

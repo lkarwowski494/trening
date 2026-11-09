@@ -4927,18 +4927,18 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Ciągniesz kettlebell ręką zamiast wypchnąć go biodrami. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Common mistakes: arms overpowering the legs); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Common Mistakes: Curling the bell) `kbb.mis.armPull`
-- Kettlebell odjeżdża łukiem od ciała, zamiast iść w górę blisko ciebie. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Common mistakes: casting the bell); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Common Mistakes: Casting the bell out) `kbb.mis.cast`
+- Ciągnięcie kettlebella ręką zamiast pracy bioder. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Common mistakes: arms overpowering the legs); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Common Mistakes: Curling the bell) `kbb.mis.armPull`
+- Kettlebell odjeżdża łukiem od ciała, zamiast iść w górę. — StrongFirst: [An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)](https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/) (Common mistakes: casting the bell); BarBend: [Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)](https://barbend.com/kettlebell-clean/) (Common Mistakes: Casting the bell out) `kbb.mis.cast`
 
 ### Kettlebell Snatch
 
 **Ustawienie**
 
-- Postaw kettlebell przed stopami, cofnij biodra i chwyć uchwyt. — StrongFirst: [The Snatch: The Tsar of Kettlebell Lifts](https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/) (streszczenie na początku (start with a kettlebell on the ground in front of you)); BarBend: [Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)](https://barbend.com/kettlebell-snatch/) (Step One: One-Handed Kettlebell Swing — ustawienie z progresji swingu (bell in front of you; hinge at the hips; grip the handle)) `kbb.bellSetup`
+- Postaw kettlebell przed stopami, cofnij biodra i chwyć uchwyt. — StrongFirst: [The Snatch: The Tsar of Kettlebell Lifts](https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/) (streszczenie na początku (start with a kettlebell on the ground in front of you)); BarBend: [Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)](https://barbend.com/kettlebell-snatch/) (sekcja progresji Kettlebell Swing (setting the bell about two foot-lengths in front of you; hinge at the hips and grab the handle)) `kbb.bellSetup`
 
 **Ruch**
 
-- Przerzuć kettlebell między nogami jak przy swingu i jednym ruchem doprowadź go nad głowę. — StrongFirst: [The Snatch: The Tsar of Kettlebell Lifts](https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/) (streszczenie na początku (swing it back between your legs … overhead lockout in one uninterrupted motion)); BarBend: [Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)](https://barbend.com/kettlebell-snatch/) (Step One–Three (one-handed swing → high pull → use the momentum to push your hand through the bell into the top snatch position)) `kbb.snatchMove`
+- Zrób zamach kettlebellem między nogami jak przy swingu i jednym ruchem wyprowadź go nad głowę. — StrongFirst: [The Snatch: The Tsar of Kettlebell Lifts](https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/) (streszczenie na początku (swing it back between your legs … overhead lockout in one uninterrupted motion)); BarBend: [Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)](https://barbend.com/kettlebell-snatch/) (Step One–Three (one-handed swing → high pull → use the momentum to push your hand through the bell into the top snatch position)) `kbb.snatchMove`
 
 **Wskazówki**
 
@@ -4956,15 +4956,15 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Krótko ugnij kolana, potem dynamicznie wyprostuj nogi i biodra i wypchnij ciężar nad głowę do pełnego wyprostu. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (dip, drive, knees and elbows straight at the end)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (leg and hip drive, then the upper body pushes overhead)) `kbpp.move`
+- Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając ciężar nad głowę do pełnego wyprostu. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (dip, drive, knees and elbows straight at the end)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (leg and hip drive, then the upper body pushes overhead)) `kbpp.move`
 
 **Wskazówki**
 
-- Siła wybicia idzie z nóg i bioder — ręce kończą ruch. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (the hip drive is the power behind the movement)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (leg and hip strength accelerate the load)) `pp.legs`
+- Siła wybicia idzie z nóg i bioder — ręce kończą ruch. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (push the floor away — legs and hips extend and drive the bells up)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (leg and hip strength accelerate the load)) `pp.legs`
 
 **Czego unikać**
 
-- Drugie ugięcie nóg pod ciężar — to już podrzut, nie wyciskanie z wybiciem. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (no rebend, or „double dip”)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (knees, ankles and hips are not rebent after the leg drive)) `kbpp.mis.rebend`
+- Drugie ugięcie nóg pod ciężar — to już podrzut, nie push press. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (no rebend, or „double dip”)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (knees, ankles and hips are not rebent after the leg drive)) `kbpp.mis.rebend`
 
 ### One-Arm Kettlebell Push Press
 
@@ -4974,15 +4974,15 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Krótko ugnij kolana, potem dynamicznie wyprostuj nogi i biodra i wypchnij ciężar nad głowę do pełnego wyprostu. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (dip, drive, knees and elbows straight) (wariant: dwa kettlebelle)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press) [uproszczenie: źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni] `kbpp.move`
+- Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając ciężar nad głowę do pełnego wyprostu. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (dip, drive, knees and elbows straight) (wariant: dwa kettlebelle)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press) [uproszczenie: źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni] `kbpp.move`
 
 **Wskazówki**
 
-- Siła wybicia idzie z nóg i bioder — ręce kończą ruch. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (hip drive is the power behind the movement) (wariant: dwa kettlebelle)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press) [uproszczenie: źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni] `pp.legs`
+- Siła wybicia idzie z nóg i bioder — ręce kończą ruch. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (push the floor away — legs and hips extend and drive the bells up) (wariant: dwa kettlebelle)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press) [uproszczenie: źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni] `pp.legs`
 
 **Czego unikać**
 
-- Drugie ugięcie nóg pod ciężar — to już podrzut, nie wyciskanie z wybiciem. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (no rebend) (wariant: dwa kettlebelle)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (not rebent following the initial leg drive)) [uproszczenie: źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni] `kbpp.mis.rebend`
+- Drugie ugięcie nóg pod ciężar — to już podrzut, nie push press. — CrossFit: [Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)](https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk) (Push Press (no rebend) (wariant: dwa kettlebelle)); BarBend: [Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)](https://barbend.com/kettlebell-jerk-vs-push-press) (The Push Press (not rebent following the initial leg drive)) [uproszczenie: źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni] `kbpp.mis.rebend`
 
 ### Double Kettlebell Snatch
 
@@ -4992,7 +4992,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Przerzuć oba kettlebelle między nogami jak przy swingu i jednym ruchem doprowadź je nad głowę. — StrongFirst: [Improve Your Double Kettlebell Snatch](https://www.strongfirst.com/improve-your-double-kettlebell-snatch/) („Using Chains…” (hip finish → bells float up; punch straight up)); BarBend: [Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)](https://barbend.com/kettlebell-snatch/) (Double Kettlebell Snatch (same technical movements, a bell in each hand) + Step One–Three (uproszczenie: wariant sprzętu Kettlebell Snatch)) [uproszczenie: wariant liczby odważników rwania kettlebellem (BarBend: „same technical movements”); recenzent potwierdza] `kbb.dblSnatchMove`
+- Zrób zamach oboma kettlebellami między nogami jak przy swingu i jednym ruchem wyprowadź je nad głowę. — StrongFirst: [Improve Your Double Kettlebell Snatch](https://www.strongfirst.com/improve-your-double-kettlebell-snatch/) („Using Chains…” (hip finish → bells float up; punch straight up)); BarBend: [Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)](https://barbend.com/kettlebell-snatch/) (Double Kettlebell Snatch (same technical movements, a bell in each hand) + Step One–Three (uproszczenie: wariant sprzętu Kettlebell Snatch)) [uproszczenie: wariant liczby odważników rwania kettlebellem (BarBend: „same technical movements”); recenzent potwierdza] `kbb.dblSnatchMove`
 
 **Czego unikać**
 
@@ -5006,7 +5006,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Wybij się w górę, w powietrzu zamień nogi i wyląduj w wykroku z drugą nogą z przodu. — ACE: [Cycled Split-Squat Jump (#234)](https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/) (Step 2–4 (launch, swap legs in the air, land with the other leg in front)); NASM: [Lunge Jump](https://www.nasm.org/resource-center/exercise-library/lunge-jump) (Step 3–4 (jumping to switch leg positions; land … opposite leg forward)) `plyo.splitSwitch`
+- Wybij się w górę, w powietrzu zmień nogi i wyląduj w wykroku z drugą nogą z przodu. — ACE: [Cycled Split-Squat Jump (#234)](https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/) (Step 2–4 (launch, swap legs in the air, land with the other leg in front)); NASM: [Lunge Jump](https://www.nasm.org/resource-center/exercise-library/lunge-jump) (Step 3–4 (jumping to switch leg positions; land … opposite leg forward)) `plyo.splitSwitch`
 
 **Wskazówki**
 
@@ -5038,7 +5038,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Chwyć linę albo pasy sanek w obie ręce. — REP Fitness: [3 Techniques to Elevate Your Sled Pull Workouts (J. Dickson, 23.01.2026, akt. 03.08.2026)](https://repfitness.com/blogs/training/sled-pull-workout) (Backwards Walk („You can hold the rope in your hands…”)); EliteFTS: [Endless Sled Dragging Variations (Z. Even-Esh, 2011/2020)](https://elitefts.com/blogs/training/endless-sled-dragging-variations-that-will-dramatically-improve-your-performance) (lista wariantów („Backward drag with split rope…”) i The Belt (lina z dwoma uchwytami)) `sled.backGrip`
+- Chwyć linę sanek w obie ręce. — REP Fitness: [3 Techniques to Elevate Your Sled Pull Workouts (J. Dickson, 23.01.2026, akt. 03.08.2026)](https://repfitness.com/blogs/training/sled-pull-workout) (Backwards Walk („You can hold the rope in your hands…”)); EliteFTS: [Endless Sled Dragging Variations (Z. Even-Esh, 2011/2020)](https://elitefts.com/blogs/training/endless-sled-dragging-variations-that-will-dramatically-improve-your-performance) (lista wariantów („Backward drag with split rope…”) i The Belt (lina z dwoma uchwytami)) `sled.backGrip`
 
 **Ruch**
 
@@ -5053,7 +5053,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 **Ruch**
 
 - Podnieś kamień nad kolana i oprzyj go na udach. — BarBend: [Strongman Atlas Stone Technique (M. Gill; aktualizacja M. Dewar, CSCS, 26.06.2024; recenzja M. Hooper, CSCS)](https://barbend.com/strongman-atlas-stone-technique/) (Step 2 Lap the Stone (kamień do bioder, usiądź w tył, kamień na udach)); Hindle i in. (Sports Med Open 2019): [Hindle i in., The Biomechanics and Applications of Strongman Exercises: a Systematic Review, Sports Medicine – Open 5:49 (2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/) (Discussion › Atlas Stone Lift, faza 1 („…the stone resting in the lap”)) `as.lap`
-- Z ud mocno wypchnij biodra i wyprostuj się, unosząc kamień wyżej. — BarBend: [Strongman Atlas Stone Technique (M. Gill; aktualizacja M. Dewar, CSCS, 26.06.2024; recenzja M. Hooper, CSCS)](https://barbend.com/strongman-atlas-stone-technique/) (Step 3 Drive Up to Load the Stone („Pull the stone up your body as you stand up and drive your hips forward.”)); Hindle i in. (Sports Med Open 2019): [Hindle i in., The Biomechanics and Applications of Strongman Exercises: a Systematic Review, Sports Medicine – Open 5:49 (2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/) (Discussion › Atlas Stone Lift, faza 3 (z ćwierćprzysiadu do pełnego wyprostu)) `as.extend`
+- Z kamieniem na udach mocno wypchnij biodra w przód i wstań, unosząc kamień wyżej. — BarBend: [Strongman Atlas Stone Technique (M. Gill; aktualizacja M. Dewar, CSCS, 26.06.2024; recenzja M. Hooper, CSCS)](https://barbend.com/strongman-atlas-stone-technique/) (Step 3 Drive Up to Load the Stone („Pull the stone up your body as you stand up and drive your hips forward.”)); Hindle i in. (Sports Med Open 2019): [Hindle i in., The Biomechanics and Applications of Strongman Exercises: a Systematic Review, Sports Medicine – Open 5:49 (2019)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/) (Discussion › Atlas Stone Lift, faza 3 (z ćwierćprzysiadu do pełnego wyprostu)) `as.extend`
 
 ### Plate Pinch
 
@@ -5063,7 +5063,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Wstań i ściskaj talerze, aż chwyt się zmęczy. — Fitness Volt: [Plate Pinch guide (Matthew Magnante, ACE; data w metadanych 15.11.2023 / 15.09.2024)](https://fitnessvolt.com/plate-pinch-guide/) (How to (stand up; squeeze until your grip feels tired)); ACE: [How to Improve Grip Strength (P. McCall, MS, CSCS; 08.12.2015)](https://www.acefitness.org/education-and-resources/professional/expert-articles/5765/how-to-improve-grip-strength/) (Farmer's Walk with Weight Plates (squeeze the weight as hard as possible; uproszczenie: wariant — marsz)) [uproszczenie: drugie źródło (ACE, P. McCall) opisuje marsz z talerzem trzymanym chwytem szczypcowym, nie stanie — wariant; recenzent potwierdza] `pinch.hold`
+- Wstań i ściskaj talerze, aż chwyt zacznie słabnąć. — Fitness Volt: [Plate Pinch guide (Matthew Magnante, ACE; data w metadanych 15.11.2023 / 15.09.2024)](https://fitnessvolt.com/plate-pinch-guide/) (How to (stand up; squeeze until your grip feels tired)); ACE: [How to Improve Grip Strength (P. McCall, MS, CSCS; 08.12.2015)](https://www.acefitness.org/education-and-resources/professional/expert-articles/5765/how-to-improve-grip-strength/) (Farmer's Walk with Weight Plates (squeeze the weight as hard as possible; uproszczenie: wariant — marsz)) [uproszczenie: drugie źródło (ACE, P. McCall) opisuje marsz z talerzem trzymanym chwytem szczypcowym, nie stanie — wariant; recenzent potwierdza] `pinch.hold`
 
 ## Źródła
 
