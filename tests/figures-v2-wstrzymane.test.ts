@@ -51,7 +51,13 @@ describe('ekran karty (29.10.2026, wstrzymanie zdjęte): JM Press i Skull Crushe
   const { ExerciseCues } = require('@/components/ExerciseCues') as typeof import('@/components/ExerciseCues');
   const { applyLang } = require('@/lib/i18n') as typeof import('@/lib/i18n');
   const ELBOWS = 'Łokcie blisko tułowia przez cały ruch.';
-  beforeAll(() => applyLang('pl'));
+  /* 09.11.2026 (sygnał nocny, tests.yml 42550037208: 31,4 s z limitu 60 s, próg 50%): pierwszy render karty płaci jednorazowy koszt zimnego startu rodziny (pomiar lokalny: JM Press 13 s, kolejny Skull Crusher 0,2 s);
+     rozgrzewka w beforeAll (własny limit, poza przypadkiem) zdejmuje go z pierwszego przypadku; asercje bez zmian. */
+  beforeAll(async () => {
+    applyLang('pl');
+    const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: KLUCZE[0] }, initialOpen: true }));
+    await r.unmount();
+  }, 120000);
   test.each(KLUCZE)('%s: sekcja „Technika” widoczna z rysunkiem v2, bez zdania o łokciach', async k => {
     const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
     expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); await r.unmount();
