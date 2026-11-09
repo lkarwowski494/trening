@@ -3,6 +3,7 @@
  * ma rodzinę, gotowe rodziny mają wariant dla każdego swojego ćwiczenia (i nic ponadto), liczności rodzin są znane (zmiana = świadoma), reguły nie mylą nazw.
  * Zadanie dla agentów rodzin: zmieniając reguły, aktualizuj liczności tutaj i dokument docs/51 (node scripts/figures/v2-gen.mjs --write).
  */
+import { PLANNED_Z_DANYMI } from './helpers/rodziny-planned';
 import { CATALOG } from '@/lib/catalog.generated';
 import { FAMILIES, FAMILY, OVERRIDES, familyOf, assignAll, VARIANTS, POSE_FAMILIES, DATA_UI, poseKeys, figureSpec, staticPositions, boxFor, shapesAt, type FamilyId } from '@/lib/figures/v2';
 
@@ -39,7 +40,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });
   test('gotowe rodziny z rigiem (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
-    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'row', 'pull_up', 'calf_raise', 'olympic', 'curl', 'triceps', 'delt_raise']); /* 09.11.2026 (partia 1): kb_ballistic r2, chest_fly r1, overhead_press r1 „do poprawy” (WYSOKIE) — rodziny wracają do planned do czystej recenzji (dane póz i nakładka zostają) */
+    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'row', 'pull_up', 'calf_raise', 'olympic', 'curl', 'triceps', 'delt_raise', 'chest_fly']); /* 10.11.2026: chest_fly ready po czystej r2. 09.11.2026 (partia 1): kb_ballistic r2, chest_fly r1, overhead_press r1 „do poprawy” (WYSOKIE) — rodziny wracają do planned do czystej recenzji (dane póz i nakładka zostają) */
     const rig = ready.filter(f => !POSE_FAMILIES.includes(f)); expect(rig).toEqual(['squat', 'bench_press', 'hinge']);
     const keys = KEYS.filter(k => rig.includes(ALL[k])); expect(keys.length).toBe(87);
     for (const k of keys) { expect([k, VARIANTS[k]?.family]).toEqual([k, ALL[k]]); expect([k, figureSpec(k)?.family]).toEqual([k, ALL[k]]); }
@@ -48,7 +49,6 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
   test('gotowe rodziny z danych (poses/<rodzina>.json): figura tylko dla ćwiczeń z wpisem w danych (11 z 13 w pull_up), reszta bez figury v2 (v1 albo brak); status „gotowa” = plik póz', () => {
     expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'calf_raise', 'kb_ballistic', 'delt_raise', 'row', 'chest_fly', 'overhead_press']);
     /* 09.11.2026 (partia 1, decyzja w docs/18): rodziny z danymi póz po recenzji „do poprawy” wracają do planned (dane i nakładka zostają) — bez żadnej figury v2 do czystej rundy */
-    const PLANNED_Z_DANYMI = ['kb_ballistic', 'overhead_press'] /* chest_fly ready po r2 (10.11.2026) */;
     for (const f of PLANNED_Z_DANYMI) { expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'planned']); for (const k of KEYS.filter(x => ALL[x] === f)) expect([k, figureSpec(k)]).toEqual([k, null]); }
     for (const f of POSE_FAMILIES.filter(x => !PLANNED_Z_DANYMI.includes(x))) {
       expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]);
@@ -58,7 +58,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     }
     expect(KEYS.filter(k => ALL[k] === 'pull_up' && !figureSpec(k)).sort()).toEqual(['Muscle Up', 'Rope Climb']);
     expect(KEYS.filter(k => ALL[k] === 'olympic' && !figureSpec(k))).toEqual(['Rack Delivery']);
-    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 12 + 31 + 12); /* 09.11.2026: kb_ballistic (16), chest_fly (17), overhead_press (21) — planned do czystej recenzji; + overhead_press z danych (09.11.2026, partia 1: 21 z 23; Bradford Press i Handstand Push Up bez rysunku — brak źródła ruchu); + chest_fly z danych (09.11.2026, partia 1: 17 z 20; Around The Worlds, Machine Pullover, Svend Press bez rysunku — brak źródła ruchu); + row z danych (09.11.2026, partia 1: 12 z 13, Meadows Row bez rysunku — landmine); + delt_raise z danych (09.11.2026, ZB-042: 31 z 38, 7 bez rysunku); + kb_ballistic z danych (09.11.2026: 16 z 17, Kettlebell Pirate Ships bez rysunku: ćwiczenie otwarte w figury-sens.json); + calf_raise z danych (09.11.2026: 12 z 13, Smith Machine Reverse Calf Raise bez rysunku: ruch odwrotny, wpis „open” w figury-sens.json); */ /* + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
+    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 12 + 31 + 12 + 17); /* 10.11.2026: + chest_fly (17, r2 wyswietlana).  09.11.2026: kb_ballistic (16), chest_fly (17), overhead_press (21) — planned do czystej recenzji; + overhead_press z danych (09.11.2026, partia 1: 21 z 23; Bradford Press i Handstand Push Up bez rysunku — brak źródła ruchu); + chest_fly z danych (09.11.2026, partia 1: 17 z 20; Around The Worlds, Machine Pullover, Svend Press bez rysunku — brak źródła ruchu); + row z danych (09.11.2026, partia 1: 12 z 13, Meadows Row bez rysunku — landmine); + delt_raise z danych (09.11.2026, ZB-042: 31 z 38, 7 bez rysunku); + kb_ballistic z danych (09.11.2026: 16 z 17, Kettlebell Pirate Ships bez rysunku: ćwiczenie otwarte w figury-sens.json); + calf_raise z danych (09.11.2026: 12 z 13, Smith Machine Reverse Calf Raise bez rysunku: ruch odwrotny, wpis „open” w figury-sens.json); */ /* + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
   });
   test('planowane rodziny: brak figury (figureSpec = null), szacunek pracy i widoki opisane; klucz spoza katalogu → null', () => {
     for (const f of FAMILIES.filter(x => x.status === 'planned')) { expect([f.id, f.effort > 0, f.views.length > 0, f.label.length >= 5]).toEqual([f.id, true, true, true]); }

@@ -19,6 +19,7 @@ import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 import { krotnosc, LIMIT_KROTNOSCI } from './perf-wzgledny';
 
+import { PLANNED_Z_DANYMI } from './helpers/rodziny-planned';
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock };
 const setReduce = (v: boolean) => { AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(v)); };
@@ -26,13 +27,15 @@ const flush = async () => { await act(async () => { await Promise.resolve(); });
 afterEach(() => { applyLang('pl'); jest.useRealTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); jest.restoreAllMocks(); });
 
 const ALL = assignAll();
-const DATA_KEYS: [string, string][] = POSE_FAMILIES.flatMap(f => poseKeys(f).map(k => [f, k] as [string, string]));
+/* 10.11.2026: rodziny planned z danymi (tests/helpers/rodziny-planned.ts) poza testami gotowych figur — ich stan pilnuje figures-v2-mapping */
+const READY_POSE_FAMILIES = POSE_FAMILIES.filter(f => !PLANNED_Z_DANYMI.includes(f));
+const DATA_KEYS: [string, string][] = READY_POSE_FAMILIES.flatMap(f => poseKeys(f).map(k => [f, k] as [string, string]));
 const U = Array.from({ length: 13 }, (_, i) => i / 12);
 
 describe('dane póz: rejestr i podłączenie (logika)', () => {
   test('każda rodzina z plikiem póz: status „gotowa”, wpis DATA_UI, ćwiczenia pliku należą do rodziny, spec z danych (nie z rigu); pull_up ma 11 ćwiczeń', () => {
     expect(DATA_KEYS.filter(([f]) => f === 'pull_up').length).toBe(11);
-    for (const f of POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]); expect(poseFile(f)!.rodzina).toBe(f); }
+    for (const f of READY_POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]); expect(poseFile(f)!.rodzina).toBe(f); }
     for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(FAMILY[f as keyof typeof FAMILY].views); }
   });
   test('ćwiczenia rodziny bez danych (Muscle Up, Rope Climb) i spoza katalogu: brak figury v2 (zachowanie jak dotąd), sekcja Technika nie pojawia się z ich powodu', () => {
@@ -129,11 +132,11 @@ describe('błędy z danych (bledy[])', () => {
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
 /* 09.11.2026 (kb_ballistic, partia 1): „zaokrąglone plecy” (mis.roundBack) to zgięcie kręgosłupa — krzywizna grzbietu przy tych samych punktach stawów (miednica, głowa, kolano, kostka, łokieć różnią się < 3 cm). Miara widoczności: zmiana zgięcia kręgosłupa w kadrach błędu ≥ 15° (generator: 26°). Przypadek negatywny: poza poprawna ma 0°. */
 const ZAOKRAGLONE_PLECY_KB = (f: string, k: string, cue: string, err: FigError) => { if (f !== 'kb_ballistic' || cue !== 'mis.roundBack') return false; const d = poseFile(f)!.cwiczenia[k]; const kl = d.bledy[dataErrorIndex(err as never)].klatki; return Math.max(...kl.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) >= 15 && Math.max(...d.klatki.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) < 15; };
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps' || f === 'chest_fly') && cue === 'mis.jerk'; /* + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia */
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps' || f === 'chest_fly' || f === 'row') && cue === 'mis.jerk'; /* + row (10.11.2026, partia 1): zestawy ogólne wiosłowań niosą mis.jerk — błąd tempa (rodzina row r3 wyswietlana, audytor 09.11.2026); + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia */
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
     expect(JERK_TEMPO_RODZINY('chest_fly', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_fly', 'fly.elbows')).toBe(false); expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
-    expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false);
+    expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('row', 'row.back')).toBe(false);
   });
 });
 
