@@ -70,7 +70,7 @@ export const WIOSLO_STOPY_PRZED_KOLANEM = ['Bent Over Row (sztanga)', 'Bent Over
 const PRZYBLIZENIE_STOPY_PRZED_KOLANEM = 'przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony';
 export const PRZYBLIZENIA = {
   ...Object.fromEntries(WIOSLO_STOPY_PRZED_KOLANEM.map((cw) => [cw, PRZYBLIZENIE_STOPY_PRZED_KOLANEM])),
-  'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270° silnika), sztanga zwisa pod ławką',
+  'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm — tak wysoko, żeby talerze sztangi nie dotykały podłogi przy prostych rękach (09.11.2026, recenzja r1 row, N2: gryf 26,1 cm, talerz 22,5 cm nad podłogą); osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270°), sztanga zwisa pod ławką',
   'T-Bar Row': `przybliżenie: T-bar jako dźwignia obrotowa z osią przed osobą (schemat; uchwyt na ramieniu dźwigni, bez rysowania talerzy); ${PRZYBLIZENIE_STOPY_PRZED_KOLANEM.replace('przybliżenie: ', '')}`,
 };
 
@@ -91,7 +91,7 @@ export function generuj() {
     const fr = (u) => { const rece = {}; for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg);
       if (s === 'R') { const u1 = up(p), f1 = front(p); const hx = 6, hz = 24 - 19; const hy = -Math.sqrt(63.2 ** 2 - hx * hx - hz * hz); const H0 = [S[0] + hx, S[1] + hy]; const H1 = [S[0] - 32 * u1[0] + 12 * f1[0], S[1] - 32 * u1[1] + 12 * f1[1]];
         rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), 24], pole: [-0.6, 0.7, 0.35], obrot: 0 }; }
-      else rece[s] = { g: [S[0] + 3, top + 3.5, -15], pole: [-0.3, 0.2, -1], obrot: 0 }; } /* wolna dłoń na blacie ławki */
+      else rece[s] = { g: [S[0] + 3, top + 3.5, -9], pole: [-0.8, 0.3, -0.4], obrot: 0 }; } /* wolna dłoń na blacie ławki: 09.11.2026 (recenzja r1 row, N1) bliżej środka ławki (z −9, było −15 = krawędź ławki 30 cm), łokieć ku tyłowi zamiast na zewnątrz — ramię mieści się w obrysie ławki w rzucie z góry */
       return poza({ u, tulow: { m, p, glowa: p * 0.45 + 8 }, nogi, rece }); };
     return buduj({ rodzina: RODZINA, cw: 'One Arm Row (hantle)', sprzet: [SPRZET.podloga(-110, 130), { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: 30, siedzisko: 65 }, { ...H, trzyma: 'R' }], fr, us: U5 }); };
   /* --- T-bar: dźwignia obrotowa z osią za osobą (schemat), uchwyt V między nogami --- */

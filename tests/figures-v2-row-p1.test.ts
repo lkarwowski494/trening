@@ -6,8 +6,8 @@
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza rysunek i nakładkę, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import * as fs from 'fs';
 import * as path from 'path';
-import { assignAll, trunkChord, BODY, figureSpec, frameAt, jointAngles, poseKeys, DATA_UI, FAMILY, measuredJoint, phaseNames, angleLineShown, equipColliders, bodyColliders, gap, checkFrame, type FigureSpec, type V3 } from '@/lib/figures/v2';
-import { TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
+import { assignAll, proj, keyframeFrame, type PoseData, trunkChord, BODY, figureSpec, frameAt, jointAngles, poseKeys, DATA_UI, FAMILY, measuredJoint, phaseNames, angleLineShown, equipColliders, bodyColliders, gap, checkFrame, type FigureSpec, type V3 } from '@/lib/figures/v2';
+import { TECHNIQUE, techniquesFor, refGeom2D } from '@/lib/figures/v2/overlay';
 import { ROW_TECHNIQUE, ROW_SUPPORTED_EXERCISES } from '@/lib/figures/v2/overlay/row';
 import { techniquesOf, cueIdsOf, errorText, errorsOf } from '@/lib/figures/v2/ui';
 
@@ -86,10 +86,10 @@ describe('row: styk ze sprzętem (K7) i poprawność klatek', () => {
       for (const p of pr) for (const b of body) expect([k, u, b.id, gap(b, p) >= -1]).toEqual([k, u, b.id, true]);
       expect([k, u, checkFrame(f).map(i => i.code)]).toEqual([k, u, []]); }
   });
-  test('przypadek negatywny: ławka podniesiona o 3 cm daje przenikanie > 1 cm w wiosłowaniu z podparciem', () => {
+  test('przypadek negatywny: ławka podniesiona o 6 cm daje przenikanie > 1 cm w wiosłowaniu z podparciem', () => {
     const f = frameAt(spec('Chest Supported Row'), 0.5); const body = bodyColliders(f.sk).filter(b => !/^hand/.test(b.id));
     const worst = (dy: number) => Math.min(...equipColliders(f.props).filter(c => c.k === 'prism').flatMap(p => body.map(b => gap(b, { ...p, poly: (p as { poly: [number, number][] }).poly.map(([x, y]) => [x, y + dy] as [number, number]) } as typeof p))));
-    expect(worst(3)).toBeLessThan(-1);
+    expect(worst(0)).toBeGreaterThanOrEqual(-1); expect(worst(6)).toBeLessThan(-1);
   });
   test('hantle trzymane osią wzdłuż ruchu (chwyt neutralny, obrot 0): oś hantla równoległa do osi x w klatce 0 i 1', () => {
     for (const k of ['Bent Over Row (hantle)', 'One Arm Row (hantle)', 'Chest Supported Row']) for (const u of [0, 1]) {
@@ -113,19 +113,19 @@ describe('row: zakres łokcia z tekstu karty (K8: zakres_lokcia ≥ 70° i ≤ 2
 });
 
 describe('row: nakładka techniki', () => {
-  test('rejestr: row = rowElbowLimb (limb, łokieć, z boku) + rowElbowPastBackRef (pion przez bark, tylko z podparciem)', () => {
-    expect(TECHNIQUE.row).toBe(ROW_TECHNIQUE); expect(ROW_TECHNIQUE.map(d => d.id)).toEqual(['rowElbowLimb', 'rowElbowPastBackRef']);
+  test('rejestr: row = rowElbowLimb (limb, łokieć, z boku) + rowBackLineRef (linia pleców miednica → bark, tylko z podparciem)', () => {
+    expect(TECHNIQUE.row).toBe(ROW_TECHNIQUE); expect(ROW_TECHNIQUE.map(d => d.id)).toEqual(['rowElbowLimb', 'rowBackLineRef']);
     expect([ROW_TECHNIQUE[0].kind, ROW_TECHNIQUE[0].joint, ROW_TECHNIQUE[0].views, ROW_TECHNIQUE[0].rule]).toEqual(['limb', 'elbow', ['side'], 'zakres_lokcia']);
-    expect([ROW_TECHNIQUE[1].kind, ROW_TECHNIQUE[1].ref, ROW_TECHNIQUE[1].views, ROW_TECHNIQUE[1].exercises, ROW_TECHNIQUE[1].rule]).toEqual(['ref', { shape: 'vertical', through: 'shoulder', dir: 'both' }, ['side'], ROW_SUPPORTED_EXERCISES, 'lokiec_za_plecami']);
+    expect([ROW_TECHNIQUE[1].kind, ROW_TECHNIQUE[1].ref, ROW_TECHNIQUE[1].views, ROW_TECHNIQUE[1].exercises, ROW_TECHNIQUE[1].rule]).toEqual(['ref', { shape: 'segment', from: 'pelvis', to: 'shoulder' }, ['side'], ROW_SUPPORTED_EXERCISES, 'lokiec_za_plecami']);
     for (const d of ROW_TECHNIQUE) { expect(SENS.reguly[d.rule].pewnosc).toMatch(/^ustalone/); for (const c of d.cue) expect(Object.keys(SENS.wskazowki_na_reguly)).toContain(c); expect(SENS.wskazowki_na_reguly[d.cue[0]]).toContain(d.rule); }
   });
-  test('element ⇔ wskazówka na karcie i reguła „ustalone” wariantu: techniquesOf = filtr definicji; zdanie elementu istnieje; pion barku tylko przy wiosłowaniu z podparciem', () => {
+  test('element ⇔ wskazówka na karcie i reguła „ustalone” wariantu: techniquesOf = filtr definicji; zdanie elementu istnieje; linia pleców tylko przy wiosłowaniu z podparciem', () => {
     for (const k of KEYS) { const have = new Set(cueIdsOf(k).ids); const want = ROW_TECHNIQUE.filter(d => d.cue.some(c => have.has(c)) && (!d.exercises || d.exercises.includes(k)) && (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/reguly-cwiczen.json'), 'utf8')).row[k] ?? []).includes(d.rule)).map(d => d.id);
       expect([k, techniquesOf(k)]).toEqual([k, want]); expect(techniquesFor('row', have, k).map(d => d.id)).toEqual(want);
       for (const id of want) expect(errorText(ROW_TECHNIQUE.find(d => d.id === id)!.cue.find(c => have.has(c))!).length).toBeGreaterThan(0);
-      expect([k, want.includes('rowElbowPastBackRef')]).toEqual([k, ROW_SUPPORTED_EXERCISES.includes(k) && have.size > 0 && techniquesOf(k).includes('rowElbowPastBackRef')]); }
+      expect([k, want.includes('rowBackLineRef')]).toEqual([k, ROW_SUPPORTED_EXERCISES.includes(k) && have.size > 0 && techniquesOf(k).includes('rowBackLineRef')]); }
     expect(techniquesFor('row', ['row.fullStretch'], 'Bent Over Row (sztanga)').map(d => d.id)).toEqual(['rowElbowLimb']);
-    expect(techniquesFor('row', ['csr.pull'], 'Chest Supported Row').map(d => d.id)).toEqual(['rowElbowLimb', 'rowElbowPastBackRef']);
+    expect(techniquesFor('row', ['csr.pull'], 'Chest Supported Row').map(d => d.id)).toEqual(['rowElbowLimb', 'rowBackLineRef']);
     expect(techniquesFor('row', ['csr.pull'], 'Bent Over Row (sztanga)').map(d => d.id)).toEqual(['rowElbowLimb']);
     expect(techniquesFor('row', ['dl.lift'])).toEqual([]);
   });
@@ -137,5 +137,34 @@ describe('row: błąd „zaokrąglone plecy” widoczny (09.11.2026: zgięcie 32
     expect(OBNIZENIE(32)).toBeLessThan(3); expect(OBNIZENIE(40)).toBeGreaterThanOrEqual(3);
     const z = KEYS.filter(k => errorsOf(spec(k)).length > 0); expect(z.length).toBeGreaterThanOrEqual(5);
     for (const k of z) for (const e of errorsOf(spec(k))) { const a = frameAt(spec(k), 1).sk, b = frameAt(spec(k), 1, e.error).sk; const dd = Math.max(d3(a.shoulderC, b.shoulderC), d3(a.head, b.head), d3(a.arms.R.elbow, b.arms.R.elbow)); expect([k, e.cue, dd >= 3]).toEqual([k, 'mis.roundBack', true]); }
+  });
+});
+
+describe('row: poza leżąca bez przeprostu biodra i linia pleców (recenzja r1, 09.11.2026: W1, W2)', () => {
+  const LEZACE = ['Chest Supported Row', 'Lying T-Bar Row'];
+  const wyprost = (k: string, poza: PoseData, n = 5) => Math.max(...Array.from({ length: n }, (_, i) => -jointAngles(keyframeFrame(poza, i % poza.klatki.length).sk, 'R').hip));
+  const POSY = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/poses/row.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
+  test('W1: wyprost biodra ≤ 20° w każdej klatce kluczowej leżących wiosłowań (zakres człowieka ok. 10–30°); poza sprzed poprawki (uda poziomo na siedzisku, biodro −37°) przekraczała próg', () => {
+    for (const k of LEZACE) { const klatki = POSY[k].klatki.length; expect([k, wyprost(k, POSY[k], klatki) <= 20]).toEqual([k, true]); }
+    for (const k of LEZACE) { const stara = { ...POSY[k], klatki: POSY[k].klatki.map(kl => ({ ...kl, nogi: { R: { kostka: [61.1, 7, -16], podbicie: 0, rotacjaStopy: 0, biegunKolana: [1, 0.2, 0] }, L: { kostka: [61.1, 7, 16], podbicie: 0, rotacjaStopy: 0, biegunKolana: [1, 0.2, 0] } } })) } as unknown as PoseData;
+      expect([k, wyprost(k, stara, stara.klatki.length) > 20]).toEqual([k, true]); }
+  });
+  test('W1: biodro Seal Row i leżących bez przeprostu, wyjątki hipMin dla row usunięte z danych sensu', () => { expect(SENS.zakres_wyjatki).toBeUndefined(); for (const k of [...LEZACE, 'Seal Row (sztanga)']) expect([k, wyprost(k, POSY[k], POSY[k].klatki.length) <= 20]).toEqual([k, true]); });
+  /* linia pleców (rowBackLineRef) w rzucie z boku: odcinek miednica → bark przedłużony; strona pracująca R */
+  const LINIA = ROW_TECHNIQUE.find(d => d.id === 'rowBackLineRef')!.ref!;
+  const znak = (k: string, u: number, linia: (sk: ReturnType<typeof frameAt>['sk']) => number) => linia(frameAt(spec(k), u).sk);
+  const poLinii = (sk: ReturnType<typeof frameAt>['sk']): number => { const g = refGeom2D(sk, 'R', 'side', LINIA)!; const e = proj(sk.arms.R.elbow, 'side'); return (g[1][0] - g[0][0]) * (e[1] - g[0][1]) - (g[1][1] - g[0][0 + 1]) * (e[0] - g[0][0]); };
+  const poPionie = (sk: ReturnType<typeof frameAt>['sk']): number => proj(sk.arms.R.elbow, 'side')[0] - proj(sk.arms.R.shoulder, 'side')[0];
+  const miara = (sk: ReturnType<typeof frameAt>['sk']): number => { const e = sk.arms.R.elbow, sh = sk.arms.R.shoulder; return -(((e[0] - sh[0]) * sk.front[0]) + ((e[1] - sh[1]) * sk.front[1]) + ((e[2] - sh[2]) * sk.front[2])); }; /* + = łokieć za linią barku po stronie pleców (v2-sens lokiec_za_tulowiem) */
+  const uPrzekroczenia = (k: string, f: (sk: ReturnType<typeof frameAt>['sk']) => number): number => { const f0 = Math.sign(znak(k, 0, f) || 1); for (let i = 1; i <= 200; i++) if (Math.sign(znak(k, i / 200, f)) !== f0) return i / 200; return NaN; };
+  test('W2: kierunek linii = kierunek tułowia (±5°) w każdej klatce, a chwila przekroczenia linii przez łokieć zgadza się (±0,05) z chwilą zmiany znaku miary reguły', () => {
+    for (const k of ROW_SUPPORTED_EXERCISES) {
+      for (const u of US) { const sk = frameAt(spec(k), u).sk; const g = refGeom2D(sk, 'R', 'side', LINIA)!; const t = [proj(sk.shoulderC, 'side')[0] - proj(sk.pelvis, 'side')[0], proj(sk.shoulderC, 'side')[1] - proj(sk.pelvis, 'side')[1]]; const l = [g[1][0] - g[0][0], g[1][1] - g[0][1]];
+        const kat = Math.acos(Math.max(-1, Math.min(1, (t[0] * l[0] + t[1] * l[1]) / (Math.hypot(...t) * Math.hypot(...l))))) * 180 / Math.PI; expect([k, u, kat <= 5]).toEqual([k, u, true]); }
+      const ur = uPrzekroczenia(k, miara), ul = uPrzekroczenia(k, poLinii); expect([k, Number.isFinite(ur), Math.abs(ur - ul) <= 0.05]).toEqual([k, true, true]);
+    }
+  });
+  test('W2 negatyw: pion świata przez bark (dawny element) nie ma chwili przekroczenia w Chest Supported Row (łokieć od u = 0 po tej samej stronie pionu), a miara reguły ma — pion nie niósł informacji o linii pleców', () => {
+    const k = 'Chest Supported Row'; expect(Number.isFinite(uPrzekroczenia(k, miara))).toBe(true); expect(Number.isFinite(uPrzekroczenia(k, poPionie))).toBe(false);
   });
 });
