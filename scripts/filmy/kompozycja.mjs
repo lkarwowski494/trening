@@ -129,24 +129,25 @@ export function htmlStrony(tx, tokens, d, ikonaDataUri, fontDataUri) {
   const y = { hak: 140, nazwa: 430, pasek: 1430, ...d.teksty_y };
   /* pas treści w poziomie (właściciel 09.11.2026, A): poza obciętymi bokami i kolumną przycisków aplikacji wideo — pomiar na zrzutach właściciela; domyślnie 70 px z obu stron */
   const [px0, px1] = d.pas_x ?? [70, d.szerokosc - 70]; const pas = `left:${px0}px;right:${d.szerokosc - px1}px;`;
+  const wyr = d.wyrownanie ?? 'center'; /* „left” — każdy napis zaczyna się przy lewej krawędzi pasa (właściciel 09.11.2026) */
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Barlow;src:url(${fontDataUri});font-weight:700}
 *{margin:0;box-sizing:border-box}
 body{width:${d.szerokosc}px;height:${d.wysokosc}px;overflow:hidden;background:${c.bg};color:${c.text};font-family:Barlow,sans-serif;font-weight:700;position:relative}
-.hak{position:absolute;top:${y.hak}px;${pas}font-size:76px;line-height:1.08;text-align:center}
-.hak-app{display:none;flex-direction:row;align-items:center;justify-content:center;gap:22px}
+.hak{position:absolute;top:${y.hak}px;${pas}font-size:76px;line-height:1.08;text-align:${wyr}}
+.hak-app{display:none;flex-direction:row;align-items:center;justify-content:${wyr === 'left' ? 'flex-start' : 'center'};gap:22px}
 .hak-app img{width:120px;height:120px;border-radius:27px}
 .hak-app .hak-nazwa{font-size:56px;line-height:1.04;text-align:left}
 .hak-app .hak-sklep{font-size:42px;color:${c.accent};margin-top:6px;text-align:left}
 ${d.nazwa_w_haku ? 'body.poprawnie .hak-tekst{display:none} body.poprawnie .hak-app{display:flex}' : ''}
-.nazwa{position:absolute;top:${y.nazwa}px;${pas}text-align:center}
+.nazwa{position:absolute;top:${y.nazwa}px;${pas}text-align:${wyr}}
 .nazwa .en{font-size:64px;color:${c.accent};letter-spacing:.5px}
 .nazwa .lok{font-size:44px;color:${c.muted};margin-top:6px}
 #fig{position:absolute;top:${d.rysunek.top}px;left:${d.rysunek.left}px;width:${d.rysunek.w}px;height:${d.rysunek.h}px}
 #fig img{position:absolute}
 #fig .wyroz{position:absolute;border-radius:50%;border:8px solid;box-shadow:0 0 0 6px ${c.bg}}
 #fig .wyroz.err{border-color:${c.danger}} #fig .wyroz.ok{border-color:${c.doneLine}}
-.pasek{position:absolute;top:${y.pasek}px;${pas}font-size:52px;line-height:1.12;text-align:center}
+.pasek{position:absolute;top:${y.pasek}px;${pas}font-size:52px;line-height:1.12;text-align:${wyr}}
 .pasek .znak{display:inline-block;margin-right:14px}
 .pasek.b{color:${c.danger}} .pasek.ok{color:${c.doneLine}}
 body.blad .pasek.ok,body.poprawnie .pasek.b,body:not(.napis) .pasek{display:none}

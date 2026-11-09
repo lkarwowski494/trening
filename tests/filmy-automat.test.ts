@@ -74,6 +74,14 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(html).not.toMatch(/Animation: |Animacja: /);
   });
 
+  test('wszystkie napisy wyrównane do lewej krawędzi pasa (właściciel 09.11.2026)', () => {
+    expect(CFG.domyslne.wyrownanie).toBe('left');
+    const html = run(['--film', FILM.id, '--jezyk', 'en', '--strona', '0']).stdout;
+    for (const k of ['hak', 'nazwa', 'pasek']) expect(html).toMatch(new RegExp(`\\.${k}\\{[^}]*text-align:left\\}`));
+    expect(html).toContain('.hak-app{display:none;flex-direction:row;align-items:center;justify-content:flex-start;');
+    expect(html).not.toMatch(/\.(hak|nazwa|pasek)\{[^}]*text-align:center/);
+  });
+
   test('wariant haka per film (właściciel 09.11.2026: inny hak, żeby film nie był duplikatem): „hak_wariant” z „hak_warianty”, nieznany wariant — odmowa', () => {
     const f = CFG.filmy.find((x: { hak_wariant?: string }) => x.hak_wariant === 'popularny-blad');
     expect(f).toBeDefined(); expect(f.cwiczenie).toBe('Back Squat');
