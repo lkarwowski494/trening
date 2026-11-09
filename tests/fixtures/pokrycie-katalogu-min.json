@@ -3,7 +3,7 @@
   "minimum": {
     "figura.v2": 239,
     "figura.wAplikacji": 276,
-    "figura.zDanymiV2": 536,
+    "figura.zDanymiV2": 534,
     "animowanyBlad": 142,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
@@ -110,8 +110,8 @@
       "data": "29.10.2026"
     },
     "figura.zDanymiV2": {
-      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20; 709 → 708, 535) oraz Zottman Curl i Zottman Preacher Curl bez rysunku — wyjątki w figury-wyjatki.json (decyzja właściciela 03.11.2026, wariant b; 535 → 533)",
-      "data": "03.11.2026"
+      "powod": "partia 3: Lateral Band Walk i Monster Walk (hip_abd_add) bez rysunku do poprawki marszu — recenzja H-1/H-2 WYSOKIE, backlog P3-MARSZ (docs/21), decyzja koordynatora 09.11.2026 (docs/18)",
+      "data": "09.11.2026"
     },
     "animowanyBlad": {
       "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
