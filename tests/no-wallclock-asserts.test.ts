@@ -1,3 +1,4 @@
+// skanuje: tests
 /* M1-audytor-generalny-060: bramka verify (jest) nie może zależeć od zegara ściennego — asercje na zmierzony czas padają na obciążonej maszynie
    (równoległe przebiegi, CI) bez błędu w kodzie. Pomiar czasu żyje w zestawie perf (`npm run perf`, scripts/perf). Drugi strażnik: test „perf …” musi mieć asercję
    (test bez asercji niczego nie sprawdza). */

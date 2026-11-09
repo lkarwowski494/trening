@@ -162,3 +162,27 @@ export function testyRenderujaceRouter(pliki, root) {
   if (!pliki.some(kodAplikacji) || !existsSync(join(root, 'tests'))) return [];
   return readdirSync(join(root, 'tests')).filter(f => /\.test\.tsx?$/.test(f) && RENDER_ROUTER_APP.test(readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|\s)\/\/.*$/gm, '$1'))).map(f => `tests/${f}`).sort();
 }
+
+// L-122 (09.11.2026): strażnik, który SKANUJE katalog przez fs (readdirSync/walk po tests/, lib/ itd.) nie ma krawędzi importu do skanowanych plików — nowy albo zmieniony plik (także kod: .ts/.tsx/.js)
+// nie wybiera go przez `--findRelatedTests` (przypadki L-100, L-104, L-114 i no-wallclock-asserts/straznik-zegar po dodaniu nowego testu). Test deklaruje skanowane ścieżki sam, w nagłówku:
+//   // skanuje: tests, lib/cues      (ścieżki względem korzenia repo, katalog albo plik, po przecinku)
+// Zmiana (dodanie, edycja, usunięcie) dowolnego pliku pod deklarowaną ścieżką dokłada ten test. Strażnik deklaracji: tests/straznicy-skan.test.ts.
+const ZNACZNIK_SKANUJE = /^[ \t]*\/\/[ \t]*skanuje:[ \t]*(.+)$/gm;
+/** Ścieżki deklarowane w źródle testu znacznikiem `// skanuje: a, b/c` (bez ukośnika na końcu, względem korzenia repo). */
+export const skanowaneSciezki = src => [...src.matchAll(ZNACZNIK_SKANUJE)].flatMap(m => m[1].split(',')).map(s => s.trim().replace(/^\.?\/+|\/+$/g, '')).filter(Boolean);
+/** Test → deklarowane ścieżki skanowania (tylko testy ze znacznikiem). */
+export function deklaracjeSkanowania(root) {
+  if (!existsSync(join(root, 'tests'))) return new Map();
+  const mapa = new Map();
+  for (const t of readdirSync(join(root, 'tests')).filter(f => /\.test\.tsx?$/.test(f))) {
+    const s = skanowaneSciezki(readFileSync(join(root, 'tests', t), 'utf8'));
+    if (s.length) mapa.set(`tests/${t}`, s);
+  }
+  return mapa;
+}
+/** Testy skanujące zadeklarowaną ścieżkę, pod którą (albo którą) zmieniono plik — dowolnego rodzaju, także kod i usunięte pliki. */
+export function testySkanujace(pliki, root) {
+  const trafione = [];
+  for (const [t, sciezki] of deklaracjeSkanowania(root)) if (pliki.some(f => sciezki.some(p => f === p || f.startsWith(`${p}/`)))) trafione.push(t);
+  return trafione.sort();
+}
