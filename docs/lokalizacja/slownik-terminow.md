@@ -313,17 +313,20 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `sv` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `sv` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `sv` | `rysunek_zdanie` | (?<![\p{L}])bild | w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek |
+| `sv` | `nachwyt` | (?<![\p{L}])övergrep | fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „överhandsgrepp” (recenzja lokalizacji 09.11.2026) |
 | `da` | `przerwa` | frikvarter | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `da` | `przerwa_robocza` | arbejdspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `da` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `da` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sæt” |
 | `da` | `chwyt` | (?<![\p{L}])grips?(?![\p{L}]) | chwyt na uchwycie nazywaj rodzimym słowem używanym w pozostałych wskazówkach tego języka, bez angielskiego „grip” |
 | `da` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
+| `da` | `nachwyt` | (?<![\p{L}])overgreb | fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „overhåndsgreb” (recenzja lokalizacji 09.11.2026) |
 | `nb` | `przerwa` | friminutt\|lunsj | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nb` | `przerwa_robocza` | arbeidspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `nb` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `nb` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sett” |
 | `nb` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
+| `nb` | `nachwyt` | (?<![\p{L}])overgrep | fałszywy przyjaciel: znaczy nadużycie lub napaść, nie chwyt; poprawnie „overhåndsgrep” (recenzja lokalizacji 09.11.2026) |
 | `fi` | `przerwa_robocza` | työtauko | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `fi` | `faza_pauza` | keskeytä | tryb rozkazujący to przycisk przerwania, a faza jest rzeczownikiem |
 | `fi` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
