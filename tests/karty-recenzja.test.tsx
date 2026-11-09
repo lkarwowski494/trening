@@ -86,9 +86,9 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
     expect(generalCuesReviewed('Lateral Lunge')).toBe(false); /* rodzina lunge bez figury v2 — bez recenzji */
     expect(generalCuesReviewed('Back Squat')).toBe(false); /* karta własna, nie zestaw ogólny */
   });
-  test('karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {
-    expect(REC.karty?.['Hack Squat']?.werdykt).toBe('do poprawy');
-    await render(<ExerciseCues exercise={lib('Hack Squat')} initialOpen />);
+  test('karta „do poprawy” (Front Incline Dumbbell Raise; 09.11.2026 Hack Squat odsłonięty po recenzji niezależnej) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {
+    expect(REC.karty?.['Front Incline Dumbbell Raise']?.werdykt).toBe('do poprawy');
+    await render(<ExerciseCues exercise={lib('Front Incline Dumbbell Raise')} initialOpen />);
     expect(screen.queryByTestId('exercise-cues')).toBeNull();
     /* od 28.10.2026 (decyzja właściciela „1a”, M1-audytor-generalny-038) żaden zestaw nie jest „do poprawy” — wtedy zestaw ogólny bez wpisu recenzji (Lateral Lunge) */
     const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0] ?? 'Lateral Lunge';

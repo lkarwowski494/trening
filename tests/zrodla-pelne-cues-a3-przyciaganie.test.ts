@@ -28,12 +28,12 @@ const sentencesOf = (k: string) => CUE_SECTIONS.flatMap(s => CUE_FULL.exercises[
 const NIEBYLE = ['bellsofsteel-seal-row', 'bellsofsteel-rear-delt-cable', 'majorfitness-smith-row', 'majorfitness-cable-rear-delt-row', 'ritfit-smith-row', 'rxsg-rope-foot-locks', 'fitnessvolt-cable-rear-delt-row-rope'];
 
 describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
-  test('16 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime ukryte (lista hidden) do przekładu i recenzji; nie są w otwartych; niepełne są na liście partial', () => {
+  test('16 ćwiczeń ma komplet ustawienie + ruch w pełnych danych; w runtime widoczne po przekładzie i recenzji (od 09.11.2026); nie są w otwartych; niepełne są na liście partial', () => {
     expect(A3.cwiczenia.length).toBe(16);
     for (const k of A3.cwiczenia) {
       const x = CUE_FULL.exercises[k];
       expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open]).toEqual([k, true, true, false]);
-      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, false]);
+      expect([k, CUE_DATA.hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, false, true]); /* 09.11.2026: odsłonięte po przekładzie i recenzji niezależnej (docs/research/recenzje/a3-r2.json) */
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
       for (const s of CUE_SECTIONS) expect([k, s, (CUE_FULL.exercises[k][s] ?? []).length <= 4]).toEqual([k, s, true]);
     }
@@ -41,9 +41,9 @@ describe('A3 przyciąganie: karty własne (09.11.2026)', () => {
     expect([...A3.partial].sort()).toEqual(A3.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
   });
 
-  test('karty ukryte do przekładu: wszystkie 16 na liście karty_nowe (tests/recenzja-wyjatki-1-1.json), bez wpisu „karty” w docs/research/figury-recenzja.json (autor nie wpisuje recenzji, L-047)', () => {
+  test('09.11.2026: po przekładzie wszystkie 16 poza listą karty_nowe (tests/recenzja-wyjatki-1-1.json), z wpisem „wyswietlana” w docs/research/figury-recenzja.json (recenzja niezależna, L-047)', () => {
     const wyj = json('tests/recenzja-wyjatki-1-1.json'), rec = json('docs/research/figury-recenzja.json');
-    for (const k of A3.cwiczenia) expect([k, wyj.karty_nowe.includes(k), !!rec.karty?.[k]]).toEqual([k, true, false]);
+    for (const k of A3.cwiczenia) expect([k, wyj.karty_nowe.includes(k), rec.karty?.[k]?.werdykt]).toEqual([k, false, 'wyswietlana']); /* 09.11.2026: wpis recenzji badacza (a3-r2.json) */
   });
 
   test('cue-sets: 16 ćwiczeń ma własne karty (b = own); pominięte (bez ustawienia/ruchu, bez błędu przy pozach v2, wstrzymane) nie mają karty własnej', () => {

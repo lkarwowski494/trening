@@ -68,116 +68,11 @@ Sprawdzone bez uwag (nie wymagają zmian): fr (spacja nierozdzielająca przed ; 
 
 Wskazówki: `lib/cues/text/<język>.json` (klucz = id). UI: `lib/locales/<język>.json` (klucz = tekst polski).
 
-```json
-{
-  "vi": {
-    "preacher.arms": "Hãy tì cánh tay trên lên đệm ghế preacher và giữ yên trong suốt chuyển động.",
-    "rotator_cuff.cubanRotate": "Xoay cẳng tay lên mà không hạ khuỷu tay; cánh tay trên giữ ngang."
-  },
-  "de": {
-    "kbp.move": "Drück die Kettlebell gerade über den Kopf; senk sie zurück zur Schulter und zieh dabei den Ellbogen zu den Rippen.",
-    "dip.mis.depth": "Zu tief runtergehen oder zu weit oben stoppen.",
-    "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Neue Nutzer starten auf dem Bildschirm „Training“ mit dem Button „Starte dein erstes Training“ und der Karte „Erstes Training“."
-  },
-  "el": {
-    "lpd.mis.lean": "Ταλάντευση και γέρσιμο προς τα πίσω για να κατεβάσεις το βάρος.",
-    "scrow.mis.lean": "Γέρσιμο του κορμού πίσω ή μπροστά για να τραβήξεις το βάρος."
-  },
-  "fi": {
-    "meadows.setup2": "Seiso sivuttain tankoon nähden pienessä käyntiasennossa, taivuta lantiosta ja tartu tangon päähän myötäotteella; nojaa toisella kyynärvarrella etummaisen jalan reiteen."
-  },
-  "lv": {
-    "press.mis.lock": "Strauja elkoņu nobloķēšana kustības beigās."
-  },
-  "ro": {
-    "band.ohpSetup": "Calcă pe bandă, prinde-i capetele și ridică mâinile în dreptul umerilor, cu coatele îndoite."
-  },
-  "zh-Hant": {
-    "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "三頭肌動作以及上膊、抓舉與其變化式新增了動作示意圖。"
-  },
-  "bg": {
-    "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Новият потребител започва от екрана „Тренировка“ с бутона „Започване на първа тренировка“ и таблото „Първа тренировка“."
-  },
-  "es": {
-    "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Un usuario nuevo empieza en la pantalla Entreno con el botón «Empieza tu primer entreno» y el panel «Primer entreno»."
-  },
-  "it": {
-    "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Chi è nuovo parte dalla schermata Allenamento con il pulsante «Inizia il tuo primo allenamento» e il riquadro «Primo allenamento»."
-  },
-  "tr": {
-    "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Yeni kullanıcılar Antrenman ekranında “İlk antrenmanınıza başlayın” düğmesi ve “İlk antrenman” panosuyla başlar."
-  }
-}
-```
+(Kod JSON z gotowymi tekstami usunięty z kopii: poprawki BLOKUJĄCE i ŚREDNIE są już w lib/cues/text/*.json i lib/locales/*.json na gałęzi lok/przeklad-a1-a3; obowiązują teksty z tych plików.)
 
 ## JSON — NISKIE mechaniczne (typografia; opcjonalnie, ale bez ryzyka)
 
-```json
-{
-  "cues": {
-    "it": {
-      "lpd.mis.lean": "Dondolare e inclinarsi all’indietro per tirare giù il peso.",
-      "lpd.vbarSetup": "Siediti, regola i cuscinetti in modo che blocchino bene le cosce e afferra la maniglia a V, palmi rivolti l’uno verso l’altro.",
-      "meadows.pull": "Tira il bilanciere verso l’anca portando il gomito indietro; scendi lentamente fino a distendere il braccio.",
-      "meadows.setup2": "Mettiti di fianco al bilanciere in leggero affondo, piegati in avanti dalle anche e afferra l’estremità del bilanciere con presa prona; appoggia l’altro avambraccio sulla coscia della gamba avanti.",
-      "mrow.setup": "Regola l’altezza del sedile in base alle maniglie, siediti dritto e afferrale.",
-      "rotator_cuff.cableSetup": "Aggancia una maniglia singola, regola il cavo all’altezza della vita e mettiti di fianco.",
-      "rotator_cuff.cubanRotate": "Ruota gli avambracci verso l’alto senza abbassare i gomiti: le braccia restano orizzontali.",
-      "rotator_cuff.cubanRow": "Solleva i gomiti lateralmente all’altezza delle spalle, piegati ad angolo retto; i manubri pendono verso il basso.",
-      "rotator_cuff.pullHold": "Afferra l’elastico con entrambe le mani e tieni le braccia davanti a te all’altezza del petto.",
-      "rotator_cuff.pullMove": "Apri l’elastico verso l’esterno stringendo le scapole; le mani restano all’altezza del petto.",
-      "scrow.mis.lean": "Inclinare il busto all’indietro o in avanti per tirare il peso.",
-      "scrow.setup": "Regola il cavo all’incirca all’altezza del petto, afferra la maniglia con entrambe le mani e mettiti di fronte al cavo, ginocchia leggermente piegate."
-    },
-    "uk": {
-      "bandcurl.move": "Зігни коліно, тягнучи п’ятою резинку назад; потім повільно випрями ногу.",
-      "calf.rise": "Піднімайся на носки, потім під контролем опусти п’яти.",
-      "calf.seatedEdge": "Сядь із зігнутими колінами, передню частину стоп постав на підвищення, п’яти за краєм.",
-      "calf.seatedEdge1": "Сядь із зігнутим коліном, передню частину стопи постав на підвищення, п’яту за краєм.",
-      "calf.stepOne": "Стань передньою частиною однієї стопи на край сходинки, п’ята за краєм; другу ногу підніми.",
-      "gb.slMove": "Притискаючи стопу до підлоги, особливо п’яту, підніми таз; повільно опусти його."
-    },
-    "el": {
-      "cpress.seatedMove": "Σπρώξε τις λαβές μπροστά, μετά φέρ’ τες αργά πίσω προς το στήθος.",
-      "rollout.bar.setup": "Γονάτισε μπροστά στην μπάρα και πιάσ’ τη με τα δύο χέρια."
-    },
-    "ko": {
-      "dip.mis.depth": "너무 깊이 내려가거나 너무 높은 곳에서 멈추기.",
-      "dip.mis.leanBack": "상체를 뒤로 젖히기.",
-      "dip.mis.overLean": "너무 앞으로 숙여 가슴이 바 사이로 꺼지기.",
-      "fly.mis.elbows": "반복 중에 팔꿈치를 굽혔다 폈다 하기.",
-      "ohp.mis.arch": "밀어 올릴 때 허리를 아치처럼 휘기.",
-      "ohp.mis.flare": "팔꿈치가 앞을 향하지 않고 옆으로 벌어지기.",
-      "ohp.mis.sideLean": "무게를 밀어 올리려고 몸을 옆으로 기울이기.",
-      "press.mis.lock": "동작 끝에서 팔꿈치를 세게 잠그기.",
-      "push.mis.flare": "팔꿈치를 옆으로 넓게 벌리기.",
-      "push.mis.sag": "엉덩이가 처져 몸이 일직선에서 벗어나기.",
-      "renegade.mis.twist": "덤벨을 들어 올리려고 골반과 상체를 비틀기.",
-      "rollout.mis.arch": "굴려 나갈 때 허리가 아치처럼 휘기."
-    }
-  },
-  "ui": {
-    "da": {
-      "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "En ny bruger starter på skærmen Træning med knappen “Start din første træning” og tavlen “Første træning”."
-    },
-    "es-419": {
-      "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Si eres nuevo, empiezas en la pantalla Entrenamiento con el botón «Empieza tu primer entrenamiento» y el panel «Primer entrenamiento»."
-    },
-    "et": {
-      "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Uus kasutaja alustab Treeningu kuval nupust „Alusta esimest treeningut“ ja tahvlist „Esimene treening“."
-    },
-    "lv": {
-      "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Jauns lietotājs sāk ekrānā “Treniņš” ar pogu “Sākt pirmo treniņu” un paneli “Pirmais treniņš”."
-    },
-    "nl": {
-      "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Een nieuwe gebruiker begint op het scherm Training met de knop ‘Start je eerste training’ en het bord ‘Eerste training’."
-    },
-    "sr": {
-      "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Нови корисник почиње на екрану Тренинг дугметом „Започни први тренинг” и таблом „Први тренинг”."
-    }
-  }
-}
-```
+(Kod JSON typografii usunięty z kopii: poprawki naniesione w tych samych plikach.)
 
 ## Nowe terminy do słownika (dopisuje programista/koordynator razem z testem)
 
