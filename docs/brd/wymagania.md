@@ -692,6 +692,11 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że karta ćwiczenia z rodziny przysiadu, zawiasu, uginania ramion albo podciągania ma wskazówkę reguły „ustalone” (np. łokcie przy bokach, wyprost na górze, broda nad drążkiem, bez bujania — ta ostatnia tylko w Pull Up i Chin Up, gdzie reguła jest „ustalone”)
     - Gdy użytkownik widzi rysunek z boku (elementy podciągania tylko z boku)
     - Wtedy obok linii odniesienia do ciała (poziom uda, linia pleców, pion przez palce) rysunek ma ciągłą linię tej reguły: pion przez kostkę (wyprost na górze), pion od barku w dół do wysokości miednicy (łokieć przy boku), poziom drążka przez chwyt, pion pod drążkiem; razem nadal do 3 linii i 1 łuku na rzut
+  - Scenariusz: Prowadnica prostej ręki w podciąganiu (09.11.2026)
+    - Zakładając, że karta Pull Up albo Chin Up ma wskazówkę o pełnym wyproście rąk, a reguła „ręce proste na dole” jest „ustalone” (pozostałe odmiany bez tego elementu)
+    - Gdy użytkownik widzi rysunek z przodu i łokieć jest prawie prosty (zgięcie ≤ 8°), a potem gdy łokieć się zgina (do 20°) albo ruch dochodzi na górę
+    - Wtedy obok ręki, 8 cm na zewnątrz ciała, jest prowadnica prostej ręki (odcinek bark–chwyt z kreskami na końcach) bez liczb; od 8° do 20° gaśnie liniowo, na górze jej nie ma; z boku jej nie ma
+    - Gdy użytkownik pokazuje częsty błąd skróconego zakresu, prowadnica ma na dole kolor błędu (danger), żeby było widać, jak zgięta ręka odstaje od prostej
   - Scenariusz: Kolor błędu linii odniesienia (etap 2)
     - Zakładając, że użytkownik pokazuje częsty błąd łamiący regułę linii odniesienia (zaokrąglone plecy, kolana do środka, łokcie do przodu, skracanie ruchu, bujanie)
     - Gdy rysunek przechodzi w pozę błędu

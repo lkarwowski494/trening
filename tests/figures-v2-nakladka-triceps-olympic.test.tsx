@@ -198,6 +198,6 @@ describe('VoiceOver i podpis: „Na rysunku: …” z elementem, „Kąt na rysu
 describe('regresja: pozostałe rodziny bez zmian', () => {
   test('elementy rodzin bench_press, squat, hinge, curl, pull_up nie zostały dotknięte (liczba elementów w rejestrze) i rejestr ma dokładnie 7 rodzin', () => {
     expect(Object.keys(TECHNIQUE).sort()).toEqual(['bench_press', 'curl', 'hinge', 'olympic', 'pull_up', 'squat', 'triceps']);
-    expect(['bench_press', 'squat', 'hinge', 'curl', 'pull_up'].map(f => TECHNIQUE[f].length)).toEqual([3, 1, 1, 2, 2]);
+    expect(['bench_press', 'squat', 'hinge', 'curl', 'pull_up'].map(f => TECHNIQUE[f].length)).toEqual([3, 1, 1, 2, 3]); /* pull_up 2 → 3 od 09.11.2026: prowadnica prostej ręki pullArmStraightRef (docs/18 09.11.2026, tests/figures-v2-pull-up-lokiec.test.tsx) */
   });
 });
