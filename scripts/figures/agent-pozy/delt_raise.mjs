@@ -29,7 +29,9 @@ const rzad = (zr, x, y0, y1, o = {}) => (u) => { const y = lerp(y0, y1, u); cons
 
 /** Unoszenie ramion przodem leżąc przodem na ławce skośnej (Straight Raises on Incline Bench ze sztangą; Front Incline Dumbbell Raise [OTWARTE] — patrz figury-sens.json): ramiona od zwisu pionowo w dół do poziomu przed sobą (w stronę głowy), łokieć stały lekko zgięty. */
 function przodemLezac(cw, o) {
-  const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 22; const re = Math.sqrt(62 ** 2 - (19 - zr) ** 2);
+  /* Zatwierdzony plik póz (delt_raise.json) ma tu nogi i siedzisko sprzed partii 2 (122a12b5, wspólne lezyPrzodem poprawiło je dla innych rodzin): siedzisko 20 cm, kostki 52 cm za biodrem (kolana lekko zgięte), biegun kolana [1, 0.2, 0] bez odwrócenia.
+   * Rysunek użytkownika nie może się zmienić (09.11.2026), więc generator odtwarza je jawnie; poprawa (nogi proste, siedzisko 2) wejdzie razem z recenzją ruchu tego ćwiczenia, nie przez przypadek. */
+  const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0], sedzisko: 20 }); for (const sd of ['R', 'L']) { L.nogi[sd].k[0] = L.m[0] + 52; L.nogi[sd].pole = [1, 0.2, 0]; } const zr = o.zr ?? 22; const re = Math.sqrt(62 ** 2 - (19 - zr) ** 2);
   const fr = (u) => { const th = lerp(0, 90, u) * R; const rece = {}; for (const sd of ['R', 'L']) { const sw = -POL(sd); const S = L.S(sd);
       rece[sd] = { g: [S[0] - re * Math.sin(th), S[1] - re * Math.cos(th), sw * zr], pole: [0.3, -1, 0], obrot: 0 }; }
     return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };

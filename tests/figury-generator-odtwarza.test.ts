@@ -18,7 +18,6 @@ const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); }
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
 const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   core_floor: ['Superman', 'Crunch', 'Frog Sit-Ups', 'Janda Sit-Up', 'Oblique Crunches - On The Floor', 'Sit Up', 'Toe Touchers', 'Bicycle Crunch', 'Cross-Body Crunch', 'Scissor Kick'],
-  delt_raise: ['Straight Raises on Incline Bench'],
   calf_raise: [/* ACG-020 31.10.2026 (podest pod przodostopiem; generator do backlogu) */ 'Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise', 'Dumbbell Seated One-Leg Calf Raise'],
   forearm: ['Barbell Wrist Curl', 'Barbell Reverse Wrist Curl', 'Wrist Curl (hantle)', 'Reverse Wrist Curl (hantle)', 'One-Arm Dumbbell Wrist Curl', 'One-Arm Dumbbell Reverse Wrist Curl', 'Cable Wrist Curl'],
   glute_floor: [/* 08.11.2026 (A2): Clamshell i Fire Hydrant odtwarzane — karty własne nie mają hab.mis.high, więc generator nie dokłada rzędu błędu */ 'Donkey Kick', 'Cable Kickback', 'Hip Extension with Bands', 'Machine Glute Kickback', 'Prone Flutter Kicks'],
@@ -30,7 +29,7 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   row: ['Lying T-Bar Row', 'Chest Supported Row', /* wyjątek nazwany 01.11.2026 (koordynator 1.1): karty Bent Over Row ×2 i T-Bar Row wróciły po recenzji v1, więc częsty błąd mis.roundBack ma opis i generator rysuje jego pozę, której nie ma w zatwierdzonym row.json; rodzina row v2 niewyświetlana — poza błędu wejdzie przez recenzję rodziny (fala 2) */ 'Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'T-Bar Row'],
   thruster: ['Clean and Press'],
 };
-const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* partia 3 (09.11.2026): pozy przeliczone generatorem po recenzjach r2 */ 'shrug', 'pulldown'];
+const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* partia 3 (09.11.2026): pozy przeliczone generatorem po recenzjach r2 */ 'shrug', 'pulldown', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise'];
 
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
