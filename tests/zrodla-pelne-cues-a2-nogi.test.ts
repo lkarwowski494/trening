@@ -96,12 +96,12 @@ describe('A2 nogi: źródła i reguły szczebli', () => {
 });
 
 describe('A2 nogi: zdania', () => {
-  test('34 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie A2 (pozostałe języki — angielski w zastępstwie)', () => {
+  test('34 nowych zdań ma tekst PL i EN różny od siebie; wszystkie przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw A2 pusty', () => {
     expect(A2.zdania.length).toBe(34);
     for (const c of A2.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-08-a2-wskazowki.json');
-    expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...A2.zdania].sort());
-    for (const x of z.klucze as { id: string; pl: string; en: string }[]) expect([x.id, x.pl, x.en]).toEqual([x.id, pl[x.id], en[x.id]]);
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-051; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, A2.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
   });
 
   test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {
@@ -113,16 +113,19 @@ describe('A2 nogi: zdania', () => {
   });
 });
 
-describe('A2 nogi: narzędzia figur widzą kartę ukrytą do recenzji (scripts/figures/v2-sens.mjs kartaWlasna, 08.11.2026)', () => {
+describe('A2 nogi: narzędzia figur widzą kartę ukrytą do recenzji (scripts/figures/v2-sens.mjs kartaWlasna, 08.11.2026; 09.11.2026: przykład ukrytej wybierany z danych — Cable Kickback odsłonięta po rundzie 2, stała nazwa łamała test przy każdym odsłonięciu)', () => {
   const { execFileSync } = require('child_process') as typeof import('child_process');
+  const CS = json('lib/figures/v2/cue-sets.json').items;
+  /* pierwsza karta własna ukryta do recenzji/przekładu (lista hidden) z pełnymi danymi i trybem own w cue-sets — 09.11.2026 */
+  const K: string = (CUE_DATA.hidden ?? []).find((k: string) => CUE_FULL.exercises[k] && CS[k]?.b === 'own') ?? '';
   const R = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { kartaWlasna, wskazowkiCwiczenia } from ${JSON.stringify(path.join(root, 'scripts/figures/v2-sens.mjs'))};
 import { bledyCwiczenia } from ${JSON.stringify(path.join(root, 'scripts/figures/v2-validate.mjs'))};
 const ids = (k) => k ? Object.values(k).flat().map((x) => x.c) : null;
-console.log(JSON.stringify({ ukryta: ids(kartaWlasna('Smith Machine Calf Raise')), bledy: bledyCwiczenia('Smith Machine Calf Raise'), widoczna: ids(kartaWlasna('Back Squat')) !== null, brak: kartaWlasna('Ćwiczenie bez karty'), ogolny: wskazowkiCwiczenia('Stability Ball Hamstring Curl') }));`], { encoding: 'utf8' }));
+console.log(JSON.stringify({ ukryta: ids(kartaWlasna(${JSON.stringify(K)})), bledy: bledyCwiczenia(${JSON.stringify(K)}), widoczna: ids(kartaWlasna('Back Squat')) !== null, brak: kartaWlasna('Ćwiczenie bez karty'), ogolny: wskazowkiCwiczenia('Stability Ball Hamstring Curl') }));`], { encoding: 'utf8' }));
   test('karta ukryta (lista hidden) — z pełnych danych; karta widoczna — z runtime; brak karty — null; zestaw ogólny bez zmian', () => {
-    expect(CUE_DATA.hidden).toContain('Smith Machine Calf Raise');
-    expect(R.ukryta).toEqual(CUE_SECTIONS.flatMap(s => (CUE_FULL.exercises['Smith Machine Calf Raise'][s] ?? []).map(r => r.c)));
-    expect(R.bledy).toEqual(['calf.mis.partial']);
+    expect(K).not.toBe('');
+    expect(R.ukryta).toEqual(CUE_SECTIONS.flatMap(s => (CUE_FULL.exercises[K][s] ?? []).map(r => r.c)));
+    expect(R.bledy).toEqual((CUE_FULL.exercises[K].mistakes ?? []).map(r => r.c));
     expect([R.widoczna, R.brak]).toEqual([true, null]);
     expect(R.ogolny).toEqual(json('lib/figures/v2/cue-sets.json').items['Stability Ball Hamstring Curl'].ok.concat(json('lib/figures/v2/cue-sets.json').items['Stability Ball Hamstring Curl'].err ?? []));
   });

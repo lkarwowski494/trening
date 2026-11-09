@@ -58,7 +58,7 @@ describe('skrót rodziny reaguje na zmianę doboru, nie na zmianę brzmienia', (
 describe('L-080 (04.11.2026): gałąź z wcześniejszymi zmianami względem main — zmiana doboru na gałęzi zmienia skrót, dokument i wskazówka bez wpływu nie', () => {
   const git = (cwd: string, ...a: string[]) => execFileSync('git', ['-c', 'user.email=t@t', '-c', 'user.name=t', ...a], { cwd, encoding: 'utf8' }).trim();
   test('main → commit 1 (zestaw dodaje sq.depth) → commit 2 (dokument) → commit 3 (wskazówka bez wpływu)', () => {
-    const lista: string[] = node(`import * as z from ${JSON.stringify(RT)}; import * as d from ${JSON.stringify(DOB)}; process.stdout.write(JSON.stringify([...z.V2_WSPOLNE, 'lib/figures/v2/rigs/squat.ts', ...d.DANE_DOBORU]));`);
+    const lista: string[] = node(`import * as w from ${JSON.stringify(path.join(root, 'scripts/skrot-v2-wynik.mjs'))}; import * as d from ${JSON.stringify(DOB)}; process.stdout.write(JSON.stringify([...w.V2_RENDER, 'lib/figures/v2/rigs/squat.ts', ...d.DANE_DOBORU]));`);
     const kand: string = node(`import { doborPoKluczach } from ${JSON.stringify(DOB)}; import { readFileSync } from 'node:fs'; const s = JSON.parse(readFileSync(${JSON.stringify(path.join(root, SETS))}, 'utf8')); const b = doborPoKluczach('squat');
       process.stdout.write(JSON.stringify(Object.keys(b).find(k => s.items[k]?.b === 'general' && ![...(s.items[k].ok ?? []), ...(s.items[k].err ?? [])].includes('sq.depth') && !b[k].guides.includes('thighParallel'))));`);
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'skrot-dobor-'));

@@ -45,7 +45,7 @@
   "cs": {
    "ascLocale": "cs",
    "group": {
-    "name": "Trening — plná verze"
+    "name": "RepsGoat — plná verze"
    },
    "monthly": {
     "name": "Plná verze — měsíčně",
@@ -63,7 +63,7 @@
   "sk": {
    "ascLocale": "sk",
    "group": {
-    "name": "Trening — plná verzia"
+    "name": "RepsGoat — plná verzia"
    },
    "monthly": {
     "name": "Plná verzia — mesačne",
@@ -81,7 +81,7 @@
   "hu": {
    "ascLocale": "hu",
    "group": {
-    "name": "Trening — teljes verzió"
+    "name": "RepsGoat — teljes verzió"
    },
    "monthly": {
     "name": "Teljes verzió — havonta",
@@ -99,7 +99,7 @@
   "ro": {
    "ascLocale": "ro",
    "group": {
-    "name": "Trening — versiunea completă"
+    "name": "RepsGoat — versiunea completă"
    },
    "monthly": {
     "name": "Versiunea completă — lunar",
@@ -117,7 +117,7 @@
   "bg": {
    "ascLocale": null,
    "group": {
-    "name": "Trening — пълна версия"
+    "name": "RepsGoat — пълна версия"
    },
    "monthly": {
     "name": "Пълна версия — месечно",
@@ -135,7 +135,7 @@
   "hr": {
    "ascLocale": "hr",
    "group": {
-    "name": "Trening — puna verzija"
+    "name": "RepsGoat — puna verzija"
    },
    "monthly": {
     "name": "Puna verzija — mjesečno",
@@ -153,7 +153,7 @@
   "sl": {
    "ascLocale": null,
    "group": {
-    "name": "Trening — polna različica"
+    "name": "RepsGoat — polna različica"
    },
    "monthly": {
     "name": "Polna različica — mesečno",
@@ -171,7 +171,7 @@
   "sr": {
    "ascLocale": null,
    "group": {
-    "name": "Trening — пуна верзија"
+    "name": "RepsGoat — пуна верзија"
    },
    "monthly": {
     "name": "Пуна верзија — месечно",
@@ -189,7 +189,7 @@
   "lt": {
    "ascLocale": null,
    "group": {
-    "name": "Trening — pilna versija"
+    "name": "RepsGoat — pilna versija"
    },
    "monthly": {
     "name": "Pilna versija — kas mėnesį",
@@ -207,7 +207,7 @@
   "lv": {
    "ascLocale": null,
    "group": {
-    "name": "Trening — pilnā versija"
+    "name": "RepsGoat — pilnā versija"
    },
    "monthly": {
     "name": "Pilnā versija — katru mēnesi",
@@ -225,7 +225,7 @@
   "et": {
    "ascLocale": null,
    "group": {
-    "name": "Trening — täisversioon"
+    "name": "RepsGoat — täisversioon"
    },
    "monthly": {
     "name": "Täisversioon — kuus",
@@ -243,7 +243,7 @@
   "uk": {
    "ascLocale": "uk",
    "group": {
-    "name": "Trening — повна версія"
+    "name": "RepsGoat — повна версія"
    },
    "monthly": {
     "name": "Повна версія — щомісяця",
@@ -261,7 +261,7 @@
   "es": {
    "ascLocale": "es-ES",
    "group": {
-    "name": "Trening — versión completa"
+    "name": "RepsGoat — versión completa"
    },
    "monthly": {
     "name": "Versión completa — mensual",
@@ -279,7 +279,7 @@
   "es-419": {
    "ascLocale": "es-MX",
    "group": {
-    "name": "Trening — versión completa"
+    "name": "RepsGoat — versión completa"
    },
    "monthly": {
     "name": "Versión completa — mensual",
@@ -297,7 +297,7 @@
   "pt": {
    "ascLocale": "pt-PT",
    "group": {
-    "name": "Trening — versão completa"
+    "name": "RepsGoat — versão completa"
    },
    "monthly": {
     "name": "Versão completa — mensal",
@@ -315,7 +315,7 @@
   "pt-BR": {
    "ascLocale": "pt-BR",
    "group": {
-    "name": "Trening — versão completa"
+    "name": "RepsGoat — versão completa"
    },
    "monthly": {
     "name": "Versão completa — mensal",
@@ -333,7 +333,7 @@
   "de": {
    "ascLocale": "de-DE",
    "group": {
-    "name": "Trening — vollversion"
+    "name": "RepsGoat — vollversion"
    },
    "monthly": {
     "name": "Vollversion — monatlich",
@@ -351,7 +351,7 @@
   "fr": {
    "ascLocale": "fr-FR",
    "group": {
-    "name": "Trening — version complète"
+    "name": "RepsGoat — version complète"
    },
    "monthly": {
     "name": "Version complète — mensuel",
@@ -369,7 +369,7 @@
   "it": {
    "ascLocale": "it",
    "group": {
-    "name": "Trening — versione completa"
+    "name": "RepsGoat — versione completa"
    },
    "monthly": {
     "name": "Versione completa — mensile",
@@ -387,7 +387,7 @@
   "nl": {
    "ascLocale": "nl-NL",
    "group": {
-    "name": "Trening — volledige versie"
+    "name": "RepsGoat — volledige versie"
    },
    "monthly": {
     "name": "Volledige versie — maandelijks",
@@ -405,7 +405,7 @@
   "sv": {
    "ascLocale": "sv",
    "group": {
-    "name": "Trening — fullständig version"
+    "name": "RepsGoat — fullständig version"
    },
    "monthly": {
     "name": "Fullständig version — månatlig",
@@ -423,7 +423,7 @@
   "da": {
    "ascLocale": "da",
    "group": {
-    "name": "Trening — fuld version"
+    "name": "RepsGoat — fuld version"
    },
    "monthly": {
     "name": "Fuld version — månedligt",
@@ -441,7 +441,7 @@
   "nb": {
    "ascLocale": "no",
    "group": {
-    "name": "Trening — full versjon"
+    "name": "RepsGoat — full versjon"
    },
    "monthly": {
     "name": "Full versjon — månedlig",
@@ -459,7 +459,7 @@
   "fi": {
    "ascLocale": "fi",
    "group": {
-    "name": "Trening — täysi versio"
+    "name": "RepsGoat — täysi versio"
    },
    "monthly": {
     "name": "Täysi versio — kuukausittain",
@@ -477,7 +477,7 @@
   "tr": {
    "ascLocale": "tr",
    "group": {
-    "name": "Trening — tam sürüm"
+    "name": "RepsGoat — tam sürüm"
    },
    "monthly": {
     "name": "Tam sürüm — aylık",
@@ -495,7 +495,7 @@
   "el": {
    "ascLocale": "el",
    "group": {
-    "name": "Trening — πλήρης έκδοση"
+    "name": "RepsGoat — πλήρης έκδοση"
    },
    "monthly": {
     "name": "Πλήρης έκδοση — μηνιαία",
@@ -513,7 +513,7 @@
   "id": {
    "ascLocale": "id",
    "group": {
-    "name": "Trening — versi lengkap"
+    "name": "RepsGoat — versi lengkap"
    },
    "monthly": {
     "name": "Versi lengkap — bulanan",
@@ -531,7 +531,7 @@
   "ms": {
    "ascLocale": "ms",
    "group": {
-    "name": "Trening — versi penuh"
+    "name": "RepsGoat — versi penuh"
    },
    "monthly": {
     "name": "Versi penuh — bulanan",
@@ -549,7 +549,7 @@
   "vi": {
    "ascLocale": "vi",
    "group": {
-    "name": "Trening — phiên bản đầy đủ"
+    "name": "RepsGoat — phiên bản đầy đủ"
    },
    "monthly": {
     "name": "Phiên bản đầy đủ — hằng tháng",
@@ -567,7 +567,7 @@
   "ru": {
    "ascLocale": "ru",
    "group": {
-    "name": "Trening — полная версия"
+    "name": "RepsGoat — полная версия"
    },
    "monthly": {
     "name": "Полная версия — в месяц",
@@ -585,7 +585,7 @@
   "ja": {
    "ascLocale": "ja",
    "group": {
-    "name": "Trening — フルバージョン"
+    "name": "RepsGoat — フルバージョン"
    },
    "monthly": {
     "name": "フルバージョン — 月額",
@@ -603,7 +603,7 @@
   "ko": {
    "ascLocale": "ko",
    "group": {
-    "name": "Trening — 전체 버전"
+    "name": "RepsGoat — 전체 버전"
    },
    "monthly": {
     "name": "전체 버전 — 월간",
@@ -621,7 +621,7 @@
   "zh-Hant": {
    "ascLocale": "zh-Hant",
    "group": {
-    "name": "Trening — 完整版"
+    "name": "RepsGoat — 完整版"
    },
    "monthly": {
     "name": "完整版 — 每月",

@@ -121,11 +121,22 @@ describe('pokrycie katalogu: cele wersji', () => {
     expect(Object.keys(c.min).length).toBeGreaterThan(0);
     for (const [m, v] of Object.entries(c.min)) { expect(Object.keys(fix.dobre)).toContain(m); expect(Number.isInteger(v) && v >= 0).toBe(true); }
   });
-  test('cel 1.1 „pełna karta” (standard 1) = 465, policzony 08.11.2026 z danych (decyzje właściciela 02.11.2026 ~15:30 i ~17:00, 04.11.2026 (4) B): 452 z danymi póz v2 i rolami albo mobilnością + 13 obowiązkowych spoza tego warunku; opis w pokrycie-cele.json', () => {
-    const c = cele.wersje['1.1'];
-    expect(c.min.pelnaKarta).toBe(465);
+  test('cel 1.1 „pełna karta” (standard 1): 465 z 08.11.2026 (Z0), lista `poza11` (ZB-053, 09.11.2026) — 9 ćwiczeń bez danych póz v2 przeniesionych do 1.2; wartość celu wynika od 09.11.2026 z symulacji (tests/cel-1-1-bez-ciezkich.test.ts), nie z odejmowania listy', () => {
+    const c = cele.wersje['1.1'] as any;
+    const poza: string[] = c.poza11.pelnaKarta;
+    const oblig = json<{ cwiczenia: { cwiczenie: string; danePozV2: boolean }[] }>('docs/research/pokrycie-1-1-obowiazkowe.json').cwiczenia;
+    expect(poza).toHaveLength(9);
+    expect(new Set(poza).size).toBe(9);
+    for (const n of poza) expect(oblig.find(o => o.cwiczenie === n)?.danePozV2).toBe(false); /* wypadają tylko te, którym brak ruchu silnika (danych póz) */
     expect(c.opis).toMatch(/08\.11\.2026 \(Z0[^)]*\)[^]*465 = 452[^]*13 spośród 51 obowiązkowych/);
+    expect(c.opis).toMatch(/09\.11\.2026 \(ZB-053[^)]*\)[^]*456 = 465 − 9/);
     expect(c.min.pelnaKarta).toBeGreaterThanOrEqual(fix.dobre.pelnaKarta);
+  });
+  test('9 ćwiczeń z `poza11` jest w backlogu 1.2 (docs/21, ZB-053, 09.11.2026)', () => {
+    const c = cele.wersje['1.1'] as any;
+    const blok = read('docs/21-roadmapa-offline.md').split('### Backlog 1.2 — pełna karta')[1]?.split('\n### ')[0] ?? '';
+    expect(blok).toMatch(/ZB-053/);
+    for (const n of c.poza11.pelnaKarta) expect(blok).toContain(n);
   });
   test('cel wersji nie jest niższy niż minimum zapadki (cel nie może być łatwiejszy niż stan chroniony)', () => {
     for (const [wer, c] of Object.entries(cele.wersje)) for (const [m, v] of Object.entries(c.min)) expect({ wer, m, ok: v >= (min.minimum[m] ?? 0) || !!min.obnizenia?.[m] }).toEqual({ wer, m, ok: true });
@@ -137,10 +148,10 @@ describe('pokrycie katalogu: cele wersji', () => {
   test('--cel 1.1: kod 0 i „osiągnięty”, gdy wszystkie liczby celu są osiągnięte; inaczej kod 1 i dokładnie te metryki, których brakuje (po scaleniu main 29.10.2026 rodziny v2 są ukryte do recenzji 1.1 — cel nieosiągnięty)', () => {
     const r = skrypt('--cel', '1.1'); const braki = Object.entries(cele.wersje['1.1'].min).filter(([m, v]) => (fix.dobre[m] ?? 0) < v).map(([m]) => m);
     if (!braki.length) { expect(r.status).toBe(0); expect(r.stdout).toMatch(/osiągnięty/); return; }
-    expect(r.status).toBe(1); expect(r.stderr).toMatch(/NIE osiągnięty/); expect(braki).not.toContain('figura.v2'); /* 02.11.2026: pull_up w v2 — figura v2 98/98; brakują metryki tekstów (Z3: zestaw ogólny tylko przy figurze v2) */
-    /* 01.11.2026 (ZB-025 a/b, Z3): pełna karta liczona wg definicji Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy + figura v2 + animowany błąd + role mięśni)
-     * jest ponad celem 17 (rodziny squat, bench_press, hinge zatwierdzone ponownie; pull_up ukryta) — brakuje już tylko figur v2 i metryk pochodnych. Gdyby spadła pod cel, komunikat musi ją nazwać. */
-    expect(r.stderr).not.toMatch(/figura v2 w aplikacji: \d+ z \d+/); expect(r.stderr).toMatch(/wskazówki \(własne lub zestaw ogólny\): \d+ z \d+/);
+    expect(r.status).toBe(1); expect(r.stderr).toMatch(/NIE osiągnięty/);
+    /* 09.11.2026 (decyzja właściciela: cel = stan końcowy 1.1 bez „ciężkich”, tests/cel-1-1-bez-ciezkich.test.ts): cel obejmuje także figury v2 rodzin jeszcze niewłączonych (533) i karty ukryte do recenzji,
+     * więc każda nieosiągnięta metryka jest nazwana w komunikacie z liczbą stanu i celu (wcześniej cel figur v2 = 98 był osiągnięty, a komunikat nie mógł ich wymieniać). */
+    for (const m of braki) expect(r.stderr).toMatch(new RegExp(`: ${fix.dobre[m] ?? 0} z ${cele.wersje['1.1'].min[m]}`));
     if (braki.includes('pelnaKarta')) expect(r.stderr).toMatch(/pełna karta: \d+ z \d+/); else expect(r.stderr).not.toMatch(/pełna karta: \d+ z \d+/);
   });
   test('--cel: wersja bez celu → kod 1', () => {

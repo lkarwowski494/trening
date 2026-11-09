@@ -86,14 +86,13 @@ describe('B2 nogi (09.11.2026): animowany błąd = błąd karty', () => {
     }
   });
 
-  test('glute_floor bez zmian (wstrzymane do decyzji koordynatora): Clamshell i Fire Hydrant bez rzędu błędu, karta ma błąd bez animacji; grupy błędów rodziny nie zmienione (lib/figures/v2/grupy.json to plik wspólny skrótu rodzin v2)', () => {
+  test('glute_floor bez zmian (wstrzymane do decyzji koordynatora): Clamshell i Fire Hydrant bez rzędu błędu, karta ma błąd bez animacji; grupy błędów rodziny nie zmienione', () => {
     for (const [k, c] of B2.gluteFloorWstrzymane) {
       expect([k, pozy('glute_floor')[k].bledy]).toEqual([k, []]);
       expect([k, (CUE_FULL.exercises[k].mistakes ?? []).map(m => m.c)]).toEqual([k, [c]]);
     }
     expect(sens.glute_floor.grupy_bledow).toEqual({ 'hext.mis.arch': 'plecy', 'hab.mis.high': 'miednica' });
-    const V2_WSPOLNE = fs.readFileSync(path.join(root, 'scripts/zrodla-runtime.mjs'), 'utf8').match(/export const V2_WSPOLNE = \[([^\]]*)\]/)![1];
-    expect(V2_WSPOLNE).toContain("'lib/figures/v2/grupy.json'");
+    /* 09.11.2026: V2_WSPOLNE usunięte z zrodla-runtime.mjs (skrót recenzji rodziny z wyniku rysunku, decyzja właściciela 09.11.2026 wariant A) — zmiana grupy.json nie unieważnia już wszystkich rodzin, więc sprawdzenie „plik wspólny” odpada */
   });
 });
 

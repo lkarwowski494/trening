@@ -376,6 +376,10 @@
   "en": "The app uses open-source libraries. Below are the licences (tap to see the text) and every npm package the app depends on — build tools included — with its licence and copyright notice."
  },
  {
+  "pl": "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.",
+  "en": "The app is now called {app}. Your workouts, templates and settings stay unchanged."
+ },
+ {
   "pl": "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.",
   "en": "The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist."
  },
@@ -614,6 +618,10 @@
  {
   "pl": "bieżnia z nachyleniem",
   "en": "incline treadmill"
+ },
+ {
+  "pl": "Bokiem",
+  "en": "To the side"
  },
  {
   "pl": "brak",
@@ -2903,6 +2911,10 @@
   "en": "Write to: {mail}"
  },
  {
+  "pl": "Naprzemiennie",
+  "en": "Alternating"
+ },
+ {
   "pl": "następna propozycja — pierwsza jest już zajęta przez inne ćwiczenie",
   "en": "next suggestion — the first one is already taken by another exercise"
  },
@@ -4329,6 +4341,10 @@
   "en": "Starting position"
  },
  {
+  "pl": "Pozycje na rysunku: {lista}",
+  "en": "Positions in the drawing: {lista}"
+ },
+ {
   "pl": "półkula balansowa / platforma balansowa",
   "en": "balance dome / balance board"
  },
@@ -4559,6 +4575,10 @@
  {
   "pl": "Przewodnik po funkcjach",
   "en": "Feature guide"
+ },
+ {
+  "pl": "Przodem",
+  "en": "Forward"
  },
  {
   "pl": "Przód",

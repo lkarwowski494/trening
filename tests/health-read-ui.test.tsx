@@ -6,6 +6,7 @@
  * ścieżki z danymi — poza E2E z powodem w docs/09 (CI nie steruje danymi Zdrowia).
  */
 import * as store from '@/lib/store';
+import { BRAND_NAME } from '@/lib/brand';
 import { applyLang } from '@/lib/i18n';
 import { HEALTH_READ_TYPES } from '@/lib/healthRead';
 import { fresh, saved, addWorkout, pressAlert } from './helpers';
@@ -38,8 +39,8 @@ describe('Ustawienia: przełącznik odczytu', () => {
     await boot(undefined, { read: false, url: '/more/settings' });
     await sw(/^Pokazuj dane z Apple Health/, true);
     expect(W.spies.requestAuthorization).toHaveBeenCalledWith({ toRead: HEALTH_READ_TYPES, toShare: [] }); expect(S().settings.healthRead).toBe(true);
-    const a = global.__alerts.find(x => x.title === 'Gotowe')!; expect(a.msg).toBe('Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → Trening.');
-    expect(screen.getByText('Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → Trening.')).toBeTruthy();
+    const a = global.__alerts.find(x => x.title === 'Gotowe')!; expect(a.msg).toBe('Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → ' + BRAND_NAME + '.');
+    expect(screen.getByText('Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → ' + BRAND_NAME + '.')).toBeTruthy();
     await store.flush(); expect(JSON.parse(global.__kv.get('state')!).settings.healthRead).toBe(true);
   });
   test('HealthKit niedostępny → alert „Apple Health niedostępne”, przełącznik zostaje wyłączony, bez notatki', async () => {
@@ -63,7 +64,7 @@ describe('Ustawienia: przełącznik odczytu', () => {
   test('angielski: etykieta, opis i notatka', async () => {
     await boot(undefined, { url: '/more/settings', locale: 'en' });
     expect(screen.getByText('Show data from Apple Health')).toBeTruthy(); expect(screen.getByText('Steps, other activities, and heart rate and kcal from your watch — view only, the data stays in Health.')).toBeTruthy();
-    expect(screen.getByText('You can revoke access in the Health app: profile → Apps → Training.')).toBeTruthy();
+    expect(screen.getByText('You can revoke access in the Health app: profile → Apps → ' + BRAND_NAME + '.')).toBeTruthy();
   });
 });
 
@@ -85,7 +86,7 @@ describe('panel dnia', () => {
   });
   test('brak danych (albo odmowa — nie do odróżnienia): jedna neutralna linia z drogą do zgody, bez alertu i bez słowa „odmówiono”', async () => {
     await boot(undefined, { url: '/history' }); await openDay('2026-10-10');
-    expect(screen.getByText('Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → Trening.')).toBeTruthy(); expect(screen.queryByTestId('health-day')).toBeNull(); expect(screen.queryByText(/odmów/i)).toBeNull(); expect(global.__alerts).toHaveLength(0);
+    expect(screen.getByText('Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → ' + BRAND_NAME + '.')).toBeTruthy(); expect(screen.queryByTestId('health-day')).toBeNull(); expect(screen.queryByText(/odmów/i)).toBeNull(); expect(global.__alerts).toHaveLength(0);
   });
   test('dane częściowe: same kroki albo same aktywności — pokazujemy to, co jest', async () => {
     await boot(w => { w.steps['2026-10-10'] = 5000; w.workouts.push(watchOther(at('2026-10-11', 8), 20)); }, { url: '/history' }); await openDay('2026-10-10'); expect(screen.getByText(steps(5000))).toBeTruthy(); expect(screen.queryByText(/^Inna aktywność/)).toBeNull();

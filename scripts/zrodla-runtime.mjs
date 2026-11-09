@@ -20,10 +20,9 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { resolve as resolveFig } from './figures/gen.mjs';
 import { srcLevel, MAX_COUNT_LEVEL } from './cues/gen.mjs';
-import { normalizujPlikV2, plikNakladki } from './skrot-v2-norm.mjs';
 import { regulyDla } from './figures/v2-sens.mjs';
 import { appRequire } from './strona/ts-loader.mjs';
-import { doborRodziny } from './skrot-v2-dobor.mjs';
+import { rodzinaSkrot, plikRodziny, V2_RIGI } from './skrot-v2-wynik.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'data/zrodla/figures.json');
@@ -35,8 +34,8 @@ export const OUT_REGULY = join(root, 'lib/figures/v2/reguly-cwiczen.json');
 export const REVIEW = join(root, 'docs/research/figury-recenzja.json'), PL = join(root, 'lib/cues/text/pl.json');
 /** Werdykty recenzji, przy których figura v1 trafia do aplikacji. */
 export const SHOWN = ['wyswietlana', 'zastapiona'];
-/** Pliki rigu gotowych rodzin v2 (skrót recenzji rodziny = rig + wspólny moduł rigów + warianty). */
-export const V2_RIGS = { squat: 'squat.ts', bench_press: 'benchPress.ts', hinge: 'hinge.ts' };
+/** Pliki rigu gotowych rodzin v2 (jedno źródło: scripts/skrot-v2-wynik.mjs; skrót recenzji rodziny liczy się z wyniku rysunku). */
+export const V2_RIGS = V2_RIGI;
 /** Kolejność rodzajów w podpisie = CUE_BASIS_KINDS w lib/cues/index.ts. */
 export const BASIS_ORDER = ['org', 'site', 'maker', 'study', 'book'];
 const SECTIONS = ['setup', 'move', 'tips', 'mistakes'];
@@ -94,26 +93,17 @@ export function cardReviewed({ rec, pl, fig = JSON.parse(readFileSync(FULL_FIG, 
     return !!v && v.werdykt === 'wyswietlana' && !!fig.exercises[key] && v.sha === figuraSkrot(fig, full, pl, key);
   };
 }
-/** Skrót recenzji gotowej rodziny v2 (tekst plików rigu). */
-const plikRodziny = fam => V2_RIGS[fam] ? `lib/figures/v2/rigs/${V2_RIGS[fam]}` : `lib/figures/v2/poses/${fam}.json`; /* rodzina z danych pozy: plik póz zamiast rigu — ten sam wzór co scripts/strona/recenzja-figur.mjs */
-/** Pliki wspólne dla rodzin v2, które zmieniają rysunek (R2-6, recenzja niezależna 28.10.2026: wcześniej tylko rig, common i variants — zmiana draw.ts/scene.ts nie unieważniała recenzji):
- * sprzęt i kształty (draw, scene), szkielet i matematyka (skeleton, math), czas (anim), błędy i figura (errors, figure).
- * ACG-002 (audyt ćwiczeń 31.10.2026): także mięśnie, prowadnice, styki i kolidery, kadr, rodziny, dane póz z kontraktem i sprzętem, osłony dźwigni i barku, paleta, znaczki, warstwa UI figury, styki.json —
- * cała reszta domknięcia importów rysunku (strażnik: tests/figury-recenzja.test.tsx „ACG-002”). Rozszerzenie zmieniło skróty wszystkich rodzin (wpisy recenzji 1.0.1 i tak były nieaktualne po scaleniu 31.10). */
-export const V2_WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/overlayShapes.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/poseInterp.ts', 'lib/figures/v2/dumbbellAxis.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json', 'lib/figures/v2/overlay.ts', 'lib/figures/v2/overlay/common.ts', 'lib/figures/v2/overlay/hinge.ts', 'lib/figures/v2/overlay/squat.ts', 'lib/figures/v2/grupy.json', 'lib/figures/v2/reguly-cwiczen.json'];
-/** Pliki z domknięcia importów rysunku celowo poza skrótem rodziny — z powodem (ACG-002, 31.10.2026). */
-export const V2_POZA_SKROTEM = {
-  'lib/figures/v2/cueSets.ts': 'tekst wskazówek przypisany do ćwiczeń (zestawy) — nie zmienia rysunku; ma własny skrót recenzji zestawów (zestawSkrot)',
-  'lib/figures/v2/cue-sets.json': 'dane zestawów wskazówek — nie zmieniają rysunku; własny skrót recenzji zestawów (zestawSkrot)',
-};
-/** Skrót rodziny: pliki rodziny i wspólne; families.ts i poseData.ts po normalizacji (bez statusów rodzin, wpisów LOAD i cudzych wpisów DATA_UI — decyzja 1A, 03.11.2026; scripts/skrot-v2-norm.mjs). */
-export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([...[plikRodziny(fam), plikNakladki(fam, p => existsSync(join(root, p))), ...V2_WSPOLNE].filter(Boolean).map(p => normalizujPlikV2(p, czytaj(p), fam)), doborRodziny(fam, czytaj)].join('\n')); /* fix4 R2: do skrótu wchodzi też WYNIK doboru po kartach (scripts/skrot-v2-dobor.mjs) */
+/** Skrót recenzji rodziny v2 — z WYNIKU rysunku rodziny (decyzja właściciela 09.11.2026, wariant A; scripts/skrot-v2-wynik.mjs, docs/18): zmiana wariantu albo elementu jednej rodziny nie zmienia skrótów pozostałych. */
+export { rodzinaSkrot, plikRodziny };
 /** Rodziny v2 z aktualnym wpisem recenzji ruchu (werdykt „wyswietlana”, skrót równy bieżącemu rigowi/plikowi póz). Tylko one są rysowane w aplikacji (bramka 4, fail-closed): rodzina bez wpisu albo zmieniona po recenzji jest ukryta. */
 export const rodzinyZAktualnaRecenzja = rec => Object.keys(rec.v2 ?? {}).filter(f => rec.v2[f].werdykt === 'wyswietlana' && existsSync(join(root, plikRodziny(f))) && rec.v2[f].sha === rodzinaSkrot(f));
 export const recenzja = () => JSON.parse(readFileSync(REVIEW, 'utf8'));
-export function skroty(full = JSON.parse(readFileSync(FULL_FIG, 'utf8')), cues = JSON.parse(readFileSync(FULL_CUES, 'utf8')), pl = JSON.parse(readFileSync(PL, 'utf8'))) {
+/** Rodziny v2 ze statusem „ready” (jedno źródło: lib/figures/v2/families.ts). */
+export const rodzinyGotowe = () => appRequire()('lib/figures/v2/families.ts').FAMILIES.filter(f => f.status === 'ready').map(f => f.id);
+/** Bieżące skróty do wpisów recenzji. `rodziny` = rodziny v2 do policzenia (domyślnie gotowe; skrót z wyniku rysunku liczy się ok. 1–7 s na rodzinę, więc nie liczymy rodzin planowanych bez prośby — szkielet recenzji podaje swoją). */
+export function skroty(full = JSON.parse(readFileSync(FULL_FIG, 'utf8')), cues = JSON.parse(readFileSync(FULL_CUES, 'utf8')), pl = JSON.parse(readFileSync(PL, 'utf8')), rodziny = rodzinyGotowe()) {
   const sets = JSON.parse(readFileSync(CUE_SETS, 'utf8'));
-  return { v1: Object.fromEntries(Object.keys(full.exercises).map(k => [k, figuraSkrot(full, cues, pl, k)])), v2: Object.fromEntries([...Object.keys(V2_RIGS), ...readdirSync(join(root, 'lib/figures/v2/poses')).filter(n => n.endsWith('.json')).map(n => n.slice(0, -5))].map(f => [f, rodzinaSkrot(f)])),
+  return { v1: Object.fromEntries(Object.keys(full.exercises).map(k => [k, figuraSkrot(full, cues, pl, k)])), v2: Object.fromEntries(rodziny.map(f => [f, rodzinaSkrot(f)])),
     karty: Object.fromEntries(Object.keys(cues.exercises).map(k => [k, kartaSkrot(cues, pl, k)])),
     zestawy: Object.fromEntries(Object.keys(sets.items).filter(k => sets.items[k].b === 'general').map(k => [k, zestawSkrot(sets, pl, k)])) };
 }

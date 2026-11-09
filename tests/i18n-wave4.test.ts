@@ -14,6 +14,7 @@ import * as fs from 'fs';
 import { PENDING_NEW, PENDING_CUE_IDS } from './pending-translation';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, lang, locale, decimalComma, tp, detectLang, LANG_NAME, APP_NAME, ZH_HANT_REGIONS, type Lang } from '@/lib/i18n';
+import { BRAND_NAME } from '@/lib/brand';
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS, pluralIndex } from '@/lib/plural';
@@ -70,7 +71,7 @@ describe('resolveLang / detectLang: telefon po japońsku, koreańsku, chińsku (
   test('LANGS: ja, ko, zh-Hant na końcu listy (po ru), nazwy jak w iOS (日本語, 한국어, 繁體中文), nazwa aplikacji „Training”', () => {
     expect(LANGS.slice(-3)).toEqual(['ja', 'ko', 'zh-Hant']); expect(LANGS[LANGS.length - 4]).toBe('ru');
     expect(W4.map(l => LANG_NAME[l])).toEqual(['日本語', '한국어', '繁體中文']);
-    expect(W4.map(l => APP_NAME[l])).toEqual(['Training', 'Training', 'Training']);
+    expect(W4.map(l => APP_NAME[l])).toEqual([BRAND_NAME, BRAND_NAME, BRAND_NAME]);
   });
 });
 
@@ -111,7 +112,7 @@ describe('dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Stor
     ['ja', /ヘルスケア/], ['ko', /건강/], ['zh-Hant', /健康/],
   ] as const)('locales/%s.json (iOS: nazwa pod ikoną, opisy uprawnień Zdrowia) — w języku, z nazwą aplikacji i nazwą aplikacji Zdrowie z iOS', (l, health) => {
     const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'locales', `${l}.json`), 'utf8'));
-    expect(f.CFBundleDisplayName).toBe('Training');
+    expect(f.CFBundleDisplayName).toBe(BRAND_NAME);
     expect(f.NSHealthShareUsageDescription).toMatch(health); expect(f.NSHealthUpdateUsageDescription).toMatch(/Apple Health/);
     for (const v of [f.NSHealthShareUsageDescription, f.NSHealthUpdateUsageDescription] as string[]) expect(SCRIPT[l].test(v)).toBe(true);
   });

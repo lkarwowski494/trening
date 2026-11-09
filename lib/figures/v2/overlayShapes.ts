@@ -29,5 +29,5 @@ export function errorBreaksRule(spec: FigureSpec, error: FigError | undefined, r
 export function overlayShapes(spec: FigureSpec, u: number, view: View, ids: string[], error?: FigError, guides: GuideId[] = []): Shape[] {
   const defs = ids.map(techniqueDef).filter((d): d is TechniqueDef => !!d); if (!defs.length) return [];
   const f = frameAt(spec, u, error);
-  return techniqueShapes(f.sk, view, defs, { joint: measuredJoint(spec), side: view === 'top' ? 'R' : measuredSide(spec), limbShown: angleLineShown(spec), danger: rule => errorBreaksRule(spec, error, rule), guideLines: guideShapes(spec, u, view, guides, error).filter(x => x.k === 'line').length });
+  return techniqueShapes(f.sk, view, defs, { joint: measuredJoint(spec), side: view === 'top' ? 'R' : measuredSide(spec), limbShown: angleLineShown(spec), danger: rule => errorBreaksRule(spec, error, rule), u, guideLines: guideShapes(spec, u, view, guides, error).filter(x => x.k === 'line').length });
 }

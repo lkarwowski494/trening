@@ -112,10 +112,10 @@ describe('101-03 (L-056): ten sam pomiar — sumo ×4, martwy na prostych nogach
     expect([k, m.styk.maxOdstep <= PROG_STYKU.odstepCm, m.styk.maxPrzenikanie <= PROG_STYKU.przenikanieCm]).toEqual([k, true, true]);
     expect([k, m.styk.maxOdstep < PRZED[k]]).toEqual([k, true]);
   });
-  test('liczby po zmianie (cm): sumo ×4 2,7 (było 7,0); SLDL 3,0 (5,5); RDL sztanga 2,1 (4,1; po D3 29.10.2026, było 1,6); jedna noga z linką 1,5 (4,0)', () => {
+  test('liczby po zmianie (cm): sumo ×4 2,7 (było 7,0); SLDL 3,0 (5,5); RDL sztanga 3,4 (4,1; po D3 29.10.2026 było 2,1, po zejściu gryfu pod kolano 09.11.2026 3,4 — mniej niż 3,5 przy dev 4); jedna noga z linką 1,5 (4,0)', () => {
     const po = (k: string) => +podsumujStyk(stykTora(k)).maxOdstep.toFixed(1);
     for (const k of SUMO_KLUCZE) expect([k, po(k)]).toEqual([k, 2.7]);
-    expect(po('Stiff-Legged Barbell Deadlift')).toBe(3.0); expect(po('RDL (sztanga)')).toBe(2.1); expect(po('Single Leg RDL (linki)')).toBe(1.5);
+    expect(po('Stiff-Legged Barbell Deadlift')).toBe(3.0); expect(po('RDL (sztanga)')).toBe(3.4); /* 09.11.2026: gryf na dole 44 cm zamiast 55 (pod kolanem), tor schodzi do 4 cm pod prostą (dev 4) — odstęp ud–gryf 3,4 zamiast 2,1; próg 3,5 bez zmian */ expect(po('Single Leg RDL (linki)')).toBe(1.5);
   });
   test('sumo: kolana idą nad palcami (kierunek kolana = rotacja stóp 40°, było 2 × = 80°, czyli w bok), stopy bez zmian', () => {
     for (const k of SUMO_KLUCZE) { const p = hingeP(k); expect([k, p.kneeOut, p.toeOut, p.stance]).toEqual([k, 40, 40, 34]); }
@@ -150,11 +150,11 @@ describe('101-04: sumo — tor ukośny (D2 = A: zostaje, ponowny pomiar z nowym 
     const m = dwieMiary(k, odchylenieToru);
     expect([m.cecha <= 4, torKlucza(k).zawrocenia <= 1, m.styk.maxOdstep <= PROG_STYKU.odstepCm, m.styk.maxPrzenikanie <= PROG_STYKU.przenikanieCm]).toEqual([true, true, true, true]);
   });
-  test('D3: ramiona pionowo pod barkami (sx 0 na dole) przy gryfie na wysokości z 1.0 wymuszają kolano ≈ 43° i tułów ≈ 40° — poza progami (kolano ≤ 27°, tułów ≥ 50°); wdrożenie wymaga nowej decyzji', () => {
+  test('D3: ramiona pionowo pod barkami (sx 0 na dole) przy gryfie na wysokości z 1.0 wymuszają kolano > 27° (≈ 43° przy gryfie 55 cm; po zejściu pod kolano 09.11.2026 nadal > 27°) — poza progiem; wdrożenie wymaga nowej decyzji', () => {
     const p: HingeParams = { ...hingeP('RDL (sztanga)'), sx: [-2, 0] }; const f = hingeFrame(p, 1); const L = f.sk.legs.R;
     const a = [L.hip[0] - L.knee[0], L.hip[1] - L.knee[1], L.hip[2] - L.knee[2]], b = [L.ankle[0] - L.knee[0], L.ankle[1] - L.knee[1], L.ankle[2] - L.knee[2]];
     const kolano = 180 - Math.acos((a[0] * b[0] + a[1] * b[1] + a[2] * b[2]) / Math.hypot(...a) / Math.hypot(...b)) * 180 / Math.PI;
-    expect(Math.round(kolano)).toBeGreaterThan(27); expect(Math.round(f.pose!.trunkPitch)).toBeLessThan(50);
+    expect(Math.round(kolano)).toBeGreaterThan(27); /* tułów: było ≈ 40° (< 50°) przy gryfie 55 cm; od 09.11.2026 przy gryfie 44 cm ≈ 52° — to nie on blokuje wdrożenie, tylko kolano */
     expect(HINGE.rdlSxEnd).toBe(25);
   });
 });
