@@ -40,7 +40,7 @@ const czytajace = testyCzytajace([...new Set(changed)].filter(f => !/\.(tsx?|jsx
 const korzen = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // L-NNN (05.11.2026): testy renderujące całą aplikację przez renderRouter('./app') nie mają krawędzi importu do ekranów — zmiana kodu app/components/lib dokłada je automatycznie (scripts/testy-dla-plikow.mjs)
 for (const t of [...czytajace, ...testyUruchamiajaceSkrypty([...new Set(changed)], korzen), ...testyRenderujaceRouter([...new Set(changed)], korzen), ...testySkanujace([...new Set(changed)], korzen)]) if (!files.includes(t)) files.push(t);
-// L-NNN (09.11.2026): strażnik skanujący katalog przez fs deklaruje go znacznikiem `// skanuje: <ścieżki>`; zmiana (też nowy plik) pod ścieżką dokłada ten test — testySkanujace w scripts/testy-dla-plikow.mjs
+// L-122 (09.11.2026): strażnik skanujący katalog przez fs deklaruje go znacznikiem `// skanuje: <ścieżki>`; zmiana (też nowy plik) pod ścieżką dokłada ten test — testySkanujace w scripts/testy-dla-plikow.mjs
 const jestBin = join(dirname(createRequire(import.meta.url).resolve('jest/package.json')), 'bin', 'jest.js');
 const command = process.execPath; const jestArgs = [jestBin, '--findRelatedTests', ...files, '--silent', '--reporters=summary'];
 if (planOnly) { console.log(JSON.stringify({ command, args: jestArgs, files, baza: ref })); process.exit(0); }

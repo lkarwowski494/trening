@@ -163,7 +163,7 @@ export function testyRenderujaceRouter(pliki, root) {
   return readdirSync(join(root, 'tests')).filter(f => /\.test\.tsx?$/.test(f) && RENDER_ROUTER_APP.test(readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|\s)\/\/.*$/gm, '$1'))).map(f => `tests/${f}`).sort();
 }
 
-// L-NNN (09.11.2026): strażnik, który SKANUJE katalog przez fs (readdirSync/walk po tests/, lib/ itd.) nie ma krawędzi importu do skanowanych plików — nowy albo zmieniony plik (także kod: .ts/.tsx/.js)
+// L-122 (09.11.2026): strażnik, który SKANUJE katalog przez fs (readdirSync/walk po tests/, lib/ itd.) nie ma krawędzi importu do skanowanych plików — nowy albo zmieniony plik (także kod: .ts/.tsx/.js)
 // nie wybiera go przez `--findRelatedTests` (przypadki L-100, L-104, L-114 i no-wallclock-asserts/straznik-zegar po dodaniu nowego testu). Test deklaruje skanowane ścieżki sam, w nagłówku:
 //   // skanuje: tests, lib/cues      (ścieżki względem korzenia repo, katalog albo plik, po przecinku)
 // Zmiana (dodanie, edycja, usunięcie) dowolnego pliku pod deklarowaną ścieżką dokłada ten test. Strażnik deklaracji: tests/straznicy-skan.test.ts.

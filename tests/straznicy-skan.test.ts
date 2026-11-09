@@ -1,5 +1,5 @@
 // skanuje: tests
-/* L-NNN (09.11.2026): strażnicy skanujący katalogi przez fs (np. no-wallclock-asserts i straznik-zegar czytają cały tests/) nie mają krawędzi importu do skanowanych plików, więc
+/* L-122 (09.11.2026): strażnicy skanujący katalogi przez fs (np. no-wallclock-asserts i straznik-zegar czytają cały tests/) nie mają krawędzi importu do skanowanych plików, więc
    `test:fast` nie wybierał ich po dodaniu nowego testu (lokalnie zielono, w CI czerwono; klasa L-100/L-104/L-114). Mechanizm: znacznik w nagłówku testu (patrz scripts/testy-dla-plikow.mjs,
    `testySkanujace`) + ten strażnik: każdy test czytający tests/ ma znacznik, a znaczniki wskazują istniejące ścieżki. */
 import { execFileSync } from 'child_process';
@@ -21,7 +21,7 @@ const czytaTests = (src: string) => {
 };
 const ZE_ZNACZNIKIEM = testy.filter(f => deklaracje(zrodlo(f)).length);
 
-describe('strażnicy skanujący pliki przez fs deklarują skanowane ścieżki (L-NNN, 09.11.2026)', () => {
+describe('strażnicy skanujący pliki przez fs deklarują skanowane ścieżki (L-122, 09.11.2026)', () => {
   test('każdy test czytający katalog tests/ ma znacznik skanuje: tests', () => {
     const bez = testy.filter(f => czytaTests(zrodlo(f)) && !deklaracje(zrodlo(f)).includes('tests'));
     expect(bez).toEqual([]);
