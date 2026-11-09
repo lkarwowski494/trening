@@ -130,6 +130,8 @@ export const lowerFirstOf = (ui: DataUi, key: string): boolean => (ui.exceptions
 /** Ćwiczenia z danymi, które są izometrią (zwis, wytrzymanie): jedna pozycja statyczna bez animacji. Test: pomiar czasu w katalogu (metric „time”). */
 export const ISOMETRIC: ReadonlySet<string> = new Set([
   'Dead Hang',
+  /* utrzymanie ramion w bok na czas (weight_time, chest_fly r1 W2, 09.11.2026): jedna pozycja bez faz Unoszenie/Opuszczanie */
+  'Crucifix',
   /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow jest ruchem) */
   'Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Gastrocnemius Calf Stretch', 'Wall Calf Stretch', 'Standing Soleus And Achilles Stretch', 'Standing Lateral Stretch',
   'The Straddle', 'Seated Calf Stretch', 'Seated Floor Hamstring Stretch', 'Butterfly Stretch', "Child's Pose", 'Kneeling Hip Flexor Stretch', 'Supine Hamstring Stretch', 'Side-Lying Quad Stretch',

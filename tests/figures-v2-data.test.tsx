@@ -44,7 +44,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       if (f === 'kb_ballistic' && poseFile(f)!.cwiczenia[k].petla === 'jednokierunkowa') continue; /* 09.11.2026: 9 ćwiczeń kb_ballistic w pętli jednokierunkowej (jedna faza bez czasu): fazy i staw sprawdza tests/figures-v2-kb-ballistic-p1.test.ts */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); else if (f === 'chest_fly') expect([k, measuredJoint(s)]).toEqual([k, /Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd']); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover i Crucifix — uniesienie (shElev) */ /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
+      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); else if (f === 'chest_fly') expect([k, measuredJoint(s)]).toEqual([k, /Pullover/.test(k) ? 'shElev' : 'shAbd']); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover — uniesienie (shElev); Crucifix (utrzymanie, ISOMETRIC od r1 W2) nie wchodzi do tej pętli */ /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
@@ -52,8 +52,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else if (f === 'calf_raise') { /* 09.11.2026: kolano w wspięciu stoi (zakres < 15°, linia kąta ukryta) — kąt nie jest mierzonym ruchem; zakres kostki sprawdza tests/figures-v2-calf-raise-p1.test.ts */ }
       else if (f === 'kb_ballistic') { /* 09.11.2026: wahadło dół → góra; mierzony staw (biodro albo kolano) rusza się w ruchu o co najmniej MIN_MEASURED_ROM (15°) — inaczej linia kąta byłaby bez znaczenia; kierunek i zakres z reguł karty: tests/figures-v2-kb-ballistic-p1.test.ts */ const ds = U.map(u => measuredAngle(s, u).deg); expect([k, Math.max(...ds) - Math.min(...ds) >= 15]).toEqual([k, true]); }
       else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
-            /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki) i zgięcie ramienia (pullover) maleją; Crucifix (utrzymanie): kąt stały */
-      else if (f === 'chest_fly') { expect([k, k === 'Crucifix' ? Math.abs(measuredAngle(s, 1).deg - measuredAngle(s, 0).deg) < 1 : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+            /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki) i zgięcie ramienia (pullover) maleją; wyjątek Crucifix usunięty po recenzji r1 (W2): utrzymanie jest ISOMETRIC, więc poza tą pętlą */
+      else if (f === 'chest_fly') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
@@ -67,8 +67,16 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else expect([k, ph]).toEqual([k, [[k === 'Car Drivers' ? 'Obrót' : 'Unoszenie', 1000], ['Pauza', 500], [k === 'Car Drivers' ? 'Powrót' : 'Opuszczanie', 2000], ['Pauza', 500]]]);
     }
   });
+  /** Poza stała: dłonie, barki i miednica w u = 0 i u = 1 w tym samym miejscu (< 0,5 cm). */
+  const poseStala = (k: string): boolean => { const s = figureSpec(k)!; const a = frameAt(s, 0).sk, b = frameAt(s, 1).sk; const d = (p: readonly number[], q: readonly number[]) => Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]); return Math.max(d(a.arms.R.grip, b.arms.R.grip), d(a.arms.L.grip, b.arms.L.grip), d(a.shoulderC, b.shoulderC), d(a.pelvis, b.pelvis)) < 0.5; };
+  test('izometria w pomiarze ciężar + czas (chest_fly r1 W2, 09.11.2026): Crucifix (weight_time, poza stała) jest w ISOMETRIC i ma jedną pozycję bez faz; przypadek negatywny: lista bez Crucifix oblewa strażnika, a ruchome ćwiczenie weight_time nie jest izometrią', () => {
+    expect(metricFor('Crucifix')).toBe('weight_time'); expect(poseStala('Crucifix')).toBe(true); expect(ISOMETRIC.has('Crucifix')).toBe(true);
+    const s = figureSpec('Crucifix')!; expect(s.static).toBe(true); expect(staticPositions(s)).toEqual([1]);
+    const bezCrucifix = new Set([...ISOMETRIC].filter(x => x !== 'Crucifix')); expect(bezCrucifix.has('Crucifix') === (metricFor('Crucifix') === 'weight_time' && poseStala('Crucifix'))).toBe(false);
+    for (const [, k] of DATA_KEYS.filter(([, x]) => metricFor(x) === 'weight_time' && x !== 'Crucifix')) expect([k, poseStala(k) === ISOMETRIC.has(k)]).toEqual([k, true]);
+  });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, metricFor(k) === 'time']); }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, metricFor(k) === 'time' || (metricFor(k) === 'weight_time' && poseStala(k))]); }
     expect(staticPositions(figureSpec('Dead Hang')!)).toEqual([1]); expect(staticPositions(figureSpec('Pull Up')!)).toEqual([0, 1]);
   });
   test('tor ruchu przy nieruchomym drążku to droga miednicy (nie punkt na drążku): linia ma długość, a znacznik ✕ „bar” stoi na drążku', () => {
@@ -168,6 +176,11 @@ describe('komponent z danych (ekran, dostępność)', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error-data0')).toBeNull(); await r.unmount();
     setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Dead Hang')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); expect(screen.queryByText('Pozycja wyjściowa')).toBeNull();
+  });
+  test('Crucifix (utrzymanie, chest_fly r1 W2, 09.11.2026): jedna pozycja bez wiersza faz „Unoszenie / Opuszczanie” i bez przycisku pauzy; przypadek negatywny: rozpiętka (Chest Fly (hantle)) ma wiersz faz', async () => {
+    jest.useFakeTimers(); setReduce(false); const r = await render(<ExerciseFigureV2 exercise={lib('Crucifix')} />); await flush();
+    expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); expect(screen.queryByText(/Opuszczanie/)).toBeNull(); expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull(); await r.unmount();
+    await render(<ExerciseFigureV2 exercise={lib('Chest Fly (hantle)')} />); await flush(); expect(screen.getByTestId('exercise-figure-v2-phases')).toBeTruthy();
   });
   test('ćwiczenie rodziny bez danych (Muscle Up) → komponent nic nie rysuje', async () => { setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Muscle Up')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2')).toBeNull(); });
   test('legenda mięśni z katalogu dla ćwiczeń z danymi (główne: najszersze grzbietu)', () => { const l = legendOf('Pull Up')!; expect(l.main.length).toBeGreaterThan(0); });

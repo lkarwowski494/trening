@@ -99,8 +99,9 @@ describe('chest_fly: tor łukowy z geometrii (K5)', () => {
   test('przypadek negatywny: ślad wybity o 15 cm z łuku przekracza próg w każdym ćwiczeniu dynamicznym (miara potrafi paść)', () => {
     for (const k of KEYS.filter(x => !spec(x).static)) { const m = Math.max(...spec(k).views.map(v => { const t = torLuk(k, v); return t.odch + 15 - t.prog; })); expect([k, m > 0]).toEqual([k, true]); }
   });
-  test('mierzony staw: rozpiętki — odsunięcie ramienia w bok (shAbd), pullover i Crucifix — zgięcie ramienia (shElev); linia kąta ukryta tylko w Crucifix (utrzymanie)', () => {
-    for (const k of KEYS) { expect([k, measuredJoint(spec(k))]).toEqual([k, /Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd']); expect([k, angleLineShown(spec(k))]).toEqual([k, k !== 'Crucifix']); }
+  test('mierzony staw: rozpiętki — odsunięcie ramienia w bok (shAbd), pullover i Crucifix — zgięcie ramienia (shElev); Crucifix (utrzymanie, static) pokazuje kąt utrzymania', () => {
+    for (const k of KEYS) { expect([k, measuredJoint(spec(k))]).toEqual([k, /Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd']); expect([k, angleLineShown(spec(k))]).toEqual([k, true]); } /* r1 W2 (09.11.2026): Crucifix jest izometrią (ISOMETRIC), więc silnik mierzy staw ui.joints[0] i pokazuje kąt utrzymania (poza statyczna: linia kąta pokazana zawsze), jak Dead Hang; wcześniej linia była ukryta, bo ruch był < progu */
+    expect(spec('Crucifix').static).toBe(true); for (const k of KEYS.filter(x => x !== 'Crucifix')) expect([k, spec(k).static]).toEqual([k, false]);
   });
 });
 
@@ -111,6 +112,34 @@ describe('chest_fly: ciężar a ciało (K7, L-056: dwie miary — styk obok toru
   test('przypadek negatywny: hantel przeniesiony na środek barków (przenikanie w tułów) oblewa miarę', () => {
     const f = frameAt(spec('Pullover (hantel)'), 1); const f2 = { ...f, props: f.props.map(p => (p.k === 'dumbbell' ? { ...p, c: f.sk.shoulderC } : p)) } as typeof f;
     expect(stykKlatki(f2, 1).przenikanie).toBeGreaterThan(PROG_STYKU.przenikanieCm);
+  });
+});
+
+/* r1 (09.11.2026), W1: guma nie przecina ciała — odcinek gumy (zaczep → dłoń) ma ≥ 0 cm szczeliny od tułowia, miednicy i głowy w każdej klatce; stary jeden zaczep w osi ciała (x −60, y 138, z 0) przecinał tułów i głowę. */
+const gumaOdCiala = (f: ReturnType<typeof frameAt>, od?: (p: V3) => V3): number => {
+  const body = bodyColliders(f.sk).filter(b => ['torso', 'pelvis', 'head'].includes(b.id)); const bands = f.props.filter(p => p.k === 'band') as unknown as { from: V3; to: V3 }[];
+  return Math.min(...bands.flatMap(b => body.map(c => gap({ k: 'capsule', id: 'band', a: od ? od(b.from) : b.from, b: b.to, r: 0 }, c))));
+};
+describe('chest_fly: guma w Band Chest Fly nie przecina ciała (r1 W1)', () => {
+  test('dwa zaczepy po bokach za plecami (|z| > połowa barków + 30 cm); szczelina gumy od tułowia, miednicy i głowy ≥ 0 cm w klatkach co 0,025; guma ma dwa odcinki (po jednym na dłoń)', () => {
+    const s = spec('Band Chest Fly'); const f0 = frameAt(s, 0.5); const bands = f0.props.filter(p => p.k === 'band') as unknown as { from: V3; to: V3 }[]; expect(bands.length).toBe(2);
+    expect(bands.map(b => Math.sign(b.from[2])).sort()).toEqual([-1, 1]); for (const b of bands) expect(Math.abs(b.from[2])).toBeGreaterThan(f0.sk.arms.R.shoulder[2] + 30);
+    for (const u of US) { const g = gumaOdCiala(frameAt(s, u)); expect([u, g >= 0]).toEqual([u, true]); }
+  });
+  test('przypadek negatywny: stary jeden zaczep w osi ciała (x −60, y 138, z 0) przecina tułów lub głowę (szczelina < −1 cm) w klatkach u = 0,75 i 1 (dłonie blisko osi ciała)', () => {
+    expect(Math.min(...[0.75, 1].map(u => gumaOdCiala(frameAt(spec('Band Chest Fly'), u), () => [-60, 138, 0])))).toBeLessThan(-1);
+  });
+});
+
+/* r1 (09.11.2026), W3: Wide-Grip pokazuje szeroki chwyt. */
+describe('chest_fly: szeroki chwyt w Wide-Grip Decline Barbell Pullover (r1 W3)', () => {
+  const rozstaw = (k: string, u: number) => { const A = frameAt(spec(k), u).sk.arms; return Math.abs(A.R.grip[2] - A.L.grip[2]); };
+  const barki = (k: string) => { const A = frameAt(spec(k), 0.5).sk.arms; return Math.abs(A.R.shoulder[2] - A.L.shoulder[2]); };
+  test('rozstaw chwytów > rozstaw barków + 15 cm w każdej klatce co 0,025; chwyt stały przez cały ruch (± 1 cm)', () => {
+    const k = 'Wide-Grip Decline Barbell Pullover'; const r = US.map(u => rozstaw(k, u)); for (const x of r) expect([k, x > barki(k) + 15]).toEqual([k, true]); expect(Math.max(...r) - Math.min(...r)).toBeLessThan(1);
+  });
+  test('przypadek negatywny: pullovery ze sztangą o chwycie na szerokość barków (Front Raise And Pullover, Bent-Arm) oblewają ten próg', () => {
+    for (const k of ['Front Raise And Pullover', 'Bent-Arm Barbell Pullover']) expect([k, rozstaw(k, 0.5) > barki(k) + 15]).toEqual([k, false]);
   });
 });
 
@@ -156,6 +185,6 @@ describe('chest_fly: nakładka techniki', () => {
   });
   test('element się rysuje: rozpiętka hantlami z góry daje kształty w klatce środkowej (łuk ramię–tułów), z boku i w pozycji końcowej (ramię pionowe) — nie; przypadek negatywny: ćwiczenie spoza listy nie dostaje elementu', () => {
     const s = spec('Chest Fly (hantle)'); expect(overlayShapes(s, 0.5, 'top', ['flyArmArc']).length).toBeGreaterThan(0); expect(overlayShapes(s, 0.5, 'side', ['flyArmArc']).length).toBe(0);
-    expect(overlayShapes(spec('Cable Fly'), 0.5, 'top', ['flyArmArc']).length).toBe(0);
+    expect(overlayShapes(spec('Band Chest Fly'), 0.5, 'top', ['flyArmArc']).length).toBe(0); /* r1 S3 (09.11.2026): Cable Fly ma teraz pochylony tułów (oś niepionowa w rzucie), więc negatyw przeniesiony na ćwiczenie z pionowym tułowiem; Cable Fly nie dostaje elementu przez listę `exercises` (techniquesOf, test wyżej) */
   });
 });
