@@ -153,6 +153,10 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - vi: „grip” w olympic.setup / olympic.sbSetup — w słowniku vi chwyt nadal „nieustalony” (recenzja różnicy P2).
 - Skrót recenzji v2 (audyt 1A, NISKIE) — ZAMKNIĘTE 09.11.2026: parser bloków `scripts/skrot-v2-norm.mjs` usunięty; skrót liczy się z wyniku rysunku rodziny (`scripts/skrot-v2-wynik.mjs`, docs/18 wpis 09.11.2026 „skrót per rodzina”), bez analizy tekstu `poseData.ts`.
 
+### Backlog 1.2 — skrót recenzji rodziny v2: NISKIE z kontroli audytora (09.11.2026, gałąź `figury/skrot-per-rodzina`; nie blokuje)
+- Stała `BADGE_GAP_PT` (`lib/figures/v2/badges.ts:51`, minimalny odstęp znaczków ✓/✕ na ekranie) poza skrótem: `scripts/skrot-v2-wynik.mjs` liczy `spaceBadges` ze stałą 8, aplikacja z `BADGE_GAP_PT/sc` (`components/ExerciseFigureV2.tsx:35`) — zmiana stałej przesuwa znaczki we wszystkich rodzinach bez zmiany skrótu (ruch i treść bez zmian). Realność: teoretyczny (tylko zmiana kodu). Naprawa: skrót bierze `BADGE_GAP_PT` z modułu albo tekst stałej do `V2_RENDER`.
+- Przed recenzją rodziny carry: połowa lustrzana `cykl_lustro` (u 1–2) wchodzi do skrótu tylko przez `boxFor` i `trailFor` — audytor nie pokazał zmiany rysunku bez zmiany skrótu (pewność < 80%), sprawdzić przy podłączaniu carry.
+
 ### Backlog 1.2 — karta ćwiczenia na wąskim ekranie (właściciel 08.11.2026, ZB-044)
 - Przy 320 pt długi przycisk „Edytuj” (np. DE „Bearbeiten”) zwęża tytuł karty do ok. 150 pt — najdłuższa nazwa w 6 wierszach (stan jak w 1.0, `docs/design/karta-nazwy/OPIS.md`, usterka 2). Opcje do decyzji: przycisk w pasku nawigacji (zmiana wzorca 19 docs/32), ikona zamiast tekstu, mniejszy tytuł przy wąskim ekranie. NISKIE.
 - Twarda spacja po polskich jednoliterowych wyrazach w nazwach lokalnych (usterka 3) — przy recenzji listy nazw.
