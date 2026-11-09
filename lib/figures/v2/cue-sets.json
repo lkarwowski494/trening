@@ -507,12 +507,9 @@
       "b": "general",
       "f": "oly",
       "ok": [
-        "oly.back",
-        "oly.close"
+        "oly.back"
       ],
-      "err": [
-        "oly.mis"
-      ]
+      "err": []
     },
     "Box Jump": {
       "b": "own"
@@ -1397,13 +1394,9 @@
       "b": "general",
       "f": "oly",
       "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
+        "oly.back"
       ],
-      "err": [
-        "oly.mis"
-      ]
+      "err": []
     },
     "Double Kettlebell Windmill": {
       "b": "own"
@@ -1451,13 +1444,9 @@
       "b": "general",
       "f": "oly",
       "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
+        "oly.back"
       ],
-      "err": [
-        "oly.mis"
-      ]
+      "err": []
     },
     "Dumbbell Front Raise to Overhead": {
       "b": "own"
@@ -2139,13 +2128,9 @@
       "b": "general",
       "f": "oly",
       "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
+        "oly.back"
       ],
-      "err": [
-        "oly.mis"
-      ]
+      "err": []
     },
     "Kettlebell Figure 8": {
       "b": "own"
@@ -2180,21 +2165,16 @@
       "b": "general",
       "f": "oly",
       "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
+        "oly.back"
       ],
-      "err": [
-        "oly.mis"
-      ]
+      "err": []
     },
     "Kettlebell Sumo High Pull": {
       "b": "general",
       "f": "oly",
       "ok": [
         "sumo.kneesOut",
-        "hinge.back",
-        "oly.close"
+        "hinge.back"
       ],
       "err": [
         "mis.roundBack"
@@ -2905,13 +2885,9 @@
       "b": "general",
       "f": "oly",
       "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
+        "oly.back"
       ],
-      "err": [
-        "oly.mis"
-      ]
+      "err": []
     },
     "One-Arm Kettlebell Floor Press": {
       "b": "general",

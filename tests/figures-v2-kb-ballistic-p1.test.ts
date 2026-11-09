@@ -8,6 +8,8 @@ import { FAMILIES, assignAll, figureSpec, frameAt, keyframeFrame, jointAngles, p
 import { DATA_UI, poseFile } from '@/lib/figures/v2/poseData';
 import { TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
 import { KB_BALLISTIC_TECHNIQUE } from '@/lib/figures/v2/overlay/kb_ballistic';
+import { BODY } from '@/lib/figures/v2/skeleton';
+import { CONTRACT } from '@/lib/figures/v2/contract';
 
 const FAM = 'kb_ballistic';
 const KEYS = poseKeys(FAM);
@@ -55,7 +57,7 @@ describe('kb_ballistic p1: zakresy stawów z reguł karty', () => {
     expect([k, dy(k, 1) >= 10]).toEqual([k, true]); expect([k, ang(k, 1).elbow <= 20]).toEqual([k, true]); expect([k, dy(k, 0) >= 10]).toEqual([k, false]);
   });
   test.each(WYCISKANIA)('%s: start przy barkach (pp_start: chwyt ≤ 20 cm od barku w u = 0)', k => { expect([k, Math.abs(dy(k, 0)) <= 20]).toEqual([k, true]); });
-  test.each(PODRZUT.filter(k => !/Push Press/.test(k)))('%s: ugięcie kolan ≥ 15° w ruchu (pp_ugiecie)', k => {
+  test.each(PODRZUT)('%s: ugięcie kolan ≥ 15° w ruchu (pp_ugiecie; N3a, recenzja r1: także Push Press)', k => {
     expect([k, Math.max(...us.map(u => ang(k, u).knee)) >= 15]).toEqual([k, true]);
   });
   test('błąd „zaokrąglone plecy” (mis.roundBack; One-Arm Swings, Sumo High Pull) różni się od ruchu poprawnego pochyleniem tułowia albo zgięciem kręgosłupa w którejś klatce', () => {
@@ -64,13 +66,38 @@ describe('kb_ballistic p1: zakresy stawów z reguł karty', () => {
   });
 });
 
+const ZARZUT_RWANIE = ['Kettlebell Clean', 'Double Kettlebell Clean', 'Dumbbell Clean', 'Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'One-Arm Kettlebell Clean and Jerk'];
+const DOLNY_START_KB = ZARZUT_RWANIE.filter(k => k !== 'Dumbbell Clean');
+/** Najdalsze wysunięcie chwytu przed bark, gdy chwyt jest jeszcze poniżej barku (ciąg ciężaru od bioder do barku), cm. */
+const wysuniecie = (k: string) => Math.max(...Array.from({ length: 49 }, (_, i) => { const f = fr(k, i / 48); const g = f.sk.arms.R.grip; return g[1] < f.sk.shoulderC[1] ? g[0] - f.sk.shoulderC[0] : -1e9; }));
+/** Próg z geometrii: w ciągu blisko ciała chwyt nie wychodzi przed bark dalej niż przedramię + dłoń (łokieć przy tułowiu, przedramię w górę); dane sprzed poprawki W1: zarzut 37 cm, rwanie kettlebella 49–58 cm. */
+const MAX_WYSUNIECIE = BODY.farm + BODY.hand;
+describe('kb_ballistic p1: start i ciąg zarzutu i rwania (W1, recenzja r1 09.11.2026; K5)', () => {
+  test.each(DOLNY_START_KB)('%s: w u = 0 chwyt za linią kostek jak w swingu („przeszły między nogami”, „zamach jak przy swingu”), nie 30 cm przed nimi', k => {
+    const f = fr(k, 0); const ankle = f.sk.legs.R.ankle[0]; expect([k, f.sk.arms.R.grip[0] - ankle <= 0]).toEqual([k, true]);
+  });
+  test('Dumbbell Clean (hantle po bokach ud): w u = 0 chwyt nie dalej niż 25 cm przed kostką; Snatch (hantel) startuje między stopami jak kettlebell (karta: „postaw hantel między stopami”)', () => {
+    const f = fr('Dumbbell Clean', 0); expect(f.sk.arms.R.grip[0] - f.sk.legs.R.ankle[0] <= 25).toBe(true);
+  });
+  test('przypadek negatywny miary startu: dane sprzed poprawki (chwyt 30,4 cm przed kostką) nie spełniają progu 0 ani 25 cm', () => { expect(30.4 <= 0).toBe(false); expect(30.4 <= 25).toBe(false); });
+  test.each(ZARZUT_RWANIE)('%s: ciąg blisko ciała — chwyt poniżej barku wysunięty przed bark najwyżej o przedramię + dłoń (BODY.farm + BODY.hand = 33 cm)', k => {
+    expect([k, wysuniecie(k) <= MAX_WYSUNIECIE]).toEqual([k, true]);
+  });
+  test('przypadek negatywny miary ciągu: wartości sprzed poprawki (zarzut 37 cm, rwanie 49–58 cm) przekraczają próg', () => { for (const v of [37, 49, 58]) expect(v <= MAX_WYSUNIECIE).toBe(false); });
+});
+describe('kb_ballistic p1: podrzut kończy się wstaniem (N1, recenzja r1)', () => {
+  test.each(['Double Kettlebell Jerk', 'One-Arm Kettlebell Jerk'])('%s: w u = 1 kolana proste (≤ 5°), łokieć ≤ 20°, chwyt nad głową', k => {
+    expect([k, ang(k, 1).knee <= 5 && ang(k, 1).elbow <= 20 && dy(k, 1) >= 10]).toEqual([k, true]);
+  });
+});
+
 describe('kb_ballistic p1: tor ciężaru', () => {
-  test.each(KEYS)('%s: ślad ≤ 3 cm od chwytu (trzyma: ta ręka; dwa ciężary i swing oburącz: chwyt którejkolwiek ręki albo środek dłoni) w każdej klatce, bez skoków > 18 cm między klatkami co 0,05', k => {
+  test.each(KEYS)('%s: ślad ≤ 3 cm od chwytu (trzyma: ta ręka; dwa ciężary i swing oburącz: chwyt którejkolwiek ręki albo środek dłoni) w każdej klatce, bez skoków ponad limit ciągłości kontraktu między klatkami co 0,05', k => {
     const s = figureSpec(k)!; const tr = data(k).sprzet.filter(g => 'trzyma' in g && g.trzyma).map(g => (g as { trzyma: string }).trzyma); let prev: number[] | null = null;
     for (const u of us) { const f = frameAt(s, u); const t = (f.info.trail ?? f.info.load) as number[]; expect([k, u, !!t]).toEqual([k, u, true]);
       const gR = f.sk.arms.R.grip, gL = f.sk.arms.L.grip, mid = [0, 1, 2].map(i => (gR[i] + gL[i]) / 2);
       const d = tr.length === 1 ? dist(t, tr[0] === 'R' ? gR : gL) : Math.min(dist(t, gR), dist(t, gL), dist(t, mid)); expect([k, u, d <= 3]).toEqual([k, u, true]);
-      if (prev) expect([k, u, dist(prev, t) <= 18]).toEqual([k, u, true]); prev = t; }
+      if (prev) expect([k, u, dist(prev, t) <= 3 * (k === 'One-Arm Kettlebell Clean and Jerk' ? CONTRACT.maxJumpDynamic : CONTRACT.maxJump)]).toEqual([k, u, true]); /* 3 klatki (0,05 × 48) × limit ciągłości kontraktu; Clean and Jerk jest w danych sensu jako „dynamiczne” */ prev = t; }
   });
   test('przypadek negatywny miary: ślad przesunięty o 5 cm od chwytu nie mieści się w 3 cm', () => {
     const f = frameAt(figureSpec('Kettlebell Snatch')!, 0.5); const t = f.info.trail as number[]; expect(dist(t, f.sk.arms.R.grip) <= 3).toBe(true); expect(dist([t[0] + 5, t[1], t[2]], f.sk.arms.R.grip) <= 3).toBe(false);
