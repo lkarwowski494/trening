@@ -595,15 +595,7 @@
       "b": "own"
     },
     "Cable Crunch": {
-      "b": "general",
-      "f": "cableCrunch",
-      "ok": [
-        "cc.ribs",
-        "cc.slow"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Curl": {
       "b": "own"
@@ -775,15 +767,7 @@
       ]
     },
     "Cable Russian Twists": {
-      "b": "general",
-      "f": "rotation",
-      "ok": [
-        "rt.control",
-        "rt.back"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Cable Seated Crunch": {
       "b": "general",
@@ -1422,15 +1406,7 @@
       ]
     },
     "Double Kettlebell Windmill": {
-      "b": "general",
-      "f": "windmill",
-      "ok": [
-        "wm.arm",
-        "wm.eyes"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Double Leg Butt Kick": {
       "b": "general",
@@ -1849,26 +1825,10 @@
       "b": "own"
     },
     "Hanging Knee Raise": {
-      "b": "general",
-      "f": "hanging",
-      "ok": [
-        "hang.slow",
-        "hang.ribs"
-      ],
-      "err": [
-        "hang.noSwing"
-      ]
+      "b": "own"
     },
     "Hanging Leg Raise": {
-      "b": "general",
-      "f": "hanging",
-      "ok": [
-        "hang.slow",
-        "hang.ribs"
-      ],
-      "err": [
-        "hang.noSwing"
-      ]
+      "b": "own"
     },
     "High Cable Curl": {
       "b": "general",
@@ -1937,15 +1897,7 @@
       "b": "own"
     },
     "Hollow Hold": {
-      "b": "general",
-      "f": "plank",
-      "ok": [
-        "db.back",
-        "plank.brace"
-      ],
-      "err": [
-        "plank.mis.breath"
-      ]
+      "b": "own"
     },
     "Iliotibial Tract-SMR": {
       "b": "own"
@@ -2196,7 +2148,7 @@
       ]
     },
     "Kettlebell Figure 8": {
-      "b": "open"
+      "b": "own"
     },
     "Kettlebell Halo": {
       "b": "own"
@@ -2255,15 +2207,7 @@
       "b": "own"
     },
     "Kettlebell Windmill": {
-      "b": "general",
-      "f": "windmill",
-      "ok": [
-        "wm.arm",
-        "wm.eyes"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Knee Circles": {
       "b": "general",
@@ -2697,15 +2641,7 @@
       "b": "own"
     },
     "Machine Crunch": {
-      "b": "general",
-      "f": "cableCrunch",
-      "ok": [
-        "cc.ribs",
-        "cc.slow"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Machine Glute Kickback": {
       "b": "general",
@@ -3689,15 +3625,7 @@
       ]
     },
     "Scissor Kick": {
-      "b": "general",
-      "f": "legRaiseFloor",
-      "ok": [
-        "db.back",
-        "db.slow"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Seal Row (sztanga)": {
       "b": "general",
@@ -4118,14 +4046,7 @@
       "b": "open"
     },
     "Sit Up": {
-      "b": "general",
-      "f": "crunch",
-      "ok": [
-        "crunch.neck"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Skakanka": {
       "b": "general",
@@ -4815,7 +4736,7 @@
       ]
     },
     "Stomach Vacuum": {
-      "b": "open"
+      "b": "own"
     },
     "Straight Arm Pulldown": {
       "b": "own"
@@ -4878,15 +4799,7 @@
       ]
     },
     "Superman": {
-      "b": "general",
-      "f": "cobra",
-      "ok": [
-        "cobra.hips",
-        "cobra.control"
-      ],
-      "err": [
-        "cobra.mis"
-      ]
+      "b": "own"
     },
     "Supine Chest Throw": {
       "b": "open"
@@ -4930,15 +4843,7 @@
       "b": "own"
     },
     "Suspended Reverse Crunch": {
-      "b": "general",
-      "f": "plank",
-      "ok": [
-        "rcrunch.hips",
-        "plank.brace"
-      ],
-      "err": [
-        "plank.mis.sag"
-      ]
+      "b": "own"
     },
     "Suspended Split Squat": {
       "b": "general",
@@ -4981,15 +4886,7 @@
       ]
     },
     "Toes to Bar": {
-      "b": "general",
-      "f": "hanging",
-      "ok": [
-        "hang.slow",
-        "hang.ribs"
-      ],
-      "err": [
-        "hang.noSwing"
-      ]
+      "b": "own"
     },
     "Torso Rotation": {
       "b": "general",
@@ -5038,15 +4935,7 @@
       "b": "own"
     },
     "Tuck Crunch": {
-      "b": "general",
-      "f": "crunch",
-      "ok": [
-        "crunch.neck",
-        "crunch.lowBack"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Tuck Jump": {
       "b": "own"
@@ -5093,15 +4982,7 @@
       "b": "own"
     },
     "V-Up": {
-      "b": "general",
-      "f": "vup",
-      "ok": [
-        "vup.back",
-        "plank.brace"
-      ],
-      "err": [
-        "mis.jerk"
-      ]
+      "b": "own"
     },
     "Walking Lunges": {
       "b": "own"

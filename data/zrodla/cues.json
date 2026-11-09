@@ -589,6 +589,21 @@
    "name": "Mullaney i in. — program Thrower’s Ten, opis wykonania w załączniku (Int J Sports Phys Ther 2021;16(6))",
    "level": 3,
    "kind": "study"
+  },
+  "WebMD": {
+   "name": "WebMD — artykuły o ćwiczeniach z recenzją lekarską i datą (webmd.com; ta sama grupa co WebMD Ignite — w jednym zdaniu nie liczyć obu jako niezależnych)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Hoist Fitness": {
+   "name": "Hoist Fitness — instrukcje własnych maszyn (producent maszyn; przy maszynie innego producenta — uproszczenie)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "Virginia Mason Franciscan Health": {
+   "name": "Virginia Mason Franciscan Health — materiały fizjoterapii systemu szpitali (vmfh.org; jawne firmowanie placówki)",
+   "level": 4,
+   "kind": "site"
   }
  },
  "sources": {
@@ -3670,6 +3685,207 @@
    "title": "PMC8637269",
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8637269/",
    "level": 3
+  },
+  "ace-331": {
+   "org": "ACE",
+   "title": "standing crunch",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+   "level": 4
+  },
+  "barbend-cable-crunch": {
+   "org": "BarBend",
+   "title": "E. Bugera, CSCS, akt. 27.11.2024",
+   "url": "https://www.barbend.com/cable-crunch/",
+   "level": 4
+  },
+  "barbend-hollow-hold": {
+   "org": "BarBend",
+   "title": "J. Dickson, NASM-CPT, akt. 17.07.2024",
+   "url": "https://barbend.com/hollow-hold",
+   "level": 4
+  },
+  "catalyst-hollow-hold": {
+   "org": "Catalyst Athletics",
+   "title": "Hollow Hold",
+   "url": "https://catalystathletics.com/exercise/712/Hollow-Hold",
+   "level": 4
+  },
+  "ace-9": {
+   "org": "ACE",
+   "title": "supermans",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/9/supermans/",
+   "level": 4
+  },
+  "cc-superman": {
+   "org": "Cleveland Clinic",
+   "title": "10.05.2021; cytowani PT i fizjolog wysiłku",
+   "url": "https://health.clevelandclinic.org/got-back-pain-try-superman-3-exercises",
+   "level": 4
+  },
+  "catalyst-sit-up": {
+   "org": "Catalyst Athletics",
+   "title": "Sit Up",
+   "url": "https://catalystathletics.com/exercise/432/Sit-Up/",
+   "level": 4
+  },
+  "barbend-sit-up": {
+   "org": "BarBend",
+   "title": "„How to Perform a Picture-Perfect Sit-Up for Stronger Abs”, J. Dickson, NASM-CPT, USAW-L2, akt. 26.11.2024",
+   "url": "https://barbend.com/sit-up/",
+   "level": 4
+  },
+  "catalyst-v-up": {
+   "org": "Catalyst Athletics",
+   "title": "V Up",
+   "url": "https://www.catalystathletics.com/exercise/313/V-Up/",
+   "level": 4
+  },
+  "webmd-v-ups": {
+   "org": "WebMD",
+   "title": "A. Twu; recenzja lek. T. Wheeler, MD, 08.12.2024",
+   "url": "https://www.webmd.com/fitness-exercise/how-to-do-v-ups",
+   "level": 4
+  },
+  "ace-291": {
+   "org": "ACE",
+   "title": "seated crunch",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/",
+   "level": 4
+  },
+  "hoist-hd-3600": {
+   "org": "Hoist Fitness",
+   "title": "hd 3600 ab crunch low back",
+   "url": "https://www.hoistfitness.com/pages/hd-3600-ab-crunch-low-back",
+   "level": 4
+  },
+  "ace-87": {
+   "org": "ACE",
+   "title": "trx reg suspended knee tucks",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/87/trx-reg-suspended-knee-tucks/",
+   "level": 4
+  },
+  "trx-basics": {
+   "org": "TRX",
+   "title": "trx moves of the week the basics",
+   "url": "https://www.trxtraining.com/blogs/news/trx-moves-of-the-week-the-basics",
+   "level": 4
+  },
+  "trx-compound-2": {
+   "org": "TRX",
+   "title": "trx moves of the week compound movements part 2",
+   "url": "https://www.trxtraining.com/blogs/news/trx-moves-of-the-week-compound-movements-part-2",
+   "level": 4
+  },
+  "fv-tuck-crunch": {
+   "org": "Fitness Volt",
+   "title": "tuck crunch",
+   "url": "https://fitnessvolt.com/tuck-crunch/",
+   "level": 4
+  },
+  "ace-243": {
+   "org": "ACE",
+   "title": "vertical toe touches",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/243/vertical-toe-touches/",
+   "level": 4
+  },
+  "healthline-stomach-vacuum": {
+   "org": "Healthline",
+   "title": "stomach vacuum",
+   "url": "https://www.healthline.com/health/fitness/stomach-vacuum",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-4.md): 4 warunkowo spełnione — autorka K. Davidson, MScFN, RD, CPT; „Medically reviewed by” J. Meacham, PhD, RD, CSCS; „Updated” 13.10.2026"
+  },
+  "vm-ta-isometric": {
+   "org": "Virginia Mason Franciscan Health",
+   "title": "Transverse%20Abdominus%20Isometric.pdf",
+   "url": "https://www.vmfh.org/content/dam/vmfhorg/pdf/legacy-vm/workfiles/pmr/Transverse%20Abdominus%20Isometric.pdf",
+   "level": 4
+  },
+  "fv-scissor-kicks": {
+   "org": "Fitness Volt",
+   "title": "scissor kicks",
+   "url": "https://fitnessvolt.com/scissor-kicks/",
+   "level": 4
+  },
+  "healthline-scissor-kicks": {
+   "org": "Healthline",
+   "title": "scissor kicks",
+   "url": "https://www.healthline.com/health/scissor-kicks",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania w2-core, core_floor-2.md): 4 warunkowo spełnione — autor S. Lindberg, „medically reviewed” D. Bubnis, M.S., NASM-CPT, 01.05.2019"
+  },
+  "catalyst-522": {
+   "org": "Catalyst Athletics",
+   "title": "Windmill",
+   "url": "https://catalystathletics.com/exercise/522/Windmill",
+   "level": 4
+  },
+  "ace-386": {
+   "org": "ACE",
+   "title": "kettlebell windmill",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/",
+   "level": 4
+  },
+  "lifetime-kb-windmill": {
+   "org": "Experience Life",
+   "title": "the kettlebell windmill",
+   "url": "https://experiencelife.lifetime.life/article/the-kettlebell-windmill/",
+   "level": 4
+  },
+  "fitnessvolt-cable-russian-twist": {
+   "org": "Fitness Volt",
+   "title": "cable russian twists",
+   "url": "https://fitnessvolt.com/cable-russian-twists/",
+   "level": 4
+  },
+  "ace-382": {
+   "org": "ACE",
+   "title": "figure eight",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/382/figure-eight/",
+   "level": 4
+  },
+  "fitnessvolt-kb-figure-8": {
+   "org": "Fitness Volt",
+   "title": "kettlebell figure 8",
+   "url": "https://fitnessvolt.com/kettlebell-figure-8/",
+   "level": 4
+  },
+  "catalyst-45": {
+   "org": "Catalyst Athletics",
+   "title": "czytane 02.11.2026; pierwsze zdanie wykonania: „Hang from a pull-up bar or stall bars.”",
+   "url": "https://catalystathletics.com/exercise/45/Hanging-Leg-Raise/",
+   "level": 4
+  },
+  "barbend-hlr": {
+   "org": "BarBend",
+   "title": "hanging leg raises",
+   "url": "https://barbend.com/hanging-leg-raises/",
+   "level": 4
+  },
+  "barbend-hkr": {
+   "org": "BarBend",
+   "title": "hanging knee raises",
+   "url": "https://barbend.com/hanging-knee-raises/",
+   "level": 4
+  },
+  "healthline-hkr": {
+   "org": "Healthline",
+   "title": "hanging knee raises",
+   "url": "https://www.healthline.com/health/fitness/hanging-knee-raises",
+   "level": 4,
+   "strona": "odczyt 02.11.2026 (badania obowiazkowe-1-1, mieszane.md): 4"
+  },
+  "barbend-t2b": {
+   "org": "BarBend",
+   "title": "czytane 02.11.2026",
+   "url": "https://barbend.com/toes-to-bar/",
+   "level": 4
+  },
+  "crossfit-strict-t2b": {
+   "org": "CrossFit",
+   "title": "02.12.2019; czytane 02.11.2026",
+   "url": "https://crossfit.com/essentials/the-strict-toes-to-bar",
+   "level": 4
   }
  },
  "exercises": {
@@ -22416,6 +22632,1152 @@
      ]
     }
    ]
+  },
+  "Cable Crunch": {
+   "setup": [
+    {
+     "c": "core_floor.ccSetup",
+     "s": [
+      [
+       "ace-331",
+       "Steps 2–3 (wariant: stojąc tyłem do wyciągu; wyciąg w najwyższej pozycji, końce liny przy uszach)"
+      ],
+      [
+       "barbend-cable-crunch",
+       "Setup (kneel; rope across traps)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.ccMove",
+     "s": [
+      [
+       "ace-331",
+       "Steps 5–6 (wariant: stojąc; roll rib cage down)"
+      ],
+      [
+       "barbend-cable-crunch",
+       "Crunch (curl your torso towards the ground)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "cc.slow",
+     "s": [
+      [
+       "ace-331",
+       "Step 7; Tips (control the return)"
+      ],
+      [
+       "barbend-cable-crunch",
+       "Reset (slowly straighten your torso)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.ccArms",
+     "s": [
+      [
+       "barbend-cable-crunch",
+       "Form Cues (arms only hold the rope, not involved in the movement)"
+      ],
+      [
+       "ace-331",
+       "Steps 3–4, 6 (hands by the ears; roll the rib cage down against the cable) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    },
+    {
+     "c": "core_floor.mis.fastReturn",
+     "s": [
+      [
+       "ace-331",
+       "Step 6 (slowly returning to the top)"
+      ],
+      [
+       "barbend-cable-crunch",
+       "Reset (slowly straighten your torso) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hollow Hold": {
+   "setup": [
+    {
+     "c": "core_floor.supineArms",
+     "s": [
+      [
+       "barbend-hollow-hold",
+       "Setup (arms extended behind head)"
+      ],
+      [
+       "catalyst-hollow-hold",
+       "opis (lie on your back with your arms overhead)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.hollowMove",
+     "s": [
+      [
+       "barbend-hollow-hold",
+       "Position and Form Cues (lower back flat; lift shoulders and legs; hold)"
+      ],
+      [
+       "catalyst-hollow-hold",
+       "opis (push your lower back flat into the floor; elevate your feet and upper back; isometric)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "db.back",
+     "s": [
+      [
+       "barbend-hollow-hold",
+       "Position and Form Cues; Common Mistakes (Arched back)"
+      ],
+      [
+       "catalyst-hollow-hold",
+       "opis (push your lower back flat into the floor)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.lowBackUp",
+     "s": [
+      [
+       "barbend-hollow-hold",
+       "Common Mistakes (Arched back)"
+      ],
+      [
+       "catalyst-hollow-hold",
+       "opis (push your lower back flat into the floor) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Superman": {
+   "setup": [
+    {
+     "c": "core_floor.supermanSetup",
+     "s": [
+      [
+       "ace-9",
+       "Step 1"
+      ],
+      [
+       "cc-superman",
+       "instrukcja, start (lying on your stomach, arms stretched over your head)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.supermanMove",
+     "s": [
+      [
+       "ace-9",
+       "Steps 2–3 (a few inches off the floor; hold briefly; slowly lower)"
+      ],
+      [
+       "cc-superman",
+       "instrukcja (lift both arms and both legs; hold a few seconds; only a few inches at first)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "core_floor.headNeutral",
+     "s": [
+      [
+       "ace-9",
+       "Steps 1–2 (head in line with spine; without lifting your head)"
+      ],
+      [
+       "cc-superman",
+       "wskazówki (keep your neck in a neutral position)"
+      ]
+     ]
+    },
+    {
+     "c": "cobra.control",
+     "s": [
+      [
+       "ace-9",
+       "Step 3 (slowly lower)"
+      ],
+      [
+       "cc-superman",
+       "instrukcja (slowly lowering; go slow)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.headUp",
+     "s": [
+      [
+       "ace-9",
+       "Step 2 (avoiding any ... raising of your head)"
+      ],
+      [
+       "cc-superman",
+       "wskazówki (keep your neck in a neutral position) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    },
+    {
+     "c": "cobra.mis",
+     "s": [
+      [
+       "ace-9",
+       "Step 2 (a few inches off the floor; avoiding any arching in your back)"
+      ],
+      [
+       "cc-superman",
+       "instrukcja (only a few inches at first) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Sit Up": {
+   "setup": [
+    {
+     "c": "crunch.setup",
+     "s": [
+      [
+       "catalyst-sit-up",
+       "opis (knees and hips bent, feet flat; fingers at the sides of the head)"
+      ],
+      [
+       "barbend-sit-up",
+       "How to — setup (bend your knees; heels in the floor; hands behind your head)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.situpMove",
+     "s": [
+      [
+       "catalyst-sit-up",
+       "opis (squeeze the abs, sit up completely; return maintaining tension)"
+      ],
+      [
+       "barbend-sit-up",
+       "How to — movement and lowering (pull the torso up with the abs; lower slowly)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.situpFeet",
+     "s": [
+      [
+       "barbend-sit-up",
+       "Common Mistakes (Swinging Your Feet)"
+      ],
+      [
+       "catalyst-sit-up",
+       "opis (feet flat on the floor) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "V-Up": {
+   "setup": [
+    {
+     "c": "core_floor.supineReach",
+     "s": [
+      [
+       "catalyst-v-up",
+       "opis (lie on your back, legs straight, arms extended overhead)"
+      ],
+      [
+       "webmd-v-ups",
+       "How to do V-ups, krok 1"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.vupMove",
+     "s": [
+      [
+       "catalyst-v-up",
+       "opis (simultaneously perform a sit-up and lift your straight legs; return to fully extended)"
+      ],
+      [
+       "webmd-v-ups",
+       "How to do V-ups, kroki 3–4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "catalyst-v-up",
+       "opis (maintaining ab tension)"
+      ],
+      [
+       "webmd-v-ups",
+       "How to do V-ups, kroki 2–4; form tips (engage your core)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.vupKnees",
+     "s": [
+      [
+       "webmd-v-ups",
+       "How to do V-ups, krok 3 (keep both your arms and legs straight)"
+      ],
+      [
+       "catalyst-v-up",
+       "opis (lift your straight legs) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Machine Crunch": {
+   "setup": [
+    {
+     "c": "core_floor.mcSetup",
+     "s": [
+      [
+       "ace-291",
+       "Steps 1–2; Tips (set the seat and weight before you begin) (wariant: maszyna z wałkiem na piszczele)"
+      ],
+      [
+       "hoist-hd-3600",
+       "Ab Crunch — setup (seat height; select weight) (wariant: poduszka na klatce)"
+      ]
+     ],
+     "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni"
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.mcMove",
+     "s": [
+      [
+       "ace-291",
+       "Steps 5–7"
+      ],
+      [
+       "hoist-hd-3600",
+       "Ab Crunch — movement (bend at the waist, push upper torso forward)"
+      ]
+     ],
+     "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni"
+    }
+   ],
+   "tips": [
+    {
+     "c": "cc.slow",
+     "s": [
+      [
+       "ace-291",
+       "Step 8; Tips (return slowly)"
+      ],
+      [
+       "hoist-hd-3600",
+       "Ab Crunch — movement (slowly return to the start position)"
+      ]
+     ],
+     "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.fastReturn",
+     "s": [
+      [
+       "ace-291",
+       "Step 4 (return slowly to the starting position)"
+      ],
+      [
+       "hoist-hd-3600",
+       "Ab Crunch — return (slowly return to the start position) — błąd = zaprzeczenie standardu"
+      ]
+     ],
+     "uproszczenie": "maszyna innego producenta — instrukcja maszyny Hoist HD-3600 jako analogia (szczeble-organizacji 02.11.2026: Hoist = 4 dla własnych maszyn); recenzent potwierdza, że ruch się nie różni"
+    }
+   ]
+  },
+  "Suspended Reverse Crunch": {
+   "setup": [
+    {
+     "c": "core_floor.suspRevCrunch.setup",
+     "s": [
+      [
+       "ace-87",
+       "Step 1–2 (stopy w uchwytach pod punktem zaczepienia; podpór jak do pompki — parafraza)"
+      ],
+      [
+       "trx-basics",
+       "Move 4: TRX Reverse Crunch („Feet in foot cradles.”; „Rise up into a strong plank…”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.suspRevCrunch.move",
+     "s": [
+      [
+       "ace-87",
+       "Step 2–3 (wariant nazwy: knee tucks; „Slowly pull your knees toward your chest…”; powrót do podporu)"
+      ],
+      [
+       "trx-basics",
+       "Move 4: TRX Reverse Crunch („Pull your knees toward your waist for a crunch.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "plank.mis.sag",
+     "s": [
+      [
+       "ace-87",
+       "Step 2 (unikać opadania lędźwi i unoszenia bioder) i Step 3 („Avoid any arching or sagging in your low back throughout the range of motion.”)"
+      ],
+      [
+       "trx-compound-2",
+       "TRX Crunch („come to an active plank”; „flex your feet to enable the best plank alignment”; powrót „to the active plank position”) — błąd = zaprzeczenie standardu, WARUNKOWO (p. 5 pyt. 1)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Tuck Crunch": {
+   "setup": [
+    {
+     "c": "core_floor.tuckCrunch.setup",
+     "s": [
+      [
+       "fv-tuck-crunch",
+       "How to, krok 2 („Lie on your back, then lift your knees up perpendicular to the floor, and bend your legs at a 90-degree angle.”)"
+      ],
+      [
+       "ace-243",
+       "Step 1 (uda pionowo) — uproszczenie: wariant pozycji nóg (w ACE kolana wyprostowane)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.tuckCrunch.move",
+     "s": [
+      [
+       "fv-tuck-crunch",
+       "How to, kroki 3–4 („…use your ab muscles to curl your upper body toward your knees”; powolne opuszczanie barków)"
+      ],
+      [
+       "ace-243",
+       "Step 2–3 (zwijanie tułowia, łopatki od podłogi, powolny powrót) — uproszczenie: wariant pozycji nóg"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "crunch.lowBack",
+     "s": [
+      [
+       "fv-tuck-crunch",
+       "How to, krok 2 i wskazówki („Your lower back should not leave the ground during tuck crunches.”)"
+      ],
+      [
+       "ace-52",
+       "Step 3 (stopy, kość ogonowa i lędźwie w kontakcie z matą) — uproszczenie: wariant pozycji nóg"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.neckPull",
+     "s": [
+      [
+       "fv-tuck-crunch",
+       "How to, krok 3 („However, do not pull up on your neck.”)"
+      ],
+      [
+       "ace-243",
+       "Step 2 i uwagi końcowe (głowa w linii z kręgosłupem, „avoid flexing your head too far forward”) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Stomach Vacuum": {
+   "setup": [
+    {
+     "c": "core_floor.heelTouch.setup",
+     "s": [
+      [
+       "healthline-stomach-vacuum",
+       "wersja leżąca („Lie on the floor with your spine neutral, knees bent, and feet flat.”)"
+      ],
+      [
+       "vm-ta-isometric",
+       "punkt 1 („Lie on your back with your knees bent and feet on the floor”) — uproszczenie: wariant nazwy (p. 5 pyt. 1)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.vacuum.move",
+     "s": [
+      [
+       "healthline-stomach-vacuum",
+       "instrukcja (pępek przyciągany w stronę kręgosłupa; przytrzymanie)"
+      ],
+      [
+       "vm-ta-isometric",
+       "punkty 4–5 („Gently draw in the muscles under your fingers.”; przytrzymanie) — uproszczenie: wariant nazwy"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "core_floor.vacuum.breathe",
+     "s": [
+      [
+       "healthline-stomach-vacuum",
+       "instrukcja („Continue to breathe normally as you hold your belly in.”)"
+      ],
+      [
+       "vm-ta-isometric",
+       "punkty 2 i 6 („Continue to breathe normally”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "plank.mis.breath",
+     "s": [
+      [
+       "healthline-stomach-vacuum",
+       "instrukcja („You shouldn't be holding your breath…”)"
+      ],
+      [
+       "vm-ta-isometric",
+       "punkty 2 i 6 (oddychaj normalnie) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Scissor Kick": {
+   "setup": [
+    {
+     "c": "core_floor.scissor.setup",
+     "s": [
+      [
+       "fv-scissor-kicks",
+       "How to, ustawienie kroki 1–2 („Lie on your back with your legs straight.”; dłonie pod pośladkami)"
+      ],
+      [
+       "healthline-scissor-kicks",
+       "instrukcja, krok 1 (na plecach, nogi wyprostowane; ręce wzdłuż ciała albo dłonie pod pośladkami)"
+      ]
+     ]
+    },
+    {
+     "c": "core_floor.scissor.lift",
+     "s": [
+      [
+       "fv-scissor-kicks",
+       "ustawienie kroki 3–4 („Tilt your pelvis, press your lower back into the floor, and brace your core.”; nogi kilka cali nad podłogą)"
+      ],
+      [
+       "healthline-scissor-kicks",
+       "instrukcja, kroki 2–3 (dociśnięcie lędźwi do maty; obie nogi 15–30 cm nad podłogą)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_floor.scissor.move",
+     "s": [
+      [
+       "fv-scissor-kicks",
+       "ruch, kroki 1–3 (jedna noga do ok. 45°, potem w dół, jednocześnie druga w górę)"
+      ],
+      [
+       "healthline-scissor-kicks",
+       "ruch („lower one leg toward the floor as you lift the other leg up”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_floor.mis.archBack",
+     "s": [
+      [
+       "fv-scissor-kicks",
+       "wskazówki („Stop your set if you feel your lower back lifting off the floor…”)"
+      ],
+      [
+       "healthline-scissor-kicks",
+       "wskazówki formy („Make sure your back is not arching.”)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Windmill": {
+   "setup": [
+    {
+     "c": "core_standing.windmill.setup",
+     "s": [
+      [
+       "catalyst-522",
+       "opis („hold a dumbbell or kettlebell overhead with one arm”)"
+      ],
+      [
+       "ace-386",
+       "opis („pressing the kettlebell straight overhead”)"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "kroki, krok 1 („press a single kettlebell overhead”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_standing.windmill.move",
+     "s": [
+      [
+       "catalyst-522",
+       "opis („push the hips back and toward the side holding the weight”; wolna dłoń do podłogi po wewnętrznej stronie przeciwnej stopy)"
+      ],
+      [
+       "ace-386",
+       "opis („sinking back into the left hip”; prawa ręka „along the inside of the right leg”; powrót: „push the hips forward”)"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "kroki, krok 4 (dolna ręka „trace the inside of your leg”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "wm.arm",
+     "s": [
+      [
+       "catalyst-522",
+       "opis („rotating the trunk to keep the loaded arm straight up”)"
+      ],
+      [
+       "ace-386",
+       "opis („Keeping the left arm straight during the movement.”)"
+      ]
+     ]
+    },
+    {
+     "c": "core_standing.windmill.knees",
+     "s": [
+      [
+       "catalyst-522",
+       "opis („Keeping the knees close to straight”)"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "kroki, krok 2 („Keep a soft bend in the opposite knee.”)"
+      ]
+     ]
+    },
+    {
+     "c": "wm.eyes",
+     "s": [
+      [
+       "ace-386",
+       "opis („Turn to look up at the left hand”)"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "kroki, krok 3 („Keep your eyes on the kettlebell.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_standing.windmill.mis.elbow",
+     "s": [
+      [
+       "lifetime-kb-windmill",
+       "lista błędów we wstępie („Bending the elbow of your top arm.”)"
+      ],
+      [
+       "ace-386",
+       "opis („Keeping the left arm straight during the movement.” — standard; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Cable Russian Twists": {
+   "setup": [
+    {
+     "c": "core_standing.cabletwist.setup",
+     "s": [
+      [
+       "ace-65",
+       "opis („upper back on the ball”, biodra w górze; wariant: bez wyciągu)"
+      ],
+      [
+       "fitnessvolt-cable-russian-twist",
+       "Setup (klatka na linii wyciągu na piłce; „extend your arm directly over your chest”, druga dłoń na uchwycie)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_standing.cabletwist.move",
+     "s": [
+      [
+       "ace-65",
+       "opis („Twist through the stomach and shoulders”; wariant: bez wyciągu)"
+      ],
+      [
+       "fitnessvolt-cable-russian-twist",
+       "Execution („Your arms should remain straight and extended in the same position throughout the exercise.”; obrót od wyciągu, powolny powrót)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "core_standing.cabletwist.hips",
+     "s": [
+      [
+       "ace-65",
+       "opis („with the hips up”)"
+      ],
+      [
+       "fitnessvolt-cable-russian-twist",
+       "Execution („Keep your hips high”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_standing.cabletwist.mis.hipsDrop",
+     "s": [
+      [
+       "fitnessvolt-cable-russian-twist",
+       "wskazówki („Don't allow your hips and lower body to sink down during the exercise.”)"
+      ],
+      [
+       "ace-65",
+       "opis („with the hips up” — standard; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Double Kettlebell Windmill": {
+   "setup": [
+    {
+     "c": "core_standing.windmill.dblSetup",
+     "s": [
+      [
+       "lifetime-kb-windmill",
+       "Step 1 („press a single kettlebell overhead”) i wariant „Double-Loaded Kettlebell Windmill” (kettlebelle „in both the top and bottom hands”)"
+      ],
+      [
+       "ace-386",
+       "opis, start (wariant: jeden kettlebell; kettlebell nad głową na prostej ręce) — nie opisuje drugiego kettlebella"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_standing.windmill.dblMove",
+     "s": [
+      [
+       "ace-386",
+       "opis (wariant: jeden kettlebell; „sink back into the left hip”, wolna ręka w dół wzdłuż wewnętrznej strony nogi)"
+      ],
+      [
+       "catalyst-522",
+       "opis (wariant: jeden ciężar; „push the hips back and toward the side holding the weight”; wolna dłoń w dół po wewnętrznej stronie przeciwnej stopy) — źródło przeczytane w core_standing-1.md"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "Step 4 (dolna ręka „trace the inside of your leg”; wariant: jeden kettlebell)"
+      ]
+     ]
+    },
+    {
+     "c": "core_standing.windmill.up",
+     "s": [
+      [
+       "ace-386",
+       "opis, powrót (wariant: jeden kettlebell; wypchnięcie bioder w przód do pozycji stojącej)"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "Step 4 („then reverse the motion to come to standing”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "wm.arm",
+     "s": [
+      [
+       "ace-386",
+       "opis, start (wariant: jeden kettlebell; ręka z kettlebellem prosta nad głową)"
+      ],
+      [
+       "catalyst-522",
+       "opis (wariant: jeden ciężar; „rotating the trunk to keep the loaded arm straight up”) — źródło przeczytane w core_standing-1.md"
+      ]
+     ]
+    },
+    {
+     "c": "wm.eyes",
+     "s": [
+      [
+       "ace-386",
+       "opis (wariant: jeden kettlebell; „look up at the left hand”)"
+      ],
+      [
+       "lifetime-kb-windmill",
+       "Step 3 („Keep your eyes on the kettlebell.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "core_standing.windmill.mis.topElbow",
+     "s": [
+      [
+       "lifetime-kb-windmill",
+       "lista błędów we wstępie („Bending the elbow of your top arm.”)"
+      ],
+      [
+       "ace-386",
+       "opis, start (wariant: jeden kettlebell; górna ręka prosto — standard; błąd = zaprzeczenie standardu)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Figure 8": {
+   "setup": [
+    {
+     "c": "core_standing.figure8.setup",
+     "s": [
+      [
+       "ace-382",
+       "Starting position (stopy „wider than shoulder-width apart”, kettlebell w lewej ręce, ugięcie kolan i przysiad do ud równolegle do podłogi)"
+      ],
+      [
+       "fitnessvolt-kb-figure-8",
+       "How to → setup („Stand close to the kettlebell with feet roughly shoulder-width apart.”; ugięcie kolan i zawias w biodrach)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "core_standing.figure8.move",
+     "s": [
+      [
+       "ace-382",
+       "kroki 1–4 (przełożenie kettlebella pod nogą z ręki do ręki, „Complete the figure eight…”, kontynuacja z ręki do ręki)"
+      ],
+      [
+       "fitnessvolt-kb-figure-8",
+       "How to („Swing the weight between your legs toward the opposite arm and grab the handle using the empty hand.”)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hanging Leg Raise": {
+   "setup": [
+    {
+     "c": "hang.setup",
+     "s": [
+      [
+       "catalyst-45",
+       "opis, zdanie 2 (Hang from a pull-up bar or stall bars; z zapisu W1)"
+      ],
+      [
+       "barbend-hlr",
+       "Step-by-step (hands about shoulder-width apart; completely dead hang)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "hang.legs.move",
+     "s": [
+      [
+       "catalyst-45",
+       "opis (unieś proste nogi; powrót pod kontrolą; z zapisu W1)"
+      ],
+      [
+       "barbend-hlr",
+       "Step-by-step (raise legs to ~90° hip flexion; slowly lower your legs back)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hang.slow",
+     "s": [
+      [
+       "catalyst-45",
+       "opis ćwiczenia (opuszczenie nóg do zwisu pod kontrolą; parafraza)"
+      ],
+      [
+       "nasm-best-abs",
+       "Hanging Knee Raise, Coaching Tip (wariant: ugięte kolana; „Focus on moving slowly and maintaining a stable torso throughout each repetition.”)"
+      ]
+     ]
+    },
+    {
+     "c": "hang.ribs",
+     "s": [
+      [
+       "catalyst-45",
+       "opis ćwiczenia (napnij brzuch i podwiń miednicę jak w brzuszku, nie samo zgięcie w biodrach; parafraza)"
+      ],
+      [
+       "nasm-best-abs",
+       "Hanging Knee Raise, Why It Works (wariant: ugięte kolana; „The abdominals help posteriorly tilt the pelvis and lift the knees while the rest of the core works to stabilize the trunk.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "hang.noSwing",
+     "s": [
+      [
+       "catalyst-45",
+       "Without swinging (z zapisu W1)"
+      ],
+      [
+       "barbend-hlr",
+       "Common Mistakes — Momentum"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hanging Knee Raise": {
+   "setup": [
+    {
+     "c": "hang.setup",
+     "s": [
+      [
+       "barbend-hkr",
+       "Step-by-step 1–2 (hands about shoulder-width apart or slightly wider; dead-hang)"
+      ],
+      [
+       "healthline-hkr",
+       "How-to (Grip your pullup bar… and start to hang)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "hang.knees.move",
+     "s": [
+      [
+       "nasm-best-abs",
+       "Hanging Knee Raise (z zapisu W1)"
+      ],
+      [
+       "barbend-hkr",
+       "Step-by-step 3–4 (pull the knees towards your chest; return under control)"
+      ],
+      [
+       "healthline-hkr",
+       "How-to (raise your knees upward toward your chest; slowly lower your legs)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hang.slow",
+     "s": [
+      [
+       "nasm-best-abs",
+       "Hanging Knee Raise, Coaching Tip („Focus on moving slowly and maintaining a stable torso throughout each repetition.”)"
+      ],
+      [
+       "catalyst-45",
+       "opis ćwiczenia (wariant: proste nogi, ugięte kolana jako łatwiejsza wersja; opuszczenie pod kontrolą; parafraza)"
+      ]
+     ]
+    },
+    {
+     "c": "hang.ribs",
+     "s": [
+      [
+       "nasm-best-abs",
+       "Hanging Knee Raise, Why It Works („The abdominals help posteriorly tilt the pelvis…”)"
+      ],
+      [
+       "catalyst-45",
+       "opis ćwiczenia (wariant: proste nogi; podwinięcie miednicy jak w brzuszku; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "hang.noSwing",
+     "s": [
+      [
+       "nasm-best-abs",
+       "Coaching Tip (Avoid using momentum to swing the legs upward)"
+      ],
+      [
+       "healthline-hkr",
+       "Common mistakes (swinging their legs and using momentum)"
+      ],
+      [
+       "barbend-hkr",
+       "Common Mistakes — swaying"
+      ]
+     ]
+    }
+   ]
+  },
+  "Toes to Bar": {
+   "setup": [
+    {
+     "c": "hang.setup",
+     "s": [
+      [
+       "catalyst-45",
+       "opis ćwiczenia, zdanie 2 („Hang from a pull-up bar or stall bars.”; u Catalyst unoszenie nóg aż palce dotkną drążka — ten sam ruch co T2B)"
+      ],
+      [
+       "barbend-t2b",
+       "instrukcja krok po kroku, krok 1 („Start by hanging from a bar with the hands slightly wider than shoulder-width apart.”)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "hang.t2b.move",
+     "s": [
+      [
+       "catalyst-45",
+       "opis ćwiczenia, zdania 3 i 5 (unieś proste nogi, aż palce dotkną drążka; „Return the legs to the hanging position under control.”)"
+      ],
+      [
+       "barbend-t2b",
+       "instrukcja krok po kroku (wersja ścisła: unieś nogi aż do drążka; parafraza „bring your feet all the way up to the bar”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hang.t2b.straight",
+     "s": [
+      [
+       "crossfit-strict-t2b",
+       "„Make sure to keep the legs together and as straight as flexibility will allow.”"
+      ],
+      [
+       "catalyst-45",
+       "opis ćwiczenia, zdanie 3 (unoszenie prostych nóg; parafraza)"
+      ]
+     ]
+    },
+    {
+     "c": "hang.pressBar",
+     "s": [
+      [
+       "crossfit-strict-t2b",
+       "„Pushing into the bar with straight arms allows you to use the strength of the upper body to assist with elevating the legs.”"
+      ],
+      [
+       "barbend-t2b",
+       "instrukcja krok po kroku (unosząc nogi, aktywnie ściągaj drążek dłońmi w dół; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "hang.noSwing",
+     "s": [
+      [
+       "catalyst-45",
+       "opis ćwiczenia, zdanie 3 („Without swinging, lift your straight legs up until the toes reach the bar…”)"
+      ],
+      [
+       "barbend-t2b",
+       "instrukcja jest dla wersji ścisłej, krok z wymachem („kick”) pominąć w powtórzeniach ścisłych — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
   }
  },
  "open": {
@@ -22428,10 +23790,6 @@
   "Sissy Squat": "brak źródeł (docs/research/33)",
   "Hip Abduction": "wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33)",
   "Hip Adduction": "oba źródła (ACE, HKU) opisują przywodzenie na wyciągu stojąc, nie maszynę; komplet zależy też od szczebla HKU (docs/research/33, pyt. 1)",
-  "Hanging Leg Raise": "NASM opisuje tylko progresję; źródła uczelniane niespójne (tekst i zdjęcie) (docs/research/33)",
-  "Hanging Knee Raise": "komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1)",
-  "Cable Crunch": "komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1)",
-  "Hollow Hold": "jedno źródło (Root 2019); Aube 2026 tylko nazwa (docs/research/33)",
   "Assault Bike": "czy rower stacjonarny to wariant roweru powietrznego z ruchomymi rączkami (jak kąt ławki) — pytanie otwarte; dokumentacji producenta nie udało się odczytać (docs/research/33, pyt. 4)",
   "Skakanka": "drugie źródło to organizacja spoza fitnessu (DAN), której szczebel jest otwarty (docs/research/33, pyt. 2)"
  },
@@ -22565,7 +23923,18 @@
   "Zottman Curl",
   "Zottman Preacher Curl",
   "Band Pull Apart",
-  "Cuban Press"
+  "Cuban Press",
+  "Cable Crunch",
+  "Hollow Hold",
+  "Sit Up",
+  "V-Up",
+  "Machine Crunch",
+  "Suspended Reverse Crunch",
+  "Tuck Crunch",
+  "Stomach Vacuum",
+  "Scissor Kick",
+  "Cable Russian Twists",
+  "Kettlebell Figure 8"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {

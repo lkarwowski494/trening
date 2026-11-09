@@ -1,0 +1,525 @@
+{
+ "_opis": "Partia A4a integracji badań (core: core_floor, core_standing, core_hang, carry; linia 1.1, 09.11.2026): ćwiczenia z nowymi kartami własnymi, karty niepełne (partial), nowe zdania, zdania odrzucone (mniej niż dwie organizacje szczebla ≤ 4 — także błędy wnioskowane) i odwołania do źródeł szczebla 5 albo o nierozstrzygniętym szczeblu (usunięte z kart; powody w polu niebyle). Źródło: badania W1 (badania/g1-core, badania/g6-przyciaganie carry.md — bloki po przeliczeniu szczebli; bloki „NIEAKTUALNY”, „Kandydaci wstrzymani”, „warunkowo” pominięte), W2 (badania/w2-core, badania/w2-przyciaganie carry.md) i obowiązkowe 1.1 (badania/obowiazkowe-1-1 mieszane.md — Hanging Leg Raise, Hanging Knee Raise) z 02.11.2026. Niewdrożone: karty bez ustawienia albo ruchu po odrzuceniu zdań (bezUstawieniaLubRuchu), karty bez błędu przy ćwiczeniu z pozami v2 (pominieteBezBledu — decyzja z 02.11.2026), ćwiczenia bez bloku w badaniach (otwarte — lista w docs/18 09.11.2026). Partia A4b (moc: kb_ballistic, plyo, sled_throw, strongman; przedramiona) — osobno (STAN-A4.md).",
+ "rodzina": "core",
+ "cwiczenia": [
+  "Cable Crunch",
+  "Hollow Hold",
+  "Superman",
+  "Sit Up",
+  "V-Up",
+  "Machine Crunch",
+  "Suspended Reverse Crunch",
+  "Tuck Crunch",
+  "Stomach Vacuum",
+  "Scissor Kick",
+  "Kettlebell Windmill",
+  "Cable Russian Twists",
+  "Double Kettlebell Windmill",
+  "Kettlebell Figure 8",
+  "Hanging Leg Raise",
+  "Hanging Knee Raise",
+  "Toes to Bar"
+ ],
+ "partial": [
+  "Cable Crunch",
+  "Hollow Hold",
+  "Sit Up",
+  "V-Up",
+  "Machine Crunch",
+  "Suspended Reverse Crunch",
+  "Tuck Crunch",
+  "Stomach Vacuum",
+  "Scissor Kick",
+  "Cable Russian Twists",
+  "Kettlebell Figure 8"
+ ],
+ "zdania": [
+  "core_floor.ccMove",
+  "core_floor.ccSetup",
+  "core_floor.headNeutral",
+  "core_floor.heelTouch.setup",
+  "core_floor.hollowMove",
+  "core_floor.mcMove",
+  "core_floor.mcSetup",
+  "core_floor.mis.archBack",
+  "core_floor.mis.ccArms",
+  "core_floor.mis.fastReturn",
+  "core_floor.mis.headUp",
+  "core_floor.mis.lowBackUp",
+  "core_floor.mis.neckPull",
+  "core_floor.mis.situpFeet",
+  "core_floor.mis.vupKnees",
+  "core_floor.scissor.lift",
+  "core_floor.scissor.move",
+  "core_floor.scissor.setup",
+  "core_floor.situpMove",
+  "core_floor.supermanMove",
+  "core_floor.supermanSetup",
+  "core_floor.supineArms",
+  "core_floor.supineReach",
+  "core_floor.suspRevCrunch.move",
+  "core_floor.suspRevCrunch.setup",
+  "core_floor.tuckCrunch.move",
+  "core_floor.tuckCrunch.setup",
+  "core_floor.vacuum.breathe",
+  "core_floor.vacuum.move",
+  "core_floor.vupMove",
+  "core_standing.cabletwist.hips",
+  "core_standing.cabletwist.mis.hipsDrop",
+  "core_standing.cabletwist.move",
+  "core_standing.cabletwist.setup",
+  "core_standing.figure8.move",
+  "core_standing.figure8.setup",
+  "core_standing.windmill.dblMove",
+  "core_standing.windmill.dblSetup",
+  "core_standing.windmill.knees",
+  "core_standing.windmill.mis.elbow",
+  "core_standing.windmill.mis.topElbow",
+  "core_standing.windmill.move",
+  "core_standing.windmill.setup",
+  "core_standing.windmill.up",
+  "hang.knees.move",
+  "hang.legs.move",
+  "hang.pressBar",
+  "hang.setup",
+  "hang.t2b.move",
+  "hang.t2b.straight"
+ ],
+ "odrzucone": [
+  [
+   "Decline Crunch",
+   "mistakes",
+   "core_floor.mis.lowBackUp",
+   []
+  ],
+  [
+   "GHD Sit Up",
+   "mistakes",
+   "core_floor.mis.ghdDeep",
+   []
+  ],
+  [
+   "Stability Ball Crunch",
+   "setup",
+   "core_floor.ballSetup",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "move",
+   "core_floor.ballMove",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "tips",
+   "core_floor.ballStill",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "mistakes",
+   "core_floor.mis.momentum",
+   [
+    "NASM"
+   ]
+  ],
+  [
+   "Stability Ball Crunch",
+   "mistakes",
+   "core_floor.mis.ballPos",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "setup",
+   "core_floor.heelTouch.setup",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "move",
+   "core_floor.heelTouch.move",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "tips",
+   "core_floor.heelTouch.breath",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Alternate Heel Touchers",
+   "mistakes",
+   "core_floor.mis.neckPull",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Cross-Body Crunch",
+   "mistakes",
+   "core_floor.mis.headPull",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Crunch - Hands Overhead",
+   "mistakes",
+   "core_floor.mis.archBack",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Crunch - Legs On Exercise Ball",
+   "mistakes",
+   "core_floor.mis.archBack",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Tuck Crunch",
+   "mistakes",
+   "core_floor.mis.thighsPast",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Cable Woodchop",
+   "setup",
+   "core_standing.woodchop.setup",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Landmine Rotation",
+   "mistakes",
+   "core_standing.landmine.mis.armsOnly",
+   []
+  ],
+  [
+   "Side Bend (hantel)",
+   "mistakes",
+   "core_standing.sidebend.mis.twist",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Barbell Side Bend",
+   "setup",
+   "core_standing.sidebend.barSetup",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Barbell Side Bend",
+   "move",
+   "core_standing.sidebend.move",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Barbell Side Bend",
+   "mistakes",
+   "core_standing.sidebend.mis.twist",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Cable Russian Twists",
+   "mistakes",
+   "core_standing.cabletwist.mis.bentArms",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Kettlebell Figure 8",
+   "mistakes",
+   "core_standing.figure8.mis.straightLegs",
+   []
+  ],
+  [
+   "Pallof Press With Rotation",
+   "move",
+   "core_standing.pallofrot.move",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Pallof Press With Rotation",
+   "mistakes",
+   "core_standing.pallofrot.mis.bentArms",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Toes to Bar",
+   "mistakes",
+   "hang.t2b.mis.short",
+   []
+  ],
+  [
+   "L-Sit",
+   "setup",
+   "lsit.setup",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "L-Sit",
+   "tips",
+   "lsit.legsTogether",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "L-Sit",
+   "mistakes",
+   "lsit.mis.legsDrop",
+   []
+  ],
+  [
+   "Overhead Carry (hantle)",
+   "setup",
+   "ohc.setup",
+   [
+    "StrongFirst"
+   ]
+  ],
+  [
+   "Overhead Carry (hantle)",
+   "move",
+   "ohc.walk",
+   [
+    "NSCA"
+   ]
+  ],
+  [
+   "Overhead Carry (hantle)",
+   "mistakes",
+   "ohc.mis.arms",
+   [
+    "StrongFirst"
+   ]
+  ],
+  [
+   "Farmer's Walk (trap bar)",
+   "mistakes",
+   "carry.mis.arms",
+   []
+  ],
+  [
+   "Farmer's Walk (Farmers Handles)",
+   "mistakes",
+   "carry.mis.arms",
+   []
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Stability Ball Crunch",
+   "core_floor.ballSetup",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.ballMove",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.ballStill",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "crunch.neck",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.mis.momentum",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Stability Ball Crunch",
+   "core_floor.mis.ballPos",
+   "nfpt-stability-ball-crunch"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.heelTouch.setup",
+   "fv-heel-touchers"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.heelTouch.move",
+   "fv-heel-touchers"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.heelTouch.breath",
+   "fv-heel-touchers"
+  ],
+  [
+   "Alternate Heel Touchers",
+   "core_floor.mis.neckPull",
+   "fv-heel-touchers"
+  ],
+  [
+   "Cable Woodchop",
+   "core_standing.woodchop.setup",
+   "iom-lx48264v"
+  ],
+  [
+   "Cable Woodchop",
+   "core_standing.woodchop.move",
+   "iom-lx48264v"
+  ],
+  [
+   "Cable Woodchop",
+   "core_standing.woodchop.trunk",
+   "iom-lx48264v"
+  ],
+  [
+   "Barbell Side Bend",
+   "core_standing.sidebend.barSetup",
+   "fitnessvolt-bb-side-bend"
+  ],
+  [
+   "Barbell Side Bend",
+   "core_standing.sidebend.move",
+   "fitnessvolt-bb-side-bend"
+  ],
+  [
+   "Pallof Press With Rotation",
+   "pallof.setup",
+   "speediance-pallof-training"
+  ],
+  [
+   "Pallof Press With Rotation",
+   "core_standing.pallofrot.move",
+   "speediance-pallof-training"
+  ],
+  [
+   "L-Sit",
+   "lsit.setup",
+   "fig-a202"
+  ],
+  [
+   "L-Sit",
+   "lsit.move",
+   "fig-a202"
+  ],
+  [
+   "L-Sit",
+   "lsit.legsTogether",
+   "fig-a202"
+  ]
+ ],
+ "niebyle": {
+  "speediance-pallof-training": "Speediance — blog producenta z elementem marketingu własnej maszyny; badania G1 W1: „źródło niewystarczające, nie przenosić”; uzupełnienie 3: blog producenta = 5",
+  "fig-a202": "FIG (kodeks gimnastyki aerobowej) — szczebel „4 warunkowo”, (a) szkolenie trenerów niepotwierdzone lekturą; nierozstrzygnięte w docs/18",
+  "nfpt-stability-ball-crunch": "NFPT (E. Nitschke) — kwalifikacje autorki tylko na stronie innej organizacji (ACE), nie na stronie NFPT; nierozstrzygnięte (jak strona NFPT o prostowaniu nóg w A2)",
+  "fv-heel-touchers": "Fitness Volt — w zapisie badań autor bez nazwiska („ACE CPT; MSc Exercise Science” — profil jak „Ash, ACE, MSc”); A3 09.11.2026: autor bez nazwiska = szczebel 5",
+  "fitnessvolt-bb-side-bend": "Fitness Volt „Ash, ACE, MSc” bez nazwiska = szczebel 5 (recenzja A3 i decyzja koordynatora 09.11.2026)",
+  "iom-lx48264v": "Institute of Motion — brak autora i daty, firmowanie tylko przez domenę platformy (warunek (b) „do potwierdzenia przez koordynatora”, nierozstrzygnięte)"
+ },
+ "bezUstawieniaLubRuchu": [
+  "Decline Crunch",
+  "GHD Sit Up",
+  "Bicycle Crunch",
+  "Stability Ball Crunch",
+  "Alternate Heel Touchers",
+  "Cable Reverse Crunch",
+  "Crunch - Hands Overhead",
+  "Crunch - Legs On Exercise Ball",
+  "Decline Reverse Crunch",
+  "Cable Woodchop",
+  "Barbell Side Bend",
+  "Pallof Press With Rotation",
+  "L-Sit",
+  "Overhead Carry (hantle)"
+ ],
+ "pominieteBezBledu": [
+  "Cross-Body Crunch",
+  "Landmine Rotation",
+  "Side Bend (hantel)",
+  "Farmer's Walk (trap bar)",
+  "Farmer's Walk (Farmers Handles)"
+ ],
+ "noweZrodla": [
+  "ace-331",
+  "barbend-cable-crunch",
+  "barbend-hollow-hold",
+  "catalyst-hollow-hold",
+  "ace-9",
+  "cc-superman",
+  "catalyst-sit-up",
+  "barbend-sit-up",
+  "catalyst-v-up",
+  "webmd-v-ups",
+  "ace-291",
+  "hoist-hd-3600",
+  "ace-87",
+  "trx-basics",
+  "trx-compound-2",
+  "fv-tuck-crunch",
+  "ace-243",
+  "healthline-stomach-vacuum",
+  "vm-ta-isometric",
+  "fv-scissor-kicks",
+  "healthline-scissor-kicks",
+  "catalyst-522",
+  "ace-386",
+  "lifetime-kb-windmill",
+  "fitnessvolt-cable-russian-twist",
+  "ace-382",
+  "fitnessvolt-kb-figure-8",
+  "catalyst-45",
+  "barbend-hlr",
+  "barbend-hkr",
+  "healthline-hkr",
+  "barbend-t2b",
+  "crossfit-strict-t2b"
+ ],
+ "noweOrganizacje": [
+  "WebMD",
+  "Hoist Fitness",
+  "Virginia Mason Franciscan Health"
+ ],
+ "zdaniaUsuniete": [
+  [
+   "vup.back",
+   "zestaw ogólny V-Up zastąpiony kartą własną — zdanie osierocone usunięte ze słowników i z data/zrodla/cues-zestawy.json (precedens ur.height, 04.11.2026)"
+  ]
+ ]
+}
