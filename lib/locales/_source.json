@@ -376,6 +376,10 @@
   "en": "The app uses open-source libraries. Below are the licences (tap to see the text) and every npm package the app depends on — build tools included — with its licence and copyright notice."
  },
  {
+  "pl": "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.",
+  "en": "The app is now called {app}. Your workouts, templates and settings stay unchanged."
+ },
+ {
   "pl": "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.",
   "en": "The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist."
  },

@@ -10,6 +10,7 @@ import * as fs from 'fs';
 import { PENDING_NEW, PENDING_CUE_IDS } from './pending-translation';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, lang, locale, decimalComma, tp, t, detectLang, LANG_NAME, APP_NAME, type Lang } from '@/lib/i18n';
+import { BRAND_NAME } from '@/lib/brand';
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS, pluralIndex } from '@/lib/plural';
@@ -47,10 +48,10 @@ describe('resolveLang / detectLang: telefon po indonezyjsku, malajsku, wietnamsk
     dev('de', 'de-DE');
     for (const [l, tag] of [['id', 'id-ID'], ['ms', 'ms-MY'], ['vi', 'vi-VN']] as const) { applyLang(l); expect([l, locale()]).toEqual([l, tag]); }
   });
-  test('LANGS: nowe kody na końcu listy (kolejność w ustawieniach), nazwy w danym języku, nazwa aplikacji „Training” (lokalne słowo niepodobne do „Trening”)', () => {
+  test('LANGS: nowe kody na końcu listy (kolejność w ustawieniach), nazwy w danym języku, nazwa aplikacji = marka (od 1.1, ZB-056)', () => {
     expect(LANGS.slice(LANGS.indexOf('el') + 1, LANGS.indexOf('el') + 4)).toEqual(['id', 'ms', 'vi']); /* fala 3 (ru) dopisana za nimi */
     expect(W2.map(l => LANG_NAME[l])).toEqual(['Bahasa Indonesia', 'Bahasa Melayu', 'Tiếng Việt']);
-    expect(W2.map(l => APP_NAME[l])).toEqual(['Training', 'Training', 'Training']);
+    expect(W2.map(l => APP_NAME[l])).toEqual([BRAND_NAME, BRAND_NAME, BRAND_NAME]);
   });
 });
 
@@ -82,7 +83,7 @@ describe('dane: komplet słowników UI i wskazówek techniki', () => {
     const want: Record<W2, RegExp> = { id: /kesehatan/i, ms: /kesihatan/i, vi: /sức khỏe/i };
     for (const l of W2) {
       const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'locales', `${l}.json`), 'utf8'));
-      expect([l, f.CFBundleDisplayName, want[l].test(f.NSHealthShareUsageDescription)]).toEqual([l, 'Training', true]);
+      expect([l, f.CFBundleDisplayName, want[l].test(f.NSHealthShareUsageDescription)]).toEqual([l, BRAND_NAME, true]);
     }
   });
 });

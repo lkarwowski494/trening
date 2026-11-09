@@ -25,7 +25,7 @@ notatka nie jest wymagana, zostaje krótki opis drogi do ekranu zakupu.
 ## English (do wklejenia)
 
 ```text
-Thank you for reviewing Trening.
+Thank you for reviewing RepsGoat.
 
 NO ACCOUNT, NO SERVER
 - No sign-in and no backend. Everything is stored on the device; the app makes no network requests of its own. No demo account is needed.
@@ -66,7 +66,7 @@ CONTACT
 ## Polski (dla właściciela — to samo znaczenie)
 
 ```text
-Dziękujemy za recenzję aplikacji Trening.
+Dziękujemy za recenzję aplikacji RepsGoat.
 
 BEZ KONTA I BEZ SERWERA
 - Aplikacja nie ma logowania ani zaplecza. Wszystko zostaje na urządzeniu; aplikacja sama nie wykonuje żadnych połączeń sieciowych. Konto demonstracyjne nie jest potrzebne (logowanie wyłączone).
