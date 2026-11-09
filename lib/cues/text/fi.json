@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Käy makuulle penkille ja pidä käsipainoa yläpuolellasi suoralla kädellä.",
  "tri.skullDbDec.setup": "Käy makuulle alaviistopenkille pää lantiota alempana ja pidä käsipainoja yläpuolellasi suorin käsin.",
  "tri.skullDec.setup": "Käy makuulle alaviistopenkille pää lantiota alempana ja pidä levytankoa yläpuolellasi suorin käsin.",
- "tri.skullInc.setup": "Käy makuulle vinopenkille ja pidä levytankoa yläpuolellasi suorin käsin."
+ "tri.skullInc.setup": "Käy makuulle vinopenkille ja pidä levytankoa yläpuolellasi suorin käsin.",
+ "ballcurl.mis.sag": "Lantio notkahtaa liikkeen aikana.",
+ "lunge.bbSetup": "Levytanko yläselälle, seiso suorana.",
+ "lunge2.mis.lean": "Ylävartalo kallistuu reilusti eteen alas mennessä.",
+ "lunge2.mis.shallow": "Liian matala lasku: takapolvi jää kauas lattiasta.",
+ "slcurl.move": "Nosta lantio, liu'uta jalat suoriksi ja vedä sitten kantapäät takaisin. Lantio ylhäällä koko ajan.",
+ "slcurl.setup": "Käy selinmakuulle, polvet koukussa, kantapäät liukulevyjen päällä.",
+ "split.setup": "Asetu askelasentoon: toinen jalka edessä, toinen takana päkiällä.",
+ "stepup.mis.drop": "Pudottaudut korokkeelta etkä astu alas hallitusti."
 }

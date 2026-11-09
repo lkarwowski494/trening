@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Leg dich auf eine Bank und halte eine Hantel mit gestrecktem Arm über dir.",
  "tri.skullDbDec.setup": "Leg dich auf eine Negativbank, Kopf tiefer als die Hüfte, und halte die Hanteln mit gestreckten Armen über dir.",
  "tri.skullDec.setup": "Leg dich auf eine Negativbank, Kopf tiefer als die Hüfte, und halte die Langhantel mit gestreckten Armen über dir.",
- "tri.skullInc.setup": "Leg dich auf eine Schrägbank und halte die Langhantel mit gestreckten Armen über dir."
+ "tri.skullInc.setup": "Leg dich auf eine Schrägbank und halte die Langhantel mit gestreckten Armen über dir.",
+ "ballcurl.mis.sag": "Hüfte sackt während der Bewegung ab.",
+ "lunge.bbSetup": "Langhantel auf dem oberen Rücken, steh aufrecht.",
+ "lunge2.mis.lean": "Oberkörper kippt beim Runtergehen stark nach vorne.",
+ "lunge2.mis.shallow": "Zu wenig Tiefe: Das hintere Knie bleibt weit über dem Boden.",
+ "slcurl.move": "Heb die Hüfte, schieb die Beine nach vorne, bis sie gestreckt sind, dann zieh die Fersen wieder heran. Die Hüfte bleibt die ganze Zeit oben.",
+ "slcurl.setup": "Leg dich auf den Rücken, Knie gebeugt, Fersen auf den Gleitpads.",
+ "split.setup": "Geh in Schrittstellung: ein Fuß vorne, der andere hinten auf dem Fußballen.",
+ "stepup.mis.drop": "Von der Erhöhung runterfallen statt kontrolliert abzusteigen."
 }

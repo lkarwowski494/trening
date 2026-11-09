@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Túmbate en un banco y sostén una mancuerna sobre ti con el brazo estirado.",
  "tri.skullDbDec.setup": "Túmbate en un banco declinado, con la cabeza más baja que las caderas, y sostén las mancuernas sobre ti con los brazos estirados.",
  "tri.skullDec.setup": "Túmbate en un banco declinado, con la cabeza más baja que las caderas, y sostén la barra sobre ti con los brazos estirados.",
- "tri.skullInc.setup": "Túmbate en un banco inclinado y sostén la barra sobre ti con los brazos estirados."
+ "tri.skullInc.setup": "Túmbate en un banco inclinado y sostén la barra sobre ti con los brazos estirados.",
+ "ballcurl.mis.sag": "Caderas que se hunden durante el movimiento.",
+ "lunge.bbSetup": "Barra en la parte alta de la espalda, ponte bien erguido.",
+ "lunge2.mis.lean": "Inclinar mucho el torso hacia delante al bajar.",
+ "lunge2.mis.shallow": "No bajar lo suficiente: la rodilla de atrás se queda muy lejos del suelo.",
+ "slcurl.move": "Sube las caderas, desliza las piernas hasta estirarlas y luego vuelve a llevar los talones hacia ti, con las caderas arriba todo el tiempo.",
+ "slcurl.setup": "Túmbate boca arriba, con las rodillas flexionadas y los talones sobre los deslizadores.",
+ "split.setup": "Ponte en zancada: un pie delante y el otro detrás, apoyado en la punta.",
+ "stepup.mis.drop": "Dejarse caer del cajón en lugar de bajar con control."
 }

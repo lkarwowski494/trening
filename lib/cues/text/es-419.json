@@ -208,5 +208,13 @@
  "tri.skullInc.setup": "Acuéstate en un banco inclinado y sostén la barra sobre ti con los brazos estirados.",
  "kick.setup": "Inclínate hacia adelante con la espalda recta y apoya la mano libre en un banco o en el muslo; brazo pegado al torso, codo flexionado en ángulo recto.",
  "tri.kick2.setup": "Con una mancuerna en cada mano, inclínate hacia adelante con la espalda recta; brazos pegados al torso, codos flexionados en ángulo recto.",
- "tri.mis.elbowDrift1": "Dejar que el codo se vaya hacia adelante en lugar de mantenerlo alto."
+ "tri.mis.elbowDrift1": "Dejar que el codo se vaya hacia adelante en lugar de mantenerlo alto.",
+ "ballcurl.mis.sag": "Cadera que se cae durante el movimiento.",
+ "lunge.bbSetup": "Barra sobre la parte alta de la espalda, párate derecho.",
+ "lunge2.mis.lean": "Inclinar mucho el torso hacia adelante al bajar.",
+ "lunge2.mis.shallow": "Bajar muy poco: la rodilla de atrás se queda muy lejos del piso.",
+ "slcurl.move": "Sube la cadera, desliza las piernas hasta estirarlas y luego regresa los talones: la cadera arriba todo el tiempo.",
+ "slcurl.setup": "Acuéstate boca arriba, rodillas flexionadas, talones sobre los deslizadores.",
+ "split.setup": "Párate en zancada: un pie adelante y el otro atrás, apoyado en la punta.",
+ "stepup.mis.drop": "Dejarte caer del cajón en lugar de bajar con control."
 }

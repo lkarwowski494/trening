@@ -601,5 +601,12 @@
  "tri.skullDb1.setup": "Deite-se em um banco e segure um halter acima de você com o braço estendido.",
  "tri.skullDbDec.setup": "Deite-se em um banco declinado, com a cabeça mais baixa que o quadril, e segure os halteres acima de você com os braços estendidos.",
  "tri.skullDec.setup": "Deite-se em um banco declinado, com a cabeça mais baixa que o quadril, e segure a barra acima de você com os braços estendidos.",
- "tri.skullInc.setup": "Deite-se em um banco inclinado e segure a barra acima de você com os braços estendidos."
+ "tri.skullInc.setup": "Deite-se em um banco inclinado e segure a barra acima de você com os braços estendidos.",
+ "ballcurl.mis.sag": "Quadril caindo durante o movimento.",
+ "lunge.bbSetup": "Barra na parte de cima das costas, fique ereto.",
+ "lunge2.mis.shallow": "Descida curta demais — o joelho de trás fica bem longe do chão.",
+ "slcurl.move": "Eleve o quadril, deslize as pernas até estendê-las e depois puxe os calcanhares de volta — quadril elevado o tempo todo.",
+ "slcurl.setup": "Deite de costas, joelhos dobrados, calcanhares nos discos deslizantes.",
+ "split.setup": "Fique em posição de afundo: um pé à frente, o outro atrás, apoiado na ponta do pé.",
+ "stepup.mis.drop": "Cair do caixote em vez de descer com controle."
 }

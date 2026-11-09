@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lama pingil ja hoia hantlit enda kohal sirge käega.",
  "tri.skullDbDec.setup": "Lama allapoole kaldu pingile nii, et pea jääb puusadest madalamale, ja hoia hantleid enda kohal sirgete kätega.",
  "tri.skullDec.setup": "Lama allapoole kaldu pingile nii, et pea jääb puusadest madalamale, ja hoia kangi enda kohal sirgete kätega.",
- "tri.skullInc.setup": "Lama kaldpingil ja hoia kangi enda kohal sirgete kätega."
+ "tri.skullInc.setup": "Lama kaldpingil ja hoia kangi enda kohal sirgete kätega.",
+ "ballcurl.mis.sag": "Puusad vajuvad liikumise ajal alla.",
+ "lunge.bbSetup": "Kang ülaselja peal, seisa sirgelt.",
+ "lunge2.mis.lean": "Ülakeha kallutamine laskumisel tugevalt ette.",
+ "lunge2.mis.shallow": "Laskumine pole piisavalt sügav: tagumine põlv jääb põrandast kõrgele.",
+ "slcurl.move": "Tõsta puusad üles, libista jalad sirgeks, siis tõmba kannad tagasi. Puusad on kogu aeg üleval.",
+ "slcurl.setup": "Lama selili, põlved kõverdatud, kannad liugplaatidel.",
+ "split.setup": "Seisa väljaastes: üks jalg ees, teine taga päkal.",
+ "stepup.mis.drop": "Kõrgenduselt alla kukkumine kontrollitud mahaastumise asemel."
 }

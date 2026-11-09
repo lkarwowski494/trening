@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lig på en bænk, og hold en håndvægt over dig med strakt arm.",
  "tri.skullDbDec.setup": "Lig på en skråbænk med hovedet lavere end hofterne, og hold håndvægtene over dig med strakte arme.",
  "tri.skullDec.setup": "Lig på en skråbænk med hovedet lavere end hofterne, og hold vægtstangen over dig med strakte arme.",
- "tri.skullInc.setup": "Lig på en skråbænk, og hold vægtstangen over dig med strakte arme."
+ "tri.skullInc.setup": "Lig på en skråbænk, og hold vægtstangen over dig med strakte arme.",
+ "ballcurl.mis.sag": "Hofterne synker under bevægelsen.",
+ "lunge.bbSetup": "Vægtstangen øverst på ryggen, stå rank.",
+ "lunge2.mis.lean": "Overkroppen tipper langt frem på vej ned.",
+ "lunge2.mis.shallow": "Du går ikke dybt nok, og det bagerste knæ bliver langt over gulvet.",
+ "slcurl.move": "Løft hofterne, skub benene ud, til de er strakte, og træk så hælene ind igen. Hold hofterne oppe hele tiden.",
+ "slcurl.setup": "Lig på ryggen med bøjede knæ og hælene på glidepuderne.",
+ "split.setup": "Stå i udfaldsstilling: den ene fod foran, den anden bagved på forfoden.",
+ "stepup.mis.drop": "Du dumper ned fra kassen i stedet for at træde kontrolleret ned."
 }

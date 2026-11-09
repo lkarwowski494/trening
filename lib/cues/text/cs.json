@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lehni si na lavici a drž jednoručku nad sebou na propnuté paži.",
  "tri.skullDbDec.setup": "Lehni si na lavici s negativním sklonem (hlavou dolů) a drž jednoručky nad sebou na propnutých pažích.",
  "tri.skullDec.setup": "Lehni si na lavici s negativním sklonem (hlavou dolů) a drž činku nad sebou na propnutých pažích.",
- "tri.skullInc.setup": "Lehni si na šikmou lavici a drž činku nad sebou na propnutých pažích."
+ "tri.skullInc.setup": "Lehni si na šikmou lavici a drž činku nad sebou na propnutých pažích.",
+ "ballcurl.mis.sag": "Propadání boků během pohybu.",
+ "lunge.bbSetup": "Činka na horní části zad, stůj zpříma.",
+ "lunge2.mis.lean": "Výrazné naklánění trupu dopředu při spouštění dolů.",
+ "lunge2.mis.shallow": "Příliš mělké spuštění: zadní koleno zůstává vysoko nad zemí.",
+ "slcurl.move": "Zvedni boky, vysuň nohy do propnutí, pak přitáhni paty zpět. Boky drž celou dobu nahoře.",
+ "slcurl.setup": "Lehni si na záda, kolena pokrč, paty dej na klouzací podložky.",
+ "split.setup": "Postav se do výpadu: jedna noha vpředu, druhá vzadu na špičce.",
+ "stepup.mis.drop": "Seskakování z vyvýšení místo kontrolovaného sestupu."
 }

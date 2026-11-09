@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ľahni si na lavičku a drž jednoručku nad sebou na vystretej ruke.",
  "tri.skullDbDec.setup": "Ľahni si na lavičku s negatívnym sklonom (hlavou nadol) a drž jednoručky nad sebou na vystretých rukách.",
  "tri.skullDec.setup": "Ľahni si na lavičku s negatívnym sklonom (hlavou nadol) a drž činku nad sebou na vystretých rukách.",
- "tri.skullInc.setup": "Ľahni si na šikmú lavičku a drž činku nad sebou na vystretých rukách."
+ "tri.skullInc.setup": "Ľahni si na šikmú lavičku a drž činku nad sebou na vystretých rukách.",
+ "ballcurl.mis.sag": "Prepadávanie bokov počas pohybu.",
+ "lunge.bbSetup": "Činka na hornej časti chrbta, postav sa vzpriamene.",
+ "lunge2.mis.lean": "Výrazné nakláňanie trupu dopredu pri zostupe.",
+ "lunge2.mis.shallow": "Príliš plytký zostup: zadné koleno zostáva vysoko nad zemou.",
+ "slcurl.move": "Zdvihni boky, vysuň nohy do vystretia, potom pritiahni päty späť. Boky drž celý čas hore.",
+ "slcurl.setup": "Ľahni si na chrbát, kolená pokrčené, päty na kĺzačoch.",
+ "split.setup": "Postav sa do výpadu: jedna noha vpredu, druhá vzadu, opretá o špičku.",
+ "stepup.mis.drop": "Zoskakovanie z vyvýšeniny namiesto kontrolovaného zostupu."
 }

@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ligg på en bänk och håll en hantel ovanför dig med rak arm.",
  "tri.skullDbDec.setup": "Ligg på en lutande bänk med huvudet lägre än höfterna och håll hantlarna ovanför dig med raka armar.",
  "tri.skullDec.setup": "Ligg på en lutande bänk med huvudet lägre än höfterna och håll skivstången ovanför dig med raka armar.",
- "tri.skullInc.setup": "Ligg på en lutande bänk och håll skivstången ovanför dig med raka armar."
+ "tri.skullInc.setup": "Ligg på en lutande bänk och håll skivstången ovanför dig med raka armar.",
+ "ballcurl.mis.sag": "Höfterna sjunker under rörelsen.",
+ "lunge.bbSetup": "Skivstången på övre delen av ryggen, stå rak.",
+ "lunge2.mis.lean": "Du lutar överkroppen långt framåt på väg ner.",
+ "lunge2.mis.shallow": "För grunt — bakre knät stannar högt över golvet.",
+ "slcurl.move": "Lyft höfterna, skjut ut benen tills de är raka och dra sedan tillbaka hälarna — höfterna uppe hela tiden.",
+ "slcurl.setup": "Ligg på rygg med böjda knän och hälarna på glidplattorna.",
+ "split.setup": "Stå i utfallsställning: ena foten fram, den andra bak på fotbladet.",
+ "stepup.mis.drop": "Du tappar ner från lådan i stället för att kliva ner kontrollerat."
 }

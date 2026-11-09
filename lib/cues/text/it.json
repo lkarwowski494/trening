@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Sdraiati su una panca e tieni un manubrio sopra di te a braccio teso.",
  "tri.skullDbDec.setup": "Sdraiati su una panca declinata, con la testa più in basso del bacino, e tieni i manubri sopra di te a braccia tese.",
  "tri.skullDec.setup": "Sdraiati su una panca declinata, con la testa più in basso del bacino, e tieni il bilanciere sopra di te a braccia tese.",
- "tri.skullInc.setup": "Sdraiati su una panca inclinata e tieni il bilanciere sopra di te a braccia tese."
+ "tri.skullInc.setup": "Sdraiati su una panca inclinata e tieni il bilanciere sopra di te a braccia tese.",
+ "ballcurl.mis.sag": "Bacino che cede durante il movimento.",
+ "lunge.bbSetup": "Bilanciere sulla parte alta della schiena, stai dritto.",
+ "lunge2.mis.lean": "Busto che si sbilancia troppo in avanti in discesa.",
+ "lunge2.mis.shallow": "Discesa troppo corta: il ginocchio dietro resta molto sollevato da terra.",
+ "slcurl.move": "Solleva il bacino, fai scivolare le gambe fino a distenderle, poi riporta i talloni verso di te: bacino sempre in alto.",
+ "slcurl.setup": "Sdraiati sulla schiena, ginocchia piegate, talloni sugli slider.",
+ "split.setup": "Mettiti in affondo: un piede avanti, l’altro dietro, in appoggio sull’avampiede.",
+ "stepup.mis.drop": "Lasciarsi cadere dal rialzo invece di scendere con controllo."
 }

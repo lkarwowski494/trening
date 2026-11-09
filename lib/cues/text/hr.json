@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lezi na klupu i drži bučicu iznad sebe na ispruženoj ruci.",
  "tri.skullDbDec.setup": "Lezi na kosu klupu glavom prema dolje i drži bučice iznad sebe na ispruženim rukama.",
  "tri.skullDec.setup": "Lezi na kosu klupu glavom prema dolje i drži šipku iznad sebe na ispruženim rukama.",
- "tri.skullInc.setup": "Lezi na kosu klupu i drži šipku iznad sebe na ispruženim rukama."
+ "tri.skullInc.setup": "Lezi na kosu klupu i drži šipku iznad sebe na ispruženim rukama.",
+ "ballcurl.mis.sag": "Propadanje kukova tijekom pokreta.",
+ "lunge.bbSetup": "Šipka na gornjem dijelu leđa, stani uspravno.",
+ "lunge2.mis.lean": "Jako naginjanje trupa naprijed pri spuštanju.",
+ "lunge2.mis.shallow": "Preplitko spuštanje: stražnje koljeno ostaje visoko iznad poda.",
+ "slcurl.move": "Podigni kukove, ispruži noge do kraja, zatim privuci pete natrag. Kukovi su cijelo vrijeme gore.",
+ "slcurl.setup": "Lezi na leđa, koljena savijena, pete na klizačima.",
+ "split.setup": "Stani u iskorak: jedno stopalo naprijed, drugo iza, oslonjeno na prste.",
+ "stepup.mis.drop": "Propadanje s povišenja umjesto kontroliranog silaska."
 }

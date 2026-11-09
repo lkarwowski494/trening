@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Întinde-te pe bancă și ține o ganteră deasupra ta, cu brațul întins.",
  "tri.skullDbDec.setup": "Întinde-te pe o bancă înclinată cu capul în jos și ține ganterele deasupra ta, cu brațele întinse.",
  "tri.skullDec.setup": "Întinde-te pe o bancă înclinată cu capul în jos și ține bara deasupra ta, cu brațele întinse.",
- "tri.skullInc.setup": "Întinde-te pe o bancă înclinată și ține bara deasupra ta, cu brațele întinse."
+ "tri.skullInc.setup": "Întinde-te pe o bancă înclinată și ține bara deasupra ta, cu brațele întinse.",
+ "ballcurl.mis.sag": "Șoldurile se lasă în jos în timpul mișcării.",
+ "lunge.bbSetup": "Haltera pe partea de sus a spatelui, stai drept.",
+ "lunge2.mis.lean": "Aplecarea puternică a trunchiului în față la coborâre.",
+ "lunge2.mis.shallow": "Coborâre prea mică: genunchiul din spate rămâne mult deasupra podelei.",
+ "slcurl.move": "Ridică șoldurile, alunecă picioarele până se întind, apoi trage călcâiele înapoi, cu șoldurile sus tot timpul.",
+ "slcurl.setup": "Întinde-te pe spate, cu genunchii îndoiți și călcâiele pe glisoare.",
+ "split.setup": "Stai în fandare: un picior în față, celălalt în spate, sprijinit pe vârf.",
+ "stepup.mis.drop": "Căderea de pe platformă în loc de o coborâre controlată."
 }

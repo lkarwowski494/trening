@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ligg på en benk og hold en manual over deg med strak arm.",
  "tri.skullDbDec.setup": "Ligg på en skråbenk med hodet lavere enn hoftene, og hold manualene over deg med strake armer.",
  "tri.skullDec.setup": "Ligg på en skråbenk med hodet lavere enn hoftene, og hold vektstangen over deg med strake armer.",
- "tri.skullInc.setup": "Ligg på en skråbenk og hold vektstangen over deg med strake armer."
+ "tri.skullInc.setup": "Ligg på en skråbenk og hold vektstangen over deg med strake armer.",
+ "ballcurl.mis.sag": "Hoftene synker under bevegelsen.",
+ "lunge.bbSetup": "Vektstanga på øvre del av ryggen, stå rett opp.",
+ "lunge2.mis.lean": "Overkroppen lener seg langt fram på vei ned.",
+ "lunge2.mis.shallow": "For grunt ned – bakre kne er godt over gulvet.",
+ "slcurl.move": "Løft hoftene, skyv beina ut til de er strake, og dra hælene inn igjen – hoftene oppe hele tiden.",
+ "slcurl.setup": "Ligg på ryggen med bøyde knær og hælene på glideputene.",
+ "split.setup": "Stå i utfallsstilling: én fot foran, den andre bak på tåballen.",
+ "stepup.mis.drop": "Du slipper deg ned fra kassen i stedet for å gå kontrollert ned."
 }

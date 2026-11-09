@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Allongez-vous sur un banc et tenez un haltère au-dessus de vous, bras tendu.",
  "tri.skullDbDec.setup": "Allongez-vous sur un banc décliné, tête plus basse que les hanches, et tenez les haltères au-dessus de vous, bras tendus.",
  "tri.skullDec.setup": "Allongez-vous sur un banc décliné, tête plus basse que les hanches, et tenez la barre au-dessus de vous, bras tendus.",
- "tri.skullInc.setup": "Allongez-vous sur un banc incliné et tenez la barre au-dessus de vous, bras tendus."
+ "tri.skullInc.setup": "Allongez-vous sur un banc incliné et tenez la barre au-dessus de vous, bras tendus.",
+ "ballcurl.mis.sag": "Hanches qui s’affaissent pendant le mouvement.",
+ "lunge.bbSetup": "Barre sur le haut du dos, tenez-vous bien droit.",
+ "lunge2.mis.lean": "Buste qui bascule fortement vers l’avant à la descente.",
+ "lunge2.mis.shallow": "Descente trop haute : le genou arrière reste loin du sol.",
+ "slcurl.move": "Montez les hanches, tendez les jambes en faisant glisser les pieds, puis ramenez les talons : hanches en l’air tout du long.",
+ "slcurl.setup": "Allongez-vous sur le dos, genoux fléchis, talons sur les disques de glisse.",
+ "split.setup": "Placez-vous en fente : un pied devant, l’autre derrière, en appui sur l’avant du pied.",
+ "stepup.mis.drop": "Se laisser tomber de la box au lieu de descendre sous contrôle."
 }

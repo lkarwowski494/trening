@@ -620,5 +620,13 @@
  "urow.setup": "Berdiri tegak, pegang beban di depan paha dengan lengan lurus, telapak tangan menghadap badan.",
  "urow1.move": "Tarik beban dekat badan ke arah tulang selangka, lalu turunkan perlahan sampai lengan lurus.",
  "urow1.setup": "Berdiri tegak, pegang beban dengan satu tangan di depan paha, lengan lurus, telapak tangan menghadap badan.",
- "yr.mis.chest": "Dada terangkat dari bangku."
+ "yr.mis.chest": "Dada terangkat dari bangku.",
+ "ballcurl.mis.sag": "Pinggul turun selama gerakan.",
+ "lunge.bbSetup": "Barbel di punggung atas, berdiri tegak.",
+ "lunge2.mis.lean": "Badan condong jauh ke depan saat turun.",
+ "lunge2.mis.shallow": "Turun kurang dalam — lutut belakang masih jauh dari lantai.",
+ "slcurl.move": "Angkat pinggul, luruskan kaki ke depan, lalu tarik tumit kembali — pinggul tetap di atas sepanjang gerakan.",
+ "slcurl.setup": "Berbaring telentang, lutut ditekuk, tumit di atas slider.",
+ "split.setup": "Berdiri dengan posisi kaki depan-belakang: satu kaki di depan, kaki lainnya di belakang, bertumpu pada ujung telapak kaki.",
+ "stepup.mis.drop": "Menjatuhkan diri dari box, bukan turun dengan terkontrol."
 }

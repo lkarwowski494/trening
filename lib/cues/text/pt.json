@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Deita-te num banco e segura um haltere acima de ti com o braço esticado.",
  "tri.skullDbDec.setup": "Deita-te num banco declinado, com a cabeça mais baixa do que as ancas, e segura os halteres acima de ti com os braços esticados.",
  "tri.skullDec.setup": "Deita-te num banco declinado, com a cabeça mais baixa do que as ancas, e segura a barra acima de ti com os braços esticados.",
- "tri.skullInc.setup": "Deita-te num banco inclinado e segura a barra acima de ti com os braços esticados."
+ "tri.skullInc.setup": "Deita-te num banco inclinado e segura a barra acima de ti com os braços esticados.",
+ "ballcurl.mis.sag": "Ancas a descair durante o movimento.",
+ "lunge.bbSetup": "Barra na parte de cima das costas, fica bem direito.",
+ "lunge2.mis.lean": "Inclinar muito o tronco para a frente na descida.",
+ "lunge2.mis.shallow": "Descida demasiado curta: o joelho de trás fica bem acima do chão.",
+ "slcurl.move": "Sobe as ancas, desliza as pernas até ficarem esticadas e depois puxa os calcanhares de volta, com as ancas sempre em cima.",
+ "slcurl.setup": "Deita-te de costas, joelhos fletidos, calcanhares nos discos deslizantes.",
+ "split.setup": "Põe-te em afundo: um pé à frente, o outro atrás, apoiado na ponta do pé.",
+ "stepup.mis.drop": "Deixar-se cair da caixa em vez de descer com controlo."
 }

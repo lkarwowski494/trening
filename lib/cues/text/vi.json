@@ -620,5 +620,13 @@
  "urow.setup": "Đứng thẳng, cầm tạ trước đùi với hai tay thẳng, lòng bàn tay hướng vào người.",
  "urow1.move": "Kéo tạ lên sát người về phía xương đòn, rồi hạ chậm đến khi tay thẳng.",
  "urow1.setup": "Đứng thẳng, một tay cầm tạ trước đùi, tay thẳng, lòng bàn tay hướng vào người.",
- "yr.mis.chest": "Nhấc ngực khỏi ghế."
+ "yr.mis.chest": "Nhấc ngực khỏi ghế.",
+ "ballcurl.mis.sag": "Hông bị võng xuống trong khi thực hiện động tác.",
+ "lunge.bbSetup": "Đặt tạ đòn trên lưng trên, hãy đứng thẳng người.",
+ "lunge2.mis.lean": "Đổ người quá nhiều về phía trước khi hạ xuống.",
+ "lunge2.mis.shallow": "Hạ xuống chưa đủ sâu — gối sau vẫn còn cách xa sàn.",
+ "slcurl.move": "Hãy nâng hông lên, trượt chân ra đến khi duỗi thẳng, rồi kéo gót chân về — giữ hông nâng cao suốt cả động tác.",
+ "slcurl.setup": "Hãy nằm ngửa, gối gập, gót chân đặt trên miếng trượt.",
+ "split.setup": "Hãy đứng tư thế chân trước chân sau: một chân phía trước, chân kia phía sau, chống trên mũi bàn chân.",
+ "stepup.mis.drop": "Thả người rơi khỏi bục thay vì bước xuống có kiểm soát."
 }

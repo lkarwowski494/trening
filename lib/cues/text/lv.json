@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Apgulies uz sola un turi hanteli virs sevis uz iztaisnotas rokas.",
  "tri.skullDbDec.setup": "Apgulies uz sola ar slīpumu uz leju, galva zemāk par gurniem, un turi hanteles virs sevis uz iztaisnotām rokām.",
  "tri.skullDec.setup": "Apgulies uz sola ar slīpumu uz leju, galva zemāk par gurniem, un turi stieni virs sevis uz iztaisnotām rokām.",
- "tri.skullInc.setup": "Apgulies uz slīpā sola un turi stieni virs sevis uz iztaisnotām rokām."
+ "tri.skullInc.setup": "Apgulies uz slīpā sola un turi stieni virs sevis uz iztaisnotām rokām.",
+ "ballcurl.mis.sag": "Gurni nokrīt kustības laikā.",
+ "lunge.bbSetup": "Stienis uz muguras augšdaļas, stāvi taisni.",
+ "lunge2.mis.lean": "Rumpis stipri noliecas uz priekšu, nolaižoties.",
+ "lunge2.mis.shallow": "Pārāk sekla nolaišanās: aizmugurējais celis paliek augstu virs grīdas.",
+ "slcurl.move": "Pacel gurnus, izbīdi kājas līdz galam taisnas, tad pievelc papēžus atpakaļ. Gurni visu laiku augšā.",
+ "slcurl.setup": "Apgulies uz muguras, ceļi saliekti, papēži uz slīdņiem.",
+ "split.setup": "Nostājies izklupienā: viena pēda priekšā, otra aizmugurē uz pirkstgaliem.",
+ "stepup.mis.drop": "Nokrišana no paaugstinājuma, nevis kontrolēta nokāpšana."
 }

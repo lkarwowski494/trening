@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ga op een bank liggen en houd een dumbbell met gestrekte arm boven je.",
  "tri.skullDbDec.setup": "Ga op een declinebank liggen, met je hoofd lager dan je heupen, en houd de dumbbells met gestrekte armen boven je.",
  "tri.skullDec.setup": "Ga op een declinebank liggen, met je hoofd lager dan je heupen, en houd de barbell met gestrekte armen boven je.",
- "tri.skullInc.setup": "Ga op een schuine bank liggen en houd de barbell met gestrekte armen boven je."
+ "tri.skullInc.setup": "Ga op een schuine bank liggen en houd de barbell met gestrekte armen boven je.",
+ "ballcurl.mis.sag": "Heupen die zakken tijdens de beweging.",
+ "lunge.bbSetup": "Barbell boven op je rug, sta rechtop.",
+ "lunge2.mis.lean": "Je bovenlichaam ver naar voren laten kantelen op weg naar beneden.",
+ "lunge2.mis.shallow": "Niet diep genoeg zakken: je achterste knie blijft ver boven de vloer.",
+ "slcurl.move": "Til je heupen op, schuif je benen uit tot ze gestrekt zijn en trek je hielen dan weer terug. Houd je heupen de hele tijd omhoog.",
+ "slcurl.setup": "Ga op je rug liggen, knieën gebogen, hielen op de sliders.",
+ "split.setup": "Ga in spreidstand staan: één voet voor, de andere achter je op de bal van je voet.",
+ "stepup.mis.drop": "Van de box af laten vallen in plaats van gecontroleerd naar beneden stappen."
 }

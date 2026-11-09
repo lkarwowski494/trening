@@ -98,12 +98,12 @@ describe('B2 nogi (09.11.2026): animowany błąd = błąd karty', () => {
 });
 
 describe('B2 nogi (09.11.2026): zdania', () => {
-  test('8 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie B2', () => {
+  test('8 nowych zdań ma tekst PL i EN różny od siebie; wszystkie przełożone na 31 języków bazowych (przekład API 09.11.2026), zestaw B2 pusty', () => {
     expect(B2.zdania.length).toBe(8);
     for (const c of B2.zdania) expect([c, typeof pl[c], typeof en[c], pl[c] !== en[c]]).toEqual([c, 'string', 'string', true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-b2-wskazowki.json');
-    expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...B2.zdania].sort());
-    for (const x of z.klucze as { id: string; pl: string; en: string }[]) expect([x.id, x.pl, x.en]).toEqual([x.id, pl[x.id], en[x.id]]);
+    expect(z.klucze).toEqual([]); /* przekład API naniesiony 09.11.2026 (ZB-054; docs/18) — zestaw opróżniony */
+    for (const l of ['bg','cs','da','de','el','es','et','fi','fr','hr','hu','id','it','ja','ko','lt','lv','ms','nb','nl','pt','ro','ru','sk','sl','sr','sv','tr','uk','vi','zh-Hant']) { const d = json(`lib/cues/text/${l}.json`); expect([l, B2.zdania.filter((k: string) => !(k in d))]).toEqual([l, []]); }
   });
 
   test('teksty: bez cyfr, bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {
