@@ -728,11 +728,9 @@
  "cdl.setup": "Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.",
  "cdl.move": "Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana.",
  "slrdl.setup": "Stań na jednej nodze, kolano lekko ugięte.",
- "slrdl.move": "Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
+ "slrdl.move": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
  "bhs.setup": "Sztanga za nogami, chwyt nachwytem w opuszczonych rękach; stopy na szerokość barków.",
- "ohs.setup": "Sztanga nad głową na wyprostowanych rękach, stopy ustawione jak do zwykłego przysiadu.",
+ "ohs.setup": "Sztanga nad głową na wyprostowanych rękach.",
  "ohs.move": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wróć do stania.",
- "ohs.arms": "Ręce przez cały ruch wyprostowane.",
- "sqc.chains": "Zawieś łańcuchy na końcach sztangi tak, żeby po wstaniu prawie całe wisiały nad podłogą.",
- "sqb.bands": "Zaczep gumy przy końcach sztangi, a drugie końce przymocuj u dołu stojaka — tak samo po obu stronach."
+ "ohs.arms": "Ręce przez cały ruch wyprostowane."
 }

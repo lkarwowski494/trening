@@ -1390,7 +1390,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Wybierz szablon | app/_layout.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/flows.test.tsx, tests/pick-template.test.tsx |
 | Wybierz szablon na ten dzień. | app/plan.tsx | tests/audit-0.10-plan-ui.test.tsx |
 | wybrane ręcznie | app/adapt.tsx | tests/adapt-ui.test.tsx |
-| wyciąg | lib/swap.ts | tests/audit-0.10-gen-ui.test.tsx, tests/figures-v2-gear.test.ts, tests/figures-v2-nakladka-triceps-olympic.test.tsx +7 |
+| wyciąg | lib/swap.ts | tests/audit-0.10-gen-ui.test.tsx, tests/figures-v2-gear.test.ts, tests/figures-v2-nakladka-triceps-olympic.test.tsx +8 |
 | Wyczyścić wszystkie dane? | app/more/settings.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx +5 |
 | Wyczyść miejsce: {a} – {b} | components/DayPanel.tsx | tests/m3-fix-e2e-teksty.test.ts, tests/places-ui.test.tsx |
 | Wygenerowane | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/generator-ui.test.tsx, tests/generator.test.ts +6 |

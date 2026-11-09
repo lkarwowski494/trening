@@ -28,9 +28,7 @@
   "ohs.move",
   "ohs.setup",
   "slrdl.move",
-  "slrdl.setup",
-  "sqb.bands",
-  "sqc.chains"
+  "slrdl.setup"
  ],
  "odrzucone": [
   [
@@ -102,14 +100,6 @@
    ]
   ],
   [
-   "Barbell Hack Squat",
-   "mistakes",
-   "sq.mis.roundBack",
-   [
-    "BarBend"
-   ]
-  ],
-  [
    "Bodyweight Squat",
    "mistakes",
    "sq.mis.heels",
@@ -129,6 +119,22 @@
    "Double Kettlebell Front Squat",
    "mistakes",
    "kbfs.mis.drop",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Squat with Chains",
+   "setup",
+   "sqc.chains",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Squat with Bands",
+   "setup",
+   "sqb.bands",
    [
     "BarBend"
    ]
@@ -179,6 +185,21 @@
    "Cable Deadlift",
    "cabledl.close",
    "bos-cable-deadlift"
+  ],
+  [
+   "Squat with Chains",
+   "sqc.chains",
+   "elitefts-set-up-chains"
+  ],
+  [
+   "Squat with Bands",
+   "sqb.bands",
+   "elitefts-bands-setup"
+  ],
+  [
+   "Squat with Bands",
+   "sq.bar",
+   "elitefts-bands-setup"
   ]
  ],
  "noweZrodla": [
@@ -195,8 +216,10 @@
   "catalyst-79-overhead-squat",
   "issa-dont-know-squat",
   "catalyst-chain-back-squat",
-  "elitefts-set-up-chains",
-  "elitefts-bands-setup",
   "barbend-accommodating-resistance"
- ]
+ ],
+ "otwarte": {
+  "Barbell Hack Squat::sq.mis.roundBack": "dwie organizacje opisują zaokrąglenie dolnego odcinka (BarBend „Rounding”; Coach — „the lower back and tailbone to round, or curl under”), ale brak zdania o zaokrągleniu na dole przysiadu i pozy rigu (istniejące mis.roundBack mówi o dociąganiu ciężaru) — recenzja niezależna rundy 1, 09.11.2026",
+  "Overhead Squat::ohs.mis.armsForward": "dwie organizacje, brak pozy rigu (zmiana silnika poza partią)"
+ }
 }

@@ -93,24 +93,26 @@ describe('P1 squat i hinge: źródła i reguły szczebli', () => {
 
   test('blog producenta (Bells of Steel, Cable Deadlift) = szczebel 5: nie ma go w danych, odwołania zapisane w fixture', () => {
     expect('bos-cable-deadlift' in CUE_FULL.sources).toBe(false);
-    expect(new Set(P1.usunieteOdwolania.map(([, , sid]) => sid))).toEqual(new Set(['bos-cable-deadlift']));
+    expect(new Set(P1.usunieteOdwolania.map(([, , sid]) => sid))).toEqual(new Set(['bos-cable-deadlift', 'elitefts-set-up-chains', 'elitefts-bands-setup']));
   });
 
   test('zdania odrzucone (mniej niż dwie organizacje, w tym błędy wnioskowane) nie są w kartach; zdania tylko z odrzuconych pozycji nie weszły do słowników', () => {
-    expect(P1.odrzucone.length).toBe(14);
+    expect(P1.odrzucone.length).toBe(15); /* runda 1 recenzji (09.11.2026): + sqc.chains, + sqb.bands (EliteFTS = 5); − sq.mis.roundBack Hack (dwie organizacje, przeniesione do otwartych) */
     for (const [k, , c] of P1.odrzucone) if (P1.cwiczenia.includes(k as string)) expect([k, c, sentencesOf(k as string).some(r => r.c === c)]).toEqual([k, c, false]);
-    for (const c of ['sq.mis.roundBack', 'sq.mis.chestDrop', 'kbfs.mis.drop', 'dl.mis.hipsFirst', 'sldl.setup', 'def.setup', 'sumoKb.grip', 'axle.setup', 'cabledl.setup', 'zer.hold', 'kbfs.rack']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
+    for (const c of ['sq.mis.roundBack', 'sq.mis.chestDrop', 'kbfs.mis.drop', 'dl.mis.hipsFirst', 'sldl.setup', 'def.setup', 'sumoKb.grip', 'axle.setup', 'cabledl.setup', 'zer.hold', 'kbfs.rack', 'sqc.chains', 'sqb.bands']) expect([c, c in pl, c in en]).toEqual([c, false, false]);
   });
 
-  test('nowe źródła: adres https, organizacja z danych; Coach (organizacja warunkowa) — szczebel 4 z opisem strony (autor z kwalifikacjami i data); EliteFTS — instrukcje ustawienia własnego sprzętu (gumy, łańcuchy)', () => {
-    expect(P1.noweZrodla.length).toBe(16);
+  test('nowe źródła: adres https, organizacja z danych; Coach (organizacja warunkowa) — szczebel 4 z opisem strony (kwalifikacje autora na stronie autora); EliteFTS (blog trenerski z linkami do sklepu) = 5 — bez źródeł w danych (runda 1 recenzji, 09.11.2026)', () => {
+    expect(P1.noweZrodla.length).toBe(14);
     for (const sid of P1.noweZrodla) {
       const s = CUE_FULL.sources[sid] as { url?: string; org: string; level?: number; strona?: string };
       expect([sid, /^https:\/\//.test(s.url ?? ''), s.org in CUE_FULL.orgs, lv(sid)]).toEqual([sid, true, true, 4]);
       if (CUE_FULL.orgs[s.org].warunkowo) expect([sid, s.level, typeof s.strona]).toEqual([sid, 4, 'string']);
     }
     expect(P1.noweZrodla.filter(sid => CUE_FULL.orgs[orgOf(sid)].warunkowo).sort()).toEqual(['coach-hack-squat', 'coach-single-leg-romanian-deadlift']);
-    expect(P1.noweZrodla.filter(sid => orgOf(sid) === 'EliteFTS').sort()).toEqual(['elitefts-bands-setup', 'elitefts-set-up-chains']);
+    for (const sid of ['elitefts-bands-setup', 'elitefts-set-up-chains']) expect([sid, sid in CUE_FULL.sources]).toEqual([sid, false]);
+    for (const k of ['Squat with Chains', 'Squat with Bands']) for (const r of sentencesOf(k)) expect([k, r.c, r.s.some(([sid]) => sid.startsWith('elitefts'))]).toEqual([k, r.c, false]);
+    for (const sid of ['coach-hack-squat', 'coach-single-leg-romanian-deadlift']) expect([sid, /coachweb\.com\/author\/sam-rider/.test((CUE_FULL.sources[sid] as { strona?: string }).strona ?? '')]).toEqual([sid, true]);
   });
 
   test('wariant sprzętu (źródła wersji bazowej) ma jawne „uproszczenie” przy zdaniu — do potwierdzenia przez recenzenta niezależnego (docs/18, 02.11.2026, pkt 2)', () => {
@@ -121,9 +123,28 @@ describe('P1 squat i hinge: źródła i reguły szczebli', () => {
   });
 });
 
+describe('P1 squat i hinge: poprawki rundy 1 recenzji niezależnej (badacz, 09.11.2026)', () => {
+  const ref = (k: string, c: string) => (sentencesOf(k).find(r => r.c === c)?.s ?? []).map(([sid]) => sid);
+  test('Overhead Squat: sq.mis.heels bez Catalyst (nie mówi o piętach) — ISSA + przysiad ze sztangą jako uproszczenie; ohs.setup skrócone do części wspólnej (bez rozstawu stóp)', () => {
+    expect(ref('Overhead Squat', 'sq.mis.heels').sort()).toEqual(['issa-dont-know-squat', 'sbs-how-to-squat']);
+    expect([pl['ohs.setup'], en['ohs.setup']]).toEqual(['Sztanga nad głową na wyprostowanych rękach.', 'Bar overhead on straight arms.']);
+  });
+  test('Squat with Chains/Bands: sq.mis.heels bez ExRx (nieprzeczytane w recenzji Back Squat, 403) — ACE + SBS; karty bez zdań o łańcuchach i gumach (jedna organizacja)', () => {
+    for (const k of ['Squat with Chains', 'Squat with Bands']) {
+      expect([k, ref(k, 'sq.mis.heels').sort()]).toEqual([k, ['ace-135', 'sbs-how-to-squat']]);
+      expect([k, sentencesOf(k).some(r => r.c === 'sqc.chains' || r.c === 'sqb.bands')]).toEqual([k, false]);
+    }
+  });
+  test('Single Leg RDL (linki): uproszczenie „wariant sprzętu (wyciąg)” przy slrdl.move i mis.roundBack; Barbell Hack Squat sq.mis.roundBack i Overhead Squat ohs.mis.armsForward — otwarte z powodem', () => {
+    for (const c of ['slrdl.move', 'mis.roundBack']) expect([c, /wyciąg/.test((sentencesOf('Single Leg RDL (linki)').find(r => r.c === c) as { uproszczenie?: string }).uproszczenie ?? '')]).toEqual([c, true]);
+    expect(Object.keys(P1.otwarte).sort()).toEqual(['Barbell Hack Squat::sq.mis.roundBack', 'Overhead Squat::ohs.mis.armsForward']);
+    expect(ref('Barbell Hack Squat', 'sq.mis.roundBack')).toEqual([]);
+  });
+});
+
 describe('P1 squat i hinge: zdania', () => {
-  test('10 nowych zdań ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie P1 (pozostałe języki — angielski w zastępstwie)', () => {
-    expect(P1.zdania.length).toBe(10);
+  test('8 nowych zdań (runda 1: − sqc.chains, − sqb.bands) ma tekst PL i EN różny od siebie; wszystkie czekają na przekład w zestawie P1 (pozostałe języki — angielski w zastępstwie)', () => {
+    expect(P1.zdania.length).toBe(8);
     for (const c of P1.zdania) expect([c, typeof pl[c], typeof en[c], pl[c].trim().length > 0, en[c].trim().length > 0, pl[c] !== en[c]]).toEqual([c, 'string', 'string', true, true, true]);
     const z = json('docs/lokalizacja/zestaw-przekladu-2026-11-09-p1-wskazowki.json');
     expect(z.klucze.map((x: { id: string }) => x.id)).toEqual([...P1.zdania].sort());

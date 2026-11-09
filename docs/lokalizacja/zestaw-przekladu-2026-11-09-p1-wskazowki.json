@@ -18,7 +18,7 @@
       "rodzaj": "nowy",
       "id": "cdl.setup",
       "pl": "Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.",
-      "en": "Set up like for a clean: clean grip, knees pushed out until they touch your arms."
+      "en": "Set up as for a clean: clean grip, knees pushed out until they touch your arms."
     },
     {
       "rodzaj": "nowy",
@@ -35,13 +35,13 @@
     {
       "rodzaj": "nowy",
       "id": "ohs.setup",
-      "pl": "Sztanga nad głową na wyprostowanych rękach, stopy ustawione jak do zwykłego przysiadu.",
-      "en": "Bar overhead on straight arms, feet set as for a regular squat."
+      "pl": "Sztanga nad głową na wyprostowanych rękach.",
+      "en": "Bar overhead on straight arms."
     },
     {
       "rodzaj": "nowy",
       "id": "slrdl.move",
-      "pl": "Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
+      "pl": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
       "en": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand."
     },
     {
@@ -49,18 +49,6 @@
       "id": "slrdl.setup",
       "pl": "Stań na jednej nodze, kolano lekko ugięte.",
       "en": "Stand on one leg with a slight bend in the knee."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "sqb.bands",
-      "pl": "Zaczep gumy przy końcach sztangi, a drugie końce przymocuj u dołu stojaka — tak samo po obu stronach.",
-      "en": "Hook the bands near the ends of the bar and anchor the other ends at the bottom of the rack — the same on both sides."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "sqc.chains",
-      "pl": "Zawieś łańcuchy na końcach sztangi tak, żeby po wstaniu prawie całe wisiały nad podłogą.",
-      "en": "Hang the chains from the ends of the bar so that when you stand up, almost all of the chain is off the floor."
     }
   ]
 }

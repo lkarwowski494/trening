@@ -1,5 +1,5 @@
 {
- "_opis": "Partia P1 (rodziny squat i hinge z rysunkiem v2, status ready; linia 1.1, 09.11.2026) — lista dla recenzentów niezależnych (L-047; autor: programista P1, sesja chmurowa — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce w źródle). Do sprawdzenia: (1) zgodność z rysunkiem v2 (squat, hinge — rig) i różnica doboru linii/elementów/błędów rysunku (sekcja „roznice_doboru”: przed = zestaw ogólny, po = karta) — dobór wchodzi do skrótu recenzji rodziny (scripts/skrot-v2-dobor.mjs), więc squat i hinge wymagają recenzji różnicy; (2) uproszczenia wariantu sprzętu (pole „uproszczenie”: Dumbbell Squat ← Bodyweight Squat, Overhead Squat ← ocena przysiadu z rękami nad głową bez sztangi, Squat with Chains/Bands ← Back Squat) — czy ruch się nie różni (docs/18, 02.11.2026, pkt 2); (3) szczebel per strona: EliteFTS (instrukcje ustawienia gum i łańcuchów z autorem i datą, dział /blogs/training/ — liczone jako producent własnego sprzętu = 4; czy nie „blog producenta promujący własny produkt” = 5, docs/18 09.11 (e)) — od tego zależą Squat with Chains i Squat with Bands; Coach (S. Rider, REPS L3) = 4 per strona; ISSA — dwie strony przy Overhead Squat/Bodyweight Squat liczone jako jedna organizacja; Catalyst 176 + BarBend/Vaughn przy błędzie mis.barAway (drugie źródło = zaprzeczenie standardu, uzupełnienie 2); (4) teksty jak trener na siłowni (10 nowych zdań, PL/EN).",
+ "_opis": "Partia P1 (rodziny squat i hinge z rysunkiem v2, status ready; linia 1.1, 09.11.2026) — lista dla recenzentów niezależnych (L-047; autor: programista P1, sesja chmurowa — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce w źródle). Do sprawdzenia: (1) zgodność z rysunkiem v2 (squat, hinge — rig) i różnica doboru linii/elementów/błędów rysunku (sekcja „roznice_doboru”: przed = zestaw ogólny, po = karta) — dobór wchodzi do skrótu recenzji rodziny (scripts/skrot-v2-dobor.mjs), więc squat i hinge wymagają recenzji różnicy; (2) uproszczenia wariantu sprzętu (pole „uproszczenie”: Dumbbell Squat ← Bodyweight Squat, Overhead Squat ← ocena przysiadu z rękami nad głową bez sztangi, Squat with Chains/Bands ← Back Squat) — czy ruch się nie różni (docs/18, 02.11.2026, pkt 2); (3) szczebel per strona: EliteFTS = 5 (runda 1, decyzja koordynatora 09.11.2026: blog trenerski z linkami do sklepu) — sqc.chains i sqb.bands odrzucone; Coach (S. Rider) = 4 z kwalifikacjami na stronie autora coachweb.com/author/sam-rider; ISSA — dwie strony przy Overhead Squat/Bodyweight Squat liczone jako jedna organizacja; Catalyst 176 + BarBend/Vaughn przy błędzie mis.barAway (drugie źródło = zaprzeczenie standardu, uzupełnienie 2); (4) teksty jak trener na siłowni (10 nowych zdań, PL/EN).",
  "galaz": "tekst/p1-squat-hinge",
  "karty": {
   "Clean Deadlift": {
@@ -7,7 +7,7 @@
     {
      "id": "cdl.setup",
      "pl": "Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.",
-     "en": "Set up like for a clean: clean grip, knees pushed out until they touch your arms.",
+     "en": "Set up as for a clean: clean grip, knees pushed out until they touch your arms.",
      "nowe": true,
      "zrodla": [
       {
@@ -150,7 +150,7 @@
    "move": [
     {
      "id": "slrdl.move",
-     "pl": "Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
+     "pl": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
      "en": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand.",
      "nowe": true,
      "zrodla": [
@@ -166,7 +166,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
-       "miejsce": "The Hinge; The Return (wariant: sztanga, hantel)"
+       "miejsce": "The Hinge; The Return (wariant: sztanga, hantel); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       },
       {
        "id": "barbend-single-leg-romanian-deadlift",
@@ -197,7 +197,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
-       "miejsce": "The Hinge (keeping your back flat)"
+       "miejsce": "The Hinge (keeping your back flat); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       },
       {
        "id": "barbend-single-leg-romanian-deadlift",
@@ -221,7 +221,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
-       "miejsce": "Common mistakes: Rounding Your Back"
+       "miejsce": "Common mistakes: Rounding Your Back; kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       },
       {
        "id": "barbend-single-leg-romanian-deadlift",
@@ -262,9 +262,10 @@
    "move": [
     {
      "id": "slrdl.move",
-     "pl": "Pochyl się, cofając biodro, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
+     "pl": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
      "en": "Hinge at the hip and let your free leg travel straight back; drive your hips forward to stand.",
      "nowe": true,
+     "uproszczenie": "wariant sprzętu (wyciąg): źródła opisują wersję z wolnym ciężarem; wersję z wyciągiem opisuje wprost ACE (#350)",
      "zrodla": [
       {
        "id": "ace-350",
@@ -278,7 +279,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
-       "miejsce": "The Hinge; The Return (wariant: sztanga, hantel)"
+       "miejsce": "The Hinge; The Return (wariant: sztanga, hantel); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       }
      ]
     }
@@ -302,7 +303,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
-       "miejsce": "The Hinge (wariant)"
+       "miejsce": "The Hinge (wariant); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       },
       {
        "id": "barbend-single-leg-romanian-deadlift",
@@ -320,13 +321,14 @@
      "pl": "Zaokrąglanie pleców, żeby dociągnąć ciężar.",
      "en": "Rounding your back to finish the lift.",
      "nowe": false,
+     "uproszczenie": "wariant sprzętu (wyciąg): źródła opisują wersję z wolnym ciężarem; wersję z wyciągiem opisuje wprost ACE (#350)",
      "zrodla": [
       {
        "id": "coach-single-leg-romanian-deadlift",
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/leg-exercises/8130/how-to-do-the-single-leg-romanian-deadlift",
-       "miejsce": "Common mistakes: Rounding Your Back (wariant)"
+       "miejsce": "Common mistakes: Rounding Your Back (wariant); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       },
       {
        "id": "barbend-single-leg-romanian-deadlift",
@@ -359,7 +361,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/fitness/leg-exercises/hack-squat",
-       "miejsce": "Barbell Hack Squat — Setup/Grip (back to the bar; overhand grip, palms facing behind; feet shoulder-width)"
+       "miejsce": "Barbell Hack Squat — Setup/Grip (back to the bar; overhand grip, palms facing behind; feet shoulder-width); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       }
      ]
     }
@@ -383,7 +385,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/fitness/leg-exercises/hack-squat",
-       "miejsce": "Barbell Hack Squat — Descent (bend your knees to lower); Ascent (back to the start)"
+       "miejsce": "Barbell Hack Squat — Descent (bend your knees to lower); Ascent (back to the start); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       }
      ]
     }
@@ -407,7 +409,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/fitness/leg-exercises/hack-squat",
-       "miejsce": "Barbell Hack Squat — Back (shoulder blades to straighten your back)"
+       "miejsce": "Barbell Hack Squat — Back (shoulder blades to straighten your back); kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       }
      ]
     }
@@ -431,7 +433,7 @@
        "org": "Coach",
        "szczebel": 4,
        "url": "https://www.coachweb.com/fitness/leg-exercises/hack-squat",
-       "miejsce": "Barbell Hack Squat — Ascent (drive through midfoot and heels); Mistakes: pressing through the forefoot"
+       "miejsce": "Barbell Hack Squat — Ascent (drive through midfoot and heels); Mistakes: pressing through the forefoot; kwalifikacje autora na stronie autora coachweb.com/author/sam-rider („REPS level 3 qualified personal trainer”) — nie na stronie artykułu"
       }
      ]
     }
@@ -542,7 +544,7 @@
      "pl": "Stopy na szerokość bioder do barków.",
      "en": "Feet hip- to shoulder-width apart.",
      "nowe": false,
-     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)",
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają miejsce ciężaru; źródło o samym przysiadzie z hantlami opisuje przebieg zgodny z przysiadem bez obciążenia",
      "zrodla": [
       {
        "id": "barbend-dumbbell-squat",
@@ -574,7 +576,7 @@
      "pl": "Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.",
      "en": "Descend by moving your hips back while your knees bend at the same time; rise by pushing the floor away with your whole feet.",
      "nowe": false,
-     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)",
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają miejsce ciężaru; źródło o samym przysiadzie z hantlami opisuje przebieg zgodny z przysiadem bez obciążenia",
      "zrodla": [
       {
        "id": "barbend-dumbbell-squat",
@@ -606,7 +608,7 @@
      "pl": "Kolana idą w linii palców stóp — nie zapadają się do środka.",
      "en": "Your knees track in line with your toes — they don’t cave in.",
      "nowe": false,
-     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)",
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają miejsce ciężaru; źródło o samym przysiadzie z hantlami opisuje przebieg zgodny z przysiadem bez obciążenia",
      "zrodla": [
       {
        "id": "barbend-dumbbell-squat",
@@ -638,7 +640,7 @@
      "pl": "Kolana zapadające się do środka.",
      "en": "Knees caving inwards.",
      "nowe": false,
-     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają tylko miejsce ciężaru, ruch nóg i tułowia jest ten sam (źródło szczebla 4 o samym przysiadzie z hantlami opisuje ten sam ruch)",
+     "uproszczenie": "wariant sprzętu Bodyweight Squat: hantle w opuszczonych rękach zmieniają miejsce ciężaru; źródło o samym przysiadzie z hantlami opisuje przebieg zgodny z przysiadem bez obciążenia",
      "zrodla": [
       {
        "id": "issa-mastering-squat",
@@ -662,8 +664,8 @@
    "setup": [
     {
      "id": "ohs.setup",
-     "pl": "Sztanga nad głową na wyprostowanych rękach, stopy ustawione jak do zwykłego przysiadu.",
-     "en": "Bar overhead on straight arms, feet set as for a regular squat.",
+     "pl": "Sztanga nad głową na wyprostowanych rękach.",
+     "en": "Bar overhead on straight arms.",
      "nowe": true,
      "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu",
      "zrodla": [
@@ -672,7 +674,7 @@
        "org": "Catalyst Athletics",
        "szczebel": 4,
        "url": "https://catalystathletics.com/exercise/79/Overhead-Squat/",
-       "miejsce": "opis (bar overhead; elbows extended fully; feet in your squat stance)"
+       "miejsce": "opis (bar overhead; elbows extended fully; feet in your squat stance) — rozstaw stóp poza zdaniem: tu „your squat stance”, w drugim źródle stopy na wprost w teście (recenzja niezależna rundy 1, 09.11.2026)"
       },
       {
        "id": "issa-dont-know-squat",
@@ -740,7 +742,7 @@
      "pl": "Odrywanie pięt od podłogi.",
      "en": "Heels lifting off the floor.",
      "nowe": false,
-     "uproszczenie": "wariant sprzętu: jedno ze źródeł opisuje ten sam przysiad z rękami nad głową bez sztangi (ocena ruchu); sztanga nad głową nie zmienia przebiegu ruchu",
+     "uproszczenie": "analogia do przysiadu ze sztangą: jedno źródło opisuje odrywanie pięt wprost przy przysiadzie z rękami nad głową, drugie — przy przysiadzie ze sztangą na plecach",
      "zrodla": [
       {
        "id": "issa-dont-know-squat",
@@ -750,11 +752,11 @@
        "miejsce": "uproszczenie: wariant sprzętu (bez sztangi) — faults: Feet (does the heel come off the ground?)"
       },
       {
-       "id": "catalyst-79-overhead-squat",
-       "org": "Catalyst Athletics",
+       "id": "sbs-how-to-squat",
+       "org": "Stronger by Science",
        "szczebel": 4,
-       "url": "https://catalystathletics.com/exercise/79/Overhead-Squat/",
-       "miejsce": "opis (even balance over the whole foot) — błąd = zaprzeczenie standardu"
+       "url": "https://www.strongerbyscience.com/how-to-squat/",
+       "miejsce": "przysiad ze sztangą („heels coming off the ground”) — uproszczenie: analogia do przysiadu ze sztangą (recenzja niezależna rundy 1, 09.11.2026)"
       }
      ]
     }
@@ -782,28 +784,6 @@
        "szczebel": 4,
        "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
        "miejsce": "Preparation — uproszczenie: wariant sprzętu Back Squat"
-      }
-     ]
-    },
-    {
-     "id": "sqc.chains",
-     "pl": "Zawieś łańcuchy na końcach sztangi tak, żeby po wstaniu prawie całe wisiały nad podłogą.",
-     "en": "Hang the chains from the ends of the bar so that when you stand up, almost all of the chain is off the floor.",
-     "nowe": true,
-     "zrodla": [
-      {
-       "id": "catalyst-chain-back-squat",
-       "org": "Catalyst Athletics",
-       "szczebel": 4,
-       "url": "https://www.catalystathletics.com/exercise/609/Chain-Back-Squat/",
-       "miejsce": "opis (hang the chains … completely hanging as you near the top)"
-      },
-      {
-       "id": "elitefts-set-up-chains",
-       "org": "EliteFTS",
-       "szczebel": 4,
-       "url": "https://elitefts.com/blogs/training/friday-technique-video-how-to-set-up-chains",
-       "miejsce": "opis (leader chain outside the collar; one link of the weight chain on the floor in the standing position)"
       }
      ]
     }
@@ -927,11 +907,11 @@
        "miejsce": "Step 4; Step 6 (heels flat) — uproszczenie: wariant sprzętu Back Squat"
       },
       {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
+       "id": "sbs-how-to-squat",
+       "org": "Stronger by Science",
        "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Comments (feet flat on floor) — uproszczenie: wariant sprzętu Back Squat"
+       "url": "https://www.strongerbyscience.com/how-to-squat/",
+       "miejsce": "przysiad ze sztangą („heels coming off the ground”) — uproszczenie: wariant sprzętu Back Squat (recenzja niezależna rundy 1, 09.11.2026)"
       }
      ]
     }
@@ -959,35 +939,6 @@
        "szczebel": 4,
        "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
        "miejsce": "Preparation — uproszczenie: wariant sprzętu Back Squat"
-      },
-      {
-       "id": "elitefts-bands-setup",
-       "org": "EliteFTS",
-       "szczebel": 4,
-       "url": "https://elitefts.com/blogs/training/friday-technique-video-bands-setup",
-       "miejsce": "squat (walk the bar out until the bands are straight up and down)"
-      }
-     ]
-    },
-    {
-     "id": "sqb.bands",
-     "pl": "Zaczep gumy przy końcach sztangi, a drugie końce przymocuj u dołu stojaka — tak samo po obu stronach.",
-     "en": "Hook the bands near the ends of the bar and anchor the other ends at the bottom of the rack — the same on both sides.",
-     "nowe": true,
-     "zrodla": [
-      {
-       "id": "barbend-accommodating-resistance",
-       "org": "BarBend",
-       "szczebel": 4,
-       "url": "https://barbend.com/accommodating-resistance/",
-       "miejsce": "sekcja o przysiadzie z gumami (anchor a band to the inside of the barbell … loop the other end to the bottom of the power rack; repeat on the other side)"
-      },
-      {
-       "id": "elitefts-bands-setup",
-       "org": "EliteFTS",
-       "szczebel": 4,
-       "url": "https://elitefts.com/blogs/training/friday-technique-video-bands-setup",
-       "miejsce": "squat (choke the band around band peg); test z pustą sztangą — równe napięcie po obu stronach"
       }
      ]
     }
@@ -1111,11 +1062,11 @@
        "miejsce": "Step 4; Step 6 (heels flat) — uproszczenie: wariant sprzętu Back Squat"
       },
       {
-       "id": "exrx-Quadriceps/BBFullSquat",
-       "org": "ExRx.net",
+       "id": "sbs-how-to-squat",
+       "org": "Stronger by Science",
        "szczebel": 4,
-       "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
-       "miejsce": "Comments (feet flat on floor) — uproszczenie: wariant sprzętu Back Squat"
+       "url": "https://www.strongerbyscience.com/how-to-squat/",
+       "miejsce": "przysiad ze sztangą („heels coming off the ground”) — uproszczenie: wariant sprzętu Back Squat (recenzja niezależna rundy 1, 09.11.2026)"
       }
      ]
     }
@@ -1130,9 +1081,7 @@
   "ohs.move",
   "ohs.setup",
   "slrdl.move",
-  "slrdl.setup",
-  "sqb.bands",
-  "sqc.chains"
+  "slrdl.setup"
  ],
  "noweZrodla": [
   "catalyst-176",
@@ -1148,8 +1097,6 @@
   "catalyst-79-overhead-squat",
   "issa-dont-know-squat",
   "catalyst-chain-back-squat",
-  "elitefts-set-up-chains",
-  "elitefts-bands-setup",
   "barbend-accommodating-resistance"
  ],
  "odrzucone": [
@@ -1222,14 +1169,6 @@
    ]
   ],
   [
-   "Barbell Hack Squat",
-   "mistakes",
-   "sq.mis.roundBack",
-   [
-    "BarBend"
-   ]
-  ],
-  [
    "Bodyweight Squat",
    "mistakes",
    "sq.mis.heels",
@@ -1249,6 +1188,22 @@
    "Double Kettlebell Front Squat",
    "mistakes",
    "kbfs.mis.drop",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Squat with Chains",
+   "setup",
+   "sqc.chains",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Squat with Bands",
+   "setup",
+   "sqb.bands",
    [
     "BarBend"
    ]
@@ -1288,6 +1243,21 @@
    "Cable Deadlift",
    "cabledl.close",
    "bos-cable-deadlift"
+  ],
+  [
+   "Squat with Chains",
+   "sqc.chains",
+   "elitefts-set-up-chains"
+  ],
+  [
+   "Squat with Bands",
+   "sqb.bands",
+   "elitefts-bands-setup"
+  ],
+  [
+   "Squat with Bands",
+   "sq.bar",
+   "elitefts-bands-setup"
   ]
  ],
  "niewdrozone": {
@@ -1566,5 +1536,10 @@
     ]
    }
   }
- }
+ },
+ "otwarte_runda1": {
+  "Barbell Hack Squat::sq.mis.roundBack": "dwie organizacje opisują zaokrąglenie dolnego odcinka (BarBend „Rounding”; Coach — „the lower back and tailbone to round, or curl under”), ale brak zdania o zaokrągleniu na dole przysiadu i pozy rigu (istniejące mis.roundBack mówi o dociąganiu ciężaru) — recenzja niezależna rundy 1, 09.11.2026",
+  "Overhead Squat::ohs.mis.armsForward": "dwie organizacje, brak pozy rigu (zmiana silnika poza partią)"
+ },
+ "runda1": "09.11.2026: poprawki rundy 1 recenzji niezależnej (badacz) naniesione — P-1…P-9 wg decyzji koordynatora (docs/18 09.11.2026)"
 }
