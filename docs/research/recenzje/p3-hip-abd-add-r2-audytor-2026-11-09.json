@@ -1,0 +1,33 @@
+{
+ "v2": {
+  "hip_abd_add": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — runda 2, recenzja różnicy 7d298144 → d7dd7a84: Lateral Band Walk i Monster Walk wstrzymane (usunięte z pliku póz, wyjątek generatora z powodem H-1/H-2); wyświetlane 4 ćwiczenia; S-1, S-2, N-1…N-4 z rundy 1 do backlogu",
+   "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rundy 2 (L-047, L-050) gałęzi figury/partia-3 @ d7dd7a84 wobec 7d298144, czyste kopie git archive /tmp/rec-p3-r2 i /tmp/rec-p3-r2-base, 09.11.2026; raport docs/research/recenzje/p3-hip-abd-add-r2-audytor-2026-11-09.md",
+   "uwagi": "Kontrakt, rodzina i 4 wpisy (Hip Abduction, Hip Adduction, Cable Hip Abduction, Cable Hip Adduction) bajtowo identyczne z 7d298144 (porównanie JSON.stringify), więc ocena ruchu z rundy 1 obowiązuje bez zmian. figureSpec('Lateral Band Walk') i figureSpec('Monster Walk') = null, figureFor (v1) = null — w aplikacji brak rysunku (ExerciseCues.tsx:45), karta tekstowa zostaje. Generator: oba marsze w WYJATKI z powodem; odtwarzanie-poz.mjs hip_abd_add — jedyny rozjazd Cable Hip Abduction, ten sam w 7d298144 i a9c220be, na liście znanych (tests/figury-generator-odtwarza.test.ts:25). Do backlogu: S-1, S-2, N-1, N-2, N-3, N-4; poprawka marszów (H-1/H-2) — backlog docs/21 wg powodu w generatorze.",
+   "slad": "runda 2 bez nowych arkuszy dla 4 ćwiczeń (pozy bajtowo te same co w rundzie 1 — arkusze śladu i nakładki z rundy 1: /tmp/rec-p3-hip/ark, /tmp/rec-p3-hip/arkd, /tmp/rec-p3-hip/nak); sprawdzenie różnicy: porównanie JSON wpisów, figureSpec/figureFor w czystej kopii, odtwarzanie-poz.mjs, skrót zrodla-runtime --skroty",
+   "sha": "086ae0c86f89",
+   "liczba": 4,
+   "cwiczenia": {
+    "Hip Abduction": { "werdykt": "wyswietlana", "uwagi": "bajtowo jak w rundzie 1; S-1, N-1, N-3, N-4 — backlog" },
+    "Hip Adduction": { "werdykt": "wyswietlana", "uwagi": "bajtowo jak w rundzie 1; S-1, S-2 (EN), N-1, N-3, N-4 — backlog" },
+    "Cable Hip Abduction": { "werdykt": "wyswietlana", "uwagi": "bajtowo jak w rundzie 1; N-2 — backlog" },
+    "Cable Hip Adduction": { "werdykt": "wyswietlana", "uwagi": "bajtowo jak w rundzie 1; wyjątek toru (4,12 cm) potwierdzony w rundzie 1; S-2 (EN), N-2 — backlog" },
+    "Lateral Band Walk": { "werdykt": "wstrzymana", "uwagi": "brak figury (figureSpec null, v1 brak) — H-1 do poprawki w backlogu; nie liczy się do 4" },
+    "Monster Walk": { "werdykt": "wstrzymana", "uwagi": "brak figury (figureSpec null, v1 brak) — H-2 do poprawki w backlogu; nie liczy się do 4" }
+   }
+  }
+ },
+ "runda1": { "H-1": "zamknięte wstrzymaniem rysunku", "H-2": "zamknięte wstrzymaniem rysunku" },
+ "znaleziska": [
+  {
+   "id": "U-1",
+   "waga": "uwaga procesowa (poza progiem produktu)",
+   "opis": "Wzorzec tests/fixtures/figury-v2-zlote.json nadal ma klucze hip_abd_add/Lateral Band Walk i /Monster Walk; tests/figures-v2-zgodnosc-wsteczna.test.ts:106-107 wymaga tych samych zbiorów kluczy — spodziewany czerwony tests.yml do świadomego odtworzenia wzorca (to samo co U-1 w raporcie pulldown r2).",
+   "dowod": "tests/fixtures/figury-v2-zlote.json:1455,1459"
+  }
+ ]
+}

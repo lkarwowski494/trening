@@ -542,19 +542,17 @@
     },
     "Shrugs (sztanga)": {
       "rodzina": "shrug",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "a7db5492576f",
-      "uwagi": "Ruch i karta zgodne. Widok z przodu: ręce proste, uniesienie barków ok. 5 j., tułów nieruchomy. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "a7db5492576f"
     },
     "Shrugs (hantle)": {
       "rodzina": "shrug",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "3532f426e071",
-      "uwagi": "Ruch i karta zgodne. Jak szrugsy ze sztangą, hantle przy udach. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "3532f426e071"
     },
     "Standing Calf Raise": {
       "rodzina": "calf_raise",
@@ -1031,6 +1029,52 @@
           "data": "2026-11-09",
           "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
           "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
+      }
+    },
+    "shrug": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, runda 2, L-047 A, L-050) — W1–W5 naprawione, bez znalezisk KRYTYCZNYCH/WYSOKICH",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "uwagi": "Chwyt = chwyt startu + uniesienie barku (6 cm) we wszystkich 7 szrugsach stojących; łokieć stały 2,8–3,9° (u 0…1), tułów 0°, kąt ramienia stały; odstęp ciężaru od ud stały (sztanga 1,4→1,7; hantle 3,2→3,4; linki 4,1→4,7; za plecami i Smith 5,6→4,9 cm). Middle Back Shrug bez zmian ruchu (łokieć ~42° stały, protract 5→−4 cm). Walidator v2-validate: 8/8 OK. Nowa reguła rece_proste (łokieć ≤ 15° w całym ruchu) działa (v2-sens.mjs:182). bez_bramki_ruchu dla 7 szrugsów: analogia do decyzji 26.10.2026 rozsądna (flaga isometric zdejmuje tylko bramkę ruchu, contract.ts:437), ale opis sekcji i komunikat DEKLARACJA nadal mówią „obrót przedramienia” (N1, NISKIE) — do weta koordynatora. W6 (Calf = Leverage, bez poduszek) i W7 (jeden uchwyt, artefakt miary −10…−11 cm) pozostają w backlogu.",
+      "slad": "arkusze arkusz-slad.mjs light (/tmp/rec-p3-shrug2/ark) i dark (/tmp/rec-p3-shrug2/ark-dark), 8 ćwiczeń × front i side, u co 0,05: ślad pionowy, równoległy do uniesienia barku, dla wszystkich 7 szrugsów stojących (hantle front: bez odjazdu na boki; Behind/Smith side: gryf stale za udami); Middle Back Shrug: ślad wzdłuż normalnej tułowia; arkusze nakładki arkusz-nakladka.mjs (/tmp/rec-p3-shrug2/nak, 16 PNG); pomiary frameAt (skrypt własny w scratchpad)",
+      "sha": "cf2edb2c70fe",
+      "liczba": 8,
+      "cwiczenia": {
+        "Shrugs (sztanga)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "łokieć 3,9° stały, tułów 0°, chwyt +6,0 cm = bark; gryf 1,4→1,7 cm od ud; W5 naprawione"
+        },
+        "Shrugs (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "chwyt z=27 stały, odwiedzenie 6,3° stałe, łokieć 3,8°; odstęp 3,2→3,4 cm; W4 naprawione"
+        },
+        "Shrugs (linki)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "jak sztanga; odstęp 4,1→4,7 cm; W5 naprawione; linka ok. 42° od pionu bez zmian (uwaga bez znaleziska z rundy 1)"
+        },
+        "Barbell Shrug Behind The Back": {
+          "werdykt": "wyswietlana",
+          "uwagi": "gryf stale za udami 5,6→4,9 cm, ruch pionowy; łokieć 2,8°, ramię −12,9° stałe; W3 naprawione"
+        },
+        "Smith Machine Behind the Back Shrug": {
+          "werdykt": "wyswietlana",
+          "uwagi": "ten sam zwis co Barbell Behind, szyna x=−15,8 pod gryfem; łokieć 2,8° stały; W2 naprawione"
+        },
+        "Leverage Shrug": {
+          "werdykt": "wyswietlana",
+          "uwagi": "zwis jak hantle, uchwyt na prowadnicy pionowej z=28,2 cm (poza udem); łokieć 3,8° stały; W1 naprawione; W7 (jeden uchwyt, artefakt odstępu −10,3…−11,1 cm) — backlog"
+        },
+        "Calf-Machine Shoulder Shrug": {
+          "werdykt": "wyswietlana",
+          "uwagi": "identyczny z Leverage Shrug; W1 naprawione; W6 (brak poduszek na barkach) — backlog, ograniczenie silnika"
+        },
+        "Middle Back Shrug": {
+          "werdykt": "wyswietlana",
+          "uwagi": "ruch bez zmian względem rundy 1 (łopatki 5 → −4 cm prostopadle do tułowia, ławka 45°, łokieć ~42° stały); nie obejmuje go bez_bramki_ruchu ani rece_proste"
         }
       }
     }
@@ -3315,6 +3359,26 @@
       "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; ace-49 przy gb.move bez twierdzenia o linii, linia przy NASM Step 3; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
       "uwagi": "Niska, dane: linię w gb.move wprost niesie tylko NASM; opcjonalnie dopisać acecert-7403 (full extension) przy gb.move.",
       "sha": "67dad95fa67f"
+    },
+    "Shrugs (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "sha": "5e140bf234c0",
+      "uwagi": "Treść (shrug.setup, move, high, tall) zgodna z NOWYM rysunkiem: ręce proste, tułów nieruchomy, barki w górę. Wpis v1 można przestawić na „zastapiona”."
+    },
+    "Shrugs (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "sha": "5e140bf234c0",
+      "uwagi": "Jak sztanga — hantle przy udach, bez odwiedzenia. Wpis v1 można przestawić na „zastapiona”."
     }
   },
   "zestawy": {
@@ -4659,6 +4723,39 @@
       "kto": "audytor — recenzja niezależna L-047 zestawu ogólnego wyświetlanego po podłączeniu rysunku v2 triceps (K1), gałąź figury/triceps @ 30be67f8, 04.11.2026",
       "sha": "4e6e6ddf03e3",
       "uwagi": "Przypisanie triPush (prostowanie łokci przy nieruchomym ramieniu) zgodne z ruchem: rysunek v2 — ramiona leżą na podpórce, nieruchome (dryf 1,6 cm), dźwignia z osią w łokciu, łokieć 76→167°. Zestaw (press.noLock, llc.control, mis.jerk) nie mówi o ustawieniu, tylko o kontroli i wyproście — ogólne, prawdziwe dla maszyny. Teksty jak na kartach-wzorcach (wskazowki-ogolne.json: ote.upperArm, ote.elbowsIn ← Overhead Triceps Extension (hantel), ACE #74 przeczytane 04.11.2026; press.noLock ← Machine Chest Press; mis.jerk ← Seated Cable Row, NASM + ExRx; llc.control ← Lying Leg Curl, ACE #153 + NASM). Bez liczb i twierdzeń o zdrowiu. Wpis pozostaje ważny po scaleniu T1b."
+    },
+    "Smith Machine Behind the Back Shrug": {
+      "rodzina": "shrug",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "sha": "193c74683067",
+      "uwagi": "Zestaw shrug (shrug.move, shrug.tall, mis.jerk) zgodny z rysunkiem: tułów nieruchomy, pracują barki (W2 naprawione)."
+    },
+    "Calf-Machine Shoulder Shrug": {
+      "rodzina": "shrug",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "sha": "193c74683067",
+      "uwagi": "Zestaw shrug zgodny z rysunkiem (W1 naprawione); brak poduszek na barkach (W6) — backlog, teksty zestawu mu nie przeczą."
+    },
+    "Middle Back Shrug": {
+      "rodzina": "shrug",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
+      "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "sha": "ae52305bc674",
+      "uwagi": "Zestaw row (csr.chest, scr.chest, mis.jerk) zgodny z rysunkiem; bez zmian względem rundy 1."
     }
   }
 }

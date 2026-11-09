@@ -1,0 +1,41 @@
+{
+ "v2": {
+  "pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — runda 2, recenzja różnicy a9c220be → d7dd7a84 (poprawka N1 Straight Arm Pulldown: kolumna wyciągu x 62 → 88); 8/8 wyświetlane; ŚREDNIE N2–N5 i NISKIE N6–N7 z rundy 1 do backlogu (N5: EN „Pulling” — decyzja koordynatora, wdrożenie osobno)",
+   "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rundy 2 (L-047, L-050) gałęzi figury/partia-3 @ d7dd7a84, czysta kopia git archive /tmp/rec-p3-r2, 09.11.2026; raport docs/research/recenzje/p3-pulldown-r2-audytor-2026-11-09.md",
+   "uwagi": "N1 naprawione: kolumna x 88 (= bark + ręka + 12 cm), przednia ściana kolumny x 83 (towerW 10), skrajny chwyt x 76,2 (u 0,375) — odstęp ok. 6,8 cm do ściany w każdej klatce (201 próbek); linka od bloczka (88, 215) do środka drążka, nie przecina kolumny ani ciała; drążek w rzucie z przodu przed kolumną. Pozostałe 7 ćwiczeń, kontrakt i rodzina bajtowo bez zmian wobec a9c220be; w Straight Arm Pulldown zmienione wyłącznie pole x wyciągu. Generator odtwarza plik (odtwarzanie-poz.mjs pulldown: brak rozjazdów, pozy ważne). Ruch rąk bez zmian (shElev 143°→27°).",
+   "slad": "arkusze scripts/figures/arkusz-slad.mjs --key \"Straight Arm Pulldown\", rzuty side i front, motyw light (/tmp/rec-p3-r2/ark) i dark (/tmp/rec-p3-r2/ark-dark), kadry co 0,05, kadr powiększony u 0,35–0,50 (/tmp/rec-p3-r2/c_sap_side_r2.png); nakładka arkusz-nakladka.mjs --family pulldown (16 arkuszy, /tmp/rec-p3-r2/nak); miara toru ksztaltToru (25 próbek frameAt) przeliczona w czystej kopii: side 31,63 cm / 1 zawrócenie, front 0 / 0",
+   "sha": "335199eb4c79",
+   "liczba": 8,
+   "cwiczenia": {
+    "Lat Pulldown": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1 (pozy bajtowo te same); N4 — backlog" },
+    "Close-Grip Front Lat Pulldown": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1; N4, N6 — backlog" },
+    "Underhand Lat Pulldown": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1; N4, N6 — backlog" },
+    "V-Bar Pulldown": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1; N4, N7 — backlog" },
+    "Single Arm Lat Pulldown": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1; N4, N6 — backlog" },
+    "Full Range-Of-Motion Lat Pulldown": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1; N6 — backlog" },
+    "Wide-Grip Pulldown Behind The Neck": { "werdykt": "wyswietlana", "uwagi": "bez zmian wobec rundy 1; N2, N3 (ŚREDNIE) — backlog" },
+    "Straight Arm Pulldown": { "werdykt": "wyswietlana", "uwagi": "N1 naprawione: kolumna x 88, chwyt najdalej x 76,2, ściana kolumny x 83 — drążek i linka nie przechodzą przez kolumnę w żadnym kadrze; łuk prostych rąk bez zmian (łokieć ≤ 20°)" }
+   }
+  }
+ },
+ "tor_wyjatki": {
+  "Straight Arm Pulldown|side": "potwierdzam: 31,6 cm (31,63), 1 zawrócenie — łuk prostej ręki wokół barku, wartość w powodzie aktualna (kolumna nie wpływa na tor chwytu)"
+ },
+ "runda1": {
+  "N1": "naprawione"
+ },
+ "znaleziska": [
+  {
+   "id": "U-1",
+   "waga": "uwaga procesowa (poza progiem produktu)",
+   "cwiczenie": "Straight Arm Pulldown (oraz hip_abd_add: Lateral Band Walk, Monster Walk)",
+   "opis": "Wzorzec tests/fixtures/figury-v2-zlote.json nie zmienił się od f546a93b, a pulldown.json był tam z kolumną x 62; d7dd7a84 zmienia odcisk pulldown/Straight Arm Pulldown i usuwa klucze hip_abd_add/Lateral Band Walk i /Monster Walk. tests/figures-v2-zgodnosc-wsteczna.test.ts:105–107 porównuje odciski i zbiory kluczy wszystkich póz z poses/ — spodziewany czerwony tests.yml, dopóki wzorzec nie zostanie świadomie odtworzony (ZLOTE_ZAPISZ=1) z dopisaną zmianą celową w nagłówku. Nie uruchamiałem Jest (polecenie).",
+   "dowod": "git log -1 d7dd7a84 -- tests/fixtures/figury-v2-zlote.json → f546a93b; tests/fixtures/figury-v2-zlote.json:1455,1459,2151; tests/figures-v2-zgodnosc-wsteczna.test.ts:76-86,105-107"
+  }
+ ]
+}
