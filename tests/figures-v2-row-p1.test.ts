@@ -6,10 +6,10 @@
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza rysunek i nakładkę, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import * as fs from 'fs';
 import * as path from 'path';
-import { assignAll, figureSpec, frameAt, jointAngles, poseKeys, DATA_UI, FAMILY, measuredJoint, phaseNames, angleLineShown, equipColliders, bodyColliders, gap, checkFrame, type FigureSpec, type V3 } from '@/lib/figures/v2';
+import { assignAll, trunkChord, BODY, figureSpec, frameAt, jointAngles, poseKeys, DATA_UI, FAMILY, measuredJoint, phaseNames, angleLineShown, equipColliders, bodyColliders, gap, checkFrame, type FigureSpec, type V3 } from '@/lib/figures/v2';
 import { TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
 import { ROW_TECHNIQUE, ROW_SUPPORTED_EXERCISES } from '@/lib/figures/v2/overlay/row';
-import { techniquesOf, cueIdsOf, errorText } from '@/lib/figures/v2/ui';
+import { techniquesOf, cueIdsOf, errorText, errorsOf } from '@/lib/figures/v2/ui';
 
 const SENS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.row;
 const KEYS = poseKeys('row');
@@ -128,5 +128,14 @@ describe('row: nakładka techniki', () => {
     expect(techniquesFor('row', ['csr.pull'], 'Chest Supported Row').map(d => d.id)).toEqual(['rowElbowLimb', 'rowElbowPastBackRef']);
     expect(techniquesFor('row', ['csr.pull'], 'Bent Over Row (sztanga)').map(d => d.id)).toEqual(['rowElbowLimb']);
     expect(techniquesFor('row', ['dl.lift'])).toEqual([]);
+  });
+});
+
+describe('row: błąd „zaokrąglone plecy” widoczny (09.11.2026: zgięcie 32° → 40°)', () => {
+  const OBNIZENIE = (bendDeg: number) => BODY.trunk * (1 - trunkChord(bendDeg));
+  test('na końcu ruchu bark, głowa i łokieć przesuwają się o ≥ 3 cm (CONTRACT.visibleCm) w każdym ćwiczeniu z błędem; zgięcie 32° (poprzednie, 2,3 cm) tego nie spełniało', () => {
+    expect(OBNIZENIE(32)).toBeLessThan(3); expect(OBNIZENIE(40)).toBeGreaterThanOrEqual(3);
+    const z = KEYS.filter(k => errorsOf(spec(k)).length > 0); expect(z.length).toBeGreaterThanOrEqual(5);
+    for (const k of z) for (const e of errorsOf(spec(k))) { const a = frameAt(spec(k), 1).sk, b = frameAt(spec(k), 1, e.error).sk; const dd = Math.max(d3(a.shoulderC, b.shoulderC), d3(a.head, b.head), d3(a.arms.R.elbow, b.arms.R.elbow)); expect([k, e.cue, dd >= 3]).toEqual([k, 'mis.roundBack', true]); }
   });
 });
