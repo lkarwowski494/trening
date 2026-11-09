@@ -485,7 +485,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Rodzina mostków i hip thrust (hip_bridge) pokazuje rysunki 10 ćwiczeń (09.11.2026, linia 1.1 partia 2; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-hip-bridge.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny hip_bridge (np. Glute Bridge, Hip Thrust (sztanga)), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
-    - Wtedy licznik faz pokazuje Unoszenie i Opuszczanie (1 s i 2 s), mierzony jest kąt w biodrze, a London Bridges (nazwa nie identyfikuje ruchu) zostaje bez rysunku v2
+    - Wtedy licznik faz pokazuje Unoszenie i Opuszczanie (tempo jak w innych rodzinach v2), mierzony jest kąt w biodrze, a London Bridges (nazwa nie identyfikuje ruchu) zostaje bez rysunku v2
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
