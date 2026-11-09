@@ -44,7 +44,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       if (f === 'kb_ballistic' && poseFile(f)!.cwiczenia[k].petla === 'jednokierunkowa') continue; /* 09.11.2026: 9 ćwiczeń kb_ballistic w pętli jednokierunkowej (jedna faza bez czasu): fazy i staw sprawdza tests/figures-v2-kb-ballistic-p1.test.ts */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
+      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); else if (f === 'chest_fly') expect([k, measuredJoint(s)]).toEqual([k, /Pullover|Crucifix/.test(k) ? 'shElev' : 'shAbd']); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover i Crucifix — uniesienie (shElev) */ /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
@@ -52,6 +52,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else if (f === 'calf_raise') { /* 09.11.2026: kolano w wspięciu stoi (zakres < 15°, linia kąta ukryta) — kąt nie jest mierzonym ruchem; zakres kostki sprawdza tests/figures-v2-calf-raise-p1.test.ts */ }
       else if (f === 'kb_ballistic') { /* 09.11.2026: wahadło dół → góra; mierzony staw (biodro albo kolano) rusza się w ruchu o co najmniej MIN_MEASURED_ROM (15°) — inaczej linia kąta byłaby bez znaczenia; kierunek i zakres z reguł karty: tests/figures-v2-kb-ballistic-p1.test.ts */ const ds = U.map(u => measuredAngle(s, u).deg); expect([k, Math.max(...ds) - Math.min(...ds) >= 15]).toEqual([k, true]); }
       else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+            /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki) i zgięcie ramienia (pullover) maleją; Crucifix (utrzymanie): kąt stały */
+      else if (f === 'chest_fly') { expect([k, k === 'Crucifix' ? Math.abs(measuredAngle(s, 1).deg - measuredAngle(s, 0).deg) < 1 : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
@@ -110,7 +112,7 @@ describe('błędy z danych (bledy[])', () => {
     }
   });
   test('macierz: kadr obejmuje poprawną pozę i pozy błędów; kształty w obu widokach i oba motywy istnieją dla każdego ćwiczenia z danymi', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && b.h > 50]).toEqual([k, v, true]); expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && (b.h > 50 || (k === 'Crucifix' && v === 'top'))]).toEqual([k, v, true]); /* Crucifix z góry (09.11.2026, partia 1): osoba stojąca widziana z góry ma głębokość ok. 30 cm (< 50) — widok „top” rodziny chest_fly jest sensowny tylko dla leżących; zgłoszone koordynatorowi (widoki ćwiczenia = widoki rodziny, silnik wspólny) */ expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
     expect(light.bg).not.toBe(dark.bg);
   });
   test('tempo: błąd z danych używa tempa domyślnego (jak poprawna poza)', () => { const s = figureSpec('Pull Up')!; expect(tempoFor(s, 'data:0')).toEqual(tempoFor(s)); expect(uAt(TEMPO.holdMs + TEMPO.upMs, false, tempoFor(s))).toBeCloseTo(1, 6); });
@@ -119,10 +121,10 @@ describe('błędy z danych (bledy[])', () => {
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
 /* 09.11.2026 (kb_ballistic, partia 1): „zaokrąglone plecy” (mis.roundBack) to zgięcie kręgosłupa — krzywizna grzbietu przy tych samych punktach stawów (miednica, głowa, kolano, kostka, łokieć różnią się < 3 cm). Miara widoczności: zmiana zgięcia kręgosłupa w kadrach błędu ≥ 15° (generator: 26°). Przypadek negatywny: poza poprawna ma 0°. */
 const ZAOKRAGLONE_PLECY_KB = (f: string, k: string, cue: string, err: FigError) => { if (f !== 'kb_ballistic' || cue !== 'mis.roundBack') return false; const d = poseFile(f)!.cwiczenia[k]; const kl = d.bledy[dataErrorIndex(err as never)].klatki; return Math.max(...kl.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) >= 15 && Math.max(...d.klatki.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) < 15; };
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps') && cue === 'mis.jerk';
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps' || f === 'chest_fly') && cue === 'mis.jerk'; /* + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia */
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
-    expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
+    expect(JERK_TEMPO_RODZINY('chest_fly', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_fly', 'fly.elbows')).toBe(false); expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
     expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false);
   });
 });

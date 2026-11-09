@@ -19,6 +19,7 @@ const LOAD: Record<string, () => PoseFile> = {
   kb_ballistic: () => require('./poses/kb_ballistic.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
   row: () => require('./poses/row.json'),
+  chest_fly: () => require('./poses/chest_fly.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -86,6 +87,9 @@ export const DATA_UI: Record<string, DataUi> = {
     exceptions: { 'Band Pull Apart': { names: { first: 'Rozsuwanie', second: 'Powrót' }, joints: ['shAbd'] }, 'Reverse Flyes With External Rotation': { names: { first: 'Unoszenie', second: 'Opuszczanie' }, joints: ['shAbd'] } } },
   forearm: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['wristFlex', 'forearmRoll', 'elbow'],
     exceptions: { 'Dumbbell Lying Pronation': { names: { first: 'Obrót', second: 'Powrót' } }, 'Dumbbell Lying Supination': { names: { first: 'Obrót', second: 'Powrót' } } } },
+  /* chest_fly (09.11.2026): rozpiętki (u = 0 ramiona szeroko, u = 1 dłonie nad klatką / przed klatką) i pullover (u = 0 ciężar za głową, u = 1 nad klatką). Mierzone ramię jak w delt_raise: odsunięcie w bok (shAbd, rozpiętki) albo zgięcie
+   * w płaszczyźnie strzałkowej (shElev, pullover i Crucifix — pierwszy staw przy utrzymaniu); łokieć w rozpiętce stoi (zmiana ≤ 12°), więc nie jest mierzonym stawem (nakładka „limb” wymaga, by staw był pokazany: overlay.ts). */
+  chest_fly: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'] },
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
   /* calf_raise (09.11.2026): wspięcie na palce — u = 0 pięty na dole, u = 1 pięty w górze (1 s), opuszczanie 2 s. Mierzonym stawem byłaby kostka, ale MeasuredJoint jej nie ma (silnik, bez zmian w tej partii — zgłoszone w raporcie);
    * kandydat 'knee' (ruch kolana w wspięciu < 15°) powoduje, że linia „Kąt na rysunku” się nie pokazuje (MIN_MEASURED_ROM) — zamiast liczby, która nie jest ruchem wspięcia. */
