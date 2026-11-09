@@ -18,7 +18,7 @@ type Sym = {
   rozbicie: { obecnie: number; przyrost: number; kombinacje: Record<string, number>; a: number; b: number; c: number; aB: number };
   rodziny: { rodzina: string; przyrost: number; pelnaDzis: number; pelnaKoniec: number; cwiczen: number; wlaczenie: number; zestawOgolny: number; karta: number; role: number }[];
   cwiczeniaCiezkie: { cwiczen: number; brakFigury: number; brakTekstu: number; brakRol: number };
-  kontrola: { cuesSetsOwnRownaZrodlu: boolean; wstrzymane: string[] };
+  kontrola: { cuesSetsOwnRownaZrodlu: boolean; wstrzymane: string[]; kartyDoPoprawy: string[] };
   gain: { key: string; rodzina: string; braki: string }[];
 };
 const sym = JSON.parse(execFileSync('node', ['scripts/pokrycie-symulacja.mjs', '--json'], { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })) as Sym;
@@ -71,6 +71,16 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(cele.status).toMatch(/09\.11\.2026[^]*bez „ciężkich”/);
     expect(cele.opis).toMatch(/09\.11\.2026 \(decyzja właściciela 09\.11\.2026[^)]*\)[^]*scripts\/pokrycie-symulacja\.mjs/);
     expect(cele.opis).toMatch(/pelnaKarta 456 → 457/);
+  });
+  test('regresja 09.11.2026 (wariant B koordynatora): karta z werdyktem „do poprawy” w figury-recenzja.json nie liczy się do zysku — ćwiczenie bez pełnej karty, bez karty własnej w stanie końcowym', () => {
+    const rec = json<{ karty: Record<string, { werdykt: string }> }>('docs/research/figury-recenzja.json').karty;
+    const doPoprawy = Object.keys(rec).filter(k => rec[k].werdykt === 'do poprawy').sort();
+    expect(doPoprawy).toContain('Front Incline Dumbbell Raise');
+    expect(doPoprawy).toContain('Barbell Incline Shoulder Raise');
+    expect(sym.kontrola.kartyDoPoprawy).toEqual(doPoprawy);
+    for (const k of doPoprawy) expect([k, sym.gain.some(g => g.key === k)]).toEqual([k, false]);
+    expect(sym.rozbicie.a).toBe(0); /* delt_raise: zysk (a) znika razem z kartą „do poprawy” */
+    expect(cele.min.pelnaKarta).toBe(457); /* cel zostaje do naprawy fidr.move (wariant A, osobne zadanie) */
   });
   test('docs/18 ma wpis decyzji z 09.11.2026 (cytat właściciela, definicja, stare → nowe, odrzucone) z polami wdrożenia i testu', () => {
     const d = read('docs/18-przekazanie.md');

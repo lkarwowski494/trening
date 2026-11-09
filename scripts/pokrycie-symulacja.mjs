@@ -2,7 +2,8 @@
 // Cel wersji 1.1 w docs/research/pokrycie-cele.json = wartość każdej metryki w stanie końcowym bez nowych badań:
 //   (b) wszystkie rodziny z danymi póz v2 (lib/figures/v2/poses/*.json) włączone i zrecenzowane (poza V2_WSTRZYMANE) + wszystkie zestawy ogólne (cue-sets.json, b = general)
 //       przy ćwiczeniach z taką figurą zrecenzowane,
-//   (a) wszystkie karty z tekstem w źródłach (data/zrodla/cues.json — także ukryte do recenzji i z werdyktem „do poprawy”) odsłonięte i przetłumaczone na każdy język,
+//   (a) wszystkie karty z tekstem w źródłach (data/zrodla/cues.json — także ukryte do recenzji) odsłonięte i przetłumaczone na każdy język; poza kartami z werdyktem „do poprawy”
+//       w docs/research/figury-recenzja.json (karty) — taka karta nie jest pełną kartą, dopóki recenzent nie zatwierdzi poprawki (koordynator, tryb nocny 09.11.2026, wariant B),
 //   (c) role mięśni uzupełnione u ćwiczeń, którym dziś do pełnej karty brakuje tylko ról (poza mobilnością).
 // „Ciężkie” (poza celem — nowe badania/treści/ruch silnika → backlog 1.2): brak tekstu wskazówek w źródłach i brak zestawu ogólnego, brak danych póz v2, rodzina wymagająca ruchu silnika.
 // Cel = max(symulacja, minimum zapadki) — cel nie jest łatwiejszy niż stan chroniony (tests/pokrycie-katalogu.test.ts). Liczby tylko z kodu i danych; nic nie zapisuje.
@@ -24,6 +25,7 @@ export function symuluj() {
   const v2 = R('lib/figures/v2/index.ts'), fig = R('lib/figures/v2/figure.ts'), ui = R('lib/figures/v2/ui.ts'), cueSets = R('lib/figures/v2/cueSets.ts');
   const cues = R('lib/cues/index.ts'), fig1 = R('lib/figures/index.ts');
   const zrodlo = odczyt('data/zrodla/cues.json').exercises;
+  const kartyDoPoprawy = new Set(Object.entries(odczyt('docs/research/figury-recenzja.json').karty ?? {}).filter(([, v]) => v.werdykt === 'do poprawy').map(([k]) => k)); /* 09.11.2026: nie wchodzą do zysku */
   const dirPoz = join(repoRoot, 'lib/figures/v2/poses');
   const rodzinyZPozami = new Set(existsSync(dirPoz) ? readdirSync(dirPoz).filter(f => f.endsWith('.json')).map(f => f.replace(/\.json$/, '')) : []);
   for (const f of v2.FAMILIES) if (rodzinyZPozami.has(f.id)) f.status = 'ready'; /* (b): włączenie rodzin z danymi póz */
@@ -40,7 +42,7 @@ export function symuluj() {
   const wiersze = baza.cw.map(c => {
     const key = c.key;
     const spec = !own(wstrzymane, key) ? fig.figureSpec(key) : null; /* figura po włączeniu rodzin i recenzji ruchu */
-    const sel = cueSets.cueSelection(key), zr = own(zrodlo, key);
+    const sel = cueSets.cueSelection(key), zr = kartyDoPoprawy.has(key) ? undefined : own(zrodlo, key); /* karta „do poprawy” = brak odsłoniętej karty własnej */
     const wskazowki = sel.mode === 'own' ? (zr ? 'wlasne' : 'brak') : sel.mode === 'general' && spec ? 'ogolne' : 'brak'; /* (a) karta w źródłach odsłonięta; (b) zestaw ogólny zrecenzowany przy figurze */
     const bledyTekst = wskazowki === 'wlasne' ? (zr.mistakes ?? []).length > 0 : wskazowki === 'ogolne' ? sel.err.length > 0 : false;
     const errCues = wskazowki === 'wlasne' ? (zr.mistakes ?? []).map(r => r.c) : wskazowki === 'ogolne' ? sel.err : [];
@@ -96,6 +98,7 @@ export function symuluj() {
   const ciezkie = wiersze.filter(w => !w.pelna);
   const cwiczeniaCiezkie = { cwiczen: ciezkie.length, brakFigury: ciezkie.filter(w => !w.spec).length, brakTekstu: ciezkie.filter(w => w.wskazowki === 'brak').length, brakRol: ciezkie.filter(w => w.rolkiK === 0 && !w.c.mobilnosc).length };
   const kontrola = {
+    kartyDoPoprawy: [...kartyDoPoprawy].sort(),
     cuesSetsOwnRownaZrodlu: Object.keys(cueSets.CUE_SETS.items).filter(k => cueSets.CUE_SETS.items[k].b === 'own').length === Object.keys(zrodlo).length,
     zWlasnymiBezSpec: ile(w => w.wskazowki === 'wlasne' && !w.spec), ogolneBezSpec: ile(w => w.c.wskazowki !== 'ogolne' && cueSets.cueSelection(w.c.key).mode === 'general' && !w.spec),
     zPozamiBezSpec: ile(w => w.c.dane && !w.spec), wstrzymane: Object.keys(wstrzymane), v1Open: fig1.FIG_DATA.open.length,

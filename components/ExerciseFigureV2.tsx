@@ -7,7 +7,7 @@ import { t, lang, exName } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, loopOf, cycleAt, oneWayAt, guideShapes, overlayShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
+  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, staticLabels, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, loopOf, cycleAt, oneWayAt, oneWayRepMs, guideShapes, overlayShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
   type View as FView, type FigError, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
@@ -84,10 +84,12 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const onBadge = (b: Badge) => { setPaused(true); setSel({ cue: b.cue, kind: b.kind }); };
   const base = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
   const drawn = onDrawingCues(spec, guides, techniques); /* VoiceOver: wskazówki widocznych linii i łuków (te same teksty co na karcie) */
-  const label = drawn.length ? `${base}. ${t('Na rysunku: {lista}', { lista: joinCues(drawn.map(errorText)) })}` : base;
+  const posLabels = staticLabels(spec); /* tryb statyczny z własnymi pozycjami (pętla zamknięta): podpisy są w obrazie dostępnym jako całość, więc VoiceOver czyta je w etykiecie obrazu */
+  const baseLabel = drawn.length ? `${base}. ${t('Na rysunku: {lista}', { lista: joinCues(drawn.map(errorText)) })}` : base;
+  const label = !animate && posLabels.length > 2 ? `${baseLabel}. ${t('Pozycje na rysunku: {lista}', { lista: posLabels.map(l => t(l)).join(', ') })}` : baseLabel;
   const canPause = !spec.static && reduce === false;
   const stop = animate && figuraStop();
-  const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
+  const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms, oneWayRepMs(spec.key)) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
   const views = spec.views;
   const boxes = views.map(v => boxFor(spec, v, errors.map(e => e.error)));
   const aspects = boxes.map(b => b.w / b.h); const sumA = aspects.reduce((a, b) => a + b, 0);
@@ -104,12 +106,12 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
               {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${v}`} spec={spec} u={u} view={v} box={boxes[i]} th={th} height={height} error={errId} guides={guides} techniques={techniques} onBadge={onBadge} /></View>)}
             </View>
           : <View testID="exercise-figure-v2-static" style={{ gap: 4 }}>
-              {staticPositions(spec).map(p => (
+              {staticPositions(spec).map((p, pi, all) => (
                 <View key={p}>
                   <View style={{ flexDirection: 'row', gap: 8 }}>
-                    {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${p === 0 ? 'start' : 'end'}-${v}`} spec={spec} u={p} view={v} box={boxes[i]} th={th} height={Math.round(height * 0.8)} error={errId} guides={guides} techniques={techniques} onBadge={onBadge} /></View>)}
+                    {views.map((v, i) => <View key={v} style={{ flex: aspects[i] }}><ViewSvg testID={`exercise-figure-v2-${pi === 0 ? 'start' : pi === all.length - 1 ? 'end' : 'mid'}-${v}`} spec={spec} u={p} view={v} box={boxes[i]} th={th} height={Math.round(height * 0.8)} error={errId} guides={guides} techniques={techniques} onBadge={onBadge} /></View>)}
                   </View>
-                  {staticPositions(spec).length > 1 ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, textAlign: 'center' }}>{p === 0 ? t('Pozycja wyjściowa') : t('Pozycja końcowa')}</Text> : null}
+                  {all.length > 1 ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, textAlign: 'center' }}>{t(staticLabels(spec)[pi])}</Text> : null}
                 </View>
               ))}
             </View>}
