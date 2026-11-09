@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 151,
+      "v2": 183,
       "v1": 44,
-      "bezFigury": 513,
+      "bezFigury": 481,
       "daneV2NieWlaczone": 352,
-      "wyjatekBezAnimacji": 151
+      "wyjatekBezAnimacji": 150
     },
-    "animowanyBlad": 96,
+    "animowanyBlad": 127,
     "wskazowki": {
       "wlasne": 215,
       "wlasneZBledami": 112,
-      "ogolne": 85,
-      "bezTekstu": 408
+      "ogolne": 110,
+      "bezTekstu": 383
     },
-    "czesteBledyTekst": 197,
+    "czesteBledyTekst": 222,
     "roleMiesni": 512,
-    "pelnaKarta": 148,
-    "pelnaKartaBlad": 95,
-    "recenzjaFigur": 151
+    "pelnaKarta": 180,
+    "pelnaKartaBlad": 126,
+    "recenzjaFigur": 183
   },
   "kartZTekstami": 574,
   "rodziny": {
@@ -53,15 +53,15 @@
     "hinge": {
       "status": "ready",
       "cwiczen": 32,
-      "figuraV2": 0,
+      "figuraV2": 32,
       "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 7,
-      "ogolne": 0,
-      "bezTekstu": 25,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 25,
+      "bezTekstu": 0,
+      "pelnaKarta": 32,
+      "pelnaKartaBlad": 31,
+      "recenzja": 32
     },
     "pushup_plank": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 151,
-    "figura.wAplikacji": 195,
-    "figura.zDanymiV2": 503,
-    "animowanyBlad": 96,
+    "figura.v2": 183,
+    "figura.wAplikacji": 227,
+    "figura.zDanymiV2": 535,
+    "animowanyBlad": 127,
     "wskazowki.wlasne": 215,
     "wskazowki.wlasneZBledami": 112,
-    "wskazowki.zTekstem": 300,
-    "czesteBledyTekst": 197,
+    "wskazowki.zTekstem": 325,
+    "czesteBledyTekst": 222,
     "roleMiesni": 512,
-    "pelnaKarta": 148,
-    "pelnaKartaBlad": 95,
-    "recenzjaFigur": 151,
+    "pelnaKarta": 180,
+    "pelnaKartaBlad": 126,
+    "recenzjaFigur": 183,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 574,
     "jezyk.en.kompletne": 574,
