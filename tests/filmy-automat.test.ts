@@ -25,7 +25,7 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(plan).toHaveLength(2);
   });
 
-  test.each(['pl', 'en'])('[%s] format 8 s (właściciel 09.11.2026, A): błąd od 0 s, napis od 0,5 s, poprawnie od ok. 3–4 s, bez osobnej planszy końcowej', jezyk => {
+  test.each(['pl', 'en'])('[%s] format ok. 9 s (właściciel 09.11.2026, A i C): błąd od 0 s z pauzą, napis od 0,5 s, poprawnie od ok. 3,5–5 s, bez osobnej planszy końcowej', jezyk => {
     const p = plan.find((x: { jezyk: string }) => x.jezyk === jezyk);
     const d = CFG.domyslne;
     expect(p.klatek).toBe(Math.round(d.sekundy * d.fps));
@@ -33,10 +33,23 @@ describe('automat filmów o technice (ZB-047, 07.11.2026)', () => {
     expect(p.klatki_bez_napisu).toBe(Math.round(d.napis_od_s * d.fps));
     expect(Math.abs(p.zmianaMs - d.blad_do_s * 1000)).toBeLessThanOrEqual(1000);
     expect(p.waga_bledu_klatka0).toBeGreaterThanOrEqual(0.6);
-    expect(d.sekundy).toBe(8);
+    expect(d.sekundy).toBe(9);
     expect(d.nazwa_w_haku).toBe(true);
     expect(p.klatki_koniec).toBe(0);
-    expect(p.zmianaMs).toBeGreaterThanOrEqual(2500); expect(p.zmianaMs).toBeLessThanOrEqual(4000);
+    expect(p.zmianaMs).toBeGreaterThanOrEqual(2500 + d.pauza_bledu_s * 1000); expect(p.zmianaMs).toBeLessThanOrEqual(4000 + d.pauza_bledu_s * 1000);
+  });
+
+  test('pauza na błędzie (właściciel 09.11.2026, C): przez pauza_bledu_s animacja stoi w chwili największej wagi błędu, przed zmianą fazy; każdy film', () => {
+    const d = CFG.domyslne; expect(d.pauza_bledu_s).toBe(1);
+    const r6 = run(['--wszystkie', '--plan']); expect(r6.status).toBe(0);
+    for (const p of JSON.parse(r6.stdout)) {
+      expect(p.klatki_pauzy).toBe(Math.round(d.pauza_bledu_s * d.fps));
+      expect(p.u_pauzy).toHaveLength(1); /* stoi w jednej pozycji */
+      expect(p.waga_bledu_pauzy).toBeGreaterThanOrEqual(p.waga_bledu_klatka0);
+      expect(p.waga_bledu_pauzy).toBeGreaterThanOrEqual(0.6);
+      expect(p.pauzaOdMs + d.pauza_bledu_s * 1000).toBeLessThanOrEqual(p.zmianaMs);
+      expect(p.pauzaOdMs).toBeGreaterThanOrEqual(d.napis_od_s * 1000 + 500); /* nie stopklatka na starcie */
+    }
   });
 
   test('nazwa aplikacji w miejscu haka po przejściu do poprawnego ruchu (właściciel 09.11.2026): hak w fazie błędu, potem ikona, pełna nazwa ze sklepu i „App Store”', () => {

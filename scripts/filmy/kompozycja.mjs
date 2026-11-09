@@ -85,6 +85,8 @@ export function uW(v2, spec, ms, tempo) {
  * Plan klatek: faza „blad” (✕ od pierwszej klatki) → „poprawnie”; ostatnie koniec_s sekund z logo i podpisem na trwającej animacji.
  * Start zegara błędu: pierwsza chwila pętli, w której waga błędu ≥ 0,6 (błąd widać od razu, bez czekania na zejście).
  * Zmiana fazy: w oknie ±1 s wokół blad_do_s chwila najbliższa pozycji wyjściowej (najmniejsze u), żeby przejście nie skakało pozą.
+ * Pauza na błędzie (właściciel 09.11.2026, C): animacja błędu staje na pauza_bledu_s w chwili największej wagi błędu (pierwsze maksimum od 0,5 s po pojawieniu się napisu do zmiany fazy), potem kończy powtórzenie;
+ * blad_do_s liczy czas animacji bez pauzy, a zmiana fazy w filmie przesuwa się o pauzę.
  */
 export function planKlatek(film, cfg, v2) {
   const spec = v2.shownFigureSpec(film.cwiczenie); const d = cfg.domyslne;
@@ -94,14 +96,19 @@ export function planKlatek(film, cfg, v2) {
   let start = 0; for (let ms = 0; ms < loopMs; ms += dt) if (v2.faultWeight(spec, uW(v2, spec, ms, tBlad)) >= 0.6) { start = ms; break; }
   const target = d.blad_do_s * 1000; let zmiana = target, best = Infinity;
   for (let ms = target - 1000; ms <= target + 1000; ms += dt) { const u = uW(v2, spec, start + ms, tBlad); if (u < best - 1e-9) { best = u; zmiana = ms; } }
+  const pauza = (d.pauza_bledu_s ?? 0) * 1000; let pauzaOd = 0, wMax = -1;
+  const pauzaNajwczesniej = d.napis_od_s * 1000 + 500; /* film nie zaczyna się stopklatką: najpierw ruch i napis błędu */
+  if (pauza > 0) for (let ms = pauzaNajwczesniej; ms < zmiana; ms += dt) { const w = v2.faultWeight(spec, uW(v2, spec, start + ms, tBlad)); if (w > wMax + 1e-9) { wMax = w; pauzaOd = ms; } }
+  const zmianaFilm = zmiana + pauza; /* zegar animacji błędu: do pauzaOd normalnie, potem stoi przez pauzę */
+  const zegarBledu = t => (t < pauzaOd ? t : t < pauzaOd + pauza ? pauzaOd : t - pauza);
   const koniecOd = (d.sekundy - d.koniec_s) * 1000; const klatki = [];
   for (let i = 0; i < n; i++) {
-    const t = i * dt; const blad = t < zmiana;
+    const t = i * dt; const blad = t < zmianaFilm;
     /* po zmianie zegar poprawnej animacji startuje w tej samej pozycji (u minimalne) — bez skoku */
-    const u = blad ? uW(v2, spec, start + t, tBlad) : uW(v2, spec, t - zmiana, tOk);
-    klatki.push({ i, t: Math.round(t), faza: blad ? 'blad' : 'poprawnie', napis: t >= d.napis_od_s * 1000, koniec: t >= koniecOd, u: Math.round(u * 1e4) / 1e4 });
+    const u = blad ? uW(v2, spec, start + zegarBledu(t), tBlad) : uW(v2, spec, t - zmianaFilm, tOk);
+    klatki.push({ i, t: Math.round(t), faza: blad ? 'blad' : 'poprawnie', napis: t >= d.napis_od_s * 1000, koniec: t >= koniecOd, pauza: pauza > 0 && t >= pauzaOd && t < pauzaOd + pauza, u: Math.round(u * 1e4) / 1e4 });
   }
-  return { spec, klatki, startMs: Math.round(start), zmianaMs: Math.round(zmiana), koniecOdMs: koniecOd };
+  return { spec, klatki, startMs: Math.round(start), zmianaMs: Math.round(zmianaFilm), koniecOdMs: koniecOd, pauzaOdMs: Math.round(pauzaOd), pauzaMs: pauza };
 }
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

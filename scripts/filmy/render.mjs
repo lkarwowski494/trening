@@ -44,7 +44,7 @@ const klasa = k => [k.faza, k.napis ? 'napis' : '', k.koniec ? 'na-koncu' : ''].
 if (has('plan')) {
   const out = filmy.flatMap(f => langs.map(l => {
     const plan = planKlatek(f, cfg, v2); const tx = tekstyFilmu(f, l, cfg, dane);
-    return { film: f.id, jezyk: l, klatek: plan.klatki.length, fps: d.fps, startMs: plan.startMs, zmianaMs: plan.zmianaMs, koniecOdMs: plan.koniecOdMs,
+    return { film: f.id, jezyk: l, klatek: plan.klatki.length, fps: d.fps, startMs: plan.startMs, zmianaMs: plan.zmianaMs, koniecOdMs: plan.koniecOdMs, pauzaOdMs: plan.pauzaOdMs, klatki_pauzy: plan.klatki.filter(k => k.pauza).length, waga_bledu_pauzy: Math.round(v2.faultWeight(plan.spec, plan.klatki.find(k => k.pauza)?.u ?? 0) * 100) / 100, u_pauzy: [...new Set(plan.klatki.filter(k => k.pauza).map(k => k.u))],
       fazy: [...new Set(plan.klatki.map(k => k.faza))], klatki_bez_napisu: plan.klatki.filter(k => !k.napis).length, klatki_koniec: plan.klatki.filter(k => k.koniec).length,
       widoki: plan.spec.views, waga_bledu_klatka0: Math.round(v2.faultWeight(plan.spec, plan.klatki[0].u) * 100) / 100,
       teksty: tx, stan_haka: cfg.hak[l].stan, stan_tekstow: cfg.teksty_stan?.[l] ?? null };
