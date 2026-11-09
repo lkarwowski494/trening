@@ -110,16 +110,19 @@ describe('A2 nogi: zdania', () => {
   });
 });
 
-describe('A2 nogi: narzędzia figur widzą kartę ukrytą do recenzji (scripts/figures/v2-sens.mjs kartaWlasna, 08.11.2026; 09.11.2026: Smith Machine Calf Raise odsłonięta po recenzji, przykład ukrytej — Cable Kickback, czeka na rundę 2)', () => {
+describe('A2 nogi: narzędzia figur widzą kartę ukrytą do recenzji (scripts/figures/v2-sens.mjs kartaWlasna, 08.11.2026; 09.11.2026: przykład ukrytej wybierany z danych — Cable Kickback odsłonięta po rundzie 2, stała nazwa łamała test przy każdym odsłonięciu)', () => {
   const { execFileSync } = require('child_process') as typeof import('child_process');
+  const CS = json('lib/figures/v2/cue-sets.json').items;
+  /* pierwsza karta własna ukryta do recenzji/przekładu (lista hidden) z pełnymi danymi i trybem own w cue-sets — 09.11.2026 */
+  const K: string = (CUE_DATA.hidden ?? []).find((k: string) => CUE_FULL.exercises[k] && CS[k]?.b === 'own') ?? '';
   const R = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { kartaWlasna, wskazowkiCwiczenia } from ${JSON.stringify(path.join(root, 'scripts/figures/v2-sens.mjs'))};
 import { bledyCwiczenia } from ${JSON.stringify(path.join(root, 'scripts/figures/v2-validate.mjs'))};
 const ids = (k) => k ? Object.values(k).flat().map((x) => x.c) : null;
-console.log(JSON.stringify({ ukryta: ids(kartaWlasna('Cable Kickback')), bledy: bledyCwiczenia('Cable Kickback'), widoczna: ids(kartaWlasna('Back Squat')) !== null, brak: kartaWlasna('Ćwiczenie bez karty'), ogolny: wskazowkiCwiczenia('Stability Ball Hamstring Curl') }));`], { encoding: 'utf8' }));
+console.log(JSON.stringify({ ukryta: ids(kartaWlasna(${JSON.stringify(K)})), bledy: bledyCwiczenia(${JSON.stringify(K)}), widoczna: ids(kartaWlasna('Back Squat')) !== null, brak: kartaWlasna('Ćwiczenie bez karty'), ogolny: wskazowkiCwiczenia('Stability Ball Hamstring Curl') }));`], { encoding: 'utf8' }));
   test('karta ukryta (lista hidden) — z pełnych danych; karta widoczna — z runtime; brak karty — null; zestaw ogólny bez zmian', () => {
-    expect(CUE_DATA.hidden).toContain('Cable Kickback');
-    expect(R.ukryta).toEqual(CUE_SECTIONS.flatMap(s => (CUE_FULL.exercises['Cable Kickback'][s] ?? []).map(r => r.c)));
-    expect(R.bledy).toEqual(['ck.mis.sway', 'hext.mis.arch']);
+    expect(K).not.toBe('');
+    expect(R.ukryta).toEqual(CUE_SECTIONS.flatMap(s => (CUE_FULL.exercises[K][s] ?? []).map(r => r.c)));
+    expect(R.bledy).toEqual((CUE_FULL.exercises[K].mistakes ?? []).map(r => r.c));
     expect([R.widoczna, R.brak]).toEqual([true, null]);
     expect(R.ogolny).toEqual(json('lib/figures/v2/cue-sets.json').items['Stability Ball Hamstring Curl'].ok.concat(json('lib/figures/v2/cue-sets.json').items['Stability Ball Hamstring Curl'].err ?? []));
   });
