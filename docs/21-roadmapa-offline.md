@@ -185,6 +185,8 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Poziom barku (`deltShoulderLevelRef`) rysuje się w rzucie z przodu także w unoszeniu przodem, gdzie płaszczyzną ruchu jest rzut z boku — dodać poziom barku z boku dla unoszenia przodem albo ograniczyć element do unoszenia bokiem (`exercises`).
 - Machine Lateral Raise: wskazówka `llc.control` dubluje błąd `mis.jerk` (pozytyw i błąd o szarpaniu), zestaw ma de facto jedną wskazówkę ruchu mniej — zamienić `llc.control` na `lat.elbows` albo zostawić (nie jest to błąd treści).
 - Crucifix (rodzina chest_fly, status planned): zestaw do poprawy PRZED włączeniem chest_fly — `front.elbows` „przez cały ruch” oraz `plank.mis.breath` (jedno źródło pośrednie).
+- Cable Lateral Raise: wskazówki `lat.move` i `lat.elbows` w liczbie mnogiej przy wersji jednorącz — dostosować brzmienie albo zestaw.
+- Cable Lateral Raise: położenie bloczka w pozie (x = 60, z = −10) porównać ze stroną ćwiczenia przy następnej recenzji ruchu (pewność < 80%).
 
 ### Backlog 1.1.x — figury: rodzina olympic (recenzja ruchu r4, 04.11.2026, NISKIE; nie blokują)
 - r4-N1: Clean and Jerk — łokieć 149,9–150,7° między klatkami (u 0,515–0,5375) przy decyzji koordynatora „rack w ≤ 149°, bez `allow.elbow`”; walidator sprawdza tylko siatkę `gridU` i tego przejścia nie łapie; różnicy 1,7° nie widać na rysunku (wada z poprawki 3). Propozycja: rack Clean and Jerk w ≤ 149° także w przejściu albo gęstsza siatka walidatora. Realność: realny, niewidoczny.

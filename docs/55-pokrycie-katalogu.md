@@ -19,13 +19,13 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 322 | 45,5% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 109 | 15,4% |
 | Animowany błąd | 132 | 18,6% |
-| Własne wskazówki (źródłowe) | 214 | 30,2% |
+| Własne wskazówki (źródłowe) | 215 | 30,4% |
 | — z czego z częstymi błędami | 112 | 15,8% |
 | Zestaw ogólny wskazówek wzorca ruchu | 113 | 16% |
-| Bez tekstu wskazówek | 381 | 53,8% |
+| Bez tekstu wskazówek | 380 | 53,7% |
 | Częste błędy (własne albo zestaw ogólny) | 225 | 31,8% |
 | Role mięśni | 510 | 72% |
-| **Pełna karta** | 208 | 29,4% |
+| **Pełna karta** | 209 | 29,5% |
 | **Pełna karta + błąd** | 130 | 18,4% |
 | Figura z aktualną recenzją ruchu (bramka 4) | 214 | 30,2% |
 
@@ -41,9 +41,9 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| wskazówki (własne lub zestaw ogólny) | 640 | 327 | 313 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 328 | 312 |
 | częste błędy (tekst) | 557 | 225 | 332 |
-| pełna karta | 465 | 208 | 257 |
+| pełna karta | 465 | 209 | 256 |
 | komplet tekstów karty: pl | 671 | 573 | 98 |
 | komplet tekstów karty: en | 671 | 573 | 98 |
 
@@ -52,7 +52,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | Rodzina | Stan | Ćwiczeń | Figura v2 | Dane v2 (niewłączone) | Figura v1 | Własne wsk. | Zestaw ogólny | Bez tekstu | Pełne karty | Recenzja |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 4 | 0 | 40 | 0 | 0 |
-| `delt_raise` | gotowa | 38 | 31 | 0 | 0 | 30 | 3 | 5 | 29 | 31 |
+| `delt_raise` | gotowa | 38 | 31 | 0 | 0 | 31 | 3 | 4 | 30 | 31 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 6 | 28 | 2 | 34 | 34 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 10 | 0 | 26 | 0 | 0 |
 | `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 32 | 32 |
@@ -139,15 +139,15 @@ Kart z tekstami (wskazówki albo role mięśni): **573**. „Komplet” = karta 
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 208 (z błędem: 130). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 209 (z błędem: 130). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: wskazówki (własne albo zrecenzowany zestaw ogólny) — 2: Front Incline Dumbbell Raise, Lateral Raise (hantle)
+- Brakuje tylko: wskazówki (własne albo zrecenzowany zestaw ogólny) — 1: Front Incline Dumbbell Raise
 - Brakuje tylko: figura v2 w aplikacji — 89
 - Brakuje tylko: role mięśni — 4: Dead Hang, Jerk Balance, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 208 |
-| 1 | 95 |
+| 0 | 209 |
+| 1 | 94 |
 | 2 | 305 |
 | 3 | 100 |
