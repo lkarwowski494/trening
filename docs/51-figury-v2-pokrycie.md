@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 10, do zrobienia: 33); ćwiczeń z gotową figurą: **244** (34,4%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 11, do zrobienia: 32); ćwiczeń z gotową figurą: **256** (36,1%).
 
 ## Rodziny
 
@@ -15,7 +15,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `pushup_plank` | do zrobienia | 30 | side, front | 4 | Pompki, deski, rollouty, ruchy w podporze — rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy |
 | `dip` | do zrobienia | 5 | side, front | 2 | Dipy (poręcze, ławka, maszyna, kółka) |
 | `overhead_press` | do zrobienia | 23 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
-| `row` | do zrobienia | 13 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
+| `row` | gotowa | 13 | side, top | — | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
 | `cable_row` | do zrobienia | 10 | side, front | 3 | Wiosłowanie na linkach i maszynie, face pull |
 | `pull_up` | gotowa | 13 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
 | `pulldown` | do zrobienia | 8 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
@@ -53,10 +53,11 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 33 rodzin, 448 ćwiczeń, ok. **100 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 32 rodzin, 435 ćwiczeń, ok. **96 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
+- `row` (z figurą 12 z 13): Meadows Row
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 - `calf_raise` (z figurą 12 z 13): Smith Machine Reverse Calf Raise
 - `kb_ballistic` (z figurą 16 z 17): Kettlebell Pirate Ships
@@ -91,7 +92,7 @@ Chest Dip; Dip Machine; Ring Dips; Triceps Dip; Triceps Dips (ławka)
 
 Arnold Press; Band Shoulder Press; Bradford Press; Double Kettlebell Press; Handstand Push Up; Kettlebell Arnold Press; Kettlebell Press; Kettlebell Seated Press; Landmine Linear Jammer; Landmine Press; Overhead Press (hantle); Overhead Press (sztanga); Pike Push Up; Push Press; Push Press - Behind the Neck; Seated Barbell Military Press; Seated Cable Shoulder Press; Seated Shoulder Press (hantle); See-Saw Press (Alternating Side Press); Single Arm Overhead Press (hantel); Single-Arm Linear Jammer; Standing Barbell Press Behind Neck; Wyciskanie nad głowę (linki)
 
-### row (13) — do zrobienia
+### row (13) — gotowa
 
 Barbell Rear Delt Row; Bent Over Row (hantle); Bent Over Row (linki); Bent Over Row (sztanga); Chest Supported Row; Lying T-Bar Row; Meadows Row; One Arm Row (hantle); Pendlay Row; Reverse Grip Bent Over Row; Seal Row (sztanga); Smith Machine Bent Over Row; T-Bar Row
 

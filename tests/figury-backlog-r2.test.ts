@@ -98,7 +98,7 @@ describe('F4: wiosłowanie w opadzie — goleń odchylona do tyłu jest w przybl
   const R4 = uruchom(`${WSTEP}
 import * as G from ${q('scripts/figures/agent-pozy/row.mjs')};
 const d = JSON.parse(fs.readFileSync(path.join(${q('lib/figures/v2/poses')}, 'row.json'), 'utf8')); const o = { kolanoZaPieta: [], maxKolano: 0, bezWpisu: [], lista: G.WIOSLO_STOPY_PRZED_KOLANEM };
-for (const [cw, p] of Object.entries(d.cwiczenia)) { const s = v2.keyframeFrame(p, 0).sk; const l = s.legs.R; if (l.ankle[1] > 20) continue; const dx = l.knee[0] - l.heel[0]; 
+for (const [cw, p] of Object.entries(d.cwiczenia)) { if (p.klatki[0].obrotTulowia === 180) continue; /* 09.11.2026 (recenzja r1 row, W1): leżenie przodem (Chest Supported Row, Lying T-Bar Row, nogi proste za ławką) to nie wiosłowanie w opadzie — „kolano za piętą” w obróconym tułowiu to artefakt kierunku x */ const s = v2.keyframeFrame(p, 0).sk; const l = s.legs.R; if (l.ankle[1] > 20) continue; const dx = l.knee[0] - l.heel[0]; 
   if (dx <= -3 && v2.jointAngles(s, 'R').knee < 45) { o.maxKolano = Math.max(o.maxKolano, v2.jointAngles(s, 'R').knee); o.kolanoZaPieta.push(cw); if (!/goleń[^;]*odchyla się do tyłu/.test(G.PRZYBLIZENIA[cw] ?? '')) o.bezWpisu.push(cw); } }
 console.log(JSON.stringify(o));`);
   test('każda poza wiosłowania w opadzie z kolanem ≥ 3 cm za piętą ma w przybliżeniu opis odchylonej goleni (liczby i powód)', () => { expect(R4.kolanoZaPieta.length).toBeGreaterThanOrEqual(8); expect(R4.bezWpisu).toEqual([]); });

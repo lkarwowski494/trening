@@ -1,12 +1,15 @@
 // Generator póz rodziny row po stronie agenta (26.10.2026): wiosłowanie w pochyleniu (sztanga, hantle, linki, Smith, T-bar), jednorącz (hantel), przodem na ławce (seal row).
 // Tułów pochylony w biodrach (40–105°, stały ±10°), plecy neutralne (zgięcie kręgosłupa ≤ 10°), kolana ugięte ≤ 40°; łokcie: z prawie prostych (≤ 20°) do ≥ 70° i za linią tułowia (≥ 5 cm).
-// Błąd mis.roundBack: zaokrąglone plecy (zgięcie kręgosłupa narasta do 30°, barki zjeżdżają w dół, ręce poruszają się razem z barkami).
+// Błąd mis.roundBack: zaokrąglone plecy (zgięcie kręgosłupa narasta do 40° (ZLE_BEND), barki zjeżdżają w dół o ≈ 3,6 cm, ręce poruszają się razem z barkami). 09.11.2026: było 32° — przy cięciwie tułowia (skeleton.ts trunkChord) bark, głowa i łokieć przesuwały się tylko o 2,3 cm, poniżej widoczności 3 cm (CONTRACT.visibleCm; tests/figures-v2-data.test.tsx).
 import { lezyPrzodem, U9 } from './gora.mjs';
 import { podbicieStopyPrzodem } from './core_floor.mjs';
+import { kostkaNaPalcach } from './model.mjs';
 import { KOLANO_LEKKO_MAX_DEG } from '../v2-sens.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, noga3, bark, ramieFK, buduj, wyc, naLawce, kier } from './gora.mjs';
 
 export const RODZINA = 'row';
+/** Zgięcie kręgosłupa w pozie błędu „zaokrąglone plecy” na końcu ruchu (stopnie); reguła plecy_neutralne dopuszcza ≤ 10°. */
+const ZLE_BEND = 40;
 const POL = (s) => (s === 'R' ? 1 : -1);
 const U5 = [0, 0.25, 0.5, 0.75, 1];
 /** Kolano wiosłowania w opadzie: cel 26° przy górnej granicy KOLANO_LEKKO_MAX_DEG = 30° (jedna stała konwencji „lekko ugięte”, v2-sens.mjs); wcześniej 34,7–37,7° (granica reguły wynosiła 40°). */
@@ -26,7 +29,7 @@ function pochylony(cw, o) {
   let sx = o.stopaX ?? 0; /* x stóp: dobierany tak, by kolano nie przekraczało KOLANO_WIOSLO_CEL (jedna stała „lekko ugięte” ≤ KOLANO_LEKKO_MAX_DEG) */
   const nog = (s) => noga3([sx, 7, POL(s) * nogiZ], [1, 0.1, POL(s) * 0.05]);
   const fr = (u, zle) => {
-    const bend = zle ? lerp(0, o.zleBend ?? 32, u) : 0; const rece = {};
+    const bend = zle ? lerp(0, o.zleBend ?? ZLE_BEND, u) : 0; const rece = {};
     for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg, { bend }); const pracuje = !o.jedna || o.jedna === s;
       if (!pracuje) { rece[s] = o.wolna ? o.wolna(S, sg) : { g: [S[0] + 4, S[1] - 40, sg * 24], pole: [-0.2, -1, sg * 0.3] }; continue; }
       const u1 = up(p), f1 = front(p); const hx = o.xStaly !== undefined ? o.xStaly - S[0] : (o.H0?.[0] ?? 6); const hz = (o.zr ?? 22) - 19; const hy = -Math.sqrt(Math.max(1, (o.reach ?? 63.2) ** 2 - hx * hx - hz * hz)); const H0 = [S[0] + hx, S[1] + (o.H0?.[1] ?? hy)]; const H1 = [S[0] - (o.L ?? 30) * u1[0] + (o.F ?? 12) * f1[0], S[1] - (o.L ?? 30) * u1[1] + (o.F ?? 12) * f1[1]];
@@ -42,8 +45,20 @@ function pochylony(cw, o) {
 
 
 /** Wiosłowanie przodem na ławce skośnej: ręce zwisają przed ławką, łokcie unoszą się za linię pleców (do góry i do przodu względem leżącego). */
+/** Leżenie przodem na ławce skośnej (Chest Supported Row, Lying T-Bar Row): stopy NA PALCACH, pięty w górze (recenzja r2 row, W1-r2, 09.11.2026 — wspólne `lezyPrzodem` (gora.mjs) daje stopę płasko,
+ * palcami od osoby: zgięcie podeszwowe ok. 119° względem goleni). Lokalnie w row, bo `lezyPrzodem` używają też curl i delt_raise (rodziny już zrecenzowane — zmiana wspólnego generatora unieważniłaby ich rysunek).
+ * Podbicie STOPA_LEZY_PODBICIE (palce prawie pionowo w dół, ku +x), kostka na wysokości stopy na palcach (`kostkaNaPalcach`), kolana lekko ugięte (STOPA_LEZY_ODSUN). */
+export const STOPA_LEZY_PODBICIE = -75;
+/** Kostka o tyle cm bliżej biodra niż przy prostej nodze: kolana lekko ugięte (ku podłodze), żeby uniesione na palcach stopy nie przeprostowały bioder (limit zakresu −17°). */
+export const STOPA_LEZY_ODSUN = 2;
+function stopyNaPalcach(L) {
+  const b = BODY(); const yK = kostkaNaPalcach(0, STOPA_LEZY_PODBICIE);
+  for (const s of SIDES) { const n = L.nogi[s]; const zr = Math.abs(n.k[2]); const dy = L.m[1] - yK; const dz = zr - b.hipHalf;
+    n.k = [r1(L.m[0] + Math.sqrt(Math.max(1, (b.thigh + b.shank - 0.1) ** 2 - dy * dy - dz * dz)) - STOPA_LEZY_ODSUN), yK, n.k[2]]; n.pod = STOPA_LEZY_PODBICIE; }
+}
 function przodem(cw, o) {
   const L = lezyPrzodem(o.kat ?? 45, { dl: o.dl ?? 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 24; const pole = o.pole ?? [0.7, 0.7, 0];
+  stopyNaPalcach(L);
   const fr = (u) => { const rece = {}; for (const s of SIDES) { const sw = -POL(s); const S = L.S(s); const gz = sw * zr;
       const H0 = [S[0] + (o.h0?.[0] ?? 0), S[1] + (o.h0?.[1] ?? -63.2)]; const H1 = [S[0] + (o.h1?.[0] ?? 14), S[1] + (o.h1?.[1] ?? -20)];
       rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), gz], pole: [pole[0], pole[1], sw * (pole[2] ?? 0)], obrot: o.obrot ?? 0 }; }
@@ -68,7 +83,7 @@ export const WIOSLO_STOPY_PRZED_KOLANEM = ['Bent Over Row (sztanga)', 'Bent Over
 const PRZYBLIZENIE_STOPY_PRZED_KOLANEM = 'przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony';
 export const PRZYBLIZENIA = {
   ...Object.fromEntries(WIOSLO_STOPY_PRZED_KOLANEM.map((cw) => [cw, PRZYBLIZENIE_STOPY_PRZED_KOLANEM])),
-  'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270° silnika), sztanga zwisa pod ławką',
+  'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm — tak wysoko, żeby talerze sztangi nie dotykały podłogi przy prostych rękach (09.11.2026, recenzja r1 row, N2: gryf 26,1 cm, talerz 22,5 cm nad podłogą); osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270°), sztanga zwisa pod ławką',
   'T-Bar Row': `przybliżenie: T-bar jako dźwignia obrotowa z osią przed osobą (schemat; uchwyt na ramieniu dźwigni, bez rysowania talerzy); ${PRZYBLIZENIE_STOPY_PRZED_KOLANEM.replace('przybliżenie: ', '')}`,
 };
 
@@ -89,13 +104,13 @@ export function generuj() {
     const fr = (u) => { const rece = {}; for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg);
       if (s === 'R') { const u1 = up(p), f1 = front(p); const hx = 6, hz = 24 - 19; const hy = -Math.sqrt(63.2 ** 2 - hx * hx - hz * hz); const H0 = [S[0] + hx, S[1] + hy]; const H1 = [S[0] - 32 * u1[0] + 12 * f1[0], S[1] - 32 * u1[1] + 12 * f1[1]];
         rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), 24], pole: [-0.6, 0.7, 0.35], obrot: 0 }; }
-      else rece[s] = { g: [S[0] + 3, top + 3.5, -15], pole: [-0.3, 0.2, -1], obrot: 0 }; } /* wolna dłoń na blacie ławki */
+      else rece[s] = { g: [S[0] + 3, top + 3.5, -9], pole: [-0.8, 0.3, -0.4], obrot: 0 }; } /* wolna dłoń na blacie ławki: 09.11.2026 (recenzja r1 row, N1) bliżej środka ławki (z −9, było −15 = krawędź ławki 30 cm), łokieć ku tyłowi zamiast na zewnątrz — ramię mieści się w obrysie ławki w rzucie z góry */
       return poza({ u, tulow: { m, p, glowa: p * 0.45 + 8 }, nogi, rece }); };
     return buduj({ rodzina: RODZINA, cw: 'One Arm Row (hantle)', sprzet: [SPRZET.podloga(-110, 130), { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: 30, siedzisko: 65 }, { ...H, trzyma: 'R' }], fr, us: U5 }); };
   /* --- T-bar: dźwignia obrotowa z osią za osobą (schemat), uchwyt V między nogami --- */
   G['T-Bar Row'] = () => { const p = 55; const m = [-38, 76]; const P = [-85, 5]; const r = 101.3; const a0 = 21.2, a1 = 46;
     let sx = 0; const nog = (s) => noga3([sx, 7, POL(s) * 17], [1, 0.1, POL(s) * 0.05]);
-    const fr = (u, zle) => { const bend = zle ? lerp(0, 32, u) : 0; const rece = {}; const th = lerp(a0, a1, u) * R; const c = [P[0] + r * Math.cos(th), P[1] + r * Math.sin(th)];
+    const fr = (u, zle) => { const bend = zle ? lerp(0, ZLE_BEND, u) : 0; const rece = {}; const th = lerp(a0, a1, u) * R; const c = [P[0] + r * Math.cos(th), P[1] + r * Math.sin(th)];
       for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg, { bend }); void S; rece[s] = { g: [c[0], c[1], sg * 10], pole: [-0.6, 0.7, 0.35 * sg], obrot: 0 }; }
       return poza({ u, tulow: { m, p, bend, glowa: p * 0.45 + 8 }, nogi: { R: nog('R'), L: nog('L') }, rece }); };
     sx = dobierzX(sx, (x) => { sx = x; return kolanoMax(fr(0, false), 'T-Bar Row'); });
