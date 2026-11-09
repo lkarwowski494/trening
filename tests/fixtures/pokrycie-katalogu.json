@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 236,
+      "v2": 226,
       "v1": 34,
-      "bezFigury": 438,
-      "daneV2NieWlaczone": 300,
-      "wyjatekBezAnimacji": 134
+      "bezFigury": 448,
+      "daneV2NieWlaczone": 310,
+      "wyjatekBezAnimacji": 142
     },
-    "animowanyBlad": 151,
+    "animowanyBlad": 142,
     "wskazowki": {
       "wlasne": 265,
       "wlasneZBledami": 157,
-      "ogolne": 119,
-      "bezTekstu": 324
+      "ogolne": 118,
+      "bezTekstu": 325
     },
-    "czesteBledyTekst": 276,
+    "czesteBledyTekst": 275,
     "roleMiesni": 513,
-    "pelnaKarta": 232,
-    "pelnaKartaBlad": 150,
-    "recenzjaFigur": 236
+    "pelnaKarta": 222,
+    "pelnaKartaBlad": 141,
+    "recenzjaFigur": 226
   },
   "kartZTekstami": 577,
   "rodziny": {
@@ -196,15 +196,15 @@
     "calf_raise": {
       "status": "ready",
       "cwiczen": 13,
-      "figuraV2": 10,
-      "daneV2NieWlaczone": 2,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 12,
       "v1": 1,
       "wlasne": 11,
-      "ogolne": 1,
-      "bezTekstu": 1,
-      "pelnaKarta": 10,
-      "pelnaKartaBlad": 9,
-      "recenzja": 10
+      "ogolne": 0,
+      "bezTekstu": 2,
+      "pelnaKarta": 0,
+      "pelnaKartaBlad": 0,
+      "recenzja": 0
     },
     "hip_bridge": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 236,
-    "figura.wAplikacji": 270,
+    "figura.v2": 226,
+    "figura.wAplikacji": 260,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 151,
+    "animowanyBlad": 142,
     "wskazowki.wlasne": 265,
     "wskazowki.wlasneZBledami": 157,
-    "wskazowki.zTekstem": 384,
-    "czesteBledyTekst": 276,
+    "wskazowki.zTekstem": 383,
+    "czesteBledyTekst": 275,
     "roleMiesni": 513,
-    "pelnaKarta": 232,
-    "pelnaKartaBlad": 150,
-    "recenzjaFigur": 236,
+    "pelnaKarta": 222,
+    "pelnaKartaBlad": 141,
+    "recenzjaFigur": 226,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 577,
     "jezyk.en.kompletne": 577,
