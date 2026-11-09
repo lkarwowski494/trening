@@ -6,24 +6,21 @@ Brief autora rodziny: `briefy/partia-1-autor.md`. Recenzja: subagent `audytor` (
 
 Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą): overhead_press +21, chest_fly +17, kb_ballistic +16, calf_raise +12, row +12 (pełna karta).
 
-Stan 09.11.2026 ~22:00 UTC (przekazanie sesji — limit kontekstu). Każda rodzina na **własnej gałęzi** (wypchnięte po `verify:lekkie`); scalenie do `figury/partia-1` jeszcze NIE zrobione.
-Sekcje szczegółowe rodzin (zrobione, zostało, pułapki) są w STAN-PARTIA-1.md **na gałęzi tej rodziny**.
+Stan 09.11.2026 ~22:45 UTC (sesja kontynuacji). **Wszystkie gałęzie rodzin scalone do `figury/partia-1`** (+ integracja bb1072f3); dalsza praca na `figury/partia-1`, gałęzie `figury/partia-1-{calf,row,chest,ohp}` są historyczne.
 
-| Rodzina | Gałąź @ SHA | Recenzja | Wpisy w figury-recenzja.json | Następny krok |
+| Rodzina | Status | Recenzja | Wpisy w figury-recenzja.json | Następny krok |
 |---|---|---|---|---|
-| calf_raise | `figury/partia-1-calf` @ a9a99daf | r1 do poprawy (W1–W3) → r2 **wyswietlana** (sha v2 77aa8d8a6693, 10 z 13 z rysunkiem); pliki `partia1-calf_raise-r1/r2*` | **przeniesione** (v2, zestaw Donkey, karta Łydki na stopniu, v1 Łydki → zastapiona) | po scaleniu integracji ze śladem dźwigni (55c9f206): recenzja różnicy (Donkey ślad), nowe sha z `--skroty` |
-| row | `figury/partia-1-row` @ a6c29b2a | r1 do poprawy → poprawki → **r2 do poprawy**: W1-r2 WYSOKIE — w Chest Supported Row i Lying T-Bar Row stopa leży palcami od osoby (zgięcie podeszwowe ok. 119°; `jointAngles.ankle` bez znaku tego nie łapie); N1-r2 NISKIE (One Arm Row łokieć 47,5°) | brak (zestawy 5 i karty 5 „wyswietlana” w `partia1-row-r2.json` — przenieść razem z v2) | poprawka stóp (podbicie ok. −70…−85°, test kierunku stopy z negatywem) → r3 (CSR, Lying T-Bar, oba widoki/motywy, nakładka) |
-| kb_ballistic | `figury/partia-1` @ 74b1b75c (poprawki 4e1a5d7e) | r1 do poprawy (W1 start/tor zarzutu i rwania, Ś1 zestaw oly, N1–N4) → poprawki zrobione, **r2 nie zlecona** | brak | r2 audytora (zmienione: 7 ćw. W1, jerki N1, Sumo N2, zestawy Ś1 — CUE_NOT_IN_FAMILY); rwanie na granicy ciągłości (sekcja niżej) |
-| chest_fly | `figury/partia-1-chest` @ 9af785b9 | **r1 nie zlecona**; autor obejrzał okiem 5 z 17 | brak | dooglądać arkusze, r1 audytora (pytania autora a–e w jego STAN), K10–K12 |
-| overhead_press | `figury/partia-1-ohp` @ 27dc6450 | **r1 nie zlecona**; autor obejrzał 15 z 21 (tylko jasny) | brak | pełny przebieg `npx jest tests/figures-v2 tests/figury` (nie dokończony — testy list, np. mapping +21, mogą być czerwone), potem r1 audytora |
+| calf_raise | ready | r2 **wyswietlana** (10 z 13; Standing/Seated w V2_WSTRZYMANE) | przeniesione | po scaleniu integracji 55c9f206 (ślad dźwigni): recenzja różnicy, nowe sha z `--skroty` |
+| row | ready | r3 **wyswietlana** (`partia1-row-r3*`, sha 94a4a8448fe9); W1-r2 stopy → `stopyNaPalcach` (gora.mjs) | v2, 5 zestawów, 5 kart, K10: 6 × v1 zastapiona | po 55c9f206: recenzja różnicy Lying T-Bar Row (dźwignia) |
+| curl | ready (integracja) | różnica Spider Curl **wyswietlana** (`curl-roznica-spider*`, sha 3380994ca6df) | v2 curl | — |
+| kb_ballistic | **planned** | r2 do poprawy (W1-r2 ciąg zarzutu/rwania, 7 ćw.; Snatch (hantel) z podłogi) | 6 zestawów, karta KB Swing | poprawki: programista na `figury/partia-1-kb-r2` (worktree), potem r3 |
+| chest_fly | **planned** | r1 do poprawy (W1 Band — guma przez tułów, W2 Crucifix nie w ISOMETRIC, W3 Wide-Grip pullover) | 13 zestawów | poprawki: `figury/partia-1-chest-r1`, potem r2 (+ Pec Deck po śladzie dźwigni) |
+| overhead_press | **planned** | r1 do poprawy (W1 dół ruchu 22 cm przed barkami, 13 ćw.) | 6 zestawów | poprawki: `figury/partia-1-ohp-r1`; ryzyko: limit łokcia silnika 149° / reguła lokcie_pod_dlonmi — opcje do koordynatora; potem r2 |
 
-Decyzje i backlog: docs/18 (09.11.2026, wariant A calf_raise — na gałęzi calf), docs/21 P1-CALF-1…5 (gałąź calf). Otwarte K3 (wyjątki bez rysunku, decyzja właściciela/koordynatora): Smith Machine Reverse Calf Raise (decyzja: ukryte, backlog), Meadows Row, Kettlebell Pirate Ships, Bradford Press, Handstand Push Up, chest_fly: Around The Worlds, Machine Pullover, Svend Press (wyjątki już w generatorach, brak wpisów w figury-wyjatki.json).
-Uwaga koordynatora (09.11.2026 ~21:04 UTC): partia 2 zmienia `lib/figures/v2/cueSets.ts` — `row.fullStretch` wyłączony dla zestawów Single Arm Cable Row i Leverage High Row (przeczy ruchowi); przy row nie dublować, przy scaleniu (kb_ballistic też zmienia cueSets.ts: CUE_NOT_IN_FAMILY) — konflikt rozwiązać sumą obu stron.
-Poza zakresem do koordynatora: Spider Curl (curl, wyświetlana) ma te same odwrócone stopy co W1-r2 row (pomiar recenzenta r2 row).
-Zgłoszenia silnika (nie ruszane): punkty dźwigni „barki”/„uda” (P1-CALF-1), kostka w MeasuredJoint (P1-CALF-3), nakładka „limb” wymaga pokazanego stawu (stały łokieć w rozpiętkach), widoki ćwiczenia = widoki rodziny (Crucifix „top”), gryf landmine zawsze poprzeczny, kąt kostki bez znaku.
-
-Kolejność dla następnej sesji: (1) scal `origin/integracja-1-1` (ślad dźwigni 55c9f206, delt_raise) i gałęzie rodzin do `figury/partia-1` (konflikty: families.ts, poseData.ts LOAD/DATA_UI, overlay.ts import+TECHNIQUE, listy w tests/figures-v2-mapping, -nakladka-triceps-olympic, -data, strona-eksport licznik, recenzja-wyjatki-1-1; pliki generowane przelicz generatorami); (2) recenzje: row r3, kb r2, chest r1, ohp r1, calf różnica — audytor przez brief `briefy/partia-1-recenzent.md` (pole `stan` „zrecenzowana niezależnie…”); (3) wpisy 1:1, `zrodla-runtime --write`, pokrycie; (4) zestaw przekładu (nowych kluczy UI dotąd: brak) i szacunek; (5) `verify:szybkie`, push, zielony tests.yml, raport do koordynatora.
-Pomiary czasu (agent): autor rodziny 37–66 min (+ poprawki 12–60 min), recenzja 10–15 min (kb 75 min z 16 arkuszami), czekanie na Jest przy 2–3 autorach naraz znaczące.
+Zadanie poza partią (koordynator): `delt_raise.json` ≠ generator w „Straight Raises on Incline Bench” (stara poza leżąca; po regeneracji potrzebne `stopyNaPalcach`). Backlog z recenzji: docs/21 P1-ROW-1, P1-CURL-1, P1-KB-1, P1-CHEST-1, P1-OHP-1.
+Zgłoszenia silnika (nie ruszane): punkty dźwigni „barki”/„uda” (P1-CALF-1), kostka w MeasuredJoint (P1-CALF-3), nakładka „limb” wymaga pokazanego stawu, widoki ćwiczenia = widoki rodziny, gryf landmine zawsze poprzeczny, kąt kostki bez znaku, limit zgięcia łokcia 149° (ohp).
+Uwaga koordynatora (09.11.2026 ~21:04 UTC): partia 2 zmienia `lib/figures/v2/cueSets.ts` (row.fullStretch) — przy scaleniu suma obu stron.
+Pomiary czasu (agent): recenzja rodziny 12–25 min (kb 40 min), scalenie 4 gałęzi rodzin + integracji ok. 45 min.
 
 ## kb_ballistic (autor: programista; recenzja r1: audytor, `docs/research/recenzje/partia1-kb_ballistic-r1-audytor-2026-11-09.md`)
 - Zrobione: 8d23a707, 62cfede4, 208a8740 (podłączenie, nakładka plecy + biodro swingu, 16 wyjątków toru, pętla jednokierunkowa dla 9 ćwiczeń); poprawki r1 w commicie „kb_ballistic: poprawki r1” (SHA w `git log`).
