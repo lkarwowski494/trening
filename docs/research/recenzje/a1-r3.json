@@ -1,0 +1,132 @@
+{
+ "karty": {
+  "Arnold Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "47c9759b2227"
+  },
+  "Seated Barbell Military Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "0236aabaa05f",
+   "uwagi": "Niska, backlog: ustawienie (ohp.bbGrip, wspólny) bez słowa o siadzie."
+  },
+  "Kettlebell Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f; kbp.setup poprawione w fbc2c450), 08.11.2026",
+   "sha": "6cd6a89aee87"
+  },
+  "Kettlebell Seated Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie siedząco = stojąco potwierdzone",
+   "sha": "552d3b011646"
+  },
+  "Band Shoulder Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f; band.ohpSetup/ohpMove poprawione), 08.11.2026",
+   "sha": "e44c329d8d28",
+   "uwagi": "Niska, backlog: ohp.tall (wspólny) — słowo „ciężar” przy gumie."
+  },
+  "Single Arm Overhead Press (hantel)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie kettlebell → hantel potwierdzone",
+   "sha": "2005e05ec4e0"
+  },
+  "Ab Wheel": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "6167d642c4d0"
+  },
+  "Renegade Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "c775cdeb3566"
+  },
+  "Rollout (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "5de2373a86be"
+  },
+  "Incline Chest Fly (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "0c22493e2ff8"
+  },
+  "Chest Dip": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "58bc2ad0a6ce"
+  },
+  "Seated Cable Chest Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie maszyna ↔ wyciąg potwierdzone",
+   "sha": "8a64c572d245"
+  },
+  "Decline Push Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+   "sha": "e14e9f24d54d"
+  },
+  "Suspended Push-Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-08",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+   "autor": "programista A1",
+   "recenzent": "badacz-merytoryczny",
+   "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f; spush.setup bez „kółek”), 08.11.2026",
+   "sha": "375b214c380b"
+  }
+ }
+}
