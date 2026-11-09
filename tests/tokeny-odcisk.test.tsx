@@ -75,6 +75,8 @@ const moreGuard = async () => { const m = screen.queryByTestId('guard-more'); if
 const SCENARIA: [string, () => void, string, 'light' | 'dark', (() => Promise<void>)?][] = [
   ['dashboard-nowa-osoba', () => {}, '/', 'light'],
   ['dashboard-pierwsze-kroki-szablon', () => { withDemoTemplates(); }, '/', 'light'],
+  ['dashboard-nowa-osoba-ciemny', () => {}, '/', 'dark'], /* ekran nowej osoby 1.1 (05.11.2026): tablica „Pierwszy trening” i kafelki, także ciemny motyw */
+  ['dashboard-plan-przed-treningiem', () => { const t = withDemoTemplates(); plan.setWeekDay(3, t[0].id); }, '/', 'light'], /* plan ustawiony, brak treningu: tablica „Dziś” + kafelki */
   ['dashboard-dane-jasny', mixed, '/', 'light'],
   ['dashboard-dane-ciemny', mixed, '/', 'dark'],
   ['postepy-straznik-rozwiniety-jasny', mixed, '/progress', 'light', async () => { await moreGuard(); await expandAll(); }],

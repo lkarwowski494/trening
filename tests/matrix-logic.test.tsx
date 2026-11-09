@@ -773,9 +773,9 @@ describe('EKRAN /swap', () => {
   test('trening w toku: opis, Propozycje (top 3, „już w treningu”), wybór propozycji, „↺ przywróć”, Zamknij bez zmian', async () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)', 'Bench Press (hantle)']) }); await flushAll(20);
     const id0 = blk(0).id; await go(swapUrl('active:' + id0)); await flushAll(20);
-    expect(screen.getByText('Zamiana tylko w tym treningu: Bench Press (sztanga)')).toBeTruthy(); expect(screen.getByText('Propozycje')).toBeTruthy();
+    expect(screen.getByText('Zamiana tylko w tym treningu: Bench Press')).toBeTruthy(); expect(screen.getByText('Propozycje')).toBeTruthy();
     expect(screen.getAllByLabelText(/^Propozycja \d: /)).toHaveLength(3);
-    expect(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\).*już w treningu/)).toBeTruthy();
+    expect(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press.*już w treningu/)).toBeTruthy();
     expect(screen.queryByText(/↺ przywróć/)).toBeNull();
     /* Zamknij — bez zmian, drugie tapnięcie bez efektu */
     const cancel = screen.getByText('Anuluj'); await tap(cancel); await tap(cancel); await flushAll(10);
@@ -787,7 +787,7 @@ describe('EKRAN /swap', () => {
     expect(blk(0)).toMatchObject({ exerciseId: to.id, swappedFrom: ex('Bench Press (sztanga)').id });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
     expect(screen.getByText(`Zamiana tylko w tym treningu: ${name1}`)).toBeTruthy();
-    await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByText('↺ cofnij zamianę: Bench Press')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(blk(0).swappedFrom).toBeUndefined();
   });
 
@@ -795,7 +795,7 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)']) }); await flushAll(20);
     await act(async () => { store.swapBlock(blk(0).id, ex('Bench Press (hantle)').id); }); await act(async () => { blk(0).sets[0].edited = true; store.save(store.getState().active); });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
-    global.__alerts.length = 0; await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(5);
+    global.__alerts.length = 0; await tap(screen.getByText('↺ cofnij zamianę: Bench Press')); await flushAll(5);
     expect(global.__alerts.map(a => a.title)).toEqual(['Cofnąć zamianę?']); expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id);
     await act(async () => { global.__alerts[0].buttons!.find(b => b.text === 'Cofnij')!.onPress!(); }); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id);
@@ -822,7 +822,7 @@ describe('EKRAN /swap', () => {
     expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
     const grp = 'Filtr partii: klatka', locL = 'Filtr miejsca: Dom';
     expect(screen.getByLabelText(grp)).toBeTruthy(); expect(screen.getByLabelText(locL)).toBeTruthy();
-    expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Push Up').length).toBeGreaterThan(0);
+    expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Push-Up').length).toBeGreaterThan(0);
     await tap(screen.getByLabelText(grp)); await flushAll(5); expect(screen.getByLabelText('Filtr partii wyłączony: klatka')).toBeTruthy();
     await tap(screen.getByLabelText(locL)); await flushAll(5); expect(screen.getByLabelText('Filtr miejsca wyłączony: Dom')).toBeTruthy();
     /* bez filtrów: cała baza tej miary — porcjami SWAP_PAGE, „Pokaż więcej” dokłada 2 porcje */
@@ -835,9 +835,9 @@ describe('EKRAN /swap', () => {
     await tap(screen.getByLabelText('Filtr miejsca wyłączony: Dom')); await flushAll(5);
     expect(screen.queryByText(/brak: suwnica na nogi/)).toBeNull();
     /* dokładna nazwa innej miary → nic do pokazania i nic do utworzenia */
-    await type(q(), 'Skakanka'); await flushAll(5); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy(); expect(screen.queryByText(/^Utwórz/)).toBeNull();
+    await type(q(), 'Jump Rope'); await flushAll(5); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy(); expect(screen.queryByText(/^Utwórz/)).toBeNull();
     await tap(screen.getByLabelText('Filtr partii wyłączony: klatka')); await flushAll(5);
-    await type(q(), 'Push Up'); await flushAll(5); await tap(screen.getAllByText('Push Up').pop()!); await flushAll(20);
+    await type(q(), 'Push-Up'); await flushAll(5); await tap(screen.getAllByText('Push-Up').pop()!); await flushAll(20);
     expect(blk(bi).exerciseId).toBe(ex('Push Up').id);
   });
 
@@ -848,9 +848,9 @@ describe('EKRAN /swap', () => {
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
     const q = () => screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!;
     await type(q(), 'chest fly (hantle)'); await flushAll(5);
-    expect(screen.getByText('Przywróć „Chest Fly (hantle)”')).toBeTruthy(); expect(screen.getByText('usunięte ćwiczenie z historią')).toBeTruthy();
+    expect(screen.getByText('Przywróć „Dumbbell Fly”')).toBeTruthy(); expect(screen.getByText('usunięte ćwiczenie z historią')).toBeTruthy();
     expect(screen.queryByText(/^Utwórz/)).toBeNull(); /* dokładna nazwa istnieje */
-    await tap(screen.getByText('Przywróć „Chest Fly (hantle)”')); await flushAll(20);
+    await tap(screen.getByText('Przywróć „Dumbbell Fly”')); await flushAll(20);
     expect(ex('Chest Fly (hantle)').archived).toBeUndefined(); /* restoreExercise (06.10): bez pola, jak po wczytaniu */ expect(blk(0).exerciseId).toBe(ex('Chest Fly (hantle)').id);
     /* Utwórz: z drugiego bloku (nogi) */
     await go(swapUrl('active:' + blk(1).id)); await flushAll(20);
@@ -877,14 +877,14 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
     const d = edit.beginEdit(w.id)!; const b0 = d.w.exercises[0].id;
     await go(swapUrl(`edit:${d.key}:${b0}`)); await flushAll(20);
-    expect(screen.getByText('Poprawka zapisu: wszystkie serie bloku „Bench Press (sztanga)” przejdą pod wybrane ćwiczenie (wartości bez zmian).')).toBeTruthy();
+    expect(screen.getByText('Poprawka zapisu: wszystkie serie bloku „Bench Press” przejdą pod wybrane ćwiczenie (wartości bez zmian).')).toBeTruthy();
     expect(screen.getByText('Propozycje')).toBeTruthy(); expect(screen.queryByText(/↺ przywróć/)).toBeNull();
-    await tap(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\)/)); await flushAll(20);
+    await tap(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press/)); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Bench Press (hantle)').id); expect(d.w.exercises[0].sets[0].weight).toBe(60);
     expect(store.getState().workouts.find(x => x.id === w.id)!.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id);
     expect(edit.isDirty(d)).toBe(true);
     await go(swapUrl(`edit:${d.key}:${b0}`)); await flushAll(20);
-    await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByText('↺ cofnij zamianę: Bench Press')); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(edit.isDirty(d)).toBe(false);
     /* blok usuniętego ćwiczenia: opis z „Usunięte ćwiczenie”, bez propozycji i bez filtra partii; „Inne” działa */
     await act(async () => { d.w.exercises[1].exerciseId = 'usuniete'; edit.touchDraft(); });

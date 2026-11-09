@@ -8,7 +8,7 @@
 // bez ponawiania (wyjątek: limit czasu testu — wyżej). Zielony (kod 0) tylko gdy wszystkie inne pliki zielone i każde ponowienie zielone. Log wymienia ponowione pliki i powód.
 // Użycie: node scripts/jest-ponow.mjs [argumenty jest…]   (zmienna JEST_PONOW_JEST = ścieżka innego uruchamiacza — tylko w testach)
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -64,19 +64,29 @@ function uruchom(jest, argumenty, plikWyniku, env = {}) {
   return { status: r.status, wynik };
 }
 
+/** 05.11.2026 (strażnik czasu pojedynczego testu): wynik JSON przebiegu z podmienionymi plikami ponowionymi (czasy z ostatniej próby) — dla scripts/kontrola-czasu-testu.mjs. */
+export function polacz(p1, p2) {
+  if (!p2) return p1;
+  const nowe = new Map((p2.testResults || []).map(t => [t.name, t]));
+  return { ...p1, testResults: (p1.testResults || []).map(t => nowe.get(t.name) ?? t) };
+}
+const zapiszWynik = w => { if (process.env.JEST_PONOW_WYNIK && w) writeFileSync(process.env.JEST_PONOW_WYNIK, JSON.stringify(w)); };
+
 export function main(args) {
   const jest = process.env.JEST_PONOW_JEST || join(ROOT, 'node_modules/jest/bin/jest.js');
   const dir = mkdtempSync(join(tmpdir(), 'jest-ponow-'));
   try {
     const p1 = uruchom(jest, args, join(dir, 'p1.json'));
     if (!p1.wynik) { console.error('jest-ponow: Jest nie zapisał wyniku (padł cały proces) — czerwone, bez ponawiania'); return 1; }
-    if (p1.status === 0 && p1.wynik.success) return 0;
+    if (p1.status === 0 && p1.wynik.success) { zapiszWynik(p1.wynik); return 0; }
     const w = werdykt(p1.wynik);
+    zapiszWynik(p1.wynik);
     if (w.kod === 1) { console.error(`jest-ponow: ${w.powod}`); return 1; }
     if (!w.ponow.length) { console.error('jest-ponow: Jest zakończył się błędem bez opisanej porażki pliku — czerwone, bez ponawiania'); return 1; }
     console.error(`\njest-ponow: ${w.ponow.length} plików przerwanych z zewnątrz (SIGTERM/SIGKILL workera) albo padłych tylko na limicie czasu testu, ponawiam TYLKO je, raz, osobno (--runInBand):`);
     for (const f of w.ponow) console.error(`  - ${f.replace(ROOT + '/', '')}`);
     const p2 = uruchom(jest, ['--runInBand', '--runTestsByPath', ...w.ponow], join(dir, 'p2.json'), { NODE_OPTIONS: opcjePonowienia(process.env.NODE_OPTIONS) });
+    zapiszWynik(polacz(p1.wynik, p2.wynik));
     const ok = Boolean(p2.wynik) && p2.status === 0 && p2.wynik.success && (p2.wynik.testResults || []).length === w.ponow.length;
     console.error(ok ? `jest-ponow: wszystkie ${w.ponow.length} ponowień zielone — Jest zielony` : 'jest-ponow: ponowienie czerwone — Jest czerwony');
     return ok ? 0 : 1;

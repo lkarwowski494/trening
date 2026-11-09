@@ -62,7 +62,7 @@
      "now": {
       "setId": "set-0-0",
       "blockId": "block-0",
-      "title": "Bench Press (sztanga)",
+      "title": "Bench Press",
       "counter": "seria 1 z 3",
       "load": "80 kg × 8",
       "group": null,
@@ -72,12 +72,12 @@
      "rest": null,
      "after": {
       "restSec": 90,
-      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "cue": "Bench Press · seria 2, 80 kg, 8 powtórzeń",
       "last": false,
       "now": {
        "setId": "set-0-1",
        "blockId": "block-0",
-       "title": "Bench Press (sztanga)",
+       "title": "Bench Press",
        "counter": "seria 2 z 3",
        "load": "80 kg × 8",
        "group": null,
@@ -95,7 +95,7 @@
     "out": [],
     "view": {
      "screen": "set",
-     "title": "Bench Press (sztanga)",
+     "title": "Bench Press",
      "counter": "seria 1 z 3",
      "load": "80 kg × 8",
      "group": null,
@@ -185,7 +185,7 @@
      "now": {
       "setId": "set-0-0",
       "blockId": "block-0",
-      "title": "Bench Press (sztanga)",
+      "title": "Bench Press",
       "counter": "seria 1 z 3",
       "load": "80 kg × 8",
       "group": null,
@@ -195,12 +195,12 @@
      "rest": null,
      "after": {
       "restSec": 90,
-      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "cue": "Bench Press · seria 2, 80 kg, 8 powtórzeń",
       "last": false,
       "now": {
        "setId": "set-0-1",
        "blockId": "block-0",
-       "title": "Bench Press (sztanga)",
+       "title": "Bench Press",
        "counter": "seria 2 z 3",
        "load": "80 kg × 8",
        "group": null,
@@ -218,7 +218,7 @@
     "out": [],
     "view": {
      "screen": "set",
-     "title": "Bench Press (sztanga)",
+     "title": "Bench Press",
      "counter": "seria 1 z 3",
      "load": "80 kg × 8",
      "group": null,

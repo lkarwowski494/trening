@@ -1,0 +1,12 @@
+OK   6.31:1 (min 4.5) light nazwa lokalna muted/bg (A, C, etykieta B) #4A5361 na #E6E8E5
+OK   13.31:1 (min 4.5) light H1 text/bg #18202B na #E6E8E5
+OK   11.35:1 (min 4.5) light Edytuj text/surface2 #18202B na #D3D8D3
+OK   7.47:1 (min 4.5) dark nazwa lokalna muted/bg (A, C, etykieta B) #A3ACB8 na #161C24
+OK   14.21:1 (min 4.5) dark H1 text/bg #E8EAED na #161C24
+OK   10.69:1 (min 4.5) dark Edytuj text/surface2 #E8EAED na #283244
+OK   9.02:1 (min 4.5) lightHC nazwa lokalna muted/bg (A, C, etykieta B) #353C47 na #E6E8E5
+OK   13.31:1 (min 4.5) lightHC H1 text/bg #18202B na #E6E8E5
+OK   11.35:1 (min 4.5) lightHC Edytuj text/surface2 #18202B na #D3D8D3
+OK   10.84:1 (min 4.5) darkHC nazwa lokalna muted/bg (A, C, etykieta B) #C9CED6 na #161C24
+OK   14.21:1 (min 4.5) darkHC H1 text/bg #E8EAED na #161C24
+OK   10.69:1 (min 4.5) darkHC Edytuj text/surface2 #E8EAED na #283244

@@ -14,6 +14,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appRequire, repoRoot } from './ts-loader.mjs';
 import { PLIK_RECENZJI, rodzinyZRecenzja } from './recenzja-figur.mjs';
+import { elementyKarty, wejscieKarty } from '../pokrycie-katalogu.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const SCHEMA = 'techniqueatlas-eksport@1';
@@ -78,11 +79,11 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         const def = v2.errorDefOf(spec, error);
         return { id: error, cue, kind: def.kind, mark: def.mark, ...(def.kind === 'pose' ? { frames: sample(u => v2.frameAt(spec, u, error)) } : { tempo: def.mods.tempo }) };
       });
-      return { family: spec.family, views: spec.views, static: spec.static, lowerFirst: spec.lowerFirst, tempo: v2.tempoFor(spec), pose, frames: sample(u => v2.frameAt(spec, u)), errors };
+      return { family: spec.family, views: spec.views, static: spec.static, lowerFirst: spec.lowerFirst, loop: v2.loopOf(spec), tempo: v2.tempoFor(spec), pose, frames: sample(u => v2.frameAt(spec, u)), errors };
     }
     if (!pose) return null;
     const fam = v2.FAMILIES.find(f => f.id === v2.familyOf(key));
-    return { family: fam.id, views: fam.views, static: false, lowerFirst: true, tempo: { ...v2.TEMPO }, pose, frames: sample(u => v2.keyframeFrame(pose, u)), errors: [] };
+    return { family: fam.id, views: fam.views, static: false, lowerFirst: true, loop: pose.petla === 'jednokierunkowa' ? 'jednokierunkowa' : 'wahadlo', tempo: { ...v2.TEMPO }, pose, frames: sample(u => v2.keyframeFrame(pose, u)), errors: [] };
   };
   /* sylwetka: stopień 0–4 każdej z 12 partii (kolejność mm.MUSCLES = numer zmiennej --mm-<n> arkusza); niezależne od języka */
   const levelsOf = key => {
@@ -132,7 +133,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     /* figura v2 jak w aplikacji (shownFigureSpec): bez wstrzymanych (V2_WSTRZYMANE) i tylko z rodziny z recenzją ruchu (zRecenzja — w eksporcie z bieżącego zapisu albo pliku --recenzja) */
     const shownSpec = key => { const spec = v2.figureSpec(key); return spec && !Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key) && zRecenzja.has(spec.family) ? spec : null; };
     const figureShown = key => !!shownSpec(key);
-    const figurePhases = key => { const spec = shownSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms })) : []; };
+    const figurePhases = key => { const spec = shownSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms, ...(p.untimed ? { untimed: true } : {}) })) : []; };
     const figureErrors = key => { const spec = shownSpec(key); return spec ? ui.errorsOf(spec).map(e => ({ id: e.error, text: cueTextIn(l, e.cue) ?? null })).filter(e => e.text) : []; };
     let withoutText = 0;
     const exercises = keys.map(key => {
@@ -148,6 +149,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       else cueBlock = { scope: 'none' };
       if (missing) cueBlock.missing = missing;
       const load = seed.muscleLoadOf(e);
+      /* standard 1 „Pełna karta” (decyzja właściciela 02.11.2026, wariant A): ta sama funkcja i to samo wejście co licznik pokrycia (scripts/pokrycie-katalogu.mjs, `policz`) — strona tylko czyta; fail-closed po stronie strony przy braku pola */
+      const { pelna } = elementyKarty(wejscieKarty({ cues, cueSets, ui, roles, cat }, key, shownSpec(key), e));
       return {
         id: key, slug: slugs[key], name: i18n.exName({ name: dispName(key), lib: true }),
         group: e.group, equipment: e.equipment, metric: e.metric, pattern: entry.pattern, loadSource: entry.loadSource,
@@ -156,7 +159,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         /* „Co robią mięśnie”: zdania ról tylko dla regionów z wyświetlaną rolą (jak sekcja w aplikacji, muscleRoleRows), w języku pliku */
         roles: roles.muscleRoleRows(e).filter(r => r.role).map(r => ({ id: r.region, text: r.role })), /* kontrakt: kontrakt.json — id jak regions[].id */
         requires: entry.requires, recommended: entry.recommended,
-        family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
+        pelna, family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
         figure: own(figures, slugs[key]) ? { phases: figurePhases(key), errors: figureErrors(key) } : null,
         cues: cueBlock,
         alternatives: alternativesFor(key),

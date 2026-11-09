@@ -59,7 +59,7 @@ describe('M1-022: BRD aktualny wobec decyzji 20–27.10.2026', () => {
     has('BR-ZAK-004', /components\/FairRulesSheet\.tsx/); has('BR-ZAK-005', /components\/ImportProCard\.tsx/); has('BR-ZAK-006', /Przywróć zakupy/);
     has('BR-ZAK-007', /tests\/audit-m1-2026-10-27-018-jedno-okno\.test\.tsx/); has('BR-KON-001', /lib\/review\.ts/); has('BR-KON-002', /Napisz do nas/);
     has('BR-KON-003', /Poproś o nową funkcję/); has('BR-PST-006', /app\/more\/bodymass\.tsx/); has('BR-MJS-003', /app\/more\/bands\.tsx/); has('BR-TRN-012', /app\/reorder\.tsx/);
-    has('BR-POM-002', /app\/guide\.tsx/); has('BR-POM-001', /Pierwsze kroki/); has('BR-PST-007', /lib\/guard\.ts/); has('BR-PLN-005', /markDoneEarly/);
+    has('BR-POM-002', /app\/guide\.tsx/); has('BR-POM-001', /Pierwszy trening/); has('BR-POM-001', /Przygotuj się do pierwszej serii/); /* 05.11.2026: ekran nowej osoby 1.1 zastąpił kartę „Pierwsze kroki” (docs/18, D-117) */ has('BR-PST-007', /lib\/guard\.ts/); has('BR-PLN-005', /markDoneEarly/);
     has('BR-TRN-013', /⇅ SS/); has('BR-UST-002', /Ekran włączony/); has('BR-SZB-002', /Zapisz zmiany w szablonie/);
     for (const x of s.filter(y => y.file === 'wymagania-uzupelnienie.md')) expect([x.id, /Scenariusz:/.test(x.text) && /Wtedy /.test(x.text)]).toEqual([x.id, true]);
   });

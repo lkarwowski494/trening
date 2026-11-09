@@ -13,7 +13,7 @@
         "type": "array",
         "items": {
           "type": "object",
-          "required": ["id", "slug", "name", "regions", "roles", "cues", "alternatives"],
+          "required": ["id", "slug", "name", "regions", "roles", "cues", "alternatives", "pelna"],
           "properties": {
             "id": { "type": "string", "minLength": 1 },
             "slug": { "type": "string", "minLength": 1 },
@@ -33,7 +33,8 @@
                 "ok": { "type": "array", "items": { "type": "string", "minLength": 1 } }
               }
             },
-            "alternatives": { "type": "array", "items": { "type": "string" } }
+            "alternatives": { "type": "array", "items": { "type": "string" } },
+            "pelna": { "type": "boolean" }
           }
         }
       }

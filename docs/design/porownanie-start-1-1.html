@@ -1,0 +1,42 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><title>Start nowej osoby — porównanie</title>
+<style>
+@font-face { font-family: 'Barlow Condensed'; src: url('fonty/barlow-condensed/BarlowCondensed-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Zastepczy'; src: url('fonty/source-sans-3/SourceSans3-var.ttf') format('truetype'); font-weight: 200 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Zastepczy', sans-serif; background: #E6E8E5; color: #18202B; padding: 32px; font-size: 16px; line-height: 1.4; }
+h1, h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; line-height: 1.15; }
+h1 { font-size: 36px; } h2 { font-size: 26px; margin-bottom: 8px; }
+.wstep { max-width: 1100px; margin: 8px 0 24px; }
+.siatka { display: grid; grid-template-columns: repeat(4, 340px); gap: 24px; align-items: start; }
+.k { background: #F4F5F3; border-radius: 12px; padding: 16px; }
+.k img { width: 100%; display: block; border-radius: 8px; border: 1px solid #CBD0CB; margin: 8px 0 12px; }
+.k p { font-size: 15px; margin-top: 8px; }
+.k b { font-weight: 700; }
+.tag { display: inline-block; font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: #D3D8D3; }
+.tag.rek { background: #13294B; color: #F5F1E6; }
+table { border-collapse: collapse; margin-top: 12px; max-width: 1430px; background: #F4F5F3; font-size: 15px; }
+td, th { border: 1px solid #CBD0CB; padding: 8px 12px; text-align: left; vertical-align: top; }
+.dol { margin-top: 24px; max-width: 1100px; }
+.dol p { margin-top: 8px; }
+.drob { font-size: 13px; color: #4A5361; margin-top: 16px; }
+</style></head><body>
+<h1>Trening — ekran nowej osoby: 3 kierunki do wyboru</h1>
+<p class="wstep">Ten sam ekran (nowa osoba, bez szablonu, motyw ciemny — domyślny dla nowej instalacji, 390 pt) w trzech kierunkach i dziś. Wszystkie zostają w obecnym systemie: te same kolory, krój Barlow Condensed, tablica i motyw talerzy. Różnią się tym, <b>jaki element aplikacji nowa osoba widzi od pierwszej sekundy i jakie prawdziwe dane on niesie</b>. Przycisk w żółtej przerywanej ramce = proponowany nowy tekst (opcja Z-2), nie część kierunku.</p>
+<div class="siatka">
+<section class="k"><span class="tag">dziś</span><h2>Obecny ekran</h2><img src="start-1-1/zrzuty/as-is-1-01-start.png" alt="Obecny ekran nowej osoby"><p><b>Co widać:</b> „Pusty trening”, „Inny trening” i karta czterech kroków z czterema przyciskami.</p><p><b>Słabość:</b> nic z tożsamości aplikacji poza małą ikonką; najcięższa rzecz to lista zadań, a krok 1 sugeruje, że bez szablonu nie da się zacząć (2 porażki w przejściu poznawczym).</p><p class="drob">Zrzut z eksportu web aplikacji (inny renderer niż makiety).</p></section>
+<section class="k"><span class="tag">K1</span><h2>Tablica dnia</h2><img src="start-1-1/zrzuty/kierunki/tablica-dnia-po-390-dark.png" alt="K1"><p><b>Idea:</b> od pierwszego dnia ta sama granatowa tablica „Dziś”, co u osoby z planem — z datą i stanem startu zamiast ćwiczeń.</p><p><b>Najmocniejszy argument:</b> nowa osoba od razu widzi element, który zobaczy przed każdym treningiem — aplikacja wygląda „na swoją” od pierwszej sekundy.</p><p><b>Decyzje:</b> żadnej nie zmienia.</p><p><b>Koszt:</b> ok. 1 dzień pracy agenta (komponent + ok. 20 plików testów + scenariusze Maestro 31, 59, 14, 18).</p></section>
+<section class="k"><span class="tag rek">K2 · rekomendacja</span><h2>Pusty tydzień</h2><img src="start-1-1/zrzuty/kierunki/pusty-tydzien-po-390-dark.png" alt="K2"><p><b>Idea:</b> pasek tygodnia od pierwszego dnia — pusty, z ramką „dziś”; po pierwszym treningu dostaje pierwszy znak dnia.</p><p><b>Najmocniejszy argument:</b> „wow” przychodzi w chwili, która coś znaczy — zapisany pierwszy trening zostawia ślad w tygodniu (domknięcie zamiast znikającej listy).</p><p><b>Decyzje:</b> zmienia tylko regułę z kodu („nowa osoba — bez paska”), nie decyzję właściciela.</p><p><b>Koszt:</b> ok. 1–1,5 dnia pracy agenta (pasek bez planu, pusty stan, moment, te same testy + testy paska).</p></section>
+<section class="k"><span class="tag">K3</span><h2>Karta zgłoszenia</h2><img src="start-1-1/zrzuty/kierunki/zgloszenie-po-390-dark.png" alt="K3"><p><b>Idea:</b> „Pierwsze kroki” jako rubryki karty zgłoszenia — co aplikacja o Tobie wie (miejsce, jednostka, szablony, plan) i gdzie to zmienić.</p><p><b>Najmocniejszy argument:</b> nowa osoba widzi założenia aplikacji (np. kg) zanim zacznie — mniej niespodzianek w pierwszym treningu.</p><p><b>Decyzje:</b> <b>zmienia P4 A</b> (forma kroków) i <b>11.10.2026</b> („Miejsca i sprzęt” jako zdanie → rubryka).</p><p><b>Koszt:</b> ok. 1,5 dnia pracy agenta (nowy układ kroków, odczyt ustawień, przepisanie testów kroków).</p></section>
+</div>
+<div class="dol">
+<h2>Rekomendacja: K2 „Pusty tydzień”</h2>
+<p>Powód z funkcji, nie z gustu: dwie porażki przejścia poznawczego to „nie wiem, że mogę zacząć bez szablonu” i „po pierwszym treningu lista znika bez śladu”. K2 rozwiązuje obie na tej samej powierzchni (przycisk „Zacznij pierwszy trening” i znak dnia po treningu) i uczy elementu, którego osoba będzie używać codziennie. Nie zmienia żadnej decyzji właściciela. Słabość: statyczny ekran jest spokojniejszy niż K1 — jeśli „wow” ma być widoczne już na pierwszym zrzucie, lepszy jest K1. Można też połączyć: tablica K1 + pasek K2 (dłuższy ekran).</p>
+<p><b>Szybki test (opcja):</b> test pięciosekundowy z 5 osobami, które nie znają aplikacji — „co możesz tu zrobić najpierw?” — ok. 1 godziny czasu właściciela.</p>
+<table><tr><th>Decyzja właściciela</th><th>K1</th><th>K2</th><th>K3</th></tr>
+<tr><td>08.10.2026 — lista „Pierwsze kroki”, nie karta powitalna; bez karuzeli</td><td>zachowana</td><td>zachowana</td><td>zachowana (lista jako rubryki)</td></tr>
+<tr><td>09.10.2026 — układ B: duży przycisk startu u góry</td><td>zachowany (pod tablicą, jak u osoby z planem)</td><td>zachowany (pod paskiem, jak u osoby z planem)</td><td>zachowany</td></tr>
+<tr><td>11.10.2026 P4 A — 3 kroki, po jednym przycisku; krok 4 CSV pomijalny (DEC-04 a); zdanie „Miejsca i sprzęt”</td><td>zachowane</td><td>zachowane</td><td><b>zmienia</b> formę kroków i zdanie o miejscach</td></tr>
+<tr><td>Kolor talerza = tylko ciężar (IWF); motyw A2 tylko w dozwolonych miejscach</td><td>zachowane (ikonka po tytule)</td><td>zachowane (gryf A2 w pustym stanie — dozwolone w MOTIF.where)</td><td>zachowane</td></tr>
+<tr><td>Bez treści treningowych (porad, liczb dziedzinowych)</td><td>tak</td><td>tak</td><td>tak</td></tr></table>
+<p class="drob">Treść: na iOS SF Pro; w makiecie zastępczo Source Sans 3. Tytuły i liczby: Barlow Condensed z docs/design/fonty. Makiety: docs/design/kierunki/start-1-1-*.html; zrzuty 320/390/430, jasny/ciemny, AX5: docs/design/start-1-1/zrzuty/arkusz-*.png. Przepływy i tarcia: docs/design/start-1-1/as-is.md, to-be.md; kandydaci i test generyczności: kandydaci.md.</p>
+</div></body></html>

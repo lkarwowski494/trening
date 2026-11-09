@@ -79,7 +79,7 @@ describe('dane: katalog zgodny z researchem L1–L6 (każdy rekord wdrożony alb
     expect(LIB_BASE_NAMES.size).toBe(124); expect(LIB_BASE_NAMES.has('Upright Row (hantle)')).toBe(true); expect(LIB_BASE_NAMES.has('Rear Delt Raise (hantle)')).toBe(false);
     expect(musclesFor('Back Squat', 'nogi')).toEqual([['czworogłowe'], ['pośladki', 'przywodziciele']]); expect(musclesFor('Deadlift (sztanga)', 'plecy')).toEqual([['dwugłowe', 'pośladki'], ['plecy', 'czworogłowe']]);
     expect(musclesFor('Back Extension', 'plecy')).toEqual([['plecy', 'dwugłowe'], ['pośladki']]); expect(musclesFor('Hip Thrust (sztanga)', 'pośladki')).toEqual([['pośladki'], []]);
-    expect(loadModeFor('hantle', 'Concentration Curl (hantle)')).toBe('unilateral'); expect(loadModeFor('sztanga', 'Concentration Curl (hantle)')).toBe('total'); /* inny sprzęt — tryb za sprzętem */
+    expect(loadModeFor('hantle', 'Concentration Curl (hantle)')).toBe('unilateral'); expect(loadModeFor('sztanga', 'Dumbbell Concentration Curl')).toBe('total'); /* inny sprzęt — tryb za sprzętem */
     expect(row('Box Jump')[1]).toBe('nogi'); expect(metricFor("Farmer's Walk")).toBe('weight_distance');
   });
 });
@@ -237,7 +237,7 @@ describe('logika listy domyślnej (wariant B)', () => {
 });
 
 describe('ekran: filtr „Podstawowe” (lista Ćwiczeń, wybór ćwiczenia, zamiana)', () => {
-  const niche = 'Svend Press'; const core = 'Bench Press (sztanga)';
+  const niche = 'Svend Press'; const core = 'Bench Press';
   test('lista Ćwiczeń: niszowe ukryte (licznik), wyszukiwanie je pokazuje, „+ Podstawowe” pokazuje wszystkie — zapamiętane; użyte i własne zawsze', async () => {
     await fresh(); expect(isNiche(store.getState().exercises.find(e => e.name === niche)!)).toBe(true);
     const mine = store.newExercise('Moje ćwiczenie'); void mine; const used = store.getState().exercises.find(e => e.name === 'Floor Press with Chains')!; addWorkout(Date.UTC(2026, 9, 1), [['Floor Press with Chains', [{ weight: 60, reps: 5 }]]]); void used;

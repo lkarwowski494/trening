@@ -100,7 +100,7 @@ describe('ekran: karta „teraz”', () => {
   });
   test('widok listy: przerwa w dolnym pasku jak dotąd (bez karty)', async () => {
     await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); block('Bench Press (hantle)', { weight: 22.5, reps: 10 }); store.addSet(0); });
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (hantle)')); await flushAll(10);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Dumbbell Bench Press')); await flushAll(10);
     expect(screen.getAllByLabelText('Skróć przerwę o 15 sekund')).toHaveLength(1); expect(screen.queryByText(/^dalej: /)).toBeNull();
   });
   test('seria na czas: pierścień postępu w karcie podczas pomiaru', async () => {

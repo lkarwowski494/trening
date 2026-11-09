@@ -1,11 +1,11 @@
 /*
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening, kropka po aktualizacji (tylko u kogoś, kto już
  * trenował), sekcja rozwijana: bieżący wpis na górze, starsze zwinięte. State.whatsNewSeen (id wpisu). Wzór: Organizer (karta po aktualizacji).
- * 1.0.0 (decyzja właściciela 14.10.2026, docs/18): pierwsza wersja w App Store — historia pusta; bez wpisów nie ma przycisku, kropki ani panelu.
+ * 1.0.1 (decyzja właściciela 06.11.2026, docs/18): w kodzie jeden wpis (wcześniej, w 1.0.0, historia była pusta — bez przycisku, kropki i panelu).
  * Zachowanie przy wpisach (pierwszy wpis 1.1) sprawdzają próbki z tests/whatsnew-probki.ts.
  * Rodzaje (docs/20): logika (lista wpisów, kropka), dane (zapis/odczyt, sanityzacja, dane bez pola 1:1), ekran (położenie, kropka, rozwijanie,
  * starsze wpisy, zamknięcie, brak w trakcie treningu, pusta historia), VoiceOver (etykieta z informacją o nowościach, stan rozwinięcia), języki (EN).
- * E2E: .maestro/13, 31, 34, 35 (1.0.0: przycisku nie ma).
+ * E2E: .maestro/13, 31, 34, 35 (od 1.0.1 przycisk jest).
  */
 import * as store from '@/lib/store';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen } from '@/lib/whatsnew';
@@ -21,22 +21,29 @@ afterEach(() => { applyLang('pl'); });
 const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
 const withWorkout = () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); };
 
-describe('1.0.0: pusta historia (pierwsza wersja w App Store)', () => {
-  test('lista w kodzie jest pusta', () => { expect(WHATS_NEW).toEqual([]); });
-  test('kropka nigdy, także po treningu i przy zapisanym id starego wpisu; markWhatsNewSeen nic nie zapisuje', () => {
+describe('1.0.1 (decyzja właściciela 06.11.2026, wariant B): jeden wpis w kodzie', () => {
+  test('lista w kodzie: jeden wpis 2026-11-06 (bez numeru buildu), 4 punkty z kropką, bez nazw źródeł i marek', () => {
+    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-06']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-06');
+    const it = WHATS_NEW[0].items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/));
+    expect(it.join(' ')).not.toMatch(/Strong|Hevy|Fitbod|JEFIT|ExRx|Stronger by Science|ACSM|NSCA/i);
+  });
+  test('punkty mają angielski odpowiednik (słownik EN)', () => {
+    const { EN } = require('@/lib/i18n.en');
+    WHATS_NEW[0].items().forEach(x => expect(EN[x]).toBeTruthy());
+  });
+  test('kropka: nowa osoba — nie; po treningu i innym zapisanym id — tak; otwarcie zapisuje id wpisu', () => {
     expect(whatsNewUnseen()).toBe(false);
-    withWorkout(); expect(whatsNewUnseen()).toBe(false);
-    S().whatsNewSeen = '2026-10-17'; expect(whatsNewUnseen()).toBe(false); /* osoba po aktualizacji z 0.20 */
-    const rev = store.getRev(); markWhatsNewSeen(); expect(store.getRev()).toBe(rev); expect(S().whatsNewSeen).toBe('2026-10-17');
+    withWorkout(); S().whatsNewSeen = '2026-10-17'; expect(whatsNewUnseen()).toBe(true); /* osoba po aktualizacji z 0.20 / 1.0.0 bez zapisanego id */
+    markWhatsNewSeen(); expect(S().whatsNewSeen).toBe('2026-11-06'); expect(whatsNewUnseen()).toBe(false);
   });
-  test('ekran Trening: bez przycisku ✦, kropki i panelu — nowa osoba i osoba po aktualizacji; tytuł ekranu na miejscu', async () => {
-    await boot(); expect(screen.queryByTestId('whats-new-i')).toBeNull(); expect(screen.queryByTestId('whats-new')).toBeNull(); expect(screen.getAllByText('Trening').length).toBeGreaterThan(0);
+  test('ekran Trening: przycisk ✦ jest także u nowej osoby (bez kropki); po treningu kropka; otwarcie pokazuje wpis i zamknięcie go chowa', async () => {
+    await boot(); expect(screen.getByTestId('whats-new-i')).toBeTruthy(); expect(screen.queryByTestId('whats-new-dot')).toBeNull();
     await boot(() => { withWorkout(); S().whatsNewSeen = '2026-10-17'; });
-    expect(screen.queryByTestId('whats-new-i')).toBeNull(); expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(screen.queryByLabelText(/Co nowego/)).toBeNull();
-  });
-  test('panel wywołany bezpośrednio przy pustej historii nie renderuje niczego (bez błędu)', async () => {
-    await boot(); const { WhatsNewPanel } = require('@/components/WhatsNew'); const { render } = require('@testing-library/react-native');
-    const r = await render(<WhatsNewPanel onClose={() => {}} />); expect(r.toJSON()).toBeNull();
+    expect(screen.getByTestId('whats-new-dot')).toBeTruthy(); expect(screen.getByLabelText('Co nowego — są nowe zmiany')).toBeTruthy();
+    await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
+    expect(screen.getByTestId('whats-new')).toBeTruthy(); expect(screen.getByText('W tej wersji')).toBeTruthy(); WHATS_NEW[0].items().forEach(x => expect(screen.getByText(`• ${x}`)).toBeTruthy());
+    expect(screen.queryByTestId('whats-new-dot')).toBeNull();
+    await tap(screen.getByTestId('whats-new-close')); await flushAll(5); expect(screen.queryByTestId('whats-new')).toBeNull();
   });
 });
 
@@ -97,7 +104,7 @@ describe('ekran Trening (próbki wpisów)', () => {
     await tap(head); await flushAll(5); expect(screen.getByText(oldItem)).toBeTruthy(); expect(screen.getByText(/^▾ Wersja testowa 1002/)).toBeTruthy();
     await tap(screen.getByText(/^▸ Wersja testowa 1005/)); await flushAll(5); expect(screen.queryByText(oldItem)).toBeNull(); /* otwarcie innego zwija poprzedni */
     for (const x of PROBKI[1].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
-    await tap(screen.getByText('Zamknij')); await flushAll(5); expect(screen.queryByTestId('whats-new')).toBeNull();
+    await tap(screen.getByTestId('whats-new-close')); await flushAll(5); expect(screen.queryByTestId('whats-new')).toBeNull();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5); expect(screen.getByTestId('whats-new')).toBeTruthy();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5); expect(screen.queryByTestId('whats-new')).toBeNull();
   });

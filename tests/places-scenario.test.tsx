@@ -1,6 +1,6 @@
 /* 0.19 B „Miejsce na zakres dni w planie” — scenariusz „z życia” (docs/33 „Testy”, docs/20 rodzaj 3): plan poniedziałek / środa / sobota (szablon FBW);
  * w piątek ustawiam Hotel na piątek–niedzielę; restart; w sobotę rano przypomnienie „Dziś: FBW · Hotel”; start → trening w Hotelu, okno „Dostosuj” samo →
- * Bench zostaje z domyślną propozycją, OHP ręcznie, Pull Up (bez sensownego zamiennika w Hotelu) — „Pomiń dziś” → „Zastosuj” → 2 serie → restart → dokończenie →
+ * Bench zostaje z domyślną propozycją, OHP ręcznie, Pull-Up (bez sensownego zamiennika w Hotelu) — „Pomiń dziś” → „Zastosuj” → 2 serie → restart → dokończenie →
  * „Zakończ” → brak „Zapisz zmiany w szablonie”; szablon i plan bez zmian; w poniedziałek: siłownia, szablon oryginalny, bez okna. */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
@@ -46,12 +46,12 @@ test('Hotel piątek–niedziela: ustawienie w panelu dnia → przypomnienie z �
   /* start: miejsce dnia, okno samo */
   jest.setSystemTime(SAT.getTime()); await flushAll(10); await startTpl('FBW');
   expect(S().active!.locationId).toBe('hotel'); expect(top()).toBe('adapt'); expect(require('./app').navRef().getCurrentOptions().title).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel'); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */
-  const benchTo = (screen.getAllByText(/^Bench Press \(sztanga\) → /)[0].props.children as string).split(' → ')[1];
-  await tap(screen.getAllByText(/^Overhead Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
+  const benchTo = (screen.getAllByText(/^Bench Press → /)[0].props.children as string).split(' → ')[1];
+  await tap(screen.getAllByText(/^Overhead Press → /)[0]); await flushAll(20); expect(top()).toBe('swap');
   const props = screen.getAllByLabelText(/^Propozycja \d: /); const k = Math.min(1, props.length - 1); const manual = /^Propozycja \d: ([^,]+)/.exec(props[k].props.accessibilityLabel)![1]; await tap(props[k]); await flushAll(20);
-  await tap(screen.getAllByText(/^Pull Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull Up')); await flushAll(20);
+  await tap(screen.getAllByText(/^Pull-Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull-Up')); await flushAll(20);
   expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (3)'); await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
-  expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(S().exercises.find(e => e.name === benchTo)!.id); expect(blk(1).exerciseId).toBe(S().exercises.find(e => e.name === manual)!.id);
+  expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(S().exercises.find(e => require('@/lib/i18n').exName(e) === benchTo)!.id); expect(blk(1).exerciseId).toBe(S().exercises.find(e => require('@/lib/i18n').exName(e) === manual)!.id);
   expect(blk(2).skipped).toBe(true); expect(blk(3).exerciseId).toBe(ex('RDL (hantle/linki)').id);
 
   await doSet(0, 0); await doSet(0, 1); expect(blk(0).sets.filter(x => x.done)).toHaveLength(2);

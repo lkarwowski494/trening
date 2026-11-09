@@ -23,7 +23,7 @@ const ids = (t: Template) => t.items.map(i => i.id);
 const uniq = (t: Template) => new Set(ids(t)).size === t.items.length;
 const item = (id: string, name: string, sets: number, extra: Partial<TemplateItem> = {}): TemplateItem => ({ id, exerciseId: ex(name).id, sets, repMin: 8, repMax: 10, restSec: null, startWeight: 60, targetSec: '', groupId: null, ...extra });
 const mkTpl = (items: TemplateItem[], name = 'Push') => { const t = store.newTemplate(); t.name = name; t.items.push(...items); store.save(t); return t; };
-/** Szablon z audytu: Bench Press 3 × 60 (+ Back Squat 2 × 80); start, ✓ seria 1, „⇄ zamień” na Bench Press (hantle) — podział bloku. */
+/** Szablon z audytu: Bench Press 3 × 60 (+ Back Squat 2 × 80); start, ✓ seria 1, „⇄ zamień” na Dumbbell Bench Press — podział bloku. */
 const splitSwap = (withSquat = true) => {
   const t = mkTpl([item('a', 'Bench Press (sztanga)', 3), ...(withSquat ? [item('b', 'Back Squat', 2, { startWeight: 80 })] : [])]);
   store.startFromTemplate(t); const a = S().active!; a.exercises[0].sets.forEach(s => { s.reps = 8; }); store.toggleDone(0, 0);
@@ -58,7 +58,7 @@ describe('LIVE2-01: zamiana w trakcie ćwiczenia (podział bloku) a „Zaktualiz
     expect(store.swapImpl(a.exercises[0].id, 'electric')).toBeTruthy();
     expect(a.exercises.map(e => [e.tplItemId, e.impl, e.sets.length, e.swappedFrom])).toEqual([['a', 'dumbbell', 1, undefined], ['a', 'electric', 2, undefined]]);
     expect(templateDiff(t, J(a))).toBeNull();
-    store.addSet(1); expect(templateDiff(t, J(a))).toEqual({ added: [], removed: [], sets: [ex(RDL).name], order: false });
+    store.addSet(1); expect(templateDiff(t, J(a))).toEqual({ added: [], removed: [], sets: [require('@/lib/i18n').exName(ex(RDL))], order: false });
     updateTemplateFromWorkout(t, J(a)); expect(ids(t)).toEqual(['a']); expect(t.items[0].sets).toBe(4); expect(store.tplRows(t.items[0])).toHaveLength(4);
     store.cancelWorkout(); store.startFromTemplate(t); expect(S().active!.exercises.map(e => [e.tplItemId, e.sets.length])).toEqual([['a', 4]]); /* start — jeden blok */
   });

@@ -19,7 +19,7 @@ describe('pełna baza — listy', () => {
   test('arkusz zamiany „Inne” bez filtrów: najwyżej SWAP_PAGE wierszy, „Pokaż więcej” dokłada kolejne', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
     await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const rows = () => screen.getAllByText('⇄').length;
@@ -38,13 +38,13 @@ describe('pełna baza — audyt kodu 04.10 wieczór', () => {
   });
   test('LOW 4: lista „Inne” — dokładne trafienie nazwy na początku (przed porcją „Pokaż więcej”), reszta alfabetycznie', async () => {
     await fresh(); const all = store.getState().exercises.filter(e => /push/i.test(e.name));
-    const s = sortOthers(all, 'push up'); expect(exName(s[0])).toBe('Push Up');
+    const s = sortOthers(all, 'push up'); expect(exName(s[0])).toBe('Push-Up');
     const rest = s.slice(1).map(e => exName(e)); expect(rest).toEqual([...rest].sort((a, b) => a.localeCompare(b, 'pl')));
   });
   test('LOW 5: zwinięcie i ponowne rozwinięcie „Inne” wraca do pierwszej porcji', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5); await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const first = screen.getAllByText('⇄').length; await tap(screen.getByLabelText(/^Pokaż więcej ćwiczeń/)); await flushAll(5); expect(screen.getAllByText('⇄').length).toBeGreaterThan(first);
     const wait = async () => { await act(async () => { jest.advanceTimersByTime(800); }); }; /* Item: useOnce(700) — ochrona przed podwójnym tapnięciem */

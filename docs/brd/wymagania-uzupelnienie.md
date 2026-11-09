@@ -4,7 +4,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ## Prace i przepływy dopisane
 
 ### PR-10: Pomoc i kontakt
-- P-1, J-06. Kroki: na starcie czyta „Pierwsze kroki”; otwiera Przewodnik; w Więcej → O aplikacji pisze do autora albo prosi o nową funkcję. Kontekst: poza treningiem, telefon w ręku.
+- P-1, J-06. Kroki: na starcie czyta ekran nowej osoby („Przygotuj się do pierwszej serii”); otwiera Przewodnik; w Więcej → O aplikacji pisze do autora albo prosi o nową funkcję. Kontekst: poza treningiem, telefon w ręku.
 ### PR-11: Podsumowanie po treningu
 - P-1, J-01, J-03. Kroki: kończy trening; ogląda podsumowanie sesji (rekordy, zmiany względem szablonu); reaguje na najwyżej jedno okno albo link. Kontekst: siłownia lub dom, zaraz po treningu.
 ### PR-12: Historia: dopisanie i poprawienie treningu
@@ -62,7 +62,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
   - Scenariusz: Wyczyszczenie po kopii
     - Zakładając, że użytkownik ma historię, szablony i plan
     - Gdy potwierdza „Wyczyść”
-    - Wtedy najpierw w Plikach (aplikacja → Backup) powstaje kopia obecnych danych, którą da się zaimportować, a potem aplikacja wraca do stanu jak po instalacji z kartą „Pierwsze kroki”
+    - Wtedy najpierw w Plikach (aplikacja → Backup) powstaje kopia obecnych danych, którą da się zaimportować, a potem aplikacja wraca do stanu jak po instalacji z ekranem nowej osoby (tablica „Pierwszy trening”)
   - Scenariusz: Nieudana kopia przerywa czyszczenie
     - Zakładając, że zapis kopii bezpieczeństwa się nie udaje
     - Gdy użytkownik potwierdza „Wyczyść”
@@ -429,23 +429,31 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Gdy użytkownik nie stuka przycisku
     - Wtedy szablon zostaje bez zmian, a przycisk jest tylko zaraz po treningu (D-116)
 
-### BR-POM-001: „Pierwsze kroki” dla nowej osoby
+### BR-POM-001: Ekran nowej osoby: tablica „Pierwszy trening” i „Przygotuj się do pierwszej serii”
 - Przepływ: PR-10
-- Dowód potrzeby: D-117 (decyzja właściciela 2026-10-11, docs/22 P4 A); kod `components/Dashboard.tsx`
-- Test: `tests/first-steps-empty.test.tsx`, `tests/dashboard.test.tsx`, `tests/dec04a-import-w-pierwszych-krokach.test.tsx`, `.maestro/31-pierwszy-tydzien.yaml`
+- Dowód potrzeby: D-117 (decyzja właściciela 2026-10-11, docs/22 P4 A; zmieniona 05.11.2026: kierunek C′, bez „Inny trening”, kafelki W1, docs/18); kod `components/Dashboard.tsx`, `components/FirstBoard.tsx`, `components/StartPanel.tsx`, `lib/dashboard.ts`
+- Test: `tests/ekran-nowej-osoby-1-1.test.tsx`, `tests/first-steps-empty.test.tsx`, `tests/dashboard.test.tsx`, `tests/dec04a-import-w-pierwszych-krokach.test.tsx`, `.maestro/31-pierwszy-tydzien.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Pierwsze uruchomienie
     - Zakładając, że baza jest pusta (nowa instalacja albo po wyczyszczeniu danych)
     - Gdy użytkownik otwiera ekran Trening
-    - Wtedy widzi kartę „Pierwsze kroki” z trzema krokami (szablon, plan tygodnia, pierwszy trening), każdy z jednym przyciskiem (Planowanie albo Przewodnik), a duży przycisk startu to „Pusty trening”
-  - Scenariusz: Zrobione kroki
-    - Zakładając, że użytkownik utworzył szablon i plan
+    - Wtedy widzi tytuł „Trening” (bez daty pod nim, bez nagłówka „Bez planu tygodnia” i bez paska tygodnia — decyzja 06.11.2026; po pierwszym zakończonym treningu albo po ustawieniu planu data, nagłówek planu i pasek wracają), tablicę „Pierwszy trening” (granatowa tablica z datą na klapkach, czytana przez VoiceOver jako jeden opis), duży przycisk „Zacznij pierwszy trening” z podpisem „ćwiczenia dodasz w trakcie” (uruchamia pusty trening) i sekcję „Przygotuj się do pierwszej serii”; przycisku „Inny trening” nie ma, bo nie ma innych sposobów startu
+  - Scenariusz: Pola daty tablicy „Pierwszy trening” na wąskim ekranie (decyzja właściciela 06.11.2026 ~07:05 PL)
+    - Zakładając, że nowa osoba ma ekran 320 pt, duży tekst (do limitu skali liczb) i język z długimi skrótami dnia lub miesiąca (np. wietnamski, łotewski, portugalski)
+    - Gdy patrzy na tablicę „Pierwszy trening”
+    - Wtedy skrót dnia, numer dnia i skrót miesiąca stoją każdy w jednej linii w swoim polu; tekst zmniejsza się do 0,55 rozmiaru (stała `SIZE.boardFieldMinScale` w `lib/tokens.ts`), zamiast się ucinać
+  - Scenariusz: Kafelki „Przygotuj się do pierwszej serii” (decyzja właściciela 05.11.2026, kafelki W1)
+    - Zakładając, że nowa osoba nie ma jeszcze zakończonego treningu
+    - Gdy patrzy na cztery kafelki „Szablony i plan”, „Miejsca i sprzęt”, „Historia z CSV”, „Przewodnik” i stuka jeden z nich
+    - Wtedy otwiera się odpowiednio ekran planu, miejsc, importu CSV (podgląd przed zapisem, obecne dane bez zmian) albo Przewodnika; cały kafelek jest przyciskiem (≥ 44 pt, „›” w rogu); kafelki stoją w układzie 2 × 2, a przy wąskim ekranie (kafelek węższy niż 144 pt; w de i el 156 pt), dużym tekście i długich językach — w jednej kolumnie
+  - Scenariusz: Szablon bez planu albo plan, jeszcze bez treningu
+    - Zakładając, że nowa osoba ma szablon (z planem albo bez), ale nie zakończyła treningu
     - Gdy wraca na ekran Trening
-    - Wtedy te kroki są oznaczone jako zrobione
-  - Scenariusz: Krok „zaimportuj historię” (DEC-04 a, właściciel 23.10.2026; wersja 1.0.1)
-    - Zakładając, że nowa osoba ma kartę „Pierwsze kroki”
-    - Gdy patrzy na krok 4 „Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.” i stuka „Importuj historię z pliku CSV”
-    - Wtedy otwiera się istniejący ekran importu CSV (podgląd przed zapisem, obecne dane bez zmian); krok jest pomijalny i nigdy nie bywa oznaczony jako zrobiony, a razem z kartą znika po pierwszym zakończonym treningu
+    - Wtedy duży przycisk to „Start: …” jak zawsze, kafelki „Przygotuj się do pierwszej serii” zostają, tablica „Pierwszy trening” jest bez planu (z planem jest tablica „Dziś”), a „Inny trening” pokazuje się, bo są inne sposoby startu
+  - Scenariusz: Po pierwszym treningu
+    - Zakładając, że użytkownik zakończył pierwszy trening
+    - Gdy wraca na ekran Trening
+    - Wtedy tablica „Pierwszy trening” i kafelki znikają, a ekran jest zwykłym ekranem głównym (w ich miejsce wchodzą data, nagłówek planu i pasek tygodnia z pierwszym znaczkiem)
 
 ### BR-POM-002: Przewodnik po funkcjach
 - Przepływ: PR-10
@@ -454,6 +462,6 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 - Test: `tests/guide.test.tsx`, `.maestro/38-pomoc-powiadomienia.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Temat i „Pokaż”
-    - Zakładając, że użytkownik otwiera Przewodnik z „Pierwszych kroków” albo z Więcej
+    - Zakładając, że użytkownik otwiera Przewodnik z kafelka „Przewodnik” (ekran nowej osoby) albo z Więcej
     - Gdy wybiera temat, czyta kroki i stuka „Pokaż”
     - Wtedy przechodzi na właściwy ekran i może wrócić; temat jest zapamiętany jako przeczytany

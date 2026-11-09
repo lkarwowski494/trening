@@ -4,6 +4,8 @@
 # Wyjątek: gdy zmiany względem origin/main (albo — H1, 31.10.2026 — od najbliższego commitu z pełnym verify) to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
 # Od 03.11.2026 (decyzja właściciela ~21:45 PL, wariant A: „testy tylko tam, gdzie zmiana ma wpływ, pełne w CI”) przed wypchnięciem wystarczy `npm run verify:szybkie`
 # (typecheck + szybkie check:* + test:fast od bazy gałęzi); pełne testy biegną w CI (tests.yml), a scalenie do main wymaga lokalnego pełnego verify (scal-galaz --do main).
+# Od 08.11.2026 (decyzja właściciela „A + B mądrze”) na gałęzie inne niż main wystarcza też `npm run verify:lekkie` (to samo bez testów Jest — pełne testy biegną w tests.yml, 4 maszyny; docs/18).
+# Od 08.11.2026 (decyzja koordynatora w nocy 08/09.11 z upoważnienia właściciela, do weta rano; zgodnie z decyzją 08.11 „main pełne”) wypchnięcie na main przyjmuje tylko znacznik pelne (npm run verify) — szybkie i lekkie nie.
 # Pierwszy krok haka (L-049, 28.10.2026) sprawdza: drzewo wypychanego commitu musi mieć znacznik zielonego verify — pelne albo szybkie (scripts/verify-znacznik.mjs;
 # commit tylko z dokumentami — znacznik verify:docs, także po verify wcześniejszego kodu — H1, 31.10.2026). Ok. 0,1 s.
 # Instaluje go `npm ci` (skrypt `prepare` → scripts/hooks/instaluj.mjs ustawia core.hooksPath na scripts/hooks; nie w CI i nie w katalogu bez .git).
@@ -35,16 +37,20 @@ start=$(date +%s)
 [ -n "$refy" ] || refy="$(git rev-parse HEAD) - -
 "
 # ZB-041 G4 (04.11.2026): dla wypychanej gałęzi baza dokumentów może być też origin/<gałąź> z zielonym tests.yml (--galaz).
+# Pętla w $(…) woła funkcję zamiast mieć własne `case`: bash 3.2 (/bin/sh na macOS) liczy nawias `)` wzorca case wewnątrz $(…) jako koniec podstawienia → błąd składni (06.11.2026, docs/40 lekcja o buildzie TestFlight 1.0.1 na macOS).
+znacznik_dla() { # $1 = lokalny sha, $2 = zdalny ref
+  case "$2" in refs/heads/*) galaz="${2#refs/heads/}" ;; *) galaz="" ;; esac
+  if [ -n "$galaz" ]; then node scripts/verify-znacznik.mjs --sprawdz "$1" --galaz "$galaz" >&2
+  else node scripts/verify-znacznik.mjs --sprawdz "$1" >&2; fi
+}
 bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha zdalny_ref _; do
   [ -n "$lokalny_sha" ] || continue
-  case "$zdalny_ref" in refs/heads/*) galaz="${zdalny_ref#refs/heads/}" ;; *) galaz="" ;; esac
-  if [ -n "$galaz" ]; then node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" --galaz "$galaz" >&2 || echo "$lokalny_sha"
-  else node scripts/verify-znacznik.mjs --sprawdz "$lokalny_sha" >&2 || echo "$lokalny_sha"; fi
+  znacznik_dla "$lokalny_sha" "$zdalny_ref" || echo "$lokalny_sha"
 done)
 if [ -n "$bez_znacznika" ]; then
   echo "" >&2
   echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — brak zielonego verify dla wypychanego stanu plików (L-049, 28.10.2026; zmiana: decyzja właściciela 03.11.2026)." >&2
-  echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify:szybkie (albo pełne npm run verify; commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
+  echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify:lekkie (albo verify:szybkie; gałąź funkcji i integracja-*; na main tylko pełne npm run verify; commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
   exit 1
 fi
 

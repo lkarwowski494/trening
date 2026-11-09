@@ -7,7 +7,7 @@ const [file, out, fonts = ''] = process.argv.slice(2);
 mkdirSync(out, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1400, height: 1000 }, deviceScaleFactor: 2 });
-await page.goto('file://' + resolve(file));
+await page.goto('file://' + resolve(file) + (process.env.ZRZUTY_QUERY || '')); // np. ZRZUTY_QUERY='?t=2600' — klatka stała makiety z ruchem (start-1-1-r2.js)
 await page.evaluate(() => document.fonts.ready);
 // document.fonts.check() zwraca true także dla kroju, którego nie zadeklarowano, więc sprawdzamy listę załadowanych.
 const loaded = await page.evaluate(() => [...document.fonts].filter((x) => x.status === 'loaded').map((x) => x.family.replace(/["']/g, '')));

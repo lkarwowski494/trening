@@ -27,7 +27,8 @@ const pp = wczytaj('pushup_plank'), cf = wczytaj('core_floor');
 const fx = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'tests/fixtures/figury-n6-bledne.json'))}, 'utf8'));
 const dec6 = fx.poze[1].poza;
 const r17b = (p) => J.stykKazdegoPodparcia(eng, p).length, r17 = (p) => J.stykZPodlozem(eng, p).length;
-const kody = (p, rodzina) => [...new Set(waliduj(p, { rodzina, cwiczenie: p.cwiczenie }).bledy.map((b) => (b.szczegol.match(/^(?:jakosc: )?([a-z0-9_]+):/) ?? [])[1]))];
+/* 08.11.2026 (A1 pchanie): karta własna Decline Push Up (ukryta do przekładu) nie ma błędu push.mis.partial, który ma fixture n6; walidator przerywa na „to nie jest błąd tego ćwiczenia” przed regułami geometrii. Test sprawdza geometrię (R17b, R19), więc wiersze błędów pomijamy. */
+const kody = (p, rodzina) => [...new Set(waliduj({ ...p, bledy: [] }, { rodzina, cwiczenie: p.cwiczenie }).bledy.map((b) => (b.szczegol.match(/^(?:jakosc: )?([a-z0-9_]+):/) ?? [])[1]))];
 const skrzynia = (p, top) => { const q = kopia(p); q.sprzet.find((g) => g.rodzaj === 'skrzynia').top = top; return q; };
 const wszystkieKlatki = (p, f) => { const q = kopia(p); for (const k of q.klatki) f(k); return q; };
 const out = {};

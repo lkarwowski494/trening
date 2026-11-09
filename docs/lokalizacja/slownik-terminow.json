@@ -3883,11 +3883,13 @@
     },
     "ja": {
      "zalecany": "トレーニング",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "po cyfrze (podpis „1 …” na tablicy pierwszego treningu) licznik numeru sesji: 回目"
     },
     "ko": {
      "zalecany": "운동",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "po cyfrze (podpis „1 …” na tablicy pierwszego treningu) licznik numeru sesji: 회차"
     },
     "zh-Hant": {
      "zalecany": "訓練",
@@ -10892,7 +10894,7 @@
      "pewnosc": "srednia"
     },
     "es": {
-     "zalecany": "asa",
+     "zalecany": "agarre",
      "pewnosc": "srednia"
     },
     "es-419": {
@@ -10924,7 +10926,7 @@
      "pewnosc": "srednia"
     },
     "nl": {
-     "zalecany": "handvat",
+     "zalecany": "handgreep",
      "pewnosc": "srednia"
     },
     "sv": {
@@ -10956,7 +10958,7 @@
      "pewnosc": "srednia"
     },
     "cs": {
-     "zalecany": "držadlo",
+     "zalecany": "rukojeť",
      "pewnosc": "srednia"
     },
     "sk": {
@@ -11039,6 +11041,326 @@
        "powod": "„ноги” to nogi aż do stóp; uda to „стегна” (jak w front.setup, lat.setup)"
       }
      ]
+    }
+   }
+  },
+  {
+   "id": "funkcja_aplikacji",
+   "pl": "funkcja aplikacji",
+   "tylko": [
+    "id",
+    "ms",
+    "et"
+   ],
+   "znaczenie": "funkcja (feature) aplikacji, np. opis kafelka Przewodnik „Co gdzie jest i jak działa”; NIE funkcja matematyczna",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])funkcj(a|e|i|ę|ą|om|ach|ami)(?![\\p{L}])",
+   "jezyki": {
+    "id": {
+     "zalecany": "fitur",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "ciri",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])fungsi(?![\\p{L}])",
+       "powod": "„fungsi” to funkcja matematyczna/techniczna; funkcja aplikacji to „ciri” (czasownik „berfungsi” = działa jest poprawny)"
+      }
+     ]
+    },
+    "et": {
+     "zalecany": "funktsioon",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "lawka_skosna_glowa_w_dol",
+   "pl": "ławka skośna głową w dół (ang. decline bench)",
+   "znaczenie": "ławka z głową niżej niż biodra (decline bench); NIE ławka skośna głową w górę (incline), NIE ławka płaska",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])(?:ławk\\p{L}*|ławc\\p{L}*)\\s+skośn\\p{L}*\\s+głową\\s+w\\s+dół",
+   "jezyki": {
+    "pl": {
+     "zalecany": "ławka skośna głową w dół",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "decline bench",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "lavice s negativním sklonem",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavice s negativním sklonem czy lavice se sklonem hlavou dolů"
+    },
+    "sk": {
+     "zalecany": "lavička s negatívnym sklonom",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lavička s negatívnym sklonom czy lavička so sklonom hlavou nadol"
+    },
+    "hu": {
+     "zalecany": "negatív pad",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): negatív pad czy lefelé lejtő pad"
+    },
+    "ro": {
+     "zalecany": "bancă înclinată cu capul în jos",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "bg": {
+     "zalecany": "наклонена пейка с главата надолу",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "hr": {
+     "zalecany": "kosa klupa",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): kosa klupa glavom prema dolje czy negativna klupa"
+    },
+    "sl": {
+     "zalecany": "klop, nagnjena navzdol",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "sr": {
+     "zalecany": "коса клупа",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): коса клупа главом надоле czy негативна клупа"
+    },
+    "lt": {
+     "zalecany": "suolas, pasvirusio galva žemyn",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "lv": {
+     "zalecany": "sols ar slīpumu uz leju",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): brak potwierdzonego terminu siłowni"
+    },
+    "et": {
+     "zalecany": "allapoole kaldu pink",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): allapoole kaldu pink czy negatiivne pink"
+    },
+    "uk": {
+     "zalecany": "лава зі зворотним нахилом",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): лава зі зворотним нахилом (do potwierdzenia)"
+    },
+    "es": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "banco declinado",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "Negativbank",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "banc décliné",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "panca declinata",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "declinebank",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): declinebank czy afhellende bank"
+    },
+    "sv": {
+     "zalecany": "lutande bänk",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): lutande bänk z dopiskiem o głowie czy declinebänk"
+    },
+    "da": {
+     "zalecany": "skråbænk",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbænk czy decline-bænk"
+    },
+    "nb": {
+     "zalecany": "skråbenk",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): skråbenk czy declinebenk"
+    },
+    "fi": {
+     "zalecany": "alaviistopenkki",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): alaviistopenkki czy laskeva penkki"
+    },
+    "tr": {
+     "zalecany": "ters eğimli sehpa",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<!ters )(?<![\\p{L}])eğimli sehpa",
+       "powod": "samo „eğimli sehpa” to też ławka skośna głową w górę (incline); przy głowie w dół ma być „ters eğimli sehpa” (recenzja T1b, 05.11.2026)"
+      }
+     ]
+    },
+    "el": {
+     "zalecany": "αρνητικός πάγκος",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (recenzja T1b, 05.11.2026): αρνητικός πάγκος czy πάγκος με κλίση προς τα κάτω"
+    },
+    "id": {
+     "zalecany": "bangku decline",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "bangku condong ke bawah",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "ghế dốc xuống",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "скамья с обратным наклоном",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "наклонн\\p{L}*\\s+скамь",
+       "powod": "„наклонная скамья” to też ławka skośna głową w górę (incline); ławka głową w dół to „скамья с обратным наклоном” (recenzja T1b, 05.11.2026)"
+      }
+     ]
+    },
+    "ja": {
+     "zalecany": "デクラインベンチ",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "디클라인 벤치",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "下斜椅",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "tasmy_podwieszane",
+   "pl": "taśmy do podwieszania",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "taśmy do ćwiczeń w podwieszeniu (sprzęt, na którym się ćwiczy: Suspended Push-Up); NIE taśma do rozciągania, NIE guma oporowa. Pozostałe 33 języki wg przekładu z PL/EN (do uzupełnienia po recenzji native speakerów)",
+   "kanon": null,
+   "wykrywaj": "uchwyty taśm|taśm\\w* do podwieszania",
+   "jezyki": {
+    "pl": {
+     "zalecany": "taśmy do podwieszania",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "straps",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "gwaltowne_blokowanie_lokci",
+   "pl": "gwałtowne blokowanie łokci",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "błąd przy wyciskaniu: łokcie zatrzaskiwane w wyproście (wyprost sam w sobie jest celem ruchu); NIE „prostowanie rąk do końca”. Spójne z ohp.mis.lock i press.noLock. Pozostałe 33 języki wg przekładu z PL/EN",
+   "kanon": null,
+   "wykrywaj": "blokowani\\w* łokci",
+   "jezyki": {
+    "pl": {
+     "zalecany": "gwałtowne blokowanie łokci",
+     "zakazane": [
+      {
+       "wzorzec": "(?<!wałtowne )blokowanie łokci",
+       "powod": "samo „blokowanie łokci” czyta się jak „nie prostuj rąk do końca”; błędem jest gwałtowne zatrzaśnięcie"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "snapping your elbows into lockout",
+     "zakazane": [
+      {
+       "wzorzec": "locking out (the |your )?elbows",
+       "powod": "w EN „lockout” to cel wyciskania; błędem jest gwałtowne zatrzaśnięcie (snapping into lockout)"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "miniguma",
+   "pl": "miniguma",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "mała zamknięta guma zakładana na nogi (nad kolana albo na kostki) — nie długa guma z uchwytami (guma_oporowa obejmuje każdą gumę); recenzja lokalizacji A2, 08.11.2026",
+   "kanon": null,
+   "wykrywaj": "minigum|mał(a|ą|ej) gum",
+   "jezyki": {
+    "pl": {
+     "zalecany": "miniguma",
+     "zakazane": [
+      {
+       "wzorzec": "mał(a|ą|ej) gum",
+       "powod": "ten sam sprzęt miał w partii A2 dwie nazwy; jedna nazwa: miniguma"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "pytanie do native speakera: „miniguma” czy „mini band” na polskiej siłowni (recenzja lokalizacji A2, pytanie 2)"
+    },
+    "en": {
+     "zalecany": "mini band",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "blokowanie_kolan_przeprost",
+   "pl": "blokowanie kolan w przeproście",
+   "tylko": [
+    "pl",
+    "en"
+   ],
+   "znaczenie": "błąd albo wskazówka na prasie do nóg: blokowanie kolan w przeproście na górze; pełny wyprost sam nie jest błędem (recenzja lokalizacji A2, 08.11.2026; ta sama logika co gwałtowne blokowanie łokci z A1)",
+   "kanon": null,
+   "wykrywaj": "blokow\\w* kolan",
+   "jezyki": {
+    "pl": {
+     "zalecany": "w przeproście",
+     "zakazane": [
+      {
+       "wzorzec": "blokow\\w* kolan\\w* w pełnym wyproście",
+       "powod": "pełny wyprost nie jest błędem — błędem jest blokowanie w przeproście"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "lock",
+     "pewnosc": "srednia"
     }
    }
   }

@@ -14,7 +14,7 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - assertVisible: "Workout, tab, 1 of 4"
 - assertVisible: "Plan, tab, 2 of 4"
 - assertVisible: "Progress, tab, 3 of 4"
@@ -36,7 +36,7 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - assertNotVisible: "Search exercises…"
 - takeScreenshot: 91a-postepy-pusty
 - tapOn: "Start a workout"
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # akcja pustego stanu prowadzi na ekran Trening
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }  # akcja pustego stanu prowadzi na ekran Trening
 # bez historii wejście do masy ciała zostaje pod pustym stanem (nie w Ustawieniach)
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Progress", timeout: 10000 }

@@ -5,19 +5,19 @@ import { useRouter } from 'expo-router';
 import { Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { IconRow } from '@/components/Icon';
 import { useTheme, NUM_SCALE_MAX, FW, font, maxScale, RADIUS, SIZE, SPACE } from '@/lib/theme';
-import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, exById, reps } from '@/lib/store';
+import { getState, useForegroundTick, isDeloadWeek, fmtDayKey, exById, reps } from '@/lib/store';
 import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
-import { weekStrip } from '@/lib/dashboard';
+import { weekStrip, isNewPerson } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
-import { t, tp, lang, exName } from '@/lib/i18n';
+import { t, tp, lang, exName, exNameLang } from '@/lib/i18n';
 import { fmtWeekdayShort, fmtWeekdayNarrow, fmtWeekdayDayMonth, fmtDayNum, stripColumnPt, stripLabelsFit, STRIP_GAP, STRIP_PAD, STRIP_BORDER } from '@/lib/calendar';
 
 /*
  * Karta „Dziś” na ekranie treningu (decyzje właściciela 08.10.2026: 1A, potem dashboard wariant A): „Dziś: X” ze startem i pasek bieżącego
  * tygodnia pon…nd — pod dniem mała ikona aplikacji: zrobione (pełna), zaplanowane (obwódka), opuszczone (obwódka wyszarzona), wolne (nic)
  * — korekta właściciela 09.10.2026 ok. 17:00; „dziś” — ramka wokół kolumny dnia (data i ikona), jak w Kalendarzu.
- * Bez planu: tydzień z odbytymi treningami i zachęta do ustawienia planu. Nowa osoba bez treningów i planu — karty nie ma (są „Pierwsze kroki”).
+ * Bez planu: tydzień z odbytymi treningami i zachęta do ustawienia planu. Nowa osoba bez treningów i planu (05.11.2026, kierunek C′): ten sam pasek „Bez planu tygodnia”, pod nim tablica „Pierwszy trening” (components/FirstBoard).
  * Audyt 0.10: stan dnia z jednej funkcji (dayStatus — A2); A5 — nazwa faktycznie zrobionej sesji, zrobiony inny trening: zaplanowany czeka
  * (kropka pod kółkiem); A8 — pusty szablon bez Startu; A9 — pod paskiem 2–3 najbliższe treningi z nazwą, tapnięcie dnia otwiera ten dzień
  * w Kalendarzu; A11-05 — „dziś” i „tydzień deload” w etykiecie dnia; D4 — „Tydzień deload” na karcie w tygodniu deload.
@@ -32,7 +32,7 @@ const PREVIEW = 2;
 export function TodayPlan() {
   useForegroundTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); /* UI2-02 */
   const win = useWindowDimensions(); const [stripW, setStripW] = React.useState<number | null>(null);
-  const plan = hasPlan(); if (!plan && !finishedWorkouts().length) return null;
+  const plan = hasPlan();
   const today = dayKeyOf(Date.now()); const days = weekStrip(); const name = planTplName;
   const cur = days.find(d => d.today)!; const id = cur.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
   /* M1-audytor-generalny-027: skrót dnia w jednej linii; gdy najdłuższy nie mieści się w kolumnie nawet po zmniejszeniu (np. 320 pt i duży tekst — „NIEDZ.”),
@@ -56,6 +56,7 @@ export function TodayPlan() {
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
   const showTpl = tpl && pending(cur) ? tpl : undefined; const shown = showTpl ? showTpl.items.slice(0, PREVIEW) : []; const n = showTpl ? showTpl.items.length - shown.length : 0; /* ile ćwiczeń ponad podgląd */
   const u = upperText(title); /* W3 (wz. 28 pkt 4): „Dziś: …” wersalikami jak nazwisko na tablicy podejść; A11-02: reguły języka */
+  if (isNewPerson()) return null; /* 06.11.2026 (docs/18): nowa osoba bez nagłówka planu i paska tygodnia — zastępuje je tablica „Pierwszy trening” */
   return (
     <View testID="today-plan" style={{ marginTop: SPACE.xs, gap: SPACE.m }}>
       <View testID="plan-header"><Txt accessibilityRole="header" style={{ ...font('callout'), color: th.muted }}>{planTitle}</Txt></View>
@@ -80,7 +81,7 @@ export function TodayPlan() {
         {deload ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), ...FW.semibold, color: th.boardMuted }}>{t('Tydzień deload')}</Text> : null}
         {cur.status === 'other' ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Text> : null}
         {shown.map(it => { const x = exById(it.exerciseId); return x ? <View key={it.id} testID="today-item" style={{ flexDirection: 'row', justifyContent: 'space-between', gap: SPACE.s, borderTopWidth: 1, borderTopColor: th.boardField, paddingTop: SPACE.s }}>
-          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardText, flexShrink: 1 }}>{exName(x)}</Text>
+          <Text accessibilityLanguage={exNameLang(x)} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardText, flexShrink: 1 }}>{exName(x)}</Text>
           <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('callout')} style={{ ...font('callout'), color: th.boardMuted }}>{`${it.sets} × ${reps(it.repMin, it.repMax)}`}</Text></View> : null; })}
         {n > 0 ? <Text testID="today-more" accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardMuted, borderTopWidth: 1, borderTopColor: th.boardField, paddingTop: SPACE.s }}>{t('+ {n} {w}', { n, w: tp(n, 'ćwiczenie|ćwiczenia|ćwiczeń') })}</Text> : null}
         {plannedPlaceName(today) ? <IconRow icon="pin" color={th.boardMuted} size={14}><Text testID="today-place" accessibilityLanguage={lang()} accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{plannedPlaceName(today)}</Text></IconRow> : null}

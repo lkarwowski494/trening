@@ -1,0 +1,85 @@
+/* Makiety rundy 2 „Start nowej osoby” (05.11.2026, rola 04; werdykt właściciela po rundzie 1: „Ale tu nie ma efektu wow”).
+ * Tokeny 1:1 z lib/tokens.ts (zmienne z start-1-1.css), Barlow Condensed z docs/design/fonty, treść zastępczo Source Sans 3 (na iOS SF Pro).
+ * Rozmiary tekstu w rem od --dt-tytul / --dt-opis (zrzuty.mjs); cyfry tablicy „stała” (TYPE.boardNumber scale: 'stala'). */
+:root { --hero-f: 'Barlow Condensed', sans-serif; }
+.tel { overflow-x: clip; container-type: inline-size; }
+.tel[data-hc] { --line: #959EAB; --ctrlLine: #A3ACB8; --tekst2: #C9CED6; --boardMuted: #D3DAE4; --boardEdge: #8FA6CC; --now: #FFC233; }
+[data-theme="light"] .tel[data-hc] { --line: #545B66; --ctrlLine: #4A5361; --tekst2: #353C47; --boardMuted: #D3DAE4; --now: #FFC233; }
+.sb.na-tablicy { color: var(--boardText); background: var(--board); }
+.nagl { padding: 4px 16px 0; }
+.nagl h1 { font-family: var(--krój-tytul); font-weight: 700; font-size: calc(2.125rem * var(--dt-tytul)); line-height: 1.12; }
+.nagl .data { padding: 0; }
+.dol { padding: 16px 16px 0; display: flex; flex-direction: column; gap: 8px; }
+.glowny { display: flex; flex-direction: column; justify-content: center; text-align: left; width: 100%; min-height: 60px; border-radius: 8px; padding: 10px 16px; background: var(--accent); color: var(--accentInk); }
+.glowny b { font-size: calc(1.1875rem * var(--dt-opis)); line-height: 1.26; font-weight: 700; }
+.glowny small { font-size: calc(0.8125rem * var(--dt-opis)); line-height: 1.38; margin-top: 2px; }
+.drugi { width: 100%; min-height: 52px; border-radius: 8px; background: var(--surface2); color: var(--tekst); font-weight: 600; font-size: calc(1.0625rem * var(--dt-opis)); padding: 6px 12px; }
+.potem { padding: 24px 16px 16px; }
+.potem h2 { font-family: var(--krój-tytul); font-weight: 700; font-size: calc(1.0625rem * var(--dt-tytul)); line-height: 1.3; margin-bottom: 8px; }
+.potem ul { list-style: none; background: var(--surface); border-radius: 12px; }
+.potem li + li { border-top: 1px solid var(--line); }
+.potem a { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 16px; color: var(--tekst); text-decoration: none; font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.potem a span { flex: 1; min-width: 0; }
+.potem a i { font-style: normal; color: var(--tekst2); font-family: var(--krój-tytul); font-size: calc(1.25rem * var(--dt-tytul)); }
+.nowy { outline: 1.5px dashed var(--now); outline-offset: 2px; }
+.przyk { font-size: 11px; color: var(--tekst2); padding: 6px 16px 0; line-height: 1.4; }
+
+/* ===== A: żywa biblioteka ===== */
+.a-scena { background: var(--board); color: var(--boardText); margin-top: 12px; padding: 16px 16px 16px; border-top: 1px solid var(--boardEdge); border-bottom: 1px solid var(--boardEdge); perspective: 900px; }
+.a-gora { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; color: var(--boardMuted); font-size: calc(0.9375rem * var(--dt-opis)); line-height: 1.3; flex-wrap: wrap; }
+.a-gora b { font-family: var(--krój-tytul); font-weight: 700; font-size: calc(1.125rem * var(--dt-liczba)); color: var(--boardText); letter-spacing: .02em; }
+.a-klapka { transform-origin: 50% 50%; backface-visibility: hidden; }
+.a-fig { display: block; width: 100%; height: clamp(260px, 92cqw, 400px); margin: -4px 0 0; }
+.a-fig.para { height: clamp(170px, 50cqw, 240px); }
+.a-figury { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.a-figury figcaption { text-align: center; color: var(--boardMuted); font-size: calc(0.8125rem * var(--dt-opis)); }
+.a-podloga { height: 2px; background: var(--boardField); margin: 0 -16px; }
+.a-nazwa { font-family: var(--hero-f); font-weight: 700; text-transform: uppercase; letter-spacing: .03em; font-size: min(calc(2.75rem * var(--dt-tytul)), 15cqw); line-height: .98; margin-top: 12px; overflow-wrap: anywhere; }
+.a-dol { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.a-dol p { color: var(--boardMuted); font-size: calc(0.9375rem * var(--dt-opis)); line-height: 1.3; flex: 1 1 60%; }
+.a-karta { min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1.5px solid var(--boardEdge); color: var(--boardText); font-weight: 600; font-size: calc(0.9375rem * var(--dt-opis)); background: var(--boardField); }
+.a-nast { display: flex; gap: 8px; }
+.a-nast button { width: 44px; height: 44px; border-radius: 22px; background: var(--boardField); color: var(--boardText); font-family: var(--krój-tytul); font-size: 1.5rem; }
+.a-wynik { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.a-wynik span { font-family: var(--krój-tytul); font-weight: 600; font-size: calc(1.25rem * var(--dt-liczba)); background: var(--boardField); border-radius: 4px; padding: 4px 10px; font-feature-settings: 'tnum' 1; }
+.a-wynik span.ok { box-shadow: inset 0 0 0 2px var(--doneLine, #5FA97C); }
+
+/* ===== B: gryf zostaje (z intro w oś tygodnia) ===== */
+.b-glowa { padding: 16px 16px 0; }
+.b-dzien { font-family: var(--hero-f); font-weight: 700; text-transform: uppercase; font-size: min(calc(4.5rem * var(--dt-tytul)), 22cqw); line-height: .9; letter-spacing: .01em; }
+.b-data { font-family: var(--krój-tytul); font-weight: 600; font-size: calc(1.5rem * var(--dt-tytul)); color: var(--tekst2); margin-top: 6px; line-height: 1.15; }
+.b-os { position: relative; margin: 32px 0 0; padding: 0 0 0; }
+.b-bar { height: 12px; background: var(--tekst); border-radius: 0 2px 2px 0; margin-right: 10px; }
+.b-dni { display: grid; grid-template-columns: repeat(7, 1fr); padding: 0 10px 0 6px; }
+.b-dni div { position: relative; text-align: center; padding-top: 32px; font-family: var(--krój-tytul); font-weight: 600; font-size: calc(1.125rem * min(var(--dt-tresc), 1.25)); color: var(--tekst); }
+.b-dni div::before { content: ''; position: absolute; left: 50%; top: -10px; width: 2px; height: 24px; margin-left: -1px; background: var(--ctrlLine); }
+.b-dni div.min { color: var(--tekst2); }
+.b-dni div.dzis { color: var(--tekst); }
+.b-dni div.dzis::after { content: ''; position: absolute; left: 50%; bottom: -6px; width: 22px; height: 2px; margin-left: -11px; background: var(--tekst); }
+.b-zacisk { position: absolute; top: -14px; width: 16px; height: 40px; border-radius: 3px; background: var(--now); border: 2px solid var(--tekst); box-shadow: 0 0 0 2px var(--bg); }
+.b-znak { position: absolute; top: -12px; width: 24px; height: 36px; border-radius: 3px; background: var(--doneLine, #5FA97C); display: grid; place-items: center; color: var(--bg); font-weight: 800; font-size: 18px; box-shadow: 0 0 0 2px var(--bg); }
+.b-opis { padding: 24px 16px 0; color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); line-height: 1.38; }
+.b-intro { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+.b-intro .tlo { position: absolute; inset: 0; background: var(--bg); }
+.b-intro svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.b-ukryj { transition: none; }
+
+/* ===== C: tablica klapkowa ===== */
+.c-tab { background: var(--board); color: var(--boardText); padding: 8px 16px 20px; border-bottom: 1px solid var(--boardEdge); }
+.c-wiersz { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.c-et { font-family: var(--krój-tytul); font-weight: 600; font-size: calc(1.125rem * var(--dt-tytul)); color: var(--boardMuted); min-width: 4.5em; line-height: 1.2; }
+.fl { display: inline-grid; place-items: center; position: relative; background: var(--boardField); border-radius: 4px; font-family: var(--hero-f); font-weight: 700; color: var(--boardText); line-height: 1; overflow: hidden; font-feature-settings: 'tnum' 1; }
+.fl::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: var(--board); }
+.fl i { position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(#0000, #0004); transform-origin: 50% 100%; transform: scaleY(0); font-style: normal; }
+.c-male { display: flex; gap: 3px; flex-wrap: wrap; }
+.c-male .fl { width: 1.05em; height: 1.45em; font-size: min(30px, 7.4cqw); }
+.c-male .fl.sp { background: transparent; width: .5em; }
+.c-wielki { display: flex; align-items: flex-end; gap: 16px; margin-top: 16px; }
+.c-wielki .fl { width: 50%; max-width: 220px; aspect-ratio: 0.72; font-size: min(52cqw, 230px); border-radius: 8px; }
+.c-wielki .fl::after { height: 3px; margin-top: -1.5px; }
+.c-wielki .opis { flex: 1; min-width: 0; padding-bottom: 6px; color: var(--boardText); }
+.c-wielki .opis b { display: block; font-family: var(--hero-f); font-weight: 700; text-transform: uppercase; font-size: min(calc(2.5rem * var(--dt-tytul)), 10.5cqw); line-height: .95; }
+.c-wielki .opis span { display: block; margin-top: 8px; color: var(--boardMuted); font-size: calc(0.9375rem * var(--dt-opis)); line-height: 1.3; }
+
+/* „Ogranicz ruch” — wersja statyczna (klasa .rm na main albo ustawienie systemu) */
+@media (prefers-reduced-motion: reduce) { .b-intro { display: none; } }

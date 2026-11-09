@@ -8,7 +8,7 @@ import { useExercisesTick, useCfgTick, newExercise, visibleExercises, getState, 
 import { LibScopeChip } from '@/components/LibScope';
 import { SwipeRow } from '@/components/SwipeRow';
 import { GROUPS, formerMatch, type Exercise } from '@/lib/seed';
-import { t, exName, exNameLang, fold, collator, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, exLocalFold, fold, collator, lang } from '@/lib/i18n';
 import { useAddHeader } from '@/components/AddButton';
 import { exerciseDeleteMessage } from '@/app/exercise/[id]';
 
@@ -30,10 +30,10 @@ export default function ExercisesScreen() {
   const { rows, count, nicheHidden } = useMemo(() => {
     const all = visibleExercises(); const c = collator(); const usedAll = libAll ? null : new Set(usedKey ? usedKey.split(',') : []); const used = ql ? null : usedAll; let hid = 0;
     /* UX2-01 (audyt kontrolny 1, wariant a): dawna nazwa z katalogu (seed.formerMatch) znajduje obecne ćwiczenie — „dawniej: …” zamiast „Utwórz …” */
-    const keyed = all.map(e => { const n = exName(e); const hit = !ql || fold(e.name).includes(ql) || fold(n).includes(ql); return { e, n, hit, was: hit ? undefined : formerMatch(e, ql) }; }).filter(x => x.hit || !!x.was).filter(x => { if (!used || inCoreList(x.e, used)) return true; hid++; return false; })
+    const keyed = all.map(e => { const n = exName(e); const hit = !ql || fold(e.name).includes(ql) || fold(n).includes(ql) || exLocalFold(e).includes(ql); return { e, n, hit, was: hit ? undefined : formerMatch(e, ql) }; }).filter(x => x.hit || !!x.was).filter(x => { if (!used || inCoreList(x.e, used)) return true; hid++; return false; })
       .sort((a, b) => GROUPS.indexOf(a.e.group) - GROUPS.indexOf(b.e.group) || c.compare(a.n, b.n));
     // Runda 7: usunięte ćwiczenie z historią można tu przywrócić zamiast tworzyć duplikat (jak w pickerze).
-    const out: Row[] = ql ? getState().exercises.filter(e => e.archived && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).map(e => ({ kind: 'arch' as const, key: 'a' + e.id, e })) : [];
+    const out: Row[] = ql ? getState().exercises.filter(e => e.archived && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql) || exLocalFold(e).includes(ql))).map(e => ({ kind: 'arch' as const, key: 'a' + e.id, e })) : [];
     let last = ''; for (const { e, was } of keyed) { if (e.group !== last) { last = e.group; out.push({ kind: 'group', key: 'g' + e.group, group: e.group }); } out.push({ kind: 'ex', key: e.id, e, ...(was ? { was } : {}) }); }
     return { rows: out, count: usedAll ? all.filter(e => inCoreList(e, usedAll)).length : all.length, nicheHidden: hid }; /* licznik = ćwiczenia w bieżącym zakresie (domyślnie bez niszowych), niezależnie od szukania */
   }, [sig, usedKey, ql, L, libAll]); // eslint-disable-line react-hooks/exhaustive-deps

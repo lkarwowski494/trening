@@ -8,7 +8,7 @@ import { getState, useTick, fmtDayRange } from '@/lib/store';
 import { isSafetyError, isPersistError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
 import { analyze, normName, isImportError, type ParsedFile, type ImportErrorCode } from '@/lib/csvparse';
-import { t, exName, exNameLang } from '@/lib/i18n';
+import { t, exName, exNameLang, exLocal } from '@/lib/i18n';
 import { unitName, type Unit } from '@/lib/units';
 import { font } from '@/lib/theme';
 
@@ -36,7 +36,7 @@ export default function ImportCsv() {
       .catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) : isPersistError(e) ? Alert.alert(t('Nie udało się zapisać danych'), t('Spróbuj ponownie.')) /* M1-audytor-generalny-006 */ : fail(e)).finally(() => { busy.current = false; setWorking(false); }); };
   const targetOf = (name: string) => { const m = mapping[name]; const auto = a?.names.find(r => r.name === name)?.auto ?? null;
     const ex = m && m !== 'new' ? st.exercises.find(e => e.id === m) ?? null : m === 'new' ? null : auto; return ex; };
-  const hits = useMemo(() => { const k = normName(q); const l = st.exercises.filter(e => !e.archived && (!k || normName(exName(e)).includes(k) || normName(e.name).includes(k)));
+  const hits = useMemo(() => { const k = normName(q); const l = st.exercises.filter(e => !e.archived && (!k || normName(exName(e)).includes(k) || normName(e.name).includes(k) || normName(exLocal(e) ?? '').includes(k)));
     return l.slice(0, SHOWN); }, [q, st.exercises]);
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, gap: 12 }} keyboardShouldPersistTaps="handled">

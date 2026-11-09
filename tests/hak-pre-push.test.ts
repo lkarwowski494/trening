@@ -1,7 +1,7 @@
 /* L-009 (decyzja właściciela 21.10.2026): hak pre-push w repo (lint + check:pochodne, wcześniej check:readme + check:matrix), instalowany przez `prepare`,
    plus krok „sprawdź wynik tests.yml po wypchnięciu” w poleceniach dla agentów, które wypychają. Sprawdzamy hak na prawdziwym git push
    (także z worktree), z podstawionym `npm`, żeby nie uruchamiać lintu w teście. */
-import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from 'fs';
+import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, statSync, symlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { spawnSync } from 'child_process';
@@ -15,7 +15,8 @@ const hakTekst = () => readFileSync(HAK, 'utf8');
 const bezKomentarzy = (s: string) => s.split('\n').filter(l => !/^\s*#/.test(l) && !/^\s*echo /.test(l)).join('\n'); /* bez komentarzy i komunikatów (echo) */
 
 const tmp: string[] = [];
-const nowyKatalog = (p: string) => { const d = mkdtempSync(join(tmpdir(), p)); tmp.push(d); return d; };
+/* macOS: tmpdir() to /var/folders → symlink do /private/var; Node rozwiązuje import.meta.url przez realpath, więc strażnik „uruchomiony jako skrypt” (resolve(argv[1]) === ścieżka modułu) w kopiach skryptów milczy (06.11.2026, docs/40 lekcja o buildzie TestFlight 1.0.1 na macOS) — katalogi próbne zawsze po realpath. */
+const nowyKatalog = (p: string) => { const d = mkdtempSync(join(realpathSync(tmpdir()), p)); tmp.push(d); return d; };
 afterAll(() => { for (const d of tmp) rmSync(d, { recursive: true, force: true }); });
 
 const GIT_ENV = { GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@example.invalid', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@example.invalid' };
@@ -74,6 +75,18 @@ describe('hak pre-push — plik (L-009)', () => {
     expect(hakTekst().startsWith('#!/bin/sh\n')).toBe(true);
     expect(spawnSync('sh', ['-n', HAK], { encoding: 'utf8' }).status).toBe(0);
     expect(bezKomentarzy(hakTekst())).not.toMatch(/\[\[|\bfunction\b|<<<|\bsource\b|\bshopt\b/); /* bez składni bash */
+  });
+  test('06.11.2026 (build TestFlight 1.0.1, macOS): w podstawieniu $(…) nie ma `case` — bash 3.2 (/bin/sh na macOS) liczy `)` wzorca jako koniec podstawienia i `sh -n` kończy kodem 2', () => {
+    /* liczymy nawiasy tak naiwnie jak bash 3.2 (parse_matched_pair); `$((` (arytmetyka) pomijamy */
+    const t = bezKomentarzy(hakTekst()); const podstawienia: string[] = [];
+    for (let i = t.indexOf('$('); i >= 0; i = t.indexOf('$(', i + 1)) {
+      if (t[i + 2] === '(') continue;
+      let glebia = 0; let j = i + 1;
+      for (; j < t.length; j++) { if (t[j] === '(') glebia++; else if (t[j] === ')' && --glebia === 0) break; }
+      podstawienia.push(t.slice(i, j + 1));
+    }
+    expect(podstawienia.length).toBeGreaterThan(3);
+    for (const p of podstawienia) expect(p).not.toMatch(/\bcase\b/);
   });
   test('uruchamia lint, check:pochodne (decyzja 8a, 28.10.2026) — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej', () => {
     const wywolaniaNpm = [...bezKomentarzy(hakTekst()).matchAll(/^\s*sprawdz\s+(\S+)/gm)].map(m => m[1]);
@@ -331,7 +344,7 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
       const tools = /^tools:\s*(.*)$/m.exec(t.split('---')[1] || '')?.[1];
       return !tools || /\bBash\b/.test(tools);
     });
-    const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha', 'recenzent-lokalizacji': 'czyta teksty i zwraca listę poprawek, niczego nie edytuje ani nie wypycha' };
+    const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha', 'recenzent-lokalizacji': 'czyta teksty i zwraca listę poprawek, niczego nie edytuje ani nie wypycha', 'studio-projektowe': 'makiety w docs/design, commit bez wypychania — wypycha koordynator (05.11.2026)' };
     expect(zBash.filter(r => !WYPYCHAJA.includes(r) && !(r in WYJATKI))).toEqual([]);
   });
 });
@@ -590,5 +603,103 @@ describe('hak pre-push — baza z zielonego tests.yml gałęzi integracji (04.11
   test('kod po zielonej bazie, nawet ze znacznikiem verify:docs → zatrzymane', () => {
     const x = integracja(); dokument(x); writeFileSync(join(x.dir, 'plik.txt'), 'kod2\n'); git(x.dir, ['commit', '-q', '-am', 'kod']); oznacz(x.dir, x.npm, 'dokumenty');
     expect(pchnij(x, ciPlik(x.npm, x.zdalny, 'success')).status).not.toBe(0);
+  });
+});
+
+/* Decyzja właściciela 08.11.2026 („A + B mądrze”, wariant A): znacznik „lekkie” (npm run verify:lekkie = verify:szybkie bez testów Jest; pełne testy w tests.yml na 4 maszynach)
+   wystarcza w haku na gałęzie funkcji i integracja-*, ale nie na main (tam zostaje szybkie/pełne; scal-galaz --do main wymaga „pelne”). Zmienia stan z 03.11.2026 („pelne albo szybkie”). */
+describe('hak pre-push — znacznik „lekkie” (08.11.2026)', () => {
+  function repoZGalezia(nazwa: string) {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    if (nazwa !== 'main') git(r.dir, ['checkout', '-q', '-b', nazwa]);
+    writeFileSync(join(r.dir, 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm, nazwa };
+  }
+  const pchnij = (x: ReturnType<typeof repoZGalezia>) => git(x.dir, ['push', 'origin', x.nazwa], zNpm(x.npm));
+  test('gałąź funkcji ze znacznikiem „lekkie” → przechodzi', () => {
+    const x = repoZGalezia('g'); expect(oznacz(x.dir, x.npm, 'lekkie').stdout).toContain('lekkie');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('integracja-1-1 ze znacznikiem „lekkie” → przechodzi', () => {
+    const x = repoZGalezia('integracja-1-1'); oznacz(x.dir, x.npm, 'lekkie');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('integracja-1-1');
+  });
+  test('main ze znacznikiem „lekkie” → odmowa (bez zmian: tylko pełne/szybkie); z „pelne” → przechodzi', () => {
+    const x = repoZGalezia('main'); oznacz(x.dir, x.npm, 'lekkie');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE');
+    oznacz(x.dir, x.npm, 'pelne'); expect(pchnij(x).status).toBe(0);
+  });
+  test('bez znacznika → odmowa, komunikat wymienia verify:lekkie; znacznik dla innego drzewa (commit po verify) → odmowa', () => {
+    const x = repoZGalezia('g'); const r = pchnij(x);
+    expect(r.status).not.toBe(0); expect(r.stderr).toContain('verify:lekkie'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+    oznacz(x.dir, x.npm, 'lekkie'); writeFileSync(join(x.dir, 'plik.txt'), 'c\n'); git(x.dir, ['commit', '-q', '-am', 'dalej']);
+    expect(pchnij(x).status).not.toBe(0);
+  });
+  test('gałąź z wcześniejszymi zmianami: kod ze znacznikiem „lekkie”, potem commit tylko z dokumentami ze znacznikiem verify:docs → przechodzi (H1)', () => {
+    const x = repoZGalezia('g'); oznacz(x.dir, x.npm, 'lekkie');
+    mkdirSync(join(x.dir, 'docs'), { recursive: true }); writeFileSync(join(x.dir, 'docs/a.md'), 'c\n'); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'docs']);
+    oznacz(x.dir, x.npm, 'dokumenty'); expect(pchnij(x).status).toBe(0);
+  });
+  test('scal-galaz --do main: „lekkie” nie wystarcza (--wymagaj pelne)', () => {
+    const x = repoZGalezia('g'); oznacz(x.dir, x.npm, 'lekkie');
+    const s = () => spawnSync(process.execPath, [ZNACZNIK, '--sprawdz', 'HEAD', '--wymagaj', 'pelne'], { cwd: x.dir, env: zNpm(x.npm), encoding: 'utf8' });
+    expect(s().status).toBe(1); oznacz(x.dir, x.npm, 'pelne'); expect(s().status).toBe(0);
+  });
+  test('skrypt verify:lekkie = verify:szybkie bez test-fast, kończy się zapisem „lekkie”; kroki check:* są podzbiorem verify; bez testów Jest', () => {
+    const l: string = pkg.scripts['verify:lekkie']; const sz: string = pkg.scripts['verify:szybkie'];
+    expect(l).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz lekkie$/);
+    expect(l).not.toMatch(/test-fast|jest|expo export|verify:native|check:bundle/);
+    expect(sz.replace(' && node scripts/test-fast.mjs --od-bazy', '').replace('--zapisz szybkie', '--zapisz lekkie')).toBe(l);
+    expect(l).toMatch(/^node scripts\/hooks\/sprawdz-instalacje\.mjs && node scripts\/verify-znacznik\.mjs --czysta && /);
+    for (const k of l.match(/npm run [\w:-]+/g)!) expect(pkg.scripts.verify).toContain(k);
+  });
+  test('08.11.2026: CLAUDE.md, docs/18 i nagłówek haka opisują decyzję (A + B mądrze, odrzucone C, kompromis CI, analogia z wzorcem)', () => {
+    const claude = readFileSync(join(root, 'CLAUDE.md'), 'utf8'); const d18 = readFileSync(join(root, 'docs/18-przekazanie.md'), 'utf8');
+    expect(claude).toContain('verify:lekkie'); expect(claude).toMatch(/08\.11\.2026/); expect(claude).toMatch(/najwyżej 2 dodatkowe sesje/);
+    const wpis = d18.split('\n').find(l => l.includes('verify:lekkie') && l.includes('08.11.2026'));
+    expect(wpis).toBeTruthy(); expect(wpis).toMatch(/\[wdrożenie: kod\]/); expect(wpis).toMatch(/\[test: tests\/hak-pre-push\.test\.ts\]/);
+    expect(wpis).toMatch(/Odrzucone: C/); expect(wpis).toContain('scripts/pre-push-check.mjs');
+    expect(hakTekst()).toContain('verify:lekkie');
+  });
+});
+
+/* Decyzja koordynatora w nocy 08/09.11.2026 z upoważnienia właściciela (do weta rano), wynika z decyzji właściciela 08.11.2026 „main pełne”: wypchnięcie na `main` przyjmuje TYLKO znacznik „pelne”
+   (wcześniej „szybkie” też — niezgodne z tą decyzją); gałęzie inne bez zmian (lekkie/szybkie/pelne, dokumenty — „dokumenty”). Odrzucone: B (zostawić „szybkie” na main — niezgodne z decyzją),
+   C (blokada po stronie GitHub — zmiana uprawnień, poza upoważnieniem). */
+describe('hak pre-push — na main tylko znacznik „pelne” (08.11.2026)', () => {
+  function repoZGalezia(nazwa: string) {
+    const r = repoProbne(); const npm = falszywyNpm(); zainstaluj(r.dir, zNpm(npm));
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    if (nazwa !== 'main') git(r.dir, ['checkout', '-q', '-b', nazwa]);
+    writeFileSync(join(r.dir, 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm, nazwa };
+  }
+  const pchnij = (x: ReturnType<typeof repoZGalezia>) => git(x.dir, ['push', 'origin', x.nazwa], zNpm(x.npm));
+  test('main ze znacznikiem „szybkie” → odmowa z komunikatem o pełnym verify; z „pelne” → przechodzi', () => {
+    const x = repoZGalezia('main'); oznacz(x.dir, x.npm, 'szybkie');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE'); expect(r.stderr).toContain('PEŁNEGO verify');
+    oznacz(x.dir, x.npm, 'pelne'); expect(pchnij(x).status).toBe(0);
+  });
+  test('gałęzie inne niż main bez zmian: „szybkie”, „lekkie” i „pelne” przechodzą', () => {
+    for (const rodzaj of ['szybkie', 'lekkie', 'pelne']) {
+      const x = repoZGalezia('g'); oznacz(x.dir, x.npm, rodzaj); expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+    }
+  });
+  test('main: commit tylko z dokumentami ze znacznikiem verify:docs po kodzie z „szybkie” → odmowa; po kodzie z „pelne” → przechodzi', () => {
+    const dok = (x: ReturnType<typeof repoZGalezia>) => { writeFileSync(join(x.dir, 'README.md'), 'c\n'); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'docs']); oznacz(x.dir, x.npm, 'dokumenty'); };
+    const x = repoZGalezia('main'); oznacz(x.dir, x.npm, 'szybkie'); dok(x); expect(pchnij(x).status).not.toBe(0);
+    const y = repoZGalezia('main'); oznacz(y.dir, y.npm, 'pelne'); dok(y); expect(pchnij(y).status).toBe(0);
+  });
+  test('rodzajeDla: main → tylko pelne; inna gałąź → pelne/szybkie/lekkie; scalenie (--wymagaj pelne) → pelne', () => {
+    const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import { rodzajeDla } from ${JSON.stringify(join(root, 'scripts/verify-znacznik.mjs'))}; console.log(JSON.stringify([rodzajeDla(null, 'main'), rodzajeDla(null, 'integracja-1-1'), rodzajeDla('pelne', 'g')]));`], { encoding: 'utf8' });
+    expect(JSON.parse(r.stdout)).toEqual([['pelne'], ['pelne', 'szybkie', 'lekkie'], ['pelne']]);
+  });
+  test('CLAUDE.md i nagłówek haka opisują regułę; wpis docs/18 z 08.11.2026 ma kod, test i odrzucone B i C', () => {
+    const claude = readFileSync(join(root, 'CLAUDE.md'), 'utf8'); const d18 = readFileSync(join(root, 'docs/18-przekazanie.md'), 'utf8');
+    expect(claude).toMatch(/Na `main` hak przyjmuje tylko znacznik `pelne`/);
+    const wpis = d18.split('\n').find(l => l.includes('08.11.2026') && l.includes('hak pre-push') && l.includes('TYLKO znacznik `pelne`'));
+    expect(wpis).toBeTruthy(); expect(wpis).toMatch(/\[wdrożenie: kod\]/); expect(wpis).toMatch(/\[test: tests\/hak-pre-push\.test\.ts\]/); expect(wpis).toMatch(/B: zostawić/); expect(wpis).toMatch(/C: blokada/);
+    expect(hakTekst()).toMatch(/main[^\n]*tylko[^\n]*pelne/);
   });
 });

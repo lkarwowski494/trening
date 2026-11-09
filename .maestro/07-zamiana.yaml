@@ -23,7 +23,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 
 # --- Miejsce „Home”: ławka regulowana i hantle ---
 - tapOn: "More, tab.*"
@@ -53,9 +53,8 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Workout, tab.*"
 
 # --- Pusty trening + Bench Press — niedostępny w Domu ---
-- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 30000 }
+- tapOn: { id: "start-main" }
 - tapOn: { text: "Not now", optional: true }   # M1-035: karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) przesuwa układ — chowamy ją przed dalszymi krokami
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"

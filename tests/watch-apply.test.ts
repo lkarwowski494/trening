@@ -93,7 +93,7 @@ describe('applyWatchEvent: skutki', () => {
     const ack = await applyWatchEvent(e, 7);
     expect(ack).toEqual({ v: 1, kind: 'ack', eventId: e.eventId, status: 'applied', reason: null, rev: 7 });
     const s = A().exercises[0].sets[0]; expect([s.done, s.completedAt]).toEqual([true, NOW + 2000]); expect([timer.T.on, timer.T.setId, timer.T.endAt]).toEqual([true, s.id, NOW + 2000 + 90e3]);
-    expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); expect(A().watchEvents).toEqual([e.eventId]);
+    expect(timer.T.sub).toBe('Bench Press · seria 2, 80 kg, 8 powtórzeń'); expect(A().watchEvents).toEqual([e.eventId]);
     const before = JSON.stringify(A()); const again = await applyWatchEvent(e, 8); expect(again).toMatchObject({ status: 'duplicate', rev: 8 }); expect(JSON.stringify(A())).toBe(before);
   });
   test('done po opóźnionym dostarczeniu: przerwa już minęła → bez przerwy (jak ✓ po późnym wybudzeniu)', async () => {

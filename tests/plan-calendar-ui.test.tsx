@@ -140,8 +140,8 @@ describe('Kalendarz', () => {
 });
 
 describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
-  test('nowa osoba bez planu — brak karty; z planem — „Dziś: X”, start, pasek tygodnia (dzień = przycisk, A9); dzień wolny; po treningu z planu „zrobione”', async () => {
-    await boot(() => {}, '/'); expect(screen.queryByTestId('today-plan')).toBeNull();
+  test('nowa osoba bez planu — tablica „Pierwszy trening” bez paska tygodnia i „Bez planu tygodnia” (06.11.2026), bez „Dziś: X”; z planem — „Dziś: X”, start, pasek tygodnia (dzień = przycisk, A9); dzień wolny; po treningu z planu „zrobione”', async () => {
+    await boot(() => {}, '/'); expect(screen.queryByTestId('today-plan')).toBeNull(); expect(screen.queryByText('Bez planu tygodnia')).toBeNull(); expect(screen.queryByTestId('week-strip')).toBeNull(); expect(screen.getByTestId('first-board')).toBeTruthy(); expect(screen.queryByTestId('today-board')).toBeNull(); expect(screen.queryByText(/^Dziś: /)).toBeNull(); /* ekran nowej osoby 1.1 (05.11.2026): pasek tygodnia jest też bez planu i treningów */
     const t = await boot(ids => since(() => { plan.setWeekDay(0, ids[1]); plan.setWeekDay(3, ids[0]); plan.setWeekDay(4, ids[1]); }), '/');
     expect(screen.getByText(`Dziś: ${t[0].name}`)).toBeTruthy();
     expect(screen.getByLabelText(`poniedziałek, 5 października, opuszczony: ${t[1].name}`)).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, odpoczynek')).toBeTruthy(); /* dzień bez treningu w planie — odpoczynek (decyzja 09.10.2026 wieczór) */

@@ -1,6 +1,6 @@
 # Po zmianie języka, wyglądu i jednostki (katalog przepływów docs/37: JM-01, JM-02): ustawienia zmienione RAZ (ciemny wygląd, kg, polski), a potem cały krótki trening po polsku —
 # szablon, start, seria, zakończenie, sesja — i RESTART aplikacji: język, wygląd i jednostka zostają. 09 sprawdza przełączanie tam i z powrotem, 35 skutki w ustawieniach;
-# tu sprawdzamy, że prawdziwa praca w innym języku działa i przeżywa restart (nazwy ćwiczeń po polsku, etykiety VoiceOver, daty, jednostka w sesji).
+# tu sprawdzamy, że prawdziwa praca w innym języku działa i przeżywa restart (nazwy ćwiczeń z biblioteki po angielsku także w polskim — ZB-044, etykiety VoiceOver, daty, jednostka w sesji).
 #
 # Literały PL (klucze z kodu lib/i18n.en.ts → polski tekst klucza):
 #   "Więcej" (nagłówek) / "Ustawienia" / "Język, Polski" / "Wróć"   ← jak 09
@@ -12,7 +12,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 # --- ustawienia: ciemny wygląd, kg, język polski ---
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
@@ -43,7 +43,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- tapOn: "Bench Press \\(hantle\\), .*"
+- tapOn: "Dumbbell Bench Press, .*"   # ZB-044 (07.11.2026): nazwy biblioteki po angielsku także po polsku (wiersz „{nazwa}, {sprzęt}”; dawniej „Bench Press (hantle)”)
 - extendedWaitUntil: { visible: "Zapisz szablon", timeout: 30000 }
 - takeScreenshot: 109-szablon-po-polsku
 - tapOn: "Zapisz szablon"

@@ -13,7 +13,7 @@ import { FAMILIES, assignAll, figureSpec, shownFigureSpec } from '@/lib/figures/
 import { familyReviewed, figureWithheld } from '@/lib/figures/v2/figure';
 
 const root = path.join(__dirname, '..');
-const WYJ = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8')) as { powod: string; v1: string[]; v2: string[]; zestawy_zmienione: string[]; zestawy_bez_wpisu: string[]; karty_zmienione?: string[] };
+const WYJ = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8')) as { powod: string; v1: string[]; v2: string[]; zestawy_zmienione: string[]; zestawy_bez_wpisu: string[]; karty_zmienione?: string[]; karty_nowe?: string[] };
 const REC = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8')) as { v1: Record<string, { sha: string }>; v2: Record<string, { sha: string }>; zestawy?: Record<string, { sha: string }>; karty?: Record<string, { sha: string }> };
 const NOW = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8' })) as { v1: Record<string, string>; v2: Record<string, string>; zestawy: Record<string, string>; karty: Record<string, string> };
 
@@ -41,6 +41,21 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
   });
   test('karty własne zmienione po recenzji (04.11.2026, spójność karty z rysunkiem): wyjątek = wpis ze skrótem niezgodnym z bieżącym; karta na liście „hidden” (ekran jej nie pokazuje do recenzji niezależnej)', () => {
     for (const k of WYJ.karty_zmienione ?? []) expect([k, !!REC.karty?.[k], REC.karty?.[k]?.sha !== NOW.karty[k], (CUE_DATA as typeof CUE_DATA & { hidden: string[] }).hidden.includes(k), k in CUE_DATA.exercises]).toEqual([k, true, true, true, false]);
+  });
+  /* 08.11.2026 (decyzja koordynatora w nocy 08/09.11 z upoważnienia właściciela — do weta rano; partie A1 i A2): karta własna ukryta czeka na recenzję niezależną (L-047) albo, po recenzji, na przekład zdań */
+  const kartaNowaOk = (k: string, full: Record<string, unknown>, rec: typeof REC, hidden: string[], runtime: Record<string, unknown>) =>
+    [!!rec.karty?.[k] && (rec.karty[k] as { werdykt?: string }).werdykt === 'wyswietlana', k in full, hidden.includes(k), k in runtime];
+  test('karty_nowe (08.11.2026): karta w pełnych danych, na liście „hidden”, nie w runtime i bez wpisu „wyswietlana” (powód: czeka na recenzję albo po recenzji na przekład); wpis „wyswietlana” ⇒ pozycję usunąć', () => {
+    const full = (JSON.parse(fs.readFileSync(path.join(root, 'data/zrodla/cues.json'), 'utf8')) as { exercises: Record<string, unknown> }).exercises;
+    const l = WYJ.karty_nowe ?? [], hidden = (CUE_DATA as typeof CUE_DATA & { hidden: string[] }).hidden;
+    expect(new Set(l).size).toBe(l.length);
+    for (const k of l) expect([k, ...kartaNowaOk(k, full, REC, hidden, CUE_DATA.exercises)]).toEqual([k, false, true, true, false]);
+  });
+  test('karty_nowe — zapadka (08.11.2026): symulowany wpis „wyswietlana” albo karta widoczna w runtime czerwieni warunek', () => {
+    const rec = { ...REC, karty: { X: { werdykt: 'wyswietlana', sha: 'a' } } } as unknown as typeof REC;
+    expect(kartaNowaOk('X', { X: {} }, rec, ['X'], {})).toEqual([true, true, true, false]);
+    expect(kartaNowaOk('X', { X: {} }, { ...REC, karty: { X: { werdykt: 'czeka na przekład', sha: 'a' } } } as unknown as typeof REC, ['X'], {})).toEqual([false, true, true, false]);
+    expect(kartaNowaOk('X', { X: {} }, REC, [], { X: {} })).toEqual([false, true, false, true]);
   });
   test('familyReviewed / shownFigureSpec: rodzina bez aktualnej recenzji — silnik liczy figurę (figureSpec), aplikacja jej nie pokazuje', () => {
     for (const f of WYJ.v2) expect([f, familyReviewed(f)]).toEqual([f, false]);
@@ -72,7 +87,8 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     console.log(JSON.stringify({ v2: out.v2, deadlift: 'Deadlift (sztanga)' in out.exercises, fam: rodzinyZAktualnaRecenzja(rec) }));`], { encoding: 'utf8' }));
   test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl'] });
+    /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";

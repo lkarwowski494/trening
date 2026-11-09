@@ -24,6 +24,7 @@ const WYJATKI: Record<string, string> = {
   'verify:kontrole': 'kontrole z łańcucha verify bez Jest (zadanie `kontrole` w tests.yml, ZB-029 T1); bierze kroki z verify, nie ma własnej listy',
   'verify:docs': 'szybkie kontrole dla commitu tylko z dokumentami (decyzja 21.10.2026), nie bramka wydania',
   'verify:szybkie': 'szybka bramka na gałęzi pośredniej (decyzja 03.11.2026, wariant A): zmiany od bazy + typecheck, lint; pełne verify przed main',
+  'verify:lekkie': 'bramka gałęzi funkcji bez Jest (decyzja 08.11.2026, bramka lekka): kontrole statyczne; testy biegną w tests.yml, pełne verify przed main',
 };
 
 describe('skrypty package.json (M1-051, L-008)', () => {

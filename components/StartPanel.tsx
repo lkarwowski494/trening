@@ -6,6 +6,7 @@ import { Btn, Item, Muted, useOnce } from '@/components/ui';
 import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, font, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { fmtDate, fmtDayKey } from '@/lib/store';
 import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
+import { firstSteps } from '@/lib/dashboard';
 import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/home';
 import { dayKeyOf, addDays } from '@/lib/plan';
 import { t, tp, lang } from '@/lib/i18n';
@@ -22,19 +23,19 @@ import { useAccess } from '@/lib/entitlement';
 const SHEET_CLOSE_DY = 90;
 const dayWord = (k: string) => (k === addDays(dayKeyOf(Date.now()), 1) ? t('jutro') : fmtDayKey(k));
 
-function mainText(m: MainStart): { title: string; sub?: string; label: string } {
+function mainText(m: MainStart, first: boolean): { title: string; sub?: string; label: string } {
   switch (m.kind) {
     case 'resume': return { title: t('Wróć do treningu'), label: t('Wróć do treningu') };
     case 'plan': return { title: t('Start: {name}', { name: m.tpl.name }), sub: t('dziś w planie · {n} ćw.', { n: m.tpl.items.length }), label: t('Start zaplanowanego treningu: {name}', { name: m.tpl.name }) };
     case 'planNext': return { title: t('Start: {name}', { name: m.tpl.name }), sub: t('w planie na: {day} · {n} ćw.', { day: dayWord(m.date), n: m.tpl.items.length }), label: t('Start następnego treningu: {name}', { name: m.tpl.name }) };
     case 'next': return { title: t('Start: {name}', { name: m.tpl.name }), sub: m.after ? t('następny po: {name} · {n} ćw.', { name: m.after, n: m.tpl.items.length }) : `${m.tpl.items.length} ${t('ćw.')}`, label: t('Start następnego treningu: {name}', { name: m.tpl.name }) };
-    default: return { title: t('Pusty trening'), sub: t('ćwiczenia dodasz w trakcie'), label: t('Pusty trening') };
+    default: return first ? { title: t('Zacznij pierwszy trening'), sub: t('ćwiczenia dodasz w trakcie'), label: t('Zacznij pierwszy trening') } /* 05.11.2026: nowa osoba bez szablonu */ : { title: t('Pusty trening'), sub: t('ćwiczenia dodasz w trakcie'), label: t('Pusty trening') };
   }
 }
 
 export function StartPanel() {
   const th = useTheme(); const router = useRouter(); const once = useOnce(); const [open, setOpen] = useState(false);
-  const m = mainStart(); const x = mainText(m); const acc = useAccess(); /* M5 S1: licznik darmowych dni treningowych (tylko stan free przy włączonym przełączniku) */
+  const m = mainStart(); const x = mainText(m, !!firstSteps() && m.kind === 'empty'); const hasOthers = otherStarts(m).length > 0; /* 05.11.2026: „Inny trening” tylko, gdy są inne sposoby startu */ const acc = useAccess(); /* M5 S1: licznik darmowych dni treningowych (tylko stan free przy włączonym przełączniku) */
   const go = () => { if (m.kind === 'plan' || m.kind === 'planNext' || m.kind === 'next') startTemplate(m.tpl); else if (m.kind === 'empty') startEmptyWorkout(); else router.push('/'); };
   const others = open ? otherStarts(m) : [];
   /* 04-studio-projektowe-007: arkusz „Inny trening” zamyka się też gestem w dół (jak arkusze systemowe) — tylko dodatkowo, przycisk „Anuluj” zostaje (zasada 13.10.2026, tests/close-button-guard) */
@@ -64,7 +65,7 @@ export function StartPanel() {
         </View>
         <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accentInk, ...font('sectionTitle') }}>›</Text>
       </Pressable>
-      {m.kind !== 'resume' ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
+      {m.kind !== 'resume' && hasOthers ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
       {m.kind !== 'resume' && acc.enabled && acc.level === 'free' && !acc.silent ? <Muted testID="start-free-days" style={{ textAlign: 'center' }}>{t('{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.', { left: tp(acc.decision.remaining, 'Został|Zostały|Zostało'), n: acc.decision.remaining, limit: acc.decision.limit })}</Muted> : null}
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)} accessibilityViewIsModal>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>

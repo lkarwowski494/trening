@@ -197,7 +197,7 @@ describe('LOG2-05: próg serii w przewodniku i „Co nowego” z WEEKLY_SETS_MAR
     expect(keys.filter(k => /\d+\s*seri/.test(k))).toEqual([]);
     await fresh(); const { GUIDE } = require('@/lib/guide'); const { WHATS_NEW } = require('@/lib/whatsnew'); const { WEEKLY_SETS_MARK } = require('@/lib/stats');
     expect(GUIDE.find((g: { id: string }) => g.id === 'progress').steps()).toContain(`Mapa mięśni i serie na partię z kreską ${WEEKLY_SETS_MARK} serii tygodniowo.`);
-    expect(WHATS_NEW).toEqual([]); /* 1.0.0: historia „Co nowego” pusta — wpis 0.10 z WEEKLY_SETS_MARK w historii git */
+    expect(WHATS_NEW.map((e: { id: string }) => e.id)).toEqual(['2026-11-06']); /* 1.0.1 (06.11.2026): jeden wpis, bez WEEKLY_SETS_MARK (wpis 0.10 z liczbą w historii git) */
   });
 });
 

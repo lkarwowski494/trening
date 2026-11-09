@@ -76,7 +76,7 @@ describe('spokenUnit: pełna, odmieniona nazwa jednostki do głosu (nie skrót k
   });
   test('restCue: text (ekran, Live Activity, zegarek) ze skrótem, speech (głos) z pełną nazwą; ten sam szkielet', async () => {
     await world(); const c = restCue(A(), sid(0, 0));
-    expect(c.text).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); expect(c.speech).toBe('Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń');
+    expect(c.text).toBe('Bench Press · seria 2, 80 kg, 8 powtórzeń'); expect(c.speech).toBe('Bench Press · seria 2, 80 kilogramów, 8 powtórzeń');
     expect(restCue(A(), 'nie ma')).toEqual({ text: '', speech: '', last: false });
     A().exercises.forEach(e => e.sets.forEach(x => { x.done = true; })); expect(restCue(A(), sid(2, 1))).toEqual({ text: 'nic więcej do zrobienia', speech: 'nic więcej do zrobienia', last: true });
   });
@@ -119,7 +119,7 @@ describe('głos: metry, sekundy i czas zegarowy słowami, nie skrótem „m” /
     for (const [k, said, mark] of [['warmup', 'rozgrzewka', 'W'], ['drop', 'seria 1, drop set', '1D'], ['failure', 'seria 2, do upadku', '2F'], ['normal', 'seria 2', '2']] as const) {
       const w = A(); w.exercises[0].sets.forEach(x => { x.done = false; }); w.exercises[0].sets[1].kind = k; w.exercises[0].sets[0].done = true;
       const cc = restCue(w, w.exercises[0].sets[0].id);
-      expect(cc.text).toContain(`seria ${mark}, 80 kg`.replace('seria W', 'seria W')); expect(cc.speech).toBe(`Bench Press (sztanga) · ${said}, 80 kilogramów, 8 powtórzeń`);
+      expect(cc.text).toContain(`seria ${mark}, 80 kg`.replace('seria W', 'seria W')); expect(cc.speech).toBe(`Bench Press · ${said}, 80 kilogramów, 8 powtórzeń`);
     }
   });
 });
@@ -136,9 +136,9 @@ describe('counterLabel', () => {
 describe('restCue: kontrakt jednego tekstu', () => {
   test('to samo ćwiczenie: „nazwa · seria n, ciężar, powtórzenia”; inne ćwiczenie: „dalej: nazwa, …”; pole puste: sama nazwa', async () => {
     await world();
-    expect(restCue(A(), sid(0, 0))).toEqual({ text: 'Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń', speech: 'Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń', last: false });
+    expect(restCue(A(), sid(0, 0))).toEqual({ text: 'Bench Press · seria 2, 80 kg, 8 powtórzeń', speech: 'Bench Press · seria 2, 80 kilogramów, 8 powtórzeń', last: false });
     const a = A(); a.exercises[0].sets.forEach(s => { s.done = true; });
-    expect(restCue(a, sid(0, 2))).toEqual({ text: 'dalej: Pull Up, +10 kg, 8 powtórzeń', speech: 'dalej: Pull Up, +10 kilogramów, 8 powtórzeń', last: false });
+    expect(restCue(a, sid(0, 2))).toEqual({ text: 'dalej: Pull-Up, +10 kg, 8 powtórzeń', speech: 'dalej: Pull-Up, +10 kilogramów, 8 powtórzeń', last: false });
     a.exercises[2].sets[0].durationSec = ''; a.exercises[1].sets.forEach(s => { s.done = true; });
     expect(restCue(a, sid(1, 1))).toEqual({ text: 'dalej: Plank', speech: 'dalej: Plank', last: false });
   });
@@ -154,12 +154,12 @@ describe('restCue: kontrakt jednego tekstu', () => {
   });
   test('superset: następny członek rundy to „nazwa · seria n” z ciężarem', async () => {
     const a = await world({ ss: true });
-    expect(restCue(a, sid(0, 0)).text).toBe('Pull Up · seria 1, +10 kg, 8 powtórzeń');
-    a.exercises[0].sets[0].done = true; expect(restCue(a, sid(1, 0)).text).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń');
+    expect(restCue(a, sid(0, 0)).text).toBe('Pull-Up · seria 1, +10 kg, 8 powtórzeń');
+    a.exercises[0].sets[0].done = true; expect(restCue(a, sid(1, 0)).text).toBe('Bench Press · seria 2, 80 kg, 8 powtórzeń');
   });
   test('talerzy w zapowiedzi nie ma (decyzja właściciela: każda siłownia ma inne) — także gdy miejsce opisuje talerze', async () => {
     await world(); for (const s of A().exercises[0].sets) s.weight = 102.5;
-    expect(restCue(A(), sid(0, 0)).text).toBe('Bench Press (sztanga) · seria 2, 102,5 kg, 8 powtórzeń'); expect(restCue(A(), sid(0, 0)).text).not.toMatch(/stron|talerz|plate|side/i);
+    expect(restCue(A(), sid(0, 0)).text).toBe('Bench Press · seria 2, 102,5 kg, 8 powtórzeń'); expect(restCue(A(), sid(0, 0)).text).not.toMatch(/stron|talerz|plate|side/i);
   });
   test('ten sam tekst: zapowiedź = podpis timera = Live Activity = migawka zegarka (jedna funkcja, wszystkie sposoby odhaczenia)', async () => {
     const a = await world(); const id = sid(0, 0);

@@ -82,7 +82,7 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
   });
   test('wybór ćwiczenia: domyślnie tylko dostępne w Dom; „Pokaż wszystkie” zapamiętany, niedostępne wyszarzone z „brak: …”', async () => {
     const saved = await savedWithPlaces(true); await renderApp({ saved }); await go('/picker?target=active'); await flushAll(10);
-    expect(screen.getByText('Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText(/tylko dostępne w: Dom · ukryte: \d+$/)).toBeTruthy(); expect(screen.getByText(/^niszowe ukryte: \d+/)).toBeTruthy(); /* research 09.10.2026: najpierw filtr „Podstawowe”, potem miejsce */
+    expect(screen.getByText('Dumbbell Bench Press')).toBeTruthy(); expect(screen.getByText(/tylko dostępne w: Dom · ukryte: \d+$/)).toBeTruthy(); expect(screen.getByText(/^niszowe ukryte: \d+/)).toBeTruthy(); /* research 09.10.2026: najpierw filtr „Podstawowe”, potem miejsce */
     await tap(screen.getAllByText('nogi')[0]); await flushAll(5); expect(screen.queryByText('Back Squat')).toBeNull(); /* pełna baza: lista wirtualizowana — grupa */
     await tap(screen.getByLabelText(/^Filtr miejsca: Dom/)); /* decyzja 04.10: filtr-etykieta zamiast przełącznika */ expect(store.getState().settings.pickerShowAll).toBe(true);
     expect(screen.getByText('Back Squat')).toBeTruthy(); expect(screen.getAllByText('sztanga · brak: sztanga, klatka / stojaki').length).toBeGreaterThanOrEqual(3); /* Back/Front/Box Squat, Good Morning */

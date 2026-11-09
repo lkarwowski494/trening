@@ -333,7 +333,7 @@ describe('runda 4', () => {
   });
   test('R4-06 postępy pokazują usunięte ćwiczenie z historią', async () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
-    await go('/progress'); await flushAll(10); expect(screen.getByText(/Bench Press \(hantle\) \(usunięte\)/)).toBeTruthy();
+    await go('/progress'); await flushAll(10); expect(screen.getByText(/Dumbbell Bench Press \(usunięte\)/)).toBeTruthy();
   });
   test('R4-07 serie per partia z przecinkiem', async () => {
     await renderApp(); addWorkout(Math.max(Date.now() - 3600e3, stats.thisMonday()), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); /* L-031: „godzinę temu” nie może wypaść w poprzednim tygodniu (poniedziałek 00:00–01:00) */ await go('/progress'); await flushAll(10);
@@ -537,9 +537,9 @@ describe('runda 8', () => {
   test('R8-04 EN: przycisk przerwy „This time only”', () => {
     expect(require('@/lib/i18n.en').EN?.['Tylko teraz'] ?? require('@/lib/i18n.en').default?.['Tylko teraz']).toBe('This time only');
   });
-  test('R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Planowanie” → dzień → „+ Nowy szablon”', async () => {
+  test('R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Szablony i plan” (kafelek; dawniej „Planowanie”, zmiana 05.11.2026) → dzień → „+ Nowy szablon”', async () => {
     await renderApp(); await act(async () => { store.getState().templates = []; store.save(); }); await flushAll(10);
-    await tap(screen.getAllByText('Planowanie')[0]); await flushAll(10); await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(store.getState().templates).toHaveLength(1);
+    await tap(screen.getByTestId('first-tile-plan')); await flushAll(10); await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(store.getState().templates).toHaveLength(1);
   });
 });
 
@@ -669,7 +669,7 @@ describe('runda 12', () => {
   test('R12-03 ▶ i guma mówią, której serii dotyczą', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); store.addExerciseToActive(ex('Chin Up')); }); await flushAll(10);
     expect(screen.getAllByLabelText('Start stopera serii')[0].props.accessibilityHint).toMatch(/Seria 1 — Plank/);
-    expect(screen.getAllByLabelText(/^Guma: /)[0].props.accessibilityHint).toMatch(/Seria 1 — Chin Up/);
+    expect(screen.getAllByLabelText(/^Guma: /)[0].props.accessibilityHint).toMatch(/Seria 1 — Chin-Up/);
   });
   test('R12-04 czas serii od godziny w formacie h:mm:ss', () => { expect(store.fmtSec(5700)).toBe('1:35:00'); expect(store.fmtSec(95)).toBe('1:35'); });
   test('R12-05 szczegóły sesji bez objętości nie pokazują „0 kg”', async () => {
@@ -903,7 +903,7 @@ describe('runda 27', () => {
     await renderApp({ url: '/more/settings' }); const { router } = require('expo-router'); expect(router.canGoBack()).toBe(true);
   });
   test('R27-04 nieznany adres wraca na ekran główny (jeden zestaw zakładek, runda 28)', async () => {
-    await renderApp({ url: '/more/nieznane' }); await flushAll(10); expect(screen.queryByText(/Unmatched Route/)).toBeNull(); expect(screen.getAllByLabelText('Pusty trening')).toHaveLength(1);
+    await renderApp({ url: '/more/nieznane' }); await flushAll(10); expect(screen.queryByText(/Unmatched Route/)).toBeNull(); expect(screen.getAllByLabelText('Zacznij pierwszy trening')).toHaveLength(1); /* 05.11.2026: nowa osoba */
     const { router } = require('expo-router'); expect(router.canGoBack()).toBe(false);
   });
 });
@@ -935,6 +935,7 @@ describe('runda 30', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R30-01 powrót z tła następnego dnia odświeża ekran główny', async () => {
     await renderApp(); const t0 = new Date(2026, 8, 30, 22).getTime(); jest.setSystemTime(t0);
+    addWorkout(t0 - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); /* 06.11.2026: nowa osoba (bez treningów i planu) nie ma daty w nagłówku — data jest u osoby z historią */
     /* 05.10.2026: poranny wpis usunięty — odświeżenie sprawdzane na dacie w nagłówku ekranu głównego */
     await act(async () => { store.refreshViews(); }); await flushAll(10);
     const day = (ms: number) => new Date(ms).toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -976,7 +977,7 @@ describe('runda 32', () => {
   });
   test('R32-03 wyszukiwanie bez polskich znaków', async () => {
     await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lydki na'); await flushAll(10);
-    expect(screen.getByText('Łydki na stopniu')).toBeTruthy();
+    expect(screen.getByText('Calf Raise on Step')).toBeTruthy();
   });
 });
 
@@ -1246,10 +1247,10 @@ describe('runda 49', () => {
   });
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
-    const name = store.exById(tpl.items[0].exerciseId)!.name;
+    const name = require('@/lib/i18n').exName(store.exById(tpl.items[0].exerciseId)!); /* ZB-044 (07.11.2026, docs/18): etykieta niesie nazwę wyświetlaną */
     expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
     await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
-    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
+    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull-Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {
@@ -1896,9 +1897,9 @@ describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwic
     const { parseImport } = require('@/lib/csvparse'); const { commitCsvImport } = require('@/lib/csvimport');
     await commitCsvImport(parseImport(txt, at(2026, 10, 12)), { unit: 'kg' });
   };
-  test('(a) formatA: Pull Up 0×10 i +20×5, Push Up 0×20 — rekordy jak dla treningu wpisanego ręcznie', async () => {
+  test('(a) formatA: Pull-Up 0×10 i +20×5, Push-Up 0×20 — rekordy jak dla treningu wpisanego ręcznie', async () => {
     await fresh(); const d = '2026-03-02 18:05:00';
-    await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`, `${d},T,50m,Pull Up,2,20.0,5.0,0,0,,,`, `${d},T,50m,Push Up,1,0.0,20.0,0,0,,,`].join('\n') + '\n');
+    await importText([HA, `${d},T,50m,Pull-Up,1,0.0,10.0,0,0,,,`, `${d},T,50m,Pull-Up,2,20.0,5.0,0,0,,,`, `${d},T,50m,Push-Up,1,0.0,20.0,0,0,,,`].join('\n') + '\n');
     const imp = { pu: recs('Pull Up'), pp: recs('Push Up') };
     const w = store.getState().workouts[0]; for (const b of w.exercises) for (const s of b.sets) expect([s.weight, typeof s.addKg]).toEqual(['', 'number']);
     await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: 0, reps: 20 }]]]);
@@ -1929,7 +1930,7 @@ describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Li
   };
   const pickEnglish = async () => { await go('/more/language'); await flushAll(10); await tap(screen.getByLabelText('English')); await flushAll(10); };
   test('przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku', async () => {
-    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
+    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull-Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
     await pickEnglish();
     const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
     expect(starts[0][2]).toBe('next: Pull-Up, body weight'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull-Up, body weight');
@@ -2064,18 +2065,18 @@ describe('audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia n
     const ws = store.getState().workouts; expect(ws).toHaveLength(2);
     for (const w of ws) { expect(w.finishedAt).toBe(w.startedAt); expect(store.workoutDurSec(w)).toBe(0); expect(store.noClock(w)).toBe(true); }
     const { totals } = require('@/lib/period'); expect(totals(at(2026, 3, 1, 0), at(2026, 4, 1, 0)).durationSec).toBe(0);
-    await fresh(); const d = '2026-03-02 18:05:00'; await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`].join('\n') + '\n');
+    await fresh(); const d = '2026-03-02 18:05:00'; await importText([HA, `${d},T,50m,Pull-Up,1,0.0,10.0,0,0,,,`].join('\n') + '\n');
     const w = store.getState().workouts[0]; expect(w.finishedAt! - w.startedAt).toBe(50 * 60e3); expect(store.noClock(w)).toBe(false);
   });
   test('formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start)', async () => {
-    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull-Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
     const w = store.getState().workouts[0]; expect(w.finishedAt).toBe(w.startedAt);
   });
   /* Audyt 0.14.0 ŚREDNIE: plik z godziną, ale bez Duration, miał koniec = start, więc noClock ukrywał godzinę, a eksport ją gubił (powrót do 12:00).
    * Naprawa: noClock tylko dla startu dokładnie o 12:00:00 (godzina, którą import samej daty sam ustawia) — bez zmiany schematu i bez sztucznej długości.
    * Realność: realny (import pliku formatu z godziną, w którym Duration jest puste albo „0m”). */
   test('formatA z godziną, bez Duration: godzina zostaje w Historii i w eksporcie; ponowny import zachowuje godzinę (także z „0m”)', async () => {
-    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,', '2026-03-03 07:30:00,T,0m,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull-Up,1,0.0,10.0,0,0,,,', '2026-03-03 07:30:00,T,0m,Pull-Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
     const ws = store.getState().workouts; expect(ws).toHaveLength(2); expect(ws.every(w => !store.noClock(w))).toBe(true);
     for (const w of ws) expect(store.whenText(w)).toBe(`${store.fmtDate(store.wallTs(w))} ${store.fmtTime(store.wallTs(w))}`);
     const csv = buildCsv(); const dates = csv.trim().split('\n').slice(1).map(l => l.split(',')[0]).sort(); expect(dates).toEqual(['2026-03-02 18:05:00', '2026-03-03 07:30:00']);

@@ -12,7 +12,7 @@ import { execSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { testyCzytajace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs';
+import { testyCzytajace, testyRenderujaceRouter, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs';
 const args = process.argv.slice(2); const planOnly = args.includes('--plan');
 const odBazy = args.includes('--od-bazy');
 const sh = c => execSync(c, { encoding: 'utf8' }).split('\n').map(s => s.trim()).filter(Boolean);
@@ -38,7 +38,8 @@ if (files.some(f => /^(lib\/locales\/|locales\/|lib\/i18n\.en\.ts$)/.test(f))) f
 const czytajace = testyCzytajace([...new Set(changed)].filter(f => !/\.(tsx?|jsx?|mjs|cjs)$/.test(f)), resolve(dirname(fileURLToPath(import.meta.url)), '..'));
 // L-104 (04.11.2026): test uruchamiający skrypt repo dziedziczy zależności skryptu (importy rekurencyjnie + czytane pliki), także gdy zmienił się kod (.ts/.mjs) — scripts/testy-dla-plikow.mjs
 const korzen = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-for (const t of [...czytajace, ...testyUruchamiajaceSkrypty([...new Set(changed)], korzen)]) if (!files.includes(t)) files.push(t);
+// L-NNN (05.11.2026): testy renderujące całą aplikację przez renderRouter('./app') nie mają krawędzi importu do ekranów — zmiana kodu app/components/lib dokłada je automatycznie (scripts/testy-dla-plikow.mjs)
+for (const t of [...czytajace, ...testyUruchamiajaceSkrypty([...new Set(changed)], korzen), ...testyRenderujaceRouter([...new Set(changed)], korzen)]) if (!files.includes(t)) files.push(t);
 const jestBin = join(dirname(createRequire(import.meta.url).resolve('jest/package.json')), 'bin', 'jest.js');
 const command = process.execPath; const jestArgs = [jestBin, '--findRelatedTests', ...files, '--silent', '--reporters=summary'];
 if (planOnly) { console.log(JSON.stringify({ command, args: jestArgs, files, baza: ref })); process.exit(0); }

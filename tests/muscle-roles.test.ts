@@ -96,13 +96,17 @@ describe('wyjątki: lista po nazwie i ćwiczenia na czas', () => {
     expect(bad).toEqual([]);
   });
   test('lista po nazwie (szrugsy, nadgarstek): nazwy istnieją, region i rola zgodne z katalogiem, wynik wg listy; spoza listy — brak', () => {
-    expect(ROLE_DATA.names.length).toBe(3);
+    expect(ROLE_DATA.names.length).toBe(5); /* + 2 reguły deski bocznej (A1 pchanie, 08.11.2026) */
     const want: Record<string, string> = { 'upper_back.scap_elevate': 'Unosi barki.', 'forearms.wrist_flex': 'Zgina nadgarstek.', 'forearms.wrist_ext': 'Prostuje nadgarstek.' };
-    for (const n of ROLE_DATA.names) for (const k of n.x) {
+    for (const n of ROLE_DATA.names.filter(r => want[r.f] !== undefined)) for (const k of n.x) {
       expect(KEYS).toContain(k);
       expect([k, loadsOf(k)[n.m as MuscleRegion]]).toEqual([k, 1]); /* lista dotyczy roli głównej w katalogu */
       expect([k, text(k, n.m)]).toEqual([k, want[n.f]]);
     }
+    /* deska boczna (A1 pchanie, 08.11.2026; S29 NFPT + S30 NASM): główna w Side Plank, pomocnicza w wariantach z deską boczną; reszta deski i rolloutów bez opisu */
+    expect(text('Side Plank', 'obliques')).toBe('Trzyma tułów prosto, żeby nie opadał na bok.');
+    for (const k of ['Copenhagen Plank', 'Push Up to Side Plank']) expect([k, text(k, 'obliques')]).toEqual([k, 'Pomaga trzymać tułów prosto, żeby nie opadał na bok.']);
+    for (const k of ['Plank', 'Ab Wheel', 'Rollout (sztanga)', 'Mountain Climbers']) expect([k, text(k, 'obliques')]).toEqual([k, null]);
     expect(text('Middle Back Shrug', 'upper_back')).toBeNull(); /* nazwa nie wskazuje uniesienia barków */
     for (const k of ['Dumbbell Lying Pronation', 'Dumbbell Lying Supination', 'Wrist Roller', 'Plate Pinch', 'Scapular Pull-Up', 'Lying Neck Flexion (talerz)']) expect([k, text(k, k.includes('Neck') ? 'neck' : k === 'Scapular Pull-Up' ? 'upper_back' : 'forearms')]).toEqual([k, null]);
   });

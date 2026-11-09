@@ -99,15 +99,15 @@ describe('D6 — ekrany', () => {
   test('edytor: „⇄ zamień” → arkusz (ranking przed datą) → przepięcie; „↺ przywróć”; Zapisz', async () => {
     await fresh(); const w = addWorkout(day(2), [[BP, [{ weight: 60, reps: 8 }]]]); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/history/edit/${w.id}`); await flushAll(20);
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
     expect(screen.getByText('Propozycje')).toBeTruthy(); expect(screen.getByText(/Poprawka zapisu/)).toBeTruthy();
-    await tap(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\)/)); await flushAll(20);
+    await tap(screen.getByLabelText(/^Propozycja \d: Dumbbell Bench Press/)); await flushAll(20);
     const d = edit.draftOf(w.id)!; expect(d.w.exercises[0].exerciseId).toBe(ex(DB).id);
-    expect(screen.getByText('Bench Press (hantle)')).toBeTruthy();
-    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (hantle)')); await flushAll(20);
-    expect(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')).toBeTruthy();
+    expect(screen.getByText('Dumbbell Bench Press')).toBeTruthy();
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Dumbbell Bench Press')); await flushAll(20);
+    expect(screen.getByText('↺ cofnij zamianę: Bench Press')).toBeTruthy();
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    expect(screen.queryByText('Plank')).toBeNull(); await tap(screen.getAllByText('Push Up').at(-1)!); await flushAll(20);
+    expect(screen.queryByText('Plank')).toBeNull(); await tap(screen.getAllByText('Push-Up').at(-1)!); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Push Up').id); expect(d.w.exercises[0].sets[0].addKg).toBe(60); /* P4 */
     expect(store.getState().workouts.find(x => x.id === w.id)!.exercises[0].exerciseId).toBe(ex(BP).id); /* szkic */
     void pressAlert;

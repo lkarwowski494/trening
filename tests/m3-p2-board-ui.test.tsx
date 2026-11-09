@@ -29,7 +29,7 @@ const text = (id: string) => { const n = screen.getByTestId(id); /* RNTL 14: wit
 describe('ZM-01: tablica „teraz” — dane i wpis', () => {
   test('nazwa ćwiczenia wersalikami przez upperText (pl: styl wersalików, tekst bez zmian), liczby „—” gdy brak wyniku (nie „0”), „seria n z m”', async () => {
     await fresh(); startBench(3); await boot();
-    const card = within(screen.getByTestId('focus-card')); const name = card.getByText('Bench Press (sztanga)');
+    const card = within(screen.getByTestId('focus-card')); const name = card.getByText('Bench Press');
     expect(([] as { textTransform?: string }[]).concat(name.props.style).flat(3).some(x => x?.textTransform === 'uppercase')).toBe(true);
     expect(within(screen.getByTestId('board-value-weight')).getByText('—')).toBeTruthy(); expect(within(screen.getByTestId('board-value-reps')).getByText('—')).toBeTruthy();
     expect(card.getByText('seria 1 z 3')).toBeTruthy();
@@ -112,7 +112,7 @@ describe('ZM-01: „Seria zrobiona” bez wyniku', () => {
   });
   test('wiersz serii (✓ w wierszu) działa jak dotąd — odhacza bez blokady (zmiana dotyczy przycisku „Seria zrobiona” na tablicy)', async () => {
     await fresh(); const a = startBench(2); await boot();
-    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(20); expect(A().exercises[0].sets[0].done).toBe(true);
+    await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press')); await flushAll(20); expect(A().exercises[0].sets[0].done).toBe(true);
   });
 });
 
@@ -239,7 +239,7 @@ describe('VoiceOver: opis tablicy i podgląd liczb', () => {
   test('część z nazwą i liczbami to jeden element (rola obrazu) z opisem: ćwiczenie, seria, wartości, postęp serii', async () => {
     await fresh(); const a = startBench(3); vals(a, 0, { weight: 80, reps: 6 }); vals(a, 1, { weight: 80, reps: 6 }); store.toggleDone(0, 0); await boot();
     const d = screen.getByTestId('board-desc'); expect(d.props.accessibilityRole).toBe('image'); expect(d.props.accessible).toBe(true);
-    expect(d.props.accessibilityLabel).toMatch(/^Bench Press \(sztanga\), seria 2 z 3\. 80 kilogramów, 6 powtórzeń\. Serie: 1 z 3 zrobione/);
+    expect(d.props.accessibilityLabel).toMatch(/^Bench Press, seria 2 z 3\. 80 kilogramów, 6 powtórzeń\. Serie: 1 z 3 zrobione/);
   });
   test('rozgrzewki w opisie osobno; > 12 serii dopisek „lista serii przewijana”', async () => {
     await fresh(); const a = startBench(14); store.addSet(0, 'warmup'); vals(a, 1, { weight: 80, reps: 6 }); await boot();

@@ -2,7 +2,7 @@
  * Backlog figur, runda 2 (28.10.2026), po niezależnej recenzji ruchu (bramka 4): F1–F6 i luki L1–L4 jako mechanizmy.
  *  F1 stopy w Clamshell i External Rotation (hantel) leżą jedna na drugiej, palcami w stronę kolan; L2: reguła R11 „oś stopy w płaszczyźnie biodro–kolano–kostka ±30°” na wszystkich pozach;
  *  F2 stopy leżącego przodem (Superman, Lower Back Curl, Seal Row) grzbietem w dół, palcami do tyłu (podbicie 91…270°);
- *  F3 rząd błędu Clamshell pokazuje nogę wyżej; F4 wiosłowanie: goleń odchylona do tyłu jest w przybliżeniu; F5/F6 komentarz i wpisy przybliżeń;
+ *  F3 rząd błędu Clamshell — od 08.11.2026 (A2) bez rzędu spoza karty; F4 wiosłowanie: goleń odchylona do tyłu jest w przybliżeniu; F5/F6 komentarz i wpisy przybliżeń;
  *  L1 znacznik podglądu: tylko cała rodzina i tylko świeży względem gita; L3 tabela kątów osobno R i L; L4 przybliżenia z ograniczeniem silnika przeglądane przy zmianie kontraktu.
  */
 import fs from 'node:fs';
@@ -83,16 +83,15 @@ console.log(JSON.stringify(out));`);
   });
 });
 
-describe('F3: rząd błędu Clamshell pokazuje nogę za wysoko (nie tylko skręt tułowia)', () => {
+describe('F3: rząd błędu Clamshell (08.11.2026, partia A2: karta własna nazywa błąd clam.mis.roll, nie hab.mis.high)', () => {
+  /* Do 08.11.2026 generator rysował rząd hab.mis.high (noga za wysoko, skręt tułowia) z zestawu ogólnego. Badania W2 (02.11.2026) uznały hab.mis.high przy Clamshell za bez źródła;
+   * karta własna A2 ma clam.mis.roll („biodra uciekają do tyłu, żeby kolano poszło wyżej”), a generator przepuszcza tylko błędy karty (scripts/figures/agent-pozy/model.mjs, zbuduj).
+   * Rząd błędu clam.mis.roll (ta sama geometria: skręt tułowia + kolano wyżej) dodaje partia figur B2 razem z grupą błędu w data/zrodla/figury-sens.json. */
   const E = uruchom(`${WSTEP}
 import * as GF from ${q('scripts/figures/agent-pozy/glute_floor.mjs')};
-const p = GF.generuj().Clamshell(); const o = {}; /* wiersz błędu jest w generatorze (w danych poz brak wierszy błędów Clamshell, Supermana i Fire Hydrant: decyzja backlogu 28.10.2026 — dodanie wiersza po przeglądzie) */
-const s1 = v2.keyframeFrame(p, 1).sk, e1 = v2.keyframeFrame(p, 1, 0).sk; const s0 = v2.keyframeFrame(p, 0).sk, e0 = v2.keyframeFrame(p, 0, 0).sk;
-o.kolanoWyzejCm = r1(e1.legs.R.knee[1] - s1.legs.R.knee[1]); o.kolanoU0 = r1(Math.abs(e0.legs.R.knee[1] - s0.legs.R.knee[1])); o.skret = Math.abs(p.bledy[0].klatki[p.bledy[0].klatki.length - 1].skretTulowia ?? 0);
-o.dolnaNogaBezZmian = r1(Math.hypot(...sub(e1.legs.L.knee, s1.legs.L.knee))); o.zapis = p.bledy[0].klatki.map((k) => Object.keys(k).sort().join(','));
-console.log(JSON.stringify(o));`);
-  test('górne kolano w rzędzie błędu u = 1 jest ≥ 5 cm wyżej niż w pozie poprawnej, w u = 0 oba rzędy są takie same', () => { expect(E.kolanoWyzejCm).toBeGreaterThanOrEqual(5); expect(E.kolanoU0).toBe(0); });
-  test('tułów odchyla się o ≥ 20° (skręt), a dolna noga zostaje na miejscu (≤ 1 cm)', () => { expect(E.skret).toBeGreaterThanOrEqual(20); expect(E.dolnaNogaBezZmian).toBeLessThanOrEqual(1); });
+import { bledyCwiczenia } from ${q('scripts/figures/v2-validate.mjs')};
+const p = GF.generuj().Clamshell(); console.log(JSON.stringify({ n: p.bledy.length, karta: bledyCwiczenia('Clamshell') }));`);
+  test('generator nie rysuje błędu spoza karty: Clamshell bez rzędu hab.mis.high, karta ma clam.mis.roll', () => { expect(E).toEqual({ n: 0, karta: ['clam.mis.roll'] }); });
 });
 
 describe('F4: wiosłowanie w opadzie — goleń odchylona do tyłu jest w przybliżeniu', () => {

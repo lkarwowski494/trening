@@ -262,3 +262,96 @@ describe('scal-galaz — sprzątanie worktree po scaleniu (L-105, 04.11.2026)', 
     for (const rola of ['programista', 'tester-e2e']) expect(fs.readFileSync(join(root, `.claude/agents/${rola}.md`), 'utf8')).toMatch(/df -h[\s\S]{0,200}3 GB/);
   });
 });
+
+/* L-120, wariant A (decyzja koordynatora 08.11.2026 w nocy z upoważnienia właściciela): scal-galaz sam łączy konflikty w docs/18-przekazanie.md i docs/40-lekcje.md —
+   suma wpisów obu stron (docelowa, potem źródłowa; bez duplikatów identycznych wpisów), w docs/40 lekcje „## L-NNN” nad numerowanymi. Odmowa: konflikt w obrębie tego samego wpisu
+   (obie strony edytują istniejący wpis albo dopisują do jednego wpisu), konflikt w innym pliku (kod, docs/zobowiazania.md). Dokumenty bez CI (verify:docs), kod z CI. */
+describe('scal-galaz — konflikty w docs/18 i docs/40 (L-120, 08.11.2026)', () => {
+  const D18 = 'docs/18-przekazanie.md'; const D40 = 'docs/40-lekcje.md';
+  const BAZA18 = '# Przekazanie\n\n## Decyzje\n- 01.11.2026 stary wpis\n';
+  const BAZA40 = '# Lekcje\n\n## Rejestr ryzyk\nbrak\n\n## L-002 druga\n- b\n\n## L-001 pierwsza\n- a\n';
+  const GEN = JSON.stringify([{ plik: 'gen.txt', polecenie: ['node', 'gen.js'] }]);
+  const GEN_JS = "const fs=require('fs');fs.writeFileSync('gen.txt','pochodna:'+fs.readFileSync('plik.txt','utf8'));\n";
+  /** integracja: baza dokumentów; gałąź f dopisuje `zrodlo`, integracja po rozejściu `cel` (plik, zawartość po zmianie) */
+  function scenariusz(plik: string, baza: string, cel: string, zrodlo: string) {
+    generowane = '[]'; const e = srodowisko(); e.zatwierdz(plik, baza); git(e.dir, 'push', '-q', 'origin', 'integracja-1-1');
+    const sha = e.gałąź('f', [[plik, zrodlo]]); e.zatwierdz(plik, cel); odpowiedz = [run(sha)];
+    return { ...e, sha, głowa: git(e.dir, 'rev-parse', 'HEAD') };
+  }
+  const czysto = (dir: string, głowa: string) => {
+    expect(git(dir, 'rev-parse', 'HEAD')).toBe(głowa); expect(git(dir, 'status', '--porcelain')).toBe('');
+    expect(spawnSync('git', ['rev-parse', '-q', '--verify', 'MERGE_HEAD'], { cwd: dir }).status).not.toBe(0);
+  };
+  const tresc = (dir: string, p: string) => git(dir, 'show', `HEAD:${p}`);
+
+  test('docs/18: dopisanie po obu stronach → scalenie bez CI, wpisy: najpierw docelowa, potem źródłowa, bez znaczników; komunikat opisuje rozwiązanie', async () => {
+    const x = scenariusz(D18, BAZA18, `${BAZA18}- 08.11.2026 wpis celu\n`, `${BAZA18}- 08.11.2026 wpis źródła\n`);
+    const r = await uruchom(x.dir, 'f');
+    expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true); expect(zapytania).toEqual([]);
+    expect(tresc(x.dir, D18)).toBe(`${BAZA18}- 08.11.2026 wpis celu\n- 08.11.2026 wpis źródła`);
+    expect(tresc(x.dir, D18)).not.toMatch(/^(<<<<<<<|=======|>>>>>>>|\|\|\|\|\|\|\|)/m);
+    expect(git(x.dir, 'status', '--porcelain')).toBe(''); expect(git(x.dir, 'log', '-1', '--format=%p').split(' ')).toHaveLength(2);
+    expect(git(x.dir, 'log', '-1', '--format=%s')).toContain(D18); expect(r.out).toContain(D18);
+  });
+  test('docs/18: wpis z kolejnymi liniami (kontynuacja) zostaje w całości; identyczny wpis po obu stronach nie jest dublowany', async () => {
+    const wspolny = '- 08.11.2026 wpis wspólny\n';
+    const x = scenariusz(D18, BAZA18, `${BAZA18}${wspolny}- 08.11.2026 cel\n  ciąg dalszy celu\n`, `${BAZA18}${wspolny}- 08.11.2026 źródło A\n  ciąg A\n- 08.11.2026 źródło B\n`);
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(0);
+    const t = tresc(x.dir, D18); expect(t.split('wpis wspólny').length - 1).toBe(1);
+    expect(t).toBe(`${BAZA18}${wspolny}- 08.11.2026 cel\n  ciąg dalszy celu\n- 08.11.2026 źródło A\n  ciąg A\n- 08.11.2026 źródło B`);
+  });
+  test('docs/40: dwie nowe „L-NNN” po stronie źródłowej i numerowana po docelowej → najpierw L-NNN, potem numerowane; reszta bez zmian', async () => {
+    const x = scenariusz(D40, BAZA40, BAZA40.replace('## L-002', '## L-003 trzecia\n- c\n\n## L-002'), BAZA40.replace('## L-002', '## L-NNN nowa A\n- x\n\n## L-NNN nowa B\n- y\n\n## L-002'));
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(0); expect(scalone(x.dir, x.sha)).toBe(true);
+    const naglowki = tresc(x.dir, D40).split('\n').filter(l => l.startsWith('## ')).map(l => l.split(' ').slice(0, 3).join(' '));
+    expect(naglowki).toEqual(['## Rejestr ryzyk', '## L-NNN nowa', '## L-NNN nowa', '## L-003 trzecia', '## L-002 druga', '## L-001 pierwsza']);
+    expect(tresc(x.dir, D40)).toContain('## L-NNN nowa A\n- x\n\n## L-NNN nowa B\n- y\n\n## L-003 trzecia\n- c\n\n## L-002 druga');
+    expect(tresc(x.dir, D40)).not.toMatch(/^(<<<<<<<|=======|>>>>>>>)/m);
+  });
+  test('docs/40: L-NNN po stronie docelowej i numerowana po źródłowej też kończy z L-NNN nad numerowanymi', async () => {
+    const x = scenariusz(D40, BAZA40, BAZA40.replace('## L-002', '## L-NNN cel\n- c\n\n## L-002'), BAZA40.replace('## L-002', '## L-003 źródło\n- z\n\n## L-002'));
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(0);
+    expect(tresc(x.dir, D40).split('\n').filter(l => l.startsWith('## L-')).map(l => l.split(' ')[1])).toEqual(['L-NNN', 'L-003', 'L-002', 'L-001']);
+  });
+  test('edycja tego samego wpisu po obu stronach → odmowa, scalenie przerwane, drzewo bez zmian', async () => {
+    const x = scenariusz(D18, BAZA18, BAZA18.replace('stary wpis', 'wpis celu'), BAZA18.replace('stary wpis', 'wpis źródła'));
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(1); expect(r.out).toContain('przerwane'); expect(scalone(x.dir, x.sha)).toBe(false); czysto(x.dir, x.głowa);
+  });
+  test('obie strony dopisują do jednego wpisu (kontynuacja zamiast nowego wpisu) → odmowa', async () => {
+    const x = scenariusz(D18, BAZA18, `${BAZA18}  dopisek celu\n`, `${BAZA18}  dopisek źródła\n`);
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(1); czysto(x.dir, x.głowa);
+    const y = scenariusz(D18, BAZA18, `${BAZA18}  dopisek celu\n`, `${BAZA18}- 08.11.2026 nowy wpis źródła\n`);
+    expect((await uruchom(y.dir, 'f')).status).toBe(1); czysto(y.dir, y.głowa);
+  });
+  test('docs/40: obie strony dopisują punkt do tej samej lekcji (nie nową lekcję) → odmowa', async () => {
+    const x = scenariusz(D40, BAZA40, BAZA40.replace('- a\n', '- a\n- cel\n'), BAZA40.replace('- a\n', '- a\n- źródło\n'));
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(1); czysto(x.dir, x.głowa);
+  });
+  test('konflikt w pliku kodu → odmowa (także gdy docs/18 w tej samej gałęzi dałby się połączyć)', async () => {
+    generowane = '[]'; const e = srodowisko(); e.zatwierdz(D18, BAZA18); git(e.dir, 'push', '-q', 'origin', 'integracja-1-1');
+    const sha = e.gałąź('f', [[D18, `${BAZA18}- źródło\n`], ['plik.txt', '2\n']]); e.zatwierdz(D18, `${BAZA18}- cel\n`); e.zatwierdz('plik.txt', 'inaczej\n'); odpowiedz = [run(sha)];
+    const głowa = git(e.dir, 'rev-parse', 'HEAD'); const r = await uruchom(e.dir, 'f');
+    expect(r.status).toBe(1); expect(scalone(e.dir, sha)).toBe(false); czysto(e.dir, głowa);
+  });
+  test('konflikt w docs/zobowiazania.md → odmowa (zobowiązania nie są łączone automatycznie)', async () => {
+    const x = scenariusz('docs/zobowiazania.md', '# Zobowiązania\n- ZB-001 a\n', '# Zobowiązania\n- ZB-001 a\n- ZB-002 cel\n', '# Zobowiązania\n- ZB-001 a\n- ZB-002 źródło\n');
+    const r = await uruchom(x.dir, 'f'); expect(r.status).toBe(1); expect(scalone(x.dir, x.sha)).toBe(false); czysto(x.dir, x.głowa);
+  });
+  test('docs/18 razem z plikiem generowanym → oba rozwiązane, plik generowany przeliczony', async () => {
+    generowane = GEN; const e = srodowisko(); e.zatwierdz('gen.js', GEN_JS); e.zatwierdz('gen.txt', 'pochodna:1\n'); e.zatwierdz(D18, BAZA18); git(e.dir, 'push', '-q', 'origin', 'integracja-1-1');
+    const sha = e.gałąź('f', [['plik.txt', '2\n'], ['gen.txt', 'pochodna:2\n'], [D18, `${BAZA18}- źródło\n`]]); e.zatwierdz('gen.txt', 'pochodna:docelowa\n'); e.zatwierdz(D18, `${BAZA18}- cel\n`); odpowiedz = [run(sha)];
+    const r = await uruchom(e.dir, 'f'); expect(r.status).toBe(0);
+    expect(tresc(e.dir, 'gen.txt')).toBe('pochodna:2'); expect(tresc(e.dir, D18)).toBe(`${BAZA18}- cel\n- źródło`);
+    const s = git(e.dir, 'log', '-1', '--format=%s'); expect(s).toContain('gen.txt'); expect(s).toContain(D18);
+  });
+  test('konflikt w docs/18 przy gałęzi z kodem nie omija bramki CI (czerwony tests.yml → odmowa przed scaleniem)', async () => {
+    generowane = '[]'; const e = srodowisko(); e.zatwierdz(D18, BAZA18); git(e.dir, 'push', '-q', 'origin', 'integracja-1-1');
+    const sha = e.gałąź('f', [[D18, `${BAZA18}- źródło\n`], ['plik.txt', '2\n']]); e.zatwierdz(D18, `${BAZA18}- cel\n`); odpowiedz = [run(sha, { conclusion: 'failure' })];
+    const głowa = git(e.dir, 'rev-parse', 'HEAD'); expect((await uruchom(e.dir, 'f')).status).toBe(1); czysto(e.dir, głowa);
+  });
+  test('wpis docs/18 z 08.11.2026 (kod, test, odrzucone B i C)', () => {
+    const fs = require('fs'); const d18: string = fs.readFileSync(join(root, 'docs/18-przekazanie.md'), 'utf8');
+    const wpis = d18.split('\n').find(l => l.includes('08.11.2026') && l.includes('scal-galaz') && l.includes('docs/40') && l.includes('[test: tests/scal-galaz.test.ts]'));
+    expect(wpis).toBeTruthy(); expect(wpis).toMatch(/\[wdrożenie: kod\]/); expect(wpis).toMatch(/Odrzucone: B/);
+  });
+});

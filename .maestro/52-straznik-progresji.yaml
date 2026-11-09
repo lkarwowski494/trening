@@ -14,7 +14,7 @@ name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/plan-kazdego-dnia.yaml
 - tapOn: "Back"

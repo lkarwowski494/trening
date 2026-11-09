@@ -1395,11 +1395,6 @@
   }
  },
  "przypisania": {
-  "Ab Wheel": {
-   "rodzina": "rollout",
-   "sprawdzenie": "rollout z kółkiem = ten sam ruch co ACE #309 (sztanga)",
-   "plik": "wskazowki-cwiczenia-01"
-  },
   "Adductor-SMR": {
    "rodzina": "smr",
    "sprawdzenie": "NASM foam-roll-adductors — bezpośrednie",
@@ -1414,11 +1409,6 @@
    "rodzina": "jump",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Arnold Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": "rotacja dłoni w Arnoldzie nie jest opisana — zdania dotyczą tylko wyciskania nad głowę",
-   "plik": "wskazowki-cwiczenia-01"
   },
   "Assault Bike": {
    "rodzina": "bike",
@@ -1440,11 +1430,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Band Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
   "Band Chest Fly": {
    "rodzina": "fly",
    "sprawdzenie": null,
@@ -1460,25 +1445,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Band Overhead Triceps Extension": {
-   "rodzina": "triOver",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Band Pull Apart": {
    "rodzina": "raiseRear",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Band Shoulder Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "Band Skull Crusher": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Band Squat": {
    "rodzina": "squat",
@@ -1512,11 +1482,6 @@
   },
   "Barbell Rollout from Bench": {
    "rodzina": "rollout",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
-  "Barbell Seated Calf Raise": {
-   "rodzina": "calf",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
@@ -1690,16 +1655,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Cable Kickback": {
-   "rodzina": "hipExt",
-   "sprawdzenie": "wyprost biodra w tył przy stabilnych lędźwiach — jak ACE #270 (na czworakach), tu stojąc",
-   "plik": "wskazowki-cwiczenia-01"
-  },
-  "Cable Lying Triceps Extension": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Cable Preacher Curl": {
    "rodzina": "curl",
    "sprawdzenie": null,
@@ -1750,45 +1705,20 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Calf Raise (linki)": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Calf Raise (sztanga)": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Calf-Machine Shoulder Shrug": {
    "rodzina": "shrug",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Chain Handle Extension": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Chain Press": {
    "rodzina": "bench",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Chest Dip": {
-   "rodzina": "dip",
-   "sprawdzenie": "zakres i ruch łokci jak przy dipach na ławce (analogia); bez zdań o pochyleniu tułowia (jedno źródło, docs/33)",
-   "plik": "wskazowki-cwiczenia-01"
-  },
   "Chest Stretch on Stability Ball": {
    "rodzina": "stretch",
    "sprawdzenie": "NASM static-latissimus-dorsi-ball-stretch — pokrewne",
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Clamshell": {
-   "rodzina": "hipAbd",
-   "sprawdzenie": "leżąc bokiem, miednica nie odchyla się w tył (ACE #38 — ta sama pozycja)",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Clean and Press": {
    "rodzina": "oly",
@@ -1920,25 +1850,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Decline Dumbbell Triceps Extension": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Decline EZ Bar Triceps Extension": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Decline Oblique Crunch": {
    "rodzina": "crunch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Decline Push Up": {
-   "rodzina": "pushup",
-   "sprawdzenie": "NASM ma stronę decline-push-up (sitemap) — można dodać jako 3. źródło",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Decline Reverse Crunch": {
    "rodzina": "legRaiseFloor",
@@ -1969,11 +1884,6 @@
    "rodzina": "calf",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Donkey Kick": {
-   "rodzina": "hipExt",
-   "sprawdzenie": "ACE #270 opisuje to ćwiczenie wprost",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Double Kettlebell Front Rack Carry": {
    "rodzina": "carry",
@@ -2025,18 +1935,8 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Dumbbell One-Arm Triceps Extension": {
-   "rodzina": "triOver",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Dumbbell Seated Box Jump": {
    "rodzina": "jump",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
-  "Dumbbell Seated One-Leg Calf Raise": {
-   "rodzina": "calf",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
@@ -2079,11 +1979,6 @@
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Fire Hydrant": {
-   "rodzina": "hipAbd",
-   "sprawdzenie": "na czworakach, odwodzenie — miednica równo jak w bird dog",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Flat Bench Cable Fly": {
    "rodzina": "fly",
@@ -2139,11 +2034,6 @@
    "rodzina": "vpull",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
-  },
-  "Glute Bridge (sztanga)": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Glute Ham Raise": {
    "rodzina": "legCurl",
@@ -2205,11 +2095,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
-  "Hip Extension with Bands": {
-   "rodzina": "hipExt",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
   "Hollow Hold": {
    "rodzina": "plank",
    "sprawdzenie": "leżenie na plecach z lędźwiami przy podłodze — jak dead bug (analogia); bez plank.noSag (inna pozycja)",
@@ -2220,11 +2105,6 @@
    "sprawdzenie": "ACE #254 Inchworms — możliwe źródło bezpośrednie",
    "plik": "wskazowki-cwiczenia-07"
   },
-  "Incline Barbell Triceps Extension": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Incline Cable Chest Press": {
    "rodzina": "bench",
    "sprawdzenie": null,
@@ -2233,11 +2113,6 @@
   "Incline Cable Fly": {
    "rodzina": "fly",
    "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Incline Chest Fly (hantle)": {
-   "rodzina": "fly",
-   "sprawdzenie": "rozpiętki na skosie — ten sam łuk",
    "plik": "wskazowki-cwiczenia-02"
   },
   "Incline Curl (hantle)": {
@@ -2320,21 +2195,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-08-korekty"
   },
-  "Kettlebell Overhead Triceps Extension": {
-   "rodzina": "triOver",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Kettlebell Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Kettlebell Seated Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Kettlebell Snatch": {
    "rodzina": "oly",
    "sprawdzenie": null,
@@ -2399,11 +2259,6 @@
    "rodzina": "squat",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
-  },
-  "Lateral Band Walk": {
-   "rodzina": "bandWalk",
-   "sprawdzenie": "ISSA i ACE — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-08-korekty"
   },
   "Lateral Bound": {
    "rodzina": "jump",
@@ -2493,11 +2348,6 @@
   "Lying Close-Grip Bar Curl On High Pulley": {
    "rodzina": "curl",
    "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
-   "rodzina": "triLying",
-   "sprawdzenie": "bez skull.* — gryf za głowę, ramiona skośnie",
    "plik": "wskazowki-cwiczenia-05"
   },
   "Lying Leg Crossover Swings": {
@@ -2670,11 +2520,6 @@
    "sprawdzenie": "ACE #392 Single Arm Swing — możliwe źródło bezpośrednie",
    "plik": "wskazowki-cwiczenia-06"
   },
-  "One-Arm Lying Dumbbell Triceps Extension": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "One-Arm Medicine Ball Slam": {
    "rodzina": "mbThrow",
    "sprawdzenie": "ISSA slam: pełny wyprost przed rzutem; 1 ✓",
@@ -2714,11 +2559,6 @@
    "rodzina": "stretch",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
-  },
-  "Overhead Triceps Extension (EZ)": {
-   "rodzina": "triOver",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Pallof Press With Rotation": {
    "rodzina": "rotation",
@@ -2815,11 +2655,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Renegade Row": {
-   "rodzina": "pushup",
-   "sprawdzenie": "podpór jak w pompce + wiosłowanie hantlem bez skrętu tułowia",
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Reverse Band Bench Press": {
    "rodzina": "bench",
    "sprawdzenie": null,
@@ -2875,11 +2710,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Reverse Grip Triceps Pushdown": {
-   "rodzina": "triPush",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Reverse Hyperextension": {
    "rodzina": "hipExt",
    "sprawdzenie": null,
@@ -2910,11 +2740,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Rollout (sztanga)": {
-   "rodzina": "rollout",
-   "sprawdzenie": "ACE #309 Roll Out — bezpośrednie",
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Round The World Shoulder Stretch": {
    "rodzina": "mobility",
    "sprawdzenie": null,
@@ -2940,35 +2765,15 @@
    "sprawdzenie": "klatka na ławce jak w Chest Supported Row",
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Seated Band Hamstring Curl": {
-   "rodzina": "legCurl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
-  "Seated Barbell Military Press": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Seated Barbell Twist": {
    "rodzina": "rotation",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Seated Cable Chest Press": {
-   "rodzina": "machinePress",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Seated Cable Shoulder Press": {
    "rodzina": "ohp",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Seated Calf Raise (hantle)": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Seated Calf Stretch": {
    "rodzina": "stretch",
@@ -3060,45 +2865,15 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-02"
   },
-  "Single Arm Overhead Press (hantel)": {
-   "rodzina": "ohp",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Single Arm RDL (hantel/linka)": {
    "rodzina": "rdl",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Single Arm Triceps Pushdown": {
-   "rodzina": "triPush",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Single Leg Butt Kick": {
    "rodzina": "jump",
    "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Single Leg Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg Glute Bridge": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg Hip Thrust": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
-  "Single Leg Press": {
-   "rodzina": "legPress",
-   "sprawdzenie": "NASM single-leg-press (sitemap) — można dodać jako bezpośrednie źródło",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Single Leg Push-Off": {
    "rodzina": "jump",
@@ -3160,16 +2935,6 @@
    "sprawdzenie": "bez jump.drive — ręce kręcą skakanką, nie robią zamachu; tylko 1 ✓",
    "plik": "wskazowki-cwiczenia-01"
   },
-  "Skullcrusher (hantle)": {
-   "rodzina": "triLying",
-   "sprawdzenie": "skull.depth mówi o gryfie nad czołem — przy hantlach: hantle przy głowie; zdanie do dopisku „lub hantle” przy wdrożeniu",
-   "plik": "wskazowki-cwiczenia-01"
-  },
-  "Skullcrusher (sztanga)": {
-   "rodzina": "triLying",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Sled Drag (Harness)": {
    "rodzina": "sled",
    "sprawdzenie": "ACE: „whether pulling or pushing” — te same zasady",
@@ -3204,11 +2969,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Smith Machine Calf Raise": {
-   "rodzina": "calf",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Smith Machine Close-Grip Bench Press": {
    "rodzina": "bench",
@@ -3400,18 +3160,8 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Standing Low-Pulley One-Arm Triceps Extension": {
-   "rodzina": "triOver",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Standing One-Arm Cable Curl": {
    "rodzina": "curl",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Standing Overhead Barbell Triceps Extension": {
-   "rodzina": "triOver",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
@@ -3475,11 +3225,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-07"
   },
-  "Suspended Push-Up": {
-   "rodzina": "pushup",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Suspended Reverse Crunch": {
    "rodzina": "plank",
    "sprawdzenie": null,
@@ -3489,11 +3234,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
-  },
-  "Tate Press": {
-   "rodzina": "bench",
-   "sprawdzenie": "łokcie celowo na boki — bez cgbp/elbowsMid",
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Toe Touchers": {
    "rodzina": "crunch",
@@ -3520,16 +3260,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Triceps Kickback": {
-   "rodzina": "triPush",
-   "sprawdzenie": "ramię nieruchomo przy boku, pracuje przedramię — zgodne",
-   "plik": "wskazowki-cwiczenia-01"
-  },
-  "Triceps Kickback (linki)": {
-   "rodzina": "triPush",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
-  },
   "Tuck Crunch": {
    "rodzina": "crunch",
    "sprawdzenie": null,
@@ -3539,11 +3269,6 @@
    "rodzina": "tgu",
    "sprawdzenie": "ACE #388 i ISSA — bezpośrednie",
    "plik": "wskazowki-cwiczenia-08-korekty"
-  },
-  "Two-Arm Dumbbell Kickback": {
-   "rodzina": "triPush",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Underhand Lat Pulldown": {
    "rodzina": "vpull",

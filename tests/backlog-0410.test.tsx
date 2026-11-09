@@ -18,7 +18,7 @@ test('picker swap:edit: „Przywróć …” zarchiwizowanego ćwiczenia z tą s
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/history/edit/${w.id}`); await flushAll(20);
   const d = edit.draftOf(w.id)!; await go(`/picker?target=swap:edit:${w.id}:${d.w.exercises[0].id}`); await flushAll(20);
   await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press (hantle)'); await flushAll(5);
-  await tap(screen.getByText('Przywróć „Bench Press (hantle)”')); await flushAll(20);
+  await tap(screen.getByText('Przywróć „Dumbbell Bench Press”')); await flushAll(20);
   expect(ex('Bench Press (hantle)').archived).toBeFalsy(); expect(d.w.exercises[0].exerciseId).toBe(ex('Bench Press (hantle)').id);
   /* inna miara — bez „Przywróć” */
   addWorkout(day(4), [['Plank', [{ durationSec: 60 }]]]); await act(async () => { store.deleteExercise(ex('Plank').id); });
@@ -31,7 +31,7 @@ test('renderApp({ navTimers: false }): arkusz zamiany zamknięty „Anuluj” ni
   await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), navTimers: false }); await flushAll(2000);
   const before = jest.getTimerCount();
-  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(50);
+  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(50);
   await tap(screen.getByText('Anuluj')); await flushAll(2000);
   expect(jest.getTimerCount()).toBe(before);
 });
@@ -64,13 +64,13 @@ test('arkusz „Inne” (audyt 04.10): przewijanie nie gubi tapnięcia przy klaw
   await fresh(); addWorkout(day(5), [['Bench Press (hantle)', [{ weight: 20, reps: 10 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
   store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
-  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
+  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press')); await flushAll(20);
   await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
   const sv = hostRoot().queryAll((n: any) => n.type === 'RCTScrollView').find((x: any) => x.props.keyboardShouldPersistTaps === 'handled'); expect(sv).toBeTruthy();
   await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press (hantle)'); await flushAll(5);
-  await tap(screen.getByText('Przywróć „Bench Press (hantle)”')); await flushAll(20);
+  await tap(screen.getByText('Przywróć „Dumbbell Bench Press”')); await flushAll(20);
   expect(store.getState().active!.exercises[0].exerciseId).toBe(ex('Bench Press (hantle)').id); expect(ex('Bench Press (hantle)').archived).toBeFalsy();
-  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (hantle)')); await flushAll(20);
+  await tap(screen.getByLabelText('Zamień ćwiczenie: Dumbbell Bench Press')); await flushAll(20);
   await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
   await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Moje wyciskanie'); await flushAll(5);
   await tap(screen.getByText('Utwórz „Moje wyciskanie”')); await flushAll(20);

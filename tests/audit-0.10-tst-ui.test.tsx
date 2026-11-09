@@ -80,7 +80,7 @@ describe('ekrany edycji i ustawień', () => {
     await renderApp({ saved: state() }); await go('/history/add'); await flushAll(10);
     expect(screen.getByText('Z szablonu')).toBeTruthy();
     await tap(screen.getByText(A.name)); await flushAll(10);
-    expect(screen.getAllByText(store.exById(A.items[0].exerciseId)!.name).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(require('@/lib/i18n').exName(store.exById(A.items[0].exerciseId)!)).length).toBeGreaterThan(0);
   });
 
   test('lista Ćwiczeń: chip „Podstawowe ✕” zdejmuje filtr („+ Podstawowe”) i wybór jest zapamiętany', async () => {

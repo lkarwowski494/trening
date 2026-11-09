@@ -12,7 +12,7 @@ name: Przewodnik i przypomnienia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Guide, .*", timeout: 30000 }
 - tapOn: "Guide, .*"
@@ -39,7 +39,7 @@ name: Przewodnik i przypomnienia
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Guide, Read: 2 of 10", timeout: 30000 }
 # --- przypomnienie o treningu z planu: wyłączone i włączone z powrotem (stan przełącznika w Ustawieniach) ---
@@ -53,7 +53,7 @@ name: Przewodnik i przypomnienia
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Start your first workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Appearance", timeout: 30000 }

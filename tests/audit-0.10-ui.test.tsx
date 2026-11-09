@@ -125,8 +125,8 @@ describe('G5 — konwencje okien i SwipeRow', () => {
 });
 
 describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
-  test('H1: „Przewodnik” (Pierwsze kroki, krok 3) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
-    await boot(); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10);
+  test('H1: „Przewodnik” (kafelek na ekranie nowej osoby, dawniej Pierwsze kroki krok 3) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
+    await boot(); await tap(screen.getByLabelText('Przewodnik. Co gdzie jest i jak działa.')); await flushAll(10); /* 05.11.2026: kafelek „Przewodnik” (ekran nowej osoby 1.1) */
     expect(screen.getByLabelText('Trening i serie, przeczytane').props.accessibilityState).toEqual({ expanded: true }); expect(S().guideSeen).toEqual(['workout']);
   });
   test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej; z Ustawień zniknęło), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
@@ -140,9 +140,9 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     const t = mkTpl(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/template/${t.id}`); await flushAll(10);
     expect(screen.getByText('zakres 6–8 · przerwa 1:30')).toBeTruthy(); expect(screen.getByText('przerwa 2:00')).toBeTruthy();
   });
-  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A): Pierwsze kroki — 3 kroki, każdy z jednym przyciskiem; „Szablony i plan” (krok 1, M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
+  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A i 05.11.2026 — ekran nowej osoby 1.1): cztery kafelki „Przygotuj się do pierwszej serii”, każdy z jednym wejściem; „Szablony i plan” (M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
     await boot(); const fs = within(screen.getByTestId('first-steps'));
-    expect(fs.getAllByText('Szablony i plan')).toHaveLength(1); expect(fs.getAllByText('Planowanie')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): krok 1 „Szablony i plan”, krok 2 „Planowanie” */ expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull(); expect(fs.queryByText('Miejsca i sprzęt')).toBeNull();
+    expect(fs.getAllByText('Szablony i plan')).toHaveLength(1); expect(fs.queryAllByText('Planowanie')).toHaveLength(0); expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.getAllByText('Miejsca i sprzęt')).toHaveLength(1); expect(fs.getAllByText('Historia z CSV')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull();
     expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
     await tap(fs.getByText('Szablony i plan')); await flushAll(10); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
@@ -151,7 +151,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
   test('H4: jednostka świeżej instalacji z regionu (en-US → lb, en-GB/pl → kg); „Co nowego” dla nowej osoby z dopiskiem', async () => {
     expect(deviceUnit('en-US')).toBe('lb'); expect(deviceUnit('en_US')).toBe('lb'); expect(deviceUnit('en-GB')).toBe('kg'); expect(deviceUnit('pl-PL')).toBe('kg'); expect(deviceUnit('en')).toBe('kg'); expect(LB_REGIONS).toContain('US');
     global.__kv.clear(); global.__locales = [{ languageCode: 'en', languageTag: 'en-US' }]; store.__resetForTests(); await store.init(); expect(S().settings.unit).toBe('lb');
-    await boot(); expect(screen.queryByTestId('whats-new-i')).toBeNull(); /* 1.0.0: historia „Co nowego” pusta (docs/18, 14.10.2026); dopisek dla nowej osoby przy wpisach — tests/whats-new.test.tsx */
+    await boot(); expect(screen.getByTestId('whats-new-i')).toBeTruthy(); expect(screen.queryByTestId('whats-new-dot')).toBeNull(); /* 1.0.1 (06.11.2026): przycisk jest, kropki nowa osoba nie ma; dopisek dla nowej osoby w panelu — tests/whats-new.test.tsx */
   });
   test('UX-16 A (zmienione 11.10.2026): bez „Ukryj” i tekstu zachęty (nagłówek „Bez planu tygodnia · Ustaw plan” jest stały); dane planHintHidden zostają (zapis, migrate); kafelki prowadzą do Postępów; „Powtórz ostatni” niżej przy innym treningu z planu', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
@@ -187,8 +187,8 @@ describe('H5 — „Zapisz jako szablon” i „Zaktualizować szablon?” (tylk
     expect(templateDiff(t, run(t, w => { w.exercises[1].swappedFrom = w.exercises[1].exerciseId; w.exercises[1].exerciseId = ex('Lat Pulldown').id; w.exercises[1].sets.push(store.emptySet()); }))).toBeNull(); store.cancelWorkout();
     expect(templateDiff(t, run(t, w => { w.deload = true; w.exercises[0].sets.pop(); }))).toBeNull(); store.cancelWorkout();
     const d = templateDiff(t, run(t, w => { w.exercises.splice(1, 1); w.exercises[0].sets.push({ ...store.emptySet(), kind: 'normal' }); w.exercises.unshift({ ...w.exercises[0], id: 'n', tplItemId: undefined, exerciseId: ex('Plank').id }); }))!;
-    expect(d).toEqual({ added: ['Plank'], removed: ['Pull Up'], sets: ['Bench Press (Barbell)'.replace('(Barbell)', '(sztanga)')], order: false }); store.cancelWorkout();
-    expect(templateDiffText(d)).toBe('Dodane: Plank.\nUsunięte: Pull Up.\nInne serie: Bench Press (sztanga).'); expect(templateDiffText({ added: [], removed: [], sets: [], order: true })).toBe('Inna kolejność ćwiczeń.');
+    expect(d).toEqual({ added: ['Plank'], removed: ['Pull-Up'], sets: ['Bench Press'], order: false }); store.cancelWorkout();
+    expect(templateDiffText(d)).toBe('Dodane: Plank.\nUsunięte: Pull-Up.\nInne serie: Bench Press.'); expect(templateDiffText({ added: [], removed: [], sets: [], order: true })).toBe('Inna kolejność ćwiczeń.');
     expect(templateDiff(t, run(t, w => { w.exercises.reverse(); }))).toMatchObject({ order: true }); store.cancelWorkout();
     expect(templateDiff(undefined, run(t))).toBeNull(); store.cancelWorkout(); t.archived = true; expect(templateDiff(t, run(t))).toBeNull();
   });
@@ -238,7 +238,7 @@ describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyc
     await boot(() => { const t = mkTpl(); store.startFromTemplate(t); });
     /* M3 p2 (ZM-02): notatka szablonu jest w menu „⋯” (alert z treścią), nie w osobnym wierszu */
     await menuPick('Notatka szablonu'); expect((global as any).__alerts.at(-1)).toMatchObject({ title: 'Notatka szablonu', msg: 'Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.' });
-    /* Bench: W + 2 normalne + drop = 2 robocze; Pull Up: 2 → 4 */
+    /* Bench: W + 2 normalne + drop = 2 robocze; Pull-Up: 2 → 4 */
     expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy();
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].done = true; store.save(a); }); await flushAll(5); expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy(); /* rozgrzewka */
     await act(async () => { const a = S().active!; a.exercises[0].sets[1].done = true; a.exercises[0].sets[2].done = true; a.exercises[0].sets[3].done = true; store.save(a); }); await flushAll(5);

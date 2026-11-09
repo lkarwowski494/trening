@@ -88,6 +88,14 @@ describe('verify:docs — co jest uruchamiane dla dokumentów', () => {
     const t = plan(['docs/18-przekazanie.md']).testy;
     for (const f of ['tests/readme.test.ts', 'tests/public-repo.test.ts', 'tests/e2e-pakiet.test.ts']) expect(t).toContain(f);
   });
+  /* L-120 (08.11.2026): zmiana ZB-043 w docs/18 zaczerwieniła verify:szybkie, bo test czytający ten wpis nie biegł w verify:docs; ta sama funkcja co test:fast (testyCzytajace), bez drugiej. */
+  test('L-120 (08.11.2026): zmiana docs/18 uruchamia tests/release-1.0.1.test.tsx (ZB-043), docs/40 — tests/audit-m1-p4b-queue.test.ts; plan używa testyCzytajace z scripts/testy-dla-plikow.mjs', () => {
+    expect(plan(['docs/18-przekazanie.md']).testy).toContain('tests/release-1.0.1.test.tsx');
+    expect(plan(['docs/40-lekcje.md']).testy).toContain('tests/audit-m1-p4b-queue.test.ts');
+    const v = readFileSync(join(root, 'scripts/verify-docs.mjs'), 'utf8');
+    expect(v).toContain("import { testyCzytajace, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs'");
+    expect(readFileSync(join(root, 'scripts/test-fast.mjs'), 'utf8')).toContain("import { testyCzytajace, testyRenderujaceRouter, testyUruchamiajaceSkrypty } from './testy-dla-plikow.mjs'");
+  });
   test('lista testów bez powtórzeń, tylko pliki tests/*.test.ts(x), posortowana', () => {
     const t = plan(['docs/18-przekazanie.md', 'docs/40-lekcje.md', 'CLAUDE.md']).testy;
     expect(new Set(t).size).toBe(t.length);

@@ -562,6 +562,28 @@
     "S28"
    ],
    "uwaga": "Tylko jawna lista nameRules (prostowanie nadgarstka)."
+  },
+  "obliques.side_hold": {
+   "region": "obliques",
+   "staw": "kręgosłup",
+   "ruch": "utrzymanie — opór przed zgięciem bocznym (deska boczna)",
+   "pl": {
+    "main": "Trzyma tułów prosto, żeby nie opadał na bok",
+    "aux": "Pomaga trzymać tułów prosto, żeby nie opadał na bok"
+   },
+   "en": {
+    "main": "Keeps your trunk from sagging to the side",
+    "aux": "Helps keep your trunk from sagging to the side"
+   },
+   "pewnosc": "dwa źródła",
+   "uwaga": "Funkcję utrzymania wprost opisują S29 (szczebel 4) i S30 (szczebel 4, inna organizacja); ruch, któremu się opierają (zgięcie boczne): S18; największa aktywność skośnych w desce bocznej: S26 (szczebel 2). Tylko jawna lista nameRules.",
+   "zrodla": [
+    "S29",
+    "S30",
+    "S18",
+    "S26"
+   ],
+   "status": "dwa_zrodla"
   }
  },
  "rules": [
@@ -1475,6 +1497,26 @@
     "„Extends and abducts the wrist.”",
     "„Extension and adduction of wrist.”"
    ]
+  },
+  {
+   "id": "S29",
+   "tier": 4,
+   "cite": "Nimblett I. Anti-Core Training is Real Core Training. NFPT, 28.04.2025",
+   "url": "https://nfpt.com/anti-core-training-the-importance-of-stabilizing-the-spine/",
+   "miejsce": "Types of Anti-Core training, pkt 3 Anti-Lateral Flexion",
+   "cytaty": [
+    "„The obliques act to resist motion and maintain a proper hip and core position.”"
+   ]
+  },
+  {
+   "id": "S30",
+   "tier": 4,
+   "cite": "Cherry H. Best Abs Exercises. NASM, akt. 23.07.2026",
+   "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+   "miejsce": "sekcja Side Plank",
+   "cytaty": [
+    "„training the obliques, transverse abdominis, and other muscles responsible for lateral trunk stability”"
+   ]
   }
  ],
  "open": [
@@ -1533,6 +1575,27 @@
      "Reverse Wrist Curl (hantle)",
      "One-Arm Dumbbell Reverse Wrist Curl",
      "Barbell Reverse Wrist Curl"
+    ]
+   },
+   {
+    "muscle": "obliques",
+    "roles": [
+     "main"
+    ],
+    "function": "obliques.side_hold",
+    "exercises": [
+     "Side Plank"
+    ]
+   },
+   {
+    "muscle": "obliques",
+    "roles": [
+     "aux"
+    ],
+    "function": "obliques.side_hold",
+    "exercises": [
+     "Copenhagen Plank",
+     "Push Up to Side Plank"
     ]
    }
   ]

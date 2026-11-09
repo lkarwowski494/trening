@@ -1,7 +1,7 @@
 /* ZB-041 (sesja wąskich gardeł, decyzje właściciela 04.11.2026 ~06:00 PL): G2 czysta kopia na starcie verify, G4 baza H1 z zielonego tests.yml gałęzi (i znacznik „szybkie”),
    G3 fraza katalogu tylko dla testów przeglądających katalog, G5 (L-100) test:fast dokłada testy czytające dane przez fs, G8 jedno ponowienie pliku padłego tylko na limicie czasu.
    Repozytoria próbne w katalogach tymczasowych, bez sieci (CI_RUNY_PLIK zastępuje API Actions). Testy G4 odtwarzają przypadek L-080: gałąź integracji z kodem względem main + commit tylko z dokumentami. */
-import { chmodSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { chmodSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { spawnSync } from 'child_process';
@@ -9,7 +9,8 @@ import { spawnSync } from 'child_process';
 const root = join(__dirname, '..');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const tmp: string[] = [];
-const nowy = (p: string) => { const d = mkdtempSync(join(tmpdir(), p)); tmp.push(d); return d; };
+/* macOS: tmpdir() przez symlink /var → /private/var psuje strażnika „uruchomiony jako skrypt” w kopiach skryptów (06.11.2026) — katalogi próbne po realpath. */
+const nowy = (p: string) => { const d = mkdtempSync(join(realpathSync(tmpdir()), p)); tmp.push(d); return d; };
 afterAll(() => { for (const d of tmp) rmSync(d, { recursive: true, force: true }); });
 const ENV = { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@example.invalid', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@example.invalid' } as NodeJS.ProcessEnv;
 delete ENV.CI; delete ENV.VERIFY_DOCS_CHANGED; delete ENV.CI_RUNY_PLIK;
@@ -200,7 +201,8 @@ describe('G5 / L-100 (04.11.2026): test:fast — testy czytające dokumenty i da
   });
   test('plik, którego nie czyta żaden test, nie dokłada nic; kod bez zmian (findRelatedTests)', () => {
     expect(fastPlan(['docs/nieistniejacy-' + 'dokument.md']).files).toEqual([]);
-    expect(fastPlan(['lib/units.ts']).files).toEqual(['lib/units.ts']);
+    /* 05.11.2026: kod aplikacji dokłada jeszcze test renderujący router (smoke) — tests/test-fast.test.ts; poza tym tylko findRelatedTests */
+    expect(fastPlan(['lib/units.ts']).files.filter((f: string) => f !== 'tests/smoke.test.tsx')).toEqual(['lib/units.ts']);
   });
   test('verify:szybkie bierze te testy: --od-bazy używa tego samego wyboru (jedna lista zmian)', () => {
     expect(readFileSync(skrypt, 'utf8')).toContain("from './testy-dla-plikow.mjs'");

@@ -29,7 +29,7 @@ describe('timer.relocalize / timer.refreshStale (Q-004)', () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Pull Up'));
     const a = store.getState().active!; const sid = a.exercises[0].sets[0].id; store.toggleDone(0, 0);
     const lb = restLabel(a, 0, 0); timer.labels.title = 'Trening'; timer.labels.subtitle = lb.sub; timer.labels.last = lb.last; await timer.start(90, sid);
-    expect(timer.T.sub).toBe('dalej: Pull Up, masa ciała'); /* 0.20: restCue */ const end = timer.T.endAt; applyLang('en'); global.__la.length = 0; global.__notifications.length = 0;
+    expect(timer.T.sub).toBe('dalej: Pull-Up, masa ciała'); /* 0.20: restCue */ const end = timer.T.endAt; applyLang('en'); global.__la.length = 0; global.__notifications.length = 0;
     await timer.relocalize();
     expect(timer.T.sub).toBe('next: Pull-Up, body weight'); expect(timer.labels.subtitle).toBe('next: Pull-Up, body weight');
     expect((global.__la as any[][]).map(x => [x[0], x[2], x[3], x[5]])).toEqual([['start', 'next: Pull-Up, body weight', end, 'rest|Rest']]);

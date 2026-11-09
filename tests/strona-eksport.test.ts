@@ -12,13 +12,14 @@ import { LIB, LIB_DISPLAY_NAME, libExercise } from '@/lib/seed';
 import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
-import { figureSpec as figureSpecAll, phasesFor, tempoFor, frameAt, V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
+import { figureSpec as figureSpecAll, phasesFor, tempoFor, frameAt, loopOf, V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
 import { generalCuesReviewed } from '@/lib/cues';
 import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
 import { isNiche, MUSCLES, REGION_MUSCLE } from '@/lib/seed';
 import { PARTS, silhouetteSprite, SILHOUETTE_VARS, exerciseMapSets, shadeLevel } from '@/lib/musclemap';
 import { FAMILIES } from '@/lib/figures/v2/families';
 import { figurePalette, svgInner, shapesAt as appShapesAt } from '@/lib/figures/v2';
+import { oneWayAt, uAt as uAtApp } from '@/lib/figures/v2/anim';
 import { light } from '@/lib/tokens';
 import { similarity, SWAP_WEIGHTS, orderSwaps } from '@/lib/swapScore';
 import { swapCandidates, SWAP_TOP } from '@/lib/swap';
@@ -29,6 +30,7 @@ import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources'
 
 const root = path.join(__dirname, '..');
 /** Figura, którą eksport może narysować: jak w aplikacji (shownFigureSpec) przy zapisie recenzji z tego testu (wszystkie rodziny ready z aktualnymi skrótami) — bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84). */
+/* r6-W2 A (05.11.2026): ćwiczenia w pętli jednokierunkowej wracają do eksportu (wpis figury niesie `loop`, fazy `untimed`); pomijanie W2-B zdjęte */
 const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
 const SEKCJE = ['setup', 'move', 'tips', 'mistakes'] as const;
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
@@ -36,7 +38,7 @@ const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 let REC = '';
 const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', '--recenzja', REC, ...extra], { encoding: 'utf8' });
 type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
-  figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: Cues; alternatives: string[]; requires: string[][] };
+  figure: null | { phases: { name: string; ms: number; untimed?: boolean }[]; errors: { id: string; text: string }[] }; cues: Cues; alternatives: string[]; requires: string[][] };
 type Cues = { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[]; move?: string[]; tips?: string[]; missing?: number };
 type ExRoles = { roles: { id: string; text: string }[] };
 type Out = { schema: string; app: { version: string; commit: string; catalogRev: string }; lang: string; meta: { exercises: number; cuesWithoutText: number }; labels: Record<string, Record<string, string>>; exercises: Ex[] };
@@ -156,13 +158,36 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         const spec = figureSpec(e.id);
         if (!spec) { expect([e.id, e.figure]).toEqual([e.id, null]); continue; } /* bez specyfikacji (rodzina bez statusu ready, także z pozą w poses/*.json): bez figury — bramka 4 */
         n++; expect(e.figure!.phases.map(p => p.ms)).toEqual(phasesFor(spec, tempoFor(spec)).map(p => p.ms));
+        expect(e.figure!.phases.map(p => !!p.untimed)).toEqual(phasesFor(spec, tempoFor(spec)).map(p => !!p.untimed)); /* r6-W2 A (05.11.2026): znacznik „bez sekund” jak w aplikacji */
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(132); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
+      expect(n).toBe(183); /* 05.11.2026: 132 + 22 olympic + 29 triceps (podłączone i zrecenzowane niezależnie — r5); sam olympic: 154 = 132 + 22 z danych (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; 19 jednokierunkowych wróciło do eksportu po r6-W2 A: strona gra pętlę jednokierunkową, 135 = 132 + 3 wahadła Clean Pull, Snatch Pull, Jerk Dip Squat przed W2-A); 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
+  });
+  test('r6-W2 A (05.11.2026): ćwiczenia w pętli jednokierunkowej mają figurę z `loop: jednokierunkowa` i jedną fazą bez sekund; wahadło (Clean Pull) ma `loop: wahadlo` i fazy z sekundami; negatyw: żadna figura nie jest pomijana z powodu trybu pętli', () => {
+    const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { loop: string; lowerFirst: boolean }> };
+    for (const l of ['pl', 'en']) {
+      const ex = (id: string) => data[l].exercises.find(e => e.id === id)!;
+      for (const k of ['Power Clean', 'Snatch Balance', 'Clean and Jerk', 'Block Power Snatch']) {
+        expect(loopOf(figureSpecAll(k)!)).toBe('jednokierunkowa');
+        const e = ex(k); expect([k, e.slug in fig.figures, fig.figures[e.slug]?.loop]).toEqual([k, true, 'jednokierunkowa']);
+        expect([k, e.figure!.phases.length, e.figure!.phases[0].untimed]).toEqual([k, 1, true]); /* jedna faza „Podnoszenie” bez sekund */
+        expect(e.figure!.phases[0].ms).toBe(phasesFor(figureSpecAll(k)!, tempoFor(figureSpecAll(k)!))[0].ms);
+      }
+      for (const k of ['Clean Pull', 'Jerk Dip Squat', 'Back Squat']) {
+        expect(loopOf(figureSpecAll(k)!)).toBe('wahadlo');
+        const e = ex(k); expect([k, fig.figures[e.slug]?.loop]).toEqual([k, 'wahadlo']);
+        expect([k, e.figure!.phases.length > 1, e.figure!.phases.some(p => p.untimed)]).toEqual([k, true, false]);
+      }
+    }
+    /* każda figura niesie tryb pętli zgodny z aplikacją; jednokierunkowych jest 19 (olympic) + pozostałe rodziny z trybem (plyo, rzuty) */
+    const jedn = data.en.exercises.filter(e => { const s = figureSpec(e.id); return s && loopOf(s) === 'jednokierunkowa'; });
+    expect(jedn.length).toBeGreaterThanOrEqual(19);
+    for (const e of data.en.exercises) { const s = figureSpec(e.id); if (!s) continue; expect([e.id, fig.figures[e.slug]?.loop]).toEqual([e.id, loopOf(s)]); expect([e.id, e.slug in fig.figures]).toEqual([e.id, true]); }
+    const olympic = data.en.exercises.filter(e => e.family === 'olympic' && figureSpec(e.id)); expect(olympic.length).toBe(22);
   });
   test('figury.json: wpis na slug ćwiczenia z figurą — 25 próbek klatek, kontrakt pozy, tempo i błędy jak w aplikacji; próbki = klatki rigu (zaokrąglone do 0,001 cm — zawias z prawie prostymi kolanami jest wrażliwy na zaokrąglenie)', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { frames: { pose: { pelvis: number[] }; props: unknown[] }[]; pose: { kontrakt: string }; tempo: unknown; errors: { id: string; cue: string; kind: string; frames?: unknown[]; tempo?: unknown }[]; views: string[]; family: string }> };
@@ -189,6 +214,26 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     const scores = data.en.exercises.find(e => e.id === 'Back Squat')!.alternatives.map(s => { const b = LIB.find(r => r[0] === bySlug.get(s)!.id)!; return similarity(a, libExercise(b))!.score; });
     expect([...scores].sort((x, y) => y - x)).toEqual(scores);
     expect(SWAP_WEIGHTS.pattern).toBe(3);
+  });
+});
+
+describe('eksport dla strony: pole `pelna` = standard 1 „Pełna karta” liczony tą samą funkcją co licznik pokrycia (decyzja właściciela 02.11.2026, S6/F-20, wariant A)', () => {
+  /** Wynik `policz()` (scripts/pokrycie-katalogu.mjs) dla każdego ćwiczenia w osobnym procesie Node (moduł ES). */
+  const licznik = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { policz } from './scripts/pokrycie-katalogu.mjs'; process.stdout.write(JSON.stringify(Object.fromEntries(policz().cw.map(c => [c.key, c.pelna]))));`], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 24 })) as Record<string, boolean>;
+  test('każde ćwiczenie eksportu ma boolowskie `pelna` równe wynikowi policz() (pl i en)', () => {
+    for (const l of ['pl', 'en'] as const) {
+      const ex = data[l].exercises as unknown as { id: string; pelna: unknown }[];
+      expect(ex).toHaveLength(Object.keys(licznik).length);
+      expect(ex.filter(e => typeof e.pelna !== 'boolean').map(e => e.id)).toEqual([]);
+      expect(ex.filter(e => e.pelna !== licznik[e.id]).map(e => e.id)).toEqual([]);
+    }
+  });
+  test('`pelna` nie zależy od języka pliku (35 języków, te same ćwiczenia spełniają standard)', () => {
+    const baza = (data.pl.exercises as unknown as { id: string; pelna: boolean }[]).map(e => [e.id, e.pelna]);
+    for (const l of LANGS) expect([l, (data[l].exercises as unknown as { id: string; pelna: boolean }[]).map(e => [e.id, e.pelna])]).toEqual([l, baza]);
+  });
+  test('są ćwiczenia z pełną kartą i bez niej (pole nie jest stałą)', () => {
+    const v = Object.values(licznik); expect(v.some(Boolean)).toBe(true); expect(v.some(x => !x)).toBe(true);
   });
 });
 
@@ -235,11 +280,11 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
     return [...sel.ok, ...sel.err];
   };
   /** Zdania P1 (02.11.2026) i P2 (03.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml); po przekładzie wpisy znikają z zestawów. */
-  const OCZEKUJE: string[] = ['2026-11-02-p1', '2026-11-03-p2', '2026-11-04-t1'].flatMap(d => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', `docs/lokalizacja/zestaw-przekladu-${d}-wskazowki.json`), 'utf8')).klucze as { id: string }[]).map(k => k.id));
+  const OCZEKUJE: string[] = ['2026-11-02-p1', '2026-11-03-p2', '2026-11-04-t1', '2026-11-04-t1b', '2026-11-08-a1', '2026-11-08-a2'].flatMap(d => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', `docs/lokalizacja/zestaw-przekladu-${d}-wskazowki.json`), 'utf8')).klucze as { id: string }[]).map(k => k.id));
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
   test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {
-    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(577 + OCZEKUJE.length); /* 577 = 371 + 76 zdań P1 (G2 mobilność, 02.11.2026) + 79 zdań P2 (G3 moc, 03.11.2026) + 52 zdania T1 (delt_raise, 04.11.2026); 577 = 371+76+79+52 − 1 (ur.height zestawu ogólnego uprightRow usunięte 04.11.2026 po zastąpieniu kartami własnymi z urow.height); wszystkie już przełożone (zestawy P1, P2 i T1 puste od 04.11.2026); + zdania czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-0{2-p1,3-p2,4-t1}-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(623 - 1 + OCZEKUJE.length); /* 08.11.2026 (A2 nogi): − 1 = hack.setup usunięte (karta Hack Squat zastąpiona kartą z hack.setup2), + 33 zdania A2 w zestawie oczekującym;  623 = 577 + 46 zdań T1b (triceps, 05.11.2026; już przełożone, zestaw T1b pusty); 577 = 371 + 76 zdań P1 (G2 mobilność, 02.11.2026) + 79 zdań P2 (G3 moc, 03.11.2026) + 52 zdania T1 (delt_raise, 04.11.2026); 577 = 371+76+79+52 − 1 (ur.height zestawu ogólnego uprightRow usunięte 04.11.2026 po zastąpieniu kartami własnymi z urow.height); wszystkie już przełożone (zestawy P1, P2 i T1 puste od 04.11.2026); + zdania czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-11-0{2-p1,3-p2,4-t1}-wskazowki.json; 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
     for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).sort()]).toEqual([l, [...OCZEKUJE].sort()]); /* ACG-003, 31.10.2026: było 52; brakować mogą tylko zdania z zestawu oczekującego na przekład */
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
@@ -358,6 +403,15 @@ describe('silnik figur dla przeglądarki (scripts/strona/silnik-build.mjs)', () 
       const left = b.map(nums); const tag = (x: string) => x.replace(/[-\d.]+/g, '#');
       for (const l of lines) { const na = nums(l); const j = left.findIndex((nb, k) => nb.length === na.length && tag(b[k]) === tag(l) && Math.max(0, ...na.map((v, q) => Math.abs(v - nb[q]))) < 0.3); expect([r.key, r.view, r.u, l.slice(0, 40), j >= 0]).toEqual([r.key, r.view, r.u, l.slice(0, 40), true]); left.splice(j, 1); b.splice(j, 1); }
     });
+  });
+  test('r6-W2 A (05.11.2026): oneWayAt silnika strony = oneWayAt aplikacji (jedno źródło prawdy, próbki czasu co 50 ms przez 2 pętle); negatyw: nie jest wahadłem uAt (po końcu ruchu skok do 0, bez cofania)', () => {
+    const code = `import * as E from ${JSON.stringify('file://' + path.join(eng, 'silnik/figura.js'))}; const o = []; for (let ms = -700; ms <= 2 * 2500 + 700; ms += 50) o.push([ms, E.oneWayAt(ms), E.uAt(ms, true, E.TEMPO)]); process.stdout.write(JSON.stringify(o));`;
+    const rows = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' })) as [number, number, number][];
+    expect(rows.length).toBeGreaterThan(100);
+    for (const [ms, w, p] of rows) { expect([ms, w]).toEqual([ms, oneWayAt(ms)]); expect([ms, p]).toEqual([ms, uAtApp(ms, true)]); }
+    const lot = rows.filter(([ms]) => ms >= 0 && ms <= 2500);
+    for (let i = 1; i < lot.length; i++) { const [ms, w] = lot[i]; if (ms < 2000) expect([ms, w >= lot[i - 1][1]]).toEqual([ms, true]); } /* w jednej pętli u nie maleje do końca ruchu (pętla jednokierunkowa trwa 2500 ms) */
+    expect(rows.some(([, w, p]) => w !== p)).toBe(true); /* inna funkcja niż wahadło */
   });
 });
 

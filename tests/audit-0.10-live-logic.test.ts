@@ -98,13 +98,13 @@ describe('F5 (LIVE-04): podpis przerwy (Live Activity) według tej samej reguły
   });
   test('F5 (LIVE-04): wcześniejsze ćwiczenie nieodhaczone → podpis wskazuje je, jak karta (audyt: „dalej: Leg Press”)', async () => {
     const a = await live(['Bench Press (sztanga)', 'Back Squat', 'Leg Press']);
-    expect(restLabel(a, 1, 0)).toEqual({ sub: 'dalej: Bench Press (sztanga)', last: false });
-    a.exercises[1].sets[0].done = true; expect(restLabel(a, 2, 0)).toEqual({ sub: 'dalej: Bench Press (sztanga)', last: false }); /* audyt: nazwa właśnie zrobionego */
+    expect(restLabel(a, 1, 0)).toEqual({ sub: 'dalej: Bench Press', last: false });
+    a.exercises[1].sets[0].done = true; expect(restLabel(a, 2, 0)).toEqual({ sub: 'dalej: Bench Press', last: false }); /* audyt: nazwa właśnie zrobionego */
   });
   test('F5 (LIVE-04): następna seria tego samego ćwiczenia / supersetu — „nazwa · seria n”', async () => {
     const a = await live(['Bench Press (sztanga)', 'Pull Up'], 2, true);
-    expect(restLabel(a, 0, 0)).toEqual({ sub: 'Pull Up · seria 1, masa ciała', last: false }); /* 0.20: zapowiedź zawiera ciężar i powtórzenia (restCue) */
-    a.exercises[0].sets[0].done = true; expect(restLabel(a, 1, 0)).toEqual({ sub: 'Bench Press (sztanga) · seria 2', last: false });
+    expect(restLabel(a, 0, 0)).toEqual({ sub: 'Pull-Up · seria 1, masa ciała', last: false }); /* 0.20: zapowiedź zawiera ciężar i powtórzenia (restCue) */
+    a.exercises[0].sets[0].done = true; expect(restLabel(a, 1, 0)).toEqual({ sub: 'Bench Press · seria 2', last: false });
   });
   test('F5 (LIVE-04, decyzja B): po ostatniej serii treningu — przerwa zostaje, podpis „nic więcej do zrobienia” (last)', async () => {
     const a = await live(['Bench Press (sztanga)', 'Plank'], 1); a.exercises[0].sets[0].done = true;

@@ -126,12 +126,20 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | app-s5 | app-s5 | 5 | ? |
 | app-s6 | app-s6 | 5 | ? |
 | app-s7 | app-s7 | 5 | ? |
+| NFPT (wpisy gościnne) | National Federation of Professional Trainers — wpisy gościnne bez nazwanego autora (nfpt.com) | 5 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| Fit Father Project | Fit Father Project — poradnik o ćwiczeniach (fitfatherproject.com) | 5 | serwis specjalistyczny |
+| BodBot | BodBot — opisy ćwiczeń (bodbot.com) | 5 | serwis specjalistyczny |
+| app-s8 | app-s8 | 5 | ? |
+| Echelon Fitness | Echelon Fitness — instrukcja ćwiczeń do własnego kółka (producent, PDF 2021) | 4 | producent sprzętu |
+| NSCA — Exercise Technique Manual (Human Kinetics) | NSCA — Exercise Technique Manual for Resistance Training, wyd. 4 (fragment u wydawcy Human Kinetics) | 3 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| TRX | TRX — blog producenta zawieszeń (trxtraining.com) | 4 | producent sprzętu |
+| Thera-Band | Thera-Band (Performance Health) — instrukcje ćwiczeń z gumami (producent gum) | 4 | producent sprzętu |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 196; zdań (z powtórzeniami między ćwiczeniami): 870; unikalnych zdań: 537; źródeł: 412.
-- Ćwiczenia bazowe bez wskazówek (otwarte): 21.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 78 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench.
+- Ćwiczenia ze wskazówkami: 251; zdań (z powtórzeniami między ćwiczeniami): 1099; unikalnych zdań: 658; źródeł: 480.
+- Ćwiczenia bazowe bez wskazówek (otwarte): 15.
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 118 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge, Double Kettlebell Clean, Hang Clean, Block Clean, Block Power Clean, Split Clean, Clean Pull, Split Jerk, Power Jerk, Jerk Dip Squat, Jerk Balance, Muscle Snatch, Snatch Balance, Block Snatch, Split Snatch, Jump Squat, Tuck Jump, Weighted Jump Squat, Broad Jump, Alternate Leg Push-Off, Wall Ball, Medicine Ball Chest Pass, Backward Medicine Ball Throw, Standing Two-Arm Overhead Throw, Calves-SMR, Latissimus Dorsi-SMR, Piriformis-SMR, Rhomboids-SMR, Foot-SMR, External Rotation (hantel), Supine Figure-Four Stretch, Butterfly Stretch, Side-Lying Quad Stretch, Child's Pose, Supine Spinal Twist, The Straddle, Peroneals Stretch, Posterior Tibialis Stretch, Standing Soleus And Achilles Stretch, Cross-Body Shoulder Stretch, Overhead Triceps Stretch, Side Neck Stretch, Chest And Front Of Shoulder Stretch, Chin To Chest Stretch, Arm Circles, Ankle Circles, Wrist Circles, One-Arm Cable Rear Lateral Raise, Cable Reverse Fly, Cable Y Raise, One-Arm Incline Lateral Raise, Barbell Front Raise to Overhead, Sled Reverse Flye, Car Drivers, Front Incline Dumbbell Raise, Dumbbell Incline Shoulder Raise, Barbell Incline Shoulder Raise, Dumbbell Front Raise to Overhead, Straight Raises on Incline Bench, Single Arm Triceps Pushdown, Skullcrusher (sztanga), Standing Low-Pulley One-Arm Triceps Extension, Tate Press, Reverse Grip Triceps Pushdown, Triceps Kickback (linki), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Band Skull Crusher, Cable Lying Triceps Extension, Incline Barbell Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head, One-Arm Lying Dumbbell Triceps Extension, Chain Handle Extension, Arnold Press, Seated Barbell Military Press, Kettlebell Press, Kettlebell Seated Press, Band Shoulder Press, Single Arm Overhead Press (hantel), Ab Wheel, Renegade Row, Incline Chest Fly (hantle), Decline Push Up, Suspended Push-Up, Seated Calf Raise (hantle), Barbell Seated Calf Raise, Band Calf Raise, Dumbbell Seated One-Leg Calf Raise, Cable Kickback, Fire Hydrant, Hip Extension with Bands, Single Leg Glute Bridge, Single Leg Hip Thrust, Glute Bridge (sztanga), Seated Band Hamstring Curl, Hack Squat, Single Leg Press.
 
 ## Otwarte — bez wskazówek
 
@@ -139,19 +147,13 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 |---|---|
 | Decline Bench Press | wskazówki czekają na rozstrzygnięcie pytania o metodę: czy ławka płaska to wariant ławki skośnej w dół (docs/research/31, pyt. 1); jedyne źródło opisujące ławkę skośną w dół to Eleiko |
 | Pec Deck | dwa źródła istnieją tylko w materiałach uczelnianych centrów sportu (HKU, Western), których szczebel (4 czy 5) jest otwarty (docs/research/33, pyt. 1) |
-| Chest Dip | wspólna tylko jedna wskazówka (ruch) w źródłach McKenzie 2022 i HKU; głębokość i pozycja tułowia po jednym źródle (docs/research/33) |
-| Arnold Press | brak opisu w ACE, NASM, Eleiko, HKU, Western ani w badaniach; zostają serwisy konsumenckie (odrzucone); ExRx niedostępny (docs/research/33) |
 | Incline Curl (hantle) | opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33) |
 | Concentration Curl (hantle) | jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33) |
 | Spider Curl | brak źródeł szczebla do 4 (docs/research/33) |
-| Skullcrusher (hantle) | brak opisu wersji z hantlami (ACE 36 opisuje sztangę) (docs/research/33) |
-| Triceps Kickback | jedyne źródło: ACE 55; opis z biblioteki Human Kinetics dotyczy innego ćwiczenia (docs/research/33) |
 | Box Squat | wspólna tylko jedna wskazówka (siad na skrzyni bez odbicia); szeroki rozstaw i pionowe piszczele — jedno źródło (docs/research/33) |
 | Sissy Squat | brak źródeł (docs/research/33) |
-| Cable Kickback | dwa źródła tylko w materiałach uczelnianych centrów sportu (HKU, Western) lub badanie maszyny; szczebel otwarty (docs/research/33, pyt. 1) |
 | Hip Abduction | wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33) |
 | Hip Adduction | oba źródła (ACE, HKU) opisują przywodzenie na wyciągu stojąc, nie maszynę; komplet zależy też od szczebla HKU (docs/research/33, pyt. 1) |
-| Ab Wheel | tylko jedna wskazówka bez materiałów uczelnianych (Sussexsport); szczebel otwarty (docs/research/33, pyt. 1) |
 | Hanging Leg Raise | NASM opisuje tylko progresję; źródła uczelniane niespójne (tekst i zdjęcie) (docs/research/33) |
 | Hanging Knee Raise | komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1) |
 | Cable Crunch | komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1) |
@@ -206,6 +208,20 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | Straight Raises on Incline Bench | `yr.mis.chest` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Dumbbell Front Raise to Overhead | `fro.mis.arch` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 | Dumbbell Front Raise to Overhead | `mis.jerk` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 niezależne źródła, w tym 0 szczebla ≤ 4 (obie to strony aplikacji lub zbiory opisów) — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Reverse Grip Triceps Pushdown | `rgpd.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Reverse Grip Triceps Pushdown | `rgpd.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Reverse Grip Triceps Pushdown | `tpd.elbows` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Band Overhead Triceps Extension | `tri.bandOte.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Band Overhead Triceps Extension | `tri.bandOte.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Decline Dumbbell Triceps Extension | `tri.skullDbDec.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Decline Dumbbell Triceps Extension | `skullDb.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Decline Dumbbell Triceps Extension | `tri.mis.elbowsFlare` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Decline EZ Bar Triceps Extension | `tri.skullDec.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Decline EZ Bar Triceps Extension | `tri.skullBb.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Decline EZ Bar Triceps Extension | `tri.mis.elbowsFlare` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 1 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Chain Handle Extension | `tri.chainExt.setup` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Chain Handle Extension | `tri.chainExt.move` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
+| Chain Handle Extension | `tri.mis.elbowsFlare` | praktyka (etap 2, decyzja właściciela 02–03.11.2026): 2 źródła, w tym 0 szczebla ≤ 4 — ustawienie i ruch z części wspólnej, recenzja niezależna z porównaniem z rysunkiem (L-047) |
 
 ## Wskazówki i źródła
 
@@ -1187,17 +1203,15 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ustawienie**
 
-- Oprzyj plecy o oparcie maszyny, stopy na platformie mniej więcej na szerokość bioder. — ExRx.net: [SLHackSquat](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat) (Preparation); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 1 (prasa — ta sama zasada oparcia)) `hack.setup`
+- Oprzyj plecy o oparcie, barki pod poduszkami; stopy na platformie jak do zwykłego przysiadu. — BarBend: [hack squat machine](https://barbend.com/hack-squat-machine/) (Step 2: Set Your Stance (back against the backrest; head between the shoulder pads; typical squat stance)); NFPT: [how to do hack squats](https://nfpt.com/how-to-do-hack-squats/) (Setup (shoulders against the shoulder pads, feet on the platform); Options (medium stance: feet shoulder width apart)) `hack.setup2`
 
 **Ruch**
 
-- Opuść się, uginając biodra i kolana, potem wstań, prostując nogi. — ExRx.net: [SLHackSquat](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat) (Execution); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 2–4) `hack.move`
+- Opuść się, uginając biodra i kolana, potem wstań, prostując nogi. — BarBend: [hack squat machine](https://barbend.com/hack-squat-machine/) (Step 3: Squat (slide down into a deep squat; push into the plate to return)); NFPT: [how to do hack squats](https://nfpt.com/how-to-do-hack-squats/) (Movement (bending at the hips and knees, lower the weight)) `hack.move`
 
-**Wskazówki**
+**Czego unikać**
 
-- Pchaj całą stopą — pięty nie odrywają się od platformy. — ExRx.net: [SLHackSquat](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat) (Comments (do not allow heels to raise)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 2; Step 3) `lp.heels`
-- Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały. — ExRx.net: [SLHackSquat](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat) (Comments (pelvis pulls away from back pad)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 3; Step 4) `lp.hips`
-- Kolana idą w linii palców stóp — nie zapadają się do środka. — ExRx.net: [SLHackSquat](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat) (Comments (knees pointed same direction as feet)); NASM: [Leg Press](https://www.nasm.org/resource-center/exercise-library/leg-press) (Common Mistakes (knees cave inward; prasa — ta sama zasada)) `sq.kneesToes`
+- Odrywanie bioder albo dolnej części pleców od oparcia. — BarBend: [hack squat machine](https://barbend.com/hack-squat-machine/) (Common Mistakes (hips and torso connected with the pad at all times; pelvis or lower-back drift)); NFPT: [how to do hack squats](https://nfpt.com/how-to-do-hack-squats/) (Cautions (do not let your hips come off the pad or arch your back)) `hack.mis.hips`
 
 ### Plank
 
@@ -3358,6 +3372,959 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 - Odrywanie klatki od ławki. — free-exercise-db: [Straight Raises on Incline Bench](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json) (szczebel 5 — nie liczy się do pary; wniosek z ustawienia (etap 2): leżenie na ławce); app-s6 (szczebel 5 — nie liczy się do pary; Steps 1: position chest against bench top) `yr.mis.chest`
 
+### Dumbbell One-Arm Triceps Extension
+
+**Ustawienie**
+
+- Unieś hantel jedną ręką nad głowę, łokieć skierowany w górę. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (or use one arm at a time)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant oburącz)); Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (wariant wyciąg)) [uproszczenie: ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd] `ote1.setup`
+
+**Ruch**
+
+- Zginaj łokieć, opuszczając hantel za głowę; wyprostuj rękę nad głową. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (one arm at a time)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant oburącz)); Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (wariant wyciąg)) [uproszczenie: ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd] `ote1.move`
+
+**Wskazówki**
+
+- Ramię nieruchomo, łokieć wysoko nad głową — pracuje przedramię. — Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (keep the elbow high instead of driving it forward; wariant wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 (wariant oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (upper arm still; one arm at a time)) [uproszczenie: ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd] `ote1.upperArm`
+- Prostuj rękę do końca, ale bez gwałtownego blokowania łokcia. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (one arm; not lock the elbows)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2 (wariant oburącz)) [uproszczenie: ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd] `press1.noLock`
+
+**Czego unikać**
+
+- Łokieć opada w przód zamiast zostać wysoko. — Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (wariant wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 — błąd = zaprzeczenie standardu; wariant oburącz) [uproszczenie: ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd] `tri.mis.elbowDrift1`
+- Wyginanie pleców w łuk. — BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (Coach's Tips (wariant: wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 — błąd = zaprzeczenie standardu; wariant oburącz) [uproszczenie: ACE opisuje wersję oburącz, Catalyst — wyciąg; ten sam ruch stawów, zmienia się liczba rąk albo przyrząd] `tri.mis.archBack`
+
+### Kettlebell Overhead Triceps Extension
+
+**Ustawienie**
+
+- Unieś ciężar nad głowę na prostych rękach, łokcie skierowane w górę. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu] `ote.setupLoad`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając ciężar za głowę; wyprostuj ręce nad głową. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu] `ote.moveLoad`
+
+**Wskazówki**
+
+- Ramiona nieruchomo, łokcie nad głową — pracują przedramiona. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (upper arm still; wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu] `ote.upperArm`
+- Łokcie nie rozchodzą się szeroko na boki. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (wskazówka końcowa (wariant: hantel oburącz)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Overhead Triceps Extension, How to Do It (keeping your elbows tucked in; wariant: guma)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu] `ote.elbowsIn`
+- Prostuj ręce do końca, ale bez gwałtownego blokowania łokci. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (not lock the elbows; wariant: hantel)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2 (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu] `press.noLock`
+
+**Czego unikać**
+
+- Wyginanie pleców w łuk. — BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (Coach's Tips (wariant: wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); kettlebell to inny przyrząd tego samego ruchu] `tri.mis.archBack`
+
+### Overhead Triceps Extension (EZ)
+
+**Ustawienie**
+
+- Unieś ciężar nad głowę na prostych rękach, łokcie skierowane w górę. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla] `ote.setupLoad`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając ciężar za głowę; wyprostuj ręce nad głową. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla] `ote.moveLoad`
+
+**Wskazówki**
+
+- Ramiona nieruchomo, łokcie nad głową — pracują przedramiona. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (upper arm still; wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla] `ote.upperArm`
+- Łokcie nie rozchodzą się szeroko na boki. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (wskazówka końcowa (wariant: hantel oburącz)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Overhead Triceps Extension, How to Do It (keeping your elbows tucked in; wariant: guma)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla] `ote.elbowsIn`
+- Prostuj ręce do końca, ale bez gwałtownego blokowania łokci. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (not lock the elbows; wariant: hantel)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2 (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla] `press.noLock`
+
+**Czego unikać**
+
+- Wyginanie pleców w łuk. — BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (Coach's Tips (wariant: wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); gryf EZ zamiast hantla] `tri.mis.archBack`
+
+### Standing Overhead Barbell Triceps Extension
+
+**Ustawienie**
+
+- Unieś ciężar nad głowę na prostych rękach, łokcie skierowane w górę. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla] `ote.setupLoad`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając ciężar za głowę; wyprostuj ręce nad głową. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla] `ote.moveLoad`
+
+**Wskazówki**
+
+- Ramiona nieruchomo, łokcie nad głową — pracują przedramiona. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (upper arm still; wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla] `ote.upperArm`
+- Łokcie nie rozchodzą się szeroko na boki. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (wskazówka końcowa (wariant: hantel oburącz)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Overhead Triceps Extension, How to Do It (keeping your elbows tucked in; wariant: guma)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla] `ote.elbowsIn`
+- Prostuj ręce do końca, ale bez gwałtownego blokowania łokci. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (not lock the elbows; wariant: hantel)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2 (wariant: hantel)) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla] `press.noLock`
+
+**Czego unikać**
+
+- Wyginanie pleców w łuk. — BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (Coach's Tips (wariant: wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel) [uproszczenie: wariant sprzętu: źródła opisują hantel (ACE, ISSA) i wyciąg (BarBend); ten sam ruch stawów, zmienia się przyrząd (do potwierdzenia przez recenzenta L-047); sztanga zamiast hantla] `tri.mis.archBack`
+
+### Single Arm Triceps Pushdown
+
+**Ustawienie**
+
+- Stań przodem do wyciągu z górnym bloczkiem, chwyć uchwyt jedną ręką, łokieć przy boku. — ACE: [Triceps Pushdowns (#185)](https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/) (Step 1–3 (wersja jednorącz)); Catalyst Athletics: [Single Arm Rope Tricep Pushdown (#898)](https://www.catalystathletics.com/exercise/898/Single-Arm-Rope-Tricep-Pushdown/) (Description (one hand; elbow close to the side)) `tpd1.setup`
+
+**Ruch**
+
+- Prostuj łokieć, wypychając uchwyt w dół; powoli wróć do góry. — ACE: [Triceps Pushdowns (#185)](https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/) (Step 3 (wersja jednorącz)); Catalyst Athletics: [Single Arm Rope Tricep Pushdown (#898)](https://www.catalystathletics.com/exercise/898/Single-Arm-Rope-Tricep-Pushdown/) (Description (extend, return under control)) `tpd1.move`
+
+**Wskazówki**
+
+- Łokieć przy boku — pracuje przedramię, nie bark. — ACE: [Triceps Pushdowns (#185)](https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/) (wskazówka końcowa (forward movement of your elbows)); Catalyst Athletics: [Single Arm Rope Tricep Pushdown (#898)](https://www.catalystathletics.com/exercise/898/Single-Arm-Rope-Tricep-Pushdown/) (Description (elbow close to the side)) `tpd1.elbow`
+
+**Czego unikać**
+
+- Łokieć odjeżdża od tułowia podczas wypychania. — ACE: [Triceps Pushdowns (#185)](https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/) (wskazówka końcowa (forward movement of your elbows)); Catalyst Athletics: [Single Arm Rope Tricep Pushdown (#898)](https://www.catalystathletics.com/exercise/898/Single-Arm-Rope-Tricep-Pushdown/) (Description (elbow close to the side) — błąd = zaprzeczenie standardu) `mis.elbowAway1`
+
+### Skullcrusher (hantle)
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj hantle nad sobą na prostych rękach. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 Triceps Extension, wersja leżąc (dumbbells raised above the head)); Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (dumbbells)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 1 (wariant: sztanga)) [uproszczenie: ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd] `skullDb.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając hantle w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (lowered to ear level)); Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (dumbbells)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2–3 (wariant: sztanga)) [uproszczenie: ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd] `skullDb.move`
+
+**Wskazówki**
+
+- Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip (upper arms vertical; wariant: sztanga)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (upper arm does not move)) [uproszczenie: ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd] `skull.upperArm`
+- Opuszczaj, aż dłonie będą tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2 (lower until just above your forehead or until the upper arms begin to drift backwards; wariant: sztanga)); ExRx.net: [BBLyingTriExt](https://web.archive.org/web/20220926203416/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt) (Execution (as bar nears head; wariant: sztanga)) [uproszczenie: ACE i ExRx opisują sztangę; zakres opuszczania ten sam przy hantlach (zdanie bez słowa o gryfie)] `skull.depthFree`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip (elbows shoulder-width apart) — błąd = zaprzeczenie standardu; wariant: sztanga) [uproszczenie: ACE opisuje sztangę; ten sam ruch stawów, zmienia się przyrząd] `tri.mis.elbowsFlare`
+
+### Skullcrusher (sztanga)
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj sztangę nad sobą na prostych rękach. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 1–3); Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (barbell or EZ curl bar pressed up above you)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (sztanga dozwolona)) `tri.skullBb.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając sztangę w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2–3); Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (lowered to ear level)) `tri.skullBb.move`
+
+**Wskazówki**
+
+- Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip (upper arms vertical)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (upper arm does not move; wariant: hantle)) `skull.upperArm`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip — błąd = zaprzeczenie standardu) `tri.mis.elbowsFlare`
+
+### Standing Low-Pulley One-Arm Triceps Extension
+
+**Ustawienie**
+
+- Stań tyłem do wyciągu i trzymaj uchwyt jedną ręką nad głową, łokieć skierowany w górę. — Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (one hand overhead, facing away from the machine; elbow high)); BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (How to (pulley at a low position; face away from the cable stack)) `lpote.setup`
+
+**Ruch**
+
+- Zginaj łokieć, opuszczając uchwyt za głowę; wyprostuj rękę nad głową. — Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (bend the arm, then extend it completely)); BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (How to (extend; lower under control)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 (za głową; wariant: hantel)) [uproszczenie: wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów] `lpote.move`
+
+**Wskazówki**
+
+- Ramię nieruchomo, łokieć wysoko nad głową — pracuje przedramię. — Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description (keep the elbow high instead of driving it forward)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 (wariant: hantel oburącz)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (one arm; upper arm still; wariant: hantel)) [uproszczenie: wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów] `ote1.upperArm`
+
+**Czego unikać**
+
+- Wyginanie pleców w łuk. — BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (Coach's Tips); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel) [uproszczenie: wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów] `tri.mis.archBack`
+- Łokieć opada w przód zamiast zostać wysoko. — Catalyst Athletics: [Single Arm Overhead Cable Tricep Extension (#894)](https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/) (Description); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 — błąd = zaprzeczenie standardu; wariant: hantel) [uproszczenie: wariant oburącz (ACE) i jednorącz z hantlem; ten sam ruch stawów] `tri.mis.elbowDrift1`
+
+### Tate Press
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj hantle nad klatką na prostych rękach. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#5 Tate Press); Catalyst Athletics: [Tate Press (#909)](https://www.catalystathletics.com/exercise/909/Tate-Press/) (Description) `tate.setup`
+
+**Ruch**
+
+- Zginaj łokcie skierowane na boki, opuszczając hantle do klatki; wyprostuj ręce. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#5 Tate Press (lower toward the chest, elbows pointing outward)); Catalyst Athletics: [Tate Press (#909)](https://www.catalystathletics.com/exercise/909/Tate-Press/) (Description (elbows out to the sides, lower the dumbbells to the chest)) `tate.move`
+
+### Triceps Kickback
+
+**Ustawienie**
+
+- Pochyl się do przodu z prostymi plecami i oprzyj wolną rękę o ławkę albo udo; ramię przy tułowiu, łokieć zgięty pod kątem prostym. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 1–2 (lean forward; upper arm parallel to and close to your torso; elbow about a right angle)); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description (upper arm horizontal and against your side)) `kick.setup`
+
+**Ruch**
+
+- Prostuj łokieć, odprowadzając dłoń do tyłu, aż ręka będzie prosta; wróć do kąta prostego. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3–4); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description (extend the elbow completely, then return under control)) `kick.move`
+
+**Wskazówki**
+
+- Ramię nieruchomo przy tułowiu — rusza się tylko przedramię. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3 (upper arm stationary next to your torso)); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description (upper arm horizontal and against your side)) `kick.upperArm`
+- Prostuj ręce do końca, ale bez gwałtownego blokowania łokci. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3 (until your elbow is fully extended)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#3 Triceps Kickback (Don't lock the elbow)) `press.noLock`
+
+**Czego unikać**
+
+- Ramię się rusza — odjeżdża od tułowia albo zmienia wysokość. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3 (upper arm stationary; not raised during the movement)); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description — błąd = zaprzeczenie standardu) `tri.mis.kickArm`
+
+### Reverse Grip Triceps Pushdown
+
+**Ustawienie**
+
+- Chwyć drążek wyciągu podchwytem, dłońmi w górę, łokcie przy bokach. — Catalyst Athletics: [Reverse Grip Tricep Pushdown (#878)](https://www.catalystathletics.com/exercise/878/Reverse-Grip-Tricep-Pushdown/) (Description, zdanie 1 (straight handle; high cable attachment; palms up)); NFPT (wpisy gościnne): [How to do reverse tricep pushdown](https://nfpt.com/how-to-do-reverse-tricep-pushdown/) (szczebel 5 — nie liczy się do pary; Setup (under grip, palms facing up; elbows in at your sides)) `rgpd.setup`
+
+**Ruch**
+
+- Prostuj łokcie, wypychając drążek w dół; powoli wróć do góry. — Catalyst Athletics: [Reverse Grip Tricep Pushdown (#878)](https://www.catalystathletics.com/exercise/878/Reverse-Grip-Tricep-Pushdown/) (Description (extend the elbows fully, then return under control)); NFPT (wpisy gościnne): [How to do reverse tricep pushdown](https://nfpt.com/how-to-do-reverse-tricep-pushdown/) (szczebel 5 — nie liczy się do pary; Movement (press the handle down to the extended position)) `rgpd.move`
+
+**Wskazówki**
+
+- Łokcie przy bokach — pracują przedramiona, nie barki. — Catalyst Athletics: [Reverse Grip Tricep Pushdown (#878)](https://www.catalystathletics.com/exercise/878/Reverse-Grip-Tricep-Pushdown/) (Description (elbows close to the sides)); NFPT (wpisy gościnne): [How to do reverse tricep pushdown](https://nfpt.com/how-to-do-reverse-tricep-pushdown/) (szczebel 5 — nie liczy się do pary; Setup (elbows at your sides)) `tpd.elbows`
+
+**Czego unikać**
+
+- Łokcie odjeżdżają od tułowia podczas wypychania. — ACE: [Triceps Pushdowns (#185)](https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/) (wskazówka końcowa (forward movement of your elbows; wariant: nachwyt)); Catalyst Athletics: [Reverse Grip Tricep Pushdown (#878)](https://www.catalystathletics.com/exercise/878/Reverse-Grip-Tricep-Pushdown/) (Description (elbows close to the sides) — błąd = zaprzeczenie standardu) [uproszczenie: ACE opisuje chwyt nachwytem; błąd (łokcie odjeżdżają od tułowia) nie zależy od chwytu] `mis.elbowsAway`
+
+### Triceps Kickback (linki)
+
+**Ustawienie**
+
+- Stań przodem do wyciągu, chwyć uchwyt jedną ręką i cofnij się o krok; pochyl się do przodu z prostymi plecami, ramię przy tułowiu. — BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Cable Kickback, How to Do It (torso roughly parallel to the floor; upper arm back and against your torso)); ISSA: [20-minute full-body resistance band workout](https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout) (Triceps Kickback (band secured; one hand; a few steps from the attachment point; hinge, neutral spine; wariant: guma)) [uproszczenie: guma ≈ wyciąg: ten sam ruch, zmienia się źródło oporu] `tri.kickCb.setup`
+
+**Ruch**
+
+- Prostuj łokieć, odprowadzając dłoń do tyłu, aż ręka będzie prosta; wróć do kąta prostego. — BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Cable Kickback, How to Do It (extend your elbow)); ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3–4 (wariant: hantel)); ISSA: [20-minute full-body resistance band workout](https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout) (Triceps Kickback (wariant: guma)) [uproszczenie: wariant sprzętu hantel (ACE, Catalyst) → wyciąg; błąd (ramię się rusza) nie zależy od przyrządu] `kick.move`
+
+**Wskazówki**
+
+- Ramię nieruchomo przy tułowiu — rusza się tylko przedramię. — BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Cable Kickback (upper arm back and against your torso)); ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3 (wariant: hantel)); ISSA: [20-minute full-body resistance band workout](https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout) (Triceps Kickback (wariant: guma)) [uproszczenie: wariant sprzętu hantel (ACE, Catalyst) → wyciąg; błąd (ramię się rusza) nie zależy od przyrządu] `kick.upperArm`
+
+**Czego unikać**
+
+- Ramię się rusza — odjeżdża od tułowia albo zmienia wysokość. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3 (wariant: hantel)); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description (wariant: hantel) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu hantel (ACE, Catalyst) → wyciąg; błąd (ramię się rusza) nie zależy od przyrządu] `tri.mis.kickArm`
+
+### Two-Arm Dumbbell Kickback
+
+**Ustawienie**
+
+- Z hantlami w obu dłoniach pochyl się do przodu z prostymi plecami; ramiona przy tułowiu, łokcie zgięte pod kątem prostym. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 1–2 (lean forward; upper arm parallel to and close to your torso; elbow about a right angle)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Cable Kickback, modyfikacja (two cables at the same time; torso roughly parallel to the floor)) [uproszczenie: ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)] `tri.kick2.setup`
+
+**Ruch**
+
+- Prostuj łokcie, odprowadzając dłonie do tyłu, aż ręce będą proste; wróć do kąta prostego. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3–4); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description (extend the elbow completely, then return under control)) [uproszczenie: ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)] `tri.kick2.move`
+
+**Wskazówki**
+
+- Ramię nieruchomo przy tułowiu — rusza się tylko przedramię. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description (upper arm horizontal and against your side)) [uproszczenie: ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)] `kick.upperArm`
+
+**Czego unikać**
+
+- Ramię się rusza — odjeżdża od tułowia albo zmienia wysokość. — ACE: [Triceps Kickback (#55)](https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/) (Step 3); Catalyst Athletics: [Tricep Kickback (#910)](https://www.catalystathletics.com/exercise/910/Tricep-Kickback/) (Description — błąd = zaprzeczenie standardu) [uproszczenie: ACE i Catalyst opisują wersję jednorącz z podparciem; BarBend — wyciąg bez podparcia, obie ręce naraz; ten sam ruch stawów, zmienia się liczba rąk i podparcie wolnej ręki (do potwierdzenia przez recenzenta L-047)] `tri.mis.kickArm`
+
+### Band Overhead Triceps Extension
+
+**Ustawienie**
+
+- Stań na środku gumy, chwyć jej końce i unieś dłonie za głowę, łokcie skierowane w górę. — BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Overhead Triceps Extension, How to Do It (band underneath the middle of both feet; handles behind your ears)); The Prehab Guys: [Overhead Tricep Extension – Band](https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/) (szczebel 5 — nie liczy się do pary; opis (start standing with a band anchored under your feet)) `tri.bandOte.setup`
+
+**Ruch**
+
+- Prostuj łokcie, wypychając dłonie nad głowę; zginając je, wróć dłońmi za głowę. — BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Overhead Triceps Extension, How to Do It (extend the elbows until lockout)); The Prehab Guys: [Overhead Tricep Extension – Band](https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/) (szczebel 5 — nie liczy się do pary; opis (extend overhead and return)) `tri.bandOte.move`
+
+**Wskazówki**
+
+- Ramiona nieruchomo, łokcie nad głową — pracują przedramiona. — ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 3 (wariant: hantel)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 (upper arm still; wariant: hantel)) [uproszczenie: wariant sprzętu guma: ACE opisuje hantel (łokcie w górę), BarBend — wyciąg; ten sam ruch stawów] `ote.upperArm`
+
+**Czego unikać**
+
+- Wyginanie pleców w łuk. — The Prehab Guys: [Overhead Tricep Extension – Band](https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/) (szczebel 5 — nie liczy się do pary; opis (do not excessively arch or bend your back)); BarBend: [Overhead triceps extension](https://barbend.com/overhead-triceps-extension/) (Coach's Tips (wariant: wyciąg)); ACE: [Triceps Extension (#74)](https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/) (Step 2–3 — błąd = zaprzeczenie standardu; wariant: hantel) [uproszczenie: wariant sprzętu guma: ACE opisuje hantel (łokcie w górę), BarBend — wyciąg; ten sam ruch stawów] `tri.mis.archBack`
+
+### Band Skull Crusher
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj gumę nad sobą na prostych rękach. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (low cable)); ExRx.net: [CBLyingTriExt](https://exrx.net/WeightExercises/Triceps/CBLyingTriExt) (Preparation (wersja z wyciągiem leżąc)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Skull Crusher — lista sprzętu (cable pulley)) [uproszczenie: guma zaczepiona nisko za głową ≈ dolny wyciąg (Catalyst i ExRx opisują wyciąg leżąc); żadne przeczytane źródło nie opisuje gumy leżąc — decyzja recenzenta L-047 (bez potwierdzenia karta zostaje otwarta)] `tri.skullBand.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając dłonie w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (low cable)); ExRx.net: [CBLyingTriExt](https://exrx.net/WeightExercises/Triceps/CBLyingTriExt) (Execution (wersja z wyciągiem leżąc)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Skull Crusher — lista sprzętu (cable pulley)) [uproszczenie: guma zaczepiona nisko za głową ≈ dolny wyciąg (Catalyst i ExRx opisują wyciąg leżąc); żadne przeczytane źródło nie opisuje gumy leżąc — decyzja recenzenta L-047 (bez potwierdzenia karta zostaje otwarta)] `tri.skullBand.move`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip — błąd = zaprzeczenie standardu; wariant: sztanga) [uproszczenie: guma zaczepiona nisko za głową ≈ dolny wyciąg (Catalyst i ExRx opisują wyciąg leżąc); żadne przeczytane źródło nie opisuje gumy leżąc — decyzja recenzenta L-047 (bez potwierdzenia karta zostaje otwarta)] `tri.mis.elbowsFlare`
+
+### Cable Lying Triceps Extension
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj drążek wyciągu nad sobą na prostych rękach. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (low cable)); ExRx.net: [CBLyingTriExt](https://exrx.net/WeightExercises/Triceps/CBLyingTriExt) (Preparation (leżąc, drążek nad twarzą na prostych rękach)) [uproszczenie: wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów] `tri.skullCb.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając drążek w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (low cable)); ExRx.net: [CBLyingTriExt](https://exrx.net/WeightExercises/Triceps/CBLyingTriExt) (Execution) [uproszczenie: wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów] `tri.skullCb.move`
+
+**Wskazówki**
+
+- Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip (upper arms vertical; wariant: sztanga)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (upper arm does not move; wariant: hantle)) [uproszczenie: wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów] `skull.upperArm`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu wyciąg (Catalyst nazywa „low cable”, ExRx opisuje wprost); ten sam ruch stawów] `tri.mis.elbowsFlare`
+
+### Incline Barbell Triceps Extension
+
+**Ustawienie**
+
+- Połóż się na ławce skośnej i trzymaj sztangę nad sobą na prostych rękach. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Variations (can also be done on an incline bench); Description (bar pressed up above you)); BarBend: [Best triceps exercises](https://barbend.com/best-triceps-exercises/) (Skull Crusher, modyfikacja (adjustable bench, low incline)) `tri.skullInc.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając sztangę w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (incline bench)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2–3 (ławka płaska)) [uproszczenie: ławka skośna: ruch łokcia ten sam, inny stały kąt barku (ACE opisuje ławkę płaską); kąta ławki zdanie nie podaje] `tri.skullBb.move`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip — błąd = zaprzeczenie standardu; ławka płaska) [uproszczenie: ławka skośna: ruch łokcia ten sam, inny stały kąt barku (ACE opisuje ławkę płaską); kąta ławki zdanie nie podaje] `tri.mis.elbowsFlare`
+
+### Decline Dumbbell Triceps Extension
+
+**Ustawienie**
+
+- Połóż się na ławce skośnej głową w dół i trzymaj hantle nad sobą na prostych rękach. — Fitness Volt: [Decline skull crusher](https://fitnessvolt.com/23999/decline-skull-crusher/) (How to (decline bench; wariant: sztanga)); Fit Father Project: [Skull crusher exercise](https://www.fitfatherproject.com/skull-crusher-exercise/) (szczebel 5 — nie liczy się do pary; sekcja Decline Bench (EZ, krótka sztanga lub hantle)) [uproszczenie: źródła opisują sztangę, gryf EZ i hantle; ten sam ruch stawów, zmienia się przyrząd] `tri.skullDbDec.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając hantle w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — Fitness Volt: [Decline skull crusher](https://fitnessvolt.com/23999/decline-skull-crusher/) (How to (slowly lower … to your forehead; wariant: sztanga)); Fit Father Project: [Skull crusher exercise](https://www.fitfatherproject.com/skull-crusher-exercise/) (szczebel 5 — nie liczy się do pary; Decline Bench (ruch jak wersja płaska; hantle)) [uproszczenie: źródła opisują sztangę, gryf EZ i hantle; ten sam ruch stawów, zmienia się przyrząd] `skullDb.move`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Fit Father Project: [Skull crusher exercise](https://www.fitfatherproject.com/skull-crusher-exercise/) (szczebel 5 — nie liczy się do pary; sekcja Decline Bench (Don't let them flare outwards)); Fitness Volt: [Decline skull crusher](https://fitnessvolt.com/23999/decline-skull-crusher/) (How to (keep your elbows tucked in)) [uproszczenie: źródła opisują sztangę, gryf EZ i hantle; ten sam ruch stawów, zmienia się przyrząd] `tri.mis.elbowsFlare`
+
+### Decline EZ Bar Triceps Extension
+
+**Ustawienie**
+
+- Połóż się na ławce skośnej głową w dół i trzymaj sztangę nad sobą na prostych rękach. — Fitness Volt: [Decline skull crusher](https://fitnessvolt.com/23999/decline-skull-crusher/) (How to (lie on a decline bench holding a barbell straight up above chin level)); Fit Father Project: [Skull crusher exercise](https://www.fitfatherproject.com/skull-crusher-exercise/) (szczebel 5 — nie liczy się do pary; sekcja Decline Bench (EZ lub krótka sztanga)) `tri.skullDec.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając sztangę w stronę głowy; wyprostuj ręce do pozycji wyjściowej. — Fitness Volt: [Decline skull crusher](https://fitnessvolt.com/23999/decline-skull-crusher/) (How to (slowly lower the barbell to your forehead)); Fit Father Project: [Skull crusher exercise](https://www.fitfatherproject.com/skull-crusher-exercise/) (szczebel 5 — nie liczy się do pary; sekcja Decline Bench (Slowly lower the bar)) `tri.skullBb.move`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Fit Father Project: [Skull crusher exercise](https://www.fitfatherproject.com/skull-crusher-exercise/) (szczebel 5 — nie liczy się do pary; sekcja Decline Bench (Don't let them flare outwards)); Fitness Volt: [Decline skull crusher](https://fitnessvolt.com/23999/decline-skull-crusher/) (How to (keep your elbows tucked in)) `tri.mis.elbowsFlare`
+
+### Lying Close-Grip Barbell Triceps Extension Behind The Head
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj sztangę nad sobą na prostych rękach. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (lie supine on a bench with a barbell … pressed up above you)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 1) `tri.skullBb.setup`
+
+**Ruch**
+
+- Zginaj łokcie, opuszczając sztangę za czubek głowy; wyprostuj ręce do pozycji wyjściowej. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (move the elbows back slightly to bring the bar past the top of the head)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2 (towards your forehead or slightly behind your head; granica: upper arms begin to drift backwards)) `tri.skullBehind.move`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip — błąd = zaprzeczenie standardu) `tri.mis.elbowsFlare`
+
+### One-Arm Lying Dumbbell Triceps Extension
+
+**Ustawienie**
+
+- Połóż się na ławce i trzymaj hantel nad sobą na prostej ręce. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (dumbbells raised above the head)); Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (dumbbells)); BodBot: [Tricep extension, lying, dumbbell, one arm](https://www.bodbot.com/Exercises/1010/Tricep-Extension-_-Lying,-Dumbbell-_-One-Arm) (szczebel 5 — nie liczy się do pary; Set-up (raise a dumbbell overhead with one arm)) [uproszczenie: jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów] `tri.skullDb1.setup`
+
+**Ruch**
+
+- Zginaj łokieć, opuszczając hantel w stronę głowy; wyprostuj rękę do pozycji wyjściowej. — ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (lowered to ear level)); Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description; Variations (dumbbells)); BodBot: [Tricep extension, lying, dumbbell, one arm](https://www.bodbot.com/Exercises/1010/Tricep-Extension-_-Lying,-Dumbbell-_-One-Arm) (szczebel 5 — nie liczy się do pary; ruch (keeping the upper arm still, lower the forearm)) [uproszczenie: jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów] `tri.skullDb1.move`
+
+**Wskazówki**
+
+- Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip (upper arms vertical; wariant: sztanga)); ISSA: [Top exercises to enhance your triceps workout](https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout) (#2 wersja leżąc (upper arm does not move)) [uproszczenie: jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów] `skull.upperArm`
+
+**Czego unikać**
+
+- Łokieć rozjeżdża się na bok. — Catalyst Athletics: [Skullcrusher (#903)](https://www.catalystathletics.com/exercise/903/Skullcrusher/) (Description (avoiding flaring them out to the sides; hantle)); ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Final Tip — błąd = zaprzeczenie standardu; wariant: sztanga) [uproszczenie: jedna ręka zamiast dwóch (ISSA, Catalyst, ACE opisują wersję oburącz leżąc); ten sam ruch stawów] `tri.mis.elbowFlare1`
+
+### Chain Handle Extension
+
+**Ustawienie**
+
+- Połóż się na płaskiej ławce z uchwytem z łańcuchem w każdej dłoni, łokcie skierowane w górę. — free-exercise-db: [Chain Handle Extension](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chain_Handle_Extension.json) (szczebel 5 — nie liczy się do pary; instructions[0] (position yourself on the flat bench; elbows pointing straight up)); app-s8 (szczebel 5 — nie liczy się do pary; Movement, krok 1 (lie securely with one handle in each hand, elbows upward)) `tri.chainExt.setup`
+
+**Ruch**
+
+- Prostuj łokcie, trzymając ramiona nieruchomo; potem opuść uchwyty z powrotem. — free-exercise-db: [Chain Handle Extension](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chain_Handle_Extension.json) (szczebel 5 — nie liczy się do pary; instructions (straighten the arms)); app-s8 (szczebel 5 — nie liczy się do pary; Movement, krok 2 (straighten both arms without allowing the elbows to move)) `tri.chainExt.move`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się na boki. — free-exercise-db: [Chain Handle Extension](https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chain_Handle_Extension.json) (szczebel 5 — nie liczy się do pary; instructions[0] (your elbows should be pointing straight up)); app-s8 (szczebel 5 — nie liczy się do pary; Movement, krok 2 (without allowing the elbows to move)) `tri.mis.elbowsFlare`
+
+### Arnold Press
+
+**Ustawienie**
+
+- Hantle przed twarzą, dłonie zwrócone do ciebie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (How to: Set Up (palms facing you)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (dumbbell in each hand, palms facing the body)) `arnold.setup`
+
+**Ruch**
+
+- Wyciskaj hantle nad głowę, obracając dłonie — na górze patrzą do przodu; opuszczając, obróć je z powrotem do siebie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (How to: Rotate and Press; Reverse It); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (rotate the weights about 180 degrees away from the face while pressing; slowly reverse to the start)) `arnold.move`
+
+**Wskazówki**
+
+- Obracaj i wyciskaj naraz — nie najpierw obrót, a potem wyciskanie. — BarBend: [arnold press](https://barbend.com/arnold-press/) (Coach's tip (rotate and press at the same time)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Arnold Press (in one controlled motion)) `arnold.together`
+
+**Czego unikać**
+
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Lower back arch); BarBend: [arnold press](https://barbend.com/arnold-press/) (FAQ — wersja stojąca (avoid overextending your lower back)) `ohp.mis.arch`
+
+### Seated Barbell Military Press
+
+**Ustawienie**
+
+- Chwyt trochę szerzej niż barki; sztanga z przodu barków. — ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdania 1–2 (grip a little wider than shoulder-width; bar lowered to the front of the shoulders, about chin height)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Standing Barbell Overhead Press (grip just outside shoulder width; bar across the front of the shoulders) + Seated Variations (upper-body form very similar)) `ohp.bbGrip`
+
+**Ruch**
+
+- Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków. — ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdania 3–4 (press directly overhead; slowly lower to chin height)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Standing Barbell Overhead Press (press straight up until the elbows are extended; return to the start) + Seated Variations) `ohp.move`
+
+**Czego unikać**
+
+- Łokcie uciekają na boki, zamiast być skierowane do przodu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Elbow flare (the elbows should point forward)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 3 (keep the elbows pointed forward) — błąd = zaprzeczenie standardu) `ohp.mis.flare`
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common mistakes: Lower back arch; Seated Variations (seated helps minimize the arch)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis, zdanie 1 (keep the back straight) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
+
+### Kettlebell Press
+
+**Ustawienie**
+
+- Kettlebell przy barku, łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell in front of the chest near the shoulder; elbow close to the rib cage) — przeczytane w rundzie 1); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (a kettlebell in each hand at the shoulders… and the arms against the ribs)) [uproszczenie: Catalyst opisuje wersję z dwoma kettlebellami — pozycja każdej ręki (kettlebell przy barku, ramię przy żebrach) jest ta sama] `kbp.setup`
+
+**Ruch**
+
+- Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control)); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press the arm straight overhead; pull the elbow back down to the rib cage)) `kbp.move`
+
+**Czego unikać**
+
+- Przechylanie się w bok, żeby wypchnąć ciężar. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (do not allow the spine to flex laterally) — błąd = zaprzeczenie standardu); StrongFirst: [mastering your press part i](https://www.strongfirst.com/mastering-your-press-part-i/) (When Things Get Heavy, punkt 5 (side lean increasing during the attempt)) `ohp.mis.sideLean`
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (wstęp (dumbbell, kettlebell, and resistance band variations) + Common Mistakes, punkt 6 (Arching the lower back)); NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (wskazówki tułowia (keep the spine neutral) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
+
+### Kettlebell Seated Press
+
+**Ustawienie**
+
+- Kettlebell przy barku, łokieć blisko żeber. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (kettlebell near the shoulder; elbow close to the rib cage)); Catalyst Athletics: [Ketllebell Press](https://catalystathletics.com/exercise/855/Ketllebell-Press/) (Description (at the shoulders… arms against the ribs)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (seated kettlebell press; the upper body form is very similar… to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ISSA: górna część ciała pracuje w wersji siedzącej bardzo podobnie jak na stojąco; zmienia się tylko podparcie (ławka zamiast stóp i bioder)] `kbp.setup`
+
+**Ruch**
+
+- Wypchnij kettlebell prosto nad głowę; opuść go z powrotem do barku, ściągając łokieć do żeber. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement; Downward Movement); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press straight overhead; elbow back down to the rib cage)); ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (very similar to the standing version)) [uproszczenie: pozycja siedząca Kettlebell Press — ten sam tor ręki nad głowę i powrót do barku (ISSA, Seated Variations)] `kbp.move`
+
+**Czego unikać**
+
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Seated Variations (seated kettlebell press; seated position can help minimize a client's lower back arch) + Common Mistakes, punkt 6 (Arching the lower back)); NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (wskazówki tułowia (keep the spine neutral; wersja stojąca) — błąd = zaprzeczenie standardu) `ohp.mis.arch`
+
+### Band Shoulder Press
+
+**Ustawienie**
+
+- Stań na gumie, chwyć jej końce i unieś dłonie w okolice barków, łokcie ugięte. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (stand on the bands; raise your arms to a goal post position: upper arms parallel, forearms perpendicular to the floor) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (standing, pass the band under your feet; one end of the band in each hand)) `band.ohpSetup`
+
+**Ruch**
+
+- Wypchnij dłonie nad głowę, potem powoli wróć do pozycji startowej. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Movement (press the handles overhead; lower back to the goal post position under control) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (slowly press your arms straight up over your head; slowly return to your starting position)) `band.ohpMove`
+
+**Wskazówki**
+
+- Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę. — Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (back straight, head straight, chest up) — przeczytane w W1); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (sit or stand up straight; press straight up)) `ohp.tall`
+
+**Czego unikać**
+
+- Wyginanie lędźwi w łuk przy wyciskaniu. — ISSA: [overhead press proper form variations and common mistakes](https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes) (Common Mistakes (arching the lower back)); Bodylastics: [standing shoulder press with bands](https://bodylastics.com/standing-shoulder-press-with-bands) (Start and Finish Positions (keep your back straight) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Overhead Press — guma zamiast sztangi/hantli, ten sam pionowy wypych nad głowę na stojąco] `ohp.mis.arch`
+
+### Single Arm Overhead Press (hantel)
+
+**Ustawienie**
+
+- Stań stabilnie, hantel w jednej ręce przy barku. — ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (stand with the feet hip-width apart; kettlebell in front of the chest near the shoulder)); WebMD Ignite: [shoulder press](https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/) (instrukcja (stand up straight; hands near your shoulders; small weights such as dumbbells instead of a band)) [uproszczenie: wariant sprzętu: ACE 395 — jednorącz z kettlebellem, ColumbiaDoctors — hantle oburącz; pozycja startowa (stoisz, ciężar przy barku) ta sama] `ohp.saSetup`
+
+**Ruch**
+
+- Wypchnij hantel nad głowę do wyprostu ręki; opuść go spokojnie z powrotem do barku. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (press the kettlebell overhead, elbow fully extended); Downward Movement (lower slowly and under control back to the starting position)); ACE: [single arm overhead press](https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/) (opis (press the right arm straight overhead; pull the elbow back down to the rib cage to lower)) [uproszczenie: wariant sprzętu wyciskania jednorącz z kettlebellem — ten sam tor ręki nad głowę i powrót do barku; różni się tylko to, jak ciężar leży w dłoni] `ohp.saMove`
+
+**Czego unikać**
+
+- Przechylanie się w bok, żeby wypchnąć ciężar. — NSCA — Exercise Technique Manual (Human Kinetics): [one arm kettlebell press](https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press) (Upward Movement (do not allow the spine to flex laterally) — błąd = zaprzeczenie standardu); StrongFirst: [mastering your press part i](https://www.strongfirst.com/mastering-your-press-part-i/) (When Things Get Heavy, punkt 5 (leg drive and side lean increasing during the attempt) — przeczytane w W1 i ponownie 02.11.2026) [uproszczenie: wariant sprzętu wyciskania jednorącz z kettlebellem — ciężar po jednej stronie ciała tak samo przechyla tułów] `ohp.mis.sideLean`
+
+### Ab Wheel
+
+**Ustawienie**
+
+- Uklęknij i chwyć kółko oburącz przed kolanami, ręce proste. — Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (kneel, wheel close to the knees, arms straight)); Echelon Fitness: [ECHELON AB WHEEL EXERCISE GUIDE.pdf](https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf) (s. 1, AB ROLL — START) `rollout.wheel.setup`
+
+**Ruch**
+
+- Powoli wytocz kółko do przodu, opuszczając tułów w stronę podłogi, i wróć do klęku. — Echelon Fitness: [ECHELON AB WHEEL EXERCISE GUIDE.pdf](https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf) (s. 1, AB ROLL — FINISH); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.wheel.move`
+
+### Renegade Row
+
+**Ustawienie**
+
+- Podpór na hantlach ustawionych pod barkami, nogi proste, stopy na szerokość barków lub szerzej. — ACE: [renegade row](https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/) (Preparation; Step 1); BarBend: [renegade row](https://www.barbend.com/renegade-row/) (Step 1 — Set Your Base (feet wider than shoulder-width)) `renegade.setup`
+
+**Ruch**
+
+- Przyciągnij jeden hantel do boku tułowia, odłóż go spokojnie i zmień rękę. — ACE: [renegade row](https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/) (Steps 3–6); BarBend: [renegade row](https://www.barbend.com/renegade-row/) (Step 2 — Initiate the Row; Step 3 — Control the Eccentric) `renegade.move`
+
+**Czego unikać**
+
+- Skręcanie bioder i tułowia, żeby dźwignąć hantel. — BarBend: [renegade row](https://www.barbend.com/renegade-row/) (Common Mistakes — Twisting Your Body); NASM: [Best Abs Exercises (blog, H. Cherry, akt. 23.07.2026)](https://www.nasm.org/resource-center/blog/training/best-abs-exercises) (sekcja Renegade Row — Common Mistake (hips shift side to side; excessive rotation) i Coaching Tip (square hips)) `renegade.mis.twist`
+
+### Rollout (sztanga)
+
+**Ustawienie**
+
+- Uklęknij przed sztangą i chwyć ją oburącz. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Preparation; Step 1); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (ab wheel or barbell with rotating sleeves; kneel)) `rollout.bar.setup`
+
+**Ruch**
+
+- Wytocz sztangę do przodu, opuszczając tułów w stronę podłogi, i przyciągnij ją z powrotem. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Steps 2–4); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (roll out, pull back)) `rollout.bar.move`
+
+**Wskazówki**
+
+- Wytaczaj tylko tak daleko, jak dasz radę bez wyginania lędźwi. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Step 2 (keep the hips pressed forward and the back straight)); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (as close to the ground as possible while maintaining the brace)) `rollout.range`
+- Napnij brzuch, żeby tułów był sztywny. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Step 3 (hold the trunk in position)); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (brace the abs hard)) `plank.brace`
+
+**Czego unikać**
+
+- Wygięte w łuk lędźwie przy wytaczaniu. — ACE: [309](https://www.acefitness.org/resources/everyone/exercise-library/309/) (Step 2 (back straight)); Catalyst Athletics: [Ab Rollout](https://catalystathletics.com/exercise/135/Ab-Rollout) (opis (avoid hyperextension of the lower back)) `rollout.mis.arch`
+
+### Incline Chest Fly (hantle)
+
+**Ustawienie**
+
+- Połóż się na ławce, hantle nad klatką, łokcie lekko ugięte. — NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (instrukcja, krok 1 (lie back on the incline bench, arms extended straight up toward the ceiling)); BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do the Incline Dumbbell Flye (lay back on the bench with dumbbells in your hands; slight bend in your elbows)) `dfly.setup`
+
+**Ruch**
+
+- Opuść hantle szerokim łukiem na boki do rozciągnięcia klatki; wróć tym samym łukiem nad klatkę. — NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (instrukcja (lower the weights out to the sides with elbows slightly bent; raise back to the start)); BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do… (open the arms wide to a deep chest stretch; hugging motion back up)) `dfly.move`
+
+**Wskazówki**
+
+- Łokcie lekko ugięte, w stałym kącie przez cały ruch. — NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (instrukcja (keeping elbows slightly bent — przy opuszczaniu i unoszeniu)); BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do… („Maintain a slight bend in your elbows.”)) `fly.elbows`
+
+**Czego unikać**
+
+- Zginanie i prostowanie łokci w trakcie powtórzenia. — wniosek ze zdania `fly.elbows` tej karty; BarBend: [dumbbell flye variations](https://barbend.com/dumbbell-flye-variations/) (Incline Dumbbell Flye > How to Do… (hugging a tree rather than pressing them straight up)); NFPT: [how to do incline bench dumbbell flyes](https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/) (lista błędów (avoid locking out your elbows after you have raised the dumbbells)) `fly.mis.elbows`
+
+### Chest Dip
+
+**Ustawienie**
+
+- Chwyć poręcze i unieś się na prostych rękach, stopy nad podłogą. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (with your body in between two bars, place both hands on the dip bar; feet off the ground and arms are straight)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip, krok 1 (set your hands evenly on the bars); akapit Ring Dips (start w wyproście — steady at lockout before dipping down)) `dip.setup`
+
+**Ruch**
+
+- Zegnij łokcie i opuść się między poręczami, potem wypchnij się z powrotem do prostych rąk. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (bending at the elbows and lowering your body down; press your body back up to the starting position)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (flex your elbows and lower your body; drive through your palms to raise your body back to the starting position)) `dip.move`
+
+**Wskazówki**
+
+- Pochyl tułów lekko w przód. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (maintain a slight forward lean to emphasize the strain on your chest)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (nearly vertical, with perhaps a slight lean forward); Common Mistakes — Letting Your Chest Sink (slight forward lean)) `dip.chestLean`
+- Napnij brzuch, żeby tułów był sztywny. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (keep your core engaged)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (your core tight)) `plank.brace`
+
+**Czego unikać**
+
+- Schodzenie za nisko albo zatrzymywanie się za wysoko. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (What to Avoid When Performing Chest Dips (going too low, not going low enough)); BarBend: [dips](https://barbend.com/dips/) (Common Mistakes — Going Too Low; Not Going Low Enough) `dip.mis.depth`
+- Odchylanie tułowia do tyłu. — ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (What to Avoid When Performing Chest Dips (leaning back)); BarBend: [dips](https://barbend.com/dips/) (How to Do the Dip (slight lean forward) — błąd = zaprzeczenie standardu) `dip.mis.leanBack`
+- Za mocne pochylenie — klatka leci w dół między poręcze. — BarBend: [dips](https://barbend.com/dips/) (Common Mistakes — Letting Your Chest Sink (leaning too far forward)); ISSA: [chest dips form benefits variations what to avoid](https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid) (How to Perform the Chest Dip (slight forward lean) — błąd = zaprzeczenie standardu) `dip.mis.overLean`
+
+### Seated Cable Chest Press
+
+**Ustawienie**
+
+- Usiądź, plecy przy oparciu, stopy na podłodze; uchwyty przy klatce, łokcie ugięte. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (back firmly supported against the backrest; hands level with your mid-chest region; feet firmly on the floor)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 1: Setup (back firmly against the backrest; handles align with mid-chest height; feet on the floor) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `cpress.seated`
+
+**Ruch**
+
+- Wypchnij uchwyty przed siebie, potem powoli wróć w stronę klatki. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 2–3 (extending your arms forward at the level of your mid-chest; slowly return … moving the handles back towards your chest)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 3: Execute (press the handles forward); Step 4: Return (with control) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `cpress.seatedMove`
+
+**Wskazówki**
+
+- Łopatki zostają przy oparciu — nie wysuwaj barków w przód na końcu ruchu. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (depress and retract your scapulae); Step 2 (contact with your back and shoulder blades against the backrest; minimize rounding your shoulder blades)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 2: Brace (position your shoulders back and down) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `mcp.blades`
+- Napnij brzuch, żeby tułów był sztywny. — ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 1 (stiffen („brace”) your abdominal muscles)); NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Step 2: Brace (engage your core) — wariant sprzętu) [uproszczenie: wariant sprzętu Machine Chest Press] `plank.brace`
+
+**Czego unikać**
+
+- Gwałtowne blokowanie łokci na końcu ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (locking out elbows at the top) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (fully extended, but not locked) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `press.mis.lock`
+- Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — NASM: [Chest Press Machine](https://www.nasm.org/resource-center/exercise-library/chest-press-machine) (Common Mistakes (jerky or uncontrolled movements) — wariant sprzętu); ACE: [Seated Cable Press (#165)](https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/) (Step 3 (slow, controlled manner); Step 4 (control the speed, range and direction of movement) — błąd = zaprzeczenie standardu) [uproszczenie: wariant sprzętu Machine Chest Press] `mis.jerk`
+
+### Decline Push Up
+
+**Ustawienie**
+
+- Dłonie na podłodze, stopy na ławce albo stopniu; ciało proste od głowy do pięt. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Step 1; Step 2); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (How-to: „place your feet up onto your chosen platform”; „With your body in a straight line”); The Prehab Guys: [push up exercise variations](https://theprehabguys.com/push-up-exercise-variations/) (Progressions → Decline Push Up („The biggest focus for this exercise needs to be on body alignment.”)) `dpush.setup`
+
+**Ruch**
+
+- Opuść klatkę prawie do podłogi, zginając łokcie; wypchnij się do wyprostu rąk. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Step 3; Step 4); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (How-to: „Lower yourself as far down as you can and then press yourself back up until arms are extended.”) `push.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Step 2 (engage your core)); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (How-to: „tense your core to maintain a rigid torso”) `plank.brace`
+
+**Czego unikać**
+
+- Biodra opadają i ciało przestaje być w linii. — NASM: [decline push up](https://www.nasm.org/resource-center/exercise-library/decline-push-up) (Common Mistakes (Allowing hips to sag)); Fitness Volt: [?p=75039](https://fitnessvolt.com/?p=75039) (zaprzeczenie standardu: „With your body in a straight line and butt lifted”); wniosek ze zdania `dpush.setup` tej karty `push.mis.sag`
+
+### Suspended Push-Up
+
+**Ustawienie**
+
+- Chwyć uchwyty taśm, ręce wyprostowane przed sobą; pochyl się do przodu, ciało proste i pod skosem. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 3–6); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Keep your arms fully extended and lean your weight forward onto the straps”)) `spush.setup`
+
+**Ruch**
+
+- Opuść klatkę w stronę dłoni, zginając łokcie; wypchnij się z powrotem do wyprostu rąk. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Step 7–9); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 5; Step 6) `spush.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (Form Cues); Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Step 3 („Tighten your core muscles, glutes, and quadriceps”)) `plank.brace`
+
+**Czego unikać**
+
+- Łokcie rozjeżdżają się szeroko na boki. — Fitness Volt: [suspension chest press](https://fitnessvolt.com/suspension-chest-press/) (Pro tip („Avoid flaring your elbows too wide”)); TRX: [trx push up](https://www.trxtraining.com/blogs/news/trx-push-up) (zaprzeczenie standardu: Form Cues (łokcie ok. 45° do tułowia)) `push.mis.flare`
+
+### Single Leg Calf Raise
+
+**Ustawienie**
+
+- Stań przednią częścią jednej stopy na krawędzi stopnia, pięta poza krawędzią; drugą nogę unieś. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Single-Leg Calf Raises (także „on … an elevated platform”); Elevated Calf Raises (pięty poza krawędzią)); ACE: [Standing Calf Raises Wall (#73)](https://www.acefitness.org/resources/everyone/exercise-library/73/standing-calf-raises-wall/) (Exercise Variation (1): Single-leg Calf Raise („bend your left knee to lift your left foot off the floor”; wariant: z podłogi)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (The Exercise Menu („dumbbell on a step”; wariant: obunóż)) `calf.stepOne`
+
+**Ruch**
+
+- Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises („until the heels are slightly below the raised platform”; uproszczenie: wariant jednonóż)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (wariant: obunóż)) `calf.move`
+
+**Wskazówki**
+
+- Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych. — ACE: [Standing Calf Raises Wall (#73)](https://www.acefitness.org/resources/everyone/exercise-library/73/standing-calf-raises-wall/) (Step 2 („keeping your knees extended”); Variation (1)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Standing Calf Raises („a straight knee”)) `calf.knees`
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ACE: [Standing Calf Raises Wall (#73)](https://www.acefitness.org/resources/everyone/exercise-library/73/standing-calf-raises-wall/) (Step 2–3 („Hold your raised position briefly.”; „slowly lower your heels”)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Standing Calf Raises (slight pause at the top)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises (standard pełnego zakresu; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Seated Calf Raise (hantle)
+
+**Ustawienie**
+
+- Usiądź z ugiętymi kolanami, przednią część stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises („Heels should be hanging with the balls of the feet pressing into the foot platform on the machine.”; uproszczenie: wariant sprzętu — maszyna)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods, Participants and overview („seated/knee 90°-flexed position”); ryc. 1 (zakres od 20° zgięcia grzbietowego — pięty niżej niż palce; parafraza)) `calf.seatedEdge`
+
+**Ruch**
+
+- Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek. — Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (ryc. 1 (zakres od 20° zgięcia grzbietowego do 30° podeszwowego, kolano 90°; parafraza)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise („let your heels drop below the foot platform”; uproszczenie: wariant sprzętu — maszyna)) `calf.move`
+
+**Wskazówki**
+
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise („squeeze the back of the legs at the top of the motion”)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (pauza na górze, powolne opuszczanie; wariant: stojąc)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods, Training program (2 s opuszczania; parafraza)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (wariant: stojąc)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise (standard: pięty poniżej podestu, napięcie na górze; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Smith Machine Calf Raise
+
+**Ustawienie**
+
+- Stań przednią częścią stóp na krawędzi podestu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises („heels of both feet hanging off the edge of the platform”; uproszczenie: wariant sprzętu — wspięcia stojąc na podeście)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (The Exercise Menu („Standing calf raise (machine, smith, or dumbbell on a step)”); Technique Standards (pięty poniżej palców)) `calf.edge`
+
+**Ruch**
+
+- Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises (opuszczanie „until the heels are slightly below the raised platform”)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything) `calf.move`
+
+**Wskazówki**
+
+- Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych. — ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Standing Calf Raise („Keep your legs straight without locking out your knees completely.”)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („Keep a slight bend in knees”; wariant: sztanga)) `calf.knees`
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Standing Calf Raises („…with a slight pause at the top of the contraction.”)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („Pause at the top, and slowly roll the heels back down”; wariant: sztanga)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (szybkie, niepełne powtórzenia jako częsty błąd)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises (standard: wspięcie z pauzą na górze i opuszczenie pięt poniżej podestu; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Calf Raise (sztanga)
+
+**Ustawienie**
+
+- Stań przednią częścią stóp na krawędzi podestu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises (uproszczenie: wariant sprzętu — wspięcia stojąc na podeście); ISSA 25-min: obciążenie „place a barbell on your back”); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (The Exercise Menu; Technique Standards (pięty poniżej palców; wariant: maszyna/Smith/hantle)) `calf.edge`
+
+**Ruch**
+
+- Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises („until the heels are slightly below the raised platform”)); NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything) `calf.move`
+
+**Wskazówki**
+
+- Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („Keep a slight bend in knees”)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Standing Calf Raise („Keep your legs straight without locking out your knees completely.”)) `calf.knees`
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („Pause at the top, and slowly roll the heels back down”)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Standing Calf Raises (slight pause at the top)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (szybkie, niepełne powtórzenia)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Elevated Calf Raises (standard pełnego zakresu; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Calf Raise (linki)
+
+**Ustawienie**
+
+- Stań prosto, palce stóp skierowane do przodu. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („toes pointed forward”; uproszczenie: wariant sprzętu — sztanga)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Standing Calf Raises („toes pointed forward and a straight knee”)) `calf.stand`
+
+**Ruch**
+
+- Wspinaj się na palce, potem pod kontrolą opuść pięty. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („press the toes into the ground while lifting the heels up”; „slowly roll the heels back down to the floor”)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Standing Calf Raise („slowly raise your heels off the ground”; obciążenie trzymane przy bokach)) `calf.rise`
+
+**Wskazówki**
+
+- Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („Keep a slight bend in knees”)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Standing Calf Raise („Keep your legs straight without locking out your knees completely.”)) `calf.knees`
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis („Pause at the top…”)); ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Standing Calf Raises (slight pause at the top)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (szybkie, niepełne powtórzenia; wariant: na podeście)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (pełne wspięcie i opuszczenie pięt do podłogi; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Barbell Seated Calf Raise
+
+**Ustawienie**
+
+- Usiądź z ugiętymi kolanami, przednią część stóp oprzyj na podwyższeniu, pięty poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises (pięty poza podestem; uproszczenie: wariant sprzętu — maszyna)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods („seated/knee 90°-flexed position”); ryc. 1 (parafraza)) `calf.seatedEdge`
+
+**Ruch**
+
+- Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek. — Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (ryc. 1 (zakres zgięcia grzbietowego i podeszwowego w siadzie; parafraza)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise („let your heels drop below the foot platform”)) `calf.move`
+
+**Wskazówki**
+
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise (squeeze at the top)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (wariant: stojąc)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (wariant: stojąc)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise (standard pełnego zakresu; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Band Calf Raise
+
+**Ustawienie**
+
+- Stań prosto, trzymając w dłoniach końce gumy albo uchwyty. — Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Setup (uchwyt w każdej dłoni, tułów wyprostowany)); Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step One–Two (guma pod przednią częścią stóp, końce w dłoniach przy biodrach)) `calf.band`
+
+**Ruch**
+
+- Wspinaj się na palce, potem pod kontrolą opuść pięty. — Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Movement („as high on your toes as you can go”; „Lower your heels back to the floor under control.”)); Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step Three–Four) `calf.rise`
+
+**Wskazówki**
+
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — Thera-Band: [thera band ankle calf raise in standing](https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html) (Step Four („Hold and slowly return.”)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (wariant: sztanga)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (wariant: stojąc na podeście)); Bodylastics: [standing calf raises with flat bands](https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands) (Movement (pełne wspięcie i opuszczenie pięt; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Dumbbell Seated One-Leg Calf Raise
+
+**Ustawienie**
+
+- Usiądź z ugiętym kolanem, przednią część stopy oprzyj na podwyższeniu, piętę poza krawędzią. — ISSA: [top six exercises for building bigger calves](https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves) (Seated Calf Raises (uproszczenie: wariant sprzętu — maszyna; wariant: obunóż)); Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (Methods („seated/knee 90°-flexed position”, trening jednej nogi w siadzie); ryc. 1 (parafraza)) `calf.seatedEdge1`
+
+**Ruch**
+
+- Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek. — Kinoshita i in. (Ritsumeikan University): [Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/) (ryc. 1 (parafraza)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise („let your heels drop below the foot platform”)) `calf.move`
+
+**Wskazówki**
+
+- Zatrzymaj się chwilę na górze i opuszczaj powoli. — ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise (squeeze at the top)); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (wariant: stojąc)) `calf.pause`
+
+**Czego unikać**
+
+- Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)](https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients) (Technique Standards That Change Everything (wariant: stojąc)); ISSA: [25 minute calf workout](https://issaonline.com/blog/post/25-minute-calf-workout) (Seated Calf Raise (standard pełnego zakresu; błąd = zaprzeczenie standardu)) `calf.mis.partial`
+
+### Cable Kickback
+
+**Ustawienie**
+
+- Ustaw wyciąg nisko, załóż mankiet na kostkę i stań przodem do maszyny, trzymając się jej. — ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (mankiet na kostce, niski wyciąg)); BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (How to Do the Glute Kickback, kroki 1–2 (lowest position; face the cable machine)) `ck.setup`
+
+**Ruch**
+
+- Odprowadź nogę w tył, napinając pośladek, i powoli wróć. — ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (Slowly raise the heel by initiating the movement from the glutes)); BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (How to Do the Glute Kickback (Squeeze your glute… as you drive your leg backward)) `ck.move`
+
+**Wskazówki**
+
+- Biodra i tułów nieruchomo — pracuje tylko noga. — BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (Common mistakes: Not Bracing Properly (only contract your glutes)); ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (keeping an erect torso)) `hab.hips`
+
+**Czego unikać**
+
+- Biodra i tułów się bujają, żeby noga poszła dalej w tył. — BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (Common mistakes: Not Bracing Properly (don't flare your upper back, or sway your hips)); ACE: [8 butt toning moves](https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/) (Single-leg cable extension (keeping an erect torso — błąd = zaprzeczenie standardu)) `ck.mis.sway`
+- Plecy wyginają się w łuk, gdy noga idzie w górę. — BarBend: [glute kickbacks](https://barbend.com/glute-kickbacks/) (Common mistakes: Not Bracing Properly (Do not allow your lower back to arch)); HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension, krok („…without arching your low back.”) — uproszczenie: wariant sprzętu guma) `hext.mis.arch`
+
+### Fire Hydrant
+
+**Ustawienie**
+
+- Klęk podparty: dłonie pod barkami, kolana pod biodrami, plecy neutralnie. — ACE: [7 new moves to challenge your glutes and hamstrings](https://www.acefitness.org/resources/pros/expert-articles/7409/7-new-moves-to-challenge-your-glutes-and-hamstrings/) (Fire Hydrant (Start in a quadruped position with the hands under the shoulders and knees under the hips)); ISSA: [hip abduction exercises for stronger hips and glutes](https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes) (Fire Hydrant (klęk podparty, dłonie w linii barków)) `bd.setup`
+
+**Ruch**
+
+- Nie prostując kolana, unieś nogę w bok i opuść ją z powrotem. — ACE: [7 new moves to challenge your glutes and hamstrings](https://www.acefitness.org/resources/pros/expert-articles/7409/7-new-moves-to-challenge-your-glutes-and-hamstrings/) (Fire Hydrant (slowly lifting the right leg out to the side… keeping the knee bent)); ISSA: [hip abduction exercises for stronger hips and glutes](https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes) (Fire Hydrant (raising your right knee away from the body keeping the leg flexed)) `fh.move`
+
+**Wskazówki**
+
+- Ruch tylko w biodrze — nie przechylaj się i nie skręcaj bioder, żeby unieść nogę wyżej. — ACE: [5 ab exercises no crunches no equipment](https://www.acefitness.org/resources/pros/expert-articles/6402/5-ab-exercises-no-crunches-no-equipment/) (Two-legged Fire Hydrant (keep your hips level) — wariant z uniesioną ręką); ISSA: [hip abduction exercises for stronger hips and glutes](https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes) (Fire Hydrant (without rotating or twisting the hips)) `fh.level`
+
+**Czego unikać**
+
+- Biodra skręcają się albo przechylają, żeby noga poszła wyżej. — ISSA: [hip abduction exercises for stronger hips and glutes](https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes) (Fire Hydrant (Raise the leg up as far as you can without rotating or twisting the hips — błąd = zaprzeczenie standardu)); ACE: [5 ab exercises no crunches no equipment](https://www.acefitness.org/resources/pros/expert-articles/6402/5-ab-exercises-no-crunches-no-equipment/) (Two-legged Fire Hydrant (keep your hips level — błąd = zaprzeczenie standardu; wariant)) `fh.mis.twist`
+
+### Donkey Kick
+
+**Ustawienie**
+
+- Klęk podparty: dłonie pod barkami, kolana pod biodrami, plecy neutralnie. — ACE: [quadruped bent knee hip extensions](https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/) (Step 1 (knees directly under your hips, hands directly under your shoulders)); ISSA: [donkey kicks benefits and variations for strong glutes](https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes) (How to Do a Donkey Kick Correctly (Start on all fours…)) `bd.setup`
+
+**Ruch**
+
+- Nie prostując kolana, unieś nogę w tył i w górę, podeszwą w stronę sufitu; potem powoli ją opuść. — ISSA: [donkey kicks benefits and variations for strong glutes](https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes) (How to Do a Donkey Kick Correctly (stopa w stronę sufitu; The movement should be slow.)); ACE: [quadruped bent knee hip extensions](https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/) (Step 2 (while maintaining your bent-knee position)) `dk.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — ACE: [quadruped bent knee hip extensions](https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/) (Step 1/2 (Stiffen your core and abdominal muscles)); ISSA: [donkey kicks benefits and variations for strong glutes](https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes) (How to Do… (Engage and tighten your core)) `plank.brace`
+- Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały. — ACE: [quadruped bent knee hip extensions](https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/) (uwaga po kroku 3 (Only raise the leg to a height where the low back position can be maintained)); ISSA: [donkey kicks benefits and variations for strong glutes](https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes) (How to Do… (Don't lift so high that your back starts to arch)) `hext.range`
+
+**Czego unikać**
+
+- Plecy wyginają się w łuk, gdy noga idzie w górę. — ISSA: [donkey kicks benefits and variations for strong glutes](https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes) (How to Do… (za wysoko unoszona noga wygina plecy)); ACE: [quadruped bent knee hip extensions](https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/) (uwaga po kroku 3 (an increase in lumbar lordosis)) `hext.mis.arch`
+
+### Clamshell
+
+**Ustawienie**
+
+- Połóż się na boku, kolana ugięte, nogi ułożone jedna na drugiej. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform a Banded Clamshell (lie on one side with the knees bent and stacked)); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Clam Shells (leżenie na boku, kolana ugięte, nogi jedna na drugiej)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (Lie on one side with the knees bent to approximately 90 degrees)) `clam.setup`
+
+**Ruch**
+
+- Trzymając stopy razem, unieś górne kolano jak najwyżej bez odchylania bioder i opuść je powoli. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform a Banded Clamshell (Keeping the feet together… lifts the top knee as high as possible; slow and controlled)); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Clam Shells (Keeping the inner arches of the feet together, externally rotate the top leg)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (lift the top knee as far as possible and return under control)) `clam.move`
+
+**Wskazówki**
+
+- Biodra nie uciekają do tyłu — zostań na boku. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform a Banded Clamshell (without allowing the hips to rotate backward)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (Without rolling the body)) `clam.noRoll`
+- Ruch płynny w obie strony, bez szarpania. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform; Coaching (avoid using momentum)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (return under control)) `llc.control`
+
+**Czego unikać**
+
+- Biodra uciekają do tyłu, żeby kolano poszło wyżej. — NASM: [the banded clamshell a simple move for stronger glutes](https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes) (How to Perform; FAQ (bez odchylania miednicy do tyłu — błąd = zaprzeczenie standardu)); Catalyst Athletics: [Clamshell](https://catalystathletics.com/exercise/766/Clamshell/) (opis (Without rolling the body — błąd = zaprzeczenie standardu)) `clam.mis.roll`
+
+### Hip Extension with Bands
+
+**Ustawienie**
+
+- Załóż minigumę na kostki i przenieś ciężar ciała na jedną nogę. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension: Setup (mini band around both ankles); shift your weight onto one leg); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (band at your ankles; shift your weight onto one leg)) `hexb.setup`
+
+**Ruch**
+
+- Odprowadź nogę w tył, napinając pośladek, i powoli wróć. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension (Reach the other heel back… squeeze the glute… return slowly)); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (flex your glute to move it away from your body)); Thera-Band: [thera band wobble board hip extension with band](https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html) (Step Two (Extend your hip against the band and slowly return) — wariant: na desce balansowej) `ck.move`
+
+**Wskazówki**
+
+- Napnij brzuch, żeby tułów był sztywny. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension (core engaged)); BarBend: [resistance band exercises for glutes](https://barbend.com/resistance-band-exercises-for-glutes/) (5. Resistance Band Glute Kickback (a solid core brace)) `plank.brace`
+
+**Czego unikać**
+
+- Plecy wyginają się w łuk, gdy noga idzie w górę. — HSS: [mini band exercises for runners](https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners) (Diagonal hip extension, krok („…without arching your low back.”)); Thera-Band: [thera band wobble board hip extension with band](https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html) (Step Two (Keep your back and neck straight — błąd = zaprzeczenie standardu; wariant: na desce balansowej)) `hext.mis.arch`
+
+### Lateral Band Walk
+
+**Ustawienie**
+
+- Załóż minigumę tuż nad kolana albo niżej, nad kostki; stopy na szerokość bioder. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — minigumę „just above your knees (or lower…)”, stopy na szerokość bioder); ACE: [how to self care for the it band](https://www.acefitness.org/resources/pros/expert-articles/5043/how-to-self-care-for-the-it-band/) (Lateral Band Walks — „Place a band of appropriate resistance around the shins, above the ankles.”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks (chód w bok) — „Place the Versa Loop just above the knee.”) `bw.setup`
+
+**Ruch**
+
+- Zrób krok w bok, potem powoli dociągnij drugą nogę. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — „sidestep in one direction with slow and controlled steps”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Laterally walk to the right, with the right leg initiating the step.”) `bw.move`
+
+**Wskazówki**
+
+- Zejdź do lekkiego przysiadu i trzymaj go przez cały marsz. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — kolana ugięte, pozycja atletyczna („almost a squat”)); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „keep a soft bend at the knees”) `bw.squat`
+- Guma napięta przez cały czas — nie luzuj jej. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — stopy co najmniej na szerokość bioder, by utrzymać opór gumy); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Maintain resistance with the band”) `bw.tension`
+
+**Czego unikać**
+
+- Tułów buja się na boki przy każdym kroku. — NASM: [active recovery](https://www.nasm.org/resource-center/blog/active-recovery) (Lateral Band Walk — „Keep your core tight so that your upper body does not sway.”); ACE: [8 hip strengthening exercises using the versa loop](https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/) (Monster Walks — „Begin in an upright, athletic stance…” (błąd = zaprzeczenie standardu)) `bw.mis.sway`
+
+### Single Leg Glute Bridge
+
+**Ustawienie**
+
+- Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij do klatki. — ACE: [glute bridge single leg progression](https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/) (Step 1); Catalyst Athletics: [Single Leg Glute Bridge](https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/) (opis (one knee bent, other leg straight)) `gb.slSetup`
+
+**Ruch**
+
+- Dociskając stopę do podłogi, zwłaszcza piętę, unieś biodra; opuść je powoli. — ACE: [glute bridge single leg progression](https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/) (Step 2; Step 3); Catalyst Athletics: [Single Leg Glute Bridge](https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/) (opis (press through the whole foot, emphasizing the heel; lower under control)) `gb.slMove`
+
+**Wskazówki**
+
+- Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk. — ACE: [glute bridge single leg progression](https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/) (Step 1 (brace abs); Step 2 (avoid pushing your hips too high … arching)); Catalyst Athletics: [Single Leg Glute Bridge](https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/) (opis (ensure the motion is at the hip)) `ht.rigid`
+
+**Czego unikać**
+
+- Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — ACE: [glute bridge single leg progression](https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/) (Step 2); Catalyst Athletics: [Single Leg Glute Bridge](https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/) (opis (not excessive lumbar extension)) `ht.mis.arch`
+
+### Single Leg Hip Thrust
+
+**Ustawienie**
+
+- Oprzyj górną część pleców o ławkę, jedną stopę postaw płasko na podłodze, drugą nogę oderwij od podłogi. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (upper back on a padded bench, one leg bent and foot flat on the floor, the other extended straight forward)); ISSA: [hip thrusts benefits and variations for stronger glutes](https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes) (4. Single-Leg Hip Thrust (one foot lifted slightly off the ground) + Basic Hip Thrust Technique (back on a bench, feet flat)) `ht.slSetup`
+
+**Ruch**
+
+- Unieś biodra do pełnego wyprostu; opuść je kontrolowanie. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (push through the floor… extend your hip maximally; return to the floor under control)); ISSA: [hip thrusts benefits and variations for stronger glutes](https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes) (4. Single-Leg Hip Thrust (opposite glute controls the hip extension) + Basic Hip Thrust Technique (press hips up, pause, lower)) `ht.move`
+
+**Wskazówki**
+
+- Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (ensure the motion is at the hip and not excessive lumbar extension)); NSCA: [Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026](https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf) (Exercise Technique, s. 59 (extension movement comes from the hips, not from the lumbopelvic region; uproszczenie: wersja obunóż — ISSA: poza jedną nogą jak w podstawowym)) `ht.rigid`
+
+**Czego unikać**
+
+- Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — Catalyst Athletics: [Single Leg Bench Supported Glute Bridge](https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/) (opis (not excessive lumbar extension)); NSCA: [Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026](https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf) (Exercise Technique, s. 59 (excessive lumbar hyperextension; uproszczenie: wersja obunóż)) `ht.mis.arch`
+
+### Glute Bridge (sztanga)
+
+**Ustawienie**
+
+- Połóż się na plecach pod sztangą, tak żeby leżała na biodrach; kolana ugięte, stopy płasko na podłodze na szerokość bioder. — ACE: [Hip Bridge (#318)](https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/) (opis, zdania 1–2 (lie underneath the bar, top of the hips directly under the bar; feet flat on the ground hip-width apart)); ACE: [Understanding the Barbell Hip Thrust (ACE Certified, XI 2019)](https://www.acefitness.org/continuing-education/certified/november-2019/7403/understanding-the-barbell-hip-thrust/) (The Origins of the Hip Thrust (lying face-up on the floor… knees bent and feet flat; barbell across the top of the hips, usually on a pad) — ta sama organizacja co ace-318); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Step 1: Setup (uproszczenie: wariant sprzętu Glute Bridge — bez sztangi)) `gb.bbSetup`
+
+**Ruch**
+
+- Unieś biodra, napinając pośladki, aż barki, biodra i kolana utworzą linię; opuść powoli. — ACE: [Hip Bridge (#318)](https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/) (opis, zdania 4–5 (press the feet into the floor and lift the hips; slowly lower the tailbone)); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Step 3 (linia kolana–biodra–barki); Step 4 (uproszczenie: wariant sprzętu Glute Bridge)); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2; Step 3 (press your hips upwards… into extension; slowly lower; uproszczenie: wariant sprzętu Glute Bridge)) `gb.move`
+
+**Wskazówki**
+
+- Dociskaj stopy, zwłaszcza pięty, do podłogi. — ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2 (press your heels into the floor; uproszczenie: wariant sprzętu Glute Bridge)); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Step 3; FAQ (driving through your heels; uproszczenie: wariant sprzętu Glute Bridge)) `gb.heels`
+
+**Czego unikać**
+
+- Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (wskazówka końcowa (uproszczenie: wariant sprzętu Glute Bridge)); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Common Mistakes; FAQ (uproszczenie: wariant sprzętu Glute Bridge)) `ht.mis.arch`
+
+### Seated Band Hamstring Curl
+
+**Ustawienie**
+
+- Usiądź przodem do zaczepu gumy, załóż pętlę na kostkę; noga wyprostowana przed sobą. — WebMD Ignite: [3,S,90814](https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814) (kroki 1–3 („Sit in a chair facing the closed door. Slip the loop of the elastic exercise band around the heel of your leg.”)); NASM: [Single-Leg Seated Leg Curl](https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl) (uproszczenie: wariant sprzętu Seated Leg Curl (maszyna); Step 1–2 (siad, opór z przodu tuż nad kostką; parafraza)) `bandcurl.setup`
+
+**Ruch**
+
+- Zegnij kolano, ciągnąc piętą gumę w tył; potem powoli wyprostuj nogę. — WebMD Ignite: [3,S,90814](https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814) (kroki („Slowly pull the elastic band backward along the floor with your heel”; „Slowly return your leg to the starting position.”)); NASM: [Single-Leg Seated Leg Curl](https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl) (uproszczenie: wariant sprzętu; Step 3–4 (pięta w stronę pośladka, powrót z kontrolą; parafraza)) `bandcurl.move`
+
+**Wskazówki**
+
+- Zginaj kolano tak daleko, jak dasz radę. — WebMD Ignite: [3,S,90814](https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814) (kroki („Stop when you can't pull it any farther.”)); NASM: [Single-Leg Seated Leg Curl](https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl) (uproszczenie: wariant sprzętu; Common Mistakes („Not achieving full range of motion…”)) `lcurl.full`
+
+**Czego unikać**
+
+- Zginanie kolana tylko do połowy zamiast tak daleko, jak się da. — NASM: [Single-Leg Seated Leg Curl](https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl) (uproszczenie: wariant sprzętu; Common Mistakes („Not achieving full range of motion…”)); WebMD Ignite: [3,S,90814](https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814) (kroki (ciągnij, aż nie da się dalej) — błąd = zaprzeczenie standardu) `lcurl.mis.partial`
+
+### Single Leg Press
+
+**Ustawienie**
+
+- Usiądź na maszynie, plecy na oparciu; jedną stopę postaw na platformie, drugą zdejmij z platformy i trzymaj nieruchomo. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Setup (back and head against the backrest; one foot on the platform)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 1 (uproszczenie: analogia Leg Press — back flat against the backrest)) `slp.setup`
+
+**Ruch**
+
+- Wypchnij platformę, prostując biodra i kolana; opuść ją powoli, uginając nogi. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Movement (press the platform by extending the leg; lower under control)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 2; Step 4 (uproszczenie: analogia Leg Press)) `lp.move`
+
+**Czego unikać**
+
+- Blokowanie kolana w przeproście na górze. — NASM: [single leg press](https://www.nasm.org/resource-center/exercise-library/single-leg-press) (Movement; Common Mistakes (locking the knee at full extension)); ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 3 (uproszczenie: analogia Leg Press — do not hyperextend/lock-out)) `lp.mis.lock`
+
 ## Źródła
 
 | Id | Organizacja | Tytuł | Adres | Migawka (odczyt) |
@@ -3373,6 +4340,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-135 | ACE | Bodyweight Squat (#135) | https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | — |
 | ace-139 | ACE | Walking Lunges With Twists (#139) | https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/ | — |
 | ace-14 | ACE | Bird Dog (#14) | https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/ | — |
+| ace-145 | ACE | glute bridge single leg progression | https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/ | — |
 | ace-147 | ACE | Supine Dead Bug (#147) | https://www.acefitness.org/resources/everyone/exercise-library/147/supine-dead-bug/ | — |
 | ace-15 | ACE | Cat-Cow (#15) | https://www.acefitness.org/resources/everyone/exercise-library/15/cat-cow/ | — |
 | ace-152 | ACE | Standing Dorsi-Flexion (Calf Stretch) (#152) | https://www.acefitness.org/resources/everyone/exercise-library/152/ | — |
@@ -3407,12 +4375,14 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-258 | ACE | Mountain Climbers (#258) | https://www.acefitness.org/resources/everyone/exercise-library/258/mountain-climbers/ | — |
 | ace-26 | ACE | Lateral Raise (#26) | https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/ | — |
 | ace-264 | ACE | Medicine Ball Lunge to Chest Pass (#264) | https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/ | — |
+| ace-270 | ACE | quadruped bent knee hip extensions | https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/ | — |
 | ace-28 | ACE | Step Up (#28) | https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/ | — |
 | ace-294 | ACE | Calf Raise (#294) | https://www.acefitness.org/resources/everyone/exercise-library/294/calf-raise/ | — |
 | ace-303 | ACE | Side Plank (#303) | https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | — |
 | ace-305 | ACE | V Twist (#305) | https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/ | — |
 | ace-306 | ACE | Burpee (#306, wersja z BOSU) | https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/306/burpee/ | — |
 | ace-308 | ACE | Pistol Squat (#308) | https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/ | — |
+| ace-309 | ACE | 309 | https://www.acefitness.org/resources/everyone/exercise-library/309/ | — |
 | ace-311 | ACE | Close Grip Bench Press (#311) | https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/ | — |
 | ace-317 | ACE | Romanian Deadlift (#317) | https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | — |
 | ace-318 | ACE | Hip Bridge (#318) | https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/ | — |
@@ -3426,6 +4396,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-34 | ACE | Incline Reverse Fly (#34) | https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | — |
 | ace-353 | ACE | Reverse Fly (#353) | https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/ | — |
 | ace-354 | ACE | Single Arm Lateral Raise (#354) | https://www.acefitness.org/resources/everyone/exercise-library/354/single-arm-lateral-raise/ | — |
+| ace-355 | ACE | renegade row | https://www.acefitness.org/resources/everyone/exercise-library/355/renegade-row/ | — |
 | ace-357 | ACE | Squat to Overhead Press (#357) | https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/ | — |
 | ace-358 | ACE | Suitcase Carry (#358) | https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | — |
 | ace-359 | ACE | Farmer’s Carry (#359) | https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | — |
@@ -3437,6 +4408,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-385 | ACE | Push-jerk (#385; kettlebells) | https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/ | — |
 | ace-391 | ACE | Swing (#391) | https://www.acefitness.org/resources/everyone/exercise-library/391/swing/ | — |
 | ace-394 | ACE | Halo (#394) | https://www.acefitness.org/resources/everyone/exercise-library/394/halo/ | — |
+| ace-395 | ACE | single arm overhead press | https://www.acefitness.org/resources/everyone/exercise-library/395/single-arm-overhead-press/ | — |
 | ace-41 | ACE | Push Up (#41) | https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/ | — |
 | ace-43 | ACE | Seated Shoulder Press (#43) | https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/ | — |
 | ace-44 | ACE | Seated Biceps Curl (#44) | https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/ | — |
@@ -3447,6 +4419,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-52 | ACE | Crunch (#52) | https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/ | — |
 | ace-5386-adv-kb | ACE | Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015) | https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/ | — |
 | ace-54 | ACE | Front Raise (#54) | https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/ | — |
+| ace-55 | ACE | Triceps Kickback (#55) | https://www.acefitness.org/resources/everyone/exercise-library/55/triceps-kickback/ | — |
 | ace-6 | ACE | Deadlift (#6) | https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | — |
 | ace-65 | ACE | Russian Twist (#65) | https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/ | — |
 | ace-70 | ACE | Bicep Curl (#70) | https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/ | — |
@@ -3458,6 +4431,11 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | ace-76 | ACE | Reverse Crunch (#76) | https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/ | — |
 | ace-84 | ACE | Trx Reg Back Row (#84) | https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | — |
 | ace-blog-5624 | ACE | Foam Rolling 101 (blog) | https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/ | — |
+| ace-pro-5043 | ACE | how to self care for the it band | https://www.acefitness.org/resources/pros/expert-articles/5043/how-to-self-care-for-the-it-band/ | — |
+| ace-pro-6315 | ACE | 8 hip strengthening exercises using the versa loop | https://www.acefitness.org/resources/pros/expert-articles/6315/8-hip-strengthening-exercises-using-the-versa-loop/ | — |
+| ace-pro-6355 | ACE | 8 butt toning moves | https://www.acefitness.org/resources/pros/expert-articles/6355/8-butt-toning-moves/ | — |
+| ace-pro-6402 | ACE | 5 ab exercises no crunches no equipment | https://www.acefitness.org/resources/pros/expert-articles/6402/5-ab-exercises-no-crunches-no-equipment/ | — |
+| ace-pro-7409 | ACE | 7 new moves to challenge your glutes and hamstrings | https://www.acefitness.org/resources/pros/expert-articles/7409/7-new-moves-to-challenge-your-glutes-and-hamstrings/ | — |
 | aceblog-5881 | ACE | Reap the Benefits of Rowing With 3 Fast and Efficient Workouts (blog, 2016) | https://www.acefitness.org/resources/everyone/blog/5881/reap-the-benefits-of-rowing-with-3-fast-and-efficient-workouts/ | — |
 | acecert-7403 | ACE | Understanding the Barbell Hip Thrust (ACE Certified, XI 2019) | https://www.acefitness.org/continuing-education/certified/november-2019/7403/understanding-the-barbell-hip-thrust/ | — |
 | acefitness-a-pro-s-guide-to-muscle-mechanics-the-shoulders | ACE | A pro s guide to muscle mechanics the shoulders | https://www.acefitness.org/continuing-education/certified/september-2025/8951/a-pro-s-guide-to-muscle-mechanics-the-shoulders/ | — |
@@ -3470,13 +4448,20 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | app-s5 | app-s5 | app-s5 | — | — |
 | app-s6 | app-s6 | app-s6 | — | — |
 | app-s7 | app-s7 | app-s7 | — | — |
+| app-s8 | app-s8 | app-s8 | — | — |
 | athletico-figure-4 | Athletico Physical Therapy | Stretch of the Week: Figure 4 | https://athletico.com/?p=27325 | — |
 | aurora-lower-trunk-rotation | Advocate Aurora Health | Lumbar – Lower Trunk Rotation, Hooklying (X20549, rev. 12/2019) | https://ahc.aurorahealthcare.org/fywb/x20549.pdf | — |
+| barbend-arnold-press | BarBend | arnold press | https://barbend.com/arnold-press/ | — |
+| barbend-band-glutes | BarBend | resistance band exercises for glutes | https://barbend.com/resistance-band-exercises-for-glutes/ | — |
 | barbend-blocks-vs-hang | BarBend | Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2) | https://barbend.com/weightlifting-blocks-vs-hang/ | — |
 | barbend-clean | BarBend | How to Do the Clean… (akt. 19.11.2024) | https://barbend.com/how-to-do-the-clean/ | — |
 | barbend-clean-pull | BarBend | Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024) | https://barbend.com/clean-pull-guide/ | — |
 | barbend-db-snatch | BarBend | Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024) | https://barbend.com/dumbbell-snatch/ | — |
+| barbend-dips | BarBend | dips | https://barbend.com/dips/ | — |
+| barbend-dumbbell-flye-variations | BarBend | dumbbell flye variations | https://barbend.com/dumbbell-flye-variations/ | — |
 | barbend-fix-your-snatch | BarBend | Need to Fix Your Snatch? (R. Stefan, USAW-L1) | https://barbend.com/fix-your-snatch/ | — |
+| barbend-glute-kickbacks | BarBend | glute kickbacks | https://barbend.com/glute-kickbacks/ | — |
+| barbend-hack-squat-machine | BarBend | hack squat machine | https://barbend.com/hack-squat-machine/ | — |
 | barbend-hang-clean | BarBend | How to Do a Hang Clean (akt. 19.12.2023) | https://barbend.com/hang-clean/ | — |
 | barbend-hang-lifts | BarBend | What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2) | https://barbend.com/what-are-hang-lifts-in-weightlifting/ | — |
 | barbend-jerk-dip | BarBend | Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023) | https://barbend.com/jerk-dip-technique-benefits/ | — |
@@ -3485,14 +4470,20 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | barbend-kb-jerk-vs-pp | BarBend | Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023) | https://barbend.com/kettlebell-jerk-vs-push-press | — |
 | barbend-kettlebell-halo | BarBend | Kettlebell halo | https://barbend.com/kettlebell-halo/ | — |
 | barbend-muscle-snatch | BarBend | Muscle Snatch (C. Trieu, 2024) | https://barbend.com/muscle-snatch/ | — |
+| barbend-ote | BarBend | Overhead triceps extension | https://barbend.com/overhead-triceps-extension/ | — |
 | barbend-pendlay-row | BarBend | Pendlay Row | https://barbend.com/Pendlay-row/ | — |
 | barbend-power-clean | BarBend | The Power Clean Exercise: How To… (akt. 25.03.2024) | https://barbend.com/power-clean/ | — |
 | barbend-power-snatch | BarBend | Power Snatch (R. Stefan, USAW-L1) | https://barbend.com/power-snatch/ | — |
+| barbend-renegade-row | BarBend | renegade row | https://www.barbend.com/renegade-row/ | — |
 | barbend-sled-push | BarBend | How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024) | https://barbend.com/sled-push/ | — |
 | barbend-snatch-balance | BarBend | Snatch Balance (M. Dewar, CSCS) | https://barbend.com/snatch-balance/ | — |
+| barbend-tri-best | BarBend | Best triceps exercises | https://barbend.com/best-triceps-exercises/ | — |
 | berling-2006 | Berling i in. (University of Wisconsin–La Crosse) | …handrail support on oxygen uptake during steady-state treadmill exercise, J Cardiopulm Rehabil 2006 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/17135860 | — |
 | bini-2011 | Bini, Hume, Croft (Auckland University of Technology) | Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/21615188 | — |
+| bodbot-lying-one-arm-triceps-extension | BodBot | Tricep extension, lying, dumbbell, one arm | https://www.bodbot.com/Exercises/1010/Tricep-Extension-_-Lying,-Dumbbell-_-One-Arm | — |
 | bodylastics-lateral-raise-with-flat-bands | Bodylastics | Lateral raise with flat bands | https://bodylastics.com/exercise/lateral-raise-with-flat-bands | — |
+| bodylastics-standing-calf-raise-flat-bands | Bodylastics | standing calf raises with flat bands | https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands | — |
+| bodylastics-standing-shoulder-press | Bodylastics | standing shoulder press with bands | https://bodylastics.com/standing-shoulder-press-with-bands | — |
 | bodylastics-upright-row | Bodylastics | Upright row | https://www.bodylastics.com/exercises/resistance-bands/shoulders/upright-row | — |
 | breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
@@ -3504,6 +4495,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-353 | Catalyst Athletics | Back Squat Jump (#353) | https://catalystathletics.com/exercise/353/Back-Squat-Jump/ | — |
 | catalyst-379 | Catalyst Athletics | Block Clean | https://www.catalystathletics.com/exercise/379/Block-Clean/ | — |
 | catalyst-380 | Catalyst Athletics | Block Power Clean | https://www.catalystathletics.com/exercise/380/Block-Power-Clean/ | — |
+| catalyst-496 | Catalyst Athletics | Single Leg Glute Bridge | https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/ | — |
 | catalyst-549 | Catalyst Athletics | Broad Jump (#549) | https://www.catalystathletics.com/exercise/549/Broad-Jump/ | — |
 | catalyst-555 | Catalyst Athletics | Squat Vertical Jump (#555) | https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/ | — |
 | catalyst-558 | Catalyst Athletics | Tuck Jump (#558) | https://catalystathletics.com/exercise/558/Tuck-Jump/ | — |
@@ -3515,18 +4507,28 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | catalyst-67 | Catalyst Athletics | Power Clean | https://www.catalystathletics.com/exercise/67/Power-Clean/ | — |
 | catalyst-68 | Catalyst Athletics | Hang Clean | https://www.catalystathletics.com/exercise/68/Hang-Clean/ | — |
 | catalyst-72 | Catalyst Athletics | Power Jerk (Exercise Library #72) | https://catalystathletics.com/exercise/72/Power-Jerk/ | — |
+| catalyst-723 | Catalyst Athletics | Single Leg Bench Supported Glute Bridge | https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/ | — |
 | catalyst-75 | Catalyst Athletics | Squat Jerk (Exercise Library #75) | https://catalystathletics.com/exercise/75/Squat-Jerk/ | — |
 | catalyst-76 | Catalyst Athletics | Clean & Jerk | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | — |
+| catalyst-766 | Catalyst Athletics | Clamshell | https://catalystathletics.com/exercise/766/Clamshell/ | — |
 | catalyst-80 | Catalyst Athletics | Snatch Balance (#80) | https://www.catalystathletics.com/exercise/80/Snatch-Balance/ | — |
 | catalyst-803 | Catalyst Athletics | Barbell Front Raise (#803) | https://catalystathletics.com/exercise/803/Barbell-Front-Raise/ | — |
 | catalyst-805 | Catalyst Athletics | Barbell Upright Row (#805) | https://catalystathletics.com/exercise/805/Barbell-Upright-Row/ | — |
 | catalyst-812 | Catalyst Athletics | Cable Front Raise (#812) | https://catalystathletics.com/exercise/812/Cable-Front-Raise/ | — |
 | catalyst-822 | Catalyst Athletics | Dumbbell Front Side Raise (#822) | https://catalystathletics.com/exercise/822/Dumbbell-Front-Side-Raise/ | — |
+| catalyst-878 | Catalyst Athletics | Reverse Grip Tricep Pushdown (#878) | https://www.catalystathletics.com/exercise/878/Reverse-Grip-Tricep-Pushdown/ | — |
+| catalyst-894 | Catalyst Athletics | Single Arm Overhead Cable Tricep Extension (#894) | https://www.catalystathletics.com/exercise/894/Single-Arm-Overhead-Cable-Tricep-Extension/ | — |
+| catalyst-898 | Catalyst Athletics | Single Arm Rope Tricep Pushdown (#898) | https://www.catalystathletics.com/exercise/898/Single-Arm-Rope-Tricep-Pushdown/ | — |
+| catalyst-903 | Catalyst Athletics | Skullcrusher (#903) | https://www.catalystathletics.com/exercise/903/Skullcrusher/ | — |
+| catalyst-909 | Catalyst Athletics | Tate Press (#909) | https://www.catalystathletics.com/exercise/909/Tate-Press/ | — |
+| catalyst-910 | Catalyst Athletics | Tricep Kickback (#910) | https://www.catalystathletics.com/exercise/910/Tricep-Kickback/ | — |
 | catalyst-96 | Catalyst Athletics | Muscle Snatch (#96) | https://www.catalystathletics.com/exercise/96/Muscle-Snatch/ | — |
 | catalyst-97 | Catalyst Athletics | Snatch Pull (#97) | https://www.catalystathletics.com/exercise/97/Snatch-Pull/ | — |
 | catalyst-98 | Catalyst Athletics | Clean Pull | https://www.catalystathletics.com/exercise/98/Clean-Pull/ | — |
+| catalyst-ab-rollout | Catalyst Athletics | Ab Rollout | https://catalystathletics.com/exercise/135/Ab-Rollout | — |
 | catalyst-art-1904 | Catalyst Athletics | Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution | https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/ | — |
 | catalyst-art-2076 | Catalyst Athletics | Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017) | https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making | — |
+| catalyst-kettlebell-press | Catalyst Athletics | Ketllebell Press | https://catalystathletics.com/exercise/855/Ketllebell-Press/ | — |
 | catalyst-pm-815 | Catalyst Athletics | Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch | https://performancemenu.com/article/815/Greg-Everett | — |
 | catalyst-video-1499 | Catalyst Athletics | How To Stop Swinging Snatch & Clean Pulls (wideo z opisem) | https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls | — |
 | catalyst-video-1539 | Catalyst Athletics | Arm Bend In Snatch & Clean Pulls? (wideo z opisem) | https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/ | — |
@@ -3538,6 +4540,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | cf-dkb-pp-jerk | CrossFit | Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008) | https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk | — |
 | coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
 | columbia-plantar-fasciitis | WebMD Ignite | Plantar Fasciitis Exercises (Health Library) | https://www.columbiadoctors.org/health-library/how-to/plantar-fasciitis-exercises | — |
+| columbia-shoulder-press-band | WebMD Ignite | shoulder press | https://www.columbiadoctors.org/health-library/multimedia/shoulder-press/ | — |
 | covenant-lower-body-flex | Covenant HealthCare | Lower Body Flexibility (PDF, 2 s.) | https://covenanthealthcare.com/Uploads/Public/Documents/Workfiles/Covenant%20Medical%20Group/Sports_Medicine/Lower_Body_Flexibility.pdf | — |
 | crossfit-cj | CrossFit | The Clean and Jerk (Essentials, 21.01.2020) | https://www.crossfit.com/essentials/the-clean-and-jerk | — |
 | crossfit-jerk | CrossFit | Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023) | https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk | — |
@@ -3546,6 +4549,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | crossfit-wall-ball | CrossFit | The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning | https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon | — |
 | cuh-spinal-rom | Cambridge University Hospitals NHS FT | Spinal range of movement/stretching exercises | https://www.cuh.nhs.uk/patient-information/spinal-range-of-movementstretching-exercises/ | — |
 | duke-oeso-stretches | Duke University Health System, Occupational and Environmental Safety Office | Stretches (handout, 2011) | https://www.safety.duke.edu/sites/default/files/Stretches.pdf | — |
+| echelon-ab-wheel | Echelon Fitness | ECHELON AB WHEEL EXERCISE GUIDE.pdf | https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf | — |
 | ecu-pt-eversion-towel | East Carolina University Physical Therapy Clinic | Seated Ankle Eversion Stretch with Towel | https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=138 | — |
 | ecu-pt-inversion-towel | East Carolina University Physical Therapy Clinic | Seated Ankle Inversion Stretch with Towel | https://sites.ecu.edu/ecuphysicaltherapyclinic/?p=143 | — |
 | eleiko-65944cf0 | Eleiko | Horizontal Cable Press – Dual Cable, Standing | https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b | — |
@@ -3617,13 +4621,13 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | exrx-Quadriceps/DBWalkingLunge | ExRx.net | DBWalkingLunge | https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge | https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge |
 | exrx-Quadriceps/LVSeatedLegPress | ExRx.net | LVSeatedLegPress | https://exrx.net/WeightExercises/Quadriceps/LVSeatedLegPress | https://web.archive.org/web/20230304211727/https://exrx.net/WeightExercises/Quadriceps/LVSeatedLegPress |
 | exrx-Quadriceps/SL45LegPress | ExRx.net | SL45LegPress | https://exrx.net/WeightExercises/Quadriceps/SL45LegPress | https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress |
-| exrx-Quadriceps/SLHackSquat | ExRx.net | SLHackSquat | https://exrx.net/WeightExercises/Quadriceps/SLHackSquat | https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat |
 | exrx-RectusAbdominis/BWCrunch | ExRx.net | BWCrunch | https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch | https://web.archive.org/web/20230523091650/https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch |
 | exrx-TrapeziusUpper/BBShrug | ExRx.net | BBShrug | https://exrx.net/WeightExercises/TrapeziusUpper/BBShrug | https://web.archive.org/web/20230306153926/https://exrx.net/WeightExercises/TrapeziusUpper/BBShrug |
 | exrx-TrapeziusUpper/DBShrug | ExRx.net | DBShrug | https://exrx.net/WeightExercises/TrapeziusUpper/DBShrug | https://web.archive.org/web/20240105211625/https://exrx.net/WeightExercises/TrapeziusUpper/DBShrug |
 | exrx-Triceps/BBCloseGripBenchPress | ExRx.net | BBCloseGripBenchPress | https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress | https://web.archive.org/web/20240105211522/https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress |
 | exrx-Triceps/BBLyingTriExt | ExRx.net | BBLyingTriExt | https://exrx.net/WeightExercises/Triceps/BBLyingTriExt | https://web.archive.org/web/20220926203416/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt |
 | exrx-Triceps/BWBenchDip | ExRx.net | BWBenchDip | https://exrx.net/WeightExercises/Triceps/BWBenchDip | https://web.archive.org/web/20220823003741/https://exrx.net/WeightExercises/Triceps/BWBenchDip |
+| exrx-Triceps/CBLyingTriExt | ExRx.net | CBLyingTriExt | https://exrx.net/WeightExercises/Triceps/CBLyingTriExt | — |
 | exrx-Triceps/CBPushdown | ExRx.net | CBPushdown | https://exrx.net/WeightExercises/Triceps/CBPushdown | https://web.archive.org/web/20220816182710/https://exrx.net/WeightExercises/Triceps/CBPushdown |
 | exrx-Triceps/CBStandingTricepsExtensionRope | ExRx.net | CBStandingTricepsExtensionRope | https://exrx.net/WeightExercises/Triceps/CBStandingTricepsExtensionRope | https://web.archive.org/web/20220403090026/https://exrx.net/WeightExercises/Triceps/CBStandingTricepsExtensionRope |
 | exrx-Triceps/CBTriExt | ExRx.net | CBTriExt | https://exrx.net/WeightExercises/Triceps/CBTriExt | https://web.archive.org/web/20231228115509/https://exrx.net/WeightExercises/Triceps/CBTriExt |
@@ -3631,24 +4635,39 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | fabrykasily-odwodzenie-linek-w-tyl-wyciagu-stojac | Atlas ćwiczeń Fabryka Siły | Odwodzenie linek w tyl wyciagu stojac | https://www.fabrykasily.pl/cwiczenia/na-barki/odwodzenie-linek-w-tyl-wyciagu-stojac | — |
 | fedb-alternating-deltoid-raise | free-exercise-db | Alternating Deltoid Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Deltoid_Raise.json | — |
 | fedb-barbell-incline-shoulder-raise | free-exercise-db | Barbell Incline Shoulder Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Shoulder_Raise.json | — |
+| fedb-chain-handle-extension | free-exercise-db | Chain Handle Extension | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chain_Handle_Extension.json | — |
 | fedb-one-arm-incline-lateral-raise | free-exercise-db | One Arm Incline Lateral Raise | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise.json | — |
 | fedb-sled-reverse-flye | free-exercise-db | Sled Reverse Flye | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Reverse_Flye.json | — |
 | fedb-standing-front-barbell-raise-over-head | free-exercise-db | Standing Front Barbell Raise Over Head | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Front_Barbell_Raise_Over_Head.json | — |
 | fedb-straight-raises-on-incline-bench | free-exercise-db | Straight Raises on Incline Bench | https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight_Raises_on_Incline_Bench.json | — |
+| fitfather-skull-crusher | Fit Father Project | Skull crusher exercise | https://www.fitfatherproject.com/skull-crusher-exercise/ | — |
 | fitnall-barbell-overhead-front-raise | Fitnall | Barbell overhead front raise | https://fitnall.com/exercises/barbell-overhead-front-raise/ | — |
 | fitnessvolt-cable-rear-delt-exercises | Fitness Volt | Cable rear delt exercises | https://fitnessvolt.com/cable-rear-delt-exercises/ | — |
+| fitnessvolt-decline-skull-crusher | Fitness Volt | Decline skull crusher | https://fitnessvolt.com/23999/decline-skull-crusher/ | — |
 | fitvibe-cable-y-raise-668 | FitVibe | Cable y raise 668 | https://fitvibe.gr/askiseis/cable-y-raise-668 | — |
+| fv-decline-push-up | Fitness Volt | ?p=75039 | https://fitnessvolt.com/?p=75039 | — |
+| fv-suspension-chest-press | Fitness Volt | suspension chest press | https://fitnessvolt.com/suspension-chest-press/ | — |
 | hci-neck-exercises | Huntsman Cancer Institute, University of Utah Health | Neck Exercises (fact sheet, 2022) | https://hci-portal.hci.utah.edu/sites/factsheets/Shared%20Documents/neck-exercises.pdf | — |
 | healthwise-columbia-shoulder-er | WebMD Ignite | Shoulder external rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-external-rotation-resisted/ | — |
 | healthwise-columbia-shoulder-ir | WebMD Ignite | Shoulder internal rotation (resisted) | https://www.columbiadoctors.org/health-library/multimedia/shoulder-internal-rotation-resisted/ | — |
 | hofmann-2014 | Hofmann i in. (Cybex Research Institute) | …handrail-use instructions… inclined treadmill walking, Int J Exerc Sci 7(4):339–345 (abstrakt) | https://digitalcommons.wku.edu/ijes/vol7/iss4/10 | — |
 | hss-back-neck-stretches | HSS | HSS Rehabilitation and Performance, Back and Neck Stretches (17.02.2021) | https://www.hss.edu/health-library/move-better/back-neck-stretches | — |
 | hss-bike | HSS | A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020) | https://www.hss.edu/health-library/move-better/set-up-exercise-bike | — |
+| hss-mini-band-hip-ext | HSS | mini band exercises for runners | https://www.hss.edu/health-library/move-better/mini-band-exercises-for-runners | — |
 | hss-shoulder-strengthening-program | HSS | Shoulder strengthening program | https://www.hss.edu/globalassets/physician-files/sutton/shoulder-strengthening-program.pdf | — |
 | hss-sutton-shoulder-program | HSS | Shoulder Rotator Cuff and Scapular Strengthening Program | https://hss.edu/sutton/shoulder-strengthening-program.pdf | — |
 | hwq-cat-cow | Health and Wellbeing Queensland | Cat and cow stretch | https://hw.qld.gov.au/?p=41297 | — |
 | insportline-qt1005 | inSPORTline | Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises” | https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf | — |
 | ironmind-split | IronMind | Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada) | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/ | — |
+| issa-25min-calves | ISSA | 25 minute calf workout | https://issaonline.com/blog/post/25-minute-calf-workout | — |
+| issa-band-20 | ISSA | 20-minute full-body resistance band workout | https://www.issaonline.com/blogs/training-tips/20-minute-full-body-resistance-band-workout | — |
+| issa-chest-dips | ISSA | chest dips form benefits variations what to avoid | https://www.issaonline.com/blog/post/chest-dips-form-benefits-variations-what-to-avoid | — |
+| issa-donkey-kicks | ISSA | donkey kicks benefits and variations for strong glutes | https://www.issaonline.com/blogs/strength/donkey-kicks-benefits-and-variations-for-strong-glutes | — |
+| issa-hip-abduction | ISSA | hip abduction exercises for stronger hips and glutes | https://issaonline.com/blog/post/hip-abduction-exercises-for-stronger-hips-and-glutes | — |
+| issa-hip-thrust-variations | ISSA | hip thrusts benefits and variations for stronger glutes | https://issaonline.com/blog/post/hip-thrusts-benefits-and-variations-for-stronger-glutes | — |
+| issa-overhead-press-mistakes | ISSA | overhead press proper form variations and common mistakes | https://issaonline.com/blog/post/overhead-press-proper-form-variations-and-common-mistakes | — |
+| issa-top6-calves | ISSA | top six exercises for building bigger calves | https://www.issaonline.com/blog/post/top-six-exercises-for-building-bigger-calves | — |
+| issa-tri-top5 | ISSA | Top exercises to enhance your triceps workout | https://www.issaonline.com/blogs/training-tips/top-exercises-to-enhance-your-triceps-workout | — |
 | issaonline-upright-row-muscles-worked-benefits-proper-form-m | ISSA | Upright row muscles worked benefits proper form more | https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more | — |
 | leeds-ankle-phase2 | Leeds Teaching Hospitals NHS Trust, Physiotherapy Department | Ankle Phase 2 Exercises (A. Brogden, 27.01.2022) | https://www.leedsth.nhs.uk/wp-content/uploads/2023/05/Metatarsal-Phase-2-exercises.pdf | — |
 | lifefitness-rails | Life Fitness | Is Treadmill Calorie Burn Affected by Holding the Handrails? (29.07.2024) | https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails | — |
@@ -3665,6 +4684,8 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-bench-dips | NASM | Bench Dips | https://www.nasm.org/resource-center/exercise-library/bench-dips | — |
 | nasm-best-abs | NASM | Best Abs Exercises (blog, H. Cherry, akt. 23.07.2026) | https://www.nasm.org/resource-center/blog/training/best-abs-exercises | — |
 | nasm-bird-dog | NASM | Bird Dog | https://www.nasm.org/resource-center/exercise-library/bird-dog | — |
+| nasm-blog-active-recovery | NASM | active recovery | https://www.nasm.org/resource-center/blog/active-recovery | — |
+| nasm-blog-banded-clamshell | NASM | the banded clamshell a simple move for stronger glutes | https://www.nasm.org/resource-center/blog/training/the-banded-clamshell-a-simple-move-for-stronger-glutes | — |
 | nasm-box-jumps | NASM | Box Jumps | https://www.nasm.org/resource-center/exercise-library/box-jumps | — |
 | nasm-bulgarian-split-squat | NASM | Bulgarian Split Squat | https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | — |
 | nasm-cable-crossover | NASM | Cable Crossover | https://www.nasm.org/resource-center/exercise-library/cable-crossover | — |
@@ -3672,6 +4693,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-chest-press-machine | NASM | Chest Press Machine | https://www.nasm.org/resource-center/exercise-library/chest-press-machine | — |
 | nasm-close-grip-bench-press | NASM | Close Grip Bench Press | https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press | — |
 | nasm-dead-bug | NASM | Dead Bug | https://www.nasm.org/resource-center/exercise-library/dead-bug | — |
+| nasm-decline-push-up | NASM | decline push up | https://www.nasm.org/resource-center/exercise-library/decline-push-up | — |
 | nasm-dumbbell-front-squat | NASM | Dumbbell Front Squat | https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | — |
 | nasm-dumbbell-romanian-deadlift | NASM | Dumbbell Romanian Deadlift | https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | — |
 | nasm-face-pull | NASM | Face Pull | https://www.nasm.org/resource-center/exercise-library/face-pull | — |
@@ -3695,6 +4717,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-seated-leg-curl | NASM | Seated Leg Curl | https://www.nasm.org/resource-center/exercise-library/seated-leg-curl | — |
 | nasm-seated-machine-row-close-grip | NASM | Seated Machine Row Close Grip | https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip | — |
 | nasm-side-plank | NASM | Side Plank | https://www.nasm.org/resource-center/exercise-library/side-plank | — |
+| nasm-single-leg-press | NASM | single leg press | https://www.nasm.org/resource-center/exercise-library/single-leg-press | — |
 | nasm-single-leg-seated-leg-curl | NASM | Single-Leg Seated Leg Curl | https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl | — |
 | nasm-single-leg-squat | NASM | Single Leg Squat | https://www.nasm.org/resource-center/exercise-library/single-leg-squat | — |
 | nasm-squat-jump | NASM | Squat Jump | https://www.nasm.org/resource-center/exercise-library/squat-jump | — |
@@ -3702,7 +4725,10 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nasm-tuck-jump | NASM | Tuck Jump | https://www.nasm.org/resource-center/exercise-library/tuck-jump | — |
 | nasm-two-arm-dumbbell-chest-press-with-band | NASM | Two Arm Dumbbell Chest Press With Band | https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | — |
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
+| nfpt-hack-squat | NFPT | how to do hack squats | https://nfpt.com/how-to-do-hack-squats/ | — |
 | nfpt-how-to-do-incline-side-lateral-dumbbell-raises | NFPT | How to do incline side lateral dumbbell raises | https://nfpt.com/how-to-do-incline-side-lateral-dumbbell-raises/ | — |
+| nfpt-incline-fly | NFPT | how to do incline bench dumbbell flyes | https://nfpt.com/how-to-do-incline-bench-dumbbell-flyes/ | — |
+| nfpt-reverse-tricep-pushdown | NFPT (wpisy gościnne) | How to do reverse tricep pushdown | https://nfpt.com/how-to-do-reverse-tricep-pushdown/ | — |
 | nhs-flexibility | NHS (nhs.uk) | Flexibility exercises | https://www.nhs.uk/live-well/exercise/flexibility-exercises/ | — |
 | nhs-shrops-calf | Shropshire Community Health NHS Trust | Calf Stretching Information Leaflet | https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf | — |
 | nhs-southtees-side-lying | South Tees Hospitals NHS Foundation Trust | Rotator cuff in side lying | https://www.southtees.nhs.uk/resources/rotator-cuff-in-side-lying/ | — |
@@ -3710,9 +4736,12 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | nordictrack-incline | NordicTrack | Incline treadmill benefits… (15.07.2025) | https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | — |
 | nsca-basics-2012 | NSCA | Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012 | https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | — |
 | nsca-coach-7-3 | NSCA | Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3 | https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | — |
+| nsca-etm4-one-arm-kb-press | NSCA — Exercise Technique Manual (Human Kinetics) | one arm kettlebell press | https://us.humankinetics.com/blogs/excerpt/one-arm-kettlebell-press | — |
+| nsca-scj-hip-thrust | NSCA | Contreras, Cronin, Schoenfeld: Barbell Hip Thrust, Strength and Conditioning Journal 33(5):58–61, 2011 (kolumna Exercise Technique, NSCA) — kopia PDF u autora; strony czasopisma 403 dla narzędzia 08.11.2026 | https://www.lookgreatnaked.com/articles/barbell_hip_thrust.pdf | — |
 | orthobethesda-foam-rolling | OrthoBethesda Therapy Services | Foam Rolling (FR) Exercises (PDF, 2 s., 2015) | https://www.orthobethesda.com/foam-rolling-exercises/ | — |
 | orthoindy-itb-program | OrthoIndy Physical Therapy | IT Band Home Exercise Program (PDF, rev. 8/15) | https://orthoindy.com/wp-content/uploads/IT-Band-Program.pdf | — |
 | osu-foam-rolling | Ohio State University Wexner Medical Center | Foam Rolling Exercises (transkrypcja filmu) | https://wexnermedical.osu.edu/-/media/transcripts/wexnermedical/blog/2y2leqbvrgw_foamrollingexercises.txt | — |
+| ph-wobble-hip-ext | Thera-Band | thera band wobble board hip extension with band | https://www.performancehealthacademy.com/exercises/thera-band-wobble-board-hip-extension-with-band.html | — |
 | physitrack-heel-raise-step | Physitrack | Heel raises on a step | https://us.physitrack.com/home-exercise-video/heel-raises-on-a-step | — |
 | pm-14636100 | Fry, Smith, Schilling (University of Memphis) | Fry i in. 2003, Effect of knee position on hip and knee torques during the barbell squat, J Strength Cond Res 17(4) — abstrakt | https://pubmed.ncbi.nlm.nih.gov/14636100/ | — |
 | pm-21659894 | Swinton i in. (Robert Gordon University) | Swinton i in. 2011, A biomechanical analysis of straight and hexagonal barbell deadlifts…, J Strength Cond Res 25(7) — abstrakt | https://pubmed.ncbi.nlm.nih.gov/21659894/ | — |
@@ -3742,6 +4771,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | potreningu-odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac | Atlas ćwiczeń potreningu.pl | Odwodzenie ramion w tyl na wyciagu gornym stojac | https://potreningu.pl/atlas-cwiczen/dla-mezczyzn/348/odwodzenie-ramion-w-tyl-na-wyciagu-gornym-stojac | — |
 | potreningu-unoszenie-ramion-bokiem-w-opadzie-tulowia-w-brami | Atlas ćwiczeń potreningu.pl | Unoszenie ramion bokiem w opadzie tulowia w bramie | https://potreningu.pl/atlas-cwiczen/dla-kobiet/357/unoszenie-ramion-bokiem-w-opadzie-tulowia-w-bramie | — |
 | prehab-heel-raise-off-step | The Prehab Guys | Heel Raise – Off Step | https://theprehabguys.com/vimeo-video/heel-raise-off-step/ | — |
+| prehab-pushup-variations | The Prehab Guys | push up exercise variations | https://theprehabguys.com/push-up-exercise-variations/ | — |
 | rep-sled-push | REP Fitness | Sled Push Technique Guide (2026) | https://repfitness.com/blogs/training/sled-push-technique | — |
 | rep-wall-balls | REP Fitness | How to Improve Your Wall Balls | https://uk.repfitness.com/blogs/training/wall-balls | — |
 | rfl-mb-chest-throw | RFL | Med Ball Chest Throw (karta PDF z oceną 1–5) | https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf | — |
@@ -3757,9 +4787,14 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 | setforset-sled-workouts | SET FOR SET | Sled workouts | https://www.setforset.com/blogs/news/sled-workouts | — |
 | sf-go-ballistic-jerk | StrongFirst | Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia) | https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/ | — |
 | southtees-cat-stretch | South Tees Hospitals NHS Foundation Trust | Cat stretch (Physiotherapy) | https://www.southtees.nhs.uk/?p=31588 | — |
+| staywell-seated-hamstring-curl | WebMD Ignite | 3,S,90814 | https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814 | — |
+| strongfirst-mastering-your-press-1 | StrongFirst | mastering your press part i | https://www.strongfirst.com/mastering-your-press-part-i/ | — |
+| theprehabguys-overhead-tricep-extension-band | The Prehab Guys | Overhead Tricep Extension – Band | https://theprehabguys.com/vimeo-video/overhead-tricep-extension-band/ | — |
+| theraband-ankle-calf-raise-standing | Thera-Band | thera band ankle calf raise in standing | https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html | — |
 | torokhtiy-barbell-squat-jump | Torokhtiy | Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024) | https://torokhtiy.com/blogs/guides/barbell-squat-jump | — |
 | torokhtiy-snatch-balance | Torokhtiy | Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026) | https://store.torokhtiy.com/blogs/exercises/snatch-balance | — |
 | torque-utg-2024 | Torque Fitness | Ultimate TANK Training Guide (2024, PDF; kopia u dystrybutora) | https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf | — |
+| trx-push-up | TRX | trx push up | https://www.trxtraining.com/blogs/news/trx-push-up | — |
 | ucb-uhs-work-warmup | UC Berkeley University Health Services | Work Warm-Up | https://uhs.berkeley.edu/sites/default/files/wellness-generic_warmupexerciseprogram.pdf | — |
 | uwmed-plantar-fasciitis | UW Medicine | Exercises for Plantar Fasciitis (Sports Medicine Clinic, PDF, 5 s.) | https://honline.s.uw.edu/sites/default/files/record_pdfs/Exercises-Plantar-Fasciitis.pdf | — |
 | vdhorst-2015 | van der Horst i in. (UMC Utrecht) | The Preventive Effect of the Nordic Hamstring Exercise… RCT, Am J Sports Med 2015 | https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | — |

@@ -13,9 +13,9 @@ afterEach(() => { applyLang('pl'); });
 const own = () => { const e = store.newExercise('Moje ćwiczenie'); e.lib = false; store.save(e); return e; };
 
 describe('exNameLang', () => {
-  test('biblioteka: pl → pl, en → en, inne języki → en; ćwiczenie własne/przemianowane → język interfejsu', async () => {
+  test('biblioteka (ZB-044, decyzje 07.11.2026 i 08.11.2026, docs/18): wszystkie języki → en, także pl; zastępuje DEC-13. Dawniej: pl → pl, en → en, inne języki → en; ćwiczenie własne/przemianowane → język interfejsu', async () => {
     await fresh(); const lib = ex('Back Squat'); const mine = { name: 'Moje ćwiczenie', lib: false };
-    for (const [l, want] of [['pl', 'pl'], ['en', 'en'], ['de', 'en'], ['fr', 'en'], ['ja', 'en'], ['ru', 'en']] as const) { applyLang(l); expect([l, exNameLang(lib)]).toEqual([l, want]); }
+    for (const [l, want] of [['pl', 'en'], ['en', 'en'], ['de', 'en'], ['fr', 'en'], ['ja', 'en'], ['ru', 'en']] as const) { applyLang(l); expect([l, exNameLang(lib)]).toEqual([l, want]); }
     for (const l of ['pl', 'en', 'de', 'ja'] as const) { applyLang(l); expect([l, exNameLang(mine)]).toEqual([l, l]); }
     applyLang('de'); expect(exNameLang(undefined)).toBe(lang()); expect(exNameLang(null)).toBe(lang());
   });
@@ -26,7 +26,7 @@ describe('ekrany: nazwa biblioteki czytana po angielsku', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: locale as never }); await flushAll(20);
   }
   const langOf = (name: string) => screen.getAllByText(name).map(n => n.props.accessibilityLanguage);
-  test.each([['de', 'en'], ['ja', 'en'], ['pl', 'pl'], ['en', 'en']] as const)('%s: nagłówek ćwiczenia z biblioteki → accessibilityLanguage %s; własne → język interfejsu', async (l, want) => {
+  test.each([['de', 'en'], ['ja', 'en'], ['pl', 'en'], ['en', 'en']] as const)('%s: (ZB-044, 07.11.2026 i 08.11.2026, docs/18) nagłówek ćwiczenia z biblioteki → accessibilityLanguage %s; własne → język interfejsu', async (l, want) => {
     await boot(l); expect(langOf('Back Squat').filter(x => x === want).length).toBeGreaterThan(0); expect(langOf('Back Squat').every(x => x === want)).toBe(true);
     expect(langOf('Moje ćwiczenie').every(x => x === l)).toBe(true);
   });
