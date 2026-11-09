@@ -684,7 +684,12 @@
         "stary": "42a611eb7489",
         "nowy": "b4626b78e4ad",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     },
     "bench_press": {
@@ -736,7 +741,12 @@
         "stary": "1670d3017903",
         "nowy": "6a7604cefcfb",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     },
     "hinge": {
@@ -790,7 +800,12 @@
         "stary": "93b315f5edbc",
         "nowy": "db4345521e62",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     },
     "pull_up": {
@@ -828,7 +843,12 @@
         "stary": "ebbbe1a8942a",
         "nowy": "38181e68a042",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     },
     "curl": {
@@ -889,7 +909,12 @@
         "stary": "4a0ab9b3e9f4",
         "nowy": "39470f3a2918",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     },
     "olympic": {
@@ -938,7 +963,12 @@
         "stary": "3ca4763958cc",
         "nowy": "5af5c052392f",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     },
     "triceps": {
@@ -996,7 +1026,12 @@
         "stary": "a104236b39d1",
         "nowy": "083478892a51",
         "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": null
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
       }
     }
   },
