@@ -15,13 +15,13 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-8653-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-8656-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
 > **Dziennik treningu siłowego na iPhone'a i Apple Watch — prywatny, działający bez internetu, bez konta.**
 
-Trening to natywna aplikacja (Expo / React Native, TypeScript) do zapisywania treningów siłowych i cardio: szablony i trening z kartą bieżącej serii,
+RepsGoat to natywna aplikacja (Expo / React Native, TypeScript) do zapisywania treningów siłowych i cardio: szablony i trening z kartą bieżącej serii,
 przerwy z powiadomieniem i Live Activity, plan tygodnia z kalendarzem, postępy z wykresami i rekordami oraz opcjonalny zapis do Apple Health.
 Powstaje w ekosystemie Apps4Brew. Dane zostają w telefonie (SQLite); stan prac, decyzje właściciela i dokumentacja: [`docs/`](docs/) (po polsku),
 zasady pracy nad kodem: [`CLAUDE.md`](CLAUDE.md).
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1089 (z testem: 1089) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1168 (z testem: 1168) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 184 (z testem: 184) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 744 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 8653 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 745 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 8656 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
