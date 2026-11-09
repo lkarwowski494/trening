@@ -1,6 +1,6 @@
 # Stan partii 2 (linia 1.1) — pushup_plank, hip_bridge, cable_row, mobility_floor, mobility_stand
 
-Aktualizacja: 09.11.2026 ~21:10 UTC (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
+Aktualizacja: 09.11.2026 ~22:40 UTC (sesja session_01T66VBydWMy3Mvkq6ew7xAZ); poprzednio ~21:10 UTC (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
 Koordynator linii: session_01T66VByJCWCao1Hw3is68Cy (raporty przez send_message).
 Briefy: `briefy/partia-2-rodzina-programista.md` (autor rodziny), `briefy/partia-2-rodzina-recenzent.md` (audytor).
 
@@ -15,21 +15,26 @@ BRD bez liczb czasu bez odwołania (test M1-022); w docs/ bez adresów e-mail (p
 nakladka-triceps-olympic (rejestr), skrot-v2-wynik (regex nakładek), gemini-polecenia (liczba rodzin planned).
 Pomiar czasu: autor rodziny Ś ok. 40–90 min, recenzja r1 10–14 min, poprawki 15–20 min, r2 4–5 min, przepisanie + verify:szybkie ok. 40 min (verify ~25 min).
 
-## Stan rodzin
-| Rodzina | Gałąź / SHA | Recenzja | Wpisy | Stan |
-|---|---|---|---|---|
-| hip_bridge | `figury/partia-2` @ 50c7b17b (autor ddb6cbae/4572d987, poprawki 8b4f6cab, wpisy 93e7cde9) | r1 do poprawy (1 WYSOKIE), r2 wyswietlana (`partia2-hip_bridge-r2*`) | v2 sha 0d9b2af823b2, 9 ćw.; Machine Hip Thrust w V2_WSTRZYMANE | zrobione; verify:szybkie zielone (10122) |
-| cable_row | `figury/partia-2-cable_row` @ d1b21532 (wypchnięta; autor 10fc587d, poprawki 4fbf144e, wpisy 57dbf7c5) | r1 do poprawy (2 WYSOKIE: kąt linki), r2 wyswietlana (`partia2-cable_row-r2*`) | v2 sha 4376c0e6b911, 9 ćw. | zrobione; verify:lekkie zielone; DO SCALENIA do partia-2 |
-| pushup_plank | — | — | — | do zrobienia od zera (próba autora przerwana przy przekazaniu, zmiany odrzucone) |
-| mobility_floor | — | — | — | do zrobienia (bez ról mięśni — docs/18 04.11.2026 (4) B) |
-| mobility_stand | — | — | — | do zrobienia (j.w.) |
+## Stan rodzin (09.11.2026 ~22:40 UTC, sesja session_01T66VBydWMy3Mvkq6ew7xAZ)
+| Rodzina | Gałąź / SHA | Recenzja | Stan |
+|---|---|---|---|
+| hip_bridge | `figury/partia-2` @ 3a80c913 | r2 wyswietlana (sha 0d9b2af823b2); po scaleniu slad-dzwignia skrót 8c56e365b9d3 → recenzja różnicy r3 (audytor) w toku | rodzina ukryta do wpisu r3 |
+| cable_row | scalona do `figury/partia-2` (77676562) | r2 wyswietlana, sha 4376c0e6b911 (bez zmian po scaleniach) | zrobione |
+| pushup_plank | `figury/partia-2-pushup_plank` (worktree scratchpad/wt-pushup_plank, od 7dc265fb) | — | autor w toku |
+| mobility_floor | `figury/partia-2-mobility_floor` @ 7fe3c0e6 (od 7dc265fb) | — | autor niedokończony: nakładka pusta (wyjątek A, koordynator 09.11, docs/18, MOB-F1); brak: testy strona-eksport (pelna==policz, 8 ćw.), gemini 31→30, skrot-v2-wynik, fix4, cel-1-1; pomiar Cat-Cow (ruch ledwo widoczny), K4–K8, lista v1 → nowy programista |
+| mobility_stand | — | — | do zrobienia |
 
-## Następne kroki (kolejność)
-1. Scal `origin/figury/partia-2-cable_row` do `figury/partia-2` (konflikty: rejestr overlay.ts, poseData LOAD/DATA_UI, families.ts, testy mapping/strona-eksport n/nakladka-triceps-olympic/skrot-v2-wynik/gemini/recenzja-wyjatki — suma obu rodzin; figury-recenzja.json — suma wpisów; pliki generowane — przelicz generatorami). strona-eksport n = 192 + 9 = 201 (sprawdź testem).
-2. Dociągnij `origin/integracja-1-1` (zawiera figury/slad-dzwignia 55c9f206 — ślad maszyn = punkt styku dźwigni — oraz delt_raise i nową symulację pokrycia: karty „do poprawy” się nie liczą). Sprawdź `git merge-base --is-ancestor 55c9f206 origin/integracja-1-1`. Po scaleniu `node scripts/zrodla-runtime.mjs --skroty`: jeśli skróty hip_bridge/cable_row się zmienią — recenzja różnicy (audytor; arkusze przed/po, cmp) i nowe wpisy; przy okazji ślad Machine Hip Thrust (wstrzymany) i decyzja o poprawce prowadnicy (backlog docs/21, sekcja hip_bridge r1).
-3. verify:szybkie → push `figury/partia-2` → zielony tests.yml.
-4. pushup_plank (30 ćw.; 6 bez pozy — nie dorabiać, lista do leada/koordynatora; rollouty), potem mobility_floor, mobility_stand — wg modelu wyżej; 2 programistów naraz max.
-5. Raport końcowy do koordynatora (SHA, tests.yml, per rodzina, pliki recenzji, sha wpisów, szacunek przekładu — dotąd 0 nowych tekstów UI, otwarte pytania).
+## Następne kroki
+1. Wpis r3 hip_bridge 1:1 z `docs/research/recenzje/partia2-hip_bridge-r3.json` → verify:szybkie → push `figury/partia-2` → tests.yml.
+2. Poprawka cueSets row.fullStretch (zgoda koordynatora 09.11: CUE_REQUIRES/CUE_NOT_IN_FAMILY dla Single Arm Cable Row i Leverage High Row; osobny commit, test regresji, wpis docs/18; sha → koordynator dla P-1) + recenzja zestawów; Leverage High Row oś u góry → backlog docs/21 z ID.
+3. mobility_floor dokończenie (nowy programista), pushup_plank → recenzje → scalenie do partia-2 (konflikty: overlay.ts, poseData.ts, mapping, nakladka-triceps-olympic, skrot-v2-wynik, strona-eksport n, gemini, recenzja-wyjatki, cel 1.1 = symulacja).
+4. mobility_stand; raport końcowy.
+
+## Pułapki tej sesji
+- Maszyna 4 rdzenie: verify:szybkie + 2 programistów → load 15, testy padają na limicie czasu (squat-hinge, wstrzymane) i Jest agentów wisi. Najwyżej 1 programista w czasie verify.
+- `figure.ts` ≤ 20 KB: przy wpisach V2_WSTRZYMANE skracaj komentarze.
+- Scalając wpisy figury-recenzja.json — scalanie jako JSON (3-way po kluczach), kolejność v2 zmienia test recenzja-wyjatki-1-1.
+- Cele 1.1 (`pokrycie-cele.json`) = wynik `node scripts/pokrycie-symulacja.mjs --json` (pole cel); docs/55 przeliczaj PO zmianie celów.
 
 ## Otwarte / do koordynatora
 - Nowe teksty UI: brak (fazy z istniejących PhaseName) — przekład 0 zł.
