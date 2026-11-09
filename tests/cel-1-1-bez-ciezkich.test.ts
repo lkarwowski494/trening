@@ -60,7 +60,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
   });
   test('założenia symulacji: karty własne cue-sets (b = own) = karty w źródłach; wstrzymane figury (V2_WSTRZYMANE) poza stanem końcowym', () => {
     expect(sym.kontrola.cuesSetsOwnRownaZrodlu).toBe(true);
-    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Snatch Shrug']);
+    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise']); /* 09.11.2026: + 2 maszyny calf_raise (V2_WSTRZYMANE) */
   });
   test('komplet kart języków: w stanie końcowym każdy język ma tyle samo kart kompletnych (wszystkie teksty przetłumaczone — założenie (a))', () => {
     const lang = Object.keys(cele.min).filter(k => /^jezyk\..+\.kompletne$/.test(k));
@@ -80,7 +80,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(sym.kontrola.kartyDoPoprawy).toEqual(doPoprawy);
     for (const k of doPoprawy) expect([k, sym.gain.some(g => g.key === k)]).toEqual([k, false]);
     expect(sym.rozbicie.a).toBe(0); /* delt_raise: zysk (a) znika razem z kartą „do poprawy” */
-    expect(cele.min.pelnaKarta).toBe(457); /* cel zostaje do naprawy fidr.move (wariant A, osobne zadanie) */
+    expect(cele.min.pelnaKarta).toBe(455); /* cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 455 po scaleniu calf_raise do partii 1 (09.11.2026: Standing i Seated Calf Raise w V2_WSTRZYMANE, decyzja koordynatora wariant A) */
   });
   test('docs/18 ma wpis decyzji z 09.11.2026 (cytat właściciela, definicja, stare → nowe, odrzucone) z polami wdrożenia i testu', () => {
     const d = read('docs/18-przekazanie.md');

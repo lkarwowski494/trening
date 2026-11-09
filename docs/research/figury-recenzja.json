@@ -563,11 +563,11 @@
     },
     "Łydki na stopniu": {
       "rodzina": "calf_raise",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
       "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
       "sha": "c9c064b6d644",
-      "uwagi": "Ruch i karta zgodne. Jak wspięcia stojąc (podparcie dłonią pominięte — uproszczenie opisane w figurze). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "uwagi": "Ruch i karta zgodne. Jak wspięcia stojąc (podparcie dłonią pominięte — uproszczenie opisane w figurze). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). | 09.11.2026: zastąpiona rysunkiem v2 (calf_raise r2, audytor; partia 1)."
     },
     "Leg Press": {
       "rodzina": "leg_machine",
@@ -1180,6 +1180,86 @@
           "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
         }
       }
+    },
+    "calf_raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (r2, po poprawkach r1): 10 pokazywanych ćwiczeń z ruchem poprawnym; Standing Calf Raise i Seated Calf Raise wstrzymane w V2_WSTRZYMANE (decyzja koordynatora A, 09.11.2026) — ich ruch poza tą recenzją; 1 NISKIE (stopień wchodzi 8 cm w ścianę w Łydki na stopniu i Single Leg Calf Raise — kosmetyka, backlog)",
+      "kto": "audytor (recenzja niezależna ruchu, nakładki, zestawów i kart, runda r2)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "sha": "77aa8d8a6693",
+      "liczba": 13,
+      "slad": "arkusz-slad.mjs: 10 pokazywanych ćwiczeń × widok side × 21 kadrów (u co 0,05), motyw jasny i ciemny (20 PNG); arkusz-nakladka.mjs --family calf_raise: 22 PNG. 8 ćwiczeń bez zmian pozy — arkusze identyczne bajtowo (cmp) z r1 w obu motywach i nakładce; Łydki na stopniu i Calf Raise (linki) obejrzane w pełnej rozdzielczości (wycinki u=0 i u=1, ×3), oba motywy. Tor: sztanga i Smith — środek gryfu na plecach pionowo ~14 cm; hantle i sztanga w siadzie — chwyt nad kolanem w górę ~9 cm; linki — chwyt R przy biodrze pionowo 78→91 cm, linka do niskich bloczków przy stopach (z ±45) 13–16° od pionu w rzucie z boku (21–25° w 3D); guma — chwyt R pionowo; bez ciężaru (Łydki na stopniu, Single Leg) — miednica pionowo, dłonie stale na ścianie. Donkey Calf Raise: ślad = punkt w nieruchomej dłoni na podporze (contract.ts:330–332), nie tor dźwigni — do ponownej recenzji śladu po figury/slad-dzwignia, ruch poprawny.",
+      "uwagi": "Zob. docs/research/recenzje/partia1-calf_raise-r2-audytor-2026-11-09.md (po przeniesieniu). W1/W2/W3 i N1–N3 z r1 zamknięte (W1/W2 przez wstrzymanie). K10: v1 Standing Calf Raise zostaje „wyswietlana” do czasu zdjęcia z V2_WSTRZYMANE (karta pokaże zrecenzowany rysunek v1); v1 Łydki na stopniu → „zastapiona”.",
+      "cwiczenia": [
+        "Band Calf Raise",
+        "Barbell Seated Calf Raise",
+        "Calf Raise (linki)",
+        "Calf Raise (sztanga)",
+        "Donkey Calf Raise",
+        "Dumbbell Seated One-Leg Calf Raise",
+        "Seated Calf Raise (hantle)",
+        "Single Leg Calf Raise",
+        "Smith Machine Calf Raise",
+        "Łydki na stopniu"
+      ],
+      "bez_rysunku": [
+        "Seated Calf Raise",
+        "Smith Machine Reverse Calf Raise",
+        "Standing Calf Raise"
+      ],
+      "cwiczenia_uwagi": {
+        "Łydki na stopniu": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Dłonie na ścianie przed osobą (calf.step), kostka +20,9° → −42,2°, kolano 5–6°, przód stopy na stopniu 8 cm. NISKIE: stopień (x do 48) wchodzi 8 cm w ścianę (x 40) — kosmetyka."
+        },
+        "Smith Machine Calf Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1 (arkusz identyczny bajtowo)."
+        },
+        "Calf Raise (sztanga)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1 (arkusz identyczny bajtowo)."
+        },
+        "Calf Raise (linki)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W3 zamknięte: niskie bloczki x 16 / y 22 / z ±45, linka prawie pionowa (13–16° w rzucie z boku, 21–25° w 3D), sylwetka pionowa; kostka +10,8° → −42,2°."
+        },
+        "Donkey Calf Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ruch bez zmian od r1. Ślad (punkt w dłoni) do ponownej recenzji po figury/slad-dzwignia."
+        },
+        "Band Calf Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1 (arkusz identyczny bajtowo)."
+        },
+        "Single Leg Calf Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1. NISKIE: stopień wchodzi 8 cm w ścianę — jak Łydki na stopniu."
+        },
+        "Seated Calf Raise (hantle)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1 (arkusz identyczny bajtowo)."
+        },
+        "Barbell Seated Calf Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1 (arkusz identyczny bajtowo)."
+        },
+        "Dumbbell Seated One-Leg Calf Raise": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Bez zmian od r1 (arkusz identyczny bajtowo)."
+        },
+        "Standing Calf Raise": {
+          "werdykt": "wstrzymana",
+          "uwagi": "V2_WSTRZYMANE (r1 W1, decyzja koordynatora A 09.11.2026); ruch nie recenzowany w r2. v1 zostaje „wyswietlana”."
+        },
+        "Seated Calf Raise": {
+          "werdykt": "wstrzymana",
+          "uwagi": "V2_WSTRZYMANE (r1 W2, decyzja koordynatora A 09.11.2026); ruch nie recenzowany w r2."
+        }
+      },
+      "plik_recenzenta": "docs/research/recenzje/partia1-calf_raise-r2.json (przeniesione 1:1: werdykt, sha, recenzent; cwiczenia jako lista jak w innych rodzinach, oceny ćwiczeń w cwiczenia_uwagi)"
     }
   },
   "karty": {
@@ -3492,6 +3572,16 @@
       "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; ace-49 przy gb.move bez twierdzenia o linii, linia przy NASM Step 3; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
       "uwagi": "Niska, dane: linię w gb.move wprost niesie tylko NASM; opcjonalnie dopisać acecert-7403 (full extension) przy gb.move.",
       "sha": "67dad95fa67f"
+    },
+    "Łydki na stopniu": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; spójność karty z rysunkiem v2, r2 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r2)",
+      "sha": "97256f2c49e7",
+      "uwagi": "calf.step (z przytrzymaniem — na rysunku dłonie na ścianie), calf.move, calf.knees, calf.pause zgodne z ruchem (przód stopy na stopniu, pięty poza krawędzią, kolana 5–6°)."
     }
   },
   "zestawy": {
@@ -4869,6 +4959,17 @@
       "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
       "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
       "sha": "4abd2e454900"
+    },
+    "Donkey Calf Raise": {
+      "rodzina": "calf",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny calf zgodny z rysunkiem v2, r2 09.11.2026)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r2)",
+      "sha": "58dfc0b13605",
+      "uwagi": "calf.move, calf.pause, calf.mis.partial zgodne z rysunkiem: przód stóp na stopniu, pięty poniżej krawędzi (kostka +20,9°), wspięcie do −42,2°; poza błędu skraca zakres. Brak calf.knees — element calfKneeStraightRef słusznie się nie rysuje."
     }
   }
 }
