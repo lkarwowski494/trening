@@ -81,6 +81,22 @@
       "wskazowka_bledu": "mis.roundBack",
       "wskazowka_poprawna": "hinge.back",
       "nazwa_lokalna": {}
+    },
+    {
+      "id": "technika-pull-up-zakres",
+      "cwiczenie": "Pull Up",
+      "blad": "data:0",
+      "wskazowka_bledu": "pu.partial",
+      "wskazowka_poprawna": "pu.pull",
+      "nazwa_lokalna": {}
+    },
+    {
+      "id": "technika-rdl-kolana",
+      "cwiczenie": "RDL (sztanga)",
+      "blad": "kneesBent",
+      "wskazowka_bledu": "rdl.mis.knees",
+      "wskazowka_poprawna": "rdl.move",
+      "nazwa_lokalna": {}
     }
   ]
 }
