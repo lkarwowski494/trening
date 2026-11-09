@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ligg på en benk og hold en manual over deg med strak arm.",
  "tri.skullDbDec.setup": "Ligg på en skråbenk med hodet lavere enn hoftene, og hold manualene over deg med strake armer.",
  "tri.skullDec.setup": "Ligg på en skråbenk med hodet lavere enn hoftene, og hold vektstangen over deg med strake armer.",
- "tri.skullInc.setup": "Ligg på en skråbenk og hold vektstangen over deg med strake armer."
+ "tri.skullInc.setup": "Ligg på en skråbenk og hold vektstangen over deg med strake armer.",
+ "bhs.setup": "Vektstang bak bena, hold den med overhåndsgrep og armene hengende ned; føttene i skulderbredde.",
+ "cdl.move": "Press fra med bena mot gulvet og hold samme ryggvinkel til stanga har passert knærne.",
+ "cdl.setup": "Still deg opp og ta grep om stanga som til en frivending; press knærne ut til de treffer armene.",
+ "ohs.arms": "Hold armene strake gjennom hele bevegelsen.",
+ "ohs.move": "Gå ned i knebøy med stanga over hodet hele tiden, og reis deg opp igjen.",
+ "ohs.setup": "Stanga over hodet på strake armer.",
+ "slrdl.move": "Bøy deg fram ved å skyve hoftene bakover, og før det frie benet rett bak; kom opp igjen ved å skyve hoftene fram.",
+ "slrdl.setup": "Stå på ett ben med lett bøy i kneet."
 }

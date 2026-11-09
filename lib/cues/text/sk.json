@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ľahni si na lavičku a drž jednoručku nad sebou na vystretej ruke.",
  "tri.skullDbDec.setup": "Ľahni si na lavičku s negatívnym sklonom (hlavou nadol) a drž jednoručky nad sebou na vystretých rukách.",
  "tri.skullDec.setup": "Ľahni si na lavičku s negatívnym sklonom (hlavou nadol) a drž činku nad sebou na vystretých rukách.",
- "tri.skullInc.setup": "Ľahni si na šikmú lavičku a drž činku nad sebou na vystretých rukách."
+ "tri.skullInc.setup": "Ľahni si na šikmú lavičku a drž činku nad sebou na vystretých rukách.",
+ "bhs.setup": "Činka za nohami, drž ju nadhmatom v spustených rukách; chodidlá na šírku ramien.",
+ "cdl.move": "Odtlač sa nohami od podlahy a drž rovnaký uhol chrbta, kým činka neminie kolená.",
+ "cdl.setup": "Postav sa a chyť činku ako na prehodenie; kolená tlač von, kým sa nedotknú rúk.",
+ "ohs.arms": "Ruky drž počas celého pohybu vystreté.",
+ "ohs.move": "Zíď do drepu s činkou stále nad hlavou a postav sa.",
+ "ohs.setup": "Činka nad hlavou vo vystretých rukách.",
+ "slrdl.move": "Predkloň sa, boky tlač dozadu a voľnú nohu veď rovno dozadu; vráť sa vytlačením bokov dopredu.",
+ "slrdl.setup": "Postav sa na jednu nohu, koleno mierne pokrčené."
 }

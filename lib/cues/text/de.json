@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Leg dich auf eine Bank und halte eine Hantel mit gestrecktem Arm über dir.",
  "tri.skullDbDec.setup": "Leg dich auf eine Negativbank, Kopf tiefer als die Hüfte, und halte die Hanteln mit gestreckten Armen über dir.",
  "tri.skullDec.setup": "Leg dich auf eine Negativbank, Kopf tiefer als die Hüfte, und halte die Langhantel mit gestreckten Armen über dir.",
- "tri.skullInc.setup": "Leg dich auf eine Schrägbank und halte die Langhantel mit gestreckten Armen über dir."
+ "tri.skullInc.setup": "Leg dich auf eine Schrägbank und halte die Langhantel mit gestreckten Armen über dir.",
+ "bhs.setup": "Langhantel hinter den Beinen, im Obergriff mit hängenden Armen halten; Füße schulterbreit.",
+ "cdl.move": "Drück dich mit den Beinen vom Boden ab und halte den Rückenwinkel, bis die Langhantel an den Knien vorbei ist.",
+ "cdl.setup": "Stell dich hin und greif die Langhantel wie beim Umsetzen; Knie nach außen drücken, bis sie die Arme berühren.",
+ "ohs.arms": "Arme während der ganzen Bewegung gestreckt.",
+ "ohs.move": "Geh in die Kniebeuge, die Langhantel die ganze Zeit über dem Kopf, und steh wieder auf.",
+ "ohs.setup": "Langhantel mit gestreckten Armen über dem Kopf.",
+ "slrdl.move": "Beug dich vor, indem du die Hüfte nach hinten schiebst, und führ das freie Bein gerade nach hinten; komm hoch, indem du die Hüfte nach vorn schiebst.",
+ "slrdl.setup": "Stell dich auf ein Bein, Knie leicht gebeugt."
 }

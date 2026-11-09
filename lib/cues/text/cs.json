@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lehni si na lavici a drž jednoručku nad sebou na propnuté paži.",
  "tri.skullDbDec.setup": "Lehni si na lavici s negativním sklonem (hlavou dolů) a drž jednoručky nad sebou na propnutých pažích.",
  "tri.skullDec.setup": "Lehni si na lavici s negativním sklonem (hlavou dolů) a drž činku nad sebou na propnutých pažích.",
- "tri.skullInc.setup": "Lehni si na šikmou lavici a drž činku nad sebou na propnutých pažích."
+ "tri.skullInc.setup": "Lehni si na šikmou lavici a drž činku nad sebou na propnutých pažích.",
+ "bhs.setup": "Činka za nohama, drž ji nadhmatem ve spuštěných rukou; chodidla na šíři ramen.",
+ "cdl.move": "Odraz se nohama od země a drž stejný úhel zad, dokud činka nemine kolena.",
+ "cdl.setup": "Postav se a chyť činku jako na přemístění; kolena tlač ven, až se dotknou paží.",
+ "ohs.arms": "Ruce měj celou dobu propnuté.",
+ "ohs.move": "Jdi do dřepu s činkou celou dobu nad hlavou a postav se.",
+ "ohs.setup": "Činka nad hlavou v propnutých pažích.",
+ "slrdl.move": "Předkloň se, boky tlač vzad a volnou nohu veď rovně dozadu; vrať se vytlačením boků vpřed.",
+ "slrdl.setup": "Stůj na jedné noze, koleno lehce pokrčené."
 }

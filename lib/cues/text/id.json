@@ -620,5 +620,13 @@
  "urow.setup": "Berdiri tegak, pegang beban di depan paha dengan lengan lurus, telapak tangan menghadap badan.",
  "urow1.move": "Tarik beban dekat badan ke arah tulang selangka, lalu turunkan perlahan sampai lengan lurus.",
  "urow1.setup": "Berdiri tegak, pegang beban dengan satu tangan di depan paha, lengan lurus, telapak tangan menghadap badan.",
- "yr.mis.chest": "Dada terangkat dari bangku."
+ "yr.mis.chest": "Dada terangkat dari bangku.",
+ "bhs.setup": "Barbel di belakang kaki, pegang dengan genggaman atas, lengan lurus ke bawah; kaki selebar bahu.",
+ "cdl.move": "Dorong lantai dengan kaki dan jaga sudut punggung tetap sama sampai barbel melewati lutut.",
+ "cdl.setup": "Ambil posisi dan pegang barbel seperti untuk clean; dorong lutut ke luar sampai menyentuh lengan.",
+ "ohs.arms": "Lengan tetap lurus sepanjang gerakan.",
+ "ohs.move": "Turun ke posisi squat dengan barbel tetap di atas kepala, lalu berdiri kembali.",
+ "ohs.setup": "Barbel di atas kepala dengan lengan lurus.",
+ "slrdl.move": "Condongkan badan dengan mendorong pinggul ke belakang, dan bawa kaki yang bebas lurus ke belakang; kembali dengan mendorong pinggul ke depan.",
+ "slrdl.setup": "Berdiri dengan satu kaki, lutut sedikit ditekuk."
 }

@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Apgulies uz sola un turi hanteli virs sevis uz iztaisnotas rokas.",
  "tri.skullDbDec.setup": "Apgulies uz sola ar slīpumu uz leju, galva zemāk par gurniem, un turi hanteles virs sevis uz iztaisnotām rokām.",
  "tri.skullDec.setup": "Apgulies uz sola ar slīpumu uz leju, galva zemāk par gurniem, un turi stieni virs sevis uz iztaisnotām rokām.",
- "tri.skullInc.setup": "Apgulies uz slīpā sola un turi stieni virs sevis uz iztaisnotām rokām."
+ "tri.skullInc.setup": "Apgulies uz slīpā sola un turi stieni virs sevis uz iztaisnotām rokām.",
+ "bhs.setup": "Stienis aiz kājām, turi to ar virstvērienu nolaistās rokās; pēdas plecu platumā.",
+ "cdl.move": "Atgrūdies ar kājām no grīdas un saglabā to pašu muguras leņķi, līdz stienis paiet garām ceļiem.",
+ "cdl.setup": "Nostājies un satver stieni kā pacelšanai uz krūtīm; izspied ceļus uz āru, līdz tie pieskaras rokām.",
+ "ohs.arms": "Visas kustības laikā turi rokas taisnas.",
+ "ohs.move": "Nolaidies pietupienā, visu laiku turot stieni virs galvas, un piecelies.",
+ "ohs.setup": "Stienis virs galvas taisnās rokās.",
+ "slrdl.move": "Noliecies, virzot gurnus atpakaļ, un brīvo kāju vadi taisni atpakaļ; atgriezies, stumjot gurnus uz priekšu.",
+ "slrdl.setup": "Stāvi uz vienas kājas, ceļgals viegli saliekts."
 }

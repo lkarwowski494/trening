@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Atsigulk ant suolo ir laikyk hantelį virš savęs ištiesta ranka.",
  "tri.skullDbDec.setup": "Atsigulk ant suolo, pasvirusio galva žemyn, ir laikyk hantelius virš savęs ištiestomis rankomis.",
  "tri.skullDec.setup": "Atsigulk ant suolo, pasvirusio galva žemyn, ir laikyk štangą virš savęs ištiestomis rankomis.",
- "tri.skullInc.setup": "Atsigulk ant pasvirusio suolo ir laikyk štangą virš savęs ištiestomis rankomis."
+ "tri.skullInc.setup": "Atsigulk ant pasvirusio suolo ir laikyk štangą virš savęs ištiestomis rankomis.",
+ "bhs.setup": "Štanga už kojų, laikyk ją suėmimu iš viršaus nuleistomis rankomis; pėdos pečių plotyje.",
+ "cdl.move": "Atsispirk kojomis nuo grindų ir išlaikyk tą patį nugaros kampą, kol štanga praeis kelius.",
+ "cdl.setup": "Pasiruošk ir suimk štangą kaip užmetimui ant krūtinės; kelius išstumk į šonus, kol jie palies rankas.",
+ "ohs.arms": "Rankas visą judesį laikyk ištiestas.",
+ "ohs.move": "Pritūpk, visą laiką laikydamas štangą virš galvos, ir atsistok.",
+ "ohs.setup": "Štanga virš galvos, rankos ištiestos.",
+ "slrdl.move": "Pasilenk, atitraukdamas klubus atgal, o laisvą koją vesk tiesiai atgal; grįžk, stumdamas klubus į priekį.",
+ "slrdl.setup": "Stovėk ant vienos kojos, kelis šiek tiek sulenktas."
 }

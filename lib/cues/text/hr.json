@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lezi na klupu i drži bučicu iznad sebe na ispruženoj ruci.",
  "tri.skullDbDec.setup": "Lezi na kosu klupu glavom prema dolje i drži bučice iznad sebe na ispruženim rukama.",
  "tri.skullDec.setup": "Lezi na kosu klupu glavom prema dolje i drži šipku iznad sebe na ispruženim rukama.",
- "tri.skullInc.setup": "Lezi na kosu klupu i drži šipku iznad sebe na ispruženim rukama."
+ "tri.skullInc.setup": "Lezi na kosu klupu i drži šipku iznad sebe na ispruženim rukama.",
+ "bhs.setup": "Šipka iza nogu, drži je nathvatom u spuštenim rukama; stopala u širini ramena.",
+ "cdl.move": "Odgurni se nogama od poda i zadrži isti kut leđa dok šipka ne prođe koljena.",
+ "cdl.setup": "Namjesti se i uhvati šipku kao za nabačaj; gurni koljena prema van dok ne dotaknu ruke.",
+ "ohs.arms": "Drži ruke ispružene tijekom cijelog pokreta.",
+ "ohs.move": "Spusti se u čučanj držeći šipku cijelo vrijeme iznad glave, pa ustani.",
+ "ohs.setup": "Šipka iznad glave na ispruženim rukama.",
+ "slrdl.move": "Nagni se gurajući kukove unatrag, a slobodnu nogu vodi ravno natrag; vrati se gurajući kukove naprijed.",
+ "slrdl.setup": "Stani na jednu nogu, koljeno lagano savijeno."
 }

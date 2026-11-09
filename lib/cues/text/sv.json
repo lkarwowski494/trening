@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Ligg på en bänk och håll en hantel ovanför dig med rak arm.",
  "tri.skullDbDec.setup": "Ligg på en lutande bänk med huvudet lägre än höfterna och håll hantlarna ovanför dig med raka armar.",
  "tri.skullDec.setup": "Ligg på en lutande bänk med huvudet lägre än höfterna och håll skivstången ovanför dig med raka armar.",
- "tri.skullInc.setup": "Ligg på en lutande bänk och håll skivstången ovanför dig med raka armar."
+ "tri.skullInc.setup": "Ligg på en lutande bänk och håll skivstången ovanför dig med raka armar.",
+ "bhs.setup": "Stången bakom benen, håll den med överhandsgrepp och armarna hängande rakt ner; fötterna axelbrett isär.",
+ "cdl.move": "Tryck ifrån golvet med benen och håll samma ryggvinkel tills stången har passerat knäna.",
+ "cdl.setup": "Ställ upp dig och greppa stången som till en frivändning; tryck ut knäna tills de nuddar armarna.",
+ "ohs.arms": "Håll armarna raka genom hela rörelsen.",
+ "ohs.move": "Gå ner i knäböj med stången ovanför huvudet hela tiden och res dig sedan upp.",
+ "ohs.setup": "Stången ovanför huvudet på raka armar.",
+ "slrdl.move": "Fäll framåt genom att skjuta höfterna bakåt och för det fria benet rakt bakåt; kom tillbaka genom att driva höfterna framåt.",
+ "slrdl.setup": "Stå på ett ben med lätt böjt knä."
 }

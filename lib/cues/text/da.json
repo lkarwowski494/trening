@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lig på en bænk, og hold en håndvægt over dig med strakt arm.",
  "tri.skullDbDec.setup": "Lig på en skråbænk med hovedet lavere end hofterne, og hold håndvægtene over dig med strakte arme.",
  "tri.skullDec.setup": "Lig på en skråbænk med hovedet lavere end hofterne, og hold vægtstangen over dig med strakte arme.",
- "tri.skullInc.setup": "Lig på en skråbænk, og hold vægtstangen over dig med strakte arme."
+ "tri.skullInc.setup": "Lig på en skråbænk, og hold vægtstangen over dig med strakte arme.",
+ "bhs.setup": "Vægtstangen bag benene, hold den med overhåndsgreb og hængende arme; fødderne i skulderbredde.",
+ "cdl.move": "Pres fra gulvet med benene, og hold samme rygvinkel, til vægtstangen er forbi knæene.",
+ "cdl.setup": "Stil dig op, og tag greb om vægtstangen som til en frivending; pres knæene ud, til de rører armene.",
+ "ohs.arms": "Hold armene strakte gennem hele bevægelsen.",
+ "ohs.move": "Gå ned i squat med vægtstangen over hovedet hele tiden, og rejs dig op igen.",
+ "ohs.setup": "Vægtstangen over hovedet på strakte arme.",
+ "slrdl.move": "Bøj frem ved at skubbe hofterne bagud, og før det frie ben lige bagud; kom op igen ved at skubbe hofterne frem.",
+ "slrdl.setup": "Stå på ét ben med let bøjet knæ."
 }

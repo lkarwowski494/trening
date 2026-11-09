@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Lama pingil ja hoia hantlit enda kohal sirge käega.",
  "tri.skullDbDec.setup": "Lama allapoole kaldu pingile nii, et pea jääb puusadest madalamale, ja hoia hantleid enda kohal sirgete kätega.",
  "tri.skullDec.setup": "Lama allapoole kaldu pingile nii, et pea jääb puusadest madalamale, ja hoia kangi enda kohal sirgete kätega.",
- "tri.skullInc.setup": "Lama kaldpingil ja hoia kangi enda kohal sirgete kätega."
+ "tri.skullInc.setup": "Lama kaldpingil ja hoia kangi enda kohal sirgete kätega.",
+ "bhs.setup": "Kang jalgade taga, hoia seda pealthaardes alla rippuvates kätes; jalad õlgade laiuselt.",
+ "cdl.move": "Tõuka jalgadega põrandast ära ja hoia selja nurk samana, kuni kang on põlvedest möödas.",
+ "cdl.setup": "Asu paika ja haara kangist nagu rinnaletõsteks; suru põlved väljapoole, kuni need puudutavad käsi.",
+ "ohs.arms": "Hoia käed kogu liikumise vältel sirged.",
+ "ohs.move": "Laskud kükki, hoides kangi kogu aeg pea kohal, ja tõuse püsti.",
+ "ohs.setup": "Kang pea kohal sirgetel kätel.",
+ "slrdl.move": "Kalla end ette, viies puusad taha, ja vii vaba jalg otse taha; tule tagasi, lükates puusad ette.",
+ "slrdl.setup": "Seisa ühel jalal, põlv kergelt kõverdatud."
 }

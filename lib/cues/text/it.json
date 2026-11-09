@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Sdraiati su una panca e tieni un manubrio sopra di te a braccio teso.",
  "tri.skullDbDec.setup": "Sdraiati su una panca declinata, con la testa più in basso del bacino, e tieni i manubri sopra di te a braccia tese.",
  "tri.skullDec.setup": "Sdraiati su una panca declinata, con la testa più in basso del bacino, e tieni il bilanciere sopra di te a braccia tese.",
- "tri.skullInc.setup": "Sdraiati su una panca inclinata e tieni il bilanciere sopra di te a braccia tese."
+ "tri.skullInc.setup": "Sdraiati su una panca inclinata e tieni il bilanciere sopra di te a braccia tese.",
+ "bhs.setup": "Bilanciere dietro le gambe, tienilo con presa prona a braccia distese verso il basso; piedi alla larghezza delle spalle.",
+ "cdl.move": "Spingi il pavimento con le gambe e mantieni lo stesso angolo della schiena finché il bilanciere non supera le ginocchia.",
+ "cdl.setup": "Mettiti in posizione e afferra il bilanciere come per la girata; spingi le ginocchia in fuori finché non toccano le braccia.",
+ "ohs.arms": "Braccia tese per tutto il movimento.",
+ "ohs.move": "Scendi in squat tenendo sempre il bilanciere sopra la testa, poi risali.",
+ "ohs.setup": "Bilanciere sopra la testa a braccia tese.",
+ "slrdl.move": "Piegati portando indietro le anche e porta la gamba libera dritta all'indietro; risali spingendo le anche in avanti.",
+ "slrdl.setup": "Stai su una gamba sola, con il ginocchio leggermente piegato."
 }

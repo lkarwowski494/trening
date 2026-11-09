@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Túmbate en un banco y sostén una mancuerna sobre ti con el brazo estirado.",
  "tri.skullDbDec.setup": "Túmbate en un banco declinado, con la cabeza más baja que las caderas, y sostén las mancuernas sobre ti con los brazos estirados.",
  "tri.skullDec.setup": "Túmbate en un banco declinado, con la cabeza más baja que las caderas, y sostén la barra sobre ti con los brazos estirados.",
- "tri.skullInc.setup": "Túmbate en un banco inclinado y sostén la barra sobre ti con los brazos estirados."
+ "tri.skullInc.setup": "Túmbate en un banco inclinado y sostén la barra sobre ti con los brazos estirados.",
+ "bhs.setup": "Barra detrás de las piernas, agárrala en prono con los brazos estirados hacia abajo; pies a la anchura de los hombros.",
+ "cdl.move": "Empuja el suelo con las piernas y mantén el mismo ángulo de espalda hasta que la barra pase las rodillas.",
+ "cdl.setup": "Colócate y agarra la barra como para una cargada; rodillas hacia fuera hasta que toquen los brazos.",
+ "ohs.arms": "Brazos estirados durante todo el movimiento.",
+ "ohs.move": "Baja en sentadilla con la barra sobre la cabeza en todo momento y vuelve a subir.",
+ "ohs.setup": "Barra sobre la cabeza con los brazos estirados.",
+ "slrdl.move": "Inclínate llevando la cadera atrás y lleva la pierna libre recta hacia atrás; vuelve empujando la cadera hacia delante.",
+ "slrdl.setup": "Ponte sobre una pierna, con la rodilla un poco flexionada."
 }

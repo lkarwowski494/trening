@@ -1,54 +1,5 @@
 {
-  "_opis": "Zdania wskazówek techniki z partii P1 (squat i hinge; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt; uruchamia koordynator). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
-  "data": "2026-11-09",
-  "klucze": [
-    {
-      "rodzaj": "nowy",
-      "id": "bhs.setup",
-      "pl": "Sztanga za nogami, trzymaj ją nachwytem w opuszczonych rękach; stopy na szerokość barków.",
-      "en": "Bar behind your legs, overhand grip with arms hanging down; feet shoulder-width apart."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "cdl.move",
-      "pl": "Odepchnij się nogami od podłogi i trzymaj ten sam kąt pleców, aż sztanga minie kolana.",
-      "en": "Drive the bar up with your legs, holding the same back angle until it passes your knees."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "cdl.setup",
-      "pl": "Ustaw się i chwyć sztangę jak do zarzutu; kolana wypchnięte na zewnątrz, aż dotkną rąk.",
-      "en": "Set up and grip the bar like a clean; push your knees out until they touch your arms."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "ohs.arms",
-      "pl": "Ręce przez cały ruch wyprostowane.",
-      "en": "Keep your arms straight throughout."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "ohs.move",
-      "pl": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wstań.",
-      "en": "Squat down with the bar overhead the whole time, then stand back up."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "ohs.setup",
-      "pl": "Sztanga nad głową na prostych rękach.",
-      "en": "Bar overhead on straight arms."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "slrdl.move",
-      "pl": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
-      "en": "Hinge at the hips and let your free leg travel straight back; drive your hips forward to stand."
-    },
-    {
-      "rodzaj": "nowy",
-      "id": "slrdl.setup",
-      "pl": "Stań na jednej nodze, kolano lekko ugięte.",
-      "en": "Stand on one leg with a slight bend in the knee."
-    }
-  ]
+ "_opis": "Zdania wskazówek techniki z partii P1 (squat i hinge; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; wymaga zgody właściciela — koszt; uruchamia koordynator). Do czasu przekładu aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków).",
+ "data": "2026-11-09",
+ "klucze": []
 }

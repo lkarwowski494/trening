@@ -601,5 +601,13 @@
  "tri.skullDb1.setup": "Deite-se em um banco e segure um halter acima de você com o braço estendido.",
  "tri.skullDbDec.setup": "Deite-se em um banco declinado, com a cabeça mais baixa que o quadril, e segure os halteres acima de você com os braços estendidos.",
  "tri.skullDec.setup": "Deite-se em um banco declinado, com a cabeça mais baixa que o quadril, e segure a barra acima de você com os braços estendidos.",
- "tri.skullInc.setup": "Deite-se em um banco inclinado e segure a barra acima de você com os braços estendidos."
+ "tri.skullInc.setup": "Deite-se em um banco inclinado e segure a barra acima de você com os braços estendidos.",
+ "bhs.setup": "Barra atrás das pernas, segure com pegada pronada e braços estendidos para baixo; pés na largura dos ombros.",
+ "cdl.move": "Empurre o chão com as pernas e mantenha o mesmo ângulo das costas até a barra passar dos joelhos.",
+ "cdl.setup": "Posicione-se e segure a barra como no clean; empurre os joelhos para fora até encostarem nos braços.",
+ "ohs.arms": "Mantenha os braços estendidos durante todo o movimento.",
+ "ohs.move": "Desça no agachamento com a barra acima da cabeça o tempo todo e suba.",
+ "ohs.setup": "Barra acima da cabeça, com os braços estendidos.",
+ "slrdl.move": "Incline o tronco levando o quadril para trás e leve a perna livre reta para trás; volte empurrando o quadril para a frente.",
+ "slrdl.setup": "Fique em uma perna só, com o joelho levemente flexionado."
 }

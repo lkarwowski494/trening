@@ -620,5 +620,13 @@
  "tri.skullDb1.setup": "Feküdj a padra, és tartsd a kézisúlyzót magad fölött nyújtott karral.",
  "tri.skullDbDec.setup": "Feküdj negatív padra, a fejed lejjebb legyen, mint a csípőd, és tartsd a kézisúlyzókat magad fölött nyújtott karral.",
  "tri.skullDec.setup": "Feküdj negatív padra, a fejed lejjebb legyen, mint a csípőd, és tartsd a rudat magad fölött nyújtott karral.",
- "tri.skullInc.setup": "Feküdj ferde padra, és tartsd a rudat magad fölött nyújtott karral."
+ "tri.skullInc.setup": "Feküdj ferde padra, és tartsd a rudat magad fölött nyújtott karral.",
+ "bhs.setup": "A rúd a lábad mögött, tartsd felső fogással, lelógó karral; a lábad vállszélességben.",
+ "cdl.move": "Told el magad a talajtól a lábaddal, és tartsd ugyanazt a hátszöget, amíg a rúd el nem hagyja a térdedet.",
+ "cdl.setup": "Állj be, és fogd meg a rudat, mint felvételnél; told kifelé a térdedet, amíg hozzá nem ér a karodhoz.",
+ "ohs.arms": "A karod végig maradjon nyújtva.",
+ "ohs.move": "Guggolj le úgy, hogy a rúd végig a fejed fölött marad, majd állj fel.",
+ "ohs.setup": "A rúd a fejed fölött, nyújtott karral.",
+ "slrdl.move": "Dőlj előre a csípődet hátratolva, a szabad lábadat pedig vezesd egyenesen hátra; a csípőd előretolásával állj vissza.",
+ "slrdl.setup": "Állj fél lábra, a térded enyhén hajlítva."
 }
