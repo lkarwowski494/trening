@@ -61,10 +61,9 @@ describe('wyjście haka — parsowanie odpowiedzi API (stub fetch)', () => {
 });
 
 describe('uruchomienie jako skrypt — hak nie blokuje startu sesji', () => {
-  test('adres API nieosiągalny (brak sieci): kod 0, pusty stdout i stderr, szybko', () => {
-    const t0 = Date.now();
+  test('adres API nieosiągalny (brak sieci): kod 0, pusty stdout i stderr; zawieszenie przerywa limit spawnSync (wtedy status null)', () => {
     const r = spawnSync('node', [skrypt], { encoding: 'utf8', env: { ...process.env, STAN_NOCNY_API: 'http://127.0.0.1:1', STAN_NOCNY_LIMIT_MS: '1500' }, timeout: 15000 });
-    expect(r.status).toBe(0); expect(r.stdout).toBe(''); expect(r.stderr).toBe(''); expect(Date.now() - t0).toBeLessThan(10000);
+    expect(r.status).toBe(0); expect(r.stdout).toBe(''); expect(r.stderr).toBe('');
   });
   test('domyślny limit czasu ≤ 5 s', () => { expect(mod('w.LIMIT_MS')).toBeLessThanOrEqual(5000); });
 });
