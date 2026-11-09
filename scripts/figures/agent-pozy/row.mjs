@@ -1,9 +1,8 @@
 // Generator póz rodziny row po stronie agenta (26.10.2026): wiosłowanie w pochyleniu (sztanga, hantle, linki, Smith, T-bar), jednorącz (hantel), przodem na ławce (seal row).
 // Tułów pochylony w biodrach (40–105°, stały ±10°), plecy neutralne (zgięcie kręgosłupa ≤ 10°), kolana ugięte ≤ 40°; łokcie: z prawie prostych (≤ 20°) do ≥ 70° i za linią tułowia (≥ 5 cm).
 // Błąd mis.roundBack: zaokrąglone plecy (zgięcie kręgosłupa narasta do 40° (ZLE_BEND), barki zjeżdżają w dół o ≈ 3,6 cm, ręce poruszają się razem z barkami). 09.11.2026: było 32° — przy cięciwie tułowia (skeleton.ts trunkChord) bark, głowa i łokieć przesuwały się tylko o 2,3 cm, poniżej widoczności 3 cm (CONTRACT.visibleCm; tests/figures-v2-data.test.tsx).
-import { lezyPrzodem, U9 } from './gora.mjs';
+import { lezyPrzodem, U9, stopyNaPalcach } from './gora.mjs';
 import { podbicieStopyPrzodem } from './core_floor.mjs';
-import { kostkaNaPalcach } from './model.mjs';
 import { KOLANO_LEKKO_MAX_DEG } from '../v2-sens.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, noga3, bark, ramieFK, buduj, wyc, naLawce, kier } from './gora.mjs';
 
@@ -45,17 +44,6 @@ function pochylony(cw, o) {
 
 
 /** Wiosłowanie przodem na ławce skośnej: ręce zwisają przed ławką, łokcie unoszą się za linię pleców (do góry i do przodu względem leżącego). */
-/** Leżenie przodem na ławce skośnej (Chest Supported Row, Lying T-Bar Row): stopy NA PALCACH, pięty w górze (recenzja r2 row, W1-r2, 09.11.2026 — wspólne `lezyPrzodem` (gora.mjs) daje stopę płasko,
- * palcami od osoby: zgięcie podeszwowe ok. 119° względem goleni). Lokalnie w row, bo `lezyPrzodem` używają też curl i delt_raise (rodziny już zrecenzowane — zmiana wspólnego generatora unieważniłaby ich rysunek).
- * Podbicie STOPA_LEZY_PODBICIE (palce prawie pionowo w dół, ku +x), kostka na wysokości stopy na palcach (`kostkaNaPalcach`), kolana lekko ugięte (STOPA_LEZY_ODSUN). */
-export const STOPA_LEZY_PODBICIE = -75;
-/** Kostka o tyle cm bliżej biodra niż przy prostej nodze: kolana lekko ugięte (ku podłodze), żeby uniesione na palcach stopy nie przeprostowały bioder (limit zakresu −17°). */
-export const STOPA_LEZY_ODSUN = 2;
-function stopyNaPalcach(L) {
-  const b = BODY(); const yK = kostkaNaPalcach(0, STOPA_LEZY_PODBICIE);
-  for (const s of SIDES) { const n = L.nogi[s]; const zr = Math.abs(n.k[2]); const dy = L.m[1] - yK; const dz = zr - b.hipHalf;
-    n.k = [r1(L.m[0] + Math.sqrt(Math.max(1, (b.thigh + b.shank - 0.1) ** 2 - dy * dy - dz * dz)) - STOPA_LEZY_ODSUN), yK, n.k[2]]; n.pod = STOPA_LEZY_PODBICIE; }
-}
 function przodem(cw, o) {
   const L = lezyPrzodem(o.kat ?? 45, { dl: o.dl ?? 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 24; const pole = o.pole ?? [0.7, 0.7, 0];
   stopyNaPalcach(L);

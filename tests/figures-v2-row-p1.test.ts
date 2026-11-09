@@ -156,10 +156,13 @@ describe('row: poza leżąca bez przeprostu biodra i linia pleców (recenzja r1,
     const sh = [L.ankle[0] - L.knee[0], L.ankle[1] - L.knee[1]]; const n = Math.hypot(sh[0], sh[1]); const d = [sh[0] / n, sh[1] / n]; const pd = b[0] * d[0] + b[1] * d[1];
     const fr = [b[0] - pd * d[0], b[1] - pd * d[1]]; const nf = Math.hypot(fr[0], fr[1]); const st = [L.toe[0] - L.heel[0], L.toe[1] - L.heel[1]]; const ns = Math.hypot(st[0], st[1]);
     return Math.acos(Math.max(-1, Math.min(1, (st[0] * fr[0] + st[1] * fr[1]) / (nf * ns)))) / R_DEG; };
-  test('W1-r2: stopy leżących na palcach — stopa względem przodu goleni ≤ 60° w każdej klatce, palce przy podłodze, pięta wyżej niż palce; negatyw: stopa płasko palcami od osoby (dane sprzed poprawki) > 60°', () => {
-    for (const k of LEZACE) for (let i = 0; i < POSY[k].klatki.length; i++) { const L = keyframeFrame(POSY[k], i).sk.legs.R;
-      expect([k, i, stopaWzgledemGoleni(POSY[k], i) <= 60, L.toe[1] < 2 && L.toe[1] > -1, L.heel[1] > L.toe[1] + 10]).toEqual([k, i, true, true, true]); }
-    for (const k of LEZACE) { const plasko = { ...POSY[k], klatki: POSY[k].klatki.map(kl => ({ ...kl, nogi: { R: { ...kl.nogi.R, kostka: [kl.nogi.R.kostka[0], 7, kl.nogi.R.kostka[2]], podbicie: 0 }, L: { ...kl.nogi.L, kostka: [kl.nogi.L.kostka[0], 7, kl.nogi.L.kostka[2]], podbicie: 0 } } })) } as unknown as PoseData;
+  /* 09.11.2026 (decyzja koordynatora, tryb nocny): Spider Curl ×2 (curl, ta sama poza leżąca `lezyPrzodem` + `stopyNaPalcach`) — ta sama wada i ta sama poprawka, regresja obejmuje oba pliki póz */
+  const CURL = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/poses/curl.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
+  const WSZYSTKIE: [string, PoseData][] = [...LEZACE.map(k => [k, POSY[k]] as [string, PoseData]), ['Spider Curl', CURL['Spider Curl']], ['Spider Curl (sztanga)', CURL['Spider Curl (sztanga)']]];
+  test('W1-r2: stopy leżących na palcach (row: CSR, Lying T-Bar Row; curl: Spider Curl ×2) — stopa względem przodu goleni ≤ 60° w każdej klatce, palce przy podłodze, pięta wyżej niż palce; negatyw: stopa płasko palcami od osoby (dane sprzed poprawki) > 60°', () => {
+    for (const [k, P] of WSZYSTKIE) for (let i = 0; i < P.klatki.length; i++) { const L = keyframeFrame(P, i).sk.legs.R;
+      expect([k, i, stopaWzgledemGoleni(P, i) <= 60, L.toe[1] < 2 && L.toe[1] > -1, L.heel[1] > L.toe[1] + 10]).toEqual([k, i, true, true, true]); }
+    for (const [k, P] of WSZYSTKIE) { const plasko = { ...P, klatki: P.klatki.map(kl => ({ ...kl, nogi: { R: { ...kl.nogi.R, kostka: [kl.nogi.R.kostka[0], 7, kl.nogi.R.kostka[2]], podbicie: 0 }, L: { ...kl.nogi.L, kostka: [kl.nogi.L.kostka[0], 7, kl.nogi.L.kostka[2]], podbicie: 0 } } })) } as unknown as PoseData;
       expect([k, stopaWzgledemGoleni(plasko, 0) > 60]).toEqual([k, true]); }
   });
   test('W1: biodro Seal Row i leżących bez przeprostu, wyjątki hipMin dla row usunięte z danych sensu', () => { expect(SENS.zakres_wyjatki).toBeUndefined(); for (const k of [...LEZACE, 'Seal Row (sztanga)']) expect([k, wyprost(k, POSY[k], POSY[k].klatki.length) <= 20]).toEqual([k, true]); });
