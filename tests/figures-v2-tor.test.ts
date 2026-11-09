@@ -124,7 +124,7 @@ describe('C1 (recenzja niezależna 03.11.2026): ślad ciężaru w dłoni leży p
   /** Odległość śladu od najbliższego dopuszczalnego punktu: chwyt R/L; środek między chwytami tylko dla jednego uchwytu (nie dla dwóch osobnych ciężarów). */
   const odChwytu = (tr: number[], R: number[], L: number[], dwaCiezary: boolean) => Math.min(dist3(tr, R), dist3(tr, L), dwaCiezary ? Infinity : dist3(tr, [0, 1, 2].map(i => (R[i] + L[i]) / 2)));
   /* FW2 (04.11.2026, recenzja różnicy fw2-r1): wyciąg z opaską na kostce (chwyt 'kostka') — ciężar przy kostce, nie w dłoni; pilnuje go ostrzejszy test w tests/figures-v2-fala-wspolna-2.test.ts (≤ 1,5 cm od kostki) */
-  const ZESTAW = DATA.filter(([, d]) => { const g = nosi(d) as (ReturnType<typeof nosi> & { chwyt?: string }); return !!g && g.chwyt !== 'kostka' && !d.sprzet.some(x => x.rodzaj === 'sztanga'); });
+  const ZESTAW = DATA.filter(([, d]) => { const g = nosi(d) as (ReturnType<typeof nosi> & { chwyt?: string }); return !!g && g.chwyt !== 'kostka' && !(g.rodzaj === 'dzwignia' && (g as { punkt?: string }).punkt !== undefined && (g as { punkt?: string }).punkt !== 'dlonie') && !d.sprzet.some(x => x.rodzaj === 'sztanga'); }); /* D1 A (09.11.2026): dźwignia z punktem styku poza dłońmi — ślad w punkcie styku (kostka/miednica), pilnuje tests/figures-v2-slad-dzwignia.test.ts */
 
   test('zestaw jest niepusty i obejmuje curl: ćwiczenia z dwoma ciężarami i z jednym uchwytem', () => {
     expect(ZESTAW.length).toBeGreaterThanOrEqual(30);
