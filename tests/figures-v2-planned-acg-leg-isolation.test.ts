@@ -47,11 +47,11 @@ describe('ACG-019 (31.10.2026): Slider / Stability Ball Hamstring Curl — zesta
     expect(ok).toEqual(['llc.control']); /* lcurl.move pasowałoby lepiej, ale nie ma wpisu źródeł w wskazowki-ogolne.json — do badacza */
   });
   /* 09.11.2026 (partia B2): Slider Hamstring Curl ma kartę własną z badań (most: „biodra cały czas w górze”, błąd ballcurl.mis.sag bez animacji); rysunek przebudowany na most (test wyżej).
-     Karta ukryta (lista hidden, karty_nowe) do recenzji niezależnej (L-047). */
-  test('Slider Hamstring Curl (B2, 09.11.2026): karta własna ukryta do recenzji, zestaw ogólny nie wraca', () => {
+     Karta odsłonięta po recenzji niezależnej (L-047, 09.11.2026). */
+  test('Slider Hamstring Curl (B2, 09.11.2026): karta własna odsłonięta po recenzji niezależnej (09.11.2026), zestaw ogólny nie wraca', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const cues = require('../lib/cues/data.json') as { hidden: string[]; exercises: Record<string, unknown> };
-    expect([SETS[K], cues.hidden.includes(K), K in cues.exercises]).toEqual([{ b: 'own' }, true, false]);
+    expect([SETS[K], cues.hidden.includes(K), K in cues.exercises]).toEqual([{ b: 'own' }, false, true]);
   });
   test('Stability Ball Hamstring Curl (recenzja 31.10.2026): bez gb.heels — pięty leżą na piłce, nie na podłodze', () => {
     expect(SETS['Stability Ball Hamstring Curl'].ok).not.toContain('gb.heels');

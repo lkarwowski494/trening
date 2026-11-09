@@ -19,11 +19,11 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 352 | 49,7% |
 | — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 157 | 22,2% |
 | Animowany błąd | 127 | 17,9% |
-| Własne wskazówki (źródłowe) | 215 | 30,4% |
-| — z czego z częstymi błędami | 112 | 15,8% |
+| Własne wskazówki (źródłowe) | 222 | 31,4% |
+| — z czego z częstymi błędami | 119 | 16,8% |
 | Zestaw ogólny wskazówek wzorca ruchu | 110 | 15,5% |
-| Bez tekstu wskazówek | 383 | 54,1% |
-| Częste błędy (własne albo zestaw ogólny) | 222 | 31,4% |
+| Bez tekstu wskazówek | 376 | 53,1% |
+| Częste błędy (własne albo zestaw ogólny) | 229 | 32,3% |
 | Role mięśni | 512 | 72,3% |
 | **Pełna karta** | 180 | 25,4% |
 | **Pełna karta + błąd** | 126 | 17,8% |
@@ -41,8 +41,8 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| wskazówki (własne lub zestaw ogólny) | 640 | 325 | 315 |
-| częste błędy (tekst) | 557 | 222 | 335 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 332 | 308 |
+| częste błędy (tekst) | 557 | 229 | 328 |
 | pełna karta | 465 | 180 | 285 |
 | komplet tekstów karty: pl | 671 | 574 | 97 |
 | komplet tekstów karty: en | 671 | 574 | 97 |
@@ -62,7 +62,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
 | `olympic` | gotowa | 25 | 22 | 2 | 0 | 21 | 1 | 3 | 21 | 22 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 24 | 25 |
-| `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
+| `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 12 | 0 | 12 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 2 | 0 | 18 | 0 | 0 |
@@ -70,7 +70,7 @@ Cel osiągnięty: **nie** (42 z 47 liczb).
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 6 | 0 | 13 | 0 | 0 |
 | `kb_ballistic` | do zrobienia | 17 | 0 | 16 | 1 | 4 | 0 | 13 | 0 | 0 |
 | `cardio` | do zrobienia | 16 | 0 | 0 | 1 | 5 | 0 | 11 | 0 | 0 |
-| `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 4 | 0 | 10 | 0 | 0 |
+| `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 5 | 0 | 9 | 0 | 0 |
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 3 | 0 | 10 | 0 | 0 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 0 | 0 | 13 | 0 | 0 |
 | `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 8 | 2 | 10 | 11 |
@@ -141,12 +141,12 @@ Kart z tekstami (wskazówki albo role mięśni): **574**. „Komplet” = karta 
 
 Pełnych kart: 180 (z błędem: 126). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
-- Brakuje tylko: figura v2 w aplikacji — 116
+- Brakuje tylko: figura v2 w aplikacji — 123
 - Brakuje tylko: role mięśni — 3: Jerk Balance, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
 | 0 | 180 |
-| 1 | 119 |
-| 2 | 310 |
+| 1 | 126 |
+| 2 | 303 |
 | 3 | 99 |

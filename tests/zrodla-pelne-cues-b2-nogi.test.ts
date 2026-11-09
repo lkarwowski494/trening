@@ -7,7 +7,7 @@
  * Rodzaje (docs/20): dane (karty, źródła, pozy), logika (≥ 2 organizacje; błąd w pozie ⊆ błędy karty), niezmienniki (każdy błąd karty: animowany albo z powodem
  * w bledy_bez_animacji), języki (PL i EN; 33 języki — zestaw przekładu B2), regresja (A2 „konfliktPozy” = karty B2; glute_floor wstrzymany — grupy błędów bez zmian).
  * Ocena realności: błąd „animacja pokazuje błąd, którego karta nie opisuje” — realny (niespójność karta–rysunek widoczna w aplikacji i na stronie);
- * karty są ukryte do recenzji niezależnej (bramka 4, L-047, L-050) — nie sprawdzamy tu ich wyświetlania.
+ * karty zrecenzowane niezależnie i odsłonięte 09.11.2026 (bramka 4, L-047, L-050) — wpisy w docs/research/figury-recenzja.json.
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -38,12 +38,12 @@ const out = {}; for (const r of ${JSON.stringify(RODZINY)}) for (const k of Obje
 console.log(JSON.stringify(out));`], { encoding: 'utf8' }));
 
 describe('B2 nogi (09.11.2026): karty własne 7 ćwiczeń wstrzymanych w A2', () => {
-  test('7 ćwiczeń = A2 „konfliktPozy”; komplet ustawienie + ruch, karta własna (b = own), ukryta do recenzji (hidden, karty_nowe), nie w otwartych; niepełne na liście partial', () => {
+  test('7 ćwiczeń = A2 „konfliktPozy”; komplet ustawienie + ruch, karta własna (b = own), odsłonięta po recenzji niezależnej 09.11.2026 (nie w hidden ani karty_nowe), nie w otwartych; niepełne na liście partial', () => {
     expect([...B2.cwiczenia].sort()).toEqual(A2.konfliktPozy.map(([k]) => k as string).sort());
     const nowe = json('tests/recenzja-wyjatki-1-1.json').karty_nowe as string[];
     for (const k of B2.cwiczenia) {
       const x = CUE_FULL.exercises[k];
-      expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open, sets[k].b, CUE_DATA.hidden.includes(k), nowe.includes(k)]).toEqual([k, true, true, false, 'own', true, true]);
+      expect([k, (x.setup ?? []).length >= 1, (x.move ?? []).length >= 1, k in CUE_FULL.open, sets[k].b, CUE_DATA.hidden.includes(k), nowe.includes(k)]).toEqual([k, true, true, false, 'own', false, false]);
       expect([k, (CUE_FULL.partial ?? []).includes(k)]).toEqual([k, (x.tips ?? []).length < 2]);
     }
     expect([...B2.partial].sort()).toEqual(B2.cwiczenia.filter(k => (CUE_FULL.exercises[k].tips ?? []).length < 2).sort());
