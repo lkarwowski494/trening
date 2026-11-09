@@ -40,7 +40,7 @@ describe('R1 (fix4): element nakładki tylko z regułą wariantu o pewności „
   });
   test('macierz: różnica między „wskazówka na karcie” a „element rysowany” to dokładnie te dwa ćwiczenia jednonóż (reszta 101 ćwiczeń bez zmian)', () => {
     const odciete = FAMS.flatMap(f => KEYS[f].filter(k => TECHNIQUE[f].filter(d => !d.exercises && d.cue.some(c => cueIdsOf(k).ids.includes(c))).length > techniquesOf(k).filter(id => !TECHNIQUE[f].find(d => d.id === id)!.exercises).length));
-    expect(odciete.sort()).toEqual(['Single Leg RDL (hantel)', 'Single Leg RDL (linki)']);
+    expect(odciete.sort()).toEqual(['Hip Abduction', 'Hip Adduction', 'Single Leg Press', 'Single Leg RDL (hantel)', 'Single Leg RDL (linki)']); /* partia 3 (09.11.2026): maszyny odwodzenia/przywodzenia — zestaw hipAbd ma hab.hips, a wariant ma tylko rozstaw_kolan (pion tułowia bez reguły); Single Leg Press — reguła zakres_jednonoz, element na zakres (recenzja leg_machine N-1, backlog) */
   });
   test('logika techniquesFor: z ćwiczeniem filtruje po regułach (reguly-cwiczen.json), bez ćwiczenia — tylko po wskazówkach (wywołanie na poziomie rodziny); ćwiczenie bez wpisu reguł → brak elementu', () => {
     expect(techniquesFor('hinge', ['rdl.dbMove'], 'Single Leg RDL (hantel)').map(d => d.id)).toEqual([]);

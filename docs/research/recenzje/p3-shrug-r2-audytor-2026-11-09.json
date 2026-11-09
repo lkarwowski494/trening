@@ -6,9 +6,9 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2, L-047 A, L-050) — W1–W5 naprawione, bez znalezisk KRYTYCZNYCH/WYSOKICH",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "uwagi": "Chwyt = chwyt startu + uniesienie barku (6 cm) we wszystkich 7 szrugsach stojących; łokieć stały 2,8–3,9° (u 0…1), tułów 0°, kąt ramienia stały; odstęp ciężaru od ud stały (sztanga 1,4→1,7; hantle 3,2→3,4; linki 4,1→4,7; za plecami i Smith 5,6→4,9 cm). Middle Back Shrug bez zmian ruchu (łokieć ~42° stały, protract 5→−4 cm). Walidator v2-validate: 8/8 OK. Nowa reguła rece_proste (łokieć ≤ 15° w całym ruchu) działa (v2-sens.mjs:182). bez_bramki_ruchu dla 7 szrugsów: analogia do decyzji 26.10.2026 rozsądna (flaga isometric zdejmuje tylko bramkę ruchu, contract.ts:437), ale opis sekcji i komunikat DEKLARACJA nadal mówią „obrót przedramienia” (N1, NISKIE) — do weta koordynatora. W6 (Calf = Leverage, bez poduszek) i W7 (jeden uchwyt, artefakt miary −10…−11 cm) pozostają w backlogu.",
-      "slad": "arkusze arkusz-slad.mjs light (/tmp/rec-p3-shrug2/ark) i dark (/tmp/rec-p3-shrug2/ark-dark), 8 ćwiczeń × front i side, u co 0,05: ślad pionowy, równoległy do uniesienia barku, dla wszystkich 7 szrugsów stojących (hantle front: bez odjazdu na boki; Behind/Smith side: gryf stale za udami); Middle Back Shrug: ślad wzdłuż normalnej tułowia; arkusze nakładki arkusz-nakladka.mjs (/tmp/rec-p3-shrug2/nak, 16 PNG); pomiary frameAt (skrypt własny w scratchpad)",
+      "slad": "arkusze arkusz-slad.mjs light ((lokalny katalog roboczy recenzenta, poza repo)) i dark ((lokalny katalog roboczy recenzenta, poza repo)), 8 ćwiczeń × front i side, u co 0,05: ślad pionowy, równoległy do uniesienia barku, dla wszystkich 7 szrugsów stojących (hantle front: bez odjazdu na boki; Behind/Smith side: gryf stale za udami); Middle Back Shrug: ślad wzdłuż normalnej tułowia; arkusze nakładki arkusz-nakladka.mjs ((lokalny katalog roboczy recenzenta, poza repo), 16 PNG); pomiary frameAt (skrypt własny w scratchpad)",
       "sha": "cf2edb2c70fe",
       "liczba": 8,
       "cwiczenia": {
@@ -54,7 +54,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "5e140bf234c0",
       "uwagi": "Treść (shrug.setup, move, high, tall) zgodna z NOWYM rysunkiem: ręce proste, tułów nieruchomy, barki w górę. Wpis v1 można przestawić na „zastapiona”."
     },
@@ -64,7 +64,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "5e140bf234c0",
       "uwagi": "Jak sztanga — hantle przy udach, bez odwiedzenia. Wpis v1 można przestawić na „zastapiona”."
     },
@@ -74,7 +74,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "2a27c76a6ad6",
       "uwagi": "Spójna z rysunkiem (W5 naprawione)."
     },
@@ -84,7 +84,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "e5d7a98886ed",
       "uwagi": "shrug.setupBehind („za udami, ręce proste”) zgodne z rysunkiem (W3 naprawione)."
     },
@@ -94,7 +94,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "2e70f293d7f6",
       "uwagi": "Rysunek nie pokazuje już błędu shrug.mis.elbows (łokieć 3,8° stały); zgodna (W1 naprawione)."
     }
@@ -107,7 +107,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "193c74683067",
       "uwagi": "Zestaw shrug (shrug.move, shrug.tall, mis.jerk) zgodny z rysunkiem: tułów nieruchomy, pracują barki (W2 naprawione)."
     },
@@ -118,7 +118,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "193c74683067",
       "uwagi": "Zestaw shrug zgodny z rysunkiem (W1 naprawione); brak poduszek na barkach (W6) — backlog, teksty zestawu mu nie przeczą."
     },
@@ -129,7 +129,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, runda 2) — treść wobec NOWEGO rysunku v2 (cf2edb2c70fe)",
       "autor": "programista partii 3 (figury/partia-3 d7dd7a84)",
       "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w /tmp/rec-p3-shrug2; raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
+      "kto": "audytor — recenzja niezależna bramki 4, runda 2 (L-047, L-050), czysta kopia git archive d7dd7a84 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-r2-audytor-2026-11-09.md",
       "sha": "ae52305bc674",
       "uwagi": "Zestaw row (csr.chest, scr.chest, mis.jerk) zgodny z rysunkiem; bez zmian względem rundy 1."
     }

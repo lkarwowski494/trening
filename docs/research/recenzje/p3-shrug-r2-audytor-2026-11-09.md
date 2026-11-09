@@ -1,11 +1,11 @@
 # Recenzja niezależna bramki 4 — rodzina v2 `shrug`, runda 2 (partia 3), 09.11.2026
 
 - Recenzent: audytor. Nie pisał tych zmian (L-047). Autor: programista partii 3 (`figury/partia-3` @ d7dd7a84). Runda 1: `p3-shrug-audytor-2026-11-09.md`.
-- Kopia: `git archive d7dd7a84` → `/tmp/rec-p3-shrug2`. Pliki w `/tmp` nie trafiają do repo.
+- Kopia: `git archive d7dd7a84` → `(lokalny katalog roboczy recenzenta, poza repo)`. Pliki w `/tmp` nie trafiają do repo.
 - Skróty z czystej kopii (`node scripts/zrodla-runtime.mjs --skroty`): v2.shrug **cf2edb2c70fe** (zgodny z oczekiwanym). Karta Shrugs (sztanga) i (hantle) 5e140bf234c0. Linki 2a27c76a6ad6. Behind The Back e5d7a98886ed. Leverage 2e70f293d7f6. Zestaw shrug (Smith, Calf-Machine) 193c74683067. Middle Back Shrug ae52305bc674.
 - Obejrzane w pełnej rozdzielczości:
-  - arkusze ze śladem: `/tmp/rec-p3-shrug2/ark` (light) i `/tmp/rec-p3-shrug2/ark-dark` (dark), 8 ćwiczeń × front i side, kadr co 0,05;
-  - nakładka: `/tmp/rec-p3-shrug2/nak` (16 PNG).
+  - arkusze ze śladem: `(lokalny katalog roboczy recenzenta, poza repo)` (light) i `(lokalny katalog roboczy recenzenta, poza repo)` (dark), 8 ćwiczeń × front i side, kadr co 0,05;
+  - nakładka: `(lokalny katalog roboczy recenzenta, poza repo)` (16 PNG).
 - Pomiary z `frameAt`: kąt łokcia, tułowia, ramienia i odwiedzenia, chwyt, odstęp ciężaru (`odstepCiezaru`).
 - `v2-validate.mjs` na `poses/shrug.json`: 8/8 OK.
 

@@ -1,6 +1,6 @@
 # Recenzja niezależna bramki 4 — `hip_abd_add`, runda 3 (różnica po D1 A), 09.11.2026
 
-- Recenzent: audytor (L-047, L-050). Stan: `figury/partia-3` @ `37333dc6` wobec rundy 2 (`d7dd7a84`, skrót 086ae0c86f89). Czysta kopia: `/tmp/rec-p3-leg`.
+- Recenzent: audytor (L-047, L-050). Stan: `figury/partia-3` @ `37333dc6` wobec rundy 2 (`d7dd7a84`, skrót 086ae0c86f89). Czysta kopia: `(lokalny katalog roboczy recenzenta, poza repo)`.
 - Skrót v2.hip_abd_add: **eddcd1af9d43** (zgodny z oczekiwanym).
 - Werdykt: **wyswietlana (4/4)**, bez nowych znalezisk.
 
@@ -12,7 +12,7 @@
 
 ## Sprawdzenie na arkuszach śladu
 
-Arkusze w obu motywach: `/tmp/rec-p3-leg/ark/light`, `/tmp/rec-p3-leg/ark/dark`.
+Arkusze w obu motywach: `(lokalny katalog roboczy recenzenta, poza repo)`, `(lokalny katalog roboczy recenzenta, poza repo)`.
 
 - **Hip Abduction, Hip Adduction (maszyny):** ruch bez zmian. Ślad = kostka R (`frameAt`: trail = ankleR w u 0, 0,5 i 1). Kostka leży na okręgu dźwigni: 41,63–41,75 cm od osi (12,7; 8,4; 18,8) w każdej klatce kluczowej. Z przodu ślad biegnie poziomo wzdłuż ruchu kostki, 0 zawróceń.
 - **Cable Hip Abduction, Cable Hip Adduction:** bez zmian. Ślad przy kostce był już wcześniej; wyjątek toru Cable Hip Adduction (front 4,12 cm) bez zmian.

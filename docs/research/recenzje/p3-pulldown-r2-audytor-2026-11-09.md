@@ -1,6 +1,6 @@
 # Recenzja niezależna rundy 2 — pulldown (partia 3), 09.11.2026
 
-Recenzent: audytor (L-047: autor — programista partii 3). Zakres: różnica a9c220be → d7dd7a84 (poprawka N1). Czysta kopia: `git archive d7dd7a84` → /tmp/rec-p3-r2. Jest nie był uruchamiany (polecenie koordynatora).
+Recenzent: audytor (L-047: autor — programista partii 3). Zakres: różnica a9c220be → d7dd7a84 (poprawka N1). Czysta kopia: `git archive d7dd7a84` → (lokalny katalog roboczy recenzenta, poza repo) Jest nie był uruchamiany (polecenie koordynatora).
 
 ## Werdykt rodziny: wyswietlana (8/8)
 
@@ -18,7 +18,7 @@ N1 (WYSOKIE, runda 1) — **naprawione**.
 | Generator | `odtwarzanie-poz.mjs pulldown` — brak rozjazdów, pozy ważne |
 | Skrót v2.pulldown | 335199eb4c79 (zgodny z oczekiwanym) |
 
-Arkusze: /tmp/rec-p3-r2/ark/Straight-Arm-Pulldown-{side,front}.png, /tmp/rec-p3-r2/ark-dark/…, kadr powiększony /tmp/rec-p3-r2/c_sap_side_r2.png, nakładka /tmp/rec-p3-r2/nak (16 arkuszy).
+Arkusze: (lokalny katalog roboczy recenzenta, poza repo){side,front}.png, (lokalny katalog roboczy recenzenta, poza repo)…, kadr powiększony (lokalny katalog roboczy recenzenta, poza repo), nakładka (lokalny katalog roboczy recenzenta, poza repo) (16 arkuszy).
 
 ## Backlog (z rundy 1, nie blokują)
 

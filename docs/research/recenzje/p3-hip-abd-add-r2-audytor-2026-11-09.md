@@ -1,6 +1,6 @@
 # Recenzja niezależna rundy 2 — hip_abd_add (partia 3), 09.11.2026
 
-Recenzent: audytor (L-047: autor — programista partii 3). Zakres: różnica 7d298144 → d7dd7a84 (wstrzymanie Lateral Band Walk i Monster Walk po H-1/H-2). Czyste kopie: /tmp/rec-p3-r2 (d7dd7a84), /tmp/rec-p3-r2-base (7d298144).
+Recenzent: audytor (L-047: autor — programista partii 3). Zakres: różnica 7d298144 → d7dd7a84 (wstrzymanie Lateral Band Walk i Monster Walk po H-1/H-2). Czyste kopie: (lokalny katalog roboczy recenzenta, poza repo) (d7dd7a84), (lokalny katalog roboczy recenzenta, poza repo) (7d298144).
 
 ## Werdykt rodziny: wyswietlana (4 ćwiczenia)
 

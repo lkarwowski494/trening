@@ -6,9 +6,9 @@
    "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — do poprawy: 1 × WYSOKIE (Straight Arm Pulldown, drążek przez kolumnę); 7 ćwiczeń bez blokera",
    "autor": "programista partii 3 (figury/partia-3 a9c220be)",
    "recenzent": "audytor",
-   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive (lokalny katalog roboczy recenzenta, poza repo), 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
    "uwagi": "Blokuje N1 (Straight Arm Pulldown). ŚREDNIE N2–N5 i NISKIE N6–N7 do backlogu. Nakładka i DATA_UI poprawne (poza przekładem EN fazy, N5). Walidator nie ma kolizji drążek–kolumna (colliders.ts:67–70).",
-   "slad": "arkusze arkusz-slad.mjs dla wszystkich 8 ćwiczeń, rzuty side i front, motyw light (/tmp/rec-p3-pulldown/ark) i dark (/tmp/rec-p3-pulldown/ark-dark), kadry co 0,05, kadry powiększone z pełnej rozdzielczości (c_*.png); arkusze nakładki arkusz-nakladka.mjs --family pulldown (16, /tmp/rec-p3-pulldown/nak); miara toru ksztaltToru przeliczona w czystej kopii",
+   "slad": "arkusze arkusz-slad.mjs dla wszystkich 8 ćwiczeń, rzuty side i front, motyw light ((lokalny katalog roboczy recenzenta, poza repo)) i dark ((lokalny katalog roboczy recenzenta, poza repo)), kadry co 0,05, kadry powiększone z pełnej rozdzielczości (c_*.png); arkusze nakładki arkusz-nakladka.mjs --family pulldown (16, (lokalny katalog roboczy recenzenta, poza repo)); miara toru ksztaltToru przeliczona w czystej kopii",
    "sha": "6953c14db395",
    "liczba": 8,
    "cwiczenia": {
@@ -54,7 +54,7 @@
    "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 i źródeł z cues.json)",
    "autor": "badacz merytoryczny i programista (karta własna; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json); rysunek v2: programista partii 3 (figury/partia-3 a9c220be)",
    "recenzent": "audytor",
-   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive (lokalny katalog roboczy recenzenta, poza repo), 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
    "sha": "2ad35a7ac5a6",
    "uwagi": "4 wskazówki, każda z 2 źródłami szczebla 4 (ACE #158, ExRx CBFrontPulldown); zgodne z rysunkiem v2 (przed twarzą, do górnej klatki −8 cm, wyprost 19°). Rysunek bez wałków ud z lpd.thighs (N4, ŚREDNIE, nie przeczy ruchowi). Wpis v1 72f6a47c92d4 → zastapiona przy włączeniu v2."
   }
@@ -67,7 +67,7 @@
    "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu i teksty pl/en wobec rysunku v2)",
    "autor": "programista partii 3 (figury/partia-3 a9c220be)",
    "recenzent": "audytor",
-   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive (lokalny katalog roboczy recenzenta, poza repo), 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
    "sha": "82ac6379f373",
    "uwagi": "pionowe ściąganie — vpull poprawny; pu.shoulders, pu.elbowsDown, lpd.fullStretch, mis.jerk zgodne z rysunkiem (łokcie 18 cm pod barkami na dole, wyprost 19°); EN wierne"
   },
@@ -78,7 +78,7 @@
    "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu i teksty pl/en wobec rysunku v2)",
    "autor": "programista partii 3 (figury/partia-3 a9c220be)",
    "recenzent": "audytor",
-   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive /tmp/rec-p3-pulldown, 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) gałęzi figury/partia-3 @ a9c220be wobec origin/integracja-1-1, czysta kopia git archive (lokalny katalog roboczy recenzenta, poza repo), 09.11.2026; raport docs/research/recenzje/p3-pulldown-audytor-2026-11-09.md",
    "sha": "d08a46fced0c",
    "uwagi": "vpull poprawny; zestaw bez „do klatki” (słusznie, drążek za głowę); pu.shoulders, lpd.fullStretch, mis.jerk zgodne z rysunkiem; EN wierne. Uwagi do rysunku (N2, N3) nie dotyczą zestawu."
   }
@@ -100,7 +100,7 @@
    "cwiczenie": "Straight Arm Pulldown",
    "rzut": "side (także front)",
    "opis": "Drążek przechodzi przez kolumnę wyciągu w u 0,05–0,70: chwyt x 61,6→75,8→61,6 cm przy kolumnie x 62±5, z ±5 (drążek z ±12 ciągły przez z 0); linka biegnie do drążka za maszyną. Walidator nie ma kolidera drążka wyciągu. Realny: każde odtworzenie.",
-   "dowod": "/tmp/rec-p3-pulldown/ark/Straight-Arm-Pulldown-side.png; /tmp/rec-p3-pulldown/c_sap_side_035.png; lib/figures/v2/poses/pulldown.json (wyciag x 62); lib/figures/v2/colliders.ts:67-70"
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo); lib/figures/v2/poses/pulldown.json (wyciag x 62); lib/figures/v2/colliders.ts:67-70"
   },
   {
    "id": "N2",
@@ -108,7 +108,7 @@
    "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
    "rzut": "front",
    "opis": "Drążek za głową (x ≈ −4, głowa x 12–17,6) rysowany na twarzy w u 0,45–0,70 — błędna kolejność głębi, rzut przeczy „za głowę”. Realny.",
-   "dowod": "/tmp/rec-p3-pulldown/ark/Wide-Grip-Pulldown-Behind-The-Neck-front.png; /tmp/rec-p3-pulldown/c_wg_front_060.png"
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo)"
   },
   {
    "id": "N3",
@@ -116,7 +116,7 @@
    "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
    "rzut": "side",
    "opis": "Ćwiczący tyłem do kolumny (wyciag x −38), linka ukośnie w tył (35° od pionu na górze); zwykle przodem do stosu, linka prawie pionowo. Realny.",
-   "dowod": "/tmp/rec-p3-pulldown/ark/Wide-Grip-Pulldown-Behind-The-Neck-side.png"
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo)"
   },
   {
    "id": "N4",
@@ -124,7 +124,7 @@
    "cwiczenie": "Lat Pulldown, Close-Grip Front Lat Pulldown, Underhand Lat Pulldown, V-Bar Pulldown, Single Arm Lat Pulldown",
    "rzut": "side",
    "opis": "Karta: wałki przytrzymujące uda — rysunek ich nie ma (kontrakt nie zna wałków ud); jest oparcie 85°, na które w rzucie z boku nachodzi ramię na dole ruchu (bez kolizji 3D). Brak elementu, nie przeczenie ruchowi. Realny.",
-   "dowod": "/tmp/rec-p3-pulldown/c_lat_u1.png; lib/figures/v2/gear.ts:233"
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); lib/figures/v2/gear.ts:233"
   },
   {
    "id": "N5",
@@ -140,7 +140,7 @@
    "cwiczenie": "Close-Grip Front Lat Pulldown, Underhand Lat Pulldown, Single Arm Lat Pulldown, Full Range-Of-Motion Lat Pulldown",
    "rzut": "side",
    "opis": "Na dole chwyt 17 cm pod barkami wobec reguły do_gornej_klatki (−10…+15); ewaluator sprawdza p.some, więc nie łapie. Single Arm: karta „do barku”. Realny, mały.",
-   "dowod": "/tmp/rec-p3-pulldown/c_cg_front_u1.png; /tmp/rec-p3-pulldown/nak/Close-Grip-Front-Lat-Pulldown-side.png; scripts/figures/v2-sens.mjs:266"
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo); scripts/figures/v2-sens.mjs:266"
   },
   {
    "id": "N7",
@@ -148,7 +148,7 @@
    "cwiczenie": "V-Bar Pulldown",
    "rzut": "front",
    "opis": "Uchwyt V rysowany jako krótki prosty drążek (kontrakt bez uchwytu V); uproszczenie. Realny, kosmetyczny.",
-   "dowod": "/tmp/rec-p3-pulldown/c_V-Bar-Pulldown_front_u0.png"
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo)"
   }
  ]
 }

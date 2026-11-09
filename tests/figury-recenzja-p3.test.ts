@@ -111,7 +111,7 @@ describe('chest_press_machine: łokieć przy płaszczyźnie barku (Leverage Decl
 /* Odciski pozy każdego ćwiczenia, którego poprawki NIE dotyczą (stan z origin/integracja-1-1 @ ded48270): dowodzą, że generatory zmieniły tylko 6 ćwiczeń. */
 const ODCISKI: Record<string, Record<string, string>> = {
   cable_row: { 'Standing Cable Row': '7a2b36f6065e2775', 'Single Arm Cable Row': '25f4a6f8c1328e50', 'Face Pull': '5e9cbcdead7e585a', 'Machine Row': '1e5450f8630493e6', 'Leverage High Row': '31e108c39ef2555c', 'Kneeling High Pulley Row': 'b0ffaa10eb8eec72' },
-  pulldown: { 'Lat Pulldown': '888f0d992c077478', 'Close-Grip Front Lat Pulldown': '6b3795769f85deea', 'Underhand Lat Pulldown': 'f0fe62a86079210c', 'V-Bar Pulldown': '449cae298b2ea06c', 'Single Arm Lat Pulldown': '0a045deaec2e206f', 'Full Range-Of-Motion Lat Pulldown': '8e809e29e71ab056', 'Straight Arm Pulldown': 'e3f33866cae980a7' },
+  pulldown: { 'Lat Pulldown': '888f0d992c077478', 'Close-Grip Front Lat Pulldown': '6b3795769f85deea', 'Underhand Lat Pulldown': 'f0fe62a86079210c', 'V-Bar Pulldown': '449cae298b2ea06c', 'Single Arm Lat Pulldown': '0a045deaec2e206f', 'Full Range-Of-Motion Lat Pulldown': '8e809e29e71ab056', 'Straight Arm Pulldown': '71d5ef752d2b647f' /* 09.11.2026 partia 3, N1: kolumna wyciągu za łukiem rąk (recenzja niezależna r2) */ },
   chest_press_machine: { 'Machine Chest Press': '3c8ec70a151bc790', 'Leverage Incline Chest Press': '5d1f9a14ce6dfe0c', 'Smith Machine Shoulder Press': '475d614591b2cbb1' },
   cable_press: { 'Wyciskanie na linkach (stojąc)': '8368188a1ab3c70a', 'Single Arm Cable Chest Press': 'ab409ece91a18893', 'Seated Cable Chest Press': '1039f9352625ae4a', 'Incline Cable Chest Press': '728111932116f223' },
 };
