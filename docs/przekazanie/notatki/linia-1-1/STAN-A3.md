@@ -5,7 +5,8 @@
 - Zakres z `policz()` na ab59dd5: row 7, cable_row 7, pulldown 5, pull_up 2, shrug 6, back_extension 3, delt_raise 7, curl 2, triceps 3, rotator_cuff 5 = 47 bez wskazówek; role 12 (pull_up 2, shrug 1, back_extension 1, delt_raise 3, rotator_cuff 5). forearm (13) poza — pytanie do koordynatora.
 - Karty ukryte do przekładu: 17 w `karty_nowe` (tests/recenzja-wyjatki-1-1.json); bez wpisów „karty” w figury-recenzja.json.
 - Zottman Curl: reguły sensu z zestawu ogólnego przypisane w `figury-sens.json` `curl.warianty` — `reguly-cwiczen.json` (plik wspólny silnika) bez zmian.
-- Następny krok: bramka (check:pochodne, test-fast --od-bazy, verify:lekkie) → push → tests.yml; potem recenzja niezależna (koordynator).
+- Bramka 09.11.2026: check:pochodne zielone; test-fast --od-bazy (208 plików) — 8 czerwonych naprawionych (strażniki liczności o A3, zapadka języków 574, L-103 +1, ścieżka lokalna w STAN), ponowione pojedynczo zielone; 14 strażników lekcji A1/A2 zielone (933 testy); verify:lekkie zielone (b294bb8b). Push b294bb8b → tests.yml 42542467279.
+- Następny krok: zielony tests.yml → recenzja niezależna (koordynator: badacz + recenzent lokalizacji PL/EN wg a3-klucze.json) → przekład (za zgodą).
 
 ## Otwarte po A3
 - Single Arm Cable Row — decyzja 4 W2 G6 (Healthline, krótka wzmianka o jednorącz).
