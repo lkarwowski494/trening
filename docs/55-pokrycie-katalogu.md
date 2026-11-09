@@ -103,7 +103,7 @@ Cel osiągnięty: **nie** (2 z 47 liczb).
 | `olympic` | gotowa | 25 | 22 | 2 | 0 | 21 | 1 | 3 | 21 | 22 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 24 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
-| `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 11 | 0 | 12 | 0 | 0 |
+| `overhead_press` | gotowa | 23 | 0 | 21 | 5 | 11 | 0 | 12 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 3 | 0 | 17 | 0 | 0 |
 | `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 2 | 0 | 17 | 0 | 0 |
