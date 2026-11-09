@@ -9,7 +9,7 @@ Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą): overhea
 | Rodzina | Autor (SHA) | Recenzja ruchu | Nakładka/zestawy | Wpisy | Stan |
 |---|---|---|---|---|---|
 | calf_raise | — | — | — | — | w toku |
-| row | cf6c46d3 (gałąź figury/partia-1-row; 09.11.2026 19:01–20:10 UTC) | — | nakładka: rowElbowLimb + rowElbowPastBackRef (podparcie); zestawy ogólne: 5 do recenzji | — | autor zakończył; czeka na recenzję niezależną |
+| row | cf6c46d3 (gałąź figury/partia-1-row; 09.11.2026 19:01–20:10 UTC) | — | nakładka: rowElbowLimb + rowBackLineRef (podparcie; po r1 W2); zestawy ogólne: 5 do recenzji | — | poprawki po r1 (W1, W2, Ś1, N1, N2) zrobione 09.11.2026 ~21:00 UTC; czeka na r2 |
 | kb_ballistic | — | — | — | — | otwarte |
 | chest_fly | — | — | — | — | otwarte |
 | overhead_press | — | — | — | — | otwarte |
