@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 7, do zrobienia: 36); ćwiczeń z gotową figurą: **185** (26,1%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 8, do zrobienia: 35); ćwiczeń z gotową figurą: **197** (27,8%).
 
 ## Rodziny
 
@@ -22,7 +22,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
 | `leg_machine` | do zrobienia | 8 | side, front | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
 | `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
-| `calf_raise` | do zrobienia | 13 | side | 2 | Wspięcia na palce |
+| `calf_raise` | gotowa | 13 | side | — | Wspięcia na palce |
 | `hip_bridge` | do zrobienia | 11 | side | 3 | Hip thrust i mostki |
 | `kb_ballistic` | do zrobienia | 17 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
 | `olympic` | gotowa | 25 | side | — | Podrzut, rwanie i ich odmiany |
@@ -53,11 +53,12 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 36 rodzin, 516 ćwiczeń, ok. **109 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 35 rodzin, 503 ćwiczeń, ok. **107 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
+- `calf_raise` (z figurą 12 z 13): Smith Machine Reverse Calf Raise
 - `olympic` (z figurą 24 z 25): Rack Delivery
 - `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
@@ -116,7 +117,7 @@ Belt Squat Machine; Calf Press (leg press); Hack Squat; Leg Press; Lying Machine
 
 Glute Ham Raise; Leg Curl; Leg Curl (hantel); Leg Extension; Lying Leg Curl; Nordic Curl; Reverse Nordic; Seated Band Hamstring Curl; Single-Leg Leg Extension; Sissy Squat; Slider Hamstring Curl; Stability Ball Hamstring Curl; Standing Cable Leg Curl; Standing Leg Curl
 
-### calf_raise (13) — do zrobienia
+### calf_raise (13) — gotowa
 
 Band Calf Raise; Barbell Seated Calf Raise; Calf Raise (linki); Calf Raise (sztanga); Donkey Calf Raise; Dumbbell Seated One-Leg Calf Raise; Łydki na stopniu; Seated Calf Raise; Seated Calf Raise (hantle); Single Leg Calf Raise; Smith Machine Calf Raise; Smith Machine Reverse Calf Raise; Standing Calf Raise
 
