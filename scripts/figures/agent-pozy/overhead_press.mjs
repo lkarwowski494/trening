@@ -37,7 +37,8 @@ function siedzac(kat = 85, top = 45) { const B = naLawce(kat, top, { zr: 24 }); 
 /** Landmine: gryf sztywny o długości L wokół osi P przy podłodze (przed osobą); dłonie (jedna lub obie, |z| = zh) na łuku od klatki do wyprostu przed sobą i w górę.
  * o: { jedna, zh, dip (głębokość ugięcia nóg na dole, cm), lean (pochylenie tułowia na dole, °), el1 (docelowe zgięcie łokcia na górze nie jest wpisywane — wynika z zasięgu) }. */
 function landmine(cw, o) {
-  const L = 200; const zh = o.zh ?? (o.jedna ? 12 : 6); const dz = zh - 19; const reach = o.reach ?? 63.4; const rIn = Math.sqrt(reach * reach - dz * dz);
+  const L = 200; /* jedna ręka: dłoń 2 cm od osi ciała, na końcu gryfu (rig rysuje gryf zawsze na osi z = 0, długość 20 cm w poprzek): przy 12 cm dłoń była 2 cm za końcem gryfu, a ślad (środek gryfu) 12 cm od chwytu (własna recenzja 09.11.2026) */
+  const zh = o.zh ?? (o.jedna ? 2 : 6); const dz = zh - 19; const reach = o.reach ?? 63.4; const rIn = Math.sqrt(reach * reach - dz * dz);
   const S0 = bark([0, Y_STOJ], 0, 1); const H0x = S0[0] + (o.h0x ?? 16); const H0y = S0[1] + (o.h0y ?? -6);
   /* oś P: dłoń na dole H0 leży na sferze; wyznacz γ1 tak, by dłoń na górze miała odległość rIn od barku */
   const Py = 5; const g0 = Math.asin((H0y - Py) / L); const Px = H0x + L * Math.cos(g0); let lo = g0, hi = 1.45;
@@ -87,20 +88,23 @@ export const PRZYBLIZENIA = {};
 /** Arnold Press (recenzja ruchu 27.10.2026): start — ciężary przed twarzą/klatką, dłonie do siebie (supinacja), łokcie przed klatką blisko siebie (chwyt |z| 12); w trakcie łokcie rozchodzą się na boki (pdz > 0), a przedramię obraca się do nachwytu; na górze chwyt jak w zwykłym wyciskaniu. */
 const ARNOLD = { zr: (e) => lerp(12, 24, sm(e / 0.85)), pdz: (e) => 26 * Math.sin(Math.PI * Math.min(1, e / 0.85)) ** 1.2, obrot: (e) => lerp(80, -75, sm(e / 0.7)) };
 
+/** Hantle w wyciskaniu: chwyt nachwytem (dłonie do przodu) — obrót przedramienia −80° (granica zakresu; 0 = młotkowy): oś hantla stale w poprzek ciała (recenzja własna 09.11.2026: przy 0 oś skakała z przodu–tyłu w poprzek i z powrotem w trakcie ruchu). */
+const HW = -80;
+
 export function generuj() {
   const G = {}; const B = SPRZET.sztanga(); const H = SPRZET.hantle(); const KB = (x = {}) => ({ rodzaj: 'kettlebell', dzwon: 'tyl', ...x });
   const RACK = { rodzaj: 'slupek', x: -45, h: 210, hak: 140 };
   G['Overhead Press (sztanga)'] = () => wyciskanie('Overhead Press (sztanga)', { sprzet: [B] });
-  G['Overhead Press (hantle)'] = () => wyciskanie('Overhead Press (hantle)', { sprzet: [H] });
+  G['Overhead Press (hantle)'] = () => wyciskanie('Overhead Press (hantle)', { sprzet: [H], obrot: HW });
   G['Band Shoulder Press'] = () => wyciskanie('Band Shoulder Press', { sprzet: [{ rodzaj: 'guma', mocowanie: 'stopy', trzyma: 'obie' }] });
   G['Double Kettlebell Press'] = () => wyciskanie('Double Kettlebell Press', { sprzet: [KB({ trzyma: 'R' }), KB({ trzyma: 'L' })] });
   G['Kettlebell Press'] = () => wyciskanie('Kettlebell Press', { sprzet: [KB()], jedna: 'R' });
-  G['Single Arm Overhead Press (hantel)'] = () => wyciskanie('Single Arm Overhead Press (hantel)', { sprzet: [H], jedna: 'R' });
-  G['See-Saw Press (Alternating Side Press)'] = () => wyciskanie('See-Saw Press (Alternating Side Press)', { sprzet: [{ ...H, trzyma: 'R' }, { ...H, trzyma: 'L' }], alt: true, us: U12 });
+  G['Single Arm Overhead Press (hantel)'] = () => wyciskanie('Single Arm Overhead Press (hantel)', { sprzet: [H], jedna: 'R', obrot: HW });
+  G['See-Saw Press (Alternating Side Press)'] = () => wyciskanie('See-Saw Press (Alternating Side Press)', { sprzet: [{ ...H, trzyma: 'R' }, { ...H, trzyma: 'L' }], alt: true, us: U12, obrot: HW });
   G['Arnold Press'] = () => wyciskanie('Arnold Press', { sprzet: [H], ...ARNOLD });
   G['Kettlebell Arnold Press'] = () => wyciskanie('Kettlebell Arnold Press', { sprzet: [KB()], jedna: 'R', ...ARNOLD, zr: (e) => lerp(16, 24, sm(e / 0.85)) });
   const sd = siedzac(85, 45);
-  G['Seated Shoulder Press (hantle)'] = () => wyciskanie('Seated Shoulder Press (hantle)', { T: sd.T, dod: [sd.lawka], sprzet: [H] });
+  G['Seated Shoulder Press (hantle)'] = () => wyciskanie('Seated Shoulder Press (hantle)', { T: sd.T, dod: [sd.lawka], sprzet: [H], obrot: HW });
   G['Kettlebell Seated Press'] = () => wyciskanie('Kettlebell Seated Press', { T: sd.T, dod: [sd.lawka], sprzet: [KB()], jedna: 'R' });
   G['Seated Barbell Military Press'] = () => wyciskanie('Seated Barbell Military Press', { T: sd.T, dod: [sd.lawka, RACK], sprzet: [B] });
   G['Seated Cable Shoulder Press'] = () => wyciskanie('Seated Cable Shoulder Press', { T: sd.T, dod: [sd.lawka], sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -25, y: 15, z: 90, h: 100 })] });

@@ -20,6 +20,7 @@ const LOAD: Record<string, () => PoseFile> = {
   delt_raise: () => require('./poses/delt_raise.json'),
   row: () => require('./poses/row.json'),
   chest_fly: () => require('./poses/chest_fly.json'),
+  overhead_press: () => require('./poses/overhead_press.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -78,6 +79,10 @@ export const DATA_UI: Record<string, DataUi> = {
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* row (09.11.2026, partia 1): u = 0 ręce w zwisie (łokcie prawie proste), u = 1 łokcie za tułowiem: przyciąganie ciężaru 1 s, opuszczanie 2 s; mierzony staw — łokieć */
   row: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
+  /* overhead_press (09.11.2026, partia 1): u = 0 dłonie przy barkach (landmine: gryf przy klatce), u = 1 ręce wyprostowane nad głową / przed sobą: wypychanie 1 s, opuszczanie 2 s; mierzony staw — łokieć.
+   * Pike Push Up jest odwrócony (u = 0 ręce proste, biodra w górze; u = 1 łokcie zgięte, głowa przy podłodze), więc wyjątek: najpierw opuszczanie (2 s), potem wypychanie. */
+  overhead_press: { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'],
+    exceptions: { 'Pike Push Up': { names: { first: 'Opuszczanie', second: 'Wypychanie' }, lowerFirst: true } } },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true, names: { first: 'Obrót', second: 'Powrót' } }, /* r5-W1 08.11.2026: kierownica obraca się, nie unosi */ 'Alternating Deltoid Raise': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' } } } },
