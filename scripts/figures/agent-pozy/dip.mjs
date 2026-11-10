@@ -9,6 +9,7 @@ const a01 = ease;
 const ZR = 22; /* dłonie: z = ±22 (połowa rozstawu poręczy) */
 const ODCHYL_TASMY = 21; /* taśma rozchodzi się ku górze o tyle cm na zewnątrz (ok. 8°), żeby przedramię nie przechodziło przez nią */
 const ZR_KOLKA = 28; /* kółka: dłonie nieco szerzej niż barki (19), taśmy lekko na zewnątrz, żeby nie przechodziły przez ramię */
+const ZR_LAWKA = 11; /* ławka (szerokość 30 cm, krawędź z = ±15): dłoń cała na blacie, środek dłoni 11 cm od osi → krawędź dłoni (r 3,6) 14,6 < 15; dłonie przy biodrach (R4/W1, recenzja r1 10.11.2026) */
 export const WYJATKI = {};
 export const PRZYBLIZENIA = {
   'Ring Dips': 'przybliżenie: kółka rysowane jako dwa uchwyty na osobnych taśmach (sprzęt „zawieszenie”, taśma na każdą dłoń, zaczep 250 cm nad podłogą, taśmy lekko rozchodzą się ku górze) — bez obrotu kółek na zewnątrz na dole; dwie niezależne rączki, nie poprzeczka (recenzja ruchu 27.10.2026)',
@@ -32,12 +33,12 @@ function wPodporze(cw, { h = 115, p1, p2, dxDol, dyDol, poleLokcia, sprzet, kola
 
 /** Pompki z ławki: dłonie na krawędzi ławki za plecami, nogi proste do przodu (pięty na podłodze), miednica opada między ławką a stopami. */
 function zLawki(cw) {
-  const top = 43; const xf = 0; const hx = xf - 3; const dz = ZR - 19; const SX = xf + 6; const phi = 8; const tr = BODY().trunk;
+  const top = 43; const xf = 0; const hx = xf - 3; const dz = ZR_LAWKA - 19; const SX = xf + 6; const phi = 8; const tr = BODY().trunk;
   const yGora = top + 3.5 + Math.sqrt(63.4 ** 2 - (SX - hx) ** 2 - dz * dz); const yDol = top + 3.5 + 46;
   const mTop = [SX + tr * Math.sin(phi * R), yGora - tr * Math.cos(phi * R)]; const ankX = mTop[0] + 60; const pod = 20; const ay = kostkaStopyY(0, pod);
   const fr = (u) => { const a = a01(u); const Sy = lerp(yGora, yDol, a); const m = [SX + tr * Math.sin(phi * R), Sy - tr * Math.cos(phi * R)]; const p = -phi;
     const aR = [ankX, ay, 9], aL = [ankX, ay, -9];
-    return K({ u, m, p, head: p * 0.5, R: { a: aR, pod, rot: 10, pole: [0.3, 1, 0.05] }, L: { a: aL, pod, rot: 10, pole: [0.3, 1, -0.05] }, hr: { g: [hx, top + 3.5, ZR], pole: [-0.4, -1, 0.3] }, hl: { g: [hx, top + 3.5, -ZR], pole: [-0.4, -1, -0.3] } }); };
+    return K({ u, m, p, head: p * 0.5, R: { a: aR, pod, rot: 10, pole: [0.3, 1, 0.05] }, L: { a: aL, pod, rot: 10, pole: [0.3, 1, -0.05] }, hr: { g: [hx, top + 3.5, ZR_LAWKA], pole: [-0.4, -1, 0.3] }, hl: { g: [hx, top + 3.5, -ZR_LAWKA], pole: [-0.4, -1, -0.3] } }); };
   return poza(RODZINA, cw, [PODLOGA(-110, 150), { rodzaj: 'lawka', x: xf - 55, top, kat: 0, dlugosc: 75, siedzisko: 55 }], US.map(fr), []);
 }
 
@@ -50,7 +51,7 @@ function maszyna(cw) {
   const ak = (sg) => ({ a: [m[0] + 40, 7, sg * 12], pod: 0, rot: 10, pole: [1, 0.4, sg * 0.05] });
   const fr = (u) => { const g = hand(u); return K({ u, m, p, head: p, R: ak(1), L: ak(-1), hr: { g: [g[0], g[1], ZR], pole: [-1, -0.3, 0.4] }, hl: { g: [g[0], g[1], -ZR], pole: [-1, -0.3, -0.4] } }); };
   const dzL = 28; const L3 = Math.sqrt(rxy * rxy + dzL * dzL);
-  const spr = [PODLOGA(-60, 140), { rodzaj: 'lawka', x: r1(m[0] - 8.5), top, kat, siedzisko: 40, dlugosc: 75 }, { rodzaj: 'dzwignia', tryb: 'obrot', punkt: 'dlonie', trzyma: 'R', x: r1(Sx[0] + Pr[0]), y: r1(Sx[1] + Pr[1]), z: ZR + dzL, dlugosc: r1(L3) }];
+  const spr = [PODLOGA(-60, 140), { rodzaj: 'lawka', x: r1(m[0] - 8.5), top, kat, siedzisko: 40, dlugosc: 75 }, ...['R', 'L'].map((st) => ({ rodzaj: 'dzwignia', tryb: 'obrot', punkt: 'dlonie', trzyma: st, x: r1(Sx[0] + Pr[0]), y: r1(Sx[1] + Pr[1]), z: (st === 'R' ? 1 : -1) * (ZR + dzL), dlugosc: r1(L3) }))]; /* dwie dźwignie (R i L) jak w Machine Lateral Raise — każda dłoń na własnej (R2/W2) */
   return poza(RODZINA, cw, spr, US.map(fr), []);
 }
 
