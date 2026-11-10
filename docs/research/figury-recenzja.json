@@ -277,31 +277,28 @@
     },
     "Seated Cable Row": {
       "rodzina": "cable_row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "0502282c1ef4",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Bloczek i start na wysokości brzucha, dodana pozycja „w trakcie”; linka do 1,6° od poziomu (było 34,5°). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
       "wada": "Start z rękami na wysokości barków, koniec przy brzuchu: uchwyt jedzie skośnie w dół (linka do 34,5° od poziomu), wbrew notatce figury (linka poziomo) — ruch wygląda jak przyciąganie z góry.",
       "poprawka": "Bloczek i ręce na starcie na wysokości brzucha (ręce proste skierowane do uchwytu), pozycja pośrednia; linka ≤ 5° od poziomu."
     },
     "Wiosłowanie na linkach (siedząc)": {
       "rodzina": "cable_row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "0502282c1ef4",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Seated Cable Row (ta sama figura przez „like”). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
       "wada": "Start z rękami na wysokości barków, koniec przy brzuchu: uchwyt jedzie skośnie w dół (linka do 34,5° od poziomu), wbrew notatce figury (linka poziomo) — ruch wygląda jak przyciąganie z góry.",
       "poprawka": "Bloczek i ręce na starcie na wysokości brzucha (ręce proste skierowane do uchwytu), pozycja pośrednia; linka ≤ 5° od poziomu."
     },
     "Face Pull": {
       "rodzina": "cable_row",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "1251dc39e393",
-      "uwagi": "Ruch i karta zgodne. Lina z wyciągu powyżej barków, przyciąganie do twarzy, łokcie w tył za linię pleców, tułów pionowo. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "1251dc39e393"
     },
     "Lat Pulldown": {
       "rodzina": "pulldown",
@@ -402,31 +399,28 @@
     },
     "Hip Thrust (sztanga)": {
       "rodzina": "hip_bridge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "cf66415fde99",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Ręce zgięte, dłonie na gryfie w obu pozycjach (było 10–20 j. od gryfu). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
       "wada": "Dłonie 10–20 j. (18–35 cm) od ciężaru, w powietrzu — wskazówka: przytrzymuj ciężar dłońmi (ht.hold).",
       "poprawka": "Ręce zgięte, dłonie na ciężarze w obu pozycjach (≤ 2 j.)."
     },
     "Hip Thrust (hantel)": {
       "rodzina": "hip_bridge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "ea79c35cb1c3",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Ręce zgięte, dłonie na hantlu w obu pozycjach. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
       "wada": "Dłonie 10–20 j. (18–35 cm) od ciężaru, w powietrzu — wskazówka: przytrzymuj ciężar dłońmi (ht.hold).",
       "poprawka": "Ręce zgięte, dłonie na ciężarze w obu pozycjach (≤ 2 j.)."
     },
     "Glute Bridge": {
       "rodzina": "hip_bridge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-31",
-      "kto": "audytor (sesja 1.1, 31.10.2026) — recenzja bramki 4 po ACG-007 (L-047, L-050): własny pomiar geometrii z lib/figures/geom.ts w pętli co 0,05, arkusz przed/po ze śladem toru głowy, barku, biodra i kolana",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "51c837437b08",
-      "uwagi": "Poprawiona 31.10.2026 (ACG-007): kąt tułowia klatki end t 203 → 200. Dół obrysu głowy −4,8 → −1,2 j. (najniżej w pętli −1,3 j., limit 2,25 j.); bark 6,0 → 9,1 j.; linia bark–biodro–kolano 180° (gb.move), bez przeprostu; pięty na podłodze w całej pętli; skok punktów ≤ 0,71 j. na 5% pętli. NISKIE: model v1 bez kąta szyi — bark uniesiony o 3 j. względem leżenia (uproszczenie, backlog). Test: tests/figury-podparcie.test.ts (ACG-007).",
       "autor": "programista (wykonawca ACG, 31.10.2026)",
       "recenzent": "audytor (recenzja niezależna, 31.10.2026)",
       "slad": "arkusz SVG/PNG przed/po (t 203 / t 200): pozy 0/0,25/0,5/0,75/1, ślad głowy, barku, biodra i kolana co 0,05, linia podłogi; tory ciągłe, bez załamań",
@@ -906,6 +900,180 @@
         }
       }
     },
+    "olympic": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "kto": "audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja nakładki techniki olympic (figury/nakladka-b0 @ d5a56f5f), 08.11.2026; 0 KRYTYCZNE/WYSOKIE, NISKIE N1, N2 (raport); ruch i ślad bez zmian względem recenzji r4–r7; wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050, spójność karta–rysunek) — linia 1.1, recenzja ruchu r4 04.11.2026, potwierdzenie r5 05.11.2026, recenzja trybu pętli r6 05.11.2026 i potwierdzenie poprawek r7 05.11.2026; 0 KRYTYCZNE/WYSOKIE; r6-W1 (Snatch Balance: Opuszczanie 2 s vs błąd karty slowDrop) zamknięte — Snatch Balance jednokierunkowy (19 jednokierunkowych, 5 wahadeł); r6-W2 (eksport strony bez trybu pętli) zamknięte wariantem B — eksport pomija figury jednokierunkowe (strona: 135 figur, 19 ćwiczeń olympic bez rysunku); r6-W2 A (eksport i odtwarzacz strony z trybem pętli) odłożone → 1.1.x (docs/18, docs/21:163); r7-N1 NISKIE (Block Power Snatch na stronie także bez zestawu ogólnego wskazówek — warunek figureShown, eksport.mjs:149) → backlog razem z r6-W2 A; NISKIE z r4 (r4-N1 łokieć C&J 150,7° w przejściu, r4-N2 rack Jerk Balance) nadal w backlogu 1.1.x (docs/21:160–161), r4-N3 i r4-N4 zamknięte wcześniej; Clean Shrug i Snatch Shrug — pokazanie dopiero z kartami T2 (V2_WSTRZYMANE); Rack Delivery bez rysunku",
+      "autor": "programista B0 (figury/nakladka-b0 @ d5a56f5f)",
+      "recenzent": "audytor",
+      "uwagi": "Nakładka (13 ćwiczeń wyświetlanych z elementem): olympicBarCloseRef (linia piszczeli przedłużona za kolano, zdanie oly.close „Sztanga blisko ciała przez cały ciąg”) — 13 ćw.; olympicKneeLimb (linia uda i łuk kolana, oly.legs „…sztangę wybijają nogi i biodra”) tylko przy mierzonym kolanie: Barbell Snatch, Hang Snatch; olympicHipLimb (linia tułowia i łuk biodra, oly.legs) przy mierzonym biodrze: Clean, Power Clean, Power Snatch, Snatch Pull; olympicBackRef (linia miednica → bark przedłużona, oly.back „Na starcie plecy proste”) — Block Power Snatch. Etykieta VoiceOver „Na rysunku” wymienia tylko zdania elementów widocznych (Block Power Snatch: oly.back, oly.close — bez oly.legs, bo biodro mierzone, a element biodra wyłączony przez nakładanie na linię pleców). Rysunek zgadza się ze zdaniami: przy starcie gryf przed piszczelą tuż przy linii piszczeli, łuk kolana/biodra prostuje się w drugim ciągu. Nic nie przeczy karcie. Bez błędów pozy w rodzinie (errorsOf puste) — kolor błędu nieużyty. NISKIE (backlog 1.1.x): N1 — przy Barbell Snatch i Hang Snatch linia piszczeli (oly.close) i linia uda (oly.legs) krzyżują się w kolanie w kadrach wyprostu (u 0,40–0,80) w wąskie „X”; N2 — linia piszczeli rysowana też w odbiorze i nad głową, gdzie zdanie „przez cały ciąg” już nie dotyczy (element statyczny, nie przeczy). Wpisy kart (21) i zestawu Muscle Snatch: skróty bez zmian, przeniesione; zestawy Clean Shrug i Snatch Shrug — patrz ich wpisy. | 09.11.2026 (programista, zmiana RDL na gałęzi figury/rdl-glebokosc): skrót dfabbebac8da → c01783db33ed wyłącznie przez wspólny plik lib/figures/v2/variants.ts (zmienione tylko 2 wpisy hinge: RDL (sztanga), RDL (hantle/linki)); md5 klatek rysunku tej rodziny równe bazie integracja-1-1 @ 9dc2b0a9 (183 z 185 ćwiczeń z rysunkiem v2 bez zmian). To NIE jest nowa recenzja — recenzent niezależny potwierdza równość md5 przy recenzji hinge. 09.11.2026: równość md5 klatek 185/185 poza 2 RDL potwierdzona niezależnie przez audytora (recenzja hinge 09.11.2026, figury/rdl-glebokosc @ f546a93b) — skrót zmieniony tylko przez variants.ts (V2_WSPOLNE). 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem.",
+      "slad": "Arkusze z nakładką i śladem toru: scripts/figures/arkusz-nakladka.mjs, widok side, 21 kadrów co 0,05 (sylwetka + trailFor + linie odniesienia + elementy nakładki), 24 ćwiczenia; arkusze autora /home/user/stan-b0/arkusze/olympic odtworzone przez audytora z czystej kopii 4f61b9cd (/home/user/stan-b0/audytor/arkusze) — HTML bajtowo równe (53/53 razem z triceps); motyw ciemny Power Clean (/home/user/stan-b0/audytor/arkusze-dark). Obejrzane w pełnej rozdzielczości (wycinki /home/user/stan-b0/audytor/kadry): Clean, Barbell Snatch (u 0 i 0,60 w 3:1), Block Power Snatch, Split Snatch, Power Clean (jasny i ciemny). Ślad toru: start nad środkiem stopy przy piszczeli, pionowy ciąg blisko ciała, odbiór na barkach / nad głową — jak w r4–r7. md5 ruchu i śladu (shapesAt z mięśniami, contactShapes, badgesFor, trailFor; u co 1/8) równy 24/24 z c1d32a3a — zmieniła się tylko nakładka (24 → 9 ćwiczeń równych: 13 dostaje elementy, Clean Shrug i Snatch Shrug wstrzymane).",
+      "sha": "5af5c052392f",
+      "liczba": 25,
+      "cwiczenia": [
+        "Barbell Snatch",
+        "Block Clean",
+        "Block Power Clean",
+        "Block Power Snatch",
+        "Block Snatch",
+        "Clean",
+        "Clean Pull",
+        "Clean Shrug",
+        "Clean and Jerk",
+        "Hang Clean",
+        "Hang Snatch",
+        "Jerk Balance",
+        "Jerk Dip Squat",
+        "Muscle Snatch",
+        "Power Clean",
+        "Power Jerk",
+        "Power Snatch",
+        "Rack Delivery",
+        "Snatch Balance",
+        "Snatch Pull",
+        "Snatch Shrug",
+        "Split Clean",
+        "Split Jerk",
+        "Split Snatch",
+        "Squat Jerk"
+      ],
+      "bez_rysunku": [
+        "Rack Delivery"
+      ],
+      "skrot_migracja": {
+        "data": "2026-11-09",
+        "stary": "3ca4763958cc",
+        "nowy": "5af5c052392f",
+        "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
+      }
+    },
+    "triceps": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-08",
+      "kto": "audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja nakładki techniki triceps (figury/nakladka-b0 @ d5a56f5f), 08.11.2026; 0 KRYTYCZNE/WYSOKIE; ruch i ślad bez zmian względem recenzji r2; wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja ruchu r2 04.11.2026 przeniesiona po FW3 i K1, po scaleniu T1b z integracją 9ff9a3fe (05.11.2026) oraz po scaleniu figury/triceps do figury/olympic @ bf0aa85e (recenzja różnicy skrótu 06.11.2026)",
+      "autor": "programista B0 (figury/nakladka-b0 @ d5a56f5f)",
+      "recenzent": "audytor",
+      "uwagi": "Nakładka: tricepsElbowLimb (linia bark–łokieć przedłużona za łokieć i łuk zgięcia łokcia; mierzony staw = łokieć we wszystkich 29) przy 26 ćwiczeniach ze zdaniem ruchu „Zginaj/Prostuj łokcie…” (reguła lokiec_prostuje_sie; 16 przypisań zatwierdził badacz — tu sprawdzone tylko, że rysunek pokazuje to, co mówi zdanie: łuk zmniejsza się do wyprostu w każdym arkuszu, np. Triceps Pushdown 99° → 24°, Tate Press 145° → 0°, Overhead (hantel) 120° → 17°); tricepsElbowPlumb (pion od barku do miednicy, tpd.elbows „Łokcie przy bokach”) przy Triceps Pushdown i Reverse Grip Triceps Pushdown — łokieć przez cały ruch tuż przy pionie. Bez elementu: Cable Incline, Kneeling Cable, Machine Triceps Extension (zestaw ogólny bez zdania ruchu). Etykieta VoiceOver „Na rysunku” = zdania elementów widocznych. Tate Press: łuk w rzucie z boku pokazuje rzut zgięcia przy łokciach skierowanych na boki — zgodny kierunkowo ze zdaniem tate.move („opuszczając hantle do klatki; wyprostuj ręce”). Nic nie przeczy karcie. Uwaga bez progu: przy ściąganiu linia ramienia i pion barku biegną blisko siebie (jak curlElbowLimb + curlElbowPlumb w curl, przyjęte wcześniej). Wpisy v1 (4), kart (26) i zestawów (3): skróty bez zmian, przeniesione. | 09.11.2026 (programista, zmiana RDL na gałęzi figury/rdl-glebokosc): skrót a4b978a832e0 → 4b0065e80b0e wyłącznie przez wspólny plik lib/figures/v2/variants.ts (zmienione tylko 2 wpisy hinge: RDL (sztanga), RDL (hantle/linki)); md5 klatek rysunku tej rodziny równe bazie integracja-1-1 @ 9dc2b0a9 (183 z 185 ćwiczeń z rysunkiem v2 bez zmian). To NIE jest nowa recenzja — recenzent niezależny potwierdza równość md5 przy recenzji hinge. 09.11.2026: równość md5 klatek 185/185 poza 2 RDL potwierdzona niezależnie przez audytora (recenzja hinge 09.11.2026, figury/rdl-glebokosc @ f546a93b) — skrót zmieniony tylko przez variants.ts (V2_WSPOLNE). 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem.",
+      "slad": "Arkusze z nakładką i śladem toru: scripts/figures/arkusz-nakladka.mjs, widok side, 21 kadrów co 0,05, 29 ćwiczeń; arkusze autora /home/user/stan-b0/arkusze/triceps odtworzone przez audytora z czystej kopii 4f61b9cd (/home/user/stan-b0/audytor/arkusze) — HTML bajtowo równe; motyw ciemny Triceps Pushdown (/home/user/stan-b0/audytor/arkusze-dark). Obejrzane w pełnej rozdzielczości: Triceps Pushdown (u 0; 0,5; 1 w 2:1), Tate Press, Overhead Triceps Extension (hantel), Lying Close-Grip Barbell Triceps Extension Behind The Head, Triceps Kickback. Ślad toru: łuk dłoni wokół łokcia przy nieruchomym ramieniu (ściąganie w dół, wyprost nad głową, leżąc do czoła / za głowę, kickback do tyłu). md5 ruchu i śladu równy 29/29 z c1d32a3a — zmieniła się tylko nakładka (26 ćwiczeń z elementem).",
+      "sha": "083478892a51",
+      "liczba": 32,
+      "cwiczenia": [
+        "Band Overhead Triceps Extension",
+        "Band Skull Crusher",
+        "Body-Up",
+        "Bodyweight Triceps Extension",
+        "Cable Incline Triceps Extension",
+        "Cable Lying Triceps Extension",
+        "Cable Overhead Extension",
+        "Chain Handle Extension",
+        "Decline Dumbbell Triceps Extension",
+        "Decline EZ Bar Triceps Extension",
+        "Dumbbell One-Arm Triceps Extension",
+        "Incline Barbell Triceps Extension",
+        "Kettlebell Overhead Triceps Extension",
+        "Kneeling Cable Triceps Extension",
+        "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+        "Machine Triceps Extension",
+        "One-Arm Lying Dumbbell Triceps Extension",
+        "Overhead Triceps Extension (EZ)",
+        "Overhead Triceps Extension (hantel)",
+        "Reverse Grip Triceps Pushdown",
+        "Single Arm Triceps Pushdown",
+        "Skullcrusher (EZ)",
+        "Skullcrusher (hantle)",
+        "Skullcrusher (sztanga)",
+        "Sled Overhead Triceps Extension",
+        "Standing Low-Pulley One-Arm Triceps Extension",
+        "Standing Overhead Barbell Triceps Extension",
+        "Tate Press",
+        "Triceps Kickback",
+        "Triceps Kickback (linki)",
+        "Triceps Pushdown",
+        "Two-Arm Dumbbell Kickback"
+      ],
+      "bez_rysunku": [
+        "Body-Up",
+        "Bodyweight Triceps Extension",
+        "Sled Overhead Triceps Extension"
+      ],
+      "skrot_migracja": {
+        "data": "2026-11-09",
+        "stary": "a104236b39d1",
+        "nowy": "083478892a51",
+        "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
+        "potwierdzenie_recenzenta": {
+          "recenzent": "audytor",
+          "data": "2026-11-09",
+          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
+          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
+        }
+      }
+    },
+    "hip_bridge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie r3 — recenzja różnicy po scaleniu figury/slad-dzwignia (bramka 4, L-047, L-050), linia 1.1 partia 2; 0 KRYTYCZNE/WYSOKIE w 9 wyświetlanych ćwiczeniach (rysunek bajtowo bez zmian); Machine Hip Thrust nadal wstrzymany (V2_WSTRZYMANE): ślad dźwigni poprawny, WYSOKIE z r1 (prowadnica w płaszczyźnie środkowej przez ciało) nierozwiązane",
+      "autor": "programista partii 2 (figury/partia-2 @ ddb6cbae), programista poprawek r1 (8b4f6cab) i programista figury/slad-dzwignia (integracja 55c9f206, scalenie 3a80c913)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna różnicy r3 rodziny hip_bridge, worktree odłączone 1be8ce3a (rodzic pierwszy) i 3a80c913, 09.11.2026; raport docs/research/recenzje/partia2-hip_bridge-r3-audytor-2026-11-09.md",
+      "sha": "8c56e365b9d3",
+      "liczba": 11,
+      "cwiczenia": [
+        "Glute Bridge",
+        "Glute Bridge (sztanga)",
+        "Frog Pump",
+        "Single Leg Glute Bridge",
+        "Hip Thrust (sztanga)",
+        "Hip Thrust (hantel)",
+        "Single Leg Hip Thrust",
+        "Smith Machine Hip Thrust",
+        "Machine Hip Thrust",
+        "Stability Ball Hip Bridge",
+        "London Bridges"
+      ],
+      "bez_rysunku": [
+        "London Bridges"
+      ],
+      "slad": "Arkusze r3: scripts/figures/arkusz-slad.mjs, widok side, 21 kadrów co 0,05, 10 ćwiczeń z danymi (z wstrzymanym Machine Hip Thrust) na 1be8ce3a i 3a80c913. Przez cmp HTML i PNG 9/10 bajtowo równe (opis śladu i styków jak w r1: gryf ≤ 0 cm od chwytu, hantel — chwyt R, bez ciężaru — miednica; ławka ≥ 0,9 cm, piłka −0,1 cm, podłoga ≥ −0,5 cm). Różni się tylko Machine Hip Thrust: elementy postaci i sprzętu identyczne (1079/1079), ślad = środek miednicy = punkt mocowania prowadnicy (0 cm, tests/figures-v2-slad-dzwignia.test.ts zielony), biegnie wzdłuż prowadnicy; wcześniej chwyt dłoni R.",
+      "uwagi": "Skrót v2 zmienił się 0d9b2af823b2 → 8c56e365b9d3 tylko przez nowy ślad dźwigni w wstrzymanym Machine Hip Thrust (contract.ts:330-334); 9 wyświetlanych ćwiczeń bajtowo bez zmian. Machine Hip Thrust: ślad poprawnie w punkcie styku dźwigni, ale WYSOKIE z r1 bez zmian (prowadnica z = 0 w płaszczyźnie środkowej, od u ≈ 0,45 wystaje spod tułowia; punkt styku w środku miednicy, 11,9 cm w głąb ciała zamiast na powierzchni bioder) — wstrzymanie zostaje do poprawki danych. Otwarte z r1 i r2 (nie blokują): ŚREDNIE Frog Pump, NISKIE Single Leg Glute Bridge (wolna noga 30,8°), NISKIE gryf −1,6 cm w u = 0.",
+      "wstrzymane": [
+        "Machine Hip Thrust"
+      ]
+    },
+    "cable_row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — linia 1.1, partia 2, r2: W1 i W2 z r1 zamknięte, 0 KRYTYCZNE/WYSOKIE; ŚREDNIE w backlogu 1.1.x (docs/21)",
+      "autor": "programista partii 2 (rodzina, 10fc587d) i programista poprawek r1 (4fbf144e)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
+      "sha": "4376c0e6b911",
+      "liczba": 10,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs na 4fbf144e, 9 ćwiczeń × widoki side i front = 18 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora; 5 niezmienionych ćwiczeń (Face Pull, Cable Rope Rear-Delt Rows, Machine Row, Leverage High Row, Kneeling High Pulley Row) bajtowo równe arkuszom r1 (cmp HTML); 4 zmienione (Seated Cable Row, Wiosłowanie na linkach (siedząc), Standing Cable Row, Single Arm Cable Row) obejrzane w pełnej rozdzielczości. Ślad = środek chwytów, odległość od chwytu 0,0 cm w 41 kadrach.",
+      "uwagi": "W1 zamknięte: Seated/Wiosłowanie bloczek 60 cm, linka 2,2°→1,0°, tor uchwytu poziomy. W2 zamknięte: Standing/Single Arm bloczek 122 cm (klatka ≈ 127), linka ≤ 0,5°. R2-1 ŚREDNIE: Seated/Wiosłowanie kończą na wysokości podbrzusza, uchwyt 0,2/0,4 cm nad udami (z przodu drążek na udach) — backlog. R2-2 NISKIE: test „nie wchodzą w nogi” mierzy odległość od stawu kolanowego, nie od uda. S2 (oś Leverage High Row), S1, S3, N1, N2 i linka Rear-Delt (wynik sprzętu z katalogu: cable.row_seat + cable.low) — ŚREDNIE/NISKIE w backlogu 1.1.x (docs/21).",
+      "cwiczenia": [
+        "Seated Cable Row",
+        "Wiosłowanie na linkach (siedząc)",
+        "Face Pull",
+        "Cable Rope Rear-Delt Rows",
+        "Standing Cable Row",
+        "Single Arm Cable Row",
+        "Machine Row",
+        "Leverage High Row",
+        "Kneeling High Pulley Row"
+      ],
+      "bez_rysunku": [
+        "Sled Row"
+      ]
+    },
     "delt_raise": {
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
@@ -1053,123 +1221,6 @@
         "Y Raise (hantle)": {
           "werdykt": "wyswietlana",
           "uwagi": "Leżenie przodem na ławce skośnej 45° (przybliżenie nazwane), ramiona od zwisu do linii tułowia w „Y”, łokieć 14–18° stały."
-        }
-      }
-    },
-    "olympic": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "kto": "audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja nakładki techniki olympic (figury/nakladka-b0 @ d5a56f5f), 08.11.2026; 0 KRYTYCZNE/WYSOKIE, NISKIE N1, N2 (raport); ruch i ślad bez zmian względem recenzji r4–r7; wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050, spójność karta–rysunek) — linia 1.1, recenzja ruchu r4 04.11.2026, potwierdzenie r5 05.11.2026, recenzja trybu pętli r6 05.11.2026 i potwierdzenie poprawek r7 05.11.2026; 0 KRYTYCZNE/WYSOKIE; r6-W1 (Snatch Balance: Opuszczanie 2 s vs błąd karty slowDrop) zamknięte — Snatch Balance jednokierunkowy (19 jednokierunkowych, 5 wahadeł); r6-W2 (eksport strony bez trybu pętli) zamknięte wariantem B — eksport pomija figury jednokierunkowe (strona: 135 figur, 19 ćwiczeń olympic bez rysunku); r6-W2 A (eksport i odtwarzacz strony z trybem pętli) odłożone → 1.1.x (docs/18, docs/21:163); r7-N1 NISKIE (Block Power Snatch na stronie także bez zestawu ogólnego wskazówek — warunek figureShown, eksport.mjs:149) → backlog razem z r6-W2 A; NISKIE z r4 (r4-N1 łokieć C&J 150,7° w przejściu, r4-N2 rack Jerk Balance) nadal w backlogu 1.1.x (docs/21:160–161), r4-N3 i r4-N4 zamknięte wcześniej; Clean Shrug i Snatch Shrug — pokazanie dopiero z kartami T2 (V2_WSTRZYMANE); Rack Delivery bez rysunku",
-      "autor": "programista B0 (figury/nakladka-b0 @ d5a56f5f)",
-      "recenzent": "audytor",
-      "uwagi": "Nakładka (13 ćwiczeń wyświetlanych z elementem): olympicBarCloseRef (linia piszczeli przedłużona za kolano, zdanie oly.close „Sztanga blisko ciała przez cały ciąg”) — 13 ćw.; olympicKneeLimb (linia uda i łuk kolana, oly.legs „…sztangę wybijają nogi i biodra”) tylko przy mierzonym kolanie: Barbell Snatch, Hang Snatch; olympicHipLimb (linia tułowia i łuk biodra, oly.legs) przy mierzonym biodrze: Clean, Power Clean, Power Snatch, Snatch Pull; olympicBackRef (linia miednica → bark przedłużona, oly.back „Na starcie plecy proste”) — Block Power Snatch. Etykieta VoiceOver „Na rysunku” wymienia tylko zdania elementów widocznych (Block Power Snatch: oly.back, oly.close — bez oly.legs, bo biodro mierzone, a element biodra wyłączony przez nakładanie na linię pleców). Rysunek zgadza się ze zdaniami: przy starcie gryf przed piszczelą tuż przy linii piszczeli, łuk kolana/biodra prostuje się w drugim ciągu. Nic nie przeczy karcie. Bez błędów pozy w rodzinie (errorsOf puste) — kolor błędu nieużyty. NISKIE (backlog 1.1.x): N1 — przy Barbell Snatch i Hang Snatch linia piszczeli (oly.close) i linia uda (oly.legs) krzyżują się w kolanie w kadrach wyprostu (u 0,40–0,80) w wąskie „X”; N2 — linia piszczeli rysowana też w odbiorze i nad głową, gdzie zdanie „przez cały ciąg” już nie dotyczy (element statyczny, nie przeczy). Wpisy kart (21) i zestawu Muscle Snatch: skróty bez zmian, przeniesione; zestawy Clean Shrug i Snatch Shrug — patrz ich wpisy. | 09.11.2026 (programista, zmiana RDL na gałęzi figury/rdl-glebokosc): skrót dfabbebac8da → c01783db33ed wyłącznie przez wspólny plik lib/figures/v2/variants.ts (zmienione tylko 2 wpisy hinge: RDL (sztanga), RDL (hantle/linki)); md5 klatek rysunku tej rodziny równe bazie integracja-1-1 @ 9dc2b0a9 (183 z 185 ćwiczeń z rysunkiem v2 bez zmian). To NIE jest nowa recenzja — recenzent niezależny potwierdza równość md5 przy recenzji hinge. 09.11.2026: równość md5 klatek 185/185 poza 2 RDL potwierdzona niezależnie przez audytora (recenzja hinge 09.11.2026, figury/rdl-glebokosc @ f546a93b) — skrót zmieniony tylko przez variants.ts (V2_WSPOLNE). 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem.",
-      "slad": "Arkusze z nakładką i śladem toru: scripts/figures/arkusz-nakladka.mjs, widok side, 21 kadrów co 0,05 (sylwetka + trailFor + linie odniesienia + elementy nakładki), 24 ćwiczenia; arkusze autora /home/user/stan-b0/arkusze/olympic odtworzone przez audytora z czystej kopii 4f61b9cd (/home/user/stan-b0/audytor/arkusze) — HTML bajtowo równe (53/53 razem z triceps); motyw ciemny Power Clean (/home/user/stan-b0/audytor/arkusze-dark). Obejrzane w pełnej rozdzielczości (wycinki /home/user/stan-b0/audytor/kadry): Clean, Barbell Snatch (u 0 i 0,60 w 3:1), Block Power Snatch, Split Snatch, Power Clean (jasny i ciemny). Ślad toru: start nad środkiem stopy przy piszczeli, pionowy ciąg blisko ciała, odbiór na barkach / nad głową — jak w r4–r7. md5 ruchu i śladu (shapesAt z mięśniami, contactShapes, badgesFor, trailFor; u co 1/8) równy 24/24 z c1d32a3a — zmieniła się tylko nakładka (24 → 9 ćwiczeń równych: 13 dostaje elementy, Clean Shrug i Snatch Shrug wstrzymane).",
-      "sha": "5af5c052392f",
-      "liczba": 25,
-      "cwiczenia": [
-        "Barbell Snatch",
-        "Block Clean",
-        "Block Power Clean",
-        "Block Power Snatch",
-        "Block Snatch",
-        "Clean",
-        "Clean Pull",
-        "Clean Shrug",
-        "Clean and Jerk",
-        "Hang Clean",
-        "Hang Snatch",
-        "Jerk Balance",
-        "Jerk Dip Squat",
-        "Muscle Snatch",
-        "Power Clean",
-        "Power Jerk",
-        "Power Snatch",
-        "Rack Delivery",
-        "Snatch Balance",
-        "Snatch Pull",
-        "Snatch Shrug",
-        "Split Clean",
-        "Split Jerk",
-        "Split Snatch",
-        "Squat Jerk"
-      ],
-      "bez_rysunku": [
-        "Rack Delivery"
-      ],
-      "skrot_migracja": {
-        "data": "2026-11-09",
-        "stary": "3ca4763958cc",
-        "nowy": "5af5c052392f",
-        "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": {
-          "recenzent": "audytor",
-          "data": "2026-11-09",
-          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
-          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
-        }
-      }
-    },
-    "triceps": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "kto": "audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja nakładki techniki triceps (figury/nakladka-b0 @ d5a56f5f), 08.11.2026; 0 KRYTYCZNE/WYSOKIE; ruch i ślad bez zmian względem recenzji r2; wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja ruchu r2 04.11.2026 przeniesiona po FW3 i K1, po scaleniu T1b z integracją 9ff9a3fe (05.11.2026) oraz po scaleniu figury/triceps do figury/olympic @ bf0aa85e (recenzja różnicy skrótu 06.11.2026)",
-      "autor": "programista B0 (figury/nakladka-b0 @ d5a56f5f)",
-      "recenzent": "audytor",
-      "uwagi": "Nakładka: tricepsElbowLimb (linia bark–łokieć przedłużona za łokieć i łuk zgięcia łokcia; mierzony staw = łokieć we wszystkich 29) przy 26 ćwiczeniach ze zdaniem ruchu „Zginaj/Prostuj łokcie…” (reguła lokiec_prostuje_sie; 16 przypisań zatwierdził badacz — tu sprawdzone tylko, że rysunek pokazuje to, co mówi zdanie: łuk zmniejsza się do wyprostu w każdym arkuszu, np. Triceps Pushdown 99° → 24°, Tate Press 145° → 0°, Overhead (hantel) 120° → 17°); tricepsElbowPlumb (pion od barku do miednicy, tpd.elbows „Łokcie przy bokach”) przy Triceps Pushdown i Reverse Grip Triceps Pushdown — łokieć przez cały ruch tuż przy pionie. Bez elementu: Cable Incline, Kneeling Cable, Machine Triceps Extension (zestaw ogólny bez zdania ruchu). Etykieta VoiceOver „Na rysunku” = zdania elementów widocznych. Tate Press: łuk w rzucie z boku pokazuje rzut zgięcia przy łokciach skierowanych na boki — zgodny kierunkowo ze zdaniem tate.move („opuszczając hantle do klatki; wyprostuj ręce”). Nic nie przeczy karcie. Uwaga bez progu: przy ściąganiu linia ramienia i pion barku biegną blisko siebie (jak curlElbowLimb + curlElbowPlumb w curl, przyjęte wcześniej). Wpisy v1 (4), kart (26) i zestawów (3): skróty bez zmian, przeniesione. | 09.11.2026 (programista, zmiana RDL na gałęzi figury/rdl-glebokosc): skrót a4b978a832e0 → 4b0065e80b0e wyłącznie przez wspólny plik lib/figures/v2/variants.ts (zmienione tylko 2 wpisy hinge: RDL (sztanga), RDL (hantle/linki)); md5 klatek rysunku tej rodziny równe bazie integracja-1-1 @ 9dc2b0a9 (183 z 185 ćwiczeń z rysunkiem v2 bez zmian). To NIE jest nowa recenzja — recenzent niezależny potwierdza równość md5 przy recenzji hinge. 09.11.2026: równość md5 klatek 185/185 poza 2 RDL potwierdzona niezależnie przez audytora (recenzja hinge 09.11.2026, figury/rdl-glebokosc @ f546a93b) — skrót zmieniony tylko przez variants.ts (V2_WSPOLNE). 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem.",
-      "slad": "Arkusze z nakładką i śladem toru: scripts/figures/arkusz-nakladka.mjs, widok side, 21 kadrów co 0,05, 29 ćwiczeń; arkusze autora /home/user/stan-b0/arkusze/triceps odtworzone przez audytora z czystej kopii 4f61b9cd (/home/user/stan-b0/audytor/arkusze) — HTML bajtowo równe; motyw ciemny Triceps Pushdown (/home/user/stan-b0/audytor/arkusze-dark). Obejrzane w pełnej rozdzielczości: Triceps Pushdown (u 0; 0,5; 1 w 2:1), Tate Press, Overhead Triceps Extension (hantel), Lying Close-Grip Barbell Triceps Extension Behind The Head, Triceps Kickback. Ślad toru: łuk dłoni wokół łokcia przy nieruchomym ramieniu (ściąganie w dół, wyprost nad głową, leżąc do czoła / za głowę, kickback do tyłu). md5 ruchu i śladu równy 29/29 z c1d32a3a — zmieniła się tylko nakładka (26 ćwiczeń z elementem).",
-      "sha": "083478892a51",
-      "liczba": 32,
-      "cwiczenia": [
-        "Band Overhead Triceps Extension",
-        "Band Skull Crusher",
-        "Body-Up",
-        "Bodyweight Triceps Extension",
-        "Cable Incline Triceps Extension",
-        "Cable Lying Triceps Extension",
-        "Cable Overhead Extension",
-        "Chain Handle Extension",
-        "Decline Dumbbell Triceps Extension",
-        "Decline EZ Bar Triceps Extension",
-        "Dumbbell One-Arm Triceps Extension",
-        "Incline Barbell Triceps Extension",
-        "Kettlebell Overhead Triceps Extension",
-        "Kneeling Cable Triceps Extension",
-        "Lying Close-Grip Barbell Triceps Extension Behind The Head",
-        "Machine Triceps Extension",
-        "One-Arm Lying Dumbbell Triceps Extension",
-        "Overhead Triceps Extension (EZ)",
-        "Overhead Triceps Extension (hantel)",
-        "Reverse Grip Triceps Pushdown",
-        "Single Arm Triceps Pushdown",
-        "Skullcrusher (EZ)",
-        "Skullcrusher (hantle)",
-        "Skullcrusher (sztanga)",
-        "Sled Overhead Triceps Extension",
-        "Standing Low-Pulley One-Arm Triceps Extension",
-        "Standing Overhead Barbell Triceps Extension",
-        "Tate Press",
-        "Triceps Kickback",
-        "Triceps Kickback (linki)",
-        "Triceps Pushdown",
-        "Two-Arm Dumbbell Kickback"
-      ],
-      "bez_rysunku": [
-        "Body-Up",
-        "Bodyweight Triceps Extension",
-        "Sled Overhead Triceps Extension"
-      ],
-      "skrot_migracja": {
-        "data": "2026-11-09",
-        "stary": "a104236b39d1",
-        "nowy": "083478892a51",
-        "powod": "zmiana TYLKO sposobu liczenia skrótu (z tekstu plików wspólnych na wynik rysunku rodziny, decyzja właściciela 09.11.2026 A); rysunek rodziny bez zmian — dowód: docs/research/figury-skrot-migracja-2026-11-09.md",
-        "potwierdzenie_recenzenta": {
-          "recenzent": "audytor",
-          "data": "2026-11-09",
-          "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
-          "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
         }
       }
     },
@@ -3167,200 +3218,6 @@
       "sha": "53e2f75bfad4",
       "uwagi": "ExRx CBTriExt i CBStandingTricepsExtensionRope: treść potwierdzona odczytem 02.11.2026 (kopia właściciela; exrx-otwarte.md sekcja 6: „łokcie nad głową, drążek za szyją, prostowanie do pionu i opuszczanie za szyję”, lina: „plecami do wyciągu… łokcie w górę nad głową”). ACE #74 (wersja z hantlem) przeczytane 04.11.2026 — Step 2 „elbows pointing forward, but not completely locked”. Wariant sprzętu (L-047): potwierdzam, że ruch nie różni się od wersji z hantlem — rysunek v2 obu ćwiczeń: ramię nieruchome nad głową (kąt ramię–tułów 156° wobec 151°), łokieć 57→159° wobec 60→163°; zdania z ACE #74 (cote.setup, cote.move, ote.upperArm, press.noLock) to nazwane uproszczenie (wariant sprzętu). Rysunek: wyciąg z tyłu, uchwyt za głową, łokcie w górę — cote.setup spełnione; wysokości bloczka karta nie podaje, więc bloczek na wysokości głowy jej nie przeczy. Końcowe zgięcie ok. 21° — R1 N-2 (backlog)."
     },
-    "Cable Crunch": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie wariantu pozycji (stojąc → klęcząc) przy ace-331 potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "8ae63d842ae3"
-    },
-    "Hollow Hold": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; zmiany lokalizacji bez zmiany treści; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "d583a06f36dc"
-    },
-    "Superman": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Cleveland Clinic (szpital) szczebel 4; role nieoceniane; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "0319cb1f4745"
-    },
-    "Sit Up": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; situpMove — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "5cbf9d0064b9"
-    },
-    "V-Up": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; plank.brace usunięte z karty (runda 1, opcja A); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "456583d8ab6a"
-    },
-    "Machine Crunch": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie instrukcji maszyny producenta przy maszynie ogólnej potwierdzone (ruch się nie różni); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "3a5f4deee0fa"
-    },
-    "Suspended Reverse Crunch": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; TRX (instrukcja na własnych taśmach) szczebel 4, liczony raz; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "7885e585ef30"
-    },
-    "Stomach Vacuum": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; pozycja leżąca potwierdzona; vacuum.move bez „pępka” (jedno źródło); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "ceccfb10aed0"
-    },
-    "Scissor Kick": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (P. Dale, PT, data) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "11123e836801"
-    },
-    "Kettlebell Windmill": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Experience Life szczebel 4 (kwalifikacje autorki na stronie tej samej organizacji); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "a318476c5b31"
-    },
-    "Cable Russian Twists": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (M. Magnante, ACE, JSON-LD) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "8b67938595ee"
-    },
-    "Double Kettlebell Windmill": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie jeden → dwa kettlebelle (tor ten sam) potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "a5abca82301a"
-    },
-    "Kettlebell Figure 8": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; figure8.setup — część wspólna ACE/FV; „między nogami” potwierdzone; karta bez błędu (minimum: ustawienie + ruch); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "05e5341dd018"
-    },
-    "Hanging Leg Raise": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "063d8f4c9283"
-    },
-    "Hanging Knee Raise": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "ac21253c514f"
-    },
-    "Toes to Bar": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "369a88554933"
-    },
-    "Stability Ball Crunch": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; ACE 68 + NFPT (E. Nitschke, kwalifikacje na stronie tej samej organizacji) szczebel 4; 5 nowych zdań potwierdzonych; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "uwagi": "Niska, lokalizacja: PL mis.ballPos „za daleko” gubi „back” z EN.",
-      "sha": "d06094bd7bd6"
-    },
-    "Tuck Crunch": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — runda 3: zmiana brzmienia core_floor.mis.neckPull (wariant B badacza), partia A4a core; pozostałe zdania bez zmian względem rundy 2 (a4-core-karty-badacz-r2-2026-11-09.md); karta bez rysunku (rodzina core_floor planned)",
-      "autor": "badacz-merytoryczny (brzmienie) + tlumacz (naniesienie, 34 języki)",
-      "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna L-047, 09.11.2026, gałąź lok/przeklad-a4a @ f0dfbeac",
-      "sha": "8e96dc52326f",
-      "uwagi": "Źródła przeczytane 09.11.2026: FV Tuck Crunch, wskazówka po krokach: „Keep your head neutral and use your abs to control the movement.”; ACE #243 Step 2: „avoid flexing your head too far forward”. Oba popierają błąd: głowa prowadzi ruch zamiast brzucha (2 źródła szczebla 4, różne serwisy; autor FV ma certyfikat ACE, ale to osobny serwis i osobny tekst). Pole miejsce w data/zrodla/cues.json cytuje teraz właściwe zdanie FV. Niuans bez wagi blokującej: ACE mówi o zginaniu głowy „za daleko”, zdanie mówi o wysuwaniu; dla użytkownika kierunek ten sam (głowa nie wyprzedza tułowia), uproszczenie zgodne kierunkowo. Zdanie naturalne, jak u trenera; bez liczb, nazw źródeł i twierdzeń o zdrowiu. Nie przeczy setup/move/crunch.lowBack; karta nie mówi o dłoniach za głową, więc wariant B jest właściwy. Przekłady (próbka de, fr, es, ru, ja, zh-Hant oraz cs, ro, pt, pt-BR, ko, uk) znaczeniowo zgodne z PL/EN; cs i ro nie znaczą już „ciągnąć za szyję”; es-419 dziedziczy z es (lib/cues: scalenie es + es-419), brzmienie es poprawne także dla Ameryki Łacińskiej. Forma ru i zh-Hant zgodna z innymi błędami karty."
-    },
-    "Lateral Raise (hantle)": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
-      "sha": "6943efc1ce5e",
-      "uwagi": "Wskazówki lat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i twierdzeń o zdrowiu). ACE #26 przeczytane 09.11.2026: Step 1 hantle przy udach, łokcie proste lub lekko ugięte; Step 2 „Stiffen your torso…”; Step 3 „slowly raise the dumbbells up and out to your sides”, łokcie prowadzą ruch, do wysokości barków; Step 4 opuszczanie, łokcie lekko ugięte — wszystkie cztery zdania zgodne. ExRx DBLateralRaise (drugie źródło szczebla 4) — wpis z archiwum w cues.json, nieotwarte ponownie (web.archive.org i exrx.net niedostępne z sesji, 403). Rysunek v2 (arkusze Lateral-Raise-hantle-front/side ze śladem; keyframeFrame): start hantle przy udach, łokieć 174° → 167° (lekko ugięty przez cały ruch), łokieć nad dłonią w każdej klatce (u=1: 8,6 cm), u=1 łokieć 1 cm pod wysokością barku, kąt ramię–tułów 10° → 88°, tułów nieruchomy, ślad — łuk od biodra w bok do barku. Karta i rysunek zgodne."
-    },
-    "Cable Lateral Raise": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
-      "sha": "a24bccc4cf67",
-      "uwagi": "Wskazówki clat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). Źródła: ExRx CBOneArmLateralRaise/CBLateralRaise (wpis z archiwum, nieotwarte ponownie — exrx.net i web.archive.org niedostępne z sesji) i ACE #26 (przeczytane 09.11.2026; wersja z hantlami). Wariant sprzętu (L-047): potwierdzam, że ruch się nie różni — rysunek v2 ręki pracującej ma te same liczby co Lateral Raise (hantle): łokieć 174° → 167°, łokieć nad dłonią (u=1: 8,6 cm), u=1 łokieć 1 cm pod barkiem, ramię 10° → 88°; zdania z ACE #26 to nazwane uproszczenie (wariant sprzętu). Rysunek: uchwyt dolnego wyciągu (bloczek 30 cm nad podłogą), jedna ręka pracuje, druga zwisa — clat.setup spełnione; miejsca bloczka karta nie podaje, więc rysunek jej nie przeczy. N-1 (NISKIE, backlog): lat.move/lat.elbows mówią w liczbie mnogiej („Unieś ramiona”, „Łokcie”), a karta i rysunek to wersja jednorącz (clat.setup: „uchwyt”, „łokieć”) — niespójność brzmienia, nie błąd ruchu. Uwaga dla recenzji ruchu (poniżej progu pewności): bloczek na rysunku stoi 60 cm przed ćwiczącym i tylko 10 cm na stronę ręki wolnej; wpis v1 opisywał linkę „od dolnego bloczka po drugiej stronie ciała” — do sprawdzenia z odczytem ExRx CBOneArmLateralRaise (Preparation), nie dotyczy treści karty."
-    },
-    "Front Raise": {
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "audytor",
-      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
-      "sha": "51f3650d8db4",
-      "uwagi": "Wskazówki front.setup, front.move, front.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). ACE #54 przeczytane 09.11.2026: Step 1 „Position the dumbbells lightly touching the fronts of your thighs with your elbows extended or holding a slight bend”; Step 3 „raise the dumbbells up in front of your body… until your arms are level with your shoulders”; Step 4 „keeping your elbows slightly extended” — front.setup, front.move, front.elbows, lat.height zgodne. ExRx DBFrontRaise — wpis z archiwum w cues.json, nieotwarte ponownie (niedostępne z sesji). Rysunek v2 (arkusze Front-Raise-front/side ze śladem; keyframeFrame): start hantle przed udami (ramię 12°), łokieć 166° stały w każdej klatce (front.elbows „w tym samym ustawieniu” spełnione), u=1 łokieć na wysokości barku (−0,1 cm), dłonie 8 cm wyżej (ExRx: nieco powyżej poziomu), ramię 12° → 90°, tułów nieruchomy, ślad — łuk w przód do barku. Chwyt na rysunku (oś hantla w płaszczyźnie strzałkowej) — karta chwytu nie podaje, więc mu nie przeczy. Karta i rysunek zgodne."
-    },
     "Arnold Press": {
       "werdykt": "wyswietlana",
       "data": "2026-11-08",
@@ -3808,6 +3665,260 @@
       "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 2 (origin/integracja-1-1), 09.11.2026; ace-49 przy gb.move bez twierdzenia o linii, linia przy NASM Step 3; wpis koordynatora po przekładzie A1–A3 (scalenie dc2953d5), sha z zrodla-runtime --skroty",
       "uwagi": "Niska, dane: linię w gb.move wprost niesie tylko NASM; opcjonalnie dopisać acecert-7403 (full extension) przy gb.move.",
       "sha": "67dad95fa67f"
+    },
+    "Glute Bridge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (K11, treść karty wobec rysunku v2)",
+      "autor": "badacz merytoryczny (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "f32edd829b53",
+      "uwagi": "gb.setup: stopy 20 cm (biodra 17 cm), kolana 101°; gb.move: miednica 9,5 → 31,4 cm, linia −3,4 cm; gb.noArch: kręgosłup 0°; gb.heels: pięty 0 cm; ht.mis.arch: łuk −35°."
+    },
+    "Hip Thrust (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (K11)",
+      "autor": "badacz merytoryczny (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "bf169c7b0d2c",
+      "uwagi": "ht.setup: plecy na krawędzi ławki (tułów×ławka ≥ 0,9 cm), gryf na biodrach, stopy płasko; ht.move: biodro 61° → −7,4° (pełny wyprost), goleń pionowa na górze (kolano 82°); ht.hold: obie dłonie na gryfie; ht.rigid: kręgosłup 0°."
+    },
+    "Hip Thrust (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (K11)",
+      "autor": "badacz merytoryczny (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "6326ebc613fc",
+      "uwagi": "ht.dbSetup: jeden hantel pionowo na biodrach, obie dłonie na rączce (karta nie określa ułożenia hantla — zgodne); ruch jak wersja ze sztangą."
+    },
+    "Seated Cable Row": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 cable_row, L-047)",
+      "autor": "badacz merytoryczny i programista (wskazówki etapu 1; lib/cues/data.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
+      "sha": "b145fef11405",
+      "uwagi": "Treść (scr.sit, scr.pull, scr.chest, scr.control, mis.jerk) poprawna i zgodna z kierunkiem ruchu (uchwyt do brzucha, łokieć 14,8 cm za barkiem, tułów pionowo). Rysunek v2 r2: W1 zamknięte (linka ≤ 2,2°); koniec na wysokości podbrzusza — R2-1 ŚREDNIE w backlogu."
+    },
+    "Wiosłowanie na linkach (siedząc)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 cable_row, L-047)",
+      "autor": "badacz merytoryczny i programista (wskazówki etapu 1; lib/cues/data.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
+      "sha": "b145fef11405",
+      "uwagi": "Jak Seated Cable Row (ta sama karta). Rysunek v2 r2: W1 zamknięte (linka ≤ 2,2°); koniec na wysokości podbrzusza — R2-1 ŚREDNIE w backlogu."
+    },
+    "Face Pull": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 cable_row, L-047)",
+      "autor": "badacz merytoryczny i programista (wskazówki etapu 1; lib/cues/data.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
+      "sha": "bd285386594c",
+      "uwagi": "fp.setup (bloczek 150 cm ≥ bark 139,5), fp.move, fp.elbowsBack (łokieć 18,2 cm za barkiem), fp.chest — treść poprawna. Rysunek — S1 (koniec na wysokości podbródka, lina jako drążek)."
+    },
+    "Lateral Raise (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "6943efc1ce5e",
+      "uwagi": "Wskazówki lat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i twierdzeń o zdrowiu). ACE #26 przeczytane 09.11.2026: Step 1 hantle przy udach, łokcie proste lub lekko ugięte; Step 2 „Stiffen your torso…”; Step 3 „slowly raise the dumbbells up and out to your sides”, łokcie prowadzą ruch, do wysokości barków; Step 4 opuszczanie, łokcie lekko ugięte — wszystkie cztery zdania zgodne. ExRx DBLateralRaise (drugie źródło szczebla 4) — wpis z archiwum w cues.json, nieotwarte ponownie (web.archive.org i exrx.net niedostępne z sesji, 403). Rysunek v2 (arkusze Lateral-Raise-hantle-front/side ze śladem; keyframeFrame): start hantle przy udach, łokieć 174° → 167° (lekko ugięty przez cały ruch), łokieć nad dłonią w każdej klatce (u=1: 8,6 cm), u=1 łokieć 1 cm pod wysokością barku, kąt ramię–tułów 10° → 88°, tułów nieruchomy, ślad — łuk od biodra w bok do barku. Karta i rysunek zgodne."
+    },
+    "Cable Lateral Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "a24bccc4cf67",
+      "uwagi": "Wskazówki clat.setup, lat.move, lat.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). Źródła: ExRx CBOneArmLateralRaise/CBLateralRaise (wpis z archiwum, nieotwarte ponownie — exrx.net i web.archive.org niedostępne z sesji) i ACE #26 (przeczytane 09.11.2026; wersja z hantlami). Wariant sprzętu (L-047): potwierdzam, że ruch się nie różni — rysunek v2 ręki pracującej ma te same liczby co Lateral Raise (hantle): łokieć 174° → 167°, łokieć nad dłonią (u=1: 8,6 cm), u=1 łokieć 1 cm pod barkiem, ramię 10° → 88°; zdania z ACE #26 to nazwane uproszczenie (wariant sprzętu). Rysunek: uchwyt dolnego wyciągu (bloczek 30 cm nad podłogą), jedna ręka pracuje, druga zwisa — clat.setup spełnione; miejsca bloczka karta nie podaje, więc rysunek jej nie przeczy. N-1 (NISKIE, backlog): lat.move/lat.elbows mówią w liczbie mnogiej („Unieś ramiona”, „Łokcie”), a karta i rysunek to wersja jednorącz (clat.setup: „uchwyt”, „łokieć”) — niespójność brzmienia, nie błąd ruchu. Uwaga dla recenzji ruchu (poniżej progu pewności): bloczek na rysunku stoi 60 cm przed ćwiczącym i tylko 10 cm na stronę ręki wolnej; wpis v1 opisywał linkę „od dolnego bloczka po drugiej stronie ciała” — do sprawdzenia z odczytem ExRx CBOneArmLateralRaise (Preparation), nie dotyczy treści karty."
+    },
+    "Front Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny delt_raise, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047 karty własnej po przejściu wpisu v1 na „zastapiona” (rysunek v2 delt_raise, recenzja v2 sha 6a23ec681234), gałąź delt-wlaczenie-wip @ 1b50362b, 09.11.2026; nie pisał kart ani rysunku v2",
+      "sha": "51f3650d8db4",
+      "uwagi": "Wskazówki front.setup, front.move, front.elbows, lat.height (PL/EN zgodne, bez nazw źródeł, bez liczb i zdrowia). ACE #54 przeczytane 09.11.2026: Step 1 „Position the dumbbells lightly touching the fronts of your thighs with your elbows extended or holding a slight bend”; Step 3 „raise the dumbbells up in front of your body… until your arms are level with your shoulders”; Step 4 „keeping your elbows slightly extended” — front.setup, front.move, front.elbows, lat.height zgodne. ExRx DBFrontRaise — wpis z archiwum w cues.json, nieotwarte ponownie (niedostępne z sesji). Rysunek v2 (arkusze Front-Raise-front/side ze śladem; keyframeFrame): start hantle przed udami (ramię 12°), łokieć 166° stały w każdej klatce (front.elbows „w tym samym ustawieniu” spełnione), u=1 łokieć na wysokości barku (−0,1 cm), dłonie 8 cm wyżej (ExRx: nieco powyżej poziomu), ramię 12° → 90°, tułów nieruchomy, ślad — łuk w przód do barku. Chwyt na rysunku (oś hantla w płaszczyźnie strzałkowej) — karta chwytu nie podaje, więc mu nie przeczy. Karta i rysunek zgodne."
+    },
+    "Cable Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie wariantu pozycji (stojąc → klęcząc) przy ace-331 potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "8ae63d842ae3"
+    },
+    "Hollow Hold": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; zmiany lokalizacji bez zmiany treści; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "d583a06f36dc"
+    },
+    "Superman": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Cleveland Clinic (szpital) szczebel 4; role nieoceniane; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "0319cb1f4745"
+    },
+    "Sit Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; situpMove — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "5cbf9d0064b9"
+    },
+    "V-Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; plank.brace usunięte z karty (runda 1, opcja A); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "456583d8ab6a"
+    },
+    "Machine Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie instrukcji maszyny producenta przy maszynie ogólnej potwierdzone (ruch się nie różni); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "3a5f4deee0fa"
+    },
+    "Suspended Reverse Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; TRX (instrukcja na własnych taśmach) szczebel 4, liczony raz; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "7885e585ef30"
+    },
+    "Stomach Vacuum": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; pozycja leżąca potwierdzona; vacuum.move bez „pępka” (jedno źródło); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "ceccfb10aed0"
+    },
+    "Scissor Kick": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (P. Dale, PT, data) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "11123e836801"
+    },
+    "Kettlebell Windmill": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Experience Life szczebel 4 (kwalifikacje autorki na stronie tej samej organizacji); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "a318476c5b31"
+    },
+    "Cable Russian Twists": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (M. Magnante, ACE, JSON-LD) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "8b67938595ee"
+    },
+    "Double Kettlebell Windmill": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie jeden → dwa kettlebelle (tor ten sam) potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "a5abca82301a"
+    },
+    "Kettlebell Figure 8": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; figure8.setup — część wspólna ACE/FV; „między nogami” potwierdzone; karta bez błędu (minimum: ustawienie + ruch); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "05e5341dd018"
+    },
+    "Hanging Leg Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "063d8f4c9283"
+    },
+    "Hanging Knee Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "ac21253c514f"
+    },
+    "Toes to Bar": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "369a88554933"
+    },
+    "Stability Ball Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; ACE 68 + NFPT (E. Nitschke, kwalifikacje na stronie tej samej organizacji) szczebel 4; 5 nowych zdań potwierdzonych; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, lokalizacja: PL mis.ballPos „za daleko” gubi „back” z EN.",
+      "sha": "d06094bd7bd6"
+    },
+    "Tuck Crunch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — runda 3: zmiana brzmienia core_floor.mis.neckPull (wariant B badacza), partia A4a core; pozostałe zdania bez zmian względem rundy 2 (a4-core-karty-badacz-r2-2026-11-09.md); karta bez rysunku (rodzina core_floor planned)",
+      "autor": "badacz-merytoryczny (brzmienie) + tlumacz (naniesienie, 34 języki)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna L-047, 09.11.2026, gałąź lok/przeklad-a4a @ f0dfbeac",
+      "sha": "8e96dc52326f",
+      "uwagi": "Źródła przeczytane 09.11.2026: FV Tuck Crunch, wskazówka po krokach: „Keep your head neutral and use your abs to control the movement.”; ACE #243 Step 2: „avoid flexing your head too far forward”. Oba popierają błąd: głowa prowadzi ruch zamiast brzucha (2 źródła szczebla 4, różne serwisy; autor FV ma certyfikat ACE, ale to osobny serwis i osobny tekst). Pole miejsce w data/zrodla/cues.json cytuje teraz właściwe zdanie FV. Niuans bez wagi blokującej: ACE mówi o zginaniu głowy „za daleko”, zdanie mówi o wysuwaniu; dla użytkownika kierunek ten sam (głowa nie wyprzedza tułowia), uproszczenie zgodne kierunkowo. Zdanie naturalne, jak u trenera; bez liczb, nazw źródeł i twierdzeń o zdrowiu. Nie przeczy setup/move/crunch.lowBack; karta nie mówi o dłoniach za głową, więc wariant B jest właściwy. Przekłady (próbka de, fr, es, ru, ja, zh-Hant oraz cs, ro, pt, pt-BR, ko, uk) znaczeniowo zgodne z PL/EN; cs i ro nie znaczą już „ciągnąć za szyję”; es-419 dziedziczy z es (lib/cues: scalenie es + es-419), brzmienie es poprawne także dla Ameryki Łacińskiej. Forma ru i zh-Hant zgodna z innymi błędami karty."
     },
     "Shrugs (sztanga)": {
       "werdykt": "wyswietlana",
@@ -5193,6 +5304,128 @@
       "sha": "4e6e6ddf03e3",
       "uwagi": "Przypisanie triPush (prostowanie łokci przy nieruchomym ramieniu) zgodne z ruchem: rysunek v2 — ramiona leżą na podpórce, nieruchome (dryf 1,6 cm), dźwignia z osią w łokciu, łokieć 76→167°. Zestaw (press.noLock, llc.control, mis.jerk) nie mówi o ustawieniu, tylko o kontroli i wyproście — ogólne, prawdziwe dla maszyny. Teksty jak na kartach-wzorcach (wskazowki-ogolne.json: ote.upperArm, ote.elbowsIn ← Overhead Triceps Extension (hantel), ACE #74 przeczytane 04.11.2026; press.noLock ← Machine Chest Press; mis.jerk ← Seated Cable Row, NASM + ExRx; llc.control ← Lying Leg Curl, ACE #153 + NASM). Bez liczb i twierdzeń o zdrowiu. Wpis pozostaje ważny po scaleniu T1b."
     },
+    "Frog Pump": {
+      "rodzina": "bridge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (K12, zdania zestawu wobec rysunku v2)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "77bf4058d062",
+      "uwagi": "ht.rigid i gb.heels pasują (kręgosłup 0°, pięty 0 cm w całej pętli); ht.mis.arch pokazany łukiem. Rysunek nie pokazuje ustawienia „żaby” (osobne znalezisko ŚREDNIE przy rysunku), zdania zestawu tego nie twierdzą."
+    },
+    "Smith Machine Hip Thrust": {
+      "rodzina": "bridge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (K12)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "67ad773288df",
+      "uwagi": "gb.move: na górze miednica 2,5 cm nad linią barki–kolano (biodro −7,4°) — linia zachowana; ht.rigid: kręgosłup 0°; gb.heels: stopy na podłodze, pięty 0 cm."
+    },
+    "Machine Hip Thrust": {
+      "rodzina": "bridge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-09",
+      "stan": "treść zestawu zgodna z ruchem postaci, ale zestaw NIE jest wyświetlany: figura wstrzymana (V2_WSTRZYMANE), a zestaw ogólny pokazuje się tylko z rysunkiem — do ponownej recenzji razem z poprawionym rysunkiem",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "67ad773288df",
+      "uwagi": "Zdania gb.move, ht.rigid, gb.heels pasują do ruchu postaci (linia −2,5 cm, kręgosłup 0°, pięty 0 cm); werdykt wróci do „wyswietlana” po zdjęciu wstrzymania i recenzji rysunku.",
+      "poprawka": "ponowna recenzja zestawu razem z poprawionym rysunkiem Machine Hip Thrust (prowadnica dźwigni poza miednicą, ślad dźwigni po figury/slad-dzwignia) i zdjęciem wstrzymania V2_WSTRZYMANE — uzupełnienie pola przez leada partii ze słów recenzenta (stan, uwagi), 09.11.2026"
+    },
+    "Stability Ball Hip Bridge": {
+      "rodzina": "bridge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (K12)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r2 partii 2 hip_bridge @ 8b4f6cab, 09.11.2026; sha z własnego zrodla-runtime --skroty",
+      "sha": "cb742a908ec8",
+      "uwagi": "gb.move: barki, biodra i kolana w linii na górze (miednica 5,4 cm nad linią, biodro −14,9°, w progu reguły 8 cm); ht.rigid: kręgosłup 0°. Barki na piłce zgodnie z odmianą katalogu."
+    },
+    "Cable Rope Rear-Delt Rows": {
+      "rodzina": "faceRow",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 cable_row, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
+      "sha": "9bd2a94eb9d4",
+      "uwagi": "fp.elbowsBack (łokieć 16,7 cm za barkiem na końcu), fp.chest (pochylenie 0), mis.jerk (tempo) — zgodne z rysunkiem. Rysunek liny — S1 (w wpisie v2)."
+    },
+    "Kneeling High Pulley Row": {
+      "rodzina": "row",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 cable_row, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r2 (poprawki 4fbf144e po 441075fa, gałąź figury/partia-2-cable_row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r2-audytor-2026-11-09.md",
+      "sha": "e8bcb0ee335b",
+      "uwagi": "scr.chest, scr.control, mis.jerk — zgodne z rysunkiem (tułów pionowo, pochylenie 0)."
+    },
+    "Single Arm Cable Row": {
+      "rodzina": "row",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie r3 — wyswietlana (S3 zamknięte)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json); poprawka S3: programista, 0f069d93",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r3 zestawów cable_row po poprawce pliku wspólnego (commit 0f069d93, gałąź figury/partia-2-cueset-row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-zestawy-r3-audytor-2026-11-09.md",
+      "sha": "e8bcb0ee335b",
+      "uwagi": "Zestaw po 0f069d93: ok scr.chest, scr.control; err mis.jerk. row.fullStretch usunięte (CUE_NOT_IN_FAMILY cable_row). Arkusz side: ciąg poziomy, wyprost z przodu (u=0), łokieć za tułowiem u=1 — scr.chest i scr.control zgodne z ruchem; mis.jerk ogólny. Skrót rysunku cable_row 4376c0e6b911 bez zmian."
+    },
+    "Leverage High Row": {
+      "rodzina": "row",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie r3 — wyswietlana (S3 zamknięte)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json); poprawka S3: programista, 0f069d93",
+      "recenzent": "audytor",
+      "kto": "audytor — recenzja niezależna r3 zestawów cable_row po poprawce pliku wspólnego (commit 0f069d93, gałąź figury/partia-2-cueset-row, worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-zestawy-r3-audytor-2026-11-09.md",
+      "sha": "e8bcb0ee335b",
+      "uwagi": "Zestaw po 0f069d93: ok scr.chest, scr.control; err mis.jerk. row.fullStretch usunięte. Arkusz side: uchwyt z przodu-u góry po łuku do barku, łokieć za tułowiem u=1 — zdania zgodne; żadne nie dotyczy osi dźwigni, więc nie przeczy otwartemu CR-S2 (ŚREDNIE, backlog). Skrót rysunku cable_row 4376c0e6b911 bez zmian."
+    },
+    "Cable Seated Lateral Raise": {
+      "rodzina": "raiseSide",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-04, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
+      "uwagi": "Unoszenie bokiem siedząc z linkami: lat.elbows i lat.height ze źródeł karty Lateral Raise (hantle) (dwa źródła szczebla 4; reguła lokiec_staly cytuje też wersję z linką), mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu i pozycji). Rysunek: tor ręki jak w zrecenzowanym Lateral Raise (hantle) obniżony o siedzenie, łokieć nad nadgarstkiem w u = 1, ramię do ok. barków — zgodny z obiema wskazówkami. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "6449bf20ddac"
+    },
+    "Machine Lateral Raise": {
+      "rodzina": "raiseSide",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-03, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
+      "uwagi": "Unoszenie bokiem na maszynie (dwie dźwignie wzdłuż ramion): lat.height ze źródeł karty Lateral Raise (hantle), llc.control ze źródeł Lying Leg Curl i mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu, zasada kontroli ruchu na maszynie). Rysunek do ok. wysokości barków — zgodny. Uwaga NISKA do backlogu: llc.control i mis.jerk powtarzają tę samą myśl (płynnie, bez szarpania); można zamienić llc.control na lat.elbows — nie jest to błąd treści.",
+      "sha": "5e28ed79641e"
+    },
+    "Y Raise (hantle)": {
+      "rodzina": "raise",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw raise, wskazowki-cwiczenia-02, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
+      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
+      "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "4abd2e454900"
+    },
     "Smith Machine Behind the Back Shrug": {
       "rodzina": "shrug",
       "werdykt": "wyswietlana",
@@ -5324,39 +5557,6 @@
       "kto": "audytor — recenzja niezależna rodziny leg_machine 09.11.2026, czysta kopia 37333dc6; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md (pola stan/autor/kto uzupełnione przez programistę z raportu)",
       "sha": "9358e2eddadc",
       "uwagi": "squat: sq.down (biodra w tył i kolana razem), sq.back (kręgosłup 0°, tułów do 30°), sq.kneesToes; błędy sq.mis.kneesIn i sq.mis.heels animowane — zgodne."
-    },
-    "Cable Seated Lateral Raise": {
-      "rodzina": "raiseSide",
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
-      "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-04, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
-      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
-      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
-      "uwagi": "Unoszenie bokiem siedząc z linkami: lat.elbows i lat.height ze źródeł karty Lateral Raise (hantle) (dwa źródła szczebla 4; reguła lokiec_staly cytuje też wersję z linką), mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu i pozycji). Rysunek: tor ręki jak w zrecenzowanym Lateral Raise (hantle) obniżony o siedzenie, łokieć nad nadgarstkiem w u = 1, ramię do ok. barków — zgodny z obiema wskazówkami. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
-      "sha": "6449bf20ddac"
-    },
-    "Machine Lateral Raise": {
-      "rodzina": "raiseSide",
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
-      "autor": "badacz merytoryczny (zestaw raiseSide, wskazowki-cwiczenia-03, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
-      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
-      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
-      "uwagi": "Unoszenie bokiem na maszynie (dwie dźwignie wzdłuż ramion): lat.height ze źródeł karty Lateral Raise (hantle), llc.control ze źródeł Lying Leg Curl i mis.jerk ze źródeł Seated Cable Row — uproszczenie (wariant sprzętu, zasada kontroli ruchu na maszynie). Rysunek do ok. wysokości barków — zgodny. Uwaga NISKA do backlogu: llc.control i mis.jerk powtarzają tę samą myśl (płynnie, bez szarpania); można zamienić llc.control na lat.elbows — nie jest to błąd treści.",
-      "sha": "5e28ed79641e"
-    },
-    "Y Raise (hantle)": {
-      "rodzina": "raise",
-      "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 delt_raise; teksty wskazówek PL/EN), 09.11.2026",
-      "autor": "badacz merytoryczny (zestaw raise, wskazowki-cwiczenia-02, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista delt_raise (delt-wlaczenie-wip @ 1cd586a5)",
-      "recenzent": "audytor (recenzja niezależna L-047, 09.11.2026; nie pisał zestawów ani kart)",
-      "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
-      "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
-      "sha": "4abd2e454900"
     }
   }
 }

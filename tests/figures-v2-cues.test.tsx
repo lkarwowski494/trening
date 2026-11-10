@@ -78,6 +78,21 @@ describe('strażnik: wskazówka przypisana do ćwiczenia nie przeczy jego ruchow
   });
 });
 
+describe('CR-S3 (recenzja r1 cable_row, 09.11.2026): row.fullStretch nie trafia do wiosłowania na linkach i maszynie', () => {
+  test('„Na dole wyprostuj ręce…” (row.fullStretch) nie jest przypisane Single Arm Cable Row ani Leverage High Row (wyprost z przodu / u góry), a zostaje przy 4 ćwiczeniach rodziny row, gdzie wyprost jest na dole; warunek w CUE_NOT_IN_FAMILY (cable_row)', () => {
+    const fam = assignAll();
+    for (const k of ['Single Arm Cable Row', 'Leverage High Row']) {
+      expect(fam[k]).toBe('cable_row');
+      const sel = cueSelection(k); expect([k, [...sel.ok, ...sel.err].includes('row.fullStretch')]).toEqual([k, false]);
+    }
+    expect(CUE_NOT_IN_FAMILY['row.fullStretch'].families).toEqual(['cable_row']);
+    const zostaje = ['Lying T-Bar Row', 'Reverse Grip Bent Over Row', 'Seal Row (sztanga)', 'Smith Machine Bent Over Row'];
+    for (const k of zostaje) expect([k, cueSelection(k).ok.includes('row.fullStretch')]).toEqual([k, true]);
+    const wszedzie = Object.entries(CUE_SETS.items).filter(([, e]) => (e.ok ?? []).includes('row.fullStretch')).map(([k]) => k).sort();
+    expect(wszedzie).toEqual([...zostaje].sort());
+  });
+});
+
 describe('ACG-001 (audyt ćwiczeń 31.10.2026): zdanie zestawu nie przeczy kierunkowi ruchu rodziny', () => {
   test('„na górze wyprostuj ręce” (lpd.fullStretch — ściąganie drążka) nie trafia do ćwiczeń rodziny pull_up (na górze łokcie zgięte, ręce proste na dole); warunek w CUE_NOT_IN_FAMILY z powodem', () => {
     const fam = assignAll(); const bad: string[] = [];

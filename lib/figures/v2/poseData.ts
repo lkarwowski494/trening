@@ -19,6 +19,8 @@ const LOAD: Record<string, () => PoseFile> = {
   shrug: () => require('./poses/shrug.json'),
   hip_abd_add: () => require('./poses/hip_abd_add.json'),
   leg_machine: () => require('./poses/leg_machine.json'),
+  hip_bridge: () => require('./poses/hip_bridge.json'),
+  cable_row: () => require('./poses/cable_row.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
@@ -88,6 +90,8 @@ export const DATA_UI: Record<string, DataUi> = {
    * suwnica (Leg Press, Single Leg Press) — u = 0 nogi zgięte, u = 1 platforma wypchnięta: wypychanie 1 s, opuszczanie 2 s. Staw: kolano. */
   leg_machine: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
     exceptions: { 'Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Single Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false } } },
+  /* hip_bridge (09.11.2026): u = 0 miednica nisko (podłoga, ławka), u = 1 pełny wyprost bioder; unoszenie 1 s, opuszczanie 2 s; mierzone biodro */
+  hip_bridge: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true, names: { first: 'Obrót', second: 'Powrót' } }, /* r5-W1 08.11.2026: kierownica obraca się, nie unosi */ 'Alternating Deltoid Raise': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' } } } },
@@ -98,6 +102,8 @@ export const DATA_UI: Record<string, DataUi> = {
   forearm: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['wristFlex', 'forearmRoll', 'elbow'],
     exceptions: { 'Dumbbell Lying Pronation': { names: { first: 'Obrót', second: 'Powrót' } }, 'Dumbbell Lying Supination': { names: { first: 'Obrót', second: 'Powrót' } } } },
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
+  /* cable_row: u = 0 ręce wyprostowane (start), u = 1 uchwyt przy tułowiu albo twarzy; ściąganie 1 s, powrót 2 s (tempo ilustracyjne). Mierzony łokieć (zakres_lokcia). */
+  cable_row: { names: { first: 'Ściąganie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };

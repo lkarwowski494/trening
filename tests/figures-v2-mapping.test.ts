@@ -41,14 +41,14 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });
   test('gotowe rodziny z rigiem (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
-    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'pull_up', 'pulldown', 'leg_machine', 'olympic', 'curl', 'triceps', 'delt_raise', 'shrug', 'hip_abd_add']);
+    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'cable_row', 'pull_up', 'pulldown', 'leg_machine', 'hip_bridge', 'olympic', 'curl', 'triceps', 'delt_raise', 'shrug', 'hip_abd_add']); /* cable_row i hip_bridge ready 09.11.2026 (partia 2), delt_raise 09.11.2026; pulldown, leg_machine, shrug, hip_abd_add (partia 3, 09.11.2026) */
     const rig = ready.filter(f => !POSE_FAMILIES.includes(f)); expect(rig).toEqual(['squat', 'bench_press', 'hinge']);
     const keys = KEYS.filter(k => rig.includes(ALL[k])); expect(keys.length).toBe(87);
     for (const k of keys) { expect([k, VARIANTS[k]?.family]).toEqual([k, ALL[k]]); expect([k, figureSpec(k)?.family]).toEqual([k, ALL[k]]); }
     expect(Object.keys(VARIANTS).sort()).toEqual([...keys].sort());
   });
   test('gotowe rodziny z danych (poses/<rodzina>.json): figura tylko dla ćwiczeń z wpisem w danych (11 z 13 w pull_up), reszta bez figury v2 (v1 albo brak); status „gotowa” = plik póz', () => {
-    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'delt_raise']);
+    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'hip_bridge', 'cable_row', 'delt_raise']); /* hip_bridge, cable_row (partia 2), delt_raise i partia 3, 09.11.2026 */
     for (const f of POSE_FAMILIES) {
       expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]);
       const keys = KEYS.filter(k => ALL[k] === f); const have = poseKeys(f);
@@ -57,7 +57,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     }
     expect(KEYS.filter(k => ALL[k] === 'pull_up' && !figureSpec(k)).sort()).toEqual(['Muscle Up', 'Rope Climb']);
     expect(KEYS.filter(k => ALL[k] === 'olympic' && !figureSpec(k))).toEqual(['Rack Delivery']);
-    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 8 + 8 + 4 + 6 + 31); /* + delt_raise z danych (09.11.2026, ZB-042: 31 z 38, 7 bez rysunku); + pulldown, shrug, hip_abd_add, leg_machine z danych (partia 3, 09.11.2026: 8 z 8, 8 z 8, 4 z 8 — marsze z gumą wstrzymane, 6 z 8 — Calf Press wyjątek bez animacji, Smith Machine Leg Press bez pozy); + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
+    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 8 + 8 + 4 + 6 + 31 + 10 + 9); /* + cable_row (09.11.2026, 9 z 10: Sled Row bez pozy); + hip_bridge z danych (09.11.2026: 10 z 11, London Bridges bez rysunku); + delt_raise z danych (09.11.2026, ZB-042: 31 z 38, 7 bez rysunku); + pulldown, shrug, hip_abd_add, leg_machine z danych (partia 3, 09.11.2026: 8 z 8, 8 z 8, 4 z 8 — marsze z gumą wstrzymane, 6 z 8 — Calf Press wyjątek bez animacji, Smith Machine Leg Press bez pozy); + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
   });
   test('planowane rodziny: brak figury (figureSpec = null), szacunek pracy i widoki opisane; klucz spoza katalogu → null', () => {
     for (const f of FAMILIES.filter(x => x.status === 'planned')) { expect([f.id, f.effort > 0, f.views.length > 0, f.label.length >= 5]).toEqual([f.id, true, true, true]); }
