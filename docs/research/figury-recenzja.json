@@ -1183,14 +1183,15 @@
     },
     "leg_isolation": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
-      "sha": "bd7fc79f9bc6",
-      "slad": "arkusz 21 kadrów (u co 0,05), side, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor miednicy jednym gładkim łukiem 32,8 → 14,5 cm, barki 9,5–9,6 cm, pięty 9,6–11,2 cm; 01953ee4",
-      "uwagi": "Slider Hamstring Curl: most w całym ruchu — linia bark–biodro–kolano 2,5–3,3° (geometria), kolano 100 → 11,8°, checkFrame 0/41; jointAngles().hip bez znaku (|5,4–8,8°|); błąd ballcurl.mis.sag bez animacji — powód sensowny; 0 K/W"
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny leg_isolation, partia 9, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026; raport docs/research/recenzje/partia9-leg_isolation-r3-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 9, runda 3: regresja ACG-019 Seated Band naprawiona (udo nieruchome), Ś1 naprawione w r2, 0 × KRYTYCZNE/WYSOKIE; Ś2 (limit poseData.ts) otwarte — proces; NISKIE N1–N5 do backlogu",
+      "autor": "programista partii 9 (figury/partia-9-leg_isolation)",
+      "recenzent": "audytor",
+      "uwagi": "Kolano: Leg Extension i Single-Leg 90 → 11°; Leg Curl 11 → 100°; Lying Leg Curl 3,4 → 99,9°; Standing i Standing Cable 9,4 → 95,1° (udo nieruchome); Seated Band 12,6 → 92,1° (r3: udo nieruchome — biodro 91,9–94,4°, kolano przesuwa się ≤ 1,9 cm; guma z zaczepu 40 cm nad podłogą 42,8 → 88,6 cm); Slider 100 → 11,8°. Miednica stoi we wszystkich poza Slider (32,8 → 14,5 cm przy biodrze w wyproście −5,4…−8,8°, pośladki 4,6 cm nad podłogą — geometria, nie opadanie bioder). Oś dźwigni = kolano (dryf ≤ 0,4 cm). Ś1 (r1) naprawione w 09043585: próg łuku kolana r − √(r² − (l/2)²) + 2 cm dla 6 ćwiczeń z kostką na łuku, negatywy (próg + 3 cm, 2 zawrócenia) oblewają; tests/figures-v2-tor.test.ts 200/200. Skróty bez zmian wobec r1. Ś2: architecture-limits — poseData.ts 25 673 B > 24 736 B. NISKIE: N1 tułów 2,2 cm w obiciu (Lying Leg Curl), N2 łopatki 1,4 cm pod podłogą (Slider), N3 ręce Standing Leg Curl bez uchwytów, N4 mapa lext.range bez wyprost_kolan_jednonoz, N5 Seated Band kończy na 90,7°. r3 (3fbadace): regresja ACG-019 z d4febb6 (biodro 25,2°, kolano 18,8 cm) naprawiona; figures-v2-planned-acg-leg-isolation 8/8.",
+      "slad": "Ślad toru obejrzany w rzucie z boku wszystkich 8 ćwiczeń (8 arkuszy arkusz-slad, 21 kadrów co 0,05, pełna rozdzielczość): dźwignie (Leg Extension, Single-Leg, Leg Curl, Lying Leg Curl, Standing Leg Curl) i linka (Standing Cable) — punkt styku przy kostce jednym gładkim łukiem wokół kolana (r ≈ 41 cm), bez zawróceń; guma (Seated Band, r3) — kostka jednym łukiem wokół stałego kolana od nogi uniesionej przed sobą pod kolano, guma rozciąga się od zaczepu z przodu; Slider — miednica jednym łukiem 32,8 → 14,5 cm, ślizgacze pod piętami; bez przenikania sprzętu w ciało.",
+      "sha": "19fc316f3a19",
+      "liczba": 14
     },
     "shrug": {
       "werdykt": "wyswietlana",
@@ -2090,23 +2091,23 @@
     },
     "Leg Curl": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "f9681b034104",
-      "uwagi": "Pięty do pośladków, uda i biodra nieruchomo, ruch płynny — 2 biblioteki (maszyna siedząc; wariant leżąc z linką)."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "lcurl.move: pięty w stronę pośladków, kolano 11 → 100°, powrót do wyprostu; lcurl.still: miednica i uda nieruchome; llc.control — tempo.",
+      "sha": "f9681b034104"
     },
     "Leg Extension": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "438254c7031a",
-      "uwagi": "Zakres od ok. 90° do wyprostu i kontrolowane tempo — 2 badania (3) przeczytane."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "lext.range: kolano 90° (kąt prosty) → 11° (wyprost, próg reguły ≤ 15°); llc.control — tempo. Oś dźwigni w kolanie.",
+      "sha": "438254c7031a"
     },
     "Lunges (hantle)": {
       "werdykt": "wyswietlana",
@@ -3951,13 +3952,13 @@
     },
     "Seated Band Hamstring Curl": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A2",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → guma potwierdzone",
-      "sha": "4120ffb04282",
-      "uwagi": "Niska, backlog: bandcurl.setup „na kostkę” — źródło mówi o pięcie."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "bandcurl.setup: przodem do zaczepu, pętla na kostce, noga prawie prosta (12,6°) uniesiona przed sobą; bandcurl.move: zgięcie w stałym kolanie (udo nieruchome, biodro 91,9–94,4°), pięta pod kolano, guma 42,8 → 88,6 cm; lcurl.full: kolano do 92,1° (NISKIE N5); błąd lcurl.mis.partial bez animacji.",
+      "sha": "4120ffb04282"
     },
     "Single Leg Press": {
       "werdykt": "wyswietlana",
@@ -4455,12 +4456,12 @@
     },
     "Slider Hamstring Curl": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; „biodra cały czas w górze” i ballcurl.mis.sag: NISMAT + NCSF (wprost), ACE 59",
-      "uwagi": "Niska: „kolana ugięte” w slcurl.setup wprost tylko NISMAT; ACE 59/NCSF to wariant piłki (nazwane uproszczenie).",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "slcurl.setup i slcurl.move: start w moście z kolanami 100°, wysunięcie do 11,8°, biodra w wyproście w całym ruchu (−5,4…−8,8°, pośladki ≥ 4,6 cm nad podłogą); plank.brace zgodne; ballcurl.mis.sag bez animacji z powodem w figury-sens.json. NISKIE N2: łopatki 1,4 cm pod podłogą.",
       "sha": "d4048f0a72f5"
     },
     "Kettlebell Clean": {
@@ -4847,6 +4848,16 @@
       "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
       "sha": "a13376f00040",
       "uwagi": "K11: treść (podpór na prostych rękach, noga pod klatką i noga w tył, zmiana jednoczesna, biodra na podobnej wysokości) zgodna z ruchem (wahadło zmian, miednica 48,5–53,3 cm). mc.straight „wyprostuj tylną nogę do końca” vs noga tylna 17,6° — wada rysunku (W1). Źródła w cues.json (ACE, ExRx) — lista sprawdzona, teksty źródeł nie czytane ponownie. r2 10.11.2026: sprzeczność z rysunkiem usunięta — kolano nogi prostej 0° (W1 usunięte)."
+    },
+    "Lying Leg Curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "llc.setup: leżenie przodem, kolano w osi dźwigni (−42; 53,2–53,5); llc.move: 3,4 → 99,9°; llc.hips: miednica stoi, biodro 8,1–9,0°; llc.control — tempo. NISKIE N1: tułów 2,2 cm w obiciu ławki.",
+      "sha": "e5e0bad9da9f"
     }
   },
   "zestawy": {
@@ -7130,6 +7141,39 @@
       "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ 4c3ece3 (poprawki W1 i N2 po r1, od c0672ee), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r2-audytor-2026-11-10.md",
       "sha": "edf062289105",
       "uwagi": "Przeniesione z r1 (rysunek: arkusze cmp identyczne c0672ee vs 4c3ece3; skrót zestawu bez zmian): sb.plane, st.tension, st.noBounce, err st.mis.force — pasują: skłon boczny 20° (≥ 15°), pochylenie w przód 0°, bez ruchu (0 cm); sb.plane wypowiada element nakładki standLateralPlumb (pion od miednicy, tylko z przodu)."
+    },
+    "Single-Leg Leg Extension": {
+      "rodzina": "legExt",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 leg_isolation), partia 9, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw legExt; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 9 (figury/partia-9-leg_isolation @ d4febb69)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
+      "uwagi": "lext.range zgodne z rysunkiem (kolano pracującej nogi 90 → 11°; druga noga stoi przy 90°); llc.control — tempo; mis.jerk — błąd tempa bez animacji. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "dd254d049291"
+    },
+    "Standing Leg Curl": {
+      "rodzina": "legCurl",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 leg_isolation), partia 9, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw legCurl; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 9 (figury/partia-9-leg_isolation @ d4febb69)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
+      "uwagi": "lcurl.still zgodne (miednica stoi, udo nieruchome: biodro 25,0–25,3°, kolano w osi dźwigni); llc.control — tempo; mis.jerk bez animacji. Brak wskazówki ruchu — bez elementu nakładki (poprawnie).",
+      "sha": "0b503ccdff6a"
+    },
+    "Standing Cable Leg Curl": {
+      "rodzina": "legCurl",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 leg_isolation), partia 9, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw legCurl; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 9 (figury/partia-9-leg_isolation @ d4febb69)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
+      "uwagi": "lcurl.still zgodne (miednica stoi, biodro 10,1–10,2°); llc.control — tempo; mis.jerk bez animacji; linka z bloczka przed ćwiczącym do kostki.",
+      "sha": "0b503ccdff6a"
     }
   }
 }
