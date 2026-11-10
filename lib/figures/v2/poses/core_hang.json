@@ -19,6 +19,11 @@
      "dlugosc": 120,
      "talerze": false,
      "podazaZaChwytem": false
+    },
+    {
+     "rodzaj": "slupek",
+     "x": 0,
+     "h": 235
     }
    ],
    "klatki": [
@@ -562,6 +567,11 @@
      "dlugosc": 120,
      "talerze": false,
      "podazaZaChwytem": false
+    },
+    {
+     "rodzaj": "slupek",
+     "x": 0,
+     "h": 235
     }
    ],
    "klatki": [
@@ -1105,6 +1115,11 @@
      "dlugosc": 120,
      "talerze": false,
      "podazaZaChwytem": false
+    },
+    {
+     "rodzaj": "slupek",
+     "x": 0,
+     "h": 235
     }
    ],
    "klatki": [
