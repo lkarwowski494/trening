@@ -89,7 +89,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - trig_01XcNDadukhGTefDU3YBwA6S „Koordynator Trening: kontrola” 09:16 · trig_01NZwThjYQSRrWBJooKjAAdt „…: linia 14:00” (10.11) · trig_01A9dxsnidHUn46eG8hrruiY „…: linia 05:00” (11.11). Poprzednika: trig_01DCKPujdY6Ds93aNDAicFeh „kontrola przekazania” 09:16 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-026. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-027. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
