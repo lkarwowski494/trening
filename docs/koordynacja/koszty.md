@@ -17,5 +17,6 @@
 | A …VBviwDCU3NCJVaVH1WP | 08 build (sonnet): pociąg-4, partia 4 | 25 | 3,69 | 29,1 | 07:06 zlecone → 07:08 start (2. próba create_session) → 07:47 push 760afa88 → CI b.d. → nieprzyjęte (A2) | 8 min: 1. próba startu przerwana (WG-05); 8 min: PYTANIE czekało na odczyt z transkryptu | kontekst wyczerpany scaleniem 1 z 2 gałęzi; następca A2 |
 | B …VBzi6xg7DYJMg2oYF8Q | 08 build (opus): partia 5 domknięcie | 60 | 20,00 | 37,3 | 07:06 zlecone → 07:10 start → 09:11 push ef42f8e4 → CI w toku (42788593262) → odbiór po CI | ~20 min: jest(3) > 20 min na gałęzi bez KO-012 (KO-021) | push zbiorczy na końcu (114→74 commity) |
 | A2 …VBywmTeUKRmGrUr71SN | 08 build (opus): pociąg-4 dokończenie | 40 | 10,54 | 27,7 | 08:02 zlecone → 08:05 start → 10:04 push d6d8f6ed → 10:18 CI zielone → 10:25 przyjęte | ~20 min: 1. verify:szybkie padł na płytkim klonie (maestro-57) | szacunek 40 vs 10,54 |
+| C …VBxTDiB5JhTrZDFWNK4 | 08 build (opus): partia 6 plyo | 60 | 18,87 | 39,8 | 10:20 zlecone → 10:33 start → 11:36 push fed9a704 → CI b.d. → odbiór po C2 | ~50 min: czekanie na podział poseData.ts (KO-024) | kontekst 39,8% > 38% — zadanie rodziny 27 ćw. + 3 rundy recenzji za duże na jedną sesję |
 Mnożnik szacunku: brak szacunków tej nocy [DO USTALENIA].
 Przegląd przepływu 2026-11-10: największa strata ~1 h na każde dociąganie integracji → WG-01.
