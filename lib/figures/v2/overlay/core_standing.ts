@@ -25,5 +25,5 @@ export const CORE_STANDING_TECHNIQUE: TechniqueDef[] = [
   { id: 'sideBendPlumb', kind: 'ref', cue: ['sb.plane'], rule: 'sklon_boczny', views: ['front'], ref: { shape: 'vertical', through: 'pelvis', dir: 'up' } },
   { id: 'twistLeanPlumb', kind: 'ref', cue: ['rt.setup'], rule: 'odchylenie_45', views: ['side'], ref: { shape: 'vertical', through: 'pelvis', dir: 'up' } },
   { id: 'twistBackRef', kind: 'ref', cue: ['rt.back'], rule: 'plecy_proste', views: ['side'], ref: { shape: 'segment', from: 'pelvis', to: 'shoulderC' } },
-  { id: 'windmillArmStraightRef', kind: 'ref', cue: ['wm.arm'], rule: 'wiatrak_reka_prosta', views: ['front'], exercises: WINDMILL_EXERCISES, ref: { shape: 'parallel', from: 'shoulder', to: 'grip' } },
+  { id: 'windmillArmStraightRef', kind: 'ref', cue: ['wm.arm'], rule: 'wiatrak_reka_prosta', views: ['front'], exercises: WINDMILL_EXERCISES, side: 'R', ref: { shape: 'parallel', from: 'shoulder', to: 'grip' } },
 ];
