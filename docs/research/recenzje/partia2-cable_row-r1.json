@@ -1,0 +1,109 @@
+{
+ "v2": {
+  "cable_row": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-09",
+   "stan": "recenzja niezależna r1 (bramka 4, L-047, L-050) — do poprawy: 2 × WYSOKIE (W1, W2), 3 × ŚREDNIE",
+   "autor": "programista partii 2 (figury/partia-2-cable_row @ 10fc587d)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "4bbbeb084cba",
+   "liczba": 10,
+   "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 9 ćwiczeń × widoki side i front = 18 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z 10fc587d i obejrzane w pełnej rozdzielczości (u 0; 0,5; 1 w 2:1); arkusz-nakladka.mjs: Seated Cable Row, Face Pull. Ślad = środek chwytów (wyciąg, dźwignia punkt dlonie), odległość śladu od chwytu 0,0 cm w 41 kadrach każdego ćwiczenia; łuki dźwigni Machine Row 6,1 cm i Leverage High Row 6,25 cm przeliczone z kątów dźwigni.",
+   "uwagi": "W1 WYSOKIE: Seated Cable Row i Wiosłowanie na linkach (siedząc) — linka 26,4° od poziomu na starcie (decyzja 27.10.2026 pkt 7a dla v1: ≤ 5°), uchwyt skośnie w dół 20 cm. W2 WYSOKIE: Standing Cable Row — bloczek y 100 cm wbrew karcie „na wysokości klatki”, start z rękami na wysokości barków, linka 32,4°, uchwyt w dół 35 cm (Single Arm Cable Row ta sama geometria). S1 ŚREDNIE: lina w Face Pull/Rear-Delt jako sztywny drążek (końce ±31/±33 cm od u 0), Face Pull kończy na wysokości podbródka (uchwyt y 147,5 vs środek głowy 161,5). S2 ŚREDNIE: Leverage High Row — oś dźwigni na dole (układ wiosłowania dolnego). S3 ŚREDNIE: row.fullStretch „Na dole…” przy Single Arm i Leverage High Row. Bez znalezisk: tor-wyjatki (łuk dźwigni poprawny), DZWIGNIA_BEZ_GLOWY (odcisk zmieniony tylko Leverage High Row), nakładka 3 elementy, styki, przenikanie, testy K14.",
+   "cwiczenia": [
+    "Seated Cable Row",
+    "Wiosłowanie na linkach (siedząc)",
+    "Face Pull",
+    "Cable Rope Rear-Delt Rows",
+    "Standing Cable Row",
+    "Single Arm Cable Row",
+    "Machine Row",
+    "Leverage High Row",
+    "Kneeling High Pulley Row"
+   ],
+   "bez_rysunku": [
+    "Sled Row"
+   ]
+  }
+ },
+ "zestawy": {
+  "Cable Rope Rear-Delt Rows": {
+   "rodzina": "faceRow",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 cable_row, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "9bd2a94eb9d4",
+   "uwagi": "fp.elbowsBack (łokieć 16,7 cm za barkiem na końcu), fp.chest (pochylenie 0), mis.jerk (tempo) — zgodne z rysunkiem. Rysunek liny — S1 (w wpisie v2)."
+  },
+  "Kneeling High Pulley Row": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 cable_row, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "e8bcb0ee335b",
+   "uwagi": "scr.chest, scr.control, mis.jerk — zgodne z rysunkiem (tułów pionowo, pochylenie 0)."
+  },
+  "Single Arm Cable Row": {
+   "rodzina": "row",
+   "werdykt": "do poprawy",
+   "data": "2026-11-09",
+   "stan": "recenzja niezależna r1 — do poprawy",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "becb1cac20f7",
+   "uwagi": "S3: row.fullStretch „Na dole wyprostuj ręce…” — na rysunku wyprost jest z przodu, nie na dole. Rysunek: geometria W2 (linka 32,6°)."
+  },
+  "Leverage High Row": {
+   "rodzina": "row",
+   "werdykt": "do poprawy",
+   "data": "2026-11-09",
+   "stan": "recenzja niezależna r1 — do poprawy",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "becb1cac20f7",
+   "uwagi": "S3: row.fullStretch „Na dole wyprostuj ręce…” — na rysunku wyprost jest u góry (uchwyt 13 cm nad barkiem). scr.chest, scr.control zgodne."
+  }
+ },
+ "karty": {
+  "Seated Cable Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 cable_row, L-047)",
+   "autor": "badacz merytoryczny i programista (wskazówki etapu 1; lib/cues/data.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "b145fef11405",
+   "uwagi": "Treść (scr.sit, scr.pull, scr.chest, scr.control, mis.jerk) poprawna i zgodna z kierunkiem ruchu (uchwyt do brzucha, łokieć 14,8 cm za barkiem, tułów pionowo). Rysunek do poprawy — W1 w wpisie v2; karta wyświetlana z rysunkiem v1 do czasu r2."
+  },
+  "Wiosłowanie na linkach (siedząc)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 cable_row, L-047)",
+   "autor": "badacz merytoryczny i programista (wskazówki etapu 1; lib/cues/data.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "b145fef11405",
+   "uwagi": "Jak Seated Cable Row (ta sama karta). Rysunek — W1."
+  },
+  "Face Pull": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 cable_row, L-047)",
+   "autor": "badacz merytoryczny i programista (wskazówki etapu 1; lib/cues/data.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna rodziny cable_row, partia 2, runda r1, gałąź figury/partia-2-cable_row @ 10fc587d (worktree odłączony), 09.11.2026; raport docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md",
+   "sha": "bd285386594c",
+   "uwagi": "fp.setup (bloczek 150 cm ≥ bark 139,5), fp.move, fp.elbowsBack (łokieć 18,2 cm za barkiem), fp.chest — treść poprawna. Rysunek — S1 (koniec na wysokości podbródka, lina jako drążek)."
+  }
+ },
+ "v1_zastapiona": []
+}

@@ -27,12 +27,12 @@ const ODROCZONE = new Set([
   'row/Bent Over Row (linki)/mis.roundBack', 'row/Bent Over Row (sztanga)/mis.roundBack', 'row/Smith Machine Bent Over Row/mis.roundBack', 'kneeling_hinge/Seated Good Mornings/mis.roundBack',
   'hip_bridge/Frog Pump/ht.mis.arch', 'hip_bridge/Glute Bridge/ht.mis.arch', 'hip_bridge/Glute Bridge (sztanga)/ht.mis.arch', 'hip_bridge/Hip Thrust (hantel)/ht.mis.arch', 'hip_bridge/Hip Thrust (sztanga)/ht.mis.arch',
   'hip_bridge/Machine Hip Thrust/ht.mis.arch', 'hip_bridge/Single Leg Glute Bridge/ht.mis.arch', 'hip_bridge/Single Leg Hip Thrust/ht.mis.arch', 'hip_bridge/Smith Machine Hip Thrust/ht.mis.arch',
-  'hip_bridge/Stability Ball Hip Bridge/ht.mis.arch', 'leg_isolation/Slider Hamstring Curl/ht.mis.arch', 'cable_press/Incline Cable Chest Press/bp.mis.arch',
+  'hip_bridge/Stability Ball Hip Bridge/ht.mis.arch', 'cable_press/Incline Cable Chest Press/bp.mis.arch',
 ]);
 
 describe('1. wiersz błędu różni się od pozy poprawnej w pokazywanym widoku (≥ MIN_ROZNICA_BLEDU_W_WIDOKU_CM)', () => {
   const wiersze = pliki.flatMap(f => { return Object.entries(f.cwiczenia).flatMap(([cw, d]) => d.bledy.map((b, i) => ({ klucz: `${f.rodzina}/${cw}/${b.cue}`, d, i, widoki: viewsOf(cw, f.rodzina as FamilyId) as View[] }))); });
-  test('zbiór sprawdzanych wierszy jest duży', () => { expect(wiersze.length).toBeGreaterThan(90); });
+  test('zbiór sprawdzanych wierszy jest duży', () => { expect(wiersze.length).toBeGreaterThan(85); /* 09.11.2026 (B2 figury nóg): −5 wierszy błędu spoza karty (4 × lunge.mis.kneeIn, Slider ht.mis.arch) — było > 90 przy 93 */ });
   test('leg_machine pokazuje widok z przodu (kolana do środka widać z przodu)', () => { expect(FAMILIES.find(x => x.id === 'leg_machine')!.views).toContain('front'); });
   test.each(wiersze.filter(w => !ODROCZONE.has(w.klucz)).map(w => [w.klucz, w] as const))('%s: różnica ≥ konwencji w którymś pokazywanym widoku', (_k, w) => {
     const best = Math.max(...w.widoki.map(v => roznicaBledu(w.d, w.i, v)));

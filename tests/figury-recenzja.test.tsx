@@ -100,7 +100,7 @@ describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku
     expect(CUE_DATA.exercises[k]).toBeTruthy();
   });
   test('figura z recenzją się renderuje (Lat Pulldown, Overhead Press (sztanga), Reverse Lunge — 29.10.2026; Pull Up od 02.11.2026 rysuje v2 rodziny pull_up)', async () => {
-    for (const k of ['Lat Pulldown', 'Overhead Press (sztanga)', 'Reverse Lunge']) { await render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.getAllByTestId('exercise-figure').length > 0]).toEqual([k, true]); }
+    for (const k of ['Lat Pulldown', 'Overhead Press (sztanga)', 'Reverse Lunge']) { await render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.queryAllByTestId('exercise-figure').length + screen.queryAllByTestId('exercise-figure-v2').length > 0]).toEqual([k, true]); } /* Lat Pulldown od 09.11.2026 (partia 3) rysuje v2 rodziny pulldown */
   });
 });
 

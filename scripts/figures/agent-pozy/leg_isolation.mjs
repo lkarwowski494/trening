@@ -1,6 +1,6 @@
 // Generator póz rodziny leg_isolation po stronie agenta (wersja 1.1, 26.10.2026): prostowanie i uginanie nóg na maszynach, w staniu, na linkach i gumie, uginanie na ślizgaczach.
 // Pozy WYLICZONE z modelu: miednica nieruchoma, udo poziomo (siad) albo pionowo (stanie), goleń obraca się w kolanie o kąt z modelu (kolano = bieguny z IK), dźwignia maszyny na osi kolana (promień = goleń + przesunięcie boczne).
-// Błędy: rodzina ma tylko mis.jerk (tempo, bez animacji) i ht.mis.arch (przeprost lędźwi na górze ślizgacza) — ten ostatni łamie wyłącznie regułę „plecy_most” (grupa plecy).
+// Błędy: rodzina ma tylko mis.jerk (tempo, bez animacji); Slider Hamstring Curl (B2, 09.11.2026) — błąd karty ballcurl.mis.sag bez animacji (dawny rząd ht.mis.arch spoza karty usunięty).
 import { v2, BODY, R, r1, lerp, ease, HIP, SH, ZASIEG_R, dNogi, rPlan, hipY, tp, S, reka, K, poza, PODLOGA, kolano2D, katXY, bladZTrajektorii, przeciecie, kostkaStopyY } from './dol.mjs';
 
 export const RODZINA = 'leg_isolation';
@@ -75,16 +75,21 @@ export function guma(cw) {
 }
 
 /** Uginanie nóg na ślizgaczach w pozycji mostka: barki na podłodze, miednica nieruchomo wysoko (θ = 26°), pięty na ślizgaczach wysuwają się od zgięcia 100° do prawie wyprostu. */
+/** Ślizgacze w moście (B2, 09.11.2026 — karta: „unieś biodra… biodra cały czas w górze”; poprzednio ACG-019: miednica nisko, biodro zginało się z kolanem, co karta nazywa błędem
+ * „biodra opadające”). Barki na podłodze, kąt tułowia dobierany w każdej klatce tak, by biodro było prawie wyprostowane (zgięcie ≈ BIODRO_MOST°): przy ugiętych kolanach miednica
+ * wysoko (most), przy wyprostowanych ciało w linii barki–biodra–pięty. Pięty na ślizgaczach na podłodze. */
+const BIODRO_MOST = -3; /* zgięcie liczone w płaszczyźnie z barku; w jointAngles silnika to ok. 0–2° (biodro w linii z tułowiem) */
 export function slizgacze(cw) {
-  const T = BODY().trunk; const th0 = 12; const Sx = [-50, 9.5]; const m = [Sx[0] + T * Math.cos(th0 * R), Sx[1] + T * Math.sin(th0 * R)]; const p = -(90 + th0);
-  const us = [0, 0.25, 0.5, 0.75, 1]; const hipR = [m[0], m[1], HIP()];
-  const mk = (u, arch = 0) => { const K1 = lerp(100, 12, ease(u)); const dx = Math.sqrt(Math.max(1, rPlan(dNogi(K1), HIP() - ZS) ** 2 - (m[1] - 9) ** 2)); let ax = m[0] + dx, pod = 0, ay = 9;
-    for (let i = 0; i < 8; i++) { const kn = kolano2D(m, [ax, ay], [0.1, 1]); const ang = katXY([ax, ay], kn); pod = Math.max(-30, Math.min(75, ang - 82)); ay = kostkaStopyY(2, pod); ax = m[0] + Math.sqrt(Math.max(1, rPlan(dNogi(K1), HIP() - ZS) ** 2 - (m[1] - ay) ** 2)); }
-    const g = (sg) => ({ g: [Sx[0] + 60, 3.5, sg * 24], pole: [0, 0.3, sg] });
-    return K({ u, m, p, bend: -arch * ease(u), head: -86, R: { a: [ax, ay, ZS], pod, rot: 10, pole: [0.1, 1, 0.08] }, L: { a: [ax, ay, -ZS], pod, rot: 10, pole: [0.1, 1, -0.08] }, hr: g(1), hl: g(-1) }); };
-  const fr = us.map((u) => mk(u)); const zle = us.map((u) => mk(u, 35));
+  const T = BODY().trunk; const Sx = [-50, 9.5]; const us = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; /* 9 klatek: przy 5 interpolacja miednicy i kostek między klatkami zginała biodro do ok. +6° (chwilowe opadnięcie bioder) */
+  const geo = (u, th0) => { const m = [Sx[0] + T * Math.cos(th0 * R), Sx[1] + T * Math.sin(th0 * R)]; const K1 = lerp(100, 12, ease(u)); const zasieg = () => rPlan(dNogi(K1), HIP() - ZS);
+    let ax = m[0] + Math.sqrt(Math.max(1, zasieg() ** 2 - (m[1] - 9) ** 2)), pod = 0, ay = 9;
+    for (let i = 0; i < 8; i++) { const kn = kolano2D(m, [ax, ay], [0.1, 1]); const ang = katXY([ax, ay], kn); pod = Math.max(-30, Math.min(75, ang - 82)); ay = kostkaStopyY(2, pod); ax = m[0] + Math.sqrt(Math.max(1, zasieg() ** 2 - (m[1] - ay) ** 2)); }
+    const kn = kolano2D(m, [ax, ay], [0.1, 1]); return { m, ax, ay, pod, zgiecie: katXY(m, kn) - katXY(Sx, m) }; };
+  const mk = (u) => { let best = null; for (let t = 2; t <= 45; t += 0.25) { const g = geo(u, t); const d = Math.abs(g.zgiecie - BIODRO_MOST); if (!best || d < best.d) best = { ...g, t, d }; }
+    const { m, ax, ay, pod, t } = best; const g = (sg) => ({ g: [Sx[0] + 60, 3.5, sg * 24], pole: [0, 0.3, sg] });
+    return K({ u, m: [r1(m[0]), r1(m[1])], p: r1(-(90 + t)), head: -86, R: { a: [r1(ax), r1(ay), ZS], pod: r1(pod), rot: 10, pole: [0.1, 1, 0.08] }, L: { a: [r1(ax), r1(ay), -ZS], pod: r1(pod), rot: 10, pole: [0.1, 1, -0.08] }, hr: g(1), hl: g(-1) }); };
   const spr = [PODLOGA(-120, 160), { rodzaj: 'slizgacze', punkt: 'kostki', trzyma: 'obie' }];
-  return poza(RODZINA, cw, spr, fr, [bladZTrajektorii({ cue: 'ht.mis.arch', znacznik: 'back', us, ok: (u) => fr[us.indexOf(u)], zle: (u) => zle[us.indexOf(u)] })]);
+  return poza(RODZINA, cw, spr, us.map(mk), []); /* błąd karty ballcurl.mis.sag bez animacji — powód w figury-sens.json bledy_bez_animacji */
 }
 
 export const WYJATKI = {

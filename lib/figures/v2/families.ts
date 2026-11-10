@@ -31,14 +31,14 @@ export const FAMILIES: Family[] = [
   { id: 'dip', status: 'ready', label: 'Dipy (poręcze, ławka, maszyna, kółka)', views: ['side', 'front'], effort: 2 },
   { id: 'overhead_press', status: 'planned', label: 'Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk)', views: ['side', 'front'], effort: 4 },
   { id: 'row', status: 'planned', label: 'Wiosłowanie w pochyleniu / z podparciem / jednorącz', views: ['side', 'top'], effort: 4 },
-  { id: 'cable_row', status: 'planned', label: 'Wiosłowanie na linkach i maszynie, face pull', views: ['side', 'front'], effort: 3 },
+  { id: 'cable_row', status: 'ready', label: 'Wiosłowanie na linkach i maszynie, face pull', views: ['side', 'front'], effort: 3 },
   { id: 'pull_up', status: 'ready', label: 'Podciąganie i zwis (drążek, kółka, lina)', views: ['side', 'front'], effort: 0, note: 'pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2' },
-  { id: 'pulldown', status: 'planned', label: 'Ściąganie drążka (wyciąg górny)', views: ['side', 'front'], effort: 2 },
+  { id: 'pulldown', status: 'ready', label: 'Ściąganie drążka (wyciąg górny)', views: ['side', 'front'], effort: 2 },
   { id: 'lunge', status: 'planned', label: 'Wykroki, przysiad bułgarski, wejścia na stopień, pistolet', views: ['side', 'front'], effort: 5 },
-  { id: 'leg_machine', status: 'planned', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side', 'front'], effort: 3 },
+  { id: 'leg_machine', status: 'ready', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side', 'front'], effort: 3 },
   { id: 'leg_isolation', status: 'planned', label: 'Prostowanie i uginanie nóg, nordic, sissy', views: ['side'], effort: 3 },
   { id: 'calf_raise', status: 'planned', label: 'Wspięcia na palce', views: ['side'], effort: 2 },
-  { id: 'hip_bridge', status: 'planned', label: 'Hip thrust i mostki', views: ['side'], effort: 3 },
+  { id: 'hip_bridge', status: 'ready', label: 'Hip thrust i mostki', views: ['side'], effort: 3 },
   { id: 'kb_ballistic', status: 'planned', label: 'Kettlebell: swing, clean, snatch, wyciskania balistyczne', views: ['side'], effort: 3 },
   { id: 'olympic', status: 'ready', label: 'Podrzut, rwanie i ich odmiany', views: ['side'], effort: 6 },
   { id: 'back_extension', status: 'ready', label: 'Prostowanie tułowia na ławce, reverse hyper', views: ['side'], effort: 2 },
@@ -46,7 +46,7 @@ export const FAMILIES: Family[] = [
   { id: 'triceps', status: 'ready', label: 'Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył)', views: ['side'], effort: 4 },
   { id: 'delt_raise', status: 'ready', label: 'Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe)', views: ['front', 'side'], effort: 4 },
   { id: 'chest_fly', status: 'planned', label: 'Rozpiętki, pec deck, przenoszenie za głowę', views: ['top', 'side'], effort: 3 },
-  { id: 'shrug', status: 'planned', label: 'Szrugsy', views: ['front', 'side'], effort: 1 },
+  { id: 'shrug', status: 'ready', label: 'Szrugsy', views: ['front', 'side'], effort: 1 },
   { id: 'rotator_cuff', status: 'planned', label: 'Rotacje zewnętrzne/wewnętrzne, taśmy do ramion', views: ['front', 'side'], effort: 2 },
   { id: 'core_floor', status: 'planned', label: 'Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up)', views: ['side'], effort: 4 },
   { id: 'core_hang', status: 'planned', label: 'Brzuch w zwisie (unoszenie nóg/kolan, toes to bar)', views: ['side'], effort: 2 },
@@ -57,7 +57,7 @@ export const FAMILIES: Family[] = [
   { id: 'sled_throw', status: 'planned', label: 'Sanie, rzuty piłką, uderzenia', views: ['side'], effort: 3 },
   { id: 'strongman', status: 'planned', label: 'Strongman i podnoszenia nietypowych ciężarów', views: ['side'], effort: 3 },
   { id: 'glute_floor', status: 'planned', label: 'Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie)', views: ['side', 'front'], effort: 4 },
-  { id: 'hip_abd_add', status: 'planned', label: 'Przywodzenie i odwodzenie (maszyny, linki, taśmy)', views: ['front'], effort: 2 },
+  { id: 'hip_abd_add', status: 'ready', label: 'Przywodzenie i odwodzenie (maszyny, linki, taśmy)', views: ['front'], effort: 2 },
   { id: 'mobility_stand', status: 'planned', label: 'Mobilność i rozciąganie stojąc / w ruchu', views: ['side', 'front'], effort: 6 },
   { id: 'mobility_floor', status: 'planned', label: 'Mobilność i rozciąganie na podłodze', views: ['side'], effort: 6 },
   { id: 'foam_roll', status: 'planned', label: 'Rolowanie i automasaż', views: ['side'], effort: 2 },
@@ -70,8 +70,8 @@ export const FAMILIES: Family[] = [
 ];
 export const FAMILY: Record<FamilyId, Family> = Object.fromEntries(FAMILIES.map(f => [f.id, f])) as Record<FamilyId, Family>;
 
-/** Rodziny, w których dźwignia maszyny nie jest rysowana w widoku z przodu, gdy jej rzut przechodzi przez głowę (draw.ts, case 'pivot'; recenzja p2-r2, U-L2: Lying Machine Squat). Rodziny z tym samym defektem, których nie przeglądano w tej rundzie (cable_row, chest_press_machine, leg_isolation), czekają w backlogu 1.1 (docs/21): ich rysunek bez zmian. */
-export const DZWIGNIA_BEZ_GLOWY: readonly string[] = ['leg_machine'];
+/** Rodziny, w których dźwignia maszyny nie jest rysowana w widoku z przodu, gdy jej rzut przechodzi przez głowę (draw.ts, case 'pivot'; recenzja p2-r2, U-L2: Lying Machine Squat). cable_row dopisana 09.11.2026 (Leverage High Row: dźwignia przechodzi przez głowę w u 0–0,1; Machine Row jej nie dotyka, więc decyzja ćwiczenia zostawia dźwignię). Rodziny z tym samym defektem, których nie przeglądano (chest_press_machine, leg_isolation), czekają w backlogu 1.1 (docs/21): ich rysunek bez zmian. */
+export const DZWIGNIA_BEZ_GLOWY: readonly string[] = ['leg_machine', 'cable_row'];
 /** Widoki ustawione na poziomie ćwiczenia (nadpisują widoki rodziny). Suwnice pokazujemy tylko z boku (recenzja p2-r2, U-L1, decyzja koordynatora 27.10.2026): z przodu uda są w skrócie, platforma nie jest rysowana, więc stopy i siedzisko wiszą w powietrzu, a ruch w kostce jest niewidoczny. */
 export const EXERCISE_VIEWS: Record<string, { family: FamilyId; views: ('side' | 'front' | 'top')[]; reason: string }> = {
   'Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },

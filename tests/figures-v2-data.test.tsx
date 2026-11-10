@@ -13,6 +13,7 @@ import {
   errorDefOf, dataErrorId, isDataError, dataErrorIndex, POSE_FAMILIES, poseKeys, poseFile, poseDataFor, hasPoseFile, dataUiFor, DATA_UI, ISOMETRIC, assignAll, FAMILY, type FigError,
 } from '@/lib/figures/v2';
 import { errorsOf, errorText, GAP_CUES, hasTechnique, legendOf } from '@/lib/figures/v2/ui';
+import { EXERCISE_VIEWS } from '@/lib/figures/v2/families';
 import { cueText, cueDict } from '@/lib/cues';
 import { metricFor } from '@/lib/seed';
 import { applyLang } from '@/lib/i18n';
@@ -33,7 +34,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
   test('każda rodzina z plikiem póz: status „gotowa”, wpis DATA_UI, ćwiczenia pliku należą do rodziny, spec z danych (nie z rigu); pull_up ma 11 ćwiczeń', () => {
     expect(DATA_KEYS.filter(([f]) => f === 'pull_up').length).toBe(11);
     for (const f of POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]); expect(poseFile(f)!.rodzina).toBe(f); }
-    for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(FAMILY[f as keyof typeof FAMILY].views); }
+    for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(EXERCISE_VIEWS[k]?.views ?? FAMILY[f as keyof typeof FAMILY].views); } /* widoki ćwiczenia nadpisują rodzinę (suwnice tylko z boku, families.ts EXERCISE_VIEWS) */
   });
   test('ćwiczenia rodziny bez danych (Muscle Up, Rope Climb) i spoza katalogu: brak figury v2 (zachowanie jak dotąd), sekcja Technika nie pojawia się z ich powodu', () => {
     for (const k of ['Muscle Up', 'Rope Climb', 'Ćwiczenie własne']) { expect([k, figureSpec(k)]).toEqual([k, null]); }
@@ -43,12 +44,16 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'dip' && fam !== 'cable_press' && fam !== 'back_extension')) { /* back_extension (10.11.2026): Back Extension ma u 0 → 1 = opuszczanie (wyjątek lowerFirst) — fazy, kierunek i staw sprawdza tests/figures-v2-back-extension.test.tsx; dip (09.11.2026): kierunek u różny w rodzinie (poręcze, kółka, ławka: opuszczanie; Dip Machine: wypychanie) — osobny test niżej; delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
-      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
+      const ex = ui.exceptions?.[k]; /* wyjątek ćwiczenia (partia 3, 09.11.2026: Straight Arm Pulldown — łokieć prosty, mierzony bark shElev) */
+      expect([k, s.lowerFirst]).toEqual([k, ex?.lowerFirst ?? ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, (ex?.joints ?? ui.joints)[0]]);
+      const nm = ex?.names ?? ui.names; const [msA, msB] = s.lowerFirst ? [2000, 1000] : [1000, 2000]; /* leg_machine (09.11.2026): maszyny przysiadu zaczynają od opuszczania (2 s) */
+      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[nm.first, msA], ['Pauza', 500], [nm.second, msB], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
-      if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
-      /* triceps (04.11.2026) i chest_press_machine (09.11.2026, wypychanie od uchwytów przy barkach): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
-      else if (f === 'triceps' || f === 'chest_press_machine') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      if (ex?.hideAngle) { /* kąt ukryty na rysunku (hip_abd_add, partia 3, 09.11.2026: podpis „zgięcie biodra” nie opisuje odwodzenia) — kierunek pomiaru nie jest pokazywany */ }
+      else if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
+      /* triceps (04.11.2026) i chest_press_machine (09.11.2026, wypychanie od uchwytów przy barkach): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; hip_bridge (09.11.2026): u = 1 to wyprost bioder — kąt zgięcia w biodrze maleje; curl i podciąganie: rośnie */
+      /* partia 3, 09.11.2026: Straight Arm Pulldown — ręka prosta schodzi z góry do ud, uniesienie ramienia (shElev) maleje; Middle Back Shrug — łopatki ściągają się, wysunięcie barków (protract) maleje */
+      else if (f === 'triceps' || f === 'chest_press_machine' || f === 'hip_bridge' || ['Straight Arm Pulldown', 'Middle Back Shrug', 'Leg Press', 'Single Leg Press'].includes(k)) { /* Leg Press, Single Leg Press (09.11.2026): u = 0 nogi zgięte, u = 1 platforma wypchnięta — zgięcie kolana maleje */ expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
@@ -112,14 +117,15 @@ describe('błędy z danych (bledy[])', () => {
   });
   test('macierz: wszystkie ćwiczenia z danymi × poza poprawna i poza błędu × 13 pozycji: brak błędów geometrii (podłoga, zasięg, przenikanie, chwyt); błąd różni się od pozy poprawnej na końcu ruchu (błąd pokazany na dole — pu.partial — na początku ruchu)', () => {
     /* curl (03.11.2026): „szarpnięcie” (mis.jerk) to błąd tempa — nie zmienia pozy (różnica < 3 cm w miednicy, głowie, kolanie, kostce i łokciu R); jak pokazuje go rysunek, ocenia recenzent niezależny. */
+    /* hip_bridge (09.11.2026, r1 K14): przeprost lędźwi przy ustalonej miednicy zostaje wykryty miarą — do punktów testu należy środek kręgosłupa (spineMid, −35° vs 0°, ok. 7 cm); bez wyjątków */
     const BLAD_NIEWIDOCZNY = ['Seated Cable Chest Press|mis.jerk' /* cable_press (10.11.2026): mis.jerk z karty własnej siedzącego to błąd tempa (errors.ts kind „tempo”), poza go nie zmienia — jak w curl/delt_raise; reguła bledy_bez_animacji w figury-sens.json */, 'Seated Close-Grip Concentration Barbell Curl|mis.jerk', 'Dumbbell Front Raise to Overhead|mis.jerk', 'Car Drivers|mis.jerk', 'Cable Seated Lateral Raise|mis.jerk', 'Machine Lateral Raise|mis.jerk', 'Y Raise (hantle)|mis.jerk']; /* delt_raise (09.11.2026; trzy ostatnie po wpisach „zestawy” z recenzji audytora — ten sam błąd tempa w zestawie ogólnym raiseSide): jerk to błąd tempa (errors.ts kind „tempo”, mods.tempo) — poza nie zmienia, jak w curl; tylko te dwa ćwiczenia mają go w zestawie; jak pokazuje go rysunek, ocenia recenzent niezależny */
-    const JERK_CURL_TEMPO = JERK_TEMPO_RODZINY; /* 05.11.2026: rozszerzone na triceps (3 ćwiczenia z zestawem ogólnym, recenzja niezależna r5 przyjęła jak w curl); ta sama przyczyna dla całej rodziny curl (błąd tempa); asercja czerwona już na 67ceb782 przed scaleniem integracji, rozszerzona 03.11.2026 z listy pojedynczej na rodzinę */
+    const JERK_CURL_TEMPO = JERK_TEMPO_RODZINY; /* 10.11.2026: rozszerzone na rodziny dip, chest_press_machine, cable_press, back_extension (partia 4); 09.11.2026: rozszerzone na cable_row (Seated Cable Row i Wiosłowanie siedząc z kartą własną: błąd mis.jerk to błąd tempa, poza końca ruchu bez zmiany — ta sama przyczyna co curl i triceps); 05.11.2026: rozszerzone na triceps (3 ćwiczenia z zestawem ogólnym, recenzja niezależna r5 przyjęła jak w curl); ta sama przyczyna dla całej rodziny curl (błąd tempa); asercja czerwona już na 67ceb782 przed scaleniem integracji, rozszerzona 03.11.2026 z listy pojedynczej na rodzinę */
     const NA_DOLE = ['pu.partial']; /* fala 25, 01.11.2026: „bez wyprostu rąk na dole” widać w u = 0, góra jak w pozie poprawnej (scripts/figures/v2-jakosc.mjs: BLAD_DOL) */
     for (const [f, k] of DATA_KEYS) {
       const s = figureSpec(k)!; const errs: (FigError | undefined)[] = [undefined, ...errorsOf(s).map(e => e.error)];
       for (const er of errs) for (const u of U) { const is = checkFrame(frameAt(s, u, er)); if (is.length) throw new Error(`${k} ${er ?? 'poprawna'} u=${u}: ${JSON.stringify(is)}`); }
       for (const e of errorsOf(s)) {
-        const uw = NA_DOLE.includes(e.cue) ? 0 : 1; const a = frameAt(s, uw).sk, b = frameAt(s, uw, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
+        const uw = NA_DOLE.includes(e.cue) ? 0 : 1; const a = frameAt(s, uw).sk, b = frameAt(s, uw, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.spineMid, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
         const dd = Math.max(...pts(a).map((p, i) => Math.hypot(p[0] - pts(b)[i][0], p[1] - pts(b)[i][1], p[2] - pts(b)[i][2]))); expect([k, e.error, dd > 3 || BLAD_NIEWIDOCZNY.includes(`${k}|${e.cue}`) || JERK_CURL_TEMPO(f, e.cue)]).toEqual([k, e.error, true]); /* widoczne: ≥ 3 cm (CONTRACT.visibleCm) */
       }
     }
@@ -133,10 +139,11 @@ describe('błędy z danych (bledy[])', () => {
 
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
 /* 10.11.2026 (partia 4): dip, chest_press_machine, cable_press, back_extension — mis.jerk z zestawów ogólnych (bdip, machinePress, cablePress, hipExt/cobra) to ten sam błąd tempa (errors.ts kind „tempo”), poza się nie zmienia; zestawy zrecenzowane niezależnie (partia4-*-r2/r4) */
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => ['curl', 'triceps', 'dip', 'chest_press_machine', 'cable_press', 'back_extension'].includes(f) && cue === 'mis.jerk';
+/* partia 3 (09.11.2026): zestawy ogólne vpull, shrug, row, hipAbd z błędem tempa mis.jerk — jak curl (recenzje niezależne partii 3 przyjęły zestawy) */
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => ['curl', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'cable_row', 'dip', 'chest_press_machine', 'cable_press', 'back_extension'].includes(f) && cue === 'mis.jerk';
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
-    expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('dip', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_press_machine', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_press', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('dip', 'mis.other')).toBe(false);
+    expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('dip', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_press_machine', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_press', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('dip', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.other')).toBe(false);
     expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false);
   });
 });
