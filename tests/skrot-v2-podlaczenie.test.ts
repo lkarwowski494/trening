@@ -11,15 +11,15 @@ import { KORZEN, kopia, kolejka, podlaczenie, skroty, usunKopie, type Wynik, typ
 
 const FAM = ['squat', 'pull_up', 'curl', 'olympic'];
 const V2 = 'lib/figures/v2/';
-const STATUS_LEG_ISOLATION: Zmiana = { plik: V2 + 'families.ts', z: "{ id: 'leg_isolation', status: 'planned'", na: "{ id: 'leg_isolation', status: 'ready'" };
+const STATUS_CORE_HANG: Zmiana = { plik: V2 + 'families.ts', z: "{ id: 'core_hang', status: 'planned'", na: "{ id: 'core_hang', status: 'ready'" };
 const UI_LEG = "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }";
 const SCEN: Record<string, Zmiana[]> = {
-  statusInnej: [STATUS_LEG_ISOLATION],
+  statusInnej: [STATUS_CORE_HANG],
   statusWlasnej: [{ plik: V2 + 'families.ts', z: "{ id: 'curl', status: 'ready'", na: "{ id: 'curl', status: 'planned'" }],
-  load: podlaczenie('leg_isolation', { load: true }),
-  uiInnej: [{ plik: V2 + 'rodziny/carry.ts', z: "ui: { names: { first: 'Marsz'", na: "ui: { names: { first: 'Chód'" }, ...podlaczenie('leg_isolation', { ui: UI_LEG })],
+  load: podlaczenie('core_hang', { load: true }),
+  uiInnej: [{ plik: V2 + 'rodziny/carry.ts', z: "ui: { names: { first: 'Marsz'", na: "ui: { names: { first: 'Chód'" }, ...podlaczenie('core_hang', { ui: UI_LEG })],
   uiWlasny: [{ plik: V2 + 'rodziny/pull_up.ts', z: "ui: { names: { first: 'Podciąganie'", na: "ui: { names: { first: 'Podciągnięcie'" }],
-  pelny: [STATUS_LEG_ISOLATION, ...podlaczenie('leg_isolation', { load: true, ui: UI_LEG })],
+  pelny: [STATUS_CORE_HANG, ...podlaczenie('core_hang', { load: true, ui: UI_LEG })],
   widoki: [{ plik: V2 + 'families.ts', z: "label: 'Przysiad obustronny', views: ['side', 'front']", na: "label: 'Przysiad obustronny', views: ['side']" }],
   izometria: [{ plik: V2 + 'poseData.ts', z: "  'Dead Hang',\n", na: '' }],
 };
