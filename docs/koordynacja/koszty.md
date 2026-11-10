@@ -28,3 +28,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | koordynator …VBvauzmGEDCSRshqWXa | M9 | — | 15,38 | ~29 | 12:05 → 15:07 | — | przekazanie |
 | C2 | 08 build (partia 6) | 60 | 8,14 | 27,9 | 13:16 → … → ca9e8357 → 42847984477 zielony → przyjęta 16:30 | — | w integracji 584bca9 |
 | D2 | 08 build (partia 7) | 60 | 10,51 | 31,5 | 13:20 → … → 9e3db956 → 42848680372 zielony → do pociągu-6 | konflikt z partią 6 (28 plików) → pociąg | zarchiwizowana 16:40 |
+| F2 | 08 build (partia 9) | 60 | 9,02 | 28,6 | 14:28 → … → 1bb3b55c → 42857877718 zielony → do pociągu-6 | — | zarchiwizowana 17:12 |
