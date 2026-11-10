@@ -1,0 +1,106 @@
+{
+ "v2": {
+  "carry": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "recenzja niezależna r1 (bramka 4, L-047, L-050) — do poprawy: 2 × WYSOKIE (W1, W2), 2 × ŚREDNIE (S1, S2), 1 × NISKIE",
+   "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "1840bd9a3028",
+   "liczba": 7,
+   "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 7 ćwiczeń × widok side = 7 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z 8cfa96c i obejrzane w pełnej rozdzielczości (u 0; 0,05; 0,1 powiększone 2–3×); arkusz-nakladka.mjs: Farmer's Walk, Suitcase Carry. Ślad (frameAt, u co 0,01): hantle = chwyt R, kettlebell = chwyt ręki trzyma — 0,0 cm od chwytu; trap bar i Rickshaw = miednica, 12,7–12,8 cm od środka chwytów (W2).",
+   "uwagi": "W1 WYSOKIE: Double Kettlebell Front Rack Carry — chwyt 34,0 cm przed barkiem, łokieć 115°, dzwon 6,7 cm od tułowia (zrecenzowany rack Double Kettlebell Front Squat: 15,1 cm, 149°); rack_caly nie mierzy x. W2 WYSOKIE: Farmer's Walk (trap bar), Rickshaw Carry — ślad w miednicy 12,7–12,8 cm od gryfu (contract.ts nie obsługuje gryf_szesciokatny; tests/figures-v2-tor.test.ts C1 poza zakresem). S1 ŚREDNIE: Overhead Carry (hantle) — hantle 16,0 cm przed barkiem (zrecenzowane nad głową −7,7…+3,9). S2 ŚREDNIE: brak obrotPrzedramienia — hantle przy boku z osią poprzeczną (Farmer's Walk, Overhead Carry). N1 NISKIE: Farmers Handles jako hantel r 10 (uproszczenie gear.ts:441). Bez znalezisk: przenikanie (min 0,6 cm), chwyty 0 cm, tułów 0°/bez przechyłu, reguły rece_proste i ciezar_przy_biodrach, nakładka carryTorsoPlumb, Rickshaw jako trap bar (przybliżenie nazwane), testy K14.",
+   "cwiczenia": [
+    "Farmer's Walk",
+    "Farmer's Walk (Farmers Handles)",
+    "Farmer's Walk (trap bar)",
+    "Rickshaw Carry",
+    "Suitcase Carry",
+    "Overhead Carry (hantle)",
+    "Double Kettlebell Front Rack Carry"
+   ],
+   "bez_rysunku": []
+  }
+ },
+ "zestawy": {
+  "Farmer's Walk (Farmers Handles)": {
+   "rodzina": "carry",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "b26682582402",
+   "uwagi": "carry.noLean (tułów 0°, bez przechyłu), carry.walk (marsz w cyklu) — zgodne z rysunkiem. Rysunek uchwytów — N1/S2 (wpis v2)."
+  },
+  "Farmer's Walk (trap bar)": {
+   "rodzina": "carry",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "b26682582402",
+   "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem. Ślad toru — W2 (wpis v2), nie dotyczy zdań zestawu."
+  },
+  "Rickshaw Carry": {
+   "rodzina": "carry",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "b26682582402",
+   "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem (rama jako trap bar, przybliżenie nazwane). Ślad toru — W2 (wpis v2)."
+  },
+  "Overhead Carry (hantle)": {
+   "rodzina": "carry",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "b26682582402",
+   "uwagi": "carry.noLean (tułów 0°, bez przechyłu), carry.walk — zgodne z rysunkiem. Położenie hantli przed barkiem — S1 (wpis v2), nie dotyczy zdań zestawu."
+  },
+  "Double Kettlebell Front Rack Carry": {
+   "rodzina": "carry",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "b26682582402",
+   "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem. Pozycja rąk (nie rack) — W1 (wpis v2), nie dotyczy zdań zestawu."
+  }
+ },
+ "karty": {
+  "Farmer's Walk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny carry, L-047)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "db13ea14b2b8",
+   "uwagi": "carry.two (ciężar w każdej ręce, ręce wzdłuż boków, przy biodrach: łokieć 13–15°, chwyt 63 cm pod barkiem), carry.walk (marsz w cyklu), lunge.torso (tułów 0° w każdej klatce) — zgodne z rysunkiem v2. Oś hantla poprzeczna (S2 w wpisie v2) nie przeczy treści. Skrót karty bez zmian względem wpisu z 28.10.2026."
+  },
+  "Suitcase Carry": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny carry, L-047)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r1, gałąź figury/partia-5-carry @ 8cfa96c (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r1-audytor-2026-11-10.md",
+   "sha": "cdf5c579c5c0",
+   "uwagi": "carry.one (kettlebell w prawej ręce, ręka wzdłuż boku, przy biodrze; lewa wolna), carry.walk, carry.noLean (pochylenie 0°, przechylTulowia 0 we wszystkich klatkach; przechył boczny i tak niewidoczny z boku) — zgodne z rysunkiem v2. Skrót karty bez zmian względem wpisu z 28.10.2026."
+  }
+ },
+ "v1_zastapiona": []
+}

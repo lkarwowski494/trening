@@ -1,0 +1,31 @@
+{
+ "v2": {
+  "core_hang": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "recenzja niezależna r1 (bramka 4, L-047, L-050) — wyświetlana: 0 × KRYTYCZNE/WYSOKIE, 1 × ŚREDNIE (Ś1, drążek niewidoczny — tania poprawka zalecana przed włączeniem), 2 × NISKIE",
+   "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny core_hang, partia 5, runda r1, gałąź figury/partia-5-core_hang @ 5b7f62f (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-core_hang-r1-audytor-2026-11-10.md",
+   "sha": "d5d8a4524dbe",
+   "liczba": 4,
+   "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 3 ćwiczenia × widok side = 3 arkusze, 21 kadrów co 0,05, wygenerowane przez audytora z 5b7f62f i obejrzane w pełnej rozdzielczości (kadry u 0 i 1 powiększone 4×); arkusz-nakladka.mjs --family core_hang (3 arkusze). Bez ciężaru — ślad miednicy: Hanging Knee Raise 8,7 cm w przód, Hanging Leg Raise 10,4 cm w przód, Toes to Bar 22 cm w przód i 28 cm w górę; dłonie 0,00 cm od osi drążka w 21/21 kadrach.",
+   "uwagi": "Ś1 ŚREDNIE: drążek bez słupka — w rzucie z boku kółko r 1,6 cm pod dłonią, postać wygląda na wiszącą w powietrzu (pull_up ma slupek x 0 h 235, contract.ts:111-112); karta hang.setup „Zawiśnij na drążku”. N1 NISKIE: zwis u = 0 11 cm za osią chwytu (ramię 10,0° od pionu). N2 NISKIE: łuk biodra przy hang.ribs nie pokazuje podwijania miednicy (zgiecieKregoslupa 0) — przybliżenie kierunku reguły kolana_ku_klatce uczciwe (biodro 10→100° ↔ kolano–bark 92→60 cm). Bez znalezisk: zakresy vs karty (HKR Δ 32 cm ≥ 20; HLR kolano 12–17° ≤ 30, nogi −7°; T2B nogi 86° nad poziomem, stopa przy drążku 6,3 cm od osi palca), odchylenie T2B (miednica 22 cm w przód, bark 19 cm w tył, tułów −55° — obrót z równowagi, otwarte_czesciowo), przenikanie, nakładka, testy K14.",
+   "cwiczenia": [
+    "Hanging Knee Raise",
+    "Hanging Leg Raise",
+    "Toes to Bar"
+   ],
+   "bez_rysunku": [
+    "L-Sit"
+   ]
+  }
+ },
+ "zestawy": {},
+ "karty": {
+  "Hanging Knee Raise": { "werdykt": "wyswietlana", "data": "2026-11-10", "stan": "zrecenzowana niezależnie (K11, treść karty wobec rysunku v2 core_hang)", "autor": "programista A4 (karta własna, lib/cues/data.json)", "recenzent": "audytor (subagent)", "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f, 10.11.2026", "sha": "ac21253c514f", "uwagi": "hang.knees.move zgodne (biodro 10→100°, kolano–bark 92→60 cm); hang.setup „na drążku” — drążek niewidoczny (Ś1 rodziny)." },
+  "Hanging Leg Raise": { "werdykt": "wyswietlana", "data": "2026-11-10", "stan": "zrecenzowana niezależnie (K11)", "autor": "programista A4 (karta własna, lib/cues/data.json)", "recenzent": "audytor (subagent)", "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f, 10.11.2026", "sha": "063d8f4c9283", "uwagi": "hang.legs.move zgodne (nogi proste, kolano 12–17°, u = 1 nogi 7° pod poziomem); hang.setup — Ś1 rodziny." },
+  "Toes to Bar": { "werdykt": "wyswietlana", "data": "2026-11-10", "stan": "zrecenzowana niezależnie (K11)", "autor": "programista A4 (karta własna, lib/cues/data.json)", "recenzent": "audytor (subagent)", "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f, 10.11.2026", "sha": "369a88554933", "uwagi": "hang.t2b.move zgodne (stopa przy drążku w u = 1), hang.t2b.straight (kolano 162–175°), hang.pressBar (tułów −55°, obrót wokół chwytu); hang.setup — Ś1 rodziny." }
+ },
+ "v1_zastapiona": []
+}

@@ -272,9 +272,10 @@ const PRZED: Record<string, Record<string, string>> = {
   strongman: {
     "Yoke Walk": '6524de554a2b',
   },
+  /* 10.11.2026 (partia 5): odciski Hanging Knee Raise i Hanging Leg Raise przeliczone po dodaniu słupka przy drążku (2db4b576: tylko element rekwizytu `slupek` w pozach; geometria ciała bez zmian) */
   core_hang: {
-    "Hanging Knee Raise": 'fbb0bd7f7348',
-    "Hanging Leg Raise": '6f8b20e6e40b',
+    "Hanging Knee Raise": '1a7d69acbd90',
+    "Hanging Leg Raise": '50e36badc5eb',
     "Toes to Bar": 'f5cd758c3c13',
   },
   core_standing: {
