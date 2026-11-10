@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 274,
+      "v2": 291,
       "v1": 27,
-      "bezFigury": 407,
-      "daneV2NieWlaczone": 260,
-      "wyjatekBezAnimacji": 135
+      "bezFigury": 390,
+      "daneV2NieWlaczone": 243,
+      "wyjatekBezAnimacji": 130
     },
-    "animowanyBlad": 158,
+    "animowanyBlad": 168,
     "wskazowki": {
       "wlasne": 309,
       "wlasneZBledami": 197,
-      "ogolne": 129,
-      "bezTekstu": 270
+      "ogolne": 137,
+      "bezTekstu": 262
     },
-    "czesteBledyTekst": 325,
+    "czesteBledyTekst": 333,
     "roleMiesni": 513,
-    "pelnaKarta": 269,
-    "pelnaKartaBlad": 156,
-    "recenzjaFigur": 274
+    "pelnaKarta": 279,
+    "pelnaKartaBlad": 161,
+    "recenzjaFigur": 291
   },
   "kartZTekstami": 597,
   "rodziny": {
@@ -66,15 +66,15 @@
     "pushup_plank": {
       "status": "ready",
       "cwiczen": 30,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 18,
+      "figuraV2": 17,
+      "daneV2NieWlaczone": 1,
       "v1": 0,
       "wlasne": 12,
-      "ogolne": 0,
-      "bezTekstu": 18,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 8,
+      "bezTekstu": 10,
+      "pelnaKarta": 10,
+      "pelnaKartaBlad": 5,
+      "recenzja": 17
     },
     "dip": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 274,
-    "figura.wAplikacji": 301,
+    "figura.v2": 291,
+    "figura.wAplikacji": 318,
     "figura.zDanymiV2": 534,
-    "animowanyBlad": 158,
+    "animowanyBlad": 168,
     "wskazowki.wlasne": 309,
     "wskazowki.wlasneZBledami": 197,
-    "wskazowki.zTekstem": 438,
-    "czesteBledyTekst": 325,
+    "wskazowki.zTekstem": 446,
+    "czesteBledyTekst": 333,
     "roleMiesni": 513,
-    "pelnaKarta": 269,
-    "pelnaKartaBlad": 156,
-    "recenzjaFigur": 274,
+    "pelnaKarta": 279,
+    "pelnaKartaBlad": 161,
+    "recenzjaFigur": 291,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 597,
     "jezyk.en.kompletne": 597,

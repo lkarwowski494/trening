@@ -1,18 +1,18 @@
 {
   "opis": "Minimum zapadki pokrycia katalogu (tests/pokrycie-katalogu.test.ts). Liczba „dobra” nie może spaść poniżej minimum. Podniesienie po fali prac: node scripts/pokrycie-katalogu.mjs --podnies-minimum. Obniżka tylko świadomie: zmień `minimum` i dopisz w `obnizenia` wpis { \"powod\": \"…\", \"data\": \"DD.MM.RRRR\" } pod nazwą metryki (rekord zostaje — test wymaga powodu, gdy minimum < rekord).",
   "minimum": {
-    "figura.v2": 292,
-    "figura.wAplikacji": 319,
+    "figura.v2": 291,
+    "figura.wAplikacji": 318,
     "figura.zDanymiV2": 534,
-    "animowanyBlad": 169,
-    "wskazowki.wlasne": 300,
-    "wskazowki.wlasneZBledami": 188,
-    "wskazowki.zTekstem": 447,
-    "czesteBledyTekst": 334,
+    "animowanyBlad": 168,
+    "wskazowki.wlasne": 309,
+    "wskazowki.wlasneZBledami": 197,
+    "wskazowki.zTekstem": 446,
+    "czesteBledyTekst": 333,
     "roleMiesni": 513,
-    "pelnaKarta": 280,
-    "pelnaKartaBlad": 162,
-    "recenzjaFigur": 292,
+    "pelnaKarta": 279,
+    "pelnaKartaBlad": 161,
+    "recenzjaFigur": 291,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 597,
     "jezyk.en.kompletne": 597,
@@ -55,8 +55,8 @@
     "figura.wAplikacji": 319,
     "figura.zDanymiV2": 536,
     "animowanyBlad": 169,
-    "wskazowki.wlasne": 300,
-    "wskazowki.wlasneZBledami": 188,
+    "wskazowki.wlasne": 309,
+    "wskazowki.wlasneZBledami": 197,
     "wskazowki.zTekstem": 640,
     "czesteBledyTekst": 557,
     "roleMiesni": 513,
@@ -102,32 +102,32 @@
   },
   "obnizenia": {
     "figura.v2": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "figura.wAplikacji": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "figura.zDanymiV2": {
       "powod": "partia 3: Lateral Band Walk i Monster Walk (hip_abd_add) bez rysunku do poprawki marszu — recenzja H-1/H-2 WYSOKIE, backlog P3-MARSZ (docs/21), decyzja koordynatora 09.11.2026 (docs/18)",
       "data": "09.11.2026"
     },
     "animowanyBlad": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "wskazowki.zTekstem": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "czesteBledyTekst": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "pelnaKarta": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "jezyk.pl.kompletne": {
       "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
@@ -150,8 +150,8 @@
       "data": "02.11.2026"
     },
     "recenzjaFigur": {
-      "powod": "minimum zostaje na celu 1.1 (98) do decyzji właściciela o podniesieniu celu; rekord rośnie od wpisów recenzji kart T1 (rekord 132, 04.11.2026) — test „cel nie niższy niż minimum” wymaga zgodności celu z minimum",
-      "data": "04.11.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     },
     "jezyk.cs.kompletne": {
       "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
@@ -280,6 +280,10 @@
     "jezyk.zh-Hant.kompletne": {
       "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
       "data": "09.11.2026"
+    },
+    "pelnaKartaBlad": {
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
+      "data": "10.11.2026"
     }
   }
 }

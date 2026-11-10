@@ -60,7 +60,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
   });
   test('założenia symulacji: karty własne cue-sets (b = own) = karty w źródłach; wstrzymane figury (V2_WSTRZYMANE) poza stanem końcowym', () => {
     expect(sym.kontrola.cuesSetsOwnRownaZrodlu).toBe(true);
-    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Snatch Shrug']);
+    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Snatch Shrug']); /* Plyo Push-Up wstrzymany 10.11.2026 (PP-W1) */
   });
   test('komplet kart języków: w stanie końcowym każdy język ma tyle samo kart kompletnych (wszystkie teksty przetłumaczone — założenie (a))', () => {
     const lang = Object.keys(cele.min).filter(k => /^jezyk\..+\.kompletne$/.test(k));
@@ -80,7 +80,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(sym.kontrola.kartyDoPoprawy).toEqual(doPoprawy);
     for (const k of doPoprawy) expect([k, sym.gain.some(g => g.key === k)]).toEqual([k, false]);
     expect(sym.rozbicie.a).toBe(0); /* delt_raise: zysk (a) znika razem z kartą „do poprawy” */
-    expect(cele.min.pelnaKarta).toBe(462); /* 455 → 462 po scaleniu pushup_plank (10.11.2026): +7 z (c) — wynik symulacji, cel wyższy; cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 455 = symulacja na wspólnym stanie (09.11.2026): Machine Hip Thrust wstrzymany (partia 2, V2_WSTRZYMANE) i marsze z gumą (partia 3, P3-MARSZ w docs/21) — wynik symulacji, nie poluzowanie */
+    expect(cele.min.pelnaKarta).toBe(461); /* 462 → 461 (10.11.2026): Plyo Push-Up wstrzymany (V2_WSTRZYMANE, PP-W1) — wynik symulacji; 455 → 462 po scaleniu pushup_plank (10.11.2026): +7 z (c) — wynik symulacji, cel wyższy; cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 455 = symulacja na wspólnym stanie (09.11.2026): Machine Hip Thrust wstrzymany (partia 2, V2_WSTRZYMANE) i marsze z gumą (partia 3, P3-MARSZ w docs/21) — wynik symulacji, nie poluzowanie */
   });
   test('docs/18 ma wpis decyzji z 09.11.2026 (cytat właściciela, definicja, stare → nowe, odrzucone) z polami wdrożenia i testu', () => {
     const d = read('docs/18-przekazanie.md');
