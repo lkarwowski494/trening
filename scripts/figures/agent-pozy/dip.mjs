@@ -38,7 +38,7 @@ function zLawki(cw) {
   const mTop = [SX + tr * Math.sin(phi * R), yGora - tr * Math.cos(phi * R)]; const ankX = mTop[0] + 60; const pod = 20; const ay = kostkaStopyY(0, pod);
   const fr = (u) => { const a = a01(u); const Sy = lerp(yGora, yDol, a); const m = [SX + tr * Math.sin(phi * R), Sy - tr * Math.cos(phi * R)]; const p = -phi;
     const aR = [ankX, ay, 9], aL = [ankX, ay, -9];
-    return K({ u, m, p, head: p * 0.5, R: { a: aR, pod, rot: 10, pole: [0.3, 1, 0.05] }, L: { a: aL, pod, rot: 10, pole: [0.3, 1, -0.05] }, hr: { g: [hx, top + 3.5, ZR_LAWKA], pole: [-0.4, -1, -0.35] }, hl: { g: [hx, top + 3.5, -ZR_LAWKA], pole: [-0.4, -1, 0.35] } }); };
+    return K({ u, m, p, head: p * 0.5, R: { a: aR, pod, rot: 10, pole: [0.3, 1, 0.05] }, L: { a: aL, pod, rot: 10, pole: [0.3, 1, -0.05] }, hr: { g: [hx, top + 3.5, ZR_LAWKA], pole: [0.5, -0.3, -0.15] }, hl: { g: [hx, top + 3.5, -ZR_LAWKA], pole: [0.5, -0.3, 0.15] } }); };
   return poza(RODZINA, cw, [PODLOGA(-110, 150), { rodzaj: 'lawka', x: xf - 55, top, kat: 0, dlugosc: 75, siedzisko: 55 }], US.map(fr), []);
 }
 

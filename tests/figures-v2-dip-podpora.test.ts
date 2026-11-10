@@ -61,10 +61,14 @@ describe('dip: dłoń na podporze w każdym kadrze (10.11.2026, W1/W2/K5)', () =
   });
 });
 
-/* (10.11.2026, r2 W4) Ławka: łokcie nie rozchodzą się na boki — |z łokcia| ≤ max(|z barku|, |z dłoni|) + 3 cm w każdym kadrze (karta: łokcie prosto do tyłu). */
-const bladLokci = (d: PoseData) => { const out: unknown[] = []; for (let i = 0; i <= 20; i++) { const u = i / 20; const f = keyframeFrame(d, u); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const lim = Math.max(Math.abs(a.shoulder[2]), Math.abs(a.grip[2])) + 3; if (Math.abs(a.elbow[2]) > lim) out.push([u, s, Math.abs(a.elbow[2]), lim]); } } return out; };
+/* (10.11.2026, r2 W4) Ławka: łokcie nie rozchodzą się na boki — |z łokcia| ≤ max(|z barku|, |z dłoni|) + 3 cm i ≥ min(|z barku|, |z dłoni|) − 3 cm w każdym kadrze (karta: łokcie prosto do tyłu — nad dłońmi, nie na boki i nie zbiegające się do środka). */
+const bladLokci = (d: PoseData) => { const out: unknown[] = []; for (let i = 0; i <= 20; i++) { const u = i / 20; const f = keyframeFrame(d, u); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const hi = Math.max(Math.abs(a.shoulder[2]), Math.abs(a.grip[2])) + 3; const lo = Math.min(Math.abs(a.shoulder[2]), Math.abs(a.grip[2])) - 3; const e = Math.abs(a.elbow[2]); if (e > hi || e < lo) out.push([u, s, e, lo, hi]); } } return out; };
 describe('Triceps Dips (ławka): łokcie do tyłu, bez rozchylania (10.11.2026, W4)', () => {
-  test('w każdym kadrze |z łokcia| ≤ max(|z barku|, |z dłoni|) + 3 cm', () => { expect(bladLokci(poses['Triceps Dips (ławka)'])).toEqual([]); });
+  test('w każdym kadrze min(|z barku|,|z dłoni|) − 3 ≤ |z łokcia| ≤ max(...) + 3 cm', () => { expect(bladLokci(poses['Triceps Dips (ławka)'])).toEqual([]); });
+  test('negatyw: biegun łokcia zbiegający łokcie do środka (z = 1,7 cm przy u = 1; wariant z r2) jest wykrywany', () => {
+    const d = JSON.parse(JSON.stringify(poses['Triceps Dips (ławka)'])) as PoseData; for (const kf of (d as any).klatki) for (const h of ['R', 'L'] as const) kf.rece[h].biegunLokcia = [-0.4, -1, (h === 'R' ? -1 : 1) * 0.35];
+    expect(bladLokci(d).length).toBeGreaterThan(0);
+  });
   test('negatyw: biegun łokcia na zewnątrz (stan sprzed poprawki) jest wykrywany', () => {
     const d = JSON.parse(JSON.stringify(poses['Triceps Dips (ławka)'])) as PoseData; for (const kf of (d as any).klatki) for (const h of ['R', 'L'] as const) kf.rece[h].biegunLokcia = [-0.4, -1, (h === 'R' ? 1 : -1) * 0.3];
     expect(bladLokci(d).length).toBeGreaterThan(0);
