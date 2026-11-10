@@ -809,5 +809,13 @@
  "as.lap": "Podnieś kamień nad kolana i oprzyj go na udach.",
  "as.extend": "Z kamieniem na udach mocno wypchnij biodra w przód i wstań, unosząc kamień wyżej.",
  "pinch.setup": "Ściśnij talerze chwytem szczypcowym — kciuk z jednej strony, palce z drugiej.",
- "pinch.hold": "Wstań i ściskaj talerze, aż chwyt zacznie słabnąć."
+ "pinch.hold": "Wstań i ściskaj talerze, aż chwyt zacznie słabnąć.",
+ "cdl.setup": "Ustaw się i chwyć sztangę jak do zarzutu; kolana wypchnięte na zewnątrz, aż dotkną rąk.",
+ "cdl.move": "Odepchnij się nogami od podłogi i trzymaj ten sam kąt pleców, aż sztanga minie kolana.",
+ "slrdl.setup": "Stań na jednej nodze, kolano lekko ugięte.",
+ "slrdl.move": "Pochyl się, cofając biodra, a wolną nogę prowadź prosto w tył; wróć, wypychając biodra w przód.",
+ "bhs.setup": "Sztanga za nogami, trzymaj ją nachwytem w opuszczonych rękach; stopy na szerokość barków.",
+ "ohs.setup": "Sztanga nad głową na prostych rękach.",
+ "ohs.move": "Zejdź w przysiad, trzymając sztangę cały czas nad głową, i wstań.",
+ "ohs.arms": "Ręce przez cały ruch wyprostowane."
 }

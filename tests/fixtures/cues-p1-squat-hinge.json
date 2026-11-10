@@ -1,0 +1,226 @@
+{
+ "_opis": "Partia P1 integracji badań (rodziny squat i hinge z rysunkiem v2, status ready; linia 1.1, 09.11.2026): ćwiczenia z nowymi kartami własnymi, karty niepełne (partial), nowe zdania, zdania odrzucone (mniej niż dwie organizacje szczebla ≤ 4 — także błędy wnioskowane), błędy bez pozy rysunku rigowego (bezPozy — rysunek squat/hinge pokazuje tylko błędy z lib/figures/v2/errors.ts; zmiana silnika poza partią), karty bez błędu (bezBledu — rodzina ready z animowanym błędem zestawu ogólnego: karta bez błędu nie zastępuje zestawu, docs/18 02.11.2026) i odwołania do źródeł szczebla 5 (usunięte z kart). Źródło: badania W1 (badania/g4-nogi — blok po przeliczeniu szczebli: Single Leg RDL) i W2 (badania/w2-nogi: hinge-cz1, hinge-cz2, squat-cz1, squat-cz2) z 02.11.2026. Lista z STAN-A2 (P1): 17 ćwiczeń.",
+ "rodzina": "squat i hinge",
+ "cwiczenia": [
+  "Clean Deadlift",
+  "Single Leg RDL (hantel)",
+  "Single Leg RDL (linki)",
+  "Barbell Hack Squat",
+  "Bodyweight Squat",
+  "Dumbbell Squat",
+  "Overhead Squat",
+  "Squat with Chains",
+  "Squat with Bands"
+ ],
+ "partial": [
+  "Single Leg RDL (hantel)",
+  "Single Leg RDL (linki)",
+  "Barbell Hack Squat",
+  "Bodyweight Squat",
+  "Dumbbell Squat",
+  "Overhead Squat"
+ ],
+ "zdania": [
+  "bhs.setup",
+  "cdl.move",
+  "cdl.setup",
+  "ohs.arms",
+  "ohs.move",
+  "ohs.setup",
+  "slrdl.move",
+  "slrdl.setup"
+ ],
+ "odrzucone": [
+  [
+   "Stiff-Legged Barbell Deadlift",
+   "mistakes",
+   "mis.barAway",
+   [
+    "Coach"
+   ]
+  ],
+  [
+   "Stiff-Legged Barbell Deadlift",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "Smith Machine Stiff-Legged Deadlift",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "Deficit Deadlift",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "Sumo Deadlift (kettlebell)",
+   "mistakes",
+   "mis.roundBack",
+   [
+    "NASM"
+   ]
+  ],
+  [
+   "Clean Deadlift",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "Clean Deadlift",
+   "mistakes",
+   "dl.mis.hipsFirst",
+   []
+  ],
+  [
+   "Axle Deadlift",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "Axle Deadlift",
+   "mistakes",
+   "mis.barAway",
+   [
+    "NASM"
+   ]
+  ],
+  [
+   "Cable Deadlift",
+   "mistakes",
+   "mis.roundBack",
+   [
+    "NASM"
+   ]
+  ],
+  [
+   "Bodyweight Squat",
+   "mistakes",
+   "sq.mis.heels",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Zercher Squat",
+   "mistakes",
+   "sq.mis.chestDrop",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Double Kettlebell Front Squat",
+   "mistakes",
+   "kbfs.mis.drop",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Squat with Chains",
+   "setup",
+   "sqc.chains",
+   [
+    "Catalyst Athletics"
+   ]
+  ],
+  [
+   "Squat with Bands",
+   "setup",
+   "sqb.bands",
+   [
+    "BarBend"
+   ]
+  ]
+ ],
+ "bezPozy": [
+  [
+   "Single Leg RDL (hantel)",
+   "slrdl.mis.hipOpen"
+  ],
+  [
+   "Single Leg RDL (linki)",
+   "slrdl.mis.hipOpen"
+  ],
+  [
+   "Overhead Squat",
+   "ohs.mis.armsForward"
+  ]
+ ],
+ "bezBledu": [
+  "Stiff-Legged Barbell Deadlift",
+  "Smith Machine Stiff-Legged Deadlift",
+  "Deficit Deadlift",
+  "Sumo Deadlift (kettlebell)",
+  "Axle Deadlift",
+  "Cable Deadlift",
+  "Zercher Squat",
+  "Double Kettlebell Front Squat"
+ ],
+ "bezUstawieniaLubRuchu": [],
+ "usunieteOdwolania": [
+  [
+   "Cable Deadlift",
+   "cabledl.setup",
+   "bos-cable-deadlift"
+  ],
+  [
+   "Cable Deadlift",
+   "tb.lift",
+   "bos-cable-deadlift"
+  ],
+  [
+   "Cable Deadlift",
+   "hinge.back",
+   "bos-cable-deadlift"
+  ],
+  [
+   "Cable Deadlift",
+   "cabledl.close",
+   "bos-cable-deadlift"
+  ],
+  [
+   "Squat with Chains",
+   "sqc.chains",
+   "elitefts-set-up-chains"
+  ],
+  [
+   "Squat with Bands",
+   "sqb.bands",
+   "elitefts-bands-setup"
+  ],
+  [
+   "Squat with Bands",
+   "sq.bar",
+   "elitefts-bands-setup"
+  ]
+ ],
+ "noweZrodla": [
+  "catalyst-176",
+  "barbend-vaughn-clean-deadlift",
+  "ace-127",
+  "barbend-single-leg-romanian-deadlift",
+  "coach-single-leg-romanian-deadlift",
+  "ace-350",
+  "barbend-hack-squat",
+  "coach-hack-squat",
+  "issa-mastering-squat",
+  "barbend-dumbbell-squat",
+  "catalyst-79-overhead-squat",
+  "issa-dont-know-squat",
+  "catalyst-chain-back-squat",
+  "barbend-accommodating-resistance",
+  "barbend-back-squat"
+ ],
+ "otwarte": {
+  "Barbell Hack Squat::sq.mis.roundBack": "dwie organizacje opisują zaokrąglenie dolnego odcinka (BarBend „Rounding”; Coach — „the lower back and tailbone to round, or curl under”), ale brak zdania o zaokrągleniu na dole przysiadu i pozy rigu (istniejące mis.roundBack mówi o dociąganiu ciężaru) — recenzja niezależna rundy 1, 09.11.2026",
+  "Overhead Squat::ohs.mis.armsForward": "dwie organizacje, brak pozy rigu (zmiana silnika poza partią)"
+ }
+}

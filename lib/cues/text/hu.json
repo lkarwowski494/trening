@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Állj kitörőállásba: az egyik lábad elöl, a másik hátul.",
  "plyo.splitSwitch": "Ugorj fel, a levegőben válts lábat, és érkezz kitörőállásba a másik lábaddal elöl.",
  "sled.backGrip": "Fogd meg két kézzel a szánkó kötelét.",
- "sled.backPedal": "Állj szemben a szánkóval, és sétálj hátrafelé, a lábaddal erősen tolva."
+ "sled.backPedal": "Állj szemben a szánkóval, és sétálj hátrafelé, a lábaddal erősen tolva.",
+ "bhs.setup": "A rúd a lábad mögött, tartsd felső fogással, lelógó karral; a lábad vállszélességben.",
+ "cdl.move": "Told el magad a talajtól a lábaddal, és tartsd ugyanazt a hátszöget, amíg a rúd el nem hagyja a térdedet.",
+ "cdl.setup": "Állj be, és fogd meg a rudat, mint felvételnél; told kifelé a térdedet, amíg hozzá nem ér a karodhoz.",
+ "ohs.arms": "A karod végig maradjon nyújtva.",
+ "ohs.move": "Guggolj le úgy, hogy a rúd végig a fejed fölött marad, majd állj fel.",
+ "ohs.setup": "A rúd a fejed fölött, nyújtott karral.",
+ "slrdl.move": "Dőlj előre a csípődet hátratolva, a szabad lábadat pedig vezesd egyenesen hátra; a csípőd előretolásával állj vissza.",
+ "slrdl.setup": "Állj fél lábra, a térded enyhén hajlítva."
 }

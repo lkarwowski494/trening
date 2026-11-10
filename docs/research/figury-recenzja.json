@@ -625,13 +625,13 @@
   "v2": {
     "squat": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "kto": "audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026 (ruch, ślad, linie, nakładka i dobór bez zmian); wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "autor": "programista B0 (figury/nakladka-b0 @ d5a56f5f)",
-      "recenzent": "audytor",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna różnicy rysunku v2 po partii P1 (karty własne squat/hinge), tekst/p1-squat-hinge @ 8353c08e, czyste kopie f1472e08 i 8353c08e, 09.11.2026; raport docs/research/recenzje/p1-squat-hinge-roznica-audytor-2026-11-09.md; sha potwierdzone przez koordynatora na a5e525eb; wcześniej: audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po partii P1 (ruch i ślad bez zmian, zmienia się dobór po kartach), 09.11.2026; wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026 (ruch, ślad, linie, nakładka i dobór bez zmian); wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
+      "autor": "programista P1 (tekst/p1-squat-hinge @ 8353c08e; karty własne P1, ruch bez zmian); wcześniej: programista B0 (figury/nakladka-b0 @ d5a56f5f)",
+      "recenzent": "audytor (recenzja różnicy P1, 09.11.2026; nie pisał kart P1); wcześniej: audytor",
       "uwagi": "Różnica 08.11.2026 (recenzja niezależna, audytor; figury/nakladka-b0 @ 4f61b9cd vs integracja-1-1 @ c1d32a3a, czyste kopie git archive): skrót 855f7f1ea076 → 6913ea2e7f22 wyłącznie przez plik wspólny lib/figures/v2/reguly-cwiczen.json (dopisane klucze olympic i triceps; wpis squat w tym pliku równy) — porównanie składników skrótu (pliki V2_WSPOLNE po normalizujPlikV2 i wynik doboru po kartach) plik po pliku. Wpisy v1, kart i zestawów rodziny: skróty bez zmian, wpisy przeniesione bez zmian. Bez znalezisk dla rodziny. | 09.11.2026 (programista, zmiana RDL na gałęzi figury/rdl-glebokosc): skrót 6913ea2e7f22 → 2657a9758ed1 wyłącznie przez wspólny plik lib/figures/v2/variants.ts (zmienione tylko 2 wpisy hinge: RDL (sztanga), RDL (hantle/linki)); md5 klatek rysunku tej rodziny równe bazie integracja-1-1 @ 9dc2b0a9 (183 z 185 ćwiczeń z rysunkiem v2 bez zmian). To NIE jest nowa recenzja — recenzent niezależny potwierdza równość md5 przy recenzji hinge. 09.11.2026: równość md5 klatek 185/185 poza 2 RDL potwierdzona niezależnie przez audytora (recenzja hinge 09.11.2026, figury/rdl-glebokosc @ f546a93b) — skrót zmieniony tylko przez variants.ts (V2_WSPOLNE). 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem.",
-      "slad": "Ruch, ślad i nakładka bez zmian: własny md5 (skrypty /home/user/stan-b0/audytor/skrypty/md5-rysunek.mjs) z czystych kopii git archive c1d32a3a i 4f61b9cd (w kopii 4f61b9cd lista v2 w lib/figures/data.json przywrócona do 7 rodzin, jak po przepisaniu wpisów) — dla 25/25 ćwiczeń squat z rysunkiem równe: ruch (shapesAt bez i z mięśniami, contactShapes, badgesFor; każdy rzut, u co 1/8, bez błędu i z każdym błędem z errorsOf), ślad toru (trailFor), linie odniesienia i nakładka (guideShapes, overlayShapes — dobór surowy po kartach i ścieżka aplikacji guidesOf/techniquesOf), dobór (guidesFor, techniquesFor, errorsOf) i etykieta VoiceOver „Na rysunku” (onDrawingCues). Arkusze śladu z wcześniejszych recenzji pozostają ważne (ślad równy).",
+      "slad": "Ruch i ślad bez zmian: md5 z czystych kopii f1472e08 i 8353c08e dla 25/25 ćwiczeń — kształty, mięśnie, styki i ślad toru równe dla stanu poprawnego i każdego błędu możliwego w wariancie; arkusze ze śladem (oba motywy, kadry co 0,05) dla 6 ćwiczeń P1 przed i po — pozy i ślad bez zmian, zmienia się tylko dobór linii, nakładki i błędów oraz znaczki. Wcześniej: Ruch, ślad i nakładka bez zmian: własny md5 (skrypty /home/user/stan-b0/audytor/skrypty/md5-rysunek.mjs) z czystych kopii git archive c1d32a3a i 4f61b9cd (w kopii 4f61b9cd lista v2 w lib/figures/data.json przywrócona do 7 rodzin, jak po przepisaniu wpisów) — dla 25/25 ćwiczeń squat z rysunkiem równe: ruch (shapesAt bez i z mięśniami, contactShapes, badgesFor; każdy rzut, u co 1/8, bez błędu i z każdym błędem z errorsOf), ślad toru (trailFor), linie odniesienia i nakładka (guideShapes, overlayShapes — dobór surowy po kartach i ścieżka aplikacji guidesOf/techniquesOf), dobór (guidesFor, techniquesFor, errorsOf) i etykieta VoiceOver „Na rysunku” (onDrawingCues). Arkusze śladu z wcześniejszych recenzji pozostają ważne (ślad równy).",
       "sha": "b4626b78e4ad",
       "liczba": 25,
       "cwiczenia": [
@@ -4142,6 +4142,96 @@
       "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) @ 37333dc6, czysta kopia (lokalny katalog roboczy recenzenta, poza repo), 09.11.2026; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md",
       "sha": "2596b6e0425a",
       "uwagi": "lp.setup (plecy i miednica na oparciu, stopy płasko, kolana ok. 90° — rysunek 86°), lp.move, lp.noLock (góra 15°), lp.heels, lp.hips (miednica stała), sq.kneesToes i sq.mis.kneesIn (rysunek tylko z boku — nie przeczy) zgodne z rysunkiem v2. Wpis v1 8219dd20f3d3 → zastapiona przy włączeniu v2."
+    },
+    "Clean Deadlift": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "1734a33bd5e7",
+      "uwagi": "r2: bez zmian; Catalyst 176 + BarBend/Vaughn"
+    },
+    "Single Leg RDL (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "0594be52ae01",
+      "uwagi": "r2: slrdl.move 'cofając biodra' OK"
+    },
+    "Single Leg RDL (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "0594be52ae01",
+      "uwagi": "r2: P-4 naniesione (uproszczenie wariant sprzętu przy slrdl.move, mis.roundBack)"
+    },
+    "Barbell Hack Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "561375b5aeaa",
+      "uwagi": "r2: bez zmian treści; P-7 (roundBack → otwarte) wg koordynatora, nieweryfikowane w diffie"
+    },
+    "Bodyweight Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "fd4b1ab165f5",
+      "uwagi": "r2: bez zmian"
+    },
+    "Dumbbell Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "fd4b1ab165f5",
+      "uwagi": "r2: bez zmian; uproszczenie nazwane"
+    },
+    "Overhead Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "20f040e543b6",
+      "uwagi": "r2: ohs.setup skrócone do części wspólnej; sq.mis.heels = ISSA + SBS z nazwaną analogią"
+    },
+    "Squat with Chains": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026; warunek R2-1 spełniony (ExRx zastąpiony barbend-back-squat w cues.json)",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "2ee2db20499b",
+      "uwagi": "r2: sqc.chains odrzucone (EliteFTS=5); R2-1: sq.bar/sq.back — ExRx (403, nieprzeczytany) zastąpić barbend.com/back-squat (Step 2, Step 5); sq.back + SBS (spine rigid and extended); tekst bez zmian"
+    },
+    "Squat with Bands": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026; warunek R2-1 spełniony (ExRx zastąpiony barbend-back-squat w cues.json)",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "2ee2db20499b",
+      "uwagi": "r2: sqb.bands odrzucone (EliteFTS=5); R2-1 jak Chains; tekst bez zmian"
     }
   },
   "zestawy": {

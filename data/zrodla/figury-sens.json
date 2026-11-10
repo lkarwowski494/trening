@@ -1467,6 +1467,7 @@
           "cue": "dl.feet",
           "cue_wariant": {
             "Sumo Deadlift": {"cue": "sumo.stance"},
+            "Clean Deadlift": {"cue": "cdl.setup"},
             "Trap Bar Deadlift": {"cue": "tb.inside"},
             "Deadlift (hantle)": {"cue": "dbdl.setup"},
             "Cable Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
@@ -1566,6 +1567,10 @@
           "typ": "zawias_biodrowy",
           "grupa": "zakres",
           "cue": "rdl.move",
+          "cue_wariant": {
+            "Single Leg RDL (hantel)": {"cue": "slrdl.move"},
+            "Single Leg RDL (linki)": {"cue": "slrdl.move"}
+          },
           "cue_dodatkowe": [
             "rdl.depth"
           ],
@@ -1582,6 +1587,10 @@
           "typ": "kolana_max",
           "grupa": "kolana",
           "cue": "rdl.knees",
+          "cue_wariant": {
+            "Single Leg RDL (hantel)": {"cue": "slrdl.setup"},
+            "Single Leg RDL (linki)": {"cue": "slrdl.setup"}
+          },
           "cue_dodatkowe": ["rdl.dbMove", "rdl.move"],
           "parametry": {
             "max_deg": 45,
@@ -1596,8 +1605,8 @@
           "grupa": "tor",
           "cue": "dl.close",
           "cue_wariant": {
-            "Single Leg RDL (hantel)": {"cue": "rdl.dbMove"},
-            "Single Leg RDL (linki)": {"cue": "rdl.dbMove"}
+            "Single Leg RDL (hantel)": {"cue": null, "powod": "karta własna P1 (slrdl.*) nie mówi o ciężarze przy nodze; rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"},
+            "Single Leg RDL (linki)": {"cue": null, "powod": "karta własna P1 (slrdl.*) nie mówi o ciężarze przy nodze; rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"}
           },
           "cue_dodatkowe": [
             "mis.barAway",

@@ -10753,6 +10753,10 @@
       {
        "wzorzec": "like\\s+for\\s+(a|an|the)\\s",
        "powod": "kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift”"
+      },
+      {
+       "wzorzec": "as\\s+for\\s+(a|an|the)\\s",
+       "powod": "kalka z polskiego „jak do …” w wersji „as for a …” (recenzja lokalizacji P1, 09.11.2026); rodzimy mówca mówi „like a clean”"
       }
      ],
      "pewnosc": "wysoka"
@@ -11222,17 +11226,32 @@
     "ru": {
      "zalecany": "прямой хват",
      "pewnosc": "srednia",
-     "zakazane": []
+     "zakazane": [
+      {
+       "wzorzec": "хват(ом|ом|а|у)?\\s+сверху",
+       "powod": "w kartach jest „прямым хватом”, nie „хватом сверху” (decyzja recenzji P1, 09.11.2026)"
+      }
+     ]
     },
     "nl": {
      "zalecany": "bovengreep",
      "pewnosc": "srednia",
-     "zakazane": []
+     "zakazane": [
+      {
+       "wzorzec": "bovenhandse",
+       "powod": "w kartach jest „bovengreep”, nie „bovenhandse grip”"
+      }
+     ]
     },
     "vi": {
      "zalecany": "kiểu úp tay",
      "pewnosc": "srednia",
-     "zakazane": []
+     "zakazane": [
+      {
+       "wzorzec": "grip sấp",
+       "powod": "mieszanka angielskiego i wietnamskiego; w kartach jest „kiểu úp tay” (do sprawdzenia przez native speakera)"
+      }
+     ]
     },
     "sv": {
      "zalecany": "överhandsgrepp",
@@ -12343,6 +12362,28 @@
       }
      ],
      "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "pochylenie_z_biodra",
+   "pl": "pochylenie z bioder (hinge: pochyl się, cofając biodra)",
+   "tylko": [
+    "ms"
+   ],
+   "znaczenie": "pochylenie tułowia z prostymi plecami przez cofnięcie bioder; NIE garbienie",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])pochyl(ić|isz|aj|ając|enie|ony|a)?(?![\\p{L}])",
+   "jezyki": {
+    "ms": {
+     "zalecany": "condongkan badan",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])bongkokkan",
+       "powod": "„bongkok” to po malajsku garbienie się, czyli błąd, przed którym karta ostrzega (recenzja P1, 09.11.2026)"
+      }
+     ]
     }
    }
   }
