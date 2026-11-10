@@ -8,7 +8,7 @@ import * as path from 'path';
 import { execFile } from 'child_process';
 
 export const KORZEN = path.join(__dirname, '..', '..');
-export type Zmiana = { plik: string; z?: string; na?: string; dopisz?: string };
+export type Zmiana = { plik: string; z?: string; na?: string; dopisz?: string; usun?: true };
 export type Wynik = Record<string, { skrot: string; wynik: string; cwiczenia?: Record<string, string> }>;
 const KOPIOWANE = ['lib', 'scripts', 'data'];
 const kopie: string[] = [];
@@ -19,10 +19,20 @@ export function podlaczenie(rodzina: string, wpis: { load?: true; ui?: string })
   return [{ plik: 'lib/figures/v2/rodziny/' + rodzina + '.ts', dopisz: `import type { RodzinaPoz } from '../poseData';\nconst rodzina: RodzinaPoz = { ${pola} };\nexport default rodzina;\n` },
     { plik: 'lib/figures/v2/rodziny/index.ts', z: "  pull_up: require('./pull_up').default,\n", na: `  pull_up: require('./pull_up').default,\n  ${rodzina}: require('./${rodzina}').default,\n` }];
 }
-/** Stosuje zmiany do plików katalogu `dir` (z → na dokładnie raz; dopisz na końcu pliku). */
+/**
+ * Odłączenie gotowej rodziny v2 w kopii (10.11.2026, scalenie pociąg-7, decyzja w docs/18 do weta): status ready → planned w families.ts, bez linii w `rodziny/index.ts`
+ * i bez pliku `rodziny/<rodzina>.ts`; plik póz zostaje. Daje stan wejściowy scenariuszy podłączenia (L-080, 1A) — „rodzina planned z plikiem póz, bez wpisu w rejestrze” —
+ * gdy w repozytorium takiej rodziny już nie ma (po partii 8 planned są tylko cardio, foam_roll i neck, wszystkie bez póz). Każda zmiana musi trafić dokładnie raz (zastosuj).
+ */
+export function odlaczenie(rodzina: string): Zmiana[] {
+  return [{ plik: 'lib/figures/v2/families.ts', z: `{ id: '${rodzina}', status: 'ready'`, na: `{ id: '${rodzina}', status: 'planned'` },
+    { plik: 'lib/figures/v2/rodziny/index.ts', z: `  ${rodzina}: require('./${rodzina}').default,\n`, na: '' },
+    { plik: 'lib/figures/v2/rodziny/' + rodzina + '.ts', usun: true }];
+}
+/** Stosuje zmiany do plików katalogu `dir` (z → na dokładnie raz; dopisz na końcu pliku; usun — plik musi istnieć). */
 export function zastosuj(dir: string, zmiany: Zmiana[]): void {
   for (const m of zmiany) {
-    const f = path.join(dir, m.plik); let t = m.z === undefined && !fs.existsSync(f) ? '' : fs.readFileSync(f, 'utf8'); /* sam „dopisz” do nieistniejącego pliku tworzy go (nowy plik rodziny, KO-022) */
+    const f = path.join(dir, m.plik); if (m.usun) { if (!fs.existsSync(f)) throw new Error(`${m.plik}: brak pliku do usunięcia`); fs.rmSync(f); continue; } let t = m.z === undefined && !fs.existsSync(f) ? '' : fs.readFileSync(f, 'utf8'); /* sam „dopisz” do nieistniejącego pliku tworzy go (nowy plik rodziny, KO-022) */
     if (m.z !== undefined) { const ile = t.split(m.z).length - 1; if (ile !== 1) throw new Error(`${m.plik}: tekst do zamiany występuje ${ile} razy: ${m.z.slice(0, 80)}`); t = t.replace(m.z, () => m.na ?? ''); }
     if (m.dopisz) t += m.dopisz;
     fs.writeFileSync(f, t);

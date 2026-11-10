@@ -1,0 +1,45 @@
+{
+ "v2": {
+  "strongman": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — recenzja r1 (bramka 4, L-047 A, L-050): 0 × KRYTYCZNE/WYSOKIE; Ś1 (uproszczenie sprzętu do zapisu), N1 → backlog; nakładka pusta z poprawnym powodem",
+   "autor": "programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 strongman (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-strongman-r1-audytor-2026-11-10.md",
+   "sha": "04b91430146d",
+   "liczba": 10,
+   "cwiczenia": [
+    "Yoke Walk"
+   ],
+   "bez_rysunku": [
+    "Atlas Stones",
+    "Keg Load",
+    "Log Lift",
+    "Circus Bell",
+    "Jefferson Squat",
+    "Conan's Wheel",
+    "Tire Flip",
+    "Sandbag Load",
+    "Power Stairs"
+   ],
+   "slad": "Arkusz scripts/figures/arkusz-slad.mjs wygenerowany przez recenzenta r1 samodzielnie na 75777836: Yoke Walk, widok side (jedyny widok rodziny), 21 kadrów co 0,05, PNG 2100 px obejrzany w pełnej rozdzielczości. Ślad = gryf (info.load) w stałym punkcie (−12,2; 133,6 cm) przez cały cykl, odstęp od tułowia 1,6 cm, miednica stała 86,0 cm, tułów 3° od pionu, 0 kolizji (checkFrame).",
+   "uwagi": "Ś1: rysowana sztanga z talerzami zamiast jarzma (katalog: „Jarzmo (yoke)”) — położenie ciężaru i chód zgodne, dopuszczalne jako uproszczenie sprzętu, ale niezapisane (brak wpisu w data/zrodla/figury-ograniczenia-silnika.json); zapisać uproszczenie. N1: kolana stale ugięte (min. zgięcie 31°, podporowa ok. 38°, miednica −18 cm względem stania) — kosmetyczne, backlog. Nakładka pusta: wszystkie reguły strongman „analogia” — uzasadnienie poprawne."
+  }
+ },
+ "zestawy": {
+  "Yoke Walk": {
+   "rodzina": "carry",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 strongman), 10.11.2026 — r1",
+   "autor": "badacz merytoryczny (zestaw carry, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 strongman (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-strongman-r1-audytor-2026-11-10.md",
+   "sha": "21ce36d7bae6",
+   "uwagi": "carry.walk „Idź spokojnym, kontrolowanym krokiem…” pasuje: marsz w cyklu, tułów pionowo (3°), ciężar w stałym miejscu."
+  }
+ },
+ "karty": {},
+ "v1_zastapiona": []
+}

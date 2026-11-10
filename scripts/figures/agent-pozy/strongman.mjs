@@ -9,7 +9,7 @@ export const RODZINA = 'strongman';
 const OTW = 'ćwiczenie otwarte: zestaw „open”, brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → strongman.otwarte); poza wróci po opisie ruchu przez badacza';
 const JEFF = 'rozkrok strzałkowy ze sztangą między nogami: aby ręce były proste do sztangi tuż nad podłogą, a sztanga leżała między udami (≥ 10,8 cm od osi każdego uda), miednica musi być ok. 55 cm nad podłogą, a tułów pochylony ok. 50°; wtedy wyprost biodra tylnej nogi wynosi −40° (zakres −17°) albo sztanga przenika udo (do 2,6 cm). Cztery podejścia generatora (rozstaw stóp, wysokość miednicy, tor sztangi) nie zmieściły się w kontrakcie; wymaga decyzji koordynatora (rozszerzenie zakresu wyprostu biodra w rozkroku albo uproszczenie toru sztangi)';
 export const WYJATKI = Object.assign({ 'Jefferson Squat': JEFF }, Object.fromEntries(['Atlas Stones', 'Keg Load', 'Log Lift', 'Circus Bell', "Conan's Wheel", 'Tire Flip', 'Sandbag Load', 'Power Stairs'].map((c) => [c, OTW])));
-export const PRZYBLIZENIA = {};
+export const PRZYBLIZENIA = { 'Yoke Walk': 'uproszczenie sprzętu: jarzmo rysowane jako sztanga z talerzami (kontrakt sprzętu nie ma jarzma); położenie ciężaru i chód zgodne z jarzmem — gryf ok. 12,8 cm za środkiem barków i 2,3 cm niżej, na górze pleców, dłonie na gryfie ±30 cm (pomiar recenzenta niezależnego r1, 10.11.2026, strongman Ś1)' };
 export const POMINIETE_BLEDY = {};
 export const WYJATKI_OPISU = wyjatkiOpisu(RODZINA);
 const yP = (pod) => kostkaNaPalcach(0, pod);

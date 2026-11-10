@@ -297,7 +297,7 @@ const PRZED: Record<string, Record<string, string>> = {
     "Bent Press": '9fa40088e109',
   },
 };
-const POPRAWIONE: Record<string, string[]> = {"plyo":["Depth Jump","Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)","Wall Ball"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press"]};
+const POPRAWIONE: Record<string, string[]> = {"plyo":["Depth Jump","Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)","Wall Ball","Backward Medicine Ball Throw"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press","Cable Russian Twists","Pallof Press","Pallof Press With Rotation","Landmine Rotation"]}; /* partia 8 (10.11.2026): + sled_throw Backward Medicine Ball Throw (W1 r1), core_standing Cable Russian Twists, Pallof Press, Pallof Press With Rotation, Landmine Rotation (poprawki po recenzjach r1–r2) */
 /** Późniejsze zmiany celowe po recenzjach niezależnych (poza 27.10.2026): partia 6 linii 1.1 (10.11.2026) — plyo r1 W1 Broad Jump (zamach rąk w tył), r1/r2 W2 Butt Kick (udo przy pionie, pięta za miednicą); r3 wyswietlana (docs/research/recenzje/partia6-plyo-r*). Pilnuje ich tests/figures-v2-plyo.test.tsx i wzorzec tests/fixtures/figury-v2-zlote.json. */
 const POPRAWIONE_POZNIEJ: Record<string, string[]> = { plyo: ['Broad Jump', 'Double Leg Butt Kick', 'Single Leg Butt Kick'] };
 describe('inne pozy bez zmian (regresja)', () => {

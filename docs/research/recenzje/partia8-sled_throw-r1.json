@@ -1,0 +1,128 @@
+{
+ "v2": {
+  "sled_throw": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — recenzja r1 (bramka 4, L-047 A, L-050): 1 × WYSOKIE (W1 Backward Medicine Ball Throw), Ś1 Wall Ball, N1–N3",
+   "autor": "programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "693594ff4218",
+   "liczba": 19,
+   "cwiczenia": [
+    "Medicine Ball Slam",
+    "One-Arm Medicine Ball Slam",
+    "Standing Two-Arm Overhead Throw",
+    "Backward Medicine Ball Throw",
+    "Medicine Ball Scoop Throw",
+    "Wall Ball",
+    "Sled Push",
+    "Sled Drag (Harness)"
+   ],
+   "bez_rysunku": [
+    "Turkish Get Up",
+    "Sled Forward Drag with Press",
+    "Medicine Ball Chest Pass",
+    "Sled Overhead Backward Walk",
+    "Supine Chest Throw",
+    "Backward Drag",
+    "Bear Crawl Sled Drag",
+    "Sledgehammer Swings",
+    "Spider Crawl",
+    "Supine One-Arm Overhead Throw",
+    "Supine Two-Arm Overhead Throw"
+   ],
+   "slad": "Arkusze scripts/figures/arkusz-slad.mjs wygenerowane przez recenzenta r1 samodzielnie na 75777836: 8 ćwiczeń, widok side oraz Wall Ball front = 9 arkuszy, 21 kadrów co 0,05, PNG 2100 px obejrzane w pełnej rozdzielczości. Ślad: piłka lekarska = środek chwytów (One-Arm: chwyt R), 0,0 cm od chwytu w każdym kadrze; sanki (Sled Push, Sled Drag) bez ciężaru w dłoniach — miednica (punkt). Kształt toru (miara figures-v2-tor) policzony samodzielnie: Slam 43,0 cm/1, One-Arm 43,0/1, Backward 53,6/1, Scoop 12,2/1, Standing Two-Arm 23,5/0, Wall Ball side 15,8/2, front 0,0/0 — zgodne z tests/tor-wyjatki.json.",
+   "uwagi": "W1 (WYSOKIE): Backward Medicine Ball Throw kończy się piłką pionowo nad głową — u = 1 dłonie 5,3 cm przed linią barków (x chwytu −0,4, barku −5,7, głowy −6,8 cm), tułów 6° w tył; karta bmbt.move „przerzuć ją nad głową za siebie”, figury-sens „ręce za głowę”. Ś1: Wall Ball dno przysiadu nad równoległą (biodro 11,0 cm nad kolanem, udo 17° nad poziomem) przy błędzie karty „Za płytki przysiad”; reguła wallball_przysiad (analogia) spełniona. N1: slam_plecy bez mapowania hinge.back w wskazowki_na_reguly (badacz). N2: odwołanie do nieistniejącego tests/figures-v2-nakladka-sled-throw.test.tsx. N3: dataUiForPose zamiast wymogu DATA_UI — GAIT_UI dla każdego cykl_lustro bez wpisu (dziś same marsze).",
+   "poprawka": "W1: koniec Backward Medicine Ball Throw z dłońmi za linią barków (x_chwyt < x_bark w u = 1) i odchyleniem tułowia w tył; test odtwarzający z miarą (dane 75777836: +5,3 cm oblewają); po poprawce przeliczyć wpis tor-wyjatki „Backward Medicine Ball Throw|side”. Ś1 do decyzji (zalecane: biodro ≤ wysokości kolana na dnie Wall Ball)."
+  }
+ },
+ "zestawy": {
+  "One-Arm Medicine Ball Slam": {
+   "rodzina": "mbThrow",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 sled_throw), 10.11.2026 — r1",
+   "autor": "badacz merytoryczny (zestaw mbThrow, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "ad4e223d4754",
+   "uwagi": "Zestaw bez zdań (ok: [], err: []) — nic nie przeczy rysunkowi; brak elementu nakładki słuszny."
+  },
+  "Medicine Ball Scoop Throw": {
+   "rodzina": "mbThrow",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 sled_throw), 10.11.2026 — r1",
+   "autor": "badacz merytoryczny (zestaw mbThrow, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "12ca0a03ffbe",
+   "uwagi": "mb.legs „prostuj biodra, kolana i kostki razem z wyrzutem” pasuje: z przysiadu (kolano 78° wewn.) do wyprostu (kolano 179°, biodro 171°, wspięcie na palce) razem z wyrzutem; wypowiada elementy throwKneeLimb/throwHipLimb (rzut_wyprost, ustalone)."
+  },
+  "Sled Drag (Harness)": {
+   "rodzina": "sled",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 sled_throw), 10.11.2026 — r1",
+   "autor": "badacz merytoryczny (zestaw sled, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "6fc414841b18",
+   "uwagi": "sled.lean „Pochyl się w przód” pasuje: tułów 34° od pionu; sled.legs pasuje: naprzemienne odpychanie nogami, linka od pasa. Wypowiada elementy sledLeanTrunkRef/sledLeanPlumbRef."
+  }
+ },
+ "karty": {
+  "Medicine Ball Slam": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r1; treść karty bez zmian (skrót jak w przeglądzie P2)",
+   "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "cbe93cfddf5e",
+   "uwagi": "slam.move pasuje: piłka 40 cm nad głową na szczycie, potem w dół do wypuszczenia ok. 51 cm nad podłogą (moment wypuszczenia, karta nie wymaga uderzenia); hinge.back i plank.brace: tułów sztywny, zawias do 52°."
+  },
+  "Standing Two-Arm Overhead Throw": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r1; treść karty bez zmian (skrót jak w przeglądzie P2)",
+   "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "85de3b2b60b3",
+   "uwagi": "soht.setup/soht.move pasują: piłka oburącz, w u = 0 6,6 cm za głową („trochę za nią”), wyrzut przed siebie z wyprostu."
+  },
+  "Backward Medicine Ball Throw": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r1; treść karty bez zmian (skrót jak w przeglądzie P2)",
+   "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "871996234a76",
+   "uwagi": "Treść karty poprawna; sprzeczność „za siebie” to wada rysunku (W1 w v2.sled_throw), nie karty. bmbt.setup (piłka na prostych rękach przed sobą) — animacja zaczyna od przysiadu, zgodnie z bmbt.move."
+  },
+  "Wall Ball": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r1; treść karty bez zmian (skrót jak w przeglądzie P2)",
+   "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "6f2a286d08b6",
+   "uwagi": "wb.setup/wb.move pasują (piłka przy klatce, przysiad, wyrzut jednym ruchem w górę, ściana przed ćwiczącym); wb.mis.shallow — zob. Ś1 w v2.sled_throw (dno nad równoległą)."
+  },
+  "Sled Push": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r1; treść karty bez zmian (skrót jak w przeglądzie P2)",
+   "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+   "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+   "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r1-audytor-2026-11-10.md",
+   "sha": "ef9ee9fdcec0",
+   "uwagi": "sled.pushGrip: dłonie na pionowych uchwytach; sled.legs: naprzemienny napęd nóg; sled.lean: tułów 33° w przód; hinge.back: tułów sztywny."
+  }
+ },
+ "v1_zastapiona": []
+}

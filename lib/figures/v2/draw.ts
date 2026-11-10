@@ -423,8 +423,9 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
           S.push({ k: 'circle', c: o, r: E.barR, fill: 'steel', z: zKey(LAYER.overlay, 0), id: 'bar' });
         } else {
           const half = (pr.len ?? E.barLen) / 2; const d = c[0];
-          S.push({ k: 'line', a: [-half, o[1]], b: [half, o[1]], w: E.barR * 2, role: 'steel', z: zKey(LAYER.body, d), id: 'bar' });
-          if (pr.plates !== false) for (const sg of [-1, 1]) for (const zz of plateZs(pr.len)) S.push({ k: 'poly', pts: rect(sg * zz - E.plateW / 2, o[1] - E.plateR, sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.body, d - 0.2), id: 'plate' });
+          const dx = view === 'front' && Math.abs(o[0]) >= 1 ? o[0] : 0; /* R3-W1, docs/18 10.11.2026 */
+          S.push({ k: 'line', a: [dx - half, o[1]], b: [dx + half, o[1]], w: E.barR * 2, role: 'steel', z: zKey(LAYER.body, d), id: 'bar' });
+          if (pr.plates !== false) for (const sg of [-1, 1]) for (const zz of plateZs(pr.len)) S.push({ k: 'poly', pts: rect(dx + sg * zz - E.plateW / 2, o[1] - E.plateR, dx + sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.body, d - 0.2), id: 'plate' });
         }
         break;
       }

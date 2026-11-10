@@ -99,6 +99,14 @@
    "ograniczenie": "kontrakt nie ma sprzętu „poduszki na barkach”",
    "status": "do_przegladu",
    "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "strongman",
+   "cwiczenie": "Yoke Walk",
+   "ograniczenie": "uproszczenie sprzętu: jarzmo rysowane jako sztanga z talerzami (kontrakt sprzętu nie ma jarzma)",
+   "status": "przejrzane",
+   "przejrzane_przy": "cf8ba30acd1c",
+   "powod": "recenzja niezależna r1, 10.11.2026 (strongman Ś1): położenie ciężaru i chód poprawne (gryf 12,8 cm za środkiem barków, 2,3 cm niżej, na górze pleców; dłonie na gryfie ±30 cm), więc sztanga zamiast jarzma jest dopuszczalnym, nazwanym uproszczeniem sprzętu; brak jarzma w kontrakcie sprzętu"
   }
  ]
 }
