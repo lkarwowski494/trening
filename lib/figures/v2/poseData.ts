@@ -24,6 +24,7 @@ const LOAD: Record<string, () => PoseFile> = {
   delt_raise: () => require('./poses/delt_raise.json'),
   pushup_plank: () => require('./poses/pushup_plank.json'),
   mobility_floor: () => require('./poses/mobility_floor.json'),
+  mobility_stand: () => require('./poses/mobility_stand.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -115,6 +116,9 @@ export const DATA_UI: Record<string, DataUi> = {
       'Inverted Row': { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false } } },
   /* mobility_floor (09.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz i kąta), jedyny ruch to Cat-Cow (nazwy faz: PHASES_BY_EXERCISE); ruch jest w kręgosłupie, którego nie mierzymy (MeasuredJoint) → bez linii „Kąt na rysunku” */
   mobility_floor: { names: { first: 'Grzbiet w dół', second: 'Koci grzbiet' }, lowerFirst: false, joints: ['hip'], exceptions: { 'Cat-Cow': { hideAngle: true } } },
+  /* mobility_stand (10.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz; nazwy faz nieużywane), mierzone kolano (rozciąganie łydki: noga tylna i przednia); w rozciąganiu szyi, ramion i skłonie bocznym kolano nie jest istotą pozycji → bez linii „Kąt na rysunku” */
+  mobility_stand: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'],
+    exceptions: Object.fromEntries(['Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Lateral Stretch'].map((k): [string, PhaseOverride] => [k, { hideAngle: true }])) },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };

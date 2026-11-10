@@ -504,6 +504,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_floor (np. Child's Pose, Cat-Cow), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest pozycją statyczną (rozciąganie z przytrzymaniem) albo Cat-Cow
     - Wtedy pozycja statyczna jest jedną nieruchomą klatką bez licznika faz, Cat-Cow pokazuje fazy „Grzbiet w dół” i „Koci grzbiet” bez linii kąta, rysunek nie ma ról mięśni (decyzja właściciela 04.11.2026) ani nakładki technicznej (rodzina bez elementów — powód w nagłówku `lib/figures/v2/overlay/mobility_floor.ts`), a 13 ćwiczeń rodziny bez pozy zostaje bez rysunku v2
+  - Scenariusz: Rodzina mobilności i rozciągania stojąc (mobility_stand) pokazuje rysunki 8 ćwiczeń w rzucie z boku i z przodu (10.11.2026, partia 2; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-mobility-stand.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_stand (np. Wall Calf Stretch, Standing Lateral Stretch), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy ćwiczenie jest rozciąganiem statycznym z rysunkiem
+    - Wtedy pozycja jest jedną nieruchomą klatką bez licznika faz, rysunek nie ma ról mięśni (decyzja właściciela 04.11.2026), a tylko w skłonie bocznym (Standing Lateral Stretch) z przodu widać pion od miednicy, od którego tułów odchyla się w bok (reguła „ustalone”, zdanie o zginaniu tylko w bok); 28 ćwiczeń rodziny bez pozy (m.in. wymachy, krążenia, Inchworm) zostaje bez rysunku v2
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
