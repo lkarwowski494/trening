@@ -635,6 +635,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rodzina ma wpis „wyswietlana” ze skrótem równym bieżącemu
     - Gdy użytkownik otwiera sekcję „Technika” jej ćwiczenia
     - Wtedy rysunek v2 jest pokazywany (poza rysunkami wstrzymanymi osobno)
+  - Scenariusz: Rodziny partii 3 — pulldown, shrug, hip_abd_add (09.11.2026; testy `tests/figures-v2-mapping.test.ts`, `tests/figury-partia-3.test.ts`, `tests/figury-recenzja.test.tsx`; rysunki po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie ściągania drążka wyciągu (8), szrugsów (8) albo odwodzenia/przywodzenia nóg (4 z rysunkiem), a rodzina ma aktualny wpis recenzji
+    - Gdy rysunek odtwarza ruch
+    - Wtedy licznik faz mówi „Ściąganie/Powrót” (pulldown; EN „Pulling”), „Unoszenie/Opuszczanie” (szrugsy; Middle Back Shrug „Ściąganie/Powrót”) albo „Rozsuwanie/Ściąganie, Powrót” (odwodzenie/przywodzenie, bez linii kąta), a Lateral Band Walk i Monster Walk zostają bez rysunku do poprawki marszu
 
 ### BR-BIB-009: Strona z ćwiczeniami dostaje teksty tylko w swoim języku i w jednym, sprawdzanym kształcie pól (28.10.2026)
 - Przepływ: PR-01

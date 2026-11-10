@@ -791,7 +791,7 @@ export const EN: Record<string, string> = {
   'Obrót': 'Rotating',
   'Powrót': 'Returning',
   'Rozsuwanie': 'Pulling apart',
-  'Ściąganie': 'Pulling back',
+  'Ściąganie': 'Pulling',
   'Uginanie': 'Curling',
   'Marsz': 'Walking',
   'Grzbiet w dół': 'Arching',

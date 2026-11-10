@@ -43,6 +43,6 @@ export function generuj() {
   G['Straight Arm Pulldown'] = () => { const p = 15; const m = [0, Y_STOJ]; const S0 = bark(m, p, 1); const zr = 12; const re = Math.sqrt(63.6 ** 2 - (19 - zr) ** 2);
     const fr = (u) => { const th = lerp(135, 15, u) * R; const rece = {}; for (const s of SIDES) { const sg = POL(s); rece[s] = { g: [S0[0] + re * Math.sin(th), S0[1] - re * Math.cos(th), sg * zr], pole: [0, -1, 0.3 * sg], obrot: 0 }; }
       return poza({ u, tulow: { m, p, glowa: p * 0.6 }, nogi: nogiStoj(0, 14), rece }); };
-    return buduj({ rodzina: RODZINA, cw: 'Straight Arm Pulldown', sprzet: [SPRZET.podloga(-60, 140), wyc({ chwyt: 'drazek', x: 62, y: 215, h: 235 })], fr, us: U9 }); };
+    return buduj({ rodzina: RODZINA, cw: 'Straight Arm Pulldown', sprzet: [SPRZET.podloga(-60, 140), wyc({ chwyt: 'drazek', x: Math.round(S0[0] + re + 12), y: 215, h: 235 })], fr, us: U9 }); }; /* N1 (recenzja partii 3, 09.11.2026, WYSOKIE): kolumna za zasięgiem łuku prostych rąk (bark + ręka + 12 cm), wcześniej x 62 — drążek przechodził przez kolumnę */
   return G;
 }
