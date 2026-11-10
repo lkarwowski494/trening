@@ -58,7 +58,6 @@ function profilCiezaru(r, { rodzina, cw, sprzet }) {
   };
   /* v w cm na jednostkę u; bisekcja tak, by suma Δu = czas po wyproście */
   let lo = 1, hi = 1e5; for (let it = 0; it < 80; it++) { const mid = (lo + hi) / 2; const s = dus(mid).reduce((a, x) => a + x, 0); if (s > wolne) lo = mid; else hi = mid; }
-  if (process.env.DBG_PROF) console.error(cw, "h", h, "Ld", Ld.map((x) => x.toFixed(0)).join(" "), "Bp", Bp.map((x) => x.toFixed(0)).join(" "), "vWej", vWej.toFixed(0), "v", hi.toFixed(0));
   const d = dus(hi); const sum = d.reduce((a, x) => a + x, 0); const us = klatki.map((k) => k.u); let t = tPre; for (let k = 0; k < d.length; k++) { t += (d[k] * wolne) / sum; us[h + 1 + k] = Math.round(t * 1000) / 1000; } us[n - 1] = 1;
   return { ...r, klatki: klatki.map((k, i) => ({ ...k, u: us[i] })) };
 }
