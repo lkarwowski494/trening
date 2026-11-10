@@ -33,6 +33,7 @@ const WYJATKI: Record<string, [number, string]> = {
   'lib/figures/geom.ts': [24576, 'geometria figur v1 (stawy, kąty, rzut) w jednym module; podział razem z silnikiem v1 (1.0.1)'],
   'lib/figures/v2/contract.ts': [68608, 'kontrakt danych figur v2 (typy, schemat, walidacja) — linia 1.1; próg = rozmiar po wydzieleniu poseInterp.ts i dumbbellAxis.ts (04.11.2026) + 5%; dalszy podział (schemat, walidator) osobnym commitem strukturalnym (backlog 1.1)'],
   'lib/figures/v2/draw.ts': [48128, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1; próg = rozmiar po scaleniu wersja-1-0-1-r2 31.10.2026 (deska, stojak z bolcami, rączki z 1.0.1) + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
+  'lib/figures/v2/poseData.ts': [24000, 'rejestr plików póz i metadanych rodzin v2 (POSE_FILES, DATA_UI) — linia 1.1; 22 081 B po scaleniu partii 1–4 na scal/pociag-4 (10.11.2026, KO-020, do weta koordynatora) + ok. 8%, bo partia 2 dopisuje kolejne rodziny; podział na pliki per rodzina osobnym commitem strukturalnym (backlog 1.1)'],
   'lib/figures/v2/gear.ts': [72192, 'sprzęt figur v2 (tabela GEAR_KINDS: kontakty, uchwyty, rysowanie) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział tabeli osobnym commitem strukturalnym (backlog 1.1)'],
 };
 
