@@ -9,6 +9,8 @@ import * as path from 'path';
 import { keyframeFrame, type PoseData } from '@/lib/figures/v2';
 import { GIRTH } from '@/lib/figures/v2/skeleton';
 import { EQUIP } from '@/lib/figures/v2/draw';
+import { bodyColliders, gap } from '@/lib/figures/v2/colliders';
+import { jointAngles } from '@/lib/figures/v2/skeleton';
 
 const poses = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/dip.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
 const NAMES = ['Chest Dip', 'Triceps Dip', 'Ring Dips', 'Dip Machine', 'Triceps Dips (ławka)'];
@@ -61,7 +63,7 @@ describe('dip: dłoń na podporze w każdym kadrze (10.11.2026, W1/W2/K5)', () =
   });
 });
 
-/* (10.11.2026, r2 W4) Ławka: łokcie nie rozchodzą się na boki — |z łokcia| ≤ max(|z barku|, |z dłoni|) + 3 cm i ≥ min(|z barku|, |z dłoni|) − 3 cm w każdym kadrze (karta: łokcie prosto do tyłu — nad dłońmi, nie na boki i nie zbiegające się do środka). */
+/* (10.11.2026, r2 W4) Ławka: łokcie nie rozchodzą się na boki — |z łokcia| ≤ max(|z barku|, |z dłoni|) + 3 cm i ≥ min(|z barku|, |z dłoni|) − 3 cm w każdym kadrze (źródło: reguła rodziny, ćwiczenie Bench Dips — łokcie prosto do tyłu, bez „excessive elbow flare”; nie karta — nad dłońmi, nie na boki i nie zbiegające się do środka). */
 const bladLokci = (d: PoseData) => { const out: unknown[] = []; for (let i = 0; i <= 20; i++) { const u = i / 20; const f = keyframeFrame(d, u); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const hi = Math.max(Math.abs(a.shoulder[2]), Math.abs(a.grip[2])) + 3; const lo = Math.min(Math.abs(a.shoulder[2]), Math.abs(a.grip[2])) - 3; const e = Math.abs(a.elbow[2]); if (e > hi || e < lo) out.push([u, s, e, lo, hi]); } } return out; };
 describe('Triceps Dips (ławka): łokcie do tyłu, bez rozchylania (10.11.2026, W4)', () => {
   test('w każdym kadrze min(|z barku|,|z dłoni|) − 3 ≤ |z łokcia| ≤ max(...) + 3 cm', () => { expect(bladLokci(poses['Triceps Dips (ławka)'])).toEqual([]); });
@@ -74,3 +76,4 @@ describe('Triceps Dips (ławka): łokcie do tyłu, bez rozchylania (10.11.2026, 
     expect(bladLokci(d).length).toBeGreaterThan(0);
   });
 });
+
