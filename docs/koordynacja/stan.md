@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 08:50 UTC — przejęcie przez session_01T66VBzARTWMJ7smU82sfJs) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 12:00 UTC — PRZEKAZANIE KOORDYNATORA W TOKU (E6) od session_01T66VBzARTWMJ7smU82sfJs) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -15,15 +15,13 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening, lkarwowski494/prompts (add_repo za zgodą właściciela ~09:00). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz (08:45 UTC)
-- Praca wznowiona przez właściciela 07:00 UTC („Przejmij i wznów pracę”). Koordynator …VBxiRkBevtfwuCxxs97 ma 28% kontekstu → przekazuje pracę następcy (E6); to sesja czatu właściciela (/apps4brew), po przekazaniu tylko przekazuje wiadomości.
-- A2 (pociąg-4: partia 2, przegląd scalenia, verify:szybkie, CI) pracuje od 08:02; origin/scal/pociag-4 nadal 760afa88 (08:40). Po PRZEKAZANIU A2: odbiór (SHA, autor, tests.yml na SHA, plik docs/research/recenzje/pociag-4-scalenie.md) → `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs scal/pociag-4` na integracja-1-1 → CI wyniku scalenia.
-- B (partia 5) przy 35,8% kontekstu (08:18) dostała polecenie: dokończyć verify:szybkie → push → PRZEKAZANIE, bez nowych zadań; origin/figury/partia-5 nadal cd789d82 (08:40). Jej raport 07:34 (strażniki 432be36, lekcja c3b25d5, rotator_cuff r1 czysta, scalenie integracji wg KO-021) to deklaracje — niesprawdzone. Po PRZEKAZANIU B: odbiór, ewentualny następca B2 na resztę, potem pociąg-5 (partia 5 na integracji po pociągu-4).
-- Po pociągu-4 w integracji: tura 3 w 2 sesjach (KO-017; wzór polecenia: polecenia/wzor-partia.md + zasady z polecenia B.md pkt 4–8). Właściciel dostał 08:30 opcję „4 sesje zamiast 2” (szybciej o ok. pół dnia, szybciej zjada limit) z rekomendacją 2 i odpowiedział 2026-11-10 ~08:50 UTC: „Możesz puścić, mam reset limitu dostępny.” → **tura 3 w 4 sesjach** (zmienia KO-017); pułap doby 350 USD bez zmian.
-- Start sesji podrzędnej: create_session z całym promptem roli wykonuje subagent (Agent, model opus) — pierwsza próba na sonnet przerwana przez klasyfikator (WG-05). W poleceniach podawaj pełną nazwę narzędzia mcp__claude-code-remote__send_message.
-- Szacunek dla właściciela (08:30, w czacie): gotowość 1.1 do zgłoszenia 16–18.11 (optymistycznie 14.11, pesymistycznie 19–21.11); założenia: tura 3 do 11–12.11, przekład i zadania przed 1.1 do 12–13.11, zamrożenie + audyt (ZB-043) + naprawy do 14–15.11, E2E pełny katalog + TestFlight + telefon. Otwarte ryzyka blokujące wg docs/40 (odczyt subagenta, niesprawdzone przez koordynatora): R-101-28, R-11-01, R-11-02, R-008 b. docs/48 nie ma kroków zgłoszenia 1.1 — do dopisania (sesja 10-wydanie) przed sesją w ASC. Nazwa RepsGoat: wg docs/zobowiazania.md ZB-056 zarezerwowana w ASC 09.11 (odczyt subagenta) — pozycja 13 w tabeli zadań do zamknięcia po sprawdzeniu.
-- Karta „Stan projektu” w CLAUDE.md: brak; właściciel 07:00: „Pozycja w planie M9” → sesja z dokumentami po turze 3 (propozycja do zatwierdzenia).
-- Limit tygodniowy konta: allowed_warning, reset 2026-11-15 16:00 UTC; właściciel 08:50: ma dostępny reset limitu (limit nie jest powodem do zwalniania tempa); równolegle pracują koordynatorzy M9 Oczka, Piekarza i Szkoły Pokera (ich sesji i przypomnień nie ruszać).
+## Teraz (12:00 UTC)
+- Pociąg-4 w integracji: `integracja-1-1` @ b66ecfa (tests.yml integracji na b66ecfa — niesprawdzony, sprawdzić). Partia 5 przyjęta (figury/partia-5 @ ef42f8e4, tests.yml 42788593262 zielony).
+- KO-024: sesja E robi podział poseData.ts na `scal/posedata-podzial` (lokalnie 5df065f9 + 4f55b034, verify:szybkie 3. próba; o 11:55 jeszcze nie wypchnięta). Po pushu: tests.yml zielony na głowie → `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs scal/posedata-podzial` w /home/user/trening (wymaga npm ci + verify:lekkie przed pushem integracji — hak pre-push; drzewo scalenia = drzewo gałęzi) → sygnał z SHA integracji do D, E, F, G i start C2 (polecenia/C2.md) przez subagenta z promptem roli 08-programista build (`node <prompts>/tools/assemble.mjs 08-programista --tryb build --plik <scratchpad>/t3-rola.md`).
+- Kształt pliku rodziny po podziale (rozesłany D, F, G 11:50): `lib/figures/v2/rodziny/<rodzina>.ts` z `RodzinaPoz` { load, ui, oneWay? } + jedna linia na końcu mapy w `lib/figures/v2/rodziny/index.ts`.
+- Kolejność scaleń po podziale: pociąg-5 (G, scal/pociag-5) → partie 6–9 (C2, D, E, F) — każda scala integrację przed końcem; scalenie do integracji koordynator skryptem po zielonym tests.yml. Partia 6: ostatni commit fed9a704 = tymczasowy próg (KO-026) — przy odbiorze sprawdzić próg = wartość integracji.
+- Push gałęzi stanu: hak pre-push działa też tu (WG-06) → `npm run verify:lekkie` w worktree stanu (symlink node_modules do /home/user/trening/node_modules), adresów e-mail w docs/koordynacja nie wpisywać (strażnik public-repo). Pushe stanu zbiorczo.
+- Do linii 14:00 (dla właściciela): decyzje do weta KO-020…KO-026; propozycja wyjątku haka dla gałęzi `koordynacja` (WG-06, zmienia kontrolę → słowa właściciela); szacunek tury 3: D 15–16 UTC, E ~15–16, F lunge 3–5 h, C2 ~1 h po podziale.
 
 ## Zadania i stan (na chwilę wstrzymania)
 | # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
@@ -86,7 +84,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm) — poprawka pozy + recenzja; fidr.move (Front Incline DB Raise) → cel +1; dług ROZJAZDY_POZA_ZAKRESEM (tests/figury-generator-odtwarza.test.ts); recenzja lokalizacji zbiorcza (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell); badacz: lokcie_pod_dlonmi w środku toru ohp, glute_floor, pewność reguł mobility_floor/kneeling_hinge; silnik: punkty dźwigni barki/uda (calf), gear.ts obrót dzwonu (kb); P3-MARSZ; PP-W1 (Plyo).
 
 ## Przypomnienia
-- trig_01XcNDadukhGTefDU3YBwA6S „Koordynator Trening: kontrola” 09:16 · trig_01NZwThjYQSRrWBJooKjAAdt „…: linia 14:00” (10.11) · trig_01A9dxsnidHUn46eG8hrruiY „…: linia 05:00” (11.11). Poprzednika: trig_01DCKPujdY6Ds93aNDAicFeh „kontrola przekazania” 09:16 (sprząta poprzednik).
+- Koordynatora …VBzARTWMJ7smU82sfJs: usuwane przy przekazaniu; zostaje „kontrola przekazania”. Następca tworzy własne: kontrola (~20 min), linia 14:00 (dziś), linia 05:00 (11.11).
 
 ## Pule numerów decyzji
 - Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-027. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
@@ -129,3 +127,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 11:30 | koordynator | kontrola: C 38,9% 17,80 USD (plyo r3 wyswietlana, lokalnie ffff260 → polecenie STAN+push+PRZEKAZANIE), D 22,6% 17,26 (gotowość 15–16 UTC), E 23,1% 7,53 (podział: verify:szybkie przed pushem), F 20,2% 10,69 (leg_isolation r1, lunge autor), G 28,7% 9,42 (pociąg-5 611fdde2 lokalnie, audytor 0 znalezisk, czeka na KO-024); KO-025 przyjęte przez F (e2076a7) | następca C2 po PRZEKAZANIU; podział E → CI → scal-galaz |
 | 2026-11-10 11:37 | C | PRZEKAZANIE: figury/partia-6 @ fed9a704 (KO-026 tymczasowy próg); 18,87 USD, 39,8% → zarchiwizowana; polecenia/C2.md | start C2 po sygnale KO-024 |
 | 2026-11-10 11:50 | E | podział poseData.ts lokalnie (5df065f9 + 4f55b034; 24 736 → 8 602 B, wyjątek usunięty, skróty przed = po), verify:szybkie 3. próba (WG-07); kształt pliku rodziny rozesłany D, F, G | push E → CI → scal-galaz → sygnał |
+| 2026-11-10 12:00 | koordynator …VBzARTWMJ7smU82sfJs | kontekst 30,0% → E6: stan zaktualizowany, start następcy | następca: przejęcie E6 pkt 5 |
