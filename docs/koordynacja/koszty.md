@@ -26,3 +26,5 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | F | 08 build (partia 9) | 60 | 39,99 | 36,4 | 10:41 → 10:42 → … → nieprzyjęta (F2) | ~2 h push zablokowany do KO-024 | WG-08 |
 | E | 08 build (partia 8 + podział) | 60 | 31,62 | 32,7 | 10:39 → 10:39 → 5df065f9 → 42817800530 zielony (podział) → podział przyjęty 13:15; partia 8 → E2 | ~2 h oczekiwania na KO-024 (sama wykonywała podział) | zarchiwizowana 15:15 |
 | koordynator …VBvauzmGEDCSRshqWXa | M9 | — | 15,38 | ~29 | 12:05 → 15:07 | — | przekazanie |
+| C2 | 08 build (partia 6) | 60 | 8,14 | 27,9 | 13:16 → … → ca9e8357 → 42847984477 zielony → przyjęta 16:30 | — | w integracji 584bca9 |
+| D2 | 08 build (partia 7) | 60 | 10,51 | 31,5 | 13:20 → … → 9e3db956 → 42848680372 zielony → do pociągu-6 | konflikt z partią 6 (28 plików) → pociąg | zarchiwizowana 16:40 |
