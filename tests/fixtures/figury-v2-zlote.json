@@ -1505,40 +1505,40 @@
    "raw": "d5c3c876cc7039a35f8c"
   },
   "kb_ballistic/Kettlebell Swing": {
-   "svg": "7f2b0bdd8850b3125a8d",
-   "raw": "ad0eb0e49b5da7c281f5"
+   "svg": "476085616165eec138bd",
+   "raw": "7f389c51130ec1aaea96"
   },
   "kb_ballistic/One-Arm Kettlebell Swings": {
-   "svg": "ec5dc8f0c6e5fe0311c1",
-   "raw": "d06b4ab68386c29b8c38"
+   "svg": "aa8e1aa75d40b07a6b9b",
+   "raw": "8627195c17cb8cf38058"
   },
   "kb_ballistic/Kettlebell Clean": {
-   "svg": "a777426f7c19e0d7dd84",
-   "raw": "06f79e759039533e00bf"
+   "svg": "e3bbf31fcf8b83f687fc",
+   "raw": "f493892204405e906853"
   },
   "kb_ballistic/Double Kettlebell Clean": {
-   "svg": "3920b0596f2caaff5bfb",
-   "raw": "567d1cda63f3bf573a6b"
+   "svg": "b957191c69b6b429aac5",
+   "raw": "342d8ec1ff8341ee7674"
   },
   "kb_ballistic/Dumbbell Clean": {
-   "svg": "dea3de9673575d48e36a",
-   "raw": "a1b3b7b57ced37356dd6"
+   "svg": "a49b35ddcce31bcb78ec",
+   "raw": "78bdce8fafd3cbc214f5"
   },
   "kb_ballistic/Bottoms-Up Clean From The Hang Position": {
    "svg": "42af0a29d8a33b3ca133",
    "raw": "e83ef496d1a165aa7a0d"
   },
   "kb_ballistic/Kettlebell Snatch": {
-   "svg": "7c3714292cee7bc682bb",
-   "raw": "c4c516d272d69b38ff4a"
+   "svg": "1ee048e3f264a0d4f35f",
+   "raw": "b3b5cb07db5edf1341e6"
   },
   "kb_ballistic/Double Kettlebell Snatch": {
-   "svg": "55c0484a1d38371c5dbf",
-   "raw": "78a741b6765b5d306989"
+   "svg": "8d6af07094d6d3d8eb76",
+   "raw": "384b466890552a14207c"
   },
   "kb_ballistic/Snatch (hantel)": {
-   "svg": "caa651de0e4307e5f191",
-   "raw": "0c79ff16ce4345cf67ce"
+   "svg": "807d0acf2349ffa54231",
+   "raw": "bf2330805175f7f43360"
   },
   "kb_ballistic/Double Kettlebell Push Press": {
    "svg": "b3f4ef330a4964d3d587",
@@ -1557,16 +1557,16 @@
    "raw": "5b4ad5d2eaff7beae38e"
   },
   "kb_ballistic/One-Arm Kettlebell Split Jerk": {
-   "svg": "8887d35fceebb84f499d",
-   "raw": "5189a525eec78157aabd"
+   "svg": "e5be1ec62a18b404cb40",
+   "raw": "41394eb92445c1bab48a"
   },
   "kb_ballistic/Kettlebell Sumo High Pull": {
-   "svg": "d9a5d2e3ed1036ce9f0e",
-   "raw": "62055b049d11924c3c6c"
+   "svg": "afe92c486534c1c7c189",
+   "raw": "7c3bfb4f8661b9d80000"
   },
   "kb_ballistic/One-Arm Kettlebell Clean and Jerk": {
-   "svg": "7a4e7e6b773a145cd402",
-   "raw": "413fedf35d9c75ff9c59"
+   "svg": "c17328409ed3fd2f420e",
+   "raw": "4e2edf9f0ca1472b7582"
   },
   "kneeling_hinge/Seated Good Mornings": {
    "svg": "3dc11313900ff98fe783",
@@ -1889,32 +1889,32 @@
    "raw": "919b951cabdec295ffdc"
   },
   "overhead_press/Overhead Press (sztanga)": {
-   "svg": "7cd9bfec01bd2736bb6f",
-   "raw": "31cbc10f8c0877a433a3"
+   "svg": "92536ad1338d4081d542",
+   "raw": "3abfd3d81c9174303a1a"
   },
   "overhead_press/Overhead Press (hantle)": {
-   "svg": "801606b5d23b3f30c2ea",
-   "raw": "ff624073f88726a6ffab"
+   "svg": "05a9a3fe4dc9169f1746",
+   "raw": "8040e47a19ea37106b46"
   },
   "overhead_press/Band Shoulder Press": {
-   "svg": "6eac22f71b884d6b3c9e",
-   "raw": "3cdb207a70e298845208"
+   "svg": "27e10636d7cefe991d07",
+   "raw": "c9fd69a2393ea633c5a7"
   },
   "overhead_press/Double Kettlebell Press": {
-   "svg": "d26deed9d4edb433931c",
-   "raw": "609b9afed3c7ea3dabcc"
+   "svg": "82ed87484d1d12a8c97f",
+   "raw": "7d0f33d8666c48268b91"
   },
   "overhead_press/Kettlebell Press": {
-   "svg": "a5be9607227e186f7ef6",
-   "raw": "b43906f1ff1d13bebdfd"
+   "svg": "d020a805232f4503d5da",
+   "raw": "d212311106ffa33fca6d"
   },
   "overhead_press/Single Arm Overhead Press (hantel)": {
-   "svg": "3f7859eadaa5fb9ebaed",
-   "raw": "017e9021c24bdb31c95a"
+   "svg": "d07a4237f068bb192d95",
+   "raw": "b01d158661c7a03c6a15"
   },
   "overhead_press/See-Saw Press (Alternating Side Press)": {
-   "svg": "48a66e061d54ef55b3e5",
-   "raw": "0f081304a7bf0c4c0f25"
+   "svg": "d702655547b876e7468d",
+   "raw": "66aa82a327a0b88e2be6"
   },
   "overhead_press/Arnold Press": {
    "svg": "ed0230a24bfa49db4f0a",
@@ -1925,36 +1925,36 @@
    "raw": "3f3f7e6b3b212392f416"
   },
   "overhead_press/Seated Shoulder Press (hantle)": {
-   "svg": "87d5094364e37156967d",
-   "raw": "a5f8509baa93f9f48655"
+   "svg": "483c445ee55d55ccbbd1",
+   "raw": "ae460440f9bbf0aa03fa"
   },
   "overhead_press/Kettlebell Seated Press": {
-   "svg": "e051988e02cdbf8eb154",
-   "raw": "39e9003fe11896d1dc34"
+   "svg": "7b0c0e3d859d328dc385",
+   "raw": "dac500643c433e8503be"
   },
   "overhead_press/Seated Barbell Military Press": {
-   "svg": "6c234021482e604af644",
-   "raw": "3578f2fbbc271f429edd"
+   "svg": "e8252af91da73deb2820",
+   "raw": "95351285c6d3b65aa881"
   },
   "overhead_press/Seated Cable Shoulder Press": {
-   "svg": "75e3fe51af24d40f5978",
-   "raw": "de4e8bdcb968546e98d5"
+   "svg": "519a9398fb4d0c382645",
+   "raw": "a1baaf91dd2853422ec2"
   },
   "overhead_press/Wyciskanie nad głowę (linki)": {
-   "svg": "d36d9967ad7dad28cf3b",
-   "raw": "d9badf29f4d32bacf789"
+   "svg": "cef0cfaf0817875321ba",
+   "raw": "951bc48354b6b2df4d78"
   },
   "overhead_press/Standing Barbell Press Behind Neck": {
-   "svg": "5bbc4a95c9243f5e9de6",
-   "raw": "7c33f8615bbf8b644532"
+   "svg": "f75823010d7fe2618c91",
+   "raw": "8218a01a39422136e3c7"
   },
   "overhead_press/Push Press": {
-   "svg": "f2bec18ce316fdd90702",
-   "raw": "486a73c87e49a9acad48"
+   "svg": "49f247e354ef6d6ebf0b",
+   "raw": "4882ce7dd202d2177147"
   },
   "overhead_press/Push Press - Behind the Neck": {
-   "svg": "9a46a9a14a545deef69c",
-   "raw": "f116cbfd2940b6476901"
+   "svg": "6c6d1b9f47966075d464",
+   "raw": "f6fa3f0cb26afbaf10bc"
   },
   "overhead_press/Landmine Press": {
    "svg": "adf3cbe7407e3ace08c2",

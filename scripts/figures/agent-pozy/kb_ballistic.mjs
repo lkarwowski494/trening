@@ -74,8 +74,8 @@ function swing(cw, { jedna = false, sprz }) {
   const ra = (psi, th = jedna ? 14 : 28) => ({ psi, th, z: jedna ? 19 : 5 });
   const PSI0 = -145; /* dół zamachu: ręce za linią kolan, ciężar między udami (recenzja p4a) */
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ra: { ...ra(PSI0, jedna ? 26 : 22), z: jedna ? 3 : 6 }, rl: jedna ? { psi: -60, th: 25, z: 24 } : undefined, kz: 0.5, zs: jedna ? 27 : 20 }),
-    wp({ al: 10, k: 26, pitch: 34, ra: ra(-60), rl: jedna ? { psi: -40, th: 25, z: 26 } : undefined, kz: 0.4, zs: 20 }),
+    wp({ al: 18, k: 48, pitch: 62, ra: { ...ra(PSI0, jedna ? 26 : 22), z: jedna ? 3 : 6 }, rl: jedna ? { psi: -60, th: 25, z: 24 } : undefined, kz: 0.9, zs: 20 }),
+    wp({ al: 10, k: 26, pitch: 34, ra: ra(-60), rl: jedna ? { psi: -40, th: 25, z: 26 } : undefined, kz: 0.7, zs: 20 }),
     wp({ al: 3, k: 12, pitch: 2, ra: ra(-4), rl: jedna ? { psi: 10, th: 25, z: 28 } : undefined, kz: 0.2, zs: 20 }),
   ];
   return gotowe(cw, sprz, W, jedna ? bledyPlecy(W, 2) : []);
@@ -117,12 +117,14 @@ const thDlaZ = (z, zapas) => { const dz = SHZ() - z; const r = Math.sqrt(64 ** 2
 const hike = (o) => (o.hantle ? { psi: -108, th: 12, z: 18 } : { psi: -140, th: o.jedna ? 26 : 22, z: o.jedna ? 3 : 6 });
 const pociag = (o) => ({ psi: -95, th: o.podloga ? thDlaZ(8, 0.2) : o.hantle ? 10 : o.jedna ? 18 : 30, z: o.podloga ? 8 : o.hantle ? 20 : o.jedna ? 7 : 3 }); /* biodra w połowie wyprostu: ręka prosta (łokieć ≤ 30°; boczne przesunięcie chwytu skraca zasięg), ciężar mija uda */
 const wyprost = (o) => ({ psi: -85, th: o.podloga ? 0 : o.jedna || o.hantle ? 8 : 14, z: 21 }); /* biodra i kolana wyprostowane: ręka nadal prosta, ciężar tuż przed udami */
+/** N1-r3 (recenzja r3): stały rozstaw stóp w osi z przez cały zarzut i rwanie (stopa w podparciu nie przesuwa się między klatkami kluczowymi; R6); kolana szerzej na zewnątrz (kz 0,9 / 0,7) w zawisie, żeby uda nie wchodziły w dzwon przy węższym rozstawie. */
+const zsN = (o) => o.zs ?? (o.podloga ? 18 : 20); /* Clean and Jerk: 19 (węższy rozstaw utrzymuje płynność ciągu W1-r3 i zasięg nóg w podrzucie) */
 /** Napęd (od zawisu do wyprostu bioder): punkty zwrotne w kątach (psi, th) próbkowane gęściej (5), żeby ciężar jechał po łuku prostej ręki, a nie po cięciwie (cięciwa skraca ramię i zgina łokieć). */
 function naped(o) {
   const S = [
-    o.podloga ? startZPodlogi(o) : { al: 18, k: 48, pitch: 62, ra: hike(o), kz: 0.5, zs: o.jedna ? 27 : 20 },
-    { al: 12, k: 30, pitch: 22, ra: pociag(o), kz: 0.4, zs: o.jedna && !o.hantle ? 26 : o.hantle ? 20 : 24 },
-    { al: 6, k: 14, pitch: 6, ra: wyprost(o), kz: 0.3, zs: 20 },
+    o.podloga ? startZPodlogi(o) : { al: 18, k: 48, pitch: 62, ra: hike(o), kz: 0.9, zs: zsN(o) },
+    { al: 12, k: 30, pitch: 22, ra: pociag(o), kz: 0.7, zs: zsN(o) },
+    { al: 6, k: 14, pitch: 6, ra: wyprost(o), kz: 0.3, zs: zsN(o) },
   ];
   const rl = (x) => (o.jedna ? { rl: WOLNA(o.wpsi ?? -70) } : { rl: { ...x.ra } });
   return [0, 0.25, 0.5, 0.75, 1].map((t) => { const x = t <= 0.5 ? mix(S[0], S[1], t * 2) : mix(S[1], S[2], (t - 0.5) * 2); return wR({ ...x, ...rl(x) }); });
@@ -132,9 +134,9 @@ const PRZY_CIELE = { rel: [-36, 14], pole: [0.3, -1, 0.7], z: 19 }; /* łokieć 
 function zarzut(cw, o) {
   const W = [
     ...naped(o),
-    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: 20 }),
-    wR({ al: 12, k: 34, pitch: 4, ...dwa(o, RACK_R), kz: 0.3, zs: 20 }),
-    wR({ al: 4, k: 14, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 20 }),
+    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: zsN(o) }),
+    wR({ al: 12, k: 34, pitch: 4, ...dwa(o, RACK_R), kz: 0.3, zs: zsN(o) }),
+    wR({ al: 4, k: 14, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: zsN(o) }),
   ];
   return gotowe(cw, o.sprz, W, [], { profil: true });
 }
@@ -156,9 +158,9 @@ function zarzutDnemDoGory(cw) {
 function rwanie(cw, o) {
   const W = [
     ...naped(o),
-    wR({ al: 4, k: 12, pitch: 3, ...dwa(o, { rel: [-6, 19], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: 18, A: [1, yP(-30) + 3], pod: -30 }),
-    wR({ al: 4, k: 14, pitch: 3, ...dwa(o, { rel: [24, 28], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: 17, A: [1, yP(-30) + 3], pod: -30 }), /* ciężar mija głowę z przodu (bez przenikania), dopiero potem wyrzut nad głowę */
-    wR({ al: 6, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.3, zs: 16 }),
+    wR({ al: 4, k: 12, pitch: 3, ...dwa(o, { rel: [-6, 19], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: zsN(o), A: [1, yP(-30) + 3], pod: -30 }),
+    wR({ al: 4, k: 14, pitch: 3, ...dwa(o, { rel: [24, 28], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: zsN(o), A: [1, yP(-30) + 3], pod: -30 }), /* ciężar mija głowę z przodu (bez przenikania), dopiero potem wyrzut nad głowę */
+    wR({ al: 6, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.3, zs: zsN(o) }),
   ];
   return gotowe(cw, o.sprz, W, [], { profil: true });
 }
@@ -167,8 +169,9 @@ function podrzut(cw, o) {
   const rack = (extra = {}) => wp({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
   const W = [rack(), rack({ al: 10, k: 38, pitch: 3 }),
     rack({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, ...(o.jedna ? { rl: WOLNA() } : {}) }),
-    o.split ? wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : o.pp ? wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }) /* wyciskanie z nóg: po wybiciu nogi zostają proste, ręce kończą ruch (recenzja p4a) */ : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
+    o.split ? wp({ ...SPLIT_LOT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : o.pp ? wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }) /* wyciskanie z nóg: po wybiciu nogi zostają proste, ręce kończą ruch (recenzja p4a) */ : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
   /* N1 (recenzja r1): podrzut kończy się wstaniem z ciężarem nad głową na prostych nogach (karta: „zejdź pod nie drugim ugięciem … i wstań”) */
+  if (o.split) W.push(wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }));
   if (!o.split && !o.pp) W.push(wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }));
   return gotowe(cw, o.sprz, W);
 }
@@ -181,7 +184,7 @@ function sumoHighPull(cw) {
     wp({ al: 22, k: 88, pitch: 38, ra: { psi: -95, th: 22, z: 5, pz: 2 }, ...st }),
     wp({ al: 6, k: 28, pitch: 12, ra: { psi: -98, th: 55, z: 5, pz: 2 }, ...st, bend: bend * 0.6 }), /* N2 (r1): ciąg zaczyna się w trakcie wyprostu bioder, bez zatrzymania w pół zawiasu */
     wp({ al: 4, k: 20, pitch: 4, ra: { psi: -115, th: 112, z: 6.5, pz: 6 }, ...st, bend: 0 }),
-    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -80, th: 140, z: 6.5, pz: 9.5 }, ...st, A: [1, yP(-40) + 1], pod: -40 }),
+    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -80, th: 140, z: 6.5, pz: 9.5 }, ...st, A: [6.2, yP(-40) + 1], pod: -40 }),
   ].map((w, i) => (i === 0 ? { ...w, bend } : w));
   const W = mk(0); const W2 = mk(26); W2[0].bend = 26; W2[1].bend = 26; W2[2].bend = 0;
   void W2;
@@ -191,18 +194,20 @@ function sumoHighPull(cw) {
 function bledyPlecy(W, ile = W.length - 2) { const W2 = W.map((w, i) => ({ ...w, bend: i < ile ? 26 : 0, ra: i < ile ? { ...w.ra, th: w.ra.th + 12 } : w.ra, rl: i < ile ? { ...w.rl, th: w.rl.th + 12 } : w.rl })); return [(r) => bladZRuchu({ cue: 'mis.roundBack', znacznik: 'back', ruch: r, W2, buduj2: P, od: 1 })]; }
 /** Jednoręczny zarzut z podrzutem: zawis → rack → ugięcie → wyrzut → nad głową (wykrok). */
 function cleanJerk(cw) {
-  const o = { jedna: true }; const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz' }));
-  const rack = (extra = {}) => wR({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
+  const o = { jedna: true, zs: 19 }; const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz' }));
+  const rack = (extra = {}) => wR({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: zsN(o), ...extra });
   const W = [
     ...naped(o),
-    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: 20 }),
+    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: zsN(o) }),
     rack({ al: 12, k: 34, pitch: 4 }), rack({ al: 10, k: 38, pitch: 3 }),
-    rack({ al: 9, k: 22, pod: -22, A: [0.5, yP(-22) + 2], ra: { psi: -42, th: 113, z: 19 }, rl: WOLNA() }), /* W1-r2: punkt pośredni łuku (po zmianie na opis w układzie tułowia łuk bez niego przechodzi przez ramię) */
-    rack({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, rl: WOLNA() }),
+    rack({ zs: 18, al: 9, k: 22, pod: -22, A: [0.5, yP(-22) + 2], ra: { psi: -42, th: 113, z: 19 }, rl: WOLNA() }), /* W1-r2: punkt pośredni łuku (po zmianie na opis w układzie tułowia łuk bez niego przechodzi przez ramię) */
+    rack({ zs: 18, al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, rl: WOLNA() }),
     wR({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }),
   ];
   return gotowe(cw, sprz, W, [], { profil: true });
 }
+/** N1-r3: lądowanie wykroku bez poślizgu — przednia stopa nad podłogą dociera nad miejsce lądowania (x, z), potem tylko opada pionowo (SPLIT); wcześniej stopa dotykała podłogi w trakcie przesuwu w x. */
+const SPLIT_LOT = () => ({ ...SPLIT(), A: [26, 11], pod: 0 });
 const SPLIT = () => { const hip = biodroZKostki([26, 7], -90 - 25 + 80, 80); return { A: [26, 7], al: 25, k: 80, AL: [hip[0] - 28, yP(-60) + 0.5], podL: -62 }; };
 
 export const JEDNOKIERUNKOWE = ['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'];
