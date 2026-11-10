@@ -60,6 +60,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       expect([k, ph]).toEqual([k, maszyna ? [['Wypychanie', 1000], ['Pauza', 500], ['Powrót', 2000], ['Pauza', 500]] : [['Opuszczanie', 2000], ['Pauza', 500], ['Podnoszenie', 1000], ['Pauza', 500]]]);
       const a = measuredAngle(sp, 0).deg, b = measuredAngle(sp, 1).deg; const gora = maszyna ? b : a, dol = maszyna ? a : b;
       expect([k, gora <= 25]).toEqual([k, true]); expect([k, dol >= 80]).toEqual([k, true]);
+    }
+  });
   test('cable_press (10.11.2026): staw = łokieć; faza 0 → 1 to wypychanie (1 s), powrót 2 s (Wypychanie / Powrót); łokieć zgięty ≥ 70° przy klatce (u = 0) i ≤ 25° w wyproście (u = 1) — reguła zakres', () => {
     const keys = DATA_KEYS.filter(([f]) => f === 'cable_press').map(([, k]) => k); expect(keys.sort()).toEqual(['Incline Cable Chest Press', 'Seated Cable Chest Press', 'Single Arm Cable Chest Press', 'Wyciskanie na linkach (stojąc)']);
     for (const k of keys) {

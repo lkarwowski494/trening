@@ -71,6 +71,6 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
   });
   test('szacunek pracy pozostałych rodzin: suma godzin pracy agenta jest policzona w dokumencie (docs/51) i zgadza się z kodem', () => {
     const sum = FAMILIES.filter(f => f.status === 'planned').reduce((s, f) => s + f.effort, 0);
-    expect(sum).toBeGreaterThan(100); expect(sum).toBeLessThan(200);
+    expect(sum).toBeGreaterThan(90); /* 10.11.2026: 100 → 90 — partia 4 włączyła rodziny (effort 3 + 2), suma pozostałych planned spadła do 98; dolna granica to tylko kontrola poczytalności, nie wymaganie */  expect(sum).toBeLessThan(200);
   });
 });
