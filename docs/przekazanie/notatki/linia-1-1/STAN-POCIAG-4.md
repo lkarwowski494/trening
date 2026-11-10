@@ -1,18 +1,18 @@
-# STAN — pociąg-4 (sesja A, gałąź scal/pociag-4)
+# STAN — pociąg-4 (gałąź scal/pociag-4; sesje A i A2)
 
-Polecenie: `docs/koordynacja/polecenia/A.md` (gałąź koordynacja). Decyzja KO-020 (10.11.2026) rozszerza pkt 3.1: konflikty rozwiązuje sesja z kontrolami (a)–(f).
+Polecenia: `docs/koordynacja/polecenia/A.md`, `A2.md` (gałąź koordynacja). Decyzje KO-020, KO-022 (docs/18, docs/21).
 
 ## Zrobione
-- Krok 1a: `figury/partia-4-thruster-wl` @ 06d90e84 scalona do scal/pociag-4 (commit e8b7251). Rozwiązanie: pliki lib/*.ts i testy figur ręcznie jako suma obu stron; JSON-y rejestrów trójstronnie (3-way po kluczach); `zrodla-runtime --write`, `v2-gen --write`, `pokrycie-katalogu --write`, macierz, README przeliczone; cele z `pokrycie-symulacja.mjs`.
-- Testy po scaleniu (jest --runInBand): gemini-polecenia, cel-1-1, recenzja-wyjatki-1-1, skrot-v2-wynik, store-review-notes, strona-eksport-recenzja, figures-v2-{mapping,wstrzymane,nakladka-*,petla,delt-raise-p4} — zielone (445). Nieuruchomione: figures-v2-data, strona-eksport, figury-generator-odtwarza, tor-wyjatki.
-- Krok 2: wpisy KO-012 i KO-020 w docs/18 (uwaga: wpis KO-020 mówi o partii 4 i 2).
+- Partia 4 (`figury/partia-4-thruster-wl` @ 06d90e84) scalona w e8b72515 (sesja A); wyjątek rozmiaru poseData.ts 760afa88.
+- Partia 2 (`figury/partia-2` @ 7a09818f) scalona w 4d2e19e (sesja A2): rejestry suma obu stron (JSON trójstronnie po kluczach, bez konfliktu wpisu), generatory przeliczone, cele z `pokrycie-symulacja` (figura.v2 527, pelnaKarta 458).
+- Skróty (`zrodla-runtime --skroty`): 27 rodzin v2 równe gałęziom źródłowym (int dfaeeefe, p4 06d90e84, p2 7a09818f); v1/karty/zestawy zgodne.
+- Przegląd niezależny (audytor): `docs/research/recenzje/pociag-4-scalenie.md` — brak WYSOKICH; 2 ŚREDNIE i NISKIE poprawione w commicie po 4d2e19e.
+- Testy figur i rejestrów (180 plików, w tym figures-v2-data, strona-eksport, figury-generator-odtwarza, figures-v2-tor): 175 zielonych + 5 poprawionych i zielonych po ponownym przebiegu.
+- KO-022 w docs/21; wyjątek poseData.ts bez zapasu (24 736 B); figure.ts pod limitem bez wyjątku.
 
 ## Zostało
-- Scalić `figury/partia-2` @ 7a09818f (mobility_floor, mobility_stand, pushup_plank; baza 1d6352ba, więc konflikty podobne). Pliki dodatkowe względem partii 4: tests/fixtures/figury-v2-zlote.json, tests/fixtures/pokrycie-katalogu-min.json, tests/interaction-guards.test.ts, tests/figury-*, scripts/figures/agent-pozy/*.
-- Niezależny przegląd scalenia (subagent `audytor`) → `docs/research/recenzje/pociag-4-scalenie.md` (autor ≠ recenzent): czy żaden wpis żadnej strony nie zginął (porównanie z oboma rodzicami, w tym figury-recenzja.json, pokrycie-cele.json, tor-wyjatki.json).
-- Kontrola (d): `node scripts/zrodla-runtime.mjs --skroty` — skróty rysunków rodzin vs wpisy recenzji (partie 1–3 na integracji, partia 4 na gałęzi źródłowej).
-- `npm run verify:szybkie` (wynik do pliku), push, zielony tests.yml na SHA.
+- `npm run verify:szybkie` (kod 0), push, zielony `tests.yml` na SHA głowy; scalenie do integracji robi koordynator (`scal-galaz`).
 
 ## Pułapki
-- Skrypt 3-way JSON: scratchpad m3.mjs (nie w repo): sumuje klucze, tablice jako zbiór; po nim `zrodla-runtime --write` ustala kolejność.
-- Liczby w testach figur (ready, POSE_FAMILIES, KEYS count, JED, petla) liczone sumą obu stron — po partii 2 przeliczyć ponownie.
+- Maszyna 4 rdzenie: 180 plików Jest ok. 35 min; gemini-polecenia ~7 min.
+- Opis w pokrycie-cele.json: po zmianie uruchomić `node scripts/pokrycie-katalogu.mjs --write` (docs/55 zależy od opisu).
