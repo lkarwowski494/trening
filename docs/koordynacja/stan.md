@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 08:45 UTC — PRZEKAZANIE KOORDYNATORA W TOKU (E6)) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 08:50 UTC — przejęcie przez session_01T66VBzARTWMJ7smU82sfJs) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -11,8 +11,8 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
   - zmiany workflowów: koordynator scala sam po przebiegu dowodowym (CLAUDE.md, właściciel 21.10.2026).
 - Zawsze za zgodą: push i scalenie na `main`, App Store Connect, TestFlight, publikacja, usuwanie gałęzi i danych, force-push, koszty stałe, wiadomości do ludzi, koszt API ponad pułap; nigdy --no-verify.
 - Pułapy kosztu: API przekładu 30 USD (ZB-057). Doba (sesje podrzędne): 350 USD — właściciel 2026-11-10 ~07:00 UTC, słowa: „350 USD na dobę” (ponad: bez nowych sesji). Pułap sesji: [DO USTALENIA] przez właściciela; roboczo w poleceniach (KO-019, do weta) (dawniej nieustalony; noc 09/10.11 ≈ 340 USD równowartości w limicie subskrypcji; limit tygodniowy konta allowed_warning, reset 2026-11-15 16:00 UTC).
-- Koordynator aktywny: session_01T66VBxiRkBevtfwuCxxs97 (od 2026-11-10 07:00 UTC, uruchomiony przez właściciela z /apps4brew; poprzednik session_01T66VBw1AX38pLShXPH7rmy, wcześniej session_01T66VByJCWCao1Hw3is68Cy). Rola M9 złożona 05:37 (prompts f701ce9) po zgodzie właściciela na add_repo (~05:36).
-- Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-fable-5-2 (wyjątek nazwany od zalecanej sesji opus/medium: właściciel po prośbie o /model odpowiedział „dalej” bez zmiany, 2026-11-10), wysiłek medium, permission_mode auto; repo sesji: lkarwowski494/trening, prompts (oraz Szkola_pokera, oczko, piekarz, oczko-warsztat — nieużywane). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
+- Koordynator aktywny: session_01T66VBzARTWMJ7smU82sfJs (od 2026-11-10 08:50 UTC, przejęcie E6 od session_01T66VBxiRkBevtfwuCxxs97 — sesja czatu właściciela /apps4brew, nie archiwizować bez jego słowa; wcześniej session_01T66VBw1AX38pLShXPH7rmy, session_01T66VByJCWCao1Hw3is68Cy). Rola M9 z promptu przekazania (prompts f701ce9); add_repo prompts w tej sesji odrzucony przez klasyfikator 08:45 — prośba do właściciela.
+- Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening (prompts — brak, add_repo odrzucony). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
 ## Teraz (08:45 UTC)
@@ -81,7 +81,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm) — poprawka pozy + recenzja; fidr.move (Front Incline DB Raise) → cel +1; dług ROZJAZDY_POZA_ZAKRESEM (tests/figury-generator-odtwarza.test.ts); recenzja lokalizacji zbiorcza (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell); badacz: lokcie_pod_dlonmi w środku toru ohp, glute_floor, pewność reguł mobility_floor/kneeling_hinge; silnik: punkty dźwigni barki/uda (calf), gear.ts obrót dzwonu (kb); P3-MARSZ; PP-W1 (Plyo).
 
 ## Przypomnienia
-- „Koordynator Trening: kontrola” ~08:42 (send_later 08:02; poprzednia trig_01UWKZWY4rndpbXDhvFvEqDJ zadziałała 07:58) · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
+- trig_01XcNDadukhGTefDU3YBwA6S „Koordynator Trening: kontrola” 09:16 · trig_01NZwThjYQSRrWBJooKjAAdt „…: linia 14:00” (10.11) · trig_01A9dxsnidHUn46eG8hrruiY „…: linia 05:00” (11.11). Poprzednika: trig_01DCKPujdY6Ds93aNDAicFeh „kontrola przekazania” 09:16 (sprząta poprzednik).
 
 ## Pule numerów decyzji
 - Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-023. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
@@ -110,3 +110,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 08:40 | koordynator | kontrola: brak nowych pushy (scal/pociag-4 760afa88, partia-5 cd789d82); własny kontekst 28% → E6 | start następcy |
 | 2026-11-10 08:50 | właściciel | „Możesz puścić, mam reset limitu dostępny.” (odpowiedź na opcję 4 sesji dla tury 3) → tura 3 w 4 sesjach po pociągu-4 | następca zleca C–F |
 | 2026-11-10 08:58 | koordynator …VBxiRkBevtfwuCxxs97 | przekazane do session_01T66VBzARTWMJ7smU82sfJs (opus-5-5, start potwierdzony get_session przez subagenta); własne przypomnienia linii 14:00 i 05:00 usunięte, zostaje „kontrola przekazania” za 30 min; koszt poprzednika 12,1 USD (08:40) | następca: E6 pkt 5, „PRZEJĄŁEM” |
+| 2026-11-10 08:50 | koordynator …VBzARTWMJ7smU82sfJs | przejęcie E6 (stan @ eb55ce5); przypomnienia własne; add_repo prompts odrzucony przez klasyfikator → bez biblioteki nie da się złożyć ról dla C–F | prośba do właściciela o zgodę na add_repo prompts; A2, B poinformowane |
