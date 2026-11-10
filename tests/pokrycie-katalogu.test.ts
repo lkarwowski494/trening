@@ -83,8 +83,7 @@ describe('pokrycie katalogu: zapadka (nie spada)', () => {
     expect(naruszenia({ ...fix.dobre, pelnaKarta: min.minimum.pelnaKarta - 1 }, min).join('|')).toMatch(/pelnaKarta: .* < minimum/);
   });
   test('scenariusz: spadek kompletu kart w jednym języku (np. usunięty przekład) jest wykryty', () => {
-    /* 10.11.2026: od minimum, nie od bieżącego stanu — po fali kart (partia 9, +24) stan jest powyżej minimum i „bieżący − 1” nie schodzi poniżej niego (minimum podnosi świadomie `--podnies-minimum`) */
-    const d = { ...fix.dobre, 'jezyk.de.kompletne': min.minimum['jezyk.de.kompletne'] - 1 };
+    const d = { ...fix.dobre, 'jezyk.de.kompletne': fix.dobre['jezyk.de.kompletne'] - 1 };
     expect(naruszenia(d, min).join('|')).toMatch(/jezyk\.de\.kompletne/);
   });
   test('scenariusz: wzrost nie jest naruszeniem; nowa metryka bez minimum jest zgłoszona', () => {

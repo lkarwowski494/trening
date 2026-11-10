@@ -13,21 +13,21 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
-| Figura v2 w aplikacji (rodzina gotowa) | 386 | 54,5% |
-| Figura v1 w aplikacji (bez v2) | 13 | 1,8% |
-| Bez figury w aplikacji | 309 | 43,6% |
-| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 148 | 20,9% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 97 | 13,7% |
-| Animowany błąd | 217 | 30,6% |
+| Figura v2 w aplikacji (rodzina gotowa) | 410 | 57,9% |
+| Figura v1 w aplikacji (bez v2) | 7 | 1% |
+| Bez figury w aplikacji | 291 | 41,1% |
+| — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 124 | 17,5% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 91 | 12,9% |
+| Animowany błąd | 231 | 32,6% |
 | Własne wskazówki (źródłowe) | 309 | 43,6% |
 | — z czego z częstymi błędami | 197 | 27,8% |
-| Zestaw ogólny wskazówek wzorca ruchu | 182 | 25,7% |
-| Bez tekstu wskazówek | 217 | 30,6% |
-| Częste błędy (własne albo zestaw ogólny) | 373 | 52,7% |
+| Zestaw ogólny wskazówek wzorca ruchu | 194 | 27,4% |
+| Bez tekstu wskazówek | 205 | 29% |
+| Częste błędy (własne albo zestaw ogólny) | 385 | 54,4% |
 | Role mięśni | 513 | 72,5% |
-| **Pełna karta** | 371 | 52,4% |
-| **Pełna karta + błąd** | 210 | 29,7% |
-| Figura z aktualną recenzją ruchu (bramka 4) | 386 | 54,5% |
+| **Pełna karta** | 395 | 55,8% |
+| **Pełna karta + błąd** | 224 | 31,6% |
+| Figura z aktualną recenzją ruchu (bramka 4) | 410 | 57,9% |
 
 ## Cele wersji
 
@@ -41,49 +41,49 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 527 | 386 | 141 |
-| figura w aplikacji (v2 albo v1) | 531 | 399 | 132 |
-| animowany błąd | 259 | 217 | 42 |
-| wskazówki (własne lub zestaw ogólny) | 570 | 491 | 79 |
-| częste błędy (tekst) | 443 | 373 | 70 |
+| figura v2 w aplikacji | 527 | 410 | 117 |
+| figura w aplikacji (v2 albo v1) | 531 | 417 | 114 |
+| animowany błąd | 259 | 231 | 28 |
+| wskazówki (własne lub zestaw ogólny) | 570 | 503 | 67 |
+| częste błędy (tekst) | 443 | 385 | 58 |
 | role mięśni | 524 | 513 | 11 |
-| pełna karta | 458 | 371 | 87 |
-| figura z aktualną recenzją ruchu | 527 | 386 | 141 |
-| komplet tekstów karty: pl | 632 | 597 | 35 |
-| komplet tekstów karty: en | 632 | 597 | 35 |
-| komplet tekstów karty: cs | 632 | 597 | 35 |
-| komplet tekstów karty: sk | 632 | 597 | 35 |
-| komplet tekstów karty: hu | 632 | 597 | 35 |
-| komplet tekstów karty: ro | 632 | 597 | 35 |
-| komplet tekstów karty: bg | 632 | 597 | 35 |
-| komplet tekstów karty: hr | 632 | 597 | 35 |
-| komplet tekstów karty: sl | 632 | 597 | 35 |
-| komplet tekstów karty: sr | 632 | 597 | 35 |
-| komplet tekstów karty: lt | 632 | 597 | 35 |
-| komplet tekstów karty: lv | 632 | 597 | 35 |
-| komplet tekstów karty: et | 632 | 597 | 35 |
-| komplet tekstów karty: uk | 632 | 597 | 35 |
-| komplet tekstów karty: es | 632 | 597 | 35 |
-| komplet tekstów karty: es-419 | 632 | 597 | 35 |
-| komplet tekstów karty: pt | 632 | 597 | 35 |
-| komplet tekstów karty: pt-BR | 632 | 597 | 35 |
-| komplet tekstów karty: de | 632 | 597 | 35 |
-| komplet tekstów karty: fr | 632 | 597 | 35 |
-| komplet tekstów karty: it | 632 | 597 | 35 |
-| komplet tekstów karty: nl | 632 | 597 | 35 |
-| komplet tekstów karty: sv | 632 | 597 | 35 |
-| komplet tekstów karty: da | 632 | 597 | 35 |
-| komplet tekstów karty: nb | 632 | 597 | 35 |
-| komplet tekstów karty: fi | 632 | 597 | 35 |
-| komplet tekstów karty: tr | 632 | 597 | 35 |
-| komplet tekstów karty: el | 632 | 597 | 35 |
-| komplet tekstów karty: id | 632 | 597 | 35 |
-| komplet tekstów karty: ms | 632 | 597 | 35 |
-| komplet tekstów karty: vi | 632 | 597 | 35 |
-| komplet tekstów karty: ru | 632 | 597 | 35 |
-| komplet tekstów karty: ja | 632 | 597 | 35 |
-| komplet tekstów karty: ko | 632 | 597 | 35 |
-| komplet tekstów karty: zh-Hant | 632 | 597 | 35 |
+| pełna karta | 458 | 395 | 63 |
+| figura z aktualną recenzją ruchu | 527 | 410 | 117 |
+| komplet tekstów karty: pl | 632 | 598 | 34 |
+| komplet tekstów karty: en | 632 | 598 | 34 |
+| komplet tekstów karty: cs | 632 | 598 | 34 |
+| komplet tekstów karty: sk | 632 | 598 | 34 |
+| komplet tekstów karty: hu | 632 | 598 | 34 |
+| komplet tekstów karty: ro | 632 | 598 | 34 |
+| komplet tekstów karty: bg | 632 | 598 | 34 |
+| komplet tekstów karty: hr | 632 | 598 | 34 |
+| komplet tekstów karty: sl | 632 | 598 | 34 |
+| komplet tekstów karty: sr | 632 | 598 | 34 |
+| komplet tekstów karty: lt | 632 | 598 | 34 |
+| komplet tekstów karty: lv | 632 | 598 | 34 |
+| komplet tekstów karty: et | 632 | 598 | 34 |
+| komplet tekstów karty: uk | 632 | 598 | 34 |
+| komplet tekstów karty: es | 632 | 598 | 34 |
+| komplet tekstów karty: es-419 | 632 | 598 | 34 |
+| komplet tekstów karty: pt | 632 | 598 | 34 |
+| komplet tekstów karty: pt-BR | 632 | 598 | 34 |
+| komplet tekstów karty: de | 632 | 598 | 34 |
+| komplet tekstów karty: fr | 632 | 598 | 34 |
+| komplet tekstów karty: it | 632 | 598 | 34 |
+| komplet tekstów karty: nl | 632 | 598 | 34 |
+| komplet tekstów karty: sv | 632 | 598 | 34 |
+| komplet tekstów karty: da | 632 | 598 | 34 |
+| komplet tekstów karty: nb | 632 | 598 | 34 |
+| komplet tekstów karty: fi | 632 | 598 | 34 |
+| komplet tekstów karty: tr | 632 | 598 | 34 |
+| komplet tekstów karty: el | 632 | 598 | 34 |
+| komplet tekstów karty: id | 632 | 598 | 34 |
+| komplet tekstów karty: ms | 632 | 598 | 34 |
+| komplet tekstów karty: vi | 632 | 598 | 34 |
+| komplet tekstów karty: ru | 632 | 598 | 34 |
+| komplet tekstów karty: ja | 632 | 598 | 34 |
+| komplet tekstów karty: ko | 632 | 598 | 34 |
+| komplet tekstów karty: zh-Hant | 632 | 598 | 34 |
 
 ## Rodziny ruchu
 
@@ -100,7 +100,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 8 | 0 | 20 | 0 | 0 |
 | `olympic` | gotowa | 25 | 22 | 2 | 0 | 21 | 1 | 3 | 21 | 22 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 11 | 14 | 0 | 24 | 25 |
-| `lunge` | gotowa | 24 | 0 | 24 | 6 | 12 | 0 | 12 | 0 | 0 |
+| `lunge` | gotowa | 24 | 24 | 0 | 0 | 12 | 12 | 0 | 24 | 24 |
 | `overhead_press` | gotowa | 23 | 21 | 0 | 0 | 11 | 10 | 2 | 21 | 21 |
 | `mobility_floor` | gotowa | 22 | 9 | 0 | 0 | 9 | 4 | 9 | 9 | 9 |
 | `chest_fly` | gotowa | 20 | 17 | 0 | 0 | 3 | 13 | 4 | 16 | 17 |
@@ -135,57 +135,57 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **597**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **598**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 597 | 0 | 0 | 0 |
-| en | 597 | 0 | 0 | 0 |
-| cs | 597 | 0 | 0 | 0 |
-| sk | 597 | 0 | 0 | 0 |
-| hu | 597 | 0 | 0 | 0 |
-| ro | 597 | 0 | 0 | 0 |
-| bg | 597 | 0 | 0 | 0 |
-| hr | 597 | 0 | 0 | 0 |
-| sl | 597 | 0 | 0 | 0 |
-| sr | 597 | 0 | 0 | 0 |
-| lt | 597 | 0 | 0 | 0 |
-| lv | 597 | 0 | 0 | 0 |
-| et | 597 | 0 | 0 | 0 |
-| uk | 597 | 0 | 0 | 0 |
-| es | 597 | 0 | 0 | 0 |
-| es-419 | 597 | 0 | 0 | 0 |
-| pt | 597 | 0 | 0 | 0 |
-| pt-BR | 597 | 0 | 0 | 0 |
-| de | 597 | 0 | 0 | 0 |
-| fr | 597 | 0 | 0 | 0 |
-| it | 597 | 0 | 0 | 0 |
-| nl | 597 | 0 | 0 | 0 |
-| sv | 597 | 0 | 0 | 0 |
-| da | 597 | 0 | 0 | 0 |
-| nb | 597 | 0 | 0 | 0 |
-| fi | 597 | 0 | 0 | 0 |
-| tr | 597 | 0 | 0 | 0 |
-| el | 597 | 0 | 0 | 0 |
-| id | 597 | 0 | 0 | 0 |
-| ms | 597 | 0 | 0 | 0 |
-| vi | 597 | 0 | 0 | 0 |
-| ru | 597 | 0 | 0 | 0 |
-| ja | 597 | 0 | 0 | 0 |
-| ko | 597 | 0 | 0 | 0 |
-| zh-Hant | 597 | 0 | 0 | 0 |
+| pl | 598 | 0 | 0 | 0 |
+| en | 598 | 0 | 0 | 0 |
+| cs | 598 | 0 | 0 | 0 |
+| sk | 598 | 0 | 0 | 0 |
+| hu | 598 | 0 | 0 | 0 |
+| ro | 598 | 0 | 0 | 0 |
+| bg | 598 | 0 | 0 | 0 |
+| hr | 598 | 0 | 0 | 0 |
+| sl | 598 | 0 | 0 | 0 |
+| sr | 598 | 0 | 0 | 0 |
+| lt | 598 | 0 | 0 | 0 |
+| lv | 598 | 0 | 0 | 0 |
+| et | 598 | 0 | 0 | 0 |
+| uk | 598 | 0 | 0 | 0 |
+| es | 598 | 0 | 0 | 0 |
+| es-419 | 598 | 0 | 0 | 0 |
+| pt | 598 | 0 | 0 | 0 |
+| pt-BR | 598 | 0 | 0 | 0 |
+| de | 598 | 0 | 0 | 0 |
+| fr | 598 | 0 | 0 | 0 |
+| it | 598 | 0 | 0 | 0 |
+| nl | 598 | 0 | 0 | 0 |
+| sv | 598 | 0 | 0 | 0 |
+| da | 598 | 0 | 0 | 0 |
+| nb | 598 | 0 | 0 | 0 |
+| fi | 598 | 0 | 0 | 0 |
+| tr | 598 | 0 | 0 | 0 |
+| el | 598 | 0 | 0 | 0 |
+| id | 598 | 0 | 0 | 0 |
+| ms | 598 | 0 | 0 | 0 |
+| vi | 598 | 0 | 0 | 0 |
+| ru | 598 | 0 | 0 | 0 |
+| ja | 598 | 0 | 0 | 0 |
+| ko | 598 | 0 | 0 | 0 |
+| zh-Hant | 598 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 371 (z błędem: 210). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 395 (z błędem: 224). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
 - Brakuje tylko: wskazówki (własne albo zrecenzowany zestaw ogólny) — 4: Crucifix, Dip Machine, Front Incline Dumbbell Raise, Smith Machine Shoulder Press
-- Brakuje tylko: figura v2 w aplikacji — 72
+- Brakuje tylko: figura v2 w aplikacji — 60
 - Brakuje tylko: role mięśni — 11: Barbell Rollout from Bench, Jerk Balance, Middle Back Shrug, Mountain Climbers, Plank, Plank Shoulder Taps, Rollout (sztanga), Scapular Pull-Up, Standing Barbell Rollout, Suspended Fallout, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 371 |
-| 1 | 87 |
-| 2 | 171 |
+| 0 | 395 |
+| 1 | 75 |
+| 2 | 159 |
 | 3 | 79 |
