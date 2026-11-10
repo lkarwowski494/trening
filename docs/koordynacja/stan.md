@@ -15,12 +15,12 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening, lkarwowski494/prompts (add_repo za zgodą właściciela ~09:00). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz (15:15 UTC)
-- Integracja `integracja-1-1` @ 649b0504 (pociąg-5 + numer lekcji). tests.yml na 649b0504 — sprawdzić przy kontroli.
-- W toku tura 3: C2 partia 6 (scala integrację, konflikty), D2 partia 7 (25%, 5,74 USD, scala 649b0504), E2 partia 8 (25,6%, 10,36 USD, 44 commity, verify:szybkie przed pushem), F2 partia 9 (25,2%, 5,63 USD, verify:szybkie przed pushem). Ścieżka każdej: push → zielony tests.yml → PRZEKAZANIE → odbiór → scal-galaz → numeruj-lekcje → verify:lekkie → push integracji.
-- Biblioteka prompts: add_repo odrzucony 15:07 mimo stałej reguły (`.claude/settings.json:23` na koordynacja); po zgodzie właściciela 16:41 („Zgoda na dołączenie repo prompts”) dodana, klon /home/user/prompts @ f701ce9. Prompt 08 odtworzony dla H jest identyczny z biblioteką (diff poza 1. linią: 0).
-- Właściciel 15:03 pytał o status i termin 1.1 — poprzednik odpowiedział 15:06 (szacunek 16–18.11 jako otwarty).
-- Reguła add_repo na integrację: pytanie A/B/C otwarte; wynik testu (reguła nie działa w auto) jest argumentem do tej decyzji.
+## Teraz (18:10 UTC — przekazanie E6, kontekst koordynatora ok. 29%)
+- Integracja `integracja-1-1` @ 584bca9 (partia 6 plyo; tests.yml na 584bca9 — sprawdzić).
+- H (session_01T66VBzEyJX4y1Y7uQKJeBA): pociąg-6 = partie 7 + 9 na `scal/pociag-6` (lokalnie; audytor partii 7 i 9: 0 znalezisk; verify:szybkie w toku; push ok. 18:45–19:00). Partii 8 NIE scala (kontekst H blisko 30%). Po PRZEKAZANIU H: odbiór (autor, tests.yml na SHA, raporty audytora docs/research/recenzje/pociag-6-*) → `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs scal/pociag-6` w /home/user/trening (checkout -B integracja-1-1 origin/integracja-1-1) → numeruj-lekcje → npm ci + verify:lekkie → push → H koszt → archiwizacja.
+- Potem sesja I (polecenia/I.md, gotowe): pociąg-7 = partia 8 @ 213c3f9e od nowej integracji; w pierwszej wiadomości SHA_STARTU; w I.md zmienić ID koordynatora na swoje przed commitem.
+- Tura 3 po pociągu-7 kompletna (partie 6–9). Następne z planu: przekład ZB-057, recenzja lokalizacji, zadania przed 1.1, audyt, E2E.
+- Czeka na właściciela: decyzje A–D z porannego raportu, weto KO-020…KO-029, A/B/C reguły add_repo na integracji (rekomendacja C). Właściciel: archiwizacja nieaktywnych sesji zrobiona 17:50 (czat …VBxiRkBevtfwuCxxs97 zarchiwizowany — może poprosić o przywrócenie).
 - Push gałęzi stanu: npm ci w /home/user/trening, symlink node_modules w worktree stanu, verify:lekkie, push (WG-06).
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
@@ -55,7 +55,7 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 | E2 | session_01T66VBy5u5s5tmRzgYkEEmU | 08 build: partia 8 dokończenie (polecenia/E2.md) | figury/partia-8 @ 213c3f9e (tests.yml 42860496841 zielony) | 35,4 | 19,96 | PRZEKAZANIE 17:47 → do H; zarchiwizowana 17:55 |
 | F2 | session_01T66VBy1ccEFDR3J8WxZDVE | 08 build: partia 9 dokończenie (polecenia/F2.md) | figury/partia-9 @ 1bb3b55c (tests.yml 42857877718 zielony) | 28,6 | 9,02 | PRZEKAZANIE 17:08 → do H (pociąg-6); zarchiwizowana 17:12 |
 | D2 | session_01T66VBymsQ2Zz31MLo3Wqah | 08 build (opus-5-5): partia 7 dokończenie (polecenia/D2.md) | figury/partia-7 @ 9e3db956 (tests.yml 42848680372 zielony) | 31,5 | 10,51 | PRZEKAZANIE 16:08; zarchiwizowana 16:40; scalenie przez H |
-| H | session_01T66VBzEyJX4y1Y7uQKJeBA | 08 build (opus-5-5): pociąg-6 (polecenia/H.md) | scal/pociag-6 od integracja 584bca9 | 0 | 0 | start 16:38 (prompt 08 odtworzony z 1. wiadomości F2, 49 447 znaków, cmp zgodny z plikiem startu) |
+| H | session_01T66VBzEyJX4y1Y7uQKJeBA | 08 build (opus-5-5): pociąg-6 (polecenia/H.md) | scal/pociag-6 od integracja 584bca9 (partie 7+9, lokalnie) | ~30 (wg H) | b.d. | w toku: verify:szybkie → push → PRZEKAZANIE; start 16:38 (prompt 08 odtworzony z 1. wiadomości F2, 49 447 znaków, cmp zgodny z plikiem startu) |
 | E | session_01T66VBvTx4J3wo4LsZx4yjb | 08 build: partia 8 + KO-024 podział | scal/posedata-podzial 24b461e3 (PRZYJĘTA, w integracji 038efefc); figury/partia-8 f281a089 + gałęzie rodzin | 32,7 | 31,62 | PRZEKAZANIE 13:50 → E2; zarchiwizowana 15:15 |
 | F | session_01T66VBwaPHeeK1QNim6cow6 | 08 build: partia 9 | partia-9 3070557, -leg_isolation 7c2692a, -lunge d744f06 | 36,4 | 39,99 | PRZEKAZANIE 14:21 → F2; zarchiwizowana 14:55 |
 | G | session_01T66VByihtvAjWHsQzFqFZo | 08 build: pociąg-5 | scal/pociag-5 5a401abd — PRZYJĘTA, w integracji 649b0504 | 32,5 | 14,36 | zarchiwizowana 14:55 |
@@ -167,3 +167,5 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 17:50 | właściciel / koordynator | „Zarchiwizuj wszystkie sesje treningu które nie pracują” → zarchiwizowana tylko session_01T66VBxiRkBevtfwuCxxs97 („Trening”, czat /apps4brew, 6 repo, 14,80 USD); reszta Trening już archiwalna; pominięte: koordynator, H (pracuje), E2 (czeka na CI i przekazanie) | właściciel może przywrócić …VBxiRkBevtfwuCxxs97 |
 | 2026-11-10 17:50 | koordynator | E2 partia-8 213c3f9e: tests.yml 42860496841 success → SHA do H (pociąg-6, z uwagami: R3-W1 w draw.ts — przegląd audytora, L-080 core_standing, KO-027); E2 poproszona o PRZEKAZANIE; H: partie 7 i 9 scalone lokalnie, push ok. 18:45–19:00 | odbiór H → scal-galaz |
 | 2026-11-10 17:55 | E2 / koordynator | PRZEKAZANIE E2 (partia 8: core_standing ba395c4d26d1 r4, sled_throw dade4388eeaa r3, strongman 04b91430146d r1; do weta 6 decyzji w docs/18; STAN-PARTIA-8.md nieaktualny) → skróty do H; E2 19,96 USD → zarchiwizowana | odbiór H |
+| 2026-11-10 18:08 | H | partii 8 nie scala (kontekst blisko 30%); pociąg-6 = 7 + 9; uwaga L-080: brak rodziny planned z pozami po partii 8 | polecenia/I.md (pociąg-7, partia 8) gotowe |
+| 2026-11-10 18:10 | koordynator | kontekst ok. 29% → E6 | następca |

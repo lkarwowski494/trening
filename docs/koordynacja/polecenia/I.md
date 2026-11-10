@@ -1,0 +1,16 @@
+# Sesja I: pociąg-7 — scalenie partii 8 z integracją po pociągu-6 — Trening, linia 1.1
+Koordynator: session_01T66VByix2KT9Yufm3EMdpE. Raporty, PYTANIE i PRZEKAZANIE wysyłasz narzędziem `mcp__claude-code-remote__send_message` z `session_id` = to ID (załaduj przez ToolSearch, jeśli go nie widzisz; ListAgents nie służy do tego). Jeśli dostaniesz wiadomość o zmianie koordynatora — pisz do nowego. Gałąź stanu `koordynacja` tylko do odczytu.
+
+1. Rola: 08-programista w trybie build. Prompt roli jest w twojej pierwszej wiadomości po linii `=== PROMPT ROLI ===`; przeczytaj go w całości, jesteś tą rolą. Biblioteki prompts nie dołączasz. Pierwszeństwo ma CLAUDE.md z twojej gałęzi (przeczytaj go najpierw).
+2. Start: utwórz gałąź `scal/pociag-7` od `origin/integracja-1-1` @ SHA_STARTU (podany w pierwszej wiadomości: integracja po scaleniu pociągu-6 = partie 7 i 9; inny HEAD: zgłoś). Klon pełny (`git fetch --unshallow`). `npm ci`. Tożsamość commitów według CLAUDE.md.
+3. Zadania:
+   1. Scal `origin/figury/partia-8` @ 213c3f9e (tests.yml 42860496841 zielony; core_standing ba395c4d26d1, sled_throw dade4388eeaa, strongman 04b91430146d — STAN-PARTIA-8.md na gałęzi jest nieaktualny, te skróty z PRZEKAZANIA E2). Reguły KO-020 (`polecenia/A2.md` pkt 3.1 na koordynacja): pliki generowane — generatorami; docs/18, 40, 21, 51, brd — suma; rejestry, listy i dane per rodzina — suma; cele 1.1 i minima — z symulacji po scaleniu, żaden próg w dół; ten sam wpis zmieniony różnie → PYTANIE.
+   2. Zmiana E2 w lib/figures/v2/draw.ts (R3-W1 tylko z przodu i ≥ 1 cm): po scaleniu skróty rodzin spoza partii 8 mają być równe integracji — sprawdź `node scripts/zrodla-runtime.mjs --skroty`; różnica → PYTANIE.
+   3. Test L-080 w tests/skrot-v2-wynik.test.ts: po partii 8 nie ma już rodziny planned z plikiem póz (zostają cardio, foam_roll, neck bez póz — notatka H w STAN-POCIAG-6.md). Zaproponuj wariant scenariusza, który nadal sprawdza to samo (np. rodzina sztuczna w teście albo helper bez load), wybierz rekomendację, wpis do docs/18 do weta; asercji nie osłabiaj.
+   4. Niezależny przegląd scalenia i zmiany draw.ts przez subagenta `audytor`: raport docs/research/recenzje/pociag-7-scalenie.md.
+   5. Testy figur lokalnie po jednym pliku `--runInBand`; potem `npm run verify:szybkie` kod 0 (wynik do pliku). Push, zielony tests.yml na głowie.
+4. Zakazy: nie scalasz do `integracja-1-1` ani `main` (koordynator, scal-galaz), nie tworzysz i nie archiwizujesz sesji, nie piszesz na `koordynacja`, nie zmieniasz workflowów, nigdy --no-verify ani force-push, nie pytasz właściciela bezpośrednio (bez AskUserQuestion), bez przekładu API, TestFlight i App Store Connect. STOP-y roli zamieniasz na raport do koordynatora.
+5. Decyzje: tryb „analogia” — własna rekomendacja, wpis z datą w docs/18 (odrzucone warianty), „do weta” w raporcie. Kwestie merytoryczne rozstrzyga hierarchia źródeł z CLAUDE.md.
+6. Kontekst i koszt: od 30% okna kończysz krok, STAN-POCIAG-7.md w docs/przekazanie/notatki/linia-1-1/, push, PRZEKAZANIE. Duże wyjścia do plików. Pułap 25 USD; po 32,5 USD kończysz krok i PRZEKAZANIE.
+7. Push: zbiorczo (jeden push po verify).
+8. Raporty (≤ 10 linii): po scaleniu partii 7 — czas i szacunek reszty; PYTANIE: pełna treść, opcje, rekomendacja; PRZEKAZANIE: SHA, run CI, dowody (pliki), decyzje do weta, otwarte, następny krok.
