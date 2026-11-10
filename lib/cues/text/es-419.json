@@ -372,5 +372,12 @@
  "plyo.splitSetup": "Colócate en zancada: una pierna adelante y la otra atrás.",
  "plyo.splitSwitch": "Salta hacia arriba, cambia de pierna en el aire y cae en zancada con la otra pierna adelante.",
  "sled.backGrip": "Toma la cuerda del trineo con ambas manos.",
- "sled.backPedal": "Ponte de frente al trineo y camina hacia atrás, empujando con las piernas."
+ "sled.backPedal": "Ponte de frente al trineo y camina hacia atrás, empujando con las piernas.",
+ "bhs.setup": "Barra detrás de las piernas, sujétala con agarre prono y los brazos colgando; pies al ancho de los hombros.",
+ "cdl.move": "Empuja el piso con las piernas y mantén el mismo ángulo de espalda hasta que la barra pase las rodillas.",
+ "cdl.setup": "Colócate y agarra la barra como para una cargada; empuja las rodillas hacia afuera hasta que toquen los brazos.",
+ "ohs.arms": "Mantén los brazos estirados durante todo el movimiento.",
+ "ohs.move": "Baja en sentadilla con la barra sobre la cabeza todo el tiempo y vuelve a subir.",
+ "slrdl.move": "Inclínate echando la cadera atrás y lleva la pierna libre recta hacia atrás; vuelve empujando la cadera hacia adelante.",
+ "slrdl.setup": "Párate en una pierna, con la rodilla ligeramente flexionada."
 }

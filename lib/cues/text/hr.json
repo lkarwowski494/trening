@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Zauzmi položaj iskoraka: jedna noga naprijed, druga iza.",
  "plyo.splitSwitch": "Odrazi se prema gore, u zraku zamijeni noge i doskoči u iskorak s drugom nogom naprijed.",
  "sled.backGrip": "Uhvati uže sanjki objema rukama.",
- "sled.backPedal": "Stani licem prema sanjkama i hodaj unatrag, odgurujući se nogama."
+ "sled.backPedal": "Stani licem prema sanjkama i hodaj unatrag, odgurujući se nogama.",
+ "bhs.setup": "Šipka iza nogu, drži je nathvatom u spuštenim rukama; stopala u širini ramena.",
+ "cdl.move": "Odgurni se nogama od poda i zadrži isti kut leđa dok šipka ne prođe koljena.",
+ "cdl.setup": "Namjesti se i uhvati šipku kao za nabačaj; gurni koljena prema van dok ne dotaknu ruke.",
+ "ohs.arms": "Drži ruke ispružene tijekom cijelog pokreta.",
+ "ohs.move": "Spusti se u čučanj držeći šipku cijelo vrijeme iznad glave, pa ustani.",
+ "ohs.setup": "Šipka iznad glave na ispruženim rukama.",
+ "slrdl.move": "Nagni se gurajući kukove unatrag, a slobodnu nogu vodi ravno natrag; vrati se gurajući kukove naprijed.",
+ "slrdl.setup": "Stani na jednu nogu, koljeno lagano savijeno."
 }

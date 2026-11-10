@@ -255,6 +255,9 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     expect(nazwy('en', tul, 'Brace your core hard before you bend your knees.')).toEqual([]);
     const jd = 'Sztanga na górze pleców, jak do przysiadu.'; expect(nazwy('en', jd, 'Bar on your upper back, like for a squat.')).toEqual(['jak_do_en']);
     expect(nazwy('en', jd, 'Bar on your upper back, like a back squat.')).toEqual([]);
+    /* 09.11.2026 (recenzja lokalizacji P1, koordynator): kalka „as for a …” (cdl.setup EN przed poprawką) — ten sam wzorzec jak_do_en */
+    const cl = 'Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk.'; expect(nazwy('en', cl, 'Set up as for a clean: clean grip, knees pushed out until they touch your arms.')).toEqual(['jak_do_en']);
+    expect(nazwy('en', 'Ustaw się i chwyć sztangę jak do zarzutu.', 'Set up and grip the bar like a clean.')).toEqual([]);
   });
   test('03.11.2026, P2 moc: wskazówki PL i EN partii (zdania z tests/fixtures/cues-p2-moc.json) nie łamią terminów nożyce / rack / szerokość stóp / core / „like for a”', () => {
     const enCues = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/en.json'), 'utf8')) as Record<string, string>;

@@ -1,0 +1,26 @@
+{
+  "squat": {
+    "data": "2026-11-10",
+    "autor": "programista P1 (tekst/p1-squat-hinge; karty własne P1, ruch bez zmian) + koordynator (scalenie do scal/pociag-2 @ a78c6cef)",
+    "recenzent": "audytor (recenzja różnicy 10.11.2026)",
+    "werdykt": "wyswietlana",
+    "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu P1 do scal/pociag-2, 10.11.2026 (ruch i ślad bez zmian; zmienia się dobór linii, nakładki, błędów i znaczków po kartach P1)",
+    "kto": "audytor — recenzja niezależna scal/pociag-2 @ a78c6cef względem integracji @ c9346795 (worktree tymczasowe), 10.11.2026",
+    "slad": "Ruch, styki i ślad toru bez zmian: md5 (shapesAt z mięśniami, contactShapes, trailFor; u co 1/16, oba rzuty, stan poprawny i każda poza błędu) równy w c9346795, a78c6cef i f1472e08 dla 6 zmienionych ćwiczeń; figureSpec równy. Arkusze ze śladem (arkusz-nakladka, oba motywy, kadry co 0,05; arkusz-slad z odstępem) dla Barbell Hack Squat, Bodyweight Squat, Dumbbell Squat, Overhead Squat, Squat with Bands, Squat with Chains: Overhead Squat — sztanga nad śródstopiem, ślad pionowy; Hack Squat — sztanga za nogami wzdłuż ud; pozy i ślad bez zmian.",
+    "sha": "0b9389b86aa1",
+    "liczba": 25,
+    "uwagi": "Różnica 10.11.2026: skrót b4626b78e4ad → 0b9389b86aa1 wyłącznie przez dobór po 6 kartach własnych P1 (cue-sets.json bez zestawów ogólnych tych ćwiczeń). Hack: linie → backLine, błędy → heels; Bodyweight/Dumbbell: linie → kneeToe, błędy → kneesIn; Overhead: bez linii i nakładki, błąd heels; Bands/Chains: linie → kneeToe,backLine. 19 ćwiczeń bajtowo równych. Spójność karta–rysunek po odkryciu rodziny: 43/43 testów zielonych. Do scalenia: wpisać sha i przegenerować lib/figures/data.json."
+  },
+  "hinge": {
+    "data": "2026-11-10",
+    "autor": "programista P1 (tekst/p1-squat-hinge; karty własne P1, ruch bez zmian) + koordynator (scalenie do scal/pociag-2 @ a78c6cef)",
+    "recenzent": "audytor (recenzja różnicy 10.11.2026)",
+    "werdykt": "wyswietlana",
+    "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu P1 do scal/pociag-2, 10.11.2026 (ruch i ślad bez zmian; dobór po kartach Clean Deadlift i Single Leg RDL)",
+    "kto": "audytor — recenzja niezależna scal/pociag-2 @ a78c6cef względem integracji @ c9346795 (worktree tymczasowe), 10.11.2026",
+    "slad": "Ruch, styki i ślad toru bez zmian: md5 równy w c9346795, a78c6cef i f1472e08 dla Clean Deadlift i Single Leg RDL ×2 (każda poza błędu). Arkusze ze śladem (oba motywy, kadry co 0,05): Clean Deadlift poprawny — sztanga przy nogach (odstęp 0,2–3,0 cm), ślad pionowy, pełny wyprost; nowo pokazywana poza barAway — sztanga przed nogami przez cały ruch, ślad poprawnego toru jako odniesienie; Single Leg RDL — hantel pionowo przy nodze podporowej do tuż poniżej kolana, plecy proste. RDL (sztanga, hantle/linki) bajtowo równe c9346795.",
+    "sha": "9853b1835b51",
+    "liczba": 32,
+    "uwagi": "Różnica 10.11.2026: skrót db4345521e62 → 9853b1835b51 przez dobór po karcie Clean Deadlift (linie → backLine, bez nakładki hingeUprightRef, błąd roundBack → barAway) i znaczki Single Leg RDL ×2 (znika ✓ rdl.depth; dobór bez zmian). 29 ćwiczeń bajtowo równych. Każdy błąd ma zdanie na karcie. Do scalenia: wpisać sha i przegenerować lib/figures/data.json."
+  }
+}

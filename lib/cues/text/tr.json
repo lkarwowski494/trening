@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Lunge duruşu alın: bir bacağınız önde, diğeri arkada.",
  "plyo.splitSwitch": "Yukarı sıçrayın, havada bacak değiştirin ve diğer bacağınız önde olacak şekilde lunge duruşuna inin.",
  "sled.backGrip": "Kızak halatını iki elinizle kavrayın.",
- "sled.backPedal": "Yüzünüz kızağa dönük durun ve bacaklarınızla iterek geri geri yürüyün."
+ "sled.backPedal": "Yüzünüz kızağa dönük durun ve bacaklarınızla iterek geri geri yürüyün.",
+ "bhs.setup": "Halter bacaklarınızın arkasında olsun; sarkık kollarla üstten tutuşla kavrayın, ayaklar omuz genişliğinde.",
+ "cdl.move": "Bacaklarınızla yeri itin ve halter dizlerinizi geçene kadar sırt açınızı koruyun.",
+ "cdl.setup": "Pozisyon alın ve halteri clean'deki gibi kavrayın; dizlerinizi kollarınıza değene kadar dışa itin.",
+ "ohs.arms": "Kollarınız hareket boyunca düz kalsın.",
+ "ohs.move": "Halteri sürekli baş üstünde tutarak squat'a inin, sonra kalkın.",
+ "ohs.setup": "Halter baş üstünde, kollar düz.",
+ "slrdl.move": "Kalçanızı geriye iterek öne eğilin, boştaki bacağınızı düz geriye uzatın; kalçanızı öne iterek doğrulun.",
+ "slrdl.setup": "Tek bacak üzerinde durun, diz hafif bükülü."
 }
