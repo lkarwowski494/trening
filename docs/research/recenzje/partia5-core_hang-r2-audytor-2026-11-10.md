@@ -21,4 +21,4 @@ core_hang `43a33ada7ec7` (r1 @ 5b7f62f: `d5d8a4524dbe` — zmiana wynika z sprz�
 
 Ruch, liczby z `frameAt`, karty, nakładka, zestawy, v1 — bez zmian wobec r1 (klatki identyczne); ustalenia r1 obowiązują (`partia5-core_hang-r1-audytor-2026-11-10.md`).
 
-Arkusze (poza repo): `/tmp/claude-0/-home-user-trening/700a2615-2a90-5369-bde2-854624e195ae/scratchpad/rec-core_hang-r2/`.
+Arkusze (poza repo): `scratchpad/rec-core_hang-r2/`.

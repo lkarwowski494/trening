@@ -35,4 +35,4 @@ Bez poluzowań: nowy `figures-v2-nakladka-core-hang.test.tsx`; mapowanie (+core_
 ## Skróty (`node scripts/zrodla-runtime.mjs --skroty` w worktree recenzenta)
 core_hang `d5d8a4524dbe`; Hanging Leg Raise `063d8f4c9283`; Hanging Knee Raise `ac21253c514f`; Toes to Bar `369a88554933` (karty bez zmian od recenzji treści A4a). `assignAll()` → 4 (z L-Sit, bez rysunku).
 
-Arkusze (poza repo): `/tmp/claude-0/-home-user-trening/700a2615-2a90-5369-bde2-854624e195ae/scratchpad/rec-core_hang/`.
+Arkusze (poza repo): `scratchpad/rec-core_hang/`.
