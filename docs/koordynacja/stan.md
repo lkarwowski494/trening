@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:20 UTC) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:36 UTC) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -81,7 +81,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - trig_01UWKZWY4rndpbXDhvFvEqDJ „Koordynator Trening: kontrola” 07:58 · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-021. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-022. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -98,3 +98,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 07:15 | A, B | sesje utworzone drugą próbą (subagent opus): A …VBviwDCU3NCJVaVH1WP sonnet-5-5, B …VBzi6xg7DYJMg2oYF8Q opus-5-5 (get_session przez subagenta) | kontrola 07:58 |
 | 2026-11-10 07:18 | A | A zatrzymała scalenie partii 4: konflikty poza plikami generowanymi (list_events result 07:10); nie umiała wysłać wiadomości (szukała w ListAgents) → KO-020 + instrukcja send_message, delivered | kontrola 07:58 |
 | 2026-11-10 07:12 | koordynator | „PRZEJĄŁEM” do …VBw1AX38pLShXPH7rmy → not found | — |
+| 2026-11-10 07:34 | B | raport po zad. 1 + PYTANIE: na figury/partia-5 jest(3) > 20 min (42764641573 pon. 2 anulowane; gałąź bez podziału na 5 części); strażniki przejrzane (432be36), lekcja (c3b25d5), rotator_cuff r1 czysta — deklaracje B, niesprawdzone, nic nie wypchnięte | KO-021: scalić integrację dfaeeefe do partii 5 (wysłane 07:36); odbiór po PRZEKAZANIU |
