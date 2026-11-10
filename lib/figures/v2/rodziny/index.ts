@@ -1,0 +1,37 @@
+/* Rejestr rodzin v2 z danymi póz albo prezentacją (KO-022, 10.11.2026): jedna linia na rodzinę; kolejność = kolejność POSE_FAMILIES (rodziny z plikiem póz najpierw).
+ * Nowa rodzina: plik `rodziny/<rodzina>.ts` (load / ui / oneWay) i linia na KOŃCU tej mapy (partie dopisują równolegle — nie przestawiaj). */
+import type { RodzinaPoz } from '../poseData';
+
+export const RODZINY_POZ: Record<string, RodzinaPoz> = {
+  pull_up: require('./pull_up').default,
+  curl: require('./curl').default,
+  olympic: require('./olympic').default,
+  triceps: require('./triceps').default,
+  pulldown: require('./pulldown').default,
+  shrug: require('./shrug').default,
+  hip_abd_add: require('./hip_abd_add').default,
+  leg_machine: require('./leg_machine').default,
+  calf_raise: require('./calf_raise').default,
+  kb_ballistic: require('./kb_ballistic').default,
+  hip_bridge: require('./hip_bridge').default,
+  cable_row: require('./cable_row').default,
+  delt_raise: require('./delt_raise').default,
+  row: require('./row').default,
+  chest_fly: require('./chest_fly').default,
+  overhead_press: require('./overhead_press').default,
+  dip: require('./dip').default,
+  chest_press_machine: require('./chest_press_machine').default,
+  cable_press: require('./cable_press').default,
+  back_extension: require('./back_extension').default,
+  thruster: require('./thruster').default,
+  pushup_plank: require('./pushup_plank').default,
+  mobility_floor: require('./mobility_floor').default,
+  mobility_stand: require('./mobility_stand').default,
+  rotator_cuff: require('./rotator_cuff').default,
+  forearm: require('./forearm').default,
+  carry: require('./carry').default,
+  plyo: require('./plyo').default,
+  sled_throw: require('./sled_throw').default,
+  core_hang: require('./core_hang').default,
+  kneeling_hinge: require('./kneeling_hinge').default,
+};
