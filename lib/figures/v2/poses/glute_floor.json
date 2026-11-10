@@ -1103,7 +1103,7 @@
     },
     {
      "rodzaj": "wyciag",
-     "x": 86.3,
+     "x": 85.3,
      "y": 22,
      "z": 0,
      "chwyt": "kostka",
@@ -1155,7 +1155,7 @@
        "chwyt": [
         76.3,
         123.6,
-        14
+        5
        ],
        "biegunLokcia": [
         0,
@@ -1167,7 +1167,7 @@
        "chwyt": [
         76.3,
         123.6,
-        -14
+        -5
        ],
        "biegunLokcia": [
         0,
@@ -1221,7 +1221,7 @@
        "chwyt": [
         76.3,
         123.6,
-        14
+        5
        ],
        "biegunLokcia": [
         0,
@@ -1233,7 +1233,7 @@
        "chwyt": [
         76.3,
         123.6,
-        -14
+        -5
        ],
        "biegunLokcia": [
         0,
@@ -1287,7 +1287,7 @@
        "chwyt": [
         76.3,
         123.6,
-        14
+        5
        ],
        "biegunLokcia": [
         0,
@@ -1299,7 +1299,7 @@
        "chwyt": [
         76.3,
         123.6,
-        -14
+        -5
        ],
        "biegunLokcia": [
         0,
@@ -1353,7 +1353,7 @@
        "chwyt": [
         76.3,
         123.6,
-        14
+        5
        ],
        "biegunLokcia": [
         0,
@@ -1365,7 +1365,7 @@
        "chwyt": [
         76.3,
         123.6,
-        -14
+        -5
        ],
        "biegunLokcia": [
         0,
@@ -1419,7 +1419,7 @@
        "chwyt": [
         76.3,
         123.6,
-        14
+        5
        ],
        "biegunLokcia": [
         0,
@@ -1431,7 +1431,7 @@
        "chwyt": [
         76.3,
         123.6,
-        -14
+        -5
        ],
        "biegunLokcia": [
         0,
@@ -2594,7 +2594,9 @@
      "cue": "hext.mis.arch",
      "znacznik": "back",
      "dotyczy": [
+      "hip",
       "elbow",
+      "shoulder",
       "spine"
      ],
      "klatki": [
@@ -2603,19 +2605,23 @@
       },
       {
        "u": 0.25,
-       "zgiecieKregoslupa": -4.7
+       "zgiecieKregoslupa": -4.7,
+       "pochylenieTulowia": -2.3
       },
       {
        "u": 0.5,
-       "zgiecieKregoslupa": -15
+       "zgiecieKregoslupa": -15,
+       "pochylenieTulowia": -7.5
       },
       {
        "u": 0.75,
-       "zgiecieKregoslupa": -25.3
+       "zgiecieKregoslupa": -25.3,
+       "pochylenieTulowia": -12.7
       },
       {
        "u": 1,
-       "zgiecieKregoslupa": -30
+       "zgiecieKregoslupa": -30,
+       "pochylenieTulowia": -15
       }
      ]
     }

@@ -136,3 +136,16 @@ describe('glute_floor: nakładka techniki (plecy_wprost — linia pleców, tylko
       expect([k, v, all.filter(x => x.k === 'line').length <= OVERLAY_MAX_LINES]).toEqual([k, v, true]); expect([k, v, all.filter(x => x.k === 'poly').length <= OVERLAY_MAX_ARCS]).toEqual([k, v, true]); }
   });
 });
+
+describe('glute_floor: recenzja r1 (10.11.2026)', () => {
+  test('W1 Cable Kickback: dłonie trzymają kolumnę wyciągu (gap(przedramię, kolumna) ≤ 1 cm) w każdym kadrze — karta mówi „trzymając się jej”', () => {
+    for (const u of US) {
+      const f = keyframeFrame(poses['Cable Kickback'], u); const tower = equipColliders(f.props).find(e => e.id === 'tower')!; expect(tower).toBeDefined();
+      for (const s of ['R', 'L']) { const farm = bodyColliders(f.sk).find(b => b.id === 'farm' + s)!; expect([s, u, gap(farm, tower) <= 1]).toEqual([s, u, true]); }
+    }
+  });
+  test('W2 Prone Flutter Kicks, poza błędu hext.mis.arch: tułów (środek − grubość) nie zapada się w blat ławki (≥ blat − 1 cm) w każdym u', () => {
+    const BLAT = 43; const d = poses['Prone Flutter Kicks'];
+    for (const u of US) { const y = keyframeFrame(d, u, 0).sk.spineMid[1] - 10.5; expect([u, y >= BLAT - 1]).toEqual([u, true]); }
+  });
+});
