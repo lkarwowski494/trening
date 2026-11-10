@@ -18,6 +18,8 @@ Pełne karty (pokrycie-katalogu): 371 → 392 (+14 core_floor, +7 glute_floor). 
 - Po verify:szybkie (6 kolejnych czerwonych, poza listą D): figury-p2-r2/r4 (ODROCZONE glute_floor hext.mis.arch + kontrola zastępcza spineMid), figury-mobilnosc-reguly (ISOMETRIC 20: Hollow Hold), zrodla-pelne-cues-a4-core (porównanie z wariantami po filtrze „ustalone”), figures-v2-nakladka-fix4 (+ Machine Glute Kickback, Prone Flutter Kicks), wybor-testow-l103 (komentarze bez ścieżek docs/research).
 - Wpisy docs/18 do weta: plecy_wprost, miednica_bez_przechylu → analogia, mis.jerk core_floor, ODROCZONE hext.mis.arch (+ KO-024 sesji E).
 
+- Scalone `origin/integracja-1-1` @ 649b0504 (pociąg 5) w 0b6d65e2: 27 plików w konflikcie (unie rodzin partii 5 i 7); cele z symulacji: animowanyBlad 274, roleMiesni 537, pelnaKarta 471, ciężkie 237; verify:szybkie kod 0 (12140 testów). Poprzednia głowa d9d5eb63: tests.yml 42837207784 zielony.
+
 ## Następny krok
 Koordynator: scalenie `figury/partia-7` do integracji (`scal-galaz`) po zielonym tests.yml.
 
