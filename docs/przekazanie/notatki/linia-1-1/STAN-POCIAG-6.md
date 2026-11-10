@@ -9,5 +9,7 @@ Polecenie: `docs/koordynacja/polecenia/H.md` (gałąź koordynacja @ 97703d5). D
 - Przegląd niezależny: `docs/research/recenzje/pociag-6-scalenie.md` (audytor) — 0 znalezisk.
 - Testy figur lokalnie: 16 plików po jednym `--runInBand`, wszystkie zielone (mapping po poprawce kolejności).
 
+- Partia 9 (`figury/partia-9` @ 1bb3b55c; lunge, leg_isolation) scalona w 9fcf21f2 (+ 95d5d726 `--podnies-minimum`): cele 1.1 bez zmian (ciężkich 210), eksport 502, Gemini rodzin 6 / plików 18, 36 rodzin nakładek; L-080 w `skrot-v2-wynik` na core_standing; skróty lunge f2ff1a209120, leg_isolation 19fc316f3a19; przegląd audytora (sekcja partii 9 w raporcie) — 0 znalezisk; testy figur 22 pliki zielone.
+
 ## Zostało
-- `verify:szybkie`, push, zielony `tests.yml`; scalenie do integracji (koordynator, `scal-galaz`). Partie 8/9 — następny pociąg, jeśli nie przyszły przed pushem.
+- `verify:szybkie`, push, zielony `tests.yml`; scalenie do integracji (koordynator, `scal-galaz`). Partia 8 — następny pociąg.

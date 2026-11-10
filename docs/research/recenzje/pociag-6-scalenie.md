@@ -44,3 +44,41 @@
 0 znalezisk.
 
 Uwaga do zakresu: testy Jest nie były uruchamiane (polecenie: inny proces testuje na maszynie) — zgodność liczb w testach sprawdzona przez skrypty i przeliczenie; ostateczny dowód to zielony `tests.yml`.
+
+## Scalenie partii 9 (9fcf21f2, 95d5d726)
+
+- autor: programista scalenia pociągu-6 (sesja H)
+- recenzent: audytor (subagent)
+- data: 10.11.2026
+- zakres: `9fcf21f2` (rodzic 1 `84e48346` — pociąg-6 po partii 7; rodzic 2 `1bb3b55c` — figury/partia-9, lunge i leg_isolation; baza `649b0504`) oraz `95d5d726` (`pokrycie-katalogu.mjs --podnies-minimum`, zmienia tylko `tests/fixtures/pokrycie-katalogu-min.json`).
+
+### Metoda
+
+- Pliki zmienione po obu stronach: część wspólna `git diff --name-only` obu stron względem bazy — 34 pliki.
+- JSON (figury-recenzja, reguly-cwiczen, cues/data, figures/data, tor-wyjatki, figury-sens, pokrycie-katalogu-min): spłaszczenie do liści; liść zmieniony przez stronę musi mieć w scaleniu wartość tej strony; tablice `general`, `v2`, `replaced` porównane jako zbiory (brak, nadmiar, duplikaty).
+- Tekst: każda linia dodana przez stronę (`git diff -U0`) jest w scaleniu albo linia scalenia łączy obie wersje (sprawdzone ręcznie); każda linia usunięta przez stronę nie wraca w scaleniu; linie scalenia spoza obu rodziców przejrzane pod kątem sklejeń i braku końca linii.
+- Skrypty node uruchomione na `95d5d726` (bez Jest).
+
+### 1. Żaden wpis nie zginął — wynik: zgodnie
+
+- JSON: 0 rozbieżności liści; `cues/data.json general` 235 ∪ 219 = 250, `figures/data.json v2` 35 ∪ 34 = 37, `replaced` 60 ∪ 65 = 67 — bez braków, nadmiarów i duplikatów. `tor-wyjatki.json` poprawny JSON (przy „Frog Hops|side” dodany tylko przecinek).
+- docs/40 (w tym lekcja L-NNN partii 9), docs/21 (backlog partii 6 i 7 oraz wpisy partii 9), docs/brd: 0 brakujących linii obu stron. docs/18: wpis scalenia partii 7 rozszerzony dopiskiem o partii 9 (treść rodzica 1 zachowana), wpis partii 9 obecny.
+- Linie sklejone świadomie (obie wersje w jednej linii): `overlay.ts` TECHNIQUE (36 rodzin = lista w teście nakładki), `kierunek-u` (warunek `lezyNaPodlodze` z partii 7 + `UGINANIE_KOLANA` z partii 9, obie stałe zdefiniowane), `figury-101-squat` (oba filtry), mapping (kolejność `ready` = `families.ts`, `POSE_FAMILIES` = `rodziny/index.ts` bez `sled_throw`, który ma tylko `oneWay`; suma 510 = docs/51), `rodziny/index.ts` (core_floor, glute_floor, leg_isolation, lunge na końcu). Brak sklejeń bez znaku nowej linii, wszystkie pliki kończą się końcem linii.
+- L-080 (`tests/skrot-v2-wynik.test.ts`): `core_standing` ma `status: 'planned'` (`lib/figures/v2/families.ts:53`, tekst zamiany występuje raz), plik `lib/figures/v2/poses/core_standing.json` istnieje, brak `rodziny/core_standing.ts` i wpisu w `rodziny/index.ts` — wybór poprawny.
+
+### 2. Liczby — wynik: zgodnie
+
+- `docs/research/pokrycie-cele.json` wersja 1.1 = `pokrycie-symulacja.mjs --json` pole `cel` dla każdej metryki; cel = max(symulacja, minimum); symulacja ≥ stan dziś; rozbicie: 444 + 54 (a 0, b 3, c 51) = 498.
+- Ciężkie: `cwiczeniaCiezkie.cwiczen` = 210 = katalog 708 − cel pełnej karty 498 = liczba w docs/21.
+- Eksport strony 502 = minimum `figura.v2` po podniesieniu (470 + 8 + 24).
+- `--check` z kodem 0: readme, test-matrix, pokrycie-katalogu, figures/v2-gen (w tym docs/51), zrodla-runtime, i18n-context.
+
+### 3. Progi — wynik: zgodnie
+
+- Minimum i rekord po `95d5d726` ≥ max(rodzic 1, rodzic 2) dla każdej metryki; 43 metryki podniesione, żadna nie spadła (np. `figura.v2` 470 → 502, `pelnaKarta` 423 → 444); `obnizenia` bez zmian; cele ≥ minimum.
+
+### Znaleziska
+
+0 znalezisk.
+
+Uwaga do zakresu: Jest nie był uruchamiany (polecenie). Liczby „Gemini: rodzin 6, plików 18” w `tests/gemini-polecenia.test.ts` zależą od katalogu tymczasowego budowanego przez test i nie dało się ich odtworzyć skryptem; dowodem będzie zielony `tests.yml`.
