@@ -4,6 +4,7 @@
 //  - wektory BRD (kontrola-brd --wektory porównane z tests/wektory/brd.json; skrypt nie ma trybu check);
 //  - testy-pliki pochodne: lib/locales/_source.json, pliki zegarka (watch-fixtures, watch-apple-i18n) i widżetu (widget-i18n);
 //  - szybkie strażniki czytające źródła jako tekst (wzorce interakcji, repo publiczne, limity architektury, przepływy, stuknięcia Maestro, tokeny wyglądu).
+//  - skan dodanych linii w commitach jeszcze nieopublikowanych: e-maile i ścieżki lokalne agentów (scripts/skan-publiczny.mjs; lekcja 10.11.2026 w docs/40);
 //  - strażniki jakości słowników (npm run check:slowniki, L-048 A, właściciel 28.10.2026) — tylko gdy zmiany względem origin/main dotykają tekstów (dotykaSlownikow).
 // Nie wchodzi: check:decyzje (kontrola dokumentu, nie pliku pochodnego), lint, typecheck, pełny jest — to robi verify.
 // Użycie: node scripts/pochodne.mjs [--lista]   (kod 1 = którykolwiek krok czerwony). Test: tests/pochodne.test.ts.
@@ -36,6 +37,7 @@ export const KROKI = [
   { nazwa: 'źródła runtime', polecenie: ['node', 'scripts/zrodla-runtime.mjs', '--check'], jak: 'node scripts/zrodla-runtime.mjs --write, potem git add lib.' },
   { nazwa: 'licencje', polecenie: ['node', 'scripts/licenses.mjs', '--check'], jak: 'node scripts/licenses.mjs (zapis), potem git add docs.' },
   { nazwa: 'rejestr twierdzeń', polecenie: ['node', 'scripts/claims.mjs', '--check'], jak: 'node scripts/claims.mjs --stub (nowy/zmieniony tekst), po przeglądzie źródeł --rehash <ID>.' },
+  { nazwa: 'skan historii przed publikacją', polecenie: ['node', 'scripts/skan-publiczny.mjs'], jak: 'usuń adres e-mail albo ścieżkę lokalną w commicie, który ją dodał (niewypchnięte commity: git rebase), nie w kolejnym — inaczej zostaje w publicznej historii (lekcja 10.11.2026 w docs/40).' },
   { nazwa: 'wektory BRD', funkcja: 'wektoryBrd', jak: 'node scripts/kontrola-brd.mjs docs/brd --wektory > tests/wektory/brd.json, potem git add tests/wektory.' },
   { nazwa: 'lib/locales/_source.json', polecenie: [...JEST, 'tests/i18n-locales.test.ts', '-t', '_source.json'], jak: 'UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts -t _source.json, potem git add lib/locales/_source.json.' },
   { nazwa: 'strażniki słowników (warunkowo)', funkcja: 'slowniki', jak: 'npm run check:slowniki — popraw słownik albo tłumaczenie wskazane przez strażnik (słownik terminów ma pierwszeństwo).' },
