@@ -75,8 +75,13 @@ describe('A4a core: karty własne (09.11.2026)', () => {
 
   test('plik wspólny silnika rysunku bez zmian: reguły sensu póz tych ćwiczeń nie zależą od zestawu ogólnego (lib/figures/v2/reguly-cwiczen.json bez reguł dla kart A4a spoza wariantów)', () => {
     const reg = json('lib/figures/v2/reguly-cwiczen.json') as Record<string, Record<string, string[]>>;
-    const sens = json('data/zrodla/figury-sens.json').rodziny as Record<string, { warianty?: Record<string, string[]> }>;
-    for (const [fam, m] of Object.entries(reg)) for (const k of A4.cwiczenia) if (k in m) expect([fam, k, m[k]]).toEqual([fam, k, sens[fam]?.warianty?.[k] ?? m[k]]);
+    const sens = json('data/zrodla/figury-sens.json').rodziny as Record<string, { warianty?: Record<string, string[]>; reguly?: Record<string, { pewnosc?: string }> }>;
+    /* 10.11.2026 (partia 7, core_floor z nakładką): plik zawiera tylko reguły „ustalone” (scripts/zrodla-runtime.mjs buildReguly, fix4) — porównanie z wariantami po tym samym filtrze; Superman: superman_miednica_podpora i superman_bez_przeprostu („jedno źródło bezpośrednie + analogia”) poza plikiem */
+    const ustalone = (fam: string, ids: string[]) => ids.filter(id => /^ustalone/.test(sens[fam]?.reguly?.[id]?.pewnosc ?? ''));
+    let sprawdzone = 0;
+    for (const [fam, m] of Object.entries(reg)) for (const k of A4.cwiczenia) if (k in m) { sprawdzone++; const w = sens[fam]?.warianty?.[k]; expect([fam, k, m[k]]).toEqual([fam, k, w ? ustalone(fam, w) : m[k]]); }
+    expect(sprawdzone).toBeGreaterThan(0); /* od 10.11.2026 core_floor ma nakładkę — test nie jest pusty */
+    expect(reg.core_floor?.Superman).toEqual(['superman_konczyny_uniesione', 'superman_konczyny_proste']);
   });
 });
 
