@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 8, do zrobienia: 35); ćwiczeń z gotową figurą: **216** (30,5%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 9, do zrobienia: 34); ćwiczeń z gotową figurą: **220** (31,0%).
 
 ## Rodziny
 
@@ -50,10 +50,10 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `forearm` | do zrobienia | 13 | side | 2 | Przedramiona i chwyt |
 | `thruster` | do zrobienia | 3 | side | 2 | Thruster i ruchy złożone przysiad + wyciskanie |
 | `chest_press_machine` | do zrobienia | 5 | side | 3 | Maszyny wyciskające siedząc (klatka, barki) |
-| `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
+| `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 35 rodzin, 478 ćwiczeń, ok. **105 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 34 rodzin, 474 ćwiczeń, ok. **103 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -229,7 +229,7 @@ Clean and Press; Kettlebell Thruster; Thruster (hantle)
 
 Leverage Decline Chest Press; Leverage Incline Chest Press; Machine Chest Press; Machine Shoulder Press; Smith Machine Shoulder Press
 
-### cable_press (4) — do zrobienia
+### cable_press (4) — gotowa
 
 Incline Cable Chest Press; Seated Cable Chest Press; Single Arm Cable Chest Press; Wyciskanie na linkach (stojąc)
 
