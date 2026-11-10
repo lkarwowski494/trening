@@ -53,7 +53,9 @@ describe('core_standing r1: W4 Landmine Rotation — koniec gryfu po łuku', () 
     for (const u of US) {
       const f = frameAt(spec(k), u); const b = f.props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
       const rozstaw = Math.hypot(...[0, 1, 2].map(i => f.sk.arms.R.grip[i] - f.sk.arms.L.grip[i]));
-      expect([u, 'dlugosc', (b.len ?? 999) <= 20]).toEqual([u, 'dlugosc', true]); expect([u, 'rozstaw', rozstaw <= 12]).toEqual([u, 'rozstaw', true]);
+      expect([u, 'dlugosc', (b.len ?? 999) <= 20]).toEqual([u, 'dlugosc', true]);
+      /* W4 (r2): odcinek „sztanga” leży przy chwycie, nie tylko koniec gryfu (pivot.to) */
+      const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2); expect([u, 'sztanga przy chwycie', Math.hypot(...b.c.map((x, i) => x - mid[i])) <= 3]).toEqual([u, 'sztanga przy chwycie', true]); expect([u, 'rozstaw', rozstaw <= 12]).toEqual([u, 'rozstaw', true]);
     }
   });
   test('koniec gryfu ≤ 3 cm od środka chwytów; długość gryfu stała (łuk sfery), koniec porusza się w bok i zmienia wysokość', () => {
@@ -65,6 +67,19 @@ describe('core_standing r1: W4 Landmine Rotation — koniec gryfu po łuku', () 
       z.push(pv.to[2]); y.push(pv.to[1]);
     }
     expect(Math.max(...z) - Math.min(...z)).toBeGreaterThanOrEqual(36); expect(Math.max(...y) - Math.min(...y)).toBeGreaterThanOrEqual(4);
+  });
+});
+
+describe('core_standing r2: R2-W1 sztanga i ślad toru Landmine Rotation przy środku chwytów (10.11.2026)', () => {
+  test.each(['front', 'side'] as const)('barbell.c i info.load ≤ 3 cm od środka chwytów w rzucie %s w każdej klatce (dłonie idą w bok, z ±19 cm)', (view) => {
+    const k = 'Landmine Rotation'; let zMax = 0;
+    for (const u of Array.from({ length: 21 }, (_, i) => i / 20)) {
+      const f = frameAt(spec(k), u); const b = f.props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
+      const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2); zMax = Math.max(zMax, Math.abs(mid[2]));
+      const d = (p: number[]) => { const a = proj(p as [number, number, number], view), m = proj(mid as [number, number, number], view); return Math.hypot(a[0] - m[0], a[1] - m[1]); };
+      expect([u, 'barbell.c', d(b.c) <= 3]).toEqual([u, 'barbell.c', true]); expect([u, 'info.load', !!f.info.load && d(f.info.load) <= 3]).toEqual([u, 'info.load', true]);
+    }
+    expect(zMax).toBeGreaterThan(10); /* kontrola, że test dotyka ruchu w bok */
   });
 });
 
