@@ -1,6 +1,6 @@
 # Stan partii 2 (linia 1.1) — pushup_plank, hip_bridge, cable_row, mobility_floor, mobility_stand
 
-Aktualizacja: 10.11.2026 ~00:00 UTC (sesja session_01T66VBydWMy3Mvkq6ew7xAZ, przekazanie przy kontekście ~28%) (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
+Aktualizacja: 10.11.2026 ~00:45 UTC (sesja session_01T66VBydWMy3Mvkq6ew7xAZ, przekazanie przy kontekście ~28%) (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
 Koordynator linii: session_01T66VByJCWCao1Hw3is68Cy (raporty przez send_message).
 Briefy: `briefy/partia-2-rodzina-programista.md` (autor rodziny), `briefy/partia-2-rodzina-recenzent.md` (audytor).
 
@@ -20,8 +20,8 @@ Pomiar czasu: autor rodziny Ś ok. 40–90 min, recenzja r1 10–14 min, poprawk
 |---|---|---|---|
 | hip_bridge | `figury/partia-2` @ 47141c11 | r3 wyswietlana, sha 8c56e365b9d3 (`partia2-hip_bridge-r3*`); Machine Hip Thrust wstrzymany (WYSOKIE r1 — prowadnica przez miednicę, nowy ślad dźwigni tego nie usuwa) | zrobione |
 | cable_row | `figury/partia-2` | r2 wyswietlana (sha 4376c0e6b911); zestawy Single Arm i Leverage High r3 wyswietlana (e8bcb0ee335b) po poprawce row.fullStretch 0f069d93 | zrobione |
-| pushup_plank | `figury/partia-2-pushup_plank` (autor b2231f90, r1 8e3be484) | r1 do poprawy: 3 WYSOKIE (W1 nogi zgięte 17–20°, W2 Plyo Push-Up bez podparcia, W3 Shoulder Taps obie dłonie w górze), Ś1/Ś2 → backlog PP-S1/PP-S2 | poprawki W1–W3 (inny programista) w toku → r2 tym samym audytorem |
-| mobility_floor | `figury/partia-2-mobility_floor` @ f808d8c1 | r1 (audytor) w toku | nakładka pusta — wyjątek A (docs/18, MOB-F1); Cat-Cow −24,5°/+15,3° spełnia regułę; strona-eksport „pelna” czerwony do wpisu recenzji (dozwolony) |
+| pushup_plank | `figury/partia-2-pushup_plank` @ 355e8d2c (wypchnięta; autor b2231f90, r1 8e3be484, poprawki W1–W3 d9f1bc22 — inny programista, test `tests/figures-v2-pushup-plank-poprawki-r1.test.ts`) | r1 do poprawy (`partia2-pushup_plank-r1*`); skrót po poprawkach def6b97fe124 | NASTĘPNY KROK: r2 audytorem (różnica 8e3be484..d9f1bc22, arkusze Push Up/Mountain Climbers/Plyo/Shoulder Taps i wszystkie z prostymi nogami; ryzyka: Plyo krótki lot u 0,8–0,95, Single-Arm stopy 28 cm, sag zsuwa stopy 1–2 cm) → wpisy 1:1 → scalenie do partia-2 |
+| mobility_floor | `figury/partia-2-mobility_floor` @ 8e98f323 (wypchnięta) | r1 do poprawy (`partia2-mobility_floor-r1*`, sha 0c88b49248f1): W1 Child's Pose ręce wzdłuż tułowia zamiast wyciągniętych przed siebie; Ś1 Side-Lying Quad rotacja ~59°, Ś2 Butterfly łokcie 6 cm od ud, N1–N3 (N3: MOB-F1 uzupełnić o n.hingeFlat i element `ref`) | NASTĘPNY KROK: poprawka W1 (programista nie-autor, test chwyt przed barkiem) → r2 → wpisy (4 zestawy wyswietlana, karty 4 wyswietlana + Child's Pose) → scalenie; nakładka pusta — wyjątek A (docs/18, MOB-F1, strażnik S20 z wyjątkiem) |
 | mobility_stand | — | — | do zrobienia (bez ról mięśni, ślad tylko z przyrządem) |
 
 ## Następne kroki
@@ -43,4 +43,5 @@ Pomiar czasu: autor rodziny Ś ok. 40–90 min, recenzja r1 10–14 min, poprawk
 - Zestawy Single Arm Cable Row i Leverage High Row „do poprawy” (zdanie row.fullStretch, plik wspólny cueSets.ts) — wymaga decyzji koordynatora (plik wspólny).
 
 - Pliki recenzenta, które audytor zapisuje w /home/user/trening, brudzą kopię roboczą przy verify — przenieś je do worktree rodziny (albo tymczasowo `.git/info/exclude`) przed verify.
-- Koordynator scala partia-2 do integracji sam po SHA z zielonym tests.yml.
+- Koordynator scala partia-2 do integracji sam po SHA z zielonym tests.yml (47141c11 zielony, przebieg 42721902625 — zgłoszony).
+- Gałęzie rodzin od 7dc265fb nie mają poprawek z partia-2: figure.ts < 20 KB przeniesiony ręcznie; przy scaleniu do partia-2 konflikty jak przy cable_row (rejestr nakładek, LOAD, mapping, strona-eksport n, gemini, recenzja-wyjatki, cele = symulacja).
