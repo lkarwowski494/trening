@@ -205,6 +205,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Pytania do native speakera: „ankle cuff” czy „ankle strap” (EN, Cable Kickback); „miniguma” czy „mini band” (PL; termin w słowniku z pewnością „średnia”).
 - Apostrof typograficzny ’ w starszych zdaniach EN (`jm.elbows`, `olympic.*`, `press1.noLock`) — ujednolicić.
 
+### Backlog 1.2 — figury: NISKIE z recenzji scalenia pociągu-7 (10.11.2026; `docs/research/recenzje/pociag-7-scalenie.md`; nie blokuje)
+- Z3: próg R3-W1 `|x| ≥ 1 cm` w `lib/figures/v2/draw.ts` — w Barbell Side Split Squat (z przodu) gryf przeskakuje o ok. 1,15 cm w jednym kroku (u ≈ 0,030→0,035; zwykły krok ok. 0,2 cm, na ekranie 1–2 px). Kandydat: przejście płynne (np. przesunięcie liniowe od 0 do 1 cm) — zmiana rysunku, nowa recenzja lunge i core_standing.
+
 ### Backlog 1.2 — figury: NISKIE z recenzji B0 (nakładka olympic i triceps, 08.11.2026; `docs/research/recenzje/b0-olympic-triceps-roznica-5-rodzin-2026-11-08.md`; nie blokują)
 - N1: Barbell Snatch, Hang Snatch — linie piszczeli i uda przedłużone za kolano krzyżują się w „X” w kadrach wyprostu (u 0,40–0,80); porządek rysunku, nie treść.
 - N2: linia odniesienia piszczeli w olympic rysowana także w odbiorze na barkach i nad głową, gdzie zdanie o sztandze blisko ciała już nie dotyczy; ograniczyć do fazy ciągu.
