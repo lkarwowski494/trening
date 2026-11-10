@@ -1,5 +1,8 @@
 // Generator póz rodziny shrug po stronie agenta (26.10.2026): szrugsy — barki w górę przy prostych rękach i nieruchomym tułowiu (uniesienieBarkow z poza@2), ciężar zwisa: sztanga, hantle, linka, maszyna.
-// Ramiona prawie proste (zwis), barki unoszą się o 6 cm (górna granica kontraktu), bez wysunięcia barków (bez rolowania). Kontrakt wymaga ruchu ≥ 8 cm, więc do uniesienia barków dochodzi odchylenie tułowia o 4,5° (limit reguły tulow_prosto: 5°) i lekkie zgięcie łokci do 14° — uproszczenie opisane w PRZYBLIZENIA. Błędów rysowanych brak (jedyny błąd katalogu to szarpanie = tempo).
+// Ramiona prawie proste (zwis), barki unoszą się o 6 cm (górna granica kontraktu), bez wysunięcia barków (bez rolowania); chwyt podąża za barkiem (chwyt = chwyt startu + uniesienie barku),
+// łokcie stałe, tułów nieruchomy. Recenzja niezależna partii 3 (09.11.2026, W1–W4 WYSOKIE): wcześniej do uniesienia dochodziło odchylenie tułowia 4,5° i zgięcie łokci do 14° (żeby przekroczyć bramkę
+// ruchu ≥ 8 cm), a w maszynach chwyt szedł 8,5 cm przy barku 6 cm — silnik zginał łokcie. Bramka ruchu nie dotyczy szrugsów (data/zrodla/figury-sens.json → bez_bramki_ruchu, analogia do decyzji
+// właściciela 26.10.2026: ruch bez przemieszczenia punktu o ≥ 8 cm). Błędów rysowanych brak (jedyny błąd katalogu to szarpanie = tempo).
 import { lezyPrzodem } from './gora.mjs';
 import { Y_STOJ, SPRZET, poza, nogiStoj, buduj, rekaProsta, lerp, wyc, noga3, kier } from './gora.mjs';
 
@@ -7,12 +10,12 @@ export const RODZINA = 'shrug';
 const U3 = [0, 0.5, 1];
 const POL = (s) => (s === 'R' ? 1 : -1);
 const UNOS = 6; /* uniesienie barków (cm) w u = 1 — górna granica kontraktu (EXT_ROM.shrug.max = 6) */
-const LEAN = 4.5; const FLEX = 14; /* ruch ≥ 8 cm wymagany przez kontrakt: uniesienie 6 cm + odchylenie tułowia ≤ 5° (reguła tulow_prosto) + lekkie zgięcie łokci */
+const FLEX = 0.5; /* łokcie prawie proste, stałe przez cały ruch (W1–W4, 09.11.2026) */
 
 /** Zwis rąk: ramię prawie proste (lekkie odchylenie od pionu: theta do przodu/do tyłu, phi płaszczyzna), barki unoszą się wraz z dłońmi. */
 function zwis(cw, o) {
-  const fr = (u) => { const sp = { ...rekaProsta(o.theta, o.phi ?? 0, { flex: lerp(0.5, FLEX, u), pl: o.pl ?? 1, obrot: o.obrot }), uniesienie: UNOS * u };
-    return poza({ u, tulow: { m: [0, Y_STOJ], p: -LEAN * u }, nogi: nogiStoj(0, 14), rece: { R: sp, L: sp } }); };
+  const fr = (u) => { const sp = { ...rekaProsta(o.theta, o.phi ?? 0, { flex: FLEX, pl: o.pl ?? 1, obrot: o.obrot }), uniesienie: UNOS * u };
+    return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: sp, L: sp } }); };
   return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-80, 120), ...o.sprzet], fr, us: U3 });
 }
 
@@ -29,10 +32,10 @@ function sciaganieLopatek(cw, o) {
 export const WYJATKI = {
 };
 export const PRZYBLIZENIA = {
-  'Shrugs (sztanga)': 'uproszczenie wspólne dla rodziny: uniesienie barków 6 cm (granica kontraktu) nie daje wymaganego ruchu ≥ 8 cm, więc w u = 1 tułów jest odchylony o 4,5° (limit reguły: 5°) i łokcie zgięte do 14° — uniesienie barków pozostaje głównym ruchem',
+  'Shrugs (sztanga)': 'uproszczenie wspólne dla rodziny: uniesienie barków 6 cm (granica kontraktu, EXT_ROM.shrug.max); bramka ruchu ≥ 8 cm nie obowiązuje (bez_bramki_ruchu, 09.11.2026)',
   'Calf-Machine Shoulder Shrug': 'przybliżenie: poduszki maszyny do łydek na barkach narysowane jako prowadnica przy dłoniach (kontrakt nie ma sprzętu „poduszki na barkach”); ruch ciała bez zmian',
-  'Leverage Shrug': 'przybliżenie: uchwyty maszyny przy biodrach narysowane jako prowadnica pionowa przy prawej dłoni (schemat); dłonie unoszą się o 8,5 cm przy barkach unoszonych o 6 cm (łokcie lekko zgięte w górze), tułów nieruchomy',
-  'Smith Machine Behind the Back Shrug': 'sztanga na prowadnicy porusza się tylko w pionie: dłonie wprost na stałym x, unoszą się o 8,5 cm przy barkach unoszonych o 6 cm (łokcie lekko zgięte w górze), tułów nieruchomy',
+  'Leverage Shrug': 'przybliżenie: uchwyty maszyny przy biodrach narysowane jako prowadnica pionowa przy prawej dłoni (schemat); dłonie unoszą się razem z barkami o 6 cm (łokcie stałe), tułów nieruchomy',
+  'Smith Machine Behind the Back Shrug': 'sztanga na prowadnicy porusza się tylko w pionie: dłonie wprost na stałym x, unoszą się razem z barkami o 6 cm (łokcie stałe), tułów nieruchomy',
 };
 
 export function generuj() {
@@ -42,13 +45,12 @@ export function generuj() {
   G['Shrugs (hantle)'] = () => zwis('Shrugs (hantle)', { theta: 8, phi: 90, sprzet: [SPRZET.hantle()], obrot: 0 });
   G['Shrugs (linki)'] = () => zwis('Shrugs (linki)', { ...hang, sprzet: [wyc({ chwyt: 'drazek', x: 70, y: 15 })] });
   G['Barbell Shrug Behind The Back'] = () => zwis('Barbell Shrug Behind The Back', { theta: -14, phi: 0, pl: -1, sprzet: [SPRZET.sztanga()] });
-  G['Smith Machine Behind the Back Shrug'] = () => { /* sztanga na prowadnicy porusza się tylko w pionie: dłonie wprost na stałym x, unoszą się o 8,5 cm przy barkach unoszonych o 6 cm */
-    const x = -15.5; const fr = (u) => { const y0 = Y_STOJ + 50 - 61; const g = (s) => ({ g: [x, y0 + 8.5 * u, POL(s) * 19], pole: [-1, -0.4, POL(s) * 0.3], uniesienie: UNOS * u }); return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: g('R'), L: g('L') } }); };
-    return buduj({ rodzina: RODZINA, cw: 'Smith Machine Behind the Back Shrug', sprzet: [SPRZET.podloga(-80, 120), { rodzaj: 'smith', x, h: 200 }, SPRZET.sztanga()], fr, us: U3 }); };
-  const masz = (cw) => { /* dźwignia: prowadnica pionowa przy prawej dłoni; dłonie wprost na stałym x (uchwyty maszyny poruszają się w pionie), unoszą się o 8,5 cm przy barkach unoszonych o 6 cm */
-    const x = 4; const y0 = Y_STOJ + 50 - 61; const fr = (u) => { const g = (s) => ({ g: [x, y0 + 8.5 * u, POL(s) * 26], pole: [-1, -0.5, POL(s) * 0.3], uniesienie: UNOS * u }); return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: g('R'), L: g('L') } }); };
-    const lever = { rodzaj: 'dzwignia', tryb: 'prosta', x, y: Math.round((y0 - 4) * 10) / 10, z: 26, kat: 90, dlugosc: 20, punkt: 'dlonie', trzyma: 'R' };
-    return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-80, 120), lever], fr, us: U3 }); };
+  /* Smith i maszyny (W1, W2, 09.11.2026): ten sam zwis prostych rąk co wersje wolne — chwyt idzie pionowo razem z barkiem (tułów nieruchomy, łokcie stałe), więc szyna i uchwyty stoją
+   * w x chwytu: Smith jak Barbell Shrug Behind The Back (gryf za udami), maszyna dźwigniowa jak hantle (uchwyty po bokach ud). */
+  const behind = { theta: -14, phi: 0, pl: -1 }; const xBehind = -15.8; /* x chwytu zwisu za udami (theta −14°, poza Barbell Shrug Behind The Back) */
+  G['Smith Machine Behind the Back Shrug'] = () => zwis('Smith Machine Behind the Back Shrug', { ...behind, sprzet: [{ rodzaj: 'smith', x: xBehind, h: 200 }, SPRZET.sztanga()] });
+  const side = { theta: 8, phi: 90, obrot: 0 }; const gBok = [0, 76.2, 28.2]; /* chwyt zwisu bokiem (theta 8°, phi 90°, poza Shrugs (hantle)) */
+  const masz = (cw) => zwis(cw, { ...side, sprzet: [{ rodzaj: 'dzwignia', tryb: 'prosta', x: gBok[0], y: Math.round((gBok[1] - 4) * 10) / 10, z: gBok[2], kat: 90, dlugosc: 20, punkt: 'dlonie', trzyma: 'R' }] });
   G['Leverage Shrug'] = () => masz('Leverage Shrug');
   G['Calf-Machine Shoulder Shrug'] = () => masz('Calf-Machine Shoulder Shrug');
   G['Middle Back Shrug'] = () => sciaganieLopatek('Middle Back Shrug', { sprzet: [SPRZET.hantle()] });

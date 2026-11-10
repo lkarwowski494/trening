@@ -4,6 +4,8 @@
  * Zadanie dla agentów rodzin: zmieniając reguły, aktualizuj liczności tutaj i dokument docs/51 (node scripts/figures/v2-gen.mjs --write).
  */
 import { PLANNED_Z_DANYMI } from './helpers/rodziny-planned';
+import fs from 'fs';
+import path from 'path';
 import { CATALOG } from '@/lib/catalog.generated';
 import { FAMILIES, FAMILY, OVERRIDES, familyOf, assignAll, VARIANTS, POSE_FAMILIES, DATA_UI, poseKeys, figureSpec, staticPositions, boxFor, shapesAt, type FamilyId } from '@/lib/figures/v2';
 
@@ -40,14 +42,14 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });
   test('gotowe rodziny z rigiem (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
-    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'overhead_press', 'row', 'cable_row', 'pull_up', 'calf_raise', 'hip_bridge', 'olympic', 'curl', 'triceps', 'delt_raise', 'chest_fly']); /* 10.11.2026: + overhead_press ready po czystej r3 (audytor, sha 065ae12bd57d). 10.11.2026 (scalenie z integracją): + cable_row i hip_bridge ready 09.11.2026 (partia 2). chest_fly ready po czystej r2. 09.11.2026 (partia 1): kb_ballistic r2, chest_fly r1, overhead_press r1 „do poprawy” (WYSOKIE) — rodziny wracają do planned do czystej recenzji (dane póz i nakładka zostają) */
+    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'overhead_press', 'row', 'cable_row', 'pull_up', 'pulldown', 'leg_machine', 'calf_raise', 'hip_bridge', 'olympic', 'curl', 'triceps', 'delt_raise', 'chest_fly', 'shrug', 'hip_abd_add']); /* 10.11.2026: + overhead_press ready po czystej r3 (audytor, sha 065ae12bd57d). 10.11.2026 (scalenie z integracją): + cable_row i hip_bridge ready 09.11.2026 (partia 2). chest_fly ready po czystej r2. 09.11.2026 (partia 1): kb_ballistic r2, chest_fly r1, overhead_press r1 „do poprawy” (WYSOKIE) — rodziny wracają do planned do czystej recenzji (dane póz i nakładka zostają)  + pulldown, leg_machine, shrug, hip_abd_add (partia 3, 09.11.2026; scalenie z integracją 10.11.2026) */
     const rig = ready.filter(f => !POSE_FAMILIES.includes(f)); expect(rig).toEqual(['squat', 'bench_press', 'hinge']);
     const keys = KEYS.filter(k => rig.includes(ALL[k])); expect(keys.length).toBe(87);
     for (const k of keys) { expect([k, VARIANTS[k]?.family]).toEqual([k, ALL[k]]); expect([k, figureSpec(k)?.family]).toEqual([k, ALL[k]]); }
     expect(Object.keys(VARIANTS).sort()).toEqual([...keys].sort());
   });
   test('gotowe rodziny z danych (poses/<rodzina>.json): figura tylko dla ćwiczeń z wpisem w danych (11 z 13 w pull_up), reszta bez figury v2 (v1 albo brak); status „gotowa” = plik póz', () => {
-    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'calf_raise', 'kb_ballistic', 'hip_bridge', 'cable_row', 'delt_raise', 'row', 'chest_fly', 'overhead_press']);
+    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'calf_raise', 'kb_ballistic', 'hip_bridge', 'cable_row', 'delt_raise', 'row', 'chest_fly', 'overhead_press']); /* 10.11.2026 (scalenie z integracją): + pulldown, shrug, hip_abd_add, leg_machine (partia 3, 09.11.2026) */
     /* 09.11.2026 (partia 1, decyzja w docs/18): rodziny z danymi póz po recenzji „do poprawy” wracają do planned (dane i nakładka zostają) — bez żadnej figury v2 do czystej rundy */
     for (const f of PLANNED_Z_DANYMI) { expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'planned']); for (const k of KEYS.filter(x => ALL[x] === f)) expect([k, figureSpec(k)]).toEqual([k, null]); }
     for (const f of POSE_FAMILIES.filter(x => !PLANNED_Z_DANYMI.includes(x))) {
@@ -58,7 +60,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     }
     expect(KEYS.filter(k => ALL[k] === 'pull_up' && !figureSpec(k)).sort()).toEqual(['Muscle Up', 'Rope Climb']);
     expect(KEYS.filter(k => ALL[k] === 'olympic' && !figureSpec(k))).toEqual(['Rack Delivery']);
-    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 12 + 31 + 12 + 17 + 10 + 9 + 21); /* 10.11.2026: + overhead_press (21 z 23, r3 wyswietlana). 10.11.2026 (scalenie): + hip_bridge (10 z 11, London Bridges bez rysunku) i cable_row (9 z 10, Sled Row bez pozy) z partii 2 (09.11.2026); + chest_fly (17, r2 wyswietlana).  09.11.2026: kb_ballistic (16), chest_fly (17), overhead_press (21) — planned do czystej recenzji; + overhead_press z danych (09.11.2026, partia 1: 21 z 23; Bradford Press i Handstand Push Up bez rysunku — brak źródła ruchu); + chest_fly z danych (09.11.2026, partia 1: 17 z 20; Around The Worlds, Machine Pullover, Svend Press bez rysunku — brak źródła ruchu); + row z danych (09.11.2026, partia 1: 12 z 13, Meadows Row bez rysunku — landmine); + delt_raise z danych (09.11.2026, ZB-042: 31 z 38, 7 bez rysunku); + kb_ballistic z danych (09.11.2026: 16 z 17, Kettlebell Pirate Ships bez rysunku: ćwiczenie otwarte w figury-sens.json); + calf_raise z danych (09.11.2026: 12 z 13, Smith Machine Reverse Calf Raise bez rysunku: ruch odwrotny, wpis „open” w figury-sens.json); */ /* + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */
+    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11 + 34 + 24 + 29 + 12 + 31 + 12 + 17 + 10 + 9 + 21 + 8 + 8 + 4 + 6); /* 10.11.2026: + overhead_press (21 z 23, r3 wyswietlana). 10.11.2026 (scalenie): + hip_bridge (10 z 11, London Bridges bez rysunku) i cable_row (9 z 10, Sled Row bez pozy) z partii 2 (09.11.2026); + chest_fly (17, r2 wyswietlana).  09.11.2026: kb_ballistic (16), chest_fly (17), overhead_press (21) — planned do czystej recenzji; + overhead_press z danych (09.11.2026, partia 1: 21 z 23; Bradford Press i Handstand Push Up bez rysunku — brak źródła ruchu); + chest_fly z danych (09.11.2026, partia 1: 17 z 20; Around The Worlds, Machine Pullover, Svend Press bez rysunku — brak źródła ruchu); + row z danych (09.11.2026, partia 1: 12 z 13, Meadows Row bez rysunku — landmine); + delt_raise z danych (09.11.2026, ZB-042: 31 z 38, 7 bez rysunku); + kb_ballistic z danych (09.11.2026: 16 z 17, Kettlebell Pirate Ships bez rysunku: ćwiczenie otwarte w figury-sens.json); + calf_raise z danych (09.11.2026: 12 z 13, Smith Machine Reverse Calf Raise bez rysunku: ruch odwrotny, wpis „open” w figury-sens.json); */ /* + curl z danych (03.11.2026); + olympic z danych (04.11.2026, K1: 24 z 25, Rack Delivery bez rysunku); + triceps z danych (04.11.2026, K1) */ /* 10.11.2026 (scalenie z integracją): + 8 + 8 + 4 + 6 = pulldown, shrug, hip_abd_add, leg_machine z danych (partia 3, 09.11.2026: 8 z 8, 8 z 8, 4 z 8 — marsze z gumą wstrzymane, 6 z 8 — Calf Press wyjątek bez animacji, Smith Machine Leg Press bez pozy) */
   });
   test('planowane rodziny: brak figury (figureSpec = null), szacunek pracy i widoki opisane; klucz spoza katalogu → null', () => {
     for (const f of FAMILIES.filter(x => x.status === 'planned')) { expect([f.id, f.effort > 0, f.views.length > 0, f.label.length >= 5]).toEqual([f.id, true, true, true]); }
@@ -74,6 +76,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
   });
   test('szacunek pracy pozostałych rodzin: suma godzin pracy agenta jest policzona w dokumencie (docs/51) i zgadza się z kodem', () => {
     const sum = FAMILIES.filter(f => f.status === 'planned').reduce((s, f) => s + f.effort, 0);
-    expect(sum).toBeGreaterThanOrEqual(0); expect(sum).toBeLessThan(200); /* 09.11.2026 (partia 1, linia 1.1): dolny próg 100 h zdjęty — cel 1.1 to wszystkie rodziny ready, suma planned maleje do 0 z każdą włączoną rodziną */
+    const doc = /ok\. \*\*(\d+) h pracy agenta\*\*/.exec(fs.readFileSync(path.join(__dirname, '..', 'docs/51-figury-v2-pokrycie.md'), 'utf8'));
+    expect(Number(doc![1])).toBe(sum); expect(sum).toBeGreaterThanOrEqual(0); expect(sum).toBeLessThan(200); /* 09.11.2026 (partia 3 + delt_raise): pozostałe rodziny maleją, dolny próg 100 h zastąpiony zgodnością z docs/51 */ /* 10.11.2026 (scalenie): dolny próg 100 h zdjęty (partia 1, 09.11.2026), zgodność z docs/51 zostaje */
   });
 });

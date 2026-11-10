@@ -39,9 +39,9 @@ describe('R1 (fix4): element nakładki tylko z regułą wariantu o pewności „
     for (const k of ['Single Leg RDL (hantel)', 'Single Leg RDL (linki)']) { expect([k, cueIdsOf(k).ids.includes('rdl.dbMove')]).toEqual([k, true]); expect([k, techniquesOf(k)]).toEqual([k, []]); }
     for (const k of ['RDL (sztanga)', 'RDL (hantle/linki)', 'Single Arm RDL (hantel/linka)', 'Stiff-Legged Barbell Deadlift', 'Deadlift (sztanga)', 'Good Morning']) expect([k, techniquesOf(k)]).toEqual([k, ['hingeUprightRef']]);
   });
-  test('macierz: różnica między „wskazówka na karcie” a „element rysowany” to dokładnie te trzy ćwiczenia jednonóż (Single Leg Calf Raise z podłączeniem calf_raise 09.11.2026) i Alternating Deltoid Raise (delt_raise, 09.11.2026: reguły wariantu nie są „ustalone”) — reszta bez zmian', () => {
+  test('macierz: różnica między „wskazówka na karcie” a „element rysowany” to dokładnie te trzy ćwiczenia jednonóż (Single Leg Calf Raise z podłączeniem calf_raise 09.11.2026), Alternating Deltoid Raise (delt_raise, 09.11.2026: reguły wariantu nie są „ustalone”) oraz Hip Abduction, Hip Adduction i Single Leg Press (partia 3, 09.11.2026) — reszta bez zmian', () => {
     const odciete = FAMS.flatMap(f => KEYS[f].filter(k => TECHNIQUE[f].filter(d => (!d.exercises || d.exercises.includes(k)) && d.cue.some(c => cueIdsOf(k).ids.includes(c))).length > techniquesOf(k).length));
-    expect(odciete.sort()).toEqual(['Alternating Deltoid Raise', 'Single Leg Calf Raise', 'Single Leg RDL (hantel)', 'Single Leg RDL (linki)']);
+    expect(odciete.sort()).toEqual(['Alternating Deltoid Raise', 'Hip Abduction', 'Hip Adduction', 'Single Leg Calf Raise', 'Single Leg Press', 'Single Leg RDL (hantel)', 'Single Leg RDL (linki)']); /* partia 3 (09.11.2026): maszyny odwodzenia/przywodzenia — zestaw hipAbd ma hab.hips, a wariant ma tylko rozstaw_kolan (pion tułowia bez reguły); Single Leg Press — reguła zakres_jednonoz, element na zakres (recenzja leg_machine N-1, backlog) */
   });
   test('logika techniquesFor: z ćwiczeniem filtruje po regułach (reguly-cwiczen.json), bez ćwiczenia — tylko po wskazówkach (wywołanie na poziomie rodziny); ćwiczenie bez wpisu reguł → brak elementu', () => {
     expect(techniquesFor('hinge', ['rdl.dbMove'], 'Single Leg RDL (hantel)').map(d => d.id)).toEqual([]);
