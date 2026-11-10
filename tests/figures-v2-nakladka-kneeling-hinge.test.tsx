@@ -2,7 +2,7 @@
  * Figury v2 — nakładka techniki rodziny kneeling_hinge (10.11.2026, partia 5; decyzja właściciela docs/18: „żadna rodzina nie wychodzi bez nakładki” — z wyjątkiem rodziny bez reguły „ustalone”,
  * bo nakładka tylko z reguł „ustalone”, bez nowych liczb). Obie reguły rodziny (plecy: neutralny kręgosłup; pochylenie: zmiana ≥ 30°, najwyżej 95°) mają pewność „analogia” (siad zamiast stania,
  * NSCA/ACE i NASM dla zawiasu stojąc; ExRx jako analogia) — dlatego TECHNIQUE.kneeling_hinge nie istnieje, a ćwiczenie nie ma elementu ani prowadnicy. Rodzaje (docs/20): dane (pewność reguł, brak wpisu),
- * niezmienniki (techniquesOf/guidesOf puste, overlayShapes puste w każdej klatce i rzucie), geometria rysunku (skłon zgodny z regułą pochylenie, sztanga na barkach w każdej klatce).
+ * niezmienniki (techniquesOf puste, guidesOf tylko backLine z wskazówki zestawu (10.11.2026), overlayShapes puste w każdej klatce i rzucie), geometria rysunku (skłon zgodny z regułą pochylenie, sztanga na barkach w każdej klatce).
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza rysowanie, nie recenzję rodziny */
 import * as fs from 'fs';
@@ -24,7 +24,7 @@ describe('nakładka kneeling_hinge: brak elementu, bo żadna reguła nie jest �
   });
   test('niezmiennik: rodzina ma jedno ćwiczenie z rysunkiem (Seated Good Mornings), bez elementów i prowadnic w tabeli, nakładka pusta w każdej klatce i rzucie', () => {
     expect(spec().family).toBe('kneeling_hinge'); expect(figureSpec('Kneeling Squat')).toBeNull();
-    expect(techniquesOf(K)).toEqual([]); expect(guidesOf(K)).toEqual([]);
+    expect(techniquesOf(K)).toEqual([]); expect(guidesOf(K)).toEqual(['backLine']); /* 10.11.2026: prowadnica pleców z wskazówki zestawu hinge.back (zestaw rdl Seated Good Mornings, wyswietlana) — nie z reguły rodziny; recenzja r3 kneeling_hinge (audytor): linia wzdłuż tułowia 0,00° w 21 klatkach, jak Good Morning; nakładka techniki rodziny nadal pusta */
     for (const u of US) for (const v of spec().views) expect([u, v, overlayShapes(spec(), u, v, [] as never)]).toEqual([u, v, []]);
   });
 });
