@@ -49,7 +49,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     expect(Object.keys(VARIANTS).sort()).toEqual([...keys].sort());
   });
   test('gotowe rodziny z danych (poses/<rodzina>.json): figura tylko dla ćwiczeń z wpisem w danych (11 z 13 w pull_up), reszta bez figury v2 (v1 albo brak); status „gotowa” = plik póz', () => {
-    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'calf_raise', 'kb_ballistic', 'hip_bridge', 'cable_row', 'delt_raise', 'row', 'chest_fly', 'overhead_press']); /* 10.11.2026 (scalenie z integracją): + pulldown, shrug, hip_abd_add, leg_machine (partia 3, 09.11.2026) */
+    expect(POSE_FAMILIES).toEqual(['pull_up', 'curl', 'olympic', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'calf_raise', 'kb_ballistic', 'hip_bridge', 'cable_row', 'delt_raise', 'forearm', 'carry', 'core_hang', 'kneeling_hinge', 'rotator_cuff', 'row', 'chest_fly', 'overhead_press']); /* 10.11.2026 (sesja B, scalenie z integracją): + partia 5 */ /* 10.11.2026 (scalenie z integracją): + pulldown, shrug, hip_abd_add, leg_machine (partia 3, 09.11.2026) */
     /* 09.11.2026 (partia 1, decyzja w docs/18): rodziny z danymi póz po recenzji „do poprawy” wracają do planned (dane i nakładka zostają) — bez żadnej figury v2 do czystej rundy */
     for (const f of PLANNED_Z_DANYMI) { expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'planned']); for (const k of KEYS.filter(x => ALL[x] === f)) expect([k, figureSpec(k)]).toEqual([k, null]); }
     for (const f of POSE_FAMILIES.filter(x => !PLANNED_Z_DANYMI.includes(x))) {
