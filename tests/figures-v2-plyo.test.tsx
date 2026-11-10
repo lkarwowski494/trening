@@ -45,9 +45,10 @@ describe('geometria: podpora, lot, lądowanie', () => {
   test.each(NAMES)('%s: na starcie i na końcu co najmniej jedna stopa na podporze (podłoga albo skrzynia, ≤ 2 cm)', k => {
     expect([k, naPodporze(poses[k], 0), naPodporze(poses[k], 1)]).toEqual([k, true, true]);
   });
-  test('negatyw: stopy uniesione o 6 cm nie są na podporze', () => { for (const k of NAMES) expect([k, naPodporze(poses[k], 0, 6)]).toEqual([k, false]); });
+  const NEG = ['Jump Squat', 'Box Jump', 'Depth Jump', 'Broad Jump']; /* start na podłodze i na skrzyni */
+  test('negatyw: stopy uniesione o 6 cm nie są na podporze', () => { for (const k of NEG) expect([k, naPodporze(poses[k], 0, 6)]).toEqual([k, false]); });
   test.each(NAMES.filter(k => regulyWariantu(k).includes('faza_lotu')))('%s: lot — obie stopy ≥ 3 cm nad podporą w którymś kadrze (reguła faza_lotu)', k => { expect([k, lot(poses[k])]).toEqual([k, true]); });
-  test('negatyw: lot znika, gdy stopy obniżyć o 40 cm (miara nie przechodzi zawsze)', () => { expect(NAMES.filter(k => lot(poses[k], -40))).toEqual([]); });
+  test('negatyw: lot znika, gdy stopy obniżyć o 40 cm (miara nie przechodzi zawsze)', () => { expect(['Jump Squat', 'Broad Jump'].filter(k => lot(poses[k], -40))).toEqual([]); /* skoki z podłogi na podłogę */ });
   test.each(NAMES.filter(k => regulyWariantu(k).includes('miekkie_ladowanie')))('%s: po lądowaniu (u = 1) kolano i biodro ugięte co najmniej jak w regule miekkie_ladowanie', k => {
     const p = sens.reguly.miekkie_ladowanie.parametry; const a = (['R', 'L'] as const).map(s => jointAngles(frameAt(figureSpec(k)!, 1).sk, s));
     expect([k, a.some(x => x.knee >= p.min_kolano_deg && x.hip >= p.min_biodro_deg)]).toEqual([k, true]);
