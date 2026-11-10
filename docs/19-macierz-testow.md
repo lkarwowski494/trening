@@ -1837,7 +1837,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/figure.staticPositions | lib/figures/v2/figure.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-delt-raise-p4.test.tsx +3 |
 | figures/v2/figure.staticLabels | lib/figures/v2/figure.ts | tests/figures-v2-delt-raise-p4.test.tsx |
 | figures/v2/figure.musclesFor | lib/figures/v2/figure.ts | tests/catalog-library25.test.tsx, tests/catalog-v2.test.ts, tests/figures-v2-engine.test.ts |
-| figures/v2/figure.shapesAt | lib/figures/v2/figure.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-errors.test.tsx +12 |
+| figures/v2/figure.shapesAt | lib/figures/v2/figure.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-errors.test.tsx +13 |
 | figures/v2/figure.errorDefOf | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx |
 | figures/v2/figure.markPoints | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.errorMarks | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-errors.test.tsx |
