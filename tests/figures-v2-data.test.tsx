@@ -66,6 +66,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else if (f === 'chest_fly') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       /* overhead_press (10.11.2026): u = 0 dłonie przy barkach, u = 1 ręce wyprostowane — zgięcie łokcia maleje; Pike Push Up odwrotnie (u = 1 łokcie zgięte, głowa przy podłodze) */
       else if (f === 'overhead_press') { expect([k, k === 'Pike Push Up' ? measuredAngle(s, 1).deg > measuredAngle(s, 0).deg : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* lunge, Step Up i Barbell Step Up (10.11.2026, poprawki r1 partii 9, W1): mierzona jest noga na stopniu (R); u = 0 kolano zgięte 90°, u = 1 wyprost na stopniu — kąt maleje (wejście); reszta wykroków: u = 1 to dół, kąt rośnie */
+      else if (k === 'Step Up' || k === 'Barbell Step Up') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
