@@ -67,12 +67,13 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
     const spy = jest.spyOn(lista, 'includes').mockImplementation((x: string) => x !== 'pull_up' && Array.prototype.indexOf.call(lista, x) >= 0);
     try { expect(familyReviewed('pull_up')).toBe(false); expect(figureSpec('Chin Up')).not.toBeNull(); expect(shownFigureSpec('Chin Up')).toBeNull(); }
     finally { spy.mockRestore(); }
-    expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X) */
+    /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X); 09.11.2026 (koordynator, wariant A, partia P1): squat i hinge na liście v2 do recenzji różnicy doboru — figura ukryta, po zdjęciu wyjątku znów pokazana */
+    expect([WYJ.v2.includes('squat'), shownFigureSpec('Back Squat') === null]).toEqual([WYJ.v2.includes('squat'), WYJ.v2.includes('squat')]);
   });
   test('figureWithheld: figura v1 „zastąpiona” wstrzymana dokładnie wtedy, gdy jej rodzina v2 nie ma aktualnej recenzji; od 01.11.2026 (squat, bench_press, hinge zrecenzowane) Back Squat i Deadlift pokazują v2; v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
     expect(FIG_DATA.replaced).toContain('Back Squat');
     for (const k of FIG_DATA.replaced) expect([k, figureWithheld(k)]).toEqual([k, !familyReviewed(figureSpec(k)!.family)]);
-    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([false, false]);
+    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([WYJ.v2.includes('squat'), WYJ.v2.includes('hinge')]); /* 09.11.2026 (P1): wstrzymane, dopóki squat/hinge są na liście v2 (recenzja różnicy doboru) */
     expect([figureWithheld('Pull Up'), figureWithheld('Crunch'), figureWithheld('Ćwiczenie własne')]).toEqual([false, false, false]);
   });
 });
@@ -88,8 +89,11 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
   test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
-    /* 09.11.2026: delt_raise z wpisem v2 (audytor, Car Drivers po r5-W1/r5-Ś1) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — jak curl: na liście runtime, bez figur, dopóki rodzina nie zostanie podłączona; hip_bridge — wpis r2 (audytor, partia 2; Machine Hip Thrust wstrzymany); cable_row — wpis r2 (audytor, partia 2); kolejność = kolejność wpisów v2 w figury-recenzja.json po scaleniu partii 2 z integracją  carry — wpis r2 (audytor, partia 5, 10.11.2026; po poprawkach W1/W2/S2); core_hang — wpis r2 (audytor, partia 5, 10.11.2026; po poprawce Ś1 słupek przy drążku); forearm — wpis r3 (audytor, partia 5, 10.11.2026; po poprawkach W1/W2); kneeling_hinge — wpis r2 (audytor, partia 5, 10.11.2026; po poprawce S1 styk siedzenia) */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'hip_bridge', 'cable_row', 'delt_raise', 'carry', 'core_hang', 'forearm', 'kneeling_hinge'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'hip_bridge', 'cable_row', 'delt_raise', 'carry', 'core_hang', 'forearm', 'kneeling_hinge'] });
+    /* 09.11.2026: delt_raise z wpisem v2 (audytor, Car Drivers po r5-W1/r5-Ś1) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — jak curl: na liście runtime, bez figur, dopóki rodzina nie zostanie podłączona; hip_bridge — wpis r2 (audytor, partia 2; Machine Hip Thrust wstrzymany); cable_row — wpis r2 (audytor, partia 2); kolejność = kolejność wpisów v2 w figury-recenzja.json po scaleniu partii 2 z integracją */
+    /* 09.11.2026: lunge i leg_isolation — wpisy audytora (partia B2) są w pliku recenzji, ale rodziny planned bez rysunku nie mają skrótu z wyniku rysunku (decyzja właściciela 09.11.2026, wariant A), więc nie ma ich na liście runtime do czasu podłączenia (osobna decyzja) */
+    /* 09.11.2026 (partia 3): shrug, pulldown, hip_abd_add, leg_machine z wpisami v2 po recenzjach niezależnych */
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'hip_bridge', 'cable_row', 'delt_raise', 'carry', 'core_hang', 'forearm', 'kneeling_hinge', 'shrug', 'pulldown', 'hip_abd_add', 'leg_machine'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps', 'hip_bridge', 'cable_row', 'delt_raise', 'carry', 'core_hang', 'forearm', 'kneeling_hinge', 'shrug', 'pulldown', 'hip_abd_add', 'leg_machine'] });
+    /* 10.11.2026 (partia 5): carry, core_hang, forearm, kneeling_hinge — wpisy v2 (audytor) po wpisach partii 3 w figury-recenzja.json; kolejność = kolejność kluczy v2 */
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";

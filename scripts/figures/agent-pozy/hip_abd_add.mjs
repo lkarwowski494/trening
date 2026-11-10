@@ -17,6 +17,8 @@ export const PRZYBLIZENIA = {
 };
 export const WYJATKI = {
   'Band Hip Adduction': 'guma ma w modelu tylko pętlę między kostkami (opór rośnie, gdy kostki się oddalają) albo linię do dłoni; przywodzenie (zbliżanie nóg) przeciw gumie zaczepionej do kostki wymaga zaczepu na kostce, którego model gumy nie ma — pętla między kostkami pomagałaby ruchowi zamiast mu przeciwdziałać',
+  'Lateral Band Walk': 'rysunek wstrzymany po recenzji niezależnej partii 3 (09.11.2026, H-1/H-2 WYSOKIE): wahadło jednej nogi (krok w bok i powrót tą samą nogą) przeczy karcie bw.move / zestawowi bandWalk („dociągnij drugą nogę”, „przez cały marsz”); poprawka w backlogu docs/21 — marsz w trybie cykl_lustro (prawa wychodzi, lewa dostawia, stopa podporowa wraca jak w chodzie carry) i fazy marszu',
+  'Monster Walk': 'rysunek wstrzymany po recenzji niezależnej partii 3 (09.11.2026, H-1/H-2 WYSOKIE): wahadło jednej nogi (krok w bok i powrót tą samą nogą) przeczy karcie bw.move / zestawowi bandWalk („dociągnij drugą nogę”, „przez cały marsz”); poprawka w backlogu docs/21 — marsz w trybie cykl_lustro (prawa wychodzi, lewa dostawia, stopa podporowa wraca jak w chodzie carry) i fazy marszu',
 };
 function zloz(cw, sprzet, klatki, bledy = []) { const b = bledyZOpisem(cw, bledy, PRZYBLIZENIA); const p = poza(RODZINA, cw, sprzet, klatki, b); for (const x of b) if (x.dod) dodajDotyczy(p, x.cue, ...x.dod); return p; }
 

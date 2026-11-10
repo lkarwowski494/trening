@@ -1,0 +1,114 @@
+{
+ "_opis": "Partia B2 linii 1.1 (figury nóg, 09.11.2026): 7 kart własnych z badań A2 (W1 po przeliczeniu szczebli — badania/lokalne-0211 lunge.md, blok po przeliczeniu; W2 — badania/w2-ramiona lunge.md, badania/w2-nogi leg_isolation.md; z 02.11.2026), wstrzymanych w A2, bo animowany błąd w pozach v2 nie był błędem karty (konfliktPozyA2). Rozstrzygnięcie: (1) wycofanie błędu z animacji — Split Squat, Lunges (sztanga), Barbell Walking Lunge, Barbell Step Up (lunge.mis.kneeIn), Slider Hamstring Curl (ht.mis.arch): z pliku póz usunięty rząd błędu, klatki ruchu bez zmian; błędy kart (lunge2.mis.lean, stepup.mis.push, stepup.mis.drop, ballcurl.mis.sag) mają w data/zrodla/figury-sens.json bledy_bez_animacji powód, dla którego nie da się ich pokazać pozą sprawdzaną regułą; (2) błąd na karcie — Bulgarian Split Squat (sztanga) i Smith Machine Bulgarian Split Squat dostają lunge.mis.kneeIn ze źródłami karty Bulgarian Split Squat (hantle) jako uproszczenie „wariant sprzętu” (do potwierdzenia przez recenzenta niezależnego), więc animacja zostaje bez zmian. Glute_floor (Clamshell, Fire Hydrant — rząd błędu generatora pod id spoza karty hab.mis.high, odrzucany przez zbuduj(), więc pozy bez błędu, zgodne z kartą): NIE zmienione — przeniesienie błędu na id z kart (clam.mis.roll, fh.mis.twist) wymaga grupy błędu w figury-sens.json, a to zmienia lib/figures/v2/grupy.json, plik wspólny skrótu wszystkich rodzin v2 (scripts/zrodla-runtime.mjs V2_WSPOLNE) — unieważniłoby recenzje rodzin ready; decyzja koordynatora (STAN-B2.md). Karty ukryte do recenzji niezależnej (bramka 4, L-047).",
+ "rodzina": "nogi",
+ "cwiczenia": [
+  "Split Squat",
+  "Lunges (sztanga)",
+  "Barbell Walking Lunge",
+  "Barbell Step Up",
+  "Bulgarian Split Squat (sztanga)",
+  "Smith Machine Bulgarian Split Squat",
+  "Slider Hamstring Curl"
+ ],
+ "partial": [
+  "Split Squat",
+  "Lunges (sztanga)",
+  "Barbell Walking Lunge",
+  "Barbell Step Up",
+  "Bulgarian Split Squat (sztanga)",
+  "Smith Machine Bulgarian Split Squat",
+  "Slider Hamstring Curl"
+ ],
+ "zdania": [
+  "ballcurl.mis.sag",
+  "lunge.bbSetup",
+  "lunge2.mis.lean",
+  "lunge2.mis.shallow",
+  "slcurl.move",
+  "slcurl.setup",
+  "split.setup",
+  "stepup.mis.drop"
+ ],
+ "wycofaneZAnimacji": [
+  [
+   "Split Squat",
+   "lunge.mis.kneeIn"
+  ],
+  [
+   "Lunges (sztanga)",
+   "lunge.mis.kneeIn"
+  ],
+  [
+   "Barbell Walking Lunge",
+   "lunge.mis.kneeIn"
+  ],
+  [
+   "Barbell Step Up",
+   "lunge.mis.kneeIn"
+  ],
+  [
+   "Slider Hamstring Curl",
+   "ht.mis.arch"
+  ]
+ ],
+ "bladDodanyWariantSprzetu": [
+  [
+   "Bulgarian Split Squat (sztanga)",
+   "lunge.mis.kneeIn",
+   "Bulgarian Split Squat (hantle)"
+  ],
+  [
+   "Smith Machine Bulgarian Split Squat",
+   "lunge.mis.kneeIn",
+   "Bulgarian Split Squat (hantle)"
+  ]
+ ],
+ "bledyBezAnimacji": {
+  "lunge": [
+   "lunge2.mis.lean",
+   "stepup.mis.drop"
+  ],
+  "leg_isolation": [
+   "ballcurl.mis.sag"
+  ]
+ },
+ "odrzucone": [
+  [
+   "Slider Hamstring Curl",
+   "tips",
+   "llc.control",
+   [
+    "ACE"
+   ]
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Slider Hamstring Curl",
+   "llc.control",
+   "rts-valslide-leg-curl"
+  ]
+ ],
+ "noweZrodla": [
+  "ace-59",
+  "ace-8",
+  "catalyst-174",
+  "catalyst-354",
+  "catalyst-560",
+  "catalyst-600",
+  "hk-landow-stepup",
+  "ncsf-single-leg-ball-curl",
+  "nismat-hamstring-sliders",
+  "nsca-ptq-lunge"
+ ],
+ "gluteFloorWstrzymane": [
+  [
+   "Clamshell",
+   "clam.mis.roll"
+  ],
+  [
+   "Fire Hydrant",
+   "fh.mis.twist"
+  ]
+ ]
+}

@@ -14,6 +14,7 @@ import * as path from 'path';
 import { CUE_DATA, CUE_SECTIONS } from '@/lib/cues';
 import { CUE_FULL } from './zrodla-pelne';
 import A2 from './fixtures/cues-a2-nogi.json';
+import B2 from './fixtures/cues-b2-nogi.json';
 
 const root = path.join(__dirname, '..');
 const json = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
@@ -45,12 +46,14 @@ describe('A2 nogi: karty własne', () => {
     for (const k of A2.cwiczenia) expect([k, sets[k].b]).toEqual([k, 'own']);
     const pominiete = [...A2.bezUstawieniaLubRuchu, ...A2.pominieteBezBledu, ...A2.konfliktPozy.map(([k]) => k as string)];
     expect(pominiete.sort()).toEqual(['Barbell Step Up', 'Barbell Walking Lunge', 'Bulgarian Split Squat (sztanga)', 'Cable Hip Adduction', 'Curtsy Lunge', 'Lunges (sztanga)', 'Machine Hip Thrust', 'Single-Leg Leg Extension', 'Slider Hamstring Curl', 'Smith Machine Bulgarian Split Squat', 'Smith Machine Hip Thrust', 'Split Squat']);
-    for (const k of pominiete) expect([k, sets[k]?.b !== 'own', k in CUE_FULL.exercises, A2.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
+    /* 09.11.2026 (partia B2): 7 kart z konfliktPozy wdrożone po uzgodnieniu póz błędu — tests/fixtures/cues-b2-nogi.json, tests/zrodla-pelne-cues-b2-nogi.test.ts */
+    expect(A2.konfliktPozy.map(([k]) => k as string).sort()).toEqual([...B2.cwiczenia].sort());
+    for (const k of pominiete.filter((x) => !B2.cwiczenia.includes(x))) expect([k, sets[k]?.b !== 'own', k in CUE_FULL.exercises, A2.cwiczenia.includes(k)]).toEqual([k, true, false, false]);
   });
 
   test('rodziny squat i hinge (ready, zrecenzowane zestawy ogólne) bez kart własnych z tej partii — pokrycie „Pełna karta” nie spada', () => {
     const fam = json('lib/figures/v2/cue-sets.json').items as Record<string, { b: string; f?: string }>;
-    for (const k of ['Box Squat', 'Zercher Squat', 'Overhead Squat', 'Deficit Deadlift', 'Axle Deadlift', 'Clean Deadlift']) expect([k, fam[k].b]).toEqual([k, 'general']);
+    for (const k of ['Box Squat', 'Zercher Squat', 'Deficit Deadlift', 'Axle Deadlift']) expect([k, fam[k].b]).toEqual([k, 'general']); /* 09.11.2026: Overhead Squat i Clean Deadlift mają karty własne z partii P1 (squat/hinge, z recenzją) — tests/zrodla-pelne-cues-p1-squat-hinge.test.ts */
   });
 
   test('Hack Squat: karta „do poprawy” zastąpiona kartą W2 — ustawienie hack.setup2, błąd hack.mis.hips; stare zdanie hack.setup i źródło ExRx usunięte ze wszystkich słowników', () => {

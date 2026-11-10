@@ -1467,6 +1467,7 @@
           "cue": "dl.feet",
           "cue_wariant": {
             "Sumo Deadlift": {"cue": "sumo.stance"},
+            "Clean Deadlift": {"cue": "cdl.setup"},
             "Trap Bar Deadlift": {"cue": "tb.inside"},
             "Deadlift (hantle)": {"cue": "dbdl.setup"},
             "Cable Deadlift": {"cue": null, "powod": "zdanie reguły (stopy pod sztangą, sztanga przy piszczelach) jest nieprawdziwe dla tego wariantu (inny chwyt, rozstaw albo sprzęt), a zdania ustawienia wariantu na karcie nie ma — do napisania ze źródłami i tłumaczeniami; do tego czasu rysunek tej reguły nie wymaga zdania"},
@@ -1566,6 +1567,10 @@
           "typ": "zawias_biodrowy",
           "grupa": "zakres",
           "cue": "rdl.move",
+          "cue_wariant": {
+            "Single Leg RDL (hantel)": {"cue": "slrdl.move"},
+            "Single Leg RDL (linki)": {"cue": "slrdl.move"}
+          },
           "cue_dodatkowe": [
             "rdl.depth"
           ],
@@ -1582,6 +1587,10 @@
           "typ": "kolana_max",
           "grupa": "kolana",
           "cue": "rdl.knees",
+          "cue_wariant": {
+            "Single Leg RDL (hantel)": {"cue": "slrdl.setup"},
+            "Single Leg RDL (linki)": {"cue": "slrdl.setup"}
+          },
           "cue_dodatkowe": ["rdl.dbMove", "rdl.move"],
           "parametry": {
             "max_deg": 45,
@@ -1596,8 +1605,8 @@
           "grupa": "tor",
           "cue": "dl.close",
           "cue_wariant": {
-            "Single Leg RDL (hantel)": {"cue": "rdl.dbMove"},
-            "Single Leg RDL (linki)": {"cue": "rdl.dbMove"}
+            "Single Leg RDL (hantel)": {"cue": null, "powod": "karta własna P1 (slrdl.*) nie mówi o ciężarze przy nodze; rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"},
+            "Single Leg RDL (linki)": {"cue": null, "powod": "karta własna P1 (slrdl.*) nie mówi o ciężarze przy nodze; rysunek pokazuje pełny poprawny ruch rodziny; zdanie bez 2 organizacji — p1-klucze otwarte; zdjęcie sprawdzeń sensu (warianty) przy najbliższej zmianie plików wspólnych silnika, ZB-055 (decyzja koordynatora 09.11.2026, wariant Z)"}
           },
           "cue_dodatkowe": [
             "mis.barAway",
@@ -2122,7 +2131,9 @@
         "sq.mis.kneesIn": "kolana"
       },
       "bledy_bez_animacji": {
-        "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+        "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
+        "lunge2.mis.lean": "B2 09.11.2026: rodzina nie ma reguły kąta tułowia (plecy_proste mierzy zgięcie kręgosłupa; źródła różnią się kątem tułowia — bez reguły kąta), więc poza błędu nie dałaby się odróżnić regułą od poprawnej; błąd tylko w tekście karty (bledy: [])",
+        "stepup.mis.drop": "B2 09.11.2026: opadanie zamiast kontrolowanego zejścia to cecha tempa, nie pozy (bledy: [])"
       },
       "warianty": {
         "_wykrok": [
@@ -3937,7 +3948,8 @@
         "ht.mis.arch": "plecy"
       },
       "bledy_bez_animacji": {
-        "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+        "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
+        "ballcurl.mis.sag": "B2 09.11.2026: reguły Slider Hamstring Curl (uginanie_kolan, plecy_most) nie mierzą wysokości bioder, więc poza opadających bioder nie dałaby się odróżnić regułą od poprawnej; błąd tylko w tekście karty (bledy: []) — reguła wysokości bioder do rozważenia w backlogu figur"
       },
       "warianty": {
         "_uginanie_obunoz": [
@@ -6792,6 +6804,19 @@
           "liczba": "konwencja",
           "pewnosc": "ustalone"
         },
+        "rece_proste": {
+          "typ": "stawy_proste",
+          "grupa": "lokcie",
+          "cue": "shrug.setup",
+          "cue_dodatkowe": ["shrug.setupBehind"],
+          "parametry": {
+            "stawy": ["elbow"],
+            "max_deg": 15
+          },
+          "zrodlo": "shrug.setup / shrug.setupBehind: ACE #72 (opis: ciężar w opuszczonych rękach), ExRx BBShrug Preparation — cues.json; dopisane po recenzji niezależnej partii 3 (09.11.2026, W1–W4: łokcie zginały się w trakcie ruchu, a karta mówi „w opuszczonych, prostych rękach”)",
+          "liczba": "uproszczenie (łokieć ≤ 15° przez cały ruch)",
+          "pewnosc": "ustalone (wg cues.json)"
+        },
         "lopatki_sciagaja_sie": {
           "typ": "stopien_swobody",
           "wymaga": "poza@2",
@@ -6824,7 +6849,8 @@
         "_szrugs": [
           "barki_w_gore",
           "bez_rolowania",
-          "tulow_prosto"
+          "tulow_prosto",
+          "rece_proste"
         ]
       },
       "otwarte": {},
@@ -6839,6 +6865,12 @@
         ],
         "shrug.tall": [
           "tulow_prosto"
+        ],
+        "shrug.setup": [
+          "rece_proste"
+        ],
+        "shrug.setupBehind": [
+          "rece_proste"
         ]
       },
       "otwarte_czesciowo": {
@@ -7886,9 +7918,16 @@
   },
   "_opis_r3": "RUNDA 3 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do reguly-sensu-r2.json: obiekty łączone rekurencyjnie, tablice i wartości zastępowane w całości, null = usuń klucz. r2 + ten plik = r3. Powód: naruszenia 42/87 gotowych figur (scratchpad/naruszenia-gotowych.json). Zmiany: (1) RDL — próg kolana i miara zawiasu ze źródeł (pomiar Lee i in. 2018); (2) dzień dobry — głębokość jako osiągnięte pochylenie 45°–95° (NASM + ExRx); (3) klucz izometryczne; (4) pompka — głębokość i łokcie; (5) BŁĄD BADACZA w definicji kolano_w_linii_stopy (kąt daje fałszywe naruszenia przy stopach szerzej niż biodra) — nowa definicja przez odległość kolana od osi stopy.",
   "bez_bramki_ruchu": {
-    "_opis": "Ćwiczenia, w których ruch to czysty obrót przedramienia (obrotPrzedramienia w poza@2) i nie przemieszcza żadnego punktu szkieletu o ≥ 8 cm: bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, ale poza NIE jest statyczna (klatki różnią się obrotem; klatki_rozne i reguły sensu działają normalnie). Decyzja właściciela 26.10.2026.",
+    "_opis": "Ćwiczenia, w których ruch to czysty obrót przedramienia (obrotPrzedramienia w poza@2) i nie przemieszcza żadnego punktu szkieletu o ≥ 8 cm: bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, ale poza NIE jest statyczna (klatki różnią się obrotem; klatki_rozne i reguły sensu działają normalnie). Decyzja właściciela 26.10.2026. Rozszerzenie 09.11.2026 (partia 3, analogia do decyzji 26.10.2026, docs/18): szrugsy — uniesienie barków ograniczone kontraktem do 6 cm (EXT_ROM.shrug.max), bramka 8 cm wymuszałaby zgięcie łokci albo odchylenie tułowia, którym karta przeczy; reguły sensu (barki w górę, ręce proste) działają normalnie.",
     "Dumbbell Lying Pronation": "pronacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu",
-    "Dumbbell Lying Supination": "supinacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu"
+    "Dumbbell Lying Supination": "supinacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu",
+    "Shrugs (sztanga)": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)",
+    "Shrugs (hantle)": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)",
+    "Shrugs (linki)": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)",
+    "Barbell Shrug Behind The Back": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)",
+    "Smith Machine Behind the Back Shrug": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)",
+    "Leverage Shrug": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)",
+    "Calf-Machine Shoulder Shrug": "szrugs (rozszerzenie 09.11.2026, partia 3 linii 1.1, przez analogię do decyzji 26.10.2026 — do weta koordynatora/właściciela): ruch to uniesienie barków o 6 cm (granica kontraktu EXT_ROM.shrug.max) przy prostych rękach i nieruchomym tułowiu; bramka 8 cm wymuszała zgięcie łokci albo odchylenie tułowia, którym karta przeczy (recenzja niezależna shrug, W1–W4 WYSOKIE)"
   },
   "izometryczne": {
     "_opis": "Ćwiczenia, w których poprawna poza jest nieruchoma (utrzymanie pozycji): bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, reguły „w ruchu” liczy się na pozie stałej. Kryterium: opis ćwiczenia/wskazówki mówią o utrzymaniu pozycji, nie o ruchu. Źródło przy każdym.",

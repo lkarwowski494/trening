@@ -98,4 +98,15 @@ describe('spójność karty z rysunkiem (decyzja 04.11.2026, A)', () => {
       const z = sprawdz({ ...CFG, wyjatki: { ...CFG.wyjatki, 'Band Squat': { zejscie_biodra_i_kolana: 'symulacja testu: wyjątek zamyka lukę' } } }); expect(z.luki.some((l) => /Band Squat/.test(l))).toBe(false);
     } finally { e.ok = bak; }
   });
+  test('09.11.2026 (koordynator, wariant Z, partia P1 squat/hinge): karty własne P1 bez zdania z 2 organizacjami — 13 jawnych wyjątków/cue_wariant null z powodem ZB-055; cue_wariant tam, gdzie karta pokrywa regułę słownie', () => {
+    const P1W: Record<string, string[]> = { 'Bodyweight Squat': ['plecy_neutralne', 'udo_rownolegle'], 'Dumbbell Squat': ['plecy_neutralne', 'udo_rownolegle'], 'Overhead Squat': ['kolana_nad_stopami', 'plecy_neutralne', 'udo_rownolegle', 'zejscie_biodra_i_kolana'],
+      'Barbell Hack Squat': ['kolana_nad_stopami', 'udo_rownolegle'], 'Squat with Chains': ['udo_rownolegle'], 'Squat with Bands': ['udo_rownolegle'], 'Clean Deadlift': ['wyprost_na_gorze'] };
+    for (const [k, rs] of Object.entries(P1W)) { expect([k, rs.filter((r) => !(r in (CFG.wyjatki[k] ?? {})))]).toEqual([k, []]); /* Barbell Hack Squat ma też starszy wyjątek zejscie_biodra_i_kolana (sprzed P1) */ for (const r of rs) expect([k, r, /ZB-055/.test(CFG.wyjatki[k][r])]).toEqual([k, r, true]); }
+    const sens = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.hinge.reguly as Record<string, { cue_wariant?: Record<string, { cue: string | null; powod?: string }> }>;
+    for (const k of ['Single Leg RDL (hantel)', 'Single Leg RDL (linki)']) {
+      expect([k, sens.zawias_w_biodrach_jednonoz.cue_wariant?.[k]?.cue, sens.kolana_lekko_ugiete_jednonoz.cue_wariant?.[k]?.cue]).toEqual([k, 'slrdl.move', 'slrdl.setup']);
+      expect([k, sens.ciezar_przy_nogach_jednonoz.cue_wariant?.[k]?.cue, /ZB-055/.test(sens.ciezar_przy_nogach_jednonoz.cue_wariant?.[k]?.powod ?? '')]).toEqual([k, null, true]);
+    }
+    expect(sens.start_z_podlogi.cue_wariant?.['Clean Deadlift']?.cue).toBe('cdl.setup');
+  });
 });
