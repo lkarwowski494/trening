@@ -43,7 +43,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 |---|---:|---:|---:|
 | figura v2 w aplikacji | 533 | 232 | 301 |
 | figura w aplikacji (v2 albo v1) | 535 | 267 | 268 |
-| animowany błąd | 263 | 148 | 115 |
+| animowany błąd | 270 | 148 | 122 |
 | wskazówki (własne lub zestaw ogólny) | 569 | 403 | 166 |
 | częste błędy (tekst) | 448 | 294 | 154 |
 | role mięśni | 516 | 513 | 3 |

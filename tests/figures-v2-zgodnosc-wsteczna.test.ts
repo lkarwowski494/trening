@@ -23,6 +23,7 @@
  * Zmiana celowa 08.11.2026 (partia A1 pchanie, karty własne ukryte do przekładu): odciski 3 póz pushup_plank — Decline Push Up, Suspended Push-Up, Rollout (sztanga): z pliku póz usunięte wiersze błędów spoza karty (push.mis.partial, plank.mis.sag), bo walidator dopuszcza tylko błędy ćwiczenia (jak Wall Ball 03.11.2026); pozostałe pozy bez zmian.
  * Zmiana celowa 09.11.2026 (cable_row włączona, partia 2): odcisk pozy Leverage High Row — z przodu dźwignia maszyny nie jest rysowana w całym ruchu, bo w u 0–0,1 jej rzut przechodzi przez głowę (DZWIGNIA_BEZ_GLOWY ∋ cable_row; backlog 1.1, docs/21); Machine Row i pozostałe pozy rodziny bez zmian (dźwignia nie dotyka głowy).
  * Zmiana celowa 10.11.2026 (forearm włączona, partia 5): odciski 8 póz forearm — 7 uginań nadgarstków z wierszem błędu wr.mis.lift (przedramię odrywa się od uda; tekst wskazówki już jest) i Behind-the-Back Barbell Wrist Curl (ramię odchylone w tył o 28° zamiast 22°, sztanga nie wchodzi w udo); plik póz przeliczony z generatora; pozostałe pozy bez zmian.
+ * Zmiana celowa 10.11.2026 (forearm, poprawki po recenzji r1): odciski 8 póz forearm — Behind-the-Back Barbell Wrist Curl (W1: dłoń do tyłu, zgięcie nadgarstka unosi sztangę w górę i do tyłu) i 7 uginań siedząc (S2: dół ruchu −45°/+45° zamiast −32°/+40°); pozostałe wpisy bez zmian.
  * Odtworzenie wzorca (tylko świadomie, gdy rysunek ma się zmienić): ZLOTE_ZAPISZ=1 npx jest tests/figures-v2-zgodnosc-wsteczna.test.ts
  */
 import * as fs from 'fs';
