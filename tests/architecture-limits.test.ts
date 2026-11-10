@@ -15,6 +15,7 @@ const generated = (f: string) => /\.generated\.ts$|\/i18n\.en\.ts$/.test(f);
 
 /** Wyjątki od limitu 20 KB: ścieżka → [próg w bajtach, powód]. */
 const WYJATKI: Record<string, [number, string]> = {
+  /* KO-022 (10.11.2026): lib/figures/v2/poseData.ts podzielony per rodzina (lib/figures/v2/rodziny/<rodzina>.ts + rodziny/index.ts) — wyjątek rozmiaru usunięty, plik mieści się w limicie ogólnym */
   'lib/seed.ts': [63488, 'model danych, katalog ćwiczeń i stałe domeny w jednym module; podział po zakończeniu prac nad schematem'],
   'lib/plan.ts': [51200, 'plan tygodnia, przesunięcia i historia planu; podział na moduły osobnym commitem strukturalnym'],
   'lib/generator.ts': [50176, 'reguły generatora szablonu (źródła w komentarzach); podział z testami wyroczni'],
@@ -33,7 +34,6 @@ const WYJATKI: Record<string, [number, string]> = {
   'lib/figures/geom.ts': [24576, 'geometria figur v1 (stawy, kąty, rzut) w jednym module; podział razem z silnikiem v1 (1.0.1)'],
   'lib/figures/v2/contract.ts': [68608, 'kontrakt danych figur v2 (typy, schemat, walidacja) — linia 1.1; próg = rozmiar po wydzieleniu poseInterp.ts i dumbbellAxis.ts (04.11.2026) + 5%; dalszy podział (schemat, walidator) osobnym commitem strukturalnym (backlog 1.1)'],
   'lib/figures/v2/draw.ts': [48128, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1; próg = rozmiar po scaleniu wersja-1-0-1-r2 31.10.2026 (deska, stojak z bolcami, rączki z 1.0.1) + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
-  'lib/figures/v2/poseData.ts': [24736, 'rejestr plików póz i metadanych rodzin v2 (POSE_FILES, DATA_UI) — linia 1.1; próg = rozmiar po scaleniu partii 1–4 i 2 na scal/pociag-4 (10.11.2026, KO-020, do weta koordynatora), bez zapasu: każda kolejna rodzina wymusza podział na pliki per rodzina (osobny commit strukturalny, KO-022 w docs/21)'],
   'lib/figures/v2/gear.ts': [72192, 'sprzęt figur v2 (tabela GEAR_KINDS: kontakty, uchwyty, rysowanie) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział tabeli osobnym commitem strukturalnym (backlog 1.1)'],
 };
 

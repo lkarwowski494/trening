@@ -13,10 +13,16 @@ export type Wynik = Record<string, { skrot: string; wynik: string; cwiczenia?: R
 const KOPIOWANE = ['lib', 'scripts', 'data'];
 const kopie: string[] = [];
 
+/** Podłączenie rodziny v2 w rejestrze (KO-022, 10.11.2026): nowy plik `rodziny/<rodzina>.ts` (load = plik póz, ui = wpis DATA_UI) i linia w `rodziny/index.ts` — bez statusu w families.ts. */
+export function podlaczenie(rodzina: string, wpis: { load?: true; ui?: string }): Zmiana[] {
+  const pola = [...(wpis.load ? [`load: () => require('../poses/${rodzina}.json')`] : []), ...(wpis.ui ? [`ui: ${wpis.ui}`] : [])].join(', ');
+  return [{ plik: 'lib/figures/v2/rodziny/' + rodzina + '.ts', dopisz: `import type { RodzinaPoz } from '../poseData';\nconst rodzina: RodzinaPoz = { ${pola} };\nexport default rodzina;\n` },
+    { plik: 'lib/figures/v2/rodziny/index.ts', z: "  pull_up: require('./pull_up').default,\n", na: `  pull_up: require('./pull_up').default,\n  ${rodzina}: require('./${rodzina}').default,\n` }];
+}
 /** Stosuje zmiany do plików katalogu `dir` (z → na dokładnie raz; dopisz na końcu pliku). */
 export function zastosuj(dir: string, zmiany: Zmiana[]): void {
   for (const m of zmiany) {
-    const f = path.join(dir, m.plik); let t = fs.readFileSync(f, 'utf8');
+    const f = path.join(dir, m.plik); let t = m.z === undefined && !fs.existsSync(f) ? '' : fs.readFileSync(f, 'utf8'); /* sam „dopisz” do nieistniejącego pliku tworzy go (nowy plik rodziny, KO-022) */
     if (m.z !== undefined) { const ile = t.split(m.z).length - 1; if (ile !== 1) throw new Error(`${m.plik}: tekst do zamiany występuje ${ile} razy: ${m.z.slice(0, 80)}`); t = t.replace(m.z, () => m.na ?? ''); }
     if (m.dopisz) t += m.dopisz;
     fs.writeFileSync(f, t);

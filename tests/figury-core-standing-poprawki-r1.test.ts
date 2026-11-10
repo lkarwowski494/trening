@@ -1,0 +1,103 @@
+/*
+ * core_standing, poprawki po recenzji niezależnej r1 (10.11.2026, partia 8; raport audytora: W1–W5, Ś1–Ś3). Każdy test odtwarza miarę z raportu (czerwony przed poprawką):
+ * W1 prowadnica prostej ręki wiatraka przy ręce z kettlebellem (R), W2 gryf Barbell Side Bend idzie z barkami, W3 Cable Russian Twists zgodny z kartą (góra pleców na piłce, biodra w górze, proste ręce),
+ * W4 Landmine Rotation bez poprzecznej sztangi, koniec gryfu zatacza łuk, W5 ślad toru piłki lekarskiej na piłce, Ś1 nazwy faz skłonów z wyciągiem (istniejąca PhaseName), Ś3 łokieć Pallofa bez pełnego zablokowania.
+ */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json')));
+import { figureSpec, shownFigureSpec, V2_WSTRZYMANE, frameAt, overlayShapes, proj, type FigureSpec, type Shape } from '@/lib/figures/v2';
+import { dataUiFor, lowerFirstOf } from '@/lib/figures/v2/poseData';
+
+const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
+const US = Array.from({ length: 11 }, (_, i) => i / 10);
+const ang = (a: number[], b: number[], c: number[]) => { const u = a.map((x, i) => x - b[i]), v = c.map((x, i) => x - b[i]); const d = u.reduce((s, x, i) => s + x * v[i], 0) / (Math.hypot(...u) * Math.hypot(...v)); return Math.acos(Math.max(-1, Math.min(1, d))) * 180 / Math.PI; };
+const elbow = (sk: ReturnType<typeof frameAt>['sk'], s: 'R' | 'L') => ang(sk.arms[s].shoulder, sk.arms[s].elbow, sk.arms[s].wrist);
+
+describe('core_standing r1: W1 prowadnica prostej ręki wiatraka przy ręce z kettlebellem', () => {
+  test.each(['Kettlebell Windmill', 'Double Kettlebell Windmill'])('%s: środek prowadnicy (rzut z przodu) bliżej chwytu R (ręka z ciężarem nad głową) niż chwytu L w każdej klatce', (k) => {
+    for (const u of US) {
+      const g = overlayShapes(spec(k), u, 'front', ['windmillArmStraightRef']).find((x): x is Extract<Shape, { k: 'poly' }> => x.k === 'poly'); if (!g) continue; /* bez prowadnicy w tej klatce (przezroczystość) — nic do porównania */
+      const m = [(g.pts[2][0] + g.pts[3][0]) / 2, (g.pts[2][1] + g.pts[3][1]) / 2]; const sk = frameAt(spec(k), u).sk;
+      const d = (s: 'R' | 'L') => { const p = proj(sk.arms[s].grip, 'front'); return Math.hypot(p[0] - m[0], p[1] - m[1]); };
+      expect([k, u, d('R') < d('L')]).toEqual([k, u, true]);
+    }
+    expect(US.some(u => overlayShapes(spec(k), u, 'front', ['windmillArmStraightRef']).length > 0)).toBe(true);
+  });
+});
+
+describe('core_standing r1: W2 Barbell Side Bend wstrzymany (analogia Plyo Push-Up, 10.11.2026)', () => {
+  /* Decyzja leada 10.11.2026 (do weta koordynatora): silnik nie ma pochylenia gryfu w płaszczyźnie czołowej (rekwizyt „barbell” bez obrotu wokół osi głębokości), więc gryf nie idzie z barkami — figura wstrzymana, pozy zostają w silniku. */
+  test('Barbell Side Bend jest w V2_WSTRZYMANE (z powodem), silnik ma pozy, aplikacja nie pokazuje figury; rodzeństwo skłonów bez zmian', () => {
+    const k = 'Barbell Side Bend';
+    expect(V2_WSTRZYMANE[k]).toMatch(/pochylenia gryfu/);
+    expect([figureSpec(k) !== null, shownFigureSpec(k), k in V2_WSTRZYMANE]).toEqual([true, null, true]);
+    for (const o of ['Side Bend (hantel)', 'Weighted Ball Side Bend']) expect([o, shownFigureSpec(o) !== null, o in V2_WSTRZYMANE]).toEqual([o, true, false]);
+  });
+});
+
+describe('core_standing r1: W3 Cable Russian Twists zgodny z kartą (góra pleców na piłce, biodra w górze, proste ręce)', () => {
+  test('tułów prawie poziomo (≥ 70° od pionu), biodro ≥ 160°, łokcie ≥ 165° w całym ruchu; piłka pod górą pleców', () => {
+    const k = 'Cable Russian Twists';
+    for (const u of US) {
+      const { sk, props } = frameAt(spec(k), u); const tr = [sk.shoulderC[0] - sk.pelvis[0], sk.shoulderC[1] - sk.pelvis[1]]; const od = Math.atan2(Math.abs(tr[0]), tr[1]) * 180 / Math.PI;
+      expect([u, 'tulow', od >= 70]).toEqual([u, 'tulow', true]);
+      for (const s of ['R', 'L'] as const) { expect([u, s, 'biodro', ang(sk.shoulderC, sk.pelvis, sk.legs[s].knee) >= 160]).toEqual([u, s, 'biodro', true]); expect([u, s, 'lokiec', elbow(sk, s) >= 165]).toEqual([u, s, 'lokiec', true]); }
+      const ball = props.find(p => p.k === 'ball' || (p as { k: string }).k === 'gymball') as unknown as { c: number[]; r: number } | undefined; if (ball) expect([u, Math.hypot(ball.c[0] - sk.spineMid[0], ball.c[1] - sk.spineMid[1]) <= ball.r + 12]).toEqual([u, true]);
+    }
+  });
+});
+
+describe('core_standing r1: W4 Landmine Rotation — koniec gryfu po łuku', () => {
+  test('10.11.2026 (W4, druga tura): odcinek „sztanga” przy chwycie ≤ 20 cm (jak zrecenzowany Landmine Press, overhead_press), dłonie razem na końcu gryfu (rozstaw ≤ 12 cm), bez poprzecznego odcinka 50 cm', () => {
+    const k = 'Landmine Rotation'; const lp = frameAt(spec('Landmine Press'), 0.5).props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
+    expect(lp.len).toBe(20);
+    for (const u of US) {
+      const f = frameAt(spec(k), u); const b = f.props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
+      const rozstaw = Math.hypot(...[0, 1, 2].map(i => f.sk.arms.R.grip[i] - f.sk.arms.L.grip[i]));
+      expect([u, 'dlugosc', (b.len ?? 999) <= 20]).toEqual([u, 'dlugosc', true]);
+      /* W4 (r2): odcinek „sztanga” leży przy chwycie, nie tylko koniec gryfu (pivot.to) */
+      const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2); expect([u, 'sztanga przy chwycie', Math.hypot(...b.c.map((x, i) => x - mid[i])) <= 3]).toEqual([u, 'sztanga przy chwycie', true]); expect([u, 'rozstaw', rozstaw <= 12]).toEqual([u, 'rozstaw', true]);
+    }
+  });
+  test('koniec gryfu ≤ 3 cm od środka chwytów; długość gryfu stała (łuk sfery), koniec porusza się w bok i zmienia wysokość', () => {
+    const k = 'Landmine Rotation'; const z: number[] = [], y: number[] = [];
+    for (const u of US) {
+      const f = frameAt(spec(k), u); expect(f.props.some(p => p.k === 'barbell')).toBe(true); /* wymóg katalogu: Landmine Rotation wymaga wpisu „sztanga” (tests/figures-v2-gear.test.ts: landmine sam go nie spełnia) */
+      const pv = f.props.find((p): p is Extract<typeof p, { k: 'pivot' }> => p.k === 'pivot')!; const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
+      expect([u, Math.hypot(...pv.to.map((x, i) => x - mid[i])) <= 3]).toEqual([u, true]); expect([u, Math.abs(Math.hypot(...pv.to.map((x, i) => x - pv.from[i])) - (pv.len ?? NaN)) <= 1]).toEqual([u, true]);
+      z.push(pv.to[2]); y.push(pv.to[1]);
+    }
+    expect(Math.max(...z) - Math.min(...z)).toBeGreaterThanOrEqual(36); expect(Math.max(...y) - Math.min(...y)).toBeGreaterThanOrEqual(4);
+  });
+});
+
+describe('core_standing r2: R2-W1 sztanga i ślad toru Landmine Rotation przy środku chwytów (10.11.2026)', () => {
+  test.each(['front', 'side'] as const)('barbell.c i info.load ≤ 3 cm od środka chwytów w rzucie %s w każdej klatce (dłonie idą w bok, z ±19 cm)', (view) => {
+    const k = 'Landmine Rotation'; let zMax = 0;
+    for (const u of Array.from({ length: 21 }, (_, i) => i / 20)) {
+      const f = frameAt(spec(k), u); const b = f.props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
+      const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2); zMax = Math.max(zMax, Math.abs(mid[2]));
+      const d = (p: number[]) => { const a = proj(p as [number, number, number], view), m = proj(mid as [number, number, number], view); return Math.hypot(a[0] - m[0], a[1] - m[1]); };
+      expect([u, 'barbell.c', d(b.c) <= 3]).toEqual([u, 'barbell.c', true]); expect([u, 'info.load', !!f.info.load && d(f.info.load) <= 3]).toEqual([u, 'info.load', true]);
+    }
+    expect(zMax).toBeGreaterThan(10); /* kontrola, że test dotyka ruchu w bok */
+  });
+});
+
+describe('core_standing r1: W5 ślad toru Medicine Ball Full Twist na piłce, nie na miednicy', () => {
+  test('ślad ≤ 3 cm od środka piłki w każdej klatce', () => {
+    for (const u of US) { const f = frameAt(spec('Medicine Ball Full Twist'), u); const ball = f.props.find(p => p.k === 'ball') as unknown as { c: number[] }; const t = f.info.trail; expect([u, !!t && Math.hypot(...ball.c.map((x, i) => x - t[i])) <= 3]).toEqual([u, true]); }
+  });
+});
+
+describe('core_standing r1: Ś1 nazwy faz skłonów z wyciągiem (ruch koncentryczny, istniejąca PhaseName)', () => {
+  test.each(['One-Arm High-Pulley Cable Side Bends', 'Bosu Ball Cable Crunch With Side Bends'])('%s: „Ściąganie” / „Powrót”, bez opuszczania na początku', (k) => {
+    const ui = dataUiFor('core_standing')!; expect(ui.exceptions![k].names).toEqual({ first: 'Ściąganie', second: 'Powrót' }); expect(lowerFirstOf(ui, k)).toBe(false);
+  });
+  test('skłony z ciężarem opadającym (sztanga, hantel, piłka) zostają przy „Opuszczanie”', () => { const ui = dataUiFor('core_standing')!; for (const k of ['Barbell Side Bend', 'Side Bend (hantel)', 'Weighted Ball Side Bend']) expect([k, lowerFirstOf(ui, k)]).toEqual([k, true]); });
+});
+
+describe('core_standing r1: Ś3 Pallof — łokieć na końcu ruchu lekko ugięty (bez blokowania)', () => {
+  test.each(['Pallof Press', 'Pallof Press With Rotation'])('%s: łokieć w u = 1 w przedziale 160–175°', (k) => {
+    const sk = frameAt(spec(k), 1).sk; for (const s of ['R', 'L'] as const) { const e = elbow(sk, s); expect([k, s, e >= 160 && e <= 175]).toEqual([k, s, true]); }
+  });
+});

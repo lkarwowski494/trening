@@ -60,7 +60,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
   });
   test('założenia symulacji: karty własne cue-sets (b = own) = karty w źródłach; wstrzymane figury (V2_WSTRZYMANE) poza stanem końcowym', () => {
     expect(sym.kontrola.cuesSetsOwnRownaZrodlu).toBe(true);
-    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise', 'Triceps Dips (ławka)']); /* 10.11.2026: V2_WSTRZYMANE = 09.11 partia 2 (Machine Hip Thrust) + 09.11 partia 1 (2 maszyny calf_raise) + 10.11 partia 4 (ławka dip, W5, P4-DIP-1) + 10.11 partia 2 (Plyo Push-Up, PP-W1) */
+    expect(sym.kontrola.wstrzymane.sort()).toEqual(['Barbell Side Bend', 'Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise', 'Triceps Dips (ławka)']); /* 10.11.2026: V2_WSTRZYMANE = 09.11 partia 2 (Machine Hip Thrust) + 09.11 partia 1 (2 maszyny calf_raise) + 10.11 partia 4 (ławka dip, W5, P4-DIP-1) + 10.11 partia 2 (Plyo Push-Up, PP-W1) + 10.11 partia 8 (Barbell Side Bend, core_standing W2, P8-CS-1) */
   });
   test('komplet kart języków: w stanie końcowym każdy język ma tyle samo kart kompletnych (wszystkie teksty przetłumaczone — założenie (a))', () => {
     const lang = Object.keys(cele.min).filter(k => /^jezyk\..+\.kompletne$/.test(k));

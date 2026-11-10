@@ -50,7 +50,7 @@ export const FAMILIES: Family[] = [
   { id: 'rotator_cuff', status: 'planned', label: 'Rotacje zewnętrzne/wewnętrzne, taśmy do ramion', views: ['front', 'side'], effort: 2 },
   { id: 'core_floor', status: 'planned', label: 'Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up)', views: ['side'], effort: 4 },
   { id: 'core_hang', status: 'planned', label: 'Brzuch w zwisie (unoszenie nóg/kolan, toes to bar)', views: ['side'], effort: 2 },
-  { id: 'core_standing', status: 'planned', label: 'Core stojąc i rotacje (Pallof, drwal, skłony, windmill)', views: ['front', 'side'], effort: 4 },
+  { id: 'core_standing', status: 'ready', label: 'Core stojąc i rotacje (Pallof, drwal, skłony, windmill)', views: ['front', 'side'], effort: 4 },
   { id: 'carry', status: 'planned', label: 'Noszenie', views: ['side'], effort: 2 },
   { id: 'cardio', status: 'planned', label: 'Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees)', views: ['side'], effort: 6 },
   { id: 'plyo', status: 'planned', label: 'Skoki i plyometria', views: ['side', 'front'], effort: 4, note: 'skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026)' },
