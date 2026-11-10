@@ -3,7 +3,7 @@
  * (scripts/figures/gemini-pozy.mjs --z-pliku) po bramkach geometrii i sensu ruchu. Rodzina z plikiem jest „gotowa” (families.ts), a każde jej ćwiczenie z wpisem w pliku
  * dostaje figurę z tych danych (figure.ts: figureSpec / frameAt / shapesAt) — tak samo jak ćwiczenia rodzin z rigiem (przysiad, wyciskanie leżąc, zawias).
  * Ćwiczenie rodziny bez wpisu w pliku nie ma figury v2 (zachowanie jak dotąd: v1 albo brak).
- * Rejestr rodzin: `rodziny/<rodzina>.ts` (plik póz, DATA_UI, ONE_WAY_UI) i jedna linia w `rodziny/index.ts` (KO-022, 10.11.2026); tu tylko składanie. Parametry prezentacji rodziny (nazwy faz licznika, kierunek pętli, mierzony staw) to DATA_UI: nowa rodzina z danymi MUSI mieć wpis (test), bo licznik faz i „Kąt na rysunku” zależą od ruchu.
+ * Rejestr rodzin: `rodziny/<rodzina>.ts` (plik póz, DATA_UI, ONE_WAY_UI) i jedna linia w `rodziny/index.ts` (KO-022, 10.11.2026); tu tylko składanie. Parametry prezentacji rodziny (nazwy faz licznika, kierunek pętli, mierzony staw) to DATA_UI: wpis DATA_UI jest wymagany tylko wtedy, gdy prezentacja z `dataUiForPose` (GAIT_UI dla pętli cyklicznej, ONE_WAY_UI dla jednokierunkowej) nie pasuje do ruchu rodziny — licznik faz i „Kąt na rysunku” zależą od ruchu.
  * Pliki wczytywane leniwie (require w funkcji): 43 rodziny × kilkadziesiąt KB nie mogą ładować się przy starcie.
  */
 import type { PoseData } from './contract';

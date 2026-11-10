@@ -1,7 +1,7 @@
 /*
  * (wdrożenie 08.11.2026) Figury v2 — strażnik „bez zaworu: żadna rodzina nie wychodzi bez nakładki” (decyzja właściciela 04.11.2026 ~11:35 PL, docs/18: „rysunek pokazuje technikę” wchodzi do 1.1).
  * Każda rodzina o statusie `ready` ma wpis w TECHNIQUE z co najmniej jednym elementem, który faktycznie się rysuje dla co najmniej jednego ćwiczenia rodziny (element wybrany przez
- * wskazówki karty i reguły „ustalone” wariantu, niepuste kształty w co najmniej jednym rzucie i klatce). Jeden nazwany wyjątek: mobility_floor (09.11.2026, docs/18). Poza nim bez wyjątków: nowa rodzina ze statusem `ready` bez nakładki czerwieni verify.
+ * wskazówki karty i reguły „ustalone” wariantu, niepuste kształty w co najmniej jednym rzucie i klatce). Dwa nazwane wyjątki: mobility_floor (09.11.2026, docs/18) i strongman (10.11.2026, tryb „analogia”, docs/18: reguły rodziny mają pewność „analogia”, karta Yoke Walk ma wskazówkę bez reguły). Poza nimi bez wyjątków: nowa rodzina ze statusem `ready` bez nakładki czerwieni verify.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny */
 import { CATALOG } from '@/lib/catalog.generated';
@@ -21,6 +21,9 @@ describe('04.11.2026 bez zaworu: każda rodzina ready ma nakładkę, która się
     /* jedyny nazwany wyjątek: mobility_floor — nakładka zarejestrowana bez elementów (koordynator linii 1.1, 09.11.2026, wariant A, docs/18; backlog MOB-F1);
        ten sam wyjątek co strażnik S20 (tests/interaction-guards.test.ts) — pilnujemy, że jest pusta dokładnie ta jedna rodzina */
     if (family === 'mobility_floor') { expect(TECHNIQUE[family]).toEqual([]); return; }
+    /* drugi nazwany wyjątek: strongman (koordynator/lead partii 8, 10.11.2026, tryb „analogia”, docs/18; powód: reguły rodziny tylko „analogia”, karta Yoke Walk bez wskazówki powiązanej z regułą;
+       tests/figures-v2-nakladka-mobility-floor.test.tsx pilnuje, że pustych jest dokładnie te dwie rodziny) */
+    if (family === 'strongman') { expect(TECHNIQUE[family]).toEqual([]); return; }
     expect(TECHNIQUE[family].length).toBeGreaterThan(0);
     const drawn: string[] = [];
     for (const k of keysOf(family)) {
