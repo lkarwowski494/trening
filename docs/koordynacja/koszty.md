@@ -31,3 +31,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | F2 | 08 build (partia 9) | 60 | 9,02 | 28,6 | 14:28 → … → 1bb3b55c → 42857877718 zielony → do pociągu-6 | — | zarchiwizowana 17:12 |
 | H | 08 build (pociąg-6) | 25 | 11,92 | 30,8 | 16:38 → … → 7240d164 → 42882227994 zielony → przyjęte 19:32 | ~1 h verify:szybkie (WG-07) | zarchiwizowana 19:32 |
 | E2 | 08 build (partia 8) | 60 | 19,96 | 35,4 | 13:58 → … → 213c3f9e → 42860496841 zielony → do pociągu-6 | 3 próby verify:szybkie (WG-07) | zarchiwizowana 17:55 |
+| J | 08 build (docs/49) | 15 (pułap) | 3,55 | 23,5 | 20:45 → 20:47 → 20:54 (7b27799a) → verify:docs 21:12 (CI pominięte, same dokumenty) → przyjęte 21:12 | ok. 18 min: przekazanie koordynatora (20:55–21:02) | archiwizacja 21:15 |
