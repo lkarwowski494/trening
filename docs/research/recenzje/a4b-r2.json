@@ -1,0 +1,97 @@
+{
+  "karty": {
+    "Kettlebell Clean": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; EN kbb.cleanMove „as your hips snap through” = wyprost bioder (BarBend Steps 2–4, StrongFirst Pak); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "ba3a64a7651d"
+    },
+    "Kettlebell Snatch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; StrongFirst (Toshner, Macek) + BarBend; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: miejsce barbend-kb-snatch przy kbb.bellSetup nadal „Step One” — powinno być: sekcja progresji Kettlebell Swing.",
+      "sha": "075672f7c818"
+    },
+    "Double Kettlebell Push Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; CrossFit Essentials (Martone) + BarBend (Dewar, CSCS); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: miejsce cf-dkb-pp-jerk przy pp.legs nadal cytuje zdanie z sekcji Jerk.",
+      "sha": "6fe0557af3f0"
+    },
+    "One-Arm Kettlebell Push Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; uproszczenie dwa → jeden kettlebell potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: jak Double Kettlebell Push Press (miejsce przy pp.legs).",
+      "sha": "4044c2cbfc23"
+    },
+    "Double Kettlebell Snatch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; uproszczenia potwierdzone; nowe brzmienie dblSnatchMove w granicach źródeł; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "bd0269dc441b"
+    },
+    "Split Jump": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; ACE 234 + NASM; zastąpienie zrecenzowanego zestawu ogólnego kartą bez zastrzeżeń; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "52d32028df58"
+    },
+    "Lateral Cone Hops": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; ACE 120 + PEP + NISMAT (szczebel 4); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "cd2b4894506d"
+    },
+    "Backward Drag": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; sled.backGrip poprawione (sama lina — REP + EliteFTS); sled.backPedal: EliteFTS Bryant + Torque s. 62, uproszczenie pas → lina potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "f5f2e5deeb83"
+    },
+    "Atlas Stones": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; as.extend „wypchnij biodra w przód i wstań” = BarBend Step 3 wprost + Hindle 2019 (szczebel 2) faza z ud do wyprostu; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "74d3aa8a45bf"
+    },
+    "Plate Pinch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; pinch.hold „aż chwyt zacznie słabnąć” = Fitness Volt „until your grip feels tired”; uproszczenie marsz → stanie potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "52a05d6f2dd1"
+    }
+  }
+}

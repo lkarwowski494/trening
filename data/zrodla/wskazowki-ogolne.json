@@ -1406,11 +1406,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Backward Drag": {
-   "rodzina": "sled",
-   "sprawdzenie": "bez sled.lean (ciągnięcie tyłem); 1 ✓",
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Band Bench Press": {
    "rodzina": "bench",
    "sprawdzenie": null,
@@ -1472,16 +1467,6 @@
    "plik": "wskazowki-cwiczenia-06"
   },
   "Barbell Side Split Squat": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Barbell Step Up": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Barbell Walking Lunge": {
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
@@ -1568,11 +1553,6 @@
   },
   "Box Squat with Chains": {
    "rodzina": "squat",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
-  },
-  "Bulgarian Split Squat (sztanga)": {
-   "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-05"
   },
@@ -1856,16 +1836,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Double Kettlebell Push Press": {
-   "rodzina": "pushPress",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "Double Kettlebell Snatch": {
-   "rodzina": "oly",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Double Leg Butt Kick": {
    "rodzina": "jump",
    "sprawdzenie": null,
@@ -2116,20 +2086,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Kettlebell Clean": {
-   "rodzina": "oly",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Kettlebell Halo with Overhead Extension": {
    "rodzina": "halo",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-08-korekty"
-  },
-  "Kettlebell Snatch": {
-   "rodzina": "oly",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Kettlebell Sumo High Pull": {
    "rodzina": "oly",
@@ -2196,11 +2156,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
   },
-  "Lateral Cone Hops": {
-   "rodzina": "jump",
-   "sprawdzenie": "1 ✓",
-   "plik": "wskazowki-cwiczenia-06"
-  },
   "Lateral Lunge": {
    "rodzina": "lunge",
    "sprawdzenie": "bez lunge.torso — w wykroku bocznym tułów się pochyla",
@@ -2255,11 +2210,6 @@
    "rodzina": "lunge",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-06"
-  },
-  "Lunges (sztanga)": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Lying Cable Curl": {
    "rodzina": "curl",
@@ -2407,11 +2357,6 @@
    "plik": "wskazowki-cwiczenia-03"
   },
   "One-Arm Kettlebell Jerk": {
-   "rodzina": "pushPress",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "One-Arm Kettlebell Push Press": {
    "rodzina": "pushPress",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
@@ -2826,11 +2771,6 @@
    "sprawdzenie": "ACE: „whether pulling or pushing” — te same zasady",
    "plik": "wskazowki-cwiczenia-05"
   },
-  "Slider Hamstring Curl": {
-   "rodzina": "bridge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Slider Reverse Lunge": {
    "rodzina": "lunge",
    "sprawdzenie": null,
@@ -2850,11 +2790,6 @@
    "rodzina": "rowBent",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Smith Machine Bulgarian Split Squat": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-05"
   },
   "Smith Machine Close-Grip Bench Press": {
    "rodzina": "bench",
@@ -2920,16 +2855,6 @@
    "rodzina": "curl",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Split Jump": {
-   "rodzina": "jump",
-   "sprawdzenie": "NASM lunge-jump (sitemap) — możliwe źródło bezpośrednie",
-   "plik": "wskazowki-cwiczenia-06"
-  },
-  "Split Squat": {
-   "rodzina": "lunge",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-02"
   },
   "Split Squat (linki)": {
    "rodzina": "lunge",

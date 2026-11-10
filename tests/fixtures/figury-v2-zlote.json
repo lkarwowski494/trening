@@ -1456,14 +1456,6 @@
    "svg": "0a0daeb242c642e1b3f3",
    "raw": "12bd2a95e47831886118"
   },
-  "hip_abd_add/Lateral Band Walk": {
-   "svg": "e3fed2e10fd07e79753d",
-   "raw": "8f91a0f8a3b06eb6d5ea"
-  },
-  "hip_abd_add/Monster Walk": {
-   "svg": "a35600619f583086b4bb",
-   "raw": "0b428b71d3feac1b5ab6"
-  },
   "hip_bridge/Glute Bridge": {
    "svg": "143a25a7dc74bf1a14db",
    "raw": "fd78a34d3a72190be3c5"
@@ -1601,8 +1593,8 @@
    "raw": "1ec4ca1a42f741f58f9f"
   },
   "leg_isolation/Slider Hamstring Curl": {
-   "svg": "1b6edff0a73c09ce579f",
-   "raw": "045b12c58dc6dd42e42e"
+   "svg": "3feedeb702c1ca2efcb5",
+   "raw": "e837d25110eeb2c39207"
   },
   "leg_machine/Leg Press": {
    "svg": "ccc2766320658e03b999",
@@ -1629,8 +1621,8 @@
    "raw": "e4bee6794364904d1462"
   },
   "lunge/Split Squat": {
-   "svg": "ec7d561d94c2b8e64f2f",
-   "raw": "f89bebd7c5f9dce54cf1"
+   "svg": "a8ae1c4cb9ebaadf2905",
+   "raw": "5d7621f99ca557a4462c"
   },
   "lunge/Split Squat (linki)": {
    "svg": "8c199e7f6cbe8d95374c",
@@ -1649,12 +1641,12 @@
    "raw": "4347a6b82b21aab80702"
   },
   "lunge/Lunges (sztanga)": {
-   "svg": "cedb7b7bb7c90be9daaa",
-   "raw": "38d9ba50747fd3f226b5"
+   "svg": "3f7c1ae368971afc209a",
+   "raw": "39c7c8d80a3fb64c3433"
   },
   "lunge/Barbell Walking Lunge": {
-   "svg": "cedb7b7bb7c90be9daaa",
-   "raw": "38d9ba50747fd3f226b5"
+   "svg": "3f7c1ae368971afc209a",
+   "raw": "39c7c8d80a3fb64c3433"
   },
   "lunge/Elevated Back Lunge": {
    "svg": "237c679356eef7db60d6",
@@ -1669,8 +1661,8 @@
    "raw": "8296d912776c0e84dc0e"
   },
   "lunge/Barbell Step Up": {
-   "svg": "e7365f768f832a396359",
-   "raw": "3d74333ebdd090f824a2"
+   "svg": "ca2c2fbace10b97080a1",
+   "raw": "08ae3b6f35c1e6a3ca60"
   },
   "lunge/Pistol Squat": {
    "svg": "55e0bc5113ae97e45b70",
@@ -2153,8 +2145,8 @@
    "raw": "8fc00860b5fa846bb872"
   },
   "pulldown/Straight Arm Pulldown": {
-   "svg": "2d185350e461bf58d4d3",
-   "raw": "e484d344e811d744ad90"
+   "svg": "b82a1e404dc383a5bcf0",
+   "raw": "372384391ed0a56ac985"
   },
   "pushup_plank/Push Up": {
    "svg": "47ddf8fe72aa200c39ce",
@@ -2305,36 +2297,36 @@
    "raw": "56eb7c760040590622d6"
   },
   "shrug/Shrugs (sztanga)": {
-   "svg": "cc579ea9775136b6c13f",
-   "raw": "628b1fcc9571d9a07187"
+   "svg": "bdd958c044faad9456e7",
+   "raw": "8674d3144cbde7682281"
   },
   "shrug/Shrugs (hantle)": {
-   "svg": "6824e981066e7e75e1f7",
-   "raw": "dfee2b2111d6bf032ee9"
+   "svg": "d199b5b7ba75a4415634",
+   "raw": "d8caf0d883f55c90f179"
   },
   "shrug/Shrugs (linki)": {
-   "svg": "e70d9bfb0889aaa25981",
-   "raw": "306ab84e5dc72f833557"
+   "svg": "0bdbd7d5e2372c460fd0",
+   "raw": "cf586c0cc4ec6237264a"
   },
   "shrug/Barbell Shrug Behind The Back": {
-   "svg": "ec52d933b7d03cb99ac0",
-   "raw": "3e5510d03bf3359a5b98"
+   "svg": "9e95d441cb1646c10520",
+   "raw": "55cfadb2c218ee78bfa4"
   },
   "shrug/Smith Machine Behind the Back Shrug": {
-   "svg": "f6b442d23fe512b7f6fc",
-   "raw": "dbe188b8cba5f86d1750"
+   "svg": "2474883b88e2c78f2ac9",
+   "raw": "bb6baf33eff840da24a2"
   },
   "shrug/Leverage Shrug": {
-   "svg": "558f69e7d1d50c9bd4fd",
-   "raw": "9d6b9e228b599dd2c442"
+   "svg": "0950f67abb48547e9986",
+   "raw": "543bf086b0c99a27e593"
   },
   "shrug/Calf-Machine Shoulder Shrug": {
-   "svg": "558f69e7d1d50c9bd4fd",
-   "raw": "9d6b9e228b599dd2c442"
+   "svg": "0950f67abb48547e9986",
+   "raw": "543bf086b0c99a27e593"
   },
   "shrug/Middle Back Shrug": {
-   "svg": "c211a8ffab273f544a1b",
-   "raw": "a1a030fe27825af55ed8"
+   "svg": "5d832e86d5c7de86ae72",
+   "raw": "87f91af926a9ac76c59b"
   },
   "sled_throw/Medicine Ball Slam": {
    "svg": "4a9658a5f1e4642ee46e",

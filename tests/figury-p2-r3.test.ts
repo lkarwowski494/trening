@@ -37,18 +37,14 @@ function odjazdKostki(d: PoseData, i: number, s: 'R' | 'L'): number { return Mat
 const POZA_P2 = 'trafienie prawdziwe, poza zakresem poprawek p2 (inna rodzina/ćwiczenie niż leg_machine i przysiad bułgarski); naprawa w backlogu 1.1 (docs/21)';
 const WYJATKI_NOGI: Record<string, string> = {
   'core_floor/Tuck Crunch/ok': `${POZA_P2}: golenie zbliżone o ok. 4 cm bardziej niż stykające się kostki`,
-  'lunge/Split Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm`,
   'lunge/Split Squat (linki)/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm`,
   'lunge/Suspended Split Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm (ćwiczenie kontrolne recenzji)`,
   'lunge/Elevated Back Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1 cm`,
-  'lunge/Lunges (sztanga)/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
-  'lunge/Barbell Walking Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
   'lunge/Slider Reverse Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
   'lunge/Lunge Pass Through/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
   'lunge/Curtsy Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,03 cm`,
   'lunge/Cossack Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,6 cm`,
   'glute_floor/Clamshell/ok': `${POZA_P2}: w pozie poprawnej uda przenikają się o ok. 1,2 cm (rodzina glute_floor)`,
-  'lunge/Barbell Step Up/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (przenikanie ud ok. 6 cm)`,
   'lunge/Smith Machine Pistol Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (uda przecinają się)`,
   'lunge/Single-Leg High Box Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (przenikanie ud ok. 3,4 cm)`,
   'rotator_cuff/External Rotation (hantel)/ok': `${POZA_P2}: w pozie poprawnej uda przenikają się o ok. 1,2 cm (rodzina rotator_cuff; ujawnione przy scaleniu G6b 28.10.2026)`,
