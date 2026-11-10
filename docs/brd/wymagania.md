@@ -488,6 +488,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
+  - Scenariusz: Rodzina wyciskań na linkach (cable_press) pokazuje rysunki 4 ćwiczeń (10.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-cable_press.test.tsx`, `tests/figures-v2-cable_press-podpora.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_press (np. wyciskanie na linkach stojąc, Single Arm Cable Chest Press), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy licznik faz to Wypychanie i Powrót, mierzony staw to łokieć, a każda pracująca dłoń leży przy końcu własnej linki biegnącej od bloczka za plecami (przy ćwiczeniu jednorącz wolna ręka nie ma linki), a na ławce bark i miednica leżą na oparciu
+    - Oraz gdy ćwiczenie ma na karcie albo w zestawie ogólnym zdanie ruchu (mcp.move, press.noLock) albo podstawy (cpress.base) i regułę „ustalone” (nakładka techniki)
+    - Wtedy z boku widać linię ramienia i łuk zgięcia łokcia oraz linię tułowia, która w ruchu rąk stoi w miejscu; reguła kontaktu z ławką (pewność „analogia”) zostaje bez elementu nakładki
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

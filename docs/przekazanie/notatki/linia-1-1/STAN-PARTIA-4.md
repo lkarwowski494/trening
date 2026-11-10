@@ -13,3 +13,7 @@ Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą; pełna k
 | cable_press | czeka | — | — |
 | back_extension | czeka | — | — |
 | thruster | czeka | — | — |
+
+## cable_press (autor, 10.11.2026)
+Zrobione: włączenie (families ready, LOAD, DATA_UI Wypychanie/Powrót, staw łokieć), nakładka `overlay/cable_press.ts` (zakres → łuk łokcia, tulow_stabilny → linia tułowia; lawka_kontakt „analogia” bez elementu), testy (figures-v2-nakladka-cable_press, figures-v2-cable_press-podpora z negatywami, mapping, data, strona-eksport +4, generator W_ZAKRESIE), BRD, pochodne. Pomiar z arkuszy: dłonie w końcach linek 0 cm, oparcie ławki odstęp ≈ głębokość tułowia (±0,5 cm), wad poz nie znaleziono.
+Zostało: recenzja niezależna (v2/karty/zestawy; zestawy: Single Arm general, Incline general, Seated i stojąc own; v1 → zastapiona), test `strona-eksport` „pelna” czerwony do czasu wpisów recenzji.
