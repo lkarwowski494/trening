@@ -518,6 +518,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy miednica i uda leżą na podpórce ławki (do 1 cm), stopy są pod wałkami (rzymska), miednica Lower Back Curl leży na podłodze, a licznik faz mierzy kąt biodra (Back Extension zaczyna od góry: Opuszczanie, potem Unoszenie); Weighted Ball Hyperextension zostaje bez rysunku v2
     - Oraz gdy Back Extension ma na karcie wskazówkę o zgięciu w biodrach i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/back_extension.ts`)
     - Wtedy z boku widać linię i łuk kąta biodra, który rośnie przy opuszczaniu tułowia; pozostałe ćwiczenia rodziny nie mają elementu (zestawy ogólne bez tej wskazówki, reguły poniżej „ustalone”)
+  - Scenariusz: Rodzina thruster (przysiad z wyciskaniem nad głowę: Thruster z hantlami, Kettlebell Thruster, Clean and Press) pokazuje rysunki 3 ćwiczeń w rzucie z boku (10.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-thruster.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny thruster, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy całe powtórzenie (przysiad do równoległego ud lub niżej, wyciskanie z blokadą ciężaru nad barkami i środkiem stopy, powrót ciężaru na barki; przy Clean and Press rwanie do racka i wyciskanie nad głowę) biegnie w jednym przebiegu pod nazwą fazy „Podnoszenie”, dłonie leżą na ciężarze w każdym kadrze, a przy Clean and Press (karta z wskazówką o plecach i ciężarze blisko ciała) rysunek pokazuje linię pleców i odcinek kostka–kolano jako elementy nakładki techniki
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

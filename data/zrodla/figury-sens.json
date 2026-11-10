@@ -4482,6 +4482,9 @@
       "pomin": {}
     },
     "thruster": {
+      "dynamiczne": {
+        "*": "przysiad i wyciskanie w jednym przebiegu 0 → 1 z powrotem ciężaru na barki (karta thruster.move): ciężar pokonuje ok. 90 cm w górę i z powrotem (rack → nad głowę → rack) w 12 klatkach kluczowych, więc dłoń przebywa do ok. 7–10 cm na 1/48 ruchu wobec 6 cm limitu ruchu zwykłego (pomiar generatora 10.11.2026) — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne; decyzja koordynatora 1.1 z 10.11.2026, docs/18)"
+      },
       "reguly": {
         "przysiad": {
           "typ": "kolano_biodro_zakres",
@@ -4539,7 +4542,7 @@
           "cue": "ohp.tall",
           "parametry": {
             "min_cm": 10,
-            "tylko_u1": true,
+            "tylko_u1": false,
             "lokiec_max_deg": 25
           },
           "zrodlo": "definicja ćwiczenia (zakończenie nad głową); NSCA Basics s. 42–43 (wyciskanie i push press: ciężar nad głową, łokcie wyprostowane); ACE #71 — przeczytane w r2 — analogia",

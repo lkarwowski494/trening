@@ -28,6 +28,9 @@ export const oneWayRepMs = (key?: string): number => (key !== undefined && Objec
  */
 export const ONE_WAY_STATIC: Readonly<Record<string, { u: number[]; labels: string[] }>> = {
   'Alternating Deltoid Raise': { u: [0, TEMPO.upMs / ONE_WAY_REP_MS['Alternating Deltoid Raise'], (2 * TEMPO.upMs + TEMPO.downMs) / ONE_WAY_REP_MS['Alternating Deltoid Raise']], labels: ['Pozycja wyjściowa', 'Przodem', 'Bokiem'] },
+  /* thruster (10.11.2026, r1-W3): powtórzenie kończy się ciężarem z powrotem na barkach (u = 1 = poza startowa); drugą pozycją jest blokada nad głową w klatce 8 z 11 */
+  'Thruster (hantle)': { u: [0, 8 / 11], labels: ['Pozycja wyjściowa', 'Pozycja końcowa'] },
+  'Kettlebell Thruster': { u: [0, 8 / 11], labels: ['Pozycja wyjściowa', 'Pozycja końcowa'] },
 };
 /** Tempo animacji; holdLowMs = pauza po fazie opuszczania (u = 1) zamiast HOLD_MS (0 = bez pauzy na dole: przysiad, NSCA Basics 2012 s. 49–50). */
 export type Tempo = { downMs: number; upMs: number; holdLowMs?: number };

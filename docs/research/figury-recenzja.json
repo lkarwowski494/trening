@@ -1470,6 +1470,18 @@
       "bez_rysunku": [
         "Weighted Ball Hyperextension"
       ]
+    },
+    "thruster": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny thruster, partia 4, runda 2, figury/partia-4-thruster @ 0ee59a94 (poprawki 93b86d7c, 50988529, 0ee59a94), 10.11.2026; raport docs/research/recenzje/partia4-thruster-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 2: W1–W3 z r1 naprawione, 0 × KRYTYCZNE/WYSOKIE; NISKIE N2–N5 do backlogu",
+      "autor": "programista partii 4 (figury/partia-4-thruster)",
+      "recenzent": "audytor",
+      "uwagi": "W1: blokada nad głową — thrustery u = 0,727: chwyt 7,3 cm od barków, 2,0 cm od kostki, łokieć 11,2°; Clean and Press u = 1: 8,5 / 2,0 cm, łokieć 20,3°. W2: najniżej udo 8,1° poniżej poziomu. W3: chwyt u = 1 = chwyt u = 0 (pętla zamknięta, powrót do racka w kadrach 0,80–1,00). Ciągłość (limit dynamiczny 16 cm, decyzja koordynatora 10.11.2026): maks. krok na 1/48 — 10,3 cm (hantle), 10,7 cm (kettlebell), 5,1 cm (Clean and Press); na arkuszu bez szarpnięć i skoków. Dłonie na ciężarze 0,0 cm (siatka 1/480), ciężar nie przechodzi przez głowę. NISKIE: N2 łokcie Clean and Press w bok (niewidoczne z boku); N3 dynamiczne[\"*\"] obejmuje też Clean and Press bez potrzeby (5,1 cm); N4 tor thrusterów bez automatycznej ochrony kształtu (wyjątki tor-wyjatki); N5 podpis „Pozycja końcowa” przy blokadzie nad głową i jedna faza „Podnoszenie”.",
+      "slad": "Ślad toru ciężaru obejrzany w rzucie z boku wszystkich 3 ćwiczeń (3 arkusze arkusz-slad, 21 kadrów co 0,05, ślad = chwyt R; plus arkusz-nakladka rodziny z pozami błędów): thrustery — ciężar przy barkach w dół z przysiadem do ud poniżej poziomu, wybicie z wyciskaniem łagodnym łukiem przed twarzą do blokady nad środkiem stopy (u = 0,727), powrót tym samym łukiem do barków, pętla zamknięta bez skoku; Clean and Press — z zawisu nad kolanami blisko ud (3,9–9,7 cm) do barków i w górę z łagodnym łukiem przed twarzą do blokady nad stopą; bez przenikania ciężaru w ciało i głowę.",
+      "sha": "00dc790a18f6",
+      "liczba": 3
     }
   },
   "karty": {
@@ -2745,23 +2757,23 @@
     },
     "Thruster (hantle)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
-      "sha": "6606839c306f",
-      "uwagi": "Sprawdzone: ACE #357 („hold them in front of each shoulder”, „When the hips are below the knees in the squat”, „stand up and at the same time press the dumbbells overhead”), CrossFit thruster („The heels remain down until the hips and knees fully extend.”, „heels lifting from the floor prematurely”). sq.mis.heels ma bezpośrednie źródła (CrossFit, Experience Life) — nie jest analogią. Figura v2 (rodzina thruster, planned — nie wyświetlana): ruch identyczny z wersją sprzed regeneracji (JSON bez bledy równy), arkusz /home/user/recenzja-p2/arkusze/Thruster-hantle-side.png: przysiad ok. do równoległego, pięty na podłodze, wypchnięcie w trakcie wstawania, hantel na górze nad przodostopiem — zgodne z kartą. Zniknięcie pozy błędu „pięty” wynika z ukrycia karty (bledyCwiczenia czyta lib/cues/data.json, karta w „hidden” → brak błędów); po wdrożeniu tego wpisu generator rysuje ją znowu (sprawdzone na kopii: odtwarzanie-poz.mjs thruster → „błędów: generator 1, plik 0”) — przywrócić pozę błędu przez regenerację thruster.json w tym samym commicie."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 thruster, K11) — partia 4, runda 2",
+      "autor": "programista P2 (karta); rysunek: programista partii 4",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 thruster, runda 2, figury/partia-4-thruster @ 0ee59a94, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek 0ee59a94 zgodny z każdym zdaniem: thruster.dbSetup, thruster.move (przysiad, wyciśnięcie nad głowę, powrót do barków), sq.down, thruster.depth (udo 8,1° poniżej poziomu), sq.back, thruster.fullExt (kolano 2,9°, łokieć 11,2°), błąd sq.mis.heels (pięta do 8,3 cm).",
+      "sha": "6606839c306f"
     },
     "Kettlebell Thruster": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
-      "sha": "175baa530c3a",
-      "uwagi": "Sprawdzone: Experience Life thruster („front rack position”, „forcefully pressing the kettlebells straight overhead as you rise”, „Keep your heels down throughout the movement.”, „thighs are parallel (or below parallel)”), CrossFit („two dumbbells or two kettlebells”). sq.mis.heels — bezpośrednie źródła. Figura v2 (planned): ruch bez zmian; arkusz /home/user/recenzja-p2/arkusze/Kettlebell-Thruster-side.png zgodny z kartą. Jak przy Thruster (hantle): po wdrożeniu wpisu regeneracja thruster.json przywraca pozę błędu „pięty”."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 thruster, K11) — partia 4, runda 2",
+      "autor": "programista P2 (karta); rysunek: programista partii 4",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 thruster, runda 2, figury/partia-4-thruster @ 0ee59a94, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek 0ee59a94 zgodny z każdym zdaniem: thruster.kbSetup, thruster.move (z powrotem do barków), thruster.depth (udo 8,1° poniżej poziomu), thruster.fullExt, ohp.tall (blokada 2,0 cm od kostki, 7,3 cm od barków), błąd sq.mis.heels. Dzwon nie przenika głowy (ok. 2 cm luzu).",
+      "sha": "175baa530c3a"
     },
     "One-Arm Lateral Raise (hantel)": {
       "werdykt": "wyswietlana",
@@ -6029,6 +6041,17 @@
       "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
       "uwagi": "cobra.hips — miednica na podłodze w każdym kadrze (y 9,5 cm stałe); cobra.control — opuszczanie 2 s; cobra.mis tylko tekst (bez animacji błędu). Zakres mały (barki +6,1 cm, tułów ok. 7°), w regule barki_w_gore (≥ 5 cm, konwencja). Linia kąta pod rysunkiem ukryta (W1 naprawione, acfbb24).",
       "sha": "cfcd14a3dc6d"
+    },
+    "Clean and Press": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 thruster), partia 4, runda 2, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw oly; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny i poprawki rysunku: programista partii 4 (figury/partia-4-thruster @ 0ee59a94)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 thruster, runda 2, figury/partia-4-thruster @ 0ee59a94",
+      "uwagi": "oly.back i oly.close (sztanga 3,9–9,7 cm od nóg poniżej barków) zgodne z rysunkiem; ohp.tall zgodne po W1 (blokada 2,0 cm od kostki, łokieć 20,3°); oly.mis — poza błędu zaokrągla plecy (do 5,9 cm) i odsuwa sztangę (do 5,5 cm), zgodnie z tekstem. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "84f205b001d6"
     }
   }
 }

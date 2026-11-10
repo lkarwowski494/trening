@@ -123,7 +123,7 @@ describe('ACG-002 (audyt ćwiczeń 31.10.2026): każdy plik lib/figures/v2, z kt
       const f = kolejkaPlikow.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
       for (const m of fs.readFileSync(path.join(KORZEN, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V)) kolejkaPlikow.push(c); }
     }
-    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(bench_press|curl|pull_up|olympic|triceps|hip_bridge|cable_row|delt_raise|pulldown|shrug|hip_abd_add|leg_machine|dip|chest_press_machine|cable_press|back_extension)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(bench_press|curl|pull_up|olympic|triceps|hip_bridge|cable_row|delt_raise|pulldown|shrug|hip_abd_add|leg_machine|dip|chest_press_machine|cable_press|back_extension|thruster)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
     const brak = [...domk].filter(f => !rodzinne(f) && !(f.slice(V.length) in POKRYCIE)).sort();
     expect(brak).toEqual([]);
     for (const [f, p] of Object.entries(POKRYCIE)) {

@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 18, do zrobienia: 25); ćwiczeń z gotową figurą: **278** (39,2%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 19, do zrobienia: 24); ćwiczeń z gotową figurą: **281** (39,6%).
 
 ## Rodziny
 
@@ -48,12 +48,12 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `foam_roll` | do zrobienia | 10 | side | 2 | Rolowanie i automasaż |
 | `neck` | do zrobienia | 5 | side | 1 | Szyja |
 | `forearm` | do zrobienia | 13 | side | 2 | Przedramiona i chwyt |
-| `thruster` | do zrobienia | 3 | side | 2 | Thruster i ruchy złożone przysiad + wyciskanie |
+| `thruster` | gotowa | 3 | side | — | Thruster i ruchy złożone przysiad + wyciskanie |
 | `chest_press_machine` | gotowa | 5 | side | — | Maszyny wyciskające siedząc (klatka, barki) |
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 25 rodzin, 407 ćwiczeń, ok. **82 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 24 rodzin, 404 ćwiczeń, ok. **80 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -226,7 +226,7 @@ Isometric Neck Exercise - Front And Back; Isometric Neck Exercise - Sides; Lying
 
 Barbell Reverse Wrist Curl; Barbell Wrist Curl; Behind-the-Back Barbell Wrist Curl; Cable Wrist Curl; Dumbbell Lying Pronation; Dumbbell Lying Supination; One-Arm Dumbbell Reverse Wrist Curl; One-Arm Dumbbell Wrist Curl; Plate Pinch; Reverse Plate Curls; Reverse Wrist Curl (hantle); Wrist Curl (hantle); Wrist Roller
 
-### thruster (3) — do zrobienia
+### thruster (3) — gotowa
 
 Clean and Press; Kettlebell Thruster; Thruster (hantle)
 
