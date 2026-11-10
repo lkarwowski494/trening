@@ -68,7 +68,7 @@
       "err": []
     },
     "Atlas Stones": {
-      "b": "open"
+      "b": "own"
     },
     "Axle Deadlift": {
       "b": "general",
@@ -90,12 +90,7 @@
       "b": "own"
     },
     "Backward Drag": {
-      "b": "general",
-      "f": "sled",
-      "ok": [
-        "sled.legs"
-      ],
-      "err": []
+      "b": "own"
     },
     "Backward Medicine Ball Throw": {
       "b": "own"
@@ -1356,27 +1351,10 @@
       ]
     },
     "Double Kettlebell Push Press": {
-      "b": "general",
-      "f": "pushPress",
-      "ok": [
-        "pp.dip",
-        "pp.legs"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "Double Kettlebell Snatch": {
-      "b": "general",
-      "f": "oly",
-      "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
-      ],
-      "err": [
-        "oly.mis"
-      ]
+      "b": "own"
     },
     "Double Kettlebell Windmill": {
       "b": "own"
@@ -2109,16 +2087,7 @@
       ]
     },
     "Kettlebell Clean": {
-      "b": "general",
-      "f": "oly",
-      "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
-      ],
-      "err": [
-        "oly.mis"
-      ]
+      "b": "own"
     },
     "Kettlebell Figure 8": {
       "b": "own"
@@ -2150,16 +2119,7 @@
       "b": "own"
     },
     "Kettlebell Snatch": {
-      "b": "general",
-      "f": "oly",
-      "ok": [
-        "oly.back",
-        "oly.close",
-        "oly.legs"
-      ],
-      "err": [
-        "oly.mis"
-      ]
+      "b": "own"
     },
     "Kettlebell Sumo High Pull": {
       "b": "general",
@@ -2334,14 +2294,7 @@
       ]
     },
     "Lateral Cone Hops": {
-      "b": "general",
-      "f": "jump",
-      "ok": [
-        "jump.land"
-      ],
-      "err": [
-        "jump.mis.stiff"
-      ]
+      "b": "own"
     },
     "Lateral Lunge": {
       "b": "general",
@@ -2898,15 +2851,7 @@
       "err": []
     },
     "One-Arm Kettlebell Push Press": {
-      "b": "general",
-      "f": "pushPress",
-      "ok": [
-        "pp.dip",
-        "pp.legs"
-      ],
-      "err": [
-        "ohp.mis.lock"
-      ]
+      "b": "own"
     },
     "One-Arm Kettlebell Split Jerk": {
       "b": "general",
@@ -3132,7 +3077,7 @@
       ]
     },
     "Plate Pinch": {
-      "b": "open"
+      "b": "own"
     },
     "Plyo Kettlebell Push-Ups": {
       "b": "general",
@@ -4313,15 +4258,7 @@
       "b": "own"
     },
     "Split Jump": {
-      "b": "general",
-      "f": "jump",
-      "ok": [
-        "jump.drive",
-        "jump.land"
-      ],
-      "err": [
-        "jump.mis.stiff"
-      ]
+      "b": "own"
     },
     "Split Snatch": {
       "b": "own"

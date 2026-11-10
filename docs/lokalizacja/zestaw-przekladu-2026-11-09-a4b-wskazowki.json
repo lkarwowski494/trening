@@ -1,0 +1,5 @@
+{
+ "_opis": "Zdania wskazówek techniki z partii A4b (moc: kb_ballistic, plyo, sled_throw, strongman; przedramiona: forearm; linia 1.1, 09.11.2026) czekające na przekład na 33 języki poza PL i EN (workflow przeklad-tlumaczen.yml; zgoda właściciela na koszt — ZB-051 dotyczy A1–A3, A4 wymaga osobnej zgody). Do czasu przekładu karty są ukryte (karty_nowe w tests/recenzja-wyjatki-1-1.json); po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy.",
+ "data": "2026-11-09",
+ "klucze": []
+}

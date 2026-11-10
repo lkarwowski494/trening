@@ -1406,11 +1406,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-03"
   },
-  "Backward Drag": {
-   "rodzina": "sled",
-   "sprawdzenie": "bez sled.lean (ciągnięcie tyłem); 1 ✓",
-   "plik": "wskazowki-cwiczenia-05"
-  },
   "Band Bench Press": {
    "rodzina": "bench",
    "sprawdzenie": null,
@@ -1841,16 +1836,6 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Double Kettlebell Push Press": {
-   "rodzina": "pushPress",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "Double Kettlebell Snatch": {
-   "rodzina": "oly",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
   "Double Leg Butt Kick": {
    "rodzina": "jump",
    "sprawdzenie": null,
@@ -2101,20 +2086,10 @@
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
   },
-  "Kettlebell Clean": {
-   "rodzina": "oly",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
-  },
   "Kettlebell Halo with Overhead Extension": {
    "rodzina": "halo",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-08-korekty"
-  },
-  "Kettlebell Snatch": {
-   "rodzina": "oly",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-03"
   },
   "Kettlebell Sumo High Pull": {
    "rodzina": "oly",
@@ -2179,11 +2154,6 @@
   "Lateral Box Jump": {
    "rodzina": "jump",
    "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-06"
-  },
-  "Lateral Cone Hops": {
-   "rodzina": "jump",
-   "sprawdzenie": "1 ✓",
    "plik": "wskazowki-cwiczenia-06"
   },
   "Lateral Lunge": {
@@ -2387,11 +2357,6 @@
    "plik": "wskazowki-cwiczenia-03"
   },
   "One-Arm Kettlebell Jerk": {
-   "rodzina": "pushPress",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-04"
-  },
-  "One-Arm Kettlebell Push Press": {
    "rodzina": "pushPress",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
@@ -2890,11 +2855,6 @@
    "rodzina": "curl",
    "sprawdzenie": null,
    "plik": "wskazowki-cwiczenia-04"
-  },
-  "Split Jump": {
-   "rodzina": "jump",
-   "sprawdzenie": "NASM lunge-jump (sitemap) — możliwe źródło bezpośrednie",
-   "plik": "wskazowki-cwiczenia-06"
   },
   "Split Squat (linki)": {
    "rodzina": "lunge",
