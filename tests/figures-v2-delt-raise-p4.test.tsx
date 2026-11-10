@@ -11,7 +11,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { render, screen, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
-import { FAMILY, ONE_WAY_STATIC, ONE_WAY_REP_MS, TEMPO, figureSpec, staticPositions, staticLabels, keyframeFrame, oneWayAt, type FamilyId, type PoseData } from '@/lib/figures/v2';
+import { FAMILY, ONE_WAY_STATIC, ONE_WAY_REP_MS, TEMPO, figureSpec, shownFigureSpec, staticPositions, staticLabels, keyframeFrame, oneWayAt, type FamilyId, type PoseData } from '@/lib/figures/v2';
+import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
 import { applyLang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 
@@ -57,8 +58,14 @@ describe('r4-W1 logika: pozycje statyczne Alternating ze szczytów ruchu', () =>
 });
 
 describe('r4-W1 strażnik ogólny: pętla jednokierunkowa nie ma identycznych pozycji statycznych', () => {
-  const JED = ALL.filter(([, d]) => d.petla === 'jednokierunkowa');
-  test('jest co sprawdzać (54 ćwiczenia jednokierunkowe: 33 skoki i rzuty + 19 olympic + Alternating + Plyo Push-Up z pushup_plank, 09.11.2026; 08.11.2026 po scaleniu olympic z integracją liczba 34 → 53)', () => { expect(JED).toHaveLength(54); });
+  const WSZYSTKIE_JED = ALL.filter(([, d]) => d.petla === 'jednokierunkowa');
+  /* 10.11.2026 (koordynator, wariant B, do weta): figura wstrzymana (V2_WSTRZYMANE) nie pokazuje pozycji statycznych w aplikacji, więc strażnik dotyczy figur pokazywanych; Plyo Push-Up (u = 0 = u = 1) wraca pod strażnika razem z ONE_WAY_STATIC (PP-W1, docs/21) */
+  const JED = WSZYSTKIE_JED.filter(([k]) => !(k in V2_WSTRZYMANE));
+  test('jest co sprawdzać (53 pokazywane ćwiczenia jednokierunkowe: 33 skoki i rzuty + 19 olympic + Alternating; 10.11.2026 Plyo Push-Up wstrzymany (54 − 1); 09.11.2026: 54 z Plyo Push-Up z pushup_plank; 08.11.2026 po scaleniu olympic z integracją liczba 34 → 53)', () => { expect(JED).toHaveLength(53); });
+  test('10.11.2026: poza strażnikiem tylko wstrzymane, i to takie, które istotnie mają zamkniętą pętlę (Plyo Push-Up: u = 0 = u = 1, brak ONE_WAY_STATIC), bez rysunku w aplikacji', () => {
+    const poza = WSZYSTKIE_JED.filter(([k]) => k in V2_WSTRZYMANE); expect(poza.map(([k]) => k)).toEqual(['Plyo Push-Up']);
+    expect(ONE_WAY_STATIC['Plyo Push-Up']).toBeUndefined(); expect(sk(poza[0][1], 0) === sk(poza[0][1], 1)).toBe(true); expect(shownFigureSpec('Plyo Push-Up')).toBeNull();
+  });
   test.each(JED.map(([k, d]) => [k, d] as [string, PoseData]))('%s: pozycje statyczne parami różne', (k, d) => {
     const us = ONE_WAY_STATIC[k]?.u ?? [0, 1];
     for (let i = 0; i < us.length; i++) for (let j = i + 1; j < us.length; j++) expect([k, us[i], us[j], sk(d, us[i]) !== sk(d, us[j])]).toEqual([k, us[i], us[j], true]);
