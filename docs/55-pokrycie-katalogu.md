@@ -121,7 +121,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `leg_machine` | do zrobienia | 8 | 0 | 6 | 2 | 4 | 0 | 4 | 0 | 0 |
 | `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 6 | 0 | 2 | 0 | 0 |
 | `shrug` | do zrobienia | 8 | 0 | 8 | 2 | 5 | 0 | 3 | 0 | 0 |
-| `carry` | do zrobienia | 7 | 0 | 7 | 0 | 2 | 0 | 5 | 0 | 0 |
+| `carry` | gotowa | 7 | 0 | 7 | 0 | 2 | 0 | 5 | 0 | 0 |
 | `glute_floor` | do zrobienia | 7 | 0 | 7 | 0 | 5 | 0 | 2 | 0 | 0 |
 | `pulldown` | do zrobienia | 7 | 0 | 7 | 1 | 6 | 0 | 1 | 0 | 0 |
 | `chest_press_machine` | do zrobienia | 5 | 0 | 5 | 1 | 2 | 0 | 3 | 0 | 0 |

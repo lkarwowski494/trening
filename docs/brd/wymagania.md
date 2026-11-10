@@ -496,6 +496,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
+  - Scenariusz: Rodzina noszenia ciężaru (carry) pokazuje rysunki 7 ćwiczeń z marszem i pionem tułowia (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-carry.test.tsx`, `tests/figures-v2-chod-cykliczny.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny carry (np. Farmer's Walk, Suitcase Carry), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza marsz z ciężarem w dłoni (pętla cykliczna, licznik „Marsz”)
+    - Wtedy ciężar nie przenika uda w żadnej klatce, a przy wskazówce o prostym tułowiu nakładka pokazuje pion przez miednicę (bez liczb)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
