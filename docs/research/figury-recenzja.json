@@ -31,12 +31,10 @@
     },
     "Pistol Squat": {
       "rodzina": "lunge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "c247eb5bcad8",
-      "uwagi": "Ruch i karta zgodne. Przysiad na jednej nodze, druga noga wyprostowana w przód nad podłogą, ręce przed sobą; głębokość ilustracyjna. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
-      "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)"
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "c247eb5bcad8"
     },
     "Deadlift (sztanga)": {
       "rodzina": "hinge",
@@ -326,69 +324,46 @@
     },
     "Lunges (hantle)": {
       "rodzina": "lunge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-29",
-      "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050): dane figury identyczne z 1.0 (wersja-1-0-1-r2, wariant B — przywrócona poza tylnej stopy), skrót bez zmian; podgląd i arkusz śladu toru; raport recenzja-figury-v1-1-0-1.md",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "c4129536dca1",
-      "uwagi": "Figura bajtowo taka sama jak wyświetlana w 1.0 (ten sam skrót) — nie gorsza. Uwagi NISKIE z 28.10.2026 bez zmian i w backlogu (docs/21): tylna stopa pionowo na palcach w „w trakcie”, przednie palce przesuwają się w styku o 3,2 j. przy odbiciu.",
       "autor": "programista r2/figury-v1",
-      "recenzent": "audytor (sesja 1.0.1, niezależny)",
-      "slad": "arkusz śladu toru: scratchpad/figury-v1/recenzja/Lunges__hantle_/podglad.png (odświeżony po 64a8145); pomiar: scratchpad/aud/drag.mjs (old = new)",
-      "poprzedniWerdykt": "wyswietlana",
-      "poprzedniaRecenzja": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
+      "recenzent": "audytor (sesja 1.0.1, niezależny)"
     },
     "Walking Lunges": {
       "rodzina": "lunge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-29",
-      "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4, runda 2 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (101 póz na przejście), zakres stawów wobec rom we wszystkich pozach, karta lib/cues (lunge.dbSetup, lunge.walk, lunge.torso); raport recenzja-figury-v1-1-0-1.md",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "fd687120c1be",
-      "uwagi": "Poprawka 1.0.1 nie gorsza od 1.0 (lepsza): krok drugą nogą zgodnie z kartą (cztery pozycje: wykrok, wstawanie z przejściem tylnej nogi, krok postawiony, wykrok lustrzany do startu) — usuwa ŚREDNIE z 28.10.2026. Stopa bliższa w miejscu przez cały ruch (0 j.), tylne palce przy odbiciu ≤ 1,7 j. przesunięcia w styku (w rundzie 1 było 8,1 j.), przednia stopa po lądowaniu w granicach 2 j., tylne kolano ≤ 8 j. nad podłogą, wszystkie stawy w zakresie. NISKIE (backlog): druga połowa pętli ping-pong pokazuje krok w tył — ograniczenie silnika, nazwane uproszczenie.",
       "autor": "programista r2/figury-v1",
-      "recenzent": "audytor (sesja 1.0.1, niezależny)",
-      "slad": "arkusz PNG klatek kluczowych, póz pośrednich (0,25 / 0,5 / 0,75) i nałożonego śladu toru punktów (L-050) oraz pomiar punktów stóp, biodra i zakresu stawów z modułu geometrii aplikacji — sesja recenzji 1.0.1, runda 2",
-      "poprzedniWerdykt": "wyswietlana",
-      "poprzedniaRecenzja": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
+      "recenzent": "audytor (sesja 1.0.1, niezależny)"
     },
     "Reverse Lunge": {
       "rodzina": "lunge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-29",
-      "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050) poprawki wg decyzji właściciela 29.10.2026: podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (101 póz na przejście), zakres stawów wobec rom we wszystkich pozach, podparcie i jedna podpora, karta lib/cues (lunge.stand, lunge.back, lunge.torso); raport recenzja-reverse-lunge.md",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "658463b371c2",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026",
-      "uwagi": "Ruch uproszczony wg decyzji właściciela 29.10.2026 (bez zamachu łukiem): tylna stopa unosi się prawie pionowo (kostka 1,5 j. od miejsca startu, palce 8,5 j. nad podłogą), cofa się w powietrzu i staje na palcach 42–44 j. za przednimi, dopiero potem opuszczenie do wykroku (tylne kolano 6,3 j. nad podłogą, tułów 87–91°). Przednia stopa w miejscu (0 j.), tylne palce przy oderwaniu i po lądowaniu ≤ 2 j. od pozy kluczowej, wszystkie stawy w zakresie (wyprost biodra tylnej nogi min. −6,8°), wejście pod podłogę 0,2 j., podparcie i jedna podpora spełnione; zgodne z kartą. NISKIE (backlog): w pozycji „w trakcie 1” tylne kolano wychodzi ok. 16 j. przed przednie („wysokie kolano”, skutek pionowego uniesienia); palce przed lądowaniem przez ok. 3,7 j. drogi 0,8–1,5 j. nad podłogą (płaskie podejście).",
       "autor": "programista r2/reverse-lunge",
-      "recenzent": "audytor (sesja 1.0.1, niezależny)",
-      "slad": "arkusz PNG klatek kluczowych (start, w trakcie 1, w trakcie 2, koniec), póz pośrednich (0,25 / 0,5 / 0,75) i nałożonego śladu toru punktów (L-050) oraz pomiar punktów stóp, biodra, środka ciężkości i zakresu stawów z modułu geometrii aplikacji — sesja recenzji 1.0.1, Reverse Lunge po decyzji 29.10.2026",
-      "poprzedniWerdykt": "ukryta",
-      "poprzedniaRecenzja": "2026-10-29"
+      "recenzent": "audytor (sesja 1.0.1, niezależny)"
     },
     "Bulgarian Split Squat (hantle)": {
       "rodzina": "lunge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "55fe0d93470b",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z tylną stopą na ławce; przesunięcie stopy ok. 2 j. (było 7,6). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-      "wada": "Tylna stopa odrywa się od ławki o ok. 7,5 j. w połowie ruchu — wskazówka: grzbiet tylnej stopy oparty na ławce (bss.setup).",
-      "poprawka": "Pozycja pośrednia z tylną stopą na ławce; przesunięcie ≤ 2 j."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "55fe0d93470b"
     },
     "Step Up": {
       "rodzina": "lunge",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-29",
-      "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (21–101 próbek na przejście), karta lib/cues (stepup.setup, stepup.move, lunge.torso, stepup.knee); raport recenzja-figury-v1-1-0-1.md",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
       "sha": "f4ab0f6bfec7",
-      "uwagi": "Poprawka 1.0.1 nie gorsza od 1.0 (lepsza): dłonie z hantlami pionowo pod barkiem w każdej pozie (|Δx| = 0 j.; było 19 j. za barkiem), stopa nogi zakrocznej ≥ 3 j. od krawędzi skrzyni i nad blatem (palce ≥ 4 j. nad wierzchem w przejściu mid→end), ślizg tylnych palców przy oderwaniu 1,55 j., środek ciężkości z hantlami nad stopą na skrzyni (reguła jednej podpory spełniona). Pozycja końcowa z uniesionym kolanem bez zmian względem 1.0 (nazwane uproszczenie).",
       "autor": "programista r2/figury-v1",
-      "recenzent": "audytor (sesja 1.0.1, niezależny)",
-      "slad": "arkusz śladu toru: scratchpad/figury-v1/recenzja/Step_Up/podglad.png (pozy kluczowe, pozy pośrednie 0,25/0,5/0,75, nałożony ślad punktów); pomiar: scratchpad/aud/m.mjs, drag.mjs",
-      "poprzedniWerdykt": "wyswietlana",
-      "poprzedniaRecenzja": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
+      "recenzent": "audytor (sesja 1.0.1, niezależny)"
     },
     "Hip Thrust (sztanga)": {
       "rodzina": "hip_bridge",
@@ -568,11 +543,10 @@
     },
     "Lying Leg Curl": {
       "rodzina": "leg_isolation",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "0889838b0f76",
-      "uwagi": "Ruch i karta zgodne. Leżenie przodem, kolana przy krawędzi ławki (oś maszyny), wałek nad piętami, zgięcie kolan do 110°, biodra na ławce. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "0889838b0f76"
     },
     "Plank": {
       "rodzina": "pushup_plank",
@@ -1260,25 +1234,27 @@
     },
     "lunge": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
-      "sha": "5e1117f7f637",
-      "slad": "arkusze side+front 21 kadrów, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor ciężaru/miednicy gładki, klatki 5 kart identyczne z integracja-1-1 (porównanie JSON); BSS (sztanga): tor sztangi pionowy, Smith: wzdłuż prowadnicy; Barbell Step Up: tor sztangi ukośny w górę i w przód nad stopę na podwyższeniu",
-      "uwagi": "wycofany lunge.mis.kneeIn z Split Squat, Lunges (sztanga), Barbell Walking Lunge, Barbell Step Up (zmienione tylko pole bledy; powody bledy_bez_animacji lean/push/drop sensowne); rząd lunge.mis.kneeIn w BSS (sztanga) i Smith identyczny z BSS (hantle), widoczny w widoku z przodu; uproszczenie wariant sprzętu uczciwe co do ruchu; 0 K/W; merytoryka źródeł u badacza"
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 9, runda 2: W1–W5, Ś1, Ś2, N1 z r1 naprawione, 0 × KRYTYCZNE/WYSOKIE; Ś3, Ś4 i N2 do backlogu",
+      "autor": "programista partii 9 (figury/partia-9-lunge); poprawki r1: inny programista partii 9",
+      "recenzent": "audytor",
+      "uwagi": "W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). W2 naprawione: stopa nogi pracującej prosto (pięta i palce z = 30, Cossack 36), kolano na dole 3,6 cm (Cossack 3,9 cm) na zewnątrz od palców — w linii (≤ 4 cm). W3 naprawione: środek gryfu = środek chwytów, z gryfu = z barków (21,5 cm) w całym ruchu; gryf 12,8–13,1 cm za barkami, 1,7 cm od pleców; tułów pochyla się 8° → 26° przy prawie stojącej miednicy — opis wyjątku toru 12,9 cm zgodny. W4 naprawione: start na stopniu obiema stopami (kostki 12 cm + 7), kolana 9,5°; tylna stopa schodzi na podłogę (najgłębiej 0,2 cm w stopień przy u 0,045, ≤ 1 cm). W4 naprawione: u = 0 kolana R 8,8°, L 23,2°, miednica 81,5 cm (zakres 31,5 cm); biodro tylnej nogi do −24,7° w granicy wyjątku hipMin −25 (decyzja leada, analogia do Suspended Split Squat, do weta). W5 naprawione: kolano nogi wolnej 6,2–8,2° (Smith 6,2–6,6°), pięta wolnej nogi na dole 3,3 cm nad podłogą. Ś1 naprawione: noga zakroczna zgina się do 100,6° tylko do przeniesienia nad stopień (palce 1,5 cm nad blatem), od u 0,85 stopa na stopniu (0–0,7 cm). Ś2 naprawione: grzbiet tylnej stopy 0,6 cm od siedziska ławki. N1 naprawione (opisy wyjątków toru Pistol i Single-Leg High Box: ślad = miednica). Bez zmian od r1 i bez uwag: Walking Lunges, Lunges (hantle/sztanga), Barbell Walking Lunge, Slider Reverse Lunge, Suspended Split Squat, Single-Leg High Box Squat. Kod wspólny: pole side w PhaseOverride (wpisy tylko w lunge); gear.ts — z gryfu = średnia chwytów przy podazaZaChwytem: w gotowych rodzinach zmienia tylko 7 ćwiczeń olympic o ≤ 0,05 cm (N2), skróty v1/karty/zestawy i v2 innych rodzin bez zmian (zrodla-runtime --skroty b66ecfa vs a96bbae). Ś3 (ŚREDNIE, nieblokujące, backlog): „Przednie kolano…” przy ruchu bocznym — wskazówka techniki dotyczy ugiętej nogi i rysunek pokazuje ją na tej nodze; myli tylko słowo „przednie”. Ś4 (ŚREDNIE, backlog wg koordynatora): u = 0 niesymetryczny rozkrok — kolano R 51,8° (Cossack 38,4°).",
+      "slad": "Ślad toru obejrzany na arkuszach arkusz-slad (21 kadrów co 0,05) wygenerowanych przez recenzenta: r2 — 13 ćwiczeń zmienionych od r1 × 2 widoki (26 arkuszy; 13 obejrzanych w pełnej rozdzielczości, pozostałe w skupiskach identycznego szkieletu sprawdzone liczbowo frameAt co 0,01) oraz 76 arkuszy arkusz-nakladka (obejrzane z przodu: Step Up, Lateral Lunge, Cossack Squat, Pistol Squat); r1 — 48 arkuszy rodziny. Ślad = gryf/hantel/kettlebell, bez ciężaru = miednica: wykroki — łagodny łuk 4,0–4,8 cm; Barbell Side Split Squat — gryf na barkach podąża w bok i łukiem w tył i w dół; Step Up — hantle w górę po skosie nad stopień; pistolet — łuk miednicy w tył i w dół; bez przenikania (checkFrame bez uwag w 101 klatkach każdego ćwiczenia).",
+      "sha": "f2ff1a209120",
+      "liczba": 24
     },
     "leg_isolation": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
-      "sha": "bd7fc79f9bc6",
-      "slad": "arkusz 21 kadrów (u co 0,05), side, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor miednicy jednym gładkim łukiem 32,8 → 14,5 cm, barki 9,5–9,6 cm, pięty 9,6–11,2 cm; 01953ee4",
-      "uwagi": "Slider Hamstring Curl: most w całym ruchu — linia bark–biodro–kolano 2,5–3,3° (geometria), kolano 100 → 11,8°, checkFrame 0/41; jointAngles().hip bez znaku (|5,4–8,8°|); błąd ballcurl.mis.sag bez animacji — powód sensowny; 0 K/W"
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny leg_isolation, partia 9, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026; raport docs/research/recenzje/partia9-leg_isolation-r3-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 9, runda 3: regresja ACG-019 Seated Band naprawiona (udo nieruchome), Ś1 naprawione w r2, 0 × KRYTYCZNE/WYSOKIE; Ś2 (limit poseData.ts) otwarte — proces; NISKIE N1–N5 do backlogu",
+      "autor": "programista partii 9 (figury/partia-9-leg_isolation)",
+      "recenzent": "audytor",
+      "uwagi": "Kolano: Leg Extension i Single-Leg 90 → 11°; Leg Curl 11 → 100°; Lying Leg Curl 3,4 → 99,9°; Standing i Standing Cable 9,4 → 95,1° (udo nieruchome); Seated Band 12,6 → 92,1° (r3: udo nieruchome — biodro 91,9–94,4°, kolano przesuwa się ≤ 1,9 cm; guma z zaczepu 40 cm nad podłogą 42,8 → 88,6 cm); Slider 100 → 11,8°. Miednica stoi we wszystkich poza Slider (32,8 → 14,5 cm przy biodrze w wyproście −5,4…−8,8°, pośladki 4,6 cm nad podłogą — geometria, nie opadanie bioder). Oś dźwigni = kolano (dryf ≤ 0,4 cm). Ś1 (r1) naprawione w 09043585: próg łuku kolana r − √(r² − (l/2)²) + 2 cm dla 6 ćwiczeń z kostką na łuku, negatywy (próg + 3 cm, 2 zawrócenia) oblewają; tests/figures-v2-tor.test.ts 200/200. Skróty bez zmian wobec r1. Ś2: architecture-limits — poseData.ts 25 673 B > 24 736 B. NISKIE: N1 tułów 2,2 cm w obiciu (Lying Leg Curl), N2 łopatki 1,4 cm pod podłogą (Slider), N3 ręce Standing Leg Curl bez uchwytów, N4 mapa lext.range bez wyprost_kolan_jednonoz, N5 Seated Band kończy na 90,7°. r3 (3fbadace): regresja ACG-019 z d4febb6 (biodro 25,2°, kolano 18,8 cm) naprawiona; figures-v2-planned-acg-leg-isolation 8/8.",
+      "slad": "Ślad toru obejrzany w rzucie z boku wszystkich 8 ćwiczeń (8 arkuszy arkusz-slad, 21 kadrów co 0,05, pełna rozdzielczość): dźwignie (Leg Extension, Single-Leg, Leg Curl, Lying Leg Curl, Standing Leg Curl) i linka (Standing Cable) — punkt styku przy kostce jednym gładkim łukiem wokół kolana (r ≈ 41 cm), bez zawróceń; guma (Seated Band, r3) — kostka jednym łukiem wokół stałego kolana od nogi uniesionej przed sobą pod kolano, guma rozciąga się od zaczepu z przodu; Slider — miednica jednym łukiem 32,8 → 14,5 cm, ślizgacze pod piętami; bez przenikania sprzętu w ciało.",
+      "sha": "19fc316f3a19",
+      "liczba": 14
     },
     "shrug": {
       "werdykt": "wyswietlana",
@@ -2297,33 +2273,33 @@
     },
     "Leg Curl": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "f9681b034104",
-      "uwagi": "Pięty do pośladków, uda i biodra nieruchomo, ruch płynny — 2 biblioteki (maszyna siedząc; wariant leżąc z linką)."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "lcurl.move: pięty w stronę pośladków, kolano 11 → 100°, powrót do wyprostu; lcurl.still: miednica i uda nieruchome; llc.control — tempo.",
+      "sha": "f9681b034104"
     },
     "Leg Extension": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "438254c7031a",
-      "uwagi": "Zakres od ok. 90° do wyprostu i kontrolowane tempo — 2 badania (3) przeczytane."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "lext.range: kolano 90° (kąt prosty) → 11° (wyprost, próg reguły ≤ 15°); llc.control — tempo. Oś dźwigni w kolanie.",
+      "sha": "438254c7031a"
     },
     "Lunges (hantle)": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
-      "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
-      "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
-      "sha": "d8366550ad8e",
-      "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn (analogia z przysiadu bułgarskiego). Zostają: lunge.dbSetup, lunge.fwd, lunge.torso (ACE #363 + ExRx DBLunge); karta na liście partial (1 wskazówka, bez błędów) — zgodnie z partialNote. Nic sprzecznego. Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Tylne kolano 10,4–11,3 cm nad podłogą na dole, tułów prosty, powrót do stania.",
+      "sha": "d8366550ad8e"
     },
     "Machine Shoulder Press": {
       "werdykt": "wyswietlana",
@@ -2378,13 +2354,13 @@
     },
     "Pistol Squat": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
-      "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
-      "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
-      "sha": "efdd1757f212",
-      "uwagi": "Usunięte sq.mis.kneesIn (liczba mnoga przy jednej nodze). Zostają: ustawienie, ruch, pistol.knee (kolano nogi podporowej w linii palców — ten sam błąd ujęty poprawnie), pistol.assist; sekcja błędów pusta. Zgodne z przeczytanym 28.10 źródłem o tym ćwiczeniu (NASM single-leg-squat: Step 1 „sturdy support”, Common Mistakes „planted knee to cave inward”) + ExRx z rejestru. Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. W5 naprawione: kolano nogi wolnej 6,2–8,2° (Smith 6,2–6,6°), pięta wolnej nogi na dole 3,3 cm nad podłogą.",
+      "sha": "efdd1757f212"
     },
     "Preacher Curl": {
       "werdykt": "wyswietlana",
@@ -2458,13 +2434,13 @@
     },
     "Reverse Lunge": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
-      "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
-      "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
-      "sha": "ab65d0011fca",
-      "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn. Zostają: lunge.stand, lunge.back, lunge.torso (ACE #319 + ExRx DBRearLunge); karta na liście partial. Figura nadal ukryta (wpis v1, decyzja właściciela 28.10.2026). Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°).",
+      "sha": "ab65d0011fca"
     },
     "Reverse Pec Deck": {
       "werdykt": "wyswietlana",
@@ -2558,13 +2534,13 @@
     },
     "Walking Lunges": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
-      "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
-      "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
-      "sha": "1c3bc4015101",
-      "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn. Zostają: lunge.dbSetup, lunge.walk, lunge.torso (ExRx DBWalkingLunge + ACE #139); karta na liście partial. Uwaga N3 bez zmian: figura wraca krokiem w tył, tekst lunge.walk mówi o kroku drugą nogą (backlog 1.0.1). Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Tylne kolano 10,4–11,3 cm nad podłogą na dole, tułów prosty, powrót do stania.",
+      "sha": "1c3bc4015101"
     },
     "Wall Sit": {
       "werdykt": "wyswietlana",
@@ -2588,13 +2564,13 @@
     },
     "Step Up": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
-      "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
-      "sha": "0ff6ccfb7ef9",
-      "uwagi": "Zmieniła się tylko figura (data/zrodla/figures.json); wskazówki i teksty karty bez zmian, więc recenzja treści karty z 28.10.2026 obowiązuje."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). Ś1 naprawione: noga zakroczna zgina się do 100,6° tylko do przeniesienia nad stopień (palce 1,5 cm nad blatem), od u 0,85 stopa na stopniu (0–0,7 cm).",
+      "sha": "0ff6ccfb7ef9"
     },
     "Incline Push Up": {
       "werdykt": "wyswietlana",
@@ -4161,13 +4137,13 @@
     },
     "Seated Band Hamstring Curl": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A2",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A2, runda 1 (519256e9), 08.11.2026; uproszczenie maszyna → guma potwierdzone",
-      "sha": "4120ffb04282",
-      "uwagi": "Niska, backlog: bandcurl.setup „na kostkę” — źródło mówi o pięcie."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "bandcurl.setup: przodem do zaczepu, pętla na kostce, noga prawie prosta (12,6°) uniesiona przed sobą; bandcurl.move: zgięcie w stałym kolanie (udo nieruchome, biodro 91,9–94,4°), pięta pod kolano, guma 42,8 → 88,6 cm; lcurl.full: kolano do 92,1° (NISKIE N5); błąd lcurl.mis.partial bez animacji.",
+      "sha": "4120ffb04282"
     },
     "Single Leg Press": {
       "werdykt": "wyswietlana",
@@ -4614,70 +4590,72 @@
     },
     "Split Squat": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 174",
-      "uwagi": "Niska: miejsce NSCA przy split.setup/bss.move to „Teaching cues” s. 44–45, nie „table 2”.",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. W4 naprawione: u = 0 kolana R 8,8°, L 23,2°, miednica 81,5 cm (zakres 31,5 cm); biodro tylnej nogi do −24,7° w granicy wyjątku hipMin −25 (decyzja leada, analogia do Suspended Split Squat, do weta).",
       "sha": "c778c8ec9faa"
     },
     "Lunges (sztanga)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 354 + ACE 8",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Tylne kolano 10,4–11,3 cm nad podłogą na dole, tułów prosty, powrót do stania.",
       "sha": "5d8455f12883"
     },
     "Barbell Walking Lunge": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 600 (uproszczenie: ciężar nad głową → sztanga na plecach, potwierdzone)",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Tylne kolano 10,4–11,3 cm nad podłogą na dole, tułów prosty, powrót do stania.",
       "sha": "3818764a3055"
     },
     "Barbell Step Up": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana po usunięciu stepup.mis.push (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; stepup.mis.drop potwierdzone (Catalyst 560 + HK); stepup.mis.push usunięte z karty decyzją koordynatora 09.11.2026 (zostaje wyłącznie zatwierdzony materiał — bez rundy 2)",
-      "uwagi": "Usunięte stepup.mis.push (sprzeczność z ACE 28 „Push off with the trailing leg”); sprzeczność na karcie Step Up — otwarta pozycja P2 (docs/21).",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). Ś1 naprawione: noga zakroczna zgina się do 100,6° tylko do przeniesienia nad stopień (palce 1,5 cm nad blatem), od u 0,85 stopa na stopniu (0–0,7 cm).",
       "sha": "f6d8ed690fd4"
     },
     "Bulgarian Split Squat (sztanga)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; uproszczenie hantle → sztanga potwierdzone; lunge.mis.kneeIn: NASM BSS + NSCA PTQ tab. 1",
-      "uwagi": "Niska: dopisać nsca-ptq-lunge (tab. 1 „Knee Caves Inward”) przy lunge.mis.kneeIn; ExRx nieprzeczytane w tej recenzji (403).",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Ś2 naprawione: grzbiet tylnej stopy 0,6 cm od siedziska ławki.",
       "sha": "b7d69b6803ae"
     },
     "Smith Machine Bulgarian Split Squat": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; uproszczenie hantle → suwnica Smitha potwierdzone; lunge.mis.kneeIn: NASM BSS + NSCA PTQ tab. 1",
-      "uwagi": "Niska: jak Bulgarian Split Squat (sztanga).",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Ś2 naprawione: grzbiet tylnej stopy 0,6 cm od siedziska ławki.",
       "sha": "b7d69b6803ae"
     },
     "Slider Hamstring Curl": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista sesji B #4 (figury/b2-nogi)",
-      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; „biodra cały czas w górze” i ballcurl.mis.sag: NISMAT + NCSF (wprost), ACE 59",
-      "uwagi": "Niska: „kolana ugięte” w slcurl.setup wprost tylko NISMAT; ACE 59/NCSF to wariant piłki (nazwane uproszczenie).",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "slcurl.setup i slcurl.move: start w moście z kolanami 100°, wysunięcie do 11,8°, biodra w wyproście w całym ruchu (−5,4…−8,8°, pośladki ≥ 4,6 cm nad podłogą); plank.brace zgodne; ballcurl.mis.sag bez animacji z powodem w figury-sens.json. NISKIE N2: łopatki 1,4 cm pod podłogą.",
       "sha": "d4048f0a72f5"
     },
     "Kettlebell Clean": {
@@ -5084,6 +5062,26 @@
       "kto": "audytor — recenzja niezależna r2 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone bf7d4f14 (figury/partia-7-core_floor), zakres: różnica f3647df1..bf7d4f14 + arkusze całej rodziny (cmp z r1), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r2-audytor-2026-11-10.md",
       "sha": "a338e4fedf4c",
       "uwagi": "db.setup: biodro 89°, kolano 90°, dłonie pionowo nad barkami (x −50); db.move: ręka R i noga L opuszczane, nie dotykają podłogi (stopa 2,8 cm, dłoń 25,8 cm nad podłogą w u = 1); db.back: miednica 0,0 cm ruchu. Fazy Opuszczanie → Unoszenie zgodne z kierunkiem (kostka L 52 → 22 cm)."
+    },
+    "Bulgarian Split Squat (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 2",
+      "autor": "programista P2 (karta); rysunek: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek a96bbae zgodny z każdym zdaniem. Ś2 naprawione: grzbiet tylnej stopy 0,6 cm od siedziska ławki.",
+      "sha": "2066c9e9929c"
+    },
+    "Lying Leg Curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 leg_isolation, K11) — partia 9, runda 3",
+      "autor": "autor karty (treść bez zmian); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace, 10.11.2026",
+      "uwagi": "llc.setup: leżenie przodem, kolano w osi dźwigni (−42; 53,2–53,5); llc.move: 3,4 → 99,9°; llc.hips: miednica stoi, biodro 8,1–9,0°; llc.control — tempo. NISKIE N1: tułów 2,2 cm w obiciu ławki.",
+      "sha": "e5e0bad9da9f"
     }
   },
   "zestawy": {
@@ -7884,6 +7882,171 @@
       "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
       "sha": "5541a16a3e76",
       "uwagi": "Zdania pasują do pozy poprawnej (kręgosłup 0°, miednica na ławce 0,7 cm, nogi naprzemiennie). Poza błędu hext.mis.arch po poprawce: klatka uniesiona o 12,4 cm, wklęsłość lędźwi czytelna, tułów bez przenikania w ławkę (dolna krawędź ok. 43,1 przy blacie 43)."
+    },
+    "Barbell Side Split Squat": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2 — Ś3 do backlogu",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W2 naprawione: stopa nogi pracującej prosto (pięta i palce z = 30, Cossack 36), kolano na dole 3,6 cm (Cossack 3,9 cm) na zewnątrz od palców — w linii (≤ 4 cm). W3 naprawione: środek gryfu = środek chwytów, z gryfu = z barków (21,5 cm) w całym ruchu; gryf 12,8–13,1 cm za barkami, 1,7 cm od pleców; tułów pochyla się 8° → 26° przy prawie stojącej miednicy — opis wyjątku toru 12,9 cm zgodny. Ś3 (ŚREDNIE, nieblokujące, backlog): „Przednie kolano…” przy ruchu bocznym — wskazówka techniki dotyczy ugiętej nogi i rysunek pokazuje ją na tej nodze; myli tylko słowo „przednie”. Ś4 (ŚREDNIE, backlog wg koordynatora): u = 0 niesymetryczny rozkrok — kolano R 51,8° (Cossack 38,4°).",
+      "sha": "cb51552dead4"
+    },
+    "Cossack Squat": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2 — Ś3 do backlogu",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W2 naprawione: stopa nogi pracującej prosto (pięta i palce z = 30, Cossack 36), kolano na dole 3,6 cm (Cossack 3,9 cm) na zewnątrz od palców — w linii (≤ 4 cm). Ś3 (ŚREDNIE, nieblokujące, backlog): „Przednie kolano…” przy ruchu bocznym — wskazówka techniki dotyczy ugiętej nogi i rysunek pokazuje ją na tej nodze; myli tylko słowo „przednie”. Ś4 (ŚREDNIE, backlog wg koordynatora): u = 0 niesymetryczny rozkrok — kolano R 51,8° (Cossack 38,4°).",
+      "sha": "cb51552dead4"
+    },
+    "Crossover Reverse Lunge": {
+      "rodzina": "mobility",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). Zestaw mobility (płynny ruch, bez szarpania) pasuje do ruchu bez ciężaru.",
+      "sha": "d3cda6145aa2"
+    },
+    "Curtsy Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°).",
+      "sha": "e9e959515615"
+    },
+    "Elevated Back Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). W4 naprawione: start na stopniu obiema stopami (kostki 12 cm + 7), kolana 9,5°; tylna stopa schodzi na podłogę (najgłębiej 0,2 cm w stopień przy u 0,045, ≤ 1 cm).",
+      "sha": "26e1fba5bfa9"
+    },
+    "Lateral Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2 — Ś3 do backlogu",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W2 naprawione: stopa nogi pracującej prosto (pięta i palce z = 30, Cossack 36), kolano na dole 3,6 cm (Cossack 3,9 cm) na zewnątrz od palców — w linii (≤ 4 cm). Ś3 (ŚREDNIE, nieblokujące, backlog): „Przednie kolano…” przy ruchu bocznym — wskazówka techniki dotyczy ugiętej nogi i rysunek pokazuje ją na tej nodze; myli tylko słowo „przednie”. Ś4 (ŚREDNIE, backlog wg koordynatora): u = 0 niesymetryczny rozkrok — kolano R 51,8° (Cossack 38,4°).",
+      "sha": "cb51552dead4"
+    },
+    "Lunge Pass Through": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°).",
+      "sha": "e9e959515615"
+    },
+    "Single-Leg High Box Squat": {
+      "rodzina": "pistol",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście i powrót do wyprostu); bez zmian od r1.",
+      "sha": "5a0eab7dc282"
+    },
+    "Slider Reverse Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście i powrót do wyprostu); bez zmian od r1.",
+      "sha": "e9e959515615"
+    },
+    "Smith Machine Pistol Squat": {
+      "rodzina": "pistol",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W5 naprawione: kolano nogi wolnej 6,2–8,2° (Smith 6,2–6,6°), pięta wolnej nogi na dole 3,3 cm nad podłogą.",
+      "sha": "a322416bebad"
+    },
+    "Split Squat (linki)": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "W4 naprawione: u = 0 kolana R 8,8°, L 23,2°, miednica 81,5 cm (zakres 31,5 cm); biodro tylnej nogi do −24,7° w granicy wyjątku hipMin −25 (decyzja leada, analogia do Suspended Split Squat, do weta).",
+      "sha": "e9e959515615"
+    },
+    "Suspended Split Squat": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 2",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny i poprawki: programiści partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście i powrót do wyprostu); bez zmian od r1.",
+      "sha": "e9e959515615"
+    },
+    "Single-Leg Leg Extension": {
+      "rodzina": "legExt",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 leg_isolation), partia 9, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw legExt; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 9 (figury/partia-9-leg_isolation @ d4febb69)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
+      "uwagi": "lext.range zgodne z rysunkiem (kolano pracującej nogi 90 → 11°; druga noga stoi przy 90°); llc.control — tempo; mis.jerk — błąd tempa bez animacji. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "dd254d049291"
+    },
+    "Standing Leg Curl": {
+      "rodzina": "legCurl",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 leg_isolation), partia 9, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw legCurl; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 9 (figury/partia-9-leg_isolation @ d4febb69)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
+      "uwagi": "lcurl.still zgodne (miednica stoi, udo nieruchome: biodro 25,0–25,3°, kolano w osi dźwigni); llc.control — tempo; mis.jerk bez animacji. Brak wskazówki ruchu — bez elementu nakładki (poprawnie).",
+      "sha": "0b503ccdff6a"
+    },
+    "Standing Cable Leg Curl": {
+      "rodzina": "legCurl",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 leg_isolation), partia 9, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw legCurl; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 9 (figury/partia-9-leg_isolation @ d4febb69)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
+      "uwagi": "lcurl.still zgodne (miednica stoi, biodro 10,1–10,2°); llc.control — tempo; mis.jerk bez animacji; linka z bloczka przed ćwiczącym do kostki.",
+      "sha": "0b503ccdff6a"
     }
   }
 }

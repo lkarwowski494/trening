@@ -83,7 +83,8 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
     expect(generalCuesReviewed('Sumo Deadlift with Bands')).toBe(true);
     /* decyzja właściciela 28.10.2026 „1a” (M1-audytor-generalny-038): skull.upperArm usunięte z zestawu, nowa recenzja 06-tresci — „wyswietlana” */
     expect(generalCuesReviewed('Decline Close-Grip Bench To Skull Crusher')).toBe(REC.zestawy?.['Decline Close-Grip Bench To Skull Crusher']?.werdykt === 'wyswietlana');
-    expect(generalCuesReviewed('Lateral Lunge')).toBe(false); /* rodzina lunge bez figury v2 — bez recenzji */
+    /* 10.11.2026 (partia 9, lunge po recenzji r2): zestaw Lateral Lunge ma wpis recenzji; przed recenzją rodzina lunge była bez figury v2 i wynik był false */
+    expect(generalCuesReviewed('Lateral Lunge')).toBe(REC.zestawy?.['Lateral Lunge']?.werdykt === 'wyswietlana');
     expect(generalCuesReviewed('Back Squat')).toBe(false); /* karta własna, nie zestaw ogólny */
   });
   test('karta „do poprawy” (Front Incline Dumbbell Raise; 09.11.2026 Hack Squat odsłonięty po recenzji niezależnej) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {

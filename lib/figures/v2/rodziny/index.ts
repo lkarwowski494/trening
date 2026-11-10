@@ -36,4 +36,6 @@ export const RODZINY_POZ: Record<string, RodzinaPoz> = {
   kneeling_hinge: require('./kneeling_hinge').default,
   core_floor: require('./core_floor').default,
   glute_floor: require('./glute_floor').default,
+  leg_isolation: require('./leg_isolation').default,
+  lunge: require('./lunge').default,
 };

@@ -54,7 +54,7 @@ for (const [r, d] of Object.entries(sens.rodziny)) { for (const k of ['zakres_wy
 for (const [cw, w] of Object.entries(sens.bez_bramki_ruchu ?? {})) if (cw !== '_opis') { n++; if (typeof w !== 'string' || w.trim().length < 20) brak.push('bez_bramki_ruchu/' + cw); }
 const GP = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/gemini-polecenia.mjs'))}); const VV = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))});
 const opis = (r, c) => GP.opisCwiczenia(c, { root: ${JSON.stringify(ROOT)}, bledyCwiczenia: VV.bledyCwiczenia, catalog: GP.silnikCatalog(), rodzina: r }).deklaracje;
-W.straznik = { wpisow: n, brak, wPoleceniu: { suspended: opis('lunge', 'Suspended Split Squat'), spider: opis('curl', 'Spider Curl'), pronacja: opis('forearm', 'Dumbbell Lying Pronation'), zwykle: opis('lunge', 'Split Squat') } };
+W.straznik = { wpisow: n, brak, wPoleceniu: { suspended: opis('lunge', 'Suspended Split Squat'), spider: opis('curl', 'Spider Curl'), pronacja: opis('forearm', 'Dumbbell Lying Pronation'), zwykle: opis('lunge', 'Reverse Lunge') /* 10.11.2026: Split Squat ma teraz deklarację zakresu biodra (partia 9, W4); zwykłe ćwiczenie = bez deklaracji */ } };
 console.log(JSON.stringify(W));
 `;
 
