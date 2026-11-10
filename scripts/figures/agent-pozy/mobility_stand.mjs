@@ -8,6 +8,8 @@ export const RODZINA = 'mobility_stand';
 const SP = [PODLOGA(-170, 170)];
 const POL = (s) => (s === 'R' ? 1 : -1);
 const SD = ['R', 'L'];
+/* Soleus przy ścianie (W1 r1): miednica, kostka przedniej i tylnej nogi — kolana ≤ 30° (reguła obie_kolana_lekko), tylna kostka w zakresie ruchu stawu */
+const SM = [-3, 82.5]; const SF = 26; const SB = -36;
 const MY = 89.5; /* miednica stojącej osoby (kolana zgięte ok. 12°) */
 
 /* ---------- stanie, szyja ---------- */
@@ -41,10 +43,10 @@ function standingChest(cw) {
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece }));
 }
 /** Wykrok łydkowy: tylna noga (L) i przednia (R); tylna prosta (kolano ≤ 15°) albo lekko ugięta. */
-function wykrokLydka({ wall, tylnaProsta }) {
-  const p = wall ? 22 : 8; const m = wall ? [-1, 80, 0] : tylnaProsta ? [-7, 79, 0] : [-7, 84, 0]; const T = sonda(m, p);
+function wykrokLydka({ wall, tylnaProsta, soleus = false }) {
+  const p = wall ? 22 : 8; const m = soleus ? [SM[0], SM[1], 0] : wall ? [-1, 80, 0] : tylnaProsta ? [-7, 79, 0] : [-7, 84, 0]; const T = sonda(m, p);
   /* tylna noga lekko ugięta (soleus): kolana ≈ 25–27° (konwencja „lekko” 10–30°, reguła obie_kolana_lekko), pięta tylna na podłodze; odległość biodro–kostka ≈ 81 cm (kolano ≈ 25°) */
-  const aF = tylnaProsta || wall ? [25, 7, 10] : [17, 7, 10]; const aB = tylnaProsta ? prosta(T.hip.L, [-0.47, -0.88, -0.03], { pod: 0 }).a : [-32, 7, -10];
+  const aF = soleus ? [SF, 7, 10] : tylnaProsta || wall ? [25, 7, 10] : [17, 7, 10]; const aB = tylnaProsta ? prosta(T.hip.L, [-0.47, -0.88, -0.03], { pod: 0 }).a : (soleus ? [SB, 7, -10] : [-32, 7, -10]);
   aB[1] = 7;
   const nogi = { R: { a: aF, pod: 0, rot: 8, pole: [1, 0, 0.1] }, L: { a: aB, pod: 0, rot: 8, pole: [1, 0.1, -0.1] } };
   const rece = wall ? rekiDo(T.sh, { R: [72, 132, 19], L: [72, 132, -19] }, { R: [0, -0.5, 1], L: [0, -0.5, -1] }) : { R: { g: [T.hip.R[0] - 2, T.hip.R[1] + 8, 24], pole: [-0.6, -0.1, 1] }, L: { g: [T.hip.L[0] - 2, T.hip.L[1] + 8, -24], pole: [-0.6, -0.1, -1] } };
@@ -55,10 +57,10 @@ function wallCalf(cw) {
   const o = wykrokLydka({ wall: true, tylnaProsta: true });
   return statyczna(RODZINA, cw, [...SP, { rodzaj: 'sciana', x: 75, h: 250, przed: true }], (u) => ramka(u, { m: o.m, p: o.p, head: 12, nogi: o.nogi, rece: o.rece }));
 }
-/** Standing Soleus And Achilles Stretch (ACE #152 krok 4: „slightly flex (bend) the back knee”): wykrok, oba kolana LEKKO ugięte (przednie ≈ 27°, tylne ≈ 25°; „lekko” = konwencja 10–30°, nie 58° jak w przysiadzie wykrocznym), tylna pięta na podłodze, dłonie na biodrach. */
+/** Standing Soleus And Achilles Stretch (ACE #152 krok 4: „slightly flex (bend) the back knee”): wykrok, oba kolana LEKKO ugięte (przednie ≈ 26°, tylne ≈ 14° wg frameAt po poprawce W1; „lekko” = konwencja 10–30°, nie 58° jak w przysiadzie wykrocznym), tylna pięta na podłodze, dłonie na ścianie przed sobą jak w Wall Calf Stretch (karta: „Oprzyj dłonie o ścianę”; poprawka po recenzji r1 W1, 10.11.2026 — wcześniej dłonie na biodrach). */
 function soleus(cw) {
-  const o = wykrokLydka({ wall: false, tylnaProsta: false });
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m: o.m, p: o.p, head: 4, nogi: o.nogi, rece: o.rece }));
+  const o = wykrokLydka({ wall: true, tylnaProsta: false, soleus: true });
+  return statyczna(RODZINA, cw, [...SP, { rodzaj: 'sciana', x: 75, h: 250, przed: true }], (u) => ramka(u, { m: o.m, p: o.p, head: 4, nogi: o.nogi, rece: o.rece }));
 }
 /** Standing Lateral Stretch: stanie, skłon boczny w prawo (20°), lewa ręka nad głową, prawa wzdłuż ciała; bez skrętu i bez pochylenia do przodu. */
 function lateral(cw) {
@@ -78,7 +80,7 @@ export const WYJATKI = Object.fromEntries([
 WYJATKI['Standing Pelvic Tilt'] = 'ruch wewnętrzny (przechył miednicy w płaszczyźnie strzałkowej) bez widocznej zmiany pozy szkieletu, a ćwiczenie bez przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 WYJATKI.Inchworm = 'źródło (ACE #254, krok 5) opisuje dojście STOPAMI do nieruchomych dłoni (kroki 6–12"), a model przy kolanach prawie prostych (≤ 25°, „extended (but not locked)”) nie pozwala narysować kroku stóp 15–30 cm (pomiar: rozstaw stóp w x najwyżej ok. 1,5 cm w podporze i ok. 8 cm w skłonie); wariant z dłońmi idącymi od stóp jest odwrotnością źródła (recenzja ponowna mobilności r3); ćwiczenie bez rysunku zgodnego z przeczytanym źródłem — wyjątek bez animacji (reguła właściciela 27.10.2026)';
 export const PRZYBLIZENIA = {
-  'Standing Gastrocnemius Calf Stretch': 'poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany',
+  'Standing Gastrocnemius Calf Stretch': 'poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch w generatorze; w danych (ACG-013) tylna stopa stoi palcami na stopniu (podpowiedź katalogu: wariant z piętą na podwyższeniu, bez przeczytanego źródła w tej części — uproszczenie ilustracyjne); generator tego stopnia nie rysuje, rozjazd pilnowany w tests/figury-generator-odtwarza.test.ts',
   'Overhead Triceps Stretch': 'przybliżenie: krok 1 źródła (ACE #174) zawiera rękę pomocniczą (lewa dłoń na prawym ramieniu „just above the elbow”, lekki nacisk), rysunek ją pomija — dosięgnięcie łokcia nad głową wymaga barku L 192° (limit modelu 171°) albo przedramienia przechodzącego ≈ 3 cm przez głowę (pomiar 27.10.2026); lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców” (źródło: „middle of your back”)',
 };
 export function generuj() {
