@@ -104,7 +104,7 @@ function cableRussianTwist(cw) {
 /* ================= Pallof ================= */
 function pallof(cw, { rot = false }) {
   const st = stanie(16, 10); const m = st.m;
-  const fr = (u) => { const a = a01(u); const tw = rot ? -30 * a : 0; const c = klatkaPiersiowa(m, 0, { twist: tw }); const b = lerp(16, 58, a); const lok = (sg) => ({ g: c.pt(-22, b, sg * 3), pole: [0, -1, sg * 0.5] });
+  const fr = (u) => { const a = a01(u); const tw = rot ? -30 * a : 0; const c = klatkaPiersiowa(m, 0, { twist: tw }); const b = lerp(16, 57.7, a); const lok = (sg) => ({ g: c.pt(-22, b, sg * 3), pole: [0, -1, sg * 0.5] });
     return K({ u, m, p: 0, head: 0, twist: rot ? tw : undefined, R: st.R, L: st.L, hr: lok(1), hl: lok(-1) }); };
   return zloz(cw, [PODLOGA(-100, 140), { rodzaj: 'wyciag', x: 36, y: 118, z: 75, chwyt: 'uchwyt', trzyma: 'obie' }], fr);
 }
