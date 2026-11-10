@@ -11,7 +11,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
   - zmiany workflowów: koordynator scala sam po przebiegu dowodowym (CLAUDE.md, właściciel 21.10.2026).
 - Zawsze za zgodą: push i scalenie na `main`, App Store Connect, TestFlight, publikacja, usuwanie gałęzi i danych, force-push, koszty stałe, wiadomości do ludzi, koszt API ponad pułap; nigdy --no-verify.
 - Pułapy kosztu: API przekładu 30 USD (ZB-057). Pułap kosztu sesji i doby: [DO USTALENIA] (nieustalony; noc 09/10.11 ≈ 340 USD równowartości w limicie subskrypcji; limit tygodniowy konta allowed_warning, reset 2026-11-15 16:00 UTC).
-- Koordynator aktywny: session_01T66VBw1AX38pLShXPH7rmy (od 2026-11-10 05:20 UTC; poprzednik session_01T66VByJCWCao1Hw3is68Cy). Rola M9 niezłożona z biblioteki: add_repo lkarwowski494/prompts odrzucony przez klasyfikator 05:16 — prośba do właściciela; do zgody bez nowych sesji podrzędnych (tylko odbiory, scalenia, zlecenia istniejącym sesjom).
+- Koordynator aktywny: session_01T66VBw1AX38pLShXPH7rmy (od 2026-11-10 05:20 UTC; poprzednik session_01T66VByJCWCao1Hw3is68Cy). Rola M9 złożona 05:37 (prompts f701ce9) po zgodzie właściciela na add_repo (~05:36).
 - Środowisko: environment_id env_016cjV5XopwCaywxTR2x8qwp, model claude-opus-5-5, wysiłek medium, permission_mode auto; repo sesji: lkarwowski494/trening, techniqueatlas, prompts.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
@@ -37,21 +37,21 @@ Start na drugim koncie (nowa sesja koordynatora M9):
 | 1 | Pociąg-3 (figury/partia-1 + Jest 5 części + sekwencer, KO-012) | zrobione 05:25 | integracja dfaeeef; tests.yml 42760295218 zielony; drzewo = c1ffb654; verify:lekkie | — |
 | 2 | Wpis docs/18 o zmianie CI (KO-012) | otwarte | brak wpisu na integracji | dopisać w pociągu-4 (zlecenie gotowe w treści wiadomości do P-4 z 05:28) |
 | 3 | Pociąg-4: integracja dfaeeef + figury/partia-4 (z thrusterem) + figury/partia-2 7a09818f | wstrzymane (zlecone P-4 05:28, odwołane 05:36) | partia-4 3bcd294c zielona 42759957551 (na bazie 1d6352ba) | P-4 albo nowa sesja 08: gałąź scal/pociag-4, CI, scal-galaz |
-| 4 | Thruster (partia-4, KO-010) | w toku u P-4 przy wstrzymaniu | r2 audytora czysta (0 WYSOKICH, ciągłość 10,7 cm/krok); NISKIE → backlog P4-THR-1..4 | dokończyć przepisanie wpisów, scalić do partia-4, CI |
+| 4 | Thruster (partia-4, KO-010) | zrobione na gałęzi, CI w toku przy wstrzymaniu | `figury/partia-4-thruster-wl` @ 06d90e84 (ff od 3bcd294c; thruster 3/3, r2 czysta, backlog P4-THR-1..4 w docs/21, decyzja w docs/18 z testem tests/figury-dynamiczne.test.ts); verify:lekkie + 14 plików Jest; tests.yml 42762990970 w toku; stan: docs/przekazanie/notatki/linia-1-1/STAN-PARTIA-4.md („Wstrzymanie 10.11.2026”) | zielony 42762990970 → ff figury/partia-4 do 06d90e84 → pociąg-4 |
 | 5 | Partia 5 (forearm, carry, core_hang, rotator_cuff, kneeling_hinge, glute_floor) | w toku u P-5 przy wstrzymaniu; kontekst 32% | P-5 05:13: „8 czerwonych testów naprawionych; czekam na verify i tests.yml” | nowa sesja od STAN-AGENTA.md (wymaga zgody na nowe sesje), potem pociąg |
 | 6 | Tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) | otwarte | plan 24 h niżej | po decyzji C właściciela |
 | 7 | Przekład nowych tekstów (ZB-057, do 30 USD; wydane 0), recenzja lokalizacji zbiorcza | otwarte | ZB-057 | po turze 3 |
 | 8 | Zadania przed wydaniem 1.1 (lista w sekcji niżej) | otwarte | — | po turze 3; audyt, E2E |
 | 9 | Nocne testy: 12 czerwonych z rzędu (L-119) | otwarte — decyzja A właściciela | archiwum/nocne-diagnoza.md | wg decyzji A |
 | 10 | Archiwizacja zakończonych sesji (P-1 …VBx7QqXRjB2JpVi4Kww, P-2 …VBvdsMU66FhsPJWpG8J, P-3 …VBzk52zTw31SRXRs8To, starsze przekazane) | otwarte | tabela Sesje | get_session (koszt → koszty.md), potem archiwizacja |
-| 11 | Rola M9 z biblioteki prompts | zablokowane | add_repo odrzucony przez klasyfikator 05:16 | zgoda właściciela (A) albo praca bez promptu jako nazwany wyjątek (B) |
+| 11 | Rola M9 z biblioteki prompts | zrobione 05:37 (zgoda właściciela) | prompts f701ce9 | na drugim koncie: add_repo prompts od nowa |
 | 12 | Decyzje A–D i weto KO-001…KO-014 | czeka na właściciela | sekcja „Czeka na właściciela” | odpowiedzi właściciela (przez czat poprzednika lub tutaj) |
 | 13 | Rezerwacja nazwy RepsGoat w ASC | do ustalenia | brak wpisu w docs/48 | sprawdzić u źródła |
 
 ## Sesje
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
-| P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana 05:36 (raport oczekiwany) |
+| P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
 | P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana 05:36 (STAN-AGENTA.md + raport oczekiwany) |
 | P-2 | session_01T66VBvdsMU66FhsPJWpG8J | lead partii 2 | figury/partia-2 @ 7a09818f | 30 | 26 | zakończona (raport końcowy) → do archiwizacji po scaleniu |
 | P-1 | session_01T66VBx7QqXRjB2JpVi4Kww | lead partii 1 | figury/partia-1 @ 9d6f35b3 — scalona (pociąg-3, dfaeeef) | 31 | 17 | zakończona → do archiwizacji |
