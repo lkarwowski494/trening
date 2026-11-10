@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 214,
+      "v2": 218,
       "v1": 41,
-      "bezFigury": 453,
-      "daneV2NieWlaczone": 322,
-      "wyjatekBezAnimacji": 143
+      "bezFigury": 449,
+      "daneV2NieWlaczone": 318,
+      "wyjatekBezAnimacji": 142
     },
-    "animowanyBlad": 132,
+    "animowanyBlad": 134,
     "wskazowki": {
       "wlasne": 283,
       "wlasneZBledami": 174,
-      "ogolne": 113,
-      "bezTekstu": 312
+      "ogolne": 115,
+      "bezTekstu": 310
     },
-    "czesteBledyTekst": 287,
+    "czesteBledyTekst": 289,
     "roleMiesni": 513,
-    "pelnaKarta": 210,
-    "pelnaKartaBlad": 131,
-    "recenzjaFigur": 214
+    "pelnaKarta": 213,
+    "pelnaKartaBlad": 133,
+    "recenzjaFigur": 218
   },
   "kartZTekstami": 584,
   "rodziny": {
@@ -79,15 +79,15 @@
     "dip": {
       "status": "ready",
       "cwiczen": 5,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 5,
+      "figuraV2": 4,
+      "daneV2NieWlaczone": 1,
       "v1": 1,
       "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 3,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 2,
+      "bezTekstu": 1,
+      "pelnaKarta": 3,
+      "pelnaKartaBlad": 2,
+      "recenzja": 4
     },
     "overhead_press": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 214,
-    "figura.wAplikacji": 255,
+    "figura.v2": 218,
+    "figura.wAplikacji": 259,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 132,
+    "animowanyBlad": 134,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
-    "wskazowki.zTekstem": 396,
-    "czesteBledyTekst": 287,
+    "wskazowki.zTekstem": 398,
+    "czesteBledyTekst": 289,
     "roleMiesni": 513,
-    "pelnaKarta": 210,
-    "pelnaKartaBlad": 131,
-    "recenzjaFigur": 214,
+    "pelnaKarta": 213,
+    "pelnaKartaBlad": 133,
+    "recenzjaFigur": 218,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 584,
     "jezyk.en.kompletne": 584,

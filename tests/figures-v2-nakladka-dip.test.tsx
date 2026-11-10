@@ -40,7 +40,7 @@ describe('element ⇔ wskazówka na karcie i reguła wariantu: tabela ćwiczeń'
     const zestawy = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/cue-sets.json'), 'utf8')).items;
     expect(techniquesOf('Triceps Dips (ławka)')).toEqual([]); /* 10.11.2026: ławka wstrzymana (V2_WSTRZYMANE, P4-DIP-1) — bez rysunku nie ma elementu; karta własna nadal ma bdip.* (pętla niżej) */ expect(techniquesOf('Chest Dip')).toEqual([]);
     for (const k of ['Triceps Dip', 'Ring Dips', 'Dip Machine']) { expect([k, zestawy[k].b, DIP_TECHNIQUE[0].cue.every(c => zestawy[k].ok.includes(c))]).toEqual([k, 'general', true]); expect(techniquesFor('dip', zestawy[k].ok, k).map(d => d.id)).toEqual([E]); }
-    for (const k of DIP_KEYS) { const ma = cueIdsOf(k).ids.some(c => DIP_TECHNIQUE[0].cue.includes(c)); expect([k, ma]).toEqual([k, k === 'Triceps Dips (ławka)']); }
+    for (const k of DIP_KEYS) { const ma = cueIdsOf(k).ids.some(c => DIP_TECHNIQUE[0].cue.includes(c)); expect([k, ma]).toEqual([k, ['Triceps Dips (ławka)', 'Triceps Dip', 'Ring Dips'].includes(k)]); } /* 10.11.2026 (r1 N1): po wpisach „zestawy” (r4) bdip.* mają Triceps Dip i Ring Dips (wyswietlana); Dip Machine — zestaw „do poprawy” (W3) ukryty, Chest Dip — karta własna bez bdip.* */
     expect(techniquesFor('dip', cueIdsOf('Chest Dip').ids, 'Chest Dip')).toEqual([]); expect(errorText('bdip.move').length).toBeGreaterThan(0);
   });
   test('techniquesFor: bez wskazówki ruchu albo z cudzą wskazówką → nic; wariant z regułą zakres + wskazówka → element', () => {
