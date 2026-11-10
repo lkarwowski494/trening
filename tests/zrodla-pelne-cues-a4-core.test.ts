@@ -76,8 +76,9 @@ describe('A4a core: karty własne (09.11.2026)', () => {
   test('plik wspólny silnika rysunku bez zmian: reguły sensu póz tych ćwiczeń nie zależą od zestawu ogólnego (lib/figures/v2/reguly-cwiczen.json bez reguł dla kart A4a spoza wariantów)', () => {
     const reg = json('lib/figures/v2/reguly-cwiczen.json') as Record<string, Record<string, string[]>>;
     const sens = json('data/zrodla/figury-sens.json').rodziny as Record<string, { warianty?: Record<string, string[] | string>; reguly?: Record<string, { pewnosc?: string }> }>;
-    /* 10.11.2026 (partia 8, core_standing podłączona): wariant bywa aliasem grupy („_wiatrak”) — rozwinięcie jak w generatorze; runtime ma tylko reguły „ustalone” wariantu */
-    const wariant = (fam: string, k: string): string[] | undefined => { const w = sens[fam]?.warianty; let v = w?.[k]; if (typeof v === 'string') v = w?.[v]; return Array.isArray(v) ? v.filter(id => (sens[fam]?.reguly?.[id]?.pewnosc ?? '').startsWith('ustalone')) : undefined; };
+    /* 10.11.2026 (partia 5): plik wspólny zawiera tylko reguły o pewności „ustalone…” (buildReguly, scripts/zrodla-runtime.mjs:143), więc oczekiwanie = warianty bez reguł „analogia”/„konwencja” (core_hang: rece_proste = analogia). */
+    /* 10.11.2026 (partia 8, core_standing podłączona; scalenie z pociągiem-5): wariant bywa aliasem grupy („_wiatrak”) — rozwinięcie jak w generatorze */
+    const wariant = (fam: string, k: string): string[] | undefined => { const w = sens[fam]?.warianty; let v = w?.[k]; if (typeof v === 'string') v = w?.[v]; return Array.isArray(v) ? v.filter(id => /^ustalone/.test(sens[fam]?.reguly?.[id]?.pewnosc ?? '')) : undefined; };
     for (const [fam, m] of Object.entries(reg)) for (const k of A4.cwiczenia) if (k in m) expect([fam, k, [...m[k]].sort()]).toEqual([fam, k, [...(wariant(fam, k) ?? m[k])].sort()]);
   });
 });

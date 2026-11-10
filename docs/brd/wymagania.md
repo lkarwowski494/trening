@@ -486,6 +486,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny hip_bridge (np. Glute Bridge, Hip Thrust (sztanga)), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
     - Wtedy licznik faz pokazuje Unoszenie i Opuszczanie (tempo jak w innych rodzinach v2), mierzony jest kąt w biodrze, a London Bridges (nazwa nie identyfikuje ruchu) zostaje bez rysunku v2
+  - Scenariusz: Rodzina brzucha w zwisie (core_hang) pokazuje rysunki 3 ćwiczeń (10.11.2026, linia 1.1 partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-core-hang.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny core_hang (Hanging Knee Raise, Hanging Leg Raise, Toes to Bar), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza unoszenie kolan albo nóg w zwisie (dłonie stale na drążku)
+    - Wtedy licznik faz pokazuje Unoszenie i Opuszczanie, mierzony jest kąt w biodrze, przy wskazówce „żebra w dół” (Hanging Knee Raise) nakładka pokazuje linię tułowia i łuk zgięcia biodra (bez liczb), a L-Sit zostaje bez rysunku v2
   - Scenariusz: Nakładka techniki na rysunku wiosłowania na linkach i face pull (rodzina cable_row, 09.11.2026; decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”; test `tests/figures-v2-nakladka-cable-row.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_row (np. Seated Cable Row, Face Pull), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie ma na karcie zdanie ruchu, tułowia albo łokci z regułą „ustalone” (Seated Cable Row: przyciąganie, tułów i plecy; Face Pull: przyciąganie i łokcie za plecami)
@@ -546,6 +550,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_stand (np. Wall Calf Stretch, Standing Lateral Stretch), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest rozciąganiem statycznym z rysunkiem
     - Wtedy pozycja jest jedną nieruchomą klatką bez licznika faz, rysunek nie ma ról mięśni (decyzja właściciela 04.11.2026), a tylko w skłonie bocznym (Standing Lateral Stretch) z przodu widać pion od miednicy, od którego tułów odchyla się w bok (reguła „ustalone”, zdanie o zginaniu tylko w bok); 28 ćwiczeń rodziny bez pozy (m.in. wymachy, krążenia, Inchworm) zostaje bez rysunku v2
+  - Scenariusz: Rodzina przedramion i chwytu (forearm) pokazuje rysunki 11 ćwiczeń z nakładką techniki (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-forearm.test.tsx`, `tests/figury-forearm-ruch.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny forearm (np. Wrist Curl (hantle), Reverse Plate Curls), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy ćwiczenie ma na karcie zdanie o zakresie ruchu nadgarstka z regułą „ustalone”
+    - Wtedy z boku widać linię przez przedramię i łuk zgięcia nadgarstka z podpisem „Kąt na rysunku”; przy odwrotnym uginaniu z talerzem pion od barku, przy którym łokieć ma zostać; Wrist Roller i Plate Pinch zostają bez rysunku (brak źródła ruchu)
+  - Scenariusz: Rodzina noszenia ciężaru (carry) pokazuje rysunki 7 ćwiczeń z marszem i pionem tułowia (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-carry.test.tsx`, `tests/figures-v2-chod-cykliczny.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny carry (np. Farmer's Walk, Suitcase Carry), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza marsz z ciężarem w dłoni (pętla cykliczna, licznik „Marsz”)
+    - Wtedy ciężar nie przenika uda w żadnej klatce, a przy wskazówce o prostym tułowiu nakładka pokazuje pion przez miednicę (bez liczb)
+  - Scenariusz: Rodzina rotacji barku i taśm do ramion (rotator_cuff) pokazuje rysunki 7 ćwiczeń z pionem od barku przy rotacjach stojących (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-rotator-cuff.test.tsx`, `tests/figury-rotator-cuff-ruch.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny rotator_cuff (np. External Rotation with Band, Band Pull Apart), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza rotację w barku (łokieć zgięty 90° przy tułowiu) albo rozsuwanie taśmy
+    - Wtedy taśma lub linka prowadzi do jednej ręki roboczej, taśma między dłońmi nie przechodzi przez klatkę, a przy wskazówce o łokciu przy tułowiu nakładka pokazuje pion od barku w dół (bez liczb)
   - Scenariusz: Rysunek i nakładka techniki dla rodziny core_standing (Pallof, skłony boczne, skręty, wiatrak, Bent Press; partia 8, 10.11.2026; test `tests/figures-v2-nakladka-core-standing.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny core_standing (np. Pallof Press, Barbell Side Bend, Russian Twist, Kettlebell Windmill), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone”
@@ -558,6 +574,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma w karcie sekcję błędów (ze źródeł albo wnioskowanych ze zdania ustawienia lub ruchu)
     - Gdy użytkownik otwiera sekcję „Technika” (po polsku albo po angielsku)
     - Wtedy sekcja nazywa się „Czego unikać” („What to avoid”), nie „Częste błędy”, bo wniosek z potwierdzonego ruchu nie dowodzi częstości; to samo na stronie z ćwiczeniami
+  - Scenariusz: Zawias w siadzie z rysunkiem Seated Good Mornings, bez nakładki techniki (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-kneeling-hinge.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie Seated Good Mornings, a rodzina kneeling_hinge ma aktualny wpis recenzji niezależnej
+    - Gdy ogląda rysunek (siad na skrzyni, sztanga na plecach, skłon w biodrach o ponad 30°, zejście wolniejsze od powrotu — czasy w danych rysunku)
+    - Wtedy sztanga jedzie z tułowiem w każdej klatce, a nakładki techniki nie ma, bo obie reguły rodziny (plecy, pochylenie) mają pewność „analogia”, nie „ustalone”; Kneeling Squat zostaje bez rysunku (brak źródła ruchu)
   - Scenariusz: Ćwiczenie ukryte w aplikacji nie znika z danych użytkownika (decyzja właściciela 02.11.2026 o „Wide-Grip Pulldown Behind The Neck”; test `tests/wide-grip-pulldown-behind-neck-2026-11-02.test.ts`)
     - Zakładając, że ćwiczenie jest wycofane z biblioteki (źródło odradza wariant), a użytkownik ma je w treningu lub szablonie
     - Gdy aplikacja startuje po aktualizacji

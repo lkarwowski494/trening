@@ -1171,6 +1171,95 @@
         }
       }
     },
+    "carry": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r2 po poprawkach r1: W1, W2, S2 naprawione; S1 ŚREDNIE (Overhead Carry, chwyt 16 cm przed barkiem) → backlog; N1, N2 NISKIE",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawki r1 (bca55f7): inny programista",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "bc03d01d72f6",
+      "liczba": 7,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 7 ćwiczeń × widok side = 7 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z ba830c8 i obejrzane w pełnej rozdzielczości (u 0; 0,05; 0,1 powiększone 2×); cmp z r1: Suitcase Carry bajtowo równy, 6 zmienionych. Ślad (frameAt, u co 0,01): hantle = chwyt R, kettlebell = chwyt ręki trzyma, gryf sześciokątny (trap bar, Rickshaw) = środek chwytów — 0,0 cm od chwytu we wszystkich 7 ćwiczeniach.",
+      "uwagi": "r2: W1 naprawione — rack: chwyt 17,0 cm przed barkiem, łokieć 148°, dzwon dol 3,0 cm od tułowia (wzorzec Double Kettlebell Front Squat 15,1 cm / 149°). W2 naprawione — ślad trap bar/Rickshaw 0,0 cm od środka chwytów (contract.ts + strażnik C1 tests/figures-v2-tor.test.ts). S2 naprawione — obrotPrzedramienia 0, oś hantli przód–tył, odstęp od uda min. 0,6 cm. S1 ŚREDNIE (backlog): Overhead Carry chwyt 16,0 cm przed barkiem przy zgięciu barku 162,2° i tułowiu 0° (w zakresie 170° możliwe ok. 7 cm). N1 NISKIE: Farmers Handles jako hantel r 10 (gear.ts:441). N2 NISKIE: przypadek negatywny w tests/figures-v2-carry-r1.test.ts porównuje stałe. Skróty poza carry bez zmian względem 8cfa96c (diff --skroty).",
+      "cwiczenia": [
+        "Farmer's Walk",
+        "Farmer's Walk (Farmers Handles)",
+        "Farmer's Walk (trap bar)",
+        "Rickshaw Carry",
+        "Suitcase Carry",
+        "Overhead Carry (hantle)",
+        "Double Kettlebell Front Rack Carry"
+      ],
+      "bez_rysunku": []
+    },
+    "core_hang": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r2: Ś1 z r1 (drążek bez słupka) naprawione w 2db4b57 (test 04245f0); 0 × KRYTYCZNE/WYSOKIE/ŚREDNIE; N1, N2 z r1 — NISKIE, backlog",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawka Ś1: programista (subagent, inny niż autor rodziny)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny core_hang, partia 5, runda r1 @ 5b7f62f i r2 @ 2db4b57 (figury/partia-5-core_hang, worktree odłączony), 10.11.2026; raporty docs/research/recenzje/partia5-core_hang-r1-audytor-2026-11-10.md, partia5-core_hang-r2-audytor-2026-11-10.md",
+      "sha": "43a33ada7ec7",
+      "liczba": 4,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 3 ćwiczenia × widok side = 3 arkusze, 21 kadrów co 0,05, wygenerowane przez audytora z 2db4b57 (r2; r1 z 5b7f62f) i obejrzane w pełnej rozdzielczości (kadry u = 1 powiększone); arkusz-nakladka.mjs --family core_hang (3 arkusze). Bez ciężaru — ślad miednicy: Hanging Knee Raise 8,7 cm w przód, Hanging Leg Raise 10,4 cm w przód, Toes to Bar 22 cm w przód i 28 cm w górę; dłonie 0,00 cm od osi drążka w 21/21 kadrach; słupek (x 0, h 235) widoczny w każdym kadrze, za ciałem, bez kolizji (z ±62–66 wobec ciała |z| ≤ 25).",
+      "uwagi": "r2: Ś1 naprawione — słupek { slupek, x 0, h 235 } w pozach i generatorze, test tests/figures-v2-core-hang-slupek.test.ts; klatki bez zmian. N1 NISKIE: zwis u = 0 11 cm za osią chwytu (ramię 10,0° od pionu). N2 NISKIE: łuk biodra przy hang.ribs nie pokazuje podwijania miednicy (zgiecieKregoslupa 0) — przybliżenie kierunku reguły kolana_ku_klatce uczciwe (biodro 10→100° ↔ kolano–bark 92→60 cm). Uwaga bez wagi: drążek 120 cm (końce z ±60) nie sięga słupków (z 62) — widoczne tylko z przodu, rodzina ma tylko rzut z boku. Bez znalezisk: zakresy vs karty (HKR Δ 32 cm ≥ 20; HLR kolano 12–17° ≤ 30, nogi −7°; T2B nogi 86° nad poziomem, stopa przy drążku i górze słupka w u = 1), odchylenie T2B (miednica 22 cm w przód, bark 19 cm w tył, tułów −55° — obrót z równowagi, otwarte_czesciowo), przenikanie, nakładka hangHipLimb, testy K14 (r1 i r2).",
+      "cwiczenia": [
+        "Hanging Knee Raise",
+        "Hanging Leg Raise",
+        "Toes to Bar"
+      ],
+      "bez_rysunku": [
+        "L-Sit"
+      ]
+    },
+    "forearm": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r3 po poprawce W2 (5e0755b2): W1, S2, W2 naprawione; bez KRYTYCZNYCH i WYSOKICH; ŚREDNIE FA-S1, FA-S3 i NISKIE FA-N1–N3 → backlog",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawki r1 (48efb77f, 4a54a751) i r2 (5e0755b2): inny programista",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "4f6519625eed",
+      "liczba": 13,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 11 ćwiczeń × widok side = 11 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z b78acbe6; cmp z r2 (4fa83a0c): 10 bajtowo równych, zmieniony tylko Behind-the-Back Barbell Wrist Curl — obejrzany w pełnej rozdzielczości (u 0 i 1 powiększone 2,5×); pozostałe 10 obejrzane w r2. Ślad: sztanga/wyciąg = środek gryfu/drążka, hantle = chwyt R, talerz = środek chwytów — w chwycie we wszystkich 11. Liczby z frameAt (Behind-the-Back co 0,05).",
+      "uwagi": "r3: W2 naprawione — Behind-the-Back: kąt łokcia 22,3° → 21,0° (zmiana 1,3°), łokieć przesuwa się ≤ 0,33 cm, błąd chwytu ≤ 0,033 cm (u = 0), ramię nieruchome; W1 zachowane: palm x = −0,97 (dłoń do tyłu), sztanga 8,5 cm w tył i 2,4 cm w górę, odstęp od ciała 4,0 → 12,2 cm; zakres nadgarstka −30° → +50°. Łokieć zgięty stale ok. 21–22° — część wspólna źródeł („elbows slightly bent” WTG, „arms straight” kasmaker). Backlog (bez zmian od r2): FA-S1 ŚREDNIE (Reverse Plate Curls: talerz zawsze pionowy, draw.ts:476, przedramię obraca się o 104°), FA-S3 ŚREDNIE (Dumbbell Lying Pronation/Supination rysowane siedząc; obie ta sama pętla), FA-N1 NISKIE (7 uginań: łokieć 3D obok uda, z 30,8 vs 8,5–13,8), FA-N2 NISKIE (poza błędu wr.mis.lift: łokieć opada 3,5 cm), FA-N3 NISKIE (Behind-the-Back: 2,4 cm w górę vs 8,5 cm w tył, źródło „up and slightly back”; geometria dłoni 7 cm i startu −30°). Skróty poza forearm bez zmian względem 4fa83a0c (diff --skroty).",
+      "cwiczenia": [
+        "Barbell Wrist Curl",
+        "Barbell Reverse Wrist Curl",
+        "Wrist Curl (hantle)",
+        "Reverse Wrist Curl (hantle)",
+        "One-Arm Dumbbell Wrist Curl",
+        "One-Arm Dumbbell Reverse Wrist Curl",
+        "Cable Wrist Curl",
+        "Behind-the-Back Barbell Wrist Curl",
+        "Reverse Plate Curls",
+        "Dumbbell Lying Pronation",
+        "Dumbbell Lying Supination"
+      ],
+      "bez_rysunku": [
+        "Wrist Roller",
+        "Plate Pinch"
+      ]
+    },
+    "kneeling_hinge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r2 po poprawce r1: S1 naprawione (styk seat, miednica 1,0 cm nad skrzynią); N1 NISKIE (asercja testu styku słabsza niż nazwa) → backlog; brak nakładki uzasadniony (obie reguły „analogia”)",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawka r1 (517694cf): inny programista",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny kneeling_hinge, partia 5, runda r2 (po poprawce r1 innego programisty), gałąź figury/partia-5-kneeling_hinge @ 517694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-kneeling_hinge-r2-audytor-2026-11-10.md",
+      "sha": "17d7fac90626",
+      "liczba": 2,
+      "slad": "Arkusz ze śladem toru: scripts/figures/arkusz-slad.mjs, 1 ćwiczenie × widok side = 1 arkusz (Seated Good Mornings), 21 kadrów co 0,05, wygenerowany przez audytora z 517694cf i obejrzany w pełnej rozdzielczości (u 0 i u 1 ×3, styk miednicy ×8); cmp z r1: różni się tylko skrzynią. Ślad (frameAt): info.load = środek gryfu = chwyt, 0,0 cm; gryf 12,8 cm za barkami i 3,0 cm poniżej wzdłuż tułowia w każdej klatce, tor łukiem w przód i lekko w dół (x −11,2 → 23,4 cm, y 105,2 → 100,5 cm).",
+      "uwagi": "r2: S1 naprawione — skrzynia 47,3 cm, gap(pelvis, box) 1,00 cm, gap(thigh, box) 0,79 cm, seat w każdej klatce, checkFrame pusty; ciało bez zmian (stopy na podłodze, kolano [40,8; 48,0], biodro 78,2° → 119,5°, tułów 2° → 44°, kręgosłup 0°). Przypadek negatywny: top 46 → nowy test oblewa 22/22. N1 NISKIE (backlog): tests/figures-v2-styk-siedzenie-kneeling-hinge.test.ts sprawdza |środek miednicy − wierzch skrzyni| ≤ 12 zamiast odstępu ≤ 1 cm (granicę ≤ 1,5 daje test obecności seat). Skróty poza kneeling_hinge bez zmian względem r1.",
+      "cwiczenia": [
+        "Seated Good Mornings"
+      ],
+      "bez_rysunku": [
+        "Kneeling Squat"
+      ]
+    },
     "lunge": {
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
@@ -1352,6 +1441,31 @@
           "uwagi": "przysiad poprawny (kolano 108°, plecy neutralne, kolana nad stopami z przodu); wyjątek toru 6,8 cm potwierdzony; S-2 (brak pasa, ramię 33 cm z osią przed udami)."
         }
       }
+    },
+    "rotator_cuff": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r1: 0 × KRYTYCZNE, 0 × WYSOKIE; S1 ŚREDNIE i N1–N4 NISKIE → backlog",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md",
+      "sha": "aef0547423ef",
+      "liczba": 8,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 7 ćwiczeń × widoki front i side = 14 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z 7f694cf i obejrzane w pełnej rozdzielczości; arkusz-nakladka.mjs: External Rotation with Band, Cable Internal Rotation (poza poprawna i błędu). Ślad (frameAt, u co 0,01) = chwyt ręki R, 0,0 cm od chwytu we wszystkich 7 ćwiczeniach; łuki: External Rotation (hantel)|front 7,00 cm (r 33,0 cm), Reverse Flyes With External Rotation|front 14,23 cm (r 61 cm), 0 zawróceń — wyjątki toru potwierdzone.",
+      "uwagi": "S1 ŚREDNIE: znacznik błędu rot.mis.elbowAway na miednicy (guma/linka bez info.load, figure.ts:174) — 43,8 cm (ER linki, ER guma) i 37,1 cm (Cable Internal Rotation) od łokcia; rozszerzyć pozycję backlogu 1.2 (jerk curl). N1 NISKIE: tests/figures-v2-nakladka-rotator-cuff.test.tsx WANT bez Cable Internal Rotation — po wpisie zestawu ogólnego techniquesOf da rotElbowPlumb; dopisać w commicie przepisania. N2 NISKIE: asercja pelna (strona-eksport.test.ts:229) uzasadniona (różnica tylko Band Pull Apart, figura), węższa wersja: tylko ready && !familyReviewed + licznik false. N3 NISKIE: powód wyjątku toru External Rotation (hantel) podaje przedramię ok. 40 cm, pomiar 33,0 cm. N4 NISKIE: External Rotation (hantel) start z chwytem 6,8 cm nad łokciem. Bez znalezisk: zakresy (rotacje 90°/76°, Reverse Flyes 0,8–71,8°, łokieć 35–36,5°), łokieć 0,9–1,6 cm od pionu barku, przenikanie (checkFrame pusty), Reverse Flyes nad ławką (tułów 3,4 cm, miednica 2,0 cm — jak Spider Curl, Y Raise), Band Pull Apart 76° (guma dotyka klatki), guma z zaczepem w ręce R, nakładka tylko stojące, karty i zestawy, testy K14.",
+      "cwiczenia": [
+        "Band Pull Apart",
+        "Cable Internal Rotation",
+        "Cuban Press",
+        "External Rotation (hantel)",
+        "External Rotation (linki)",
+        "External Rotation with Band",
+        "Internal Rotation with Band",
+        "Reverse Flyes With External Rotation"
+      ],
+      "bez_rysunku": [
+        "Cuban Press"
+      ]
     },
     "calf_raise": {
       "werdykt": "wyswietlana",
@@ -2098,13 +2212,13 @@
     },
     "Farmer's Walk": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny carry, L-047)",
       "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md; wcześniej: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026 (2026-10-28, wyswietlana; Ciężar w każdej ręce przy biodrach, spokojny krok, wyprostowana postawa — 2 przeczytane źródła (biblioteka; artykuł edukacyjny s. 52).)",
       "sha": "db13ea14b2b8",
-      "uwagi": "Ciężar w każdej ręce przy biodrach, spokojny krok, wyprostowana postawa — 2 przeczytane źródła (biblioteka; artykuł edukacyjny s. 52)."
+      "uwagi": "carry.two (ciężar w każdej ręce, ręce wzdłuż boków, przy biodrach: łokieć 13–15°, chwyt 63 cm pod barkiem), carry.walk (marsz w cyklu), lunge.torso (tułów 0° w każdej klatce) — zgodne z rysunkiem v2. Runda r2: hantle w chwycie neutralnym (S2 naprawione) — zgodne. Skrót karty bez zmian względem wpisu z 28.10.2026."
     },
     "Front Squat": {
       "werdykt": "wyswietlana",
@@ -2418,13 +2532,13 @@
     },
     "Suitcase Carry": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny carry, L-047)",
       "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md; wcześniej: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026 (2026-10-28, wyswietlana; Ciężar w jednej ręce przy biodrze, spokojny krok, bez przechylania — 3 przeczytane źródła.)",
       "sha": "cdf5c579c5c0",
-      "uwagi": "Ciężar w jednej ręce przy biodrze, spokojny krok, bez przechylania — 3 przeczytane źródła."
+      "uwagi": "carry.one (kettlebell w prawej ręce, ręka wzdłuż boku, przy biodrze; lewa wolna), carry.walk, carry.noLean (pochylenie 0°, przechylTulowia 0 we wszystkich klatkach; przechył boczny i tak niewidoczny z boku) — zgodne z rysunkiem v2. Skrót karty bez zmian względem wpisu z 28.10.2026."
     },
     "Sumo Deadlift": {
       "werdykt": "wyswietlana",
@@ -2618,33 +2732,33 @@
     },
     "External Rotation with Band": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
-      "autor": "programista P1 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext (2026-11-02, wyswietlana)",
       "sha": "0081de688b36",
-      "uwagi": "Sprawdzone: Columbia/WebMD Ignite (waist height; unaffected side toward the door → ręka dalsza od zaczepu; forearm across your belly; Keep your elbow and upper arm tucked; Slowly move your arm back). Figura v2 rotator_cuff stoi, guma z zaczepem — zgodne. Zmiany lokalizacji nr 7–8 i 27 bez zmiany sensu (opis widocznego ruchu dłoni zgodny z „rotate your forearm out”)."
+      "uwagi": "rotator_cuff.bandSetup (zaczep na wysokości pasa, stanie bokiem), erStart (ręka dalej od zaczepu, łokieć pod kątem prostym przy boku, przedramię przed brzuchem), erMove (dłoń na zewnątrz, −32° → 58°), rot.elbow, rot.slow, rot.mis.elbowAway (poza błędu 17,5 cm) — zgodne z rysunkiem v2; guma tylko w ręce R."
     },
     "External Rotation (hantel)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
-      "autor": "programista P1 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext (2026-11-02, wyswietlana)",
       "sha": "9190e849f0f0",
-      "uwagi": "Sprawdzone: South Tees (lying on your side… lift the forearm toward the ceiling, elbow at a right angle, maintain contact with the towel, slowly back down). Figura v2 w leżeniu bokiem (pochylenieTulowia −90, hantel) — zgodna. Zmiana lokalizacji nr 27 (sideMove) bez zmiany sensu."
+      "uwagi": "rotator_cuff.sideSetup (leżenie na boku, górny łokieć 92,5–102° przy boku, hantel przed brzuchem), sideMove (przedramię obraca się w górę 3° → 73°, łokieć zostaje), rot.slow, rot.mis.elbowAway (tekst; bez animacji) — zgodne z rysunkiem v2. Start nad poziomem — N4 (wpis v2), nie przeczy treści."
     },
     "Internal Rotation with Band": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
-      "autor": "programista P1 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext (2026-11-02, wyswietlana)",
       "sha": "aca836b22b61",
-      "uwagi": "Sprawdzone: Columbia/WebMD Ignite (affected side toward the door → ręka bliższa zaczepu; elbow 90; rotate your forearm toward your body until it touches your belly; slowly back). Zmiany lokalizacji nr 9–10 i 27 bez zmiany sensu."
+      "uwagi": "rotator_cuff.bandSetup, irStart (ręka bliżej zaczepu — zaczep po stronie roboczej, łokieć pod kątem prostym przy boku), irMove (dłoń do brzucha: 58° → −32°, chwyt kończy 2,8 cm od środka przed brzuchem), rot.elbow, rot.slow — zgodne z rysunkiem v2."
     },
     "Supine Figure-Four Stretch": {
       "werdykt": "wyswietlana",
@@ -4185,21 +4299,23 @@
     },
     "External Rotation (linki)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A3",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: rotator_cuff.erStartCable (wyciąg) zamiast erStart (guma); FV (Dr. Malik, MD, data) szczebel 4",
-      "sha": "ac32385ebf31"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: rotator_cuff.erStartCable (wyciąg) zamiast erStart (guma); FV (Dr. Malik, MD, data) szczebel 4 (2026-11-09, wyswietlana)",
+      "sha": "ac32385ebf31",
+      "uwagi": "rotator_cuff.cableSetup (wyciąg na wysokości pasa, 100 cm, z boku), erStartCable (ręka dalej od wyciągu, łokieć 88–92° przy boku, przedramię przed brzuchem: chwyt 2,8 cm od środka), erMove (dłoń na zewnątrz do 48,2 cm, rotacja −32° → 58°), rot.elbow (łokieć 0,9–1,6 cm od pionu barku), rot.slow, rot.mis.elbowAway (poza błędu 17,5 cm) — zgodne z rysunkiem v2."
     },
     "Band Pull Apart": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A3",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
-      "sha": "0e4e5181b837"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026 (2026-11-09, wyswietlana)",
+      "sha": "0e4e5181b837",
+      "uwagi": "rotator_cuff.pullHold (ręce przed sobą, dłonie 8 cm pod barkiem — wysokość klatki), pullMove (rozciąganie na boki 8° → 76°, dłonie na stałej wysokości; ściąganie łopatek niewidoczne w szkielecie, bez sprzeczności), rot.slow; częsty błąd mis.shrug bez animacji — zgodne z rysunkiem v2."
     },
     "Cuban Press": {
       "werdykt": "wyswietlana",
@@ -4450,30 +4566,33 @@
     },
     "Hanging Leg Raise": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "063d8f4c9283"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2)",
+      "autor": "programista A4 (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f i r2 @ 2db4b57, 10.11.2026; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty (2026-11-09, wyswietlana; )",
+      "sha": "063d8f4c9283",
+      "uwagi": "hang.legs.move zgodne (nogi proste, kolano 12–17°, u = 1 nogi 7° pod poziomem); hang.setup — drążek widoczny od r2."
     },
     "Hanging Knee Raise": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "ac21253c514f"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, treść karty wobec rysunku v2 core_hang, r2)",
+      "autor": "programista A4 (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f i r2 @ 2db4b57, 10.11.2026; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty (2026-11-09, wyswietlana; )",
+      "sha": "ac21253c514f",
+      "uwagi": "hang.knees.move zgodne (biodro 10→100°, kolano–bark 92→60 cm); hang.setup „Zawiśnij na drążku” — drążek ze słupkiem widoczny od r2."
     },
     "Toes to Bar": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "369a88554933"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2)",
+      "autor": "programista A4 (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f i r2 @ 2db4b57, 10.11.2026; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty (2026-11-09, wyswietlana; )",
+      "sha": "369a88554933",
+      "uwagi": "hang.t2b.move zgodne (stopa przy drążku w u = 1), hang.t2b.straight (kolano 162–175°), hang.pressBar (tułów −55°, obrót wokół chwytu); hang.setup — drążek widoczny od r2."
     },
     "Stability Ball Crunch": {
       "werdykt": "wyswietlana",
@@ -5932,13 +6051,13 @@
     "One-Arm Dumbbell Reverse Wrist Curl": {
       "rodzina": "wrist",
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
-      "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-      "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
-      "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md; wcześniej: audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026 (2026-11-02, wyswietlana; Prostowanie nadgarstka nachwytem z hantlem: wr.forearms, wr.range, wr.mis.lift zgodne; figura v2 jeszcze nie pokazywana.)",
       "sha": "8b1a50266007",
-      "uwagi": "Prostowanie nadgarstka nachwytem z hantlem: wr.forearms, wr.range, wr.mis.lift zgodne; figura v2 jeszcze nie pokazywana."
+      "uwagi": "Odświeżenie wpisu z 02.11.2026 (sha bez zmian 8b1a50266007) wobec rysunku v2: wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; nachwyt, wyprost +45° → −48°, pracuje prawa ręka. Zgodne z rysunkiem. Runda r2: dół ruchu +45° (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
     },
     "Calf Raise (linki)": {
       "rodzina": "calf",
@@ -6414,6 +6533,160 @@
       "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
       "sha": "4abd2e454900"
     },
+    "Farmer's Walk (Farmers Handles)": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°, bez przechyłu), carry.walk (marsz w cyklu) — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Farmer's Walk (trap bar)": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Rickshaw Carry": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem (rama jako trap bar, przybliżenie nazwane). Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Overhead Carry (hantle)": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°, bez przechyłu), carry.walk — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Double Kettlebell Front Rack Carry": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Barbell Wrist Curl": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8b1a50266007",
+      "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range (−45° → +52°, ciężar w górę 10,4 cm); wr.mis.lift — poza błędu: przód przedramienia unosi się (N2). Zgodne z rysunkiem; Runda r2: dół ruchu −45° — „tak nisko, jak pozwala nadgarstek” pasuje (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "Barbell Reverse Wrist Curl": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8b1a50266007",
+      "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range (nachwyt, dłoń w dół: +45° → −48°, wyprost unosi sztangę 10,1 cm — „zegnij nadgarstek w górę” pasuje); wr.mis.lift zgodne. Runda r2: dół ruchu +45° (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "Wrist Curl (hantle)": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8b1a50266007",
+      "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; oś hantli poprzeczna (z ≈ ±0,9) przy podchwycie. Zgodne z rysunkiem. Runda r2: dół ruchu −45° — „tak nisko, jak pozwala nadgarstek” pasuje (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "Reverse Wrist Curl (hantle)": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8b1a50266007",
+      "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; nachwyt, oś hantli poprzeczna, wyprost unosi hantle. Zgodne z rysunkiem. Runda r2: dół ruchu +45° (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "One-Arm Dumbbell Wrist Curl": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8b1a50266007",
+      "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; pracuje prawa ręka, lewa nieruchomo na udzie. Zgodne z rysunkiem. Runda r2: dół ruchu −45° — „tak nisko, jak pozwala nadgarstek” pasuje (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "Cable Wrist Curl": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8b1a50266007",
+      "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; linka z bloczka przed ławką (x 110, y 20) ciągnie dłoń w dół — opór przeciw zgięciu. Zgodne z rysunkiem. Runda r2: dół ruchu −45° — „tak nisko, jak pozwala nadgarstek” pasuje (S2 naprawione). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "Behind-the-Back Barbell Wrist Curl": {
+      "rodzina": "wrist",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "8f9b3d083294",
+      "uwagi": "Runda r3: wr.range („opuść … potem zegnij nadgarstek w górę”) — dłoń do tyłu, zgięcie −30° → +50° unosi sztangę 2,4 cm i cofa 8,5 cm (w górę i do tyłu, jak w źródle), ramię i przedramię nieruchome (W2 naprawione) — zdanie pasuje do rysunku. mis.jerk — bez animacji."
+    },
+    "Reverse Plate Curls": {
+      "rodzina": "curl",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r3 (po poprawce W2 innego programisty: 5e0755b2), gałąź figury/partia-5 @ b78acbe6 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md",
+      "sha": "88e974d922c7",
+      "uwagi": "curl.elbows (łokieć 1,0 → 2,7 cm przed barkiem, pion od barku), curl.noSwing (tułów 0°, miednica nieruchomo), curl.control (tempo) — zgodne; curl.mis.elbows — poza błędu: łokieć wysuwa się do przodu (x 6,5 → 20,0). Zdania zestawu pasują do ruchu; orientacja talerza — S1 (sprzęt, nie zdanie zestawu). Runda r2: rysunek bez zmian (cmp). Runda r3: rysunek bez zmian (cmp z r2)."
+    },
+    "Seated Good Mornings": {
+      "rodzina": "rdl",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 kneeling_hinge, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny kneeling_hinge, partia 5, runda r2, gałąź figury/partia-5-kneeling_hinge @ 517694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-kneeling_hinge-r2-audytor-2026-11-10.md",
+      "sha": "6d8665e4bef9",
+      "uwagi": "hinge.back (plecy neutralne przez cały ruch) — zgodne, zgięcie kręgosłupa 0° w każdej klatce; gm.light (lekki ciężar na start) — nie dotyczy geometrii, rysunek nie przeczy; mis.roundBack — animacja błędu pokazuje zaokrąglenie pleców do 26°, gryf zostaje na plecach. Runda r2: zmieniła się tylko wysokość skrzyni, zdania nadal zgodne."
+    },
     "Smith Machine Behind the Back Shrug": {
       "rodzina": "shrug",
       "werdykt": "wyswietlana",
@@ -6545,6 +6818,28 @@
       "kto": "audytor — recenzja niezależna rodziny leg_machine 09.11.2026, czysta kopia 37333dc6; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md (pola stan/autor/kto uzupełnione przez programistę z raportu)",
       "sha": "9358e2eddadc",
       "uwagi": "squat: sq.down (biodra w tył i kolana razem), sq.back (kręgosłup 0°, tułów do 30°), sq.kneesToes; błędy sq.mis.kneesIn i sq.mis.heels animowane — zgodne."
+    },
+    "Cable Internal Rotation": {
+      "rodzina": "rotCuff",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md",
+      "sha": "28e14010801f",
+      "uwagi": "rot.elbow (łokieć zgięty 88–92° i przy boku, 0,9–1,6 cm od pionu barku; obraca się tylko przedramię), rot.slow (powrót 2 s), błąd rot.mis.elbowAway (poza błędu: łokieć 11,8 cm od pionu) — zgodne z rysunkiem. Znacznik błędu na miednicy — S1 (wpis v2), nie dotyczy zdań zestawu."
+    },
+    "Reverse Flyes With External Rotation": {
+      "rodzina": "raiseRear",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md",
+      "sha": "627da18c6c4d",
+      "uwagi": "rear.elbows (kąt w łokciach stały: 34,8–36,5° przez cały ruch) — zgodne z rysunkiem; błąd mis.jerk to cecha tempa. Rotacja zewnętrzna barku (32° → 117°) wynika z nazwy, zestaw jej nie opisuje — bez sprzeczności."
     },
     "Donkey Calf Raise": {
       "rodzina": "calf",

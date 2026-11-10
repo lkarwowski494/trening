@@ -426,6 +426,11 @@
    "path": "tests/tor-wyjatki.json",
    "name": "Bosu",
    "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — rodzina core_standing (partia 8, 10.11.2026) odwołuje się do ćwiczenia po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "tests/figures-v2-kierunek-u.test.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — strażnik kierunku u (opór z góry, core_standing, partia 8, 10.11.2026) wskazuje ćwiczenie po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
   }
  ]
 }

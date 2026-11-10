@@ -1,7 +1,7 @@
 /*
  * (wdrożenie 08.11.2026) Figury v2 — strażnik „bez zaworu: żadna rodzina nie wychodzi bez nakładki” (decyzja właściciela 04.11.2026 ~11:35 PL, docs/18: „rysunek pokazuje technikę” wchodzi do 1.1).
  * Każda rodzina o statusie `ready` ma wpis w TECHNIQUE z co najmniej jednym elementem, który faktycznie się rysuje dla co najmniej jednego ćwiczenia rodziny (element wybrany przez
- * wskazówki karty i reguły „ustalone” wariantu, niepuste kształty w co najmniej jednym rzucie i klatce). Dwa nazwane wyjątki: mobility_floor (09.11.2026, docs/18) i strongman (10.11.2026, tryb „analogia”, docs/18: reguły rodziny mają pewność „analogia”, karta Yoke Walk ma wskazówkę bez reguły). Poza nimi bez wyjątków: nowa rodzina ze statusem `ready` bez nakładki czerwieni verify.
+ * wskazówki karty i reguły „ustalone” wariantu, niepuste kształty w co najmniej jednym rzucie i klatce). Trzy nazwane wyjątki: mobility_floor (pusta nakładka, 09.11.2026, docs/18), kneeling_hinge (bez wpisu, docs/18 10.11.2026, z testem wygaśnięcia) i strongman (10.11.2026, tryb „analogia”, docs/18: reguły rodziny mają pewność „analogia”, karta Yoke Walk ma wskazówkę bez reguły; pusty wpis); poza nimi nowa rodzina ready bez nakładki czerwieni verify.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny */
 import { CATALOG } from '@/lib/catalog.generated';
@@ -10,15 +10,22 @@ import { figureSpec, overlayShapes, type FigureSpec } from '@/lib/figures/v2';
 import { TECHNIQUE } from '@/lib/figures/v2/overlay';
 import { techniquesOf } from '@/lib/figures/v2/ui';
 
-const READY = FAMILIES.filter(f => f.status === 'ready').map(f => f.id);
+const READY_WSZYSTKIE = FAMILIES.filter(f => f.status === 'ready').map(f => f.id);
+/** Nazwany wyjątek (docs/18, 10.11.2026, koordynator linii 1.1, wariant A, do weta właściciela): kneeling_hinge nie ma elementu nakładki — obie reguły rodziny mają pewność „analogia”, a element powstaje tylko z „ustalone”. Wygasa po KH-F1 (docs/21); wtedy wpis w TECHNIQUE czerwieni test wygaśnięcia poniżej i wyjątek należy usunąć. */
+const WYJATKI_BEZ_NAKLADKI: Record<string, string> = { kneeling_hinge: 'docs/18 10.11.2026; docs/21 KH-F1' };
+const READY = READY_WSZYSTKIE.filter(f => !(f in WYJATKI_BEZ_NAKLADKI));
 const keysOf = (family: string) => Object.keys(CATALOG).filter(k => { try { return figureSpec(k)?.family === family; } catch { return false; } });
 const US = [0, 0.25, 0.5, 0.75, 1];
 
 describe('04.11.2026 bez zaworu: każda rodzina ready ma nakładkę, która się rysuje', () => {
   test('lista rodzin ready nie jest pusta (strażnik czyta FAMILIES)', () => { expect(READY.length).toBeGreaterThanOrEqual(7); });
+  test.each(Object.keys(WYJATKI_BEZ_NAKLADKI))('wyjątek %s (docs/18 10.11.2026) jest aktualny: rodzina ready i nadal bez wpisu w TECHNIQUE (po KH-F1 usuń wyjątek)', family => {
+    expect(READY_WSZYSTKIE).toContain(family);
+    expect(Object.prototype.hasOwnProperty.call(TECHNIQUE, family)).toBe(false);
+  });
   test.each(READY)('%s: wpis w TECHNIQUE z ≥ 1 elementem i ≥ 1 ćwiczenie, dla którego element daje kształty w którymś rzucie', family => {
     expect(Object.prototype.hasOwnProperty.call(TECHNIQUE, family)).toBe(true);
-    /* jedyny nazwany wyjątek: mobility_floor — nakładka zarejestrowana bez elementów (koordynator linii 1.1, 09.11.2026, wariant A, docs/18; backlog MOB-F1);
+    /* nazwany wyjątek pustej nakładki: mobility_floor — zarejestrowana bez elementów (drugi wyjątek, kneeling_hinge bez wpisu, wyżej) (koordynator linii 1.1, 09.11.2026, wariant A, docs/18; backlog MOB-F1);
        ten sam wyjątek co strażnik S20 (tests/interaction-guards.test.ts) — pilnujemy, że jest pusta dokładnie ta jedna rodzina */
     if (family === 'mobility_floor') { expect(TECHNIQUE[family]).toEqual([]); return; }
     /* drugi nazwany wyjątek: strongman (koordynator/lead partii 8, 10.11.2026, tryb „analogia”, docs/18; powód: reguły rodziny tylko „analogia”, karta Yoke Walk bez wskazówki powiązanej z regułą;

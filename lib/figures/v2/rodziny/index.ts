@@ -34,4 +34,6 @@ export const RODZINY_POZ: Record<string, RodzinaPoz> = {
   sled_throw: require('./sled_throw').default,
   core_standing: require('./core_standing').default,
   strongman: require('./strongman').default,
+  core_hang: require('./core_hang').default,
+  kneeling_hinge: require('./kneeling_hinge').default,
 };
