@@ -44,15 +44,15 @@ export function figureSpec(key: string): FigureSpec | null {
  * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
  * Stan 10.11.2026: Clean Shrug, Snatch Shrug (olympic, do kart T2) i Triceps Dips (ławka) (dip, W5, P4-DIP-1). 29.10.2026 zdjęto 18 figur po recenzjach (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
-  /* 04.11.2026 (koordynator, recenzja olympic r4, warunek 1): wzruszenia mają dziś tylko zestaw ogólny `oly` — rysunek dopiero z kartami T2 (po wpisie kart zdjąć stąd) */
+  /* 04.11.2026 (olympic r4): rysunek po kartach T2 */
   'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
   'Snatch Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
-  /* 10.11.2026 (koordynator 1.1, dip r3 W5): łokieć przed barkiem przy limicie shSag −53° — powrót w P4-DIP-1 (docs/21) */
+  /* 10.11.2026 (dip r3 W5, limit shSag): P4-DIP-1 */
   'Triceps Dips (ławka)': 'dip r3 W5: łokieć przed tułowiem, przedramię w tułowiu; powrót P4-DIP-1',
 };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
-/** Rodzina v2 z aktualnym wpisem recenzji ruchu (docs/research/figury-recenzja.json, sekcja v2; bramka 4, fail-closed): bez wpisu albo po zmianie rigu/póz od recenzji rodzina nie jest rysowana — lista w lib/figures/data.json (scripts/zrodla-runtime.mjs). */
+/** Rodzina v2 z aktualną recenzją ruchu (figury-recenzja.json v2; bramka 4, fail-closed) — lista w lib/figures/data.json (zrodla-runtime.mjs). */
 export const familyReviewed = (family: string): boolean => figV2Shown().includes(family);
 /** Figura pokazywana w aplikacji: jak figureSpec, bez wstrzymanych (V2_WSTRZYMANE) i tylko z rodziny z aktualną recenzją ruchu (bramka 4). */
 export function shownFigureSpec(key: string): FigureSpec | null {
@@ -66,7 +66,7 @@ export function shownFigureSpec(key: string): FigureSpec | null {
 const figV1Replaced = (): readonly string[] => (require('../data.json') as { replaced?: string[] }).replaced ?? [];
 export const figureWithheld = (key: string): boolean => figureSpec(key) !== null && shownFigureSpec(key) === null && figV1Replaced().includes(key);
 
-/* Podręczna pamięć klatek: w jednym kroku animacji ta sama klatka jest potrzebna kilka razy (kształty, linie odniesienia, styki, znaczki, oba widoki) — liczymy ją raz. Klatki są niezmienne. */
+/* Pamięć klatek: ta sama klatka potrzebna kilka razy w kroku animacji; klatki są niezmienne. */
 const FRAME_CACHE = new Map<string, Frame>(); const FRAME_CACHE_MAX = 48;
 /** Klatka figury w pozycji u (0 = wyjściowa, 1 = skrajna). */
 export function frameAt(spec: FigureSpec, u: number, error?: FigError): Frame {
