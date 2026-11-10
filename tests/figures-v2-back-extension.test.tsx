@@ -102,7 +102,7 @@ describe('back_extension: prezentacja (fazy, staw)', () => {
     const f = (k: string) => phasesFor(figureSpec(k)!).map(p => [p.name, p.ms]);
     expect(f('Back Extension')).toEqual([['Opuszczanie', 2000], ['Pauza', 500], ['Unoszenie', 1000], ['Pauza', 500]]);
     for (const k of ['Reverse Hyperextension', 'Lower Back Curl']) expect([k, f(k)]).toEqual([k, [['Unoszenie', 1000], ['Pauza', 500], ['Opuszczanie', 2000], ['Pauza', 500]]]);
-    expect(DATA_UI.back_extension.exceptions).toEqual({ 'Back Extension': { names: { first: 'Opuszczanie', second: 'Unoszenie' }, lowerFirst: true } });
+    expect(DATA_UI.back_extension.exceptions).toEqual({ 'Back Extension': { names: { first: 'Opuszczanie', second: 'Unoszenie' }, lowerFirst: true }, 'Lower Back Curl': { hideAngle: true } }); /* r1-W1 10.11.2026: linia kąta Lower Back Curl ukryta (tests/figures-v2-back-extension-kat.test.ts) */
   });
   test('kierunek u zgodny z fazą: Back Extension u 0 = góra (biodro mniejsze), reverse hyper u 0 = nogi w dół (biodro większe)', () => {
     expect(measuredAngle(figureSpec('Back Extension')!, 0).deg).toBeLessThan(measuredAngle(figureSpec('Back Extension')!, 1).deg);

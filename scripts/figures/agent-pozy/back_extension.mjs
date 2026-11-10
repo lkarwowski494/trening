@@ -18,7 +18,7 @@ import { ramka as ramkaPodloga, chwyt as chwytPodloga } from './core_floor.mjs';
 /** Chwyty rąk zwisających do przodu (poza@2 obrotTulowia 180°: prawa strona osoby w −z): ręce opadają ku podłodze, nie niżej niż 6 cm. */
 const rekaZwis = (Sx, delta) => (sg) => ({ g: [Sx[0] + 6 * Math.cos(delta * R), Math.max(6, Sx[1] - 42), -sg * 8], pole: [0.2, -1, -sg * 0.5] });
 
-/** Rzymska ławka (10.11.2026, partia 4, K7): miednica i uda na podpórce ≤ 1 cm (offN 11,5 → 6,6: było 4,5 cm nad podpórką), tułów na dole wnika ≤ 1 cm (dolDeg −42 → −38: było 1,1 cm); reverse hyper: miednica [21; 8,6] zamiast [19; 9,8] (udo wnikało w krawędź podpórki o 2,7 cm). Test: tests/figures-v2-back-extension-podpora.test.ts.
+/** Rzymska ławka (10.11.2026, partia 4, K7): miednica i uda na podpórce ≤ 1 cm (offN 11,5 → 6,6: było 4,5 cm nad podpórką), tułów na dole wnika ≤ 1 cm (dolDeg −42 → −38: było 1,1 cm); reverse hyper: miednica [21; 8,6] zamiast [19; 9,8] (udo wnikało w krawędź podpórki o 2,7 cm). Test: tests/figures-v2-back-extension.test.tsx.
  *  Podpórka bioder (środek [xp, top], kąt kat), nogi proste opadają pod kątem β, wałki za kostkami. */
 export function rzymska(cw, o = {}) {
   const { kat = 45, top = 75, xp = 0, beta = 40, dolDeg = -38, offN = 6.6, offD = -8 } = o; const th_ = kat * R; const n = [Math.sin(th_), Math.cos(th_)];
