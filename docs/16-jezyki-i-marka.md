@@ -275,40 +275,40 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 <!-- gen:krytyczne -->
 | kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd treści krytycznej (Claude, decyzja 21.10.2026) |
 |---|---|---|---|---|---|
-| en | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| cs | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sk | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hu | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| ro | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| bg | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hr | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sl | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sr | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lt | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lv | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| et | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| uk | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es-419 | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| pt | tak | tak | 811/811 | tak (05.10.2026) | tak (28.10.2026, API) |
-| pt-BR | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| de | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fr | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| it | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nl | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| sv | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| da | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nb | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fi | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| tr | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| el | tak | tak | 811/811 | tak (07.10.2026) | tak (28.10.2026, API) |
-| id | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| ms | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| vi | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| ru | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| ja | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| ko | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
-| zh-Hant | tak | tak | 811/811 | brak zapisu | tak (28.10.2026, API) |
+| en | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| cs | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sk | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hu | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| ro | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| bg | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hr | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sl | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sr | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lt | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lv | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| et | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| uk | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es-419 | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| pt | tak | tak | 819/819 | tak (05.10.2026) | tak (28.10.2026, API) |
+| pt-BR | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| de | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fr | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| it | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nl | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| sv | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| da | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nb | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fi | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| tr | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| el | tak | tak | 819/819 | tak (07.10.2026) | tak (28.10.2026, API) |
+| id | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| ms | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| vi | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| ru | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| ja | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| ko | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
+| zh-Hant | tak | tak | 819/819 | brak zapisu | tak (28.10.2026, API) |
 <!-- /gen:krytyczne -->
 
 **Stan przeglądu (28.10.2026, M1-audytor-generalny-006):**
