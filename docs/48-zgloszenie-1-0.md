@@ -4,6 +4,7 @@ Szkic przygotowany na polecenie właściciela (25.10.2026, plan na noc): po zako
 ma zostać tylko uzupełnienie i kliknięcia właściciela. **Niczego nie wysłano do Apple**, nie zmieniono plików w `store/` ani testów — poniższe teksty to propozycje do decyzji.
 Dokument nie powtarza kwot ani zasad modelu płatności: tylko `docs/monetyzacja.md`. Poprzednie plany: `docs/41` (droga do sklepu), `docs/42` (plan wydania), `docs/45-formalnosci-asc.md`, `docs/45-widocznosc-w-sklepie.md`;
 ten plik je porządkuje na dzień zgłoszenia i uzupełnia o pozycje, których tam nie było (patrz „Nowe względem docs/41” niżej).
+Dla wersji 1.1 zob. `docs/49-wydanie-1-1.md` (lista kroków W-01…W-35, KO-031, 10.11.2026).
 
 Wszystkie adresy Apple w tym dokumencie zostały **przeczytane 25.10.2026** (zasada L-028: krok dla właściciela ma źródło sprawdzone u źródła, nie z pamięci).
 Gdzie dokumentacja Apple czegoś nie mówi, jest to napisane wprost i oznaczone **[OTWARTE]**.
