@@ -19,6 +19,8 @@ const LOAD: Record<string, () => PoseFile> = {
   shrug: () => require('./poses/shrug.json'),
   hip_abd_add: () => require('./poses/hip_abd_add.json'),
   leg_machine: () => require('./poses/leg_machine.json'),
+  calf_raise: () => require('./poses/calf_raise.json'),
+  kb_ballistic: () => require('./poses/kb_ballistic.json'),
   hip_bridge: () => require('./poses/hip_bridge.json'),
   cable_row: () => require('./poses/cable_row.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
@@ -27,6 +29,9 @@ const LOAD: Record<string, () => PoseFile> = {
   core_hang: () => require('./poses/core_hang.json'),
   kneeling_hinge: () => require('./poses/kneeling_hinge.json'),
   rotator_cuff: () => require('./poses/rotator_cuff.json'),
+  row: () => require('./poses/row.json'),
+  chest_fly: () => require('./poses/chest_fly.json'),
+  overhead_press: () => require('./poses/overhead_press.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -95,6 +100,17 @@ export const DATA_UI: Record<string, DataUi> = {
    * suwnica (Leg Press, Single Leg Press) — u = 0 nogi zgięte, u = 1 platforma wypchnięta: wypychanie 1 s, opuszczanie 2 s. Staw: kolano. */
   leg_machine: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
     exceptions: { 'Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Single Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false } } },
+  /* row (09.11.2026, partia 1): u = 0 ręce w zwisie (łokcie prawie proste), u = 1 łokcie za tułowiem: przyciąganie ciężaru 1 s, opuszczanie 2 s; mierzony staw — łokieć */
+  row: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
+  /* overhead_press (09.11.2026, partia 1): u = 0 dłonie przy barkach (landmine: gryf przy klatce), u = 1 ręce wyprostowane nad głową / przed sobą: wypychanie 1 s, opuszczanie 2 s; mierzony staw — łokieć.
+   * Pike Push Up jest odwrócony (u = 0 ręce proste, biodra w górze; u = 1 łokcie zgięte, głowa przy podłodze), więc wyjątek: najpierw opuszczanie (2 s), potem wypychanie. */
+  /* 10.11.2026 (partia 1): ćwiczenia bez ruchu miednicy i kolan między u = 0 i u = 1 (ruch tylko w rękach; push press wraca do stania) deklarują kierunek wprost — strażnik tests/figures-v2-kierunek-u.test.ts
+   * (rodzina ma ćwiczenia mierzalne: Pike Push Up, Linear Jammer). Wartość = wpis rodziny, więc rysunek i fazy bez zmian. */
+  overhead_press: { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'],
+    exceptions: { 'Pike Push Up': { names: { first: 'Opuszczanie', second: 'Wypychanie' }, lowerFirst: true },
+      ...Object.fromEntries(['Overhead Press (sztanga)', 'Overhead Press (hantle)', 'Band Shoulder Press', 'Double Kettlebell Press', 'Kettlebell Press', 'Single Arm Overhead Press (hantel)',
+        'See-Saw Press (Alternating Side Press)', 'Arnold Press', 'Kettlebell Arnold Press', 'Seated Shoulder Press (hantle)', 'Kettlebell Seated Press', 'Seated Barbell Military Press',
+        'Seated Cable Shoulder Press', 'Wyciskanie nad głowę (linki)', 'Standing Barbell Press Behind Neck', 'Push Press', 'Push Press - Behind the Neck', 'Landmine Press'].map(k => [k, { lowerFirst: false }])) } },
   /* hip_bridge (09.11.2026): u = 0 miednica nisko (podłoga, ławka), u = 1 pełny wyprost bioder; unoszenie 1 s, opuszczanie 2 s; mierzone biodro */
   hip_bridge: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
@@ -111,6 +127,17 @@ export const DATA_UI: Record<string, DataUi> = {
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
   /* core_hang (10.11.2026): u = 0 zwis, u = 1 nogi (kolana) uniesione; unoszenie 1 s, opuszczanie 2 s (tempo ilustracyjne); mierzone biodro (zgięcie w biodrze) */
   core_hang: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'] },
+  /* chest_fly (09.11.2026): rozpiętki (u = 0 ramiona szeroko, u = 1 dłonie nad klatką / przed klatką) i pullover (u = 0 ciężar za głową, u = 1 nad klatką). Mierzone ramię jak w delt_raise: odsunięcie w bok (shAbd, rozpiętki) albo zgięcie
+   * w płaszczyźnie strzałkowej (shElev, pullover i Crucifix — pierwszy staw przy utrzymaniu); łokieć w rozpiętce stoi (zmiana ≤ 12°), więc nie jest mierzonym stawem (nakładka „limb” wymaga, by staw był pokazany: overlay.ts). */
+  chest_fly: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'] },
+  /* calf_raise (09.11.2026): wspięcie na palce — u = 0 pięty na dole, u = 1 pięty w górze (1 s), opuszczanie 2 s. Mierzonym stawem byłaby kostka, ale MeasuredJoint jej nie ma (silnik, bez zmian w tej partii — zgłoszone w raporcie);
+   * kandydat 'knee' (ruch kolana w wspięciu < 15°) powoduje, że linia „Kąt na rysunku” się nie pokazuje (MIN_MEASURED_ROM) — zamiast liczby, która nie jest ruchem wspięcia. */
+  calf_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'] },
+  /* kb_ballistic (09.11.2026): swing, zarzut i wysoki ciąg to wahadło: u = 0 dół (zawias, zawis między nogami) → u = 1 góra (swing: ręce przed sobą; zarzut: rack), powrót tą samą drogą.
+   * Rwanie, wyciskanie z nóg i podrzut (9 ćwiczeń, miednica nie monotoniczna — wyrzut i ugięcie pod ciężarem) mają petla = jednokierunkowa (całe powtórzenie w jednym przebiegu, jak w olympic): jedna faza „Podnoszenie” bez opuszczania — wyjątki poniżej,
+   * wpis rodziny pozostaje jeden. Mierzone biodro (swing, zarzut, rwanie) albo kolano (dip w podrzucie) — pokazany jest staw, który rusza się najbardziej. */
+  kb_ballistic: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'],
+    exceptions: Object.fromEntries(['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) },
   /* cable_row: u = 0 ręce wyprostowane (start), u = 1 uchwyt przy tułowiu albo twarzy; ściąganie 1 s, powrót 2 s (tempo ilustracyjne). Mierzony łokieć (zakres_lokcia). */
   cable_row: { names: { first: 'Ściąganie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },
 };
@@ -139,6 +166,8 @@ export const lowerFirstOf = (ui: DataUi, key: string): boolean => (ui.exceptions
 /** Ćwiczenia z danymi, które są izometrią (zwis, wytrzymanie): jedna pozycja statyczna bez animacji. Test: pomiar czasu w katalogu (metric „time”). */
 export const ISOMETRIC: ReadonlySet<string> = new Set([
   'Dead Hang',
+  /* utrzymanie ramion w bok na czas (weight_time, chest_fly r1 W2, 09.11.2026): jedna pozycja bez faz Unoszenie/Opuszczanie */
+  'Crucifix',
   /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow jest ruchem) */
   'Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Gastrocnemius Calf Stretch', 'Wall Calf Stretch', 'Standing Soleus And Achilles Stretch', 'Standing Lateral Stretch',
   'The Straddle', 'Seated Calf Stretch', 'Seated Floor Hamstring Stretch', 'Butterfly Stretch', "Child's Pose", 'Kneeling Hip Flexor Stretch', 'Supine Hamstring Stretch', 'Side-Lying Quad Stretch',

@@ -22,6 +22,8 @@ import { PULLDOWN_TECHNIQUE } from './overlay/pulldown';
 import { SHRUG_TECHNIQUE } from './overlay/shrug';
 import { HIP_ABD_ADD_TECHNIQUE } from './overlay/hip_abd_add';
 import { LEG_MACHINE_TECHNIQUE } from './overlay/leg_machine';
+import { CALF_RAISE_TECHNIQUE } from './overlay/calf_raise';
+import { KB_BALLISTIC_TECHNIQUE } from './overlay/kb_ballistic';
 import { HIP_BRIDGE_TECHNIQUE } from './overlay/hip_bridge';
 import { CABLE_ROW_TECHNIQUE } from './overlay/cable_row';
 import { DELT_RAISE_TECHNIQUE } from './overlay/delt_raise';
@@ -29,6 +31,9 @@ import { FOREARM_TECHNIQUE } from './overlay/forearm';
 import { CARRY_TECHNIQUE } from './overlay/carry';
 import { CORE_HANG_TECHNIQUE } from './overlay/core_hang';
 import { ROTATOR_CUFF_TECHNIQUE } from './overlay/rotator_cuff';
+import { ROW_TECHNIQUE } from './overlay/row';
+import { CHEST_FLY_TECHNIQUE } from './overlay/chest_fly';
+import { OHP_TECHNIQUE } from './overlay/overhead_press';
 import { solid, OVERLAY_LINE_W } from './overlay/common';
 import REGULY from './reguly-cwiczen.json';
 
@@ -58,7 +63,7 @@ export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down'
 export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint; /** linia odniesienia (kind „ref”, E3) */ ref?: RefSpec; /** element tylko dla tych ćwiczeń (klucz katalogu), gdy reguła ma pewność „ustalone” tylko dla części odmian rodziny */ exercises?: string[] };
 
 /** Elementy nakładki wg rodziny (dane: overlay/<rodzina>.ts). */
-export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, squat: SQUAT_TECHNIQUE, hinge: HINGE_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE, olympic: OLYMPIC_TECHNIQUE, triceps: TRICEPS_TECHNIQUE, hip_bridge: HIP_BRIDGE_TECHNIQUE, cable_row: CABLE_ROW_TECHNIQUE, delt_raise: DELT_RAISE_TECHNIQUE, pulldown: PULLDOWN_TECHNIQUE, shrug: SHRUG_TECHNIQUE, hip_abd_add: HIP_ABD_ADD_TECHNIQUE, leg_machine: LEG_MACHINE_TECHNIQUE, forearm: FOREARM_TECHNIQUE, carry: CARRY_TECHNIQUE, core_hang: CORE_HANG_TECHNIQUE, rotator_cuff: ROTATOR_CUFF_TECHNIQUE };
+export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, squat: SQUAT_TECHNIQUE, hinge: HINGE_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE, olympic: OLYMPIC_TECHNIQUE, triceps: TRICEPS_TECHNIQUE, hip_bridge: HIP_BRIDGE_TECHNIQUE, cable_row: CABLE_ROW_TECHNIQUE, delt_raise: DELT_RAISE_TECHNIQUE, pulldown: PULLDOWN_TECHNIQUE, shrug: SHRUG_TECHNIQUE, hip_abd_add: HIP_ABD_ADD_TECHNIQUE, leg_machine: LEG_MACHINE_TECHNIQUE, calf_raise: CALF_RAISE_TECHNIQUE, kb_ballistic: KB_BALLISTIC_TECHNIQUE, row: ROW_TECHNIQUE, chest_fly: CHEST_FLY_TECHNIQUE, overhead_press: OHP_TECHNIQUE, forearm: FOREARM_TECHNIQUE, carry: CARRY_TECHNIQUE, core_hang: CORE_HANG_TECHNIQUE, rotator_cuff: ROTATOR_CUFF_TECHNIQUE };
 export const techniqueDef = (id: string): TechniqueDef | undefined => Object.values(TECHNIQUE).flat().find(d => d.id === id);
 /** Elementy rodziny, które wolno pokazać przy zestawie wskazówek ćwiczenia (id wskazówek karty). */
 /**

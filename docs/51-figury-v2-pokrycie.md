@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 19, do zrobienia: 24); ćwiczeń z gotową figurą: **290** (40,9%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 24, do zrobienia: 19); ćwiczeń z gotową figurą: **368** (51,9%).
 
 ## Rodziny
 
@@ -14,23 +14,23 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `hinge` | gotowa | 32 | side, front | — | Zawias biodrowy (martwy ciąg, RDL, dzień dobry) |
 | `pushup_plank` | do zrobienia | 30 | side, front | 4 | Pompki, deski, rollouty, ruchy w podporze — rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy |
 | `dip` | do zrobienia | 5 | side, front | 2 | Dipy (poręcze, ławka, maszyna, kółka) |
-| `overhead_press` | do zrobienia | 23 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
-| `row` | do zrobienia | 13 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
+| `overhead_press` | gotowa | 23 | side, front | — | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
+| `row` | gotowa | 13 | side, top | — | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
 | `cable_row` | gotowa | 10 | side, front | — | Wiosłowanie na linkach i maszynie, face pull |
 | `pull_up` | gotowa | 13 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
 | `pulldown` | gotowa | 8 | side, front | — | Ściąganie drążka (wyciąg górny) |
 | `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
 | `leg_machine` | gotowa | 8 | side, front | — | Suwnice i maszyny nóg (leg press, hack, wahadło) |
 | `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
-| `calf_raise` | do zrobienia | 13 | side | 2 | Wspięcia na palce |
+| `calf_raise` | gotowa | 13 | side | — | Wspięcia na palce |
 | `hip_bridge` | gotowa | 11 | side | — | Hip thrust i mostki |
-| `kb_ballistic` | do zrobienia | 17 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
+| `kb_ballistic` | gotowa | 17 | side | — | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
 | `olympic` | gotowa | 25 | side | — | Podrzut, rwanie i ich odmiany |
 | `back_extension` | do zrobienia | 4 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
 | `curl` | gotowa | 36 | side, front | — | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
 | `triceps` | gotowa | 32 | side | — | Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył) |
 | `delt_raise` | gotowa | 38 | front, side | — | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
-| `chest_fly` | do zrobienia | 20 | top, side | 3 | Rozpiętki, pec deck, przenoszenie za głowę |
+| `chest_fly` | gotowa | 20 | top, side | — | Rozpiętki, pec deck, przenoszenie za głowę |
 | `shrug` | gotowa | 8 | front, side | — | Szrugsy |
 | `rotator_cuff` | gotowa | 8 | front, side | — | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
 | `core_floor` | do zrobienia | 44 | side | 4 | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
@@ -53,18 +53,23 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | gotowa | 2 | side | — | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 24 rodzin, 391 ćwiczeń, ok. **82 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 19 rodzin, 305 ćwiczeń, ok. **66 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
+- `overhead_press` (z figurą 21 z 23): Bradford Press; Handstand Push Up
+- `row` (z figurą 12 z 13): Meadows Row
 - `cable_row` (z figurą 9 z 10): Sled Row
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 - `leg_machine` (z figurą 6 z 8): Calf Press (leg press); Smith Machine Leg Press
+- `calf_raise` (z figurą 12 z 13): Smith Machine Reverse Calf Raise
 - `hip_bridge` (z figurą 10 z 11): London Bridges
+- `kb_ballistic` (z figurą 16 z 17): Kettlebell Pirate Ships
 - `olympic` (z figurą 24 z 25): Rack Delivery
 - `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
 - `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
+- `chest_fly` (z figurą 17 z 20): Around The Worlds; Machine Pullover; Svend Press
 - `rotator_cuff` (z figurą 7 z 8): Cuban Press
 - `core_hang` (z figurą 3 z 4): L-Sit
 - `hip_abd_add` (z figurą 4 z 8): Band Hip Adduction; Hip Flexion with Band; Lateral Band Walk; Monster Walk
@@ -93,11 +98,11 @@ Ab Wheel; Barbell Rollout from Bench; Clock Push-Up; Close-Grip Push-Up; Copenha
 
 Chest Dip; Dip Machine; Ring Dips; Triceps Dip; Triceps Dips (ławka)
 
-### overhead_press (23) — do zrobienia
+### overhead_press (23) — gotowa
 
 Arnold Press; Band Shoulder Press; Bradford Press; Double Kettlebell Press; Handstand Push Up; Kettlebell Arnold Press; Kettlebell Press; Kettlebell Seated Press; Landmine Linear Jammer; Landmine Press; Overhead Press (hantle); Overhead Press (sztanga); Pike Push Up; Push Press; Push Press - Behind the Neck; Seated Barbell Military Press; Seated Cable Shoulder Press; Seated Shoulder Press (hantle); See-Saw Press (Alternating Side Press); Single Arm Overhead Press (hantel); Single-Arm Linear Jammer; Standing Barbell Press Behind Neck; Wyciskanie nad głowę (linki)
 
-### row (13) — do zrobienia
+### row (13) — gotowa
 
 Barbell Rear Delt Row; Bent Over Row (hantle); Bent Over Row (linki); Bent Over Row (sztanga); Chest Supported Row; Lying T-Bar Row; Meadows Row; One Arm Row (hantle); Pendlay Row; Reverse Grip Bent Over Row; Seal Row (sztanga); Smith Machine Bent Over Row; T-Bar Row
 
@@ -125,7 +130,7 @@ Belt Squat Machine; Calf Press (leg press); Hack Squat; Leg Press; Lying Machine
 
 Glute Ham Raise; Leg Curl; Leg Curl (hantel); Leg Extension; Lying Leg Curl; Nordic Curl; Reverse Nordic; Seated Band Hamstring Curl; Single-Leg Leg Extension; Sissy Squat; Slider Hamstring Curl; Stability Ball Hamstring Curl; Standing Cable Leg Curl; Standing Leg Curl
 
-### calf_raise (13) — do zrobienia
+### calf_raise (13) — gotowa
 
 Band Calf Raise; Barbell Seated Calf Raise; Calf Raise (linki); Calf Raise (sztanga); Donkey Calf Raise; Dumbbell Seated One-Leg Calf Raise; Łydki na stopniu; Seated Calf Raise; Seated Calf Raise (hantle); Single Leg Calf Raise; Smith Machine Calf Raise; Smith Machine Reverse Calf Raise; Standing Calf Raise
 
@@ -133,7 +138,7 @@ Band Calf Raise; Barbell Seated Calf Raise; Calf Raise (linki); Calf Raise (szta
 
 Frog Pump; Glute Bridge; Glute Bridge (sztanga); Hip Thrust (hantel); Hip Thrust (sztanga); London Bridges; Machine Hip Thrust; Single Leg Glute Bridge; Single Leg Hip Thrust; Smith Machine Hip Thrust; Stability Ball Hip Bridge
 
-### kb_ballistic (17) — do zrobienia
+### kb_ballistic (17) — gotowa
 
 Bottoms-Up Clean From The Hang Position; Double Kettlebell Clean; Double Kettlebell Jerk; Double Kettlebell Push Press; Double Kettlebell Snatch; Dumbbell Clean; Kettlebell Clean; Kettlebell Pirate Ships; Kettlebell Snatch; Kettlebell Sumo High Pull; Kettlebell Swing; One-Arm Kettlebell Clean and Jerk; One-Arm Kettlebell Jerk; One-Arm Kettlebell Push Press; One-Arm Kettlebell Split Jerk; One-Arm Kettlebell Swings; Snatch (hantel)
 
@@ -157,7 +162,7 @@ Band Overhead Triceps Extension; Band Skull Crusher; Body-Up; Bodyweight Triceps
 
 Alternating Deltoid Raise; Band Lateral Raise; Band Upright Row; Barbell Front Raise to Overhead; Barbell Incline Shoulder Raise; Cable Front Raise; Cable Lateral Raise; Cable Reverse Fly; Cable Seated Lateral Raise; Cable Y Raise; Car Drivers; Dumbbell Front Raise to Overhead; Dumbbell Incline Shoulder Raise; Dumbbell Lying One-Arm Rear Lateral Raise; Dumbbell One-Arm Upright Row; Dumbbell Scaption; Front Incline Dumbbell Raise; Front Plate Raise; Front Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; Lateral Raise (hantle); Machine Lateral Raise; One-Arm Cable Rear Lateral Raise; One-Arm Incline Lateral Raise; One-Arm Lateral Raise (hantel); Reverse Fly (hantle); Reverse Pec Deck; Single Dumbbell Front Raise; Sled Reverse Flye; Smith Incline Shoulder Raise; Smith Machine One-Arm Upright Row; Smith Machine Upright Row; Straight Raises on Incline Bench; Upright Row (hantle); Upright Row (linki); Upright Row (sztanga); Y Raise (hantle)
 
-### chest_fly (20) — do zrobienia
+### chest_fly (20) — gotowa
 
 Around The Worlds; Band Chest Fly; Bent-Arm Barbell Pullover; Cable Fly; Cable Fly (high to low); Cable Fly (low to high); Chest Fly (hantle); Crucifix; Decline Dumbbell Fly; Flat Bench Cable Fly; Front Raise And Pullover; Incline Cable Fly; Incline Chest Fly (hantle); Machine Pullover; One-Arm Flat Bench Dumbbell Fly; Pec Deck; Pullover (hantel); Single Arm Cable Fly; Svend Press; Wide-Grip Decline Barbell Pullover
 

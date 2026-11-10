@@ -1,0 +1,148 @@
+{
+ "v2": {
+  "overhead_press": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r2 09.11.2026: do poprawy (W1-r2, W2-r2); sha pominięte (werdykt do poprawy; --skroty w kopii ze statusem ready dało 1034a881059b)",
+   "kto": "audytor (recenzja niezależna, r2) — czysta kopia git archive 3044df5 w /home/user/rev-p1/overhead_press-r2",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "liczba": 23,
+   "slad": "arkusz-slad: 21 ćw. × side+front, motyw jasny (42 PNG) + ciemny dla 6 ćw. (12 PNG); arkusz-nakladka --family (44 PNG); kadry u 0/0,5/1 w pełnej rozdzielczości, OHP sztanga side także u 0,05–0,30. Tor: wyciskanie() — wybrzuszenie w przód 12,5–12,6 cm (kettlebell 10,3; Push Press 12,2 i 3 zawr.), szczyt u≈0,4 (chwyt 22,7 cm przed barkami); zza karku prosto (2,5 cm; Push Press BTN 4,9 / 2 zawr. w ugięciu); Arnold 9,6 cm (cecha); landmine łuk wokół zaczepu 1,3–1,7 cm; front 0–2,4 cm.",
+   "uwagi": "W1-r2 (WYSOKIE): tor odjeżdża od twarzy w środku ruchu — przyczyna xMinPodLokciem przy łokciach wprost do przodu; łuk 12,5 cm to błąd ruchu, nie omijanie twarzy (prosta start–szczyt mija głowę o ok. 0,5 cm). W2-r2 (WYSOKIE): rack kettlebella wysoko, łokieć 23 cm przed barkami (bez zmiany od r1). N1: test K15 pada przy ready (Landmine Press, tempo mis.jerk). N2: negatyw Ś2 na stałej. N3: Push Press BTN ugięcie. Zamknięte: Ś1, Ś2, W1 w części dołu ruchu (sztanga, hantle, linki, guma).",
+   "cwiczenia": {
+    "Overhead Press (sztanga)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”; dół poprawny (13,3/9 cm, sztanga–tułów 5,0 cm)"
+    },
+    "Overhead Press (hantle)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "Seated Shoulder Press (hantle)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "Push Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę” (12,2 cm, 3 zawr.)"
+    },
+    "Wyciskanie nad głowę (linki)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "Single Arm Overhead Press (hantel)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "Seated Barbell Military Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "See-Saw Press (Alternating Side Press)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "Band Shoulder Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”"
+    },
+    "Seated Cable Shoulder Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę”; Ś1 r1 zamknięte"
+    },
+    "Kettlebell Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę” (10,3 cm); W2-r2: rack kettlebella — łokieć 23,2 cm przed barkami, zgięcie barku 52°, rączka 14 cm nad barkami (karta: „łokieć blisko żeber”)"
+    },
+    "Kettlebell Seated Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę” (10,3 cm); W2-r2: rack kettlebella — łokieć 23,2 cm przed barkami, zgięcie barku 52°, rączka 14 cm nad barkami (karta: „łokieć blisko żeber”)"
+    },
+    "Double Kettlebell Press": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1-r2: w drodze w górę chwyt odjeżdża od twarzy (x względem barków 13,3 → 22,7 → 6,4 cm; gryf–głowa do 15,4 cm), tor side 12,5 cm — karty „prosto w górę” (10,3 cm); W2-r2: rack kettlebella — łokieć 23,2 cm przed barkami, zgięcie barku 52°, rączka 14 cm nad barkami (karta: „łokieć blisko żeber”)"
+    },
+    "Arnold Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "bez zmian od r1; łuk 9,6 cm bez wybrzuszenia poza start (start przed twarzą) — cecha ćwiczenia, wyjątek toru z powodem uzasadniony"
+    },
+    "Kettlebell Arnold Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak Arnold Press"
+    },
+    "Standing Barbell Press Behind Neck": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ś2 zamknięte: x chwytu −13,0 → −9,0 cm, tor side 2,5 cm, gryf–głowa ≥ 1,9 cm"
+    },
+    "Push Press - Behind the Neck": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ś2 zamknięte; N3: w ugięciu gryf 1,6 cm w przód, tor 4,9 cm / 2 zawr. — wyjątek z powodem albo ugięcie pionowo"
+    },
+    "Landmine Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "ślad na końcu dźwigni po 55c9f206, łuk wokół zaczepu 1,7 cm; Ś3 (poprzeczny odcinek gryfu z przodu) bez zmian"
+    },
+    "Landmine Linear Jammer": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak Landmine Press, 1,7 cm"
+    },
+    "Single-Arm Linear Jammer": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak Landmine Press, 1,3 cm"
+    },
+    "Pike Push Up": {
+     "werdykt": "wyswietlana",
+     "uwagi": "dane bez zmian od r1"
+    }
+   }
+  }
+ },
+ "zestawy": {
+  "Standing Barbell Press Behind Neck": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r2 09.11.2026)",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r2)",
+   "sha": "42342e23390a",
+   "uwagi": "ohp.tall (gryf prosto w górę: x −13,0 → −9,0 cm), ohp.fullExt (łokieć 15° na górze), ohp.mis.lock (cecha tempa) — zgodne z ruchem po Ś2."
+  },
+  "Seated Cable Shoulder Press": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r2 09.11.2026)",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r2)",
+   "sha": "74600f4a2d25",
+   "uwagi": "ohp.move (dół przy barkach: 13,3/9 cm), ohp.fullExt (łokieć 11°), ohp.mis.lock — zgodne; ohp.seat usunięte (Ś1). Rysunek ćwiczenia do poprawy (W1-r2) — zdania zestawu bez zmian."
+  },
+  "Push Press - Behind the Neck": {
+   "rodzina": "pushPress",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; zestaw ogólny zgodny z rysunkiem v2, r2 09.11.2026 — potwierdzenie po Ś2)",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r2)",
+   "sha": "4baa1c1dba94",
+   "uwagi": "pp.dip (krótkie ugięcie), pp.legs (wybicie z nóg przed wyciśnięciem), ohp.mis.lock — zgodne; tor zza karku prosto po Ś2."
+  }
+ },
+ "karty": {
+  "Seated Shoulder Press (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047; K11 spójność karta–rysunek v2, r2 09.11.2026)",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r2)",
+   "sha": "dd75a3c56ef9",
+   "uwagi": "ohp.seat (oparcie, hantle przy barkach: 13,3/9 cm), ohp.move, ohp.elbowsUnder (łokieć–chwyt ≤ 8 cm w całym ruchu), ohp.fullExt — zgodne z rysunkiem; rysunek ćwiczenia do poprawy W1-r2 (tor w środku ruchu), czemu żadne zdanie karty nie przeczy."
+  }
+ }
+}

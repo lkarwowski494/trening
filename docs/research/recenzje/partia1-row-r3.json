@@ -1,0 +1,175 @@
+{
+ "v2": {
+  "row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie r3 (bramka 4, L-047, L-050): W1-r2 (stopy CSR i Lying T-Bar Row) zamknięte; bez KRYTYCZNYCH i WYSOKICH; pozostaje N1-r2 (NISKIE, backlog)",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "sha": "94a4a8448fe9",
+   "liczba": 13,
+   "slad": "100 arkuszy własnych w kopii r3: arkusz-slad 24 (12 ćw. × side, top, jasny), ciemny 6 (CSR, Lying T-Bar, Seal Row × side, top), arkusz-nakladka 40 (--family row, z pozami błędu); kontrolnie te same 64 arkusze (slad + nakladka) wygenerowane w kopii r2 f1ed0f2d — cmp: 56 bajtowo równe, różne tylko 8 (CSR i Lying T-Bar Row, side i top, slad i nakladka). Powiększenia stóp (jasny i ciemny) i kadru u = 0. Ślad: chwyt R (hantle CSR), środek dźwigni (Lying T-Bar), tory bez skoków; stopy na palcach stałe w całym ruchu, palce przy podłodze, kolana lekko ugięte ku podłodze; linia pleców wzdłuż tułowia w side, brak elementu w top.",
+   "uwagi": "N1-r2 (NISKIE, backlog): One Arm Row łokieć podporowy 47,5°. Meadows Row bez rysunku i bez wpisu w figury-wyjatki.json (K3). Lying T-Bar Row: ślad dźwigni oceniony bez poprawki 55c9f206. K10: v1 → zastapiona: Bent Over Row (sztanga), Bent Over Row (hantle), Pendlay Row, One Arm Row (hantle), T-Bar Row, Chest Supported Row. Test zgodności wstecznej (figury-v2-zlote.json) czerwony w 0b390518 dla CSR i Lying T-Bar Row — odciski do przeliczenia (uwaga T1 w raporcie).",
+   "cwiczenia": {
+    "Bent Over Row (sztanga)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ś1 r1 zamknięte: poza błędu mis.roundBack w pliku (≡ generuj()), zaokrąglenie i linia pleców widoczne. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Bent Over Row (hantle)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ś1 r1 zamknięte; oś hantla wzdłuż ruchu, ślad w chwycie R. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Bent Over Row (linki)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bez zmian względem r1 (arkusze bajtowo równe). | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Reverse Grip Bent Over Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bez zmian względem r1. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Barbell Rear Delt Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bez zmian względem r1. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Pendlay Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bez zmian względem r1. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Smith Machine Bent Over Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Bez zmian względem r1. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "One Arm Row (hantle)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "N1-r2 (NISKIE): dłoń podporowa z = −9 w obrysie ławki, ale łokieć podporowy nadal 47,5° (zalecenie ≤ 20°) — backlog. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "T-Bar Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ś1 r1 zamknięte: poza błędu mis.roundBack. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Seal Row (sztanga)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "W2 r1 zamknięte (linia pleców pozioma wzdłuż tułowia, łokieć mija ją przy końcu ruchu zgodnie z miarą reguły); N2 zamknięte. | r3: poza bez zmian (row.json), arkusze ślad i nakładka bajtowo równe r2."
+    },
+    "Lying T-Bar Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "W1-r2 zamknięte: nogi i stopy jak Chest Supported Row (te same liczby); dźwignia i ręce bez zmian. Ślad dźwigni oceniony w stanie bez poprawki 55c9f206 (ta przyjdzie osobno)."
+    },
+    "Chest Supported Row": {
+     "werdykt": "wyswietlana",
+     "uwagi": "W1-r2 zamknięte: stopy na palcach (palce 0,3 cm nad podłogą, pięta 24,5 cm, zgięcie podeszwowe ok. 25° — kąt goleń–stopa 64,6°), kolana 25,2° zgięte ku podłodze (pięty ku pośladkom), biodro −9,8°, checkFrame puste w u = 0…1; tułów, ręce, linia pleców (W2) bez zmian."
+    }
+   }
+  }
+ },
+ "zestawy": {
+  "Barbell Rear Delt Row": {
+   "rodzina": "rowBent",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "7c6bbc8acd1f",
+   "uwagi": "Rysunek bez zmian od r1; row.hinge, hinge.back zgodne; mis.roundBack animowany. | r3: skrót bez zmian; zdania nie dotyczą nóg ani stóp, górna część ruchu bez zmian."
+  },
+  "Reverse Grip Bent Over Row": {
+   "rodzina": "rowBent",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "9b80c8ad4ad1",
+   "uwagi": "Rysunek bez zmian od r1; zdania zgodne (łokieć 18,4° na dole, reguła ≤ 20°). | r3: skrót bez zmian; zdania nie dotyczą nóg ani stóp, górna część ruchu bez zmian."
+  },
+  "Smith Machine Bent Over Row": {
+   "rodzina": "rowBent",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "9b80c8ad4ad1",
+   "uwagi": "Rysunek bez zmian od r1; tułów 12°, kolana 29°, mis.roundBack animowany. | r3: skrót bez zmian; zdania nie dotyczą nóg ani stóp, górna część ruchu bez zmian."
+  },
+  "Seal Row (sztanga)": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "5ed172b545db",
+   "uwagi": "csr.chest, row.elbowsPast, row.fullStretch zgodne; element linii pleców (W2) teraz zgodny z row.elbowsPast. | r3: skrót bez zmian; zdania nie dotyczą nóg ani stóp, górna część ruchu bez zmian."
+  },
+  "Lying T-Bar Row": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "5ed172b545db",
+   "uwagi": "Zdania (klatka na oparciu, łokcie za linię pleców, ręce proste na dole) zgodne z rysunkiem r2; nie mówią o stopach — W1-r2 zamknięte w r3 (stopy na palcach). | r3: skrót bez zmian; zdania nie dotyczą nóg ani stóp, górna część ruchu bez zmian."
+  }
+ },
+ "karty": {
+  "Bent Over Row (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "60840343dff9",
+   "uwagi": "Nachwyt szerzej niż barki, sztanga do brzucha, plecy proste; błąd z karty (zaokrąglanie pleców) teraz animowany. | r3: skrót bez zmian; karta nie opisuje nóg ani stóp, rysunek górnej części bez zmian."
+  },
+  "Bent Over Row (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "dc20a50e5e65",
+   "uwagi": "Hantle do brzucha, pełny wyprost na dole; błąd z karty teraz animowany. | r3: skrót bez zmian; karta nie opisuje nóg ani stóp, rysunek górnej części bez zmian."
+  },
+  "One Arm Row (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "3d8664a2b089",
+   "uwagi": "Kolano i dłoń tej samej strony na ławce (dłoń w obrysie ławki); treść zgodna — N1-r2 rodziny dotyczy zgięcia ręki podporowej, nie treści. | r3: skrót bez zmian; karta nie opisuje nóg ani stóp, rysunek górnej części bez zmian."
+  },
+  "T-Bar Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "79fb2a8a54e6",
+   "uwagi": "Uchwyty do tułowia, ręce proste na dole; błąd z karty teraz animowany. | r3: skrót bez zmian; karta nie opisuje nóg ani stóp, rysunek górnej części bez zmian."
+  },
+  "Chest Supported Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność; r3 — skrót bez zmian od r1/r2, ponowne porównanie z rysunkiem r3)",
+   "autor": "programista partii 1 (figury/partia-1-row)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r3 rodziny row, figury/partia-1 @ 0b390518 (baza r2 f1ed0f2d), czysta kopia git archive /home/user/rev-p1/row-r3, 09.11.2026; raport partia1-row-r3-audytor-2026-11-09.md",
+   "sha": "e8abcaf3ccea",
+   "uwagi": "Klatka na podporze, łokcie wzdłuż tułowia — zgodne z rysunkiem r2; karta nie opisuje stóp; W1-r2 zamknięte w r3 (stopy na palcach). | r3: skrót bez zmian; karta nie opisuje nóg ani stóp, rysunek górnej części bez zmian."
+  }
+ }
+}

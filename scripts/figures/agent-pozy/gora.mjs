@@ -1,7 +1,7 @@
 // Wspólny zestaw narzędzi do póz górnej części ciała (agent-pozy, rodziny: curl, triceps, delt_raise, shrug, rotator_cuff, forearm, chest_fly, row, cable_row, pulldown, overhead_press,
 // chest_press_machine, cable_press; 26.10.2026). Ramiona liczone z kinematyki prostej (kąt ramienia i przedramienia → łokieć i chwyt), biegun łokcia z FK, nogi stojące / siedzące / leżące z modelu.
 // Wejście: tylko liczby z modelu (BODY, BENCH) i parametry per ćwiczenie — żadnych cudzych obrazów (docs/53, bramka 11). Używają go generatory <rodzina>.mjs.
-import { v2, BODY, R, r1, klatka, barki, bladZTrajektorii, zbuduj, przeciecie } from './model.mjs';
+import { v2, BODY, R, r1, klatka, barki, bladZTrajektorii, zbuduj, przeciecie, kostkaNaPalcach } from './model.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
 
 export const lerp = (a, b, t) => a + (b - a) * t;
@@ -102,6 +102,18 @@ export function lezyPrzodem(kat = 45, { top = 43, dl = 38, zr = 10, kolDx, pole 
   const nog = (s) => ({ k: [kolX, BODY().ankleH, -POL(s) * zr], pod: 0, rot: 0, pole: [-pole[0], -pole[1], pole[2]] }); /* `pole` podawane jak dla stojącego (do przodu i w górę); leżąc przodem przód uda wskazuje w dół i do tyłu → odwrócone, żeby resztkowe zgięcie kolana (do 2 cm przy prawie prostej nodze) szło we właściwą stronę */
   const S = (sd) => bark(m, p, -POL(sd));
   return { m, p, glowa: p, ext: { obrotTulowia: 180 }, nogi: { R: nog('R'), L: nog('L') }, lawka: { rodzaj: 'lawka', x: 0, top, kat, dlugosc: dl, siedzisko: sedzisko }, S };
+}
+
+/** Leżenie przodem na ławce skośnej (row: Chest Supported Row, Lying T-Bar Row; curl: Spider Curl ×2): stopy NA PALCACH, pięty w górze (recenzja r2 row, W1-r2, 09.11.2026 — wspólne `lezyPrzodem` (gora.mjs) daje stopę płasko,
+ * palcami od osoby: zgięcie podeszwowe ok. 119° względem goleni). Funkcja wywoływana jawnie po `lezyPrzodem` (nie zmienia jej wyniku): delt_raise jej nie używa — jego rysunek bez zmian (decyzja koordynatora 09.11.2026: row + Spider Curl razem).
+ * Podbicie STOPA_LEZY_PODBICIE (palce prawie pionowo w dół, ku +x), kostka na wysokości stopy na palcach (`kostkaNaPalcach`), kolana lekko ugięte (STOPA_LEZY_ODSUN). */
+export const STOPA_LEZY_PODBICIE = -75;
+/** Kostka o tyle cm bliżej biodra niż przy prostej nodze: kolana lekko ugięte (ku podłodze), żeby uniesione na palcach stopy nie przeprostowały bioder (limit zakresu −17°). */
+export const STOPA_LEZY_ODSUN = 2;
+export function stopyNaPalcach(L) {
+  const b = BODY(); const yK = kostkaNaPalcach(0, STOPA_LEZY_PODBICIE);
+  for (const s of ['R', 'L']) { const n = L.nogi[s]; const zr = Math.abs(n.k[2]); const dy = L.m[1] - yK; const dz = zr - b.hipHalf;
+    n.k = [r1(L.m[0] + Math.sqrt(Math.max(1, (b.thigh + b.shank - 0.1) ** 2 - dy * dy - dz * dz)) - STOPA_LEZY_ODSUN), yK, n.k[2]]; n.pod = STOPA_LEZY_PODBICIE; }
 }
 
 /** Siedzenie na płaskim siedzisku (ławka płaska / skrzynia) o wysokości siedziska top, miednica w x = mx; nogi w kolanach pod kątem prostym, stopy na podłodze. */

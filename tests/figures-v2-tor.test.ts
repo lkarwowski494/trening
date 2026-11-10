@@ -28,9 +28,9 @@ export function ksztaltToru(pts: [number, number][]): { odchylenie: number; zawr
 const tor = (k: string, v: View) => ksztaltToru(Array.from({ length: 25 }, (_, i) => { const f = frameAt(figureSpec(k)!, i / 24); return f.info.load ?? f.info.trail; }).filter(Boolean).map(p => proj(p!, v) as [number, number]));
 /* Ruch po łuku wokół stawu (curl, 03.11.2026): chwyt kreśli łuk o promieniu przedramienia (ok. 15–24 cm odchylenia od cięciwy — fizycznie poprawne), więc próg 4 cm (tor prostoliniowy gryfu) go nie dotyczy;
    dla łuku obowiązuje: najwyżej jedna zmiana kierunku w poziomie (bez „S”) i odchylenie ≤ PROG_LUK cm (ochrona przed ucieczką toru). Do potwierdzenia przez recenzenta niezależnego razem z arkuszem śladu. */
-const LUKOWE = new Set(['curl', 'delt_raise', 'triceps']); const PROG_LUK = 26; /* C1 (recenzja niezależna 03.11.2026): geometria — strzałka łuku r·(1 − cos(Δθ/2)) ≈ 21 cm + dryf łokcia ≈ 4 cm; pomiar max 23,8 cm; 30 cm dawało ok. 6 cm luzu */ const FAM = assignAll() as Record<string, string>;
+const LUKOWE = new Set(['curl', 'delt_raise', 'triceps', 'chest_fly']); const PROG_LUK = 26; /* C1 (recenzja niezależna 03.11.2026): geometria — strzałka łuku r·(1 − cos(Δθ/2)) ≈ 21 cm + dryf łokcia ≈ 4 cm; pomiar max 23,8 cm; 30 cm dawało ok. 6 cm luzu */ const FAM = assignAll() as Record<string, string>;
 /* triceps (04.11.2026): górna granica łuku rodziny; dokładny próg z geometrii każdego ćwiczenia — tests/figures-v2-triceps-tor.test.ts */
-const PROG_LUK_RODZINY: Record<string, number> = { curl: PROG_LUK, triceps: 17 };
+const PROG_LUK_RODZINY: Record<string, number> = { curl: PROG_LUK, triceps: 17, chest_fly: 46 /* chest_fly (09.11.2026, partia 1): ramiona proste po łuku o promieniu ramienia z ciężarem (r ≈ 70 cm, Δθ do 140°): r·(1 − cos(Δθ/2)) ≈ 46 cm */ };
 /* delt_raise (K1-przygotowanie, 04.11.2026; K5 autora): ręka R kreśli łuk o promieniu r = odległość chwytu od barku (ok. 62 cm), więc strzałka łuku r·(1 − cos(Δθ/2)) wynika z geometrii KAŻDEGO ćwiczenia osobno
    (tests/helpers/tor-luk-ramienia.ts: Δθ i r z pozy, dryf 2 cm), a nie z jednej liczby; próg zawróceń (≤ 1) bez zmian. */
 const DELT = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/delt_raise.json'), 'utf8')).cwiczenia as Record<string, PoseData>;

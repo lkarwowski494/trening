@@ -114,7 +114,11 @@ describe('recenzja ruchu 1.1, partia 1: Arnold Press (inny ruch niż zwykłe wyc
     expect(a.max).toBeGreaterThanOrEqual(30);
     expect(a.obrot[0]).toBeGreaterThan(60); expect(a.obrot[1]).toBeLessThan(-60);
   });
-  test('zwykłe wyciskanie hantli zostaje bez rozchodzenia łokci (kontrola: łokieć ≤ 30 cm od osi)', () => { expect(W.arnold.bazaHantle.max).toBeLessThan(30); });
+  /* 10.11.2026 (partia 1, overhead_press r1–r3): po poprawce toru (ciężar pionowo nad barkiem) łokieć zwykłego wyciskania przy wyproście jest 30,2 cm od osi (u ≈ 0,9; recenzja r3 audytora — „wyswietlana”).
+   * Cel kontroli to różnica ruchu: łokcie Arnolda rozchodzą się wyraźnie szerzej niż w zwykłym wyciskaniu (≥ 5 cm; zmierzone 38,6 vs 30,2), a zwykłe wyciskanie nie przekracza 31 cm. */
+  test('zwykłe wyciskanie hantli zostaje bez rozchodzenia łokci (kontrola: łokieć < 31 cm od osi i ≥ 5 cm węziej niż w Arnold Press)', () => {
+    expect(W.arnold.bazaHantle.max).toBeLessThan(31); expect(W.arnold.hantle.max - W.arnold.bazaHantle.max).toBeGreaterThanOrEqual(5);
+  });
 });
 
 describe('recenzja ruchu 1.1, partia 1: One Arm Row (hantle) — ławka i podparcie', () => {

@@ -1,0 +1,139 @@
+{
+ "v2": {
+  "kb_ballistic": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-09",
+   "stan": "recenzja niezależna r1 (bramka 4, L-047, L-050): 1 × WYSOKIE (W1 zarzut, rwanie, clean and jerk — start przed nogami zamiast między nimi i szeroki łuk ciężaru, sprzeczne z kartami Double Kettlebell Clean i Snatch (hantel)), 1 × ŚREDNIE (zestaw oly mówi o sztandze), 4 × NISKIE — rodzina nie wyświetlana do rundy r2",
+   "kto": "audytor — recenzja niezależna rodziny kb_ballistic, figury/partia-1 @ 208a8740 (baza dfae8739), czysta kopia git archive /home/user/rev-p1/kb_ballistic-r1, 09.11.2026; raport partia1-kb_ballistic-r1-audytor-2026-11-09.md",
+   "autor": "programista partii 1 (figury/partia-1)",
+   "recenzent": "audytor",
+   "liczba": 17,
+   "slad": "39 arkuszy własnych: arkusz-slad 16 (16 ćw. × side, jasny, wszystkie obejrzane w pełnej rozdzielczości; bajtowo równe arkuszom autora), ciemny 5 (Swing, Bottoms-Up, Split Jerk, Sumo High Pull, Kettlebell Snatch; Bottoms-Up obejrzany), arkusz-nakladka 18 (w tym 2 pozy błędu mis.roundBack), kadry u co 0,05, powiększenie pozy błędu. Ślad: chwyt (trzyma) albo chwyt R przy dwóch ciężarach. Tory: swing — łuk wokół barków; Bottoms-Up i Sumo — prawie pion blisko ciała (Sumo z drganiami 3–4 cm); podrzuty i push press — z racka łukiem wokół głowy nad głowę; zarzut i rwanie — start 30 cm przed kostkami i szeroki łuk od ciała (W1).",
+   "uwagi": "Bez sha — werdykt do poprawy. W1: Kettlebell Clean, Double Kettlebell Clean, Dumbbell Clean, Kettlebell Snatch, Double Kettlebell Snatch, Snatch (hantel), One-Arm Kettlebell Clean and Jerk — start jak dół swingu (kettlebell między nogami), ciąg blisko ciała, Snatch (hantel) z podłogi między stopami; test miejsca i toru z przypadkiem negatywnym; wyjątki toru tych 7 ćwiczeń zmierzyć od nowa. Ś1: zestaw oly („Sztanga…”) dla kettlebella i hantla do przeredagowania; sumo.kneesOut odpada przez CUE_REQUIRES (family hinge). N1: Jerk — brak wstania po przechwycie (karta własna Double Kettlebell Jerk: „i wstań”). N2: Sumo High Pull — czasy klatek i drgania toru. N3: test p1 — wykluczenie Push Press z pp_ugiecie bez powodu, brak testu toru zarzutu i rwania. N4: Kettlebell Pirate Ships bez wpisu w figury-wyjatki.json. Przy wyświetleniu v2: v1 Kettlebell Swing → zastapiona.",
+   "cwiczenia": {
+    "Kettlebell Swing": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Biodro 86→5°, kolano 45→0°, ciężar między nogami (chwyt 7,4 cm za kostkami), dłonie 11 cm nad barkiem."
+    },
+    "One-Arm Kettlebell Swings": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Jak swing; błąd mis.roundBack animowany (spineMid 5,3 cm). Wolna ręka wysoko z przodu — uwaga."
+    },
+    "Kettlebell Clean": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1: start 30 cm przed kostkami (chwyt x 30,4), bez przejścia między nogami; ciężar odjeżdża od ciała w ciągu (odstęp 34–39 cm, u 0,35–0,6)."
+    },
+    "Double Kettlebell Clean": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1: start 30 cm przed kostkami (chwyt x 30,4), bez przejścia między nogami; ciężar odjeżdża od ciała w ciągu; sprzeczne z kartą własną (kbb.dblStance, kbb.dblCleanMove)."
+    },
+    "Dumbbell Clean": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1: odstęp 30–32 cm w ciągu na prostej ręce (oly.close)."
+    },
+    "Bottoms-Up Clean From The Hang Position": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Tor blisko ciała (≤ 20 cm), dnem do góry od u ≈ 0,75, przedramię pionowo; zestaw oly do poprawy (Ś1)."
+    },
+    "Kettlebell Snatch": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1: start 30 cm przed kostkami (chwyt x 30,4), bez przejścia między nogami; ciężar odjeżdża od ciała w ciągu (odstęp 51–53 cm, ręka prawie poziomo)."
+    },
+    "Double Kettlebell Snatch": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1: start 30 cm przed kostkami (chwyt x 30,4), bez przejścia między nogami; ciężar odjeżdża od ciała w ciągu (odstęp 51–53 cm)."
+    },
+    "Snatch (hantel)": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1: hantel na starcie 42 cm nad podłogą, 30 cm przed stopami — karta: między stopami z podłogi; łuk 45 cm od ciała."
+    },
+    "Double Kettlebell Push Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ugięcie kolan 35°, wybicie z nóg, koniec kolana 0°, łokieć 10,6°."
+    },
+    "Double Kettlebell Jerk": {
+     "werdykt": "wyswietlana",
+     "uwagi": "N1: koniec w drugim ugięciu (kolano 27°), karta mówi „i wstań”."
+    },
+    "One-Arm Kettlebell Push Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Ugięcie 32,6°, koniec kolana 0°, łokieć 10,6°."
+    },
+    "One-Arm Kettlebell Jerk": {
+     "werdykt": "wyswietlana",
+     "uwagi": "N1 jak Double Kettlebell Jerk."
+    },
+    "One-Arm Kettlebell Split Jerk": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Blokada łokcia z lądowaniem w wykroku (ciężar stoi ok. 191–194 cm, miednica 105→68 cm) — poprawnie; nogi 80°/96° (olympic Split Jerk 84°/111°)."
+    },
+    "Kettlebell Sumo High Pull": {
+     "werdykt": "wyswietlana",
+     "uwagi": "N2: zatrzymanie w pół zawiasu u 0,18–0,56, ręce ciągną przy biodrze 32°, drgania toru 3–4 cm; zestaw oly do poprawy (Ś1)."
+    },
+    "One-Arm Kettlebell Clean and Jerk": {
+     "werdykt": "do poprawy",
+     "uwagi": "W1 w części zarzutu (odstęp 37 cm, ręka poziomo u 0,2–0,25); podrzut poprawny."
+    }
+   }
+  }
+ },
+ "zestawy": {
+  "One-Arm Kettlebell Swings": {
+   "rodzina": "kbSwing",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2)",
+   "autor": "programista partii 1 (figury/partia-1)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r1 rodziny kb_ballistic, figury/partia-1 @ 208a8740 (baza dfae8739), 09.11.2026",
+   "sha": "37ceed504440",
+   "uwagi": "kb.move (ciężar między nogami, chwyt x −5,3 w u = 0), kb.hips, hinge.back (kręgosłup 0°) zgodne; mis.roundBack animowany."
+  },
+  "Double Kettlebell Push Press": {
+   "rodzina": "pushPress",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2)",
+   "autor": "programista partii 1 (figury/partia-1)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r1 rodziny kb_ballistic, figury/partia-1 @ 208a8740 (baza dfae8739), 09.11.2026",
+   "sha": "4baa1c1dba94",
+   "uwagi": "pp.dip (kolana 35,1°, tułów prawie pionowo), pp.legs (wybicie z nóg na palce, potem ręce) zgodne; ohp.mis.lock tylko tekst."
+  },
+  "One-Arm Kettlebell Push Press": {
+   "rodzina": "pushPress",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2)",
+   "autor": "programista partii 1 (figury/partia-1)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r1 rodziny kb_ballistic, figury/partia-1 @ 208a8740 (baza dfae8739), 09.11.2026",
+   "sha": "4baa1c1dba94",
+   "uwagi": "pp.dip (kolana 32,6°), pp.legs zgodne; ohp.mis.lock tylko tekst."
+  },
+  "One-Arm Kettlebell Split Jerk": {
+   "rodzina": "pushPress",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu do ruchu na rysunku v2)",
+   "autor": "programista partii 1 (figury/partia-1)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r1 rodziny kb_ballistic, figury/partia-1 @ 208a8740 (baza dfae8739), 09.11.2026",
+   "sha": "42579ee70605",
+   "uwagi": "pp.legs zgodne: wybicie z nóg na palce, ręce kończą ruch w wykroku."
+  }
+ },
+ "karty": {
+  "Kettlebell Swing": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2 — spójność)",
+   "autor": "programista partii 1 (figury/partia-1)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna r1 rodziny kb_ballistic, figury/partia-1 @ 208a8740 (baza dfae8739), 09.11.2026",
+   "sha": "aa1b9306d7dd",
+   "uwagi": "kb.setup, kb.move (kettlebell między nogami: chwyt 7,4 cm za kostkami), kb.hips (biodro 86→5°), hinge.back (kręgosłup 0°) zgodne z rysunkiem. Sprzeczności brak."
+  }
+ }
+}

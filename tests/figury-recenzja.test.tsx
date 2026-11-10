@@ -99,9 +99,10 @@ describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku
     expect(screen.getByRole('header', { name: 'Ruch' })).toBeTruthy();
     expect(CUE_DATA.exercises[k]).toBeTruthy();
   });
-  test('figura z recenzją się renderuje (Lat Pulldown, Overhead Press (sztanga), Reverse Lunge — 29.10.2026; Pull Up od 02.11.2026 rysuje v2 rodziny pull_up)', async () => {
-    for (const k of ['Lat Pulldown', 'Overhead Press (sztanga)', 'Reverse Lunge']) { await render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.queryAllByTestId('exercise-figure').length + screen.queryAllByTestId('exercise-figure-v2').length > 0]).toEqual([k, true]); } /* Lat Pulldown od 09.11.2026 (partia 3) rysuje v2 rodziny pulldown */
-  });
+  /* 10.11.2026: przypadek podzielony na figury (każda osobno, limit 60 s bez zmian) — jeden przypadek z trzema figurami v2 przekraczał ten limit (tests.yml 42754733960). */
+  test.each(['Lat Pulldown', 'Overhead Press (sztanga)', 'Reverse Lunge'])('figura z recenzją się renderuje: %s (29.10.2026; Pull Up od 02.11.2026 rysuje v2 rodziny pull_up; Lat Pulldown od 09.11.2026 rysuje v2 rodziny pulldown)', async k => {
+    await render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.queryAllByTestId('exercise-figure').length + screen.queryAllByTestId('exercise-figure-v2').length > 0]).toEqual([k, true]);
+  }, 60000); /* limit 60 s (10.11.2026, partia 1): figura v2 renderuje się dłużej niż domyślne 5 s (wzór: catalog-library25, ZB-010) */ /* limit 60 s (10.11.2026, partia 1): po włączeniu overhead_press i pulldown trzy figury v2 renderują się dłużej niż domyślne 5 s (wzór: catalog-library25, ZB-010) */
 });
 
 /* ---------- Regresja: wady ruchu z recenzji 27.10.2026 (liczby z silnika; „było” = dane sprzed poprawki) ---------- */

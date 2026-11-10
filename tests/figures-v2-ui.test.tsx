@@ -135,7 +135,8 @@ describe('komponent ExerciseFigureV2', () => {
   });
   test('hasTechnique: ćwiczenie z gotową rodziną v2 ma sekcję „Technika” (także bez własnych wskazówek), ćwiczenie spoza rodzin — tylko gdy ma wskazówki', () => {
     expect(hasTechnique(lib('Back Squat'))).toBe(true); expect(hasTechnique(lib('Box Squat'))).toBe(true); expect(hasTechnique({ lib: false })).toBe(false);
-    expect(hasTechnique(lib('Pec Deck'))).toBe(false);
+    expect(hasTechnique(lib('Sissy Squat'))).toBe(false); /* 09.11.2026: było Pec Deck — rodzina chest_fly jest już ready (partia 1), więc ćwiczenie ma sekcję „Technika”; zamiennik: Sissy Squat (rodzina leg_isolation nadal planned) */
+    expect(hasTechnique(lib('Pec Deck'))).toBe(true);
   });
   test('opis ustawienia stóp (palce lekko na zewnątrz, 15–20°): przysiad ze zwykłym rozstawem; bez sumo, ściany, wyciskania i zawiasu; po angielsku', async () => {
     setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
