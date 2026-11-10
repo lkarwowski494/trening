@@ -1180,18 +1180,39 @@
           "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
         }
       }
+    },
+    "back_extension": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 2: W1 i N2 naprawione (acfbb24); Ś1 (ŚREDNIE) i N1 (NISKIE) w backlogu — próg wydania blokują tylko KRYTYCZNE i WYSOKIE",
+      "autor": "programista partia 4 (figury/partia-4-back_extension @ 391393d, aec8cda); poprawka W1/N2 (acfbb24): inny programista",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "Wyświetlane: Back Extension, Reverse Hyperextension, Lower Back Curl. Ruch zgodny z kartą/zestawem i regułami (biodro w płaszczyźnie strzałkowej: Back Extension 2,7° → 80,7°, reverse hyper 84,8° → 1,4°; kolano ≤ 10°; kręgosłup prosty), podpory ≤ 1 cm (miednica 0,8–1,0 cm, łydka–wałek 0,2 cm), Lower Back Curl: miednica na podłodze, barki +6,1 cm. W1 naprawione: Lower Back Curl bez linii kąta (DATA_UI.back_extension.exceptions, hideAngle; test tests/figures-v2-back-extension-kat.test.ts — próg skoku 8° zgodny z ruchem: Back Extension maks. 5,3°, Reverse Hyperextension maks. 6,4° na kadr co 0,05; dawny skok znaku 18,9°). Backlog: Ś1 — dłonie reverse hyper w powietrzu 40 cm przed podpórką; N1 — pomiar 3D biodra na górze 9–10° przy ciele w linii (systemowe). Weighted Ball Hyperextension bez rysunku — wyjątek generatora uzasadniony i zapisany.",
+      "slad": "r2: dane póz bez zmian (git diff aec8cda..acfbb24 -- lib/figures/v2/poses pusty); arkusze arkusz-slad Reverse Hyperextension i Lower Back Curl bajtowo równe r1 (cmp), Back Extension przegenerowany i obejrzany; w r1 obejrzane w pełnej rozdzielczości: bez ciężaru — ślad miednicy, nieruchoma na podpórce (Back Extension, Reverse Hyperextension) i na podłodze y 9,5 cm (Lower Back Curl); arkusz-nakladka Back Extension: linia pleców i łuk biodra 10° → 81°.",
+      "sha": "014b427fa2f2",
+      "liczba": 4,
+      "cwiczenia": [
+        "Back Extension",
+        "Lower Back Curl",
+        "Reverse Hyperextension",
+        "Weighted Ball Hyperextension"
+      ],
+      "bez_rysunku": [
+        "Weighted Ball Hyperextension"
+      ]
     }
   },
   "karty": {
     "Back Extension": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "22159fe935b0",
-      "uwagi": "2 badania (szczebel 3) przeczytane: kąt w biodrach ok. 90°, plecy proste, bez wyginania w łuk, tempo kontrolowane — zgodne. Źródło z Western Norway odczytane narzędziem (PMC zwraca 500 dla curl), niesprawdzone dosłownie."
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2), 10.11.2026",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1, data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "bext.move („mniej więcej do kąta prostego; wróć do linii prostej z nogami”) — rysunek: biodro 80,7° na dole, 2,7° na górze; hinge.back i bext.noArch — kręgosłup prosty (0,0°), bez przeprostu na górze; llc.control — tempo 2 s / 1 s; brak błędów na karcie. Stopy pod wałkiem (łydka 0,2 cm). Element nakładki bextHipLimb tylko przy bext.move.",
+      "sha": "22159fe935b0"
     },
     "Back Squat": {
       "werdykt": "wyswietlana",
@@ -5033,6 +5054,28 @@
       "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
       "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
       "sha": "4abd2e454900"
+    },
+    "Reverse Hyperextension": {
+      "rodzina": "hipExt",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 back_extension), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw hipExt, wskazowki-cwiczenia-03); włączenie rodziny: programista partia 4 (figury/partia-4-back_extension @ 391393d)",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "bext.noArch — nogi kończą w linii z tułowiem (biodro 1,4° w płaszczyźnie strzałkowej), bez przeprostu; llc.control — 1 s / 2 s, płynnie (klatki co ok. 8°); mis.jerk tylko tekst (bledy: []). Pozycja dłoni — Ś1 po stronie rysunku, nie zestawu.",
+      "sha": "2552fa39017b"
+    },
+    "Lower Back Curl": {
+      "rodzina": "cobra",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 back_extension), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw cobra); włączenie rodziny: programista partia 4 (figury/partia-4-back_extension @ 391393d)",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "cobra.hips — miednica na podłodze w każdym kadrze (y 9,5 cm stałe); cobra.control — opuszczanie 2 s; cobra.mis tylko tekst (bez animacji błędu). Zakres mały (barki +6,1 cm, tułów ok. 7°), w regule barki_w_gore (≥ 5 cm, konwencja). Linia kąta pod rysunkiem ukryta (W1 naprawione, acfbb24).",
+      "sha": "cfcd14a3dc6d"
     }
   }
 }

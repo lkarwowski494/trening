@@ -89,7 +89,8 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     /* 03.11.2026: curl ma wpis r3 (audytor) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — lista runtime go zawiera, ale ćwiczenia curl nie mają figury, dopóki rodzina nie zostanie podłączona (podłączenie zmienia pliki wspólne, więc skróty i recenzje wszystkich rodzin) */
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
     /* 09.11.2026: delt_raise z wpisem v2 (audytor, Car Drivers po r5-W1/r5-Ś1) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — jak curl: na liście runtime, bez figur, dopóki rodzina nie zostanie podłączona */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps'] });
+    /* 10.11.2026 (partia 4): back_extension z wpisem v2 r2 (audytor) — rodzina podłączona (status ready), na liście runtime */
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'back_extension'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'back_extension'] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";
