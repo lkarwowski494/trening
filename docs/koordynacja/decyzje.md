@@ -1,0 +1,20 @@
+# Decyzje koordynatora (KO) — do weta
+Oryginały: docs/18-przekazanie.md na integracja-1-1 (wpisy 09–10.11.2026, zapisane przez sesje wdrażające) i archiwum/dziennik-noc-2026-11-09.md.
+
+| KO | Data UTC | Tryb | Decyzja | Powód / odnośnik | Odrzucone | Weto |
+|---|---|---|---|---|---|---|
+| KO-001 | 2026-11-09 20:05 | rekomendacja | delt: symulacja nie liczy kart „do poprawy” (cel 457) | docs/18:358 | A: naprawa fidr.move teraz (→ zadanie) | do weta |
+| KO-002 | 2026-11-09 20:05 | rekomendacja | calf_raise: Standing/Seated w V2_WSTRZYMANE; punkty dźwigni barki/uda → silnik tura 2/backlog | dziennik 20:05 | B: cała rodzina planned | do weta |
+| KO-003 | 2026-11-09 21:00 | rekomendacja | Lateral Band Walk, Monster Walk bez rysunku, cel −1 (P3-MARSZ) | docs/18:356 | B: poprawka teraz | do weta |
+| KO-004 | 2026-11-09 21:05 | rekomendacja | cueSets row.fullStretch poza cable_row | docs/18:359 | przepisanie zdania | do weta |
+| KO-005 | 2026-11-09 21:40 | rekomendacja | Spider Curl naprawiony razem z row (stopyNaPalcach) + recenzja różnicy curl | dziennik 21:40 | osobna naprawa | do weta |
+| KO-006 | 2026-11-09 21:55 | rekomendacja | mobility_floor bez nakładki (nazwany wyjątek MOB-F1) | dziennik 21:55 | planned do badań | do weta (patrz decyzja B właściciela) |
+| KO-007 | 2026-11-09 23:10 | rekomendacja | ohp: wyjątek toru 12,5 cm + jawna ocena łuku w r2 | dziennik 23:10 | szerszy chwyt | do weta |
+| KO-008 | 2026-11-09 23:50 | rekomendacja | kb: rwania „dynamiczne” (16 cm) + ocena ciągłości przez audytora | dziennik 23:50 | krótszy tor, start bez podłogi | do weta |
+| KO-009 | 2026-11-10 00:55 | rekomendacja | Dip Machine zestaw „do poprawy”; Triceps Dips (ławka) wstrzymane | dziennik 00:55 | osobny zestaw teraz | do weta |
+| KO-010 | 2026-11-10 02:55 | rekomendacja | thruster „dynamiczne” (16 cm), poprawki W1–W3, ocena ciągłości r2 | dziennik 02:55 | B bez W3, C więcej klatek | do weta |
+| KO-011 | 2026-11-10 02:45 | rekomendacja | kneeling_hinge bez nakładki (jak MOB-F1) | dziennik 02:45 | planned | do weta |
+| KO-012 | 2026-11-10 04:40 | rekomendacja | CI: Jest 5 części + sekwencer po czasie pliku (limit 20 min bez zmian); gemini-polecenia → dokładny zbiór; figury-recenzja → podział przypadku | dziennik 04:05/04:40 | podniesienie limitu, rerun | do weta |
+| KO-013 | 2026-11-10 03:30 | rekomendacja | Plyo Push-Up wstrzymany (PP-W1); Child's Pose R3 akceptuje oba warianty rąk (źródła wskazane) | dziennik 03:30 | wyjątek w strażniku | do weta |
+| KO-014 | 2026-11-10 00:10 | rekomendacja | model scaleń „pociąg” (gałąź zbiorcza scal/pociag-N) | dziennik 00:10 | dociąganie integracji do każdej gałęzi | do weta (decyzja D właściciela) |
+| — | 2026-11-09/10 | rekomendacja | wyjątki weryfikacji: verify:lekkie przy drzewie scalenia identycznym z zielonym drzewem gałęzi (delt, partie, pociągi); A4a — lekkie + 106 celowanych, kontrola tests.yml integracji (zielone 42719347782) | dziennik | verify:szybkie za każdym razem | do weta |
