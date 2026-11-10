@@ -7,7 +7,7 @@
  *   4. kolano zgięte do tyłu w leżeniu przodem (Reverse Hyper, Back Extension + Lower Back Curl, Prone Flutter Kicks): niezmiennik w całym repo (poza listą oczekujących rodzin partii 1);
  *   5. Machine Glute Kickback: dłonie na uchwytach maszyny;
  *   6. Seated Band Hamstring Curl: guma zaczepiona z przodu, rozciąga się, gdy pięta idzie pod siedzisko (nowy tryb gumy `zaczep_kostki`).
- * Plus: pozostałe pozy tych rodzin bez zmian (tests/fixtures/figury-p2-baza.json — odciski sprzed poprawek; 09.11.2026: Calf Raise (linki) — zmiana celowa calf_raise r1 (niski wyciąg, linka prawie pionowo; recenzja partia1-calf_raise-r1/r2), odcisk przeliczony).
+ * Plus: pozostałe pozy tych rodzin bez zmian (tests/fixtures/figury-p2-baza.json — odciski sprzed poprawek; 09.11.2026: Calf Raise (linki) — zmiana celowa calf_raise r1 (niski wyciąg, linka prawie pionowo; recenzja partia1-calf_raise-r1/r2), odcisk przeliczony; 10.11.2026: glute_floor Donkey Kick, Cable Kickback, Hip Extension with Bands — zmiana celowa partii 7 (rząd błędu hext.mis.arch, W1 r1 chwyt Cable Kickback; recenzja niezależna r2 wyswietlana, skrót cfdc21dbffc8, docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md), odciski przeliczone).
  */
 import * as fs from 'fs';
 import * as path from 'path';
