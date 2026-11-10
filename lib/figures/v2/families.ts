@@ -56,7 +56,7 @@ export const FAMILIES: Family[] = [
   { id: 'plyo', status: 'planned', label: 'Skoki i plyometria', views: ['side', 'front'], effort: 4, note: 'skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026)' },
   { id: 'sled_throw', status: 'planned', label: 'Sanie, rzuty piłką, uderzenia', views: ['side'], effort: 3 },
   { id: 'strongman', status: 'planned', label: 'Strongman i podnoszenia nietypowych ciężarów', views: ['side'], effort: 3 },
-  { id: 'glute_floor', status: 'planned', label: 'Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie)', views: ['side', 'front'], effort: 4 },
+  { id: 'glute_floor', status: 'ready', label: 'Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie)', views: ['side', 'front'], effort: 4 },
   { id: 'hip_abd_add', status: 'ready', label: 'Przywodzenie i odwodzenie (maszyny, linki, taśmy)', views: ['front'], effort: 2 },
   { id: 'mobility_stand', status: 'ready', label: 'Mobilność i rozciąganie stojąc / w ruchu', views: ['side', 'front'], effort: 6 },
   { id: 'mobility_floor', status: 'ready', label: 'Mobilność i rozciąganie na podłodze', views: ['side'], effort: 6 },
