@@ -33,11 +33,11 @@ describe('dane: elementy rodziny cable_press ← reguły ze źródłem', () => {
 });
 
 describe('element ⇔ wskazówka na karcie i reguła wariantu: tabela ćwiczeń', () => {
-  test('stojąc: karta własna (mcp.move, cpress.base) → oba elementy; Seated: karta własna bez wskazówek z reguł → brak; Single Arm: zestaw ogólny (cpress.base, press.noLock) → elementy dopiero z wpisem „zestawy” po recenzji (dziś techniquesOf = []); Incline: bp.* → brak', () => {
+  test('stojąc: karta własna (mcp.move, cpress.base) → oba elementy; Seated: karta własna bez wskazówek z reguł → brak; Single Arm: zestaw ogólny (cpress.base, press.noLock) → oba elementy po wpisie „zestawy” z recenzji r2 10.11.2026; Incline: bp.* → brak', () => {
     const zestawy = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/cue-sets.json'), 'utf8')).items;
     expect(techniquesOf(KEYS[0])).toEqual([E, T]); expect(techniquesOf(KEYS[2])).toEqual([]); expect(techniquesOf(KEYS[3])).toEqual([]);
     expect([zestawy[KEYS[1]].b, techniquesFor('cable_press', zestawy[KEYS[1]].ok, KEYS[1]).map(d => d.id)]).toEqual(['general', [E, T]]);
-    expect(techniquesOf(KEYS[1])).toEqual([]);
+    expect(techniquesOf(KEYS[1])).toEqual([E, T]);
     expect(techniquesFor('cable_press', zestawy[KEYS[3]].ok, KEYS[3])).toEqual([]); expect(cueIdsOf(KEYS[2]).ids.some(c => CABLE_PRESS_TECHNIQUE.some(d => d.cue.includes(c)))).toBe(false);
     expect(errorText('bp.mis.arch').length).toBeGreaterThan(0);
   });
