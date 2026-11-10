@@ -59,7 +59,7 @@ export const FAMILIES: Family[] = [
   { id: 'glute_floor', status: 'planned', label: 'Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie)', views: ['side', 'front'], effort: 4 },
   { id: 'hip_abd_add', status: 'planned', label: 'Przywodzenie i odwodzenie (maszyny, linki, taśmy)', views: ['front'], effort: 2 },
   { id: 'mobility_stand', status: 'planned', label: 'Mobilność i rozciąganie stojąc / w ruchu', views: ['side', 'front'], effort: 6 },
-  { id: 'mobility_floor', status: 'planned', label: 'Mobilność i rozciąganie na podłodze', views: ['side'], effort: 6 },
+  { id: 'mobility_floor', status: 'ready', label: 'Mobilność i rozciąganie na podłodze', views: ['side'], effort: 6 },
   { id: 'foam_roll', status: 'planned', label: 'Rolowanie i automasaż', views: ['side'], effort: 2 },
   { id: 'neck', status: 'planned', label: 'Szyja', views: ['side'], effort: 1 },
   { id: 'forearm', status: 'planned', label: 'Przedramiona i chwyt', views: ['side'], effort: 2 },

@@ -1,0 +1,143 @@
+{
+  "v2": {
+    "mobility_floor": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-09",
+      "stan": "recenzja niezależna r1 (bramka 4, L-047 A, L-050) — 1 × WYSOKIE (Child's Pose W1), 2 × ŚREDNIE (Ś1, Ś2), 3 × NISKIE",
+      "autor": "programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "0c88b49248f1",
+      "liczba": 22,
+      "cwiczenia": [
+        "The Straddle",
+        "Seated Calf Stretch",
+        "Seated Floor Hamstring Stretch",
+        "Butterfly Stretch",
+        "Child's Pose",
+        "Kneeling Hip Flexor Stretch",
+        "Supine Hamstring Stretch",
+        "Side-Lying Quad Stretch",
+        "Cat-Cow"
+      ],
+      "bez_rysunku": [
+        "Downward Facing Balance",
+        "Supine Figure-Four Stretch",
+        "Seated Rotation Stretch",
+        "IT Band and Glute Stretch",
+        "Intermediate Groin Stretch",
+        "Supine Spinal Twist",
+        "Kneeling Forearm Stretch",
+        "Middle Back Stretch",
+        "Peroneals Stretch",
+        "Posterior Tibialis Stretch",
+        "Runner's Stretch",
+        "Side Lying Groin Stretch",
+        "Upper Back Stretch"
+      ],
+      "slad": "Arkusze scripts/figures/arkusz-slad.mjs na f808d8c1 wygenerowane przez audytora: 9 ćwiczeń × widok side = 9 arkuszy, 21 kadrów co 0,05, plus kadry u = 0/0,5/1 w skali 5; obejrzane w pełnej rozdzielczości. Bez ciężaru i przyrządu (pasek w Seated Calf Stretch to zaczep, nie tor): ślad = miednica; 8 pozycji statycznych (ISOMETRIC) — spec.static, brak śladu; Cat-Cow — miednica nieruchoma (12,9; 50,8) we wszystkich kadrach, tor 0 cm (kropka trailStart — N1).",
+      "uwagi": "W1 WYSOKIE Child's Pose: ręce wzdłuż tułowia (chwyt x −2,0 cm, bark x 51,2 cm), karta: dłonie na podłodze przed sobą, ręce wyciągnięte przed sobą — sprzeczność K11. Ś1 Side-Lying Quad: podudzie górnej nogi obrócone ok. 59° wokół uda (rotacja wewnętrzna biodra, składowa boczna 0,56 vs w tył 0,33). Ś2 Butterfly: łokcie ok. 6 cm od ud (distSegSeg ramię–udo 16,3 cm), karta: łokciami dociśnij uda. N1 Cat-Cow: samotna kropka trailStart na biodrze. N2 The Straddle: rozkrok w widoku side skrótowo. N3 nagłówek nakładki: n.hingeFlat (The Straddle) wypowiada plecy_plasko/sklon_z_bioder, rodzaj ref segment miednica→bark istnieje (olympicBackRef) — doprecyzować MOB-F1; usunąć „Pytanie do leada”. Cat-Cow: spineBend +26° → −16° (reguła kregoslup_koci_grzbiet spełniona), ruch czytelny. Child's Pose kadr h 48,1 cm — wyjątek 40 cm uzasadniony. Nakładka pusta — wyjątek pilnowany testem figures-v2-nakladka-mobility-floor (4/4). Mięśnie: brak (decyzja 04.11.2026 (4) B). v2-validate: 9/9 OK.",
+      "poprawka": "W1 (blokuje): Child's Pose — ręce wyciągnięte przed siebie, dłonie na podłodze przed głową (chwyt R/L x > bark x w każdej klatce, y ≈ 3 cm); test odtwarzający na chwyt względem barku. Ś1, Ś2 — wg progu (backlog z wersją albo poprawka przy okazji): podudzie górnej nogi w płaszczyźnie ciała (składowa boczna ≤ ~0,35); łokcie na udach (odstęp ≤ 1 cm)."
+    }
+  },
+  "zestawy": {
+    "Seated Calf Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw stretch, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "5cd4ec57eaf6",
+      "uwagi": "st.tension, st.breathe, err st.mis.force — pasują do statycznego siadu z prostymi kolanami i paskiem (pasek pod śródstopiem, stopa 90°; zestaw nie mówi o pasku). Bez nazw źródeł, liczb i twierdzeń o zdrowiu."
+    },
+    "Seated Floor Hamstring Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw stretch, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "0869a1be9df2",
+      "uwagi": "st.tension, st.noBounce, st.breathe, err st.mis.force — pasują do pozy (jedna noga prosta, kolano 7°; druga zgięta 136°; skłon z bioder 38°, plecy 0°)."
+    },
+    "Kneeling Hip Flexor Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw stretch, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "0869a1be9df2",
+      "uwagi": "Ponowna recenzja wobec rysunku v2: st.tension, st.noBounce, st.breathe, err st.mis.force — pasują (tylne kolano na podłodze, przednie 91° nad kostką, tułów 12°, tylne biodro w wyproście ok. 13–16°)."
+    },
+    "Supine Hamstring Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "badacz merytoryczny (zestaw stretch, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "0869a1be9df2",
+      "uwagi": "st.tension, st.noBounce, st.breathe, err st.mis.force — pasują (noga uniesiona prosto, kolano 9°, biodro ok. 88°, dłonie za udem; druga stopa na podłodze)."
+    }
+  },
+  "karty": {
+    "The Straddle": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "9ef315960170",
+      "uwagi": "Zgodna z rysunkiem: kolana proste (8°), palce stóp w górę, plecy proste (spineBend 0°), skłon z bioder 50°. Rozkrok w widoku side skrótowo (N2, NISKIE)."
+    },
+    "Butterfly Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "0897280e2f00",
+      "uwagi": "Kierunkowo zgodna: tułów pochylony z bioder 32°, plecy 0°, stopy razem, kolana na boki (131°). Ś2 (ŚREDNIE, rysunek): łokcie ok. 6 cm od ud, przedramiona na podudziach — karta mówi „łokciami dociśnij uda”; poprawka rysunku, nie karty."
+    },
+    "Child's Pose": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "c05005a4f061",
+      "uwagi": "W1 WYSOKIE: karta „oprzyj dłonie o podłogę przed sobą” i „ręce zostaw wyciągnięte przed sobą”, rysunek: ręce wzdłuż tułowia, dłonie przy stopach (chwyt x −2,0 cm, bark x 51,2 cm). Reszta zgodna: pośladki przy piętach (kolano 152°, biodro ok. 139°), klatka nisko.",
+      "poprawka": "Rysunek: ręce wyciągnięte przed siebie (chwyt przed barkiem, na podłodze). Zmiana karty na wariant „ręce wzdłuż ciała” tylko z badaczem i ponowną recenzją."
+    },
+    "Side-Lying Quad Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "6c0b18bbb735",
+      "uwagi": "Zgodna: leżenie na boku, dłoń trzyma stopę górnej nogi (chwyt = kostka), kolano 141°, kolana razem (uda równoległe), dolna noga prosta (9°). Ś1 (ŚREDNIE, rysunek): podudzie obrócone ok. 59° ku górze."
+    },
+    "Cat-Cow": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_floor), 09.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_floor (partia 2, figury/partia-2-mobility_floor 92942bc3, 7fe3c0e6, f808d8c1)",
+      "recenzent": "audytor (recenzja niezależna r1 partii 2, L-047; nie pisał rodziny, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r1 rodziny v2 mobility_floor (bramka 4, L-047, L-050), 09.11.2026; figury/partia-2-mobility_floor @ f808d8c1, odłączony worktree; raport docs/research/recenzje/partia2-mobility_floor-r1-audytor-2026-11-09.md",
+      "sha": "cbae23964e25",
+      "uwagi": "Zgodna: dłonie pod barkami, kolana pod biodrami; u = 0 grzbiet w górę (spineBend +26°), głowa opuszczona (100°); u = 1 brzuch w dół (−16°), głowa uniesiona (72°); ruch płynny."
+    }
+  },
+  "v1_zastapiona": []
+}

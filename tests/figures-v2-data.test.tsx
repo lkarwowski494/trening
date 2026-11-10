@@ -109,8 +109,10 @@ describe('błędy z danych (bledy[])', () => {
       }
     }
   });
+  /* Pozycje nisko przy podłodze: Child's Pose (mobility_floor, 09.11.2026) ma kadr 48 cm wysokości — próg „kadr nie zdegenerowany” 50 cm byłby dla niej fałszywym alarmem; próg 40 cm zostaje wyraźnie ponad liniami i punktami (kadr zdegenerowany = kilka cm). */
+  const NISKIE_POZY = ["Child's Pose"];
   test('macierz: kadr obejmuje poprawną pozę i pozy błędów; kształty w obu widokach i oba motywy istnieją dla każdego ćwiczenia z danymi', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && b.h > 50]).toEqual([k, v, true]); expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && b.h > (NISKIE_POZY.includes(k) ? 40 : 50)]).toEqual([k, v, true]); expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
     expect(light.bg).not.toBe(dark.bg);
   });
   test('tempo: błąd z danych używa tempa domyślnego (jak poprawna poza)', () => { const s = figureSpec('Pull Up')!; expect(tempoFor(s, 'data:0')).toEqual(tempoFor(s)); expect(uAt(TEMPO.holdMs + TEMPO.upMs, false, tempoFor(s))).toBeCloseTo(1, 6); });

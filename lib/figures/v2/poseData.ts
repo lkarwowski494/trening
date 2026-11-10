@@ -19,6 +19,7 @@ const LOAD: Record<string, () => PoseFile> = {
   cable_row: () => require('./poses/cable_row.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
   pushup_plank: () => require('./poses/pushup_plank.json'),
+  mobility_floor: () => require('./poses/mobility_floor.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -96,6 +97,8 @@ export const DATA_UI: Record<string, DataUi> = {
       'Rollout (sztanga)': { joints: ['hip'] }, 'Barbell Rollout from Bench': { joints: ['hip'] }, 'Standing Barbell Rollout': { joints: ['hip'] }, 'Suspended Fallout': { joints: ['shElev'] },
       'Plyo Push-Up': { names: { first: 'Skok', second: 'Skok' }, lowerFirst: false }, /* lot: pętla jednokierunkowa (jedna faza „Skok”) */
       'Inverted Row': { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false } } },
+  /* mobility_floor (09.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz i kąta), jedyny ruch to Cat-Cow (nazwy faz: PHASES_BY_EXERCISE); ruch jest w kręgosłupie, którego nie mierzymy (MeasuredJoint) → bez linii „Kąt na rysunku” */
+  mobility_floor: { names: { first: 'Grzbiet w dół', second: 'Koci grzbiet' }, lowerFirst: false, joints: ['hip'], exceptions: { 'Cat-Cow': { hideAngle: true } } },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
