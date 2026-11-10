@@ -1,6 +1,6 @@
 # Stan partii 2 (linia 1.1) — pushup_plank, hip_bridge, cable_row, mobility_floor, mobility_stand
 
-Aktualizacja: 10.11.2026 ~03:40 UTC (sesja session_01T66VBvdsMU66FhsPJWpG8J, przekazanie przy kontekście ~28%); wcześniej 00:45 UTC (session_01T66VBydWMy3Mvkq6ew7xAZ) (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
+Aktualizacja: 10.11.2026 ~04:30 UTC (sesja session_01T66VBvdsMU66FhsPJWpG8J, przekazanie przy kontekście ~28%); wcześniej 00:45 UTC (session_01T66VBydWMy3Mvkq6ew7xAZ) (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
 Koordynator linii: session_01T66VByJCWCao1Hw3is68Cy (raporty przez send_message).
 Briefy: `briefy/partia-2-rodzina-programista.md` (autor rodziny), `briefy/partia-2-rodzina-recenzent.md` (audytor).
 
@@ -21,14 +21,14 @@ Wszystkie 5 rodzin zrecenzowane niezależnie i scalone do `figury/partia-2` (ga�
 |---|---|---|
 | hip_bridge | r3 wyswietlana 8c56e365b9d3 (Machine Hip Thrust wstrzymany) | zrobione |
 | cable_row | r2 wyswietlana 4376c0e6b911 | zrobione |
-| pushup_plank | r2 wyswietlana def6b97fe124; potem poprawka 816a480c (wiersze błędu plank.mis.sag pod nowy strażnik p2-r3: stopa ≤ 0,9 cm) → skrót ec660bfe52fa → **r3 różnicy w toku/zrobiona** (`partia2-pushup_plank-r3*`; jeśli pliki są w repo — przepisz wpis v2 1:1 `scratchpad/przepisz.py`-owo: v2[pushup_plank]=r3.v2; potem zrodla-runtime/pokrycie --write, cele = symulacja) | do domknięcia |
+| pushup_plank | r3 wyswietlana ec660bfe52fa (różnica 816a480c: wiersze błędu plank.mis.sag pod strażnik p2-r3); Plyo Push-Up wstrzymany (V2_WSTRZYMANE, PP-W1, koordynator 10.11.2026 B) | zrobione |
 | mobility_floor | r2 wyswietlana a80c9c3d7928 (W1 Child's Pose ręce przed sobą; nakładka pusta — wyjątek A, także w figures-v2-nakladka-kazda-rodzina) | zrobione |
 | mobility_stand | r2 wyswietlana 8ebfcea965c8 (W1 Soleus ściana; nakładka standLateralPlumb, decyzja sb.plane w docs/18) | zrobione |
 
 ## Następne kroki
-1. Decyzje koordynatora (pytania wysłane ~03:25 UTC): **P1 Plyo Push-Up** vs strażnik `figures-v2-delt-raise-p4` (pętla jednokierunkowa, u=0=u=1) — rekomendacja B: Plyo do `V2_WSTRZYMANE` (figure.ts ≤ 20 KB!), A (ONE_WAY_STATIC w anim.ts + 2 teksty UI) do backlogu; **P2 R3_dziecko_odpoczynek** (`tests/figury-mobilnosc-reguly.test.ts:69`, partia 3) wymaga rąk wzdłuż ciała, karta Child's Pose — przed sobą; rekomendacja A: R3 akceptuje oba warianty rąk ze źródła.
-2. Po r3 i decyzjach: cele 1.1 = symulacja (`node scripts/pokrycie-symulacja.mjs --json` → pole cel; przed r3 symulacja jest niższa, bo pushup_plank ukryta), `cel-1-1-bez-ciezkich` (r.c, pelnaKarta, docs/21 liczba ciężkich), pliki generowane; `npm run verify:szybkie` (ok. 25 min) → push → zielony tests.yml → SHA do koordynatora.
-3. Raport końcowy (per rodzina: wyżej; zysk: pełnych kart 239 → 280 przy wszystkich wyswietlanych; nowe teksty UI: brak, przekład 0 zł — chyba że P1 A).
+1. Decyzje koordynatora 10.11.2026 wdrożone: P1 = B (Plyo do V2_WSTRZYMANE, 5a5be01d; UWAGA do potwierdzenia przez koordynatora: strażnik r4-W1 w figures-v2-delt-raise-p4 pomija klucze z V2_WSTRZYMANE + test, że poza nim jest dokładnie Plyo bez rysunku), P2 = A (R3 akceptuje ręce przed sobą — źródła karty mobility_floor.t.child.reach: ACE #227 krok 2, CT Children's HEP, WebMD/ColumbiaDoctors; 885bb07c).
+2. Jeśli `verify:szybkie` na 4966049c (lub nowszym) zielony → push → zielony tests.yml → raport końcowy do koordynatora. Jeśli czerwony — poprawki jak wyżej (zmiana pozy = recenzja różnicy).
+3. Raport końcowy: 5 rodzin włączonych i zrecenzowanych; pełnych kart (pokrycie-katalogu) 239 → 279; cele 1.1 = symulacja (pelnaKarta 461); nowe teksty UI: brak, przekład 0 zł; backlog: PP-S1, PP-S2, PP-N1, PP-W1, MOB-F1–F3, MOB-S1–S2.
 
 ## Pułapki tej sesji
 - Integracja przynosi nowe strażniki (p2-r3, p2-r4, delt-raise-p4, mobilnosc-reguly) — po każdym dociągnięciu pełne verify:szybkie; zmiana pozy = nowy skrót = recenzja różnicy.
