@@ -67,12 +67,13 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
     const spy = jest.spyOn(lista, 'includes').mockImplementation((x: string) => x !== 'pull_up' && Array.prototype.indexOf.call(lista, x) >= 0);
     try { expect(familyReviewed('pull_up')).toBe(false); expect(figureSpec('Chin Up')).not.toBeNull(); expect(shownFigureSpec('Chin Up')).toBeNull(); }
     finally { spy.mockRestore(); }
-    expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X) */
+    /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X); 09.11.2026 (koordynator, wariant A, partia P1): squat i hinge na liście v2 do recenzji różnicy doboru — figura ukryta, po zdjęciu wyjątku znów pokazana */
+    expect([WYJ.v2.includes('squat'), shownFigureSpec('Back Squat') === null]).toEqual([WYJ.v2.includes('squat'), WYJ.v2.includes('squat')]);
   });
   test('figureWithheld: figura v1 „zastąpiona” wstrzymana dokładnie wtedy, gdy jej rodzina v2 nie ma aktualnej recenzji; od 01.11.2026 (squat, bench_press, hinge zrecenzowane) Back Squat i Deadlift pokazują v2; v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
     expect(FIG_DATA.replaced).toContain('Back Squat');
     for (const k of FIG_DATA.replaced) expect([k, figureWithheld(k)]).toEqual([k, !familyReviewed(figureSpec(k)!.family)]);
-    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([false, false]);
+    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([WYJ.v2.includes('squat'), WYJ.v2.includes('hinge')]); /* 09.11.2026 (P1): wstrzymane, dopóki squat/hinge są na liście v2 (recenzja różnicy doboru) */
     expect([figureWithheld('Pull Up'), figureWithheld('Crunch'), figureWithheld('Ćwiczenie własne')]).toEqual([false, false, false]);
   });
 });

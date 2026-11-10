@@ -116,6 +116,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `piesc_punch` | wypchnij pięść w górę (punch) | ruch pięści w górę przy rwaniu kettlebellem; „stanse/standse” (nb/da) znaczą zatrzymać, a „punho” w pt-BR to nadgarstek (jak we wszystkich wskazówkach pt-BR) — pięść to „soco”/„mão fechada” (recenzja lokalizacji A4b, 09.11.2026) |
 | `sanki_treningowe` | sanki treningowe (sled) | sanki do pchania i ciągnięcia z obciążeniem; w ja „そり” to sanki na śnieg — na siłowni „スレッド”; w hu „szánkó” (recenzja lokalizacji A4b, 09.11.2026) |
 | `podrzut_jerk` | podrzut (jerk) | ruch podrzutu w podnoszeniu ciężarów (jerk) w odróżnieniu od push pressu; jedno brzmienie we wszystkich wskazówkach języka, jak w olympic.dipSquat (recenzja lokalizacji A4b, 09.11.2026) |
+| `pochylenie_z_biodra` | pochylenie z bioder (hinge: pochyl się, cofając biodra) | pochylenie tułowia z prostymi plecami przez cofnięcie bioder; NIE garbienie |
 
 ## Terminy zalecane (rdzeń)
 
@@ -184,6 +185,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `en` | `szerokosc_stop` | between\s+hip(-\|\s)(and\|to)?\s*shoulder\|somewhere\s+between\|hip\s+and\s+shoulder\s+width | zakres szerokości stóp zapisuj jedną formą „hip- to shoulder-width”, jak w gob.stance i dl.feet |
 | `en` | `core_en` | (?<![\p{L}])trunk(?![\p{L}]) | „trunk” brzmi podręcznikowo; na siłowni mówi się „core” |
 | `en` | `jak_do_en` | like\s+for\s+(a\|an\|the)\s | kalka z polskiego „jak do …”; rodzimy mówca mówi „like a squat”, „set up like a deadlift” |
+| `en` | `jak_do_en` | as\s+for\s+(a\|an\|the)\s | kalka z polskiego „jak do …” w wersji „as for a …” (recenzja lokalizacji P1, 09.11.2026); rodzimy mówca mówi „like a clean” |
 | `en` | `ciezar` | (?<![\p{L}])shift(ing)?\s+(your\s+)?weight(?![\p{L}]) | w aplikacji „weight” to obciążenie, nie masa ciała; przeniesienie masy ciała opisz ruchem („lean toward the wall”) |
 | `en` | `tasma_rozciaganie` | (?<![\p{L}])(belt\|sash)s?(?![\p{L}]) | „belt” to pas obciążeniowy; do rozciągania „strap” |
 | `en` | `podwijanie_miednicy` | posterior\s+pelvic\s+tilt\|tilt(ing)?\s+(your\s+)?pelvis\s+back | język podręcznika; potocznie „tuck your pelvis” |
@@ -331,6 +333,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `nl` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `nl` | `zakres_powtorzen` | interval | „interval” to trening interwałowy; zakres to „bereik” |
 | `nl` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
+| `nl` | `nachwyt` | bovenhandse | w kartach jest „bovengreep”, nie „bovenhandse grip” |
 | `nl` | `wykrok_postawa` | spreidstand | „spreidstand” to stopy rozstawione na boki, nie pozycja z jedną stopą z przodu |
 | `sv` | `przerwa` | (?<![\p{L}])rast(?![\p{L}]) | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `sv` | `przerwa_robocza` | arbetspaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
@@ -393,11 +396,13 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ms` | `rysunek_zdanie` | lukisan | rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `ms` | `funkcja_aplikacji` | (?<![\p{L}])fungsi(?![\p{L}]) | „fungsi” to funkcja matematyczna/techniczna; funkcja aplikacji to „ciri” (czasownik „berfungsi” = działa jest poprawny) |
 | `ms` | `slidery` | pelungsur | „pelungsur” to przede wszystkim zjeżdżalnia (plac zabaw), nie krążek ślizgowy |
+| `ms` | `pochylenie_z_biodra` | (?<![\p{L}])bongkokkan | „bongkok” to po malajsku garbienie się, czyli błąd, przed którym karta ostrzega (recenzja P1, 09.11.2026) |
 | `vi` | `przerwa` | giải lao | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `vi` | `przerwa_robocza` | nghỉ giải lao\|nghỉ làm việc | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `vi` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `vi` | `pozycja_posrednia` | đang diễn ra | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `vi` | `rysunek_zdanie` | hình vẽ | w pozostałych podpisach rysunku ćwiczenia plik vi używa „hình minh họa” |
+| `vi` | `nachwyt` | grip sấp | mieszanka angielskiego i wietnamskiego; w kartach jest „kiểu úp tay” (do sprawdzenia przez native speakera) |
 | `ru` | `przerwa` | перерыв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `ru` | `przerwa_robocza` | рабочий отдых | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ru` | `seria` | серия | „серия” to odcinek/seria produktów; podejście to „подход” |
@@ -405,6 +410,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ru` | `ramie` | (?<![\p{L}])upper arms?(?![\p{L}]) | Zostało angielskie „upper arm” z placeholdera słownika (przekład API 09.11.2026: vi preacher.arms, rotator_cuff.cubanRotate); użyj terminu zalecanego dla tego języka. |
 | `ru` | `pozycja_posrednia` | в процессе | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ru` | `biodra` | (?<![\p{L}])(бёдр\p{L}*\|бёдер)(?![\p{L}]) | „бёдра” to uda; biodra/miednicę w ruchu nazywaj „таз” (jak w pozostałych wskazówkach) |
+| `ru` | `nachwyt` | хват(ом\|ом\|а\|у)?\s+сверху | w kartach jest „прямым хватом”, nie „хватом сверху” (decyzja recenzji P1, 09.11.2026) |
 | `ru` | `uda` | (?<![\p{L}])(перед\|к\|у) ног(ами\|ам\|и\|ой\|е)?(?![\p{L}])\|(?<![\p{L}])на ногах(?![\p{L}]) | „ноги” to nogi aż do stóp; uda to „бёдра” (jak w front.setup, lat.setup); „на ногах” też znaczy „stojąc/na stopach” — dla ud „на бёдрах”, a gdy w zdaniu jest też „таз” (zakaz „бёдра” dla bioder), opisz „на коленях” (recenzja lokalizacji A4b, 09.11.2026) |
 | `ru` | `lawka_skosna_glowa_w_dol` | наклонн\p{L}*\s+скамь | „наклонная скамья” to też ławka skośna głową w górę (incline); ławka głową w dół to „скамья с обратным наклоном” (recenzja T1b, 05.11.2026) |
 | `ja` | `przerwa` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni między seriami mówi się インターバル |

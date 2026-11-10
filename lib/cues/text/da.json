@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Stil dig i udfaldsstilling: ét ben foran, det andet bagved.",
  "plyo.splitSwitch": "Hop op, skift ben i luften, og land i udfaldsstilling med det andet ben foran.",
  "sled.backGrip": "Tag fat i slædens reb med begge hænder.",
- "sled.backPedal": "Stil dig med front mod slæden og gå baglæns, mens du skubber fra med benene."
+ "sled.backPedal": "Stil dig med front mod slæden og gå baglæns, mens du skubber fra med benene.",
+ "bhs.setup": "Vægtstangen bag benene, hold den med overhåndsgreb og hængende arme; fødderne i skulderbredde.",
+ "cdl.move": "Pres fra gulvet med benene, og hold samme rygvinkel, til vægtstangen er forbi knæene.",
+ "cdl.setup": "Stil dig op, og tag greb om vægtstangen som til en frivending; pres knæene ud, til de rører armene.",
+ "ohs.arms": "Hold armene strakte gennem hele bevægelsen.",
+ "ohs.move": "Gå ned i squat med vægtstangen over hovedet hele tiden, og rejs dig op igen.",
+ "ohs.setup": "Vægtstangen over hovedet på strakte arme.",
+ "slrdl.move": "Bøj frem ved at skubbe hofterne bagud, og før det frie ben lige bagud; kom op igen ved at skubbe hofterne frem.",
+ "slrdl.setup": "Stå på ét ben med let bøjet knæ."
 }

@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Still deg i utfallsstilling: ett bein foran, det andre bak.",
  "plyo.splitSwitch": "Hopp opp, bytt bein i lufta og land i utfallsstilling med det andre beinet foran.",
  "sled.backGrip": "Grip tauet på sleden med begge hender.",
- "sled.backPedal": "Stå vendt mot sleden og gå baklengs mens du skyver fra med beina."
+ "sled.backPedal": "Stå vendt mot sleden og gå baklengs mens du skyver fra med beina.",
+ "bhs.setup": "Vektstang bak bena, hold den med overhåndsgrep og armene hengende ned; føttene i skulderbredde.",
+ "cdl.move": "Press fra med bena mot gulvet og hold samme ryggvinkel til stanga har passert knærne.",
+ "cdl.setup": "Still deg opp og ta grep om stanga som til en frivending; press knærne ut til de treffer armene.",
+ "ohs.arms": "Hold armene strake gjennom hele bevegelsen.",
+ "ohs.move": "Gå ned i knebøy med stanga over hodet hele tiden, og reis deg opp igjen.",
+ "ohs.setup": "Stanga over hodet på strake armer.",
+ "slrdl.move": "Bøy deg fram ved å skyve hoftene bakover, og før det frie benet rett bak; kom opp igjen ved å skyve hoftene fram.",
+ "slrdl.setup": "Stå på ett ben med lett bøy i kneet."
 }

@@ -196,17 +196,7 @@
       ]
     },
     "Barbell Hack Squat": {
-      "b": "general",
-      "f": "hingeFloor",
-      "ok": [
-        "hinge.back",
-        "sq.kneesToes",
-        "sq.depth"
-      ],
-      "err": [
-        "mis.roundBack",
-        "sq.mis.heels"
-      ]
+      "b": "own"
     },
     "Barbell Incline Shoulder Raise": {
       "b": "own"
@@ -461,18 +451,7 @@
       "b": "open"
     },
     "Bodyweight Squat": {
-      "b": "general",
-      "f": "squat",
-      "ok": [
-        "sq.down",
-        "sq.depth",
-        "sq.back",
-        "sq.kneesToes"
-      ],
-      "err": [
-        "sq.mis.kneesIn",
-        "sq.mis.heels"
-      ]
+      "b": "own"
     },
     "Bodyweight Triceps Extension": {
       "b": "open"
@@ -902,17 +881,7 @@
       ]
     },
     "Clean Deadlift": {
-      "b": "general",
-      "f": "hingeFloor",
-      "ok": [
-        "dl.lift",
-        "hinge.back",
-        "dl.close",
-        "dl.feet"
-      ],
-      "err": [
-        "mis.roundBack"
-      ]
+      "b": "own"
     },
     "Clean Pull": {
       "b": "own"
@@ -1446,18 +1415,7 @@
       "b": "own"
     },
     "Dumbbell Squat": {
-      "b": "general",
-      "f": "squat",
-      "ok": [
-        "sq.down",
-        "sq.depth",
-        "sq.back",
-        "sq.kneesToes"
-      ],
-      "err": [
-        "sq.mis.kneesIn",
-        "sq.mis.heels"
-      ]
+      "b": "own"
     },
     "Dynamic Back Stretch": {
       "b": "general",
@@ -2945,18 +2903,7 @@
       "b": "own"
     },
     "Overhead Squat": {
-      "b": "general",
-      "f": "squat",
-      "ok": [
-        "sq.back",
-        "sq.kneesToes",
-        "sq.depth",
-        "sq.down"
-      ],
-      "err": [
-        "sq.mis.kneesIn",
-        "sq.mis.heels"
-      ]
+      "b": "own"
     },
     "Overhead Stretch": {
       "b": "general",
@@ -3851,28 +3798,10 @@
       ]
     },
     "Single Leg RDL (hantel)": {
-      "b": "general",
-      "f": "rdl",
-      "ok": [
-        "rdl.dbMove",
-        "hinge.back",
-        "rdl.depth"
-      ],
-      "err": [
-        "mis.roundBack"
-      ]
+      "b": "own"
     },
     "Single Leg RDL (linki)": {
-      "b": "general",
-      "f": "rdl",
-      "ok": [
-        "rdl.dbMove",
-        "hinge.back",
-        "rdl.depth"
-      ],
-      "err": [
-        "mis.roundBack"
-      ]
+      "b": "own"
     },
     "Single-Arm Linear Jammer": {
       "b": "general",
@@ -4280,32 +4209,10 @@
       "b": "own"
     },
     "Squat with Bands": {
-      "b": "general",
-      "f": "squat",
-      "ok": [
-        "sq.down",
-        "sq.depth",
-        "sq.back",
-        "sq.kneesToes"
-      ],
-      "err": [
-        "sq.mis.kneesIn",
-        "sq.mis.heels"
-      ]
+      "b": "own"
     },
     "Squat with Chains": {
-      "b": "general",
-      "f": "squat",
-      "ok": [
-        "sq.down",
-        "sq.depth",
-        "sq.back",
-        "sq.kneesToes"
-      ],
-      "err": [
-        "sq.mis.kneesIn",
-        "sq.mis.heels"
-      ]
+      "b": "own"
     },
     "Squeeze Press (hantle)": {
       "b": "general",

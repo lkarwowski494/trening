@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Geh in den Ausfallschritt: ein Bein vorn, das andere hinten.",
  "plyo.splitSwitch": "Spring hoch, wechsle in der Luft die Beine und lande im Ausfallschritt mit dem anderen Bein vorn.",
  "sled.backGrip": "Greif das Schlittenseil mit beiden Händen.",
- "sled.backPedal": "Stell dich mit dem Gesicht zum Schlitten und geh rückwärts, drück dich dabei mit den Beinen ab."
+ "sled.backPedal": "Stell dich mit dem Gesicht zum Schlitten und geh rückwärts, drück dich dabei mit den Beinen ab.",
+ "bhs.setup": "Langhantel hinter den Beinen, im Obergriff mit hängenden Armen halten; Füße schulterbreit.",
+ "cdl.move": "Drück die Beine in den Boden und halte den Rückenwinkel, bis die Langhantel an den Knien vorbei ist.",
+ "cdl.setup": "Stell dich hin und greif die Langhantel wie beim Umsetzen; drück die Knie nach außen, bis sie die Arme berühren.",
+ "ohs.arms": "Arme während der ganzen Bewegung gestreckt.",
+ "ohs.move": "Geh in die Kniebeuge, die Langhantel die ganze Zeit über dem Kopf, und steh wieder auf.",
+ "ohs.setup": "Langhantel mit gestreckten Armen über dem Kopf.",
+ "slrdl.move": "Beug dich vor, indem du die Hüfte nach hinten schiebst, und führ das freie Bein gerade nach hinten; komm hoch, indem du die Hüfte nach vorn schiebst.",
+ "slrdl.setup": "Stell dich auf ein Bein, Knie leicht gebeugt."
 }

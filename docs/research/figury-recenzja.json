@@ -624,14 +624,13 @@
   "v2": {
     "squat": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "kto": "audytor — recenzja niezależna gałęzi figury/nakladka-b0 @ 4f61b9cd (zmiana d5a56f5f) względem integracja-1-1 @ c1d32a3a, czyste kopie git archive w /home/user/stan-b0/audytor (kopia-c1d, kopia-4f6), 08.11.2026; raport /home/user/stan-b0/audytor/recenzja.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026 (ruch, ślad, linie, nakładka i dobór bez zmian); wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026 (ruch, linie, nakładka i dobór bez zmian); wcześniej: (bramka 4, L-047 A, L-050) — linia 1.1, recenzja 2R Etapu 2 nakładki techniki (runda 2) + recenzja różnicy po scaleniu spójności karta–rysunek (17 ćw. + 21 ćw. R2) + sprawdzenie fix4 (R1 A′, R2 skrót z doborem), 04.11.2026",
-      "autor": "programista B0 (figury/nakladka-b0 @ d5a56f5f)",
-      "recenzent": "audytor",
-      "uwagi": "Różnica 08.11.2026 (recenzja niezależna, audytor; figury/nakladka-b0 @ 4f61b9cd vs integracja-1-1 @ c1d32a3a, czyste kopie git archive): skrót 855f7f1ea076 → 6913ea2e7f22 wyłącznie przez plik wspólny lib/figures/v2/reguly-cwiczen.json (dopisane klucze olympic i triceps; wpis squat w tym pliku równy) — porównanie składników skrótu (pliki V2_WSPOLNE po normalizujPlikV2 i wynik doboru po kartach) plik po pliku. Wpisy v1, kart i zestawów rodziny: skróty bez zmian, wpisy przeniesione bez zmian. Bez znalezisk dla rodziny. | 09.11.2026 (programista, zmiana RDL na gałęzi figury/rdl-glebokosc): skrót 6913ea2e7f22 → 2657a9758ed1 wyłącznie przez wspólny plik lib/figures/v2/variants.ts (zmienione tylko 2 wpisy hinge: RDL (sztanga), RDL (hantle/linki)); md5 klatek rysunku tej rodziny równe bazie integracja-1-1 @ 9dc2b0a9 (183 z 185 ćwiczeń z rysunkiem v2 bez zmian). To NIE jest nowa recenzja — recenzent niezależny potwierdza równość md5 przy recenzji hinge. 09.11.2026: równość md5 klatek 185/185 poza 2 RDL potwierdzona niezależnie przez audytora (recenzja hinge 09.11.2026, figury/rdl-glebokosc @ f546a93b) — skrót zmieniony tylko przez variants.ts (V2_WSPOLNE). 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem.",
-      "slad": "Ruch, ślad i nakładka bez zmian: własny md5 (skrypty /home/user/stan-b0/audytor/skrypty/md5-rysunek.mjs) z czystych kopii git archive c1d32a3a i 4f61b9cd (w kopii 4f61b9cd lista v2 w lib/figures/data.json przywrócona do 7 rodzin, jak po przepisaniu wpisów) — dla 25/25 ćwiczeń squat z rysunkiem równe: ruch (shapesAt bez i z mięśniami, contactShapes, badgesFor; każdy rzut, u co 1/8, bez błędu i z każdym błędem z errorsOf), ślad toru (trailFor), linie odniesienia i nakładka (guideShapes, overlayShapes — dobór surowy po kartach i ścieżka aplikacji guidesOf/techniquesOf), dobór (guidesFor, techniquesFor, errorsOf) i etykieta VoiceOver „Na rysunku” (onDrawingCues). Arkusze śladu z wcześniejszych recenzji pozostają ważne (ślad równy).",
-      "sha": "b4626b78e4ad",
+      "kto": "audytor — recenzja niezależna scal/pociag-2 @ a78c6cef względem integracji @ c9346795 (worktree tymczasowe), 10.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu P1 do scal/pociag-2, 10.11.2026 (ruch i ślad bez zmian; zmienia się dobór linii, nakładki, błędów i znaczków po kartach P1)",
+      "autor": "programista P1 (tekst/p1-squat-hinge; karty własne P1, ruch bez zmian) + koordynator (scalenie do scal/pociag-2 @ a78c6cef)",
+      "recenzent": "audytor (recenzja różnicy 10.11.2026)",
+      "uwagi": "Różnica 10.11.2026: skrót b4626b78e4ad → 0b9389b86aa1 wyłącznie przez dobór po 6 kartach własnych P1 (cue-sets.json bez zestawów ogólnych tych ćwiczeń). Hack: linie → backLine, błędy → heels; Bodyweight/Dumbbell: linie → kneeToe, błędy → kneesIn; Overhead: bez linii i nakładki, błąd heels; Bands/Chains: linie → kneeToe,backLine. 19 ćwiczeń bajtowo równych. Spójność karta–rysunek po odkryciu rodziny: 43/43 testów zielonych. Do scalenia: wpisać sha i przegenerować lib/figures/data.json.",
+      "slad": "Ruch, styki i ślad toru bez zmian: md5 (shapesAt z mięśniami, contactShapes, trailFor; u co 1/16, oba rzuty, stan poprawny i każda poza błędu) równy w c9346795, a78c6cef i f1472e08 dla 6 zmienionych ćwiczeń; figureSpec równy. Arkusze ze śladem (arkusz-nakladka, oba motywy, kadry co 0,05; arkusz-slad z odstępem) dla Barbell Hack Squat, Bodyweight Squat, Dumbbell Squat, Overhead Squat, Squat with Bands, Squat with Chains: Overhead Squat — sztanga nad śródstopiem, ślad pionowy; Hack Squat — sztanga za nogami wzdłuż ud; pozy i ślad bez zmian.",
+      "sha": "0b9389b86aa1",
       "liczba": 25,
       "cwiczenia": [
         "Back Squat",
@@ -672,7 +671,8 @@
           "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
           "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
         }
-      }
+      },
+      "data": "2026-11-10"
     },
     "bench_press": {
       "werdykt": "wyswietlana",
@@ -733,14 +733,13 @@
     },
     "hinge": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "kto": "audytor — recenzja niezależna gałęzi figury/rdl-glebokosc @ f546a93b względem integracja-1-1 @ 9dc2b0a9 (worktree /home/user/trening-rdl i /home/user/trening-rdl-base), 09.11.2026; zmiana: RDL (sztanga) i RDL (hantle/linki) — ciężar na dole tuż pod kolanem (decyzja właściciela 09.11.2026)",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, recenzja zmiany głębokości RDL (figury/rdl-glebokosc), 09.11.2026; 0 KRYTYCZNE/WYSOKIE, NISKIE N1 (notatka programisty o 7 rodzinach na liście wyjątków nieaktualna), N2 (skróty 6 rodzin zmienione przez autora — równość potwierdzona niezależnie); wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026; recenzja różnicy po scaleniu integracja-1-1 do figury/olympic, 05.11.2026; linia 1.1, recenzja 2R Etapu 2 nakładki techniki + spójność karta–rysunek + fix4, 04.11.2026",
-      "autor": "programista (09.11.2026)",
-      "recenzent": "audytor (09.11.2026)",
-      "uwagi": "Zmiana 09.11.2026: RDL (sztanga) i RDL (hantle/linki) — ciężar na dole 45 cm (było 55; środek stawu kolanowego 48 cm), czyli 3 cm pod kolanem, w przedziale źródeł okolica kolana – połowa piszczeli (praktyka, szczebel 4; punkt = konwencja rysunku, uproszczenie ilustracyjne). Pomiar własny (frameAt/jointAngles, u co 0,05, strona R): sztanga — kolano na dole 22,7°, maks. 25,9° (próg ≤ 27°), biodro 89,7°, tułów 66,4° (50–80°), ramię 17,3° od pionu (decyzja 29.10.2026), kneesBent +44,6°, gryf maks. ok. 4,9 cm przed środkiem stopy (≤ 15); hantle/linki — kolano 15,9°, maks. 20,9°, biodro 85,0°, tułów 72,2°, ramię 23°, kneesBent +45,4°, ciężar maks. ok. 7,4 cm przed środkiem stopy. Dopasowania rigu: podudzie RDL (sztanga) −2° na wyproście, tor sztangi do 4 cm pod prostą (dev 4 = próg strażnika toru, nie powyżej); odstęp ud–gryf maks. 3,4 cm (próg 3,5). Kolano 23–26° wyżej niż „ok. 15°” z opisu źródła, niżej niż 33,9° z pomiaru Lee 2018 — karta liczby nie podaje. Karta (rdl.setup, rdl.move, rdl.dbSetup, rdl.dbMove, rdl.depth, rdl.knees, rdl.mis.knees, dl.close; en i pl) nie przeczy rysunkowi. Pozostałe 30 ćwiczeń rodziny i 6 innych rodzin v2: md5 klatek (21 wartości u, bez błędu i z 7 błędami) równe bazie dla 183 z 185 ćwiczeń z rysunkiem v2 — różnią się tylko 2 RDL; skróty squat 2657a9758ed1, bench_press 2c880576bc1a, pull_up 8517337b29e5, curl 39915a18086a, olympic c01783db33ed, triceps 4b0065e80b0e potwierdzone (variants.ts w V2_WSPOLNE). Zmiany testów (figures-v2-tor: dev z wariantu; figury-styk: wartość przypięta 2,1 → 3,4, próg bez zmian; D3: zdjęte sprawdzenie tułowia w przypadku hipotetycznym, kolano > 27° nadal pilnowane) — uzasadnione, strażniki nie poluzowane. 09.11.2026 (audytor, recenzja niezależna figury/rdl-pull-up @ 1f8d416c vs integracja-1-1 @ 9dc2b0a9): skrót zmieniony wyłącznie przez pliki wspólne (variants.ts, overlay.ts, overlayShapes.ts); własny md5 (scratchpad sesji 09.11.2026: recenzja2/trening-fig/md5r2.test.tsx) — ruch, ślad, linie, nakładka, znaczki i dobór równe dla wszystkich ćwiczeń rodziny z rysunkiem: 30/32 równe; RDL (sztanga) i RDL (hantle/linki) — ruch zatwierdzony przez drugiego audytora (3e386ad2), na 1f8d416c równy.",
-      "slad": "Arkusze z nałożonym śladem toru ciężaru przed/po, profil i przód, kadry u 0–1 co 0,05: scratchpad sesji 09.11.2026: rdl/arkusz/przed/ i scratchpad sesji 09.11.2026: rdl/arkusz/po/ (RDL-sztanga-side/front, RDL-hantle-linki-side/front), obejrzane w pełnej rozdzielczości z kadrami końca i środka ruchu. Profil: biodra w tył, plecy proste, kolana lekko ugięte, gryf przy udach całą drogę (maks. odstęp 3,4 cm sztanga przy u 0,40, 2,0 cm hantle), zejście tuż pod kolano (przed: nad kolanem), tor bez skoków, jedna zmiana kierunku. Przód: symetria, ciężar do wysokości kolan. Pozostałe ćwiczenia: ślad z wcześniejszych recenzji ważny (klatki równe md5).",
-      "sha": "db4345521e62",
+      "kto": "audytor — recenzja niezależna scal/pociag-2 @ a78c6cef względem integracji @ c9346795 (worktree tymczasowe), 10.11.2026",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po scaleniu P1 do scal/pociag-2, 10.11.2026 (ruch i ślad bez zmian; dobór po kartach Clean Deadlift i Single Leg RDL)",
+      "autor": "programista P1 (tekst/p1-squat-hinge; karty własne P1, ruch bez zmian) + koordynator (scalenie do scal/pociag-2 @ a78c6cef)",
+      "recenzent": "audytor (recenzja różnicy 10.11.2026)",
+      "uwagi": "Różnica 10.11.2026: skrót db4345521e62 → 9853b1835b51 przez dobór po karcie Clean Deadlift (linie → backLine, bez nakładki hingeUprightRef, błąd roundBack → barAway) i znaczki Single Leg RDL ×2 (znika ✓ rdl.depth; dobór bez zmian). 29 ćwiczeń bajtowo równych. Każdy błąd ma zdanie na karcie. Do scalenia: wpisać sha i przegenerować lib/figures/data.json.",
+      "slad": "Ruch, styki i ślad toru bez zmian: md5 równy w c9346795, a78c6cef i f1472e08 dla Clean Deadlift i Single Leg RDL ×2 (każda poza błędu). Arkusze ze śladem (oba motywy, kadry co 0,05): Clean Deadlift poprawny — sztanga przy nogach (odstęp 0,2–3,0 cm), ślad pionowy, pełny wyprost; nowo pokazywana poza barAway — sztanga przed nogami przez cały ruch, ślad poprawnego toru jako odniesienie; Single Leg RDL — hantel pionowo przy nodze podporowej do tuż poniżej kolana, plecy proste. RDL (sztanga, hantle/linki) bajtowo równe c9346795.",
+      "sha": "9853b1835b51",
       "liczba": 32,
       "cwiczenia": [
         "Axle Deadlift",
@@ -788,7 +787,8 @@
           "sprawdzono": "(1) git diff 07567efd..df9f6819 -- lib/: tylko komentarze (cueSets, dumbbellAxis, poseData, poseInterp) i parametr onDrawingCues(..., cueIds = cueIdsOf(spec.key).ids) z domyślną wartością jak dotąd (jedyne wywołanie w aplikacji, components/ExerciseFigureV2.tsx:86, bez czwartego argumentu); (2) node scripts/skrot-v2-wynik.mjs <7 rodzin> --cwiczenia w kopii git archive 07567efd (+ skrypt metody i jednolinijkowa zmiana ui.ts) i w kopii df9f6819: 185/185 ćwiczeń z identycznym skrótem, 0 BLAD/NULL, skrót wyniku i skrót recenzji 7/7 równe; (3) sha 7 wpisów = skrót liczony na gałęzi; (4) zakres: styki.json (requiredContacts) i overheadException.ts (validatePose) bez wywołań w lib/components/app — tylko walidacja; views elementu wchodzą do wyniku przez onDrawingCues i overlayShapes; połowa lustrzana cykl_lustro (u w (1,2]) poza siatką klatek, ale w boxFor/trailFor (mutacja zamiany nóg w mirrorKey zmienia skrót carry po podłączeniu w kopii)",
           "wynik": "potwierdzone: rysunki 7 rodzin bez zmian, zmienił się tylko sposób liczenia skrótu; brak znalezisk KRYTYCZNE/WYSOKIE w zakresie strażnika (uwaga NISKIE: BADGE_GAP_PT w badges.ts poza skrótem — skrót liczy odstęp znaczków stałą 8)"
         }
-      }
+      },
+      "data": "2026-11-10"
     },
     "pull_up": {
       "werdykt": "wyswietlana",
@@ -836,14 +836,14 @@
     "curl": {
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po poprawce stóp w Spider Curl ×2 (stopyNaPalcach, figury/partia-1 @ 0b390518, zmiana f4ec3263) względem wpisu v2.curl z integracji (bb1072f3), 09.11.2026; ruch, ślad, nakładka i dobór pozostałych 32 ćwiczeń z rysunkiem bez zmian; wcześniej: zrecenzowana niezależnie — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026",
       "kto": "audytor — recenzja niezależna różnicy figury/partia-1 @ 0b390518 względem bb1072f3, czyste kopie git archive w /home/user/rev-p1/curl-roznica i /home/user/rev-p1/curl-baza, 09.11.2026; raport curl-roznica-spider-audytor-2026-11-09.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — recenzja różnicy po poprawce stóp w Spider Curl ×2 (stopyNaPalcach, figury/partia-1 @ 0b390518, zmiana f4ec3263) względem wpisu v2.curl z integracji (bb1072f3), 09.11.2026; ruch, ślad, nakładka i dobór pozostałych 32 ćwiczeń z rysunkiem bez zmian; wcześniej: zrecenzowana niezależnie — recenzja różnicy po nakładce olympic i triceps (figury/nakladka-b0), 08.11.2026",
       "autor": "programista partii 1 linii 1.1 (figury/partia-1, f4ec3263: stopyNaPalcach w gora.mjs, wywołanie w curl.mjs spider)",
       "recenzent": "audytor",
+      "uwagi": "Zmiana skrótu 39470f3a2918 → 3380994ca6df oczekiwana (rysunek 2 ćwiczeń). Zestawy i karty curl: skróty z --skroty identyczne w bb1072f3 i 0b390518 oraz zgodne z wpisami w figury-recenzja.json (28 zestawów, 6 kart) — bez nowych wpisów. Uwaga NISKIE (bez drogi przez UI): data/zrodla/figury-sens.json curl.zakres_wyjatki['Spider Curl'].hipMin = −45 z nieaktualnym powodem (uda na siedzisku) — biodro jest już −9,8°, wyjątek niepotrzebnie luzuje kontrolę zakresu biodra dla Spider Curl. Poprzedni wpis: sha 39470f3a2918 (08.11.2026, recenzja różnicy po nakładce olympic i triceps, figury/nakladka-b0); historia w git log tego pliku.",
+      "slad": "Arkusze arkusz-slad.mjs (kadry co 0,05, 21 kadrów) dla 34/34 ćwiczeń curl z rysunkiem, widoki side i front, motyw jasny i ciemny, w obu kopiach (bb1072f3 i 0b390518): 136 PNG na kopię; cmp — 64/68 arkuszy na motyw identyczne bajtowo, różnią się tylko Spider Curl i Spider Curl (sztanga) (side, front). Dane póz: w curl.json zmieniły się wyłącznie nogi.R/L.kostka i nogi.R/L.podbicie obu Spider Curl (54 wartości na ćwiczenie), ręce, miednica, tułów i sprzęt bez zmian. Ślad toru w chwycie Spider Curl ×2 bez zmian: łuk przedramienia wokół stałego łokcia pod barkiem, od wyprostu (łokieć 1,5°) do 124,6° w stronę głowy, bez zawróceń i skoków (sztanga: środek gryfu). Stopy Spider Curl ×2 obejrzane w pełnej rozdzielczości (kadr u=0 powiększony, oba motywy): na palcach, pięta 24,5 cm nad podłogą, palce 0,3 cm, zgięcie podeszwowe 25° (frameAt, jointAngles.ankle −25,3°), kolano 25,2°, biodro −9,8° (limit kontraktu −17°), stałe w całym ruchu; nogi–ławka odstęp 3,9 cm (bez przenikania), checkFrame bez zgłoszeń w 201 kadrach. Nakładka (arkusz-nakladka.mjs --family curl, 96 PNG na kopię): różnią się tylko 4 arkusze Spider Curl; element curlElbowLimb bez zmian (łuk łokcia 1°→125°), nakładka nie dotyczy nóg.",
       "sha": "3380994ca6df",
       "liczba": 36,
-      "slad": "Arkusze arkusz-slad.mjs (kadry co 0,05, 21 kadrów) dla 34/34 ćwiczeń curl z rysunkiem, widoki side i front, motyw jasny i ciemny, w obu kopiach (bb1072f3 i 0b390518): 136 PNG na kopię; cmp — 64/68 arkuszy na motyw identyczne bajtowo, różnią się tylko Spider Curl i Spider Curl (sztanga) (side, front). Dane póz: w curl.json zmieniły się wyłącznie nogi.R/L.kostka i nogi.R/L.podbicie obu Spider Curl (54 wartości na ćwiczenie), ręce, miednica, tułów i sprzęt bez zmian. Ślad toru w chwycie Spider Curl ×2 bez zmian: łuk przedramienia wokół stałego łokcia pod barkiem, od wyprostu (łokieć 1,5°) do 124,6° w stronę głowy, bez zawróceń i skoków (sztanga: środek gryfu). Stopy Spider Curl ×2 obejrzane w pełnej rozdzielczości (kadr u=0 powiększony, oba motywy): na palcach, pięta 24,5 cm nad podłogą, palce 0,3 cm, zgięcie podeszwowe 25° (frameAt, jointAngles.ankle −25,3°), kolano 25,2°, biodro −9,8° (limit kontraktu −17°), stałe w całym ruchu; nogi–ławka odstęp 3,9 cm (bez przenikania), checkFrame bez zgłoszeń w 201 kadrach. Nakładka (arkusz-nakladka.mjs --family curl, 96 PNG na kopię): różnią się tylko 4 arkusze Spider Curl; element curlElbowLimb bez zmian (łuk łokcia 1°→125°), nakładka nie dotyczy nóg.",
-      "uwagi": "Zmiana skrótu 39470f3a2918 → 3380994ca6df oczekiwana (rysunek 2 ćwiczeń). Zestawy i karty curl: skróty z --skroty identyczne w bb1072f3 i 0b390518 oraz zgodne z wpisami w figury-recenzja.json (28 zestawów, 6 kart) — bez nowych wpisów. Uwaga NISKIE (bez drogi przez UI): data/zrodla/figury-sens.json curl.zakres_wyjatki['Spider Curl'].hipMin = −45 z nieaktualnym powodem (uda na siedzisku) — biodro jest już −9,8°, wyjątek niepotrzebnie luzuje kontrolę zakresu biodra dla Spider Curl. Poprzedni wpis: sha 39470f3a2918 (08.11.2026, recenzja różnicy po nakładce olympic i triceps, figury/nakladka-b0); historia w git log tego pliku.",
       "cwiczenia": {
         "Spider Curl": {
           "werdykt": "wyswietlana",
@@ -4269,8 +4269,8 @@
       "autor": "programista (partia 1, subagent)",
       "recenzent": "audytor",
       "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
-      "sha": "075672f7c818",
-      "uwagi": "kbb.bellSetup, kbb.snatchMove (jeden ruch — bez przestoju), kbb.punch, kbb.mis.bang zgodne z rysunkiem r4"
+      "uwagi": "kbb.bellSetup, kbb.snatchMove (jeden ruch — bez przestoju), kbb.punch, kbb.mis.bang zgodne z rysunkiem r4",
+      "sha": "075672f7c818"
     },
     "Double Kettlebell Push Press": {
       "werdykt": "wyswietlana",
@@ -4279,8 +4279,8 @@
       "autor": "programista (partia 1, subagent)",
       "recenzent": "audytor",
       "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
-      "sha": "6fe0557af3f0",
-      "uwagi": "kbb.rackStartDbl, kbpp.move, pp.legs, kbpp.mis.rebend zgodne: jedno ugięcie kolan (32°), wyprost nóg, ramiona kończą, bez drugiego ugięcia"
+      "uwagi": "kbb.rackStartDbl, kbpp.move, pp.legs, kbpp.mis.rebend zgodne: jedno ugięcie kolan (32°), wyprost nóg, ramiona kończą, bez drugiego ugięcia",
+      "sha": "6fe0557af3f0"
     },
     "One-Arm Kettlebell Push Press": {
       "werdykt": "wyswietlana",
@@ -4289,8 +4289,8 @@
       "autor": "programista (partia 1, subagent)",
       "recenzent": "audytor",
       "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
-      "sha": "4044c2cbfc23",
-      "uwagi": "kbb.rackStart, kbpp.move, pp.legs, kbpp.mis.rebend zgodne: jedno ugięcie kolan (34°), wyprost nóg, ramię kończy, bez drugiego ugięcia"
+      "uwagi": "kbb.rackStart, kbpp.move, pp.legs, kbpp.mis.rebend zgodne: jedno ugięcie kolan (34°), wyprost nóg, ramię kończy, bez drugiego ugięcia",
+      "sha": "4044c2cbfc23"
     },
     "Double Kettlebell Snatch": {
       "werdykt": "wyswietlana",
@@ -4386,6 +4386,96 @@
       "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050) @ 37333dc6, czysta kopia (lokalny katalog roboczy recenzenta, poza repo), 09.11.2026; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md",
       "sha": "2596b6e0425a",
       "uwagi": "lp.setup (plecy i miednica na oparciu, stopy płasko, kolana ok. 90° — rysunek 86°), lp.move, lp.noLock (góra 15°), lp.heels, lp.hips (miednica stała), sq.kneesToes i sq.mis.kneesIn (rysunek tylko z boku — nie przeczy) zgodne z rysunkiem v2. Wpis v1 8219dd20f3d3 → zastapiona przy włączeniu v2."
+    },
+    "Clean Deadlift": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "1734a33bd5e7",
+      "uwagi": "r2: bez zmian; Catalyst 176 + BarBend/Vaughn"
+    },
+    "Single Leg RDL (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "0594be52ae01",
+      "uwagi": "r2: slrdl.move 'cofając biodra' OK"
+    },
+    "Single Leg RDL (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "0594be52ae01",
+      "uwagi": "r2: P-4 naniesione (uproszczenie wariant sprzętu przy slrdl.move, mis.roundBack)"
+    },
+    "Barbell Hack Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "561375b5aeaa",
+      "uwagi": "r2: bez zmian treści; P-7 (roundBack → otwarte) wg koordynatora, nieweryfikowane w diffie"
+    },
+    "Bodyweight Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "fd4b1ab165f5",
+      "uwagi": "r2: bez zmian"
+    },
+    "Dumbbell Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "fd4b1ab165f5",
+      "uwagi": "r2: bez zmian; uproszczenie nazwane"
+    },
+    "Overhead Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "20f040e543b6",
+      "uwagi": "r2: ohs.setup skrócone do części wspólnej; sq.mis.heels = ISSA + SBS z nazwaną analogią"
+    },
+    "Squat with Chains": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026; warunek R2-1 spełniony (ExRx zastąpiony barbend-back-squat w cues.json)",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "2ee2db20499b",
+      "uwagi": "r2: sqc.chains odrzucone (EliteFTS=5); R2-1: sq.bar/sq.back — ExRx (403, nieprzeczytany) zastąpić barbend.com/back-squat (Step 2, Step 5); sq.back + SBS (spine rigid and extended); tekst bez zmian"
+    },
+    "Squat with Bands": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026; warunek R2-1 spełniony (ExRx zastąpiony barbend-back-squat w cues.json)",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "sha": "2ee2db20499b",
+      "uwagi": "r2: sqb.bands odrzucone (EliteFTS=5); R2-1 jak Chains; tekst bez zmian"
     },
     "Łydki na stopniu": {
       "werdykt": "wyswietlana",
