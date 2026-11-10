@@ -35,6 +35,7 @@ const LOAD: Record<string, () => PoseFile> = {
   pushup_plank: () => require('./poses/pushup_plank.json'),
   mobility_floor: () => require('./poses/mobility_floor.json'),
   mobility_stand: () => require('./poses/mobility_stand.json'),
+  core_floor: () => require('./poses/core_floor.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -164,6 +165,11 @@ export const DATA_UI: Record<string, DataUi> = {
   /* mobility_stand (10.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz; nazwy faz nieużywane), mierzone kolano (rozciąganie łydki: noga tylna i przednia); w rozciąganiu szyi, ramion i skłonie bocznym kolano nie jest istotą pozycji → bez linii „Kąt na rysunku” */
   mobility_stand: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'],
     exceptions: Object.fromEntries(['Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Lateral Stretch'].map((k): [string, PhaseOverride] => [k, { hideAngle: true }])) },
+  /* core_floor (10.11.2026, partia 7): brzuszki, unoszenie nóg i ćwiczenia stabilizacji na podłodze — u = 0 pozycja leżąca / wyjściowa, u = 1 szczyt skurczu (tułów albo nogi uniesione, miednica unoszona w Reverse Crunch i Leg Pull-In):
+   * unoszenie 1 s, opuszczanie 2 s; mierzone biodro (zgięcie tułowia i nóg względem miednicy) albo kolano (Bird Dog, Dead Bug); Hollow Hold to utrzymanie (ISOMETRIC). Scissor Kick, Bicycle Crunch i Cross-Body Crunch są naprzemienne: dwie strony w jednym przebiegu. */
+  core_floor: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'],
+    /* Dead Bug: u 0 → 1 to opuszczanie ręki i przeciwnej nogi ku podłodze (kierunek z pionu kostek), powrót to unoszenie; Scissor Kick: nogi naprzemiennie, średnia kostek stoi — kierunku nie da się zmierzyć, deklaracja wprost (tests/figures-v2-kierunek-u.test.ts) */
+    exceptions: { 'Dead Bug': { names: { first: 'Opuszczanie', second: 'Unoszenie' }, lowerFirst: true }, 'Scissor Kick': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' }, lowerFirst: false } } },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
@@ -194,6 +200,8 @@ export const ISOMETRIC: ReadonlySet<string> = new Set([
   'Crucifix',
   /* deska: dwie identyczne klatki — utrzymanie pozycji (09.11.2026, pushup_plank) */
   'Plank',
+  /* utrzymanie na czas (time, core_floor 10.11.2026): dwie identyczne klatki */
+  'Hollow Hold',
   /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow jest ruchem) */
   'Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Gastrocnemius Calf Stretch', 'Wall Calf Stretch', 'Standing Soleus And Achilles Stretch', 'Standing Lateral Stretch',
   'The Straddle', 'Seated Calf Stretch', 'Seated Floor Hamstring Stretch', 'Butterfly Stretch', "Child's Pose", 'Kneeling Hip Flexor Stretch', 'Supine Hamstring Stretch', 'Side-Lying Quad Stretch',

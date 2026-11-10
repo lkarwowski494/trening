@@ -534,6 +534,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_stand (np. Wall Calf Stretch, Standing Lateral Stretch), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest rozciąganiem statycznym z rysunkiem
     - Wtedy pozycja jest jedną nieruchomą klatką bez licznika faz, rysunek nie ma ról mięśni (decyzja właściciela 04.11.2026), a tylko w skłonie bocznym (Standing Lateral Stretch) z przodu widać pion od miednicy, od którego tułów odchyla się w bok (reguła „ustalone”, zdanie o zginaniu tylko w bok); 28 ćwiczeń rodziny bez pozy (m.in. wymachy, krążenia, Inchworm) zostaje bez rysunku v2
+  - Scenariusz: Rodzina brzucha na leżąco (core_floor) pokazuje rysunki 21 ćwiczeń (10.11.2026, partia 7 linii 1.1; testy `tests/figures-v2-core-floor.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera brzuszek, unoszenie nóg, Dead Bug, Bird Dog, Superman albo Hollow Hold, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy miednica leżącej osoby zostaje przy podłodze, licznik faz pokazuje Unoszenie i Opuszczanie (Dead Bug: Opuszczanie, potem Unoszenie; Scissor Kick: nogi proste, naprzemiennie), a Hollow Hold jest jedną pozycją utrzymywaną; błąd przeprostu w Supermanie nie jest rysowany, dopóki jego poza nie ma recenzji
+    - Oraz gdy ćwiczenie ma na karcie wskazówkę o unoszeniu łopatek (Crunch i odmiany) albo o ułożeniu ręki i nogi w Bird Dog i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/core_floor.ts`)
+    - Wtedy z boku widać łuk kąta biodra rosnący przy zwijaniu tułowia, a w Bird Dog dwie poziome linie odniesienia (poziom barku i miednicy); pozostałe reguły rodziny nie mają elementu (powód w nagłówku pliku nakładki)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

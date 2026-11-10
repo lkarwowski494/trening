@@ -1,0 +1,203 @@
+{
+  "v2": {
+    "core_floor": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, L-047, L-050) — 2 WYSOKIE (Sit Up, Bicycle Crunch), 3 ŚREDNIE, 4 NISKIE; pozostałe 19 ćwiczeń bez znalezisk blokujących",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "23d415649e1f",
+      "liczba": 44,
+      "cwiczenia": [
+        "Crunch",
+        "Frog Sit-Ups",
+        "Janda Sit-Up",
+        "Oblique Crunches - On The Floor",
+        "Sit Up",
+        "Toe Touchers",
+        "Bicycle Crunch",
+        "Cross-Body Crunch",
+        "Scissor Kick",
+        "Bird Dog",
+        "Crunch - Hands Overhead",
+        "Dead Bug",
+        "Hollow Hold",
+        "Lying Leg Raise",
+        "Reverse Crunch",
+        "Tuck Crunch",
+        "Cocoons",
+        "Leg Pull-In",
+        "Superman",
+        "V-Up",
+        "Alternate Heel Touchers"
+      ],
+      "bez_rysunku": [
+        "Cable Crunch",
+        "Decline Crunch",
+        "GHD Sit Up",
+        "Dragon Flag",
+        "Machine Crunch",
+        "Stability Ball Crunch",
+        "Butt-Ups",
+        "Cable Reverse Crunch",
+        "Cable Seated Crunch",
+        "Crunch - Legs On Exercise Ball",
+        "Decline Oblique Crunch",
+        "Decline Reverse Crunch",
+        "Stability Ball Knee Tuck",
+        "Kneeling Cable Crunch With Alternating Oblique Twists",
+        "Otis-Up",
+        "Press Sit-Up",
+        "Seated Flat Bench Leg Pull-In",
+        "Side Jackknife",
+        "Smith Machine Hip Raise",
+        "Standing Rope Crunch",
+        "Suspended Reverse Crunch",
+        "Weighted Sit-Ups - With Bands",
+        "Stomach Vacuum"
+      ],
+      "slad": "Arkusze r1 wygenerowane przez recenzenta: scripts/figures/arkusz-slad.mjs, widok side (jedyny w views), 21 ćwiczeń × 21 kadrów co 0,05, oglądane w pełnej rozdzielczości (kadry Superman u = 0 powiększone); arkusz-nakladka.mjs dla Cross-Body Crunch, Bird Dog, Toe Touchers. Ćwiczenia bez ciężaru: trailFor rysuje ślad miednicy (Reverse Crunch 11,0 cm, Leg Pull-In 12,0 cm, Cocoons 3,4 cm, Janda/Sit Up 2,0 cm, pozostałe 0,0 cm); zgodnie z briefem partii 7 tor barków policzony z frameAt co 0,05 (brzuszki: barki +21,8…+51,6 cm w pionie, bez skoków > 3,9 cm na krok poza Alternate Heel Touchers 6,4 cm; ćwiczenia nóg, Dead Bug, Bird Dog: barki 0,0–0,1 cm) — barki to ruchomy koniec w brzuszkach, miednica w odwrotnych spięciach. Styk z podłogą: tułów do −3,5 cm (8 póz z core_floor-zatwierdzone.json), −2,0 cm w pozach generatora (hip_bridge −2,0, back_extension −2,9).",
+      "poprawka": "W1 Sit Up: dłonie przy głowie zgodnie z crunch.setup (dziś 89 cm od głowy w u = 0, ręce wzdłuż ciała ku kolanom) — test odtwarzający: odległość chwytu od głowy ≤ ok. 20 cm w każdej klatce (Crunch: 14 cm); W2 Bicycle Crunch: obie stopy nad podłogą i naprzemienne prostowanie nogi ze skrętem łokieć–kolano (dziś stopa R na podłodze 0,0 cm, kolano 129°, twist 0) albo wstrzymanie rysunku (V2_WSTRZYMANE) do źródła ruchu — test: najniższy punkt obu stóp > 5 cm w każdej klatce. ŚREDNIE/NISKIE wg raportu (nie blokują).",
+      "uwagi": "Szczegóły i miary w raporcie. K14: zmiana heurystyki kierunku (leżenie: miednica ≤ 12 cm w obu klatkach) zmienia klasyfikację tylko 3 ćwiczeń core_floor (Dead Bug, Tuck Crunch, Cocoons) — przeliczone przez recenzenta dla wszystkich plików póz, inne rodziny bez zmian; złote odciski: zmieniony tylko core_floor/Scissor Kick. cobra.mis wstrzymany — bez pozy błędu przy tekście karty (dopuszczalne, K15)."
+    }
+  },
+  "zestawy": {
+    "Frog Sit-Ups": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "72a762ea7123",
+      "uwagi": "crunch.neck — głowa podąża za tułowiem; dłonie nie przy głowie, zdanie nie przeczy rysunkowi; błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Janda Sit-Up": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "72a762ea7123",
+      "uwagi": "crunch.neck — jak Frog Sit-Ups; tułów do siadu, szyja w osi; błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Oblique Crunches - On The Floor": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "655560612257",
+      "uwagi": "crunch.neck, crunch.lowBack — miednica stoi (0,0 cm), barki +22 cm; błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Toe Touchers": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "ddfe5def5a18",
+      "uwagi": "crunch.move (barki +22,2 cm, dłonie do 67 cm przy stopach 69,6 cm), crunch.lowBack (miednica 0,0 cm); błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Bicycle Crunch": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "655560612257",
+      "uwagi": "crunch.neck, crunch.lowBack (miednica 0,0 cm) — zdania pasują do rysunku; wada rysunku (stopa na podłodze, bez skrętu) w wpisie v2 (W2), nie w zestawie; błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Cross-Body Crunch": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "91f55d7c74f7",
+      "uwagi": "crunch.move (barki +22,1 cm), crunch.neck, crunch.lowBack (miednica 0,0 cm); błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Crunch - Hands Overhead": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "ddfe5def5a18",
+      "uwagi": "crunch.move (barki +21,8 cm), crunch.lowBack (miednica 0,0 cm); błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Lying Leg Raise": {
+      "rodzina": "legRaiseFloor",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "4a6cd3617b3f",
+      "uwagi": "db.back (miednica 0,0 cm), db.slow; błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Leg Pull-In": {
+      "rodzina": "legRaiseFloor",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "8b38dd55b549",
+      "uwagi": "rcrunch.hips (miednica +12 cm, barki 0,1 cm), db.slow; błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    },
+    "Alternate Heel Touchers": {
+      "rodzina": "crunch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K12: każde zdanie zestawu ogólnego wobec ruchu na rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "655560612257",
+      "uwagi": "crunch.neck, crunch.lowBack (miednica 0,0 cm); błąd mis.jerk bez pozy (tekst ogólny, bez animacji)."
+    }
+  },
+  "karty": {
+    "Bird Dog": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K11: treść karty wobec rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "3d8a0fcb7af8",
+      "uwagi": "bd.setup: dłoń R pod barkiem (x 60 / 59,9), kolano pod miednicą (x 12,1); bd.move: przeciwna ręka (R) i noga (L), dłoń na wysokości barku (65,3 / 65,3 cm), kostka 53 cm przy miednicy 51 cm; bark i miednica stoją (0,0 cm); bd.level/bd.range — rzut z boku, bez sprzeczności."
+    },
+    "Dead Bug": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r1 (bramka 4, K11: treść karty wobec rysunku v2)",
+      "autor": "programista (subagent, partia 7, sesja D)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor — recenzja niezależna r1 rodziny core_floor (bramka 4, L-047, L-050), worktree odłączone f3647df1 (figury/partia-7-core_floor), 10.11.2026; raport docs/research/recenzje/partia7-core_floor-r1-audytor-2026-11-10.md",
+      "sha": "a338e4fedf4c",
+      "uwagi": "db.setup: biodro 89°, kolano 90°, dłonie pionowo nad barkami (x −50); db.move: ręka R i noga L opuszczane, nie dotykają podłogi (stopa 2,8 cm, dłoń 25,8 cm nad podłogą w u = 1); db.back: miednica 0,0 cm ruchu. Fazy Opuszczanie → Unoszenie zgodne z kierunkiem (kostka L 52 → 22 cm)."
+    }
+  },
+  "v1_zastapiona": [
+    "Bird Dog",
+    "Dead Bug"
+  ]
+}

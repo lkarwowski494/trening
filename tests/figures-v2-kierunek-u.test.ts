@@ -15,12 +15,15 @@ type Kierunek = 'opuszczanie' | 'wysilek' | null;
 const plik = (f: string): Record<string, PoseData> => JSON.parse(fs.readFileSync(path.join(POSES, f + '.json'), 'utf8')).cwiczenia;
 const FAMILIES = fs.readdirSync(POSES).filter(f => f.endsWith('.json')).map(f => f.replace(/\.json$/, ''));
 
+/** Leżenie na podłodze: miednica w obu skrajnych klatkach nie wyżej niż `max_y_cm` reguły miednica_na_podlodze (12 cm, figury-sens.json → core_floor) — tu kolano nie rozstrzyga o kierunku. */
+const MIEDNICA_NA_PODLODZE_CM = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figury-sens.json'), 'utf8')).rodziny.core_floor.reguly.miednica_na_podlodze.parametry.max_y_cm as number;
+const lezyNaPodlodze = (a: { pelvis: readonly number[] }, b: { pelvis: readonly number[] }): boolean => Math.max(a.pelvis[1], b.pelvis[1]) <= MIEDNICA_NA_PODLODZE_CM;
 /** Kierunek u: 0 → 1 wyliczony z klatek: miednica w dół albo kolano zgina się = opuszczanie; w górę albo kolano prostuje się = wysiłek; brak ruchu miednicy i kolan = null (nie do oceny). */
 function kierunekU(d: PoseData): Kierunek {
   const a = keyframeFrame(d, 0).sk, b = keyframeFrame(d, 1).sk; const dy = b.pelvis[1] - a.pelvis[1];
   if (Math.abs(dy) >= PELVIS_MIN_CM) return dy < 0 ? 'opuszczanie' : 'wysilek';
   const dk = SIDES.map(s => jointAngles(b, s).knee - jointAngles(a, s).knee).reduce((m, x) => Math.abs(x) > Math.abs(m) ? x : m, 0);
-  if (Math.abs(dk) >= MIN_MEASURED_ROM.deg) return dk > 0 ? 'opuszczanie' : 'wysilek';
+  if (Math.abs(dk) >= MIN_MEASURED_ROM.deg && !lezyNaPodlodze(a, b)) return dk > 0 ? 'opuszczanie' : 'wysilek'; /* 10.11.2026 (partia 7, core_floor): leżąc, zgięcie kolan (Tuck Crunch, Cocoons — kolana ku klatce) to szczyt skurczu, nie opuszczanie; o kierunku decyduje wtedy pion barków i kostek (niżej) */
   /* miednica i kolana stoją, ale tułów albo nogi się ruszają (back_extension, brzuszki, Superman): kierunek daje pion ruchomego końca — barki (środek) albo kostki (środek): w dół = opuszczanie, w górę = wysiłek.
    * Sam znak kąta biodra nie wystarcza (zgięcie biodra to opuszczanie tułowia w wyproście z opadem, a unoszenie w nogach w brzuszku; Crunch zwija kręgosłup przy biodrze ≈ 5°); backlog figur 28.10.2026, Z4. */
   const sr = (k: typeof a) => [k.shoulderC[1], (k.legs.R.ankle[1] + k.legs.L.ankle[1]) / 2]; const ra = sr(a), rb = sr(b);
