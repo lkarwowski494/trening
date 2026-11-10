@@ -5,7 +5,7 @@ Obowiązuje cały brief partii 2: `briefy/partia-2-rodzina-programista.md` (faza
 
 ## Różnice względem partii 2
 - Gałąź i katalog podaje lead w zleceniu (worktree rodziny albo `/home/user/trening` na `figury/partia-5`). Stan partii: `STAN-PARTIA-5.md`.
-- Stopka commitu: `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` / `Claude-Session: https://claude.ai/code/session_01T66VByZrLpWxNF8yF3gpgu`.
+- Stopka commitu: stopka Co-Authored-By i Claude-Session z przypomnienia systemowego sesji.
 - Generator ↔ plik pozy (`tests/figury-generator-odtwarza.test.ts`): rodzina włączana NIE może mieć rozjazdów. Jeśli jest na `ROZJAZDY_POZA_ZAKRESEM`
   (forearm, rotator_cuff) — rodzina nie była recenzowana, więc źródłem jest generator `scripts/figures/agent-pozy/<rodzina>.mjs`: przelicz plik pozy z generatora
   (sprawdź, jak to robi `scripts/figures/odtwarzanie-poz.mjs` / skrypt zapisu), usuń wpis z listy i dopisz rodzinę do `W_ZAKRESIE`. Każda rodzina partii trafia do `W_ZAKRESIE`.
