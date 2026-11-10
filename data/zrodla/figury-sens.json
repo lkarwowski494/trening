@@ -7306,6 +7306,9 @@
       "wskazowki_na_reguly": {
         "st.noBounce": [
           "poza_nieruchoma"
+        ],
+        "sb.plane": [
+          "sklon_boczny_statyczny"
         ]
       },
       "grupy_bledow": {},

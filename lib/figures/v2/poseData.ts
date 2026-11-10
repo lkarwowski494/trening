@@ -18,6 +18,7 @@ const LOAD: Record<string, () => PoseFile> = {
   hip_bridge: () => require('./poses/hip_bridge.json'),
   cable_row: () => require('./poses/cable_row.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
+  mobility_stand: () => require('./poses/mobility_stand.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -88,6 +89,9 @@ export const DATA_UI: Record<string, DataUi> = {
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
   /* cable_row: u = 0 ręce wyprostowane (start), u = 1 uchwyt przy tułowiu albo twarzy; ściąganie 1 s, powrót 2 s (tempo ilustracyjne). Mierzony łokieć (zakres_lokcia). */
   cable_row: { names: { first: 'Ściąganie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },
+  /* mobility_stand (10.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz; nazwy faz nieużywane), mierzone kolano (rozciąganie łydki: noga tylna i przednia); w rozciąganiu szyi, ramion i skłonie bocznym kolano nie jest istotą pozycji → bez linii „Kąt na rysunku” */
+  mobility_stand: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'],
+    exceptions: Object.fromEntries(['Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Lateral Stretch'].map((k): [string, PhaseOverride] => [k, { hideAngle: true }])) },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
