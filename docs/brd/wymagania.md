@@ -526,6 +526,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny thruster, a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch
     - Wtedy całe powtórzenie (przysiad do równoległego ud lub niżej, wyciskanie z blokadą ciężaru nad barkami i środkiem stopy, powrót ciężaru na barki; przy Clean and Press rwanie do racka i wyciskanie nad głowę) biegnie w jednym przebiegu pod nazwą fazy „Podnoszenie”, dłonie leżą na ciężarze w każdym kadrze, a przy Clean and Press (karta z wskazówką o plecach i ciężarze blisko ciała) rysunek pokazuje linię pleców i odcinek kostka–kolano jako elementy nakładki techniki
+  - Scenariusz: Rodzina wykroków (lunge: wykroki, przysiad bułgarski, wejścia na stopień, pistolet, wykroki boczne — 24 ćwiczenia) pokazuje rysunki w rzucie z boku i z przodu (10.11.2026, partia 9 linii 1.1; testy `tests/figures-v2-lunge.test.tsx`, `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-kierunek-u.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny lunge, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy wykroki i przysiady na jednej nodze zaczynają od stania i schodzą w dół (fazy „Opuszczanie” i „Wstawanie”), a wejścia na stopień zaczynają od stopy na podłodze i kończą staniem na stopniu (fazy „Wstawanie” i „Opuszczanie”)
+    - Oraz gdy karta ćwiczenia ma wskazówkę o plecach albo o kolanie w linii palców i reguła jest „ustalone” (nakładka techniki, `lib/figures/v2/overlay/lunge.ts`)
+    - Wtedy z boku widać linię pleców (miednica–bark), a z przodu pion przez palce do wysokości kolana mierzonej nogi; głębokość wykroku, wejście i wolna noga pistoletu nie mają elementu nakładki (silnik nie ma dla nich rodzaju elementu)
   - Scenariusz: Rodzina mobilności i rozciągania na podłodze (mobility_floor) pokazuje rysunki 9 ćwiczeń (09.11.2026, partia 2; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_floor (np. Child's Pose, Cat-Cow), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest pozycją statyczną (rozciąganie z przytrzymaniem) albo Cat-Cow

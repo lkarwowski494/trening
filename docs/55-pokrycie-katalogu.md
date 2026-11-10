@@ -100,7 +100,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 8 | 0 | 20 | 0 | 0 |
 | `olympic` | gotowa | 25 | 22 | 2 | 0 | 21 | 1 | 3 | 21 | 22 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 11 | 14 | 0 | 24 | 25 |
-| `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 12 | 0 | 12 | 0 | 0 |
+| `lunge` | gotowa | 24 | 0 | 24 | 6 | 12 | 0 | 12 | 0 | 0 |
 | `overhead_press` | gotowa | 23 | 21 | 0 | 0 | 11 | 10 | 2 | 21 | 21 |
 | `mobility_floor` | gotowa | 22 | 9 | 0 | 0 | 9 | 4 | 9 | 9 | 9 |
 | `chest_fly` | gotowa | 20 | 17 | 0 | 0 | 3 | 13 | 4 | 16 | 17 |

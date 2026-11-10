@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 27, do zrobienia: 16); ćwiczeń z gotową figurą: **394** (55,6%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 28, do zrobienia: 15); ćwiczeń z gotową figurą: **418** (59,0%).
 
 ## Rodziny
 
@@ -19,7 +19,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_row` | gotowa | 10 | side, front | — | Wiosłowanie na linkach i maszynie, face pull |
 | `pull_up` | gotowa | 13 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
 | `pulldown` | gotowa | 8 | side, front | — | Ściąganie drążka (wyciąg górny) |
-| `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
+| `lunge` | gotowa | 24 | side, front | — | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
 | `leg_machine` | gotowa | 8 | side, front | — | Suwnice i maszyny nóg (leg press, hack, wahadło) |
 | `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
 | `calf_raise` | gotowa | 13 | side | — | Wspięcia na palce |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 15 rodzin, 206 ćwiczeń, ok. **43 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -118,7 +118,7 @@ Chin Up; Dead Hang; Gironda Sternum Chins; Gorilla Chin/Crunch; Mixed Grip Chin;
 
 Close-Grip Front Lat Pulldown; Full Range-Of-Motion Lat Pulldown; Lat Pulldown; Single Arm Lat Pulldown; Straight Arm Pulldown; Underhand Lat Pulldown; V-Bar Pulldown; Wide-Grip Pulldown Behind The Neck
 
-### lunge (24) — do zrobienia
+### lunge (24) — gotowa
 
 Barbell Side Split Squat; Barbell Step Up; Barbell Walking Lunge; Bulgarian Split Squat (hantle); Bulgarian Split Squat (sztanga); Cossack Squat; Crossover Reverse Lunge; Curtsy Lunge; Elevated Back Lunge; Lateral Lunge; Lunge Pass Through; Lunges (hantle); Lunges (sztanga); Pistol Squat; Reverse Lunge; Single-Leg High Box Squat; Slider Reverse Lunge; Smith Machine Bulgarian Split Squat; Smith Machine Pistol Squat; Split Squat; Split Squat (linki); Step Up; Suspended Split Squat; Walking Lunges
 
