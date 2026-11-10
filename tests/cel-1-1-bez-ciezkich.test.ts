@@ -80,7 +80,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(sym.kontrola.kartyDoPoprawy).toEqual(doPoprawy);
     for (const k of doPoprawy) expect([k, sym.gain.some(g => g.key === k)]).toEqual([k, false]);
     expect(sym.rozbicie.a).toBe(0); /* delt_raise: zysk (a) znika razem z kartą „do poprawy” */
-    expect(cele.min.pelnaKarta).toBe(457); /* 10.11.2026: 455 → 457 po scaleniu partii 5 z partią 3 (Farmer's Walk i Suitcase Carry wchodzą do (c)) — wynik symulacji, nie poluzowanie; */ /* cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 455 = symulacja na wspólnym stanie (09.11.2026): Machine Hip Thrust wstrzymany (partia 2, V2_WSTRZYMANE) i marsze z gumą (partia 3, P3-MARSZ w docs/21) — wynik symulacji, nie poluzowanie */
+    expect(cele.min.pelnaKarta).toBe(462); /* 10.11.2026: 457 → 462 po scaleniu rotator_cuff (recenzja r1, 5 kart rodziny z rysunkiem v2) — wynik symulacji, nie poluzowanie; 10.11.2026: 455 → 457 po scaleniu partii 5 z partią 3 (Farmer's Walk i Suitcase Carry wchodzą do (c)) — wynik symulacji, nie poluzowanie; */ /* cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 455 = symulacja na wspólnym stanie (09.11.2026): Machine Hip Thrust wstrzymany (partia 2, V2_WSTRZYMANE) i marsze z gumą (partia 3, P3-MARSZ w docs/21) — wynik symulacji, nie poluzowanie */
   });
   test('docs/18 ma wpis decyzji z 09.11.2026 (cytat właściciela, definicja, stare → nowe, odrzucone) z polami wdrożenia i testu', () => {
     const d = read('docs/18-przekazanie.md');

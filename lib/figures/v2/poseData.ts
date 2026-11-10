@@ -26,6 +26,7 @@ const LOAD: Record<string, () => PoseFile> = {
   carry: () => require('./poses/carry.json'),
   core_hang: () => require('./poses/core_hang.json'),
   kneeling_hinge: () => require('./poses/kneeling_hinge.json'),
+  rotator_cuff: () => require('./poses/rotator_cuff.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;

@@ -18,7 +18,7 @@ import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
 import { isNiche, MUSCLES, REGION_MUSCLE } from '@/lib/seed';
 import { PARTS, silhouetteSprite, SILHOUETTE_VARS, exerciseMapSets, shadeLevel } from '@/lib/musclemap';
 import { FAMILIES } from '@/lib/figures/v2/families';
-import { figurePalette, svgInner, shapesAt as appShapesAt } from '@/lib/figures/v2';
+import { figurePalette, svgInner, shapesAt as appShapesAt, familyReviewed } from '@/lib/figures/v2';
 import { oneWayAt, uAt as uAtApp } from '@/lib/figures/v2/anim';
 import { light } from '@/lib/tokens';
 import { similarity, SWAP_WEIGHTS, orderSwaps } from '@/lib/swapScore';
@@ -162,7 +162,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(279); /* 10.11.2026: + 22 partii 5 (11 forearm, 7 carry, 3 core_hang, 1 kneeling_hinge); 09.11.2026: + 25 partii 3 (pulldown, shrug, hip_abd_add, leg_machine — wpisy v2 po recenzjach niezależnych; zmierzone po scaleniu); + 31 delt_raise (podłączona po recenzji różnicy audytora); + 9 cable_row (włączona, partia 2, 9 z 10: Sled Row bez pozy); + 9 hip_bridge (11 ćwiczeń, London Bridges bez rysunku, Machine Hip Thrust wstrzymany — V2_WSTRZYMANE, r1 WYSOKIE); 05.11.2026: 132 + 22 olympic + 29 triceps (podłączone i zrecenzowane niezależnie — r5); sam olympic: 154 = 132 + 22 z danych (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; 19 jednokierunkowych wróciło do eksportu po r6-W2 A: strona gra pętlę jednokierunkową, 135 = 132 + 3 wahadła Clean Pull, Snatch Pull, Jerk Dip Squat przed W2-A); 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
+      expect(n).toBe(286); /* 10.11.2026: + 7 rotator_cuff (partia 5, 7 z 8: Cuban Press bez rysunku); + 22 partii 5 (11 forearm, 7 carry, 3 core_hang, 1 kneeling_hinge); 09.11.2026: + 25 partii 3 (pulldown, shrug, hip_abd_add, leg_machine — wpisy v2 po recenzjach niezależnych; zmierzone po scaleniu); + 31 delt_raise (podłączona po recenzji różnicy audytora); + 9 cable_row (włączona, partia 2, 9 z 10: Sled Row bez pozy); + 9 hip_bridge (11 ćwiczeń, London Bridges bez rysunku, Machine Hip Thrust wstrzymany — V2_WSTRZYMANE, r1 WYSOKIE); 05.11.2026: 132 + 22 olympic + 29 triceps (podłączone i zrecenzowane niezależnie — r5); sam olympic: 154 = 132 + 22 z danych (24 pozy − Clean Shrug i Snatch Shrug wstrzymane do kart T2, V2_WSTRZYMANE; 19 jednokierunkowych wróciło do eksportu po r6-W2 A: strona gra pętlę jednokierunkową, 135 = 132 + 3 wahadła Clean Pull, Snatch Pull, Jerk Dip Squat przed W2-A); 132 = 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych + 34 curl z danych (podłączone 03.11.2026; do eksportu trafiają dopiero po recenzji niezależnej — sekcja v2 figury-recenzja.json, osobny strażnik skrótu); od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
@@ -222,10 +222,11 @@ describe('eksport dla strony: pole `pelna` = standard 1 „Pełna karta” liczo
   const licznik = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { policz } from './scripts/pokrycie-katalogu.mjs'; process.stdout.write(JSON.stringify(Object.fromEntries(policz().cw.map(c => [c.key, c.pelna]))));`], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 24 })) as Record<string, boolean>;
   test('każde ćwiczenie eksportu ma boolowskie `pelna` równe wynikowi policz() (pl i en)', () => {
     for (const l of ['pl', 'en'] as const) {
-      const ex = data[l].exercises as unknown as { id: string; pelna: unknown }[];
+      const ex = data[l].exercises as unknown as { id: string; family: string; pelna: unknown }[];
       expect(ex).toHaveLength(Object.keys(licznik).length);
       expect(ex.filter(e => typeof e.pelna !== 'boolean').map(e => e.id)).toEqual([]);
-      expect(ex.filter(e => e.pelna !== licznik[e.id]).map(e => e.id)).toEqual([]);
+      /* 10.11.2026 (partia 5): licznik liczy w osobnym procesie z prawdziwą bramką 4 (figura tylko z rodziny w lib/figures/data.json), a eksport w tym teście symuluje zapis recenzji dla wszystkich rodzin ready — rodzina włączona, ale jeszcze niezrecenzowana (rotator_cuff) daje więc różnicę tylko w figurze; porównujemy rodziny z prawdziwą recenzją, a dla pozostałych pilnuje się tego samego warunku w tests/strona-eksport-recenzja.test.ts */
+      expect(ex.filter(e => familyReviewed(e.family) && e.pelna !== licznik[e.id]).map(e => e.id)).toEqual([]);
     }
   });
   test('`pelna` nie zależy od języka pliku (35 języków, te same ćwiczenia spełniają standard)', () => {

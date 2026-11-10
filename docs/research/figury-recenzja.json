@@ -1494,6 +1494,31 @@
           "uwagi": "przysiad poprawny (kolano 108°, plecy neutralne, kolana nad stopami z przodu); wyjątek toru 6,8 cm potwierdzony; S-2 (brak pasa, ramię 33 cm z osią przed udami)."
         }
       }
+    },
+    "rotator_cuff": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r1: 0 × KRYTYCZNE, 0 × WYSOKIE; S1 ŚREDNIE i N1–N4 NISKIE → backlog",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md",
+      "sha": "aef0547423ef",
+      "liczba": 8,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 7 ćwiczeń × widoki front i side = 14 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z 7f694cf i obejrzane w pełnej rozdzielczości; arkusz-nakladka.mjs: External Rotation with Band, Cable Internal Rotation (poza poprawna i błędu). Ślad (frameAt, u co 0,01) = chwyt ręki R, 0,0 cm od chwytu we wszystkich 7 ćwiczeniach; łuki: External Rotation (hantel)|front 7,00 cm (r 33,0 cm), Reverse Flyes With External Rotation|front 14,23 cm (r 61 cm), 0 zawróceń — wyjątki toru potwierdzone.",
+      "uwagi": "S1 ŚREDNIE: znacznik błędu rot.mis.elbowAway na miednicy (guma/linka bez info.load, figure.ts:174) — 43,8 cm (ER linki, ER guma) i 37,1 cm (Cable Internal Rotation) od łokcia; rozszerzyć pozycję backlogu 1.2 (jerk curl). N1 NISKIE: tests/figures-v2-nakladka-rotator-cuff.test.tsx WANT bez Cable Internal Rotation — po wpisie zestawu ogólnego techniquesOf da rotElbowPlumb; dopisać w commicie przepisania. N2 NISKIE: asercja pelna (strona-eksport.test.ts:229) uzasadniona (różnica tylko Band Pull Apart, figura), węższa wersja: tylko ready && !familyReviewed + licznik false. N3 NISKIE: powód wyjątku toru External Rotation (hantel) podaje przedramię ok. 40 cm, pomiar 33,0 cm. N4 NISKIE: External Rotation (hantel) start z chwytem 6,8 cm nad łokciem. Bez znalezisk: zakresy (rotacje 90°/76°, Reverse Flyes 0,8–71,8°, łokieć 35–36,5°), łokieć 0,9–1,6 cm od pionu barku, przenikanie (checkFrame pusty), Reverse Flyes nad ławką (tułów 3,4 cm, miednica 2,0 cm — jak Spider Curl, Y Raise), Band Pull Apart 76° (guma dotyka klatki), guma z zaczepem w ręce R, nakładka tylko stojące, karty i zestawy, testy K14.",
+      "cwiczenia": [
+        "Band Pull Apart",
+        "Cable Internal Rotation",
+        "Cuban Press",
+        "External Rotation (hantel)",
+        "External Rotation (linki)",
+        "External Rotation with Band",
+        "Internal Rotation with Band",
+        "Reverse Flyes With External Rotation"
+      ],
+      "bez_rysunku": [
+        "Cuban Press"
+      ]
     }
   },
   "karty": {
@@ -2159,33 +2184,33 @@
     },
     "External Rotation with Band": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
-      "autor": "programista P1 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext (2026-11-02, wyswietlana)",
       "sha": "0081de688b36",
-      "uwagi": "Sprawdzone: Columbia/WebMD Ignite (waist height; unaffected side toward the door → ręka dalsza od zaczepu; forearm across your belly; Keep your elbow and upper arm tucked; Slowly move your arm back). Figura v2 rotator_cuff stoi, guma z zaczepem — zgodne. Zmiany lokalizacji nr 7–8 i 27 bez zmiany sensu (opis widocznego ruchu dłoni zgodny z „rotate your forearm out”)."
+      "uwagi": "rotator_cuff.bandSetup (zaczep na wysokości pasa, stanie bokiem), erStart (ręka dalej od zaczepu, łokieć pod kątem prostym przy boku, przedramię przed brzuchem), erMove (dłoń na zewnątrz, −32° → 58°), rot.elbow, rot.slow, rot.mis.elbowAway (poza błędu 17,5 cm) — zgodne z rysunkiem v2; guma tylko w ręce R."
     },
     "External Rotation (hantel)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
-      "autor": "programista P1 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext (2026-11-02, wyswietlana)",
       "sha": "9190e849f0f0",
-      "uwagi": "Sprawdzone: South Tees (lying on your side… lift the forearm toward the ceiling, elbow at a right angle, maintain contact with the towel, slowly back down). Figura v2 w leżeniu bokiem (pochylenieTulowia −90, hantel) — zgodna. Zmiana lokalizacji nr 27 (sideMove) bez zmiany sensu."
+      "uwagi": "rotator_cuff.sideSetup (leżenie na boku, górny łokieć 92,5–102° przy boku, hantel przed brzuchem), sideMove (przedramię obraca się w górę 3° → 73°, łokieć zostaje), rot.slow, rot.mis.elbowAway (tekst; bez animacji) — zgodne z rysunkiem v2. Start nad poziomem — N4 (wpis v2), nie przeczy treści."
     },
     "Internal Rotation with Band": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-02",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P1 mobilność, L-047",
-      "autor": "programista P1 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: audytor — recenzja niezależna L-047 kart partii P1 mobilność (02.11.2026), gałąź integracja/p1-mobilnosc @ fc2fe7c9; źródła sprawdzone WebFetch/pdftotext (2026-11-02, wyswietlana)",
       "sha": "aca836b22b61",
-      "uwagi": "Sprawdzone: Columbia/WebMD Ignite (affected side toward the door → ręka bliższa zaczepu; elbow 90; rotate your forearm toward your body until it touches your belly; slowly back). Zmiany lokalizacji nr 9–10 i 27 bez zmiany sensu."
+      "uwagi": "rotator_cuff.bandSetup, irStart (ręka bliżej zaczepu — zaczep po stronie roboczej, łokieć pod kątem prostym przy boku), irMove (dłoń do brzucha: 58° → −32°, chwyt kończy 2,8 cm od środka przed brzuchem), rot.elbow, rot.slow — zgodne z rysunkiem v2."
     },
     "Supine Figure-Four Stretch": {
       "werdykt": "wyswietlana",
@@ -3724,21 +3749,23 @@
     },
     "External Rotation (linki)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A3",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: rotator_cuff.erStartCable (wyciąg) zamiast erStart (guma); FV (Dr. Malik, MD, data) szczebel 4",
-      "sha": "ac32385ebf31"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026; runda 2: rotator_cuff.erStartCable (wyciąg) zamiast erStart (guma); FV (Dr. Malik, MD, data) szczebel 4 (2026-11-09, wyswietlana)",
+      "sha": "ac32385ebf31",
+      "uwagi": "rotator_cuff.cableSetup (wyciąg na wysokości pasa, 100 cm, z boku), erStartCable (ręka dalej od wyciągu, łokieć 88–92° przy boku, przedramię przed brzuchem: chwyt 2,8 cm od środka), erMove (dłoń na zewnątrz do 48,2 cm, rotacja −32° → 58°), rot.elbow (łokieć 0,9–1,6 cm od pionu barku), rot.slow, rot.mis.elbowAway (poza błędu 17,5 cm) — zgodne z rysunkiem v2."
     },
     "Band Pull Apart": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A3",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026",
-      "sha": "0e4e5181b837"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny i programista (agenci; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A3, rundy 1–2 (fd40a677, b9ca082e), 09.11.2026 (2026-11-09, wyswietlana)",
+      "sha": "0e4e5181b837",
+      "uwagi": "rotator_cuff.pullHold (ręce przed sobą, dłonie 8 cm pod barkiem — wysokość klatki), pullMove (rozciąganie na boki 8° → 76°, dłonie na stałej wysokości; ściąganie łopatek niewidoczne w szkielecie, bez sprzeczności), rot.slow; częsty błąd mis.shrug bez animacji — zgodne z rysunkiem v2."
     },
     "Cuban Press": {
       "werdykt": "wyswietlana",
@@ -6076,6 +6103,28 @@
       "kto": "audytor — recenzja niezależna rodziny leg_machine 09.11.2026, czysta kopia 37333dc6; raport docs/research/recenzje/p3-leg-machine-audytor-2026-11-09.md (pola stan/autor/kto uzupełnione przez programistę z raportu)",
       "sha": "9358e2eddadc",
       "uwagi": "squat: sq.down (biodra w tył i kolana razem), sq.back (kręgosłup 0°, tułów do 30°), sq.kneesToes; błędy sq.mis.kneesIn i sq.mis.heels animowane — zgodne."
+    },
+    "Cable Internal Rotation": {
+      "rodzina": "rotCuff",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md",
+      "sha": "28e14010801f",
+      "uwagi": "rot.elbow (łokieć zgięty 88–92° i przy boku, 0,9–1,6 cm od pionu barku; obraca się tylko przedramię), rot.slow (powrót 2 s), błąd rot.mis.elbowAway (poza błędu: łokieć 11,8 cm od pionu) — zgodne z rysunkiem. Znacznik błędu na miednicy — S1 (wpis v2), nie dotyczy zdań zestawu."
+    },
+    "Reverse Flyes With External Rotation": {
+      "rodzina": "raiseRear",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 rotator_cuff, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny rotator_cuff, partia 5, runda r1, gałąź figury/partia-5-rotator_cuff @ 7f694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md",
+      "sha": "627da18c6c4d",
+      "uwagi": "rear.elbows (kąt w łokciach stały: 34,8–36,5° przez cały ruch) — zgodne z rysunkiem; błąd mis.jerk to cecha tempa. Rotacja zewnętrzna barku (32° → 117°) wynika z nazwy, zestaw jej nie opisuje — bez sprzeczności."
     }
   }
 }
