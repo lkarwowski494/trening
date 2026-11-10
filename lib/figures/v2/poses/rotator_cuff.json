@@ -738,7 +738,45 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "rot.mis.elbowAway",
+     "znacznik": "bar",
+     "dotyczy": [
+      "elbow",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          4.1,
+          8.9
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          22.4,
+          12.5
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "External Rotation with Band": {
    "kontrakt": "figury-v2/poza@2",
@@ -1105,7 +1143,45 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "rot.mis.elbowAway",
+     "znacznik": "bar",
+     "dotyczy": [
+      "elbow",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          4.1,
+          8.9
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          22.4,
+          12.5
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Internal Rotation with Band": {
    "kontrakt": "figury-v2/poza@2",
@@ -1841,7 +1917,44 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "rot.mis.elbowAway",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          4.1,
+          8.9
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -3.7,
+          20.7
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Band Pull Apart": {
    "kontrakt": "figury-v2/poza@2",
@@ -2682,7 +2795,7 @@
      "top": 43,
      "kat": 45,
      "dlugosc": 38,
-     "siedzisko": 20
+     "siedzisko": 2
     },
     {
      "rodzaj": "hantel"
@@ -2702,29 +2815,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -2772,29 +2885,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -2842,29 +2955,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -2912,29 +3025,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -2982,29 +3095,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -3052,29 +3165,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -3122,29 +3235,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -3192,29 +3305,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }
@@ -3262,29 +3375,29 @@
      "nogi": {
       "R": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         -16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       },
       "L": {
        "kostka": [
-        61.1,
+        78.2,
         7,
         16
        ],
        "podbicie": 0,
        "rotacjaStopy": 0,
        "biegunKolana": [
-        1,
-        0.2,
+        -1,
+        -0.2,
         0
        ]
       }

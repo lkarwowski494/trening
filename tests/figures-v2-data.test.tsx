@@ -40,7 +40,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'rotator_cuff')) { /* rotator_cuff (10.11.2026, partia 5): rotacje w barku i dwa ćwiczenia odwodzące — staw, fazy i kierunek per ćwiczenie w osobnym teście niżej; */ /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
@@ -61,6 +61,17 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       if (k === 'Alternating Deltoid Raise') expect(ph).toEqual([['Naprzemiennie', 2500]]);
       else expect([k, ph]).toEqual([k, [[k === 'Car Drivers' ? 'Obrót' : 'Unoszenie', 1000], ['Pauza', 500], [k === 'Car Drivers' ? 'Powrót' : 'Opuszczanie', 2000], ['Pauza', 500]]]);
     }
+  });
+  test('rotator_cuff (10.11.2026, partia 5): staw per ćwiczenie (shRot dla pięciu rotacji, shAbd dla Band Pull Apart i Reverse Flyes), fazy 1 s / pauza / 2 s / pauza (Obrót/Powrót, Rozsuwanie/Powrót, Unoszenie/Opuszczanie); rotacje zewnętrzne rosną (do ≥ 60° na zewnątrz), wewnętrzne maleją (od 58° do −32°), odwodzenie rośnie; Cuban Press (OTWARTE) bez rysunku', () => {
+    const ui = DATA_UI.rotator_cuff; const keys = DATA_KEYS.filter(([f]) => f === 'rotator_cuff').map(([, k]) => k); expect(keys.length).toBe(7);
+    const INT = ['Internal Rotation with Band', 'Cable Internal Rotation']; const ABD: Record<string, [string, string]> = { 'Band Pull Apart': ['Rozsuwanie', 'Powrót'], 'Reverse Flyes With External Rotation': ['Unoszenie', 'Opuszczanie'] };
+    for (const k of keys) {
+      const sp = figureSpec(k)!; expect([k, sp.lowerFirst]).toEqual([k, false]); expect([k, measuredJoint(sp)]).toEqual([k, ABD[k] ? 'shAbd' : 'shRot']); expect(ui.exceptions?.[k]?.joints ?? ui.joints).toContain(measuredJoint(sp));
+      const [n1, n2] = ABD[k] ?? ['Obrót', 'Powrót']; expect([k, phasesFor(sp).map(p => [p.name, p.ms])]).toEqual([k, [[n1, 1000], ['Pauza', 500], [n2, 2000], ['Pauza', 500]]]);
+      const a0 = measuredAngle(sp, 0).deg, a1 = measuredAngle(sp, 1).deg;
+      expect([k, INT.includes(k) ? a1 < a0 - 60 : a1 > a0 + 60]).toEqual([k, true]);
+    }
+    expect(figureSpec('Cuban Press')).toBeNull();
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
     for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, metricFor(k) === 'time']); }
