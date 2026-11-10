@@ -63,7 +63,7 @@ describe('core_standing r1: W4 Landmine Rotation — koniec gryfu po łuku', () 
     for (const u of US) {
       const f = frameAt(spec(k), u); expect(f.props.some(p => p.k === 'barbell')).toBe(true); /* wymóg katalogu: Landmine Rotation wymaga wpisu „sztanga” (tests/figures-v2-gear.test.ts: landmine sam go nie spełnia) */
       const pv = f.props.find((p): p is Extract<typeof p, { k: 'pivot' }> => p.k === 'pivot')!; const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2);
-      expect([u, Math.hypot(...pv.to.map((x, i) => x - mid[i])) <= 3]).toEqual([u, true]); expect([u, Math.abs(Math.hypot(...pv.to.map((x, i) => x - pv.from[i])) - pv.len) <= 1]).toEqual([u, true]);
+      expect([u, Math.hypot(...pv.to.map((x, i) => x - mid[i])) <= 3]).toEqual([u, true]); expect([u, Math.abs(Math.hypot(...pv.to.map((x, i) => x - pv.from[i])) - (pv.len ?? NaN)) <= 1]).toEqual([u, true]);
       z.push(pv.to[2]); y.push(pv.to[1]);
     }
     expect(Math.max(...z) - Math.min(...z)).toBeGreaterThanOrEqual(36); expect(Math.max(...y) - Math.min(...y)).toBeGreaterThanOrEqual(4);
