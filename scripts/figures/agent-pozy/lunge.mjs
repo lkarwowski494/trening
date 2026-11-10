@@ -30,7 +30,7 @@ const kl = (r) => r.f;
 
 /** Geometria pozycji dolnej wykroku/przysiadu wykrocznego względem kostki przedniej (x = 0): miednica na wysokości yDol, tylna stopa na palcach (podbicie z zakresu kostki). */
 /** Tylna stopa grzbietem na ławce (decyzja właściciela 27.10.2026; poprzednio na palcach). Konwencja w jednym miejscu: STOPA_GRZBIETEM w lib/figures/v2/contract.ts (oś kostka→palce ≤ 30° do siedziska, palce na blacie ± 3 cm; tu: wybrane wartości w tych granicach). */
-const STOPA_GRZBIET_DEG = v2().STOPA_GRZBIETEM.nachylenieDeg; const STOPA_GRZBIET_PALCE_NAD_BLATEM_CM = v2().STOPA_GRZBIETEM.palceNadBlatemCm;
+const STOPA_GRZBIET_DEG = v2().STOPA_GRZBIETEM.nachylenieDeg; const STOPA_GRZBIET_PALCE_NAD_BLATEM_CM = 0.5; /* palce na blacie (kontrakt: ± palceNaBlacieCm; recenzja r1 Ś2: 2 cm nad siedziskiem to była szczelina między stopą a ławką, styk ≤ 1 cm) */
 /** Kostka i podbicie tylnej stopy leżącej grzbietem na ławce o wysokości top (silnik: podbicie 180° + a = palce do tyłu i w dół o a°). */
 function stopaGrzbietem(top) { const b = BODY(); const a = STOPA_GRZBIET_DEG * R; return { pod: 180 + STOPA_GRZBIET_DEG, y: r1(top + STOPA_GRZBIET_PALCE_NAD_BLATEM_CM - (b.ankleH * Math.cos(a) - b.toeFwd * Math.sin(a))) }; }
 function geom({ kPrzod1 = 95, kTyl1 = 85, yDol = 50, topTyl = 0, topPrzod = 0, zTyl = -ZS, zPrzod = ZS, poleTyl = [0.15, -1], tylWisi = 0, grzbiet = false }) {
@@ -72,11 +72,11 @@ export function krok(cw, o = {}) {
   /* współrzędne: kostka planowana w x = 0; w wykroku w tył planowana jest PRZEDNIA (R), w przód — TYLNA (L) */
   const dx = przod ? g0.L : 0; /* przesunięcie pozycji dolnej do przodu o L, gdy tylna stopa stoi w x = 0 */
   const m1 = [g0.x + dx, g0.yDol]; const aF1 = [g0.aF[0] + dx, g0.aF[1], g0.aF[2]]; const aT1 = [g0.aT[0] + dx, g0.aT[1], g0.aT[2]];
-  const yStoj = Math.min(hipY([0, 7 + topPrzod, ZS], 0, HIP(), 10), hipY([0, 7, -ZS], 0, -HIP(), 10));
+  const yStoj = Math.min(hipY([0, 7 + topPrzod, ZS], 0, HIP(), 10), hipY([0, 7 + topPrzod, -ZS], 0, -HIP(), 10));
   const poleT = crossover ? [0.3, -1, -0.5] : POLE_TYL(); const poleT2 = [poleT[0], poleT[1]];
   const mkF = (u, m, aR, aL, podR, podL, odchL) => ramka({ u, m, p: pitchFn ? pitchFn(u) : pitch, aR, aL, podR, podL, tryb, poleL: poleT, rotL: 0, odchL, rece: rece?.(m, u) });
   const tK = o.tK ?? 0.8; /* koniec kroku (stopa w locie ląduje); miednica opada już w trakcie kroku */
-  const lift = slizg ? 0 : 13; const e = ease;
+  const lift = slizg ? 0 : 13 + topPrzod; const e = ease;
   const stand = [0, yStoj];
   const miedn = (u) => [lerp(stand[0], m1[0], e(Math.min(1, u / 0.85))), lerp(stand[1], m1[1], e(Math.max(0, u - 0.12) / 0.88)) - 4 * Math.sin(Math.PI * Math.min(1, u / tK))];
   /* stopa w locie (R do przodu / L do tyłu): łuk o wysokości lift, podbicie z kąta goleni (kostka ~ 0–5°), lądowanie w punkcie docelowym */
@@ -86,7 +86,7 @@ export function krok(cw, o = {}) {
   for (const u of us) {
     const m = miedn(u); const hip2 = [m[0], m[1]];
     if (!przod) { /* planowana R (przednia) w x = 0; L idzie do tyłu */
-      const aRp = [0, 7 + topPrzod, ZS]; const sw = swing(u, [0, slizg ? 9 : 7, -ZS], aT1, g0.podT, poleT2, hip2);
+      const aRp = [0, 7 + topPrzod, ZS]; const sw = swing(u, [0, slizg ? 9 : 7 + topPrzod, -ZS], aT1, g0.podT, poleT2, hip2); /* przy wykroku ze stopnia (topPrzod) oba stopy stoją na stopniu, tylna schodzi na podłogę (r1 W4) */
       fr.push(mkF(u, m, aRp, sw.a, 0, sw.pod, ODCH));
     } else { /* planowana L (tylna) w x = 0; R idzie do przodu */
       const sw = swing(u, [0, 7, ZS], aF1, 0, [0.15, -1], hip2); const r = u < tK * 0.4 ? { pod: 0, y: 7 } : podAuto(hip2, 0, 0, poleT2, { zapas: 4 });
@@ -104,20 +104,21 @@ export function stepUp(cw, o = {}) {
   const rR = rPlan(dNogi(kR0), HIP() - ZS); let m0x = xB - 30; let y0 = 0;
   for (let i = 0; i < 4; i++) { y0 = hipY([m0x + 4, 7, -ZS], m0x, -HIP(), kL0); m0x = xB - Math.sqrt(Math.max(1, rR * rR - (y0 - (top + 7)) ** 2)); }
   const m0 = [m0x, y0]; const m1 = [xB - 2, hipY(aRb, xB - 2, HIP(), 8)];
-  const xL0 = m0x + 4; const aL1 = [m1[0] + 12, top + 7 + 24, -ZS];
+  const xL0 = m0x + 4; const xKr = -8; const yNad = top + 7 + 16; const aL1 = [xB, top + 7, -ZS]; /* koniec: stopa dostawiona na stopień obok stopy R (recenzja r1 Ś1) */
   const poleL = [0.9, -0.2]; const e = ease;
-  /* noga L: pionowo w górę wzdłuż x = xL0 (stopa nad krawędzią skrzyni), potem do przodu nad skrzynię */
-  const trasaL = (u) => { if (u <= 0.4) { const k = e(u / 0.4); return [xL0, lerp(7, top + 22, k), -ZS]; } const k = e((u - 0.4) / 0.6); return [lerp(xL0, aL1[0], k), lerp(top + 22, aL1[1], k), -ZS]; };
+  /* noga L (recenzja r1 Ś1: bez wymachu piętą — stopa idzie w górę pod biodrem do 8 cm nad stopniem, potem do przodu nad stopień i opada na niego; od u = 0,9 stoi na stopniu obok stopy R) */
+  const trasaL = (u) => { if (u <= 0.6) { const k = e(u / 0.6); return [lerp(xL0, xKr, k), lerp(7, yNad, k), -ZS]; } const k = e(Math.min(1, (u - 0.6) / 0.3)); return [lerp(xKr, aL1[0], k), lerp(yNad, aL1[1], k * k * k), -ZS]; }; /* opadanie na stopień dopiero nad nim (k³), żeby palce nie dotykały krawędzi */
   const mkF = (u) => { const k = e(u); const m = [lerp(m0[0], m1[0], k), lerp(m0[1], m1[1], k)]; const a = trasaL(u); const kn = kolano2D(m, a, poleL); const ang = katXY(a, kn); const nadSkrzynia = a[0] + 19 > x0 - 2;
     const pod = u === 0 ? 0 : Math.max(-60, Math.min(20, ang - 84)); const y = Math.max(a[1], kostkaStopyY(nadSkrzynia && u > 0.2 ? top : 0, pod));
     return ramka({ u, m, p: lerp(pitch, pitch - 4, k), aR: aRb, aL: [a[0], y, a[2]], podR: 0, podL: pod, tryb, poleL: [0.9, -0.2, -0.1] }); };
-  const us = [0, 0.15, 0.3, 0.45, 0.6, 0.8, 1]; const fr = us.map(mkF);
+  const us = [0, 0.15, 0.3, 0.45, 0.6, 0.7, 0.8, 0.9, 1]; const fr = us.map(mkF);
   const spr = [PODLOGA(-90, 110), ...fr[0].o.sprzet, { rodzaj: 'skrzynia', x0, x1: xB + 26, top }];
   return zloz(cw, spr, fr.map(kl), bledy && cw !== 'Step Up' ? [bladKolanaProfil([[0, 0], [0.12, 45], [0.4, 45], [0.7, 20], [1, 5]], cw)] : []);
 }
 
 /* ---------- przysiad jednonóż (pistolet, na skrzynię): noga podporowa R, wolna L wyprostowana w przód ---------- */
 const poleP = [1, 0, 0.12];
+const DL_PROSTA = () => dNogi(8);
 export function pistolet(cw, o = {}) {
   const { smith = false, kDol = 128, angDol = 56, skrzynia = null, bledy = true, pitchDol = 34 } = o;
   const aR = [0, 7, ZS + 0.5];
@@ -131,7 +132,7 @@ export function pistolet(cw, o = {}) {
     const e = ease(u); const K1 = lerp(K0, kDol, e); const th = smith ? thetaSmith(K1) : lerp(86, angDol, e); const h = hipXY(K1, th);
     /* ankle dors = 90 − kąt(goleń, stopa płasko) = 90 − th: przy th ≥ 56 ≤ 34° */
     const m = [h[0], h[1]]; const pit = pitch(u);
-    const wa = lerp(-40, -18, e) * R; const aL = [h[0] + 80 * Math.cos(wa), h[1] + 80 * Math.sin(wa), -ZS - 0.5]; /* wolna noga wyprostowana w przód nad podłogą (odległość od biodra 80 cm) */
+    const wa = lerp(-40, -18, e) * R; const aL = [h[0] + DL_PROSTA() * Math.cos(wa), h[1] + DL_PROSTA() * Math.sin(wa), -ZS - 0.5]; /* wolna noga wyprostowana w przód nad podłogą (odległość biodro–kostka jak przy kolanie 8°; recenzja r1 W5: 80 cm dawało 31°) */
     const kn = kolano2D([m[0], m[1]], aL, [0, 1]); const ang = katXY(aL, kn); const podL = Math.max(-40, Math.min(35, ang - 84));
     const rece = smith ? null : { hr: { g: [S(m, pit)[0] + 58, S(m, pit)[1] - 4, 11], pole: [0, -1, 0.3] }, hl: { g: [S(m, pit)[0] + 58, S(m, pit)[1] - 4, -9], pole: [0, -1, -0.3] }, sprzet: [] };
     fr.push(ramka({ u, m, p: pit, aR, aL, podR: 0, podL, tryb: smith ? 'smith' : 'przod', poleL: [0, 1, 0], odchR: ODCH, rece }));
@@ -161,8 +162,12 @@ function przekladanie(m, u) {
 
 
 /* ---------- ruchy boczne: wykrok boczny, przysiad kozacki, boczny przysiad ze sztangą (przesuniecieBoczne: miednica przenosi się nad zgiętą nogę) ---------- */
+/** Stopa nogi pracującej w ruchach bocznych: lekko na zewnątrz (recenzja r1 W2: −20° skręcało palce do środka, kolano wypadało 10–13 cm poza palce; kolano w linii palców). */
+/** Odchylenie kolana nogi pracującej w ruchach bocznych [u, stopnie]: gdy miednica jest jeszcze przyśrodkowo od stopy, a kolano już zgięte, kolano leży nad stopą, nie przyśrodkowo od niej (kolano w linii palców, r1 W2; stopa prosto zamiast −20° do środka, które to maskowało). odchStart: wartość do u = 0,125, potem do 10° w u = 0,25, 6° od u = 0,375. */
+const odchBoczny = (u, odchStart) => { const t = [[0, odchStart], [0.125, odchStart], [0.25, 10], [0.375, 6], [1, 6]]; for (let i = 1; i < t.length; i++) { const [u1, d1] = t[i]; if (u <= u1) { const [u0, d0] = t[i - 1]; return lerp(d0, d1, (u - u0) / (u1 - u0)); } } return 6; };
+const ROT_STOPY_BOCZNY = 0;
 export function boczny(cw, o = {}) {
-  const { tryb = 'cc', pitchDol = 26, kDol = 100, zR = 30, hxB = -18, sprzetFn = null, bledy = true, kLProst = 10, pitchGora = 4, podLDol = 0 } = o;
+  const { tryb = 'cc', pitchDol = 26, zR = 30, sprzetFn = null, bledy = true, kLProst = 10, pitchGora = 4, podLDol = 0 } = o; const hxB = o.hxB ?? -20; const kDol = o.kDol ?? 100; const odchStart = o.odchStart ?? 30;
   const aRz = zR; const ZO = zR - HIP(); /* na dole biodro R nad stopą R */
   const aRb = [0, kostkaPlasko(0), aRz];
   const yb = hipY(aRb, hxB, ZO + HIP(), kDol);
@@ -172,7 +177,7 @@ export function boczny(cw, o = {}) {
   const us9 = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1];
   const klatki = us9.map((u) => { const e1 = ease(u / 0.45); const e = ease((u - 0.3) / 0.7); const zo = r1(ZO * e1); const hx = r1(hxB * ease((u - 0.1) / 0.5)); const y = r1(Math.min(reach(hx, zo), lerp(reach(0, 0), yb, e)));
     const m = [hx, y]; const p = lerp(pitchGora, pitchDol, e);
-    const r = ramka({ u, m: [hx, y, zo], p, aR: aRb, aL: aLb, podR: 0, podL: podLDol, tryb, poleL: [1, 0, -0.1], rotR: o.rotR ?? -20, odchR: 6, boczne: r1(zo) }); return r; });
+    const r = ramka({ u, m: [hx, y, zo], p, aR: aRb, aL: aLb, podR: 0, podL: podLDol, tryb, poleL: [1, 0, -0.1], rotR: o.rotR ?? ROT_STOPY_BOCZNY, odchR: odchBoczny(u, odchStart), boczne: r1(zo) }); return r; });
   const spr = [PODLOGA(-120, 120), ...klatki[0].o.sprzet, ...(sprzetFn ? sprzetFn(klatki[0].f) : [])];
   return zloz(cw, spr, klatki.map(kl), bledy ? [bladKolana([0, 0.25, 0.5, 0.75, 1], cw, ['R'], 40)] : []);
 }
@@ -191,16 +196,18 @@ export const PRZYBLIZENIA = {
   'Lunge Pass Through': 'przybliżenie: kettlebell zwisa pod barkami w dole wykroku (przekładanie między rękami niemodelowane)',
 };
 
+/** Split Squat: góra ruchu = stanie, wyprost biodra tylnej nogi do −HIP_STOJ (wyjątek zakresu w figury-sens.json, r1 W4; limit kontraktu −17°). */
+const HIP_STOJ = 25;
 const BT = 30, BY = 44; /* wysokość ławki pod tylną stopą, głębokość */
 /** Przy tylnej stopie podniesionej (ławka, taśma) wyprost biodra tylnej nogi sięga dalej niż w Split Squat: limit z deklaracji zakres_wyjatki (data/zrodla/figury-sens.json → lunge) to −50°; góra ruchu przy −HIP_TYL_PODN (recenzja 1.1, partia 2, nr 1: wcześniej domyślne −14,5° ucinało ruch do 8 cm). */
 const HIP_TYL_PODN = 30;
 export function generuj() {
   const linki = (g, f0) => [{ rodzaj: 'wyciag', dwa: true, x: 105, y: 22, z: 45, chwyt: 'uchwyt', h: 120 }];
   const lawkaTyl = (g) => [{ rodzaj: 'lawka', x: r1(g.aT[0] - 25), top: BT, kat: 0, dlugosc: 40, siedzisko: 20 }];
-  const pudlo = (g) => [{ rodzaj: 'skrzynia', x0: -16, x1: 30, top: 12, z: 26 }];
+  const pudlo = (g) => [{ rodzaj: 'skrzynia', x0: -16, x1: 30, top: 12 }]; /* stopień pod obiema stopami na starcie (z = 0, szerokość 45 cm) */
   return {
-    'Split Squat': () => splitSquat('Split Squat'),
-    'Split Squat (linki)': () => splitSquat('Split Squat (linki)', { tryb: 'linki', sprzetFn: linki }),
+    'Split Squat': () => splitSquat('Split Squat', { hipMin: -HIP_STOJ }),
+    'Split Squat (linki)': () => splitSquat('Split Squat (linki)', { hipMin: -HIP_STOJ, tryb: 'linki', sprzetFn: linki }),
     'Reverse Lunge': () => krok('Reverse Lunge', { kierunek: 'tyl' }),
     'Walking Lunges': () => krok('Walking Lunges', { kierunek: 'przod', tryb: 'hantle' }),
     'Lunges (hantle)': () => krok('Lunges (hantle)', { kierunek: 'przod', tryb: 'hantle' }),
@@ -213,7 +220,7 @@ export function generuj() {
     'Smith Machine Bulgarian Split Squat': () => splitSquat('Smith Machine Bulgarian Split Squat', { tryb: 'smith', topTyl: BT, grzbiet: true, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'smith', x: r1(f.rece.R.chwyt[0]), h: 200 }] }),
     'Suspended Split Squat': () => splitSquat('Suspended Split Squat', { tylWisi: 40, hipMin: -HIP_TYL_PODN, sprzetFn: (g) => [{ rodzaj: 'zawieszenie', punkt: 'kostki', trzyma: 'L', x: r1(g.aT[0]), y: 220, z: g.aT[2] }] }),
     'Lateral Lunge': () => boczny('Lateral Lunge'),
-    'Cossack Squat': () => boczny('Cossack Squat', { kDol: 112, zR: 36, pitchDol: 32, hxB: -24, rotR: -28 }),
+    'Cossack Squat': () => boczny('Cossack Squat', { kDol: 106, zR: 36, pitchDol: 32, hxB: -24, odchStart: 55 }),
     'Barbell Side Split Squat': () => boczny('Barbell Side Split Squat', { tryb: 'sztanga', sprzetFn: (f) => [{ rodzaj: 'slupek', x: -40, h: 150, hak: 135 }] }),
     'Step Up': () => stepUp('Step Up', { tryb: 'hantle' }),
     'Barbell Step Up': () => stepUp('Barbell Step Up', { tryb: 'sztanga' }),

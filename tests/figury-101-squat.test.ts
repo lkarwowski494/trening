@@ -127,7 +127,7 @@ describe('101-12 (squat): wyjątki toru — naprawione albo uzasadnione liczbą'
     for (const u of KADRY_STYKU) { const b = frameAt(spec('Dip Belt Squat'), u); expect(b.info.load).toEqual(b.info.hip); const h = frameAt(spec('Barbell Hack Squat'), u); expect(Math.abs(h.info.load[0] - (h.info.hip[0] - 11.8))).toBeLessThan(0.01); }
   });
   test('lista wyjątków squat: pozostają tylko trzy (inne rodziny w pliku — nie ta paczka)', () => {
-    const squat = Object.keys(WYJ).filter(k => /Squat|Przysiad/.test(k) && !k.startsWith('Squat Jerk') && !k.startsWith('Belt Squat Machine')).sort(); /* 09.11.2026: Belt Squat Machine to leg_machine (partia 3), nie przysiad z rigu */ /* 05.11.2026: Squat Jerk to olympic (wyjątek toru podrzutu), nie przysiad — regex nie obejmuje go z nazwy */ expect(squat).toEqual(['Barbell Hack Squat|side', 'Dip Belt Squat|side', 'Przysiad z pasem (linki)|side']);
+    const squat = Object.keys(WYJ).filter(k => /Squat|Przysiad/.test(k) && !k.startsWith('Squat Jerk') && !k.startsWith('Belt Squat Machine') && assignAll()[k.split('|')[0]] !== 'lunge').sort(); /* 10.11.2026 (partia 9): Pistol Squat, Cossack Squat, Single-Leg High Box Squat, Barbell Side Split Squat to rodzina lunge (wyjątki toru z recenzją partii 9), nie przysiad z rigu */ /* 09.11.2026: Belt Squat Machine to leg_machine (partia 3), nie przysiad z rigu */ /* 05.11.2026: Squat Jerk to olympic (wyjątek toru podrzutu), nie przysiad — regex nie obejmuje go z nazwy */ expect(squat).toEqual(['Barbell Hack Squat|side', 'Dip Belt Squat|side', 'Przysiad z pasem (linki)|side']);
   });
 });
 

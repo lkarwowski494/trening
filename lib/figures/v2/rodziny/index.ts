@@ -33,4 +33,5 @@ export const RODZINY_POZ: Record<string, RodzinaPoz> = {
   plyo: require('./plyo').default,
   sled_throw: require('./sled_throw').default,
   leg_isolation: require('./leg_isolation').default,
+  lunge: require('./lunge').default,
 };

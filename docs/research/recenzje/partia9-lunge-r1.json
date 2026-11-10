@@ -1,0 +1,292 @@
+{
+  "v2": {
+    "lunge": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 9, runda 1: 5 × WYSOKIE (W1–W5) w 12 z 24 ćwiczeń, ŚREDNIE Ś1–Ś4; do poprawy przed statusem ready",
+      "autor": "programista partii 9 (figury/partia-9-lunge)",
+      "recenzent": "audytor",
+      "uwagi": "W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°. W2 WYSOKIE: stopa nogi pracującej skręcona palcami do środka (rotacjaStopy R −20°, Cossack −28°; pięta z 32,1 → palce z 23,5 cm), kolano na dole 10,0 cm (Cossack 13,1 cm) na zewnątrz od palców — własny pion lungeKneeToeRef pokazuje kolano poza linią, sprzecznie z lunge.knee w zestawie. W3 WYSOKIE: sztanga stoi w z = 0, gdy barki i miednica przesuwają się o 21,5 cm w bok (u ≥ 0,5: shoulderC z 21,5, chwyty z 53,5 / −10,5) — gryf nie leży na środku pleców, dłonie ślizgają się po gryfie; wyjątek toru „Barbell Side Split Squat|side” (13,0 cm) uzasadniony „tor sztangi = tor bioder”, a miednica stoi (x −16,1 → −18,0) przy ruchu gryfu x −21,9 → −8,9 — wyjątek maskuje wadę. W4 WYSOKIE (K8): pozycja u = 0 („stanie”, DATA_UI; karta „wstań”) nie jest staniem — Split Squat / (linki) kolana 56,8° / 55,7°, miednica 70,5 cm (zakres tylko 20,5 cm); Elevated Back Lunge kolano przednie 63,1° (przednia stopa na stopniu 12 cm, tylna na podłodze obok — nie „stań prosto” na podwyższeniu). W5 WYSOKIE (K8): wolna noga zgięta w kolanie 30,6–30,8° przez całe powtórzenie, karta pistol.setup: „drugą wyprostuj w przód nad podłogą”. Ś1: noga zakroczna — u 0,30–0,60 kolano 116°, stopa 55–65 cm nad podłogą za ciałem (wymach piętą do pośladka), na górze kolano 87° w górę; stopa nie staje na stopniu; karta tego nie opisuje. Ś2: grzbiet tylnej stopy 2,1 cm nad siedziskiem ławki przez całe powtórzenie (styk ≤ 1 cm; karta „oprzyj grzbiet tylnej stopy”). Ś3 (K12): zdania zestawu „Przednie kolano w linii palców” / „Przednie kolano uciekające do środka” przy ruchu bocznym — brak nogi przedniej. Ś4: u = 0 nie jest symetrycznym rozkrokiem — kolano R 51,8° (Cossack 43,6°), miednica 10,6–11,5 cm od środka między stopami; start w szerokim rozkroku sam w sobie poprawny. Bez zastrzeżeń (liczby z frameAt co 0,01): Reverse Lunge, Walking Lunges, Lunges (hantle/sztanga), Barbell Walking Lunge (tylne kolano 10,4 cm nad podłogą, przednie udo 3,4° nad poziomem, kolano 13 cm za palcami), Bulgarian ×3 poza Ś2 (udo −5,3°, tylne kolano 12 cm), Slider Reverse Lunge, Suspended Split Squat (pętla przy stopie), Single-Leg High Box Squat (miednica 0,3 cm od skrzyni), Smith Machine Pistol Squat (gryf na prowadnicy), Curtsy/Crossover — tylna stopa z 22 cm, na zewnątrz przedniej (z 9–13) — ruch poprawny. Styki stóp z podłogą/stopniem 0–0,3 cm, chwyty 0 cm, checkFrame bez uwag w 101 klatkach każdego ćwiczenia.",
+      "slad": "Ślad toru obejrzany na arkuszach arkusz-slad (21 kadrów co 0,05) wygenerowanych przez recenzenta dla 24 ćwiczeń × 2 widoki (48 arkuszy; 14 skupisk identycznego szkieletu, porównane liczbowo frameAt) i na 76 arkuszach arkusz-nakladka z pozami błędów; ślad = gryf/hantel/kettlebell (chwyt), bez ciężaru = miednica. Wykroki z krokiem: łagodny łuk miednicy/ciężaru 4,0–4,8 cm; pistolet i skrzynia: łuk miednicy w tył i w dół; Lunge Pass Through: kettlebell pod przednim udem do środka (0,2 cm od goleni, bez przenikania); Barbell Side Split Squat: gryf nie podąża w bok za barkami (W3).",
+      "sha": "12c75b7d1d89",
+      "liczba": 24
+    }
+  },
+  "zestawy": {
+    "Barbell Side Split Squat": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W2 WYSOKIE: stopa nogi pracującej skręcona palcami do środka (rotacjaStopy R −20°, Cossack −28°; pięta z 32,1 → palce z 23,5 cm), kolano na dole 10,0 cm (Cossack 13,1 cm) na zewnątrz od palców — własny pion lungeKneeToeRef pokazuje kolano poza linią, sprzecznie z lunge.knee w zestawie. W3 WYSOKIE: sztanga stoi w z = 0, gdy barki i miednica przesuwają się o 21,5 cm w bok (u ≥ 0,5: shoulderC z 21,5, chwyty z 53,5 / −10,5) — gryf nie leży na środku pleców, dłonie ślizgają się po gryfie; wyjątek toru „Barbell Side Split Squat|side” (13,0 cm) uzasadniony „tor sztangi = tor bioder”, a miednica stoi (x −16,1 → −18,0) przy ruchu gryfu x −21,9 → −8,9 — wyjątek maskuje wadę. Ś3 (K12): zdania zestawu „Przednie kolano w linii palców” / „Przednie kolano uciekające do środka” przy ruchu bocznym — brak nogi przedniej. Ś4: u = 0 nie jest symetrycznym rozkrokiem — kolano R 51,8° (Cossack 43,6°), miednica 10,6–11,5 cm od środka między stopami; start w szerokim rozkroku sam w sobie poprawny.",
+      "sha": "cb51552dead4",
+      "poprawka": "poprawić rysunek wg W2, W3 oraz zdania zestawu (Ś3); test odtwarzający z miarą z uwag"
+    },
+    "Cossack Squat": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W2 WYSOKIE: stopa nogi pracującej skręcona palcami do środka (rotacjaStopy R −20°, Cossack −28°; pięta z 32,1 → palce z 23,5 cm), kolano na dole 10,0 cm (Cossack 13,1 cm) na zewnątrz od palców — własny pion lungeKneeToeRef pokazuje kolano poza linią, sprzecznie z lunge.knee w zestawie. Ś3 (K12): zdania zestawu „Przednie kolano w linii palców” / „Przednie kolano uciekające do środka” przy ruchu bocznym — brak nogi przedniej. Ś4: u = 0 nie jest symetrycznym rozkrokiem — kolano R 51,8° (Cossack 43,6°), miednica 10,6–11,5 cm od środka między stopami; start w szerokim rozkroku sam w sobie poprawny.",
+      "sha": "cb51552dead4",
+      "poprawka": "poprawić rysunek wg W2 oraz zdania zestawu (Ś3); test odtwarzający z miarą z uwag"
+    },
+    "Crossover Reverse Lunge": {
+      "rodzina": "mobility",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°. Zestaw mobility (dyn.control, dyn.mis.jerk) pasuje do ruchu dynamicznego bez ciężaru.",
+      "sha": "d3cda6145aa2",
+      "poprawka": "poprawić rysunek wg W1; test odtwarzający z miarą z uwag"
+    },
+    "Curtsy Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°.",
+      "sha": "e9e959515615",
+      "poprawka": "poprawić rysunek wg W1; test odtwarzający z miarą z uwag"
+    },
+    "Elevated Back Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°. W4 WYSOKIE (K8): pozycja u = 0 („stanie”, DATA_UI; karta „wstań”) nie jest staniem — Split Squat / (linki) kolana 56,8° / 55,7°, miednica 70,5 cm (zakres tylko 20,5 cm); Elevated Back Lunge kolano przednie 63,1° (przednia stopa na stopniu 12 cm, tylna na podłodze obok — nie „stań prosto” na podwyższeniu).",
+      "sha": "26e1fba5bfa9",
+      "poprawka": "poprawić rysunek wg W1, W4; test odtwarzający z miarą z uwag"
+    },
+    "Lateral Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W2 WYSOKIE: stopa nogi pracującej skręcona palcami do środka (rotacjaStopy R −20°, Cossack −28°; pięta z 32,1 → palce z 23,5 cm), kolano na dole 10,0 cm (Cossack 13,1 cm) na zewnątrz od palców — własny pion lungeKneeToeRef pokazuje kolano poza linią, sprzecznie z lunge.knee w zestawie. Ś3 (K12): zdania zestawu „Przednie kolano w linii palców” / „Przednie kolano uciekające do środka” przy ruchu bocznym — brak nogi przedniej. Ś4: u = 0 nie jest symetrycznym rozkrokiem — kolano R 51,8° (Cossack 43,6°), miednica 10,6–11,5 cm od środka między stopami; start w szerokim rozkroku sam w sobie poprawny.",
+      "sha": "cb51552dead4",
+      "poprawka": "poprawić rysunek wg W2 oraz zdania zestawu (Ś3); test odtwarzający z miarą z uwag"
+    },
+    "Lunge Pass Through": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°.",
+      "sha": "e9e959515615",
+      "poprawka": "poprawić rysunek wg W1; test odtwarzający z miarą z uwag"
+    },
+    "Single-Leg High Box Squat": {
+      "rodzina": "pistol",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście do pełnego wyprostu).",
+      "sha": "5a0eab7dc282"
+    },
+    "Slider Reverse Lunge": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście do pełnego wyprostu).",
+      "sha": "e9e959515615"
+    },
+    "Smith Machine Pistol Squat": {
+      "rodzina": "pistol",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście do pełnego wyprostu).",
+      "sha": "a322416bebad"
+    },
+    "Split Squat (linki)": {
+      "rodzina": "lunge",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "W4 WYSOKIE (K8): pozycja u = 0 („stanie”, DATA_UI; karta „wstań”) nie jest staniem — Split Squat / (linki) kolana 56,8° / 55,7°, miednica 70,5 cm (zakres tylko 20,5 cm); Elevated Back Lunge kolano przednie 63,1° (przednia stopa na stopniu 12 cm, tylna na podłodze obok — nie „stań prosto” na podwyższeniu).",
+      "sha": "e9e959515615",
+      "poprawka": "poprawić rysunek wg W4; test odtwarzający z miarą z uwag"
+    },
+    "Suspended Split Squat": {
+      "rodzina": "lunge",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, zestaw ogólny wobec rysunku v2 lunge), partia 9, runda 1",
+      "autor": "badacz merytoryczny (zestawy ogólne); włączenie rodziny: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu zgodne z ruchem na rysunku (kolano nogi podporowej nad stopą, plecy proste, zejście do pełnego wyprostu).",
+      "sha": "e9e959515615"
+    }
+  },
+  "karty": {
+    "Barbell Step Up": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty poprawny; rysunek sprzeczny z kartą: W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°. Ś1: noga zakroczna — u 0,30–0,60 kolano 116°, stopa 55–65 cm nad podłogą za ciałem (wymach piętą do pośladka), na górze kolano 87° w górę; stopa nie staje na stopniu; karta tego nie opisuje.",
+      "sha": "f6d8ed690fd4",
+      "poprawka": "poprawić rysunek wg W1; tekst karty bez zmian; test odtwarzający z miarą z uwag"
+    },
+    "Barbell Walking Lunge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania).",
+      "sha": "3818764a3055"
+    },
+    "Bulgarian Split Squat (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania). Ś2: grzbiet tylnej stopy 2,1 cm nad siedziskiem ławki przez całe powtórzenie (styk ≤ 1 cm; karta „oprzyj grzbiet tylnej stopy”).",
+      "sha": "2066c9e9929c"
+    },
+    "Bulgarian Split Squat (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania). Ś2: grzbiet tylnej stopy 2,1 cm nad siedziskiem ławki przez całe powtórzenie (styk ≤ 1 cm; karta „oprzyj grzbiet tylnej stopy”).",
+      "sha": "b7d69b6803ae"
+    },
+    "Lunges (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania).",
+      "sha": "d8366550ad8e"
+    },
+    "Lunges (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania).",
+      "sha": "5d8455f12883"
+    },
+    "Pistol Squat": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty poprawny; rysunek sprzeczny z kartą: W5 WYSOKIE (K8): wolna noga zgięta w kolanie 30,6–30,8° przez całe powtórzenie, karta pistol.setup: „drugą wyprostuj w przód nad podłogą”.",
+      "sha": "efdd1757f212",
+      "poprawka": "poprawić rysunek wg W5; tekst karty bez zmian; test odtwarzający z miarą z uwag"
+    },
+    "Reverse Lunge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania). Linia kąta na nodze tylnej (measuredSide L) — karta nie ma wskazówki o kolanie, bez sprzeczności.",
+      "sha": "ab65d0011fca"
+    },
+    "Smith Machine Bulgarian Split Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania). Ś2: grzbiet tylnej stopy 2,1 cm nad siedziskiem ławki przez całe powtórzenie (styk ≤ 1 cm; karta „oprzyj grzbiet tylnej stopy”).",
+      "sha": "b7d69b6803ae"
+    },
+    "Split Squat": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty poprawny; rysunek sprzeczny z kartą: W4 WYSOKIE (K8): pozycja u = 0 („stanie”, DATA_UI; karta „wstań”) nie jest staniem — Split Squat / (linki) kolana 56,8° / 55,7°, miednica 70,5 cm (zakres tylko 20,5 cm); Elevated Back Lunge kolano przednie 63,1° (przednia stopa na stopniu 12 cm, tylna na podłodze obok — nie „stań prosto” na podwyższeniu).",
+      "sha": "c778c8ec9faa",
+      "poprawka": "poprawić rysunek wg W4; tekst karty bez zmian; test odtwarzający z miarą z uwag"
+    },
+    "Step Up": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty poprawny; rysunek sprzeczny z kartą: W1 WYSOKIE: element nakładki lungeKneeToeRef (pion przez palce do kolana, rzut z przodu) i linia kąta rysowane na nodze measuredSide = L (największy zakres w pętli: noga tylna/zakroczna), a nie na nodze z karty („przednie kolano”, „kolano nogi na podwyższeniu”); reguła kolano_nad_stopa ma strony „bardziej_zgieta” = R (u = 1: R 95°, L 85°; Step Up u = 0: R 90°, L 25°). Step Up: pion na stopie w powietrzu (L do 65 cm nad podłogą), podpis kąta 25→116°. Ś1: noga zakroczna — u 0,30–0,60 kolano 116°, stopa 55–65 cm nad podłogą za ciałem (wymach piętą do pośladka), na górze kolano 87° w górę; stopa nie staje na stopniu; karta tego nie opisuje.",
+      "sha": "0ff6ccfb7ef9",
+      "poprawka": "poprawić rysunek wg W1; tekst karty bez zmian; test odtwarzający z miarą z uwag"
+    },
+    "Walking Lunges": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 lunge, K11) — partia 9, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 9",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 1, figury/partia-9-lunge @ 8360f576, 10.11.2026; raport docs/research/recenzje/partia9-lunge-r1-audytor-2026-11-10.md",
+      "uwagi": "Tekst karty bez zmian i zgodny z rysunkiem (tylne kolano 10,4–12 cm nad podłogą na dole, tułów prosty, powrót do stania).",
+      "sha": "1c3bc4015101"
+    }
+  },
+  "v1_zastapiona": [
+    "Bulgarian Split Squat (hantle)",
+    "Lunges (hantle)",
+    "Pistol Squat",
+    "Reverse Lunge",
+    "Step Up",
+    "Walking Lunges"
+  ]
+}

@@ -44,7 +44,7 @@ export const MEASURE_UNIT: Record<MeasuredJoint, 'deg' | 'cm'> = { knee: 'deg', 
  */
 export const MIN_MEASURED_ROM = { deg: 15, cm: 2 } as const;
 /** `lowerFirst` w wyjątku odwraca kierunek tylko tego ćwiczenia: rodzina z różnym kierunkiem u: 0 → 1 (suwnica: wypychanie, hack: opuszczanie; wejście na stopień: w górę, wykrok: w dół) nie może mieć jednego wpisu dla wszystkich (strażnik: tests/figures-v2-kierunek-u.test.ts). */
-export type PhaseOverride = { names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true; lowerFirst?: boolean };
+export type PhaseOverride = { side?: 'R' | 'L'; names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true; lowerFirst?: boolean };
 export type DataUi = {
   /** Nazwy faz licznika: first = faza u: 0 → 1, second = powrót. */
   names: { first: PhaseName; second: PhaseName };

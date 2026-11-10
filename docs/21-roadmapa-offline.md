@@ -407,7 +407,7 @@ Odesłanie z wpisu DEC-07 w `docs/18` („1.0.1: podgląd liczb i krok importu �
 - P9-LI-1 (N1): Lying Leg Curl — tułów wchodzi 2,2 cm w obicie ławki przy u = 0 (granica K7: 1 cm).
 - P9-LI-2 (N2): Slider Hamstring Curl — łopatki 1,4 cm pod podłogą przy u = 1.
 - P9-LI-3 (N3): Standing Leg Curl — rama maszyny i uchwyty nie są rysowane (dłonie trzymają powietrze).
-- P9-LI-4 (N4, badacz): `data/zrodla/figury-sens.json` — `wskazowki_na_reguly["lext.range"]` bez `wyprost_kolan_jednonoz`; po uzupełnieniu zdjąć warunek omijający w `tests/figures-v2-leg-isolation.test.tsx`.
+- ~~P9-LI-4~~ ZROBIONE 10.11.2026 (7c2692a: `wskazowki_na_reguly["lext.range"]` uzupełnione, warunek omijający zdjęty; scalone do figury/partia-9) — (N4, badacz): `data/zrodla/figury-sens.json` — `wskazowki_na_reguly["lext.range"]` bez `wyprost_kolan_jednonoz`; po uzupełnieniu zdjąć warunek omijający w `tests/figures-v2-leg-isolation.test.tsx`.
 - P9-LI-5 (N5): Seated Band Hamstring Curl — kolano kończy na ok. 92° („tak daleko, jak dasz radę”; nie przeczy karcie). Komentarz w `tests/figures-v2-tor.test.ts` (NOGA_LUK) podaje 85–96°, Leg Extension ma 79° — kosmetyka.
 - P9-LI-6: 6 ćwiczeń rodziny bez danych póz (bez rysunku w rodzinie ready): Glute Ham Raise, Leg Curl (hantel), Nordic Curl, Reverse Nordic, Sissy Squat, Stability Ball Hamstring Curl — autorstwo póz i recenzja (wersja 1.2; Nordic Curl także w ZB-053).
 - P9-LU-1 (Ś3): zestaw ogólny przy Lateral Lunge, Barbell Side Split Squat i Cossack Squat mówi „Przednie kolano…”, a w ruchu bocznym nie ma nogi przedniej (wskazówka prawdziwa dla nogi ugiętej, którą rysunek pokazuje); rozwiązanie: wariant zdania albo mechanizm `CUE_REQUIRES` odróżniający ruch boczny (`lib/figures/v2/cueSets.ts`).
