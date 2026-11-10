@@ -1,0 +1,196 @@
+{
+ "v2": {
+  "core_standing": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — recenzja r2 różnicy (bramka 4, L-047 A, L-050) po poprawkach r1 @ d3e22931: W1, W3, W5, Ś1, Ś3 usunięte; W2 → Barbell Side Bend wstrzymany (V2_WSTRZYMANE, P8-CS-1); Ś2, N1 → backlog P8-CS-2/3; W4 nieusunięte (R2-W1, WYSOKIE: Landmine Rotation — gryf 20 cm i ślad toru na z = 0, 19,1 cm od dłoni); rodzina do poprawy",
+   "autor": "programista core_standing (partia 8, figury/partia-8-core_standing; poprawki po r1 038a6654..d3e22931)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "0e202db15319",
+   "liczba": "19",
+   "cwiczenia": [
+    "Barbell Side Bend",
+    "Side Bend (hantel)",
+    "One-Arm High-Pulley Cable Side Bends",
+    "Weighted Ball Side Bend",
+    "Bosu Ball Cable Crunch With Side Bends",
+    "Russian Twist",
+    "Medicine Ball Full Twist",
+    "Cable Russian Twists",
+    "Pallof Press",
+    "Pallof Press With Rotation",
+    "Cable Woodchop",
+    "Cable Judo Flip",
+    "Landmine Rotation",
+    "Kettlebell Windmill",
+    "Double Kettlebell Windmill",
+    "Bent Press"
+   ],
+   "bez_rysunku": [
+    "Kettlebell Figure 8",
+    "Seated Barbell Twist",
+    "Spell Caster"
+   ],
+   "slad": "Arkusze scripts/figures/arkusz-slad.mjs wygenerowane przez recenzenta r2 samodzielnie @ d3e22931: 8 ćwiczeń zmienionych albo z nowym wyjątkiem toru × front i side (Cable Russian Twists, Landmine Rotation, Pallof Press, Pallof Press With Rotation, Medicine Ball Full Twist, Kettlebell Windmill, Double Kettlebell Windmill, Bosu Ball Cable Crunch With Side Bends), kadry co 0,05; obejrzane w pełnej rozdzielczości: Cable Russian Twists front i side, Landmine Rotation front (kadr u = 0 powiększony), Medicine Ball Full Twist front, Pallof Press side i Pallof Press With Rotation front (u 0,70–1,00); nakładka (arkusz-nakladka.mjs) Kettlebell Windmill front i Double Kettlebell Windmill front. Ślad: piłka lekarska = środek piłki (0 cm), wyciąg = środek uchwytu, kettlebell = chwyt R; Landmine Rotation — ślad (info.load) na z = 0, 19,1 cm od środka chwytów w u = 0 i u = 1 (R2-W1).",
+   "uwagi": "r1 W1: prowadnica wm.arm przy ręce z kettlebellem R (pole side w TechniqueDef; arkusz nakładki obu wiatraków) — usunięte. W2: Barbell Side Bend w V2_WSTRZYMANE (P8-CS-1, decyzja leada do weta) — rozstrzygnięte, eksport strony 401. W3: Cable Russian Twists — góra pleców na piłce (r 27,5), tułów −76°, łokcie 166–174°, skręt ±36° — usunięte. W4: krótszy odcinek 20 cm, koniec gryfu (pivot) przy dłoniach (≤ 3 cm), ale odcinek „sztanga” i ślad toru zostają na z = 0 (gear.ts:106 zeruje z środka sztangi, contract.ts:320 info.load = bar.c), dłonie z = ±19,1 cm — R2-W1 WYSOKIE. W5: ślad = środek piłki (0 cm) — usunięte. Ś1: „Ściąganie”/„Powrót”, lowerFirst false — usunięte. Ś3: łokieć Pallof w u = 1 171–172° — usunięte. Kod wspólny: --skroty r2 vs 70fa2f75 — zmienia się tylko v2 core_standing (cbf3be33b708 → 0e202db15319); sled_throw (pilka_lekarska) bez figury w aplikacji. K14: 6 wyjątków toru (Woodchop 8,8, oba wiatraki 14,9, Judo Flip 5,0, Bosu 4,2, Cable Russian Twists front 11,4 cm) — łuki z obrotu/skłonu, bez zmian progów; test figures-v2-tor zielony (strażnik „lista tylko maleje”); brak poluzowań.",
+   "poprawka": "R2-W1 (Landmine Rotation): środek odcinka „sztanga” i ślad toru = środek chwytów także w osi z (≤ 3 cm w każdej klatce, w rzucie z przodu) — np. z środka sztangi z chwytów w gear.ts:106 (kod wspólny: sprawdzić --skroty innych rodzin) albo ślad z pivot.to; test: odległość barbell.c i info.load od środka chwytów ≤ 3 cm (obecny test W4 sprawdza tylko pivot.to). Alternatywa (decyzja leada): wstrzymać Landmine Rotation jak Barbell Side Bend."
+  }
+ },
+ "zestawy": {
+  "Barbell Side Bend": {
+   "rodzina": "sideBend",
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "70e3174cbfa7",
+   "uwagi": "Figura wstrzymana (V2_WSTRZYMANE, P8-CS-1) — zestaw ogólny nie jest wyświetlany bez rysunku; zdania sb.plane, dyn.control, mis.jerk pasują do ruchu.",
+   "poprawka": "ponowna ocena przy powrocie figury (P8-CS-1)"
+  },
+  "One-Arm High-Pulley Cable Side Bends": {
+   "rodzina": "sideBend",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "70e3174cbfa7",
+   "uwagi": "sb.plane: skłon w bok 26°, bez pochylenia i skrętu; dyn.control i mis.jerk ogólne — pasują."
+  },
+  "Weighted Ball Side Bend": {
+   "rodzina": "sideBend",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "70e3174cbfa7",
+   "uwagi": "sb.plane: skłon w bok 26° na piłce, bez pochylenia i skrętu — pasuje."
+  },
+  "Medicine Ball Full Twist": {
+   "rodzina": "rotation",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "4cbde3736060",
+   "uwagi": "rt.control, plank.brace pasują do skrętu ± 40° z piłką przed klatką; W5 usunięte (ślad = środek piłki)."
+  },
+  "Pallof Press With Rotation": {
+   "rodzina": "rotation",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "4cbde3736060",
+   "uwagi": "rt.control, plank.brace pasują (skręt 0 → −30°, tułów bez przechyłu); Ś3 (łokieć 180°) dotyczy rysunku, nie zdań zestawu."
+  },
+  "Cable Woodchop": {
+   "rodzina": "rotation",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "27424f82b775",
+   "uwagi": "chop.close: uchwyt 21–26 cm od tułowia, pochylenie do 18° — mieści się w „klatka nad biodrami” w przybliżeniu; rt.control, plank.brace pasują."
+  },
+  "Cable Judo Flip": {
+   "rodzina": "rotation",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "4cbde3736060",
+   "uwagi": "rt.control, plank.brace pasują (skręt −28 → +30°, tułów pionowo)."
+  },
+  "Landmine Rotation": {
+   "rodzina": "rotation",
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "4cbde3736060",
+   "uwagi": "Zdania pasują do obrotu (skręt ± 32°, koniec gryfu po łuku z ± 19 cm, y 87–100 cm); rysunek do poprawy (R2-W1: odcinek gryfu i ślad na z = 0).",
+   "poprawka": "po poprawce R2-W1 rysunku — werdykt zestawu przy teście odtwarzającym (bez kolejnego audytu)"
+  },
+  "Bent Press": {
+   "rodzina": "windmill",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "48aad8b1b1e6",
+   "uwagi": "wm.eyes — kierunku wzroku silnik nie rysuje, zdanie nie przeczy ruchowi; mis.jerk ogólne."
+  }
+ },
+ "karty": {
+  "Russian Twist": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "9408bbfb2743",
+   "uwagi": "Ruch zgodny (odchylenie 45°, skręt ± 38°, plecy proste); Ś2 (rysunek bez ciężaru, karta „ciężar przed klatką”) — ŚREDNIE, backlog P8-CS-2 (nie blokuje)."
+  },
+  "Cable Russian Twists": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "8b67938595ee",
+   "uwagi": "W3 usunięte: góra pleców na piłce, biodra w linii z tułowiem (tułów −76°, biodro ≥ 160°), ręce proste nad klatką (łokcie 166–174°), obrót tułowia ± 36° — zgodne z kartą."
+  },
+  "Pallof Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "ff78fc52665f",
+   "uwagi": "Treść zgodna z rysunkiem; Ś3 usunięte (łokieć w u = 1 171°)."
+  },
+  "Kettlebell Windmill": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "a318476c5b31",
+   "uwagi": "Treść zgodna z ruchem; W1 usunięte (prowadnica wm.arm przy ręce z kettlebellem). N1 (kolana) → backlog P8-CS-3."
+  },
+  "Double Kettlebell Windmill": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2",
+   "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+   "recenzent": "audytor (sesja r2)",
+   "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75)",
+   "sha": "a5abca82301a",
+   "uwagi": "Treść zgodna z ruchem; W1 usunięte (prowadnica przy górnej ręce R). N1 (kolana) → backlog P8-CS-3."
+  }
+ },
+ "v1_zastapiona": []
+}
