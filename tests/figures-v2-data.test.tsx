@@ -132,10 +132,11 @@ describe('błędy z danych (bledy[])', () => {
 });
 
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps') && cue === 'mis.jerk';
+/* 10.11.2026 (partia 4): dip, chest_press_machine, cable_press, back_extension — mis.jerk z zestawów ogólnych (bdip, machinePress, cablePress, hipExt/cobra) to ten sam błąd tempa (errors.ts kind „tempo”), poza się nie zmienia; zestawy zrecenzowane niezależnie (partia4-*-r2/r4) */
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => ['curl', 'triceps', 'dip', 'chest_press_machine', 'cable_press', 'back_extension'].includes(f) && cue === 'mis.jerk';
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
-    expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
+    expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('dip', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_press_machine', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_press', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('dip', 'mis.other')).toBe(false);
     expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false);
   });
 });
