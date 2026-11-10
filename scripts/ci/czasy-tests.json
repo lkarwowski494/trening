@@ -69,24 +69,29 @@
       "limit_tymczasowy_min": 35,
       "probka_min": [
         {
-          "przebieg": 41684571202,
+          "przebieg": 42758510965,
           "czesc": 1,
-          "min": 6.1
+          "min": 13.2
         },
         {
-          "przebieg": 41684571202,
+          "przebieg": 42758510965,
           "czesc": 2,
-          "min": 13.8
+          "min": 10.1
         },
         {
-          "przebieg": 41684571202,
+          "przebieg": 42758510965,
           "czesc": 3,
-          "min": 11.6
+          "min": 13.0
         },
         {
-          "przebieg": 41684571202,
+          "przebieg": 42758510965,
           "czesc": 4,
-          "min": 8.6
+          "min": 12.7
+        },
+        {
+          "przebieg": 42758510965,
+          "czesc": 5,
+          "min": 13.8
         }
       ]
     },
@@ -97,6 +102,10 @@
         {
           "przebieg": 41684571202,
           "min": 4.2
+        },
+        {
+          "przebieg": 42758510965,
+          "min": 2.7
         }
       ]
     }
