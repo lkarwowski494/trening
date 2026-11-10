@@ -7,7 +7,9 @@ const rodzina: RodzinaPoz = {
   load: () => require('../poses/core_standing.json'),
   ui: { names: { first: 'Obrót', second: 'Powrót' }, lowerFirst: false, joints: ['hip'],
     exceptions: { ...Object.fromEntries(['Russian Twist', 'Medicine Ball Full Twist', 'Cable Russian Twists', 'Cable Woodchop', 'Cable Judo Flip', 'Landmine Rotation'].map((k): [string, PhaseOverride] => [k, { hideAngle: true, lowerFirst: false }])),
-      ...Object.fromEntries(['Barbell Side Bend', 'Side Bend (hantel)', 'One-Arm High-Pulley Cable Side Bends', 'Weighted Ball Side Bend', 'Bosu Ball Cable Crunch With Side Bends'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Opuszczanie', second: 'Powrót' }, lowerFirst: true, hideAngle: true }])),
+      ...Object.fromEntries(['Barbell Side Bend', 'Side Bend (hantel)', 'Weighted Ball Side Bend'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Opuszczanie', second: 'Powrót' }, lowerFirst: true, hideAngle: true }])),
+      /* skłon od bloczka i crunch z linką (r1 Ś1, 10.11.2026): u 0 → 1 uchwyt oddala się od bloczka, stos idzie w górę — faza koncentryczna (nie opuszczanie): istniejąca nazwa „Ściąganie” (PhaseName „Skłon” nie istnieje), tempo koncentryczne */
+      ...Object.fromEntries(['One-Arm High-Pulley Cable Side Bends', 'Bosu Ball Cable Crunch With Side Bends'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Ściąganie', second: 'Powrót' }, lowerFirst: false, hideAngle: true }])),
       ...Object.fromEntries(['Pallof Press', 'Pallof Press With Rotation'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Wypychanie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] }])),
       ...Object.fromEntries(['Kettlebell Windmill', 'Double Kettlebell Windmill'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['hip'] }])),
       'Bent Press': { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['hip'] } } },
