@@ -1768,7 +1768,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/badges.badgeShapes | lib/figures/v2/badges.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/colliders.bodyColliders | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-engine.test.ts +8 |
 | figures/v2/colliders.plateColliders | lib/figures/v2/colliders.ts | tests/figures-v2-gear.test.ts |
-| figures/v2/colliders.equipColliders | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-engine.test.ts +7 |
+| figures/v2/colliders.equipColliders | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-engine.test.ts +8 |
 | figures/v2/colliders.sdPoly | lib/figures/v2/colliders.ts | tests/figures-v2-engine.test.ts, tests/figury-curl-poprawki-r2.test.ts |
 | figures/v2/colliders.gap | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +16 |
 | figures/v2/colliders.checkFrame | lib/figures/v2/colliders.ts | tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-data.test.tsx +10 |

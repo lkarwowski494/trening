@@ -4,7 +4,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu, jednokierunkowa } from './dyn.mjs';
+import { P, mix, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu, jednokierunkowa, ramieFK, up, front, barki, pitchDoChwytu } from './dyn.mjs';
 
 export const RODZINA = 'kb_ballistic';
 export const WYJATKI = {
@@ -49,19 +49,48 @@ const NAD = { psi: 74, th: 10, z: 19 }; /* ręka prosta nad głową (bark < 170�
 const wl = (o) => (o.jedna ? { rl: WOLNA(o.wpsi ?? -70) } : {});
 const dwa = (o, ra) => ({ ra: { ...ra }, ...wl(o) });
 
-/** W1 (recenzja r1, 09.11.2026): start zarzutu i rwania jak dół swingu — ręce cofnięte, ciężar między nogami za linią kostek (karta: „oba kettlebelle przeszły między nogami”, „zamach jak przy swingu”);
- * po wyproście bioder łokieć zgina się od razu i ciężar jedzie blisko tułowia (karta: „po wyproście bioder przyciągnij je blisko ciała”), bez szerokiego łuku na prostej ręce. Hantle (po bokach nóg): mniej cofnięta ręka. */
+/** W1-r2 (recenzja r2, 09.11.2026): ramię w układzie tułowia ({ rel: [w górę wzdłuż tułowia, do przodu] od barku, pole, z }), żeby ciężar w ciągu jechał blisko ciała, a nie po łuku przed nim.
+ * Opis ramienia prawego; lewe = lustro (z bieguna łokcia odwraca się składową poprzeczną). Opis kątami (psi, th) jest przeliczany na rel dla pochylenia tułowia danego punktu zwrotnego (ta sama poza, inny sposób mieszania punktów). */
+function relRamie(a, pitch, sg) {
+  if (a.rel) return { rel: a.rel, z: a.z, pole: [a.pole[0], a.pole[1], sg * a.pole[2]] };
+  const r = ramieFK([0, 0], a.psi, a.th); const u = up(pitch), f = front(pitch); const d = r.grip;
+  return { rel: [d[0] * u[0] + d[1] * u[1], d[0] * f[0] + d[1] * f[1]], z: a.z, pole: r.pole ? [r.pole[0], r.pole[1], sg * (a.pz ?? 0.25)] : [-0.3, -1, sg * 0.25] };
+}
+const wR = (o) => { const w = wp(o); return { ...w, ra: relRamie(w.ra, w.pitch, 1), rl: relRamie(w.rl, w.pitch, -1) }; };
+/** Ramię z celu w świecie: chwyt G = [x, y] przy danym biodrze i pochyleniu → rel względem barku (start z podłogi). */
+const relZCelu = (o, G, pole, z) => { const hip = biodroZKostki(o.A ?? [0, 7], -90 - o.al + o.k, o.k); const S = barki(hip, o.pitch, 0); const d = [G[0] - S[0], G[1] - S[1]]; const u = up(o.pitch), f = front(o.pitch); return { rel: [d[0] * u[0] + d[1] * u[1], d[0] * f[0] + d[1] * f[1]], pole, z }; };
+
+/** Start z podłogi (karta Snatch (hantel): „postaw hantel między stopami; zejdź jak do martwego ciągu”): kolana mocno ugięte (jak start martwego ciągu z niskim chwytem), ręka prawie prosta w dół do hantla na podłodze na linii kostek; pochylenie tułowia dobrane tak, by chwyt leżał w zasięgu ramienia. */
+function startZPodlogi(o) {
+  const al = 24, k = 78, G = [8, 9], th = 16; const hip = biodroZKostki([0, 7], -90 - al + k, k); const reach = Math.sqrt(31 ** 2 + 33 ** 2 + 2 * 31 * 33 * Math.cos(th * Math.PI / 180));
+  let best = 0, bv = Infinity; for (let p = 20; p <= 90; p += 0.25) { const S = barki(hip, p, 0); const e = Math.abs(Math.hypot(G[0] - S[0], G[1] - S[1]) - reach); if (e < bv) { bv = e; best = p; } }
+  const S = barki(hip, best, 0); const psi = Math.atan2(G[1] - S[1], G[0] - S[0]) * 180 / Math.PI;
+  return { al, k, pitch: best, ra: { psi, th, z: 8 }, kz: 0.5, zs: 18 };
+}
+/** W1 (recenzja r1, 09.11.2026): start zarzutu i rwania jak dół swingu — ręce cofnięte, ciężar między nogami za linią kostek (karta: „oba kettlebelle przeszły między nogami”, „zamach jak przy swingu”).
+ * W1-r2 (recenzja r2): do wyprostu bioder ręka prosta (łokieć ≤ ok. 15°; karta: „ręka włącza się dopiero po wyproście bioder i kolan”), dopiero potem łokieć zgina się przy tułowiu, a ciężar jedzie w górę blisko ciała
+ * (odstęp ciężaru od tułowia ≤ ok. 15 cm; karta: „po wyproście bioder przyciągnij je blisko ciała”), bez poziomego przedramienia z ciężarem przed brzuchem. Hantle (po bokach nóg): mniej cofnięta ręka. */
 const hike = (o) => (o.hantle ? { psi: -108, th: 12, z: 18 } : { psi: -140, th: o.jedna ? 26 : 22, z: o.jedna ? 3 : 6 });
-const polowa = (o) => ({ psi: -100, th: 85, z: o.hantle ? 20 : o.jedna ? 8 : 6 });
-const ciag = (o) => ({ psi: -95, th: 125, z: 20 });
-/** Zarzut: zawis między nogami (hike) → wyprost → ciężar przy barku. */
+const pociag = (o) => ({ psi: -95, th: o.hantle ? 10 : o.jedna ? 18 : 30, z: o.hantle ? 20 : o.jedna ? 7 : 3 }); /* biodra w połowie wyprostu: ręka prosta (łokieć ≤ 30°; boczne przesunięcie chwytu skraca zasięg), ciężar mija uda */
+const wyprost = (o) => ({ psi: -85, th: o.jedna || o.hantle ? 8 : 14, z: 21 }); /* biodra i kolana wyprostowane: ręka nadal prosta, ciężar tuż przed udami */
+/** Napęd (od zawisu do wyprostu bioder): punkty zwrotne w kątach (psi, th) próbkowane gęściej (5), żeby ciężar jechał po łuku prostej ręki, a nie po cięciwie (cięciwa skraca ramię i zgina łokieć). */
+function naped(o) {
+  const S = [
+    o.podloga ? startZPodlogi(o) : { al: 18, k: 48, pitch: 62, ra: hike(o), kz: 0.5, zs: o.jedna ? 27 : 20 },
+    { al: 12, k: 30, pitch: 22, ra: pociag(o), kz: 0.4, zs: o.jedna && !o.hantle ? 26 : o.hantle ? 20 : 24 },
+    { al: 6, k: 14, pitch: 6, ra: wyprost(o), kz: 0.3, zs: 20 },
+  ];
+  const rl = (x) => (o.jedna ? { rl: WOLNA(o.wpsi ?? -70) } : { rl: { ...x.ra } });
+  return [0, 0.25, 0.5, 0.75, 1].map((t) => { const x = t <= 0.5 ? mix(S[0], S[1], t * 2) : mix(S[1], S[2], (t - 0.5) * 2); return wR({ ...x, ...rl(x) }); });
+}
+const PRZY_CIELE = { rel: [-36, 14], pole: [0.3, -1, 0.7], z: 19 }; /* łokieć zgięty przy żebrach, ciężar na wysokości mostka tuż przy tułowiu */
+/** Zarzut: zawis między nogami (hike) → wyprost → ciężar przy tułowiu → rack. */
 function zarzut(cw, o) {
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ...dwa(o, hike(o)), kz: 0.5, zs: o.jedna ? 27 : 20 }),
-    wp({ al: 12, k: 30, pitch: 22, ...dwa(o, polowa(o)), kz: 0.4, zs: o.jedna && !o.hantle ? 26 : 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, ciag(o)), kz: 0.3, zs: 20 }),
-    wp({ al: 12, k: 34, pitch: 4, ...dwa(o, RACK_R), kz: 0.3, zs: 20 }),
-    wp({ al: 4, k: 14, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 20 }),
+    ...naped(o),
+    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: 20 }),
+    wR({ al: 12, k: 34, pitch: 4, ...dwa(o, RACK_R), kz: 0.3, zs: 20 }),
+    wR({ al: 4, k: 14, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 20 }),
   ];
   return gotowe(cw, o.sprz, W);
 }
@@ -82,11 +111,10 @@ function zarzutDnemDoGory(cw) {
 /** Rwanie: zawis między nogami → wyprost → ciężar prosto nad głową (u = 1). */
 function rwanie(cw, o) {
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ...dwa(o, hike(o)), kz: 0.5, zs: o.jedna ? 27 : 20 }),
-    wp({ al: 12, k: 30, pitch: 22, ...dwa(o, polowa(o)), kz: 0.4, zs: o.jedna && !o.hantle ? 26 : 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, ciag(o)), kz: 0.3, zs: 20 }),
-    wp({ al: 4, k: 12, pitch: 3, ...dwa(o, { psi: 30, th: 95, z: 21 }), kz: 0.3, zs: 18, A: [1, yP(-30) + 3], pod: -30 }),
-    wp({ al: 6, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.3, zs: 16 }),
+    ...naped(o),
+    wR({ al: 4, k: 12, pitch: 3, ...dwa(o, { rel: [-6, 19], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: 18, A: [1, yP(-30) + 3], pod: -30 }),
+    wR({ al: 4, k: 14, pitch: 3, ...dwa(o, { rel: [24, 28], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: 17, A: [1, yP(-30) + 3], pod: -30 }), /* ciężar mija głowę z przodu (bez przenikania), dopiero potem wyrzut nad głowę */
+    wR({ al: 6, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.3, zs: 16 }),
   ];
   return gotowe(cw, o.sprz, W);
 }
@@ -120,14 +148,14 @@ function bledyPlecy(W, ile = W.length - 2) { const W2 = W.map((w, i) => ({ ...w,
 /** Jednoręczny zarzut z podrzutem: zawis → rack → ugięcie → wyrzut → nad głową (wykrok). */
 function cleanJerk(cw) {
   const o = { jedna: true }; const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz' }));
-  const rack = (extra = {}) => wp({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
+  const rack = (extra = {}) => wR({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ...dwa(o, hike(o)), kz: 0.5, zs: o.jedna ? 27 : 20 }),
-    wp({ al: 12, k: 30, pitch: 22, ...dwa(o, polowa(o)), kz: 0.4, zs: o.jedna && !o.hantle ? 26 : 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, ciag(o)), kz: 0.3, zs: 20 }),
+    ...naped(o),
+    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: 20 }),
     rack({ al: 12, k: 34, pitch: 4 }), rack({ al: 10, k: 38, pitch: 3 }),
+    rack({ al: 9, k: 22, pod: -22, A: [0.5, yP(-22) + 2], ra: { psi: -42, th: 113, z: 19 }, rl: WOLNA() }), /* W1-r2: punkt pośredni łuku (po zmianie na opis w układzie tułowia łuk bez niego przechodzi przez ramię) */
     rack({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, rl: WOLNA() }),
-    wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }),
+    wR({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }),
   ];
   return gotowe(cw, sprz, W);
 }
@@ -146,7 +174,7 @@ export function generuj() {
   G['Bottoms-Up Clean From The Hang Position'] = () => zarzutDnemDoGory('Bottoms-Up Clean From The Hang Position');
   G['Kettlebell Snatch'] = () => rwanie('Kettlebell Snatch', k1());
   G['Double Kettlebell Snatch'] = () => rwanie('Double Kettlebell Snatch', k2());
-  G['Snatch (hantel)'] = () => rwanie('Snatch (hantel)', { jedna: true, sprz: SPRZ(DB({ trzyma: 'R' })) });
+  G['Snatch (hantel)'] = () => rwanie('Snatch (hantel)', { jedna: true, podloga: true, sprz: SPRZ(DB({ trzyma: 'R' })) });
   G['Double Kettlebell Push Press'] = () => podrzut('Double Kettlebell Push Press', { ...k2(), pp: true });
   G['Double Kettlebell Jerk'] = () => podrzut('Double Kettlebell Jerk', k2());
   G['One-Arm Kettlebell Push Press'] = () => podrzut('One-Arm Kettlebell Push Press', { ...k1(), pp: true });
