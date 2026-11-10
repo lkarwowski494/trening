@@ -50,7 +50,7 @@ describe('2A: szkielet wpisów recenzji rodziny v2 (scripts/recenzja-szkielet.mj
     expect(R.szk.v2.curl.liczba).toBe(REC.v2.curl.liczba);
     expect(klucze(R.szk.v1)).toEqual(wszystkie.filter(k => REC.v1[k].rodzina === 'curl').sort());
     expect(klucze(R.szk.karty)).toEqual(klucze(REC.karty).filter(k => (R.szk.v2.curl.cwiczenia as string[]).includes(k) && !(R.szk.v2.curl.bez_rysunku as string[]).includes(k)).sort()); /* 09.11.2026: Zottman (bez rysunku v2) ma wpis karty, ale szkielet wymaga wpisów tylko dla ćwiczeń z rysunkiem */
-    expect(klucze(R.szk.zestawy)).toEqual(klucze(REC.zestawy).filter(k => REC.zestawy[k].rodzina === 'curl').sort());
+    expect(klucze(R.szk.zestawy)).toEqual(klucze(REC.zestawy).filter(k => REC.zestawy[k].rodzina === 'curl' && (R.szk.v2.curl.cwiczenia as string[]).includes(k)).sort()); /* 10.11.2026 (partia 5): Reverse Plate Curls ma zestaw ogólny `curl`, ale rysunek v2 w rodzinie forearm — szkielet curl go nie obejmuje (jak w wierszu kart wyżej) */
     for (const sek of ['v1', 'karty', 'zestawy'] as const) for (const e of Object.values(R.szk[sek])) expect(e.sha).toMatch(/^[0-9a-f]{12}$/);
     for (const e of [R.szk.v2.curl, ...Object.values(R.szk.karty), ...Object.values(R.szk.zestawy), ...Object.values(R.szk.v1)]) for (const p of ['werdykt', 'recenzent', 'uwagi']) expect([p, e[p]]).toEqual([p, '']);
     expect(R.szk.v2.curl.slad).toBe('');

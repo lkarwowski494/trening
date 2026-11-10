@@ -69,7 +69,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -81,7 +82,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -136,7 +138,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -148,7 +151,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -203,7 +207,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -215,7 +220,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -270,7 +276,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -282,7 +289,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -337,7 +345,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -349,7 +358,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -404,7 +414,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -416,7 +427,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -471,7 +483,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -483,7 +496,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -538,7 +552,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -550,7 +565,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -605,7 +621,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -617,7 +634,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -672,7 +690,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -684,7 +703,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -739,7 +759,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -751,7 +772,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     }
@@ -826,7 +848,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -838,7 +861,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -893,7 +917,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -905,7 +930,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -960,7 +986,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -972,7 +999,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1027,7 +1055,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1039,7 +1068,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1094,7 +1124,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1106,7 +1137,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1161,7 +1193,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1173,7 +1206,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1228,7 +1262,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1240,7 +1275,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1295,7 +1331,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1307,7 +1344,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1362,7 +1400,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1374,7 +1413,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1429,7 +1469,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1441,7 +1482,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -1496,7 +1538,8 @@
         0,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -1508,7 +1551,8 @@
         0,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     }
@@ -3852,7 +3896,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -3864,7 +3909,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -3919,7 +3965,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -3931,7 +3978,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -3986,7 +4034,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -3998,7 +4047,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4053,7 +4103,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4065,7 +4116,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4120,7 +4172,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4132,7 +4185,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4187,7 +4241,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4199,7 +4254,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4254,7 +4310,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4266,7 +4323,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4321,7 +4379,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4333,7 +4392,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4388,7 +4448,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4400,7 +4461,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4455,7 +4517,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4467,7 +4530,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     },
@@ -4522,7 +4586,8 @@
         0.2,
         0,
         1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
@@ -4534,7 +4599,8 @@
         0.2,
         0,
         -1
-       ]
+       ],
+       "obrotPrzedramienia": 0
       }
      }
     }
@@ -4555,12 +4621,12 @@
     {
      "rodzaj": "kettlebell",
      "trzyma": "R",
-     "dzwon": "tyl"
+     "dzwon": "dol"
     },
     {
      "rodzaj": "kettlebell",
      "trzyma": "L",
-     "dzwon": "tyl"
+     "dzwon": "dol"
     }
    ],
    "klatki": [
@@ -4607,9 +4673,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        135.6,
-        13
+        17,
+        136.6,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -4619,9 +4685,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        135.6,
-        -13
+        17,
+        136.6,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -4674,9 +4740,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        135.9,
-        13
+        17,
+        136.9,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -4686,9 +4752,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        135.9,
-        -13
+        17,
+        136.9,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -4741,9 +4807,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        136.6,
-        13
+        17,
+        137.6,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -4753,9 +4819,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        136.6,
-        -13
+        17,
+        137.6,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -4808,9 +4874,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        137,
-        13
+        17,
+        138,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -4820,9 +4886,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        137,
-        -13
+        17,
+        138,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -4875,9 +4941,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        137.7,
-        13
+        17,
+        138.7,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -4887,9 +4953,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        137.7,
-        -13
+        17,
+        138.7,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -4942,9 +5008,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        137.9,
-        13
+        17,
+        138.9,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -4954,9 +5020,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        137.9,
-        -13
+        17,
+        138.9,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -5009,9 +5075,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        138.5,
-        13
+        17,
+        139.5,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -5021,9 +5087,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        138.5,
-        -13
+        17,
+        139.5,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -5076,9 +5142,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        141.9,
-        13
+        17,
+        142.9,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -5088,9 +5154,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        141.9,
-        -13
+        17,
+        142.9,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -5143,9 +5209,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        141.3,
-        13
+        17,
+        142.3,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -5155,9 +5221,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        141.3,
-        -13
+        17,
+        142.3,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -5210,9 +5276,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        138.8,
-        13
+        17,
+        139.8,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -5222,9 +5288,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        138.8,
-        -13
+        17,
+        139.8,
+        -14
        ],
        "biegunLokcia": [
         0,
@@ -5277,9 +5343,9 @@
      "rece": {
       "R": {
        "chwyt": [
-        34,
-        135.6,
-        13
+        17,
+        136.6,
+        14
        ],
        "biegunLokcia": [
         0,
@@ -5289,9 +5355,9 @@
       },
       "L": {
        "chwyt": [
-        34,
-        135.6,
-        -13
+        17,
+        136.6,
+        -14
        ],
        "biegunLokcia": [
         0,

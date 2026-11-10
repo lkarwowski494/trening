@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 27, do zrobienia: 16); ćwiczeń z gotową figurą: **394** (55,6%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 32, do zrobienia: 11); ćwiczeń z gotową figurą: **423** (59,7%).
 
 ## Rodziny
 
@@ -32,11 +32,11 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `delt_raise` | gotowa | 38 | front, side | — | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
 | `chest_fly` | gotowa | 20 | top, side | — | Rozpiętki, pec deck, przenoszenie za głowę |
 | `shrug` | gotowa | 8 | front, side | — | Szrugsy |
-| `rotator_cuff` | do zrobienia | 8 | front, side | 2 | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
+| `rotator_cuff` | gotowa | 8 | front, side | — | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
 | `core_floor` | do zrobienia | 44 | side | 4 | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
-| `core_hang` | do zrobienia | 4 | side | 2 | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
+| `core_hang` | gotowa | 4 | side | — | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
 | `core_standing` | do zrobienia | 19 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
-| `carry` | do zrobienia | 7 | side | 2 | Noszenie |
+| `carry` | gotowa | 7 | side | — | Noszenie |
 | `cardio` | do zrobienia | 16 | side | 6 | Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees) |
 | `plyo` | do zrobienia | 28 | side, front | 4 | Skoki i plyometria — skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026) |
 | `sled_throw` | do zrobienia | 19 | side | 3 | Sanie, rzuty piłką, uderzenia |
@@ -47,13 +47,13 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `mobility_floor` | gotowa | 22 | side | — | Mobilność i rozciąganie na podłodze |
 | `foam_roll` | do zrobienia | 10 | side | 2 | Rolowanie i automasaż |
 | `neck` | do zrobienia | 5 | side | 1 | Szyja |
-| `forearm` | do zrobienia | 13 | side | 2 | Przedramiona i chwyt |
+| `forearm` | gotowa | 13 | side | — | Przedramiona i chwyt |
 | `thruster` | gotowa | 3 | side | — | Thruster i ruchy złożone przysiad + wyciskanie |
 | `chest_press_machine` | gotowa | 5 | side | — | Maszyny wyciskające siedząc (klatka, barki) |
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
-| `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
+| `kneeling_hinge` | gotowa | 2 | side | — | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 11 rodzin, 196 ćwiczeń, ok. **39 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -72,9 +72,13 @@ Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + t
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
 - `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
 - `chest_fly` (z figurą 17 z 20): Around The Worlds; Machine Pullover; Svend Press
+- `rotator_cuff` (z figurą 7 z 8): Cuban Press
+- `core_hang` (z figurą 3 z 4): L-Sit
 - `hip_abd_add` (z figurą 4 z 8): Band Hip Adduction; Hip Flexion with Band; Lateral Band Walk; Monster Walk
 - `mobility_stand` (z figurą 8 z 36): Ankle Circles; Arm Circles; Chest And Front Of Shoulder Stretch; Chest Stretch on Stability Ball; Cross-Body Shoulder Stretch; Dynamic Back Stretch; Dynamic Chest Stretch; Groiners; Hip Circles (Prone); Inchworm; Iron Crosses (Stretch); Knee Circles; Leg Swings (Front-to-Back); Leg Swings (Side-to-Side); Lying Leg Crossover Swings; One Knee To Chest; Overhead Stretch; Round The World Shoulder Stretch; Shoulder Circles; Standing Biceps Stretch; Standing Elevated Quad Stretch; Standing Hip Circles; Standing Pelvic Tilt; Standing Toe Touches; Torso Rotation; Wall Lat Stretch; World's Greatest Stretch; Wrist Circles
 - `mobility_floor` (z figurą 9 z 22): Downward Facing Balance; Intermediate Groin Stretch; IT Band and Glute Stretch; Kneeling Forearm Stretch; Middle Back Stretch; Peroneals Stretch; Posterior Tibialis Stretch; Runner's Stretch; Seated Rotation Stretch; Side Lying Groin Stretch; Supine Figure-Four Stretch; Supine Spinal Twist; Upper Back Stretch
+- `forearm` (z figurą 11 z 13): Plate Pinch; Wrist Roller
+- `kneeling_hinge` (z figurą 1 z 2): Kneeling Squat
 
 ## Ćwiczenia według rodzin
 
@@ -170,7 +174,7 @@ Around The Worlds; Band Chest Fly; Bent-Arm Barbell Pullover; Cable Fly; Cable F
 
 Barbell Shrug Behind The Back; Calf-Machine Shoulder Shrug; Leverage Shrug; Middle Back Shrug; Shrugs (hantle); Shrugs (linki); Shrugs (sztanga); Smith Machine Behind the Back Shrug
 
-### rotator_cuff (8) — do zrobienia
+### rotator_cuff (8) — gotowa
 
 Band Pull Apart; Cable Internal Rotation; Cuban Press; External Rotation (hantel); External Rotation (linki); External Rotation with Band; Internal Rotation with Band; Reverse Flyes With External Rotation
 
@@ -178,7 +182,7 @@ Band Pull Apart; Cable Internal Rotation; Cuban Press; External Rotation (hantel
 
 Alternate Heel Touchers; Bicycle Crunch; Bird Dog; Butt-Ups; Cable Crunch; Cable Reverse Crunch; Cable Seated Crunch; Cocoons; Cross-Body Crunch; Crunch; Crunch - Hands Overhead; Crunch - Legs On Exercise Ball; Dead Bug; Decline Crunch; Decline Oblique Crunch; Decline Reverse Crunch; Dragon Flag; Frog Sit-Ups; GHD Sit Up; Hollow Hold; Janda Sit-Up; Kneeling Cable Crunch With Alternating Oblique Twists; Leg Pull-In; Lying Leg Raise; Machine Crunch; Oblique Crunches - On The Floor; Otis-Up; Press Sit-Up; Reverse Crunch; Scissor Kick; Seated Flat Bench Leg Pull-In; Side Jackknife; Sit Up; Smith Machine Hip Raise; Stability Ball Crunch; Stability Ball Knee Tuck; Standing Rope Crunch; Stomach Vacuum; Superman; Suspended Reverse Crunch; Toe Touchers; Tuck Crunch; V-Up; Weighted Sit-Ups - With Bands
 
-### core_hang (4) — do zrobienia
+### core_hang (4) — gotowa
 
 Hanging Knee Raise; Hanging Leg Raise; L-Sit; Toes to Bar
 
@@ -186,7 +190,7 @@ Hanging Knee Raise; Hanging Leg Raise; L-Sit; Toes to Bar
 
 Barbell Side Bend; Bent Press; Bosu Ball Cable Crunch With Side Bends; Cable Judo Flip; Cable Russian Twists; Cable Woodchop; Double Kettlebell Windmill; Kettlebell Figure 8; Kettlebell Windmill; Landmine Rotation; Medicine Ball Full Twist; One-Arm High-Pulley Cable Side Bends; Pallof Press; Pallof Press With Rotation; Russian Twist; Seated Barbell Twist; Side Bend (hantel); Spell Caster; Weighted Ball Side Bend
 
-### carry (7) — do zrobienia
+### carry (7) — gotowa
 
 Double Kettlebell Front Rack Carry; Farmer's Walk; Farmer's Walk (Farmers Handles); Farmer's Walk (trap bar); Overhead Carry (hantle); Rickshaw Carry; Suitcase Carry
 
@@ -230,7 +234,7 @@ Adductor-SMR; Calves-SMR; Foam Roll: Hamstrings; Foam Roll: Quadriceps; Foot-SMR
 
 Isometric Neck Exercise - Front And Back; Isometric Neck Exercise - Sides; Lying Neck Extension (talerz); Lying Neck Flexion (talerz); Neck Harness Extension
 
-### forearm (13) — do zrobienia
+### forearm (13) — gotowa
 
 Barbell Reverse Wrist Curl; Barbell Wrist Curl; Behind-the-Back Barbell Wrist Curl; Cable Wrist Curl; Dumbbell Lying Pronation; Dumbbell Lying Supination; One-Arm Dumbbell Reverse Wrist Curl; One-Arm Dumbbell Wrist Curl; Plate Pinch; Reverse Plate Curls; Reverse Wrist Curl (hantle); Wrist Curl (hantle); Wrist Roller
 
@@ -246,6 +250,6 @@ Leverage Decline Chest Press; Leverage Incline Chest Press; Machine Chest Press;
 
 Incline Cable Chest Press; Seated Cable Chest Press; Single Arm Cable Chest Press; Wyciskanie na linkach (stojąc)
 
-### kneeling_hinge (2) — do zrobienia
+### kneeling_hinge (2) — gotowa
 
 Kneeling Squat; Seated Good Mornings

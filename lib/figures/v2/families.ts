@@ -47,11 +47,11 @@ export const FAMILIES: Family[] = [
   { id: 'delt_raise', status: 'ready', label: 'Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe)', views: ['front', 'side'], effort: 4 },
   { id: 'chest_fly', status: 'ready', label: 'Rozpiętki, pec deck, przenoszenie za głowę', views: ['top', 'side'], effort: 3 },
   { id: 'shrug', status: 'ready', label: 'Szrugsy', views: ['front', 'side'], effort: 1 },
-  { id: 'rotator_cuff', status: 'planned', label: 'Rotacje zewnętrzne/wewnętrzne, taśmy do ramion', views: ['front', 'side'], effort: 2 },
+  { id: 'rotator_cuff', status: 'ready', label: 'Rotacje zewnętrzne/wewnętrzne, taśmy do ramion', views: ['front', 'side'], effort: 2 },
   { id: 'core_floor', status: 'planned', label: 'Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up)', views: ['side'], effort: 4 },
-  { id: 'core_hang', status: 'planned', label: 'Brzuch w zwisie (unoszenie nóg/kolan, toes to bar)', views: ['side'], effort: 2 },
+  { id: 'core_hang', status: 'ready', label: 'Brzuch w zwisie (unoszenie nóg/kolan, toes to bar)', views: ['side'], effort: 2 },
   { id: 'core_standing', status: 'planned', label: 'Core stojąc i rotacje (Pallof, drwal, skłony, windmill)', views: ['front', 'side'], effort: 4 },
-  { id: 'carry', status: 'planned', label: 'Noszenie', views: ['side'], effort: 2 },
+  { id: 'carry', status: 'ready', label: 'Noszenie', views: ['side'], effort: 2 },
   { id: 'cardio', status: 'planned', label: 'Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees)', views: ['side'], effort: 6 },
   { id: 'plyo', status: 'planned', label: 'Skoki i plyometria', views: ['side', 'front'], effort: 4, note: 'skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026)' },
   { id: 'sled_throw', status: 'planned', label: 'Sanie, rzuty piłką, uderzenia', views: ['side'], effort: 3 },
@@ -62,11 +62,11 @@ export const FAMILIES: Family[] = [
   { id: 'mobility_floor', status: 'ready', label: 'Mobilność i rozciąganie na podłodze', views: ['side'], effort: 6 },
   { id: 'foam_roll', status: 'planned', label: 'Rolowanie i automasaż', views: ['side'], effort: 2 },
   { id: 'neck', status: 'planned', label: 'Szyja', views: ['side'], effort: 1 },
-  { id: 'forearm', status: 'planned', label: 'Przedramiona i chwyt', views: ['side'], effort: 2 },
+  { id: 'forearm', status: 'ready', label: 'Przedramiona i chwyt', views: ['side'], effort: 2 },
   { id: 'thruster', status: 'ready', label: 'Thruster i ruchy złożone przysiad + wyciskanie', views: ['side'], effort: 2 },
   { id: 'chest_press_machine', status: 'ready', label: 'Maszyny wyciskające siedząc (klatka, barki)', views: ['side'], effort: 3 },
   { id: 'cable_press', status: 'ready', label: 'Wyciskania na linkach', views: ['side', 'top'], effort: 2 },
-  { id: 'kneeling_hinge', status: 'planned', label: 'Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad)', views: ['side'], effort: 1 },
+  { id: 'kneeling_hinge', status: 'ready', label: 'Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad)', views: ['side'], effort: 1 },
 ];
 export const FAMILY: Record<FamilyId, Family> = Object.fromEntries(FAMILIES.map(f => [f.id, f])) as Record<FamilyId, Family>;
 
