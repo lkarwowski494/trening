@@ -1,7 +1,7 @@
 /*
  * (wdrożenie 08.11.2026) Figury v2 — strażnik „bez zaworu: żadna rodzina nie wychodzi bez nakładki” (decyzja właściciela 04.11.2026 ~11:35 PL, docs/18: „rysunek pokazuje technikę” wchodzi do 1.1).
  * Każda rodzina o statusie `ready` ma wpis w TECHNIQUE z co najmniej jednym elementem, który faktycznie się rysuje dla co najmniej jednego ćwiczenia rodziny (element wybrany przez
- * wskazówki karty i reguły „ustalone” wariantu, niepuste kształty w co najmniej jednym rzucie i klatce). Bez listy wyjątków: nowa rodzina ze statusem `ready` bez nakładki czerwieni verify.
+ * wskazówki karty i reguły „ustalone” wariantu, niepuste kształty w co najmniej jednym rzucie i klatce). Jeden nazwany wyjątek: mobility_floor (09.11.2026, docs/18). Poza nim bez wyjątków: nowa rodzina ze statusem `ready` bez nakładki czerwieni verify.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny */
 import { CATALOG } from '@/lib/catalog.generated';
@@ -18,6 +18,9 @@ describe('04.11.2026 bez zaworu: każda rodzina ready ma nakładkę, która się
   test('lista rodzin ready nie jest pusta (strażnik czyta FAMILIES)', () => { expect(READY.length).toBeGreaterThanOrEqual(7); });
   test.each(READY)('%s: wpis w TECHNIQUE z ≥ 1 elementem i ≥ 1 ćwiczenie, dla którego element daje kształty w którymś rzucie', family => {
     expect(Object.prototype.hasOwnProperty.call(TECHNIQUE, family)).toBe(true);
+    /* jedyny nazwany wyjątek: mobility_floor — nakładka zarejestrowana bez elementów (koordynator linii 1.1, 09.11.2026, wariant A, docs/18; backlog MOB-F1);
+       ten sam wyjątek co strażnik S20 (tests/interaction-guards.test.ts) — pilnujemy, że jest pusta dokładnie ta jedna rodzina */
+    if (family === 'mobility_floor') { expect(TECHNIQUE[family]).toEqual([]); return; }
     expect(TECHNIQUE[family].length).toBeGreaterThan(0);
     const drawn: string[] = [];
     for (const k of keysOf(family)) {
