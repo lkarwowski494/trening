@@ -236,6 +236,13 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - (CH-N2, NISKIE) Łuk biodra przy `hang.ribs` nie pokazuje podwijania miednicy (zgiecieKregoslupa 0); przybliżenie kierunku reguły `kolana_ku_klatce` uczciwe (biodro 10→100° ↔ kolano–bark 92→60 cm).
 - (CH-P1, 1.2) L-Sit — bez pozy v2 (brak rysunku): wymaga nowej pozy podporu (nowy ruch silnika) i badań; figury-sens „otwarte”. Przechodzi do 1.2.
 
+### Backlog 1.1.x — figury: rodzina forearm (recenzja niezależna r1–r3, 10.11.2026, `docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md`; W1, W2 naprawione)
+- (FA-S1, ŚREDNIE) Reverse Plate Curls — talerz zawsze pionowy (`draw.ts:476`), przedramię obraca się o 104°.
+- (FA-S3, ŚREDNIE) Dumbbell Lying Pronation / Supination — rysowane na siedząco; obie są tą samą pętlą.
+- (FA-N1, NISKIE) 7 uginań — łokieć w 3D obok uda (z 30,8 vs 8,5–13,8).
+- (FA-N2, NISKIE) Poza błędu wr.mis.lift — łokieć opada 3,5 cm.
+- (FA-N3, NISKIE) Behind-the-Back — 2,4 cm w górę vs 8,5 cm w tył (źródło: „up and slightly back”).
+
 ### Backlog 1.1.x — figury: rodzina cable_row (recenzja niezależna r1, 09.11.2026, `docs/research/recenzje/partia2-cable_row-r1-audytor-2026-11-09.md`; poprawka W1/W2 w tym samym commicie co ten wpis)
 - (CR-S2, ŚREDNIE) Leverage High Row — oś dźwigni z przodu i na dole (układ wiosłowania dolnego), w maszynie do wiosłowania wysokiego oś jest nad ćwiczącym. Próba 09.11.2026: oś nad dłońmi (druga strona dwusiecznej) wychodzi za ramieniem nad głową i przenika głowę (head × barPivot 0,67 cm przy r 70, 1,09 przy 80, 1,37 przy 100; dopuszczalne 0,3; przy r 120 także tułów) — poprawka wymaga zmiany silnika (dźwignia z osią poza płaszczyzną ciała albo dźwignia z nieliniowym zwisem) albo nowego toru dłoni; ruch ćwiczącego jest poprawny. Test stanu znanego: `tests/figures-v2-cable-row-poprawki-r1.test.ts`.
 - (S3, ŚREDNIE; naprawione 09.11.2026, commit `cueSets:` na gałęzi figury/partia-2-cueset-row, CUE_NOT_IN_FAMILY) Zestaw ogólny `row`: zdanie `row.fullStretch` („Na dole wyprostuj ręce do końca…”) przy Single Arm Cable Row i Leverage High Row nie zgadza się z rysunkiem (wyprost z przodu / u góry). Zdanie wyłączone dla rodziny cable_row (docs/18, 09.11.2026); wpisy „zestawy” w figury-recenzja.json do ponownej recenzji (zmieniony skrót). Ruchu nie zmieniamy pod zdanie.
