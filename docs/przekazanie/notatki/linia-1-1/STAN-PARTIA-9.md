@@ -12,11 +12,13 @@ Model pracy: autor (programista, gałąź `figury/partia-9-<rodzina>`) → audyt
 
 Commity LOAD/DATA_UI (do przeniesienia po podziale KO-024): leg_isolation 73f9548, lunge 18cdb40 (+ pole `side` w `PhaseOverride` — poseData.ts i figure.ts dataUiOf/measureOf, commit 1728824; wpisy `side: 'R'` tylko w DATA_UI lunge).
 
-## Następny krok (F2)
-Obie gałęzie rodzin mają już integrację 038efefc (podział `poseData.ts`): wpisy w `lib/figures/v2/rodziny/{leg_isolation,lunge}.ts`, pole `side` w `PhaseOverride`; skróty bez zmian; `verify:lekkie` 0, wypchnięte (10.11.2026).
-1. `figury/partia-9` (dokumenty) + `origin/figury/partia-9-leg_isolation` + `origin/figury/partia-9-lunge` → scalenie. Konflikty jako suma: `docs/research/figury-recenzja.json` (scal JSON — wpisy obu rodzin), `tests/recenzja-wyjatki-1-1.test.ts` (po delt_raise: 'lunge', 'leg_isolation'), `lib/figures/v2/rodziny/index.ts`, families.ts, overlay.ts, mapping, strona-eksport (n), gemini-polecenia (planned −2), nakładka (rejestr), `tests/skrot-v2-wynik.test.ts` (overlay obu rodzin w regexie; scenariusz L-080 = core_hang), generator-odtwarza (W_ZAKRESIE), BRD, docs/18 (suma); pliki generowane przelicz (zrodla-runtime --write, pokrycie-katalogu --write + --podnies-minimum, test-matrix --write, readme --write).
-2. docs/21: P9-LI-4 oznacz ZROBIONE (poprawka w 7c2692a: `wskazowki_na_reguly["lext.range"]` + zdjęty warunek omijający).
-3. Skróty po scaleniu: lunge f2ff1a209120, leg_isolation 19fc316f3a19; testy czytające pozy obu rodzin (`grep -l "lunge\|leg_isolation" tests/`), `npm run verify:szybkie`, push, zielony `tests.yml`.
+## Stan po F2 (10.11.2026)
+- `figury/partia-9` = dokumenty + `figury/partia-9-leg_isolation` (7c2692a + poprawka CI 0cf404d) + `figury/partia-9-lunge` (d744f06) + `origin/integracja-1-1` @ 649b0504 (pociąg-5, partia 5). Commity: 0cf404d, d9479b30 (scalenie lunge + poprawki CI lunge), bdf1fd5d (integracja).
+- Czerwone CI gałęzi rodzin i poprawki: leg_isolation (42829490469) — `skrot-v2-podlaczenie` używał leg_isolation jako „planned” (teraz core_floor; core_hang jest ready od partii 5), lista L-047 (Leg Curl, Leg Extension zdjęte); lunge (42832847691) — wpisy v1 Lunges (hantle), Walking Lunges, Step Up, Reverse Lunge straciły autor/recenzent (przywrócone z integracji), lista L-047 (5 kart zdjętych), filtr wyjątków toru squat wyklucza rodzinę lunge.
+- Skróty po scaleniu: lunge f2ff1a209120, leg_isolation 19fc316f3a19 (= wpisy v2). Pełne karty po scaleniu 423 (integracja 649b0504: 391; figury/partia-9 przed scaleniem integracji: 403). P9-LI-4 zrobione (docs/21).
+
+## Następny krok
+`verify:szybkie` → push → zielony `tests.yml` na głowie → scalenie do integracji przez koordynatora (`scal-galaz`).
 
 ## Do weta koordynatora
 - W4 lunge: wyjątek `hipMin` −25° dla Split Squat i Split Squat (linki) (`figury-sens.json`; wpis w docs/18 na gałęzi lunge).
