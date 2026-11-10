@@ -4,7 +4,7 @@
  * - W1: strona mierzonej nogi (kolano nad stopą z przodu, linia kąta) = R (noga przednia/pracująca); było L (zamach nogi tylnej zgina jej kolano najdalej) w Curtsy, Crossover Reverse Lunge, Elevated Back Lunge, Lunge Pass Through, Reverse Lunge, Step Up, Barbell Step Up;
  * - W2: stopa nogi pracującej w ruchach bocznych nie skręca palców do środka (było −20°, Cossack −28°) i kolano leży w linii palców (było 10,0 cm, Cossack 13,1 cm na zewnątrz od palców);
  * - W3: sztanga w Barbell Side Split Squat leży na barkach (było z gryfu 0, barki z = 21,5 cm, chwyty 21,5 cm w bok od gryfu);
- * - W4: Elevated Back Lunge: start „stanie” na stopniu, obie stopy na nim, kolana prawie proste (było 63,1°, tylna stopa na podłodze). Split Squat i Split Squat (linki) — NIE naprawione (zob. niżej);
+ * - W4: Elevated Back Lunge: start „stanie” na stopniu, obie stopy na nim, kolana prawie proste (było 63,1°, tylna stopa na podłodze). Split Squat i Split Squat (linki): start „stanie”, kolana ≤ 25° (było 56,8° / 55,7°; wyjątek zakresu biodra −25°);
  * - W5: Pistol Squat i Smith Machine Pistol Squat: wolna noga wyprostowana w przód (było kolano 30,6–30,8°);
  * - Ś1: Step Up, Barbell Step Up: na górze stopa dostawiona na stopień (było 24 cm nad nim), kolano nogi wolnej ≤ 105° (było 116°);
  * - Ś2: przysiad bułgarski: palce tylnej stopy na blacie ławki ± 1 cm (było 2,1 cm nad siedziskiem);
@@ -59,8 +59,8 @@ describe('W4: Elevated Back Lunge — start „stanie” na stopniu', () => {
     const f = frameAt(spec('Elevated Back Lunge'), 0); const b = prop('Elevated Back Lunge', 0, 'box') as unknown as { top: number };
     for (const s of ['R', 'L'] as const) { expect([s, jointAngles(f.sk, s).knee <= 20]).toEqual([s, true]); expect([s, Math.abs(f.sk.legs[s].ankle[1] - (b.top + 7)) <= 1]).toEqual([s, true]); }
   });
-  test('stan znany (do decyzji, K8): Split Squat i Split Squat (linki) — u = 0 kolana ≈ 57°: wyprost dalej ucina limit biodra −17° deklaracji zakresu (data/zrodla/figury-sens.json), dłuższy wyprost wymaga wyjątku zakresu z uzasadnieniem', () => {
-    for (const k of ['Split Squat', 'Split Squat (linki)']) { const sk = frameAt(spec(k), 0).sk; expect([k, jointAngles(sk, 'R').knee > 30]).toEqual([k, true]); }
+  test.each(['Split Squat', 'Split Squat (linki)'])('%s — u = 0 („wstań”): kolana ≤ 25° (było 56,8° / 55,7°; wyjątek zakresu biodra w figury-sens.json, uproszczenie jak Suspended Split Squat)', k => {
+    const sk = frameAt(spec(k), 0).sk; for (const s of ['R', 'L'] as const) { const a = jointAngles(sk, s).knee; expect([k, s, a <= 25, r1(a)]).toEqual([k, s, true, r1(a)]); }
   });
 });
 

@@ -196,6 +196,8 @@ export const PRZYBLIZENIA = {
   'Lunge Pass Through': 'przybliżenie: kettlebell zwisa pod barkami w dole wykroku (przekładanie między rękami niemodelowane)',
 };
 
+/** Split Squat: góra ruchu = stanie, wyprost biodra tylnej nogi do −HIP_STOJ (wyjątek zakresu w figury-sens.json, r1 W4; limit kontraktu −17°). */
+const HIP_STOJ = 25;
 const BT = 30, BY = 44; /* wysokość ławki pod tylną stopą, głębokość */
 /** Przy tylnej stopie podniesionej (ławka, taśma) wyprost biodra tylnej nogi sięga dalej niż w Split Squat: limit z deklaracji zakres_wyjatki (data/zrodla/figury-sens.json → lunge) to −50°; góra ruchu przy −HIP_TYL_PODN (recenzja 1.1, partia 2, nr 1: wcześniej domyślne −14,5° ucinało ruch do 8 cm). */
 const HIP_TYL_PODN = 30;
@@ -204,8 +206,8 @@ export function generuj() {
   const lawkaTyl = (g) => [{ rodzaj: 'lawka', x: r1(g.aT[0] - 25), top: BT, kat: 0, dlugosc: 40, siedzisko: 20 }];
   const pudlo = (g) => [{ rodzaj: 'skrzynia', x0: -16, x1: 30, top: 12 }]; /* stopień pod obiema stopami na starcie (z = 0, szerokość 45 cm) */
   return {
-    'Split Squat': () => splitSquat('Split Squat'),
-    'Split Squat (linki)': () => splitSquat('Split Squat (linki)', { tryb: 'linki', sprzetFn: linki }),
+    'Split Squat': () => splitSquat('Split Squat', { hipMin: -HIP_STOJ }),
+    'Split Squat (linki)': () => splitSquat('Split Squat (linki)', { hipMin: -HIP_STOJ, tryb: 'linki', sprzetFn: linki }),
     'Reverse Lunge': () => krok('Reverse Lunge', { kierunek: 'tyl' }),
     'Walking Lunges': () => krok('Walking Lunges', { kierunek: 'przod', tryb: 'hantle' }),
     'Lunges (hantle)': () => krok('Lunges (hantle)', { kierunek: 'przod', tryb: 'hantle' }),
