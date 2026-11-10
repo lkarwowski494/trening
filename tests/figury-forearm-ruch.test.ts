@@ -35,4 +35,13 @@ describe('forearm: styk ciężaru i zakres nadgarstka', () => {
       expect(podsumujStyk(stykTora(k)).minOdstep).toBeGreaterThanOrEqual(1);
     });
   });
+  /* recenzja r1 (10.11.2026), S2: zestaw wr.range mówi „tak nisko, jak pozwala nadgarstek”, a dół ruchu było −32° / +40° przy limicie silnika −65° / +75° (połowa zakresu stawu). */
+  describe('7 uginań siedząc: dolne położenie bliżej limitu nadgarstka (10.11.2026, S2)', () => {
+    const SIEDZ = UGINANIA.filter(k => !/Behind/.test(k));
+    test('jest 7 uginań siedząc', () => { expect(SIEDZ).toHaveLength(7); });
+    test.each(SIEDZ)('%s: kąt w dolnym położeniu (u = 0) ≥ 44° (było 32° / 40°; wyżej dłoń z hantlem wchodzi w udo) i ≤ limit silnika 65°', k => {
+      const d = measuredAngle(figureSpec(k) as FigureSpec, 0).deg;
+      expect(Math.abs(d)).toBeGreaterThanOrEqual(44); expect(Math.abs(d)).toBeLessThanOrEqual(65);
+    });
+  });
 });

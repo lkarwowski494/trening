@@ -60,7 +60,7 @@ export const PRZYBLIZENIA = {
 
 export function generuj() {
   const G = {};
-  const NA = [-32, 52]; const NR = [40, -48]; /* zgięcie dłoniowe: z lekkiego wyprostu do zgięcia; odwrotnie: wyprost nadgarstka */
+  const NA = [-45, 52]; const NR = [45, -48]; /* zgięcie dłoniowe: z lekkiego wyprostu do zgięcia; odwrotnie: wyprost nadgarstka */
   G['Barbell Wrist Curl'] = () => nadgarstek('Barbell Wrist Curl', { nadg: NA, obrot: 78, sprzet: [SPRZET.sztanga()], blad: true });
   G['Barbell Reverse Wrist Curl'] = () => nadgarstek('Barbell Reverse Wrist Curl', { nadg: NR, obrot: -78, sprzet: [SPRZET.sztanga()], blad: true });
   G['Wrist Curl (hantle)'] = () => nadgarstek('Wrist Curl (hantle)', { nadg: NA, obrot: 78, sprzet: [SPRZET.hantle()], blad: true });
