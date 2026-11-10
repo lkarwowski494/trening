@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 08:08 UTC) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 08:45 UTC — PRZEKAZANIE KOORDYNATORA W TOKU (E6)) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -15,13 +15,15 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-fable-5-2 (wyjątek nazwany od zalecanej sesji opus/medium: właściciel po prośbie o /model odpowiedział „dalej” bez zmiany, 2026-11-10), wysiłek medium, permission_mode auto; repo sesji: lkarwowski494/trening, prompts (oraz Szkola_pokera, oczko, piekarz, oczko-warsztat — nieużywane). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz
-- Wznowienie: właściciel 2026-11-10 ~07:00 UTC wybrał „Przejmij i wznów pracę” (AskUserQuestion /apps4brew) — wstrzymanie z 05:35 zdjęte. Praca toczy się na tym samym koncie (poprzednie sesje i przypomnienia innych koordynatorów widoczne w list_triggers/list_sessions); limit tygodniowy: allowed_warning, reset 2026-11-15 16:00 UTC.
-- Sprawdzone u źródła 07:05: integracja-1-1 dfaeeefe; figury/partia-4-thruster-wl 06d90e84 — tests.yml 42762990970 success; figury/partia-2 7a09818f; figury/partia-5 cd789d82 — przebieg 42763692815 (cd5c4afa) cancelled, głowa bez wyniku; figury/partia-5-rotator_cuff 7f694cf5. Autor commitów: Claude <noreply@anthropic.com>.
-- W toku: A (pociąg-4) i B (partia 5) — tabela Sesje. A rozwiązuje konflikty scalenia według KO-020 (partia 4 odchodzi od pociągu-2, konflikty także poza plikami generowanymi). Poprzednik …VBw1AX38pLShXPH7rmy nieosiągalny (send_message 07:12 → not found); jego wiadomości po przekazaniu niesprawdzone.
-- Po zielonym pociągu-4: scal-galaz do integracji, potem tura 3 w 2 sesjach (KO-017).
-- Karta „Stan projektu” w CLAUDE.md: brak; właściciel 07:00: „Pozycja w planie M9” → zadanie dla sesji z dokumentami po turze 3 (propozycja do zatwierdzenia).
-- Bramka opłacalności: docs/monetyzacja.md istnieje (M5 S1). Środowisko: Linux bez Xcode, push na koordynacja działa (a6d5416f), MCP GitHub działa.
+## Teraz (08:45 UTC)
+- Praca wznowiona przez właściciela 07:00 UTC („Przejmij i wznów pracę”). Koordynator …VBxiRkBevtfwuCxxs97 ma 28% kontekstu → przekazuje pracę następcy (E6); to sesja czatu właściciela (/apps4brew), po przekazaniu tylko przekazuje wiadomości.
+- A2 (pociąg-4: partia 2, przegląd scalenia, verify:szybkie, CI) pracuje od 08:02; origin/scal/pociag-4 nadal 760afa88 (08:40). Po PRZEKAZANIU A2: odbiór (SHA, autor, tests.yml na SHA, plik docs/research/recenzje/pociag-4-scalenie.md) → `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs scal/pociag-4` na integracja-1-1 → CI wyniku scalenia.
+- B (partia 5) przy 35,8% kontekstu (08:18) dostała polecenie: dokończyć verify:szybkie → push → PRZEKAZANIE, bez nowych zadań; origin/figury/partia-5 nadal cd789d82 (08:40). Jej raport 07:34 (strażniki 432be36, lekcja c3b25d5, rotator_cuff r1 czysta, scalenie integracji wg KO-021) to deklaracje — niesprawdzone. Po PRZEKAZANIU B: odbiór, ewentualny następca B2 na resztę, potem pociąg-5 (partia 5 na integracji po pociągu-4).
+- Po pociągu-4 w integracji: tura 3 w 2 sesjach (KO-017; wzór polecenia: polecenia/wzor-partia.md + zasady z polecenia B.md pkt 4–8). Właściciel dostał 08:30 opcję „4 sesje zamiast 2” (szybciej o ok. pół dnia, szybciej zjada limit) z rekomendacją 2 — bez odpowiedzi; domyślnie 2.
+- Start sesji podrzędnej: create_session z całym promptem roli wykonuje subagent (Agent, model opus) — pierwsza próba na sonnet przerwana przez klasyfikator (WG-05). W poleceniach podawaj pełną nazwę narzędzia mcp__claude-code-remote__send_message.
+- Szacunek dla właściciela (08:30, w czacie): gotowość 1.1 do zgłoszenia 16–18.11 (optymistycznie 14.11, pesymistycznie 19–21.11); założenia: tura 3 do 11–12.11, przekład i zadania przed 1.1 do 12–13.11, zamrożenie + audyt (ZB-043) + naprawy do 14–15.11, E2E pełny katalog + TestFlight + telefon. Otwarte ryzyka blokujące wg docs/40 (odczyt subagenta, niesprawdzone przez koordynatora): R-101-28, R-11-01, R-11-02, R-008 b. docs/48 nie ma kroków zgłoszenia 1.1 — do dopisania (sesja 10-wydanie) przed sesją w ASC. Nazwa RepsGoat: wg docs/zobowiazania.md ZB-056 zarezerwowana w ASC 09.11 (odczyt subagenta) — pozycja 13 w tabeli zadań do zamknięcia po sprawdzeniu.
+- Karta „Stan projektu” w CLAUDE.md: brak; właściciel 07:00: „Pozycja w planie M9” → sesja z dokumentami po turze 3 (propozycja do zatwierdzenia).
+- Limit tygodniowy konta: allowed_warning, reset 2026-11-15 16:00 UTC; równolegle pracują koordynatorzy M9 Oczka, Piekarza i Szkoły Pokera (ich sesji i przypomnień nie ruszać).
 
 ## Zadania i stan (na chwilę wstrzymania)
 | # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
@@ -45,7 +47,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 |---|---|---|---|---|---|---|
 | A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ 760afa88 (partia 4 scalona, partia 2 nie; verify:lekkie; tests.yml niesprawdzone) | 29,1 (08:06) | 3,69 | zakończona: partia 4 scalona (760afa88, potwierdzenie A 08:00 = ls-remote); zarchiwizowana 08:07; praca nieprzyjęta — odbiór po A2 |
 | A2 | session_01T66VBywmTeUKRmGrUr71SN | 08-programista build (opus-5-5): pociąg-4 dokończenie (polecenia/A2.md) | scal/pociag-4 @ 760afa88 | b.d. | 0 (08:05) | wystartowała 08:05; pułap 40/52 USD |
-| B | session_01T66VBzi6xg7DYJMg2oYF8Q | 08-programista build (opus-5-5): partia 5 domknięcie | figury/partia-5 @ cd789d82 | b.d. | 0 (07:15) | wystartowała 07:15; pułap 60/78 USD |
+| B | session_01T66VBzi6xg7DYJMg2oYF8Q | 08-programista build (opus-5-5): partia 5 domknięcie | figury/partia-5 @ cd789d82 | b.d. | 0 (07:15) | 35,8% i 18,35 USD o 08:18; polecenie domknięcia kroku i PRZEKAZANIA wysłane 08:19; pułap 60/78 USD |
 | P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
 | P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana — raport 05:50 (koszt 55,8 USD, kontekst 32%) |
 | P-2 | session_01T66VBvdsMU66FhsPJWpG8J | lead partii 2 | figury/partia-2 @ 7a09818f | 30 | 26 | zakończona (raport końcowy) → do archiwizacji po scaleniu |
@@ -103,3 +105,6 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 07:47 | A | PRZEKAZANIE: scal/pociag-4 @ 760afa88 (autor Claude <noreply@anthropic.com>; 06d90e84 i dfaeeefe przodkami, 7a09818f nie — sprawdzone); verify:lekkie zamiast szybkie, 4 pliki testów nieuruchomione, przegląd audytora i partia 2 otwarte; wyjątek rozmiaru poseData.ts → KO-022 | A kontynuuje (okno 1 mln, próg 300 tys.) albo odpowiada liczbą → następca A2 (opus) od STAN-POCIAG-4.md |
 | 2026-11-10 08:00 | A → A2 | kontrola: A 24,7% kontekstu, 2,8 USD, scal/pociag-4 760afa88; scalenie partii 2 (34 konflikty) nie zmieści się do 30% → A zatrzymana, polecenia/A2.md @ 30aefbfd, start A2 (opus-5-5) przez subagenta w toku; B: figury/partia-5 nadal cd789d82 (pracuje lokalnie) | potwierdzić start A2 (ID do tabeli Sesje), zarchiwizować A po zapisie kosztu; koordynator 24,7% → E6 przy 30% |
 | 2026-11-10 08:07 | A, A2 | A2 …VBywmTeUKRmGrUr71SN wystartowała (opus-5-5, get_session przez subagenta); A: 3,69 USD, 29,1% kontekstu, zarchiwizowana | kontrola 08:40 |
+| 2026-11-10 08:18 | B, A2 | get_session: B 35,8% kontekstu, 18,35 USD, czeka na verify:szybkie przed pushem (114 commitów) → polecenie PRZEKAZANIA; A2 pracuje (scalanie partii 2) | odbiór po PRZEKAZANIU |
+| 2026-11-10 08:30 | właściciel | pytania „Status?” i o termin 1.1 → odpowiedź z szacunkiem 16–18.11 (sekcja Teraz) | — |
+| 2026-11-10 08:40 | koordynator | kontrola: brak nowych pushy (scal/pociag-4 760afa88, partia-5 cd789d82); własny kontekst 28% → E6 | start następcy |
