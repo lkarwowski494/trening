@@ -46,44 +46,44 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | animowany błąd | 258 | 225 | 33 |
 | wskazówki (własne lub zestaw ogólny) | 569 | 503 | 66 |
 | częste błędy (tekst) | 442 | 381 | 61 |
-| role mięśni | 524 | 513 | 11 |
-| pełna karta | 458 | 371 | 87 |
+| role mięśni | 546 | 513 | 33 |
+| pełna karta | 480 | 371 | 109 |
 | figura z aktualną recenzją ruchu | 526 | 410 | 116 |
-| komplet tekstów karty: pl | 631 | 608 | 23 |
-| komplet tekstów karty: en | 631 | 608 | 23 |
-| komplet tekstów karty: cs | 631 | 608 | 23 |
-| komplet tekstów karty: sk | 631 | 608 | 23 |
-| komplet tekstów karty: hu | 631 | 608 | 23 |
-| komplet tekstów karty: ro | 631 | 608 | 23 |
-| komplet tekstów karty: bg | 631 | 608 | 23 |
-| komplet tekstów karty: hr | 631 | 608 | 23 |
-| komplet tekstów karty: sl | 631 | 608 | 23 |
-| komplet tekstów karty: sr | 631 | 608 | 23 |
-| komplet tekstów karty: lt | 631 | 608 | 23 |
-| komplet tekstów karty: lv | 631 | 608 | 23 |
-| komplet tekstów karty: et | 631 | 608 | 23 |
-| komplet tekstów karty: uk | 631 | 608 | 23 |
-| komplet tekstów karty: es | 631 | 608 | 23 |
-| komplet tekstów karty: es-419 | 631 | 608 | 23 |
-| komplet tekstów karty: pt | 631 | 608 | 23 |
-| komplet tekstów karty: pt-BR | 631 | 608 | 23 |
-| komplet tekstów karty: de | 631 | 608 | 23 |
-| komplet tekstów karty: fr | 631 | 608 | 23 |
-| komplet tekstów karty: it | 631 | 608 | 23 |
-| komplet tekstów karty: nl | 631 | 608 | 23 |
-| komplet tekstów karty: sv | 631 | 608 | 23 |
-| komplet tekstów karty: da | 631 | 608 | 23 |
-| komplet tekstów karty: nb | 631 | 608 | 23 |
-| komplet tekstów karty: fi | 631 | 608 | 23 |
-| komplet tekstów karty: tr | 631 | 608 | 23 |
-| komplet tekstów karty: el | 631 | 608 | 23 |
-| komplet tekstów karty: id | 631 | 608 | 23 |
-| komplet tekstów karty: ms | 631 | 608 | 23 |
-| komplet tekstów karty: vi | 631 | 608 | 23 |
-| komplet tekstów karty: ru | 631 | 608 | 23 |
-| komplet tekstów karty: ja | 631 | 608 | 23 |
-| komplet tekstów karty: ko | 631 | 608 | 23 |
-| komplet tekstów karty: zh-Hant | 631 | 608 | 23 |
+| komplet tekstów karty: pl | 632 | 608 | 24 |
+| komplet tekstów karty: en | 632 | 608 | 24 |
+| komplet tekstów karty: cs | 632 | 608 | 24 |
+| komplet tekstów karty: sk | 632 | 608 | 24 |
+| komplet tekstów karty: hu | 632 | 608 | 24 |
+| komplet tekstów karty: ro | 632 | 608 | 24 |
+| komplet tekstów karty: bg | 632 | 608 | 24 |
+| komplet tekstów karty: hr | 632 | 608 | 24 |
+| komplet tekstów karty: sl | 632 | 608 | 24 |
+| komplet tekstów karty: sr | 632 | 608 | 24 |
+| komplet tekstów karty: lt | 632 | 608 | 24 |
+| komplet tekstów karty: lv | 632 | 608 | 24 |
+| komplet tekstów karty: et | 632 | 608 | 24 |
+| komplet tekstów karty: uk | 632 | 608 | 24 |
+| komplet tekstów karty: es | 632 | 608 | 24 |
+| komplet tekstów karty: es-419 | 632 | 608 | 24 |
+| komplet tekstów karty: pt | 632 | 608 | 24 |
+| komplet tekstów karty: pt-BR | 632 | 608 | 24 |
+| komplet tekstów karty: de | 632 | 608 | 24 |
+| komplet tekstów karty: fr | 632 | 608 | 24 |
+| komplet tekstów karty: it | 632 | 608 | 24 |
+| komplet tekstów karty: nl | 632 | 608 | 24 |
+| komplet tekstów karty: sv | 632 | 608 | 24 |
+| komplet tekstów karty: da | 632 | 608 | 24 |
+| komplet tekstów karty: nb | 632 | 608 | 24 |
+| komplet tekstów karty: fi | 632 | 608 | 24 |
+| komplet tekstów karty: tr | 632 | 608 | 24 |
+| komplet tekstów karty: el | 632 | 608 | 24 |
+| komplet tekstów karty: id | 632 | 608 | 24 |
+| komplet tekstów karty: ms | 632 | 608 | 24 |
+| komplet tekstów karty: vi | 632 | 608 | 24 |
+| komplet tekstów karty: ru | 632 | 608 | 24 |
+| komplet tekstów karty: ja | 632 | 608 | 24 |
+| komplet tekstów karty: ko | 632 | 608 | 24 |
+| komplet tekstów karty: zh-Hant | 632 | 608 | 24 |
 
 ## Rodziny ruchu
 
