@@ -22,7 +22,7 @@ const E = 'pushupElbowLimb', B = 'pushupBodyLine', R = 'rolloutKneeLine';
 /** Elementy na karcie ćwiczenia. 10.11.2026: rodzina ma wpis recenzji „zestawy” (r2, 9 zestawów, commit f72a0126), więc zestawy ogólne liczą się na karcie: ćwiczenia z zestawem plank.brace/push.rigid/plank.noSag dostają pushupBodyLine, a Barbell Rollout from Bench rolloutKneeLine (te same oczekiwania sprawdza niżej test na id wskazówek zestawu); Standing Barbell Rollout i Suspended Fallout nadal bez elementu (reguła „analogia”). */
 const WANT: Record<string, string[]> = {
   'Push Up': [E, B], 'Incline Push Up': [E, B], 'Diamond Push Up': [B], 'Inverted Row': [B], 'Plank': [B], 'Decline Push Up': [E],
-  'Mountain Climbers': [], 'Plank Shoulder Taps': [B], 'Rollout (sztanga)': [], 'Push-Up Wide': [B], 'Single-Arm Push-Up': [B], 'Suspended Push-Up': [], 'Plyo Push-Up': [B],
+  'Mountain Climbers': [], 'Plank Shoulder Taps': [B], 'Rollout (sztanga)': [], 'Push-Up Wide': [B], 'Single-Arm Push-Up': [B], 'Suspended Push-Up': [], 'Plyo Push-Up': [] /* wstrzymany 10.11.2026 (V2_WSTRZYMANE, PP-W1): bez rysunku, więc bez elementu; po powrocie [B] */,
   'Close-Grip Push-Up': [B], 'Incline Push-Up Close-Grip': [B], 'Standing Barbell Rollout': [], 'Barbell Rollout from Bench': [R], 'Suspended Fallout': [],
 };
 
