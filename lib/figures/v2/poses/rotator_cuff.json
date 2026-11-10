@@ -793,7 +793,8 @@
      "mocowanie": "zaczep",
      "x": 36,
      "y": 100,
-     "z": -75
+     "z": -75,
+     "trzyma": "R"
     }
    ],
    "klatki": [
@@ -1198,7 +1199,8 @@
      "mocowanie": "zaczep",
      "x": 36,
      "y": 100,
-     "z": 90
+     "z": 90,
+     "trzyma": "R"
     }
    ],
    "klatki": [

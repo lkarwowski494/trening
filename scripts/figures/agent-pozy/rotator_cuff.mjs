@@ -22,7 +22,7 @@ function rotacja(cw, o) {
     const R_ = { d1, d2, obrot: o.obrot ?? 0 };
     return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: R_, L: o.obie ? R_ : WOLNA() } });
   };
-  const sprz = o.sprzet.map((g) => (['hantel', 'wyciag'].includes(g.rodzaj) && !o.obie ? { ...g, trzyma: 'R' } : g));
+  const sprz = o.sprzet.map((g) => (['hantel', 'wyciag', 'guma'].includes(g.rodzaj) && !o.obie ? { ...g, trzyma: 'R' } : g));
   return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-80, 130), ...sprz], fr, us: U5, blad: o.blad ? { cue: 'rot.mis.elbowAway', postawa: false, znacznik: 'bar' } : undefined });
 }
 
