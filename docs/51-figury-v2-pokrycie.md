@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 11, do zrobienia: 32); ćwiczeń z gotową figurą: **246** (34,7%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 13, do zrobienia: 30); ćwiczeń z gotową figurą: **256** (36,1%).
 
 ## Rodziny
 
@@ -34,9 +34,9 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `shrug` | do zrobienia | 8 | front, side | 1 | Szrugsy |
 | `rotator_cuff` | do zrobienia | 8 | front, side | 2 | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
 | `core_floor` | do zrobienia | 44 | side | 4 | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
-| `core_hang` | do zrobienia | 4 | side | 2 | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
+| `core_hang` | gotowa | 4 | side | — | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
 | `core_standing` | do zrobienia | 19 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
-| `carry` | do zrobienia | 7 | side | 2 | Noszenie |
+| `carry` | gotowa | 7 | side | — | Noszenie |
 | `cardio` | do zrobienia | 16 | side | 6 | Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees) |
 | `plyo` | do zrobienia | 28 | side, front | 4 | Skoki i plyometria — skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026) |
 | `sled_throw` | do zrobienia | 19 | side | 3 | Sanie, rzuty piłką, uderzenia |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 32 rodzin, 444 ćwiczeń, ok. **97 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 30 rodzin, 433 ćwiczeń, ok. **93 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -64,6 +64,7 @@ Razem do zrobienia: 32 rodzin, 444 ćwiczeń, ok. **97 h pracy agenta** (rig + t
 - `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
 - `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
+- `core_hang` (z figurą 3 z 4): L-Sit
 - `forearm` (z figurą 11 z 13): Plate Pinch; Wrist Roller
 
 ## Ćwiczenia według rodzin
@@ -168,7 +169,7 @@ Band Pull Apart; Cable Internal Rotation; Cuban Press; External Rotation (hantel
 
 Alternate Heel Touchers; Bicycle Crunch; Bird Dog; Butt-Ups; Cable Crunch; Cable Reverse Crunch; Cable Seated Crunch; Cocoons; Cross-Body Crunch; Crunch; Crunch - Hands Overhead; Crunch - Legs On Exercise Ball; Dead Bug; Decline Crunch; Decline Oblique Crunch; Decline Reverse Crunch; Dragon Flag; Frog Sit-Ups; GHD Sit Up; Hollow Hold; Janda Sit-Up; Kneeling Cable Crunch With Alternating Oblique Twists; Leg Pull-In; Lying Leg Raise; Machine Crunch; Oblique Crunches - On The Floor; Otis-Up; Press Sit-Up; Reverse Crunch; Scissor Kick; Seated Flat Bench Leg Pull-In; Side Jackknife; Sit Up; Smith Machine Hip Raise; Stability Ball Crunch; Stability Ball Knee Tuck; Standing Rope Crunch; Stomach Vacuum; Superman; Suspended Reverse Crunch; Toe Touchers; Tuck Crunch; V-Up; Weighted Sit-Ups - With Bands
 
-### core_hang (4) — do zrobienia
+### core_hang (4) — gotowa
 
 Hanging Knee Raise; Hanging Leg Raise; L-Sit; Toes to Bar
 
@@ -176,7 +177,7 @@ Hanging Knee Raise; Hanging Leg Raise; L-Sit; Toes to Bar
 
 Barbell Side Bend; Bent Press; Bosu Ball Cable Crunch With Side Bends; Cable Judo Flip; Cable Russian Twists; Cable Woodchop; Double Kettlebell Windmill; Kettlebell Figure 8; Kettlebell Windmill; Landmine Rotation; Medicine Ball Full Twist; One-Arm High-Pulley Cable Side Bends; Pallof Press; Pallof Press With Rotation; Russian Twist; Seated Barbell Twist; Side Bend (hantel); Spell Caster; Weighted Ball Side Bend
 
-### carry (7) — do zrobienia
+### carry (7) — gotowa
 
 Double Kettlebell Front Rack Carry; Farmer's Walk; Farmer's Walk (Farmers Handles); Farmer's Walk (trap bar); Overhead Carry (hantle); Rickshaw Carry; Suitcase Carry
 

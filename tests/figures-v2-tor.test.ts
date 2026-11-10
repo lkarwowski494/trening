@@ -123,7 +123,7 @@ describe('C1 (recenzja niezależna 03.11.2026): ślad ciężaru w dłoni leży p
   const MAX_OD_CHWYTU = 3;
   const dir = path.join(__dirname, '../lib/figures/v2/poses');
   const DATA: [string, PoseData][] = fs.readdirSync(dir).filter(f => f.endsWith('.json')).flatMap(f => Object.entries(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')).cwiczenia as Record<string, PoseData>).map(([k, d]) => [`${f.replace('.json', '')}|${k}`, d] as [string, PoseData]));
-  const nosi = (d: PoseData) => d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia') as (PoseData['sprzet'][number] & { pionowo?: boolean; dwa?: boolean; trzyma?: string }) | undefined;
+  const nosi = (d: PoseData) => d.sprzet.find(g => g.rodzaj === 'hantel' || g.rodzaj === 'wyciag' || g.rodzaj === 'dzwignia' || g.rodzaj === 'gryf_szesciokatny' /* W2 (recenzja carry r1, 10.11.2026): trap bar / riksza — ślad w środku gryfu, nie w miednicy (12,7 cm od chwytów) */) as (PoseData['sprzet'][number] & { pionowo?: boolean; dwa?: boolean; trzyma?: string }) | undefined;
   const dwa = (g: NonNullable<ReturnType<typeof nosi>>) => !g.trzyma && ((g.rodzaj === 'hantel' && !g.pionowo) || (g.rodzaj === 'wyciag' && g.dwa === true));
   const dist3 = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
   /** Odległość śladu od najbliższego dopuszczalnego punktu: chwyt R/L; środek między chwytami tylko dla jednego uchwytu (nie dla dwóch osobnych ciężarów). */
@@ -133,6 +133,7 @@ describe('C1 (recenzja niezależna 03.11.2026): ślad ciężaru w dłoni leży p
 
   test('zestaw jest niepusty i obejmuje curl: ćwiczenia z dwoma ciężarami i z jednym uchwytem', () => {
     expect(ZESTAW.length).toBeGreaterThanOrEqual(30);
+    expect(ZESTAW.filter(([, d]) => d.sprzet.some(g => g.rodzaj === 'gryf_szesciokatny')).map(([k]) => k).sort()).toEqual(["carry|Farmer's Walk (trap bar)", 'carry|Rickshaw Carry']); /* 10.11.2026 */
     expect(ZESTAW.filter(([k, d]) => k.startsWith('curl|') && dwa(nosi(d)!)).length).toBeGreaterThanOrEqual(10);
     expect(ZESTAW.filter(([k, d]) => k.startsWith('curl|') && !dwa(nosi(d)!)).length).toBeGreaterThanOrEqual(5);
   });

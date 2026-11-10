@@ -486,6 +486,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny hip_bridge (np. Glute Bridge, Hip Thrust (sztanga)), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
     - Wtedy licznik faz pokazuje Unoszenie i Opuszczanie (tempo jak w innych rodzinach v2), mierzony jest kąt w biodrze, a London Bridges (nazwa nie identyfikuje ruchu) zostaje bez rysunku v2
+  - Scenariusz: Rodzina brzucha w zwisie (core_hang) pokazuje rysunki 3 ćwiczeń (10.11.2026, linia 1.1 partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-core-hang.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny core_hang (Hanging Knee Raise, Hanging Leg Raise, Toes to Bar), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza unoszenie kolan albo nóg w zwisie (dłonie stale na drążku)
+    - Wtedy licznik faz pokazuje Unoszenie i Opuszczanie, mierzony jest kąt w biodrze, przy wskazówce „żebra w dół” (Hanging Knee Raise) nakładka pokazuje linię tułowia i łuk zgięcia biodra (bez liczb), a L-Sit zostaje bez rysunku v2
   - Scenariusz: Nakładka techniki na rysunku wiosłowania na linkach i face pull (rodzina cable_row, 09.11.2026; decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”; test `tests/figures-v2-nakladka-cable-row.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_row (np. Seated Cable Row, Face Pull), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie ma na karcie zdanie ruchu, tułowia albo łokci z regułą „ustalone” (Seated Cable Row: przyciąganie, tułów i plecy; Face Pull: przyciąganie i łokcie za plecami)
@@ -500,6 +504,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny forearm (np. Wrist Curl (hantle), Reverse Plate Curls), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie ma na karcie zdanie o zakresie ruchu nadgarstka z regułą „ustalone”
     - Wtedy z boku widać linię przez przedramię i łuk zgięcia nadgarstka z podpisem „Kąt na rysunku”; przy odwrotnym uginaniu z talerzem pion od barku, przy którym łokieć ma zostać; Wrist Roller i Plate Pinch zostają bez rysunku (brak źródła ruchu)
+  - Scenariusz: Rodzina noszenia ciężaru (carry) pokazuje rysunki 7 ćwiczeń z marszem i pionem tułowia (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-carry.test.tsx`, `tests/figures-v2-chod-cykliczny.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny carry (np. Farmer's Walk, Suitcase Carry), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza marsz z ciężarem w dłoni (pętla cykliczna, licznik „Marsz”)
+    - Wtedy ciężar nie przenika uda w żadnej klatce, a przy wskazówce o prostym tułowiu nakładka pokazuje pion przez miednicę (bez liczb)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

@@ -1231,6 +1231,48 @@
           "uwagi": "Leżenie przodem na ławce skośnej 45° (przybliżenie nazwane), ramiona od zwisu do linii tułowia w „Y”, łokieć 14–18° stały."
         }
       }
+    },
+    "carry": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r2 po poprawkach r1: W1, W2, S2 naprawione; S1 ŚREDNIE (Overhead Carry, chwyt 16 cm przed barkiem) → backlog; N1, N2 NISKIE",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawki r1 (bca55f7): inny programista",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "bc03d01d72f6",
+      "liczba": 7,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 7 ćwiczeń × widok side = 7 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z ba830c8 i obejrzane w pełnej rozdzielczości (u 0; 0,05; 0,1 powiększone 2×); cmp z r1: Suitcase Carry bajtowo równy, 6 zmienionych. Ślad (frameAt, u co 0,01): hantle = chwyt R, kettlebell = chwyt ręki trzyma, gryf sześciokątny (trap bar, Rickshaw) = środek chwytów — 0,0 cm od chwytu we wszystkich 7 ćwiczeniach.",
+      "uwagi": "r2: W1 naprawione — rack: chwyt 17,0 cm przed barkiem, łokieć 148°, dzwon dol 3,0 cm od tułowia (wzorzec Double Kettlebell Front Squat 15,1 cm / 149°). W2 naprawione — ślad trap bar/Rickshaw 0,0 cm od środka chwytów (contract.ts + strażnik C1 tests/figures-v2-tor.test.ts). S2 naprawione — obrotPrzedramienia 0, oś hantli przód–tył, odstęp od uda min. 0,6 cm. S1 ŚREDNIE (backlog): Overhead Carry chwyt 16,0 cm przed barkiem przy zgięciu barku 162,2° i tułowiu 0° (w zakresie 170° możliwe ok. 7 cm). N1 NISKIE: Farmers Handles jako hantel r 10 (gear.ts:441). N2 NISKIE: przypadek negatywny w tests/figures-v2-carry-r1.test.ts porównuje stałe. Skróty poza carry bez zmian względem 8cfa96c (diff --skroty).",
+      "cwiczenia": [
+        "Farmer's Walk",
+        "Farmer's Walk (Farmers Handles)",
+        "Farmer's Walk (trap bar)",
+        "Rickshaw Carry",
+        "Suitcase Carry",
+        "Overhead Carry (hantle)",
+        "Double Kettlebell Front Rack Carry"
+      ],
+      "bez_rysunku": []
+    },
+    "core_hang": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r2: Ś1 z r1 (drążek bez słupka) naprawione w 2db4b57 (test 04245f0); 0 × KRYTYCZNE/WYSOKIE/ŚREDNIE; N1, N2 z r1 — NISKIE, backlog",
+      "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawka Ś1: programista (subagent, inny niż autor rodziny)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny core_hang, partia 5, runda r1 @ 5b7f62f i r2 @ 2db4b57 (figury/partia-5-core_hang, worktree odłączony), 10.11.2026; raporty docs/research/recenzje/partia5-core_hang-r1-audytor-2026-11-10.md, partia5-core_hang-r2-audytor-2026-11-10.md",
+      "sha": "43a33ada7ec7",
+      "liczba": 4,
+      "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 3 ćwiczenia × widok side = 3 arkusze, 21 kadrów co 0,05, wygenerowane przez audytora z 2db4b57 (r2; r1 z 5b7f62f) i obejrzane w pełnej rozdzielczości (kadry u = 1 powiększone); arkusz-nakladka.mjs --family core_hang (3 arkusze). Bez ciężaru — ślad miednicy: Hanging Knee Raise 8,7 cm w przód, Hanging Leg Raise 10,4 cm w przód, Toes to Bar 22 cm w przód i 28 cm w górę; dłonie 0,00 cm od osi drążka w 21/21 kadrach; słupek (x 0, h 235) widoczny w każdym kadrze, za ciałem, bez kolizji (z ±62–66 wobec ciała |z| ≤ 25).",
+      "uwagi": "r2: Ś1 naprawione — słupek { slupek, x 0, h 235 } w pozach i generatorze, test tests/figures-v2-core-hang-slupek.test.ts; klatki bez zmian. N1 NISKIE: zwis u = 0 11 cm za osią chwytu (ramię 10,0° od pionu). N2 NISKIE: łuk biodra przy hang.ribs nie pokazuje podwijania miednicy (zgiecieKregoslupa 0) — przybliżenie kierunku reguły kolana_ku_klatce uczciwe (biodro 10→100° ↔ kolano–bark 92→60 cm). Uwaga bez wagi: drążek 120 cm (końce z ±60) nie sięga słupków (z 62) — widoczne tylko z przodu, rodzina ma tylko rzut z boku. Bez znalezisk: zakresy vs karty (HKR Δ 32 cm ≥ 20; HLR kolano 12–17° ≤ 30, nogi −7°; T2B nogi 86° nad poziomem, stopa przy drążku i górze słupka w u = 1), odchylenie T2B (miednica 22 cm w przód, bark 19 cm w tył, tułów −55° — obrót z równowagi, otwarte_czesciowo), przenikanie, nakładka hangHipLimb, testy K14 (r1 i r2).",
+      "cwiczenia": [
+        "Hanging Knee Raise",
+        "Hanging Leg Raise",
+        "Toes to Bar"
+      ],
+      "bez_rysunku": [
+        "L-Sit"
+      ]
     }
   },
   "karty": {
@@ -1376,13 +1418,13 @@
     },
     "Farmer's Walk": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny carry, L-047)",
       "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md; wcześniej: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026 (2026-10-28, wyswietlana; Ciężar w każdej ręce przy biodrach, spokojny krok, wyprostowana postawa — 2 przeczytane źródła (biblioteka; artykuł edukacyjny s. 52).)",
       "sha": "db13ea14b2b8",
-      "uwagi": "Ciężar w każdej ręce przy biodrach, spokojny krok, wyprostowana postawa — 2 przeczytane źródła (biblioteka; artykuł edukacyjny s. 52)."
+      "uwagi": "carry.two (ciężar w każdej ręce, ręce wzdłuż boków, przy biodrach: łokieć 13–15°, chwyt 63 cm pod barkiem), carry.walk (marsz w cyklu), lunge.torso (tułów 0° w każdej klatce) — zgodne z rysunkiem v2. Runda r2: hantle w chwycie neutralnym (S2 naprawione) — zgodne. Skrót karty bez zmian względem wpisu z 28.10.2026."
     },
     "Front Squat": {
       "werdykt": "wyswietlana",
@@ -1696,13 +1738,13 @@
     },
     "Suitcase Carry": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 rodziny carry, L-047)",
       "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md; wcześniej: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026 (2026-10-28, wyswietlana; Ciężar w jednej ręce przy biodrze, spokojny krok, bez przechylania — 3 przeczytane źródła.)",
       "sha": "cdf5c579c5c0",
-      "uwagi": "Ciężar w jednej ręce przy biodrze, spokojny krok, bez przechylania — 3 przeczytane źródła."
+      "uwagi": "carry.one (kettlebell w prawej ręce, ręka wzdłuż boku, przy biodrze; lewa wolna), carry.walk, carry.noLean (pochylenie 0°, przechylTulowia 0 we wszystkich klatkach; przechył boczny i tak niewidoczny z boku) — zgodne z rysunkiem v2. Skrót karty bez zmian względem wpisu z 28.10.2026."
     },
     "Sumo Deadlift": {
       "werdykt": "wyswietlana",
@@ -3723,30 +3765,33 @@
     },
     "Hanging Leg Raise": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "063d8f4c9283"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2)",
+      "autor": "programista A4 (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f i r2 @ 2db4b57, 10.11.2026; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; hang.legs.move bez wysokości — część wspólna źródeł; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty (2026-11-09, wyswietlana; )",
+      "sha": "063d8f4c9283",
+      "uwagi": "hang.legs.move zgodne (nogi proste, kolano 12–17°, u = 1 nogi 7° pod poziomem); hang.setup — drążek widoczny od r2."
     },
     "Hanging Knee Raise": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "ac21253c514f"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, treść karty wobec rysunku v2 core_hang, r2)",
+      "autor": "programista A4 (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f i r2 @ 2db4b57, 10.11.2026; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty (2026-11-09, wyswietlana; )",
+      "sha": "ac21253c514f",
+      "uwagi": "hang.knees.move zgodne (biodro 10→100°, kolano–bark 92→60 cm); hang.setup „Zawiśnij na drążku” — drążek ze słupkiem widoczny od r2."
     },
     "Toes to Bar": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "369a88554933"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2)",
+      "autor": "programista A4 (karta własna, lib/cues/data.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — K11 partia 5 core_hang r1 @ 5b7f62f i r2 @ 2db4b57, 10.11.2026; wcześniej: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; wersja ścisła zgodna z docs/18 02.11.2026; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty (2026-11-09, wyswietlana; )",
+      "sha": "369a88554933",
+      "uwagi": "hang.t2b.move zgodne (stopa przy drążku w u = 1), hang.t2b.straight (kolano 162–175°), hang.pressBar (tułów −55°, obrót wokół chwytu); hang.setup — drążek widoczny od r2."
     },
     "Stability Ball Crunch": {
       "werdykt": "wyswietlana",
@@ -5233,6 +5278,61 @@
       "kto": "audytor — recenzja niezależna zestawów ogólnych przy włączeniu rodziny v2 delt_raise, gałąź delt-wlaczenie-wip @ 1cd586a5; rysunek: wpis v2 delt_raise (nakładka 64ebbbd4)",
       "uwagi": "Unoszenie w „Y” leżąc przodem na ławce skośnej: rear.elbows ze źródeł Reverse Fly (hantle) — rysunek ma stały łokieć 14–18°, zgodny; curl.noSwing ze źródeł Biceps Curl (hantle) — przy podparciu klatki znaczy „klatka zostaje na oparciu”, uproszczenie (analogia); mis.jerk ze źródeł Seated Cable Row. Zestaw słusznie bez lat.height (ręce idą wyżej niż barki, zapis badacza). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
       "sha": "4abd2e454900"
+    },
+    "Farmer's Walk (Farmers Handles)": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°, bez przechyłu), carry.walk (marsz w cyklu) — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Farmer's Walk (trap bar)": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Rickshaw Carry": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem (rama jako trap bar, przybliżenie nazwane). Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Overhead Carry (hantle)": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°, bez przechyłu), carry.walk — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
+    },
+    "Double Kettlebell Front Rack Carry": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 carry, L-047)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (subagent)",
+      "kto": "audytor — recenzja niezależna rodziny carry, partia 5, runda r2 (po poprawkach r1 innego programisty, bca55f7), gałąź figury/partia-5-carry @ ba830c8 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-carry-r2-audytor-2026-11-10.md",
+      "sha": "b26682582402",
+      "uwagi": "carry.noLean (tułów 0°), carry.walk — zgodne z rysunkiem. Runda r2: rysunek po poprawkach r1 nadal zgodny ze zdaniami zestawu."
     }
   }
 }

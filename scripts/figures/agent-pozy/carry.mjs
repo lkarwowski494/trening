@@ -27,10 +27,12 @@ function miednica(f) {
 }
 
 /** Ręce: grip(Sx) → { hr, hl }. */
-const wisza = (z, dx = 0) => (Sx) => { const f = (sg) => { const dz = z - 19; const ly = Math.sqrt(Math.max(1, D_RECE ** 2 - dz * dz - dx * dx)); return { g: [Sx[0] + dx, Sx[1] - ly, sg * z], pole: [0, 0, sg] }; }; return { hr: f(1), hl: f(-1) }; };
+/* S2 (recenzja r1, 10.11.2026): przy rękach wzdłuż boków hantle w chwycie neutralnym (obrot 0: oś przód–tył, wzór shrug.json), nie poprzecznie jak przy nachwycie z dłonią do tyłu */
+const wisza = (z, dx = 0, obrot) => (Sx) => { const f = (sg) => { const dz = z - 19; const ly = Math.sqrt(Math.max(1, D_RECE ** 2 - dz * dz - dx * dx)); return { g: [Sx[0] + dx, Sx[1] - ly, sg * z], pole: [0, 0, sg], ...(obrot !== undefined ? { obrot } : {}) }; }; return { hr: f(1), hl: f(-1) }; };
 const wiszaJedna = (zr, zl) => (Sx) => { const f = (z, sg) => { const dz = z - 19; const ly = Math.sqrt(Math.max(1, D_RECE ** 2 - dz * dz)); return { g: [Sx[0], Sx[1] - ly, sg * z], pole: [0, 0, sg] }; }; return { hr: f(zr, 1), hl: f(zl, -1) }; };
-const nadGlowa = (Sx) => { const dx = 16; const ly = Math.sqrt(D_RECE ** 2 - dx * dx - 0); const f = (sg) => ({ g: [Sx[0] + dx, Sx[1] + ly, sg * 19], pole: [0.2, 0, sg] }); return { hr: f(1), hl: f(-1) }; };
-const rack = (Sx) => { const f = (sg) => ({ g: [Sx[0] + 34, Sx[1] - 2, sg * 13], pole: [0, -1, sg * 0.4] }); return { hr: f(1), hl: f(-1) }; };
+const nadGlowa = (Sx) => { const dx = 16; const ly = Math.sqrt(D_RECE ** 2 - dx * dx - 0); const f = (sg) => ({ g: [Sx[0] + dx, Sx[1] + ly, sg * 19], pole: [0.2, 0, sg], obrot: 0 }); return { hr: f(1), hl: f(-1) }; };
+/* W1 (recenzja r1, 10.11.2026): rack jak w zrecenzowanym Double Kettlebell Front Squat — chwyt ok. 15 cm przed barkiem, łokieć zgięty (≥ 140°), przedramię pionowo przy klatce */
+const rack = (Sx) => { const f = (sg) => ({ g: [Sx[0] + 17, Sx[1] - 1, sg * 14], pole: [0, -1, sg * 0.4] }); return { hr: f(1), hl: f(-1) }; };
 
 function marsz(cw, { s = 28, rece, sprzet }) {
   const fr = (u) => { const f = faza(u, s); const m = miednica(f); const Sx = S(m, 0); const g = rece(Sx); const ps = (sg) => [1, 0.15, sg * 0.05];
@@ -40,12 +42,12 @@ function marsz(cw, { s = 28, rece, sprzet }) {
 
 export function generuj() {
   return {
-    "Farmer's Walk": () => marsz("Farmer's Walk", { rece: wisza(25), sprzet: [{ rodzaj: 'hantel' }] }),
-    "Farmer's Walk (Farmers Handles)": () => marsz("Farmer's Walk (Farmers Handles)", { s: 26, rece: wisza(29), sprzet: [{ rodzaj: 'hantel', promien: 10 }] }),
+    "Farmer's Walk": () => marsz("Farmer's Walk", { rece: wisza(25, 0, 0), sprzet: [{ rodzaj: 'hantel' }] }),
+    "Farmer's Walk (Farmers Handles)": () => marsz("Farmer's Walk (Farmers Handles)", { s: 26, rece: wisza(29, 0, 0), sprzet: [{ rodzaj: 'hantel', promien: 10 }] }),
     "Farmer's Walk (trap bar)": () => marsz("Farmer's Walk (trap bar)", { s: 26, rece: wisza(29), sprzet: [{ rodzaj: 'gryf_szesciokatny' }] }),
     'Rickshaw Carry': () => marsz('Rickshaw Carry', { s: 22, rece: wisza(29), sprzet: [{ rodzaj: 'gryf_szesciokatny' }] }),
     'Suitcase Carry': () => marsz('Suitcase Carry', { rece: wiszaJedna(29, 24), sprzet: [{ rodzaj: 'kettlebell', trzyma: 'R', dzwon: 'dol' }] }),
     'Overhead Carry (hantle)': () => marsz('Overhead Carry (hantle)', { s: 24, rece: nadGlowa, sprzet: [{ rodzaj: 'hantel' }] }),
-    'Double Kettlebell Front Rack Carry': () => marsz('Double Kettlebell Front Rack Carry', { s: 24, rece: rack, sprzet: [{ rodzaj: 'kettlebell', trzyma: 'R', dzwon: 'tyl' }, { rodzaj: 'kettlebell', trzyma: 'L', dzwon: 'tyl' }] }),
+    'Double Kettlebell Front Rack Carry': () => marsz('Double Kettlebell Front Rack Carry', { s: 24, rece: rack, sprzet: [{ rodzaj: 'kettlebell', trzyma: 'R', dzwon: 'dol' }, { rodzaj: 'kettlebell', trzyma: 'L', dzwon: 'dol' }] }),
   };
 }

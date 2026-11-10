@@ -42,7 +42,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
   /* forearm (10.11.2026, partia 5): staw mierzony wybiera ten o największym zakresie z ui.joints — odwrotne uginanie z talerzem mierzy łokieć, pronacja i supinacja obrót przedramienia, reszta nadgarstek */
   const FOREARM_JOINT: Record<string, string> = { 'Reverse Plate Curls': 'elbow', 'Dumbbell Lying Pronation': 'forearmRoll', 'Dumbbell Lying Supination': 'forearmRoll' };
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'carry')) { /* carry (10.11.2026): tryb cykliczny (marsz) — jedna faza „Marsz” bez pauz i sekund, osobny test niżej; delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, FOREARM_JOINT[k] ?? ui.joints[0]]);
@@ -64,6 +64,13 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       const ph = phasesFor(sp).map(p => [p.name, p.ms]);
       if (k === 'Alternating Deltoid Raise') expect(ph).toEqual([['Naprzemiennie', 2500]]);
       else expect([k, ph]).toEqual([k, [[k === 'Car Drivers' ? 'Obrót' : 'Unoszenie', 1000], ['Pauza', 500], [k === 'Car Drivers' ? 'Powrót' : 'Opuszczanie', 2000], ['Pauza', 500]]]);
+    }
+  });
+  test('carry (10.11.2026, tryb cykliczny marszu): 7 ćwiczeń, jedna faza „Marsz” bez sekund i pauz (phasesFor = walkPhases), mierzony staw ∈ ui.joints (kolano albo biodro), kierunek u nie jest podciąganiem (lowerFirst = false)', () => {
+    const ui = DATA_UI.carry; const keys = DATA_KEYS.filter(([f]) => f === 'carry').map(([, k]) => k); expect(keys.length).toBe(7);
+    for (const k of keys) {
+      const sp = figureSpec(k)!; expect([k, sp.lowerFirst]).toEqual([k, false]); expect(ui.joints).toContain(measuredJoint(sp));
+      expect([k, phasesFor(sp).map(p => [p.name, !!p.untimed])]).toEqual([k, [['Marsz', true]]]);
     }
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
