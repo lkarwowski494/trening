@@ -93,10 +93,10 @@ function kickback(cw, o = {}) {
   const { wariant = 'wyciag', lean = wariant === 'maszyna' ? 32 : wariant === 'guma' ? 8 : 24, t0 = 282, t1 = wariant === 'guma' ? 252 : 238, bladK = -30 } = o;
   const ax = 0;
   const reka = (Sx) => { if (wariant === 'guma') return { R: { g: [Sx[0] + 6, Sx[1] - 22, 19], pole: [-0.3, 0, 1] }, L: { g: [Sx[0] + 6, Sx[1] - 22, -19], pole: [-0.3, 0, -1] } };
-    const gx = Sx[0] + 56; const gz = wariant === 'maszyna' ? UCHWYT_MASZYNY_Z : 14; return { R: { g: [gx, Sx[1] - 12, gz], pole: [0, -0.4, 1] }, L: { g: [gx, Sx[1] - 12, -gz], pole: [0, -0.4, -1] } }; };
+    const gx = Sx[0] + 56; const gz = wariant === 'maszyna' ? UCHWYT_MASZYNY_Z : 5; /* wyciąg: dłonie na przedniej krawędzi kolumny (połowa szerokości 5 cm; recenzja r1 W1, 10.11.2026) */ return { R: { g: [gx, Sx[1] - 12, gz], pole: [0, -0.4, 1] }, L: { g: [gx, Sx[1] - 12, -gz], pole: [0, -0.4, -1] } }; };
   const fr = (u, bend = 0) => { const r = stojacaRamka({ u, lean, ax, tBack: lerp(t0, t1, a01(u)), reka }); if (bend) { const m = r.f.miednica; const f2 = K({ u, m, p: lean, bend, head: lean * 0.4, R: { a: r.ankle, pod: null, rot: 10, pole: r.f.nogi.R.biegunKolana }, L: { a: [ax, 7, -8], pod: 0, rot: 10, pole: [0.15, 0.2, -0.1] }, hr: r.f.rece.R, hl: r.f.rece.L }); void f2; } return r; };
   const ok = US.map((u) => fr(u)); const sprzet = [PODLOGA(-130, 140)];
-  const m0 = ok[0].f.miednica; const Sx0 = S([m0[0], m0[1]], lean); const Xc = Sx0[0] + 56 + 10;
+  const m0 = ok[0].f.miednica; const Sx0 = S([m0[0], m0[1]], lean); const Xc = Sx0[0] + 56 + 9; /* środek kolumny: jej przednia krawędź leży tuż przy dłoniach (przedramię 4 cm + 0,3 cm luzu wg walidatora) */
   if (wariant === 'wyciag') sprzet.push({ rodzaj: 'wyciag', x: r1(Xc), y: 22, z: 0, chwyt: 'kostka', trzyma: 'R' });
   if (wariant === 'guma') sprzet.push({ rodzaj: 'guma', mocowanie: 'kostki' });
   if (wariant === 'maszyna') { /* uchwyty maszyny: dwie równoległe poręcze na wysokości chwytu (rozstaw ≥ 30 cm wg kontraktu), dłonie na nich w każdej klatce (recenzja 1.1, partia 2, nr 5) */
@@ -114,7 +114,8 @@ function flutter(cw) {
   const kat = (u, s) => { const a = Math.sin(2 * Math.PI * u * 0.5) ; return s * lerp(0, 1, 1) * 0 + (s * (12 - 24 * a01(u)) ); };
   const noga = (s, u) => { const ang = kat(u, s) ; const hip = [m[0], m[1], s * HIP()]; const dx = -Math.cos(ang * R), dy = Math.sin(ang * R); const f = fk3(hip, [dx, dy, 0], [dx, dy, 0]); return { a: [f.ankle[0], f.ankle[1], s * 8], pod: null, rot: 10, pole: [0, -1, s * 0.1] }; }; /* leżenie przodem: kolano ku przodowi uda (w dół), nie do tyłu — przy nodze prawie prostej drobne skrócenie cięciwy w fazach pośrednich nie wygina kolana wstecz (recenzja 1.1, partia 2, uwaga C) */
   const fr = (u) => K({ u, m, p, head: 78, R: noga(1, u), L: noga(-1, u), hr: { g: [Sx[0] + 48, top + 3, 19], pole: [0, 0.4, 1] }, hl: { g: [Sx[0] + 48, top + 3, -19], pole: [0, 0.4, -1] } });
-  const bl = { cue: 'hext.mis.arch', znacznik: 'back', dod: ['spine'], klatki: US.map((u) => (u === 0 ? { u: 0 } : { u, zgiecieKregoslupa: r1(-30 * a01(u)) })) };
+  const BLAD_UNIESIENIE = -15; /* łuk lędźwi przez uniesienie klatki (pochylenie tułowia), nie przez zapadanie brzucha w blat (recenzja r1 W2, 10.11.2026) */
+  const bl = { cue: 'hext.mis.arch', znacznik: 'back', dod: ['spine'], klatki: US.map((u) => (u === 0 ? { u: 0 } : { u, zgiecieKregoslupa: r1(-30 * a01(u)), pochylenieTulowia: r1(BLAD_UNIESIENIE * a01(u)) })) };
   return zloz(cw, [PODLOGA(-170, 120), { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: 75, siedzisko: 55 }], US.map(fr), [bl]);
 }
 

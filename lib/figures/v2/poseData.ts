@@ -36,6 +36,7 @@ const LOAD: Record<string, () => PoseFile> = {
   mobility_floor: () => require('./poses/mobility_floor.json'),
   mobility_stand: () => require('./poses/mobility_stand.json'),
   core_floor: () => require('./poses/core_floor.json'),
+  glute_floor: () => require('./poses/glute_floor.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -162,6 +163,11 @@ export const DATA_UI: Record<string, DataUi> = {
       'Inverted Row': { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false } } },
   /* mobility_floor (09.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz i kąta), jedyny ruch to Cat-Cow (nazwy faz: PHASES_BY_EXERCISE); ruch jest w kręgosłupie, którego nie mierzymy (MeasuredJoint) → bez linii „Kąt na rysunku” */
   mobility_floor: { names: { first: 'Grzbiet w dół', second: 'Koci grzbiet' }, lowerFirst: false, joints: ['hip'], exceptions: { 'Cat-Cow': { hideAngle: true } } },
+  /* glute_floor (10.11.2026): u = 0 pozycja wyjściowa (noga w dół/przy drugiej), u = 1 noga uniesiona/odwiedziona — unoszenie 1 s, opuszczanie 2 s */
+  glute_floor: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'],
+    /* kąt biodra ukryty tam, gdzie ruch nie jest zgięciem biodra (Fire Hydrant, Clamshell: odwodzenie; flutter: dwie nogi naprzemiennie); kierunku u nie da się zmierzyć z miednicy i kolan — deklaracja wprost (strażnik kierunek-u) */
+    exceptions: { 'Fire Hydrant': { hideAngle: true, lowerFirst: false }, 'Clamshell': { hideAngle: true, lowerFirst: false, names: { first: 'Rozsuwanie', second: 'Powrót' } },
+      'Hip Extension with Bands': { lowerFirst: false }, 'Prone Flutter Kicks': { hideAngle: true, lowerFirst: false, names: { first: 'Naprzemiennie', second: 'Naprzemiennie' } } } },
   /* mobility_stand (10.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz; nazwy faz nieużywane), mierzone kolano (rozciąganie łydki: noga tylna i przednia); w rozciąganiu szyi, ramion i skłonie bocznym kolano nie jest istotą pozycji → bez linii „Kąt na rysunku” */
   mobility_stand: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'],
     exceptions: Object.fromEntries(['Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Lateral Stretch'].map((k): [string, PhaseOverride] => [k, { hideAngle: true }])) },
