@@ -8,7 +8,7 @@ import * as path from 'path';
 import { CATALOG } from '@/lib/catalog.generated';
 import { figureSpec, frameAt, guideShapes, measuredAngle, measuredSide, overlayShapes, type FigureSpec, type Shape } from '@/lib/figures/v2';
 import { OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniqueGeom, techniquesFor } from '@/lib/figures/v2/overlay';
-import { CORE_HANG_TECHNIQUE } from '@/lib/figures/v2/overlay/core_hang';
+import { CORE_HANG_TECHNIQUE, CORE_HANG_KNEE_EXERCISES } from '@/lib/figures/v2/overlay/core_hang';
 import { techniquesOf, guidesOf, errorsOf } from '@/lib/figures/v2/ui';
 
 const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
@@ -21,7 +21,7 @@ const WANT: Record<string, string[]> = { 'Hanging Knee Raise': [H], 'Hanging Leg
 
 describe('dane: elementy core_hang ← reguły „ustalone” ze źródłem', () => {
   test('rejestr: TECHNIQUE.core_hang = jeden element (zgięcie biodra, staw biodra), tylko rzut z boku', () => {
-    expect(TECHNIQUE.core_hang).toBe(CORE_HANG_TECHNIQUE); expect(CORE_HANG_TECHNIQUE.map(d => [d.id, d.kind, d.joint, d.views])).toEqual([[H, 'limb', 'hip', ['side']]]);
+    expect(TECHNIQUE.core_hang).toBe(CORE_HANG_TECHNIQUE); expect(CORE_HANG_TECHNIQUE.map(d => [d.id, d.kind, d.joint, d.views, d.exercises])).toEqual([[H, 'limb', 'hip', ['side'], CORE_HANG_KNEE_EXERCISES]]); expect(CORE_HANG_KNEE_EXERCISES).toEqual(['Hanging Knee Raise']);
   });
   test('reguła kolana_ku_klatce istnieje i jest „ustalone”; wskazówka elementu należy do wskazowki_na_reguly tej reguły', () => {
     const d = CORE_HANG_TECHNIQUE[0]; expect(d.rule).toBe('kolana_ku_klatce'); expect(sens.reguly[d.rule].pewnosc).toMatch(/^ustalone/);

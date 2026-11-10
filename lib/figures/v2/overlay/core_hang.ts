@@ -10,6 +10,8 @@
  */
 import type { TechniqueDef } from '../overlay';
 
+/** kolana_ku_klatce: „ustalone” tylko w wariancie Hanging Knee Raise (figury-sens.json warianty); Hanging Leg Raise ma hang.ribs na karcie, ale inne reguły — lista `exercises` zamiast odcięcia filtrem reguł (tests/figures-v2-nakladka-fix4.test.tsx). */
+export const CORE_HANG_KNEE_EXERCISES = ['Hanging Knee Raise'];
 export const CORE_HANG_TECHNIQUE: TechniqueDef[] = [
-  { id: 'hangHipLimb', kind: 'limb', cue: ['hang.ribs'], rule: 'kolana_ku_klatce', views: ['side'], joint: 'hip' },
+  { id: 'hangHipLimb', kind: 'limb', cue: ['hang.ribs'], rule: 'kolana_ku_klatce', views: ['side'], joint: 'hip', exercises: CORE_HANG_KNEE_EXERCISES },
 ];

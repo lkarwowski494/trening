@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 359 | 359 | 0 |
 | TEKST | 1089 | 1089 | 0 |
 | LOGIKA | 1168 | 1168 | 0 |
-| WYMIAR | 190 | 190 | 0 |
+| WYMIAR | 191 | 191 | 0 |
 
 ## EKRAN
 
@@ -2757,6 +2757,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | CABLE_ROW_ELBOW_BACK_EXERCISES (2) | lib/figures/v2/overlay/cable_row.ts | tests/figures-v2-nakladka-cable-row.test.tsx |
 | CABLE_ROW_TORSO_EXERCISES (5) | lib/figures/v2/overlay/cable_row.ts | tests/catalog-v2.test.ts, tests/figures-v2-cable-row-poprawki-r1.test.ts, tests/figures-v2-nakladka-cable-row.test.tsx |
 | CABLE_ROW_TECHNIQUE (3) | lib/figures/v2/overlay/cable_row.ts | tests/figures-v2-nakladka-cable-row.test.tsx |
+| CORE_HANG_KNEE_EXERCISES (1) | lib/figures/v2/overlay/core_hang.ts | tests/figures-v2-nakladka-core-hang.test.tsx |
 | CORE_HANG_TECHNIQUE (1) | lib/figures/v2/overlay/core_hang.ts | tests/figures-v2-nakladka-core-hang.test.tsx |
 | CURL_TECHNIQUE (2) | lib/figures/v2/overlay/curl.ts | tests/figures-v2-nakladka-curl-pullup.test.tsx |
 | DELT_FRONTAL_EXERCISES (8) | lib/figures/v2/overlay/delt_raise.ts | tests/audit-m1-031-hantle-asekuracja.test.tsx, tests/catalog-library25.test.tsx, tests/decisions-0310.test.tsx +3 |
