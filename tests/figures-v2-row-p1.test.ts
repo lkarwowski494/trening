@@ -136,7 +136,8 @@ describe('row: błąd „zaokrąglone plecy” widoczny (09.11.2026: zgięcie 32
   test('na końcu ruchu bark, głowa i łokieć przesuwają się o ≥ 3 cm (CONTRACT.visibleCm) w każdym ćwiczeniu z błędem; zgięcie 32° (poprzednie, 2,3 cm) tego nie spełniało', () => {
     expect(OBNIZENIE(32)).toBeLessThan(3); expect(OBNIZENIE(40)).toBeGreaterThanOrEqual(3);
     const z = KEYS.filter(k => errorsOf(spec(k)).length > 0); expect(z.length).toBeGreaterThanOrEqual(5);
-    for (const k of z) for (const e of errorsOf(spec(k))) { const a = frameAt(spec(k), 1).sk, b = frameAt(spec(k), 1, e.error).sk; const dd = Math.max(d3(a.shoulderC, b.shoulderC), d3(a.head, b.head), d3(a.arms.R.elbow, b.arms.R.elbow)); expect([k, e.cue, dd >= 3]).toEqual([k, 'mis.roundBack', true]); }
+    /* 10.11.2026 (po scaleniu integracji): Seal Row (sztanga) ma w zestawie też mis.jerk — błąd tempa bez zmiany pozy (JERK_TEMPO_RODZINY: row, tests/figures-v2-data.test.tsx); poza nim każdy błąd to mis.roundBack */
+    for (const k of z) for (const e of errorsOf(spec(k))) { if (e.cue === 'mis.jerk') continue; const a = frameAt(spec(k), 1).sk, b = frameAt(spec(k), 1, e.error).sk; const dd = Math.max(d3(a.shoulderC, b.shoulderC), d3(a.head, b.head), d3(a.arms.R.elbow, b.arms.R.elbow)); expect([k, e.cue, dd >= 3]).toEqual([k, 'mis.roundBack', true]); }
   });
 });
 
