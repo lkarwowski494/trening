@@ -2448,7 +2448,6 @@
       "f": "row",
       "ok": [
         "scr.chest",
-        "row.fullStretch",
         "scr.control"
       ],
       "err": [
@@ -3854,7 +3853,6 @@
       "f": "row",
       "ok": [
         "scr.chest",
-        "row.fullStretch",
         "scr.control"
       ],
       "err": [

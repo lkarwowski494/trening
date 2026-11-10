@@ -47,6 +47,7 @@ export const CUE_NOT_IN_FAMILY: Record<string, { why: string; families: FamilyId
   'oly.legs': { why: 'zdanie mówi o sztandze („sztangę wybijają nogi i biodra”); brak zestawu neutralnego dla kettlebella i hantla', families: ['kb_ballistic'] },
   'oly.mis': { why: 'tekst błędu mówi o sztandze („Sztanga odjeżdża od ciała”); brak zestawu neutralnego dla kettlebella i hantla', families: ['kb_ballistic'] },
   'lpd.fullStretch': { why: '„na górze wyprostuj ręce” opisuje ściąganie drążka z góry; w podciąganiu na górze łokcie są zgięte, ręce proste na dole (pu.partial)', families: ['pull_up'] },
+  'row.fullStretch': { why: '„na dole wyprostuj ręce” pasuje do wiosłowania z opuszczaniem ciężaru w dół (sztanga, T-bar); w rodzinie cable_row wyprost jest z przodu albo u góry (Single Arm Cable Row, Leverage High Row; recenzja r1 09.11.2026, S3), a tylko te dwa ćwiczenia cable_row miały to zdanie — wyłączenie na poziomie rodziny trafia dokładnie w nie i nie rusza 4 ćwiczeń rodziny row; CUE_REQUIRES odpada, bo warianty cable_row nie niosą cechy kierunku wyprostu', families: ['cable_row'] },
 };
 export const CUE_REQUIRES: Record<string, { why: string; ok: (v: Variant) => boolean }> = {
   'dl.lift': { why: 'ciężar zaczyna na podłodze (lub kołkach) i idzie w górę', ok: v => v.family === 'hinge' && v.p.style === 'floor' },

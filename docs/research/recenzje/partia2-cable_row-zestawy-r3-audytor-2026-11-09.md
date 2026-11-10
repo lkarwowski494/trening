@@ -1,0 +1,8 @@
+# Recenzja niezależna r3 — zestawy cable_row (Single Arm Cable Row, Leverage High Row), 09.11.2026
+Audytor (L-047: nie autor poprawki). Commit 0f069d93, worktree odłączony. Werdykt obu: **wyswietlana**; S3 zamknięte; brak znalezisk > 80%.
+1. Zakres zmiany: `git show 0f069d93` — w cue-sets.json usunięte tylko 2 wystąpienia `row.fullStretch` (te 2 ćwiczenia); `CUE_NOT_IN_FAMILY['row.fullStretch']` = `['cable_row']` (lib/figures/v2/cueSets.ts:45). 4 ćwiczenia rodziny row (Lying T-Bar Row, Reverse Grip Bent Over Row, Seal Row (sztanga), Smith Machine Bent Over Row) bez zmian.
+2. Test CR-S3 (tests/figures-v2-cues.test.tsx:81–94) rzetelny: czyta cueSelection z danych JSON (ponowne dopisanie id wywróci test), sprawdza przynależność do cable_row, 4 pozostające i pełną listę wystąpień. `jest --runInBand`: 16/16 zielone.
+3. Zestaw na karcie (tryb general, z dopiskiem): ok `scr.chest` „Na końcu ruchu klatka do przodu, łopatki ściągnięte w tył.”, `scr.control` „Wracaj powoli, bez odbijania ciężaru na końcu.”; err `mis.jerk` „Szarpanie i rzucanie ciężarem…”.
+4. K12 wobec arkuszy (scratchpad rec-cueset, side, pełna rozdzielczość): Single Arm Cable Row — ciąg poziomy, ramię proste z przodu u=0, łokieć za tułowiem u=1; Leverage High Row — uchwyt z przodu-u góry, łuk do barku, łokieć za tułowiem u=1. Wszystkie 3 zdania pasują; żadne nie opisuje kierunku wyprostu ani osi dźwigni — nie przeczy otwartemu CR-S2 (ŚREDNIE, backlog).
+5. Skróty (`node scripts/zrodla-runtime.mjs --skroty`): oba zestawy e8bcb0ee335b (zgodne z podanym przez autora), cable_row 4376c0e6b911 (bez zmian).
+Wpisy do figury-recenzja.json: partia2-cable_row-zestawy-r3.json (pole `autor` ≠ `recenzent`).

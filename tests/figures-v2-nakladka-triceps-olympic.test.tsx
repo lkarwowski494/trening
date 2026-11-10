@@ -196,8 +196,8 @@ describe('VoiceOver i podpis: „Na rysunku: …” z elementem, „Kąt na rysu
 });
 
 describe('regresja: pozostałe rodziny bez zmian', () => {
-  test('elementy rodzin bench_press, squat, hinge, curl, pull_up nie zostały dotknięte (liczba elementów w rejestrze) i rejestr ma dokładnie 13 rodzin (overhead_press 09.11.2026, partia 1; calf_raise, kb_ballistic i delt_raise dopisane 09.11.2026; row 09.11.2026, partia 1; chest_fly 09.11.2026, partia 1)', () => {
-    expect(Object.keys(TECHNIQUE).sort()).toEqual(['bench_press', 'calf_raise', 'chest_fly', 'curl', 'delt_raise', 'hinge', 'kb_ballistic', 'olympic', 'overhead_press', 'pull_up', 'row', 'squat', 'triceps']);
+  test('elementy rodzin bench_press, squat, hinge, curl, pull_up nie zostały dotknięte (liczba elementów w rejestrze) i rejestr ma dokładnie 15 rodzin (overhead_press 09.11.2026, partia 1; calf_raise, kb_ballistic i delt_raise dopisane 09.11.2026; row 09.11.2026, partia 1; chest_fly 09.11.2026, partia 1; hip_bridge i cable_row dopisane 09.11.2026, partia 2, tests/figures-v2-nakladka-hip-bridge.test.tsx, tests/figures-v2-nakladka-cable-row.test.tsx)', () => {
+    expect(Object.keys(TECHNIQUE).sort()).toEqual(['bench_press', 'cable_row', 'calf_raise', 'chest_fly', 'curl', 'delt_raise', 'hinge', 'hip_bridge', 'kb_ballistic', 'olympic', 'overhead_press', 'pull_up', 'row', 'squat', 'triceps']);
     expect(['bench_press', 'squat', 'hinge', 'curl', 'pull_up'].map(f => TECHNIQUE[f].length)).toEqual([3, 1, 1, 2, 3]); /* pull_up 2 → 3 od 09.11.2026: prowadnica prostej ręki pullArmStraightRef (docs/18 09.11.2026, tests/figures-v2-pull-up-lokiec.test.tsx) */
   });
 });

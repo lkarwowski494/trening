@@ -42,10 +42,11 @@ export function figureSpec(key: string): FigureSpec | null {
  * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
  * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
  * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
- * Historia wpisów: git log tego pliku (29.10.2026: 18 figur zdjętych po recenzjach, docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
+ * Wpisy: git log pliku (29.10.2026: 18 figur po recenzjach, docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
-  'Clean Shrug': 'rysunek po kartach T2 (olympic r4)',
-  'Snatch Shrug': 'rysunek po kartach T2 (olympic r4)',
+  'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
+  'Snatch Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
+  'Machine Hip Thrust': 'hip_bridge r1 WYSOKIE (09.11.2026): prowadnica dźwigni przez miednicę',
   'Standing Calf Raise': 'dźwignia: brak punktu „barki” (P1-CALF-1)',
   'Seated Calf Raise': 'dźwignia: brak punktu „uda” (P1-CALF-1)',
 };

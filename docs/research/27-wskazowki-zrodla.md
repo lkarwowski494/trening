@@ -4727,7 +4727,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Czego unikać**
 
-- Ciągnięcie szyją zamiast unoszenia barków. — Fitness Volt: [tuck crunch](https://fitnessvolt.com/tuck-crunch/) (How to, krok 3 („However, do not pull up on your neck.”)); ACE: [vertical toe touches](https://www.acefitness.org/resources/everyone/exercise-library/243/vertical-toe-touches/) (Step 2 i uwagi końcowe (głowa w linii z kręgosłupem, „avoid flexing your head too far forward”) — błąd = zaprzeczenie standardu) `core_floor.mis.neckPull`
+- Wysuwanie głowy do przodu zamiast unoszenia barków brzuchem. — Fitness Volt: [tuck crunch](https://fitnessvolt.com/tuck-crunch/) (How to, wskazówka po krokach („Keep your head neutral and use your abs to control the movement.”) — błąd = zaprzeczenie standardu (głowa neutralnie, nie wysunięta do przodu)); ACE: [vertical toe touches](https://www.acefitness.org/resources/everyone/exercise-library/243/vertical-toe-touches/) (Step 2 i uwagi końcowe (głowa w linii z kręgosłupem, „avoid flexing your head too far forward”) — błąd = zaprzeczenie standardu) `core_floor.mis.neckPull`
 
 ### Stomach Vacuum
 
