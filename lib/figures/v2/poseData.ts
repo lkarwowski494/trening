@@ -16,6 +16,7 @@ const LOAD: Record<string, () => PoseFile> = {
   olympic: () => require('./poses/olympic.json'),
   triceps: () => require('./poses/triceps.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
+  thruster: () => require('./poses/thruster.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -70,6 +71,8 @@ export const DATA_UI: Record<string, DataUi> = {
     exceptions: { 'Jerk Dip Squat': { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true },
       ...Object.fromEntries(['Power Clean', 'Clean', 'Split Clean', 'Hang Clean', 'Block Clean', 'Block Power Clean', 'Barbell Snatch', 'Power Snatch', 'Split Snatch', 'Hang Snatch', 'Block Snatch', 'Block Power Snatch',
         'Power Jerk', 'Split Jerk', 'Squat Jerk', 'Muscle Snatch', 'Clean and Jerk', 'Jerk Balance', 'Snatch Balance'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) } },
+  /* thruster (10.11.2026): całe powtórzenie w jednej pętli (petla = jednokierunkowa, jak olympic z lotem): przysiad z ciężarem na barkach i wyciskanie nad głowę — jedna faza „Podnoszenie”, bez opuszczania */
+  thruster: { names: { first: 'Podnoszenie', second: 'Podnoszenie' }, lowerFirst: false, joints: ['knee', 'hip'] },
   triceps: { names: { first: 'Prostowanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */

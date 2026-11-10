@@ -1,6 +1,7 @@
 // Generator póz rodziny thruster po stronie agenta (wersja 1.1, 26.10.2026): przysiad z wyciskaniem nad głowę (thruster hantle i kettlebell) oraz rwanie do rack i wyciskanie (clean and press).
 // Pozy WYLICZONE z modelu: przysiad z FK (goleń pochylona do przodu o alfa, udo z kąta tau = zgięcie kolana − alfa), pięty na podłodze, tułów pochylony proporcjonalnie do głębokości; ciężar z rack nad głowę w drugiej połowie ruchu.
 // Błąd katalogu sq.mis.heels (pięty odrywają się na dole) łamie tylko regułę „piety” (grupa piety); oly.mis (zaokrąglenie pleców przy rwaniu) — grupa plecy_tor.
+import { jednokierunkowa } from './dyn.mjs';
 import { v2, BODY, R, r1, lerp, ease, HIP, K, poza, PODLOGA, S, klatkaPiersiowa, bladZTrajektorii, bledyZOpisem, kostkaStopyY, kluczeRownoDroznie } from './dol.mjs';
 
 export const RODZINA = 'thruster';
@@ -28,7 +29,7 @@ function thrusterRamka(u, { kb, heels = false }) {
   const c = klatkaPiersiowa(q.m, q.p); const sR = c.sh(1), sL = c.sh(-1);
   const rack = (sg) => c.pt(0, kb ? 30 : 22, sg * 16); const gora = (sg, sh) => [sh[0] + 18, sh[1] + Math.sqrt(63.7 ** 2 - 324), sg * 19];
   const mix = (sg, sh) => { const a = rack(sg), z = gora(sg, sh); return a.map((x, i) => lerp(x, z[i], g)); };
-  const el = (sg) => ({ pole: [-0.2, -0.6, sg * 0.9] });
+  const el = (sg) => ({ pole: [0.5, -0.7, sg * 0.45] });
   const nog = (sg) => ({ a: [0, ay, sg * ZS], pod, rot: 12, pole: [1, 0.1, sg * 0.25] });
   return K({ u, m: q.m, p: q.p, head: q.p * 0.4, R: nog(1), L: nog(-1), hr: { g: mix(1, sR), ...el(1) }, hl: { g: mix(-1, sL), ...el(-1) } });
 }
@@ -62,9 +63,10 @@ function cleanPress(cw) {
 }
 
 export function generuj() {
+  /* 10.11.2026: całe powtórzenie w jednym przebiegu 0 → 1 (przysiad i wyciskanie, potem ciężar wraca na barki), bez cofania ruchu po tej samej drodze — wahadło opuszczałoby ciężar z góry równolegle z przysiadem */
   return {
-    'Thruster (hantle)': () => thruster('Thruster (hantle)', { kb: false }),
-    'Kettlebell Thruster': () => thruster('Kettlebell Thruster', { kb: true }),
-    'Clean and Press': () => cleanPress('Clean and Press'),
+    'Thruster (hantle)': () => jednokierunkowa(thruster('Thruster (hantle)', { kb: false })),
+    'Kettlebell Thruster': () => jednokierunkowa(thruster('Kettlebell Thruster', { kb: true })),
+    'Clean and Press': () => jednokierunkowa(cleanPress('Clean and Press')),
   };
 }

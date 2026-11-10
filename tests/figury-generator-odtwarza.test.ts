@@ -28,9 +28,8 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   rotator_cuff: ['External Rotation (linki)', 'External Rotation with Band', 'Cable Internal Rotation', 'Reverse Flyes With External Rotation'],
   row: ['Lying T-Bar Row', 'Chest Supported Row', /* wyjątek nazwany 01.11.2026 (koordynator 1.1): karty Bent Over Row ×2 i T-Bar Row wróciły po recenzji v1, więc częsty błąd mis.roundBack ma opis i generator rysuje jego pozę, której nie ma w zatwierdzonym row.json; rodzina row v2 niewyświetlana — poza błędu wejdzie przez recenzję rodziny (fala 2) */ 'Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'T-Bar Row'],
   shrug: ['Middle Back Shrug'],
-  thruster: ['Clean and Press'],
 };
-const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise'];
+const W_ZAKRESIE = ['thruster', /* 10.11.2026: rodzina włączona (partia 4); generator odtwarza plik, w tym pozę błędu oly.mis Clean and Press */ 'plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise'];
 
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
