@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:36 UTC) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:52 UTC) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -43,7 +43,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 ## Sesje
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
-| A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ dfaeeefe (nic nie wypchnięte 07:10) | b.d. | 0,5 (07:10) | pracuje; KO-020 wysłane 07:18; pułap 40/52 USD |
+| A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ 760afa88 (partia 4 scalona, partia 2 nie; verify:lekkie; tests.yml niesprawdzone) | 13,6 (get_session 07:50, może nieaktualne) | 0,5 (odczyt nieaktualny; deklaracja ~12) | PRZEKAZANIE 07:47 przy deklarowanych 30% — nieprzyjęte; 07:52 polecenie kontynuacji, jeśli < 300 tys. tokenów |
 | B | session_01T66VBzi6xg7DYJMg2oYF8Q | 08-programista build (opus-5-5): partia 5 domknięcie | figury/partia-5 @ cd789d82 | b.d. | 0 (07:15) | wystartowała 07:15; pułap 60/78 USD |
 | P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
 | P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana — raport 05:50 (koszt 55,8 USD, kontekst 32%) |
@@ -81,7 +81,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - trig_01UWKZWY4rndpbXDhvFvEqDJ „Koordynator Trening: kontrola” 07:58 · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-022. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-023. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -99,3 +99,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 07:18 | A | A zatrzymała scalenie partii 4: konflikty poza plikami generowanymi (list_events result 07:10); nie umiała wysłać wiadomości (szukała w ListAgents) → KO-020 + instrukcja send_message, delivered | kontrola 07:58 |
 | 2026-11-10 07:12 | koordynator | „PRZEJĄŁEM” do …VBw1AX38pLShXPH7rmy → not found | — |
 | 2026-11-10 07:34 | B | raport po zad. 1 + PYTANIE: na figury/partia-5 jest(3) > 20 min (42764641573 pon. 2 anulowane; gałąź bez podziału na 5 części); strażniki przejrzane (432be36), lekcja (c3b25d5), rotator_cuff r1 czysta — deklaracje B, niesprawdzone, nic nie wypchnięte | KO-021: scalić integrację dfaeeefe do partii 5 (wysłane 07:36); odbiór po PRZEKAZANIU |
+| 2026-11-10 07:47 | A | PRZEKAZANIE: scal/pociag-4 @ 760afa88 (autor Claude <noreply@anthropic.com>; 06d90e84 i dfaeeefe przodkami, 7a09818f nie — sprawdzone); verify:lekkie zamiast szybkie, 4 pliki testów nieuruchomione, przegląd audytora i partia 2 otwarte; wyjątek rozmiaru poseData.ts → KO-022 | A kontynuuje (okno 1 mln, próg 300 tys.) albo odpowiada liczbą → następca A2 (opus) od STAN-POCIAG-4.md |
