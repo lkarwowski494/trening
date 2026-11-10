@@ -119,7 +119,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `strongman` | do zrobienia | 10 | 0 | 1 | 0 | 0 | 0 | 10 | 0 | 0 |
 | `hip_abd_add` | do zrobienia | 8 | 0 | 6 | 0 | 1 | 0 | 7 | 0 | 0 |
 | `leg_machine` | do zrobienia | 8 | 0 | 6 | 2 | 4 | 0 | 4 | 0 | 0 |
-| `rotator_cuff` | do zrobienia | 8 | 0 | 7 | 0 | 6 | 0 | 2 | 0 | 0 |
+| `rotator_cuff` | gotowa | 8 | 0 | 7 | 0 | 6 | 0 | 2 | 0 | 0 |
 | `shrug` | do zrobienia | 8 | 0 | 8 | 2 | 5 | 0 | 3 | 0 | 0 |
 | `carry` | do zrobienia | 7 | 0 | 7 | 0 | 2 | 0 | 5 | 0 | 0 |
 | `glute_floor` | do zrobienia | 7 | 0 | 7 | 0 | 5 | 0 | 2 | 0 | 0 |
