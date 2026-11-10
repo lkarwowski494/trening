@@ -90,7 +90,7 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     /* 05.11.2026: olympic z wpisem r5 (audytor); triceps — wpis r5 (audytor, potwierdzenie po scaleniu T1b z integracją) */
     /* 09.11.2026: delt_raise z wpisem v2 (audytor, Car Drivers po r5-W1/r5-Ś1) ze skrótem niepodłączonej rodziny (status planned, bez poseData) — jak curl: na liście runtime, bez figur, dopóki rodzina nie zostanie podłączona */
     /* 10.11.2026: chest_press_machine z wpisem v2 (audytor, partia 4, r2) i podłączona — na liście runtime i w fam */
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'dip', 'chest_press_machine'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'dip', 'chest_press_machine'] }); /* 10.11.2026: + dip (partia 4, recenzja r4) */
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'dip', 'chest_press_machine', 'cable_press'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'delt_raise', 'olympic', 'triceps', 'dip', 'chest_press_machine', 'cable_press'] }); /* 10.11.2026: + dip (partia 4, recenzja r4) */
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";

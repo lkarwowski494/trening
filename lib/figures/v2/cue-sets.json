@@ -1927,8 +1927,7 @@
       "f": "bench",
       "ok": [
         "bp.contact",
-        "bp.blades",
-        "bp.control"
+        "bp.blades"
       ],
       "err": [
         "bp.mis.arch"

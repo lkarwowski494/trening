@@ -29,10 +29,10 @@ export const PRZYBLIZENIA = {};
 
 export function generuj() {
   const G = {};
-  G['Wyciskanie na linkach (stojąc)'] = () => wyciskanie('Wyciskanie na linkach (stojąc)', { T: stoi(), sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -45, y: 160, z: 75, h: 200 })] });
+  G['Wyciskanie na linkach (stojąc)'] = () => wyciskanie('Wyciskanie na linkach (stojąc)', { T: stoi(), sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -45, y: 135, z: 75, h: 200 })] });
   G['Single Arm Cable Chest Press'] = () => wyciskanie('Single Arm Cable Chest Press', { T: stoi(), jedna: 'R', zr: 24, h0: [16, -9], h1: [63, -2], sprzet: [wyc({ chwyt: 'uchwyt', x: -45, y: 130, z: 75, h: 200 })] });
   const sd = siedz(85, 45);
-  G['Seated Cable Chest Press'] = () => wyciskanie('Seated Cable Chest Press', { T: sd.T, dod: [sd.lawka], sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -70, y: 130, z: 75, h: 200 })] });
+  G['Seated Cable Chest Press'] = () => wyciskanie('Seated Cable Chest Press', { T: sd.T, dod: [sd.lawka], sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -70, y: 100, z: 75, h: 200 })] });
   const inc = siedz(55, 43);
   G['Incline Cable Chest Press'] = () => wyciskanie('Incline Cable Chest Press', { T: inc.T, dod: [inc.lawka], blad: true, sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -90, y: 15, z: 105, h: 100 })] });
   return G;

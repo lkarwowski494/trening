@@ -498,6 +498,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny chest_press_machine (Machine Chest Press, Machine Shoulder Press), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch
     - Wtedy licznik faz pokazuje Wypychanie i Opuszczanie, uchwyty maszyny jadą po łuku dźwigni (odchylenie toru ograniczone geometrią dźwigni, a przy suwnicy Smitha — prostą szyną), a na rysunku widać (tylko przy wskazówce na karcie i regule „ustalone”) łuk zgięcia łokcia, linię tułowia przy oparciu i poziom barków przy starcie wyciskania nad głowę (nakładka techniki; test `tests/figures-v2-nakladka-kazda-rodzina.test.tsx`)
+  - Scenariusz: Rodzina wyciskań na linkach (cable_press) pokazuje rysunki 4 ćwiczeń (10.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-cable_press.test.tsx`, `tests/figures-v2-cable_press-podpora.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_press (np. wyciskanie na linkach stojąc, Single Arm Cable Chest Press), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy licznik faz to Wypychanie i Powrót, mierzony staw to łokieć, a każda pracująca dłoń leży przy końcu własnej linki biegnącej od bloczka za plecami (przy ćwiczeniu jednorącz wolna ręka nie ma linki), a na ławce bark i miednica leżą na oparciu
+    - Oraz gdy ćwiczenie ma na karcie albo w zestawie ogólnym zdanie ruchu (mcp.move, press.noLock) albo podstawy (cpress.base) i regułę „ustalone” (nakładka techniki)
+    - Wtedy z boku widać linię ramienia i łuk zgięcia łokcia oraz linię tułowia, która w ruchu rąk stoi w miejscu; reguła kontaktu z ławką (pewność „analogia”) zostaje bez elementu nakładki
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

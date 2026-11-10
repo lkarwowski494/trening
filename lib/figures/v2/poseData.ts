@@ -18,6 +18,7 @@ const LOAD: Record<string, () => PoseFile> = {
   delt_raise: () => require('./poses/delt_raise.json'),
   dip: () => require('./poses/dip.json'),
   chest_press_machine: () => require('./poses/chest_press_machine.json'),
+  cable_press: () => require('./poses/cable_press.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -78,6 +79,8 @@ export const DATA_UI: Record<string, DataUi> = {
   dip: { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true, joints: ['elbow'],
     /* Dip Machine: siedzący, miednica stoi; u = 0 uchwyty w górze (łokieć 90°), u = 1 wypchnięte w dół (łokieć 21°) — faza 0 → 1 to wysiłek (1 s), powrót 2 s */
     exceptions: { 'Dip Machine': { names: { first: 'Wypychanie', second: 'Powrót' }, lowerFirst: false } } },
+  /* cable_press (10.11.2026): u = 0 dłonie przy klatce (łokieć ≥ 70°), u = 1 wyprost przed sobą (łokieć ≤ 25°) — faza 0 → 1 to wypychanie (1 s), powrót 2 s */
+  cable_press: { names: { first: 'Wypychanie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true, names: { first: 'Obrót', second: 'Powrót' } }, /* r5-W1 08.11.2026: kierownica obraca się, nie unosi */ 'Alternating Deltoid Raise': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' } } } },
