@@ -296,7 +296,7 @@ const PRZED: Record<string, Record<string, string>> = {
     "Bent Press": '9fa40088e109',
   },
 };
-const POPRAWIONE: Record<string, string[]> = {"plyo":["Depth Jump","Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)","Wall Ball"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press"]};
+const POPRAWIONE: Record<string, string[]> = {"plyo":["Depth Jump","Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)","Wall Ball","Backward Medicine Ball Throw"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press","Cable Russian Twists","Pallof Press","Pallof Press With Rotation","Landmine Rotation"]}; /* partia 8 (10.11.2026): + sled_throw Backward Medicine Ball Throw (W1 r1), core_standing Cable Russian Twists, Pallof Press, Pallof Press With Rotation, Landmine Rotation (poprawki po recenzjach r1–r2) */
 describe('inne pozy bez zmian (regresja)', () => {
   const odcisk = (d: PoseData) => crypto.createHash('sha1').update(JSON.stringify(d)).digest('hex').slice(0, 12);
   const pary = FILES.flatMap((f) => Object.entries(PRZED[f]).map(([c, h]) => ({ f, c, h, zmiana: (POPRAWIONE[f] ?? []).includes(c) })));

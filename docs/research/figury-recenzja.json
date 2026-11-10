@@ -1892,7 +1892,7 @@
       "recenzent": "audytor (sesja r4)",
       "kto": "audytor (sesja r4) — recenzja niezależna r4 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8 @ e005c411 (poprawka R3-W1 od 150679da; scalenia z sled_throw/strongman i integracja-1-1 od 9abbba74)",
       "sha": "ba395c4d26d1",
-      "liczba": "19",
+      "liczba": 19,
       "cwiczenia": [
         "Barbell Side Bend",
         "Side Bend (hantel)",
@@ -2231,7 +2231,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
       "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
       "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
-      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
       "sha": "cbe93cfddf5e",
       "uwagi": "slam.move pasuje: piłka 40 cm nad głową na szczycie, potem w dół do wypuszczenia ok. 51 cm nad podłogą (moment wypuszczenia, karta nie wymaga uderzenia); hinge.back i plank.brace: tułów sztywny, zawias do 52°."
     },
@@ -2251,7 +2251,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
       "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
       "recenzent": "audytor (sesja r2)",
-      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
       "sha": "ff78fc52665f",
       "uwagi": "Treść zgodna z rysunkiem; Ś3 usunięte (łokieć w u = 1 171°). Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
@@ -2382,7 +2382,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
       "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
       "recenzent": "audytor (sesja r2)",
-      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
       "sha": "9408bbfb2743",
       "uwagi": "Ruch zgodny (odchylenie 45°, skręt ± 38°, plecy proste); Ś2 (rysunek bez ciężaru, karta „ciężar przed klatką”) — ŚREDNIE, backlog P8-CS-2 (nie blokuje). Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
@@ -3182,7 +3182,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
       "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
       "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
-      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
       "sha": "6f2a286d08b6",
       "uwagi": "wb.setup/wb.move pasują (piłka przy klatce, przysiad, wyrzut jednym ruchem w górę, ściana przed ćwiczącym); wb.mis.shallow — zob. Ś1 w v2.sled_throw (dno nad równoległą)."
     },
@@ -3202,7 +3202,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
       "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
       "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
-      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
       "sha": "871996234a76",
       "uwagi": "bmbt.move „przerzuć ją nad głową za siebie” pasuje po poprawce W1: u = 1 dłonie 8,0 cm za linią barków, tułów 16° w tył, wyprost z przysiadu (kolano 99,7° → 1,1°). bmbt.setup (piłka na prostych rękach przed sobą) — u = 0 łokcie proste, piłka przed goleniami."
     },
@@ -3212,7 +3212,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
       "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
       "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
-      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
       "sha": "85de3b2b60b3",
       "uwagi": "soht.setup/soht.move pasują: piłka oburącz, w u = 0 6,6 cm za głową („trochę za nią”), wyrzut przed siebie z wyprostu."
     },
@@ -3222,7 +3222,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
       "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
       "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
-      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
       "sha": "ef9ee9fdcec0",
       "uwagi": "sled.pushGrip: dłonie na pionowych uchwytach; sled.legs: naprzemienny napęd nóg; sled.lean: tułów 33° w przód; hinge.back: tułów sztywny."
     },
@@ -4415,7 +4415,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
       "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
       "recenzent": "audytor (sesja r2)",
-      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Experience Life szczebel 4 (kwalifikacje autorki na stronie tej samej organizacji); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
       "sha": "a318476c5b31",
       "uwagi": "Treść zgodna z ruchem; W1 usunięte (prowadnica wm.arm przy ręce z kettlebellem). N1 (kolana) → backlog P8-CS-3. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
@@ -4425,7 +4425,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
       "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
       "recenzent": "audytor (sesja r2)",
-      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (M. Magnante, ACE, JSON-LD) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
       "sha": "8b67938595ee",
       "uwagi": "W3 usunięte: góra pleców na piłce, biodra w linii z tułowiem (tułów −76°, biodro ≥ 160°), ręce proste nad klatką (łokcie 166–174°), obrót tułowia ± 36° — zgodne z kartą. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
@@ -4435,7 +4435,7 @@
       "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
       "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
       "recenzent": "audytor (sesja r2)",
-      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie jeden → dwa kettlebelle (tor ten sam) potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
       "sha": "a5abca82301a",
       "uwagi": "Treść zgodna z ruchem; W1 usunięte (prowadnica przy górnej ręce R). N1 (kolana) → backlog P8-CS-3. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },

@@ -39,11 +39,14 @@ function naruszenia(family: string, ui: DataUi): string[] {
     const wyj = ui.exceptions?.[k]; const lf = lowerFirstOf(ui, k); const nazwy = wyj?.names ?? ui.names;
     if (kd === null) { if (ISOMETRIC.has(k)) continue; /* izometria: jedna pozycja bez animacji */
       if (wyj?.lowerFirst === undefined) o.push(`${k}: kierunek nie do zmierzenia, a wyjątek nie deklaruje lowerFirst`); continue; }
+    if (OPOR_Z_GORY.has(k)) { if (lf !== (kd !== 'opuszczanie')) o.push(`${k}: opór z góry — u 0→1 to ${kd === 'opuszczanie' ? 'wysilek' : 'opuszczanie'}, a lowerFirst = ${lf}`); continue; }
     if (lf !== (kd === 'opuszczanie')) o.push(`${k}: u 0→1 to ${kd}, a lowerFirst = ${lf}`);
     else if ((nazwy.first === 'Opuszczanie') !== (kd === 'opuszczanie')) o.push(`${k}: u 0→1 to ${kd}, a pierwsza faza nazywa się „${nazwy.first}”`);
   }
   return o;
 }
+/** Opór z góry (wyciąg górny): zejście barków w dół to wysiłek (ściąganie linki), nie opuszczanie ciężaru — geometria daje odwrotny znak. Recenzja r1 Ś1 core_standing (10.11.2026, partia 8), potwierdzona w r2: fazy „Ściąganie”/„Powrót”, lowerFirst false. */
+const OPOR_Z_GORY = new Set(['One-Arm High-Pulley Cable Side Bends', 'Bosu Ball Cable Crunch With Side Bends']);
 const OPUSZCZANIE = { names: { first: 'Opuszczanie', second: 'Wypychanie' }, lowerFirst: true, joints: ['knee'] } as const satisfies DataUi;
 const WYPYCHANIE = { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false } as const;
 const WEJSCIE = { names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false } as const;
