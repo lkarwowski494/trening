@@ -18,3 +18,7 @@ Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą; pełna k
 - Zrobione: commit `thruster:` na gałęzi figury/partia-4-thruster — włączenie (ready, LOAD, DATA_UI „Podnoszenie”), pętla jednokierunkowa, nakładka (thrusterBackRef, thrusterBarCloseRef tylko Clean and Press), testy `tests/figures-v2-thruster.test.tsx`, BRD, pochodne.
 - Zostało: wpisy recenzji v2/karty/zestawy (przepisuje po recenzji niezależnej); zestaw ogólny Clean and Press (oly.back, oly.close, ohp.tall) — element nakładki rysuje się dopiero po wpisie „zestawy”; v1 → zastapiona: brak wpisów v1 dla tych ćwiczeń.
 - Pułapki: `test-matrix --write` widzi tylko pliki w indeksie git (najpierw `git add`); strona-eksport „pelna” będzie czerwone dla Thruster (hantle) i Kettlebell Thruster do czasu wpisu recenzji (policz() liczy z prawdziwego pliku recenzji, test z zapisem zastępczym).
+
+## thruster — poprawki po r1 (10.11.2026, drugi programista)
+- Zrobione: W1 (koniec wyciskania nad środkiem stopy, tułów lekko odchylony), W2 (przysiad ok. 8° poniżej równoległego), W3 (ciężar wraca na barki, u = 1 = poza startowa); rodzina „dynamiczne” (docs/18, 10.11.2026); testy W1–W3 z negatywem (tests/fixtures/thruster-r1-przed-poprawka.json); ONE_WAY_STATIC dla dwóch thrusterów; wyjątki toru; złote odciski przeliczone; oly.mis w Clean and Press widoczny (≥ 5 cm).
+- Zostało: recenzja r2 (inny agent), wpisy recenzji/zestawy po czystej r2 (wtedy zniknie czerwień nakladka-kazda-rodzina), status `ready` włącza lead.

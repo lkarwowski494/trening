@@ -58,7 +58,7 @@ describe('r4-W1 logika: pozycje statyczne Alternating ze szczytów ruchu', () =>
 
 describe('r4-W1 strażnik ogólny: pętla jednokierunkowa nie ma identycznych pozycji statycznych', () => {
   const JED = ALL.filter(([, d]) => d.petla === 'jednokierunkowa');
-  test('jest co sprawdzać (53 ćwiczenia jednokierunkowe: 33 skoki i rzuty + 19 olympic + Alternating; 08.11.2026 po scaleniu olympic z integracją liczba 34 → 53)', () => { expect(JED).toHaveLength(53); });
+  test('jest co sprawdzać (56 ćwiczeń jednokierunkowych: 33 skoki i rzuty + 19 olympic + Alternating + 3 thruster; 08.11.2026 po scaleniu olympic z integracją liczba 34 → 53, 10.11.2026 thruster 53 → 56)', () => { expect(JED).toHaveLength(56); });
   test.each(JED.map(([k, d]) => [k, d] as [string, PoseData]))('%s: pozycje statyczne parami różne', (k, d) => {
     const us = ONE_WAY_STATIC[k]?.u ?? [0, 1];
     for (let i = 0; i < us.length; i++) for (let j = i + 1; j < us.length; j++) expect([k, us[i], us[j], sk(d, us[i]) !== sk(d, us[j])]).toEqual([k, us[i], us[j], true]);

@@ -18,7 +18,7 @@ const sProf = (u) => { const kf = u * 11; return kf <= 4 ? e2(kf / 4) : kf < 7 ?
 const gProf = (u) => { const kf = u * 11; return kf <= 4 ? 0 : kf <= 8 ? e2((kf - 4) / 4) : 1 - e2((kf - 8) / 3); };
 const K_DOL = 128, AL_DOL = 30, P_DOL = 24; /* dół: zgięcie kolana 128°, goleń 30°, uda ok. 8° poniżej poziomu (karta: „co najmniej do równoległego ud”) */
 const GORA_X = 2; const P_GORA = -6, P_GORA_CP = -4; /* chwyt nad środkiem stopy (x kostki = 0) i tułów lekko odchylony: ramię w zakresie barku (≤ 170°) */
-const OMIJ_TWARZ = 8; /* cm do przodu w środku drogi ciężaru (omija twarz, 0 w racku i na górze) */
+const OMIJ_CP = 3; const OMIJ_TWARZ = 8; /* cm do przodu w środku drogi ciężaru (omija twarz, 0 w racku i na górze) */
 
 /** Przysiad z FK: kostki w (0, ay, ±ZS), s = głębokość 0..1; ay > 7 gdy pięty uniesione (błąd). Zwraca { m, p, ax } . */
 function przysiad(s, ay = 7) {
@@ -48,11 +48,11 @@ function thruster(cw, { kb }) {
 const KLUCZE = [[0, 50, 8, 40], [0.2, 14, 3, 12], [0.32, 10, 3, 4], [0.46, 40, 12, 8], [0.62, 8, 2, 2], [1, 8, 2, 2]];
 const klucz = (u) => { for (let i = 1; i < KLUCZE.length; i++) if (u <= KLUCZE[i][0]) { const a = KLUCZE[i - 1], b = KLUCZE[i]; const t = (u - a[0]) / (b[0] - a[0]); return [1, 2, 3].map((j) => lerp(a[j], b[j], e2(t))); } return KLUCZE[KLUCZE.length - 1].slice(1); };
 function cleanRamka(u, { bend = 0 }) {
-  const b = BODY(); const [k, al, p0] = klucz(u); const w2 = clamp01((u - 0.4) / 0.6); const p = p0 + (P_GORA_CP - 2) * w2; const tau = k - al; const ar = al * R, tr = tau * R; const hip = [b.shank * Math.sin(ar) - b.thigh * Math.sin(tr), 7 + b.shank * Math.cos(ar) + b.thigh * Math.cos(tr)];
+  const b = BODY(); const [k, al, p0] = klucz(u); const w2 = clamp01((u - 0.4) / 0.6); const p = p0 + (P_GORA_CP - 2) * w2 + bend * 0.25; const tau = k - al; const ar = al * R, tr = tau * R; const hip = [b.shank * Math.sin(ar) - b.thigh * Math.sin(tr), 7 + b.shank * Math.cos(ar) + b.thigh * Math.cos(tr)];
   const c = klatkaPiersiowa(hip, p, { bend }); const sR = c.sh(1), sL = c.sh(-1);
   const w1 = clamp01((u - 0.2) / 0.26);
   const reka = (sg, sh) => { const z0 = sg * 22; const dzz = 22 - 19; const vis = [sh[0] + 7, sh[1] - Math.sqrt(60 ** 2 - 49 - dzz * dzz), z0]; const rack = c.pt(-4, 18, sg * 16); const gora = [GORA_X, sh[1] + Math.sqrt(62.9 ** 2 - (GORA_X - sh[0]) ** 2), sg * 19];
-    const g1 = vis.map((x, i) => lerp(x, rack[i], w1)); return g1.map((x, i) => lerp(x, gora[i], w2) + (i === 0 ? OMIJ_TWARZ * 4 * w2 * (1 - w2) : 0)); };
+    const g1 = vis.map((x, i) => lerp(x, rack[i], w1)); return g1.map((x, i) => lerp(x, gora[i], w2) + (i === 0 ? OMIJ_CP * 4 * w2 * (1 - w2) : 0)); };
   const poleL = (sg) => [0, -0.3, sg]; /* łokcie na zewnątrz i lekko w dół w całym ruchu (stały biegun: łokieć nie przeskakuje) */
   const nog = (sg) => ({ a: [0, 7, sg * ZS], pod: 0, rot: 12, pole: [1, 0.1, sg * 0.25] });
   return K({ u, m: hip, p, bend, head: p * 0.4, R: nog(1), L: nog(-1), hr: { g: reka(1, sR), pole: poleL(1) }, hl: { g: reka(-1, sL), pole: poleL(-1) } });
