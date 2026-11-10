@@ -498,6 +498,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny delt_raise (np. Lateral Raise, Car Drivers), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
     - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
+  - Scenariusz: Rodzina sań, rzutów i slamów piłką (sled_throw) pokazuje rysunki 8 ćwiczeń (10.11.2026, linia 1.1 partia 8; testy `tests/figures-v2-sled-throw.test.tsx`, `tests/figures-v2-sled-throw-tor.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny sled_throw (Sled Push, Sled Drag (Harness), slamy, rzuty piłką, Wall Ball), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy sanki pokazują licznik „Marsz”, a slamy, rzuty i Wall Ball jedną fazę „Rzut”; ślad toru piłki leży przy dłoniach (nie w miednicy), a Wall Ball ma widok z boku i z przodu
+  - Scenariusz: Nakładka techniki na rysunku sań i rzutów piłką (rodzina sled_throw, 10.11.2026; decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”; test `tests/figures-v2-sled-throw.test.tsx`)
+    - Zakładając, że ćwiczenie ma kartę ze wskazówką ruchu (sled.lean, mb.legs, slam.move) i regułę „ustalone” wariantu
+    - Gdy użytkownik ogląda rysunek z boku
+    - Wtedy sanki pokazują linię tułowia i pion przez miednicę (pochylenie w przód), Medicine Ball Scoop Throw łuk zgięcia kolana albo biodra, a Medicine Ball Slam poziom głowy, nad który piłka ma sięgnąć; pozostałe ćwiczenia rodziny (karta bez wskazówki powiązanej z regułą „ustalone”) zostają bez elementu nakładki
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
   - Scenariusz: Rodzina dipów (dip) pokazuje rysunki 5 ćwiczeń (09.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-dip.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)

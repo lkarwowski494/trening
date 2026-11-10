@@ -54,7 +54,7 @@ export const FAMILIES: Family[] = [
   { id: 'carry', status: 'planned', label: 'Noszenie', views: ['side'], effort: 2 },
   { id: 'cardio', status: 'planned', label: 'Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees)', views: ['side'], effort: 6 },
   { id: 'plyo', status: 'planned', label: 'Skoki i plyometria', views: ['side', 'front'], effort: 4, note: 'skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026)' },
-  { id: 'sled_throw', status: 'planned', label: 'Sanie, rzuty piłką, uderzenia', views: ['side'], effort: 3 },
+  { id: 'sled_throw', status: 'ready', label: 'Sanie, rzuty piłką, uderzenia', views: ['side'], effort: 3 },
   { id: 'strongman', status: 'planned', label: 'Strongman i podnoszenia nietypowych ciężarów', views: ['side'], effort: 3 },
   { id: 'glute_floor', status: 'planned', label: 'Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie)', views: ['side', 'front'], effort: 4 },
   { id: 'hip_abd_add', status: 'ready', label: 'Przywodzenie i odwodzenie (maszyny, linki, taśmy)', views: ['front'], effort: 2 },
