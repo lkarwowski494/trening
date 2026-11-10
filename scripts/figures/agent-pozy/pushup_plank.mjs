@@ -52,13 +52,23 @@ function kostkaDlaZasiegu(A0, P, cel, min = 0) {
   let lo = min, hi = 8; for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (d(mid) > cel) lo = mid; else hi = mid; }
   return [A0[0] + (lo + hi) / 2, A0[1]];
 }
-/** Wariant „opadające biodra”: tułów obrócony wokół barków o deltaMax·w stopni (miednica spada o ≥ 9 cm poza linię barki–kostka). Poprawna poza ma nogę prostą (odległość miednica–kostka ≈ 83 cm), a opadnięcie miednicy
- *  wokół barków wydłuża tę odległość ponad zasięg nogi — więc w błędzie stopy ześlizgują się o kilka milimetrów ku dłoniom (kostkaDlaZasiegu, poziomo), a kolana są lekko ugięte (odległość `cel`, domyślnie 82,8 cm ≈ 8°). */
-function sagZ(okFn, deltaMax = 11, cel = 82.8) {
+/** Najdalsze dopuszczalne przesunięcie kostki w wierszu błędu „opadające biodra” względem pozy poprawnej (cm). Stopa stoi na podłodze, więc strażnik „stopa na podporze” (tests/figury-p2-r3.test.ts, STOPA_BLAD_CM = 1) nie pozwala jej jechać dalej niż 1 cm; 0,9 daje zapas na zaokrąglenie do 0,1 cm (10.11.2026). */
+const SAG_PRZES_MAX = 0.9;
+/** Kąt opadnięcia biodra (stopnie) dla klatki: największy ≤ `dgMax`, przy którym kostka (nogi proste, miednica po okręgu o promieniu 50 cm wokół barku) musi przesunąć się poziomo o najwyżej SAG_PRZES_MAX względem pozy poprawnej (`min` < 0 pozwala cofnąć). Geometria: ciało w linii kostka–miednica–bark ma stałe długości odcinków, więc każde opadnięcie biodra skraca odległość kostka–bark i kostka musi ustąpić; przy dużym kącie ustąpienie przekroczyłoby limit, więc kąt jest ograniczany (bisekcja; przesunięcie rośnie z kątem). */
+function sagKat(S, fi, A0, cel, dgMax, min = 0) {
+  const przes = (dg) => { const P = [S[0] - 50 * Math.cos((fi + dg) * R), S[1] - 50 * Math.sin((fi + dg) * R)]; return Math.abs(kostkaDlaZasiegu(A0, P, cel, min)[0] - A0[0]); };
+  if (przes(dgMax) <= SAG_PRZES_MAX) return dgMax;
+  let lo = 0, hi = dgMax; for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; if (przes(mid) > SAG_PRZES_MAX) hi = mid; else lo = mid; }
+  return lo;
+}
+/** Wariant „opadające biodra”: tułów obrócony wokół barków o deltaMax·w stopni, ale nie więcej, niż pozwala limit przesunięcia stopy (sagKat). Poprawna poza ma nogę prostą (odległość miednica–kostka ≈ 83 cm), a opadnięcie miednicy
+ *  wokół barków wydłuża tę odległość ponad zasięg nogi — więc w błędzie stopy ześlizgują się o najwyżej SAG_PRZES_MAX ku dłoniom (kostkaDlaZasiegu, poziomo), a noga ma dokładnie zasięg poprawnej pozy (kolano tak proste jak w niej). */
+function sagZ(okFn, deltaMax = 11) {
   return (u, w) => {
     const ok = okFn(u); const S = ok._S; if (w === 0) return czysc(ok);
-    const dg = deltaMax * w; const fi = ok._fi + dg; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)];
-    const A0 = ok.nogi.R.kostka; const A = kostkaDlaZasiegu(A0, P, cel);
+    const A0 = ok.nogi.R.kostka; const cel = Math.hypot(ok.miednica[0] - A0[0], ok.miednica[1] - A0[1]);
+    const dg = sagKat(S, ok._fi, A0, cel, deltaMax * w); const fi = ok._fi + dg; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)];
+    const A = kostkaDlaZasiegu(A0, P, cel);
     const z = czysc(ok); const przes = (n) => ({ ...n, kostka: [r1(A[0]), r1(A[1]), n.kostka[2]] });
     return { ...z, miednica: [r1(P[0]), r1(P[1]), z.miednica[2]], pochylenieTulowia: r1(90 - fi), nogi: { R: przes(z.nogi.R), L: przes(z.nogi.L) } };
   };
@@ -134,7 +144,7 @@ export function jednaReka(cw, { pz = 2, hOff = 0, fz = 14, poleWolna = [0.3, -0.
     const back = [k.pelvis[0] + upv[0] * 6 - front[0] * 12.5, k.pelvis[1] + upv[1] * 6 - front[1] * 12.5]; /* dłoń leży na lędźwiach (tuż nad grzbietem) */
     return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], pz], pitch: k.pitch, glowa: k.pitch * 0.75, nogi: { R: { k: [A[0], A[1], pz + fz], pod: POD }, L: { k: [A[0], A[1], pz - fz], pod: POD } },
       rece: { R: { g: [H[0], H[1], hzR], pole: [-1, 0, 0.4] }, L: { g: [back[0], back[1], pz - 3], pole: poleWolna } } }), _S: k.S, _fi: k.fi }; };
-  const ok = mk((u) => 12 + 83 * u); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: USD.map((u) => czysc(ok(u))), bledy: [bladSag(ok, sagZ(ok, sagDeg, 82.7))] });
+  const ok = mk((u) => 12 + 83 * u); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: USD.map((u) => czysc(ok(u))), bledy: [bladSag(ok, sagZ(ok, sagDeg))] });
 }
 
 /* ---------- Plyo Push-Up (dół → góra → dłonie w powietrzu) ---------- */
@@ -212,8 +222,8 @@ export function rolloutStojac(cw, { fi1 = 10, start = 'stojac', uchwytY0 = 100, 
     rece: { R: { g: [...f.H, 20], pole: [-0.3, -1, 0.3] }, L: { g: [...f.H, -20], pole: [-0.3, -1, -0.3] } } }), _S: f.S, _fi: f.fi }; };
   const us = [0, 0.14, 0.28, 0.42, 0.57, 0.71, 0.85, 1];
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, start === 'stojac' ? { rodzaj: 'sztanga', x: 40, y: BAR_Y, talerze: true, podazaZaChwytem: true, dlugosc: 130 } : { rodzaj: 'zawieszenie', x: r1(tasma.ax), punkt: 'dlonie' }]; /* zawieszenie: taśmy od punktu zaczepu nad dłońmi w u = 0 do dłoni (rodzaj zawieszenie); uchwyty podążają za dłońmi */
-  const sagF = (u) => { const k = mk(u); const w = start === 'stojac' ? Math.max(0, Math.min(1, (u - 0.4) / 0.6)) : 1; /* stojąc: biodra są u góry na prostych nogach — opadanie miednicy zgięłoby kolana, więc na początku błąd to wygięcie lędźwi (−20°), a opadanie biodra dochodzi z rozciągnięciem ciała */ if (w === 0) return { ...czysc(k), zgiecieKregoslupa: -20 }; const dg = 10 * w; const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; const A = kostkaDlaZasiegu(k.nogi.R.kostka, P, u >= 0.8 ? 82.95 : 82.8, u >= 0.8 ? -0.4 : -8);
-    const z = czysc(k); const przes = (n) => ({ ...n, kostka: [r1(A[0]), r1(A[1]), n.kostka[2]] }); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), nogi: { R: przes(z.nogi.R), L: przes(z.nogi.L) }, ...(start === 'stojac' ? { zgiecieKregoslupa: r1(-20 * (1 - w)) } : {}) }; };
+  const sagF = (u) => { const k = mk(u); const w = start === 'stojac' ? Math.max(0, Math.min(1, (u - 0.4) / 0.6)) : 1; /* stojąc: biodra są u góry na prostych nogach — opadanie miednicy zgięłoby kolana, więc na początku błąd to wygięcie lędźwi (−20°), a opadanie biodra dochodzi z rozciągnięciem ciała */ if (w === 0) return { ...czysc(k), zgiecieKregoslupa: -20 }; const A0 = k.nogi.R.kostka; const cel = Math.hypot(k.miednica[0] - A0[0], k.miednica[1] - A0[1]); const min = u >= 0.8 ? -0.4 : -8; const dg = sagKat(k._S, k._fi, A0, cel, 10 * w, min); const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; const A = kostkaDlaZasiegu(A0, P, cel, min); /* limit przesunięcia stopy: SAG_PRZES_MAX (10.11.2026); noga o zasięgu pozy poprawnej; lędźwie wracają do neutralnych wolniej (pierwiastek), bo bez przesunięcia stopy sam obrót miednicy jest we wczesnych klatkach za słabo widoczny (v2-jakosc: blad_widoczny_stale ≥ 4 cm, widocznosc_bledu_kat ≥ 8°) */
+    const z = czysc(k); const przes = (n) => ({ ...n, kostka: [r1(A[0]), r1(A[1]), n.kostka[2]] }); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), nogi: { R: przes(z.nogi.R), L: przes(z.nogi.L) }, ...(start === 'stojac' ? { zgiecieKregoslupa: r1(-20 * Math.sqrt(1 - w)) } : {}) }; };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: (start === 'stojac' ? [0, 0.14, 0.28, 0.35, 0.42, 0.5, 0.57, 0.64, 0.71, 0.78, 0.85, 1] : us).map((u) => czysc(mk(u))), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(mk(u)), zle: sagF })] }); /* stojąc: 12 klatek poprawnych, gęsto tam, gdzie biodra schodzą łukiem (cięciwa zgina nogę prostą i ramię) */
 }
 
