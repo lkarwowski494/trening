@@ -1,6 +1,6 @@
 # Stan partii 2 (linia 1.1) — pushup_plank, hip_bridge, cable_row, mobility_floor, mobility_stand
 
-Aktualizacja: 10.11.2026 ~00:45 UTC (sesja session_01T66VBydWMy3Mvkq6ew7xAZ, przekazanie przy kontekście ~28%) (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
+Aktualizacja: 10.11.2026 ~03:40 UTC (sesja session_01T66VBvdsMU66FhsPJWpG8J, przekazanie przy kontekście ~28%); wcześniej 00:45 UTC (session_01T66VBydWMy3Mvkq6ew7xAZ) (przekazanie sesji leada partii przy kontekście 29,5%; poprzednia sesja: session_01T66VBx1RfrSnnQXw6gc6zC).
 Koordynator linii: session_01T66VByJCWCao1Hw3is68Cy (raporty przez send_message).
 Briefy: `briefy/partia-2-rodzina-programista.md` (autor rodziny), `briefy/partia-2-rodzina-recenzent.md` (audytor).
 
@@ -15,23 +15,25 @@ BRD bez liczb czasu bez odwołania (test M1-022); w docs/ bez adresów e-mail (p
 nakladka-triceps-olympic (rejestr), skrot-v2-wynik (regex nakładek), gemini-polecenia (liczba rodzin planned).
 Pomiar czasu: autor rodziny Ś ok. 40–90 min, recenzja r1 10–14 min, poprawki 15–20 min, r2 4–5 min, przepisanie + verify:szybkie ok. 40 min (verify ~25 min).
 
-## Stan rodzin (10.11.2026 ~00:00 UTC, przekazanie z sesji session_01T66VBydWMy3Mvkq6ew7xAZ)
-| Rodzina | Gałąź / SHA | Recenzja | Stan |
-|---|---|---|---|
-| hip_bridge | `figury/partia-2` @ 47141c11 | r3 wyswietlana, sha 8c56e365b9d3 (`partia2-hip_bridge-r3*`); Machine Hip Thrust wstrzymany (WYSOKIE r1 — prowadnica przez miednicę, nowy ślad dźwigni tego nie usuwa) | zrobione |
-| cable_row | `figury/partia-2` | r2 wyswietlana (sha 4376c0e6b911); zestawy Single Arm i Leverage High r3 wyswietlana (e8bcb0ee335b) po poprawce row.fullStretch 0f069d93 | zrobione |
-| pushup_plank | `figury/partia-2-pushup_plank` @ 355e8d2c (wypchnięta; autor b2231f90, r1 8e3be484, poprawki W1–W3 d9f1bc22 — inny programista, test `tests/figures-v2-pushup-plank-poprawki-r1.test.ts`) | r1 do poprawy (`partia2-pushup_plank-r1*`); skrót po poprawkach def6b97fe124 | NASTĘPNY KROK: r2 audytorem (różnica 8e3be484..d9f1bc22, arkusze Push Up/Mountain Climbers/Plyo/Shoulder Taps i wszystkie z prostymi nogami; ryzyka: Plyo krótki lot u 0,8–0,95, Single-Arm stopy 28 cm, sag zsuwa stopy 1–2 cm) → wpisy 1:1 → scalenie do partia-2 |
-| mobility_floor | `figury/partia-2-mobility_floor` @ 8e98f323 (wypchnięta) | r1 do poprawy (`partia2-mobility_floor-r1*`, sha 0c88b49248f1): W1 Child's Pose ręce wzdłuż tułowia zamiast wyciągniętych przed siebie; Ś1 Side-Lying Quad rotacja ~59°, Ś2 Butterfly łokcie 6 cm od ud, N1–N3 (N3: MOB-F1 uzupełnić o n.hingeFlat i element `ref`) | NASTĘPNY KROK: poprawka W1 (programista nie-autor, test chwyt przed barkiem) → r2 → wpisy (4 zestawy wyswietlana, karty 4 wyswietlana + Child's Pose) → scalenie; nakładka pusta — wyjątek A (docs/18, MOB-F1, strażnik S20 z wyjątkiem) |
-| mobility_stand | `figury/partia-2-mobility_stand` (od partia-2 @ 109b23c4; commit autora — patrz sekcja niżej) | — | faza AUTOR zrobiona 10.11.2026; NASTĘPNY KROK: audytor r1 (arkusze: Standing Lateral Stretch front — pion od miednicy; 3 ćwiczenia z kolanem w kadrze — łydki) |
+## Stan rodzin (10.11.2026 ~03:40 UTC, sesja session_01T66VBvdsMU66FhsPJWpG8J)
+Wszystkie 5 rodzin zrecenzowane niezależnie i scalone do `figury/partia-2` (gałęzie rodzin też scalone; lokalnie — po pushu partia-2 są w jej historii).
+| Rodzina | Recenzja (pliki `docs/research/recenzje/partia2-<rodzina>-r*`) | Stan |
+|---|---|---|
+| hip_bridge | r3 wyswietlana 8c56e365b9d3 (Machine Hip Thrust wstrzymany) | zrobione |
+| cable_row | r2 wyswietlana 4376c0e6b911 | zrobione |
+| pushup_plank | r2 wyswietlana def6b97fe124; potem poprawka 816a480c (wiersze błędu plank.mis.sag pod nowy strażnik p2-r3: stopa ≤ 0,9 cm) → skrót ec660bfe52fa → **r3 różnicy w toku/zrobiona** (`partia2-pushup_plank-r3*`; jeśli pliki są w repo — przepisz wpis v2 1:1 `scratchpad/przepisz.py`-owo: v2[pushup_plank]=r3.v2; potem zrodla-runtime/pokrycie --write, cele = symulacja) | do domknięcia |
+| mobility_floor | r2 wyswietlana a80c9c3d7928 (W1 Child's Pose ręce przed sobą; nakładka pusta — wyjątek A, także w figures-v2-nakladka-kazda-rodzina) | zrobione |
+| mobility_stand | r2 wyswietlana 8ebfcea965c8 (W1 Soleus ściana; nakładka standLateralPlumb, decyzja sb.plane w docs/18) | zrobione |
 
 ## Następne kroki
-1. pushup_plank: r2 → przepisanie wpisów 1:1 (v2, zestawy 9, karty Push Up/Plank/Mountain Climbers, v1 → zastapiona: Push Up, Incline Push Up, Plank, Mountain Climbers) → scalenie do `figury/partia-2`.
-2. mobility_floor: po r1 (poprawki, jeśli WYSOKIE) → wpisy → scalenie do `figury/partia-2`.
-3. mobility_stand (autor → r1 → poprawki → r2 → wpisy).
-4. Przed każdym pushem partia-2: dociągnij origin/integracja-1-1; verify:szybkie (albo lekkie + testy celowane, gdy koordynator prosi o szybki SHA); push; zielony tests.yml; SHA do koordynatora (scala sam).
-5. Raport końcowy do koordynatora.
+1. Decyzje koordynatora (pytania wysłane ~03:25 UTC): **P1 Plyo Push-Up** vs strażnik `figures-v2-delt-raise-p4` (pętla jednokierunkowa, u=0=u=1) — rekomendacja B: Plyo do `V2_WSTRZYMANE` (figure.ts ≤ 20 KB!), A (ONE_WAY_STATIC w anim.ts + 2 teksty UI) do backlogu; **P2 R3_dziecko_odpoczynek** (`tests/figury-mobilnosc-reguly.test.ts:69`, partia 3) wymaga rąk wzdłuż ciała, karta Child's Pose — przed sobą; rekomendacja A: R3 akceptuje oba warianty rąk ze źródła.
+2. Po r3 i decyzjach: cele 1.1 = symulacja (`node scripts/pokrycie-symulacja.mjs --json` → pole cel; przed r3 symulacja jest niższa, bo pushup_plank ukryta), `cel-1-1-bez-ciezkich` (r.c, pelnaKarta, docs/21 liczba ciężkich), pliki generowane; `npm run verify:szybkie` (ok. 25 min) → push → zielony tests.yml → SHA do koordynatora.
+3. Raport końcowy (per rodzina: wyżej; zysk: pełnych kart 239 → 280 przy wszystkich wyswietlanych; nowe teksty UI: brak, przekład 0 zł — chyba że P1 A).
 
 ## Pułapki tej sesji
+- Integracja przynosi nowe strażniki (p2-r3, p2-r4, delt-raise-p4, mobilnosc-reguly) — po każdym dociągnięciu pełne verify:szybkie; zmiana pozy = nowy skrót = recenzja różnicy.
+- Skrypty pomocnicze leada w scratchpadzie (giną z kontenerem): przepisanie wpisów r→figury-recenzja.json (v2 nadpisz, zestawy/karty dopisz, v1_zastapiona → werdykt zastapiona + kto „nie recenzowana jako v1…”, usuń uwagi/stan); scalenie figury-recenzja.json jako 3-way po kluczach sekcji.
+- Pole `stan` wpisu v2 musi zaczynać się od „zrecenzowana niezależnie” (l047).
 - Maszyna 4 rdzenie: verify:szybkie + 2 programistów → load 15, testy padają na limicie czasu (squat-hinge, wstrzymane) i Jest agentów wisi. Najwyżej 1 programista w czasie verify.
 - `figure.ts` ≤ 20 KB: przy wpisach V2_WSTRZYMANE skracaj komentarze.
 - Scalając wpisy figury-recenzja.json — scalanie jako JSON (3-way po kluczach), kolejność v2 zmienia test recenzja-wyjatki-1-1.
