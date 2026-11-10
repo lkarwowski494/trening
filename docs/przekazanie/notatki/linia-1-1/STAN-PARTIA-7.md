@@ -16,8 +16,9 @@ Pełne karty (pokrycie-katalogu): 371 → 392 (+14 core_floor, +7 glute_floor). 
    - `tests/figures-v2-data.test.tsx` macierz błędów: Frog Sit-Ups / jerk — poza błędu nie różni się od poprawnej (oczekiwane true, jest false) — core_floor; sprawdź, czy błąd jest wstrzymywany (bledy-wstrzymane.json) czy poza do poprawy (zmiana pozy = recenzja różnicy audytorem).
    - `tests/cel-1-1-bez-ciezkich.test.ts` + `docs/research/pokrycie-cele.json`: cel = symulacja (`node scripts/pokrycie-symulacja.mjs --json`, pole cel; pełna karta +6, „ciężkie” 250 → 244) — przepisz cele, w docs/21 (Backlog 1.2 „ciężkie”) liczba 244 z dopiskiem partii 7; docs/55 po zmianie celów.
    - `tests/pokrycie-katalogu.test.ts` „zapadka … jezyk.de.kompletne” — sprawdzić (może skutek celów).
+   - `tests/strona-eksport-recenzja.test.ts` — czerwony w tym samym przebiegu (nieprzeanalizowany; zapewne skróty/wpisy po scaleniu).
    - `tests/architecture-limits.test.ts` — poseData.ts nad limitem: znika po KO-024.
-2. KO-024: po sygnale koordynatora (SHA integracji z podziałem `lib/figures/v2/rodziny/`) scal `origin/integracja-1-1`; wpisy LOAD/DATA_UI core_floor i glute_floor przenieś do `lib/figures/v2/rodziny/<rodzina>.ts` — gotowe pliki: `docs/przekazanie/notatki/linia-1-1/partia-7-rodziny/{core_floor,glute_floor}.ts` (skopiuj, usuń katalog) + 2 linie na końcu `rodziny/index.ts`; w poseData.ts zostaje tylko 'Hollow Hold' w ISOMETRIC.
+2. KO-024: po sygnale koordynatora (SHA integracji z podziałem `lib/figures/v2/rodziny/`) scal `origin/integracja-1-1`; wpisy LOAD/DATA_UI core_floor i glute_floor przenieś do `lib/figures/v2/rodziny/<rodzina>.ts` — gotowe pliki: `docs/przekazanie/notatki/linia-1-1/partia-7-rodziny/{core_floor,glute_floor}.ts.txt` (skopiuj jako .ts, usuń katalog) + 2 linie na końcu `rodziny/index.ts`; w poseData.ts zostaje tylko 'Hollow Hold' w ISOMETRIC.
 3. `npm run verify:szybkie` (kod 0) → push → zielony tests.yml → PRZEKAZANIE do koordynatora.
 
 ## Pułapki
