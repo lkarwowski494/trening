@@ -43,6 +43,18 @@ describe('core_floor: dane i rysunek', () => {
   });
 });
 
+describe('core_floor: recenzja r1 (10.11.2026) — W1 Sit Up, W2 Bicycle Crunch', () => {
+  const dist = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  const nisko = (k: string, u: number, s: 'R' | 'L') => { const l = (keyframeFrame(poses[k], u).sk as any).legs[s]; return Math.min(l.ankle[1], l.heel[1], l.toe[1]); };
+  test('W1 Sit Up: dłonie przy głowie (karta crunch.setup) — chwyt ≤ 20 cm od głowy w każdym kadrze co 0,05, obie ręce', () => {
+    for (const u of US) for (const s of ['R', 'L'] as const) { const sk: any = keyframeFrame(poses['Sit Up'], u).sk; expect([u, s, dist(sk.arms[s].grip, sk.head) <= 20]).toEqual([u, s, true]); }
+  });
+  test('W2 Bicycle Crunch: obie nogi uniesione w każdym kadrze (najniższy punkt stóp > 5 cm nad podłogą), tułów bez skrętu (silnik w rzucie bocznym go nie pokazuje)', () => {
+    for (const u of US) for (const s of ['R', 'L'] as const) expect([u, s, nisko('Bicycle Crunch', u, s) > 5]).toEqual([u, s, true]);
+    for (const u of US) expect((keyframeFrame(poses['Bicycle Crunch'], u).sk as any).twist).toBe(0);
+  });
+});
+
 describe('core_floor: prezentacja (fazy, staw, kierunek)', () => {
   const f = (k: string) => phasesFor(figureSpec(k)!).map(p => [p.name, p.ms]);
   test('domyślnie Unoszenie 1 s, Opuszczanie 2 s (u 0 → 1 = szczyt skurczu); Dead Bug: Opuszczanie 2 s, potem Unoszenie 1 s; Scissor Kick: jedna faza Naprzemiennie', () => {

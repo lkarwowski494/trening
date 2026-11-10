@@ -36,6 +36,7 @@
  * Zmiana celowa 10.11.2026 (mobility_stand po recenzji r1, W1): odcisk pozy Standing Soleus And Achilles Stretch — dłonie na ścianie (props: ściana x 75), nowa poza wykrokowa; pozostałe rodziny i ćwiczenia bez zmian.
  * Zmiana celowa 10.11.2026 (pushup_plank, naprawa po scaleniu z integracją — strażnik „stopa na podporze” figury-p2-r3, STOPA_BLAD_CM = 1): odciski 7 póz — wiersz błędu plank.mis.sag w Push-Up Wide, Single-Arm Push-Up, Plank, Plank Shoulder Taps, Plyo Push-Up, Suspended Fallout i Standing Barbell Rollout: kostka przesuwa się o ≤ 0,9 cm (było 1,1–2,0 cm), a kąt opadnięcia biodra jest ograniczany limitem przesunięcia (generator: sagKat); w Standing Barbell Rollout lędźwie wracają do neutralnych wolniej. Pozy poprawne bez zmian.
  * Zmiana celowa 10.11.2026 (core_floor, partia 7): odcisk pozy Scissor Kick — pilotażowa poza z danych przeliczona (proste nogi, naprzemienne unoszenie); pozostałe pozy bez zmian (pozostałych 20 póz core_floor bez zmian we wzorcu).
+ * Zmiana celowa 10.11.2026 (core_floor, partia 7, recenzja r1 W1/W2): odciski 2 póz — Sit Up (dłonie przy głowie jak w Crunch, ruch tułowia bez zmian) i Bicycle Crunch (obie nogi w powietrzu, naprzemiennie kolano ku klatce / noga wyprostowana; dłonie za głową); pozostałe rodziny i ćwiczenia bez zmian.
  * Odtworzenie wzorca (tylko świadomie, gdy rysunek ma się zmienić): ZLOTE_ZAPISZ=1 npx jest tests/figures-v2-zgodnosc-wsteczna.test.ts
  */
 import * as fs from 'fs';
