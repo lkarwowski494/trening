@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 27, do zrobienia: 16); ćwiczeń z gotową figurą: **394** (55,6%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 28, do zrobienia: 15); ćwiczeń z gotową figurą: **421** (59,4%).
 
 ## Rodziny
 
@@ -38,7 +38,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `core_standing` | do zrobienia | 19 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
 | `carry` | do zrobienia | 7 | side | 2 | Noszenie |
 | `cardio` | do zrobienia | 16 | side | 6 | Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees) |
-| `plyo` | do zrobienia | 28 | side, front | 4 | Skoki i plyometria — skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026) |
+| `plyo` | gotowa | 28 | side, front | — | Skoki i plyometria — skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026) |
 | `sled_throw` | do zrobienia | 19 | side | 3 | Sanie, rzuty piłką, uderzenia |
 | `strongman` | do zrobienia | 10 | side | 3 | Strongman i podnoszenia nietypowych ciężarów |
 | `glute_floor` | do zrobienia | 7 | side, front | 4 | Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie) |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 15 rodzin, 202 ćwiczeń, ok. **44 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -72,6 +72,7 @@ Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + t
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
 - `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
 - `chest_fly` (z figurą 17 z 20): Around The Worlds; Machine Pullover; Svend Press
+- `plyo` (z figurą 27 z 28): Kneeling Jump Squat
 - `hip_abd_add` (z figurą 4 z 8): Band Hip Adduction; Hip Flexion with Band; Lateral Band Walk; Monster Walk
 - `mobility_stand` (z figurą 8 z 36): Ankle Circles; Arm Circles; Chest And Front Of Shoulder Stretch; Chest Stretch on Stability Ball; Cross-Body Shoulder Stretch; Dynamic Back Stretch; Dynamic Chest Stretch; Groiners; Hip Circles (Prone); Inchworm; Iron Crosses (Stretch); Knee Circles; Leg Swings (Front-to-Back); Leg Swings (Side-to-Side); Lying Leg Crossover Swings; One Knee To Chest; Overhead Stretch; Round The World Shoulder Stretch; Shoulder Circles; Standing Biceps Stretch; Standing Elevated Quad Stretch; Standing Hip Circles; Standing Pelvic Tilt; Standing Toe Touches; Torso Rotation; Wall Lat Stretch; World's Greatest Stretch; Wrist Circles
 - `mobility_floor` (z figurą 9 z 22): Downward Facing Balance; Intermediate Groin Stretch; IT Band and Glute Stretch; Kneeling Forearm Stretch; Middle Back Stretch; Peroneals Stretch; Posterior Tibialis Stretch; Runner's Stretch; Seated Rotation Stretch; Side Lying Groin Stretch; Supine Figure-Four Stretch; Supine Spinal Twist; Upper Back Stretch
@@ -194,7 +195,7 @@ Double Kettlebell Front Rack Carry; Farmer's Walk; Farmer's Walk (Farmers Handle
 
 Assault Bike; Battle Ropes; Bieg; Burpees; Carioca Quick Step; Fast Skipping; High Knees; Incline Walk (bieżnia); Jumping Jacks; Orbitrek; Rower; Rowing Machine; Skakanka; Ski Erg; Stair Climber; Treadmill Walking
 
-### plyo (28) — do zrobienia
+### plyo (28) — gotowa
 
 Alternate Leg Diagonal Bound; Alternate Leg Push-Off; Bench Jump; Box Jump; Box Skip; Broad Jump; Depth Jump; Double Leg Butt Kick; Dumbbell Seated Box Jump; Frog Hops; Front Cone Hops; Jump Squat; Kneeling Jump Squat; Lateral Bound; Lateral Box Jump; Lateral Cone Hops; Side Hop-Sprint; Side Standing Long Jump; Side to Side Box Shuffle; Single Leg Butt Kick; Single Leg Push-Off; Single-Leg Hop Progression; Single-Leg Lateral Hop; Single-Leg Stride Jump; Split Jump; Star Jump; Tuck Jump; Weighted Jump Squat
 

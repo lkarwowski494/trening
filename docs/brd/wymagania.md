@@ -526,6 +526,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny thruster, a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch
     - Wtedy całe powtórzenie (przysiad do równoległego ud lub niżej, wyciskanie z blokadą ciężaru nad barkami i środkiem stopy, powrót ciężaru na barki; przy Clean and Press rwanie do racka i wyciskanie nad głowę) biegnie w jednym przebiegu pod nazwą fazy „Podnoszenie”, dłonie leżą na ciężarze w każdym kadrze, a przy Clean and Press (karta z wskazówką o plecach i ciężarze blisko ciała) rysunek pokazuje linię pleców i odcinek kostka–kolano jako elementy nakładki techniki
+  - Scenariusz: Rodzina plyo (skoki i plyometria: m.in. Jump Squat, Box Jump, Broad Jump, Lateral Bound, Depth Jump) pokazuje rysunki 27 ćwiczeń w rzucie z boku i z przodu (10.11.2026, partia 6 linii 1.1; test `tests/figures-v2-plyo.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny plyo, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy wybicie, lot i lądowanie biegną w jednym przebiegu pod nazwą fazy „Skok”, na starcie i na końcu stopa stoi na podłodze albo skrzyni, a przy karcie ze wskazówką o miękkim lądowaniu z boku widać łuk zgięcia mierzonego stawu, przy wskazówce o zamachu rąk — poziom barków (nie przy podskokach i skoku ze sztangą)
   - Scenariusz: Rodzina mobilności i rozciągania na podłodze (mobility_floor) pokazuje rysunki 9 ćwiczeń (09.11.2026, partia 2; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_floor (np. Child's Pose, Cat-Cow), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest pozycją statyczną (rozciąganie z przytrzymaniem) albo Cat-Cow
