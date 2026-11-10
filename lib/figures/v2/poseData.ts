@@ -35,6 +35,7 @@ const LOAD: Record<string, () => PoseFile> = {
   pushup_plank: () => require('./poses/pushup_plank.json'),
   mobility_floor: () => require('./poses/mobility_floor.json'),
   mobility_stand: () => require('./poses/mobility_stand.json'),
+  leg_isolation: () => require('./poses/leg_isolation.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -159,6 +160,11 @@ export const DATA_UI: Record<string, DataUi> = {
       'Rollout (sztanga)': { joints: ['hip'] }, 'Barbell Rollout from Bench': { joints: ['hip'] }, 'Standing Barbell Rollout': { joints: ['hip'] }, 'Suspended Fallout': { joints: ['shElev'] },
       'Plyo Push-Up': { names: { first: 'Skok', second: 'Skok' }, lowerFirst: false }, /* lot: pętla jednokierunkowa (jedna faza „Skok”) */
       'Inverted Row': { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false } } },
+  /* leg_isolation (partia 9, 10.11.2026): uginanie nóg (siad, leżąc, stojąc, guma): u = 0 noga prosta, u = 1 zgięta — uginanie 1 s, powrót 2 s; prostowanie na maszynie (u = 0 kolano 90°, u = 1 wyprost) — prostowanie 1 s, opuszczanie 2 s;
+   * Slider Hamstring Curl zaczyna się od zgięcia (u = 0 pięty pod miednicą, u = 1 nogi wysunięte): wysuwanie to faza opuszczania (2 s), powrót to uginanie (1 s). Mierzone kolano. */
+  leg_isolation: { names: { first: 'Uginanie', second: 'Powrót' }, lowerFirst: false, joints: ['knee'],
+    exceptions: { 'Leg Extension': { names: { first: 'Prostowanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Single-Leg Leg Extension': { names: { first: 'Prostowanie', second: 'Opuszczanie' }, lowerFirst: false },
+      'Slider Hamstring Curl': { names: { first: 'Opuszczanie', second: 'Uginanie' }, lowerFirst: true } } },
   /* mobility_floor (09.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz i kąta), jedyny ruch to Cat-Cow (nazwy faz: PHASES_BY_EXERCISE); ruch jest w kręgosłupie, którego nie mierzymy (MeasuredJoint) → bez linii „Kąt na rysunku” */
   mobility_floor: { names: { first: 'Grzbiet w dół', second: 'Koci grzbiet' }, lowerFirst: false, joints: ['hip'], exceptions: { 'Cat-Cow': { hideAngle: true } } },
   /* mobility_stand (10.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz; nazwy faz nieużywane), mierzone kolano (rozciąganie łydki: noga tylna i przednia); w rozciąganiu szyi, ramion i skłonie bocznym kolano nie jest istotą pozycji → bez linii „Kąt na rysunku” */
