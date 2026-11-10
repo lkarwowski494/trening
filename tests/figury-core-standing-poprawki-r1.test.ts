@@ -4,7 +4,7 @@
  * W4 Landmine Rotation bez poprzecznej sztangi, koniec gryfu zatacza łuk, W5 ślad toru piłki lekarskiej na piłce, Ś1 nazwy faz skłonów z wyciągiem (istniejąca PhaseName), Ś3 łokieć Pallofa bez pełnego zablokowania.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json')));
-import { figureSpec, frameAt, overlayShapes, proj, type FigureSpec, type Shape } from '@/lib/figures/v2';
+import { figureSpec, shownFigureSpec, V2_WSTRZYMANE, frameAt, overlayShapes, proj, type FigureSpec, type Shape } from '@/lib/figures/v2';
 import { dataUiFor, lowerFirstOf } from '@/lib/figures/v2/poseData';
 
 const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
@@ -24,19 +24,13 @@ describe('core_standing r1: W1 prowadnica prostej ręki wiatraka przy ręce z ke
   });
 });
 
-describe('core_standing r1: W2 gryf Barbell Side Bend idzie z barkami', () => {
-  /* OTWARTE (10.11.2026): wymaga zmiany silnika — rekwizyt „barbell” nie ma obrotu w płaszczyźnie czołowej (oś z, tylko axis „x”); potrzebne pole nachylenia w Gear/schemacie, rysunku (draw.ts ma zapas 140 B), kolidera i testu GEAR_EXTRA_FIELDS. Miara poniżej zostaje jako strażnik do czasu decyzji. */
-  test.failing('kąt gryfu w rzucie z przodu = przechył linii barków (± 3°), odległość gryfu od obu barków stała (± 2 cm)', () => {
-    const k = 'Barbell Side Bend'; const odl: number[][] = [];
-    for (const u of US) {
-      const f = frameAt(spec(k), u); const b = f.props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!; const t = ((b as unknown as { tilt?: number }).tilt ?? 0) * Math.PI / 180;
-      const sR = f.sk.arms.R.shoulder, sL = f.sk.arms.L.shoulder; const sh = Math.atan2(sR[1] - sL[1], sR[2] - sL[2]);
-      expect([u, Math.abs(t - sh) * 180 / Math.PI <= 3]).toEqual([u, true]);
-      const dist = (s: number[]) => Math.abs((s[2] - b.c[2]) * Math.sin(t) - (s[1] - b.c[1]) * Math.cos(t)); /* odległość barku od prostej gryfu w płaszczyźnie z–y */
-      const sc = (s: number[]) => Math.hypot(s[2] - b.c[2], s[1] - b.c[1]);
-      odl.push([sc(sR), sc(sL), dist(sR), dist(sL)]);
-    }
-    for (let i = 0; i < 4; i++) { const v = odl.map(r => r[i]); expect([i, Math.max(...v) - Math.min(...v) <= 2]).toEqual([i, true]); }
+describe('core_standing r1: W2 Barbell Side Bend wstrzymany (analogia Plyo Push-Up, 10.11.2026)', () => {
+  /* Decyzja leada 10.11.2026 (do weta koordynatora): silnik nie ma pochylenia gryfu w płaszczyźnie czołowej (rekwizyt „barbell” bez obrotu wokół osi głębokości), więc gryf nie idzie z barkami — figura wstrzymana, pozy zostają w silniku. */
+  test('Barbell Side Bend jest w V2_WSTRZYMANE (z powodem), silnik ma pozy, aplikacja nie pokazuje figury; rodzeństwo skłonów bez zmian', () => {
+    const k = 'Barbell Side Bend';
+    expect(V2_WSTRZYMANE[k]).toMatch(/pochylenia gryfu/);
+    expect([figureSpec(k) !== null, shownFigureSpec(k), k in V2_WSTRZYMANE]).toEqual([true, null, true]);
+    for (const o of ['Side Bend (hantel)', 'Weighted Ball Side Bend']) expect([o, shownFigureSpec(o) !== null, o in V2_WSTRZYMANE]).toEqual([o, true, false]);
   });
 });
 
