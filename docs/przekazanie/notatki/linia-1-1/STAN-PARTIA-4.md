@@ -13,3 +13,11 @@ Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą; pełna k
 | cable_press | czeka | — | — |
 | back_extension | czeka | — | — |
 | thruster | czeka | — | — |
+
+## chest_press_machine (faza autora, 09/10.11.2026)
+
+Zrobione (commit na gałęzi figury/partia-4-chest_press_machine): włączenie (families ready, LOAD, DATA_UI Wypychanie/Opuszczanie, łokieć), nakładka (4 elementy), próg toru łuku dźwigni z geometrii w `tests/figures-v2-tor.test.ts`,
+test scenariuszowy `tests/figures-v2-nakladka-chest-press-machine.test.tsx`, pochodne i BRD. Zysk: +5 z 5 (symulacja bez zmian po włączeniu, pełna karta dopiero po recenzji).
+Czerwone (dozwolone, brak wpisów recenzji): figury-recenzja (wpis v2), karty-recenzja (zestawy ogólne Incline/Decline/Smith); strona-eksport `pelna` ×2 (Machine Chest Press, Machine Shoulder Press: eksport a policz() — do zazielenienia po wpisach recenzji, do sprawdzenia).
+Do recenzenta: v1 „Machine Chest Press” → zastapiona (K10); karty własne (K11): Machine Chest Press, Machine Shoulder Press; zestawy (K12): Incline, Decline (machinePress), Smith (ohp).
+Pułapka: nowy plik testu musi być w indeksie git, inaczej `test-matrix` go nie widzi (isTracked).
