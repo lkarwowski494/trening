@@ -122,10 +122,10 @@ export const DATA_UI: Record<string, DataUi> = {
     exceptions: { 'Band Pull Apart': { names: { first: 'Rozsuwanie', second: 'Powrót' }, joints: ['shAbd'] }, 'Reverse Flyes With External Rotation': { names: { first: 'Unoszenie', second: 'Opuszczanie' }, joints: ['shAbd'] } } },
   forearm: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['wristFlex', 'forearmRoll', 'elbow'],
     exceptions: { 'Dumbbell Lying Pronation': { names: { first: 'Obrót', second: 'Powrót' } }, 'Dumbbell Lying Supination': { names: { first: 'Obrót', second: 'Powrót' } } } },
-  /* kneeling_hinge (10.11.2026): u = 0 siad z tułowiem pionowo, u = 1 skłon w biodrach (sztanga na barkach); zejście w dół 0 → 1, powrót 1 → 0; mierzone biodro */
+  /* kneeling_hinge (10.11.2026): u = 0 siad, tułów pionowo; u = 1 skłon w biodrach; mierzone biodro */
   kneeling_hinge: { names: { first: 'Opuszczanie', second: 'Prostowanie' }, lowerFirst: true, joints: ['hip'] },
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
-  /* core_hang (10.11.2026): u = 0 zwis, u = 1 nogi (kolana) uniesione; unoszenie 1 s, opuszczanie 2 s (tempo ilustracyjne); mierzone biodro (zgięcie w biodrze) */
+  /* core_hang (10.11.2026): u = 0 zwis, u = 1 nogi uniesione; mierzone biodro */
   core_hang: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'] },
   /* chest_fly (09.11.2026): rozpiętki (u = 0 ramiona szeroko, u = 1 dłonie nad klatką / przed klatką) i pullover (u = 0 ciężar za głową, u = 1 nad klatką). Mierzone ramię jak w delt_raise: odsunięcie w bok (shAbd, rozpiętki) albo zgięcie
    * w płaszczyźnie strzałkowej (shElev, pullover i Crucifix — pierwszy staw przy utrzymaniu); łokieć w rozpiętce stoi (zmiana ≤ 12°), więc nie jest mierzonym stawem (nakładka „limb” wymaga, by staw był pokazany: overlay.ts). */

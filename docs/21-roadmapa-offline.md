@@ -251,6 +251,12 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - (CH-N2, NISKIE) Łuk biodra przy `hang.ribs` nie pokazuje podwijania miednicy (zgiecieKregoslupa 0); przybliżenie kierunku reguły `kolana_ku_klatce` uczciwe (biodro 10→100° ↔ kolano–bark 92→60 cm).
 - (CH-P1, 1.2) L-Sit — bez pozy v2 (brak rysunku): wymaga nowej pozy podporu (nowy ruch silnika) i badań; figury-sens „otwarte”. Przechodzi do 1.2.
 
+### Backlog 1.1.x — figury: rodzina rotator_cuff (recenzja niezależna r1, 10.11.2026, `docs/research/recenzje/partia5-rotator_cuff-r1-audytor-2026-11-10.md`)
+- (RC-S1, ŚREDNIE) External Rotation (linki), External Rotation with Band, Cable Internal Rotation — znacznik ✕ błędu „łokieć odjeżdża” stoi na miednicy, 37–44 cm od łokcia (guma i linka bez `info.load`, `figure.ts:174`); ten sam mechanizm co wpis 1.2 o szarpnięciu w curl — rozszerzyć tamten wpis; test: znacznik ≤ ok. 10 cm od łokcia R.
+- (RC-N2, NISKIE) `tests/strona-eksport.test.ts` — porównanie `pelna` wyłącza rodziny bez recenzji szerzej niż trzeba; węziej: wyłączać tylko `ready && !familyReviewed` i dla nich sprawdzać licznik `false`; komentarz w teście wskazuje plik, który tej asercji nie ma.
+- (RC-N4, NISKIE) External Rotation (hantel) — ruch zaczyna się z chwytem 6,8 cm nad łokciem (nie sprzeczne z kartą); test: chwyt w u = 0 nie wyżej niż łokieć.
+- (RC-P1, decyzja produktowa przez studio-projektowe) Rotacje stojące — z boku ruch prawie nieczytelny (dłoń skraca się i wydłuża w osi przód–tył); propozycja audytora: widoki `['front','top']` przez `EXERCISE_VIEWS` (`families.ts:76`) — A (rekomendacja audytora), B tylko przód, C bez zmian.
+
 ### Backlog 1.1.x — figury: rodzina forearm (recenzja niezależna r1–r3, 10.11.2026, `docs/research/recenzje/partia5-forearm-r3-audytor-2026-11-10.md`; W1, W2 naprawione)
 - (FA-S1, ŚREDNIE) Reverse Plate Curls — talerz zawsze pionowy (`draw.ts:476`), przedramię obraca się o 104°.
 - (FA-S3, ŚREDNIE) Dumbbell Lying Pronation / Supination — rysowane na siedząco; obie są tą samą pętlą.
