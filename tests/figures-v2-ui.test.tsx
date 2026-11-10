@@ -60,7 +60,7 @@ describe('komponent ExerciseFigureV2', () => {
     setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Wall Sit')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByText('Pozycja wyjściowa')).toBeNull(); expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull();
     expect(screen.getByText('Rysunek schematyczny — pozycje orientacyjne.')).toBeTruthy();
-    const a = await render(<ExerciseFigureV2 exercise={lib('Push Up')} />); expect(a.toJSON()).toBeNull();
+    const a = await render(<ExerciseFigureV2 exercise={lib('Clock Push-Up')} />); expect(a.toJSON()).toBeNull(); /* ćwiczenie rodziny bez pozy w danych (pushup_plank 09.11.2026: Push Up ma już figurę) */
     const b = await render(<ExerciseFigureV2 exercise={{ lib: false }} />); expect(b.toJSON()).toBeNull();
   });
   test('VoiceOver: jeden obraz z opisem „Rysunek ruchu: …” w języku interfejsu; przycisk pauzy osobno', async () => {

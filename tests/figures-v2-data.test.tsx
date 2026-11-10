@@ -31,6 +31,8 @@ const ALL = assignAll();
 /* 10.11.2026: rodziny planned z danymi (tests/helpers/rodziny-planned.ts) poza testami gotowych figur — ich stan pilnuje figures-v2-mapping */
 const READY_POSE_FAMILIES = POSE_FAMILIES.filter(f => !PLANNED_Z_DANYMI.includes(f));
 const DATA_KEYS: [string, string][] = READY_POSE_FAMILIES.flatMap(f => poseKeys(f).map(k => [f, k] as [string, string]));
+/** Ćwiczenia mierzone czasem, ale z ruchem (nie izometria): Mountain Climbers (pushup_plank, 09.11.2026) — nogi zamieniają się w podporze, rysunek jest animowany. */
+const TIMED_DYNAMIC = ['Mountain Climbers'];
 const U = Array.from({ length: 13 }, (_, i) => i / 12);
 
 describe('dane póz: rejestr i podłączenie (logika)', () => {
@@ -44,7 +46,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'dip' && fam !== 'cable_press' && fam !== 'back_extension' && fam !== 'thruster')) { /* thruster (10.11.2026): pętla jednokierunkowa — osobny test w tests/figures-v2-thruster.test.tsx */ /* back_extension (10.11.2026): Back Extension ma u 0 → 1 = opuszczanie (wyjątek lowerFirst) — fazy, kierunek i staw sprawdza tests/figures-v2-back-extension.test.tsx; dip (09.11.2026): kierunek u różny w rodzinie (poręcze, kółka, ławka: opuszczanie; Dip Machine: wypychanie) — osobny test niżej; delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'dip' && fam !== 'cable_press' && fam !== 'back_extension' && fam !== 'thruster' && fam !== 'pushup_plank')) { /* pushup_plank (09.11.2026, partia 2): pompki to opuszczanie (u 0 → 1 = 2 s) i wyjątki faz (Mountain Climbers, Plank Shoulder Taps, Inverted Row) — osobny test w tests/figures-v2-nakladka-pushup-plank.test.tsx */ /* thruster (10.11.2026): pętla jednokierunkowa — osobny test w tests/figures-v2-thruster.test.tsx */ /* back_extension (10.11.2026): Back Extension ma u 0 → 1 = opuszczanie (wyjątek lowerFirst) — fazy, kierunek i staw sprawdza tests/figures-v2-back-extension.test.tsx; dip (09.11.2026): kierunek u różny w rodzinie (poręcze, kółka, ławka: opuszczanie; Dip Machine: wypychanie) — osobny test niżej; delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       if (f === 'kb_ballistic' && poseFile(f)!.cwiczenia[k].petla === 'jednokierunkowa') continue; /* 09.11.2026: 9 ćwiczeń kb_ballistic w pętli jednokierunkowej (jedna faza bez czasu): fazy i staw sprawdza tests/figures-v2-kb-ballistic-p1.test.ts */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
@@ -104,7 +106,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     for (const [, k] of DATA_KEYS.filter(([, x]) => metricFor(x) === 'weight_time' && x !== 'Crucifix')) expect([k, poseStala(k) === ISOMETRIC.has(k)]).toEqual([k, true]);
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, metricFor(k) === 'time' || (metricFor(k) === 'weight_time' && poseStala(k))]); }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, (metricFor(k) === 'time' && !TIMED_DYNAMIC.includes(k)) || (metricFor(k) === 'weight_time' && poseStala(k))]); }
     expect(staticPositions(figureSpec('Dead Hang')!)).toEqual([1]); expect(staticPositions(figureSpec('Pull Up')!)).toEqual([0, 1]);
   });
   test('tor ruchu przy nieruchomym drążku to droga miednicy (nie punkt na drążku): linia ma długość, a znacznik ✕ „bar” stoi na drążku', () => {
@@ -150,8 +152,10 @@ describe('błędy z danych (bledy[])', () => {
       }
     }
   });
+  /* Pozycje nisko przy podłodze: Child's Pose (mobility_floor, 09.11.2026) ma kadr 48 cm wysokości — próg „kadr nie zdegenerowany” 50 cm byłby dla niej fałszywym alarmem; próg 40 cm zostaje wyraźnie ponad liniami i punktami (kadr zdegenerowany = kilka cm). */
+  const NISKIE_POZY = ["Child's Pose"];
   test('macierz: kadr obejmuje poprawną pozę i pozy błędów; kształty w obu widokach i oba motywy istnieją dla każdego ćwiczenia z danymi', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && (b.h > (k === 'Lower Back Curl' ? 20 : 50) || (k === 'Crucifix' && v === 'top'))]).toEqual([k, v, true]); /* Crucifix z góry (09.11.2026, partia 1): osoba stojąca widziana z góry ma głębokość ok. 30 cm (< 50) — widok „top” rodziny chest_fly jest sensowny tylko dla leżących; Lower Back Curl (10.11.2026, partia 4): leżenie przodem na podłodze — kadr ma wysokość sylwetki leżącej (barki ≤ 16 cm nad podłogą), próg wysokości 20 zamiast 50; zgłoszone koordynatorowi (widoki ćwiczenia = widoki rodziny, silnik wspólny) */ expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && (b.h > (k === 'Lower Back Curl' ? 20 : NISKIE_POZY.includes(k) ? 40 : 50) || (k === 'Crucifix' && v === 'top'))]).toEqual([k, v, true]); /* Crucifix z góry (09.11.2026, partia 1): osoba stojąca widziana z góry ma głębokość ok. 30 cm (< 50) — widok „top” rodziny chest_fly jest sensowny tylko dla leżących; Lower Back Curl (10.11.2026, partia 4): leżenie przodem na podłodze — kadr ma wysokość sylwetki leżącej (barki ≤ 16 cm nad podłogą), próg wysokości 20 zamiast 50; zgłoszone koordynatorowi (widoki ćwiczenia = widoki rodziny, silnik wspólny) */ expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
     expect(light.bg).not.toBe(dark.bg);
   });
   test('tempo: błąd z danych używa tempa domyślnego (jak poprawna poza)', () => { const s = figureSpec('Pull Up')!; expect(tempoFor(s, 'data:0')).toEqual(tempoFor(s)); expect(uAt(TEMPO.holdMs + TEMPO.upMs, false, tempoFor(s))).toBeCloseTo(1, 6); });

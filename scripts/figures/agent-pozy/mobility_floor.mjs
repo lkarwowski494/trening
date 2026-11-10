@@ -43,20 +43,20 @@ function seatedHamstring(cw) {
 function butterfly(cw) {
   const m = [0, Y, 0]; const p = 32; const T = sonda(m, p);
   const nogi = { R: { a: [34, kostkaY(-12), 5.1], pod: -12, rot: 20, pole: [0, 0.15, 1] }, L: { a: [34, kostkaY(-12), -5.1], pod: -12, rot: 20, pole: [0, 0.15, -1] } };
-  const rece = rekiDo(T.sh, { R: [36, 12, 5], L: [36, 12, -5] }, { R: [0, -0.3, 1], L: [0, -0.3, -1] });
+  const rece = rekiDo(T.sh, { R: [36, 12, 5], L: [36, 12, -5] }, { R: [0, -1, 0.3], L: [0, -1, -0.3] });
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 25, nogi, rece }));
 }
 
 /* ---------- klęk i wykrok ---------- */
-/** Child's Pose (ACE #227: klęk, kolana szeroko, palce za sobą (stopy wyprostowane podeszwowo, grzbietem do podłogi), pośladki do pięt, klatka między udami, czoło na podłodze; krok 4: ręce wzdłuż ciała, dłonie do góry):
- * pośladki na piętach (środek miednicy 12,6 cm od pięty = styk), kolana zgięte biernie ok. 156° (model: wyjątek `kneeMax`, limit CONTRACT.kneePassiveMaxDeg), biodro zgięte ≈ 139°, czoło na podłodze, ręce wzdłuż ciała (dłonie przy biodrach).
+/** Child's Pose (ACE #227: klęk, kolana szeroko, palce za sobą (stopy wyprostowane podeszwowo, grzbietem do podłogi), pośladki do pięt, klatka między udami, czoło na podłodze; krok 4 źródła (ręce wzdłuż ciała) NIE jest rysowany — karta każe ręce wyciągnięte przed sobą, recenzja r1 W1, 09.11.2026):
+ * pośladki na piętach (środek miednicy 12,6 cm od pięty = styk), kolana zgięte biernie ok. 156° (model: wyjątek `kneeMax`, limit CONTRACT.kneePassiveMaxDeg), biodro zgięte ≈ 139°, czoło na podłodze, ręce wyciągnięte przed sobą (dłonie na podłodze przed głową, wg karty).
  * Stopa leży grzbietem na podłodze (podbicie 180° + a: palce do tyłu i w dół o a°; tak samo jak tylna stopa przysiadu bułgarskiego). */
 const CP_A = 28; /* nachylenie osi stopy leżącej grzbietem (palce opadają o tyle stopni; kostka ≈ 5 cm nad podłogą, czubek palców ≈ 2 cm) */
 function childsPose(cw) {
-  const m = [2, 26, 0]; const p = 100; const T = sonda(m, p); const pod = 180 + CP_A; const ay = 6;
+  const m = [2, 26, 0]; const p = 92; const T = sonda(m, p); const pod = 180 + CP_A; const ay = 6;
   const nogi = {}; for (const s of SD) nogi[s] = { a: [0, ay, POL(s) * 6], pod, rot: 6, pole: [1, -0.5, POL(s) * 0.6] };
   const neckY = T.shoulderC[1] + 4 * Math.cos(p * R); const hp = Math.acos(Math.max(-1, Math.min(1, (9.8 - neckY) / 18))) / R; /* środek głowy tuż nad podłogą: czoło na podłodze */
-  const rece = rekiDo(T.sh, { R: [-2, 3, 22], L: [-2, 3, -22] }, { R: [0, 0.3, 1], L: [0, 0.3, -1] });
+  const rece = rekiDo(T.sh, { R: [T.sh.R[0] + 58, 3, 22], L: [T.sh.L[0] + 58, 3, -22] }, { R: [0, 0.6, 1], L: [0, 0.6, -1] });
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: r1(hp), nogi, rece }));
 }
 /** Wykrok w klęku podpartym: tylna noga (L) kolanem przy podłodze, palce stopy podwinięte; przednia (R) stopa płasko. */
@@ -88,12 +88,12 @@ const bokRamka = (nogi, rece, ext = { roll: SQ_ROLL, lean: SQ_LEAN, headTilt: SQ
 /** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi: „Bend your left knee and pull your left heel up towards your left glute…”, „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint”; dolna noga prosta tylko w pozycji wyjściowej: „with your legs extended straight away from your body”):
  * leżymy na LEWYM boku (klatka ku −z, od kamery, tułów odchylony do tyłu o 15°), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
  * dłoń górnej ręki (zza pleców) przy kostce (1,3 cm; środek dłoni na odcinku bark–kostka, sięg ręki ≈ 63 cm); dolna ręka zgięta, przedramię pod głową (głowa na przedramieniu, styk), dolna stopa wzdłuż podłogi (stopa na zewnętrznej krawędzi: nie w osi widoku). */
-const SQ_PSI = 40; const SQ_POD = 35; const SQ_ROT = 40; /* stopa górna: oś w płaszczyźnie biodro–kolano–kostka (R11): podbicie 35°, rotacja 40° — palce ku tyłowi ciała i w górę, jak goleń */
+const SQ_PSI = 10; const SQ_POD = 35; const SQ_ROT = 55; /* stopa górna: oś w płaszczyźnie biodro–kolano–kostka (R11): podbicie 35°, rotacja 55° — palce ku tyłowi ciała i w górę, jak goleń */
 function sideQuad(cw) {
   const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: SQ_ROLL, lean: SQ_LEAN } }); const H = T.hip.R; const B = BODY();
   const th = 5 * R; const d1 = [Math.cos(th), -Math.sin(th), 0]; const K1 = add(H, d1, B.thigh);
   const kf = 40 * R; /* kąt wewnętrzny kolana (zgięcie 140°); goleń zawraca ku tyłowi ciała (+z) */
-  const psi = SQ_PSI * R; /* płaszczyzna zgięcia kolana: ku tyłowi ciała (+z) i w górę (+y) */
+  const psi = SQ_PSI * R; /* płaszczyzna zgięcia kolana: ku tyłowi ciała (+z) i niewiele w górę (+y): składowa boczna goleni ≤ 0,35 (recenzja r1 Ś1, 09.11.2026) */
   const aR = add(K1, [-d1[0] * Math.cos(kf), -d1[1] * Math.cos(kf) + Math.sin(kf) * Math.sin(psi), Math.sin(kf) * Math.cos(psi)], B.shank).map(r1);
   const mid = [(H[0] + aR[0]) / 2, (H[1] + aR[1]) / 2, (H[2] + aR[2]) / 2]; const pole = nrm([K1[0] - mid[0], K1[1] - mid[1], K1[2] - mid[2]]).map((x) => r1(x * 100) / 100);
   const aL = [T.hip.L[0] + 82.6, 7.2, T.hip.L[2]]; /* dolna noga leży: udo i goleń ≤ 3 cm nad podłogą (R9: lezyBokNogaCm), kolano wypchnięte w głąb (−z), nie w górę */
@@ -126,10 +126,10 @@ WYJATKI['Peroneals Stretch'] = 'istota ćwiczenia (odwrócenie stopy z paskiem) 
 WYJATKI['Posterior Tibialis Stretch'] = 'istota ćwiczenia (nawrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 WYJATKI['Downward Facing Balance'] = 'zestaw „open”: ćwiczenie na piłce gimnastycznej bez przeczytanego źródła pozycji; wyjątek bez animacji (decyzja właściciela 27.10.2026)';
 export const PRZYBLIZENIA = {
-  "Child's Pose": 'wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)',
+  "Child's Pose": 'ACE #227 (klęk, pośladki do pięt, czoło na podłodze); ręce wyciągnięte przed sobą, dłonie na podłodze przed głową — zgodnie z kartą (wariant źródła z rękami wzdłuż ciała, krok 4, nie jest rysowany; recenzja r1 W1); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)',
   'Seated Calf Stretch': 'przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy',
   'Supine Hamstring Stretch': 'poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany',
-  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa górna: oś w płaszczyźnie biodro–kolano–kostka (podbicie 35°, rotacja 40°: palce ku tyłowi ciała i w górę, jak goleń)',
+  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa górna: oś w płaszczyźnie biodro–kolano–kostka (podbicie 35°, rotacja 55°: palce ku tyłowi ciała i w górę, jak goleń)',
 };
 export function generuj() {
   const G = {

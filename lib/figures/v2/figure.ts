@@ -42,7 +42,7 @@ export function figureSpec(key: string): FigureSpec | null {
  * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
  * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
  * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
- * Stan 10.11.2026: Clean Shrug, Snatch Shrug (olympic, do kart T2), Machine Hip Thrust (hip_bridge r1) i Triceps Dips (ławka) (dip, W5, P4-DIP-1). 29.10.2026 zdjęto 18 figur po recenzjach
+ * Stan 10.11.2026: Clean Shrug, Snatch Shrug (olympic, do kart T2), Machine Hip Thrust (hip_bridge r1) i Triceps Dips (ławka) (dip, W5, P4-DIP-1), Plyo Push-Up (pushup_plank, PP-W1). 29.10.2026 zdjęto 18 figur po recenzjach
  * (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   /* 04.11.2026 (olympic r4): rysunek po kartach T2 */
@@ -53,6 +53,7 @@ export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   'Machine Hip Thrust': 'hip_bridge r1 WYSOKIE (09.11.2026): prowadnica dźwigni przez miednicę',
   'Standing Calf Raise': 'dźwignia: brak punktu „barki” (P1-CALF-1)',
   'Seated Calf Raise': 'dźwignia: brak punktu „uda” (P1-CALF-1)',
+  'Plyo Push-Up': 'pushup_plank r4-W1 (10.11.2026): pętla jednokierunkowa zamknięta (u = 0 = u = 1); powrót: PP-W1 w docs/21',
 };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
