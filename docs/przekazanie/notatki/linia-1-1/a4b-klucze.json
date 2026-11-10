@@ -1,0 +1,1410 @@
+{
+ "_opis": "Partia A4b (moc: kb_ballistic, plyo, sled_throw, strongman; przedramiona: forearm; linia 1.1, 09.11.2026) — lista dla recenzenta niezależnego (L-047; autor: programista A4b, sesja B #5 — nie recenzuje). Dla każdej karty: sekcje, id zdania, tekst PL/EN, źródła (id, organizacja, szczebel, adres, miejsce). Do sprawdzenia: (1) zgodność z rysunkiem (pozy v2 rodzin kb_ballistic, plyo; Backward Drag, Atlas Stones i Plate Pinch bez póz) i torem ruchu; (2) uproszczenia (pole uproszczenie): One-Arm Kettlebell Push Press (CrossFit opisuje dwa kettlebelle), Double Kettlebell Snatch (postawa z Double Kettlebell Clean, błąd z Kettlebell Snatch), Backward Drag (pas zamiast liny u Torque), Plate Pinch (ACE — marsz z talerzami); (3) źródła przyjęte per strona: Fitness Volt M. Magnante ACE z datą w metadanych (Plate Pinch, jak A4a), StrongFirst bez daty artykułu (sf-bolyard-kur — autor Certified Team Leader), program PEP (Santa Monica Sports Medicine Research Foundation — nowa organizacja, dokument firmowany), NISMAT (nowa organizacja; placówka medycyny sportowej), przegląd systematyczny Hindle i in. 2019 (szczebel 2, opis faz kamienia — Atlas Stones); (4) błędy „zaprzeczenie standardu” (uzup. 2, pkt 8): jump.mis.stiff w Lateral Cone Hops (ACE wprost + PEP standard); (5) Split Jump — zrecenzowany zestaw ogólny (02.11.2026) zastąpiony kartą (zestawy_zmienione); (6) brzmienie PL/EN 24 nowych zdań (recenzent lokalizacji; słownik terminów: „oparty przy barku” zamiast „pozycja rack”).",
+ "galaz": "tekst/a4b-moc-przedramiona",
+ "karty": [
+  [
+   "Kettlebell Clean",
+   {
+    "setup": [
+     {
+      "id": "kbb.bellSetup",
+      "pl": "Postaw kettlebell przed stopami, cofnij biodra i chwyć uchwyt.",
+      "en": "Set the kettlebell in front of your feet, push your hips back and grab the handle.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Step 1: Get Set, With Square Hips (bell about a foot in front; hinge and grab the handle)"
+       },
+       {
+        "id": "sf-bolyard-kur",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/the-kur-for-your-kettlebell-swing-and-clean/",
+        "miejsce": "Clean setup (toes close to the kettlebell, about one foot-width away; hinge back into an athletic stance)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "kbb.cleanMove",
+      "pl": "Zrób zamach jak przy swingu, a po wyproście bioder poprowadź kettlebell w górę i oprzyj go przy barku.",
+      "en": "Swing the bell back between your legs, then as your hips snap through, guide it up and rack it at your shoulder.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-pak-clean",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/",
+        "miejsce": "Low Swing High Pull (clean = swing redirected vertically into the rack)"
+       },
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Steps 2–4 (hike between the legs, drive hips forward, bell to the front rack)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "kbb.rack",
+      "pl": "Kettlebell oparty przy barku, łokieć przy tułowiu.",
+      "en": "Bell racked at your shoulder, elbow tucked in.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-pak-clean",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/",
+        "miejsce": "Elbow and Hand (elbow attached to the rib cage)"
+       },
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Step 4 (elbow against your torso, bell in the rack)"
+       }
+      ]
+     },
+     {
+      "id": "kb.hips",
+      "pl": "Siła idzie z bioder, nie z barków — ręce tylko prowadzą kettlebell.",
+      "en": "The power comes from your hips, not your shoulders — your arms just guide the kettlebell.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "sf-pak-clean",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/",
+        "miejsce": "Low Swing High Pull (arms assist the leg drive)"
+       },
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Common Mistakes: Curling the bell (trust the power created by your hips)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "kbb.mis.armPull",
+      "pl": "Ciągnięcie kettlebella ręką zamiast pracy bioder.",
+      "en": "Pulling the bell with your arm instead of driving it with your hips.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-pak-clean",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/",
+        "miejsce": "Common mistakes: arms overpowering the legs"
+       },
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Common Mistakes: Curling the bell"
+       }
+      ]
+     },
+     {
+      "id": "kbb.mis.cast",
+      "pl": "Kettlebell odjeżdża łukiem od ciała, zamiast iść w górę.",
+      "en": "The bell swings out away from you in an arc instead of travelling up.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-pak-clean",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/",
+        "miejsce": "Common mistakes: casting the bell"
+       },
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Common Mistakes: Casting the bell out"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Kettlebell Snatch",
+   {
+    "setup": [
+     {
+      "id": "kbb.bellSetup",
+      "pl": "Postaw kettlebell przed stopami, cofnij biodra i chwyć uchwyt.",
+      "en": "Set the kettlebell in front of your feet, push your hips back and grab the handle.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-tsar-snatch",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/",
+        "miejsce": "streszczenie na początku (start with a kettlebell on the ground in front of you)"
+       },
+       {
+        "id": "barbend-kb-snatch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-snatch/",
+        "miejsce": "sekcja progresji Kettlebell Swing (setting the bell about two foot-lengths in front of you; hinge at the hips and grab the handle)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "kbb.snatchMove",
+      "pl": "Zrób zamach kettlebellem między nogami jak przy swingu i jednym ruchem wyprowadź go nad głowę.",
+      "en": "Hike the bell between your legs like a swing and take it overhead in one move.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-tsar-snatch",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/",
+        "miejsce": "streszczenie na początku (swing it back between your legs … overhead lockout in one uninterrupted motion)"
+       },
+       {
+        "id": "barbend-kb-snatch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-snatch/",
+        "miejsce": "Step One–Three (one-handed swing → high pull → use the momentum to push your hand through the bell into the top snatch position)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "kbb.punch",
+      "pl": "Gdy kettlebell mija twarz, wsuń dłoń w uchwyt i wypchnij pięść w sufit.",
+      "en": "As the bell passes your face, slide your hand through the handle and punch your fist to the ceiling.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-lions-roar-snatch",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/lions-roar-kettlebell-snatch/",
+        "miejsce": "lista „eightfold path” (fast spear through the handle at about your eyes level)"
+       },
+       {
+        "id": "barbend-kb-snatch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-snatch/",
+        "miejsce": "Step Three: Push Through; Common Mistakes: Keeping the lifting arm straight"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "kbb.mis.bang",
+      "pl": "Kettlebell z impetem uderza w przedramię.",
+      "en": "The bell slams into your forearm.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "sf-lions-roar-snatch",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/lions-roar-kettlebell-snatch/",
+        "miejsce": "spear through the handle — to avoid banging the forearm"
+       },
+       {
+        "id": "barbend-kb-snatch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-snatch/",
+        "miejsce": "Common Mistakes: Keeping the lifting arm straight (bell flops onto the forearm)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Double Kettlebell Push Press",
+   {
+    "setup": [
+     {
+      "id": "kbb.rackStartDbl",
+      "pl": "Zacznij z kettlebellami opartymi przy barkach.",
+      "en": "Start with the kettlebells racked at your shoulders.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "The Rack; Push Press (start with the kettlebells firmly racked)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press (accelerate the load from the racked position into a vertical trajectory)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "kbpp.move",
+      "pl": "Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając ciężar nad głowę do pełnego wyprostu.",
+      "en": "Dip briefly at the knees, then drive hard through your legs and hips and push the weight overhead to full lockout.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "Push Press (dip, drive, knees and elbows straight at the end)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press (leg and hip drive, then the upper body pushes overhead)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "pp.legs",
+      "pl": "Siła wybicia idzie z nóg i bioder — ręce kończą ruch.",
+      "en": "The drive comes from your legs and hips — your arms finish the press.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "Push Press (push the floor away — legs and hips extend and drive the bells up)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press (leg and hip strength accelerate the load)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "kbpp.mis.rebend",
+      "pl": "Drugie ugięcie nóg pod ciężar — to już podrzut, nie push press.",
+      "en": "Re-bending your knees under the weight — that turns it into a jerk, not a push press.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "Push Press (no rebend, or „double dip”)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press (knees, ankles and hips are not rebent after the leg drive)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "One-Arm Kettlebell Push Press",
+   {
+    "setup": [
+     {
+      "id": "kbb.rackStart",
+      "pl": "Zacznij z kettlebellem opartym przy barku.",
+      "en": "Start with the kettlebell racked at your shoulder.",
+      "nowe": true,
+      "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni",
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "The Rack; Push Press (kettlebells firmly racked) (wariant: dwa kettlebelle)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press (from the racked position)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "kbpp.move",
+      "pl": "Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając ciężar nad głowę do pełnego wyprostu.",
+      "en": "Dip briefly at the knees, then drive hard through your legs and hips and push the weight overhead to full lockout.",
+      "nowe": true,
+      "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni",
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "Push Press (dip, drive, knees and elbows straight) (wariant: dwa kettlebelle)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "pp.legs",
+      "pl": "Siła wybicia idzie z nóg i bioder — ręce kończą ruch.",
+      "en": "The drive comes from your legs and hips — your arms finish the press.",
+      "nowe": false,
+      "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni",
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "Push Press (push the floor away — legs and hips extend and drive the bells up) (wariant: dwa kettlebelle)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "kbpp.mis.rebend",
+      "pl": "Drugie ugięcie nóg pod ciężar — to już podrzut, nie push press.",
+      "en": "Re-bending your knees under the weight — that turns it into a jerk, not a push press.",
+      "nowe": true,
+      "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni",
+      "zrodla": [
+       {
+        "id": "cf-dkb-pp-jerk",
+        "org": "CrossFit",
+        "szczebel": 4,
+        "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk",
+        "miejsce": "Push Press (no rebend) (wariant: dwa kettlebelle)"
+       },
+       {
+        "id": "barbend-kb-jerk-vs-pp",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-jerk-vs-push-press",
+        "miejsce": "The Push Press (not rebent following the initial leg drive)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Double Kettlebell Snatch",
+   {
+    "setup": [
+     {
+      "id": "kbb.dblStance",
+      "pl": "Stań szerzej niż na szerokość bioder, żeby oba kettlebelle przeszły między nogami.",
+      "en": "Stand wider than hip-width so both bells fit between your legs.",
+      "nowe": false,
+      "uproszczenie": "postawa z zarzutu i swingu dwoma kettlebellami (Double Kettlebell Clean) — ten sam przerzut obu kettlebelli między nogami; recenzent potwierdza",
+      "zrodla": [
+       {
+        "id": "ace-5386-adv-kb",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/",
+        "miejsce": "Double Kettlebell Swing (feet wider than hip-width apart) (uproszczenie: wariant Double Kettlebell Clean — ten sam przerzut obu odważników między nogami)"
+       },
+       {
+        "id": "barbend-kb-clean",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-clean/",
+        "miejsce": "Double Kettlebell Clean (wider stance to hike both bells between your legs) (uproszczenie: jw.)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "kbb.dblSnatchMove",
+      "pl": "Zrób zamach oboma kettlebellami między nogami jak przy swingu i jednym ruchem wyprowadź je nad głowę.",
+      "en": "Hike both bells between your legs like a swing and take them overhead in one move.",
+      "nowe": true,
+      "uproszczenie": "wariant liczby odważników rwania kettlebellem (BarBend: „same technical movements”); recenzent potwierdza",
+      "zrodla": [
+       {
+        "id": "sf-chains-dbl-snatch",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/improve-your-double-kettlebell-snatch/",
+        "miejsce": "„Using Chains…” (hip finish → bells float up; punch straight up)"
+       },
+       {
+        "id": "barbend-kb-snatch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-snatch/",
+        "miejsce": "Double Kettlebell Snatch (same technical movements, a bell in each hand) + Step One–Three (uproszczenie: wariant sprzętu Kettlebell Snatch)"
+       }
+      ]
+     }
+    ],
+    "tips": [],
+    "mistakes": [
+     {
+      "id": "kbb.mis.bang",
+      "pl": "Kettlebell z impetem uderza w przedramię.",
+      "en": "The bell slams into your forearm.",
+      "nowe": true,
+      "uproszczenie": "błąd rwania jednym kettlebellem (Kettlebell Snatch) przeniesiony na dwa — wariant liczby odważników; recenzent potwierdza",
+      "zrodla": [
+       {
+        "id": "sf-lions-roar-snatch",
+        "org": "StrongFirst",
+        "szczebel": 4,
+        "url": "https://www.strongfirst.com/lions-roar-kettlebell-snatch/",
+        "miejsce": "spear through the handle — to avoid banging the forearm (uproszczenie: wariant sprzętu Kettlebell Snatch — BarBend: same technical movements)"
+       },
+       {
+        "id": "barbend-kb-snatch",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/kettlebell-snatch/",
+        "miejsce": "Common Mistakes: Keeping the lifting arm straight (uproszczenie: wariant sprzętu Kettlebell Snatch)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Split Jump",
+   {
+    "setup": [
+     {
+      "id": "plyo.splitSetup",
+      "pl": "Ustaw się w wykroku: jedna noga z przodu, druga z tyłu.",
+      "en": "Get into a split stance: one leg in front, the other behind.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-234",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/",
+        "miejsce": "Step 1: Starting Position (right leg forward, left leg back)"
+       },
+       {
+        "id": "nasm-lunge-jump",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/exercise-library/lunge-jump",
+        "miejsce": "Step 3: Execute/Drive (step forward into a lunge position)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "plyo.splitSwitch",
+      "pl": "Wybij się w górę, w powietrzu zmień nogi i wyląduj w wykroku z drugą nogą z przodu.",
+      "en": "Jump up, switch legs in the air and land in a split stance with the other leg in front.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-234",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/",
+        "miejsce": "Step 2–4 (launch, swap legs in the air, land with the other leg in front)"
+       },
+       {
+        "id": "nasm-lunge-jump",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/exercise-library/lunge-jump",
+        "miejsce": "Step 3–4 (jumping to switch leg positions; land … opposite leg forward)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "jump.land",
+      "pl": "Ląduj miękko, na ugiętych kolanach.",
+      "en": "Land softly, with your knees bent.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-234",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/",
+        "miejsce": "Step 4: Landing (touch down softly; avoid locking out your knees)"
+       },
+       {
+        "id": "nasm-lunge-jump",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/exercise-library/lunge-jump",
+        "miejsce": "Step 4: Return/Descent (absorbing impact with bent knees)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "jump.mis.stiff",
+      "pl": "Lądowanie na sztywnych nogach.",
+      "en": "Landing on stiff legs.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "nasm-lunge-jump",
+        "org": "NASM",
+        "szczebel": 4,
+        "url": "https://www.nasm.org/resource-center/exercise-library/lunge-jump",
+        "miejsce": "Common Mistakes, pkt 1 (landing with straight knees)"
+       },
+       {
+        "id": "ace-234",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/",
+        "miejsce": "Step 4 (avoid locking out your knees)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Lateral Cone Hops",
+   {
+    "setup": [
+     {
+      "id": "plyo.coneLat.stand",
+      "pl": "Stań bokiem tuż obok pachołka.",
+      "en": "Stand side-on, right next to the cone.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-120",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/120/lateral-cone-jumps/",
+        "miejsce": "Step 1 (stand a few inches to the left of the first cone)"
+       },
+       {
+        "id": "pep-program",
+        "org": "Santa Monica Sports Medicine Research Foundation",
+        "szczebel": 4,
+        "url": "https://health.ucdavis.edu/media-resources/sports-medicine/documents/pdfs/pep-program.pdf",
+        "miejsce": "Section III A, Instruction (stand with a cone to your left)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "plyo.coneLat.hop",
+      "pl": "Przeskakuj obunóż bokiem nad pachołkiem.",
+      "en": "Hop sideways over the cone on both feet.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "ace-120",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/120/lateral-cone-jumps/",
+        "miejsce": "Step 3 (jump sideways and up over the first cone)"
+       },
+       {
+        "id": "nismat-lat-jump-cone",
+        "org": "NISMAT",
+        "szczebel": 4,
+        "url": "https://nismat.org/2020/05/26/lateral-jump-over-cone/",
+        "miejsce": "opis (jump with both feet sideways over the cone, then back)"
+       },
+       {
+        "id": "pep-program",
+        "org": "Santa Monica Sports Medicine Research Foundation",
+        "szczebel": 4,
+        "url": "https://health.ucdavis.edu/media-resources/sports-medicine/documents/pdfs/pep-program.pdf",
+        "miejsce": "Section III A, Instruction (hop to the left over the cone … repeat hopping to the right)"
+       }
+      ]
+     }
+    ],
+    "tips": [
+     {
+      "id": "jump.land",
+      "pl": "Ląduj miękko, na ugiętych kolanach.",
+      "en": "Land softly, with your knees bent.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-120",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/120/lateral-cone-jumps/",
+        "miejsce": "Step 5 (land softly; avoid locking your knees)"
+       },
+       {
+        "id": "pep-program",
+        "org": "Santa Monica Sports Medicine Research Foundation",
+        "szczebel": 4,
+        "url": "https://health.ucdavis.edu/media-resources/sports-medicine/documents/pdfs/pep-program.pdf",
+        "miejsce": "Section III A (softly landing … bending at the knee); wstęp sekcji III (landing must be soft)"
+       }
+      ]
+     }
+    ],
+    "mistakes": [
+     {
+      "id": "jump.mis.stiff",
+      "pl": "Lądowanie na sztywnych nogach.",
+      "en": "Landing on stiff legs.",
+      "nowe": false,
+      "zrodla": [
+       {
+        "id": "ace-120",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/resources/everyone/exercise-library/120/lateral-cone-jumps/",
+        "miejsce": "Step 5 (avoid locking your knees or quads on your landing)"
+       },
+       {
+        "id": "pep-program",
+        "org": "Santa Monica Sports Medicine Research Foundation",
+        "szczebel": 4,
+        "url": "https://health.ucdavis.edu/media-resources/sports-medicine/documents/pdfs/pep-program.pdf",
+        "miejsce": "Section III A (land bending at the knee) — błąd = zaprzeczenie standardu"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  [
+   "Backward Drag",
+   {
+    "setup": [
+     {
+      "id": "sled.backGrip",
+      "pl": "Chwyć linę sanek w obie ręce.",
+      "en": "Grab the sled rope with both hands.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "rep-sled-pull",
+        "org": "REP Fitness",
+        "szczebel": 4,
+        "url": "https://repfitness.com/blogs/training/sled-pull-workout",
+        "miejsce": "Backwards Walk („You can hold the rope in your hands…”)"
+       },
+       {
+        "id": "elitefts-drag-variations",
+        "org": "EliteFTS",
+        "szczebel": 4,
+        "url": "https://elitefts.com/blogs/training/endless-sled-dragging-variations-that-will-dramatically-improve-your-performance",
+        "miejsce": "lista wariantów („Backward drag with split rope…”) i The Belt (lina z dwoma uchwytami)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "sled.backPedal",
+      "pl": "Stań przodem do sanek i idź tyłem, odpychając się nogami.",
+      "en": "Face the sled and walk backward, driving with your legs.",
+      "nowe": true,
+      "uproszczenie": "Torque opisuje ciągnięcie tyłem z pasem zamiast liny w rękach (wariant zaczepienia; ruch nóg i kierunek te same); recenzent potwierdza",
+      "zrodla": [
+       {
+        "id": "elitefts-backward-pull",
+        "org": "EliteFTS",
+        "szczebel": 4,
+        "url": "https://elitefts.com/blogs/training/backwards-sled-pulls-for-quad-size-and-strength",
+        "miejsce": "technika („Lean back, away from the sled, the entire movement.”; „Use your legs.”)"
+       },
+       {
+        "id": "torque-utg-2024",
+        "org": "Torque Fitness",
+        "szczebel": 4,
+        "url": "https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf",
+        "miejsce": "s. 62, Harness Backpedal, Instructions 1–2 („…stand facing TANK.”; „Squat low and backpedal legs pulling TANK down runway.”) — uproszczenie: wariant zaczepienia (pas zamiast liny w rękach), por. rep-sled-pull Backwards Walk (lina w rękach albo pas na biodrach — to samo ćwiczenie)"
+       }
+      ]
+     }
+    ],
+    "tips": [],
+    "mistakes": []
+   }
+  ],
+  [
+   "Atlas Stones",
+   {
+    "setup": [
+     {
+      "id": "as.grip",
+      "pl": "Obejmij kamień rękami i mocno go ściśnij.",
+      "en": "Wrap your arms around the stone and squeeze hard.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-atlas",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/strongman-atlas-stone-technique/",
+        "miejsce": "Step 2 Lap the Stone („Grip the stone as tightly as possible, as if you were performing a chest flye.”; Form tip: jak najwięcej ciała i klatki wokół kamienia)"
+       },
+       {
+        "id": "hindle-2019-strongman",
+        "org": "Hindle i in. (Sports Med Open 2019)",
+        "szczebel": 2,
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/",
+        "miejsce": "Discussion › Atlas Stone Lift, faza 1 (podniesienie kamienia z ziemi chwytem „hugged”, obejmując go)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "as.lap",
+      "pl": "Podnieś kamień nad kolana i oprzyj go na udach.",
+      "en": "Lift the stone over your knees and rest it on your thighs.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-atlas",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/strongman-atlas-stone-technique/",
+        "miejsce": "Step 2 Lap the Stone (kamień do bioder, usiądź w tył, kamień na udach)"
+       },
+       {
+        "id": "hindle-2019-strongman",
+        "org": "Hindle i in. (Sports Med Open 2019)",
+        "szczebel": 2,
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/",
+        "miejsce": "Discussion › Atlas Stone Lift, faza 1 („…the stone resting in the lap”)"
+       }
+      ]
+     },
+     {
+      "id": "as.extend",
+      "pl": "Z kamieniem na udach mocno wypchnij biodra w przód i wstań, unosząc kamień wyżej.",
+      "en": "From your lap, drive your hips forward and stand up, bringing the stone higher.",
+      "nowe": true,
+      "zrodla": [
+       {
+        "id": "barbend-atlas",
+        "org": "BarBend",
+        "szczebel": 4,
+        "url": "https://barbend.com/strongman-atlas-stone-technique/",
+        "miejsce": "Step 3 Drive Up to Load the Stone („Pull the stone up your body as you stand up and drive your hips forward.”)"
+       },
+       {
+        "id": "hindle-2019-strongman",
+        "org": "Hindle i in. (Sports Med Open 2019)",
+        "szczebel": 2,
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/",
+        "miejsce": "Discussion › Atlas Stone Lift, faza 3 (z ćwierćprzysiadu do pełnego wyprostu)"
+       }
+      ]
+     }
+    ],
+    "tips": [],
+    "mistakes": []
+   }
+  ],
+  [
+   "Plate Pinch",
+   {
+    "setup": [
+     {
+      "id": "pinch.setup",
+      "pl": "Ściśnij talerze chwytem szczypcowym — kciuk z jednej strony, palce z drugiej.",
+      "en": "Pinch the plates together — thumb on one side, fingers on the other.",
+      "nowe": true,
+      "uproszczenie": "drugie źródło (ACE, P. McCall) opisuje marsz z talerzem trzymanym chwytem szczypcowym, nie stanie — wariant; recenzent potwierdza",
+      "zrodla": [
+       {
+        "id": "fv-plate-pinch",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/plate-pinch-guide/",
+        "miejsce": "How to (squeeze or pinch the plates … using all fingers and your thumbs)"
+       },
+       {
+        "id": "ace-5765",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/education-and-resources/professional/expert-articles/5765/how-to-improve-grip-strength/",
+        "miejsce": "Farmer's Walk with Weight Plates (grip the edge of a weight plate in a pinch grip; uproszczenie: wariant — marsz)"
+       }
+      ]
+     }
+    ],
+    "move": [
+     {
+      "id": "pinch.hold",
+      "pl": "Wstań i ściskaj talerze, aż chwyt zacznie słabnąć.",
+      "en": "Stand up and keep squeezing until your grip starts to fade.",
+      "nowe": true,
+      "uproszczenie": "drugie źródło (ACE, P. McCall) opisuje marsz z talerzem trzymanym chwytem szczypcowym, nie stanie — wariant; recenzent potwierdza",
+      "zrodla": [
+       {
+        "id": "fv-plate-pinch",
+        "org": "Fitness Volt",
+        "szczebel": 4,
+        "url": "https://fitnessvolt.com/plate-pinch-guide/",
+        "miejsce": "How to (stand up; squeeze until your grip feels tired)"
+       },
+       {
+        "id": "ace-5765",
+        "org": "ACE",
+        "szczebel": 4,
+        "url": "https://www.acefitness.org/education-and-resources/professional/expert-articles/5765/how-to-improve-grip-strength/",
+        "miejsce": "Farmer's Walk with Weight Plates (squeeze the weight as hard as possible; uproszczenie: wariant — marsz)"
+       }
+      ]
+     }
+    ],
+    "tips": [],
+    "mistakes": []
+   }
+  ]
+ ],
+ "noweZdania": [
+  "as.extend",
+  "as.grip",
+  "as.lap",
+  "kbb.bellSetup",
+  "kbb.cleanMove",
+  "kbb.dblSnatchMove",
+  "kbb.mis.armPull",
+  "kbb.mis.bang",
+  "kbb.mis.cast",
+  "kbb.punch",
+  "kbb.rack",
+  "kbb.rackStart",
+  "kbb.rackStartDbl",
+  "kbb.snatchMove",
+  "kbpp.mis.rebend",
+  "kbpp.move",
+  "pinch.hold",
+  "pinch.setup",
+  "plyo.coneLat.hop",
+  "plyo.coneLat.stand",
+  "plyo.splitSetup",
+  "plyo.splitSwitch",
+  "sled.backGrip",
+  "sled.backPedal"
+ ],
+ "noweZrodla": [
+  "ace-120",
+  "ace-234",
+  "ace-5765",
+  "barbend-atlas",
+  "barbend-kb-snatch",
+  "elitefts-backward-pull",
+  "elitefts-drag-variations",
+  "fv-plate-pinch",
+  "hindle-2019-strongman",
+  "nasm-lunge-jump",
+  "nismat-lat-jump-cone",
+  "pep-program",
+  "rep-sled-pull",
+  "sf-bolyard-kur",
+  "sf-chains-dbl-snatch",
+  "sf-lions-roar-snatch",
+  "sf-pak-clean",
+  "sf-tsar-snatch"
+ ],
+ "noweOrganizacje": [
+  "Hindle i in. (Sports Med Open 2019)",
+  "NISMAT",
+  "Santa Monica Sports Medicine Research Foundation"
+ ],
+ "odrzucone": [
+  [
+   "Double Kettlebell Push Press",
+   "mistakes",
+   "kbpp.mis.noLegs",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Push Press",
+   "mistakes",
+   "kbpp.mis.noLegs",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Jerk",
+   "mistakes",
+   "kbj.mis.early",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Jerk",
+   "mistakes",
+   "kbj.mis.pressOut",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Jerk",
+   "mistakes",
+   "kbj.mis.lean",
+   [
+    "StrongFirst"
+   ]
+  ],
+  [
+   "Double Kettlebell Snatch",
+   "mistakes",
+   "kbb.mis.dblNarrow",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Swings",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Swings",
+   "mistakes",
+   "kbb.mis.armPull",
+   []
+  ],
+  [
+   "Single Leg Push-Off",
+   "mistakes",
+   "plyo.mis.pushoffFloorLeg",
+   []
+  ],
+  [
+   "Front Cone Hops",
+   "setup",
+   "plyo.coneFwd.stand",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Single-Leg Lateral Hop",
+   "setup",
+   "plyo.slLatHop.stand",
+   [
+    "Greisberg i in. (JAAOS Glob Res Rev 2019)"
+   ]
+  ],
+  [
+   "Single-Leg Lateral Hop",
+   "move",
+   "plyo.slLatHop.hop",
+   [
+    "Greisberg i in. (JAAOS Glob Res Rev 2019)"
+   ]
+  ],
+  [
+   "Single-Leg Lateral Hop",
+   "mistakes",
+   "plyo.mis.twoFeetLand",
+   []
+  ],
+  [
+   "Lateral Bound",
+   "setup",
+   "plyo.latBound.setup",
+   [
+    "Waldhelm i in. (IJSPT 2022)"
+   ]
+  ],
+  [
+   "Lateral Bound",
+   "move",
+   "plyo.latBound.move",
+   [
+    "Waldhelm i in. (IJSPT 2022)"
+   ]
+  ],
+  [
+   "Lateral Bound",
+   "mistakes",
+   "plyo.mis.twoFeetLand",
+   []
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "tips",
+   "bmbt.armsStraight",
+   [
+    "World Athletics"
+   ]
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "mistakes",
+   "bmbt.mis.bentArms",
+   [
+    "World Athletics"
+   ]
+  ],
+  [
+   "Supine Chest Throw",
+   "setup",
+   "sct.setup",
+   [
+    "Johnson i in. (Texas Tech University)"
+   ]
+  ],
+  [
+   "Supine Chest Throw",
+   "move",
+   "sct.move",
+   [
+    "Johnson i in. (Texas Tech University)"
+   ]
+  ],
+  [
+   "Supine Chest Throw",
+   "mistakes",
+   "sct.mis.elbowsIn",
+   []
+  ],
+  [
+   "Backward Drag",
+   "mistakes",
+   "sled.mis.row",
+   [
+    "EliteFTS"
+   ]
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "move",
+   "bcsd.move",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "mistakes",
+   "bcsd.mis.knees",
+   []
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "mistakes",
+   "bcsd.mis.back",
+   []
+  ],
+  [
+   "Atlas Stones",
+   "mistakes",
+   "as.mis.away",
+   []
+  ],
+  [
+   "Yoke Walk",
+   "setup",
+   "yoke.setup",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Yoke Walk",
+   "move",
+   "yoke.brace",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Yoke Walk",
+   "tips",
+   "yoke.steps",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Yoke Walk",
+   "mistakes",
+   "yoke.mis.stride",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Tire Flip",
+   "move",
+   "tf.lift",
+   [
+    "Hindle i in. (Sports Med Open 2019)"
+   ]
+  ],
+  [
+   "Wrist Curl (hantle)",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Reverse Wrist Curl (hantle)",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Cable Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "One-Arm Dumbbell Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "One-Arm Dumbbell Reverse Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Barbell Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Barbell Reverse Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Wrist Roller",
+   "setup",
+   "wroll.setup",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Wrist Roller",
+   "mistakes",
+   "wroll.mis.drop",
+   []
+  ],
+  [
+   "Wrist Roller",
+   "mistakes",
+   "wroll.mis.arms",
+   []
+  ],
+  [
+   "Plate Pinch",
+   "mistakes",
+   "pinch.mis.handle",
+   [
+    "Fitness Volt"
+   ]
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Front Cone Hops",
+   "plyo.coneFwd.stand",
+   "pep-program"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "bmbt.setup",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "scoop.move",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "bmbt.armsStraight",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "mb.mis.armsOnly",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "bmbt.mis.bentArms",
+   "hk-blob-throw"
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "bcsd.setup",
+   "elitefts-eight-drag"
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "bcsd.move",
+   "elitefts-eight-drag"
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "bcsd.mis.knees",
+   "elitefts-eight-drag"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.setup",
+   "bos-yoke"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.brace",
+   "bos-yoke"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.steps",
+   "bos-yoke"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.mis.stride",
+   "bos-yoke"
+  ],
+  [
+   "Wrist Roller",
+   "wroll.setup",
+   "bos-wrist-roller"
+  ],
+  [
+   "Wrist Roller",
+   "wroll.move",
+   "bos-wrist-roller"
+  ]
+ ],
+ "niebyle": {
+  "bos-yoke": "Bells of Steel — blog producenta sprzętu; szczebel nierozstrzygnięty (jak A2/A3), rozstrzygnięcie koordynatora 09.11.2026: blog producenta sprzętu = 5",
+  "bos-wrist-roller": "Bells of Steel — blog producenta sprzętu (jak bos-yoke)",
+  "elitefts-eight-drag": "EliteFTS (M. Roy) — autor bez sprawdzalnych kwalifikacji trenerskich na stronie (STAN-A4: decyzja z góry)",
+  "hk-blob-throw": "fragment książki NSCA (Human Kinetics, oprac. J. Dawes) — źródło książkowe bez nieprzezroczystego identyfikatora dysk-kN (decyzja właściciela 02.11.2026 ~08:00; jak bmbt.armsStraight w P2); kwalifikacji opracowującego na stronie nie sprawdzono",
+  "pep-program (Front Cone Hops, plyo.coneFwd.stand)": "PEP opisuje ustawienie tylko pośrednio (z polecenia skoku) — badacz W2: „warunkowo, do oceny recenzenta”; nierozstrzygnięte"
+ },
+ "niewdrozone": [
+  [
+   "bezUstawieniaLubRuchu",
+   [
+    "Front Cone Hops",
+    "Single-Leg Lateral Hop",
+    "Lateral Bound",
+    "Supine Chest Throw",
+    "Bear Crawl Sled Drag",
+    "Log Lift",
+    "Yoke Walk",
+    "Tire Flip",
+    "Wrist Roller"
+   ]
+  ],
+  [
+   "pominieteBezBledu",
+   [
+    "One-Arm Kettlebell Jerk",
+    "One-Arm Kettlebell Swings",
+    "Single Leg Push-Off",
+    "Wrist Curl (hantle)",
+    "Reverse Wrist Curl (hantle)",
+    "Cable Wrist Curl",
+    "One-Arm Dumbbell Wrist Curl",
+    "One-Arm Dumbbell Reverse Wrist Curl",
+    "Barbell Wrist Curl",
+    "Barbell Reverse Wrist Curl"
+   ]
+  ],
+  [
+   "wstrzymane",
+   {
+    "One-Arm Kettlebell Clean and Jerk": "„ta sama faza” (zdania zarzutu z Kettlebell Clean i podrzutu z One-Arm Kettlebell Jerk) — decyzja audytora z W1 nierozstrzygnięta w docs/18; bez niej karta ma tylko kbcj.move",
+    "Depth Jump": "pytanie P2 do koordynatora z 03.11.2026 nierozstrzygnięte: Depth Jump w katalogu = wskok na drugą skrzynię, źródła opisują odbicie z podłogi (STAN-g3-moc)",
+    "Turkish Get Up": "w P2 (03.11.2026) jawnie „do decyzji koordynatora”: sygnały zestawu ogólnego tgu.* i wygaszenie ostatniego użycia tgu.eyes (pilnowane też testem lokalizacji pt/pt-BR) — nierozstrzygnięte w docs/18; karta W1 po przeliczeniu spełnia regułę partii (Catalyst + ACE, błąd ACE ProSource + StrongFirst)",
+    "Medicine Ball Scoop Throw": "jedyne źródło wyskoku (hk-blob-throw, fragment książki u Human Kinetics) niebyłe — strona bez kwalifikacji opracowującego i bez daty (odczyt 09.11.2026); bez wyskoku karta byłaby kopią Backward Medicine Ball Throw (badacz W2: „Scoop vs Backward — prawie ta sama karta”, duplikat w katalogu do decyzji koordynatora)"
+   }
+  ]
+ ],
+ "zestawyZmienione": [
+  "Split Jump"
+ ],
+ "zdaniaUsuniete": [],
+ "role": []
+}

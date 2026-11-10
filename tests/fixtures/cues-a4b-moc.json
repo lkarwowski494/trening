@@ -1,0 +1,526 @@
+{
+ "_opis": "Partia A4b integracji badań (moc: kb_ballistic, plyo, sled_throw, strongman; przedramiona: forearm; linia 1.1, 09.11.2026; zakres z policz() na b9ca7a37 — 71 ćwiczeń bez wskazówek): ćwiczenia z nowymi kartami własnymi, karty niepełne (partial), nowe zdania, zdania odrzucone (mniej niż dwie organizacje szczebla ≤ 4 po usunięciu odwołań „wniosek” i niebyłych — błędy wnioskowane bez źródła wprost albo „błąd = zaprzeczenie standardu” odpadają) i odwołania do źródeł niebyłych (powody w polu niebyle). Źródło: badania W1 (badania/g3-moc, badania/g6-przyciaganie strongman.md i forearm.md — bloki po przeliczeniu szczebli 02.11.2026; bloki „NIEAKTUALNY” pominięte) i W2 (badania/w2-moc, badania/w2-przyciaganie) z 02.11.2026; pełna karta W2 zastępuje W1, tryb „dopisz” dokłada błędy; bloki warunkowe (REP Fitness przy Dumbbell Clean, Radcliffe przy Box Skip) pominięte. Niewdrożone: karty bez ustawienia albo ruchu (bezUstawieniaLubRuchu), karty bez błędu przy ćwiczeniu z pozami v2 (pominieteBezBledu — decyzja z 02.11.2026), karty wstrzymane do decyzji koordynatora (wstrzymane) i ćwiczenia bez bloku w badaniach (otwarte).",
+ "rodzina": "moc",
+ "cwiczenia": [
+  "Kettlebell Clean",
+  "Kettlebell Snatch",
+  "Double Kettlebell Push Press",
+  "One-Arm Kettlebell Push Press",
+  "Double Kettlebell Snatch",
+  "Split Jump",
+  "Lateral Cone Hops",
+  "Backward Drag",
+  "Atlas Stones",
+  "Plate Pinch"
+ ],
+ "partial": [
+  "Kettlebell Snatch",
+  "Double Kettlebell Push Press",
+  "One-Arm Kettlebell Push Press",
+  "Double Kettlebell Snatch",
+  "Split Jump",
+  "Lateral Cone Hops",
+  "Backward Drag",
+  "Atlas Stones",
+  "Plate Pinch"
+ ],
+ "zdania": [
+  "as.extend",
+  "as.grip",
+  "as.lap",
+  "kbb.bellSetup",
+  "kbb.cleanMove",
+  "kbb.dblSnatchMove",
+  "kbb.mis.armPull",
+  "kbb.mis.bang",
+  "kbb.mis.cast",
+  "kbb.punch",
+  "kbb.rack",
+  "kbb.rackStart",
+  "kbb.rackStartDbl",
+  "kbb.snatchMove",
+  "kbpp.mis.rebend",
+  "kbpp.move",
+  "pinch.hold",
+  "pinch.setup",
+  "plyo.coneLat.hop",
+  "plyo.coneLat.stand",
+  "plyo.splitSetup",
+  "plyo.splitSwitch",
+  "sled.backGrip",
+  "sled.backPedal"
+ ],
+ "odrzucone": [
+  [
+   "Double Kettlebell Push Press",
+   "mistakes",
+   "kbpp.mis.noLegs",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Push Press",
+   "mistakes",
+   "kbpp.mis.noLegs",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Jerk",
+   "mistakes",
+   "kbj.mis.early",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Jerk",
+   "mistakes",
+   "kbj.mis.pressOut",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Jerk",
+   "mistakes",
+   "kbj.mis.lean",
+   [
+    "StrongFirst"
+   ]
+  ],
+  [
+   "Double Kettlebell Snatch",
+   "mistakes",
+   "kbb.mis.dblNarrow",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Swings",
+   "mistakes",
+   "mis.roundBack",
+   []
+  ],
+  [
+   "One-Arm Kettlebell Swings",
+   "mistakes",
+   "kbb.mis.armPull",
+   []
+  ],
+  [
+   "Single Leg Push-Off",
+   "mistakes",
+   "plyo.mis.pushoffFloorLeg",
+   []
+  ],
+  [
+   "Front Cone Hops",
+   "setup",
+   "plyo.coneFwd.stand",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Single-Leg Lateral Hop",
+   "setup",
+   "plyo.slLatHop.stand",
+   [
+    "Greisberg i in. (JAAOS Glob Res Rev 2019)"
+   ]
+  ],
+  [
+   "Single-Leg Lateral Hop",
+   "move",
+   "plyo.slLatHop.hop",
+   [
+    "Greisberg i in. (JAAOS Glob Res Rev 2019)"
+   ]
+  ],
+  [
+   "Single-Leg Lateral Hop",
+   "mistakes",
+   "plyo.mis.twoFeetLand",
+   []
+  ],
+  [
+   "Lateral Bound",
+   "setup",
+   "plyo.latBound.setup",
+   [
+    "Waldhelm i in. (IJSPT 2022)"
+   ]
+  ],
+  [
+   "Lateral Bound",
+   "move",
+   "plyo.latBound.move",
+   [
+    "Waldhelm i in. (IJSPT 2022)"
+   ]
+  ],
+  [
+   "Lateral Bound",
+   "mistakes",
+   "plyo.mis.twoFeetLand",
+   []
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "tips",
+   "bmbt.armsStraight",
+   [
+    "World Athletics"
+   ]
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "mistakes",
+   "bmbt.mis.bentArms",
+   [
+    "World Athletics"
+   ]
+  ],
+  [
+   "Supine Chest Throw",
+   "setup",
+   "sct.setup",
+   [
+    "Johnson i in. (Texas Tech University)"
+   ]
+  ],
+  [
+   "Supine Chest Throw",
+   "move",
+   "sct.move",
+   [
+    "Johnson i in. (Texas Tech University)"
+   ]
+  ],
+  [
+   "Supine Chest Throw",
+   "mistakes",
+   "sct.mis.elbowsIn",
+   []
+  ],
+  [
+   "Backward Drag",
+   "mistakes",
+   "sled.mis.row",
+   [
+    "EliteFTS"
+   ]
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "move",
+   "bcsd.move",
+   [
+    "ACE"
+   ]
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "mistakes",
+   "bcsd.mis.knees",
+   []
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "mistakes",
+   "bcsd.mis.back",
+   []
+  ],
+  [
+   "Atlas Stones",
+   "mistakes",
+   "as.mis.away",
+   []
+  ],
+  [
+   "Yoke Walk",
+   "setup",
+   "yoke.setup",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Yoke Walk",
+   "move",
+   "yoke.brace",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Yoke Walk",
+   "tips",
+   "yoke.steps",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Yoke Walk",
+   "mistakes",
+   "yoke.mis.stride",
+   [
+    "BarBend"
+   ]
+  ],
+  [
+   "Tire Flip",
+   "move",
+   "tf.lift",
+   [
+    "Hindle i in. (Sports Med Open 2019)"
+   ]
+  ],
+  [
+   "Wrist Curl (hantle)",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Reverse Wrist Curl (hantle)",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Cable Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "One-Arm Dumbbell Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "One-Arm Dumbbell Reverse Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Barbell Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Barbell Reverse Wrist Curl",
+   "mistakes",
+   "wr.mis.lift",
+   []
+  ],
+  [
+   "Wrist Roller",
+   "setup",
+   "wroll.setup",
+   [
+    "Fitness Volt"
+   ]
+  ],
+  [
+   "Wrist Roller",
+   "mistakes",
+   "wroll.mis.drop",
+   []
+  ],
+  [
+   "Wrist Roller",
+   "mistakes",
+   "wroll.mis.arms",
+   []
+  ],
+  [
+   "Plate Pinch",
+   "mistakes",
+   "pinch.mis.handle",
+   [
+    "Fitness Volt"
+   ]
+  ]
+ ],
+ "usunieteOdwolania": [
+  [
+   "Front Cone Hops",
+   "plyo.coneFwd.stand",
+   "pep-program"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "bmbt.setup",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "scoop.move",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "bmbt.armsStraight",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "mb.mis.armsOnly",
+   "hk-blob-throw"
+  ],
+  [
+   "Medicine Ball Scoop Throw",
+   "bmbt.mis.bentArms",
+   "hk-blob-throw"
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "bcsd.setup",
+   "elitefts-eight-drag"
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "bcsd.move",
+   "elitefts-eight-drag"
+  ],
+  [
+   "Bear Crawl Sled Drag",
+   "bcsd.mis.knees",
+   "elitefts-eight-drag"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.setup",
+   "bos-yoke"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.brace",
+   "bos-yoke"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.steps",
+   "bos-yoke"
+  ],
+  [
+   "Yoke Walk",
+   "yoke.mis.stride",
+   "bos-yoke"
+  ],
+  [
+   "Wrist Roller",
+   "wroll.setup",
+   "bos-wrist-roller"
+  ],
+  [
+   "Wrist Roller",
+   "wroll.move",
+   "bos-wrist-roller"
+  ]
+ ],
+ "niebyle": {
+  "bos-yoke": "Bells of Steel — blog producenta sprzętu; szczebel nierozstrzygnięty (jak A2/A3), rozstrzygnięcie koordynatora 09.11.2026: blog producenta sprzętu = 5",
+  "bos-wrist-roller": "Bells of Steel — blog producenta sprzętu (jak bos-yoke)",
+  "elitefts-eight-drag": "EliteFTS (M. Roy) — autor bez sprawdzalnych kwalifikacji trenerskich na stronie (STAN-A4: decyzja z góry)",
+  "hk-blob-throw": "fragment książki NSCA (Human Kinetics, oprac. J. Dawes) — źródło książkowe bez nieprzezroczystego identyfikatora dysk-kN (decyzja właściciela 02.11.2026 ~08:00; jak bmbt.armsStraight w P2); kwalifikacji opracowującego na stronie nie sprawdzono",
+  "pep-program (Front Cone Hops, plyo.coneFwd.stand)": "PEP opisuje ustawienie tylko pośrednio (z polecenia skoku) — badacz W2: „warunkowo, do oceny recenzenta”; nierozstrzygnięte"
+ },
+ "bezUstawieniaLubRuchu": [
+  "Front Cone Hops",
+  "Single-Leg Lateral Hop",
+  "Lateral Bound",
+  "Supine Chest Throw",
+  "Bear Crawl Sled Drag",
+  "Log Lift",
+  "Yoke Walk",
+  "Tire Flip",
+  "Wrist Roller"
+ ],
+ "pominieteBezBledu": [
+  "One-Arm Kettlebell Jerk",
+  "One-Arm Kettlebell Swings",
+  "Single Leg Push-Off",
+  "Wrist Curl (hantle)",
+  "Reverse Wrist Curl (hantle)",
+  "Cable Wrist Curl",
+  "One-Arm Dumbbell Wrist Curl",
+  "One-Arm Dumbbell Reverse Wrist Curl",
+  "Barbell Wrist Curl",
+  "Barbell Reverse Wrist Curl"
+ ],
+ "wstrzymane": {
+  "One-Arm Kettlebell Clean and Jerk": "„ta sama faza” (zdania zarzutu z Kettlebell Clean i podrzutu z One-Arm Kettlebell Jerk) — decyzja audytora z W1 nierozstrzygnięta w docs/18; bez niej karta ma tylko kbcj.move",
+  "Depth Jump": "pytanie P2 do koordynatora z 03.11.2026 nierozstrzygnięte: Depth Jump w katalogu = wskok na drugą skrzynię, źródła opisują odbicie z podłogi (STAN-g3-moc)",
+  "Turkish Get Up": "w P2 (03.11.2026) jawnie „do decyzji koordynatora”: sygnały zestawu ogólnego tgu.* i wygaszenie ostatniego użycia tgu.eyes (pilnowane też testem lokalizacji pt/pt-BR) — nierozstrzygnięte w docs/18; karta W1 po przeliczeniu spełnia regułę partii (Catalyst + ACE, błąd ACE ProSource + StrongFirst)",
+  "Medicine Ball Scoop Throw": "jedyne źródło wyskoku (hk-blob-throw, fragment książki u Human Kinetics) niebyłe — strona bez kwalifikacji opracowującego i bez daty (odczyt 09.11.2026); bez wyskoku karta byłaby kopią Backward Medicine Ball Throw (badacz W2: „Scoop vs Backward — prawie ta sama karta”, duplikat w katalogu do decyzji koordynatora)"
+ },
+ "otwarte": [
+  "Kettlebell Sumo High Pull",
+  "One-Arm Kettlebell Split Jerk",
+  "Kettlebell Pirate Ships",
+  "Bottoms-Up Clean From The Hang Position",
+  "Dumbbell Clean",
+  "Alternate Leg Diagonal Bound",
+  "Bench Jump",
+  "Single-Leg Stride Jump",
+  "Side to Side Box Shuffle",
+  "Dumbbell Seated Box Jump",
+  "Double Leg Butt Kick",
+  "Single Leg Butt Kick",
+  "Star Jump",
+  "Side Standing Long Jump",
+  "Side Hop-Sprint",
+  "Single-Leg Hop Progression",
+  "Box Skip",
+  "Kneeling Jump Squat",
+  "Lateral Box Jump",
+  "Frog Hops",
+  "Sled Forward Drag with Press",
+  "Sled Overhead Backward Walk",
+  "Sled Drag (Harness)",
+  "One-Arm Medicine Ball Slam",
+  "Sledgehammer Swings",
+  "Spider Crawl",
+  "Supine One-Arm Overhead Throw",
+  "Supine Two-Arm Overhead Throw",
+  "Keg Load",
+  "Circus Bell",
+  "Jefferson Squat",
+  "Conan's Wheel",
+  "Sandbag Load",
+  "Power Stairs",
+  "Dumbbell Lying Pronation",
+  "Dumbbell Lying Supination",
+  "Behind-the-Back Barbell Wrist Curl",
+  "Reverse Plate Curls"
+ ],
+ "noweZrodla": [
+  "ace-120",
+  "ace-234",
+  "ace-5765",
+  "barbend-atlas",
+  "barbend-kb-snatch",
+  "elitefts-backward-pull",
+  "elitefts-drag-variations",
+  "fv-plate-pinch",
+  "hindle-2019-strongman",
+  "nasm-lunge-jump",
+  "nismat-lat-jump-cone",
+  "pep-program",
+  "rep-sled-pull",
+  "sf-bolyard-kur",
+  "sf-chains-dbl-snatch",
+  "sf-lions-roar-snatch",
+  "sf-pak-clean",
+  "sf-tsar-snatch"
+ ],
+ "noweOrganizacje": [
+  "Hindle i in. (Sports Med Open 2019)",
+  "NISMAT",
+  "Santa Monica Sports Medicine Research Foundation"
+ ],
+ "zestawyZmienione": [
+  "Split Jump"
+ ]
+}

@@ -1224,6 +1224,28 @@
         }
       }
     },
+    "lunge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+      "sha": "5e1117f7f637",
+      "slad": "arkusze side+front 21 kadrów, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor ciężaru/miednicy gładki, klatki 5 kart identyczne z integracja-1-1 (porównanie JSON); BSS (sztanga): tor sztangi pionowy, Smith: wzdłuż prowadnicy; Barbell Step Up: tor sztangi ukośny w górę i w przód nad stopę na podwyższeniu",
+      "uwagi": "wycofany lunge.mis.kneeIn z Split Squat, Lunges (sztanga), Barbell Walking Lunge, Barbell Step Up (zmienione tylko pole bledy; powody bledy_bez_animacji lean/push/drop sensowne); rząd lunge.mis.kneeIn w BSS (sztanga) i Smith identyczny z BSS (hantle), widoczny w widoku z przodu; uproszczenie wariant sprzętu uczciwe co do ruchu; 0 K/W; merytoryka źródeł u badacza"
+    },
+    "leg_isolation": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "kto": "audytor — recenzja niezależna ruchu i śladu toru, partia B2 (figury/b2-nogi @ 01953ee4), 09.11.2026; raport docs/research/recenzje/b2-nogi-figury-audytor-2026-11-09.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia B2, 09.11.2026; rodzina nadal planned (nie wyświetlana)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+      "sha": "bd7fc79f9bc6",
+      "slad": "arkusz 21 kadrów (u co 0,05), side, ślad trailFor (kopia arkusz-slad.mjs z łatą statusu planned w katalogu tymczasowym); tor miednicy jednym gładkim łukiem 32,8 → 14,5 cm, barki 9,5–9,6 cm, pięty 9,6–11,2 cm; 01953ee4",
+      "uwagi": "Slider Hamstring Curl: most w całym ruchu — linia bark–biodro–kolano 2,5–3,3° (geometria), kolano 100 → 11,8°, checkFrame 0/41; jointAngles().hip bez znaku (|5,4–8,8°|); błąd ballcurl.mis.sag bez animacji — powód sensowny; 0 K/W"
+    },
     "shrug": {
       "werdykt": "wyswietlana",
       "data": "2026-11-09",
@@ -3919,6 +3941,167 @@
       "kto": "audytor — recenzja niezależna L-047, 09.11.2026, gałąź lok/przeklad-a4a @ f0dfbeac",
       "sha": "8e96dc52326f",
       "uwagi": "Źródła przeczytane 09.11.2026: FV Tuck Crunch, wskazówka po krokach: „Keep your head neutral and use your abs to control the movement.”; ACE #243 Step 2: „avoid flexing your head too far forward”. Oba popierają błąd: głowa prowadzi ruch zamiast brzucha (2 źródła szczebla 4, różne serwisy; autor FV ma certyfikat ACE, ale to osobny serwis i osobny tekst). Pole miejsce w data/zrodla/cues.json cytuje teraz właściwe zdanie FV. Niuans bez wagi blokującej: ACE mówi o zginaniu głowy „za daleko”, zdanie mówi o wysuwaniu; dla użytkownika kierunek ten sam (głowa nie wyprzedza tułowia), uproszczenie zgodne kierunkowo. Zdanie naturalne, jak u trenera; bez liczb, nazw źródeł i twierdzeń o zdrowiu. Nie przeczy setup/move/crunch.lowBack; karta nie mówi o dłoniach za głową, więc wariant B jest właściwy. Przekłady (próbka de, fr, es, ru, ja, zh-Hant oraz cs, ro, pt, pt-BR, ko, uk) znaczeniowo zgodne z PL/EN; cs i ro nie znaczą już „ciągnąć za szyję”; es-419 dziedziczy z es (lib/cues: scalenie es + es-419), brzmienie es poprawne także dla Ameryki Łacińskiej. Forma ru i zh-Hant zgodna z innymi błędami karty."
+    },
+    "Split Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 174",
+      "uwagi": "Niska: miejsce NSCA przy split.setup/bss.move to „Teaching cues” s. 44–45, nie „table 2”.",
+      "sha": "c778c8ec9faa"
+    },
+    "Lunges (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 354 + ACE 8",
+      "sha": "5d8455f12883"
+    },
+    "Barbell Walking Lunge": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; lunge2.mis.lean: NSCA PTQ tab. 1 + Catalyst 600 (uproszczenie: ciężar nad głową → sztanga na plecach, potwierdzone)",
+      "sha": "3818764a3055"
+    },
+    "Barbell Step Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana po usunięciu stepup.mis.push (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; stepup.mis.drop potwierdzone (Catalyst 560 + HK); stepup.mis.push usunięte z karty decyzją koordynatora 09.11.2026 (zostaje wyłącznie zatwierdzony materiał — bez rundy 2)",
+      "uwagi": "Usunięte stepup.mis.push (sprzeczność z ACE 28 „Push off with the trailing leg”); sprzeczność na karcie Step Up — otwarta pozycja P2 (docs/21).",
+      "sha": "f6d8ed690fd4"
+    },
+    "Bulgarian Split Squat (sztanga)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; uproszczenie hantle → sztanga potwierdzone; lunge.mis.kneeIn: NASM BSS + NSCA PTQ tab. 1",
+      "uwagi": "Niska: dopisać nsca-ptq-lunge (tab. 1 „Knee Caves Inward”) przy lunge.mis.kneeIn; ExRx nieprzeczytane w tej recenzji (403).",
+      "sha": "b7d69b6803ae"
+    },
+    "Smith Machine Bulgarian Split Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; uproszczenie hantle → suwnica Smitha potwierdzone; lunge.mis.kneeIn: NASM BSS + NSCA PTQ tab. 1",
+      "uwagi": "Niska: jak Bulgarian Split Squat (sztanga).",
+      "sha": "b7d69b6803ae"
+    },
+    "Slider Hamstring Curl": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista sesji B #4 (figury/b2-nogi)",
+      "recenzent": "badacz-merytoryczny (sesja koordynatora linii 1.1, niezależny)",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia B2, runda 1 (01953ee4), 09.11.2026; „biodra cały czas w górze” i ballcurl.mis.sag: NISMAT + NCSF (wprost), ACE 59",
+      "uwagi": "Niska: „kolana ugięte” w slcurl.setup wprost tylko NISMAT; ACE 59/NCSF to wariant piłki (nazwane uproszczenie).",
+      "sha": "d4048f0a72f5"
+    },
+    "Kettlebell Clean": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; EN kbb.cleanMove „as your hips snap through” = wyprost bioder (BarBend Steps 2–4, StrongFirst Pak); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "ba3a64a7651d"
+    },
+    "Kettlebell Snatch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; StrongFirst (Toshner, Macek) + BarBend; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: miejsce barbend-kb-snatch przy kbb.bellSetup nadal „Step One” — powinno być: sekcja progresji Kettlebell Swing.",
+      "sha": "075672f7c818"
+    },
+    "Double Kettlebell Push Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; CrossFit Essentials (Martone) + BarBend (Dewar, CSCS); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: miejsce cf-dkb-pp-jerk przy pp.legs nadal cytuje zdanie z sekcji Jerk.",
+      "sha": "6fe0557af3f0"
+    },
+    "One-Arm Kettlebell Push Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; uproszczenie dwa → jeden kettlebell potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "uwagi": "Niska, dane: jak Double Kettlebell Push Press (miejsce przy pp.legs).",
+      "sha": "4044c2cbfc23"
+    },
+    "Double Kettlebell Snatch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; uproszczenia potwierdzone; nowe brzmienie dblSnatchMove w granicach źródeł; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "bd0269dc441b"
+    },
+    "Split Jump": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; ACE 234 + NASM; zastąpienie zrecenzowanego zestawu ogólnego kartą bez zastrzeżeń; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "52d32028df58"
+    },
+    "Lateral Cone Hops": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; ACE 120 + PEP + NISMAT (szczebel 4); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "cd2b4894506d"
+    },
+    "Backward Drag": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; sled.backGrip poprawione (sama lina — REP + EliteFTS); sled.backPedal: EliteFTS Bryant + Torque s. 62, uproszczenie pas → lina potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "f5f2e5deeb83"
+    },
+    "Atlas Stones": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; as.extend „wypchnij biodra w przód i wstań” = BarBend Step 3 wprost + Hindle 2019 (szczebel 2) faza z ud do wyprostu; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "74d3aa8a45bf"
+    },
+    "Plate Pinch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
+      "autor": "programista A4b",
+      "recenzent": "badacz-merytoryczny",
+      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; pinch.hold „aż chwyt zacznie słabnąć” = Fitness Volt „until your grip feels tired”; uproszczenie marsz → stanie potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
+      "sha": "52a05d6f2dd1"
     },
     "Shrugs (sztanga)": {
       "werdykt": "wyswietlana",

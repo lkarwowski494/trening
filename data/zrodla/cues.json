@@ -590,6 +590,22 @@
    "level": 3,
    "kind": "study"
   },
+  "Human Kinetics": {
+   "name": "Human Kinetics — fragmenty książek o treningu (us.humankinetics.com)",
+   "level": 4,
+   "kind": "site",
+   "warunkowo": "fragment książki, którego autor jest trenerem z kwalifikacjami; strona bez takiego autora — szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)"
+  },
+  "NCSF": {
+   "name": "National Council on Strength and Fitness — blog szkoleniowy (ncsf.org)",
+   "level": 4,
+   "kind": "org"
+  },
+  "NISMAT": {
+   "name": "NISMAT — instytut medycyny sportowej przy szpitalu Lenox Hill (materiał edukacyjny placówki; nismat.org)",
+   "level": 4,
+   "kind": "site"
+  },
   "Hoist Fitness": {
    "name": "Hoist Fitness — instrukcje własnych maszyn (producent maszyn; przy maszynie innego producenta — uproszczenie)",
    "level": 4,
@@ -599,6 +615,21 @@
    "name": "Virginia Mason Franciscan Health — materiały fizjoterapii systemu szpitali (vmfh.org; jawne firmowanie placówki)",
    "level": 4,
    "kind": "site"
+  },
+  "Santa Monica Sports Medicine Research Foundation": {
+   "name": "Santa Monica Sports Medicine Research Foundation — program PEP (dokument firmowany; kopia udostępniona przez UC Davis Health)",
+   "level": 4,
+   "kind": "site"
+  },
+  "NISMAT": {
+   "name": "Nicholas Institute of Sports Medicine and Athletic Trauma (Lenox Hill Hospital) — opisy ćwiczeń firmowane przez instytut",
+   "level": 4,
+   "kind": "site"
+  },
+  "Hindle i in. (Sports Med Open 2019)": {
+   "name": "Hindle, Lorimer, Winwood, Keogh (Bond University, University of the Sunshine Coast) — przegląd systematyczny biomechaniki ćwiczeń strongman, Sports Medicine – Open 2019 (użyty tylko opis faz ruchu)",
+   "level": 2,
+   "kind": "study"
   }
  },
  "sources": {
@@ -3681,6 +3712,67 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8637269/",
    "level": 3
   },
+  "ace-59": {
+   "org": "ACE",
+   "title": "stability ball hamstring curl",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/",
+   "level": 4
+  },
+  "ace-8": {
+   "org": "ACE",
+   "title": "forward lunge",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/",
+   "level": 4
+  },
+  "catalyst-174": {
+   "org": "Catalyst Athletics",
+   "title": "Split Squat",
+   "url": "https://catalystathletics.com/exercise/174/Split-Squat/",
+   "level": 4
+  },
+  "catalyst-354": {
+   "org": "Catalyst Athletics",
+   "title": "Lunge",
+   "url": "https://catalystathletics.com/exercise/354/Lunge/",
+   "level": 4
+  },
+  "catalyst-560": {
+   "org": "Catalyst Athletics",
+   "title": "Step up",
+   "url": "https://www.catalystathletics.com/exercise/560/Step-up/",
+   "level": 4
+  },
+  "catalyst-600": {
+   "org": "Catalyst Athletics",
+   "title": "Overhead Walking Lunge",
+   "url": "https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/",
+   "level": 4
+  },
+  "hk-landow-stepup": {
+   "org": "Human Kinetics",
+   "title": "want to boost your acceleration try this strength move",
+   "url": "https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move",
+   "level": 4,
+   "strona": "odczyt 02.11.2026: hk-landow-stepup | (blok W1) | Landow, Jarmon (Human Kinetics) | 4 | przeliczenie W1; miejsca jak w W1 (drive the foot into the box; controls his descent)"
+  },
+  "ncsf-single-leg-ball-curl": {
+   "org": "NCSF",
+   "title": "183 single leg stability ball leg curl",
+   "url": "https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl",
+   "level": 4
+  },
+  "nismat-hamstring-sliders": {
+   "org": "NISMAT",
+   "title": "amp",
+   "url": "https://nismat.org/2023/12/11/hamstring-sliders/amp/",
+   "level": 4
+  },
+  "nsca-ptq-lunge": {
+   "org": "NSCA",
+   "title": "ptq 4.4.9 the undervalued lunge",
+   "url": "https://www.nsca.com/contentassets/24dd7222ed1b4caeb8a0a46b81bd11f3/ptq-4.4.9-the-undervalued-lunge.pdf",
+   "level": 4
+  },
   "ace-331": {
    "org": "ACE",
    "title": "standing crunch",
@@ -3892,6 +3984,114 @@
    "org": "ACE",
    "title": "Stability Ball Sit-ups / Crunches (Exercise Library #68)",
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/68/stability-ball-sit-ups-crunches/",
+   "level": 4
+  },
+  "sf-bolyard-kur": {
+   "org": "StrongFirst",
+   "title": "The Kur for Your Kettlebell Swing and Clean (K. Bolyard, Certified Team Leader; ok. 01.2025)",
+   "url": "https://www.strongfirst.com/the-kur-for-your-kettlebell-swing-and-clean/",
+   "level": 4
+  },
+  "sf-pak-clean": {
+   "org": "StrongFirst",
+   "title": "An Olympic Weightlifting Approach to Coaching the Kettlebell Clean (J. Pak, 2015)",
+   "url": "https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/",
+   "level": 4
+  },
+  "sf-tsar-snatch": {
+   "org": "StrongFirst",
+   "title": "The Snatch: The Tsar of Kettlebell Lifts",
+   "url": "https://www.strongfirst.com/the-snatch-the-tsar-of-kettlebell-lifts/",
+   "level": 4
+  },
+  "barbend-kb-snatch": {
+   "org": "BarBend",
+   "title": "Kettlebell Snatch (A. Polish, NASM-CNC, ACE-CPT, SITA-SIFS; 09.08.2023)",
+   "url": "https://barbend.com/kettlebell-snatch/",
+   "level": 4
+  },
+  "sf-lions-roar-snatch": {
+   "org": "StrongFirst",
+   "title": "Lion's Roar Kettlebell Snatch (P. Macek)",
+   "url": "https://www.strongfirst.com/lions-roar-kettlebell-snatch/",
+   "level": 4
+  },
+  "sf-chains-dbl-snatch": {
+   "org": "StrongFirst",
+   "title": "Improve Your Double Kettlebell Snatch",
+   "url": "https://www.strongfirst.com/improve-your-double-kettlebell-snatch/",
+   "level": 4
+  },
+  "ace-234": {
+   "org": "ACE",
+   "title": "Cycled Split-Squat Jump (#234)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/",
+   "level": 4
+  },
+  "nasm-lunge-jump": {
+   "org": "NASM",
+   "title": "Lunge Jump",
+   "url": "https://www.nasm.org/resource-center/exercise-library/lunge-jump",
+   "level": 4
+  },
+  "ace-120": {
+   "org": "ACE",
+   "title": "Lateral Cone Jumps (#120)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/120/lateral-cone-jumps/",
+   "level": 4
+  },
+  "pep-program": {
+   "org": "Santa Monica Sports Medicine Research Foundation",
+   "title": "The PEP Program: Prevent injury and Enhance Performance — Section III: Plyometrics",
+   "url": "https://health.ucdavis.edu/media-resources/sports-medicine/documents/pdfs/pep-program.pdf",
+   "level": 4
+  },
+  "nismat-lat-jump-cone": {
+   "org": "NISMAT",
+   "title": "Lateral jump over cone (26.05.2020)",
+   "url": "https://nismat.org/2020/05/26/lateral-jump-over-cone/",
+   "level": 4
+  },
+  "rep-sled-pull": {
+   "org": "REP Fitness",
+   "title": "3 Techniques to Elevate Your Sled Pull Workouts (J. Dickson, 23.01.2026, akt. 03.08.2026)",
+   "url": "https://repfitness.com/blogs/training/sled-pull-workout",
+   "level": 4
+  },
+  "elitefts-drag-variations": {
+   "org": "EliteFTS",
+   "title": "Endless Sled Dragging Variations (Z. Even-Esh, 2011/2020)",
+   "url": "https://elitefts.com/blogs/training/endless-sled-dragging-variations-that-will-dramatically-improve-your-performance",
+   "level": 4
+  },
+  "elitefts-backward-pull": {
+   "org": "EliteFTS",
+   "title": "Backwards Sled Pulls for Quad Size and Strength (J. Bryant, 13.06.2016)",
+   "url": "https://elitefts.com/blogs/training/backwards-sled-pulls-for-quad-size-and-strength",
+   "level": 4
+  },
+  "barbend-atlas": {
+   "org": "BarBend",
+   "title": "Strongman Atlas Stone Technique (M. Gill; aktualizacja M. Dewar, CSCS, 26.06.2024; recenzja M. Hooper, CSCS)",
+   "url": "https://barbend.com/strongman-atlas-stone-technique/",
+   "level": 4
+  },
+  "hindle-2019-strongman": {
+   "org": "Hindle i in. (Sports Med Open 2019)",
+   "title": "Hindle i in., The Biomechanics and Applications of Strongman Exercises: a Systematic Review, Sports Medicine – Open 5:49 (2019)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6901656/",
+   "level": 2
+  },
+  "fv-plate-pinch": {
+   "org": "Fitness Volt",
+   "title": "Plate Pinch guide (Matthew Magnante, ACE; data w metadanych 15.11.2023 / 15.09.2024)",
+   "url": "https://fitnessvolt.com/plate-pinch-guide/",
+   "level": 4
+  },
+  "ace-5765": {
+   "org": "ACE",
+   "title": "How to Improve Grip Strength (P. McCall, MS, CSCS; 08.12.2015)",
+   "url": "https://www.acefitness.org/education-and-resources/professional/expert-articles/5765/how-to-improve-grip-strength/",
    "level": 4
   }
  },
@@ -22640,6 +22840,505 @@
     }
    ]
   },
+  "Split Squat": {
+   "setup": [
+    {
+     "c": "split.setup",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "s. 44, Starting Position (one foot in front and one behind the torso, similar to a split stance); Teaching cues, s. 44–45 (Table 2, Completely Stationary — tylko uzasadnienie: wykrok w miejscu = przysiad wykroczny)"
+      ],
+      [
+       "catalyst-174",
+       "opis (split stance)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "catalyst-174",
+       "opis (bend both knees until the back knee lightly touches the floor; reverse)"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "s. 45, Lowering Phase (lower the hips until both knees are bent at about 90°); Upward Phase (push through the front heel); Teaching cues, s. 44–45 (Table 2, Completely Stationary — tylko uzasadnienie: wykrok w miejscu = przysiad wykroczny)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "catalyst-174",
+       "opis (trunk upright)"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "s. 45, Starting Position (torso should be straight)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.lean",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Forward Torso Lean; Table 2, Completely Stationary"
+      ],
+      [
+       "catalyst-174",
+       "opis (trunk upright) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Lunges (sztanga)": {
+   "setup": [
+    {
+     "c": "lunge.bbSetup",
+     "s": [
+      [
+       "ace-8",
+       "Step 1 (bar behind the neck, across the upper back)"
+      ],
+      [
+       "catalyst-354",
+       "opis (barbell on the back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.fwd",
+     "s": [
+      [
+       "ace-8",
+       "Step 2–3 (back knee almost to the floor; push through the front foot)"
+      ],
+      [
+       "catalyst-354",
+       "opis (back knee very lightly touches the floor; push off the front leg)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-8",
+       "Step 2 (back straight through the entire movement)"
+      ],
+      [
+       "catalyst-354",
+       "opis (upright trunk)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.lean",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Forward Torso Lean (Error/Solution); Table 3, Add Resistance (barbell)"
+      ],
+      [
+       "catalyst-354",
+       "opis (maintain an upright trunk) — standard"
+      ],
+      [
+       "ace-8",
+       "Step 2 (lift the chest) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Walking Lunge": {
+   "setup": [
+    {
+     "c": "lunge.bbSetup",
+     "s": [
+      [
+       "ace-8",
+       "Step 1 (wariant: wykrok w przód ze sztangą)"
+      ],
+      [
+       "catalyst-354",
+       "opis (barbell on the back; wariant)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.walk",
+     "s": [
+      [
+       "ace-139",
+       "Step 3–5"
+      ],
+      [
+       "catalyst-600",
+       "opis (one continuous step; wariant: ciężar nad głową)"
+      ],
+      [
+       "catalyst-354",
+       "opis (głębokość: back knee very lightly touches the floor)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "catalyst-600",
+       "opis (upright posture)"
+      ],
+      [
+       "ace-139",
+       "Step 3 (spine extended)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.lean",
+     "s": [
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Forward Torso Lean; Table 3, Make it Mobile (walking lunges)"
+      ],
+      [
+       "catalyst-600",
+       "opis (upright posture) — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: sztanga (NSCA — bez określonego ciężaru, Catalyst #600 — ciężar nad głową)"
+    }
+   ]
+  },
+  "Barbell Step Up": {
+   "setup": [
+    {
+     "c": "lunge.bbSetup",
+     "s": [
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (barbell back squat position along the upper back)"
+      ],
+      [
+       "catalyst-560",
+       "opis (barbell on the back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "stepup.move",
+     "s": [
+      [
+       "catalyst-560",
+       "opis (foot on a box or bench; lift with the raised leg to standing; control the motion back down)"
+      ],
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (drive the foot into the box; controls his descent)"
+      ],
+      [
+       "ace-28",
+       "Step 2–3 (wariant: hantle)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (upright posture through trunk and shoulders)"
+      ],
+      [
+       "ace-28",
+       "Step 2 (torso upright; wariant: hantle)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "stepup.mis.drop",
+     "s": [
+      [
+       "catalyst-560",
+       "opis (control the motion back down … instead of just dropping)"
+      ],
+      [
+       "hk-landow-stepup",
+       "Bottom-Up Step-Up (controls his descent) — standard"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bulgarian Split Squat (sztanga)": {
+   "setup": [
+    {
+     "c": "bss.setup",
+     "s": [
+      [
+       "ace-366",
+       "opis (rear foot on a bench or box about knee height)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 1"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 3; Step 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-366",
+       "opis (keep the back straight)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 2 (upright posture)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.shallow",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (not descending far enough)"
+      ],
+      [
+       "ace-366",
+       "opis (before the knee hits the floor, press the front foot) — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    },
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Over-Pronation of the Foot/Knee Caves Inward (we wszystkich wersjach wykroku)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — potwierdzone przez recenzenta niezależnego: badacz-merytoryczny i audytor, 09.11.2026, docs/research/recenzje/b2-nogi-karty-badacz-2026-11-09.md i b2-nogi-figury-audytor-2026-11-09.md)"
+    }
+   ]
+  },
+  "Smith Machine Bulgarian Split Squat": {
+   "setup": [
+    {
+     "c": "bss.setup",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 1"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 3; Step 4"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-366",
+       "opis (keep the back straight)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 2 (upright posture)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge2.mis.shallow",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (not descending far enough)"
+      ],
+      [
+       "ace-366",
+       "opis — standard"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle"
+    },
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments"
+      ],
+      [
+       "nsca-ptq-lunge",
+       "Table 1, Over-Pronation of the Foot/Knee Caves Inward (we wszystkich wersjach wykroku)"
+      ]
+     ],
+     "uproszczenie": "wariant sprzętu: hantle (błąd z karty Bulgarian Split Squat (hantle); B2 09.11.2026 — potwierdzone przez recenzenta niezależnego: badacz-merytoryczny i audytor, 09.11.2026, docs/research/recenzje/b2-nogi-karty-badacz-2026-11-09.md i b2-nogi-figury-audytor-2026-11-09.md)"
+    }
+   ]
+  },
+  "Slider Hamstring Curl": {
+   "setup": [
+    {
+     "c": "slcurl.setup",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („Lie on your back, bend your knees and place a towel under your feet.”; biodra w górę „in a bridge position”)"
+      ],
+      [
+       "ace-59",
+       "uproszczenie: wariant sprzętu Stability Ball Hamstring Curl; Step 1–2 (na plecach, pięty na piłce, biodra w górę do linii z tułowiem; parafraza)"
+      ],
+      [
+       "ncsf-single-leg-ball-curl",
+       "uproszczenie: wariant sprzętu (piłka, jednonóż); pozycja wyjściowa (biodra w pełnym wyproście, pięty na piłce; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "slcurl.move",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („slide the towel away from your body while extending your legs”; powrót „without dropping your hips”)"
+      ],
+      [
+       "ace-59",
+       "uproszczenie: wariant sprzętu; Step 3–4 (pięty do bioder, powolny powrót; parafraza)"
+      ],
+      [
+       "ncsf-single-leg-ball-curl",
+       "uproszczenie: wariant sprzętu; ruch (pięta do pośladków, powolny wyprost; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („Engage your abdominals…”)"
+      ],
+      [
+       "ace-59",
+       "uproszczenie: wariant sprzętu; Step 1; Tips (napięty brzuch przez całe ćwiczenie; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ballcurl.mis.sag",
+     "s": [
+      [
+       "nismat-hamstring-sliders",
+       "opis („…without dropping your hips”)"
+      ],
+      [
+       "ncsf-single-leg-ball-curl",
+       "uproszczenie: wariant sprzętu; („the hips should not sag”)"
+      ]
+     ]
+    }
+   ]
+  },
   "Cable Crunch": {
    "setup": [
     {
@@ -23867,6 +24566,581 @@
      ]
     }
    ]
+  },
+  "Kettlebell Clean": {
+   "setup": [
+    {
+     "c": "kbb.bellSetup",
+     "s": [
+      [
+       "barbend-kb-clean",
+       "Step 1: Get Set, With Square Hips (bell about a foot in front; hinge and grab the handle)"
+      ],
+      [
+       "sf-bolyard-kur",
+       "Clean setup (toes close to the kettlebell, about one foot-width away; hinge back into an athletic stance)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbb.cleanMove",
+     "s": [
+      [
+       "sf-pak-clean",
+       "Low Swing High Pull (clean = swing redirected vertically into the rack)"
+      ],
+      [
+       "barbend-kb-clean",
+       "Steps 2–4 (hike between the legs, drive hips forward, bell to the front rack)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "kbb.rack",
+     "s": [
+      [
+       "sf-pak-clean",
+       "Elbow and Hand (elbow attached to the rib cage)"
+      ],
+      [
+       "barbend-kb-clean",
+       "Step 4 (elbow against your torso, bell in the rack)"
+      ]
+     ]
+    },
+    {
+     "c": "kb.hips",
+     "s": [
+      [
+       "sf-pak-clean",
+       "Low Swing High Pull (arms assist the leg drive)"
+      ],
+      [
+       "barbend-kb-clean",
+       "Common Mistakes: Curling the bell (trust the power created by your hips)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "kbb.mis.armPull",
+     "s": [
+      [
+       "sf-pak-clean",
+       "Common mistakes: arms overpowering the legs"
+      ],
+      [
+       "barbend-kb-clean",
+       "Common Mistakes: Curling the bell"
+      ]
+     ]
+    },
+    {
+     "c": "kbb.mis.cast",
+     "s": [
+      [
+       "sf-pak-clean",
+       "Common mistakes: casting the bell"
+      ],
+      [
+       "barbend-kb-clean",
+       "Common Mistakes: Casting the bell out"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Snatch": {
+   "setup": [
+    {
+     "c": "kbb.bellSetup",
+     "s": [
+      [
+       "sf-tsar-snatch",
+       "streszczenie na początku (start with a kettlebell on the ground in front of you)"
+      ],
+      [
+       "barbend-kb-snatch",
+       "sekcja progresji Kettlebell Swing (setting the bell about two foot-lengths in front of you; hinge at the hips and grab the handle)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbb.snatchMove",
+     "s": [
+      [
+       "sf-tsar-snatch",
+       "streszczenie na początku (swing it back between your legs … overhead lockout in one uninterrupted motion)"
+      ],
+      [
+       "barbend-kb-snatch",
+       "Step One–Three (one-handed swing → high pull → use the momentum to push your hand through the bell into the top snatch position)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "kbb.punch",
+     "s": [
+      [
+       "sf-lions-roar-snatch",
+       "lista „eightfold path” (fast spear through the handle at about your eyes level)"
+      ],
+      [
+       "barbend-kb-snatch",
+       "Step Three: Push Through; Common Mistakes: Keeping the lifting arm straight"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "kbb.mis.bang",
+     "s": [
+      [
+       "sf-lions-roar-snatch",
+       "spear through the handle — to avoid banging the forearm"
+      ],
+      [
+       "barbend-kb-snatch",
+       "Common Mistakes: Keeping the lifting arm straight (bell flops onto the forearm)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Double Kettlebell Push Press": {
+   "setup": [
+    {
+     "c": "kbb.rackStartDbl",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "The Rack; Push Press (start with the kettlebells firmly racked)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press (accelerate the load from the racked position into a vertical trajectory)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kbpp.move",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Push Press (dip, drive, knees and elbows straight at the end)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press (leg and hip drive, then the upper body pushes overhead)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pp.legs",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Push Press (push the floor away — legs and hips extend and drive the bells up)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press (leg and hip strength accelerate the load)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "kbpp.mis.rebend",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Push Press (no rebend, or „double dip”)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press (knees, ankles and hips are not rebent after the leg drive)"
+      ]
+     ]
+    }
+   ]
+  },
+  "One-Arm Kettlebell Push Press": {
+   "setup": [
+    {
+     "c": "kbb.rackStart",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "The Rack; Push Press (kettlebells firmly racked) (wariant: dwa kettlebelle)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press (from the racked position)"
+      ]
+     ],
+     "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni"
+    }
+   ],
+   "move": [
+    {
+     "c": "kbpp.move",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Push Press (dip, drive, knees and elbows straight) (wariant: dwa kettlebelle)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press"
+      ]
+     ],
+     "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni"
+    }
+   ],
+   "tips": [
+    {
+     "c": "pp.legs",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Push Press (push the floor away — legs and hips extend and drive the bells up) (wariant: dwa kettlebelle)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press"
+      ]
+     ],
+     "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni"
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "kbpp.mis.rebend",
+     "s": [
+      [
+       "cf-dkb-pp-jerk",
+       "Push Press (no rebend) (wariant: dwa kettlebelle)"
+      ],
+      [
+       "barbend-kb-jerk-vs-pp",
+       "The Push Press (not rebent following the initial leg drive)"
+      ]
+     ],
+     "uproszczenie": "źródło CrossFit opisuje wersję z dwoma kettlebellami (wariant liczby odważników), BarBend — dowolny przyrząd; recenzent potwierdza, że ruch jednorącz się nie różni"
+    }
+   ]
+  },
+  "Double Kettlebell Snatch": {
+   "setup": [
+    {
+     "c": "kbb.dblStance",
+     "s": [
+      [
+       "ace-5386-adv-kb",
+       "Double Kettlebell Swing (feet wider than hip-width apart) (uproszczenie: wariant Double Kettlebell Clean — ten sam przerzut obu odważników między nogami)"
+      ],
+      [
+       "barbend-kb-clean",
+       "Double Kettlebell Clean (wider stance to hike both bells between your legs) (uproszczenie: jw.)"
+      ]
+     ],
+     "uproszczenie": "postawa z zarzutu i swingu dwoma kettlebellami (Double Kettlebell Clean) — ten sam przerzut obu kettlebelli między nogami; recenzent potwierdza"
+    }
+   ],
+   "move": [
+    {
+     "c": "kbb.dblSnatchMove",
+     "s": [
+      [
+       "sf-chains-dbl-snatch",
+       "„Using Chains…” (hip finish → bells float up; punch straight up)"
+      ],
+      [
+       "barbend-kb-snatch",
+       "Double Kettlebell Snatch (same technical movements, a bell in each hand) + Step One–Three (uproszczenie: wariant sprzętu Kettlebell Snatch)"
+      ]
+     ],
+     "uproszczenie": "wariant liczby odważników rwania kettlebellem (BarBend: „same technical movements”); recenzent potwierdza"
+    }
+   ],
+   "tips": [],
+   "mistakes": [
+    {
+     "c": "kbb.mis.bang",
+     "s": [
+      [
+       "sf-lions-roar-snatch",
+       "spear through the handle — to avoid banging the forearm (uproszczenie: wariant sprzętu Kettlebell Snatch — BarBend: same technical movements)"
+      ],
+      [
+       "barbend-kb-snatch",
+       "Common Mistakes: Keeping the lifting arm straight (uproszczenie: wariant sprzętu Kettlebell Snatch)"
+      ]
+     ],
+     "uproszczenie": "błąd rwania jednym kettlebellem (Kettlebell Snatch) przeniesiony na dwa — wariant liczby odważników; recenzent potwierdza"
+    }
+   ]
+  },
+  "Split Jump": {
+   "setup": [
+    {
+     "c": "plyo.splitSetup",
+     "s": [
+      [
+       "ace-234",
+       "Step 1: Starting Position (right leg forward, left leg back)"
+      ],
+      [
+       "nasm-lunge-jump",
+       "Step 3: Execute/Drive (step forward into a lunge position)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plyo.splitSwitch",
+     "s": [
+      [
+       "ace-234",
+       "Step 2–4 (launch, swap legs in the air, land with the other leg in front)"
+      ],
+      [
+       "nasm-lunge-jump",
+       "Step 3–4 (jumping to switch leg positions; land … opposite leg forward)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "jump.land",
+     "s": [
+      [
+       "ace-234",
+       "Step 4: Landing (touch down softly; avoid locking out your knees)"
+      ],
+      [
+       "nasm-lunge-jump",
+       "Step 4: Return/Descent (absorbing impact with bent knees)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "jump.mis.stiff",
+     "s": [
+      [
+       "nasm-lunge-jump",
+       "Common Mistakes, pkt 1 (landing with straight knees)"
+      ],
+      [
+       "ace-234",
+       "Step 4 (avoid locking out your knees)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Lateral Cone Hops": {
+   "setup": [
+    {
+     "c": "plyo.coneLat.stand",
+     "s": [
+      [
+       "ace-120",
+       "Step 1 (stand a few inches to the left of the first cone)"
+      ],
+      [
+       "pep-program",
+       "Section III A, Instruction (stand with a cone to your left)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plyo.coneLat.hop",
+     "s": [
+      [
+       "ace-120",
+       "Step 3 (jump sideways and up over the first cone)"
+      ],
+      [
+       "nismat-lat-jump-cone",
+       "opis (jump with both feet sideways over the cone, then back)"
+      ],
+      [
+       "pep-program",
+       "Section III A, Instruction (hop to the left over the cone … repeat hopping to the right)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "jump.land",
+     "s": [
+      [
+       "ace-120",
+       "Step 5 (land softly; avoid locking your knees)"
+      ],
+      [
+       "pep-program",
+       "Section III A (softly landing … bending at the knee); wstęp sekcji III (landing must be soft)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "jump.mis.stiff",
+     "s": [
+      [
+       "ace-120",
+       "Step 5 (avoid locking your knees or quads on your landing)"
+      ],
+      [
+       "pep-program",
+       "Section III A (land bending at the knee) — błąd = zaprzeczenie standardu"
+      ]
+     ]
+    }
+   ]
+  },
+  "Backward Drag": {
+   "setup": [
+    {
+     "c": "sled.backGrip",
+     "s": [
+      [
+       "rep-sled-pull",
+       "Backwards Walk („You can hold the rope in your hands…”)"
+      ],
+      [
+       "elitefts-drag-variations",
+       "lista wariantów („Backward drag with split rope…”) i The Belt (lina z dwoma uchwytami)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sled.backPedal",
+     "s": [
+      [
+       "elitefts-backward-pull",
+       "technika („Lean back, away from the sled, the entire movement.”; „Use your legs.”)"
+      ],
+      [
+       "torque-utg-2024",
+       "s. 62, Harness Backpedal, Instructions 1–2 („…stand facing TANK.”; „Squat low and backpedal legs pulling TANK down runway.”) — uproszczenie: wariant zaczepienia (pas zamiast liny w rękach), por. rep-sled-pull Backwards Walk (lina w rękach albo pas na biodrach — to samo ćwiczenie)"
+      ]
+     ],
+     "uproszczenie": "Torque opisuje ciągnięcie tyłem z pasem zamiast liny w rękach (wariant zaczepienia; ruch nóg i kierunek te same); recenzent potwierdza"
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Atlas Stones": {
+   "setup": [
+    {
+     "c": "as.grip",
+     "s": [
+      [
+       "barbend-atlas",
+       "Step 2 Lap the Stone („Grip the stone as tightly as possible, as if you were performing a chest flye.”; Form tip: jak najwięcej ciała i klatki wokół kamienia)"
+      ],
+      [
+       "hindle-2019-strongman",
+       "Discussion › Atlas Stone Lift, faza 1 (podniesienie kamienia z ziemi chwytem „hugged”, obejmując go)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "as.lap",
+     "s": [
+      [
+       "barbend-atlas",
+       "Step 2 Lap the Stone (kamień do bioder, usiądź w tył, kamień na udach)"
+      ],
+      [
+       "hindle-2019-strongman",
+       "Discussion › Atlas Stone Lift, faza 1 („…the stone resting in the lap”)"
+      ]
+     ]
+    },
+    {
+     "c": "as.extend",
+     "s": [
+      [
+       "barbend-atlas",
+       "Step 3 Drive Up to Load the Stone („Pull the stone up your body as you stand up and drive your hips forward.”)"
+      ],
+      [
+       "hindle-2019-strongman",
+       "Discussion › Atlas Stone Lift, faza 3 (z ćwierćprzysiadu do pełnego wyprostu)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Plate Pinch": {
+   "setup": [
+    {
+     "c": "pinch.setup",
+     "s": [
+      [
+       "fv-plate-pinch",
+       "How to (squeeze or pinch the plates … using all fingers and your thumbs)"
+      ],
+      [
+       "ace-5765",
+       "Farmer's Walk with Weight Plates (grip the edge of a weight plate in a pinch grip; uproszczenie: wariant — marsz)"
+      ]
+     ],
+     "uproszczenie": "drugie źródło (ACE, P. McCall) opisuje marsz z talerzem trzymanym chwytem szczypcowym, nie stanie — wariant; recenzent potwierdza"
+    }
+   ],
+   "move": [
+    {
+     "c": "pinch.hold",
+     "s": [
+      [
+       "fv-plate-pinch",
+       "How to (stand up; squeeze until your grip feels tired)"
+      ],
+      [
+       "ace-5765",
+       "Farmer's Walk with Weight Plates (squeeze the weight as hard as possible; uproszczenie: wariant — marsz)"
+      ]
+     ],
+     "uproszczenie": "drugie źródło (ACE, P. McCall) opisuje marsz z talerzem trzymanym chwytem szczypcowym, nie stanie — wariant; recenzent potwierdza"
+    }
+   ],
+   "tips": [],
+   "mistakes": []
   }
  },
  "open": {
@@ -24013,6 +25287,13 @@
   "Zottman Preacher Curl",
   "Band Pull Apart",
   "Cuban Press",
+  "Split Squat",
+  "Lunges (sztanga)",
+  "Barbell Walking Lunge",
+  "Barbell Step Up",
+  "Bulgarian Split Squat (sztanga)",
+  "Smith Machine Bulgarian Split Squat",
+  "Slider Hamstring Curl",
   "Cable Crunch",
   "Hollow Hold",
   "Sit Up",
@@ -24023,7 +25304,16 @@
   "Stomach Vacuum",
   "Scissor Kick",
   "Cable Russian Twists",
-  "Kettlebell Figure 8"
+  "Kettlebell Figure 8",
+  "Kettlebell Snatch",
+  "Double Kettlebell Push Press",
+  "One-Arm Kettlebell Push Press",
+  "Double Kettlebell Snatch",
+  "Split Jump",
+  "Lateral Cone Hops",
+  "Backward Drag",
+  "Atlas Stones",
+  "Plate Pinch"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
  "luki": {

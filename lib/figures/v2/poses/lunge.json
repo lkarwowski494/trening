@@ -335,54 +335,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "hip",
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.25,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -13.7
-        }
-       }
-      },
-      {
-       "u": 0.5,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -27.5
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -41.2
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -55
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Split Squat (linki)": {
    "kontrakt": "figury-v2/poza@2",
@@ -3405,45 +3358,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -16
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -30
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -40
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Barbell Walking Lunge": {
    "kontrakt": "figury-v2/poza@2",
@@ -4104,45 +4019,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -16
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -30
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -40
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Elevated Back Lunge": {
    "kontrakt": "figury-v2/poza@2",
@@ -6494,54 +6371,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "hip",
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.12,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -45
-        }
-       }
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -45
-        }
-       }
-      },
-      {
-       "u": 0.7,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -20
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -5
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Pistol Squat": {
    "kontrakt": "figury-v2/poza@2",
