@@ -201,7 +201,7 @@ describe('rozciąganie statyczne = poza statyczna (bez pętli i licznika faz)', 
   const mob = wczytaj().filter((p) => MOB.includes(p.rodzina));
   test('każda poza z dwóch identycznych klatek jest w ISOMETRIC, a ruchowa (Cat-Cow) nie; zbiór liczy 16 rozciągań + Dead Hang', () => {
     for (const p of mob) expect([p.cwiczenie, ISOMETRIC.has(p.cwiczenie)]).toEqual([p.cwiczenie, statyczna(p)]);
-    expect(mob.filter(statyczna).length).toBe(16); expect(ISOMETRIC.size).toBe(17);
+    expect(mob.filter(statyczna).length).toBe(16); expect(ISOMETRIC.size).toBe(18); /* 10.11.2026: + Crucifix (chest_fly r1 W2 — izometria w pomiarze ciężar + czas, recenzja r2 wyswietlana) */
   });
   test('pozy statyczne mają w katalogu miarę czasu (utrzymanie), ruchowe — powtórzenia', () => {
     for (const p of mob) expect([p.cwiczenie, metricFor(p.cwiczenie) === 'time']).toEqual([p.cwiczenie, statyczna(p)]);
