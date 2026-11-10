@@ -19,7 +19,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Integracja `integracja-1-1` @ 57406e7f (pociąg-6 = partie 7 + 9, L-129; verify:lekkie 0; tests.yml na 57406e7f — sprawdzić).
 - I (session_01T66VByJ3pTy7VL5yZ6MqCb, polecenia/I.md @ 0c0dd1e3; 19:58 working: scala partię 8, rozwiązuje konflikty; KO-030 przekazane): pociąg-7 = partia 8 @ 213c3f9e na `scal/pociag-7` od 57406e7f; raport po scaleniu, potem PRZEKAZANIE → odbiór → scal-galaz → numeruj-lekcje → verify:lekkie → push.
 - Po pociągu-7 tura 3 kompletna (partie 6–9). Następne z planu: przekład ZB-057, recenzja lokalizacji zbiorcza (rola 09), zadania przed 1.1, audyt (rola 07), E2E.
-- Czeka na właściciela: WG-10 (A próg 50% dla koordynatora / B add_repo przy każdym przekazaniu / C role na żądanie — do odpowiedzi stosowane C), decyzje A–D z raportu 05:00, weto KO-020…KO-029.
+- Właściciel 20:45: KO-031 (docs/49 lista kroków 1.1 → sesja J), KO-032 (PR CI na main → sesja K; scalenie osobną zgodą), KO-033 (weto: wszystko zatwierdzone), KO-034 (WG-10 = C). Czeka na właściciela: zgoda na scalenie PR K do main (po przebiegu dowodowym).
 - Push gałęzi stanu: npm ci w /home/user/trening, symlink node_modules w worktree stanu, verify:lekkie, push (WG-06).
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
@@ -83,7 +83,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 
 ## Czeka na właściciela (raport 05:00 w czacie poprzednika)
 - ZADANIE WŁAŚCICIELA (zapisane 2026-11-10 13:45 UTC, słowa: „Zapisz jako zadanie do mnie dodanie tej stałej reguły. Zrobię to jak wrócę do domu”): stała reguła uprawnień `mcp__claude-code-remote__add_repo`, żeby kolejni koordynatorzy nie prosili o zgodę na `prompts` przy każdym przekazaniu. Droga: wpis `"mcp__claude-code-remote__add_repo"` na liście `permissions.allow` w `.claude/settings.json` repo Trening (plik ma już tę listę — `.claude/settings.json:3` na integracja-1-1); zmiana w repo wchodzi do sesji startujących z gałęzi, która ją zawiera (koordynator startuje z `koordynacja`, sesje robocze z integracji). Wykonalność niesprawdzona: nie potwierdziłem, że klasyfikator trybu auto respektuje regułę projektu dla add_repo — sprawdzi pierwszy następca. Właściciel 13:55: „Przygotuj commit” → gałąź ustawienia/add-repo-prompts (scalenie do integracji po tests.yml) + wpis na koordynacja. Stan: w toku.
-- A. Nocne testy: 12 czerwonych — poprawki CI tylko na integracji, noc biegnie na `main`. Rekomendacja: PR z samymi poprawkami CI na `main` (58d36cc3, fbfe6211, 2fe8bc89, 983d44e8, 944d4e00) po przebiegu dowodowym; B: czekać na 1.1; C: ręczny dispatch na integracji. Szczegóły: archiwum/nocne-diagnoza.md.
+- [ROZSTRZYGNIĘTE 20:45: A → KO-032, B i D → KO-033, C nieaktualne (tura 3 w 4 sesjach od 08:50)] A. Nocne testy: 12 czerwonych — poprawki CI tylko na integracji, noc biegnie na `main`. Rekomendacja: PR z samymi poprawkami CI na `main` (58d36cc3, fbfe6211, 2fe8bc89, 983d44e8, 944d4e00) po przebiegu dowodowym; B: czekać na 1.1; C: ręczny dispatch na integracji. Szczegóły: archiwum/nocne-diagnoza.md.
 - B. Reguła „każda rodzina ma nakładkę” — 2 wyjątki (mobility_floor, kneeling_hinge). Rekomendacja A: wyjątki + badacz w turze 3; B: zmiana reguły.
 - C. Tempo vs limit tygodniowy (reset 15.11 16:00): rekomendacja A: tura 3 w 2 sesjach; B: 3–4 sesje.
 - D. Model scaleń „pociąg” (gałąź zbiorcza od integracji, kilka gałęzi, jeden przebieg CI). Rekomendacja: przyjąć.

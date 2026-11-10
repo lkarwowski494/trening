@@ -1,0 +1,15 @@
+# Sesja J: lista kroków wydania 1.1 (`docs/49-wydanie-1-1.md`) — Trening, linia 1.1
+Koordynator: session_01T66VBvYE2fFbozZur4zSyE. Raporty, PYTANIE i PRZEKAZANIE wysyłasz narzędziem `mcp__claude-code-remote__send_message` z `session_id` = to ID (załaduj przez ToolSearch; ListAgents nie służy do tego). Jeśli dostaniesz wiadomość o zmianie koordynatora — pisz do nowego. Gałąź stanu `koordynacja` tylko do odczytu.
+
+1. Rola: 08-programista w trybie build (tu tylko dokumenty). Prompt roli jest w pierwszej wiadomości po linii `=== PROMPT ROLI ===`. Pierwszeństwo ma CLAUDE.md z gałęzi (przeczytaj najpierw).
+2. Start: gałąź `docs/wydanie-1-1` od `origin/integracja-1-1` (@ 57406e7f lub nowszy — podaj SHA). `npm ci`. Tożsamość commitów według CLAUDE.md.
+3. Zadanie (decyzja właściciela KO-031, 10.11.2026 20:40 UTC, słowa: „tak złóż listę kroków do wydania 1.1”):
+   1. Utwórz `docs/49-wydanie-1-1.md` na wzór `docs/48-zgloszenie-1-0.md`: „Droga do wydania — w skrócie” (etapy, kto), tabela kroków W-01… z kolumnami jak w docs/48 (w tym „Stan”: zrobione / w toku / otwarte / do potwierdzenia, z datą i dowodem). Każdy stan sprawdzony u źródła (repo, ls-remote, przebieg CI) — CLAUDE.md „Stan kroków u źródła”.
+   2. Źródła kroków (przeczytaj, nie z pamięci): CLAUDE.md („Audyty i wydania”, E2E — podział, model pracy L-001, telefon po buildzie); docs/18-przekazanie.md wpisy 06–10.11 (m.in. 08.11 „pełny głęboki audyt na kandydacie”, 1.0.1 TestFlight); docs/zobowiazania.md (pozycje z „1.1”: ZB-023, ZB-025, ZB-036, ZB-037, ZB-057 przekład i inne); rejestr ryzyk w docs/40 (otwarte ryzyka blokują wydanie); `git show origin/koordynacja:docs/koordynacja/stan.md` sekcje „Zadania przed wydaniem 1.1” i „Zadania i stan” (pozycje 7–8); docs/48 Faza B/C (kroki App Store Connect, które powtarzają się przy 1.1 — ścieżki w interfejsie tylko z przeczytanych dziś stron Apple albo oznaczone „nieprzeczytane”, zasada „przejście na sucho”).
+   3. Kroki właściciela osobno, każdy z czasem (ok. X min) i tym, co agent przygotowuje.
+   4. Wpis w docs/18 (10.11.2026, KO-031) z polem `[wdrożenie: …]` wg CLAUDE.md; odnośnik z docs/48 („dla 1.1 zob. docs/49”) — jeśli strażnik dokumentów (check:readme, check:decyzje, kroki-wlasciciela-zrodla) obejmuje nowy plik, dostosuj według jego zasad, nie osłabiaj.
+   5. `npm run verify:docs` kod 0 (wynik do pliku), push. Kryterium „gotowe”: plik na gałęzi, verify:docs 0, lista luk (kroki bez źródła) w raporcie.
+4. Zakazy: tylko dokumenty (bez kodu, testów aplikacji, workflowów); nie scalasz do integracji ani main; nie tworzysz i nie archiwizujesz sesji; nie piszesz na `koordynacja`; nigdy --no-verify ani force-push; bez AskUserQuestion; bez App Store Connect i TestFlight.
+5. Decyzje: tryb „analogia” — rekomendacja, wpis w docs/18 do weta. Fakty o Apple tylko ze stron przeczytanych dziś.
+6. Kontekst i koszt: od 30% okna kończysz krok, stan w `docs/przekazanie/notatki/linia-1-1/STAN-WYDANIE-1-1.md`, push, PRZEKAZANIE. Pułap 15 USD; po 19,5 USD PRZEKAZANIE.
+7. Raport (≤ 10 linii): SHA, verify:docs, liczba kroków (agent / właściciel / Apple), luki, decyzje do weta.
