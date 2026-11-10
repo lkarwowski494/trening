@@ -4,15 +4,16 @@
  *  - podpory (K7): noga podporowa na podłodze w kickbackach (≤ 1 cm), miednica na ławce w flutter kicks (≤ 1 cm), wnikanie ≤ 1 cm;
  *  - zakresy z reguł rodziny (figury-sens.json, progi z danych reguł, K5): rozstaw kolan ≥ 15 cm (Clamshell, Fire Hydrant), miednica nieruchoma ≤ 3 cm (flutter), biodro do linii ≤ 25° (Donkey Kick), plecy −10°…15°;
  *  - znak kąta biodra w kickbackach (przeprost ujemny — poza@2) i ukrycie kąta tam, gdzie ruch nie jest zgięciem biodra;
- *  - prezentacja: fazy, kierunek u, staw; nakładka: wpis bez elementów (powód w nagłówku overlay/glute_floor.ts).
+ *  - prezentacja: fazy, kierunek u, staw; nakładka: jedna linia pleców dla Donkey Kick (reguła plecy_wprost; powody braku pozostałych w nagłówku overlay/glute_floor.ts).
  * Nie jest strażnikiem procesu — przypadek „gałąź z wcześniejszymi zmianami” (L-080) nie dotyczy.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny */
 import * as fs from 'fs';
 import * as path from 'path';
-import { figureSpec, frameAt, keyframeFrame, measuredJoint, measuredAngle, phasesFor, DATA_UI, poseKeys, type PoseData } from '@/lib/figures/v2';
+import { overlayShapes, type Shape, figureSpec, frameAt, keyframeFrame, measuredJoint, measuredAngle, phasesFor, DATA_UI, poseKeys, type PoseData } from '@/lib/figures/v2';
 import { bodyColliders, equipColliders, gap } from '@/lib/figures/v2/colliders';
-import { TECHNIQUE } from '@/lib/figures/v2/overlay';
+import { OVERLAY_MAX_ARCS, OVERLAY_MAX_LINES, TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
+import { GLUTE_FLOOR_TECHNIQUE } from '@/lib/figures/v2/overlay/glute_floor';
 import { techniquesOf } from '@/lib/figures/v2/ui';
 import { jointAngles } from '@/lib/figures/v2/skeleton';
 import { MIN_MEASURED_ROM } from '@/lib/figures/v2/poseData';
@@ -20,6 +21,8 @@ import { MIN_MEASURED_ROM } from '@/lib/figures/v2/poseData';
 const ROOT = path.join(__dirname, '..');
 const poses = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/poses/glute_floor.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
 const reguly = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.glute_floor.reguly;
+const SENS_G = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.glute_floor;
+const rulesAllowed = (k: string): string[] => (SENS_G.warianty[k] as string[]).filter(r => GLUTE_FLOOR_TECHNIQUE.some(d => d.rule === r));
 const US = Array.from({ length: 21 }, (_, i) => +(i / 20).toFixed(2));
 const TOL = 1; /* cm — K7 */
 const KICKBACKI = ['Cable Kickback', 'Hip Extension with Bands', 'Machine Glute Kickback'];
@@ -96,10 +99,40 @@ describe('glute_floor: prezentacja (fazy)', () => {
   });
 });
 
-describe('glute_floor: nakładka techniki', () => {
-  test('wpis zarejestrowany bez elementów (żadna reguła nie jest „ustalona” dla karty ćwiczenia; miednica_bez_przechylu wyłączona po sprawdzeniu pewności 10.11.2026) — ćwiczenia bez elementu', () => {
-    expect(Object.prototype.hasOwnProperty.call(TECHNIQUE, 'glute_floor')).toBe(true); expect(TECHNIQUE.glute_floor).toEqual([]);
-    for (const k of poseKeys('glute_floor')) expect([k, techniquesOf(k)]).toEqual([k, []]);
-    expect(reguly.miednica_bez_skretu.pewnosc).toMatch(/^ustalone/);
+describe('glute_floor: nakładka techniki (plecy_wprost — linia pleców, tylko Donkey Kick)', () => {
+  const ID = 'gluteBackRef';
+  test('dane: rejestr ma jeden element ref (miednica → bark), rzut z boku, reguła plecy_wprost „ustalone” z tym samym cue; wskazówki hext.* należą do reguł plecy i plecy_wprost', () => {
+    expect(TECHNIQUE.glute_floor).toBe(GLUTE_FLOOR_TECHNIQUE);
+    expect(GLUTE_FLOOR_TECHNIQUE.map(d => [d.id, d.kind, d.cue, d.rule, d.views, d.ref])).toEqual([[ID, 'ref', ['hext.range'], 'plecy_wprost', ['side'], { shape: 'segment', from: 'pelvis', to: 'shoulderC' }]]);
+    expect(reguly.plecy_wprost.pewnosc).toMatch(/^ustalone/); expect(reguly.plecy_wprost.cue).toBe('hext.range'); expect(reguly.plecy_wprost.typ).toBe('kregoslup_neutralny');
+    for (const c of ['hext.range', 'hext.mis.arch']) expect([c, SENS_G.wskazowki_na_reguly[c]]).toEqual([c, expect.arrayContaining(['plecy', 'plecy_wprost'])]);
+  });
+  test('reguła plecy_wprost ma tylko Donkey Kick; pozostałe ćwiczenia zostają przy regule plecy (pewność poniżej „ustalone”) — bez elementu', () => {
+    const w = SENS_G.warianty as Record<string, string[]>;
+    expect(Object.keys(w).filter(k => w[k].includes('plecy_wprost'))).toEqual(['Donkey Kick']);
+    for (const k of ['Hip Extension with Bands', 'Cable Kickback', 'Machine Glute Kickback', 'Prone Flutter Kicks']) { expect([k, w[k]]).toEqual([k, expect.arrayContaining(['plecy'])]); expect(rulesAllowed(k)).toEqual([]); }
+    expect(reguly.plecy.pewnosc).not.toMatch(/^ustalone/);
+  });
+  test('pewność miednica_bez_przechylu obniżona do „analogia” (badacz 10.11.2026) — Clamshell i Fire Hydrant bez elementu; miednica_bez_skretu bez rodzaju elementu', () => {
+    expect(reguly.miednica_bez_przechylu.pewnosc).toMatch(/^analogia/);
+    expect(GLUTE_FLOOR_TECHNIQUE.map(d => d.rule)).toEqual(['plecy_wprost']);
+  });
+  test('dobór: element tylko przy hext.range; hext.mis.arch (błąd), plank.brace i brak wskazówek nie dają elementu', () => {
+    expect(techniquesFor('glute_floor', ['hext.range', 'plank.brace']).map(d => d.id)).toEqual([ID]);
+    expect(techniquesFor('glute_floor', ['hext.mis.arch', 'plank.brace', 'hab.hips'])).toEqual([]);
+  });
+  test('geometria: Donkey Kick z boku — jedna linia, bez łuku i tekstu, od miednicy w stronę barku (zgodnie ze szkieletem), w całym ruchu', () => {
+    for (const u of US) {
+      const sp = figureSpec('Donkey Kick')!; const ln = overlayShapes(sp, u, 'side', [ID]); expect([u, ln.length]).toEqual([u, 1]);
+      const l = ln[0] as Extract<Shape, { k: 'line' }>; expect(l.k).toBe('line'); expect(JSON.stringify(ln)).not.toMatch(/"text"/);
+      const sk = frameAt(sp, u).sk; const p = [sk.pelvis[0], sk.pelvis[1]], sh = [sk.shoulderC[0], sk.shoulderC[1]];
+      const d = [l.b[0] - l.a[0], l.b[1] - l.a[1]]; const cross = Math.abs(d[0] * (sh[1] - p[1]) - d[1] * (sh[0] - p[0])) / (Math.hypot(...d) * Math.hypot(sh[0] - p[0], sh[1] - p[1]));
+      expect([u, cross < 1e-3]).toEqual([u, true]);
+    }
+  });
+  test('w rzucie z przodu i z góry brak nakładki; limit czytelności (≤ OVERLAY_MAX_LINES linii, ≤ OVERLAY_MAX_ARCS łuków) we wszystkich ćwiczeniach rodziny', () => {
+    for (const v of ['front', 'top'] as const) for (const u of US) expect([v, u, overlayShapes(figureSpec('Donkey Kick')!, u, v, [ID])]).toEqual([v, u, []]);
+    for (const k of poseKeys('glute_floor')) for (const v of figureSpec(k)!.views) { const all = overlayShapes(figureSpec(k)!, 1, v, [ID]);
+      expect([k, v, all.filter(x => x.k === 'line').length <= OVERLAY_MAX_LINES]).toEqual([k, v, true]); expect([k, v, all.filter(x => x.k === 'poly').length <= OVERLAY_MAX_ARCS]).toEqual([k, v, true]); }
   });
 });

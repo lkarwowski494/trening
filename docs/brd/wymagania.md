@@ -526,6 +526,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny thruster, a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch
     - Wtedy całe powtórzenie (przysiad do równoległego ud lub niżej, wyciskanie z blokadą ciężaru nad barkami i środkiem stopy, powrót ciężaru na barki; przy Clean and Press rwanie do racka i wyciskanie nad głowę) biegnie w jednym przebiegu pod nazwą fazy „Podnoszenie”, dłonie leżą na ciężarze w każdym kadrze, a przy Clean and Press (karta z wskazówką o plecach i ciężarze blisko ciała) rysunek pokazuje linię pleców i odcinek kostka–kolano jako elementy nakładki techniki
+  - Scenariusz: Rodzina pośladków i bioder na podłodze, linkach i maszynie (glute_floor) pokazuje rysunki 7 ćwiczeń (10.11.2026, partia 7 linii 1.1; testy `tests/figures-v2-glute-floor.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Donkey Kick, Fire Hydrant, Clamshell, Cable Kickback, Hip Extension with Bands, Machine Glute Kickback albo Prone Flutter Kicks, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy w kickbackach noga stojąca stoi na podłodze (do 1 cm), w Prone Flutter Kicks miednica leży na ławce, w Clamshell i Fire Hydrant kolana rozchodzą się o co najmniej 15 cm, a przeprost lędźwi (wskazówka o błędzie) jest narysowany jako poza błędu tam, gdzie karta go ma
+    - Oraz gdy Donkey Kick ma na karcie wskazówkę o zakresie ruchu nogi i regułę „ustalone (kierunek)” (nakładka techniki, `lib/figures/v2/overlay/glute_floor.ts`)
+    - Wtedy z boku widać linię pleców od miednicy przez bark; pozostałe ćwiczenia rodziny nie mają elementu (reguły „jedno źródło”, „analogia”, „konwencja”, a skręt miednicy nie ma rodzaju elementu w rzucie)
   - Scenariusz: Rodzina mobilności i rozciągania na podłodze (mobility_floor) pokazuje rysunki 9 ćwiczeń (09.11.2026, partia 2; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_floor (np. Child's Pose, Cat-Cow), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest pozycją statyczną (rozciąganie z przytrzymaniem) albo Cat-Cow
