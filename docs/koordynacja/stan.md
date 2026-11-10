@@ -39,7 +39,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 | 05:30–07:00 | odbiór pociągu-3 (CI 5 części + partia-1) → scalenie | koordynator / sesja 08 przy czerwonym | tests.yml scal/pociag-3 | — |
 | 07:00–09:00 | partia-2: dociągnięcie integracji (sesja), CI, scalenie | nowa sesja 08 | pociąg-3 scalony | — |
 | 10:00–12:00 | raporty końcowe P-4, P-5 → scalenia (pociąg) | P-4, P-5 | — | — |
-| od ~12:00 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — liczba sesji wg decyzji C | nowe sesje partii (wzór: polecenia/prompt-p5.txt) | decyzja C | decyzja C |
+| od ~12:00 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — liczba sesji wg decyzji C | nowe sesje partii (wzór: polecenia/prompt-p5.md) | decyzja C | decyzja C |
 | po turze 3 | przekład nowych tekstów (ZB-057), recenzja lokalizacji zbiorcza, zadania przed 1.1 (niżej), audyt, E2E | — | — | Approve TF |
 | 14:00 | linia dzienna | koordynator | — | — |
 
