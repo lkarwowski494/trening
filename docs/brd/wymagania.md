@@ -488,6 +488,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
+  - Scenariusz: Rodzina prostowania tułowia (back_extension) pokazuje rysunki 3 ćwiczeń (10.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-back-extension.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Back Extension, Reverse Hyperextension albo Lower Back Curl, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy miednica i uda leżą na podpórce ławki (do 1 cm), stopy są pod wałkami (rzymska), miednica Lower Back Curl leży na podłodze, a licznik faz mierzy kąt biodra (Back Extension zaczyna od góry: Opuszczanie, potem Unoszenie); Weighted Ball Hyperextension zostaje bez rysunku v2
+    - Oraz gdy Back Extension ma na karcie wskazówkę o zgięciu w biodrach i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/back_extension.ts`)
+    - Wtedy z boku widać linię i łuk kąta biodra, który rośnie przy opuszczaniu tułowia; pozostałe ćwiczenia rodziny nie mają elementu (zestawy ogólne bez tej wskazówki, reguły poniżej „ustalone”)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

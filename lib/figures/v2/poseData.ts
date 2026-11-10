@@ -16,6 +16,7 @@ const LOAD: Record<string, () => PoseFile> = {
   olympic: () => require('./poses/olympic.json'),
   triceps: () => require('./poses/triceps.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
+  back_extension: () => require('./poses/back_extension.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -75,6 +76,9 @@ export const DATA_UI: Record<string, DataUi> = {
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true, names: { first: 'Obrót', second: 'Powrót' } }, /* r5-W1 08.11.2026: kierownica obraca się, nie unosi */ 'Alternating Deltoid Raise': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' } } } },
+  back_extension: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'],
+    /* u = 0 góra (tułów w linii z nogami), u = 1 dół (biodro ≥ 70°): ruch od u = 0 to opuszczanie; Reverse Hyperextension (u = 0 nogi w dół → u = 1 w linii z tułowiem) i Lower Back Curl (u = 1 barki w górę) mają wysiłek w u: 0 → 1 jak wpis rodziny */
+    exceptions: { 'Back Extension': { names: { first: 'Opuszczanie', second: 'Unoszenie' }, lowerFirst: true } } },
   shrug: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shrug', 'protract'],
     exceptions: { 'Middle Back Shrug': { names: { first: 'Ściąganie', second: 'Powrót' } } } },
   rotator_cuff: { names: { first: 'Obrót', second: 'Powrót' }, lowerFirst: false, joints: ['shRot'],

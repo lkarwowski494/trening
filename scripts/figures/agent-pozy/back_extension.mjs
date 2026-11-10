@@ -18,9 +18,10 @@ import { ramka as ramkaPodloga, chwyt as chwytPodloga } from './core_floor.mjs';
 /** Chwyty rąk zwisających do przodu (poza@2 obrotTulowia 180°: prawa strona osoby w −z): ręce opadają ku podłodze, nie niżej niż 6 cm. */
 const rekaZwis = (Sx, delta) => (sg) => ({ g: [Sx[0] + 6 * Math.cos(delta * R), Math.max(6, Sx[1] - 42), -sg * 8], pole: [0.2, -1, -sg * 0.5] });
 
-/** Rzymska ławka: podpórka bioder (środek [xp, top], kąt kat), nogi proste opadają pod kątem β, wałki za kostkami. */
+/** Rzymska ławka (10.11.2026, partia 4, K7): miednica i uda na podpórce ≤ 1 cm (offN 11,5 → 6,6: było 4,5 cm nad podpórką), tułów na dole wnika ≤ 1 cm (dolDeg −42 → −38: było 1,1 cm); reverse hyper: miednica [21; 8,6] zamiast [19; 9,8] (udo wnikało w krawędź podpórki o 2,7 cm). Test: tests/figures-v2-back-extension-podpora.test.ts.
+ *  Podpórka bioder (środek [xp, top], kąt kat), nogi proste opadają pod kątem β, wałki za kostkami. */
 export function rzymska(cw, o = {}) {
-  const { kat = 45, top = 75, xp = 0, beta = 40, dolDeg = -42, offN = 11.5, offD = -8 } = o; const th_ = kat * R; const n = [Math.sin(th_), Math.cos(th_)];
+  const { kat = 45, top = 75, xp = 0, beta = 40, dolDeg = -38, offN = 6.6, offD = -8 } = o; const th_ = kat * R; const n = [Math.sin(th_), Math.cos(th_)];
   const dd = [Math.cos(th_), -Math.sin(th_)]; const aEnd = [xp - 15 * dd[0], top - 15 * dd[1]]; const pelvis = [aEnd[0] + offD * dd[0] + offN * n[0], aEnd[1] + offD * dd[1] + offN * n[1]]; const L = NOGA_PROSTA;
   const us = [0, 0.25, 0.5, 0.75, 1];
   const A = [pelvis[0] + L * Math.cos(beta * R), pelvis[1] - L * Math.sin(beta * R)]; const rollerC = [A[0] + 9.6 * Math.sin(beta * R), A[1] + 9.6 * Math.cos(beta * R)];
@@ -37,7 +38,7 @@ export function rzymska(cw, o = {}) {
 const odwrotnaEase = (y) => { let lo = 0, hi = 1; for (let i = 0; i < 50; i++) { const m = (lo + hi) / 2; if (ease(m) < y) lo = m; else hi = m; } return Math.round(((lo + hi) / 2) * 1000) / 1000; };
 /** Reverse hyper: tułów leży przodem na podpórce (kat 0), nogi zwisają za jej końcem i unoszą się do linii z tułowiem (gamma = kąt nóg pod poziomem). */
 export function reverseHyper(cw, o = {}) {
-  const { top = 92, xp = 0, gDol = 82, gGora = -2 } = o; const pelvis = [xp + 19, top + 9.8]; const L = NOGA_PROSTA; const us = Array.from({ length: 12 }, (_, i) => odwrotnaEase(i / 11)); /* kostka rusza po łuku o promieniu nogi: klatki co równy kąt (≈ 8°), żeby interpolacja liniowa nie skracała cięciwy i nie zginała kolana w fazach pośrednich */
+  const { top = 92, xp = 0, gDol = 82, gGora = -2 } = o; const pelvis = [xp + 21, top + 8.6]; const L = NOGA_PROSTA; const us = Array.from({ length: 12 }, (_, i) => odwrotnaEase(i / 11)); /* kostka rusza po łuku o promieniu nogi: klatki co równy kąt (≈ 8°), żeby interpolacja liniowa nie skracała cięciwy i nie zginała kolana w fazach pośrednich */
   const mk = (u) => { const g = lerp(gDol, gGora, ease(u)); const a = [pelvis[0] + L * Math.cos(g * R), pelvis[1] - L * Math.sin(g * R)]; const Sx = [pelvis[0] - T(), pelvis[1]]; const gr = (sg) => ({ g: [Sx[0] - 26, top + 4, -sg * 14], pole: [0, -0.5, -sg * 0.4] });
     return K({ u, m: pelvis, p: -90, head: -90, roll: 180, R: { a: [a[0], a[1], -ZS], pod: null, rot: 10, pole: poleLezacy(g) }, L: { a: [a[0], a[1], ZS], pod: null, rot: 10, pole: poleLezacy(g) }, hr: gr(1), hl: gr(-1) }); };
   const fr = us.map(mk);
