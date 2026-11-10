@@ -159,7 +159,6 @@ describe('kb_ballistic p1: start Snatch (hantel) jak do martwego ciągu (W2-r3, 
     expect(tulowStart(STARE_R3[k]) >= TULOW_START_MIN).toBe(false); expect(hantelPrzedKostka(STARE_R3[k]) <= HANTEL_MIEDZY_STOPAMI).toBe(false); expect(lokiecPrzedWyprostem(STARE_R3[k]) <= LOKIEC_START_HANTEL).toBe(false);
   });
 });
-});
 describe('kb_ballistic p1: podrzut kończy się wstaniem (N1, recenzja r1)', () => {
   test.each(['Double Kettlebell Jerk', 'One-Arm Kettlebell Jerk'])('%s: w u = 1 kolana proste (≤ 5°), łokieć ≤ 20°, chwyt nad głową', k => {
     expect([k, ang(k, 1).knee <= 5 && ang(k, 1).elbow <= 20 && dy(k, 1) >= 10]).toEqual([k, true]);
