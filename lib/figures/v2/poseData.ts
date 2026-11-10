@@ -35,6 +35,7 @@ const LOAD: Record<string, () => PoseFile> = {
   pushup_plank: () => require('./poses/pushup_plank.json'),
   mobility_floor: () => require('./poses/mobility_floor.json'),
   mobility_stand: () => require('./poses/mobility_stand.json'),
+  lunge: () => require('./poses/lunge.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -111,6 +112,9 @@ export const DATA_UI: Record<string, DataUi> = {
    * suwnica (Leg Press, Single Leg Press) — u = 0 nogi zgięte, u = 1 platforma wypchnięta: wypychanie 1 s, opuszczanie 2 s. Staw: kolano. */
   leg_machine: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
     exceptions: { 'Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Single Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false } } },
+  /* lunge (partia 9, 10.11.2026): u = 0 stanie, u = 1 dół wykroku, przysiadu na jednej nodze albo bułgarskiego — opuszczanie 2 s, wstawanie 1 s; wejście na stopień (Step Up, Barbell Step Up) ma u = 0 stopę na podłodze, u = 1 stanie na stopniu: wstawanie 1 s, opuszczanie 2 s (strażnik: tests/figures-v2-kierunek-u.test.ts) */
+  lunge: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
+    exceptions: { 'Step Up': { names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Barbell Step Up': { names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false } } },
   /* row (09.11.2026, partia 1): u = 0 ręce w zwisie (łokcie prawie proste), u = 1 łokcie za tułowiem: przyciąganie ciężaru 1 s, opuszczanie 2 s; mierzony staw — łokieć */
   row: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* overhead_press (09.11.2026, partia 1): u = 0 dłonie przy barkach (landmine: gryf przy klatce), u = 1 ręce wyprostowane nad głową / przed sobą: wypychanie 1 s, opuszczanie 2 s; mierzony staw — łokieć.
