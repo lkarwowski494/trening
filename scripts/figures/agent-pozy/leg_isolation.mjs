@@ -62,14 +62,16 @@ export function stojac(cw, o = {}) {
   return poza(RODZINA, cw, spr, fr, []);
 }
 
-const ZACZEP_GUMY = [125, 14, ZS]; /* punkt zaczepu gumy (x, y, z): noga stojaka 125 cm przed osobą, 14 cm nad podłogą, w osi ćwiczonej nogi */
-/** Uginanie nogi na gumie w siadzie na skrzyni: goleń prawej nogi wraca po podłodze pod kolano, pętla gumy między kostkami. */
+const ZACZEP_GUMY = [125, 40, ZS]; /* punkt zaczepu gumy (x, y, z): noga stojaka 125 cm przed osobą, na wysokości kostki ćwiczonej nogi w pozycji startowej (ACG-019: kostka uniesiona, nie przy podłodze), w osi ćwiczonej nogi */
+/** Uginanie nogi na gumie w siadzie na skrzyni (ACG-019, 31.10.2026: „uda i biodra nieruchomo — ruch tylko w kolanie”; regresja d4febb6 — generator rysował ruch pięty po podłodze z udem opuszczającym się):
+ * miednica i udo STOJĄ (kolano w jednym miejscu), goleń prawej nogi obraca się w kolanie od prawie wyprostu (psi 80°, kostka uniesiona przed osobą) do zgięcia 90° (psi 0, kostka pod kolanem 8,6 cm nad podłogą);
+ * guma zaczepiona z przodu na wysokości kostki startowej rozciąga się, gdy pięta idzie pod siedzisko (tryb zaczep_kostki; recenzja 1.1, partia 2, nr 6). */
 export function guma(cw) {
-  const m = [0, 48]; const us = [0, 0.25, 0.5, 0.75, 1]; const aLx = th(); const aL3 = [aLx, 7, -ZS];
-  const x0 = Math.sqrt(dNogi(10) ** 2 - (48 - 8.6) ** 2 - 1.5 ** 2); const x1 = th() + 1;
-  const mk = (u) => { const ax = lerp(x0, x1, ease(u)); const aR3 = [ax, 8.6, ZS]; const grip = (sg) => ({ g: [8, 40, sg * 27], pole: [-0.2, -0.6, sg] });
-    return K({ u, m, p: 0, head: 0, R: { a: aR3, pod: -5, rot: 10, odch: 6, pole: [1, 0.3, 0.05] }, L: { a: aL3, pod: 0, rot: 10, odch: 6, pole: [1, 0.3, -0.05] }, hr: grip(1), hl: grip(-1) }); };
-  /* guma zaczepiona z przodu, tuż nad podłogą (noga stojaka), do kostki ćwiczonej nogi: ruch pięty pod siedzisko ODSUWA kostkę od zaczepu i rozciąga gumę (recenzja 1.1, partia 2, nr 6; poprzednio pętla między kostkami, z których jedna stała) */
+  const E0 = 8.6; const m = [0, 48]; const us = [0, 0.25, 0.5, 0.75, 1]; const ky = E0 + sh(); const kx = Math.sqrt(Math.max(1, th() ** 2 - (m[1] - ky) ** 2)); const knee = [kx, ky];
+  const aL3 = [kx, 7, -ZS];
+  const mk = (u) => { const psi = lerp(80, 0, ease(u)); const a = [knee[0] + sh() * Math.sin(psi * R), knee[1] - sh() * Math.cos(psi * R)]; const aR3 = [r1(a[0]), r1(a[1]), ZS];
+    const hipR = [m[0], m[1], HIP()], kR = [knee[0], knee[1], HIP() + 1]; const grip = (sg) => ({ g: [8, 40, sg * 27], pole: [-0.2, -0.6, sg] });
+    return K({ u, m, p: 0, head: 0, R: { a: aR3, pod: r1(psi * 0.63 - 5), rot: 10, odch: 6, pole: poleKolana(hipR, aR3, kR) }, L: { a: aL3, pod: 0, rot: 10, odch: 6, pole: [1, 0.3, -0.05] }, hr: grip(1), hl: grip(-1) }); };
   const spr = [PODLOGA(-60, 160), { rodzaj: 'skrzynia', x0: -40, x1: -1, top: 38.6 }, { rodzaj: 'slupek', x: ZACZEP_GUMY[0], h: 60 }, { rodzaj: 'guma', mocowanie: 'zaczep_kostki', trzyma: 'R', x: ZACZEP_GUMY[0], y: ZACZEP_GUMY[1], z: ZACZEP_GUMY[2] }];
   return poza(RODZINA, cw, spr, us.map(mk), []);
 }
