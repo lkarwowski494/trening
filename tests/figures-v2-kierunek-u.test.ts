@@ -131,9 +131,14 @@ function miednicaNieMonotoniczna(d: PoseData): boolean {
   return wzrost >= PELVIS_MIN_CM && spadek >= PELVIS_MIN_CM;
 }
 const rzutWSensie = (family: string, key: string): boolean => { const w = SENS[family]?.warianty; const r = w && Object.prototype.hasOwnProperty.call(w, key) ? w[key] : undefined; return Array.isArray(r) && r.some(x => REGULA_RZUTU.test(x)); };
+/** Wyjątek 10.11.2026 (partia 1, overhead_press; docs/18): push press ze sztangą — ugięcie i wybicie nóg (dip and drive) BEZ lotu: stopy cały czas na podłodze (sprawdzane niżej), ciężaru się nie wyrzuca.
+ * Miednica nie jest monotoniczna (−9 cm i powrót), ale wahadło odtwarza wstecz opuszczenie sztangi na barki z amortyzacją kolanami — ruch recenzowany w r3 (audytor 10.11.2026, „wyswietlana”).
+ * Ujednolicenie z push pressem kettlebella (tryb jednokierunkowy) — backlog P1-OHP-2 (docs/21), wymaga nowej recenzji rysunku. */
+const DIP_BEZ_LOTU: Record<string, string[]> = { overhead_press: ['Push Press', 'Push Press - Behind the Neck'] };
+const stopyNaPodlodze = (d: PoseData): boolean => { const y = Array.from({ length: 49 }, (_, i) => keyframeFrame(d, i / 48).sk).map(k => Math.max(k.legs.R.ankle[1], k.legs.L.ankle[1])); return Math.max(...y) - Math.min(...y) < 1; };
 /** Ćwiczenia rodziny, które wymagają trybu jednokierunkowego, a go nie mają (komunikat per ćwiczenie). */
 function bezTrybuJednokierunkowego(family: string, cw: Record<string, PoseData> = plik(family)): string[] {
-  return Object.entries(cw).filter(([k, d]) => d.petla !== 'jednokierunkowa' && d.petla !== 'cykl_lustro' && (miednicaNieMonotoniczna(d) || rzutWSensie(family, k)))
+  return Object.entries(cw).filter(([k, d]) => d.petla !== 'jednokierunkowa' && d.petla !== 'cykl_lustro' && (miednicaNieMonotoniczna(d) || rzutWSensie(family, k)) && !((DIP_BEZ_LOTU[family] ?? []).includes(k) && stopyNaPodlodze(d) && !rzutWSensie(family, k)))
     .map(([k, d]) => `${k}: ruch z lotem lub rzutem (${miednicaNieMonotoniczna(d) ? 'miednica nie monotoniczna' : 'reguła sensu rzutu'}) wymaga petla = jednokierunkowa`);
 }
 describe('strażnik: ruch z lotem lub rzutem wymaga trybu jednokierunkowego', () => {
@@ -142,6 +147,10 @@ describe('strażnik: ruch z lotem lub rzutem wymaga trybu jednokierunkowego', ()
     const sl = { ...plik('sled_throw')['Medicine Ball Slam'], petla: undefined }; expect(miednicaNieMonotoniczna(sl)).toBe(false);
     expect(bezTrybuJednokierunkowego('sled_throw', { 'Medicine Ball Slam': sl })).toEqual(['Medicine Ball Slam: ruch z lotem lub rzutem (reguła sensu rzutu) wymaga petla = jednokierunkowa']);
     expect(bezTrybuJednokierunkowego('pull_up')).toEqual([]);
+  });
+  test('wyjątek DIP_BEZ_LOTU (10.11.2026) jest prawdziwy: ćwiczenie istnieje, miednica nie monotoniczna, stopy na podłodze; skok (Jump Squat) wyjątkiem nie przejdzie', () => {
+    for (const [f, ks] of Object.entries(DIP_BEZ_LOTU)) for (const k of ks) { const d = plik(f)[k]; expect([k, !!d, d && miednicaNieMonotoniczna(d), d && stopyNaPodlodze(d)]).toEqual([k, true, true, true]); }
+    expect(stopyNaPodlodze(plik('plyo')['Jump Squat'])).toBe(false);
   });
   test('Sled Push i Sled Drag (tryb cykliczny, miednica stała) nie wymagają jednokierunkowego', () => { expect(bezTrybuJednokierunkowego('sled_throw')).toEqual([]); });
   test.each(FAMILIES.filter(f => dataUiFor(f) || ONE_WAY_UI[f]))('rodzina %s: każde ćwiczenie z lotem albo rzutem ma petla = jednokierunkowa', f => { expect(bezTrybuJednokierunkowego(f)).toEqual([]); });

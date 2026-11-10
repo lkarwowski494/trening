@@ -5718,7 +5718,7 @@
       "uwagi": "plank.brace (tułów sztywny przy biodrach w górze — zdanie nie przeczy pozycji piki), push.mis.partial ma animowaną pozę błędu (płytsze zejście) — zgodne."
     },
     "Push Press - Behind the Neck": {
-      "rodzina": "ohp",
+      "rodzina": "pushPress",
       "werdykt": "wyswietlana",
       "data": "2026-11-10",
       "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",

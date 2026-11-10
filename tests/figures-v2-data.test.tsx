@@ -8,7 +8,7 @@ import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
-import {
+import { lowerFirstOf,
   figureSpec, frameAt, shapesAt, checkFrame, boxFor, trailFor, staticPositions, phasesFor, tempoFor, measuredJoint, measuredAngle, faultApplicable, errorMarks, uAt, TEMPO,
   errorDefOf, dataErrorId, isDataError, dataErrorIndex, POSE_FAMILIES, poseKeys, poseFile, poseDataFor, hasPoseFile, dataUiFor, DATA_UI, ISOMETRIC, assignAll, FAMILY, type FigError,
 } from '@/lib/figures/v2';
@@ -47,8 +47,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       if (f === 'kb_ballistic' && poseFile(f)!.cwiczenia[k].petla === 'jednokierunkowa') continue; /* 09.11.2026: 9 ćwiczeń kb_ballistic w pętli jednokierunkowej (jedna faza bez czasu): fazy i staw sprawdza tests/figures-v2-kb-ballistic-p1.test.ts */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); else if (f === 'chest_fly') expect([k, measuredJoint(s)]).toEqual([k, /Pullover/.test(k) ? 'shElev' : 'shAbd']); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover — uniesienie (shElev); Crucifix (utrzymanie, ISOMETRIC od r1 W2) nie wchodzi do tej pętli */ /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
-      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
+      expect([k, s.lowerFirst]).toEqual([k, lowerFirstOf(ui, k)]); /* 10.11.2026 (overhead_press): wyjątek ćwiczenia w DATA_UI wygrywa (Pike Push Up: najpierw opuszczanie) */ if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); else if (f === 'chest_fly') expect([k, measuredJoint(s)]).toEqual([k, /Pullover/.test(k) ? 'shElev' : 'shAbd']); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover — uniesienie (shElev); Crucifix (utrzymanie, ISOMETRIC od r1 W2) nie wchodzi do tej pętli */ /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
+      const nz = ui.exceptions?.[k]?.names ?? ui.names; const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual(lowerFirstOf(ui, k) ? [[nz.first, 2000], ['Pauza', 500], [nz.second, 1000], ['Pauza', 500]] : [[nz.first, 1000], ['Pauza', 500], [nz.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; hip_bridge (09.11.2026): u = 1 to wyprost bioder — kąt zgięcia w biodrze maleje; curl i podciąganie: rośnie */
@@ -57,6 +57,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else if (f === 'triceps' || f === 'hip_bridge') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
             /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki) i zgięcie ramienia (pullover) maleją; wyjątek Crucifix usunięty po recenzji r1 (W2): utrzymanie jest ISOMETRIC, więc poza tą pętlą */
       else if (f === 'chest_fly') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* overhead_press (10.11.2026): u = 0 dłonie przy barkach, u = 1 ręce wyprostowane — zgięcie łokcia maleje; Pike Push Up odwrotnie (u = 1 łokcie zgięte, głowa przy podłodze) */
+      else if (f === 'overhead_press') { expect([k, k === 'Pike Push Up' ? measuredAngle(s, 1).deg > measuredAngle(s, 0).deg : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
@@ -133,11 +135,11 @@ describe('błędy z danych (bledy[])', () => {
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
 /* 09.11.2026 (kb_ballistic, partia 1): „zaokrąglone plecy” (mis.roundBack) to zgięcie kręgosłupa — krzywizna grzbietu przy tych samych punktach stawów (miednica, głowa, kolano, kostka, łokieć różnią się < 3 cm). Miara widoczności: zmiana zgięcia kręgosłupa w kadrach błędu ≥ 15° (generator: 26°). Przypadek negatywny: poza poprawna ma 0°. */
 const ZAOKRAGLONE_PLECY_KB = (f: string, k: string, cue: string, err: FigError) => { if (f !== 'kb_ballistic' || cue !== 'mis.roundBack') return false; const d = poseFile(f)!.cwiczenia[k]; const kl = d.bledy[dataErrorIndex(err as never)].klatki; return Math.max(...kl.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) >= 15 && Math.max(...d.klatki.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) < 15; };
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps' || f === 'chest_fly' || f === 'row' || f === 'cable_row') && cue === 'mis.jerk'; /* + row (10.11.2026, partia 1): zestawy ogólne wiosłowań niosą mis.jerk — błąd tempa (rodzina row r3 wyswietlana, audytor 09.11.2026); + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia */
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => (f === 'curl' || f === 'triceps' || f === 'chest_fly' || f === 'row' || f === 'cable_row' || f === 'overhead_press') && cue === 'mis.jerk'; /* + overhead_press (10.11.2026, partia 1): zestawy ogólne landmine (3 ćwiczenia) niosą mis.jerk — błąd tempa, poza nie zmienia; recenzja r3 audytora przyjęła (K15, N1-r2); */ /* + row (10.11.2026, partia 1): zestawy ogólne wiosłowań niosą mis.jerk — błąd tempa (rodzina row r3 wyswietlana, audytor 09.11.2026); + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia */
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
     expect(JERK_TEMPO_RODZINY('chest_fly', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_fly', 'fly.elbows')).toBe(false); expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
-    expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('row', 'row.back')).toBe(false); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.other')).toBe(false); /* + cable_row (09.11.2026, partia 2): zestawy ogólne wiosłowań na linkach niosą mis.jerk */
+    expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('row', 'row.back')).toBe(false); expect(JERK_TEMPO_RODZINY('overhead_press', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('overhead_press', 'ohp.mis.lock')).toBe(false); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.other')).toBe(false); /* + cable_row (09.11.2026, partia 2): zestawy ogólne wiosłowań na linkach niosą mis.jerk */
   });
 });
 
