@@ -23,6 +23,9 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Reguła add_repo na integrację: pytanie A/B/C otwarte; wynik testu (reguła nie działa w auto) jest argumentem do tej decyzji.
 - Push gałęzi stanu: npm ci w /home/user/trening, symlink node_modules w worktree stanu, verify:lekkie, push (WG-06).
 
+## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
+Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikator trybu auto). Poprzednik składa prompty z biblioteki i wysyła je następcy przez send_message, każdy jako osobna wiadomość z nagłówkiem `ROLA <plik> część <i>/<n> · bajtów całości <B> · sha256[:16] <H>` i treścią po linii `=== TREŚĆ ===`. Następca zapisuje treść dosłownie do `<scratchpad>/role/<plik>` (części skleja po kolei), sprawdza bajty i sha256 i odpisuje „ROLE OK” albo listę niezgodności. Zestaw (prompts f701ce9): 08-programista-build.md 51193 B 50d63f46f7a77bba; 07-jakosc-audit.md 77114 B bf8102fa42677cec (2 części); 09-lokalizacja-build.md 59315 B e8c4c5fdf518e603; 10-wydanie-build.md 60161 B a6aaae7d4f38b892. M9 jak dotąd w wiadomości startowej. Biblioteka tylko dla nowej roli (wtedy zgoda właściciela). Limit send_message 64 KiB.
+
 ## Zadania i stan (na chwilę wstrzymania)
 | # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
 |---|---|---|---|---|
@@ -160,3 +163,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 16:41 | właściciel | „Zgoda na dołączenie repo prompts” → add_repo prompts, klon @ f701ce9; prompt 08 z biblioteki = prompt użyty dla H | — |
 | 2026-11-10 16:40 | H | scal/pociag-6 lokalnie: 33eef50b (scalenie partii 7, 23 konflikty), f1b6d8e9 (minima); cele pelnaKarta 498, roleMiesni 564; skróty bez różnic; push ok. 17:30–17:45 | odbiór po PRZEKAZANIU |
 | 2026-11-10 17:12 | koordynator | F2 PRZEKAZANIE: partia-9 @ 1bb3b55c, tests.yml 42857877718 success, 27 commitów Claude, 649b0504 przodkiem → SHA do H (zad. 3.2; uwaga L-080 core_floor); F2 9,02 USD → zarchiwizowana; E2 partia-8 213c3f9e wypchnięta, CI w toku, 35%; H scala, verify:szybkie; koordynator 24,8% | kontrola 17:40; E6 przy 30% |
+| 2026-11-10 17:20 | właściciel | „Tak” na przekazywanie promptów ról następcy przez send_message zamiast add_repo → KO-029; prompty złożone w scratchpadzie (sumy w sekcji „Prompty ról przy przekazaniu”) | wdrożyć przy najbliższym E6 |
