@@ -87,7 +87,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Koordynatora …VBvauzmGEDCSRshqWXa: trig_016Ldmk5VJBWfsq22tYsATFr „kontrola” 12:24 · trig_01WVBcmoZQTH8KkditoCXrwP „linia 14:00” · trig_01R3UtTkk8acJhirPb4u5DsH „linia 05:00” (11.11). Poprzednika: trig_011BoaerWX91aDtVA4eF6aAa „kontrola przekazania” 12:34 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-027. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-028. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -134,3 +134,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 12:27 | koordynator | kontrola: D 27,4% 34,06 USD (partia-7 8e1325e6), E 26,3% 16,85 (scal/posedata-podzial niewypchnięta; partia-8 c198b258), F 28,3% 30,22 (partia-9 e2076a7c), G 29,3% 9,97 completed (czeka); tests.yml integracji b66ecfa 42799733419 success; C2 czeka na zgodę add_repo | kontrola 12:50 |
 | 2026-11-10 12:41 | E | scal/posedata-podzial @ 24b461e3 wypchnięta (verify:szybkie na 4f55b034 kod 1 — test L-080, poprawka 24b461e3; verify:lekkie 0); partia 8: core_standing r1 → poprawki; DO WETA: Barbell Side Bend → V2_WSTRZYMANE (silnik nie pochyla gryfu w płaszczyźnie czołowej), cel 1.1 −1 | — |
 | 2026-11-10 13:02 | koordynator | tests.yml 42817800530 success na 24b461e3; autor Claude, b66ecfa przodkiem; brak recenzji niezależnej → audytor (subagent) przed scal-galaz; D 30,6% 35,87 USD, F 30,9% 34,79 → polecenie PRZEKAZANIA; prompt 08 odzyskiwany z 1. wiadomości D (biblioteka niedostępna) | scalenie po recenzji, następcy D2, F2 |
+| 2026-11-10 13:15 | koordynator | recenzja podziału (audytor, subagent): przyjąć, 0 KRYT/WYS/ŚR; scal-galaz → integracja 038efefc (drzewo = 24b461e3), verify:lekkie 0, push b66ecfa..038efef; sygnał KO-024 do G i E; KO-027 do weta; C2.md i tura3-wspolne.md zaktualizowane (ID koordynatora, SHA) | start C2; tests.yml integracji 038efef |

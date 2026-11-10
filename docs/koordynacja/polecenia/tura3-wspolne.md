@@ -1,5 +1,5 @@
 # Tura 3 (partie 6–9) — zasady wspólne dla sesji C, D, E, F — Trening linia 1.1
-Koordynator: session_01T66VBzARTWMJ7smU82sfJs. Raporty, pytania i PRZEKAZANIE tylko narzędziem `mcp__claude-code-remote__send_message` do tego ID (jeśli dostaniesz wiadomość o zmianie koordynatora — pisz do nowego). Gałąź stanu `koordynacja` tylko do odczytu.
+Koordynator: session_01T66VBvauzmGEDCSRshqWXa (od 12:05 UTC 10.11; wcześniej session_01T66VBzARTWMJ7smU82sfJs). Raporty, pytania i PRZEKAZANIE tylko narzędziem `mcp__claude-code-remote__send_message` do tego ID (jeśli dostaniesz wiadomość o zmianie koordynatora — pisz do nowego). Gałąź stanu `koordynacja` tylko do odczytu.
 
 1. Rola: 08-programista w trybie build. Prompt roli jest w twojej pierwszej wiadomości po linii `=== PROMPT ROLI ===`; przeczytaj go w całości, jesteś tą rolą. Biblioteki prompts nie dołączasz.
 2. Treść techniczna zadania: `docs/koordynacja/polecenia/wzor-partia.md` na gałęzi `koordynacja` (kroki 1–6 dla każdej rodziny, bramka recenzji, przekład tylko szacunek). Koordynator wymieniony we wzorze jest nieaktualny — obowiązuje ID z punktu wyżej. Wzór kompletnego włączenia: rodziny partii 5 na `origin/integracja-1-1` (np. forearm, rotator_cuff: recenzje docs/research/recenzje/partia5-*).
