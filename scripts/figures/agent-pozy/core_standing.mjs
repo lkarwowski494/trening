@@ -123,13 +123,13 @@ function woodchop(cw, { odGory = true, y = 190 }) {
   return zloz(cw, [PODLOGA(-100, 140), { rodzaj: 'wyciag', x: odGory ? 42 : 110, y, z: odGory ? 90 : -70, chwyt: 'lina', trzyma: 'obie' }], fr);
 }
 const sg0 = 0;
-/** Landmine Rotation (r1 W4, 10.11.2026): gryf sztywny o długości L przymocowany do osi P, dłonie na jego końcu (koniec gryfu = środek chwytów; poprzeczny odcinek „sztanga” 50 cm to tylko wpis wymagany przez katalog). Klatka skręca się wokół osi pionowej, więc dłonie (B cm przed klatką)
+/** Landmine Rotation (r1 W4, 10.11.2026): gryf sztywny o długości L przymocowany do osi P, dłonie na jego końcu (koniec gryfu = środek chwytów; krótki odcinek „sztanga” 20 cm przy chwycie, jak w Landmine Press (overhead_press), to wpis wymagany przez katalog). Klatka skręca się wokół osi pionowej, więc dłonie (B cm przed klatką)
  * zataczają łuk: w bok (z = B·sin) i do tyłu (x = B·cos), a ponieważ koniec gryfu leży na sferze o promieniu L wokół P, wysokość wynika z długości gryfu (y = P.y + sqrt(L² − Δx² − z²)) — na bokach koniec jest niżej niż na środku. */
 function landmine(cw) {
   const st = stanie(18, 8); const x0 = 30; const L = 200; const P = [x0 + 176, 5, 0]; const B = 36;
   const fr = (u) => { const tw = lerp(-32, 32, a01(u)); const c = klatkaPiersiowa(st.m, 0, { twist: tw }); const xh = x0 + B * (Math.cos(tw * R) - 1); const zh = B * Math.sin(tw * R) + c.sc[2];
     const y = P[1] + Math.sqrt(L * L - (xh - P[0]) ** 2 - zh * zh); const g = (sg) => ({ g: [xh, y, zh + sg * 3], pole: [0, -0.6, sg * 0.5] }); return K({ u, m: st.m, p: 0, head: 0, twist: tw, R: st.R, L: st.L, hr: g(1), hl: g(-1) }); };
-  return zloz(cw, [PODLOGA(-100, 240), { rodzaj: 'landmine', x: P[0], y: P[1], z: 0, dlugosc: L }, { rodzaj: 'sztanga', podazaZaChwytem: true, talerze: false, dlugosc: 50 }], fr); /* wpis „sztanga” wymusza katalog (requires landmine + barbell); dłonie na jej osi z (chwyt ±0,6 cm od osi) */
+  return zloz(cw, [PODLOGA(-100, 240), { rodzaj: 'landmine', x: P[0], y: P[1], z: 0, dlugosc: L }, { rodzaj: 'sztanga', podazaZaChwytem: true, talerze: false, dlugosc: 20 }], fr); /* wpis „sztanga” wymusza katalog (requires landmine + barbell); 20 cm jak w zrecenzowanym Landmine Press, dłonie razem na jej osi z */
 }
 
 /* ================= wiatrak i bent press ================= */

@@ -47,7 +47,15 @@ describe('core_standing r1: W3 Cable Russian Twists zgodny z kartą (góra plec�
 });
 
 describe('core_standing r1: W4 Landmine Rotation — koniec gryfu po łuku', () => {
-  test.todo('W4 (otwarte, decyzja modelu sprzętu): brak poprzecznego kolidera „bar” — wpis „sztanga” wymusza katalog (requires: landmine + barbell), a chwyt musi leżeć na jej osi z');
+  test('10.11.2026 (W4, druga tura): odcinek „sztanga” przy chwycie ≤ 20 cm (jak zrecenzowany Landmine Press, overhead_press), dłonie razem na końcu gryfu (rozstaw ≤ 12 cm), bez poprzecznego odcinka 50 cm', () => {
+    const k = 'Landmine Rotation'; const lp = frameAt(spec('Landmine Press'), 0.5).props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
+    expect(lp.len).toBe(20);
+    for (const u of US) {
+      const f = frameAt(spec(k), u); const b = f.props.find((p): p is Extract<typeof p, { k: 'barbell' }> => p.k === 'barbell')!;
+      const rozstaw = Math.hypot(...[0, 1, 2].map(i => f.sk.arms.R.grip[i] - f.sk.arms.L.grip[i]));
+      expect([u, 'dlugosc', (b.len ?? 999) <= 20]).toEqual([u, 'dlugosc', true]); expect([u, 'rozstaw', rozstaw <= 12]).toEqual([u, 'rozstaw', true]);
+    }
+  });
   test('koniec gryfu ≤ 3 cm od środka chwytów; długość gryfu stała (łuk sfery), koniec porusza się w bok i zmienia wysokość', () => {
     const k = 'Landmine Rotation'; const z: number[] = [], y: number[] = [];
     for (const u of US) {

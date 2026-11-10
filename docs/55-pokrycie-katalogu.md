@@ -41,49 +41,49 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 527 | 386 | 141 |
-| figura w aplikacji (v2 albo v1) | 531 | 399 | 132 |
-| animowany błąd | 259 | 217 | 42 |
-| wskazówki (własne lub zestaw ogólny) | 570 | 491 | 79 |
-| częste błędy (tekst) | 443 | 373 | 70 |
+| figura v2 w aplikacji | 526 | 386 | 140 |
+| figura w aplikacji (v2 albo v1) | 530 | 399 | 131 |
+| animowany błąd | 258 | 217 | 41 |
+| wskazówki (własne lub zestaw ogólny) | 569 | 491 | 78 |
+| częste błędy (tekst) | 442 | 373 | 69 |
 | role mięśni | 524 | 513 | 11 |
 | pełna karta | 458 | 371 | 87 |
-| figura z aktualną recenzją ruchu | 527 | 386 | 141 |
-| komplet tekstów karty: pl | 632 | 597 | 35 |
-| komplet tekstów karty: en | 632 | 597 | 35 |
-| komplet tekstów karty: cs | 632 | 597 | 35 |
-| komplet tekstów karty: sk | 632 | 597 | 35 |
-| komplet tekstów karty: hu | 632 | 597 | 35 |
-| komplet tekstów karty: ro | 632 | 597 | 35 |
-| komplet tekstów karty: bg | 632 | 597 | 35 |
-| komplet tekstów karty: hr | 632 | 597 | 35 |
-| komplet tekstów karty: sl | 632 | 597 | 35 |
-| komplet tekstów karty: sr | 632 | 597 | 35 |
-| komplet tekstów karty: lt | 632 | 597 | 35 |
-| komplet tekstów karty: lv | 632 | 597 | 35 |
-| komplet tekstów karty: et | 632 | 597 | 35 |
-| komplet tekstów karty: uk | 632 | 597 | 35 |
-| komplet tekstów karty: es | 632 | 597 | 35 |
-| komplet tekstów karty: es-419 | 632 | 597 | 35 |
-| komplet tekstów karty: pt | 632 | 597 | 35 |
-| komplet tekstów karty: pt-BR | 632 | 597 | 35 |
-| komplet tekstów karty: de | 632 | 597 | 35 |
-| komplet tekstów karty: fr | 632 | 597 | 35 |
-| komplet tekstów karty: it | 632 | 597 | 35 |
-| komplet tekstów karty: nl | 632 | 597 | 35 |
-| komplet tekstów karty: sv | 632 | 597 | 35 |
-| komplet tekstów karty: da | 632 | 597 | 35 |
-| komplet tekstów karty: nb | 632 | 597 | 35 |
-| komplet tekstów karty: fi | 632 | 597 | 35 |
-| komplet tekstów karty: tr | 632 | 597 | 35 |
-| komplet tekstów karty: el | 632 | 597 | 35 |
-| komplet tekstów karty: id | 632 | 597 | 35 |
-| komplet tekstów karty: ms | 632 | 597 | 35 |
-| komplet tekstów karty: vi | 632 | 597 | 35 |
-| komplet tekstów karty: ru | 632 | 597 | 35 |
-| komplet tekstów karty: ja | 632 | 597 | 35 |
-| komplet tekstów karty: ko | 632 | 597 | 35 |
-| komplet tekstów karty: zh-Hant | 632 | 597 | 35 |
+| figura z aktualną recenzją ruchu | 526 | 386 | 140 |
+| komplet tekstów karty: pl | 631 | 597 | 34 |
+| komplet tekstów karty: en | 631 | 597 | 34 |
+| komplet tekstów karty: cs | 631 | 597 | 34 |
+| komplet tekstów karty: sk | 631 | 597 | 34 |
+| komplet tekstów karty: hu | 631 | 597 | 34 |
+| komplet tekstów karty: ro | 631 | 597 | 34 |
+| komplet tekstów karty: bg | 631 | 597 | 34 |
+| komplet tekstów karty: hr | 631 | 597 | 34 |
+| komplet tekstów karty: sl | 631 | 597 | 34 |
+| komplet tekstów karty: sr | 631 | 597 | 34 |
+| komplet tekstów karty: lt | 631 | 597 | 34 |
+| komplet tekstów karty: lv | 631 | 597 | 34 |
+| komplet tekstów karty: et | 631 | 597 | 34 |
+| komplet tekstów karty: uk | 631 | 597 | 34 |
+| komplet tekstów karty: es | 631 | 597 | 34 |
+| komplet tekstów karty: es-419 | 631 | 597 | 34 |
+| komplet tekstów karty: pt | 631 | 597 | 34 |
+| komplet tekstów karty: pt-BR | 631 | 597 | 34 |
+| komplet tekstów karty: de | 631 | 597 | 34 |
+| komplet tekstów karty: fr | 631 | 597 | 34 |
+| komplet tekstów karty: it | 631 | 597 | 34 |
+| komplet tekstów karty: nl | 631 | 597 | 34 |
+| komplet tekstów karty: sv | 631 | 597 | 34 |
+| komplet tekstów karty: da | 631 | 597 | 34 |
+| komplet tekstów karty: nb | 631 | 597 | 34 |
+| komplet tekstów karty: fi | 631 | 597 | 34 |
+| komplet tekstów karty: tr | 631 | 597 | 34 |
+| komplet tekstów karty: el | 631 | 597 | 34 |
+| komplet tekstów karty: id | 631 | 597 | 34 |
+| komplet tekstów karty: ms | 631 | 597 | 34 |
+| komplet tekstów karty: vi | 631 | 597 | 34 |
+| komplet tekstów karty: ru | 631 | 597 | 34 |
+| komplet tekstów karty: ja | 631 | 597 | 34 |
+| komplet tekstów karty: ko | 631 | 597 | 34 |
+| komplet tekstów karty: zh-Hant | 631 | 597 | 34 |
 
 ## Rodziny ruchu
 
