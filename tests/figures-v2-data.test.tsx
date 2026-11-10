@@ -38,7 +38,7 @@ const U = Array.from({ length: 13 }, (_, i) => i / 12);
 describe('dane póz: rejestr i podłączenie (logika)', () => {
   test('każda rodzina z plikiem póz: status „gotowa”, wpis DATA_UI, ćwiczenia pliku należą do rodziny, spec z danych (nie z rigu); pull_up ma 11 ćwiczeń', () => {
     expect(DATA_KEYS.filter(([f]) => f === 'pull_up').length).toBe(11);
-    for (const f of READY_POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!(DATA_UI[f] ?? (f === 'plyo' ? ONE_WAY_UI[f] : undefined))]).toEqual([f, true]); /* plyo (10.11.2026, partia 6): wszystkie ćwiczenia w pętli jednokierunkowej — wpis prezentacji w ONE_WAY_UI (decyzja 28.10.2026, poseData.ts), nie DATA_UI */ expect(poseFile(f)!.rodzina).toBe(f); }
+    for (const f of READY_POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!(DATA_UI[f] ?? (f === 'plyo' ? ONE_WAY_UI[f] : undefined))]).toEqual([f, true]); /* plyo (10.11.2026, partia 6): wszystkie ćwiczenia w pętli jednokierunkowej — wpis prezentacji w ONE_WAY_UI (decyzja 28.10.2026, lib/figures/v2/rodziny/plyo.ts), nie DATA_UI */ expect(poseFile(f)!.rodzina).toBe(f); }
     for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(EXERCISE_VIEWS[k]?.views ?? FAMILY[f as keyof typeof FAMILY].views); } /* widoki ćwiczenia nadpisują rodzinę (suwnice tylko z boku, families.ts EXERCISE_VIEWS) */
   });
   test('ćwiczenia rodziny bez danych (Muscle Up, Rope Climb) i spoza katalogu: brak figury v2 (zachowanie jak dotąd), sekcja Technika nie pojawia się z ich powodu', () => {
