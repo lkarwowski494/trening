@@ -1857,6 +1857,32 @@
       ],
       "slad": "Arkusze scripts/figures/arkusz-slad.mjs wygenerowane przez recenzenta r2 samodzielnie na 4c3ece3 i na c0672ee: 8 ćwiczeń × widoki side i front = 16 arkuszy na każdy SHA, 21 kadrów co 0,05, PNG 2100 px obejrzane w pełnej rozdzielczości (Soleus: oba widoki, kadr u = 0,5 powiększony). cmp 4c3ece3 vs c0672ee: 14 arkuszy (7 ćwiczeń × 2 widoki, PNG i HTML) bajtowo identyczne, różni się tylko Standing Soleus And Achilles Stretch (side i front). Bez ciężaru i przyrządu (ściana i stopień to podpory, nie tor): wszystkie 8 to pozycje statyczne (ISOMETRIC), ruch szkieletu 0 cm w u = 0/0,5/1, brak linii śladu (decyzja właściciela 04.11.2026 (4) B: ślad tylko z ciężarem/przyrządem); podpis „odstęp −11,9 cm” w arkuszach to miara odstepCiezaru liczona dla punktu info.trail (miednica) wobec tułowia — artefakt narzędzia bez ciężaru, identyczny na c0672ee i we wszystkich 8 ćwiczeniach.",
       "uwagi": "W1 (r1) usunięte — Standing Soleus And Achilles Stretch @ 4c3ece3, frameAt u = 0/0,5/1 (poza nieruchoma): props floor + wall x 75 (h 250, front) jak Wall Calf Stretch; chwyt (72; 132; ±19), przedramię–ściana −0,3 cm (oba, jak Wall Calf −0,3), łokcie zgięte 56,6° (Wall Calf 63,1°); kolano przednie 25,9°, tylne 13,7° (reguła obie_kolana_lekko 10–30°, stała kolano_lekko_max_deg 30 — spełnione; Wall Calf: tylne 7,9°, przednie 41,9°); pięty i palce obu stóp y = 0 (stopy płasko, karta „obie stopy płasko”, błąd heelUp nie występuje); kąt podudzie–stopa tylnej nogi 59,9°; tułów 22°, głowa x 18,5 (daleko od ściany); checkFrame 0 błędów, przenikanie tylko segmentów sąsiednich (jak w Wall Calf). N2 usunięte: PRZYBLIZENIA Gastrocnemius opisuje stopień z ACG-013 i rozjazd generatora. Zakres zmiany: w poses/mobility_stand.json zmieniony tylko wpis Soleus (porównanie JSON 8 wpisów c0672ee vs 4c3ece3); Standing Gastrocnemius Calf Stretch i 6 pozostałych bez zmian (dane identyczne, arkusze cmp identyczne) — stopień ACG-013 zachowany. Odciski złote: zmieniony tylko mobility_stand/Standing Soleus And Achilles Stretch (svg, raw) z opisem zmiany celowej. Testy (--runInBand): figures-v2-mobility-stand-poprawki-r1 4/4 (na c0672ee 3/4 czerwone — test odtwarza W1), figures-v2-zgodnosc-wsteczna 626/626, figury-generator-odtwarza 9/9, figury-sens-pokrycie 2/2, figures-v2-planned-acg-mobility-stand 5/5, figures-v2-nakladka-mobility-stand 9/9. Backlog (nie blokuje): Ś1 Overhead Triceps Stretch (dłoń za szyją zamiast na środku pleców, ręka pomocnicza nie dociska łokcia — bark 192° > limit 171°), N1 Gastrocnemius (na stopniu tylko palce 4,1 cm). Nakładka standLateralPlumb i pozostałe ustalenia r1 bez zmian (dane i arkusze identyczne). Mięśnie: brak (04.11.2026 (4) B)."
+    },
+    "strongman": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — recenzja r1 (bramka 4, L-047 A, L-050): 0 × KRYTYCZNE/WYSOKIE; Ś1 (uproszczenie sprzętu do zapisu), N1 → backlog; nakładka pusta z poprawnym powodem",
+      "autor": "programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+      "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 strongman (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-strongman-r1-audytor-2026-11-10.md",
+      "sha": "04b91430146d",
+      "liczba": 10,
+      "cwiczenia": [
+        "Yoke Walk"
+      ],
+      "bez_rysunku": [
+        "Atlas Stones",
+        "Keg Load",
+        "Log Lift",
+        "Circus Bell",
+        "Jefferson Squat",
+        "Conan's Wheel",
+        "Tire Flip",
+        "Sandbag Load",
+        "Power Stairs"
+      ],
+      "slad": "Arkusz scripts/figures/arkusz-slad.mjs wygenerowany przez recenzenta r1 samodzielnie na 75777836: Yoke Walk, widok side (jedyny widok rodziny), 21 kadrów co 0,05, PNG 2100 px obejrzany w pełnej rozdzielczości. Ślad = gryf (info.load) w stałym punkcie (−12,2; 133,6 cm) przez cały cykl, odstęp od tułowia 1,6 cm, miednica stała 86,0 cm, tułów 3° od pionu, 0 kolizji (checkFrame).",
+      "uwagi": "Ś1: rysowana sztanga z talerzami zamiast jarzma (katalog: „Jarzmo (yoke)”) — położenie ciężaru i chód zgodne, dopuszczalne jako uproszczenie sprzętu, ale niezapisane (brak wpisu w data/zrodla/figury-ograniczenia-silnika.json); zapisać uproszczenie. N1: kolana stale ugięte (min. zgięcie 31°, podporowa ok. 38°, miednica −18 cm względem stania) — kosmetyczne, backlog. Nakładka pusta: wszystkie reguły strongman „analogia” — uzasadnienie poprawne."
     }
   },
   "karty": {
@@ -7131,6 +7157,17 @@
       "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ 4c3ece3 (poprawki W1 i N2 po r1, od c0672ee), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r2-audytor-2026-11-10.md",
       "sha": "edf062289105",
       "uwagi": "Przeniesione z r1 (rysunek: arkusze cmp identyczne c0672ee vs 4c3ece3; skrót zestawu bez zmian): sb.plane, st.tension, st.noBounce, err st.mis.force — pasują: skłon boczny 20° (≥ 15°), pochylenie w przód 0°, bez ruchu (0 cm); sb.plane wypowiada element nakładki standLateralPlumb (pion od miednicy, tylko z przodu)."
+    },
+    "Yoke Walk": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 strongman), 10.11.2026 — r1",
+      "autor": "badacz merytoryczny (zestaw carry, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+      "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 strongman (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-strongman-r1-audytor-2026-11-10.md",
+      "sha": "21ce36d7bae6",
+      "uwagi": "carry.walk „Idź spokojnym, kontrolowanym krokiem…” pasuje: marsz w cyklu, tułów pionowo (3°), ciężar w stałym miejscu."
     }
   }
 }
