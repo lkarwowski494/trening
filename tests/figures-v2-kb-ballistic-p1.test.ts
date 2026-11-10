@@ -80,6 +80,8 @@ const DOLNY_START_KB = ZARZUT_RWANIE.filter(k => k !== 'Dumbbell Clean');
  * Przypadki negatywne: te same miary na pozach sprzed poprawki (fixture tests/fixtures/kb-ballistic-przed-w1r2.json = lib/figures/v2/poses/kb_ballistic.json @ c92df2c9).
  */
 const STARE: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'kb-ballistic-przed-w1r2.json'), 'utf8')).cwiczenia;
+/** W1-r3 / W2-r3 (recenzja r3 audytora, 10.11.2026): progi w jednym miejscu. */
+const RATIO_PREDKOSCI = 2.2, HANTEL_MIEDZY_STOPAMI = 9, TULOW_START_MIN = 25, LOKIEC_START_HANTEL = 15, SKOK_RWANIA_48 = 9;
 const HIP_WYPROST = 15, LOKIEC_PROSTA = 20, ODSTEP_BLISKO = 15, KROKI = 96;
 const hipR = (d: PoseData, u: number) => jointAngles(keyframeFrame(d, u).sk, 'R');
 /** Pierwsze u, w którym zgięcie bioder ≤ HIP_WYPROST (wyprost bioder), albo null. */
@@ -92,7 +94,7 @@ const odstepCiagu = (d: PoseData): number => { let m = -Infinity; for (let i = 0
 const spodCiezaru = (d: PoseData): number => Math.min(...equipColliders(keyframeFrame(d, 0).props).flatMap(c => (c.k === 'capsule' && /^(db|kb)/.test(c.id) ? [Math.min(c.a[1], c.b[1]) - c.r] : [])));
 describe('kb_ballistic p1: start i ciąg zarzutu i rwania (W1 r1 i W1-r2, recenzja 09.11.2026; K5)', () => {
   test.each(DOLNY_START_KB)('%s: w u = 0 chwyt za linią kostek jak w swingu („przeszły między nogami”, „zamach jak przy swingu”), nie 30 cm przed nimi', k => {
-    const f = fr(k, 0); const ankle = f.sk.legs.R.ankle[0]; const prog = k === 'Snatch (hantel)' ? BODY.toeFwd : 0; /* hantel z podłogi leży nad stopą (nie dalej niż linia palców; rzut z boku nie pokazuje „między stopami”, to z = 8 cm od osi) */ expect([k, f.sk.arms.R.grip[0] - ankle <= prog]).toEqual([k, true]);
+    const f = fr(k, 0); const ankle = f.sk.legs.R.ankle[0]; const prog = k === 'Snatch (hantel)' ? HANTEL_MIEDZY_STOPAMI : 0; /* W2-r3: hantel z podłogi leży między stopami (nie dalej niż 9 cm przed kostką, pod łukiem stopy; nie nad palcami), nie za kostkami jak kettlebell w zamachu */ expect([k, f.sk.arms.R.grip[0] - ankle <= prog]).toEqual([k, true]);
   });
   test('Dumbbell Clean (hantle po bokach ud): w u = 0 chwyt nie dalej niż 25 cm przed kostką', () => {
     const f = fr('Dumbbell Clean', 0); expect(f.sk.arms.R.grip[0] - f.sk.legs.R.ankle[0] <= 25).toBe(true);
@@ -111,6 +113,50 @@ describe('kb_ballistic p1: start i ciąg zarzutu i rwania (W1 r1 i W1-r2, recenz
   });
   test('Snatch (hantel) startuje z podłogi (karta: „postaw hantel między stopami”): w u = 0 spód hantla ≤ 5 cm nad podłogą; dane sprzed poprawki (zawis 56 cm) to nie spełniały', () => {
     expect(spodCiezaru(data('Snatch (hantel)')) <= 5).toBe(true); expect(spodCiezaru(STARE['Snatch (hantel)']) <= 5).toBe(false);
+  });
+});
+/*
+ * W1-r3 (recenzja r3 audytora, 10.11.2026): po wyproście bioder ciężar przyspiesza płynnie (pęd z bioder) — bez przestoju 0,4–0,7 s i bez nagłego skoku prędkości. Karty: „siła idzie z bioder … ręce tylko prowadzą”, „mocno wyprostuj biodra i kolana, a potem poprowadź hantel w górę”.
+ * Miara: stosunek prędkości śladu ciężaru w sąsiednich kadrach 1/48 (większa / mniejsza, mniejsza nie niżej niż 0,5 cm; kadry o prędkości ≤ 2 cm pomijam) od wyprostu bioder do końca ≤ RATIO_PREDKOSCI = 2,2 (jak w przyjętych rwaniach olympic: Power Snatch 2,0, Muscle Snatch 1,9).
+ * Liczone na danych. Przypadek negatywny: pozy sprzed poprawki (fixture kb-ballistic-przed-w1r3.json = d35ce6c4).
+ */
+const STARE_R3: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'kb-ballistic-przed-w1r3.json'), 'utf8')).cwiczenia;
+const slad = (d: PoseData, u: number): number[] => { const f = keyframeFrame(d, u); return (f.info.trail ?? f.info.load) as number[]; };
+const ratioPoWyprosci = (d: PoseData): number => {
+  const w = uWyprost(d) ?? 1; let worst = 0; let prev: number[] | null = null, vPrev = -1;
+  for (let i = 0; i <= CONTRACT.step; i++) { const t = slad(d, i / CONTRACT.step); if (prev) { const v = dist(prev, t); if (vPrev >= 0 && i / CONTRACT.step > w) { const a = Math.max(v, vPrev), b = Math.max(0.5, Math.min(v, vPrev)); if (a > 2) worst = Math.max(worst, a / b); } vPrev = v; } prev = t; }
+  return worst;
+};
+describe('kb_ballistic p1: płynny ciąg po wyproście bioder (W1-r3, 10.11.2026)', () => {
+  test.each(ZARZUT_RWANIE)('%s: stosunek prędkości śladu sąsiednich kadrów 1/48 po wyproście bioder ≤ 2,2 (bez przestoju i szarpnięcia)', k => {
+    expect([k, ratioPoWyprosci(data(k)) <= RATIO_PREDKOSCI]).toEqual([k, true]);
+  });
+  test.each(['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Kettlebell Clean', 'Dumbbell Clean', 'One-Arm Kettlebell Clean and Jerk'])('%s: przypadek negatywny — ta sama miara na danych sprzed poprawki (pełzanie ciężaru przy biodrze, potem szarpnięcie) przekracza 2,2', k => {
+    expect([k, ratioPoWyprosci(STARE_R3[k]) > RATIO_PREDKOSCI]).toEqual([k, true]);
+  });
+  test('miara potrafi padać i przechodzić: Power Snatch z rodziny olympic (przyjęty) mieści się w progu — próg nie jest dopasowany do kb', () => {
+    const o = poseFile('olympic')!.cwiczenia['Power Snatch'] as PoseData; expect(ratioPoWyprosci(o) <= RATIO_PREDKOSCI).toBe(true);
+  });
+  test.each(DYNAMICZNE)('%s: skok śladu ciężaru na 1/48 ≤ 9 cm (zaostrzenie względem 3 × 16 cm na 0,05)', k => {
+    let m = 0; for (let i = 1; i <= CONTRACT.step; i++) m = Math.max(m, dist(slad(data(k), i / CONTRACT.step), slad(data(k), (i - 1) / CONTRACT.step)));
+    expect([k, m <= SKOK_RWANIA_48]).toEqual([k, true]);
+  });
+});
+/*
+ * W2-r3: Snatch (hantel) startuje jak do martwego ciągu (karta: „zejdź jak do martwego ciągu — plecy proste, klatka uniesiona”): tułów ≥ 25° nad poziomem (Deadlift (hantle) 32°), bark nie za hantlem,
+ * hantel między stopami (≤ 9 cm przed kostką), łokieć ≤ 15° do wyprostu bioder (zapas względem ogólnego progu 20°). Przypadek negatywny: poza sprzed poprawki (tułów poziomo, hantel nad palcami, łokieć 19,6°).
+ */
+const tulowStart = (d: PoseData): number => { const f = keyframeFrame(d, 0); return Math.atan2(f.sk.shoulderC[1] - f.sk.pelvis[1], f.sk.shoulderC[0] - f.sk.pelvis[0]) * 180 / Math.PI; };
+const hantelPrzedKostka = (d: PoseData): number => { const f = keyframeFrame(d, 0); return f.sk.arms.R.grip[0] - f.sk.legs.R.ankle[0]; };
+describe('kb_ballistic p1: start Snatch (hantel) jak do martwego ciągu (W2-r3, 10.11.2026)', () => {
+  const k = 'Snatch (hantel)';
+  test('tułów ≥ 25° nad poziomem, bark nie za hantlem (≥ −2 cm), hantel ≤ 9 cm przed kostką, łokieć ≤ 15° do wyprostu bioder, biodro w zakresie ruchu', () => {
+    const f = keyframeFrame(data(k), 0);
+    expect(tulowStart(data(k)) >= TULOW_START_MIN).toBe(true); expect(f.sk.shoulderC[0] - f.sk.arms.R.grip[0] >= -2).toBe(true);
+    expect(hantelPrzedKostka(data(k)) <= HANTEL_MIEDZY_STOPAMI).toBe(true); expect(lokiecPrzedWyprostem(data(k)) <= LOKIEC_START_HANTEL).toBe(true);
+  });
+  test('przypadek negatywny: poza sprzed poprawki (tułów poziomo, hantel 17 cm przed kostką, łokieć 19,6°) nie spełnia progów', () => {
+    expect(tulowStart(STARE_R3[k]) >= TULOW_START_MIN).toBe(false); expect(hantelPrzedKostka(STARE_R3[k]) <= HANTEL_MIEDZY_STOPAMI).toBe(false); expect(lokiecPrzedWyprostem(STARE_R3[k]) <= LOKIEC_START_HANTEL).toBe(false);
   });
 });
 describe('kb_ballistic p1: podrzut kończy się wstaniem (N1, recenzja r1)', () => {

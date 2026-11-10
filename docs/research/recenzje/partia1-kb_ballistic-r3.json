@@ -1,0 +1,86 @@
+{
+  "v2": {
+    "kb_ballistic": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "otwarte",
+      "kto": "audytor (recenzja niezależna r3, L-047)",
+      "autor": "programista partii 1",
+      "recenzent": "audytor",
+      "liczba": 17,
+      "slad": "Kopia git archive b7cb1dcd (ready tylko w kopii). 45 arkuszy: slad/ 16 ćwiczeń side jasny; slad-dark/ Kettlebell Clean, Kettlebell Snatch, Snatch (hantel); slad48/ co 1/48 u 0,083–0,667 (Kettlebell Snatch, Double Kettlebell Snatch, Snatch (hantel), Kettlebell Clean); slad48-dark/ Kettlebell Snatch i Snatch (hantel); flip/ i flip-sn/ co 1/96–1/200 wokół przewrotu dzwonu; nakladka/ 18. Na torze: ciąg blisko ciała (2–4 cm) po wyproście bioder, bez przeskoku śladu (≤ 8,1 cm na 1/48); widoczny przestój ciężaru po wyproście bioder i nagłe ponowne przyspieszenie (W1-r3); skokowy przewrót dzwonu do racka w zarzutach (Ś1-r3).",
+      "uwagi": "W1-r3 WYSOKIE: przestój i szarpnięcie w zarzutach i rwaniach (stosunek prędkości sąsiednich kadrów 3–5 wobec ≤ 2,2 w olympic). W2-r3 WYSOKIE: start Snatch (hantel) sprzeczny z kartą. Ś1-r3 przeskok dzwonu przy przewrocie (sprzed poprawek). Ś2-r3 Bottoms-Up jak W1-r2. N1-r3 R6 (9 ćwiczeń: 6 przesuw w osi z niewidoczny, 3 mały poślizg widoczny), rekomendacja: poprawka póz. N2-r3 test p4a wzdluz_gora nieaktualny. N3-r3 tor-wyjatki.json nieaktualne. N4-r3 przenikanie 1,2 cm. W1-r2 (kolejność i odstęp) naprawione. sha rodziny nie wpisane (werdykt do poprawy); --skroty w kopii: a8ebd557e8c7.",
+      "ciaglosc_rwan": "Przeskok położenia: brak (maks. skok śladu na 1/48: Kettlebell Snatch 6,7 cm, Double Kettlebell Snatch 6,3, Snatch (hantel) 8,1 wobec limitu dynamicznego 16; przyjęte Power Snatch 8,0); przewrót dzwonu nad głową ok. 25 ms przez kadry pośrednie. Wpis rwań do dynamicznych uzasadniony. Szarpnięcie: TAK, widoczne — po wyproście bioder prędkość spada 3–3,3× w jednym kadrze, ciężar pełznie 0,4–0,7 s (1,7–2,7 cm na 1/48), potem przyspiesza 3–4× w 1–2 kadrach, na górze zatrzymanie 5× w jednym kadrze i dociśnięcie łokcia 74° → 9°. Arkusze slad48/ (Kettlebell Snatch i Snatch (hantel) w obu motywach, Double Kettlebell Snatch w jasnym). Ocena: WYSOKIE (W1-r3).",
+      "cwiczenia": {
+        "Kettlebell Swing": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian od r1"
+        },
+        "One-Arm Kettlebell Swings": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian; R6: przesuw stóp w osi z niewidoczny w rzucie z boku (N1-r3)"
+        },
+        "Kettlebell Clean": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3: po wyproście bioder prędkość 1,0 cm/(1/48) przez 12 kadrów, potem 3,0; Ś1-r3: przeskok dzwonu 14,6 cm w 1/96 (u 0,771); N4-r3: przenikanie w tułów 1,2 cm (u 0,604)"
+        },
+        "Double Kettlebell Clean": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3 (4,3 → 1,5 → 2,6 cm/(1/48)); Ś1-r3: przeskok dzwonu 11,7 cm w 1/96"
+        },
+        "Dumbbell Clean": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3 (1,1 → 3,3 cm/(1/48))"
+        },
+        "Bottoms-Up Clean From The Hang Position": {
+          "werdykt": "wyswietlana",
+          "uwagi": "Ś2-r3: łokieć 61° przy biodrze 37°, odstęp 16–20 cm (jak W1-r2, bez sprzeczności z kartą); test p4a wzdluz_gora nieaktualny (N2-r3)"
+        },
+        "Kettlebell Snatch": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3: 5,6 → 1,7 cm/(1/48) przez 11 kadrów → 6,7; na górze 6,2 → 1,2 i dociśnięcie łokcia 74° → 9°"
+        },
+        "Double Kettlebell Snatch": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3: 6,2 → 2,7 (8 kadrów) → 6,2 → 1,1"
+        },
+        "Snatch (hantel)": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3: 7,2 → 2,3 cm/(1/48) przez 14 kadrów → 8,1 → 1,6; W2-r3: start z tułowiem poziomo (0°), bark 15 cm przed hantlem, hantel nad palcami — karta „jak do martwego ciągu, klatka uniesiona”"
+        },
+        "Double Kettlebell Push Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian"
+        },
+        "Double Kettlebell Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian"
+        },
+        "One-Arm Kettlebell Push Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian"
+        },
+        "One-Arm Kettlebell Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian"
+        },
+        "One-Arm Kettlebell Split Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "R6: lądowanie przedniej stopy z poślizgiem 6,9 cm (N1-r3)"
+        },
+        "Kettlebell Sumo High Pull": {
+          "werdykt": "wyswietlana",
+          "uwagi": "R6: palce cofają się 3,8 cm przy wspięciu (N1-r3)"
+        },
+        "One-Arm Kettlebell Clean and Jerk": {
+          "werdykt": "do poprawy",
+          "uwagi": "W1-r3 (7,9 → 2,5 → 4,5 → 8,2); Ś1-r3: przeskok dzwonu 17,0 cm w 1/96 (u 0,469)"
+        },
+        "Kettlebell Pirate Ships": {
+          "werdykt": "bez rysunku",
+          "uwagi": "N4 z r1 otwarte (bez wpisu w figury-wyjatki.json)"
+        }
+      }
+    }
+  }
+}
