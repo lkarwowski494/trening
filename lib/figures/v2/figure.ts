@@ -40,10 +40,9 @@ export function figureSpec(key: string): FigureSpec | null {
 }
 /** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą.
  * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
- * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
- * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
- * Stan 10.11.2026: powód i ID przy każdym wpisie niżej. 29.10.2026 zdjęto 18 figur po recenzjach
- * (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
+ * (rysunek, ogólne wskazówki wzorca i przycisk „Technika ›”); przy własnych wskazówkach (lib/cues) sekcja zostaje bez rysunku i bez powrotu do v1
+ * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku, więc same nie zostają.
+ * Powód i ID przy każdym wpisie. 29.10.2026 zdjęto 18 figur po recenzjach (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   /* 04.11.2026 (olympic r4): rysunek po kartach T2 */
   'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
@@ -54,6 +53,7 @@ export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   'Standing Calf Raise': 'dźwignia: brak punktu „barki” (P1-CALF-1)',
   'Seated Calf Raise': 'dźwignia: brak punktu „uda” (P1-CALF-1)',
   'Plyo Push-Up': 'pushup_plank r4-W1 (10.11.2026): pętla jednokierunkowa zamknięta (u = 0 = u = 1); powrót: PP-W1 w docs/21',
+  'Barbell Side Bend': 'core_standing W2 (10.11.2026): brak pochylenia gryfu; P8-CS-1',
 };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];

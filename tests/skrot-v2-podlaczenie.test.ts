@@ -7,25 +7,28 @@
  * Parytet z eksportem strony: tests/strona-eksport-recenzja.test.ts. Rodzaje (docs/20): logika (skrót), niezmienniki (podłączenie ≠ zmiana rysunku), macierz (zmiana × rodzina),
  * regresja (zgodność wsteczna: tests/figures-v2-zgodnosc-wsteczna.test.ts), proces (L-080: tests/skrot-v2-wynik.test.ts, gałąź z wcześniejszymi zmianami względem main).
  */
-import { KORZEN, kopia, kolejka, podlaczenie, skroty, usunKopie, type Wynik, type Zmiana } from './helpers/skrot-v2-kopia';
+import { KORZEN, kopia, kolejka, odlaczenie, podlaczenie, skroty, usunKopie, type Wynik, type Zmiana } from './helpers/skrot-v2-kopia';
 
 const FAM = ['squat', 'pull_up', 'curl', 'olympic'];
 const V2 = 'lib/figures/v2/';
-const STATUS_CORE_FLOOR: Zmiana = { plik: V2 + 'families.ts', z: "{ id: 'core_standing', status: 'planned'", na: "{ id: 'core_standing', status: 'ready'" }; /* 10.11.2026 (pociąg-6): core_floor ready od partii 7 — rodzina „planned” z plikiem póz i bez wpisu w rodziny/ = core_standing */
+/* 10.11.2026 (scalenie pociąg-7, docs/18 do weta): po partii 8 w repo nie ma rodziny „planned” z plikiem póz (planned: cardio, foam_roll, neck — bez póz). Wszystkie kopie,
+ * także baza, startują z ODLACZONA: strongman odłączona (planned, bez wpisu w rodziny/, plik póz zostaje); wcześniej tę rolę grały core_standing i leg_isolation. */
+const ODLACZONA = odlaczenie('strongman');
+const STATUS_INNEJ: Zmiana = { plik: V2 + 'families.ts', z: "{ id: 'strongman', status: 'planned'", na: "{ id: 'strongman', status: 'ready'" };
 const UI_LEG = "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }";
 const SCEN: Record<string, Zmiana[]> = {
-  statusInnej: [STATUS_CORE_FLOOR],
+  statusInnej: [STATUS_INNEJ],
   statusWlasnej: [{ plik: V2 + 'families.ts', z: "{ id: 'curl', status: 'ready'", na: "{ id: 'curl', status: 'planned'" }],
-  load: podlaczenie('core_standing', { load: true }),
-  uiInnej: [{ plik: V2 + 'rodziny/carry.ts', z: "ui: { names: { first: 'Marsz'", na: "ui: { names: { first: 'Chód'" }, ...podlaczenie('core_standing', { ui: UI_LEG })],
+  load: podlaczenie('strongman', { load: true }),
+  uiInnej: [{ plik: V2 + 'rodziny/carry.ts', z: "ui: { names: { first: 'Marsz'", na: "ui: { names: { first: 'Chód'" }, ...podlaczenie('strongman', { ui: UI_LEG })],
   uiWlasny: [{ plik: V2 + 'rodziny/pull_up.ts', z: "ui: { names: { first: 'Podciąganie'", na: "ui: { names: { first: 'Podciągnięcie'" }],
-  pelny: [STATUS_CORE_FLOOR, ...podlaczenie('core_standing', { load: true, ui: UI_LEG })],
+  pelny: [STATUS_INNEJ, ...podlaczenie('strongman', { load: true, ui: UI_LEG })],
   widoki: [{ plik: V2 + 'families.ts', z: "label: 'Przysiad obustronny', views: ['side', 'front']", na: "label: 'Przysiad obustronny', views: ['side']" }],
   izometria: [{ plik: V2 + 'poseData.ts', z: "  'Dead Hang',\n", na: '' }],
 };
-let baza: Wynik; const wyn: Record<string, Wynik> = {};
+let baza: Wynik; let repo: Wynik; const wyn: Record<string, Wynik> = {};
 beforeAll(async () => {
-  await kolejka([async () => { baza = await skroty(KORZEN, FAM); }, ...Object.entries(SCEN).map(([id, zm]) => async () => { wyn[id] = await skroty(kopia(zm), FAM); })], 3);
+  await kolejka([async () => { repo = await skroty(KORZEN, FAM); }, async () => { baza = await skroty(kopia(ODLACZONA), FAM); }, ...Object.entries(SCEN).map(([id, zm]) => async () => { wyn[id] = await skroty(kopia([...ODLACZONA, ...zm]), FAM); })], 3);
 }, 900_000);
 afterAll(usunKopie);
 const zmienione = (id: string): string[] => FAM.filter(f => wyn[id][f].skrot !== baza[f].skrot);
@@ -34,6 +37,7 @@ describe('1A: podłączenie innej rodziny nie zmienia skrótu recenzji (03.11.20
   test('baza: cztery gotowe rodziny mają cztery różne skróty 12-znakowe', () => {
     expect(new Set(FAM.map(f => baza[f].skrot)).size).toBe(FAM.length);
     for (const f of FAM) expect(baza[f].skrot).toMatch(/^[0-9a-f]{12}$/);
+    for (const f of FAM) expect([f, baza[f].skrot]).toEqual([f, repo[f].skrot]); /* baza w kopii z odłączoną strongman = repozytorium (odłączenie też nie jest rysunkiem innej rodziny) */
   });
   test('status innej rodziny planned → ready (families.ts) nie zmienia skrótu żadnej rodziny', () => { expect(zmienione('statusInnej')).toEqual([]); });
   test('status własnej rodziny też nie jest rysunkiem (planned ↔ ready to podłączenie, nie zmiana rysunku): skrót curl liczony jak dla „ready”', () => { expect(zmienione('statusWlasnej')).toEqual([]); });

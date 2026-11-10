@@ -406,6 +406,31 @@
    "path": "tests/zrodla-pelne-cues-a4-core.test.ts",
    "name": "TRX",
    "reason": "test negatywny (09.11.2026, partia A4a core): wzorzec sprawdza, że teksty kart NIE zawierają nazw źródeł — nazwa występuje tylko w wyrażeniu regularnym asercji; jak w teście A1"
+  },
+  {
+   "path": "lib/figures/v2/reguly-cwiczen.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — rodzina core_standing (partia 8, 10.11.2026) odwołuje się do ćwiczenia po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "lib/figures/v2/rodziny/core_standing.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — rodzina core_standing (partia 8, 10.11.2026) odwołuje się do ćwiczenia po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "tests/figury-core-standing-poprawki-r1.test.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — rodzina core_standing (partia 8, 10.11.2026) odwołuje się do ćwiczenia po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "tests/tor-wyjatki.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — rodzina core_standing (partia 8, 10.11.2026) odwołuje się do ćwiczenia po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "tests/figures-v2-kierunek-u.test.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — strażnik kierunku u (opór z góry, core_standing, partia 8, 10.11.2026) wskazuje ćwiczenie po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
   }
  ]
 }

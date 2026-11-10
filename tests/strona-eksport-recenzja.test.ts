@@ -12,6 +12,7 @@ import { figureSpec as figureSpecAll, familyOf } from '@/lib/figures/v2';
 import { V2_WSTRZYMANE, loopOf } from '@/lib/figures/v2/figure';
 import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
+import { kopia, odlaczenie, usunKopie } from './helpers/skrot-v2-kopia';
 
 const root = path.join(__dirname, '..');
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
@@ -26,7 +27,7 @@ type Fig = { figures: Record<string, { family: string }> };
 type Atlas = { exercises: { id: string; slug: string; family: string; figure: unknown; cues: { scope: string } }[] };
 let tmp = '';
 beforeAll(() => { tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-rec-')); }, 60000);
-afterAll(() => { fs.rmSync(tmp, { recursive: true, force: true }); });
+afterAll(() => { fs.rmSync(tmp, { recursive: true, force: true }); usunKopie(); });
 const wpis = (sha: string) => ({ werdykt: 'wyswietlana', data: '2026-10-28', kto: 'wpis testowy (fixture testu tests/strona-eksport-recenzja.test.ts)', sha, liczba: 1 });
 const eksport = (name: string, recenzja?: object) => {
   const out = path.join(tmp, name); const args = ['--out', out, '--langs', 'en', '--commit', 'abc1234def'];
@@ -42,7 +43,17 @@ const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototyp
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
   test('rodzina z plikiem pozy bez statusu ready (pilotaż) istnieje w danych, a jej figur nie ma w eksporcie bez recenzji; core_floor ma status ready od 10.11.2026 (partia 7, recenzja r2), pushup_plank od 09.11.2026 (partia 2), eksport tylko z aktualnym wpisem recenzji (testy niżej)', () => {
     const s = skroty(); expect(s.ready).toContain('core_floor'); expect(s.ready).toContain('pushup_plank'); /* 10.11.2026 (partia 7): core_floor włączona po recenzji r2 (zmiana celowa) — pilotaż = każda rodzina z plikiem pozy bez statusu ready (dziś m.in. carry, lunge, strongman) */
-    const pilotaz = [...new Set(POZY.values())].filter(f => !s.ready.includes(f)); expect(pilotaz.length).toBeGreaterThan(0);
+    /* 10.11.2026 (scalenie pociąg-7, docs/18 do weta): po partii 8 w repo nie ma już rodziny pilotażu (plik póz bez statusu ready) — pilotaż powstaje w kopii drzewa: strongman odłączona
+     * (tests/helpers/skrot-v2-kopia.ts: odlaczenie). W kopii: plik póz jest, status nie ready, a eksport nie bierze jej figur nawet z wpisem recenzji o bieżącym skrócie z repo. */
+    expect(s.ready).toContain('strongman'); expect([...POZY.values()]).toContain('strongman');
+    const kop = kopia(odlaczenie('strongman')); for (const p of ['app.json', 'package.json']) fs.copyFileSync(path.join(root, p), path.join(kop, p)); /* eksport czyta app.json i package.json z katalogu skryptu */
+    const ks = JSON.parse(execFileSync('node', [path.join(kop, 'scripts/strona/recenzja-figur.mjs'), '--skroty'], { cwd: kop, encoding: 'utf8' })) as Skroty;
+    expect(ks.ready).not.toContain('strongman'); expect(fs.existsSync(path.join(kop, 'lib/figures/v2/poses/strongman.json'))).toBe(true);
+    const rec = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8')) as { v2: Record<string, { sha: string }> }; expect(rec.v2.strongman.sha).toBe(s.skroty.strongman);
+    const recP = path.join(tmp, 'pilotaz-rec.json'); fs.writeFileSync(recP, JSON.stringify({ v2: rec.v2 })); const out = path.join(tmp, 'pilotaz');
+    execFileSync('node', [path.join(kop, 'scripts/strona/eksport.mjs'), '--out', out, '--langs', 'en', '--commit', 'abc1234def', '--recenzja', recP], { cwd: kop, encoding: 'utf8' });
+    const fams = Object.values((JSON.parse(fs.readFileSync(path.join(out, 'figury.json'), 'utf8')) as Fig).figures).map(x => x.family);
+    expect(fams).not.toContain('strongman'); expect(fams).toContain('core_standing'); /* pilotaż odpada, reszta eksportu działa */
     expect([...POZY.values()]).toEqual(expect.arrayContaining(['core_floor', 'pull_up', 'pushup_plank']));
   });
   test('fixture: recenzja squat, bench_press, hinge (aktualne skróty) + pull_up z nieaktualnym skrótem + brak wpisów pilotażu ⇒ figury dokładnie z tych trzech rodzin (parytet)', () => {
@@ -115,7 +126,7 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
   test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE) nie trafiają do figur; od 1.0.1 (scalenie 31.10.2026) lista jest pusta — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji trafiają do figur jak sąsiednie wyciskania wąskim chwytem', () => {
     const { fig, atlas } = eksport('wstrzymane', fixture());
     const slug = (id: string) => atlas.exercises.find(e => e.id === id)!.slug;
-    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise', 'Triceps Dips (ławka)']); /* 04.11.2026: wzruszenia olympic wstrzymane do kart T2 (olympic r4); 09.11.2026: Standing i Seated Calf Raise (calf_raise r1, decyzja koordynatora wariant A — P1-CALF-1) i Machine Hip Thrust (hip_bridge r1, partia 2) */ /* 10.11.2026 (scalenie partii 4): + ławka dip (W5, P4-DIP-1) */ /* 10.11.2026 (scalenie partii 2): + Plyo Push-Up (PP-W1) */
+    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Barbell Side Bend', 'Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise', 'Triceps Dips (ławka)']); /* 04.11.2026: wzruszenia olympic wstrzymane do kart T2 (olympic r4); 09.11.2026: Standing i Seated Calf Raise (calf_raise r1, decyzja koordynatora wariant A — P1-CALF-1) i Machine Hip Thrust (hip_bridge r1, partia 2) */ /* 10.11.2026 (scalenie partii 4): + ławka dip (W5, P4-DIP-1) */ /* 10.11.2026 (scalenie partii 2): + Plyo Push-Up (PP-W1) */ /* 10.11.2026 (core_standing r1 W2, decyzja leada): + Barbell Side Bend (P8-CS-1) */
     for (const k of Object.keys(V2_WSTRZYMANE)) { expect([k, slug(k) in fig.figures]).toEqual([k, false]); expect([k, atlas.exercises.find(e => e.id === k)!.figure]).toEqual([k, null]); }
     for (const k of ['JM Press', 'Decline Close-Grip Bench To Skull Crusher', 'Smith Machine Close-Grip Bench Press']) expect([k, slug(k) in fig.figures]).toEqual([k, true]);
   });

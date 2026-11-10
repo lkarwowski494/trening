@@ -18,9 +18,9 @@ describe('nakładka techniki: mobility_floor (rodzina bez elementów)', () => {
     expect(TECHNIQUE.mobility_floor).toBe(MOBILITY_FLOOR_TECHNIQUE); expect(MOBILITY_FLOOR_TECHNIQUE).toEqual([]);
     for (const d of MOBILITY_FLOOR_TECHNIQUE) expect([d.id, d.cue.length > 0 && d.rule.length > 0]).toEqual([d.id, true]); /* każdy przyszły element ma wskazówkę i regułę */
   });
-  test('wyjątek (decyzja koordynatora 09.11.2026, docs/18; zdjęcie: MOB-F1 w docs/21): tylko mobility_floor jest bez elementów, każda inna rodzina w rejestrze ma co najmniej 1 element', () => {
+  test('wyjątki (mobility_floor: decyzja koordynatora 09.11.2026, docs/18, zdjęcie MOB-F1 w docs/21; strongman: decyzja leada partii 8 z 10.11.2026, tryb „analogia”, docs/18 — reguły rodziny „analogia”, karta Yoke Walk bez wskazówki powiązanej z regułą): tylko te dwie rodziny są bez elementów, każda inna rodzina w rejestrze ma co najmniej 1 element', () => {
     const puste = Object.entries(TECHNIQUE).filter(([, v]) => v.length === 0).map(([f]) => f);
-    expect(puste).toEqual(['mobility_floor']);
+    expect(puste.sort()).toEqual(['mobility_floor', 'strongman']);
   });
   test('macierz: 9 ćwiczeń z rysunkiem, żadne nie dostaje elementu nakładki (logika doboru)', () => {
     expect(KEYS.length).toBe(9);

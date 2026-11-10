@@ -502,6 +502,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny delt_raise (np. Lateral Raise, Car Drivers), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch albo jest w trybie statycznym
     - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
+  - Scenariusz: Rodzina sań, rzutów i slamów piłką (sled_throw) pokazuje rysunki 8 ćwiczeń (10.11.2026, linia 1.1 partia 8; testy `tests/figures-v2-sled-throw.test.tsx`, `tests/figures-v2-sled-throw-tor.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny sled_throw (Sled Push, Sled Drag (Harness), slamy, rzuty piłką, Wall Ball), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy sanki pokazują licznik „Marsz”, a slamy, rzuty i Wall Ball jedną fazę „Rzut”; ślad toru piłki leży przy dłoniach (nie w miednicy), a Wall Ball ma widok z boku i z przodu
+  - Scenariusz: Nakładka techniki na rysunku sań i rzutów piłką (rodzina sled_throw, 10.11.2026; decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”; test `tests/figures-v2-sled-throw.test.tsx`)
+    - Zakładając, że ćwiczenie ma kartę ze wskazówką ruchu (sled.lean, mb.legs, slam.move) i regułę „ustalone” wariantu
+    - Gdy użytkownik ogląda rysunek z boku
+    - Wtedy sanki pokazują linię tułowia i pion przez miednicę (pochylenie w przód), Medicine Ball Scoop Throw łuk zgięcia kolana albo biodra, a Medicine Ball Slam poziom głowy, nad który piłka ma sięgnąć; pozostałe ćwiczenia rodziny (karta bez wskazówki powiązanej z regułą „ustalone”) zostają bez elementu nakładki
+  - Scenariusz: Rodzina strongman pokazuje rysunek jednego ćwiczenia, Yoke Walk (10.11.2026, linia 1.1 partia 8; test `tests/figures-v2-strongman.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Yoke Walk, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy widać marsz z jarzmem na barkach (licznik „Marsz”, tułów pionowo, miednica na stałej wysokości), bez elementu nakładki techniki (żadna reguła „ustalone” nie ma wskazówki na karcie); pozostałe ćwiczenia strongman (otwarte, Jefferson Squat) zostają bez rysunku v2
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
   - Scenariusz: Rodzina dipów (dip) pokazuje rysunki 5 ćwiczeń (09.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-dip.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
@@ -578,6 +590,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy miednica leżącej osoby zostaje przy podłodze, licznik faz pokazuje Unoszenie i Opuszczanie (Dead Bug: Opuszczanie, potem Unoszenie; Scissor Kick: nogi proste, naprzemiennie), a Hollow Hold jest jedną pozycją utrzymywaną; błąd przeprostu w Supermanie nie jest rysowany, dopóki jego poza nie ma recenzji
     - Oraz gdy ćwiczenie ma na karcie wskazówkę o unoszeniu łopatek (Crunch i odmiany) albo o ułożeniu ręki i nogi w Bird Dog i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/core_floor.ts`)
     - Wtedy z boku widać łuk kąta biodra rosnący przy zwijaniu tułowia, a w Bird Dog dwie poziome linie odniesienia (poziom barku i miednicy); pozostałe reguły rodziny nie mają elementu (powód w nagłówku pliku nakładki)
+  - Scenariusz: Rysunek i nakładka techniki dla rodziny core_standing (Pallof, skłony boczne, skręty, wiatrak, Bent Press; partia 8, 10.11.2026; test `tests/figures-v2-nakladka-core-standing.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny core_standing (np. Pallof Press, Barbell Side Bend, Russian Twist, Kettlebell Windmill), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone”
+    - Wtedy na rysunku widać: łuk zgięcia łokcia przy wypychaniu (Pallof Press, z boku), pion od miednicy przy skłonie bocznym (z przodu) i odchyleniu w tył (Russian Twist, z boku) z linią pleców, prowadnicę prostej ręki w wiatraku (z przodu); skręt tułowia nie ma elementu, bo nie jest widoczny w rzucie z przodu ani z boku
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

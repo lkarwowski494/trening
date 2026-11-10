@@ -1235,13 +1235,13 @@
     "lunge": {
       "werdykt": "wyswietlana",
       "data": "2026-11-10",
-      "kto": "audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 9, runda 2: W1–W5, Ś1, Ś2, N1 z r1 naprawione, 0 × KRYTYCZNE/WYSOKIE; Ś3, Ś4 i N2 do backlogu",
-      "autor": "programista partii 9 (figury/partia-9-lunge); poprawki r1: inny programista partii 9",
+      "kto": "audytor — recenzja niezależna lunge po scaleniu pociągu-7 (scal/pociag-7 @ d44557a2, zmiana R3-W1 w draw.ts, KO-030), 10.11.2026; raport docs/research/recenzje/pociag-7-scalenie.md. Wcześniej: audytor — recenzja niezależna rodziny lunge, partia 9, runda 2, figury/partia-9-lunge @ a96bbaed (poprawki 1728824, e247377, a96bbae), 10.11.2026; raport docs/research/recenzje/partia9-lunge-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — po scaleniu pociągu-7: zmiana R3-W1 zmienia tylko Barbell Side Split Squat z przodu, werdykt wyswietlana (0 × KRYTYCZNE/WYSOKIE). Wcześniej: zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 9, runda 2: W1–W5, Ś1, Ś2, N1 z r1 naprawione, 0 × KRYTYCZNE/WYSOKIE; Ś3, Ś4 i N2 do backlogu",
+      "autor": "programista scalenia pociągu-7 (sesja I; zmiana R3-W1 w draw.ts: lead partii 8, sesja E2); wcześniej: programista partii 9 (figury/partia-9-lunge); poprawki r1: inny programista partii 9",
       "recenzent": "audytor",
-      "uwagi": "W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). W2 naprawione: stopa nogi pracującej prosto (pięta i palce z = 30, Cossack 36), kolano na dole 3,6 cm (Cossack 3,9 cm) na zewnątrz od palców — w linii (≤ 4 cm). W3 naprawione: środek gryfu = środek chwytów, z gryfu = z barków (21,5 cm) w całym ruchu; gryf 12,8–13,1 cm za barkami, 1,7 cm od pleców; tułów pochyla się 8° → 26° przy prawie stojącej miednicy — opis wyjątku toru 12,9 cm zgodny. W4 naprawione: start na stopniu obiema stopami (kostki 12 cm + 7), kolana 9,5°; tylna stopa schodzi na podłogę (najgłębiej 0,2 cm w stopień przy u 0,045, ≤ 1 cm). W4 naprawione: u = 0 kolana R 8,8°, L 23,2°, miednica 81,5 cm (zakres 31,5 cm); biodro tylnej nogi do −24,7° w granicy wyjątku hipMin −25 (decyzja leada, analogia do Suspended Split Squat, do weta). W5 naprawione: kolano nogi wolnej 6,2–8,2° (Smith 6,2–6,6°), pięta wolnej nogi na dole 3,3 cm nad podłogą. Ś1 naprawione: noga zakroczna zgina się do 100,6° tylko do przeniesienia nad stopień (palce 1,5 cm nad blatem), od u 0,85 stopa na stopniu (0–0,7 cm). Ś2 naprawione: grzbiet tylnej stopy 0,6 cm od siedziska ławki. N1 naprawione (opisy wyjątków toru Pistol i Single-Leg High Box: ślad = miednica). Bez zmian od r1 i bez uwag: Walking Lunges, Lunges (hantle/sztanga), Barbell Walking Lunge, Slider Reverse Lunge, Suspended Split Squat, Single-Leg High Box Squat. Kod wspólny: pole side w PhaseOverride (wpisy tylko w lunge); gear.ts — z gryfu = średnia chwytów przy podazaZaChwytem: w gotowych rodzinach zmienia tylko 7 ćwiczeń olympic o ≤ 0,05 cm (N2), skróty v1/karty/zestawy i v2 innych rodzin bez zmian (zrodla-runtime --skroty b66ecfa vs a96bbae). Ś3 (ŚREDNIE, nieblokujące, backlog): „Przednie kolano…” przy ruchu bocznym — wskazówka techniki dotyczy ugiętej nogi i rysunek pokazuje ją na tej nodze; myli tylko słowo „przednie”. Ś4 (ŚREDNIE, backlog wg koordynatora): u = 0 niesymetryczny rozkrok — kolano R 51,8° (Cossack 38,4°).",
-      "slad": "Ślad toru obejrzany na arkuszach arkusz-slad (21 kadrów co 0,05) wygenerowanych przez recenzenta: r2 — 13 ćwiczeń zmienionych od r1 × 2 widoki (26 arkuszy; 13 obejrzanych w pełnej rozdzielczości, pozostałe w skupiskach identycznego szkieletu sprawdzone liczbowo frameAt co 0,01) oraz 76 arkuszy arkusz-nakladka (obejrzane z przodu: Step Up, Lateral Lunge, Cossack Squat, Pistol Squat); r1 — 48 arkuszy rodziny. Ślad = gryf/hantel/kettlebell, bez ciężaru = miednica: wykroki — łagodny łuk 4,0–4,8 cm; Barbell Side Split Squat — gryf na barkach podąża w bok i łukiem w tył i w dół; Step Up — hantle w górę po skosie nad stopień; pistolet — łuk miednicy w tył i w dół; bez przenikania (checkFrame bez uwag w 101 klatkach każdego ćwiczenia).",
-      "sha": "f2ff1a209120",
+      "uwagi": "Pociąg-7 (10.11.2026): skrót f2ff1a209120 → f6b935560af3 wyłącznie przez R3-W1 (gryf i talerze wokół rzutu środka sztangi z przodu, ≥ 1 cm). Barbell Side Split Squat z przodu: gryf idzie z barkami w bok (ok. 21,5 cm) i w każdym kadrze leży na śladzie toru (przed R3-W1 ok. 6 cm obok śladu); dłonie na gryfie, kolano nad stopą zgodnie z kartą (lunge.knee, sq.back, lunge.mis.kneeIn); bez kolizji ciała ze sprzętem (talerze nakładają się na słupek tylko w rzucie — stojak za ćwiczącym); z boku obraz identyczny przed i po (cmp). NISKIE (backlog docs/21): przeskok gryfu ok. 1,15 cm na progu 1 cm (u ≈ 0,030→0,035). Wcześniej: W1 naprawione: strona mierzona R we wszystkich 24 ćwiczeniach (DATA_UI.exceptions side: R przy 7) — pion „kolano nad stopą” i linia kąta na nodze przedniej / na stopniu (Step Up 90→7°). W2 naprawione: stopa nogi pracującej prosto (pięta i palce z = 30, Cossack 36), kolano na dole 3,6 cm (Cossack 3,9 cm) na zewnątrz od palców — w linii (≤ 4 cm). W3 naprawione: środek gryfu = środek chwytów, z gryfu = z barków (21,5 cm) w całym ruchu; gryf 12,8–13,1 cm za barkami, 1,7 cm od pleców; tułów pochyla się 8° → 26° przy prawie stojącej miednicy — opis wyjątku toru 12,9 cm zgodny. W4 naprawione: start na stopniu obiema stopami (kostki 12 cm + 7), kolana 9,5°; tylna stopa schodzi na podłogę (najgłębiej 0,2 cm w stopień przy u 0,045, ≤ 1 cm). W4 naprawione: u = 0 kolana R 8,8°, L 23,2°, miednica 81,5 cm (zakres 31,5 cm); biodro tylnej nogi do −24,7° w granicy wyjątku hipMin −25 (decyzja leada, analogia do Suspended Split Squat, do weta). W5 naprawione: kolano nogi wolnej 6,2–8,2° (Smith 6,2–6,6°), pięta wolnej nogi na dole 3,3 cm nad podłogą. Ś1 naprawione: noga zakroczna zgina się do 100,6° tylko do przeniesienia nad stopień (palce 1,5 cm nad blatem), od u 0,85 stopa na stopniu (0–0,7 cm). Ś2 naprawione: grzbiet tylnej stopy 0,6 cm od siedziska ławki. N1 naprawione (opisy wyjątków toru Pistol i Single-Leg High Box: ślad = miednica). Bez zmian od r1 i bez uwag: Walking Lunges, Lunges (hantle/sztanga), Barbell Walking Lunge, Slider Reverse Lunge, Suspended Split Squat, Single-Leg High Box Squat. Kod wspólny: pole side w PhaseOverride (wpisy tylko w lunge); gear.ts — z gryfu = średnia chwytów przy podazaZaChwytem: w gotowych rodzinach zmienia tylko 7 ćwiczeń olympic o ≤ 0,05 cm (N2), skróty v1/karty/zestawy i v2 innych rodzin bez zmian (zrodla-runtime --skroty b66ecfa vs a96bbae). Ś3 (ŚREDNIE, nieblokujące, backlog): „Przednie kolano…” przy ruchu bocznym — wskazówka techniki dotyczy ugiętej nogi i rysunek pokazuje ją na tej nodze; myli tylko słowo „przednie”. Ś4 (ŚREDNIE, backlog wg koordynatora): u = 0 niesymetryczny rozkrok — kolano R 51,8° (Cossack 38,4°).",
+      "slad": "Pociąg-7: arkusze arkusz-slad Barbell Side Split Squat z przodu i z boku po R3-W1 oraz z przodu przed R3-W1 (porównanie), obejrzane w pełnej rozdzielczości przez recenzenta. Wcześniej: Ślad toru obejrzany na arkuszach arkusz-slad (21 kadrów co 0,05) wygenerowanych przez recenzenta: r2 — 13 ćwiczeń zmienionych od r1 × 2 widoki (26 arkuszy; 13 obejrzanych w pełnej rozdzielczości, pozostałe w skupiskach identycznego szkieletu sprawdzone liczbowo frameAt co 0,01) oraz 76 arkuszy arkusz-nakladka (obejrzane z przodu: Step Up, Lateral Lunge, Cossack Squat, Pistol Squat); r1 — 48 arkuszy rodziny. Ślad = gryf/hantel/kettlebell, bez ciężaru = miednica: wykroki — łagodny łuk 4,0–4,8 cm; Barbell Side Split Squat — gryf na barkach podąża w bok i łukiem w tył i w dół; Step Up — hantle w górę po skosie nad stopień; pistolet — łuk miednicy w tył i w dół; bez przenikania (checkFrame bez uwag w 101 klatkach każdego ćwiczenia).",
+      "sha": "f6b935560af3",
       "liczba": 24
     },
     "leg_isolation": {
@@ -2039,6 +2039,102 @@
       ],
       "bez_rysunku": [],
       "slad": "Arkusze r2: scripts/figures/arkusz-slad.mjs (side i front, 21 kadrów co 0,05, 7 ćwiczeń, 14 arkuszy) i arkusz-nakladka.mjs --family glute_floor (24, z pozami błędu), cmp HTML i PNG z r1 (843bbe38): bajtowo równe wszystkie poza Cable Kickback (wszystkie arkusze) i pozą błędu Prone Flutter Kicks. Ślad: Cable Kickback — mankiet na kostce (0 cm), Machine Glute Kickback — punkt styku dźwigni przy kostce (0 cm), łuk wokół biodra 6,1 cm (Δθ ok. 44°, wyjątki tor-wyjatki.json przyjęte); Hip Extension with Bands — guma przy kostkach; Donkey Kick, Fire Hydrant, Clamshell — bez ciężaru, tor kolana/kostki nogi ruchomej z frameAt (łuki wokół biodra, 0 zawróceń); miednica nieruchoma we wszystkich 7."
+    },
+    "strongman": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — recenzja r1 (bramka 4, L-047 A, L-050): 0 × KRYTYCZNE/WYSOKIE; Ś1 (uproszczenie sprzętu do zapisu), N1 → backlog; nakładka pusta z poprawnym powodem",
+      "autor": "programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+      "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 strongman (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-strongman-r1-audytor-2026-11-10.md",
+      "sha": "04b91430146d",
+      "liczba": 10,
+      "cwiczenia": [
+        "Yoke Walk"
+      ],
+      "bez_rysunku": [
+        "Atlas Stones",
+        "Keg Load",
+        "Log Lift",
+        "Circus Bell",
+        "Jefferson Squat",
+        "Conan's Wheel",
+        "Tire Flip",
+        "Sandbag Load",
+        "Power Stairs"
+      ],
+      "slad": "Arkusz scripts/figures/arkusz-slad.mjs wygenerowany przez recenzenta r1 samodzielnie na 75777836: Yoke Walk, widok side (jedyny widok rodziny), 21 kadrów co 0,05, PNG 2100 px obejrzany w pełnej rozdzielczości. Ślad = gryf (info.load) w stałym punkcie (−12,2; 133,6 cm) przez cały cykl, odstęp od tułowia 1,6 cm, miednica stała 86,0 cm, tułów 3° od pionu, 0 kolizji (checkFrame).",
+      "uwagi": "Ś1: rysowana sztanga z talerzami zamiast jarzma (katalog: „Jarzmo (yoke)”) — położenie ciężaru i chód zgodne, dopuszczalne jako uproszczenie sprzętu, ale niezapisane (brak wpisu w data/zrodla/figury-ograniczenia-silnika.json); zapisać uproszczenie. N1: kolana stale ugięte (min. zgięcie 31°, podporowa ok. 38°, miednica −18 cm względem stania) — kosmetyczne, backlog. Nakładka pusta: wszystkie reguły strongman „analogia” — uzasadnienie poprawne."
+    },
+    "core_standing": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — recenzja r4 różnicy (bramka 4, L-047 A, L-050) po poprawce R3-W1 @ e005c411: narysowany gryf w rzucie z przodu przy środku chwytów (0,00 cm w 21 klatkach), kod wspólny draw.ts zmienia skrót tylko core_standing; rodzina wyświetlana (Barbell Side Bend nadal wstrzymany, P8-CS-1)",
+      "autor": "programista core_standing (partia 8; poprawka R3-W1 — lead sesji E2)",
+      "recenzent": "audytor (sesja r4)",
+      "kto": "audytor (sesja r4) — recenzja niezależna r4 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8 @ e005c411 (poprawka R3-W1 od 150679da; scalenia z sled_throw/strongman i integracja-1-1 od 9abbba74)",
+      "sha": "ba395c4d26d1",
+      "liczba": 19,
+      "cwiczenia": [
+        "Barbell Side Bend",
+        "Side Bend (hantel)",
+        "One-Arm High-Pulley Cable Side Bends",
+        "Weighted Ball Side Bend",
+        "Bosu Ball Cable Crunch With Side Bends",
+        "Russian Twist",
+        "Medicine Ball Full Twist",
+        "Cable Russian Twists",
+        "Pallof Press",
+        "Pallof Press With Rotation",
+        "Cable Woodchop",
+        "Cable Judo Flip",
+        "Landmine Rotation",
+        "Kettlebell Windmill",
+        "Double Kettlebell Windmill",
+        "Bent Press"
+      ],
+      "bez_rysunku": [
+        "Kettlebell Figure 8",
+        "Seated Barbell Twist",
+        "Spell Caster"
+      ],
+      "slad": "Arkusze scripts/figures/arkusz-slad.mjs wygenerowane przez recenzenta r4 samodzielnie @ e005c411: Landmine Rotation front i side, kadry co 0,05 (21); obejrzane w pełnej rozdzielczości, kadry u = 0 i u = 0,5 front powiększone. Front: odcinek „bar” (20 cm, bez talerzy) przy dłoniach w każdej klatce — miara z shapesAt: środek linii bar = rzut środka chwytów (0,00 cm, 21 klatek, x od 19,1 do −19,1 cm); ślad (info.load) = środek chwytów (0,00 cm); side: bez zmian względem r3 (gałąź rysunku z boku nietknięta), ślad przy dłoniach. Gryf (c ± 10 cm) i dźwignia bez kolizji z tułowiem, miednicą, nogami i głową (najmniejszy odstęp 15,4 cm i 17,3 cm); checkFrame bez zgłoszeń.",
+      "uwagi": "R3-W1 usunięte: draw.ts:427–428 rysuje linię bar i talerze z przodu wokół o[0] (rzut środka sztangi); przy chwycie symetrycznym o[0] = 0, więc bez zmiany dla innych rodzin — potwierdzone --skroty @ e005c411 vs @ 150679da: zmienia się tylko v2 core_standing (a08a92274da8 → ba395c4d26d1), także skróty sled_throw i strongman (liczone osobno) bez zmian. Test R3-W1 (tests/figury-core-standing-poprawki-r1.test.ts) czerwony na 150679da, zielony na e005c411; 214/214 (2 pliki, --runInBand). Scalenie 9abbba74..e005c411 w lib/figures/v2 poza draw.ts: contract.ts tylko komentarz, reguly-cwiczen.json tylko sled_throw/strongman, families/overlay/rodziny/index — rejestracja sled_throw/strongman; core_standing nietknięta. K14: bez poluzowań dotyczących core_standing (tor-wyjatki Landmine Rotation|front — tylko przecinek; gemini-polecenia — fixture z core_standing „do zrobienia”, ocenia drugi audytor). Obserwacja bez klasy: 20-cm odcinek bar zachodzi na ostatnie ok. 7 cm przedramienia przy chwycie (u = 0,15, R) — strefa dłoni trzymającej, nie przenikanie tułowia."
+    },
+    "sled_throw": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — recenzja r3 różnicy scalenia z core_standing (bramka 4, L-047 A, L-050): ślad piłki lekarskiej = środek piłki (contract.ts), 0 × KRYTYCZNE/WYSOKIE/ŚREDNIE; P8-ST-1 w backlogu (docs/21), N1 r1 nadal pytanie do badacza",
+      "autor": "programista sled_throw (partia 8); scalenie z core_standing — lead sesji E2",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "sha": "dade4388eeaa",
+      "liczba": 19,
+      "cwiczenia": [
+        "Medicine Ball Slam",
+        "One-Arm Medicine Ball Slam",
+        "Standing Two-Arm Overhead Throw",
+        "Backward Medicine Ball Throw",
+        "Medicine Ball Scoop Throw",
+        "Wall Ball",
+        "Sled Push",
+        "Sled Drag (Harness)"
+      ],
+      "bez_rysunku": [
+        "Turkish Get Up",
+        "Sled Forward Drag with Press",
+        "Medicine Ball Chest Pass",
+        "Sled Overhead Backward Walk",
+        "Supine Chest Throw",
+        "Backward Drag",
+        "Bear Crawl Sled Drag",
+        "Sledgehammer Swings",
+        "Spider Crawl",
+        "Supine One-Arm Overhead Throw",
+        "Supine Two-Arm Overhead Throw"
+      ],
+      "slad": "Arkusze scripts/figures/arkusz-slad.mjs wygenerowane przez recenzenta r3 samodzielnie na e005c411 dla 6 ćwiczeń z piłką lekarską w każdym widoku (Medicine Ball Slam, One-Arm Medicine Ball Slam, Standing Two-Arm Overhead Throw, Backward Medicine Ball Throw, Medicine Ball Scoop Throw — side; Wall Ball — side i front), 21 kadrów co 0,05, PNG 2100 px obejrzane w pełnej rozdzielczości. Ślad = środek piłki, 0,00 cm od środka piłki w każdej klatce (frameAt, u co 0,01); środek piłki 11,0 cm od chwytów oburącz (promień), 10,0 cm od dłoni w One-Arm; checkFrame 0 kolizji. Kształt toru (miara figures-v2-tor, 25 próbek, side): Slam 43,0/1, One-Arm 43,0/1, Standing Two-Arm 23,5/0, Backward 66,8/1, Scoop 12,2/1, Wall Ball 15,8/2 — zgodne z tests/tor-wyjatki.json. Sled Push i Sled Drag (Harness) bez zmian (arkusze r1 na 75777836 obowiązują).",
+      "uwagi": "r3 (różnica 58232ce7..e005c411): jedyna zmiana wpływająca na rysunek — contract.ts, ślad piłki lekarskiej = środek piłki (oburącz ślad przesunięty ≤ 0,2 cm, One-Arm o 10 cm z chwytu na środek piłki — translacja, kształt toru bez zmian). gear.ts (z środka sztangi), draw.ts (gryf wokół o[0]) i overlay.ts (d.side w parallel) nie dotyczą sled_throw (brak sztangi i prowadnic). K14: zmiana tests/figures-v2-sled-throw-tor.test.ts zgodna z kontraktem (ślad ≤ 3 cm od środka piłki, piłka ≤ promień + 3 cm od chwytu, obecność piłki w każdej klatce) — nie poluzowanie; tests/gemini-polecenia.test.ts — fixture zachowuje stan wejściowy, asercje bez zmian. Testy figures-v2-tor, -sled-throw-tor, -sled-throw, gemini-polecenia 276/276. N1 (slam_plecy) — bez zmian, backlog; P8-ST-1 — bez zmian."
     }
   },
   "karty": {
@@ -2313,13 +2409,13 @@
     },
     "Medicine Ball Slam": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
       "sha": "cbe93cfddf5e",
-      "uwagi": "Piłka nad głowę i rzut w podłogę, plecy proste, napięty brzuch — biblioteka (4) i protokół (3) przeczytane."
+      "uwagi": "slam.move pasuje: piłka 40 cm nad głową na szczycie, potem w dół do wypuszczenia ok. 51 cm nad podłogą (moment wypuszczenia, karta nie wymaga uderzenia); hinge.back i plank.brace: tułów sztywny, zawias do 52°."
     },
     "Nordic Curl": {
       "werdykt": "wyswietlana",
@@ -2333,13 +2429,13 @@
     },
     "Pallof Press": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
       "sha": "ff78fc52665f",
-      "uwagi": "Bokiem do wyciągu ok. na wysokości klatki, wypchnięcie i powrót, bez obrotu tułowia — 2 przeczytane źródła. Repozytorium uczelni zwraca 405 (nieodczytane); „napnij brzuch” — wprost tylko „tułów bez ruchu” w przeczytanym źródle."
+      "uwagi": "Treść zgodna z rysunkiem; Ś3 usunięte (łokieć w u = 1 171°). Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
     "Pendlay Row": {
       "werdykt": "wyswietlana",
@@ -2464,13 +2560,13 @@
     },
     "Russian Twist": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: 06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
       "sha": "9408bbfb2743",
-      "uwagi": "Odchylenie z prostymi plecami, obrót prowadzony barkami, bez rzucania ciężarem — biblioteka o tym ćwiczeniu; drugie źródło to wersje na BOSU i piłce (warianty)."
+      "uwagi": "Ruch zgodny (odchylenie 45°, skręt ± 38°, plecy proste); Ś2 (rysunek bez ciężaru, karta „ciężar przed klatką”) — ŚREDNIE, backlog P8-CS-2 (nie blokuje). Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
     "Seated Calf Raise": {
       "werdykt": "wyswietlana",
@@ -3264,13 +3360,13 @@
     },
     "Wall Ball": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
       "sha": "6f2a286d08b6",
-      "uwagi": "Sprawdzone: CrossFit wall-ball („Keep the ball low to the chest.”, „Each rep begins with a rock bottom squat, with feet flat on the floor.”), REP („squat and as soon as you open your hips, throw the ball”, „Quarter squats won't provide the full benefit”). Treść karty zgodna. Figura v2 (rodzina sled_throw, status planned — nie wyświetlana): ruch bez zmian względem stanu sprzed regeneracji (porównanie JSON bez bledy: identyczne), ale piłka trzymana ok. 25 cm przed klatką na zgiętych rękach — rozjazd z wb.setup („przy klatce”); do poprawy przed podłączeniem rodziny (arkusz /home/user/recenzja-p2/arkusze/Wall-Ball-side.png). Błędów sq.mis.kneesIn / sq.mis.heels nie dopisywać jako uproszczenia: przeczytane źródła wall balla nie mówią o kolanach ani piętach, a pięty rosną legalnie przy wyrzucie (rysunek u ≥ 0,65), więc „Odrywanie pięt od podłogi” przeczyłoby ruchowi; kneesIn — możliwe jako nazwane uproszczenie (faza przysiadu z ciężarem z przodu nie różni się od przysiadu przedniego), ale niekonieczne."
+      "uwagi": "wb.setup/wb.move pasują (piłka przy klatce, przysiad, wyrzut jednym ruchem w górę, ściana przed ćwiczącym); wb.mis.shallow — zob. Ś1 w v2.sled_throw (dno nad równoległą)."
     },
     "Medicine Ball Chest Pass": {
       "werdykt": "wyswietlana",
@@ -3284,33 +3380,33 @@
     },
     "Backward Medicine Ball Throw": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch",
       "sha": "871996234a76",
-      "uwagi": "Sprawdzone: World Athletics backward-overhead-throw (tyłem do linii, piłka „held at arms length with both hands”, przysiad, szybki wyprost nóg, rzut „backward over their head”). Drugie źródło Manske i Reiman (Sports Health 2013, szczebel 3)."
+      "uwagi": "bmbt.move „przerzuć ją nad głową za siebie” pasuje po poprawce W1: u = 1 dłonie 8,0 cm za linią barków, tułów 16° w tył, wyprost z przysiadu (kolano 99,7° → 1,1°). bmbt.setup (piłka na prostych rękach przed sobą) — u = 0 łokcie proste, piłka przed goleniami."
     },
     "Standing Two-Arm Overhead Throw": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
       "sha": "85de3b2b60b3",
-      "uwagi": "Sprawdzone: ACE #178 („contract and brace the abdominals”, „lift the medicine ball overhead and bend your elbows to reach the medicine ball behind your head”, „quickly bring your arms forward over your head”). Drugie źródło World Athletics overarm throw."
+      "uwagi": "soht.setup/soht.move pasują: piłka oburącz, w u = 0 6,6 cm za głową („trochę za nią”), wyrzut przed siebie z wyprostu."
     },
     "Sled Push": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "programista P2 (sesja koordynatora 1.1) — treść karty; rysunek v2: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md; poprzednio: audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
       "sha": "ef9ee9fdcec0",
-      "uwagi": "Sprawdzone: REP sled-push („Don't push with your arms since they are not nearly as strong as your legs.”, „Avoid rounding your lower back”; pochylenie ok. 45° — karta słusznie bez liczby, tylko „Pochyl się w przód”). Twierdzenia zdrowotne strony (bezpieczne dla starszych, tętno) nie trafiły do karty — dobrze. Drugie źródło BarBend, EliteFTS, Torque."
+      "uwagi": "sled.pushGrip: dłonie na pionowych uchwytach; sled.legs: naprzemienny napęd nóg; sled.lean: tułów 33° w przód; hinge.back: tułów sztywny."
     },
     "Thruster (hantle)": {
       "werdykt": "wyswietlana",
@@ -4504,30 +4600,33 @@
     },
     "Kettlebell Windmill": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Experience Life szczebel 4 (kwalifikacje autorki na stronie tej samej organizacji); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "a318476c5b31"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; Experience Life szczebel 4 (kwalifikacje autorki na stronie tej samej organizacji); wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "a318476c5b31",
+      "uwagi": "Treść zgodna z ruchem; W1 usunięte (prowadnica wm.arm przy ręce z kettlebellem). N1 (kolana) → backlog P8-CS-3. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
     "Cable Russian Twists": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (M. Magnante, ACE, JSON-LD) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "8b67938595ee"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; FV (M. Magnante, ACE, JSON-LD) szczebel 4; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "8b67938595ee",
+      "uwagi": "W3 usunięte: góra pleców na piłce, biodra w linii z tułowiem (tułów −76°, biodro ≥ 160°), ręce proste nad klatką (łokcie 166–174°), obrót tułowia ± 36° — zgodne z kartą. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
     "Double Kettlebell Windmill": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie jeden → dwa kettlebelle (tor ten sam) potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
-      "sha": "a5abca82301a"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: karta własna wobec rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny i programista (agenci; data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411; poprzednio: badacz-merytoryczny — recenzja niezależna treści karty, partia A4a, runda 2 (791a0b7b), 09.11.2026; uproszczenie jeden → dwa kettlebelle (tor ten sam) potwierdzone; wpis koordynatora po przekładzie A4a i poprawkach lokalizacji (f0dfbeac; PL/EN karty bez zmian od rundy 2), sha z zrodla-runtime --skroty",
+      "sha": "a5abca82301a",
+      "uwagi": "Treść zgodna z ruchem; W1 usunięte (prowadnica przy górnej ręce R). N1 (kolana) → backlog P8-CS-3. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
     },
     "Kettlebell Figure 8": {
       "werdykt": "wyswietlana",
@@ -8047,6 +8146,150 @@
       "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 leg_isolation, runda 3, figury/partia-9-leg_isolation @ 3fbadace",
       "uwagi": "lcurl.still zgodne (miednica stoi, biodro 10,1–10,2°); llc.control — tempo; mis.jerk bez animacji; linka z bloczka przed ćwiczącym do kostki.",
       "sha": "0b503ccdff6a"
+    },
+    "Yoke Walk": {
+      "rodzina": "carry",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 strongman), 10.11.2026 — r1",
+      "autor": "badacz merytoryczny (zestaw carry, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r1 partii 8) — nie pisał rodzin, nakładek, kart ani zestawów",
+      "kto": "audytor (sesja r1 partii 8) — recenzja niezależna r1 rodziny v2 strongman (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-sled_strongman @ 75777836, odłączony worktree; raport docs/research/recenzje/partia8-strongman-r1-audytor-2026-11-10.md",
+      "sha": "21ce36d7bae6",
+      "uwagi": "carry.walk „Idź spokojnym, kontrolowanym krokiem…” pasuje: marsz w cyklu, tułów pionowo (3°), ciężar w stałym miejscu."
+    },
+    "Barbell Side Bend": {
+      "rodzina": "sideBend",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "70e3174cbfa7",
+      "uwagi": "Figura wstrzymana (V2_WSTRZYMANE, P8-CS-1) — zestaw ogólny nie jest wyświetlany bez rysunku; zdania sb.plane, dyn.control, mis.jerk pasują do ruchu. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian.",
+      "poprawka": "ponowna ocena przy powrocie figury (P8-CS-1)"
+    },
+    "One-Arm High-Pulley Cable Side Bends": {
+      "rodzina": "sideBend",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "70e3174cbfa7",
+      "uwagi": "sb.plane: skłon w bok 26°, bez pochylenia i skrętu; dyn.control i mis.jerk ogólne — pasują. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "Weighted Ball Side Bend": {
+      "rodzina": "sideBend",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "70e3174cbfa7",
+      "uwagi": "sb.plane: skłon w bok 26° na piłce, bez pochylenia i skrętu — pasuje. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "Medicine Ball Full Twist": {
+      "rodzina": "rotation",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "4cbde3736060",
+      "uwagi": "rt.control, plank.brace pasują do skrętu ± 40° z piłką przed klatką; W5 usunięte (ślad = środek piłki). Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "Pallof Press With Rotation": {
+      "rodzina": "rotation",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "4cbde3736060",
+      "uwagi": "rt.control, plank.brace pasują (skręt 0 → −30°, tułów bez przechyłu); Ś3 (łokieć 180°) dotyczy rysunku, nie zdań zestawu. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "Cable Woodchop": {
+      "rodzina": "rotation",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "27424f82b775",
+      "uwagi": "chop.close: uchwyt 21–26 cm od tułowia, pochylenie do 18° — mieści się w „klatka nad biodrami” w przybliżeniu; rt.control, plank.brace pasują. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "Cable Judo Flip": {
+      "rodzina": "rotation",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "4cbde3736060",
+      "uwagi": "rt.control, plank.brace pasują (skręt −28 → +30°, tułów pionowo). Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "Landmine Rotation": {
+      "rodzina": "rotation",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "4cbde3736060",
+      "uwagi": "Zdania pasują do obrotu (skręt ± 32°, koniec gryfu po łuku z ± 19 cm, y 87–100 cm); R3-W1 usunięte w r4 (narysowany gryf z przodu przy dłoniach, 0,00 cm). Skrót bez zmian w r3 i r4."
+    },
+    "Bent Press": {
+      "rodzina": "windmill",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: przypisanie zestawu ogólnego do ruchu i rysunku v2 core_standing), r2; potwierdzone w r3 i r4 (skrót bez zmian)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+      "recenzent": "audytor (sesja r2)",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 (różnicy) rodziny v2 core_standing (bramka 4, L-047, L-050), 10.11.2026; figury/partia-8-core_standing @ d3e22931 (poprawki po r1 od 70fa2f75); skrót potwierdzony bez zmian przez audytora (sesja r3) @ 9abbba74; potwierdzony bez zmian przez audytora (sesja r4) @ e005c411",
+      "sha": "48aad8b1b1e6",
+      "uwagi": "wm.eyes — kierunku wzroku silnik nie rysuje, zdanie nie przeczy ruchowi; mis.jerk ogólne. Potwierdzone w r3 @ 9abbba74: skrót bez zmian. Potwierdzone w r4 @ e005c411: skrót bez zmian."
+    },
+    "One-Arm Medicine Ball Slam": {
+      "rodzina": "mbThrow",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 sled_throw), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "badacz merytoryczny (zestaw mbThrow, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "sha": "ad4e223d4754",
+      "uwagi": "Zestaw bez zdań (ok: [], err: []) — nic nie przeczy rysunkowi; brak elementu nakładki słuszny."
+    },
+    "Medicine Ball Scoop Throw": {
+      "rodzina": "mbThrow",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 sled_throw), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "badacz merytoryczny (zestaw mbThrow, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "sha": "12ca0a03ffbe",
+      "uwagi": "mb.legs „prostuj biodra, kolana i kostki razem z wyrzutem” pasuje: z przysiadu (kolano 78° wewn.) do wyprostu (kolano 179°, biodro 171°, wspięcie na palce) razem z wyrzutem; wypowiada elementy throwKneeLimb/throwHipLimb (rzut_wyprost, ustalone)."
+    },
+    "Sled Drag (Harness)": {
+      "rodzina": "sled",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 sled_throw), 10.11.2026 — r3 (treść i skrót bez zmian względem r2; po scaleniu z core_standing ślad piłki = środek piłki)",
+      "autor": "badacz merytoryczny (zestaw sled, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 8 (figury/partia-8-sled_strongman; pozy poses/sled_throw.json i poses/strongman.json, nakładki overlay/sled_throw.ts i overlay/strongman.ts)",
+      "recenzent": "audytor (sesja r3) — nie pisał rodziny, scalenia, zmian core_standing, kart ani zestawów",
+      "kto": "audytor (sesja r3 partii 8) — recenzja niezależna r3 (różnicy scalenia z core_standing) rodziny v2 sled_throw (bramka 4, L-047, L-050), 10.11.2026; stan e005c411 (różnica względem r2 @ 58232ce7), odłączony worktree; raport docs/research/recenzje/partia8-sled_throw-r3-audytor-2026-11-10.md",
+      "sha": "6fc414841b18",
+      "uwagi": "sled.lean „Pochyl się w przód” pasuje: tułów 34° od pionu; sled.legs pasuje: naprzemienne odpychanie nogami, linka od pasa. Wypowiada elementy sledLeanTrunkRef/sledLeanPlumbRef."
     }
   }
 }
