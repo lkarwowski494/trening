@@ -26,7 +26,7 @@ describe('sekwencer części Jest', () => {
     expect(b.wynik).toEqual(a.wynik);
   });
   test('części wyrównane: najcięższa nie przekracza średniej o więcej niż 5% (domyślny podział Jesta: 2929 s przy średniej 2115 s)', () => {
-    const { sumy } = przydziel(pliki, N); const srednia = sumy.reduce((x, y) => x + y, 0) / N;
+    const sumy: number[] = przydziel(pliki, N).sumy; const srednia = sumy.reduce((x, y) => x + y, 0) / N;
     expect(Math.max(...sumy)).toBeLessThanOrEqual(srednia * 1.05);
   });
   test('shard() zwraca rozłączne części pokrywające cały zestaw; plik bez wpisu liczy się jako domyslny_s', () => {
