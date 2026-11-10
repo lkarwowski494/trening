@@ -37,7 +37,7 @@ describe('W1: mierzona noga rzutu z przodu i linii kąta to noga przednia/pracuj
 describe('W2: ruchy boczne — stopa nogi pracującej prosto, kolano w linii palców', () => {
   test.each(['Lateral Lunge', 'Barbell Side Split Squat', 'Cossack Squat'])('%s — palce nie do środka (toeOut ≥ 0) i kolano zgięte ≥ 30° leży w linii palców (od −4 cm przyśrodkowo do +5 cm na zewnątrz)', k => {
     for (const u of US) {
-      const f = frameAt(spec(k), u); const R = f.sk.legs.R; const toeOut = f.pose.legs.R.toeOut ?? 0; expect([k, u, toeOut >= 0]).toEqual([k, u, true]);
+      const f = frameAt(spec(k), u); const R = f.sk.legs.R; if (!f.pose) throw new Error(`${k}: brak pozy w klatce`); const toeOut = f.pose.legs.R.toeOut ?? 0; expect([k, u, toeOut >= 0]).toEqual([k, u, true]);
       if (jointAngles(f.sk, 'R').knee >= 30) { const d = R.knee[2] - R.toe[2]; expect([k, u, d >= -4 && d <= 5, r1(d)]).toEqual([k, u, true, r1(d)]); }
     }
   });
