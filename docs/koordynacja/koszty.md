@@ -22,3 +22,5 @@ Mnożnik szacunku: brak szacunków tej nocy [DO USTALENIA].
 Przegląd przepływu 2026-11-10: największa strata ~1 h na każde dociąganie integracji → WG-01.
 | D | 08 build | 60 | 37,30 | 32,3 | 10:36 → 10:36 → ? → (czerwony spodziewany) → nieprzyjęta | czekała na KO-024 ~2 h (zapas poseData.ts 0 B — błąd polecenia) | przekazanie do D2 |
 Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje — oczekiwanie na podział poseData.ts (KO-024) → WG-08. Koszt od 07:00: ok. 205 USD (szacunek z get_session; C2, D2, E2 bez licznika).
+| G | 08 build (pociąg-5) | 25 | 14,36 | 32,5 | 10:44 → 10:45 → 2d976328 → 42829498589 zielony → przyjęta 14:52 | ~3 h czekała na KO-024 | WG-08 |
+| F | 08 build (partia 9) | 60 | 39,99 | 36,4 | 10:41 → 10:42 → … → nieprzyjęta (F2) | ~2 h push zablokowany do KO-024 | WG-08 |
