@@ -37,7 +37,7 @@ function punktyZwrotne(o) {
   const x0 = o.x0 ?? 0, x1 = x0 + (o.dx ?? 0), top0 = o.top0 ?? 0, top = o.top ?? 0; const dip = { k: 95, al: 28, pitch: 32, ...(o.dip ?? {}) }; const a = { ...ARM, ...Object.fromEntries(Object.entries(o.ramiona ?? {}).map(([k, v]) => [k, Z(v)])) };
   const H = o.H ?? 26; const lean = (o.dx ?? 0) > 60 ? 9 : 3; const zo1 = o.zo ?? 0; const kLad = o.sztywno ? 22 : (o.kLad ?? 22); const kAm = o.sztywno ? 26 : (o.kAmort ?? 90); const alAm = o.sztywno ? 6 : 28; const pAm = o.sztywno ? 3 : (o.pitchAmort ?? 32);
   const lyP = top0 + yP(-45) + 4; const apexY = Math.max(lyP + H, top + yP(-45) + 14 + (top > top0 ? 4 : 0));
-  const lot = { prosty: { al: 0, k: 30, pitch: 0, pod: -45 }, kolana: { al: 10, k: 112, pitch: 18, pod: -30 }, pieta: { al: 10, k: 140, pitch: 0, pod: -60 }, rozkrok: { al: 0, k: 25, pitch: 0, pod: -45 } }[o.lot ?? 'prosty'];
+  const lot = { prosty: { al: 0, k: 30, pitch: 0, pod: -45 }, kolana: { al: 10, k: 112, pitch: 18, pod: -30 }, pieta: { al: 120, k: 140, pitch: 0, pod: -45 }, rozkrok: { al: 0, k: 25, pitch: 0, pod: -45 } }[o.lot ?? 'prosty'];
   const L = (A) => (o.single ? { AL: [A[0] - 22, A[1] + 20], podL: -75 } : {});
   const kopnij = o.single === 'pieta'; /* wolna noga: pięta do pośladka w locie */
   const W = [
@@ -48,8 +48,9 @@ function punktyZwrotne(o) {
     { A: [x1, top + yP(-12) + (o.lad ?? 0.5)], al: 8, k: kLad, pod: -12, pitch: 10, ra: a.przod, ...L([x1, top + 8]), zo: zo1 },
     { A: [x1, top + 7], al: alAm, k: kAm, pod: 0, pitch: pAm, ra: a.przod2, ...L([x1, top + 7]), zo: zo1 },
   ];
-  if (kopnij) { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); const k = kostkaZBiodra(hip, 10, 140); w.AL = [k[0], k[1]]; w.podL = -60; }
+  if (kopnij) { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); const k = kostkaZBiodra(hip, 120, 140); w.AL = [k[0], k[1]]; w.podL = podPowietrze(hip, w.AL, 25); }
   W.forEach((w) => { w.zR = 12; w.zL = 12; if (o.bocz) w.bocz = true; });
+  if (o.lot === 'pieta') { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); w.pod = podPowietrze(hip, w.A, 25); } /* r2-W2: podbicie z kierunku goleni (pięta do pośladka) */
   if (o.lot === 'rozkrok') { W[3].zR = 30; W[3].zL = 30; W[3].k = 40; W[3].ra = { psi: 55, th: 45, z: 36 }; }
   return W;
 }
