@@ -22,6 +22,15 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Poprzednik session_01T66VByJCWCao1Hw3is68Cy: nieaktywny (send_message 05:37 → session_inactive); jego przypomnienie trig_01RWANmz7TjBgbofGPeFceaB (05:46) zostawione (cudze).
 - Gałęzie (git ls-remote 05:30): integracja-1-1 dfaeeefe; figury/partia-2 7a09818f; figury/partia-4 3bcd294c; figury/partia-4-thruster 110bb399; figury/partia-5 — nie było na origin o 05:30.
 
+## Przejście na drugie konto (właściciel 2026-11-10 ~05:40 UTC: wygaszanie — kończy się limit tygodniowy, reset 2026-11-15 16:00 UTC)
+Sesje, przypomnienia i ID sesji z tego konta NIE są widoczne z drugiego konta — jedynym nośnikiem stanu jest repo (`lkarwowski494/trening`, publiczne; push wymaga dostępu GitHub drugiego konta albo pracy przez konto właściciela).
+Start na drugim koncie (nowa sesja koordynatora M9):
+1. Sesja z repo `lkarwowski494/trening`; `git fetch origin koordynacja integracja-1-1`; przeczytać ten plik (origin/koordynacja) w całości, potem decyzje.md, waskie-gardla.md, koszty.md, CLAUDE.md.
+2. Rola M9: add_repo `lkarwowski494/prompts` (read), `node <prompts>/tools/assemble.mjs M9-koordynator-sesji --tryb build`. Jeśli odrzucone — prośba do właściciela (na tym koncie klasyfikator odrzucał 00:16, 05:12, 05:16).
+3. Stan pracy: tabela „Zadania i stan” niżej. Gałęzie wykonawców mają `STAN-AGENTA.md` (jeśli sesja zdążyła zapisać) — nowa sesja wykonawcza startuje od niego.
+4. Na tym koncie zostaje do wygaszenia: sesje P-4, P-5 (wstrzymane), zakończone P-1/P-2/P-3 i starsze (do archiwizacji), przypomnienie poprzednika trig_01RWANmz7TjBgbofGPeFceaB. Nocne testy (nightly.yml) i tests.yml biegną w GitHub Actions niezależnie od konta.
+5. Linie 05:00/14:00 i kontrolę utworzyć od nowa na drugim koncie.
+
 ## Zadania i stan (na chwilę wstrzymania)
 | # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
 |---|---|---|---|---|
