@@ -84,7 +84,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - trig_01XcNDadukhGTefDU3YBwA6S „Koordynator Trening: kontrola” 09:16 · trig_01NZwThjYQSRrWBJooKjAAdt „…: linia 14:00” (10.11) · trig_01A9dxsnidHUn46eG8hrruiY „…: linia 05:00” (11.11). Poprzednika: trig_01DCKPujdY6Ds93aNDAicFeh „kontrola przekazania” 09:16 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-024. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-025. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -119,3 +119,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 10:25 | A2 / koordynator | PRZEKAZANIE A2 → odbiór: CI 42796020921 success na d6d8f6ed, przodkowie i autor sprawdzone; do weta: wyjątek rozmiaru poseData.ts 24 736 B (wpis A2 w docs/18); scal-galaz kod 0 → b66ecfa (drzewo identyczne z d6d8f6ed); npm ci + verify:lekkie w toku (znacznik do haka pre-push) | push integracji, start C–F, pociąg-5 |
 | 2026-11-10 10:35 | koordynator | npm ci + verify:lekkie kod 0 (znacznik lekkie b66ecfa); push integracja-1-1 dfaeeef..b66ecfa (hak pre-push zielony 123 s); start C, D, E, F (tura 3, partie 6–9) i G (pociąg-5) od b66ecfa przez subagenta | tests.yml integracji b66ecfa; ID sesji do tabeli |
 | 2026-11-10 10:50 | koordynator | push stanu zablokowany hakiem pre-push (WG-06): unshallow repo, verify:lekkie na gałęzi stanu, usunięty adres noreply z docs/koordynacja (strażnik public-repo) | push stanu po verify:lekkie |
+| 2026-11-10 10:46 | C, D, E | PYTANIA o limit poseData.ts (zapas 0 B na b66ecfa, polecenie podawało 48 B — błąd koordynatora) → KO-024: podział przez E na scal/posedata-podzial, C i D czekają z pushem | raport E z SHA → CI → scal-galaz → sygnał do C, D, F, G |
