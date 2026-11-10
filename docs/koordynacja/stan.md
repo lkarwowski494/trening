@@ -38,12 +38,12 @@ Start na drugim koncie (nowa sesja koordynatora M9):
 | 2 | Wpis docs/18 o zmianie CI (KO-012) | otwarte | brak wpisu na integracji | dopisać w pociągu-4 (zlecenie gotowe w treści wiadomości do P-4 z 05:28) |
 | 3 | Pociąg-4: integracja dfaeeef + figury/partia-4 (z thrusterem) + figury/partia-2 7a09818f | wstrzymane (zlecone P-4 05:28, odwołane 05:36) | partia-4 3bcd294c zielona 42759957551 (na bazie 1d6352ba) | P-4 albo nowa sesja 08: gałąź scal/pociag-4, CI, scal-galaz |
 | 4 | Thruster (partia-4, KO-010) | zrobione na gałęzi, CI w toku przy wstrzymaniu | `figury/partia-4-thruster-wl` @ 06d90e84 (ff od 3bcd294c; thruster 3/3, r2 czysta, backlog P4-THR-1..4 w docs/21, decyzja w docs/18 z testem tests/figury-dynamiczne.test.ts); verify:lekkie + 14 plików Jest; tests.yml 42762990970 w toku; stan: docs/przekazanie/notatki/linia-1-1/STAN-PARTIA-4.md („Wstrzymanie 10.11.2026”) | zielony 42762990970 → ff figury/partia-4 do 06d90e84 → pociąg-4 |
-| 5 | Partia 5 (forearm, carry, core_hang, rotator_cuff, kneeling_hinge, glute_floor) | w toku u P-5 przy wstrzymaniu; kontekst 32% | P-5 05:13: „8 czerwonych testów naprawionych; czekam na verify i tests.yml” | nowa sesja od STAN-AGENTA.md (wymaga zgody na nowe sesje), potem pociąg |
+| 5 | Partia 5 (forearm, carry, core_hang, kneeling_hinge gotowe na gałęzi; rotator_cuff w fazie autora; glute_floor nie ruszany) | wstrzymane 05:50, nic nie scalone | `figury/partia-5` @ cd789d82 (kod cd5c4afa: verify:szybkie 0; tests.yml 42763692815 w toku przy wstrzymaniu); `figury/partia-5-rotator_cuff` @ 7f694cf5 (bez recenzji; autor osłabił asercję `pelna` w strona-eksport — do oceny recenzenta); stan: docs/przekazanie/notatki/linia-1-1/STAN-PARTIA-5.md; strażniki poluzowane do przejrzenia: nakladka-kazda-rodzina (61edc600), kierunek-u (14a614ae), wybor-testow-l103 36→37 (bf648305) | nowa sesja od STAN-PARTIA-5.md: tests.yml cd5c4afa → pociąg; rotator_cuff r1→r2; lekcja L-NNN (brief z adresem w stopce — był to adres noreply, nie dane właściciela; sprawdzone 05:55) |
 | 6 | Tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) | otwarte | plan 24 h niżej | po decyzji C właściciela |
 | 7 | Przekład nowych tekstów (ZB-057, do 30 USD; wydane 0), recenzja lokalizacji zbiorcza | otwarte | ZB-057 | po turze 3 |
 | 8 | Zadania przed wydaniem 1.1 (lista w sekcji niżej) | otwarte | — | po turze 3; audyt, E2E |
 | 9 | Nocne testy: 12 czerwonych z rzędu (L-119) | otwarte — decyzja A właściciela | archiwum/nocne-diagnoza.md | wg decyzji A |
-| 10 | Archiwizacja zakończonych sesji (P-1 …VBx7QqXRjB2JpVi4Kww, P-2 …VBvdsMU66FhsPJWpG8J, P-3 …VBzk52zTw31SRXRs8To, starsze przekazane) | otwarte | tabela Sesje | get_session (koszt → koszty.md), potem archiwizacja |
+| 10 | Archiwizacja sesji | P-1 …VBx7QqXRjB2JpVi4Kww, P-2 …VBvdsMU66FhsPJWpG8J, P-3 …VBzk52zTw31SRXRs8To, P-4, P-5 zarchiwizowane 05:56 (praca wypchnięta, koszty w koszty.md); starsze przekazane sesje partii — nie ruszane (status nieznany) | archive_session 05:56 | sprawdzić starsze sesje (tabela Sesje) i zarchiwizować na tym koncie albo zostawić |
 | 11 | Rola M9 z biblioteki prompts | zrobione 05:37 (zgoda właściciela) | prompts f701ce9 | na drugim koncie: add_repo prompts od nowa |
 | 12 | Decyzje A–D i weto KO-001…KO-014 | czeka na właściciela | sekcja „Czeka na właściciela” | odpowiedzi właściciela (przez czat poprzednika lub tutaj) |
 | 13 | Rezerwacja nazwy RepsGoat w ASC | do ustalenia | brak wpisu w docs/48 | sprawdzić u źródła |
@@ -52,7 +52,7 @@ Start na drugim koncie (nowa sesja koordynatora M9):
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
 | P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
-| P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana 05:36 (STAN-AGENTA.md + raport oczekiwany) |
+| P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana — raport 05:50 (koszt 55,8 USD, kontekst 32%) |
 | P-2 | session_01T66VBvdsMU66FhsPJWpG8J | lead partii 2 | figury/partia-2 @ 7a09818f | 30 | 26 | zakończona (raport końcowy) → do archiwizacji po scaleniu |
 | P-1 | session_01T66VBx7QqXRjB2JpVi4Kww | lead partii 1 | figury/partia-1 @ 9d6f35b3 — scalona (pociąg-3, dfaeeef) | 31 | 17 | zakończona → do archiwizacji |
 | — | session_01T66VBzk52zTw31SRXRs8To | lead partii 3 | scalona f7c2e0ed | 22 | 1 | zakończona, scalona → do archiwizacji |
@@ -95,4 +95,5 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 05:15 | koordynator | migracja na M9: gałąź `koordynacja` | przekazanie następcy M9 |
 | 2026-11-10 05:20 | koordynator …VBw1AX38pLShXPH7rmy | przejęcie; „PRZEJĄŁEM” do poprzednika; P-4, P-5 poinformowane; add_repo prompts odrzucony | prośba do właściciela |
 | 2026-11-10 05:25 | integracja | scal/pociag-3 c1ffb654 → dfaeeef (tests.yml 42760295218 zielony; drzewo = c1ffb654, verify:lekkie) | pociąg-4 (P-4) |
+| 2026-11-10 05:56 | koordynator | wygaszanie: P-4 (06d90e84) i P-5 (cd789d82, 7f694cf5) wypchnięte i zarchiwizowane razem z P-1, P-2, P-3 | koniec pracy na tym koncie; start na drugim koncie wg sekcji „Przejście” |
 | 2026-11-10 05:35 | właściciel | „zapisz wszystkie zadania i ich stan i wstrzymaj pracę” → P-4, P-5 wstrzymane, przypomnienia usunięte, lista zadań wyżej | wznowienie przez właściciela |
