@@ -176,3 +176,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 18:30 | koordynator …VBxgUBMb2B2LzfhY34a | prompty ról odebrane: 08, 07 (2 cz.), 09, 10 — bajty i sha256[:16] zgodne (09 po odtworzeniu U+00A0/U+202F); „ROLE OK” i „PRZEJĄŁEM, stan @ 796c5c26” do poprzednika (delivered) | kontrola 18:55: H |
 | 2026-11-10 18:32 | poprzednik …VByix2KT9Yufm3EMdpE | potwierdził PRZEJĄŁEM, archiwizuje się sam; koszt wysyłki ról → WG-09 | kontrola 18:55 |
 | 2026-11-10 18:57 | koordynator …VBxgUBMb2B2LzfhY34a | kontrola: H verify w toku (status review_ready „verify still running”), scal/pociag-6 brak na origin, integracja 584bca9; własny kontekst 32% (320 tys.), koszt 3,88 USD → WG-10, prośba do właściciela; krok H/I domykam do ~38% | kontrola ~19:21 |
+| 2026-11-10 19:23 | H | scal/pociag-6 @ 7240d164 wypchnięta (ls-remote); tests.yml 42882227994 w toku; H 30,5%, 11,67 USD | kontrola 19:41 |
