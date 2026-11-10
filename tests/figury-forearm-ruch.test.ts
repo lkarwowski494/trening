@@ -44,4 +44,17 @@ describe('forearm: styk ciężaru i zakres nadgarstka', () => {
       expect(Math.abs(d)).toBeGreaterThanOrEqual(44); expect(Math.abs(d)).toBeLessThanOrEqual(65);
     });
   });
+  /* recenzja r2 (10.11.2026), W2: po poprawce W1 kąt łokcia spadał z 24,3° do 0° (ramię 29° → 17° od pionu), łokieć jechał 6,6 cm (4,4 cm w ostatniej ćwiartce), a w u = 1 dłoń mijała sztangę o 0,39 cm.
+     Źródło: ręce proste, barki nieruchome, ruch tylko w nadgarstkach. */
+  describe('Behind-the-Back Barbell Wrist Curl: ramię nieruchome (10.11.2026, W2)', () => {
+    const k = 'Behind-the-Back Barbell Wrist Curl';
+    const odj = (a: number[], b: number[]) => a.map((x, i) => x - b[i]); const dl = (a: number[]) => Math.hypot(...a);
+    const klatki = Array.from({ length: 21 }, (_, i) => { const a = frameAt(figureSpec(k) as FigureSpec, i / 20).sk.arms.R;
+      const g = odj(a.shoulder, a.elbow), d = odj(a.wrist, a.elbow);
+      return { lok: a.elbow as number[], flex: 180 - Math.acos((g[0] * d[0] + g[1] * d[1] + g[2] * d[2]) / (dl(g) * dl(d))) * 180 / Math.PI, err: a.err as number }; });
+    test('kąt zgięcia łokcia zmienia się o ≤ 5° w całym ruchu', () => { const f = klatki.map(x => x.flex); expect(Math.max(...f) - Math.min(...f)).toBeLessThanOrEqual(5); });
+    test('łokieć przesuwa się o ≤ 2 cm względem pierwszej klatki', () => { expect(Math.max(...klatki.map(x => dl(odj(x.lok, klatki[0].lok))))).toBeLessThanOrEqual(2); });
+    test('błąd chwytu ≤ 0,1 cm w każdej klatce', () => { expect(Math.max(...klatki.map(x => x.err))).toBeLessThanOrEqual(0.1); });
+    test('zakres nadgarstka nadal ≥ 50°', () => { const a = Array.from({ length: 21 }, (_, i) => measuredAngle(figureSpec(k) as FigureSpec, i / 20).deg); expect(Math.max(...a) - Math.min(...a)).toBeGreaterThanOrEqual(50); });
+  });
 });
