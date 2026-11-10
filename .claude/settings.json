@@ -19,7 +19,8 @@
       "SendMessage",
       "mcp__claude-code-remote__send_message",
       "mcp__claude-code-remote__send_later",
-      "Bash(git push origin --delete:*)"
+      "Bash(git push origin --delete:*)",
+      "mcp__claude-code-remote__add_repo"
     ],
     "deny": [
       "Bash(git push origin main:*)",
