@@ -72,8 +72,10 @@ describe('A4b moc i przedramiona: karty własne (09.11.2026)', () => {
 
   test('pliki wspólne silnika rysunku: reguły sensu póz kart A4b nie zależą od zestawu ogólnego (lib/figures/v2/reguly-cwiczen.json bez reguł dla kart A4b spoza wariantów)', () => {
     const reg = json('lib/figures/v2/reguly-cwiczen.json') as Record<string, Record<string, string[]>>;
-    const sens = json('data/zrodla/figury-sens.json').rodziny as Record<string, { warianty?: Record<string, string[]> }>;
-    for (const [fam, m] of Object.entries(reg)) for (const k of A4B.cwiczenia) if (k in m) expect([fam, k, m[k]]).toEqual([fam, k, sens[fam]?.warianty?.[k] ?? m[k]]);
+    const sens = json('data/zrodla/figury-sens.json').rodziny as Record<string, { warianty?: Record<string, string[] | string>; reguly?: Record<string, { pewnosc?: string }> }>;
+    /* 10.11.2026 (partia 6, plyo): wariant może być aliasem zestawu (`"_skok"`), a reguly-cwiczen.json zawiera tylko reguły „ustalone” (scripts/zrodla-runtime.mjs, buildReguly) — porównanie z rozwiniętym wariantem po tym samym filtrze, nie z surowym wpisem */
+    const wariant = (fam: string, k: string): string[] | undefined => { const w = sens[fam]?.warianty; const v = w?.[k]; const lista = typeof v === 'string' ? w?.[v] : v; return Array.isArray(lista) ? lista.filter(id => /^ustalone/.test(sens[fam]?.reguly?.[id]?.pewnosc ?? '')) : undefined; };
+    for (const [fam, m] of Object.entries(reg)) for (const k of A4B.cwiczenia) if (k in m) expect([fam, k, m[k]]).toEqual([fam, k, wariant(fam, k) ?? m[k]]);
   });
 });
 

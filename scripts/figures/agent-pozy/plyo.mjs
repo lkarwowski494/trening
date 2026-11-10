@@ -37,7 +37,7 @@ function punktyZwrotne(o) {
   const x0 = o.x0 ?? 0, x1 = x0 + (o.dx ?? 0), top0 = o.top0 ?? 0, top = o.top ?? 0; const dip = { k: 95, al: 28, pitch: 32, ...(o.dip ?? {}) }; const a = { ...ARM, ...Object.fromEntries(Object.entries(o.ramiona ?? {}).map(([k, v]) => [k, Z(v)])) };
   const H = o.H ?? 26; const lean = (o.dx ?? 0) > 60 ? 9 : 3; const zo1 = o.zo ?? 0; const kLad = o.sztywno ? 22 : (o.kLad ?? 22); const kAm = o.sztywno ? 26 : (o.kAmort ?? 90); const alAm = o.sztywno ? 6 : 28; const pAm = o.sztywno ? 3 : (o.pitchAmort ?? 32);
   const lyP = top0 + yP(-45) + 4; const apexY = Math.max(lyP + H, top + yP(-45) + 14 + (top > top0 ? 4 : 0));
-  const lot = { prosty: { al: 0, k: 30, pitch: 0, pod: -45 }, kolana: { al: 10, k: 112, pitch: 18, pod: -30 }, pieta: { al: 100, k: 100, pitch: 0, pod: -85 }, rozkrok: { al: 0, k: 25, pitch: 0, pod: -45 } }[o.lot ?? 'prosty'];
+  const lot = { prosty: { al: 0, k: 30, pitch: 0, pod: -45 }, kolana: { al: 10, k: 112, pitch: 18, pod: -30 }, pieta: { al: 120, k: 140, pitch: 0, pod: -45 }, rozkrok: { al: 0, k: 25, pitch: 0, pod: -45 } }[o.lot ?? 'prosty'];
   const L = (A) => (o.single ? { AL: [A[0] - 22, A[1] + 20], podL: -75 } : {});
   const kopnij = o.single === 'pieta'; /* wolna noga: pięta do pośladka w locie */
   const W = [
@@ -48,8 +48,9 @@ function punktyZwrotne(o) {
     { A: [x1, top + yP(-12) + (o.lad ?? 0.5)], al: 8, k: kLad, pod: -12, pitch: 10, ra: a.przod, ...L([x1, top + 8]), zo: zo1 },
     { A: [x1, top + 7], al: alAm, k: kAm, pod: 0, pitch: pAm, ra: a.przod2, ...L([x1, top + 7]), zo: zo1 },
   ];
-  if (kopnij) { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); const k = kostkaZBiodra(hip, 100, 100); w.AL = [k[0] - 8, k[1] + 0]; w.podL = -90; }
+  if (kopnij) { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); const k = kostkaZBiodra(hip, 120, 140); w.AL = [k[0], k[1]]; w.podL = podPowietrze(hip, w.AL, 25); }
   W.forEach((w) => { w.zR = 12; w.zL = 12; if (o.bocz) w.bocz = true; });
+  if (o.lot === 'pieta') { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); w.pod = podPowietrze(hip, w.A, 25); } /* r2-W2: podbicie z kierunku goleni (pięta do pośladka) */
   if (o.lot === 'rozkrok') { W[3].zR = 30; W[3].zL = 30; W[3].k = 40; W[3].ra = { psi: 55, th: 45, z: 36 }; }
   return W;
 }
@@ -196,7 +197,7 @@ export function generuj() {
   G['Star Jump'] = () => skok({ cw: 'Star Jump', lot: 'rozkrok', blad: jm });
   G['Box Jump'] = () => skok({ cw: 'Box Jump', x0: 0, dx: 75, top: 50, sprzet: box(50), blad: bj, H: 30 });
   G['Bench Jump'] = () => skok({ cw: 'Bench Jump', x0: 0, dx: 75, top: 40, sprzet: box(40), blad: jm, H: 28 });
-  G['Broad Jump'] = () => skok({ cw: 'Broad Jump', dx: 130, H: 22, dip: { k: 80, al: 25, pitch: 40 }, ramiona: { stoj: { psi: -95, th: 30 }, tyl: { psi: -100, th: 30 }, gora: { psi: 30, th: 25 }, gora2: { psi: 35, th: 25 } }, blad: jm });
+  G['Broad Jump'] = () => skok({ cw: 'Broad Jump', dx: 130, H: 22, dip: { k: 80, al: 25, pitch: 40 }, ramiona: { stoj: { psi: -95, th: 30 }, tyl: { psi: -128, th: 15 }, gora: { psi: 30, th: 25 }, gora2: { psi: 35, th: 25 } }, blad: jm });
   G['Frog Hops'] = () => skok({ cw: 'Frog Hops', dx: 70, H: 18, dip: { k: 118, al: 38, pitch: 42 }, ramiona: { stoj: { psi: -70, th: 55 }, tyl: { psi: -75, th: 50 }, gora: { psi: 25, th: 30 }, gora2: { psi: 30, th: 30 }, przod: { psi: -35, th: 40 }, przod2: { psi: -70, th: 55 } }, kAmort: 118, pitchAmort: 42, blad: jm });
   G['Front Cone Hops'] = () => skok({ cw: 'Front Cone Hops', dx: 45, H: 14, dip: { k: 60, al: 20, pitch: 20 }, ramiona: { gora: { psi: 10, th: 45 }, gora2: { psi: 15, th: 45 }, tyl: { psi: -95, th: 40 }, stoj: { psi: -90, th: 35 }, przod: { psi: -40, th: 50 }, przod2: { psi: -50, th: 50 } }, kAmort: 60, pitchAmort: 20, blad: jm });
   G['Single-Leg Hop Progression'] = () => skok({ cw: 'Single-Leg Hop Progression', single: true, dx: 40, H: 16, dip: { k: 60, al: 20, pitch: 20 }, kAmort: 60, pitchAmort: 20, ramiona: { gora: { psi: 10, th: 45 }, gora2: { psi: 15, th: 45 }, tyl: { psi: -95, th: 40 }, stoj: { psi: -90, th: 35 }, przod: { psi: -40, th: 50 }, przod2: { psi: -50, th: 50 } } });

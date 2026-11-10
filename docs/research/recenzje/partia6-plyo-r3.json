@@ -1,0 +1,239 @@
+{
+  "v2": {
+    "plyo": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny plyo, partia 6, runda 3, figury/partia-6 @ 77359b5, 10.11.2026; raport docs/research/recenzje/partia6-plyo-r3-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 6, runda 3: W1 (r1) i W2 (r1/r2) naprawione, 0 × KRYTYCZNE/WYSOKIE; ŚREDNIE S1–S2 i NISKIE N1–N4 (+ test podpory bez osi z) do backlogu",
+      "autor": "programista partii 6 (figury/partia-6)",
+      "recenzent": "audytor",
+      "uwagi": "W1 Broad Jump (r2): dłonie 21–25 cm za barkiem w ugięciu (u 0,10–0,15). W2 Double Leg Butt Kick u 0,75: kolano 138°, biodro 22°, pięta 29 cm za miednicą, 34 cm od jej środka; Single Leg Butt Kick noga wolna u 0,70: kolano 139°, biodro 21°, pięta 28 cm za miednicą, 34 cm. Miara testu (kolano ≥ 130°, biodro ≤ 45°, pięta.x − miednica.x ≤ −20 cm, ≤ 36 cm; negatyw r1 i r2) zaakceptowana — 30 cm nieosiągalne przy zakresie kolana 141° w kontrakcie (uproszczenie modelu). Regresje: brak (25 póz bez zmian, walidator OK dla 27, przenikanie 0,0 cm, krok miednicy ≤ 4,7 cm na 1/96). ŚREDNIE: S1 miednica w locie 19–26 cm od kostek z zawróceniem śladu ok. 30 cm; S2 Star Jump wąska gwiazda. NISKIE: N1 brak pachołka, N2 Side Hop-Sprint bez sprintu, N3 Depth Jump zaczyna się podskokiem, N4 Tuck Jump uda poziomo, test podpory bez osi z.",
+      "slad": "Ślad toru obejrzany: r1 — 54 arkusze arkusz-slad (27 ćwiczeń × rzut z boku i z przodu, 21 kadrów co 0,05; ślad = miednica, przy Weighted Jump Squat sztanga, przy Dumbbell Seated Box Jump hantel); r2 — Broad Jump; r3 — Double i Single Leg Butt Kick, oba rzuty. Tor ciała: zejście w ugięcie z biodrami w tył, wybicie, łuk lotu i ugięcie po lądowaniu; Broad Jump i skoki na skrzynię — gładka parabola w przód, skoki w bok — łuk w osi z widoczny z przodu; Dumbbell Seated Box Jump — hantel z boku ławki nad głowę i łukiem nad skrzynię; Butt Kick — pięty w tył pod pośladki przy udzie blisko pionu. Bez szarpnięć i skoków między kadrami; wybrzuszenie: w locie miednica zawraca w poziomie o ok. 30 cm (S1, ŚREDNIE).",
+      "sha": "10df52ff492a",
+      "liczba": 28
+    }
+  },
+  "zestawy": {
+    "Double Leg Butt Kick": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu. Rysunek r3: pięty w tył pod pośladki (kolano 138–139°, biodro 21–22°, pięta 28–29 cm za miednicą) — zgodny z nazwą.",
+      "sha": "cfe91a4457a4"
+    },
+    "Star Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Bench Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Frog Hops": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Front Cone Hops": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    },
+    "Single-Leg Hop Progression": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    },
+    "Single Leg Butt Kick": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu. Rysunek r3: pięty w tył pod pośladki (kolano 138–139°, biodro 21–22°, pięta 28–29 cm za miednicą) — zgodny z nazwą.",
+      "sha": "b46599d89ffa"
+    },
+    "Box Skip": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    },
+    "Single-Leg Stride Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Single Leg Push-Off": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    },
+    "Alternate Leg Diagonal Bound": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Depth Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.drive, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "47f75f89643f"
+    },
+    "Dumbbell Seated Box Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw bj.land, jump.drive, bj.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk — hantlami nad głowę (54 cm nad barki), zgodnie z figury-sens otwarte_czesciowo; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°), biodra cofnięte, stopy na skrzyni. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "18ce4a37a9c9"
+    },
+    "Side Hop-Sprint": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    },
+    "Side Standing Long Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Lateral Bound": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Single-Leg Lateral Hop": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    },
+    "Lateral Box Jump": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.drive, jump.land, jump.mis.stiff zgodny z rysunkiem: wybicie z wyprostem (kolano i biodro ≤ 15°) i zamachem rąk; lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "cfe91a4457a4"
+    },
+    "Side to Side Box Shuffle": {
+      "rodzina": "jump",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 plyo), partia 6, runda 3, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw jump; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 6 (figury/partia-6 @ 77359b5)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5",
+      "uwagi": "Zestaw jump.land, jump.mis.stiff zgodny z rysunkiem: lot i lądowanie na ugiętych nogach (po lądowaniu kolano ≥ 60°, biodro ≥ 47°). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "b46599d89ffa"
+    }
+  },
+  "karty": {
+    "Broad Jump": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 plyo, K11) — partia 6, runda 3 (rysunek Broad Jump bez zmian od r2)",
+      "autor": "programista P2 (karta); rysunek: programista partii 6",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 plyo, runda 3, figury/partia-6 @ 77359b5, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek 77359b5 zgodny z każdym zdaniem: plyo.broadLoad (ugięcie, biodra w tył, dłonie 21–25 cm za barkiem u 0,10–0,15), plyo.broadDrive (wymach w przód, lot 130 cm w przód i w górę), plyo.broadLand (stopy 15–20 cm przed miednicą w locie i przy lądowaniu, kolano 90°, biodro 93°), jump.mis.stiff.",
+      "sha": "24144cd78046"
+    }
+  }
+}
