@@ -4,7 +4,7 @@
  * W4 Landmine Rotation bez poprzecznej sztangi, koniec gryfu zatacza łuk, W5 ślad toru piłki lekarskiej na piłce, Ś1 nazwy faz skłonów z wyciągiem (istniejąca PhaseName), Ś3 łokieć Pallofa bez pełnego zablokowania.
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json')));
-import { figureSpec, shownFigureSpec, V2_WSTRZYMANE, frameAt, overlayShapes, proj, type FigureSpec, type Shape } from '@/lib/figures/v2';
+import { figureSpec, shownFigureSpec, V2_WSTRZYMANE, frameAt, overlayShapes, proj, shapesAt, type FigureSpec, type Shape } from '@/lib/figures/v2';
 import { dataUiFor, lowerFirstOf } from '@/lib/figures/v2/poseData';
 
 const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
@@ -80,6 +80,22 @@ describe('core_standing r2: R2-W1 sztanga i ślad toru Landmine Rotation przy ś
       expect([u, 'barbell.c', d(b.c) <= 3]).toEqual([u, 'barbell.c', true]); expect([u, 'info.load', !!f.info.load && d(f.info.load) <= 3]).toEqual([u, 'info.load', true]);
     }
     expect(zMax).toBeGreaterThan(10); /* kontrola, że test dotyka ruchu w bok */
+  });
+});
+
+describe('core_standing r3: R3-W1 narysowana sztanga Landmine Rotation w rzucie z przodu przy środku chwytów (10.11.2026)', () => {
+  /* Raport r3: shapesAt(front) rysował linię „bar” od −10 do 10 cm (oś ciała), a środek chwytów w rzucie był w x 19,1 cm — draw.ts nie przesuwał linii ani talerzy o rzut środka sztangi. */
+  test('środek linii „bar” i talerzy ≤ 3 cm od rzutu środka chwytów w każdej klatce (ruch w bok ≥ 10 cm)', () => {
+    const k = 'Landmine Rotation'; let xMax = 0;
+    for (const u of Array.from({ length: 21 }, (_, i) => i / 20)) {
+      const f = frameAt(spec(k), u); const mid = [0, 1, 2].map(i => (f.sk.arms.R.grip[i] + f.sk.arms.L.grip[i]) / 2) as [number, number, number]; const m = proj(mid, 'front'); xMax = Math.max(xMax, Math.abs(m[0]));
+      const bar = shapesAt(spec(k), u, 'front').filter((s): s is Extract<Shape, { k: 'line' }> => s.k === 'line' && s.id === 'bar');
+      expect([u, bar.length]).toEqual([u, 1]);
+      const sx = (bar[0].a[0] + bar[0].b[0]) / 2; expect([u, 'bar', Math.abs(sx - m[0]) <= 3]).toEqual([u, 'bar', true]);
+      const plates = shapesAt(spec(k), u, 'front').filter((s): s is Extract<Shape, { k: 'poly' }> => s.k === 'poly' && s.id === 'plate');
+      if (plates.length) { const px = plates.flatMap(p => p.pts.map(q => q[0])); const pc = (Math.min(...px) + Math.max(...px)) / 2; expect([u, 'plate', Math.abs(pc - m[0]) <= 3]).toEqual([u, 'plate', true]); }
+    }
+    expect(xMax).toBeGreaterThan(10); /* kontrola, że test dotyka ruchu w bok */
   });
 });
 
