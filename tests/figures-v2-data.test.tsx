@@ -40,7 +40,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'dip')) { /* dip (09.11.2026): kierunek u różny w rodzinie (poręcze, kółka, ławka: opuszczanie; Dip Machine: wypychanie) — osobny test niżej; delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
@@ -50,6 +50,16 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
       else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
+    }
+  });
+  test('dip (09.11.2026): staw = łokieć; poręcze, kółka i ławka: u 0 → 1 to opuszczanie (2 s), zgięcie łokcia rośnie do ≈ 90–95°, wyprost na górze ≤ 25° (reguła zakres: min_max 80°, max_min 25°); Dip Machine (siedzący, miednica stoi): wypychanie 1 s i powrót 2 s, łokieć zgięty 90° → 21°', () => {
+    const keys = DATA_KEYS.filter(([f]) => f === 'dip').map(([, k]) => k); expect(keys.sort()).toEqual(['Chest Dip', 'Dip Machine', 'Ring Dips', 'Triceps Dip', 'Triceps Dips (ławka)']);
+    for (const k of keys) {
+      const sp = figureSpec(k)!; const maszyna = k === 'Dip Machine'; expect([k, measuredJoint(sp)]).toEqual([k, 'elbow']); expect([k, sp.lowerFirst]).toEqual([k, !maszyna]);
+      const ph = phasesFor(sp).map(p => [p.name, p.ms]);
+      expect([k, ph]).toEqual([k, maszyna ? [['Wypychanie', 1000], ['Pauza', 500], ['Powrót', 2000], ['Pauza', 500]] : [['Opuszczanie', 2000], ['Pauza', 500], ['Podnoszenie', 1000], ['Pauza', 500]]]);
+      const a = measuredAngle(sp, 0).deg, b = measuredAngle(sp, 1).deg; const gora = maszyna ? b : a, dol = maszyna ? a : b;
+      expect([k, gora <= 25]).toEqual([k, true]); expect([k, dol >= 80]).toEqual([k, true]);
     }
   });
   test('delt_raise (09.11.2026, jak olympic: staw i fazy per ćwiczenie): staw mierzony ∈ ui.joints (shAbd tylko unoszenie w tył i Alternating Deltoid Raise, reszta shElev); fazy 1 s / pauza / 2 s / pauza z nazwami Unoszenie/Opuszczanie, wyjątki: Car Drivers (Obrót/Powrót), Alternating Deltoid Raise (jedna faza 2,5 s)', () => {

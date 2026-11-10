@@ -1,0 +1,87 @@
+{
+ "v2": {
+  "dip": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "kto": "audytor — recenzja niezależna r1 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ fb8cf48, czysta kopia; raport docs/research/recenzje/partia4-dip-r1-audytor-2026-11-10.md",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 1: 2 × WYSOKIE (W1, W2), 1 × ŚREDNIE (Ś1)",
+   "autor": "programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+   "uwagi": "Chest Dip, Triceps Dip, Ring Dips — ruch zgodny z kartą i regułą zakres (łokieć góra ≤ 12,5°, dół 92,8–95,2°), bez przenikania (checkFrame/holdChecks 21 kadrów). W1: Triceps Dips (ławka) — dłonie (z = ±22) poza ławką o szerokości 30 cm (krawędź z = ±15): środek dłoni 7,0 cm, cała dłoń 3,4 cm poza ławką. W2: Dip Machine — jedna dźwignia (trzyma R), lewa dłoń ≈ 44 cm od przyrządu. Ś1: poręcze niewidoczne z przodu (koło r 1,75 pod dłonią, warstwa backEquip) — backlog.",
+   "poprawka": "W1: chwyt ławki z ≤ ±11 cm (cała dłoń na siedzisku) albo pole w ławki obejmujące dłonie; test: abs(grip.z) + GIRTH.hand ≤ szerokość/2 w każdym u. W2: druga dźwignia dla L (wzór Machine Lateral Raise, poses/delt_raise.json) albo trzyma: obie; test: każda dłoń ≤ 1 cm od końca dźwigni w każdym u. Po poprawce r2 (arkusze tylko Triceps Dips (ławka) i Dip Machine; pozostałe 3 — cmp z r1).",
+   "slad": "Ślad obejrzany w obu rzutach wszystkich 5 ćwiczeń (10 arkuszy arkusz-slad, kadry co 0,05, pełna rozdzielczość): poręcze, kółka, ławka — miednica w pionie (16,7–20,4 cm), bez skoków; Dip Machine — chwyt R po łuku dźwigni (promień stały 75,4 cm, ślad = chwyt). Nakładka ławki (arkusz-nakladka): łuk łokcia 15° → 86°.",
+   "sha": "830575734450",
+   "liczba": 5,
+   "cwiczenia": [
+    "Chest Dip",
+    "Dip Machine",
+    "Ring Dips",
+    "Triceps Dip",
+    "Triceps Dips (ławka)"
+   ],
+   "bez_rysunku": []
+  }
+ },
+ "zestawy": {
+  "Triceps Dip": {
+   "rodzina": "dip",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 dip), 10.11.2026",
+   "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r1 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ fb8cf48, czysta kopia; raport docs/research/recenzje/partia4-dip-r1-audytor-2026-11-10.md",
+   "uwagi": "bdip.move i bdip.range pasują do rysunku: opuszczanie do ok. 95° w łokciu, wypchnięcie do 12°; tułów pionowo. Źródła zdań z dipów na ławce — ten sam ruch łokcia (uproszczenie, analogia). mis.jerk tylko tekst.",
+   "sha": "90516c549650"
+  },
+  "Ring Dips": {
+   "rodzina": "dip",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 dip), 10.11.2026",
+   "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r1 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ fb8cf48, czysta kopia; raport docs/research/recenzje/partia4-dip-r1-audytor-2026-11-10.md",
+   "uwagi": "bdip.move i bdip.range pasują do rysunku: opuszczanie do ok. 93° w łokciu, wypchnięcie do 12,5°; dłonie na kółkach (błąd 0 cm). mis.jerk tylko tekst.",
+   "sha": "90516c549650"
+  },
+  "Dip Machine": {
+   "rodzina": "dip",
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A), 10.11.2026 — W3 WYSOKIE",
+   "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r1 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ fb8cf48, czysta kopia; raport docs/research/recenzje/partia4-dip-r1-audytor-2026-11-10.md",
+   "uwagi": "W3: zdania przeczą maszynie siedzącej. bdip.move „Opuść się … wypchnij się do wyprostu” — miednica stoi (przesunięcie 0,0 cm); bdip.range „w górę do wyprostu rąk” — na rysunku wyprost (21,3°) przy chwycie na dole (y 34,7 cm), zgięcie (89,8°) na górze (y 60,2 cm).",
+   "poprawka": "Badacz: zestaw dla maszyny (wypychanie uchwytów w dół do wyprostu, powrót do ok. kąta prostego) albo wyłączenie bdip.move/bdip.range dla Dip Machine (CUE_NOT_IN_FAMILY / CUE_REQUIRES, lib/figures/v2/cueSets.ts); test: zdania zestawu Dip Machine nie zawierają „Opuść się” ani „w górę do wyprostu”.",
+   "sha": "90516c549650"
+  }
+ },
+ "karty": {
+  "Chest Dip": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+   "autor": "programista A1 (karta); rysunek: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r1 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ fb8cf48, czysta kopia; raport docs/research/recenzje/partia4-dip-r1-audytor-2026-11-10.md",
+   "uwagi": "dip.setup (proste ręce 12,5°, stopy nad podłogą), dip.move (dół 95°), dip.chestLean (tułów 28° → 34° w przód; karta liczby nie podaje), plank.brace (kręgosłup bez zgięcia) — zgodne z rysunkiem. Błędy tylko tekstem (brak animacji błędów w rodzinie).",
+   "sha": "58bc2ad0a6ce"
+  },
+  "Triceps Dips (ławka)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+   "autor": "autor karty własnej (data/zrodla/cues.json); rysunek: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r1 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ fb8cf48, czysta kopia; raport docs/research/recenzje/partia4-dip-r1-audytor-2026-11-10.md",
+   "uwagi": "bdip.move (dół 85,6°, góra 15,3°), bdip.range, bdip.easier, nogi wysunięte w przód — zgodne. bdip.setup „Oprzyj dłonie o krawędź ławki” — treść poprawna, rysunek ma dłonie obok ławki (W1 we wpisie v2, poprawka po stronie rysunku).",
+   "sha": "457bb9d115cb"
+  }
+ },
+ "v1_zastapiona": [
+  "Triceps Dips (ławka)"
+ ],
+ "v1_uwaga": "v1 Triceps Dips (ławka) (sha 0e72ab5e0fbf) → zastapiona razem z wpisem v2 dip „wyswietlana” (po r2); przy v2 „do poprawy” ćwiczenie nie ma rysunku v2."
+}

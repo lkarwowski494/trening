@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 8, do zrobienia: 35); ćwiczeń z gotową figurą: **216** (30,5%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 9, do zrobienia: 34); ćwiczeń z gotową figurą: **221** (31,2%).
 
 ## Rodziny
 
@@ -13,7 +13,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `bench_press` | gotowa | 30 | side, top | — | Wyciskanie leżąc (ławka płaska, skośna, ujemna, podłoga) |
 | `hinge` | gotowa | 32 | side, front | — | Zawias biodrowy (martwy ciąg, RDL, dzień dobry) |
 | `pushup_plank` | do zrobienia | 30 | side, front | 4 | Pompki, deski, rollouty, ruchy w podporze — rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy |
-| `dip` | do zrobienia | 5 | side, front | 2 | Dipy (poręcze, ławka, maszyna, kółka) |
+| `dip` | gotowa | 5 | side, front | — | Dipy (poręcze, ławka, maszyna, kółka) |
 | `overhead_press` | do zrobienia | 23 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
 | `row` | do zrobienia | 13 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
 | `cable_row` | do zrobienia | 10 | side, front | 3 | Wiosłowanie na linkach i maszynie, face pull |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 35 rodzin, 478 ćwiczeń, ok. **105 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 34 rodzin, 473 ćwiczeń, ok. **103 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -81,7 +81,7 @@ Axle Deadlift; Band Good Morning; Cable Deadlift; Cable Pull Through; Clean Dead
 
 Ab Wheel; Barbell Rollout from Bench; Clock Push-Up; Close-Grip Push-Up; Copenhagen Plank; Decline Push Up; Diamond Push Up; Drop Push; Incline Push Up; Incline Push-Up Close-Grip; Incline Push-Up Depth Jump; Incline Push-Up Reverse Grip; Inverted Row; Isometric Wipers; Mountain Climbers; Plank; Plank Shoulder Taps; Plyo Kettlebell Push-Ups; Plyo Push-Up; Push Up; Push Up to Side Plank; Push-Up Wide; Push-Ups With Feet On A Stability Ball; Renegade Row; Rollout (sztanga); Side Plank; Single-Arm Push-Up; Standing Barbell Rollout; Suspended Fallout; Suspended Push-Up
 
-### dip (5) — do zrobienia
+### dip (5) — gotowa
 
 Chest Dip; Dip Machine; Ring Dips; Triceps Dip; Triceps Dips (ławka)
 

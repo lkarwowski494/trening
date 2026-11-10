@@ -10,7 +10,7 @@ Stan 10.11.2026 ~03:30 UTC (gałęzie rodzin lokalnie, worktree w scratchpadzie 
 
 | Rodzina | Gałąź @ SHA | Recenzja | Stan / następny krok |
 |---|---|---|---|
-| dip | figury/partia-4-dip @ e720a87c | r1–r4 (`partia4-dip-r*`); r4 wyswietlana 4/5, sha eec289f04568 | ławka w V2_WSTRZYMANE (W5, limit shSag; P4-DIP-1, decyzja koordynatora w docs/18), zestaw Dip Machine do poprawy (W3 wariant A, P4-DIP-2), cel 1.1 pelnaKarta 456; przepisanie wpisów r4 1:1 w toku |
+| dip | scalona do figury/partia-4 (e76e662) | r1–r4 (`partia4-dip-r*`); r4 wyswietlana 4/5, sha eec289f04568 | ławka w V2_WSTRZYMANE (W5, limit shSag; P4-DIP-1, decyzja koordynatora w docs/18), zestaw Dip Machine do poprawy (W3 wariant A, P4-DIP-2), cel 1.1 pelnaKarta 456; wpisy r4 przepisane 1:1 (e76e662); pełna karta 210 → 213 |
 | chest_press_machine | figury/partia-4-chest_press_machine @ e039882 | r1 do poprawy (W1 Decline, W2 MSP, Ś1) → poprawki e039882 | r2 audytora w toku; zestaw Smith (ohp.seat) do poprawy → backlog; zmiana testu toru progDzwigni (osobny commit przy scaleniu, suma z partią 1) |
 | cable_press | figury/partia-4-cable_press @ 1b6e2ee4 | r2 wyswietlana, sha c79df483b2da (`partia4-cable_press-r2*`) | przepisanie wpisów 1:1; NISKIE z r1 → backlog |
 | back_extension | figury/partia-4-back_extension (niezacommitowane) | — | autor w toku |

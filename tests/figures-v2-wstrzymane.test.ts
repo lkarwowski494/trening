@@ -25,9 +25,13 @@ describe('figury v2 (JM Press, Skull Crusher) — wstrzymanie zdjęte 29.10.2026
   });
   test('04.11.2026 (olympic r4, warunek koordynatora): Clean Shrug i Snatch Shrug mają pozy w silniku, ale aplikacja ich nie pokazuje (do kart T2); reszta rodziny olympic z rysunkiem, Rack Delivery bez', () => {
     for (const k of ['Clean Shrug', 'Snatch Shrug']) expect([k, figureSpec(k) !== null, shownFigureSpec(k), k in V2_WSTRZYMANE]).toEqual([k, true, null, true]);
-    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug']);
+    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug', 'Triceps Dips (ławka)']); /* 10.11.2026: + ławka dip (W5, P4-DIP-1) */
     expect([figureSpec('Rack Delivery'), shownFigureSpec('Rack Delivery')]).toEqual([null, null]);
     expect(shownFigureSpec('Power Clean')?.family).toBe('olympic'); /* bramka 4 otwarta w tym teście (mock wyżej) */
+  });
+  test('10.11.2026 (koordynator 1.1, dip r3 W5, P4-DIP-1): Triceps Dips (ławka) ma pozy w silniku, ale aplikacja jej nie pokazuje; pozostałe 4 ćwiczenia rodziny dip z rysunkiem', () => {
+    const k = 'Triceps Dips (ławka)'; expect([k, figureSpec(k) !== null, shownFigureSpec(k), k in V2_WSTRZYMANE]).toEqual([k, true, null, true]);
+    for (const o of ['Chest Dip', 'Triceps Dip', 'Ring Dips', 'Dip Machine']) expect([o, shownFigureSpec(o)?.family, o in V2_WSTRZYMANE]).toEqual([o, 'dip', false]);
   });
   test('sąsiednie wyciskania wąskim chwytem nadal z rysunkiem', () => {
     expect(shownFigureSpec('Smith Machine Close-Grip Bench Press')).not.toBeNull();
@@ -154,7 +158,7 @@ describe('29.10.2026: 18 figur v2 zdjętych z V2_WSTRZYMANE po recenzjach niezal
     'Deadlift (sztanga)', 'Axle Deadlift', 'Deadlift with Bands', 'Deadlift with Chains', 'Deficit Deadlift', 'Rack Pull', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Cable Deadlift', 'Clean Deadlift', 'Snatch Deadlift',
     'Band Bench Press', 'Chain Press', 'Close Grip Bench Press', 'Zercher Squat', 'Sumo Squat (hantel)'];
   test('18 różnych kluczy; V2_WSTRZYMANE puste', () => {
-    expect(new Set(OSIEMNASCIE).size).toBe(18); expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug']); /* 04.11.2026: tylko wzruszenia olympic (do kart T2); 18 figur z tej listy zdjęto 29.10.2026 */
+    expect(new Set(OSIEMNASCIE).size).toBe(18); expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Snatch Shrug', 'Triceps Dips (ławka)']); /* 10.11.2026: + ławka dip (W5, P4-DIP-1); 04.11.2026: wzruszenia olympic (do kart T2); 18 figur z tej listy zdjęto 29.10.2026 */
   });
   test.each(OSIEMNASCIE)('%s: shownFigureSpec nie null, hasTechnique true, poza V2_WSTRZYMANE', k => {
     expect(shownFigureSpec(k)).not.toBeNull(); expect(hasTechnique({ lib: true, libKey: k })).toBe(true); expect(k in V2_WSTRZYMANE).toBe(false);

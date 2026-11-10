@@ -16,6 +16,7 @@ const LOAD: Record<string, () => PoseFile> = {
   olympic: () => require('./poses/olympic.json'),
   triceps: () => require('./poses/triceps.json'),
   delt_raise: () => require('./poses/delt_raise.json'),
+  dip: () => require('./poses/dip.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -72,6 +73,10 @@ export const DATA_UI: Record<string, DataUi> = {
         'Power Jerk', 'Split Jerk', 'Squat Jerk', 'Muscle Snatch', 'Clean and Jerk', 'Jerk Balance', 'Snatch Balance'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) } },
   triceps: { names: { first: 'Prostowanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
+  /* dip (09.11.2026): u = 0 podpór na wyprostowanych rękach, u = 1 dół (łokieć ≈ 95°) — faza 0 → 1 to opuszczanie (2 s), powrót to podnoszenie (1 s) */
+  dip: { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true, joints: ['elbow'],
+    /* Dip Machine: siedzący, miednica stoi; u = 0 uchwyty w górze (łokieć 90°), u = 1 wypchnięte w dół (łokieć 21°) — faza 0 → 1 to wysiłek (1 s), powrót 2 s */
+    exceptions: { 'Dip Machine': { names: { first: 'Wypychanie', second: 'Powrót' }, lowerFirst: false } } },
   /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
   delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
     exceptions: { 'Car Drivers': { hideAngle: true, names: { first: 'Obrót', second: 'Powrót' } }, /* r5-W1 08.11.2026: kierownica obraca się, nie unosi */ 'Alternating Deltoid Raise': { names: { first: 'Naprzemiennie', second: 'Naprzemiennie' } } } },
