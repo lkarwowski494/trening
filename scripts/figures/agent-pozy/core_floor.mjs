@@ -1,7 +1,10 @@
 // Generator póz rodziny core_floor po stronie agenta (pilotaż 26.10.2026): ćwiczenia na podłodze (leżenie na plecach, na brzuchu, klęk podparty) wyliczone z modelu przez kinematykę prostą
 // (kąty uda i kolana → kostka; kąt ramienia → chwyt), biegun kolana z FK (kolano zawsze po właściwej stronie), parametry per ćwiczenie z katalogu i wskazówek.
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w stronę +x, miednica [0, 8, 0], pochylenieTulowia −90 (poziomo); na brzuchu — głowa +x, pochylenie +90.
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
+import { powodWstrzymania } from './bledy-wstrzymane.mjs';
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki } from './model.mjs';
 /** Stopa leżącego przodem (Superman, Lower Back Curl, Seal Row, Back Extension): grzbietem do podłogi, palce w dół i do tyłu (silnik od b07c7ed7 ma podbicie 91…270°: stopa skierowana do tyłu). Poprzednie przybliżenie (stopa obrócona na zewnątrz, podeszwa w dół pod goleniami) pokazywało stopę zgiętą wzdłuż goleni (recenzja ruchu r2, F2, 28.10.2026).
  * Podbicie = kierunek goleni (kolano → kostka, stopnie od +x) + 90° − zgięcie podeszwowe: stopa prostopadła do goleni (palce ku podłodze) zgięta podeszwowo o PODESZWOWE_LEZY stopni; rotacja 0 (palce w płaszczyźnie boku). */
@@ -103,6 +106,7 @@ function ruchMiednica(cw, { t0, k0, t1, k1, dy = 12, stopa = 'dol' }) {
 export function reverseCrunch(cw, o = {}) { return ruchMiednica(cw, { t0: 90, k0: 90, t1: 135, k1: 130, dy: 11, ...o }); }
 export function legPullIn(cw, o = {}) { const ks = kolanoProste(); return ruchMiednica(cw, { t0: 10, k0: ks, t1: 130, k1: 130, dy: 12, stopa: "gora", ...o }); }
 
+/* 10.11.2026 (partia 7, K8): nogi PROSTE (karta: „połóż się na plecach z prostymi nogami”; stara poza zatwierdzona miała kolana ugięte ≈ 40°) — kąty uda 45° ↔ 10° nad podłogą, naprzemiennie */
 function scissorKick(cw) {
   const ks = kolanoProste(); const us = [0, 0.5, 1]; const S = barki([0, Y0], -90);
   const fr = (u) => ramka({ u, miednica: [0, Y0], p: -90, glowa: -90, nogi: { R: { t: lerp(45, 10, u), k: ks, z: ZNOG, stopa: 'gora' }, L: { t: lerp(10, 45, u), k: ks, z: -ZNOG, stopa: 'gora' } }, rece: RECE_BOK(S) });
@@ -138,7 +142,7 @@ function vUp(cw) {
 }
 
 /* ---------- Superman (na brzuchu, pozycja +x) ---------- */
-function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* błąd tylko, gdy ma opis w tekstach wskazówek (v2-jakosc: etykieta_bledu) */
+function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] && !powodWstrzymania('cobra.mis') } = {}) { /* błąd tylko, gdy ma opis w tekstach wskazówek (v2-jakosc: etykieta_bledu) i nie jest wstrzymany (bledy-wstrzymane.json: poza błędu bez recenzji) */
   const us = [0, 0.25, 0.5, 0.75, 1];
   const fr = (u, wznios) => { const phi = Math.asin(Math.min(1, wznios / BODY().trunk)) / R; const p = 90 - phi; const S = barki([0, Y0], p); const aR = phi * 0.6 - 2 - 3 * (1 - u); const hz = 15; /* ręce prosto przed sobą, lekko w górę */
     const ank = () => { const y = 16 + 10 * u; /* r4: biodro ze znakiem, zakres −17°…133°: wyprost nogi w Supermanie ≤ ok. 17° */ const a = Math.asin((y - Y0) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
@@ -161,6 +165,10 @@ function birdDog(cw) {
 }
 const ks0 = () => kolanoProste();
 
+/** Pozy zatwierdzone sprzed generatora (stare pozy pilotażu, 9 ćwiczeń): dane z modelu odtwarzane 1:1 z `core_floor-zatwierdzone.json` (współrzędne kostek i chwytów podane wprost, bez FK).
+ * Zmiana pozy = zmiana tego pliku (po przeglądzie arkusza), nie obejście testu odtwarzalności; ćwiczenia z generatora (niżej) liczone z modelu. */
+const ZATWIERDZONE = JSON.parse(readFileSync(fileURLToPath(new URL('./core_floor-zatwierdzone.json', import.meta.url)), 'utf8'));
+const zatwierdzona = (cw) => () => JSON.parse(JSON.stringify(ZATWIERDZONE[cw]));
 /** Ćwiczenia, których generator rodziny nie robi (powód obowiązkowy). */
 export const WYJATKI = {};
 /** Identyfikatory błędów z katalogu bez opisu w lib/cues/text/pl.json (id → powód); do uzupełnienia przez badacza i tłumacza. */
@@ -174,6 +182,8 @@ export const PRZYBLIZENIA = {
 
 export function generuj() {
   return {
+    ...Object.fromEntries(Object.keys(ZATWIERDZONE).map((cw) => [cw, zatwierdzona(cw)])),
+    'Scissor Kick': () => scissorKick('Scissor Kick'),
     'Bird Dog': () => birdDog('Bird Dog'),
     'Crunch - Hands Overhead': () => crunchHandsOverhead('Crunch - Hands Overhead'),
     'Dead Bug': () => deadBug('Dead Bug'),

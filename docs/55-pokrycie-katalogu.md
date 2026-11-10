@@ -89,7 +89,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 
 | Rodzina | Stan | Ćwiczeń | Figura v2 | Dane v2 (niewłączone) | Figura v1 | Własne wsk. | Zestaw ogólny | Bez tekstu | Pełne karty | Recenzja |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `core_floor` | do zrobienia | 44 | 0 | 21 | 2 | 15 | 0 | 29 | 0 | 0 |
+| `core_floor` | gotowa | 44 | 0 | 21 | 2 | 15 | 0 | 29 | 0 | 0 |
 | `delt_raise` | gotowa | 38 | 31 | 0 | 0 | 31 | 3 | 4 | 30 | 31 |
 | `curl` | gotowa | 36 | 34 | 0 | 0 | 8 | 28 | 0 | 34 | 34 |
 | `mobility_stand` | gotowa | 36 | 8 | 0 | 0 | 10 | 3 | 23 | 8 | 8 |
