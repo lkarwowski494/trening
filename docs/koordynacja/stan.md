@@ -48,6 +48,11 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 | A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ 760afa88 (partia 4 scalona, partia 2 nie; verify:lekkie; tests.yml niesprawdzone) | 29,1 (08:06) | 3,69 | zakończona: partia 4 scalona (760afa88, potwierdzenie A 08:00 = ls-remote); zarchiwizowana 08:07; praca nieprzyjęta — odbiór po A2 |
 | A2 | session_01T66VBywmTeUKRmGrUr71SN | 08-programista build (opus-5-5): pociąg-4 dokończenie | scal/pociag-4 @ d6d8f6ed (tests.yml 42796020921 success; przodkowie 7a09818f, 06d90e84, dfaeeefe; 101 commitów Claude (adres noreply z atrybucji); recenzja docs/research/recenzje/pociag-4-scalenie.md) | 27,7 | 10,54 | PRZYJĘTA 10:25; scal-galaz → integracja b66ecfa (lokalnie, drzewo = d6d8f6ed), push po verify:lekkie; zarchiwizowana |
 | B | session_01T66VBzi6xg7DYJMg2oYF8Q | 08-programista build (opus-5-5): partia 5 domknięcie | figury/partia-5 @ ef42f8e4 (74 commity, autor Claude (adres noreply z atrybucji), integracja dfaeeefe przodkiem — sprawdzone) | 37,3 (09:11) | 20,00 | PRZEKAZANIE 09:11; verify:szybkie 0 (deklaracja B, 11 875 testów); tests.yml 42788593262 zielony (09:27); recenzje audytora na gałęzi (22 pliki partia5-*); zarchiwizowana 09:13; PRZYJĘTA 09:45 → pociąg-5 po pociągu-4 |
+| C | session_01T66VBxTDiB5JhTrZDFWNK4 | 08 build (opus-5-5): partia 6 plyo (polecenia/C.md) | figury/partia-6 od b66ecfa | b.d. | 0 (10:40) | pracuje; czeka z pushem na KO-024; pułap 60/78 |
+| D | session_01T66VBvJUHVXtAWBVygMpkF | 08 build (opus-5-5): partia 7 core_floor, glute_floor | figury/partia-7 od b66ecfa | b.d. | 0 | jw. |
+| E | session_01T66VBvTx4J3wo4LsZx4yjb | 08 build (opus-5-5): partia 8 core_standing, sled_throw, strongman + KO-024 podział poseData.ts (scal/posedata-podzial) | figury/partia-8, scal/posedata-podzial od b66ecfa | b.d. | 0 | najpierw podział (KO-024) |
+| F | session_01T66VBwaPHeeK1QNim6cow6 | 08 build (opus-5-5): partia 9 lunge (24), leg_isolation (8 z pozami) | figury/partia-9 od b66ecfa | b.d. | 0 | pracuje; KO-025 cardio/neck/foam_roll planned do 1.2 |
+| G | session_01T66VByihtvAjWHsQzFqFZo | 08 build (opus-5-5): pociąg-5 (polecenia/G.md) | scal/pociag-5 od b66ecfa | b.d. | 0 | scala partię 5; push po KO-024; pułap 25/32,5 |
 | P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
 | P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana — raport 05:50 (koszt 55,8 USD, kontekst 32%) |
 | P-2 | session_01T66VBvdsMU66FhsPJWpG8J | lead partii 2 | figury/partia-2 @ 7a09818f | 30 | 26 | zakończona (raport końcowy) → do archiwizacji po scaleniu |
@@ -84,7 +89,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - trig_01XcNDadukhGTefDU3YBwA6S „Koordynator Trening: kontrola” 09:16 · trig_01NZwThjYQSRrWBJooKjAAdt „…: linia 14:00” (10.11) · trig_01A9dxsnidHUn46eG8hrruiY „…: linia 05:00” (11.11). Poprzednika: trig_01DCKPujdY6Ds93aNDAicFeh „kontrola przekazania” 09:16 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-025. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-026. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -120,3 +125,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 10:35 | koordynator | npm ci + verify:lekkie kod 0 (znacznik lekkie b66ecfa); push integracja-1-1 dfaeeef..b66ecfa (hak pre-push zielony 123 s); start C, D, E, F (tura 3, partie 6–9) i G (pociąg-5) od b66ecfa przez subagenta | tests.yml integracji b66ecfa; ID sesji do tabeli |
 | 2026-11-10 10:50 | koordynator | push stanu zablokowany hakiem pre-push (WG-06): unshallow repo, verify:lekkie na gałęzi stanu, usunięty adres noreply z docs/koordynacja (strażnik public-repo) | push stanu po verify:lekkie |
 | 2026-11-10 10:46 | C, D, E | PYTANIA o limit poseData.ts (zapas 0 B na b66ecfa, polecenie podawało 48 B — błąd koordynatora) → KO-024: podział przez E na scal/posedata-podzial, C i D czekają z pushem | raport E z SHA → CI → scal-galaz → sygnał do C, D, F, G |
+| 2026-11-10 10:52 | koordynator | sesje C–G utworzone (subagent, opus-5-5, od b66ecfa, polecenia @ 4cac2ad); F: KO-025; G poinformowana o KO-024; własny kontekst 23,8% | kontrola 11:30; raport E (podział) |
