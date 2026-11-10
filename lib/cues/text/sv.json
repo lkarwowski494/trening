@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Böjer armbågarna, så att armarna drar vikten i stället för axlarna.",
  "shrug.mis.roll": "Rullar axlarna i stället för att röra dem rakt upp och ner.",
  "shrug.setupBehind": "Stå rakt med stången bakom låren i överhandsgrepp, armarna raka.",
- "zottman.move": "Curla upp hantlarna med underhandsgrepp, vrid handflatorna nedåt i toppen och sänk hantlarna med överhandsgrepp."
+ "zottman.move": "Curla upp hantlarna med underhandsgrepp, vrid handflatorna nedåt i toppen och sänk hantlarna med överhandsgrepp.",
+ "ballcurl.mis.sag": "Höfterna sjunker under rörelsen.",
+ "lunge.bbSetup": "Skivstången på övre delen av ryggen, stå rak.",
+ "lunge2.mis.lean": "Överkroppen som lutar långt framåt på väg ner.",
+ "lunge2.mis.shallow": "För grunt — bakre knät stannar högt över golvet.",
+ "slcurl.move": "Lyft höfterna, skjut ut benen tills de är raka och dra sedan tillbaka hälarna — höfterna uppe hela tiden.",
+ "slcurl.setup": "Ligg på rygg med böjda knän och hälarna på glidplattorna.",
+ "split.setup": "Stå i utfallsställning: ena foten fram, den andra bak på tå.",
+ "stepup.mis.drop": "Att falla ner från lådan i stället för att kliva ner kontrollerat."
 }

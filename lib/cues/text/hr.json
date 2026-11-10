@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Savijanje laktova: težinu vuku ruke umjesto ramena.",
  "shrug.mis.roll": "Kruženje ramenima umjesto pokreta ravno gore-dolje.",
  "shrug.setupBehind": "Stani uspravno, šipku drži nathvatom iza bedara, ruke ispružene.",
- "zottman.move": "Savijaj ruke pothvatom, gore okreni dlanove prema dolje i spusti bučice nathvatom."
+ "zottman.move": "Savijaj ruke pothvatom, gore okreni dlanove prema dolje i spusti bučice nathvatom.",
+ "ballcurl.mis.sag": "Propadanje kukova tijekom pokreta.",
+ "lunge.bbSetup": "Šipka na gornjem dijelu leđa, stani uspravno.",
+ "lunge2.mis.lean": "Jako naginjanje trupa naprijed pri spuštanju.",
+ "lunge2.mis.shallow": "Preplitko spuštanje: stražnje koljeno ostaje visoko iznad poda.",
+ "slcurl.move": "Podigni kukove, ispruži noge do kraja, zatim privuci pete natrag. Kukovi su cijelo vrijeme gore.",
+ "slcurl.setup": "Lezi na leđa, koljena savijena, pete na klizačima.",
+ "split.setup": "Stani u iskorak: jedno stopalo naprijed, drugo iza, oslonjeno na prste.",
+ "stepup.mis.drop": "Padanje s povišenja umjesto kontroliranog silaska."
 }

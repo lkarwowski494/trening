@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Piegare i gomiti: tirano le braccia invece delle spalle.",
  "shrug.mis.roll": "Ruotare le spalle invece di muoverle dritte su e giù.",
  "shrug.setupBehind": "Stai in piedi dritto, bilanciere dietro le cosce con presa prona, braccia tese.",
- "zottman.move": "Fletti le braccia con presa supina, in alto ruota i palmi verso il basso e scendi con i manubri in presa prona."
+ "zottman.move": "Fletti le braccia con presa supina, in alto ruota i palmi verso il basso e scendi con i manubri in presa prona.",
+ "ballcurl.mis.sag": "Bacino che cede durante il movimento.",
+ "lunge.bbSetup": "Bilanciere sulla parte alta della schiena, stai dritto.",
+ "lunge2.mis.lean": "Busto che si sbilancia troppo in avanti in discesa.",
+ "lunge2.mis.shallow": "Discesa troppo corta: il ginocchio dietro resta molto sollevato da terra.",
+ "slcurl.move": "Solleva il bacino, fai scivolare le gambe fino a distenderle, poi riporta i talloni verso di te: bacino sempre in alto.",
+ "slcurl.setup": "Sdraiati sulla schiena, ginocchia piegate, talloni sugli slider.",
+ "split.setup": "Mettiti in affondo: un piede avanti, l’altro dietro, in appoggio sull’avampiede.",
+ "stepup.mis.drop": "Lasciarsi cadere dal rialzo invece di scendere con controllo."
 }

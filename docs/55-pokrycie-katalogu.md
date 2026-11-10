@@ -17,13 +17,13 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Figura v1 w aplikacji (bez v2) | 35 | 4,9% |
 | Bez figury w aplikacji | 441 | 62,3% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 304 | 42,9% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 138 | 19,5% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 145 | 20,5% |
 | Animowany błąd | 148 | 20,9% |
-| Własne wskazówki (źródłowe) | 283 | 40% |
-| — z czego z częstymi błędami | 174 | 24,6% |
+| Własne wskazówki (źródłowe) | 290 | 41% |
+| — z czego z częstymi błędami | 181 | 25,6% |
 | Zestaw ogólny wskazówek wzorca ruchu | 120 | 16,9% |
-| Bez tekstu wskazówek | 305 | 43,1% |
-| Częste błędy (własne albo zestaw ogólny) | 294 | 41,5% |
+| Bez tekstu wskazówek | 298 | 42,1% |
+| Częste błędy (własne albo zestaw ogólny) | 301 | 42,5% |
 | Role mięśni | 513 | 72,5% |
 | **Pełna karta** | 228 | 32,2% |
 | **Pełna karta + błąd** | 147 | 20,8% |
@@ -43,9 +43,9 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 |---|---:|---:|---:|
 | figura v2 w aplikacji | 533 | 232 | 301 |
 | figura w aplikacji (v2 albo v1) | 535 | 267 | 268 |
-| animowany błąd | 263 | 148 | 115 |
-| wskazówki (własne lub zestaw ogólny) | 569 | 403 | 166 |
-| częste błędy (tekst) | 448 | 294 | 154 |
+| animowany błąd | 258 | 148 | 110 |
+| wskazówki (własne lub zestaw ogólny) | 569 | 410 | 159 |
+| częste błędy (tekst) | 448 | 301 | 147 |
 | role mięśni | 516 | 513 | 3 |
 | pełna karta | 456 | 228 | 228 |
 | figura z aktualną recenzją ruchu | 533 | 232 | 301 |
@@ -100,7 +100,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 6 | 0 | 22 | 0 | 0 |
 | `olympic` | gotowa | 25 | 22 | 2 | 0 | 21 | 1 | 3 | 21 | 22 |
 | `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 24 | 25 |
-| `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
+| `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 12 | 0 | 12 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 11 | 0 | 12 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 9 | 0 | 13 | 0 | 0 |
 | `chest_fly` | do zrobienia | 20 | 0 | 17 | 0 | 3 | 0 | 17 | 0 | 0 |
@@ -108,7 +108,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 6 | 0 | 13 | 0 | 0 |
 | `kb_ballistic` | do zrobienia | 17 | 0 | 16 | 1 | 4 | 0 | 13 | 0 | 0 |
 | `cardio` | do zrobienia | 16 | 0 | 0 | 1 | 5 | 0 | 11 | 0 | 0 |
-| `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 5 | 0 | 9 | 0 | 0 |
+| `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 6 | 0 | 8 | 0 | 0 |
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 11 | 0 | 2 | 0 | 0 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 0 | 0 | 13 | 0 | 0 |
 | `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 8 | 2 | 10 | 11 |
@@ -180,12 +180,12 @@ Kart z tekstami (wskazówki albo role mięśni): **584**. „Komplet” = karta 
 Pełnych kart: 228 (z błędem: 147). Poniżej ćwiczenia, którym brakuje jednego elementu pełnej karty (grupy dłuższe niż 25 — tylko liczba).
 
 - Brakuje tylko: wskazówki (własne albo zrecenzowany zestaw ogólny) — 1: Front Incline Dumbbell Raise
-- Brakuje tylko: figura v2 w aplikacji — 136
+- Brakuje tylko: figura v2 w aplikacji — 143
 - Brakuje tylko: role mięśni — 3: Jerk Balance, Scapular Pull-Up, Wall Sit
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
 | 0 | 228 |
-| 1 | 140 |
-| 2 | 252 |
+| 1 | 147 |
+| 2 | 245 |
 | 3 | 88 |

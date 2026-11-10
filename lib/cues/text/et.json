@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Küünarnukkide kõverdamine: raskust tõmbavad käed, mitte õlad.",
  "shrug.mis.roll": "Õlgadega ringitamine otse üles-alla liikumise asemel.",
  "shrug.setupBehind": "Seisa sirgelt, hoia kangi pealthaardega reite taga, käed sirged.",
- "zottman.move": "Kõverda käsi althaardega, pööra üleval peopesad alla ja lase hantlid pealthaardega alla."
+ "zottman.move": "Kõverda käsi althaardega, pööra üleval peopesad alla ja lase hantlid pealthaardega alla.",
+ "ballcurl.mis.sag": "Puusad vajuvad liikumise ajal alla.",
+ "lunge.bbSetup": "Kang ülaselja peal, seisa sirgelt.",
+ "lunge2.mis.lean": "Ülakeha kallutamine laskumisel tugevalt ette.",
+ "lunge2.mis.shallow": "Laskumine pole piisavalt sügav: tagumine põlv jääb põrandast kõrgele.",
+ "slcurl.move": "Tõsta puusad üles, libista jalad sirgeks, siis tõmba kannad tagasi. Puusad on kogu aeg üleval.",
+ "slcurl.setup": "Lama selili, põlved kõverdatud, kannad liugplaatidel.",
+ "split.setup": "Seisa väljaastes: üks jalg ees, teine taga päkal.",
+ "stepup.mis.drop": "Kõrgenduselt alla kukkumine kontrollitud mahaastumise asemel."
 }

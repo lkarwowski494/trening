@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Krčenje komolcev: težo vlečejo roke namesto ramen.",
  "shrug.mis.roll": "Kroženje z rameni namesto gibanja naravnost gor in dol.",
  "shrug.setupBehind": "Stoj vzravnano, palico drži z nadprijemom za stegni, roke iztegnjene.",
- "zottman.move": "Roke pokrči s podprijemom, na vrhu obrni dlani navzdol in ročke spusti z nadprijemom."
+ "zottman.move": "Roke pokrči s podprijemom, na vrhu obrni dlani navzdol in ročke spusti z nadprijemom.",
+ "ballcurl.mis.sag": "Boki se med gibom povešajo.",
+ "lunge.bbSetup": "Palica na zgornjem delu hrbta, stoj vzravnano.",
+ "lunge2.mis.lean": "Med spuščanjem trup močno nagibaš naprej.",
+ "lunge2.mis.shallow": "Premalo globok spust – zadnje koleno ostane visoko nad tlemi.",
+ "slcurl.move": "Dvigni boke, potisni noge naprej do iztegnjenosti, nato pete povleci nazaj – boki ves čas zgoraj.",
+ "slcurl.setup": "Uleži se na hrbet, kolena pokrčena, pete na drsnikih.",
+ "split.setup": "Postavi se v razkorak: ena noga spredaj, druga zadaj, oprta na prste.",
+ "stepup.mis.drop": "Padanje s povišanja namesto nadzorovanega sestopa."
 }

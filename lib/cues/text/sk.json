@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Krčenie lakťov: váhu ťahajú ruky namiesto pliec.",
  "shrug.mis.roll": "Krúženie plecami namiesto pohybu rovno hore a dole.",
  "shrug.setupBehind": "Postav sa vzpriamene, činku drž nadhmatom za stehnami, ruky vystreté.",
- "zottman.move": "Krč ruky podhmatom, hore otoč dlane nadol a jednoručky spúšťaj nadhmatom."
+ "zottman.move": "Krč ruky podhmatom, hore otoč dlane nadol a jednoručky spúšťaj nadhmatom.",
+ "ballcurl.mis.sag": "Prepadávanie bokov počas pohybu.",
+ "lunge.bbSetup": "Činka na hornej časti chrbta, postav sa vzpriamene.",
+ "lunge2.mis.lean": "Výrazné nakláňanie trupu dopredu pri zostupe.",
+ "lunge2.mis.shallow": "Príliš plytký zostup: zadné koleno zostáva vysoko nad zemou.",
+ "slcurl.move": "Zdvihni boky, vysuň nohy do vystretia, potom pritiahni päty späť. Boky drž celý čas hore.",
+ "slcurl.setup": "Ľahni si na chrbát, kolená pokrčené, päty na kĺzačoch.",
+ "split.setup": "Postav sa do výpadu: jedna noha vpredu, druhá vzadu, opretá o špičku.",
+ "stepup.mis.drop": "Zoskakovanie z vyvýšeniny namiesto kontrolovaného zostupu."
 }

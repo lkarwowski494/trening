@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Ellbogen beugen: Die Arme ziehen das Gewicht statt der Schultern.",
  "shrug.mis.roll": "Schulterkreisen statt gerade hoch und runter.",
  "shrug.setupBehind": "Stell dich aufrecht hin, halte die Langhantel im Obergriff hinter den Oberschenkeln, Arme gestreckt.",
- "zottman.move": "Curl die Kurzhanteln im Untergriff hoch, dreh oben die Handflächen nach unten und senk sie im Obergriff ab."
+ "zottman.move": "Curl die Kurzhanteln im Untergriff hoch, dreh oben die Handflächen nach unten und senk sie im Obergriff ab.",
+ "ballcurl.mis.sag": "Hüfte sackt während der Bewegung ab.",
+ "lunge.bbSetup": "Langhantel auf dem oberen Rücken, steh aufrecht.",
+ "lunge2.mis.lean": "Oberkörper kippt beim Runtergehen stark nach vorne.",
+ "lunge2.mis.shallow": "Zu wenig Tiefe: Das hintere Knie bleibt weit über dem Boden.",
+ "slcurl.move": "Heb die Hüfte, schieb die Beine nach vorne, bis sie gestreckt sind, dann zieh die Fersen wieder heran. Die Hüfte bleibt die ganze Zeit oben.",
+ "slcurl.setup": "Leg dich auf den Rücken, Knie gebeugt, Fersen auf den Gleitpads.",
+ "split.setup": "Geh in Schrittstellung: ein Fuß vorne, der andere hinten auf dem Fußballen.",
+ "stepup.mis.drop": "Von der Erhöhung runterfallen statt kontrolliert abzusteigen."
 }

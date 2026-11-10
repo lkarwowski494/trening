@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Kyynärpäiden koukistaminen: kädet vetävät painoa hartioiden sijaan.",
  "shrug.mis.roll": "Hartioiden pyörittäminen suoran ylös-alas-liikkeen sijaan.",
  "shrug.setupBehind": "Seiso ryhdikkäästi, pidä levytankoa myötäotteella reisien takana, kädet suorina.",
- "zottman.move": "Koukista käsipainot ylös vastaotteella, käännä yläasennossa kämmenet alaspäin ja laske käsipainot myötäotteella."
+ "zottman.move": "Koukista käsipainot ylös vastaotteella, käännä yläasennossa kämmenet alaspäin ja laske käsipainot myötäotteella.",
+ "ballcurl.mis.sag": "Lantio notkahtaa liikkeen aikana.",
+ "lunge.bbSetup": "Levytanko yläselälle, seiso suorana.",
+ "lunge2.mis.lean": "Ylävartalo kallistuu reilusti eteen alas mennessä.",
+ "lunge2.mis.shallow": "Liian matala lasku: takapolvi jää kauas lattiasta.",
+ "slcurl.move": "Nosta lantio, liu'uta jalat suoriksi ja vedä sitten kantapäät takaisin. Lantio ylhäällä koko ajan.",
+ "slcurl.setup": "Käy selinmakuulle, polvet koukussa, kantapäät liukulevyjen päällä.",
+ "split.setup": "Asetu askelasentoon: toinen jalka edessä, toinen takana päkiällä.",
+ "stepup.mis.drop": "Pudottaudut korokkeelta etkä astu alas hallitusti."
 }

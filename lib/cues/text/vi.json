@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Gập khuỷu tay, kéo mức tạ bằng tay thay vì bằng vai.",
  "shrug.mis.roll": "Xoay vai thay vì nhún thẳng lên và xuống.",
  "shrug.setupBehind": "Đứng thẳng, cầm tạ đòn grip sấp sau đùi, tay duỗi thẳng.",
- "zottman.move": "Cuốn tạ đơn lên với grip ngửa, đến đỉnh xoay lòng bàn tay úp xuống và hạ tạ với grip sấp."
+ "zottman.move": "Cuốn tạ đơn lên với grip ngửa, đến đỉnh xoay lòng bàn tay úp xuống và hạ tạ với grip sấp.",
+ "ballcurl.mis.sag": "Hông bị võng xuống trong khi thực hiện động tác.",
+ "lunge.bbSetup": "Đặt tạ đòn trên lưng trên, hãy đứng thẳng người.",
+ "lunge2.mis.lean": "Đổ người quá nhiều về phía trước khi hạ xuống.",
+ "lunge2.mis.shallow": "Hạ xuống chưa đủ sâu — gối sau vẫn còn cách xa sàn.",
+ "slcurl.move": "Hãy nâng hông lên, trượt chân ra đến khi duỗi thẳng, rồi kéo gót chân về — giữ hông nâng cao suốt cả động tác.",
+ "slcurl.setup": "Hãy nằm ngửa, gối gập, gót chân đặt trên miếng trượt.",
+ "split.setup": "Đứng một chân trước, một chân sau, chân sau chống trên mũi bàn chân.",
+ "stepup.mis.drop": "Thả người rơi khỏi hộp thay vì bước xuống có kiểm soát."
 }

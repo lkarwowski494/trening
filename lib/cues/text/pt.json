@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Dobrar os cotovelos — o peso é puxado pelos braços em vez dos ombros.",
  "shrug.mis.roll": "Rodar os ombros em vez de os mover a direito para cima e para baixo.",
  "shrug.setupBehind": "Fica de pé, direito, com a barra atrás das coxas em pega pronada, braços esticados.",
- "zottman.move": "Faz a flexão com pega supinada, no topo roda as palmas para baixo e baixa os halteres em pega pronada."
+ "zottman.move": "Faz a flexão com pega supinada, no topo roda as palmas para baixo e baixa os halteres em pega pronada.",
+ "ballcurl.mis.sag": "Ancas a descair durante o movimento.",
+ "lunge.bbSetup": "Barra na parte de cima das costas, fica bem direito.",
+ "lunge2.mis.lean": "Inclinar muito o tronco para a frente na descida.",
+ "lunge2.mis.shallow": "Descida demasiado curta: o joelho de trás fica bem acima do chão.",
+ "slcurl.move": "Sobe as ancas, desliza as pernas até ficarem esticadas e depois puxa os calcanhares de volta, com as ancas sempre em cima.",
+ "slcurl.setup": "Deita-te de costas, joelhos fletidos, calcanhares nos discos deslizantes.",
+ "split.setup": "Põe-te em afundo: um pé à frente, o outro atrás, apoiado na ponta do pé.",
+ "stepup.mis.drop": "Deixar-se cair da caixa em vez de descer com controlo."
 }

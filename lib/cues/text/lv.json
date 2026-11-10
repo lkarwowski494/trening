@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Elkoņu saliekšana: svaru velk rokas, nevis pleci.",
  "shrug.mis.roll": "Plecu riņķošana, nevis kustība taisni augšup un lejup.",
  "shrug.setupBehind": "Nostājies taisni, turi stieni ar virstvērienu aiz augšstilbiem, rokas taisnas.",
- "zottman.move": "Saliec rokas ar apakštvērienu, augšā pagriez plaukstas uz leju un nolaid hanteles ar virstvērienu."
+ "zottman.move": "Saliec rokas ar apakštvērienu, augšā pagriez plaukstas uz leju un nolaid hanteles ar virstvērienu.",
+ "ballcurl.mis.sag": "Gurni nokrīt kustības laikā.",
+ "lunge.bbSetup": "Stienis uz muguras augšdaļas, stāvi taisni.",
+ "lunge2.mis.lean": "Rumpis stipri noliecas uz priekšu, nolaižoties.",
+ "lunge2.mis.shallow": "Pārāk sekla nolaišanās: aizmugurējais celis paliek augstu virs grīdas.",
+ "slcurl.move": "Pacel gurnus, izbīdi kājas līdz galam taisnas, tad pievelc papēžus atpakaļ. Gurni visu laiku augšā.",
+ "slcurl.setup": "Apgulies uz muguras, ceļi saliekti, papēži uz slīdņiem.",
+ "split.setup": "Nostājies izklupienā: viena pēda priekšā, otra aizmugurē uz pirkstgaliem.",
+ "stepup.mis.drop": "Nokrišana no paaugstinājuma, nevis kontrolēta nokāpšana."
 }

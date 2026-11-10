@@ -2122,7 +2122,9 @@
         "sq.mis.kneesIn": "kolana"
       },
       "bledy_bez_animacji": {
-        "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+        "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
+        "lunge2.mis.lean": "B2 09.11.2026: rodzina nie ma reguły kąta tułowia (plecy_proste mierzy zgięcie kręgosłupa; źródła różnią się kątem tułowia — bez reguły kąta), więc poza błędu nie dałaby się odróżnić regułą od poprawnej; błąd tylko w tekście karty (bledy: [])",
+        "stepup.mis.drop": "B2 09.11.2026: opadanie zamiast kontrolowanego zejścia to cecha tempa, nie pozy (bledy: [])"
       },
       "warianty": {
         "_wykrok": [
@@ -3937,7 +3939,8 @@
         "ht.mis.arch": "plecy"
       },
       "bledy_bez_animacji": {
-        "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+        "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
+        "ballcurl.mis.sag": "B2 09.11.2026: reguły Slider Hamstring Curl (uginanie_kolan, plecy_most) nie mierzą wysokości bioder, więc poza opadających bioder nie dałaby się odróżnić regułą od poprawnej; błąd tylko w tekście karty (bledy: []) — reguła wysokości bioder do rozważenia w backlogu figur"
       },
       "warianty": {
         "_uginanie_obunoz": [

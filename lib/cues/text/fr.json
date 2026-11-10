@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Plier les coudes — ce sont les bras qui tirent la charge au lieu des épaules.",
  "shrug.mis.roll": "Faire des rotations d’épaules au lieu de monter et descendre bien droit.",
  "shrug.setupBehind": "Tenez-vous droit, barre en pronation derrière les cuisses, bras tendus.",
- "zottman.move": "Fléchissez les bras en supination, tournez les paumes vers le bas en haut du mouvement et redescendez les haltères en pronation."
+ "zottman.move": "Fléchissez les bras en supination, tournez les paumes vers le bas en haut du mouvement et redescendez les haltères en pronation.",
+ "ballcurl.mis.sag": "Hanches qui s’affaissent pendant le mouvement.",
+ "lunge.bbSetup": "Barre sur le haut du dos, tenez-vous bien droit.",
+ "lunge2.mis.lean": "Buste qui bascule fortement vers l’avant à la descente.",
+ "lunge2.mis.shallow": "Descente pas assez profonde : le genou arrière reste loin du sol.",
+ "slcurl.move": "Montez les hanches, tendez les jambes en faisant glisser les pieds, puis ramenez les talons : hanches en l’air tout du long.",
+ "slcurl.setup": "Allongez-vous sur le dos, genoux fléchis, talons sur les disques de glisse.",
+ "split.setup": "Placez-vous en fente : un pied devant, l’autre derrière, en appui sur l’avant du pied.",
+ "stepup.mis.drop": "Se laisser tomber de la box au lieu de descendre sous contrôle."
 }

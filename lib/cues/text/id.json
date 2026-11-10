@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Menekuk siku, sehingga beban ditarik lengan, bukan bahu.",
  "shrug.mis.roll": "Memutar bahu, bukan bergerak lurus naik dan turun.",
  "shrug.setupBehind": "Berdiri tegak, pegang barbel dengan genggaman atas di belakang paha, lengan lurus.",
- "zottman.move": "Angkat dumbel dengan genggaman bawah, di atas putar telapak tangan ke bawah, lalu turunkan dumbel dengan genggaman atas."
+ "zottman.move": "Angkat dumbel dengan genggaman bawah, di atas putar telapak tangan ke bawah, lalu turunkan dumbel dengan genggaman atas.",
+ "ballcurl.mis.sag": "Pinggul turun selama gerakan.",
+ "lunge.bbSetup": "Barbel di punggung atas, berdiri tegak.",
+ "lunge2.mis.lean": "Badan condong jauh ke depan saat turun.",
+ "lunge2.mis.shallow": "Turun kurang dalam — lutut belakang masih jauh dari lantai.",
+ "slcurl.move": "Angkat pinggul, luruskan kaki ke depan, lalu tarik tumit kembali — pinggul tetap di atas sepanjang gerakan.",
+ "slcurl.setup": "Berbaring telentang, lutut ditekuk, tumit di atas slider.",
+ "split.setup": "Berdiri dengan satu kaki di depan dan satu di belakang, bertumpu pada ujung telapak kaki.",
+ "stepup.mis.drop": "Menjatuhkan diri dari kotak, bukan turun dengan terkontrol."
 }

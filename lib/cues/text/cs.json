@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Krčení loktů: váhu tahají paže místo ramen.",
  "shrug.mis.roll": "Kroužení rameny místo pohybu rovně nahoru a dolů.",
  "shrug.setupBehind": "Postav se zpříma, činku drž nadhmatem za stehny, paže natažené.",
- "zottman.move": "Ohýbej paže podhmatem, nahoře otoč dlaně dolů a spouštěj jednoručky nadhmatem."
+ "zottman.move": "Ohýbej paže podhmatem, nahoře otoč dlaně dolů a spouštěj jednoručky nadhmatem.",
+ "ballcurl.mis.sag": "Propadání boků během pohybu.",
+ "lunge.bbSetup": "Činka na horní části zad, stůj zpříma.",
+ "lunge2.mis.lean": "Výrazné naklánění trupu dopředu při spouštění dolů.",
+ "lunge2.mis.shallow": "Příliš mělké spuštění: zadní koleno zůstává vysoko nad zemí.",
+ "slcurl.move": "Zvedni boky, vysuň nohy do propnutí, pak přitáhni paty zpět. Boky drž celou dobu nahoře.",
+ "slcurl.setup": "Lehni si na záda, kolena pokrč, paty dej na klouzací podložky.",
+ "split.setup": "Postav se do výpadu: jedna noha vpředu, druhá vzadu na špičce.",
+ "stepup.mis.drop": "Seskakování z vyvýšení místo kontrolovaného sestupu."
 }

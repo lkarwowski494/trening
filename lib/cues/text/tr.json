@@ -777,5 +777,13 @@
  "shrug.mis.elbows": "Dirsekleri bükmek: ağırlığı omuzlar yerine kollar çekiyor.",
  "shrug.mis.roll": "Omuzları düz yukarı aşağı hareket ettirmek yerine döndürmek.",
  "shrug.setupBehind": "Dik durun, halteri uyluklarınızın arkasında üstten tutuşla tutun, kollar düz.",
- "zottman.move": "Dambılları alttan tutuşla kaldırın, tepede avuç içlerinizi aşağı çevirin ve üstten tutuşla indirin."
+ "zottman.move": "Dambılları alttan tutuşla kaldırın, tepede avuç içlerinizi aşağı çevirin ve üstten tutuşla indirin.",
+ "ballcurl.mis.sag": "Hareket sırasında kalçanın sarkması.",
+ "lunge.bbSetup": "Halter sırtınızın üst kısmında, dik durun.",
+ "lunge2.mis.lean": "İnerken gövdeyi fazla öne eğmek.",
+ "lunge2.mis.shallow": "Yeterince derine inmemek: arka diz yerden çok yukarıda kalıyor.",
+ "slcurl.move": "Kalçanızı kaldırın, bacaklarınızı düzleşene kadar ileri kaydırın, sonra topuklarınızı geri çekin. Kalçalar hep yukarıda kalsın.",
+ "slcurl.setup": "Sırt üstü uzanın, dizler bükülü, topuklar kaydırıcıların üzerinde.",
+ "split.setup": "Lunge duruşu alın: bir ayak önde, diğeri arkada, parmak uçlarına basıyor.",
+ "stepup.mis.drop": "Kontrollü inmek yerine kutudan kendini bırakmak."
 }
