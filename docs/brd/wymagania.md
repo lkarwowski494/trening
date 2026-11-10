@@ -494,6 +494,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy licznik faz odpowiada ruchowi (poręcze, kółka, ławka: Opuszczanie i Podnoszenie; Dip Machine: Wypychanie i Powrót), a mierzony staw to łokieć
     - Oraz gdy ćwiczenie ma kartę albo zestaw ogólny ze zdaniem ruchu dipów (bdip.move, bdip.range) i regułę „zakres” o pewności „ustalone” (nakładka techniki)
     - Wtedy z boku widać linię ramienia i łuk zgięcia łokcia, a pochylenie tułowia (reguła tulow_pion) i ćwiczenie bez zdania tej reguły na karcie (Chest Dip) zostaje bez elementu nakładki
+  - Scenariusz: Rodzina maszyn wyciskających siedząc (chest_press_machine) pokazuje rysunki 5 ćwiczeń (09.11.2026, partia 4; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-tor.test.ts`, `tests/figury-generator-odtwarza.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny chest_press_machine (Machine Chest Press, Machine Shoulder Press), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy licznik faz pokazuje Wypychanie i Opuszczanie, uchwyty maszyny jadą po łuku dźwigni (odchylenie toru ograniczone geometrią dźwigni, a przy suwnicy Smitha — prostą szyną), a na rysunku widać (tylko przy wskazówce na karcie i regule „ustalone”) łuk zgięcia łokcia, linię tułowia przy oparciu i poziom barków przy starcie wyciskania nad głowę (nakładka techniki; test `tests/figures-v2-nakladka-kazda-rodzina.test.tsx`)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

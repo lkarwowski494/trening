@@ -1,0 +1,76 @@
+{
+  "v2": {
+    "chest_press_machine": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "recenzja niezależna r1 (bramka 4, L-047 A, L-050) — linia 1.1, partia 4; 2 × WYSOKIE (Leverage Decline Chest Press: pozycja ciała; Machine Shoulder Press: tor łokcia), 1 × ŚREDNIE (próg wyprostu 25° wobec 20° reguł analogicznych)",
+      "autor": "programista (subagent partii 4; figury/partia-4-chest_press_machine @ 702fcabd, baza 47e3715f)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna ruchu, nakładki techniki, kart i zestawów rodziny chest_press_machine, figury/partia-4-chest_press_machine @ 702fcabd (stan podłączony: families.ts ready, LOAD, DATA_UI); arkusze i liczby wygenerowane samodzielnie (arkusz-slad.mjs, arkusz-nakladka.mjs, frameAt); raport docs/research/recenzje/partia4-chest_press_machine-r1-audytor-2026-11-10.md",
+      "sha": "ece5d452e84b",
+      "liczba": 5,
+      "slad": "Ślad toru obejrzany w rzucie z boku wszystkich 5 ćwiczeń (5 arkuszy arkusz-slad, kadry co 0,05; 3 arkusze z nakładką): maszyny klatki — punkt styku dźwigni (środek chwytów) po łuku r = 70 cm wokół osi nad/za głową, odchylenie od cięciwy 4,4 cm = strzałka łuku (czysty łuk, |chwyt−oś| = 69,9–70,0 cm w każdym u); Machine Shoulder Press — chwyt R po łuku wokół osi z przodu z boku (z = 30), odchylenie 6,2 cm = strzałka, 1 zawrócenie 1,3 cm za najniższym punktem łuku (zgodne z geometrią dźwigni); Smith — środek gryfu po prostej pionowej szynie (odchylenie 0,0 cm), gryf = chwyt (0,0 cm). Dłoń–punkt styku w rzucie z boku 0,0 cm w każdym u.",
+      "uwagi": "W1 (WYSOKIE): Leverage Decline Chest Press narysowany leżąc głową w dół na ławce ujemnej ze stopami pod wałkami (pochylenieTulowia −110°, barki y = 52,5 < miednica y = 69,6; kostki y = 66), a źródła ćwiczenia opisują maszynę siedzącą (plecy przy oparciu, stopy na podłodze, uchwyty przy dolnej części klatki, wypychanie do przodu). W2 (WYSOKIE): Machine Shoulder Press — w połowie ruchu łokcie wysunięte przed ciało (u = 0,5: łokieć 27,7 cm przed barkiem i 11,9 cm w bok, 67° przed linią boczną; przedramię 42,7° od pionu w rzucie z boku, dłonie nad twarzą), źródło karty (ACE #186) stawia łokcie lekko przed linią boczną. Ś1 (ŚREDNIE): koniec ruchu łokieć 20,7–22,3° (4 maszyny dźwigniowe) przy tekście „do wyprostu rąk” / „Prostuj ręce do końca”; reguły zakres_klatka i nad_glowa mają 25° z opisem „jak bench_press / overhead_press”, gdzie te same wskazówki mają 20°. Bez znalezisk: Machine Chest Press, Leverage Incline Chest Press (ruch), Smith Machine Shoulder Press (ruch), nakładka (4 elementy), test progDzwigni (K14 — nie poluzowanie, opis w raporcie).",
+      "poprawka": "W1: Decline — pozycja siedząca maszyny (oparcie, stopy na podłodze, uchwyty przy dolnej części klatki, wypychanie do przodu i w dół); test odtwarzający: Leverage Decline Chest Press, każde u: barki wyżej niż miednica (shoulder.y − pelvis.y > 30 cm) i kostki przy podłodze (y ≤ 10 cm) — dziś −17,1 cm i 66 cm. W2: Machine Shoulder Press — biegun łokcia na bok (łokieć pod uchwytem); test odtwarzający: w każdym u kąt łokcia przed linią boczną w osiach tułowia atan2(przód, bok) ≤ 50° i |przedramię od pionu w rzucie z boku| ≤ 25° — dziś 67° i 42,7° przy u = 0,5. Ś1: wyprost ≤ 20° jak reguły analogiczne albo poprawny opis liczby w regule (backlog wg progu)."
+    }
+  },
+  "zestawy": {
+    "Leverage Incline Chest Press": {
+      "rodzina": "machinePress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 chest_press_machine), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw machinePress, wskazowki-cwiczenia-03); włączenie rodziny: programista partii 4 (702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 chest_press_machine, figury/partia-4-chest_press_machine @ 702fcabd",
+      "uwagi": "mcp.move (wypychanie do wyprostu, powrót powoli) — rysunek: wypychanie w górę i w przód prostopadle do oparcia skośnego, zgodne; mcp.blades — tułów nieruchomy przy oparciu (pochylenie stałe, miednica stała); press.noLock — koniec 22° zgięcia, bez blokowania (patrz Ś1 wpisu v2); mis.jerk — błąd tempa bez animacji (bledy_bez_animacji).",
+      "sha": "587789bfe0c2"
+    },
+    "Leverage Decline Chest Press": {
+      "rodzina": "machinePress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw machinePress, wskazowki-cwiczenia-03); włączenie rodziny: programista partii 4 (702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 chest_press_machine, figury/partia-4-chest_press_machine @ 702fcabd",
+      "uwagi": "Zdania zestawu (wypychanie uchwytów do wyprostu, łopatki przy oparciu, bez blokowania) pasują do ruchu ćwiczenia ze źródeł (maszyna siedząca) i do rysunku po poprawce W1; rysunek tego ćwiczenia jest w wpisie v2 „do poprawy” (W1), więc zestaw pokaże się przy rysunku dopiero po poprawce i zielonej recenzji rodziny. Tekst zestawu nie wymaga zmiany.",
+      "sha": "587789bfe0c2"
+    },
+    "Smith Machine Shoulder Press": {
+      "rodzina": "ohp",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "recenzja niezależna (bramka 4, L-047 A), 10.11.2026 — zdanie zestawu przeczy rysunkowi",
+      "autor": "badacz merytoryczny (zestaw ohp); włączenie rodziny: programista partii 4 (702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał zestawów ani kart)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 chest_press_machine, figury/partia-4-chest_press_machine @ 702fcabd",
+      "uwagi": "ohp.seat: „…; hantle przy barkach.” — rysunek i ćwiczenie: gryf suwnicy Smitha (sztanga na prowadnicy), nie hantle. ohp.move (wyciśnięcie nad głowę do wyprostu, opuszczenie do barków: start gryf 14 cm nad barkiem, ≤ 20 cm reguły), ohp.fullExt (koniec 15°), ohp.mis.lock (bez animacji) — zgodne.",
+      "poprawka": "Usunąć ohp.seat z zestawu Smith Machine Shoulder Press albo dodać CUE_REQUIRES['ohp.seat'] (tylko hantle) — zestaw bez zdania o hantlach; drugi użytkownik ohp.seat: Seated Cable Shoulder Press (też nie hantle, poza tą rodziną).",
+      "sha": "7b8d9f13f928"
+    }
+  },
+  "karty": {
+    "Machine Chest Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "badacz merytoryczny i programista (karta etapu 1, data/zrodla/cues.json; rysunek v2: programista partii 4 @ 702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał karty ani rysunku)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rysunku v2 chest_press_machine, figury/partia-4-chest_press_machine @ 702fcabd",
+      "uwagi": "mcp.seat (uchwyty na wysokości środka klatki): start chwyt 6,7 cm pod stawem barkowym, tuż przed klatką — zgodne z ACE #188 krok 1 (uchwyty nie głębiej niż przód klatki); mcp.move: wypychanie przed siebie po łuku dźwigni, powrót 2 s; mcp.blades: tułów i miednica nieruchome przy oparciu; press.noLock: koniec 21,8° (Ś1 wpisu v2 — liczba reguły, nie treść karty).",
+      "sha": "876d5d48af0e"
+    },
+    "Machine Shoulder Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11); treść karty bez zmian od recenzji 28.10.2026",
+      "autor": "badacz merytoryczny i programista (karta etapu 1; rysunek v2: programista partii 4 @ 702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał karty ani rysunku)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rysunku v2 chest_press_machine, figury/partia-4-chest_press_machine @ 702fcabd",
+      "uwagi": "Zdania karty (msp.seat, ohp.move, ohp.feet, ohp.fullExt) poprawne wobec źródeł; start uchwyt 6,6 cm nad barkiem (msp.seat zgodne). Błąd jest w rysunku (W2 wpisu v2: tor łokcia), nie w karcie — karta zostaje, rysunek do poprawy.",
+      "sha": "524d02513230"
+    }
+  },
+  "v1_zastapiona": []
+}

@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 218,
-      "v1": 41,
-      "bezFigury": 449,
-      "daneV2NieWlaczone": 318,
-      "wyjatekBezAnimacji": 142
+      "v2": 223,
+      "v1": 40,
+      "bezFigury": 445,
+      "daneV2NieWlaczone": 313,
+      "wyjatekBezAnimacji": 141
     },
-    "animowanyBlad": 134,
+    "animowanyBlad": 136,
     "wskazowki": {
       "wlasne": 283,
       "wlasneZBledami": 174,
-      "ogolne": 115,
-      "bezTekstu": 310
+      "ogolne": 117,
+      "bezTekstu": 308
     },
-    "czesteBledyTekst": 289,
+    "czesteBledyTekst": 291,
     "roleMiesni": 513,
-    "pelnaKarta": 213,
-    "pelnaKartaBlad": 133,
-    "recenzjaFigur": 218
+    "pelnaKarta": 217,
+    "pelnaKartaBlad": 135,
+    "recenzjaFigur": 223
   },
   "kartZTekstami": 584,
   "rodziny": {
@@ -545,17 +545,17 @@
       "recenzja": 0
     },
     "chest_press_machine": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 5,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 5,
-      "v1": 1,
+      "figuraV2": 5,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 3,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 2,
+      "bezTekstu": 1,
+      "pelnaKarta": 4,
+      "pelnaKartaBlad": 2,
+      "recenzja": 5
     },
     "cable_press": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 218,
-    "figura.wAplikacji": 259,
+    "figura.v2": 223,
+    "figura.wAplikacji": 263,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 134,
+    "animowanyBlad": 136,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
-    "wskazowki.zTekstem": 398,
-    "czesteBledyTekst": 289,
+    "wskazowki.zTekstem": 400,
+    "czesteBledyTekst": 291,
     "roleMiesni": 513,
-    "pelnaKarta": 213,
-    "pelnaKartaBlad": 133,
-    "recenzjaFigur": 218,
+    "pelnaKarta": 217,
+    "pelnaKartaBlad": 135,
+    "recenzjaFigur": 223,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 584,
     "jezyk.en.kompletne": 584,

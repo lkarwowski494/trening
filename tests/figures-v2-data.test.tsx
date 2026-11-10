@@ -47,8 +47,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
-      /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
-      else if (f === 'triceps') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* triceps (04.11.2026) i chest_press_machine (09.11.2026, wypychanie od uchwytów przy barkach): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; curl i podciąganie: rośnie */
+      else if (f === 'triceps' || f === 'chest_press_machine') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });

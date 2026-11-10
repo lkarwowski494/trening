@@ -20,6 +20,7 @@ import { OLYMPIC_TECHNIQUE } from './overlay/olympic';
 import { TRICEPS_TECHNIQUE } from './overlay/triceps';
 import { DELT_RAISE_TECHNIQUE } from './overlay/delt_raise';
 import { DIP_TECHNIQUE } from './overlay/dip';
+import { CHEST_PRESS_MACHINE_TECHNIQUE } from './overlay/chest_press_machine';
 import { solid, OVERLAY_LINE_W } from './overlay/common';
 import REGULY from './reguly-cwiczen.json';
 
@@ -49,7 +50,7 @@ export type RefSpec = { shape: 'vertical'; through: RefPoint; dir: 'up' | 'down'
 export type TechniqueDef = { id: string; kind: TechniqueKind; cue: string[]; rule: string; views: View[]; /** staw, który musi być mierzony na rysunku (kind „limb”) */ joint?: MeasuredJoint; /** linia odniesienia (kind „ref”, E3) */ ref?: RefSpec; /** element tylko dla tych ćwiczeń (klucz katalogu), gdy reguła ma pewność „ustalone” tylko dla części odmian rodziny */ exercises?: string[] };
 
 /** Elementy nakładki wg rodziny (dane: overlay/<rodzina>.ts). */
-export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, squat: SQUAT_TECHNIQUE, hinge: HINGE_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE, olympic: OLYMPIC_TECHNIQUE, triceps: TRICEPS_TECHNIQUE, delt_raise: DELT_RAISE_TECHNIQUE, dip: DIP_TECHNIQUE };
+export const TECHNIQUE: Record<string, TechniqueDef[]> = { bench_press: BENCH_TECHNIQUE, squat: SQUAT_TECHNIQUE, hinge: HINGE_TECHNIQUE, curl: CURL_TECHNIQUE, pull_up: PULL_UP_TECHNIQUE, olympic: OLYMPIC_TECHNIQUE, triceps: TRICEPS_TECHNIQUE, delt_raise: DELT_RAISE_TECHNIQUE, dip: DIP_TECHNIQUE, chest_press_machine: CHEST_PRESS_MACHINE_TECHNIQUE };
 export const techniqueDef = (id: string): TechniqueDef | undefined => Object.values(TECHNIQUE).flat().find(d => d.id === id);
 /** Elementy rodziny, które wolno pokazać przy zestawie wskazówek ćwiczenia (id wskazówek karty). */
 /**
