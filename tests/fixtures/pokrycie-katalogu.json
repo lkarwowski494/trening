@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 317,
-      "v1": 19,
-      "bezFigury": 372,
-      "daneV2NieWlaczone": 217,
-      "wyjatekBezAnimacji": 127
+      "v2": 333,
+      "v1": 18,
+      "bezFigury": 357,
+      "daneV2NieWlaczone": 201,
+      "wyjatekBezAnimacji": 119
     },
-    "animowanyBlad": 194,
+    "animowanyBlad": 196,
     "wskazowki": {
       "wlasne": 300,
       "wlasneZBledami": 188,
-      "ogolne": 160,
-      "bezTekstu": 248
+      "ogolne": 167,
+      "bezTekstu": 241
     },
-    "czesteBledyTekst": 348,
+    "czesteBledyTekst": 350,
     "roleMiesni": 513,
-    "pelnaKarta": 311,
-    "pelnaKartaBlad": 192,
-    "recenzjaFigur": 317
+    "pelnaKarta": 327,
+    "pelnaKartaBlad": 194,
+    "recenzjaFigur": 333
   },
   "kartZTekstami": 588,
   "rodziny": {
@@ -220,17 +220,17 @@
       "recenzja": 9
     },
     "kb_ballistic": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 17,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 16,
-      "v1": 1,
+      "figuraV2": 16,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 9,
-      "ogolne": 0,
-      "bezTekstu": 8,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 7,
+      "bezTekstu": 1,
+      "pelnaKarta": 16,
+      "pelnaKartaBlad": 2,
+      "recenzja": 16
     },
     "olympic": {
       "status": "ready",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 317,
-    "figura.wAplikacji": 336,
+    "figura.v2": 333,
+    "figura.wAplikacji": 351,
     "figura.zDanymiV2": 534,
-    "animowanyBlad": 194,
+    "animowanyBlad": 196,
     "wskazowki.wlasne": 300,
     "wskazowki.wlasneZBledami": 188,
-    "wskazowki.zTekstem": 460,
-    "czesteBledyTekst": 348,
+    "wskazowki.zTekstem": 467,
+    "czesteBledyTekst": 350,
     "roleMiesni": 513,
-    "pelnaKarta": 311,
-    "pelnaKartaBlad": 192,
-    "recenzjaFigur": 317,
+    "pelnaKarta": 327,
+    "pelnaKartaBlad": 194,
+    "recenzjaFigur": 333,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 588,
     "jezyk.en.kompletne": 588,

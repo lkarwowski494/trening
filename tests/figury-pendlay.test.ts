@@ -137,7 +137,9 @@ describe('Pendlay Row: karta (wskazówki) — start od nieruchomej sztangi, tuł
 describe('Pendlay Row: recenzja (L-047) — figura i karta po recenzji niezależnej (29.10.2026)', () => {
   test('wpisy v1 i karty „wyswietlana” ze skrótem bieżących danych, recenzent ≠ autor; figura w runtime', () => {
     const now = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8' }));
-    for (const s of ['v1', 'karty'] as const) { const e = REC[s][KEY]; expect(e.werdykt).toBe('wyswietlana'); expect(e.sha).toBe(now[s][KEY]); expect(e.autor).not.toBe(e.recenzent); }
-    expect(FIG_DATA.exercises[KEY]).toBeDefined(); expect(FIG_DATA.open).not.toContain(KEY);
+    /* 10.11.2026 (partia 1): rodzina row ready (r3 wyswietlana) — Pendlay Row rysuje figurę v2 rodziny, więc wpis v1 „zastapiona” (K10; figura v1 zostaje w runtime dla zgodności, przy wycofaniu v2 wymaga recenzji); karta własna nadal „wyswietlana” ze skrótem bieżących danych */
+    const v1 = REC.v1[KEY]; expect(v1.werdykt).toBe('zastapiona'); expect(v1.autor).not.toBe(v1.recenzent);
+    const k = REC.karty[KEY]; expect(k.werdykt).toBe('wyswietlana'); expect(k.sha).toBe(now.karty[KEY]); expect(k.autor).not.toBe(k.recenzent);
+    expect(FIG_DATA.open).not.toContain(KEY);
   });
 });

@@ -83,11 +83,10 @@
     },
     "Kettlebell Swing": {
       "rodzina": "kb_ballistic",
-      "werdykt": "wyswietlana",
-      "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "a7fcbadd5b3f",
-      "uwagi": "Ruch i karta zgodne. Zawias z kettlebellem między nogami, wyprost bioder, kettlebell przed sobą (wysokość ilustracyjna), plecy proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "werdykt": "zastapiona",
+      "data": "2026-11-10",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2, r4 10.11.2026); przy wycofaniu v2 wymaga recenzji",
+      "sha": "a7fcbadd5b3f"
     },
     "Bench Press (sztanga)": {
       "rodzina": "bench_press",
@@ -1569,6 +1568,85 @@
         "Single-Arm Linear Jammer",
         "Pike Push Up"
       ]
+    },
+    "kb_ballistic": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026: wyswietlana (W1-r3, W2-r3, N2-r3, N3-r3 zamknięte; N1-r3 częściowo — zapadka R6 2; Ś1-r3, Ś2-r3, N4-r3, N1–N3-r4 do backlogu)",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "sha": "97edf91fc18d",
+      "liczba": 17,
+      "slad": "arkusz-slad: 16 ćw. side, jasny (16 PNG) + ciemny dla 4 ćw.; kadry co 1/48 u 0–1 (14 PNG: Kettlebell Snatch, Double Kettlebell Snatch, Snatch (hantel), Kettlebell Clean, Double Kettlebell Clean, Dumbbell Clean, Clean and Jerk) + co 1/48 ciemny (Kettlebell Snatch, Snatch (hantel)); arkusz-nakladka --family (18 PNG). Ślad ciągły, maks. 7,9 cm/48; prędkość bez przestoju i bez skoku (stosunek sąsiednich kadrów ≤ 1,9 w całym cyklu), łokieć prostuje się w ruchu, nie po zatrzymaniu.",
+      "ciaglosc_rwan": "bez szarpnięcia: Kettlebell Snatch 3,0–4,8 cm/48 (maks. stosunek 1,4), Double Kettlebell Snatch 2,4–5,6 (1,9 w zamachu, ≤ 1,2 po wyproście), Snatch (hantel) 2,4–7,9 (1,7; zwolnienie po wyproście i stopniowe przyspieszenie przez ok. 0,28 s, bez postoju); zarzuty ≤ 1,9; ostatnie kadry rwań 2,3–2,9 cm/48 przy prostującym się łokciu",
+      "uwagi": "Ś1-r3 (skok dzwonu 13,9–18,8 cm/48 przy przewrocie do racka, silnik gear.ts) i Ś2-r3 (Bottoms-Up, ciąg ręką) — ŚREDNIE, backlog 1.1. N4-r3: przenikanie w górę uda (nie tułów) −1,1…−1,3 cm. N1-r4: Snatch (hantel) hantel −1,4 cm w udzie u = 0,26 (nowe, węższy rozstaw). N2-r4: dwa dzwony zlane w jeden w Double Snatch/Clean (niewidoczne w side). N3-r4: opis Dumbbell Clean w tor-wyjatki.json.",
+      "cwiczenia": {
+        "Kettlebell Swing": {
+          "werdykt": "wyswietlana",
+          "uwagi": "ruch jak r1–r3 (zmiana kolan ≤ 2,4 cm)"
+        },
+        "One-Arm Kettlebell Swings": {
+          "werdykt": "wyswietlana",
+          "uwagi": "R6 0; stały rozstaw"
+        },
+        "Kettlebell Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 zamknięte (stosunek ≤ 1,4); Ś1-r3 i N4-r3 → backlog"
+        },
+        "Double Kettlebell Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 zamknięte (≤ 1,6); Ś1-r3, N4-r3, N2-r4 → backlog"
+        },
+        "Dumbbell Clean": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 zamknięte (≤ 1,9 przed wyprostem, ≤ 1,4 po)"
+        },
+        "Bottoms-Up Clean From The Hang Position": {
+          "werdykt": "wyswietlana",
+          "uwagi": "poza bez zmian; Ś2-r3 → backlog"
+        },
+        "Kettlebell Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 zamknięte (≤ 1,4), bez dociskania łokcia po zatrzymaniu"
+        },
+        "Double Kettlebell Snatch": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 zamknięte (≤ 1,9 w zamachu, ≤ 1,2 po wyproście); N2-r4"
+        },
+        "Snatch (hantel)": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 (≤ 1,7) i W2-r3 (tułów 29°, hantel 8 cm przed kostką) zamknięte; N1-r4 hantel −1,4 cm w udzie (niewidoczne w side)"
+        },
+        "Double Kettlebell Push Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian od r3"
+        },
+        "Double Kettlebell Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian od r3"
+        },
+        "One-Arm Kettlebell Push Press": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian od r3"
+        },
+        "One-Arm Kettlebell Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "bez zmian od r3"
+        },
+        "One-Arm Kettlebell Split Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "lądowanie przedniej stopy bez poślizgu (R6 0)"
+        },
+        "Kettlebell Sumo High Pull": {
+          "werdykt": "wyswietlana",
+          "uwagi": "R6 3,6 cm przy wspięciu (zapadka, BRZEGOWE)"
+        },
+        "One-Arm Kettlebell Clean and Jerk": {
+          "werdykt": "wyswietlana",
+          "uwagi": "W1-r3 zamknięte (≤ 1,8); Ś1-r3, N4-r3; R6 6,8 cm (zapadka)"
+        }
+      }
     }
   },
   "karty": {
@@ -2504,23 +2582,23 @@
     },
     "Snatch (hantel)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
       "sha": "4324b03aab39",
-      "uwagi": "Sprawdzone: BarBend dumbbell-snatch („Squat down so that you are in a similar start position to a deadlift.”, „keeping your arm relaxed and allowing your legs and hips to do the work in the first half”, „your elbow is locked out”). Drugie źródło Rogue (różna organizacja). Bez liczb i twierdzeń o zdrowiu."
+      "uwagi": "sprzeczność r3 (start, kolejność biodra → ręka) ustąpiła; karta zgodna z rysunkiem r4"
     },
     "Double Kettlebell Clean": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
       "sha": "9741b4eba017",
-      "uwagi": "Sprawdzone: BarBend kettlebell-clean („you’ll need to widen your stance to hike both bells between your legs”, „performed in the same way as the single-arm kettlebell clean”). Uwaga: miejsce w ACE 5386 dla kbb.dblStance to opis swingu oburącz, nie zarzutu — ta sama pozycja wyjściowa (zamach między nogami), akceptowalne. Karta partial."
+      "uwagi": "„po wyproście bioder przyciągnij je blisko ciała” zgodne z rysunkiem r4 (tempo bez przestoju)"
     },
     "Double Kettlebell Jerk": {
       "werdykt": "wyswietlana",
@@ -4176,51 +4254,53 @@
     },
     "Kettlebell Clean": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4b",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; EN kbb.cleanMove „as your hips snap through” = wyprost bioder (BarBend Steps 2–4, StrongFirst Pak); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
-      "sha": "ba3a64a7651d"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "ba3a64a7651d",
+      "uwagi": "kbb.bellSetup, kbb.cleanMove, kbb.rack, kb.hips, kbb.mis.armPull, kbb.mis.cast zgodne z rysunkiem r4: ręka prosta do wyprostu bioder, ciężar blisko ciała, rack przy barku"
     },
     "Kettlebell Snatch": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4b",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; StrongFirst (Toshner, Macek) + BarBend; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
-      "uwagi": "Niska, dane: miejsce barbend-kb-snatch przy kbb.bellSetup nadal „Step One” — powinno być: sekcja progresji Kettlebell Swing.",
-      "sha": "075672f7c818"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "075672f7c818",
+      "uwagi": "kbb.bellSetup, kbb.snatchMove (jeden ruch — bez przestoju), kbb.punch, kbb.mis.bang zgodne z rysunkiem r4"
     },
     "Double Kettlebell Push Press": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4b",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; CrossFit Essentials (Martone) + BarBend (Dewar, CSCS); wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
-      "uwagi": "Niska, dane: miejsce cf-dkb-pp-jerk przy pp.legs nadal cytuje zdanie z sekcji Jerk.",
-      "sha": "6fe0557af3f0"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "6fe0557af3f0",
+      "uwagi": "kbb.rackStartDbl, kbpp.move, pp.legs, kbpp.mis.rebend zgodne: jedno ugięcie kolan (32°), wyprost nóg, ramiona kończą, bez drugiego ugięcia"
     },
     "One-Arm Kettlebell Push Press": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4b",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; uproszczenie dwa → jeden kettlebell potwierdzone; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
-      "uwagi": "Niska, dane: jak Double Kettlebell Push Press (miejsce przy pp.legs).",
-      "sha": "4044c2cbfc23"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "4044c2cbfc23",
+      "uwagi": "kbb.rackStart, kbpp.move, pp.legs, kbpp.mis.rebend zgodne: jedno ugięcie kolan (34°), wyprost nóg, ramię kończy, bez drugiego ugięcia"
     },
     "Double Kettlebell Snatch": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-09",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A4b",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A4b, runda 2 (c8a0ea01), 09.11.2026; uproszczenia potwierdzone; nowe brzmienie dblSnatchMove w granicach źródeł; wpis koordynatora po przekładzie A4b i poprawkach lokalizacji (ea588092), sha z zrodla-runtime --skroty",
-      "sha": "bd0269dc441b"
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "bd0269dc441b",
+      "uwagi": "kbb.dblStance (kostki 40 cm, biodra 17 cm), kbb.dblSnatchMove, kbb.mis.bang zgodne z rysunkiem r4"
     },
     "Split Jump": {
       "werdykt": "wyswietlana",
@@ -6400,6 +6480,28 @@
       "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
       "sha": "74600f4a2d25",
       "uwagi": "ohp.move, ohp.fullExt zgodne; Ś1-r3 dotyczy rysunku, nie zdań; skrót bez zmian od r2"
+    },
+    "Dumbbell Clean": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "20c8125fdfa2",
+      "uwagi": "oly.back zgodne: start z prostymi plecami, tułów pochylony, klatka nie zapada się"
+    },
+    "One-Arm Kettlebell Clean and Jerk": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
+      "sha": "20c8125fdfa2",
+      "uwagi": "oly.back zgodne: start w zamachu z prostymi plecami"
     }
   }
 }
