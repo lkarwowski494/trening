@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:10 UTC) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:20 UTC) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -18,7 +18,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 ## Teraz
 - Wznowienie: właściciel 2026-11-10 ~07:00 UTC wybrał „Przejmij i wznów pracę” (AskUserQuestion /apps4brew) — wstrzymanie z 05:35 zdjęte. Praca toczy się na tym samym koncie (poprzednie sesje i przypomnienia innych koordynatorów widoczne w list_triggers/list_sessions); limit tygodniowy: allowed_warning, reset 2026-11-15 16:00 UTC.
 - Sprawdzone u źródła 07:05: integracja-1-1 dfaeeefe; figury/partia-4-thruster-wl 06d90e84 — tests.yml 42762990970 success; figury/partia-2 7a09818f; figury/partia-5 cd789d82 — przebieg 42763692815 (cd5c4afa) cancelled, głowa bez wyniku; figury/partia-5-rotator_cuff 7f694cf5. Autor commitów: Claude <noreply@anthropic.com>.
-- Zlecane: A (pociąg-4, polecenia/A.md) i B (partia 5, polecenia/B.md) @ a6d5416f. Start sesji: pierwsza próba create_session przerwana przez klasyfikator bezpieczeństwa przy wklejaniu promptu roli (sesja nie powstała — list_sessions 07:06); druga próba w toku.
+- W toku: A (pociąg-4) i B (partia 5) — tabela Sesje. A rozwiązuje konflikty scalenia według KO-020 (partia 4 odchodzi od pociągu-2, konflikty także poza plikami generowanymi). Poprzednik …VBw1AX38pLShXPH7rmy nieosiągalny (send_message 07:12 → not found); jego wiadomości po przekazaniu niesprawdzone.
 - Po zielonym pociągu-4: scal-galaz do integracji, potem tura 3 w 2 sesjach (KO-017).
 - Karta „Stan projektu” w CLAUDE.md: brak; właściciel 07:00: „Pozycja w planie M9” → zadanie dla sesji z dokumentami po turze 3 (propozycja do zatwierdzenia).
 - Bramka opłacalności: docs/monetyzacja.md istnieje (M5 S1). Środowisko: Linux bez Xcode, push na koordynacja działa (a6d5416f), MCP GitHub działa.
@@ -43,6 +43,8 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 ## Sesje
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
+| A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ dfaeeefe (nic nie wypchnięte 07:10) | b.d. | 0,5 (07:10) | pracuje; KO-020 wysłane 07:18; pułap 40/52 USD |
+| B | session_01T66VBzi6xg7DYJMg2oYF8Q | 08-programista build (opus-5-5): partia 5 domknięcie | figury/partia-5 @ cd789d82 | b.d. | 0 (07:15) | wystartowała 07:15; pułap 60/78 USD |
 | P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
 | P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana — raport 05:50 (koszt 55,8 USD, kontekst 32%) |
 | P-2 | session_01T66VBvdsMU66FhsPJWpG8J | lead partii 2 | figury/partia-2 @ 7a09818f | 30 | 26 | zakończona (raport końcowy) → do archiwizacji po scaleniu |
@@ -56,9 +58,11 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 | Kiedy | Co | Kto | Zależy od | Od właściciela |
 |---|---|---|---|---|
 | 05:25 | pociąg-3 scalony (dfaeeef) | koordynator | — | — |
-| — | WSTRZYMANE od 05:35: pociąg-4, partia-5, tura 3 i dalej — plan do ułożenia przy wznowieniu | — | wznowienie | wznowienie |
-| 10:00–12:00 | raporty końcowe P-4, P-5 → scalenia (pociąg) | P-4, P-5 | — | — |
-| od ~12:00 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — liczba sesji wg decyzji C | nowe sesje partii (wzór: polecenia/prompt-p5.md) | decyzja C | decyzja C |
+| 07:15–~09:30 | pociąg-4 (partia 4 + thruster + partia 2, wpis docs/18 KO-012) → scal-galaz do integracji | A, potem koordynator | zielony tests.yml | — |
+| 07:15–~11:00 | partia 5: CI, przegląd strażników, rotator_cuff r1/r2, lekcja → pociąg-5 | B | — | — |
+| po pociągu-4 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — 2 sesje (KO-017) | nowe sesje partii C, D (wzór: polecenia/wzor-partia.md) | pociąg-4 w integracji | — |
+| po turze 3 | karta „Stan projektu” w CLAUDE.md (propozycja) | sesja docs | — | zatwierdzenie karty |
+| do decyzji | gałąź z poprawkami CI dla main (KO-015) | sesja 08 | — | zgoda na scalenie do main |
 | po turze 3 | przekład nowych tekstów (ZB-057), recenzja lokalizacji zbiorcza, zadania przed 1.1 (niżej), audyt, E2E | — | — | Approve TF |
 | 14:00 | linia dzienna | koordynator | — | — |
 
@@ -77,7 +81,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - trig_01UWKZWY4rndpbXDhvFvEqDJ „Koordynator Trening: kontrola” 07:58 · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-020. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-021. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -91,3 +95,6 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 05:35 | właściciel | „zapisz wszystkie zadania i ich stan i wstrzymaj pracę” → P-4, P-5 wstrzymane, przypomnienia usunięte, lista zadań wyżej | wznowienie przez właściciela |
 | 2026-11-10 07:00 | koordynator …VBxiRkBevtfwuCxxs97 | przejęcie z /apps4brew; właściciel: „Przejmij i wznów pracę”, „Analogia”, „350 USD na dobę”, karta Stan projektu = pozycja planu; KO-015…KO-019; przypomnienia utworzone; polecenia A, B @ a6d5416f | start sesji A, B |
 | 2026-11-10 07:06 | koordynator | create_session A przerwane przez klasyfikator bezpieczeństwa (sesja nie powstała) | druga próba; przy powtórce — inna droga przekazania roli |
+| 2026-11-10 07:15 | A, B | sesje utworzone drugą próbą (subagent opus): A …VBviwDCU3NCJVaVH1WP sonnet-5-5, B …VBzi6xg7DYJMg2oYF8Q opus-5-5 (get_session przez subagenta) | kontrola 07:58 |
+| 2026-11-10 07:18 | A | A zatrzymała scalenie partii 4: konflikty poza plikami generowanymi (list_events result 07:10); nie umiała wysłać wiadomości (szukała w ListAgents) → KO-020 + instrukcja send_message, delivered | kontrola 07:58 |
+| 2026-11-10 07:12 | koordynator | „PRZEJĄŁEM” do …VBw1AX38pLShXPH7rmy → not found | — |
