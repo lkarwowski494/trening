@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 11, do zrobienia: 32); ćwiczeń z gotową figurą: **230** (32,4%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 12, do zrobienia: 31); ćwiczeń z gotową figurą: **233** (32,9%).
 
 ## Rodziny
 
@@ -26,7 +26,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `hip_bridge` | do zrobienia | 11 | side | 3 | Hip thrust i mostki |
 | `kb_ballistic` | do zrobienia | 17 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
 | `olympic` | gotowa | 25 | side | — | Podrzut, rwanie i ich odmiany |
-| `back_extension` | do zrobienia | 4 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
+| `back_extension` | gotowa | 4 | side | — | Prostowanie tułowia na ławce, reverse hyper |
 | `curl` | gotowa | 36 | side, front | — | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
 | `triceps` | gotowa | 32 | side | — | Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył) |
 | `delt_raise` | gotowa | 38 | front, side | — | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
@@ -53,12 +53,13 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 32 rodzin, 464 ćwiczeń, ok. **98 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 31 rodzin, 460 ćwiczeń, ok. **96 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 - `olympic` (z figurą 24 z 25): Rack Delivery
+- `back_extension` (z figurą 3 z 4): Weighted Ball Hyperextension
 - `curl` (z figurą 34 z 36): Zottman Curl; Zottman Preacher Curl
 - `triceps` (z figurą 29 z 32): Body-Up; Bodyweight Triceps Extension; Sled Overhead Triceps Extension
 - `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
@@ -133,7 +134,7 @@ Bottoms-Up Clean From The Hang Position; Double Kettlebell Clean; Double Kettleb
 
 Barbell Snatch; Block Clean; Block Power Clean; Block Power Snatch; Block Snatch; Clean; Clean and Jerk; Clean Pull; Clean Shrug; Hang Clean; Hang Snatch; Jerk Balance; Jerk Dip Squat; Muscle Snatch; Power Clean; Power Jerk; Power Snatch; Rack Delivery; Snatch Balance; Snatch Pull; Snatch Shrug; Split Clean; Split Jerk; Split Snatch; Squat Jerk
 
-### back_extension (4) — do zrobienia
+### back_extension (4) — gotowa
 
 Back Extension; Lower Back Curl; Reverse Hyperextension; Weighted Ball Hyperextension
 

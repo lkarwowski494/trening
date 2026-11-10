@@ -504,6 +504,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy licznik faz to Wypychanie i Powrót, mierzony staw to łokieć, a każda pracująca dłoń leży przy końcu własnej linki biegnącej od bloczka za plecami (przy ćwiczeniu jednorącz wolna ręka nie ma linki), a na ławce bark i miednica leżą na oparciu
     - Oraz gdy ćwiczenie ma na karcie albo w zestawie ogólnym zdanie ruchu (mcp.move, press.noLock) albo podstawy (cpress.base) i regułę „ustalone” (nakładka techniki)
     - Wtedy z boku widać linię ramienia i łuk zgięcia łokcia oraz linię tułowia, która w ruchu rąk stoi w miejscu; reguła kontaktu z ławką (pewność „analogia”) zostaje bez elementu nakładki
+  - Scenariusz: Rodzina prostowania tułowia (back_extension) pokazuje rysunki 3 ćwiczeń (10.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-back-extension.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Back Extension, Reverse Hyperextension albo Lower Back Curl, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy miednica i uda leżą na podpórce ławki (do 1 cm), stopy są pod wałkami (rzymska), miednica Lower Back Curl leży na podłodze, a licznik faz mierzy kąt biodra (Back Extension zaczyna od góry: Opuszczanie, potem Unoszenie); Weighted Ball Hyperextension zostaje bez rysunku v2
+    - Oraz gdy Back Extension ma na karcie wskazówkę o zgięciu w biodrach i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/back_extension.ts`)
+    - Wtedy z boku widać linię i łuk kąta biodra, który rośnie przy opuszczaniu tułowia; pozostałe ćwiczenia rodziny nie mają elementu (zestawy ogólne bez tej wskazówki, reguły poniżej „ustalone”)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
