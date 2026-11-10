@@ -131,7 +131,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `cable_press` | do zrobienia | 4 | 0 | 4 | 0 | 2 | 0 | 2 | 0 | 0 |
 | `core_hang` | do zrobienia | 4 | 0 | 3 | 0 | 3 | 0 | 1 | 0 | 0 |
 | `thruster` | do zrobienia | 3 | 0 | 3 | 0 | 2 | 0 | 1 | 0 | 0 |
-| `kneeling_hinge` | do zrobienia | 2 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 |
+| `kneeling_hinge` | gotowa | 2 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 |
 
 ## Języki
 
