@@ -809,5 +809,13 @@
  "as.lap": "Lift the stone over your knees and rest it on your thighs.",
  "as.extend": "From your lap, drive your hips forward and stand up, bringing the stone higher.",
  "pinch.setup": "Pinch the plates together — thumb on one side, fingers on the other.",
- "pinch.hold": "Stand up and keep squeezing until your grip starts to fade."
+ "pinch.hold": "Stand up and keep squeezing until your grip starts to fade.",
+ "cdl.setup": "Set up and grip the bar like a clean; push your knees out until they touch your arms.",
+ "cdl.move": "Drive the bar up with your legs, holding the same back angle until it passes your knees.",
+ "slrdl.setup": "Stand on one leg with a slight bend in the knee.",
+ "slrdl.move": "Hinge at the hips and let your free leg travel straight back; drive your hips forward to stand.",
+ "bhs.setup": "Bar behind your legs, overhand grip with arms hanging down; feet shoulder-width apart.",
+ "ohs.setup": "Bar overhead on straight arms.",
+ "ohs.move": "Squat down with the bar overhead the whole time, then stand back up.",
+ "ohs.arms": "Keep your arms straight throughout."
 }

@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Mettiti in posizione di affondo: una gamba avanti, l'altra dietro.",
  "plyo.splitSwitch": "Salta verso l'alto, cambia gamba in aria e atterra in affondo con l'altra gamba avanti.",
  "sled.backGrip": "Afferra la corda della slitta con entrambe le mani.",
- "sled.backPedal": "Mettiti di fronte alla slitta e cammina all'indietro, spingendo con le gambe."
+ "sled.backPedal": "Mettiti di fronte alla slitta e cammina all'indietro, spingendo con le gambe.",
+ "bhs.setup": "Bilanciere dietro le gambe, tienilo con presa prona a braccia distese verso il basso; piedi alla larghezza delle spalle.",
+ "cdl.move": "Spingi il pavimento con le gambe e mantieni lo stesso angolo della schiena finché il bilanciere non supera le ginocchia.",
+ "cdl.setup": "Mettiti in posizione e afferra il bilanciere come per la girata; spingi le ginocchia in fuori finché non toccano le braccia.",
+ "ohs.arms": "Braccia tese per tutto il movimento.",
+ "ohs.move": "Scendi in squat tenendo sempre il bilanciere sopra la testa, poi risali.",
+ "ohs.setup": "Bilanciere sopra la testa a braccia tese.",
+ "slrdl.move": "Piegati in avanti spingendo indietro le anche e porta la gamba libera dritta all’indietro; risali spingendo le anche in avanti.",
+ "slrdl.setup": "Stai su una gamba sola, con il ginocchio leggermente piegato."
 }

@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Coloca-te em afundo: uma perna à frente, a outra atrás.",
  "plyo.splitSwitch": "Salta para cima, troca de pernas no ar e aterra em afundo com a outra perna à frente.",
  "sled.backGrip": "Agarra a corda do trenó com as duas mãos.",
- "sled.backPedal": "Fica de frente para o trenó e anda para trás, empurrando com as pernas."
+ "sled.backPedal": "Fica de frente para o trenó e anda para trás, empurrando com as pernas.",
+ "bhs.setup": "Barra atrás das pernas, segura-a com pega pronada e os braços estendidos para baixo; pés à largura dos ombros.",
+ "cdl.move": "Empurra o chão com as pernas e mantém o mesmo ângulo das costas até a barra passar os joelhos.",
+ "cdl.setup": "Posiciona-te e agarra a barra como para um clean; empurra os joelhos para fora até tocarem nos braços.",
+ "ohs.arms": "Mantém os braços esticados durante todo o movimento.",
+ "ohs.move": "Desce para o agachamento com a barra sempre acima da cabeça e volta a subir.",
+ "ohs.setup": "Barra acima da cabeça, com os braços esticados.",
+ "slrdl.move": "Inclina-te levando as ancas para trás e leva a perna livre a direito para trás; volta, empurrando as ancas para a frente.",
+ "slrdl.setup": "Apoia-te numa perna, com o joelho ligeiramente fletido."
 }

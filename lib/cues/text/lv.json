@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Nostājies izklupienā: viena kāja priekšā, otra aizmugurē.",
  "plyo.splitSwitch": "Atsperies uz augšu, gaisā samaini kājas un piezemējies izklupienā ar otru kāju priekšā.",
  "sled.backGrip": "Satver ragavu virvi ar abām rokām.",
- "sled.backPedal": "Nostājies ar seju pret ragavām un ej atmuguriski, atgrūžoties ar kājām."
+ "sled.backPedal": "Nostājies ar seju pret ragavām un ej atmuguriski, atgrūžoties ar kājām.",
+ "bhs.setup": "Stienis aiz kājām, turi to ar virstvērienu nolaistās rokās; pēdas plecu platumā.",
+ "cdl.move": "Atgrūdies ar kājām no grīdas un saglabā to pašu muguras leņķi, līdz stienis paiet garām ceļiem.",
+ "cdl.setup": "Nostājies un satver stieni kā pacelšanai uz krūtīm; izspied ceļus uz āru, līdz tie pieskaras rokām.",
+ "ohs.arms": "Visas kustības laikā turi rokas taisnas.",
+ "ohs.move": "Nolaidies pietupienā, visu laiku turot stieni virs galvas, un piecelies.",
+ "ohs.setup": "Stienis virs galvas taisnās rokās.",
+ "slrdl.move": "Noliecies, virzot gurnus atpakaļ, un brīvo kāju vadi taisni atpakaļ; atgriezies, stumjot gurnus uz priekšu.",
+ "slrdl.setup": "Stāvi uz vienas kājas, ceļgals viegli saliekts."
 }
