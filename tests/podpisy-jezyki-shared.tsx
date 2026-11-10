@@ -18,6 +18,8 @@ export const SOURCE_NAMES = /\b(ACE|NASM|ExRx|Stronger by Science|Concept ?2|ace
 
 /** Liczba plików grup (tests/audit-k1-bl-mer-podpisy1…N.test.tsx) — jedyne miejsce; zmiana wymaga dodania/usunięcia pliku (pilnuje strażnik). Pomiar 06.11.2026: docs/18. */
 export const PODPISY_GRUPY = 7;
+/** Na ile części dzieli się przypadek jednego języka (limit czasu pojedynczego testu). */
+export const PODPISY_CZESCI = 3;
 /** Języki grupy `k` (1…PODPISY_GRUPY): podział pozycyjny (co N-ty język), więc grupy są równe co do liczby języków (różnica ≤ 1). */
 export const langsOfGroup = (k: number): Lang[] => LANGS.filter((_, i) => i % PODPISY_GRUPY === k - 1);
 
@@ -26,9 +28,10 @@ export function definePodpisyGroup(k: number) {
   beforeEach(async () => { await fresh(); });
   afterEach(() => { applyLang('pl'); });
   test('grupa ma języki', () => { expect(langsOfGroup(k).length).toBeGreaterThan(0); });
-  test.each(langsOfGroup(k))('regresja: podpis i teksty karty każdego ćwiczenia w języku %s bez nazw źródeł', async (l) => {
+  /* 10.11.2026: każdy język w PODPISY_CZESCI częściach (ćwiczenie i % PODPISY_CZESCI === część) — pojedynczy przypadek przekraczał 50% limitu (kontrola-czasu-testu, tests.yml 42744810459); zakres bez zmian: każdy język × każde ćwiczenie. */
+  test.each(langsOfGroup(k).flatMap(l => Array.from({ length: PODPISY_CZESCI }, (_, c) => [l, c] as const)))('regresja: podpis i teksty karty każdego ćwiczenia w języku %s bez nazw źródeł (część %i)', async (l, c) => {
     const bad: string[] = []; applyLang(l);
-    for (const key of Object.keys(CUE_DATA.exercises)) {
+    for (const key of Object.keys(CUE_DATA.exercises).filter((_, i) => i % PODPISY_CZESCI === c)) {
       const { unmount } = await render(<ExerciseCues exercise={{ lib: true as const, libKey: key }} />);
       await fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
       for (const x of screen.container.queryAll((n: { type: unknown }) => n.type === 'Text')) { const s = JSON.stringify(x.props.children); if (SOURCE_NAMES.test(s)) bad.push(`${l} ${key}: ${s.slice(0, 60)}`); }
