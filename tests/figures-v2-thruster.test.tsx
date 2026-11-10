@@ -53,6 +53,27 @@ describe('geometria: dłonie na ciężarze (10.11.2026, K4)', () => {
   });
 });
 
+const stare = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/thruster-r1-przed-poprawka.json'), 'utf8')).cwiczenia as Record<string, PoseData>; /* poza sprzed poprawek r1 — negatyw */
+const GRID = Array.from({ length: 101 }, (_, i) => i / 100);
+/** Miary r1 (W1–W3), 10.11.2026: klatka z najwyższym chwytem (koniec wyciskania), najniższe udo, odległość chwytu od chwytu startowego. */
+function miary(d: PoseData) {
+  let top = { u: 0, y: -1e9 }; let udo = { u: 0, kat: 1e9 };
+  for (const u of GRID) { const f = keyframeFrame(d, u); const gy = (f.sk.arms.R.grip as number[])[1]; if (gy > top.y) top = { u, y: gy };
+    const L = f.sk.legs.R; const kat = Math.atan2(L.hip[1] - L.knee[1], Math.abs(L.hip[0] - L.knee[0])) * 180 / Math.PI; if (kat < udo.kat) udo = { u, kat }; }
+  const ft = keyframeFrame(d, top.u); const gx = (ft.sk.arms.R.grip as number[])[0];
+  const g0 = keyframeFrame(d, 0).sk.arms.R.grip as number[]; const g1 = keyframeFrame(d, 1).sk.arms.R.grip as number[];
+  return { dxBark: Math.abs(gx - ft.sk.shoulderC[0]), dxKostka: Math.abs(gx - ft.sk.legs.R.ankle[0]), udoNadPoziom: udo.kat, powrot: Math.hypot(g1[0] - g0[0], g1[1] - g0[1]) };
+}
+describe('ruch: koniec wyciskania, głębokość, powrót na barki (r1 W1–W3, 10.11.2026)', () => {
+  test.each(NAMES)('W1 %s: na górze chwyt nad barkami (≤ 10 cm) i nad kostką (≤ 5 cm)', (k) => { const m = miary(poses[k]); expect([k, m.dxBark <= 10, m.dxKostka <= 5]).toEqual([k, true, true]); });
+  test.each(['Thruster (hantle)', 'Kettlebell Thruster'])('W2 %s: udo do równoległego lub niżej (biodro nie wyżej niż kolano)', (k) => { expect([k, miary(poses[k]).udoNadPoziom <= 0]).toEqual([k, true]); });
+  test.each(['Thruster (hantle)', 'Kettlebell Thruster'])('W3 %s: ciężar wraca na barki (chwyt w u = 1 ≤ 5 cm od chwytu w u = 0)', (k) => { expect([k, miary(poses[k]).powrot <= 5]).toEqual([k, true]); });
+  test('negatyw: poza sprzed poprawek (r1) oblewa W1, W2 i W3', () => {
+    const t = miary(stare['Thruster (hantle)']); expect(t.dxBark).toBeGreaterThan(10); expect(t.dxKostka).toBeGreaterThan(5); expect(t.udoNadPoziom).toBeGreaterThan(0); expect(t.powrot).toBeGreaterThan(5);
+    expect(miary(stare['Clean and Press']).dxBark).toBeGreaterThan(10);
+  });
+});
+
 describe('geometria: pozy poprawne', () => {
   test.each(['Thruster (hantle)', 'Kettlebell Thruster'])('%s: stopy płasko — pięta ≤ 2 cm nad podłogą w każdym kadrze poprawnej pozy (reguła „piety”)', (k) => {
     for (const u of US) { const f = frameAt(figureSpec(k)!, u); for (const s of ['R', 'L'] as const) expect([k, u, s, f.sk.legs[s].heel[1] <= 2]).toEqual([k, u, s, true]); }
