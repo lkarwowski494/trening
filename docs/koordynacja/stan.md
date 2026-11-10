@@ -75,6 +75,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 | 14:00 | linia dzienna | koordynator | — | — |
 
 ## Czeka na właściciela (raport 05:00 w czacie poprzednika)
+- ZADANIE WŁAŚCICIELA (zapisane 2026-11-10 13:45 UTC, słowa: „Zapisz jako zadanie do mnie dodanie tej stałej reguły. Zrobię to jak wrócę do domu”): stała reguła uprawnień `mcp__claude-code-remote__add_repo`, żeby kolejni koordynatorzy nie prosili o zgodę na `prompts` przy każdym przekazaniu. Droga: wpis `"mcp__claude-code-remote__add_repo"` na liście `permissions.allow` w `.claude/settings.json` repo Trening (plik ma już tę listę — `.claude/settings.json:3` na integracja-1-1); zmiana w repo wchodzi do sesji startujących z gałęzi, która ją zawiera (koordynator startuje z `koordynacja`, sesje robocze z integracji). Wykonalność niesprawdzona: nie potwierdziłem, że klasyfikator trybu auto respektuje regułę projektu dla add_repo — sprawdzi pierwszy następca. Alternatywa: koordynator przygotuje commit na Twoje polecenie. Stan: czeka.
 - A. Nocne testy: 12 czerwonych — poprawki CI tylko na integracji, noc biegnie na `main`. Rekomendacja: PR z samymi poprawkami CI na `main` (58d36cc3, fbfe6211, 2fe8bc89, 983d44e8, 944d4e00) po przebiegu dowodowym; B: czekać na 1.1; C: ręczny dispatch na integracji. Szczegóły: archiwum/nocne-diagnoza.md.
 - B. Reguła „każda rodzina ma nakładkę” — 2 wyjątki (mobility_floor, kneeling_hinge). Rekomendacja A: wyjątki + badacz w turze 3; B: zmiana reguły.
 - C. Tempo vs limit tygodniowy (reset 15.11 16:00): rekomendacja A: tura 3 w 2 sesjach; B: 3–4 sesje.
