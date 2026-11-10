@@ -46,7 +46,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(r.a + r.b + r.c + r.aB).toBe(r.przyrost);
     expect(Object.values(r.kombinacje).reduce((s, n) => s + n, 0)).toBe(r.przyrost);
     expect(sym.gain).toHaveLength(r.przyrost);
-    expect(r.c).toBe(6); /* 10.11.2026 (integracja partii 5 z partią 3): 4 → 6 — karty własne Farmer's Walk i Suitcase Carry zrecenzowane wobec rysunku v2 (recenzja carry r2), brakuje im tylko ról; wynik symulacji; */ /* ćwiczenia, którym dziś brakuje tylko ról mięśni (09.11.2026, partia 3: + Middle Back Shrug — figura i zestaw zrecenzowane, brak ról) */
+    expect(r.c).toBe(11); /* 10.11.2026 (sesja B, scalenie rotator_cuff po recenzji r1): 6 → 11 — 5 kart własnych rotator_cuff zrecenzowanych wobec rysunku v2 (brakuje im tylko ról); wynik symulacji; */ /* 10.11.2026 (integracja partii 5 z partią 3): 4 → 6 — karty własne Farmer's Walk i Suitcase Carry zrecenzowane wobec rysunku v2 (recenzja carry r2), brakuje im tylko ról; wynik symulacji; */ /* ćwiczenia, którym dziś brakuje tylko ról mięśni (09.11.2026, partia 3: + Middle Back Shrug — figura i zestaw zrecenzowane, brak ról) */
     expect(r.a).toBe(0);
   });
   test('rodziny wg zysku: suma przyrostów = przyrost pełnej karty; rodzina ma niemalejącą liczbę pełnych kart; lista posortowana malejąco', () => {
