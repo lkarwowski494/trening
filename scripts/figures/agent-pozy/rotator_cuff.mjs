@@ -66,7 +66,7 @@ export function generuj() {
   G['Internal Rotation with Band'] = () => rotacja('Internal Rotation with Band', { a: [58, -32], sprzet: [{ rodzaj: 'guma', mocowanie: 'zaczep', x: 36, y: 100, z: 90 }], blad: true });
   G['Cable Internal Rotation'] = () => rotacja('Cable Internal Rotation', { a: [58, -32], sprzet: [wyc({ chwyt: 'uchwyt', x: 36, y: 100, z: 90 })], blad: true });
   /* przeciąganie gumy: ręce wyprostowane przed sobą na wysokości barków, rozchodzą się na boki */
-  G['Band Pull Apart'] = () => { const fr = (u) => { const sp = rekaProsta(90, lerp(8, 100, u), { flex: 14, ku: [0, -1, 0] }); return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: sp, L: sp } }); };
+  G['Band Pull Apart'] = () => { const fr = (u) => { const sp = rekaProsta(90, lerp(8, 76, u), { flex: 14, ku: [0, -1, 0] }); return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: sp, L: sp } }); };
     return buduj({ rodzina: RODZINA, cw: 'Band Pull Apart', sprzet: [SPRZET.podloga(-80, 130), { rodzaj: 'guma', mocowanie: 'dlonie' }], fr, us: U12 }); };
   G['Reverse Flyes With External Rotation'] = () => reverseFlyER('Reverse Flyes With External Rotation', { sprzet: [SPRZET.hantle()] });
   return G;
