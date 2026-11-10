@@ -5641,6 +5641,22 @@
           "liczba": "uproszczenie (−10°…15°; ujemne = łuk lędźwi)",
           "pewnosc": "jedno źródło bezpośrednie + analogia"
         },
+        "plecy_wprost": {
+          "typ": "kregoslup_neutralny",
+          "grupa": "plecy",
+          "cue": "hext.range",
+          "cue_dodatkowe": [
+            "hext.mis.arch",
+            "plank.brace"
+          ],
+          "parametry": {
+            "min_deg": -10,
+            "max_deg": 15
+          },
+          "zrodlo": "ACE #270 Quadruped Bent-Knee Hip Extensions, krok 1: »position your spine in a neutral position, avoid any excessive sagging or arching«; ISSA, Donkey Kicks (05.02.2024), »Don't let your lower back sag. Don't round it upward either.« — 2 źródła szczebla 4 wprost dla Donkey Kick (odczyt curl 10.11.2026); liczba −10°…15° uproszczenie",
+          "liczba": "uproszczenie (−10°…15°; ujemne = łuk lędźwi)",
+          "pewnosc": "ustalone (kierunek)"
+        },
         "biodro_do_linii": {
           "typ": "potrojny_wyprost",
           "grupa": "zakres",
@@ -5691,7 +5707,7 @@
           },
           "zrodlo": "hab.hips: ACE #38 Side-Lying Hip Abduction („The hips should remain vertical to the floor”; błąd: „raising the leg too high… the thigh can only abduct (move out sideways) to 45 degrees”) — przeczytane 26.10.2026; NHS Strength exercises (Sideways leg lift: „keeping your back and hips straight”) — słownik",
           "liczba": "konwencja (przechył miednicy ≤ 5°)",
-          "pewnosc": "ustalone"
+          "pewnosc": "analogia (ACE #38 dotyczy odwodzenia prostej nogi; badacz 10.11.2026: dla Clamshell/Fire Hydrant brak źródła wprost o przechyle czołowym)"
         },
         "miednica_bez_skretu": {
           "typ": "stopien_swobody",
@@ -5713,10 +5729,12 @@
       },
       "wskazowki_na_reguly": {
         "hext.range": [
-          "plecy"
+          "plecy",
+          "plecy_wprost"
         ],
         "hext.mis.arch": [
-          "plecy"
+          "plecy",
+          "plecy_wprost"
         ]
       },
       "grupy_bledow": {
@@ -5728,7 +5746,7 @@
       },
       "warianty": {
         "Donkey Kick": [
-          "plecy",
+          "plecy_wprost",
           "biodro_do_linii"
         ],
         "Hip Extension with Bands": [

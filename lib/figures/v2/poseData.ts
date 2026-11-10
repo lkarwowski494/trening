@@ -84,6 +84,8 @@ export const ISOMETRIC: ReadonlySet<string> = new Set([
   'Crucifix',
   /* deska: dwie identyczne klatki — utrzymanie pozycji (09.11.2026, pushup_plank) */
   'Plank',
+  /* utrzymanie na czas (time, core_floor 10.11.2026): dwie identyczne klatki */
+  'Hollow Hold',
   /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow jest ruchem) */
   'Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Gastrocnemius Calf Stretch', 'Wall Calf Stretch', 'Standing Soleus And Achilles Stretch', 'Standing Lateral Stretch',
   'The Straddle', 'Seated Calf Stretch', 'Seated Floor Hamstring Stretch', 'Butterfly Stretch', "Child's Pose", 'Kneeling Hip Flexor Stretch', 'Supine Hamstring Stretch', 'Side-Lying Quad Stretch',

@@ -945,24 +945,24 @@
    "raw": "3aacd0e24cd4fa41a98d"
   },
   "core_floor/Sit Up": {
-   "svg": "2c47a8bede9f94d1813f",
-   "raw": "2b7ac62a2d501dd3d2ee"
+   "svg": "5dd90d4d8a17262f3a81",
+   "raw": "605ad1a4bfdb6da09c06"
   },
   "core_floor/Toe Touchers": {
    "svg": "c4d7d0aa85e771c5c8f3",
    "raw": "9551a295a9ddf9e771ae"
   },
   "core_floor/Bicycle Crunch": {
-   "svg": "298d92f23a0405a6b29b",
-   "raw": "283f71efea2015069365"
+   "svg": "63f855c6cd5904f21c2d",
+   "raw": "168cec9a2c819a1fc5ba"
   },
   "core_floor/Cross-Body Crunch": {
    "svg": "f11b95ed1d37fce5b131",
    "raw": "773037fe1297308bb6e2"
   },
   "core_floor/Scissor Kick": {
-   "svg": "e43a8748f2ac8fc7a6be",
-   "raw": "663623b84b4aee64caf9"
+   "svg": "7ba10b2140c43348923f",
+   "raw": "70934c988205c3a5e1d7"
   },
   "core_floor/Bird Dog": {
    "svg": "9fefde6a6a5f0b4c8f8b",
@@ -1413,8 +1413,8 @@
    "raw": "a0606f57994bec0a771b"
   },
   "glute_floor/Donkey Kick": {
-   "svg": "0f5a3aeb6c3e99d83e92",
-   "raw": "33452bdf1b270708f681"
+   "svg": "d01fc22b9878c44d1604",
+   "raw": "4ce50d71d42c618ee3d6"
   },
   "glute_floor/Fire Hydrant": {
    "svg": "09d740dc8fc7878dee14",
@@ -1425,20 +1425,20 @@
    "raw": "7bbd5729d4ffc5e5052d"
   },
   "glute_floor/Cable Kickback": {
-   "svg": "7fb1a03e28d8c59c49c4",
-   "raw": "fc584fd6a9548e09382a"
+   "svg": "7360024d5aed2e824985",
+   "raw": "c36f09c0197e0bb4b859"
   },
   "glute_floor/Hip Extension with Bands": {
-   "svg": "82b3904215f30a53140a",
-   "raw": "b72e088c7ac1c7eb904e"
+   "svg": "b1491043aebefab493a8",
+   "raw": "a3ff1aa43c91744b5e67"
   },
   "glute_floor/Machine Glute Kickback": {
-   "svg": "de0c75661120052b660d",
-   "raw": "c50626578ae956f522e8"
+   "svg": "ff73d8f366526877efa7",
+   "raw": "880d7366e68cb3e7f60c"
   },
   "glute_floor/Prone Flutter Kicks": {
-   "svg": "6c327fce31eac8ac8e5f",
-   "raw": "37c6dfa1c881e83f95d1"
+   "svg": "495e882e969d949c4679",
+   "raw": "ca0cf1a792e2e53bf733"
   },
   "hip_abd_add/Hip Abduction": {
    "svg": "352d9e6a0863298017a5",

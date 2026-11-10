@@ -79,6 +79,7 @@ describe('A4a core: karty własne (09.11.2026)', () => {
     /* 10.11.2026 (partia 5): plik wspólny zawiera tylko reguły o pewności „ustalone…” (buildReguly, scripts/zrodla-runtime.mjs:143), więc oczekiwanie = warianty bez reguł „analogia”/„konwencja” (core_hang: rece_proste = analogia). */
     const ustalone = (fam: string, ids: string[]) => ids.filter(id => /^ustalone/.test(sens[fam]?.reguly?.[id]?.pewnosc ?? ''));
     for (const [fam, m] of Object.entries(reg)) for (const k of A4.cwiczenia) if (k in m) expect([fam, k, m[k]]).toEqual([fam, k, sens[fam]?.warianty?.[k] ? ustalone(fam, sens[fam].warianty![k]) : m[k]]);
+    expect(reg.core_floor?.Superman).toEqual(['superman_konczyny_uniesione', 'superman_konczyny_proste']); /* 10.11.2026 (partia 7): core_floor z nakładką — superman_miednica_podpora i superman_bez_przeprostu („jedno źródło bezpośrednie + analogia”) poza plikiem */
   });
 });
 

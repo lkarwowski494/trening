@@ -28,9 +28,18 @@ const ODROCZONE = new Set([
   'hip_bridge/Frog Pump/ht.mis.arch', 'hip_bridge/Glute Bridge/ht.mis.arch', 'hip_bridge/Glute Bridge (sztanga)/ht.mis.arch', 'hip_bridge/Hip Thrust (hantel)/ht.mis.arch', 'hip_bridge/Hip Thrust (sztanga)/ht.mis.arch',
   'hip_bridge/Machine Hip Thrust/ht.mis.arch', 'hip_bridge/Single Leg Glute Bridge/ht.mis.arch', 'hip_bridge/Single Leg Hip Thrust/ht.mis.arch', 'hip_bridge/Smith Machine Hip Thrust/ht.mis.arch',
   'hip_bridge/Stability Ball Hip Bridge/ht.mis.arch', 'cable_press/Incline Cable Chest Press/bp.mis.arch',
+  'glute_floor/Donkey Kick/hext.mis.arch', 'glute_floor/Cable Kickback/hext.mis.arch', 'glute_floor/Hip Extension with Bands/hext.mis.arch', 'glute_floor/Machine Glute Kickback/hext.mis.arch', /* 10.11.2026 (partia 7, sesja D2, do weta koordynatora): przeprost lędźwi to ruch kręgosłupa, a miara stawów tego testu kręgosłupa nie obejmuje (2,1–2,3 cm); środek kręgosłupa przesuwa się o 6,1–6,5 cm — kontrola zastępcza w teście niżej (GF_LUK), recenzja r1/r2 glute_floor: łuk widoczny */
 ]);
 
 describe('1. wiersz błędu różni się od pozy poprawnej w pokazywanym widoku (≥ MIN_ROZNICA_BLEDU_W_WIDOKU_CM)', () => {
+  /* 10.11.2026 (partia 7): kontrola zastępcza dla wierszy glute_floor hext.mis.arch z ODROCZONE — łuk lędźwi widać na środku kręgosłupa (spineMid) w pokazywanym widoku */
+  const GF_LUK = ['Donkey Kick', 'Cable Kickback', 'Hip Extension with Bands', 'Machine Glute Kickback'];
+  test.each(GF_LUK)('glute_floor/%s/hext.mis.arch: środek kręgosłupa w pozie błędu przesunięty ≥ konwencji w którymś pokazywanym widoku', cw => {
+    const d = pliki.find(f => f.rodzina === 'glute_floor')!.cwiczenia[cw]; const i = d.bledy.findIndex(b => b.cue === 'hext.mis.arch'); expect(i).toBeGreaterThanOrEqual(0);
+    const vs = viewsOf(cw, 'glute_floor') as View[]; let m = 0;
+    for (const u of GRID) { const a = keyframeFrame(d, u).sk.spineMid, b = keyframeFrame(d, u, i).sk.spineMid; for (const v of vs) { const x = proj(a, v), y = proj(b, v); m = Math.max(m, Math.hypot(x[0] - y[0], x[1] - y[1])); } }
+    expect(m).toBeGreaterThanOrEqual(MIN_ROZNICA_BLEDU_W_WIDOKU_CM);
+  });
   const wiersze = pliki.flatMap(f => { return Object.entries(f.cwiczenia).flatMap(([cw, d]) => d.bledy.map((b, i) => ({ klucz: `${f.rodzina}/${cw}/${b.cue}`, d, i, widoki: viewsOf(cw, f.rodzina as FamilyId) as View[] }))); });
   test('zbiór sprawdzanych wierszy jest duży', () => { expect(wiersze.length).toBeGreaterThan(85); /* 09.11.2026 (B2 figury nóg): −5 wierszy błędu spoza karty (4 × lunge.mis.kneeIn, Slider ht.mis.arch) — było > 90 przy 93 */ });
   test('leg_machine pokazuje widok z przodu (kolana do środka widać z przodu)', () => { expect(FAMILIES.find(x => x.id === 'leg_machine')!.views).toContain('front'); });

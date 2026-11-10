@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 33, do zrobienia: 10); ćwiczeń z gotową figurą: **450** (63,5%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 35, do zrobienia: 8); ćwiczeń z gotową figurą: **478** (67,4%).
 
 ## Rodziny
 
@@ -33,7 +33,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `chest_fly` | gotowa | 20 | top, side | — | Rozpiętki, pec deck, przenoszenie za głowę |
 | `shrug` | gotowa | 8 | front, side | — | Szrugsy |
 | `rotator_cuff` | gotowa | 8 | front, side | — | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
-| `core_floor` | do zrobienia | 44 | side | 4 | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
+| `core_floor` | gotowa | 44 | side | — | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
 | `core_hang` | gotowa | 4 | side | — | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
 | `core_standing` | do zrobienia | 19 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
 | `carry` | gotowa | 7 | side | — | Noszenie |
@@ -41,7 +41,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `plyo` | gotowa | 28 | side, front | — | Skoki i plyometria — skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026) |
 | `sled_throw` | do zrobienia | 19 | side | 3 | Sanie, rzuty piłką, uderzenia |
 | `strongman` | do zrobienia | 10 | side | 3 | Strongman i podnoszenia nietypowych ciężarów |
-| `glute_floor` | do zrobienia | 7 | side, front | 4 | Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie) |
+| `glute_floor` | gotowa | 7 | side, front | — | Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie) |
 | `hip_abd_add` | gotowa | 8 | front | — | Przywodzenie i odwodzenie (maszyny, linki, taśmy) |
 | `mobility_stand` | gotowa | 36 | side, front | — | Mobilność i rozciąganie stojąc / w ruchu |
 | `mobility_floor` | gotowa | 22 | side | — | Mobilność i rozciąganie na podłodze |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | gotowa | 2 | side | — | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 10 rodzin, 168 ćwiczeń, ok. **35 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 8 rodzin, 117 ćwiczeń, ok. **27 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -73,6 +73,7 @@ Razem do zrobienia: 10 rodzin, 168 ćwiczeń, ok. **35 h pracy agenta** (rig + t
 - `delt_raise` (z figurą 31 z 38): Barbell Incline Shoulder Raise; Dumbbell Incline Shoulder Raise; Kettlebell Halo; Kettlebell Halo with Overhead Extension; One-Arm Incline Lateral Raise; Sled Reverse Flye; Smith Incline Shoulder Raise
 - `chest_fly` (z figurą 17 z 20): Around The Worlds; Machine Pullover; Svend Press
 - `rotator_cuff` (z figurą 7 z 8): Cuban Press
+- `core_floor` (z figurą 21 z 44): Butt-Ups; Cable Crunch; Cable Reverse Crunch; Cable Seated Crunch; Crunch - Legs On Exercise Ball; Decline Crunch; Decline Oblique Crunch; Decline Reverse Crunch; Dragon Flag; GHD Sit Up; Kneeling Cable Crunch With Alternating Oblique Twists; Machine Crunch; Otis-Up; Press Sit-Up; Seated Flat Bench Leg Pull-In; Side Jackknife; Smith Machine Hip Raise; Stability Ball Crunch; Stability Ball Knee Tuck; Standing Rope Crunch; Stomach Vacuum; Suspended Reverse Crunch; Weighted Sit-Ups - With Bands
 - `core_hang` (z figurą 3 z 4): L-Sit
 - `plyo` (z figurą 27 z 28): Kneeling Jump Squat
 - `hip_abd_add` (z figurą 4 z 8): Band Hip Adduction; Hip Flexion with Band; Lateral Band Walk; Monster Walk
@@ -179,7 +180,7 @@ Barbell Shrug Behind The Back; Calf-Machine Shoulder Shrug; Leverage Shrug; Midd
 
 Band Pull Apart; Cable Internal Rotation; Cuban Press; External Rotation (hantel); External Rotation (linki); External Rotation with Band; Internal Rotation with Band; Reverse Flyes With External Rotation
 
-### core_floor (44) — do zrobienia
+### core_floor (44) — gotowa
 
 Alternate Heel Touchers; Bicycle Crunch; Bird Dog; Butt-Ups; Cable Crunch; Cable Reverse Crunch; Cable Seated Crunch; Cocoons; Cross-Body Crunch; Crunch; Crunch - Hands Overhead; Crunch - Legs On Exercise Ball; Dead Bug; Decline Crunch; Decline Oblique Crunch; Decline Reverse Crunch; Dragon Flag; Frog Sit-Ups; GHD Sit Up; Hollow Hold; Janda Sit-Up; Kneeling Cable Crunch With Alternating Oblique Twists; Leg Pull-In; Lying Leg Raise; Machine Crunch; Oblique Crunches - On The Floor; Otis-Up; Press Sit-Up; Reverse Crunch; Scissor Kick; Seated Flat Bench Leg Pull-In; Side Jackknife; Sit Up; Smith Machine Hip Raise; Stability Ball Crunch; Stability Ball Knee Tuck; Standing Rope Crunch; Stomach Vacuum; Superman; Suspended Reverse Crunch; Toe Touchers; Tuck Crunch; V-Up; Weighted Sit-Ups - With Bands
 
@@ -211,7 +212,7 @@ Backward Drag; Backward Medicine Ball Throw; Bear Crawl Sled Drag; Medicine Ball
 
 Atlas Stones; Circus Bell; Conan's Wheel; Jefferson Squat; Keg Load; Log Lift; Power Stairs; Sandbag Load; Tire Flip; Yoke Walk
 
-### glute_floor (7) — do zrobienia
+### glute_floor (7) — gotowa
 
 Cable Kickback; Clamshell; Donkey Kick; Fire Hydrant; Hip Extension with Bands; Machine Glute Kickback; Prone Flutter Kicks
 
