@@ -98,7 +98,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-028. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-031. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -180,3 +180,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 19:32 | H / koordynator | PRZEKAZANIE H → odbiór: 7240d164, tests.yml 42882227994 (scal-galaz potwierdził zielony), 56 commitów Claude, 584bca9 + partie 7 (9e3db956) i 9 (1bb3b55c) przodkami, audytor 0 znalezisk (docs/research/recenzje/pociag-6-scalenie.md); scal-galaz kod 0 → e7ecf1ba (drzewo = 7240d164), numeruj-lekcje L-129 → 57406e7f, verify:lekkie 0, push 584bca92..57406e7f; do weta: wpis H w docs/18 (10.11); H 11,92 USD → zarchiwizowana | start I od 57406e7f |
 | 2026-11-10 19:36 | I | sesja I session_01T66VByJ3pTy7VL5yZ6MqCb utworzona (subagent opus; model opus-5-5, auto, źródło integracja-1-1 → scal/pociag-7; cmp kopii promptu zgodny) | raport I po scaleniu partii 8 |
 | 2026-11-10 19:45 | koordynator …VBxgUBMb2B2LzfhY34a | kontekst 35%, koszt 7,51 USD → E6; wariant C (WG-10): następcy wysyłam 08 i 09 (plan: I = 08, potem przekład i lokalizacja = 09); 07 i 10 nie w planie 24 h — w razie potrzeby add_repo prompts za zgodą właściciela | następca: E6 pkt 5 |
+| 2026-11-10 19:52 | I | PYTANIE: skrót lunge zmieniony przez R3-W1 (f2ff1a209120 → f6b935560af3), reszta = integracja → KO-030 (A, recenzja lunge przez audytora); kontrola 19:41 bez zmian po odbiorze H | następca koordynatora |
