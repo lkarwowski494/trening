@@ -11,3 +11,4 @@ Model pracy jak partia 2/4: autor (subagent programista, worktree i gałąź `fi
 
 ## Otwarte
 - PYTANIE do koordynatora: `lib/figures/v2/poseData.ts` = limit 24 736 B (zapas 0) — KO-022 (rekomendacja A: podział w pociągu-5). Do odpowiedzi kod nie jest wypychany.
+- Badacz glute_floor (10.11.2026, docs/research/glute-floor-pewnosc-regul-2026-11-10.md): `miednica_bez_przechylu` zawyżone (Clamshell = analogia; pole przechylMiednicy mierzy płaszczyznę czołową) — autor nie używa jej w nakładce; obniżenie pewności w figury-sens.json po scaleniu gałęzi glute_floor (lead). Podniesienia (rozstaw_kolan, plecy, biodro_do_linii) — cytaty tylko z odczytu narzędziem, do sprawdzenia curl przed wpisem.
