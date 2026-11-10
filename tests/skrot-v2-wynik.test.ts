@@ -149,7 +149,7 @@ describe('L-080 (09.11.2026): gałąź z wcześniejszymi zmianami względem main
       { plik: V2 + 'families.ts', z: "{ id: 'leg_isolation', status: 'planned'", na: "{ id: 'leg_isolation', status: 'ready'" },
       ...podlaczenie('leg_isolation', { load: true, ui: "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }" }),
     ]);
-    git(tmp, 'commit', '-qam', 'podlaczenie leg_isolation'); refs.c1 = git(tmp, 'rev-parse', 'HEAD');
+    git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'podlaczenie leg_isolation'); /* KO-022: nowy plik rodziny — add -A */ refs.c1 = git(tmp, 'rev-parse', 'HEAD');
     fs.writeFileSync(path.join(tmp, 'dokument.md'), 'notatka\n'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'dokument'); refs.c2 = git(tmp, 'rev-parse', 'HEAD');
     zastosuj(tmp, SCEN.element.zmiany); git(tmp, 'commit', '-qam', 'prowadnica'); refs.c3 = git(tmp, 'rev-parse', 'HEAD');
     const r: Record<string, Wynik> = {};
