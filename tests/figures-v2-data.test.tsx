@@ -39,15 +39,19 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     for (const k of ['Muscle Up', 'Rope Climb', 'Ćwiczenie własne']) { expect([k, figureSpec(k)]).toEqual([k, null]); }
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
+  /* forearm (10.11.2026, partia 5): staw mierzony wybiera ten o największym zakresie z ui.joints — odwrotne uginanie z talerzem mierzy łokieć, pronacja i supinacja obrót przedramienia, reszta nadgarstek */
+  const FOREARM_JOINT: Record<string, string> = { 'Reverse Plate Curls': 'elbow', 'Dumbbell Lying Pronation': 'forearmRoll', 'Dumbbell Lying Supination': 'forearmRoll' };
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
     for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
-      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
-      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[ui.names.first, 1000], ['Pauza', 500], [ui.names.second, 2000], ['Pauza', 500]]);
+      expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, FOREARM_JOINT[k] ?? ui.joints[0]]);
+      const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[(ui.exceptions?.[k]?.names ?? ui.names).first, 1000], ['Pauza', 500], [(ui.exceptions?.[k]?.names ?? ui.names).second, 2000], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; hip_bridge (09.11.2026): u = 1 to wyprost bioder — kąt zgięcia w biodrze maleje; curl i podciąganie: rośnie */
+      /* forearm (10.11.2026, partia 5): odwrotne uginanie nadgarstków to wyprost (u = 1 → zgięcie nadgarstka maleje, z +40° do −48°), pronacja to obrót z +70° do −70°; pozostałe (zgięcie dłoniowe, odwrotne uginanie z talerzem, obrót) rosną */
+      else if (f === 'forearm' && /Reverse Wrist Curl|Pronation/.test(k)) { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else if (f === 'triceps' || f === 'hip_bridge') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }

@@ -496,6 +496,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy licznik faz i podpisy odpowiadają ruchowi (Car Drivers: Obrót/Powrót na jednym zegarze z animacją; Alternating Deltoid Raise: pozycje Przodem/Bokiem), a 7 ćwiczeń rodziny bez poprawnej pozy (m.in. Kettlebell Halo, Sled Reverse Flye) zostaje bez rysunku v2
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
+  - Scenariusz: Rodzina przedramion i chwytu (forearm) pokazuje rysunki 11 ćwiczeń z nakładką techniki (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-nakladka-forearm.test.tsx`, `tests/figury-forearm-ruch.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny forearm (np. Wrist Curl (hantle), Reverse Plate Curls), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy ćwiczenie ma na karcie zdanie o zakresie ruchu nadgarstka z regułą „ustalone”
+    - Wtedy z boku widać linię przez przedramię i łuk zgięcia nadgarstka z podpisem „Kąt na rysunku”; przy odwrotnym uginaniu z talerzem pion od barku, przy którym łokieć ma zostać; Wrist Roller i Plate Pinch zostają bez rysunku (brak źródła ruchu)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

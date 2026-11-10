@@ -62,7 +62,7 @@ export const FAMILIES: Family[] = [
   { id: 'mobility_floor', status: 'planned', label: 'Mobilność i rozciąganie na podłodze', views: ['side'], effort: 6 },
   { id: 'foam_roll', status: 'planned', label: 'Rolowanie i automasaż', views: ['side'], effort: 2 },
   { id: 'neck', status: 'planned', label: 'Szyja', views: ['side'], effort: 1 },
-  { id: 'forearm', status: 'planned', label: 'Przedramiona i chwyt', views: ['side'], effort: 2 },
+  { id: 'forearm', status: 'ready', label: 'Przedramiona i chwyt', views: ['side'], effort: 2 },
   { id: 'thruster', status: 'planned', label: 'Thruster i ruchy złożone przysiad + wyciskanie', views: ['side'], effort: 2 },
   { id: 'chest_press_machine', status: 'planned', label: 'Maszyny wyciskające siedząc (klatka, barki)', views: ['side'], effort: 3 },
   { id: 'cable_press', status: 'planned', label: 'Wyciskania na linkach', views: ['side', 'top'], effort: 2 },

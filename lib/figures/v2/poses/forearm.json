@@ -384,7 +384,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Barbell Reverse Wrist Curl": {
    "kontrakt": "figury-v2/poza@2",
@@ -768,7 +819,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.8,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.8,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7.1,
+          7.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          7.1,
+          7.9,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Wrist Curl (hantle)": {
    "kontrakt": "figury-v2/poza@2",
@@ -1149,7 +1251,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Reverse Wrist Curl (hantle)": {
    "kontrakt": "figury-v2/poza@2",
@@ -1530,7 +1683,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.8,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.8,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7.1,
+          7.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          7.1,
+          7.9,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "One-Arm Dumbbell Wrist Curl": {
    "kontrakt": "figury-v2/poza@2",
@@ -1912,7 +2116,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.9,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          8.9,
+          9.1,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "One-Arm Dumbbell Reverse Wrist Curl": {
    "kontrakt": "figury-v2/poza@2",
@@ -2294,7 +2549,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.8,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.9,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7.1,
+          7.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          8.9,
+          9.1,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Cable Wrist Curl": {
    "kontrakt": "figury-v2/poza@2",
@@ -2680,7 +2986,58 @@
      }
     }
    ],
-   "bledy": []
+   "bledy": [
+    {
+     "cue": "wr.mis.lift",
+     "znacznik": "bar",
+     "dotyczy": [
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.5,
+       "rece": {
+        "R": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          4.6,
+          4.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "rece": {
+        "R": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          7,
+          7.7,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
   },
   "Behind-the-Back Barbell Wrist Curl": {
    "kontrakt": "figury-v2/poza@2",
@@ -2743,8 +3100,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -18.4,
-        78.9,
+        -21.3,
+        80.2,
         18.3
        ],
        "biegunLokcia": [
@@ -2757,8 +3114,8 @@
       },
       "L": {
        "chwyt": [
-        -18.4,
-        78.9,
+        -21.3,
+        80.2,
         -18.3
        ],
        "biegunLokcia": [
@@ -2814,8 +3171,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -17.4,
-        78.4,
+        -20.3,
+        79.7,
         18.5
        ],
        "biegunLokcia": [
@@ -2828,8 +3185,8 @@
       },
       "L": {
        "chwyt": [
-        -17.4,
-        78.4,
+        -20.3,
+        79.7,
         -18.5
        ],
        "biegunLokcia": [
@@ -2885,8 +3242,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -16.2,
-        78,
+        -19.2,
+        79.4,
         18.7
        ],
        "biegunLokcia": [
@@ -2899,8 +3256,8 @@
       },
       "L": {
        "chwyt": [
-        -16.2,
-        78,
+        -19.2,
+        79.4,
         -18.7
        ],
        "biegunLokcia": [
@@ -2956,8 +3313,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -15.1,
-        77.9,
+        -18,
+        79.3,
         19
        ],
        "biegunLokcia": [
@@ -2970,8 +3327,8 @@
       },
       "L": {
        "chwyt": [
-        -15.1,
-        77.9,
+        -18,
+        79.3,
         -19
        ],
        "biegunLokcia": [
@@ -3027,8 +3384,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -13.9,
-        78,
+        -16.8,
+        79.4,
         19.3
        ],
        "biegunLokcia": [
@@ -3041,8 +3398,8 @@
       },
       "L": {
        "chwyt": [
-        -13.9,
-        78,
+        -16.8,
+        79.4,
         -19.3
        ],
        "biegunLokcia": [
@@ -3098,8 +3455,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -12.7,
-        78.4,
+        -15.6,
+        79.7,
         19.5
        ],
        "biegunLokcia": [
@@ -3112,8 +3469,8 @@
       },
       "L": {
        "chwyt": [
-        -12.7,
-        78.4,
+        -15.6,
+        79.7,
         -19.5
        ],
        "biegunLokcia": [
@@ -3169,8 +3526,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -11.5,
-        78.9,
+        -14.5,
+        80.2,
         19.7
        ],
        "biegunLokcia": [
@@ -3183,8 +3540,8 @@
       },
       "L": {
        "chwyt": [
-        -11.5,
-        78.9,
+        -14.5,
+        80.2,
         -19.7
        ],
        "biegunLokcia": [
@@ -3240,8 +3597,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -10.5,
-        79.6,
+        -13.4,
+        80.9,
         19.9
        ],
        "biegunLokcia": [
@@ -3254,8 +3611,8 @@
       },
       "L": {
        "chwyt": [
-        -10.5,
-        79.6,
+        -13.4,
+        80.9,
         -19.9
        ],
        "biegunLokcia": [
@@ -3311,8 +3668,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -9.6,
-        80.4,
+        -12.5,
+        81.8,
         20.1
        ],
        "biegunLokcia": [
@@ -3325,8 +3682,8 @@
       },
       "L": {
        "chwyt": [
-        -9.6,
-        80.4,
+        -12.5,
+        81.8,
         -20.1
        ],
        "biegunLokcia": [
