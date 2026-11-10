@@ -21,6 +21,7 @@ const LOAD: Record<string, () => PoseFile> = {
   forearm: () => require('./poses/forearm.json'),
   carry: () => require('./poses/carry.json'),
   core_hang: () => require('./poses/core_hang.json'),
+  kneeling_hinge: () => require('./poses/kneeling_hinge.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -88,6 +89,8 @@ export const DATA_UI: Record<string, DataUi> = {
     exceptions: { 'Band Pull Apart': { names: { first: 'Rozsuwanie', second: 'Powrót' }, joints: ['shAbd'] }, 'Reverse Flyes With External Rotation': { names: { first: 'Unoszenie', second: 'Opuszczanie' }, joints: ['shAbd'] } } },
   forearm: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['wristFlex', 'forearmRoll', 'elbow'],
     exceptions: { 'Dumbbell Lying Pronation': { names: { first: 'Obrót', second: 'Powrót' } }, 'Dumbbell Lying Supination': { names: { first: 'Obrót', second: 'Powrót' } } } },
+  /* kneeling_hinge (10.11.2026): u = 0 siad z tułowiem pionowo, u = 1 skłon w biodrach (sztanga na barkach); zejście w dół 0 → 1, powrót 1 → 0; mierzone biodro */
+  kneeling_hinge: { names: { first: 'Opuszczanie', second: 'Prostowanie' }, lowerFirst: true, joints: ['hip'] },
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
   /* core_hang (10.11.2026): u = 0 zwis, u = 1 nogi (kolana) uniesione; unoszenie 1 s, opuszczanie 2 s (tempo ilustracyjne); mierzone biodro (zgięcie w biodrze) */
   core_hang: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip'] },

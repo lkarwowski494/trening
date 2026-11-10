@@ -516,6 +516,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma w karcie sekcję błędów (ze źródeł albo wnioskowanych ze zdania ustawienia lub ruchu)
     - Gdy użytkownik otwiera sekcję „Technika” (po polsku albo po angielsku)
     - Wtedy sekcja nazywa się „Czego unikać” („What to avoid”), nie „Częste błędy”, bo wniosek z potwierdzonego ruchu nie dowodzi częstości; to samo na stronie z ćwiczeniami
+  - Scenariusz: Zawias w siadzie z rysunkiem Seated Good Mornings, bez nakładki techniki (10.11.2026, partia 5; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-kneeling-hinge.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie Seated Good Mornings, a rodzina kneeling_hinge ma aktualny wpis recenzji niezależnej
+    - Gdy ogląda rysunek (siad na skrzyni, sztanga na plecach, skłon w biodrach o ponad 30°, zejście 2 s i powrót 1 s)
+    - Wtedy sztanga jedzie z tułowiem w każdej klatce, a nakładki techniki nie ma, bo obie reguły rodziny (plecy, pochylenie) mają pewność „analogia”, nie „ustalone”; Kneeling Squat zostaje bez rysunku (brak źródła ruchu)
   - Scenariusz: Ćwiczenie ukryte w aplikacji nie znika z danych użytkownika (decyzja właściciela 02.11.2026 o „Wide-Grip Pulldown Behind The Neck”; test `tests/wide-grip-pulldown-behind-neck-2026-11-02.test.ts`)
     - Zakładając, że ćwiczenie jest wycofane z biblioteki (źródło odradza wariant), a użytkownik ma je w treningu lub szablonie
     - Gdy aplikacja startuje po aktualizacji

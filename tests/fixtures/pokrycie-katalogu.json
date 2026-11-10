@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 253,
+      "v2": 254,
       "v1": 35,
-      "bezFigury": 420,
-      "daneV2NieWlaczone": 283,
+      "bezFigury": 419,
+      "daneV2NieWlaczone": 282,
       "wyjatekBezAnimacji": 133
     },
-    "animowanyBlad": 157,
+    "animowanyBlad": 158,
     "wskazowki": {
       "wlasne": 283,
       "wlasneZBledami": 174,
-      "ogolne": 134,
-      "bezTekstu": 291
+      "ogolne": 135,
+      "bezTekstu": 290
     },
-    "czesteBledyTekst": 303,
+    "czesteBledyTekst": 304,
     "roleMiesni": 513,
-    "pelnaKarta": 245,
-    "pelnaKartaBlad": 156,
-    "recenzjaFigur": 253
+    "pelnaKarta": 246,
+    "pelnaKartaBlad": 157,
+    "recenzjaFigur": 254
   },
   "kartZTekstami": 586,
   "rodziny": {
@@ -571,17 +571,17 @@
       "recenzja": 0
     },
     "kneeling_hinge": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 2,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 1,
+      "figuraV2": 1,
+      "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 0,
-      "ogolne": 0,
-      "bezTekstu": 2,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 1,
+      "bezTekstu": 1,
+      "pelnaKarta": 1,
+      "pelnaKartaBlad": 1,
+      "recenzja": 1
     }
   },
   "jezyki": {
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 253,
-    "figura.wAplikacji": 288,
+    "figura.v2": 254,
+    "figura.wAplikacji": 289,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 157,
+    "animowanyBlad": 158,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
-    "wskazowki.zTekstem": 417,
-    "czesteBledyTekst": 303,
+    "wskazowki.zTekstem": 418,
+    "czesteBledyTekst": 304,
     "roleMiesni": 513,
-    "pelnaKarta": 245,
-    "pelnaKartaBlad": 156,
-    "recenzjaFigur": 253,
+    "pelnaKarta": 246,
+    "pelnaKartaBlad": 157,
+    "recenzjaFigur": 254,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 586,
     "jezyk.en.kompletne": 586,
