@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 05:30 UTC)
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 05:40 UTC) — PRACA WSTRZYMANA
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -15,16 +15,35 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_016cjV5XopwCaywxTR2x8qwp, model claude-opus-5-5, wysiłek medium, permission_mode auto; repo sesji: lkarwowski494/trening, techniqueatlas, prompts.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz
-- Integracja `dfaeeef` (zielona, 42760295218): + pociąg-3 (figury/partia-1, Jest 5 części + sekwencer, KO-012). Pokrycie sprzed pociągu-3: pełna karta 252/455, figura v2 257/531 (po pociągu-3 — do odczytu z symulacji).
-- P-4: thruster r2 czysty → po nim `scal/pociag-4` = integracja dfaeeef + figury/partia-4 + figury/partia-2 @ 7a09818f + wpis docs/18 o zmianie CI (KO-012); zlecone 05:28.
-- P-5: kontekst ~32% (> 30%) — polecono STAN-AGENTA.md i raport końcowy; następca wymaga nowej sesji → zablokowane do zgody właściciela na add_repo prompts (rola M9).
+## WSTRZYMANIE (właściciel, 2026-11-10 ~05:35 UTC: „zapisz wszystkie zadania i ich stan i wstrzymaj pracę”)
+- Nic nowego się nie zaczyna; scalenia, zlecenia i nowe sesje — dopiero po wznowieniu przez właściciela.
+- P-4 i P-5: polecenie 05:36 — domknąć krok (commit + push na własną gałąź, bez scaleń), STAN-AGENTA.md, raport, koniec tury. Raporty mogą przyjść po zapisie — przy wznowieniu: ReadNotifications.
+- Przypomnienia koordynatora usunięte (kontrola 05:48, linia 14:00, linia 05:00 11.11) — przy wznowieniu utworzyć od nowa (E6 pkt 5).
+- Poprzednik session_01T66VByJCWCao1Hw3is68Cy: nieaktywny (send_message 05:37 → session_inactive); jego przypomnienie trig_01RWANmz7TjBgbofGPeFceaB (05:46) zostawione (cudze).
+- Gałęzie (git ls-remote 05:30): integracja-1-1 dfaeeefe; figury/partia-2 7a09818f; figury/partia-4 3bcd294c; figury/partia-4-thruster 110bb399; figury/partia-5 — nie było na origin o 05:30.
+
+## Zadania i stan (na chwilę wstrzymania)
+| # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
+|---|---|---|---|---|
+| 1 | Pociąg-3 (figury/partia-1 + Jest 5 części + sekwencer, KO-012) | zrobione 05:25 | integracja dfaeeef; tests.yml 42760295218 zielony; drzewo = c1ffb654; verify:lekkie | — |
+| 2 | Wpis docs/18 o zmianie CI (KO-012) | otwarte | brak wpisu na integracji | dopisać w pociągu-4 (zlecenie gotowe w treści wiadomości do P-4 z 05:28) |
+| 3 | Pociąg-4: integracja dfaeeef + figury/partia-4 (z thrusterem) + figury/partia-2 7a09818f | wstrzymane (zlecone P-4 05:28, odwołane 05:36) | partia-4 3bcd294c zielona 42759957551 (na bazie 1d6352ba) | P-4 albo nowa sesja 08: gałąź scal/pociag-4, CI, scal-galaz |
+| 4 | Thruster (partia-4, KO-010) | w toku u P-4 przy wstrzymaniu | r2 audytora czysta (0 WYSOKICH, ciągłość 10,7 cm/krok); NISKIE → backlog P4-THR-1..4 | dokończyć przepisanie wpisów, scalić do partia-4, CI |
+| 5 | Partia 5 (forearm, carry, core_hang, rotator_cuff, kneeling_hinge, glute_floor) | w toku u P-5 przy wstrzymaniu; kontekst 32% | P-5 05:13: „8 czerwonych testów naprawionych; czekam na verify i tests.yml” | nowa sesja od STAN-AGENTA.md (wymaga zgody na nowe sesje), potem pociąg |
+| 6 | Tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) | otwarte | plan 24 h niżej | po decyzji C właściciela |
+| 7 | Przekład nowych tekstów (ZB-057, do 30 USD; wydane 0), recenzja lokalizacji zbiorcza | otwarte | ZB-057 | po turze 3 |
+| 8 | Zadania przed wydaniem 1.1 (lista w sekcji niżej) | otwarte | — | po turze 3; audyt, E2E |
+| 9 | Nocne testy: 12 czerwonych z rzędu (L-119) | otwarte — decyzja A właściciela | archiwum/nocne-diagnoza.md | wg decyzji A |
+| 10 | Archiwizacja zakończonych sesji (P-1 …VBx7QqXRjB2JpVi4Kww, P-2 …VBvdsMU66FhsPJWpG8J, P-3 …VBzk52zTw31SRXRs8To, starsze przekazane) | otwarte | tabela Sesje | get_session (koszt → koszty.md), potem archiwizacja |
+| 11 | Rola M9 z biblioteki prompts | zablokowane | add_repo odrzucony przez klasyfikator 05:16 | zgoda właściciela (A) albo praca bez promptu jako nazwany wyjątek (B) |
+| 12 | Decyzje A–D i weto KO-001…KO-014 | czeka na właściciela | sekcja „Czeka na właściciela” | odpowiedzi właściciela (przez czat poprzednika lub tutaj) |
+| 13 | Rezerwacja nazwy RepsGoat w ASC | do ustalenia | brak wpisu w docs/48 | sprawdzić u źródła |
 
 ## Sesje
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
-| P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | aktywna: thruster → pociąg-4 |
-| P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | kończy: STAN-AGENTA.md + raport (05:18); następca po zgodzie właściciela |
+| P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana 05:36 (raport oczekiwany) |
+| P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana 05:36 (STAN-AGENTA.md + raport oczekiwany) |
 | P-2 | session_01T66VBvdsMU66FhsPJWpG8J | lead partii 2 | figury/partia-2 @ 7a09818f | 30 | 26 | zakończona (raport końcowy) → do archiwizacji po scaleniu |
 | P-1 | session_01T66VBx7QqXRjB2JpVi4Kww | lead partii 1 | figury/partia-1 @ 9d6f35b3 — scalona (pociąg-3, dfaeeef) | 31 | 17 | zakończona → do archiwizacji |
 | — | session_01T66VBzk52zTw31SRXRs8To | lead partii 3 | scalona f7c2e0ed | 22 | 1 | zakończona, scalona → do archiwizacji |
@@ -36,7 +55,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 | Kiedy | Co | Kto | Zależy od | Od właściciela |
 |---|---|---|---|---|
 | 05:25 | pociąg-3 scalony (dfaeeef) | koordynator | — | — |
-| 06:00–09:00 | pociąg-4: partia-4 (z thrusterem) + partia-2 + wpis docs/18 CI → CI → scalenie | P-4 | thruster | — |
+| — | WSTRZYMANE od 05:35: pociąg-4, partia-5, tura 3 i dalej — plan do ułożenia przy wznowieniu | — | wznowienie | wznowienie |
 | 10:00–12:00 | raporty końcowe P-4, P-5 → scalenia (pociąg) | P-4, P-5 | — | — |
 | od ~12:00 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — liczba sesji wg decyzji C | nowe sesje partii (wzór: polecenia/prompt-p5.md) | decyzja C | decyzja C |
 | po turze 3 | przekład nowych tekstów (ZB-057), recenzja lokalizacji zbiorcza, zadania przed 1.1 (niżej), audyt, E2E | — | — | Approve TF |
@@ -54,7 +73,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm) — poprawka pozy + recenzja; fidr.move (Front Incline DB Raise) → cel +1; dług ROZJAZDY_POZA_ZAKRESEM (tests/figury-generator-odtwarza.test.ts); recenzja lokalizacji zbiorcza (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell); badacz: lokcie_pod_dlonmi w środku toru ohp, glute_floor, pewność reguł mobility_floor/kneeling_hinge; silnik: punkty dźwigni barki/uda (calf), gear.ts obrót dzwonu (kb); P3-MARSZ; PP-W1 (Plyo).
 
 ## Przypomnienia
-- kontrola 05:48 (trig_01CT9juz5s4czi8ps7pbthwy), linia 14:00 (trig_012jZbxFGm92mJXokNSoFwij), linia 05:00 11.11 (trig_01A25uUmLKjihGZ24ESTLauB).
+- brak (usunięte przy wstrzymaniu 05:37).
 
 ## Pule numerów decyzji
 - Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-015. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
@@ -67,3 +86,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 05:15 | koordynator | migracja na M9: gałąź `koordynacja` | przekazanie następcy M9 |
 | 2026-11-10 05:20 | koordynator …VBw1AX38pLShXPH7rmy | przejęcie; „PRZEJĄŁEM” do poprzednika; P-4, P-5 poinformowane; add_repo prompts odrzucony | prośba do właściciela |
 | 2026-11-10 05:25 | integracja | scal/pociag-3 c1ffb654 → dfaeeef (tests.yml 42760295218 zielony; drzewo = c1ffb654, verify:lekkie) | pociąg-4 (P-4) |
+| 2026-11-10 05:35 | właściciel | „zapisz wszystkie zadania i ich stan i wstrzymaj pracę” → P-4, P-5 wstrzymane, przypomnienia usunięte, lista zadań wyżej | wznowienie przez właściciela |
