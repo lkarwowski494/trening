@@ -1,4 +1,4 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:52 UTC) — PRACA WZNOWIONA 07:00 UTC
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 08:05 UTC) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
@@ -43,7 +43,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 ## Sesje
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
-| A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ 760afa88 (partia 4 scalona, partia 2 nie; verify:lekkie; tests.yml niesprawdzone) | 13,6 (get_session 07:50, może nieaktualne) | 0,5 (odczyt nieaktualny; deklaracja ~12) | PRZEKAZANIE 07:47 przy deklarowanych 30% — nieprzyjęte; 07:52 polecenie kontynuacji, jeśli < 300 tys. tokenów |
+| A | session_01T66VBviwDCU3NCJVaVH1WP | 08-programista build (sonnet-5-5): pociąg-4 | scal/pociag-4 @ 760afa88 (partia 4 scalona, partia 2 nie; verify:lekkie; tests.yml niesprawdzone) | 24,7 (07:58) | 2,8 (07:58) | zatrzymana 08:00 (STOP przed partią 2); czeka linia potwierdzenia → koszt do koszty.md → archiwizacja po starcie A2 |
 | B | session_01T66VBzi6xg7DYJMg2oYF8Q | 08-programista build (opus-5-5): partia 5 domknięcie | figury/partia-5 @ cd789d82 | b.d. | 0 (07:15) | wystartowała 07:15; pułap 60/78 USD |
 | P-4 | session_01T66VByqWgLJQQccrmCXLmn | programista partii 4 (tura 2): dip, chest_press_machine, cable_press, back_extension, thruster | figury/partia-4 @ 3bcd294c (tests.yml 42759957551 zielony) | 17 (05:16) | 17 | wstrzymana — raport 05:35 (koszt ~11 USD, kontekst ~15%) |
 | P-5 | session_01T66VByZrLpWxNF8yF3gpgu | programista partii 5: forearm, carry, core_hang, rotator_cuff, kneeling_hinge (+glute_floor) | figury/partia-5 | 32 (05:16) | 56 | wstrzymana — raport 05:50 (koszt 55,8 USD, kontekst 32%) |
@@ -78,7 +78,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm) — poprawka pozy + recenzja; fidr.move (Front Incline DB Raise) → cel +1; dług ROZJAZDY_POZA_ZAKRESEM (tests/figury-generator-odtwarza.test.ts); recenzja lokalizacji zbiorcza (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell); badacz: lokcie_pod_dlonmi w środku toru ohp, glute_floor, pewność reguł mobility_floor/kneeling_hinge; silnik: punkty dźwigni barki/uda (calf), gear.ts obrót dzwonu (kb); P3-MARSZ; PP-W1 (Plyo).
 
 ## Przypomnienia
-- trig_01UWKZWY4rndpbXDhvFvEqDJ „Koordynator Trening: kontrola” 07:58 · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
+- „Koordynator Trening: kontrola” ~08:42 (send_later 08:02; poprzednia trig_01UWKZWY4rndpbXDhvFvEqDJ zadziałała 07:58) · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
 
 ## Pule numerów decyzji
 - Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-023. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
@@ -100,3 +100,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 07:12 | koordynator | „PRZEJĄŁEM” do …VBw1AX38pLShXPH7rmy → not found | — |
 | 2026-11-10 07:34 | B | raport po zad. 1 + PYTANIE: na figury/partia-5 jest(3) > 20 min (42764641573 pon. 2 anulowane; gałąź bez podziału na 5 części); strażniki przejrzane (432be36), lekcja (c3b25d5), rotator_cuff r1 czysta — deklaracje B, niesprawdzone, nic nie wypchnięte | KO-021: scalić integrację dfaeeefe do partii 5 (wysłane 07:36); odbiór po PRZEKAZANIU |
 | 2026-11-10 07:47 | A | PRZEKAZANIE: scal/pociag-4 @ 760afa88 (autor Claude <noreply@anthropic.com>; 06d90e84 i dfaeeefe przodkami, 7a09818f nie — sprawdzone); verify:lekkie zamiast szybkie, 4 pliki testów nieuruchomione, przegląd audytora i partia 2 otwarte; wyjątek rozmiaru poseData.ts → KO-022 | A kontynuuje (okno 1 mln, próg 300 tys.) albo odpowiada liczbą → następca A2 (opus) od STAN-POCIAG-4.md |
+| 2026-11-10 08:00 | A → A2 | kontrola: A 24,7% kontekstu, 2,8 USD, scal/pociag-4 760afa88; scalenie partii 2 (34 konflikty) nie zmieści się do 30% → A zatrzymana, polecenia/A2.md @ 30aefbfd, start A2 (opus-5-5) przez subagenta w toku; B: figury/partia-5 nadal cd789d82 (pracuje lokalnie) | potwierdzić start A2 (ID do tabeli Sesje), zarchiwizować A po zapisie kosztu; koordynator 24,7% → E6 przy 30% |
