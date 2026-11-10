@@ -3917,7 +3917,8 @@
       },
       "wskazowki_na_reguly": {
         "lext.range": [
-          "wyprost_kolan"
+          "wyprost_kolan",
+          "wyprost_kolan_jednonoz"
         ],
         "llc.move": [
           "uginanie_kolan"

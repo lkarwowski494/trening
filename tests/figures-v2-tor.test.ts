@@ -44,7 +44,16 @@ const progDzwigni = (k: string): number | null => {
   const a = d.klatki[0].rece.R.chwyt, b = d.klatki[d.klatki.length - 1].rece.R.chwyt;
   return strzalkaLukuDzwigni(lever.dlugosc, Math.hypot(b[0] - a[0], b[1] - a[1])) + 2;
 };
-const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string, v?: View) => (k && FAM[k] === 'chest_press_machine' && progDzwigni(k) !== null ? t.odchylenie <= progDzwigni(k)! : k && v && LUKOWE.has(FAM[k]) ? t.odchylenie <= progLuku(k, v) : k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK_RODZINY[FAM[k]] : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
+/* leg_isolation (partia 9, r1 Ś1, 10.11.2026): kostka jedzie po łuku wokół kolana (dźwignia maszyny albo noga uginana na lince), więc strzałka łuku wynika z geometrii:
+   r = odległość kostki od kolana w rzucie z boku (klatka u = 0), cięciwa l = odległość kostki między u = 0 i u = 1 (kąt ruchu < 180°); r − sqrt(r² − (l/2)²) = r·(1 − cos(Δθ/2)) + dryf 2 cm jak wyżej.
+   Dotyczy tylko ćwiczeń z kostką na łuku (nie Slider i Band: kostka jedzie po podłodze). Zakres 4–15 cm wynika z r ≈ 41 cm i Δθ 85–96° (strzałka 9,6–13,7 cm). */
+const NOGA_LUK = ['Leg Extension', 'Single-Leg Leg Extension', 'Leg Curl', 'Lying Leg Curl', 'Standing Leg Curl', 'Standing Cable Leg Curl'];
+const progLukuKolana = (k: string): number | null => {
+  if (!NOGA_LUK.includes(k)) return null; const sp = figureSpec(k)!; const f0 = frameAt(sp, 0), f1 = frameAt(sp, 1);
+  const kolano = proj(f0.sk.legs.R.knee, 'side'), a0 = proj(f0.sk.legs.R.ankle, 'side'), a1 = proj(f1.sk.legs.R.ankle, 'side');
+  return strzalkaLukuDzwigni(Math.hypot(a0[0] - kolano[0], a0[1] - kolano[1]), Math.hypot(a1[0] - a0[0], a1[1] - a0[1])) + 2;
+};
+const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string, v?: View) => (k && progLukuKolana(k) !== null ? t.odchylenie <= progLukuKolana(k)! : k && FAM[k] === 'chest_press_machine' && progDzwigni(k) !== null ? t.odchylenie <= progDzwigni(k)! : k && v && LUKOWE.has(FAM[k]) ? t.odchylenie <= progLuku(k, v) : k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK_RODZINY[FAM[k]] : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
 
 describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => {
   test('miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze', () => {
@@ -60,6 +69,15 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
     }
     expect(progDzwigni('Smith Machine Shoulder Press')).toBeNull(); /* prosta szyna: próg toru prostego */
     expect(strzalkaLukuDzwigni(70, 48.4)).toBeCloseTo(4.34, 1);
+  });
+  test('leg_isolation: próg łuku kolana z geometrii (r, cięciwa kostki) — łuk kostki przechodzi, wybrzuszenie ponad próg i tor prosty ponad 4 cm bez łuku nie', () => {
+    for (const k of NOGA_LUK) {
+      const p = progLukuKolana(k)!; expect([k, p > 9 && p < 17]).toEqual([k, true]); /* strzałka 9,6–13,7 cm + 2 cm */
+      expect([k, ok(tor(k, 'side'), k, 'side')]).toEqual([k, true]);
+      expect([k, ok(ksztaltToru([[0, 0], [p + 3, 30], [0, 60]]), k, 'side')]).toEqual([k, false]); /* tor odkształcony ponad próg */
+      expect([k, ok({ odchylenie: 3, zawrocenia: 2 }, k, 'side')]).toEqual([k, false]); /* zawrócenie poziome (S) nadal blokuje */
+    }
+    for (const k of ['Slider Hamstring Curl', 'Seated Band Hamstring Curl']) expect([k, progLukuKolana(k)]).toEqual([k, null]); /* kostka po podłodze: próg toru prostego */
   });
   test('każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem', () => {
     const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t, t.k, t.v))

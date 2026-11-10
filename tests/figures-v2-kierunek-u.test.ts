@@ -15,12 +15,14 @@ type Kierunek = 'opuszczanie' | 'wysilek' | null;
 const plik = (f: string): Record<string, PoseData> => JSON.parse(fs.readFileSync(path.join(POSES, f + '.json'), 'utf8')).cwiczenia;
 const FAMILIES = fs.readdirSync(POSES).filter(f => f.endsWith('.json')).map(f => f.replace(/\.json$/, ''));
 
+/** Uginanie kolana pod oporem (leg_isolation, partia 9, 10.11.2026): zgięcie kolana to WYSIŁEK (pięty do pośladków), prostowanie to powrót — odwrotnie niż w przysiadzie i suwnicy, gdzie zgięcie kolana to opuszczanie ciężaru. Lista nazwana, bo geometria (miednica stoi) obu przypadków nie odróżnia. */
+const UGINANIE_KOLANA: ReadonlySet<string> = new Set(['Leg Curl', 'Lying Leg Curl', 'Standing Leg Curl', 'Standing Cable Leg Curl', 'Seated Band Hamstring Curl']);
 /** Kierunek u: 0 → 1 wyliczony z klatek: miednica w dół albo kolano zgina się = opuszczanie; w górę albo kolano prostuje się = wysiłek; brak ruchu miednicy i kolan = null (nie do oceny). */
 function kierunekU(d: PoseData): Kierunek {
   const a = keyframeFrame(d, 0).sk, b = keyframeFrame(d, 1).sk; const dy = b.pelvis[1] - a.pelvis[1];
   if (Math.abs(dy) >= PELVIS_MIN_CM) return dy < 0 ? 'opuszczanie' : 'wysilek';
   const dk = SIDES.map(s => jointAngles(b, s).knee - jointAngles(a, s).knee).reduce((m, x) => Math.abs(x) > Math.abs(m) ? x : m, 0);
-  if (Math.abs(dk) >= MIN_MEASURED_ROM.deg) return dk > 0 ? 'opuszczanie' : 'wysilek';
+  if (Math.abs(dk) >= MIN_MEASURED_ROM.deg) return (dk > 0) !== UGINANIE_KOLANA.has(d.cwiczenie) ? 'opuszczanie' : 'wysilek';
   /* miednica i kolana stoją, ale tułów albo nogi się ruszają (back_extension, brzuszki, Superman): kierunek daje pion ruchomego końca — barki (środek) albo kostki (środek): w dół = opuszczanie, w górę = wysiłek.
    * Sam znak kąta biodra nie wystarcza (zgięcie biodra to opuszczanie tułowia w wyproście z opadem, a unoszenie w nogach w brzuszku; Crunch zwija kręgosłup przy biodrze ≈ 5°); backlog figur 28.10.2026, Z4. */
   const sr = (k: typeof a) => [k.shoulderC[1], (k.legs.R.ankle[1] + k.legs.L.ankle[1]) / 2]; const ra = sr(a), rb = sr(b);

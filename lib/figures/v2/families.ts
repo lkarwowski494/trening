@@ -36,7 +36,7 @@ export const FAMILIES: Family[] = [
   { id: 'pulldown', status: 'ready', label: 'Ściąganie drążka (wyciąg górny)', views: ['side', 'front'], effort: 2 },
   { id: 'lunge', status: 'planned', label: 'Wykroki, przysiad bułgarski, wejścia na stopień, pistolet', views: ['side', 'front'], effort: 5 },
   { id: 'leg_machine', status: 'ready', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side', 'front'], effort: 3 },
-  { id: 'leg_isolation', status: 'planned', label: 'Prostowanie i uginanie nóg, nordic, sissy', views: ['side'], effort: 3 },
+  { id: 'leg_isolation', status: 'ready', label: 'Prostowanie i uginanie nóg, nordic, sissy', views: ['side'], effort: 3 },
   { id: 'calf_raise', status: 'ready', label: 'Wspięcia na palce', views: ['side'], effort: 2 },
   { id: 'hip_bridge', status: 'ready', label: 'Hip thrust i mostki', views: ['side'], effort: 3 },
   { id: 'kb_ballistic', status: 'ready', label: 'Kettlebell: swing, clean, snatch, wyciskania balistyczne', views: ['side'], effort: 3 },
