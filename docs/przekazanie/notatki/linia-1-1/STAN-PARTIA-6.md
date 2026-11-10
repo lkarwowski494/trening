@@ -7,10 +7,10 @@ Zysk: przed pracą pełna karta +0 (brak ról mięśni), figura v2 +27; po włą
 | Krok | Stan |
 |---|---|
 | Włączenie (ready, LOAD), nakładka overlay/plyo.ts, test rodziny, testy dostosowane, wyjątki toru (34) | zrobione lokalnie (b68d346, dff0a3f) |
-| Limit poseData.ts (+44 B) | KO-024: podział per rodzina robi sesja E (`scal/posedata-podzial`); po sygnale koordynatora scalić integrację i przenieść wpis LOAD plyo do nowego układu; kodu nie wypychać do tego czasu |
+| Limit poseData.ts (+44 B) | rozwiązane przez KO-024: tymczasowy próg cofnięty (e309071b, revert fed9a704), integracja 038efefc scalona (c2e3cf1f), LOAD plyo w `lib/figures/v2/rodziny/plyo.ts`; próg = integracja (wyjątek usunięty) |
 | Recenzje niezależne (audytor): r1 dff0a3f do poprawy (W1 Broad Jump, W2 Butt Kick), r2 e73f097 do poprawy (W2), r3 77359b5 wyswietlana | zrobione (partia6-plyo-r1..r3) |
 | Wpisy r3 1:1 (v2 plyo 10df52ff492a, 19 zestawów, karta Broad Jump), cele = symulacja (pelnaKarta 485, roleMiesni 551 — do weta), minimum podniesione, backlog P6-PLY-1..5 | zrobione (d0925c9) |
-| Scalenie integracji po KO-024 (LOAD plyo do nowego układu), verify:szybkie, push, tests.yml, PRZEKAZANIE | czeka na sygnał koordynatora |
+| Scalenie integracji po KO-024 (LOAD plyo do nowego układu), verify:szybkie, push, tests.yml, PRZEKAZANIE | sesja C2 10.11.2026: scalenie c2e3cf1f, skróty przed = po (plyo 10df52ff492a); verify:szybkie, push i tests.yml — wynik w raporcie do koordynatora |
 
 Przekład: nowe teksty UI — brak (faza „Skok” istnieje) → 0 USD.
 Pułapki: elementy nakładki dla ćwiczeń z zestawem ogólnym pojawiają się dopiero z wpisem „zestawy” w figury-recenzja.json (test „każde ćwiczenie ma element” czerwony do tego czasu); test figures-v2-data i mapping dopuszczają ONE_WAY_UI dla plyo (wpis prezentacji z 28.10.2026, nie DATA_UI).
