@@ -1,0 +1,190 @@
+{
+  "v2": {
+    "pushup_plank": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050), recenzja r2 10.11.2026 — linia 1.1; W1–W3 z r1 usunięte (pomiar frameAt co 0,01), 0 × KRYTYCZNE/WYSOKIE; Ś1/Ś2 z r1 w backlogu (docs/21: PP-S1, PP-S2); 1 × NISKIE nowe (R2-N1)",
+      "autor": "programista figur (agent partii 2 pushup_plank; gałąź figury/partia-2-pushup_plank, commity d6d46968, b2231f90; poprawki r1 d9f1bc22, 25ac73e0)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "uwagi": "W1 usunięte: kolano nogi prostej max 0–4,6° w 15 ćwiczeniach (u co 0,01; przed: 17,2–20,2°), Mountain Climbers noga prosta 0° w u = 0 (L) i u = 1 (R); jedyny wyjątek Standing Barbell Rollout 5,5° w u = 0,07 (między punktami testu co 0,05; NISKIE R2-N1). W2 usunięte: Plyo Push-Up dłonie 0,0 cm nad podłogą do u = 0,70 (zgięcie łokcia ≥ 20,6°), lot u 0,71–0,99 z łokciem 12–19° (szczyt 12 cm w u = 0,85), u = 1 = poza startowa (miednica 48,6 cm, łokieć 12,5°) — lądowanie, bez zawieszenia w powietrzu; wpis tor-wyjatki Plyo Push-Up|side zgodny z pomiarem (x miednicy 78,2 / 83,2 / 78,4 / 75,2 / 78,2 cm). W3 usunięte: Plank Shoulder Taps min(wysokość dłoni) = 0,0 cm w każdym u co 0,025. Znane ryzyka: lot Plyo nie jest krótki (30% pętli 1,5 s); Single-Arm stopy 28 cm (z = 16 / −12) — na progu konwencji podstawaMinCm 28, szerzej niż biodra (17 cm), karta nie podaje szerokości — przyjęte; wiersze „sag” zsuwają stopy 1,1–2,0 cm ku dłoniom, palce na podłodze (0,3 cm) — przyjęte. Regresja: Rollout (sztanga) i Barbell Rollout from Bench — arkusze identyczne bajtowo ze stanem r1 (cmp). Ś1 (Inverted Row tułów/głowa przy podłodze w u = 0, głowa 0,4 cm) i Ś2 bez zmian — backlog PP-S1, PP-S2. Nakładka, zestawy, karty bez zmian od r1 (skróty te same) — werdykty przeniesione z r1. K14: poluzowań brak; nowy test oblewa stan sprzed poprawki (20/22 przypadków).",
+      "poprawka": "R2-N1 (NISKIE, backlog): Standing Barbell Rollout kolano 5,5° w u = 0,07 — test W1 próbkować co 0,01 albo gęstsze klatki w u 0–0,14.",
+      "slad": "Ślad obejrzany w obu rzutach (side, front) wszystkich 18 ćwiczeń: 36 arkuszy arkusz-slad.mjs (kadry co 0,05) wygenerowanych przez recenzenta r2 @ 355e8d2c i 36 arkuszy stanu r1 (8e3be484) do porównania cmp: 32 różne (poprawka W1–W3), 4 identyczne (Rollout (sztanga), Barbell Rollout from Bench — poprawki ich nie dotyczyły). Bez ciężaru — miednica: łuk obrotu wokół stóp bez skoków (pompki, deski, Mountain Climbers, Taps, Plyo z lądowaniem w punkcie startu, Suspended, Inverted Row); rollouty — środek gryfu poziomo na 22,5 cm, ślad na chwycie. Arkusze Plyo Push-Up-side (dłonie na podłodze do wyprostu, lot u 0,75–0,95) i Plank-Shoulder-Taps-front/side (zawsze jedna dłoń na podłodze) potwierdzają W2, W3.",
+      "sha": "def6b97fe124",
+      "liczba": 30,
+      "cwiczenia": [
+        "Push Up",
+        "Push-Up Wide",
+        "Close-Grip Push-Up",
+        "Diamond Push Up",
+        "Decline Push Up",
+        "Incline Push Up",
+        "Incline Push-Up Close-Grip",
+        "Single-Arm Push-Up",
+        "Plank",
+        "Mountain Climbers",
+        "Plank Shoulder Taps",
+        "Plyo Push-Up",
+        "Rollout (sztanga)",
+        "Barbell Rollout from Bench",
+        "Standing Barbell Rollout",
+        "Suspended Push-Up",
+        "Suspended Fallout",
+        "Inverted Row"
+      ],
+      "bez_rysunku": [
+        "Side Plank",
+        "Ab Wheel",
+        "Renegade Row",
+        "Copenhagen Plank",
+        "Clock Push-Up",
+        "Push Up to Side Plank",
+        "Isometric Wipers",
+        "Push-Ups With Feet On A Stability Ball",
+        "Incline Push-Up Reverse Grip",
+        "Drop Push",
+        "Incline Push-Up Depth Jump",
+        "Plyo Kettlebell Push-Ups"
+      ]
+    }
+  },
+  "zestawy": {
+    "Push-Up Wide": {
+      "rodzina": "pushup",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "975e83a10180",
+      "uwagi": "plank.brace, push.rigid, push.mis.partial, plank.mis.sag — pasują: miednica 0 cm od linii bark–kostka, łokieć 12° → 144°, oś barków 12 cm nad dłońmi na dole."
+    },
+    "Close-Grip Push-Up": {
+      "rodzina": "pushup",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "fb19772e1dce",
+      "uwagi": "plank.brace, push.rigid, push.mis.partial — pasują: ciało w linii, pełny zakres łokcia (12° → 144°)."
+    },
+    "Incline Push-Up Close-Grip": {
+      "rodzina": "pushup",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "fb19772e1dce",
+      "uwagi": "plank.brace, push.rigid, push.mis.partial — pasują: ciało w linii, łokieć 13° → 144°, klatka przy krawędzi podwyższenia."
+    },
+    "Single-Arm Push-Up": {
+      "rodzina": "pushup",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "329b2f0238ee",
+      "uwagi": "plank.brace, push.rigid, plank.mis.sag — pasują: miednica na linii bark–kostka w całym ruchu; zestaw nie mówi o głębokości (łokieć do 95°)."
+    },
+    "Plank Shoulder Taps": {
+      "rodzina": "plank",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "5dbac9a975b5",
+      "uwagi": "plank.brace, plank.noSag, bd.level, plank.mis.sag — zdania pasują (miednica na linii, roll i twist tułowia 0). Rysunek do poprawy (W3: obie dłonie w powietrzu) — wpis zestawu dotyczy treści, nie zmienia werdyktu v2. r2: W3 usunięte — zawsze jedna dłoń na podłodze."
+    },
+    "Plyo Push-Up": {
+      "rodzina": "pushup",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "329b2f0238ee",
+      "uwagi": "plank.brace, push.rigid, plank.mis.sag — pasują (ciało sztywne w całym ruchu). Rysunek do poprawy (W2). r2: W2 usunięte — wypychanie z podparciem, lot po wyproście, lądowanie."
+    },
+    "Barbell Rollout from Bench": {
+      "rodzina": "rollout",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "c267b0549c01",
+      "uwagi": "ro.back, plank.brace, plank.mis.sag — pasują do pozycji skrajnej (miednica 0 cm od linii bark–kolano, biodro 8°). Po wpisie pojawia się element rolloutKneeLine — uwaga Ś2 (linia także w starcie)."
+    },
+    "Standing Barbell Rollout": {
+      "rodzina": "rollout",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "c267b0549c01",
+      "uwagi": "ro.back, plank.brace, plank.mis.sag — pasują: na końcu biodro 4°, miednica 0 cm od linii bark–kostka; bez elementu nakładki (reguła ze stóp: analogia)."
+    },
+    "Suspended Fallout": {
+      "rodzina": "rollout",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K12: dopasowanie zdań zestawu ogólnego do ruchu na rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026, lib/figures/v2/cue-sets.json; źródła data/zrodla/cues-zestawy.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "c267b0549c01",
+      "uwagi": "ro.back, plank.brace, plank.mis.sag — pasują: ciało proste w całym wychyleniu (miednica 0 cm od linii bark–kostka), bark 83° → 158°; to samo wychylenie co rollout ze stóp (pytanie autora 5)."
+    }
+  },
+  "karty": {
+    "Push Up": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "f306b6d9405b",
+      "uwagi": "K11: treść (dłonie na szerokość barków, ciało proste, klatka prawie do podłogi, wyprost rąk, tułów sztywny, błąd skracania ruchu) zgodna z ruchem v2: łokieć 11° → 144°, oś barków 18 cm nad dłońmi, miednica na linii. Sprzeczność „ciało proste od głowy do pięt” z kolanem 17,7° — wada rysunku (W1 w v2), nie tekstu. Źródła w cues.json (ACE, NASM, ExRx) — lista sprawdzona, teksty źródeł nie czytane ponownie w tej recenzji. r2 10.11.2026: sprzeczność z rysunkiem usunięta — kolano nogi prostej 0° (W1 usunięte)."
+    },
+    "Plank": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "f0a4bc0cf5a8",
+      "uwagi": "K11: treść (przedramiona, łokcie pod barkami, ciało w linii, biodra nie opadają, oddech) zgodna z rysunkiem: deska na przedramionach, łokieć 90,7° pod barkiem, miednica na linii, izometria. „Nogi wyprostowane” vs kolano 17,3° — wada rysunku (W1). Źródła w cues.json (ACE, NASM) — lista sprawdzona, teksty źródeł nie czytane ponownie. r2 10.11.2026: sprzeczność z rysunkiem usunięta — kolano nogi prostej 0° (W1 usunięte)."
+    },
+    "Mountain Climbers": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty własnej wobec rysunku v2), 10.11.2026 (r2; werdykt przeniesiony z r1 09.11.2026 — treść i skrót bez zmian, rysunek po poprawce W1–W3)",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "audytor (sesja r2) — recenzja niezależna r2 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek W1–W3",
+      "kto": "audytor (sesja r2) — recenzja niezależna r2 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2-pushup_plank @ 355e8d2c (poprawki d9f1bc22 względem r1 8e3be484); raport docs/research/recenzje/partia2-pushup_plank-r2-audytor-2026-11-10.md",
+      "sha": "a13376f00040",
+      "uwagi": "K11: treść (podpór na prostych rękach, noga pod klatką i noga w tył, zmiana jednoczesna, biodra na podobnej wysokości) zgodna z ruchem (wahadło zmian, miednica 48,5–53,3 cm). mc.straight „wyprostuj tylną nogę do końca” vs noga tylna 17,6° — wada rysunku (W1). Źródła w cues.json (ACE, ExRx) — lista sprawdzona, teksty źródeł nie czytane ponownie. r2 10.11.2026: sprzeczność z rysunkiem usunięta — kolano nogi prostej 0° (W1 usunięte)."
+    }
+  },
+  "v1_zastapiona": [
+    "Push Up",
+    "Incline Push Up",
+    "Plank",
+    "Mountain Climbers"
+  ]
+}

@@ -3,26 +3,26 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 232,
-      "v1": 35,
-      "bezFigury": 441,
-      "daneV2NieWlaczone": 304,
-      "wyjatekBezAnimacji": 138
+      "v2": 250,
+      "v1": 31,
+      "bezFigury": 427,
+      "daneV2NieWlaczone": 286,
+      "wyjatekBezAnimacji": 133
     },
-    "animowanyBlad": 148,
+    "animowanyBlad": 159,
     "wskazowki": {
       "wlasne": 283,
       "wlasneZBledami": 174,
-      "ogolne": 120,
-      "bezTekstu": 305
+      "ogolne": 129,
+      "bezTekstu": 296
     },
-    "czesteBledyTekst": 294,
+    "czesteBledyTekst": 303,
     "roleMiesni": 513,
-    "pelnaKarta": 228,
-    "pelnaKartaBlad": 147,
-    "recenzjaFigur": 232
+    "pelnaKarta": 239,
+    "pelnaKartaBlad": 153,
+    "recenzjaFigur": 250
   },
-  "kartZTekstami": 584,
+  "kartZTekstami": 588,
   "rodziny": {
     "squat": {
       "status": "ready",
@@ -64,17 +64,17 @@
       "recenzja": 32
     },
     "pushup_plank": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 30,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 18,
-      "v1": 4,
+      "figuraV2": 18,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 12,
-      "ogolne": 0,
-      "bezTekstu": 18,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 9,
+      "bezTekstu": 9,
+      "pelnaKarta": 11,
+      "pelnaKartaBlad": 6,
+      "recenzja": 18
     },
     "dip": {
       "status": "planned",
@@ -586,264 +586,264 @@
   },
   "jezyki": {
     "pl": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "en": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "cs": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "sk": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "hu": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "ro": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "bg": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "hr": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "sl": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "sr": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "lt": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "lv": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "et": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "uk": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "es": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "es-419": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "pt": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "pt-BR": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "de": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "fr": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "it": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "nl": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "sv": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "da": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "nb": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "fi": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "tr": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "el": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "id": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "ms": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "vi": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "ru": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "ja": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "ko": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     },
     "zh-Hant": {
-      "kompletne": 584,
+      "kompletne": 588,
       "zBrakiem": 0,
       "brakTekstow": 0,
       "nazwaLokalna": 0
     }
   },
   "dobre": {
-    "figura.v2": 232,
-    "figura.wAplikacji": 267,
+    "figura.v2": 250,
+    "figura.wAplikacji": 281,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 148,
+    "animowanyBlad": 159,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
-    "wskazowki.zTekstem": 403,
-    "czesteBledyTekst": 294,
+    "wskazowki.zTekstem": 412,
+    "czesteBledyTekst": 303,
     "roleMiesni": 513,
-    "pelnaKarta": 228,
-    "pelnaKartaBlad": 147,
-    "recenzjaFigur": 232,
+    "pelnaKarta": 239,
+    "pelnaKartaBlad": 153,
+    "recenzjaFigur": 250,
     "nazwaLokalna.razem": 0,
-    "jezyk.pl.kompletne": 584,
-    "jezyk.en.kompletne": 584,
-    "jezyk.cs.kompletne": 584,
-    "jezyk.sk.kompletne": 584,
-    "jezyk.hu.kompletne": 584,
-    "jezyk.ro.kompletne": 584,
-    "jezyk.bg.kompletne": 584,
-    "jezyk.hr.kompletne": 584,
-    "jezyk.sl.kompletne": 584,
-    "jezyk.sr.kompletne": 584,
-    "jezyk.lt.kompletne": 584,
-    "jezyk.lv.kompletne": 584,
-    "jezyk.et.kompletne": 584,
-    "jezyk.uk.kompletne": 584,
-    "jezyk.es.kompletne": 584,
-    "jezyk.es-419.kompletne": 584,
-    "jezyk.pt.kompletne": 584,
-    "jezyk.pt-BR.kompletne": 584,
-    "jezyk.de.kompletne": 584,
-    "jezyk.fr.kompletne": 584,
-    "jezyk.it.kompletne": 584,
-    "jezyk.nl.kompletne": 584,
-    "jezyk.sv.kompletne": 584,
-    "jezyk.da.kompletne": 584,
-    "jezyk.nb.kompletne": 584,
-    "jezyk.fi.kompletne": 584,
-    "jezyk.tr.kompletne": 584,
-    "jezyk.el.kompletne": 584,
-    "jezyk.id.kompletne": 584,
-    "jezyk.ms.kompletne": 584,
-    "jezyk.vi.kompletne": 584,
-    "jezyk.ru.kompletne": 584,
-    "jezyk.ja.kompletne": 584,
-    "jezyk.ko.kompletne": 584,
-    "jezyk.zh-Hant.kompletne": 584
+    "jezyk.pl.kompletne": 588,
+    "jezyk.en.kompletne": 588,
+    "jezyk.cs.kompletne": 588,
+    "jezyk.sk.kompletne": 588,
+    "jezyk.hu.kompletne": 588,
+    "jezyk.ro.kompletne": 588,
+    "jezyk.bg.kompletne": 588,
+    "jezyk.hr.kompletne": 588,
+    "jezyk.sl.kompletne": 588,
+    "jezyk.sr.kompletne": 588,
+    "jezyk.lt.kompletne": 588,
+    "jezyk.lv.kompletne": 588,
+    "jezyk.et.kompletne": 588,
+    "jezyk.uk.kompletne": 588,
+    "jezyk.es.kompletne": 588,
+    "jezyk.es-419.kompletne": 588,
+    "jezyk.pt.kompletne": 588,
+    "jezyk.pt-BR.kompletne": 588,
+    "jezyk.de.kompletne": 588,
+    "jezyk.fr.kompletne": 588,
+    "jezyk.it.kompletne": 588,
+    "jezyk.nl.kompletne": 588,
+    "jezyk.sv.kompletne": 588,
+    "jezyk.da.kompletne": 588,
+    "jezyk.nb.kompletne": 588,
+    "jezyk.fi.kompletne": 588,
+    "jezyk.tr.kompletne": 588,
+    "jezyk.el.kompletne": 588,
+    "jezyk.id.kompletne": 588,
+    "jezyk.ms.kompletne": 588,
+    "jezyk.vi.kompletne": 588,
+    "jezyk.ru.kompletne": 588,
+    "jezyk.ja.kompletne": 588,
+    "jezyk.ko.kompletne": 588,
+    "jezyk.zh-Hant.kompletne": 588
   }
 }

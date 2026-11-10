@@ -201,7 +201,7 @@ describe('rozciąganie statyczne = poza statyczna (bez pętli i licznika faz)', 
   const mob = wczytaj().filter((p) => MOB.includes(p.rodzina));
   test('każda poza z dwóch identycznych klatek jest w ISOMETRIC, a ruchowa (Cat-Cow) nie; zbiór liczy 16 rozciągań + Dead Hang', () => {
     for (const p of mob) expect([p.cwiczenie, ISOMETRIC.has(p.cwiczenie)]).toEqual([p.cwiczenie, statyczna(p)]);
-    expect(mob.filter(statyczna).length).toBe(16); expect(ISOMETRIC.size).toBe(17);
+    expect(mob.filter(statyczna).length).toBe(16); expect(ISOMETRIC.size).toBe(18); /* 09.11.2026: + Plank (pushup_plank włączona, partia 2) */
   });
   test('pozy statyczne mają w katalogu miarę czasu (utrzymanie), ruchowe — powtórzenia', () => {
     for (const p of mob) expect([p.cwiczenie, metricFor(p.cwiczenie) === 'time']).toEqual([p.cwiczenie, statyczna(p)]);

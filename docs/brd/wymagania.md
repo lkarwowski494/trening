@@ -490,6 +490,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny cable_row (np. Seated Cable Row, Face Pull), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie ma na karcie zdanie ruchu, tułowia albo łokci z regułą „ustalone” (Seated Cable Row: przyciąganie, tułów i plecy; Face Pull: przyciąganie i łokcie za plecami)
     - Wtedy z boku widać łuk zgięcia łokcia z podpisem „Kąt na rysunku”, pion przez miednicę (tułów bez bujania), a w face pull pion przez bark, za który łokieć przechodzi na końcu ruchu; linia pleców dla zdań o plecach; razem nie więcej niż 3 linie i 1 łuk; z przodu dźwignia maszyny nie jest rysowana, gdy w części ruchu przechodzi przez głowę (Leverage High Row)
+  - Scenariusz: Nakładka techniki na rysunku pompek, desek i rollouta (rodzina pushup_plank, 09.11.2026; decyzja właściciela „żadna rodzina nie wychodzi bez nakładki”; test `tests/figures-v2-nakladka-pushup-plank.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny pushup_plank (np. Push Up, Plank, Inverted Row), a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy ćwiczenie ma na karcie zdanie o ruchu w dół albo o ciele w jednej linii z regułą „ustalone” (pompki: zakres i ciało w linii; deska i wiosłowanie podwieszone: ciało w linii; rollout z kolan: plecy proste)
+    - Wtedy z boku widać łuk zgięcia łokcia z podpisem „Kąt na rysunku” oraz linię przez bark i kostkę (w rolloucie z kolan przez bark i kolano), na której ma leżeć miednica; razem nie więcej niż 3 linie i 1 łuk; z przodu i z góry bez nakładki
   - Scenariusz: Rodzina unoszenia ramion (delt_raise) pokazuje rysunki 31 ćwiczeń (09.11.2026, ZB-042; testy `tests/figures-v2-mapping.test.ts`, `tests/figury-recenzja.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny delt_raise (np. Lateral Raise, Car Drivers), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch albo jest w trybie statycznym

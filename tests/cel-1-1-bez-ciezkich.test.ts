@@ -46,7 +46,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(r.a + r.b + r.c + r.aB).toBe(r.przyrost);
     expect(Object.values(r.kombinacje).reduce((s, n) => s + n, 0)).toBe(r.przyrost);
     expect(sym.gain).toHaveLength(r.przyrost);
-    expect(r.c).toBe(3); /* ćwiczenia, którym dziś brakuje tylko ról mięśni */
+    expect(r.c).toBe(10); /* ćwiczenia, którym dziś brakuje tylko ról mięśni; 3 → 10 po włączeniu pushup_plank (10.11.2026): 7 ćwiczeń rodziny ma już zrecenzowaną figurę, brakuje im tylko ról — wynik symulacji, cel rośnie */
     expect(r.a).toBe(0);
   });
   test('rodziny wg zysku: suma przyrostów = przyrost pełnej karty; rodzina ma niemalejącą liczbę pełnych kart; lista posortowana malejąco', () => {
@@ -80,7 +80,7 @@ describe('cel 1.1 bez „ciężkich” (decyzja właściciela 09.11.2026)', () =
     expect(sym.kontrola.kartyDoPoprawy).toEqual(doPoprawy);
     for (const k of doPoprawy) expect([k, sym.gain.some(g => g.key === k)]).toEqual([k, false]);
     expect(sym.rozbicie.a).toBe(0); /* delt_raise: zysk (a) znika razem z kartą „do poprawy” */
-    expect(cele.min.pelnaKarta).toBe(456); /* cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 456 po scaleniu partii 2 (09.11.2026): Machine Hip Thrust wstrzymany (V2_WSTRZYMANE) — wynik symulacji, nie poluzowanie */
+    expect(cele.min.pelnaKarta).toBe(463); /* 456 → 463 po scaleniu pushup_plank (10.11.2026): +7 z (c), patrz wyżej — wynik symulacji, cel wyższy; cel zostaje do naprawy fidr.move (wariant A, osobne zadanie); 457 → 456 po scaleniu partii 2 (09.11.2026): Machine Hip Thrust wstrzymany (V2_WSTRZYMANE) — wynik symulacji, nie poluzowanie */
   });
   test('docs/18 ma wpis decyzji z 09.11.2026 (cytat właściciela, definicja, stare → nowe, odrzucone) z polami wdrożenia i testu', () => {
     const d = read('docs/18-przekazanie.md');
