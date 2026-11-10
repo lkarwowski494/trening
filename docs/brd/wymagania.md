@@ -506,6 +506,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma kartę ze wskazówką ruchu (sled.lean, mb.legs, slam.move) i regułę „ustalone” wariantu
     - Gdy użytkownik ogląda rysunek z boku
     - Wtedy sanki pokazują linię tułowia i pion przez miednicę (pochylenie w przód), Medicine Ball Scoop Throw łuk zgięcia kolana albo biodra, a Medicine Ball Slam poziom głowy, nad który piłka ma sięgnąć; pozostałe ćwiczenia rodziny (karta bez wskazówki powiązanej z regułą „ustalone”) zostają bez elementu nakładki
+  - Scenariusz: Rodzina strongman pokazuje rysunek jednego ćwiczenia, Yoke Walk (10.11.2026, linia 1.1 partia 8; test `tests/figures-v2-strongman.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Yoke Walk, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy widać marsz z jarzmem na barkach (licznik „Marsz”, tułów pionowo, miednica na stałej wysokości), bez elementu nakładki techniki (żadna reguła „ustalone” nie ma wskazówki na karcie); pozostałe ćwiczenia strongman (otwarte, Jefferson Squat) zostają bez rysunku v2
     - Oraz gdy ćwiczenie ma kartę ze wskazówką ruchu i regułę „ustalone” (09.11.2026, nakładka techniki; recenzja `docs/research/recenzje/delt-raise-nakladka-audytor-2026-11-09.md`)
     - Wtedy na rysunku widać łuk kąta ramię–tułów tylko w rzucie płaszczyzny ruchu (unoszenie bokiem, Dumbbell Scaption i Cable Y Raise z przodu; unoszenie przodem z boku), a z przodu także poziom barku („do wysokości barków”); w rzucie poprzecznym do ruchu łuku nie ma (test „łuk tylko w rzucie płaszczyzny ruchu”, `tests/figures-v2-nakladka-fix4.test.tsx`)
   - Scenariusz: Rodzina dipów (dip) pokazuje rysunki 5 ćwiczeń (09.11.2026, partia 4 linii 1.1; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`, `tests/figures-v2-nakladka-dip.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
