@@ -1,0 +1,37 @@
+{
+ "v2": {
+  "kneeling_hinge": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r2 po poprawce r1: S1 naprawione (styk seat, miednica 1,0 cm nad skrzynią); N1 NISKIE (asercja testu styku słabsza niż nazwa) → backlog; brak nakładki uzasadniony (obie reguły „analogia”)",
+   "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu); poprawka r1 (517694cf): inny programista",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny kneeling_hinge, partia 5, runda r2 (po poprawce r1 innego programisty), gałąź figury/partia-5-kneeling_hinge @ 517694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-kneeling_hinge-r2-audytor-2026-11-10.md",
+   "sha": "17d7fac90626",
+   "liczba": 2,
+   "slad": "Arkusz ze śladem toru: scripts/figures/arkusz-slad.mjs, 1 ćwiczenie × widok side = 1 arkusz (Seated Good Mornings), 21 kadrów co 0,05, wygenerowany przez audytora z 517694cf i obejrzany w pełnej rozdzielczości (u 0 i u 1 ×3, styk miednicy ×8); cmp z r1: różni się tylko skrzynią. Ślad (frameAt): info.load = środek gryfu = chwyt, 0,0 cm; gryf 12,8 cm za barkami i 3,0 cm poniżej wzdłuż tułowia w każdej klatce, tor łukiem w przód i lekko w dół (x −11,2 → 23,4 cm, y 105,2 → 100,5 cm).",
+   "uwagi": "r2: S1 naprawione — skrzynia 47,3 cm, gap(pelvis, box) 1,00 cm, gap(thigh, box) 0,79 cm, seat w każdej klatce, checkFrame pusty; ciało bez zmian (stopy na podłodze, kolano [40,8; 48,0], biodro 78,2° → 119,5°, tułów 2° → 44°, kręgosłup 0°). Przypadek negatywny: top 46 → nowy test oblewa 22/22. N1 NISKIE (backlog): tests/figures-v2-styk-siedzenie-kneeling-hinge.test.ts sprawdza |środek miednicy − wierzch skrzyni| ≤ 12 zamiast odstępu ≤ 1 cm (granicę ≤ 1,5 daje test obecności seat). Skróty poza kneeling_hinge bez zmian względem r1.",
+   "cwiczenia": [
+    "Seated Good Mornings"
+   ],
+   "bez_rysunku": [
+    "Kneeling Squat"
+   ]
+  }
+ },
+ "zestawy": {
+  "Seated Good Mornings": {
+   "rodzina": "kneeling_hinge",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 kneeling_hinge, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny kneeling_hinge, partia 5, runda r2, gałąź figury/partia-5-kneeling_hinge @ 517694cf (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-kneeling_hinge-r2-audytor-2026-11-10.md",
+   "sha": "6d8665e4bef9",
+   "uwagi": "hinge.back (plecy neutralne przez cały ruch) — zgodne, zgięcie kręgosłupa 0° w każdej klatce; gm.light (lekki ciężar na start) — nie dotyczy geometrii, rysunek nie przeczy; mis.roundBack — animacja błędu pokazuje zaokrąglenie pleców do 26°, gryf zostaje na plecach. Runda r2: zmieniła się tylko wysokość skrzyni, zdania nadal zgodne."
+  }
+ },
+ "karty": {},
+ "v1_zastapiona": []
+}

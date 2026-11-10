@@ -12,7 +12,8 @@ export const PRZYBLIZENIA = {
 };
 
 function seatedGM(cw, o = {}) {
-  const { top = 46, p0 = 2, p1 = 44 } = o; const m = [0, top + 11.8]; const ax = 40;
+  /* recenzja r1 S1 (10.11.2026): miednica stała (57,8), skrzynia 47,3 cm — kolider miednicy 1,0 cm nad skrzynią (próg styku 1,5), więc świeci styk „seat”; tułów i sztanga bez zmian */
+  const { top = 47.3, p0 = 2, p1 = 44 } = o; const m = [0, 46 + 11.8]; const ax = 40;
   const fr = (u, bend = 0) => { const p = lerp(p0, p1, ease(u)); const g = (sg) => ({ g: tp(m, p, BODY().trunk - 3, -12.8, sg * 32), pole: [-0.7, -1, sg * 0.5] });
     return K({ u, m, p, bend, head: p * 0.7, R: { a: [ax, 7, 10], pod: 0, rot: 10, pole: [1, 0.4, 0.05] }, L: { a: [ax, 7, -10], pod: 0, rot: 10, pole: [1, 0.4, -0.05] }, hr: g(1), hl: g(-1) }); };
   const ok = (u) => fr(u), zle = (u) => fr(u, 26 * ease(u));
