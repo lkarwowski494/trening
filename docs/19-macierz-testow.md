@@ -454,7 +454,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +15 |
 | {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +164 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +461 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +462 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +91 |
@@ -1730,7 +1730,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/geom.norm | lib/figures/geom.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/geom.rawPoints | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.posePoints | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts |
-| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +26 |
+| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-press-machine-r1.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +27 |
 | figures/geom.toHorizontal | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-pendlay.test.ts |
 | figures/geom.angleAt | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.lerpPose | lib/figures/geom.ts | tests/figures.test.tsx |
@@ -1822,11 +1822,11 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/families.viewsOf | lib/figures/v2/families.ts | tests/figury-1-0-recenzja.test.ts, tests/figury-p2-r2.test.ts, tests/figury-p2-r3.test.ts +2 |
 | figures/v2/families.familyOf | lib/figures/v2/families.ts | tests/figures-v2-mapping.test.ts, tests/figury-mobilnosc-pokrycie.test.ts, tests/figury-recenzja.test.tsx +1 |
 | figures/v2/families.assignAll | lib/figures/v2/families.ts | tests/figures-v2-cues.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-errors.test.tsx +12 |
-| figures/v2/figure.figureSpec | lib/figures/v2/figure.ts | tests/cues.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +49 |
+| figures/v2/figure.figureSpec | lib/figures/v2/figure.ts | tests/cues.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-press-machine-r1.test.ts +50 |
 | figures/v2/figure.familyReviewed | lib/figures/v2/figure.ts | tests/figury-styk.test.ts, tests/recenzja-wyjatki-1-1.test.ts |
 | figures/v2/figure.shownFigureSpec | lib/figures/v2/figure.ts | tests/figura-klatka-zrzutu.test.tsx, tests/figures-v2-ui.test.tsx, tests/figures-v2-wstrzymane.test.ts +6 |
 | figures/v2/figure.figureWithheld | lib/figures/v2/figure.ts | tests/audit-0.10-lang-ui.test.tsx, tests/recenzja-wyjatki-1-1.test.ts |
-| figures/v2/figure.frameAt | lib/figures/v2/figure.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +29 |
+| figures/v2/figure.frameAt | lib/figures/v2/figure.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-press-machine-r1.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +30 |
 | figures/v2/figure.faultWeight | lib/figures/v2/figure.ts | tests/figures-v2-errors.test.tsx |
 | figures/v2/figure.faultApplicable | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-errors.test.tsx, tests/figures-v2-zgodnosc-wsteczna.test.ts |
 | figures/v2/figure.measuredJoint | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-katy-fazy.test.tsx, tests/figures-v2-olympic-petla.test.ts +1 |
@@ -1936,7 +1936,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/skeleton.hipPoint | lib/figures/v2/skeleton.ts | tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
 | figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +4 |
 | figures/v2/skeleton.soleY | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +1 |
-| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +26 |
+| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-press-machine-r1.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +27 |
 | figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-nakladka-fix4.test.tsx +6 |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-nakladka-squat-hinge.test.tsx +5 |
 | figures/v2/ui.techniquesOf | lib/figures/v2/ui.ts | tests/figures-v2-nakladka-chest-press-machine.test.tsx, tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-nakladka-fix4.test.tsx +7 |

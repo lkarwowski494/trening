@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 214,
-      "v1": 41,
-      "bezFigury": 453,
-      "daneV2NieWlaczone": 322,
-      "wyjatekBezAnimacji": 143
+      "v2": 219,
+      "v1": 40,
+      "bezFigury": 449,
+      "daneV2NieWlaczone": 317,
+      "wyjatekBezAnimacji": 142
     },
-    "animowanyBlad": 132,
+    "animowanyBlad": 134,
     "wskazowki": {
       "wlasne": 283,
       "wlasneZBledami": 174,
-      "ogolne": 113,
-      "bezTekstu": 312
+      "ogolne": 115,
+      "bezTekstu": 310
     },
-    "czesteBledyTekst": 287,
+    "czesteBledyTekst": 289,
     "roleMiesni": 513,
-    "pelnaKarta": 210,
-    "pelnaKartaBlad": 131,
-    "recenzjaFigur": 214
+    "pelnaKarta": 214,
+    "pelnaKartaBlad": 133,
+    "recenzjaFigur": 219
   },
   "kartZTekstami": 584,
   "rodziny": {
@@ -547,15 +547,15 @@
     "chest_press_machine": {
       "status": "ready",
       "cwiczen": 5,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 5,
-      "v1": 1,
+      "figuraV2": 5,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 3,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 2,
+      "bezTekstu": 1,
+      "pelnaKarta": 4,
+      "pelnaKartaBlad": 2,
+      "recenzja": 5
     },
     "cable_press": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 214,
-    "figura.wAplikacji": 255,
+    "figura.v2": 219,
+    "figura.wAplikacji": 259,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 132,
+    "animowanyBlad": 134,
     "wskazowki.wlasne": 283,
     "wskazowki.wlasneZBledami": 174,
-    "wskazowki.zTekstem": 396,
-    "czesteBledyTekst": 287,
+    "wskazowki.zTekstem": 398,
+    "czesteBledyTekst": 289,
     "roleMiesni": 513,
-    "pelnaKarta": 210,
-    "pelnaKartaBlad": 131,
-    "recenzjaFigur": 214,
+    "pelnaKarta": 214,
+    "pelnaKartaBlad": 133,
+    "recenzjaFigur": 219,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 584,
     "jezyk.en.kompletne": 584,

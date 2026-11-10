@@ -348,6 +348,11 @@ Odesłanie z wpisu DEC-07 w `docs/18` („1.0.1: podgląd liczb i krok importu �
 - Szrugsy z maszyny (ACG-019 rozszerzenie: Smith Behind the Back, Leverage, Calf-Machine — łokieć 21–45° wbrew `shrug.tall`) → 1.1, stały łokieć w `shrug.json`.
 - ACG-010 (Alternating Deltoid Raise) i ACG-015 (Dumbbell Seated Box Jump): technika ustalona źródłami (`docs/research/acg-010-015-technika-2026-10-31.md`), wdrożenie figur i zestawów → przy włączeniu rodzin delt_raise / plyo (decyzja koordynatora o terminie otwarta).
 
+### Backlog 1.1.x — figury: partia 4 (recenzje niezależne r1/r2 10.11.2026, ŚREDNIE i NISKIE — nie blokują; `docs/research/recenzje/partia4-*-audytor-2026-11-10.md`)
+- **P4-CPM-1** (chest_press_machine, zestaw Smith Machine Shoulder Press, werdykt „do poprawy”, ŚREDNIE) `ohp.seat` mówi „hantle przy barkach”, a rysunek i ćwiczenie to gryf suwnicy Smitha. Poprawka: usunąć `ohp.seat` z zestawu Smith albo dodać `CUE_REQUIRES['ohp.seat']` (tylko hantle); drugi użytkownik `ohp.seat`: Seated Cable Shoulder Press (poza tą rodziną).
+- **P4-CPM-2** (chest_press_machine, NISKIE) negatywy testu r1 na stałych liczbach (T1 r2) — test odtwarzający wady r1 opiera się na zaszytych wartościach; przepisać na wartości liczone z danych.
+- **P4-CPM-3** (chest_press_machine, NISKIE) `do_przegladu` w `figury-ograniczenia-silnika.json` (dźwignia Machine Shoulder Press z boku) — recenzent: zamknąć jako aktualny.
+
 ### Backlog 1.1 — architektura (plan napraw M2, 28.10.2026)
 - **Podział plików źródłowych ponad 20 KB** (M1-audytor-generalny-035; 05-architekt-004): `lib/seed.ts`, `lib/plan.ts`, `lib/generator.ts`, `lib/equipment.ts`, `lib/stats.ts`, `components/ActiveWorkout.tsx`, `lib/edit.ts`, `components/WorkoutBlocks.tsx`, `app/template/[id].tsx`, `components/ui.tsx`, `lib/state/migrate.ts` i inne z listy wyjątków `tests/architecture-limits.test.ts` — dzielone przy najbliższej zmianie danego pliku w 1.1 (nie przed 1.0: zamrożenie zakresu, ryzyko regresji); nowy plik ponad limit już dziś blokuje verify (strażnik z listą wyjątków).
 
