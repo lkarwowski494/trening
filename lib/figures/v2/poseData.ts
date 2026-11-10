@@ -66,7 +66,7 @@ export const MEASURE_UNIT: Record<MeasuredJoint, 'deg' | 'cm'> = { knee: 'deg', 
  */
 export const MIN_MEASURED_ROM = { deg: 15, cm: 2 } as const;
 /** `lowerFirst` w wyjątku odwraca kierunek tylko tego ćwiczenia: rodzina z różnym kierunkiem u: 0 → 1 (suwnica: wypychanie, hack: opuszczanie; wejście na stopień: w górę, wykrok: w dół) nie może mieć jednego wpisu dla wszystkich (strażnik: tests/figures-v2-kierunek-u.test.ts). */
-export type PhaseOverride = { names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true; lowerFirst?: boolean };
+export type PhaseOverride = { side?: 'R' | 'L'; names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true; lowerFirst?: boolean };
 export type DataUi = {
   /** Nazwy faz licznika: first = faza u: 0 → 1, second = powrót. */
   names: { first: PhaseName; second: PhaseName };
@@ -112,9 +112,10 @@ export const DATA_UI: Record<string, DataUi> = {
    * suwnica (Leg Press, Single Leg Press) — u = 0 nogi zgięte, u = 1 platforma wypchnięta: wypychanie 1 s, opuszczanie 2 s. Staw: kolano. */
   leg_machine: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
     exceptions: { 'Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Single Leg Press': { names: { first: 'Wypychanie', second: 'Opuszczanie' }, lowerFirst: false } } },
-  /* lunge (partia 9, 10.11.2026): u = 0 stanie, u = 1 dół wykroku, przysiadu na jednej nodze albo bułgarskiego — opuszczanie 2 s, wstawanie 1 s; wejście na stopień (Step Up, Barbell Step Up) ma u = 0 stopę na podłodze, u = 1 stanie na stopniu: wstawanie 1 s, opuszczanie 2 s (strażnik: tests/figures-v2-kierunek-u.test.ts) */
+  /* lunge (partia 9, 10.11.2026; `side: 'R'` = noga przednia/pracująca mierzona wprost, gdy zamach nogi tylnej zgina jej kolano dalej niż pracę nogi przedniej — recenzja r1, W1): u = 0 stanie, u = 1 dół wykroku, przysiadu na jednej nodze albo bułgarskiego — opuszczanie 2 s, wstawanie 1 s; wejście na stopień (Step Up, Barbell Step Up) ma u = 0 stopę na podłodze, u = 1 stanie na stopniu: wstawanie 1 s, opuszczanie 2 s (strażnik: tests/figures-v2-kierunek-u.test.ts) */
   lunge: { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['knee'],
-    exceptions: { 'Step Up': { names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Barbell Step Up': { names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false } } },
+    exceptions: { 'Step Up': { side: 'R', names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false }, 'Barbell Step Up': { side: 'R', names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFirst: false },
+      'Reverse Lunge': { side: 'R' }, 'Curtsy Lunge': { side: 'R' }, 'Crossover Reverse Lunge': { side: 'R' }, 'Elevated Back Lunge': { side: 'R' }, 'Lunge Pass Through': { side: 'R' } } },
   /* row (09.11.2026, partia 1): u = 0 ręce w zwisie (łokcie prawie proste), u = 1 łokcie za tułowiem: przyciąganie ciężaru 1 s, opuszczanie 2 s; mierzony staw — łokieć */
   row: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
   /* overhead_press (09.11.2026, partia 1): u = 0 dłonie przy barkach (landmine: gryf przy klatce), u = 1 ręce wyprostowane nad głową / przed sobą: wypychanie 1 s, opuszczanie 2 s; mierzony staw — łokieć.
