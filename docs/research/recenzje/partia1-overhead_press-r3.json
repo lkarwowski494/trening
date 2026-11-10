@@ -1,0 +1,231 @@
+{
+ "v2": {
+  "overhead_press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026: wyswietlana (W1-r2, W2-r2, N1–N3 r2 zamknięte; Ś1-r3 i N1–N3-r3 do backlogu)",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "sha": "065ae12bd57d",
+   "liczba": 23,
+   "slad": "arkusz-slad: 21 ćw. × side+front, motyw jasny (42 PNG) + ciemny dla 6 ćw. (12 PNG); arkusz-nakladka --family (44 PNG); powiększenia side u 0/0,05/0,5/0,6/1 (OHP sztanga, Seated Barbell Military, Kettlebell Press). Tor w świecie: 9 stojących 2,8–3,0 cm (chwyt x 13,3→14,3→12,1→6,4 cm), tułów odchyla się do −12,4° i wraca do pionu; siedzące 10,5–12,6 cm (wyjątek), Arnold 9,6, See-Saw 1,2, landmine 1,3–1,7, zza karku 2,5.",
+   "uwagi": "Ś1-r3: siedzące — gryf ok. 14 cm od twarzy wymuszony regułą lokcie_pod_dlonmi w modelu ze sztywnym barkiem (do przeglądu badacza). N1-r3: liczba odchyłu w docs/18 (−11° vs −12,4/−13,6°). N2-r3: test :112 indeks zamiast u. N3-r3: rack kettlebella szeroki, zgięcie barku 35°.",
+   "cwiczenia": {
+    "Overhead Press (sztanga)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor side 2,8 cm w świecie; odchył tułowia do −12,4° (reguła −15…10°)"
+    },
+    "Overhead Press (hantle)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak sztanga; oś hantla poprzecznie"
+    },
+    "Band Shoulder Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak OHP sztanga"
+    },
+    "Wyciskanie nad głowę (linki)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak OHP sztanga; linki z dolnych bloczków"
+    },
+    "Single Arm Overhead Press (hantel)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak OHP sztanga"
+    },
+    "See-Saw Press (Alternating Side Press)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 1,2 cm, 2 zawr. (wyjątek uzasadniony); odchył −13,6°"
+    },
+    "Push Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 2,7 cm, 1 zawr."
+    },
+    "Push Press - Behind the Neck": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 2,5 cm, 0 zawr. (N3-r2 zamknięte)"
+    },
+    "Kettlebell Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 3,0 cm; rack: łokieć 16,6 cm przed barkiem, zgięcie barku 35° (N3-r3, backlog)"
+    },
+    "Double Kettlebell Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak Kettlebell Press"
+    },
+    "Kettlebell Seated Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 10,5 cm — wyjątek siedzący (Ś1-r3, backlog po decyzji badacza); rack N3-r3"
+    },
+    "Seated Shoulder Press (hantle)": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 12,6 cm — wyjątek siedzący (Ś1-r3)"
+    },
+    "Seated Barbell Military Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 12,6 cm — wyjątek siedzący (Ś1-r3)"
+    },
+    "Seated Cable Shoulder Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 12,6 cm — wyjątek siedzący (Ś1-r3)"
+    },
+    "Arnold Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "9,6 cm, 0 zawr. — cecha, wyjątek uzasadniony"
+    },
+    "Kettlebell Arnold Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "jak Arnold Press"
+    },
+    "Standing Barbell Press Behind Neck": {
+     "werdykt": "wyswietlana",
+     "uwagi": "tor 2,5 cm"
+    },
+    "Landmine Press": {
+     "werdykt": "wyswietlana",
+     "uwagi": "bez zmian od r2; Ś3-r1 (silnik) bez zmian"
+    },
+    "Landmine Linear Jammer": {
+     "werdykt": "wyswietlana",
+     "uwagi": "bez zmian od r2"
+    },
+    "Single-Arm Linear Jammer": {
+     "werdykt": "wyswietlana",
+     "uwagi": "bez zmian od r2"
+    },
+    "Pike Push Up": {
+     "werdykt": "wyswietlana",
+     "uwagi": "bez zmian"
+    }
+   }
+  }
+ },
+ "zestawy": {
+  "Double Kettlebell Press": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "eb75900055cc",
+   "uwagi": "ohp.move, ohp.tall, ohp.elbowsUnder zgodne: tor w świecie pionowy, łokieć–chwyt ≤ 7,4 cm, tułów w regule"
+  },
+  "See-Saw Press (Alternating Side Press)": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "a1b3a704b8a1",
+   "uwagi": "ohp.move, ohp.elbowsUnder, ohp.tall zgodne: tor 1,2 cm, tułów w regule"
+  },
+  "Standing Barbell Press Behind Neck": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "42342e23390a",
+   "uwagi": "ohp.tall zgodne (tor 2,5 cm); skrót bez zmian od r2"
+  },
+  "Seated Cable Shoulder Press": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "74600f4a2d25",
+   "uwagi": "ohp.move, ohp.fullExt zgodne; Ś1-r3 dotyczy rysunku, nie zdań; skrót bez zmian od r2"
+  },
+  "Push Press - Behind the Neck": {
+   "rodzina": "ohp",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "4baa1c1dba94",
+   "uwagi": "potwierdzenie; skrót bez zmian od r2"
+  }
+ },
+ "karty": {
+  "Overhead Press (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "a5b449abc0c2",
+   "uwagi": "ohp.bbSetup, ohp.move, ohp.tall, ohp.feet zgodne z rysunkiem r3"
+  },
+  "Overhead Press (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "ccc275f28bcb",
+   "uwagi": "ohp.dbSetup, ohp.move, ohp.tall, ohp.elbowsUnder zgodne"
+  },
+  "Wyciskanie nad głowę (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "a829933654f6",
+   "uwagi": "cohp.setup, ohp.move, ohp.elbowsUnder, ohp.tall zgodne"
+  },
+  "Seated Shoulder Press (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r3 10.11.2026",
+   "autor": "programista (partia 1, subagent)",
+   "recenzent": "audytor",
+   "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
+   "sha": "dd75a3c56ef9",
+   "uwagi": "ohp.seat, ohp.move, ohp.elbowsUnder, ohp.fullExt zgodne; skrót bez zmian od r2"
+  }
+ },
+ "v1": {
+  "Overhead Press (sztanga)": {
+   "rodzina": "overhead_press",
+   "werdykt": "zastapiona",
+   "data": "2026-11-10",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2, r3 10.11.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "bfc74593013f"
+  },
+  "Overhead Press (hantle)": {
+   "rodzina": "overhead_press",
+   "werdykt": "zastapiona",
+   "data": "2026-11-10",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2, r3 10.11.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "3e347eb43c85"
+  },
+  "Seated Shoulder Press (hantle)": {
+   "rodzina": "overhead_press",
+   "werdykt": "zastapiona",
+   "data": "2026-11-10",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2, r3 10.11.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "8dbad216d858"
+  },
+  "Push Press": {
+   "rodzina": "overhead_press",
+   "werdykt": "zastapiona",
+   "data": "2026-11-10",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2, r3 10.11.2026); przy wycofaniu v2 wymaga recenzji",
+   "sha": "1a6202fc3925"
+  }
+ }
+}

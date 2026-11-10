@@ -29,7 +29,7 @@ export const FAMILIES: Family[] = [
   { id: 'hinge', status: 'ready', label: 'Zawias biodrowy (martwy ciąg, RDL, dzień dobry)', views: ['side', 'front'], effort: 0 },
   { id: 'pushup_plank', status: 'planned', label: 'Pompki, deski, rollouty, ruchy w podporze', views: ['side', 'front'], effort: 4, note: 'rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy' },
   { id: 'dip', status: 'planned', label: 'Dipy (poręcze, ławka, maszyna, kółka)', views: ['side', 'front'], effort: 2 },
-  { id: 'overhead_press', status: 'planned', label: 'Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk)', views: ['side', 'front'], effort: 4 },
+  { id: 'overhead_press', status: 'ready', label: 'Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk)', views: ['side', 'front'], effort: 4 },
   { id: 'row', status: 'ready', label: 'Wiosłowanie w pochyleniu / z podparciem / jednorącz', views: ['side', 'top'], effort: 4 },
   { id: 'cable_row', status: 'ready', label: 'Wiosłowanie na linkach i maszynie, face pull', views: ['side', 'front'], effort: 3 },
   { id: 'pull_up', status: 'ready', label: 'Podciąganie i zwis (drążek, kółka, lina)', views: ['side', 'front'], effort: 0, note: 'pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2' },
