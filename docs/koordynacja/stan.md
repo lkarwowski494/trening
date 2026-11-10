@@ -19,11 +19,11 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Praca wznowiona przez właściciela 07:00 UTC („Przejmij i wznów pracę”). Koordynator …VBxiRkBevtfwuCxxs97 ma 28% kontekstu → przekazuje pracę następcy (E6); to sesja czatu właściciela (/apps4brew), po przekazaniu tylko przekazuje wiadomości.
 - A2 (pociąg-4: partia 2, przegląd scalenia, verify:szybkie, CI) pracuje od 08:02; origin/scal/pociag-4 nadal 760afa88 (08:40). Po PRZEKAZANIU A2: odbiór (SHA, autor, tests.yml na SHA, plik docs/research/recenzje/pociag-4-scalenie.md) → `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs scal/pociag-4` na integracja-1-1 → CI wyniku scalenia.
 - B (partia 5) przy 35,8% kontekstu (08:18) dostała polecenie: dokończyć verify:szybkie → push → PRZEKAZANIE, bez nowych zadań; origin/figury/partia-5 nadal cd789d82 (08:40). Jej raport 07:34 (strażniki 432be36, lekcja c3b25d5, rotator_cuff r1 czysta, scalenie integracji wg KO-021) to deklaracje — niesprawdzone. Po PRZEKAZANIU B: odbiór, ewentualny następca B2 na resztę, potem pociąg-5 (partia 5 na integracji po pociągu-4).
-- Po pociągu-4 w integracji: tura 3 w 2 sesjach (KO-017; wzór polecenia: polecenia/wzor-partia.md + zasady z polecenia B.md pkt 4–8). Właściciel dostał 08:30 opcję „4 sesje zamiast 2” (szybciej o ok. pół dnia, szybciej zjada limit) z rekomendacją 2 — bez odpowiedzi; domyślnie 2.
+- Po pociągu-4 w integracji: tura 3 w 2 sesjach (KO-017; wzór polecenia: polecenia/wzor-partia.md + zasady z polecenia B.md pkt 4–8). Właściciel dostał 08:30 opcję „4 sesje zamiast 2” (szybciej o ok. pół dnia, szybciej zjada limit) z rekomendacją 2 i odpowiedział 2026-11-10 ~08:50 UTC: „Możesz puścić, mam reset limitu dostępny.” → **tura 3 w 4 sesjach** (zmienia KO-017); pułap doby 350 USD bez zmian.
 - Start sesji podrzędnej: create_session z całym promptem roli wykonuje subagent (Agent, model opus) — pierwsza próba na sonnet przerwana przez klasyfikator (WG-05). W poleceniach podawaj pełną nazwę narzędzia mcp__claude-code-remote__send_message.
 - Szacunek dla właściciela (08:30, w czacie): gotowość 1.1 do zgłoszenia 16–18.11 (optymistycznie 14.11, pesymistycznie 19–21.11); założenia: tura 3 do 11–12.11, przekład i zadania przed 1.1 do 12–13.11, zamrożenie + audyt (ZB-043) + naprawy do 14–15.11, E2E pełny katalog + TestFlight + telefon. Otwarte ryzyka blokujące wg docs/40 (odczyt subagenta, niesprawdzone przez koordynatora): R-101-28, R-11-01, R-11-02, R-008 b. docs/48 nie ma kroków zgłoszenia 1.1 — do dopisania (sesja 10-wydanie) przed sesją w ASC. Nazwa RepsGoat: wg docs/zobowiazania.md ZB-056 zarezerwowana w ASC 09.11 (odczyt subagenta) — pozycja 13 w tabeli zadań do zamknięcia po sprawdzeniu.
 - Karta „Stan projektu” w CLAUDE.md: brak; właściciel 07:00: „Pozycja w planie M9” → sesja z dokumentami po turze 3 (propozycja do zatwierdzenia).
-- Limit tygodniowy konta: allowed_warning, reset 2026-11-15 16:00 UTC; równolegle pracują koordynatorzy M9 Oczka, Piekarza i Szkoły Pokera (ich sesji i przypomnień nie ruszać).
+- Limit tygodniowy konta: allowed_warning, reset 2026-11-15 16:00 UTC; właściciel 08:50: ma dostępny reset limitu (limit nie jest powodem do zwalniania tempa); równolegle pracują koordynatorzy M9 Oczka, Piekarza i Szkoły Pokera (ich sesji i przypomnień nie ruszać).
 
 ## Zadania i stan (na chwilę wstrzymania)
 | # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
@@ -63,7 +63,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 | 05:25 | pociąg-3 scalony (dfaeeef) | koordynator | — | — |
 | 07:15–~09:30 | pociąg-4 (partia 4 + thruster + partia 2, wpis docs/18 KO-012) → scal-galaz do integracji | A, potem koordynator | zielony tests.yml | — |
 | 07:15–~11:00 | partia 5: CI, przegląd strażników, rotator_cuff r1/r2, lekcja → pociąg-5 | B | — | — |
-| po pociągu-4 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — 2 sesje (KO-017) | nowe sesje partii C, D (wzór: polecenia/wzor-partia.md) | pociąg-4 w integracji | — |
+| po pociągu-4 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — 4 sesje (właściciel 08:50) | nowe sesje partii C, D, E, F (wzór: polecenia/wzor-partia.md) | pociąg-4 w integracji | — |
 | po turze 3 | karta „Stan projektu” w CLAUDE.md (propozycja) | sesja docs | — | zatwierdzenie karty |
 | do decyzji | gałąź z poprawkami CI dla main (KO-015) | sesja 08 | — | zgoda na scalenie do main |
 | po turze 3 | przekład nowych tekstów (ZB-057), recenzja lokalizacji zbiorcza, zadania przed 1.1 (niżej), audyt, E2E | — | — | Approve TF |
@@ -108,3 +108,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 08:18 | B, A2 | get_session: B 35,8% kontekstu, 18,35 USD, czeka na verify:szybkie przed pushem (114 commitów) → polecenie PRZEKAZANIA; A2 pracuje (scalanie partii 2) | odbiór po PRZEKAZANIU |
 | 2026-11-10 08:30 | właściciel | pytania „Status?” i o termin 1.1 → odpowiedź z szacunkiem 16–18.11 (sekcja Teraz) | — |
 | 2026-11-10 08:40 | koordynator | kontrola: brak nowych pushy (scal/pociag-4 760afa88, partia-5 cd789d82); własny kontekst 28% → E6 | start następcy |
+| 2026-11-10 08:50 | właściciel | „Możesz puścić, mam reset limitu dostępny.” (odpowiedź na opcję 4 sesji dla tury 3) → tura 3 w 4 sesjach po pociągu-4 | następca zleca C–F |
