@@ -108,7 +108,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 7 | 0 | 12 | 0 | 0 |
 | `kb_ballistic` | gotowa | 17 | 16 | 0 | 0 | 9 | 7 | 1 | 16 | 16 |
 | `cardio` | do zrobienia | 16 | 0 | 0 | 1 | 5 | 0 | 11 | 0 | 0 |
-| `leg_isolation` | do zrobienia | 14 | 0 | 8 | 1 | 6 | 0 | 8 | 0 | 0 |
+| `leg_isolation` | gotowa | 14 | 0 | 8 | 1 | 6 | 0 | 8 | 0 | 0 |
 | `calf_raise` | gotowa | 13 | 10 | 2 | 1 | 11 | 1 | 1 | 10 | 10 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 1 | 0 | 12 | 0 | 0 |
 | `pull_up` | gotowa | 13 | 11 | 0 | 0 | 3 | 8 | 2 | 10 | 11 |

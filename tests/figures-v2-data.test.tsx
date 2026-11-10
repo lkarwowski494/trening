@@ -66,6 +66,8 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else if (f === 'chest_fly') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       /* overhead_press (10.11.2026): u = 0 dłonie przy barkach, u = 1 ręce wyprostowane — zgięcie łokcia maleje; Pike Push Up odwrotnie (u = 1 łokcie zgięte, głowa przy podłodze) */
       else if (f === 'overhead_press') { expect([k, k === 'Pike Push Up' ? measuredAngle(s, 1).deg > measuredAngle(s, 0).deg : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* leg_isolation (10.11.2026, partia 9): mierzone kolano — uginania nóg (u = 1 zgięte) mają kąt rosnący, prostowanie na maszynie i wysuwanie nóg w Slider Hamstring Curl (u = 0 zgięte) malejący */
+      else if (f === 'leg_isolation') { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, ['Leg Curl', 'Lying Leg Curl', 'Standing Leg Curl', 'Standing Cable Leg Curl', 'Seated Band Hamstring Curl'].includes(k)]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });

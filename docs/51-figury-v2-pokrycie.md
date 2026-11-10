@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 27, do zrobienia: 16); ćwiczeń z gotową figurą: **394** (55,6%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 28, do zrobienia: 15); ćwiczeń z gotową figurą: **402** (56,7%).
 
 ## Rodziny
 
@@ -21,7 +21,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `pulldown` | gotowa | 8 | side, front | — | Ściąganie drążka (wyciąg górny) |
 | `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
 | `leg_machine` | gotowa | 8 | side, front | — | Suwnice i maszyny nóg (leg press, hack, wahadło) |
-| `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
+| `leg_isolation` | gotowa | 14 | side | — | Prostowanie i uginanie nóg, nordic, sissy |
 | `calf_raise` | gotowa | 13 | side | — | Wspięcia na palce |
 | `hip_bridge` | gotowa | 11 | side | — | Hip thrust i mostki |
 | `kb_ballistic` | gotowa | 17 | side | — | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
@@ -53,7 +53,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | gotowa | 4 | side, top | — | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 15 rodzin, 216 ćwiczeń, ok. **45 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
 
 ## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
 
@@ -63,6 +63,7 @@ Razem do zrobienia: 16 rodzin, 230 ćwiczeń, ok. **48 h pracy agenta** (rig + t
 - `cable_row` (z figurą 9 z 10): Sled Row
 - `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 - `leg_machine` (z figurą 6 z 8): Calf Press (leg press); Smith Machine Leg Press
+- `leg_isolation` (z figurą 8 z 14): Glute Ham Raise; Leg Curl (hantel); Nordic Curl; Reverse Nordic; Sissy Squat; Stability Ball Hamstring Curl
 - `calf_raise` (z figurą 12 z 13): Smith Machine Reverse Calf Raise
 - `hip_bridge` (z figurą 10 z 11): London Bridges
 - `kb_ballistic` (z figurą 16 z 17): Kettlebell Pirate Ships
@@ -126,7 +127,7 @@ Barbell Side Split Squat; Barbell Step Up; Barbell Walking Lunge; Bulgarian Spli
 
 Belt Squat Machine; Calf Press (leg press); Hack Squat; Leg Press; Lying Machine Squat; Pendulum Squat; Single Leg Press; Smith Machine Leg Press
 
-### leg_isolation (14) — do zrobienia
+### leg_isolation (14) — gotowa
 
 Glute Ham Raise; Leg Curl; Leg Curl (hantel); Leg Extension; Lying Leg Curl; Nordic Curl; Reverse Nordic; Seated Band Hamstring Curl; Single-Leg Leg Extension; Sissy Squat; Slider Hamstring Curl; Stability Ball Hamstring Curl; Standing Cable Leg Curl; Standing Leg Curl
 
