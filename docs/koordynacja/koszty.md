@@ -20,3 +20,4 @@
 | C …VBxTDiB5JhTrZDFWNK4 | 08 build (opus): partia 6 plyo | 60 | 18,87 | 39,8 | 10:20 zlecone → 10:33 start → 11:36 push fed9a704 → CI b.d. → odbiór po C2 | ~50 min: czekanie na podział poseData.ts (KO-024) | kontekst 39,8% > 38% — zadanie rodziny 27 ćw. + 3 rundy recenzji za duże na jedną sesję |
 Mnożnik szacunku: brak szacunków tej nocy [DO USTALENIA].
 Przegląd przepływu 2026-11-10: największa strata ~1 h na każde dociąganie integracji → WG-01.
+| D | 08 build | 60 | 37,30 | 32,3 | 10:36 → 10:36 → ? → (czerwony spodziewany) → nieprzyjęta | czekała na KO-024 ~2 h (zapas poseData.ts 0 B — błąd polecenia) | przekazanie do D2 |
