@@ -1,0 +1,136 @@
+{
+ "v2": {
+  "forearm": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — runda r1: W1 WYSOKIE (Behind-the-Back Barbell Wrist Curl, kierunek zgięcia odwrotny do źródeł); S1, S2, S3 ŚREDNIE; N1, N2 NISKIE",
+   "autor": "programista (subagent, sesja session_01T66VByZrLpWxNF8yF3gpgu)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "3adcb03ac869",
+   "liczba": 13,
+   "slad": "Arkusze ze śladem toru: scripts/figures/arkusz-slad.mjs, 11 ćwiczeń × widok side = 11 arkuszy, 21 kadrów co 0,05, wygenerowane przez audytora z f0e4c57 i obejrzane w pełnej rozdzielczości (kadry u 0 / 0,5 / 1 powiększone 2–3×); dodatkowo arkusz-nakladka.mjs (4 ćwiczenia + pozy błędu data:0). Ślad: sztanga/wyciąg = środek gryfu/drążka, hantle = chwyt R (one-arm i pronacja/supinacja: trzyma R), talerz = środek chwytów — ślad w chwycie we wszystkich 11. Liczby z frameAt (u 0; 0,25; 0,5; 0,75; 1).",
+   "uwagi": "W1 WYSOKIE: Behind-the-Back Barbell Wrist Curl — dłoń zwrócona do ciała (palm = [1,0; −0,1; −0,2], przód = +x), zgięcie przesuwa sztangę 8,9 cm KU ciału (x −21,3 → −12,4) i tylko 1,7 cm w górę (y 80,2 → 81,9), odstęp od ciała 10,7 → 1,8 cm; źródła w repo (wyniki-uzup-1a.json): chwyt nachwytem stojąc tyłem do stojaka (dłonie do tyłu) i „travels up and slightly back”. Poprawka ramienia 22°→28° leczy objaw. S1: Reverse Plate Curls — talerz zawsze pionowy (draw.ts:476), choć przedramię obraca się o 104° przy zgięciu nadgarstka 0. S2: wr.range „tak nisko, jak pozwala nadgarstek” — dół −32° (uginanie) / +40° (odwrotne), limit silnika −65/+75. S3: Dumbbell Lying Pronation/Supination rysowane na siedząco (nazwa „Lying”), oba ćwiczenia to ta sama pętla. N1: łokieć 3D z boku uda (z 30,4 vs udo z 8,5–13,8). N2: poza błędu wr.mis.lift — łokieć opada 3,5 cm, zamiast się unieść. Pytania autora (2), (3), (4) i K14 — raport. Skróty innych rodzin bez zmian względem 13a3eb7 (diff --skroty: tylko nowy wpis forearm).",
+   "cwiczenia": [
+    "Barbell Wrist Curl",
+    "Barbell Reverse Wrist Curl",
+    "Wrist Curl (hantle)",
+    "Reverse Wrist Curl (hantle)",
+    "One-Arm Dumbbell Wrist Curl",
+    "One-Arm Dumbbell Reverse Wrist Curl",
+    "Cable Wrist Curl",
+    "Behind-the-Back Barbell Wrist Curl",
+    "Reverse Plate Curls",
+    "Dumbbell Lying Pronation",
+    "Dumbbell Lying Supination"
+   ],
+   "bez_rysunku": [
+    "Wrist Roller",
+    "Plate Pinch"
+   ]
+  }
+ },
+ "zestawy": {
+  "Barbell Wrist Curl": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range (−32° → +52°, sztanga w górę 9,2 cm); wr.mis.lift — poza błędu: przód przedramienia unosi się (N2). Zgodne z rysunkiem; S2 (dolne położenie) w raporcie."
+  },
+  "Barbell Reverse Wrist Curl": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range (nachwyt, dłoń w dół: +40° → −48°, wyprost unosi sztangę 9,7 cm — „zegnij nadgarstek w górę” pasuje); wr.mis.lift zgodne. S2 w raporcie."
+  },
+  "Wrist Curl (hantle)": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; oś hantli poprzeczna (z ≈ ±0,9) przy podchwycie. Zgodne z rysunkiem."
+  },
+  "Reverse Wrist Curl (hantle)": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; nachwyt, oś hantli poprzeczna, wyprost unosi hantle. Zgodne z rysunkiem."
+  },
+  "One-Arm Dumbbell Wrist Curl": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; pracuje prawa ręka, lewa nieruchomo na udzie. Zgodne z rysunkiem."
+  },
+  "One-Arm Dumbbell Reverse Wrist Curl": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "Odświeżenie wpisu z 02.11.2026 (sha bez zmian 8b1a50266007) wobec rysunku v2: wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; nachwyt, wyprost +40° → −48°, pracuje prawa ręka. Zgodne z rysunkiem."
+  },
+  "Cable Wrist Curl": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8b1a50266007",
+   "uwagi": "wr.forearms (łokieć przesuwa się ≤ 0,8 cm, kąt łokcia 116,9–117,1°, rusza się tylko nadgarstek; w rzucie z boku przedramię leży na udzie — N1), wr.range; linka z bloczka przed ławką (x 110, y 20) ciągnie dłoń w dół — opór przeciw zgięciu. Zgodne z rysunkiem."
+  },
+  "Behind-the-Back Barbell Wrist Curl": {
+   "rodzina": "forearm",
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "8f9b3d083294",
+   "uwagi": "wr.range „zegnij nadgarstek w górę” — na rysunku sztanga idzie 8,9 cm ku ciału i tylko 1,7 cm w górę, dłoń zwrócona do ciała (W1). mis.jerk — bez animacji, bez sprzeczności. Do ponownej oceny po poprawce W1."
+  },
+  "Reverse Plate Curls": {
+   "rodzina": "forearm",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny wobec rysunku v2 forearm, L-047)",
+   "autor": "badacz merytoryczny (zestawy ogólne, 25.10.2026; lib/figures/v2/cue-sets.json)",
+   "recenzent": "audytor (subagent)",
+   "kto": "audytor — recenzja niezależna rodziny forearm, partia 5, runda r1, gałąź figury/partia-5 @ f0e4c57 (worktree odłączony), 10.11.2026; raport docs/research/recenzje/partia5-forearm-r1-audytor-2026-11-10.md",
+   "sha": "88e974d922c7",
+   "uwagi": "curl.elbows (łokieć 1,0 → 2,7 cm przed barkiem, pion od barku), curl.noSwing (tułów 0°, miednica nieruchomo), curl.control (tempo) — zgodne; curl.mis.elbows — poza błędu: łokieć wysuwa się do przodu (x 6,5 → 20,0). Zdania zestawu pasują do ruchu; orientacja talerza — S1 (sprzęt, nie zdanie zestawu)."
+  }
+ },
+ "karty": {},
+ "v1_zastapiona": []
+}
