@@ -53,7 +53,7 @@ describe('A2 nogi: karty własne', () => {
 
   test('rodziny squat i hinge (ready, zrecenzowane zestawy ogólne) bez kart własnych z tej partii — pokrycie „Pełna karta” nie spada', () => {
     const fam = json('lib/figures/v2/cue-sets.json').items as Record<string, { b: string; f?: string }>;
-    for (const k of ['Box Squat', 'Zercher Squat', 'Overhead Squat', 'Deficit Deadlift', 'Axle Deadlift', 'Clean Deadlift']) expect([k, fam[k].b]).toEqual([k, 'general']);
+    for (const k of ['Box Squat', 'Zercher Squat', 'Deficit Deadlift', 'Axle Deadlift']) expect([k, fam[k].b]).toEqual([k, 'general']); /* 09.11.2026: Overhead Squat i Clean Deadlift mają karty własne z partii P1 (squat/hinge, z recenzją) — tests/zrodla-pelne-cues-p1-squat-hinge.test.ts */
   });
 
   test('Hack Squat: karta „do poprawy” zastąpiona kartą W2 — ustawienie hack.setup2, błąd hack.mis.hips; stare zdanie hack.setup i źródło ExRx usunięte ze wszystkich słowników', () => {

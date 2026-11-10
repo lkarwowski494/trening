@@ -1,0 +1,94 @@
+{
+  "karty": {
+    "Clean Deadlift": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "1734a33bd5e7",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: bez zmian; Catalyst 176 + BarBend/Vaughn"
+    },
+    "Single Leg RDL (hantel)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "0594be52ae01",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: slrdl.move 'cofając biodra' OK"
+    },
+    "Single Leg RDL (linki)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "0594be52ae01",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: P-4 naniesione (uproszczenie wariant sprzętu przy slrdl.move, mis.roundBack)"
+    },
+    "Barbell Hack Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "561375b5aeaa",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: bez zmian treści; P-7 (roundBack → otwarte) wg koordynatora, nieweryfikowane w diffie"
+    },
+    "Bodyweight Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "fd4b1ab165f5",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: bez zmian"
+    },
+    "Dumbbell Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "fd4b1ab165f5",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: bez zmian; uproszczenie nazwane"
+    },
+    "Overhead Squat": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "20f040e543b6",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: ohs.setup skrócone do części wspólnej; sq.mis.heels = ISSA + SBS z nazwaną analogią"
+    },
+    "Squat with Chains": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026; warunek R2-1 spełniony (ExRx zastąpiony barbend-back-squat w cues.json)",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "2ee2db20499b",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: sqc.chains odrzucone (EliteFTS=5); R2-1: sq.bar/sq.back — ExRx (403, nieprzeczytany) zastąpić barbend.com/back-squat (Step 2, Step 5); sq.back + SBS (spine rigid and extended); tekst bez zmian"
+    },
+    "Squat with Bands": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej, L-047) — partia P1 squat/hinge, rundy 1–2 badacza, 09.11.2026; warunek R2-1 spełniony (ExRx zastąpiony barbend-back-squat w cues.json)",
+      "autor": "programista P1 (sesja chmurowa, gałąź tekst/p1-squat-hinge; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+      "recenzent": "badacz-merytoryczny (recenzja niezależna L-047, rundy 1–2, 09.11.2026; nie pisał kart)",
+      "sha": "2ee2db20499b",
+      "kto": "badacz-merytoryczny — recenzja niezależna kart P1, runda 2, tekst/p1-squat-hinge @ e058cddb; wpis koordynatora po przekładzie (a5e525eb), sha z zrodla-runtime --skroty",
+      "uwagi": "r2: sqb.bands odrzucone (EliteFTS=5); R2-1 jak Chains; tekst bez zmian"
+    }
+  }
+}

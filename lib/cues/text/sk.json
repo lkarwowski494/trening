@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Postav sa do výpadu: jedna noha vpredu, druhá vzadu.",
  "plyo.splitSwitch": "Vyskoč, vo vzduchu vymeň nohy a dopadni do výpadu s druhou nohou vpredu.",
  "sled.backGrip": "Chyť lano saní oboma rukami.",
- "sled.backPedal": "Postav sa čelom k saniam a choď dozadu, odtláčaj sa nohami."
+ "sled.backPedal": "Postav sa čelom k saniam a choď dozadu, odtláčaj sa nohami.",
+ "bhs.setup": "Činka za nohami, drž ju nadhmatom v spustených rukách; chodidlá na šírku ramien.",
+ "cdl.move": "Odtlač sa nohami od podlahy a drž rovnaký uhol chrbta, kým činka neminie kolená.",
+ "cdl.setup": "Postav sa a chyť činku ako na prehodenie; kolená tlač von, kým sa nedotknú rúk.",
+ "ohs.arms": "Ruky drž počas celého pohybu vystreté.",
+ "ohs.move": "Zíď do drepu s činkou stále nad hlavou a postav sa.",
+ "ohs.setup": "Činka nad hlavou vo vystretých rukách.",
+ "slrdl.move": "Predkloň sa, boky tlač dozadu a voľnú nohu veď rovno dozadu; vráť sa vytlačením bokov dopredu.",
+ "slrdl.setup": "Postav sa na jednu nohu, koleno mierne pokrčené."
 }

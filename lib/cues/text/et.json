@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Asu väljaasteasendisse: üks jalg ees, teine taga.",
  "plyo.splitSwitch": "Hüppa üles, vaheta õhus jalgu ja maandu väljaasteasendisse, teine jalg ees.",
  "sled.backGrip": "Haara kelgu köiest kahe käega.",
- "sled.backPedal": "Seisa näoga kelgu poole ja kõnni tagurpidi, tõugates jalgadega."
+ "sled.backPedal": "Seisa näoga kelgu poole ja kõnni tagurpidi, tõugates jalgadega.",
+ "bhs.setup": "Kang jalgade taga, hoia seda pealthaardes alla rippuvates kätes; jalad õlgade laiuselt.",
+ "cdl.move": "Tõuka jalgadega põrandast ära ja hoia selja nurk samana, kuni kang on põlvedest möödas.",
+ "cdl.setup": "Asu paika ja haara kangist nagu rinnaletõsteks; suru põlved väljapoole, kuni need puudutavad käsi.",
+ "ohs.arms": "Hoia käed kogu liikumise vältel sirged.",
+ "ohs.move": "Lasku kükki, hoides kangi kogu aeg pea kohal, ja tõuse püsti.",
+ "ohs.setup": "Kang pea kohal sirgetel kätel.",
+ "slrdl.move": "Kalla end ette, viies puusad taha, ja vii vaba jalg otse taha; tule tagasi, lükates puusad ette.",
+ "slrdl.setup": "Seisa ühel jalal, põlv kergelt kõverdatud."
 }

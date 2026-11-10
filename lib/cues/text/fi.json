@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Asetu askelasentoon: toinen jalka edessä, toinen takana.",
  "plyo.splitSwitch": "Ponnista ylös, vaihda jalkoja ilmassa ja laskeudu askelasentoon toinen jalka edessä.",
  "sled.backGrip": "Tartu kelkan köyteen molemmin käsin.",
- "sled.backPedal": "Seiso kasvot kelkkaan päin ja kävele takaperin jaloilla työntäen."
+ "sled.backPedal": "Seiso kasvot kelkkaan päin ja kävele takaperin jaloilla työntäen.",
+ "bhs.setup": "Levytanko jalkojen takana, pidä sitä myötäotteella alas ojennetuin käsin; jalat hartioiden leveydellä.",
+ "cdl.move": "Työnnä jaloilla lattiasta ja pidä selän kulma samana, kunnes levytanko ohittaa polvet.",
+ "cdl.setup": "Asetu ja ota levytangosta ote kuin rinnallevetoon; työnnä polvia ulospäin, kunnes ne koskettavat käsiä.",
+ "ohs.arms": "Pidä kädet suorina koko liikkeen ajan.",
+ "ohs.move": "Laskeudu kyykkyyn pitäen levytankoa koko ajan pään yläpuolella ja nouse ylös.",
+ "ohs.setup": "Levytanko pään yläpuolella suorin käsin.",
+ "slrdl.move": "Taivu eteen viemällä lantiota taakse ja vie vapaa jalka suoraan taakse; palaa työntämällä lantio eteen.",
+ "slrdl.setup": "Seiso yhdellä jalalla, polvi hieman koukussa."
 }

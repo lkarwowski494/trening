@@ -183,7 +183,9 @@ describe('etap 2 po scaleniu E3: kolor błędu linii odniesienia i brak dwóch l
   test('W4\': linia pleców (backLine) jest w kolorze błędu przy mis.roundBack w martwym ciągu, RDL i przysiadzie Hack, a kneeToe (z przodu) przy sq.mis.kneesIn; bez błędu — guide', () => {
     const roleOf = (k: string, view: 'side' | 'front', cue: string | undefined, id: string) => { const s = spec(k); const e = cue ? errorsOf(s).find(x => x.cue === cue)?.error : undefined; if (cue) expect([k, cue, !!e]).toEqual([k, cue, true]);
       const g = guideShapes(s, 1, view, guidesOf(k), e).filter(x => x.k === 'line' && x.id === id) as Ln[]; expect([k, id, g.length]).toEqual([k, id, 1]); return g[0].role; };
-    for (const k of ['Deadlift (sztanga)', 'RDL (sztanga)', 'Good Morning', 'Barbell Hack Squat']) {
+    /* 09.11.2026 (P1): karta własna Barbell Hack Squat bez mis.roundBack (zaokrąglenie na dole — otwarte, p1-klucze) — Hack tylko z linią pleców w kolorze wskazówki (niżej) */
+    expect(cueIdsOf('Barbell Hack Squat').errs.includes('mis.roundBack')).toBe(false); expect(roleOf('Barbell Hack Squat', 'side', undefined, 'guideBack')).toBe('guide');
+    for (const k of ['Deadlift (sztanga)', 'RDL (sztanga)', 'Good Morning']) {
       expect([k, roleOf(k, 'side', 'mis.roundBack', 'guideBack')]).toEqual([k, 'error']); expect([k, roleOf(k, 'side', undefined, 'guideBack')]).toEqual([k, 'guide']);
     }
     expect(roleOf('Back Squat', 'front', 'sq.mis.kneesIn', 'guideKneeL')).toBe('error'); expect(roleOf('Back Squat', 'front', undefined, 'guideKneeL')).toBe('guide');

@@ -809,5 +809,13 @@
  "plyo.splitSetup": "Mettez-vous en fente : une jambe devant, l’autre derrière.",
  "plyo.splitSwitch": "Sautez, changez de jambe en l’air et retombez en fente, l’autre jambe devant.",
  "sled.backGrip": "Saisissez la corde du traîneau à deux mains.",
- "sled.backPedal": "Placez-vous face au traîneau et marchez en arrière en poussant avec les jambes."
+ "sled.backPedal": "Placez-vous face au traîneau et marchez en arrière en poussant avec les jambes.",
+ "bhs.setup": "Barre derrière les jambes, tenue en prise pronation, bras tendus vers le bas ; pieds écartés à largeur d’épaules.",
+ "cdl.move": "Poussez le sol avec les jambes et gardez le même angle du dos jusqu’à ce que la barre dépasse les genoux.",
+ "cdl.setup": "Mettez-vous en place et prenez la barre comme pour un épaulé ; poussez les genoux vers l’extérieur jusqu’à ce qu’ils touchent les bras.",
+ "ohs.arms": "Gardez les bras tendus pendant tout le mouvement.",
+ "ohs.move": "Descendez en squat en gardant la barre au-dessus de la tête tout le long, puis remontez.",
+ "ohs.setup": "Barre au-dessus de la tête, bras tendus.",
+ "slrdl.move": "Penchez-vous en reculant les hanches et envoyez la jambe libre droit vers l’arrière ; remontez en poussant les hanches vers l’avant.",
+ "slrdl.setup": "Tenez-vous sur une jambe, genou légèrement fléchi."
 }
