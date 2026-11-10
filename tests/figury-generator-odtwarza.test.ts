@@ -30,7 +30,7 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   shrug: ['Middle Back Shrug'],
   thruster: ['Clean and Press'],
 };
-const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise'];
+const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise', /* 10.11.2026 (partia 5): carry — generator odtwarza plik, rodzina bez rozjazdów */ 'carry'];
 
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
