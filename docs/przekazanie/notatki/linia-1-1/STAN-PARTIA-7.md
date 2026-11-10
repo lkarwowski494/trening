@@ -18,7 +18,7 @@ Pełne karty (pokrycie-katalogu): 371 → 392 (+14 core_floor, +7 glute_floor). 
    - `tests/pokrycie-katalogu.test.ts` „zapadka … jezyk.de.kompletne” — sprawdzić (może skutek celów).
    - `tests/strona-eksport-recenzja.test.ts` — czerwony w tym samym przebiegu (nieprzeanalizowany; zapewne skróty/wpisy po scaleniu).
    - `tests/architecture-limits.test.ts` — poseData.ts nad limitem: znika po KO-024.
-2. KO-024: po sygnale koordynatora (SHA integracji z podziałem `lib/figures/v2/rodziny/`) scal `origin/integracja-1-1`; wpisy LOAD/DATA_UI core_floor i glute_floor przenieś do `lib/figures/v2/rodziny/<rodzina>.ts` — gotowe pliki: `docs/przekazanie/notatki/linia-1-1/partia-7-rodziny/{core_floor,glute_floor}.ts.txt` (skopiuj jako .ts, usuń katalog) + 2 linie na końcu `rodziny/index.ts`; w poseData.ts zostaje tylko 'Hollow Hold' w ISOMETRIC.
+2. KO-024: zrobione lokalnie przez sesję D (scalenie origin/scal/posedata-podzial, pliki rodziny core_floor/glute_floor w lib/figures/v2/rodziny/) — po wejściu podziału do integracji zwykłe scalenie origin/integracja-1-1.
 3. `npm run verify:szybkie` (kod 0) → push → zielony tests.yml → PRZEKAZANIE do koordynatora.
 
 ## Pułapki
