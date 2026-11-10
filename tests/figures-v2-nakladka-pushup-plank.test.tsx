@@ -19,11 +19,11 @@ const KEYS = Object.keys(CATALOG).filter(k => { try { return figureSpec(k)?.fami
 const US = Array.from({ length: 21 }, (_, i) => i / 20);
 const sens = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.pushup_plank;
 const E = 'pushupElbowLimb', B = 'pushupBodyLine', R = 'rolloutKneeLine';
-/** Elementy na karcie ćwiczenia (stan przed recenzją „zestawy”: zestawy ogólne liczą się na karcie dopiero z wpisem recenzji → dziś bez elementu; ich elementy sprawdza test na id wskazówek zestawu niżej). */
+/** Elementy na karcie ćwiczenia. 10.11.2026: rodzina ma wpis recenzji „zestawy” (r2, 9 zestawów, commit f72a0126), więc zestawy ogólne liczą się na karcie: ćwiczenia z zestawem plank.brace/push.rigid/plank.noSag dostają pushupBodyLine, a Barbell Rollout from Bench rolloutKneeLine (te same oczekiwania sprawdza niżej test na id wskazówek zestawu); Standing Barbell Rollout i Suspended Fallout nadal bez elementu (reguła „analogia”). */
 const WANT: Record<string, string[]> = {
   'Push Up': [E, B], 'Incline Push Up': [E, B], 'Diamond Push Up': [B], 'Inverted Row': [B], 'Plank': [B], 'Decline Push Up': [E],
-  'Mountain Climbers': [], 'Plank Shoulder Taps': [], 'Rollout (sztanga)': [], 'Push-Up Wide': [], 'Single-Arm Push-Up': [], 'Suspended Push-Up': [], 'Plyo Push-Up': [],
-  'Close-Grip Push-Up': [], 'Incline Push-Up Close-Grip': [], 'Standing Barbell Rollout': [], 'Barbell Rollout from Bench': [], 'Suspended Fallout': [],
+  'Mountain Climbers': [], 'Plank Shoulder Taps': [B], 'Rollout (sztanga)': [], 'Push-Up Wide': [B], 'Single-Arm Push-Up': [B], 'Suspended Push-Up': [], 'Plyo Push-Up': [B],
+  'Close-Grip Push-Up': [B], 'Incline Push-Up Close-Grip': [B], 'Standing Barbell Rollout': [], 'Barbell Rollout from Bench': [R], 'Suspended Fallout': [],
 };
 
 describe('dane: elementy pushup_plank ← reguły „ustalone” ze źródłem', () => {

@@ -53,7 +53,7 @@ describe('niezmiennik: podparcie na wszystkich figurach v1', () => {
     for (const k of POPRAWIONE) {
       const e = REC.v1[k] as { werdykt: string; autor?: string; recenzent?: string };
       if (e.werdykt === 'ukryta') expect([k, k in FIG_DATA.exercises, FIG_DATA.open.includes(k)]).toEqual([k, false, true]);
-      else expect([k, e.werdykt, !!e.recenzent && e.recenzent !== e.autor]).toEqual([k, 'wyswietlana', true]);
+      else expect([k, ['wyswietlana', 'zastapiona'].includes(e.werdykt), !!e.recenzent && e.recenzent !== e.autor]).toEqual([k, true, true]); /* 10.11.2026: werdykt v1 „zastapiona” (ćwiczenie wyświetla figurę v2 zrecenzowanej rodziny pushup_plank, wpis f72a0126) też spełnia warunek — v1 nie jest rysowane, a podparcie v2 pilnują figury-p2-r3/r4; recenzja niezależna nadal wymagana */
     }
   });
   test('reguła nie łapie nic na aktualnych danych (Bird Dog, Mountain Climbers, Pistol Squat, martwe ciągi, wiosłowania, mostki, wykroki po poprawkach — czyste)', () => {
