@@ -40,7 +40,7 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
     expect(hasTechnique(lib('Muscle Up'))).toBe(false); expect(hasTechnique(lib('Dead Hang'))).toBe(true);
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
-    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+    for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise' && fam !== 'kneeling_hinge')) { /* kneeling_hinge (10.11.2026): zawias w biodrach, zejście w dół (lowerFirst) 2 s i powrót 1 s — osobny test niżej; delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       expect([k, s.lowerFirst]).toEqual([k, ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, ui.joints[0]]);
@@ -60,6 +60,14 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       const ph = phasesFor(sp).map(p => [p.name, p.ms]);
       if (k === 'Alternating Deltoid Raise') expect(ph).toEqual([['Naprzemiennie', 2500]]);
       else expect([k, ph]).toEqual([k, [[k === 'Car Drivers' ? 'Obrót' : 'Unoszenie', 1000], ['Pauza', 500], [k === 'Car Drivers' ? 'Powrót' : 'Opuszczanie', 2000], ['Pauza', 500]]]);
+    }
+  });
+  test('kneeling_hinge (10.11.2026): zejście w dół 0 → 1 (lowerFirst), fazy Opuszczanie 2 s / Pauza / Prostowanie 1 s / Pauza z DATA_UI, mierzone biodro, kąt zgięcia w biodrze rośnie ze skłonem (≥ 30°)', () => {
+    const ui = DATA_UI.kneeling_hinge; const keys = DATA_KEYS.filter(([f]) => f === 'kneeling_hinge').map(([, k]) => k); expect(keys).toEqual(['Seated Good Mornings']);
+    for (const k of keys) {
+      const s = figureSpec(k)!; expect([k, s.lowerFirst]).toEqual([k, true]); expect([k, measuredJoint(s)]).toEqual([k, 'hip']);
+      expect(phasesFor(s).map(p => [p.name, p.ms])).toEqual([[ui.names.first, 2000], ['Pauza', 500], [ui.names.second, 1000], ['Pauza', 500]]);
+      expect([k, measuredAngle(s, 1).deg - measuredAngle(s, 0).deg >= 30]).toEqual([k, true]);
     }
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
