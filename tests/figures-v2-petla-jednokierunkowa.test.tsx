@@ -109,7 +109,7 @@ describe('silnik: figure.ts — tryb pętli, fazy i prezentacja', () => {
 });
 
 describe('niezmienniki: liczba ćwiczeń z polem petla w całym katalogu póz', () => {
-  test('72 ćwiczenia z polem: 10 cykl_lustro (marsz) + 62 jednokierunkowa (33 plyo i rzuty + 19 olympic + Alternating Deltoid Raise, r2-W1 04.11.2026 + 9 kb_ballistic, partia 1 09.11.2026); żadne inne', () => {
+  test('76 ćwiczeń z polem: 10 cykl_lustro (marsz) + 66 jednokierunkowa (33 plyo i rzuty + 19 olympic + Alternating Deltoid Raise, r2-W1 04.11.2026 + 9 kb_ballistic, partia 1 09.11.2026 + 3 thruster, partia 4 10.11.2026 + Plyo Push-Up, partia 2 09.11.2026); żadne inne', () => {
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); const c: Record<string, number> = {}; const lustroDelt: string[] = []; const jedKb: string[] = [];
     for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const [cw, d] of Object.entries(j.cwiczenia)) if (d.petla !== undefined) { c[d.petla] = (c[d.petla] ?? 0) + 1; if (d.petla === 'cykl_lustro' && j.rodzina === 'delt_raise') lustroDelt.push(cw); if (d.petla === 'jednokierunkowa' && j.rodzina === 'kb_ballistic') jedKb.push(cw); } }
     /* Zmiana 10.11.2026 (partia 1): pozy kb_ballistic (09.11.2026) — 9 ćwiczeń z rzutem ciężaru nad głowę albo lotem (rwania, push press i jerk z kettlebellem; strażnik lotu w figures-v2-kierunek-u) w trybie jednokierunkowym; jawna lista, nie sama liczba. */
@@ -118,7 +118,8 @@ describe('niezmienniki: liczba ćwiczeń z polem petla w całym katalogu póz', 
     /* Zmiana 08.11.2026 (r5-W1): Car Drivers wrócił do wahadła (pasek faz = zegar animacji) — w rodzinie delt_raise nie ma pętli lustrzanej. */
     expect(lustroDelt.sort()).toEqual([]);
     /* Zmiana 04.11.2026 (r2-W1): Alternating Deltoid Raise przeszło z cykl_lustro na jednokierunkową (dwa powtórzenia: przód, bok): cykl_lustro 12 → 11, jednokierunkowa 33 → 34; suma 45 bez zmian. */
-    expect(c).toEqual({ cykl_lustro: 10, jednokierunkowa: 33 + 19 + 1 + 9 });
+    /* Zmiana 10.11.2026 (partia 4, thruster): jednokierunkowa 62 → 65 po scaleniu z partią 1 (kb_ballistic, 9) — Thruster (hantle), Kettlebell Thruster i Clean and Press (przysiad/rwanie i wyciskanie w jednym przebiegu; wahadło cofałoby wyciskanie równolegle z przysiadem). */
+    expect(c).toEqual({ cykl_lustro: 10, jednokierunkowa: 33 + 19 + 1 + 9 + 3 + 1 }); /* + Plyo Push-Up (pushup_plank, 09.11.2026): wybicie z oderwaniem dłoni — lot wymaga trybu jednokierunkowego (tests/figures-v2-kierunek-u.test.ts) */
   });
 });
 

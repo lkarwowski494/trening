@@ -701,28 +701,28 @@
  },
  "dane": {
   "back_extension/Back Extension": {
-   "svg": "8e6bd3ce2c5b0b417e05",
-   "raw": "6b57d5eabee99c388fa1"
+   "svg": "9f2e5fef28a7968f40f4",
+   "raw": "757050fbd59572c8b28f"
   },
   "back_extension/Reverse Hyperextension": {
-   "svg": "352ca06753eeaddb3fe3",
-   "raw": "2c59dca58600a2597bd7"
+   "svg": "17354c5733bff059ba4e",
+   "raw": "9699a32a4d0cb17a7bfe"
   },
   "back_extension/Lower Back Curl": {
    "svg": "3508a2b0893e119856ad",
    "raw": "ac99c10db42de57e30db"
   },
   "cable_press/Wyciskanie na linkach (stojąc)": {
-   "svg": "12307afa01fdcf6cc668",
-   "raw": "28cfa8261dd2c4165937"
+   "svg": "2e442f578f41af9978a2",
+   "raw": "5d3ffc46d78f8dd3f96d"
   },
   "cable_press/Single Arm Cable Chest Press": {
    "svg": "bab475b3c4e591e429ac",
    "raw": "539e5d4c09d0756112fc"
   },
   "cable_press/Seated Cable Chest Press": {
-   "svg": "8ef59a7802abe8bbf5ad",
-   "raw": "27ca7ae60c7aa92871b6"
+   "svg": "550c9c2f1cff95ffa395",
+   "raw": "d56978c3750628f3fc9d"
   },
   "cable_press/Incline Cable Chest Press": {
    "svg": "db0d8902e731aa61c588",
@@ -909,20 +909,20 @@
    "raw": "e4bb4ab42769cda1c88f"
   },
   "chest_press_machine/Machine Chest Press": {
-   "svg": "666d98168a34f266b8b2",
-   "raw": "fefa6e0ab9ad19e94d68"
+   "svg": "0db480eb5dd0026e0c0f",
+   "raw": "6eead0967c38960265e3"
   },
   "chest_press_machine/Leverage Incline Chest Press": {
-   "svg": "2ba19ae99373c05f950e",
-   "raw": "c2570e0b2fea24408120"
+   "svg": "f3858c8ffe8fbace6ad2",
+   "raw": "8ad60c713ef14897aefd"
   },
   "chest_press_machine/Leverage Decline Chest Press": {
-   "svg": "5a0e99805791195cfe60",
-   "raw": "2e14c98c4a7f8b9b0f2f"
+   "svg": "506e54f669c89b36ae73",
+   "raw": "b811e78e023f04f619e2"
   },
   "chest_press_machine/Machine Shoulder Press": {
-   "svg": "3e9bf2776fd737d9e009",
-   "raw": "d8a747bcb251a601589a"
+   "svg": "4b3c5b98af12354d8420",
+   "raw": "9cdf1f685bbfd8de106f"
   },
   "chest_press_machine/Smith Machine Shoulder Press": {
    "svg": "f33ce883f39aa1e934a5",
@@ -1361,12 +1361,12 @@
    "raw": "c7eda5dcfb2cf94303bf"
   },
   "dip/Dip Machine": {
-   "svg": "69421861d037ecf1fbb3",
-   "raw": "771a7f34151300c3fc3d"
+   "svg": "bbfdf29ae38b55f25e9c",
+   "raw": "30588bc2d69eaf64c025"
   },
   "dip/Triceps Dips (ławka)": {
-   "svg": "b0e4a86b40f6fb0cdabd",
-   "raw": "872431a561994d576693"
+   "svg": "425fa95d276e381f6d83",
+   "raw": "ed0b599dbfdffe55f639"
   },
   "forearm/Barbell Wrist Curl": {
    "svg": "c47a598a997ac7d18513",
@@ -1729,12 +1729,12 @@
    "raw": "145669e4ffe4f13ddc80"
   },
   "mobility_floor/Butterfly Stretch": {
-   "svg": "d0ff64dfa5d0e4af999b",
-   "raw": "5844de5d5cf40c254c77"
+   "svg": "5efe05f606bcc671c81d",
+   "raw": "dbd76d32ca2e5ec125a1"
   },
   "mobility_floor/Child's Pose": {
-   "svg": "0905a85c55ccf96d3e83",
-   "raw": "82dad32d0e720df6e53b"
+   "svg": "6b831cbb490103f5ecff",
+   "raw": "a62612950d80566a3d81"
   },
   "mobility_floor/Kneeling Hip Flexor Stretch": {
    "svg": "198954e765fa16f25ea0",
@@ -1745,8 +1745,8 @@
    "raw": "4a4f8ce0b96fcdbe11aa"
   },
   "mobility_floor/Side-Lying Quad Stretch": {
-   "svg": "9ed84274c8e31db5bc8d",
-   "raw": "a9a7495766e8fa63972d"
+   "svg": "d3a2918aec71796d6c2a",
+   "raw": "58278aa5e43f8968dbe6"
   },
   "mobility_floor/Cat-Cow": {
    "svg": "05ba28382540baa73169",
@@ -1777,8 +1777,8 @@
    "raw": "6443143e67390481fe37"
   },
   "mobility_stand/Standing Soleus And Achilles Stretch": {
-   "svg": "67737e03bf23ff586b3e",
-   "raw": "2a99ff5041de28ffaebc"
+   "svg": "19f3fa34fd575d5f3a28",
+   "raw": "bddd13f2d49866054c04"
   },
   "mobility_stand/Standing Lateral Stretch": {
    "svg": "722cd89dde9aee483947",
@@ -2149,76 +2149,76 @@
    "raw": "372384391ed0a56ac985"
   },
   "pushup_plank/Push Up": {
-   "svg": "dd7fbbbead9b2ff94848",
-   "raw": "21cd3b292eb36f33cccb"
+   "svg": "47ddf8fe72aa200c39ce",
+   "raw": "a0a2f1ef8a837dd56f2a"
   },
   "pushup_plank/Push-Up Wide": {
-   "svg": "082d7af1af42285cab64",
-   "raw": "e59be547b8bfe20e2d9f"
+   "svg": "0f062871340a038f8794",
+   "raw": "428b31fe4f8d02517503"
   },
   "pushup_plank/Close-Grip Push-Up": {
-   "svg": "2fab3b0bff562d1acb94",
-   "raw": "1cd090efa56685d46567"
+   "svg": "d4932d5ef67a6709183c",
+   "raw": "f3d3fd46ce4c8aad3a64"
   },
   "pushup_plank/Diamond Push Up": {
-   "svg": "efece1577a99b6bdc197",
-   "raw": "28dd9df0cd32b527c894"
+   "svg": "4246df9d9b0fcb360f4e",
+   "raw": "d2715a6f6df702f437c7"
   },
   "pushup_plank/Decline Push Up": {
-   "svg": "8ff50e16d3ace74aea6b",
-   "raw": "c262abaab31eb2b0b474"
+   "svg": "497e4689e665ad1adc0f",
+   "raw": "cba588c5c3996d1e54ba"
   },
   "pushup_plank/Incline Push Up": {
-   "svg": "4ed6b0310a44c2db79fd",
-   "raw": "8badaa224f585ac58702"
+   "svg": "91ff615b5c6370ec84fe",
+   "raw": "7f334d29d92684bb2416"
   },
   "pushup_plank/Incline Push-Up Close-Grip": {
-   "svg": "7997c3ad29c901cd540c",
-   "raw": "d098acc8165b6fcbdcc8"
+   "svg": "69bf7bb6e27088d32203",
+   "raw": "9f117c6f595212ae0f23"
   },
   "pushup_plank/Single-Arm Push-Up": {
-   "svg": "d812d2a8ae6ce1ca0ea4",
-   "raw": "f45c038b5e5f81b85df0"
+   "svg": "d1f5d28af9286ab79944",
+   "raw": "b63a74381d07959c6f2d"
   },
   "pushup_plank/Plank": {
-   "svg": "1703621db7d2f9e60165",
-   "raw": "69a1fa1fbac9452bf442"
+   "svg": "ecb3467255739171e9ff",
+   "raw": "b96ef0527f422cf43b5b"
   },
   "pushup_plank/Mountain Climbers": {
-   "svg": "0a8ec53827bfc5b49ccc",
-   "raw": "e7c5a0ea35a79d4d700d"
+   "svg": "5f9c99b1882f5303c4c5",
+   "raw": "a13d15fcdb81da4f6b61"
   },
   "pushup_plank/Plank Shoulder Taps": {
-   "svg": "b307ba1d52f8aab7613f",
-   "raw": "e6d22d3ddf638aa89e8c"
+   "svg": "3588607c2a1861ac03aa",
+   "raw": "e0306ab6c55605439b17"
   },
   "pushup_plank/Plyo Push-Up": {
-   "svg": "67a5d351e8b2c70d761d",
-   "raw": "5906ccd959176700ed4e"
+   "svg": "4ba0137a1d519e95a9e5",
+   "raw": "dc0ed49cf788c33f7045"
   },
   "pushup_plank/Rollout (sztanga)": {
    "svg": "f8d16321b48c02b45a9a",
    "raw": "d62f79ad07dc53f400a2"
   },
   "pushup_plank/Barbell Rollout from Bench": {
-   "svg": "71af71617bf53195b87a",
-   "raw": "fa5c7a8316222866f397"
+   "svg": "a1d6ca885dc8ab1f6816",
+   "raw": "c530ee64370bc42fa50f"
   },
   "pushup_plank/Standing Barbell Rollout": {
-   "svg": "67ce4935bbf0273bb66e",
-   "raw": "3e47acacfa4281e74953"
+   "svg": "107ab9a5a28f9dce8d9e",
+   "raw": "fe63b57ef16a7330feb9"
   },
   "pushup_plank/Suspended Push-Up": {
-   "svg": "39d4bae14a331b972935",
-   "raw": "1f19a62bb5e443d1173a"
+   "svg": "adc990a5e12a5e9b0cb8",
+   "raw": "f36b2b16351ad7673a34"
   },
   "pushup_plank/Suspended Fallout": {
-   "svg": "b5e6a134a6b6b990eabc",
-   "raw": "75ae531fe362e44a5012"
+   "svg": "fa260caa0b6fb115188c",
+   "raw": "2c29a90699382e721687"
   },
   "pushup_plank/Inverted Row": {
-   "svg": "7e3072559323b420c58d",
-   "raw": "14980e20580a94fc80bb"
+   "svg": "8fc5613d70311fa0ef1f",
+   "raw": "77a5c7de00d2a5b8e9d5"
   },
   "rotator_cuff/External Rotation (hantel)": {
    "svg": "4432dc801e3fe4280b94",
@@ -2365,16 +2365,16 @@
    "raw": "d1669a4a0928f514fa4b"
   },
   "thruster/Thruster (hantle)": {
-   "svg": "713eac224ec2cbaaff7a",
-   "raw": "7aa9db972d5e76e1f4cf"
+   "svg": "52b1cf17ba44af6a8d00",
+   "raw": "778a2747a329143a2a2a"
   },
   "thruster/Kettlebell Thruster": {
-   "svg": "0f94056989d0f6b08955",
-   "raw": "a621845024ac6517cf2b"
+   "svg": "b09fc0c3a083cc134f0f",
+   "raw": "f8dc81fff0e1f1e69401"
   },
   "thruster/Clean and Press": {
-   "svg": "818d73d114a169e01f01",
-   "raw": "c55c209c3f84e08e1290"
+   "svg": "2e3268e493f470a26f39",
+   "raw": "62a63eda28ce766be60d"
   },
   "triceps/Overhead Triceps Extension (EZ)": {
    "svg": "dab4f05b9f1a7c1a3805",

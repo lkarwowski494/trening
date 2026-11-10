@@ -1,0 +1,53 @@
+{
+  "v2": {
+    "thruster": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny thruster, partia 4, runda 1, figury/partia-4-thruster @ c238b04 (baza 47e3715f), 10.11.2026; raport docs/research/recenzje/partia4-thruster-r1-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 1: do poprawy (3 × WYSOKIE: W1 koniec wyciskania przed głową, W2 głębokość nad równoległym, W3 brak powrotu do barków)",
+      "autor": "programista partii 4 (figury/partia-4-thruster)",
+      "recenzent": "audytor",
+      "uwagi": "W1: w u = 1 chwyt 18,1 cm przed barkiem, 16,8–19,7 cm przed kostką, ramię 16,5° od pionu — przeczy ohp.tall / thruster.move („nad głowę”) i regule ustalonej overhead_press.ciezar_nad_barkami ≤ 10 cm (olympic: Muscle Snatch 2,1 cm). W2: Thruster (hantle), Kettlebell Thruster — najniżej udo 20,4° nad poziomem (biodro 14,3 cm nad kolanem), karta thruster.depth „co najmniej do równoległego ud”. W3: oba thrustery kończą nad głową, skok chwytu do barków 62–63 cm; karta thruster.move „potem opuść z powrotem do barków”. NISKIE: brak testów W1–W3 (K5); Clean and Press łokcie w bok do 28,5 cm (niewidoczne z boku). Bez znalezisk: chwyt ≤ 3 cm, pięty, wyprost na górze, przenikanie, orientacja sprzętu, błędy widoczne, nakładka (thrusterBackRef, thrusterBarCloseRef), K14 bez poluzowań.",
+      "poprawka": "W1: koniec wyciskania nad barkiem i nad środkiem stopy (|chwyt.x − shoulderC.x| ≤ 10 cm, |chwyt.x − kostka.x| ≤ 5 cm w u = 1) we wszystkich 3; W2: w najniższym kadrze udo co najmniej równolegle (biodro.y ≤ kolano.y) w obu thrusterach; W3: opuszczenie ciężaru do barków w przebiegu 0 → 1 (chwyt u = 1 ≤ 5 cm od chwytu u = 0) albo inny tryb pokazujący powrót; każde z testem odtwarzającym (negatyw na danych c238b04), potem runda 2.",
+      "slad": "Ślad toru ciężaru obejrzany w rzucie z boku wszystkich 3 ćwiczeń (3 arkusze arkusz-slad, kadry co 0,05, ślad = chwyt R; plus arkusz-nakladka Clean and Press z pozą błędu oly.mis): thrustery — tor prawie pionowy przed barkiem od racka w dół z przysiadem i w górę do wyciśnięcia, kończy się 18–20 cm przed kostką (W1), bez powrotu do barków (W3); Clean and Press — z zawisu nad kolanami pionowo blisko ud (odstęp 3,9–9,2 cm) do racka i w górę, koniec przed głową (W1); bez przenikania ciężaru w ciało.",
+      "sha": "e6ea1059a607",
+      "liczba": 3
+    }
+  },
+  "zestawy": {
+    "Clean and Press": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 thruster), partia 4, runda 1, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw oly; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista partii 4 (figury/partia-4-thruster @ c238b04)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 thruster, figury/partia-4-thruster @ c238b04",
+      "uwagi": "oly.back (plecy proste na starcie) i oly.close (sztanga blisko w ciągu; na rysunku 3,9–9,2 cm od ud) zgodne z ruchem; oly.mis — poza błędu zaokrągla plecy w ciągu. ohp.tall („ciężar idzie prosto w górę nad głowę”) poprawne dla ćwiczenia, ale rysunek c238b04 kończy przed głową — zgodność dopiero po W1 wpisu v2 thruster (do potwierdzenia w r2). Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "84f205b001d6"
+    }
+  },
+  "karty": {
+    "Thruster (hantle)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 thruster, K11) — partia 4, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 4",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 thruster, figury/partia-4-thruster @ c238b04, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian (skrót jak we wpisie 03.11.2026) i poprawny. Rysunek c238b04 mu przeczy w trzech miejscach — po stronie rysunku (wpis v2 thruster do poprawy): thruster.depth (udo 20,4° nad równoległym, W2), thruster.move (bez opuszczenia do barków W3; koniec przed głową W1). sq.back, thruster.fullExt, thruster.dbSetup, sq.down, sq.mis.heels zgodne z rysunkiem. r2 potwierdza zgodność po poprawkach.",
+      "sha": "6606839c306f"
+    },
+    "Kettlebell Thruster": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 thruster, K11) — partia 4, runda 1",
+      "autor": "programista P2 (karta); rysunek: programista partii 4",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 thruster, figury/partia-4-thruster @ c238b04, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian (skrót jak we wpisie 03.11.2026) i poprawny. Rysunek c238b04 przeczy thruster.depth (W2), thruster.move (W3) i ohp.tall (koniec 18 cm przed barkiem, W1) — po stronie rysunku (wpis v2 thruster do poprawy). thruster.kbSetup (kettlebelle oparte przy barkach), thruster.fullExt, sq.mis.heels zgodne. r2 potwierdza zgodność po poprawkach.",
+      "sha": "175baa530c3a"
+    }
+  },
+  "v1_zastapiona": []
+}

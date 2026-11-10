@@ -40,8 +40,8 @@ const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZY
 const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, e.id) && (figureSpec(e.id) || POZY.has(e.id))).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
-  test('pilotaż z plików pozy (core_floor, pushup_plank) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji', () => {
-    const s = skroty(); expect(s.ready).not.toContain('core_floor'); expect(s.ready).not.toContain('pushup_plank');
+  test('pilotaż z plików pozy (core_floor) nie ma statusu ready — istnieje w danych, a jego figur nie ma w eksporcie bez recenzji; pushup_plank ma status ready od 09.11.2026 (partia 2), eksport tylko z aktualnym wpisem recenzji (testy niżej)', () => {
+    const s = skroty(); expect(s.ready).not.toContain('core_floor'); expect(s.ready).toContain('pushup_plank');
     expect([...POZY.values()]).toEqual(expect.arrayContaining(['core_floor', 'pull_up', 'pushup_plank']));
   });
   test('fixture: recenzja squat, bench_press, hinge (aktualne skróty) + pull_up z nieaktualnym skrótem + brak wpisów pilotażu ⇒ figury dokładnie z tych trzech rodzin (parytet)', () => {
@@ -114,7 +114,7 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
   test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE) nie trafiają do figur; od 1.0.1 (scalenie 31.10.2026) lista jest pusta — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji trafiają do figur jak sąsiednie wyciskania wąskim chwytem', () => {
     const { fig, atlas } = eksport('wstrzymane', fixture());
     const slug = (id: string) => atlas.exercises.find(e => e.id === id)!.slug;
-    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise']); /* 04.11.2026: wzruszenia olympic wstrzymane do kart T2 (olympic r4); 09.11.2026: Standing i Seated Calf Raise (calf_raise r1, decyzja koordynatora wariant A — P1-CALF-1) i Machine Hip Thrust (hip_bridge r1, partia 2) */
+    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Seated Calf Raise', 'Snatch Shrug', 'Standing Calf Raise', 'Triceps Dips (ławka)']); /* 04.11.2026: wzruszenia olympic wstrzymane do kart T2 (olympic r4); 09.11.2026: Standing i Seated Calf Raise (calf_raise r1, decyzja koordynatora wariant A — P1-CALF-1) i Machine Hip Thrust (hip_bridge r1, partia 2) */ /* 10.11.2026 (scalenie partii 4): + ławka dip (W5, P4-DIP-1) */ /* 10.11.2026 (scalenie partii 2): + Plyo Push-Up (PP-W1) */
     for (const k of Object.keys(V2_WSTRZYMANE)) { expect([k, slug(k) in fig.figures]).toEqual([k, false]); expect([k, atlas.exercises.find(e => e.id === k)!.figure]).toEqual([k, null]); }
     for (const k of ['JM Press', 'Decline Close-Grip Bench To Skull Crusher', 'Smith Machine Close-Grip Bench Press']) expect([k, slug(k) in fig.figures]).toEqual([k, true]);
   });

@@ -14,7 +14,7 @@ const ROOT = path.join(__dirname, '..');
 const SENS = path.join(ROOT, 'scripts/figures/v2-sens.mjs');
 const VAL = path.join(ROOT, 'scripts/figures/v2-validate.mjs');
 const run = (script: string, code: string) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(script)}; ${code}`], { env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 1 << 26 }));
-const DYN = ['olympic', 'plyo', 'kb_ballistic', 'sled_throw', 'strongman', 'core_hang'];
+const DYN = ['olympic', 'plyo', 'kb_ballistic', 'sled_throw', 'strongman', 'core_hang', 'thruster'];
 /** Pojedyncze ćwiczenia spoza rodzin dynamicznych z deklaracją (r2-W1, 04.11.2026): pętla jednokierunkowa z dwoma powtórzeniami naraz — droga dłoni ok. 7–9 cm na 1/48 przy limicie 12 klatek. Reszta rodziny nadal ma limit 6 cm. */
 const DYN_POJEDYNCZE: Record<string, string[]> = { delt_raise: ['Alternating Deltoid Raise'] };
 const sens = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny as Record<string, { dynamiczne?: Record<string, string>; warianty?: Record<string, unknown> }>;
@@ -40,6 +40,15 @@ describe('deklaracja „dynamiczne” w danych sensu (powód obowiązkowy)', () 
       const cw = Object.keys(d).find((k) => k !== '*') ?? Object.keys(sens[r].warianty ?? {}).find((k) => !k.startsWith('_'));
       expect(run(SENS, `console.log(JSON.stringify(m.dynamiczne(${JSON.stringify(r)}, ${JSON.stringify(cw)})))`)).toBe(true);
     }
+  });
+});
+
+describe('thruster w zbiorze dynamicznych (decyzja koordynatora 1.1, 10.11.2026, wariant A)', () => {
+  test('cała rodzina thruster (gwiazdka) ma limit dynamiczny, rodziny spoza listy dalej mają limit 6 cm', () => {
+    expect(sens.thruster?.dynamiczne?.['*']).toEqual(expect.any(String));
+    expect(run(SENS, `console.log(JSON.stringify(['Thruster (hantle)', 'Kettlebell Thruster', 'Clean and Press'].map((c) => m.dynamiczne('thruster', c))))`)).toEqual([true, true, true]);
+    expect(run(SENS, `console.log(JSON.stringify([m.dynamiczne('dip', 'Dip'), m.dynamiczne('overhead_press', 'Barbell Shoulder Press'), m.dynamiczne('squat', 'Goblet Squat')]))`)).toEqual([false, false, false]);
+    expect(JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/contract.ts'), 'utf8').match(/maxJump: (\d+)/)![1])).toBe(6);
   });
 });
 

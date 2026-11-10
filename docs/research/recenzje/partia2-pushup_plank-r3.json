@@ -1,0 +1,51 @@
+{
+  "v2": {
+    "pushup_plank": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor (sesja r3) — recenzja niezależna r3 rodziny pushup_plank (partia 2, linia 1.1), figury/partia-2 @ 816a480c (poprawka wierszy błędu plank.mis.sag względem 6d6660a1); raport docs/research/recenzje/partia2-pushup_plank-r3-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050), recenzja r3 10.11.2026 — linia 1.1; różnica r3: tylko wiersze błędu plank.mis.sag w 7 ćwiczeniach (kostka ≤ 0,96 cm, strażnik figury-p2-r3 STOPA_BLAD_CM 1), pozy poprawne 18/18 bez zmian (JSON i arkusze śladu identyczne bajtowo), 0 × KRYTYCZNE/WYSOKIE; R2-N1 i Ś1/Ś2 z r1 bez zmian (backlog)",
+      "autor": "programista figur (agent partii 2 pushup_plank; gałąź figury/partia-2-pushup_plank, commity d6d46968, b2231f90; poprawki r1 d9f1bc22, 25ac73e0; poprawka r3 816a480c — programista poprawek)",
+      "recenzent": "audytor (sesja r3) — recenzja niezależna r3 L-047/L-050, 10.11.2026; nie pisał rodziny, kart, zestawów ani poprawek r1 i r3",
+      "uwagi": "r3 (816a480c wobec 6d6660a1): zmienione wyłącznie wiersze błędu plank.mis.sag (klatki; pole dotyczy bez kolana — noga ma zasięg pozy poprawnej) w Push-Up Wide, Single-Arm Push-Up, Plank, Plank Shoulder Taps, Plyo Push-Up, Suspended Fallout, Standing Barbell Rollout; pozy poprawne wszystkich 18 ćwiczeń identyczne (porównanie strukturalne JSON), 14 arkuszy arkusz-slad identycznych bajtowo (cmp) ze stanem 6d6660a1; odciski złote zmienione dokładnie dla tych 7 póz. Pomiar frameAt/keyframeFrame co 0,01 (przed → po): miednica poniżej linii bark–kostka 7,6–9,5 → 6,5–7,6 cm (Suspended Fallout min 6,5 w u = 0), kąt opadnięcia biodra 14,1–17,5° → 11,9–14,0°, przesunięcie kostki max 1,3–2,0 → 0,86–0,96 cm, kolano w wierszu błędu 7,6–13,3° → równe pozie poprawnej (0–3,9°; Plyo 7,3° wobec 4,1° — niewidoczne). Błąd nadal czytelny (arkusze błędu arkusz-nakladka: miednica wyraźnie pod linią pushupBodyLine), zgodny z tekstem „Opadające biodra i wygięte w łuk lędźwie”. Standing Barbell Rollout: lędźwie −20° do u 0,4 i powrót −20·√(1−w) (wolniej niż r2), opadnięcie miednicy w u = 1 7,3 cm (r2 8,6), w u = 0,75 3,7 cm ponad pozę poprawną + łuk lędźwi — błąd widoczny w całym ruchu. Wcześniej (r2): W1–W3 usunięte, Single-Arm stopy 28 cm i lot Plyo przyjęte. K14: bez poluzowań (fix4 +2 ćwiczenia bez elementu przy regule „analogia”, nakladka WANT po wpisie recenzji zestawów, podparcie dopuszcza v1 „zastapiona” z nadal wymaganym recenzentem ≠ autor, gemini 25 rodzin). Uwaga: w 816a480c data.json nie zawiera pushup_plank (skrót ec660bfe52fa ≠ def6b97fe124 wpisu r2) — rodzina wraca po przepisaniu tego wpisu.",
+      "poprawka": "Brak nowych. R2-N1 (NISKIE, backlog) bez zmian: Standing Barbell Rollout kolano 5,5° w u ≈ 0,07 w pozie poprawnej.",
+      "slad": "Ślad obejrzany w obu rzutach (side, front) 7 ćwiczeń zmienionych w r3: 14 arkuszy arkusz-slad.mjs (kadry co 0,05) wygenerowanych przez recenzenta r3 @ 816a480c i 14 @ 6d6660a1 — identyczne bajtowo (cmp; pozy poprawne bez zmian, ślad miednicy/gryfu jak w r2). Dodatkowo 30 arkuszy arkusz-nakladka.mjs z wierszami błędu (data-N) — Push-Up Wide, Suspended Fallout, Standing Barbell Rollout (side) obejrzane w pełnej rozdzielczości: miednica pod linią ciała 6,5–7,6 cm, stopy w miejscu, łuk lędźwi w Standing Barbell Rollout widoczny od u = 0. Pozostałe 11 ćwiczeń: bez zmian od r2 (arkusze r2).",
+      "sha": "ec660bfe52fa",
+      "liczba": 30,
+      "cwiczenia": [
+        "Push Up",
+        "Push-Up Wide",
+        "Close-Grip Push-Up",
+        "Diamond Push Up",
+        "Decline Push Up",
+        "Incline Push Up",
+        "Incline Push-Up Close-Grip",
+        "Single-Arm Push-Up",
+        "Plank",
+        "Mountain Climbers",
+        "Plank Shoulder Taps",
+        "Plyo Push-Up",
+        "Rollout (sztanga)",
+        "Barbell Rollout from Bench",
+        "Standing Barbell Rollout",
+        "Suspended Push-Up",
+        "Suspended Fallout",
+        "Inverted Row"
+      ],
+      "bez_rysunku": [
+        "Side Plank",
+        "Ab Wheel",
+        "Renegade Row",
+        "Copenhagen Plank",
+        "Clock Push-Up",
+        "Push Up to Side Plank",
+        "Isometric Wipers",
+        "Push-Ups With Feet On A Stability Ball",
+        "Incline Push-Up Reverse Grip",
+        "Drop Push",
+        "Incline Push-Up Depth Jump",
+        "Plyo Kettlebell Push-Ups"
+      ]
+    }
+  }
+}

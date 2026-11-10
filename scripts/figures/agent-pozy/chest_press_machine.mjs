@@ -27,7 +27,7 @@ function maszyna(cw, o) {
   const P = kand.sort((a, b) => (o.wybor === 'dol' ? a[1] - b[1] : o.wybor === 'tyl' ? a[0] - b[0] : o.wybor === 'przod' ? b[0] - a[0] : b[1] - a[1]))[0];
   const a0 = Math.atan2(H0[1] - P[1], H0[0] - P[0]); let a1 = Math.atan2(H1[1] - P[1], H1[0] - P[0]); if (Math.abs(a1 - a0) > Math.PI) a1 += a1 < a0 ? 2 * Math.PI : -2 * Math.PI;
   const fr = (u) => { const a = lerp(a0, a1, u); const c = [P[0] + r2 * Math.cos(a), P[1] + r2 * Math.sin(a)]; const rr = {};
-    for (const s of SIDES) { const sg = POL(s); const pv = [c[0] - S0[0], c[1] - 33 - S0[1], 0]; const pl = Math.hypot(pv[0], pv[1], 1) || 1; rr[s] = { g: [c[0], c[1], sg * zr], pole: o.poleStopy ? poleKuStopom(B.p, sg) : [r1(pv[0] / pl * 3), r1(pv[1] / pl * 3), r1(sg * 1.2)], obrot: 0 }; }
+    for (const s of SIDES) { const sg = POL(s); const pv = [c[0] - S0[0], c[1] - 33 - S0[1], 0]; const pl = Math.hypot(pv[0], pv[1], 1) || 1; rr[s] = { g: [c[0], c[1], sg * zr], pole: o.poleStopy ? poleKuStopom(B.p, sg) : o.poleLokiec ? [o.poleLokiec[0], o.poleLokiec[1], r1(sg * o.poleLokiec[2])] : [r1(pv[0] / pl * 3), r1(pv[1] / pl * 3), r1(sg * 1.2)], obrot: 0 }; }
     return poza({ u, tulow: { m: B.m, p: B.p, glowa: B.glowa ?? B.p }, nogi, rece: rr }); };
   const lever = { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(P[0]), y: r1(P[1]), z: o.leverZ ?? 0, dlugosc: r1(o.r), punkt: 'dlonie', trzyma: o.leverZ === undefined ? 'obie' : 'R' };
   const lawka = { rodzaj: 'lawka', x: 0, top, kat, dlugosc: 75, ...(kat < 0 ? { walki: true } : { siedzisko: 40 }) };
@@ -47,16 +47,16 @@ export const WYJATKI = {};
 export const PRZYBLIZENIA = {
   'Machine Chest Press': 'przybliżenie: dźwignia obrotowa jako schemat (oś nad uchwytami), siedzisko i oparcie jako ławka 85°, bez rysowania konstrukcji maszyny',
   'Leverage Incline Chest Press': 'przybliżenie: dźwignia obrotowa jako schemat, oparcie 50° od poziomu',
-  'Leverage Decline Chest Press': 'przybliżenie: dźwignia obrotowa jako schemat, oparcie ujemne (−20°) z wałkami na nogi',
+  'Leverage Decline Chest Press': 'przybliżenie: maszyna siedząca (oparcie 85°, stopy na podłodze), dźwignia obrotowa jako schemat, uchwyty przy dolnej części klatki, wypchnięcie lekko w dół i do przodu',
   'Machine Shoulder Press': 'przybliżenie: jedna dźwignia obrotowa po prawej stronie (oś przed osobą, z = 30 cm — opis kontraktu: dźwignia z boku, nie w osi ciała), uchwyty startowe na wysokości barków',
 };
 
 export function generuj() {
   const G = {};
-  G['Machine Chest Press'] = () => maszyna('Machine Chest Press', { kat: 85, top: 45, h0: [14, -8], h1: [62.4, -2], r: 70, wybor: 'gora' });
-  G['Leverage Incline Chest Press'] = () => maszyna('Leverage Incline Chest Press', { kat: 50, top: 45, h0: [14, -8], h1: [62.4, -2], r: 70, wybor: 'gora' });
-  G['Leverage Decline Chest Press'] = () => maszyna('Leverage Decline Chest Press', { kat: -20, top: 60, h0: [14, -8], h1: [62.4, -2], r: 70, wybor: 'gora', poleStopy: true });
-  G['Machine Shoulder Press'] = () => maszyna('Machine Shoulder Press', { kat: 85, top: 45, h0: [18, 5], h1: [10, 62], r: 70, wybor: 'przod', zr: 24, leverZ: 30 });
+  G['Machine Chest Press'] = () => maszyna('Machine Chest Press', { kat: 85, top: 45, h0: [14, -8], h1: [62.8, -2], r: 70, wybor: 'gora' });
+  G['Leverage Incline Chest Press'] = () => maszyna('Leverage Incline Chest Press', { kat: 50, top: 45, h0: [14, -8], h1: [62.8, -2], r: 70, wybor: 'gora' });
+  G['Leverage Decline Chest Press'] = () => maszyna('Leverage Decline Chest Press', { kat: 85, top: 45, h0: [14, -12], h1: [58.1, -24], r: 70, wybor: 'gora' });
+  G['Machine Shoulder Press'] = () => maszyna('Machine Shoulder Press', { kat: 85, top: 45, h0: [18, 5], h1: [10, 62.4], r: 70, wybor: 'przod', zr: 24, leverZ: 30, poleLokiec: [0, -3, 1.5] });
   G['Smith Machine Shoulder Press'] = () => smithPress('Smith Machine Shoulder Press');
   return G;
 }

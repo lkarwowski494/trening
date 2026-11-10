@@ -1,0 +1,145 @@
+{
+  "v2": {
+    "mobility_stand": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — recenzja r1 (bramka 4, L-047 A, L-050): 1 × WYSOKIE (W1 Standing Soleus And Achilles Stretch), 1 × ŚREDNIE (Ś1 Overhead Triceps Stretch), 2 × NISKIE (N1, N2) — rodzina do poprawy",
+      "autor": "programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee; pozy poses/mobility_stand.json z generatora scripts/figures/agent-pozy/mobility_stand.mjs i ACG-013 31.10.2026)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "b163704bf6c6",
+      "liczba": 36,
+      "cwiczenia": [
+        "Chin To Chest Stretch",
+        "Side Neck Stretch",
+        "Overhead Triceps Stretch",
+        "Standing Chest Stretch",
+        "Standing Gastrocnemius Calf Stretch",
+        "Wall Calf Stretch",
+        "Standing Soleus And Achilles Stretch",
+        "Standing Lateral Stretch"
+      ],
+      "bez_rysunku": [
+        "Ankle Circles",
+        "Arm Circles",
+        "Chest And Front Of Shoulder Stretch",
+        "Chest Stretch on Stability Ball",
+        "Dynamic Back Stretch",
+        "Dynamic Chest Stretch",
+        "Leg Swings (Front-to-Back)",
+        "Groiners",
+        "Hip Circles (Prone)",
+        "Inchworm",
+        "Iron Crosses (Stretch)",
+        "Knee Circles",
+        "Wall Lat Stretch",
+        "One Knee To Chest",
+        "Overhead Stretch",
+        "Round The World Shoulder Stretch",
+        "Shoulder Circles",
+        "Cross-Body Shoulder Stretch",
+        "Leg Swings (Side-to-Side)",
+        "Standing Biceps Stretch",
+        "Standing Elevated Quad Stretch",
+        "Standing Hip Circles",
+        "Standing Pelvic Tilt",
+        "Standing Toe Touches",
+        "Torso Rotation",
+        "Lying Leg Crossover Swings",
+        "World's Greatest Stretch",
+        "Wrist Circles"
+      ],
+      "slad": "Arkusze scripts/figures/arkusz-slad.mjs wygenerowane przez recenzenta r1 na c0672ee: 8 ćwiczeń × widoki side i front = 16 arkuszy, 21 kadrów co 0,05 (cmp: bajtowo identyczne z arkuszami wcześniejszego przebiegu tej recenzji przerwanego restartem), plus kadry u = 0,5 w skali 900 px szerokości, obejrzane w pełnej rozdzielczości; arkusz-nakladka.mjs dla Standing Lateral Stretch (front i side). Bez ciężaru i przyrządu (stopień i ściana to podpory, nie tor): ślad = miednica; wszystkie 8 to pozycje statyczne (ISOMETRIC, spec.static) — ruch szkieletu 0 cm w u = 0/0,5/1, trailFor bez śladu (decyzja właściciela 04.11.2026 (4) B: ślad tylko z ciężarem/przyrządem).",
+      "uwagi": "W1 WYSOKIE Standing Soleus And Achilles Stretch: brak ściany (props tylko podłoga), dłonie na biodrach (chwyt −9; 92; ±24, łokcie 96°), a karta (mobility_stand.s.wallCalfSet) mówi „Oprzyj dłonie o ścianę i cofnij jedną nogę”; źródło generatora (ACE #152 krok 4) to ten sam stretch przy ścianie — „dłonie na biodrach” nie ma źródła (K11). Kolana 27,2°/25,4° (tylne lekko ugięte), pięty na podłodze — zgodne. Ś1 ŚREDNIE Overhead Triceps Stretch: dłoń za szyją (chwyt y 144, bark y 139,5), karta „opuść dłoń na środek pleców”; ręka pomocnicza zwisa, karta „Drugą ręką lekko dociśnij łokieć” — przybliżenie nazwane w PRZYBLIZENIA (limit barku 171°), ale niewidoczne dla użytkownika; łokieć 30 cm nad barkiem, przedramię–głowa −0,1 cm. N1 NISKIE Standing Gastrocnemius Calf Stretch: na stopniu (8 cm) tylko palce tylnej stopy 4,1 cm (x −21,2…−17,1), śródstopie ok. 3 cm za krawędzią; pięta 3,3 cm poniżej krawędzi, kolano 0°, kąt podudzie–stopa 53,3° (Wall Calf 58,5°) — wariant na stopniu czytelny. N2 NISKIE: generator mobility_stand.mjs rysuje dla Gastrocnemius wariant bez stopnia, PRZYBLIZENIA nieaktualne (dane z ACG-013; rozjazd pilnowany przez ROZJAZDY_POZA_ZAKRESEM w tests/figury-generator-odtwarza.test.ts). Zgodne: Chin To Chest (głowa 45°, tułów 0°), Side Neck (przechył głowy 25° ≥ 20°, barki nieuniesione), Standing Chest (łokcie 22°, 15,8 cm za barkami, tułów 2°), Wall Calf (tylne kolano 7,9°, przednie 41,9°, pięty na podłodze, dłonie na ścianie −0,3 cm), Standing Lateral (przechył 20° ≥ 15°, w przód 0°, ramię–głowa 0,2 cm). Styki: podeszwy y = 0, stopa–stopień −0,3 cm, przedramię–ściana −0,3 cm; checkFrame 0 błędów; brak przenikania poza stawami sąsiednimi. Oba widoki pokazywane obok siebie (components/ExerciseFigureV2.tsx:93–106), więc Side Neck z boku i Standing Chest z przodu bez przedmiotu pozy to nie wada. Nakładka: standLateralPlumb (pion od miednicy, tylko front) — reguła sklon_boczny_statyczny „ustalone”, cue sb.plane w zestawie Standing Lateral Stretch; wpis wskazowki_na_reguly sb.plane → sklon_boczny_statyczny to odwrotność pola cue reguły (warianty i tak wyznaczają reguły, v2-sens.mjs:30) — nie nowa treść. Mięśnie: brak (04.11.2026 (4) B). K14: zmiany testów to liczby i listy po włączeniu rodziny, bez poluzowań.",
+      "poprawka": "W1 (blokuje): Standing Soleus And Achilles Stretch — ściana jak w Wall Calf Stretch (x 75) i dłonie na ścianie (odstęp przedramię–ściana ≤ 1 cm), kolana jak teraz (tylne 10–30°), pięty na podłodze; test odtwarzający: props zawiera wall i min gap dłoni/przedramion do ściany ≤ 1 cm. Ś1, N1, N2 — backlog z wersją albo przy okazji: Overhead Triceps dłoń niżej (chwyt y ≤ ok. 125) albo zmiana zdania karty z badaczem; Gastrocnemius śródstopie na stopniu (≥ ok. 7 cm stopy nad stopniem); generator i PRZYBLIZENIA zgodne z danymi ACG-013."
+    }
+  },
+  "zestawy": {
+    "Standing Chest Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw stretch, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "0869a1be9df2",
+      "uwagi": "st.tension, st.noBounce, st.breathe, err st.mis.force — pasują do pozy statycznej: stanie, ręce proste za plecami (łokcie 22°, łokcie 15,8 cm za barkami, dłonie 1,6 cm od siebie), tułów 2°. Z przodu ręce za plecami zasłonięte — widok z boku pokazywany obok. Bez nazw źródeł, liczb i twierdzeń o zdrowiu."
+    },
+    "Standing Gastrocnemius Calf Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "tlumacz r2/gastro (zestaw gcalf, 28.10.2026, wersja 1.0.1); włączenie rodziny: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "78c1fe12ffea",
+      "uwagi": "gcalf.set, gcalf.move, gcalf.support, gcalf.knee — rysunek: tylna stopa na krawędzi stopnia 8 cm, pięta 3,3 cm poniżej krawędzi, kolano tylne 0°, kąt podudzie–stopa 53,3°, dłonie na ścianie (−0,3 cm). Zgodne; N1 (NISKIE): na stopniu tylko palce (4,1 cm), śródstopie ok. 3 cm za krawędzią — gcalf.set „przednią częścią stopy” kierunkowo spełnione."
+    },
+    "Standing Lateral Stretch": {
+      "rodzina": "stretch",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw stretch, 25.10.2026; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "edf062289105",
+      "uwagi": "sb.plane, st.tension, st.noBounce, err st.mis.force — pasują: skłon boczny 20° (≥ 15°), pochylenie w przód 0°, bez ruchu (0 cm); sb.plane wypowiada element nakładki standLateralPlumb (pion od miednicy, tylko z przodu)."
+    }
+  },
+  "karty": {
+    "Chin To Chest Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee; pozy poses/mobility_stand.json z generatora scripts/figures/agent-pozy/mobility_stand.mjs i ACG-013 31.10.2026)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "87d9ec3873de",
+      "uwagi": "Zgodna z rysunkiem: stoi prosto (tułów 0°), broda w stronę klatki (głowa 45°), barki w miejscu, ruch tylko głowy. Z przodu skłon głowy mało widoczny — widok z boku obok."
+    },
+    "Side Neck Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee; pozy poses/mobility_stand.json z generatora scripts/figures/agent-pozy/mobility_stand.mjs i ACG-013 31.10.2026)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "5bad44d2b0c3",
+      "uwagi": "Zgodna z rysunkiem: stoi prosto, przechył głowy 25° (ucho w stronę barku), barki nieuniesione (bark y 139,5 jak w pozycji neutralnej). Z boku przechył niewidoczny — widok z przodu obok."
+    },
+    "Overhead Triceps Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee; pozy poses/mobility_stand.json z generatora scripts/figures/agent-pozy/mobility_stand.mjs i ACG-013 31.10.2026)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "9b2ae69aca8e",
+      "uwagi": "Treść karty zgodna ze źródłem; rysunek odbiega (Ś1, ŚREDNIE, po stronie rysunku): dłoń za szyją (y 144), nie na środku pleców; ręka pomocnicza zwisa, karta: „Drugą ręką lekko dociśnij łokieć”. Łokieć uniesiony i zgięty — istota pozycji widoczna. Poprawka po stronie rysunku albo zdania karty (z badaczem) — backlog."
+    },
+    "Wall Calf Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee; pozy poses/mobility_stand.json z generatora scripts/figures/agent-pozy/mobility_stand.mjs i ACG-013 31.10.2026)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "07a87a7c88c3",
+      "uwagi": "Zgodna z rysunkiem: dłonie na ścianie (−0,3 cm), tylna noga cofnięta i prosta (7,9°), pięta na podłodze, przednie kolano ugięte (41,9°), stopy płasko, palce do przodu; gcalf.knee spełnione."
+    },
+    "Standing Soleus And Achilles Stretch": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, K11: treść karty wobec rysunku v2 mobility_stand), 10.11.2026",
+      "autor": "programista P1 (karty mobilności, sesja koordynatora 1.1); rysunek: programista mobility_stand (partia 2, figury/partia-2-mobility_stand d5d98e4, c0672ee; pozy poses/mobility_stand.json z generatora scripts/figures/agent-pozy/mobility_stand.mjs i ACG-013 31.10.2026)",
+      "recenzent": "audytor (sesja r1)",
+      "kto": "audytor (sesja r1) — recenzja niezależna r1 rodziny v2 mobility_stand (bramka 4, L-047, L-050), 10.11.2026; figury/partia-2-mobility_stand @ c0672ee (od partia-2 @ 109b23c4), odłączony worktree; raport docs/research/recenzje/partia2-mobility_stand-r1-audytor-2026-11-10.md",
+      "sha": "b1ad85a5d670",
+      "uwagi": "Treść karty zgodna ze źródłem (ACE #152 krok 4, przy ścianie). Sprzeczność K11 z rysunkiem (W1, WYSOKIE) leży po stronie rysunku: brak ściany, dłonie na biodrach wobec „Oprzyj dłonie o ścianę”. Karta zostaje wyświetlana (wpis 02.11.2026 ten sam skrót); rysunek nie jest wyświetlany do poprawki (v2 do poprawy). Tylne kolano lekko ugięte (25,4°), pięty na podłodze — zgodne."
+    }
+  },
+  "v1_zastapiona": []
+}
