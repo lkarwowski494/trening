@@ -8,7 +8,7 @@ KO-022 (podział poseData.ts per rodzina) zrobiony w tej sesji (`scal/posedata-p
 ## Stan rodzin
 | Rodzina | Gałąź / głowa | Recenzja (docs/research/recenzje/partia8-*) | Stan |
 |---|---|---|---|
-| core_standing | partia-8-core_standing, d3e22931 (+ ewentualnie commit poprawki R2-W1 — sprawdź `git log`) | r1 do poprawy (W1–W5), r2 do poprawy: zostaje R2-W1 Landmine Rotation (sztanga 20 cm i ślad na osi z = 0, dłonie z ±19 cm; gear.ts:106 zeruje z przy podazaZaChwytem) | poprawka R2-W1 była w toku (subagent) → potem r3 różnicy; jeśli poprawka zmienia skróty innych rodzin → wstrzymać Landmine Rotation (V2_WSTRZYMANE) jako decyzja do weta |
+| core_standing | partia-8-core_standing, 9abbba74 (wypchnięta) | r1 do poprawy (W1–W5), r2 do poprawy (R2-W1 Landmine Rotation); R2-W1 naprawione bf2fe886 (gear.ts: sztanga z podazaZaChwytem obiema dłońmi idzie za środkiem chwytów także w z; skróty innych rodzin bez zmian, core_standing 0e202db15319 → a08a92274da8) + nowy wyjątek tor-wyjatki `Landmine Rotation|front` 13,1 cm (łuk rotacji) | do recenzji r3 (różnica d3e22931..9abbba74, w tym ocena wyjątku toru) |
 | sled_throw | partia-8-sled_strongman, 58232ce7 | r1 do poprawy (W1 Backward MBT — naprawione 91e0c006); r2 wyswietlana (skrót v2 e936d3d6c19d; karty i zestawy: partia8-sled_throw-r2.json) | gotowa do przepisania |
 | strongman | partia-8-sled_strongman, 58232ce7 | r1 wyswietlana (skrót v2 04b91430146d) | gotowa do przepisania |
 
@@ -18,7 +18,7 @@ KO-022 (podział poseData.ts per rodzina) zrobiony w tej sesji (`scal/posedata-p
 - Jarzmo Yoke Walk rysowane sztangą — uproszczenie w figury-ograniczenia-silnika.json.
 
 ## Następne kroki
-1. core_standing: wynik poprawki R2-W1 → recenzja r3 (różnica, audytor) → przepisanie wpisów 1:1 z r3/r2 json (v2, zestawy, karty) do `docs/research/figury-recenzja.json`.
+1. core_standing: recenzja r3 (różnica, audytor) → przepisanie wpisów 1:1 z r3/r2 json (v2, zestawy, karty) do `docs/research/figury-recenzja.json`.
 2. sled_throw + strongman: przepisanie 1:1 — sled z `partia8-sled_throw-r2.json`, strongman z `partia8-strongman-r1.json` (r2 potwierdziła: skróty strongman bez zmian).
 3. Scalenie do `figury/partia-8`: obie gałęzie rodzin + `origin/integracja-1-1`. KONFLIKT do rozstrzygnięcia: `lib/figures/v2/contract.ts` — core_standing (ślad = środek piłki z props `ball`, + landmine) vs sled_throw (ślad = środek chwytów). Rekomendacja: wersja core_standing; zmienia skrót v2 sled_throw → recenzja różnicy scalenia (audytor) na scalonym SHA. Listy w testach (mapping, strona-eksport n, gemini-polecenia, skrot-v2-wynik regex, tor-wyjatki, nakladka-triceps-olympic) — suma obu stron, liczniki z uruchomienia. `gemini-polecenia` był czerwony na gałęzi core (rodzin 15 vs 14) — przeliczyć po scaleniu. Cele 1.1 = `pokrycie-symulacja --json`.
 4. verify:szybkie (pod obciążeniem ~45 min, limit 2 h) → push → tests.yml zielony → PRZEKAZANIE do koordynatora.
