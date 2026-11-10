@@ -31,7 +31,7 @@ export const PROGI = {
   kregoslupZmianaDeg: 10, /* R2: zmiana zgięcia kręgosłupa uznawana za ruch „koci grzbiet ↔ krowa” */
   miednicaPietaMaxCm: 13, /* R3: środek miednicy najwyżej tyle od pięty w pozie dziecka = styk (ACE #227: „bringing your glutes to your heels”; promień miednicy 9,5 cm + ok. 3,5 cm pięty). Próg wynika ze źródła, nie z granicy modelu: gdy model nie pozwala, poza dostaje wyjątek zakresu (zakres_wyjatki) albo wyjątek bez animacji, a nie wyższy próg */
   biodroDzieckoMinDeg: 110, /* R3: zgięcie biodra w pozie dziecka (tułów złożony na uda) */
-  rekaWzdluzCiala: 20, /* R3: dłoń najwyżej tyle cm przed miednicą (ręce wzdłuż ciała, ACE #227 krok 4) */
+  rekaWzdluzCiala: 20, /* R3 wariant (a): dłoń najwyżej tyle cm przed miednicą (ręce wzdłuż ciała, ACE #227 krok 4); wariant (b) przed sobą: dłoń przed barkiem i ≤ dlonPodlogaY nad podłogą */
   lokiecSciana: 45, /* R8: rozciąganie łydki przy ścianie: łokcie zgięte co najmniej tyle stopni (ACE #152 krok 2: „allowing your elbows to bend as you shift your weight forward”) */
   chwytKostkaMaxCm: 8, biodroQuadMaxDeg: 30, /* R7: rozciąganie czworogłowego leżąc na boku: dłoń przy kostce tej samej nogi, udo rozciąganej nogi blisko linii tułowia (ACE #149) */
   glowaPodlogaMaxCm: 5, /* R3: najniższy punkt głowy nad podłogą */
@@ -59,14 +59,18 @@ const R2 = (p: Poza): string[] => {
   const dH = rel(a) - rel(b); /* a → b: zgięcie maleje o dB; głowa względem tułowia powinna maleć razem z nim */
   return Math.sign(dH) === Math.sign(dB) || dH === 0 ? [] : [`zgięcie kręgosłupa ${a.zgiecieKregoslupa}° → ${b.zgiecieKregoslupa}°, głowa względem tułowia ${rel(a).toFixed(0)}° → ${rel(b).toFixed(0)}° (przeciwna faza; brak zmiany głowy względem tułowia = głowa sztywno z tułowiem, bez trafienia)`];
 };
-/** R3: pozycja odpoczynku „dziecka”: miednica blisko pięt, biodro mocno zgięte, głowa przy podłodze, ręce wzdłuż ciała (krok 4 ACE #227). */
+/** R3: pozycja odpoczynku „dziecka”: miednica blisko pięt, biodro mocno zgięte, głowa przy podłodze, ręce wzdłuż ciała (krok 4 ACE #227) albo wyciągnięte przed siebie z dłońmi na podłodze (krok 2 ACE #227, CCSM, WebMD Ignite; 10.11.2026). */
 const R3 = (p: Poza): string[] => {
   if (!/child/i.test(p.cwiczenie)) return [];
   const s = sk(p, 0); const d = Math.min(...(['R', 'L'] as const).map((x) => dist(s.pelvis, s.legs[x].heel)));
   const o: string[] = []; if (d > PROGI.miednicaPietaMaxCm) o.push(`miednica ${d.toFixed(1)} cm od pięt (> ${PROGI.miednicaPietaMaxCm})`);
   if (s.head[1] - 9.5 > PROGI.glowaPodlogaMaxCm) o.push(`głowa ${(s.head[1] - 9.5).toFixed(1)} cm nad podłogą (> ${PROGI.glowaPodlogaMaxCm})`);
   const bio = Math.min(...(['R', 'L'] as const).map((x) => jointAngles(s, x).hip)); if (bio < PROGI.biodroDzieckoMinDeg) o.push(`biodro zgięte tylko ${bio.toFixed(0)}° (< ${PROGI.biodroDzieckoMinDeg}°)`);
-  for (const x of ['R', 'L'] as const) { const przed = s.arms[x].grip[0] - s.pelvis[0]; if (przed > PROGI.rekaWzdluzCiala) o.push(`dłoń ${x} ${przed.toFixed(0)} cm przed miednicą (> ${PROGI.rekaWzdluzCiala}: ręce nie leżą wzdłuż ciała)`); }
+  /* 10.11.2026 (koordynator, wariant A, do weta): dwa warianty rąk, oba ze źródeł pozy dziecka — (a) wzdłuż ciała: ACE #227 krok 4; (b) wyciągnięte przed siebie z dłońmi na podłodze: ACE #227 krok 2 („Keeping your hands planted… extend through your back and arms”),
+     Connecticut Children's Sports Medicine, Back Stretching HEP s. 1, Child's Pose pkt 2 („reaching your arms overhead”), WebMD Ignite/ColumbiaDoctors „Child's pose” kroki 2–3 („stretch your arms out in front of you”); karta: mobility_floor.t.child.reach (cues.json). Poza ma spełniać jeden wariant w obu rękach. */
+  const rece = (['R', 'L'] as const).map((x) => ({ x, przed: s.arms[x].grip[0] - s.pelvis[0], przedBarkiem: s.arms[x].grip[0] - s.arms[x].shoulder[0], y: s.arms[x].grip[1] }));
+  const wzdluz = rece.every((r) => r.przed <= PROGI.rekaWzdluzCiala); const przedSoba = rece.every((r) => r.przedBarkiem > 0 && r.y <= PROGI.dlonPodlogaY);
+  if (!wzdluz && !przedSoba) for (const r of rece) o.push(`dłoń ${r.x}: ${r.przed.toFixed(0)} cm przed miednicą (> ${PROGI.rekaWzdluzCiala}: nie wzdłuż ciała) i ${r.przedBarkiem > 0 && r.y <= PROGI.dlonPodlogaY ? 'wyciągnięta przed siebie' : `nie na podłodze przed barkiem (y ${r.y.toFixed(1)} cm, przed barkiem ${r.przedBarkiem.toFixed(0)} cm; dłoń ≤ ${PROGI.dlonPodlogaY} cm nad podłogą)`}`);
   return o;
 };
 /** R4: cecha rozpoznawcza widoczna w rzucie z boku (kamera po stronie +z): broda przy skłonie głowy ≥ 25° i (w rozciąganiu czworogłowego) pięta przy kolanie ≥ 110° nie mogą leżeć za bliższą kończyną. */
@@ -194,6 +198,22 @@ describe('reguły ruchu z recenzji mobilności na wszystkich pozach', () => {
       const stosuje = wczytaj().some((p) => { try { return f(p).length > 0 || ({ R1_kostka_lydki: /calf|soleus|gastro/i, R2_glowa_za_kregoslupem: /cat-cow/i, R3_dziecko_odpoczynek: /child/i, R4_cecha_widoczna: /chin to chest|side-lying quad/i, R5_chwyt_pomocniczy: /overhead triceps/i, R6_palce_nie_slizgaja_sie: /^$/, R6b_zawsze_podparcie: /^$/, R6c_bez_cofania: /^$/, /* R6–R6c: po usunięciu Inchworm (wyjątek bez animacji, 27.10.2026) żadna poza mobilności ich nie wymaga; reguły ogólne trafiają w pozy innych rodzin (f(p).length > 0) */ R7_chwyt_kostki_czworoglowy: /side-lying quad/i, R8_lokcie_przy_scianie: /wall calf|gastrocnemius/i } as Record<string, RegExp>)[nazwa].test(p.cwiczenie); } catch { return false; } });
       expect([nazwa, stosuje]).toEqual([nazwa, true]);
     }
+  });
+});
+
+describe('R3 pozy dziecka: dwa warianty rąk ze źródeł (koordynator, wariant A, 10.11.2026)', () => {
+  const dziecko = (): Poza => JSON.parse(JSON.stringify(wczytaj().find((p) => p.cwiczenie === "Child's Pose"))) as Poza;
+  const rece = (p: Poza, f: (r: { chwyt: number[] }) => void): Poza => { for (const k of p.klatki as unknown as { rece: Record<'R' | 'L', { chwyt: number[] }> }[]) for (const x of ['R', 'L'] as const) f(k.rece[x]); return p; };
+  test('wariant „przed sobą” (rysunek: dłonie na podłodze przed barkiem; karta child.reach: ACE #227 krok 2, CCSM s. 1 pkt 2, WebMD Ignite kroki 2–3) — 0 trafień', () => {
+    expect(REGULY.R3_dziecko_odpoczynek(dziecko())).toEqual([]);
+  });
+  test('wariant „wzdłuż ciała” (ACE #227 krok 4: dłoń najwyżej 20 cm przed miednicą) — 0 trafień', () => {
+    expect(REGULY.R3_dziecko_odpoczynek(rece(dziecko(), (r) => { r.chwyt[0] = -2; }))).toEqual([]);
+  });
+  test('ręce w powietrzu przed sobą (dłoń 15 cm nad podłogą) — trafienie; ręce w połowie drogi (nie wzdłuż ciała, nie przed barkiem) — trafienie', () => {
+    const wPowietrzu = REGULY.R3_dziecko_odpoczynek(rece(dziecko(), (r) => { r.chwyt[1] = 15; }));
+    expect(wPowietrzu.length).toBe(2); expect(wPowietrzu.join(' ')).toMatch(/nie na podłodze przed barkiem/);
+    expect(REGULY.R3_dziecko_odpoczynek(rece(dziecko(), (r) => { r.chwyt[0] = 35; r.chwyt[1] = 3; })).length).toBe(2);
   });
 });
 
