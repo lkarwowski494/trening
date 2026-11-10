@@ -9,7 +9,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
-import { KORZEN, kopia, kolejka, skroty, usunKopie, zastosuj, type Wynik, type Zmiana } from './helpers/skrot-v2-kopia';
+import { KORZEN, kopia, kolejka, podlaczenie, skroty, usunKopie, zastosuj, type Wynik, type Zmiana } from './helpers/skrot-v2-kopia';
 
 const RODZINY = ['squat', 'bench_press', 'hinge', 'pull_up', 'curl', 'olympic', 'triceps'];
 const SZYBKIE = ['pull_up', 'curl', 'olympic', 'triceps'];
@@ -29,7 +29,7 @@ const SCEN: Record<string, Scenariusz> = {
   /* (4) zmiana kosmetyczna plików wspólnych (komentarz na końcu każdego z nich) — rysunek bez zmian */
   kosmetyka: { rodziny: RODZINY, zmiany: ['draw', 'variants', 'overlay', 'overlayShapes', 'scene', 'skeleton', 'anim', 'poseData', 'families', 'errors', 'figure', 'contract', 'muscles', 'guides', 'contacts', 'badges', 'ui', 'rigs/common', 'overlay/common', 'overlay/hinge', 'overlay/squat'].map(p => ({ plik: `${V2}${p}.ts`, dopisz: '\n// zmiana kosmetyczna\n' })) },
   /* własny wpis prezentacji rodziny (DATA_UI): nazwa pierwszej fazy Pull-Up — część recenzowanego ekranu */
-  dataui: { rodziny: RODZINY, zmiany: [{ plik: V2 + 'poseData.ts', z: "pull_up: { names: { first: 'Podciąganie'", na: "pull_up: { names: { first: 'Podciągnięcie'" }] },
+  dataui: { rodziny: RODZINY, zmiany: [{ plik: V2 + 'rodziny/pull_up.ts', z: "ui: { names: { first: 'Podciąganie'", na: "ui: { names: { first: 'Podciągnięcie'" }] },
   /* plik samej rodziny: pozy Pull-Up (spacja na końcu) i rig przysiadu (komentarz) — tekst pliku rodziny jest w skrócie tej rodziny */
   pliki: { rodziny: ['squat', 'pull_up', 'curl', 'olympic'], zmiany: [{ plik: V2 + 'poses/pull_up.json', dopisz: '\n' }, { plik: V2 + 'rigs/squat.ts', dopisz: '\n// zmiana' }] },
   /* dane i reguły, które tylko SPRAWDZAJĄ pozy (styki wymagane w pozie poprawnej, wyjątek zakresu barku nad głową) i niczego nie rysują — poza wynikiem, więc poza skrótem (V2_POKRYCIE) */
@@ -104,7 +104,7 @@ describe('L-047 (09.11.2026): macierz plik rysunku × rodzina — zmiana, która
 const POKRYCIE: Record<string, string> = {
   'anim.ts': 'wynik', 'badges.ts': 'wynik', 'colliders.ts': 'wynik', 'contacts.ts': 'wynik', 'contract.ts': 'wynik', 'draw.ts': 'wynik', 'dumbbellAxis.ts': 'wynik', 'errors.ts': 'wynik', 'families.ts': 'wynik', 'figure.ts': 'wynik',
   'gear.ts': 'wynik', 'guides.ts': 'wynik', 'math.ts': 'wynik', 'muscles.generated.ts': 'wynik', 'muscles.ts': 'wynik', 'overlay.ts': 'wynik', 'overlay/common.ts': 'wynik',
-  'overlay/hinge.ts': 'wynik', 'overlay/squat.ts': 'wynik', 'poseData.ts': 'wynik', 'poseInterp.ts': 'wynik', 'reguly-cwiczen.json': 'wynik', 'rigs/common.ts': 'wynik', 'scene.ts': 'wynik', 'skeleton.ts': 'wynik',
+  'overlay/hinge.ts': 'wynik', 'overlay/squat.ts': 'wynik', 'poseData.ts': 'wynik', 'rodziny/index.ts': 'wynik', 'poseInterp.ts': 'wynik', 'reguly-cwiczen.json': 'wynik', 'rigs/common.ts': 'wynik', 'scene.ts': 'wynik', 'skeleton.ts': 'wynik',
   'ui.ts': 'wynik', 'variants.ts': 'wynik', 'overlayShapes.ts': 'wynik', 'grupy.json': 'wynik',
   'leverGuard.ts': 'wynik', /* decyzja „rysować dźwignię” dotyczy rodzin z DZWIGNIA_BEZ_GLOWY (leg_machine, dziś planowana): jej skutek wchodzi do wyniku, gdy rodzina zostanie podłączona */
   'render.ts': 'render', 'palette.ts': 'render',
@@ -124,7 +124,8 @@ describe('ACG-002 (audyt ćwiczeń 31.10.2026): każdy plik lib/figures/v2, z kt
       for (const m of fs.readFileSync(path.join(KORZEN, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V)) kolejkaPlikow.push(c); }
     }
     const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(bench_press|curl|pull_up|olympic|triceps|hip_bridge|cable_row|delt_raise|chest_fly|calf_raise|kb_ballistic|overhead_press|row|pulldown|shrug|hip_abd_add|leg_machine|dip|chest_press_machine|cable_press|back_extension|thruster|pushup_plank|mobility_floor|mobility_stand)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
-    const brak = [...domk].filter(f => !rodzinne(f) && !(f.slice(V.length) in POKRYCIE)).sort();
+    const wpisRodziny = (f: string) => /^lib\/figures\/v2\/rodziny\/\w+\.ts$/.test(f) && !f.endsWith('/index.ts'); /* KO-022 (10.11.2026): plik rejestru jednej rodziny (load, DATA_UI, ONE_WAY_UI) — wykonywany przez skrót z wyniku (jak poseData.ts przed podziałem): „wynik” */
+    const brak = [...domk].filter(f => !rodzinne(f) && !wpisRodziny(f) && !(f.slice(V.length) in POKRYCIE)).sort();
     expect(brak).toEqual([]);
     for (const [f, p] of Object.entries(POKRYCIE)) {
       expect([f, fs.existsSync(path.join(KORZEN, V + f))]).toEqual([f, true]);
@@ -146,10 +147,9 @@ describe('L-080 (09.11.2026): gałąź z wcześniejszymi zmianami względem main
     git(tmp, 'checkout', '-qb', 'galaz');
     zastosuj(tmp, [
       { plik: V2 + 'families.ts', z: "{ id: 'leg_isolation', status: 'planned'", na: "{ id: 'leg_isolation', status: 'ready'" },
-      { plik: V2 + 'poseData.ts', z: "  pull_up: () => require('./poses/pull_up.json'),\n", na: "  pull_up: () => require('./poses/pull_up.json'),\n  leg_isolation: () => require('./poses/leg_isolation.json'),\n" },
-      { plik: V2 + 'poseData.ts', z: 'export const DATA_UI: Record<string, DataUi> = {\n', na: "export const DATA_UI: Record<string, DataUi> = {\n  leg_isolation: { names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] },\n" },
+      ...podlaczenie('leg_isolation', { load: true, ui: "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }" }),
     ]);
-    git(tmp, 'commit', '-qam', 'podlaczenie leg_isolation'); refs.c1 = git(tmp, 'rev-parse', 'HEAD');
+    git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'podlaczenie leg_isolation'); /* KO-022: nowy plik rodziny — add -A */ refs.c1 = git(tmp, 'rev-parse', 'HEAD');
     fs.writeFileSync(path.join(tmp, 'dokument.md'), 'notatka\n'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'dokument'); refs.c2 = git(tmp, 'rev-parse', 'HEAD');
     zastosuj(tmp, SCEN.element.zmiany); git(tmp, 'commit', '-qam', 'prowadnica'); refs.c3 = git(tmp, 'rev-parse', 'HEAD');
     const r: Record<string, Wynik> = {};
