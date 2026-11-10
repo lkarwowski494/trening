@@ -402,6 +402,18 @@ Odesłanie z wpisu DEC-07 w `docs/18` („1.0.1: podgląd liczb i krok importu �
 - Szrugsy z maszyny (ACG-019 rozszerzenie: Smith Behind the Back, Leverage, Calf-Machine — łokieć 21–45° wbrew `shrug.tall`) → 1.1, stały łokieć w `shrug.json`.
 - ACG-010 (Alternating Deltoid Raise) i ACG-015 (Dumbbell Seated Box Jump): technika ustalona źródłami (`docs/research/acg-010-015-technika-2026-10-31.md`), wdrożenie figur i zestawów → przy włączeniu rodzin delt_raise / plyo (decyzja koordynatora o terminie otwarta).
 
+### Backlog 1.1.x — figury: partia 9 (lunge, leg_isolation; recenzje niezależne 10.11.2026, ŚREDNIE i NISKIE — nie blokują; `docs/research/recenzje/partia9-*-audytor-2026-11-10.md`)
+- P9-LI-1 (N1): Lying Leg Curl — tułów wchodzi 2,2 cm w obicie ławki przy u = 0 (granica K7: 1 cm).
+- P9-LI-2 (N2): Slider Hamstring Curl — łopatki 1,4 cm pod podłogą przy u = 1.
+- P9-LI-3 (N3): Standing Leg Curl — rama maszyny i uchwyty nie są rysowane (dłonie trzymają powietrze).
+- P9-LI-4 (N4, badacz): `data/zrodla/figury-sens.json` — `wskazowki_na_reguly["lext.range"]` bez `wyprost_kolan_jednonoz`; po uzupełnieniu zdjąć warunek omijający w `tests/figures-v2-leg-isolation.test.tsx`.
+- P9-LI-5 (N5): Seated Band Hamstring Curl — kolano kończy na ok. 92° („tak daleko, jak dasz radę”; nie przeczy karcie). Komentarz w `tests/figures-v2-tor.test.ts` (NOGA_LUK) podaje 85–96°, Leg Extension ma 79° — kosmetyka.
+- P9-LI-6: 6 ćwiczeń rodziny bez danych póz (bez rysunku w rodzinie ready): Glute Ham Raise, Leg Curl (hantel), Nordic Curl, Reverse Nordic, Sissy Squat, Stability Ball Hamstring Curl — autorstwo póz i recenzja (wersja 1.2; Nordic Curl także w ZB-053).
+- P9-LU-1 (Ś3): zestaw ogólny przy Lateral Lunge, Barbell Side Split Squat i Cossack Squat mówi „Przednie kolano…”, a w ruchu bocznym nie ma nogi przedniej (wskazówka prawdziwa dla nogi ugiętej, którą rysunek pokazuje); rozwiązanie: wariant zdania albo mechanizm `CUE_REQUIRES` odróżniający ruch boczny (`lib/figures/v2/cueSets.ts`).
+- P9-LU-2 (Ś4): start w rozkroku niesymetryczny (Lateral Lunge, Barbell Side Split Squat, Cossack: kolano zgięte ok. 38–52° na starcie, miednica ok. 10 cm od środka między stopami); symetryczny start łamie dziś regułę `kolano_nad_stopa` i limit goleni.
+- P9-LU-3 (N2 r2): zmiana `lib/figures/v2/gear.ts` (położenie sztangi w bok z chwytów) przesuwa gryf w 7 ćwiczeniach olympic o ≤ 0,05 cm — niewidoczne, ale skrót v2 rodziny nie obejmuje `gear.ts` (luka skrótu).
+- P9-LU-4: Split Squat i Split Squat (linki) — tylne kolano na starcie 23° (przednie 8,8°); dalszy wyprost blokuje minimum zgięcia drugiej nogi w walidatorze.
+
 ### Backlog 1.1.x — figury: partia 4 (dip, chest_press_machine, cable_press, back_extension; recenzje niezależne 10.11.2026, ŚREDNIE i NISKIE — nie blokują; `docs/research/recenzje/partia4-*-audytor-2026-11-10.md`)
 - **P4-DIP-1** — Triceps Dips (ławka) wstrzymane (W5 WYSOKIE; decyzja docs/18, 10.11.2026). Warunek powrotu: łokieć prosto do tyłu (|z łokcia| między dłonią a barkiem ±3 cm, x ≤ bark, na dole shSag ≤ 0, przedramię poza kapsułą tułowia) przy limicie shSag −53° — wyjątek zakresu stawów z recenzją albo zmiana modelu ławki (pochylenie tułowia, szerokość ławki, polem `w` w schemacie). Pomiary: pozy naturalne mają shSag −61° na dole (łokieć 84°), okno poprawek ≈ 0,02 cm. Test W5 jest gotowy w scratchpadzie wykonawcy (czerwony na obecnych pozach) — dodać go przy powrocie, razem z `V2_WSTRZYMANE` zdjętym dla ławki i z nowym celem pokrycia (534 / 457 / 534).
 - **P4-DIP-2** — zestaw ogólny Dip Machine (W3 WYSOKIE; wariant A, docs/18): osobny zestaw dla maszyny siedzącej albo `CUE_NOT_IN_FAMILY` / `CUE_REQUIRES`, napisany przez badacza; po 1.1.
