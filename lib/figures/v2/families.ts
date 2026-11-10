@@ -64,7 +64,7 @@ export const FAMILIES: Family[] = [
   { id: 'neck', status: 'planned', label: 'Szyja', views: ['side'], effort: 1 },
   { id: 'forearm', status: 'planned', label: 'Przedramiona i chwyt', views: ['side'], effort: 2 },
   { id: 'thruster', status: 'planned', label: 'Thruster i ruchy złożone przysiad + wyciskanie', views: ['side'], effort: 2 },
-  { id: 'chest_press_machine', status: 'planned', label: 'Maszyny wyciskające siedząc (klatka, barki)', views: ['side'], effort: 3 },
+  { id: 'chest_press_machine', status: 'ready', label: 'Maszyny wyciskające siedząc (klatka, barki)', views: ['side'], effort: 3 },
   { id: 'cable_press', status: 'planned', label: 'Wyciskania na linkach', views: ['side', 'top'], effort: 2 },
   { id: 'kneeling_hinge', status: 'planned', label: 'Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad)', views: ['side'], effort: 1 },
 ];
