@@ -20,7 +20,7 @@ function kierunekU(d: PoseData): Kierunek {
   const a = keyframeFrame(d, 0).sk, b = keyframeFrame(d, 1).sk; const dy = b.pelvis[1] - a.pelvis[1];
   if (Math.abs(dy) >= PELVIS_MIN_CM) return dy < 0 ? 'opuszczanie' : 'wysilek';
   const dk = SIDES.map(s => jointAngles(b, s).knee - jointAngles(a, s).knee).reduce((m, x) => Math.abs(x) > Math.abs(m) ? x : m, 0);
-  /* 10.11.2026 (partia 5, core_hang): zgięcie kolan przy stojącej miednicy i kostkach unoszących się o ≥ PELVIS_MIN_CM to unoszenie kolan w zwisie (wysiłek), nie opuszczanie; w przysiadzie i wykroku kostki zostają na podłożu. */
+  /* 10.11.2026 (partia 5, core_hang): zgięcie kolan przy stojącej miednicy i kostkach unoszących się o ≥ PELVIS_MIN_CM to wysiłek, nie opuszczanie — unoszenie kolan w zwisie, ale też uginanie nóg (leg curl: kostka idzie w górę) i Cocoons; w przysiadzie i wykroku kostki zostają na podłożu. Przegląd audytora 10.11.2026: reguła zmienia klasyfikację dokładnie 5 ćwiczeń (przypięte testem niżej). */
   const dankle = (b.legs.R.ankle[1] + b.legs.L.ankle[1]) / 2 - (a.legs.R.ankle[1] + a.legs.L.ankle[1]) / 2;
   if (dk > 0 && dankle >= PELVIS_MIN_CM) return 'wysilek';
   if (Math.abs(dk) >= MIN_MEASURED_ROM.deg) return dk > 0 ? 'opuszczanie' : 'wysilek';
@@ -60,6 +60,10 @@ describe('kierunek u z geometrii póz (dane, logika)', () => {
   test('lista odwróceń: w leg_machine i lunge dokładnie te ćwiczenia mają u 0→1 inny niż „opuszczanie” (wejście dla wpisów DATA_UI)', () => {
     const inne = (f: string) => Object.entries(plik(f)).filter(([, d]) => kierunekU(d) !== 'opuszczanie').map(([k]) => k);
     expect(inne('leg_machine')).toEqual(['Leg Press', 'Single Leg Press']); expect(inne('lunge')).toEqual(['Step Up', 'Barbell Step Up']);
+  });
+  test('10.11.2026 (przegląd audytora strażnika kierunku u): gałąź „kolano zgięte + kostki w górę” daje wysiłek dokładnie dla 5 ćwiczeń, w których wcześniej wynik był „opuszczanie”', () => {
+    const przypadki: [string, string][] = [['core_hang', 'Hanging Knee Raise'], ['core_floor', 'Cocoons'], ['leg_isolation', 'Lying Leg Curl'], ['leg_isolation', 'Standing Leg Curl'], ['leg_isolation', 'Standing Cable Leg Curl']];
+    for (const [f, k] of przypadki) { const d = plik(f)[k]; expect([f, k, d ? kierunekU(d) : 'brak pozy']).toEqual([f, k, 'wysilek']); }
   });
 });
 

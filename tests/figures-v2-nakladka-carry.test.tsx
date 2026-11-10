@@ -16,7 +16,7 @@ const KEYS = Object.keys(CATALOG).filter(k => { try { return figureSpec(k)?.fami
 const US = Array.from({ length: 21 }, (_, i) => i / 20);
 const sens = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.carry;
 const T = 'carryTorsoPlumb';
-/** Karty własne (Farmer's Walk: lunge.torso, Suitcase Carry: carry.noLean) mają element od początku; zestawy ogólne (carry.noLean) dostały go po wpisie recenzji „zestawy” (cueSelection) — 10.11.2026 (recenzja carry r2, wpisy 5 zestawów w figury-recenzja.json) wszystkie 7 ćwiczeń rodziny mają element; wcześniej tabela miała tylko 2 karty własne i test padał już na 5692d55e (integrator partii 5). */
+/** Karty własne (Farmer's Walk: lunge.torso, Suitcase Carry: carry.noLean) mają element od początku; zestawy ogólne (carry.noLean) dostały go po wpisie recenzji „zestawy” (cueSelection) — 10.11.2026 (recenzja carry r2, wpisy 5 zestawów w pliku recenzji figur; nazwa pliku celowo bez rozszerzenia — wybór testów L-103 liczy testy czytające plik, a ten test go nie czyta, przegląd audytora 10.11.2026) wszystkie 7 ćwiczeń rodziny mają element; wcześniej tabela miała tylko 2 karty własne i test padał już na 5692d55e (integrator partii 5). */
 const WANT: Record<string, string[]> = Object.fromEntries(KEYS.map(k => [k, [T]]));
 
 describe('dane: elementy carry ← reguły „ustalone” ze źródłem', () => {
