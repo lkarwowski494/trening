@@ -1,0 +1,195 @@
+{
+ "v2": {
+  "shrug": {
+   "werdykt": "do_poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — do poprawy: W1–W4 WYSOKIE (ruch rąk zamiast samych barków)",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "uwagi": "Wspólna przyczyna W1–W4: chwyt w poses/shrug.json nie podąża za barkiem (bark +6 cm, chwyt +8,3–8,6 cm albo stały/odjeżdżający), silnik dopasowuje rękę zgięciem łokcia lub ruchem ramienia. Brak reguły „ręce proste” w figury-sens.json (shrug). Nakładka (shrugShoulderUpRef, front) i prezentacja (Unoszenie 1 s / Opuszczanie 2 s, cm; Middle Back Shrug: Ściąganie/Powrót, protract) bez zastrzeżeń.",
+   "slad": "arkusze arkusz-slad.mjs (light i dark), 8 ćwiczeń × front i side, u co 0,05: ślad pionowy w górę dla sztangi/linki/Smith/maszyn, po skosie na zewnątrz dla hantli (front), po skosie w tył-górę dla Barbell Behind (side, odstęp 5,6→16,1 cm), po skosie wzdłuż normalnej tułowia dla Middle Back Shrug; arkusze nakładki arkusz-nakladka.mjs (16 PNG); powiększenia u=0 vs u=1 (crop/szt-f-cmp.png, h-cmp.png, elb.png)",
+   "sha": "c0c99f20bb15",
+   "liczba": 8,
+   "cwiczenia": {
+    "Shrugs (sztanga)": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W5 (ŚREDNIE): łokieć 4°→13,5°, gryf od ud 1,4→4,7 cm do przodu, tułów −4,5° w tył; uniesienie barków 6 cm widoczne z przodu; po naprawie wspólnej przyczyny (chwyt = chwyt0 + przesunięcie barku)"
+    },
+    "Shrugs (hantle)": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W4 (WYSOKIE): hantle odchodzą na boki (odwiedzenie 8°→15°, odstęp od ud 3,2→11,5 cm), łokieć 4°→13°; ślad po skosie na zewnątrz"
+    },
+    "Shrugs (linki)": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W5 (ŚREDNIE): jak sztanga; linka ok. 42° od pionu (uwaga bez znaleziska)"
+    },
+    "Barbell Shrug Behind The Back": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W3 (WYSOKIE): gryf odjeżdża od tyłu ud 5,6→16,1 cm po skosie w tył-górę; karta: sztanga za udami, ręce proste"
+    },
+    "Smith Machine Behind the Back Shrug": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W2 (WYSOKIE): łokcie 21°→38°, ręce ciągną (chwyt +8,5 cm, bark +6 cm)"
+    },
+    "Leverage Shrug": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W1 (WYSOKIE): łokcie 32°→45° — rysunek pokazuje błąd shrug.mis.elbows z karty; W7 (NISKIE): jeden uchwyt"
+    },
+    "Calf-Machine Shoulder Shrug": {
+     "werdykt": "do_poprawy",
+     "uwagi": "W1 (WYSOKIE) jak Leverage; W6 (ŚREDNIE): brak poduszek na barkach, rysunek = Leverage Shrug"
+    },
+    "Middle Back Shrug": {
+     "werdykt": "wyswietlana",
+     "uwagi": "Leżenie przodem na ławce 45°, łopatki: wysunięcie 5 → cofnięcie −4 cm prostopadle do tułowia, łokcie stale ok. 42° (bez zmiany; opis wykonania nieprzeczytany — uwaga bez znaleziska); bez przenikania"
+    }
+   }
+  }
+ },
+ "karty": {
+  "Shrugs (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4) — treść karty wobec rysunku v2 i źródeł cues.json",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "5e140bf234c0",
+   "uwagi": "Treść (shrug.setup, move, high, tall; ACE #72/#75, ExRx BBShrug/DBShrug) zgodna ze źródłami. Rysunek v2 przeczy słabo (W5) — karta zostaje przy rysunku v1 do naprawy v2; wpisu v1 nie przestawiać jeszcze na „zastapiona”."
+  },
+  "Shrugs (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4) — treść karty wobec rysunku v2 i źródeł cues.json",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "5e140bf234c0",
+   "uwagi": "Treść zgodna ze źródłami. Rysunek v2 przeczy (W4: hantle na boki) — karta zostaje przy rysunku v1 do naprawy v2; wpisu v1 nie przestawiać jeszcze na „zastapiona”."
+  },
+  "Shrugs (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4) — treść karty wobec rysunku v2 i źródeł cues.json",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "2a27c76a6ad6",
+   "uwagi": "Treść bez zmian; spójność z rysunkiem v2 poza W5 (ŚREDNIE)."
+  },
+  "Barbell Shrug Behind The Back": {
+   "werdykt": "do_poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4) — treść karty wobec rysunku v2 i źródeł cues.json",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "e5d7a98886ed",
+   "uwagi": "Treść karty poprawna; rysunek v2 przeczy shrug.setupBehind (W3) — do poprawy rysunek, nie tekst."
+  },
+  "Leverage Shrug": {
+   "werdykt": "do_poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4) — treść karty wobec rysunku v2 i źródeł cues.json",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "2e70f293d7f6",
+   "uwagi": "Treść karty poprawna; rysunek v2 pokazuje błąd shrug.mis.elbows z tej karty (W1) — do poprawy rysunek, nie tekst."
+  }
+ },
+ "zestawy": {
+  "Smith Machine Behind the Back Shrug": {
+   "rodzina": "shrug",
+   "werdykt": "do_poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego i teksty pl/en wobec rysunku v2)",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "193c74683067",
+   "uwagi": "Przypisanie zestawu shrug (shrug.move, shrug.tall, mis.jerk) trafne, teksty pl/en poprawne; rysunek przeczy shrug.tall (W2, łokcie 21°→38°)."
+  },
+  "Calf-Machine Shoulder Shrug": {
+   "rodzina": "shrug",
+   "werdykt": "do_poprawy",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego i teksty pl/en wobec rysunku v2)",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "193c74683067",
+   "uwagi": "Przypisanie i teksty trafne; rysunek przeczy shrug.tall (W1), brak poduszek na barkach (W6)."
+  },
+  "Middle Back Shrug": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-09",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego i teksty pl/en wobec rysunku v2)",
+   "autor": "programista partii 3 (figury/partia-3 9f487b42)",
+   "recenzent": "audytor",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), czysta kopia git archive 9f487b42 w (lokalny katalog roboczy recenzenta, poza repo); raport docs/research/recenzje/p3-shrug-audytor-2026-11-09.md",
+   "sha": "ae52305bc674",
+   "uwagi": "Zestaw wiosłowania z podparciem klatki (csr.chest, scr.chest, mis.jerk) pasuje do szrugsa leżąc przodem: klatka na oparciu, ściąganie łopatek; teksty bez zginania łokci; rysunek zgodny."
+  }
+ },
+ "znaleziska": [
+  {
+   "id": "W1",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Leverage Shrug; Calf-Machine Shoulder Shrug",
+   "rzut": "side, u=0…1",
+   "opis": "Łokcie ugięte 32°→45°, uchwyt +8,5 cm przy barku +6 cm — rysunek pokazuje błąd shrug.mis.elbows z karty Leverage („Uginanie łokci”) i przeczy „ręce proste”/„pracują tylko barki”. Realny.",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo)"
+  },
+  {
+   "id": "W2",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Smith Machine Behind the Back Shrug",
+   "rzut": "side, u=0…1",
+   "opis": "Łokcie ugięte 21°→38°, ręce ciągną gryf; zestaw shrug.tall „pracują tylko barki”. Realny.",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo)"
+  },
+  {
+   "id": "W3",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Barbell Shrug Behind The Back",
+   "rzut": "side, u=0,5…1",
+   "opis": "Gryf odjeżdża od tyłu ud 5,6→16,1 cm po skosie w tył-górę (ramię 14°→21° za pion, tułów −4,5°); karta „sztangę trzymaj nachwytem za udami, ręce proste”. Realny.",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo)"
+  },
+  {
+   "id": "W4",
+   "waga": "WYSOKIE",
+   "cwiczenie": "Shrugs (hantle)",
+   "rzut": "front, u=0,6…1",
+   "opis": "Hantle odchodzą na boki (chwyt z 28,2→35,7 cm, odwiedzenie 8°→15°, odstęp od ud 3,2→11,5 cm), łokieć 4°→13°; karta „Unieś barki w górę… pracują tylko barki”. Realny.",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo)"
+  },
+  {
+   "id": "W5",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Shrugs (sztanga); Shrugs (linki)",
+   "rzut": "side, u=0,5…1",
+   "opis": "Łokieć 4°→13,5°, gryf od ud do przodu 1,4→4,7 cm (linki 4,1→7,2), tułów 0→−4,5° w tył (w konwencji ≤5°, kierunek przeciwny do „upright or very slightly bent over”). Realny, słabo widoczny.",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo); (lokalny katalog roboczy recenzenta, poza repo)"
+  },
+  {
+   "id": "W6",
+   "waga": "ŚREDNIE",
+   "cwiczenie": "Calf-Machine Shoulder Shrug",
+   "rzut": "front i side",
+   "opis": "Brak poduszek na barkach, rysunek identyczny z Leverage Shrug; ograniczenie silnika do_przegladu bez wersji (figury-ograniczenia-silnika.json). Realny.",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo)"
+  },
+  {
+   "id": "W7",
+   "waga": "NISKIE",
+   "cwiczenie": "Leverage Shrug; Calf-Machine Shoulder Shrug",
+   "rzut": "front",
+   "opis": "Jeden uchwyt (dzwignia trzyma R), lewa dłoń pusta; „odstęp −8,5 cm” na arkuszu to artefakt miary (slide bez kolidera), nie przenikanie. Realny (kosmetyka).",
+   "dowod": "(lokalny katalog roboczy recenzenta, poza repo)"
+  }
+ ]
+}
