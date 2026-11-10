@@ -813,12 +813,12 @@
    "raw": "f2a7eac3259dec61842f"
   },
   "carry/Farmer's Walk": {
-   "svg": "ce521544a99e7dbe4e0e",
-   "raw": "43a1deed25e159adb55a"
+   "svg": "18066aa6ec2144cf1791",
+   "raw": "b504696b98268b45a4e9"
   },
   "carry/Farmer's Walk (Farmers Handles)": {
-   "svg": "6a4904ec977675ee4b21",
-   "raw": "2e73ef72d172c41f66ee"
+   "svg": "152069953183d579a139",
+   "raw": "e13a03acc987fedfcc58"
   },
   "carry/Farmer's Walk (trap bar)": {
    "svg": "7ba1e2747b36b8e051b8",
@@ -833,12 +833,12 @@
    "raw": "799f23c4936296db09aa"
   },
   "carry/Overhead Carry (hantle)": {
-   "svg": "25581b875cd41a06ff13",
-   "raw": "f4de775728f4edd0be0f"
+   "svg": "77e7c01a72057119df4e",
+   "raw": "236410c4cedebd957236"
   },
   "carry/Double Kettlebell Front Rack Carry": {
-   "svg": "4e6eb491f69b61981407",
-   "raw": "90cc1af0e4e0e0077973"
+   "svg": "7fc7d139ba576fa050d7",
+   "raw": "ed9fa7022fdbff242c6f"
   },
   "chest_fly/Chest Fly (hantle)": {
    "svg": "4281a4dab2e964bc0b57",
@@ -1013,16 +1013,16 @@
    "raw": "785c723cb9e344578512"
   },
   "core_hang/Hanging Knee Raise": {
-   "svg": "276b9354f8be782c8218",
-   "raw": "bf493d95dc2d93f26f7f"
+   "svg": "dd55f9da14fe1074491b",
+   "raw": "8cdc82e849bba82b55ea"
   },
   "core_hang/Hanging Leg Raise": {
-   "svg": "7a0c74233e10f8224907",
-   "raw": "e3a3ace5fb6f6422c645"
+   "svg": "8f753a66954d15e6e0b1",
+   "raw": "d9909f62322914aaf5fb"
   },
   "core_hang/Toes to Bar": {
-   "svg": "6d64dcd4802179592835",
-   "raw": "509c41a86b9623663a05"
+   "svg": "6b6049527578567f8d7a",
+   "raw": "52424c0191bed1c3f1f1"
   },
   "core_standing/Barbell Side Bend": {
    "svg": "7020a38c01a33ea45a6d",
@@ -1369,36 +1369,36 @@
    "raw": "ed0b599dbfdffe55f639"
   },
   "forearm/Barbell Wrist Curl": {
-   "svg": "c47a598a997ac7d18513",
-   "raw": "071a831fe411163b5862"
+   "svg": "61c042708e72c902551e",
+   "raw": "23e61e903a9b352aa0b1"
   },
   "forearm/Barbell Reverse Wrist Curl": {
-   "svg": "b1f15825b35669742ffd",
-   "raw": "eadcfdeca28b117fc3ad"
+   "svg": "32c71f1b0a768a07079d",
+   "raw": "d51d7423ef853d485b5d"
   },
   "forearm/Wrist Curl (hantle)": {
-   "svg": "633296739480a625fa80",
-   "raw": "ae54ae5b11ff45bb89f4"
+   "svg": "1392e56da1f075475a1e",
+   "raw": "a10478ed65b3bec70f07"
   },
   "forearm/Reverse Wrist Curl (hantle)": {
-   "svg": "a1ded1e978c758eb2c9b",
-   "raw": "be0620af3bf63a18fcd5"
+   "svg": "3aaddb1c910f1e9cdc30",
+   "raw": "e085f74f8b1334e5562d"
   },
   "forearm/One-Arm Dumbbell Wrist Curl": {
-   "svg": "b1442ae1484c1df580c5",
-   "raw": "69be36d6b7713971eea4"
+   "svg": "5ebc42508d148f9bbba7",
+   "raw": "b2d31cb5a420881ae895"
   },
   "forearm/One-Arm Dumbbell Reverse Wrist Curl": {
-   "svg": "24eac1a780b8c4ea29e0",
-   "raw": "fdddcc555014255cd733"
+   "svg": "4bee04de5129886e07f2",
+   "raw": "53d89df49fda7e21aafb"
   },
   "forearm/Cable Wrist Curl": {
-   "svg": "d62ccab1864c3311b91a",
-   "raw": "6d3d4cecb15a9fda2ff3"
+   "svg": "6edb6db8b0192453a332",
+   "raw": "35ddc77f2867d40f9d88"
   },
   "forearm/Behind-the-Back Barbell Wrist Curl": {
-   "svg": "500c384dba943e9028d6",
-   "raw": "2effa6a549f2260ecbe0"
+   "svg": "32eb43a2bd74d3208434",
+   "raw": "d408397a92a6154c7d0f"
   },
   "forearm/Reverse Plate Curls": {
    "svg": "a47f4a9f36a55e1cfadb",
@@ -1561,8 +1561,8 @@
    "raw": "4e2edf9f0ca1472b7582"
   },
   "kneeling_hinge/Seated Good Mornings": {
-   "svg": "3dc11313900ff98fe783",
-   "raw": "c3794cc5d2e5ca6b800e"
+   "svg": "b0e415074f90645bc0e4",
+   "raw": "3c9df7a97dd0ef14b3d7"
   },
   "leg_isolation/Leg Extension": {
    "svg": "0acb1c28efecec3c7608",
@@ -2225,28 +2225,28 @@
    "raw": "2c65ca01f535e5306c96"
   },
   "rotator_cuff/External Rotation (linki)": {
-   "svg": "f07e4e9141cd7c98c3f6",
-   "raw": "9cd92b6d118cce9bcc30"
+   "svg": "f44dbe8835b640a44d8f",
+   "raw": "2b6a32a5545089ae642d"
   },
   "rotator_cuff/External Rotation with Band": {
-   "svg": "90bcd8a5fee6e0950306",
-   "raw": "8f6d635cbf85df3463b1"
+   "svg": "1fa119ac4bbd4e87916a",
+   "raw": "ea139e1e89449eccffd8"
   },
   "rotator_cuff/Internal Rotation with Band": {
-   "svg": "44193950470d9083bf67",
-   "raw": "27483ac77960f7f98a14"
+   "svg": "d059676d108fa22ea11b",
+   "raw": "cd19df9cf9c951b62646"
   },
   "rotator_cuff/Cable Internal Rotation": {
-   "svg": "0fc8a80437ee2fae7ecd",
-   "raw": "b694aa68d7e2f2ffa750"
+   "svg": "beabffff67342e00e66c",
+   "raw": "9c6d1b34edfa8aa0ad52"
   },
   "rotator_cuff/Band Pull Apart": {
-   "svg": "b735f08c579a4649df48",
-   "raw": "04671cb9ceda402ce118"
+   "svg": "2ce8eaf6b6f79db3323f",
+   "raw": "7c190dbf7390f9ec168b"
   },
   "rotator_cuff/Reverse Flyes With External Rotation": {
-   "svg": "961d6808716009061489",
-   "raw": "0baf67daa5f5c060e22c"
+   "svg": "5ce632b79daffb65cf51",
+   "raw": "6c4ab16f77aec8630701"
   },
   "row/Bent Over Row (sztanga)": {
    "svg": "2ec1b72f5a41efb9b2b2",
