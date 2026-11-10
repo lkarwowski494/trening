@@ -1,35 +1,27 @@
-# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 05:40 UTC) — PRACA WSTRZYMANA
+# Koordynacja Trening (linia 1.1) — stan (aktualizacja 2026-11-10 07:10 UTC) — PRACA WZNOWIONA 07:00 UTC
 
 Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy. Dawne pliki stanu: `docs/koordynacja/archiwum/` (dziennik nocy, przekazania noc4/noc5, diagnoza nocnych testów) — źródło szczegółów.
 
 ## Mandat (przepisuj bez zmian; zmienia go tylko właściciel)
-- Tryb decyzji: analogia (tryb nocny) — od 2026-11-09 ~19:30 UTC, słowa (docs/18:346 na integracja-1-1): „koordynator podejmuje wszystkie decyzje zgodnie z tym, co i tak by zarekomendował (zapis każdej w docs/18 z datą i odrzuconymi wariantami, do weta rano); prace zleca innym sesjom/agentom, sam tylko koordynuje; sesje wykonawcze nie przekraczają 30% limitu kontekstu”. Rano właściciel może przywrócić tryb „właściciel” — [DO USTALENIA] po raporcie 05:00.
+- Tryb decyzji: analogia — potwierdzony przez właściciela 2026-11-10 ~07:00 UTC (AskUserQuestion przy starcie /apps4brew: „Analogia”); wcześniej: analogia (tryb nocny) — od 2026-11-09 ~19:30 UTC, słowa (docs/18:346 na integracja-1-1): „koordynator podejmuje wszystkie decyzje zgodnie z tym, co i tak by zarekomendował (zapis każdej w docs/18 z datą i odrzuconymi wariantami, do weta rano); prace zleca innym sesjom/agentom, sam tylko koordynuje; sesje wykonawcze nie przekraczają 30% limitu kontekstu”. Rano właściciel może przywrócić tryb „właściciel” — [DO USTALENIA] po raporcie 05:00.
 - Repo portfela do analogii (odczyt): brak użytych tej nocy (decyzje wg rekomendacji); dostępne: lkarwowski494/techniqueatlas.
 - Zgody trwałe:
   - przekład API partii rodzin 1.1 do 30 USD łącznie (właściciel 09.11.2026, ZB-057 w docs/zobowiazania.md; wydane 0 USD);
   - scalanie gałęzi do `integracja-1-1` po zielonym tests.yml (scripts/scal-galaz.mjs) — model pracy z CLAUDE.md;
   - zmiany workflowów: koordynator scala sam po przebiegu dowodowym (CLAUDE.md, właściciel 21.10.2026).
 - Zawsze za zgodą: push i scalenie na `main`, App Store Connect, TestFlight, publikacja, usuwanie gałęzi i danych, force-push, koszty stałe, wiadomości do ludzi, koszt API ponad pułap; nigdy --no-verify.
-- Pułapy kosztu: API przekładu 30 USD (ZB-057). Pułap kosztu sesji i doby: [DO USTALENIA] (nieustalony; noc 09/10.11 ≈ 340 USD równowartości w limicie subskrypcji; limit tygodniowy konta allowed_warning, reset 2026-11-15 16:00 UTC).
-- Koordynator aktywny: session_01T66VBw1AX38pLShXPH7rmy (od 2026-11-10 05:20 UTC; poprzednik session_01T66VByJCWCao1Hw3is68Cy). Rola M9 złożona 05:37 (prompts f701ce9) po zgodzie właściciela na add_repo (~05:36).
-- Środowisko: environment_id env_016cjV5XopwCaywxTR2x8qwp, model claude-opus-5-5, wysiłek medium, permission_mode auto; repo sesji: lkarwowski494/trening, techniqueatlas, prompts.
+- Pułapy kosztu: API przekładu 30 USD (ZB-057). Doba (sesje podrzędne): 350 USD — właściciel 2026-11-10 ~07:00 UTC, słowa: „350 USD na dobę” (ponad: bez nowych sesji). Pułap sesji: [DO USTALENIA] przez właściciela; roboczo w poleceniach (KO-019, do weta) (dawniej nieustalony; noc 09/10.11 ≈ 340 USD równowartości w limicie subskrypcji; limit tygodniowy konta allowed_warning, reset 2026-11-15 16:00 UTC).
+- Koordynator aktywny: session_01T66VBxiRkBevtfwuCxxs97 (od 2026-11-10 07:00 UTC, uruchomiony przez właściciela z /apps4brew; poprzednik session_01T66VBw1AX38pLShXPH7rmy, wcześniej session_01T66VByJCWCao1Hw3is68Cy). Rola M9 złożona 05:37 (prompts f701ce9) po zgodzie właściciela na add_repo (~05:36).
+- Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-fable-5-2 (wyjątek nazwany od zalecanej sesji opus/medium: właściciel po prośbie o /model odpowiedział „dalej” bez zmiany, 2026-11-10), wysiłek medium, permission_mode auto; repo sesji: lkarwowski494/trening, prompts (oraz Szkola_pokera, oczko, piekarz, oczko-warsztat — nieużywane). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## WSTRZYMANIE (właściciel, 2026-11-10 ~05:35 UTC: „zapisz wszystkie zadania i ich stan i wstrzymaj pracę”)
-- Nic nowego się nie zaczyna; scalenia, zlecenia i nowe sesje — dopiero po wznowieniu przez właściciela.
-- P-4 i P-5: polecenie 05:36 — domknąć krok (commit + push na własną gałąź, bez scaleń), STAN-AGENTA.md, raport, koniec tury. Raporty mogą przyjść po zapisie — przy wznowieniu: ReadNotifications.
-- Przypomnienia koordynatora usunięte (kontrola 05:48, linia 14:00, linia 05:00 11.11) — przy wznowieniu utworzyć od nowa (E6 pkt 5).
-- Poprzednik session_01T66VByJCWCao1Hw3is68Cy: nieaktywny (send_message 05:37 → session_inactive); jego przypomnienie trig_01RWANmz7TjBgbofGPeFceaB (05:46) zostawione (cudze).
-- Gałęzie (git ls-remote 05:30): integracja-1-1 dfaeeefe; figury/partia-2 7a09818f; figury/partia-4 3bcd294c; figury/partia-4-thruster 110bb399; figury/partia-5 — nie było na origin o 05:30.
-
-## Przejście na drugie konto (właściciel 2026-11-10 ~05:40 UTC: wygaszanie — kończy się limit tygodniowy, reset 2026-11-15 16:00 UTC)
-Sesje, przypomnienia i ID sesji z tego konta NIE są widoczne z drugiego konta — jedynym nośnikiem stanu jest repo (`lkarwowski494/trening`, publiczne; push wymaga dostępu GitHub drugiego konta albo pracy przez konto właściciela).
-Start na drugim koncie (nowa sesja koordynatora M9):
-1. Sesja z repo `lkarwowski494/trening`; `git fetch origin koordynacja integracja-1-1`; przeczytać ten plik (origin/koordynacja) w całości, potem decyzje.md, waskie-gardla.md, koszty.md, CLAUDE.md.
-2. Rola M9: add_repo `lkarwowski494/prompts` (read), `node <prompts>/tools/assemble.mjs M9-koordynator-sesji --tryb build`. Jeśli odrzucone — prośba do właściciela (na tym koncie klasyfikator odrzucał 00:16, 05:12, 05:16).
-3. Stan pracy: tabela „Zadania i stan” niżej. Gałęzie wykonawców mają `STAN-AGENTA.md` (jeśli sesja zdążyła zapisać) — nowa sesja wykonawcza startuje od niego.
-4. Na tym koncie zostaje do wygaszenia: sesje P-4, P-5 (wstrzymane), zakończone P-1/P-2/P-3 i starsze (do archiwizacji), przypomnienie poprzednika trig_01RWANmz7TjBgbofGPeFceaB. Nocne testy (nightly.yml) i tests.yml biegną w GitHub Actions niezależnie od konta.
-5. Linie 05:00/14:00 i kontrolę utworzyć od nowa na drugim koncie.
+## Teraz
+- Wznowienie: właściciel 2026-11-10 ~07:00 UTC wybrał „Przejmij i wznów pracę” (AskUserQuestion /apps4brew) — wstrzymanie z 05:35 zdjęte. Praca toczy się na tym samym koncie (poprzednie sesje i przypomnienia innych koordynatorów widoczne w list_triggers/list_sessions); limit tygodniowy: allowed_warning, reset 2026-11-15 16:00 UTC.
+- Sprawdzone u źródła 07:05: integracja-1-1 dfaeeefe; figury/partia-4-thruster-wl 06d90e84 — tests.yml 42762990970 success; figury/partia-2 7a09818f; figury/partia-5 cd789d82 — przebieg 42763692815 (cd5c4afa) cancelled, głowa bez wyniku; figury/partia-5-rotator_cuff 7f694cf5. Autor commitów: Claude <noreply@anthropic.com>.
+- Zlecane: A (pociąg-4, polecenia/A.md) i B (partia 5, polecenia/B.md) @ a6d5416f. Start sesji: pierwsza próba create_session przerwana przez klasyfikator bezpieczeństwa przy wklejaniu promptu roli (sesja nie powstała — list_sessions 07:06); druga próba w toku.
+- Po zielonym pociągu-4: scal-galaz do integracji, potem tura 3 w 2 sesjach (KO-017).
+- Karta „Stan projektu” w CLAUDE.md: brak; właściciel 07:00: „Pozycja w planie M9” → zadanie dla sesji z dokumentami po turze 3 (propozycja do zatwierdzenia).
+- Bramka opłacalności: docs/monetyzacja.md istnieje (M5 S1). Środowisko: Linux bez Xcode, push na koordynacja działa (a6d5416f), MCP GitHub działa.
 
 ## Zadania i stan (na chwilę wstrzymania)
 | # | Zadanie | Stan | Dowód / gdzie | Następny krok po wznowieniu |
@@ -82,10 +74,10 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm) — poprawka pozy + recenzja; fidr.move (Front Incline DB Raise) → cel +1; dług ROZJAZDY_POZA_ZAKRESEM (tests/figury-generator-odtwarza.test.ts); recenzja lokalizacji zbiorcza (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell); badacz: lokcie_pod_dlonmi w środku toru ohp, glute_floor, pewność reguł mobility_floor/kneeling_hinge; silnik: punkty dźwigni barki/uda (calf), gear.ts obrót dzwonu (kb); P3-MARSZ; PP-W1 (Plyo).
 
 ## Przypomnienia
-- brak (usunięte przy wstrzymaniu 05:37).
+- trig_01UWKZWY4rndpbXDhvFvEqDJ „Koordynator Trening: kontrola” 07:58 · trig_018AqHfnRFqwmNRigDBHErPn „…: linia 05:00” (11.11) · trig_01SbVK3otxUkuUTdwSHCL3VJ „…: linia 14:00” (10.11)
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-015. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-020. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -97,3 +89,5 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 05:25 | integracja | scal/pociag-3 c1ffb654 → dfaeeef (tests.yml 42760295218 zielony; drzewo = c1ffb654, verify:lekkie) | pociąg-4 (P-4) |
 | 2026-11-10 05:56 | koordynator | wygaszanie: P-4 (06d90e84) i P-5 (cd789d82, 7f694cf5) wypchnięte i zarchiwizowane razem z P-1, P-2, P-3 | koniec pracy na tym koncie; start na drugim koncie wg sekcji „Przejście” |
 | 2026-11-10 05:35 | właściciel | „zapisz wszystkie zadania i ich stan i wstrzymaj pracę” → P-4, P-5 wstrzymane, przypomnienia usunięte, lista zadań wyżej | wznowienie przez właściciela |
+| 2026-11-10 07:00 | koordynator …VBxiRkBevtfwuCxxs97 | przejęcie z /apps4brew; właściciel: „Przejmij i wznów pracę”, „Analogia”, „350 USD na dobę”, karta Stan projektu = pozycja planu; KO-015…KO-019; przypomnienia utworzone; polecenia A, B @ a6d5416f | start sesji A, B |
+| 2026-11-10 07:06 | koordynator | create_session A przerwane przez klasyfikator bezpieczeństwa (sesja nie powstała) | druga próba; przy powtórce — inna droga przekazania roli |

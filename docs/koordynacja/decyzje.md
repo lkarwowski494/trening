@@ -18,3 +18,9 @@ Oryginały: docs/18-przekazanie.md na integracja-1-1 (wpisy 09–10.11.2026, zap
 | KO-013 | 2026-11-10 03:30 | rekomendacja | Plyo Push-Up wstrzymany (PP-W1); Child's Pose R3 akceptuje oba warianty rąk (źródła wskazane) | dziennik 03:30 | wyjątek w strażniku | do weta |
 | KO-014 | 2026-11-10 00:10 | rekomendacja | model scaleń „pociąg” (gałąź zbiorcza scal/pociag-N) | dziennik 00:10 | dociąganie integracji do każdej gałęzi | do weta (decyzja D właściciela) |
 | — | 2026-11-09/10 | rekomendacja | wyjątki weryfikacji: verify:lekkie przy drzewie scalenia identycznym z zielonym drzewem gałęzi (delt, partie, pociągi); A4a — lekkie + 106 celowanych, kontrola tests.yml integracji (zielone 42719347782) | dziennik | verify:szybkie za każdym razem | do weta |
+| KO-015 | 2026-11-10 07:10 | rekomendacja | Decyzja A (nocne testy): przygotować gałąź z samymi poprawkami CI dla `main` po przebiegu dowodowym; scalenie do `main` czeka na zgodę właściciela | rekomendacja poprzednika (stan.md „Czeka na właściciela” A) | B: czekać na 1.1; C: ręczny dispatch na integracji | do weta; scalenie = prośba do właściciela |
+| KO-016 | 2026-11-10 07:10 | rekomendacja | Decyzja B: wyjątki reguły nakładki (mobility_floor, kneeling_hinge) zostają + badacz w turze 3 | jw. B; KO-006, KO-011 | zmiana reguły | do weta |
+| KO-017 | 2026-11-10 07:10 | rekomendacja | Decyzja C: tura 3 w 2 sesjach, start po scaleniu pociągu-4 | jw. C; limit tygodniowy allowed_warning | 3–4 sesje | do weta |
+| KO-018 | 2026-11-10 07:10 | rekomendacja | Decyzja D: model scaleń „pociąg” przyjęty (potwierdza KO-014) | WG-01 | dociąganie integracji do każdej gałęzi | do weta |
+| KO-019 | 2026-11-10 07:10 | rekomendacja | Robocze pułapy sesji: scalenia 25 USD, partia 60 USD (próg STOP +30%); model sesji: rola 08 build sonnet (pociąg), opus dla partii figur (jak dotąd) | koszty.md: partie 18–60 USD | jeden pułap dla wszystkich | do weta; pułap sesji w mandacie nadal [DO USTALENIA] |
+
