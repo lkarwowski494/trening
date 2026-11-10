@@ -222,7 +222,7 @@ describe('eksport dla strony: pole `pelna` = standard 1 „Pełna karta” liczo
   const licznik = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { policz } from './scripts/pokrycie-katalogu.mjs'; process.stdout.write(JSON.stringify(Object.fromEntries(policz().cw.map(c => [c.key, c.pelna]))));`], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 24 })) as Record<string, boolean>;
   test('każde ćwiczenie eksportu ma boolowskie `pelna` równe wynikowi policz() (pl i en)', () => {
     for (const l of ['pl', 'en'] as const) {
-      const ex = data[l].exercises as unknown as { id: string; pelna: unknown }[];
+      const ex = data[l].exercises as unknown as { id: string; family: string; pelna: unknown }[];
       expect(ex).toHaveLength(Object.keys(licznik).length);
       expect(ex.filter(e => typeof e.pelna !== 'boolean').map(e => e.id)).toEqual([]);
       /* 10.11.2026 (partia 5): licznik liczy w osobnym procesie z prawdziwą bramką 4 (figura tylko z rodziny w lib/figures/data.json), a eksport w tym teście symuluje zapis recenzji dla wszystkich rodzin ready — rodzina włączona, ale jeszcze niezrecenzowana (rotator_cuff) daje więc różnicę tylko w figurze; porównujemy rodziny z prawdziwą recenzją, a dla pozostałych pilnuje się tego samego warunku w tests/strona-eksport-recenzja.test.ts */
