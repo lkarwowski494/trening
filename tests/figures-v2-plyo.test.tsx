@@ -55,6 +55,24 @@ describe('geometria: podpora, lot, lądowanie', () => {
   });
 });
 
+const stare = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/plyo-r1-przed-poprawka.json'), 'utf8')).cwiczenia as Record<string, PoseData>; /* pozy sprzed poprawek r1 — negatyw */
+const GRID = Array.from({ length: 101 }, (_, i) => i / 100);
+const wLocie = (d: PoseData, u: number) => (['R', 'L'] as const).every(s => nadPodpora(d, u, s) >= 3);
+/** r1 W1: najdalej w tył wysunięty chwyt względem barku w ugięciu (u ≤ 0,25), cm (ujemne = za barkiem). */
+const zamachWTyl = (d: PoseData) => Math.min(...GRID.filter(u => u <= 0.25).map(u => { const f = keyframeFrame(d, u); return f.sk.arms.R.grip[0] - f.sk.arms.R.shoulder[0]; }));
+/** r1 W2: w locie największe zgięcie kolana i najmniejsza odległość pięta–miednica nogi `s`. */
+const pietaWLocie = (d: PoseData, s: 'R' | 'L') => { let k = 0, dd = 1e9; for (const u of GRID.filter(x => wLocie(d, x))) { const f = keyframeFrame(d, u); k = Math.max(k, jointAngles(f.sk, s).knee); const h = f.sk.legs[s].heel; dd = Math.min(dd, Math.hypot(h[0] - f.sk.pelvis[0], h[1] - f.sk.pelvis[1], h[2] - f.sk.pelvis[2])); } return { k, dd }; };
+describe('ruch: zamach rąk i pięty do pośladków (r1 W1–W2, 10.11.2026)', () => {
+  test('W1 Broad Jump: w ugięciu dłonie co najmniej 15 cm za barkiem (karta: „zamach rękami w tył”)', () => { expect(zamachWTyl(poses['Broad Jump'])).toBeLessThanOrEqual(-15); });
+  test.each([['Double Leg Butt Kick', 'R'], ['Double Leg Butt Kick', 'L'], ['Single Leg Butt Kick', 'L']] as const)('W2 %s (noga %s): w locie kolano ≥ 120° i pięta ≤ 30 cm od miednicy', (k, s) => {
+    const m = pietaWLocie(poses[k], s); expect([k, s, m.k >= 120, m.dd <= 30]).toEqual([k, s, true, true]);
+  });
+  test('negatyw: pozy sprzed poprawek (r1) oblewają W1 i W2', () => {
+    expect(zamachWTyl(stare['Broad Jump'])).toBeGreaterThan(-15);
+    for (const [k, s] of [['Double Leg Butt Kick', 'R'], ['Single Leg Butt Kick', 'L']] as const) { const m = pietaWLocie(stare[k], s); expect([k, m.k >= 120 && m.dd <= 30]).toEqual([k, false]); }
+  });
+});
+
 describe('nakładka: elementy rodziny ← reguły „ustalone”', () => {
   test('rejestr: łuk stawu mierzonego (miękkie lądowanie, z boku) i poziom barków (zamach rąk); TECHNIQUE.plyo wskazuje tę tablicę', () => {
     expect(PLYO_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.views])).toEqual([['plyoLandLimb', 'limb', 'miekkie_ladowanie', ['side']], ['plyoShoulderLevelRef', 'ref', 'zamach_rak', ['side', 'front']]]);
