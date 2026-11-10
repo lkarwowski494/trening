@@ -15,5 +15,6 @@
 | P-5 …VByZrLpWxNF8yF3gpgu | partia 5 | — | 57,5 (archiwizacja 05:56) | 34 | 00:38→05:51 | — | wstrzymana, zarchiwizowana |
 | koordynator …VByJCWCao1Hw3is68Cy | koordynator | — | 176 (05:05, od 08.11) | 44 | — | — | migracja na M9 |
 | A …VBviwDCU3NCJVaVH1WP | 08 build (sonnet): pociąg-4, partia 4 | 25 | 3,69 | 29,1 | 07:06 zlecone → 07:08 start (2. próba create_session) → 07:47 push 760afa88 → CI b.d. → nieprzyjęte (A2) | 8 min: 1. próba startu przerwana (WG-05); 8 min: PYTANIE czekało na odczyt z transkryptu | kontekst wyczerpany scaleniem 1 z 2 gałęzi; następca A2 |
+| B …VBzi6xg7DYJMg2oYF8Q | 08 build (opus): partia 5 domknięcie | 60 | 20,00 | 37,3 | 07:06 zlecone → 07:10 start → 09:11 push ef42f8e4 → CI w toku (42788593262) → odbiór po CI | ~20 min: jest(3) > 20 min na gałęzi bez KO-012 (KO-021) | push zbiorczy na końcu (114→74 commity) |
 Mnożnik szacunku: brak szacunków tej nocy [DO USTALENIA].
 Przegląd przepływu 2026-11-10: największa strata ~1 h na każde dociąganie integracji → WG-01.
