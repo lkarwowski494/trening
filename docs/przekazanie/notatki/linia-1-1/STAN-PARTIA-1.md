@@ -6,18 +6,18 @@ Brief autora rodziny: `briefy/partia-1-autor.md`. Recenzja: subagent `audytor` (
 
 Zysk z `node scripts/pokrycie-symulacja.mjs` (09.11.2026, przed pracą): overhead_press +21, chest_fly +17, kb_ballistic +16, calf_raise +12, row +12 (pełna karta).
 
-Stan 10.11.2026 ~01:05 UTC (koniec sesji kontynuacji 3, session_01T66VBxNaAEefAUfCL8vLG1 — limit kontekstu). `figury/partia-1` @ 5186b19d (zawiera integrację 34838fa6, scalenie 3e9b2a93). **Do dociągnięcia: integracja-1-1 @ fbd92527 (partia 3)** — scalić przed raportem końcowym (pliki generowane generatorami; figury-recenzja.json scalać słownikowo, trójstronnie — tekstowo dubluje klucze).
+Stan 10.11.2026 ~03:30 UTC (koniec sesji kontynuacji 4, session_01T66VBx7QqXRjB2JpVi4Kww). `figury/partia-1` zawiera integrację c9346795 (scalenie 44939bf) i kb-r3 (778e40b). **Wszystkie rodziny partii ready.** Lokalnie testy figur 552/552 (13 plików); tests.yml — zobacz raport do koordynatora.
 
 | Rodzina | Status | Recenzja | Następny krok |
 |---|---|---|---|
-| calf_raise | ready | różnica po śladzie dźwigni wyswietlana (41ff550cd2bf) | — |
-| row | ready | r3 wyswietlana; różnica zbędna (skrót bez zmian) | — |
+| calf_raise | ready | różnica po śladzie dźwigni wyswietlana (41ff550cd2bf); Standing/Seated wstrzymane | — |
+| row | ready | r3 wyswietlana | — |
 | curl | ready | wyswietlana | — |
-| chest_fly | ready | r2 wyswietlana (8415d1a06aa5); zestaw Crucifix „do poprawy” ukryty | — |
-| overhead_press | **ready (5186b19d, niezweryfikowane testami)** | r3 **wyswietlana** (065ae12bd57d; Ś1-r3 siedzące 10,5–12,6 cm ŚREDNIE, N1–N3 NISKIE) | **napraw 10 czerwonych testów** (niżej); backlog: Ś1-r3 + pytanie do badacza o `lokcie_pod_dlonmi` w środku toru (rec. r3 pkt d), N3-r3 tryb dzwonu gear.ts, N2-r3 test l.112 (indeks zamiast u), opis wyjątków siedzących w tor-wyjatki.json („recenzent r2 uznał…” → stan po r3) |
-| kb_ballistic | planned | r3 **do poprawy** (W1-r3 szarpnięcie, W2-r3 start Snatch (hantel)) | poprawki: `figury/partia-1-kb-r3` (3fa2515d: W1-r3, W2-r3, N2-r3, N3-r3 zrobione); subagent tej sesji dokańcza R6 (zapadka ≤ 4), Ś2, N4 — jeśli przerwany: STAN-AGENTA.md w jego worktree / git log gałęzi. Ś1-r3 (przeskok dzwonu, gear.ts:493 resolveBells) → backlog silnika. Potem scal do partia-1 i **r4 audytora** (warunek koordynatora: ciągłość rwań jawnie; szarpnięcie = WYSOKIE) |
+| chest_fly | ready | r2 wyswietlana (8415d1a06aa5); Crucifix ukryty | — |
+| overhead_press | ready | r3 wyswietlana (065ae12bd57d) | backlog P1-OHP-1, P1-OHP-2 (docs/21) |
+| kb_ballistic | ready (98b8558) | r4 wyswietlana (97edf91fc18d; brak szarpnięcia) | backlog P1-KB-1, P1-KB-2 (Ś1-r3 silnik gear.ts) |
 
-Czerwone po włączeniu ohp (lokalny przebieg 15 plików, 10/1351): figures-v2-mapping (lista ready + liczba figur +21), strona-eksport (n +21 → 292?), recenzja-wyjatki-1-1 (lista v2 + overhead_press), karty-recenzja („każdy zestaw ogólny przy figurze v2 ma wpis w zestawy” — brakujące wpisy zestawów ohp), figures-v2-data (frameAt pull_up/ogólne + macierz błędów — zobacz które ćwiczenie ohp; błąd tempa mis.jerk w landmine → JERK_TEMPO_RODZINY?), figures-v2-kierunek-u (DATA_UI ohp kierunek u; lot/rzut → petla jednokierunkowa), figures-v2-petla-jednokierunkowa (licznik 63). Wynik: /tmp nie przetrwa — uruchom ponownie te pliki `--runInBand`. Przy brakach wpisów zestawów — NIE wymyślaj sha; jeśli recenzja r3 nie objęła zestawu, zestaw zostaje ukryty (bramka) albo krótka recenzja audytora.
+Historia (sesja 3, już zamknięte): Czerwone po włączeniu ohp (lokalny przebieg 15 plików, 10/1351): figures-v2-mapping (lista ready + liczba figur +21), strona-eksport (n +21 → 292?), recenzja-wyjatki-1-1 (lista v2 + overhead_press), karty-recenzja („każdy zestaw ogólny przy figurze v2 ma wpis w zestawy” — brakujące wpisy zestawów ohp), figures-v2-data (frameAt pull_up/ogólne + macierz błędów — zobacz które ćwiczenie ohp; błąd tempa mis.jerk w landmine → JERK_TEMPO_RODZINY?), figures-v2-kierunek-u (DATA_UI ohp kierunek u; lot/rzut → petla jednokierunkowa), figures-v2-petla-jednokierunkowa (licznik 63). Wynik: /tmp nie przetrwa — uruchom ponownie te pliki `--runInBand`. Przy brakach wpisów zestawów — NIE wymyślaj sha; jeśli recenzja r3 nie objęła zestawu, zestaw zostaje ukryty (bramka) albo krótka recenzja audytora.
 Koordynator (decyzje 10.11): ohp — gdy badacz potwierdzi, że reguła łokcia dotyczy tylko dołu/góry → poprawka reguły + r4 siedzących (1.1.x); kb rwania „dynamiczne” zatwierdzone (do weta) pod warunkiem braku szarpnięcia.
 
 Zmiany testów (10.11.2026): `tests/helpers/rodziny-planned.ts` (PLANNED_Z_DANYMI — jedno miejsce dla mapping i data); figures-v2-data testuje tylko gotowe rodziny; row w JERK_TEMPO_RODZINY. Złote odciski ohp (`figures-v2-zgodnosc-wsteczna`, ZLOTE_ZAPISZ=1) przeliczyć po scaleniu poprawek ohp r2 (zmiana celowa r1+r2).
