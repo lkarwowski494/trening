@@ -11,8 +11,12 @@ export const WYS_PODWYZSZENIA = JSON.parse(readFileSync(fileURLToPath(new URL('.
 export const SUSP_Y = 220; /* wysokość zaczepu taśm (EQUIP.suspensionY, domyślna w silniku) */
 const RODZINA = 'pushup_plank';
 const POD = -60; /* podbicie: palce stoją na podporze (wyjątek rodziny kostki −75°) */
-const DL = 82.0; /* odległość miednica–kostka: noga prawie prosta (zgięcie kolana ≈ 18° w skali silnika: uda + golenie = 83 cm, więc każdy 1 cm niedoboru to ok. 14° — czułość cosinusa, nie przesunięcie zera rigu); zapas 0,8 cm do limitu 82,8 daje opadanie biodra w rzędzie sag */
+const DL = 83.2; /* odległość miednica–kostka: noga prosta — udo + podudzie = 83 cm, a walidator dopuszcza nadmiar zasięgu do 0,5 cm (colliders.ts TOL.reach; silnik prostuje nogę). Nadmiar 0,2 cm daje zapas na zaokrąglenie pozy do 0,1 cm i skrócenie cięciwy między klatkami: kolano 0–1°, a nie 17–20° jak przy 82,0 (1 cm niedoboru ≈ 18° — czułość cosinusa; recenzja r1 09.11.2026, W1; limit kolana prostej nogi ≤ 5°) */
+/** Single-Arm Push-Up: stopy szeroko (z = pz ± 15), więc noga prosta ma w 3D dodatkowe ok. 10,8 cm w poprzek; odległość miednica–kostka w płaszczyźnie skrócona, by całkowity zasięg nogi ≈ 83,2 cm (jak DL; kolano ≤ 5°). */
+const DL_SINGLE = 83.0;
 const US = [0, 0.25, 0.5, 0.75, 1];
+/** Klatki poprawnej pozy co 1/11 (limit schematu: 12) tam, gdzie miednica robi długi łuk wokół kostek: silnik interpoluje ją liniowo między klatkami, więc cięciwa skraca nogę i zgina „prostą” nogę (rzadkie klatki: kolano do 10–18° między klatkami). Klatki błędów zostają rzadkie (kontrakt: ≤ 8). */
+const USD = Array.from({ length: 12 }, (_, i) => i / 11);
 const ZNOG = 10;
 const biegun = (x, z) => ({ R: [x, 0, z], L: [x, 0, -z] });
 
@@ -42,13 +46,21 @@ function trajPompki(o) {
 }
 const czysc = (k) => { const { _S, _fi, _K, ...r } = k; return r; };
 
-/** Wariant „opadające biodra”: tułów obrócony wokół barków tak, by miednica spadła o ≥ 9 cm poza linię barki–kostka; odległość miednica–kostka ≤ 82,8 cm (zasięg nogi). */
-function sagZ(okFn, deltaMax = 11) {
+/** Przesunięcie kostek poziomo ku dłoniom (domyślnie nigdy od nich; `min` < 0 pozwala cofnąć; palce zostają na tej samej wysokości, nie wchodzą pod podłogę) tak, by odległość miednica–kostka wynosiła `cel` (bisekcja; odległość maleje, gdy kostka zbliża się do miednicy w x). */
+function kostkaDlaZasiegu(A0, P, cel, min = 0) {
+  const d = (x) => Math.hypot(P[0] - (A0[0] + x), P[1] - A0[1]);
+  let lo = min, hi = 8; for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (d(mid) > cel) lo = mid; else hi = mid; }
+  return [A0[0] + (lo + hi) / 2, A0[1]];
+}
+/** Wariant „opadające biodra”: tułów obrócony wokół barków o deltaMax·w stopni (miednica spada o ≥ 9 cm poza linię barki–kostka). Poprawna poza ma nogę prostą (odległość miednica–kostka ≈ 83 cm), a opadnięcie miednicy
+ *  wokół barków wydłuża tę odległość ponad zasięg nogi — więc w błędzie stopy ześlizgują się o kilka milimetrów ku dłoniom (kostkaDlaZasiegu, poziomo), a kolana są lekko ugięte (odległość `cel`, domyślnie 82,8 cm ≈ 8°). */
+function sagZ(okFn, deltaMax = 11, cel = 82.8) {
   return (u, w) => {
-    const ok = okFn(u); const S = ok._S; const A = ok.nogi.R.kostka; const f = w; if (f === 0) return czysc(ok);
-    let dg = deltaMax * f; for (; dg > 3; dg -= 0.25) { const fi = ok._fi + dg; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)]; if (Math.hypot(P[0] - A[0], P[1] - A[1]) <= 82.8) break; }
-    const fi = ok._fi + dg; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)];
-    const z = czysc(ok); return { ...z, miednica: [r1(P[0]), r1(P[1]), z.miednica[2]], pochylenieTulowia: r1(90 - fi) };
+    const ok = okFn(u); const S = ok._S; if (w === 0) return czysc(ok);
+    const dg = deltaMax * w; const fi = ok._fi + dg; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)];
+    const A0 = ok.nogi.R.kostka; const A = kostkaDlaZasiegu(A0, P, cel);
+    const z = czysc(ok); const przes = (n) => ({ ...n, kostka: [r1(A[0]), r1(A[1]), n.kostka[2]] });
+    return { ...z, miednica: [r1(P[0]), r1(P[1]), z.miednica[2]], pochylenieTulowia: r1(90 - fi), nogi: { R: przes(z.nogi.R), L: przes(z.nogi.L) } };
   };
 }
 const FSAG = () => 1; /* błąd postawy widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
@@ -91,7 +103,7 @@ export function mountain(cw, o = {}) {
   const kolanoIK = (hip, ank, sg) => { const B = BODY(); const dx = ank[0] - hip[0], dy = ank[1] - hip[1]; const d = Math.hypot(dx, dy); const a = (B.thigh ** 2 - B.shank ** 2 + d * d) / (2 * d); const h = Math.sqrt(Math.max(0, B.thigh ** 2 - a * a)); const ux = dx / d, uy = dy / d;
     const c = [[hip[0] + ux * a - uy * h, hip[1] + uy * a + ux * h], [hip[0] + ux * a + uy * h, hip[1] + uy * a - ux * h]]; const Kn = c[0][0] >= c[1][0] ? c[0] : c[1]; const mid = [(hip[0] + ank[0]) / 2, (hip[1] + ank[1]) / 2]; const q = [Kn[0] - mid[0], Kn[1] - mid[1]]; const l = Math.hypot(...q);
     return l < 0.5 ? [POLE[0], POLE[1], sg * 0.1] : [q[0] / l, q[1] / l, sg * 0.1]; };
-  const noga = (sd, u, hipP = [k.pelvis[0], k.pelvis[1]]) => { const t = sd === 'R' ? u : 1 - u; /* t = 0: ugięta, 1: wyprostowana (dla R); L odwrotnie */ const x = bent[0] + (A[0] - bent[0]) * t; const pod = Math.max(-90, PODB + (podR - PODB) * t + podOff * Math.sin(Math.PI * t)); const y = kostkaNaPalcach(0, PODB + (podR - PODB) * t) + lift * Math.sin(Math.PI * t); const sg = sd === 'R' ? 1 : -1;
+  const noga = (sd, u, hipP = [k.pelvis[0], k.pelvis[1]]) => { const te = (1 - Math.cos(Math.PI * u)) / 2; /* zwolnienie przy końcach: noga prosta jest wrażliwa (kolano ucieka o ok. 7 cm na 1 cm ruchu kostki), więc kostka dochodzi do wyprostu łagodnie (ciągłość, W1 r1 09.11.2026) */ const t = sd === 'R' ? te : 1 - te; /* t = 0: ugięta, 1: wyprostowana (dla R); L odwrotnie */ const x = bent[0] + (A[0] - bent[0]) * t; const pod = Math.max(-90, PODB + (podR - PODB) * t + podOff * Math.sin(Math.PI * t)); const y = kostkaNaPalcach(0, PODB + (podR - PODB) * t) + lift * Math.sin(Math.PI * t); const sg = sd === 'R' ? 1 : -1;
     return { k: [x, y, sg * ZNOG], pod, pole: kolanoIK(hipP, [x, y], sg) }; };
   /* biodra unoszą się przy zmianie nóg (obrót tułowia wokół barków, barki i dłonie nieruchome): udo przechodzi przez pion, więc przy biodrze 48 cm nad podłogą kolano musiałoby dotknąć podłogi */
   const B0 = BODY(); const S0 = [k.pelvis[0] + B0.trunk * up(k.pitch)[0], k.pelvis[1] + B0.trunk * up(k.pitch)[1]];
@@ -106,31 +118,35 @@ function shoulderTaps(cw) {
   const tr = trajPompki({ A, H, hzR: hz, theta: 12 });
   const okF = (u) => { const k = tr(u); const S = k._S; const z = czysc(k); const dol = (sg) => ({ chwyt: [hx, hy, sg * hz], biegunLokcia: [-1, 0, sg * 0.5] });
     const tap = (sg) => ({ chwyt: rv3([S[0] + 8, S[1] - 8, -sg * 17]), biegunLokcia: [0.2, -1, sg * 0.6] }); /* ręka sg dotyka przeciwnego barku */
-    z.rece = u === 0 ? { R: dol(1), L: dol(-1) } : u === 0.5 ? { R: tap(1), L: dol(-1) } : { R: dol(1), L: tap(-1) }; return { ...z, _S: S, _fi: k._fi }; };
-  const us = [0, 0.5, 1]; return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(okF(u))),
+    const mix = (sg, w) => { const d = dol(sg), t = tap(sg); return { chwyt: rv3(d.chwyt.map((x, i) => x + (t.chwyt[i] - x) * w)), biegunLokcia: rv3(d.biegunLokcia.map((x, i) => x + (t.biegunLokcia[i] - x) * w)) }; };
+    const wP = u === 0 ? 1 : u === 0.25 ? 0.5 : 0, wL = u === 1 ? 1 : u === 0.75 ? 0.5 : 0; /* 0: dotyk prawą, 1: dotyk lewą; w środku obie dłonie na podłodze, a ręka dotykająca jest w drodze (podpór nie znika, recenzja r1 09.11.2026, W3); wahadło 0 → 1 → 0 daje dotknięcia naprzemiennie */
+    z.rece = { R: mix(1, wP), L: mix(-1, wL) }; return { ...z, _S: S, _fi: k._fi }; };
+  const us = [0, 0.25, 0.5, 0.75, 1]; return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(okF(u))),
     bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(okF(u)), zle: (u) => sagZ(okF)(u, 1) })] });
 }
 const rv3 = (a) => a.map(r1);
 
 /* ---------- Single-Arm Push-Up (jedna ręka podpiera, druga leży na lędźwiach, stopy szeroko) ---------- */
 /** Podparcie: dłoń podporowa blisko osi ciała (hOff cm od osi tułowia), stopy szeroko (±fz), tułów przesunięty ku dłoni (pz) — środek ciężkości nad wielokątem podparcia (v2-jakosc: srodek_ciezkosci_podparcie, podstawa_szeroka). */
-export function jednaReka(cw, { pz = 4, hOff = 0, fz = 15, poleWolna = [0.3, -0.1, -1], sagDeg = 9 } = {}) {
-  const A = [0, kostkaNaPalcach(0)]; const hy = 2; const hzR = pz + hOff; const hx = dlonX({ A, hy, theta0: 12, hzR }); const H = [hx, hy];
-  const mk = (th) => (u) => { const t = th(u); const k = uklad({ A, H, theta: t, hzR }); const front = [Math.cos(k.pitch * R), -Math.sin(k.pitch * R)]; const upv = up(k.pitch);
+export function jednaReka(cw, { pz = 2, hOff = 0, fz = 14, poleWolna = [0.3, -0.1, -1], sagDeg = 9, dl = DL_SINGLE } = {}) {
+  const A = [0, kostkaNaPalcach(0)]; const hy = 2; const hzR = pz + hOff; const hx = dlonX({ A, hy, theta0: 12, hzR, dl }); const H = [hx, hy];
+  const mk = (th) => (u) => { const t = th(u); const k = uklad({ A, H, theta: t, hzR, dl }); const front = [Math.cos(k.pitch * R), -Math.sin(k.pitch * R)]; const upv = up(k.pitch);
     const back = [k.pelvis[0] + upv[0] * 6 - front[0] * 12.5, k.pelvis[1] + upv[1] * 6 - front[1] * 12.5]; /* dłoń leży na lędźwiach (tuż nad grzbietem) */
     return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], pz], pitch: k.pitch, glowa: k.pitch * 0.75, nogi: { R: { k: [A[0], A[1], pz + fz], pod: POD }, L: { k: [A[0], A[1], pz - fz], pod: POD } },
       rece: { R: { g: [H[0], H[1], hzR], pole: [-1, 0, 0.4] }, L: { g: [back[0], back[1], pz - 3], pole: poleWolna } } }), _S: k.S, _fi: k.fi }; };
-  const ok = mk((u) => 12 + 83 * u); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: US.map((u) => czysc(ok(u))), bledy: [bladSag(ok, sagZ(ok, sagDeg))] });
+  const ok = mk((u) => 12 + 83 * u); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: USD.map((u) => czysc(ok(u))), bledy: [bladSag(ok, sagZ(ok, sagDeg, 82.7))] });
 }
 
 /* ---------- Plyo Push-Up (dół → góra → dłonie w powietrzu) ---------- */
 function plyo(cw) {
   const A = [0, kostkaNaPalcach(0)]; const hz = 19; const hy0 = 2; const hx = dlonX({ A, hy: hy0, theta0: 12, hzR: hz }); const unosz = 12;
-  const fr = [[0, 12, 0], [0.4, 142, 0], [1, 12, unosz]]; /* góra, dół, wypchnięcie z oderwaniem dłoni (12 cm nad podłogą) */
-  const ok = (u) => { const f = fr.find((x) => x[0] === u); const H = [hx, hy0 + f[2]]; return trajPompki({ A, H, hzR: hz, theta: f[1] })(u); };
-  /* ruch z lotem (dłonie w powietrzu na końcu) → pętla jednokierunkowa (guard tests/figures-v2-kierunek-u.test.ts, 09.11.2026): wahadło cofałoby wybicie */
-  const us = fr.map((f) => f[0]); return jednokierunkowa(zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(ok(u))),
-    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, 1) })] }));
+  const fr = [[0, 12, 0], [0.4, 142, 0], [0.7, 20, 0], [0.85, 12, unosz], [1, 12, 0]]; /* góra, dół, wypychanie Z PODPARCIEM (dłonie na podłodze do zgięcia łokcia 20° — prawie pełny wyprost), lot (dłonie 12 cm nad podłogą, ręce proste), lądowanie w pozycji startowej (recenzja r1 09.11.2026, W2) */
+  const wart = (u) => { const i = Math.max(1, fr.findIndex((x) => x[0] >= u)); const a = fr[i - 1], b = fr[i]; const t = (u - a[0]) / (b[0] - a[0]); return [1, 2].map((j) => a[j] + (b[j] - a[j]) * t); }; /* liniowo między kluczowymi pozycjami */
+  const ok = (u) => { const [th, h] = wart(u); return trajPompki({ A, H: [hx, hy0 + h], hzR: hz, theta: th })(u); };
+  const gesto = [0, 0.13, 0.27, 0.4, 0.5, 0.6, 0.7, 0.775, 0.85, 0.925, 1]; /* gęsto: łuk miednicy wokół kostek (cięciwa zgina nogę prostą), W1 */
+  /* ruch z lotem i lądowaniem → pętla jednokierunkowa (guard tests/figures-v2-kierunek-u.test.ts, 09.11.2026): wahadło cofałoby wybicie */
+  const us = fr.map((f) => f[0]); return jednokierunkowa(zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: gesto.map((u) => czysc(ok(u))),
+    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: [0, 0.13, 0.27, 0.4, 0.6, 0.7, 0.85, 1], ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, 1) })] }));
 }
 
 /* ---------- Inverted Row (leżąc pod drążkiem, pięty na podłodze) ---------- */
@@ -181,24 +197,24 @@ export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, 
 }
 /** Rollout stojąc / z zawieszeniem: stopy na palcach nieruchome (u = 1), bark–kostka w linii; start: pochylenie z prostymi nogami. */
 export function rolloutStojac(cw, { fi1 = 10, start = 'stojac', uchwytY0 = 100, th = 22, fi0 = 55, tasma = { ax: 125, L: 150, wybor: 'dol' } } = {}) {
-  const B = BODY(); const d = dChwytu(th); const dp = Math.sqrt(d * d - (B.shHalf - 20) ** 2); const L = DL + B.trunk;
+  const B = BODY(); const DLR = DL + 0.2; /* rzadkie klatki (≤ 8 błędu, ≤ 12 poprawnej): zapas zasięgu 0,4 cm na skrócenie cięciwy miednicy między klatkami (kolano prostej nogi ≤ 5°, W1; TOL.reach 0,5 cm) */ const d = dChwytu(th); const dp = Math.sqrt(d * d - (B.shHalf - 20) ** 2); const L = DLR + B.trunk;
   const A1 = [0, kostkaNaPalcach(0)]; const S1 = [A1[0] + L * Math.cos(fi1 * R), A1[1] + L * Math.sin(fi1 * R)];
   const fr = (u) => {
     let A, hip, pitch, pod, H, S;
     if (start === 'stojac') { /* z pochylenia (stopy płasko, nogi proste) do rozciągnięcia na palcach; biodra po okręgu wokół kostki, nogi proste */
-      pod = POD * u; A = [0, kostkaNaPalcach(0, pod)]; const gam = 90 + (fi1 - 90) * u; hip = [A[0] + DL * Math.cos(gam * R), A[1] + DL * Math.sin(gam * R)]; const pitch0 = 100, pitch1 = 90 - fi1; pitch = pitch0 + (pitch1 - pitch0) * u; const up_ = up(pitch); S = [hip[0] + 50 * up_[0], hip[1] + 50 * up_[1]];
+      const v = Math.min(1, u / 0.9); /* ostatnie 10% ruchu: ciało wyprostowane w linii (krótkie utrzymanie rozciągnięcia) — reguła „skrajna” ocenia klatki w granicy 0,5 cm od najdalszej pary, więc wszystkie muszą mieć miednicę na linii */ pod = POD * v; A = [0, kostkaNaPalcach(0, pod)]; const gam = 90 + (fi1 - 90) * v; hip = [A[0] + DLR * Math.cos(gam * R), A[1] + DLR * Math.sin(gam * R)]; const pitch0 = 100, pitch1 = 90 - fi1; pitch = pitch0 + (pitch1 - pitch0) * v; const up_ = up(pitch); S = [hip[0] + 50 * up_[0], hip[1] + 50 * up_[1]];
       H = [S[0] + Math.sqrt(Math.max(1, dp * dp - (S[1] - BAR_Y) ** 2)), BAR_Y]; }
     else { /* zawieszenie: kostki na palcach, uchwyty nad podłogą */
-      A = A1; pod = POD; const fi = fi0 + (fi1 - fi0) * u; /* start: pochylenie w uchwytach (uchwyty nad dłońmi ≈ 70 cm), koniec: prawie poziomo */ const dlu = DL; /* ciało proste w każdej klatce (v2-jakosc: cialo_w_linii_pelne, kolana_proste_podpor) */ void 0; /* start z lekko ugiętymi biodrami i kolanami: najdalszy punkt barki–kostka dopiero w u = 1 (reguła „skrajna”) */ S = [A[0] + (dlu + 50) * Math.cos(fi * R), A[1] + (dlu + 50) * Math.sin(fi * R)]; hip = [A[0] + dlu * Math.cos(fi * R), A[1] + dlu * Math.sin(fi * R)]; pitch = 90 - fi;
+      A = A1; pod = POD; const fi = fi0 + (fi1 - fi0) * u; /* start: pochylenie w uchwytach (uchwyty nad dłońmi ≈ 70 cm), koniec: prawie poziomo */ const dlu = DLR; /* ciało proste w każdej klatce (v2-jakosc: cialo_w_linii_pelne, kolana_proste_podpor) */ void 0; /* start z lekko ugiętymi biodrami i kolanami: najdalszy punkt barki–kostka dopiero w u = 1 (reguła „skrajna”) */ S = [A[0] + (dlu + 50) * Math.cos(fi * R), A[1] + (dlu + 50) * Math.sin(fi * R)]; hip = [A[0] + dlu * Math.cos(fi * R), A[1] + dlu * Math.sin(fi * R)]; pitch = 90 - fi;
       /* taśma o STAŁEJ długości L od zaczepu Z (niezmiennik silnika tasma-dlugosc): dłoń leży na okręgu o środku w zaczepie i jednocześnie w zasięgu ręki od barku (dp) — wynika z geometrii, nie jest wpisywana */ H = przeciecie([tasma.ax, SUSP_Y], Math.sqrt(tasma.L ** 2 - 20 ** 2), S, dp, tasma.wybor); /* dłonie w z = ±20, zaczep w z = 0: długość 3D = L */ if (!H) throw new Error(`taśma ${tasma.L} cm nie sięga dłoni w u = ${u}`); }
     return { u, A, pod, hip, pitch, S, H, fi: 90 - pitch }; };
   const mk = (u) => { const f = fr(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.75, nogi: { R: { k: [f.A[0], f.A[1], ZNOG], pod: f.pod }, L: { k: [f.A[0], f.A[1], -ZNOG], pod: f.pod } },
     rece: { R: { g: [...f.H, 20], pole: [-0.3, -1, 0.3] }, L: { g: [...f.H, -20], pole: [-0.3, -1, -0.3] } } }), _S: f.S, _fi: f.fi }; };
-  const us = [0, 0.14, 0.28, 0.42, 0.57, 0.71, 0.85, 1]; /* gęste klatki (kontrakt: ≤ 8 klatek błędu): ręce proste także między nimi */
+  const us = [0, 0.14, 0.28, 0.42, 0.57, 0.71, 0.85, 1];
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, start === 'stojac' ? { rodzaj: 'sztanga', x: 40, y: BAR_Y, talerze: true, podazaZaChwytem: true, dlugosc: 130 } : { rodzaj: 'zawieszenie', x: r1(tasma.ax), punkt: 'dlonie' }]; /* zawieszenie: taśmy od punktu zaczepu nad dłońmi w u = 0 do dłoni (rodzaj zawieszenie); uchwyty podążają za dłońmi */
-  const sagF = (u) => { const k = mk(u); const w = start === 'stojac' ? Math.max(0, Math.min(1, (u - 0.4) / 0.6)) : 1; /* stojąc: biodra są u góry na prostych nogach — opadanie miednicy zgięłoby kolana, więc na początku błąd to wygięcie lędźwi (−20°), a opadanie biodra dochodzi z rozciągnięciem ciała */ if (w === 0) return { ...czysc(k), zgiecieKregoslupa: -20 }; const A = k.nogi.R.kostka; let dg = 10 * w; for (; dg > 3; dg -= 0.25) { const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; if (Math.hypot(P[0] - A[0], P[1] - A[1]) <= 82.8) break; }
-    const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; const z = czysc(k); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), ...(start === 'stojac' ? { zgiecieKregoslupa: r1(-20 * (1 - w)) } : {}) }; };
-  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map((u) => czysc(mk(u))), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(mk(u)), zle: sagF })] });
+  const sagF = (u) => { const k = mk(u); const w = start === 'stojac' ? Math.max(0, Math.min(1, (u - 0.4) / 0.6)) : 1; /* stojąc: biodra są u góry na prostych nogach — opadanie miednicy zgięłoby kolana, więc na początku błąd to wygięcie lędźwi (−20°), a opadanie biodra dochodzi z rozciągnięciem ciała */ if (w === 0) return { ...czysc(k), zgiecieKregoslupa: -20 }; const dg = 10 * w; const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; const A = kostkaDlaZasiegu(k.nogi.R.kostka, P, u >= 0.8 ? 82.95 : 82.8, u >= 0.8 ? -0.4 : -8);
+    const z = czysc(k); const przes = (n) => ({ ...n, kostka: [r1(A[0]), r1(A[1]), n.kostka[2]] }); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), nogi: { R: przes(z.nogi.R), L: przes(z.nogi.L) }, ...(start === 'stojac' ? { zgiecieKregoslupa: r1(-20 * (1 - w)) } : {}) }; };
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: (start === 'stojac' ? [0, 0.14, 0.28, 0.35, 0.42, 0.5, 0.57, 0.64, 0.71, 0.78, 0.85, 1] : us).map((u) => czysc(mk(u))), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(mk(u)), zle: sagF })] }); /* stojąc: 12 klatek poprawnych, gęsto tam, gdzie biodra schodzą łukiem (cięciwa zgina nogę prostą i ramię) */
 }
 
 /** Ćwiczenia, których kontrakt v2 nie potrafi narysować (powód obowiązkowy; do decyzji koordynatora). */
@@ -217,7 +233,7 @@ export const WYJATKI_OPISU = { 'ro.back': 'zestaw ogólny (cue-sets.json) odwoł
 export const PRZYBLIZENIA = {
   'Decline Push Up': `uproszczenie: stopy na podwyższeniu o wysokości typowej ławki (${WYS_PODWYZSZENIA} cm, figury-sprzet.json → lawka_regulowana.seatTop); źródła w repo nie podają wysokości podwyższenia w tym ćwiczeniu (dane aplikacji: „feet on a bench or box”), więc liczba jest konwencją rysunku, do potwierdzenia przez badacza; dłonie 13 cm za barkami w górze, żeby przedramię w dole było blisko pionu bez obniżania podparcia stóp`,
   'Clock Push-Up': 'przybliżenie: pompka z dłońmi przestawionymi przód/tył (zegar); skok i przesunięcie dłoni na kolejne godziny nie są w pojedynczym powtórzeniu pozy',
-  'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)',
+  'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą po pełnym wyproście łokci (do zgięcia 20° dłonie na podłodze), kostki stoją (ciało nie odrywa palców); lądowanie w pozycji startowej',
   'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)',
   'Suspended Fallout': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie',
   'Inverted Row': 'drążek w stojaku na wysokości 68 cm, pięty 108 cm od drążka; chwyt nachwytem szeroki (z = ±24); UPROSZCZENIE: ręka w zwisie startowym ok. 22° ku stopom (reguła zwisu 08.11.2026: 0–25° ku stopom, nigdy ku głowie); odwiedzenie ramienia ≤ 45° to konwencja rysunku [OTWARTE: brak źródła ze stopniami]; łokieć w środku ruchu leży przed płaszczyzną pleców (rachunek, tor_lokcia_srodek nie dotyczy tego ćwiczenia), za linią pleców dopiero na końcu; na końcu mostek ok. 13 cm od drążka (klatka przy drążku w granicy zgięcia łokcia 149°); start prawie poziomy [backlog U1: większe nachylenie ciała]',
@@ -230,7 +246,7 @@ export function generuj() {
     'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.5, -0.3, 1], sagDeg: 9 }),
     'Close-Grip Push-Up': () => pompka('Close-Grip Push-Up', { hz: 10, pole: [-1, 0.3, 0.25], blady: ['partial'] }),
     'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: 6, thetaDol: 138, pole: [-0.6, 0.6, 1], blady: [] }),
-    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, off: 13, boxStopy: WYS_PODWYZSZENIA, pod: -68, thetaDol: 146, blady: ['partial'] }),
+    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, off: 13, boxStopy: WYS_PODWYZSZENIA, pod: -72, thetaDol: 146, blady: ['partial'] }),
     'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, off: -18, boxRece: 45, thetaDol: 148, blady: [] }),
     'Incline Push-Up Close-Grip': () => pompka('Incline Push-Up Close-Grip', { hz: 10, off: -18, pole: [-1, 0.3, 0.25], boxRece: 45, blady: ['partial'] }),
     'Single-Arm Push-Up': () => jednaReka('Single-Arm Push-Up'),
@@ -244,7 +260,7 @@ export function generuj() {
     'Inverted Row': () => inverted('Inverted Row', IR_PARAMETRY),
     'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3, theta: 8 }),
     'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { theta: 10, ławka: 42, fi1: 10, dgSag: 7, fM: 4 }),
-    'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac', th: 4 }),
+    'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac', th: 6 }),
   };
   return E;
 }

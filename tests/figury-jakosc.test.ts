@@ -22,7 +22,7 @@ const poza = (f, cw) => JSON.parse(JSON.stringify(JSON.parse(fs.readFileSync(pat
 const PU = poza('pushup_plank', 'Push Up'), PL = poza('pushup_plank', 'Plank'), CL = poza('pushup_plank', 'Close-Grip Push-Up'), SA = poza('pushup_plank', 'Single-Arm Push-Up'), RC = poza('core_floor', 'Reverse Crunch'),  BD = poza('core_floor', 'Bird Dog'), CO = poza('core_floor', 'Cocoons');
 const klon = (x) => JSON.parse(JSON.stringify(x));
 const G = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/agent-pozy/pushup_plank.mjs'))});
-const IR = G.inverted('Inverted Row', { by: 100, axOverride: 94, thetaEnd: 144, pole: [0, -1, 0.15] }); /* koniec ruchu: łokieć za linią pleców (n3), start skośny */
+const IR = G.inverted('Inverted Row', { by: 100, axOverride: 96, thetaEnd: 144, pole: [0, -1, 0.15] }); /* pushup_plank r1 W1 (09.11.2026): axOverride 94 → 96 — nogi proste (DL 83,2) przesuwają bark o ok. 1 cm, a ta próbka ma dalej dawać łokieć wyraźnie PRZED płaszczyzną pleców przy biegunie ku przodowi (> 2 cm); koniec ruchu: łokieć za linią pleców (n3), start skośny */
 const CH = poza('core_floor', 'Crunch - Hands Overhead'), RO = poza('pushup_plank', 'Rollout (sztanga)'), WD = poza('pushup_plank', 'Push-Up Wide');
 const W = {};
 /* 1 błąd postawy w każdej klatce */
@@ -91,7 +91,7 @@ W.cialo_lezy_zakres = { obrysTulow: J.cialoLezy(v2, sqWisi).filter((x) => /tuło
   wSprawdzJakosc: [J.sprawdzJakosc(sqWisi, { v2, rodzina: 'mobility_floor', cwiczenie: 'Side-Lying Quad Stretch', postural: new Set(), izometryczne: true, teksty: {} }).filter((x) => x.regula === 'cialo_lezy').length, J.sprawdzJakosc(SQ, { v2, rodzina: 'mobility_floor', cwiczenie: 'Side-Lying Quad Stretch', postural: new Set(), izometryczne: true, teksty: {} }).filter((x) => x.regula === 'cialo_lezy').length] };
 W.czesc_ciala_nie_znika = { dobre: [...J.czescCialaNieZnika(v2, SQ), ...J.czescCialaNieZnika(v2, SU)], zle: J.czescCialaNieZnika(v2, sqStopa) };
 /* 15 rząd błędu nie zmienia stawów spoza błędu: „sag” z uniesionymi kostkami zgina kolana */
-const kolana = klon(PL); for (const k of kolana.bledy[0].klatki) k.nogi = { R: { kostka: [0, 12, 0] }, L: { kostka: [0, 12, 0] } };
+const kolana = klon(PL); for (const k of kolana.bledy[0].klatki) k.nogi = { R: { kostka: [25, 12, 0] }, L: { kostka: [25, 12, 0] } }; /* pushup_plank r1 W1 (09.11.2026): nogi proste (DL 83,2), więc samo podniesienie kostek o 12 cm przy opadającej miednicy zostawało w zasięgu nogi (kolano 0°); przesunięcie o 25 cm ku dłoniom wymusza zgięcie kolan jak dotąd */
 W.rzad_bledu_dotyczy = { dobre: J.rzadBleduDotyczy(v2, PL), zle: J.rzadBleduDotyczy(v2, kolana) };
 /* 16 tor łokcia w przyciąganiu: biegun łokcia ku drążkowi (przed klatkę) vs ku podłodze (za plecami) */
 const przed = klon(IR); for (const k of przed.klatki) { k.rece.R.biegunLokcia = [1, 0, 0.15]; k.rece.L.biegunLokcia = [1, 0, -0.15]; }
@@ -176,7 +176,7 @@ W.kolana_ugiete_min = { dobre: J.kolanaUgieteMin(v2, TU), zle: J.kolanaUgieteMin
 const heelZgiete = klon(HT); for (const k of heelZgiete.klatki) for (const sd of ['R', 'L']) { const g = k.rece[sd].chwyt; k.rece[sd].chwyt = [g[0] * 0.5, g[1], g[2]]; }
 W.rece_proste = { dobre: J.receProste(v2, HT), zle: J.receProste(v2, heelZgiete) };
 /* R10: rząd błędu opadania nie może być „lepszy” — błąd bez delty miednicy (tylko słabe pochylenie) */
-const sagLepszy = klon(PL); for (const b of sagLepszy.bledy) for (const k of b.klatki) { if (k.miednica) k.miednica = k.miednica.map((x) => x / 10); }
+const sagLepszy = klon(PL); for (const b of sagLepszy.bledy) for (const k of b.klatki) { if (k.miednica) k.miednica = k.miednica.map((x) => x / 10); if (k.nogi) for (const n of Object.values(k.nogi)) n.kostka = n.kostka.map((x) => x / 10); if (k.pochylenieTulowia) k.pochylenieTulowia /= 10; } /* pushup_plank r1 W1 (09.11.2026): wiersz „sag” (nogi proste) zawiera też zsunięcie stóp i silniejsze pochylenie tułowia (−11° zamiast −8°) — osłabiamy cały błąd 10×, nie tylko miednicę, żeby próbka dalej była błędem „lepszym” od pozy poprawnej */
 W.rzad_bledu_nie_lepszy = { dobre: J.rzadBleduNieLepszy(v2, PL), zle: J.rzadBleduNieLepszy(v2, sagLepszy) };
 /* R9: widoczność liczona ze stawów obszaru błędu (łokieć nie liczy się dla „sag”): zmiana tylko łokcia w rzędzie błędu */
 const sagTylkoLokiec = klon(WD); for (const b of sagTylkoLokiec.bledy) if (b.cue === 'plank.mis.sag') b.klatki = b.klatki.map((k) => ({ u: k.u, rece: { R: { chwyt: [0, 12, 0] }, L: { chwyt: [0, 12, 0] } } }));
