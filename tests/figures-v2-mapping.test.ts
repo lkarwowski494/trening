@@ -39,7 +39,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });
   test('gotowe rodziny z rigiem (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
-    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'cable_row', 'pull_up', 'hip_bridge', 'olympic', 'curl', 'triceps', 'delt_raise', 'carry', 'core_hang']); /* core_hang ready 10.11.2026 (partia 5); carry ready 10.11.2026 (partia 5); */ /* cable_row i hip_bridge ready 09.11.2026 (partia 2), delt_raise 09.11.2026 */
+    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'cable_row', 'pull_up', 'hip_bridge', 'olympic', 'curl', 'triceps', 'delt_raise', 'core_hang', 'carry']); /* core_hang ready 10.11.2026 (partia 5); carry ready 10.11.2026 (partia 5); */ /* cable_row i hip_bridge ready 09.11.2026 (partia 2), delt_raise 09.11.2026 */
     const rig = ready.filter(f => !POSE_FAMILIES.includes(f)); expect(rig).toEqual(['squat', 'bench_press', 'hinge']);
     const keys = KEYS.filter(k => rig.includes(ALL[k])); expect(keys.length).toBe(87);
     for (const k of keys) { expect([k, VARIANTS[k]?.family]).toEqual([k, ALL[k]]); expect([k, figureSpec(k)?.family]).toEqual([k, ALL[k]]); }

@@ -3,11 +3,11 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 239,
+      "v2": 242,
       "v1": 35,
-      "bezFigury": 434,
-      "daneV2NieWlaczone": 297,
-      "wyjatekBezAnimacji": 136
+      "bezFigury": 431,
+      "daneV2NieWlaczone": 294,
+      "wyjatekBezAnimacji": 133
     },
     "animowanyBlad": 148,
     "wskazowki": {
@@ -18,9 +18,9 @@
     },
     "czesteBledyTekst": 294,
     "roleMiesni": 513,
-    "pelnaKarta": 233,
+    "pelnaKarta": 236,
     "pelnaKartaBlad": 147,
-    "recenzjaFigur": 239
+    "recenzjaFigur": 242
   },
   "kartZTekstami": 586,
   "rodziny": {
@@ -352,15 +352,15 @@
     "core_hang": {
       "status": "ready",
       "cwiczen": 4,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 3,
+      "figuraV2": 3,
+      "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 3,
       "ogolne": 0,
       "bezTekstu": 1,
-      "pelnaKarta": 0,
+      "pelnaKarta": 3,
       "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "recenzja": 3
     },
     "core_standing": {
       "status": "planned",
@@ -797,8 +797,8 @@
     }
   },
   "dobre": {
-    "figura.v2": 239,
-    "figura.wAplikacji": 274,
+    "figura.v2": 242,
+    "figura.wAplikacji": 277,
     "figura.zDanymiV2": 536,
     "animowanyBlad": 148,
     "wskazowki.wlasne": 283,
@@ -806,9 +806,9 @@
     "wskazowki.zTekstem": 408,
     "czesteBledyTekst": 294,
     "roleMiesni": 513,
-    "pelnaKarta": 233,
+    "pelnaKarta": 236,
     "pelnaKartaBlad": 147,
-    "recenzjaFigur": 239,
+    "recenzjaFigur": 242,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 586,
     "jezyk.en.kompletne": 586,
