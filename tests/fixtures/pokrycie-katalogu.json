@@ -3,24 +3,24 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 333,
-      "v1": 18,
-      "bezFigury": 357,
-      "daneV2NieWlaczone": 201,
-      "wyjatekBezAnimacji": 119
+      "v2": 352,
+      "v1": 17,
+      "bezFigury": 339,
+      "daneV2NieWlaczone": 182,
+      "wyjatekBezAnimacji": 112
     },
-    "animowanyBlad": 196,
+    "animowanyBlad": 207,
     "wskazowki": {
       "wlasne": 309,
       "wlasneZBledami": 197,
-      "ogolne": 158,
-      "bezTekstu": 241
+      "ogolne": 167,
+      "bezTekstu": 232
     },
-    "czesteBledyTekst": 350,
+    "czesteBledyTekst": 359,
     "roleMiesni": 513,
-    "pelnaKarta": 327,
-    "pelnaKartaBlad": 194,
-    "recenzjaFigur": 333
+    "pelnaKarta": 344,
+    "pelnaKartaBlad": 205,
+    "recenzjaFigur": 352
   },
   "kartZTekstami": 588,
   "rodziny": {
@@ -77,17 +77,17 @@
       "recenzja": 0
     },
     "dip": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 5,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 5,
+      "figuraV2": 4,
+      "daneV2NieWlaczone": 1,
       "v1": 1,
       "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 3,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 2,
+      "bezTekstu": 1,
+      "pelnaKarta": 3,
+      "pelnaKartaBlad": 2,
+      "recenzja": 4
     },
     "overhead_press": {
       "status": "ready",
@@ -246,17 +246,17 @@
       "recenzja": 22
     },
     "back_extension": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 4,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 3,
+      "figuraV2": 3,
+      "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 1,
-      "ogolne": 0,
-      "bezTekstu": 3,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 2,
+      "bezTekstu": 1,
+      "pelnaKarta": 3,
+      "pelnaKartaBlad": 1,
+      "recenzja": 3
     },
     "curl": {
       "status": "ready",
@@ -532,43 +532,43 @@
       "recenzja": 0
     },
     "thruster": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 3,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 3,
+      "figuraV2": 3,
+      "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 1,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 1,
+      "bezTekstu": 0,
+      "pelnaKarta": 3,
+      "pelnaKartaBlad": 3,
+      "recenzja": 3
     },
     "chest_press_machine": {
-      "status": "planned",
+      "status": "ready",
       "cwiczen": 5,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 5,
-      "v1": 1,
-      "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 3,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
-    },
-    "cable_press": {
-      "status": "planned",
-      "cwiczen": 4,
-      "figuraV2": 0,
-      "daneV2NieWlaczone": 4,
+      "figuraV2": 5,
+      "daneV2NieWlaczone": 0,
       "v1": 0,
       "wlasne": 2,
-      "ogolne": 0,
-      "bezTekstu": 2,
-      "pelnaKarta": 0,
-      "pelnaKartaBlad": 0,
-      "recenzja": 0
+      "ogolne": 2,
+      "bezTekstu": 1,
+      "pelnaKarta": 4,
+      "pelnaKartaBlad": 2,
+      "recenzja": 5
+    },
+    "cable_press": {
+      "status": "ready",
+      "cwiczen": 4,
+      "figuraV2": 4,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 2,
+      "ogolne": 2,
+      "bezTekstu": 0,
+      "pelnaKarta": 4,
+      "pelnaKartaBlad": 3,
+      "recenzja": 4
     },
     "kneeling_hinge": {
       "status": "planned",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 333,
-    "figura.wAplikacji": 351,
+    "figura.v2": 352,
+    "figura.wAplikacji": 369,
     "figura.zDanymiV2": 534,
-    "animowanyBlad": 196,
+    "animowanyBlad": 207,
     "wskazowki.wlasne": 309,
     "wskazowki.wlasneZBledami": 197,
-    "wskazowki.zTekstem": 467,
-    "czesteBledyTekst": 350,
+    "wskazowki.zTekstem": 476,
+    "czesteBledyTekst": 359,
     "roleMiesni": 513,
-    "pelnaKarta": 327,
-    "pelnaKartaBlad": 194,
-    "recenzjaFigur": 333,
+    "pelnaKarta": 344,
+    "pelnaKartaBlad": 205,
+    "recenzjaFigur": 352,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 588,
     "jezyk.en.kompletne": 588,

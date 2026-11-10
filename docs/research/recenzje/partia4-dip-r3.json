@@ -1,0 +1,87 @@
+{
+ "v2": {
+  "dip": {
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "kto": "audytor — recenzja niezależna r3 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ 83f4ba0 (r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r3-audytor-2026-11-10.md",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 3: W1, W2 naprawione; W4 naprawione w rzucie z przodu, nowe W5 WYSOKIE (ławka: łokieć przed tułowiem, przedramię przez tułów); Ś1 backlog",
+   "autor": "programista partia 4 (figury/partia-4-dip @ fb8cf48); poprawki W1/W2 (e3c79af) i W4 (b248e1d, 83f4ba0): inni programiści",
+   "recenzent": "audytor (recenzja niezależna r1–r3, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+   "uwagi": "r3: biegun łokcia ławki [+0,5; −0,3; ∓0,15] daje łokieć przed tułowiem — przy u = 1 łokieć x = 22,5, bark 6,0, miednica 13,0, dłoń −3,0; shSag +25° (zgięcie, a powinien być wyprost); przedramię przy z ≈ 11 przechodzi przez obrys tułowia (checkFrame nie sprawdza przedramię–tułów). Z przodu łokieć w korytarzu bark–dłoń (z 14,2 → 10,9) — część W4 naprawiona. Chest Dip, Triceps Dip, Ring Dips, Dip Machine — arkusze bajtowo równe r2. Ś1 (poręcze niewidoczne z przodu) — backlog.",
+   "poprawka": "W5: biegun łokcia ławki do tyłu (x ujemne, np. [−1; −0,3; ±0,1]) przy zachowaniu testu bladLokci (z w korytarzu bark–dłoń ± 3 cm); test: w każdym u elbow.x ≤ shoulder.x i shSag ≤ 0 przy u = 1, oraz przedramię poza obrysem tułowia, z negatywem na danych 83f4ba0. N2: komentarz testu bladLokci — źródło reguły rodziny, nie karta. Po poprawce r4 tylko arkusze ławki (side, front); pozostałe 4 ćwiczenia — cmp z r3.",
+   "slad": "r3: arkusze arkusz-slad ławki (side, front, kadry co 0,05) obejrzane od nowa; Chest Dip, Triceps Dip, Ring Dips, Dip Machine — PNG i HTML bajtowo równe r2 (cmp). Ślad: poręcze, kółka, ławka — miednica w pionie (16–20 cm), bez skoków; Dip Machine — chwyty R i L na końcach własnych dźwigni (łuk, promień 75,4 cm).",
+   "sha": "eec289f04568",
+   "liczba": 5,
+   "cwiczenia": [
+    "Chest Dip",
+    "Dip Machine",
+    "Ring Dips",
+    "Triceps Dip",
+    "Triceps Dips (ławka)"
+   ],
+   "bez_rysunku": []
+  }
+ },
+ "zestawy": {
+  "Triceps Dip": {
+   "rodzina": "dip",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 dip), 10.11.2026",
+   "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1–r3, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r3 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ 83f4ba0 (r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r3-audytor-2026-11-10.md (zestaw bez zmian danych względem r1)",
+   "uwagi": "bdip.move i bdip.range pasują do rysunku: opuszczanie do ok. 95° w łokciu, wypchnięcie do 12°; tułów pionowo. Źródła zdań z dipów na ławce — ten sam ruch łokcia (uproszczenie, analogia). mis.jerk tylko tekst.",
+   "sha": "90516c549650"
+  },
+  "Ring Dips": {
+   "rodzina": "dip",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 dip), 10.11.2026",
+   "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1–r3, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r3 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ 83f4ba0 (r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r3-audytor-2026-11-10.md (zestaw bez zmian danych względem r1)",
+   "uwagi": "bdip.move i bdip.range pasują do rysunku: opuszczanie do ok. 93° w łokciu, wypchnięcie do 12,5°; dłonie na kółkach (błąd 0 cm). mis.jerk tylko tekst.",
+   "sha": "90516c549650"
+  },
+  "Dip Machine": {
+   "rodzina": "dip",
+   "werdykt": "do poprawy",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A), r1–r3 10.11.2026 — W3 WYSOKIE, dane bez zmian",
+   "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1–r3, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r3 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ 83f4ba0 (r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r3-audytor-2026-11-10.md (zestaw bez zmian danych względem r1)",
+   "uwagi": "W3: zdania przeczą maszynie siedzącej. bdip.move „Opuść się … wypchnij się do wyprostu” — miednica stoi (przesunięcie 0,0 cm); bdip.range „w górę do wyprostu rąk” — na rysunku wyprost (21,3°) przy chwycie na dole (y 34,7 cm), zgięcie (89,8°) na górze (y 60,2 cm).",
+   "poprawka": "Badacz: zestaw dla maszyny (wypychanie uchwytów w dół do wyprostu, powrót do ok. kąta prostego) albo wyłączenie bdip.move/bdip.range dla Dip Machine (CUE_NOT_IN_FAMILY / CUE_REQUIRES, lib/figures/v2/cueSets.ts); test: zdania zestawu Dip Machine nie zawierają „Opuść się” ani „w górę do wyprostu”.",
+   "sha": "90516c549650"
+  }
+ },
+ "karty": {
+  "Chest Dip": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+   "autor": "programista A1 (karta); rysunek: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1–r3, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r3 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ 83f4ba0 (r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r3-audytor-2026-11-10.md (karta bez zmian danych względem r1)",
+   "uwagi": "dip.setup (proste ręce 12,5°, stopy nad podłogą), dip.move (dół 95°), dip.chestLean (tułów 28° → 34° w przód; karta liczby nie podaje), plank.brace (kręgosłup bez zgięcia) — zgodne z rysunkiem. Błędy tylko tekstem (brak animacji błędów w rodzinie).",
+   "sha": "58bc2ad0a6ce"
+  },
+  "Triceps Dips (ławka)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-10",
+   "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+   "autor": "autor karty własnej (data/zrodla/cues.json); rysunek: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+   "recenzent": "audytor (recenzja niezależna r1–r3, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+   "kto": "audytor — recenzja niezależna r3 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ 83f4ba0 (r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r3-audytor-2026-11-10.md (karta bez zmian danych względem r1)",
+   "uwagi": "bdip.move (dół 84,0°, góra 16,0°), bdip.range, bdip.easier, bdip.setup „Oprzyj dłonie o krawędź ławki” — zgodne z rysunkiem (dłonie na blacie po W1). Karta nie mówi o łokciach; W5 (łokieć przed tułowiem) to poprawka rysunku, wpis v2.",
+   "sha": "457bb9d115cb"
+  }
+ },
+ "v1_zastapiona": [
+  "Triceps Dips (ławka)"
+ ],
+ "v1_uwaga": "v1 Triceps Dips (ławka) (sha 0e72ab5e0fbf) → zastapiona razem z wpisem v2 dip „wyswietlana” (po r4); przy v2 „do poprawy” ćwiczenie nie ma rysunku v2."
+}

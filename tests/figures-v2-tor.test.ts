@@ -35,13 +35,31 @@ const PROG_LUK_RODZINY: Record<string, number> = { curl: PROG_LUK, triceps: 17, 
    (tests/helpers/tor-luk-ramienia.ts: Δθ i r z pozy, dryf 2 cm), a nie z jednej liczby; próg zawróceń (≤ 1) bez zmian. */
 const DELT = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/delt_raise.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
 const progLuku = (k: string, v: View) => FAM[k] === 'delt_raise' ? progLukuRamienia(DELT[k], v, DODATEK_SKRETU[`${k}|${v}`] ?? 0)   : PROG_LUK_RODZINY[FAM[k]]; /* r3-Ś1 (04.11.2026): próg liczony w rzucie na płaszczyznę widoku, osobno dla każdego widoku */
-const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string, v?: View) => (k && v && LUKOWE.has(FAM[k]) ? t.odchylenie <= progLuku(k, v) : k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK_RODZINY[FAM[k]] : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
+/* chest_press_machine (partia 4, 09.11.2026; K5 autora): uchwyty maszyny jadą po łuku dźwigni obrotowej o promieniu r (`dlugosc` w danych sprzętu), więc strzałka łuku r − sqrt(r² − (l/2)²) wynika z geometrii:
+   r z dźwigni, cięciwa l = odległość chwytu R między pierwszą i ostatnią klatką kluczową (w rzucie z boku x, y); dryf 2 cm jak w delt_raise. Suwnica Smitha (szyna prosta, bez dźwigni) zostaje przy progu toru prostego 4 cm. */
+const CPM = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/chest_press_machine.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
+export const strzalkaLukuDzwigni = (r: number, chord: number): number => r - Math.sqrt(r * r - (chord / 2) ** 2);
+const progDzwigni = (k: string): number | null => {
+  const d = CPM[k]; const lever = d?.sprzet.find(s => s.rodzaj === 'dzwignia') as { dlugosc: number } | undefined; if (!lever) return null;
+  const a = d.klatki[0].rece.R.chwyt, b = d.klatki[d.klatki.length - 1].rece.R.chwyt;
+  return strzalkaLukuDzwigni(lever.dlugosc, Math.hypot(b[0] - a[0], b[1] - a[1])) + 2;
+};
+const ok = (t: { odchylenie: number; zawrocenia: number }, k?: string, v?: View) => (k && FAM[k] === 'chest_press_machine' && progDzwigni(k) !== null ? t.odchylenie <= progDzwigni(k)! : k && v && LUKOWE.has(FAM[k]) ? t.odchylenie <= progLuku(k, v) : k && LUKOWE.has(FAM[k]) ? t.odchylenie <= PROG_LUK_RODZINY[FAM[k]] : t.odchylenie <= PROG.odchylenie) && t.zawrocenia <= PROG.zawrocenia;
 
 describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => {
   test('miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze', () => {
     const S: [number, number][] = [[9.6, 23], [12, 30], [13.6, 49], [11.5, 56], [4.8, 66], [6.5, 72], [8.6, 76]];
     expect(ok(ksztaltToru(S))).toBe(false);
     expect(ok(ksztaltToru([[6, 20], [7, 40], [7.7, 60], [6.5, 80]]))).toBe(true);
+  });
+  test('chest_press_machine: próg łuku dźwigni z geometrii (r, cięciwa) — łuk dźwigni przechodzi, wybrzuszenie ponad próg nie', () => {
+    for (const k of ['Machine Chest Press', 'Leverage Incline Chest Press', 'Leverage Decline Chest Press', 'Machine Shoulder Press']) {
+      const p = progDzwigni(k)!; expect([k, p > 4 && p < 9]).toEqual([k, true]); /* strzałka 4,3–6,2 cm + 2 cm */
+      expect([k, ok(tor(k, 'side'), k, 'side')]).toEqual([k, true]);
+      const wybrzuszone = ksztaltToru([[0, 0], [p + 3, 30], [0, 60]]); expect([k, ok(wybrzuszone, k, 'side')]).toEqual([k, false]);
+    }
+    expect(progDzwigni('Smith Machine Shoulder Press')).toBeNull(); /* prosta szyna: próg toru prostego */
+    expect(strzalkaLukuDzwigni(70, 48.4)).toBeCloseTo(4.34, 1);
   });
   test('każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem', () => {
     const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t, t.k, t.v))

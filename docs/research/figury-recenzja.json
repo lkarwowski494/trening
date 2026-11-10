@@ -129,13 +129,10 @@
     },
     "Machine Chest Press": {
       "rodzina": "chest_press_machine",
-      "werdykt": "wyswietlana",
+      "werdykt": "zastapiona",
       "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-      "sha": "f2eb7ea955da",
-      "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie”; odchylenie toru uchwytu ok. 1 j. (było 9,3). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-      "wada": "Uchwyt najpierw opada, potem wznosi się (odchylenie toru 9,3 j.) — uchwyty maszyny jadą po prowadnicy.",
-      "poprawka": "Pozycja pośrednia; odchylenie toru uchwytu ≤ 3 j."
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+      "sha": "f2eb7ea955da"
     },
     "Push Up": {
       "rodzina": "pushup_plank",
@@ -1647,18 +1644,98 @@
           "uwagi": "W1-r3 zamknięte (≤ 1,8); Ś1-r3, N4-r3; R6 6,8 cm (zapadka)"
         }
       }
+    },
+    "dip": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r4 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ c918a066 (r3 83f4ba0, r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r4-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 4: W1, W2 naprawione (e3c79af); Triceps Dips (ławka) wstrzymana (V2_WSTRZYMANE, W5, P4-DIP-1, decyzja koordynatora 10.11.2026); Ś1 (ŚREDNIE) w backlogu — próg wydania blokują tylko KRYTYCZNE i WYSOKIE",
+      "autor": "programista partia 4 (figury/partia-4-dip @ fb8cf48); poprawki W1/W2 (e3c79af) i W4 (b248e1d, 83f4ba0): inni programiści",
+      "recenzent": "audytor (recenzja niezależna r1–r4, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "Wyświetlane: Chest Dip, Triceps Dip, Ring Dips, Dip Machine — ruch zgodny z kartą/zestawem i regułą zakres (łokieć góra 12–21°, dół 89,8–95,2°), dłonie na poręczach, kółkach i na końcach własnych dźwigni (≤ 1 cm), checkFrame/holdChecks 21 kadrów bez problemów. Wstrzymana: Triceps Dips (ławka) — W5 (łokieć przed tułowiem, przedramię w tułowiu; limit shSag w modelu), P4-DIP-1; shownFigureSpec = null, nakładka pusta, strona nie eksportuje; skrót rodziny obejmuje jej pozy, więc poprawka P4-DIP-1 zmieni skrót i wymaga recenzji różnicy. Ś1: poręcze niewidoczne z przodu (koło r 1,75 pod dłonią, draw.ts) — backlog.",
+      "slad": "r4: arkusze arkusz-slad wszystkich 5 ćwiczeń (side, front; PNG i HTML) bajtowo równe r3 (cmp); obejrzane w r1–r3 w pełnej rozdzielczości: poręcze i kółka — miednica w pionie (17,8–20,4 cm), bez skoków; Dip Machine — chwyty R i L na końcach własnych dźwigni (łuk, promień 75,4 cm); ławka (wstrzymana) — miednica w pionie 16,7 cm.",
+      "sha": "eec289f04568",
+      "liczba": 5,
+      "cwiczenia": [
+        "Chest Dip",
+        "Dip Machine",
+        "Ring Dips",
+        "Triceps Dip",
+        "Triceps Dips (ławka)"
+      ],
+      "bez_rysunku": [],
+      "wstrzymane": [
+        "Triceps Dips (ławka)"
+      ]
+    },
+    "chest_press_machine": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4; r1: W1 (Decline pozycja), W2 (Machine Shoulder Press łokcie), Ś1 (wyprost) naprawione w e039882, r2 wyswietlana",
+      "autor": "programista (subagent partii 4; włączenie 702fcabd; poprawki r1 e039882 — inny programista)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (ruch, nakładka, karty, zestawy), figury/partia-4-chest_press_machine @ e039882 (poprawki r1 innego programisty; r1: 6f8731d8); raport docs/research/recenzje/partia4-chest_press_machine-r2-audytor-2026-11-10.md",
+      "sha": "a254d112c317",
+      "liczba": 5,
+      "slad": "Ślad toru obejrzany w rzucie z boku wszystkich 5 ćwiczeń (r2: 5 nowych arkuszy arkusz-slad, kadry co 0,05; Smith bajtowo równy r1 — cmp): maszyny klatki — punkt styku dźwigni (środek chwytów) po łuku r = 70 cm (|chwyt−oś| 69,9–70,0 cm w każdym u), odchylenie od cięciwy 4,5 cm (MCP), 4,5 (Incline), 3,9 (Decline) = strzałka łuku; Decline — siedząc, od dolnej części klatki (chwyt 10,7 cm pod barkiem) w przód i lekko w dół (ok. 17° poniżej poziomu od barku); Machine Shoulder Press — chwyt R po łuku wokół osi z przodu z boku (z = 30), odchylenie 6,3 cm; Smith — środek gryfu po pionowej szynie (0,0 cm). Dłoń–punkt styku w rzucie z boku 0,0 cm w każdym u.",
+      "uwagi": "r1-W1 naprawione: Decline siedzący (oparcie 85°, barki 49,8 cm nad miednicą, kostki na podłodze), uchwyty przy dolnej części klatki, wypchnięcie w przód i w dół — zgodnie ze źródłami ćwiczenia. r1-W2 naprawione: Machine Shoulder Press — łokieć przed linią boczną 17–30° (u = 0,5: 8,5 cm przed, 28,3 cm w bok), przedramię ≤ 13,5° od pionu w rzucie z boku (ACE #186: łokcie nieco przed linią boczną). r1-Ś1 naprawione: koniec ruchu łokieć 16,3–18,6° (≤ 20° jak reguły analogiczne); UI pokazuje te liczby. Prześwit głowa–dźwignia/gryf ≥ 20,6 cm. Odciski złote zmienione tylko dla 4 póz tej rodziny. ŚREDNIE (testy, backlog): negatywy w tests/figures-v2-chest-press-machine-r1.test.ts porównują stałe liczby (np. 67 ≤ 50), nie uruchamiają miary na pozie sprzed poprawki (K5). Zostają z r1: zestaw Smith (ohp.seat „hantle”) do poprawy — backlog; wpis do_przegladu Machine Shoulder Press w figury-ograniczenia-silnika.json — ograniczenie nadal aktualne."
+    },
+    "cable_press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4; r1: W1 (bloczki stojąc na wysokości głowy) i Ś1 (zestaw Incline bp.control) naprawione w fbe2a83, r2 wyswietlana",
+      "autor": "programista (subagent partii 4; włączenie cbcff71; poprawki r1 fbe2a83 — inny programista)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (ruch, nakładka, karty, zestawy), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "sha": "c79df483b2da",
+      "liczba": 4,
+      "slad": "Ślad toru obejrzany w obu rzutach (z boku i z góry) wszystkich 4 ćwiczeń: r2 — nowe arkusze stojąc i Seated (z boku); z góry wszystkie 4 oraz Single Arm i Incline z boku bajtowo równe r1 (cmp). Ślad = chwyt R (dwie linki, W1b; jednorącz — ręka pracująca R); stojąc i siedząc — prosta przed siebie, lekko w górę (+7 cm na 48 cm), z góry prosta przy z = 28; skośnie — w górę i w przód pod 43° (prostopadła do tułowia 35°); dłoń–koniec linki 0,0 cm w każdym u; linki od bloczka z tyłu po tej samej stronie, stojąc prawie poziomo od wysokości barku (135 cm, bark 139,5), siedząc od wysokości klatki (100 cm, bark 105).",
+      "uwagi": "r1-W1 naprawione: bloczek stojąc 135 cm (4,5 cm pod barkiem), Seated 100 cm (5 cm pod barkiem) — zgodnie z cpress.setup i źródłami karty; test wysokości bloczka z negatywem (tests/figures-v2-cable_press-wysokosc-bloczka.test.ts). r1-Ś1: bp.control usunięte z zestawu Incline. Prześwit osi linki od ramienia ≥ 13 cm, od tułowia ≥ 30 cm. Zostają NISKIE z r1 (backlog): wpis otwarte_czesciowo Single Arm w figury-sens nieaktualny; press.mis.lock (karta Seated) bez wpisu w bledy_bez_animacji; Incline — środek głowy 2,3 cm za końcem oparcia."
+    },
+    "back_extension": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 2: W1 i N2 naprawione (acfbb24); Ś1 (ŚREDNIE) i N1 (NISKIE) w backlogu — próg wydania blokują tylko KRYTYCZNE i WYSOKIE",
+      "autor": "programista partia 4 (figury/partia-4-back_extension @ 391393d, aec8cda); poprawka W1/N2 (acfbb24): inny programista",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "Wyświetlane: Back Extension, Reverse Hyperextension, Lower Back Curl. Ruch zgodny z kartą/zestawem i regułami (biodro w płaszczyźnie strzałkowej: Back Extension 2,7° → 80,7°, reverse hyper 84,8° → 1,4°; kolano ≤ 10°; kręgosłup prosty), podpory ≤ 1 cm (miednica 0,8–1,0 cm, łydka–wałek 0,2 cm), Lower Back Curl: miednica na podłodze, barki +6,1 cm. W1 naprawione: Lower Back Curl bez linii kąta (DATA_UI.back_extension.exceptions, hideAngle; test tests/figures-v2-back-extension-kat.test.ts — próg skoku 8° zgodny z ruchem: Back Extension maks. 5,3°, Reverse Hyperextension maks. 6,4° na kadr co 0,05; dawny skok znaku 18,9°). Backlog: Ś1 — dłonie reverse hyper w powietrzu 40 cm przed podpórką; N1 — pomiar 3D biodra na górze 9–10° przy ciele w linii (systemowe). Weighted Ball Hyperextension bez rysunku — wyjątek generatora uzasadniony i zapisany.",
+      "slad": "r2: dane póz bez zmian (git diff aec8cda..acfbb24 -- lib/figures/v2/poses pusty); arkusze arkusz-slad Reverse Hyperextension i Lower Back Curl bajtowo równe r1 (cmp), Back Extension przegenerowany i obejrzany; w r1 obejrzane w pełnej rozdzielczości: bez ciężaru — ślad miednicy, nieruchoma na podpórce (Back Extension, Reverse Hyperextension) i na podłodze y 9,5 cm (Lower Back Curl); arkusz-nakladka Back Extension: linia pleców i łuk biodra 10° → 81°.",
+      "sha": "014b427fa2f2",
+      "liczba": 4,
+      "cwiczenia": [
+        "Back Extension",
+        "Lower Back Curl",
+        "Reverse Hyperextension",
+        "Weighted Ball Hyperextension"
+      ],
+      "bez_rysunku": [
+        "Weighted Ball Hyperextension"
+      ]
+    },
+    "thruster": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna rodziny thruster, partia 4, runda 2, figury/partia-4-thruster @ 0ee59a94 (poprawki 93b86d7c, 50988529, 0ee59a94), 10.11.2026; raport docs/research/recenzje/partia4-thruster-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4, runda 2: W1–W3 z r1 naprawione, 0 × KRYTYCZNE/WYSOKIE; NISKIE N2–N5 do backlogu",
+      "autor": "programista partii 4 (figury/partia-4-thruster)",
+      "recenzent": "audytor",
+      "uwagi": "W1: blokada nad głową — thrustery u = 0,727: chwyt 7,3 cm od barków, 2,0 cm od kostki, łokieć 11,2°; Clean and Press u = 1: 8,5 / 2,0 cm, łokieć 20,3°. W2: najniżej udo 8,1° poniżej poziomu. W3: chwyt u = 1 = chwyt u = 0 (pętla zamknięta, powrót do racka w kadrach 0,80–1,00). Ciągłość (limit dynamiczny 16 cm, decyzja koordynatora 10.11.2026): maks. krok na 1/48 — 10,3 cm (hantle), 10,7 cm (kettlebell), 5,1 cm (Clean and Press); na arkuszu bez szarpnięć i skoków. Dłonie na ciężarze 0,0 cm (siatka 1/480), ciężar nie przechodzi przez głowę. NISKIE: N2 łokcie Clean and Press w bok (niewidoczne z boku); N3 dynamiczne[\"*\"] obejmuje też Clean and Press bez potrzeby (5,1 cm); N4 tor thrusterów bez automatycznej ochrony kształtu (wyjątki tor-wyjatki); N5 podpis „Pozycja końcowa” przy blokadzie nad głową i jedna faza „Podnoszenie”.",
+      "slad": "Ślad toru ciężaru obejrzany w rzucie z boku wszystkich 3 ćwiczeń (3 arkusze arkusz-slad, 21 kadrów co 0,05, ślad = chwyt R; plus arkusz-nakladka rodziny z pozami błędów): thrustery — ciężar przy barkach w dół z przysiadem do ud poniżej poziomu, wybicie z wyciskaniem łagodnym łukiem przed twarzą do blokady nad środkiem stopy (u = 0,727), powrót tym samym łukiem do barków, pętla zamknięta bez skoku; Clean and Press — z zawisu nad kolanami blisko ud (3,9–9,7 cm) do barków i w górę z łagodnym łukiem przed twarzą do blokady nad stopą; bez przenikania ciężaru w ciało i głowę.",
+      "sha": "00dc790a18f6",
+      "liczba": 3
     }
   },
   "karty": {
     "Back Extension": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "22159fe935b0",
-      "uwagi": "2 badania (szczebel 3) przeczytane: kąt w biodrach ok. 90°, plecy proste, bez wyginania w łuk, tempo kontrolowane — zgodne. Źródło z Western Norway odczytane narzędziem (PMC zwraca 500 dla curl), niesprawdzone dosłownie."
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, K11: treść karty wobec rysunku v2), 10.11.2026",
+      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1, data/zrodla/cues.json, lib/cues/text/pl.json)",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "bext.move („mniej więcej do kąta prostego; wróć do linii prostej z nogami”) — rysunek: biodro 80,7° na dole, 2,7° na górze; hinge.back i bext.noArch — kręgosłup prosty (0,0°), bez przeprostu na górze; llc.control — tempo 2 s / 1 s; brak błędów na karcie. Stopy pod wałkiem (łydka 0,2 cm). Element nakładki bextHipLimb tylko przy bext.move.",
+      "sha": "22159fe935b0"
     },
     "Back Squat": {
       "werdykt": "wyswietlana",
@@ -1911,13 +1988,13 @@
     },
     "Machine Shoulder Press": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "524d02513230",
-      "uwagi": "Siedzisko z uchwytami na wysokości barków, wyprost bez blokowania, stopy na podłodze — wprost w przeczytanym źródle o tym ćwiczeniu; drugie (hantle siedząc) zgodne."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11); treść karty bez zmian od recenzji 28.10.2026",
+      "autor": "badacz merytoryczny i programista (karta etapu 1; rysunek v2: programista partii 4 @ 702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (karta własna wobec rysunku v2), figury/partia-4-chest_press_machine @ e039882 (poprawki r1 innego programisty; r1: 6f8731d8); raport docs/research/recenzje/partia4-chest_press_machine-r2-audytor-2026-11-10.md",
+      "uwagi": "Zdania karty (msp.seat, ohp.move, ohp.feet, ohp.fullExt) zgodne ze źródłami i od r2 z rysunkiem: start uchwyt 6,6 cm nad barkiem, łokcie nieco przed linią boczną, przedramię prawie pionowe, koniec 16,3° zgięcia.",
+      "sha": "524d02513230"
     },
     "Medicine Ball Slam": {
       "werdykt": "wyswietlana",
@@ -2162,13 +2239,13 @@
     },
     "Wyciskanie na linkach (stojąc)": {
       "werdykt": "wyswietlana",
-      "data": "2026-10-28",
-      "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-      "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-      "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-      "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-      "sha": "08c8964e60ab",
-      "uwagi": "Bloczki na wysokości klatki/barków, tyłem do wyciągu, wyprost i powrót, stopy w podłogę i napięty brzuch — 2 przeczytane źródła."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "badacz merytoryczny i programista (karta etapu 1, data/zrodla/cues.json; rysunek v2: programista partii 4 @ cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (karta własna wobec rysunku v2), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "Treść karty zgodna ze źródłami i od r2 z rysunkiem: cpress.setup — bloczki na wysokości barków (135 cm, bark 139,5), tyłem do wyciągu, uchwyty przy barkach (14 cm przed, 9 cm pod stawem barkowym); mcp.move — wypychanie do 19,5° zgięcia, powrót 2 s; cpress.base — tułów i miednica nieruchome.",
+      "sha": "08c8964e60ab"
     },
     "Step Up": {
       "werdykt": "wyswietlana",
@@ -2922,23 +2999,23 @@
     },
     "Thruster (hantle)": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
-      "sha": "6606839c306f",
-      "uwagi": "Sprawdzone: ACE #357 („hold them in front of each shoulder”, „When the hips are below the knees in the squat”, „stand up and at the same time press the dumbbells overhead”), CrossFit thruster („The heels remain down until the hips and knees fully extend.”, „heels lifting from the floor prematurely”). sq.mis.heels ma bezpośrednie źródła (CrossFit, Experience Life) — nie jest analogią. Figura v2 (rodzina thruster, planned — nie wyświetlana): ruch identyczny z wersją sprzed regeneracji (JSON bez bledy równy), arkusz /home/user/recenzja-p2/arkusze/Thruster-hantle-side.png: przysiad ok. do równoległego, pięty na podłodze, wypchnięcie w trakcie wstawania, hantel na górze nad przodostopiem — zgodne z kartą. Zniknięcie pozy błędu „pięty” wynika z ukrycia karty (bledyCwiczenia czyta lib/cues/data.json, karta w „hidden” → brak błędów); po wdrożeniu tego wpisu generator rysuje ją znowu (sprawdzone na kopii: odtwarzanie-poz.mjs thruster → „błędów: generator 1, plik 0”) — przywrócić pozę błędu przez regenerację thruster.json w tym samym commicie."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 thruster, K11) — partia 4, runda 2",
+      "autor": "programista P2 (karta); rysunek: programista partii 4",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 thruster, runda 2, figury/partia-4-thruster @ 0ee59a94, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek 0ee59a94 zgodny z każdym zdaniem: thruster.dbSetup, thruster.move (przysiad, wyciśnięcie nad głowę, powrót do barków), sq.down, thruster.depth (udo 8,1° poniżej poziomu), sq.back, thruster.fullExt (kolano 2,9°, łokieć 11,2°), błąd sq.mis.heels (pięta do 8,3 cm).",
+      "sha": "6606839c306f"
     },
     "Kettlebell Thruster": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-03",
-      "stan": "zrecenzowana niezależnie, runda 2 (bramka 4, treść karty) — partia P2 moc, L-047",
-      "autor": "programista P2 (sesja koordynatora 1.1)",
-      "recenzent": "audytor (recenzja niezależna L-047, rundy 1 i 2)",
-      "kto": "audytor — recenzja niezależna L-047 kart partii P2 moc (03.11.2026), gałąź integracja/p2-moc @ 55efc933; źródła sprawdzone WebFetch; runda 2 @ 8ab80e88 (audytor, recenzja niezależna L-047, 03.11.2026) — treść po poprawkach potwierdzona",
-      "sha": "175baa530c3a",
-      "uwagi": "Sprawdzone: Experience Life thruster („front rack position”, „forcefully pressing the kettlebells straight overhead as you rise”, „Keep your heels down throughout the movement.”, „thighs are parallel (or below parallel)”), CrossFit („two dumbbells or two kettlebells”). sq.mis.heels — bezpośrednie źródła. Figura v2 (planned): ruch bez zmian; arkusz /home/user/recenzja-p2/arkusze/Kettlebell-Thruster-side.png zgodny z kartą. Jak przy Thruster (hantle): po wdrożeniu wpisu regeneracja thruster.json przywraca pozę błędu „pięty”."
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty wobec rysunku v2 thruster, K11) — partia 4, runda 2",
+      "autor": "programista P2 (karta); rysunek: programista partii 4",
+      "recenzent": "audytor (recenzja niezależna L-047)",
+      "kto": "audytor — recenzja niezależna karty własnej przy włączeniu rodziny v2 thruster, runda 2, figury/partia-4-thruster @ 0ee59a94, 10.11.2026",
+      "uwagi": "Tekst karty bez zmian i poprawny; rysunek 0ee59a94 zgodny z każdym zdaniem: thruster.kbSetup, thruster.move (z powrotem do barków), thruster.depth (udo 8,1° poniżej poziomu), thruster.fullExt, ohp.tall (blokada 2,0 cm od kostki, 7,3 cm od barków), błąd sq.mis.heels. Dzwon nie przenika głowy (ok. 2 cm luzu).",
+      "sha": "175baa530c3a"
     },
     "One-Arm Lateral Raise (hantel)": {
       "werdykt": "wyswietlana",
@@ -3576,20 +3653,22 @@
     },
     "Chest Dip": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A1",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "programista A1 (karta); rysunek: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+      "recenzent": "audytor (recenzja niezależna r1–r4, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r4 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ c918a066 (r3 83f4ba0, r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r4-audytor-2026-11-10.md (karta bez zmian danych względem r1)",
+      "uwagi": "dip.setup (proste ręce 12,5°, stopy nad podłogą), dip.move (dół 95°), dip.chestLean (tułów 28° → 34° w przód; karta liczby nie podaje), plank.brace (kręgosłup bez zgięcia) — zgodne z rysunkiem. Błędy tylko tekstem (brak animacji błędów w rodzinie).",
       "sha": "58bc2ad0a6ce"
     },
     "Seated Cable Chest Press": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-08",
-      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty)",
-      "autor": "programista A1",
-      "recenzent": "badacz-merytoryczny",
-      "kto": "badacz-merytoryczny — recenzja niezależna treści karty, partia A1, runda 3 (54bcfd4f), 08.11.2026; uproszczenie maszyna ↔ wyciąg potwierdzone",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "badacz merytoryczny i programista (karta etapu 1; rysunek v2: programista partii 4 @ cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (karta własna wobec rysunku v2), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "cpress.seated (plecy przy oparciu, stopy na podłodze, uchwyty przy klatce, łokcie ugięte: start 145,8°, chwyt 7,7 cm pod barkiem), cpress.seatedMove, mcp.blades (bark na oparciu ±1 cm w każdym u), plank.brace — zgodne z rysunkiem; press.mis.lock i mis.jerk — błędy prędkości/tempa, bez animacji (NISKIE: press.mis.lock dopisać do bledy_bez_animacji).",
       "sha": "8a64c572d245"
     },
     "Decline Push Up": {
@@ -4586,6 +4665,26 @@
       "kto": "audytor (recenzja niezależna, r3) — czysta kopia git archive d35ce6c4 w /home/user/rev-p1/overhead_press-r3, status ready tylko w kopii",
       "sha": "dd75a3c56ef9",
       "uwagi": "ohp.seat, ohp.move, ohp.elbowsUnder, ohp.fullExt zgodne; skrót bez zmian od r2"
+    },
+    "Triceps Dips (ławka)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "autor karty własnej (data/zrodla/cues.json); rysunek: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+      "recenzent": "audytor (recenzja niezależna r1–r4, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r4 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ c918a066 (r3 83f4ba0, r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r4-audytor-2026-11-10.md (karta bez zmian danych względem r1)",
+      "uwagi": "Rysunek v2 wstrzymany (P4-DIP-1) — karta wyświetlana z figurą v1 (wpis v1 wyswietlana, 0e72ab5e0fbf). bdip.setup, bdip.move, bdip.easier, bdip.range zgodne z v1 (łokieć 0° → 90°, bark w wyproście do −52°, pięty na podłodze) i z pozami v2 poza W5.",
+      "sha": "457bb9d115cb"
+    },
+    "Machine Chest Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "badacz merytoryczny i programista (karta etapu 1, data/zrodla/cues.json; rysunek v2: programista partii 4 @ 702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (karta własna wobec rysunku v2), figury/partia-4-chest_press_machine @ e039882 (poprawki r1 innego programisty; r1: 6f8731d8); raport docs/research/recenzje/partia4-chest_press_machine-r2-audytor-2026-11-10.md",
+      "uwagi": "mcp.seat (uchwyty na wysokości środka klatki): start chwyt 6,7 cm pod stawem barkowym, tuż przed klatką — zgodne z ACE #188 krok 1; mcp.move: wypychanie przed siebie po łuku dźwigni do 17,6° zgięcia, powrót 2 s; mcp.blades: tułów i miednica nieruchome przy oparciu; press.noLock: bez blokowania.",
+      "sha": "876d5d48af0e"
     }
   },
   "zestawy": {
@@ -6592,6 +6691,129 @@
       "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
       "sha": "20c8125fdfa2",
       "uwagi": "oly.back zgodne: start w zamachu z prostymi plecami"
+    },
+    "Triceps Dip": {
+      "rodzina": "dip",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 dip), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+      "recenzent": "audytor (recenzja niezależna r1–r4, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r4 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ c918a066 (r3 83f4ba0, r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r4-audytor-2026-11-10.md (zestaw bez zmian danych względem r1)",
+      "uwagi": "bdip.move i bdip.range pasują do rysunku: opuszczanie do ok. 95° w łokciu, wypchnięcie do 12°; tułów pionowo. Źródła zdań z dipów na ławce — ten sam ruch łokcia (uproszczenie, analogia). mis.jerk tylko tekst.",
+      "sha": "90516c549650"
+    },
+    "Ring Dips": {
+      "rodzina": "dip",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 dip), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+      "recenzent": "audytor (recenzja niezależna r1–r4, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r4 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ c918a066 (r3 83f4ba0, r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r4-audytor-2026-11-10.md (zestaw bez zmian danych względem r1)",
+      "uwagi": "bdip.move i bdip.range pasują do rysunku: opuszczanie do ok. 93° w łokciu, wypchnięcie do 12,5°; dłonie na kółkach (błąd 0 cm). mis.jerk tylko tekst.",
+      "sha": "90516c549650"
+    },
+    "Dip Machine": {
+      "rodzina": "dip",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A), r1–r4 10.11.2026 — W3 WYSOKIE, dane bez zmian; backlog P4-DIP-2 (wariant A koordynatora)",
+      "autor": "badacz merytoryczny (zestaw dip, wskazowki-cwiczenia-05); włączenie rodziny: programista partia 4 (figury/partia-4-dip @ fb8cf48)",
+      "recenzent": "audytor (recenzja niezależna r1–r4, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "kto": "audytor — recenzja niezależna r4 rodziny dip (bramka 4, L-047, L-050), figury/partia-4-dip @ c918a066 (r3 83f4ba0, r2 e3c79af, r1 fb8cf48), czysta kopia; raport docs/research/recenzje/partia4-dip-r4-audytor-2026-11-10.md (zestaw bez zmian danych względem r1)",
+      "uwagi": "W3: zdania przeczą maszynie siedzącej. bdip.move „Opuść się … wypchnij się do wyprostu” — miednica stoi (przesunięcie 0,0 cm); bdip.range „w górę do wyprostu rąk” — na rysunku wyprost (21,3°) przy chwycie na dole (y 34,7 cm), zgięcie (89,8°) na górze (y 60,2 cm).",
+      "poprawka": "Badacz: zestaw dla maszyny (wypychanie uchwytów w dół do wyprostu, powrót do ok. kąta prostego) albo wyłączenie bdip.move/bdip.range dla Dip Machine (CUE_NOT_IN_FAMILY / CUE_REQUIRES, lib/figures/v2/cueSets.ts); test: zdania zestawu Dip Machine nie zawierają „Opuść się” ani „w górę do wyprostu”.",
+      "sha": "90516c549650"
+    },
+    "Leverage Incline Chest Press": {
+      "rodzina": "machinePress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 chest_press_machine), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw machinePress, wskazowki-cwiczenia-03); włączenie rodziny: programista partii 4 (702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-chest_press_machine @ e039882 (poprawki r1 innego programisty; r1: 6f8731d8); raport docs/research/recenzje/partia4-chest_press_machine-r2-audytor-2026-11-10.md",
+      "uwagi": "mcp.move (wypychanie do wyprostu, powrót powoli) — rysunek: wypychanie w górę i w przód prostopadle do oparcia skośnego, zgodne; mcp.blades — tułów nieruchomy przy oparciu (pochylenie stałe, miednica stała); press.noLock — koniec 18,6° zgięcia, bez blokowania; mis.jerk — błąd tempa bez animacji (bledy_bez_animacji).",
+      "sha": "587789bfe0c2"
+    },
+    "Leverage Decline Chest Press": {
+      "rodzina": "machinePress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw machinePress, wskazowki-cwiczenia-03); włączenie rodziny: programista partii 4 (702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-chest_press_machine @ e039882 (poprawki r1 innego programisty; r1: 6f8731d8); raport docs/research/recenzje/partia4-chest_press_machine-r2-audytor-2026-11-10.md",
+      "uwagi": "Zdania zestawu (wypychanie uchwytów do wyprostu, łopatki przy oparciu, bez blokowania) pasują do rysunku po poprawce r1-W1: maszyna siedząca, plecy przy oparciu, wypchnięcie w przód i lekko w dół do 16,7° zgięcia; mis.jerk — błąd tempa bez animacji.",
+      "sha": "587789bfe0c2"
+    },
+    "Smith Machine Shoulder Press": {
+      "rodzina": "ohp",
+      "werdykt": "do poprawy",
+      "data": "2026-11-10",
+      "stan": "recenzja niezależna (bramka 4, L-047 A), r2 10.11.2026 — bez zmian od r1, zestaw do poprawy (backlog wg koordynatora); rysunek Smith zgodny",
+      "autor": "badacz merytoryczny (zestaw ohp); włączenie rodziny: programista partii 4 (702fcabd)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-chest_press_machine @ e039882 (poprawki r1 innego programisty; r1: 6f8731d8); raport docs/research/recenzje/partia4-chest_press_machine-r2-audytor-2026-11-10.md",
+      "uwagi": "ohp.seat: „…; hantle przy barkach.” — rysunek i ćwiczenie: gryf suwnicy Smitha (sztanga na prowadnicy), nie hantle. ohp.move (wyciśnięcie nad głowę do wyprostu, opuszczenie do barków: start gryf 14 cm nad barkiem, ≤ 20 cm reguły), ohp.fullExt (koniec 15°), ohp.mis.lock (bez animacji) — zgodne.",
+      "poprawka": "Usunąć ohp.seat z zestawu Smith Machine Shoulder Press albo dodać CUE_REQUIRES['ohp.seat'] (tylko hantle) — zestaw bez zdania o hantlach; drugi użytkownik ohp.seat: Seated Cable Shoulder Press (też nie hantle, poza tą rodziną).",
+      "sha": "7b8d9f13f928"
+    },
+    "Single Arm Cable Chest Press": {
+      "rodzina": "cablePress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 cable_press), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw cablePress); włączenie rodziny: programista partii 4 (cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "cpress.base (stopy w podłogę, brzuch, tułów stabilny) — miednica i tułów nieruchome, stopy na podłodze; press.noLock — koniec ruchu 17,8° zgięcia (ręka pracująca R), bez blokowania; mis.jerk — błąd tempa bez animacji (bledy_bez_animacji). Wolna ręka wzdłuż tułowia, bez linki.",
+      "sha": "571f01a5d4df"
+    },
+    "Incline Cable Chest Press": {
+      "rodzina": "bench",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 cable_press), r2 10.11.2026 — r1-Ś1 naprawione",
+      "autor": "badacz merytoryczny (zestaw bench); włączenie rodziny: programista partii 4 (cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "r2: bp.control usunięte (uchwyty linek nie dotykają klatki). Zostają: bp.contact (głowa, barki, pośladki na oparciu, stopy na podłodze; głowa na końcu oparcia), bp.blades, błąd bp.mis.arch (poza błędu: łuk lędźwi −30°, miednica +4 cm — widoczny).",
+      "sha": "60b4ee8e613d"
+    },
+    "Reverse Hyperextension": {
+      "rodzina": "hipExt",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 back_extension), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw hipExt, wskazowki-cwiczenia-03); włączenie rodziny: programista partia 4 (figury/partia-4-back_extension @ 391393d)",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "bext.noArch — nogi kończą w linii z tułowiem (biodro 1,4° w płaszczyźnie strzałkowej), bez przeprostu; llc.control — 1 s / 2 s, płynnie (klatki co ok. 8°); mis.jerk tylko tekst (bledy: []). Pozycja dłoni — Ś1 po stronie rysunku, nie zestawu.",
+      "sha": "2552fa39017b"
+    },
+    "Lower Back Curl": {
+      "rodzina": "cobra",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "kto": "audytor — recenzja niezależna r2 rodziny back_extension (bramka 4, L-047, L-050; różnica po poprawkach), figury/partia-4-back_extension @ acfbb24 (r1 aec8cda), czysta kopia; raport docs/research/recenzje/partia4-back_extension-r2-audytor-2026-11-10.md",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu i rysunku v2 back_extension), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw cobra); włączenie rodziny: programista partia 4 (figury/partia-4-back_extension @ 391393d)",
+      "recenzent": "audytor (recenzja niezależna r1–r2, 10.11.2026; nie pisał rodziny, poprawek, nakładki, kart ani zestawów)",
+      "uwagi": "cobra.hips — miednica na podłodze w każdym kadrze (y 9,5 cm stałe); cobra.control — opuszczanie 2 s; cobra.mis tylko tekst (bez animacji błędu). Zakres mały (barki +6,1 cm, tułów ok. 7°), w regule barki_w_gore (≥ 5 cm, konwencja). Linia kąta pod rysunkiem ukryta (W1 naprawione, acfbb24).",
+      "sha": "cfcd14a3dc6d"
+    },
+    "Clean and Press": {
+      "rodzina": "oly",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 thruster), partia 4, runda 2, 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw oly; źródła data/zrodla/wskazowki-ogolne.json); włączenie rodziny i poprawki rysunku: programista partii 4 (figury/partia-4-thruster @ 0ee59a94)",
+      "recenzent": "audytor (recenzja niezależna L-047; nie pisał zestawu ani rysunku)",
+      "kto": "audytor — recenzja niezależna zestawu ogólnego przy włączeniu rodziny v2 thruster, runda 2, figury/partia-4-thruster @ 0ee59a94",
+      "uwagi": "oly.back i oly.close (sztanga 3,9–9,7 cm od nóg poniżej barków) zgodne z rysunkiem; ohp.tall zgodne po W1 (blokada 2,0 cm od kostki, łokieć 20,3°); oly.mis — poza błędu zaokrągla plecy (do 5,9 cm) i odsuwa sztangę (do 5,5 cm), zgodnie z tekstem. Bez nazw źródeł, liczb i twierdzeń o zdrowiu.",
+      "sha": "84f205b001d6"
     }
   }
 }

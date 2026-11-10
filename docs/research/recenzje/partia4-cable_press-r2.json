@@ -1,0 +1,63 @@
+{
+  "v2": {
+    "cable_press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, partia 4; r1: W1 (bloczki stojąc na wysokości głowy) i Ś1 (zestaw Incline bp.control) naprawione w fbe2a83, r2 wyswietlana",
+      "autor": "programista (subagent partii 4; włączenie cbcff71; poprawki r1 fbe2a83 — inny programista)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (ruch, nakładka, karty, zestawy), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "sha": "c79df483b2da",
+      "liczba": 4,
+      "slad": "Ślad toru obejrzany w obu rzutach (z boku i z góry) wszystkich 4 ćwiczeń: r2 — nowe arkusze stojąc i Seated (z boku); z góry wszystkie 4 oraz Single Arm i Incline z boku bajtowo równe r1 (cmp). Ślad = chwyt R (dwie linki, W1b; jednorącz — ręka pracująca R); stojąc i siedząc — prosta przed siebie, lekko w górę (+7 cm na 48 cm), z góry prosta przy z = 28; skośnie — w górę i w przód pod 43° (prostopadła do tułowia 35°); dłoń–koniec linki 0,0 cm w każdym u; linki od bloczka z tyłu po tej samej stronie, stojąc prawie poziomo od wysokości barku (135 cm, bark 139,5), siedząc od wysokości klatki (100 cm, bark 105).",
+      "uwagi": "r1-W1 naprawione: bloczek stojąc 135 cm (4,5 cm pod barkiem), Seated 100 cm (5 cm pod barkiem) — zgodnie z cpress.setup i źródłami karty; test wysokości bloczka z negatywem (tests/figures-v2-cable_press-wysokosc-bloczka.test.ts). r1-Ś1: bp.control usunięte z zestawu Incline. Prześwit osi linki od ramienia ≥ 13 cm, od tułowia ≥ 30 cm. Zostają NISKIE z r1 (backlog): wpis otwarte_czesciowo Single Arm w figury-sens nieaktualny; press.mis.lock (karta Seated) bez wpisu w bledy_bez_animacji; Incline — środek głowy 2,3 cm za końcem oparcia."
+    }
+  },
+  "zestawy": {
+    "Single Arm Cable Chest Press": {
+      "rodzina": "cablePress",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 cable_press), 10.11.2026",
+      "autor": "badacz merytoryczny (zestaw cablePress); włączenie rodziny: programista partii 4 (cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "cpress.base (stopy w podłogę, brzuch, tułów stabilny) — miednica i tułów nieruchome, stopy na podłodze; press.noLock — koniec ruchu 17,8° zgięcia (ręka pracująca R), bez blokowania; mis.jerk — błąd tempa bez animacji (bledy_bez_animacji). Wolna ręka wzdłuż tułowia, bez linki.",
+      "sha": "571f01a5d4df"
+    },
+    "Incline Cable Chest Press": {
+      "rodzina": "bench",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047 A; przypisanie zestawu ogólnego do ruchu ćwiczenia i rysunku v2 cable_press), r2 10.11.2026 — r1-Ś1 naprawione",
+      "autor": "badacz merytoryczny (zestaw bench); włączenie rodziny: programista partii 4 (cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (zestaw ogólny), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "r2: bp.control usunięte (uchwyty linek nie dotykają klatki). Zostają: bp.contact (głowa, barki, pośladki na oparciu, stopy na podłodze; głowa na końcu oparcia), bp.blades, błąd bp.mis.arch (poza błędu: łuk lędźwi −30°, miednica +4 cm — widoczny).",
+      "sha": "60b4ee8e613d"
+    }
+  },
+  "karty": {
+    "Wyciskanie na linkach (stojąc)": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "badacz merytoryczny i programista (karta etapu 1, data/zrodla/cues.json; rysunek v2: programista partii 4 @ cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (karta własna wobec rysunku v2), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "Treść karty zgodna ze źródłami i od r2 z rysunkiem: cpress.setup — bloczki na wysokości barków (135 cm, bark 139,5), tyłem do wyciągu, uchwyty przy barkach (14 cm przed, 9 cm pod stawem barkowym); mcp.move — wypychanie do 19,5° zgięcia, powrót 2 s; cpress.base — tułów i miednica nieruchome.",
+      "sha": "08c8964e60ab"
+    },
+    "Seated Cable Chest Press": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie — wyświetlana (bramka 4, treść karty wobec rysunku v2, K11)",
+      "autor": "badacz merytoryczny i programista (karta etapu 1; rysunek v2: programista partii 4 @ cbcff71)",
+      "recenzent": "audytor (recenzja niezależna L-047, 10.11.2026; nie pisał rodziny ani poprawek r1)",
+      "kto": "audytor — recenzja niezależna r2 (karta własna wobec rysunku v2), figury/partia-4-cable_press @ fbe2a83 (poprawki r1 innego programisty; r1: 12fe9ed2); raport docs/research/recenzje/partia4-cable_press-r2-audytor-2026-11-10.md",
+      "uwagi": "cpress.seated (plecy przy oparciu, stopy na podłodze, uchwyty przy klatce, łokcie ugięte: start 145,8°, chwyt 7,7 cm pod barkiem), cpress.seatedMove, mcp.blades (bark na oparciu ±1 cm w każdym u), plank.brace — zgodne z rysunkiem; press.mis.lock i mis.jerk — błędy prędkości/tempa, bez animacji (NISKIE: press.mis.lock dopisać do bledy_bez_animacji).",
+      "sha": "8a64c572d245"
+    }
+  },
+  "v1_zastapiona": []
+}

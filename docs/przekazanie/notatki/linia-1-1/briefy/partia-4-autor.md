@@ -1,0 +1,35 @@
+# Brief: programista rodziny — partia 4 (linia 1.1), 09/10.11.2026 (wzór: brief partii 2)
+
+Gałąź: `figury/partia-4-<rodzina>` od głowy `figury/partia-4` (SHA w zleceniu), **własny worktree** `<scratchpad>/wt-<rodzina>` (`git worktree add -b figury/partia-4-<rodzina> <scratchpad>/wt-<rodzina> <SHA>`, potem `ln -s /home/user/trening/node_modules <wt>/node_modules`); pracuj wyłącznie tam. Sesja chmurowa, własna maszyna (4 rdzenie) — bez `verify.lock`, ale Jest tylko pojedyncze pliki `--runInBand` (równolegle pracuje drugi programista).
+Lead partii (nie koordynator linii) zleca Ci JEDNĄ rodzinę. Rodziny partii 4: dip, chest_press_machine, cable_press, back_extension, thruster.
+Integracja ma już: delt_raise, ślad dźwigni maszyn (punkt styku, contract.ts), pełny skan generator↔plik w `tests/figury-generator-odtwarza.test.ts` — włączana rodzina NIE może mieć rozjazdów (lista długu `ROZJAZDY_POZA_ZAKRESEM`); dopisz ją do `W_ZAKRESIE`. Wspólne funkcje póz (`scripts/figures/agent-pozy/gora.mjs` itp.) zmieniaj tylko ze sprawdzeniem, że `node scripts/zrodla-runtime.mjs --skroty` nie zmienia skrótów innych rodzin ready — inaczej dodaj nową funkcję. Wstrzymanie ćwiczenia (`V2_WSTRZYMANE`) obniża cel pokrycia — tylko jako pytanie do leada.
+
+## Najpierw przeczytaj
+- `CLAUDE.md` (bramka 4, L-047, L-050 — pole `slad`, testy przed kodem, macierz, rejestr twierdzeń, BRD, repo publiczne).
+- `docs/przekazanie/notatki/linia-1-1/plan-recenzji-rodzin-v2.md` pkt 3 — lista kontrolna K1–K15 (obowiązuje).
+- `docs/32-wzorce-interakcji.md` tylko jeśli dodajesz element UI (zwykle nie).
+- Wzór kompletnego włączenia (tylko do czytania): gałąź `origin/figury/delt_raise`, commity `1cd586a5` (włączenie: families.ts ready, poseData.ts LOAD, test mapping), `1e8f9f8d`+`64ebbbd4` (nakładka techniki + wyjątki testów danych póz), `e297b41b` (poprawki testów, v1 → zastapiona), `d18d02fc` (wpisy „zestawy”), `9034f7ad` (wpisy „karty”). `git show <sha>`.
+
+## Zakres Twojego zlecenia (faza AUTOR — bez wpisów recenzji)
+1. `node scripts/pokrycie-symulacja.mjs` — zapisz zysk rodziny (przed).
+2. Włączenie (K1): `families.ts` status `ready`; `poseData.ts` — `LOAD` (dopisz na końcu mapy, nie przestawiaj) i wpis `DATA_UI` (nazwy faz: tylko istniejące `PhaseName` z `t()`/`lib/i18n.en.ts`; nowa nazwa = nowy tekst UI PL/EN + kontekst tłumaczenia + zestaw przekładu, przekładu API NIE uruchamiasz). Mobilność: statyczne → `ISOMETRIC` już jest dla części; bez ról mięśni (decyzja właściciela 04.11.2026 (4) B, docs/18:237).
+3. Nakładka techniki (decyzja właściciela 09.11.2026 „żadna rodzina nie wychodzi bez nakładki”, docs/18): `lib/figures/v2/overlay/<rodzina>.ts` + rejestr w `overlay.ts` (DOPISZ import i wpis na końcu — inne partie dopisują równolegle). Tylko reguły „ustalone” z `data/zrodla/figury-sens.json` (sekcja rodziny) i wskazówki obecne na karcie (id `cue` = klucze `wskazowki_na_reguly`); bez nowych liczb; komentarz w nagłówku jak `overlay/delt_raise.ts` (co jest, czego nie ma i dlaczego). Cue inline (strażnik S20). Jeśli żadna reguła się nie kwalifikuje — zapisz powód (pytanie do leada), nie wymyślaj.
+4. Zestawy ogólne (`lib/figures/v2/cue-sets.json`) i karty własne ćwiczeń rodziny: wypisz, które ćwiczenia mają `own` / `general` / `open`; wpisy v1 (`figury-recenzja.json` → `v1`) ćwiczeń, które teraz rysują v2 → przygotuj listę do `zastapiona` (K10; zmiana statusu w tym samym commicie, gdy test tego wymaga — wzór e297b41b). Nie dopisuj wpisów „v2/karty/zestawy” — robi to przepisujący 1:1 z pliku recenzenta po recenzji.
+5. Testy: włączenie zmienia testy (mapping, figures-v2-data, nakladka-fix4, recenzja, strona-eksport, gemini-polecenia …). Czerwone wolno tylko: `figury-recenzja`, `karty-recenzja`, `recenzja-wyjatki-1-1`, `zrodla-runtime` (brak wpisu recenzji). Każde inne dostosowanie testu uzasadnij w commicie (K14: recenzent czyta `git diff -- tests/`); nie poluzowuj progów pod dane (K5). Pojedyncze pliki: `npx jest <plik> --runInBand`.
+6. Samokontrola ruchu (K4–K8): `node scripts/figures/arkusz-slad.mjs --out <scratchpad>/arkusze-<rodzina> --key "<ćw>" ...` dla KAŻDEGO ćwiczenia z rysunkiem w każdym widoku (PNG przez playwright — jest w środowisku). Obejrzyj w pełnej rozdzielczości (Read na PNG) przynajmniej po jednym arkuszu na wzorzec ruchu; liczby z `frameAt` (zakres stawów vs karta, styki ≤ 1 cm, orientacja sprzętu, ślad przy właściwym chwycie). Wady, które sam widzisz → popraw w generatorze `scripts/figures/agent-pozy/<rodzina>.mjs` / pozach z testem odtwarzającym (K5), zanim oddasz do recenzji. Ćwiczenia, których rysunek nie pokaże poprawnie → nie łataj na siłę: lista do leada (wyjątek K3 wymaga decyzji).
+7. Pochodne: `node scripts/zrodla-runtime.mjs --write`, `node scripts/pokrycie-katalogu.mjs --write`, `node scripts/test-matrix.mjs --write`, README (`node scripts/readme.mjs --write` jeśli istnieje), BRD (`docs/brd/wymagania.md` — nakładka/rodzina jak w delt a421cb8a; `node scripts/kontrola-brd.mjs docs/brd`).
+8. Commit(y) po polsku z prefiksem `<rodzina>:` i stopką: `Co-Authored-By` (adres ze stopki sesji — nie wpisywać do docs, strażnik public-repo) i `Claude-Session: https://claude.ai/code/session_01T66VBz37fikLrafFxEbBYK`. `git diff --cached` przed commitem. NIE pushuj (push robi lead po verify:szybkie). Nie uruchamiaj pełnego verify.
+
+## Raport do leada (krótko, ≤ 40 linii)
+SHA końcowe; zysk rodziny przed/po (`pokrycie-symulacja` / `pokrycie-katalogu`); lista ćwiczeń z rysunkiem (klucze) i widoki; ścieżka katalogu arkuszy (PNG); nakładka: elementy i reguły (oraz odrzucone z powodem); zestawy/karty: lista ćwiczeń `own`/`general`/`open` i wpisy v1 → zastapiona; testy zmienione (plik: dlaczego); wady znalezione i poprawione samodzielnie; czerwone testy pozostałe (tylko dozwolone); pytania (merytoryczne/produktowe — nie zgaduj); czas pracy.
+
+## Limit kontekstu
+Ok. 30–35% okna. Powyżej ~30%: domknij krok, commit, zapisz stan w `docs/przekazanie/notatki/linia-1-1/STAN-PARTIA-4.md (w worktree głównym leada nie zapisuj — w swoim worktree, sekcja rodziny)` (sekcja rodziny: zrobione z SHA, zostało, następny krok, pułapki) i oddaj raport.
+
+## Pułapki z partii 1–3 (STAN-PARTIA-1/2/3 na gałęziach `origin/figury/partia-1..3`)
+- Włączenie zawsze rusza testy: mapping (licznik figur), strona-eksport (n), nakladka-triceps-olympic (rejestr nakładek), skrot-v2-wynik (regex nakładek), gemini-polecenia (liczba rodzin planned), cel-1-1, figures-v2-kierunek-u / -petla-jednokierunkowa, figury-generator-odtwarza (W_ZAKRESIE).
+- `figure.ts` ≤ 20 KB (architecture-limits); `cue-sets.json` wcięcie 2 (JSON.stringify), `figury-sens.json` formatowany ręcznie — edycje tekstowe.
+- Zestaw ogólny bez wpisu „zestawy” → element nakładki się nie rysuje (strażnik kazda-rodzina) — to normalne przed recenzją.
+- `run.mjs --zastosuj` nakłada tylko pozy, które przeszły walidację — sprawdzaj „N/N”.
+- `test-matrix --write` i `readme --write` po każdej zmianie tytułu testu/licznika.
+- BRD bez liczb czasu bez odwołania (M1-022); w docs/ bez e-maili i ścieżek /tmp.
