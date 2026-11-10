@@ -1,0 +1,103 @@
+{
+  "v2": {
+    "glute_floor": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie r2 (bramka 4, L-047, L-050), linia 1.1 partia 7; W1 i W2 z r1 rozwiązane, 0 KRYTYCZNE/WYSOKIE",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "cfdc21dbffc8",
+      "uwagi": "W1: Cable Kickback — dłonie na przedniej ścianie kolumny, gap(farm, tower) +0,7 cm w każdym kadrze (r1: 7,0). W2: Prone Flutter Kicks, poza błędu — klatka uniesiona (barki 53,2 → 65,6), tułów ok. 0,1 cm nad blatem (r1: ok. 6 cm w blacie), łuk lędźwi czytelny. N3 rozwiązane (Δθ ok. 44° w opisie wyjątków toru). Złote odciski: 5 póz; Donkey Kick, Hip Extension with Bands, Machine — tylko odświeżony odcisk (dane i arkusze bajtowo równe z r1). Backlog z r1: Ś1 Machine bez ramy, N1 przedramię w poręczy −2,5 cm, N2 kolano 1,4 cm nad podłogą, N4 miednica_bez_skretu na wniosku z ACE #38, N5 faza Clamshell; r2: N6 testy bez jawnych negatywów, N7 czerwony test odcisków spoza listy K1 na 843bbe38.",
+      "liczba": 7,
+      "cwiczenia": [
+        "Donkey Kick",
+        "Fire Hydrant",
+        "Clamshell",
+        "Cable Kickback",
+        "Hip Extension with Bands",
+        "Machine Glute Kickback",
+        "Prone Flutter Kicks"
+      ],
+      "bez_rysunku": [],
+      "slad": "Arkusze r2: scripts/figures/arkusz-slad.mjs (side i front, 21 kadrów co 0,05, 7 ćwiczeń, 14 arkuszy) i arkusz-nakladka.mjs --family glute_floor (24, z pozami błędu), cmp HTML i PNG z r1 (843bbe38): bajtowo równe wszystkie poza Cable Kickback (wszystkie arkusze) i pozą błędu Prone Flutter Kicks. Ślad: Cable Kickback — mankiet na kostce (0 cm), Machine Glute Kickback — punkt styku dźwigni przy kostce (0 cm), łuk wokół biodra 6,1 cm (Δθ ok. 44°, wyjątki tor-wyjatki.json przyjęte); Hip Extension with Bands — guma przy kostkach; Donkey Kick, Fire Hydrant, Clamshell — bez ciężaru, tor kolana/kostki nogi ruchomej z frameAt (łuki wokół biodra, 0 zawróceń); miednica nieruchoma we wszystkich 7."
+    }
+  },
+  "zestawy": {
+    "Machine Glute Kickback": {
+      "rodzina": "hipExt",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K12, r2)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "5541a16a3e76",
+      "uwagi": "hext.range i plank.brace pasują (kręgosłup 0°, miednica nieruchoma, biodro +36° → −14°); hext.mis.arch — łuk lędźwi −30°, widoczny. Bez zmian względem r1."
+    },
+    "Prone Flutter Kicks": {
+      "rodzina": "hipExt",
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K12, r2 — po poprawce W2)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "5541a16a3e76",
+      "uwagi": "Zdania pasują do pozy poprawnej (kręgosłup 0°, miednica na ławce 0,7 cm, nogi naprzemiennie). Poza błędu hext.mis.arch po poprawce: klatka uniesiona o 12,4 cm, wklęsłość lędźwi czytelna, tułów bez przenikania w ławkę (dolna krawędź ok. 43,1 przy blacie 43)."
+    }
+  },
+  "karty": {
+    "Donkey Kick": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2 — bez zmian względem r1)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "90713799544e",
+      "uwagi": "bd.setup: kolana pod biodrami, dłonie pod barkami, kręgosłup 0°; dk.move: kolano 105° → 90°, biodro 76° → 11°, stopa podeszwą ku górze; hext.range/plank.brace: kręgosłup 0°; hext.mis.arch: łuk −32°, widoczny."
+    },
+    "Fire Hydrant": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2 — bez zmian względem r1)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "9941c4ec90d1",
+      "uwagi": "bd.setup jak Donkey Kick; fh.move: kolano 105° przez cały ruch, odchodzi w bok o ok. 34 cm; fh.level: przechył i skręt miednicy 0°; fh.mis.twist bez pozy błędu."
+    },
+    "Clamshell": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2 — bez zmian względem r1)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "eeb474aeef3c",
+      "uwagi": "clam.setup: na boku, kolana 88–90°, nogi ułożone; clam.move: stopy razem (kostki nieruchome), kolano górne 24 → 42 cm; clam.noRoll: skręt 0°; clam.mis.roll bez pozy błędu."
+    },
+    "Cable Kickback": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2 — po poprawce W1)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "00c3363b505c",
+      "uwagi": "ck.setup: wyciąg nisko (y 22), mankiet na kostce, przodem do maszyny, dłonie na kolumnie (gap +0,7 cm w każdym kadrze) — zgodne; ck.move: noga w tył, biodro +36° → −14°; hab.hips: miednica nieruchoma; hext.mis.arch: łuk −30°, widoczny."
+    },
+    "Hip Extension with Bands": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-10",
+      "stan": "zrecenzowana niezależnie (K11, r2 — bez zmian względem r1)",
+      "autor": "programista (subagent, partia 7, sesja D); poprawki r1 — inny programista (79a59d21)",
+      "recenzent": "audytor (subagent, partia 7, sesja D)",
+      "kto": "audytor (subagent, partia 7, sesja D) — recenzja niezależna r2 rodziny glute_floor @ 79a59d21 (różnica 843bbe38..79a59d21), worktree odłączony, 10.11.2026; raport docs/research/recenzje/partia7-glute_floor-r2-audytor-2026-11-10.md; sha z własnego zrodla-runtime --skroty",
+      "sha": "8c83adfcf23f",
+      "uwagi": "hexb.setup: guma przy kostkach, noga stojąca na podłodze (0,1 cm); ck.move: noga w tył, biodro → przeprost; plank.brace: kręgosłup 0°; hext.mis.arch: łuk −30°, widoczny."
+    }
+  },
+  "v1_zastapiona": []
+}

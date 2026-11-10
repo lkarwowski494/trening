@@ -123,7 +123,7 @@ describe('ACG-002 (audyt ćwiczeń 31.10.2026): każdy plik lib/figures/v2, z kt
       const f = kolejkaPlikow.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
       for (const m of fs.readFileSync(path.join(KORZEN, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V)) kolejkaPlikow.push(c); }
     }
-    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(bench_press|curl|pull_up|olympic|triceps|hip_bridge|cable_row|delt_raise|chest_fly|calf_raise|kb_ballistic|overhead_press|row|pulldown|shrug|hip_abd_add|leg_machine|dip|chest_press_machine|cable_press|back_extension|thruster|pushup_plank|mobility_floor|mobility_stand|forearm|carry|core_hang|rotator_cuff|plyo)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|overlay\/(lunge|leg_isolation|bench_press|curl|pull_up|olympic|triceps|hip_bridge|cable_row|delt_raise|chest_fly|calf_raise|kb_ballistic|overhead_press|row|pulldown|shrug|hip_abd_add|leg_machine|dip|chest_press_machine|cable_press|back_extension|thruster|pushup_plank|mobility_floor|mobility_stand|forearm|carry|core_hang|rotator_cuff|plyo|core_floor|glute_floor)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — jego tekst jest w skrócie tej rodziny (plikRodziny, plikNakladki) */
     const wpisRodziny = (f: string) => /^lib\/figures\/v2\/rodziny\/\w+\.ts$/.test(f) && !f.endsWith('/index.ts'); /* KO-022 (10.11.2026): plik rejestru jednej rodziny (load, DATA_UI, ONE_WAY_UI) — wykonywany przez skrót z wyniku (jak poseData.ts przed podziałem): „wynik” */
     const brak = [...domk].filter(f => !rodzinne(f) && !wpisRodziny(f) && !(f.slice(V.length) in POKRYCIE)).sort();
     expect(brak).toEqual([]);
@@ -146,10 +146,10 @@ describe('L-080 (09.11.2026): gałąź z wcześniejszymi zmianami względem main
     git(tmp, 'init', '-q', '-b', 'main'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'main'); const refs: Record<string, string> = { main: git(tmp, 'rev-parse', 'HEAD') };
     git(tmp, 'checkout', '-qb', 'galaz');
     zastosuj(tmp, [
-      { plik: V2 + 'families.ts', z: "{ id: 'leg_isolation', status: 'planned'", na: "{ id: 'leg_isolation', status: 'ready'" },
-      ...podlaczenie('leg_isolation', { load: true, ui: "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }" }),
+      { plik: V2 + 'families.ts', z: "{ id: 'core_standing', status: 'planned'", na: "{ id: 'core_standing', status: 'ready'" }, /* 10.11.2026 (scalenie partii 9 na scal/pociag-6): core_floor ready od partii 7 — rodzina „planned” z plikiem póz i bez wpisu w rodziny/ = core_standing (families.ts, rodziny/index.ts) */
+      ...podlaczenie('core_standing', { load: true, ui: "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }" }),
     ]);
-    git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'podlaczenie leg_isolation'); /* KO-022: nowy plik rodziny — add -A */ refs.c1 = git(tmp, 'rev-parse', 'HEAD');
+    git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'podlaczenie core_standing'); /* KO-022: nowy plik rodziny — add -A */ refs.c1 = git(tmp, 'rev-parse', 'HEAD');
     fs.writeFileSync(path.join(tmp, 'dokument.md'), 'notatka\n'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'dokument'); refs.c2 = git(tmp, 'rev-parse', 'HEAD');
     zastosuj(tmp, SCEN.element.zmiany); git(tmp, 'commit', '-qam', 'prowadnica'); refs.c3 = git(tmp, 'rev-parse', 'HEAD');
     const r: Record<string, Wynik> = {};

@@ -534,6 +534,24 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny plyo, a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza ruch
     - Wtedy wybicie, lot i lądowanie biegną w jednym przebiegu pod nazwą fazy „Skok”, na starcie i na końcu stopa stoi na podłodze albo skrzyni, a przy karcie ze wskazówką o miękkim lądowaniu z boku widać łuk zgięcia mierzonego stawu, przy wskazówce o zamachu rąk — poziom barków (nie przy podskokach i skoku ze sztangą)
+  - Scenariusz: Rodzina pośladków i bioder na podłodze, linkach i maszynie (glute_floor) pokazuje rysunki 7 ćwiczeń (10.11.2026, partia 7 linii 1.1; testy `tests/figures-v2-glute-floor.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Donkey Kick, Fire Hydrant, Clamshell, Cable Kickback, Hip Extension with Bands, Machine Glute Kickback albo Prone Flutter Kicks, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy w kickbackach noga stojąca stoi na podłodze (do 1 cm), w Prone Flutter Kicks miednica leży na ławce, w Clamshell i Fire Hydrant kolana rozchodzą się o co najmniej 15 cm, a przeprost lędźwi (wskazówka o błędzie) jest narysowany jako poza błędu tam, gdzie karta go ma
+    - Oraz gdy Donkey Kick ma na karcie wskazówkę o zakresie ruchu nogi i regułę „ustalone (kierunek)” (nakładka techniki, `lib/figures/v2/overlay/glute_floor.ts`)
+    - Wtedy z boku widać linię pleców od miednicy przez bark; pozostałe ćwiczenia rodziny nie mają elementu (reguły „jedno źródło”, „analogia”, „konwencja”, a skręt miednicy nie ma rodzaju elementu w rzucie)
+  - Scenariusz: Rodzina prostowania i uginania nóg (leg_isolation) pokazuje rysunki 8 ćwiczeń w rzucie z boku (10.11.2026, partia 9 linii 1.1; testy `tests/figures-v2-leg-isolation.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera Leg Extension, Single-Leg Leg Extension, Leg Curl, Lying Leg Curl, Standing Leg Curl, Standing Cable Leg Curl, Seated Band Hamstring Curl albo Slider Hamstring Curl, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy kolano przechodzi zakres reguł „ustalone” rodziny (prostowanie od kąta prostego do pełnego wyprostu, uginanie od nogi prostej do kąta prostego i więcej), licznik faz mierzy kolano (prostowanie i opuszczanie albo uginanie i powrót; Slider Hamstring Curl zaczyna od wysuwania nóg), a 6 ćwiczeń rodziny bez pozy (Glute Ham Raise, Nordic Curl, Reverse Nordic, Sissy Squat, Leg Curl z hantlem, Stability Ball Hamstring Curl) zostaje bez rysunku v2
+    - Oraz gdy Leg Extension, Single-Leg Leg Extension, Leg Curl albo Lying Leg Curl mają na karcie albo w zestawie ogólnym wskazówkę o zakresie ruchu kolana i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/leg_isolation.ts`)
+    - Wtedy z boku widać linię uda i łuk zgięcia kolana; pozostałe ćwiczenia rodziny nie mają elementu (zestawy bez wskazówki ruchu będącej kluczem reguły; nieruchoma miednica w centymetrach to strefa liczbowa bez elementu nakładki)
+  - Scenariusz: Rodzina wykroków (lunge: wykroki, przysiad bułgarski, wejścia na stopień, pistolet, wykroki boczne — 24 ćwiczenia) pokazuje rysunki w rzucie z boku i z przodu (10.11.2026, partia 9 linii 1.1; testy `tests/figures-v2-lunge.test.tsx`, `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-kierunek-u.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera ćwiczenie z rodziny lunge, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy wykroki i przysiady na jednej nodze zaczynają od stania i schodzą w dół (fazy „Opuszczanie” i „Wstawanie”), a wejścia na stopień zaczynają od stopy na podłodze i kończą staniem na stopniu (fazy „Wstawanie” i „Opuszczanie”)
+    - Oraz gdy karta ćwiczenia ma wskazówkę o plecach albo o kolanie w linii palców i reguła jest „ustalone” (nakładka techniki, `lib/figures/v2/overlay/lunge.ts`)
+    - Wtedy z boku widać linię pleców (miednica–bark), a z przodu pion przez palce do wysokości kolana mierzonej nogi; głębokość wykroku, wejście i wolna noga pistoletu nie mają elementu nakładki (silnik nie ma dla nich rodzaju elementu)
   - Scenariusz: Rodzina mobilności i rozciągania na podłodze (mobility_floor) pokazuje rysunki 9 ćwiczeń (09.11.2026, partia 2; testy `tests/figures-v2-mapping.test.ts`, `tests/figures-v2-data.test.tsx`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny mobility_floor (np. Child's Pose, Cat-Cow), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy ćwiczenie jest pozycją statyczną (rozciąganie z przytrzymaniem) albo Cat-Cow
@@ -554,6 +572,12 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera ćwiczenie z rodziny rotator_cuff (np. External Rotation with Band, Band Pull Apart), a rodzina ma aktualny wpis recenzji niezależnej
     - Gdy rysunek odtwarza rotację w barku (łokieć zgięty 90° przy tułowiu) albo rozsuwanie taśmy
     - Wtedy taśma lub linka prowadzi do jednej ręki roboczej, taśma między dłońmi nie przechodzi przez klatkę, a przy wskazówce o łokciu przy tułowiu nakładka pokazuje pion od barku w dół (bez liczb)
+  - Scenariusz: Rodzina brzucha na leżąco (core_floor) pokazuje rysunki 21 ćwiczeń (10.11.2026, partia 7 linii 1.1; testy `tests/figures-v2-core-floor.test.tsx`, `tests/figures-v2-mapping.test.ts`; rysunki wyświetlane dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera brzuszek, unoszenie nóg, Dead Bug, Bird Dog, Superman albo Hollow Hold, a rodzina ma aktualny wpis recenzji niezależnej
+    - Gdy rysunek odtwarza ruch
+    - Wtedy miednica leżącej osoby zostaje przy podłodze, licznik faz pokazuje Unoszenie i Opuszczanie (Dead Bug: Opuszczanie, potem Unoszenie; Scissor Kick: nogi proste, naprzemiennie), a Hollow Hold jest jedną pozycją utrzymywaną; błąd przeprostu w Supermanie nie jest rysowany, dopóki jego poza nie ma recenzji
+    - Oraz gdy ćwiczenie ma na karcie wskazówkę o unoszeniu łopatek (Crunch i odmiany) albo o ułożeniu ręki i nogi w Bird Dog i regułę „ustalone” (nakładka techniki, `lib/figures/v2/overlay/core_floor.ts`)
+    - Wtedy z boku widać łuk kąta biodra rosnący przy zwijaniu tułowia, a w Bird Dog dwie poziome linie odniesienia (poziom barku i miednicy); pozostałe reguły rodziny nie mają elementu (powód w nagłówku pliku nakładki)
   - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)

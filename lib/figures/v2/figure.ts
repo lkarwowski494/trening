@@ -108,10 +108,10 @@ export function faultApplicable(spec: FigureSpec, error: FigError): boolean {
 function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return { m: ERRORS[error].mods, w: faultWeight(spec, u) }; }
 
 /** Ustawienia prezentacji ćwiczenia z danych: wpis rodziny (DATA_UI) z wyjątkiem ćwiczenia; null dla rodzin z rigiem. */
-function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
+function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean; side?: Side } | null {
   if (!('data' in spec.variant)) return null;
   const u = DATA_UI[spec.family] ?? (loopOf(spec) === 'jednokierunkowa' ? ONE_WAY_UI[spec.family] : undefined) ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
-  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk };
+  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk, side: x?.side };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
  * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;
@@ -125,7 +125,7 @@ function measureOf(spec: FigureSpec): Measure {
   else {
     const frames = Array.from({ length: MEASURE_SAMPLES + 1 }, (_, i) => computeFrame(spec, loopSpan(spec) * i / MEASURE_SAMPLES));
     const candidates = spec.static ? ui.joints.slice(0, 1) : ui.joints; let best = { joint: ui.joints[0], side: SIDES[0], range: -1 };
-    for (const joint of candidates) for (const side of SIDES) { const a = frames.map(f => jointAngles(f.sk, side)[joint]); const range = Math.max(...a) - Math.min(...a); if (range > best.range + 1e-9) best = { joint, side, range }; }
+    for (const joint of candidates) for (const side of ui.side ? [ui.side] : SIDES) { const a = frames.map(f => jointAngles(f.sk, side)[joint]); const range = Math.max(...a) - Math.min(...a); if (range > best.range + 1e-9) best = { joint, side, range }; }
     m = { joint: best.joint, sides: [best.side], shown: !ui.hideAngle && (spec.static || best.range > MIN_MEASURED_ROM[MEASURE_UNIT[best.joint]]) };
   }
   MEASURE_CACHE.set(id, m); return m;
@@ -193,7 +193,7 @@ export function errorMarks(f: Frame, view: View, error: FigError, spec?: FigureS
 }
 
 const boxCache = new Map<string, Box>();
-/** Wspólny kadr całej pętli (próbkowanie co 1/20; z pozami błędów, żeby przełączenie błędu nie zmieniało kadru): rysunek nie skacze między klatkami. */
+/** Wspólny kadr całej pętli (co 1/20; z pozami błędów): rysunek nie skacze między klatkami. */
 export function boxFor(spec: FigureSpec, view: View, errors: FigError[] = []): Box {
   const id = spec.key + '|' + view + '|' + errors.join(','); const hit = boxCache.get(id); if (hit) return hit;
   const lists: Shape[][] = []; for (const e of [undefined, ...errors.filter(x => errorDefOf(spec, x)?.kind === 'pose')]) for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : loopSpan(spec) * i / 20, view, false, e));
@@ -220,7 +220,7 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
   const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : loopSpan(spec) * i / 24));
   const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
 }
-/** Strona mierzonego stawu na rysunku (rzut z boku: strona bliższa kamerze, R; dane: strona, która pracuje). */
+/** Strona mierzonego stawu (z boku: R; dane: pracująca). */
 export const measuredSide = (spec: FigureSpec): Side => measureOf(spec).sides[0];
 
 /** Poświaty stref styku klatki (poza poprawna: styki „dobrze”; poza błędu: styk utracony względem pozy poprawnej w tej samej pozycji — „błąd”). Poza kadrem `shapesAt`. */
