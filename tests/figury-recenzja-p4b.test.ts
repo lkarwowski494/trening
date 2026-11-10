@@ -297,9 +297,11 @@ const PRZED: Record<string, Record<string, string>> = {
   },
 };
 const POPRAWIONE: Record<string, string[]> = {"plyo":["Depth Jump","Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)","Wall Ball"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press"]};
+/** Późniejsze zmiany celowe po recenzjach niezależnych (poza 27.10.2026): partia 6 linii 1.1 (10.11.2026) — plyo r1 W1 Broad Jump (zamach rąk w tył), r1/r2 W2 Butt Kick (udo przy pionie, pięta za miednicą); r3 wyswietlana (docs/research/recenzje/partia6-plyo-r*). Pilnuje ich tests/figures-v2-plyo.test.tsx i wzorzec tests/fixtures/figury-v2-zlote.json. */
+const POPRAWIONE_POZNIEJ: Record<string, string[]> = { plyo: ['Broad Jump', 'Double Leg Butt Kick', 'Single Leg Butt Kick'] };
 describe('inne pozy bez zmian (regresja)', () => {
   const odcisk = (d: PoseData) => crypto.createHash('sha1').update(JSON.stringify(d)).digest('hex').slice(0, 12);
-  const pary = FILES.flatMap((f) => Object.entries(PRZED[f]).map(([c, h]) => ({ f, c, h, zmiana: (POPRAWIONE[f] ?? []).includes(c) })));
+  const pary = FILES.flatMap((f) => Object.entries(PRZED[f]).map(([c, h]) => ({ f, c, h, zmiana: (POPRAWIONE[f] ?? []).includes(c) || (POPRAWIONE_POZNIEJ[f] ?? []).includes(c) })));
   test('pięć rodzin: ten sam zbiór ćwiczeń co przed poprawką (nic nie zniknęło ani nie doszło); lista POPRAWIONE ma tylko istniejące ćwiczenia', () => {
     for (const f of FILES) expect(Object.keys(POZY[f].cwiczenia).sort()).toEqual(Object.keys(PRZED[f]).sort());
     for (const f of FILES) for (const c of POPRAWIONE[f] ?? []) expect(PRZED[f][c]).toBeDefined();
