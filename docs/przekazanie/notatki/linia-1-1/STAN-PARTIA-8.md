@@ -14,3 +14,8 @@ Model pracy jak partia 2/4: lead nie pisze rodziny ani nie recenzuje; programist
 ## Otwarte
 - PYTANIE do koordynatora (10.11.2026): limit `poseData.ts` ma zapas 0 B (nie 48 B) — opcje A (KO-022 teraz) / B / C, rekomendacja A.
 - Zysk pełnej karty z `pokrycie-symulacja.mjs`: 0 dla wszystkich 3 rodzin (zysk tylko figura.v2: +25 rysunków).
+
+## core_standing (autor, 10.11.2026)
+- Zrobione: włączenie (families ready, poseData LOAD + DATA_UI), nakładka (overlay/core_standing.ts, 5 elementów), test nakładki, testy mapping/data/strona-eksport/skrot dostosowane, docs/51, BRD, pochodne.
+- Zostało: wpisy recenzji v2/karty/zestawy (przepisujący po recenzji niezależnej); decyzja koordynatora o limicie poseData.ts (KO-022).
+- Pułapki: nowy plik testu musi być w git (macierz używa isTracked); techniquesFor z elementem `exercises` wymaga podania ćwiczenia.

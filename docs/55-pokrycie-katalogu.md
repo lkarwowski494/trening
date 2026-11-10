@@ -104,7 +104,7 @@ Cel osiągnięty: **nie** (4 z 47 liczb).
 | `overhead_press` | gotowa | 23 | 21 | 0 | 0 | 11 | 10 | 2 | 21 | 21 |
 | `mobility_floor` | gotowa | 22 | 9 | 0 | 0 | 9 | 4 | 9 | 9 | 9 |
 | `chest_fly` | gotowa | 20 | 17 | 0 | 0 | 3 | 13 | 4 | 16 | 17 |
-| `core_standing` | do zrobienia | 19 | 0 | 16 | 0 | 6 | 0 | 13 | 0 | 0 |
+| `core_standing` | gotowa | 19 | 0 | 16 | 0 | 6 | 0 | 13 | 0 | 0 |
 | `sled_throw` | do zrobienia | 19 | 0 | 8 | 0 | 7 | 0 | 12 | 0 | 0 |
 | `kb_ballistic` | gotowa | 17 | 16 | 0 | 0 | 9 | 7 | 1 | 16 | 16 |
 | `cardio` | do zrobienia | 16 | 0 | 0 | 1 | 5 | 0 | 11 | 0 | 0 |

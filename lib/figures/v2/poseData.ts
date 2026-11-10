@@ -35,6 +35,7 @@ const LOAD: Record<string, () => PoseFile> = {
   pushup_plank: () => require('./poses/pushup_plank.json'),
   mobility_floor: () => require('./poses/mobility_floor.json'),
   mobility_stand: () => require('./poses/mobility_stand.json'),
+  core_standing: () => require('./poses/core_standing.json'),
 };
 const CACHE: Record<string, PoseFile> = {};
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
@@ -164,6 +165,14 @@ export const DATA_UI: Record<string, DataUi> = {
   /* mobility_stand (10.11.2026): osiem ćwiczeń to pozycje statyczne (ISOMETRIC — bez licznika faz; nazwy faz nieużywane), mierzone kolano (rozciąganie łydki: noga tylna i przednia); w rozciąganiu szyi, ramion i skłonie bocznym kolano nie jest istotą pozycji → bez linii „Kąt na rysunku” */
   mobility_stand: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['knee'],
     exceptions: Object.fromEntries(['Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Lateral Stretch'].map((k): [string, PhaseOverride] => [k, { hideAngle: true }])) },
+  /* core_standing (partia 8, 10.11.2026): domyślnie skręt i powrót (Russian Twist, woodchop, landmine, judo flip); skłony boczne i wiatrak to opuszczanie tułowia (u 0 → 1 barki w dół), Pallof — wypychanie rąk, Bent Press — opuszczanie pod ciężar.
+   * Mierzone: Pallof łokieć, wiatrak i Bent Press biodro; skręty i skłony boczne bez linii kąta (silnik nie ma stawu skrętu ani skłonu tułowia — ramię i biodro zmieniałyby się tylko razem z tułowiem). */
+  core_standing: { names: { first: 'Obrót', second: 'Powrót' }, lowerFirst: false, joints: ['hip'],
+    exceptions: { ...Object.fromEntries(['Russian Twist', 'Medicine Ball Full Twist', 'Cable Russian Twists', 'Cable Woodchop', 'Cable Judo Flip', 'Landmine Rotation'].map((k): [string, PhaseOverride] => [k, { hideAngle: true, lowerFirst: false }])),
+      ...Object.fromEntries(['Barbell Side Bend', 'Side Bend (hantel)', 'One-Arm High-Pulley Cable Side Bends', 'Weighted Ball Side Bend', 'Bosu Ball Cable Crunch With Side Bends'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Opuszczanie', second: 'Powrót' }, lowerFirst: true, hideAngle: true }])),
+      ...Object.fromEntries(['Pallof Press', 'Pallof Press With Rotation'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Wypychanie', second: 'Powrót' }, lowerFirst: false, joints: ['elbow'] }])),
+      ...Object.fromEntries(['Kettlebell Windmill', 'Double Kettlebell Windmill'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['hip'] }])),
+      'Bent Press': { names: { first: 'Opuszczanie', second: 'Wstawanie' }, lowerFirst: true, joints: ['hip'] } } },
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
