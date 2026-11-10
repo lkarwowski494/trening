@@ -146,10 +146,10 @@ describe('L-080 (09.11.2026): gałąź z wcześniejszymi zmianami względem main
     git(tmp, 'init', '-q', '-b', 'main'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'main'); const refs: Record<string, string> = { main: git(tmp, 'rev-parse', 'HEAD') };
     git(tmp, 'checkout', '-qb', 'galaz');
     zastosuj(tmp, [
-      { plik: V2 + 'families.ts', z: "{ id: 'core_hang', status: 'planned'", na: "{ id: 'core_hang', status: 'ready'" },
-      ...podlaczenie('core_hang', { load: true, ui: "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }" }),
+      { plik: V2 + 'families.ts', z: "{ id: 'core_floor', status: 'planned'", na: "{ id: 'core_floor', status: 'ready'" },
+      ...podlaczenie('core_floor', { load: true, ui: "{ names: { first: 'Rozpiętka', second: 'Powrót' }, lowerFirst: false, joints: ['shAbd'] }" }),
     ]);
-    git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'podlaczenie core_hang'); /* KO-022: nowy plik rodziny — add -A */ refs.c1 = git(tmp, 'rev-parse', 'HEAD');
+    git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'podlaczenie core_floor'); /* KO-022: nowy plik rodziny — add -A */ refs.c1 = git(tmp, 'rev-parse', 'HEAD');
     fs.writeFileSync(path.join(tmp, 'dokument.md'), 'notatka\n'); git(tmp, 'add', '-A'); git(tmp, 'commit', '-qm', 'dokument'); refs.c2 = git(tmp, 'rev-parse', 'HEAD');
     zastosuj(tmp, SCEN.element.zmiany); git(tmp, 'commit', '-qam', 'prowadnica'); refs.c3 = git(tmp, 'rev-parse', 'HEAD');
     const r: Record<string, Wynik> = {};
