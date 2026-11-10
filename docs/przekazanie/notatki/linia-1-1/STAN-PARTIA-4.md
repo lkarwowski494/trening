@@ -21,3 +21,10 @@ Zmiana testu wspólnego toru (`progDzwigni`, chest_press_machine) oceniona przez
 
 Model pracy: autor (programista) → audytor r1 → poprawki innego programisty → r2… → przepisanie 1:1 → scalenie gałęzi rodzin do figury/partia-4 (konflikty w listach wspólnych: overlay.ts, poseData.ts, families, mapping, strona-eksport n, gemini, skrot-v2-wynik, rejestr nakładek, W_ZAKRESIE, pliki generowane — suma) → cel = symulacja → verify:szybkie → push → tests.yml.
 Pułapki: figure.ts ≤ 20 KB (wstrzymania); autorzy nie oglądali wszystkich arkuszy — recenzja znajdowała dłonie poza podporą (testy „podpory” z negatywem w każdej rodzinie); 4 rdzenie — najwyżej 3–4 agenty.
+
+## Wstrzymanie 10.11.2026
+
+Zrobione: gałąź figury/partia-4-thruster-wl = origin/figury/partia-4 (3bcd294c) + merge figury/partia-4-thruster (0ee59a94), commit scalenia 22e11bb2: konflikty rozwiązane (sumy list, pliki generowane przeliczone), wpisy r2 1:1 (v2 thruster 00dc790a18f6, karty Thruster (hantle) 6606839c306f i Kettlebell Thruster 175baa530c3a, zestaw Clean and Press 84f205b001d6; skróty pozostałych rodzin bez zmian), status ready, cel 1.1 animowanyBlad 257 -> 258 (pelnaKarta 454, figura.v2 530 bez zmian), backlog P4-THR-1..4 w docs/21. Jest pojedynczo --runInBand zielone: mapping, data, nakladka-triceps-olympic, zgodnosc-wsteczna, thruster, recenzja-wyjatki-1-1, skrot-v2-wynik, figury-recenzja, karty-recenzja, strona-eksport (276), nakladka-kazda-rodzina, generator-odtwarza, gemini-polecenia (22 rodziny), figury-dynamiczne.
+Zostało: verify:lekkie (znacznik do push) — uruchomione po wstrzymaniu zamiast verify:szybkie; zielony tests.yml po push; ff lokalnej figury/partia-4 przez leada.
+Następny krok: lead — ff figury/partia-4 do tej gałęzi, push, czekać na tests.yml.
+Pułapki: skróty rodziny thruster zgadzają się z 00dc790a18f6 dopiero po node scripts/zrodla-runtime.mjs --write (reguly-cwiczen.json); przed tym b61a4389ee30. Jest w tym worktree ~5-9 min na grupę testów.
