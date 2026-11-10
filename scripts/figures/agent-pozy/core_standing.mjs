@@ -1,7 +1,7 @@
 // Generator póz rodziny core_standing po stronie agenta (wersja 1.1, 26.10.2026): brzuch i skos w staniu, siedzeniu i na piłce — skłony boczne, skręty, wiatrak, Pallof, wyciąg po skosie (woodchop, judo flip), landmine.
 // Pozy WYLICZONE z modelu: układ klatki piersiowej z silnika (trunkAxes: skłon boczny, skręt, obrót), chwyty rąk wyrażone w tym układzie (ciężar podąża za klatką), miednica i nogi nieruchome (nogi z hipY).
 // Błędów katalogu rodzina nie ma (mis.jerk to tempo, bez animacji): bledy: [].
-import { v2, BODY, R, r1, lerp, lerp3, ease, HIP, K, poza, PODLOGA, hipY, klatkaPiersiowa, kolano2D } from './dol.mjs';
+import { v2, BODY, R, r1, lerp, lerp3, ease, HIP, K, poza, PODLOGA, hipY, klatkaPiersiowa, kolano2D, dNogi, rPlan } from './dol.mjs';
 import { dChwytu, BODY as BODY_ } from './model.mjs';
 
 export const RODZINA = 'core_standing';
@@ -75,10 +75,10 @@ function bosuCrunch(cw) {
 
 /* ================= skręty ================= */
 /** Skręt w obie strony: twist od −t do +t. ramiona: funkcja (c, u) → { hr, hl } w układzie klatki. */
-function skret(cw, { m, nogi, p = 0, bend = 0, t = 36, rece, sprzet }) {
+function skret(cw, { m, nogi, p = 0, bend = 0, t = 36, rece, sprzet, head, us = US }) {
   const fr = (u) => { const tw = lerp(-t, t, a01(u)); const c = klatkaPiersiowa(m, p, { twist: tw, bend }); const g = rece(c, u);
-    return K({ u, m, p, bend, head: p * 0.5, twist: tw, R: nogi.R, L: nogi.L, hr: g.hr, hl: g.hl }); };
-  return zloz(cw, sprzet, fr);
+    return K({ u, m, p, bend, head: head ?? p * 0.5, twist: tw, R: nogi.R, L: nogi.L, hr: g.hr, hl: g.hl }); };
+  return zloz(cw, sprzet, fr, us);
 }
 const rekiPrzed = (a, b, rozst = 3, pole = [0.2, -0.6, 0]) => (c) => ({ hr: { g: c.pt(a, b, rozst), pole: [pole[0], pole[1], 1] }, hl: { g: c.pt(a, b, -rozst), pole: [pole[0], pole[1], -1] } });
 
@@ -96,9 +96,14 @@ function skretPilkaLekarska(cw) {
   const st = stanie(16, 8);
   return skret(cw, { m: st.m, nogi: { R: st.R, L: st.L }, t: 40, rece: (c) => ({ hr: { g: c.pt(-10, 24, 11), pole: [-0.2, -1, 0.6] }, hl: { g: c.pt(-10, 24, -11), pole: [-0.2, -1, -0.6] } }), sprzet: [PODLOGA(-110, 110), { rodzaj: 'pilka_lekarska' }] });
 }
-function cableRussianTwist(cw) {
-  const st = siadPilka();
-  return skret(cw, { m: st.m, nogi: { R: st.R, L: st.L }, t: 36, rece: rekiPrzed(-8, 30, 3), sprzet: [PODLOGA(-110, 140), ...st.sprzet, { rodzaj: 'wyciag', x: 60, y: 110, z: 85, chwyt: 'uchwyt', trzyma: 'obie' }] });
+/** Cable Russian Twists (r1 W3, 10.11.2026; karta: „oprzyj górę pleców na piłce gimnastycznej, unieś biodra w linię z tułowiem, uchwyt na prostych rękach nad klatką, obróć tułów w bok, nie uginając rąk”):
+ * leżenie na piłce 55 cm górą pleców (tułów poziomo, biodra o ok. 2° wyżej niż barki), kolana ~95°, stopy płasko; ręce proste pionowo nad klatką (długość ramienia z dłonią · fRamienia), skręt klatki ±36° wokół osi tułowia. */
+function cableRussianTwist(cw, { th = -14, K = 80, fRamienia = 1.007 } = {}) {
+  const T = BODY().trunk; const rb = 27.5; const xb = -T + 15; const Sx = [xb + (rb + 9.5) * -Math.sin(th * R) - 15 * Math.cos(th * R), rb + (rb + 9.5) * Math.cos(th * R) - 15 * Math.sin(th * R)];
+  const m = [Sx[0] + T * Math.cos(th * R), Sx[1] + T * Math.sin(th * R)]; const zA = 12; const rr = rPlan(dNogi(K), HIP() - zA); const xa = r1(m[0] + Math.sqrt(Math.max(1, rr * rr - (m[1] - 7) ** 2)));
+  const ak = (sg) => ({ a: [xa, 7, sg * zA], pod: 0, rot: 10, pole: [0.1, 1, sg * 0.08] }); const sh = BODY().shHalf;
+  const rece = (c) => { const a = -6; const bb = Math.sqrt((fRamienia * D) ** 2 - a * a - (sh - 3) ** 2); return { hr: { g: c.pt(a, bb, 3), pole: [0.2, 0, 1] }, hl: { g: c.pt(a, bb, -3), pole: [0.2, 0, -1] } }; };
+  return skret(cw, { m, nogi: { R: ak(1), L: ak(-1) }, p: -(90 + th), head: -86, t: 36, us: US9, rece, sprzet: [PODLOGA(-130, xa + 60), { rodzaj: 'pilka_gimnastyczna', x: r1(xb), promien: rb }, { rodzaj: 'wyciag', x: -20, y: 160, z: 100, chwyt: 'uchwyt', trzyma: 'obie' }] });
 }
 
 /* ================= Pallof ================= */
