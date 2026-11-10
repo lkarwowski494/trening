@@ -75,6 +75,8 @@ describe('ruch: zamach rąk i pięty do pośladków (r1 W1–W2, 10.11.2026)', (
   });
 });
 
+/** Karty własne, których zdania (plyo.broad*, plyo.pushoff*, plyo.altPushoff*) nie są kluczami wskazowki_na_reguly rodziny — nakładka nie ma czego pokazać (recenzja r3: zgodne z regułą „element ⇔ wskazówka na karcie”). */
+const BEZ_NAKLADKI = ['Broad Jump', 'Alternate Leg Push-Off'];
 describe('nakładka: elementy rodziny ← reguły „ustalone”', () => {
   test('rejestr: łuk stawu mierzonego (miękkie lądowanie, z boku) i poziom barków (zamach rąk); TECHNIQUE.plyo wskazuje tę tablicę', () => {
     expect(PLYO_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.views])).toEqual([['plyoLandLimb', 'limb', 'miekkie_ladowanie', ['side']], ['plyoShoulderLevelRef', 'ref', 'zamach_rak', ['side', 'front']]]);
@@ -86,13 +88,14 @@ describe('nakładka: elementy rodziny ← reguły „ustalone”', () => {
   test('regresja: faza_lotu (definicja), kolana_do_klatki (jedno źródło) i wyprost_przy_wybiciu (drugi łuk ponad limit) nie mają elementu', () => {
     const reguly = PLYO_TECHNIQUE.map(d => d.rule); for (const r of ['faza_lotu', 'kolana_do_klatki', 'wyprost_przy_wybiciu']) expect(reguly).not.toContain(r);
   });
-  test('element rysuje się tylko przy regule wariantu: zamach rąk nie przy podskokach i skoku ze sztangą; każde ćwiczenie ma co najmniej jeden element na rysunku', () => {
+  test('element rysuje się tylko przy regule wariantu: zamach rąk nie przy podskokach i skoku ze sztangą; każde ćwiczenie poza Broad Jump i Alternate Leg Push-Off (zdania karty bez reguły) ma co najmniej jeden element na rysunku', () => {
     for (const k of NAMES) {
       const ids = techniquesOf(k); const s = figureSpec(k)!; const r = regulyWariantu(k);
       if (!r.includes('zamach_rak')) expect([k, ids]).toEqual([k, expect.not.arrayContaining(['plyoShoulderLevelRef'])]);
-      expect([k, s.views.some(v => US.some(u => overlayShapes(s, u, v, ids).length > 0))]).toEqual([k, true]);
+      if (!BEZ_NAKLADKI.includes(k)) expect([k, s.views.some(v => US.some(u => overlayShapes(s, u, v, ids).length > 0))]).toEqual([k, true]); /* karty własne bez zdania przypisanego regule (niżej) */
     }
     expect(NAMES.filter(k => techniquesOf(k).includes('plyoShoulderLevelRef')).length).toBeGreaterThan(5); /* skoki z zamachem rąk mają poziom barków */
+    for (const k of BEZ_NAKLADKI) expect([k, techniquesOf(k)]).toEqual([k, []]); expect(Object.keys(sens.wskazowki_na_reguly).some(c => /^plyo\./.test(c))).toBe(false);
     expect(techniquesOf('Weighted Jump Squat')).not.toContain('plyoShoulderLevelRef'); expect(techniquesOf('Front Cone Hops')).not.toContain('plyoShoulderLevelRef');
   });
 });
