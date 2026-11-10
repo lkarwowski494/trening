@@ -203,9 +203,9 @@
     },
     "Wyciskanie nad głowę (linki)": {
       "rodzina": "overhead_press",
-      "werdykt": "wyswietlana",
-      "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+      "werdykt": "zastapiona",
+      "data": "2026-11-10",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2, r3 10.11.2026); przy wycofaniu v2 wymaga recenzji",
       "sha": "9534e3a45245",
       "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z łokciami pod nadgarstkami; odchylenie toru 2,5 j. (było 10,9). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
       "wada": "Ciężar łukiem przed twarzą (odchylenie toru 10,9 j., ok. 19 cm) — sprzeczne z „ciężar idzie prosto w górę” (ohp.tall).",
