@@ -150,10 +150,10 @@
   "na": "label: 'Przysiad obustronny', views: ['side']"
  },
  {
-  "plik": "lib/figures/v2/poseData.ts",
+  "plik": "lib/figures/v2/rodziny/pull_up.ts",
   "rodzina": "pull_up",
-  "z": "pull_up: { names: { first: 'Podciąganie'",
-  "na": "pull_up: { names: { first: 'Podciągnięcie'"
+  "z": "ui: { names: { first: 'Podciąganie'",
+  "na": "ui: { names: { first: 'Podciągnięcie'"
  },
  {
   "plik": "lib/figures/v2/overlay/pull_up.ts",

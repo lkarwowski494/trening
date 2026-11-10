@@ -78,8 +78,8 @@ describe('nakładka: elementy rodziny ← reguły „ustalone”', () => {
   test('reguły elementów są „ustalone”, a każda wskazówka elementu należy do wskazowki_na_reguly tej reguły', () => {
     for (const d of LEG_ISOLATION_TECHNIQUE) {
       expect(sens.reguly[d.rule].pewnosc).toMatch(/^ustalone/);
-      /* wyprost_kolan_jednonoz nie jest wpisany w wskazowki_na_reguly (lext.range → tylko wyprost_kolan), ale jest regułą wariantu Single-Leg Leg Extension (warianty) — wskazówka legExt z zestawu ogólnego opisuje ten sam ruch (pytanie do badacza w raporcie) */
-      if (d.rule !== 'wyprost_kolan_jednonoz') for (const c of d.cue) expect([c, sens.wskazowki_na_reguly[c]]).toEqual([c, expect.arrayContaining([d.rule])]);
+      /* 10.11.2026 (partia 9, P9-LI-4 / N4 r1): wskazowki_na_reguly["lext.range"] uzupełnione o wyprost_kolan_jednonoz (pole cue tej reguły to lext.range) — warunek omijający zdjęty */
+      for (const c of d.cue) expect([c, sens.wskazowki_na_reguly[c]]).toEqual([c, expect.arrayContaining([d.rule])]);
       for (const k of d.exercises ?? []) expect([k, sens.warianty[k]]).toEqual([k, expect.arrayContaining([d.rule])]);
     }
   });
