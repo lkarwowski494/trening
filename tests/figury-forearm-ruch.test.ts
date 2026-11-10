@@ -4,7 +4,7 @@
  * a zakres nadgarstka (zgięcie ≥ 50° między skrajnymi klatkami, reguła nadgarstek_zakres) jest zachowany.
  */
 import { stykTora, podsumujStyk, PROG_STYKU } from './helpers/styk-figur';
-import { figureSpec, measuredAngle, poseKeys, type FigureSpec } from '@/lib/figures/v2';
+import { figureSpec, frameAt, measuredAngle, poseKeys, type FigureSpec } from '@/lib/figures/v2';
 
 const UGINANIA = poseKeys('forearm').filter(k => /Wrist Curl/.test(k));
 describe('forearm: styk ciężaru i zakres nadgarstka', () => {
@@ -16,5 +16,23 @@ describe('forearm: styk ciężaru i zakres nadgarstka', () => {
   });
   test('Behind-the-Back Barbell Wrist Curl: odstęp sztangi od nóg przez cały ruch ≥ 1 cm (przed poprawką −0,9 cm)', () => {
     expect(podsumujStyk(stykTora('Behind-the-Back Barbell Wrist Curl')).minOdstep).toBeGreaterThanOrEqual(1);
+  });
+  /* recenzja r1 (audytor, 10.11.2026), W1: dłoń zwrócona do ciała, a zgięcie nadgarstka przesuwało sztangę 8,9 cm ku ciału (x −21,3 → −12,4) i tylko 1,7 cm w górę. Źródła: nachwyt stojąc tyłem
+   do sztangi (dłonie do tyłu), zgięcie nadgarstka unosi sztangę w górę i lekko do tyłu (wyniki-uzup-1a.json). Przód = +x. */
+  describe('Behind-the-Back Barbell Wrist Curl: kierunek ruchu (10.11.2026, W1)', () => {
+    const k = 'Behind-the-Back Barbell Wrist Curl';
+    const fr = (u: number) => frameAt(figureSpec(k) as FigureSpec, u);
+    test('dłoń zwrócona do tyłu (dot(palm, przód) < 0) w każdym kadrze', () => {
+      for (const u of [0, 0.25, 0.5, 0.75, 1]) for (const s of ['R', 'L'] as const) {
+        const a = fr(u).sk.arms[s]; expect(a.palm[0]).toBeLessThan(0);
+      }
+    });
+    test('zgięcie nadgarstka unosi sztangę w górę i lekko do tyłu: chwyt.x(1) < chwyt.x(0), chwyt.y(1) > chwyt.y(0)', () => {
+      const g0 = fr(0).sk.arms.R.grip, g1 = fr(1).sk.arms.R.grip;
+      expect(g1[0]).toBeLessThan(g0[0]); expect(g1[1] - g0[1]).toBeGreaterThan(1);
+    });
+    test('odstęp sztangi od ud i pośladków ≥ 1 cm w każdym kadrze (u = 0 … 1 co 0,05)', () => {
+      expect(podsumujStyk(stykTora(k)).minOdstep).toBeGreaterThanOrEqual(1);
+    });
   });
 });

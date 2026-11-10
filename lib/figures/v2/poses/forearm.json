@@ -3100,30 +3100,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -21.3,
+        -14.5,
         80.2,
-        18.3
+        19.7
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": -30
       },
       "L": {
        "chwyt": [
-        -21.3,
+        -14.5,
         80.2,
-        -18.3
+        -19.7
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": -30
       }
      }
@@ -3171,30 +3171,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -20.3,
+        -15.6,
         79.7,
-        18.5
+        19.5
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": -20
       },
       "L": {
        "chwyt": [
-        -20.3,
+        -15.6,
         79.7,
-        -18.5
+        -19.5
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": -20
       }
      }
@@ -3242,30 +3242,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -19.2,
+        -16.8,
         79.4,
-        18.7
+        19.3
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": -10
       },
       "L": {
        "chwyt": [
-        -19.2,
+        -16.8,
         79.4,
-        -18.7
+        -19.3
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": -10
       }
      }
@@ -3322,7 +3322,7 @@
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 0
       },
       "L": {
@@ -3336,7 +3336,7 @@
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 0
       }
      }
@@ -3384,30 +3384,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -16.8,
+        -19.2,
         79.4,
-        19.3
+        18.7
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 10
       },
       "L": {
        "chwyt": [
-        -16.8,
+        -19.2,
         79.4,
-        -19.3
+        -18.7
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 10
       }
      }
@@ -3455,30 +3455,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -15.6,
+        -20.3,
         79.7,
-        19.5
+        18.5
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 20
       },
       "L": {
        "chwyt": [
-        -15.6,
+        -20.3,
         79.7,
-        -19.5
+        -18.5
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 20
       }
      }
@@ -3526,30 +3526,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -14.5,
+        -21.3,
         80.2,
-        19.7
+        18.3
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 30
       },
       "L": {
        "chwyt": [
-        -14.5,
+        -21.3,
         80.2,
-        -19.7
+        -18.3
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 30
       }
      }
@@ -3597,30 +3597,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -13.4,
+        -22.2,
         80.9,
-        19.9
+        18.1
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 40
       },
       "L": {
        "chwyt": [
-        -13.4,
+        -22.2,
         80.9,
-        -19.9
+        -18.1
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 40
       }
      }
@@ -3668,30 +3668,30 @@
      "rece": {
       "R": {
        "chwyt": [
-        -12.5,
+        -23,
         81.8,
-        20.1
+        17.9
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 50
       },
       "L": {
        "chwyt": [
-        -12.5,
+        -23,
         81.8,
-        -20.1
+        -17.9
        ],
        "biegunLokcia": [
         -1,
         0.2,
         0
        ],
-       "obrotPrzedramienia": 78,
+       "obrotPrzedramienia": -78,
        "zgiecieNadgarstka": 50
       }
      }

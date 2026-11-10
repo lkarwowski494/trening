@@ -70,8 +70,8 @@ export function generuj() {
   G['Cable Wrist Curl'] = () => nadgarstek('Cable Wrist Curl', { nadg: NA, obrot: 78, sprzet: [wyc({ chwyt: 'drazek', x: 110, y: 20 })], blad: true });
   /* sztanga za plecami, stojąc: samo uginanie nadgarstków */
   G['Behind-the-Back Barbell Wrist Curl'] = () => { const S = bark([0, Y_STOJ], 0, 1); const fr = (u) => { const rece = {}; for (const sd of ['R', 'L']) { const sg = POL(sd); const t1 = -28 * R, t2 = -6 * R; const d1 = [Math.sin(t1), -Math.cos(t1), 0], d2 = [Math.sin(t2), -Math.cos(t2), 0];
-      const E = [S[0] + 31 * d1[0], S[1] + 31 * d1[1], sg * 19]; const n = lerp(-30, 50, u) * R; const dh = [Math.cos(n) * d2[0] + Math.sin(n) * 0.978, Math.cos(n) * d2[1], Math.sin(n) * sg * 0.208]; /* dłoń zgina się do tyłu (strona dłoni: tył, z odchyleniem 12° od obrotu przedramienia 78°) */
-      rece[sd] = { g: [E[0] + 26 * d2[0] + 7 * dh[0], E[1] + 26 * d2[1] + 7 * dh[1], sg * 19 + 7 * dh[2]], pole: [-1, 0.2, 0], obrot: 78, nadg: lerp(-30, 50, u) }; }
+      const E = [S[0] + 31 * d1[0], S[1] + 31 * d1[1], sg * 19]; const n = lerp(-30, 50, u) * R; const dh = [Math.cos(n) * d2[0] + -Math.sin(n) * 0.978, Math.cos(n) * d2[1], -Math.sin(n) * sg * 0.208]; /* nachwyt tyłem do sztangi (10.11.2026, W1): strona dłoni zwrócona do tyłu, zgięcie nadgarstka unosi sztangę w górę i lekko do tyłu (z odchyleniem 12° od obrotu przedramienia 78°) */
+      rece[sd] = { g: [E[0] + 26 * d2[0] + 7 * dh[0], E[1] + 26 * d2[1] + 7 * dh[1], sg * 19 + 7 * dh[2]], pole: [-1, 0.2, 0], obrot: -78, nadg: lerp(-30, 50, u) }; }
       return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece }); };
     return buduj({ rodzina: RODZINA, cw: 'Behind-the-Back Barbell Wrist Curl', sprzet: [SPRZET.podloga(-80, 120), SPRZET.sztanga()], fr, us: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1] }); };
   /* odwrotne uginanie z talerzem: jak uginanie ramion nachwytem, dłonie na obręczy talerza */
