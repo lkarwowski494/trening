@@ -87,13 +87,6 @@
    "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
   },
   {
-   "rodzina": "row",
-   "cwiczenie": "Seal Row (sztanga)",
-   "ograniczenie": "ławka płaska na 80 cm opisana jako granica kontraktu (kontrakt: współrzędne do 300 cm)",
-   "status": "do_przegladu",
-   "powod": "prawdopodobnie błędne uzasadnienie: współrzędna kontraktu sięga 300 cm, więc 80 cm nie jest jej granicą; sprawdzić, skąd wynika 80 cm (wysokość siedziska ławki?)"
-  },
-  {
    "rodzina": "shrug",
    "cwiczenie": "Shrugs (sztanga)",
    "ograniczenie": "uniesienie barków 6 cm to granica kontraktu",

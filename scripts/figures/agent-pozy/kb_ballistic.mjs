@@ -4,7 +4,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu } from './dyn.mjs';
+import { P, mix, ruch, v2, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu, jednokierunkowa, ramieFK, up, front, barki, pitchDoChwytu, SHZ } from './dyn.mjs';
 
 export const RODZINA = 'kb_ballistic';
 export const WYJATKI = {
@@ -23,10 +23,48 @@ function wp(o) {
   const A = o.A ?? [0, 7];
   return { A, al: o.al, k: o.k, pod: o.pod ?? 0, pitch: o.pitch, ra: { z: 19, ...o.ra }, rl: o.rl ? { z: 19, ...o.rl } : { z: 19, ...o.ra }, zR: o.zs ?? 18, zL: o.zs ?? 18, kz: o.kz ?? 0.35, head: o.head ?? (o.pitch ?? 0) * 0.35, bend: o.bend ?? 0, rotR: o.rot ?? 18, rotL: o.rot ?? 18, AL: o.AL ?? [A[0], A[1]], podL: o.podL ?? (o.pod ?? 0) };
 }
-const gotowe = (cw, sprz, W, bledy = []) => {
+
+/** W1-r3 (recenzja r3, 10.11.2026): czas klatek kluczowych po wyproście bioder wg DROGI CIĘŻARU, nie najszybszego punktu ciała (`przydzielU` wyrównuje prędkość ciała, więc ciężar pełzł przy biodrze, a potem wystrzeliwał).
+ * Po wyproście bioder prędkość śladu ciężaru rośnie płynnie (pęd z bioder), osiąga szczyt i maleje ku górze/rackowi (profil PROFIL_PREDKOSCI w funkcji przebytej drogi ciężaru); czas przed wyprostem bez zmian.
+ * Najszybszy punkt ciała nie przekracza CAP_CIALA cm na 1/48 (limit dynamiczny kontraktu 16). Drogę odcinka liczę na uniformowym u (interpolacja liniowa między klatkami kluczowymi nie zależy od przydziału u). */
+export const PROFIL_PREDKOSCI = [[0, 0.7], [0.3, 1], [0.7, 0.75], [1, 0.4]]; /* [przebyta część drogi ciężaru po wyproście, względna prędkość] */
+export const CAP_CIALA = 14;
+export const RAMPA = 1.5; /* największa zmiana prędkości ciężaru między sąsiednimi odcinkami po wyproście */
+const ptsKb = (f) => [f.sk.pelvis, f.sk.head, f.sk.shoulderC, f.sk.spineMid, ...['R', 'L'].flatMap((s) => [f.sk.legs[s].knee, f.sk.legs[s].ankle, f.sk.legs[s].heel, f.sk.legs[s].toe, f.sk.arms[s].elbow, f.sk.arms[s].grip]), ...(f.info?.load ? [f.info.load] : [])];
+const dd3 = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+const gProfil = (c) => { const T = PROFIL_PREDKOSCI; for (let i = 1; i < T.length; i++) if (c <= T[i][0]) return T[i - 1][1] + ((T[i][1] - T[i - 1][1]) * (c - T[i - 1][0])) / (T[i][0] - T[i - 1][0]); return T[T.length - 1][1]; };
+export const HIP_WYPROST_KB = 15; /* zgięcie bioder ≤ 15° = wyprost bioder (jak w teście p1) */
+function profilCiezaru(r, { rodzina, cw, sprzet }) {
+  const E = v2(); const { klatki } = r; const n = klatki.length;
+  const mk = (us) => ({ kontrakt: E.CONTRACT.id, rodzina, cwiczenie: cw, sprzet, klatki: klatki.map((k, i) => ({ ...k, u: us[i] })), bledy: [] });
+  const uni = klatki.map((_, i) => i / (n - 1)); const poza = mk(uni);
+  /* h = ostatnia klatka kluczowa PRZED wyprostem bioder (od niej ciężar ma przyspieszać płynnie) */
+  const hw = uni.findIndex((u) => E.jointAngles(E.keyframeFrame(poza, u).sk, 'R').hip <= HIP_WYPROST_KB); const h = Math.max(1, hw - 1); if (hw < 1) return r; const M = 24; const Ld = [], Bp = [];
+  const trail = (f) => f.info?.trail ?? f.info?.load;
+  for (let i = 0; i < n - 1; i++) {
+    let prev = E.keyframeFrame(poza, uni[i]); let l = 0, b = 0;
+    for (let g = 1; g <= M; g++) { const cur = E.keyframeFrame(poza, uni[i] + ((uni[i + 1] - uni[i]) * g) / M); l += dd3(trail(cur), trail(prev)); const a = ptsKb(prev), c = ptsKb(cur); b = Math.max(b, ...c.map((q, j) => dd3(q, a[j]))); prev = cur; }
+    Ld.push(l); Bp.push(b * M); /* Bp: cm na cały odcinek (największy skok punktu × M) */
+  }
+  const tPre = r.klatki[h].u; const wolne = 1 - tPre; const L = Ld.slice(h).reduce((a, x) => a + x, 0) || 1;
+  const cum = []; let acc = 0; for (let i = h; i < n - 1; i++) { cum.push((acc + Ld[i] / 2) / L); acc += Ld[i]; }
+  /* prędkość ciężaru (cm na jednostkę u) wchodząca w odcinek po wyproście = wyjście z odcinka przed wyprostem; kolejne odcinki zmieniają prędkość najwyżej RAMPA razy (łańcuch, także gdy limit ciała wydłuża odcinek) */
+  const vWej = Ld[h - 1] / Math.max(1e-6, r.klatki[h].u - r.klatki[h - 1].u);
+  const dus = (v) => {
+    const smax = cum.map((_, k) => Ld[h + k] / (Bp[h + k] / (CAP_CIALA * 48))); let prev = vWej;
+    const sp = cum.map((c, k) => { const cel = Math.min(prev * RAMPA, Math.max(prev / RAMPA, v * gProfil(c))); prev = Math.min(cel, smax[k]); return prev; });
+    for (let k = sp.length - 2; k >= 0; k--) sp[k] = Math.min(sp[k], sp[k + 1] * RAMPA); /* hamowanie: odcinek z limitem ciała (mało ruchu ciężaru) nie może być poprzedzony szybszym o więcej niż RAMPA */
+    return sp.map((x, k) => Ld[h + k] / x);
+  };
+  /* v w cm na jednostkę u; bisekcja tak, by suma Δu = czas po wyproście */
+  let lo = 1, hi = 1e5; for (let it = 0; it < 80; it++) { const mid = (lo + hi) / 2; const s = dus(mid).reduce((a, x) => a + x, 0); if (s > wolne) lo = mid; else hi = mid; }
+  const d = dus(hi); const sum = d.reduce((a, x) => a + x, 0); const us = klatki.map((k) => k.u); let t = tPre; for (let k = 0; k < d.length; k++) { t += (d[k] * wolne) / sum; us[h + 1 + k] = Math.round(t * 1000) / 1000; } us[n - 1] = 1;
+  return { ...r, klatki: klatki.map((k, i) => ({ ...k, u: us[i] })) };
+}
+const gotowe = (cw, sprz, W, bledy = [], { profil = false } = {}) => {
   const tk = wczytajTeksty(); const ok = new Set(bledy.map((b) => b.cue));
   for (const c of bledyCwiczenia(cw)) if (!ok.has(c)) POMINIETE_BLEDY[cw] = (POMINIETE_BLEDY[cw] ? POMINIETE_BLEDY[cw] + '; ' : '') + (tk[c] ? `błąd „${c}” (rząd błędu do wygenerowania)` : `błąd „${c}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`);
-  const r = ruch(W, P, { rodzina: RODZINA, cw, sprzet: sprz });
+  let r = ruch(W, P, { rodzina: RODZINA, cw, sprzet: sprz }); if (profil) r = profilCiezaru(r, { rodzina: RODZINA, cw, sprzet: sprz });
   if (process.env.DBG_KB) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0), 'klatek', r.klatki.length, 'dl', JSON.stringify(r.dl?.map((x) => Math.round(x))));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: sprz, klatki: r.klatki, bledy: bledyZOpisem(cw, bledy.map((b) => b(r)), POMINIETE_BLEDY) });
 };
@@ -36,8 +74,8 @@ function swing(cw, { jedna = false, sprz }) {
   const ra = (psi, th = jedna ? 14 : 28) => ({ psi, th, z: jedna ? 19 : 5 });
   const PSI0 = -145; /* dół zamachu: ręce za linią kolan, ciężar między udami (recenzja p4a) */
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ra: { ...ra(PSI0, jedna ? 26 : 22), z: jedna ? 3 : 6 }, rl: jedna ? { psi: -60, th: 25, z: 24 } : undefined, kz: 0.5, zs: jedna ? 27 : 20 }),
-    wp({ al: 10, k: 26, pitch: 34, ra: ra(-60), rl: jedna ? { psi: -40, th: 25, z: 26 } : undefined, kz: 0.4, zs: 20 }),
+    wp({ al: 18, k: 48, pitch: 62, ra: { ...ra(PSI0, jedna ? 26 : 22), z: jedna ? 3 : 6 }, rl: jedna ? { psi: -60, th: 25, z: 24 } : undefined, kz: 0.9, zs: 20 }),
+    wp({ al: 10, k: 26, pitch: 34, ra: ra(-60), rl: jedna ? { psi: -40, th: 25, z: 26 } : undefined, kz: 0.7, zs: 20 }),
     wp({ al: 3, k: 12, pitch: 2, ra: ra(-4), rl: jedna ? { psi: 10, th: 25, z: 28 } : undefined, kz: 0.2, zs: 20 }),
   ];
   return gotowe(cw, sprz, W, jedna ? bledyPlecy(W, 2) : []);
@@ -49,15 +87,58 @@ const NAD = { psi: 74, th: 10, z: 19 }; /* ręka prosta nad głową (bark < 170�
 const wl = (o) => (o.jedna ? { rl: WOLNA(o.wpsi ?? -70) } : {});
 const dwa = (o, ra) => ({ ra: { ...ra }, ...wl(o) });
 
-/** Zarzut: zawis między nogami (hike) → wyprost → ciężar przy barku. */
+/** W1-r2 (recenzja r2, 09.11.2026): ramię w układzie tułowia ({ rel: [w górę wzdłuż tułowia, do przodu] od barku, pole, z }), żeby ciężar w ciągu jechał blisko ciała, a nie po łuku przed nim.
+ * Opis ramienia prawego; lewe = lustro (z bieguna łokcia odwraca się składową poprzeczną). Opis kątami (psi, th) jest przeliczany na rel dla pochylenia tułowia danego punktu zwrotnego (ta sama poza, inny sposób mieszania punktów). */
+function relRamie(a, pitch, sg) {
+  if (a.rel) return { rel: a.rel, z: a.z, pole: [a.pole[0], a.pole[1], sg * a.pole[2]] };
+  const r = ramieFK([0, 0], a.psi, a.th); const u = up(pitch), f = front(pitch); const d = r.grip;
+  return { rel: [d[0] * u[0] + d[1] * u[1], d[0] * f[0] + d[1] * f[1]], z: a.z, pole: r.pole ? [r.pole[0], r.pole[1], sg * (a.pz ?? 0.25)] : [-0.3, -1, sg * 0.25] };
+}
+const wR = (o) => { const w = wp(o); return { ...w, ra: relRamie(w.ra, w.pitch, 1), rl: relRamie(w.rl, w.pitch, -1) }; };
+/** Ramię z celu w świecie: chwyt G = [x, y] przy danym biodrze i pochyleniu → rel względem barku (start z podłogi). */
+const relZCelu = (o, G, pole, z) => { const hip = biodroZKostki(o.A ?? [0, 7], -90 - o.al + o.k, o.k); const S = barki(hip, o.pitch, 0); const d = [G[0] - S[0], G[1] - S[1]]; const u = up(o.pitch), f = front(o.pitch); return { rel: [d[0] * u[0] + d[1] * u[1], d[0] * f[0] + d[1] * f[1]], pole, z }; };
+
+/** W2-r3 (recenzja r3, 10.11.2026): start jak do martwego ciągu — tułów ok. 30–40° nad poziomem (klatka uniesiona), bark nad hantlem lub lekko przed nim, hantel ok. 6 cm przed kostką (pod łukiem stopy = między stopami), łokieć ≤ 12°.
+ * Start z podłogi (karta Snatch (hantel): „postaw hantel między stopami; zejdź jak do martwego ciągu”): kolana mocno ugięte (jak start martwego ciągu z niskim chwytem), ręka prawie prosta w dół do hantla na podłodze; pochylenie tułowia dobrane tak, by chwyt leżał w zasięgu ramienia. */
+function startZPodlogi(o) {
+  const al = 24, k = 112; const G = [8, 8.5];
+  /* zasięg w płaszczyźnie = pełna długość ręki (31 + 33 cm) skrócona o odsunięcie barku od osi hantla (dz) i 0,1 cm zapasu (łokieć w IK 3D wychodzi ok. 12°); z niego kąt th w FK (płaska ręka w IK 3D wychodzi prosta) */
+  const dz = SHZ() - 8; const reach = Math.sqrt(64 ** 2 - dz * dz) - 0.1; const th = (Math.acos((reach * reach - 31 * 31 - 33 * 33) / (2 * 31 * 33)) * 180) / Math.PI; const hip = biodroZKostki([0, 7], -90 - al + k, k);
+  let best = 0, bv = Infinity; for (let p = 20; p <= 90; p += 0.25) { const S = barki(hip, p, 0); const e = Math.abs(Math.hypot(G[0] - S[0], G[1] - S[1]) - reach); if (e < bv) { bv = e; best = p; } }
+  const S = barki(hip, best, 0); const thR = (th * Math.PI) / 180; const dB = Math.atan2(33 * Math.sin(thR), 31 + 33 * Math.cos(thR)); /* kąt przy barku między ramieniem a cięciwą bark–chwyt (FK: przedramię obrócone o th od ramienia) */
+  const psi = (Math.atan2(G[1] - S[1], G[0] - S[0]) - dB) * 180 / Math.PI;
+  return { al, k, pitch: best, ra: { psi, th, z: 8 }, kz: 0.5, zs: 18 };
+}
+/** W1 (recenzja r1, 09.11.2026): start zarzutu i rwania jak dół swingu — ręce cofnięte, ciężar między nogami za linią kostek (karta: „oba kettlebelle przeszły między nogami”, „zamach jak przy swingu”).
+ * W1-r2 (recenzja r2): do wyprostu bioder ręka prosta (łokieć ≤ ok. 15°; karta: „ręka włącza się dopiero po wyproście bioder i kolan”), dopiero potem łokieć zgina się przy tułowiu, a ciężar jedzie w górę blisko ciała
+ * (odstęp ciężaru od tułowia ≤ ok. 15 cm; karta: „po wyproście bioder przyciągnij je blisko ciała”), bez poziomego przedramienia z ciężarem przed brzuchem. Hantle (po bokach nóg): mniej cofnięta ręka. */
+/** Kąt łokcia w FK (th), przy którym ręka sięgająca hantla na osi z = z (bark w ±SHZ) mieści się w pełnej długości ręki (31 + 33 cm) pomniejszonej o `zapas` cm. */
+const thDlaZ = (z, zapas) => { const dz = SHZ() - z; const r = Math.sqrt(64 ** 2 - dz * dz) - zapas; return (Math.acos((r * r - 31 * 31 - 33 * 33) / (2 * 31 * 33)) * 180) / Math.PI; };
+const hike = (o) => (o.hantle ? { psi: -108, th: 12, z: 18 } : { psi: -140, th: o.jedna ? 26 : 22, z: o.jedna ? 3 : 6 });
+const pociag = (o) => ({ psi: -95, th: o.podloga ? thDlaZ(8, 0.2) : o.hantle ? 10 : o.jedna ? 18 : 30, z: o.podloga ? 8 : o.hantle ? 20 : o.jedna ? 7 : 3 }); /* biodra w połowie wyprostu: ręka prosta (łokieć ≤ 30°; boczne przesunięcie chwytu skraca zasięg), ciężar mija uda */
+const wyprost = (o) => ({ psi: -85, th: o.podloga ? 0 : o.jedna || o.hantle ? 8 : 14, z: 21 }); /* biodra i kolana wyprostowane: ręka nadal prosta, ciężar tuż przed udami */
+/** N1-r3 (recenzja r3): stały rozstaw stóp w osi z przez cały zarzut i rwanie (stopa w podparciu nie przesuwa się między klatkami kluczowymi; R6); kolana szerzej na zewnątrz (kz 0,9 / 0,7) w zawisie, żeby uda nie wchodziły w dzwon przy węższym rozstawie. */
+const zsN = (o) => o.zs ?? (o.podloga ? 18 : 20); /* Clean and Jerk: 19 (węższy rozstaw utrzymuje płynność ciągu W1-r3 i zasięg nóg w podrzucie) */
+/** Napęd (od zawisu do wyprostu bioder): punkty zwrotne w kątach (psi, th) próbkowane gęściej (5), żeby ciężar jechał po łuku prostej ręki, a nie po cięciwie (cięciwa skraca ramię i zgina łokieć). */
+function naped(o) {
+  const S = [
+    o.podloga ? startZPodlogi(o) : { al: 18, k: 48, pitch: 62, ra: hike(o), kz: 0.9, zs: zsN(o) },
+    { al: 12, k: 30, pitch: 22, ra: pociag(o), kz: 0.7, zs: zsN(o) },
+    { al: 6, k: 14, pitch: 6, ra: wyprost(o), kz: 0.3, zs: zsN(o) },
+  ];
+  const rl = (x) => (o.jedna ? { rl: WOLNA(o.wpsi ?? -70) } : { rl: { ...x.ra } });
+  return [0, 0.25, 0.5, 0.75, 1].map((t) => { const x = t <= 0.5 ? mix(S[0], S[1], t * 2) : mix(S[1], S[2], (t - 0.5) * 2); return wR({ ...x, ...rl(x) }); });
+}
+const PRZY_CIELE = { rel: [-36, 14], pole: [0.3, -1, 0.7], z: 19 }; /* łokieć zgięty przy żebrach, ciężar na wysokości mostka tuż przy tułowiu */
+/** Zarzut: zawis między nogami (hike) → wyprost → ciężar przy tułowiu → rack. */
 function zarzut(cw, o) {
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ...dwa(o, { psi: -100, th: 10, z: o.jedna ? 15 : 17 }), kz: 0.5, zs: 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, { psi: -62, th: 20, z: 19 }), kz: 0.3, zs: 20 }),
-    wp({ al: 12, k: 34, pitch: 4, ...dwa(o, RACK_R), kz: 0.3, zs: 20 }),
-    wp({ al: 4, k: 14, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 20 }),
+    ...naped(o),
+    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: zsN(o) }),
+    wR({ al: 12, k: 34, pitch: 4, ...dwa(o, RACK_R), kz: 0.3, zs: zsN(o) }),
+    wR({ al: 4, k: 14, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: zsN(o) }),
   ];
-  return gotowe(cw, o.sprz, W);
+  return gotowe(cw, o.sprz, W, [], { profil: true });
 }
 /** Bottoms-up clean z zawieszenia (recenzja p4a, runda 2): start ze zwisu przy udach (lekki zawias, dzwon w dół), rączka idzie blisko ciała (łokieć cofnięty, przedramię coraz bardziej w górę), na końcu kettlebell dnem do góry przy barku:
  * przedramię pionowo, łokieć pod dłonią. Tryb dzwonu „wzdluz_gora”: dzwon wzdłuż przedramienia, a dnem do góry dopiero przy przedramieniu ≤ 45° od pionu. Wolna ręka wzdłuż ciała. */
@@ -76,19 +157,22 @@ function zarzutDnemDoGory(cw) {
 /** Rwanie: zawis między nogami → wyprost → ciężar prosto nad głową (u = 1). */
 function rwanie(cw, o) {
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ...dwa(o, { psi: -100, th: 10, z: o.jedna ? 15 : 17 }), kz: 0.5, zs: 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, { psi: -62, th: 20, z: 19 }), kz: 0.3, zs: 20 }),
-    wp({ al: 4, k: 12, pitch: 3, ...dwa(o, { psi: 30, th: 95, z: 21 }), kz: 0.3, zs: 18, A: [1, yP(-40) + 3], pod: -40 }),
-    wp({ al: 6, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.3, zs: 16 }),
+    ...naped(o),
+    wR({ al: 4, k: 12, pitch: 3, ...dwa(o, { rel: [-6, 19], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: zsN(o), A: [1, yP(-30) + 3], pod: -30 }),
+    wR({ al: 4, k: 14, pitch: 3, ...dwa(o, { rel: [24, 28], pole: [0, 0, 4], z: 21 }), kz: 0.3, zs: zsN(o), A: [1, yP(-30) + 3], pod: -30 }), /* ciężar mija głowę z przodu (bez przenikania), dopiero potem wyrzut nad głowę */
+    wR({ al: 6, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.3, zs: zsN(o) }),
   ];
-  return gotowe(cw, o.sprz, W);
+  return gotowe(cw, o.sprz, W, [], { profil: true });
 }
 /** Podrzut / wyciskanie balistyczne: ciężar przy barku → krótkie ugięcie → wyprost na palcach → ręka prosta nad głową (split: wykrok). */
 function podrzut(cw, o) {
   const rack = (extra = {}) => wp({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
   const W = [rack(), rack({ al: 10, k: 38, pitch: 3 }),
     rack({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, ...(o.jedna ? { rl: WOLNA() } : {}) }),
-    o.split ? wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : o.pp ? wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }) /* wyciskanie z nóg: po wybiciu nogi zostają proste, ręce kończą ruch (recenzja p4a) */ : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
+    o.split ? wp({ ...SPLIT_LOT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : o.pp ? wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }) /* wyciskanie z nóg: po wybiciu nogi zostają proste, ręce kończą ruch (recenzja p4a) */ : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
+  /* N1 (recenzja r1): podrzut kończy się wstaniem z ciężarem nad głową na prostych nogach (karta: „zejdź pod nie drugim ugięciem … i wstań”) */
+  if (o.split) W.push(wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }));
+  if (!o.split && !o.pp) W.push(wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }));
   return gotowe(cw, o.sprz, W);
 }
 /** Chwyt kettlebella w świecie (x, y, |z|) i kierunek łokcia pole = [x, y, |z|] (łokieć na zewnątrz i w górę); obie ręce symetrycznie. */
@@ -98,9 +182,9 @@ function sumoHighPull(cw) {
   const sprz = SPRZ(KB({ dzwon: 'dol' })); const st = { zs: 23, rot: 38, kz: 0.9 };
   const mk = (bend = 0) => [
     wp({ al: 22, k: 88, pitch: 38, ra: { psi: -95, th: 22, z: 5, pz: 2 }, ...st }),
-    wp({ al: 8, k: 36, pitch: 24, ra: { psi: -92, th: 24, z: 5, pz: 2 }, ...st, bend: bend * 0.6 }),
+    wp({ al: 6, k: 28, pitch: 12, ra: { psi: -98, th: 55, z: 5, pz: 2 }, ...st, bend: bend * 0.6 }), /* N2 (r1): ciąg zaczyna się w trakcie wyprostu bioder, bez zatrzymania w pół zawiasu */
     wp({ al: 4, k: 20, pitch: 4, ra: { psi: -115, th: 112, z: 6.5, pz: 6 }, ...st, bend: 0 }),
-    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -80, th: 140, z: 6.5, pz: 9.5 }, ...st, A: [1, yP(-40) + 1], pod: -40 }),
+    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -80, th: 140, z: 6.5, pz: 9.5 }, ...st, A: [6.2, yP(-40) + 1], pod: -40 }),
   ].map((w, i) => (i === 0 ? { ...w, bend } : w));
   const W = mk(0); const W2 = mk(26); W2[0].bend = 26; W2[1].bend = 26; W2[2].bend = 0;
   void W2;
@@ -110,19 +194,23 @@ function sumoHighPull(cw) {
 function bledyPlecy(W, ile = W.length - 2) { const W2 = W.map((w, i) => ({ ...w, bend: i < ile ? 26 : 0, ra: i < ile ? { ...w.ra, th: w.ra.th + 12 } : w.ra, rl: i < ile ? { ...w.rl, th: w.rl.th + 12 } : w.rl })); return [(r) => bladZRuchu({ cue: 'mis.roundBack', znacznik: 'back', ruch: r, W2, buduj2: P, od: 1 })]; }
 /** Jednoręczny zarzut z podrzutem: zawis → rack → ugięcie → wyrzut → nad głową (wykrok). */
 function cleanJerk(cw) {
-  const o = { jedna: true }; const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz' }));
-  const rack = (extra = {}) => wp({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
+  const o = { jedna: true, zs: 19 }; const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz' }));
+  const rack = (extra = {}) => wR({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: zsN(o), ...extra });
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ...dwa(o, { psi: -100, th: 10, z: 15 }), kz: 0.5, zs: 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, { psi: -62, th: 20, z: 19 }), kz: 0.3, zs: 20 }),
+    ...naped(o),
+    wR({ al: 6, k: 14, pitch: 5, ...dwa(o, PRZY_CIELE), kz: 0.3, zs: zsN(o) }),
     rack({ al: 12, k: 34, pitch: 4 }), rack({ al: 10, k: 38, pitch: 3 }),
-    rack({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, rl: WOLNA() }),
-    wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }),
+    rack({ zs: 18, al: 9, k: 22, pod: -22, A: [0.5, yP(-22) + 2], ra: { psi: -42, th: 113, z: 19 }, rl: WOLNA() }), /* W1-r2: punkt pośredni łuku (po zmianie na opis w układzie tułowia łuk bez niego przechodzi przez ramię) */
+    rack({ zs: 18, al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, rl: WOLNA() }),
+    wR({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }),
   ];
-  return gotowe(cw, sprz, W);
+  return gotowe(cw, sprz, W, [], { profil: true });
 }
+/** N1-r3: lądowanie wykroku bez poślizgu — przednia stopa nad podłogą dociera nad miejsce lądowania (x, z), potem tylko opada pionowo (SPLIT); wcześniej stopa dotykała podłogi w trakcie przesuwu w x. */
+const SPLIT_LOT = () => ({ ...SPLIT(), A: [26, 11], pod: 0 });
 const SPLIT = () => { const hip = biodroZKostki([26, 7], -90 - 25 + 80, 80); return { A: [26, 7], al: 25, k: 80, AL: [hip[0] - 28, yP(-60) + 0.5], podL: -62 }; };
 
+export const JEDNOKIERUNKOWE = ['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'];
 export function generuj() {
   const G = {};
   G['Kettlebell Swing'] = () => swing('Kettlebell Swing', { sprz: SPRZ(KB()) });
@@ -131,11 +219,11 @@ export function generuj() {
   const k2 = () => ({ sprz: SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz' }), KB({ trzyma: 'L', dzwon: 'wzdluz' })) });
   G['Kettlebell Clean'] = () => zarzut('Kettlebell Clean', k1());
   G['Double Kettlebell Clean'] = () => zarzut('Double Kettlebell Clean', k2());
-  G['Dumbbell Clean'] = () => zarzut('Dumbbell Clean', { sprz: SPRZ(DB({ trzyma: 'R' }), DB({ trzyma: 'L' })) });
+  G['Dumbbell Clean'] = () => zarzut('Dumbbell Clean', { hantle: true, sprz: SPRZ(DB({ trzyma: 'R' }), DB({ trzyma: 'L' })) });
   G['Bottoms-Up Clean From The Hang Position'] = () => zarzutDnemDoGory('Bottoms-Up Clean From The Hang Position');
   G['Kettlebell Snatch'] = () => rwanie('Kettlebell Snatch', k1());
   G['Double Kettlebell Snatch'] = () => rwanie('Double Kettlebell Snatch', k2());
-  G['Snatch (hantel)'] = () => rwanie('Snatch (hantel)', { jedna: true, sprz: SPRZ(DB({ trzyma: 'R' })) });
+  G['Snatch (hantel)'] = () => rwanie('Snatch (hantel)', { jedna: true, podloga: true, sprz: SPRZ(DB({ trzyma: 'R' })) });
   G['Double Kettlebell Push Press'] = () => podrzut('Double Kettlebell Push Press', { ...k2(), pp: true });
   G['Double Kettlebell Jerk'] = () => podrzut('Double Kettlebell Jerk', k2());
   G['One-Arm Kettlebell Push Press'] = () => podrzut('One-Arm Kettlebell Push Press', { ...k1(), pp: true });
@@ -143,5 +231,8 @@ export function generuj() {
   G['One-Arm Kettlebell Split Jerk'] = () => podrzut('One-Arm Kettlebell Split Jerk', k1({ split: true }));
   G['Kettlebell Sumo High Pull'] = () => sumoHighPull('Kettlebell Sumo High Pull');
   G['One-Arm Kettlebell Clean and Jerk'] = () => cleanJerk('One-Arm Kettlebell Clean and Jerk');
+  /* 09.11.2026 (partia 1): ćwiczenia z wyrzutem albo lotem ciężaru (rwanie, wyciskanie z nóg, podrzut: miednica nie monotoniczna — wyprost na palcach i ugięcie pod ciężarem) to pętla jednokierunkowa:
+   * u 0 → 1 = całe powtórzenie (jak olympic), bez powrotu tą samą drogą; swing, zarzut i wysoki ciąg zostają wahadłem (strażnik: tests/figures-v2-kierunek-u.test.ts). */
+  for (const k of JEDNOKIERUNKOWE) { const f = G[k]; G[k] = () => jednokierunkowa(f()); }
   return G;
 }

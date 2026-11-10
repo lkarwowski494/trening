@@ -1,0 +1,19 @@
+{
+  "v2": {
+    "calf_raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-09",
+      "stan": "zrecenzowana niezależnie: r2 + recenzja różnicy po śladzie dźwigni (55c9f206, kopia 3044df5). Zmienił się tylko ślad 3 ćwiczeń z dźwignią poza dłońmi; pokazywane z nich jest jedno (Donkey Calf Raise) — ślad poprawny. Pozostałe 9 ćwiczeń: szkielet, ślad i kształty identyczne z kopią sprzed scalenia. Standing i Seated Calf Raise nadal wstrzymane (V2_WSTRZYMANE). 1 NISKIE (test rodziny nie przypina śladu Donkey — backlog).",
+      "kto": "audytor (recenzja niezależna różnicy: ślad dźwigni)",
+      "autor": "programista (silnik: figury/slad-dzwignia; rodzina: partia 1)",
+      "recenzent": "audytor",
+      "sha": "41ff550cd2bf",
+      "liczba": 13,
+      "slad": "Porównanie frameAt (49 kadrów) i trailFor/shapesAt w kopiach 3044df5 i 6f208fd^1 dla 12 ćwiczeń z pozą v2: zmiana tylko śladu Donkey, Standing, Seated Calf Raise. arkusz-slad.mjs widok side (jedyny widok rodziny), 21 kadrów: Donkey motyw jasny i ciemny + kopia sprzed (jasny), wycinki u=0 i u=1 ×2; Standing i Seated (jasny, poglądowo). Donkey: ślad przeniesiony z punktu w dłoni na skrzyni na miednicę przy wałku dźwigni (1 cm), pionowo 93,1 → 107,3 cm (Δx 0), krok ≤ 0,5 cm na 1/48, groty i znacznik startu widoczne w obu motywach. Seated (wstrzymane): ślad przy kostce, łuk Δx 7,2 / Δy 11,3 cm — do zmiany na uda przy zdjęciu z V2_WSTRZYMANE.",
+      "uwagi": "Zob. docs/research/recenzje/partia1-calf_raise-roznica-dzwignia-audytor-2026-11-09.md (po przeniesieniu). Uwaga r2 o śladzie Donkey Calf Raise zamknięta. Karty, zestawy i v1 rodziny bez zmian skrótów. NISKIE N1: CZEKA_NA_SLAD_DZWIGNI w tests/figures-v2-calf-raise-p1.test.ts nieaktualne, ślad Donkey bez testu.",
+      "cwiczenia": {
+        "Donkey Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Ruch bez zmian od r1/r2. Ślad po 55c9f206 = miednica przy wałku dźwigni, pionowo ~14 cm, bez skoków — poprawny." }
+      }
+    }
+  }
+}

@@ -56,11 +56,11 @@ export function generuj() {
   G['Incline Cable Fly'] = () => lezac('Incline Cable Fly', { kat: 55, a: A, sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -35, y: 15, z: 130 })] });
   /* --- stojąc: wyciągi, guma --- */
   const horiz = (p0, p1, y) => (u) => { const a = rekaPozioma(lerp(p0, p1, u), 14); return { R: a, L: a }; };
-  G['Cable Fly'] = () => stoj('Cable Fly', { sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -15, y: 160, z: 105 })], rece: horiz(98, 6), p: 0 });
+  G['Cable Fly'] = () => stoj('Cable Fly', { sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -15, y: 140, z: 105 })], rece: horiz(98, -6), p: 12 }); /* r1 S3 (09.11.2026): bloczek na wysokości barków (karta: cfly.setup), dłonie blisko siebie na końcu (≤ 10 cm) (cfly.move), lekkie pochylenie w przód (fly.posture) */
   G['Cable Fly (high to low)'] = () => stoj('Cable Fly (high to low)', { sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -15, y: 185, z: 105 })], rece: (u) => { const a = rekaPozioma(lerp(98, 8, u), 14); return { R: { ...a, d1: [a.d1[0], lerp(0.1, -0.55, u), a.d1[2]], d2: [a.d2[0], lerp(0.0, -0.6, u), a.d2[2]] }, L: { ...a, d1: [a.d1[0], lerp(0.1, -0.55, u), a.d1[2]], d2: [a.d2[0], lerp(0.0, -0.6, u), a.d2[2]] } }; } });
   G['Cable Fly (low to high)'] = () => stoj('Cable Fly (low to high)', { sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -15, y: 15, z: 105 })], rece: (u) => { const a = rekaPozioma(lerp(98, 8, u), 14); const dy = lerp(-0.3, 0.55, u); return { R: { ...a, d1: [a.d1[0], dy, a.d1[2]], d2: [a.d2[0], dy, a.d2[2]] }, L: { ...a, d1: [a.d1[0], dy, a.d1[2]], d2: [a.d2[0], dy, a.d2[2]] } }; } });
   G['Single Arm Cable Fly'] = () => stoj('Single Arm Cable Fly', { sprzet: [wyc({ chwyt: 'uchwyt', x: -15, y: 140, z: 105, trzyma: 'R' })], rece: (u) => ({ R: rekaPozioma(lerp(104, -14, u), 14), L: WOLNA_STOJ }) });
-  G['Band Chest Fly'] = () => stoj('Band Chest Fly', { sprzet: [{ rodzaj: 'guma', mocowanie: 'zaczep', x: -60, y: 138, z: 0 }], rece: horiz(98, 6) });
+  G['Band Chest Fly'] = () => stoj('Band Chest Fly', { sprzet: [{ rodzaj: 'guma', mocowanie: 'zaczep', x: -60, y: 138, z: 75, trzyma: 'R' }, { rodzaj: 'guma', mocowanie: 'zaczep', x: -60, y: 138, z: -75, trzyma: 'L' }], rece: horiz(98, 6) }); /* r1 W1 (09.11.2026): dwa zaczepy po bokach za plecami (z ±75 > połowa barków), guma nie przecina tułowia ani głowy */
   /* --- maszyna: butterfly --- */
   G['Pec Deck'] = () => { const m = [14, 53.8]; const sp = (u) => rekaPozioma(lerp(98, 6, u), 14); const S = bark(m, 0, 1); const G0 = ramieFK(S, 1, { ...sp(0), obrot: 0 }).g; const pv = [r1(S[0]), r1(G0[1] - 15), r1(S[2])];
     const lever = { rodzaj: 'dzwignia', tryb: 'obrot', x: pv[0], y: pv[1], z: pv[2], dlugosc: r1(Math.hypot(G0[0] - pv[0], G0[1] - pv[1], G0[2] - pv[2])), punkt: 'dlonie', trzyma: 'R' };
@@ -75,7 +75,7 @@ export function generuj() {
         const tt = [d2[0] - Math.cos(fl) * d1[0], d2[1] - Math.cos(fl) * d1[1], d2[2] - Math.cos(fl) * d1[2]]; const tl = Math.hypot(...tt) || 1; const a = { d1, d2, poleR: [-tt[0] / tl, -tt[1] / tl, -tt[2] / tl], obrot: 0 }; return { R: a, L: a }; } }); };
   G['Pullover (hantel)'] = () => pull('Pullover (hantel)', { f: [255, 150], sprzet: [{ rodzaj: 'hantel', pionowo: true }], lat: 0.34, lat1: 0.14, lat2: 0.3, flex: 8 });
   G['Front Raise And Pullover'] = () => pull('Front Raise And Pullover', { f: [255, 118], sprzet: [SPRZET.sztanga()], lat: 0, flex: 8 });
-  G['Wide-Grip Decline Barbell Pullover'] = () => pull('Wide-Grip Decline Barbell Pullover', { kat: -20, f: [250, 150], sprzet: [SPRZET.sztanga()], lat: 0, flex: 8 });
+  G['Wide-Grip Decline Barbell Pullover'] = () => pull('Wide-Grip Decline Barbell Pullover', { kat: -20, f: [250, 150], sprzet: [SPRZET.sztanga()], lat: -0.27, lat2: -0.25, flex: 8 }); /* r1 W3 (09.11.2026): chwyt szeroki (lat < 0 = ramiona na zewnątrz), dłonie ok. ±33 cm (ślad na środku gryfu) zamiast ±19 */
   G['Bent-Arm Barbell Pullover'] = () => pull('Bent-Arm Barbell Pullover', { f: [255, 160], sprzet: [SPRZET.sztanga()], lat: 0, flex: 50 });
   return G;
 }

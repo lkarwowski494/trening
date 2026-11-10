@@ -8,7 +8,7 @@ import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
-import {
+import { lowerFirstOf,
   figureSpec, frameAt, shapesAt, checkFrame, boxFor, trailFor, staticPositions, phasesFor, tempoFor, measuredJoint, measuredAngle, faultApplicable, errorMarks, uAt, TEMPO,
   errorDefOf, dataErrorId, isDataError, dataErrorIndex, POSE_FAMILIES, poseKeys, poseFile, poseDataFor, hasPoseFile, dataUiFor, DATA_UI, ISOMETRIC, assignAll, FAMILY, type FigError,
 } from '@/lib/figures/v2';
@@ -20,6 +20,7 @@ import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 import { krotnosc, LIMIT_KROTNOSCI } from './perf-wzgledny';
 
+import { PLANNED_Z_DANYMI } from './helpers/rodziny-planned';
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock };
 const setReduce = (v: boolean) => { AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(v)); };
@@ -27,13 +28,15 @@ const flush = async () => { await act(async () => { await Promise.resolve(); });
 afterEach(() => { applyLang('pl'); jest.useRealTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); jest.restoreAllMocks(); });
 
 const ALL = assignAll();
-const DATA_KEYS: [string, string][] = POSE_FAMILIES.flatMap(f => poseKeys(f).map(k => [f, k] as [string, string]));
+/* 10.11.2026: rodziny planned z danymi (tests/helpers/rodziny-planned.ts) poza testami gotowych figur — ich stan pilnuje figures-v2-mapping */
+const READY_POSE_FAMILIES = POSE_FAMILIES.filter(f => !PLANNED_Z_DANYMI.includes(f));
+const DATA_KEYS: [string, string][] = READY_POSE_FAMILIES.flatMap(f => poseKeys(f).map(k => [f, k] as [string, string]));
 const U = Array.from({ length: 13 }, (_, i) => i / 12);
 
 describe('dane póz: rejestr i podłączenie (logika)', () => {
   test('każda rodzina z plikiem póz: status „gotowa”, wpis DATA_UI, ćwiczenia pliku należą do rodziny, spec z danych (nie z rigu); pull_up ma 11 ćwiczeń', () => {
     expect(DATA_KEYS.filter(([f]) => f === 'pull_up').length).toBe(11);
-    for (const f of POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]); expect(poseFile(f)!.rodzina).toBe(f); }
+    for (const f of READY_POSE_FAMILIES) { expect([f, FAMILY[f as keyof typeof FAMILY].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]); expect(poseFile(f)!.rodzina).toBe(f); }
     for (const [f, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, ALL[k]]).toEqual([k, f]); expect([k, s.family, 'data' in s.variant]).toEqual([k, f, true]); expect(s.views).toEqual(EXERCISE_VIEWS[k]?.views ?? FAMILY[f as keyof typeof FAMILY].views); } /* widoki ćwiczenia nadpisują rodzinę (suwnice tylko z boku, families.ts EXERCISE_VIEWS) */
   });
   test('ćwiczenia rodziny bez danych (Muscle Up, Rope Climb) i spoza katalogu: brak figury v2 (zachowanie jak dotąd), sekcja Technika nie pojawia się z ich powodu', () => {
@@ -42,18 +45,25 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
   });
   test('frameAt z danych: klatka w u = 0 i u = 1 ma dłonie na drążku, ruch ≥ 8 cm; faza 0 → 1 to podciąganie (1 s), powrót 2 s; staw = łokieć', () => {
     for (const [f, k] of DATA_KEYS.filter(([fam, x]) => !ISOMETRIC.has(x) && fam !== 'olympic' && fam !== 'delt_raise')) { /* delt_raise (09.11.2026): dwa stawy (shElev / shAbd) i wyjątki faz (Car Drivers, Alternating Deltoid Raise) — osobny test niżej; olympic (05.11.2026): mieszanka wahadła i trybu jednokierunkowego — fazy i staw per ćwiczenie sprawdza tests/figures-v2-olympic-petla.test.ts; każda rodzina z danych póz (pull_up, curl): fazy i staw z DATA_UI; unoszenie miednicy tylko w podciąganiu (03.11.2026: curl wypadł z kontroli przez zawężenie do pull_up) */
+      if (f === 'kb_ballistic' && poseFile(f)!.cwiczenia[k].petla === 'jednokierunkowa') continue; /* 09.11.2026: 9 ćwiczeń kb_ballistic w pętli jednokierunkowej (jedna faza bez czasu): fazy i staw sprawdza tests/figures-v2-kb-ballistic-p1.test.ts */
       const s = figureSpec(k)!; const a = frameAt(s, 0), b = frameAt(s, 1); const ui = DATA_UI[f];
       if (f === 'pull_up') expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       const ex = ui.exceptions?.[k]; /* wyjątek ćwiczenia (partia 3, 09.11.2026: Straight Arm Pulldown — łokieć prosty, mierzony bark shElev) */
-      expect([k, s.lowerFirst]).toEqual([k, ex?.lowerFirst ?? ui.lowerFirst]); expect([k, measuredJoint(s)]).toEqual([k, (ex?.joints ?? ui.joints)[0]]);
+      expect([k, s.lowerFirst]).toEqual([k, lowerFirstOf(ui, k)]); /* 10.11.2026 (overhead_press): wyjątek ćwiczenia w DATA_UI wygrywa (Pike Push Up: najpierw opuszczanie) */ if (f === 'kb_ballistic') expect([k, ui.joints.includes(measuredJoint(s)!)]).toEqual([k, true]); else if (f === 'chest_fly') expect([k, measuredJoint(s)]).toEqual([k, /Pullover/.test(k) ? 'shElev' : 'shAbd']); /* chest_fly (09.11.2026): rozpiętki mierzą odsunięcie ramienia (shAbd), pullover — uniesienie (shElev); Crucifix (utrzymanie, ISOMETRIC od r1 W2) nie wchodzi do tej pętli */ /* 09.11.2026: staw mierzony to ten z kandydatów (biodro, kolano), który rusza się najbardziej w danym ćwiczeniu (swing: biodro, podrzut: kolano), nie zawsze pierwszy */ else expect([k, measuredJoint(s)]).toEqual([k, (ex?.joints ?? ui.joints)[0]]);
       const nm = ex?.names ?? ui.names; const [msA, msB] = s.lowerFirst ? [2000, 1000] : [1000, 2000]; /* leg_machine (09.11.2026): maszyny przysiadu zaczynają od opuszczania (2 s) */
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([[nm.first, msA], ['Pauza', 500], [nm.second, msB], ['Pauza', 500]]);
       /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
       if (ex?.hideAngle) { /* kąt ukryty na rysunku (hip_abd_add, partia 3, 09.11.2026: podpis „zgięcie biodra” nie opisuje odwodzenia) — kierunek pomiaru nie jest pokazywany */ }
       else if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
       /* triceps (04.11.2026): u = 0 to zgięcie, u = 1 wyprost — kąt zgięcia w łokciu maleje; hip_bridge (09.11.2026): u = 1 to wyprost bioder — kąt zgięcia w biodrze maleje; curl i podciąganie: rośnie */
+      else if (f === 'calf_raise') { /* 09.11.2026: kolano w wspięciu stoi (zakres < 15°, linia kąta ukryta) — kąt nie jest mierzonym ruchem; zakres kostki sprawdza tests/figures-v2-calf-raise-p1.test.ts */ }
+      else if (f === 'kb_ballistic') { /* 09.11.2026: wahadło dół → góra; mierzony staw (biodro albo kolano) rusza się w ruchu o co najmniej MIN_MEASURED_ROM (15°) — inaczej linia kąta byłaby bez znaczenia; kierunek i zakres z reguł karty: tests/figures-v2-kb-ballistic-p1.test.ts */ const ds = U.map(u => measuredAngle(s, u).deg); expect([k, Math.max(...ds) - Math.min(...ds) >= 15]).toEqual([k, true]); }
       /* partia 3, 09.11.2026: Straight Arm Pulldown — ręka prosta schodzi z góry do ud, uniesienie ramienia (shElev) maleje; Middle Back Shrug — łopatki ściągają się, wysunięcie barków (protract) maleje */
       else if (f === 'triceps' || f === 'hip_bridge' || ['Straight Arm Pulldown', 'Middle Back Shrug', 'Leg Press', 'Single Leg Press'].includes(k)) { /* Leg Press, Single Leg Press (09.11.2026): u = 0 nogi zgięte, u = 1 platforma wypchnięta — zgięcie kolana maleje */ expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+            /* chest_fly (09.11.2026): u = 0 ramiona szeroko / ciężar za głową, u = 1 nad klatką — odsunięcie w bok (rozpiętki) i zgięcie ramienia (pullover) maleją; wyjątek Crucifix usunięty po recenzji r1 (W2): utrzymanie jest ISOMETRIC, więc poza tą pętlą */
+      else if (f === 'chest_fly') { expect([k, measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
+      /* overhead_press (10.11.2026): u = 0 dłonie przy barkach, u = 1 ręce wyprostowane — zgięcie łokcia maleje; Pike Push Up odwrotnie (u = 1 łokcie zgięte, głowa przy podłodze) */
+      else if (f === 'overhead_press') { expect([k, k === 'Pike Push Up' ? measuredAngle(s, 1).deg > measuredAngle(s, 0).deg : measuredAngle(s, 1).deg < measuredAngle(s, 0).deg]).toEqual([k, true]); }
       else { expect([k, measuredAngle(s, 1).deg > measuredAngle(s, 0).deg]).toEqual([k, true]); }
     }
   });
@@ -67,8 +77,16 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       else expect([k, ph]).toEqual([k, [[k === 'Car Drivers' ? 'Obrót' : 'Unoszenie', 1000], ['Pauza', 500], [k === 'Car Drivers' ? 'Powrót' : 'Opuszczanie', 2000], ['Pauza', 500]]]);
     }
   });
+  /** Poza stała: dłonie, barki i miednica w u = 0 i u = 1 w tym samym miejscu (< 0,5 cm). */
+  const poseStala = (k: string): boolean => { const s = figureSpec(k)!; const a = frameAt(s, 0).sk, b = frameAt(s, 1).sk; const d = (p: readonly number[], q: readonly number[]) => Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]); return Math.max(d(a.arms.R.grip, b.arms.R.grip), d(a.arms.L.grip, b.arms.L.grip), d(a.shoulderC, b.shoulderC), d(a.pelvis, b.pelvis)) < 0.5; };
+  test('izometria w pomiarze ciężar + czas (chest_fly r1 W2, 09.11.2026): Crucifix (weight_time, poza stała) jest w ISOMETRIC i ma jedną pozycję bez faz; przypadek negatywny: lista bez Crucifix oblewa strażnika, a ruchome ćwiczenie weight_time nie jest izometrią', () => {
+    expect(metricFor('Crucifix')).toBe('weight_time'); expect(poseStala('Crucifix')).toBe(true); expect(ISOMETRIC.has('Crucifix')).toBe(true);
+    const s = figureSpec('Crucifix')!; expect(s.static).toBe(true); expect(staticPositions(s)).toEqual([1]);
+    const bezCrucifix = new Set([...ISOMETRIC].filter(x => x !== 'Crucifix')); expect(bezCrucifix.has('Crucifix') === (metricFor('Crucifix') === 'weight_time' && poseStala('Crucifix'))).toBe(false);
+    for (const [, k] of DATA_KEYS.filter(([, x]) => metricFor(x) === 'weight_time' && x !== 'Crucifix')) expect([k, poseStala(k) === ISOMETRIC.has(k)]).toEqual([k, true]);
+  });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, metricFor(k) === 'time']); }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; expect([k, s.static]).toEqual([k, ISOMETRIC.has(k)]); expect([k, ISOMETRIC.has(k)]).toEqual([k, metricFor(k) === 'time' || (metricFor(k) === 'weight_time' && poseStala(k))]); }
     expect(staticPositions(figureSpec('Dead Hang')!)).toEqual([1]); expect(staticPositions(figureSpec('Pull Up')!)).toEqual([0, 1]);
   });
   test('tor ruchu przy nieruchomym drążku to droga miednicy (nie punkt na drążku): linia ma długość, a znacznik ✕ „bar” stoi na drążku', () => {
@@ -108,23 +126,25 @@ describe('błędy z danych (bledy[])', () => {
       for (const er of errs) for (const u of U) { const is = checkFrame(frameAt(s, u, er)); if (is.length) throw new Error(`${k} ${er ?? 'poprawna'} u=${u}: ${JSON.stringify(is)}`); }
       for (const e of errorsOf(s)) {
         const uw = NA_DOLE.includes(e.cue) ? 0 : 1; const a = frameAt(s, uw).sk, b = frameAt(s, uw, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.spineMid, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
-        const dd = Math.max(...pts(a).map((p, i) => Math.hypot(p[0] - pts(b)[i][0], p[1] - pts(b)[i][1], p[2] - pts(b)[i][2]))); expect([k, e.error, dd > 3 || BLAD_NIEWIDOCZNY.includes(`${k}|${e.cue}`) || JERK_CURL_TEMPO(f, e.cue)]).toEqual([k, e.error, true]); /* widoczne: ≥ 3 cm (CONTRACT.visibleCm) */
+        const dd = Math.max(...pts(a).map((p, i) => Math.hypot(p[0] - pts(b)[i][0], p[1] - pts(b)[i][1], p[2] - pts(b)[i][2]))); expect([k, e.error, dd > 3 || BLAD_NIEWIDOCZNY.includes(`${k}|${e.cue}`) || JERK_CURL_TEMPO(f, e.cue) || ZAOKRAGLONE_PLECY_KB(f, k, e.cue, e.error)]).toEqual([k, e.error, true]); /* widoczne: ≥ 3 cm (CONTRACT.visibleCm) */
       }
     }
   });
   test('macierz: kadr obejmuje poprawną pozę i pozy błędów; kształty w obu widokach i oba motywy istnieją dla każdego ćwiczenia z danymi', () => {
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && b.h > 50]).toEqual([k, v, true]); expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); for (const v of s.views) { const b = boxFor(s, v, es); expect([k, v, b.w > 20 && (b.h > 50 || (k === 'Crucifix' && v === 'top'))]).toEqual([k, v, true]); /* Crucifix z góry (09.11.2026, partia 1): osoba stojąca widziana z góry ma głębokość ok. 30 cm (< 50) — widok „top” rodziny chest_fly jest sensowny tylko dla leżących; zgłoszone koordynatorowi (widoki ćwiczenia = widoki rodziny, silnik wspólny) */ expect(shapesAt(s, 0.5, v, true, es[0]).length).toBeGreaterThan(20); } }
     expect(light.bg).not.toBe(dark.bg);
   });
   test('tempo: błąd z danych używa tempa domyślnego (jak poprawna poza)', () => { const s = figureSpec('Pull Up')!; expect(tempoFor(s, 'data:0')).toEqual(tempoFor(s)); expect(uAt(TEMPO.holdMs + TEMPO.upMs, false, tempoFor(s))).toBeCloseTo(1, 6); });
 });
 
 /* 05.11.2026: wyjątek „błąd tempa bez zmiany pozy” (mis.jerk z zestawu ogólnego) tylko dla rodzin curl i triceps, tylko dla tej wskazówki. */
-const JERK_TEMPO_RODZINY = (f: string, cue: string) => ['curl', 'triceps', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine', 'cable_row'].includes(f) && cue === 'mis.jerk'; /* partia 3 (09.11.2026): zestawy ogólne vpull, shrug, row, hipAbd z błędem tempa mis.jerk — jak curl (recenzje niezależne partii 3 przyjęły zestawy) */
+/* 09.11.2026 (kb_ballistic, partia 1): „zaokrąglone plecy” (mis.roundBack) to zgięcie kręgosłupa — krzywizna grzbietu przy tych samych punktach stawów (miednica, głowa, kolano, kostka, łokieć różnią się < 3 cm). Miara widoczności: zmiana zgięcia kręgosłupa w kadrach błędu ≥ 15° (generator: 26°). Przypadek negatywny: poza poprawna ma 0°. */
+const ZAOKRAGLONE_PLECY_KB = (f: string, k: string, cue: string, err: FigError) => { if (f !== 'kb_ballistic' || cue !== 'mis.roundBack') return false; const d = poseFile(f)!.cwiczenia[k]; const kl = d.bledy[dataErrorIndex(err as never)].klatki; return Math.max(...kl.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) >= 15 && Math.max(...d.klatki.map(x => Math.abs(x.zgiecieKregoslupa ?? 0))) < 15; };
+const JERK_TEMPO_RODZINY = (f: string, cue: string) => ['curl', 'triceps', 'chest_fly', 'row', 'cable_row', 'overhead_press', 'pulldown', 'shrug', 'hip_abd_add', 'leg_machine'].includes(f) && cue === 'mis.jerk'; /* + overhead_press (10.11.2026, partia 1): zestawy ogólne landmine (3 ćwiczenia) niosą mis.jerk — błąd tempa, poza nie zmienia; recenzja r3 audytora przyjęła (K15, N1-r2); */ /* + row (10.11.2026, partia 1): zestawy ogólne wiosłowań niosą mis.jerk — błąd tempa (rodzina row r3 wyswietlana, audytor 09.11.2026); + chest_fly (09.11.2026, partia 1): zestawy ogólne rozpiętek niosą mis.jerk — błąd tempa, poza nie zmienia */ /* + pulldown, shrug, hip_abd_add, leg_machine (partia 3, 09.11.2026): zestawy ogólne vpull, shrug, row, hipAbd z błędem tempa mis.jerk — jak curl (recenzje niezależne partii 3 przyjęły zestawy); scalenie 10.11.2026 */
 describe('wyjątek błędu tempa (mis.jerk): zakres', () => {
   test('negatyw: inna wskazówka albo inna rodzina nie korzysta z wyjątku', () => {
-    expect(JERK_TEMPO_RODZINY('cable_row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
-    expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false);
+    expect(JERK_TEMPO_RODZINY('chest_fly', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('chest_fly', 'fly.elbows')).toBe(false); expect(JERK_TEMPO_RODZINY('curl', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('triceps', 'mis.jerk')).toBe(true);
+    expect(JERK_TEMPO_RODZINY('triceps', 'mis.other')).toBe(false); expect(JERK_TEMPO_RODZINY('squat', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('delt_raise', 'mis.jerk')).toBe(false); expect(JERK_TEMPO_RODZINY('row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('row', 'row.back')).toBe(false); expect(JERK_TEMPO_RODZINY('overhead_press', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('overhead_press', 'ohp.mis.lock')).toBe(false); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.jerk')).toBe(true); expect(JERK_TEMPO_RODZINY('cable_row', 'mis.other')).toBe(false); /* + cable_row (09.11.2026, partia 2): zestawy ogólne wiosłowań na linkach niosą mis.jerk */
   });
 });
 
@@ -167,6 +187,11 @@ describe('komponent z danych (ekran, dostępność)', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error-data0')).toBeNull(); await r.unmount();
     setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Dead Hang')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); expect(screen.queryByText('Pozycja wyjściowa')).toBeNull();
+  });
+  test('Crucifix (utrzymanie, chest_fly r1 W2, 09.11.2026): jedna pozycja bez wiersza faz „Unoszenie / Opuszczanie” i bez przycisku pauzy; przypadek negatywny: rozpiętka (Chest Fly (hantle)) ma wiersz faz', async () => {
+    jest.useFakeTimers(); setReduce(false); const r = await render(<ExerciseFigureV2 exercise={lib('Crucifix')} />); await flush();
+    expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); expect(screen.queryByText(/Opuszczanie/)).toBeNull(); expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull(); await r.unmount();
+    await render(<ExerciseFigureV2 exercise={lib('Chest Fly (hantle)')} />); await flush(); expect(screen.getByTestId('exercise-figure-v2-phases')).toBeTruthy();
   });
   test('ćwiczenie rodziny bez danych (Muscle Up) → komponent nic nie rysuje', async () => { setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Muscle Up')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2')).toBeNull(); });
   test('legenda mięśni z katalogu dla ćwiczeń z danymi (główne: najszersze grzbietu)', () => { const l = legendOf('Pull Up')!; expect(l.main.length).toBeGreaterThan(0); });

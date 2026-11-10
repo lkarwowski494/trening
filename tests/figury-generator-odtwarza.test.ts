@@ -26,10 +26,10 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   mobility_stand: [/* ACG-013 31.10.2026 (figura na stopniu) */ 'Standing Gastrocnemius Calf Stretch'],
   pull_up: ['Gironda Sternum Chins', 'Chin Up', 'Mixed Grip Chin', 'Neutral Grip Pull Up', 'One Arm Chin-Up', 'Pull Up', 'Side To Side Chins', 'Gorilla Chin/Crunch'],
   rotator_cuff: ['External Rotation (linki)', 'External Rotation with Band', 'Cable Internal Rotation', 'Reverse Flyes With External Rotation'],
-  row: ['Lying T-Bar Row', 'Chest Supported Row', /* wyjątek nazwany 01.11.2026 (koordynator 1.1): karty Bent Over Row ×2 i T-Bar Row wróciły po recenzji v1, więc częsty błąd mis.roundBack ma opis i generator rysuje jego pozę, której nie ma w zatwierdzonym row.json; rodzina row v2 niewyświetlana — poza błędu wejdzie przez recenzję rodziny (fala 2) */ 'Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'T-Bar Row'],
   thruster: ['Clean and Press'],
 };
-const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* partia 3 (09.11.2026): pozy przeliczone generatorem po recenzjach r2 */ 'shrug', 'pulldown', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise'];
+/* 09.11.2026 (recenzja r1 row, W1/Ś1): row odświeżone z generatora (nogi proste w leżących, pozy błędu mis.roundBack) — plik ≡ generuj(), rodzina wychodzi z listy rozjazdów i wchodzi do zakresu; shrug (partia 3, 09.11.2026) także wychodzi z listy rozjazdów (scalenie 10.11.2026: suma obu stron) */
+const W_ZAKRESIE = ['row', 'plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* partia 3 (09.11.2026): pozy przeliczone generatorem po recenzjach r2 */ 'shrug', 'pulldown', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise'];
 
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {

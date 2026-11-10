@@ -41,6 +41,11 @@ export const generalCueNote = (sel: CueSelection): string | null => sel.mode ===
 /** ACG-001 (audyt ćwiczeń 31.10.2026): zdania, które przeczą kierunkowi ruchu całej rodziny — nie trafiają do żadnego jej ćwiczenia (rodziny bez wariantów rysunku, więc nie przez CUE_REQUIRES).
  * Strażnik: tests/figures-v2-cues.test.tsx „ACG-001”. */
 export const CUE_NOT_IN_FAMILY: Record<string, { why: string; families: FamilyId[] }> = {
+  /* Ś1 (recenzja niezależna r1 kb_ballistic, 09.11.2026): zestaw ogólny `oly` ma zdania o sztandze („Sztanga blisko ciała”, „…sztangę wybijają nogi i biodra”, „Sztanga odjeżdża…”); kettlebell i hantel nie są sztangą, a neutralnego zestawu dla nich w słowniku badacza nie ma
+   * (tekst dopisze badacz i tłumacz) — do tego czasu te trzy id nie trafiają do ćwiczeń rodziny kb_ballistic (zostaje m.in. oly.back, hinge.back). */
+  'oly.close': { why: 'zdanie mówi o sztandze; w kettlebellu i hantlu ciężar nie jest sztangą (brak zestawu neutralnego)', families: ['kb_ballistic'] },
+  'oly.legs': { why: 'zdanie mówi o sztandze („sztangę wybijają nogi i biodra”); brak zestawu neutralnego dla kettlebella i hantla', families: ['kb_ballistic'] },
+  'oly.mis': { why: 'tekst błędu mówi o sztandze („Sztanga odjeżdża od ciała”); brak zestawu neutralnego dla kettlebella i hantla', families: ['kb_ballistic'] },
   'lpd.fullStretch': { why: '„na górze wyprostuj ręce” opisuje ściąganie drążka z góry; w podciąganiu na górze łokcie są zgięte, ręce proste na dole (pu.partial)', families: ['pull_up'] },
   'row.fullStretch': { why: '„na dole wyprostuj ręce” pasuje do wiosłowania z opuszczaniem ciężaru w dół (sztanga, T-bar); w rodzinie cable_row wyprost jest z przodu albo u góry (Single Arm Cable Row, Leverage High Row; recenzja r1 09.11.2026, S3), a tylko te dwa ćwiczenia cable_row miały to zdanie — wyłączenie na poziomie rodziny trafia dokładnie w nie i nie rusza 4 ćwiczeń rodziny row; CUE_REQUIRES odpada, bo warianty cable_row nie niosą cechy kierunku wyprostu', families: ['cable_row'] },
 };

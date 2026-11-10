@@ -1,0 +1,37 @@
+{
+  "v2": {
+    "calf_raise": {
+      "werdykt": "do poprawy",
+      "data": "2026-11-09",
+      "stan": "do poprawy — 3 znaleziska WYSOKIE (Standing Calf Raise: dźwignia na miednicy zamiast na barkach; Seated Calf Raise: dźwignia na kostkach przebija stopę do 9,1 cm; Calf Raise (linki): linka ciągnie ~28° poniżej poziomu z wyciągu 105 cm przed osobą); bez skrótu — wpis do ponownej recenzji r2",
+      "kto": "audytor (recenzja niezależna ruchu, nakładki, zestawów i kart, runda r1)",
+      "autor": "programista (partia 1, subagent)",
+      "recenzent": "audytor",
+      "liczba": 13,
+      "slad": "arkusz-slad.mjs: 12 ćwiczeń × widok side, 21 kadrów (u co 0,05), motyw jasny i ciemny (24 PNG); arkusz-nakladka.mjs: 12 arkuszy poprawnych + 10 póz błędu calf.mis.partial (22 PNG); kadry u=0 i u=1 oglądane w pełnej rozdzielczości (wycinki ×2–4); liczby z frameAt/jointAngles w u=0/0,25/0,5/0,75/1. Tor: sztanga i Smith — środek gryfu na plecach, pionowo w górę ~14 cm; hantle w siadzie — chwyt R nad kolanem, w górę ~9 cm; linki/guma — chwyt R przy biodrze, pionowo; bez ciężaru (Łydki na stopniu, Single Leg) — miednica, pionowo. Standing Calf Raise: ślad przy dłoni R (ręce skrzyżowane na klatce), pionowy 14 cm, nie przy dźwigni; Donkey Calf Raise i Seated Calf Raise: ślad w dłoni opartej/leżącej nieruchomo (punkt) — wada silnika contract.ts:330–332, do ponownej recenzji po figury/slad-dzwignia.",
+      "uwagi": "Zob. docs/research/recenzje/partia1-calf_raise-r1-audytor-2026-11-09.md (po przeniesieniu). Ślad trzech ćwiczeń z dźwignią poza dłońmi jest rysowany na karcie w aplikacji (components/ExerciseFigureV2.tsx:30,36).",
+      "cwiczenia": {
+        "Łydki na stopniu": { "werdykt": "wyswietlana", "uwagi": "Ruch poprawny (kostka +20,9° → −42,2°, kolano 3–6°, przód stopy 8 cm na stopniu). NISKIE: karta „przytrzymaj się czegoś dla równowagi”, rysunek bez podpory (backlog)." },
+        "Standing Calf Raise": { "werdykt": "do poprawy", "uwagi": "WYSOKIE W1: dźwignia maszyny na miednicy (pręt przez biodra), ręce skrzyżowane na klatce — maszyna stojąca obciąża barki przez poduszki. Ruch nóg poprawny. Ślad: do ponownej recenzji po figury/slad-dzwignia." },
+        "Smith Machine Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Gryf na plecach, prowadnica pionowa, ślad środka gryfu pionowo 140→154 cm; zakres kostki i kolana jak wyżej." },
+        "Calf Raise (sztanga)": { "werdykt": "wyswietlana", "uwagi": "Gryf na plecach, ślad pionowy; nakładka calfKneeStraightRef w płaszczyźnie ruchu." },
+        "Calf Raise (linki)": { "werdykt": "do poprawy", "uwagi": "WYSOKIE W3: wyciągi 105 cm przed osobą, linka ~28° poniżej poziomu — siła głównie do przodu (składowa pionowa ~46%), sylwetka bez przeciwwagi." },
+        "Donkey Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Tułów poziomo, dłonie na podporze, dźwignia na biodrach/lędźwiach — zgodne z maszyną. Ślad (punkt w nieruchomej dłoni): do ponownej recenzji po figury/slad-dzwignia." },
+        "Band Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Guma spod stóp do dłoni, wspięcie z podłogi; zgodne z kartą." },
+        "Single Leg Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Noga pracująca na stopniu, druga uniesiona (kolano 86°), dłoń na ścianie; zakres kostki +20,9° → −42,2°." },
+        "Seated Calf Raise": { "werdykt": "do poprawy", "uwagi": "WYSOKIE W2: dźwignia (punkt „kostki”) biegnie ukośnie przez stopę; odstęp ciężaru od nóg −1,6 → −9,1 cm (przenikanie); w maszynie poduszka leży na udach nad kolanami." },
+        "Seated Calf Raise (hantle)": { "werdykt": "wyswietlana", "uwagi": "Hantle na udach przy kolanach, odstęp 0,1–1,6 cm, kolano 90–95°, kostka +10° → −45,7°." },
+        "Barbell Seated Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Gryf na udach nad kolanami, odstęp 0,3–2,0 cm; zakres jak wyżej." },
+        "Dumbbell Seated One-Leg Calf Raise": { "werdykt": "wyswietlana", "uwagi": "Pracuje noga R, L stoi (kolano 90°, kostka +10°); hantel nad kolanem R." }
+      }
+    }
+  },
+  "zestawy": {
+    "Donkey Calf Raise": { "rodzina": "calf", "werdykt": "wyswietlana", "data": "2026-11-09", "stan": "zrecenzowany", "autor": "programista (partia 1, subagent)", "recenzent": "audytor", "kto": "audytor (recenzja niezależna, r1)", "sha": "58dfc0b13605",
+      "uwagi": "calf.move (wspięcie jak najwyżej, opuszczenie do rozciągnięcia), calf.pause, calf.mis.partial — zgodne z rysunkiem: przód stóp na stopniu, pięty opadają poniżej krawędzi (kostka +20,9°), wspięcie do −42,2°; poza błędu skraca zakres. Brak calf.knees — element calfKneeStraightRef słusznie nie rysuje się." }
+  },
+  "karty": {
+    "Łydki na stopniu": { "werdykt": "wyswietlana", "data": "2026-11-09", "stan": "zrecenzowana (spójność z rysunkiem v2)", "autor": "programista (partia 1, subagent)", "recenzent": "audytor", "kto": "audytor (recenzja niezależna, r1)", "sha": "97256f2c49e7",
+      "uwagi": "calf.step, calf.move, calf.knees, calf.pause zgodne z ruchem (przód stopy na stopniu, pięty poza krawędzią, kolana 3–6°). Rysunek nie pokazuje przytrzymania się z calf.step — NISKIE, dotyczy rysunku, nie treści karty." }
+  }
+}

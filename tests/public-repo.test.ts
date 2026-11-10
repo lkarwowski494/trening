@@ -30,7 +30,7 @@ describe('workflowy na publicznym repozytorium', () => {
     /* L-053 (właściciel 30.10.2026, A; zmienia „nigdy pull_request” z 06.10.2026 tylko dla tests.yml): PR do main z tego repozytorium — kod z forków nadal nie biegnie (warunek joba) */
     const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request_target|secrets\./);
     expect(t).toMatch(/\n  pull_request:\n    branches: \[main\]\n/);
-    /* ZB-029 T1 (31.10.2026): trzy zadania (kontrole, jest ×4 części, zbiorcze verify) — warunek blokujący forki w KAŻDYM z nich */
+    /* ZB-029 T1 (31.10.2026): trzy zadania (kontrole, jest ×5 części, zbiorcze verify) — warunek blokujący forki w KAŻDYM z nich */
     const warunek = "github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository";
     const zadania = t.slice(t.indexOf('\njobs:')).split(/^  (?=[\w-]+:\s*$)/m).slice(1); expect(zadania.map((z: string) => z.split(':')[0])).toEqual(['kontrole', 'jest', 'verify']);
     for (const z of zadania) expect(z).toContain(warunek);

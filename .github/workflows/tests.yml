@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false  # każda część kończy się sama — pełna lista porażek w jednym przebiegu
       matrix:
-        czesc: [1, 2, 3, 4]  # liczba części = czesci_jest w scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
+        czesc: [1, 2, 3, 4, 5]  # liczba części = czesci_jest w scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
     steps:
       - uses: actions/checkout@v5
         with:
@@ -51,11 +51,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Jest (część ${{ matrix.czesc }} z 4)
+      - name: Jest (część ${{ matrix.czesc }} z 5)
         env:
           JEST_PONOW_WYNIK: ${{ runner.temp }}/jest-wynik.json  # wynik JSON z czasami przypadków dla kroku niżej
           JEST_LIMITY_PLIK: ${{ runner.temp }}/jest-limity.jsonl  # efektywny limit każdego przypadku (tests/setup-limity-czasu.js)
-        run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/4
+        run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/5
       - name: Czas pojedynczego testu (do prog_czasu_testu limitu przypadku)
         env:
           WYNIK_JEST: ${{ runner.temp }}/jest-wynik.json
@@ -74,5 +74,5 @@ jobs:
           KONTROLE: ${{ needs.kontrole.result }}
           JEST: ${{ needs.jest.result }}
         run: |
-          echo "kontrole: $KONTROLE, jest (4 części): $JEST"
+          echo "kontrole: $KONTROLE, jest (5 części): $JEST"
           test "$KONTROLE" = success && test "$JEST" = success

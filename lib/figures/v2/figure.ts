@@ -42,13 +42,13 @@ export function figureSpec(key: string): FigureSpec | null {
  * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
  * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
  * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
- * Stan 09.11.2026: Clean Shrug, Snatch Shrug (olympic, karty T2), Machine Hip Thrust (hip_bridge r1). 29.10.2026 zdjęto 18 figur po recenzjach
- * (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
+ * Wpisy: git log pliku (29.10.2026: 18 figur po recenzjach, docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
-  /* 04.11.2026 (koordynator, recenzja olympic r4, warunek 1): wzruszenia mają dziś tylko zestaw ogólny `oly` — rysunek dopiero z kartami T2 (po wpisie kart zdjąć stąd) */
   'Clean Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
   'Snatch Shrug': 'rysunek po kartach T2 (olympic r4, warunek koordynatora)',
   'Machine Hip Thrust': 'hip_bridge r1 WYSOKIE (09.11.2026): prowadnica dźwigni przez miednicę',
+  'Standing Calf Raise': 'dźwignia: brak punktu „barki” (P1-CALF-1)',
+  'Seated Calf Raise': 'dźwignia: brak punktu „uda” (P1-CALF-1)',
 };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
