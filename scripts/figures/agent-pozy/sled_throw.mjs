@@ -54,7 +54,7 @@ function rzut(cw, typ) {
   const T = { al: 3, k: 8, pod: -45, A: [1, yP(-45) + 3] };
   const W = {
     nad: [wp({ al: 12, k: 34, pitch: -8, ra: { psi: 80, th: 34 }, zs: 16 }), wp({ ...T, pitch: 3, ra: { psi: 62, th: 20 } }), wp({ ...T, pitch: 18, ra: { psi: 22, th: 16 } })],
-    tyl: [wp({ al: 30, k: 105, pitch: 40, ra: { psi: -78, th: 12 }, zs: 26, kz: 0.9 }), wp({ ...T, pitch: 5, ra: { psi: 58, th: 14 } }), wp({ ...T, pitch: -6, ra: { psi: 78, th: 14 } })],
+    tyl: [wp({ al: 30, k: 105, pitch: 40, ra: { psi: -78, th: 12 }, zs: 26, kz: 0.9 }), wp({ ...T, pitch: 5, ra: { psi: 58, th: 14 } }), wp({ ...T, pitch: -16, ra: { psi: 90, th: 14 } })],
     scoop: [wp({ al: 30, k: 105, pitch: 38, ra: { psi: -62, th: 24 }, zs: 22, kz: 0.8 }), wp({ al: 8, k: 40, pitch: 14, ra: { psi: -25, th: 24 } }), wp({ ...T, pitch: 6, ra: { psi: 40, th: 16 } })],
   }[typ];
   return gotowe(cw, SPRZ(PILKA()), W);

@@ -24,3 +24,16 @@ describe('sled_throw: ślad piłki lekarskiej przy dłoniach (K4)', () => {
     expect(max).toBeGreaterThan(MAX_OD_CHWYTU * 3);
   });
 });
+
+describe('sled_throw: Backward Medicine Ball Throw kończy rzut piłką za głową (W1, recenzja r1 10.11.2026)', () => {
+  /* Wada: w u = 1 chwyt był 5,3 cm PRZED linią barków (piłka nad głową, nie „za siebie”; karta: „przerzuć ją nad głową za siebie”). */
+  const f1 = () => keyframeFrame(D['Backward Medicine Ball Throw'], 1);
+  test('u = 1: x chwytu (środek dłoni) < x barku, piłka za linią barków', () => {
+    const f = f1(); const R = f.sk.arms.R.grip, L = f.sk.arms.L.grip; const gx = (R[0] + L[0]) / 2;
+    expect(gx).toBeLessThan(f.sk.shoulderC[0]);
+  });
+  test('u = 1: tułów odchylony w tył wyraźniej niż 6° (odchylenie ≥ 12° za pionem)', () => {
+    const f = f1(); const dx = f.sk.shoulderC[0] - f.sk.pelvis[0], dy = f.sk.shoulderC[1] - f.sk.pelvis[1];
+    expect(Math.atan2(dx, dy) * 180 / Math.PI).toBeLessThanOrEqual(-12);
+  });
+});
