@@ -110,7 +110,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-040. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-041. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -234,3 +234,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 07:55 | koordynator | kontrola: N 14,6% 2,51 USD verify #3 w tle (origin fd636db5); L 30,7% 27,51 USD verify:szybkie przed pushem (figury/w02-przed-1-1 brak na origin) → polecenie: push + STAN-W02 + PRZEKAZANIE; M 28,0% 8,70 USD completed (czeka na recenzję); O zarchiwizowana | kontrola 08:50 |
 | 2026-11-11 08:01 | M / koordynator | recenzja niezależna (subagent audytor) gałęzi M: 0 KRYT/WYS; testy 4/4 pliki 26/26 + jest-ponow-29-10 13/13; NISKIE brzegowe: komórka „zamknięte częściowo…/zamknięte do potwierdzenia; otwarte” przechodzi jako zamknięta (tylko ręczna edycja; żaden wiersz) → backlog. scal-galaz 0 → integracja 1974df92 (tests.yml 42979568375); numeruj-lekcje 0; verify:lekkie 0; push ddfcbe61..1974df92; M 8,70 USD → zarchiwizowana. W-05 zrobione | tests.yml integracji; kontrola 08:50 |
 | 2026-11-11 08:10 | N / właściciel | N: verify #3 kod 1 — tylko SIGTERM (4 zestawy matrix-dim-langs*, 0 nieudanych asercji, workery ~2,0 GB sterty); właściciel: „C: dołożyć ponowienie (Rekomendowane)” → mandat; N: cherry-pick 98f7d88f (+608dee98 jeśli trzeba), docs/18, pełne verify, push, tests.yml, scal-galaz --do main | raport N po verify |
+| 2026-11-11 08:17 | N | PYTANIE: na main brak jest-ponow (łańcuch 6 commitów 140ea3e6…98f7d88f) → KO-040: C-min (140ea3e6 + 3d2c8129, bez workflowów) | raport N po verify #4 |
