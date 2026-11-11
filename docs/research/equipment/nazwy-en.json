@@ -1,8 +1,20 @@
 {
- "_opis": "Kanoniczne nazwy angielskie ćwiczeń biblioteki po rid (ścieżka B, ZB-025 b; decyzja właściciela 31.10.2026: nazwy EN — wariant A, P1–P4 wg szkicu przewodnika z 30.10.2026). Klucze katalogu i dane użytkownika bez zmian (SCHEMA_VERSION 19). rid → nazwa wyświetlana po angielsku (i w każdym języku poza polskim, DEC-13); dawna = nazwa EN sprzed zmiany (alias wyszukiwania); reguly = reguły przewodnika (W/H/L/S/K/E/A/F, P1–P4). Generuje: node scripts/equipment/gen-nazwy-en.mjs → lib/nazwy-en.generated.ts. Nazwy nowe czekają na recenzję badacza (nazwy ogólne, marki) i recenzenta lokalizacji (naturalność EN) — pole recenzja.",
+ "_opis": "Kanoniczne nazwy angielskie ćwiczeń biblioteki po rid (ścieżka B, ZB-025 b; decyzja właściciela 31.10.2026: nazwy EN — wariant A, P1–P4 wg szkicu przewodnika z 30.10.2026). Klucze katalogu i dane użytkownika bez zmian (SCHEMA_VERSION 19). rid → nazwa wyświetlana po angielsku (i w każdym języku poza polskim, DEC-13); dawna = nazwa EN sprzed zmiany (alias wyszukiwania); reguly = reguły przewodnika (W/H/L/S/K/E/A/F, P1–P4). Generuje: node scripts/equipment/gen-nazwy-en.mjs → lib/nazwy-en.generated.ts. Nazwy nowe czekają na recenzję badacza (nazwy ogólne, marki) i recenzenta lokalizacji (naturalność EN) — pole recenzja. posrednie = nazwy EN wydane w v1.0.1-b1037 (tabela z 31.10.2026) i zmienione po recenzji 11.11.2026 — dodatkowe aliasy wyszukiwania.",
  "recenzja": {
-  "badacz": null,
-  "lokalizacja": null
+  "badacz": {
+   "plik": "docs/research/recenzje/nazwy-en-badacz-2026-11-11.md",
+   "data": "2026-11-11",
+   "recenzent": "badacz-merytoryczny (subagent sesji Q)",
+   "autor": "koordynator linii 1.1 (przewodnik 30.10.2026)",
+   "werdykt": "zatwierdzone z poprawkami: WYSOKIE 76c15d28 wdrożone; with Side Bends (L2) wdrożone; Balance Dome, Supine, Mixed-Grip — [DO USTALENIA], strony źródeł niedostępne z sesji"
+  },
+  "lokalizacja": {
+   "plik": "docs/research/recenzje/nazwy-en-lokalizacja-2026-11-11.md",
+   "data": "2026-11-11",
+   "recenzent": "recenzent-lokalizacji (subagent sesji Q)",
+   "autor": "koordynator linii 1.1 (przewodnik 30.10.2026)",
+   "werdykt": "zatwierdzone z poprawkami: WYSOKIE 66d0cd90 i ŚREDNIE wdrożone (17 nazw), 7b4e7fd3 [DO USTALENIA], NISKIE backlog"
+  }
  },
  "wpisy": [
   {
@@ -1068,10 +1080,13 @@
   {
    "rid": "0d11e220",
    "dawna": "Push-Ups With Feet On A Stability Ball",
-   "nazwa": "Push-Up with Feet on a Stability Ball",
+   "nazwa": "Push-Up with Feet on Stability Ball",
    "reguly": [
     "L2",
     "W1"
+   ],
+   "posrednie": [
+    "Push-Up with Feet on a Stability Ball"
    ]
   },
   {
@@ -1202,11 +1217,14 @@
   {
    "rid": "76c15d28",
    "dawna": "Side To Side Chins",
-   "nazwa": "Side-to-Side Chin-Up",
+   "nazwa": "Side-to-Side Pull-Up",
    "reguly": [
     "H2",
     "L2",
     "H1"
+   ],
+   "posrednie": [
+    "Side-to-Side Chin-Up"
    ]
   },
   {
@@ -1302,10 +1320,14 @@
   {
    "rid": "d233159f",
    "dawna": "One-Arm Incline Lateral Raise",
-   "nazwa": "Incline Single-Arm Lateral Raise",
+   "nazwa": "Incline Single-Arm Dumbbell Lateral Raise",
    "reguly": [
     "H3",
-    "K1"
+    "K1",
+    "S1"
+   ],
+   "posrednie": [
+    "Incline Single-Arm Lateral Raise"
    ]
   },
   {
@@ -1726,9 +1748,13 @@
   {
    "rid": "30a1285c",
    "dawna": "One-Arm Overhead Kettlebell Squat",
-   "nazwa": "Single-Arm Overhead Kettlebell Squat",
+   "nazwa": "Single-Arm Kettlebell Overhead Squat",
    "reguly": [
-    "H3"
+    "H3",
+    "K1"
+   ],
+   "posrednie": [
+    "Single-Arm Overhead Kettlebell Squat"
    ]
   },
   {
@@ -1888,13 +1914,16 @@
   {
    "rid": "2cfc60fd",
    "dawna": "Cable Crunch With Side Bends (Balance Dome)",
-   "nazwa": "Balance Dome Cable Crunch with Side Bend",
+   "nazwa": "Balance Dome Cable Crunch with Side Bends",
    "reguly": [
     "W1",
     "S1",
     "L2"
    ],
-   "wyswietlana": "Cable Crunch With Side Bends (półkula balansowa)"
+   "wyswietlana": "Cable Crunch With Side Bends (półkula balansowa)",
+   "posrednie": [
+    "Balance Dome Cable Crunch with Side Bend"
+   ]
   },
   {
    "rid": "1a93b54c",
@@ -2035,11 +2064,15 @@
   {
    "rid": "66d0cd90",
    "dawna": "Weighted Sit-Ups - With Bands",
-   "nazwa": "Weighted Sit-Up with Bands",
+   "nazwa": "Decline Band Sit-Up",
    "reguly": [
     "L2",
     "W1",
-    "S4"
+    "S4",
+    "S1"
+   ],
+   "posrednie": [
+    "Weighted Sit-Up with Bands"
    ]
   },
   {
@@ -2053,9 +2086,13 @@
   {
    "rid": "3785f29d",
    "dawna": "Chin To Chest Stretch",
-   "nazwa": "Chin to Chest Stretch",
+   "nazwa": "Chin-to-Chest Stretch",
    "reguly": [
-    "W1"
+    "W1",
+    "H2"
+   ],
+   "posrednie": [
+    "Chin to Chest Stretch"
    ]
   },
   {
@@ -2102,9 +2139,13 @@
   {
    "rid": "f0cd6c32",
    "dawna": "Round The World Shoulder Stretch",
-   "nazwa": "Round the World Shoulder Stretch",
+   "nazwa": "Round-the-World Shoulder Stretch",
    "reguly": [
-    "W1"
+    "W1",
+    "H2"
+   ],
+   "posrednie": [
+    "Round the World Shoulder Stretch"
    ]
   },
   {
@@ -2233,6 +2274,86 @@
    "nazwa": "Toe Toucher",
    "reguly": [
     "L2"
+   ]
+  },
+  {
+   "rid": "fef6473a",
+   "dawna": "Treadmill Walking",
+   "nazwa": "Treadmill Walk",
+   "reguly": [
+    "spójność (recenzja 11.11.2026)"
+   ]
+  },
+  {
+   "rid": "38b14c0e",
+   "dawna": "Cable Overhead Extension",
+   "nazwa": "Cable Overhead Triceps Extension",
+   "reguly": [
+    "spójność (recenzja 11.11.2026)"
+   ]
+  },
+  {
+   "rid": "6d328340",
+   "dawna": "Standing Overhead Barbell Triceps Extension",
+   "nazwa": "Standing Barbell Overhead Triceps Extension",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "adf55f40",
+   "dawna": "Preacher Hammer Dumbbell Curl",
+   "nazwa": "Dumbbell Preacher Hammer Curl",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "da7c0b5b",
+   "dawna": "External Rotation with Band",
+   "nazwa": "Band External Rotation",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "4a681dd9",
+   "dawna": "Internal Rotation with Band",
+   "nazwa": "Band Internal Rotation",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "c3e48bf4",
+   "dawna": "Hip Flexion with Band",
+   "nazwa": "Band Hip Flexion",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "16242276",
+   "dawna": "Hip Extension with Bands",
+   "nazwa": "Band Hip Extension",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "5e68372e",
+   "dawna": "Cross Body Hammer Curl",
+   "nazwa": "Cross-Body Hammer Curl",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "2f1ae6c5",
+   "dawna": "Side Lying Groin Stretch",
+   "nazwa": "Side-Lying Groin Stretch",
+   "reguly": [
+    "H2"
    ]
   }
  ]

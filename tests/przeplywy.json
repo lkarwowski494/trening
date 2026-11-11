@@ -3076,7 +3076,7 @@
      "tests/intro.test.tsx",
      "tests/smoke.test.tsx"
     ],
-    "kontrola": "Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), tablica „Pierwszy trening” i kafelki, brak komunikatu o błędzie danych."
+    "kontrola": "Po instalacji: ikona poprawna, pod ikoną nazwa „RepsGoat” (ZB-056, 1.1; także w aplikacji na zegarku), animacja startowa krótka (stuknięcie pomija), tablica „Pierwszy trening” i kafelki, brak komunikatu o błędzie danych."
    }
   },
   {
@@ -3258,8 +3258,11 @@
    "wyjatek": {
     "typ": "telefon",
     "powod": "Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI.",
-    "zastepnik": [],
-    "kontrola": "AirPods + muzyka: odhacz serię → zapowiedź w słuchawkach, muzyka ściszona i wraca; bez słuchawek cisza; przełącznik głośnika: mówi telefon; tryb cichy; odłączenie słuchawek w trakcie; podcast pauzuje i wznawia."
+    "zastepnik": [
+     "tests/voice.test.ts",
+     "tests/voice-native.test.ts"
+    ],
+    "kontrola": "AirPods + muzyka: odhacz serię → zapowiedź w słuchawkach, muzyka ściszona i wraca; bez słuchawek cisza; przełącznik głośnika: mówi telefon; tryb cichy; odłączenie słuchawek w trakcie; podcast pauzuje i wznawia. Jakość głosu (ZB-039, 1.1): przy samym głosie podstawowym Ustawienia → Trening → „Zapowiedzi głosowe” pokazują wskazówkę o pobraniu lepszego głosu; po pobraniu głosu rozszerzonego lub premium w iOS (Ustawienia → Dostępność → Zawartość mówiona → Głosy) i ponownym uruchomieniu aplikacji wskazówka znika, a zapowiedź i „Posłuchaj przykładu” brzmią tym lepszym głosem."
    }
   },
   {

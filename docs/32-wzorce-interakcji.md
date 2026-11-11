@@ -58,7 +58,7 @@ Wyjątek nazwany: prośba o zgodę na powiadomienia ma „Nie teraz” (odroczen
 „Cofnij” = odwrócenie ostatniej zmiany (zamiana ćwiczenia: „↺ cofnij” w bloku i „↺ cofnij zamianę: {nazwa}” w oknie zamiany — to samo potwierdzenie). „Przywróć” = odzyskanie usuniętego, zarchiwizowanego albo pominiętego obiektu.
 
 ### 8. Edycja na żądanie
-Ekran szczegółów: tytuł nagłówka = rodzaj obiektu, H1 = nazwa, obok „Edytuj” z etykietą „Edytuj X” (szablon, ćwiczenie, sesja). Bez zmian.
+Ekran szczegółów: tytuł nagłówka = rodzaj obiektu, H1 = nazwa, obok „Edytuj” z etykietą „Edytuj X” (szablon, ćwiczenie, sesja). Bez zmian. Karta ćwiczenia z biblioteki: pod H1 nazwa lokalna, „Edytuj” przy pierwszym wierszu tytułu — wzorzec 34.
 
 ### 9. Wybór z listy — S6 (częściowo)
 1 z 2–4 → `Segmented` (naprawiono: tryb generatora, Tydzień/Miesiąc w podsumowaniu); 1 z wielu krótkich → chipy (`selected`); długa lista / wyszukiwanie → okno modalne z „Anuluj” (wzorzec 1);
@@ -194,7 +194,13 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - **VoiceOver:** jeden obraz (bez zmian); etykieta „Rysunek ruchu: {nazwa}. Na rysunku: {teksty wskazówek widocznych elementów}” (te same teksty co na karcie, `t('Na rysunku: {lista}')`).
 - **Strażnik:** S20 w `tests/interaction-guards.test.ts`; geometria, limity, kolor i kontrast: `tests/figures-v2-nakladka.test.tsx`.
 
-## Strażniki (S1–S20)
+### 34. Nazwa ćwiczenia z biblioteki (ZB-044; właściciel 07.11.2026 i 08.11.2026 wariant A „Podpis”, docs/18)
+- **Wszędzie poza kartą:** nazwa angielska z katalogu (`exName`, głos `exNameLang`) we wszystkich językach, także po polsku — listy, trening, historia, plan, zegarek, Zdrowie, eksport. Ćwiczenie własne i ćwiczenie z biblioteki przemianowane przez użytkownika — jedna nazwa, jak wpisana (głos języka interfejsu).
+- **Karta ćwiczenia (`app/exercise/[id].tsx`):** H1 = nazwa angielska (głos „en”), pod nią nazwa lokalna języka interfejsu (`exLocal`) — `Muted` (callout, kolor `muted`), odstęp 4 pt, osobny element VoiceOver (`exercise-local-name`); brak nazwy lokalnej po recenzji (`lib/nazwy-lokalne.ts`) albo nazwa identyczna z angielską — bez drugiej linii. „Edytuj” przy pierwszym wierszu tytułu.
+- **Wyszukiwanie ćwiczeń** (wybór, zamiana, biblioteka, Postępy, import): po nazwie zapisanej, nazwie wyświetlanej i nazwie lokalnej (`exLocalFold`); dawne nazwy katalogu — „dawniej: …” (UX2-01, ZB-025 b).
+- **Strażnik:** S21 w `tests/zb044-wzorzec-nazwy.test.ts` (zakres: pliki .ts/.tsx w `app/`, `components/`, `lib/` — `ZAKRES` w tym pliku); zachowanie ekranów: `tests/zb044-nazwy-biblioteki.test.tsx`, `tests/zb044-przemianowane.test.tsx`.
+
+## Strażniki (S1–S21)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
 | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
@@ -217,6 +223,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 | S18 | przewijanie: ScrollView/FlatList/SectionList tylko z `components/Scroll.tsx` (wskaźnik ukryty), brak `persistentScrollbar`/`flashScrollIndicators` | `tests/interaction-guards.test.ts`, `tests/trening-naglowek.test.tsx` | jest |
 | S19 | element `accessible` bez roli kontrolki nie ma w drzewie JSX potomka z `onPress`/`onLongPress` (skan AST `app/`, `components/`) | `tests/voiceover-grupa-przycisk.test.tsx`, `.maestro/21-subskrypcja.yaml` | jest (komponent przekazany jako dziecko z `onPress` w środku skan widzi tylko po atrybucie w miejscu użycia) |
 | S20 | element techniki na rysunku: dane rodziny z `cue` i `rule`, brak tekstu/liczb w kształtach nakładki, limit linii i łuków w jednym miejscu, etykieta „Na rysunku: {lista}” przez `t()` | `tests/interaction-guards.test.ts`, `tests/figures-v2-nakladka.test.tsx`, `.maestro/17-biblioteka-technika.yaml` | jest |
+| S21 | nazwa lokalna (`exLocal`) wyświetlana tylko na karcie ćwiczenia; każde wyszukiwanie ćwiczeń po `exName` szuka też po nazwie lokalnej (wyjątki z powodem) | `tests/zb044-wzorzec-nazwy.test.ts` | jest |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·
