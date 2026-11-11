@@ -17,11 +17,11 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening, lkarwowski494/prompts (add_repo za zgodą właściciela ~09:00). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz (12:55 UTC 11.11 — koordynator …VBwLEERfcSTE1sVqA6n, lineage 0/8)
-- W-04 w 3 sesjach równoległych (KO-043): Q zb/w04-nazwy (ZB-025, ZB-044), R zb/w04-repsgoat-glosy (ZB-056, ZB-039), S zb/w04-pochodzenie (ZB-023); start od integracja-1-1 @ d11a948d, polecenia @ bec5ddeb.
-- Q raport 1: ZB-025a zrobione, 25b i 44 częściowo; KO-044 (nazwy lokalne → W-03). R raport 1: ZB-056 kod zrobiony (c9590496), ZB-039 kod zrobiony (9321d918); zostaje lista „tylko telefon” + ios-unsigned na nowej głowie.
-- Prompty ról 08, 09, M9 odzyskane z zapisów (sumy zgodne); biblioteka prompts dołączona (właściciel 12:58) — 07 i 10 złożone w scratchpadzie.
-- Następne: odbiór Q/R/S → scal-galaz → W-03 (rola 09) → W-08 → W-10.
+## Teraz (14:30 UTC 11.11 — koordynator …VBwLEERfcSTE1sVqA6n → E6)
+- Integracja `integracja-1-1` @ 680e548b = R scalone (scal-galaz, tests.yml 43031718499 na d8d16910; verify:lekkie 0; push 14:28). tests.yml na 680e548b — sprawdzić (następca).
+- W toku: Q (zb/w04-nazwy: ZB-025b recenzje nazw EN, docs/32 wzorzec podpisu; KO-044) i S (zb/w04-pochodzenie: ZB-023 mapa rid, KO-045) — obie w verify:szybkie przed pushem o 13:55.
+- Po Q i S: odbiór (commit, autor, tests.yml na głowie, recenzja audytora) → scal-galaz → W-03 przekład (rola 09, prompt w bibliotece prompts lub role/09 — złożyć: node <prompts>/tools/assemble.mjs 09-lokalizacja --tryb build) z nazwami lokalnymi ZB-044 → W-08 → W-10 (rola 07).
+- E6: koordynator 28% kontekstu (14:25) → przekazanie do nowej sesji.
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
 Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikator trybu auto). Poprzednik składa prompty z biblioteki i wysyła je następcy przez send_message, każdy jako osobna wiadomość z nagłówkiem `ROLA <plik> część <i>/<n> · bajtów całości <B> · sha256[:16] <H>` i treścią po linii `=== TREŚĆ ===`. Następca zapisuje treść dosłownie do `<scratchpad>/role/<plik>` (części skleja po kolei), sprawdza bajty i sha256 i odpisuje „ROLE OK” albo listę niezgodności. Zestaw (prompts f701ce9): 08-programista-build.md 51193 B 50d63f46f7a77bba; 07-jakosc-audit.md 77114 B bf8102fa42677cec (2 części); 09-lokalizacja-build.md 59315 B e8c4c5fdf518e603; 10-wydanie-build.md 60161 B a6aaae7d4f38b892. M9 jak dotąd w wiadomości startowej. Od 19:45 (WG-10, wariant C — zatwierdzony przez właściciela 20:45, KO-034): następca dostaje od razu tylko 08; 07, 09, 10 poprzednik albo następca zamawia na żądanie (1 plik = 1 subagent, WG-09). Biblioteka tylko dla nowej roli (wtedy zgoda właściciela). Limit send_message 64 KiB.
@@ -258,3 +258,5 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 12:58 | koordynator | właściciel: „Dołącz prompts” → prompts @ 9553f6b; 07/10 złożone; S PYTANIE → KO-045 (A); R, S raport 1 | kontrola 13:52 (linia 14:00) |
 | 2026-11-11 13:50 | koordynator | R PRZEKAZANIE i odbiór: d8d16910 potomkiem d11a948d, 4 commity Claude noreply, diff aeab7fa0..d8d16910 tylko docs; tests.yml 43027319569 success na aeab7fa0 (actions_get); recenzja audytora (deklaracja R); R 3,95 USD → zarchiwizowana; scal-galaz: tests.yml 43031718499 w toku | scalenie R po tests.yml; odbiór Q, S |
 | 2026-11-11 13:55 | koordynator | linia 14:00: integracja d11a948d (scalenie R czeka: tests.yml 43031718499 in_progress, scal-galaz kod 3); main 2d975814; Q 23% 7,54 USD, S 21% 5,68 USD (verify:szybkie, bez pushu); koordynator 26% 10,39 USD; koszt doby ok. 28 USD | kontrola 14:20; E6 przy 30% |
+| 2026-11-11 14:28 | koordynator | scal-galaz R → integracja 680e548b (tests.yml 43031718499 success na d8d16910; numeruj-lekcje 0; verify:lekkie 0; push 680e548b) | tests.yml 680e548b; odbiór Q, S |
+| 2026-11-11 14:30 | koordynator …VBwLEERfcSTE1sVqA6n | E6: kontekst ~28%, przekazanie następcy (create_session, prompt przekazania + m9.md 52212 B) | następca: PRZEJĄŁEM; Q i S raportują do następcy |
