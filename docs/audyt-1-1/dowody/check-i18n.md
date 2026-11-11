@@ -1,0 +1,11 @@
+# Dowód: check-i18n (commit 79117f33, 11.11.2026)
+
+```
+$ npm run check:i18n
+
+> trening@1.0.1 check:i18n
+> node scripts/check-i18n.mjs
+
+i18n: 1462 tekstów w kodzie, 1639 w słowniku EN
+kod wyjścia: 0
+```

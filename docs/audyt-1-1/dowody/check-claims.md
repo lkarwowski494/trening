@@ -1,0 +1,11 @@
+# Dowód: check-claims (commit 79117f33, 11.11.2026)
+
+```
+$ npm run check:claims
+
+> trening@1.0.1 check:claims
+> node scripts/claims.mjs --check
+
+twierdzenia: 61 wpisów, 42 tekstów dziedzinowych (w tym bez twierdzenia: 7), rejestr zgodny
+kod wyjścia: 0
+```

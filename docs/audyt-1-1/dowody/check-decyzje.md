@@ -1,0 +1,11 @@
+# Dowód: check-decyzje (commit 79117f33, 11.11.2026)
+
+```
+$ npm run check:decyzje
+
+> trening@1.0.1 check:decyzje
+> node scripts/decyzje.mjs --check
+
+check:decyzje — 806 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+kod wyjścia: 0
+```

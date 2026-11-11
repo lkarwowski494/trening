@@ -1,0 +1,10 @@
+# Dowód: check-zrodla-runtime (commit 79117f33, 11.11.2026)
+
+```
+$ npm run check:zrodla-runtime
+
+> trening@1.0.1 check:zrodla-runtime
+> node scripts/zrodla-runtime.mjs --check
+
+kod wyjścia: 0
+```
