@@ -45,3 +45,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | T | 09 build (W-03 przekład, część 1) | 30 (pułap) | 18,25 | 38,4 | 15:20 → 15:25 → bb9e794d … 6b14a29e (tests.yml brak zielonego: przebiegi anulowane kolejnymi pushami) → PRZEKAZANIE 16:54 → T2 | ~60 min: 3× prośba o host sieci productionresultssa* (15:45, 15:56, 16:48; jedna przepadła przy restarcie workera) | API przekładu ≈ 8,75 USD (ZB-057) poza kosztem sesji |
 | T2 | 09-lokalizacja build | — | 16,70 | 32,7 | 17:02 → 17:02 → 17:23 → 18:45 → 18:56 (UTC 11.11) | 15 min: czerwony tests.yml 43070158337 (L-130) | prompt roli przez subagenta |
 | W | 10-wydanie build | — | 4,74 | 21,1 | 19:05 → 19:06 → ~19:20 → 19:58 → 20:05 (UTC 11.11) | 0 | API 0 USD |
+| U | 08 build (KO-047 + W-08) | — | 11,87 (+ API ~1,50) | 32,5 | 19:05 → 19:05 → b4be0f13 → tests.yml 43096889322 (w kolejce 21:05) → — | kolejka tests.yml ≥ 30 min | przekazanie przy 31,7%; verify:szybkie przerwane (znacznik lekkie) |
