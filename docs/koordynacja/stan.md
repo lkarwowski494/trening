@@ -16,11 +16,13 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening, lkarwowski494/prompts (add_repo za zgodą właściciela ~09:00). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz (03:05 UTC 11.11 — koordynator …VBxZrKCwRyMgDwdWZ2N, tryb nocny)
-- Integracja `integracja-1-1` @ 5721a16e (pociąg-7 = partia 8 + J; tests.yml 42922168610 zielony). W-01 (tura 3) zrobione.
-- Brak sesji podrzędnych w toku. PR #108 (main ← ci/nocne-poprawki-main @ fd636db5, poprawki nocnych testów): dowody zielone, czeka na zgodę właściciela na scalenie (KO-032).
-- 07:05: start L (W-02) i M (W-05) + zadanie KO-038 i lekcja K (KO-036: pułap doby 350 USD od 07:00).
-- Do weta: KO-035…KO-038 (decyzje.md).
+## Teraz (07:15 UTC 11.11 — koordynator …VBxZrKCwRyMgDwdWZ2N, przekazanie E6 przy 27–30%)
+- Integracja `integracja-1-1` @ 5721a16e (partie 6–9; tests.yml 42922168610 zielony). W-01 zrobione. Właściciel obecny (rano), tryb analogia; pułap doby zniesiony („Zignoruj pulap…”).
+- N (PR #108 → main): lekcja K jako L-068 (b189fdb6 lokalnie); verify #1 kod 1 — wyłącznie SIGTERM Jest (main nie ma ponowienia SIGTERM z jest-ponow — jest tylko na integracji, wg M); verify #2 w toku. Drugi czerwony → PYTANIE N; rekomendacja do rozważenia: dołożyć do PR #108 commit z ponowieniem SIGTERM w jest-ponow (z integracji/M 98f7d88f) — wymaga zgody właściciela (rozszerza zakres PR), albo właściciel zgadza się na scalenie PR przez GitHub (dowody CI zielone).
+- L (W-02): A (delt_raise) lokalnie, recenzja w toku; B, C biegną, D po B; push po verify:szybkie (ok. 2–3 h od 07:00).
+- M (W-05 + KO-038): R-101-28 zaakceptowane przez właściciela 07:05 (przekazane M); push, tests.yml → odbiór, scal-galaz.
+- O (strona techniqueatlas, docs): tworzona przez subagenta 07:10 (ID do potwierdzenia: list_sessions mine, tytuł „Trening O”); polecenia/O.md @ b6393d2e.
+- Po L, M: scal-galaz (każda osobno, docs/18 i docs/49 suma), potem W-03 przekład (rola 09), W-04, W-08 wersja 1.1.0, W-10 audyt (rola 07 — na żądanie).
 - Push gałęzi stanu: symlink node_modules z /home/user/trening, verify:lekkie, push (WG-06).
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
@@ -98,7 +100,7 @@ Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm) — poprawka pozy + recenzja; fidr.move (Front Incline DB Raise) → cel +1; dług ROZJAZDY_POZA_ZAKRESEM (tests/figury-generator-odtwarza.test.ts); recenzja lokalizacji zbiorcza (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell); badacz: lokcie_pod_dlonmi w środku toru ohp, glute_floor, pewność reguł mobility_floor/kneeling_hinge; silnik: punkty dźwigni barki/uda (calf), gear.ts obrót dzwonu (kb); P3-MARSZ; PP-W1 (Plyo).
 
 ## Przypomnienia
-- Koordynatora …VBxZrKCwRyMgDwdWZ2N: trig_01AiL5yxHZ8vcMT4P5PxgUkg „kontrola” 07:05 · trig_011YeP21nR4EQzFHN7C2L5w6 „linia 05:00” (12.11) · trig_01GwWouHiGV4VjxVkV4hCfLV „linia 14:00” (11.11) · trig_01GYCSwGhnL96GuaGG6ihWKL „linia 05:00” (11.11) · trig_01GwWouHiGV4VjxVkV4hCfLV „linia 14:00” (11.11).
+- Koordynatora …VBxZrKCwRyMgDwdWZ2N (usuwa sam po przekazaniu): trig_011YeP21nR4EQzFHN7C2L5w6 „linia 05:00” (12.11) · trig_01GwWouHiGV4VjxVkV4hCfLV „linia 14:00” (11.11); kontrola 07:05 wykonana. Następca tworzy własne: kontrola (~07:45), linia 14:00 (11.11), linia 05:00 (12.11). · trig_01GYCSwGhnL96GuaGG6ihWKL „linia 05:00” (11.11) · trig_01GwWouHiGV4VjxVkV4hCfLV „linia 14:00” (11.11).
 - Poprzednika …VBvYE2fFbozZur4zSyE (sprząta sam po przekazaniu): trig_013PjVyiU2723McAFz6QkaWT „kontrola” 20:55 (trig_01TDwYCBGDv3msrvAnnQ48vb 20:15 wykonane) · trig_01Qvg8dDRPeVH2fPHecGjZx9 „linia 05:00” (11.11) · trig_01JDH2iwphAVKF6k9tarUYrw „linia 14:00” (11.11). Poprzednika …VBxgUBMb2B2LzfhY34a (sprząta poprzednik): trig_01QxyRQJjeTewKtzUAguucZC, trig_01Vgk1vUhDmi4dDud2S2YHDR.
 - Dawniej …VBxgUBMb2B2LzfhY34a: trig_01PU49LgtmRPoLtvHAwJgjJr „kontrola” 18:55 · trig_01QxyRQJjeTewKtzUAguucZC „linia 05:00” (11.11) · trig_01Vgk1vUhDmi4dDud2S2YHDR „linia 14:00” (11.11). Poprzednika …VByix2KT9Yufm3EMdpE (sprząta poprzednik): trig_01YPXLrKqrFCouPWWJ56KLXw „kontrola” 18:51, trig_01QS9jcCCnf1y7CycXpd162z, trig_01VUbUcdvPezF2qdxBmqoSem.
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
@@ -218,3 +220,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 06:50 | właściciel | „Bez weta.” → KO-035…KO-038 przyjęte; pytanie o termin publikacji strony techniqueatlas | odpowiedź: start strony po wydaniu 1.1 (ZB-017, docs/49 W-35) |
 | 2026-11-11 06:58 | L | po zad. 1 (lokalnie, deklaracje L): Straight Raises poprawione (przenikanie 0,7 cm, nie 6), test w02 13/13; fidr.move → „co najmniej do wysokości barków” (2 źródła), 33 przekłady → W-03; badacz: docs/research/w02-badacz-reguly-2026-11-11.md; recenzja delt_raise w toku; B+C biegną, D po B (C, D zatrzymane wcześniej bez commitów); reszta 2–3 h + CI | kontrola 07:05 |
 | 2026-11-11 07:05 | właściciel / M | M po zad. 1: check:release blokuje tylko R-101-28 (R-015 parser 0280aefa, R-11-01, R-11-02 zamknięte, R-018 odroczone 03.11 — do weta; KO-038 98f7d88f, audit-m1-050 608dee98; deklaracje M); właściciel: R-101-28 „Akceptuję ryzyko” → do M; strona techniqueatlas: „A: sprawdź teraz” → polecenia/O.md | start O |
+| 2026-11-11 07:15 | N / koordynator | N: L-068 b189fdb6 lokalnie; verify #1 kod 1 (tylko SIGTERM Jest, 568/570 zestawów, 0 nieudanych asercji), verify #2 w toku; koordynator 27,4% (274 tys.) → E6, lineage 6/8 (następca 7/8 — ostatni tworzony łańcuchem) | start następcy |
