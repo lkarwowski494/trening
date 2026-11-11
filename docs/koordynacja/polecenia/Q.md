@@ -1,0 +1,14 @@
+# Sesja Q: W-04a nazwy angielskie i pełna karta (ZB-025, ZB-044) — Trening
+Koordynator: session_01T66VBwLEERfcSTE1sVqA6n. Raporty, PYTANIE i PRZEKAZANIE przez `mcp__claude-code-remote__send_message` z `session_id` = to ID (ToolSearch; nie ListAgents). Zmiana koordynatora → pisz do nowego. Gałąź `koordynacja` tylko do odczytu.
+
+1. Rola: 08-programista build. Prompt roli w pierwszej wiadomości po `=== PROMPT ROLI ===` (sprawdź: 51193 B, sha256[:16] 50d63f46f7a77bba; transport może zamienić encje HTML i dodać wcięcie — porównaj po ich zdjęciu). Pierwszeństwo ma CLAUDE.md (testy przed kodem, definicja ukończenia docs/20, macierz, BRD, rejestr twierdzeń, L-047 autor ≠ recenzent).
+2. Start: gałąź `zb/w04-nazwy` utworzona od `integracja-1-1` @ d11a948d (inny HEAD integracji: zgłoś). `git fetch --unshallow`, `npm ci`. Tożsamość commitów według CLAUDE.md. Przeczytaj w docs/zobowiazania.md swoje wpisy ZB i wiersz W-04 w docs/49. Plik stanu: `docs/przekazanie/notatki/linia-1-1/STAN-W04-NAZWY.md`.
+3. Zadania (obszar: nazwy ćwiczeń, nagłówek karty, wyszukiwanie, `scripts/pokrycie-katalogu.mjs`, docs/55):
+   1. Ustal u źródła (kod, testy, docs/18), co z ZB-025 i ZB-044 już jest w integracji; raport.
+   2. ZB-025 (a) definicja „pełnej karty” w pokrycie-katalogu + test + docs/55 wygenerowane; (b) nazwy EN wg decyzji A z 31.10.2026.
+   3. ZB-044: wariant A „Podpis” (08.11.2026): nazwa angielska + lokalna pod nią (lokalne tylko po recenzji), wyszukiwanie także po nazwie lokalnej — wzorzec z docs/32, testy ekranu, scenariuszy i macierzy, Maestro jeśli zmienia przepływ (tests/przeplywy.json).
+4. Zakazy: nie scalasz do integracji ani main; nie tworzysz/archiwizujesz sesji; nie piszesz na `koordynacja`; nie zmieniasz workflowów; nigdy --no-verify ani force-push; bez AskUserQuestion; bez przekładu API (nowe teksty: klucze w słowniku PL/EN + oznaczenie do przekładu W-03 — przekład 33 języków robi później sesja roli 09), bez TestFlight i App Store Connect. Pliki poza swoim obszarem (niżej) — tylko gdy konieczne, z opisem w raporcie (równolegle pracują sesje R, S).
+5. Decyzje: tryb „analogia” — rekomendacja, wpis z datą w docs/18 (pole [wdrożenie: …], odrzucone warianty), „do weta” w raporcie. Decyzja produktowa poza zapisaną decyzją właściciela → PYTANIE do koordynatora z ≥ 2 opcjami i rekomendacją.
+6. Kontekst i koszt: od 30% okna — stan do pliku stanu, push, PRZEKAZANIE. Pułap 20 USD; po 26 USD PRZEKAZANIE.
+7. Gotowe: każde ZB zrobione z dowodem (test + commit) albo z uzasadnieniem do przeniesienia (decyzja właściciela — PYTANIE); `npm run verify:szybkie` kod 0 (wynik do pliku), push, zielony `tests.yml` na głowie; recenzja niezależna (subagent audytor bez Twojego uzasadnienia) przy kodzie; ZB w docs/zobowiazania.md i W-04 w docs/49 zaktualizowane z datą i dowodem.
+8. Raporty (≤ 10 linii): po zadaniu 1 — stan każdego ZB (zrobione/część/brak) i szacunek; PYTANIE z opcjami; PRZEKAZANIE: SHA, run, dowody, decyzje do weta, koszt, otwarte.
