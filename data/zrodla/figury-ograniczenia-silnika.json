@@ -6,8 +6,8 @@
    "cwiczenie": "Seated Cable Row",
    "ograniczenie": "uproszczenie: ławka płaska, podnóżek jako skrzynia (kontrakt nie ma siedziska maszyny z oparciem)",
    "status": "przejrzane",
-   "przejrzane_przy": "cf8ba30acd1c",
-   "powod": "przegląd recenzenta niezależnego r1, 09.11.2026: stacja złożona z ławki (siedzisko 43 cm), skrzyni pod stopy (12 cm) i wyciągu jest poprawnym kierunkowo uproszczeniem (stopy oparte, kolana ≈ 30°, miednica na siedzisku — styk w 41/41 kadrach); poprzedni opis „kontrakt nie ma rysunku stacji” był nieaktualny"
+   "przejrzane_przy": "bb05b0deffb9",
+   "powod": "przegląd recenzenta niezależnego r1, 09.11.2026: stacja złożona z ławki (siedzisko 43 cm), skrzyni pod stopy (12 cm) i wyciągu jest poprawnym kierunkowo uproszczeniem (stopy oparte, kolana ≈ 30°, miednica na siedzisku — styk w 41/41 kadrach); poprzedni opis „kontrakt nie ma rysunku stacji” był nieaktualny; przegląd po zmianie kontraktu 11.11.2026 (W-02, P1-CALF-1: doszły tylko punkty dźwigni „barki” i „uda” — poduszki maszyny na ciele): siedziska maszyny z oparciem nadal nie ma, ograniczenie istnieje"
   },
   {
    "rodzina": "chest_press_machine",
@@ -36,20 +36,6 @@
    "ograniczenie": "model gumy nie ma zaczepu do kostki",
    "status": "do_przegladu",
    "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
-  },
-  {
-   "rodzina": "hip_abd_add",
-   "cwiczenie": "Lateral Band Walk",
-   "ograniczenie": "model nie przesuwa miednicy w bok",
-   "status": "do_przegladu",
-   "powod": "prawdopodobnie nieaktualne: kontrakt poza@2 ma przesuniecieBoczne (przesunięcie boczne miednicy); sprawdzić przy przeglądzie rodziny hip_abd_add"
-  },
-  {
-   "rodzina": "hip_abd_add",
-   "cwiczenie": "Monster Walk",
-   "ograniczenie": "model nie przesuwa miednicy w bok",
-   "status": "do_przegladu",
-   "powod": "prawdopodobnie nieaktualne: kontrakt poza@2 ma przesuniecieBoczne (przesunięcie boczne miednicy); sprawdzić przy przeglądzie rodziny hip_abd_add"
   },
   {
    "rodzina": "leg_machine",
@@ -105,8 +91,8 @@
    "cwiczenie": "Yoke Walk",
    "ograniczenie": "uproszczenie sprzętu: jarzmo rysowane jako sztanga z talerzami (kontrakt sprzętu nie ma jarzma)",
    "status": "przejrzane",
-   "przejrzane_przy": "cf8ba30acd1c",
-   "powod": "recenzja niezależna r1, 10.11.2026 (strongman Ś1): położenie ciężaru i chód poprawne (gryf 12,8 cm za środkiem barków, 2,3 cm niżej, na górze pleców; dłonie na gryfie ±30 cm), więc sztanga zamiast jarzma jest dopuszczalnym, nazwanym uproszczeniem sprzętu; brak jarzma w kontrakcie sprzętu"
+   "przejrzane_przy": "bb05b0deffb9",
+   "powod": "recenzja niezależna r1, 10.11.2026 (strongman Ś1): położenie ciężaru i chód poprawne (gryf 12,8 cm za środkiem barków, 2,3 cm niżej, na górze pleców; dłonie na gryfie ±30 cm), więc sztanga zamiast jarzma jest dopuszczalnym, nazwanym uproszczeniem sprzętu; brak jarzma w kontrakcie sprzętu; przegląd po zmianie kontraktu 11.11.2026 (W-02, P1-CALF-1: doszły tylko punkty dźwigni „barki” i „uda” — poduszki maszyny na ciele): jarzma nadal nie ma (dźwignia „barki” to poduszka na prowadnicy maszyny, nie ciężar niesiony na plecach), ograniczenie istnieje"
   }
  ]
 }

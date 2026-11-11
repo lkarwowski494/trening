@@ -512,11 +512,11 @@
     },
     "Standing Calf Raise": {
       "rodzina": "calf_raise",
-      "werdykt": "wyswietlana",
-      "data": "2026-10-27",
-      "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie); skrót przeliczony 29.10.2026 po zmianie tekstu PL calf.edge (dane figury bez zmian; recenzja karty 29.10.2026)",
+      "werdykt": "zastapiona",
+      "data": "2026-11-11",
+      "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2; W-02, 11.11.2026: Standing Calf Raise zdjęty z V2_WSTRZYMANE po recenzji docs/research/recenzje/w02-calf_raise-roznica-audytor-2026-11-11.md); przy wycofaniu v2 wymaga recenzji",
       "sha": "9f988839b4bf",
-      "uwagi": "Ruch i karta zgodne. Przednia część stopy na podwyższeniu, pięty poniżej krawędzi przy rozciągnięciu, wspięcie na palce; kolana proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+      "uwagi": "Wcześniej (2026-10-27, wyswietlana jako v1, sha 9f988839b4bf): 06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie); skrót przeliczony 29.10.2026 po zmianie tekstu PL calf.edge (dane figury bez zmian; recenzja karty 29.10.2026) — Ruch i karta zgodne. Przednia część stopy na podwyższeniu, pięty poniżej krawędzi przy rozciągnięciu, wspięcie na palce; kolana proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
     },
     "Łydki na stopniu": {
       "rodzina": "calf_raise",
