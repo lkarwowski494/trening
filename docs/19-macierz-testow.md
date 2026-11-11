@@ -491,7 +491,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Anuluj edycję sesji | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Anuluj edycję szablonu | app/template/[id].tsx | tests/audit-k1-fala2b.test.tsx, tests/backlog-0.10.1-dane-ui.test.tsx, tests/edit-on-demand.test.tsx +2 |
 | Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich. | app/more/licenses.tsx | tests/audit-0.10-data-ui.test.tsx |
-| Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian. | lib/whatsnew.ts | tests/release-1.1.0.test.tsx |
+| Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian. | lib/whatsnew-wpisy.ts | tests/release-1.1.0.test.tsx |
 | Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą. | components/ExerciseCues.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-m1-006-r010-zamkniecie.test.ts, tests/audit-m1-049-critical-content.test.ts +3 |
 | Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki. | app/more/about.tsx | tests/audit-0.10-data-ui.test.tsx, tests/support-mail.test.tsx |
 | Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach. | lib/state/boot.ts | tests/audit-m1-003-guard-ui.test.tsx, tests/m1-042-migracja-drugi-start.test.tsx, tests/zk07-pierwszy-start.test.tsx |
@@ -862,7 +862,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Nazwa folderu | app/template/[id].tsx | tests/b2-plan-own-templates.test.tsx, tests/edit-on-demand.test.tsx, tests/template-folders.test.tsx |
 | Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS. | app/more/language.tsx | tests/audit-m1-064-language-ios.test.tsx |
 | Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim. | app/more/language.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +3 |
-| Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach. | lib/whatsnew.ts | tests/release-1.1.0.test.tsx |
+| Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach. | lib/whatsnew-wpisy.ts | tests/release-1.1.0.test.tsx |
 | Nic do zapisania. Odrzucić ten trening? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Nic nie odhaczono — wszystkie ćwiczenia pominięte | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx |
 | Nic nie pasuje. | app/(tabs)/progress.tsx | tests/audit-k1-fala2b.test.tsx, tests/m3-p3-postepy-historia.test.tsx, tests/matrix-logic.test.tsx +4 |
@@ -912,12 +912,12 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Notatka do serii | app/history/edit/[id].tsx | tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx, tests/scenario-full.test.tsx |
 | Notatka szablonu | components/ActiveWorkout.tsx | tests/audit-0.10-ui.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | nowa | app/more/bands.tsx | tests/asc-metadane.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx +53 |
-| Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”. | lib/whatsnew.ts | tests/release-1.1.0.test.tsx |
+| Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”. | lib/whatsnew-wpisy.ts | tests/release-1.1.0.test.tsx |
 | nowe | lib/guard.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst.test.ts +21 |
 | Nowe ćwiczenia: {n} | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nowe ćwiczenie nie zostanie zapisane. | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx |
 | nowe ćwiczenie własne | app/picker.tsx | tests/matrix-logic.test.tsx |
-| Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności. | lib/whatsnew.ts | tests/release-1.1.0.test.tsx |
+| Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności. | lib/whatsnew-wpisy.ts | tests/release-1.1.0.test.tsx |
 | Nowe miejsce | app/more/locations.tsx | tests/interaction-patterns.test.tsx, tests/scenario-full.test.tsx |
 | Nowe rekordy: {n} | components/RecordsCard.tsx | tests/audit-0.10-stats-ui.test.tsx, tests/audit-records-misc.test.tsx, tests/motyw.test.tsx +1 |
 | Nowe szablony i plan | app/generator.tsx | tests/audit-k1-bl-mer.test.tsx, tests/interaction-patterns.test.tsx, tests/m1-dec03-przelacznik.test.tsx +3 |
@@ -1138,7 +1138,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni. | components/ExerciseFigureV2.tsx | tests/figures-v2-pull-up-jedna-strona.test.tsx, tests/slownik-terminow.test.ts |
 | Rysunek ruchu: {opis} | components/ExerciseFigureV2.tsx | tests/figures-v2-data.test.tsx, tests/figures-v2-nakladka-curl-pullup.test.tsx, tests/figures-v2-nakladka-squat-hinge.test.tsx +6 |
 | Rysunek schematyczny — pozycje orientacyjne. | components/ExerciseFigure.tsx | tests/figures-v2-ui.test.tsx, tests/figures.test.tsx, tests/slownik-terminow.test.ts |
-| Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych. | lib/whatsnew.ts | tests/release-1.1.0.test.tsx |
+| Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych. | lib/whatsnew-wpisy.ts | tests/release-1.1.0.test.tsx |
 | Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}). | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx |
 | sek. | app/history/edit/[id].tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
 | Seria | lib/timer.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx +49 |
@@ -1467,7 +1467,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | zaplanowany: {name} | components/HistoryCalendar.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/motyw.test.tsx, tests/plan-calendar-ui.test.tsx |
 | Zaplanowany: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plan-calendar-ui.test.tsx, tests/plan-own-templates-ui.test.tsx +1 |
 | Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu. | app/more/settings.tsx | tests/m3-p5d-settings-ui.test.tsx, tests/voice-ui.test.tsx |
-| Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie. | lib/whatsnew.ts | tests/release-1.1.0.test.tsx |
+| Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie. | lib/whatsnew-wpisy.ts | tests/release-1.1.0.test.tsx |
 | Zapowiedzi głosowe: {mode} | components/ActiveWorkout.tsx | tests/m3-p2-board-ui.test.tsx, tests/voice-ui.test.tsx |
 | Zasady planu | app/generator.tsx | tests/guide.test.tsx, tests/zrodla-wiedzy.test.ts |
 | Zastąpić poprzednio wygenerowane, nieużywane szablony? | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/ux2-08-gen-replace-active.test.tsx |
@@ -2911,4 +2911,4 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | TestWatchEvent: done \| differ \| skip | lib/watch/test-mode.ts | tests/adapt-logic.test.ts, tests/audit-0.10-data.test.ts, tests/audit-m1b-028-watch-ack.test.ts |
 | APPLE_ONLY_LABEL_IDS (1) | lib/watchLabels.ts | tests/watch-apple-i18n.test.ts |
 | WATCH_LABEL_KEYS (2) | lib/watchLabels.ts | tests/watch-apple-i18n.test.ts |
-| WHATS_NEW (1) | lib/whatsnew.ts | tests/backlog-0.10.1-dane.test.ts, tests/guide.test.tsx, tests/mutation-bounds.test.ts +5 |
+| WHATS_NEW (1) | lib/whatsnew-wpisy.ts | tests/backlog-0.10.1-dane.test.ts, tests/guide.test.tsx, tests/mutation-bounds.test.ts +5 |

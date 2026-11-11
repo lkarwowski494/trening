@@ -193,7 +193,7 @@ describe('LOG2-02: propozycje przesunięcia liczą zmiany i zasięg względem st
 describe('LOG2-05: próg serii w przewodniku i „Co nowego” z WEEKLY_SETS_MARK (liczby w jednym miejscu)', () => {
   test('LOG2-05: teksty lib/guide.ts i lib/whatsnew.ts bez liczby serii wpisanej na sztywno; wyświetlany tekst ma wartość stałej', async () => {
     const fs = require('fs'); const path = require('path');
-    const keys = ['lib/guide.ts', 'lib/whatsnew.ts'].flatMap(f => [...String(fs.readFileSync(path.join(__dirname, '..', f), 'utf8')).matchAll(/\bt\(\s*'((?:[^'\\]|\\.)*)'/g)].map(m => m[1]));
+    const keys = ['lib/guide.ts', 'lib/whatsnew.ts', 'lib/whatsnew-wpisy.ts'].flatMap(f => [...String(fs.readFileSync(path.join(__dirname, '..', f), 'utf8')).matchAll(/\bt\(\s*'((?:[^'\\]|\\.)*)'/g)].map(m => m[1]));
     expect(keys.filter(k => /\d+\s*seri/.test(k))).toEqual([]);
     await fresh(); const { GUIDE } = require('@/lib/guide'); const { WHATS_NEW } = require('@/lib/whatsnew'); const { WEEKLY_SETS_MARK } = require('@/lib/stats');
     expect(GUIDE.find((g: { id: string }) => g.id === 'progress').steps()).toContain(`Mapa mięśni i serie na partię z kreską ${WEEKLY_SETS_MARK} serii tygodniowo.`);
