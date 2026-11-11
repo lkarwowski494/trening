@@ -81,7 +81,7 @@ describe('plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw', 
     expect([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()).toEqual(Object.keys(CUE_FULL.exercises).sort());
     expect(Object.keys(CUE_DATA.exercises)).toEqual(Object.keys(CUE_FULL.exercises).filter(ex => !CUE_DATA.hidden.includes(ex)));
     for (const [ex, x] of Object.entries(CUE_FULL.exercises)) if (!CUE_DATA.hidden.includes(ex)) for (const sec of Object.keys(x)) expect([ex, sec, CUE_DATA.exercises[ex][sec as 'setup'].map(r => r.c)]).toEqual([ex, sec, x[sec as 'setup'].map(r => r.c)]);
-    expect(Object.keys(CUE_DATA).sort()).toEqual(['basis', 'exercises', 'general', 'hidden', 'open', 'partial']);
+    expect(Object.keys(CUE_DATA).sort()).toEqual(['basis', 'exercises', 'general', 'hidden', 'open', 'partial', 'rid'] /* rid: znaczniki pochodzenia (ZB-023, 11.11.2026) — tests/provenance-guard.test.ts */);
     expect(JSON.stringify(CUE_DATA.exercises)).not.toMatch(/"s":/);
     expect(CUE_DATA.open).toEqual(Object.keys(CUE_FULL.open)); expect(CUE_DATA.partial).toEqual(CUE_FULL.partial ?? []);
   });

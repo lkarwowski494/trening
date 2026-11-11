@@ -431,6 +431,16 @@
    "path": "tests/figures-v2-kierunek-u.test.ts",
    "name": "Bosu",
    "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — strażnik kierunku u (opór z góry, core_standing, partia 8, 10.11.2026) wskazuje ćwiczenie po kluczu; nazwa wyświetlana neutralna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "data/zrodla/figures.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” jako klucz mapy znaczników pochodzenia figur v2 (ridV2, ZB-023/KO-045, 11.11.2026) — mapa niewidoczna w aplikacji; nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
+   "path": "lib/figures/data.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” jako klucz mapy znaczników pochodzenia figur v2 (ridV2, ZB-023/KO-045, 11.11.2026) — mapa niewidoczna w aplikacji; nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01)"
   }
  ]
 }

@@ -33,7 +33,7 @@ describe('plik runtime lib/figures/data.json = funkcja pełnych danych, bez nazw
     expect(FIG_DATA.exercises).toEqual(Object.fromEntries(KEYS.filter(k => !hidden.includes(k)).map(k => [k, FIG_FULL.exercises[k]])));
     for (const v of ['side', 'front'] as const) expect(FIG_DATA.rom[v]).toEqual(Object.fromEntries(Object.entries(FIG_FULL.rom[v]).map(([j, r]) => [j, { min: r.min, max: r.max }])));
     expect(FIG_DATA.open).toEqual([...Object.keys(FIG_FULL.open), ...hidden]);
-    expect(Object.keys(FIG_DATA).sort()).toEqual(['exercises', 'open', 'replaced', 'rom', 'v2'] /* replaced, v2: bramka 4 dla figur v2 (scalenie main 28.10.2026) — listy kluczy, bez nazw źródeł */);
+    expect(Object.keys(FIG_DATA).sort()).toEqual(['exercises', 'open', 'replaced', 'rid', 'ridV2', 'rom', 'v2'] /* rid, ridV2: znaczniki pochodzenia (ZB-023, KO-045, 11.11.2026) — tests/provenance-guard.test.ts; replaced, v2: bramka 4 dla figur v2 (scalenie main 28.10.2026) — listy kluczy, bez nazw źródeł */);
     expect(Object.keys(FIG_DATA.rom).sort()).toEqual(['front', 'side']);
   });
 });
