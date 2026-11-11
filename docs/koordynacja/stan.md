@@ -103,7 +103,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-037. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-038. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -207,3 +207,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 23:25 | koordynator | tests.yml 42917720413 success na 96918631 → scal-galaz kod 0 → integracja 5721a16e (docs/18 suma; różnica do 96918631 = tylko 4 pliki dokumentów J); numeruj-lekcje 0; verify:lekkie 0 (znacznik lekkie 5721a16e); push 805b11bb..5721a16e. W-01 (tura 3) zrobione. Koszt doby ≈ 325/350 USD → KO-036: nowe sesje od 07:05 (L: W-02, M: W-05) | kontrola 23:45 (tests.yml integracji), 03:45 (nightly K), linia 05:00, start L/M 07:05 |
 | 2026-11-10 23:48 | koordynator | tests.yml 42922168610 success na integracji 5721a16e; nightly K 42914472276 w toku (start 22:25) | kontrola 03:45 |
 | 2026-11-11 00:59 | K | raport 3: nightly 42914472276 attempt 1 cancelled — zadania wiążące zielone (mutacje 22/22, losowe, E2E 1/2/3), „eksperymenty (niewiążące)” przekroczyły 60 min po awarii symulatora (/deviceInfo 500 przy scenariuszu 40, niezmienianym) → rerun_failed_jobs (attempt 2, jedno powtórzenie wg CLAUDE.md); L-087: zaliczenie tylko przy całym zielonym | kontrola 03:45 |
+| 2026-11-11 02:37 | K | raport 4: nightly 42914472276 attempt 2 success (cały przebieg), tests.yml 42914460167 success na fd636db5 → KO-035 spełnione; lekcja lokalnie 1def60b7; verify:docs odmawia (gałąź ≠ same dokumenty vs main) → KO-037 (B/A) | raport K z numerem PR; prośba do właściciela o zgodę na scalenie w linii 05:00 |
