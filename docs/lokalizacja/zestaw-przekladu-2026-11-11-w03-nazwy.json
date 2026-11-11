@@ -1,0 +1,1952 @@
+{
+ "_opis": "W-03 (11.11.2026, ZB-044, KO-044 B): nazwy lokalne ćwiczeń do przekładu na 33 języki z polskich nazw (docs/lokalizacja/nazwy-lokalne.json). Rodzaj „nazwa”: poza listą PENDING testów interfejsu; nałożenie: node scripts/i18n/gen-nazwy-lokalne.mjs --z-raportu <katalog raportu>, potem recenzja.",
+ "data": "2026-11-11",
+ "klucze": [
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bench Press (sztanga)",
+   "pl": "Wyciskanie sztangi na ławce płaskiej",
+   "en": "Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bench Press (hantle)",
+   "pl": "Wyciskanie hantli na ławce płaskiej",
+   "en": "Dumbbell Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Bench Press (sztanga)",
+   "pl": "Wyciskanie sztangi na ławce skośnej",
+   "en": "Incline Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Bench Press (hantle)",
+   "pl": "Wyciskanie hantli na ławce skośnej",
+   "en": "Incline Dumbbell Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Chest Fly (hantle)",
+   "pl": "Rozpiętki z hantlami na ławce płaskiej",
+   "en": "Dumbbell Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Wyciskanie na linkach (stojąc)",
+   "pl": "Wyciskanie na wyciągach stojąc",
+   "en": "Standing Cable Chest Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Push Up",
+   "pl": "Pompki",
+   "en": "Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Push Up",
+   "pl": "Pompki z rękami na podwyższeniu",
+   "en": "Incline Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Diamond Push Up",
+   "pl": "Pompki diamentowe",
+   "en": "Diamond Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Deadlift (sztanga)",
+   "pl": "Martwy ciąg",
+   "en": "Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Deadlift (hantle)",
+   "pl": "Martwy ciąg z hantlami",
+   "en": "Dumbbell Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "RDL (sztanga)",
+   "pl": "Rumuński martwy ciąg",
+   "en": "Romanian Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "RDL (hantle/linki)",
+   "pl": "Rumuński martwy ciąg z hantlami lub linką",
+   "en": "Dumbbell or Cable Romanian Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bent Over Row (sztanga)",
+   "pl": "Wiosłowanie sztangą w opadzie tułowia",
+   "en": "Bent-Over Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bent Over Row (hantle)",
+   "pl": "Wiosłowanie hantlami w opadzie tułowia",
+   "en": "Dumbbell Bent-Over Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One Arm Row (hantle)",
+   "pl": "Wiosłowanie hantlą jednorącz",
+   "en": "Single-Arm Dumbbell Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Chest Supported Row",
+   "pl": "Wiosłowanie z oparciem klatki piersiowej",
+   "en": "Chest-Supported Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Wiosłowanie na linkach (siedząc)",
+   "pl": "Wiosłowanie na wyciągach siedząc",
+   "en": "Seated Dual-Cable Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Straight Arm Pulldown",
+   "pl": "Ściąganie prostych rąk na wyciągu",
+   "en": "Straight-Arm Pulldown",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Chin Up",
+   "pl": "Podciąganie podchwytem",
+   "en": "Chin-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Pull Up",
+   "pl": "Podciąganie nachwytem",
+   "en": "Pull-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Neutral Grip Pull Up",
+   "pl": "Podciąganie chwytem neutralnym",
+   "en": "Neutral-Grip Pull-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Shrugs (hantle)",
+   "pl": "Szrugsy z hantlami",
+   "en": "Dumbbell Shrug",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Shrugs (sztanga)",
+   "pl": "Szrugsy ze sztangą",
+   "en": "Barbell Shrug",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Overhead Press (sztanga)",
+   "pl": "Wyciskanie sztangi nad głowę",
+   "en": "Overhead Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Overhead Press (hantle)",
+   "pl": "Wyciskanie hantli nad głowę",
+   "en": "Dumbbell Overhead Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Seated Shoulder Press (hantle)",
+   "pl": "Wyciskanie hantli nad głowę siedząc",
+   "en": "Seated Dumbbell Shoulder Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lateral Raise (hantle)",
+   "pl": "Unoszenie hantli bokiem",
+   "en": "Dumbbell Lateral Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Fly (hantle)",
+   "pl": "Odwrotne rozpiętki z hantlami",
+   "en": "Dumbbell Reverse Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Upright Row (hantle)",
+   "pl": "Wiosłowanie hantlami do brody",
+   "en": "Dumbbell Upright Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Biceps Curl (hantle)",
+   "pl": "Uginanie ramion z hantlami",
+   "en": "Dumbbell Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "EZ Bar Curl",
+   "pl": "Uginanie ramion ze sztangą EZ",
+   "en": "EZ-Bar Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Curl (hantle)",
+   "pl": "Uginanie ramion z hantlami na ławce skośnej",
+   "en": "Incline Dumbbell Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Concentration Curl (hantle)",
+   "pl": "Uginanie koncentryczne z hantlą",
+   "en": "Dumbbell Concentration Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Skullcrusher (hantle)",
+   "pl": "Francuskie wyciskanie hantli leżąc",
+   "en": "Dumbbell Skull Crusher",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Skullcrusher (EZ)",
+   "pl": "Francuskie wyciskanie sztangi EZ leżąc",
+   "en": "EZ-Bar Skull Crusher",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Triceps Dips (ławka)",
+   "pl": "Dipy na ławce",
+   "en": "Bench Dip",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Overhead Triceps Extension (hantel)",
+   "pl": "Prostowanie ramienia z hantlą zza głowy",
+   "en": "Dumbbell Overhead Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Close Grip Bench Press",
+   "pl": "Wyciskanie sztangi wąskim chwytem",
+   "en": "Close-Grip Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Przysiad z pasem (linki)",
+   "pl": "Przysiad z pasem na wyciągu",
+   "en": "Cable Belt Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bulgarian Split Squat (hantle)",
+   "pl": "Przysiad bułgarski z hantlami",
+   "en": "Dumbbell Bulgarian Split Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lunges (hantle)",
+   "pl": "Wykroki z hantlami",
+   "en": "Dumbbell Lunge",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Walking Lunges",
+   "pl": "Wykroki chodzone",
+   "en": "Walking Lunge",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Step Up",
+   "pl": "Wejścia na podwyższenie",
+   "en": "Step-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Hip Thrust (sztanga)",
+   "pl": "Hip thrust",
+   "en": "Hip Thrust",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Hip Thrust (hantel)",
+   "pl": "Hip thrust z hantlą",
+   "en": "Dumbbell Hip Thrust",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Calf Press (leg press)",
+   "pl": "Wspięcia na palce na suwnicy",
+   "en": "Leg Press Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Walk (bieżnia)",
+   "pl": "Marsz na bieżni pod górę",
+   "en": "Incline Treadmill Walk",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Burpees",
+   "pl": "Burpees",
+   "en": "Burpee",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Chest Fly (hantle)",
+   "pl": "Rozpiętki z hantlami na ławce skośnej",
+   "en": "Incline Dumbbell Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Decline Bench Press (hantle)",
+   "pl": "Wyciskanie hantli głową w dół",
+   "en": "Decline Dumbbell Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Floor Press (hantle)",
+   "pl": "Wyciskanie hantli leżąc na podłodze",
+   "en": "Dumbbell Floor Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Floor Press (sztanga)",
+   "pl": "Wyciskanie sztangi leżąc na podłodze",
+   "en": "Floor Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Squeeze Press (hantle)",
+   "pl": "Wyciskanie hantli ze ściskaniem",
+   "en": "Dumbbell Squeeze Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Fly (low to high)",
+   "pl": "Rozpiętki na wyciągach z dołu do góry",
+   "en": "Low-to-High Cable Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Fly (high to low)",
+   "pl": "Rozpiętki na wyciągach z góry na dół",
+   "en": "High-to-Low Cable Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm Cable Fly",
+   "pl": "Rozpiętki na wyciągu jednorącz",
+   "en": "Single-Arm Cable Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm Cable Chest Press",
+   "pl": "Wyciskanie na wyciągu jednorącz",
+   "en": "Single-Arm Cable Chest Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Decline Push Up",
+   "pl": "Pompki z nogami na podwyższeniu",
+   "en": "Decline Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Machine Incline Press",
+   "pl": "Wyciskanie na suwnicy Smitha na ławce skośnej",
+   "en": "Incline Smith Machine Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Pullover (hantel)",
+   "pl": "Pullover z hantlą",
+   "en": "Dumbbell Pullover",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm Cable Row",
+   "pl": "Wiosłowanie na wyciągu jednorącz",
+   "en": "Single-Arm Cable Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bent Over Row (linki)",
+   "pl": "Wiosłowanie na wyciągu w opadzie tułowia",
+   "en": "Cable Bent-Over Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Seal Row (sztanga)",
+   "pl": "Wiosłowanie sztangą z oparciem na ławce",
+   "en": "Barbell Seal Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm Lat Pulldown",
+   "pl": "Ściąganie drążka wyciągu jednorącz",
+   "en": "Single-Arm Lat Pulldown",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Shrugs (linki)",
+   "pl": "Szrugsy na wyciągu",
+   "en": "Cable Shrug",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm Overhead Press (hantel)",
+   "pl": "Wyciskanie hantli nad głowę jednorącz",
+   "en": "Single-Arm Dumbbell Overhead Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Y Raise (hantle)",
+   "pl": "Unoszenie hantli w literę Y",
+   "en": "Dumbbell Y Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Upright Row (linki)",
+   "pl": "Wiosłowanie na wyciągu do brody",
+   "en": "Cable Upright Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Upright Row (sztanga)",
+   "pl": "Wiosłowanie sztangą do brody",
+   "en": "Barbell Upright Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Pike Push Up",
+   "pl": "Pompki w pozycji odwróconego V",
+   "en": "Pike Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Handstand Push Up",
+   "pl": "Pompki w staniu na rękach",
+   "en": "Handstand Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "External Rotation (linki)",
+   "pl": "Rotacja zewnętrzna na wyciągu",
+   "en": "Cable External Rotation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "External Rotation (hantel)",
+   "pl": "Rotacja zewnętrzna z hantlą",
+   "en": "Dumbbell External Rotation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Band Pull Apart",
+   "pl": "Rozciąganie gumy w poziomie",
+   "en": "Band Pull-Apart",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Hammer Curl (linki)",
+   "pl": "Uginanie młotkowe na wyciągu",
+   "en": "Cable Hammer Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Curl (dwie linki)",
+   "pl": "Uginanie ramion na dwóch wyciągach",
+   "en": "Dual-Cable Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Preacher Curl (EZ)",
+   "pl": "Uginanie ramion ze sztangą EZ na modlitewniku",
+   "en": "EZ-Bar Preacher Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Wrist Curl (hantle)",
+   "pl": "Uginanie nadgarstków z hantlami",
+   "en": "Dumbbell Wrist Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Wrist Curl (hantle)",
+   "pl": "Uginanie nadgarstków nachwytem z hantlami",
+   "en": "Dumbbell Reverse Wrist Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm Triceps Pushdown",
+   "pl": "Prostowanie ramienia na wyciągu jednorącz",
+   "en": "Single-Arm Triceps Pushdown",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Triceps Kickback (linki)",
+   "pl": "Odwodzenie ramienia do tyłu na wyciągu",
+   "en": "Cable Triceps Kickback",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Overhead Triceps Extension (EZ)",
+   "pl": "Prostowanie ramion ze sztangą EZ zza głowy",
+   "en": "EZ-Bar Overhead Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Skullcrusher (sztanga)",
+   "pl": "Francuskie wyciskanie sztangi leżąc",
+   "en": "Barbell Skull Crusher",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg RDL (hantel)",
+   "pl": "Rumuński martwy ciąg na jednej nodze z hantlą",
+   "en": "Single-Leg Dumbbell Romanian Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg RDL (linki)",
+   "pl": "Rumuński martwy ciąg jednonóż na wyciągu",
+   "en": "Single-Leg Cable Romanian Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg Press",
+   "pl": "Wypychanie na suwnicy jedną nogą",
+   "en": "Single-Leg Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Split Squat (linki)",
+   "pl": "Przysiad split na wyciągu",
+   "en": "Cable Split Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Sumo Squat (hantel)",
+   "pl": "Przysiad sumo z hantlą",
+   "en": "Dumbbell Sumo Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lunges (sztanga)",
+   "pl": "Wykroki ze sztangą",
+   "en": "Barbell Lunge",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leg Curl (hantel)",
+   "pl": "Uginanie nóg z hantlą",
+   "en": "Dumbbell Leg Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Pull Through",
+   "pl": "Przeciąganie wyciągu między nogami",
+   "en": "Cable Pull-Through",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg Glute Bridge",
+   "pl": "Mostek biodrowy na jednej nodze",
+   "en": "Single-Leg Glute Bridge",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg Hip Thrust",
+   "pl": "Hip thrust na jednej nodze",
+   "en": "Single-Leg Hip Thrust",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Glute Bridge (sztanga)",
+   "pl": "Mostek biodrowy ze sztangą",
+   "en": "Barbell Glute Bridge",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Sumo Deadlift (kettlebell)",
+   "pl": "Martwy ciąg sumo z kettlebell",
+   "en": "Kettlebell Sumo Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg Calf Raise",
+   "pl": "Wspięcia na palce na jednej nodze",
+   "en": "Single-Leg Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Seated Calf Raise (hantle)",
+   "pl": "Wspięcia na palce siedząc z hantlami",
+   "en": "Seated Dumbbell Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Calf Raise (sztanga)",
+   "pl": "Wspięcia na palce ze sztangą",
+   "en": "Barbell Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Calf Raise (linki)",
+   "pl": "Wspięcia na palce na wyciągu",
+   "en": "Cable Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Toes to Bar",
+   "pl": "Toes to bar",
+   "en": "Toes-to-Bar",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Plank Shoulder Taps",
+   "pl": "Podpórka z dotykaniem barków",
+   "en": "Plank Shoulder Tap",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "GHD Sit Up",
+   "pl": "Brzuszki na maszynie GHD",
+   "en": "GHD Sit-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Sit Up",
+   "pl": "Brzuszki",
+   "en": "Sit-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Rollout (sztanga)",
+   "pl": "Wyjazdy ze sztangą",
+   "en": "Barbell Rollout",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Side Bend (hantel)",
+   "pl": "Skłony boczne z hantlą",
+   "en": "Dumbbell Side Bend",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Turkish Get Up",
+   "pl": "Turkish get-up",
+   "en": "Turkish Get-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Overhead Carry (hantle)",
+   "pl": "Spacer z hantlami nad głową",
+   "en": "Dumbbell Overhead Carry",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Farmer's Walk (trap bar)",
+   "pl": "Spacer farmera ze sztangą trap bar",
+   "en": "Trap Bar Farmer's Walk",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Snatch (hantel)",
+   "pl": "Rwanie hantlą",
+   "en": "Dumbbell Snatch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Thruster (hantle)",
+   "pl": "Thruster z hantlami",
+   "en": "Dumbbell Thruster",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Arm RDL (hantel/linka)",
+   "pl": "Rumuński martwy ciąg jednorącz, hantla lub wyciąg",
+   "en": "Single-Arm Dumbbell or Cable Romanian Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Belt Squat Machine",
+   "pl": "Przysiad z pasem na maszynie",
+   "en": "Machine Belt Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Around The Worlds",
+   "pl": "Okrążanie hantlami po łuku",
+   "en": "Around the World",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Flat Bench Dumbbell Fly",
+   "pl": "Rozpiętka z hantlą jednorącz na ławce",
+   "en": "Single-Arm Dumbbell Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Kettlebell Floor Press",
+   "pl": "Wyciskanie kettlebell z podłogi jednorącz",
+   "en": "Single-Arm Kettlebell Floor Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One Arm Dumbbell Bench Press",
+   "pl": "Wyciskanie hantli jednorącz na ławce",
+   "en": "Single-Arm Dumbbell Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Wide-Grip Barbell Bench Press",
+   "pl": "Wyciskanie sztangi na ławce szerokim chwytem",
+   "en": "Wide-Grip Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Front Raise And Pullover",
+   "pl": "Unoszenie ramion w przód z pullover",
+   "en": "Front Raise and Pullover",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Wide-Grip Decline Barbell Pullover",
+   "pl": "Pullover ze sztangą głową w dół",
+   "en": "Decline Wide-Grip Barbell Pullover",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Machine Decline Press",
+   "pl": "Wyciskanie na suwnicy Smitha głową w dół",
+   "en": "Decline Smith Machine Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leverage Decline Chest Press",
+   "pl": "Wyciskanie na maszynie głową w dół",
+   "en": "Decline Machine Chest Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leverage Incline Chest Press",
+   "pl": "Wyciskanie na maszynie na ławce skośnej",
+   "en": "Incline Machine Chest Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Push-Up Wide",
+   "pl": "Pompki szeroko",
+   "en": "Wide-Grip Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Push Up to Side Plank",
+   "pl": "Pompka z przejściem do deski bocznej",
+   "en": "Push-Up to Side Plank",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Isometric Wipers",
+   "pl": "Izometryczne wycieraczki",
+   "en": "Isometric Wiper",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Push-Ups With Feet On A Stability Ball",
+   "pl": "Pompki z nogami na piłce gimnastycznej",
+   "en": "Push-Up with Feet on Stability Ball",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Push-Up Reverse Grip",
+   "pl": "Pompki odwrotnym chwytem na podwyższeniu",
+   "en": "Incline Reverse-Grip Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Plyo Kettlebell Push-Ups",
+   "pl": "Pompki z wybicia z kettlebell",
+   "en": "Plyo Kettlebell Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Barbell Shrug Behind The Back",
+   "pl": "Szrugsy ze sztangą za plecami",
+   "en": "Barbell Shrug Behind the Back",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Calf-Machine Shoulder Shrug",
+   "pl": "Szrugsy na maszynie do łydek",
+   "en": "Calf Raise Machine Shrug",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Full Range-Of-Motion Lat Pulldown",
+   "pl": "Ściąganie drążka pełnym zakresem ruchu",
+   "en": "Full-Range-of-Motion Lat Pulldown",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Gironda Sternum Chins",
+   "pl": "Podciąganie do mostka w stylu Girondy",
+   "en": "Gironda Sternum Chin-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Muscle Up",
+   "pl": "Muscle-up",
+   "en": "Muscle-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Kneeling High Pulley Row",
+   "pl": "Wiosłowanie na wyciągu górnym w klęku",
+   "en": "Kneeling High Cable Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leverage High Row",
+   "pl": "Wiosłowanie na maszynie z górnym uchwytem",
+   "en": "Machine High Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leverage Shrug",
+   "pl": "Szrugsy na maszynie",
+   "en": "Machine Shrug",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "London Bridges",
+   "pl": "London bridge",
+   "en": "London Bridge",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Mixed Grip Chin",
+   "pl": "Podciąganie chwytem mieszanym",
+   "en": "Mixed-Grip Chin-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One Arm Chin-Up",
+   "pl": "Podciąganie jednorącz",
+   "en": "Single-Arm Chin-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Grip Bent Over Row",
+   "pl": "Wiosłowanie sztangą podchwytem w opadzie",
+   "en": "Reverse-Grip Bent-Over Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Seated Good Mornings",
+   "pl": "Dzień dobry siedząc",
+   "en": "Seated Good Morning",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Side To Side Chins",
+   "pl": "Podciąganie ze zmianą strony",
+   "en": "Side-to-Side Pull-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Machine Behind the Back Shrug",
+   "pl": "Szrugsy na suwnicy Smitha za plecami",
+   "en": "Smith Machine Shrug Behind the Back",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Machine Bent Over Row",
+   "pl": "Wiosłowanie na suwnicy Smitha w opadzie",
+   "en": "Smith Machine Bent-Over Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Wide-Grip Pulldown Behind The Neck",
+   "pl": "Ściąganie drążka szerokim chwytem za kark",
+   "en": "Wide-Grip Pulldown Behind the Neck",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Standing Barbell Press Behind Neck",
+   "pl": "Wyciskanie sztangi zza karku stojąc",
+   "en": "Standing Barbell Press Behind the Neck",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Push Press - Behind the Neck",
+   "pl": "Wyciskanie zza karku z wyskoku",
+   "en": "Push Press Behind the Neck",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "See-Saw Press (Alternating Side Press)",
+   "pl": "Wyciskanie kettlebell naprzemiennie z boku",
+   "en": "See-Saw Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Kettlebell Seated Press",
+   "pl": "Wyciskanie kettlebell siedząc",
+   "en": "Seated Kettlebell Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Kettlebell Push Press",
+   "pl": "Wyciskanie kettlebell z wyskoku jednorącz",
+   "en": "Single-Arm Kettlebell Push Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Kettlebell Jerk",
+   "pl": "Jerk z kettlebell jednorącz",
+   "en": "Single-Arm Kettlebell Jerk",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Kettlebell Split Jerk",
+   "pl": "Split jerk z kettlebell jednorącz",
+   "en": "Single-Arm Kettlebell Split Jerk",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Lateral Raise (hantel)",
+   "pl": "Unoszenie hantli bokiem jednorącz",
+   "en": "Single-Arm Dumbbell Lateral Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Incline Lateral Raise",
+   "pl": "Unoszenie hantli bokiem jednorącz, ławka skośna",
+   "en": "Incline Single-Arm Dumbbell Lateral Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Seated Lateral Raise",
+   "pl": "Unoszenie ramion bokiem na wyciągu siedząc",
+   "en": "Seated Cable Lateral Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Front Incline Dumbbell Raise",
+   "pl": "Unoszenie hantli w przód na ławce skośnej",
+   "en": "Incline Dumbbell Front Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Straight Raises on Incline Bench",
+   "pl": "Unoszenie sztangi na ławce skośnej leżąc przodem",
+   "en": "Straight-Arm Raise on Incline Bench",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Car Drivers",
+   "pl": "Obroty talerzem jak kierownicą",
+   "en": "Car Driver",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Kettlebell Pirate Ships",
+   "pl": "Pirate ship z kettlebell",
+   "en": "Kettlebell Pirate Ship",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell Incline Shoulder Raise",
+   "pl": "Unoszenie hantli na barki na ławce skośnej",
+   "en": "Incline Dumbbell Shoulder Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Barbell Incline Shoulder Raise",
+   "pl": "Unoszenie sztangi na barki na ławce skośnej",
+   "en": "Incline Barbell Shoulder Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Incline Shoulder Raise",
+   "pl": "Unoszenie na barki na suwnicy Smitha, ławka skośna",
+   "en": "Incline Smith Machine Shoulder Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell One-Arm Upright Row",
+   "pl": "Wiosłowanie hantlą do brody jednorącz",
+   "en": "Single-Arm Dumbbell Upright Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Machine One-Arm Upright Row",
+   "pl": "Wiosłowanie do brody na suwnicy Smitha jednorącz",
+   "en": "Single-Arm Smith Machine Upright Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell Lying One-Arm Rear Lateral Raise",
+   "pl": "Unoszenie hantli w tył leżąc jednorącz",
+   "en": "Lying Single-Arm Dumbbell Rear Lateral Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Flyes With External Rotation",
+   "pl": "Odwrotne rozpiętki z rotacją zewnętrzną",
+   "en": "Reverse Fly with External Rotation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Cable Rear Lateral Raise",
+   "pl": "Unoszenie ramion w tył na wyciągu jednorącz",
+   "en": "Single-Arm Cable Rear Lateral Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Rope Rear-Delt Rows",
+   "pl": "Wiosłowanie liną na wyciągu na tył barków",
+   "en": "Cable Rope Rear Delt Row",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Sled Reverse Flye",
+   "pl": "Odwrotne rozpiętki na wyciągu z sankami",
+   "en": "Sled Reverse Fly",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Isometric Neck Exercise - Front And Back",
+   "pl": "Izometryczne napinanie szyi przód i tył",
+   "en": "Front and Back Isometric Neck Hold",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Isometric Neck Exercise - Sides",
+   "pl": "Izometryczne napinanie szyi na boki",
+   "en": "Side Isometric Neck Hold",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lying Neck Extension (talerz)",
+   "pl": "Prostowanie szyi leżąc z talerzem",
+   "en": "Lying Plate Neck Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lying Neck Flexion (talerz)",
+   "pl": "Zginanie szyi leżąc z talerzem",
+   "en": "Lying Plate Neck Flexion",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Kettlebell Clean and Jerk",
+   "pl": "Clean and jerk z kettlebell jednorącz",
+   "en": "Single-Arm Kettlebell Clean and Jerk",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Spider Curl (sztanga)",
+   "pl": "Uginanie pająka ze sztangą",
+   "en": "Barbell Spider Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Seated Close-Grip Concentration Barbell Curl",
+   "pl": "Uginanie koncentryczne ze sztangą siedząc",
+   "en": "Seated Close-Grip Barbell Concentration Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lying Supine Dumbbell Curl",
+   "pl": "Uginanie ramion z hantlami leżąc",
+   "en": "Lying Dumbbell Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One Arm Dumbbell Preacher Curl",
+   "pl": "Uginanie z hantlą na modlitewniku jednorącz",
+   "en": "Single-Arm Dumbbell Preacher Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Standing One-Arm Cable Curl",
+   "pl": "Uginanie ramienia na wyciągu stojąc jednorącz",
+   "en": "Standing Single-Arm Cable Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lying Close-Grip Bar Curl On High Pulley",
+   "pl": "Uginanie ramion na górnym wyciągu leżąc",
+   "en": "Lying Close-Grip High Cable Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell Lying Pronation",
+   "pl": "Pronacja leżąc z hantlą",
+   "en": "Lying Dumbbell Pronation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell Lying Supination",
+   "pl": "Supinacja leżąc z hantlą",
+   "en": "Lying Dumbbell Supination",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Dumbbell Wrist Curl",
+   "pl": "Uginanie nadgarstka z hantlą jednorącz",
+   "en": "Single-Arm Dumbbell Wrist Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Dumbbell Reverse Wrist Curl",
+   "pl": "Uginanie nadgarstka nachwytem z hantlą jednorącz",
+   "en": "Single-Arm Dumbbell Reverse Wrist Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Behind-the-Back Barbell Wrist Curl",
+   "pl": "Uginanie nadgarstków ze sztangą za plecami",
+   "en": "Barbell Wrist Curl Behind the Back",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Plate Curls",
+   "pl": "Uginanie ramion z talerzem nachwytem",
+   "en": "Reverse Plate Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bottoms-Up Clean From The Hang Position",
+   "pl": "Bottoms-up clean z zawisu",
+   "en": "Bottoms-Up Clean from the Hang Position",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Farmer's Walk (Farmers Handles)",
+   "pl": "Spacer farmera z uchwytami",
+   "en": "Farmer's Walk with Handles",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Smith Machine Close-Grip Bench Press",
+   "pl": "Wyciskanie wąskim chwytem na suwnicy Smitha",
+   "en": "Close-Grip Smith Machine Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Grip Bench Press",
+   "pl": "Wyciskanie sztangi na ławce odwrotnym chwytem",
+   "en": "Reverse-Grip Bench Press",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Decline Close-Grip Bench To Skull Crusher",
+   "pl": "Wyciskanie wąsko do francuskiego głową w dół",
+   "en": "Decline Close-Grip Bench to Skull Crusher",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Decline EZ Bar Triceps Extension",
+   "pl": "Prostowanie ramion ze sztangą EZ głową w dół",
+   "en": "Decline EZ-Bar Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+   "pl": "Francuskie wyciskanie sztangi wąsko zza głowy",
+   "en": "Lying Close-Grip Barbell Triceps Extension Behind the Head",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Lying Dumbbell Triceps Extension",
+   "pl": "Prostowanie ramienia z hantlą leżąc jednorącz",
+   "en": "Lying Single-Arm Dumbbell Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell One-Arm Triceps Extension",
+   "pl": "Prostowanie ramienia z hantlą jednorącz",
+   "en": "Single-Arm Dumbbell Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Incline Triceps Extension",
+   "pl": "Prostowanie ramion na wyciągu, ławka skośna",
+   "en": "Incline Cable Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Lying Triceps Extension",
+   "pl": "Prostowanie ramion na wyciągu leżąc",
+   "en": "Lying Cable Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Reverse Grip Triceps Pushdown",
+   "pl": "Prostowanie ramion na wyciągu podchwytem",
+   "en": "Reverse-Grip Triceps Pushdown",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Standing Low-Pulley One-Arm Triceps Extension",
+   "pl": "Prostowanie ramienia na dolnym wyciągu jednorącz",
+   "en": "Standing Single-Arm Low Cable Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dip Machine",
+   "pl": "Dipy na maszynie",
+   "en": "Machine Dip",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Ring Dips",
+   "pl": "Dipy na kółkach",
+   "en": "Ring Dip",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Incline Push-Up Close-Grip",
+   "pl": "Pompki wąsko z rękami na podwyższeniu",
+   "en": "Incline Close-Grip Push-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Barbell Step Up",
+   "pl": "Wejścia na podwyższenie ze sztangą",
+   "en": "Barbell Step-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bulgarian Split Squat (sztanga)",
+   "pl": "Przysiad bułgarski ze sztangą",
+   "en": "Barbell Bulgarian Split Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Overhead Kettlebell Squat",
+   "pl": "Przysiad z kettlebell nad głową jednorącz",
+   "en": "Single-Arm Kettlebell Overhead Squat",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leverage Deadlift",
+   "pl": "Martwy ciąg na maszynie",
+   "en": "Machine Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Side Deadlift",
+   "pl": "Martwy ciąg z boku jednorącz",
+   "en": "Single-Arm Side Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Sled Drag (Harness)",
+   "pl": "Ciągnięcie sań w szelkach",
+   "en": "Sled Drag with Harness",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Alternate Leg Diagonal Bound",
+   "pl": "Naprzemienny skok po przekątnej",
+   "en": "Alternate-Leg Diagonal Bound",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Alternate Leg Push-Off",
+   "pl": "Naprzemienne wyskoki z nogi na skrzyni",
+   "en": "Alternate-Leg Push-Off",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg Push-Off",
+   "pl": "Wyskok z nogi na skrzyni",
+   "en": "Single-Leg Push-Off",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Side to Side Box Shuffle",
+   "pl": "Przeskoki na podwyższeniu z boku na bok",
+   "en": "Side-to-Side Box Shuffle",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell Seated Box Jump",
+   "pl": "Wskoki na skrzynię z hantlami siedząc",
+   "en": "Seated Dumbbell Box Jump",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Double Leg Butt Kick",
+   "pl": "Podskoki z piętami do pośladków obunóż",
+   "en": "Double-Leg Butt Kick",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Single Leg Butt Kick",
+   "pl": "Podskoki z piętami do pośladków jednonóż",
+   "en": "Single-Leg Butt Kick",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Front Cone Hops",
+   "pl": "Skoki przez pachołek w przód",
+   "en": "Front Cone Hop",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Barbell Seated Calf Raise",
+   "pl": "Wspięcia na palce siedząc ze sztangą",
+   "en": "Seated Barbell Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Downward Facing Balance",
+   "pl": "Balans w pozycji twarzą w dół",
+   "en": "Downward-Facing Balance",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Dumbbell Seated One-Leg Calf Raise",
+   "pl": "Wspięcia na palce siedząc jednonóż z hantlą",
+   "en": "Seated Single-Leg Dumbbell Calf Raise",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Prone Flutter Kicks",
+   "pl": "Nożyce leżąc na brzuchu",
+   "en": "Prone Flutter Kick",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Lateral Cone Hops",
+   "pl": "Skoki przez pachołek w bok",
+   "en": "Lateral Cone Hop",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Kettlebell Swings",
+   "pl": "Wymachy kettlebell jednorącz",
+   "en": "Single-Arm Kettlebell Swing",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Stiff-Legged Barbell Deadlift",
+   "pl": "Martwy ciąg na prostych nogach",
+   "en": "Stiff-Legged Deadlift",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Alternate Heel Touchers",
+   "pl": "Naprzemienne dotykanie pięt",
+   "en": "Alternate Heel Toucher",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Bosu Ball Cable Crunch With Side Bends",
+   "pl": "Brzuszki na wyciągu ze skłonami, półkula",
+   "en": "Balance Dome Cable Crunch with Side Bends",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Butt-Ups",
+   "pl": "Unoszenie bioder z leżenia",
+   "en": "Butt-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Russian Twists",
+   "pl": "Rosyjskie skręty na wyciągu",
+   "en": "Cable Russian Twist",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Seated Crunch",
+   "pl": "Brzuszki na wyciągu siedząc",
+   "en": "Seated Cable Crunch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cocoons",
+   "pl": "Kokony",
+   "en": "Cocoon",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Crunch - Hands Overhead",
+   "pl": "Brzuszki z rękami nad głową",
+   "en": "Crunch with Hands Overhead",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Crunch - Legs On Exercise Ball",
+   "pl": "Brzuszki z nogami na piłce gimnastycznej",
+   "en": "Crunch with Legs on Stability Ball",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Frog Sit-Ups",
+   "pl": "Brzuszki żabki",
+   "en": "Frog Sit-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Gorilla Chin/Crunch",
+   "pl": "Podciągnięcie z brzuszkiem w stylu goryla",
+   "en": "Gorilla Chin-Up Crunch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Kneeling Cable Crunch With Alternating Oblique Twists",
+   "pl": "Brzuszki na wyciągu w klęku ze skrętami",
+   "en": "Kneeling Cable Crunch with Alternating Oblique Twists",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Oblique Crunches - On The Floor",
+   "pl": "Brzuszki skośne na podłodze",
+   "en": "Oblique Crunch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm High-Pulley Cable Side Bends",
+   "pl": "Skłony boczne na górnym wyciągu jednorącz",
+   "en": "Single-Arm High Cable Side Bend",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One-Arm Medicine Ball Slam",
+   "pl": "Rzut piłką lekarską o podłoże jednorącz",
+   "en": "Single-Arm Medicine Ball Slam",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Pallof Press With Rotation",
+   "pl": "Pallof press z rotacją",
+   "en": "Pallof Press with Rotation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Seated Flat Bench Leg Pull-In",
+   "pl": "Przyciąganie nóg siedząc na ławce",
+   "en": "Seated Leg Pull-In",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Sledgehammer Swings",
+   "pl": "Uderzenia młotem w oponę",
+   "en": "Sledgehammer Swing",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Supine One-Arm Overhead Throw",
+   "pl": "Rzut jednorącz nad głowę leżąc na plecach",
+   "en": "Supine Single-Arm Overhead Throw",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Weighted Sit-Ups - With Bands",
+   "pl": "Brzuszki na ławce skośnej z gumą",
+   "en": "Decline Band Sit-Up",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Chest And Front Of Shoulder Stretch",
+   "pl": "Rozciąganie klatki piersiowej i przodu barków",
+   "en": "Chest and Front of Shoulder Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Chin To Chest Stretch",
+   "pl": "Rozciąganie karku w skłonie brody do klatki",
+   "en": "Chin-to-Chest Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leg Swings (Front-to-Back)",
+   "pl": "Wymachy nóg w przód i w tył",
+   "en": "Front-to-Back Leg Swings",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Groiners",
+   "pl": "Groiners",
+   "en": "Groiner",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Hip Circles (Prone)",
+   "pl": "Krążenia bioder leżąc na brzuchu",
+   "en": "Prone Hip Circles",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Iron Crosses (Stretch)",
+   "pl": "Rozciąganie żelazny krzyż",
+   "en": "Iron Cross Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "One Knee To Chest",
+   "pl": "Kolano do klatki piersiowej",
+   "en": "One Knee to Chest",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Round The World Shoulder Stretch",
+   "pl": "Rozciąganie barków z krążeniem ramion",
+   "en": "Round-the-World Shoulder Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Leg Swings (Side-to-Side)",
+   "pl": "Wymachy nóg na boki",
+   "en": "Side-to-Side Leg Swings",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Standing Soleus And Achilles Stretch",
+   "pl": "Rozciąganie soleus i ścięgna Achillesa stojąc",
+   "en": "Standing Soleus and Achilles Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Standing Toe Touches",
+   "pl": "Dotykanie palców stóp stojąc",
+   "en": "Standing Toe Touch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "The Straddle",
+   "pl": "Rozciąganie w rozkroku",
+   "en": "Straddle Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Adductor-SMR",
+   "pl": "Roller na przywodziciele",
+   "en": "Adductor Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Calves-SMR",
+   "pl": "Roller na łydki",
+   "en": "Calf Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Foam Roll: Hamstrings",
+   "pl": "Roller na tył uda",
+   "en": "Hamstring Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Iliotibial Tract-SMR",
+   "pl": "Roller na pasmo biodrowo-piszczelowe",
+   "en": "IT Band Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Latissimus Dorsi-SMR",
+   "pl": "Roller na najszerszy grzbietu",
+   "en": "Lat Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Peroneals-SMR",
+   "pl": "Roller na mięśnie strzałkowe",
+   "en": "Peroneal Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Piriformis-SMR",
+   "pl": "Roller na mięsień gruszkowaty",
+   "en": "Piriformis Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Foam Roll: Quadriceps",
+   "pl": "Roller na przód uda",
+   "en": "Quad Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Rhomboids-SMR",
+   "pl": "Roller na górną część pleców",
+   "en": "Upper Back Foam Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Foot-SMR",
+   "pl": "Roller na stopę",
+   "en": "Foot Roll",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Frog Hops",
+   "pl": "Żabie skoki",
+   "en": "Frog Hop",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Toe Touchers",
+   "pl": "Dotykanie palców stóp leżąc",
+   "en": "Toe Toucher",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Treadmill Walking",
+   "pl": "Marsz na bieżni",
+   "en": "Treadmill Walk",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Overhead Extension",
+   "pl": "Prostowanie ramion nad głową na wyciągu",
+   "en": "Cable Overhead Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Standing Overhead Barbell Triceps Extension",
+   "pl": "Prostowanie ramion ze sztangą nad głową",
+   "en": "Standing Barbell Overhead Triceps Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Preacher Hammer Dumbbell Curl",
+   "pl": "Uginanie młotkowe z hantlami na modlitewniku",
+   "en": "Dumbbell Preacher Hammer Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "External Rotation with Band",
+   "pl": "Rotacja zewnętrzna z gumą",
+   "en": "Band External Rotation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Internal Rotation with Band",
+   "pl": "Rotacja wewnętrzna z gumą",
+   "en": "Band Internal Rotation",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Hip Flexion with Band",
+   "pl": "Zginanie biodra z gumą",
+   "en": "Band Hip Flexion",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Hip Extension with Bands",
+   "pl": "Prostowanie biodra z gumami",
+   "en": "Band Hip Extension",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cross Body Hammer Curl",
+   "pl": "Uginanie młotkowe po przekątnej",
+   "en": "Cross-Body Hammer Curl",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Side Lying Groin Stretch",
+   "pl": "Rozciąganie pachwiny leżąc na boku",
+   "en": "Side-Lying Groin Stretch",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  },
+  {
+   "rodzaj": "nazwa",
+   "katalog": "Cable Crunch With Side Bends (półkula balansowa)",
+   "pl": "Brzuszki na wyciągu ze skłonami, półkula",
+   "en": "Balance Dome Cable Crunch with Side Bends",
+   "kontekst": "NAZWA ĆWICZENIA (karta, wyszukiwanie): jak mówią na siłowni w tym języku; sprzęt zachowaj"
+  }
+ ]
+}

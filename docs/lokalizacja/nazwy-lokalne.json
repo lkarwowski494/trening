@@ -1,0 +1,886 @@
+{
+ "_opis": "Nazwy lokalne ćwiczeń biblioteki (ZB-044; KO-044 B, W-03 11.11.2026): klucz katalogu → nazwa w każdym języku poza angielskim. Do lib/nazwy-lokalne.ts trafia język tylko z recenzją „zatwierdzone” (autor ≠ recenzent, L-047): node scripts/i18n/gen-nazwy-lokalne.mjs --write. Polskie nazwy: rola tłumacza (11.11.2026, z nazw EN i opisów ruchu w repo); 33 języki: przekład API z polskich i angielskich nazw.",
+ "jezyki": {
+  "pl": {
+   "autor": "tlumacz (agent, 11.11.2026)",
+   "recenzja": null
+  }
+ },
+ "uwagi": {
+  "Shrugs (hantle)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Shrugs (sztanga)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Skullcrusher (hantle)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Skullcrusher (EZ)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Hip Thrust (sztanga)": "= EN",
+  "Shrugs (linki)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Skullcrusher (sztanga)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Turkish Get Up": "= EN",
+  "Around The Worlds": "niepewne: potoczna nazwa PL niepewna",
+  "Front Raise And Pullover": "niepewne: ruch niejasny",
+  "Barbell Shrug Behind The Back": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Calf-Machine Shoulder Shrug": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Muscle Up": "= EN",
+  "Leverage Shrug": "do recenzji (brak hasła w slownik-terminow.json)",
+  "London Bridges": "= EN",
+  "Smith Machine Behind the Back Shrug": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Straight Raises on Incline Bench": "z opisu: lib/cues/text/pl.json (sri.setup, sri.move)",
+  "Car Drivers": "z opisu: lib/cues/text/pl.json (cdr.move)",
+  "Kettlebell Pirate Ships": "niepewne: ruch niejasny",
+  "Sled Reverse Flye": "z opisu: lib/cues/text/pl.json (srf.setup)",
+  "Decline Close-Grip Bench To Skull Crusher": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Lying Close-Grip Barbell Triceps Extension Behind The Head": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Alternate Leg Push-Off": "z opisu: lib/cues/text/pl.json (plyo.altPushoff.move)",
+  "Single Leg Push-Off": "z opisu: lib/cues/text/pl.json (plyo.pushoff.setup), bez własnego opisu ruchu; niepewne: brak opisu dla tego klucza",
+  "Downward Facing Balance": "niepewne: ruch niejasny",
+  "Butt-Ups": "niepewne: ruch Butt-Ups (unoszenie bioder z leżenia?)",
+  "Gorilla Chin/Crunch": "niepewne: nazwa EN niejasna",
+  "Groiners": "niepewne: ruch (przysiad z wyrzutem nogi na bok); nazwa powszechna po angielsku",
+  "Adductor-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Calves-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Foam Roll: Hamstrings": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Iliotibial Tract-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Latissimus Dorsi-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Peroneals-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Piriformis-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Foam Roll: Quadriceps": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Rhomboids-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Foot-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Frog Hops": "niepewne: ruch niejasny"
+ },
+ "nazwy": {
+  "Bench Press (sztanga)": {
+   "pl": "Wyciskanie sztangi na ławce płaskiej"
+  },
+  "Bench Press (hantle)": {
+   "pl": "Wyciskanie hantli na ławce płaskiej"
+  },
+  "Incline Bench Press (sztanga)": {
+   "pl": "Wyciskanie sztangi na ławce skośnej"
+  },
+  "Incline Bench Press (hantle)": {
+   "pl": "Wyciskanie hantli na ławce skośnej"
+  },
+  "Chest Fly (hantle)": {
+   "pl": "Rozpiętki z hantlami na ławce płaskiej"
+  },
+  "Wyciskanie na linkach (stojąc)": {
+   "pl": "Wyciskanie na wyciągach stojąc"
+  },
+  "Push Up": {
+   "pl": "Pompki"
+  },
+  "Incline Push Up": {
+   "pl": "Pompki z rękami na podwyższeniu"
+  },
+  "Diamond Push Up": {
+   "pl": "Pompki diamentowe"
+  },
+  "Deadlift (sztanga)": {
+   "pl": "Martwy ciąg"
+  },
+  "Deadlift (hantle)": {
+   "pl": "Martwy ciąg z hantlami"
+  },
+  "RDL (sztanga)": {
+   "pl": "Rumuński martwy ciąg"
+  },
+  "RDL (hantle/linki)": {
+   "pl": "Rumuński martwy ciąg z hantlami lub linką"
+  },
+  "Bent Over Row (sztanga)": {
+   "pl": "Wiosłowanie sztangą w opadzie tułowia"
+  },
+  "Bent Over Row (hantle)": {
+   "pl": "Wiosłowanie hantlami w opadzie tułowia"
+  },
+  "One Arm Row (hantle)": {
+   "pl": "Wiosłowanie hantlą jednorącz"
+  },
+  "Chest Supported Row": {
+   "pl": "Wiosłowanie z oparciem klatki piersiowej"
+  },
+  "Wiosłowanie na linkach (siedząc)": {
+   "pl": "Wiosłowanie na wyciągach siedząc"
+  },
+  "Straight Arm Pulldown": {
+   "pl": "Ściąganie prostych rąk na wyciągu"
+  },
+  "Chin Up": {
+   "pl": "Podciąganie podchwytem"
+  },
+  "Pull Up": {
+   "pl": "Podciąganie nachwytem"
+  },
+  "Neutral Grip Pull Up": {
+   "pl": "Podciąganie chwytem neutralnym"
+  },
+  "Shrugs (hantle)": {
+   "pl": "Szrugsy z hantlami"
+  },
+  "Shrugs (sztanga)": {
+   "pl": "Szrugsy ze sztangą"
+  },
+  "Overhead Press (sztanga)": {
+   "pl": "Wyciskanie sztangi nad głowę"
+  },
+  "Overhead Press (hantle)": {
+   "pl": "Wyciskanie hantli nad głowę"
+  },
+  "Seated Shoulder Press (hantle)": {
+   "pl": "Wyciskanie hantli nad głowę siedząc"
+  },
+  "Lateral Raise (hantle)": {
+   "pl": "Unoszenie hantli bokiem"
+  },
+  "Reverse Fly (hantle)": {
+   "pl": "Odwrotne rozpiętki z hantlami"
+  },
+  "Upright Row (hantle)": {
+   "pl": "Wiosłowanie hantlami do brody"
+  },
+  "Biceps Curl (hantle)": {
+   "pl": "Uginanie ramion z hantlami"
+  },
+  "EZ Bar Curl": {
+   "pl": "Uginanie ramion ze sztangą EZ"
+  },
+  "Incline Curl (hantle)": {
+   "pl": "Uginanie ramion z hantlami na ławce skośnej"
+  },
+  "Concentration Curl (hantle)": {
+   "pl": "Uginanie koncentryczne z hantlą"
+  },
+  "Skullcrusher (hantle)": {
+   "pl": "Francuskie wyciskanie hantli leżąc"
+  },
+  "Skullcrusher (EZ)": {
+   "pl": "Francuskie wyciskanie sztangi EZ leżąc"
+  },
+  "Triceps Dips (ławka)": {
+   "pl": "Dipy na ławce"
+  },
+  "Overhead Triceps Extension (hantel)": {
+   "pl": "Prostowanie ramienia z hantlą zza głowy"
+  },
+  "Close Grip Bench Press": {
+   "pl": "Wyciskanie sztangi wąskim chwytem"
+  },
+  "Przysiad z pasem (linki)": {
+   "pl": "Przysiad z pasem na wyciągu"
+  },
+  "Bulgarian Split Squat (hantle)": {
+   "pl": "Przysiad bułgarski z hantlami"
+  },
+  "Lunges (hantle)": {
+   "pl": "Wykroki z hantlami"
+  },
+  "Walking Lunges": {
+   "pl": "Wykroki chodzone"
+  },
+  "Step Up": {
+   "pl": "Wejścia na podwyższenie"
+  },
+  "Hip Thrust (sztanga)": {
+   "pl": "Hip thrust"
+  },
+  "Hip Thrust (hantel)": {
+   "pl": "Hip thrust z hantlą"
+  },
+  "Calf Press (leg press)": {
+   "pl": "Wspięcia na palce na suwnicy"
+  },
+  "Incline Walk (bieżnia)": {
+   "pl": "Marsz na bieżni pod górę"
+  },
+  "Burpees": {
+   "pl": "Burpees"
+  },
+  "Incline Chest Fly (hantle)": {
+   "pl": "Rozpiętki z hantlami na ławce skośnej"
+  },
+  "Decline Bench Press (hantle)": {
+   "pl": "Wyciskanie hantli głową w dół"
+  },
+  "Floor Press (hantle)": {
+   "pl": "Wyciskanie hantli leżąc na podłodze"
+  },
+  "Floor Press (sztanga)": {
+   "pl": "Wyciskanie sztangi leżąc na podłodze"
+  },
+  "Squeeze Press (hantle)": {
+   "pl": "Wyciskanie hantli ze ściskaniem"
+  },
+  "Cable Fly (low to high)": {
+   "pl": "Rozpiętki na wyciągach z dołu do góry"
+  },
+  "Cable Fly (high to low)": {
+   "pl": "Rozpiętki na wyciągach z góry na dół"
+  },
+  "Single Arm Cable Fly": {
+   "pl": "Rozpiętki na wyciągu jednorącz"
+  },
+  "Single Arm Cable Chest Press": {
+   "pl": "Wyciskanie na wyciągu jednorącz"
+  },
+  "Decline Push Up": {
+   "pl": "Pompki z nogami na podwyższeniu"
+  },
+  "Smith Machine Incline Press": {
+   "pl": "Wyciskanie na suwnicy Smitha na ławce skośnej"
+  },
+  "Pullover (hantel)": {
+   "pl": "Pullover z hantlą"
+  },
+  "Single Arm Cable Row": {
+   "pl": "Wiosłowanie na wyciągu jednorącz"
+  },
+  "Bent Over Row (linki)": {
+   "pl": "Wiosłowanie na wyciągu w opadzie tułowia"
+  },
+  "Seal Row (sztanga)": {
+   "pl": "Wiosłowanie sztangą z oparciem na ławce"
+  },
+  "Single Arm Lat Pulldown": {
+   "pl": "Ściąganie drążka wyciągu jednorącz"
+  },
+  "Shrugs (linki)": {
+   "pl": "Szrugsy na wyciągu"
+  },
+  "Single Arm Overhead Press (hantel)": {
+   "pl": "Wyciskanie hantli nad głowę jednorącz"
+  },
+  "Y Raise (hantle)": {
+   "pl": "Unoszenie hantli w literę Y"
+  },
+  "Upright Row (linki)": {
+   "pl": "Wiosłowanie na wyciągu do brody"
+  },
+  "Upright Row (sztanga)": {
+   "pl": "Wiosłowanie sztangą do brody"
+  },
+  "Pike Push Up": {
+   "pl": "Pompki w pozycji odwróconego V"
+  },
+  "Handstand Push Up": {
+   "pl": "Pompki w staniu na rękach"
+  },
+  "External Rotation (linki)": {
+   "pl": "Rotacja zewnętrzna na wyciągu"
+  },
+  "External Rotation (hantel)": {
+   "pl": "Rotacja zewnętrzna z hantlą"
+  },
+  "Band Pull Apart": {
+   "pl": "Rozciąganie gumy w poziomie"
+  },
+  "Hammer Curl (linki)": {
+   "pl": "Uginanie młotkowe na wyciągu"
+  },
+  "Cable Curl (dwie linki)": {
+   "pl": "Uginanie ramion na dwóch wyciągach"
+  },
+  "Preacher Curl (EZ)": {
+   "pl": "Uginanie ramion ze sztangą EZ na modlitewniku"
+  },
+  "Wrist Curl (hantle)": {
+   "pl": "Uginanie nadgarstków z hantlami"
+  },
+  "Reverse Wrist Curl (hantle)": {
+   "pl": "Uginanie nadgarstków nachwytem z hantlami"
+  },
+  "Single Arm Triceps Pushdown": {
+   "pl": "Prostowanie ramienia na wyciągu jednorącz"
+  },
+  "Triceps Kickback (linki)": {
+   "pl": "Odwodzenie ramienia do tyłu na wyciągu"
+  },
+  "Overhead Triceps Extension (EZ)": {
+   "pl": "Prostowanie ramion ze sztangą EZ zza głowy"
+  },
+  "Skullcrusher (sztanga)": {
+   "pl": "Francuskie wyciskanie sztangi leżąc"
+  },
+  "Single Leg RDL (hantel)": {
+   "pl": "Rumuński martwy ciąg na jednej nodze z hantlą"
+  },
+  "Single Leg RDL (linki)": {
+   "pl": "Rumuński martwy ciąg jednonóż na wyciągu"
+  },
+  "Single Leg Press": {
+   "pl": "Wypychanie na suwnicy jedną nogą"
+  },
+  "Split Squat (linki)": {
+   "pl": "Przysiad split na wyciągu"
+  },
+  "Sumo Squat (hantel)": {
+   "pl": "Przysiad sumo z hantlą"
+  },
+  "Lunges (sztanga)": {
+   "pl": "Wykroki ze sztangą"
+  },
+  "Leg Curl (hantel)": {
+   "pl": "Uginanie nóg z hantlą"
+  },
+  "Cable Pull Through": {
+   "pl": "Przeciąganie wyciągu między nogami"
+  },
+  "Single Leg Glute Bridge": {
+   "pl": "Mostek biodrowy na jednej nodze"
+  },
+  "Single Leg Hip Thrust": {
+   "pl": "Hip thrust na jednej nodze"
+  },
+  "Glute Bridge (sztanga)": {
+   "pl": "Mostek biodrowy ze sztangą"
+  },
+  "Sumo Deadlift (kettlebell)": {
+   "pl": "Martwy ciąg sumo z kettlebell"
+  },
+  "Single Leg Calf Raise": {
+   "pl": "Wspięcia na palce na jednej nodze"
+  },
+  "Seated Calf Raise (hantle)": {
+   "pl": "Wspięcia na palce siedząc z hantlami"
+  },
+  "Calf Raise (sztanga)": {
+   "pl": "Wspięcia na palce ze sztangą"
+  },
+  "Calf Raise (linki)": {
+   "pl": "Wspięcia na palce na wyciągu"
+  },
+  "Toes to Bar": {
+   "pl": "Toes to bar"
+  },
+  "Plank Shoulder Taps": {
+   "pl": "Podpórka z dotykaniem barków"
+  },
+  "GHD Sit Up": {
+   "pl": "Brzuszki na maszynie GHD"
+  },
+  "Sit Up": {
+   "pl": "Brzuszki"
+  },
+  "Rollout (sztanga)": {
+   "pl": "Wyjazdy ze sztangą"
+  },
+  "Side Bend (hantel)": {
+   "pl": "Skłony boczne z hantlą"
+  },
+  "Turkish Get Up": {
+   "pl": "Turkish get-up"
+  },
+  "Overhead Carry (hantle)": {
+   "pl": "Spacer z hantlami nad głową"
+  },
+  "Farmer's Walk (trap bar)": {
+   "pl": "Spacer farmera ze sztangą trap bar"
+  },
+  "Snatch (hantel)": {
+   "pl": "Rwanie hantlą"
+  },
+  "Thruster (hantle)": {
+   "pl": "Thruster z hantlami"
+  },
+  "Single Arm RDL (hantel/linka)": {
+   "pl": "Rumuński martwy ciąg jednorącz, hantla lub wyciąg"
+  },
+  "Belt Squat Machine": {
+   "pl": "Przysiad z pasem na maszynie"
+  },
+  "Around The Worlds": {
+   "pl": "Okrążanie hantlami po łuku"
+  },
+  "One-Arm Flat Bench Dumbbell Fly": {
+   "pl": "Rozpiętka z hantlą jednorącz na ławce"
+  },
+  "One-Arm Kettlebell Floor Press": {
+   "pl": "Wyciskanie kettlebell z podłogi jednorącz"
+  },
+  "One Arm Dumbbell Bench Press": {
+   "pl": "Wyciskanie hantli jednorącz na ławce"
+  },
+  "Wide-Grip Barbell Bench Press": {
+   "pl": "Wyciskanie sztangi na ławce szerokim chwytem"
+  },
+  "Front Raise And Pullover": {
+   "pl": "Unoszenie ramion w przód z pullover"
+  },
+  "Wide-Grip Decline Barbell Pullover": {
+   "pl": "Pullover ze sztangą głową w dół"
+  },
+  "Smith Machine Decline Press": {
+   "pl": "Wyciskanie na suwnicy Smitha głową w dół"
+  },
+  "Leverage Decline Chest Press": {
+   "pl": "Wyciskanie na maszynie głową w dół"
+  },
+  "Leverage Incline Chest Press": {
+   "pl": "Wyciskanie na maszynie na ławce skośnej"
+  },
+  "Push-Up Wide": {
+   "pl": "Pompki szeroko"
+  },
+  "Push Up to Side Plank": {
+   "pl": "Pompka z przejściem do deski bocznej"
+  },
+  "Isometric Wipers": {
+   "pl": "Izometryczne wycieraczki"
+  },
+  "Push-Ups With Feet On A Stability Ball": {
+   "pl": "Pompki z nogami na piłce gimnastycznej"
+  },
+  "Incline Push-Up Reverse Grip": {
+   "pl": "Pompki odwrotnym chwytem na podwyższeniu"
+  },
+  "Plyo Kettlebell Push-Ups": {
+   "pl": "Pompki z wybicia z kettlebell"
+  },
+  "Barbell Shrug Behind The Back": {
+   "pl": "Szrugsy ze sztangą za plecami"
+  },
+  "Calf-Machine Shoulder Shrug": {
+   "pl": "Szrugsy na maszynie do łydek"
+  },
+  "Full Range-Of-Motion Lat Pulldown": {
+   "pl": "Ściąganie drążka pełnym zakresem ruchu"
+  },
+  "Gironda Sternum Chins": {
+   "pl": "Podciąganie do mostka w stylu Girondy"
+  },
+  "Muscle Up": {
+   "pl": "Muscle-up"
+  },
+  "Kneeling High Pulley Row": {
+   "pl": "Wiosłowanie na wyciągu górnym w klęku"
+  },
+  "Leverage High Row": {
+   "pl": "Wiosłowanie na maszynie z górnym uchwytem"
+  },
+  "Leverage Shrug": {
+   "pl": "Szrugsy na maszynie"
+  },
+  "London Bridges": {
+   "pl": "London bridge"
+  },
+  "Mixed Grip Chin": {
+   "pl": "Podciąganie chwytem mieszanym"
+  },
+  "One Arm Chin-Up": {
+   "pl": "Podciąganie jednorącz"
+  },
+  "Reverse Grip Bent Over Row": {
+   "pl": "Wiosłowanie sztangą podchwytem w opadzie"
+  },
+  "Seated Good Mornings": {
+   "pl": "Dzień dobry siedząc"
+  },
+  "Side To Side Chins": {
+   "pl": "Podciąganie ze zmianą strony"
+  },
+  "Smith Machine Behind the Back Shrug": {
+   "pl": "Szrugsy na suwnicy Smitha za plecami"
+  },
+  "Smith Machine Bent Over Row": {
+   "pl": "Wiosłowanie na suwnicy Smitha w opadzie"
+  },
+  "Wide-Grip Pulldown Behind The Neck": {
+   "pl": "Ściąganie drążka szerokim chwytem za kark"
+  },
+  "Standing Barbell Press Behind Neck": {
+   "pl": "Wyciskanie sztangi zza karku stojąc"
+  },
+  "Push Press - Behind the Neck": {
+   "pl": "Wyciskanie zza karku z wyskoku"
+  },
+  "See-Saw Press (Alternating Side Press)": {
+   "pl": "Wyciskanie kettlebell naprzemiennie z boku"
+  },
+  "Kettlebell Seated Press": {
+   "pl": "Wyciskanie kettlebell siedząc"
+  },
+  "One-Arm Kettlebell Push Press": {
+   "pl": "Wyciskanie kettlebell z wyskoku jednorącz"
+  },
+  "One-Arm Kettlebell Jerk": {
+   "pl": "Jerk z kettlebell jednorącz"
+  },
+  "One-Arm Kettlebell Split Jerk": {
+   "pl": "Split jerk z kettlebell jednorącz"
+  },
+  "One-Arm Lateral Raise (hantel)": {
+   "pl": "Unoszenie hantli bokiem jednorącz"
+  },
+  "One-Arm Incline Lateral Raise": {
+   "pl": "Unoszenie hantli bokiem jednorącz, ławka skośna"
+  },
+  "Cable Seated Lateral Raise": {
+   "pl": "Unoszenie ramion bokiem na wyciągu siedząc"
+  },
+  "Front Incline Dumbbell Raise": {
+   "pl": "Unoszenie hantli w przód na ławce skośnej"
+  },
+  "Straight Raises on Incline Bench": {
+   "pl": "Unoszenie sztangi na ławce skośnej leżąc przodem"
+  },
+  "Car Drivers": {
+   "pl": "Obroty talerzem jak kierownicą"
+  },
+  "Kettlebell Pirate Ships": {
+   "pl": "Pirate ship z kettlebell"
+  },
+  "Dumbbell Incline Shoulder Raise": {
+   "pl": "Unoszenie hantli na barki na ławce skośnej"
+  },
+  "Barbell Incline Shoulder Raise": {
+   "pl": "Unoszenie sztangi na barki na ławce skośnej"
+  },
+  "Smith Incline Shoulder Raise": {
+   "pl": "Unoszenie na barki na suwnicy Smitha, ławka skośna"
+  },
+  "Dumbbell One-Arm Upright Row": {
+   "pl": "Wiosłowanie hantlą do brody jednorącz"
+  },
+  "Smith Machine One-Arm Upright Row": {
+   "pl": "Wiosłowanie do brody na suwnicy Smitha jednorącz"
+  },
+  "Dumbbell Lying One-Arm Rear Lateral Raise": {
+   "pl": "Unoszenie hantli w tył leżąc jednorącz"
+  },
+  "Reverse Flyes With External Rotation": {
+   "pl": "Odwrotne rozpiętki z rotacją zewnętrzną"
+  },
+  "One-Arm Cable Rear Lateral Raise": {
+   "pl": "Unoszenie ramion w tył na wyciągu jednorącz"
+  },
+  "Cable Rope Rear-Delt Rows": {
+   "pl": "Wiosłowanie liną na wyciągu na tył barków"
+  },
+  "Sled Reverse Flye": {
+   "pl": "Odwrotne rozpiętki na wyciągu z sankami"
+  },
+  "Isometric Neck Exercise - Front And Back": {
+   "pl": "Izometryczne napinanie szyi przód i tył"
+  },
+  "Isometric Neck Exercise - Sides": {
+   "pl": "Izometryczne napinanie szyi na boki"
+  },
+  "Lying Neck Extension (talerz)": {
+   "pl": "Prostowanie szyi leżąc z talerzem"
+  },
+  "Lying Neck Flexion (talerz)": {
+   "pl": "Zginanie szyi leżąc z talerzem"
+  },
+  "One-Arm Kettlebell Clean and Jerk": {
+   "pl": "Clean and jerk z kettlebell jednorącz"
+  },
+  "Spider Curl (sztanga)": {
+   "pl": "Uginanie pająka ze sztangą"
+  },
+  "Seated Close-Grip Concentration Barbell Curl": {
+   "pl": "Uginanie koncentryczne ze sztangą siedząc"
+  },
+  "Lying Supine Dumbbell Curl": {
+   "pl": "Uginanie ramion z hantlami leżąc"
+  },
+  "One Arm Dumbbell Preacher Curl": {
+   "pl": "Uginanie z hantlą na modlitewniku jednorącz"
+  },
+  "Standing One-Arm Cable Curl": {
+   "pl": "Uginanie ramienia na wyciągu stojąc jednorącz"
+  },
+  "Lying Close-Grip Bar Curl On High Pulley": {
+   "pl": "Uginanie ramion na górnym wyciągu leżąc"
+  },
+  "Dumbbell Lying Pronation": {
+   "pl": "Pronacja leżąc z hantlą"
+  },
+  "Dumbbell Lying Supination": {
+   "pl": "Supinacja leżąc z hantlą"
+  },
+  "One-Arm Dumbbell Wrist Curl": {
+   "pl": "Uginanie nadgarstka z hantlą jednorącz"
+  },
+  "One-Arm Dumbbell Reverse Wrist Curl": {
+   "pl": "Uginanie nadgarstka nachwytem z hantlą jednorącz"
+  },
+  "Behind-the-Back Barbell Wrist Curl": {
+   "pl": "Uginanie nadgarstków ze sztangą za plecami"
+  },
+  "Reverse Plate Curls": {
+   "pl": "Uginanie ramion z talerzem nachwytem"
+  },
+  "Bottoms-Up Clean From The Hang Position": {
+   "pl": "Bottoms-up clean z zawisu"
+  },
+  "Farmer's Walk (Farmers Handles)": {
+   "pl": "Spacer farmera z uchwytami"
+  },
+  "Smith Machine Close-Grip Bench Press": {
+   "pl": "Wyciskanie wąskim chwytem na suwnicy Smitha"
+  },
+  "Reverse Grip Bench Press": {
+   "pl": "Wyciskanie sztangi na ławce odwrotnym chwytem"
+  },
+  "Decline Close-Grip Bench To Skull Crusher": {
+   "pl": "Wyciskanie wąsko do francuskiego głową w dół"
+  },
+  "Decline EZ Bar Triceps Extension": {
+   "pl": "Prostowanie ramion ze sztangą EZ głową w dół"
+  },
+  "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
+   "pl": "Francuskie wyciskanie sztangi wąsko zza głowy"
+  },
+  "One-Arm Lying Dumbbell Triceps Extension": {
+   "pl": "Prostowanie ramienia z hantlą leżąc jednorącz"
+  },
+  "Dumbbell One-Arm Triceps Extension": {
+   "pl": "Prostowanie ramienia z hantlą jednorącz"
+  },
+  "Cable Incline Triceps Extension": {
+   "pl": "Prostowanie ramion na wyciągu, ławka skośna"
+  },
+  "Cable Lying Triceps Extension": {
+   "pl": "Prostowanie ramion na wyciągu leżąc"
+  },
+  "Reverse Grip Triceps Pushdown": {
+   "pl": "Prostowanie ramion na wyciągu podchwytem"
+  },
+  "Standing Low-Pulley One-Arm Triceps Extension": {
+   "pl": "Prostowanie ramienia na dolnym wyciągu jednorącz"
+  },
+  "Dip Machine": {
+   "pl": "Dipy na maszynie"
+  },
+  "Ring Dips": {
+   "pl": "Dipy na kółkach"
+  },
+  "Incline Push-Up Close-Grip": {
+   "pl": "Pompki wąsko z rękami na podwyższeniu"
+  },
+  "Barbell Step Up": {
+   "pl": "Wejścia na podwyższenie ze sztangą"
+  },
+  "Bulgarian Split Squat (sztanga)": {
+   "pl": "Przysiad bułgarski ze sztangą"
+  },
+  "One-Arm Overhead Kettlebell Squat": {
+   "pl": "Przysiad z kettlebell nad głową jednorącz"
+  },
+  "Leverage Deadlift": {
+   "pl": "Martwy ciąg na maszynie"
+  },
+  "One-Arm Side Deadlift": {
+   "pl": "Martwy ciąg z boku jednorącz"
+  },
+  "Sled Drag (Harness)": {
+   "pl": "Ciągnięcie sań w szelkach"
+  },
+  "Alternate Leg Diagonal Bound": {
+   "pl": "Naprzemienny skok po przekątnej"
+  },
+  "Alternate Leg Push-Off": {
+   "pl": "Naprzemienne wyskoki z nogi na skrzyni"
+  },
+  "Single Leg Push-Off": {
+   "pl": "Wyskok z nogi na skrzyni"
+  },
+  "Side to Side Box Shuffle": {
+   "pl": "Przeskoki na podwyższeniu z boku na bok"
+  },
+  "Dumbbell Seated Box Jump": {
+   "pl": "Wskoki na skrzynię z hantlami siedząc"
+  },
+  "Double Leg Butt Kick": {
+   "pl": "Podskoki z piętami do pośladków obunóż"
+  },
+  "Single Leg Butt Kick": {
+   "pl": "Podskoki z piętami do pośladków jednonóż"
+  },
+  "Front Cone Hops": {
+   "pl": "Skoki przez pachołek w przód"
+  },
+  "Barbell Seated Calf Raise": {
+   "pl": "Wspięcia na palce siedząc ze sztangą"
+  },
+  "Downward Facing Balance": {
+   "pl": "Balans w pozycji twarzą w dół"
+  },
+  "Dumbbell Seated One-Leg Calf Raise": {
+   "pl": "Wspięcia na palce siedząc jednonóż z hantlą"
+  },
+  "Prone Flutter Kicks": {
+   "pl": "Nożyce leżąc na brzuchu"
+  },
+  "Lateral Cone Hops": {
+   "pl": "Skoki przez pachołek w bok"
+  },
+  "One-Arm Kettlebell Swings": {
+   "pl": "Wymachy kettlebell jednorącz"
+  },
+  "Stiff-Legged Barbell Deadlift": {
+   "pl": "Martwy ciąg na prostych nogach"
+  },
+  "Alternate Heel Touchers": {
+   "pl": "Naprzemienne dotykanie pięt"
+  },
+  "Bosu Ball Cable Crunch With Side Bends": {
+   "pl": "Brzuszki na wyciągu ze skłonami, półkula"
+  },
+  "Butt-Ups": {
+   "pl": "Unoszenie bioder z leżenia"
+  },
+  "Cable Russian Twists": {
+   "pl": "Rosyjskie skręty na wyciągu"
+  },
+  "Cable Seated Crunch": {
+   "pl": "Brzuszki na wyciągu siedząc"
+  },
+  "Cocoons": {
+   "pl": "Kokony"
+  },
+  "Crunch - Hands Overhead": {
+   "pl": "Brzuszki z rękami nad głową"
+  },
+  "Crunch - Legs On Exercise Ball": {
+   "pl": "Brzuszki z nogami na piłce gimnastycznej"
+  },
+  "Frog Sit-Ups": {
+   "pl": "Brzuszki żabki"
+  },
+  "Gorilla Chin/Crunch": {
+   "pl": "Podciągnięcie z brzuszkiem w stylu goryla"
+  },
+  "Kneeling Cable Crunch With Alternating Oblique Twists": {
+   "pl": "Brzuszki na wyciągu w klęku ze skrętami"
+  },
+  "Oblique Crunches - On The Floor": {
+   "pl": "Brzuszki skośne na podłodze"
+  },
+  "One-Arm High-Pulley Cable Side Bends": {
+   "pl": "Skłony boczne na górnym wyciągu jednorącz"
+  },
+  "One-Arm Medicine Ball Slam": {
+   "pl": "Rzut piłką lekarską o podłoże jednorącz"
+  },
+  "Pallof Press With Rotation": {
+   "pl": "Pallof press z rotacją"
+  },
+  "Seated Flat Bench Leg Pull-In": {
+   "pl": "Przyciąganie nóg siedząc na ławce"
+  },
+  "Sledgehammer Swings": {
+   "pl": "Uderzenia młotem w oponę"
+  },
+  "Supine One-Arm Overhead Throw": {
+   "pl": "Rzut jednorącz nad głowę leżąc na plecach"
+  },
+  "Weighted Sit-Ups - With Bands": {
+   "pl": "Brzuszki na ławce skośnej z gumą"
+  },
+  "Chest And Front Of Shoulder Stretch": {
+   "pl": "Rozciąganie klatki piersiowej i przodu barków"
+  },
+  "Chin To Chest Stretch": {
+   "pl": "Rozciąganie karku w skłonie brody do klatki"
+  },
+  "Leg Swings (Front-to-Back)": {
+   "pl": "Wymachy nóg w przód i w tył"
+  },
+  "Groiners": {
+   "pl": "Groiners"
+  },
+  "Hip Circles (Prone)": {
+   "pl": "Krążenia bioder leżąc na brzuchu"
+  },
+  "Iron Crosses (Stretch)": {
+   "pl": "Rozciąganie żelazny krzyż"
+  },
+  "One Knee To Chest": {
+   "pl": "Kolano do klatki piersiowej"
+  },
+  "Round The World Shoulder Stretch": {
+   "pl": "Rozciąganie barków z krążeniem ramion"
+  },
+  "Leg Swings (Side-to-Side)": {
+   "pl": "Wymachy nóg na boki"
+  },
+  "Standing Soleus And Achilles Stretch": {
+   "pl": "Rozciąganie soleus i ścięgna Achillesa stojąc"
+  },
+  "Standing Toe Touches": {
+   "pl": "Dotykanie palców stóp stojąc"
+  },
+  "The Straddle": {
+   "pl": "Rozciąganie w rozkroku"
+  },
+  "Adductor-SMR": {
+   "pl": "Roller na przywodziciele"
+  },
+  "Calves-SMR": {
+   "pl": "Roller na łydki"
+  },
+  "Foam Roll: Hamstrings": {
+   "pl": "Roller na tył uda"
+  },
+  "Iliotibial Tract-SMR": {
+   "pl": "Roller na pasmo biodrowo-piszczelowe"
+  },
+  "Latissimus Dorsi-SMR": {
+   "pl": "Roller na najszerszy grzbietu"
+  },
+  "Peroneals-SMR": {
+   "pl": "Roller na mięśnie strzałkowe"
+  },
+  "Piriformis-SMR": {
+   "pl": "Roller na mięsień gruszkowaty"
+  },
+  "Foam Roll: Quadriceps": {
+   "pl": "Roller na przód uda"
+  },
+  "Rhomboids-SMR": {
+   "pl": "Roller na górną część pleców"
+  },
+  "Foot-SMR": {
+   "pl": "Roller na stopę"
+  },
+  "Frog Hops": {
+   "pl": "Żabie skoki"
+  },
+  "Toe Touchers": {
+   "pl": "Dotykanie palców stóp leżąc"
+  },
+  "Treadmill Walking": {
+   "pl": "Marsz na bieżni"
+  },
+  "Cable Overhead Extension": {
+   "pl": "Prostowanie ramion nad głową na wyciągu"
+  },
+  "Standing Overhead Barbell Triceps Extension": {
+   "pl": "Prostowanie ramion ze sztangą nad głową"
+  },
+  "Preacher Hammer Dumbbell Curl": {
+   "pl": "Uginanie młotkowe z hantlami na modlitewniku"
+  },
+  "External Rotation with Band": {
+   "pl": "Rotacja zewnętrzna z gumą"
+  },
+  "Internal Rotation with Band": {
+   "pl": "Rotacja wewnętrzna z gumą"
+  },
+  "Hip Flexion with Band": {
+   "pl": "Zginanie biodra z gumą"
+  },
+  "Hip Extension with Bands": {
+   "pl": "Prostowanie biodra z gumami"
+  },
+  "Cross Body Hammer Curl": {
+   "pl": "Uginanie młotkowe po przekątnej"
+  },
+  "Side Lying Groin Stretch": {
+   "pl": "Rozciąganie pachwiny leżąc na boku"
+  },
+  "Cable Crunch With Side Bends (półkula balansowa)": {
+   "pl": "Brzuszki na wyciągu ze skłonami, półkula"
+  }
+ }
+}
