@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Pakaitomis",
  "Pozycje na rysunku: {lista}": "Padėtys piešinyje: {lista}",
  "Na rysunku: {lista}": "Piešinyje: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nauji judesio piešiniai tricepsų pratimams, užmetimams, rovimams ir jų variantams.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Nauji ir patobulinti atlikimo technikos patarimai, be kita ko, pečių, sprogstamosios jėgos ir mobilumo pratimams.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Balso pranešimams naudojamas geriausias telefone įdiegtas balsas.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Naujas naudotojas pradeda ekrane „Treniruotė“ nuo mygtuko „Pradėti pirmąją treniruotę“ ir lentos „Pirmoji treniruotė“.",
@@ -1811,6 +1810,7 @@
  "Powrót": "Grįžimas",
  "Rozsuwanie": "Tempimas į šonus",
  "Ściąganie": "Traukimas",
+ "Przyciąganie": "Traukimas",
  "Uginanie": "Lenkimas",
  "Marsz": "Ėjimas",
  "Grzbiet w dół": "Nugara žemyn",
@@ -1819,5 +1819,7 @@
  "Rzut": "Metimas",
  "Czego unikać": "Ko vengti",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Telefonas naudoja paprastą balsą. Geresnį atsisiųskite iOS nustatymuose (Prieinamumas).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Programa dabar vadinasi {app}. Treniruotės, šablonai ir nustatymai lieka nepakeisti."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Programa dabar vadinasi {app}. Treniruotės, šablonai ir nustatymai lieka nepakeisti.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Dabar dauguma bibliotekos pratimų turi judesio piešinius: treniruokliai ir blokai, kettlebell, šuoliai, pilvo pratimai, mobilumas ir daug kitų.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Bibliotekos pratimų pavadinimai yra anglų kalba, kaip daugumoje sporto salių. Pratimo kortelėje po pavadinimu rodomas pavadinimas jūsų kalba, o paieška randa pratimą pagal bet kurį iš jų."
 }

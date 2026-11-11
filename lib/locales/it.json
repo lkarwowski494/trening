@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Alternato",
  "Pozycje na rysunku: {lista}": "Posizioni nel disegno: {lista}",
  "Na rysunku: {lista}": "Nel disegno: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nuovi disegni del movimento per gli esercizi per i tricipiti e per girate, strappi e relative varianti.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Consigli di tecnica nuovi e migliorati, anche per spalle, esercizi di potenza e mobilità.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Gli annunci vocali usano la voce migliore installata sul telefono.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Chi è nuovo parte dalla schermata Allenamento con il pulsante «Inizia il tuo primo allenamento» e il riquadro «Primo allenamento».",
@@ -1811,6 +1810,7 @@
  "Powrót": "Ritorno",
  "Rozsuwanie": "Apertura",
  "Ściąganie": "Tirata",
+ "Przyciąganie": "Tirata",
  "Uginanie": "Flessione",
  "Marsz": "Camminata",
  "Grzbiet w dół": "Schiena in giù",
@@ -1819,5 +1819,7 @@
  "Rzut": "Lancio",
  "Czego unikać": "Cosa evitare",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Il telefono usa una voce di base. Puoi scaricarne una migliore in Impostazioni di iOS (Accessibilità).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "L’app ora si chiama {app}. Allenamenti, schede e impostazioni restano invariati."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "L’app ora si chiama {app}. Allenamenti, schede e impostazioni restano invariati.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Ora la maggior parte degli esercizi della libreria ha i disegni del movimento: macchine e cavi, kettlebell, salti, addominali, mobilità e molto altro.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "I nomi degli esercizi della libreria sono in inglese, come nella maggior parte delle palestre. Nella pagina dell'esercizio, sotto il nome, vedi quello nella tua lingua, e la ricerca trova l'esercizio con entrambi i nomi."
 }

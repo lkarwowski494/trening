@@ -7,7 +7,7 @@
 <!-- /gen:badges-ci -->
 
 <!-- gen:badges-ver -->
-[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.0.1-blue?style=flat)](docs/18-przekazanie.md)
+[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.1.0-blue?style=flat)](docs/18-przekazanie.md)
 [![Minimalny iOS](https://img.shields.io/badge/iOS-16.4%2B-black?style=flat&logo=apple)](https://developer.apple.com/ios/)
 [![Minimalny watchOS](https://img.shields.io/badge/watchOS-10.0%2B-black?style=flat&logo=apple)](https://developer.apple.com/watchos/)
 [![Expo SDK](https://img.shields.io/badge/Expo_SDK-58-000020?style=flat&logo=expo)](https://expo.dev/)
@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-9264-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-9270-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -51,7 +51,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 <!-- gen:stats -->
 | Miara | Wartość | Źródło |
 |---|---|---|
-| Wersja aplikacji | 1.0.1 | `app.json`, `package.json` (docs/18) |
+| Wersja aplikacji | 1.1.0 | `app.json`, `package.json` (docs/18) |
 | Minimalny iOS | 16.4 | baza Expo (`ExpoModulesCore.podspec`); tylko iPhone |
 | Minimalny watchOS (Apple Watch) | 10.0 | `targets/watch-app/expo-target.config.js`, docs/35-zegarek-apple.md |
 | Platforma | Expo SDK 58 · React Native 0.88 · React 19.3 · TypeScript 6.0 | `package.json` |
@@ -59,11 +59,11 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 708 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 359 (z testem: 359) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1089 (z testem: 1089) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1090 (z testem: 1090) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1169 (z testem: 1169) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 223 (z testem: 223) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 806 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 9264 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 808 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 9270 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->

@@ -1,0 +1,14 @@
+{
+ "jezyk": "lv",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Kustību zīmējumi tagad ir lielākajai daļai bibliotēkas vingrinājumu: trenažieri un bloki, kettlebelli, lēcieni, vēdera vingrinājumi, mobilitāte un daudz kas cits.",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Bibliotēkas vingrinājumu nosaukumi ir angļu valodā, kā lielākajā daļā sporta zāļu. Vingrinājuma kartītē zem nosaukuma redzams nosaukums jūsu valodā, un meklēšana atrod vingrinājumu pēc abiem."
+ }
+}

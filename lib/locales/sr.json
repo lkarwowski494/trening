@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Наизменично",
  "Pozycje na rysunku: {lista}": "Положаји на цртежу: {lista}",
  "Na rysunku: {lista}": "На цртежу: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Нови цртежи покрета у вежбама за трицепс, као и у набачајима, трзајима и њиховим варијантама.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Нова и дорађена упутства за технику, између осталог за рамена, вежбе експлозивне снаге и мобилност.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Гласовне најаве користе најбољи глас инсталиран на телефону.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Нови корисник почиње на екрану Тренинг дугметом „Започни први тренинг” и таблом „Први тренинг”.",
@@ -1811,6 +1810,7 @@
  "Powrót": "Враћање",
  "Rozsuwanie": "Развлачење",
  "Ściąganie": "Повлачење",
+ "Przyciąganie": "Повлачење",
  "Uginanie": "Савијање",
  "Marsz": "Ход",
  "Grzbiet w dół": "Леђа надоле",
@@ -1819,5 +1819,7 @@
  "Rzut": "Бацање",
  "Czego unikać": "Шта избегавати",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Телефон користи основни глас. Бољи можете да преузмете у iOS Подешавањима (Приступачност).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Апликација се сада зове {app}. Тренинзи, шаблони и подешавања остају непромењени."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Апликација се сада зове {app}. Тренинзи, шаблони и подешавања остају непромењени.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Већина вежби у библиотеци сада има цртеже покрета: машине и сајле, кетлбел, скокови, трбушњаци, мобилност и још много тога.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Називи вежби у библиотеци су на енглеском, као у већини теретана. На картици вежбе испод назива пише и назив на вашем језику, а претрага проналази вежбу по оба."
 }

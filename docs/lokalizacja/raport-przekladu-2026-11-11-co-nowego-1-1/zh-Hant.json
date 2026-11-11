@@ -1,0 +1,14 @@
+{
+ "jezyk": "zh-Hant",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "動作庫裡大多數動作現在都有動態示意圖了：機器與滑輪、壺鈴、跳躍、腹部、活動度等等。",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "動作庫中的動作名稱用英文，就像大多數健身房一樣。動作卡片上的名稱下方會顯示中文名稱，搜尋時用任一名稱都能找到動作。"
+ }
+}

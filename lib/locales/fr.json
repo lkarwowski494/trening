@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "En alternance",
  "Pozycje na rysunku: {lista}": "Positions sur le dessin : {lista}",
  "Na rysunku: {lista}": "Sur le dessin : {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nouveaux dessins de mouvement pour les exercices de triceps ainsi que pour les épaulés, les arrachés et leurs variantes.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Conseils de technique nouveaux et améliorés, notamment pour les épaules, les exercices de puissance et la mobilité.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Les annonces vocales utilisent la meilleure voix installée sur votre téléphone.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Un nouvel utilisateur commence sur l’écran Séance avec le bouton « Démarrer votre première séance » et le tableau « Première séance ».",
@@ -1811,6 +1810,7 @@
  "Powrót": "Retour",
  "Rozsuwanie": "Écartement",
  "Ściąganie": "Tirage",
+ "Przyciąganie": "Tirage",
  "Uginanie": "Flexion",
  "Marsz": "Marche",
  "Grzbiet w dół": "Dos creusé",
@@ -1819,5 +1819,7 @@
  "Rzut": "Lancer",
  "Czego unikać": "À éviter",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Ce téléphone utilise une voix de base. Vous pouvez en télécharger une meilleure dans les Réglages iOS (Accessibilité).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "L’application s’appelle désormais {app}. Vos séances, modèles et réglages restent inchangés."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "L’application s’appelle désormais {app}. Vos séances, modèles et réglages restent inchangés.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "La plupart des exercices de la bibliothèque ont désormais des dessins du mouvement : machines et poulies, kettlebell, sauts, abdos, mobilité et bien plus encore.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Les noms des exercices de la bibliothèque sont en anglais, comme dans la plupart des salles. Sur la fiche de l’exercice, le nom dans votre langue apparaît en dessous, et la recherche trouve l’exercice avec l’un ou l’autre."
 }

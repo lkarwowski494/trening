@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Почергово",
  "Pozycje na rysunku: {lista}": "Положення на рисунку: {lista}",
  "Na rysunku: {lista}": "На рисунку: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Нові рисунки руху для вправ на трицепс, а також для взяття на груди, ривків та їхніх варіантів.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Нові й удосконалені поради щодо техніки, зокрема для дельт, вибухових вправ і мобільності.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Голосові підказки використовують найкращий голос, установлений на телефоні.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Новий користувач починає на екрані «Тренування» з кнопки «Почати перше тренування» і панелі «Перше тренування».",
@@ -1811,6 +1810,7 @@
  "Powrót": "Повернення",
  "Rozsuwanie": "Розведення",
  "Ściąganie": "Тяга",
+ "Przyciąganie": "Тяга",
  "Uginanie": "Згинання",
  "Marsz": "Ходьба",
  "Grzbiet w dół": "Прогин спини",
@@ -1819,5 +1819,7 @@
  "Rzut": "Кидок",
  "Czego unikać": "Чого уникати",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Телефон використовує базовий голос. Кращий можна завантажити в Параметрах iOS (Доступність).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Застосунок тепер називається {app}. Тренування, шаблони й налаштування залишаються без змін."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Застосунок тепер називається {app}. Тренування, шаблони й налаштування залишаються без змін.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Тепер більшість вправ у бібліотеці мають малюнки руху: тренажери й блоки, гирі, стрибки, прес, мобільність і багато іншого.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Назви вправ у бібліотеці подано англійською, як у більшості спортзалів. У картці вправи під назвою видно назву вашою мовою, а пошук знаходить вправу за обома назвами."
 }

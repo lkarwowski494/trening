@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Dönüşümlü",
  "Pozycje na rysunku: {lista}": "Çizimdeki pozisyonlar: {lista}",
  "Na rysunku: {lista}": "Çizimde: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Triceps egzersizlerinde ve silkme, koparma ve varyasyonlarında yeni hareket çizimleri.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Omuzlar, güç egzersizleri ve mobilite dahil yeni ve geliştirilmiş teknik ipuçları.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Sesli duyurular telefonunuzda yüklü en iyi sesi kullanır.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Yeni kullanıcılar Antrenman ekranında “İlk antrenmanınıza başlayın” düğmesi ve “İlk antrenman” panosuyla başlar.",
@@ -1811,6 +1810,7 @@
  "Powrót": "Geri dönüş",
  "Rozsuwanie": "Açma",
  "Ściąganie": "Çekme",
+ "Przyciąganie": "Çekme",
  "Uginanie": "Bükme",
  "Marsz": "Yürüyüş",
  "Grzbiet w dół": "Sırt aşağı",
@@ -1819,5 +1819,7 @@
  "Rzut": "Atış",
  "Czego unikać": "Kaçınılması gerekenler",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Telefon temel bir ses kullanıyor. Daha iyisini iOS Ayarları'ndan (Erişilebilirlik) indirebilirsiniz.",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Uygulamanın yeni adı: {app}. Antrenmanlarınız, şablonlarınız ve ayarlarınız olduğu gibi kalır."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Uygulamanın yeni adı: {app}. Antrenmanlarınız, şablonlarınız ve ayarlarınız olduğu gibi kalır.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Kütüphanedeki egzersizlerin çoğunda artık hareket çizimleri var: makineler ve kablolar, kettlebell, sıçramalar, karın, mobilite ve çok daha fazlası.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Kütüphanedeki egzersiz adları, çoğu spor salonunda olduğu gibi İngilizcedir. Egzersiz kartında adın altında kendi dilinizdeki adı görünür; arama da egzersizi her iki adla bulur."
 }

@@ -1,0 +1,14 @@
+{
+ "jezyk": "da",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "De fleste øvelser i biblioteket har nu tegninger, der viser bevægelsen: maskiner og kabeltræk, kettlebell, hop, mave, mobilitet og meget mere.",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Øvelsernes navne i biblioteket er på engelsk, som i de fleste fitnesscentre. På øvelseskortet står navnet på dit sprog under det engelske, og søgningen finder øvelsen under begge navne."
+ }
+}

@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Berselang-seli",
  "Pozycje na rysunku: {lista}": "Kedudukan dalam animasi: {lista}",
  "Na rysunku: {lista}": "Dalam animasi: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Animasi pergerakan baharu untuk senaman triseps serta clean, snatch dan variasinya.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Tip teknik baharu dan dipertingkat, antaranya untuk bahu, senaman kuasa dan mobiliti.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Pengumuman suara menggunakan suara terbaik yang dipasang pada telefon anda.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Pengguna baharu bermula di skrin Latihan dengan butang “Mulakan latihan pertama” dan papan “Latihan pertama”.",
@@ -1811,6 +1810,7 @@
  "Powrót": "Kembali",
  "Rozsuwanie": "Merentangkan",
  "Ściąganie": "Menarik",
+ "Przyciąganie": "Menarik",
  "Uginanie": "Membengkokkan",
  "Marsz": "Berjalan",
  "Grzbiet w dół": "Belakang melengkung ke bawah",
@@ -1819,5 +1819,7 @@
  "Rzut": "Melontar",
  "Czego unikać": "Apa yang perlu dielakkan",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Telefon ini menggunakan suara asas. Muat turun suara yang lebih baik dalam Tetapan iOS (Kebolehcapaian).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Aplikasi ini kini dinamakan {app}. Latihan, templat dan tetapan anda kekal tanpa perubahan."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Aplikasi ini kini dinamakan {app}. Latihan, templat dan tetapan anda kekal tanpa perubahan.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Kebanyakan senaman dalam pustaka kini mempunyai animasi pergerakan: mesin dan kabel, kettlebell, lompatan, perut, mobiliti dan banyak lagi.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Nama senaman dalam pustaka adalah dalam bahasa Inggeris, seperti di kebanyakan gim. Pada kad senaman, nama dalam bahasa anda dipaparkan di bawahnya, dan carian menemui senaman menggunakan kedua-dua nama."
 }

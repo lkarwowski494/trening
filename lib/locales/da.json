@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Skiftevis",
  "Pozycje na rysunku: {lista}": "Positioner på tegningen: {lista}",
  "Na rysunku: {lista}": "På tegningen: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nye bevægelsestegninger til triceps-øvelser og til cleans, snatches og varianter af dem.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Nye og forbedrede teknikråd, bl.a. til skuldre, eksplosive øvelser og mobilitet.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Stemmebeskeder bruger den bedste stemme, der er installeret på din telefon.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "En ny bruger starter på skærmen Træning med knappen “Start din første træning” og tavlen “Første træning”.",
@@ -1811,6 +1810,7 @@
  "Powrót": "Retur",
  "Rozsuwanie": "Spredning",
  "Ściąganie": "Træk",
+ "Przyciąganie": "Træk",
  "Uginanie": "Bøjning",
  "Marsz": "Gang",
  "Grzbiet w dół": "Ryg ned",
@@ -1819,5 +1819,7 @@
  "Rzut": "Kast",
  "Czego unikać": "Det skal du undgå",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Telefonen bruger en basisstemme. Du kan hente en bedre i Indstillinger på iOS (Tilgængelighed).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Appen hedder nu {app}. Dine træninger, skabeloner og indstillinger er uændrede."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Appen hedder nu {app}. Dine træninger, skabeloner og indstillinger er uændrede.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "De fleste øvelser i biblioteket har nu tegninger, der viser bevægelsen: maskiner og kabeltræk, kettlebell, hop, mave, mobilitet og meget mere.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Øvelsernes navne i biblioteket er på engelsk, som i de fleste fitnesscentre. På øvelseskortet står navnet på dit sprog under det engelske, og søgningen finder øvelsen under begge navne."
 }

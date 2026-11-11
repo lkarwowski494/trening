@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "交互に",
  "Pozycje na rysunku: {lista}": "図の姿勢：{lista}",
  "Na rysunku: {lista}": "図：{lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "上腕三頭筋の種目と、クリーン・スナッチとそのバリエーションに新しい動作の図を追加しました。",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "肩、パワー系種目、モビリティなどのテクニックのヒントを追加・改善しました。",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "音声アナウンスには、端末にインストールされている最も高品質な音声を使用します。",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "初めての方は「トレーニング」画面の「最初のトレーニングを始める」ボタンと「最初のトレーニング」ボードから始めます。",
@@ -1811,6 +1810,7 @@
  "Powrót": "戻す",
  "Rozsuwanie": "広げる",
  "Ściąganie": "引く",
+ "Przyciąganie": "引く",
  "Uginanie": "曲げる",
  "Marsz": "歩く",
  "Grzbiet w dół": "背中を反らす",
@@ -1819,5 +1819,7 @@
  "Rzut": "投げる",
  "Czego unikać": "避けること",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "この端末は基本の音声を使用しています。より良い音声はiOSの「設定」（アクセシビリティ）からダウンロードできます。",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "アプリ名が{app}に変わりました。トレーニング、テンプレート、設定はそのまま残ります。"
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "アプリ名が{app}に変わりました。トレーニング、テンプレート、設定はそのまま残ります。",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "ライブラリのほとんどの種目に動きの図が付きました。マシンやケーブル、ケトルベル、ジャンプ、腹筋、モビリティなど、ほかにも多数あります。",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "ライブラリの種目名は、多くのジムと同じく英語で表記しています。種目カードでは名前の下に日本語名が表示され、検索ではどちらの名前でも見つかります。"
 }

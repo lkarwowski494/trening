@@ -1,0 +1,6 @@
+{
+ "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN): dwa nowe punkty wpisu „Co nowego” 1.1 (W-08, 11.11.2026, docs/18). Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności, wczytywany przez tests/pending-translation.ts). Przekład przez API (przeklad-tlumaczen.yml z gałęzi wyd/w08-1-1, ZB-057), recenzja recenzent-lokalizacji, po nałożeniu opróżnić listę.",
+ "data": "2026-11-11",
+ "status": "przełożony 11.11.2026 (przeklad-tlumaczen.yml run 43094081312, batch msgbatch_016XGojys3124eDf6NqnE98N, Opus, 66/66 przyjęte, szac. 1,46 USD); raport docs/lokalizacja/raport-przekladu-2026-11-11-co-nowego-1-1",
+ "klucze": []
+}

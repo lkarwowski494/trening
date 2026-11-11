@@ -1,0 +1,14 @@
+{
+ "jezyk": "ja",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "ライブラリのほとんどの種目に動きの図が付きました。マシンやケーブル、ケトルベル、ジャンプ、腹筋、モビリティなど、ほかにも多数あります。",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "ライブラリの種目名は、多くのジムと同じく英語で表記しています。種目カードでは名前の下に日本語名が表示され、検索ではどちらの名前でも見つかります。"
+ }
+}

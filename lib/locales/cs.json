@@ -1789,7 +1789,6 @@
  "Naprzemiennie": "Střídavě",
  "Pozycje na rysunku: {lista}": "Polohy na obrázku: {lista}",
  "Na rysunku: {lista}": "Na obrázku: {lista}",
- "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Nové obrázky pohybu u cviků na triceps a u přemístění, trhů a jejich variant.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Nové a vylepšené tipy k technice provedení, mimo jiné pro ramena, explozivní cviky a mobilitu.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Hlasová oznámení používají nejlepší hlas nainstalovaný v telefonu.",
  "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Nový uživatel začíná na obrazovce Trénink tlačítkem „Zahájit první trénink“ a panelem „První trénink“.",
@@ -1811,6 +1810,7 @@
  "Powrót": "Návrat",
  "Rozsuwanie": "Roztahování",
  "Ściąganie": "Tah",
+ "Przyciąganie": "Tah",
  "Uginanie": "Ohýbání",
  "Marsz": "Chůze",
  "Grzbiet w dół": "Hřbet dolů",
@@ -1819,5 +1819,7 @@
  "Rzut": "Hod",
  "Czego unikać": "Čemu se vyhnout",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Telefon používá základní hlas. Lepší si stáhnete v Nastavení iOS (Zpřístupnění).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Aplikace se nyní jmenuje {app}. Tréninky, šablony a nastavení zůstávají beze změny."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Aplikace se nyní jmenuje {app}. Tréninky, šablony a nastavení zůstávají beze změny.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Kresby pohybu teď má většina cviků z knihovny: stroje a kladky, kettlebell, skoky, břicho, mobilita a mnoho dalšího.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Názvy cviků v knihovně jsou v angličtině, jako ve většině posiloven. Na kartě cviku se pod názvem zobrazuje název ve vašem jazyce a vyhledávání najde cvik podle obou."
 }
