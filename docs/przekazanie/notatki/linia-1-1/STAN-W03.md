@@ -15,6 +15,7 @@ Gałąź `lok/w03-przeklad` (od `integracja-1-1` @ 46365a53; scalona świeża in
 ## Sesja T2 (11.11.2026, polecenie T2.md na gałęzi koordynacja)
 - 02b046e7 fidr.move ×33 + odsłonięcie FIDR (odwrócenie 1eaa8fe8), cele pelnaKarta 523; 631e32dd skróty przekładu.
 - 7b9f3c78 nazwy 277×33 nałożone; 0e70fe05 tłumacz skraca 44 nazwy > 60 zn.; 7afa7899 recenzja 33 języków (4 przebiegi recenzent-lokalizacji, 103 + 5 poprawek, tłumacz 108/108), 33 języki zatwierdzone w lib/nazwy-lokalne.ts; zapis docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json.
+- 30e495b9 naprawa tests.yml 43070158337 (L-047 plik recenzenta recenzje/w02-delt_raise-r1.json zapisał audytor; wybor-testow-l103; docs/16 819 zdań; wyjątek „Bosu”); e2ee07fc lib/nazwy-lokalne.ts → lib/nazwy-lokalne.generated.ts (hak M1-054, 650 KB); tests.yml 43078373167 zielony; scalone do integracja-1-1 (79117f33).
 - d13c3b22 ZB-057 ok. 8,75 USD z 30. Dokumenty: docs/18 (KO-047 „Przyciąganie” wariant A — otwarte do wdrożenia; nazwy 33 języków; „Skok”, kontekst), docs/49 W-03 (stan, pytania do native speakerów).
 
 ## Zostało
