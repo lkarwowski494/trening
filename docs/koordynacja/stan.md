@@ -111,7 +111,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-041. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-042. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -238,3 +238,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 08:17 | N | PYTANIE: na main brak jest-ponow (łańcuch 6 commitów 140ea3e6…98f7d88f) → KO-040: C-min (140ea3e6 + 3d2c8129, bez workflowów) | raport N po verify #4 |
 | 2026-11-11 08:25 | L | PRZEKAZANIE: figury/w02-przed-1-1 @ 8e0aa08f (ls-remote; 24 commity Claude noreply; 5721a16e przodkiem); zrobione: Straight Raises, fidr.move (33 przekłady → W-03), dźwignia calf, ROZJAZDY puste, badacz → W02-BAD-1…5; do weta (docs/18 11.11): obrót dzwonu kb, PP-W1, P3-MARSZ → 1.2; kneeling_hinge/mobility_floor bez zmiany pewności; ODSTĘPSTWO: push ze znacznikiem lekkie przy verify:szybkie 1 (16 plików Jest pilnujących starego stanu) → L2; L 27,72 USD; konto: limit tygodniowy allowed_warning | start L2 |
 | 2026-11-11 08:30 | L2 | sesja L2 session_01T66VBw1tAxkGfh98UGdHWe utworzona (subagent; opus-5-5, auto, figury/w02-przed-1-1) | raport L2 po pkt 2; kontrola 08:50 |
+| 2026-11-11 08:44 | N | verify #4 (12729804 lokalnie) kod 1: ponowienie działa (0 przerwań), padł zrodla-paczka.test.ts:111 (strażnik wpięcia) → KO-041: + c12a6bed, verify #5 | raport N |
