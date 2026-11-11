@@ -1,0 +1,179 @@
+{
+ "data": "2026-11-11",
+ "autor": "przekład API (claude-opus-5-5, run 43051553957)",
+ "recenzent": "recenzent-lokalizacji",
+ "zakres": "W-03 część C: 27 kluczy UI (fazy animacji, etykiety pomiaru pod rysunkiem z szablonami „Kąt/Przesunięcie na rysunku”, „Czego unikać”, komunikat o głosie iOS, punkt Co nowego o nazwie) w 33 językach; tekst efektywny es-419/pt-BR (baza + nakładka); kontekst lib/figures/v2/ui.ts:107-121, app/more/settings.tsx:52, lib/whatsnew.ts:27; tests/slownik-terminow.test.ts zielony (175/175).",
+ "werdykt": "zatwierdzone po poprawkach",
+ "poprawki": [
+  {
+   "jezyk": "cs",
+   "plik": "lib/locales/cs.json",
+   "klucz": "Ściąganie",
+   "jest": "Stahování",
+   "ma_byc": "Tah",
+   "powod": "b/f: „stahování” = ściąganie w dół; faza dotyczy też wiosłowania, face pull, przywodzenia nogi — kierunek błędny. „Tah” to zwykłe słowo siłowni (tah kladky), para z fazą „Tlak”.",
+   "waga": "wysoka"
+  },
+  {
+   "jezyk": "sk",
+   "plik": "lib/locales/sk.json",
+   "klucz": "Ściąganie",
+   "jest": "Sťahovanie",
+   "ma_byc": "Ťahanie",
+   "powod": "b/f: „sťahovanie” = w dół; faza bez kierunku (wiosłowanie, face pull, przywodzenie). „Ťahanie” ogólne, para z „Tlačenie”.",
+   "waga": "wysoka"
+  },
+  {
+   "jezyk": "es",
+   "plik": "lib/locales/es.json",
+   "klucz": "Ściąganie",
+   "jest": "Tirón",
+   "ma_byc": "Tracción",
+   "powod": "b/f: „tirón” to szarpnięcie, a potocznie też naciągnięcie mięśnia („me dio un tirón”) — sugeruje ruch odwrotny do kontrolowanego; „tracción” to zwykłe słowo siłowni (ejercicios de tracción). es-419 dziedziczy z es — poprawka obejmuje oba.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "et",
+   "plik": "lib/locales/et.json",
+   "klucz": "Ściąganie",
+   "jest": "Tagasitõmbamine",
+   "ma_byc": "Tõmme",
+   "powod": "b/f: „tagasi-” = do tyłu; nie pasuje do ściągania drążka w dół ani przywodzenia nogi. „Tõmme” ogólne (Podciąganie już ma „Tõmbamine”). Brzmienie do potwierdzenia przez native speakera.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "lv",
+   "plik": "lib/locales/lv.json",
+   "klucz": "Ściąganie",
+   "jest": "Atvilkšana",
+   "ma_byc": "Vilkšana",
+   "powod": "b/f: „atvilkt” = odciągnąć/przyciągnąć do tyłu — kierunek; faza ogólna.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "id",
+   "plik": "lib/locales/id.json",
+   "klucz": "Ściąganie",
+   "jest": "Menarik ke belakang",
+   "ma_byc": "Menarik",
+   "powod": "b/f: „ke belakang” = do tyłu; błędne dla pulldownu i przywodzenia. Ta sama forma co Podciąganie nie koliduje (różne ćwiczenia).",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "ms",
+   "plik": "lib/locales/ms.json",
+   "klucz": "Ściąganie",
+   "jest": "Menarik ke belakang",
+   "ma_byc": "Menarik",
+   "powod": "b/f: jak id — kierunek „do tyłu” błędny dla części ćwiczeń.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "tr",
+   "plik": "lib/locales/tr.json",
+   "klucz": "Ściąganie",
+   "jest": "Geriye çekme",
+   "ma_byc": "Çekme",
+   "powod": "b/f: „geriye” = do tyłu; faza bez kierunku. Kolizja z Podciąganie („Çekme”) nie występuje w jednym ćwiczeniu.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "uk",
+   "plik": "lib/locales/uk.json",
+   "klucz": "Rozsuwanie",
+   "jest": "Розтягування",
+   "ma_byc": "Розведення",
+   "powod": "b: „розтягування” czyta się jako rozciąganie (stretching); rozsuwanie taśmy na boki to „розведення” (jak ru „Разведение”).",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "ms",
+   "plik": "lib/locales/ms.json",
+   "klucz": "Rozsuwanie",
+   "jest": "Meregangkan",
+   "ma_byc": "Merentangkan",
+   "powod": "b: „meregangkan” = rozciągać (stretching); rozsuwanie rąk/taśmy na boki to „merentangkan” (jak id).",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "vi",
+   "plik": "lib/locales/vi.json",
+   "klucz": "Rozsuwanie",
+   "jest": "Kéo dãn",
+   "ma_byc": "Kéo sang hai bên",
+   "powod": "b: „kéo dãn” = rozciąganie (kéo dãn cơ = stretching); faza to rozsuwanie taśmy na boki.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "hu",
+   "plik": "lib/locales/hu.json",
+   "klucz": "ramię odsunięte w bok",
+   "jest": "felkar oldalra eltávolítva",
+   "ma_byc": "felkar oldalra emelve",
+   "powod": "b: „eltávolítva” = usunięty/oddalony; na siłowni odwodzenie ramienia to „oldalra emelés”. Do potwierdzenia przez native speakera.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "pt-BR",
+   "plik": "lib/locales/pt-BR.json",
+   "klucz": "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).",
+   "jest": "Este telefone está usando uma voz básica. Baixe uma melhor nos Ajustes do iOS (Acessibilidade).",
+   "ma_byc": "Este celular está usando uma voz básica. Baixe uma melhor nos Ajustes do iOS (Acessibilidade).",
+   "powod": "c: w pt-BR cała aplikacja mówi „celular” (20 tekstów), „telefone” tylko tutaj; sąsiedni komunikat o braku głosu też „Este celular”.",
+   "waga": "srednia"
+  },
+  {
+   "jezyk": "es",
+   "plik": "lib/locales/es.json",
+   "klucz": "ramię odsunięte w bok",
+   "jest": "brazo separado hacia un lado",
+   "ma_byc": "brazo abierto hacia un lado",
+   "powod": "b: „separado hacia un lado” brzmi sztywno; „abierto” jak w es-419 i jak mówi trener.",
+   "waga": "niska"
+  },
+  {
+   "jezyk": "es",
+   "plik": "lib/locales/es.json",
+   "klucz": "Grzbiet w dół",
+   "jest": "Espalda abajo",
+   "ma_byc": "Espalda hundida",
+   "powod": "b: „espalda abajo” nie brzmi jak nazwa fazy kot-krowa; „espalda hundida” jak w es-419 (nakładka es-419 staje się wtedy zbędna).",
+   "waga": "niska"
+  },
+  {
+   "jezyk": "de",
+   "plik": "lib/locales/de.json",
+   "klucz": "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).",
+   "jest": "Dein iPhone nutzt eine einfache Stimme. Eine bessere kannst du in den iOS-Einstellungen (Bedienungshilfen) laden.",
+   "ma_byc": "Dein iPhone nutzt eine einfache Stimme. Eine bessere kannst du in den iOS-Einstellungen (Bedienungshilfen) herunterladen.",
+   "powod": "b: „laden” dwuznaczne (też: ładować baterię); sąsiedni komunikat używa „herunterladen”.",
+   "waga": "niska"
+  },
+  {
+   "jezyk": "fi",
+   "plik": "lib/locales/fi.json",
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "jest": "Siirtymä kuvassa: {staw} {n} cm",
+   "ma_byc": "Siirtymä piirroksessa: {staw} {n} cm",
+   "powod": "a/b: ta sama linia pomiaru pod tym samym rysunkiem — „Kulma piirroksessa”; jedno słowo na rysunek.",
+   "waga": "niska"
+  },
+  {
+   "jezyk": "sl",
+   "plik": "lib/locales/sl.json",
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "jest": "Premik na sliki: {staw} {n} cm",
+   "ma_byc": "Premik na risbi: {staw} {n} cm",
+   "powod": "a/b: siostrzana linia „Kot na risbi”; jedno słowo na rysunek.",
+   "waga": "niska"
+  }
+ ],
+ "otwarte": [
+  "zh-Hant „Ściąganie” = „拉回” (pull back) — czy dla ściągania drążka w dół i przywodzenia nogi brzmi naturalnie, czy lepsze ogólne „拉”/„拉動”? (native speaker; Podciąganie = 拉起)",
+  "pt/pt-BR „Uginanie” = „Flexão” — czy w karcie uginania ramion nie czyta się jak pompka (flexão = push-up), czy lepiej zostawić „Flexão”, czy np. „Rosca”? (native speaker)",
+  "bg „Rozsuwanie” = „Разтягане” — czy przy taśmie brzmi jak rozsuwanie na boki, czy jak rozciąganie (stretching); alternatywa „Разтваряне”? (native speaker)",
+  "Poza zakresem W-03 (siostrzane klucze istniejące): lt „Kąt na rysunku” = „Kampas brėžinyje” — słownik (rysunek_zdanie) zakazuje „brėžin”, zalecany „piešinys” (nowe „Poslinkis piešinyje” jest poprawne); ms „Sudut pada lukisan” — słownik zaleca „animasi”, nie „lukisan” (nowe „Pergerakan dalam animasi” poprawne). Strażnik słownika tego nie łapie — sprawdzić zakres wzorca w docs/lokalizacja/slownik-terminow.json (rysunek_zdanie). Do poprawy przez tłumacza w osobnym kroku.",
+  "Etykiety iOS w dwóch komunikatach o głosie różnią się w et (Hõlbustus vs Juurdepääsetavus), lt (Prieinamumas vs Pritaikymas neįgaliesiems), sk (Prístupnosť vs Univerzálny prístup), uk (Параметри…Доступність vs налаштування…Універсальний доступ), ro (Configurări vs Setări) — ustalić brzmienie z bieżącego iOS w danym języku i ujednolicić oba teksty (zwykle nowy jest bliższy iOS, więc poprawić stary).",
+  "pt „Ściąganie” = „Puxada”: w Brazylii „puxada” to też nazwa ćwiczenia (puxada alta = ściąganie drążka, puxada baixa = wiosłowanie siedząc) — jako faza ogólna akceptowalne, zostawione; potwierdzić u native speakera."
+ ]
+}
