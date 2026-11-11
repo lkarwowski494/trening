@@ -1,11 +1,12 @@
 /*
  * M1-audytor-generalny-050: build 1019 (tag v0.20.0-b1019) nie miał wiersza w dzienniku wydań (docs/09), a nic tego nie pilnowało.
  * Dziennik to tabela „Dziennik wydań” w docs/09-plan-testow.md: tag | build | SHA | numer przebiegu | wynik.
- * Test: każdy lokalny tag `v*-b*` ma wiersz, SHA zgadza się z tagiem, build = 1000 + numer przebiegu (CI: BUILD = 1000 + run_number).
+ * Test: każdy tag `v*-b*` osiągalny z HEAD (`git tag --merged HEAD`, KO-038 11.11.2026) ma wiersz, SHA zgadza się z tagiem, build = 1000 + numer przebiegu (CI: BUILD = 1000 + run_number).
  * Uwaga: kasa CI (actions/checkout) domyślnie nie pobiera tagów — wtedy sprawdzana jest tylko spójność samej tabeli.
  */
 import { execFileSync } from 'child_process';
 import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 
 const doc = fs.readFileSync(path.join(__dirname, '..', 'docs', '09-plan-testow.md'), 'utf8');
@@ -25,9 +26,9 @@ function logRows(): Row[] {
   return rows;
 }
 
-function localTags(): string[] {
+function localTags(cwd = path.join(__dirname, '..')): string[] {
   try {
-    return execFileSync('git', ['tag', '-l', 'v*-b*'], { cwd: path.join(__dirname, '..'), encoding: 'utf8' }).split('\n').filter(Boolean);
+    return execFileSync('git', ['tag', '-l', 'v*-b*', '--merged', 'HEAD'], { cwd, encoding: 'utf8' }).split('\n').filter(Boolean);
   } catch { return []; }
 }
 function tagSha(tag: string): string {
@@ -48,7 +49,7 @@ describe('dziennik wydań (docs/09): wiersz dla każdego tagu v*-b*', () => {
     expect(new Set(rows.map((r) => r.tag)).size).toBe(rows.length);
   });
 
-  test('każdy lokalny tag v*-b* ma wiersz z SHA zgodnym z tagiem', () => {
+  test('każdy tag v*-b* osiągalny z HEAD ma wiersz z SHA zgodnym z tagiem', () => {
     const missing = tags.filter((t) => !rows.some((r) => r.tag === t));
     expect(missing).toEqual([]);
     for (const t of tags) {
@@ -60,6 +61,19 @@ describe('dziennik wydań (docs/09): wiersz dla każdego tagu v*-b*', () => {
   /* Audyt jakości 012 (01.11.2026): tests.yml nie pobierał tagów, więc w CI test powyżej był pusty (przeszedłby bez żadnego wiersza). Teraz kasa ma tagi (fetch-tags) — w CI ich brak to błąd. */
   test('w CI (GITHUB_ACTIONS) kasa zawiera tagi v*-b* — inaczej sprawdzenie wierszy byłoby puste', () => {
     if (process.env.GITHUB_ACTIONS) expect(tags.length).toBeGreaterThan(0);
+  });
+
+  /* Lekcja sesji K (11.11.2026, KO-038): `git fetch --unshallow` na `main` pobrał tagi v1.0.1-b1035/-b1037 z gałęzi spoza historii main, a test liczył każdy lokalny
+   * tag — wynik zależał od tego, co pobrał klon. Dziennik danej gałęzi odpowiada tylko za tagi osiągalne z HEAD (`git tag --merged HEAD`). Repozytorium próbne bez sieci. */
+  test('KO-038 (11.11.2026): tag spoza historii HEAD (inna gałąź) nie jest liczony; tag na historii HEAD jest', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'm1-050-tagi-'));
+    const git = (...a: string[]) => execFileSync('git', a, { cwd: dir, encoding: 'utf8', env: { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t' } });
+    try {
+      git('init', '-q', '-b', 'main'); git('commit', '-q', '--allow-empty', '-m', 'a'); git('tag', 'v1.0.0-b1001');
+      git('checkout', '-q', '-b', 'boczna'); git('commit', '-q', '--allow-empty', '-m', 'b'); git('tag', 'v1.0.1-b1002');
+      git('checkout', '-q', 'main'); git('commit', '-q', '--allow-empty', '-m', 'c');
+      expect(localTags(dir)).toEqual(['v1.0.0-b1001']);
+    } finally { fs.rmSync(dir, { recursive: true, force: true }); }
   });
 
   test('build 1019 (przypadek z audytu) ma wiersz', () => { expect(rows.some((r) => r.build === 1019)).toBe(true); });

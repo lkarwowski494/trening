@@ -4,7 +4,8 @@
 // („Exceeded timeout of N ms for a test|hook” w każdej nieudanej asercji, brak innych porażek w pliku) — obciążona maszyna; asercja w tym samym pliku albo w innym pliku
 // wyłącza ponawianie. Z jest-ponow korzystają też test:fast i verify:docs.
 // Zasada: plik z błędem „Test suite failed to run … A jest worker process (pid=…) was terminated by another process: signal=SIGTERM|SIGKILL”
-// jest uruchamiany ponownie raz, osobno (`--runInBand`). Każda inna porażka (asercja, timeout, błąd kompilacji, nieznana przyczyna) — kod 1
+// (od 11.11.2026, KO-038, także „crashed for an unknown reason: exitCode=143|137” i „Jest worker ran out of memory and crashed”)
+// jest uruchamiany ponownie raz, osobno (`--runInBand`); log wymienia każdy ponowiony plik z powodem. Każda inna porażka (asercja, timeout, błąd kompilacji, nieznana przyczyna) — kod 1
 // bez ponawiania (wyjątek: limit czasu testu — wyżej). Zielony (kod 0) tylko gdy wszystkie inne pliki zielone i każde ponowienie zielone. Log wymienia ponowione pliki i powód.
 // Użycie: node scripts/jest-ponow.mjs [argumenty jest…]   (zmienna JEST_PONOW_JEST = ścieżka innego uruchamiacza — tylko w testach)
 import { spawnSync } from 'node:child_process';
@@ -21,7 +22,18 @@ const STERTA = JSON.parse(readFileSync(join(ROOT, 'scripts/ci/jest-sterta.json')
 export const STERTA_PONOWIENIA_MB = STERTA.ponowienieMB;
 /** NODE_OPTIONS z jedną, naszą wartością sterty (istniejące --max-old-space-size z otoczenia są zastępowane, nie dopisywane). */
 export const opcjePonowienia = (istniejace = '') => `${istniejace.replace(/--max-old-space-size[=\s]\d+/g, '').trim()} --max-old-space-size=${STERTA_PONOWIENIA_MB}`.trim();
-const PRZERWANIE = /Test suite failed to run[\s\S]*terminated by another process[\s\S]*signal=(?:SIGTERM|SIGKILL)/;
+/* KO-038 (11.11.2026, koordynator, analogia ZB-041 G3/G8, do weta; lekcja sesji K): pokrewne komunikaty jest-worker 29.7 (ChildProcessWorker._onExit), sprawdzone
+ * na prawdziwym Jest (tests/jest-ponow-sygnal-ko038.test.ts): kod wyjścia 143/137 = 128 + SIGTERM/SIGKILL (sygnał przez proces pośredni) i brak pamięci workera
+ * (ponowienie dostaje większą stertę). Inny kod wyjścia („crashed … exitCode=0” itd.) i inny sygnał (SIGSEGV, SIGABRT) — bez ponawiania. */
+const PRZERWANIE = /Test suite failed to run[\s\S]*(?:terminated by another process[\s\S]*signal=(?:SIGTERM|SIGKILL)\b|crashed for an unknown reason: exitCode=(?:143|137)\b|Jest worker ran out of memory and crashed)/;
+/** Powód ponowienia do logu (jeden wiersz na plik). */
+export function powodPonowienia(t) {
+  const m = komunikat(t);
+  const sygnal = /signal=(SIGTERM|SIGKILL)\b/.exec(m)?.[1] ?? { 143: 'SIGTERM', 137: 'SIGKILL' }[/exitCode=(143|137)\b/.exec(m)?.[1]];
+  if (/ran out of memory/.test(m)) return 'worker Jest bez pamięci (ponowienie z większą stertą)';
+  if (sygnal) return `worker Jest ubity z zewnątrz (${sygnal}${/signal=/.test(m) ? '' : `, kod wyjścia ${/exitCode=(\d+)/.exec(m)[1]}`})`;
+  return 'przekroczony limit czasu testu (Exceeded timeout)';
+}
 
 /** Treść błędu pliku testowego z wyniku JSON Jest. */
 const komunikat = t => String(t.message ?? t.failureMessage ?? '');
@@ -84,7 +96,8 @@ export function main(args) {
     if (w.kod === 1) { console.error(`jest-ponow: ${w.powod}`); return 1; }
     if (!w.ponow.length) { console.error('jest-ponow: Jest zakończył się błędem bez opisanej porażki pliku — czerwone, bez ponawiania'); return 1; }
     console.error(`\njest-ponow: ${w.ponow.length} plików przerwanych z zewnątrz (SIGTERM/SIGKILL workera) albo padłych tylko na limicie czasu testu, ponawiam TYLKO je, raz, osobno (--runInBand):`);
-    for (const f of w.ponow) console.error(`  - ${f.replace(ROOT + '/', '')}`);
+    const wgNazwy = new Map((p1.wynik.testResults || []).map(t => [t.name, t]));
+    for (const f of w.ponow) console.error(`  - ${f.replace(ROOT + '/', '')} — ${powodPonowienia(wgNazwy.get(f) ?? {})}`);
     const p2 = uruchom(jest, ['--runInBand', '--runTestsByPath', ...w.ponow], join(dir, 'p2.json'), { NODE_OPTIONS: opcjePonowienia(process.env.NODE_OPTIONS) });
     zapiszWynik(polacz(p1.wynik, p2.wynik));
     const ok = Boolean(p2.wynik) && p2.status === 0 && p2.wynik.success && (p2.wynik.testResults || []).length === w.ponow.length;
