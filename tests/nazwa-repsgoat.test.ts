@@ -64,6 +64,13 @@ test('sklep: ukryte słowo kluczowe „repgoat” zostaje w EN obok „offline�
   }
 });
 
+test('sklep: przerwa w podtytułach hr/sl wg słownika, sk bez „váha” (recenzja lokalizacji, wydawca W 11.11.2026)', () => {
+  const m = json('store/app-store-metadata.json').lokalizacje as Record<string, { subtitle: string; keywords: string }>;
+  expect(m.hr.subtitle).toBe('Serije, planovi, tajmer odmora'); expect(m.hr.subtitle).not.toMatch(/pauz/i);
+  expect(m.sl.subtitle).toBe('Serije in časovnik počitka'); expect(m.sl.subtitle).not.toMatch(/odmor/i);
+  expect(m.sk.keywords.split(',')).not.toContain('váha'); expect(m.sk.keywords.split(',')).toContain('posilňovanie');
+});
+
 test('sklep: podtytuły i słowa kluczowe PL/EN wg decyzji 09.11.2026; opisy mówią o marce, nie o starej nazwie', () => {
   const m = json('store/app-store-metadata.json').lokalizacje as Record<string, { subtitle: string; keywords: string; description: string }>;
   expect(m.pl.subtitle).toBe('Plan treningowy na siłownię');
