@@ -198,7 +198,7 @@ jobs:
           MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
         run: |
           [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
-          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          bash scripts/ci/instaluj-maestro.sh  # trzy próby z pauzą 20 s; pobranie do pliku, kod błędu nie ginie w potoku (nocne 08.11.2026: 504 → kod 127)
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
           "$HOME/.maestro/bin/maestro" --version || true
       - name: Maestro
@@ -253,7 +253,7 @@ jobs:
           if [ -n "$WANT_RUN" ]; then
             echo "run=$WANT_RUN" >> "$GITHUB_OUTPUT"; echo "Poprzednia wersja: z artefaktu trening-sim-app przebiegu $WANT_RUN (wskazanego ręcznie)"
           else
-            bash scripts/ci/poprzednia-wersja.sh "$GITHUB_REPOSITORY" "$GITHUB_SHA" poprzednia-wersja
+            bash scripts/ci/poprzednia-wersja.sh "$GITHUB_REPOSITORY" "$GITHUB_SHA" poprzednia-wersja "$(node -p "require('./package.json').version")"  # R-11-03: tylko wydania ≤ bieżącej wersji
             echo "wydanie=true" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/download-artifact@v4
@@ -383,7 +383,7 @@ jobs:
           MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
         run: |
           [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
-          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          bash scripts/ci/instaluj-maestro.sh  # trzy próby z pauzą 20 s; pobranie do pliku, kod błędu nie ginie w potoku (nocne 08.11.2026: 504 → kod 127)
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
           "$HOME/.maestro/bin/maestro" --version || true
       - name: Maestro (eksperymenty, każdy plik osobno)
