@@ -12,18 +12,17 @@ Gałąź `lok/w03-przeklad` (od `integracja-1-1` @ 46365a53; scalona świeża in
 - 0bd59b29 scalona integracja-1-1 @ 016ef5e1 (check:zrodla-runtime zielone).
 - Kontekst „Ściąganie” skrócony do ≤ 200 znaków (był ucinany) — `docs/lokalizacja/konteksty-reczne.json`.
 
+## Sesja T2 (11.11.2026, polecenie T2.md na gałęzi koordynacja)
+- 02b046e7 fidr.move ×33 + odsłonięcie FIDR (odwrócenie 1eaa8fe8), cele pelnaKarta 523; 631e32dd skróty przekładu.
+- 7b9f3c78 nazwy 277×33 nałożone; 0e70fe05 tłumacz skraca 44 nazwy > 60 zn.; 7afa7899 recenzja 33 języków (4 przebiegi recenzent-lokalizacji, 103 + 5 poprawek, tłumacz 108/108), 33 języki zatwierdzone w lib/nazwy-lokalne.ts; zapis docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json.
+- d13c3b22 ZB-057 ok. 8,75 USD z 30. Dokumenty: docs/18 (KO-047 „Przyciąganie” wariant A — otwarte do wdrożenia; nazwy 33 języków; „Skok”, kontekst), docs/49 W-03 (stan, pytania do native speakerów).
+
 ## Zostało
-1. (zrobione) Raporty pobrane i w repo: `docs/lokalizacja/raport-przekladu-2026-11-11-w03-fidr/` (33/33, 0 odrzuconych, szac. 1,41 USD) i `-w03-nazwy/` (277×33, 0 odrzuconych, szac. 5,46 USD). Nałożenie sprawdzone na sucho i cofnięte (patrz 2–3).
-2. fidr.move: `--zastosuj <raport> --zestaw docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json`; w tym samym commicie odsłonić kartę FIDR = odwrócić 1eaa8fe8 (figury-recenzja.json „wyswietlana” z pola w02, lib/cues/data.json, pokrycie-cele pelnaKarta 522→523 i 3 metryki +1, fixtures pokrycia, tests cel-1-1, delt-raise-w02, strona-eksport 778→779), docs/18 krótki wpis.
-3. Nazwy: `node scripts/i18n/gen-nazwy-lokalne.mjs --z-raportu docs/lokalizacja/raport-przekladu-2026-11-11-w03-nazwy` (9141 nazw) — potem `--check` zgłasza 44 nazwy > 60 znaków (m.in. Decline Close-Grip Bench To Skull Crusher w 15 językach, ru delt_raise): skraca tłumacz; dalej recenzja recenzent-lokalizacji 33 języków (próbka lub całość), poprawki tłumacz, ustawić `jezyki.<l>.recenzja` (wynik zatwierdzone) → `--write`.
-4. (zrobione d14f8c58: „Ściąganie” i recenzja UI.)
-6. Koszt API do ZB-057 (szacunek.json z raportów): dowodowy 0,11 + UI 1,77 + fidr 1,41 + nazwy 5,46 = ok. 8,75 USD z 30 (szacunki count_tokens; wpis w docs/zobowiazania.md ZB-057 jeszcze nie zrobiony).
-7. docs/49 W-03, docs/18 decyzje (KO-046 lista = 278 NAME_EN; dane nazw z polem recenzji; wyjątek „Skok”), `verify:szybkie`/lekkie, push, `tests.yml` zielony.
+1. Wdrożenie KO-047: PhaseName „Przyciąganie” (lib/figures/v2/anim.ts:68) dla cable_row.ts:7 i hip_abd_add.ts:10, klucz UI w lib/i18n.en.ts („Pulling”) i 33 słownikach (brzmienie jak „Ściąganie”, neutralne kierunkowo), test — programista + tłumacz, po wecie koordynatora.
+2. Odpowiedzi native speakerów (docs/49 W-03) — poprawki tłumacza po odpowiedzi.
+3. Strażnik słownika terminów nie czyta nazw lokalnych (docs/49 W-03, uwaga) — decyzja koordynatora.
 
 ## Pułapki
+- Hak pre-push uruchamia check:slowniki (skroty-przekladu, kropka-srodkowa) — verify:lekkie ich nie łapie; po zmianie lib/cues/text: UPDATE_SKROTY=1 npx jest tests/skroty-przekladu.test.ts.
 - Test:fast `--od-bazy` przy zmianie słowników trwa > 25 min — pojedyncze pliki `--runInBand`, reszta w CI.
-- `NAME_EN` ma też dawne nazwy wyświetlane (LIB_DISPLAY_NAME) — dane nazw tylko po kluczach CATALOG.
-- Zestaw nazw ma rodzaj „nazwa” i pole „katalog” (nie „id”) — inaczej trafia do PENDING testów albo jest brany za zestaw wskazówek.
-
-## Następny krok (kontynuacja)
-Kroki 2 (fidr.move + odsłonięcie FIDR jednym commitem), 3 (nazwy: skrócenie 44, recenzja 33 języków), 6, 7. Raporty są w repo — nie trzeba ponownego przebiegu API.
+- Zestaw nazw ma rodzaj „nazwa” i pole „katalog” (nie „id”).
