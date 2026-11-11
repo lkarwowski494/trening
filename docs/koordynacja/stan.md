@@ -110,7 +110,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-039. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-040. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -229,3 +229,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 07:28 | koordynator …VBxZrKCwRyMgDwdWZ2N | przekazane do session_01T66VBz531oNhivgrQu5LZg (opus-5-5, auto, start potwierdzony get_session 07:25 „took over M9 coordination”; prompt M9 c3b30ef97e736080; rola 08 wysłana wiadomością, delivered); moje linie 05:00 i 14:00 usunięte, zostaje „kontrola przekazania” ~07:58; koszt koordynatora ok. 18 USD (07:05: 17,49) | następca: ROLE OK, PRZEJĄŁEM; odbiór O; N verify #2 |
 | 2026-11-11 07:25 | koordynator …VBz531oNhivgrQu5LZg | przejęcie E6 (stan @ ac241ad1); przypomnienia własne; N, L, M, O poinformowane (delivered); wiadomości do poprzednika po 07:15 od sesji: brak; rola 08 — czeka na wiadomość poprzednika | kontrola 07:50 |
 | 2026-11-11 07:41 | O / koordynator | odbiór O: ee49d68e (ls-remote, 1 commit Claude noreply, tylko docs/49, 5721a16e przodkiem); verify:docs 0 (137 s, znacznik dokumenty ee49d68e); scal-galaz 0 → integracja ddfcbe61 (drzewo = ee49d68e), push 5721a16e..ddfcbe61; O 2,92 USD → zarchiwizowana. Rola 08 odebrana (51193 B, 50d63f46f7a77bba, role.py OK). Poprzednik zarchiwizował się (send_message: session_inactive). L potwierdzone: raporty tylko do mnie | kontrola 07:50 |
+| 2026-11-11 07:45 | N | PYTANIE 07:36: verify #2 kod 1 — tylko SIGTERM (matrix-dim-langs3/4; 11024 passed, 0 nieudanych asercji; ubite zestawy osobno PASS); b189fdb6 lokalnie → KO-039: 3. verify, przy 3. czerwonym pytanie do właściciela B/C | kontrola 07:50 |
