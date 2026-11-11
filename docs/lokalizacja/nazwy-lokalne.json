@@ -3,49 +3,32 @@
  "jezyki": {
   "pl": {
    "autor": "tlumacz (agent, 11.11.2026)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-lokalizacja-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 58 poprawek A naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   }
  },
  "uwagi": {
-  "Shrugs (hantle)": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Shrugs (sztanga)": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Skullcrusher (hantle)": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Skullcrusher (EZ)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Shrugs (hantle)": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
+  "Shrugs (sztanga)": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
   "Hip Thrust (sztanga)": "= EN",
-  "Shrugs (linki)": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Skullcrusher (sztanga)": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Shrugs (linki)": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
   "Turkish Get Up": "= EN",
-  "Around The Worlds": "niepewne: potoczna nazwa PL niepewna",
-  "Front Raise And Pullover": "niepewne: ruch niejasny",
-  "Barbell Shrug Behind The Back": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Calf-Machine Shoulder Shrug": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Barbell Shrug Behind The Back": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
+  "Calf-Machine Shoulder Shrug": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
   "Muscle Up": "= EN",
-  "Leverage Shrug": "do recenzji (brak hasła w slownik-terminow.json)",
-  "London Bridges": "= EN",
-  "Smith Machine Behind the Back Shrug": "do recenzji (brak hasła w slownik-terminow.json)",
+  "Leverage Shrug": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
+  "London Bridges": "= EN; otwarte w recenzji",
+  "Smith Machine Behind the Back Shrug": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
   "Straight Raises on Incline Bench": "z opisu: lib/cues/text/pl.json (sri.setup, sri.move)",
   "Car Drivers": "z opisu: lib/cues/text/pl.json (cdr.move)",
-  "Kettlebell Pirate Ships": "niepewne: ruch niejasny",
-  "Sled Reverse Flye": "z opisu: lib/cues/text/pl.json (srf.setup)",
-  "Decline Close-Grip Bench To Skull Crusher": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Lying Close-Grip Barbell Triceps Extension Behind The Head": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Alternate Leg Push-Off": "z opisu: lib/cues/text/pl.json (plyo.altPushoff.move)",
-  "Single Leg Push-Off": "z opisu: lib/cues/text/pl.json (plyo.pushoff.setup), bez własnego opisu ruchu; niepewne: brak opisu dla tego klucza",
-  "Downward Facing Balance": "niepewne: ruch niejasny",
-  "Butt-Ups": "niepewne: ruch Butt-Ups (unoszenie bioder z leżenia?)",
-  "Gorilla Chin/Crunch": "niepewne: nazwa EN niejasna",
-  "Groiners": "niepewne: ruch (przysiad z wyrzutem nogi na bok); nazwa powszechna po angielsku",
-  "Adductor-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Calves-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Foam Roll: Hamstrings": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Iliotibial Tract-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Latissimus Dorsi-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Peroneals-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Piriformis-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Foam Roll: Quadriceps": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Rhomboids-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Foot-SMR": "do recenzji (brak hasła w slownik-terminow.json)",
-  "Frog Hops": "niepewne: ruch niejasny"
+  "Decline Close-Grip Bench To Skull Crusher": "do recenzji (brak hasła w slownik-terminow.json); otwarte w recenzji (nowe hasła słownika)",
+  "Kettlebell Pirate Ships": "otwarte w recenzji",
+  "Seated Good Mornings": "otwarte w recenzji"
  },
  "nazwy": {
   "Bench Press (sztanga)": {
@@ -85,7 +68,7 @@
    "pl": "Rumuński martwy ciąg"
   },
   "RDL (hantle/linki)": {
-   "pl": "Rumuński martwy ciąg z hantlami lub linką"
+   "pl": "Rumuński martwy ciąg z hantlami lub na wyciągu"
   },
   "Bent Over Row (sztanga)": {
    "pl": "Wiosłowanie sztangą w opadzie tułowia"
@@ -103,7 +86,7 @@
    "pl": "Wiosłowanie na wyciągach siedząc"
   },
   "Straight Arm Pulldown": {
-   "pl": "Ściąganie prostych rąk na wyciągu"
+   "pl": "Ściąganie drążka prostymi rękami"
   },
   "Chin Up": {
    "pl": "Podciąganie podchwytem"
@@ -151,16 +134,16 @@
    "pl": "Uginanie koncentryczne z hantlą"
   },
   "Skullcrusher (hantle)": {
-   "pl": "Francuskie wyciskanie hantli leżąc"
+   "pl": "Wyciskanie francuskie hantli leżąc"
   },
   "Skullcrusher (EZ)": {
-   "pl": "Francuskie wyciskanie sztangi EZ leżąc"
+   "pl": "Wyciskanie francuskie sztangą EZ leżąc"
   },
   "Triceps Dips (ławka)": {
    "pl": "Dipy na ławce"
   },
   "Overhead Triceps Extension (hantel)": {
-   "pl": "Prostowanie ramienia z hantlą zza głowy"
+   "pl": "Prostowanie ramion z hantlą zza głowy"
   },
   "Close Grip Bench Press": {
    "pl": "Wyciskanie sztangi wąskim chwytem"
@@ -241,7 +224,7 @@
    "pl": "Wiosłowanie sztangą z oparciem na ławce"
   },
   "Single Arm Lat Pulldown": {
-   "pl": "Ściąganie drążka wyciągu jednorącz"
+   "pl": "Ściąganie wyciągu górnego jednorącz"
   },
   "Shrugs (linki)": {
    "pl": "Szrugsy na wyciągu"
@@ -292,16 +275,16 @@
    "pl": "Prostowanie ramienia na wyciągu jednorącz"
   },
   "Triceps Kickback (linki)": {
-   "pl": "Odwodzenie ramienia do tyłu na wyciągu"
+   "pl": "Prostowanie ramienia w opadzie na wyciągu"
   },
   "Overhead Triceps Extension (EZ)": {
    "pl": "Prostowanie ramion ze sztangą EZ zza głowy"
   },
   "Skullcrusher (sztanga)": {
-   "pl": "Francuskie wyciskanie sztangi leżąc"
+   "pl": "Wyciskanie francuskie sztangi leżąc"
   },
   "Single Leg RDL (hantel)": {
-   "pl": "Rumuński martwy ciąg na jednej nodze z hantlą"
+   "pl": "Rumuński martwy ciąg jednonóż z hantlą"
   },
   "Single Leg RDL (linki)": {
    "pl": "Rumuński martwy ciąg jednonóż na wyciągu"
@@ -334,7 +317,7 @@
    "pl": "Mostek biodrowy ze sztangą"
   },
   "Sumo Deadlift (kettlebell)": {
-   "pl": "Martwy ciąg sumo z kettlebell"
+   "pl": "Martwy ciąg sumo z kettlebellem"
   },
   "Single Leg Calf Raise": {
    "pl": "Wspięcia na palce na jednej nodze"
@@ -388,13 +371,13 @@
    "pl": "Przysiad z pasem na maszynie"
   },
   "Around The Worlds": {
-   "pl": "Okrążanie hantlami po łuku"
+   "pl": "Around the world z hantlami"
   },
   "One-Arm Flat Bench Dumbbell Fly": {
    "pl": "Rozpiętka z hantlą jednorącz na ławce"
   },
   "One-Arm Kettlebell Floor Press": {
-   "pl": "Wyciskanie kettlebell z podłogi jednorącz"
+   "pl": "Wyciskanie kettlebella jednorącz leżąc na podłodze"
   },
   "One Arm Dumbbell Bench Press": {
    "pl": "Wyciskanie hantli jednorącz na ławce"
@@ -403,7 +386,7 @@
    "pl": "Wyciskanie sztangi na ławce szerokim chwytem"
   },
   "Front Raise And Pullover": {
-   "pl": "Unoszenie ramion w przód z pullover"
+   "pl": "Unoszenie sztangi i pullover leżąc"
   },
   "Wide-Grip Decline Barbell Pullover": {
    "pl": "Pullover ze sztangą głową w dół"
@@ -412,10 +395,10 @@
    "pl": "Wyciskanie na suwnicy Smitha głową w dół"
   },
   "Leverage Decline Chest Press": {
-   "pl": "Wyciskanie na maszynie głową w dół"
+   "pl": "Wyciskanie na maszynie, skos ujemny"
   },
   "Leverage Incline Chest Press": {
-   "pl": "Wyciskanie na maszynie na ławce skośnej"
+   "pl": "Wyciskanie na maszynie, skos dodatni"
   },
   "Push-Up Wide": {
    "pl": "Pompki szeroko"
@@ -424,7 +407,7 @@
    "pl": "Pompka z przejściem do deski bocznej"
   },
   "Isometric Wipers": {
-   "pl": "Izometryczne wycieraczki"
+   "pl": "Pompki szeroko z przesunięciem na boki"
   },
   "Push-Ups With Feet On A Stability Ball": {
    "pl": "Pompki z nogami na piłce gimnastycznej"
@@ -433,7 +416,7 @@
    "pl": "Pompki odwrotnym chwytem na podwyższeniu"
   },
   "Plyo Kettlebell Push-Ups": {
-   "pl": "Pompki z wybicia z kettlebell"
+   "pl": "Pompki z przeskokiem dłoni nad kettlebellem"
   },
   "Barbell Shrug Behind The Back": {
    "pl": "Szrugsy ze sztangą za plecami"
@@ -490,22 +473,22 @@
    "pl": "Wyciskanie sztangi zza karku stojąc"
   },
   "Push Press - Behind the Neck": {
-   "pl": "Wyciskanie zza karku z wyskoku"
+   "pl": "Push press zza karku"
   },
   "See-Saw Press (Alternating Side Press)": {
-   "pl": "Wyciskanie kettlebell naprzemiennie z boku"
+   "pl": "Naprzemienne wyciskanie hantli nad głowę"
   },
   "Kettlebell Seated Press": {
-   "pl": "Wyciskanie kettlebell siedząc"
+   "pl": "Wyciskanie kettlebella siedząc"
   },
   "One-Arm Kettlebell Push Press": {
-   "pl": "Wyciskanie kettlebell z wyskoku jednorącz"
+   "pl": "Push press z kettlebellem jednorącz"
   },
   "One-Arm Kettlebell Jerk": {
-   "pl": "Jerk z kettlebell jednorącz"
+   "pl": "Podrzut kettlebella jednorącz"
   },
   "One-Arm Kettlebell Split Jerk": {
-   "pl": "Split jerk z kettlebell jednorącz"
+   "pl": "Podrzut nożycowy kettlebella jednorącz"
   },
   "One-Arm Lateral Raise (hantel)": {
    "pl": "Unoszenie hantli bokiem jednorącz"
@@ -526,16 +509,16 @@
    "pl": "Obroty talerzem jak kierownicą"
   },
   "Kettlebell Pirate Ships": {
-   "pl": "Pirate ship z kettlebell"
+   "pl": "Pirate ship z kettlebellem"
   },
   "Dumbbell Incline Shoulder Raise": {
-   "pl": "Unoszenie hantli na barki na ławce skośnej"
+   "pl": "Wypychanie barków z hantlami na ławce skośnej"
   },
   "Barbell Incline Shoulder Raise": {
-   "pl": "Unoszenie sztangi na barki na ławce skośnej"
+   "pl": "Wypychanie barków ze sztangą na ławce skośnej"
   },
   "Smith Incline Shoulder Raise": {
-   "pl": "Unoszenie na barki na suwnicy Smitha, ławka skośna"
+   "pl": "Wypychanie barków na suwnicy Smitha"
   },
   "Dumbbell One-Arm Upright Row": {
    "pl": "Wiosłowanie hantlą do brody jednorącz"
@@ -556,7 +539,7 @@
    "pl": "Wiosłowanie liną na wyciągu na tył barków"
   },
   "Sled Reverse Flye": {
-   "pl": "Odwrotne rozpiętki na wyciągu z sankami"
+   "pl": "Odwrotne rozpiętki z sankami"
   },
   "Isometric Neck Exercise - Front And Back": {
    "pl": "Izometryczne napinanie szyi przód i tył"
@@ -571,10 +554,10 @@
    "pl": "Zginanie szyi leżąc z talerzem"
   },
   "One-Arm Kettlebell Clean and Jerk": {
-   "pl": "Clean and jerk z kettlebell jednorącz"
+   "pl": "Zarzut i podrzut kettlebella jednorącz"
   },
   "Spider Curl (sztanga)": {
-   "pl": "Uginanie pająka ze sztangą"
+   "pl": "Spider curl ze sztangą"
   },
   "Seated Close-Grip Concentration Barbell Curl": {
    "pl": "Uginanie koncentryczne ze sztangą siedząc"
@@ -610,7 +593,7 @@
    "pl": "Uginanie ramion z talerzem nachwytem"
   },
   "Bottoms-Up Clean From The Hang Position": {
-   "pl": "Bottoms-up clean z zawisu"
+   "pl": "Zarzut kettlebella dnem do góry ze zwisu"
   },
   "Farmer's Walk (Farmers Handles)": {
    "pl": "Spacer farmera z uchwytami"
@@ -628,7 +611,7 @@
    "pl": "Prostowanie ramion ze sztangą EZ głową w dół"
   },
   "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
-   "pl": "Francuskie wyciskanie sztangi wąsko zza głowy"
+   "pl": "Wyciskanie francuskie wąsko zza głowy leżąc"
   },
   "One-Arm Lying Dumbbell Triceps Extension": {
    "pl": "Prostowanie ramienia z hantlą leżąc jednorącz"
@@ -664,7 +647,7 @@
    "pl": "Przysiad bułgarski ze sztangą"
   },
   "One-Arm Overhead Kettlebell Squat": {
-   "pl": "Przysiad z kettlebell nad głową jednorącz"
+   "pl": "Przysiad z kettlebellem nad głową jednorącz"
   },
   "Leverage Deadlift": {
    "pl": "Martwy ciąg na maszynie"
@@ -673,22 +656,22 @@
    "pl": "Martwy ciąg z boku jednorącz"
   },
   "Sled Drag (Harness)": {
-   "pl": "Ciągnięcie sań w szelkach"
+   "pl": "Ciągnięcie sanek w szelkach"
   },
   "Alternate Leg Diagonal Bound": {
    "pl": "Naprzemienny skok po przekątnej"
   },
   "Alternate Leg Push-Off": {
-   "pl": "Naprzemienne wyskoki z nogi na skrzyni"
+   "pl": "Wyskoki z nogą na skrzyni naprzemiennie"
   },
   "Single Leg Push-Off": {
-   "pl": "Wyskok z nogi na skrzyni"
+   "pl": "Wyskoki z nogą na skrzyni"
   },
   "Side to Side Box Shuffle": {
    "pl": "Przeskoki na podwyższeniu z boku na bok"
   },
   "Dumbbell Seated Box Jump": {
-   "pl": "Wskoki na skrzynię z hantlami siedząc"
+   "pl": "Wskok na skrzynię z siadu z hantlami"
   },
   "Double Leg Butt Kick": {
    "pl": "Podskoki z piętami do pośladków obunóż"
@@ -703,7 +686,7 @@
    "pl": "Wspięcia na palce siedząc ze sztangą"
   },
   "Downward Facing Balance": {
-   "pl": "Balans w pozycji twarzą w dół"
+   "pl": "Balans na piłce gimnastycznej leżąc przodem"
   },
   "Dumbbell Seated One-Leg Calf Raise": {
    "pl": "Wspięcia na palce siedząc jednonóż z hantlą"
@@ -715,7 +698,7 @@
    "pl": "Skoki przez pachołek w bok"
   },
   "One-Arm Kettlebell Swings": {
-   "pl": "Wymachy kettlebell jednorącz"
+   "pl": "Wymachy kettlebellem jednorącz"
   },
   "Stiff-Legged Barbell Deadlift": {
    "pl": "Martwy ciąg na prostych nogach"
@@ -727,7 +710,7 @@
    "pl": "Brzuszki na wyciągu ze skłonami, półkula"
   },
   "Butt-Ups": {
-   "pl": "Unoszenie bioder z leżenia"
+   "pl": "Unoszenie bioder z podporu na przedramionach"
   },
   "Cable Russian Twists": {
    "pl": "Rosyjskie skręty na wyciągu"
@@ -736,7 +719,7 @@
    "pl": "Brzuszki na wyciągu siedząc"
   },
   "Cocoons": {
-   "pl": "Kokony"
+   "pl": "Scyzoryk z ugiętymi nogami"
   },
   "Crunch - Hands Overhead": {
    "pl": "Brzuszki z rękami nad głową"
@@ -748,7 +731,7 @@
    "pl": "Brzuszki żabki"
   },
   "Gorilla Chin/Crunch": {
-   "pl": "Podciągnięcie z brzuszkiem w stylu goryla"
+   "pl": "Podciąganie z unoszeniem kolan"
   },
   "Kneeling Cable Crunch With Alternating Oblique Twists": {
    "pl": "Brzuszki na wyciągu w klęku ze skrętami"
@@ -760,7 +743,7 @@
    "pl": "Skłony boczne na górnym wyciągu jednorącz"
   },
   "One-Arm Medicine Ball Slam": {
-   "pl": "Rzut piłką lekarską o podłoże jednorącz"
+   "pl": "Rzut piłką lekarską o podłogę jednorącz"
   },
   "Pallof Press With Rotation": {
    "pl": "Pallof press z rotacją"
@@ -775,7 +758,7 @@
    "pl": "Rzut jednorącz nad głowę leżąc na plecach"
   },
   "Weighted Sit-Ups - With Bands": {
-   "pl": "Brzuszki na ławce skośnej z gumą"
+   "pl": "Brzuszki z gumą na ławce skośnej głową w dół"
   },
   "Chest And Front Of Shoulder Stretch": {
    "pl": "Rozciąganie klatki piersiowej i przodu barków"
@@ -787,13 +770,13 @@
    "pl": "Wymachy nóg w przód i w tył"
   },
   "Groiners": {
-   "pl": "Groiners"
+   "pl": "Przyciąganie stopy do dłoni z podporu"
   },
   "Hip Circles (Prone)": {
    "pl": "Krążenia bioder leżąc na brzuchu"
   },
   "Iron Crosses (Stretch)": {
-   "pl": "Rozciąganie żelazny krzyż"
+   "pl": "Żelazny krzyż (rozciąganie)"
   },
   "One Knee To Chest": {
    "pl": "Kolano do klatki piersiowej"
@@ -805,7 +788,7 @@
    "pl": "Wymachy nóg na boki"
   },
   "Standing Soleus And Achilles Stretch": {
-   "pl": "Rozciąganie soleus i ścięgna Achillesa stojąc"
+   "pl": "Rozciąganie łydki i ścięgna Achillesa stojąc"
   },
   "Standing Toe Touches": {
    "pl": "Dotykanie palców stóp stojąc"
@@ -814,37 +797,37 @@
    "pl": "Rozciąganie w rozkroku"
   },
   "Adductor-SMR": {
-   "pl": "Roller na przywodziciele"
+   "pl": "Rolowanie przywodzicieli"
   },
   "Calves-SMR": {
-   "pl": "Roller na łydki"
+   "pl": "Rolowanie łydek"
   },
   "Foam Roll: Hamstrings": {
-   "pl": "Roller na tył uda"
+   "pl": "Rolowanie tyłu uda"
   },
   "Iliotibial Tract-SMR": {
-   "pl": "Roller na pasmo biodrowo-piszczelowe"
+   "pl": "Rolowanie pasma biodrowo-piszczelowego"
   },
   "Latissimus Dorsi-SMR": {
-   "pl": "Roller na najszerszy grzbietu"
+   "pl": "Rolowanie najszerszego grzbietu"
   },
   "Peroneals-SMR": {
-   "pl": "Roller na mięśnie strzałkowe"
+   "pl": "Rolowanie boku łydki"
   },
   "Piriformis-SMR": {
-   "pl": "Roller na mięsień gruszkowaty"
+   "pl": "Rolowanie mięśnia gruszkowatego"
   },
   "Foam Roll: Quadriceps": {
-   "pl": "Roller na przód uda"
+   "pl": "Rolowanie przodu uda"
   },
   "Rhomboids-SMR": {
-   "pl": "Roller na górną część pleców"
+   "pl": "Rolowanie górnej części pleców"
   },
   "Foot-SMR": {
-   "pl": "Roller na stopę"
+   "pl": "Rolowanie stopy"
   },
   "Frog Hops": {
-   "pl": "Żabie skoki"
+   "pl": "Skoki żabką"
   },
   "Toe Touchers": {
    "pl": "Dotykanie palców stóp leżąc"
@@ -878,9 +861,6 @@
   },
   "Side Lying Groin Stretch": {
    "pl": "Rozciąganie pachwiny leżąc na boku"
-  },
-  "Cable Crunch With Side Bends (półkula balansowa)": {
-   "pl": "Brzuszki na wyciągu ze skłonami, półkula"
   }
  }
 }

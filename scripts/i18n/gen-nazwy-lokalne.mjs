@@ -14,7 +14,8 @@ export const CEL = 'lib/nazwy-lokalne.ts';
 export const MAX_ZNAKOW = 60;
 
 export const nazwyEnKatalogu = (root) => Object.fromEntries([...readFileSync(join(root, 'lib/nazwy-en.generated.ts'), 'utf8').matchAll(/^\s*"((?:[^"\\]|\\.)+)": "((?:[^"\\]|\\.)+)"/gm)].map((m) => [JSON.parse(`"${m[1]}"`), JSON.parse(`"${m[2]}"`)]));
-const kluczeKatalogu = (root) => Object.keys(Object.fromEntries([...readFileSync(join(root, 'lib/nazwy-en.generated.ts'), 'utf8').matchAll(/^\s*"((?:[^"\\]|\\.)+)": "/gm)].map((m) => [JSON.parse(`"${m[1]}"`), 1])));
+/** Klucze katalogu (lib/catalog.generated.ts) — nazwa lokalna wiąże się z kluczem katalogu (exLocal: libKey ?? name); NAME_EN ma też dawne nazwy wyświetlane (LIB_DISPLAY_NAME), które kluczami nie są. */
+const kluczeKatalogu = (root) => { const kat = readFileSync(join(root, 'lib/catalog.generated.ts'), 'utf8'); return Object.keys(nazwyEnKatalogu(root)).filter((k) => kat.includes(JSON.stringify(k))); };
 
 /** Błędy danych: klucz spoza katalogu, pusta albo za długa nazwa, recenzja „zatwierdzone” bez recenzenta/daty/pliku albo recenzent = autor. */
 export function bledy(dane, katalog) {

@@ -9,6 +9,7 @@ import * as path from 'path';
 import { execFileSync } from 'child_process';
 import { NAZWY_LOKALNE, NAZWY_LOKALNE_RECENZJA } from '@/lib/nazwy-lokalne';
 import { NAME_EN } from '@/lib/nazwy-en.generated';
+import { CATALOG } from '@/lib/catalog.generated';
 import { PENDING } from './pending-translation';
 
 const ROOT = path.join(__dirname, '..');
@@ -17,9 +18,11 @@ const run = (code: string) => JSON.parse(execFileSync(process.execPath, ['--inpu
 const DANE = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/lokalizacja/nazwy-lokalne.json'), 'utf8')) as { jezyki: Record<string, { autor: string; recenzja: { wynik?: string } | null }>; nazwy: Record<string, Record<string, string>> };
 
 describe('nazwy lokalne: dane (W-03 11.11.2026)', () => {
-  test('każde ćwiczenie biblioteki (NAME_EN) ma polską nazwę lokalną; żadnego klucza spoza katalogu', () => {
-    expect(Object.keys(NAME_EN).filter(k => !DANE.nazwy[k]?.pl)).toEqual([]);
-    expect(Object.keys(DANE.nazwy).filter(k => !(k in NAME_EN))).toEqual([]);
+  test('każde ćwiczenie biblioteki (klucz katalogu z nazwą EN) ma polską nazwę lokalną; żadnego klucza spoza katalogu', () => {
+    const kat = Object.keys(NAME_EN).filter(k => k in CATALOG); /* NAME_EN ma też dawne nazwy wyświetlane (LIB_DISPLAY_NAME) — nie są kluczami */
+    expect(kat.length).toBeGreaterThan(270);
+    expect(kat.filter(k => !DANE.nazwy[k]?.pl)).toEqual([]);
+    expect(Object.keys(DANE.nazwy).filter(k => !(k in CATALOG))).toEqual([]);
   });
   test('generator: dane bez błędów (długość, puste, języki, recenzja) i lib/nazwy-lokalne.ts aktualny', () => {
     expect(execFileSync(process.execPath, [path.join(ROOT, 'scripts/i18n/gen-nazwy-lokalne.mjs'), '--check'], { encoding: 'utf8' })).toMatch(/aktualny/);

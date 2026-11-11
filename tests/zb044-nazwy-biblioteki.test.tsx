@@ -5,14 +5,17 @@
  */
 import * as store from '@/lib/store';
 import { exName, exNameLang, exLocal, exLocalFold, applyLang, fold, LANGS, type Lang } from '@/lib/i18n';
-import { NAZWY_LOKALNE } from '@/lib/nazwy-lokalne';
+import { NAZWY_LOKALNE, NAZWY_LOKALNE_RECENZJA } from '@/lib/nazwy-lokalne';
 import { CATALOG } from '@/lib/catalog.generated';
 import { fresh, saved, ex } from './helpers';
 import { renderApp, flushAll, screen, act, type as typeText } from './app';
 
 jest.setTimeout(60000);
 const LIST = NAZWY_LOKALNE as Record<string, Record<string, string>>;
-afterEach(() => { applyLang('pl'); for (const k of Object.keys(LIST)) delete LIST[k]; });
+/* W-03 11.11.2026: lista ma dane (pl po recenzji) — testy podmieniają ją na czas przypadku, afterEach przywraca kopię danych (nie czyści). */
+const DANE_LISTY = JSON.parse(JSON.stringify(NAZWY_LOKALNE)) as Record<string, Record<string, string>>;
+beforeEach(() => { for (const k of Object.keys(LIST)) delete LIST[k]; });
+afterEach(() => { applyLang('pl'); for (const k of Object.keys(LIST)) delete LIST[k]; Object.assign(LIST, JSON.parse(JSON.stringify(DANE_LISTY))); });
 const own = (n = 'Moje ćwiczenie') => { const e = store.newExercise(n); e.lib = false; store.save(e); return e; };
 
 describe('ZB-044 logika: exName / exNameLang / exLocal w każdym języku', () => {
@@ -29,9 +32,12 @@ describe('ZB-044 logika: exName / exNameLang / exLocal w każdym języku', () =>
     const bad = store.getState().exercises.filter(e => e.lib && /\((sztanga|hantle|hantel|linki|ławka|bieżnia)\)/.test(exName(e))).map(e => exName(e));
     expect(bad).toEqual([]);
   });
-  test('lista nazw po recenzji jest pusta, dopóki nie powstanie recenzja — nazwa lokalna nie bierze się z dawnego katalogu PL', async () => {
-    await fresh(); expect(Object.keys(NAZWY_LOKALNE)).toEqual([]);
-    for (const l of LANGS) { applyLang(l as Lang); for (const e of store.getState().exercises.filter(x => x.lib)) expect([l, exLocal(e)]).toEqual([l, undefined]); }
+  test('W-03 11.11.2026: lista nazw po recenzji — tylko języki z recenzją „zatwierdzone” (dziś pl); pozostałe języki bez nazwy lokalnej; nazwa nie z dawnego katalogu PL', async () => {
+    await fresh(); Object.assign(LIST, JSON.parse(JSON.stringify(DANE_LISTY)));
+    expect(Object.keys(NAZWY_LOKALNE).sort()).toEqual(Object.keys(NAZWY_LOKALNE_RECENZJA).sort()); expect(Object.keys(NAZWY_LOKALNE)).toContain('pl');
+    for (const [k, v] of Object.entries(DANE_LISTY.pl)) expect([k, /\((sztanga|hantle|hantel|linki|ławka|bieżnia|EZ|kettlebell)/.test(v)]).toEqual([k, false]); /* nie przepisany klucz dawnego katalogu („Bench Press (sztanga)”) */
+    for (const l of LANGS) { applyLang(l as Lang); for (const e of store.getState().exercises.filter(x => x.lib)) { const n = exLocal(e); if (!(l in DANE_LISTY)) expect([l, n]).toEqual([l, undefined]); } }
+    applyLang('pl'); expect(exLocal(ex('Bench Press (sztanga)'))).toBe(DANE_LISTY.pl['Bench Press (sztanga)']);
   });
   test('z listą: pl/de pokazują nazwę lokalną; en, ćwiczenie własne, nazwa identyczna z angielską (wielkość liter) i brak wpisu — nie', async () => {
     await fresh(); const e = ex('Bench Press (sztanga)'); const k = e.libKey ?? e.name;
@@ -43,7 +49,8 @@ describe('ZB-044 logika: exName / exNameLang / exLocal w każdym języku', () =>
     applyLang('pl'); expect(exLocal({ ...e, name: 'Moje', lib: false })).toBeUndefined(); expect(exLocal(ex('Back Squat'))).toBeUndefined();
   });
   test('strażnik listy: wpisy tylko dla znanych języków i kluczy katalogu, nazwa niepusta', () => {
-    for (const [l, m] of Object.entries(NAZWY_LOKALNE)) { expect(LANGS).toContain(l); for (const [k, v] of Object.entries(m)) { expect(Object.keys(CATALOG)).toContain(k); expect(v.trim().length).toBeGreaterThan(0); } }
+    expect(Object.keys(DANE_LISTY).length).toBeGreaterThan(0);
+    for (const [l, m] of Object.entries(DANE_LISTY)) { expect(LANGS).toContain(l); for (const [k, v] of Object.entries(m)) { expect(Object.keys(CATALOG)).toContain(k); expect(v.trim().length).toBeGreaterThan(0); } }
   });
   test('dane użytkownika bez migracji: zapisana nazwa ćwiczenia (e.name) zostaje polska, zmienia się tylko wyświetlanie', async () => {
     await fresh(); const e = ex('Wyciskanie na linkach (stojąc)'); const before = e.name; applyLang('pl');

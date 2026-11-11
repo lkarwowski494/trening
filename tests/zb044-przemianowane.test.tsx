@@ -13,7 +13,10 @@ import { renderApp, flushAll, screen, act, type as typeText } from './app';
 
 jest.setTimeout(60000);
 const LIST = NAZWY_LOKALNE as Record<string, Record<string, string>>;
-afterEach(() => { applyLang('pl'); for (const k of Object.keys(LIST)) delete LIST[k]; });
+/* W-03 11.11.2026: lista ma dane (pl po recenzji) — testy podmieniają ją na czas przypadku, afterEach przywraca kopię danych (nie czyści). */
+const DANE_LISTY = JSON.parse(JSON.stringify(NAZWY_LOKALNE)) as Record<string, Record<string, string>>;
+beforeEach(() => { for (const k of Object.keys(LIST)) delete LIST[k]; });
+afterEach(() => { applyLang('pl'); for (const k of Object.keys(LIST)) delete LIST[k]; Object.assign(LIST, JSON.parse(JSON.stringify(DANE_LISTY))); });
 const renamed = (e: Exercise, name: string): Exercise => ({ ...e, name });
 
 describe('ZB-044 W-1 logika: przemianowanie ćwiczenia z biblioteki (08.11.2026)', () => {
