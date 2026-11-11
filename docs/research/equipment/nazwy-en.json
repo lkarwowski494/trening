@@ -1,5 +1,5 @@
 {
- "_opis": "Kanoniczne nazwy angielskie ćwiczeń biblioteki po rid (ścieżka B, ZB-025 b; decyzja właściciela 31.10.2026: nazwy EN — wariant A, P1–P4 wg szkicu przewodnika z 30.10.2026). Klucze katalogu i dane użytkownika bez zmian (SCHEMA_VERSION 19). rid → nazwa wyświetlana po angielsku (i w każdym języku poza polskim, DEC-13); dawna = nazwa EN sprzed zmiany (alias wyszukiwania); reguly = reguły przewodnika (W/H/L/S/K/E/A/F, P1–P4). Generuje: node scripts/equipment/gen-nazwy-en.mjs → lib/nazwy-en.generated.ts. Nazwy nowe czekają na recenzję badacza (nazwy ogólne, marki) i recenzenta lokalizacji (naturalność EN) — pole recenzja.",
+ "_opis": "Kanoniczne nazwy angielskie ćwiczeń biblioteki po rid (ścieżka B, ZB-025 b; decyzja właściciela 31.10.2026: nazwy EN — wariant A, P1–P4 wg szkicu przewodnika z 30.10.2026). Klucze katalogu i dane użytkownika bez zmian (SCHEMA_VERSION 19). rid → nazwa wyświetlana po angielsku (i w każdym języku poza polskim, DEC-13); dawna = nazwa EN sprzed zmiany (alias wyszukiwania); reguly = reguły przewodnika (W/H/L/S/K/E/A/F, P1–P4). Generuje: node scripts/equipment/gen-nazwy-en.mjs → lib/nazwy-en.generated.ts. Nazwy nowe czekają na recenzję badacza (nazwy ogólne, marki) i recenzenta lokalizacji (naturalność EN) — pole recenzja. posrednie = nazwy EN wydane w v1.0.1-b1037 (tabela z 31.10.2026) i zmienione po recenzji 11.11.2026 — dodatkowe aliasy wyszukiwania.",
  "recenzja": {
   "badacz": {
    "plik": "docs/research/recenzje/nazwy-en-badacz-2026-11-11.md",
@@ -1084,6 +1084,9 @@
    "reguly": [
     "L2",
     "W1"
+   ],
+   "posrednie": [
+    "Push-Up with Feet on a Stability Ball"
    ]
   },
   {
@@ -1219,6 +1222,9 @@
     "H2",
     "L2",
     "H1"
+   ],
+   "posrednie": [
+    "Side-to-Side Chin-Up"
    ]
   },
   {
@@ -1319,6 +1325,9 @@
     "H3",
     "K1",
     "S1"
+   ],
+   "posrednie": [
+    "Incline Single-Arm Lateral Raise"
    ]
   },
   {
@@ -1743,6 +1752,9 @@
    "reguly": [
     "H3",
     "K1"
+   ],
+   "posrednie": [
+    "Single-Arm Overhead Kettlebell Squat"
    ]
   },
   {
@@ -1908,7 +1920,10 @@
     "S1",
     "L2"
    ],
-   "wyswietlana": "Cable Crunch With Side Bends (półkula balansowa)"
+   "wyswietlana": "Cable Crunch With Side Bends (półkula balansowa)",
+   "posrednie": [
+    "Balance Dome Cable Crunch with Side Bend"
+   ]
   },
   {
    "rid": "1a93b54c",
@@ -2055,6 +2070,9 @@
     "W1",
     "S4",
     "S1"
+   ],
+   "posrednie": [
+    "Weighted Sit-Up with Bands"
    ]
   },
   {
@@ -2072,6 +2090,9 @@
    "reguly": [
     "W1",
     "H2"
+   ],
+   "posrednie": [
+    "Chin to Chest Stretch"
    ]
   },
   {
@@ -2122,6 +2143,9 @@
    "reguly": [
     "W1",
     "H2"
+   ],
+   "posrednie": [
+    "Round the World Shoulder Stretch"
    ]
   },
   {

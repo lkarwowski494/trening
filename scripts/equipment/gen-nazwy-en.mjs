@@ -23,7 +23,10 @@ export function zbuduj(zrodlo, katalog) {
     if (typeof w.nazwa !== 'string' || !w.nazwa.trim() || typeof w.dawna !== 'string' || !w.dawna.trim()) throw new Error(`nazwy-en: ${w.rid} bez nazwy albo dawnej nazwy`);
     nazwy[klucz] = w.nazwa;
     if (w.wyswietlana) wyswietlane[w.wyswietlana] = w.nazwa; /* klucz z LIB_DISPLAY_NAME (znak towarowy) — exName dostaje też nazwę wyświetlaną */
-    if (w.dawna !== w.nazwa) dawne[klucz] = [w.dawna];
+    if (w.posrednie !== undefined && (!Array.isArray(w.posrednie) || w.posrednie.some(n => typeof n !== 'string' || !n.trim() || n === w.nazwa))) throw new Error(`nazwy-en: ${w.rid} — posrednie musi być listą nazw innych niż bieżąca`);
+    /* dawna = nazwa z 1.0; posrednie = nazwy wydane później i zmienione (11.11.2026: v1.0.1-b1037) — wszystkie zostają aliasami wyszukiwania */
+    const aliasy = [w.dawna, ...(w.posrednie ?? [])].filter((n, i, a) => n !== w.nazwa && a.indexOf(n) === i);
+    if (aliasy.length) dawne[klucz] = aliasy;
   }
   return { nazwy: { ...nazwy, ...wyswietlane }, dawne };
 }

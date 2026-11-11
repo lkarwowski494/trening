@@ -59,6 +59,15 @@ describe('nazwy EN po rid: źródło i generator', () => {
       expect(r!.recenzent).not.toBe(r!.autor);
     }
   });
+  test('11.11.2026: nazwa z 31.10.2026 (wydana w v1.0.1-b1037) zmieniona po recenzji zostaje aliasem wyszukiwania obok nazwy z 1.0', () => {
+    const zmienione = WSZYSTKIE.filter(w => (w as Wpis & { posrednie?: string[] }).posrednie);
+    expect(zmienione.map(w => w.rid).sort()).toEqual(['0d11e220', '2cfc60fd', '30a1285c', '3785f29d', '66d0cd90', '76c15d28', 'd233159f', 'f0cd6c32']);
+    applyLang('en');
+    const e = libExercise(wiersz(kluczOd['76c15d28']!));
+    expect(formerEnNamesOf(e)).toEqual(['Side To Side Chins', 'Side-to-Side Chin-Up']);
+    expect(formerExact(e, fold('Side-to-Side Chin-Up'))).toBe(true);
+    expect(formerEnNamesOf(libExercise(wiersz(kluczOd['66d0cd90']!)))).toContain('Weighted Sit-Up with Bands');
+  });
   test('poprawki WYSOKIE z recenzji 11.11.2026: nachwyt to Pull-Up, sit-up z gumami bez ciężaru nie jest „Weighted”', () => {
     expect(nazwaEn(kluczOd['76c15d28']!)).toBe('Side-to-Side Pull-Up');
     expect(nazwaEn(kluczOd['66d0cd90']!)).toBe('Decline Band Sit-Up');
@@ -170,7 +179,10 @@ describe('nazwy EN: stare nazwy jako aliasy wyszukiwania', () => {
     applyLang('en');
     for (const w of zrodlo.wpisy) {
       const e = libExercise(wiersz(kluczOd[w.rid]));
-      expect([w.rid, formerEnNamesOf(e)]).toEqual([w.rid, [w.dawna]]);
+      /* 11.11.2026: aliasy = nazwa z 1.0 + nazwy pośrednie wydane w v1.0.1-b1037 (pole posrednie) — każdy alias też znajduje ćwiczenie */
+      const posrednie = (w as Wpis & { posrednie?: string[] }).posrednie ?? [];
+      expect([w.rid, formerEnNamesOf(e)]).toEqual([w.rid, [w.dawna, ...posrednie]]);
+      for (const n of posrednie) expect([w.rid, n, formerExact(e, fold(n))]).toEqual([w.rid, n, true]);
       expect([w.rid, formerExact(e, fold(w.dawna))]).toEqual([w.rid, true]);
       expect([w.rid, !!formerMatch(e, fold(w.dawna))]).toEqual([w.rid, true]);
     }
