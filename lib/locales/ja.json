@@ -1819,5 +1819,7 @@
  "Rzut": "投げる",
  "Czego unikać": "避けること",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "この端末は基本の音声を使用しています。より良い音声はiOSの「設定」（アクセシビリティ）からダウンロードできます。",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "アプリ名が{app}に変わりました。トレーニング、テンプレート、設定はそのまま残ります。"
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "アプリ名が{app}に変わりました。トレーニング、テンプレート、設定はそのまま残ります。",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "ライブラリのほとんどの種目に動きの図が付きました。マシンやケーブル、ケトルベル、ジャンプ、腹筋、モビリティなど、ほかにも多数あります。",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "ライブラリの種目名は、多くのジムと同じく英語で表記しています。種目カードでは名前の下に日本語名が表示され、検索ではどちらの名前でも見つかります。"
 }

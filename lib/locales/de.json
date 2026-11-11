@@ -1819,5 +1819,7 @@
  "Rzut": "Wurf",
  "Czego unikać": "Was du vermeiden solltest",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Dein iPhone nutzt eine einfache Stimme. Eine bessere kannst du in den iOS-Einstellungen (Bedienungshilfen) herunterladen.",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Die App heißt jetzt {app}. Deine Trainings, Vorlagen und Einstellungen bleiben unverändert."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Die App heißt jetzt {app}. Deine Trainings, Vorlagen und Einstellungen bleiben unverändert.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Die meisten Übungen in der Bibliothek haben jetzt Bewegungszeichnungen: Maschinen und Kabelzüge, Kettlebell, Sprünge, Bauch, Mobility und vieles mehr.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Die Übungsnamen in der Bibliothek sind auf Englisch, wie in den meisten Fitnessstudios. Auf der Übungskarte steht darunter der Name in deiner Sprache, und die Suche findet die Übung unter beiden Namen."
 }

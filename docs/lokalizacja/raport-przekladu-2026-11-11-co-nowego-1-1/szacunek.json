@@ -1,0 +1,251 @@
+{
+ "zrodlo": "count_tokens (wejście), wyjście z założeń",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "zalozenia_wyjscia": {
+  "obwiednia": 12,
+  "myslenie": 3000
+ },
+ "jezykow": 33,
+ "pozycji": 2,
+ "tokeny_we": 208563,
+ "tokeny_wy": 104499,
+ "koszt_usd": 1.462116,
+ "koszt_wg_modelu": {
+  "claude-opus-5-5": 1.462116,
+  "claude-sonnet-5-5": 0.731058
+ },
+ "wiersze": [
+  {
+   "jezyk": "bg",
+   "pozycji": 2,
+   "we": 5989,
+   "wy": 3196,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "cs",
+   "pozycji": 2,
+   "we": 6046,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "da",
+   "pozycji": 2,
+   "we": 6550,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "de",
+   "pozycji": 2,
+   "we": 6136,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "el",
+   "pozycji": 2,
+   "we": 6805,
+   "wy": 3196,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "es",
+   "pozycji": 2,
+   "we": 6449,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "es-419",
+   "pozycji": 2,
+   "we": 6588,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "et",
+   "pozycji": 2,
+   "we": 6295,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "fi",
+   "pozycji": 2,
+   "we": 5911,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "fr",
+   "pozycji": 2,
+   "we": 5975,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "hr",
+   "pozycji": 2,
+   "we": 5910,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "hu",
+   "pozycji": 2,
+   "we": 6478,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "id",
+   "pozycji": 2,
+   "we": 6066,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "it",
+   "pozycji": 2,
+   "we": 6306,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ja",
+   "pozycji": 2,
+   "we": 7024,
+   "wy": 3131,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ko",
+   "pozycji": 2,
+   "we": 6293,
+   "wy": 3131,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "lt",
+   "pozycji": 2,
+   "we": 6268,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "lv",
+   "pozycji": 2,
+   "we": 6209,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ms",
+   "pozycji": 2,
+   "we": 6792,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "nb",
+   "pozycji": 2,
+   "we": 6480,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "nl",
+   "pozycji": 2,
+   "we": 6193,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "pt",
+   "pozycji": 2,
+   "we": 6296,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "pt-BR",
+   "pozycji": 2,
+   "we": 6429,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ro",
+   "pozycji": 2,
+   "we": 6501,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ru",
+   "pozycji": 2,
+   "we": 6864,
+   "wy": 3196,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sk",
+   "pozycji": 2,
+   "we": 6063,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sl",
+   "pozycji": 2,
+   "we": 5909,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sr",
+   "pozycji": 2,
+   "we": 5982,
+   "wy": 3196,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sv",
+   "pozycji": 2,
+   "we": 6665,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "tr",
+   "pozycji": 2,
+   "we": 6027,
+   "wy": 3169,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "uk",
+   "pozycji": 2,
+   "we": 6671,
+   "wy": 3196,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "vi",
+   "pozycji": 2,
+   "we": 6251,
+   "wy": 3158,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "zh-Hant",
+   "pozycji": 2,
+   "we": 6142,
+   "wy": 3131,
+   "model": "claude-opus-5-5"
+  }
+ ]
+}

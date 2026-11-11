@@ -1,0 +1,14 @@
+{
+ "jezyk": "es",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Ahora la mayoría de los ejercicios de la biblioteca tienen dibujos del movimiento: máquinas y poleas, pesas rusas, saltos, abdominales, movilidad y mucho más.",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Los nombres de los ejercicios de la biblioteca están en inglés, como en la mayoría de los gimnasios. En la ficha del ejercicio verás debajo el nombre en tu idioma, y el buscador encuentra el ejercicio por cualquiera de los dos."
+ }
+}

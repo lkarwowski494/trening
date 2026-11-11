@@ -1819,5 +1819,7 @@
  "Rzut": "Vise",
  "Czego unikać": "Mida vältida",
  "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Telefon kasutab põhihäält. Parema saad alla laadida iOS-i rakenduses Seaded (Hõlbustus).",
- "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Rakenduse nimi on nüüd {app}. Treeningud, mallid ja seaded jäävad samaks."
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Rakenduse nimi on nüüd {app}. Treeningud, mallid ja seaded jäävad samaks.",
+ "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Liigutuse joonised on nüüd enamikul teegi harjutustest: masinad ja plokid, kettlebellid, hüpped, kõhulihased, liikuvus ja palju muud.",
+ "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Teegi harjutuste nimed on inglise keeles, nagu enamikus jõusaalides. Harjutuse kaardil näed nime all ka nime oma keeles ning otsing leiab harjutuse mõlema nime järgi."
 }

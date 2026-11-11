@@ -1,0 +1,14 @@
+{
+ "jezyk": "el",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Οι περισσότερες ασκήσεις της βιβλιοθήκης έχουν πλέον σχέδιο της κίνησης: μηχανήματα και τροχαλίες, kettlebell, άλματα, κοιλιακοί, κινητικότητα και πολλά άλλα.",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Τα ονόματα των ασκήσεων της βιβλιοθήκης είναι στα αγγλικά, όπως στα περισσότερα γυμναστήρια. Στην καρτέλα της άσκησης, κάτω από το όνομα εμφανίζεται το όνομα στη γλώσσα σας και η αναζήτηση βρίσκει την άσκηση και με τα δύο."
+ }
+}

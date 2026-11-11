@@ -1,0 +1,14 @@
+{
+ "jezyk": "ru",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_016XGojys3124eDf6NqnE98N",
+ "pozycji": 2,
+ "przyjete": 2,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.": "Рисунки движений теперь есть у большинства упражнений в библиотеке: тренажёры и блоки, гири, прыжки, пресс, мобильность и многое другое.",
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.": "Названия упражнений в библиотеке — на английском, как в большинстве залов. В карточке упражнения под названием видно название на вашем языке, а поиск находит упражнение по обоим."
+ }
+}
