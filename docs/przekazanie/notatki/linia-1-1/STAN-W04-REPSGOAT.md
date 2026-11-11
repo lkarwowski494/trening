@@ -10,7 +10,9 @@ Gałąź `zb/w04-repsgoat-glosy` od `integracja-1-1` @ d11a948d.
 - Lista „tylko telefon”: W2-04 (jakość głosu, wskazówka „lepszy głos”), ZD-02 („RepsGoat” pod ikoną, zegarek); test `tests/w04-telefon-1-1.test.ts`; docs/39 przeliczony.
 - Stan ZB-039 i ZB-056 w docs/zobowiazania.md, W-04 w docs/49.
 
+- Na aeab7fa0: `verify:szybkie` kod 0 (125 plików, 7329 testów), `tests.yml` 43027319569 zielony, `ios-unsigned.yml` 43027324931 zielony (zmiany natywne marki i ZB-039 skompilowane). Recenzja niezależna (audytor): brak uwag.
+
 ## Zostało (poza tą sesją)
 - W-22 metadane + „Co nowego”, W-23 zrzuty, W-24/ZB-037: nazwa grupy subskrypcji pl/en-US w `store/iap-localizations.json` (`wpisaneRecznie`) nadal „Trening …”.
 - Odsłuch właściciela i nazwa pod ikoną — W-20 po buildzie 1.1.
-- Kompilacja `ios-unsigned.yml` na głowie tej gałęzi (zmiany natywne marki od 687ad52b) — numer przebiegu w raporcie PRZEKAZANIE.
+
