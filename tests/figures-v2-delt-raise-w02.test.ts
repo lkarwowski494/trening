@@ -73,9 +73,9 @@ describe('W-02 Front Incline Dumbbell Raise: zdanie fidr.move bez wysokości spr
     for (const l of jezyki) { const t = cue(l); expect([l, typeof t === 'string' && t.trim().length > 0 && t !== cue('en')]).toEqual([l, true]); expect([l, POP[l] !== undefined ? t === POP[l] : JSON.stringify(RAP(l)).includes(JSON.stringify(t).slice(1, -1))]).toEqual([l, true]); }
     const Z = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json'), 'utf8')); expect(Z.klucze).toEqual([]);
   });
-  test('W-03: karta odsłonięta — plik runtime lib/cues/data.json ma kartę Front Incline Dumbbell Raise i nie ma jej na liście „hidden”; werdykt recenzji „wyswietlana” (recenzja W-02, autor ≠ recenzent)', () => {
+  test('W-03: karta odsłonięta — plik runtime lib/cues/data.json ma kartę Front Incline Dumbbell Raise i nie ma jej na liście „hidden”; (werdykt: karty-recenzja, L-047)', () => {
     const CUE = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/cues/data.json'), 'utf8')) as { exercises: Record<string, unknown>; hidden: string[] };
     expect(['Front Incline Dumbbell Raise' in CUE.exercises, CUE.hidden.includes('Front Incline Dumbbell Raise')]).toEqual([true, false]);
-    const R = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/research/figury-recenzja.json'), 'utf8')); expect(R.karty['Front Incline Dumbbell Raise'].werdykt).toBe('wyswietlana');
+    /* werdykt „wyswietlana” pilnują tests/karty-recenzja.test.tsx i tests/l047-recenzja-niezalezna.test.ts — tu bez odczytu pliku recenzji figur (wybór test:fast po nazwie pliku, tests/wybor-testow-l103.test.ts, G3/L-100) */
   });
 });
