@@ -16,11 +16,11 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening, lkarwowski494/prompts (add_repo za zgodą właściciela ~09:00). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz (12:40 UTC 11.11 — koordynator …VBwLEERfcSTE1sVqA6n, lineage 0/8)
-- Przejęcie E6 12:33; blokada lineage zdjęta (send_later działa: trig_016i8j12rSEczsqv4uSasJAr, trig_01DffPHWJK8eggnDKTPMHqB2).
-- Prompt M9 nie dotarł w wiadomości startowej (brak treści po znaczniku) — odzyskiwany z pierwszej wiadomości poprzednika (subagent, kontrola bajtów i sha256).
-- Integracja `integracja-1-1` @ d11a948d: tests.yml 43015714290 success (12:20, poprzednik). main @ 2d975814. Nightly 12.11 pokaże efekt PR #108 (L-119).
-- Brak aktywnych sesji podrzędnych. Następne: W-03 przekład ZB-057 (rola 09 — biblioteka prompts za zgodą właściciela), W-04, W-08 (S-02 F-20 przed tagiem), W-10 (rola 07).
+## Teraz (12:55 UTC 11.11 — koordynator …VBwLEERfcSTE1sVqA6n, lineage 0/8)
+- W-04 w 3 sesjach równoległych (KO-043): Q zb/w04-nazwy (ZB-025, ZB-044), R zb/w04-repsgoat-glosy (ZB-056, ZB-039), S zb/w04-pochodzenie (ZB-023); start od integracja-1-1 @ d11a948d, polecenia @ bec5ddeb.
+- Q raport 1: ZB-025a zrobione, 25b i 44 częściowo; KO-044 (nazwy lokalne → W-03). R raport 1: ZB-056 kod zrobiony (c9590496), ZB-039 kod zrobiony (9321d918); zostaje lista „tylko telefon” + ios-unsigned na nowej głowie.
+- Prompty ról 08, 09, M9 odzyskane z zapisów (sumy zgodne); 07 brak → prośba o bibliotekę przy W-10.
+- Następne: odbiór Q/R/S → scal-galaz → W-03 (rola 09) → W-08 → W-10.
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
 Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikator trybu auto). Poprzednik składa prompty z biblioteki i wysyła je następcy przez send_message, każdy jako osobna wiadomość z nagłówkiem `ROLA <plik> część <i>/<n> · bajtów całości <B> · sha256[:16] <H>` i treścią po linii `=== TREŚĆ ===`. Następca zapisuje treść dosłownie do `<scratchpad>/role/<plik>` (części skleja po kolei), sprawdza bajty i sha256 i odpisuje „ROLE OK” albo listę niezgodności. Zestaw (prompts f701ce9): 08-programista-build.md 51193 B 50d63f46f7a77bba; 07-jakosc-audit.md 77114 B bf8102fa42677cec (2 części); 09-lokalizacja-build.md 59315 B e8c4c5fdf518e603; 10-wydanie-build.md 60161 B a6aaae7d4f38b892. M9 jak dotąd w wiadomości startowej. Od 19:45 (WG-10, wariant C — zatwierdzony przez właściciela 20:45, KO-034): następca dostaje od razu tylko 08; 07, 09, 10 poprzednik albo następca zamawia na żądanie (1 plik = 1 subagent, WG-09). Biblioteka tylko dla nowej roli (wtedy zgoda właściciela). Limit send_message 64 KiB.
@@ -63,6 +63,9 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 | L | session_01T66VBw8ur99YDZhDnNZbt4 | 08 build (opus-5-5): W-02 figury (polecenia/L.md) | figury/w02-przed-1-1 @ 8e0aa08f (verify:szybkie 1: 16 plików Jest po zamierzonych zmianach) | 31,8 | 28,75 | PRZEKAZANIE 08:22 → L2; zarchiwizowana 08:52 |
 | M | session_01T66VBvbBNZksSrfp6Li5qt | 08 build (opus-5-5): W-05 ryzyka + KO-038 (polecenia/M.md) | proces/w05-ryzyka-sigterm @ d0d5e9a7 — PRZYJĘTA, w integracji 1974df92 | 28,0 | 8,70 | zarchiwizowana 08:01 |
 | O | session_01T66VByuyK61tpabFWkxi81 | 08 build (opus-5-5): start strony techniqueatlas — kroki w docs/49 (polecenia/O.md) | docs/strona-start-1-1 @ ee49d68e — PRZYJĘTA, w integracji ddfcbe61 | 19,6 | 2,92 | zarchiwizowana 07:41 |
+| Q | session_01T66VBwhHWV9xJ1aahv12UF | 08 build (opus-5-5): W-04a ZB-025, ZB-044 (polecenia/Q.md) | zb/w04-nazwy @ d11a948d | — | — | w toku od 12:45 |
+| R | session_01T66VBvf4XkPRvqoGYL4ipR | 08 build (opus-5-5): W-04b ZB-056, ZB-039 (polecenia/R.md) | zb/w04-repsgoat-glosy @ d11a948d | — | — | w toku od 12:48 |
+| S | session_01T66VBvT1W3d3UDCqPuR9yJ | 08 build (opus-5-5): W-04c ZB-023 (polecenia/S.md) | zb/w04-pochodzenie @ d11a948d | — | — | w toku od 12:50 |
 | L2 | session_01T66VBw1tAxkGfh98UGdHWe | 08 build (opus-5-5): W-02 dokończenie (polecenia/L2.md) | figury/w02-przed-1-1 @ 3b5e1a0b (kod 652d0c9c) — PRZYJĘTA, w integracji b157ca62/d11a948d | 34,5 | 12,46 | zarchiwizowana 11:52 |
 | E | session_01T66VBvTx4J3wo4LsZx4yjb | 08 build: partia 8 + KO-024 podział | scal/posedata-podzial 24b461e3 (PRZYJĘTA, w integracji 038efefc); figury/partia-8 f281a089 + gałęzie rodzin | 32,7 | 31,62 | PRZEKAZANIE 13:50 → E2; zarchiwizowana 15:15 |
 | F | session_01T66VBwaPHeeK1QNim6cow6 | 08 build: partia 9 | partia-9 3070557, -leg_isolation 7c2692a, -lunge d744f06 | 36,4 | 39,99 | PRZEKAZANIE 14:21 → F2; zarchiwizowana 14:55 |
@@ -110,7 +113,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-043. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-045. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -249,3 +252,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 12:20 | koordynator | tests.yml 43015714290 success na integracja-1-1 d11a948d (W-02 w integracji) | linia 14:00; nowe sesje po sesji koordynatora z paska |
 | 2026-11-11 12:35 | koordynator | E6: prompt przekazania docs/koordynacja/przekazanie-M9-2026-11-11b.md dla sesji z paska (właściciel prosi o prompt) | następca: PRZEJĄŁEM → archiwizacja …VBwUkCZEe4r5nJpxuUt |
 | 2026-11-11 12:40 | koordynator …VBwLEERfcSTE1sVqA6n | PRZEJĄŁEM (sesja z paska, lineage 0/8); przypomnienia 14:00 i 05:00 utworzone; prompt M9 brak w wiadomości startowej → odzysk z zapisu poprzednika | ROLE OK; W-03 po zgodzie na prompts |
+| 2026-11-11 12:55 | koordynator | KO-043: W-04 na 3 sesje Q/R/S (utworzone 12:45–12:50 przez subagenta, prompt 08 51193 B 50d63f46f7a77bba; polecenia @ bec5ddeb); Q PYTANIE → KO-044 (B); R raport 1 | kontrola ~13:50; linia 14:00 |
