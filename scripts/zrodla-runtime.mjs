@@ -11,12 +11,12 @@
 // trafia na listę otwartą — aplikacja jej nie rysuje, a test tests/figury-recenzja.test.tsx czerwieni verify.
 // Bramka 4 dla treści kart (DEC-10 a, 28.10.2026; M1-audytor-generalny-038): do lib/cues/data.json trafia tylko karta z aktualną recenzją treści (sekcja „karty”
 // albo wpis v1 „wyswietlana”), a lista „general” zawiera tylko zestawy ogólne z aktualnym wpisem „zestawy” — zob. buildCues; test tests/karty-recenzja.test.tsx.
-// Użycie: node scripts/zrodla-runtime.mjs --write  (zapis) | --check  (verify: nieaktualny plik runtime albo brak źródła wskazówki zestawu ogólnego → kod 1; wzór: scripts/cues/gen.mjs)
+// Użycie: node scripts/zrodla-runtime.mjs --write  (zapis) | --rid  (znaczniki pochodzenia nowych ćwiczeń w data/zrodla, ZB-023) | --check  (verify: nieaktualny plik runtime albo brak źródła wskazówki zestawu ogólnego → kod 1; wzór: scripts/cues/gen.mjs)
 //         | --skroty  (bieżące skróty do wpisu recenzji: { v1: { ćwiczenie: skrót }, v2: { rodzina: skrót }, karty: { ćwiczenie: skrót }, zestawy: { ćwiczenie: skrót } })
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { resolve as resolveFig } from './figures/gen.mjs';
 import { srcLevel, MAX_COUNT_LEVEL } from './cues/gen.mjs';
@@ -58,7 +58,42 @@ export function buildCues(full, review) {
     basis[ex] = BASIS_ORDER.filter(k => kinds.has(k));
   }
   const general = review ? Object.keys(review.sets?.items ?? {}).filter(k => review.sets.items[k].b === 'general' && SHOWN_CARD.includes(review.rec.zestawy?.[k]?.werdykt) && review.rec.zestawy[k].sha === zestawSkrot(review.sets, review.pl, k)) : [];
-  return { exercises, basis, open: Object.keys(full.open), partial: full.partial ?? [], hidden, general };
+  return { exercises, basis, open: Object.keys(full.open), partial: full.partial ?? [], hidden, general, rid: ridMap(full) };
+}
+/**
+ * Znaczniki pochodzenia (ZB-023; właściciel 30.10.2026 ~21:10 PL, A — jak katalog ćwiczeń 25.10.2026, tests/provenance-guard.test.ts): pełne dane mają na poziomie głównym
+ * `rid` { ćwiczenie: 8 znaków szesnastkowych } w kolejności `exercises` i `ridAliasy` [{ name, after, rid }] (wpisy techniczne, najwyżej 3). Plik runtime dostaje mapę `rid`
+ * z wpisami technicznymi zaraz po ćwiczeniu `after`. Mapa leży poza obiektami ćwiczeń — treść, pozy i skróty recenzji bez zmian; aplikacja jej nie czyta.
+ * Figury v2 (KO-045, 11.11.2026, wariant A): `ridV2` / `ridV2Aliasy` w pełnych danych figur dla ćwiczeń z plików póz (bez zmiany kontraktu figury-v2/poza@2) → `ridV2` w lib/figures/data.json.
+ * Brak znacznika albo zła kolejność → wyjątek (verify: --check); nowe ćwiczenie (także v2): `node scripts/zrodla-runtime.mjs --rid` dopisuje losowe znaczniki.
+ */
+export const RID_RE = /^[0-9a-f]{8}$/;
+const RID_FIX = 'uruchom node scripts/zrodla-runtime.mjs --rid, potem --write (docs/50-figury-v2.md, „Znaczniki pochodzenia”)';
+/** Mapa znaczników dla kluczy `keys` (kolejność wymagana) z wpisami technicznymi `aliasy` po ćwiczeniu `after`; zły stan → wyjątek. */
+export function ridMapKeys(keys, rid = {}, aliasy = []) {
+  if (Object.keys(rid).join('\n') !== keys.join('\n')) throw new Error(`znaczniki pochodzenia: mapa niezgodna z listą ćwiczeń (brak, nadmiar albo kolejność) — ${RID_FIX}`);
+  const out = {}, seen = new Set(), all = new Set(keys);
+  const put = (k, r) => { if (typeof r !== 'string' || !RID_RE.test(r) || seen.has(r) || k in out) throw new Error(`znaczniki pochodzenia: zły albo powtórzony znacznik (${k})`); seen.add(r); out[k] = r; };
+  for (const a of aliasy) if (!a || typeof a.name !== 'string' || !all.has(a.after) || all.has(a.name)) throw new Error('znaczniki pochodzenia: zły wpis techniczny');
+  for (const k of keys) { put(k, rid[k]); for (const a of aliasy.filter(x => x.after === k)) put(a.name, a.rid); }
+  return out;
+}
+export const ridMap = full => ridMapKeys(Object.keys(full.exercises), full.rid, full.ridAliasy);
+/** Ćwiczenia figur v2 (pliki póz lib/figures/v2/poses, kolejność: plik rodziny alfabetycznie, potem ćwiczenia w pliku) — znaczniki w `ridV2` pełnych danych figur (KO-045, 11.11.2026). */
+export const POSES_DIR = join(root, 'lib/figures/v2/poses');
+export const v2Klucze = (dir = POSES_DIR) => readdirSync(dir).filter(n => n.endsWith('.json')).sort().flatMap(n => Object.keys(JSON.parse(readFileSync(join(dir, n), 'utf8')).cwiczenia));
+/** Nowa mapa w kolejności `keys`: istniejące znaczniki bez zmian, brakujące losowe i unikalne (`uzyte` aktualizowany); znaczniki usuniętych kluczy znikają. */
+function uzupelnij(stare = {}, keys, uzyte, los) {
+  const rid = {};
+  for (const k of keys) { let r = stare[k]; while (!r) { const n = los(); if (!uzyte.has(n)) { r = n; uzyte.add(n); } } rid[k] = r; }
+  return rid;
+}
+/** Uzupełnia `rid` (klucze exercises) i — gdy podano `v2` (lista ćwiczeń v2) — `ridV2` pełnych danych; nowe znaczniki unikalne wobec `zajete` i wszystkich istniejących. */
+export function uzupelnijRid(full, zajete, los = () => randomBytes(4).toString('hex'), v2 = null) {
+  const uzyte = new Set([...zajete, ...Object.values(full.rid ?? {}), ...Object.values(full.ridV2 ?? {}), ...[...(full.ridAliasy ?? []), ...(full.ridV2Aliasy ?? [])].map(a => a.rid)]);
+  full.rid = uzupelnij(full.rid, Object.keys(full.exercises), uzyte, los);
+  if (v2) full.ridV2 = uzupelnij(full.ridV2, v2, uzyte, los);
+  return full;
 }
 /** JSON z kluczami w stałej kolejności (bez pól undefined) — podstawa skrótu. */
 const stable = v => Array.isArray(v) ? `[${v.map(stable).join(',')}]` : v && typeof v === 'object' ? `{${Object.keys(v).sort().filter(k => v[k] !== undefined).map(k => `${JSON.stringify(k)}:${stable(v[k])}`).join(',')}}` : JSON.stringify(v);
@@ -114,7 +149,7 @@ export function buildFigures(full, rec = recenzja(), cues = JSON.parse(readFileS
   const card = cardReviewed({ rec, pl, fig: full });
   const ok = k => { const e = rec.v1?.[k]; return !!e && SHOWN.includes(e.werdykt) && e.sha === figuraSkrot(full, cues, pl, k) && card(cues, k); };
   const exercises = Object.fromEntries(Object.entries(full.exercises).filter(([k]) => ok(k)));
-  return { rom, exercises, open: [...Object.keys(full.open), ...Object.keys(full.exercises).filter(k => !ok(k))], v2: rodzinyZAktualnaRecenzja(rec), replaced: Object.keys(exercises).filter(k => rec.v1[k].werdykt === 'zastapiona') /* figura v1 zastąpiona przez v2: nie wraca na ekran, gdy rodzina v2 jest ukryta (ExerciseCues, figureWithheld) */ };
+  return { rom, exercises, open: [...Object.keys(full.open), ...Object.keys(full.exercises).filter(k => !ok(k))], v2: rodzinyZAktualnaRecenzja(rec), replaced: Object.keys(exercises).filter(k => rec.v1[k].werdykt === 'zastapiona') /* figura v1 zastąpiona przez v2: nie wraca na ekran, gdy rodzina v2 jest ukryta (ExerciseCues, figureWithheld) */, rid: ridMap(full), ridV2: ridMapKeys(v2Klucze(), full.ridV2, full.ridV2Aliasy) };
 }
 /** Styki wymagane w pozie poprawnej (reguły sensu, bez źródeł): { rodzina: { wymagane, pomijane_gdy? } }. */
 export function buildStyki(full) {
@@ -220,6 +255,15 @@ export function outputs() {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  if (process.argv.includes('--rid')) {
+    const zajete = [...readFileSync(join(root, 'lib/catalog.generated.ts'), 'utf8').matchAll(/"([0-9a-f]{8})",$/gm)].map(m => m[1]);
+    for (const [plik, wciecie] of [[FULL_CUES, 1], [FULL_FIG, 2]]) {
+      const full = JSON.parse(readFileSync(plik, 'utf8'));
+      for (const p of [FULL_CUES, FULL_FIG]) if (p !== plik) { const o = JSON.parse(readFileSync(p, 'utf8')); zajete.push(...Object.values(o.rid ?? {}), ...Object.values(o.ridV2 ?? {}), ...[...(o.ridAliasy ?? []), ...(o.ridV2Aliasy ?? [])].map(a => a.rid)); }
+      writeFileSync(plik, JSON.stringify(uzupelnijRid(full, zajete, undefined, plik === FULL_FIG ? v2Klucze() : null), null, wciecie) + '\n'); console.log(`znaczniki: ${plik.slice(root.length)}`);
+    }
+    process.exit(0);
+  }
   if (process.argv.includes('--skroty')) { console.log(JSON.stringify(skroty(), null, 1)); process.exit(0); }
   const check = process.argv.includes('--check');
   if (!check && !process.argv.includes('--write')) { console.error('użycie: node scripts/zrodla-runtime.mjs --write | --check | --skroty'); process.exit(2); }
