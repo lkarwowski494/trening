@@ -3100,7 +3100,7 @@
      "tests/tabs-a11y.test.tsx",
      "tests/matrix-a11y.test.tsx"
     ],
-    "kontrola": "Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; scenariusz Maestro 58 (`.maestro/58-duzy-tekst.yaml`, wejście `rozmiar_tekstu` w e2e-ios.yml) robi zrzuty ekranu Trening z treningiem przy największym tekście — telefon sprawdza to, czego scenariusz nie pokrywa: stan „dziś bez treningu” (ikona startu kolejnego treningu w całości widoczna), plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
+    "kontrola": "Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; scenariusz Maestro 58 (`.maestro/58-duzy-tekst.yaml`, wejście `rozmiar_tekstu` w e2e-ios.yml) robi zrzuty ekranu Trening z treningiem przy największym tekście — telefon sprawdza to, czego scenariusz nie pokrywa: stan „dziś bez treningu” (ikona startu kolejnego treningu w całości widoczna), plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają. Od 1.1 (UX-01, audyt W-10, 11.11.2026): z VoiceOver po polsku posłuchaj nazw ćwiczeń z biblioteki w treningu na żywo, w Szablonach i w Postępach — gdy polski głos czyta angielską nazwę niezrozumiale, zgłoś „UX-01” (waga rośnie do WYSOKIE)."
    }
   },
   {

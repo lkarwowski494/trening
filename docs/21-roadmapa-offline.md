@@ -140,6 +140,27 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.1 — ekran startowy nowego użytkownika „bardziej wow” (właściciel 05.11.2026)
 - Zakładka Trening przed pierwszym treningiem („Pusty trening”, „Inny trening”, „Pierwsze kroki” 1–4) — pierwsze wrażenie po instalacji; do przeprojektowania w 1.1. Najpierw specyfikacja z ≥ 2 wariantami i makietami (analityk-produktu), zgodność z docs/32; decyzja w docs/18 (05.11.2026).
 
+### Backlog z audytu W-10 linii 1.1 (11.11.2026; ŚREDNIE i NISKIE nie blokują — próg z CLAUDE.md; lista: `docs/audyt-1-1/znaleziska.md` z gałęzi `audyt/w10-1-1`; DIF-01 naprawione w W-11, MER-01 — WYSOKIE, naprawione)
+- **1.2** · APL-01 (ŚREDNIE) — trening z samego cardio prowadzony z zegarkiem trafia do Zdrowia jako trening siłowy (`targets/watch-app/WorkoutController.swift:44`).
+- **1.1.x** · DAT-01 (ŚREDNIE, luka testu) — test zapisu b1033 porównuje część pól; dodać bogaty zapis ze wszystkimi rodzajami danych (`tests/migrate-released.test.ts`).
+- **1.2** · SEC-01 (ŚREDNIE, brzegowy) — klucz App Store Connect czytany przez 5 zadań bez `environment: release`; decyzja: osobny klucz tylko do odczytu.
+- **1.1.x** · SEC-02 (ŚREDNIE) — 56 cytatów ponad limit (2 zdania / 300 znaków) w `docs/research` (SEC2-03), skrócić w repo publicznym.
+- **1.1.x** · UX-01 (ŚREDNIE) — VoiceOver czyta angielskie nazwy ćwiczeń polskim głosem (trening na żywo, Szablony, Postępy; `exNameLang` w 11 z 22 plików z `exName`); punkt kontrolny w `docs/39` ZD-03 po buildzie TestFlight — przy niezrozumiałym odczycie WYSOKIE.
+- **1.2** · UX-02 (ŚREDNIE) — znaczki ✓/✕ na rysunku są przyciskami w elemencie-obrazie, VoiceOver ich nie widzi (`components/ExerciseFigureV2.tsx:103`; treść jest w opisie).
+- **1.1.x** · FIG-01 (ŚREDNIE) — Triceps Dips (ławka): docs/18 mówi „bez rysunku”, aplikacja pokazuje rysunek v1 — decyzja: ukryć v1 albo poprawić zapis.
+- **przed App Store 1.1** · TST-01 (ŚREDNIE) — E2E aktualizacji instaluje 1.0.1 b1037 zamiast 1.0.0 b1033; warunek zamknięcia W-15 (`docs/49`).
+- **przed W-13** · TST-02 (ŚREDNIE) — kandydat bez E2E od 902 commitów i bez `tests-tz.yml`; bramka w docs/49 albo integracja w `NIGHTLY_REFS`.
+- **1.2** · APL-02 (NISKIE) — chip usuniętego miejsca w edycji szablonu to przycisk bez działania (`app/template/[id].tsx:115`).
+- **backlog** · DAT-02 (NISKIE, brzegowy) — odhaczenie z ostatnich 300 ms ginie przy awarii aplikacji (`lib/state/core.ts:169`).
+- **1.1.x** · SEC-03 (NISKIE) — polityka prywatności nie wymienia przypomnienia o ważeniu (lokalne, nic nie wychodzi z telefonu).
+- **1.1.x** · MER-02 (NISKIE) — T-060 „przegląd badań” z pustą listą źródeł (liczba poprawna).
+- **1.2** · FIG-02 (NISKIE) — 3 rysunki v1 bez arkusza śladu i pól autor/recenzent (recenzja sprzed L-047/L-050).
+- **1.2** · FIG-03 (NISKIE) — strażnik toru bierze widoki rodziny — widok Wall Ball z przodu niesprawdzany (`tests/figures-v2-tor.test.ts:18`).
+- **backlog** · UX-03 (NISKIE) — nieużywany import `firstSteps` (`app/(tabs)/index.tsx:20`).
+- **1.1.x** · LOK-01 (NISKIE) — „Trening — opinia” po angielsku w ro i it.
+- **1.1.x** · TST-03 (NISKIE) — CLAUDE.md i `tests.yml` mówią o 4 częściach Jest / 14 min; faktycznie 5 części / 15,5 min.
+- **1.1.x** · DIF-02 (NISKIE) — `tests/whats-new.test.tsx:41` przekroczył 5000 ms na obciążonej maszynie; podnieść limit tego testu.
+
 ### Backlog 1.1 — proces (noc 03/04.11, koordynator)
 - `jest-ponow` ponawia też pliki zakończone przekroczeniem limitu czasu testu (dziś tylko przerwane z zewnątrz).
 - `figures-v2-ui` (kąt): wyższy limit czasu testu — pełne verify 2× czerwone tylko przez timeout (gałąź `ci/przyspieszenie`).
