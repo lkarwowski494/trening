@@ -1,0 +1,154 @@
+{
+ "audyt": "W-10 1.1",
+ "commit": "79117f33",
+ "data": "2026-11-11",
+ "znaleziska": [
+  {
+   "id": "MER-01",
+   "waga": "WYSOKIE",
+   "realnosc": "realny",
+   "status": "potwierdzone przez weryfikatora",
+   "w11": true
+  },
+  {
+   "id": "APL-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny",
+   "tytul": "Trening z samego cardio prowadzony z zegarkiem trafia do Zdrowia jako trening siłowy",
+   "w11": false
+  },
+  {
+   "id": "DAT-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "— (luka testu)",
+   "tytul": "Test zapisu b1033 porównuje część pól; plik zapisu bez większości rodzajów danych",
+   "w11": false
+  },
+  {
+   "id": "SEC-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "brzegowy",
+   "tytul": "Klucz ASC jako sekret repozytorium — 5 zadań czyta go bez `environment: release`",
+   "w11": false
+  },
+  {
+   "id": "SEC-02",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny",
+   "tytul": "56 cytatów ponad limit (2 zdania / 300 znaków) w `docs/research` w publicznym repo; SEC2-03 bez wpisu w docs/21 i zobowiązaniach",
+   "w11": false
+  },
+  {
+   "id": "UX-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny",
+   "tytul": "VoiceOver czyta angielskie nazwy ćwiczeń polskim głosem (trening na żywo, Szablony, Postępy) — nowe w 1.1 (ZB-044), wbrew wzorcowi 34",
+   "w11": false
+  },
+  {
+   "id": "UX-02",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny",
+   "tytul": "Znaczki ✓/✕ na rysunku to przyciski w elemencie-obrazie — VoiceOver ich nie widzi (treść dostępna w opisie)",
+   "w11": false
+  },
+  {
+   "id": "FIG-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny",
+   "tytul": "Triceps Dips (ławka): docs/18 mówi „bez rysunku”, aplikacja pokazuje rysunek v1",
+   "w11": false
+  },
+  {
+   "id": "TST-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny (proces)",
+   "tytul": "Domyślny E2E aktualizacji instaluje 1.0.1 b1037, nie 1.0.0 b1033 (z której aktualizują się użytkownicy App Store); ścieżka `retireCatalog` (1.0.0 → 1.1) w E2E niesprawdzona",
+   "w11": false
+  },
+  {
+   "id": "TST-02",
+   "waga": "ŚREDNIE",
+   "realnosc": "— (proces)",
+   "tytul": "Kandydat bez E2E od 902 commitów i bez `tests-tz.yml` (nocą tylko `main`)",
+   "w11": false
+  },
+  {
+   "id": "APL-02",
+   "waga": "NISKIE",
+   "realnosc": "brzegowy",
+   "tytul": "Chip usuniętego miejsca w edycji szablonu to przycisk bez działania",
+   "w11": false
+  },
+  {
+   "id": "DAT-02",
+   "waga": "NISKIE",
+   "realnosc": "brzegowy",
+   "tytul": "Odhaczenie z ostatnich 300 ms ginie przy awarii aplikacji",
+   "w11": false
+  },
+  {
+   "id": "SEC-03",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "Polityka prywatności nie wymienia przypomnienia o ważeniu (lokalne; nic nie wychodzi z telefonu)",
+   "w11": false
+  },
+  {
+   "id": "MER-02",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "T-060 „przegląd badań” z pustą listą źródeł (liczba poprawna)",
+   "w11": false
+  },
+  {
+   "id": "FIG-02",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "3 rysunki v1 bez arkusza śladu i pól autor/recenzent (recenzja sprzed L-047/L-050)",
+   "w11": false
+  },
+  {
+   "id": "FIG-03",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "Strażnik toru bierze widoki rodziny — widok Wall Ball z przodu niesprawdzany",
+   "w11": false
+  },
+  {
+   "id": "UX-03",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "Nieużywany import `firstSteps`",
+   "w11": false
+  },
+  {
+   "id": "LOK-01",
+   "waga": "NISKIE",
+   "realnosc": "realny",
+   "tytul": "„Trening — opinia” po angielsku w ro i it",
+   "w11": false
+  },
+  {
+   "id": "TST-03",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "CLAUDE.md i `tests.yml` mówią o 4 częściach Jest / 14 min; faktycznie 5 części / 15,5 min",
+   "w11": false
+  },
+  {
+   "id": "DIF-01",
+   "waga": "ŚREDNIE",
+   "realnosc": "realny",
+   "tytul": "„Co nowego” obiecuje nazwę w języku użytkownika pod nazwą ćwiczenia, a każdy język ma 277 nazw lokalnych na 708 ćwiczeń — przy pozostałych nic się nie pokazuje",
+   "w11": false
+  },
+  {
+   "id": "DIF-02",
+   "waga": "NISKIE",
+   "realnosc": "—",
+   "tytul": "`tests/whats-new.test.tsx:41` przekroczył 5000 ms na obciążonej maszynie (sam plik 14/14, kod 0)",
+   "w11": false
+  }
+ ]
+}

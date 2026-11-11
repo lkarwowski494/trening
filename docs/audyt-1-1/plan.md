@@ -40,7 +40,7 @@ Każde KRYTYCZNE i WYSOKIE sprawdza drugi, niezależny subagent (dostaje tylko t
 ## Wyjście
 
 - `docs/audyt-1-1/znaleziska.md` (+ `znaleziska.json` — poprzednie audyty nie miały formatu JSON; plik prosty, do backlogu).
-- `docs/audyt-1-1/raport-07-jakosc.md` — raport roli 07 z werdyktem.
+- `docs/audyt-1-1/07-jakosc-2026-11-11.md` — raport roli 07 z werdyktem.
 - Różnica `79117f33..origin/wyd/w08-1-1` dopisana na końcu.
 
 ## Szacunek czasu
