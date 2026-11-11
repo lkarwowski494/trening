@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-9273-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-9277-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1090 (z testem: 1090) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1169 (z testem: 1169) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 223 (z testem: 223) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 808 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 9273 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 809 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 9277 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -174,15 +174,16 @@ Kroki `npm run verify` (generowane z `package.json`):
 11. `npm run check:zrodla-runtime`
 12. `npm run check:pokrycie`
 13. `npm run check:readme`
-14. `npm run check:znaczniki`
-15. `node scripts/jest-ponow.mjs`
-16. `npm run check:matrix`
-17. `npm run check:licenses`
-18. `npx expo export --platform ios --output-dir .expo/verify-export`
-19. `npm run check:bundle`
-20. sprzątanie katalogu tymczasowego eksportu
-21. `npm run verify:native`
-22. `node scripts/verify-znacznik.mjs --zapisz pelne`
+14. `npm run check:whatsnew-sklep`
+15. `npm run check:znaczniki`
+16. `node scripts/jest-ponow.mjs`
+17. `npm run check:matrix`
+18. `npm run check:licenses`
+19. `npx expo export --platform ios --output-dir .expo/verify-export`
+20. `npm run check:bundle`
+21. sprzątanie katalogu tymczasowego eksportu
+22. `npm run verify:native`
+23. `node scripts/verify-znacznik.mjs --zapisz pelne`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
