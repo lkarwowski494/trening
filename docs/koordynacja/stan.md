@@ -19,7 +19,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 ## Teraz (10:25 UTC 11.11 — koordynator …VBwUkCZEe4r5nJpxuUt, lineage 8/8)
 - BLOKADA: ta sesja nie może tworzyć sesji ani przypomnień (lineage 8/8). Prośba do właściciela 10:25: nowa sesja koordynatora z paska bocznego (prompt: docs/koordynacja/przekazanie-M9-2026-11-11.md + prompt M9). Do tego czasu kontrole przez zegar w tle w kontenerze (Bash w tle), bez nowych sesji podrzędnych.
 - Integracja `integracja-1-1` @ 1974df92: tests.yml 42983407455 success (sprawdzone 10:20). main @ 2d975814: tests.yml 42997588332 success (sprawdzone 10:20). Nightly 12.11 pokaże efekt PR #108 (L-119).
-- W-02 ZROBIONE: L2 przyjęta, integracja @ d11a948d (tests.yml na d11a948d — sprawdzić). Brak aktywnych sesji podrzędnych.
+- W-02 ZROBIONE: L2 przyjęta, integracja @ d11a948d (tests.yml 43015714290 success, sprawdzone 12:20). Brak aktywnych sesji podrzędnych.
 - Po L2: W-03 przekład ZB-057 (rola 09), W-04, W-08 wersja 1.1.0 (S-02 F-20 przed tagiem), W-10 audyt (rola 07) — czekają na koordynatora zdolnego tworzyć sesje.
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
@@ -245,3 +245,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 10:20 | koordynator …VBwUkCZEe4r5nJpxuUt | przejęcie: tests.yml main 42997588332 success, integracja 1974df92 42983407455 success; L2 31,7% 9,71 USD → polecenie PRZEKAZANIE; send_later ×3 odrzucone (lineage 8/8) → prośba do właściciela o sesję z paska | odpowiedź właściciela; kontrola zegarem w tle ~10:55 |
 | 2026-11-11 11:05 | L2 | PRZEKAZANIE: głowa 3b5e1a0b (kod 652d0c9c verify:szybkie 0, tests.yml 43005855183 success); recenzja testów docs/research/recenzje/w02-testy-audytor-2026-11-11.md (brak osłabień); KO-042 wykonane — 5 minimów −1 to cofnięcie podniesienia 0ebc2378 z tej samej gałęzi (0ebc2378 nie w integracji; diff min.json integracja→gałąź: tylko w górę — sprawdzone) | scal-galaz |
 | 2026-11-11 11:50 | koordynator | tests.yml 43008771733 na 3b5e1a0b: queued ~45 min (kolejka za nightly 42998573064 i tests-tz na main) → success; scal-galaz 0 → b157ca62 (docs/18 suma 13 wpisów; generowane przeliczone); README nadal nieaktualny po scal-galaz → readme --write d11a948d; numeruj-lekcje 0; verify:lekkie 0; push 1974df92..d11a948d; autorzy Claude noreply; L2 12,46 USD → zarchiwizowana | tests.yml d11a948d; czekam na właściciela (lineage 8/8) |
+| 2026-11-11 12:20 | koordynator | tests.yml 43015714290 success na integracja-1-1 d11a948d (W-02 w integracji) | linia 14:00; nowe sesje po sesji koordynatora z paska |
