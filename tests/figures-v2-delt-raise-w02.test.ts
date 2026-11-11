@@ -61,15 +61,18 @@ describe('W-02 Front Incline Dumbbell Raise: zdanie fidr.move bez wysokości spr
     expect(txt).toMatch(/way above the height of your shoulders/); expect(txt).toMatch(/slightly above shoulder level/); expect(move.s.length).toBeGreaterThanOrEqual(2);
   });
   test('negatyw: stare brzmienie „mniej więcej do wysokości barków” nie przechodzi miary', () => { expect(/co najmniej do wysokości barków/.test('Unieś hantle przed sobą, łokcie lekko ugięte, mniej więcej do wysokości barków; opuść je powoli.')).toBe(false); });
-  test('pozostałe 33 języki nie mają starego zdania (czekają na przekład W-03: angielski w zastępstwie), a zestaw przekładu je wymienia', () => {
-    const jezyki = LANGS.filter(l => l !== 'pl' && l !== 'en'); /* 11.11.2026: lista języków aplikacji (lib/i18n.ts), nie listing katalogu — listing z wzmianką o docs/research dokładał ten test do wyboru dla każdego pliku docs/research (tests/wybor-testow-l103.test.ts, G3/L-100) */
-    expect(jezyki.length).toBe(33); expect(jezyki.filter(l => cue(l) !== undefined)).toEqual([]);
-    const Z = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json'), 'utf8')); expect(Z.klucze.map((k: any) => k.id)).toEqual(['fidr.move']);
+  /* 11.11.2026 (W-03, sesja T2): przekład fidr.move w 33 językach nałożony z raportu API (docs/lokalizacja/raport-przekladu-2026-11-11-w03-fidr, 33/33, 0 odrzuconych)
+   * i karta odsłonięta w tym samym commicie (odwrócenie ukrycia KO-042). Negatyw: stan sprzed W-03 (brak zdania w 33 językach, karta na liście hidden) — test był czerwony na nim. */
+  test('W-03: 33 języki mają fidr.move z raportu przekładu (żaden nie pokazuje angielskiego zastępstwa), a zestaw w02 jest pusty', () => {
+    const jezyki = LANGS.filter(l => l !== 'pl' && l !== 'en'); /* lista języków aplikacji (lib/i18n.ts), nie listing katalogu (tests/wybor-testow-l103.test.ts, G3/L-100) */
+    expect(jezyki.length).toBe(33);
+    const RAP = (l: string) => JSON.parse(fs.readFileSync(path.join(ROOT, `docs/lokalizacja/raport-przekladu-2026-11-11-w03-fidr/${l}.json`), 'utf8'));
+    for (const l of jezyki) { const t = cue(l); expect([l, typeof t === 'string' && t.trim().length > 0 && t !== cue('en')]).toEqual([l, true]); expect([l, JSON.stringify(RAP(l)).includes(JSON.stringify(t).slice(1, -1))]).toEqual([l, true]); }
+    const Z = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json'), 'utf8')); expect(Z.klucze).toEqual([]);
   });
-  /* 11.11.2026 (KO-042 koordynatora, analogia A1 z 08.11.2026): recenzja W-02 dała „wyswietlana”, ale przekład fidr.move w 33 językach czeka na W-03 — karta zostaje ukryta (bez tekstu w aplikacji).
-   * Werdykt zapisu („do poprawy” do przekładu) pilnują tests/karty-recenzja.test.tsx i tests/cel-1-1-bez-ciezkich.test.ts; tu skutek dla użytkownika: plik runtime bez karty. */
-  test('karta zostaje ukryta do przekładu W-03: plik runtime lib/cues/data.json nie ma karty Front Incline Dumbbell Raise, a ma ją na liście „hidden” (żaden z 33 języków nie widzi angielskiego zastępstwa)', () => {
+  test('W-03: karta odsłonięta — plik runtime lib/cues/data.json ma kartę Front Incline Dumbbell Raise i nie ma jej na liście „hidden”; werdykt recenzji „wyswietlana” (recenzja W-02, autor ≠ recenzent)', () => {
     const CUE = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/cues/data.json'), 'utf8')) as { exercises: Record<string, unknown>; hidden: string[] };
-    expect(['Front Incline Dumbbell Raise' in CUE.exercises, CUE.hidden.includes('Front Incline Dumbbell Raise')]).toEqual([false, true]);
+    expect(['Front Incline Dumbbell Raise' in CUE.exercises, CUE.hidden.includes('Front Incline Dumbbell Raise')]).toEqual([true, false]);
+    const R = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/research/figury-recenzja.json'), 'utf8')); expect(R.karty['Front Incline Dumbbell Raise'].werdykt).toBe('wyswietlana');
   });
 });

@@ -816,5 +816,6 @@
  "ohs.move": "Zíď do drepu s činkou stále nad hlavou a postav sa.",
  "ohs.setup": "Činka nad hlavou vo vystretých rukách.",
  "slrdl.move": "Predkloň sa, boky tlač dozadu a voľnú nohu veď rovno dozadu; vráť sa vytlačením bokov dopredu.",
- "slrdl.setup": "Postav sa na jednu nohu, koleno mierne pokrčené."
+ "slrdl.setup": "Postav sa na jednu nohu, koleno mierne pokrčené.",
+ "fidr.move": "Zdvihni jednoručky pred seba, lakte mierne pokrčené, aspoň do výšky pliec; pomaly ich spusti."
 }
