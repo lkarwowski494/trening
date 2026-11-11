@@ -28,11 +28,13 @@ export function openExceptions(root = here) {
 
 /** M1-audytor-generalny-012: rejestr ryzyk (docs/40, sekcja „Rejestr ryzyk”) jako bramka — wiersze „otwarte” albo „częściowo” blokują wydanie, chyba że stan
  * zawiera odroczenie decyzją właściciela z datą („odroczone decyzją właściciela DD.MM.RRRR”) albo „sprawdzenie po wydaniu” (warunek do sprawdzenia dopiero
- * w wersji z App Store, np. R-WAL). Zamknięte i zaakceptowane nie blokują. */
+ * w wersji z App Store, np. R-WAL). Zamknięte i zaakceptowane nie blokują. W-05 (11.11.2026, do weta): o stanie decyduje POCZĄTEK komórki — wiersz zaczynający
+ * się od „zamknięte”/„zaakceptowane” (także pogrubionych) nie blokuje, choćby historia w tej samej komórce mówiła „otwarte” (R-015; tests/blokada-wydania-stan-2026-11-11.test.ts). */
+const STAN_KONCOWY = /^\**\s*(?:zamknięte|zaakceptowane)\b/i;
 export function blockingRisks(md) {
   const sec = md.split(/^## /m).find(s => s.startsWith('Rejestr ryzyk')) ?? '';
   return sec.split('\n').filter(l => /^\| R-[\w-]+ \|/.test(l)).map(l => { const c = l.split(' | '); return { id: c[0].replace('| ', '').trim(), state: c.at(-1).replace(/\|\s*$/, '').trim() }; })
-    .filter(r => /otwarte|częściowo/i.test(r.state) && !/odroczone decyzją właściciela \d{2}\.\d{2}\.\d{4}|sprawdzenie po wydaniu/i.test(r.state));
+    .filter(r => !STAN_KONCOWY.test(r.state) && /otwarte|częściowo/i.test(r.state) && !/odroczone decyzją właściciela \d{2}\.\d{2}\.\d{4}|sprawdzenie po wydaniu/i.test(r.state));
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
