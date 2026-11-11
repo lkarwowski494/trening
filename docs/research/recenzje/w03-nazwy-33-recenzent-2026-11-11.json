@@ -1,0 +1,1204 @@
+{
+ "data": "2026-11-11",
+ "autor": "przekład API (claude-opus-5-5, raport docs/lokalizacja/raport-przekladu-2026-11-11-w03-nazwy) + tłumacz (skróty 44 nazw > 60 znaków, 0e70fe05)",
+ "recenzent": "recenzent-lokalizacji",
+ "zakres": "W-03 sesja T2: 277 nazw lokalnych ćwiczeń × 33 języki (docs/lokalizacja/nazwy-lokalne.json, podpis pod tytułem karty ≤ 60 znaków) i zdanie fidr.move w 33 językach (lib/cues/text); 4 niezależne przebiegi recenzenta po grupach języków (g1 de fr it es es-419 pt pt-BR nl; g2 cs sk hr sl sr bg ru uk; g3 da nb sv fi et lv lt hu ro el; g4 tr id ms vi ja ko zh-Hant); kryteria: sens PL/EN, naturalność (trener/kolega na siłowni), slownik-terminow.json, spójność w języku, długość.",
+ "werdykt": "zatwierdzone po poprawkach",
+ "wykonawca_poprawek": "tlumacz (agent, 11.11.2026)",
+ "jezyki": {
+  "de": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 5
+  },
+  "fr": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 6
+  },
+  "it": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 13
+  },
+  "es": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 4
+  },
+  "es-419": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 1
+  },
+  "pt": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 1
+  },
+  "pt-BR": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 1
+  },
+  "nl": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g1",
+   "poprawek": 8
+  },
+  "cs": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 9
+  },
+  "sk": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 3
+  },
+  "hr": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 5
+  },
+  "sl": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 3
+  },
+  "sr": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 8
+  },
+  "bg": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 3
+  },
+  "ru": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 1
+  },
+  "uk": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g2",
+   "poprawek": 3
+  },
+  "da": {
+   "wynik": "zatwierdzone",
+   "grupa": "g3",
+   "poprawek": 0
+  },
+  "nb": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 2
+  },
+  "sv": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 2
+  },
+  "fi": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 1
+  },
+  "et": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 1
+  },
+  "lv": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 2
+  },
+  "lt": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 3
+  },
+  "hu": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 4
+  },
+  "ro": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 2
+  },
+  "el": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g3",
+   "poprawek": 2
+  },
+  "tr": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 3
+  },
+  "id": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 1
+  },
+  "ms": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 1
+  },
+  "vi": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 2
+  },
+  "ja": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 0
+  },
+  "ko": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 2
+  },
+  "zh-Hant": {
+   "wynik": "zatwierdzone po poprawkach",
+   "grupa": "g4",
+   "poprawek": 1
+  }
+ },
+ "poprawki": [
+  {
+   "jezyk": "de",
+   "klucz": "One-Arm Kettlebell Push Press",
+   "obecna": "Einarmiges Push Press mit Kettlebell",
+   "proponowana": "Einarmiger Push Press mit Kettlebell",
+   "powod": "rodzaj: we wskazówkach de „kein Push Press” (m.), więc „einarmiger”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "One-Arm Kettlebell Split Jerk",
+   "obecna": "Einarmiges Kettlebell-Ausfallschrittstoßen",
+   "proponowana": "Einarmiges Kettlebell-Stoßen im Ausfallschritt",
+   "powod": "złożenie z 4 członów trudne do przeczytania; „Stoßen im Ausfallschritt” to zwykła nazwa split jerka",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "Isometric Neck Exercise - Front And Back",
+   "obecna": "Isometrisches Nackenhalten vorne und hinten",
+   "proponowana": "Isometrisches Nackentraining vorne und hinten",
+   "powod": "„Nackenhalten” nie jest używanym słowem; na siłowni „Nackentraining”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "Isometric Neck Exercise - Sides",
+   "obecna": "Isometrisches Nackenhalten seitlich",
+   "proponowana": "Isometrisches Nackentraining seitlich",
+   "powod": "jak wyżej, spójnie z przód/tył",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "Foot-SMR",
+   "obecna": "Fußrollen",
+   "proponowana": "Faszienrolle: Fuß",
+   "powod": "spójność (4): pozostałe 9 nazw rolowania mają wzór „Faszienrolle: …”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Skullcrusher (sztanga)",
+   "obecna": "Barre au front à la barre",
+   "proponowana": "Barre au front",
+   "powod": "„barre … à la barre” powtarza słowo; „barre au front” już oznacza sztangę (wersje z hantlami i EZ zostają)",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Cable Rope Rear-Delt Rows",
+   "obecna": "Rowing arrière d’épaule à la corde",
+   "proponowana": "Rowing à la corde pour l’arrière d’épaule",
+   "powod": "„rowing arrière d’épaule” nie jest zwrotem siłowni; cel (tył barku) jako dopowiedzenie",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Front Cone Hops",
+   "obecna": "Sauts de plot vers l’avant",
+   "proponowana": "Sauts par-dessus un plot vers l’avant",
+   "powod": "„sauts de plot” niejasne; ruch to przeskok przez pachołek",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Lateral Cone Hops",
+   "obecna": "Sauts de plot latéraux",
+   "proponowana": "Sauts latéraux par-dessus un plot",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Isometric Neck Exercise - Front And Back",
+   "obecna": "Gainage isométrique du cou avant et arrière",
+   "proponowana": "Gainage du cou avant et arrière",
+   "powod": "„gainage” już znaczy pracę izometryczną; krócej i naturalniej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Isometric Neck Exercise - Sides",
+   "obecna": "Gainage isométrique du cou sur les côtés",
+   "proponowana": "Gainage du cou sur les côtés",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Crunch al cavo con piegamenti laterali sul bosu",
+   "proponowana": "Crunch al cavo con piegamenti laterali su semisfera",
+   "powod": "„Bosu” to nazwa handlowa (CLAUDE.md: bez marek w tekstach aplikacji); PL „półkula”, de/fr/nl opisowo",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Front Cone Hops",
+   "obecna": "Salti del cono in avanti",
+   "proponowana": "Salti sopra il cono in avanti",
+   "powod": "„salti del cono” brzmi jak skoki samego pachołka; ruch to przeskok przez pachołek",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Lateral Cone Hops",
+   "obecna": "Salti laterali del cono",
+   "proponowana": "Salti laterali sopra il cono",
+   "powod": "jak wyżej",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Rhomboids-SMR",
+   "obecna": "Foam roller per parte alta della schiena",
+   "proponowana": "Foam roller per la parte alta della schiena",
+   "powod": "brak rodzajnika",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Isometric Neck Exercise - Sides",
+   "obecna": "Tenuta isometrica del collo laterale",
+   "proponowana": "Tenuta isometrica laterale del collo",
+   "powod": "szyk: „laterale” odnosi się do tenuty, nie do szyi",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Cable Fly (low to high)",
+   "obecna": "Croci ai cavi dal basso verso l'alto",
+   "proponowana": "Croci ai cavi dal basso verso l’alto",
+   "powod": "typografia: it w UI i wskazówkach używa ’ (UI: 265 ’, 0 prostych)",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Cable Fly (high to low)",
+   "obecna": "Croci ai cavi dall'alto verso il basso",
+   "proponowana": "Croci ai cavi dall’alto verso il basso",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Farmer's Walk (trap bar)",
+   "obecna": "Farmer's walk con trap bar",
+   "proponowana": "Farmer’s walk con trap bar",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Farmer's Walk (Farmers Handles)",
+   "obecna": "Farmer's walk con maniglie",
+   "proponowana": "Farmer’s walk con maniglie",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Standing Soleus And Achilles Stretch",
+   "obecna": "Stretching del polpaccio e del tendine d'Achille in piedi",
+   "proponowana": "Stretching del polpaccio e del tendine d’Achille in piedi",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Hip Flexion with Band",
+   "obecna": "Flessione dell'anca con elastico",
+   "proponowana": "Flessione dell’anca con elastico",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Hip Extension with Bands",
+   "obecna": "Estensione dell'anca con elastici",
+   "proponowana": "Estensione dell’anca con elastici",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "Side Lying Groin Stretch",
+   "obecna": "Stretching dell'inguine sul fianco",
+   "proponowana": "Stretching dell’inguine sul fianco",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Seated Flat Bench Leg Pull-In",
+   "obecna": "Encogimiento de piernas sentado en banco",
+   "proponowana": "Recogimiento de piernas sentado en banco",
+   "powod": "„encogimientos” w es to szrugsy (Shrugs = Encogimientos con …); kolizja w wyszukiwaniu i w czytaniu; es-419 ma już „Recogimiento”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Crunch en polea con inclinaciones laterales sobre bosu",
+   "proponowana": "Crunch en polea con inclinaciones laterales sobre semiesfera",
+   "powod": "„bosu” to nazwa handlowa (CLAUDE.md); es-419 ma opisowo „media esfera”; 60 znaków",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Front Cone Hops",
+   "obecna": "Saltos de cono hacia delante",
+   "proponowana": "Saltos sobre cono hacia delante",
+   "powod": "„saltos de cono” niejasne; przeskok przez pachołek; spójnie z es-419 „sobre cono”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Lateral Cone Hops",
+   "obecna": "Saltos laterales de cono",
+   "proponowana": "Saltos laterales sobre cono",
+   "powod": "jak wyżej (= es-419)",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "es-419",
+   "klucz": "Groiners",
+   "obecna": "Pie a la mano desde plancha",
+   "proponowana": "Pie a la mano desde posición de flexión",
+   "powod": "start z podporu jak do pompki, nie z deski; słownik pozycja_pompki (es: zakaz „plancha” w tym znaczeniu); = baza es",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "pt",
+   "klucz": "Single Leg Press",
+   "obecna": "Prensa de pernas a uma perna",
+   "proponowana": "Prensa unilateral",
+   "powod": "„pernas … a uma perna” brzmi niezręcznie; „unilateral” jak w pozostałych nazwach pt, „prensa” jak w „Elevação de gémeos na prensa”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "pt-BR",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Abdominal na polia com inclinações laterais no bosu",
+   "proponowana": "Abdominal na polia com inclinações laterais na meia-bola",
+   "powod": "„bosu” to nazwa handlowa (CLAUDE.md); baza pt ma „meia-bola”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Isometric Neck Exercise - Front And Back",
+   "obecna": "Isometrische nekhold voor en achter",
+   "proponowana": "Isometrische nekoefening voor en achter",
+   "powod": "„nekhold” to kalka z angielskiego, nie słowo niderlandzkie",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Isometric Neck Exercise - Sides",
+   "obecna": "Isometrische nekhold opzij",
+   "proponowana": "Isometrische nekoefening opzij",
+   "powod": "jak wyżej",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Smith Machine Incline Press",
+   "obecna": "Schuin drukken in de Smith machine",
+   "proponowana": "Schuin bankdrukken in de Smith machine",
+   "powod": "spójność (4) z „Schuin bankdrukken met barbell/dumbbells”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Smith Machine Decline Press",
+   "obecna": "Decline drukken in de Smith machine",
+   "proponowana": "Decline bankdrukken in de Smith machine",
+   "powod": "spójność (4) z „Decline bankdrukken met dumbbells”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Straight Raises on Incline Bench",
+   "obecna": "Raise met barbell op schuine bank, op je buik",
+   "proponowana": "Front raise met barbell op schuine bank, op je buik",
+   "powod": "samo „Raise” nie mówi, w którą stronę; spójnie z „Front raise met dumbbells op schuine bank”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Foot-SMR",
+   "obecna": "Voet rollen",
+   "proponowana": "Foamrollen voet",
+   "powod": "spójność (4) z pozostałymi „Foamrollen …”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Farmer's Walk (trap bar)",
+   "obecna": "Farmer's walk met trap bar",
+   "proponowana": "Farmer’s walk met trap bar",
+   "powod": "typografia: nl w UI i wskazówkach ma wyłącznie ’ (93 razy, 0 prostych)",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Farmer's Walk (Farmers Handles)",
+   "obecna": "Farmer's walk met handgrepen",
+   "proponowana": "Farmer’s walk met handgrepen",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Bench Press (sztanga)",
+   "obecna": "Bench press s činkou na rovné lavici",
+   "proponowana": "Tlak s činkou na rovné lavici",
+   "powod": "spójność (4): pozostałe wyciskania na ławce to „Tlak … na lavici” (Bench Press (hantle), Incline Bench Press); mieszanka angielskiego i czeskiego w jednej rodzinie",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Wide-Grip Barbell Bench Press",
+   "obecna": "Bench press s činkou širokým úchopem",
+   "proponowana": "Tlak s činkou na lavici širokým úchopem",
+   "powod": "spójność (4) z „Tlak s činkou na rovné lavici”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Reverse Grip Bench Press",
+   "obecna": "Bench press s činkou obráceným úchopem",
+   "proponowana": "Tlak s činkou na lavici obráceným úchopem",
+   "powod": "spójność (4) z „Tlak s činkou na rovné lavici”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Bottoms-Up Clean From The Hang Position",
+   "obecna": "Přemístění kettlebellu dnem vzhůru ze visu",
+   "proponowana": "Přemístění kettlebellu dnem vzhůru z visu",
+   "powod": "gramatyka: przed „visu” przyimek „z”, nie „ze”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Zkracovačky na kladce s úklony, balanční podložka",
+   "proponowana": "Zkracovačky na kladce s úklony na balanční polokouli",
+   "powod": "sens (1): „balanční podložka” to płaska poduszka, nie półkula; poza tym zbitka po przecinku",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Gironda Sternum Chins",
+   "obecna": "Shyby k hrudní kosti ve stylu Gironda",
+   "proponowana": "Shyby k hrudní kosti ve stylu Girondy",
+   "powod": "gramatyka: dopełniacz nazwiska",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Decline EZ Bar Triceps Extension",
+   "obecna": "Tricepsové extenze s EZ činkou, negativní lavice",
+   "proponowana": "Tricepsové extenze s EZ činkou na negativní lavici",
+   "powod": "naturalność (2): zbitka po przecinku zbędna, wersja z przyimkiem mieści się (50 zn.)",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Cable Incline Triceps Extension",
+   "obecna": "Tricepsové extenze na kladce, šikmá lavice",
+   "proponowana": "Tricepsové extenze na kladce na šikmé lavici",
+   "powod": "naturalność (2): zbitka po przecinku; tak jak w innych nazwach „na šikmé lavici”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "One-Arm Incline Lateral Raise",
+   "obecna": "Upažování s jednoručkou jednoruč, šikmá lavice",
+   "proponowana": "Upažování s jednoručkou jednoruč na šikmé lavici",
+   "powod": "naturalność (2): zbitka po przecinku; 48 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "One-Arm Incline Lateral Raise",
+   "obecna": "Upažovanie s jednoručkou jednou rukou, šikmá lavička",
+   "proponowana": "Upažovanie s jednoručkou jednou rukou na šikmej lavičke",
+   "powod": "naturalność (2): zbitka po przecinku; 55 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Tlak úzkym úchopom a francúzsky tlak, negatívna lavička",
+   "proponowana": "Tlak úzkym úchopom a francúzsky tlak na negatívnej lavičke",
+   "powod": "naturalność (2): zbitka po przecinku; wersja z przyimkiem mieści się (58 zn.), spójna z „na negatívnej lavičke” w innych nazwach",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "Cable Incline Triceps Extension",
+   "obecna": "Tricepsové vystieranie na kladke, šikmá lavička",
+   "proponowana": "Tricepsové vystieranie na kladke na šikmej lavičke",
+   "powod": "naturalność (2): zbitka po przecinku; 50 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hr",
+   "klucz": "One-Arm Incline Lateral Raise",
+   "obecna": "Odručenje s bučicom jednom rukom, kosa klupa",
+   "proponowana": "Odručenje s bučicom jednom rukom na kosoj klupi",
+   "powod": "naturalność (2): zbitka po przecinku; 47 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hr",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Potisak uskim hvatom i francuski potisak, negativna klupa",
+   "proponowana": "Potisak uskim hvatom i francuski potisak na negativnoj klupi",
+   "powod": "naturalność (2): zbitka po przecinku; 60 zn. (na granicy, mieści się)",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hr",
+   "klucz": "Cable Incline Triceps Extension",
+   "obecna": "Opružanje ruku na sajli, kosa klupa",
+   "proponowana": "Opružanje ruku na sajli na kosoj klupi",
+   "powod": "naturalność (2): zbitka po przecinku",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hr",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Trbušnjaci na sajli s bočnim pretklonima, polulopta",
+   "proponowana": "Trbušnjaci na sajli s bočnim pretklonima na polulopti",
+   "powod": "naturalność (2): zbitka po przecinku; 53 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hr",
+   "klucz": "One-Arm Kettlebell Split Jerk",
+   "obecna": "Izbačaj iz raskoraka kettlebella jednom rukom",
+   "proponowana": "Izbačaj kettlebella iz raskoraka jednom rukom",
+   "powod": "naturalność (2): szyk — dopełniacz „kettlebella” przy rzeczowniku",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "One-Arm Incline Lateral Raise",
+   "obecna": "Odročenje z ročko z eno roko, poševna klop",
+   "proponowana": "Odročenje z ročko z eno roko na poševni klopi",
+   "powod": "naturalność (2): zbitka po przecinku; 45 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Cable Incline Triceps Extension",
+   "obecna": "Iztegovanje rok na škripcu, poševna klop",
+   "proponowana": "Iztegovanje rok na škripcu na poševni klopi",
+   "powod": "naturalność (2): zbitka po przecinku",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Trebušnjaki na škripcu s stranskimi odkloni, polkrogla",
+   "proponowana": "Trebušnjaki na škripcu s stranskimi odkloni na polkrogli",
+   "powod": "naturalność (2): zbitka po przecinku; 56 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Push Up to Side Plank",
+   "obecna": "Склек са преласком у бочни плank",
+   "proponowana": "Склек са преласком у бочни планк",
+   "powod": "typografia (d): w cyrylicy łacińskie litery „ank” — mieszany alfabet",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Double Leg Butt Kick",
+   "obecna": "Поскоци са петама до задњице сунožно",
+   "proponowana": "Поскоци са петама до задњице суножно",
+   "powod": "typografia (d): w cyrylicy łacińskie „ožn” — mieszany alfabet",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Dumbbell Incline Shoulder Raise",
+   "obecna": "Потисак рамена са бучицама на косој клупи",
+   "proponowana": "Потискивање рамена са бучицама на косој клупи",
+   "powod": "sens (1): „потисак рамена” czyta się jak wyciskanie nad głowę (shoulder press); ruch to wypychanie barków (protrakcja) — tak jak hr „Potiskivanje ramena”",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Barbell Incline Shoulder Raise",
+   "obecna": "Потисак рамена са шипком на косој клупи",
+   "proponowana": "Потискивање рамена са шипком на косој клупи",
+   "powod": "sens (1): jw., myli się z wyciskaniem nad głowę",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Smith Incline Shoulder Raise",
+   "obecna": "Потисак рамена на Смит машини",
+   "proponowana": "Потискивање рамена на Смит машини",
+   "powod": "sens (1): jw., „потисак рамена na Smith maszynie” to wprost nazwa wyciskania nad głowę",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Plank Shoulder Taps",
+   "obecna": "Упор са додиривањем рамена",
+   "proponowana": "Планк са додиривањем рамена",
+   "powod": "spójność (4) i naturalność (2): w „Push Up to Side Plank” jest „планк”; na siłowni mówi się „планк”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Уски и француски потисак, коса клупа главом надоле",
+   "proponowana": "Уски и француски потисак на косој клупи главом надоле",
+   "powod": "naturalność (2): zbitka po przecinku; forma jak w pozostałych nazwach („на косој клупи главом надоле”); 53 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Push-Up Wide",
+   "obecna": "Склекови широким хватом",
+   "proponowana": "Широки склекови",
+   "powod": "naturalność (2): przy pompkach nie ma „хвата”; spójność z „Широки склекови са померањем у страну”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Snatch (hantel)",
+   "obecna": "Изхвърляне с дъмбел",
+   "proponowana": "Изтръгване с дъмбел",
+   "powod": "sens (1): w bułgarskim podnoszeniu ciężarów rwanie (snatch) to „изтръгване”, „изхвърляне” to podrzut; wskazówki bg już używają „изтръгване” (lib/cues/text/bg.json)",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Oblique Crunches - On The Floor",
+   "obecna": "Косо коремни преси на пода",
+   "proponowana": "Коремни преси за косите мускули на пода",
+   "powod": "naturalność/gramatyka (2): „косо” (przysłówek) przed rzeczownikiem nie tworzy poprawnej nazwy; 39 zn.",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Коремни преси на скрипец със странични наклони, на полусфера",
+   "proponowana": "Коремни преси на скрипец със странични наклони на полусфера",
+   "powod": "typografia/naturalność: zbędny przecinek; 59 zn.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Жим узким хватом и французский жим, скамья вниз головой",
+   "proponowana": "Узкий жим и французский жим на скамье с обратным наклоном",
+   "powod": "słownik (3) i spójność (4): termin zalecany „скамья с обратным наклоном” (5 pozostałych nazw ru); „узкий жим” to potoczna nazwa na siłowni; bez zbitki po przecinku; 57 zn.",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Жим вузьким хватом і французький жим, лава головою вниз",
+   "proponowana": "Вузький жим і французький жим на лаві зі зворотним нахилом",
+   "powod": "słownik (3) i spójność (4): termin zalecany „лава зі зворотним нахилом” (5 pozostałych nazw uk); bez zbitki po przecinku; 58 zn.",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Isometric Wipers",
+   "obecna": "Широкі віджимання з перекатом у сторони",
+   "proponowana": "Широкі віджимання зі зміщенням у сторони",
+   "powod": "sens (1): „перекат” to przetoczenie, ruch to przesunięcie ciała na boki (PL „przesunięcie”, ru „смещение”)",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Wiosłowanie na linkach (siedząc)",
+   "obecna": "Тяга блоків сидячи",
+   "proponowana": "Тяга на блоках сидячи",
+   "powod": "naturalność (2) i spójność (4) z „Жим на блоках стоячи”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nb",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Kabelcrunch med sidebøy på halvball",
+   "proponowana": "Kabelcrunch med sidebøy på balansehalvkule",
+   "powod": "spójność (4): sprzęt w aplikacji to „Balansehalvkule”; „halvball” tylko tutaj",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "nb",
+   "klucz": "Single Leg Push-Off",
+   "obecna": "Hopp med foten på kassen",
+   "proponowana": "Ettbeins hopp med foten på kassen",
+   "powod": "sens (1): bez „ettbeins” nazwa jest identyczna z odmianą naprzemienną poza słowem „Vekselvise”; da/sv mówią „etbens/enbens”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Kabelcrunch med sidoböjningar på balanskupol",
+   "proponowana": "Kabelcrunch med sidoböjningar på balanshalvklot",
+   "powod": "spójność (4): sprzęt w aplikacji to „Balanshalvklot”; „balanskupol” tylko tutaj",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Cable Russian Twists",
+   "obecna": "Ryska vridningar i kabel",
+   "proponowana": "Russian twist i kabel",
+   "powod": "naturalność (2): na siłowni mówi się „russian twist”, „ryska vridningar” to kalka; tak samo da/nb",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Vatsarutistus taljassa sivutaivutuksin, tasapainopuolipallo",
+   "proponowana": "Taljavatsarutistus sivutaivutuksin tasapainopuolipallolla",
+   "powod": "naturalność (2): doklejony rzeczownik „…, tasapainopuolipallo” brzmi jak etykieta; sprzęt jak w aplikacji, 57 znaków",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Straight Arm Pulldown",
+   "obecna": "Kangi allatõmme sirgete kätega",
+   "proponowana": "Ülaploki allatõmme sirgete kätega",
+   "powod": "sens/spójność (1, 4): „kang” w słowniku = sztanga; tu drążek wyciągu; reszta języka mówi „Ülaploki allatõmme” (65, 132)",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "lv",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Šaurā un franču spiešana uz sola ar slīpumu uz leju",
+   "proponowana": "Šaura tvēriena un franču spiešana, sols ar slīpumu uz leju",
+   "powod": "sens (1): „Šaurā … spiešana” gubi chwyt (wąskie wyciskanie nie jest nazwą ruchu); przywrócone „šaura tvēriena”, ławka jak w słowniku, 58 znaków",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "lv",
+   "klucz": "One-Arm Dumbbell Reverse Wrist Curl",
+   "obecna": "Plaukstas saliekšana virstvērienā ar hanteli, viena roka",
+   "proponowana": "Plaukstas saliekšana virstvērienā ar hanteli ar vienu roku",
+   "powod": "spójność (4): wszędzie „ar vienu roku”, tu doklejone „, viena roka”; 58 znaków",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Siauras ir prancūziškas spaudimas, suolas galva žemyn",
+   "proponowana": "Siauro suėmimo ir prancūziškas spaudimas, suolas galva žemyn",
+   "powod": "sens (1): „Siauras … spaudimas” gubi chwyt; „siauro suėmimo” przywraca go, 60 znaków",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "One-Arm Kettlebell Clean and Jerk",
+   "obecna": "Kettlebell kilimas ant krūtinės ir stūmimas viena ranka",
+   "proponowana": "Kettlebell kėlimas ant krūtinės ir stūmimas viena ranka",
+   "powod": "słowo (2): „kilimas” to wznoszenie się (kilti), podnoszenie ciężaru to „kėlimas” (svorių kėlimas)",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Bottoms-Up Clean From The Hang Position",
+   "obecna": "Kettlebell kilimas dugnu į viršų iš kabančios padėties",
+   "proponowana": "Kettlebell kėlimas dugnu į viršų iš kabančios padėties",
+   "powod": "słowo (2) i spójność z 175: „kilimas” → „kėlimas”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hu",
+   "klucz": "Wyciskanie na linkach (stojąc)",
+   "obecna": "Állós mellnyomás kábelen",
+   "proponowana": "Álló mellnyomás kábelen",
+   "powod": "naturalność (2): przymiotnik to „álló” (jak „Ülő …” w całym języku); „állós” potoczne/regionalne",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hu",
+   "klucz": "Standing One-Arm Cable Curl",
+   "obecna": "Egykezes állós bicepszhajlítás kábelen",
+   "proponowana": "Egykezes álló bicepszhajlítás kábelen",
+   "powod": "jak wyżej, spójność z „Ülő …”",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hu",
+   "klucz": "Front Cone Hops",
+   "obecna": "Bója átugrás előre",
+   "proponowana": "Bójaátugrás előre",
+   "powod": "pisownia (2): złożenie rzeczownikowe piszemy łącznie",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hu",
+   "klucz": "Lateral Cone Hops",
+   "obecna": "Bója átugrás oldalra",
+   "proponowana": "Bójaátugrás oldalra",
+   "powod": "jak wyżej",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Împins priză îngustă și extensii franceze, bancă cap în jos",
+   "proponowana": "Împins cu priză îngustă și extensii franceze, capul în jos",
+   "powod": "naturalność (2): zbitka bez przyimków („Împins priză îngustă”, „bancă cap în jos”) brzmi telegraficznie; 58 znaków",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Weighted Sit-Ups - With Bands",
+   "obecna": "Abdomene cu bandă elastică pe bancă înclinată, cap în jos",
+   "proponowana": "Abdomene cu bandă pe bancă înclinată cu capul în jos",
+   "powod": "naturalność i słownik (2, 3): „cap în jos” bez rodzajnika; ławka jak w słowniku („bancă înclinată cu capul în jos”), 52 znaki",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+   "obecna": "Εκτάσεις τρικεφάλων με μπάρα πίσω από το κεφάλι, ξαπλωτός",
+   "proponowana": "Skull crushers με κλειστή λαβή πίσω από το κεφάλι",
+   "powod": "sens (1): obecna nazwa gubi wąski chwyt (wyróżnik ćwiczenia, inne języki go mają); „skull crushers” jak w 35/36/84 niesie leżenie; 49 znaków",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Latissimus Dorsi-SMR",
+   "obecna": "Ρολάρισμα πλατύ ραχιαίου",
+   "proponowana": "Ρολάρισμα πλατέος ραχιαίου",
+   "powod": "gramatyka (2): dopełniacz od „πλατύς ραχιαίος” to „πλατέος ραχιαίου”, nie „πλατύ”",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "tr",
+   "klucz": "Bosu Ball Cable Crunch With Side Bends",
+   "obecna": "Bosu üzerinde yan eğilmeli kablo crunch",
+   "proponowana": "Denge yarım topunda yan eğilmeli kablo crunch",
+   "powod": "Nazwa marki (Bosu) w tekście aplikacji: zasada właściciela o nazwach firm i wytyczne Apple 2.3.7. Pozostałe 6 języków ma nazwę ogólną (balance dome, kubah imbangan, bóng nửa cầu…).",
+   "waga": "wysoka",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "tr",
+   "klucz": "Seal Row (sztanga)",
+   "obecna": "Sehpaya yüzüstü halter row",
+   "proponowana": "Sehpada yüzüstü halter row",
+   "powod": "Celownik 'sehpaya' bez czasownika brzmi urwanie; miejscownik 'sehpada' jak w innych nazwach (Sehpada dips, Düz sehpada…).",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "tr",
+   "klucz": "Smith Machine Decline Press",
+   "obecna": "Ters eğimli sehpada Smith makinesi press",
+   "proponowana": "Smith makinesinde ters eğimli press",
+   "powod": "Spójność z 'Smith makinesinde incline press' i pozostałymi nazwami na suwnicy Smitha (wszystkie 'Smith makinesinde …').",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "id",
+   "klucz": "One Knee To Chest",
+   "obecna": "Satu lutut ke dada",
+   "proponowana": "Tarik satu lutut ke dada",
+   "powod": "Bez czasownika brzmi jak dosłowny przekład ('jedno kolano do klatki'); z 'tarik' tak, jak powie trener.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Decline Close-Grip Bench To Skull Crusher",
+   "obecna": "Tekan genggaman rapat ke skull crusher, bangku condong bawah",
+   "proponowana": "Tekan genggaman rapat ke skull crusher, condong ke bawah",
+   "powod": "Słownik (lawka_skosna_glowa_w_dol ms: 'condong ke bawah'); obecna forma 'condong bawah' odbiega od reszty języka i jest na granicy 60 znaków (teraz 56).",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Adductor-SMR",
+   "obecna": "Lăn cơ khép đùi",
+   "proponowana": "Lăn đùi trong",
+   "powod": "Nazwa anatomiczna zamiast potocznej; spójność z 'Lăn đùi sau' / 'Lăn đùi trước' w tym samym zestawie.",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Iliotibial Tract-SMR",
+   "obecna": "Lăn dải chậu chày",
+   "proponowana": "Lăn mặt ngoài đùi",
+   "powod": "'Dải chậu chày' to termin z anatomii; na siłowni 'mặt ngoài đùi'; spójność z 'Lăn mặt ngoài bắp chân'.",
+   "waga": "srednia",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ko",
+   "klucz": "Kettlebell Pirate Ships",
+   "obecna": "케틀벨 파이렛 쉽",
+   "proponowana": "케틀벨 파이럿 십",
+   "powod": "'파이렛' to nietypowy zapis; w użyciu 파이럿 (pirate), a 'ship' według zasad zapisu to 십.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ko",
+   "klucz": "Foam Roll: Quadriceps",
+   "obecna": "대퇴사두 폼롤링",
+   "proponowana": "대퇴사두근 폼롤링",
+   "powod": "Ucięta nazwa mięśnia; spójność z 내전근, 광배근, 이상근 w tym samym zestawie.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "zh-Hant",
+   "klucz": "Adductor-SMR",
+   "obecna": "滾筒放鬆內收肌",
+   "proponowana": "滾筒放鬆大腿內側",
+   "powod": "Spójność z 滾筒放鬆大腿後側 / 大腿前側; potocznie 大腿內側.",
+   "waga": "niska",
+   "decyzja": "przyjeta"
+  }
+ ],
+ "fidr_move": [
+  {
+   "jezyk": "it",
+   "obecna_zmieniona": true,
+   "proponowana": "Solleva i manubri davanti a te, gomiti leggermente piegati, almeno all’altezza delle spalle; poi abbassali lentamente.",
+   "powod": "sens i liczby zgodne; tylko typografia: „all'altezza” z prostym apostrofem, reszta wskazówek it ma ’ (180 ’ wobec 7 prostych)",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "hr",
+   "obecna_zmieniona": true,
+   "proponowana": "Podigni bučice ispred sebe, laktovi blago savijeni, barem do visine ramena; polako ih spusti.",
+   "powod": "„laktova lagano savijenih” (dopełniacz) brzmi nienaturalnie; pozostałe wskazówki hr mówią „laktovi blago savijeni”; sens i liczby bez zmian",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "sl",
+   "obecna_zmieniona": true,
+   "proponowana": "Dvigni ročki predse z rahlo pokrčenimi komolci, vsaj do višine ramen; nato ju počasi spusti.",
+   "powod": "gramatyka: dwie hantle = liczba podwójna „ročki … ju” (tak fidr.setup „ročki visita” i pozostałe wskazówki sl), obecnie mnoga „ročke … jih”; „predse” (kierunek) i szyk „z rahlo pokrčenimi komolci” jak w innych wskazówkach; sens i „vsaj do višine ramen” bez zmian",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "bg",
+   "obecna_zmieniona": true,
+   "proponowana": "Вдигни дъмбелите пред себе си с леко свити лакти, поне до височината на раменете; спусни ги бавно.",
+   "powod": "bez przecinka „с леко свити лакти поне до височината…” czyta się, jakby to łokcie miały sięgać barków; przecinek przywraca sens „unieś co najmniej do wysokości barków”",
+   "decyzja": "przyjeta"
+  },
+  {
+   "jezyk": "ja",
+   "obecna_zmieniona": true,
+   "proponowana": "肘を軽く曲げたまま、ダンベルを体の前で少なくとも肩の高さまで上げ、ゆっくり下ろします。",
+   "powod": "Mieszane zakończenia (〜ます。〜ましょう。): ましょう występuje tylko w 2 z 819 wskazówek ja; jedno zdanie z ます jak w pozostałych. Sens i liczby bez zmian.",
+   "decyzja": "przyjeta"
+  }
+ ],
+ "sciaganie": {
+  "wybor": "A",
+  "uzasadnienie": "Polskie „ściągać” niesie kierunek w dół albo do środka. Pasuje do: ściągania drążka (pulldown), ściągania łopatek (Middle Back Shrug) i skłonu na górnym wyciągu (uchwyt idzie w dół) — tak mówi trener. Przy wiosłowaniu na wyciągu (cable_row) ciągnie się poziomo do brzucha; trener mówi „przyciągnij do brzucha”, nikt nie mówi „ściągnij”, więc „Ściąganie” obok animacji poziomego ruchu myli. Przy przywodzeniu nóg (Hip Adduction, Cable Hip Adduction) „przyciąganie nóg do środka” brzmi naturalniej niż „ściąganie”. Słownik terminów (faza_ruchu) nie ma hasła dla tej fazy, więc o wyborze rozstrzyga kryterium naturalności. Wariant B (jedno słowo) jest tańszy, ale zostawia nienaturalny podpis przy jednej z najczęstszych rodzin (cable_row). Zakres A: nowy PhaseName „Przyciąganie” w lib/figures/v2/anim.ts:68 dla cable_row.ts:7 i hip_abd_add.ts:10 (Hip Adduction, Cable Hip Adduction); pulldown, Middle Back Shrug (shrug.ts:7) i skłony na górnym wyciągu (core_standing.ts:12) zostają przy „Ściąganie”. Możliwy wariant przy przywodzeniu: „Zsuwanie” jako para do „Rozsuwanie” z tej samej rodziny — do sprawdzenia przez native speakera (pytanie w „otwarte”); bez odpowiedzi zostaje „Przyciąganie”.",
+  "en": "EN bez zmian w brzmieniu: nowy klucz „Przyciąganie” → „Pulling” (tak samo jak „Ściąganie”); „Pulling” jest neutralne kierunkowo i pasuje do wszystkich pięciu przypadków. W 8 recenzowanych językach obecne tłumaczenia „Ściąganie” są neutralne (de Ziehen, fr Tirage, it Tirata, es Tracción, pt Puxada, nl Trekken), więc nowy klucz może dostać to samo słowo; es-419 i pt-BR biorą je z bazy (brak własnego klucza w nakładce). Rozdział dotyczy tylko polskiego."
+ },
+ "otwarte": [
+  {
+   "jezyk": "de",
+   "pytanie": "Unoszenie hantli w tył leżąc jednorącz (Dumbbell Lying One-Arm Rear Lateral Raise) i na wyciągu (One-Arm Cable Rear Lateral Raise): czy na niemieckiej siłowni mówi się „Reverse-Seitheben”, czy raczej „Seitheben für die hintere Schulter”?"
+  },
+  {
+   "jezyk": "de",
+   "pytanie": "Wypychanie barków na ławce skośnej (Dumbbell/Barbell/Smith Incline Shoulder Raise, protrakcja łopatek): czy „Schulterschieben” jest zrozumiałe, czy lepiej „Schulterblätter nach vorn schieben”?"
+  },
+  {
+   "jezyk": "pl",
+   "pytanie": "Faza przywodzenia nóg na maszynie (Hip Adduction): czy polski trener powie raczej „Przyciąganie” czy „Zsuwanie” (para do „Rozsuwanie” przy odwodzeniu)?"
+  },
+  {
+   "jezyk": "es/pt/pt-BR",
+   "pytanie": "Uwaga dla koordynatora (nie pytanie do native speakera): zakaz „plancha/prancha” w haśle pozycja_pompki łapie poprawne nazwy deski (Plank Shoulder Taps, Push Up to Side Plank, Butt-Ups — 9 trafień). Gdy strażnik obejmie docs/lokalizacja/nazwy-lokalne.json, hasło potrzebuje wykluczenia (np. „plancha lateral|plancha (con|de|sobre)|prancha (com|lateral|de|nos)”). Dziś tests/slownik-terminow.test.ts 183/183 zielony (razem z nazwy-lokalne-w03), bo nazw nie czyta."
+  },
+  {
+   "jezyk": "cs",
+   "pytanie": "W nazwach jednorącz z hantlą (np. „Přítahy jednoručky jednoruč”, „Tlak s jednoručkou jednoruč na lavici”, ok. 12 nazw) — zostawić „… jednoruč” czy zmienić wszędzie na „… jednou rukou”, żeby uniknąć powtórzenia „jednoručka/jednoruč”?"
+  },
+  {
+   "jezyk": "sl",
+   "pytanie": "„Sklece z rokami na povišanem” / „Stopanje na povišano” (7 nazw) — czy Słoweniec na siłowni tak mówi, czy lepiej „na povišani podlagi” (wszystkie warianty mieszczą się w 60 zn.)?"
+  },
+  {
+   "jezyk": "sl",
+   "pytanie": "Farmer's walk: „Kmečka hoja” czy „Farmerjeva hoja” — która nazwa jest w użyciu na słoweńskich siłowniach?"
+  },
+  {
+   "jezyk": "sr",
+   "pytanie": "Sztanga EZ: zostawić cyrylicą „ЕЗ шипка” (5 nazw) czy pisać łacinką „EZ шипка”, jak bg/ru/uk i jak „слова Y” w tej samej liście?"
+  },
+  {
+   "jezyk": "ru",
+   "pytanie": "Dla koordynatora (nie dla tłumacza): wzorzec zakazany hasła lawka_skosna_glowa_w_dol „наклонн… скамь” trafia 4 nazwy ławki SKOŚNEJ DODATNIEJ (np. „Подъём гантелей перед собой на наклонной скамье”) — to fałszywe trafienia, a wersja „с положительным наклоном” przekracza tam 60 zn.; zawęzić wzorzec czy dopisać wyjątki, jeśli strażnik obejmie nazwy lokalne? Podobnie uk hasło biodra „стегна” trafia poprawne „Розкочування … поверхні стегна” (uda). Obecnie tests/slownik-terminow.test.ts nie czyta docs/lokalizacja/nazwy-lokalne.json (czyta lib/locales i lib/cues, linie 10–11, 25–26), więc test jest zielony (175/175) bez sprawdzania nazw."
+  },
+  {
+   "jezyk": "lv",
+   "pytanie": "„Seated Good Mornings” = „Labrīt sēdus”: czy łotewska siłownia mówi „Labrīt” o tym ćwiczeniu, czy raczej „Good morning sēdus”?"
+  },
+  {
+   "jezyk": "lv",
+   "pytanie": "„Bottoms-Up Clean From The Hang Position” = „…ar dibenu uz augšu no karas stāvokļa”: czy „ar dibenu uz augšu” nie brzmi dwuznacznie/zabawnie (dibens = też pośladki) i czy „no karas stāvokļa” to przyjęte „z zawisu”, czy lepiej inaczej (np. „otrādi apgrieztu”)?"
+  },
+  {
+   "jezyk": "fi",
+   "pytanie": "„Seated Good Mornings” = „Hyvää huomenta istuen”: czy fińska siłownia rozpozna to bez dopisku, czy lepiej „Hyvää huomenta -liike istuen” / „Good morning istuen”?"
+  },
+  {
+   "jezyk": "zh-Hant",
+   "pytanie": "Muscle Up: na tajwańskiej siłowni mówi się częściej '暴力上槓' czy '拉力上槓' (obecnie '拉力上槓')?"
+  },
+  {
+   "jezyk": "ja",
+   "pytanie": "Rolowanie (SMR, 9 nazw): czy '内転筋のフォームローラー' brzmi naturalnie, czy lepiej '内転筋のフォームローリング' (albo '筋膜リリース')? Przy zmianie ujednolicić też '足裏ローリング'."
+  }
+ ]
+}

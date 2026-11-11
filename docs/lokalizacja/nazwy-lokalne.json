@@ -13,135 +13,333 @@
   },
   "bg": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 3 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "cs": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 9 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "da": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 0 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "de": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 5 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "el": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "es-419": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "es": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 4 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "et": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "fi": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "fr": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 6 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "hr": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 5 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "hu": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 4 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "id": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "it": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 13 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "ja": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 0 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "ko": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "lt": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 3 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "lv": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "ms": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "nb": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "nl": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 8 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "pt-BR": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "pt": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "ro": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "ru": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "sk": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 3 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "sl": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 3 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "sr": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 8 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "sv": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "tr": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 3 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "uk": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 3 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "vi": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 2 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   },
   "zh-Hant": {
    "autor": "przekład API (claude-opus-5-5, 2026-11-11)",
-   "recenzja": null
+   "recenzja": {
+    "wynik": "zatwierdzone",
+    "recenzent": "recenzent-lokalizacji",
+    "data": "2026-11-11",
+    "plik": "docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json",
+    "uwaga": "werdykt „zatwierdzone po poprawkach”; 1 poprawek naniesionych przez tłumacza co do znaku (sprawdzenie skryptem 11.11.2026)"
+   }
   }
  },
  "uwagi": {
@@ -166,7 +364,7 @@
   "Bench Press (sztanga)": {
    "pl": "Wyciskanie sztangi na ławce płaskiej",
    "bg": "Лежанка с щанга на хоризонтална пейка",
-   "cs": "Bench press s činkou na rovné lavici",
+   "cs": "Tlak s činkou na rovné lavici",
    "da": "Bænkpres med vægtstang",
    "de": "Bankdrücken mit Langhantel",
    "el": "Bench press με μπάρα",
@@ -356,7 +554,7 @@
    "fi": "Rintapunnerrus taljoilla seisten",
    "fr": "Développé pectoraux debout aux poulies",
    "hr": "Potisak na sajlama stojeći",
-   "hu": "Állós mellnyomás kábelen",
+   "hu": "Álló mellnyomás kábelen",
    "id": "Chest press kabel berdiri",
    "it": "Chest press ai cavi in piedi",
    "ja": "スタンディングケーブルチェストプレス",
@@ -807,7 +1005,7 @@
    "sr": "Веслање на сајлама у седу",
    "sv": "Sittande rodd med två kablar",
    "tr": "Oturarak çift kablo row",
-   "uk": "Тяга блоків сидячи",
+   "uk": "Тяга на блоках сидячи",
    "vi": "Ngồi chèo với hai cáp",
    "zh-Hant": "坐姿雙滑輪划船"
   },
@@ -820,7 +1018,7 @@
    "el": "Έλξεις τροχαλίας με τεντωμένα χέρια",
    "es-419": "Jalón con brazos rectos",
    "es": "Jalón con brazos rectos",
-   "et": "Kangi allatõmme sirgete kätega",
+   "et": "Ülaploki allatõmme sirgete kätega",
    "fi": "Ylätaljan alasveto suorin käsin",
    "fr": "Tirage bras tendus à la poulie",
    "hr": "Povlačenje šipke ispruženim rukama",
@@ -2122,7 +2320,7 @@
    "hr": "Razvlačenje na sajlama odozdo prema gore",
    "hu": "Tárogatás kábelen alulról felfelé",
    "id": "Fly kabel dari bawah ke atas",
-   "it": "Croci ai cavi dal basso verso l'alto",
+   "it": "Croci ai cavi dal basso verso l’alto",
    "ja": "ロートゥハイケーブルフライ",
    "ko": "로우 투 하이 케이블 플라이",
    "lt": "Rankų suvedimas prie blokų iš apačios į viršų",
@@ -2158,7 +2356,7 @@
    "hr": "Razvlačenje na sajlama odozgo prema dolje",
    "hu": "Tárogatás kábelen felülről lefelé",
    "id": "Fly kabel dari atas ke bawah",
-   "it": "Croci ai cavi dall'alto verso il basso",
+   "it": "Croci ai cavi dall’alto verso il basso",
    "ja": "ハイトゥローケーブルフライ",
    "ko": "하이 투 로우 케이블 플라이",
    "lt": "Rankų suvedimas prie blokų iš viršaus į apačią",
@@ -2309,7 +2507,7 @@
    "lv": "Spiešana Smita trenažierī uz slīpa sola",
    "ms": "Tekan mesin Smith di bangku condong",
    "nb": "Skråbenkpress i smithmaskin",
-   "nl": "Schuin drukken in de Smith machine",
+   "nl": "Schuin bankdrukken in de Smith machine",
    "pt-BR": "Supino inclinado no Smith",
    "pt": "Supino inclinado na máquina Smith",
    "ro": "Împins la aparatul Smith pe bancă înclinată",
@@ -2462,7 +2660,7 @@
    "sl": "Veslanje s palico z oporo na klopi",
    "sr": "Веслање шипком са ослонцем на клупи",
    "sv": "Seal row med skivstång",
-   "tr": "Sehpaya yüzüstü halter row",
+   "tr": "Sehpada yüzüstü halter row",
    "uk": "Тяга штанги лежачи на лаві",
    "vi": "Nằm sấp chèo tạ đòn trên ghế",
    "zh-Hant": "槓鈴海豹划船"
@@ -3162,7 +3360,7 @@
    "es": "Press francés con barra tumbado",
    "et": "Prantsuse surumine kangiga lamades",
    "fi": "Ranskalainen punnerrus levytangolla",
-   "fr": "Barre au front à la barre",
+   "fr": "Barre au front",
    "hr": "Francuski potisak sa šipkom ležeći",
    "hu": "Francia nyomás fekve rúddal",
    "id": "Skull crusher barbel",
@@ -3283,7 +3481,7 @@
    "nb": "Beinpress på ett bein",
    "nl": "Eenbenige leg press",
    "pt-BR": "Leg press unilateral",
-   "pt": "Prensa de pernas a uma perna",
+   "pt": "Prensa unilateral",
    "ro": "Presă pentru picioare cu un picior",
    "ru": "Жим ногами одной ногой",
    "sk": "Tlak na nožnom lise jednou nohou",
@@ -3828,7 +4026,7 @@
    "ru": "Планка с касанием плеч",
    "sk": "Plank s dotýkaním pliec",
    "sl": "Deska z dotikanjem ramen",
-   "sr": "Упор са додиривањем рамена",
+   "sr": "Планк са додиривањем рамена",
    "sv": "Planka med axelklapp",
    "tr": "Plank omuz dokunuşu",
    "uk": "Планка з торканням плечей",
@@ -4066,14 +4264,14 @@
    "hr": "Farmerov hod s trap bar šipkom",
    "hu": "Farmerséta trap bar rúddal",
    "id": "Farmer's walk trap bar",
-   "it": "Farmer's walk con trap bar",
+   "it": "Farmer’s walk con trap bar",
    "ja": "トラップバーファーマーズウォーク",
    "ko": "트랩바 파머스 워크",
    "lt": "Ūkininko ėjimas su trap bar štanga",
    "lv": "Fermera gājiens ar trap bar stieni",
    "ms": "Farmer's walk trap bar",
    "nb": "Farmer's walk med trap bar",
-   "nl": "Farmer's walk met trap bar",
+   "nl": "Farmer’s walk met trap bar",
    "pt-BR": "Caminhada do fazendeiro com trap bar",
    "pt": "Farmer's walk com trap bar",
    "ro": "Mersul fermierului cu bara trap bar",
@@ -4089,7 +4287,7 @@
   },
   "Snatch (hantel)": {
    "pl": "Rwanie hantlą",
-   "bg": "Изхвърляне с дъмбел",
+   "bg": "Изтръгване с дъмбел",
    "cs": "Trh s jednoručkou",
    "da": "Snatch med håndvægt",
    "de": "Reißen mit Kurzhantel",
@@ -4378,7 +4576,7 @@
   "Wide-Grip Barbell Bench Press": {
    "pl": "Wyciskanie sztangi na ławce szerokim chwytem",
    "bg": "Лежанка с щанга с широк хват",
-   "cs": "Bench press s činkou širokým úchopem",
+   "cs": "Tlak s činkou na lavici širokým úchopem",
    "da": "Bænkpres med bredt greb",
    "de": "Breites Bankdrücken mit Langhantel",
    "el": "Bench press με μπάρα με ανοιχτή λαβή",
@@ -4505,7 +4703,7 @@
    "lv": "Spiešana Smita trenažierī uz sola ar slīpumu uz leju",
    "ms": "Tekan mesin Smith di bangku condong ke bawah",
    "nb": "Benkpress i smithmaskin på skråbenk med hodet ned",
-   "nl": "Decline drukken in de Smith machine",
+   "nl": "Decline bankdrukken in de Smith machine",
    "pt-BR": "Supino declinado no Smith",
    "pt": "Supino declinado na máquina Smith",
    "ro": "Împins la aparatul Smith pe bancă înclinată cu capul în jos",
@@ -4514,7 +4712,7 @@
    "sl": "Potisk na Smithovi napravi na klopi, nagnjeni navzdol",
    "sr": "Потисак на Смит машини на косој клупи главом надоле",
    "sv": "Bänkpress i smithmaskin med huvudet nedåt",
-   "tr": "Ters eğimli sehpada Smith makinesi press",
+   "tr": "Smith makinesinde ters eğimli press",
    "uk": "Жим у тренажері Сміта на лаві зі зворотним нахилом",
    "vi": "Đẩy ngực máy Smith ghế dốc xuống",
    "zh-Hant": "史密斯機下斜臥推"
@@ -4620,7 +4818,7 @@
    "ru": "Широкие отжимания",
    "sk": "Široké kliky",
    "sl": "Široke sklece",
-   "sr": "Склекови широким хватом",
+   "sr": "Широки склекови",
    "sv": "Breda armhävningar",
    "tr": "Geniş şınav",
    "uk": "Віджимання з широкою постановкою рук",
@@ -4656,7 +4854,7 @@
    "ru": "Отжимание с переходом в боковую планку",
    "sk": "Klik s prechodom do bočného planku",
    "sl": "Sklece s prehodom v stransko desko",
-   "sr": "Склек са преласком у бочни плank",
+   "sr": "Склек са преласком у бочни планк",
    "sv": "Armhävning till sidoplanka",
    "tr": "Şınavdan yan plank'a geçiş",
    "uk": "Віджимання з переходом у бічну планку",
@@ -4695,7 +4893,7 @@
    "sr": "Широки склекови са померањем у страну",
    "sv": "Breda armhävningar med förflyttning åt sidorna",
    "tr": "Geniş şınavda yanlara kayma",
-   "uk": "Широкі віджимання з перекатом у сторони",
+   "uk": "Широкі віджимання зі зміщенням у сторони",
    "vi": "Hít đất tay rộng dồn người sang hai bên",
    "zh-Hant": "寬距伏地挺身左右移動"
   },
@@ -4918,7 +5116,7 @@
   "Gironda Sternum Chins": {
    "pl": "Podciąganie do mostka w stylu Girondy",
    "bg": "Набиране до гръдната кост в стил Жиронда",
-   "cs": "Shyby k hrudní kosti ve stylu Gironda",
+   "cs": "Shyby k hrudní kosti ve stylu Girondy",
    "da": "Gironda sternum chin-ups",
    "de": "Gironda-Klimmzüge zum Brustbein",
    "el": "Έλξεις στο στέρνο τύπου Gironda",
@@ -5568,7 +5766,7 @@
    "bg": "Пуш прес с гира с една ръка",
    "cs": "Push press s kettlebellem jednoruč",
    "da": "Etarmet push press med kettlebell",
-   "de": "Einarmiges Push Press mit Kettlebell",
+   "de": "Einarmiger Push Press mit Kettlebell",
    "el": "Push press με kettlebell με ένα χέρι",
    "es-419": "Push press con pesa rusa a una mano",
    "es": "Push press con pesa rusa a una mano",
@@ -5640,14 +5838,14 @@
    "bg": "Изтласкване с ножица на гира с една ръка",
    "cs": "Nůžkový nadhoz kettlebellu jednoruč",
    "da": "Etarmet split-stød med kettlebell",
-   "de": "Einarmiges Kettlebell-Ausfallschrittstoßen",
+   "de": "Einarmiges Kettlebell-Stoßen im Ausfallschritt",
    "el": "Split jerk με kettlebell με ένα χέρι",
    "es-419": "Envión en tijera con pesa rusa a una mano",
    "es": "Envión en tijera con pesa rusa a una mano",
    "et": "Kettlebelli käärtõukamine ühe käega",
    "fi": "Yhden käden saksityöntö kahvakuulalla",
    "fr": "Jeté fendu au kettlebell à un bras",
-   "hr": "Izbačaj iz raskoraka kettlebella jednom rukom",
+   "hr": "Izbačaj kettlebella iz raskoraka jednom rukom",
    "hu": "Egykezes ollós lökés kettlebellel",
    "id": "Split jerk kettlebell satu tangan",
    "it": "Slancio in divaricata con kettlebell a un braccio",
@@ -5710,7 +5908,7 @@
   "One-Arm Incline Lateral Raise": {
    "pl": "Unoszenie hantli bokiem jednorącz, ławka skośna",
    "bg": "Странично повдигане с дъмбел с една ръка, наклонена пейка",
-   "cs": "Upažování s jednoručkou jednoruč, šikmá lavice",
+   "cs": "Upažování s jednoručkou jednoruč na šikmé lavici",
    "da": "Etarmet sidehæv med håndvægt på skråbænk",
    "de": "Einarmiges Seitheben mit Kurzhantel auf der Schrägbank",
    "el": "Πλάγιες ανυψώσεις με αλτήρα με ένα χέρι, επικλινής πάγκος",
@@ -5719,7 +5917,7 @@
    "et": "Hantli tõstmine küljele ühe käega, kaldpink",
    "fi": "Yhden käden vipunosto sivulle käsipainolla vinopenkillä",
    "fr": "Élévation latérale à l’haltère à un bras sur banc incliné",
-   "hr": "Odručenje s bučicom jednom rukom, kosa klupa",
+   "hr": "Odručenje s bučicom jednom rukom na kosoj klupi",
    "hu": "Egykezes oldalemelés kézisúlyzóval ferde padon",
    "id": "Lateral raise dumbel satu tangan, bangku incline",
    "it": "Alzate laterali con manubrio a un braccio su panca inclinata",
@@ -5734,8 +5932,8 @@
    "pt": "Elevação lateral unilateral com halter, banco inclinado",
    "ro": "Ridicări laterale cu gantera cu un braț, bancă înclinată",
    "ru": "Махи гантелью в сторону одной рукой на наклонной скамье",
-   "sk": "Upažovanie s jednoručkou jednou rukou, šikmá lavička",
-   "sl": "Odročenje z ročko z eno roko, poševna klop",
+   "sk": "Upažovanie s jednoručkou jednou rukou na šikmej lavičke",
+   "sl": "Odročenje z ročko z eno roko na poševni klopi",
    "sr": "Бочно подизање бучице једном руком на косој клупи",
    "sv": "Enarms sidolyft med hantel på lutande bänk",
    "tr": "Incline tek kol dambıl yana açış",
@@ -5837,7 +6035,7 @@
    "lv": "Stieņa celšana guļus uz vēdera uz slīpa sola",
    "ms": "Angkat barbel meniarap di bangku condong",
    "nb": "Hev med vektstang liggende på magen på skråbenk",
-   "nl": "Raise met barbell op schuine bank, op je buik",
+   "nl": "Front raise met barbell op schuine bank, op je buik",
    "pt-BR": "Elevação com barra de bruços no banco inclinado",
    "pt": "Elevação com barra de bruços no banco inclinado",
    "ro": "Ridicări cu haltera, culcat pe burtă pe bancă înclinată",
@@ -5904,7 +6102,7 @@
    "id": "Pirate ship kettlebell",
    "it": "Pirate ship con kettlebell",
    "ja": "ケトルベルパイレーツシップ",
-   "ko": "케틀벨 파이렛 쉽",
+   "ko": "케틀벨 파이럿 십",
    "lt": "Pirate ship su kettlebell",
    "lv": "Pirate ship ar kettlebellu",
    "ms": "Pirate ship kettlebell",
@@ -5952,7 +6150,7 @@
    "ru": "Выведение плеч вперёд с гантелями на наклонной скамье",
    "sk": "Vytláčanie pliec s jednoručkami na šikmej lavičke",
    "sl": "Potiskanje ramen z ročkami na poševni klopi",
-   "sr": "Потисак рамена са бучицама на косој клупи",
+   "sr": "Потискивање рамена са бучицама на косој клупи",
    "sv": "Skulderframskjutning med hantlar på lutande bänk",
    "tr": "Incline sehpada dambıl omuz itişi",
    "uk": "Виштовхування плечей з гантелями на похилій лаві",
@@ -5988,7 +6186,7 @@
    "ru": "Выведение плеч вперёд со штангой на наклонной скамье",
    "sk": "Vytláčanie pliec s činkou na šikmej lavičke",
    "sl": "Potiskanje ramen s palico na poševni klopi",
-   "sr": "Потисак рамена са шипком на косој клупи",
+   "sr": "Потискивање рамена са шипком на косој клупи",
    "sv": "Skulderframskjutning med skivstång på lutande bänk",
    "tr": "Incline sehpada halter omuz itişi",
    "uk": "Виштовхування плечей зі штангою на похилій лаві",
@@ -6024,7 +6222,7 @@
    "ru": "Выведение плеч вперёд в Смите",
    "sk": "Vytláčanie pliec na Smithovom stroji",
    "sl": "Potiskanje ramen na Smithovi napravi",
-   "sr": "Потисак рамена на Смит машини",
+   "sr": "Потискивање рамена на Смит машини",
    "sv": "Skulderframskjutning i smithmaskin",
    "tr": "Smith makinesinde omuz itişi",
    "uk": "Виштовхування плечей у тренажері Сміта",
@@ -6222,7 +6420,7 @@
    "es": "Remo con cuerda en polea para deltoides posterior",
    "et": "Köiega sõudmine plokil õlgade tagaosale",
    "fi": "Takaolkasoutu köydellä taljassa",
-   "fr": "Rowing arrière d’épaule à la corde",
+   "fr": "Rowing à la corde pour l’arrière d’épaule",
    "hr": "Veslanje užetom na sajli za stražnja ramena",
    "hu": "Evezés kötéllel kábelen hátsó vállra",
    "id": "Rear delt row tali kabel",
@@ -6288,13 +6486,13 @@
    "bg": "Изометрично напрягане на врата напред и назад",
    "cs": "Izometrické zpevnění krku vpřed a vzad",
    "da": "Isometrisk nakkehold frem og tilbage",
-   "de": "Isometrisches Nackenhalten vorne und hinten",
+   "de": "Isometrisches Nackentraining vorne und hinten",
    "el": "Ισομετρική σύσπαση αυχένα μπρος-πίσω",
    "es-419": "Isométrico de cuello adelante y atrás",
    "es": "Isométrico de cuello delante y detrás",
    "et": "Kaela isomeetriline pingutus ette ja taha",
    "fi": "Niskan staattinen pito eteen ja taakse",
-   "fr": "Gainage isométrique du cou avant et arrière",
+   "fr": "Gainage du cou avant et arrière",
    "hr": "Izometrijsko napinjanje vrata naprijed i natrag",
    "hu": "Izometrikus nyaktartás előre és hátra",
    "id": "Tahan leher isometrik depan dan belakang",
@@ -6305,7 +6503,7 @@
    "lv": "Kakla izometriskā sasprindzināšana uz priekšu un atpakaļ",
    "ms": "Tahan leher isometrik depan dan belakang",
    "nb": "Isometrisk nakkehold forover og bakover",
-   "nl": "Isometrische nekhold voor en achter",
+   "nl": "Isometrische nekoefening voor en achter",
    "pt-BR": "Isometria de pescoço frente e trás",
    "pt": "Isometria do pescoço à frente e atrás",
    "ro": "Contracție izometrică a gâtului, față și spate",
@@ -6324,24 +6522,24 @@
    "bg": "Изометрично напрягане на врата встрани",
    "cs": "Izometrické zpevnění krku do stran",
    "da": "Isometrisk nakkehold til siden",
-   "de": "Isometrisches Nackenhalten seitlich",
+   "de": "Isometrisches Nackentraining seitlich",
    "el": "Ισομετρική σύσπαση αυχένα στα πλάγια",
    "es-419": "Isométrico de cuello lateral",
    "es": "Isométrico de cuello lateral",
    "et": "Kaela isomeetriline pingutus külgedele",
    "fi": "Niskan staattinen pito sivuille",
-   "fr": "Gainage isométrique du cou sur les côtés",
+   "fr": "Gainage du cou sur les côtés",
    "hr": "Izometrijsko napinjanje vrata u stranu",
    "hu": "Izometrikus nyaktartás oldalra",
    "id": "Tahan leher isometrik ke samping",
-   "it": "Tenuta isometrica del collo laterale",
+   "it": "Tenuta isometrica laterale del collo",
    "ja": "ネックアイソメトリックホールド（左右）",
    "ko": "목 측면 아이소메트릭 홀드",
    "lt": "Izometrinis kaklo įtempimas į šonus",
    "lv": "Kakla izometriskā sasprindzināšana uz sāniem",
    "ms": "Tahan leher isometrik ke sisi",
    "nb": "Isometrisk nakkehold til siden",
-   "nl": "Isometrische nekhold opzij",
+   "nl": "Isometrische nekoefening opzij",
    "pt-BR": "Isometria de pescoço lateral",
    "pt": "Isometria lateral do pescoço",
    "ro": "Contracție izometrică a gâtului, lateral",
@@ -6445,7 +6643,7 @@
    "it": "Girata e slancio con kettlebell a un braccio",
    "ja": "ワンハンドケトルベルクリーン＆ジャーク",
    "ko": "원암 케틀벨 클린 앤 저크",
-   "lt": "Kettlebell kilimas ant krūtinės ir stūmimas viena ranka",
+   "lt": "Kettlebell kėlimas ant krūtinės ir stūmimas viena ranka",
    "lv": "Kettlebella uzcelšana uz krūtīm un grūšana ar vienu roku",
    "ms": "Clean and jerk kettlebell sebelah tangan",
    "nb": "Ettarms frivending og støt med kettlebell",
@@ -6620,7 +6818,7 @@
    "fi": "Yhden käden hauiskääntö taljassa seisten",
    "fr": "Curl debout à la poulie à un bras",
    "hr": "Pregib na sajli stojeći jednom rukom",
-   "hu": "Egykezes állós bicepszhajlítás kábelen",
+   "hu": "Egykezes álló bicepszhajlítás kábelen",
    "id": "Curl kabel berdiri satu tangan",
    "it": "Curl al cavo a un braccio in piedi",
    "ja": "スタンディングワンハンドケーブルカール",
@@ -6806,7 +7004,7 @@
    "ja": "ワンハンドダンベルリバースリストカール",
    "ko": "원암 덤벨 리버스 리스트 컬",
    "lt": "Riešo lenkimas viršutiniu suėmimu su hanteliu viena ranka",
-   "lv": "Plaukstas saliekšana virstvērienā ar hanteli, viena roka",
+   "lv": "Plaukstas saliekšana virstvērienā ar hanteli ar vienu roku",
    "ms": "Curl pergelangan tangan genggaman atas dumbel sebelah tangan",
    "nb": "Ettarms håndleddscurl med overhåndsgrep og manual",
    "nl": "Eenarmige reverse wrist curl met dumbbell",
@@ -6898,7 +7096,7 @@
   "Bottoms-Up Clean From The Hang Position": {
    "pl": "Zarzut kettlebella dnem do góry ze zwisu",
    "bg": "Взимане на гира с дъното нагоре от вис",
-   "cs": "Přemístění kettlebellu dnem vzhůru ze visu",
+   "cs": "Přemístění kettlebellu dnem vzhůru z visu",
    "da": "Bottoms-up frivending fra hang med kettlebell",
    "de": "Bottom-up-Umsetzen mit Kettlebell aus dem Hang",
    "el": "Bottoms-up clean με kettlebell από hang",
@@ -6913,7 +7111,7 @@
    "it": "Girata bottoms-up con kettlebell da hang",
    "ja": "ケトルベルボトムアップ・ハングクリーン",
    "ko": "행 바텀스업 케틀벨 클린",
-   "lt": "Kettlebell kilimas dugnu į viršų iš kabančios padėties",
+   "lt": "Kettlebell kėlimas dugnu į viršų iš kabančios padėties",
    "lv": "Kettlebella uzcelšana ar dibenu uz augšu no karas stāvokļa",
    "ms": "Clean kettlebell terbalik dari posisi gantung",
    "nb": "Bottoms-up frivending med kettlebell fra heng",
@@ -6946,14 +7144,14 @@
    "hr": "Farmerov hod s ručkama",
    "hu": "Farmerséta fogantyúkkal",
    "id": "Farmer's walk dengan handle",
-   "it": "Farmer's walk con maniglie",
+   "it": "Farmer’s walk con maniglie",
    "ja": "ハンドル付きファーマーズウォーク",
    "ko": "핸들 파머스 워크",
    "lt": "Ūkininko ėjimas su rankenomis",
    "lv": "Fermera gājiens ar rokturiem",
    "ms": "Farmer's walk dengan pemegang",
    "nb": "Farmer's walk med håndtak",
-   "nl": "Farmer's walk met handgrepen",
+   "nl": "Farmer’s walk met handgrepen",
    "pt-BR": "Caminhada do fazendeiro com pegadores",
    "pt": "Farmer's walk com pegas",
    "ro": "Mersul fermierului cu mânere",
@@ -7006,7 +7204,7 @@
   "Reverse Grip Bench Press": {
    "pl": "Wyciskanie sztangi na ławce odwrotnym chwytem",
    "bg": "Лежанка с щанга с обратен хват",
-   "cs": "Bench press s činkou obráceným úchopem",
+   "cs": "Tlak s činkou na lavici obráceným úchopem",
    "da": "Bænkpres med omvendt greb",
    "de": "Bankdrücken im Untergriff mit Langhantel",
    "el": "Bench press με μπάρα με ανάποδη λαβή",
@@ -7051,34 +7249,34 @@
    "et": "Kitsas surumine ja prantsuse surumine allapoole kaldu pingil",
    "fi": "Kapea penkki ja ranskalainen punnerrus alaviistopenkillä",
    "fr": "Développé décliné prise serrée enchaîné barre au front",
-   "hr": "Potisak uskim hvatom i francuski potisak, negativna klupa",
+   "hr": "Potisak uskim hvatom i francuski potisak na negativnoj klupi",
    "hu": "Szűk fekvenyomásból francia nyomás negatív padon",
    "id": "Bench press genggaman sempit ke skull crusher, decline",
    "it": "Panca declinata presa stretta e french press",
    "ja": "デクラインナローベンチプレス→スカルクラッシャー",
    "ko": "디클라인 클로즈 그립 벤치 투 스컬 크러셔",
-   "lt": "Siauras ir prancūziškas spaudimas, suolas galva žemyn",
-   "lv": "Šaurā un franču spiešana uz sola ar slīpumu uz leju",
-   "ms": "Tekan genggaman rapat ke skull crusher, bangku condong bawah",
+   "lt": "Siauro suėmimo ir prancūziškas spaudimas, suolas galva žemyn",
+   "lv": "Šaura tvēriena un franču spiešana, sols ar slīpumu uz leju",
+   "ms": "Tekan genggaman rapat ke skull crusher, condong ke bawah",
    "nb": "Smal benkpress til fransk press på skråbenk med hodet ned",
    "nl": "Decline smal bankdrukken naar skull crusher",
    "pt-BR": "Supino fechado com tríceps testa no banco declinado",
    "pt": "Supino declinado com pega fechada e extensão de tríceps",
-   "ro": "Împins priză îngustă și extensii franceze, bancă cap în jos",
-   "ru": "Жим узким хватом и французский жим, скамья вниз головой",
-   "sk": "Tlak úzkym úchopom a francúzsky tlak, negatívna lavička",
+   "ro": "Împins cu priză îngustă și extensii franceze, capul în jos",
+   "ru": "Узкий жим и французский жим на скамье с обратным наклоном",
+   "sk": "Tlak úzkym úchopom a francúzsky tlak na negatívnej lavičke",
    "sl": "Ozki potisk in francoski potisk na klopi, nagnjeni navzdol",
-   "sr": "Уски и француски потисак, коса клупа главом надоле",
+   "sr": "Уски и француски потисак на косој клупи главом надоле",
    "sv": "Smal bänkpress till fransk press, huvudet nedåt",
    "tr": "Ters eğimli sehpada dar tutuş bench press ve skull crusher",
-   "uk": "Жим вузьким хватом і французький жим, лава головою вниз",
+   "uk": "Вузький жим і французький жим на лаві зі зворотним нахилом",
    "vi": "Đẩy ngực grip hẹp chuyển sang kiểu Pháp, ghế dốc xuống",
    "zh-Hant": "下斜窄握臥推接仰臥三頭伸展"
   },
   "Decline EZ Bar Triceps Extension": {
    "pl": "Prostowanie ramion ze sztangą EZ głową w dół",
    "bg": "Трицепсово разгъване с EZ щанга с главата надолу",
-   "cs": "Tricepsové extenze s EZ činkou, negativní lavice",
+   "cs": "Tricepsové extenze s EZ činkou na negativní lavici",
    "da": "Triceps-ekstension med EZ-stang på negativ skråbænk",
    "de": "Trizepsstrecken mit SZ-Stange auf der Negativbank",
    "el": "Εκτάσεις τρικεφάλων με μπάρα EZ σε αρνητικό πάγκο",
@@ -7117,7 +7315,7 @@
    "cs": "Francouzský tlak úzkým úchopem za hlavu vleže",
    "da": "Liggende fransk pres med smalt greb bag hovedet",
    "de": "Enge French Press hinter den Kopf im Liegen",
-   "el": "Εκτάσεις τρικεφάλων με μπάρα πίσω από το κεφάλι, ξαπλωτός",
+   "el": "Skull crushers με κλειστή λαβή πίσω από το κεφάλι",
    "es-419": "Press francés tras la cabeza con agarre cerrado acostado",
    "es": "Press francés con agarre cerrado tras la cabeza tumbado",
    "et": "Prantsuse surumine kitsalt pea tagant lamades",
@@ -7222,7 +7420,7 @@
   "Cable Incline Triceps Extension": {
    "pl": "Prostowanie ramion na wyciągu, ławka skośna",
    "bg": "Трицепсово разгъване на скрипец, наклонена пейка",
-   "cs": "Tricepsové extenze na kladce, šikmá lavice",
+   "cs": "Tricepsové extenze na kladce na šikmé lavici",
    "da": "Triceps-ekstension i kabeltræk på skråbænk",
    "de": "Trizepsstrecken am Kabelzug auf der Schrägbank",
    "el": "Εκτάσεις τρικεφάλων στην τροχαλία, επικλινής πάγκος",
@@ -7231,7 +7429,7 @@
    "et": "Käte sirutus plokil, kaldpink",
    "fi": "Ojentajapunnerrus taljassa vinopenkillä",
    "fr": "Extension triceps à la poulie sur banc incliné",
-   "hr": "Opružanje ruku na sajli, kosa klupa",
+   "hr": "Opružanje ruku na sajli na kosoj klupi",
    "hu": "Tricepsznyújtás kábelen ferde padon",
    "id": "Triceps extension kabel, bangku incline",
    "it": "Estensioni dei tricipiti al cavo su panca inclinata",
@@ -7246,8 +7444,8 @@
    "pt": "Extensão de tríceps na polia, banco inclinado",
    "ro": "Extensii la helcometru, bancă înclinată",
    "ru": "Разгибание рук на блоке на скамье с положительным наклоном",
-   "sk": "Tricepsové vystieranie na kladke, šikmá lavička",
-   "sl": "Iztegovanje rok na škripcu, poševna klop",
+   "sk": "Tricepsové vystieranie na kladke na šikmej lavičke",
+   "sl": "Iztegovanje rok na škripcu na poševni klopi",
    "sr": "Опружање руку на сајли на косој клупи",
    "sv": "Tricepsextension i kabel på lutande bänk",
    "tr": "Incline sehpada kablo triceps extension",
@@ -7780,7 +7978,7 @@
    "lt": "Pašokimai koją padėjus ant dėžės",
    "lv": "Atspērieni ar kāju uz kastes",
    "ms": "Lonjakan kaki atas kotak",
-   "nb": "Hopp med foten på kassen",
+   "nb": "Ettbeins hopp med foten på kassen",
    "nl": "Eenbenige push-offs op de box",
    "pt-BR": "Impulsão com pé na caixa",
    "pt": "Impulsos com pé na caixa",
@@ -7896,7 +8094,7 @@
    "ru": "Прыжки с касанием пятками ягодиц на двух ногах",
    "sk": "Poskoky s pätami k zadku znožmo",
    "sl": "Poskoki s petami do zadnjice sonožno",
-   "sr": "Поскоци са петама до задњице сунožно",
+   "sr": "Поскоци са петама до задњице суножно",
    "sv": "Jämfotahopp med hälarna mot rumpan",
    "tr": "Çift bacak topuk-kalça sıçraması",
    "uk": "Стрибки з п'ятами до сідниць на двох ногах",
@@ -7947,14 +8145,14 @@
    "de": "Hütchensprünge nach vorn",
    "el": "Άλματα πάνω από κώνο προς τα εμπρός",
    "es-419": "Saltos frontales sobre cono",
-   "es": "Saltos de cono hacia delante",
+   "es": "Saltos sobre cono hacia delante",
    "et": "Hüpped üle koonuse ette",
    "fi": "Hypyt kartion yli eteen",
-   "fr": "Sauts de plot vers l’avant",
+   "fr": "Sauts par-dessus un plot vers l’avant",
    "hr": "Skokovi naprijed preko čunja",
-   "hu": "Bója átugrás előre",
+   "hu": "Bójaátugrás előre",
    "id": "Lompat cone ke depan",
-   "it": "Salti del cono in avanti",
+   "it": "Salti sopra il cono in avanti",
    "ja": "コーンホップ（前方）",
    "ko": "프론트 콘 홉",
    "lt": "Šuoliai per kūgį į priekį",
@@ -8127,14 +8325,14 @@
    "de": "Seitliche Hütchensprünge",
    "el": "Πλάγια άλματα πάνω από κώνο",
    "es-419": "Saltos laterales sobre cono",
-   "es": "Saltos laterales de cono",
+   "es": "Saltos laterales sobre cono",
    "et": "Hüpped üle koonuse küljele",
    "fi": "Hypyt kartion yli sivulle",
-   "fr": "Sauts de plot latéraux",
+   "fr": "Sauts latéraux par-dessus un plot",
    "hr": "Bočni skokovi preko čunja",
-   "hu": "Bója átugrás oldalra",
+   "hu": "Bójaátugrás oldalra",
    "id": "Lompat cone ke samping",
-   "it": "Salti laterali del cono",
+   "it": "Salti laterali sopra il cono",
    "ja": "コーンホップ（横）",
    "ko": "레터럴 콘 홉",
    "lt": "Šuoliai per kūgį į šoną",
@@ -8265,36 +8463,36 @@
   },
   "Bosu Ball Cable Crunch With Side Bends": {
    "pl": "Brzuszki na wyciągu ze skłonami, półkula",
-   "bg": "Коремни преси на скрипец със странични наклони, на полусфера",
-   "cs": "Zkracovačky na kladce s úklony, balanční podložka",
+   "bg": "Коремни преси на скрипец със странични наклони на полусфера",
+   "cs": "Zkracovačky na kladce s úklony na balanční polokouli",
    "da": "Kabelcrunch med sidebøjninger på balancehalvkugle",
    "de": "Kabelzug-Crunches mit Seitbeugen auf dem Balance-Halbball",
    "el": "Κοιλιακοί στην τροχαλία με πλάγιες κάμψεις, ημισφαίριο",
    "es-419": "Crunch en polea con inclinación lateral en media esfera",
-   "es": "Crunch en polea con inclinaciones laterales sobre bosu",
+   "es": "Crunch en polea con inclinaciones laterales sobre semiesfera",
    "et": "Kõhukõverdused plokil külgkallutustega, tasakaalupoolkera",
-   "fi": "Vatsarutistus taljassa sivutaivutuksin, tasapainopuolipallo",
+   "fi": "Taljavatsarutistus sivutaivutuksin tasapainopuolipallolla",
    "fr": "Crunch à la poulie avec flexions latérales sur demi-ballon",
-   "hr": "Trbušnjaci na sajli s bočnim pretklonima, polulopta",
+   "hr": "Trbušnjaci na sajli s bočnim pretklonima na polulopti",
    "hu": "Hasprés kábelen oldalra hajlással, félgömbön",
    "id": "Crunch kabel dengan side bend di balance dome",
-   "it": "Crunch al cavo con piegamenti laterali sul bosu",
+   "it": "Crunch al cavo con piegamenti laterali su semisfera",
    "ja": "バランスドームケーブルクランチ＋サイドベンド",
    "ko": "밸런스 돔 케이블 크런치 앤 사이드 벤드",
    "lt": "Atsilenkimai prie bloko su šonų lenkimais ant pusrutulio",
    "lv": "Vēdera prese pie bloka ar sānu noliekšanos uz puslodes",
    "ms": "Crunch kabel dengan lentur sisi, atas kubah imbangan",
-   "nb": "Kabelcrunch med sidebøy på halvball",
+   "nb": "Kabelcrunch med sidebøy på balansehalvkule",
    "nl": "Cable crunch met side bends op balansdome",
-   "pt-BR": "Abdominal na polia com inclinações laterais no bosu",
+   "pt-BR": "Abdominal na polia com inclinações laterais na meia-bola",
    "pt": "Abdominais na polia com inclinações laterais, na meia-bola",
    "ro": "Abdomene la helcometru cu aplecări laterale, pe semisferă",
    "ru": "Скручивания на блоке с наклонами в стороны на полусфере",
    "sk": "Skracovačky na kladke s úklonmi, balančná pologuľa",
-   "sl": "Trebušnjaki na škripcu s stranskimi odkloni, polkrogla",
+   "sl": "Trebušnjaki na škripcu s stranskimi odkloni na polkrogli",
    "sr": "Трбушњаци на сајли са бочним претклонима, полулопта",
-   "sv": "Kabelcrunch med sidoböjningar på balanskupol",
-   "tr": "Bosu üzerinde yan eğilmeli kablo crunch",
+   "sv": "Kabelcrunch med sidoböjningar på balanshalvklot",
+   "tr": "Denge yarım topunda yan eğilmeli kablo crunch",
    "uk": "Скручування на блоці з бічними нахилами на півсфері",
    "vi": "Gập bụng với cáp kèm nghiêng người, trên bóng nửa cầu",
    "zh-Hant": "平衡半球滑輪捲腹加側彎"
@@ -8365,7 +8563,7 @@
    "sk": "Ruské twisty na kladke",
    "sl": "Ruski zasuki na škripcu",
    "sr": "Руски твист на сајли",
-   "sv": "Ryska vridningar i kabel",
+   "sv": "Russian twist i kabel",
    "tr": "Kablo Russian twist",
    "uk": "Російські скручування на блоці",
    "vi": "Russian twist với cáp",
@@ -8625,7 +8823,7 @@
   },
   "Oblique Crunches - On The Floor": {
    "pl": "Brzuszki skośne na podłodze",
-   "bg": "Косо коремни преси на пода",
+   "bg": "Коремни преси за косите мускули на пода",
    "cs": "Šikmé zkracovačky na zemi",
    "da": "Skrå crunches på gulvet",
    "de": "Seitliche Crunches am Boden",
@@ -8775,7 +8973,7 @@
    "de": "Beine anziehen im Sitzen auf der Bank",
    "el": "Τράβηγμα γονάτων καθιστός σε πάγκο",
    "es-419": "Recogimiento de piernas sentado en banco",
-   "es": "Encogimiento de piernas sentado en banco",
+   "es": "Recogimiento de piernas sentado en banco",
    "et": "Jalgade kokkutõmbamine istudes pingil",
    "fi": "Polvien veto rintaan penkillä istuen",
    "fr": "Ramené de jambes assis sur banc",
@@ -8900,7 +9098,7 @@
    "nl": "Decline sit-ups met band",
    "pt-BR": "Abdominal com elástico no banco declinado",
    "pt": "Abdominais com elástico no banco declinado",
-   "ro": "Abdomene cu bandă elastică pe bancă înclinată, cap în jos",
+   "ro": "Abdomene cu bandă pe bancă înclinată cu capul în jos",
    "ru": "Подъёмы корпуса с резинкой на скамье с обратным наклоном",
    "sk": "Sedy-ľahy s gumou na lavičke s negatívnym sklonom",
    "sl": "Trebušnjaki z elastiko na klopi, nagnjeni navzdol",
@@ -9026,7 +9224,7 @@
    "da": "Fod frem til hånden fra planke",
    "de": "Fuß zur Hand aus dem Stütz",
    "el": "Πόδι προς το χέρι από στήριξη",
-   "es-419": "Pie a la mano desde plancha",
+   "es-419": "Pie a la mano desde posición de flexión",
    "es": "Pie a la mano desde posición de flexión",
    "et": "Jala tõmbamine käe juurde toenglamangus",
    "fi": "Jalka käden viereen punnerrusasennosta",
@@ -9141,7 +9339,7 @@
    "fr": "Genou vers la poitrine",
    "hr": "Koljeno na prsa",
    "hu": "Térd a mellkashoz",
-   "id": "Satu lutut ke dada",
+   "id": "Tarik satu lutut ke dada",
    "it": "Ginocchio al petto",
    "ja": "片膝を胸に引き寄せるストレッチ",
    "ko": "한쪽 무릎 가슴 당기기",
@@ -9250,7 +9448,7 @@
    "hr": "Istezanje lista i Ahilove tetive stojeći",
    "hu": "Vádli- és Achilles-ín-nyújtás állva",
    "id": "Peregangan betis dan tendon Achilles berdiri",
-   "it": "Stretching del polpaccio e del tendine d'Achille in piedi",
+   "it": "Stretching del polpaccio e del tendine d’Achille in piedi",
    "ja": "立位ふくらはぎ・アキレス腱ストレッチ",
    "ko": "스탠딩 종아리·아킬레스건 스트레칭",
    "lt": "Blauzdos ir Achilo sausgyslės tempimas stovint",
@@ -9376,8 +9574,8 @@
    "sv": "Foamrolling av adduktorer",
    "tr": "İç bacak foam roller",
    "uk": "Розкочування привідних м'язів",
-   "vi": "Lăn cơ khép đùi",
-   "zh-Hant": "滾筒放鬆內收肌"
+   "vi": "Lăn đùi trong",
+   "zh-Hant": "滾筒放鬆大腿內側"
   },
   "Calves-SMR": {
    "pl": "Rolowanie łydek",
@@ -9484,7 +9682,7 @@
    "sv": "Foamrolling av IT-bandet",
    "tr": "IT band foam roller",
    "uk": "Розкочування ілеотибіального тракту",
-   "vi": "Lăn dải chậu chày",
+   "vi": "Lăn mặt ngoài đùi",
    "zh-Hant": "滾筒放鬆髂脛束"
   },
   "Latissimus Dorsi-SMR": {
@@ -9493,7 +9691,7 @@
    "cs": "Válcování širokého zádového svalu",
    "da": "Foamrolling af den brede rygmuskel",
    "de": "Faszienrolle: Latissimus",
-   "el": "Ρολάρισμα πλατύ ραχιαίου",
+   "el": "Ρολάρισμα πλατέος ραχιαίου",
    "es-419": "Rodillo en dorsales",
    "es": "Rodillo en dorsal",
    "et": "Selja laia lihase rullimine",
@@ -9612,7 +9810,7 @@
    "id": "Foam roll paha depan",
    "it": "Foam roller per quadricipiti",
    "ja": "大腿四頭筋のフォームローラー",
-   "ko": "대퇴사두 폼롤링",
+   "ko": "대퇴사두근 폼롤링",
    "lt": "Šlaunies priekinės dalies volavimas",
    "lv": "Augšstilba priekšpuses masāža ar rulli",
    "ms": "Foam roll paha depan",
@@ -9646,7 +9844,7 @@
    "hr": "Rolanje gornjeg dijela leđa",
    "hu": "Felső hát hengerezése",
    "id": "Foam roll punggung atas",
-   "it": "Foam roller per parte alta della schiena",
+   "it": "Foam roller per la parte alta della schiena",
    "ja": "背中上部のフォームローラー",
    "ko": "등 상부 폼롤링",
    "lt": "Viršutinės nugaros dalies volavimas",
@@ -9672,7 +9870,7 @@
    "bg": "Ролиране на стъпалото",
    "cs": "Válcování chodidla",
    "da": "Rulning af foden",
-   "de": "Fußrollen",
+   "de": "Faszienrolle: Fuß",
    "el": "Ρολάρισμα πέλματος",
    "es-419": "Rodillo en el pie",
    "es": "Rodillo en la planta del pie",
@@ -9689,7 +9887,7 @@
    "lv": "Pēdas masāža ar rulli",
    "ms": "Roll tapak kaki",
    "nb": "Rulling av foten",
-   "nl": "Voet rollen",
+   "nl": "Foamrollen voet",
    "pt-BR": "Rolo no pé",
    "pt": "Rolo no pé",
    "ro": "Rulare pentru talpă",
@@ -10006,7 +10204,7 @@
    "hr": "Fleksija kuka s elastičnom trakom",
    "hu": "Csípőhajlítás gumiszalaggal",
    "id": "Fleksi pinggul karet resistansi",
-   "it": "Flessione dell'anca con elastico",
+   "it": "Flessione dell’anca con elastico",
    "ja": "バンドヒップフレクション",
    "ko": "저항 밴드 힙 플렉션",
    "lt": "Klubo lenkimas su guma",
@@ -10042,7 +10240,7 @@
    "hr": "Ekstenzija kuka s elastičnim trakama",
    "hu": "Csípőnyújtás gumiszalagokkal",
    "id": "Ekstensi pinggul karet resistansi",
-   "it": "Estensione dell'anca con elastici",
+   "it": "Estensione dell’anca con elastici",
    "ja": "バンドヒップエクステンション",
    "ko": "저항 밴드 힙 익스텐션",
    "lt": "Klubo tiesimas su gumomis",
@@ -10114,7 +10312,7 @@
    "hr": "Istezanje prepona ležeći na boku",
    "hu": "Lágyéknyújtás oldalt fekve",
    "id": "Peregangan selangkangan berbaring miring",
-   "it": "Stretching dell'inguine sul fianco",
+   "it": "Stretching dell’inguine sul fianco",
    "ja": "サイドライイング・グロインストレッチ",
    "ko": "옆으로 누워 사타구니 스트레칭",
    "lt": "Kirkšnies tempimas gulint ant šono",

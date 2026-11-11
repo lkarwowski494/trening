@@ -32,6 +32,19 @@ describe('nazwy lokalne: dane (W-03 11.11.2026)', () => {
     expect(Object.keys(NAZWY_LOKALNE).sort()).toEqual(zatw);
     for (const l of Object.keys(NAZWY_LOKALNE)) { const r = NAZWY_LOKALNE_RECENZJA[l]; expect(r && r.recenzent && r.data && r.plik).toBeTruthy(); expect(r.recenzent).not.toBe(r.autor); }
   });
+  /* 11.11.2026 (W-03, sesja T2): recenzja niezależna 33 języków (recenzent-lokalizacji ≠ przekład API/tłumacz), 108 poprawek naniesionych przez tłumacza;
+   * negatyw: stan sprzed recenzji (33 języki z recenzja = null, tylko PL w aplikacji) — test czerwony na nim. */
+  test('W-03: PL + 33 języki w aplikacji z recenzją „zatwierdzone” (plik w03-nazwy-33), a każda przyjęta poprawka recenzji jest w danych co do znaku', () => {
+    const REC = 'docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json';
+    const zatw = Object.entries(DANE.jezyki).filter(([, j]) => j.recenzja?.wynik === 'zatwierdzone').map(([l]) => l);
+    expect(zatw.length).toBe(34);
+    for (const l of zatw.filter(x => x !== 'pl')) expect([l, (DANE.jezyki[l].recenzja as { plik?: string }).plik]).toEqual([l, REC]);
+    const R = JSON.parse(fs.readFileSync(path.join(ROOT, REC), 'utf8')) as { autor: string; recenzent: string; poprawki: { jezyk: string; klucz: string; proponowana: string; decyzja: string }[] };
+    expect(R.recenzent).not.toBe(R.autor);
+    const zle = R.poprawki.filter(p => p.decyzja === 'przyjeta' && DANE.nazwy[p.klucz]?.[p.jezyk] !== p.proponowana);
+    expect(zle).toEqual([]);
+    expect(R.poprawki.filter(p => p.decyzja === 'przyjeta').length).toBe(103);
+  });
   test('regresja: zestaw nazw (rodzaj „nazwa”) nie trafia do PENDING testów kompletności interfejsu', () => {
     const pl = new Set(Object.values(DANE.nazwy).map(n => n.pl));
     expect(PENDING.filter(p => pl.has(p.pl)).map(p => p.pl)).toEqual([]);

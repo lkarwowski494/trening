@@ -67,7 +67,10 @@ describe('W-02 Front Incline Dumbbell Raise: zdanie fidr.move bez wysokości spr
     const jezyki = LANGS.filter(l => l !== 'pl' && l !== 'en'); /* lista języków aplikacji (lib/i18n.ts), nie listing katalogu (tests/wybor-testow-l103.test.ts, G3/L-100) */
     expect(jezyki.length).toBe(33);
     const RAP = (l: string) => JSON.parse(fs.readFileSync(path.join(ROOT, `docs/lokalizacja/raport-przekladu-2026-11-11-w03-fidr/${l}.json`), 'utf8'));
-    for (const l of jezyki) { const t = cue(l); expect([l, typeof t === 'string' && t.trim().length > 0 && t !== cue('en')]).toEqual([l, true]); expect([l, JSON.stringify(RAP(l)).includes(JSON.stringify(t).slice(1, -1))]).toEqual([l, true]); }
+    /* po recenzji lokalizacji W-03 (docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json, fidr_move): 5 języków ma poprawkę recenzenta naniesioną przez tłumacza — tekst = raport API albo przyjęta poprawka */
+    const POP = Object.fromEntries((JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/research/recenzje/w03-nazwy-33-recenzent-2026-11-11.json'), 'utf8')).fidr_move as { jezyk: string; proponowana: string; decyzja: string }[]).filter(f => f.decyzja === 'przyjeta').map(f => [f.jezyk, f.proponowana]));
+    expect(Object.keys(POP).sort()).toEqual(['bg', 'hr', 'ja', 'sl', 'it'].sort());
+    for (const l of jezyki) { const t = cue(l); expect([l, typeof t === 'string' && t.trim().length > 0 && t !== cue('en')]).toEqual([l, true]); expect([l, POP[l] !== undefined ? t === POP[l] : JSON.stringify(RAP(l)).includes(JSON.stringify(t).slice(1, -1))]).toEqual([l, true]); }
     const Z = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json'), 'utf8')); expect(Z.klucze).toEqual([]);
   });
   test('W-03: karta odsłonięta — plik runtime lib/cues/data.json ma kartę Front Incline Dumbbell Raise i nie ma jej na liście „hidden”; werdykt recenzji „wyswietlana” (recenzja W-02, autor ≠ recenzent)', () => {
