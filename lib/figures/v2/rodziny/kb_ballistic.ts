@@ -6,7 +6,7 @@ import type { RodzinaPoz, PhaseOverride } from '../poseData';
 
 const rodzina: RodzinaPoz = {
   load: () => require('../poses/kb_ballistic.json'),
-  ui: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'],
+  ui: { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['hip', 'knee'], untimed: true, /* MER-01 (11.11.2026): wahadło bez sekund w liczniku */
     exceptions: Object.fromEntries(['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'].map((k): [string, PhaseOverride] => [k, { names: { first: 'Podnoszenie', second: 'Podnoszenie' } }])) },
 };
 export default rodzina;

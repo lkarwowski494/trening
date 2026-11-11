@@ -922,7 +922,7 @@
    ],
    "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
    "fraza": "**T-059**",
-   "uwaga": "Tempo faz animacji figury v2 (lib/figures/v2/anim.ts TEMPO: 2 s opuszczanie, 1 s podnoszenie): przerost podobny przy czasie powtórzenia 0,5–8 s; konkretne 2 s / 1 s = konwencja ilustracji w tym przedziale.",
+   "uwaga": "Tempo faz animacji figury v2 (lib/figures/v2/anim.ts TEMPO: 2 s opuszczanie, 1 s podnoszenie): przerost podobny przy czasie powtórzenia 0,5–8 s; konkretne 2 s / 1 s = konwencja ilustracji w tym przedziale. Zakres: ruchy niebalistyczne — wahadło balistyczne (kb_ballistic: swing, zarzut, wysoki ciąg) pokazuje fazy bez sekund (MER-01, 11.11.2026; źródła dotyczą przerostu, nie ruchu balistycznego).",
    "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
   },
   {
