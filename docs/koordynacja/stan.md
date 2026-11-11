@@ -59,7 +59,7 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 | H | session_01T66VBzEyJX4y1Y7uQKJeBA | 08 build (opus-5-5): pociąg-6 (polecenia/H.md) | scal/pociag-6 @ 7240d164 — PRZYJĘTA, w integracji 57406e7f | 30,8 | 11,92 | zarchiwizowana 19:32 |
 | I | session_01T66VByJ3pTy7VL5yZ6MqCb | 08 build (opus-5-5): pociąg-7 = partia 8 (polecenia/I.md) | scal/pociag-7 @ 96918631 (tests.yml 42917720413) | 32,9 | 13,10 | PRZEKAZANIE 22:47, zarchiwizowana 22:49; odbiór po tests.yml | dawniej: w toku (20:02: scalenie d44557a2, zad. 3 zrobione, audytor + testy figur, potem verify:szybkie, push, tests.yml; reszta ok. 1,5–2 h): start 19:36 (subagent; prompt 08 = role/08 51193 B, cmp zgodny; sesja sprawdza sha256) |
 | J | session_01T66VBxrUgykWUx5pyvwncw | 08 build (opus-5-5): docs/49 lista kroków 1.1 (polecenia/J.md, KO-031) | docs/wydanie-1-1 @ 7b27799a — PRZYJĘTA, w integracji 805b11bb | — | — | 3,55 | zarchiwizowana 21:15 |
-| K | session_01T66VByu7DxzYKSFgbZR9tg | 08 build (opus-5-5): PR na main z poprawkami nocnych testów (polecenia/K.md, KO-032) | ci/nocne-poprawki-main od main 2e4b0f82 | 0 | 0 | w toku: start 20:50 (PENDING przy starcie); scalenie do main — osobna zgoda właściciela |
+| K | session_01T66VByu7DxzYKSFgbZR9tg | 08 build (opus-5-5): PR na main z poprawkami nocnych testów (polecenia/K.md, KO-032) | ci/nocne-poprawki-main @ fd636db5 = PR #108 (tests.yml 42914460167, nightly 42914472276 att. 2 — zielone) | 25,9 | 7,70 | PRZEKAZANIE 02:56, zarchiwizowana 03:00; lekcja niewypchnięta → przekazane/K-lekcja-L-NNN.md; scalenie PR #108 — zgoda właściciela |
 | E | session_01T66VBvTx4J3wo4LsZx4yjb | 08 build: partia 8 + KO-024 podział | scal/posedata-podzial 24b461e3 (PRZYJĘTA, w integracji 038efefc); figury/partia-8 f281a089 + gałęzie rodzin | 32,7 | 31,62 | PRZEKAZANIE 13:50 → E2; zarchiwizowana 15:15 |
 | F | session_01T66VBwaPHeeK1QNim6cow6 | 08 build: partia 9 | partia-9 3070557, -leg_isolation 7c2692a, -lunge d744f06 | 36,4 | 39,99 | PRZEKAZANIE 14:21 → F2; zarchiwizowana 14:55 |
 | G | session_01T66VByihtvAjWHsQzFqFZo | 08 build: pociąg-5 | scal/pociag-5 5a401abd — PRZYJĘTA, w integracji 649b0504 | 32,5 | 14,36 | zarchiwizowana 14:55 |
@@ -103,7 +103,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-038. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-039. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -208,3 +208,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-10 23:48 | koordynator | tests.yml 42922168610 success na integracji 5721a16e; nightly K 42914472276 w toku (start 22:25) | kontrola 03:45 |
 | 2026-11-11 00:59 | K | raport 3: nightly 42914472276 attempt 1 cancelled — zadania wiążące zielone (mutacje 22/22, losowe, E2E 1/2/3), „eksperymenty (niewiążące)” przekroczyły 60 min po awarii symulatora (/deviceInfo 500 przy scenariuszu 40, niezmienianym) → rerun_failed_jobs (attempt 2, jedno powtórzenie wg CLAUDE.md); L-087: zaliczenie tylko przy całym zielonym | kontrola 03:45 |
 | 2026-11-11 02:37 | K | raport 4: nightly 42914472276 attempt 2 success (cały przebieg), tests.yml 42914460167 success na fd636db5 → KO-035 spełnione; lekcja lokalnie 1def60b7; verify:docs odmawia (gałąź ≠ same dokumenty vs main) → KO-037 (B/A) | raport K z numerem PR; prośba do właściciela o zgodę na scalenie w linii 05:00 |
+| 2026-11-11 03:00 | K / koordynator | PRZEKAZANIE K: PR #108 (main ← fd636db5; ls-remote refs/pull/108/head = fd636db5), dowody zielone (KO-035 spełnione); verify #4 czerwone (SIGTERM) → lekcja nie wypchnięta, treść zachowana w docs/koordynacja/przekazane/K-lekcja-L-NNN.md; KO-038 (wariant A SIGTERM, do weta); K 7,70 USD → zarchiwizowana | linia 05:00: prośba o zgodę na scalenie PR #108; 07:05 L/M + zadanie KO-038 i lekcja K |
