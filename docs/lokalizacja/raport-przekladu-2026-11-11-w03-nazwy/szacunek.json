@@ -1,0 +1,251 @@
+{
+ "zrodlo": "count_tokens (wejście), wyjście z założeń",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "zalozenia_wyjscia": {
+  "obwiednia": 12,
+  "myslenie": 3000
+ },
+ "jezykow": 33,
+ "pozycji": 277,
+ "tokeny_we": 1162725,
+ "tokeny_wy": 313598,
+ "koszt_usd": 5.46143,
+ "koszt_wg_modelu": {
+  "claude-opus-5-5": 5.46143,
+  "claude-sonnet-5-5": 2.730715
+ },
+ "wiersze": [
+  {
+   "jezyk": "bg",
+   "pozycji": 277,
+   "we": 34903,
+   "wy": 10152,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "cs",
+   "pozycji": 277,
+   "we": 34960,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "da",
+   "pozycji": 277,
+   "we": 35464,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "de",
+   "pozycji": 277,
+   "we": 35050,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "el",
+   "pozycji": 277,
+   "we": 35719,
+   "wy": 10152,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "es",
+   "pozycji": 277,
+   "we": 35363,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "es-419",
+   "pozycji": 277,
+   "we": 35502,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "et",
+   "pozycji": 277,
+   "we": 35209,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "fi",
+   "pozycji": 277,
+   "we": 34825,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "fr",
+   "pozycji": 277,
+   "we": 34889,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "hr",
+   "pozycji": 277,
+   "we": 34824,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "hu",
+   "pozycji": 277,
+   "we": 35392,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "id",
+   "pozycji": 277,
+   "we": 34980,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "it",
+   "pozycji": 277,
+   "we": 35220,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ja",
+   "pozycji": 277,
+   "we": 35938,
+   "wy": 8716,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ko",
+   "pozycji": 277,
+   "we": 35207,
+   "wy": 8716,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "lt",
+   "pozycji": 277,
+   "we": 35182,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "lv",
+   "pozycji": 277,
+   "we": 35123,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ms",
+   "pozycji": 277,
+   "we": 35706,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "nb",
+   "pozycji": 277,
+   "we": 35394,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "nl",
+   "pozycji": 277,
+   "we": 35107,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "pt",
+   "pozycji": 277,
+   "we": 35210,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "pt-BR",
+   "pozycji": 277,
+   "we": 35343,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ro",
+   "pozycji": 277,
+   "we": 35415,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ru",
+   "pozycji": 277,
+   "we": 35778,
+   "wy": 10152,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sk",
+   "pozycji": 277,
+   "we": 34977,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sl",
+   "pozycji": 277,
+   "we": 34823,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sr",
+   "pozycji": 277,
+   "we": 34896,
+   "wy": 10152,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sv",
+   "pozycji": 277,
+   "we": 35579,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "tr",
+   "pozycji": 277,
+   "we": 34941,
+   "wy": 9554,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "uk",
+   "pozycji": 277,
+   "we": 35585,
+   "wy": 10152,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "vi",
+   "pozycji": 277,
+   "we": 35165,
+   "wy": 9314,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "zh-Hant",
+   "pozycji": 277,
+   "we": 35056,
+   "wy": 8716,
+   "model": "claude-opus-5-5"
+  }
+ ]
+}

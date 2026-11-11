@@ -1,0 +1,13 @@
+{
+ "jezyk": "el",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01TAEtnkgCCHD7wXE69Y9ko4",
+ "pozycji": 1,
+ "przyjete": 1,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli.": "Σήκωσε τους αλτήρες μπροστά σου, με τους αγκώνες ελαφρώς λυγισμένους, τουλάχιστον μέχρι το ύψος των ώμων· κατέβασέ τους αργά."
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "jezyk": "fr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01TAEtnkgCCHD7wXE69Y9ko4",
+ "pozycji": 1,
+ "przyjete": 1,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli.": "Levez les haltères devant vous, coudes légèrement fléchis, au moins jusqu’à hauteur d’épaules ; redescendez-les lentement."
+ }
+}

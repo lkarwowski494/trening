@@ -13,11 +13,11 @@ Gałąź `lok/w03-przeklad` (od `integracja-1-1` @ 46365a53; scalona świeża in
 - Kontekst „Ściąganie” skrócony do ≤ 200 znaków (był ucinany) — `docs/lokalizacja/konteksty-reczne.json`.
 
 ## Zostało
-1. Pobrać artefakty (hosty productionresultssa3 / sa8 — prośba do koordynatora): fidr.move run 43053668717 (artefakt 13871485384), nazwy run 43053674252 (artefakt 13871855055); wygasają 18.11.2026.
+1. (zrobione) Raporty pobrane i w repo: `docs/lokalizacja/raport-przekladu-2026-11-11-w03-fidr/` (33/33, 0 odrzuconych, szac. 1,41 USD) i `-w03-nazwy/` (277×33, 0 odrzuconych, szac. 5,46 USD). Nałożenie sprawdzone na sucho i cofnięte (patrz 2–3).
 2. fidr.move: `--zastosuj <raport> --zestaw docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json`; w tym samym commicie odsłonić kartę FIDR = odwrócić 1eaa8fe8 (figury-recenzja.json „wyswietlana” z pola w02, lib/cues/data.json, pokrycie-cele pelnaKarta 522→523 i 3 metryki +1, fixtures pokrycia, tests cel-1-1, delt-raise-w02, strona-eksport 778→779), docs/18 krótki wpis.
-3. Nazwy: `node scripts/i18n/gen-nazwy-lokalne.mjs --z-raportu <raport>`; recenzja recenzent-lokalizacji 33 języków (próbka lub całość), poprawki tłumacz, ustawić `jezyki.<l>.recenzja` (wynik zatwierdzone) → `--write`.
+3. Nazwy: `node scripts/i18n/gen-nazwy-lokalne.mjs --z-raportu docs/lokalizacja/raport-przekladu-2026-11-11-w03-nazwy` (9141 nazw) — potem `--check` zgłasza 44 nazwy > 60 znaków (m.in. Decline Close-Grip Bench To Skull Crusher w 15 językach, ru delt_raise): skraca tłumacz; dalej recenzja recenzent-lokalizacji 33 języków (próbka lub całość), poprawki tłumacz, ustawić `jezyki.<l>.recenzja` (wynik zatwierdzone) → `--write`.
 4. (zrobione d14f8c58: „Ściąganie” i recenzja UI.)
-6. Koszt API do ZB-057 (szacunek.json z raportów): dowodowy 0,11 + UI 1,77 + fidr ? + nazwy ? USD (szacunki count_tokens; wpis w docs/zobowiazania.md ZB-057 jeszcze nie zrobiony).
+6. Koszt API do ZB-057 (szacunek.json z raportów): dowodowy 0,11 + UI 1,77 + fidr 1,41 + nazwy 5,46 = ok. 8,75 USD z 30 (szacunki count_tokens; wpis w docs/zobowiazania.md ZB-057 jeszcze nie zrobiony).
 7. docs/49 W-03, docs/18 decyzje (KO-046 lista = 278 NAME_EN; dane nazw z polem recenzji; wyjątek „Skok”), `verify:szybkie`/lekkie, push, `tests.yml` zielony.
 
 ## Pułapki
@@ -26,4 +26,4 @@ Gałąź `lok/w03-przeklad` (od `integracja-1-1` @ 46365a53; scalona świeża in
 - Zestaw nazw ma rodzaj „nazwa” i pole „katalog” (nie „id”) — inaczej trafia do PENDING testów albo jest brany za zestaw wskazówek.
 
 ## Następny krok (kontynuacja)
-Pobierz artefakty 13871485384 (fidr) i 13871855055 (nazwy) przez MCP actions_get download_workflow_run_artifact → curl (hosty productionresultssa3/sa8 muszą być w sieci środowiska); skopiuj do `docs/lokalizacja/raport-przekladu-2026-11-11-w03-fidr/` i `-w03-nazwy/`, potem kroki 2–7 wyżej. Gdy artefakty wygasną (18.11): ponów przebiegi workflow z tej gałęzi (zestawy są na gałęzi; ok. 1,3 + 4,7 USD).
+Kroki 2 (fidr.move + odsłonięcie FIDR jednym commitem), 3 (nazwy: skrócenie 44, recenzja 33 języków), 6, 7. Raporty są w repo — nie trzeba ponownego przebiegu API.

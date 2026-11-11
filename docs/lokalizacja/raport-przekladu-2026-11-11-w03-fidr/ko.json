@@ -1,0 +1,13 @@
+{
+ "jezyk": "ko",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01TAEtnkgCCHD7wXE69Y9ko4",
+ "pozycji": 1,
+ "przyjete": 1,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli.": "팔꿈치를 살짝 구부린 채 덤벨을 앞으로 최소 어깨 높이까지 들어 올린 뒤, 천천히 내리세요."
+ }
+}
