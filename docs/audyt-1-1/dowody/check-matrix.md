@@ -1,3 +1,6 @@
+# Dowód: check-matrix (commit 79117f33, 11.11.2026)
+
+```
 $ npm run check:matrix
 
 > trening@1.0.1 check:matrix
@@ -5,3 +8,4 @@ $ npm run check:matrix
 
 macierz: 2872 pozycji (EKRAN 32, UI 359, TEKST 1089, LOGIKA 1169, WYMIAR 223), bez testu: 0, nieaktualne wyjątki: 0
 kod wyjścia: 0
+```

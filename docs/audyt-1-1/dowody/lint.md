@@ -1,3 +1,6 @@
+# Dowód: lint (commit 79117f33, 11.11.2026)
+
+```
 
 > trening@1.0.1 lint
 > eslint .
@@ -273,3 +276,4 @@
   0 errors and 34 warnings potentially fixable with the `--fix` option.
 
 kod wyjścia: 0
+```

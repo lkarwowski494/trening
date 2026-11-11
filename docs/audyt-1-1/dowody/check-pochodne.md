@@ -1,3 +1,6 @@
+# Dowód: check-pochodne (commit 79117f33, 11.11.2026)
+
+```
 $ npm run check:pochodne
 
 > trening@1.0.1 check:pochodne
@@ -23,3 +26,4 @@ check:pochodne: ok  źródła runtime (117.0 s)
 check:pochodne: ok  strażniki słowników (warunkowo) (102.5 s)
 check:pochodne: zielone (18 kroków, 176 s)
 kod wyjścia: 0
+```

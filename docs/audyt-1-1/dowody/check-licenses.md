@@ -1,3 +1,6 @@
+# Dowód: check-licenses (commit 79117f33, 11.11.2026)
+
+```
 $ npm run check:licenses
 
 > trening@1.0.1 check:licenses
@@ -5,3 +8,4 @@ $ npm run check:licenses
 
 licencje: OK (597 pakietów, 7 bibliotek natywnych, 14 treści licencji)
 kod wyjścia: 0
+```

@@ -1,3 +1,6 @@
+# Dowód: check-slowniki (commit 79117f33, 11.11.2026)
+
+```
 $ npm run check:slowniki
 
 > trening@1.0.1 check:slowniki
@@ -20,3 +23,4 @@ Snapshots:   0 total
 Time:        3.537 s, estimated 27 s
 check:slowniki: zielone (24 s)
 kod wyjścia: 0
+```

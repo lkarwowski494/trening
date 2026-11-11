@@ -1,3 +1,6 @@
+# Dowód: check-claims (commit 79117f33, 11.11.2026)
+
+```
 $ npm run check:claims
 
 > trening@1.0.1 check:claims
@@ -5,3 +8,4 @@ $ npm run check:claims
 
 twierdzenia: 61 wpisów, 42 tekstów dziedzinowych (w tym bez twierdzenia: 7), rejestr zgodny
 kod wyjścia: 0
+```
