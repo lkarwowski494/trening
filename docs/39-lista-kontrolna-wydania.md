@@ -64,7 +64,7 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Dlaczego nie automat: Silnik haptyczny nie istnieje na symulatorze, a Maestro go nie czyta.
   - Pokrycie zastępcze w Jest: `tests/timer-logic.test.ts`, `tests/e2e-102-reminder.test.tsx`, `tests/m3-p5d-haptics.test.ts`, `tests/m3-p5d-haptics-done.test.tsx`
 - [ ] **ZD-02** Instalacja z TestFlight na prawdziwym telefonie: pierwsze uruchomienie, ikona, nazwa, animacja startowa
-  - Co zrobić i czego oczekiwać: Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), tablica „Pierwszy trening” i kafelki, brak komunikatu o błędzie danych.
+  - Co zrobić i czego oczekiwać: Po instalacji: ikona poprawna, pod ikoną nazwa „RepsGoat” (ZB-056, 1.1; także w aplikacji na zegarku), animacja startowa krótka (stuknięcie pomija), tablica „Pierwszy trening” i kafelki, brak komunikatu o błędzie danych.
   - Dlaczego nie automat: Podpis, ikona, ekran startowy i środowisko prawdziwego urządzenia istnieją dopiero w buildzie z TestFlight.
   - Pokrycie zastępcze w Jest: `tests/intro.test.tsx`, `tests/smoke.test.tsx`
 - [ ] **ZD-03** Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”
@@ -75,8 +75,9 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
 ## Wersja 0.20 (zegarek i głos) — projekt
 
 - [ ] **W2-04** Głos na żywo: zapowiedź następnego ćwiczenia w AirPods, ściszanie muzyki, tryb cichy *(od 0.20)*
-  - Co zrobić i czego oczekiwać: AirPods + muzyka: odhacz serię → zapowiedź w słuchawkach, muzyka ściszona i wraca; bez słuchawek cisza; przełącznik głośnika: mówi telefon; tryb cichy; odłączenie słuchawek w trakcie; podcast pauzuje i wznawia.
+  - Co zrobić i czego oczekiwać: AirPods + muzyka: odhacz serię → zapowiedź w słuchawkach, muzyka ściszona i wraca; bez słuchawek cisza; przełącznik głośnika: mówi telefon; tryb cichy; odłączenie słuchawek w trakcie; podcast pauzuje i wznawia. Jakość głosu (ZB-039, 1.1): przy samym głosie podstawowym Ustawienia → Trening → „Zapowiedzi głosowe” pokazują wskazówkę o pobraniu lepszego głosu; po pobraniu głosu rozszerzonego lub premium w iOS (Ustawienia → Dostępność → Zawartość mówiona → Głosy) i ponownym uruchomieniu aplikacji wskazówka znika, a zapowiedź i „Posłuchaj przykładu” brzmią tym lepszym głosem.
   - Dlaczego nie automat: Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI.
+  - Pokrycie zastępcze w Jest: `tests/voice.test.ts`, `tests/voice-native.test.ts`
 - [ ] **W2-05** Apple Watch i drugi zegarek (Connect IQ) na prawdziwych zegarkach: parowanie, odliczanie, wibracja, „Połącz z telefonem” *(od 0.20)*
   - Co zrobić i czego oczekiwać: Wg docs/35 (lista ręczna wydania 0.20): parowanie, pierwsza seria z zegarka, przerwa z wibracją, zasięg w kieszeni, „Cofnij”, „Pomiń”.
   - Dlaczego nie automat: Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny.
