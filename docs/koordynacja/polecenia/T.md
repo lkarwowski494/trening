@@ -1,0 +1,18 @@
+# Sesja T: W-03 przekład i recenzja lokalizacji — Trening 1.1
+Koordynator: session_01T66VBzw5ZKYbTKsZynMsP4 (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID; jeśli dostaniesz wiadomość o zmianie koordynatora, pisz do nowego). Gałąź stanu koordynatora: `koordynacja` (tylko do odczytu).
+
+1. Rola: 09-lokalizacja w trybie build. Prompt roli jest w twojej pierwszej wiadomości po linii `=== PROMPT ROLI ===` (59315 B); przeczytaj go w całości, jesteś tą rolą. Biblioteki prompts nie dołączasz. Zasady projektu z `CLAUDE.md` mają pierwszeństwo (słownik terminów, `t()`, rejestr twierdzeń, recenzent-lokalizacji ≠ tłumacz).
+2. Start: gałąź `lok/w03-przeklad` od `integracja-1-1` @ 46365a53 (inny HEAD: zgłoś). Instalacja: `npm ci`, `git fetch --unshallow`. Tożsamość commitów według CLAUDE.md, sprawdź przed pierwszym commitem.
+3. Zadania (docs/49 W-03; kryterium „gotowe” przy każdym):
+   1. Inwentarz: lista nowych i zmienionych tekstów UI i kart od 1.0.1 bez przekładu we wszystkich 33 językach (skrypt repo, nie ręcznie) — gotowe: plik listy w `docs/lokalizacja/` z liczbą kluczy na język.
+   2. Przekład przez API (ZB-057, pułap łączny 30 USD — wydane dotąd 0 USD): najpierw jeden język i kilka kluczy (wejście zawężające), sprawdzenie wyniku, potem całość; słownik terminów `docs/lokalizacja/slownik-terminow.json` obowiązuje. Brak klucza API albo hosta w sieci sesji → nie obchodź, raport PYTANIE z tym, czego brakuje. Gotowe: `check:i18n` zielone, koszt API zapisany w ZB-057.
+   3. W tym karta FIDR (Front Incline DB Raise, 33 przekłady fidr.move) — po przekładzie odsłoń kartę cofając ukrycie z KO-042 (docs/18 11.11.2026) w tym samym commicie; cel pelnaKarta +1 i test.
+   4. Nazwy lokalne ZB-044 (KO-044 B): `lib/nazwy-lokalne.ts` — PL + 33 języki dla ćwiczeń z listy decyzji, z polem recenzji; wzorzec 34 docs/32 i strażnik S21 już w integracji. Gotowe: dane + testy macierzy.
+   5. Recenzja lokalizacji zbiorcza przez agenta `recenzent-lokalizacji` (nie tłumacz): nowe teksty + znane uwagi (nachwyt sv/da/nb/ru/vi/nl, „Ściąganie”, lv kettlebell). Poprawki wprowadza tłumacz; zapis recenzji w `docs/research/recenzje/` z polami autor ≠ recenzent.
+   6. Rejestr twierdzeń: `check:claims` zielone (nowe brzmienia `--stub`/`--rehash` po przeglądzie).
+   7. `verify:szybkie` kod 0, push, tests.yml zielony na głowie; wpis W-03 w docs/49 i decyzje w docs/18 (data 11.11.2026, do weta).
+4. Zakazy: nie scalasz do integracji ani `main`, nie tworzysz i nie archiwizujesz sesji, nie piszesz na gałąź `koordynacja`, nie zmieniasz workflowów, nigdy --no-verify ani force-push, nie pytasz właściciela bezpośrednio (bez AskUserQuestion). STOP-y roli i punkt czyszczenia zamieniasz na raport do koordynatora i czekasz na odpowiedź.
+5. Decyzje: tryb analogia (do weta) — decyzje produktowe wg własnej rekomendacji, wpis w docs/18 z datą i odrzuconymi wariantami; merytoryczne rozstrzyga hierarchia źródeł z CLAUDE.md.
+6. Kontekst i koszt: od 30% okna kończysz krok, zapisujesz stan w `STAN-AGENTA.md` (lokalnie) i `docs/przekazanie/notatki/linia-1-1/STAN-W03.md` na gałęzi, push, PRZEKAZANIE. Pułap sesji 30 USD; próg STOP 39 USD. Pułap API przekładu 30 USD osobno.
+7. Push: zbiorczo. Gałąź S (zb/w04-pochodzenie, lib/cues/data.json, lib/figures/data.json — znaczniki rid) wejdzie do integracji w trakcie; przed końcem scal świeżą integrację i uruchom `node scripts/zrodla-runtime.mjs --rid` jeśli check:zrodla-runtime czerwony (docs/50).
+8. Raporty (≤ 10 linii, send_message): po zadaniu 1 (liczby, szacunek reszty i kosztu API); PYTANIE z opcjami i rekomendacją; PRZEKAZANIE: SHA, run CI, dowody, decyzje do weta, koszt sesji i API, otwarte, następny krok.
