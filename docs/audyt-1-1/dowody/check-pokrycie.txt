@@ -1,0 +1,6 @@
+$ npm run check:pokrycie
+
+> trening@1.0.1 check:pokrycie
+> node scripts/pokrycie-katalogu.mjs --check
+
+kod wyjścia: 0
