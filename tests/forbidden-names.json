@@ -118,6 +118,11 @@
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika) „Bosu Ball Cable Crunch With Side Bends” — warstwa nazw EN (ZB-025 b) mapuje po kluczu; nazwa wyświetlana neutralna: „Balance Dome Cable Crunch with Side Bends” (od 11.11.2026); plik generowany z docs/research/equipment/nazwy-en.json (01.11.2026)"
   },
   {
+   "path": "lib/nazwy-lokalne.generated.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — mapa nazw lokalnych po kluczu (W-03, 11.11.2026); wartości we wszystkich 34 językach neutralne („półkula”, „balance dome”; tr poprawione po recenzji), plik generowany z docs/lokalizacja/nazwy-lokalne.json"
+  },
+ {
    "path": "tests/nazwy-en.test.ts",
    "name": "Bosu",
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika) „Bosu Ball Cable Crunch With Side Bends” — test sprawdza, że nazwa wyświetlana po kluczu jest neutralna („Balance Dome …”), a nie nazwa marki (01.11.2026)"

@@ -58,6 +58,14 @@ describe('przekład API: pole „kontekst” w pozycji', () => {
     const { lista } = przeklad([{ pl: 'Przerwa', en: 'Rest' }, { pl: 'Przerwa robocza', en: 'Working rest' }], 'pt-BR');
     for (const p of lista) { expect(p.kontekst).toMatch(/między seriami/i); expect(p.kontekst).toMatch(/NIE (przerwa w pracy|praca zawodowa)/); }
   });
+  test('W-03 11.11.2026: kontekst z pozycji zestawu (nazwy lokalne ćwiczeń) ma pierwszeństwo przed konteksty.json; wczytajZestaw go zachowuje', () => {
+    const { lista } = przeklad([{ pl: 'Podciąganie', en: 'Pulling', kontekst: 'nazwa ćwiczenia' } as { pl: string; en: string }, { pl: 'Opuszczanie', en: 'Lowering' }]);
+    expect(lista[0].kontekst).toBe('nazwa ćwiczenia'); expect(lista[1].kontekst).toMatch(/FAZY/);
+    const plik = path.join(fs.mkdtempSync(path.join(require('os').tmpdir(), 'zestaw-')), 'z.json');
+    fs.writeFileSync(plik, JSON.stringify({ klucze: [{ rodzaj: 'nazwa', pl: 'Martwy ciąg', en: 'Deadlift', kontekst: ' nazwa ćwiczenia ' }, { rodzaj: 'nowy', pl: 'A', en: 'A' }] }));
+    const z = run(`import * as m from ${PRZEKLAD}; console.log(JSON.stringify(m.wczytajZestaw(${JSON.stringify(plik)})))`);
+    expect(z[0].kontekst).toBe('nazwa ćwiczenia'); expect('kontekst' in z[1]).toBe(false);
+  });
 });
 
 describe('przegląd API: pole „kontekst” w zdaniu', () => {

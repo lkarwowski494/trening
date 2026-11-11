@@ -1,0 +1,13 @@
+{
+ "jezyk": "sr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01TAEtnkgCCHD7wXE69Y9ko4",
+ "pozycji": 1,
+ "przyjete": 1,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli.": "Подигни бучице испред себе, лактови благо савијени, бар до висине рамена; спусти их полако."
+ }
+}

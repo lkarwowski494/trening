@@ -196,7 +196,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 
 ### 34. Nazwa ćwiczenia z biblioteki (ZB-044; właściciel 07.11.2026 i 08.11.2026 wariant A „Podpis”, docs/18)
 - **Wszędzie poza kartą:** nazwa angielska z katalogu (`exName`, głos `exNameLang`) we wszystkich językach, także po polsku — listy, trening, historia, plan, zegarek, Zdrowie, eksport. Ćwiczenie własne i ćwiczenie z biblioteki przemianowane przez użytkownika — jedna nazwa, jak wpisana (głos języka interfejsu).
-- **Karta ćwiczenia (`app/exercise/[id].tsx`):** H1 = nazwa angielska (głos „en”), pod nią nazwa lokalna języka interfejsu (`exLocal`) — `Muted` (callout, kolor `muted`), odstęp 4 pt, osobny element VoiceOver (`exercise-local-name`); brak nazwy lokalnej po recenzji (`lib/nazwy-lokalne.ts`) albo nazwa identyczna z angielską — bez drugiej linii. „Edytuj” przy pierwszym wierszu tytułu.
+- **Karta ćwiczenia (`app/exercise/[id].tsx`):** H1 = nazwa angielska (głos „en”), pod nią nazwa lokalna języka interfejsu (`exLocal`) — `Muted` (callout, kolor `muted`), odstęp 4 pt, osobny element VoiceOver (`exercise-local-name`); brak nazwy lokalnej po recenzji (`lib/nazwy-lokalne.generated.ts`) albo nazwa identyczna z angielską — bez drugiej linii. „Edytuj” przy pierwszym wierszu tytułu.
 - **Wyszukiwanie ćwiczeń** (wybór, zamiana, biblioteka, Postępy, import): po nazwie zapisanej, nazwie wyświetlanej i nazwie lokalnej (`exLocalFold`); dawne nazwy katalogu — „dawniej: …” (UX2-01, ZB-025 b).
 - **Strażnik:** S21 w `tests/zb044-wzorzec-nazwy.test.ts` (zakres: pliki .ts/.tsx w `app/`, `components/`, `lib/` — `ZAKRES` w tym pliku); zachowanie ekranów: `tests/zb044-nazwy-biblioteki.test.tsx`, `tests/zb044-przemianowane.test.tsx`.
 

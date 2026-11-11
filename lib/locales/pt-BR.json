@@ -626,5 +626,16 @@
  "Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.": "Novos desenhos de movimento nos exercícios de tríceps e em cleans, snatches e suas variações.",
  "Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.": "Dicas de técnica novas e aprimoradas, incluindo ombros, exercícios de potência e mobilidade.",
  "Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.": "Os avisos por voz usam a melhor voz instalada no seu celular.",
- "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Quem está começando abre a tela Treino com o botão “Iniciar seu primeiro treino” e o quadro “Primeiro treino”."
+ "Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.": "Quem está começando abre a tela Treino com o botão “Iniciar seu primeiro treino” e o quadro “Primeiro treino”.",
+ "Przesunięcie na rysunku: {staw} {n} cm": "Deslocamento no desenho: {staw} {n} cm",
+ "zgięcie nadgarstka": "flexão do punho",
+ "wyprost nadgarstka": "extensão do punho",
+ "obrót przedramienia dłonią w górę": "antebraço girado com a palma para cima",
+ "obrót przedramienia dłonią w dół": "antebraço girado com a palma para baixo",
+ "Powrót": "Retorno",
+ "Rozsuwanie": "Abertura",
+ "Marsz": "Caminhada",
+ "Rzut": "Arremesso",
+ "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).": "Este celular está usando uma voz básica. Baixe uma melhor nos Ajustes do iOS (Acessibilidade).",
+ "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.": "Agora o app se chama {app}. Seus treinos, modelos e configurações continuam iguais."
 }

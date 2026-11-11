@@ -1,0 +1,732 @@
+{
+ "data": "2026-11-11",
+ "autor": "tlumacz (nazwy PL) / przekład API i wcześniejsze fale (część B)",
+ "recenzent": "recenzent-lokalizacji",
+ "zakres": "A: 278 polskich nazw lokalnych (docs/lokalizacja/nazwy-lokalne.json, pole pl, z uwagami); B: nachwyt/podchwyt/chwyt neutralny w sv, da, nb, ru, vi, nl (15 kluczy wskazówek z nachwyt/podchwyt; kluczy z chwytem neutralnym we wskazówkach i UI brak), faza „Ściąganie” (PL i EN, kontekst), lv kettlebell (lib/locales/lv.json, lib/cues/text/lv.json). tests/slownik-terminow.test.ts: 142/142 zielony (nie obejmuje nazw lokalnych).",
+ "werdykt_nazwy_pl": "zatwierdzone po poprawkach",
+ "poprawki": [
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "RDL (hantle/linki)",
+   "jest": "Rumuński martwy ciąg z hantlami lub linką",
+   "ma_byc": "Rumuński martwy ciąg z hantlami lub na wyciągu",
+   "powod": "słownik „wyciąg” (kabel): w nazwach jest „na wyciągu”, nie „linką” (por. Single Leg RDL (linki) — „na wyciągu”)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Straight Arm Pulldown",
+   "jest": "Ściąganie prostych rąk na wyciągu",
+   "ma_byc": "Ściąganie drążka prostymi rękami",
+   "powod": "„ściąganie prostych rąk” — ściąga się drążek, nie ręce; tak mówi się na siłowni",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Single Arm Lat Pulldown",
+   "jest": "Ściąganie drążka wyciągu jednorącz",
+   "ma_byc": "Ściąganie wyciągu górnego jednorącz",
+   "powod": "jednorącz ciągnie się uchwyt, nie drążek; „ściąganie drążka” myli z wersją oburącz",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Overhead Triceps Extension (hantel)",
+   "jest": "Prostowanie ramienia z hantlą zza głowy",
+   "ma_byc": "Prostowanie ramion z hantlą zza głowy",
+   "powod": "ruch oburącz (ote.setup „chwyć hantel oburącz”); „ramienia” sugeruje wersję jednorącz i myli z Dumbbell One-Arm Triceps Extension",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Triceps Kickback (linki)",
+   "jest": "Odwodzenie ramienia do tyłu na wyciągu",
+   "ma_byc": "Prostowanie ramienia w opadzie na wyciągu",
+   "powod": "„odwodzenie ramienia do tyłu” opisuje inny ruch (barku); kickback to prostowanie łokcia w opadzie tułowia",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Skullcrusher (hantle)",
+   "jest": "Francuskie wyciskanie hantli leżąc",
+   "ma_byc": "Wyciskanie francuskie hantli leżąc",
+   "powod": "na polskiej siłowni „wyciskanie francuskie” (szyk), tak też się szuka",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Skullcrusher (EZ)",
+   "jest": "Francuskie wyciskanie sztangi EZ leżąc",
+   "ma_byc": "Wyciskanie francuskie sztangą EZ leżąc",
+   "powod": "szyk jak wyżej; spójnie z resztą rodziny",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Skullcrusher (sztanga)",
+   "jest": "Francuskie wyciskanie sztangi leżąc",
+   "ma_byc": "Wyciskanie francuskie sztangi leżąc",
+   "powod": "szyk jak wyżej",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+   "jest": "Francuskie wyciskanie sztangi wąsko zza głowy",
+   "ma_byc": "Wyciskanie francuskie wąsko zza głowy leżąc",
+   "powod": "szyk jak wyżej; „leżąc” odróżnia od wersji stojących zza głowy",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Single Leg RDL (hantel)",
+   "jest": "Rumuński martwy ciąg na jednej nodze z hantlą",
+   "ma_byc": "Rumuński martwy ciąg jednonóż z hantlą",
+   "powod": "spójność z Single Leg RDL (linki) („jednonóż”), krócej",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Sumo Deadlift (kettlebell)",
+   "jest": "Martwy ciąg sumo z kettlebell",
+   "ma_byc": "Martwy ciąg sumo z kettlebellem",
+   "powod": "odmiana jak we wskazówkach PL (kettlebellem, kettlebella); „z kettlebell” to błąd gramatyczny",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Kettlebell Floor Press",
+   "jest": "Wyciskanie kettlebell z podłogi jednorącz",
+   "ma_byc": "Wyciskanie kettlebella jednorącz leżąc na podłodze",
+   "powod": "floor press = „leżąc na podłodze” jak w Floor Press (hantle/sztanga); „z podłogi” znaczy podnoszenie z ziemi; odmiana",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Plyo Kettlebell Push-Ups",
+   "jest": "Pompki z wybicia z kettlebell",
+   "ma_byc": "Pompki z przeskokiem dłoni nad kettlebellem",
+   "powod": "„z wybicia z kettlebell” — niegramatyczne i niejasne; w ruchu dłonie przeskakują nad kettlebellem na zmianę",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "See-Saw Press (Alternating Side Press)",
+   "jest": "Wyciskanie kettlebell naprzemiennie z boku",
+   "ma_byc": "Naprzemienne wyciskanie hantli nad głowę",
+   "powod": "zły sprzęt: katalog loadSource „dumbbell” (db, implements 2), nie kettlebell",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Kettlebell Seated Press",
+   "jest": "Wyciskanie kettlebell siedząc",
+   "ma_byc": "Wyciskanie kettlebella siedząc",
+   "powod": "odmiana (wyciskanie + dopełniacz)",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Push Press - Behind the Neck",
+   "jest": "Wyciskanie zza karku z wyskoku",
+   "ma_byc": "Push press zza karku",
+   "powod": "słownik push_press_pl: na siłowni „push press”; „z wyskoku” to błąd ruchu (nogi wybijają, bez skoku)",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Kettlebell Push Press",
+   "jest": "Wyciskanie kettlebell z wyskoku jednorącz",
+   "ma_byc": "Push press z kettlebellem jednorącz",
+   "powod": "jak wyżej (słownik push_press_pl; bez skoku)",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Kettlebell Jerk",
+   "jest": "Jerk z kettlebell jednorącz",
+   "ma_byc": "Podrzut kettlebella jednorącz",
+   "powod": "słownik podrzut_jerk: PL „podrzut”, jedno brzmienie z wskazówkami (olympic.dipSquat)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Kettlebell Split Jerk",
+   "jest": "Split jerk z kettlebell jednorącz",
+   "ma_byc": "Podrzut nożycowy kettlebella jednorącz",
+   "powod": "słownik podrzut_jerk + nozyce (pozycja split = nożyce)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Kettlebell Clean and Jerk",
+   "jest": "Clean and jerk z kettlebell jednorącz",
+   "ma_byc": "Zarzut i podrzut kettlebella jednorącz",
+   "powod": "słownik podrzut_jerk; „zarzut” jak we wskazówkach PL",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Kettlebell Pirate Ships",
+   "jest": "Pirate ship z kettlebell",
+   "ma_byc": "Pirate ship z kettlebellem",
+   "powod": "odmiana; nazwa ruchu zostaje (patrz otwarte)",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Overhead Kettlebell Squat",
+   "jest": "Przysiad z kettlebell nad głową jednorącz",
+   "ma_byc": "Przysiad z kettlebellem nad głową jednorącz",
+   "powod": "odmiana",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Kettlebell Swings",
+   "jest": "Wymachy kettlebell jednorącz",
+   "ma_byc": "Wymachy kettlebellem jednorącz",
+   "powod": "odmiana",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Bottoms-Up Clean From The Hang Position",
+   "jest": "Bottoms-up clean z zawisu",
+   "ma_byc": "Zarzut kettlebella dnem do góry ze zwisu",
+   "powod": "we wskazówkach PL „ze zwisu”, nie „z zawisu”; nazwa po polsku do wyszukania (kettlebell, katalog loadSource)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Dumbbell Incline Shoulder Raise",
+   "jest": "Unoszenie hantli na barki na ławce skośnej",
+   "ma_byc": "Wypychanie barków z hantlami na ławce skośnej",
+   "powod": "błąd ruchu: to wysunięcie barków na prostych rękach (isr.move „wypchnij ciężar wyżej, odrywając barki”), nie „unoszenie hantli na barki”",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Barbell Incline Shoulder Raise",
+   "jest": "Unoszenie sztangi na barki na ławce skośnej",
+   "ma_byc": "Wypychanie barków ze sztangą na ławce skośnej",
+   "powod": "jak wyżej",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Smith Incline Shoulder Raise",
+   "jest": "Unoszenie na barki na suwnicy Smitha, ławka skośna",
+   "ma_byc": "Wypychanie barków na suwnicy Smitha",
+   "powod": "jak wyżej; było 50 znaków",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Sled Reverse Flye",
+   "jest": "Odwrotne rozpiętki na wyciągu z sankami",
+   "ma_byc": "Odwrotne rozpiętki z sankami",
+   "powod": "to sanki z linami/uchwytami (srf.setup), nie wyciąg; słownik sanki_treningowe",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Sled Drag (Harness)",
+   "jest": "Ciągnięcie sań w szelkach",
+   "ma_byc": "Ciągnięcie sanek w szelkach",
+   "powod": "słownik sanki_treningowe: „sanki” (sanek), nie „sanie”",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Spider Curl (sztanga)",
+   "jest": "Uginanie pająka ze sztangą",
+   "ma_byc": "Spider curl ze sztangą",
+   "powod": "„uginanie pająka” to kalka; na siłowni mówi się „spider curl”",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Front Raise And Pullover",
+   "jest": "Unoszenie ramion w przód z pullover",
+   "ma_byc": "Unoszenie sztangi i pullover leżąc",
+   "powod": "„z pullover” niegramatyczne; sprzęt: sztanga + ławka płaska (katalog)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Around The Worlds",
+   "jest": "Okrążanie hantlami po łuku",
+   "ma_byc": "Around the world z hantlami",
+   "powod": "rozstrzygnięcie uwagi „niepewne”: na polskiej siłowni nazwa angielska; „okrążanie po łuku” nikt tak nie szuka",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Isometric Wipers",
+   "jest": "Izometryczne wycieraczki",
+   "ma_byc": "Pompki szeroko z przesunięciem na boki",
+   "powod": "„wycieraczki” na polskiej siłowni to ćwiczenie brzucha (nogi na boki leżąc); tu podpór pompki (katalog pattern h_push)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Leverage Decline Chest Press",
+   "jest": "Wyciskanie na maszynie głową w dół",
+   "ma_byc": "Wyciskanie na maszynie, skos ujemny",
+   "powod": "maszyna dźwigniowa bez ławki — „głową w dół” jest nieprawdziwe; „skos ujemny/dodatni” to mowa siłowni",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Leverage Incline Chest Press",
+   "jest": "Wyciskanie na maszynie na ławce skośnej",
+   "ma_byc": "Wyciskanie na maszynie, skos dodatni",
+   "powod": "jak wyżej; maszyna nie ma ławki skośnej",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Dumbbell Seated Box Jump",
+   "jest": "Wskoki na skrzynię z hantlami siedząc",
+   "ma_byc": "Wskok na skrzynię z siadu z hantlami",
+   "powod": "start z siadu na ławce (katalog: bench.flat); „z hantlami siedząc” sugeruje lądowanie w siadzie",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Alternate Leg Push-Off",
+   "jest": "Naprzemienne wyskoki z nogi na skrzyni",
+   "ma_byc": "Wyskoki z nogą na skrzyni naprzemiennie",
+   "powod": "„z nogi” brzmi nienaturalnie; ustawienie z plyo.pushoff.setup (jedna stopa na skrzyni); para z Single Leg Push-Off",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Single Leg Push-Off",
+   "jest": "Wyskok z nogi na skrzyni",
+   "ma_byc": "Wyskoki z nogą na skrzyni",
+   "powod": "rozstrzygnięcie uwagi „niepewne”: ten sam start (plyo.pushoff.setup), bez zmiany nóg",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Downward Facing Balance",
+   "jest": "Balans w pozycji twarzą w dół",
+   "ma_byc": "Balans na piłce gimnastycznej leżąc przodem",
+   "powod": "bez piłki nazwa nic nie mówi; katalog wymaga stability_ball; słownik pilka_gimnastyczna",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Butt-Ups",
+   "jest": "Unoszenie bioder z leżenia",
+   "ma_byc": "Unoszenie bioder z podporu na przedramionach",
+   "powod": "„z leżenia” myli z mostkiem biodrowym; ruch: z deski na przedramionach biodra w górę (pattern core_flexion, front_delt)",
+   "waga": "wysoka"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Gorilla Chin/Crunch",
+   "jest": "Podciągnięcie z brzuszkiem w stylu goryla",
+   "ma_byc": "Podciąganie z unoszeniem kolan",
+   "powod": "rozstrzygnięcie „niepewne”: „w stylu goryla” nic nie mówi; ruch: w zwisie podciągnięcie z kolanami do klatki (figura hanging)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Groiners",
+   "jest": "Groiners",
+   "ma_byc": "Przyciąganie stopy do dłoni z podporu",
+   "powod": "„Groiners” nieznane na polskiej siłowni; ruch: z podporu stopa wysuwana na zewnątrz dłoni (mobility)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Frog Hops",
+   "jest": "Żabie skoki",
+   "ma_byc": "Skoki żabką",
+   "powod": "tak to się nazywa po polsku (WF, siłownia); „żabie skoki” to kalka",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Cocoons",
+   "jest": "Kokony",
+   "ma_byc": "Scyzoryk z ugiętymi nogami",
+   "powod": "„kokony” nikt nie szuka; ruch: leżąc przyciągasz kolana i tułów do siebie",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "One-Arm Medicine Ball Slam",
+   "jest": "Rzut piłką lekarską o podłoże jednorącz",
+   "ma_byc": "Rzut piłką lekarską o podłogę jednorącz",
+   "powod": "słownik podloga_nie_podloze: „podłoga”, nie „podłoże”",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Weighted Sit-Ups - With Bands",
+   "jest": "Brzuszki na ławce skośnej z gumą",
+   "ma_byc": "Brzuszki z gumą na ławce skośnej głową w dół",
+   "powod": "katalog bench.decline; słownik lawka_skosna_glowa_w_dol — samo „skośnej” czyta się jak skos dodatni",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Iron Crosses (Stretch)",
+   "jest": "Rozciąganie żelazny krzyż",
+   "ma_byc": "Żelazny krzyż (rozciąganie)",
+   "powod": "„Rozciąganie żelazny krzyż” niegramatyczne",
+   "waga": "niska"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Standing Soleus And Achilles Stretch",
+   "jest": "Rozciąganie soleus i ścięgna Achillesa stojąc",
+   "ma_byc": "Rozciąganie łydki i ścięgna Achillesa stojąc",
+   "powod": "„soleus” to łacina z podręcznika; na siłowni „łydka”",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Adductor-SMR",
+   "jest": "Roller na przywodziciele",
+   "ma_byc": "Rolowanie przywodzicieli",
+   "powod": "„rolowanie” — tak mówi się o pracy na rollerze; „Roller na …” to nazwa sprzętu, nie ćwiczenia",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Calves-SMR",
+   "jest": "Roller na łydki",
+   "ma_byc": "Rolowanie łydek",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Foam Roll: Hamstrings",
+   "jest": "Roller na tył uda",
+   "ma_byc": "Rolowanie tyłu uda",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Iliotibial Tract-SMR",
+   "jest": "Roller na pasmo biodrowo-piszczelowe",
+   "ma_byc": "Rolowanie pasma biodrowo-piszczelowego",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Latissimus Dorsi-SMR",
+   "jest": "Roller na najszerszy grzbietu",
+   "ma_byc": "Rolowanie najszerszego grzbietu",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Peroneals-SMR",
+   "jest": "Roller na mięśnie strzałkowe",
+   "ma_byc": "Rolowanie boku łydki",
+   "powod": "jak wyżej; „mięśnie strzałkowe” to termin z podręcznika",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Piriformis-SMR",
+   "jest": "Roller na mięsień gruszkowaty",
+   "ma_byc": "Rolowanie mięśnia gruszkowatego",
+   "powod": "jak wyżej (gruszkowaty to nazwa znana na siłowni)",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Foam Roll: Quadriceps",
+   "jest": "Roller na przód uda",
+   "ma_byc": "Rolowanie przodu uda",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Rhomboids-SMR",
+   "jest": "Roller na górną część pleców",
+   "ma_byc": "Rolowanie górnej części pleców",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/nazwy-lokalne.json",
+   "klucz": "Foot-SMR",
+   "jest": "Roller na stopę",
+   "ma_byc": "Rolowanie stopy",
+   "powod": "jak wyżej",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "ru",
+   "plik": "lib/cues/text/ru.json",
+   "klucz": "zottman.move",
+   "jest": "Сгибай руки хватом снизу, вверху разверни ладони вниз и опускай гантели прямым хватом.",
+   "ma_byc": "Сгибай руки обратным хватом, вверху разверни ладони вниз и опускай гантели прямым хватом.",
+   "powod": "podchwyt w kartach ru to „обратный хват” (cu.grip, curl.*, rgpd.setup); jedna nazwa w aplikacji",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "vi",
+   "plik": "lib/cues/text/vi.json",
+   "klucz": "zottman.move",
+   "jest": "Cuốn tạ đơn lên với grip ngửa, đến đỉnh xoay lòng bàn tay úp xuống và hạ tạ với kiểu úp tay.",
+   "ma_byc": "Cuốn tạ đơn lên kiểu ngửa tay, đến đỉnh xoay lòng bàn tay úp xuống và hạ tạ với kiểu úp tay.",
+   "powod": "mieszanka angielskiego „grip” i wietnamskiego jak zakazane „grip sấp”; w kartach podchwyt to „kiểu ngửa tay”",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "nl",
+   "plik": "lib/cues/text/nl.json",
+   "klucz": "zottman.move",
+   "jest": "Curl met een onderhandse grip, draai bovenaan je handpalmen naar beneden en laat de dumbbells zakken met een bovengreep.",
+   "ma_byc": "Curl in ondergreep, draai bovenaan je handpalmen naar beneden en laat de dumbbells zakken met een bovengreep.",
+   "powod": "w kartach nl podchwyt to „ondergreep” (cu.grip, curl.*); „onderhandse grip” jak zakazane „bovenhandse grip”",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "sv",
+   "plik": "lib/cues/text/sv.json",
+   "klucz": "zottman.move",
+   "jest": "Curla upp hantlarna med underhandsgrepp, vrid handflatorna nedåt i toppen och sänk hantlarna med överhandsgrepp.",
+   "ma_byc": "Curla upp hantlarna i undergrepp, vrid handflatorna nedåt i toppen och sänk hantlarna med överhandsgrepp.",
+   "powod": "w kartach sv podchwyt to „undergrepp” (cu.grip, curl.*, rgpd.setup)",
+   "waga": "niska"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "da",
+   "plik": "lib/cues/text/da.json",
+   "klucz": "zottman.move",
+   "jest": "Curl op med underhåndsgreb, drej håndfladerne nedad i toppen, og sænk håndvægtene med overhåndsgreb.",
+   "ma_byc": "Curl op i undergreb, drej håndfladerne nedad i toppen, og sænk håndvægtene med overhåndsgreb.",
+   "powod": "w kartach da podchwyt to „undergreb” (cu.grip, curl.*, rgpd.setup)",
+   "waga": "niska"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "nb",
+   "plik": "lib/cues/text/nb.json",
+   "klucz": "zottman.move",
+   "jest": "Curl opp med underhåndsgrep, vri håndflatene ned på toppen og senk manualene med overhåndsgrep.",
+   "ma_byc": "Curl opp i undergrep, vri håndflatene ned på toppen og senk manualene med overhåndsgrep.",
+   "powod": "w kartach nb podchwyt to „undergrep” (cu.grip, curl.*, rgpd.setup)",
+   "waga": "niska"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "lv",
+   "plik": "lib/locales/lv.json",
+   "klucz": "kettlebell",
+   "jest": "svaru bumba",
+   "ma_byc": "svarbumba",
+   "powod": "ten sam sprzęt ma w lv.json dwie pisownie: „svaru bumba” (lib/swap.ts:61, lista sprzętu) i „svarbumba” (components/EquipVisual.tsx:33); ujednolicenie pisowni w UI — wybór słowa dla całej aplikacji (UI „svarbumba” vs wskazówki „kettlebellu”) w otwartych",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "lv",
+   "plik": "lib/locales/lv.json",
+   "klucz": "Kettlebell",
+   "jest": "Svaru bumbas",
+   "ma_byc": "Svarbumbas",
+   "powod": "ten sam sprzęt ma w lv.json dwie pisownie: „svaru bumba” (lib/swap.ts:61, lista sprzętu) i „svarbumba” (components/EquipVisual.tsx:33); ujednolicenie pisowni w UI — wybór słowa dla całej aplikacji (UI „svarbumba” vs wskazówki „kettlebellu”) w otwartych",
+   "waga": "srednia"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "lv",
+   "plik": "lib/locales/lv.json",
+   "klucz": "Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.",
+   "jest": "Spēks bez ārējas slodzes (stienis, hanteles, svaru bumba, trenažieri, trosīšu bloki): smagas sērijas (ap {p} % no maksimuma) šeit nevar izpildīt, tāpēc plāns ir kā masai mājās — {s} × {a}–{b} atkārtojumi tuvu izsīkumam. Spēks pieaug arī tad, bet parasti mazāk nekā ar lielu svaru.",
+   "ma_byc": "Spēks bez ārējas slodzes (stienis, hanteles, svarbumba, trenažieri, trosīšu bloki): smagas sērijas (ap {p} % no maksimuma) šeit nevar izpildīt, tāpēc plāns ir kā masai mājās — {s} × {a}–{b} atkārtojumi tuvu izsīkumam. Spēks pieaug arī tad, bet parasti mazāk nekā ar lielu svaru.",
+   "powod": "ta sama pisownia co wyżej",
+   "waga": "niska"
+  },
+  {
+   "czesc": "B",
+   "jezyk": "pl",
+   "plik": "docs/lokalizacja/konteksty.json",
+   "klucz": "Ściąganie",
+   "jest": "kontekst wymienia tylko Middle Back Shrug, pulldown i przywodzenie",
+   "ma_byc": "dopisać pozostałe użycia: rodzina cable_row (wiosłowanie na wyciągu, face pull — lib/figures/v2/rodziny/cable_row.ts:7) i skłony/brzuszki na wyciągu (lib/figures/v2/rodziny/core_standing.ts:12)",
+   "powod": "przekład 33 języków jest w toku — tłumacz musi znać wszystkie ruchy (w tym poziome przyciąganie), żeby nie wybrać słowa z kierunkiem „w dół”",
+   "waga": "srednia"
+  }
+ ],
+ "otwarte": [
+  {
+   "czesc": "B",
+   "jezyk": "pl/en",
+   "klucz": "Ściąganie",
+   "sprawa": "Ocena: PL „Ściąganie” naturalne dla ściągania drążka, łopatek i skłonów na wyciągu; dla wiosłowania na wyciągu (cable_row) i przywodzenia trener powie „przyciąganie”. EN „Pulling” poprawne i neutralne dla wszystkich. Propozycja (zmiana kodu: PhaseName w lib/figures/v2/anim.ts:68, decyzja koordynatora): osobna faza „Przyciąganie” (EN „Pulling”) dla cable_row i przywodzenia albo jedno słowo bez zmian — przy jednym słowie tekst „Ściąganie”/„Pulling” przyjmuję."
+  },
+  {
+   "czesc": "B",
+   "jezyk": "lv",
+   "klucz": "kettlebell (słownik + lib/cues/text/lv.json, ok. 20 miejsc)",
+   "sprawa": "Pytanie do native speakera: czy na łotewskiej siłowni mówi się „svarbumba” czy „kettlebells” (odmieniane)? UI (lv.json) mówi „svaru bumba/svarbumba”, wskazówki „kettlebellu/kettlebelli”, słownik (pewność niska) zaleca „kettlebell” — po odpowiedzi jedno słowo w UI i wskazówkach (wzór: pilka_gimnastyczna — nazwa sprzętu w UI i we wskazówkach identyczna)."
+  },
+  {
+   "czesc": "B",
+   "jezyk": "vi",
+   "klucz": "skull.setup",
+   "sprawa": "Do native speakera: „cầm đòn kiểu úp tay với tay cầm hẹp” — czy „tay cầm hẹp” czyta się jako wąski chwyt, czy jako wąski uchwyt (część sprzętu)? Ewentualnie „cầm đòn hẹp, kiểu úp tay”."
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "klucz": "Kettlebell Pirate Ships",
+   "sprawa": "Ruch bez opisu w repo (cue-sets b: open). Nazwa „Pirate ship z kettlebellem” zostaje angielska do czasu opisu ruchu; nazwa opisowa po wskazówkach."
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "klucz": "London Bridges",
+   "sprawa": "Nazwa angielska zostawiona (= EN); brak opisu ruchu (lina + suwnica/skrzynia) — po opisie można dać nazwę opisową."
+  },
+  {
+   "czesc": "A",
+   "jezyk": "pl",
+   "klucz": "Seated Good Mornings",
+   "sprawa": "„Dzień dobry siedząc” przyjęte; część siłowni mówi „good morning” — wyszukiwanie łapie dawną nazwę EN, więc bez poprawki."
+  },
+  {
+   "czesc": "A",
+   "typ": "slownik",
+   "sprawa": "Nowe hasła PL do slownik-terminow.json (koordynator + test): „szrugsy” (shrug; przyjęte w 6 nazwach), „modlitewnik” (preacher bench), „w opadzie tułowia” (bent-over), „rolowanie” (foam roll/SMR; zakaz „Roller na”), „suwnica” = leg press vs „suwnica Smitha”, odmiana „kettlebell” w PL (kettlebellem/kettlebella; zakaz „z kettlebell” bez końcówki), rozszerzenie push_press_pl o zakaz „z wyskoku”; oraz objęcie strażnikiem tests/slownik-terminow.test.ts pliku docs/lokalizacja/nazwy-lokalne.json — dziś go nie czyta (test zielony mimo „z wyskoku” i „z kettlebell”)."
+  }
+ ]
+}

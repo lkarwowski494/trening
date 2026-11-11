@@ -87,12 +87,13 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
     expect(generalCuesReviewed('Lateral Lunge')).toBe(REC.zestawy?.['Lateral Lunge']?.werdykt === 'wyswietlana');
     expect(generalCuesReviewed('Back Squat')).toBe(false); /* karta własna, nie zestaw ogólny */
   });
-  test('karta „do poprawy” (Front Incline Dumbbell Raise; 09.11.2026 Hack Squat odsłonięty po recenzji niezależnej) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {
-    expect(REC.karty?.['Front Incline Dumbbell Raise']?.werdykt).toBe('do poprawy');
-    await render(<ExerciseCues exercise={lib('Front Incline Dumbbell Raise')} initialOpen />);
+  test('karta „do poprawy” (Barbell Incline Shoulder Raise; 11.11.2026 W-03: Front Incline Dumbbell Raise odsłonięty po przekładzie fidr.move; 09.11.2026 Hack Squat odsłonięty po recenzji niezależnej) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {
+    expect(REC.karty?.['Barbell Incline Shoulder Raise']?.werdykt).toBe('do poprawy');
+    expect(REC.karty?.['Front Incline Dumbbell Raise']?.werdykt).toBe('wyswietlana'); /* 11.11.2026 (W-03): karta odsłonięta razem z przekładem fidr.move (odwrócenie KO-042) */
+    await render(<ExerciseCues exercise={lib('Barbell Incline Shoulder Raise')} initialOpen />);
     /* 09.11.2026 (włączenie delt_raise): obie karty „do poprawy” należą do rodziny z rysunkiem v2, więc sekcja „Technika” zostaje z samym rysunkiem — bez tekstu karty (ustawienie, ruch, wskazówki, błędy) */
-    expect(cuesFor(lib('Front Incline Dumbbell Raise'))).toBeNull();
-    expect(screen.queryByTestId('exercise-figure-v2')).not.toBeNull();
+    expect(cuesFor(lib('Barbell Incline Shoulder Raise'))).toBeNull();
+    /* 11.11.2026 (W-03): jedyna karta „do poprawy” (Barbell Incline Shoulder Raise) nie ma rysunku v2 w aplikacji — sprawdzamy tylko brak tekstu karty */
     for (const nazwa of ['Ustawienie', 'Ruch', 'Wskazówki', 'Czego unikać']) expect(screen.queryByText(nazwa)).toBeNull();
     /* od 28.10.2026 (decyzja właściciela „1a”, M1-audytor-generalny-038) żaden zestaw nie jest „do poprawy” — wtedy zestaw ogólny bez wpisu recenzji (Lateral Lunge) */
     const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0] ?? 'Lateral Lunge';

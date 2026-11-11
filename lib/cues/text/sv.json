@@ -776,7 +776,7 @@
  "shrug.mis.elbows": "Böjer armbågarna, så att armarna drar vikten i stället för axlarna.",
  "shrug.mis.roll": "Rullar axlarna i stället för att röra dem rakt upp och ner.",
  "shrug.setupBehind": "Stå rakt med stången bakom låren i överhandsgrepp, armarna raka.",
- "zottman.move": "Curla upp hantlarna med underhandsgrepp, vrid handflatorna nedåt i toppen och sänk hantlarna med överhandsgrepp.",
+ "zottman.move": "Curla upp hantlarna i undergrepp, vrid handflatorna nedåt i toppen och sänk hantlarna med överhandsgrepp.",
  "ballcurl.mis.sag": "Höfterna sjunker under rörelsen.",
  "lunge.bbSetup": "Skivstången på övre delen av ryggen, stå rak.",
  "lunge2.mis.lean": "Överkroppen som lutar långt framåt på väg ner.",
@@ -816,5 +816,6 @@
  "ohs.move": "Gå ner i knäböj med stången ovanför huvudet hela tiden och res dig sedan upp.",
  "ohs.setup": "Stången ovanför huvudet på raka armar.",
  "slrdl.move": "Fäll framåt genom att skjuta höfterna bakåt och för det fria benet rakt bakåt; kom tillbaka genom att driva höfterna framåt.",
- "slrdl.setup": "Stå på ett ben med lätt böjt knä."
+ "slrdl.setup": "Stå på ett ben med lätt böjt knä.",
+ "fidr.move": "Lyft hantlarna framför dig med lätt böjda armbågar, minst upp till axelhöjd; sänk dem långsamt."
 }

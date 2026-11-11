@@ -79,7 +79,7 @@ describe('ekran ćwiczenia: sekcja „Техника” po rosyjsku', () => {
     await act(async () => { router.push(`/exercise/${ex.id}`); }); await flushAll();
     expect(screen.getByRole('button', { name: 'Техника' }).props.accessibilityState).toMatchObject({ expanded: true }); /* 27.10.2026 (wariant B): sekcja rozwinięta od razu */
     expect(screen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'ru')}`)).toBeTruthy();
-    expect(screen.getByRole('header', { name: 'What to avoid' })).toBeTruthy(); /* 02.11.2026: nagłówek „Czego unikać” czeka na przekład (zestaw-przekladu-2026-10-23.json) — do tego czasu angielski w zastępstwie */
+    expect(screen.getByRole('header', { name: 'Чего избегать' })).toBeTruthy(); /* W-03 11.11.2026: „Czego unikać” przełożone przez API (raport docs/lokalizacja/raport-przekladu-2026-11-11-w03-ui) — wcześniej angielski w zastępstwie */
     expect(screen.getByText(/Back Squat/)).toBeTruthy(); /* nazwa ćwiczenia z biblioteki — po angielsku, jak w innych językach */
   });
 });

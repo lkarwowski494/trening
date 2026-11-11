@@ -55,7 +55,7 @@ export function wczytajZestaw(plik) {
   if (!Array.isArray(z.klucze)) throw new Error(`${plik}: oczekiwane pole „klucze”`);
   return z.klucze.map((k, i) => {
     if (typeof k.pl !== 'string' || !k.pl.trim() || typeof k.en !== 'string' || !k.en.trim()) throw new Error(`${plik}: pozycja ${i + 1} bez pl/en`);
-    return { id: i + 1, rodzaj: k.rodzaj, pl: k.pl, en: k.en, poprzedni_pl: k.poprzedni_pl ?? null, klucz: typeof k.id === 'string' && k.id ? k.id : null };
+    return { id: i + 1, rodzaj: k.rodzaj, pl: k.pl, en: k.en, poprzedni_pl: k.poprzedni_pl ?? null, klucz: typeof k.id === 'string' && k.id ? k.id : null, ...(typeof k.kontekst === 'string' && k.kontekst.trim() ? { kontekst: k.kontekst.trim() } : {}) };
   });
 }
 
@@ -78,7 +78,7 @@ export function budujZadanie(kod, pozycje, staraTresc = {}, slownik = null, kont
     const o = { id: String(p.id), pl: p.pl, en: p.en };
     const sk = wskazowki ? p.klucz : p.pl;
     if (p.rodzaj === 'zmieniony' && typeof staraTresc[sk] === 'string') o.stare = staraTresc[sk];
-    const ctx = kontekstDla(konteksty, p.pl); if (ctx) o.kontekst = ctx;
+    const ctx = p.kontekst ?? kontekstDla(konteksty, p.pl); if (ctx) o.kontekst = ctx; /* W-03 11.11.2026: kontekst z pozycji zestawu (np. nazwy lokalne ćwiczeń, ZB-044) ma pierwszeństwo przed docs/lokalizacja/konteksty.json */
     return o;
   });
   const user = [

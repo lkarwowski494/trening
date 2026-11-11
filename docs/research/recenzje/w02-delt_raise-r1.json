@@ -1,0 +1,13 @@
+{
+  "karty": {
+    "Front Incline Dumbbell Raise": {
+      "werdykt": "wyswietlana",
+      "data": "2026-11-11",
+      "stan": "zrecenzowana niezależnie (bramka 4, treść karty własnej po poprawce fidr.move, W-02, 11.11.2026)",
+      "autor": "programista W-02 (sesja L, zadanie A)",
+      "recenzent": "audytor",
+      "sha": "52fe9612b6ff",
+      "uwagi": "Recenzja: docs/research/recenzje/w02-delt_raise-roznica-audytor-2026-11-11.md, sekcja 2 (werdykt wyswietlana, bez znalezisk). Skrót kartaSkrot (scripts/zrodla-runtime.mjs:112–115: id wskazówek w sekcjach setup/move/tips/mistakes + ich teksty PL; bez EN i przekładów W-03) policzony `node scripts/zrodla-runtime.mjs --skroty` 11.11.2026 = 52fe9612b6ff dla fidr.setup, fidr.move („Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli.”), fidr.mis.back; treść bez zmian od commitu poprawki 91fb380e."
+    }
+  }
+}

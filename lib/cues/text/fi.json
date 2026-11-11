@@ -816,5 +816,6 @@
  "ohs.move": "Laskeudu kyykkyyn pitäen levytankoa koko ajan pään yläpuolella ja nouse ylös.",
  "ohs.setup": "Levytanko pään yläpuolella suorin käsin.",
  "slrdl.move": "Taivu eteen viemällä lantiota taakse ja vie vapaa jalka suoraan taakse; palaa työntämällä lantio eteen.",
- "slrdl.setup": "Seiso yhdellä jalalla, polvi hieman koukussa."
+ "slrdl.setup": "Seiso yhdellä jalalla, polvi hieman koukussa.",
+ "fidr.move": "Nosta käsipainot eteen kyynärpäät hieman koukussa vähintään hartioiden korkeudelle ja laske ne hitaasti alas."
 }

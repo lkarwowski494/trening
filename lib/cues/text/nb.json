@@ -776,7 +776,7 @@
  "shrug.mis.elbows": "Bøying i albuene – armene drar vekten i stedet for skuldrene.",
  "shrug.mis.roll": "Skuldrene ruller i stedet for å bevege seg rett opp og ned.",
  "shrug.setupBehind": "Stå rett med vektstanga bak lårene i overhåndsgrep, armene strake.",
- "zottman.move": "Curl opp med underhåndsgrep, vri håndflatene ned på toppen og senk manualene med overhåndsgrep.",
+ "zottman.move": "Curl opp i undergrep, vri håndflatene ned på toppen og senk manualene med overhåndsgrep.",
  "ballcurl.mis.sag": "Hoftene synker under bevegelsen.",
  "lunge.bbSetup": "Vektstanga på øvre del av ryggen, stå rett opp.",
  "lunge2.mis.lean": "Overkroppen lener seg langt fram på vei ned.",
@@ -816,5 +816,6 @@
  "ohs.move": "Gå ned i knebøy med stanga over hodet hele tiden, og reis deg opp igjen.",
  "ohs.setup": "Stanga over hodet på strake armer.",
  "slrdl.move": "Bøy deg fram ved å skyve hoftene bakover, og før det frie benet rett bak; kom opp igjen ved å skyve hoftene fram.",
- "slrdl.setup": "Stå på ett ben med lett bøy i kneet."
+ "slrdl.setup": "Stå på ett ben med lett bøy i kneet.",
+ "fidr.move": "Løft manualene foran deg med lett bøy i albuene, minst opp til skulderhøyde; senk dem rolig."
 }

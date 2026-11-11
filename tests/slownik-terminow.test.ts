@@ -330,6 +330,17 @@ describe.each(LANGS.filter(l => l !== 'pl' && l !== 'en') as Lang[])('słownik t
   });
 });
 
+/* W-03 11.11.2026 (recenzja lokalizacji: strażnik nie czytał nazw lokalnych ćwiczeń, ZB-044): nazwy z docs/lokalizacja/nazwy-lokalne.json — każdy z 33 języków
+ * wobec polskiej nazwy — bez terminów zakazanych (te same wyjątki z powodem). Polskiej nie sprawdza się wobec siebie: pojęcia wykrywane w polskim tekście dają tam
+ * fałszywe alarmy (np. „wykroki” = lunges, poprawne; zakaz „wykrok” dotyczy nożyc w podrzucie) — polskie nazwy przechodzą recenzję lokalizacji. */
+test.each(LANGS.filter(l => l !== 'en' && l !== 'pl') as Lang[])('%s: nazwy lokalne ćwiczeń nie używają terminów zakazanych', (kod) => {
+  const nazwy: Record<string, Record<string, string>> = JSON.parse(fs.readFileSync(path.join(root, 'docs/lokalizacja/nazwy-lokalne.json'), 'utf8')).nazwy; const bad: string[] = [];
+  for (const [k, n] of Object.entries(nazwy)) if (n.pl && n[kod]) for (const x of S.sprawdz(slownik, kod, n.pl, n[kod]) as { pojecie: string; wzorzec: string }[]) {
+    if (!wyjatek(n.pl, kod, x.pojecie)) bad.push(`[${x.pojecie}] „${x.wzorzec}” w ${k}: ${n[kod]}`);
+  }
+  expect(bad).toEqual([]);
+});
+
 test('słownik UI: angielski (źródło odniesienia) nie używa „break” dla przerwy między seriami', () => {
   const zle = source.filter(s => S.wykryte(slownik.pojecia.find(p => p.id === 'przerwa'), s.pl) && /\bbreak\b/i.test(s.en)).map(s => s.en);
   expect(zle).toEqual([]);
