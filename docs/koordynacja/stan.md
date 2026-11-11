@@ -71,17 +71,15 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 
 Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 
-## Plan 24 h (UTC, 10.11)
+## Plan 24 h (UTC, 11.11; aktualizacja 05:00)
 | Kiedy | Co | Kto | Zależy od | Od właściciela |
 |---|---|---|---|---|
-| 05:25 | pociąg-3 scalony (dfaeeef) | koordynator | — | — |
-| 07:15–~09:30 | pociąg-4 (partia 4 + thruster + partia 2, wpis docs/18 KO-012) → scal-galaz do integracji | A, potem koordynator | zielony tests.yml | — |
-| 07:15–~11:00 | partia 5: CI, przegląd strażników, rotator_cuff r1/r2, lekcja → pociąg-5 | B | — | — |
-| po pociągu-4 | tura 3 (~10 rodzin: core_standing, core_floor, cardio, plyo, sled_throw, strongman, neck, foam_roll, glute_floor, reszta lunge/leg_isolation) — 4 sesje (właściciel 08:50) | nowe sesje partii C, D, E, F (wzór: polecenia/wzor-partia.md) | pociąg-4 w integracji | — |
-| po turze 3 | karta „Stan projektu” w CLAUDE.md (propozycja) | sesja docs | — | zatwierdzenie karty |
-| do decyzji | gałąź z poprawkami CI dla main (KO-015) | sesja 08 | — | zgoda na scalenie do main |
-| po turze 3 | przekład nowych tekstów (ZB-057), recenzja lokalizacji zbiorcza, zadania przed 1.1 (niżej), audyt, E2E | — | — | Approve TF |
-| 14:00 | linia dzienna | koordynator | — | — |
+| 07:05 | start L: W-02 zadania figur przed 1.1 (docs/49) + KO-038 (jest-ponow SIGTERM, audit-m1-050) | sesja 08 | KO-036 (pułap doby od 07:00) | — |
+| 07:05 | start M: W-05 rejestr ryzyk (R-015, R-018, R-101-28, R-11-01, R-11-02) | sesja 08 | — | odroczenie ryzyka, jeśli agent nie zamknie (ok. 5 min/ryzyko) |
+| po zgodzie | scalenie PR #108 do main (poprawki nocnych testów; dowody zielone) + wstawienie lekcji K | koordynator / sesja 08 | zgoda | „zgoda na scalenie PR #108” |
+| po L, M | W-03 przekład ZB-057 (rola 09) i recenzja lokalizacji; W-04 zobowiązania 1.1 | sesje 09, 08 | W-02 | — |
+| potem | W-08 wersja 1.1.0 → W-10 pełny audyt (rola 07 — prompt na żądanie) → W-13/14 verify, ios-unsigned | wydawca, audytor | W-01…W-07 | W-09 zgoda na scalenie do main |
+| 14:00 | linia dzienna + przegląd przepływu | koordynator | — | — |
 
 ## Czeka na właściciela (raport 05:00 w czacie poprzednika)
 - ZADANIE WŁAŚCICIELA (zapisane 2026-11-10 13:45 UTC, słowa: „Zapisz jako zadanie do mnie dodanie tej stałej reguły. Zrobię to jak wrócę do domu”): stała reguła uprawnień `mcp__claude-code-remote__add_repo`, żeby kolejni koordynatorzy nie prosili o zgodę na `prompts` przy każdym przekazaniu. Droga: wpis `"mcp__claude-code-remote__add_repo"` na liście `permissions.allow` w `.claude/settings.json` repo Trening (plik ma już tę listę — `.claude/settings.json:3` na integracja-1-1); zmiana w repo wchodzi do sesji startujących z gałęzi, która ją zawiera (koordynator startuje z `koordynacja`, sesje robocze z integracji). Wykonalność niesprawdzona: nie potwierdziłem, że klasyfikator trybu auto respektuje regułę projektu dla add_repo — sprawdzi pierwszy następca. Właściciel 13:55: „Przygotuj commit” → gałąź ustawienia/add-repo-prompts (scalenie do integracji po tests.yml) + wpis na koordynacja. Stan: w toku.
@@ -208,3 +206,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 00:59 | K | raport 3: nightly 42914472276 attempt 1 cancelled — zadania wiążące zielone (mutacje 22/22, losowe, E2E 1/2/3), „eksperymenty (niewiążące)” przekroczyły 60 min po awarii symulatora (/deviceInfo 500 przy scenariuszu 40, niezmienianym) → rerun_failed_jobs (attempt 2, jedno powtórzenie wg CLAUDE.md); L-087: zaliczenie tylko przy całym zielonym | kontrola 03:45 |
 | 2026-11-11 02:37 | K | raport 4: nightly 42914472276 attempt 2 success (cały przebieg), tests.yml 42914460167 success na fd636db5 → KO-035 spełnione; lekcja lokalnie 1def60b7; verify:docs odmawia (gałąź ≠ same dokumenty vs main) → KO-037 (B/A) | raport K z numerem PR; prośba do właściciela o zgodę na scalenie w linii 05:00 |
 | 2026-11-11 03:00 | K / koordynator | PRZEKAZANIE K: PR #108 (main ← fd636db5; ls-remote refs/pull/108/head = fd636db5), dowody zielone (KO-035 spełnione); verify #4 czerwone (SIGTERM) → lekcja nie wypchnięta, treść zachowana w docs/koordynacja/przekazane/K-lekcja-L-NNN.md; KO-038 (wariant A SIGTERM, do weta); K 10,77 USD (przy archiwizacji) → zarchiwizowana | linia 05:00: prośba o zgodę na scalenie PR #108; 07:05 L/M + zadanie KO-038 i lekcja K |
+| 2026-11-11 05:00 | koordynator | linia 05:00 wysłana; plan 24 h zaktualizowany; linia 05:00 na 12.11 zaplanowana | 07:05 start L/M |
