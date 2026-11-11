@@ -4,7 +4,7 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, BODY, BENCH_KAT, BAND_MOUNT, SLED_HOLD, LEVER_MODE, LEVER_POINT, benchHip, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  GEAR, GEAR_KINDS, GIRTH, BODY, BENCH_KAT, BAND_MOUNT, SLED_HOLD, LEVER_MODE, LEVER_POINT, LEVER_PAD, benchHip, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
   CONTRACT, EQUIP, BENCH, hyperPolys, preacherPolys, templateFor, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, gearText, hasOwnTemplate, EXT_FIELDS, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
@@ -262,7 +262,9 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
       expect(sl.to[0]).toBeCloseTo(a[0] + BODY.ankleH, 6); expect(sl.to[1]).toBeCloseTo(a[1], 6); expect(sl.to[2]).toBeCloseTo(a[2], 6); return;
     }
     const f = keyframeFrame(LEGEXT({ punkt, trzyma: 'R', dlugosc: 47.5 }), 0); const pv = f.props.find(p => p.k === 'pivot') as Extract<Prop, { k: 'pivot' }>;
-    const want = punkt === 'kostki' ? f.sk.legs.R.ankle : punkt === 'miednica' ? f.sk.pelvis : f.sk.arms.R.grip; for (let i = 0; i < 3; i++) expect(pv.to[i]).toBeCloseTo(want[i], 6);
+    /* barki/uda (P1-CALF-1): góra barku = staw + oś tułowia · GIRTH.uarm[0]; udo = punkt LEVER_PAD.udaT odcinka biodro–kolano + promień kolidera uda */
+    const lerpR = (a: V3, b: V3, t: number): V3 => [0, 1, 2].map(i => a[i] + (b[i] - a[i]) * t) as V3; const udo = lerpR(f.sk.legs.R.hip, f.sk.legs.R.knee, LEVER_PAD.udaT);
+    const want = punkt === 'kostki' ? f.sk.legs.R.ankle : punkt === 'miednica' ? f.sk.pelvis : punkt === 'barki' ? [0, 1, 2].map(i => f.sk.arms.R.shoulder[i] + f.sk.up[i] * (GIRTH.uarm[0] + LEVER_PAD.padR)) : punkt === 'uda' ? [udo[0], udo[1] + (GIRTH.thigh[0] + GIRTH.thigh[2]) / 2 + LEVER_PAD.padR, udo[2]] : f.sk.arms.R.grip; for (let i = 0; i < 3; i++) expect(pv.to[i]).toBeCloseTo(want[i], 6);
   });
   test('dźwignia: kolider ramienia (id barPivot) kończy się EQUIP.leverEnd cm przed punktem mocowania; prowadnica bez kolidera; ramię przez ciało → przenikanie', () => {
     const f = keyframeFrame(LEGEXT(), 0); const pv = f.props.find(p => p.k === 'pivot') as Extract<Prop, { k: 'pivot' }>; const cap = equipColliders(f.props).find(c => c.id === 'barPivot') as Extract<ReturnType<typeof equipColliders>[number], { k: 'capsule' }>;
