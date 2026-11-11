@@ -24,7 +24,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
   { id: '2026-11-11', date: '2026-11-11', items: () => [
     t('Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.'),
     t('Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.'),
-    ...(lang() === 'en' ? [] : [t('Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.')]),
+    ...(lang() === 'en' ? [] : [t('Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach.')]),
     t('Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.'),
     t('Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.'),
     t('Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.', { app: appName() }) /* nazwa 1.1: 09.11.2026, docs/18, ZB-056 */,

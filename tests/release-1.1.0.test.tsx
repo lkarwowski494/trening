@@ -18,7 +18,7 @@ afterEach(() => { applyLang('pl'); });
 const PL_1_1 = [
   'Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.',
   'Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.',
-  'Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.',
+  'Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach.',
   'Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.',
   'Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.',
   `Aplikacja nazywa się teraz ${BRAND_NAME}. Treningi, szablony i ustawienia zostają bez zmian.`,
@@ -46,5 +46,20 @@ describe('wersja 1.1.0 (W-08, 11.11.2026)', () => {
   });
   test('dziennik wydań (docs/09) ma wiersz 1.1.0', () => {
     expect(R('docs/09-plan-testow.md')).toMatch(/\| Wydanie 1\.1\.0 /);
+  });
+});
+
+/** DIF-01 (audyt W-10, decyzja 11.11.2026): punkt o nazwach lokalnych nie obiecuje nazwy przy każdym ćwiczeniu — w każdym języku nazwę lokalną ma tylko część biblioteki
+ * (pomiar 11.11.2026: 248–276 z 708). „Wielu” = co najmniej WIELU_UDZIAL biblioteki (konwencja tego testu, nie twierdzenie dziedzinowe); gdy każde ćwiczenie dostanie nazwę, tekst może wrócić do „na karcie”. */
+const WIELU_UDZIAL = 0.25;
+describe('DIF-01 (11.11.2026): „Co nowego” o nazwach lokalnych zgodne z danymi', () => {
+  test('w każdym języku poza angielskim nazwa lokalna jest przy części (≥ 25%, < 100%) ćwiczeń biblioteki, a tekst mówi „przy wielu”, nie „na karcie” bez zastrzeżenia', () => {
+    const { LIB } = require('@/lib/seed') as typeof import('@/lib/seed'); const { LANGS, exLocal } = require('@/lib/i18n') as typeof import('@/lib/i18n');
+    const keys = LIB.map(r => r[0]);
+    for (const l of LANGS) { if (l === 'en') continue; applyLang(l);
+      const n = keys.filter(k => exLocal({ name: k, lib: true, libKey: k })).length;
+      expect([l, n >= WIELU_UDZIAL * keys.length, n < keys.length]).toEqual([l, true, true]); }
+    applyLang('pl'); const item = WHATS_NEW[0].items()[2];
+    expect(item).toMatch(/^Nazwy ćwiczeń z biblioteki .* Przy wielu ćwiczeniach /); expect(item).not.toMatch(/Na karcie ćwiczenia pod nazwą widać nazwę/);
   });
 });
