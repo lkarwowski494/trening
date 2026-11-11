@@ -23,9 +23,18 @@ export const BELL_MODES = ['dol', 'wzdluz', 'tyl', 'gora', 'wzdluz_gora'] as con
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
 /** Mocowanie gumy oporowej: zaczep (stały punkt x, y, z → dłonie), zaczep_kostki (stały punkt x, y, z → kostki; uginanie nogi, odwodzenie, kickback), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad). */
 export const BAND_MOUNT = ['zaczep', 'stopy', 'kostki', 'dlonie', 'sztanga', 'zaczep_kostki'] as const;
-/** Dźwignia maszyny: obrót wokół osi (sztywne ramię) albo prowadnica liniowa (skok po prostej); punkt mocowania: dłonie, kostki, miednica. */
+/** Dźwignia maszyny: obrót wokół osi (sztywne ramię) albo prowadnica liniowa (skok po prostej); punkt mocowania: dłonie, kostki, podeszwy, miednica, barki, uda. */
 export const LEVER_MODE = ['obrot', 'prosta'] as const;
-export const LEVER_POINT = ['dlonie', 'kostki', 'podeszwy', 'miednica'] as const;
+export const LEVER_POINT = ['dlonie', 'kostki', 'podeszwy', 'miednica', 'barki', 'uda'] as const;
+/** Poduszki dźwigni na ciele (P1-CALF-1, 11.11.2026): „barki” — góra barku (staw + oś tułowia · promień ramienia GIRTH.uarm[0]), „uda” — góra uda we frakcji udaT odcinka biodro → kolano (tuż nad kolanem) + promień kolidera uda; obie + promień poduszki padR (środek poduszki leży padR nad powierzchnią ciała, jak uchwyt o promieniu 2 cm w mierze styku). Konwencja rysunku. */
+export const LEVER_PAD = { udaT: 0.8, padR: 2 } as const;
+/** Punkty ciała, do których mocuje się dźwignia „barki” i „uda” (strona → punkt); liczy je leverBodyFrom z szkieletu klatki. */
+export type LeverBody = { shoulders: Record<Side, V3>; thighs: Record<Side, V3> };
+export function leverBodyFrom(sk: { up: V3; arms: Record<Side, { shoulder: V3 }>; legs: Record<Side, { hip: V3; knee: V3 }> }): LeverBody {
+  const shoulder = (s: Side): V3 => add(sk.arms[s].shoulder, mul(sk.up, GIRTH.uarm[0] + LEVER_PAD.padR));
+  const thigh = (s: Side): V3 => { const { hip, knee } = sk.legs[s]; const p: V3 = [0, 1, 2].map(i => hip[i] + (knee[i] - hip[i]) * LEVER_PAD.udaT) as V3; return [p[0], p[1] + (GIRTH.thigh[0] + GIRTH.thigh[2]) / 2 + LEVER_PAD.padR, p[2]]; };
+  return { shoulders: { R: shoulder('R'), L: shoulder('L') }, thighs: { R: thigh('R'), L: thigh('L') } };
+}
 /** Sposób trzymania sań: słupki (dłonie na uchwytach sań, pchanie), lina (linka od sań do dłoni, ciągnięcie) albo pas (sanie ciągnięte za pas: wpis pas, ręce wolne). */
 export const SLED_HOLD = ['slupki', 'lina', 'pas'] as const;
 /** Kąt oparcia ławki (stopnie, 0 = płasko, dodatni = skos głową wyżej, ujemny = głową niżej) wg możliwości katalogu — konwencja rysunku. */
@@ -42,7 +51,7 @@ export type GearKind = {
   /** Krótki opis do generatora poleceń (jak wypełnić pola). */
   opis: string;
   /** Rekwizyty sceny dla wpisu sprzętu (chwyty rąk potrzebne sprzętowi trzymanemu w dłoni). */
-  props: (g: Gear, grips: GearGrips, all: Gear[], ankles: GearGrips, pelvis: V3) => Prop[];
+  props: (g: Gear, grips: GearGrips, all: Gear[], ankles: GearGrips, pelvis: V3, body?: LeverBody) => Prop[];
   /** Czy wpis spełnia możliwość katalogu (np. bloczek wysoki ↔ cable.high); domyślnie tak. */
   capOk?: (cap: string, g: Gear) => boolean;
   /** Opis możliwości dla generatora poleceń (jak ją narysować); brak = opis ogólny. */
@@ -276,14 +285,14 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
   },
   dzwignia: {
     nazwa: 'maszyna (dźwignia)', caps: ['leg_ext', 'leg_curl', 'leg_press', 'hack_squat', 'pendulum_squat', 'belt_squat_machine', 'chest_press_machine', 'shoulder_press_machine', 'pec_deck', 'row_machine', 'pullover_machine', 'ab_crunch_machine', 'biceps_curl_machine', 'triceps_ext_machine', 'lateral_raise_machine', 'glute_kickback_machine', 'hip_thrust_machine', 'hip_abductor_adductor', 'calf_machine', 'lever_machine', 'dip_machine', 't_bar'], fields: ['kat', 'z', 'tryb', 'punkt'], optionalCaps: [],
-    opis: 'maszyna rysowana schematycznie: dźwignia obrotowa albo prowadnica liniowa z punktem mocowania na dłoniach, kostkach lub miednicy; siedzisko i oparcie jako lawka (x, y, z, kat, dlugosc, tryb, punkt, trzyma)',
+    opis: 'maszyna rysowana schematycznie: dźwignia obrotowa albo prowadnica liniowa z punktem mocowania na dłoniach, kostkach, podeszwach, miednicy, barkach (poduszki) lub udach (poduszka nad kolanami); siedzisko i oparcie jako lawka (x, y, z, kat, dlugosc, tryb, punkt, trzyma)',
     capLabel: { leg_ext: 'maszyna do prostowania nóg (obrót, punkt: kostki)', leg_curl: 'maszyna do uginania nóg (obrót, punkt: kostki)', leg_press: 'suwnica na nogi (prowadnica, punkt: podeszwy — platforma pod stopami)', hack_squat: 'hack squat (prowadnica, punkt: miednica — wózek z oparciem)', pendulum_squat: 'pendulum squat (obrót, punkt: miednica)', belt_squat_machine: 'belt squat (prowadnica albo obrót, punkt: miednica — pas)', chest_press_machine: 'maszyna do wyciskania (klatka; obrót, punkt: dłonie)', shoulder_press_machine: 'maszyna do wyciskania nad głowę (obrót, punkt: dłonie)', pec_deck: 'butterfly (obrót, punkt: dłonie)', row_machine: 'maszyna do wiosłowania (obrót, punkt: dłonie)', pullover_machine: 'maszyna pullover (obrót, punkt: dłonie)', ab_crunch_machine: 'maszyna do brzucha (obrót, punkt: dłonie)', biceps_curl_machine: 'maszyna do bicepsa (obrót, punkt: dłonie)', triceps_ext_machine: 'maszyna do tricepsa (obrót, punkt: dłonie)', lateral_raise_machine: 'maszyna do wznosów bokiem (obrót, punkt: dłonie)', glute_kickback_machine: 'maszyna do wykopów (pośladki; obrót, punkt: kostki)', hip_thrust_machine: 'maszyna do hip thrustu (obrót, punkt: miednica)', hip_abductor_adductor: 'maszyna do odwodzenia/przywodzenia (obrót, punkt: kostki)', calf_machine: 'maszyna do łydek (prowadnica, punkt: dłonie albo miednica; wspięcia: kostki)', lever_machine: 'maszyna dźwigniowa (obrót, punkt: dłonie)', dip_machine: 'maszyna do dipów (obrót, punkt: dłonie)', t_bar: 'T-bar (obrót wokół osi przy podłodze, punkt: dłonie)' },
-    props: (g, grips, _all, ankles, pelvis) => {
+    props: (g, grips, _all, ankles, pelvis, body) => {
       const ss: Side[] = g.trzyma === 'L' ? ['L'] : g.trzyma === 'obie' ? [...SIDES] : ['R'];
       const from: V3 = [g.x ?? 0, g.y ?? 50, g.z ?? 0];
       /* podeszwy: platforma pod stopą (prowadnica „prosta”) leży o wysokość kostki dalej niż kostka, w kierunku prowadnicy (stopa równoległa do platformy, prostopadła do prowadnicy); kostki: wałek lub poduszka przy kostce */
       const ankle: V3 = avg(ss.map(s => ankles[s])); const th0 = rad(g.kat ?? 0);
-      const pt: V3 = g.punkt === 'podeszwy' ? [ankle[0] + Math.cos(th0) * BODY.ankleH, ankle[1] + Math.sin(th0) * BODY.ankleH, ankle[2]] : g.punkt === 'kostki' ? ankle : g.punkt === 'miednica' ? pelvis : avg(ss.map(s => grips[s]));
+      const pt: V3 = g.punkt === 'podeszwy' ? [ankle[0] + Math.cos(th0) * BODY.ankleH, ankle[1] + Math.sin(th0) * BODY.ankleH, ankle[2]] : g.punkt === 'kostki' ? ankle : g.punkt === 'miednica' ? pelvis : g.punkt === 'barki' ? (body ? avg(ss.map(s => body.shoulders[s])) : pelvis) : g.punkt === 'uda' ? (body ? avg(ss.map(s => body.thighs[s])) : pelvis) : avg(ss.map(s => grips[s]));
       if (g.tryb === 'prosta') { const th = rad(g.kat ?? 0); return [{ k: 'slide', from, to: pt, dir: [Math.cos(th), Math.sin(th), 0], len: g.dlugosc ?? EQUIP.leverStroke }]; }
       return [{ k: 'pivot', from, to: pt, len: g.dlugosc ?? EQUIP.leverArm, label: 'dzwignia', cut: EQUIP.leverEnd }];
     },
@@ -551,4 +560,4 @@ export function contactsFrom(gear: Gear[]): Contact[] { return gear.flatMap(g =>
 export const GEAR_CAPS: readonly string[] = Object.values(GEAR_KINDS).flatMap(k => k.caps);
 
 /** Sprzęt jako rekwizyty sceny; sprzęt „podążający za chwytem” leży między dłońmi albo w dłoni. */
-export function propsFrom(gear: Gear[], grips: GearGrips, ankles: GearGrips = { R: [0, 0, 0], L: [0, 0, 0] }, pelvis: V3 = [0, 0, 0]): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear, ankles, pelvis)); }
+export function propsFrom(gear: Gear[], grips: GearGrips, ankles: GearGrips = { R: [0, 0, 0], L: [0, 0, 0] }, pelvis: V3 = [0, 0, 0], body?: LeverBody): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear, ankles, pelvis, body)); }

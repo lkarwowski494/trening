@@ -3315,7 +3315,7 @@ Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źród�
 
 **Ruch**
 
-- Unieś hantle przed sobą, łokcie lekko ugięte, mniej więcej do wysokości barków; opuść je powoli. — weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; Execution 1: elbows slightly flexed); app-s1 (szczebel 5 — nie liczy się do pary; instrukcja 4: parallel or slightly above shoulder level) `fidr.move`
+- Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli. — weighttraining.guide: [Incline dumbbell front raise](https://weighttraining.guide/exercises/incline-dumbbell-front-raise/) (szczebel 5 — nie liczy się do pary; Execution 1: elbows slightly flexed; „until they are way above the height of your shoulders” (część wspólna z app-s1: co najmniej do wysokości barków)); app-s1 (szczebel 5 — nie liczy się do pary; instrukcja 4: parallel or slightly above shoulder level (co najmniej do wysokości barków)) `fidr.move`
 
 **Czego unikać**
 

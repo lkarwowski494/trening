@@ -50,8 +50,6 @@ export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   /* 10.11.2026 (dip r3 W5, limit shSag): P4-DIP-1 */
   'Triceps Dips (ławka)': 'dip r3 W5: łokieć przed tułowiem, przedramię w tułowiu; powrót P4-DIP-1',
   'Machine Hip Thrust': 'hip_bridge r1 WYSOKIE (09.11.2026): prowadnica dźwigni przez miednicę',
-  'Standing Calf Raise': 'dźwignia: brak punktu „barki” (P1-CALF-1)',
-  'Seated Calf Raise': 'dźwignia: brak punktu „uda” (P1-CALF-1)',
   'Plyo Push-Up': 'pushup_plank r4-W1 (10.11.2026): pętla jednokierunkowa zamknięta (u = 0 = u = 1); powrót: PP-W1 w docs/21',
   'Barbell Side Bend': 'core_standing W2 (10.11.2026): brak pochylenia gryfu; P8-CS-1',
 };

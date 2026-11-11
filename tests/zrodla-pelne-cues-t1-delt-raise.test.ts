@@ -154,11 +154,11 @@ describe('T1 delt_raise: zdania', () => {
     expect(json('docs/lokalizacja/zestaw-przekladu-2026-11-04-t1-wskazowki.json').klucze).toEqual([]);
   });
 
-  const NAKLADKI = ['pt-BR', 'es-419'];
+  const NAKLADKI = ['pt-BR', 'es-419']; const PO_ZMIANIE_W02 = ['fidr.move'];
   test('zdania nowe są przetłumaczone: komplet języków lib/cues/text (35 plików: 33 języki przekładu i nakładki) ma niepuste teksty, parametry {…} bez zmian, a zestaw oczekujących jest pusty (po przekładzie 04.11.2026)', () => {
     const langs = fs.readdirSync(path.join(__dirname, '..', 'lib/cues/text')).filter(f => f.endsWith('.json')).map(f => f.replace('.json', ''));
     expect(langs.length).toBe(35);
-    for (const l of langs) { const d = json(`lib/cues/text/${l}.json`); for (const id of T1.zdania) { if (NAKLADKI.includes(l) && d[id] === undefined) continue; /* nakładki pt-BR i es-419 zawierają tylko teksty różne od bazowych pt/es */ expect([l, id, typeof d[id], String(d[id] ?? '').trim().length > 0]).toEqual([l, id, 'string', true]); expect([l, id, (String(d[id]).match(/\{[^}]+\}/g) ?? []).sort()]).toEqual([l, id, (pl[id].match(/\{[^}]+\}/g) ?? []).sort()]); } }
+    for (const l of langs) { const d = json(`lib/cues/text/${l}.json`); for (const id of T1.zdania) { if (NAKLADKI.includes(l) && d[id] === undefined) continue; if (PO_ZMIANIE_W02.includes(id) && d[id] === undefined) continue; /* 11.11.2026 (W-02): fidr.move zmienione w PL/EN (część wspólna źródeł), stare tłumaczenia usunięte, przekład w W-03 (docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json; pilnuje tests/figures-v2-delt-raise-w02.test.ts) */ /* nakładki pt-BR i es-419 zawierają tylko teksty różne od bazowych pt/es */ expect([l, id, typeof d[id], String(d[id] ?? '').trim().length > 0]).toEqual([l, id, 'string', true]); expect([l, id, (String(d[id]).match(/\{[^}]+\}/g) ?? []).sort()]).toEqual([l, id, (pl[id].match(/\{[^}]+\}/g) ?? []).sort()]); } }
   });
 
   test('teksty nowych zdań: bez cyfr (liczby wymagają osobnych źródeł; kąt 30° ze Scaption poza tekstem), bez twierdzeń o bólu i zdrowiu, bez nazw źródeł i marek', () => {

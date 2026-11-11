@@ -29,9 +29,9 @@ const rzad = (zr, x, y0, y1, o = {}) => (u) => { const y = lerp(y0, y1, u); cons
 
 /** Unoszenie ramion przodem leżąc przodem na ławce skośnej (Straight Raises on Incline Bench ze sztangą; Front Incline Dumbbell Raise [OTWARTE] — patrz figury-sens.json): ramiona od zwisu pionowo w dół do poziomu przed sobą (w stronę głowy), łokieć stały lekko zgięty. */
 function przodemLezac(cw, o) {
-  /* Zatwierdzony plik póz (delt_raise.json) ma tu nogi i siedzisko sprzed partii 2 (122a12b5, wspólne lezyPrzodem poprawiło je dla innych rodzin): siedzisko 20 cm, kostki 52 cm za biodrem (kolana lekko zgięte), biegun kolana [1, 0.2, 0] bez odwrócenia.
-   * Rysunek użytkownika nie może się zmienić (09.11.2026), więc generator odtwarza je jawnie; poprawa (nogi proste, siedzisko 2) wejdzie razem z recenzją ruchu tego ćwiczenia, nie przez przypadek. */
-  const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0], sedzisko: 20 }); for (const sd of ['R', 'L']) { L.nogi[sd].k[0] = L.m[0] + 52; L.nogi[sd].pole = [1, 0.2, 0]; } const zr = o.zr ?? 22; const re = Math.sqrt(62 ** 2 - (19 - zr) ** 2);
+  /* W-02 (11.11.2026): nogi i siedzisko ze wspólnego lezyPrzodem (nogi proste, kostki tam, gdzie sięga prosta noga; siedzisko 2 cm) — jak Y Raise i przodemBok. Wcześniej (decyzja 09.11.2026 „rysunek użytkownika bez zmian”) generator jawnie
+   * odtwarzał nogi sprzed partii 2: kostki 52 cm za biodrem (kolano zgięte o ok. 67° ku plecom, ok. 30 cm nad cięciwą biodro–kostka) i siedzisko 20 cm (kształty uda i tułowia wchodziły w nie do 0,7 cm); zgłoszenie koordynatora, pomiar i test: tests/figures-v2-delt-raise-w02.test.ts. */
+  const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 22; const re = Math.sqrt(62 ** 2 - (19 - zr) ** 2);
   const fr = (u) => { const th = lerp(0, 90, u) * R; const rece = {}; for (const sd of ['R', 'L']) { const sw = -POL(sd); const S = L.S(sd);
       rece[sd] = { g: [S[0] - re * Math.sin(th), S[1] - re * Math.cos(th), sw * zr], pole: [0.3, -1, 0], obrot: 0 }; }
     return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };

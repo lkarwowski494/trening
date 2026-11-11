@@ -1,18 +1,18 @@
 {
   "opis": "Minimum zapadki pokrycia katalogu (tests/pokrycie-katalogu.test.ts). Liczba „dobra” nie może spaść poniżej minimum. Podniesienie po fali prac: node scripts/pokrycie-katalogu.mjs --podnies-minimum. Obniżka tylko świadomie: zmień `minimum` i dopisz w `obnizenia` wpis { \"powod\": \"…\", \"data\": \"DD.MM.RRRR\" } pod nazwą metryki (rekord zostaje — test wymaga powodu, gdy minimum < rekord).",
   "minimum": {
-    "figura.v2": 526,
-    "figura.wAplikacji": 530,
+    "figura.v2": 528,
+    "figura.wAplikacji": 531,
     "figura.zDanymiV2": 534,
-    "animowanyBlad": 272,
+    "animowanyBlad": 273,
     "wskazowki.wlasne": 309,
     "wskazowki.wlasneZBledami": 197,
     "wskazowki.zTekstem": 566,
     "czesteBledyTekst": 439,
     "roleMiesni": 513,
-    "pelnaKarta": 444,
-    "pelnaKartaBlad": 251,
-    "recenzjaFigur": 526,
+    "pelnaKarta": 446,
+    "pelnaKartaBlad": 252,
+    "recenzjaFigur": 528,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 633,
     "jezyk.en.kompletne": 633,
@@ -51,18 +51,18 @@
     "jezyk.zh-Hant.kompletne": 633
   },
   "rekord": {
-    "figura.v2": 526,
-    "figura.wAplikacji": 530,
+    "figura.v2": 528,
+    "figura.wAplikacji": 531,
     "figura.zDanymiV2": 536,
-    "animowanyBlad": 272,
-    "wskazowki.wlasne": 309,
-    "wskazowki.wlasneZBledami": 197,
+    "animowanyBlad": 273,
+    "wskazowki.wlasne": 310,
+    "wskazowki.wlasneZBledami": 198,
     "wskazowki.zTekstem": 640,
     "czesteBledyTekst": 557,
     "roleMiesni": 513,
-    "pelnaKarta": 444,
-    "pelnaKartaBlad": 251,
-    "recenzjaFigur": 526,
+    "pelnaKarta": 447,
+    "pelnaKartaBlad": 252,
+    "recenzjaFigur": 528,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 671,
     "jezyk.en.kompletne": 671,
@@ -118,16 +118,16 @@
       "data": "10.11.2026"
     },
     "wskazowki.zTekstem": {
-      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
-      "data": "10.11.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1 | 11.11.2026: karta Front Incline Dumbbell Raise ukryta do przekładu fidr.move w 33 językach (W-03) — decyzja KO-042 koordynatora 11.11.2026, analogia A1 (docs/18 08.11.2026); minimum wraca do stanu sprzed odsłonięcia karty (0ebc2378): −1",
+      "data": "11.11.2026"
     },
     "czesteBledyTekst": {
-      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
-      "data": "10.11.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1 | 11.11.2026: karta Front Incline Dumbbell Raise ukryta do przekładu fidr.move w 33 językach (W-03) — decyzja KO-042 koordynatora 11.11.2026, analogia A1 (docs/18 08.11.2026); minimum wraca do stanu sprzed odsłonięcia karty (0ebc2378): −1",
+      "data": "11.11.2026"
     },
     "pelnaKarta": {
-      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1",
-      "data": "10.11.2026"
+      "powod": "Plyo Push-Up wstrzymany (V2_WSTRZYMANE; koordynator 10.11.2026, wariant B, docs/18; backlog PP-W1 — pętla jednokierunkowa wymaga ONE_WAY_STATIC i 2 podpisów UI): −1 | 11.11.2026: karta Front Incline Dumbbell Raise ukryta do przekładu fidr.move w 33 językach (W-03) — decyzja KO-042 koordynatora 11.11.2026, analogia A1 (docs/18 08.11.2026); minimum wraca do stanu sprzed odsłonięcia karty (0ebc2378): −1",
+      "data": "11.11.2026"
     },
     "jezyk.pl.kompletne": {
       "powod": "karta własna Split Jump z partii A4b (09.11.2026) zastąpiła zrecenzowany zestaw ogólny (zestawy_zmienione) i jest ukryta do przekładu i recenzji niezależnej (karty_nowe) — do tego czasu ćwiczenie nie ma tekstów karty w żadnym języku; wraca po przekładzie zestawu A4b (rekord bez zmian)",
@@ -138,12 +138,12 @@
       "data": "09.11.2026"
     },
     "wskazowki.wlasne": {
-      "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
-      "data": "29.10.2026"
+      "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038) | 11.11.2026: karta Front Incline Dumbbell Raise ukryta do przekładu fidr.move w 33 językach (W-03) — decyzja KO-042 koordynatora 11.11.2026, analogia A1 (docs/18 08.11.2026); minimum wraca do stanu sprzed odsłonięcia karty (0ebc2378): −1",
+      "data": "11.11.2026"
     },
     "wskazowki.wlasneZBledami": {
-      "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
-      "data": "29.10.2026"
+      "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038) | 11.11.2026: karta Front Incline Dumbbell Raise ukryta do przekładu fidr.move w 33 językach (W-03) — decyzja KO-042 koordynatora 11.11.2026, analogia A1 (docs/18 08.11.2026); minimum wraca do stanu sprzed odsłonięcia karty (0ebc2378): −1",
+      "data": "11.11.2026"
     },
     "roleMiesni": {
       "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",

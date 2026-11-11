@@ -56,31 +56,53 @@ export function stojac(cw, o = {}) {
   return poza(RODZINA, cw, spr, fr.map((r) => r.f), b);
 }
 
-/** Wspięcie w siadzie: miednica nieruchoma na siedzisku (skrzynia 38,6 cm albo ławka z oparciem), uda poziomo, stopy obracają się wokół palców; dźwignia/ciężar na kolanach. */
+/** Podest pod przodostopiem w siadzie (ACG-020, 31.10.2026; zatwierdzone pozy): blat 6 cm, krawędź 53,6 cm od osi miednicy, palce stoją na nim (xT = 61), pięta w dole poniżej blatu. */
+const PODEST_SIEDZ = { x0: 53.6, x1: 100, top: 6 };
+/** Dół wspięcia w siadzie: goleń pionowo pod kolanem (kostka = miednica + [42, −41]), podbicie +10° (pięta ≥ 2 cm poniżej krawędzi podestu); wyższe klatki — stopa obraca się wokół palców na podeście. */
+const SIEDZ_DOL = { ankle: [42, 11.1], pod: 10 };
+/** Miednica na siedzisku: kostka dołu + goleń 41 cm (y = 11,1 + 41). */
+const SIEDZ_M = [0, 52.1];
+/** Ręce wariantów w siadzie zostają jak w wersji bez podestu (kolano liczone dla stopy na podłodze, miednica y 48), przesunięte o różnicę siedziska 5,3 cm (zatwierdzone pozy). */
+const SIEDZ_REKA_DY = 5.3;
+/** Dźwignia z poduszką na ciele (punkt „barki” albo „uda”, P1-CALF-1, 11.11.2026): prowadnica od poduszki w klatce u = 0 wzdłuż cięciwy toru poduszki (do klatki u = 1), z zapasem skoku. Punkt liczy silnik (leverBodyFrom). */
+const DZW_ZAPAS = 6;
+export function dzwigniaPoduszka(punkt, cw, spr, klatki) {
+  const E = v2(); const pad = (u) => { const sk = E.keyframeFrame({ kontrakt: E.CONTRACT.id, rodzina: RODZINA, cwiczenie: cw, sprzet: spr, klatki, bledy: [] }, u).sk; const b = E.leverBodyFrom(sk); return (punkt === 'barki' ? b.shoulders : b.thighs).R; };
+  const a = pad(0), c = pad(1); const kat0 = Math.atan2(c[1] - a[1], c[0] - a[0]) / R; const dl = Math.hypot(c[0] - a[0], c[1] - a[1]);
+  /* tor bliski pionu (do 10°; kontrakt dopuszcza kat ≤ 90): prowadnica pionowa przez środek toru w poziomie, odchylenie poduszki od niej ≤ połowa przesunięcia (≤ 3 cm: tolerancja kolizji) */
+  const pion = Math.abs(kat0 - 90) < 10; const kat = pion ? 90 : kat0; const x = pion ? (a[0] + c[0]) / 2 : a[0];
+  return { rodzaj: 'dzwignia', tryb: 'prosta', kat: r1(kat), punkt, trzyma: 'R', x: r1(x), y: r1(a[1]), z: r1(a[2]), dlugosc: r1(dl + DZW_ZAPAS) };
+}
+
+/** Wspięcie w siadzie: miednica nieruchoma na siedzisku (ławka z siedziskiem 40 cm), uda poziomo, stopy na podeście pod przodostopiem, obracają się wokół palców; dźwignia/ciężar na kolanach (maszyna: poduszka na udach). */
 export function siedzac(cw, o = {}) {
   const { tryb = 'hantle', jednonoz = false, maszyna = false, bledy = true } = o;
-  const xp = 0; const yp = 48; const xT = xp + 61; const us = [0, 0.25, 0.5, 0.75, 1];
+  const [xp, yp] = SIEDZ_M; const xT = xp + 61; const us = [0, 0.25, 0.5, 0.75, 1]; const mOld = [0, 48];
   const mk = (u, podGora) => {
-    const pod = lerp(0, podGora, ease(u)); const a = kostkaZPalcow(xT, 0, pod); const aR = [a[0], a[1], ZS]; const aL = jednonoz ? [xT - 19, 7, -ZS] : [a[0], a[1], -ZS];
-    const m = [xp, yp]; const kn = (an) => kolano2D(m, [an[0], an[1]], [1, 0.4]); const kR = kn(aR), kL = kn(aL);
-    const gr = (k, sg) => [k[0] - 5, k[1] + 13.9, sg * 12];
+    const pod = lerp(0, podGora, ease(u)); const a = u === 0 ? SIEDZ_DOL.ankle : kostkaZPalcow(xT, PODEST_SIEDZ.top, pod); const podK = u === 0 ? SIEDZ_DOL.pod : pod;
+    const aR = [a[0], a[1], ZS]; const aL = jednonoz ? [SIEDZ_DOL.ankle[0], SIEDZ_DOL.ankle[1], -ZS] : [a[0], a[1], -ZS];
+    const m = [xp, yp]; const aOld = kostkaZPalcow(xT, 0, pod); const kR = kolano2D(mOld, aOld, [1, 0.4]); const kL = kolano2D(mOld, jednonoz ? [xT - 19, 7] : aOld, [1, 0.4]);
+    const gr = (k, sg) => [k[0] - 5, k[1] + 13.9 + SIEDZ_REKA_DY, sg * 12];
     let hr, hl, sprzet = [];
-    if (tryb === 'hantle') { hr = { g: gr(kR, 1), pole: [-0.3, -1, 0.6] }; hl = jednonoz ? { g: [xp + 22, yp + 10, -14], pole: [-0.3, -1, -0.6] } : { g: gr(kL, -1), pole: [-0.3, -1, -0.6] };
+    if (tryb === 'hantle') { hr = { g: gr(kR, 1), pole: [-0.3, -1, 0.6] }; hl = jednonoz ? { g: [xp + 22, mOld[1] + 10 + SIEDZ_REKA_DY, -14], pole: [-0.3, -1, -0.6] } : { g: gr(kL, -1), pole: [-0.3, -1, -0.6] };
       sprzet = jednonoz ? [{ rodzaj: 'hantel', trzyma: 'R' }] : [{ rodzaj: 'hantel' }]; }
-    else if (tryb === 'sztanga') { const g = (sg) => ({ g: [kR[0] - 3, kR[1] + 10, sg * 30], pole: [-0.3, -1, sg * 0.6] }); hr = g(1); hl = g(-1); sprzet = [{ rodzaj: 'sztanga', talerze: true, podazaZaChwytem: true, dlugosc: 120 }]; }
+    else if (tryb === 'sztanga') { const g = (sg) => ({ g: [kR[0] - 3, kR[1] + 10 + SIEDZ_REKA_DY, sg * 30], pole: [-0.3, -1, sg * 0.6] }); hr = g(1); hl = g(-1); sprzet = [{ rodzaj: 'sztanga', talerze: true, podazaZaChwytem: true, dlugosc: 120 }]; }
     else { const g = (sg) => ({ g: [xp + 30, yp + 8, sg * 15], pole: [-0.3, -1, sg * 0.6] }); hr = g(1); hl = g(-1); }
-    return { f: K({ u, m, p: 0, head: 0, R: { a: aR, pod, rot: 10, odch: 6, pole: [1, 0.4, 0.05] }, L: { a: aL, pod: jednonoz ? 0 : pod, rot: 10, odch: 6, pole: [1, 0.4, -0.05] }, hr, hl }), o: { sprzet }, aR, a0: a };
+    return { f: K({ u, m, p: 0, head: 0, R: { a: aR, pod: podK, rot: 10, odch: 6, pole: [1, 0.4, 0.05] }, L: { a: aL, pod: jednonoz ? SIEDZ_DOL.pod : podK, rot: 10, odch: 6, pole: [1, 0.4, -0.05] }, hr, hl }), o: { sprzet } };
   };
   const fr = us.map((u) => mk(u, POD_GORA_SIEDZ)); const zle = us.map((u) => mk(u, POD_PLYTKO));
-  const a0 = fr[0].a0; const a1 = fr[4].a0; const kat = Math.atan2(a1[1] - a0[1], a1[0] - a0[0]) / R; const dl = Math.hypot(a1[0] - a0[0], a1[1] - a0[1]);
-  const siedzisko = maszyna ? [{ rodzaj: 'lawka', x: r1(xp - 10.2), top: 37.8, kat: 90, siedzisko: 40, dlugosc: 75 }, { rodzaj: 'dzwignia', tryb: 'prosta', kat: r1(kat), punkt: 'kostki', trzyma: 'R', x: r1(a0[0]), y: r1(a0[1]), z: ZS, dlugosc: r1(dl + 4) }] : [{ rodzaj: 'skrzynia', x0: xp - 16, x1: xp + 22, top: 38.6 }];
-  const spr = [PODLOGA(-80, 130), ...fr[0].o.sprzet, ...siedzisko];
+  const podloga = PODEST_SIEDZ; const podest = { rodzaj: 'skrzynia', x0: podloga.x0, x1: podloga.x1, top: podloga.top };
+  const reszta = fr[0].o.sprzet; const bazowy = [PODLOGA(-80, 130), podest, ...reszta];
+  const siedzisko = maszyna ? { rodzaj: 'lawka', x: r1(xp - 10.2), top: 41.9, kat: 90, siedzisko: 40, dlugosc: 75 } : { rodzaj: 'lawka', x: r1(xp - 10.2), top: 42.7, kat: 0, siedzisko: 40, dlugosc: 75 };
+  const spr = [...bazowy, siedzisko, ...(maszyna ? [dzwigniaPoduszka('uda', cw, [...bazowy, siedzisko], fr.map((r) => r.f))] : [])];
   const b = bledy ? [bladZTrajektorii({ cue: 'calf.mis.partial', znacznik: 'heels', us, ok: (u) => fr[us.indexOf(u)].f, zle: (u) => zle[us.indexOf(u)].f })] : [];
   return poza(RODZINA, cw, spr, fr.map((r) => r.f), b);
 }
 
-/** Maszyna stojąca: dźwignia prosta (prowadnica pionowa) z punktem na miednicy. */
+/** Donkey Calf Raise: dźwignia prosta (prowadnica pionowa) z punktem na miednicy (ciężar na biodrach). */
 const dzwigniaMiednica = (fr) => { const m0 = fr[0].m; const m1 = fr[fr.length - 1].m; return [{ rodzaj: 'dzwignia', tryb: 'prosta', kat: 90, punkt: 'miednica', trzyma: 'R', x: r1(m0[0]), y: r1(m0[1] - 1), z: 0, dlugosc: r1(m1[1] - m0[1] + 6) }]; };
+/** Maszyna stojąca: dźwignia prosta (prowadnica pionowa) z poduszką na barku (punkt „barki”, P1-CALF-1 — poduszki na barkach, nie na miednicy). */
+const dzwigniaBarki = (cw) => (fr) => { const bez = [PODLOGA(-120, 160), ...fr[0].o.sprzet, { rodzaj: 'skrzynia', x0: STOPIEN_X0(fr[0].m[0] + 8), x1: r1(fr[0].m[0] + 8 + 40), top: 6 }]; return [dzwigniaPoduszka('barki', cw, bez, fr.map((r) => r.f))]; };
 
 export const WYJATKI = {};
 export const PRZYBLIZENIA = {};
@@ -94,7 +116,7 @@ export function generuj() {
   return {
     /* karta „przytrzymaj się czegoś dla równowagi” (calf.step; recenzja r1 N1, 09.11.2026): obie dłonie na ścianie przed osobą, jak w Single Leg Calf Raise */
     'Łydki na stopniu': () => stojac('Łydki na stopniu', { blok: 8, bledy: false, recFn: sciana(), sprzetFn: () => [{ rodzaj: 'sciana', x: 40, h: 220, przed: true }] }),
-    'Standing Calf Raise': () => stojac('Standing Calf Raise', { blok: 6, tryb: 'maszyna', sprzetFn: dzwigniaMiednica }),
+    'Standing Calf Raise': () => stojac('Standing Calf Raise', { blok: 6, tryb: 'maszyna', sprzetFn: dzwigniaBarki('Standing Calf Raise') }),
     'Smith Machine Calf Raise': () => stojac('Smith Machine Calf Raise', { blok: 6, tryb: 'sztanga', sprzetFn: smith }),
     'Calf Raise (sztanga)': () => stojac('Calf Raise (sztanga)', { blok: 6, tryb: 'sztanga' }),
     'Calf Raise (linki)': () => stojac('Calf Raise (linki)', { tryb: 'bok', sprzetFn: linki }),

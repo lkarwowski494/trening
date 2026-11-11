@@ -1,0 +1,12 @@
+{
+ "_opis": "Zdanie wskazówki techniki fidr.move (Front Incline Dumbbell Raise) zmienione 11.11.2026 w W-02 (PL i EN: „co najmniej do wysokości barków” zamiast „mniej więcej do wysokości barków”; część wspólna dwóch źródeł, recenzja L-047 r2). Stare tłumaczenia z 33 języków usunięte z lib/cues/text (mówiły „mniej więcej do wysokości barków”), więc aplikacja pokazuje angielski (cueText: język → angielski → polski) do przekładu w W-03; wyjątek testu kompletności tests/cues.test.tsx. Po przekładzie: dopisać zdanie do lib/cues/text/<język>.json i usunąć wpis.",
+ "data": "2026-11-11",
+ "klucze": [
+  {
+   "rodzaj": "nowy",
+   "id": "fidr.move",
+   "pl": "Unieś hantle przed sobą, łokcie lekko ugięte, co najmniej do wysokości barków; opuść je powoli.",
+   "en": "Raise the dumbbells in front of you, elbows slightly bent, at least to shoulder height; lower them slowly."
+  }
+ ]
+}

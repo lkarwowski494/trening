@@ -4,13 +4,13 @@
  * kolana stojąc ≤ 20° (`kolana_proste`), w siadzie ≥ 60° (`kolana_zgiete_siad`); ślad ciężaru ≤ 3 cm od chwytu (wzór tests/figures-v2-tor.test.ts).
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza dobór elementów i rysunek, nie recenzję rodziny */
-import { FAMILIES, assignAll, figureSpec, frameAt, keyframeFrame, jointAngles, poseKeys, hasPoseFile, overlayShapes, measuredJoint, angleLineShown, phaseNames, phasesFor } from '@/lib/figures/v2';
+import { type PoseData, FAMILIES, assignAll, figureSpec, frameAt, keyframeFrame, jointAngles, poseKeys, hasPoseFile, overlayShapes, measuredJoint, angleLineShown, phaseNames, phasesFor } from '@/lib/figures/v2';
 import { DATA_UI, MIN_MEASURED_ROM } from '@/lib/figures/v2/poseData';
 import { poseFile } from '@/lib/figures/v2/poseData';
 import { TECHNIQUE, techniquesFor } from '@/lib/figures/v2/overlay';
 import { techniquesOf } from '@/lib/figures/v2/ui';
 import { V2_WSTRZYMANE, shownFigureSpec } from '@/lib/figures/v2/figure';
-import { stykTora, PROG_STYKU } from './helpers/styk-figur';
+import { stykTora, stykPozy, PROG_STYKU } from './helpers/styk-figur';
 import { CALF_RAISE_TECHNIQUE } from '@/lib/figures/v2/overlay/calf_raise';
 
 const FAM = 'calf_raise';
@@ -52,10 +52,10 @@ describe('calf_raise p1: zakres stawów z tekstu karty', () => {
   });
 });
 
-/* Ślad dźwigni poza dłońmi (Donkey Calf Raise: miednica) jest zły (contract.ts:330–332 bierze dłoń z `trzyma`) — test toru dla niego czeka na figury/slad-dzwignia (decyzja koordynatora 09.11.2026); nie zatwierdzamy złego śladu.
-   Standing Calf Raise i Seated Calf Raise są wstrzymane w V2_WSTRZYMANE (recenzja r1 W1/W2, decyzja koordynatora A 09.11.2026) i nie biorą udziału w testach toru i styku (poza przypadkiem negatywnym styku). */
-export const CZEKA_NA_SLAD_DZWIGNI = ['Donkey Calf Raise'];
-export const WSTRZYMANE = ['Standing Calf Raise', 'Seated Calf Raise'];
+/* Ślad dźwigni poza dłońmi = punkt styku dźwigni z ciałem (contract.ts, punktDzwigni): Donkey — miednica, Standing — barki, Seated — uda (P1-CALF-1, 11.11.2026; N1 z P1-CALF-4 zamknięte:
+   lista CZEKA_NA_SLAD_DZWIGNI usunięta, ślad Donkey ma test poniżej). Standing Calf Raise i Seated Calf Raise są nadal wstrzymane w V2_WSTRZYMANE do recenzji różnicy (audytor ≠ autor). */
+export const DZWIGNIA_POZA_DLONMI: Record<string, string> = { 'Donkey Calf Raise': 'miednica', 'Standing Calf Raise': 'barki', 'Seated Calf Raise': 'uda' };
+export const WSTRZYMANE: string[] = []; /* 11.11.2026 (W-02, P1-CALF-1): Standing i Seated Calf Raise zdjęte z V2_WSTRZYMANE po recenzji różnicy audytora (docs/research/recenzje/w02-calf_raise-roznica-audytor-2026-11-11.md, „wyswietlana”) */
 const ZRYSUNKIEM = KEYS.filter(k => !WSTRZYMANE.includes(k));
 /** Odległość śladu od najbliższego chwytu albo środka między chwytami (cm). */
 const odlSladu = (f: ReturnType<typeof frameAt>, t: number[]): number => {
@@ -64,15 +64,22 @@ const odlSladu = (f: ReturnType<typeof frameAt>, t: number[]): number => {
 };
 
 describe('calf_raise p1: wstrzymanie maszyn (09.11.2026)', () => {
-  test('Standing Calf Raise i Seated Calf Raise: poza aplikacją (V2_WSTRZYMANE z powodem), pozy zostają w silniku; 10 z 12 ćwiczeń z rysunkiem; wstrzymane nie są pokazywane', () => {
+  test('11.11.2026 (W-02): Standing Calf Raise i Seated Calf Raise pokazywane po recenzji różnicy — 12 z 12 ćwiczeń z rysunkiem, żadne nie jest w V2_WSTRZYMANE (wcześniej 10 z 12, wstrzymane 09.11.2026)', () => {
     for (const k of WSTRZYMANE) { expect([k, k in V2_WSTRZYMANE, V2_WSTRZYMANE[k].length > 30, figureSpec(k) !== null, shownFigureSpec(k)]).toEqual([k, true, true, true, null]); }
-    expect(ZRYSUNKIEM.length).toBe(10); for (const k of ZRYSUNKIEM) expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]);
+    for (const k of ['Standing Calf Raise', 'Seated Calf Raise']) expect([k, k in V2_WSTRZYMANE, shownFigureSpec(k) !== null]).toEqual([k, false, true]);
+    expect(ZRYSUNKIEM.length).toBe(12); for (const k of ZRYSUNKIEM) expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]);
   });
 });
 
 describe('calf_raise p1: tor ciężaru', () => {
-  test('lista ćwiczeń z torem czekającym na poprawkę silnika to dokładnie ćwiczenie z dźwignią poza dłońmi spoza wstrzymanych', () => {
-    const z = ZRYSUNKIEM.filter(k => data(k).sprzet.some(g => g.rodzaj === 'dzwignia' && g.punkt !== 'dlonie')).sort(); expect(z).toEqual([...CZEKA_NA_SLAD_DZWIGNI].sort());
+  test('N1 (P1-CALF-4, zamknięte 11.11.2026): dźwignia poza dłońmi mają dokładnie 3 ćwiczenia (Donkey: miednica, Standing: barki, Seated: uda); ślad każdego = punkt styku dźwigni (rekwizyt slide.to), nie chwyt', () => {
+    const z = KEYS.filter(k => data(k).sprzet.some(g => g.rodzaj === 'dzwignia' && g.punkt !== 'dlonie')); expect(Object.fromEntries(z.map(k => [k, data(k).sprzet.find(g => g.rodzaj === 'dzwignia')!.punkt]))).toEqual(DZWIGNIA_POZA_DLONMI);
+    for (const k of z) for (const u of us) { const f = keyframeFrame(data(k), u); const s = f.props.find(p => p.k === 'slide') as { to: number[] }; for (let i = 0; i < 3; i++) expect([k, u, i, f.info.trail![i]]).toEqual([k, u, i, expect.closeTo(s.to[i], 6)]); }
+  });
+  test('Donkey Calf Raise: ślad = miednica w każdej klatce, rośnie o ≥ 10 cm (ok. 14 cm); przypadek negatywny: ślad nie jest chwytem dłoni (≥ 20 cm od niego)', () => {
+    const d = data('Donkey Calf Raise'); const y = us.map(u => { const f = keyframeFrame(d, u); for (let i = 0; i < 3; i++) expect(f.info.trail![i]).toBeCloseTo(f.sk.pelvis[i], 6); return f.info.trail![1]; });
+    expect(Math.max(...y) - Math.min(...y)).toBeGreaterThanOrEqual(10);
+    const f = keyframeFrame(d, 0.5); expect(odlSladu(f, f.info.trail!)).toBeGreaterThan(20);
   });
   test('ćwiczenia z ciężarem w rękach (sztanga, Smith, linki, guma, hantle, sztanga siedząc): ślad ≤ 3 cm od chwytu w każdej klatce; stojąc ślad rośnie razem z wspięciem', () => {
     for (const k of ['Calf Raise (sztanga)', 'Smith Machine Calf Raise', 'Calf Raise (linki)', 'Band Calf Raise', 'Barbell Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Dumbbell Seated One-Leg Calf Raise']) {
@@ -97,17 +104,21 @@ describe('calf_raise p1: odstęp ciężaru od nóg (K7)', () => {
     for (const k of ZCIEZAREM) { const m = Math.max(...stykTora(k).map(x => x.przenikanie)); expect([k, m <= 1]).toEqual([k, true]); }
     expect(PROG_STYKU.przenikanieCm).toBeLessThan(1);
   });
-  test('przypadek negatywny: Seated Calf Raise (maszyna, pręt przy kostkach, wstrzymana) przenika stopy o > 5 cm — miara potrafi paść', () => {
-    expect(Math.max(...stykTora('Seated Calf Raise').map(x => x.przenikanie))).toBeGreaterThan(5);
+  test('Seated Calf Raise (maszyna): poduszka na udach — przenikanie ≤ 1 cm w każdej klatce (P1-CALF-1; wstrzymana do recenzji różnicy)', () => {
+    expect(Math.max(...stykTora('Seated Calf Raise').map(x => x.przenikanie))).toBeLessThanOrEqual(1);
+  });
+  test('przypadek negatywny (dane sprzed 11.11.2026: pręt przy kostkach, punkt „kostki”): przenika stopy o > 5 cm — miara potrafi paść', () => {
+    const stare: PoseData = { ...data('Seated Calf Raise'), sprzet: data('Seated Calf Raise').sprzet.map(g => g.rodzaj === 'dzwignia' ? { rodzaj: 'dzwignia', tryb: 'prosta', kat: 52.8, punkt: 'kostki', trzyma: 'R', x: 42, y: 11.1, z: 10, dlugosc: 15.8 } : g) };
+    expect(Math.max(...stykPozy(stare).map(x => x.przenikanie))).toBeGreaterThan(5);
   });
 });
 
 describe('calf_raise p1: nakładka techniki', () => {
-  test('rejestr: jeden element (ref segment biodro → kolano, reguła kolana_proste, cue calf.knees); element dostają 4 pokazywane ćwiczenia, których karta ma calf.knees i reguła „ustalone” kolana_proste (Standing Calf Raise ma je na karcie, ale jest wstrzymane)', () => {
+  test('rejestr: jeden element (ref segment biodro → kolano, reguła kolana_proste, cue calf.knees); element dostają 5 pokazywanych ćwiczeń, których karta ma calf.knees i reguła „ustalone” kolana_proste (11.11.2026, W-02: + Standing Calf Raise po zdjęciu z V2_WSTRZYMANE; wcześniej 4)', () => {
     expect(Object.prototype.hasOwnProperty.call(TECHNIQUE, FAM)).toBe(true); expect(TECHNIQUE[FAM]).toBe(CALF_RAISE_TECHNIQUE);
     expect(CALF_RAISE_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.cue, d.views])).toEqual([['calfKneeStraightRef', 'ref', 'kolana_proste', ['calf.knees'], ['side']]]);
     for (const d of CALF_RAISE_TECHNIQUE) expect(['limb', 'abduction', 'ref']).toContain(d.kind);
-    expect(KEYS.filter(k => techniquesOf(k).includes('calfKneeStraightRef')).sort()).toEqual(['Calf Raise (linki)', 'Calf Raise (sztanga)', 'Smith Machine Calf Raise', 'Łydki na stopniu'].sort());
+    expect(KEYS.filter(k => techniquesOf(k).includes('calfKneeStraightRef')).sort()).toEqual(['Calf Raise (linki)', 'Calf Raise (sztanga)', 'Smith Machine Calf Raise', 'Standing Calf Raise', 'Łydki na stopniu'].sort());
     const z = (k: string) => techniquesFor(FAM, ['calf.knees', 'calf.move'], k).map(d => d.id); /* z wymuszonym cue: reguły wykluczają jednonóż i siad */
     for (const k of [...JEDNONOZ, ...SIEDZACE]) expect([k, z(k)]).toEqual([k, []]);
   });
