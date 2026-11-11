@@ -1,0 +1,19 @@
+{
+ "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN): dwa nowe punkty wpisu „Co nowego” 1.1 (W-08, 11.11.2026, docs/18). Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności, wczytywany przez tests/pending-translation.ts). Przekład przez API (przeklad-tlumaczen.yml z gałęzi wyd/w08-1-1, ZB-057), recenzja recenzent-lokalizacji, po nałożeniu opróżnić listę.",
+ "data": "2026-11-11",
+ "status": "otwarty - czeka na przekład API (2 klucze)",
+ "klucze": [
+  {
+   "rodzaj": "nowy",
+   "pl": "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.",
+   "en": "Most exercises in the library now have movement drawings: machines and cables, kettlebells, jumps, abs, mobility and much more.",
+   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdanie oznajmujące, kończy się kropką): animowane rysunki pokazujące ruch ćwiczenia; wyliczenie to grupy ćwiczeń, potocznie jak na siłowni"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.",
+   "en": "Library exercise names are in English, as in most gyms. On the exercise card, the name in your language appears below it, and search finds the exercise by either name.",
+   "kontekst": "punkt listy „Co nowego” (nie pokazywany po angielsku): nazwy ćwiczeń zostają angielskie we wszystkich językach; „w Twoim języku” = język tego przekładu; forma „ty” jak w reszcie aplikacji"
+  }
+ ]
+}

@@ -1,5 +1,5 @@
 import { getState, save, finishedWorkouts } from '@/lib/store';
-import { t, appName } from '@/lib/i18n';
+import { t, appName, lang } from '@/lib/i18n';
 
 /*
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję; po aktualizacji na „i” jest
@@ -17,14 +17,17 @@ export type WhatsNewEntry = { id: string; build?: number; date: string; items: (
  * się nie pokazują (components/WhatsNew.tsx); pierwszy wpis 1.1 przywraca je bez zmian w komponencie. Pilnuje tests/whats-new.test.tsx.
  */
 export const WHATS_NEW: WhatsNewEntry[] = [
-  /* 1.0.1 (decyzja właściciela 06.11.2026, wariant B, docs/18): wersja testowa TestFlight tylko dla właściciela z obecnego stanu integracja-1-1 (prace linii 1.1); wpis przywraca przycisk ✦.
-   * Bez numeru buildu — dopisuje się po przebiegu testflight.yml. id '2026-11-06', data 06.11.2026. Przekład na 33 języki: docs/lokalizacja/zestaw-przekladu-2026-11-06-co-nowego.json. */
-  { id: '2026-11-06', date: '2026-11-06', items: () => [
-    t('Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.'),
+  /* 1.1.0 (W-08, 11.11.2026, docs/18; tryb analogia do weta): jeden wpis 1.1 zastępuje wpis 1.0.1 (id 2026-11-06) — 1.0.1 był tylko buildem TestFlight właściciela, użytkownik App Store
+   * aktualizuje się z 1.0.0. Nowe id = kropka wraca także po wpisie 1.0.1. Cztery punkty z 1.0.1 bez zmian brzmienia (przekłady zostają); dwa nowe: rysunki ruchu (528 z 708 ćwiczeń z figurą v2,
+   * docs/55) i nazwy EN z nazwą lokalną (ZB-044) — ten punkt tylko poza angielskim (po angielsku nazwy się nie zmieniły). Bez numeru buildu — dopisuje się po przebiegu testflight.yml.
+   * Przekład 33 języków: docs/lokalizacja/zestaw-przekladu-2026-11-11-co-nowego-1-1.json. */
+  { id: '2026-11-11', date: '2026-11-11', items: () => [
+    t('Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.'),
     t('Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.'),
+    ...(lang() === 'en' ? [] : [t('Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.')]),
     t('Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.'),
     t('Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.'),
-    t('Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.', { app: appName() }) /* nazwa 1.1: 09.11.2026, docs/18, ZB-056; przekład: docs/lokalizacja/zestaw-przekladu-2026-11-09-nazwa.json */,
+    t('Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.', { app: appName() }) /* nazwa 1.1: 09.11.2026, docs/18, ZB-056 */,
   ] },
 ];
 

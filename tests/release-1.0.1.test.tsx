@@ -3,27 +3,14 @@
  * bo 1.0.0 jest wydana w App Store (05.11.2026). Odrzucone: A — 1.1.0. Wyjątek (wariant A): ten build bez audytu zmian; kontrola zastępcza w docs/18 i docs/zobowiazania.md (ZB-043).
  * Wersja w app.json, package.json i package-lock.json; wpis „Co nowego” (lib/whatsnew.ts) — przycisk ✦ wraca; zachowanie: tests/whats-new.test.tsx.
  */
-import { WHATS_NEW } from '@/lib/whatsnew';
-import { BRAND_NAME } from '@/lib/brand';
 
 const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path');
 const R = (f: string) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
 const J = (f: string) => JSON.parse(R(f));
 
 describe('wersja 1.0.1 (TestFlight dla właściciela, 06.11.2026)', () => {
-  test('app.json, package.json i package-lock.json (projekt) — 1.0.1', () => {
-    const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['1.0.1', '1.0.1', '1.0.1', '1.0.1']);
-  });
-  test('historia „Co nowego” ma jeden wpis 1.0.1 (id 2026-11-06, 4 punkty z 1.0.1 + punkt o nazwie 1.1 z 09.11.2026, bez numeru buildu do czasu przebiegu testflight.yml)', () => {
-    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-06']); expect(WHATS_NEW[0].items()).toEqual([
-      'Nowe rysunki ruchu w ćwiczeniach na triceps oraz w podrzutach, rwaniach i ich odmianach.',
-      'Nowe i dopracowane wskazówki techniki, m.in. dla barków, ćwiczeń mocy i mobilności.',
-      'Zapowiedzi głosowe używają najlepszego głosu zainstalowanego w telefonie.',
-      'Nowa osoba zaczyna na ekranie Trening od przycisku „Zacznij pierwszy trening” i tablicy „Pierwszy trening”.',
-      `Aplikacja nazywa się teraz ${BRAND_NAME}. Treningi, szablony i ustawienia zostają bez zmian.` /* 09.11.2026, ZB-056 */,
-    ]);
-  });
+  /* Wersja 1.0.1 i wpis „Co nowego” 2026-11-06 zastąpione przez 1.1.0 i wpis 2026-11-11 (W-08, decyzja 11.11.2026 w docs/18) — stan pilnuje tests/release-1.1.0.test.tsx;
+   * tu zostaje historia wydania 1.0.1 (build, decyzja, dziennik wydań). */
   test('numer buildu liczy testflight.yml (BUILD_BASE + numer przebiegu), nie plik w repo', () => {
     expect(R('.github/workflows/testflight.yml')).toMatch(/BUILD_NUMBER=\$\(\(BUILD_BASE \+ GITHUB_RUN_NUMBER\)\)/);
   });

@@ -2,6 +2,7 @@
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening, kropka po aktualizacji (tylko u kogoś, kto już
  * trenował), sekcja rozwijana: bieżący wpis na górze, starsze zwinięte. State.whatsNewSeen (id wpisu). Wzór: Organizer (karta po aktualizacji).
  * 1.0.1 (decyzja właściciela 06.11.2026, docs/18): w kodzie jeden wpis (wcześniej, w 1.0.0, historia była pusta — bez przycisku, kropki i panelu).
+ * 1.1.0 (W-08, 11.11.2026, docs/18): wpis 1.1 (id 2026-11-11) zastąpił wpis 1.0.1 — nadal jeden wpis w kodzie; treść punktów: tests/release-1.1.0.test.tsx.
  * Zachowanie przy wpisach (pierwszy wpis 1.1) sprawdzają próbki z tests/whatsnew-probki.ts.
  * Rodzaje (docs/20): logika (lista wpisów, kropka), dane (zapis/odczyt, sanityzacja, dane bez pola 1:1), ekran (położenie, kropka, rozwijanie,
  * starsze wpisy, zamknięcie, brak w trakcie treningu, pusta historia), VoiceOver (etykieta z informacją o nowościach, stan rozwinięcia), języki (EN).
@@ -22,9 +23,9 @@ afterEach(() => { applyLang('pl'); });
 const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
 const withWorkout = () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); };
 
-describe('1.0.1 (decyzja właściciela 06.11.2026, wariant B): jeden wpis w kodzie', () => {
-  test('lista w kodzie: jeden wpis 2026-11-06 (bez numeru buildu), 5 punktów z kropką, bez nazw źródeł i marek', () => {
-    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-06']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-06');
+describe('jeden wpis w kodzie (1.0.1 z 06.11.2026; od 11.11.2026 wpis 1.1, W-08)', () => {
+  test('lista w kodzie: jeden wpis 2026-11-11 (bez numeru buildu), punkty z kropką, bez nazw źródeł i marek', () => {
+    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-11']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-11');
     const it = WHATS_NEW[0].items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/));
     expect(it.join(' ')).not.toMatch(/Strong|Hevy|Fitbod|JEFIT|ExRx|Stronger by Science|ACSM|NSCA/i);
   });
@@ -35,7 +36,7 @@ describe('1.0.1 (decyzja właściciela 06.11.2026, wariant B): jeden wpis w kodz
   test('kropka: nowa osoba — nie; po treningu i innym zapisanym id — tak; otwarcie zapisuje id wpisu', () => {
     expect(whatsNewUnseen()).toBe(false);
     withWorkout(); S().whatsNewSeen = '2026-10-17'; expect(whatsNewUnseen()).toBe(true); /* osoba po aktualizacji z 0.20 / 1.0.0 bez zapisanego id */
-    markWhatsNewSeen(); expect(S().whatsNewSeen).toBe('2026-11-06'); expect(whatsNewUnseen()).toBe(false);
+    markWhatsNewSeen(); expect(S().whatsNewSeen).toBe('2026-11-11'); expect(whatsNewUnseen()).toBe(false);
   });
   test('ekran Trening: przycisk ✦ jest także u nowej osoby (bez kropki); po treningu kropka; otwarcie pokazuje wpis i zamknięcie go chowa', async () => {
     await boot(); expect(screen.getByTestId('whats-new-i')).toBeTruthy(); expect(screen.queryByTestId('whats-new-dot')).toBeNull();
