@@ -1,13 +1,13 @@
 /*
  * Nazwy lokalne ćwiczeń — dane i generator (ZB-044; decyzja koordynatora KO-044 B 11.11.2026, W-03; decyzje właściciela 07.11 i 08.11.2026 w docs/18).
  * Rodzaje (docs/20): dane (komplet PL dla katalogu, klucze z katalogu, długość), logika (tylko język z recenzją „zatwierdzone” trafia do aplikacji;
- * autor ≠ recenzent — L-047), proces (lib/nazwy-lokalne.ts generowany, --check), regresja (zestaw nazw nie wchodzi do PENDING testów interfejsu).
+ * autor ≠ recenzent — L-047), proces (lib/nazwy-lokalne.generated.ts generowany, --check), regresja (zestaw nazw nie wchodzi do PENDING testów interfejsu).
  * Skrypty są modułami ESM — wywołanie przez `node --input-type=module`.
  */
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
-import { NAZWY_LOKALNE, NAZWY_LOKALNE_RECENZJA } from '@/lib/nazwy-lokalne';
+import { NAZWY_LOKALNE, NAZWY_LOKALNE_RECENZJA } from '@/lib/nazwy-lokalne.generated';
 import { NAME_EN } from '@/lib/nazwy-en.generated';
 import { CATALOG } from '@/lib/catalog.generated';
 import { PENDING } from './pending-translation';
@@ -24,7 +24,7 @@ describe('nazwy lokalne: dane (W-03 11.11.2026)', () => {
     expect(kat.filter(k => !DANE.nazwy[k]?.pl)).toEqual([]);
     expect(Object.keys(DANE.nazwy).filter(k => !(k in CATALOG))).toEqual([]);
   });
-  test('generator: dane bez błędów (długość, puste, języki, recenzja) i lib/nazwy-lokalne.ts aktualny', () => {
+  test('generator: dane bez błędów (długość, puste, języki, recenzja) i lib/nazwy-lokalne.generated.ts aktualny', () => {
     expect(execFileSync(process.execPath, [path.join(ROOT, 'scripts/i18n/gen-nazwy-lokalne.mjs'), '--check'], { encoding: 'utf8' })).toMatch(/aktualny/);
   });
   test('w aplikacji tylko języki z recenzją „zatwierdzone”, każdy z polem recenzji (autor ≠ recenzent)', () => {

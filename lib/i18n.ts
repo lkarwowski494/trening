@@ -3,7 +3,7 @@ import { EN } from './i18n.en';
 import { LOCALES } from './locales';
 import { pluralIndex } from './plural';
 import { NAME_EN } from './nazwy-en.generated';
-import { NAZWY_LOKALNE } from './nazwy-lokalne';
+import { NAZWY_LOKALNE } from './nazwy-lokalne.generated';
 import { exRenamed } from './przemianowane';
 export { exRenamed };
 
@@ -152,7 +152,7 @@ export function exName(e: { name: string; lib?: boolean; libKey?: string } | und
  * głos angielski; ćwiczenia własne i przemianowane (lib = false) — głos języka interfejsu. Dotyczy tylko elementów z samą nazwą (nagłówek, tytuł wiersza). */
 export function exNameLang(e: { name?: string; lib?: boolean; libKey?: string } | undefined | null): Lang { return e?.lib && !(e.name !== undefined && exRenamed({ name: e.name, lib: true, libKey: e.libKey })) ? 'en' : current; }
 
-/** ZB-044 (08.11.2026, wariant A „Podpis”): nazwa lokalna (język interfejsu) ćwiczenia z biblioteki — tylko z listy po recenzji (lib/nazwy-lokalne.ts); brak wpisu, ćwiczenie własne,
+/** ZB-044 (08.11.2026, wariant A „Podpis”): nazwa lokalna (język interfejsu) ćwiczenia z biblioteki — tylko z listy po recenzji (lib/nazwy-lokalne.generated.ts); brak wpisu, ćwiczenie własne,
  * język angielski albo nazwa identyczna z angielską (bez wielkości liter) → undefined. Pokazuje ją tylko karta ćwiczenia; wyszukiwanie używa jej też (exLocalFold). */
 export function exLocal(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string | undefined {
   if (!e || !e.lib || current === 'en' || exRenamed(e)) return undefined;

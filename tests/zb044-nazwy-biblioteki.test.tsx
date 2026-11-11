@@ -1,11 +1,11 @@
 /*
  * ZB-044 (decyzje właściciela 07.11.2026 i 08.11.2026, docs/18; zastępuje DEC-13): nazwy ćwiczeń z biblioteki po angielsku we WSZYSTKICH językach, także polskim;
- * karta ćwiczenia: tytuł angielski, pod nim nazwa lokalna (wariant A „Podpis”) — tylko z listy po recenzji (lib/nazwy-lokalne.ts, dziś pusta);
+ * karta ćwiczenia: tytuł angielski, pod nim nazwa lokalna (wariant A „Podpis”) — tylko z listy po recenzji (lib/nazwy-lokalne.generated.ts, dziś pusta);
  * ćwiczenie własne — jedna nazwa; wyszukiwanie także po nazwie lokalnej. Rodzaje (docs/20): logika, macierz języków, ekran (karta, listy), VoiceOver, niezmienniki danych.
  */
 import * as store from '@/lib/store';
 import { exName, exNameLang, exLocal, exLocalFold, applyLang, fold, LANGS, type Lang } from '@/lib/i18n';
-import { NAZWY_LOKALNE, NAZWY_LOKALNE_RECENZJA } from '@/lib/nazwy-lokalne';
+import { NAZWY_LOKALNE, NAZWY_LOKALNE_RECENZJA } from '@/lib/nazwy-lokalne.generated';
 import { CATALOG } from '@/lib/catalog.generated';
 import { fresh, saved, ex } from './helpers';
 import { renderApp, flushAll, screen, act, type as typeText } from './app';

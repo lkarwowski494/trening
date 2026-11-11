@@ -29,7 +29,7 @@
   "components/WorkoutBlocks.tsx": { "n": 3, "powod": "Blok ćwiczenia: usunięte ćwiczenie · serie, „superset · przerwa po rundzie”, znacznik supersetu przed nazwą — stała kolejność." },
   "lib/figures/v2/gear.ts": { "n": 5, "powod": "Znak mnożenia (a·sin(kat), 2·promien) w opisach geometrii sprzętu dla narzędzia (ref(): polecenie dla generatora póz, nie tekst interfejsu aplikacji); nie lista metadanych." },
   "lib/generator.ts": { "n": 1, "powod": "Nazwa planu z generatora: cel, liczba dni · miejsce — stałe pola." },
-  "lib/nazwy-lokalne.ts": { "n": 2, "powod": "11.11.2026 (W-03): 2 nazwy lokalne ko (Chest And Front Of Shoulder Stretch, Standing Soleus And Achilles Stretch) — „·” to w koreańskiej ortografii standardowy spójnik wyliczenia (가운뎃점), nie separator wzorca 28; dane słownika, nie układ UI." },
+  "lib/nazwy-lokalne.generated.ts": { "n": 2, "powod": "11.11.2026 (W-03): 2 nazwy lokalne ko (Chest And Front Of Shoulder Stretch, Standing Soleus And Achilles Stretch) — „·” to w koreańskiej ortografii standardowy spójnik wyliczenia (가운뎃점), nie separator wzorca 28; dane słownika, nie układ UI." },
   "lib/healthRead.ts": { "n": 3, "powod": "Linie Zdrowia: aktywność · czas · dystans, kroki · inne aktywności, tętno · kcal — metadane w stałej kolejności, puste pominięte." },
   "lib/live.ts": { "n": 4, "powod": "Live Activity i zegarek: ćwiczenie · seria, „seria n z m · drop set”, wynik serii dystans · czas — stała kolejność, krótkie etykiety ekranu blokady." },
   "lib/planReminder.ts": { "n": 1, "powod": "Przypomnienie: szablon · miejsce — dwa pola w stałej kolejności." },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Nazwy lokalne ćwiczeń (ZB-044, W-03, decyzja koordynatora KO-044 B 11.11.2026; decyzje właściciela 07.11 i 08.11.2026 w docs/18):
-// źródło docs/lokalizacja/nazwy-lokalne.json → lib/nazwy-lokalne.ts. Do aplikacji trafia język TYLKO z recenzją o wyniku „zatwierdzone”
+// źródło docs/lokalizacja/nazwy-lokalne.json → lib/nazwy-lokalne.generated.ts. Do aplikacji trafia język TYLKO z recenzją o wyniku „zatwierdzone”
 // (pole recenzji: kto, kiedy, plik zapisu; autor przekładu ≠ recenzent — L-047). Generowane z danych, nie przepisywane ręcznie (wzór: gen.mjs --check).
 // Uruchom: node scripts/i18n/gen-nazwy-lokalne.mjs --write | --check (kod wyjścia 1 = plik nieaktualny albo dane błędne)
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const ZRODLO = 'docs/lokalizacja/nazwy-lokalne.json';
-export const CEL = 'lib/nazwy-lokalne.ts';
+export const CEL = 'lib/nazwy-lokalne.generated.ts';
 /** Najdłuższa nazwa lokalna (znaki) — podpis pod tytułem karty (docs/32 wzorzec 34); dłuższa = błąd danych. */
 export const MAX_ZNAKOW = 60;
 

@@ -6,7 +6,7 @@
 import * as store from '@/lib/store';
 import { indexExercises, matchExercise } from '@/lib/csvparse';
 import { exName, exRenamed, exNameLang, exLocal, applyLang, LANGS, type Lang } from '@/lib/i18n';
-import { NAZWY_LOKALNE } from '@/lib/nazwy-lokalne';
+import { NAZWY_LOKALNE } from '@/lib/nazwy-lokalne.generated';
 import { formerNamesOf, type Exercise } from '@/lib/seed';
 import { fresh, saved, ex } from './helpers';
 import { renderApp, flushAll, screen, act, type as typeText } from './app';

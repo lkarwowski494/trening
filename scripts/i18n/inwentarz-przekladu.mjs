@@ -3,7 +3,7 @@
 // Zakres: (1) teksty interfejsu — klucze słownika EN (lib/i18n.en.ts) bez wpisu w lib/locales/<język>.json (nakładki es-419/pt-BR: z językiem bazowym);
 // (2) teksty „zmienione” — klucze z zestawów docs/lokalizacja/zestaw-przekladu-*.json rodzaju „zmieniony” (słownik trzyma stare tłumaczenie);
 // (3) wskazówki techniki — identyfikatory lib/cues/text/pl.json bez wpisu w lib/cues/text/<język>.json (z nakładką jak wyżej);
-// (4) nazwy lokalne ćwiczeń (ZB-044) — klucze NAME_EN bez nazwy w lib/nazwy-lokalne.ts (PL liczony osobno, bo też wymaga listy po recenzji).
+// (4) nazwy lokalne ćwiczeń (ZB-044) — klucze NAME_EN bez nazwy w lib/nazwy-lokalne.generated.ts (PL liczony osobno, bo też wymaga listy po recenzji).
 // Użycie: node scripts/i18n/inwentarz-przekladu.mjs [--md plik.md] [--json plik.json]. Kod wyjścia 0 (to raport, nie bramka).
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
@@ -34,7 +34,7 @@ export function inwentarz() {
   const cuePl = czytaj('lib/cues/text/pl.json');
   const cue = Object.fromEntries(jezyki.map((j) => [j, existsSync(join(ROOT, `lib/cues/text/${j}.json`)) ? czytaj(`lib/cues/text/${j}.json`) : {}]));
   const nazwyEn = Object.keys(literaly('lib/nazwy-en.generated.ts'));
-  const nlSrc = readFileSync(join(ROOT, 'lib/nazwy-lokalne.ts'), 'utf8');
+  const nlSrc = readFileSync(join(ROOT, 'lib/nazwy-lokalne.generated.ts'), 'utf8');
   const nl = /NAZWY_LOKALNE[^=]*=\s*\{\s*\}/.test(nlSrc) ? {} : null; // dziś pusta mapa; po wypełnieniu liczenie z pliku danych
   const ma = (j, d, k) => k in d[j] || (NAKLADKI[j] && k in d[NAKLADKI[j]]);
   const wiersze = jezyki.map((j) => {

@@ -854,7 +854,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-BIB-013: Nazwy ćwiczeń z biblioteki po angielsku we wszystkich językach, nazwa lokalna tylko na karcie (07.11.2026 i 08.11.2026, ZB-044; zastępuje DEC-13)
 - Przepływ: PR-01
-- Dowód potrzeby: decyzje właściciela 07.11.2026 i 08.11.2026 (docs/18: wariant A „Podpis”); `lib/i18n.ts` (`exName`, `exRenamed`, `exNameLang`, `exLocal`, `exLocalFold`), lista nazw po recenzji `lib/nazwy-lokalne.ts` (dziś pusta), karta `app/exercise/[id].tsx`; makieta `docs/design/karta-nazwy/` (gałąź `studio/naglowek-karty-nazwy`)
+- Dowód potrzeby: decyzje właściciela 07.11.2026 i 08.11.2026 (docs/18: wariant A „Podpis”); `lib/i18n.ts` (`exName`, `exRenamed`, `exNameLang`, `exLocal`, `exLocalFold`), lista nazw po recenzji `lib/nazwy-lokalne.generated.ts` (dziś pusta), karta `app/exercise/[id].tsx`; makieta `docs/design/karta-nazwy/` (gałąź `studio/naglowek-karty-nazwy`)
 - Ekrany: `app/exercise/[id].tsx`, `app/exercises.tsx`, `app/picker.tsx`, `app/swap.tsx`, `app/(tabs)/progress.tsx`, `app/more/import.tsx`, wszystkie miejsca z nazwą ćwiczenia (`exName`), zegarek (`lib/watch/snapshot.ts`), eksport CSV (`lib/backup.ts`)
 - Test: `tests/zb044-nazwy-biblioteki.test.tsx`, `tests/zb044-przemianowane.test.tsx`, `.maestro/37-jezyk-motyw-trwale.yaml`
 - Kryteria akceptacji:
