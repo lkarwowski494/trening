@@ -12,13 +12,13 @@ const a01 = ease;
 export const PRZYBLIZENIA = {
   'Hip Abduction': 'przybliżenie: dźwignia maszyny (punkt: kostki) obraca się wokół pionowej osi biodra, schematycznie — nakładki na uda niemodelowane',
   'Hip Adduction': 'przybliżenie: dźwignia maszyny (punkt: kostki) obraca się wokół pionowej osi biodra, schematycznie — nakładki na uda niemodelowane',
-  'Lateral Band Walk': 'pokazany jeden krok w bok (noga prawa wychodzi na zewnątrz, lewa dostawia się poza kadrem): miednica nie przesuwa się w poziomie (model nie przesuwa miednicy w bok)',
-  'Monster Walk': 'pokazany jeden krok po skosie w przód (noga prawa), druga dostawia się poza kadrem; miednica nie przesuwa się w poziomie (model nie przesuwa miednicy w bok)',
+  'Lateral Band Walk': 'marsz na bieżni: miednica nie przesuwa się w poziomie, stopy ruszają się względem miednicy (krok prawą w bok, dostawienie lewej; stopa podporowa wsuwa się do środka); tryb jednokierunkowa zamiast cykl_lustro (lustro odwracałoby kierunek kroku)',
+  'Monster Walk': 'marsz na bieżni: miednica stoi, stopa podporowa cofa się względem niej, przenoszona leci do przodu i na zewnątrz (szerokość stóp 28–52 cm); jeden cykl = krok prawą i lewą (jednokierunkowa)',
 };
 export const WYJATKI = {
   'Band Hip Adduction': 'guma ma w modelu tylko pętlę między kostkami (opór rośnie, gdy kostki się oddalają) albo linię do dłoni; przywodzenie (zbliżanie nóg) przeciw gumie zaczepionej do kostki wymaga zaczepu na kostce, którego model gumy nie ma — pętla między kostkami pomagałaby ruchowi zamiast mu przeciwdziałać',
-  'Lateral Band Walk': 'rysunek wstrzymany po recenzji niezależnej partii 3 (09.11.2026, H-1/H-2 WYSOKIE): wahadło jednej nogi (krok w bok i powrót tą samą nogą) przeczy karcie bw.move / zestawowi bandWalk („dociągnij drugą nogę”, „przez cały marsz”); poprawka w backlogu docs/21 — marsz w trybie cykl_lustro (prawa wychodzi, lewa dostawia, stopa podporowa wraca jak w chodzie carry) i fazy marszu',
-  'Monster Walk': 'rysunek wstrzymany po recenzji niezależnej partii 3 (09.11.2026, H-1/H-2 WYSOKIE): wahadło jednej nogi (krok w bok i powrót tą samą nogą) przeczy karcie bw.move / zestawowi bandWalk („dociągnij drugą nogę”, „przez cały marsz”); poprawka w backlogu docs/21 — marsz w trybie cykl_lustro (prawa wychodzi, lewa dostawia, stopa podporowa wraca jak w chodzie carry) i fazy marszu',
+  'Lateral Band Walk': 'rysunek wstrzymany po recenzji niezależnej partii 3 (09.11.2026, H-1/H-2 WYSOKIE): wahadło jednej nogi (krok w bok i powrót tą samą nogą) przeczy karcie bw.move / zestawowi bandWalk („dociągnij drugą nogę”, „przez cały marsz”); poprawka GOTOWA w generatorze (krokBok/krokPotwor, P3-MARSZ 11.11.2026, wariant A: jednokierunkowa) — wstrzymanie zdejmuje koordynator po recenzji niezależnej (usunąć ten wpis, uruchomić run.mjs --zastosuj, przeliczyć skróty)',
+  'Monster Walk': 'rysunek wstrzymany po recenzji niezależnej partii 3 (09.11.2026, H-1/H-2 WYSOKIE): wahadło jednej nogi (krok w bok i powrót tą samą nogą) przeczy karcie bw.move / zestawowi bandWalk („dociągnij drugą nogę”, „przez cały marsz”); poprawka GOTOWA w generatorze (krokBok/krokPotwor, P3-MARSZ 11.11.2026, wariant A: jednokierunkowa) — wstrzymanie zdejmuje koordynator po recenzji niezależnej (usunąć ten wpis, uruchomić run.mjs --zastosuj, przeliczyć skróty)',
 };
 function zloz(cw, sprzet, klatki, bledy = []) { const b = bledyZOpisem(cw, bledy, PRZYBLIZENIA); const p = poza(RODZINA, cw, sprzet, klatki, b); for (const x of b) if (x.dod) dodajDotyczy(p, x.cue, ...x.dod); return p; }
 
@@ -49,14 +49,32 @@ function wyciag(cw, { dir }) {
   return zloz(cw, sprzet, ok.map((r) => r.f), bl ? [bl] : []);
 }
 
-/** Kroki z gumą na kostkach w półprzysiadzie (kolana 40–50°, tułów pochylony 20°): krok = prawa kostka wychodzi na bok (bok) albo po skosie w przód (potwor). */
-function krok(cw, { tryb }) {
-  const lean = 20; const ax = 0; const zs = 14; const kn = 58; const aL = [ax, 7, -zs]; const pelY = hipY(aL, ax - 6, -HIP(), kn); const m = [ax - 6, pelY];
-  const stopa = (u) => { const a = a01(u); const lift = Math.sin(Math.PI * Math.min(1, u * 1.25)) * 6; return tryb === 'bok' ? [ax, 7 + lift, lerp(zs, 40, a)] : [lerp(ax, 26, a), 7 + lift, lerp(zs, 28, a)]; };
-  const fr = (u) => { const aR = stopa(u); const Sx = S(m, lean); const hipR = [m[0], m[1], HIP()]; const kneeDir = nrm([0.7, 0.1, 0.35]);
-    return K({ u, m, p: lean, head: lean * 0.5, R: { a: aR, pod: u > 0.99 ? 0 : 0, rot: 10, odch: 6, pole: [kneeDir[0], kneeDir[1], kneeDir[2]] }, L: { a: aL, pod: 0, rot: 10, odch: 6, pole: [0.7, 0.1, -0.2] }, hr: { g: [Sx[0] + 26, Sx[1] - 16, 9], pole: [-0.3, -0.2, 1] }, hl: { g: [Sx[0] + 26, Sx[1] - 16, -9], pole: [-0.3, -0.2, -1] } }); };
-  return zloz(cw, [PODLOGA(-80, 120), { rodzaj: 'guma', mocowanie: 'kostki' }], US.map(fr));
+/** Marsze z gumą na kostkach (P3-MARSZ, 11.11.2026; wariant A koordynatora): półprzysiad (kolana ok. 58°, tułów pochylony 20°), stopa podporowa wsuwa się względem miednicy (marsz „na bieżni” jak w carry),
+ * stopa przenoszona odrywa się, wychodzi i ląduje. Tryb `jednokierunkowa`: u 0 → 1 = CAŁE powtórzenie (krok prawą i dostawienie / krok lewą), klatka u = 1 ≡ u = 0, więc pętla jest ciągła.
+ * `cykl_lustro` odpada: lustro odwraca też kierunek (krok w prawo, potem w lewo), a to właśnie wahadło odrzucone w recenzji H-1. */
+const LEAN = 20; const KN = 58; const MX = -6; const ZH = 14; const LIFT = 7;
+const POLE = (sg) => nrm([0.7, 0.1, sg * 0.3]);
+function klatkaMarszu(u, { a, podp }) {
+  const hz = HIP(); const ys = ['R', 'L'].filter((k) => podp[k]).map((k) => hipY(a[k], MX, (k === 'R' ? 1 : -1) * hz, KN)); const m = [MX, Math.min(...ys)]; const Sx = S(m, LEAN);
+  const noga = (k, sg) => ({ a: a[k], pod: 0, rot: 10, odch: 6, pole: POLE(sg) });
+  return K({ u, m, p: LEAN, head: LEAN * 0.5, R: noga('R', 1), L: noga('L', -1), hr: { g: [Sx[0] + 26, Sx[1] - 16, 9], pole: [-0.3, -0.2, 1] }, hl: { g: [Sx[0] + 26, Sx[1] - 16, -9], pole: [-0.3, -0.2, -1] } });
 }
+/** Lateral Band Walk: krok prawą w bok (u 0 → 0,5; lewa stoi i wsuwa się względem miednicy), dostawienie lewej (u 0,5 → 1; prawa wsuwa się do środka). Szerokość stóp 28 → 54 → 28 cm. */
+function krokBok(cw) {
+  const Z = { R: [14, 24, 27, 20.5, 14], L: [-14, -20.5, -27, -17, -14] }; const fr = (u, i) => {
+    const l = (k) => Math.sin(Math.PI * Math.min(1, Math.max(0, k)));
+    const unR = i === 1 ? LIFT : 0; const unL = i === 3 ? LIFT : 0;
+    return klatkaMarszu(u, { a: { R: [0, 7 + unR * l(1 / 2), Z.R[i]], L: [0, 7 + unL * l(1 / 2), Z.L[i]] }, podp: { R: i !== 1, L: i !== 3 } }); };
+  return zlozJedn(cw, US.map((u, i) => fr(u, i)));
+}
+/** Monster Walk: krok po skosie w przód prawą, potem lewą (naprzemiennie), stopy stale szeroko (guma napięta); stopa podporowa cofa się względem miednicy (x: +S → −S), przenoszona leci do przodu. */
+function krokPotwor(cw) {
+  const SX = 12; const ZW = 14; const T = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1];
+  const stopa = (ph, sg) => { const t = ph < 0.5 ? ph / 0.5 : (ph - 0.5) / 0.5; if (ph < 0.5) return { a: [SX - 2 * SX * t, 7, sg * ZW], podp: true }; return { a: [-SX + 2 * SX * t, 7 + 8 * Math.sin(Math.PI * t), sg * (ZW + 22 * Math.sin(Math.PI * t))], podp: t > 0.8 || t < 0.05 }; };
+  const fr = (u) => { const r = stopa(u % 1, 1), l = stopa((u + 0.5) % 1, -1); return klatkaMarszu(u, { a: { R: r.a, L: l.a }, podp: { R: r.podp, L: l.podp } }); };
+  return zlozJedn(cw, T.map(fr));
+}
+const zlozJedn = (cw, klatki) => { const p = zloz(cw, [PODLOGA(-80, 120), { rodzaj: 'guma', mocowanie: 'kostki' }], klatki); const { sprzet, klatki: kl, bledy, ...head } = p; return { ...head, petla: 'jednokierunkowa', sprzet, klatki: kl, bledy }; };
 
 export function generuj() {
   return {
@@ -64,7 +82,7 @@ export function generuj() {
     'Hip Adduction': () => maszyna('Hip Adduction', { a0: 38, a1: 8 }),
     'Cable Hip Abduction': () => wyciag('Cable Hip Abduction', { dir: 'abd' }),
     'Cable Hip Adduction': () => wyciag('Cable Hip Adduction', { dir: 'add' }),
-    'Lateral Band Walk': () => krok('Lateral Band Walk', { tryb: 'bok' }),
-    'Monster Walk': () => krok('Monster Walk', { tryb: 'potwor' }),
+    'Lateral Band Walk': () => krokBok('Lateral Band Walk'),
+    'Monster Walk': () => krokPotwor('Monster Walk'),
   };
 }
