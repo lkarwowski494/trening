@@ -1,0 +1,251 @@
+{
+ "zrodlo": "count_tokens (wejście), wyjście z założeń",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "zalozenia_wyjscia": {
+  "obwiednia": 12,
+  "myslenie": 3000
+ },
+ "jezykow": 33,
+ "pozycji": 27,
+ "tokeny_we": 294429,
+ "tokeny_wy": 118295,
+ "koszt_usd": 1.771808,
+ "koszt_wg_modelu": {
+  "claude-opus-5-5": 1.771808,
+  "claude-sonnet-5-5": 0.885904
+ },
+ "wiersze": [
+  {
+   "jezyk": "bg",
+   "pozycji": 27,
+   "we": 8591,
+   "wy": 3638,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "cs",
+   "pozycji": 27,
+   "we": 8648,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "da",
+   "pozycji": 27,
+   "we": 9152,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "de",
+   "pozycji": 27,
+   "we": 8738,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "el",
+   "pozycji": 27,
+   "we": 9407,
+   "wy": 3638,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "es",
+   "pozycji": 27,
+   "we": 9051,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "es-419",
+   "pozycji": 27,
+   "we": 9190,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "et",
+   "pozycji": 27,
+   "we": 8897,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "fi",
+   "pozycji": 27,
+   "we": 8513,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "fr",
+   "pozycji": 27,
+   "we": 8577,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "hr",
+   "pozycji": 27,
+   "we": 8512,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "hu",
+   "pozycji": 27,
+   "we": 9080,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "id",
+   "pozycji": 27,
+   "we": 8668,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "it",
+   "pozycji": 27,
+   "we": 8908,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ja",
+   "pozycji": 27,
+   "we": 9626,
+   "wy": 3520,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ko",
+   "pozycji": 27,
+   "we": 8895,
+   "wy": 3520,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "lt",
+   "pozycji": 27,
+   "we": 8870,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "lv",
+   "pozycji": 27,
+   "we": 8811,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ms",
+   "pozycji": 27,
+   "we": 9394,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "nb",
+   "pozycji": 27,
+   "we": 9082,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "nl",
+   "pozycji": 27,
+   "we": 8795,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "pt",
+   "pozycji": 27,
+   "we": 8898,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "pt-BR",
+   "pozycji": 27,
+   "we": 9031,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ro",
+   "pozycji": 27,
+   "we": 9103,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "ru",
+   "pozycji": 27,
+   "we": 9466,
+   "wy": 3638,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sk",
+   "pozycji": 27,
+   "we": 8665,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sl",
+   "pozycji": 27,
+   "we": 8511,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sr",
+   "pozycji": 27,
+   "we": 8584,
+   "wy": 3638,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "sv",
+   "pozycji": 27,
+   "we": 9267,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "tr",
+   "pozycji": 27,
+   "we": 8629,
+   "wy": 3589,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "uk",
+   "pozycji": 27,
+   "we": 9273,
+   "wy": 3638,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "vi",
+   "pozycji": 27,
+   "we": 8853,
+   "wy": 3569,
+   "model": "claude-opus-5-5"
+  },
+  {
+   "jezyk": "zh-Hant",
+   "pozycji": 27,
+   "we": 8744,
+   "wy": 3520,
+   "model": "claude-opus-5-5"
+  }
+ ]
+}
