@@ -3,7 +3,14 @@
 //  - Scapular Pull-Up: ruch ŁOPATEK na prostych rękach — barki z uniesienia (zwis bierny) do obniżenia, ciało unosi się o kilka cm, kolana nieruchome;
 //  - Dead Hang: ćwiczenie izometryczne — poza statyczna (dwie identyczne klatki), jedynym ruchem w podglądzie jest błąd „bujanie”.
 // Pozy WYLICZONE z modelu (długość ręki z silnika, miednica z bisekcji), błąd pu.noSwing (stopy w przód) jak w pozostałych ćwiczeniach rodziny.
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { v2, r1, klatka, zbuduj } from './model.mjs';
+
+/** Pozy zatwierdzone z importu z przeglądem ruchu (8 ćwiczeń, po poprawkach P1–P4 fali 25 wniesionych do pliku): odtwarzane 1:1 z `pull_up-zatwierdzone.json` (wniesione do generatora 11.11.2026, W-02 C; rysunek użytkownika bez zmian).
+ * Zmiana pozy = zmiana tego pliku po przeglądzie arkusza, nie obejście testu odtwarzalności. */
+const ZATWIERDZONE = JSON.parse(readFileSync(fileURLToPath(new URL('./pull_up-zatwierdzone.json', import.meta.url)), 'utf8'));
+const zatwierdzona = (cw) => () => JSON.parse(JSON.stringify(ZATWIERDZONE[cw]));
 
 export const RODZINA = 'pull_up';
 export const WYJATKI = {};
@@ -33,6 +40,7 @@ function miednicaProstaReka(opis, maxLokiec) {
 
 export function generuj() {
   return {
+    ...Object.fromEntries(Object.keys(ZATWIERDZONE).map((cw) => [cw, zatwierdzona(cw)])),
     'Wide-Grip Rear Pull-Up': () => {
       /* drążek 245, chwyt ±35; miednica stale w x = 4,5 (bez bujania ≤ 3 cm), tułów do 3° (reguła tulow_pion), głowa wysunięta przed drążek od ok. u = 0,25 (przechodzi przed nim, nie przez niego) */
       /* P4 (fala 25, 01.11.2026): na dole ręce proste (łokieć ≤ LOKIEC_DOL_DEG; było 21,9°) — miednica z tego samego skanu co Dead Hang; dodatkowa klatka u = 0,05 (+1 cm) łagodzi start z prostych rąk (ciągłość) */

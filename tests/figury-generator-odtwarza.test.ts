@@ -18,12 +18,9 @@ const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); }
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
 const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   calf_raise: [/* ACG-020 31.10.2026 (podest pod przodostopiem; generator do backlogu) */ 'Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise', 'Dumbbell Seated One-Leg Calf Raise'],
-  hip_abd_add: ['Cable Hip Abduction'],
-  mobility_stand: [/* ACG-013 31.10.2026 (figura na stopniu) */ 'Standing Gastrocnemius Calf Stretch'],
-  pull_up: ['Gironda Sternum Chins', 'Chin Up', 'Mixed Grip Chin', 'Neutral Grip Pull Up', 'One Arm Chin-Up', 'Pull Up', 'Side To Side Chins', 'Gorilla Chin/Crunch'],
 };
 /* 09.11.2026 (recenzja r1 row, W1/Ś1): row odświeżone z generatora (nogi proste w leżących, pozy błędu mis.roundBack) — plik ≡ generuj(), rodzina wychodzi z listy rozjazdów i wchodzi do zakresu; shrug (partia 3, 09.11.2026) także wychodzi z listy rozjazdów (scalenie 10.11.2026: suma obu stron) */
-const W_ZAKRESIE = ['lunge', /* 10.11.2026: rodzina włączona (partia 9); generator odtwarza plik póz */ 'row', 'dip', 'plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* partia 3 (09.11.2026): pozy przeliczone generatorem po recenzjach r2 */ 'shrug', 'pulldown', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise', /* 09.11.2026 (partia 4): włączenie rodziny — generator odtwarza plik póz bez rozjazdów */ 'chest_press_machine', /* 10.11.2026 (partia 4): włączenie rodziny — generator odtwarza plik póz bez rozjazdów */ 'cable_press', /* 10.11.2026 (partia 4): back_extension włączona — generator odtwarza plik (poprawki styku podpórki naniesione w generatorze i pliku) */ 'back_extension', /* 10.11.2026 (partia 4): thruster włączona — generator odtwarza plik, w tym pozę błędu oly.mis Clean and Press (wyjątek ROZJAZDY_POZA_ZAKRESEM zdjęty) */ 'thruster', /* 10.11.2026 (partia 5): forearm niezrecenzowana, więc źródłem jest generator — plik przeliczony (błąd wr.mis.lift ma już tekst) */ 'forearm', /* 10.11.2026 (partia 5): carry — generator odtwarza plik, rodzina bez rozjazdów */ 'carry', /* 10.11.2026 (partia 5): kneeling_hinge — generator odtwarza plik, rodzina bez rozjazdów */ 'kneeling_hinge', /* 10.11.2026 (partia 5): rotator_cuff — pozy przeliczone z generatora */ 'rotator_cuff', /* 10.11.2026 (partia 7): core_floor włączona — 9 starych póz z core_floor-zatwierdzone.json, Superman bez wstrzymanego błędu cobra.mis (bledy-wstrzymane.json) */ 'core_floor', /* 10.11.2026 (partia 7): glute_floor włączona — generator odtwarza plik, w tym pozy błędu hext.mis.arch (wyjątek ROZJAZDY_POZA_ZAKRESEM zdjęty) */ 'glute_floor', /* 10.11.2026 (partia 9): leg_isolation włączona — plik póz przeliczony generatorem (Seated Band Hamstring Curl: pięta po podłodze, zaczep gumy przy podłodze, wersja generatora po recenzji p2 nr 6; rozjazd ACG-019 zdjęty) */ 'leg_isolation'];
+const W_ZAKRESIE = ['lunge', /* 10.11.2026: rodzina włączona (partia 9); generator odtwarza plik póz */ 'row', 'dip', 'plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl', /* partia 3 (09.11.2026): pozy przeliczone generatorem po recenzjach r2 */ 'shrug', 'pulldown', /* 09.11.2026: Straight Raises on Incline Bench — generator odtwarza nogi i siedzisko z zatwierdzonego pliku (partia 2 zmieniła wspólne lezyPrzodem, plik delt_raise.json nie był przeliczony; rysunek użytkownika bez zmian) */ 'delt_raise', /* 09.11.2026 (partia 4): włączenie rodziny — generator odtwarza plik póz bez rozjazdów */ 'chest_press_machine', /* 10.11.2026 (partia 4): włączenie rodziny — generator odtwarza plik póz bez rozjazdów */ 'cable_press', /* 10.11.2026 (partia 4): back_extension włączona — generator odtwarza plik (poprawki styku podpórki naniesione w generatorze i pliku) */ 'back_extension', /* 10.11.2026 (partia 4): thruster włączona — generator odtwarza plik, w tym pozę błędu oly.mis Clean and Press (wyjątek ROZJAZDY_POZA_ZAKRESEM zdjęty) */ 'thruster', /* 10.11.2026 (partia 5): forearm niezrecenzowana, więc źródłem jest generator — plik przeliczony (błąd wr.mis.lift ma już tekst) */ 'forearm', /* 10.11.2026 (partia 5): carry — generator odtwarza plik, rodzina bez rozjazdów */ 'carry', /* 10.11.2026 (partia 5): kneeling_hinge — generator odtwarza plik, rodzina bez rozjazdów */ 'kneeling_hinge', /* 10.11.2026 (partia 5): rotator_cuff — pozy przeliczone z generatora */ 'rotator_cuff', /* 10.11.2026 (partia 7): core_floor włączona — 9 starych póz z core_floor-zatwierdzone.json, Superman bez wstrzymanego błędu cobra.mis (bledy-wstrzymane.json) */ 'core_floor', /* 10.11.2026 (partia 7): glute_floor włączona — generator odtwarza plik, w tym pozy błędu hext.mis.arch (wyjątek ROZJAZDY_POZA_ZAKRESEM zdjęty) */ 'glute_floor', /* 10.11.2026 (partia 9): leg_isolation włączona — plik póz przeliczony generatorem (Seated Band Hamstring Curl: pięta po podłodze, zaczep gumy przy podłodze, wersja generatora po recenzji p2 nr 6; rozjazd ACG-019 zdjęty) */ 'leg_isolation', /* 11.11.2026 (W-02 C): pull_up — 8 póz z importu wniesione do generatora (pull_up-zatwierdzone.json) */ 'pull_up', /* 11.11.2026 (W-02 C): mobility_stand */ 'mobility_stand', /* 11.11.2026 (W-02 C): hip_abd_add */ 'hip_abd_add'];
 
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
@@ -46,5 +43,24 @@ describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
     if (INNA_ARYTMETYKA) { /* macOS (06.11.2026): tolerancja może zagoić wpis z listy (rozjazd mniejszy niż TOLERANCJA_POZ), ale lista nadal nie może rosnąć */
       for (const [r, cwiczenia] of Object.entries(stan)) { expect(Object.keys(oczekiwane)).toContain(r); for (const cw of cwiczenia as string[]) expect(oczekiwane[r]).toContain(cw); }
     } else expect(stan).toEqual(oczekiwane);
+  });
+});
+
+/* 11.11.2026 (W-02 C): wniesienie stanu zatwierdzonego do generatorów — dowody poza samym skanem. */
+describe('W-02 C: pull_up, mobility_stand, hip_abd_add', () => {
+  const fs = require('fs') as typeof import('fs');
+  const wczytaj = (rel: string) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+  test('pull_up: 8 póz zatwierdzonych z importu jest w pull_up-zatwierdzone.json i w pliku póz', () => {
+    const z = wczytaj('scripts/figures/agent-pozy/pull_up-zatwierdzone.json'); const plik = wczytaj('lib/figures/v2/poses/pull_up.json').cwiczenia;
+    expect(Object.keys(z)).toHaveLength(8);
+    for (const cw of Object.keys(z)) expect(plik[cw]).toEqual(z[cw]);
+  });
+  test('mobility_stand: Standing Gastrocnemius Calf Stretch ma stopień (skrzynia) w sprzęcie pliku i generatora', () => {
+    const plik = wczytaj('lib/figures/v2/poses/mobility_stand.json').cwiczenia['Standing Gastrocnemius Calf Stretch'];
+    expect(plik.sprzet.some((s: { rodzaj: string }) => s.rodzaj === 'skrzynia')).toBe(true);
+  });
+  test('hip_abd_add: błąd hab.mis.high wstrzymany (poza błędu poza zasięgiem), plik Cable Hip Abduction bez błędów', () => {
+    expect(wczytaj('scripts/figures/agent-pozy/bledy-wstrzymane.json')['hab.mis.high']).toEqual(expect.stringContaining('hip_abd_add'));
+    expect(wczytaj('lib/figures/v2/poses/hip_abd_add.json').cwiczenia['Cable Hip Abduction'].bledy ?? []).toEqual([]);
   });
 });

@@ -57,6 +57,15 @@ function wallCalf(cw) {
   const o = wykrokLydka({ wall: true, tylnaProsta: true });
   return statyczna(RODZINA, cw, [...SP, { rodzaj: 'sciana', x: 75, h: 250, przed: true }], (u) => ramka(u, { m: o.m, p: o.p, head: 12, nogi: o.nogi, rece: o.rece }));
 }
+/** Standing Gastrocnemius Calf Stretch (ACG-013, 31.10.2026; wniesione do generatora 11.11.2026, W-02 C): jak wallCalf, ale tylna stopa stoi palcami na stopniu (skrzynia 16 cm × 8 cm), pięta poniżej krawędzi (uproszczenie ilustracyjne, bez przeczytanego źródła o stopniu).
+ * Klatki i sprzęt to zatwierdzony stan z pliku póz (miednica 4/85, tylna kostka z podbiciem 8°), podane wprost — rysunek użytkownika bez zmian. */
+const GASTRO_SPRZET = [{"rodzaj":"podloga","x0":-170,"x1":170},{"rodzaj":"skrzynia","x0":-21.2,"x1":-5.2,"top":8},{"rodzaj":"sciana","x":75,"h":250,"przed":true}];
+const GASTRO_KLATKI = [{"u":0,"miednica":[4,85,0],"pochylenieTulowia":22,"zgiecieKregoslupa":0,"pochylenieGlowy":12,"nogi":{"R":{"kostka":[10,7,10],"podbicie":0,"rotacjaStopy":8,"biegunKolana":[1,0,0.1]},"L":{"kostka":[-36.7,12.5,-11],"podbicie":8,"rotacjaStopy":8,"biegunKolana":[1,0.1,-0.1]}},"rece":{"R":{"chwyt":[72,132,19],"biegunLokcia":[0,-0.5,1]},"L":{"chwyt":[72,132,-19],"biegunLokcia":[0,-0.5,-1]}}},{"u":1,"miednica":[4,85,0],"pochylenieTulowia":22,"zgiecieKregoslupa":0,"pochylenieGlowy":12,"nogi":{"R":{"kostka":[10,7,10],"podbicie":0,"rotacjaStopy":8,"biegunKolana":[1,0,0.1]},"L":{"kostka":[-36.7,12.5,-11],"podbicie":8,"rotacjaStopy":8,"biegunKolana":[1,0.1,-0.1]}},"rece":{"R":{"chwyt":[72,132,19],"biegunLokcia":[0,-0.5,1]},"L":{"chwyt":[72,132,-19],"biegunLokcia":[0,-0.5,-1]}}}];
+function gastrocnemiusNaStopniu(cw) {
+  const p = wallCalf(cw);
+  p.sprzet = JSON.parse(JSON.stringify(GASTRO_SPRZET)); p.klatki = JSON.parse(JSON.stringify(GASTRO_KLATKI));
+  return p;
+}
 /** Standing Soleus And Achilles Stretch (ACE #152 krok 4: „slightly flex (bend) the back knee”): wykrok, oba kolana LEKKO ugięte (przednie ≈ 26°, tylne ≈ 14° wg frameAt po poprawce W1; „lekko” = konwencja 10–30°, nie 58° jak w przysiadzie wykrocznym), tylna pięta na podłodze, dłonie na ścianie przed sobą jak w Wall Calf Stretch (karta: „Oprzyj dłonie o ścianę”; poprawka po recenzji r1 W1, 10.11.2026 — wcześniej dłonie na biodrach). */
 function soleus(cw) {
   const o = wykrokLydka({ wall: true, tylnaProsta: false, soleus: true });
@@ -80,7 +89,7 @@ export const WYJATKI = Object.fromEntries([
 WYJATKI['Standing Pelvic Tilt'] = 'ruch wewnętrzny (przechył miednicy w płaszczyźnie strzałkowej) bez widocznej zmiany pozy szkieletu, a ćwiczenie bez przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 WYJATKI.Inchworm = 'źródło (ACE #254, krok 5) opisuje dojście STOPAMI do nieruchomych dłoni (kroki 6–12"), a model przy kolanach prawie prostych (≤ 25°, „extended (but not locked)”) nie pozwala narysować kroku stóp 15–30 cm (pomiar: rozstaw stóp w x najwyżej ok. 1,5 cm w podporze i ok. 8 cm w skłonie); wariant z dłońmi idącymi od stóp jest odwrotnością źródła (recenzja ponowna mobilności r3); ćwiczenie bez rysunku zgodnego z przeczytanym źródłem — wyjątek bez animacji (reguła właściciela 27.10.2026)';
 export const PRZYBLIZENIA = {
-  'Standing Gastrocnemius Calf Stretch': 'poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch w generatorze; w danych (ACG-013) tylna stopa stoi palcami na stopniu (podpowiedź katalogu: wariant z piętą na podwyższeniu, bez przeczytanego źródła w tej części — uproszczenie ilustracyjne); generator tego stopnia nie rysuje, rozjazd pilnowany w tests/figury-generator-odtwarza.test.ts',
+  'Standing Gastrocnemius Calf Stretch': 'poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch w generatorze; w danych (ACG-013) tylna stopa stoi palcami na stopniu (podpowiedź katalogu: wariant z piętą na podwyższeniu, bez przeczytanego źródła w tej części — uproszczenie ilustracyjne); generator rysuje ten stopień (gastrocnemiusNaStopniu, stan wniesiony 11.11.2026), rodzina pilnowana w tests/figury-generator-odtwarza.test.ts',
   'Overhead Triceps Stretch': 'przybliżenie: krok 1 źródła (ACE #174) zawiera rękę pomocniczą (lewa dłoń na prawym ramieniu „just above the elbow”, lekki nacisk), rysunek ją pomija — dosięgnięcie łokcia nad głową wymaga barku L 192° (limit modelu 171°) albo przedramienia przechodzącego ≈ 3 cm przez głowę (pomiar 27.10.2026); lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców” (źródło: „middle of your back”)',
 };
 export function generuj() {
@@ -90,7 +99,7 @@ export function generuj() {
     'Side Neck Stretch': () => sideNeck('Side Neck Stretch'),
     'Overhead Triceps Stretch': () => overheadTriceps('Overhead Triceps Stretch'),
     'Standing Chest Stretch': () => standingChest('Standing Chest Stretch'),
-    'Standing Gastrocnemius Calf Stretch': () => wallCalf('Standing Gastrocnemius Calf Stretch'),
+    'Standing Gastrocnemius Calf Stretch': () => gastrocnemiusNaStopniu('Standing Gastrocnemius Calf Stretch'),
     'Wall Calf Stretch': () => wallCalf('Wall Calf Stretch'),
     'Standing Soleus And Achilles Stretch': () => soleus('Standing Soleus And Achilles Stretch'),
     'Standing Lateral Stretch': () => lateral('Standing Lateral Stretch'),
