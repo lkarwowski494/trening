@@ -126,3 +126,7 @@ Reguły z „analogią”: `czworka_kolana` i część `skret_miednica_vs_barki`
 - [DO USTALENIA] Szczebel CrossFit (CF-SP) i Fitness Volt / Patrick Dale (FV-SGM) — decyzja wg reguły szczebli (docs/18:138, 145).
 - [DO USTALENIA] Co `skretTulowia` mierzy w klęku podpartym przy Fire Hydrant — sprawdzenie programisty na danych póz.
 - [DO USTALENIA] Wariant rysunku Supine Spinal Twist (oba kolana czy jedna noga) — przy tworzeniu pozy.
+
+## Sprawdzenie dosłowne (koordynator sesji L, 11.11.2026)
+
+Fragmenty cytatów z tabel (BB-OHP, CF-SP, HL-OHP, NASM-CLAM, CAT-766, ISSA-ABD, ACE-6402, HL-FH, CAT-184, FV-SGM, CC-PIRI, HW-PIRI, ATH-F4, HSS-TR, HPH-LBR, AUR-LTR) odnalezione w surowym tekście stron (`curl -sSL`, HTML bez znaczników; AUR-LTR przez `pdftotext`) — każda strona HTTP 200, każdy fragment 1 trafienie. Cytaty mają więc status „przeczytane dosłownie”. Szczeble oznaczone [DO USTALENIA] (CrossFit, Fitness Volt — Patrick Dale) zostają otwarte.
