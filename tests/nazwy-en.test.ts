@@ -1,6 +1,6 @@
 /*
  * ZB-025 b (decyzja właściciela 31.10.2026: „nazwy EN — wariant A, P1–P4 wg szkicu”): warstwa kanonicznych nazw angielskich po `rid` (ścieżka B — bez migracji danych,
- * bez zmiany kluczy katalogu, SCHEMA_VERSION 19 bez zmian). Źródło: docs/research/equipment/nazwy-en.json (267 z 709 nazw), generator scripts/equipment/gen-nazwy-en.mjs →
+ * bez zmiany kluczy katalogu, SCHEMA_VERSION 19 bez zmian). Źródło: docs/research/equipment/nazwy-en.json (277 z 709 nazw; 267 do 11.11.2026), generator scripts/equipment/gen-nazwy-en.mjs →
  * lib/nazwy-en.generated.ts (mapa po kluczu; rid nie trafia do kodu aplikacji — tests/provenance-guard.test.ts). Przewodnik: notatki/katalog-1-1/przewodnik-nazw-en-szkic-2026-10-30.md
  * (gałąź przekazanie-konta). Zakres testów: (a) źródło i generator, (b) macierz: każda zmieniona nazwa × każdy język poza polskim, polski bez zmian,
  * (c) P1–P4 na przykładach, (d) strażnik regex wszystkich 709 nazw EN, (e) stare nazwy EN jako aliasy wyszukiwania, (f) VoiceOver, ćwiczenie własne, slug eksportu.
@@ -28,11 +28,12 @@ const wpis = (rid: string) => zrodlo.wpisy.find(w => w.rid === rid)!;
 afterEach(() => { applyLang('pl'); });
 
 describe('nazwy EN po rid: źródło i generator', () => {
-  test('267 zmienionych nazw (442 bez zmian z 709); rid istnieją w katalogu, są unikalne; każda nowa nazwa różni się od dawnej', () => {
-    expect(WSZYSTKIE).toHaveLength(267);
+  /* 11.11.2026: 267 → 277 — recenzja lokalizacji (docs/research/recenzje/nazwy-en-lokalizacja-2026-11-11.md) dodała 10 nazw dotąd bez zmian, które psuły spójność z nowymi (S1, K1, H2) */
+  test('277 zmienionych nazw (432 bez zmian z 709); rid istnieją w katalogu, są unikalne; każda nowa nazwa różni się od dawnej', () => {
+    expect(WSZYSTKIE).toHaveLength(277);
     expect(LIB).toHaveLength(708);
     const rids = WSZYSTKIE.map(w => w.rid);
-    expect(new Set(rids).size).toBe(267);
+    expect(new Set(rids).size).toBe(277);
     for (const w of zrodlo.wpisy) { expect(kluczOd[w.rid]).toBeDefined(); expect(w.nazwa).not.toBe(w.dawna); expect(w.reguly.length).toBeGreaterThan(0); }
   });
   test('lib/nazwy-en.generated.ts jest aktualny względem źródła (gen-nazwy-en.mjs --check)', () => {
@@ -48,6 +49,21 @@ describe('nazwy EN po rid: źródło i generator', () => {
   });
   test('recenzje: pola recenzja.badacz i recenzja.lokalizacja istnieją (wypełnia koordynator po recenzji przed zamrożeniem adresów strony)', () => {
     expect(Object.keys(zrodlo.recenzja).sort()).toEqual(['badacz', 'lokalizacja']);
+  });
+  test('recenzje 11.11.2026 (L-047): oba pola wskazują istniejący plik recenzji z datą i recenzentem innym niż autor nazw', () => {
+    for (const k of ['badacz', 'lokalizacja'] as const) {
+      const r = zrodlo.recenzja[k] as { plik: string; data: string; recenzent: string; autor: string } | null;
+      expect(r).not.toBeNull();
+      expect(read(r!.plik).length).toBeGreaterThan(0);
+      expect(r!.data).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(r!.recenzent).not.toBe(r!.autor);
+    }
+  });
+  test('poprawki WYSOKIE z recenzji 11.11.2026: nachwyt to Pull-Up, sit-up z gumami bez ciężaru nie jest „Weighted”', () => {
+    expect(nazwaEn(kluczOd['76c15d28']!)).toBe('Side-to-Side Pull-Up');
+    expect(nazwaEn(kluczOd['66d0cd90']!)).toBe('Decline Band Sit-Up');
+    expect(Object.values(NAME_EN)).not.toContain('Side-to-Side Chin-Up');
+    expect(Object.values(NAME_EN)).not.toContain('Weighted Sit-Up with Bands');
   });
 });
 
@@ -189,9 +205,10 @@ describe('nazwy EN: VoiceOver, ćwiczenia własne, slug eksportu strony', () => 
   });
   test('nazwa wyświetlana z LIB_DISPLAY_NAME (znak towarowy) też dostaje nową nazwę EN: exName po nazwie wyświetlanej i po kluczu (libKey)', () => {
     applyLang('en');
+    /* 11.11.2026: „with Side Bends” — reguła L2 (słowo po „with” w naturalnej liczbie), recenzja badacza nazwy-en-badacz-2026-11-11.md */
     const k = 'Bosu Ball Cable Crunch With Side Bends';
-    expect(exName({ name: LIB_DISPLAY_NAME[k], lib: true })).toBe('Balance Dome Cable Crunch with Side Bend');
-    expect(exName(libExercise(wiersz(k)))).toBe('Balance Dome Cable Crunch with Side Bend');
+    expect(exName({ name: LIB_DISPLAY_NAME[k], lib: true })).toBe('Balance Dome Cable Crunch with Side Bends');
+    expect(exName(libExercise(wiersz(k)))).toBe('Balance Dome Cable Crunch with Side Bends');
   });
   test('slug eksportu strony powstaje z nowej nazwy (scripts/strona/eksport.mjs makeSlugs): „Push-Up” → push-up, „Bench Press” → bench-press', () => {
     const nazwy = [['a', nazwaEn('Push Up')], ['b', nazwaEn(kluczOd['96e58da0'])], ['c', nazwaEn(kluczOd['2368ad5c'])]];

@@ -766,7 +766,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Test: `tests/nazwy-en.test.ts`, `.maestro/07-zamiana.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Nowa nazwa w angielskim i w językach z nazwami angielskimi
-    - Zakładając, że ćwiczenie z biblioteki ma kanoniczną nazwę (od 07.11.2026 we wszystkich językach, także polskim — BR-BIB-013) (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
+    - Zakładając, że ćwiczenie z biblioteki ma kanoniczną nazwę (od 07.11.2026 we wszystkich językach, także polskim — BR-BIB-013) (277 z 709 — 267 z 31.10.2026 + 10 po recenzji 11.11.2026, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
     - Gdy użytkownik widzi nazwę ćwiczenia na liście, w treningu, szablonie, historii albo w wyborze ćwiczenia
     - Wtedy widzi nową nazwę według przewodnika stylu (jednostronność „Single-Arm / Single-Leg”, liczba pojedyncza z zamkniętą listą wyjątków, bez „Barbell” w klasycznych bojach, przyrząd jako przedrostek, łączniki w przymiotnikach złożonych); VoiceOver czyta ją głosem angielskim jak dotąd
   - Scenariusz: Dane użytkownika bez zmian
