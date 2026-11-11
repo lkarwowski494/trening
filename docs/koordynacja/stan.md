@@ -21,7 +21,7 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - N (PR #108 → main): lekcja K jako L-068 (b189fdb6 lokalnie); verify #1 kod 1 — wyłącznie SIGTERM Jest (main nie ma ponowienia SIGTERM z jest-ponow — jest tylko na integracji, wg M); verify #2 w toku. Drugi czerwony → PYTANIE N; rekomendacja do rozważenia: dołożyć do PR #108 commit z ponowieniem SIGTERM w jest-ponow (z integracji/M 98f7d88f) — wymaga zgody właściciela (rozszerza zakres PR), albo właściciel zgadza się na scalenie PR przez GitHub (dowody CI zielone).
 - L (W-02): A (delt_raise) lokalnie, recenzja w toku; B, C biegną, D po B; push po verify:szybkie (ok. 2–3 h od 07:00).
 - M (W-05 + KO-038): R-101-28 zaakceptowane przez właściciela 07:05 (przekazane M); push, tests.yml → odbiór, scal-galaz.
-- O (strona techniqueatlas, docs): tworzona przez subagenta 07:10 (ID do potwierdzenia: list_sessions mine, tytuł „Trening O”); polecenia/O.md @ b6393d2e.
+- O (strona techniqueatlas, docs): session_01T66VByuyK61tpabFWkxi81, start 07:14 (opus-5-5, auto; docs/strona-start-1-1); polecenia/O.md @ b6393d2e.
 - Po L, M: scal-galaz (każda osobno, docs/18 i docs/49 suma), potem W-03 przekład (rola 09), W-04, W-08 wersja 1.1.0, W-10 audyt (rola 07 — na żądanie).
 - Push gałęzi stanu: symlink node_modules z /home/user/trening, verify:lekkie, push (WG-06).
 
@@ -65,6 +65,7 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 | N | session_01T66VBzVxxg1r1hi7cSTQL9 | 08 build (opus-5-5): PR #108 → main (polecenia/N.md) | ci/nocne-poprawki-main @ fd636db5 | — | — | w toku: start 06:37; pełne verify |
 | L | session_01T66VBw8ur99YDZhDnNZbt4 | 08 build (opus-5-5): W-02 figury (polecenia/L.md) | figury/w02-przed-1-1 od 5721a16e | — | — | w toku: start 06:40 |
 | M | session_01T66VBvbBNZksSrfp6Li5qt | 08 build (opus-5-5): W-05 ryzyka + KO-038 (polecenia/M.md) | proces/w05-ryzyka-sigterm od 5721a16e | — | — | w toku: start 06:43 |
+| O | session_01T66VByuyK61tpabFWkxi81 | 08 build (opus-5-5): start strony techniqueatlas — kroki w docs/49 (polecenia/O.md) | docs/strona-start-1-1 od 5721a16e | — | — | w toku: start 07:14 |
 | E | session_01T66VBvTx4J3wo4LsZx4yjb | 08 build: partia 8 + KO-024 podział | scal/posedata-podzial 24b461e3 (PRZYJĘTA, w integracji 038efefc); figury/partia-8 f281a089 + gałęzie rodzin | 32,7 | 31,62 | PRZEKAZANIE 13:50 → E2; zarchiwizowana 15:15 |
 | F | session_01T66VBwaPHeeK1QNim6cow6 | 08 build: partia 9 | partia-9 3070557, -leg_isolation 7c2692a, -lunge d744f06 | 36,4 | 39,99 | PRZEKAZANIE 14:21 → F2; zarchiwizowana 14:55 |
 | G | session_01T66VByihtvAjWHsQzFqFZo | 08 build: pociąg-5 | scal/pociag-5 5a401abd — PRZYJĘTA, w integracji 649b0504 | 32,5 | 14,36 | zarchiwizowana 14:55 |
