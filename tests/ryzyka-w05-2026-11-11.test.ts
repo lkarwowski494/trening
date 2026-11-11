@@ -4,7 +4,7 @@
  * - R-11-01: opis i notatki sklepu mówią o animowanych rysunkach odmian przysiadu, wyciskania leżąc i martwego ciągu — warunek zamknięcia: figura v2 w aplikacji ≥ 87
  *   oraz rodziny squat, bench_press, hinge gotowe i zrecenzowane (liczby z tests/fixtures/pokrycie-katalogu.json; jego zgodność z kodem pilnuje
  *   `npm run check:pokrycie`, scripts/pokrycie-katalogu.mjs --check).
- * - R-018: zegarek Garmin przeniesiony do 1.2 (właściciel 03.11.2026 ~21:20 PL, docs/18) — wydanie 1.1 nie zawiera SDK Connect IQ (zależności, wtyczki, moduły, cele natywne).
+ * - R-018: drugi zegarek (ZB-040) przeniesiony do 1.2 (właściciel 03.11.2026 ~21:20 PL, docs/18) — wydanie 1.1 nie zawiera SDK Connect IQ (zależności, wtyczki, moduły, cele natywne).
  */
 import * as fs from 'fs';
 import * as path from 'path';
