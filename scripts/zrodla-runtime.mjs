@@ -58,7 +58,7 @@ export function buildCues(full, review) {
     basis[ex] = BASIS_ORDER.filter(k => kinds.has(k));
   }
   const general = review ? Object.keys(review.sets?.items ?? {}).filter(k => review.sets.items[k].b === 'general' && SHOWN_CARD.includes(review.rec.zestawy?.[k]?.werdykt) && review.rec.zestawy[k].sha === zestawSkrot(review.sets, review.pl, k)) : [];
-  return { exercises, basis, open: Object.keys(full.open), partial: full.partial ?? [], hidden, general, rid: ridMap(full) };
+  return { exercises, basis, open: Object.keys(full.open), partial: full.partial ?? [], hidden, general, ...(review ? { rid: ridMap(full) } : {}) /* znaczniki pochodzenia (ZB-023) — w ścieżce generatora (z recenzją); wywołania sprzed bramki na danych przykładowych bez mapy */ };
 }
 /**
  * Znaczniki pochodzenia (ZB-023; właściciel 30.10.2026 ~21:10 PL, A — jak katalog ćwiczeń 25.10.2026, tests/provenance-guard.test.ts): pełne dane mają na poziomie głównym
