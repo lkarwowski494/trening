@@ -344,11 +344,11 @@
      "rodzaj": "dzwignia",
      "tryb": "prosta",
      "kat": 90,
-     "punkt": "miednica",
+     "punkt": "barki",
      "trzyma": "R",
      "x": 0,
-     "y": 92.1,
-     "z": 0,
+     "y": 149.8,
+     "z": 19,
      "dlugosc": 20.2
     }
    ],
@@ -3804,13 +3804,13 @@
     {
      "rodzaj": "dzwignia",
      "tryb": "prosta",
-     "kat": 52.8,
-     "punkt": "kostki",
+     "kat": 90,
+     "punkt": "uda",
      "trzyma": "R",
-     "x": 42,
-     "y": 11.1,
+     "x": 33,
+     "y": 61.7,
      "z": 10,
-     "dlugosc": 15.8
+     "dlugosc": 14.4
     }
    ],
    "klatki": [
@@ -4444,7 +4444,7 @@
       "R": {
        "chwyt": [
         36.3,
-        75.0,
+        75,
         12
        ],
        "biegunLokcia": [
@@ -4456,7 +4456,7 @@
       "L": {
        "chwyt": [
         36.3,
-        75.0,
+        75,
         -12
        ],
        "biegunLokcia": [
@@ -4850,7 +4850,7 @@
       "R": {
        "chwyt": [
         39,
-        65.0,
+        65,
         30
        ],
        "biegunLokcia": [
@@ -4862,7 +4862,7 @@
       "L": {
        "chwyt": [
         39,
-        65.0,
+        65,
         -30
        ],
        "biegunLokcia": [
@@ -5530,7 +5530,7 @@
       "R": {
        "chwyt": [
         36.3,
-        75.0,
+        75,
         12
        ],
        "biegunLokcia": [

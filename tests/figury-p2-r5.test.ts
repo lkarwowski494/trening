@@ -49,9 +49,9 @@ describe('2. dane odróżniają zaczep „podeszwy” (platforma) od „kostki�
     expect(mk('kostki').to).toEqual([40, 20, 13]);
     const p = mk('podeszwy').to; expect(p[0]).toBeCloseTo(40 + BODY.ankleH * Math.cos(th), 6); expect(p[1]).toBeCloseTo(20 + BODY.ankleH * Math.sin(th), 6); expect(p[2]).toBe(13);
   });
-  test('w paczce poz żadna prowadnica „prosta” mocowana w kostce nie jest platformą: suwnice (Leg Press, Single Leg Press) mają „podeszwy”, jedyna „prosta + kostki” to poduszka Seated Calf Raise', () => {
+  test('w paczce poz żadna prowadnica „prosta” mocowana w kostce nie jest platformą: suwnice (Leg Press, Single Leg Press) mają „podeszwy”; od 11.11.2026 (P1-CALF-1) nie ma już „prosta + kostki” (poduszka Seated Calf Raise jest na udach)', () => {
     const prosteKostki = wszystkie.filter(x => { const g = lever(x.d); return g?.tryb === 'prosta' && g.punkt === 'kostki'; }).map(x => x.cw);
-    expect(prosteKostki).toEqual(['Seated Calf Raise']);
+    expect(prosteKostki).toEqual([]);
     expect(wszystkie.filter(x => lever(x.d)?.punkt === 'podeszwy').map(x => x.cw).sort()).toEqual(['Leg Press', 'Single Leg Press']);
   });
   test('wałek przy kostce (obrót, punkt „kostki”): Leg Extension, Leg Curl, Hip Abduction/Adduction i spółka nie mają reguły stopa_na_platformie', () => {
@@ -73,8 +73,8 @@ describe('3. przebieg reguły na WSZYSTKICH pozach paczki (krok 4 listy kontroln
       const g = (d.sprzet ?? []).find((x) => x.rodzaj === 'dzwignia' && x.tryb === 'prosta' && (x.punkt === 'kostki' || x.punkt === 'podeszwy'));
       if (!g) continue; wyn.push({ rodzina: j.rodzina, cw, punkt: g.punkt, o: ocen(d) }); }
     } console.log(JSON.stringify(wyn));`) as { rodzina: string; cw: string; punkt: string; o: string[] }[];
-  test('trafienia: tylko Seated Calf Raise (poduszka rysowana w kostce, nie platforma — poza zakresem reguły, backlog); suwnice zielone', () => {
-    expect(w.filter(x => x.o.length).map(x => x.cw)).toEqual(['Seated Calf Raise']); expect(w.find(x => x.cw === 'Seated Calf Raise')!.o.join('|')).toMatch(/pięta R w u = 0\.00: 9\.1 cm od płyty/); /* strona dodatnia (stopa przed płytą) też łamie regułę */
+  test('trafienia: żadne (od 11.11.2026, P1-CALF-1, Seated Calf Raise ma poduszkę na udach, nie w kostce — nie ma już prowadnicy „prosta + kostki” poza regułą); suwnice zielone', () => {
+    expect(w.filter(x => x.o.length).map(x => x.cw)).toEqual([]);
     expect(w.filter(x => x.punkt === 'podeszwy').every(x => x.o.length === 0)).toBe(true);
     expect(w.filter(x => x.punkt === 'podeszwy').map(x => x.cw).sort()).toEqual(['Leg Press', 'Single Leg Press']);
   });

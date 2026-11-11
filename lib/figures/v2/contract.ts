@@ -9,9 +9,9 @@
 import { dist, type V3 } from './math';
 import { OVERHEAD_SHOULDER_EXCEPTION, overheadShoulderRange, trunkLeanDeg } from './overheadException';
 export { OVERHEAD_SHOULDER_EXCEPTION, overheadShoulderRange, trunkLeanDeg } from './overheadException';
-import { BODY, EXT_ROM, SIDES, jointAngles, type Side } from './skeleton';
+import { BODY, EXT_ROM, SIDES, jointAngles, solveSkeleton, type Side } from './skeleton';
 import type { Frame } from './scene';
-import { GEAR, GEAR_KINDS, SEAT_LEN, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
+import { leverBodyFrom, GEAR, GEAR_KINDS, SEAT_LEN, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { ARM_EXT, TRUNK_EXT, applyDelta, deltaAt, mirrorKey, poseAt, toPoseIn } from './poseInterp';
 export { ARM_EXT, NEUTRAL_ANKLE_DEG, TRUNK_EXT, applyDelta, deltaAt, mirrorKey, neutralFootPitch, poseAt, toPoseIn } from './poseInterp';
 import { withDumbbellAxis } from './dumbbellAxis';
@@ -210,7 +210,7 @@ export function poseSchema(family: string, scope?: PromptScope): Sch {
     z: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w z (cm; domyślnie 0): oś obrotu landmine, oś obrotu albo początek prowadnicy dźwigni maszyny, środek piłki/wałka, kolumna wyciągu, zaczep taśm, lina pionowa; poręcze: połowa rozstawu.'),
     trzymanie: { type: 'string', enum: [...SLED_HOLD], description: 'Tylko sanie: slupki (dłonie na słupkach, domyślnie) albo lina (lina od przodu sań do dłoni).' },
     tryb: { type: 'string', enum: [...LEVER_MODE], description: 'Tylko dzwignia (maszyna): obrot (sztywne ramię wokół osi, domyślnie) albo prosta (prowadnica liniowa pod kątem kat).' },
-    punkt: { type: 'string', enum: [...LEVER_POINT], description: 'Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki (wałek przy kostce), podeszwy (platforma pod stopą, tylko prowadnica „prosta”), miednica; trzyma wskazuje stronę (domyślnie R).' },
+    punkt: { type: 'string', enum: [...LEVER_POINT], description: 'Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki (wałek przy kostce), podeszwy (platforma pod stopą, tylko prowadnica „prosta”), miednica, barki (poduszki na barkach, góra barku), uda (poduszka na udach tuż nad kolanami); trzyma wskazuje stronę (domyślnie R).' },
     mocowanie: { type: 'string', enum: [...BAND_MOUNT], description: 'Tylko guma: zaczep (stały punkt x, y, z → dłonie), zaczep_kostki (stały punkt x, y, z → kostki), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad).' },
     kat: num(BENCH_KAT.min, BENCH_KAT.max, 'Kąt w stopniach od poziomu. Lawka: kąt oparcia (0 = płaska, dodatni = skos głową wyżej, ujemny = ławka ujemna). Dzwignia w trybie prosta: kąt prowadnicy (0 = do przodu +x, 90 = w górę). Modlitewnik: kąt podpórki od poziomu (30–80).'),
     siedzisko: num(SEAT_LEN.min, SEAT_LEN.max, 'Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45; 2 = samo oparcie maszyny bez siedziska).'),
@@ -316,7 +316,9 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   let k = poseAt(d.klatki, uu); if (error !== undefined && d.bledy[error]) k = applyDelta(k, deltaAt(d.bledy[error].klatki, uu));
   if (mir) k = mirrorKey(k, !!d.lustroRece);
   const pose = toPoseIn(k); const grips = { R: pose.arms.R.grip, L: pose.arms.L.grip };
-  const props = propsFrom(d.sprzet, grips, { R: pose.legs.R.ankle, L: pose.legs.L.ankle }, pose.pelvis);const bar = props.find(p => p.k === 'barbell');
+  /* poduszki dźwigni na barkach/udach (P1-CALF-1) potrzebują szkieletu przed rekwizytami; rozwiązanie jak w mkFrame, liczone tylko dla tych ćwiczeń */
+  const lb = d.sprzet.some(g => g.rodzaj === 'dzwignia' && (g.punkt === 'barki' || g.punkt === 'uda')) ? leverBodyFrom(solveSkeleton(pose)) : undefined;
+  const props = propsFrom(d.sprzet, grips, { R: pose.legs.R.ankle, L: pose.legs.L.ankle }, pose.pelvis, lb);const bar = props.find(p => p.k === 'barbell');
   const info: Record<string, V3> = {}; if (bar && bar.k === 'barbell') info.load = bar.c;
   const fr = resolveBells(mkFrame(pose, props, info, contactsFrom(d.sprzet)));
   fr.props = fr.props.map(p => p.k === 'dumbbell' && !p.vertical ? withDumbbellAxis(p, fr.sk.arms[p.side], k.rece[p.side]?.obrotPrzedramienia) : p);
@@ -327,10 +329,10 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   if (nosi && !d.sprzet.some(g => g.rodzaj === 'sztanga')) { const t = (nosi as { trzyma?: 'R' | 'L' | 'obie' }).trzyma; const reka = t === 'R' || t === 'L' ? t : undefined; /* FW2 (core_floor, 04.11.2026; K4): trzyma: 'obie' (lina, drążek, dźwignia oburącz) to NIE strona — wcześniej grips['obie'] = undefined i ślad znikał (Cable Crunch, Machine Crunch) */
     /* W1b (recenzja niezależna 03.11.2026): dwa osobne ciężary (para hantli, dwa wyciągi) — ślad przy chwycie jednej ręki (R, jak w rigach: squat.ts, hinge.ts), nie w osi ciała; jeden uchwyt/lina/dźwignia — środek między chwytami */ const dwaCiezary = (nosi.rodzaj === 'hantel' && !nosi.pionowo) || (nosi.rodzaj === 'wyciag' && nosi.dwa === true);
     /* FW2: opaska na kostce (wyciąg chwyt 'kostka'; para dwa: true → noga R jak W1b) — ciężar jest przy kostce, nie w dłoni (Cable Reverse Crunch: ślad był 24 cm od środka chwytów) */
-    /* dźwignia poza dłońmi (punkt: kostki/podeszwy/miednica; D1 A koordynatora 09.11.2026, partia 3): ślad = punkt styku dźwigni z ciałem — podeszwy/kostki → kostka strony `trzyma` (R przy „obie”),
-     * miednica → miednica. Wcześniej ślad był chwytem dłoni (nieruchomy uchwyt) albo — przy trzyma „obie” (Leg Press) — nie było go wcale. */
+    /* dźwignia poza dłońmi (punkt: kostki/podeszwy/miednica/barki/uda; D1 A koordynatora 09.11.2026, partia 3): ślad = punkt styku dźwigni z ciałem — podeszwy/kostki → kostka strony `trzyma` (R przy „obie”),
+     * miednica → miednica, barki/uda → poduszka na barku/udzie strony `trzyma` (R przy „obie”; P1-CALF-1). Wcześniej ślad był chwytem dłoni (nieruchomy uchwyt) albo — przy trzyma „obie” (Leg Press) — nie było go wcale. */
     const dzwigniaPozaDlonmi = nosi.rodzaj === 'dzwignia' && nosi.punkt !== undefined && nosi.punkt !== 'dlonie';
-    const punktDzwigni = (p: string | undefined): V3 => p === 'miednica' ? fr.sk.pelvis : pose.legs[reka ?? 'R'].ankle;
+    const punktDzwigni = (p: string | undefined): V3 => p === 'miednica' ? fr.sk.pelvis : p === 'barki' && lb ? lb.shoulders[reka ?? 'R'] : p === 'uda' && lb ? lb.thighs[reka ?? 'R'] : pose.legs[reka ?? 'R'].ankle;
     fr.info.trail = dzwigniaPozaDlonmi ? punktDzwigni(nosi.punkt) : nosi.rodzaj === 'wyciag' && nosi.chwyt === 'kostka' ? pose.legs[reka ?? 'R'].ankle : reka ? grips[reka] : dwaCiezary ? grips.R : [0, 1, 2].map(i => (grips.R[i] + grips.L[i]) / 2) as V3; }
   /* W2 (recenzja carry r1, 10.11.2026): gryf sześciokątny w dłoniach (trap bar, riksza) — środek gryfu = środek między chwytami (wcześniej ślad w miednicy, 12,7 cm od gryfu). FW1 (H-C, 04.11.2026; K4): ciężar w dłoniach bez hantla/wyciągu — guma w dłoniach (zaczep/stopy/dłonie: para → chwyt R jak W1b), talerz, kettlebell i piłka lekarska (partia 8, 10.11.2026: ślad piłki był w miednicy; oburącz → środek chwytów = środek talerza/uchwytu), łańcuchy w dłoniach (dwa uchwyty → chwyt R); `trzyma` R/L → ta dłoń. Guma między kostkami nie jest w dłoniach: ślad zostaje (miednica). */
   else if (!d.sprzet.some(g => g.rodzaj === 'sztanga')) {
