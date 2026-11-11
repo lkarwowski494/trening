@@ -131,6 +131,11 @@
    "rodzaj": "nowy",
    "pl": "Telefon używa podstawowego głosu. Lepszy pobierzesz w Ustawieniach iOS (Dostępność).",
    "en": "This phone is using a basic voice. Get a better one in iOS Settings (Accessibility)."
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Aplikacja nazywa się teraz {app}. Treningi, szablony i ustawienia zostają bez zmian.",
+   "en": "The app is now called {app}. Your workouts, templates and settings stay unchanged."
   }
  ]
 }
