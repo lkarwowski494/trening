@@ -1651,40 +1651,39 @@
     },
     "kb_ballistic": {
       "werdykt": "wyswietlana",
-      "data": "2026-11-10",
-      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r4 10.11.2026: wyswietlana (W1-r3, W2-r3, N2-r3, N3-r3 zamknięte; N1-r3 częściowo — zapadka R6 2; Ś1-r3, Ś2-r3, N4-r3, N1–N3-r4 do backlogu)",
-      "kto": "audytor (recenzja niezależna, r4) — czysta kopia git archive 3e8656e w /home/user/rev-p1/kb_ballistic-r4, status ready tylko w kopii",
-      "autor": "programista (partia 1, subagent)",
+      "data": "2026-11-11",
+      "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050) — r5 11.11.2026 (MER-01): wyswietlana; zmiana tylko licznika faz 7 wahadeł (bez sekund), ruch bez zmian; odtwarzacz strony [DO USTALENIA] (repo techniqueatlas); backlog z r4 bez zmian (Ś1-r3, Ś2-r3, N4-r3, N1–N3-r4)",
+      "kto": "audytor (recenzja niezależna, r5) — czyste kopie git worktree c2ba7123 i a280bd37, porównanie wyniku rysunku przed/po",
+      "autor": "programista (sesja X)",
       "recenzent": "audytor",
-      "sha": "97edf91fc18d",
+      "sha": "a271df03d983",
       "liczba": 17,
-      "slad": "arkusz-slad: 16 ćw. side, jasny (16 PNG) + ciemny dla 4 ćw.; kadry co 1/48 u 0–1 (14 PNG: Kettlebell Snatch, Double Kettlebell Snatch, Snatch (hantel), Kettlebell Clean, Double Kettlebell Clean, Dumbbell Clean, Clean and Jerk) + co 1/48 ciemny (Kettlebell Snatch, Snatch (hantel)); arkusz-nakladka --family (18 PNG). Ślad ciągły, maks. 7,9 cm/48; prędkość bez przestoju i bez skoku (stosunek sąsiednich kadrów ≤ 1,9 w całym cyklu), łokieć prostuje się w ruchu, nie po zatrzymaniu.",
-      "ciaglosc_rwan": "bez szarpnięcia: Kettlebell Snatch 3,0–4,8 cm/48 (maks. stosunek 1,4), Double Kettlebell Snatch 2,4–5,6 (1,9 w zamachu, ≤ 1,2 po wyproście), Snatch (hantel) 2,4–7,9 (1,7; zwolnienie po wyproście i stopniowe przyspieszenie przez ok. 0,28 s, bez postoju); zarzuty ≤ 1,9; ostatnie kadry rwań 2,3–2,9 cm/48 przy prostującym się łokciu",
-      "uwagi": "Ś1-r3 (skok dzwonu 13,9–18,8 cm/48 przy przewrocie do racka, silnik gear.ts) i Ś2-r3 (Bottoms-Up, ciąg ręką) — ŚREDNIE, backlog 1.1. N4-r3: przenikanie w górę uda (nie tułów) −1,1…−1,3 cm. N1-r4: Snatch (hantel) hantel −1,4 cm w udzie u = 0,26 (nowe, węższy rozstaw). N2-r4: dwa dzwony zlane w jeden w Double Snatch/Clean (niewidoczne w side). N3-r4: opis Dumbbell Clean w tor-wyjatki.json.",
+      "slad": "Ruch, tor ciężaru (trailFor) i przebieg czasu bez zmian względem r4: md5 16/16 równe (frameAt/shapesAt/styki/linie/nakładka, u co 1/48, poza i błędy; uAt/oneWayAt i phaseIndexAt co 33 ms) — arkusze arkusz-slad i arkusz-nakladka z r4 pozostają aktualne.",
+      "uwagi": "r5 (MER-01): 7 wahadeł — licznik „Podnoszenie · Pauza · Opuszczanie” bez sekund (PL/EN), podświetlenie zgodne z ruchem; 9 jednokierunkowych bez zmian; eksport niesie untimed per faza (eksport.mjs:136); obsługa w odtwarzaczu strony [DO USTALENIA]. Uwagi r4 bez zmian: Ś1-r3, Ś2-r3 (backlog 1.1), N4-r3, N1-r4, N2-r4, N3-r4.",
       "cwiczenia": {
         "Kettlebell Swing": {
           "werdykt": "wyswietlana",
-          "uwagi": "ruch jak r1–r3 (zmiana kolan ≤ 2,4 cm)"
+          "uwagi": "ruch jak r1–r4 (md5 równy); licznik bez sekund (MER-01)"
         },
         "One-Arm Kettlebell Swings": {
           "werdykt": "wyswietlana",
-          "uwagi": "R6 0; stały rozstaw"
+          "uwagi": "R6 0; stały rozstaw; licznik bez sekund (MER-01)"
         },
         "Kettlebell Clean": {
           "werdykt": "wyswietlana",
-          "uwagi": "W1-r3 zamknięte (stosunek ≤ 1,4); Ś1-r3 i N4-r3 → backlog"
+          "uwagi": "W1-r3 zamknięte (≤ 1,4); Ś1-r3 i N4-r3 → backlog; licznik bez sekund (MER-01)"
         },
         "Double Kettlebell Clean": {
           "werdykt": "wyswietlana",
-          "uwagi": "W1-r3 zamknięte (≤ 1,6); Ś1-r3, N4-r3, N2-r4 → backlog"
+          "uwagi": "W1-r3 zamknięte (≤ 1,6); Ś1-r3, N4-r3, N2-r4 → backlog; licznik bez sekund (MER-01)"
         },
         "Dumbbell Clean": {
           "werdykt": "wyswietlana",
-          "uwagi": "W1-r3 zamknięte (≤ 1,9 przed wyprostem, ≤ 1,4 po)"
+          "uwagi": "W1-r3 zamknięte (≤ 1,9 przed wyprostem, ≤ 1,4 po); licznik bez sekund (MER-01)"
         },
         "Bottoms-Up Clean From The Hang Position": {
           "werdykt": "wyswietlana",
-          "uwagi": "poza bez zmian; Ś2-r3 → backlog"
+          "uwagi": "poza bez zmian; Ś2-r3 → backlog; licznik bez sekund (MER-01)"
         },
         "Kettlebell Snatch": {
           "werdykt": "wyswietlana",
@@ -1720,7 +1719,7 @@
         },
         "Kettlebell Sumo High Pull": {
           "werdykt": "wyswietlana",
-          "uwagi": "R6 3,6 cm przy wspięciu (zapadka, BRZEGOWE)"
+          "uwagi": "R6 3,6 cm przy wspięciu (zapadka, BRZEGOWE); licznik bez sekund (MER-01)"
         },
         "One-Arm Kettlebell Clean and Jerk": {
           "werdykt": "wyswietlana",
