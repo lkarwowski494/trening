@@ -1,0 +1,59 @@
+{
+ "data": "2026-11-11",
+ "autor": "przekład API (claude-opus-5-5, run 43094081312); „Przyciąganie” — kopia brzmienia „Ściąganie” (programista sesji U)",
+ "recenzent": "recenzent-lokalizacji",
+ "zakres": "W-08: dwa nowe punkty „Co nowego” 1.1 (lib/whatsnew.ts:25, :27 — drugi tylko poza en) oraz faza animacji „Przyciąganie” (KO-047; lib/figures/v2/rodziny/hip_abd_add.ts:10 i rodziny wiosłowania/face pull) obok „Ściąganie” (pulldown, lib/figures/v2/rodziny/shrug.ts:7, core_standing.ts:12), para z „Powrót”; 33 języki, tekst efektywny es-419/pt-BR (baza + nakładka). Sprawdzono słownik (wyciągi, kettlebell, rysunek ruchu — zgodne we wszystkich językach; ms „animasi pergerakan” jak w „Rysunek ruchu: {opis}”), fr spacja U+00A0 przed „:”, kropka na końcu punktów, brak marek i źródeł, „w Twoim języku” (ja 日本語名, ko 한국어, zh-Hant 中文, nb norske — poprawne). tests/slownik-terminow.test.ts zielony (175/175).",
+ "werdykt": "zatwierdzone po poprawkach (bez wag wysokich; punkty „Co nowego” naturalne we wszystkich 33 językach poza dwiema drobnymi poprawkami składni)",
+ "poprawki": [
+  {
+   "jezyk": "zh-Hant",
+   "plik": "lib/locales/zh-Hant.json",
+   "klucz": "Ściąganie",
+   "jest": "拉回",
+   "ma_byc": "拉",
+   "powod": "b/f: po podziale KO-047 „Ściąganie” to ściąganie drążka w dół i skłon na wyciągu górnym; „拉回” (pociągnij z powrotem/do siebie) ma kierunek przyciągania i zostaje poprawne dla „Przyciąganie”. Ogólne „拉” pasuje do wszystkich ruchów fazy (otwarte pytanie z w03 rozstrzyga się podziałem).",
+   "waga": "średnia"
+  },
+  {
+   "jezyk": "vi",
+   "plik": "lib/locales/vi.json",
+   "klucz": "Ściąganie",
+   "jest": "Kéo về",
+   "ma_byc": "Kéo",
+   "powod": "b/f: „Kéo về” = ciągnąć do siebie — trafne dla „Przyciąganie” (wiosłowanie, face pull, przywodzenie; zostaje), ale dla ściągania drążka w dół i skłonu na wyciągu kierunek błędny. Ogólne „Kéo” jak cs „Tah”, id/ms „Menarik” po w03.",
+   "waga": "średnia"
+  },
+  {
+   "jezyk": "ko",
+   "plik": "lib/locales/ko.json",
+   "klucz": "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.",
+   "jest": "이제 라이브러리 대부분의 종목에서 동작 그림을 볼 수 있습니다: 머신과 케이블, 케틀벨, 점프, 복근, 모빌리티 등 다양합니다.",
+   "ma_byc": "이제 라이브러리 대부분의 종목에서 동작 그림을 볼 수 있습니다. 머신과 케이블, 케틀벨, 점프, 복근, 모빌리티 등 다양합니다.",
+   "powod": "b/d: dwukropek po zakończonym zdaniu (…습니다:) jest kalką z PL/EN; po koreańsku dwa zdania z kropką.",
+   "waga": "niska"
+  },
+  {
+   "jezyk": "fi",
+   "plik": "lib/locales/fi.json",
+   "klucz": "Rysunki ruchu ma teraz większość ćwiczeń z biblioteki: maszyny i linki, kettlebell, skoki, brzuch, mobilność i wiele innych.",
+   "jest": "Useimmille kirjaston liikkeille on nyt liikepiirrokset: laitteet ja taljat, kahvakuulat, hypyt, vatsalihakset, liikkuvuus ja paljon muuta.",
+   "ma_byc": "Useimmilla kirjaston liikkeillä on nyt liikepiirrokset: laitteet ja taljat, kahvakuulat, hypyt, vatsalihakset, liikkuvuus ja paljon muuta.",
+   "powod": "b: posiadanie po fińsku to adessivus (-lla/-llä on), nie allativus (-lle); obecne brzmi jak „dla większości ruchów są rysunki”.",
+   "waga": "niska"
+  },
+  {
+   "jezyk": "nl",
+   "plik": "lib/locales/nl.json",
+   "klucz": "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.",
+   "jest": "De namen van oefeningen in de bibliotheek zijn in het Engels, zoals in de meeste sportscholen. Op de oefeningskaart zie je onder de naam de naam in jouw taal, en de zoekfunctie vindt de oefening op allebei.",
+   "ma_byc": "De namen van oefeningen in de bibliotheek zijn in het Engels, zoals in de meeste sportscholen. Op de oefeningskaart zie je eronder de naam in jouw taal, en de zoekfunctie vindt de oefening op beide namen.",
+   "powod": "b: „onder de naam de naam” — powtórzenie; „op allebei” bez rzeczownika brzmi urwane.",
+   "waga": "niska"
+  }
+ ],
+ "otwarte": [
+  "pt/pt-BR „Przyciąganie” = „Puxada” — w Brazylii „puxada” to potocznie samo ściąganie drążka (puxada alta), a wiosłowanie to „remada”: czy faza wiosłowania i przywodzenia nogi może się nazywać „Puxada”, czy lepiej ogólne „Tração”? (native speaker; dla „Ściąganie” „Puxada” jest trafne)",
+  "Uwaga dla programisty/koordynatora (nie poprawka tłumaczenia): „Przyciąganie” obejmuje też przywodzenie nogi na maszynie (Hip Adduction — nogi ściskają poduszki do środka). W ru/uk „Тяга”, de „Ziehen”, fr „Tirage”, es „Tracción” przy przywodzeniu brzmi nienaturalnie (na siłowni: ru „Сведение”, de „Adduktion/Zusammenführen”), a jedno słowo nie pasuje jednocześnie do wiosłowania. Jeśli ma być naturalnie — osobna nazwa fazy dla rodziny hip_abd_add (np. PL „Ściskanie”/„Do środka”); decyzja poza zakresem przekładu.",
+  "„Ściąganie” obejmuje też Middle Back Shrug (lib/figures/v2/rodziny/shrug.ts:7, wysunięcie barków) i skłon na wyciągu (core_standing.ts:12) — ogólne „ciągnięcie” we wszystkich językach jest tam akceptowalne, ale tylko dlatego, że brzmienia są ogólne; przy ewentualnym zawężaniu słów (np. zh „下拉”) te dwa ćwiczenia trzeba sprawdzić."
+ ]
+}
