@@ -6,6 +6,7 @@
  */
 import { keyframeFrame, bodyShapes, benchPolys, sdPoly, jointAngles, type PoseData } from '@/lib/figures/v2';
 import * as fs from 'fs';
+import { LANGS } from '@/lib/i18n';
 import * as path from 'path';
 
 const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/delt_raise.json'), 'utf8')).cwiczenia as Record<string, PoseData>;
@@ -61,11 +62,14 @@ describe('W-02 Front Incline Dumbbell Raise: zdanie fidr.move bez wysokości spr
   });
   test('negatyw: stare brzmienie „mniej więcej do wysokości barków” nie przechodzi miary', () => { expect(/co najmniej do wysokości barków/.test('Unieś hantle przed sobą, łokcie lekko ugięte, mniej więcej do wysokości barków; opuść je powoli.')).toBe(false); });
   test('pozostałe 33 języki nie mają starego zdania (czekają na przekład W-03: angielski w zastępstwie), a zestaw przekładu je wymienia', () => {
-    const jezyki = fs.readdirSync(path.join(ROOT, 'lib/cues/text')).map(f => f.replace('.json', '')).filter(l => l !== 'pl' && l !== 'en');
+    const jezyki = LANGS.filter(l => l !== 'pl' && l !== 'en'); /* 11.11.2026: lista języków aplikacji (lib/i18n.ts), nie listing katalogu — listing z wzmianką o docs/research dokładał ten test do wyboru dla każdego pliku docs/research (tests/wybor-testow-l103.test.ts, G3/L-100) */
     expect(jezyki.length).toBe(33); expect(jezyki.filter(l => cue(l) !== undefined)).toEqual([]);
     const Z = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/lokalizacja/zestaw-przekladu-2026-11-11-w02-wskazowki.json'), 'utf8')); expect(Z.klucze.map((k: any) => k.id)).toEqual(['fidr.move']);
   });
-  test('karta zostaje ukryta do recenzji niezależnej: werdykt karty nie jest „wyswietlana” (L-047: autor poprawki nie ustawia go sam)', () => {
-    const R = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/research/figury-recenzja.json'), 'utf8')); expect(R.karty['Front Incline Dumbbell Raise'].werdykt).not.toBe('wyswietlana');
+  /* 11.11.2026 (KO-042 koordynatora, analogia A1 z 08.11.2026): recenzja W-02 dała „wyswietlana”, ale przekład fidr.move w 33 językach czeka na W-03 — karta zostaje ukryta (bez tekstu w aplikacji).
+   * Werdykt zapisu („do poprawy” do przekładu) pilnują tests/karty-recenzja.test.tsx i tests/cel-1-1-bez-ciezkich.test.ts; tu skutek dla użytkownika: plik runtime bez karty. */
+  test('karta zostaje ukryta do przekładu W-03: plik runtime lib/cues/data.json nie ma karty Front Incline Dumbbell Raise, a ma ją na liście „hidden” (żaden z 33 języków nie widzi angielskiego zastępstwa)', () => {
+    const CUE = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/cues/data.json'), 'utf8')) as { exercises: Record<string, unknown>; hidden: string[] };
+    expect(['Front Incline Dumbbell Raise' in CUE.exercises, CUE.hidden.includes('Front Incline Dumbbell Raise')]).toEqual([false, true]);
   });
 });
