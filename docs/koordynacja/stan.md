@@ -109,7 +109,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-042. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-043. Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -238,3 +238,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-11 08:30 | L2 | sesja L2 session_01T66VBw1tAxkGfh98UGdHWe utworzona (subagent; opus-5-5, auto, figury/w02-przed-1-1) | raport L2 po pkt 2; kontrola 08:50 |
 | 2026-11-11 08:44 | N | verify #4 (12729804 lokalnie) kod 1: ponowienie działa (0 przerwań), padł zrodla-paczka.test.ts:111 (strażnik wpięcia) → KO-041: + c12a6bed, verify #5 | raport N |
 | 2026-11-11 08:55 | koordynator …VBz531oNhivgrQu5LZg | kontrola: L 28,75 USD → zarchiwizowana; L2 working (verify:szybkie stan wyjściowy); koordynator 28% (279 tys.), 7,01 USD → E6; lineage 7/8 — prompt przekazania docs/koordynacja/przekazanie-M9-2026-11-11.md, prompt M9 (m9.md, 52212 B, c3b30ef97e736080) przekazany właścicielowi plikiem; prośba o nową sesję z paska | następca: przejęcie |
+| 2026-11-11 09:11 | L2 | raport pkt 2: 15 plików / 20 testów; zamierzone — lista przyjęta; błąd W-02: FIDR odsłonięta bez przekładu 33 języków → KO-042 (A: ukryta do W-03) | PRZEKAZANIE L2 |
