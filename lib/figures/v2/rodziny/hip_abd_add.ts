@@ -7,6 +7,6 @@ const rodzina: RodzinaPoz = {
   load: () => require('../poses/hip_abd_add.json'),
   ui: { names: { first: 'Rozsuwanie', second: 'Powrót' }, lowerFirst: false, joints: ['hip'], /* lowerFirst jawnie w wyjątkach: kierunku u nie da się zmierzyć z kolan i miednicy (strażnik figures-v2-kierunek-u) — u = 0 → 1 to wysiłek (noga od pozycji wyjściowej) */
     exceptions: { 'Hip Abduction': { hideAngle: true, lowerFirst: false }, 'Cable Hip Abduction': { hideAngle: true, lowerFirst: false }, 'Lateral Band Walk': { hideAngle: true, names: { first: 'Marsz', second: 'Marsz' } }, 'Monster Walk': { hideAngle: true, names: { first: 'Marsz', second: 'Marsz' } },
-      'Hip Adduction': { hideAngle: true, lowerFirst: false, names: { first: 'Ściąganie', second: 'Powrót' } }, 'Cable Hip Adduction': { hideAngle: true, lowerFirst: false, names: { first: 'Ściąganie', second: 'Powrót' } } } },
+      'Hip Adduction': { hideAngle: true, lowerFirst: false, names: { first: 'Przyciąganie', second: 'Powrót' } }, 'Cable Hip Adduction': { hideAngle: true, lowerFirst: false, names: { first: 'Przyciąganie' /* KO-047 */, second: 'Powrót' } } } },
 };
 export default rodzina;

@@ -792,6 +792,7 @@ export const EN: Record<string, string> = {
   'Powrót': 'Returning',
   'Rozsuwanie': 'Pulling apart',
   'Ściąganie': 'Pulling',
+  'Przyciąganie': 'Pulling', // KO-047 (11.11.2026): faza wiosłowania na wyciągu i przywodzenia; EN bez zmian
   'Uginanie': 'Curling',
   'Marsz': 'Walking',
   'Grzbiet w dół': 'Arching',
