@@ -46,3 +46,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | T2 | 09-lokalizacja build | — | 16,70 | 32,7 | 17:02 → 17:02 → 17:23 → 18:45 → 18:56 (UTC 11.11) | 15 min: czerwony tests.yml 43070158337 (L-130) | prompt roli przez subagenta |
 | W | 10-wydanie build | — | 4,74 | 21,1 | 19:05 → 19:06 → ~19:20 → 19:58 → 20:05 (UTC 11.11) | 0 | API 0 USD |
 | U | 08 build (KO-047 + W-08) | — | 11,87 (+ API ~1,50) | 32,5 | 19:05 → 19:05 → b4be0f13 → tests.yml 43096889322 (w kolejce 21:05) → — | kolejka tests.yml ≥ 30 min | przekazanie przy 31,7%; verify:szybkie przerwane (znacznik lekkie) |
+| V | 07 audit (W-10) | 40 (pułap) | 46,51 | 25,6 | 19:05 → 19:07 → — → tests.yml 43107225879 (w toku 22:05) → 21:55 | — | pułap przekroczony o 16% (poniżej STOP); audyt pełny 1.1 kosztuje ~45 USD — szacunek na następny pełny audyt 50 |
