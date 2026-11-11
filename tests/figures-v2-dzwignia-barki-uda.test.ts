@@ -86,3 +86,21 @@ describe('P1-CALF-1: pozostałe ćwiczenia z dźwignią bez zmian (baza z 11.11.
       for (let j = 0; j < 3; j++) { expect(p.to[j]).toBeCloseTo(e.to![j], 9); expect(p.from[j]).toBeCloseTo(e.from![j], 9); if (e.trail) expect(f.info.trail![j]).toBeCloseTo(e.trail[j], 9); } expect(p.len).toEqual(e.len); if (!e.trail) expect(f.info.trail ?? null).toBeNull(); });
   });
 });
+
+describe('W-02 (11.11.2026): leverBodyFrom — punkty poduszek z szkieletu (czysta funkcja)', () => {
+  const { leverBodyFrom } = jest.requireActual('@/lib/figures/v2/gear') as typeof import('@/lib/figures/v2/gear');
+  const sk = { up: [0, 1, 0] as V3, arms: { R: { shoulder: [0, 140, 18] as V3 }, L: { shoulder: [0, 140, -18] as V3 } },
+    legs: { R: { hip: [0, 90, 9] as V3, knee: [40, 90, 9] as V3 }, L: { hip: [0, 90, -9] as V3, knee: [40, 90, -9] as V3 } } };
+  test('bark: punkt nad barkiem o promień ramienia + poduszkę, wzdłuż osi „w górę”; udo: LEVER_PAD.udaT odcinka biodro → kolano, nad udem o średnią grubość + poduszkę', () => {
+    const lb = leverBodyFrom(sk);
+    expect(lb.shoulders.R).toEqual([0, 140 + GIRTH.uarm[0] + LEVER_PAD.padR, 18]);
+    expect(lb.shoulders.L).toEqual([0, 140 + GIRTH.uarm[0] + LEVER_PAD.padR, -18]);
+    expect(lb.thighs.R[0]).toBeCloseTo(40 * LEVER_PAD.udaT, 9);
+    expect(lb.thighs.R[1]).toBeCloseTo(90 + (GIRTH.thigh[0] + GIRTH.thigh[2]) / 2 + LEVER_PAD.padR, 9);
+    expect(lb.thighs.L[2]).toBe(-9);
+  });
+  test('przypadek negatywny: oś „w górę” odwrócona → poduszka barku pod barkiem (funkcja nie zakłada osi y)', () => {
+    const lb = leverBodyFrom({ ...sk, up: [0, -1, 0] as V3 });
+    expect(lb.shoulders.R[1]).toBeLessThan(140);
+  });
+});

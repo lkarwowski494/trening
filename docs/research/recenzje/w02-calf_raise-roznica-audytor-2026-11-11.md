@@ -46,3 +46,11 @@ Testy: `figures-v2-dzwignia-barki-uda`, `figures-v2-calf-raise-p1`, `figury-gene
 ## Pole `slad` (do figury-recenzja.json)
 
 Standing Calf Raise: ślad = poduszka na górze barku R, pionowo w górę o 14,2 cm, monotonicznie, razem z wysokością wspięcia (kostka +13,3 cm). Prowadnica pionowa z boku barku, poduszka cały czas w styku z barkiem (0,0 cm), bez przenikania tułowia i głowy. Seated Calf Raise: ślad = poduszka na udzie R tuż nad kolanem, pionowo w górę o 8,3 cm (0,8 × uniesienia kolana), prowadnica pionowa (odchylenie ≤ 0,6 cm), styk z udem od 0 do −0,3 cm, prowadnica ≥ 8 cm od stóp. Oba: przednia część stóp na podeście, pięty poza krawędzią.
+
+## Uzupełnienie: nakładka techniki Standing Calf Raise (`calfKneeStraightRef`), 11.11.2026
+
+Arkusz: `node scripts/figures/arkusz-nakladka.mjs --key "Standing Calf Raise"` w /home/user/trening (gałąź figury/w02-przed-1-1, niezacommitowane zdjęcie z `V2_WSTRZYMANE`, poza z punktem „barki”), rzut z boku plus poza błędu data:0, obejrzane w wycinku w pełnej rozdzielczości.
+- Element to odcinek biodro → kolano (lib/figures/v2/overlay/calf_raise.ts:15). W każdym z 21 kadrów biegnie wzdłuż uda: zaczyna się przy biodrze na spodenkach i kończy przy kolanie. W pozie błędu też trzyma się uda.
+- Kąt kolana na podpisach kadrów: 3–7°, czyli w granicy reguły `kolana_proste` (≤ 20°). Element jest zielony, co zgadza się z kartą „calf.knees” (kolana proste lub tylko lekko ugięte). W pozie błędu data:0 (niepełny zakres, znacznik przy stopach) element zostaje zielony, bo ten błąd nie dotyczy jego reguły — tak ma być.
+- Element nie zasłania poduszki: kończy się ok. 50 cm poniżej poduszki na barku (biodro na wys. ok. 93–107 cm, poduszka 150–164 cm), więc ani ślad toru, ani poduszka nie nakładają się na niego.
+- Werdykt bez zmian: **wyswietlana**, bez nowych znalezisk.

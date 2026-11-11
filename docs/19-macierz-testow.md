@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 359 | 359 | 0 |
 | TEKST | 1089 | 1089 | 0 |
-| LOGIKA | 1168 | 1168 | 0 |
+| LOGIKA | 1169 | 1169 | 0 |
 | WYMIAR | 223 | 223 | 0 |
 
 ## EKRAN
@@ -94,7 +94,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | cel s | app/template/[id].tsx | tests/matrix-invariants.test.ts, tests/scenario-full.test.tsx, tests/set-goals-ui.test.tsx +8 |
 | Cel serii: {part} | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | Cele partii | app/more/settings.tsx | tests/interaction-patterns.test.tsx |
-| co | components/LoadEditor.tsx | tests/07-jakosc-002-recovery-cfg.test.ts, tests/access.test.ts, tests/adapt-ui.test.tsx +416 |
+| co | components/LoadEditor.tsx | tests/07-jakosc-002-recovery-cfg.test.ts, tests/access.test.ts, tests/adapt-ui.test.tsx +418 |
 | Co gdzie jest i jak działa. | components/Dashboard.tsx | tests/audit-0.10-ui.test.tsx, tests/dashboard.test.tsx, tests/edit-on-demand.test.tsx +2 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +3 |
 | Co robią mięśnie | components/MuscleRoles.tsx | tests/muscle-roles-ui.test.tsx |
@@ -112,7 +112,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx +442 |
+| do | app/template/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx +444 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
@@ -197,7 +197,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/public-repo.test.ts |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/a11y-routes.ts, tests/access.test.ts +528 |
+| od | components/LoadEditor.tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/a11y-routes.ts, tests/access.test.ts +530 |
 | Odhacz bez pomiaru | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-tuleja.test.tsx |
 | Odhacz bez pomiaru: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
@@ -454,7 +454,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +15 |
 | {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +176 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +488 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +489 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +93 |
@@ -580,7 +580,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz. | app/history/edit/[id].tsx | tests/regress.test.tsx |
 | Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok. | components/LoadEditor.tsx | tests/locations-audit.test.tsx |
 | ciężaru {w} nie ma tutaj — wpisz ciężar | app/history/edit/[id].tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +1 |
-| co najmniej {n} | app/progression.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/audit-0.10-ui.test.tsx +22 |
+| co najmniej {n} | app/progression.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/audit-0.10-ui.test.tsx +23 |
 | Co nowego | components/WhatsNew.tsx | tests/interaction-guards.test.ts, tests/whats-new.test.tsx |
 | Co nowego — są nowe zmiany | components/WhatsNew.tsx | tests/whats-new.test.tsx |
 | Cofnąć zamianę? | app/adapt.tsx | tests/adapt-ui.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +1 |
@@ -698,7 +698,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Góra B | lib/generator.ts | tests/generator-ui.test.tsx, tests/m3-fix-e2e.test.tsx, tests/m3-p3-postepy-historia.test.tsx |
 | Gryf ({u}) | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | gryf łamany | lib/swap.ts | tests/matrix-ui.test.tsx |
-| guma | app/exercises.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/audit-r72-b.test.ts, tests/edit-history.test.tsx +16 |
+| guma | app/exercises.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/audit-r72-b.test.ts, tests/edit-history.test.tsx +17 |
 | Guma | app/history/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/audit-journey-a.test.tsx, tests/audit-journey-c.test.tsx +12 |
 | Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | guma: {v} | components/EquipVisual.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/gemini-polecenia.test.ts, tests/matrix-data-shared.ts +1 |
@@ -819,7 +819,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Mięśnie główne: {lista} | components/ExerciseFigureV2.tsx | tests/figures-v2-ui.test.tsx, tests/store-review-notes.test.ts |
 | Mięśnie pomocnicze: {lista} | components/ExerciseFigureV2.tsx | tests/figures-v2-ui.test.tsx |
 | Minęło {s} s. | lib/timer.ts | tests/matrix-ui.test.tsx, tests/timer-logic.test.ts |
-| mniej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +41 |
+| mniej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +42 |
 | Mniej niż przed tygodniem: {list}. | lib/guard.ts | tests/guard-ui.test.tsx, tests/guard.test.ts |
 | Mniej niż w tygodniu {d}: {list}. | lib/guard.ts | tests/guard-ui.test.tsx, tests/guard.test.ts |
 | Mniej opcji | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
@@ -868,7 +868,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +4 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +475 |
+| nie | app/exercise/[id].tsx | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +478 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1354,7 +1354,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Wersja: {v} · iOS {os} · Język: {lang} | lib/support.ts | tests/idea-request.test.tsx, tests/support-mail.test.tsx |
 | Wiersz otwiera podgląd szablonu, „Start” zaczyna trening. | app/pick-template.tsx | tests/pick-template.test.tsx |
 | Wiersz w ramce — tydzień deload. | components/HistoryCalendar.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/deload-ui.test.tsx |
-| więcej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +33 |
+| więcej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +34 |
 | Więcej | app/(tabs)/_layout.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/audit-1-0-teksty.test.ts +38 |
 | Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku. | lib/guide.ts | tests/guide.test.tsx |
 | Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami. | lib/guide.ts | tests/guide.test.tsx |
@@ -1726,11 +1726,11 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | fairrules.offerAudience | lib/fairrules.ts | tests/monetyzacja-ui.test.tsx |
 | fairrules.fairRulesDue | lib/fairrules.ts | tests/m1-046-monetyzacja-stany.test.tsx, tests/monetyzacja-ui.test.tsx |
 | fairrules.markFairRulesSeen | lib/fairrules.ts | tests/monetyzacja-ui.test.tsx |
-| figures/geom.side | lib/figures/geom.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-carry-r1.test.ts +76 |
+| figures/geom.side | lib/figures/geom.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-carry-r1.test.ts +77 |
 | figures/geom.norm | lib/figures/geom.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/geom.rawPoints | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.posePoints | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts |
-| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-calf-raise-p1.test.ts +39 |
+| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-calf-raise-p1.test.ts +40 |
 | figures/geom.toHorizontal | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-pendlay.test.ts |
 | figures/geom.angleAt | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.lerpPose | lib/figures/geom.ts | tests/figures.test.tsx |
@@ -1769,7 +1769,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/colliders.bodyColliders | lib/figures/v2/colliders.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts +12 |
 | figures/v2/colliders.plateColliders | lib/figures/v2/colliders.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/colliders.equipColliders | lib/figures/v2/colliders.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts +10 |
-| figures/v2/colliders.sdPoly | lib/figures/v2/colliders.ts | tests/figures-v2-engine.test.ts, tests/figury-curl-poprawki-r2.test.ts |
+| figures/v2/colliders.sdPoly | lib/figures/v2/colliders.ts | tests/figures-v2-delt-raise-w02.test.ts, tests/figures-v2-engine.test.ts, tests/figury-curl-poprawki-r2.test.ts |
 | figures/v2/colliders.gap | lib/figures/v2/colliders.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chest-fly-p1.test.ts +19 |
 | figures/v2/colliders.checkFrame | lib/figures/v2/colliders.ts | tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-data.test.tsx +10 |
 | figures/v2/colliders.distToRingYZ | lib/figures/v2/colliders.ts | tests/figures-v2-gear.test.ts |
@@ -1790,7 +1790,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contract.pendulumFrames | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-petla-jednokierunkowa.test.tsx |
 | figures/v2/contract.loopJoinGap | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/contract.stanceAdvance | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
-| figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-cable_press-podpora.test.ts, tests/figures-v2-cable_press-wysokosc-bloczka.test.ts +51 |
+| figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-cable_press-podpora.test.ts, tests/figures-v2-cable_press-wysokosc-bloczka.test.ts +53 |
 | figures/v2/contract.validatePose | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-delt-raise-p3.test.ts +5 |
 | figures/v2/contract.describeContract | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
 | figures/v2/contractExample.keyFrameOf | lib/figures/v2/contractExample.ts | tests/figures-v2-contract.test.ts |
@@ -1807,8 +1807,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/draw.capsule2 | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/draw.spineAt | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/draw.hasTrunkExt | lib/figures/v2/draw.ts | tests/figures-v2-poza2.test.ts |
-| figures/v2/draw.bodyShapes | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/draw.benchPolys | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts, tests/figury-p2-r2.test.ts |
+| figures/v2/draw.bodyShapes | lib/figures/v2/draw.ts | tests/figures-v2-delt-raise-w02.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts |
+| figures/v2/draw.benchPolys | lib/figures/v2/draw.ts | tests/figures-v2-delt-raise-w02.test.ts, tests/figures-v2-engine.test.ts, tests/figury-p2-r2.test.ts |
 | figures/v2/draw.preacherPolys | lib/figures/v2/draw.ts | tests/figures-v2-gear.test.ts, tests/figury-curl-poprawki-r2.test.ts |
 | figures/v2/draw.hyperPolys | lib/figures/v2/draw.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/draw.rollerAt | lib/figures/v2/draw.ts | tests/figures-v2-gear.test.ts |
@@ -1850,13 +1850,14 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/figure.contactShapes | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.contactConditions | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.requiredContacts | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
+| figures/v2/gear.leverBodyFrom | lib/figures/v2/gear.ts | tests/figures-v2-dzwignia-barki-uda.test.ts |
 | figures/v2/gear.benchHip | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/gear.resolveBells | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/gear.gearSetIssues | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts, tests/figury-p2-r5.test.ts |
-| figures/v2/gear.gearFieldIssues | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts, tests/figury-p2-r5.test.ts, tests/figury-recenzja-p2.test.ts |
+| figures/v2/gear.gearFieldIssues | lib/figures/v2/gear.ts | tests/figures-v2-dzwignia-barki-uda.test.ts, tests/figures-v2-gear.test.ts, tests/figury-p2-r5.test.ts +1 |
 | figures/v2/gear.requiredGearIssues | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/gear.contactsFrom | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
-| figures/v2/gear.propsFrom | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figury-p2-r5.test.ts +2 |
+| figures/v2/gear.propsFrom | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-dzwignia-barki-uda.test.ts, tests/figures-v2-gear.test.ts +3 |
 | figures/v2/guides.guidesFor | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/guides.trailShapes | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-styk.test.tsx |
 | figures/v2/leverGuard.dzwigniaPrzezGlowe | lib/figures/v2/leverGuard.ts | tests/figures-v2-nakladka-cable-row.test.tsx, tests/figury-p2-r4.test.ts |
@@ -1867,14 +1868,14 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/math.sub | lib/figures/v2/math.ts | tests/101-28-odnawianie-subskrypcji.test.tsx, tests/access.test.ts, tests/audit-0.10-live-logic.test.ts +38 |
 | figures/v2/math.mul | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.dot | lib/figures/v2/math.ts | tests/figures-v2-dumbbell-axis.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-mobility-stand-poprawki-r1.test.ts +3 |
-| figures/v2/math.len | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +10 |
-| figures/v2/math.dist | lib/figures/v2/math.ts | tests/audit-m1-025-muscle-caption.test.tsx, tests/figures-v2-cable_press-podpora.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +23 |
+| figures/v2/math.len | lib/figures/v2/math.ts | tests/figures-v2-dzwignia-barki-uda.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +11 |
+| figures/v2/math.dist | lib/figures/v2/math.ts | tests/audit-m1-025-muscle-caption.test.tsx, tests/figures-v2-cable_press-podpora.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +24 |
 | figures/v2/math.norm | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/v2/math.sag | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-ohp-p1.test.ts, tests/figury-1-0-1-uwagi.test.ts +2 |
 | figures/v2/math.sagFront | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.ik2 | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.rotAxis | lib/figures/v2/math.ts | tests/figures-v2-poza2.test.ts |
-| figures/v2/math.distSegSeg | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figury-1-0-1-uwagi.test.ts, tests/figury-101-squat.test.ts +4 |
+| figures/v2/math.distSegSeg | lib/figures/v2/math.ts | tests/figures-v2-dzwignia-barki-uda.test.ts, tests/figures-v2-engine.test.ts, tests/figury-1-0-1-uwagi.test.ts +5 |
 | figures/v2/muscles.muscleShapes | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/overheadException.overheadShoulderRange | lib/figures/v2/overheadException.ts | tests/figury-101-squat.test.ts, tests/figury-olympic-przygotowanie.test.ts |
 | figures/v2/overheadException.trunkLeanDeg | lib/figures/v2/overheadException.ts | tests/figury-101-squat.test.ts, tests/figury-olympic-przygotowanie.test.ts |
@@ -1897,10 +1898,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/palette.luminance | lib/figures/v2/palette.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/palette.contrast | lib/figures/v2/palette.ts | tests/audit-m1-031-contrast.test.tsx, tests/audit-m1-p3-coverage.test.tsx, tests/figures-v2-engine.test.ts +10 |
 | figures/v2/palette.figurePalette | lib/figures/v2/palette.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-errors.test.tsx, tests/figures-v2-gear.test.ts +7 |
-| figures/v2/poseData.hasPoseFile | lib/figures/v2/poseData.ts | tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-data.test.tsx, tests/figures-v2-kb-ballistic-p1.test.ts |
-| figures/v2/poseData.poseFile | lib/figures/v2/poseData.ts | tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-data.test.tsx, tests/figures-v2-kb-ballistic-p1.test.ts +6 |
+| figures/v2/poseData.hasPoseFile | lib/figures/v2/poseData.ts | tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-data.test.tsx, tests/figures-v2-dzwignia-barki-uda.test.ts +1 |
+| figures/v2/poseData.poseFile | lib/figures/v2/poseData.ts | tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-data.test.tsx, tests/figures-v2-dzwignia-barki-uda.test.ts +7 |
 | figures/v2/poseData.poseDataFor | lib/figures/v2/poseData.ts | tests/figures-v2-cable-row-poprawki-r1.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-cykl-bez-marszu.test.ts +8 |
-| figures/v2/poseData.poseKeys | lib/figures/v2/poseData.ts | tests/figures-v2-back-extension-kat.test.ts, tests/figures-v2-back-extension.test.tsx, tests/figures-v2-calf-raise-p1.test.ts +15 |
+| figures/v2/poseData.poseKeys | lib/figures/v2/poseData.ts | tests/figures-v2-back-extension-kat.test.ts, tests/figures-v2-back-extension.test.tsx, tests/figures-v2-calf-raise-p1.test.ts +16 |
 | figures/v2/poseData.dataUiForPose | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-mapping.test.ts +3 |
 | figures/v2/poseData.dataUiFor | lib/figures/v2/poseData.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-kierunek-u.test.ts, tests/figury-core-standing-poprawki-r1.test.ts |
 | figures/v2/poseData.lowerFirstOf | lib/figures/v2/poseData.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-kierunek-u.test.ts, tests/figures-v2-lunge.test.tsx +2 |
@@ -1936,7 +1937,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/skeleton.hipPoint | lib/figures/v2/skeleton.ts | tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
 | figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +4 |
 | figures/v2/skeleton.soleY | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +1 |
-| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-calf-raise-p1.test.ts +39 |
+| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-calf-raise-p1.test.ts +40 |
 | figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-chest-fly-p1.test.ts, tests/figures-v2-guides.test.tsx +13 |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-nakladka-cable-row.test.tsx, tests/figures-v2-nakladka-cable_press.test.tsx +13 |
 | figures/v2/ui.techniquesOf | lib/figures/v2/ui.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-chest-fly-p1.test.ts +26 |
@@ -2048,7 +2049,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +312 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/app.tsx +314 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +29 |
 | i18n.exName | lib/i18n.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +42 |
@@ -2740,7 +2741,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Affects: knee \| ankle \| hip \| spine \| kneeLat \| heel \| pelvis \| bar \| shoulder \| elbow | lib/figures/v2/errors.ts | tests/catalog-full.test.tsx, tests/figures-v2-back-extension.test.tsx, tests/figures-v2-bench-rules.test.ts +4 |
 | FamilyId: squat \| bench_press \| hinge \| pushup_plank \| dip \| overhead_press \| row \| cable_row \| pull_up \| pulldown \| lunge \| leg_machine \| leg_isolation \| calf_raise \| hip_bridge \| kb_ballistic \| olympic \| back_extension \| curl \| triceps \| delt_raise \| chest_fly \| shrug \| rotator_cuff \| core_floor \| core_hang \| core_standing \| carry \| cardio \| plyo \| sled_throw \| strongman \| glute_floor \| hip_abd_add \| mobility_stand \| mobility_floor \| foam_roll \| neck \| forearm \| thruster \| chest_press_machine \| cable_press \| kneeling_hinge | lib/figures/v2/families.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts +14 |
 | FamilyStatus: ready \| planned | lib/figures/v2/families.ts | tests/audit-0.10-plan.test.ts, tests/figures-v2-calf-raise-p1.test.ts |
-| FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-cues.test.tsx +14 |
+| FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-calf-raise-p1.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-cues.test.tsx +15 |
 | DZWIGNIA_BEZ_GLOWY (2) | lib/figures/v2/families.ts | tests/figures-v2-cable-row-poprawki-r1.test.ts, tests/figures-v2-data.test.tsx |
 | GEAR (34) | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | GEAR_EXTRA_FIELDS (16) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
@@ -2748,7 +2749,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | CABLE_ATTACH (4) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | BAND_MOUNT (6) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts, tests/figury-recenzja-p2.test.ts |
 | LEVER_MODE (2) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
-| LEVER_POINT (4) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
+| LEVER_POINT (6) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | SLED_HOLD (3) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | GuideId: thighParallel \| plumbMidfoot \| kneeToe \| backLine | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | MuscleId: chest \| triceps \| front_delt \| biceps \| abs \| lower_back \| hamstrings \| glutes \| quads \| upper_back \| forearms \| lats \| adductors \| rear_delt \| obliques \| side_delt \| calves \| abductors \| neck | lib/figures/v2/muscles.ts | tests/audit-0.10-gen.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
@@ -2820,7 +2821,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | View: side \| front \| top | lib/figures/v2/scene.ts | tests/figures-v2-back-extension.test.tsx, tests/figures-v2-chest-fly-p1.test.ts |
 | Role: floor \| frame \| pad \| steel \| plate \| load \| skin \| skinFar \| skinHi \| cloth \| clothFar \| clothHi \| error \| shoe \| hair \| guide \| cable \| muscleMain \| muscleAux \| contactOk \| contactBad | lib/figures/v2/scene.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-backlog-r75.test.tsx, tests/audit-r82.test.tsx +3 |
 | Side: R \| L | lib/figures/v2/skeleton.ts | tests/audit-0.10-tst.test.ts, tests/figures-v2-back-extension.test.tsx |
-| SIDES (2) | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +16 |
+| SIDES (2) | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts +17 |
 | TOE_ANGLE_EXCLUDED_LOADS (1) | lib/figures/v2/ui.ts | tests/figures-v2-engine.test.ts |
 | Goal: strength \| hypertrophy \| cut \| general | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit011b.test.tsx |
 | GOALS (4) | lib/generator.ts | tests/gen-general.test.ts, tests/matrix-invariants.test.ts |
