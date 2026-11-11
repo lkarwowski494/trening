@@ -1,0 +1,14 @@
+# Sesja M: rejestr ryzyk przed 1.1 (docs/49 W-05) + ponowienie testów ubitych sygnałem (KO-038) — Trening
+Koordynator: session_01T66VBxZrKCwRyMgDwdWZ2N. Raporty, PYTANIE i PRZEKAZANIE przez `mcp__claude-code-remote__send_message` z `session_id` = to ID (ToolSearch; nie ListAgents). Zmiana koordynatora → pisz do nowego. Gałąź `koordynacja` tylko do odczytu.
+
+1. Rola: 08-programista build. Prompt roli w pierwszej wiadomości po `=== PROMPT ROLI ===`. Pierwszeństwo ma CLAUDE.md (strażnik procesu: test „gałąź z wcześniejszymi zmianami” L-080; ZB-041).
+2. Start: gałąź `proces/w05-ryzyka-sigterm` od `origin/integracja-1-1` @ 5721a16e (inny HEAD: zgłoś). `git fetch --unshallow`, `npm ci`. Tożsamość commitów według CLAUDE.md.
+3. Zadania:
+   1. W-05: ryzyka R-015, R-018, R-101-28, R-11-01, R-11-02 w „Rejestr ryzyk” `docs/40-lekcje.md` (`check:release` je wypisuje). Każde: zamknięcie z dowodem (test/przebieg/plik:linia) według warunku zamknięcia; czego agent nie zamknie — opis, opcje z rekomendacją do decyzji właściciela (odroczenie z datą) w raporcie. R-11-02 (Skullcrusher v1) i R-11-01 (rysunki w opisie/notatkach sklepu) mogą dotyczyć figur — tylko odczyt i dowód; zmiana rysunku → PYTANIE (figury robi sesja L). Gotowe: `npm run check:release` bez tych ryzyk albo każde z decyzją do podjęcia; kolumna „Stan” W-05 w docs/49.
+   2. KO-038 (do weta; analogia ZB-041 G3 — jedno ponowienie pliku padłego na limicie czasu): w `jest-ponow` plik zakończony komunikatem o ubiciu workera sygnałem („was terminated by another process: signal=SIGTERM” i pokrewne) uruchamiany ponownie raz, osobno (`--runInBand`), wpis w logu; znacznik verify tylko przy zielonym ponowieniu. Test na sztucznym zabiciu workera + przypadek L-080. Ten sam zestaw testów i progi (nic nie pomijasz).
+   3. `audit-m1-050` (dziennik wydań): liczy tylko tagi osiągalne z HEAD (`git tag --merged HEAD`); test odtwarzający (tag spoza historii nie psuje testu). Lekcja K: `git show origin/koordynacja:docs/koordynacja/przekazane/K-lekcja-L-NNN.md` (lekcja trafia na main przez sesję N — tu jej nie wstawiasz; akcje 2–3 lekcji to te zadania).
+   4. Wpisy docs/18 (data, odrzucone warianty, `[wdrożenie: kod]`, `[test: …]`), BRD jeśli dotyczy; `npm run verify:szybkie` kod 0 (wynik do pliku), push, zielony `tests.yml`.
+4. Zakazy: nie scalasz do integracji ani main; nie tworzysz/archiwizujesz sesji; nie piszesz na `koordynacja`; nie zmieniasz workflowów; nigdy --no-verify ani force-push; bez AskUserQuestion; nie ruszasz `lib/figures`, plików póz i recenzji figur (sesja L).
+5. Decyzje: tryb „analogia” — rekomendacja, wpis z datą w docs/18, „do weta”.
+6. Kontekst i koszt: od 30% okna — `docs/przekazanie/notatki/linia-1-1/STAN-W05.md`, push, PRZEKAZANIE. Pułap 25 USD; po 32,5 USD PRZEKAZANIE.
+7. Raporty (≤ 10 linii): po zadaniu 1 — czas i szacunek reszty; PYTANIE z opcjami (ryzyka do decyzji właściciela z pełną treścią); PRZEKAZANIE: SHA, run, dowody, decyzje do weta, otwarte.
