@@ -55,7 +55,7 @@ describe('calf_raise p1: zakres stawów z tekstu karty', () => {
 /* Ślad dźwigni poza dłońmi = punkt styku dźwigni z ciałem (contract.ts, punktDzwigni): Donkey — miednica, Standing — barki, Seated — uda (P1-CALF-1, 11.11.2026; N1 z P1-CALF-4 zamknięte:
    lista CZEKA_NA_SLAD_DZWIGNI usunięta, ślad Donkey ma test poniżej). Standing Calf Raise i Seated Calf Raise są nadal wstrzymane w V2_WSTRZYMANE do recenzji różnicy (audytor ≠ autor). */
 export const DZWIGNIA_POZA_DLONMI: Record<string, string> = { 'Donkey Calf Raise': 'miednica', 'Standing Calf Raise': 'barki', 'Seated Calf Raise': 'uda' };
-export const WSTRZYMANE = ['Standing Calf Raise', 'Seated Calf Raise'];
+export const WSTRZYMANE: string[] = []; /* 11.11.2026 (W-02, P1-CALF-1): Standing i Seated Calf Raise zdjęte z V2_WSTRZYMANE po recenzji różnicy audytora (docs/research/recenzje/w02-calf_raise-roznica-audytor-2026-11-11.md, „wyswietlana”) */
 const ZRYSUNKIEM = KEYS.filter(k => !WSTRZYMANE.includes(k));
 /** Odległość śladu od najbliższego chwytu albo środka między chwytami (cm). */
 const odlSladu = (f: ReturnType<typeof frameAt>, t: number[]): number => {
@@ -64,9 +64,10 @@ const odlSladu = (f: ReturnType<typeof frameAt>, t: number[]): number => {
 };
 
 describe('calf_raise p1: wstrzymanie maszyn (09.11.2026)', () => {
-  test('Standing Calf Raise i Seated Calf Raise: poza aplikacją (V2_WSTRZYMANE z powodem), pozy zostają w silniku; 10 z 12 ćwiczeń z rysunkiem; wstrzymane nie są pokazywane', () => {
+  test('11.11.2026 (W-02): Standing Calf Raise i Seated Calf Raise pokazywane po recenzji różnicy — 12 z 12 ćwiczeń z rysunkiem, żadne nie jest w V2_WSTRZYMANE (wcześniej 10 z 12, wstrzymane 09.11.2026)', () => {
     for (const k of WSTRZYMANE) { expect([k, k in V2_WSTRZYMANE, V2_WSTRZYMANE[k].length > 30, figureSpec(k) !== null, shownFigureSpec(k)]).toEqual([k, true, true, true, null]); }
-    expect(ZRYSUNKIEM.length).toBe(10); for (const k of ZRYSUNKIEM) expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]);
+    for (const k of ['Standing Calf Raise', 'Seated Calf Raise']) expect([k, k in V2_WSTRZYMANE, shownFigureSpec(k) !== null]).toEqual([k, false, true]);
+    expect(ZRYSUNKIEM.length).toBe(12); for (const k of ZRYSUNKIEM) expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]);
   });
 });
 
@@ -113,11 +114,11 @@ describe('calf_raise p1: odstęp ciężaru od nóg (K7)', () => {
 });
 
 describe('calf_raise p1: nakładka techniki', () => {
-  test('rejestr: jeden element (ref segment biodro → kolano, reguła kolana_proste, cue calf.knees); element dostają 4 pokazywane ćwiczenia, których karta ma calf.knees i reguła „ustalone” kolana_proste (Standing Calf Raise ma je na karcie, ale jest wstrzymane)', () => {
+  test('rejestr: jeden element (ref segment biodro → kolano, reguła kolana_proste, cue calf.knees); element dostają 5 pokazywanych ćwiczeń, których karta ma calf.knees i reguła „ustalone” kolana_proste (11.11.2026, W-02: + Standing Calf Raise po zdjęciu z V2_WSTRZYMANE; wcześniej 4)', () => {
     expect(Object.prototype.hasOwnProperty.call(TECHNIQUE, FAM)).toBe(true); expect(TECHNIQUE[FAM]).toBe(CALF_RAISE_TECHNIQUE);
     expect(CALF_RAISE_TECHNIQUE.map(d => [d.id, d.kind, d.rule, d.cue, d.views])).toEqual([['calfKneeStraightRef', 'ref', 'kolana_proste', ['calf.knees'], ['side']]]);
     for (const d of CALF_RAISE_TECHNIQUE) expect(['limb', 'abduction', 'ref']).toContain(d.kind);
-    expect(KEYS.filter(k => techniquesOf(k).includes('calfKneeStraightRef')).sort()).toEqual(['Calf Raise (linki)', 'Calf Raise (sztanga)', 'Smith Machine Calf Raise', 'Łydki na stopniu'].sort());
+    expect(KEYS.filter(k => techniquesOf(k).includes('calfKneeStraightRef')).sort()).toEqual(['Calf Raise (linki)', 'Calf Raise (sztanga)', 'Smith Machine Calf Raise', 'Standing Calf Raise', 'Łydki na stopniu'].sort());
     const z = (k: string) => techniquesFor(FAM, ['calf.knees', 'calf.move'], k).map(d => d.id); /* z wymuszonym cue: reguły wykluczają jednonóż i siad */
     for (const k of [...JEDNONOZ, ...SIEDZACE]) expect([k, z(k)]).toEqual([k, []]);
   });

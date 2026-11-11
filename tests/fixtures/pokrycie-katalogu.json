@@ -3,13 +3,13 @@
   "razem": {
     "cwiczen": 708,
     "figura": {
-      "v2": 526,
-      "v1": 4,
-      "bezFigury": 178,
-      "daneV2NieWlaczone": 8,
-      "wyjatekBezAnimacji": 46
+      "v2": 528,
+      "v1": 3,
+      "bezFigury": 177,
+      "daneV2NieWlaczone": 6,
+      "wyjatekBezAnimacji": 45
     },
-    "animowanyBlad": 272,
+    "animowanyBlad": 273,
     "wskazowki": {
       "wlasne": 309,
       "wlasneZBledami": 197,
@@ -18,9 +18,9 @@
     },
     "czesteBledyTekst": 439,
     "roleMiesni": 513,
-    "pelnaKarta": 444,
-    "pelnaKartaBlad": 251,
-    "recenzjaFigur": 526
+    "pelnaKarta": 446,
+    "pelnaKartaBlad": 252,
+    "recenzjaFigur": 528
   },
   "kartZTekstami": 633,
   "rodziny": {
@@ -196,15 +196,15 @@
     "calf_raise": {
       "status": "ready",
       "cwiczen": 13,
-      "figuraV2": 10,
-      "daneV2NieWlaczone": 2,
-      "v1": 1,
+      "figuraV2": 12,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
       "wlasne": 11,
       "ogolne": 1,
       "bezTekstu": 1,
-      "pelnaKarta": 10,
-      "pelnaKartaBlad": 9,
-      "recenzja": 10
+      "pelnaKarta": 12,
+      "pelnaKartaBlad": 10,
+      "recenzja": 12
     },
     "hip_bridge": {
       "status": "ready",
@@ -797,18 +797,18 @@
     }
   },
   "dobre": {
-    "figura.v2": 526,
-    "figura.wAplikacji": 530,
+    "figura.v2": 528,
+    "figura.wAplikacji": 531,
     "figura.zDanymiV2": 534,
-    "animowanyBlad": 272,
+    "animowanyBlad": 273,
     "wskazowki.wlasne": 309,
     "wskazowki.wlasneZBledami": 197,
     "wskazowki.zTekstem": 566,
     "czesteBledyTekst": 439,
     "roleMiesni": 513,
-    "pelnaKarta": 444,
-    "pelnaKartaBlad": 251,
-    "recenzjaFigur": 526,
+    "pelnaKarta": 446,
+    "pelnaKartaBlad": 252,
+    "recenzjaFigur": 528,
     "nazwaLokalna.razem": 0,
     "jezyk.pl.kompletne": 633,
     "jezyk.en.kompletne": 633,
