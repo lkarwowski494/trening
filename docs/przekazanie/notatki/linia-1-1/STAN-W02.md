@@ -13,7 +13,7 @@ Gałąź `figury/w02-przed-1-1` (od `integracja-1-1` @ 5721a16e). Koordynator: s
 ## Zostało (następca)
 `npm run verify:szybkie` (4. przebieg, głowa przed tym plikiem) — Jest: 16 plików czerwonych, 21 testów. Gałąź wypchnięta ze znacznikiem `lekkie` (bez Jest), więc `tests.yml` będzie czerwony do naprawy. Większość to oczekiwane skutki zamierzonych zmian (testy pilnujące starego stanu):
 - `figures-v2-zgodnosc-wsteczna` — bajtowa baza SVG Standing/Seated Calf Raise i Straight Raises: przeliczyć bazę (zmiana zamierzona, zrecenzowana).
-- `figures-v2-delt-raise-w02` — test „karta zostaje ukryta” nieaktualny po recenzji (werdykt „wyswietlana”): odwrócić asercję.
+- (skroty-przekladu naprawione przed push.) `figures-v2-delt-raise-w02` — test „karta zostaje ukryta” nieaktualny po recenzji (werdykt „wyswietlana”): odwrócić asercję.
 - `figures-v2-slad-dzwignia` — Standing (miednica → barki), Seated (kostka → udo): zaktualizować przypadki.
 - `figures-v2-nakladka-fix4` (R1: macierz wskazówka vs element — Standing Calf Raise ma teraz element), `figury-rozszerzenia-gora` (leżenie przodem na skosie — lista ćwiczeń/zakres biodra po nogach prostych), `figury-backlog-r2` (L4 odcisk kontraktu po zmianie `contract.ts`).
 - `figury-recenzja`, `karty-recenzja`, `l047-recenzja-niezalezna` — zapis recenzji: wpis w pliku recenzenta `docs/research/recenzje/*.json` (sha, werdykt, recenzent) dla nowych wpisów delt_raise/calf_raise/FIDR; FIDR nie jest już „do poprawy”.
