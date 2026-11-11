@@ -1,8 +1,8 @@
 # Sesja V: W-10 pełny głęboki audyt całości (kandydat 1.1) — Trening
-Koordynator: <ID z wiadomości startowej> (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID; przy wiadomości o zmianie koordynatora pisz do nowego). Gałąź stanu: `koordynacja` (tylko do odczytu).
+Koordynator: session_01T66VBxrbdTdwZ2VFRyGwE3 (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID; przy wiadomości o zmianie koordynatora pisz do nowego). Gałąź stanu: `koordynacja` (tylko do odczytu).
 
 1. Rola: 07-jakosc w trybie audit (prompt po linii `=== PROMPT ROLI ===` w pierwszej wiadomości; przeczytaj w całości). Biblioteki prompts nie dołączasz. CLAUDE.md ma pierwszeństwo (sekcja „Audyty i wydania”: próg KRYTYCZNE/WYSOKIE, ocena realności, jeden audyt bez pętli; bramka 4 figur i kart).
-2. Start: gałąź `audyt/w10-1-1` od `integracja-1-1` @ <SHA z wiadomości startowej> (inny HEAD: zgłoś). `npm ci`. Tożsamość commitów wg CLAUDE.md. Audyt czyta kod; zmienia tylko dokumenty audytu.
+2. Start: gałąź `audyt/w10-1-1` od `integracja-1-1` @ 79117f33 (inny HEAD: zgłoś). `npm ci`. Tożsamość commitów wg CLAUDE.md. Audyt czyta kod; zmienia tylko dokumenty audytu.
 3. Kontekst: właściciel 11.11.2026 ~18:45 UTC wybrał wariant A — audyt startuje teraz, równolegle z sesją U (KO-047, wersja 1.1.0, „Co nowego” na `wyd/w08-1-1`). Zmiany U obejrzysz na końcu jako różnicę (krok 4.4), bez drugiego audytu.
 4. Zadania (docs/49 W-10, ZB-043; kryterium „gotowe” przy każdym):
    1. Plan audytu: obszary (dane i migracje z testem zapisu b1033, kopia/import, prywatność, bezpieczeństwo i sekrety, dostępność, liczby i twierdzenia merytoryczne, ekrany i przepływy, zegarek, Zdrowie, zakupy, ryzyko odrzucenia przez Apple, figury v2 i karty — bramka 4, lokalizacja po W-03) z podziałem na subagentów niezależnych (soczewki bez wglądu w siebie). Gotowe: plik planu w `docs/audyt-1-1/plan.md`.
