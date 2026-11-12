@@ -36,6 +36,7 @@ describe('testflight.yml: testy Jest na macOS w częściach (07-jakosc-001, 12.1
     expect(z).toContain(`czesc: [${Array.from({ length: tf.czesci_jest }, (_, i) => i + 1).join(', ')}]`);
     expect(z).toContain(`--shard=\${{ matrix.czesc }}/${tf.czesci_jest}`);
     expect(z).toContain('name: testy macOS (część ${{ matrix.czesc }} z ' + tf.czesci_jest + ')');
+    expect(Number(/max-parallel: (\d+)/.exec(z)?.[1])).toBeLessThanOrEqual(3); /* plan darmowy: macierz macOS najwyżej 3 równolegle (tests/macos-max-parallel.test.ts) */
     expect(z).toContain('runs-on: macos-26'); expect(z).toMatch(/needs: bramka\b/);
     expect(zadanie('build')).toMatch(/needs: \[bramka, testy\]/);
   });

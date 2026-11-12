@@ -1497,7 +1497,7 @@ describe('runda 58', () => {
     for (const n of ['ios-unsigned.yml', 'e2e-ios.yml', 'testflight.yml']) { /* 08.10.2026: iphone-local.yml usunięty (audyt M4) — build na telefon przez testflight.yml */
       const y = wf(n);
       expect(y).toMatch(/run: bash scripts\/ci\/select-xcode\.sh 26\n/); expect(y.split('\n').filter(l => !/^\s*#/.test(l)).join('\n')).not.toMatch(/Xcode_16|iOS 18\.2/); /* komentarze mogą cytować historię */
-      expect(y.indexOf('select-xcode.sh')).toBeLessThan(y.indexOf('npm ci')); /* Xcode wybrany przed czymkolwiek, co go używa */
+      expect(y.indexOf('select-xcode.sh')).toBeLessThan(y.indexOf('npm ci', n === 'testflight.yml' ? y.indexOf('\n  build:') : 0)); /* 12.11.2026: w testflight.yml zadanie testy (bez Xcode) ma własny npm ci przed zadaniem build */ /* Xcode wybrany przed czymkolwiek, co go używa */
     }
     for (const n of ['ios-unsigned.yml', 'testflight.yml']) { const y = wf(n); const p = y.indexOf('bash scripts/ci/ensure-ios-platform.sh'); expect(p).toBeGreaterThan(0); expect(p).toBeLessThan(y.indexOf('xcodebuild -workspace')); }
     const e2e = wf('e2e-ios.yml'); expect(e2e).not.toMatch(/downloadPlatform/); expect(e2e.indexOf('"iPhone 17 \\(" "iPhone 16 \\(" "iPhone"')).toBeGreaterThan(0); /* SDK 56: macos-26 ma iPhone 17, nie 16 */

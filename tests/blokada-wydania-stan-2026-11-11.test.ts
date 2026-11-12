@@ -40,7 +40,7 @@ describe('W-05 (11.11.2026): stan ryzyka = początek komórki „stan”', () =>
     const dir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'blokada-l080-')));
     const git = (...a: string[]) => execFileSync('git', a, { cwd: dir, env: { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t' } });
     try {
-      for (const f of ['scripts/ci/blokada-wydania.mjs', 'scripts/check-bundle.mjs', 'lib/sources.ts']) {
+      for (const f of ['scripts/ci/blokada-wydania.mjs', 'scripts/check-bundle.mjs', 'scripts/modul-glowny.mjs', 'lib/sources.ts']) {
         fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true }); fs.copyFileSync(path.join(ROOT, f), path.join(dir, f));
       }
       fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(dir, 'node_modules'));

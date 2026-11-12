@@ -6,7 +6,7 @@
 # 20.10.2026 (audyt M1-018): zadanie „bramka” — wysyłka czeka na ZIELONY przebieg e2e-ios.yml (pakiet podstawowy lub szerszy) dla TEGO SAMEGO commitu
 # (scripts/ci/bramka-e2e.sh); sama dokumentacja (docs/**, *.md) nie uruchamia ani E2E, ani TestFlight. Ścieżka awaryjna (awaria E2E, nie kodu): wejścia
 # pomin_bramke_e2e + powod — powód trafia do podsumowania przebiegu. Przebieg dowodowy bez wysyłki i bez tagu: wejście bez_wysylki (L-001).
-# 12.11.2026 (07-jakosc-001): testy Jest biegną w zadaniu `testy` (5 części na macos-26, ten sam zestaw co `npm run verify`), a zadanie build zaczyna się dopiero po nich (needs).
+# 12.11.2026 (07-jakosc-001): testy Jest biegną w zadaniu `testy` (6 części na macos-26, ten sam zestaw co `npm run verify`), a zadanie build zaczyna się dopiero po nich (needs).
 #
 # Sekrety repozytorium (Settings → Secrets and variables → Actions) — nigdy w repo:
 #   ASC_KEY_ID     — identyfikator klucza API (10 znaków)
@@ -66,14 +66,15 @@ jobs:
     # 12.11.2026 (07-jakosc-001, KO-058 A): Jest na macOS w częściach równolegle zamiast jednego kroku `npm run verify` w zadaniu build (przebieg 43267558799: verify 89 min > stały limit 90 min).
     # Ta sama lista sprawdzeń i ten sam zestaw plików Jest co w verify: część 1 robi `npm run verify:kontrole` (łańcuch verify poza Jest — scripts/ci/kontrole.mjs), każda część `scripts/jest-ponow.mjs --shard=K/N`.
     # Liczba części i limit czasu: scripts/ci/czasy-tests.json, sekcja testflight_macos (pilnuje tests/testflight-testy-czas.test.ts). Zadanie biegnie po bramce E2E (bez zielonego E2E nie spalamy minut macOS).
-    name: testy macOS (część ${{ matrix.czesc }} z 5)
+    name: testy macOS (część ${{ matrix.czesc }} z 6)
     needs: bramka
     runs-on: macos-26
-    timeout-minutes: 60  # z pomiaru: scripts/ci/czasy-tests.json (testflight_macos), nie podnosić bez nowego pomiaru
+    timeout-minutes: 45  # z pomiaru: scripts/ci/czasy-tests.json (testflight_macos), nie podnosić bez nowego pomiaru
     strategy:
       fail-fast: false  # każda część kończy się sama — pełna lista porażek w jednym przebiegu
+      max-parallel: 3  # plan darmowy: 5 zadań macOS naraz; macierz najwyżej 3 (tests/macos-max-parallel.test.ts, decyzja właściciela 27.10.2026) — reszta czeka w drugiej fali
       matrix:
-        czesc: [1, 2, 3, 4, 5]  # liczba części = testflight_macos.czesci_jest w scripts/ci/czasy-tests.json
+        czesc: [1, 2, 3, 4, 5, 6]  # liczba części = testflight_macos.czesci_jest w scripts/ci/czasy-tests.json
     steps:
       - uses: actions/checkout@v5
         with:
@@ -87,10 +88,10 @@ jobs:
       - name: Kontrole z verify (typy, tłumaczenia, sprawdzenia, macierz, eksport iOS) — tylko w części 1
         if: matrix.czesc == 1
         run: npm run verify:kontrole
-      - name: Jest (część ${{ matrix.czesc }} z 5)
+      - name: Jest (część ${{ matrix.czesc }} z 6)
         # 09.10.2026 (run 37921922549): domyślny limit sterty Node na macOS (~2 GB przy 7 GB RAM maszyny) nie wystarczał; sterta workerów Jest z jednego miejsca —
         # scripts/ci/jest-sterta.json (ustawia tests/global-setup.js; dziś 4096 MB na proces roboczy, 2 procesy robocze na 3 rdzeniach). Tu bez własnego NODE_OPTIONS.
-        run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/5
+        run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/6
       - name: Pamięć po Jest (pomiar wymiany pamięci na macOS, 07-jakosc-001 „do sprawdzenia”; tylko do odczytu)
         if: always()
         run: |

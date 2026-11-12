@@ -32,7 +32,7 @@ function repo(zabicie: keyof typeof ZABICIE, zawsze = false) {
   const dir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'ko038-')));
   const git = (...a: string[]) => execFileSync('git', a, { cwd: dir, env: { ...process.env, ...ENV_GIT } });
   fs.mkdirSync(path.join(dir, 'scripts/ci'), { recursive: true });
-  fs.copyFileSync(path.join(ROOT, 'scripts/jest-ponow.mjs'), path.join(dir, 'scripts/jest-ponow.mjs'));
+  fs.copyFileSync(path.join(ROOT, 'scripts/jest-ponow.mjs'), path.join(dir, 'scripts/jest-ponow.mjs')); fs.copyFileSync(path.join(ROOT, 'scripts/modul-glowny.mjs'), path.join(dir, 'scripts/modul-glowny.mjs')); /* 12.11.2026 (07-jakosc-002): skrypty importują wspólny strażnik modułu głównego */
   fs.copyFileSync(path.join(ROOT, 'scripts/ci/jest-sterta.json'), path.join(dir, 'scripts/ci/jest-sterta.json'));
   fs.writeFileSync(path.join(dir, 'jest.config.json'), JSON.stringify({ rootDir: dir, testEnvironment: 'node', testMatch: ['**/tests/*.test.js'], transform: {}, cacheDirectory: path.join(dir, '.cache') }));
   fs.writeFileSync(path.join(dir, '.gitignore'), '.cache\nmarker\n');
