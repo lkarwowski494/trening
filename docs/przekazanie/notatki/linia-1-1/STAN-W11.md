@@ -7,7 +7,8 @@ Gałąź: `naprawy/w11-1-1` od `integracja-1-1` @ a280bd37. Rola 08-programista,
 - DIF-01 (PL/EN + test + zestaw przekładu): bf69a9b5.
 - W-22: bccd857b (wpisy „Co nowego” w `lib/whatsnew-wpisy.ts`, strukturalnie), 9259012d (`scripts/store-whatsnew.mjs`, `check:whatsnew-sklep` w verify).
 - Zadanie 4: 41246615 (19 znalezisk do docs/21; UX-01 w docs/39 ZD-03).
-- Poprawki po verify:szybkie (BRD bez liczb w scenariuszu, pochodne 19 kroków, R-015 otwarty): commit po 41246615.
+- Poprawki po verify:szybkie (BRD bez liczb w scenariuszu, pochodne 19 kroków, R-015 otwarty): 819559d5 (tests.yml 43125339813 czerwony — drugi strażnik stanu R-015).
+- a1d74955: test W-05 (`tests/blokada-wydania-stan-2026-11-11.test.ts`) zależny od zestawu przekładu; lekcja L-NNN w docs/40 (systemowa, opcje A/B, rekomendacja B); verify:szybkie kod 0 (18897 zielonych), wypchnięte 01:27 UTC — tests.yml w toku (sprawdza koordynator).
 
 ## Otwarte
 1. **DIF-01 — przekład 33 języków** (KO-053): przebieg `przeklad-tlumaczen.yml` 43117339440 (success, Opus), artefakt 13899680861 „raport-przekladu” (19 238 B) na hoście productionresultssa14.blob.core.windows.net — poza listą dozwolonych; czeka na zgodę właściciela. Artefaktu nie pobierać innymi drogami. Przebieg dowodowy bg: 43116902121 (0,043 USD, przyjęty).
