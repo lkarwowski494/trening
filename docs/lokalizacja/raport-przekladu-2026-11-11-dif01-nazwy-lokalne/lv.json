@@ -1,0 +1,13 @@
+{
+ "jezyk": "lv",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01Q1sueM5Heb9xwpXx6qjh3X",
+ "pozycji": 1,
+ "przyjete": 1,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach.": "Bibliotēkas vingrinājumu nosaukumi ir angļu valodā, kā lielākajā daļā sporta zāļu. Daudziem vingrinājumiem kartītē zem nosaukuma redzams arī nosaukums jūsu valodā, un meklēšana tos atrod pēc abiem nosaukumiem."
+ }
+}
