@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 export function numeruj(tekst) {
   const linie = tekst.split('\n');
@@ -14,7 +15,7 @@ export function numeruj(tekst) {
   return { tekst: linie.join('\n'), nadane: robocze.length };
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const args = process.argv.slice(2);
   const plik = resolve(args.find((a) => !a.startsWith('--')) || resolve(dirname(fileURLToPath(import.meta.url)), '../docs/40-lekcje.md'));
   const wynik = numeruj(readFileSync(plik, 'utf8'));

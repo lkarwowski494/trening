@@ -8,6 +8,7 @@
 // Użycie: node scripts/skan-publiczny.mjs [rewizja]
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 /** Te same reguły co tests/public-repo.test.ts (zgodność pilnuje tests/skan-publiczny.test.ts). */
 export const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g;
@@ -44,7 +45,7 @@ export function skanuj(cwd, rewizja = 'HEAD') {
   return wynik;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const wynik = skanuj(process.cwd(), process.argv[2] ?? 'HEAD');
   const unikalne = [...new Set(wynik.map(w => `${w.commit} ${w.plik}: ${w.rodzaj}`))];
   if (unikalne.length) {

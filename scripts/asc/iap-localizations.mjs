@@ -8,6 +8,7 @@
 import { createPrivateKey, sign as cryptoSign } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export const BUNDLE_ID = 'pl.lukasz.trening';
 export const SUBSCRIPTION_GROUP_ID = '22474799';
@@ -158,4 +159,4 @@ async function main() {
   const { code } = await run({ client: makeClient({ token }), data, apply });
   process.exit(code);
 }
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });
+if (jestGlowny(import.meta.url)) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });

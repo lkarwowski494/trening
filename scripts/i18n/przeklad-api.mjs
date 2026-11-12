@@ -21,6 +21,7 @@ import { createRequire } from 'node:module';
 import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, rejestrDla, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
 import { maskuj } from '../maskuj.mjs';
 import { wczytajKonteksty, kontekstDla, OPIS_POLA_KONTEKST } from './kontekst.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 /** Powyżej tego szacunku (USD) przebieg zatrzymuje się, chyba że podano --zgoda-koszt (zgoda właściciela 23.10.2026: do 6 USD). */
 export const LIMIT_KOSZTU_USD = 6;
@@ -277,6 +278,6 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   return raporty.some((r) => r.blad) ? 1 : 0;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${maskuj(e.message)}`); process.exit(1); });
 }

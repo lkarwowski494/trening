@@ -15,6 +15,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { makeClient, makeJwt, BUNDLE_ID } from './iap-localizations.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export const LIMITY = { name: 30, subtitle: 30, keywords: 100 /* bajtów */, description: 4000, promotionalText: 170, whatsNew: 4000 };
 export const INFO_FIELDS = ['name', 'subtitle', 'privacyPolicyUrl'];
@@ -185,4 +186,4 @@ async function main() {
   const { code } = await run({ client: makeClient({ token }), data, zapis, findBrands: makeBrandFinder(rd('tests/forbidden-names.json')) });
   process.exit(code);
 }
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });
+if (jestGlowny(import.meta.url)) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });

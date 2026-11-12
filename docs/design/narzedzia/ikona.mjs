@@ -5,6 +5,7 @@ import { deflateSync } from 'node:zlib';
 import { Buffer } from 'node:buffer';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../../../scripts/modul-glowny.mjs';
 
 const CRC = Array.from({ length: 256 }, (_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
 const crc32 = (b) => { let c = 0xffffffff; for (const x of b) c = CRC[(c ^ x) & 0xff] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
@@ -53,4 +54,4 @@ async function main() {
   console.log(`OK ${wyjscie}: ${r}×${r}, ${alfa ? 'RGBA' : 'RGB bez kanału alfa'}`);
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+if (jestGlowny(import.meta.url)) main();

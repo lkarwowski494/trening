@@ -7,6 +7,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { waliduj } from './v2-validate.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DIR = join(ROOT, 'scripts/figures/agent-pozy');
@@ -41,7 +42,7 @@ export async function rozjazdy(rodziny = []) {
   return wynik;
 }
 
-if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {
+if (jestGlowny(import.meta.url)) {
   const w = await rozjazdy(process.argv.slice(2)); const zle = Object.entries(w).filter(([, v]) => Object.keys(v).length);
   console.log(JSON.stringify(w, null, 1)); process.exit(zle.length ? 1 : 0);
 }

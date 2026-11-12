@@ -8,6 +8,7 @@
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const SRC = join(root, 'docs/research/equipment/catalog.json');
@@ -111,7 +112,7 @@ export function apply(catalog, research) {
   return { catalog: out, step: { rev: STEP_REV, renamed, merged, removed, fieldFixes }, baseChanges };
 }
 
-const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+const isMain = jestGlowny(import.meta.url);
 if (isMain) {
   const { catalog, step, baseChanges } = apply(JSON.parse(readFileSync(SRC, 'utf8')), loadResearch());
   writeFileSync(SRC, JSON.stringify(catalog, null, 1)); writeFileSync(STEP, JSON.stringify(step, null, 1) + '\n');

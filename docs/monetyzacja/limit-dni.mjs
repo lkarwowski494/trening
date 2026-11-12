@@ -6,6 +6,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../../scripts/modul-glowny.mjs';
 
 const ul = (x) => typeof x === 'number' && x >= 0 && x <= 1;
 function binomOver(n, p, k) { // P(X > k), X ~ Bin(n, p)
@@ -37,7 +38,7 @@ export function placacyNaPobranie(d, scen, N) {
   }
   return act * wynik;
 }
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const [plik] = process.argv.slice(2);
   if (!plik) { console.error('Użycie: node limit-dni.mjs dane.json'); process.exit(2); }
   let d; try { d = JSON.parse(readFileSync(plik, 'utf8')); } catch (e) { console.error(`BŁĄD: ${e.message}`); process.exit(1); }

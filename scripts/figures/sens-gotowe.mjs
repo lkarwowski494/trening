@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadV2 } from './v2-build.mjs';
 import { regulyDla, EWALUATORY } from './v2-sens.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export function naruszeniaGotowych(root = ROOT, tylkoRodzina = null) {
@@ -21,7 +22,7 @@ export function naruszeniaGotowych(root = ROOT, tylkoRodzina = null) {
   }
   return wynik;
 }
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   const i = process.argv.indexOf('--rodzina'); const w = naruszeniaGotowych(ROOT, i >= 0 ? process.argv[i + 1] : null);
   if (process.argv.includes('--json')) console.log(JSON.stringify(w, null, 1));
   else { const z = w.filter((x) => x.naruszenia.length); console.log(`figur: ${w.length}, z regułami: ${w.filter((x) => x.reguly.length).length}, z naruszeniami: ${z.length}`);

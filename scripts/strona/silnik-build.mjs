@@ -7,6 +7,7 @@ import { execSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { repoRoot } from './ts-loader.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const req = createRequire(import.meta.url);
 /** Moduły silnika wysyłane do przeglądarki (ścieżki względem lib/figures/v2, bez .ts). */
@@ -38,7 +39,7 @@ export async function buildEngine({ out, min = true, commit = process.env.ATLAS_
   return { dir, files };
 }
 
-if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2), arg = n => { const i = a.indexOf(n); return i >= 0 ? a[i + 1] : undefined; };
   const out = arg('--out'); if (!out) { console.error('użycie: node scripts/strona/silnik-build.mjs --out <katalog> [--no-min] [--commit <sha>]'); process.exit(2); }
   const r = await buildEngine({ out, min: !a.includes('--no-min'), ...(arg('--commit') ? { commit: arg('--commit') } : {}) });

@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { skroty } from './zrodla-runtime.mjs';
 import { appRequire, repoRoot } from './strona/ts-loader.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const FORMAT = 'recenzja-szkielet@1';
 const RE_DATA = /^\d{4}-\d\d-\d\d$/;
@@ -108,7 +109,7 @@ export function sprawdz(w, rodzina = w?.rodzina, stan = stanBiezacy(rodzina)) {
   return p;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2);
   const arg = f => (a.includes(f) ? a[a.indexOf(f) + 1] : undefined);
   try {

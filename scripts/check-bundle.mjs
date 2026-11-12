@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { createRequire } from 'node:module';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const require_ = createRequire(import.meta.url);
@@ -72,7 +73,7 @@ export function scanExport(dir) {
   return { bundles, hits, allowed: allowed.length };
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const dir = process.argv[2] ?? join(root, '.expo/verify-export');
   if (!existsSync(dir)) { console.error(`brak katalogu eksportu: ${dir} (najpierw expo export --platform ios)`); process.exit(1); }
   const { bundles, hits, allowed } = scanExport(dir);

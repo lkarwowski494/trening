@@ -7,6 +7,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -74,4 +75,4 @@ export async function main(argv = process.argv.slice(2), root = ROOT) {
   console.log(zle ? `\n${zle} adres(y) niezgodne — wydania nie robić (rejestr ryzyk docs/40).` : '\nWszystkie adresy zwracają 200, treść zgodna z site/.');
   return zle ? 1 : 0;
 }
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().then((c) => process.exit(c));
+if (jestGlowny(import.meta.url)) main().then((c) => process.exit(c));

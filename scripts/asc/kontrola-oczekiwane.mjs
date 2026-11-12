@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { LOCALE_MAP } from './metadane.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const OUT_JSON = 'store/asc-kontrola-oczekiwane.json';
@@ -37,7 +38,7 @@ export function generuj(read = f => readFileSync(join(ROOT, f), 'utf8')) {
   return { [OUT_JSON]: JSON.stringify(json, null, 2) + '\n', [OUT_NOTES]: notesEn(read('store/review-notes.md')) };
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const pliki = generuj(); const check = process.argv.includes('--check'); let zle = 0;
   for (const [f, tresc] of Object.entries(pliki)) {
     if (check) { let jest = null; try { jest = readFileSync(join(ROOT, f), 'utf8'); } catch {} if (jest !== tresc) { console.error(`${f}: nieaktualny — uruchom node scripts/asc/kontrola-oczekiwane.mjs`); zle++; } }

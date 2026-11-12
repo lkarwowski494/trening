@@ -8,6 +8,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { makeClient, makeJwt, BUNDLE_ID } from './iap-localizations.mjs';
 import { readOnlyClient } from './metadane.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export const stateOf = r => r.attributes?.appStoreState ?? r.attributes?.appVersionState ?? '';
 const day = s => (s ? String(s).slice(0, 10) : '—');
@@ -55,4 +56,4 @@ async function main() {
   const { code } = await run({ client: makeClient({ token }) });
   process.exit(code);
 }
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });
+if (jestGlowny(import.meta.url)) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });

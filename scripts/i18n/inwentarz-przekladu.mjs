@@ -9,6 +9,7 @@ import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const ts = createRequire(import.meta.url)('typescript');
@@ -60,7 +61,7 @@ function md(r) {
   return L.join('\n') + '\n';
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2), r = inwentarz();
   const i = a.indexOf('--md'); if (i >= 0) writeFileSync(a[i + 1], md(r));
   const k = a.indexOf('--json'); if (k >= 0) writeFileSync(a[k + 1], JSON.stringify(r, null, 1) + '\n');

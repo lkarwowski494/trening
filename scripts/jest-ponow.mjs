@@ -13,6 +13,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 /* Sterta: jedno miejsce na liczby — scripts/ci/jest-sterta.json (zb010, 02.11.2026). Pierwszy przebieg dostaje stertę workerów od tests/global-setup.js (workerowMB, 4096);
@@ -106,4 +107,4 @@ export function main(args) {
   } finally { rmSync(dir, { recursive: true, force: true }); }
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exit(main(process.argv.slice(2)));
+if (jestGlowny(import.meta.url)) process.exit(main(process.argv.slice(2)));

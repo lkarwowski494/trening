@@ -4,11 +4,12 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export const WLASNY_ZEGAR = /useFakeTimers\(\{[^}]*\bnow\b|setSystemTime/;
 export function pliki(dir) { return readdirSync(dir).filter(f => /\.test\.tsx?$/.test(f) && WLASNY_ZEGAR.test(readFileSync(join(dir, f), 'utf8'))); }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const dir = resolve(dirname(fileURLToPath(import.meta.url)), '../../tests');
   console.log(pliki(dir).map(f => `/tests/${f.replace(/\./g, '\\.')}$`).join('|'));
 }

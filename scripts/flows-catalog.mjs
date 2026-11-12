@@ -7,6 +7,7 @@
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const cat = JSON.parse(readFileSync(join(root, 'tests/przeplywy.json'), 'utf8'));
@@ -84,7 +85,7 @@ export function renderChecklist() {
 }
 
 const OUT = { 'docs/37-katalog-przeplywow.md': renderCatalog, 'docs/39-lista-kontrolna-wydania.md': renderChecklist };
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const mode = process.argv[2]; let bad = 0;
   for (const [file, fn] of Object.entries(OUT)) {
     const want = fn(); const path = join(root, file);

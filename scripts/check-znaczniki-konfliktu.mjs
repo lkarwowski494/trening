@@ -8,6 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 /** ZAKRES strażnika — jedno miejsce: pliki śledzone przez git (`git ls-files`), tekstowe (bez bajtu NUL), do `maxBajtow`; plik wyjątków poniżej. */
 export const ZAKRES = {
@@ -42,7 +43,7 @@ export function znajdz(root) {
   return trafienia;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const i = process.argv.indexOf('--root');
   const root = i > -1 ? resolve(process.argv[i + 1]) : resolve(dirname(fileURLToPath(import.meta.url)), '..');
   const t = znajdz(root);

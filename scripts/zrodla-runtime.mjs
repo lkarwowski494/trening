@@ -23,6 +23,7 @@ import { srcLevel, MAX_COUNT_LEVEL } from './cues/gen.mjs';
 import { regulyDla } from './figures/v2-sens.mjs';
 import { appRequire } from './strona/ts-loader.mjs';
 import { rodzinaSkrot, plikRodziny, V2_RIGI } from './skrot-v2-wynik.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'data/zrodla/figures.json');
@@ -254,7 +255,7 @@ export function outputs() {
   ];
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   if (process.argv.includes('--rid')) {
     const zajete = [...readFileSync(join(root, 'lib/catalog.generated.ts'), 'utf8').matchAll(/"([0-9a-f]{8})",$/gm)].map(m => m[1]);
     for (const [plik, wciecie] of [[FULL_CUES, 1], [FULL_FIG, 2]]) {

@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { appRequire, repoRoot } from './ts-loader.mjs';
 import { PLIK_RECENZJI, rodzinyZRecenzja } from './recenzja-figur.mjs';
 import { elementyKarty, wejscieKarty } from '../pokrycie-katalogu.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const SCHEMA = 'techniqueatlas-eksport@1';
@@ -185,7 +186,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
 
 export const serialize = obj => JSON.stringify(obj) + '\n';
 
-if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2), arg = n => { const i = a.indexOf(n); return i >= 0 ? a[i + 1] : undefined; };
   const out = arg('--out'); if (!out) { console.error('użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en] [--commit <sha>] [--recenzja <plik>]'); process.exit(2); }
   const ex = createExporter({ ...(arg('--commit') ? { commit: arg('--commit') } : {}), ...(arg('--recenzja') ? { recenzja: arg('--recenzja') } : {}) });

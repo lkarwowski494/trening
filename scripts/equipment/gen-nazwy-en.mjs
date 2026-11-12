@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const SRC = 'docs/research/equipment/nazwy-en.json';
@@ -48,7 +49,7 @@ export function renderuj({ nazwy, dawne }) {
   return L.join('\n');
 }
 
-if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
+if (jestGlowny(import.meta.url)) {
   const out = renderuj(zbuduj(JSON.parse(readFileSync(join(root, SRC), 'utf8')), JSON.parse(readFileSync(join(root, KATALOG), 'utf8'))));
   if (process.argv.includes('--check')) {
     const cur = existsSync(join(root, OUT)) ? readFileSync(join(root, OUT), 'utf8') : null;

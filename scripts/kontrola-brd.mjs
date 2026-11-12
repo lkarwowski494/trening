@@ -5,6 +5,7 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const ID = String.raw`(?:BR|NFR)-[A-Z]{2,6}-\d{3}|RD-\d{2}-W\d+|(?:J|ZP|PR|RD|OG|H|RYZ|S|OP|ER)-\d{2}|P-\d+`;
 const RE_NAGL = new RegExp(`^(#{1,6})\\s+(${ID})(?=[\\s:·.]|$)`);
@@ -131,7 +132,7 @@ export function wektory(pliki) {
   });
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const args = process.argv.slice(2), sciezki = args.filter((a) => !a.startsWith('--'));
   if (!sciezki.length) { console.error('Użycie: node kontrola-brd.mjs <katalog|plik.md>... [--szkic] [--wektory]'); process.exit(2); }
   const pliki = sciezki.flatMap((s) => (statSync(s).isDirectory() ? readdirSync(s).filter((f) => f.endsWith('.md')).sort().map((f) => join(s, f)) : [s]))

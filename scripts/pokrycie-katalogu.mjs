@@ -21,6 +21,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { appRequire, repoRoot } from './strona/ts-loader.mjs';
 import { rodzinyZRecenzja } from './strona/recenzja-figur.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 export const SCHEMAT = 'pokrycie-katalogu@1';
 export const PLIKI = {
@@ -235,7 +236,7 @@ function podniesMinimum(dobre) {
   };
 }
 
-if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2), tryb = a[0];
   const wynik = policz();
   const doc = renderuj(wynik), fix = serializuj(wynik.fixture);

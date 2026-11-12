@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadPatterns, nameRegex } from '../check-bundle.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const here = fileURLToPath(new URL('../..', import.meta.url));
 
@@ -37,7 +38,7 @@ export function blockingRisks(md) {
     .filter(r => !STAN_KONCOWY.test(r.state) && /otwarte|częściowo/i.test(r.state) && !/odroczone decyzją właściciela \d{2}\.\d{2}\.\d{4}|sprawdzenie po wydaniu/i.test(r.state));
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const risks = blockingRisks(readFileSync(join(here, 'docs/40-lekcje.md'), 'utf8'));
   if (risks.length) {
     console.error(`WYDANIE ZABLOKOWANE (rejestr ryzyk docs/40): ${risks.length} otwartych bez odroczenia decyzją właściciela — ${risks.map(r => r.id).join(', ')}`);

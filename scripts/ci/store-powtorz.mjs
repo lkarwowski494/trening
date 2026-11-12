@@ -4,6 +4,7 @@
 // więc podział zadań liczy je jako brakujące, a skrypt zrzutów robi je od nowa. Użycie: node store-powtorz.mjs <katalog> "<lista>"
 import fs from 'node:fs';
 import path from 'node:path';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export function powtorz(dir, list) {
   const pairs = String(list || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -19,7 +20,7 @@ export function powtorz(dir, list) {
   return removed;
 }
 
-if (process.argv[1] && import.meta.url === `file://${path.resolve(process.argv[1])}`) {
+if (jestGlowny(import.meta.url)) {
   const removed = powtorz(process.argv[2], process.argv[3]);
   console.log(removed.length ? `Do powtórzenia (usunięte z uzupełnienia): ${removed.join(', ')}` : 'powtorz: nic do usunięcia');
 }

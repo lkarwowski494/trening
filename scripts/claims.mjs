@@ -17,6 +17,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import vm from 'node:vm';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const DICT = join(root, 'lib/i18n.en.ts');
@@ -102,7 +103,7 @@ export function checkClaims(EN, registry, readDoc) {
   return errs;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const EN = loadDictionary(); const registry = JSON.parse(readFileSync(REG, 'utf8'));
   const readDoc = (p) => (existsSync(join(root, p)) ? readFileSync(join(root, p), 'utf8') : null);
   const a = process.argv.slice(2);

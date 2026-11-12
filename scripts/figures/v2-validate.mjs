@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
 import { sprawdzSens, izometryczne, bezBramkiRuchu, zakresWyjatek, dynamiczne, grupaBledu, wczytajSens, regulyDla, kartaWlasna } from './v2-sens.mjs';
 import { sprawdzJakosc, krawedzJakosci, wczytajTeksty, GRUPY_POSTAWY, GRUPY_DOL, wierszeWJednejLinii, klatkiZHtml } from './v2-jakosc.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCHEMA_FILE = 'docs/schemas/figury-v2-poza.schema.json';
@@ -177,4 +178,4 @@ async function main(argv) {
   }
   return zle ? 1 : 0;
 }
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main(process.argv.slice(2)).then((c) => process.exit(c), (e) => { console.error(`błąd: ${e.message}`); process.exit(1); });
+if (jestGlowny(import.meta.url)) main(process.argv.slice(2)).then((c) => process.exit(c), (e) => { console.error(`błąd: ${e.message}`); process.exit(1); });

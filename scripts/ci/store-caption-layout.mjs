@@ -9,6 +9,7 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const NO_SPACES = new Set(['ja', 'zh-Hant']);
 /** Znaki, od których wiersz nie może się zaczynać (interpunkcja zamykająca; japońskie i chińskie zasady łamania). */
@@ -60,7 +61,7 @@ export function plan(lang, captions, W, H, measure) {
   return { pointsize, podpisy };
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const [file, lang, font, W, H] = process.argv.slice(2);
   const caps = JSON.parse(readFileSync(file, 'utf8')).podpisy[lang] ?? {};
   const cache = new Map();

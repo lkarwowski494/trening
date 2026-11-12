@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../../scripts/modul-glowny.mjs';
 
 const DATA = /\d{4}-\d{2}-\d{2}/;
 const zl = (x) => x.toFixed(2).replace('.', ',');
@@ -71,7 +72,7 @@ export function opis(d, w) {
   return l.join('\n');
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const [plik] = process.argv.slice(2);
   if (!plik) { console.error('Użycie: node rachunek.mjs dane.json'); process.exit(2); }
   let d;

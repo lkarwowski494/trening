@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const SRC = join(root, 'docs/research/equipment/catalog.json');
@@ -137,7 +138,7 @@ export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: 
   ].join('\n');
 }
 
-const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+const isMain = jestGlowny(import.meta.url);
 if (isMain) {
   const out = render(JSON.parse(readFileSync(SRC, 'utf8')), JSON.parse(readFileSync(STEP_SRC, 'utf8')), JSON.parse(readFileSync(ALIASES_SRC, 'utf8')));
   if (process.argv.includes('--check')) {
