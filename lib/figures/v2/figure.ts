@@ -106,10 +106,10 @@ export function faultApplicable(spec: FigureSpec, error: FigError): boolean {
 function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return { m: ERRORS[error].mods, w: faultWeight(spec, u) }; }
 
 /** Ustawienia prezentacji ćwiczenia z danych: wpis rodziny (DATA_UI) z wyjątkiem ćwiczenia; null dla rodzin z rigiem. */
-function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean; side?: Side } | null {
+function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean; untimed: boolean; side?: Side } | null {
   if (!('data' in spec.variant)) return null;
   const u = DATA_UI[spec.family] ?? (loopOf(spec) === 'jednokierunkowa' ? ONE_WAY_UI[spec.family] : undefined) ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
-  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk, side: x?.side };
+  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk, untimed: !!u.untimed, side: x?.side };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
  * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;
@@ -209,7 +209,7 @@ export function phaseNames(spec: FigureSpec): PhaseNames {
 /** Fazy pętli ćwiczenia z czasami (tempo ilustracyjne; błąd tempa podaje własne czasy). */
 /** Tempo figury: z błędu tempa albo domyślne; przysiad bez pauzy na dole (NSCA Basics 2012 s. 49–50; pauza 0,5 s to konwencja bez źródła). */
 export const tempoFor = (spec: FigureSpec, error?: FigError): Tempo => ({ ...(error && !isDataError(error) ? ERRORS[error].mods.tempo : undefined) ?? TEMPO, ...(spec.family === 'squat' && !spec.static ? { holdLowMs: 0 } : {}) });
-export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => loopOf(spec) === 'jednokierunkowa' ? oneWayPhases(phaseNames(spec).first) : dataUiOf(spec)?.walk ? walkPhases(tempo) : phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
+export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => loopOf(spec) === 'jednokierunkowa' ? oneWayPhases(phaseNames(spec).first) : dataUiOf(spec)?.walk ? walkPhases(tempo) : phasesOf(phaseNames(spec), spec.lowerFirst, tempo, dataUiOf(spec)?.untimed);
 
 const trailCache = new Map<string, Shape[]>();
 /** Tor ruchu środka ciężaru/dłoni w widoku (próbkowanie co 1/24; cache). */

@@ -70,10 +70,10 @@ export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawan
 export type Phase = { name: PhaseName; ms: number; untimed?: true };
 export type PhaseNames = { first: PhaseName; second: PhaseName };
 
-/** Cztery fazy jednej pętli w kolejności: pierwsza, pauza, druga, pauza (pauza ilustracyjna 0,5 s). */
-export function phasesOf(names: PhaseNames, lowerFirst: boolean, tempo: Tempo = TEMPO): Phase[] {
-  const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs;
-  return [{ name: names.first, ms: a }, { name: 'Pauza', ms: lowLeg(tempo) }, { name: names.second, ms: b }, { name: 'Pauza', ms: TEMPO.holdMs }];
+/** Cztery fazy jednej pętli w kolejności: pierwsza, pauza, druga, pauza (pauza ilustracyjna 0,5 s). `untimed` (MER-01, 11.11.2026: wahadło balistyczne): fazy ruchu bez sekund w liczniku, `ms` tylko do bieżącej fazy. */
+export function phasesOf(names: PhaseNames, lowerFirst: boolean, tempo: Tempo = TEMPO, untimed?: boolean): Phase[] {
+  const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs; const u = untimed ? { untimed: true as const } : {};
+  return [{ name: names.first, ms: a, ...u }, { name: 'Pauza', ms: lowLeg(tempo) }, { name: names.second, ms: b, ...u }, { name: 'Pauza', ms: TEMPO.holdMs }];
 }
 /** Jedna faza pętli dla ruchu chodzonego (noszenie): „Marsz” przez całą pętlę, bez sekund i bez pauz. */
 export const walkPhases = (tempo: Tempo = TEMPO): Phase[] => [{ name: 'Marsz', ms: loopLength(false, tempo), untimed: true }];

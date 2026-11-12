@@ -720,6 +720,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie plyometryczne albo rzut piłką (Slam, rzut, Wall Ball) ma rysunek podłączony do karty
     - Gdy rysunek jest animowany
     - Wtedy ruch biegnie od pozycji wyjściowej do końcowej raz, po krótkiej pauzie wraca skokiem do pozycji wyjściowej (bez odtwarzania ruchu wstecz), a licznik pokazuje jedną fazę („Skok” albo „Rzut”) bez sekund i bez „Pauza”
+  - Scenariusz: Wahadło balistyczne bez sekund (11.11.2026, MER-01)
+    - Zakładając, że ćwiczenie balistyczne z kettlebell albo hantlem jest wahadłem (zamach, zarzut, wysoki ciąg: 7 ćwiczeń rodziny kb_ballistic)
+    - Gdy rysunek jest animowany w aplikacji albo na stronie
+    - Wtedy licznik pokazuje nazwy faz („Podnoszenie”, „Pauza”, „Opuszczanie”) bez sekund; ćwiczenia siłowe (np. wyciskanie leżąc) i Clean Pull / Snatch Pull zachowują fazy z sekundami
   - Scenariusz: Błąd kolan widać z przodu
     - Zakładając, że ćwiczenie ma błąd „kolana do środka” (Wall Ball)
     - Gdy użytkownik wybiera ten błąd

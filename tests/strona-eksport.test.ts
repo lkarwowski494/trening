@@ -167,6 +167,16 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
   });
+  test('MER-01 (11.11.2026): eksport strony — 7 wahadeł kb_ballistic bez sekund (każda faza poza „Pauza” ma `untimed`), Clean Pull z sekundami', () => {
+    for (const l of ['pl', 'en']) {
+      const ex = (id: string) => data[l].exercises.find(e => e.id === id)!;
+      for (const k of ['Kettlebell Swing', 'One-Arm Kettlebell Swings', 'Kettlebell Clean', 'Double Kettlebell Clean', 'Dumbbell Clean', 'Kettlebell Sumo High Pull', 'Bottoms-Up Clean From The Hang Position']) {
+        const ph = ex(k).figure!.phases; expect([k, ph.length]).toEqual([k, 4]);
+        expect([l, k, ph.filter((p, i) => i % 2 === 0 && !p.untimed).length]).toEqual([l, k, 0]);
+      }
+      expect(ex('Clean Pull').figure!.phases.some(p => p.untimed)).toBe(false);
+    }
+  });
   test('r6-W2 A (05.11.2026): ćwiczenia w pętli jednokierunkowej mają figurę z `loop: jednokierunkowa` i jedną fazą bez sekund; wahadło (Clean Pull) ma `loop: wahadlo` i fazy z sekundami; negatyw: żadna figura nie jest pomijana z powodu trybu pętli', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { loop: string; lowerFirst: boolean }> };
     for (const l of ['pl', 'en']) {

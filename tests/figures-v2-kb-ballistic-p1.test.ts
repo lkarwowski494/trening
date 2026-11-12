@@ -37,12 +37,19 @@ describe('kb_ballistic p1: podłączenie (09.11.2026)', () => {
     expect(figureSpec('Kettlebell Pirate Ships')).toBeNull();
   });
   const JEDNOKIERUNKOWE = ['Kettlebell Snatch', 'Double Kettlebell Snatch', 'Snatch (hantel)', 'Double Kettlebell Push Press', 'Double Kettlebell Jerk', 'One-Arm Kettlebell Push Press', 'One-Arm Kettlebell Jerk', 'One-Arm Kettlebell Split Jerk', 'One-Arm Kettlebell Clean and Jerk'];
-  test('DATA_UI: wahadło (swing, zarzut, wysoki ciąg): Podnoszenie 1 s / Opuszczanie 2 s; rwanie, wyciskania z nóg i podrzut (9, petla = jednokierunkowa): jedna faza „Podnoszenie” bez czasu; mierzone biodro albo kolano', () => {
+  test('DATA_UI: wahadło (swing, zarzut, wysoki ciąg): Podnoszenie / Opuszczanie bez sekund (MER-01, 11.11.2026); rwanie, wyciskania z nóg i podrzut (9, petla = jednokierunkowa): jedna faza „Podnoszenie” bez czasu; mierzone biodro albo kolano', () => {
     expect(DATA_UI[FAM].names).toEqual({ first: 'Podnoszenie', second: 'Opuszczanie' }); expect(DATA_UI[FAM].lowerFirst).toBe(false); expect(DATA_UI[FAM].joints).toEqual(['hip', 'knee']);
     expect(KEYS.filter(k => data(k).petla === 'jednokierunkowa').sort()).toEqual([...JEDNOKIERUNKOWE].sort());
     for (const k of KEYS) { const s = figureSpec(k)!; const one = JEDNOKIERUNKOWE.includes(k);
       expect([k, phaseNames(s)]).toEqual([k, one ? { first: 'Podnoszenie', second: 'Podnoszenie' } : { first: 'Podnoszenie', second: 'Opuszczanie' }]);
-      expect([k, phasesFor(s).map(p => [p.name, p.untimed ?? false])]).toEqual([k, one ? [['Podnoszenie', true]] : [['Podnoszenie', false], ['Pauza', false], ['Opuszczanie', false], ['Pauza', false]]]); }
+      expect([k, phasesFor(s).map(p => [p.name, p.untimed ?? false])]).toEqual([k, one ? [['Podnoszenie', true]] : [['Podnoszenie', true], ['Pauza', false], ['Opuszczanie', true], ['Pauza', false]]]); }
+  });
+  /* MER-01 (audyt W-10, decyzja 11.11.2026): wahadło rodziny kb_ballistic (swing, zarzut, wysoki ciąg) bez sekund w liczniku — czas 2 s / 1 s (T-059) to konwencja z badań hipertrofii, nie z ruchu balistycznego; wzór: oneWayPhases (anim.ts). */
+  const WAHADLO = ['Kettlebell Swing', 'One-Arm Kettlebell Swings', 'Kettlebell Clean', 'Double Kettlebell Clean', 'Dumbbell Clean', 'Kettlebell Sumo High Pull', 'Bottoms-Up Clean From The Hang Position'];
+  test('MER-01 (11.11.2026): 7 wahadeł kb_ballistic — fazy bez sekund (tylko nazwa albo „Pauza”); negatyw: Bench Press i Clean Pull zachowują 2 s / 1 s', () => {
+    expect(KEYS.filter(k => !JEDNOKIERUNKOWE.includes(k)).sort()).toEqual([...WAHADLO].sort());
+    for (const k of WAHADLO) expect([k, phasesFor(figureSpec(k)!).filter(p => p.name !== 'Pauza' && !p.untimed).map(p => p.name)]).toEqual([k, []]);
+    for (const k of ['Bench Press (sztanga)', 'Clean Pull']) expect([k, phasesFor(figureSpec(k)!).filter(p => p.name !== 'Pauza').map(p => [p.ms, p.untimed ?? false]).sort()]).toEqual([k, [[1000, false], [2000, false]]]);
   });
 });
 

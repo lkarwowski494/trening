@@ -26,6 +26,7 @@ const JEST = ['npx', 'jest', '--maxWorkers=1', '--silent'];
 export const KROKI = [
   { nazwa: 'znaczniki konfliktu scalenia', polecenie: ['node', 'scripts/check-znaczniki-konfliktu.mjs'], jak: 'rozstrzygnij konflikt w wymienionym pliku (usuń wiersze <<<<<<<, =======, >>>>>>>); legalny przykład — wpis z powodem w tests/znaczniki-konfliktu-wyjatki.json.' },
   { nazwa: 'README', polecenie: ['node', 'scripts/readme.mjs', '--check'], jak: 'node scripts/readme.mjs --write, potem git add README.md.' },
+  { nazwa: '„Co nowego” w metadanych sklepu', polecenie: ['node', 'scripts/store-whatsnew.mjs', '--check'], jak: 'node scripts/store-whatsnew.mjs --write, potem git add store.' },
   { nazwa: 'macierz testów', polecenie: ['node', 'scripts/test-matrix.mjs', '--check'], jak: 'najpierw git add nowych plików testów (macierz liczy tylko pliki śledzone), potem node scripts/test-matrix.mjs --write i git add docs; brakujące testy dopisz, nie wyłączaj sprawdzenia.' },
   { nazwa: 'konteksty tłumaczeń', polecenie: ['node', 'scripts/i18n-context.mjs', '--check'], jak: 'node scripts/i18n-context.mjs --write, potem git add docs/lokalizacja/konteksty.json.' },
   { nazwa: 'wskazówki (cues)', polecenie: ['node', 'scripts/cues/gen.mjs', '--check'], jak: 'node scripts/cues/gen.mjs (zapis), potem git add docs.' },

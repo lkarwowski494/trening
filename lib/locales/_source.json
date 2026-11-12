@@ -2967,8 +2967,8 @@
   "en": "Library exercise names are in English in all languages except Polish."
  },
  {
-  "pl": "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.",
-  "en": "Library exercise names are in English, as in most gyms. On the exercise card, the name in your language appears below it, and search finds the exercise by either name."
+  "pl": "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach.",
+  "en": "Library exercise names are in English, as in most gyms. For many exercises, the card also shows the name in your language below it, and search finds them by either name."
  },
  {
   "pl": "Nic do zapisania. Odrzucić ten trening?",

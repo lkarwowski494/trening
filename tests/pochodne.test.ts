@@ -27,7 +27,7 @@ describe('check:pochodne — lista kroków (decyzja 8a, 28.10.2026)', () => {
     expect(kod).toContain('tests/wektory/brd.json');
     expect(kod).toContain("'-t', '_source.json'");
     for (const t of ['watch-fixtures', 'watch-apple-i18n', 'widget-i18n']) expect(kod).toContain(`tests/${t}.test.ts`);
-    expect(lista()).toHaveLength(18); /* +1 skan historii przed publikacją (lekcja 10.11.2026 w docs/40, adres e-mail w historii gałęzi); +1 znaczniki konfliktu (04.11.2026); +1: strażniki słowników warunkowo (L-048 A, 28.10.2026) */
+    expect(lista()).toHaveLength(19); /* +1 „Co nowego” w metadanych sklepu (W-22, 11.11.2026, scripts/store-whatsnew.mjs);  +1 skan historii przed publikacją (lekcja 10.11.2026 w docs/40, adres e-mail w historii gałęzi); +1 znaczniki konfliktu (04.11.2026); +1: strażniki słowników warunkowo (L-048 A, 28.10.2026) */
   });
   test.each([
     'tests/interaction-guards.test.ts', 'tests/public-repo.test.ts', 'tests/architecture-limits.test.ts',

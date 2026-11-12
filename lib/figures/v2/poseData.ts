@@ -54,6 +54,8 @@ export type DataUi = {
   joints: readonly MeasuredJoint[];
   /** Ruch to chód (noszenie): licznik pokazuje jedną fazę „Marsz” bez sekund — tempo opuszczania i podnoszenia nie dotyczy kroku, a czasu kroku nie podajemy (brak źródła). */
   walk?: true;
+  /** Ruch balistyczny w wahadle (kb_ballistic: swing, zarzut, wysoki ciąg; MER-01, 11.11.2026): licznik pokazuje nazwy faz bez sekund — tempo 2 s / 1 s (T-059) to konwencja z badań nad przerostem, nie z ruchu balistycznego; czasu nie podajemy (brak źródła), wzór oneWayPhases. */
+  untimed?: true;
   /** Wyjątki dla pojedynczych ćwiczeń rodziny (inne nazwy faz, inny staw, ukrycie linii kąta). */
   exceptions?: Record<string, PhaseOverride>;
 };
