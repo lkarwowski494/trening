@@ -1,4 +1,4 @@
-# STAN-AGENTA — sesja AB (programista, tryb fix), gałąź napr/testflight-1-1-czas, 12.11.2026
+# Stan agenta AB (programista, tryb fix), gałąź napr/testflight-1-1-czas, 12.11.2026
 
 Polecenie: `origin/koordynacja:docs/koordynacja/polecenia/AB.md` @ 193f2e4. Raport źródłowy: `docs/audyt-1-1/testflight-czas-2026-11-12.md`.
 
@@ -19,4 +19,4 @@ Polecenie: `origin/koordynacja:docs/koordynacja/polecenia/AB.md` @ 193f2e4. Rapo
 ## Pułapki
 - Hak pre-push wymaga znacznika; po zmianie kodu `npm run verify:lekkie`; macierz i README: `node scripts/test-matrix.mjs --write`, `node scripts/readme.mjs --write` (bez tego verify:lekkie czerwone).
 - Nie używać `pomin_bramke_e2e`; nie podnosić timeout-minutes.
-- STAN-AGENTA.md jest w .gitignore (commit przez `git add -f`).
+- Plik stanu leży w docs/audyt-1-1 (STAN-AGENTA.md w korzeniu jest w .gitignore, generator README go nie zna).
