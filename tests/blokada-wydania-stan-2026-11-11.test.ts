@@ -28,8 +28,8 @@ describe('W-05 (11.11.2026): stan ryzyka = początek komórki „stan”', () =>
       '| R-5 | a | b | **częściowo spełnione 22.10.2026** — zamknięte dla iOS |',
     ]))).toEqual(['R-3', 'R-4', 'R-5']);
   });
-  /* 11.11.2026 (DIF-01, audyt W-10): R-015 otwarty ponownie, dopóki zestaw przekładu ma wpis „zmieniony” — stan bieżącego rejestru zależy od zestawu (tests/blokada-wydania.test.ts). */
-  test('bieżący rejestr: R-015 blokuje wydanie dokładnie wtedy, gdy zaczyna się od „otwarte” (11.11.2026: wpis „zmieniony” DIF-01); zamknięty z historią „otwarte” nie blokuje', () => {
+  /* 11.11.2026 (DIF-01, audyt W-10): R-015 otwarty ponownie, dopóki zestaw przekładu ma wpis „zmieniony”; 12.11.2026 przekład nałożony — R-015 zamknięty, stan bieżącego rejestru zależy od zestawu (tests/blokada-wydania.test.ts). */
+  test('bieżący rejestr: R-015 blokuje wydanie dokładnie wtedy, gdy zaczyna się od „otwarte” (11.11.2026: wpis „zmieniony” DIF-01; 12.11.2026 zamknięty po przekładzie); zamknięty z historią „otwarte” nie blokuje', () => {
     const row = fs.readFileSync(path.join(ROOT, 'docs/40-lekcje.md'), 'utf8').split('\n').find(l => l.startsWith('| R-015 |')) ?? '';
     const { PENDING } = require('./pending-translation') as { PENDING: { rodzaj: string }[] }; const pending = PENDING.some(p => p.rodzaj === 'zmieniony');
     expect(row.split(' | ').at(-1)).toMatch(pending ? /^otwarte \d{2}\.\d{2}\.\d{4}[\s\S]*\*\*zamknięte 05\.11\.2026\*\*/ : /^\*\*zamknięte \d{2}\.\d{2}\.\d{4}\*\*[\s\S]*otwarte/);

@@ -1,0 +1,13 @@
+{
+ "jezyk": "de",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01Q1sueM5Heb9xwpXx6qjh3X",
+ "pozycji": 1,
+ "przyjete": 1,
+ "blad": null,
+ "odrzucone": [],
+ "propozycje": {
+  "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach.": "Die Übungsnamen in der Bibliothek sind auf Englisch, wie in den meisten Fitnessstudios. Bei vielen Übungen steht auf der Karte darunter auch der Name in deiner Sprache, und die Suche findet sie unter beiden Namen."
+ }
+}

@@ -1,14 +1,6 @@
 {
  "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN): DIF-01 z audytu W-10 (11.11.2026, docs/18) — zmienione brzmienie punktu „Co nowego” 1.1 o nazwach lokalnych ćwiczeń (nazwę lokalną ma 248–276 z 708 ćwiczeń, więc „przy wielu ćwiczeniach”, nie przy każdym). Rodzaj „zmieniony”: klucz przemianowany w słownikach, do czasu przekładu zostaje poprzednie tłumaczenie. Przekład przez API (przeklad-tlumaczen.yml, ZB-057), recenzja recenzent-lokalizacji, po nałożeniu opróżnić listę.",
  "data": "2026-11-11",
- "status": "otwarty - czeka na przekład API (1 klucz)",
- "klucze": [
-  {
-   "rodzaj": "zmieniony",
-   "pl": "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Przy wielu ćwiczeniach na karcie pod nazwą widać też nazwę w Twoim języku, a wyszukiwarka znajduje je po obu nazwach.",
-   "en": "Library exercise names are in English, as in most gyms. For many exercises, the card also shows the name in your language below it, and search finds them by either name.",
-   "poprzedni_pl": "Nazwy ćwiczeń z biblioteki są po angielsku, jak na większości siłowni. Na karcie ćwiczenia pod nazwą widać nazwę w Twoim języku, a wyszukiwarka znajduje ćwiczenie po obu.",
-   "kontekst": "punkt listy „Co nowego” po aktualizacji (zdania oznajmujące, kończą się kropką): nazwy ćwiczeń z biblioteki są angielskie; przy części ćwiczeń (nie przy wszystkich) karta ćwiczenia pokazuje pod nazwą angielską nazwę w języku użytkownika, a wyszukiwarka znajduje ćwiczenie po każdej z nich; „przy wielu” ma brzmieć naturalnie, bez liczb"
-  }
- ]
+ "status": "przełożony 12.11.2026 — przebieg przeklad-tlumaczen.yml 43117339440 (artefakt 13899680861), nałożony --zastosuj, 33 języki; recenzja recenzent-lokalizacji: docs/research/recenzje/",
+ "klucze": []
 }
