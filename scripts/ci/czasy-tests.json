@@ -109,5 +109,15 @@
         }
       ]
     }
+  },
+  "testflight_macos": {
+    "_opis": "Pomiar i limity zadania `testy` w testflight.yml (macos-26; 07-jakosc-001, 12.11.2026, KO-058 A) — JEDYNE źródło liczby części Jest na macOS i limitu `timeout-minutes` zadania `testy` (pilnuje tests/testflight-testy-czas.test.ts). Powód: czas pełnego Jest na macOS rósł z danymi (38 → 57 → ponad 89 min kroku verify; plików 591 → 717 → 810) i przekroczył stały limit 90 min zadania build (przebieg 43267558799). Kroki są te same co w verify: część 1 robi `npm run verify:kontrole`, każda część `node scripts/jest-ponow.mjs --shard=K/N`. Reguła limitu jak w tests.yml: p95 × `zapas`, w górę do kroku; do pełnej próbki (`minimalna_probka`) obowiązuje `limit_tymczasowy_min`. Limit tymczasowy 60 min = cel części ≤ 45 min (szacunek: macOS ≈ 2,05 × Ubuntu wg podpisy1/6, 556/541 s vs 272/267 s; Ubuntu 5 części po 10–14 min → macOS ok. 22–29 min + kontrole w części 1) z zapasem ≥ 30%; zastąpić pomiarem z przebiegu dowodowego i kolejnych wydań.",
+    "czesci_jest": 5,
+    "_czesci_opis": "Liczba części: 5 jak w tests.yml; część macOS ≈ 2,05 × część Ubuntu (12,6 min średnio) ≈ 26 min. Limit równoległych zadań macOS na planie darmowym: [DO USTALENIA] — docs.github.com niedostępne z kontenera sesji 12.11.2026 (proxy odrzuca host); nadmiar zadań czeka w kolejce, nie kończy się błędem.",
+    "testy": {
+      "minimalna_probka": 10,
+      "limit_tymczasowy_min": 60,
+      "probka_min": []
+    }
   }
 }

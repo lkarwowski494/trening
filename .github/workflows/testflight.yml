@@ -6,6 +6,7 @@
 # 20.10.2026 (audyt M1-018): zadanie „bramka” — wysyłka czeka na ZIELONY przebieg e2e-ios.yml (pakiet podstawowy lub szerszy) dla TEGO SAMEGO commitu
 # (scripts/ci/bramka-e2e.sh); sama dokumentacja (docs/**, *.md) nie uruchamia ani E2E, ani TestFlight. Ścieżka awaryjna (awaria E2E, nie kodu): wejścia
 # pomin_bramke_e2e + powod — powód trafia do podsumowania przebiegu. Przebieg dowodowy bez wysyłki i bez tagu: wejście bez_wysylki (L-001).
+# 12.11.2026 (07-jakosc-001): testy Jest biegną w zadaniu `testy` (5 części na macos-26, ten sam zestaw co `npm run verify`), a zadanie build zaczyna się dopiero po nich (needs).
 #
 # Sekrety repozytorium (Settings → Secrets and variables → Actions) — nigdy w repo:
 #   ASC_KEY_ID     — identyfikator klucza API (10 znaków)
@@ -61,8 +62,42 @@ jobs:
             exit 0
           fi
           bash scripts/ci/bramka-e2e.sh "$GITHUB_REPOSITORY" "$GITHUB_SHA"
-  build:
+  testy:
+    # 12.11.2026 (07-jakosc-001, KO-058 A): Jest na macOS w częściach równolegle zamiast jednego kroku `npm run verify` w zadaniu build (przebieg 43267558799: verify 89 min > stały limit 90 min).
+    # Ta sama lista sprawdzeń i ten sam zestaw plików Jest co w verify: część 1 robi `npm run verify:kontrole` (łańcuch verify poza Jest — scripts/ci/kontrole.mjs), każda część `scripts/jest-ponow.mjs --shard=K/N`.
+    # Liczba części i limit czasu: scripts/ci/czasy-tests.json, sekcja testflight_macos (pilnuje tests/testflight-testy-czas.test.ts). Zadanie biegnie po bramce E2E (bez zielonego E2E nie spalamy minut macOS).
+    name: testy macOS (część ${{ matrix.czesc }} z 5)
     needs: bramka
+    runs-on: macos-26
+    timeout-minutes: 60  # z pomiaru: scripts/ci/czasy-tests.json (testflight_macos), nie podnosić bez nowego pomiaru
+    strategy:
+      fail-fast: false  # każda część kończy się sama — pełna lista porażek w jednym przebiegu
+      matrix:
+        czesc: [1, 2, 3, 4, 5]  # liczba części = testflight_macos.czesci_jest w scripts/ci/czasy-tests.json
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # tagi i pełna historia: tests/audit-m1-050-release-log.test.ts wymaga tagów v*-b* w CI (tests/ci-tagi-jest.test.ts, 01.11.2026)
+          fetch-tags: true
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Kontrole z verify (typy, tłumaczenia, sprawdzenia, macierz, eksport iOS) — tylko w części 1
+        if: matrix.czesc == 1
+        run: npm run verify:kontrole
+      - name: Jest (część ${{ matrix.czesc }} z 5)
+        # 09.10.2026 (run 37921922549): domyślny limit sterty Node na macOS (~2 GB przy 7 GB RAM maszyny) nie wystarczał; sterta workerów Jest z jednego miejsca —
+        # scripts/ci/jest-sterta.json (ustawia tests/global-setup.js; dziś 4096 MB na proces roboczy, 2 procesy robocze na 3 rdzeniach). Tu bez własnego NODE_OPTIONS.
+        run: node scripts/jest-ponow.mjs --shard=${{ matrix.czesc }}/5
+      - name: Pamięć po Jest (pomiar wymiany pamięci na macOS, 07-jakosc-001 „do sprawdzenia”; tylko do odczytu)
+        if: always()
+        run: |
+          sysctl vm.swapusage || true
+          vm_stat | head -12 || true
+  build:
+    needs: [bramka, testy]
     # 20.10.2026 (audyt M1-019): środowisko „release” — GitHub tworzy je przy pierwszym użyciu (bez reguł i sekretów); właściciel dodaje wymagane zatwierdzenie
     # (docs/15, kroki właściciela). Zatwierdzenie dotyczy tego zadania, więc bramka E2E jest sprawdzana PRZED prośbą o zatwierdzenie.
     environment: release
@@ -90,13 +125,6 @@ jobs:
         run: |
           for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
       - run: npm ci
-      - name: Testy (jak przed każdym buildem — pełne npm run verify)
-        # 09.10.2026 (run 37921922549): matrix-dim-langs-routes (wtedy jeszcze jeden plik; od 12.10.2026 sześć części) przekroczył domyślny limit sterty Node na macOS (~2 GB przy 7 GB RAM maszyny;
-        # na Ubuntu w tests.yml limit jest wyższy) — 3 GB na proces × 2 procesy mieści się w pamięci maszyny (Jest na 3 rdzeniach: 2 procesy robocze).
-        # TST2-09 (audyt kontrolny 1): ta sama lista sprawdzeń co verify w tests.yml (wskazówki, figury, licencje, eksport iOS) — jedno źródło: package.json.
-        # Przed uruchomieniem tego workflow: zielone E2E (e2e-ios.yml) na tym samym commicie (CLAUDE.md „Audyty i wydania”, pkt 2).
-        # 02.11.2026 (zb010): sterta workerów Jest z jednego miejsca — scripts/ci/jest-sterta.json (ustawia tests/global-setup.js); tu bez własnego NODE_OPTIONS.
-        run: npm run verify
       - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests)
         run: cd targets && swift test
       - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep i prawdziwy zegarek (bez sztucznych, które są tylko w E2E)
