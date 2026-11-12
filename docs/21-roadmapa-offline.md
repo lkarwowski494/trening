@@ -249,6 +249,10 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - Crucifix (rodzina chest_fly; ŚREDNIE R2-S1 z recenzji chest_fly r2, 09.11.2026): zestaw ogólny do poprawy — `front.elbows` „przez cały ruch” przy utrzymaniu oraz `plank.mis.breath` (jedno źródło pośrednie). Od 10.11.2026 ukryty bramką 4 (wpis „zestawy” „do poprawy”), rodzina chest_fly włączona — decyzja w docs/18. Po poprawce (badacz, tłumacz, rejestr twierdzeń) — recenzja zestawu i wpis z sha.
 - Cable Lateral Raise: wskazówki `lat.move` i `lat.elbows` w liczbie mnogiej przy wersji jednorącz — dostosować brzmienie albo zestaw.
 - Cable Lateral Raise: położenie bloczka w pozie (x = 60, z = −10) porównać ze stroną ćwiczenia przy następnej recenzji ruchu (pewność < 80%).
+### Backlog 1.2 — generator whatsNew sklepu: z recenzji niezależnej W-22 (12.11.2026; `docs/research/recenzje/w22-store-whatsnew-2026-11-12.md`; nie blokują)
+- ŚREDNIE (brzegowy): `scripts/store-whatsnew.mjs` nie zgłasza braku tłumaczenia — `t()` wraca do EN/PL i `--write` wpisuje to do whatsNew lokalizacji nieangielskiej (scenariusz: nowy punkt „Co nowego” z kluczem „nowy” w zestawie przekładu; `check:release` blokuje tylko „zmieniony”). Dziś żadna lokalizacja nie ma takiego wiersza. Naprawa: generator porównuje z lookupem bez fallbacku i kończy kodem 1.
+- NISKIE (teoretyczny): `check:whatsnew-sklep` w verify i haku (przez `check:pochodne`) bez testu przypadku „gałąź ze zmianami względem main” (L-080); skrypt nie używa gita.
+
 ### Backlog 1.1.x — przekład DIF-01: z recenzji lokalizacji (12.11.2026; `docs/research/recenzje/dif01-przeklad-2026-11-12.md`; nie blokują)
 - Naniesione 12.11.2026: 7 poprawek (el, it, de, fi, pt, pt-BR, ja).
 - Nowy termin do słownika (z testem w `tests/slownik-terminow.test.ts`): „karta ćwiczenia” — it „pagina dell’esercizio” (zakaz „scheda” w tym znaczeniu: „Scheda” = szablon), el „κάρτα” (zakaz „καρτέλα” = zakładka), pt i pt-BR „cartão” („ficha” odradzane). Poza zamrożeniem zakresu 1.1 (zmiana strażnika).
