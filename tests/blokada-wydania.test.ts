@@ -61,8 +61,8 @@ describe('rejestr ryzyk: R-015', () => {
     const pending = PENDING.some(p => p.rodzaj === 'zmieniony');
     expect(/^otwarte/.test(cells[4])).toBe(pending); if (!pending) expect(cells[4]).toMatch(/^\*\*zamknięte \d{2}\.\d{2}\.\d{4}\*\*/);
   });
-  test('05.11.2026 (przekład ekranu nowej osoby, przebieg 42103385218): wpis „zmieniony” przełożony — R-015 zamknięty 05.11.2026, a historia otwarcia i poprzedniego zamknięcia zostaje w jednej linii', () => {
-    expect(PENDING.some(p => p.rodzaj === 'zmieniony')).toBe(false);
-    const c = row(); expect(c).toContain('**zamknięte 05.11.2026**'); expect(c).toContain('otwarte, bo zestaw miał wpis „zmieniony”'); expect(c).toContain('Poprzednio: **zamknięte 26.10.2026**'); expect(c).not.toContain('\n');
+  test('11.11.2026 (DIF-01, audyt W-10): zestaw z wpisem „zmieniony” czeka na nałożenie przekładu (przebieg 43117339440) — R-015 otwarty ponownie, historia zamknięć 05.11 i 26.10.2026 zostaje w jednej linii', () => {
+    expect(PENDING.some(p => p.rodzaj === 'zmieniony')).toBe(true);
+    const c = row(); expect(c).toContain('otwarte 11.11.2026'); expect(c).toContain('43117339440'); expect(c).toContain('Poprzednio: **zamknięte 05.11.2026**'); expect(c).toContain('otwarte, bo zestaw miał wpis „zmieniony”'); expect(c).toContain('Poprzednio: **zamknięte 26.10.2026**'); expect(c).not.toContain('\n');
   });
 });
