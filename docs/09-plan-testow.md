@@ -217,6 +217,7 @@ Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; t
 | `v1.0.0-b1033` | 1033 | `fced34b` | 33 | zielony, id 40855951672; kandydat 1.0 (wybrany do wersji 1.0 w App Store Connect 29.10.2026, docs/48 Z-26) |
 | `v1.0.1-b1035` | 1035 | `aebcd4c` | 35 | zielony, id 41183061869; build 1.0.1 z gałęzi `wersja-1-0-1-r2` do testu na telefonie (31.10.2026); linia 1.0.1 zastąpiona przez 1.1 (decyzja właściciela 31.10.2026) — **nie do zgłoszenia**; poprzedni przebieg 34 (3eb21b5) czerwony, bez tagu |
 | `v1.0.1-b1037` | 1037 | `1f339f4` | 37 | zielony, id 42298549942; build 1.0.1 z `integracja-1-1` (prace linii 1.1) tylko dla właściciela — testerzy wewnętrzni (decyzja właściciela 06.11.2026, wariant B, wyjątek od audytu zmian); następny build wymaga audytu wszystkich zmian od 1.0 (ZB-043); poprzedni przebieg 36 (11f6b17, id 42265419689) czerwony na testach procesu na macOS (L-116), bez tagu |
+| `v1.1.0-b1041` | 1041 | `0e4555d` | 41 | zielony, id 43429129627; gałąź integracja-1-1; wiersz dopisany automatycznie przez testflight.yml (L-117) |
 
 Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026), 34 (czerwony, `3eb21b5`), 36 (czerwony, `11f6b17`, 06.11.2026, L-116).
 
