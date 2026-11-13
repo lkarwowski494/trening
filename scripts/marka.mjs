@@ -8,6 +8,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const WZOR = /repsgoat/gi;
@@ -43,7 +44,7 @@ export function bladPisowni(marka = markaZKodu()) {
   return zle;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const arg = process.argv.find(a => a.startsWith('--marka='));
   const marka = arg ? arg.slice(8) : markaZKodu(); /* --marka= tylko do testu wykrywania */
   if (process.argv.includes('--write')) {

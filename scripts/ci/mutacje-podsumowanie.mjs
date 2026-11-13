@@ -7,6 +7,7 @@
 // Użycie: node scripts/ci/mutacje-podsumowanie.mjs <katalog z raportami> [stryker.config.json] [nightly.yml]   (Markdown na stdout)
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export function znajdzRaporty(dir) {
   if (!existsSync(dir)) return [];
@@ -52,7 +53,7 @@ export function tresc(p, prog) {
   return L.join('\n');
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) {
+if (jestGlowny(import.meta.url)) {
   const [dir = 'raporty', cfg = 'stryker.config.json', wf] = process.argv.slice(2);
   const conf = JSON.parse(readFileSync(cfg, 'utf8')); const prog = conf.thresholds?.break ?? null;
   const raporty = znajdzRaporty(dir).map(p => JSON.parse(readFileSync(p, 'utf8')));

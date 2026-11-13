@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { loadV2 } from './v2-build.mjs';
 import { sprawdzJakosc, wczytajTeksty, REGULY_JAKOSCI, GRUPY_POSTAWY } from './v2-jakosc.mjs';
 import { grupaBledu, izometryczne, regulyDla } from './v2-sens.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export function raport(root = ROOT) {
@@ -21,7 +22,7 @@ export function raport(root = ROOT) {
   for (const cw of Object.keys(catalog.CATALOG)) { const spec = v2.figureSpec(cw); if (!spec) continue; const poza = v2.exampleFor(cw); if (poza) oceń('rig', spec.family, cw, poza); }
   return wynik;
 }
-if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+if (jestGlowny(import.meta.url)) {
   const rootArg = process.argv.indexOf('--root'); const w = raport(rootArg > 0 ? path.resolve(process.argv[rootArg + 1]) : ROOT); const per = {}; for (const x of w) for (const r of new Set(x.naruszenia)) { per[x.zrodlo + '/' + x.rodzina] ??= {}; per[x.zrodlo + '/' + x.rodzina][r] = (per[x.zrodlo + '/' + x.rodzina][r] ?? 0) + 1; }
   if (process.argv.includes('--json')) console.log(JSON.stringify(w, null, 1));
   else { console.log(`póz ocenionych: ${w.length} (dane ${w.filter((x) => x.zrodlo === 'dane').length}, rigi ${w.filter((x) => x.zrodlo === 'rig').length}); z naruszeniem jakości: ${w.filter((x) => x.naruszenia.length).length}`);

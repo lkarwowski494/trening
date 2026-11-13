@@ -14,6 +14,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { maskuj } from '../maskuj.mjs';
 import { wczytajKonteksty, kontekstDla, OPIS_POLA_KONTEKST } from './kontekst.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 /* ---------- liczby w jednym miejscu (ceny i identyfikatory modeli: skill claude-api, tabela „Current Models”, 2026-10-06) ---------- */
 export const MODELE = { opus: 'claude-opus-5-5', sonnet: 'claude-sonnet-5-5' };
@@ -349,6 +350,6 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   return raporty.some((r) => r.blad) ? 1 : 0;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${maskuj(e.message)}`); process.exit(1); });
 }

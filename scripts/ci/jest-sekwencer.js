@@ -14,9 +14,17 @@ function przydziel(sciezki, liczbaCzesci, czasy = wczytaj()) {
   const posortowane = [...sciezki].sort((a, b) => koszt(b) - koszt(a) || (a < b ? -1 : 1));
   const sumy = Array(liczbaCzesci).fill(0);
   const wynik = {};
+  // Rodziny „jeden plik na część” (czasy-plikow.json → rodziny_pamieciozerne, 13.11.2026): plik rodziny trafia do części z najmniejszą liczbą plików tej rodziny
+  // (przy równej — do najmniej obciążonej), więc dwa pamięciożerne pliki nie biegną razem w dwóch procesach roboczych Jest na maszynie 3-rdzeniowej.
+  const rodziny = (czasy.rodziny_pamieciozerne ?? []).map(w => new RegExp(w));
+  const wRodzinie = rodziny.map(() => Array(liczbaCzesci).fill(0));
   for (const s of posortowane) {
-    const i = sumy.indexOf(Math.min(...sumy));
+    const r = rodziny.findIndex(re => re.test(s));
+    let kandydaci = sumy.map((_, i) => i);
+    if (r >= 0) { const min = Math.min(...wRodzinie[r]); kandydaci = kandydaci.filter(i => wRodzinie[r][i] === min); }
+    const i = kandydaci.reduce((a, b) => (sumy[b] < sumy[a] ? b : a));
     sumy[i] += koszt(s); wynik[s] = i + 1;
+    if (r >= 0) wRodzinie[r][i] += 1;
   }
   return { wynik, sumy };
 }

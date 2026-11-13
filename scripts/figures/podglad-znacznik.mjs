@@ -8,6 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const stabilny = (x) => (Array.isArray(x) ? `[${x.map(stabilny).join(',')}]` : x && typeof x === 'object' ? `{${Object.keys(x).filter((k) => x[k] !== undefined).sort().map((k) => `${JSON.stringify(k)}:${stabilny(x[k])}`).join(',')}}` : JSON.stringify(x));
@@ -65,7 +66,7 @@ export async function sprawdzPodglad(dir, { generator, root = ROOT } = {}) {
   return o;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+if (jestGlowny(import.meta.url)) {
   const i = process.argv.indexOf('--katalog'); if (i < 0) { console.error('użycie: node scripts/figures/podglad-znacznik.mjs --katalog <wyjscie>/<rodzina>'); process.exit(2); }
   const dir = resolve(process.argv[i + 1]); const p = await sprawdzPodglad(dir);
   if (p.length) { console.error('PODGLĄD NIEWAŻNY:\n' + p.map((x) => `  - ${x}`).join('\n')); process.exit(1); }

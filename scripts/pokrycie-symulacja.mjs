@@ -12,6 +12,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { appRequire, repoRoot } from './strona/ts-loader.mjs';
 import { policz, elementyKarty } from './pokrycie-katalogu.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 /** Metryki zapadki, które nie wchodzą do celu wersji (zgodnie z pokrycie-cele.json przed decyzją 09.11.2026). */
 export const BEZ_CELU = ['pelnaKartaBlad'];
@@ -106,7 +107,7 @@ export function symuluj() {
   return { cel, symulacja: sym, obecne: dobre0, rozbicie, rodziny: listaRodzin, cwiczeniaCiezkie, kontrola, gain };
 }
 
-if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
+if (jestGlowny(import.meta.url)) {
   const w = symuluj();
   if (process.argv.includes('--json')) console.log(JSON.stringify(w));
   else {

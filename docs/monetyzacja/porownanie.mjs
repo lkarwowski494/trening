@@ -9,6 +9,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../../scripts/modul-glowny.mjs';
 
 const HORYZONT = 24;
 const ul = (x) => typeof x === 'number' && x >= 0 && x <= 1;
@@ -74,7 +75,7 @@ export function raport(d) {
   return l.join('\n');
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const [plik] = process.argv.slice(2);
   if (!plik) { console.error('Użycie: node porownanie.mjs dane.json'); process.exit(2); }
   let d; try { d = JSON.parse(readFileSync(plik, 'utf8')); } catch (e) { console.error(`BŁĄD: ${e.message}`); process.exit(1); }

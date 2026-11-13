@@ -24,6 +24,7 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 /** Dziennik decyzji: bieżący plik i archiwum (wpisy do 30.10.2026 włącznie; właściciel 31.10.2026, wariant A — wynik wpisy() przekroczył 1 MiB, ENOBUFS w testach). */
@@ -150,7 +151,7 @@ export function sprawdz(plik, tekst, root = ROOT) {
   return wpisy(tekst).flatMap(w => sprawdzWpis(w, czytaj).map(blad => ({ plik, linia: w.linia, blad, poczatek: w.naglowek.slice(0, 90) })));
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const args = process.argv.slice(2);
   const pliki = args.filter(a => !a.startsWith('--'));
   if (args.includes('--lista')) {

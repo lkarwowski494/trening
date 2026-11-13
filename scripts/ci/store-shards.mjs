@@ -9,6 +9,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 /** Rozmiary iPhone: wzorzec nazwy symulatora (docs/48 pkt 5). */
 export const SIZES = { '6.9': 'iPhone 17 Pro Max \\(', '6.3': 'iPhone 17 Pro \\(' };
@@ -61,7 +62,7 @@ export function plan(langSpec, sizeSpec, shards, dir, ls, weightOf) {
   return { include };
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const [lang, sizes, shards, dir, prev] = process.argv.slice(2);
   try {
     const d = dir ?? 'sklep-dane';

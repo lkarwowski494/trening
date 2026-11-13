@@ -3,6 +3,7 @@
 // Użycie: node scripts/sprawdz-dysk.mjs [ścieżka]   (TRENING_WOLNE_BAJTY_TEST — tylko dla testu strażnika: podmienia odczyt wolnego miejsca)
 import { statfsSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 /** Jedyne miejsce z progiem (GB wolnego miejsca na dysku roboczym). */
 export const MIN_WOLNE_GB = 2;
@@ -28,7 +29,7 @@ export function ocenaDysku(bajty, minGB = MIN_WOLNE_GB) {
   };
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   const o = ocenaDysku(wolneBajty(process.argv[2] ?? '.'));
   if (!o.ok) { console.error(o.komunikat); process.exit(1); }
   console.log(`dysk: ${o.wolneGB.toFixed(1)} GB wolne (próg ${MIN_WOLNE_GB} GB)`);

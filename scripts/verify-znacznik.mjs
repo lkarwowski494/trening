@@ -17,6 +17,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { jestDokumentem } from './dokumenty.mjs';
 import { zielonyTests } from './ci-wynik.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const MAKS = 50;
 const RODZAJE = ['pelne', 'szybkie', 'lekkie', 'dokumenty'];
@@ -108,7 +109,7 @@ export function sprawdz(sha, wymagaj = null, zdalne = [], cicho = false, galaz =
   return 1;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2);
   const i = a.indexOf('--zapisz'), j = a.indexOf('--sprawdz');
   if (a.includes('--czysta')) process.exit(czystaKopia());

@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 /** Kroki pomijane: Jest (idzie w częściach) i znacznik (zapis tylko po pełnym verify na maszynie, która go czyta). */
@@ -27,4 +28,4 @@ export function main(args) {
   return 0;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exit(main(process.argv.slice(2)));
+if (jestGlowny(import.meta.url)) process.exit(main(process.argv.slice(2)));

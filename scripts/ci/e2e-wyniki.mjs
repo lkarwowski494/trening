@@ -7,6 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const attr = (s, k) => { const m = new RegExp(`\\b${k}="([^"]*)"`).exec(s); return m ? m[1].replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : undefined; };
 
@@ -75,4 +76,4 @@ function main() {
   }
   console.error('Użycie: e2e-wyniki.mjs nieudane <report.xml> <dir> | wyniki <e2e-out> <część> | zbierz <dir> [--out plik]'); process.exit(2);
 }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+if (jestGlowny(import.meta.url)) main();

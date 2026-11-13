@@ -15,6 +15,7 @@ import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, 
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 export const AKCJE = ['zostaje', 'usun', 'dysk', 'decyzja', 'popraw'];
 const TEKST = /\.(ts|tsx|js|mjs|cjs|json|ya?ml|py|sh|swift|m|mm|h|html|md|txt|plist|strings|xml|css|csv|podspec|kt|gradle)$/;
@@ -322,7 +323,7 @@ function main() {
   }
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+if (jestGlowny(import.meta.url)) {
   try {
     const doSkasowania = main();
     if (doSkasowania) rmSync(doSkasowania, { recursive: true, force: true });

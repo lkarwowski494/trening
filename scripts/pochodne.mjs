@@ -13,6 +13,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* Strażniki czytające źródła jako tekst — jedna lista (liczby w jednym miejscu). */
@@ -96,7 +97,7 @@ export async function pochodne(kroki, log = m => process.stderr.write(m + '\n'))
   return bledy.length ? 1 : 0;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   if (process.argv.includes('--lista')) { for (const k of KROKI) console.log(k.nazwa); process.exit(0); }
   const kroki = process.env.POCHODNE_KROKI ? JSON.parse(readFileSync(process.env.POCHODNE_KROKI, 'utf8')) : KROKI;
   process.exit(await pochodne(kroki));

@@ -5,6 +5,7 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export const CHRONIONE = [/^main$/, /^redesign\//, /^widocznosc\//, /^m3-wejscie\//, /^f020-garmin$/, /^f020-sklep$/, /^gh-pages$/];
 
@@ -37,4 +38,4 @@ function main() {
   for (const g of p.usun) { sh('git', ['push', 'origin', '--delete', g]); console.log(`usunięto: ${g}`); }
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) main();
+if (jestGlowny(import.meta.url)) main();

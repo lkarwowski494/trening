@@ -9,6 +9,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadV2 } from './v2-build.mjs';
 import { regulyDla, otwarteDla, pominiecie, wskazowkiCwiczenia } from './v2-sens.mjs';
 import { sprzetObslugiwany } from './gemini-polecenia.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export function pokrycie(root = ROOT) {
@@ -30,7 +31,7 @@ export function pokrycie(root = ROOT) {
   const cues = {}; for (const w of kandydaci) for (const c of w.wskazowki) cues[c] = (cues[c] ?? 0) + 1;
   return { cwiczen: wiersze.length, rodziny, gotowe_figury: wiersze.filter((w) => w.figura).length, gotowe_bez_regul: gotoweBezRegul.map((w) => w.cwiczenie), gotowe_z_wskazowkami: kandydaci.length, gotowe_bez_wskazowek: gotoweBezRegul.length - kandydaci.length, wskazowki_gotowych: Object.fromEntries(Object.entries(cues).sort((a, b) => b[1] - a[1])) };
 }
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   const p = pokrycie(); if (process.argv.includes('--json')) console.log(JSON.stringify(p, null, 1));
   else { console.log(`ćwiczeń: ${p.cwiczen}; gotowe figury: ${p.gotowe_figury}, w tym BEZ reguł sensu: ${p.gotowe_bez_regul.length} (z wskazówkami: ${p.gotowe_z_wskazowkami}, bez: ${p.gotowe_bez_wskazowek})`);
     for (const [r, x] of Object.entries(p.rodziny)) if (x.z_regulami || x.otwarte) console.log(`${r}: ${x.cwiczen} ćw., z regułami ${x.z_regulami}, otwarte ${x.otwarte}, sprzęt poza kontraktem ${x.sprzet_poza_kontraktem}, bez reguł ${x.bez_regul}`); }

@@ -51,10 +51,10 @@ describe('M1-018: TestFlight czeka na zielony pakiet podstawowy E2E dla tego sam
   test('zadanie „bramka” jest pierwsze, bez sekretów, a „build” czeka na nie (przed npm ci); awaryjne pominięcie wymaga powodu i zostaje w podsumowaniu', () => {
     const y = wf('testflight.yml'); const jobs = y.slice(y.indexOf('\njobs:\n'));
     expect(jobs.indexOf('\n  bramka:\n')).toBeGreaterThan(0); expect(jobs.indexOf('\n  bramka:\n')).toBeLessThan(jobs.indexOf('\n  build:\n'));
-    const gate = jobs.slice(jobs.indexOf('\n  bramka:\n'), jobs.indexOf('\n  build:\n'));
+    const gate = jobs.slice(jobs.indexOf('\n  bramka:\n'), jobs.indexOf('\n  testy:\n')); /* 12.11.2026: między bramką a buildem jest zadanie testy */
     expect(gate).toMatch(/runs-on: ubuntu-latest/); expect(gate).toMatch(/actions: read/); expect(gate).not.toMatch(/secrets\.(?!GITHUB_TOKEN)/); expect(gate).toContain('scripts/ci/bramka-e2e.sh'); expect(gate).toContain('GITHUB_SHA');
     expect(gate).toMatch(/powod/); expect(gate).toContain('GITHUB_STEP_SUMMARY'); expect(gate).not.toMatch(/run:[^\n]*\$\{\{/);
-    const build = jobs.slice(jobs.indexOf('\n  build:\n'), jobs.indexOf('\n  tag:\n')); expect(build).toMatch(/needs: bramka/);
+    const build = jobs.slice(jobs.indexOf('\n  build:\n'), jobs.indexOf('\n  tag:\n')); expect(build).toMatch(/needs: \[bramka, testy\]/); /* 12.11.2026 (07-jakosc-001): build czeka też na testy macOS */
   });
   const fakeGh = (rows: string[][], sleepFile?: string) => { const d = mkdtempSync(join(tmpdir(), 'gh-')); const bin = join(d, 'bin'); mkdirSync(bin); const cnt = join(d, 'n'); writeFileSync(cnt, '0');
     const frames = rows.map(r => r.join('\n')); writeFileSync(join(bin, 'gh'), `#!/usr/bin/env bash\nn=$(cat "${cnt}"); echo $((n+1)) > "${cnt}"\nframes=(${frames.map(f => `'${f.replace(/'/g, "'\\''")}'`).join(' ')})\ni=$n; [ $i -ge \${#frames[@]} ] && i=$((\${#frames[@]}-1))\nprintf '%s' "\${frames[$i]}"\n`); chmodSync(join(bin, 'gh'), 0o755); return bin; };

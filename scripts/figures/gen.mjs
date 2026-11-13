@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { KOLANO_LEKKO_MAX_DEG } from './v2-sens.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const FIG = join(root, 'data/zrodla/figures.json');
@@ -123,7 +124,7 @@ export function render(fig, cues, pl, review = existsSync(REVIEW) ? JSON.parse(r
   return L.join('\n');
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const fig = JSON.parse(readFileSync(FIG, 'utf8')), cues = JSON.parse(readFileSync(CUES, 'utf8')), pl = JSON.parse(readFileSync(PL, 'utf8'));
   const errs = validate(fig, cues, pl);
   if (errs.length) { console.error('Błędy danych figur:\n' + errs.map(e => '  ' + e).join('\n')); process.exit(1); }

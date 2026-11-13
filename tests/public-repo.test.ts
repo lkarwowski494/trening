@@ -86,7 +86,7 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y).toMatch(/BUILD_BASE: \$\{\{ vars\.BUILD_BASE \|\| '1000' \}\}/); expect(y).toMatch(/BUILD_NUMBER=\$\(\(BUILD_BASE \+ GITHUB_RUN_NUMBER\)\)/); /* audyt NAT-03: baza w zmiennej repozytorium */ expect(y).not.toMatch(/\$\{\{[^}]*\+/); /* wyrażenia Actions nie liczą */ expect(y).toMatch(/retention-days: 1/);
     expect(y).toMatch(/<string>app-store-connect<\/string>/);
     expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install'));
-    expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci')); /* brak sekretu kończy przebieg od razu */
+    expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci', y.indexOf('\n  build:'))); /* 12.11.2026: pierwszy `npm ci` jest w zadaniu testy (bez sekretów); sekrety sprawdza build przed własnym npm ci */ /* brak sekretu kończy przebieg od razu */
     /* audyt SEC-02: xcodebuild wypisuje pełną linię poleceń (z identyfikatorami) — przed artefaktem logi są czyszczone; filtr sprawdzony na przykładzie */
     const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Wysyłka do App Store Connect')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4', mask)); /* 20.10.2026 (M1-023): wcześniej jest też artefakt map źródeł JS */
     const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4', mask)); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
@@ -320,10 +320,11 @@ describe('zależności i konfiguracja natywna', () => {
 });
 
 describe('TST2-09 (audyt kontrolny 1): testflight.yml sprawdza to samo co verify', () => {
-  test('krok testów uruchamia `npm run verify` (jedno źródło listy sprawdzeń) bez własnej sterty (stała w scripts/ci/jest-sterta.json, 02.11.2026); verify obejmuje wszystkie sprawdzenia', () => {
-    const y = wf('testflight.yml'); const step = y.slice(y.indexOf('- name: Testy'), y.indexOf('- name:', y.indexOf('- name: Testy') + 5));
-    expect(step).not.toMatch(/max-old-space-size/);
-    expect(step).toMatch(/run: npm run verify\s*$/m);
+  test('zadanie testów: kontrole z verify (`npm run verify:kontrole`, jedno źródło listy) + Jest w częściach, bez własnej sterty (stała w scripts/ci/jest-sterta.json, 02.11.2026); verify obejmuje wszystkie sprawdzenia', () => {
+    /* 12.11.2026 (07-jakosc-001, KO-058 A): zamiast jednego kroku `npm run verify` w buildzie — zadanie testy w 5 częściach (tests/testflight-testy-czas.test.ts) */
+    const y = wf('testflight.yml'); const z = y.slice(y.indexOf('\n  testy:'), y.indexOf('\n  build:'));
+    expect(z).not.toMatch(/max-old-space-size/);
+    expect(z).toMatch(/run: npm run verify:kontrole\s*$/m); expect(z).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=/);
     const v = require('../package.json').scripts.verify as string;
     for (const c of ['npm run typecheck', 'npm run check:i18n', 'npm run check:cues', 'npm run check:figures', 'jest', 'npm run check:matrix', 'npm run check:licenses', 'expo export --platform ios', 'npm run verify:native']) expect({ c, in: v.includes(c) }).toEqual({ c, in: true });
     expect(wf('tests.yml')).toMatch(/run: npm run verify:kontrole\s*$/m); /* tests.yml: ten sam łańcuch w częściach (ZB-029 T1; scripts/ci/kontrole.mjs czyta scripts.verify) */

@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CENY, MODELE, RABAT_BATCH, REJESTR, jezyki, nazwaJezyka, przyblizTokeny } from './przeglad-api.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 /** Założenia (nie pomiar): przekład ≈ tokeny angielskiego tekstu × WSPOLCZYNNIK (długość zdań w języku docelowym względem angielskiego), obwiednia JSON na klucz,
@@ -39,7 +40,7 @@ export function kosztorys(klucze, kody = jezyki(root).filter((k) => k !== 'en'))
   return { wiersze: w, jezykow: w.length, kluczy: klucze.length, we, wy, usd: Object.fromEntries(Object.values(MODELE).map((m) => [m, koszt(we, wy, m)])) };
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const a = process.argv.slice(2); const i = a.indexOf('--zestaw');
   const plik = i >= 0 ? a[i + 1] : join(root, 'docs/lokalizacja/zestaw-przekladu-2026-10-23.json');
   const k = kosztorys(wczytaj(plik));

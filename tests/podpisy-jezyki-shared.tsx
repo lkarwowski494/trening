@@ -16,8 +16,8 @@ import { fresh } from './helpers';
 /** Nazwy organizacji i marek źródeł wskazówek — tylko w docs/research/27 (zasada właściciela 09.10.2026: nazwy innych firm nie w tekstach aplikacji). */
 export const SOURCE_NAMES = /\b(ACE|NASM|ExRx|Stronger by Science|Concept ?2|acefitness|nasm\.org)\b/i;
 
-/** Liczba plików grup (tests/audit-k1-bl-mer-podpisy1…N.test.tsx) — jedyne miejsce; zmiana wymaga dodania/usunięcia pliku (pilnuje strażnik). Pomiar 06.11.2026: docs/18. */
-export const PODPISY_GRUPY = 7;
+/** Liczba plików grup (tests/audit-k1-bl-mer-podpisy1…N.test.tsx) — jedyne miejsce; zmiana wymaga dodania/usunięcia pliku (pilnuje strażnik). Pomiar 06.11.2026: docs/18. 13.11.2026: 7 → 6 (TF-1-1-cz2) — liczba grup nie przekracza liczby części macOS (testflight_macos.czesci_jest), więc sekwencer daje każdej części najwyżej jeden plik rodziny (tests/ci-jest-sekwencer.test.ts). */
+export const PODPISY_GRUPY = 6;
 /** Na ile części dzieli się przypadek jednego języka (limit czasu pojedynczego testu). */
 export const PODPISY_CZESCI = 3;
 /** Języki grupy `k` (1…PODPISY_GRUPY): podział pozycyjny (co N-ty język), więc grupy są równe co do liczby języków (różnica ≤ 1). */

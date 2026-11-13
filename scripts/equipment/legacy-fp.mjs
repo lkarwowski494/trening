@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const SRC = join(here, 'catalog-1002-fields.json');
@@ -36,7 +37,7 @@ export function render(rows) {
   ].join('\n');
 }
 
-const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+const isMain = jestGlowny(import.meta.url);
 if (isMain) {
   const out = render(JSON.parse(readFileSync(SRC, 'utf8')));
   if (process.argv.includes('--check')) {

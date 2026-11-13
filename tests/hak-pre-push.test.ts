@@ -49,6 +49,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   copyFileSync(ZNACZNIK, join(dir, 'scripts/verify-znacznik.mjs'));
   copyFileSync(join(root, 'scripts/dokumenty.mjs'), join(dir, 'scripts/dokumenty.mjs'));
   copyFileSync(join(root, 'scripts/testy-dla-plikow.mjs'), join(dir, 'scripts/testy-dla-plikow.mjs'));
+  copyFileSync(join(root, 'scripts/modul-glowny.mjs'), join(dir, 'scripts/modul-glowny.mjs')); /* 12.11.2026 (07-jakosc-002): skrypty importują wspólny strażnik modułu głównego */
   copyFileSync(join(root, 'scripts/ci-wynik.mjs'), join(dir, 'scripts/ci-wynik.mjs')); /* ZB-041 G4: wspólny odczyt wyniku tests.yml */
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');

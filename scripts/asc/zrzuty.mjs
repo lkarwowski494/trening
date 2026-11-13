@@ -26,6 +26,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeClient, makeJwt, BUNDLE_ID } from './iap-localizations.mjs';
 import { EDITABLE_STATES, LOCALE_MAP, readOnlyClient } from './metadane.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 /** Token JWT (ważny 10 min) odnawiany po 8 minutach — przebieg trwa dłużej niż jeden token (401 po ok. 12 min w przebiegu 41008000769). */
 export const TOKEN_MAX_AGE_MS = 8 * 60 * 1000;
@@ -296,4 +297,4 @@ async function main() {
   const { code } = await run({ client: makeClient({ token: tokenFor }), fetchFn: fetch, shots, problems, apply });
   process.exit(code);
 }
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });
+if (jestGlowny(import.meta.url)) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });

@@ -85,9 +85,9 @@ describe('verify i CI używają tej stałej, nie własnych liczb (zakres: jawna 
   test.each([...WORKFLOWY_JEST, ...WORKFLOWY_MALE])('.github/workflows/%s: bez własnego --max-old-space-size', f => {
     expect(czytaj(`.github/workflows/${f}`)).not.toMatch(/max-old-space-size/);
   });
-  test('testflight.yml uruchamia pełny Jest przez `npm run verify`, tests.yml przez jest-ponow w częściach; nightly i tests-tz przez gołe `npx jest` (global-setup)', () => {
+  test('testflight.yml (zadanie testy, 12.11.2026) i tests.yml uruchamiają Jest w częściach przez jest-ponow; tests.yml przez jest-ponow w częściach; nightly i tests-tz przez gołe `npx jest` (global-setup)', () => {
     expect(czytaj('.github/workflows/tests.yml')).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=/); /* ZB-029 T1: cztery części przez ten sam skrypt co verify */
-    expect(czytaj('.github/workflows/testflight.yml')).toMatch(/run: npm run verify\s*$/m);
+    expect(czytaj('.github/workflows/testflight.yml')).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=/); /* 07-jakosc-001 (12.11.2026): pięć części na macOS zamiast jednego `npm run verify` */
     expect(czytaj('.github/workflows/nightly.yml')).toMatch(/npx jest --maxWorkers=2/);
     expect(czytaj('.github/workflows/tests-tz.yml')).toMatch(/npx jest --maxWorkers=2/);
   });
@@ -148,6 +148,7 @@ describe('gałąź z wcześniejszymi zmianami względem main (L-080)', () => {
     /* skrypt ponowienia liczy NODE_OPTIONS z pliku JSON w SWOIM katalogu głównym — uruchom kopię w repo próbnym */
     fs.mkdirSync(path.join(dir, 'scripts'), { recursive: true });
     fs.copyFileSync(path.join(ROOT, 'scripts/jest-ponow.mjs'), path.join(dir, 'scripts/jest-ponow.mjs'));
+    fs.copyFileSync(path.join(ROOT, 'scripts/modul-glowny.mjs'), path.join(dir, 'scripts/modul-glowny.mjs')); /* 12.11.2026 (07-jakosc-002): jest-ponow importuje wspólny strażnik modułu głównego */
     const r = spawnSync(process.execPath, ['--input-type=module', '-e', "import { opcjePonowienia, STERTA_PONOWIENIA_MB } from './scripts/jest-ponow.mjs'; console.log(STERTA_PONOWIENIA_MB, '|', opcjePonowienia('--max-old-space-size=2048 --no-warnings'));"], { cwd: dir, encoding: 'utf8' });
     expect(r.status).toBe(0);
     expect(r.stdout.trim()).toBe('6144 | --no-warnings --max-old-space-size=6144');

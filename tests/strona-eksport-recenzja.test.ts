@@ -20,6 +20,8 @@ const POMOC = path.join(root, 'scripts/strona/recenzja-figur.mjs');
 const node = (script: string, ...a: string[]) => execFileSync('node', [script, ...a], { encoding: 'utf8' });
 type Skroty = { ready: string[]; skroty: Record<string, string>; eksportowane: string[] };
 const skroty = (...a: string[]): Skroty => JSON.parse(node(POMOC, '--skroty', ...a));
+/* 07-jakosc-003 (12.11.2026, KO-058 D(b)): skrót recenzji z wyniku rysunku to ok. 0,5 s na rodzinę ready (40 rodzin ≈ 21 s) — liczymy go RAZ na plik testu, a eksport dostaje gotowe skróty (`--skroty <plik>`); eksport z liczeniem na miejscu ma jeden test (parytet niżej). */
+let SK: Skroty | undefined; const skrotyRaz = (): Skroty => (SK ??= skroty());
 const POZY = new Map<string, string>(); /* ćwiczenie → rodzina, dla wszystkich plików poses/*.json (pilotaż i rodziny z danych) */
 for (const f of fs.readdirSync(path.join(root, 'lib/figures/v2/poses')).filter(x => x.endsWith('.json'))) for (const k of Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/poses', f), 'utf8')).cwiczenia)) POZY.set(k, f.replace(/\.json$/, ''));
 
@@ -29,8 +31,9 @@ let tmp = '';
 beforeAll(() => { tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-rec-')); }, 60000);
 afterAll(() => { fs.rmSync(tmp, { recursive: true, force: true }); usunKopie(); });
 const wpis = (sha: string) => ({ werdykt: 'wyswietlana', data: '2026-10-28', kto: 'wpis testowy (fixture testu tests/strona-eksport-recenzja.test.ts)', sha, liczba: 1 });
-const eksport = (name: string, recenzja?: object) => {
+const eksport = (name: string, recenzja?: object, naMiejscu = false) => {
   const out = path.join(tmp, name); const args = ['--out', out, '--langs', 'en', '--commit', 'abc1234def'];
+  if (!naMiejscu) { const p = path.join(tmp, `${name}.skroty.json`); fs.writeFileSync(p, JSON.stringify(skrotyRaz())); args.push('--skroty', p); }
   if (recenzja) { const p = path.join(tmp, `${name}.json`); fs.writeFileSync(p, JSON.stringify({ v2: recenzja })); args.push('--recenzja', p); }
   node(SCRIPT, ...args);
   return { fig: JSON.parse(fs.readFileSync(path.join(out, 'figury.json'), 'utf8')) as Fig, atlas: JSON.parse(fs.readFileSync(path.join(out, 'atlas-en.json'), 'utf8')) as Atlas };
@@ -42,7 +45,7 @@ const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => !Object.prototyp
 
 describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją', () => {
   test('rodzina z plikiem pozy bez statusu ready (pilotaż) istnieje w danych, a jej figur nie ma w eksporcie bez recenzji; core_floor ma status ready od 10.11.2026 (partia 7, recenzja r2), pushup_plank od 09.11.2026 (partia 2), eksport tylko z aktualnym wpisem recenzji (testy niżej)', () => {
-    const s = skroty(); expect(s.ready).toContain('core_floor'); expect(s.ready).toContain('pushup_plank'); /* 10.11.2026 (partia 7): core_floor włączona po recenzji r2 (zmiana celowa) — pilotaż = każda rodzina z plikiem pozy bez statusu ready (dziś m.in. carry, lunge, strongman) */
+    const s = skrotyRaz(); expect(s.ready).toContain('core_floor'); expect(s.ready).toContain('pushup_plank'); /* 10.11.2026 (partia 7): core_floor włączona po recenzji r2 (zmiana celowa) — pilotaż = każda rodzina z plikiem pozy bez statusu ready (dziś m.in. carry, lunge, strongman) */
     /* 10.11.2026 (scalenie pociąg-7, docs/18 do weta): po partii 8 w repo nie ma już rodziny pilotażu (plik póz bez statusu ready) — pilotaż powstaje w kopii drzewa: strongman odłączona
      * (tests/helpers/skrot-v2-kopia.ts: odlaczenie). W kopii: plik póz jest, status nie ready, a eksport nie bierze jej figur nawet z wpisem recenzji o bieżącym skrócie z repo. */
     expect(s.ready).toContain('strongman'); expect([...POZY.values()]).toContain('strongman');
@@ -57,7 +60,7 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
     expect([...POZY.values()]).toEqual(expect.arrayContaining(['core_floor', 'pull_up', 'pushup_plank']));
   });
   test('fixture: recenzja squat, bench_press, hinge (aktualne skróty) + pull_up z nieaktualnym skrótem + brak wpisów pilotażu ⇒ figury dokładnie z tych trzech rodzin (parytet)', () => {
-    const s = skroty(); const zapis = { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge), pull_up: wpis('000000000000') };
+    const s = skrotyRaz(); const zapis = { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge), pull_up: wpis('000000000000') };
     const { fig, atlas } = eksport('fixture', zapis);
     const oczekiwane = rysowalne(atlas).filter(x => ['squat', 'bench_press', 'hinge'].includes(x.family)).map(x => x.slug).sort();
     expect(oczekiwane.length).toBeGreaterThan(50);
@@ -66,20 +69,20 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
     for (const e of atlas.exercises) expect([e.id, !!e.figure]).toEqual([e.id, oczekiwane.includes(e.slug)]); /* karta bez figury = figure: null (strona pokazuje same wskazówki) */
   });
   test('regresja: pull_up (ready, wpis z nieaktualnym skrótem), core_floor i pushup_plank (bez wpisu) nie trafiają do eksportu', () => {
-    const s = skroty(); const { fig, atlas } = eksport('regresja', { squat: wpis(s.skroty.squat), pull_up: wpis('000000000000') });
+    const s = skrotyRaz(); const { fig, atlas } = eksport('regresja', { squat: wpis(s.skroty.squat), pull_up: wpis('000000000000') });
     const wykluczone = rysowalne(atlas).filter(x => ['pull_up', 'core_floor', 'pushup_plank'].includes(x.family));
     expect(wykluczone.length).toBeGreaterThan(5);
     for (const x of wykluczone) expect([x.id, x.slug in fig.figures]).toEqual([x.id, false]);
   });
   test('wpis z werdyktem innym niż „wyswietlana” albo bez skrótu nie wystarcza; aktualny skrót pull_up wpuszcza jej figury (warunek jest jedyną przeszkodą)', () => {
-    const s = skroty(); const bad = eksport('zly-werdykt', { squat: { ...wpis(s.skroty.squat), werdykt: 'ukryta' } });
+    const s = skrotyRaz(); const bad = eksport('zly-werdykt', { squat: { ...wpis(s.skroty.squat), werdykt: 'ukryta' } });
     expect(Object.keys(bad.fig.figures)).toEqual([]);
     const ok = eksport('pull-up', { pull_up: wpis(s.skroty.pull_up) });
     const oczek = rysowalne(ok.atlas).filter(x => x.family === 'pull_up').map(x => x.slug).sort(); expect(oczek.length).toBeGreaterThan(0);
     expect(Object.keys(ok.fig.figures).sort()).toEqual(oczek);
   });
   test('r6-W2 A (05.11.2026): olympic z aktualną recenzją — 19 ćwiczeń jednokierunkowych (Power Clean, Block Power Snatch) wraca do eksportu razem z wahadłami; bez wpisu olympic żadne z nich (negatyw)', () => {
-    const s = skroty(); const jedn = (id: string) => loopOf(figureSpecAll(id)!) === 'jednokierunkowa';
+    const s = skrotyRaz(); const jedn = (id: string) => loopOf(figureSpecAll(id)!) === 'jednokierunkowa';
     const ok = eksport('olympic', { olympic: wpis(s.skroty.olympic) });
     const oly = ok.atlas.exercises.filter(e => e.id !== 'Clean Shrug' && e.id !== 'Snatch Shrug' && figureSpecAll(e.id)?.family === 'olympic');
     expect(oly.filter(e => jedn(e.id)).length).toBe(19);
@@ -92,7 +95,8 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
     expect(Object.keys(eksport('brak', {}).fig.figures)).toEqual([]);
   });
   test('stan repozytorium: figury w domyślnym eksporcie = rodziny ready z aktualną recenzją w docs/research/figury-recenzja.json (parytet)', () => {
-    const s = skroty(); const { fig, atlas } = eksport('domyslny');
+    const s = skrotyRaz(); const { fig, atlas } = eksport('domyslny', undefined, true); /* liczenie skrótów na miejscu (ścieżka produkcyjna) */
+    expect(eksport('domyslny-skroty').fig).toEqual(fig); /* 12.11.2026: gotowe skróty z pliku (--skroty) dają ten sam eksport */
     const oczekiwane = rysowalne(atlas).filter(x => s.eksportowane.includes(x.family)).map(x => x.slug).sort();
     expect(Object.keys(fig.figures).sort()).toEqual(oczekiwane);
     for (const f of Object.values(fig.figures)) { expect(s.ready).toContain(f.family); expect(s.eksportowane).toContain(f.family); }
@@ -102,7 +106,7 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
 describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006, 29.10.2026)', () => {
   /** To, co aplikacja pokazuje przy ćwiczeniu (components/ExerciseCues.tsx): karta własna z lib/cues/data.json, zestaw ogólny — z recenzją treści i przy rysowanej figurze. */
   const tryb = (id: string, maFigure: boolean) => { const m = cueSelection(id).mode; return m === 'own' ? (CUE_DATA.exercises[id] ? 'own' : 'none') : m === 'general' ? (generalCuesReviewed(id) && maFigure ? 'general' : 'none') : 'none'; };
-  const fixture = () => { const s = skroty(); return { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge) }; };
+  const fixture = () => { const s = skrotyRaz(); return { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge) }; };
   test('tryb wskazówek w eksporcie = tryb w aplikacji dla każdego ćwiczenia (karta własna spoza listy hidden; zestaw ogólny tylko z recenzją treści i przy figurze)', () => {
     const { atlas } = eksport('karty-fixture', fixture());
     expect(atlas.exercises.length).toBe(708);
@@ -124,7 +128,7 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
     for (const e of atlas.exercises) expect([e.id, e.cues.scope]).toEqual([e.id, tryb(e.id, false)]);
   });
   test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE) nie trafiają do figur; od 1.0.1 (scalenie 31.10.2026) lista jest pusta — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji trafiają do figur jak sąsiednie wyciskania wąskim chwytem', () => {
-    const { fig, atlas } = eksport('wstrzymane', { ...fixture(), calf_raise: wpis(skroty().skroty.calf_raise) }); /* 11.11.2026 (W-02): + calf_raise z bieżącym skrótem — eksport rysuje tylko rodziny z recenzji, a test sprawdza wspięcia z dźwignią */
+    const { fig, atlas } = eksport('wstrzymane', { ...fixture(), calf_raise: wpis(skrotyRaz().skroty.calf_raise) }); /* 11.11.2026 (W-02): + calf_raise z bieżącym skrótem — eksport rysuje tylko rodziny z recenzji, a test sprawdza wspięcia z dźwignią */
     const slug = (id: string) => atlas.exercises.find(e => e.id === id)!.slug;
     expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Barbell Side Bend', 'Clean Shrug', 'Machine Hip Thrust', 'Plyo Push-Up', 'Snatch Shrug', 'Triceps Dips (ławka)']); /* 11.11.2026 (W-02, P1-CALF-1): Standing i Seated Calf Raise zdjęte z V2_WSTRZYMANE po recenzji recenzja w02-calf_raise-roznica-audytor-2026-11-11.md (oba „wyswietlana”) */ /* 04.11.2026: wzruszenia olympic wstrzymane do kart T2 (olympic r4); 09.11.2026: Standing i Seated Calf Raise (calf_raise r1, decyzja koordynatora wariant A — P1-CALF-1) i Machine Hip Thrust (hip_bridge r1, partia 2) */ /* 10.11.2026 (scalenie partii 4): + ławka dip (W5, P4-DIP-1) */ /* 10.11.2026 (scalenie partii 2): + Plyo Push-Up (PP-W1) */ /* 10.11.2026 (core_standing r1 W2, decyzja leada): + Barbell Side Bend (P8-CS-1) */
     for (const k of Object.keys(V2_WSTRZYMANE)) { expect([k, slug(k) in fig.figures]).toEqual([k, false]); expect([k, atlas.exercises.find(e => e.id === k)!.figure]).toEqual([k, null]); }
@@ -132,7 +136,7 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
   });
   test('31.10.2026 (scalenie wersja-1-0-1-r2): skrót rodziny strony = skrót aplikacji (scripts/zrodla-runtime.mjs, z plikami wspólnymi R2-6) — strona nie eksportuje rodziny, której aplikacja nie pokazuje', () => {
     const app = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })) as { v2: Record<string, string> };
-    const s = skroty();
+    const s = skrotyRaz();
     for (const f of Object.keys(s.skroty)) expect([f, s.skroty[f]]).toEqual([f, app.v2[f]]);
     expect(Object.keys(s.skroty).length).toBeGreaterThanOrEqual(4);
   });

@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { appRequire, repoRoot } from './strona/ts-loader.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 export const PLIK = 'store/app-store-metadata.json';
 /** Lokalizacja sklepu → język aplikacji (lib/i18n LANGS). Lokalizacja bez wpisu = błąd generatora (nowy język sklepu wymaga decyzji, nie zgadujemy). */
@@ -41,7 +42,7 @@ export function zbuduj(meta, rq = appRequire()) {
 
 export const serializuj = meta => JSON.stringify(meta, null, 2) + '\n';
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   const tryb = process.argv[2];
   if (tryb !== '--write' && tryb !== '--check') { console.error('użycie: node scripts/store-whatsnew.mjs --write | --check'); process.exit(2); }
   const p = join(repoRoot, PLIK), teraz = readFileSync(p, 'utf8'), nowe = serializuj(zbuduj(JSON.parse(teraz)));

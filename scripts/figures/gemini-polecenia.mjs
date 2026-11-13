@@ -14,6 +14,7 @@ import { loadV2 } from './v2-build.mjs';
 import { kartaWlasna, regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt, deklaracjeCwiczenia, KOLANO_LEKKO_MAX_DEG } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 import { PROGI } from './v2-jakosc.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -490,4 +491,4 @@ export async function main(argv, { root = ROOT, log = console.log, maxZnakow = M
   return 0;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main(process.argv.slice(2)).then((c) => process.exit(c), (e) => { console.error(`błąd: ${e.message}`); process.exit(1); });
+if (jestGlowny(import.meta.url)) main(process.argv.slice(2)).then((c) => process.exit(c), (e) => { console.error(`błąd: ${e.message}`); process.exit(1); });

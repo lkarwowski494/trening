@@ -28,6 +28,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { maskuj } from '../maskuj.mjs';
 import { normalizuj } from './v2-sens.mjs';
 import { zapiszOdpowiedz } from './gemini-rejestr.mjs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -612,6 +613,6 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
   return krytyczny ? 5 : s.zatrzymano_limitem ? 3 : wyniki.some((x) => x.przerwane === 'api') ? 1 : 0;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (jestGlowny(import.meta.url)) {
   main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${maskuj(e.message, process.env.GEMINI_API_KEY)}`); process.exit(1); });
 }

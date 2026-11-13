@@ -18,7 +18,7 @@ const git = (cwd: string, ...a: string[]) => { const r = spawnSync('git', a, { c
 const node = (cwd: string, skrypt: string, args: string[], env: Record<string, string> = {}) =>
   spawnSync(process.execPath, [join(cwd, 'scripts', skrypt), ...args], { cwd, env: { ...ENV, ...env }, encoding: 'utf8' });
 
-const SKRYPTY = ['verify-docs.mjs', 'verify-znacznik.mjs', 'dokumenty.mjs', 'ci-wynik.mjs', 'testy-dla-plikow.mjs'];
+const SKRYPTY = ['verify-docs.mjs', 'verify-znacznik.mjs', 'dokumenty.mjs', 'ci-wynik.mjs', 'testy-dla-plikow.mjs', 'modul-glowny.mjs']; /* 12.11.2026: wspólny strażnik modułu głównego */
 /** main (plik.txt + docs/a.md) wypchnięty do zdalnego; kopia robocza na gałęzi `galaz`. */
 function repo(galaz = 'integracja-1-1') {
   const zdalne = nowy('zb041-zdalne-'); const dir = nowy('zb041-repo-');

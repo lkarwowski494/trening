@@ -5,6 +5,7 @@
 //   node scripts/ci/sim-wybor.mjs 'iPhone SE|iPhone 16e|iPhone 17e' < lista.txt          → UDID (pusty wynik = brak dopasowania)
 //   node scripts/ci/sim-wybor.mjs 'iPhone SE|iPhone 16e|iPhone 17e' --opis < lista.txt   → „iPhone 17e — szerokość ekranu 390 pt (próg małego ekranu: 375 pt)”
 import fs from 'node:fs';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 /** Szerokość ekranu w punktach (pt) wg specyfikacji Apple; jedyne miejsce z tymi liczbami. */
 export const SZEROKOSC_PT = {
@@ -25,7 +26,7 @@ export function wybierz(tekst, wzorzec) {
 }
 export const opis = d => `${d.nazwa} — szerokość ekranu ${d.pt ?? '?'} pt (próg małego ekranu: ${MALY_EKRAN_PT} pt)`;
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (jestGlowny(import.meta.url)) {
   const d = wybierz(fs.readFileSync(0, 'utf8'), process.argv[2] ?? '.');
   if (d) console.log(process.argv.includes('--opis') ? opis(d) : d.udid);
 }

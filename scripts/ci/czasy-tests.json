@@ -109,5 +109,42 @@
         }
       ]
     }
+  },
+  "testflight_macos": {
+    "_opis": "Pomiar i limity zadania `testy` w testflight.yml (macos-26; 07-jakosc-001, 12.11.2026, KO-058 A) — JEDYNE źródło liczby części Jest na macOS i limitu `timeout-minutes` zadania `testy` (pilnuje tests/testflight-testy-czas.test.ts). Powód: czas pełnego Jest na macOS rósł z danymi (38 → 57 → ponad 89 min kroku verify; plików 591 → 717 → 810) i przekroczył stały limit 90 min zadania build (przebieg 43267558799). Kroki są te same co w verify: część 1 robi `npm run verify:kontrole`, każda część `node scripts/jest-ponow.mjs --shard=K/N`. Reguła limitu jak w tests.yml: p95 × `zapas`, w górę do kroku; do pełnej próbki (`minimalna_probka`) obowiązuje `limit_tymczasowy_min`. Limit tymczasowy 45 min = cel części ≤ 45 min z zapasem (szacunek: macOS ≈ 2,05 × Ubuntu wg podpisy1/6, 556/541 s vs 272/267 s; pełny Jest ok. 110–130 min ÷ 6 części ≈ 18–22 min + npm ci, a część 1 dodatkowo kontrole ok. 8 min); zastąpić pomiarem z przebiegu dowodowego i kolejnych wydań.",
+    "czesci_jest": 6,
+    "_czesci_opis": "Liczba części: 6 przy max-parallel 3 (dwie fale): plan darmowy daje 5 zadań macOS naraz, a macierze macOS mają najwyżej 3 równolegle (tests/macos-max-parallel.test.ts, decyzja właściciela 27.10.2026, scripts/ci/store-shards.mjs), więc 2 maszyny zostają dla E2E i innych przebiegów; 3 części po ok. 40 min byłyby na granicy celu, 6 części po ok. 20 min mają zapas. Ścieżka krytyczna ok. 2 × 22 = 45–50 min.",
+    "testy": {
+      "minimalna_probka": 10,
+      "limit_tymczasowy_min": 45,
+      "probka_min": [
+        {
+          "przebieg": 43347318753,
+          "czesc": 1,
+          "min": 21
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 2,
+          "min": 25
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 4,
+          "min": 13
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 5,
+          "min": 16
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 6,
+          "min": 10
+        }
+      ],
+      "_uwaga_pomiaru": "Przebieg 43347318753 (13.11.2026, bez_wysylki): części 1, 4, 5, 6 zielone; część 2 czerwona (25 min, dwa pliki rodziny podpisów w jednej części — TF-1-1-cz2, usunięte sekwencerem i 6 grupami); część 3 anulowana przez limit 45 min (też dwa pliki rodziny) — poza próbką. Zapis w minutach zaokrąglonych do pełnych (zadania API)."
+    }
   }
 }

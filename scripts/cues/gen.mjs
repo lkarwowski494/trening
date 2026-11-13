@@ -5,6 +5,7 @@
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const DATA = join(root, 'data/zrodla/cues.json');
@@ -237,7 +238,7 @@ export function render(data, pl) {
   return L.join('\n');
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const data = JSON.parse(readFileSync(DATA, 'utf8')); const pl = JSON.parse(readFileSync(PL, 'utf8'));
   const sets = JSON.parse(readFileSync(join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items;
   const errs = validate(data, pl, Object.values(sets).flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])]));

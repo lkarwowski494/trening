@@ -13,6 +13,7 @@ import { join, relative } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { pokrycie } from './flows-catalog.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 const ts = createRequire(import.meta.url)('typescript');
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -311,7 +312,7 @@ export function render(readme) {
   return out;
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const args = process.argv.slice(2); const mode = args[0];
   const ri = args.indexOf('--readme'); const path = ri >= 0 ? args[ri + 1] : join(root, 'README.md');
   if (mode === '--list') { console.log(JSON.stringify(BLOCK_NAMES)); process.exit(0); }

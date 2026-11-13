@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 export const ETYKIETA = 'nocne-testy';
 export const BRAMKA = 3; // „3 czyste noce” (CLAUDE.md, 19.10.2026)
@@ -157,6 +158,6 @@ export function main(env = process.env, gh = ghReal) {
   console.log(`Raport nocny: ${o.czerwona ? 'czerwono' : 'zielono'}, czysta=${o.czysta}, licznik=${licznik}, operacje: ${kroki.map(k => k.op).join(', ') || 'brak'}`);
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   try { main(); } catch (e) { console.error(`::error::${e.message}`); process.exit(1); }
 }

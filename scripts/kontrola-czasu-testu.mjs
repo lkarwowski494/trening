@@ -18,6 +18,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const KOREN = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const klucz = (plik, test) => `${plik}\t${test}`;
@@ -120,4 +121,4 @@ export function main(argv) {
   return kod;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exit(main(process.argv.slice(2)));
+if (jestGlowny(import.meta.url)) process.exit(main(process.argv.slice(2)));

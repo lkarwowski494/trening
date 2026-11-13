@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from '../modul-glowny.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const ZRODLO = 'docs/lokalizacja/nazwy-lokalne.json';
@@ -77,7 +78,7 @@ export function zRaportu(dane, raporty, data) {
   return wynik;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (jestGlowny(import.meta.url)) {
   const tryb = process.argv[2];
   if (tryb === '--zestaw') { const d = JSON.parse(readFileSync(join(ROOT, ZRODLO), 'utf8')); writeFileSync(process.argv[3], JSON.stringify(zestawNazw(d, nazwyEnKatalogu(ROOT)), null, 1) + '\n'); console.log(`zapisano ${process.argv[3]}`); process.exit(0); }
   if (tryb === '--z-raportu') {

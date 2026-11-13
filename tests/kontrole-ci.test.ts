@@ -19,7 +19,7 @@ const kroki = (v: string) => v.split(/\s+&&\s+/).map(s => s.trim()).filter(Boole
 function probne(verify: string) {
   const dir = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'kontrole-')) /* realpath: macOS /var → /private/var (06.11.2026) */;
   fs.mkdirSync(path.join(dir, 'scripts/ci'), { recursive: true });
-  fs.copyFileSync(SKRYPT, path.join(dir, 'scripts/ci/kontrole.mjs'));
+  fs.copyFileSync(SKRYPT, path.join(dir, 'scripts/ci/kontrole.mjs')); fs.copyFileSync(path.join(__dirname, '../scripts/modul-glowny.mjs'), path.join(dir, 'scripts/modul-glowny.mjs')); /* 12.11.2026 (07-jakosc-002): skrypty importują wspólny strażnik modułu głównego */
   fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify({ scripts: { verify } }));
   return dir;
 }

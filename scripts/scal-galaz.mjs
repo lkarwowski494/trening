@@ -17,6 +17,7 @@ import { jestDokumentem } from './dokumenty.mjs';
 import { generowane } from './pliki-generowane.mjs';
 import { DOKUMENTY_LACZONE, polaczWpisy } from './scal-dokumenty.mjs';
 import { REPO, WORKFLOW, najnowszyTests, ocen, urlPrzebiegow, domyslnyFetch } from './ci-wynik.mjs';
+import { jestGlowny } from './modul-glowny.mjs';
 
 export { REPO, WORKFLOW, najnowszyTests, ocen };
 export const DOMYSLNE_DOCELOWE = ['integracja-1-1', 'main'];
@@ -164,6 +165,6 @@ export async function scal(argv, deps = {}) {
   return KOD.OK;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (jestGlowny(import.meta.url)) {
   process.exitCode = await scal(process.argv.slice(2));
 }

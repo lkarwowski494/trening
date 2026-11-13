@@ -2,6 +2,7 @@
 // Kod 1 przy błędach: tekst < 11 px, cienka odmiana (≤ 300) w tekście < 20 px, wiersz akapitu > 90 znaków na ekranie ≥ 600 px.
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { jestGlowny } from '../../../scripts/modul-glowny.mjs';
 
 export function ocen(p, { jednostka = 4 } = {}) {
   const bledy = [], ostrzezenia = [], info = [];
@@ -65,4 +66,4 @@ async function main() {
   process.exit(w.bledy.length ? 1 : 0);
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+if (jestGlowny(import.meta.url)) main();

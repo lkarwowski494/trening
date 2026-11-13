@@ -5,6 +5,7 @@
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { jestGlowny } from './modul-glowny.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* Jedna lista strażników jakości słowników (L-048). */
@@ -19,7 +20,7 @@ export const POLECENIA = [
   ['npx', 'jest', '--maxWorkers=1', '--silent', 'tests/audit-k1-bl-mer.test.tsx', '-t', 'A11N-03'], /* fr: spacja nierozdzielająca — bez reszty pliku */
 ];
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (jestGlowny(import.meta.url)) {
   const t0 = Date.now(); let kod = 0;
   for (const p of POLECENIA) {
     const r = spawnSync(p[0], p.slice(1), { cwd: ROOT, stdio: 'inherit', env: process.env });
