@@ -1,6 +1,10 @@
 {
  "_opis": "Czas każdego pliku testowego (s, suma po workerach) z przebiegu tests.yml 42751102557 na figury/partia-1 @ 9d6f35b3 (10.11.2026); tylko pliki >= 2 s, reszta = domyslny_s. Jedyne źródło podziału na części Jest: scripts/ci/jest-sekwencer.js (podział zachłanny po czasie zamiast skrótu ścieżki Jesta, który dawał części 903 s i 2929 s). Odświeżenie: przeliczyć z logów części (linie PASS/FAIL z czasem) przy większej zmianie zestawu testów. Nowy plik bez wpisu liczy się jako domyslny_s.",
  "domyslny_s": 1,
+ "rodziny_pamieciozerne": [
+  "^tests/audit-k1-bl-mer-podpisy\\d+\\.test\\.tsx$"
+ ],
+ "_rodziny_opis": "Rodziny plików, z których w jednej części jest najwyżej tyle, ile wynika z równego rozdziału (przy liczbie plików ≤ liczbie części — jeden). Powód: przebieg testflight 43347318753 (13.11.2026) — na macOS dwa pliki rodziny „podpisy kart × języki” w jednej części dławiły się (901 s i 843 s, limity 120 s), części z jednym plikiem: 10–21 min.",
  "pliki": {
   "tests/adapt-ui.test.tsx": 13,
   "tests/audit-0.10-gen-ui.test.tsx": 6,
@@ -18,7 +22,6 @@
   "tests/audit-k1-bl-mer-podpisy3.test.tsx": 173,
   "tests/audit-k1-bl-mer-podpisy4.test.tsx": 107,
   "tests/audit-k1-bl-mer-podpisy5.test.tsx": 168,
-  "tests/audit-k1-bl-mer-podpisy7.test.tsx": 109,
   "tests/audit-k1-fala2b.test.tsx": 9,
   "tests/audit-r72-a.test.ts": 43,
   "tests/audit-r72-c.test.ts": 97,

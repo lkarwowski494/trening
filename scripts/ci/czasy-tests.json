@@ -117,7 +117,34 @@
     "testy": {
       "minimalna_probka": 10,
       "limit_tymczasowy_min": 45,
-      "probka_min": []
+      "probka_min": [
+        {
+          "przebieg": 43347318753,
+          "czesc": 1,
+          "min": 21
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 2,
+          "min": 25
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 4,
+          "min": 13
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 5,
+          "min": 16
+        },
+        {
+          "przebieg": 43347318753,
+          "czesc": 6,
+          "min": 10
+        }
+      ],
+      "_uwaga_pomiaru": "Przebieg 43347318753 (13.11.2026, bez_wysylki): części 1, 4, 5, 6 zielone; część 2 czerwona (25 min, dwa pliki rodziny podpisów w jednej części — TF-1-1-cz2, usunięte sekwencerem i 6 grupami); część 3 anulowana przez limit 45 min (też dwa pliki rodziny) — poza próbką. Zapis w minutach zaokrąglonych do pełnych (zadania API)."
     }
   }
 }

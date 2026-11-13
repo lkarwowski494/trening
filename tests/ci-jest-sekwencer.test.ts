@@ -11,6 +11,7 @@ const Sekwencer = require('../scripts/ci/jest-sekwencer.js');
 const { przydziel } = Sekwencer;
 const czasy = JSON.parse(readFileSync(join(ROOT, 'scripts/ci/czasy-plikow.json'), 'utf8')) as { domyslny_s: number; pliki: Record<string, number> };
 const N = (JSON.parse(readFileSync(join(ROOT, 'scripts/ci/czasy-tests.json'), 'utf8')) as { czesci_jest: number }).czesci_jest;
+const NMAC = (JSON.parse(readFileSync(join(ROOT, 'scripts/ci/czasy-tests.json'), 'utf8')) as { testflight_macos: { czesci_jest: number } }).testflight_macos.czesci_jest;
 const pliki = execSync("git ls-files 'tests/*.test.*'", { cwd: ROOT, encoding: 'utf8' }).split('\n').filter(f => /\.test\.[jt]sx?$/.test(f));
 
 describe('sekwencer części Jest', () => {
@@ -35,5 +36,18 @@ describe('sekwencer części Jest', () => {
     const czesci = Array.from({ length: N }, (_, i) => s.shard(tests, { shardIndex: i + 1, shardCount: N }));
     expect(czesci.flat().length).toBe(tests.length); expect(new Set(czesci.flat()).size).toBe(tests.length);
     expect(czasy.pliki['tests/nowy-bez-wpisu.test.ts']).toBeUndefined(); expect(czasy.domyslny_s).toBeGreaterThan(0);
+  });
+  /* 13.11.2026 (TF-1-1-cz2, przebieg testflight 43347318753): na macOS (3 rdzenie, 2 procesy robocze Jest) część z DWOMA plikami rodziny „podpisy kart × języki”
+   * (podpisy1+2 → 901 s i 843 s, 7 testów po 120 s; podpisy6+7 → anulowane po 45 min) dławiła się, a części z jednym plikiem rodziny — 10–21 min. Ten sam test na Ubuntu ok. 3 min. */
+  test('rodzina podpisów kart: najwyżej jeden plik na część, także przy liczbie części macOS (testflight_macos.czesci_jest)', () => {
+    const rodzina = pliki.filter(f => /^tests\/audit-k1-bl-mer-podpisy\d+\.test\.tsx$/.test(f));
+    expect(rodzina.length).toBeGreaterThan(1);
+    for (const n of [NMAC, Math.max(NMAC, rodzina.length)]) {
+      const { wynik } = przydziel(pliki, n);
+      const naCzesc: Record<number, number> = {};
+      for (const f of rodzina) naCzesc[wynik[f]] = (naCzesc[wynik[f]] ?? 0) + 1;
+      expect(Math.max(...Object.values(naCzesc))).toBeLessThanOrEqual(Math.ceil(rodzina.length / n));
+    }
+    expect(rodzina.length).toBeLessThanOrEqual(NMAC);
   });
 });
