@@ -94,6 +94,10 @@ if (mode === 'stale') store.yearly.push({ id: 'y-cs', attributes: { locale: 'cs'
 if (mode === 'foreign') store.GROUP.push({ id: 'g-xx', attributes: { locale: 'ar-SA', name: 'x' } });
 const calls = []; let n = 0;
 const typeToObj = { subscriptionGroupLocalizations: 'GROUP', inAppPurchaseLocalizations: 'lifetime' };
+const relType = { subscriptionGroupLocalizations: 'subscriptionGroupVersions', subscriptionLocalizations: 'subscriptionVersions', inAppPurchaseLocalizations: 'inAppPurchaseVersions' };
+const verOf = { GV1: 'GROUP', SV1: 'monthly', SV2: 'yearly', IV1: 'lifetime' };
+const states = { GV1: 'PREPARE_FOR_SUBMISSION', SV1: 'PREPARE_FOR_SUBMISSION', SV2: mode.startsWith('no-draft') ? 'APPROVED' : 'PREPARE_FOR_SUBMISSION', IV1: 'PREPARE_FOR_SUBMISSION' };
+const ver = (id, v = 1) => ({ id, attributes: { version: v, state: states[id] } });
 const resp = (status, body) => ({ ok: status < 400, status, json: async () => body });
 const fakeFetch = async (url, init = {}) => {
   const m = init.method || 'GET'; const u = new URL(url); const p = u.pathname; calls.push(m + ' ' + p);
@@ -103,15 +107,20 @@ const fakeFetch = async (url, init = {}) => {
     if (p === '/v1/apps/777/subscriptionGroups') return resp(200, { data: mode === 'no-group' ? [] : [{ id: SUBSCRIPTION_GROUP_ID, attributes: {} }] });
     if (p === '/v1/subscriptionGroups/' + SUBSCRIPTION_GROUP_ID + '/subscriptions') return resp(200, { data: [{ id: 'S1', attributes: { productId: 'pl.lukasz.trening.full.monthly' } }, { id: 'S2', attributes: { productId: 'pl.lukasz.trening.full.yearly' } }] });
     if (p === '/v1/apps/777/inAppPurchasesV2') return resp(200, { data: [{ id: 'I1', attributes: { productId: 'pl.lukasz.trening.full.lifetime' } }] });
-    let mm;
-    if ((mm = p.match(/^\\/v1\\/subscriptionGroups\\/(\\d+)\\/subscriptionGroupLocalizations$/))) return resp(200, { data: store.GROUP });
-    if ((mm = p.match(/^\\/v1\\/subscriptions\\/(S\\d)\\/subscriptionLocalizations$/))) return resp(200, { data: store[mm[1] === 'S1' ? 'monthly' : 'yearly'] });
-    if (p === '/v2/inAppPurchases/I1/inAppPurchaseLocalizations') return resp(200, { data: store.lifetime });
+    if (p === '/v1/subscriptionGroups/' + SUBSCRIPTION_GROUP_ID + '/versions') return resp(200, { data: [ver('GV1')] });
+    if (p === '/v1/subscriptions/S1/versions') return resp(200, { data: [ver('SV1')] });
+    if (p === '/v1/subscriptions/S2/versions') return resp(200, { data: [ver('SV2')] });
+    if (p === '/v2/inAppPurchases/I1/versions') return resp(200, { data: [ver('IV1')] });
+    const lm = p.match(/^\\/v1\\/(subscriptionGroupVersions|subscriptionVersions|inAppPurchaseVersions)\\/(GV1|SV1|SV2|IV1)\\/localizations$/);
+    if (lm) return resp(200, { data: store[verOf[lm[2]]] });
     return resp(404, { errors: [] });
   }
   const body = JSON.parse(init.body);
+  if (!/^\\/v2\\/(subscriptionGroupLocalizations|subscriptionLocalizations|inAppPurchaseLocalizations)(\\/[^/]+)?$/.test(p)) return resp(404, { errors: [{ code: 'NOT_FOUND', title: 'stara ścieżka' }] });
   if (m === 'POST') {
-    const a = body.data.attributes; const rel = Object.values(body.data.relationships)[0].data; const key = typeToObj[body.data.type] || (rel.id === 'S1' ? 'monthly' : 'yearly');
+    const rels = body.data.relationships || {}; const rel = rels.version && rels.version.data;
+    if (Object.keys(rels).join() !== 'version' || !rel || rel.type !== relType[body.data.type] || !verOf[rel.id]) return resp(422, { errors: [{ code: 'ENTITY_ERROR.RELATIONSHIP', title: 'zła relacja' }] });
+    const a = body.data.attributes; const key = verOf[rel.id];
     store[key].push({ id: 'new-' + (++n), attributes: { ...a } }); return resp(201, { data: { id: 'new-' + n } });
   }
   if (m === 'PATCH') { const id = p.split('/').pop(); for (const k of Object.keys(store)) { const r = store[k].find(x => x.id === id); if (r) Object.assign(r.attributes, body.data.attributes); } return resp(200, { data: {} }); }
@@ -128,8 +137,11 @@ if (mode === 'jwt') {
   try { await makeClient({ fetchFn: fakeFetch, token: 't' }).call('DELETE', '/v1/subscriptionLocalizations/x'); out.threw = false; } catch (e) { out.threw = true; out.msg = e.message; }
 } else {
   const client = makeClient({ fetchFn: fakeFetch, token: 't' });
-  const apply = ['apply', 'stale', 'foreign', 'fail-post'].includes(mode);
-  const first = await run({ client, data, apply, log: l => logs.push(l) });
+  const apply = ['apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply'].includes(mode);
+  const onlyArg = { 'only-apply': 'yearly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly' }[mode];
+  let first;
+  try { first = await run({ client, data, apply, only: onlyArg, log: l => logs.push(l) }); }
+  catch (e) { out.threw = e.message; process.stdout.write(JSON.stringify({ ...out, calls })); process.exit(0); }
   out.first = { code: first.code, counts: first.counts, problems: first.problems }; out.callsAfterFirst = [...calls]; out.logs1 = [...logs];
   if (mode === 'apply' || mode === 'stale') { calls.length = 0; logs.length = 0; const second = await run({ client, data, apply: true, log: l => logs.push(l) }); out.second = { code: second.code, counts: second.counts }; out.callsSecond = [...calls]; out.logs2 = [...logs]; }
   out.store = Object.fromEntries(Object.entries(store).map(([k, v]) => [k, v.map(r => [r.attributes.locale, r.attributes.name, r.attributes.description])]));
@@ -180,13 +192,44 @@ describe('scripts/asc/iap-localizations.mjs na atrapie API', () => {
     const fp = drive('fail-post'); expect(fp.first.code).toBe(1); expect(fp.first.counts.błędy).toBe(1); expect(fp.first.counts['utwórz']).toBe(4 * MAPPED);
     const log = fp.logs1.join('\n'); expect(log).toContain('BŁĄD'); expect(log).toContain('ENTITY_ERROR'); expect(log).not.toContain('SECRET-DETAIL');
   });
+  test('v2: lista lokalizacji idzie przez wersje (…/versions → …Versions/{id}/localizations), zapis przez /v2/…Localizations z relacją version; żadnej wycofanej ścieżki v1', () => {
+    const r = drive('apply'); const all = [...r.callsAfterFirst, ...r.callsSecond] as string[];
+    expect(all).toEqual(expect.arrayContaining(['GET /v1/subscriptionGroups/22474799/versions', 'GET /v1/subscriptions/S1/versions', 'GET /v1/subscriptions/S2/versions', 'GET /v2/inAppPurchases/I1/versions',
+      'GET /v1/subscriptionGroupVersions/GV1/localizations', 'GET /v1/subscriptionVersions/SV1/localizations', 'GET /v1/subscriptionVersions/SV2/localizations', 'GET /v1/inAppPurchaseVersions/IV1/localizations']));
+    expect(all.filter(c => /subscriptionGroupLocalizations|subscriptionLocalizations|inAppPurchaseLocalizations/.test(c)).every(c => /^(POST|PATCH) \/v2\//.test(c))).toBe(true);
+    expect(all.some(c => /^GET \/v[12]\/(subscriptionGroups|subscriptions|inAppPurchases)\/[^/]+\/(subscriptionGroupLocalizations|subscriptionLocalizations|inAppPurchaseLocalizations)$/.test(c))).toBe(false);
+    expect(r.first.code).toBe(0);
+  });
+  test('brak edytowalnej wersji (stan inny niż PREPARE_FOR_SUBMISSION): problem, kod 1, produkt pominięty, żaden zapis nie powstaje dla niego ani wersja (POST …Versions)', () => {
+    const r = drive('no-draft-apply'); expect(r.first.code).toBe(1);
+    expect(r.first.problems.join('\n')).toContain('pl.lukasz.trening.full.yearly'); expect(r.first.problems.join('\n')).toContain('APPROVED');
+    expect(r.callsAfterFirst.some((c: string) => c.includes('SV2'))).toBe(false); /* nie czyta i nie pisze do wersji zatwierdzonej */
+    expect(r.callsAfterFirst.filter((c: string) => /^POST \/v\d\/\w*Versions/.test(c))).toEqual([]);
+    expect(r.store.yearly).toHaveLength(2); expect(r.store.monthly).toHaveLength(2 + MAPPED); /* pozostałe produkty zapisane */
+  });
+  test('--tylko klucz:lokalizacja: dry-run planuje jeden element; apply zapisuje dokładnie jeden POST; tylko ten produkt jest tknięty', () => {
+    const d = drive('only-dry'); expect(d.first.counts).toMatchObject({ 'utwórz': 1, 'zaktualizuj': 0, błędy: 0 }); expect(d.callsAfterFirst.every((c: string) => c.startsWith('GET '))).toBe(true);
+    const a = drive('only-apply'); expect(a.first.counts).toMatchObject({ 'utwórz': 1, błędy: 0 });
+    expect(a.callsAfterFirst.filter((c: string) => c.startsWith('POST '))).toEqual(['POST /v2/subscriptionLocalizations']);
+    expect(a.store.yearly.map((x: string[]) => x[0])).toEqual(['en-US', 'pl', 'cs']); expect(a.store.monthly).toHaveLength(2); expect(a.store.GROUP).toHaveLength(2); expect(a.store.lifetime).toHaveLength(2);
+  });
+  test('--tylko: złe wejście odrzucone przed jakimkolwiek wywołaniem API (nieznany klucz, lokalizacja właściciela, nieobsługiwana lokalizacja, zły format)', () => {
+    for (const m of ['only-key', 'only-owner', 'only-locale', 'only-fmt']) { const r = drive(m); expect([m, typeof r.threw]).toEqual([m, 'string']); expect(r.calls).toEqual([]); }
+    expect(drive('only-owner').threw).toContain('właściciel');
+  });
   test('JWT ES256: nagłówek, ładunek (aud, iss, exp = iat + 10 min), podpis 64 bajty i poprawny', () => {
     const r = drive('jwt'); expect(r.header).toEqual({ alg: 'ES256', kid: 'KID1234567', typ: 'JWT' });
     expect(r.payload).toEqual({ iss: 'ISSUER', iat: 1000, exp: 1600, aud: 'appstoreconnect-v1' }); expect(r.sigLen).toBe(64); expect(r.valid).toBe(true);
   });
   test('log nie zawiera identyfikatorów obiektów ani danych konta (repozytorium publiczne)', () => {
     const r = drive('apply'); const all = [...r.logs1, ...r.logs2].join('\n');
-    expect(all).not.toMatch(/777|S1|S2|I1|22474799|new-\d|Bearer|BEGIN/);
+    expect(all).not.toMatch(/777|S1|S2|I1|GV1|SV\d|IV1|22474799|new-\d|Bearer|BEGIN/);
+  });
+  test('workflow: wejście `tylko` trafia do skryptu przez zmienną środowiskową (nie wprost do powłoki), w obu zadaniach; bez nowych sekretów i uprawnień', () => {
+    const y = readFileSync(join(root, '.github/workflows/asc-iap-localizations.yml'), 'utf8');
+    expect(y).toMatch(/\n {6}tylko:\n {8}description:/); expect(y.match(/TYLKO: \$\{\{ inputs\.tylko \}\}/g)).toHaveLength(2);
+    expect(y.match(/\$\{TYLKO:\+--tylko "\$TYLKO"\}/g)).toHaveLength(2); expect(y).not.toMatch(/run:[^\n]*\$\{\{ inputs\.tylko/);
+    expect([...new Set(y.match(/secrets\.[A-Z0-9_]+/g))].sort()).toEqual(['secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_ID', 'secrets.ASC_KEY_P8']); expect(y).toContain('permissions:\n  contents: read');
   });
   test('kod skryptu: brak wywołania DELETE i wypisywania sekretów', () => {
     const src = readFileSync(join(root, 'scripts/asc/iap-localizations.mjs'), 'utf8');
