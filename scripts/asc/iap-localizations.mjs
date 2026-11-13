@@ -96,9 +96,9 @@ export function pickDraft(versions) {
 /** Znajduje obiekty w App Store Connect, ich wersje robocze i istniejące lokalizacje (v2). Zwraca listę celów (cel = obiekt z `existing`, ścieżkami tworzenia i aktualizacji). */
 export async function discover(client, log) {
   const targets = []; const problems = [];
-  const draftOf = async (path, label) => {
+  const draftOf = async (path, label, key) => {
     const { draft, states } = pickDraft(await client.list(path));
-    if (!draft) problems.push(`${label}: brak wersji roboczej (${EDITABLE_STATE}); stany wersji: ${states.join(', ') || 'brak wersji'} — skrypt nie tworzy wersji`);
+    if (!draft) problems.push({ key, text: `${label}: brak wersji roboczej (${EDITABLE_STATE}); stany wersji: ${states.join(', ') || 'brak wersji'} — skrypt nie tworzy wersji (decyzja właściciela 13.11.2026, wariant A): utwórz wersję roboczą produktu w App Store Connect, potem ponów dry-run` });
     return draft;
   };
   const localizationsOf = async path => toMap(await client.list(path));
@@ -110,15 +110,15 @@ export async function discover(client, log) {
     const sg = await client.list(`/v1/apps/${appId}/subscriptionGroups`);
     const group = sg.find(g => g.id === SUBSCRIPTION_GROUP_ID);
     if (!group) throw new Error('grupa subskrypcji o oczekiwanym ID nie należy do aplikacji');
-    const gv = await draftOf(`/v1/subscriptionGroups/${group.id}/versions`, 'grupa subskrypcji');
+    const gv = await draftOf(`/v1/subscriptionGroups/${group.id}/versions`, 'grupa subskrypcji', 'group');
     if (gv) targets.push({ key: 'group', label: 'grupa subskrypcji', hasDescription: false, existing: await localizationsOf(`/v1/subscriptionGroupVersions/${gv.id}/localizations`),
       create: (locale, w) => ({ type: 'subscriptionGroupLocalizations', attributes: { locale, name: w.name }, relationships: { version: { data: { type: 'subscriptionGroupVersions', id: gv.id } } } }),
       createPath: '/v2/subscriptionGroupLocalizations', updatePath: id => `/v2/subscriptionGroupLocalizations/${id}`, updateType: 'subscriptionGroupLocalizations' });
     const subs = await client.list(`/v1/subscriptionGroups/${group.id}/subscriptions`);
     for (const [key, p] of Object.entries(PRODUCTS).filter(([, p]) => p.kind === 'subscription')) {
       const sub = subs.find(x => x.attributes.productId === p.productId);
-      if (!sub) { problems.push(`brak subskrypcji ${p.productId}`); continue; }
-      const sv = await draftOf(`/v1/subscriptions/${sub.id}/versions`, p.productId);
+      if (!sub) { problems.push({ key, text: `brak subskrypcji ${p.productId}` }); continue; }
+      const sv = await draftOf(`/v1/subscriptions/${sub.id}/versions`, p.productId, key);
       if (!sv) continue;
       targets.push({ key, label: p.productId, hasDescription: true, existing: await localizationsOf(`/v1/subscriptionVersions/${sv.id}/localizations`),
         create: (locale, w) => ({ type: 'subscriptionLocalizations', attributes: { locale, name: w.name, description: w.description }, relationships: { version: { data: { type: 'subscriptionVersions', id: sv.id } } } }),
@@ -128,14 +128,14 @@ export async function discover(client, log) {
     const lt = PRODUCTS.lifetime;
     const iaps = await client.list(`/v1/apps/${appId}/inAppPurchasesV2?filter[productId]=${lt.productId}`);
     const iap = iaps.find(x => x.attributes.productId === lt.productId);
-    if (!iap) problems.push(`brak produktu ${lt.productId}`);
+    if (!iap) problems.push({ key: 'lifetime', text: `brak produktu ${lt.productId}` });
     else {
-      const iv = await draftOf(`/v2/inAppPurchases/${iap.id}/versions`, lt.productId);
+      const iv = await draftOf(`/v2/inAppPurchases/${iap.id}/versions`, lt.productId, 'lifetime');
       if (iv) targets.push({ key: 'lifetime', label: lt.productId, hasDescription: true, existing: await localizationsOf(`/v1/inAppPurchaseVersions/${iv.id}/localizations`),
         create: (locale, w) => ({ type: 'inAppPurchaseLocalizations', attributes: { locale, name: w.name, description: w.description }, relationships: { version: { data: { type: 'inAppPurchaseVersions', id: iv.id } } } }),
         createPath: '/v2/inAppPurchaseLocalizations', updatePath: id => `/v2/inAppPurchaseLocalizations/${id}`, updateType: 'inAppPurchaseLocalizations' });
     }
-  } catch (e) { problems.push(e.message); }
+  } catch (e) { problems.push({ key: null, text: e.message }); }
   return { targets, problems };
 }
 
@@ -177,9 +177,10 @@ export async function run({ client, data, apply = false, only, log = console.log
       log(`  ${it.lang} → ${it.locale ?? '-'}: ${it.action}${note}`);
     }
   }
-  for (const p of problems) log(`PROBLEM: ${p}`);
-  log(`\nPodsumowanie: utwórz ${counts['utwórz']}, zaktualizuj ${counts['zaktualizuj']}, pomiń ${counts['pomiń']}, błędy zapisu ${counts.błędy}, różnice w lokalizacjach właściciela ${counts.różniceWłaściciela}, problemy ${problems.length}`);
-  return { code: problems.length || counts.błędy ? 1 : 0, counts, problems };
+  const liczone = filter ? problems.filter(p => p.key === filter.key || p.key === null) : problems;
+  for (const p of problems) log(`PROBLEM${filter && !liczone.includes(p) ? ' (poza zawężeniem, nie wpływa na kod wyjścia)' : ''}: ${p.text}`);
+  log(`\nPodsumowanie: utwórz ${counts['utwórz']}, zaktualizuj ${counts['zaktualizuj']}, pomiń ${counts['pomiń']}, błędy zapisu ${counts.błędy}, różnice w lokalizacjach właściciela ${counts.różniceWłaściciela}, problemy ${problems.length}${filter ? ` (liczone do kodu wyjścia: ${liczone.length})` : ''}`);
+  return { code: liczone.length || counts.błędy ? 1 : 0, counts, problems: problems.map(p => p.text) };
 }
 
 async function main() {

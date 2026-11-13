@@ -96,7 +96,8 @@ const calls = []; let n = 0;
 const typeToObj = { subscriptionGroupLocalizations: 'GROUP', inAppPurchaseLocalizations: 'lifetime' };
 const relType = { subscriptionGroupLocalizations: 'subscriptionGroupVersions', subscriptionLocalizations: 'subscriptionVersions', inAppPurchaseLocalizations: 'inAppPurchaseVersions' };
 const verOf = { GV1: 'GROUP', SV1: 'monthly', SV2: 'yearly', IV1: 'lifetime' };
-const states = { GV1: 'PREPARE_FOR_SUBMISSION', SV1: 'PREPARE_FOR_SUBMISSION', SV2: mode.startsWith('no-draft') ? 'APPROVED' : 'PREPARE_FOR_SUBMISSION', IV1: 'PREPARE_FOR_SUBMISSION' };
+const onlyDraft = mode.startsWith('only-draft'); /* tylko roczna ma wersję roboczą, reszta zatwierdzona */
+const states = onlyDraft ? { GV1: 'APPROVED', SV1: 'APPROVED', SV2: 'PREPARE_FOR_SUBMISSION', IV1: 'APPROVED' } : { GV1: 'PREPARE_FOR_SUBMISSION', SV1: 'PREPARE_FOR_SUBMISSION', SV2: mode.startsWith('no-draft') ? 'APPROVED' : 'PREPARE_FOR_SUBMISSION', IV1: 'PREPARE_FOR_SUBMISSION' };
 const ver = (id, v = 1) => ({ id, attributes: { version: v, state: states[id] } });
 const resp = (status, body) => ({ ok: status < 400, status, json: async () => body });
 const fakeFetch = async (url, init = {}) => {
@@ -137,8 +138,8 @@ if (mode === 'jwt') {
   try { await makeClient({ fetchFn: fakeFetch, token: 't' }).call('DELETE', '/v1/subscriptionLocalizations/x'); out.threw = false; } catch (e) { out.threw = true; out.msg = e.message; }
 } else {
   const client = makeClient({ fetchFn: fakeFetch, token: 't' });
-  const apply = ['apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply'].includes(mode);
-  const onlyArg = { 'only-apply': 'yearly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly' }[mode];
+  const apply = ['apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply', 'only-draft-apply', 'only-draft-other'].includes(mode);
+  const onlyArg = { 'only-apply': 'yearly:cs', 'only-draft-apply': 'yearly:cs', 'only-draft-other': 'monthly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly' }[mode];
   let first;
   try { first = await run({ client, data, apply, only: onlyArg, log: l => logs.push(l) }); }
   catch (e) { out.threw = e.message; process.stdout.write(JSON.stringify({ ...out, calls })); process.exit(0); }
@@ -212,6 +213,16 @@ describe('scripts/asc/iap-localizations.mjs na atrapie API', () => {
     const a = drive('only-apply'); expect(a.first.counts).toMatchObject({ 'utwórz': 1, błędy: 0 });
     expect(a.callsAfterFirst.filter((c: string) => c.startsWith('POST '))).toEqual(['POST /v2/subscriptionLocalizations']);
     expect(a.store.yearly.map((x: string[]) => x[0])).toEqual(['en-US', 'pl', 'cs']); expect(a.store.monthly).toHaveLength(2); expect(a.store.GROUP).toHaveLength(2); expect(a.store.lifetime).toHaveLength(2);
+  });
+  test('--tylko: kod wyjścia i apply liczą tylko problemy wybranego produktu (brak wersji roboczej w innych nie blokuje zapisu jednego elementu)', () => {
+    const ok = drive('only-draft-apply'); expect(ok.first.code).toBe(0); expect(ok.first.counts).toMatchObject({ 'utwórz': 1, błędy: 0 });
+    expect(ok.callsAfterFirst.filter((c: string) => c.startsWith('POST '))).toEqual(['POST /v2/subscriptionLocalizations']);
+    expect(ok.first.problems.length).toBe(3); /* pozostałe produkty nadal raportowane w logu */ expect(ok.logs1.join('\n')).toContain('poza zawężeniem');
+    const bad = drive('only-draft-other'); expect(bad.first.code).toBe(1); /* wybrany produkt bez wersji roboczej: problem liczony */
+    expect(bad.callsAfterFirst.some((c: string) => c.startsWith('POST '))).toBe(false);
+  });
+  test('komunikat o braku wersji roboczej mówi, co zrobić (utwórz wersję roboczą w App Store Connect, ponów dry-run)', () => {
+    expect(drive('no-draft-apply').first.problems.join('\n')).toContain('utwórz wersję roboczą produktu w App Store Connect, potem ponów dry-run');
   });
   test('--tylko: złe wejście odrzucone przed jakimkolwiek wywołaniem API (nieznany klucz, lokalizacja właściciela, nieobsługiwana lokalizacja, zły format)', () => {
     for (const m of ['only-key', 'only-owner', 'only-locale', 'only-fmt']) { const r = drive(m); expect([m, typeof r.threw]).toEqual([m, 'string']); expect(r.calls).toEqual([]); }
