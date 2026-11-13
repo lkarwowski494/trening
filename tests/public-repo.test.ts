@@ -321,7 +321,7 @@ describe('zależności i konfiguracja natywna', () => {
 
 describe('TST2-09 (audyt kontrolny 1): testflight.yml sprawdza to samo co verify', () => {
   test('zadanie testów: kontrole z verify (`npm run verify:kontrole`, jedno źródło listy) + Jest w częściach, bez własnej sterty (stała w scripts/ci/jest-sterta.json, 02.11.2026); verify obejmuje wszystkie sprawdzenia', () => {
-    /* 12.11.2026 (07-jakosc-001, KO-058 A): zamiast jednego kroku `npm run verify` w buildzie — zadanie testy w 5 częściach (tests/testflight-testy-czas.test.ts) */
+    /* 12.11.2026 (07-jakosc-001, KO-058 A): zamiast jednego kroku `npm run verify` w buildzie — zadanie testy w częściach (liczba: scripts/ci/czasy-tests.json, testflight_macos.czesci_jest; tests/testflight-testy-czas.test.ts) */
     const y = wf('testflight.yml'); const z = y.slice(y.indexOf('\n  testy:'), y.indexOf('\n  build:'));
     expect(z).not.toMatch(/max-old-space-size/);
     expect(z).toMatch(/run: npm run verify:kontrole\s*$/m); expect(z).toMatch(/run: node scripts\/jest-ponow\.mjs --shard=/);
