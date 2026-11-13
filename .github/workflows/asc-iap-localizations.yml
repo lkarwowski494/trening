@@ -12,6 +12,10 @@ on:
         type: choice
         options: [dry-run, apply]
         default: dry-run
+      tylko:
+        description: 'opcjonalnie: tylko jeden element, <klucz>:<lokalizacja> (klucz: group, monthly, yearly, lifetime; np. yearly:cs); puste = wszystko'
+        type: string
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -40,12 +44,13 @@ jobs:
           umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
       - name: Lokalizacje (plan, tylko odczyt)
         env:
+          TYLKO: ${{ inputs.tylko }}
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
           set -o pipefail
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
-          node scripts/asc/iap-localizations.mjs --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
+          node scripts/asc/iap-localizations.mjs --dry-run ${TYLKO:+--tylko "$TYLKO"} | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Usunięcie klucza z maszyny
         if: always()
         run: rm -f "$RUNNER_TEMP/AuthKey.p8"
@@ -75,12 +80,13 @@ jobs:
           umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
       - name: Lokalizacje (zapis; nigdy nie usuwa)
         env:
+          TYLKO: ${{ inputs.tylko }}
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
           set -o pipefail
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
-          node scripts/asc/iap-localizations.mjs --apply | tee -a "$GITHUB_STEP_SUMMARY"
+          node scripts/asc/iap-localizations.mjs --apply ${TYLKO:+--tylko "$TYLKO"} | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Usunięcie klucza z maszyny
         if: always()
         run: rm -f "$RUNNER_TEMP/AuthKey.p8"
