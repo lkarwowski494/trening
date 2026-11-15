@@ -19,11 +19,11 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Środowisko: environment_id env_0166YQoQYngJLGR5ViagvRAi, model claude-opus-5-5 (zalecana sesja roli; poprzednik pracował na claude-fable-5-2 jako nazwany wyjątek), wysiłek medium [DO USTALENIA: get_session nie pokazuje wysiłku], permission_mode auto; repo sesji: lkarwowski494/trening, lkarwowski494/prompts (add_repo za zgodą właściciela ~09:00). Poprzednie środowisko: env_016cjV5XopwCaywxTR2x8qwp.
 - Gałąź robocza: `integracja-1-1` (scalanie: `NODE_USE_ENV_PROXY=1 node scripts/scal-galaz.mjs <gałąź>`); gałąź stanu: `koordynacja` (nigdy nie scalana).
 
-## Teraz (19:35 UTC 15.11 — koordynator …VBxhpXjLY3f3fQnUKdA)
-- integracja-1-1 @ 22dba8c5 bez zmian od 13.11 (tests.yml 43485026545 success); build 1.1.0 (1041) w ASC (W-19 zrobione).
-- W-20 (telefon właściciela): właściciel 15.11 ~19:34 UTC: „Jeszcze nie testowałem” — nowa lista krok po kroku w czacie tej sesji (zmiany od buildu 1033). Po wyniku: W-21…W-26.
-- Brak aktywnych sesji podrzędnych i przebiegów; przypomnienia: tylko linie dzienne.
-- Poprzednia sekcja „Teraz” (13.11 18:45): W-19 zrobione; lista W-20 wysłana wtedy w czacie poprzednika (nie w repo); backlog 1.1.x (NIS) i WG do wpisu (a) wyzwolenie bez sprawdzenia przebiegu, (b) send_message sesja→koordynator, (c) kolejka macOS — bez zmian.
+## Teraz (20:15 UTC 15.11 — koordynator …VBxhpXjLY3f3fQnUKdA)
+- W-20 ZROBIONE: właściciel 2026-11-15 ~20:05 UTC, słowa: „Wszystko działa” (lista w czacie koordynatora 19:40: kopia JSON, AK-05, ZD-02, PR-12/17, ZD-01, W2-04+ZB-039, ZD-03+UX-01, W2-05, US-08, US-13 skrócony). Wpis w docs/49 i docs/18 robi sesja AG.
+- asc-metadane podgląd 43756117258 success (32 lokalizacje do aktualizacji, whatsNew i promotionalText nowe, `sl` pominięte) → W-21 potwierdzone pośrednio (wersja 1.1.0 istnieje). asc-kontrola 43756120990 failure tylko przez notatki recenzenta (W-25, oczekiwane).
+- Sesja AG (10-wydanie build, sonnet) w toku na wyd/w20-w26-1-1 od 22dba8c5: W-20 zapis, W-25 notatki, W-22 kontrola whatsNew, W-23/W-24 odczyt stron Apple, W-18 kroki.
+- Czeka na właściciela: zgoda na zapis metadanych (asc-metadane `zapis` + Approve release).
 
 ## Prompty ról przy przekazaniu (KO-029, właściciel 2026-11-10 ~17:20 UTC: „Tak”)
 Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikator trybu auto). Poprzednik składa prompty z biblioteki i wysyła je następcy przez send_message, każdy jako osobna wiadomość z nagłówkiem `ROLA <plik> część <i>/<n> · bajtów całości <B> · sha256[:16] <H>` i treścią po linii `=== TREŚĆ ===`. Następca zapisuje treść dosłownie do `<scratchpad>/role/<plik>` (części skleja po kolei), sprawdza bajty i sha256 i odpisuje „ROLE OK” albo listę niezgodności. Zestaw (prompts f701ce9): 08-programista-build.md 51193 B 50d63f46f7a77bba; 07-jakosc-audit.md 77114 B bf8102fa42677cec (2 części); 09-lokalizacja-build.md 59315 B e8c4c5fdf518e603; 10-wydanie-build.md 60161 B a6aaae7d4f38b892. M9 jak dotąd w wiadomości startowej. Od 19:45 (WG-10, wariant C — zatwierdzony przez właściciela 20:45, KO-034): następca dostaje od razu tylko 08; 07, 09, 10 poprzednik albo następca zamawia na żądanie (1 plik = 1 subagent, WG-09). Biblioteka tylko dla nowej roli (wtedy zgoda właściciela). Limit send_message 64 KiB.
@@ -49,6 +49,7 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 ## Sesje
 | Litera | ID | Rola, tryb | Gałąź @ SHA | Kontekst % | Koszt USD | Stan |
 |---|---|---|---|---|---|---|
+| AG | session_01T66VBvkv2HGHp5ep4swHJ7 | 10-wydanie build (sonnet-5-5): W-20 zapis, W-18, W-22…W-25 (polecenia/AG.md @ 5902176c) | wyd/w20-w26-1-1 od 22dba8c5 | 0 | 0 | start 20:10; pula KO-063…KO-069; pułap 15 USD |
 | AF | session_01T66VBwVNue1ekjgWYsGW44 | 08-programista build (sonnet-5-5): iap-localizations.mjs na endpointy v2 ASC (KO-061, KO-062) | asc/iap-v2 @ 4f3c013e | 25,4 | 8,05 | PRZYJĘTA 13:42 (5 commitów, autor Claude noreply; tests.yml 43432904107 success; recenzja niezależna subagent audytor — DO POPRAWY, poprawki :182/:101/:57 zweryfikowane testem) — zarchiwizowana 13:42; scalenie do integracja-1-1 PO W-19 |
 | AE | session_01T66VByHUr6ytHRBk4Qyp8V | 08-programista fix (sonnet-5-5): TF-1-1-cz2, TF-1-1-cz3 | napr/testflight-1-1-czas @ b0da3273 | 18,9 | 1,85 | PRZYJĘTA 06:55 (b0da3273, autor Claude noreply; tests.yml 43357469149, e2e 43362677879, testy macOS w testflight 43374118867 zielone; recenzja niezależna subagent audytor PRZYJĘTE: 105 testów przed/po, 811 plików w dokładnie 1 części dla N=6 i N=5) — zarchiwizowana 06:55; backlog NIS: brak wpisu czasu podpisy6 w czasy-plikow.json; część 2 (czerwona) w probka_min |
 | AD | session_01T66VBw4hr1WBykd7bQKME8 | 08-programista fix (sonnet-5-5): 07-jakosc-004, 006 (strażnik zadania testy, bez zmiany testflight.yml) | napr/testflight-1-1-straznik @ e6335cbb | 17,8 | 1,27 | PRZYJĘTA 01:20 (df611fa2 + poprawki recenzji ed8caa8f/e6335cbb, autor Claude noreply, tylko tests/README/docs/19, testflight.yml bez zmian; tests.yml 43341591880 success; recenzja niezależna subagent audytor 01:00, poprawki potwierdzone 8 mutacjami) — zarchiwizowana 01:20; polecenie polecenia/AD.md @ 021f4ddf; KO-059 |
@@ -143,7 +144,7 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - Dawniej …VByix2KT9Yufm3EMdpE: trig_01TQExbJde6aDSbWDroLp1JZ „kontrola” 15:29 · trig_01QS9jcCCnf1y7CycXpd162z „linia 05:00” (11.11) · trig_01VUbUcdvPezF2qdxBmqoSem „linia 14:00” (11.11). Poprzednika: trig_01RVCjMoYcxuXdU7sdHmEP84 „kontrola przekazania” 15:38 (sprząta poprzednik).
 
 ## Pule numerów decyzji
-- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-059 (KO-058 ostatnie, 12.11 22:15) (KO-047 przydzielone T2: Ściąganie/Przyciąganie). Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
+- Decyzje aplikacji: wpisy datowane w docs/18 (bez numerów D-NNN). KO następny: KO-063 (pula KO-063…KO-069 przydzielona AG 15.11; wcześniej KO-062 ostatnie) (KO-047 przydzielone T2: Ściąganie/Przyciąganie). Lekcje: `## L-NNN` nadaje koordynator przy scaleniu (`node scripts/numeruj-lekcje.mjs`).
 
 ## Dziennik
 | UTC | Sesja | Zdarzenie z dowodem | Następny krok |
@@ -409,3 +410,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-14 13:55 | koordynator | linia 14:00: nocne testy 43580394449 na main SUCCESS, tests-tz SUCCESS; integracja-1-1 @ 22dba8c5 bez zmian; W-20 bez odpowiedzi właściciela. Przegląd przepływu: największa strata — kolejka macOS W-19 ~160 min → WG-13 (4. wystąpienie), propozycja lekcji dla biblioteki | linia 05:00 15.11 / W-20 |
 | 2026-11-15 04:55 | koordynator | linia 05:00: bez zmian od 14.11 13:55 (integracja-1-1 @ 22dba8c5, ostatnie nocne testy 14.11 zielone); W-20 nadal bez odpowiedzi właściciela | linia 14:00 / W-20 |
 | 2026-11-15 19:35 | koordynator …VBxhpXjLY3f3fQnUKdA | Przejęcie bez przekazania (poprzednik niedostępny: get_session not found, brak linii 14:00 15.11 i przypomnień); słowa właściciela w mandacie; linie 05:00/14:00 16.11 utworzone; W-20: „Jeszcze nie testowałem” | lista W-20 w czacie; linia 05:00 16.11 |
+| 2026-11-15 20:15 | koordynator | W-20 zrobione („Wszystko działa”); podgląd metadanych 43756117258 success, asc-kontrola 43756120990 różnica tylko w notatkach; sesja AG wystartowała (polecenia/AG.md @ 5902176c) | kontrola 21:15; zgoda właściciela na zapis metadanych |
