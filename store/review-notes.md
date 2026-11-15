@@ -1,4 +1,4 @@
-# Notatki dla recenzenta App Store (App Review Information → Notes) — wersja 1.0 z 26.10.2026
+# Notatki dla recenzenta App Store (App Review Information → Notes) — wersja 1.0 z 26.10.2026, sekcja rysunków zaktualizowana dla 1.1 (W-25, 15.11.2026)
 
 Finalna wersja na wydanie 1.0 (docs/48 pkt 2; zatwierdzona do wklejenia po akceptacji właściciela). Ścieżki i etykiety zgodne z kodem gałęzi `integracja-2026-10-26b`; próg dnia treningowego 7 min z `lib/access.ts` (`MIN_LIVE_MINUTES_FOR_DAY`), limit 5 dni z `PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`. Test: `tests/store-review-notes.test.ts`
 (limit pola, teksty przycisków z `lib/i18n.en.ts`, liczby i stany domyślne z kodu, brak danych osobowych).
@@ -32,14 +32,14 @@ NO ACCOUNT, NO SERVER
 - To see data quickly: on the Workout tab tap "Other workout", add an exercise and tick a set; or use "Log a past workout" to add a session in the past.
 
 IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto-renewable subscriptions plus a one-time lifetime unlock; no introductory offers or free trials)
-- Where to find them: More > Settings, section "Subscription" > "See Pro plans" (after a purchase the row reads "Your plan: monthly", "Your plan: yearly" or "Your plan: lifetime"). The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
+- Where to find them: More > Settings, section "Subscription" > "See Pro plans". The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
 - Free tier: the whole app is free for up to 5 training days per calendar month. A training day is a day with at least one finished live workout longer than 7 minutes (several workouts on the same day count as one day). The limit cannot be reached in a short review session, so use Settings as above. History, backup, export and logging past workouts always work.
 - After the first finished live workout (free tier only, shown once) a window "First workout done!" explains the model. "See Pro plans ›" opens the purchase screen, "Awesome, I'll keep training!" closes the window, and a link "Why this price? See the espresso index." opens a page on our website.
 - Family Sharing is enabled for all three products.
 - Ongoing value (Guideline 3.1.2(a)): the app is actively developed and updated regularly, and every new feature is included in the subscription. Users who prefer a single payment can choose the one-time lifetime unlock instead.
 
 EXERCISES AND DRAWINGS
-- More > Exercises, tap an exercise (e.g. Back Squat): the "Technique" section has setup, movement, tips and common mistakes. Many exercises show a simple movement drawing made on the device; squat, bench press and deadlift variations (e.g. Sumo Deadlift) are animated and mark the main muscles. A note says the app does not give medical advice.
+- More > Exercises, tap an exercise (e.g. Back Squat): the "Technique" section has setup, movement, tips and common mistakes. New in 1.1: most exercises in the library (machines and cables, kettlebells, jumps, abs, mobility and more) show a simple movement drawing made on the device; squat, bench press and deadlift variations (e.g. Sumo Deadlift) are animated and mark the main muscles. A note says the app does not give medical advice.
 
 BACKUP, IMPORT, ERASE
 - More > Backup: "Export history to CSV" and "Import history from a CSV file". Import shows a preview before anything is saved and never removes existing data. To try it: export, then import the same file.
@@ -73,14 +73,14 @@ BEZ KONTA I BEZ SERWERA
 - Żeby szybko zobaczyć dane: w zakładce Trening „Inny trening”, dodaj ćwiczenie i odhacz serię; albo „Dopisz trening wstecz”.
 
 ZAKUPY W APLIKACJI (grupa subskrypcji „Pełna wersja”: miesięczna i roczna odnawiane automatycznie oraz jednorazowy dostęp dożywotni; bez ofert wprowadzających i okresów próbnych)
-- Gdzie: Więcej → Ustawienia, sekcja „Subskrypcja” → „Zobacz plany Pro” (po zakupie wiersz „Masz plan: miesięczny”, „Masz plan: roczny” albo „Masz plan: dożywotni”). Ekran zakupu otwiera się stamtąd w każdej chwili, a także przy starcie treningu po wykorzystaniu darmowych dni. Pokazuje cenę i okres z App Store, „Przywróć zakupy”, „Zrealizuj kod” i linki do polityki prywatności oraz warunków (standardowa licencja Apple).
+- Gdzie: Więcej → Ustawienia, sekcja „Subskrypcja” → „Zobacz plany Pro”. Ekran zakupu otwiera się stamtąd w każdej chwili, a także przy starcie treningu po wykorzystaniu darmowych dni. Pokazuje cenę i okres z App Store, „Przywróć zakupy”, „Zrealizuj kod” i linki do polityki prywatności oraz warunków (standardowa licencja Apple).
 - Bez zakupu cała aplikacja jest darmowa do 5 dni treningowych w miesiącu kalendarzowym. Dzień treningowy to dzień z co najmniej jednym ukończonym treningiem na żywo dłuższym niż 7 minut (kilka treningów tego samego dnia to jeden dzień). Limit wymaga pięciu takich dni, więc nie da się go osiągnąć w krótkiej recenzji; ekran zakupu jest dostępny z Ustawień. Historia, kopia, eksport i dopisywanie treningów wstecz działają zawsze, z zakupem i bez.
 - Po pierwszym ukończonym treningu na żywo (tylko w wersji darmowej, raz) krótkie okno „Pierwszy trening za Tobą!” tłumaczy model prostymi słowami. „Zobacz plany Pro ›” otwiera ekran zakupu, „Super, trenuję dalej!” zamyka okno, a link „Skąd ta cena? Poznaj indeks espresso.” otwiera stronę na naszej witrynie.
 - Chmura rodzinna włączona we wszystkich trzech produktach.
 - Stała wartość subskrypcji (wytyczna 3.1.2(a)): aplikacja jest rozwijana i regularnie aktualizowana, a każda nowa funkcja wchodzi w skład subskrypcji. Kto woli jedną płatność, wybiera jednorazowy dostęp dożywotni.
 
 ĆWICZENIA I RYSUNKI
-- Więcej → Ćwiczenia, stuknij ćwiczenie (np. Back Squat): sekcja „Technika” zawiera ustawienie, ruch, wskazówki i częste błędy. Wiele ćwiczeń ma prosty rysunek ruchu rysowany na urządzeniu; odmiany przysiadu, wyciskania leżąc i martwego ciągu (np. Sumo Deadlift) są animowane i oznaczają mięśnie główne. Notka przypomina, że aplikacja nie udziela porad medycznych.
+- Więcej → Ćwiczenia, stuknij ćwiczenie (np. Back Squat): sekcja „Technika” zawiera ustawienie, ruch, wskazówki i częste błędy. Nowość w 1.1: większość ćwiczeń z biblioteki (maszyny i linki, kettlebell, skoki, brzuch, mobilność i inne) ma prosty rysunek ruchu rysowany na urządzeniu; odmiany przysiadu, wyciskania leżąc i martwego ciągu (np. Sumo Deadlift) są animowane i oznaczają mięśnie główne. Notka przypomina, że aplikacja nie udziela porad medycznych.
 
 KOPIA, IMPORT, CZYSZCZENIE
 - Więcej → Kopia zapasowa: „Eksportuj historię do CSV” i „Importuj historię z pliku CSV”. Import pokazuje podgląd przed zapisem i nigdy nie usuwa obecnych danych. Żeby wypróbować: najpierw eksport historii do CSV, potem import tego samego pliku.

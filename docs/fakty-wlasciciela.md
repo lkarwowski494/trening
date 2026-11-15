@@ -6,7 +6,8 @@ Repo jest publiczne: bez danych osobowych (imię i nazwisko, e-mail, telefon, UD
 | Fakt | Źródło |
 |---|---|
 | Ma iPhone'a i Apple Watch; testuje na obu (build 1030 na iPhonie i zegarku) | docs/18, 23.10.2026 |
-| Ostatni test na telefonie i zegarku: build 1033 (`fced34b`), 29.10.2026 | docs/18, 29.10.2026 |
+| Ostatni test na telefonie i zegarku: build 1041, 15.11.2026 („Wszystko działa”; lista W-20 z docs/49) | docs/18, 15.11.2026 (przekazane przez koordynatora) |
+| Wcześniejszy test na telefonie i zegarku: build 1033 (`fced34b`), 29.10.2026 | docs/18, 29.10.2026 |
 | Na telefonie i zegarku testuje tylko to, co zmieniło się od jego ostatniego testu; lista kroków zawężona z dowodem (diff kodu) | docs/18, 29.10.2026 |
 | Strefa czasowa: Polska (od 25.10.2026 czas zimowy, UTC+1); godziny dla właściciela przeliczać poleceniem `TZ=Europe/Warsaw date`, nie z pamięci | lekcja w docs/40, 29.10.2026 |
 | W App Store Connect ma rolę Account Holder (umowy, deklaracje, zatwierdzenia wykonuje sam) | docs/48 Z-11, Z-22 |
