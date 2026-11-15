@@ -43,7 +43,7 @@ const refData = {
     { placementGroupId: 'G-DUP-A', specs: ['S-DUP'] }, { placementGroupId: 'G-DUP-B', specs: ['S-DUP'] } ] }],
   features: sc.noLimits ? [] : [{ featureId: 'APP_STORE_VERSIONS', placementPolicies: [{ placementTypeId: 'APP_SCREENSHOT', groupLimits: [{ groupIds: ['G-IPHONE'], maxCount: sc.limit ?? 10 }] }] }],
 };
-const calls = []; const puts = []; let n = 0; const orders = []; const placements = []; const reserved = []; const renamed = [];
+const calls = []; const puts = []; let n = 0; const orders = []; const placements = []; const reserved = []; const renamed = []; const deleted = []; let delCount = 0;
 let clock = 0; let mints = 0; let listCount = 0; const sleep = async ms => { clock += ms; };
 /* obrazy biblioteki: z poprzednich przebiegów (sc.libImages) i z tego przebiegu; processMs = ile trwa przetwarzanie po commicie */
 const imgs = new Map(); for (const [i, l] of (sc.libImages ?? []).entries()) imgs.set('LIBIMG' + (i + 1), { ref: l.ref, size: l.size, state: l.state ?? 'PREPARE_FOR_SUBMISSION', committed: -1e12, processMs: 0, hide: !!l.hideFirstList });
@@ -62,11 +62,12 @@ const fakeFetch = async (url, init = {}) => {
     if (p === '/v1/appAssetLibraryRefData') return resp(200, { data: [{ attributes: refData }] });
     if (p === '/v1/appAssetLibraries/LIB/images') { listCount++; return resp(200, { data: [...imgs].filter(([, im]) => !(im.hide && listCount === 1)).map(([id, im]) => ({ id, attributes: { referenceName: im.ref, fileSize: im.size, state: imgState(im), createdDate: '2026-10-30T05:00:00Z' } })) }); }
     let mm = /^\\/v1\\/appStoreVersionLocalizations\\/L-(.+)\\/placements$/.exec(p);
-    if (mm) { const have = (sc.existing ?? {})[mm[1] + ':' + u.searchParams.get('filter[placementGroup]')] ?? 0; return resp(200, { data: Array.from({ length: have }, (_, i) => ({ id: 'P' + i })) }); }
+    if (mm) { const have = (sc.existing ?? {})[mm[1] + ':' + u.searchParams.get('filter[placementGroup]')] ?? 0; return resp(200, { data: Array.from({ length: have }, (_, i) => ({ id: 'OLD-' + mm[1] + '-' + i })) }); }
     mm = /^\\/v1\\/appAssetLibraryImages\\/([A-Z0-9]+)$/.exec(p);
     if (mm && imgs.has(mm[1])) return resp(200, { data: { id: mm[1], attributes: { state: imgState(imgs.get(mm[1])), stateDetails: [{ message: 'SECRET-DETAIL' }] } } });
     return resp(404, { errors: [] });
   }
+  if (m === 'DELETE') { delCount++; if (sc.deleteFailsAt && delCount >= sc.deleteFailsAt) return resp(500, { errors: [{ code: 'X', title: 't', detail: 'SECRET-DETAIL' }] }); deleted.push(p); return { ok: true, status: 204, json: async () => { throw new Error('no body'); } }; }
   const body = JSON.parse(init.body);
   if (m === 'POST' && p === '/v1/appAssetLibraryImages') {
     const ref = body.data.attributes.referenceName;
@@ -80,7 +81,7 @@ const fakeFetch = async (url, init = {}) => {
     if (im && body.data.attributes.referenceName) { renamed.push(im.ref + ' -> ' + body.data.attributes.referenceName); im.ref = body.data.attributes.referenceName; }
     return resp(200, { data: {} });
   }
-  if (m === 'POST' && p === '/v1/appAssetLibraryPlacements') { const id = 'PL' + (placements.length + 1); placements.push({ id, ...body.data }); return resp(201, { data: { id } }); }
+  if (m === 'POST' && p === '/v1/appAssetLibraryPlacements') { if (sc.placementFails) return resp(500, { errors: [{ code: 'X', title: 't', detail: 'SECRET-DETAIL' }] }); const id = 'PL' + (placements.length + 1); placements.push({ id, ...body.data }); return resp(201, { data: { id } }); }
   if (m === 'POST' && p === '/v1/appAssetLibraryPlacementOrderingRequests') { orders.push(body.data); return resp(201, { data: { id: 'O' } }); }
   return resp(405, {});
 };
@@ -91,16 +92,28 @@ if (sc.mode === 'unit') {
   out.limits = { iphone: Z.maxPerGroup(refData, 'G-IPHONE'), other: Z.maxPerGroup(refData, 'G-WATCH'), none: Z.maxPerGroup({}, 'x') };
   out.png = Z.pngInfo(Buffer.from(sc.png, 'base64')); let bad = ''; try { Z.pngInfo(Buffer.from('GIF89a-------------------------------')); } catch (e) { bad = e.message; } out.bad = bad;
   let t = false; try { await makeClient({ fetchFn: fakeFetch, token: 't' }).call('DELETE', '/v1/appAssetLibraryImages/x'); } catch (e) { t = true; } out.deleteThrows = t;
+  const tryDel = async (cl, path) => { try { await cl.call('DELETE', path); return 'ok'; } catch (e) { return 'err: ' + e.message; } };
+  const allowDelete = Z.PLACEMENT_DELETE_OK;
+  const base = makeClient({ fetchFn: fakeFetch, token: 't', allowDelete });
+  const g = Z.zamienClient(base, new Set(['P1']));
+  out.guard = { allowedId: await tryDel(g, '/v1/appAssetLibraryPlacements/P1'), otherId: await tryDel(g, '/v1/appAssetLibraryPlacements/P2'), image: await tryDel(g, '/v1/appAssetLibraryImages/P1'),
+    nested: await tryDel(g, '/v1/appAssetLibraryPlacements/P1/x'), plainClient: await tryDel(makeClient({ fetchFn: fakeFetch, token: 't' }), '/v1/appAssetLibraryPlacements/P1'),
+    emptySet: await tryDel(Z.zamienClient(base, new Set()), '/v1/appAssetLibraryPlacements/P1'), get: (await g.call('GET', '/v1/apps')).data.length, deletedOnServer: deleted.slice() };
+  out.pathOk = ['/v1/appAssetLibraryPlacements/ABC-1', '/v1/appAssetLibraryPlacements/', '/v1/appAssetLibraryImages/ABC', '/v1/appAssetLibraryPlacements/a/b', '/v1/appScreenshots/1'].map(x => allowDelete(x));
+  out.parseZ = { ok: Z.parseZamien({ zamien: true, apply: true, lokalizacja: 'en-GB', zrodlo: 'iphone' }), noLoc: Z.parseZamien({ zamien: true, apply: true, lokalizacja: '', zrodlo: 'iphone' }).error ?? null,
+    noSrc: Z.parseZamien({ zamien: true, apply: true, lokalizacja: 'pl', zrodlo: '' }).error ?? null, badLoc: Z.parseZamien({ zamien: true, apply: false, lokalizacja: 'xx', zrodlo: 'iphone' }).error ?? null,
+    badSrc: Z.parseZamien({ zamien: true, apply: false, lokalizacja: 'pl', zrodlo: 'mac' }).error ?? null, previewAll: Z.parseZamien({ zamien: true, apply: false, lokalizacja: '', zrodlo: '' }),
+    off: Z.parseZamien({ zamien: false, apply: true, lokalizacja: '', zrodlo: '' }), strayLoc: Z.parseZamien({ zamien: false, apply: false, lokalizacja: 'pl', zrodlo: '' }).error ?? null };
   out.parse = { empty: Z.parseLangs(''), list: Z.parseLangs(' cs, en,cs '), bad: Z.parseLangs('cs;rm -rf').error ?? null, unknown: Z.parseLangs('cs,xx').error ?? null };
 } else {
   const { shots: sh, problems } = Z.loadShots({ iphone: sc.iphone, zegarek: sc.zegarek, jezyki: sc.jezyki ?? '' });
   const tokenFor = Z.tokenProvider({ mint: () => { mints++; return 'T' + clock; }, now: () => clock });
-  const r = await Z.run({ client: makeClient({ fetchFn: fakeFetch, token: tokenFor, sleep }), fetchFn: fakeFetch, shots: sh, problems, apply: sc.apply, log: l => logs.push(l), sleep, now: () => clock });
-  out.code = r.code; out.calls = calls; out.puts = puts; out.logs = logs.join('\\n'); out.placements = placements; out.orders = orders; out.reserved = reserved; out.renamed = renamed; out.mints = mints; out.clock = clock;
+  const r = await Z.run({ client: makeClient({ fetchFn: fakeFetch, token: tokenFor, sleep, allowDelete: Z.PLACEMENT_DELETE_OK }), fetchFn: fakeFetch, shots: sh, problems, apply: sc.apply, zamien: sc.zamien ?? null, log: l => logs.push(l), sleep, now: () => clock });
+  out.code = r.code; out.calls = calls; out.puts = puts; out.logs = logs.join('\\n'); out.placements = placements; out.orders = orders; out.reserved = reserved; out.renamed = renamed; out.deleted = deleted; out.mints = mints; out.clock = clock;
 }
 process.stdout.write(JSON.stringify(out));
 `;
-type Sc = { jezyki?: string; libImages?: { ref: string; size: number; state?: string; hideFirstList?: boolean }[]; processMs?: number; slowRef?: string; failRef?: string; mode?: string; apply?: boolean; iphone?: string; zegarek?: string; versions?: string[]; locales?: string[]; existing?: Record<string, number>; limit?: number; noLimits?: boolean; putFails?: boolean; png?: string };
+type Sc = { jezyki?: string; libImages?: { ref: string; size: number; state?: string; hideFirstList?: boolean }[]; processMs?: number; slowRef?: string; failRef?: string; mode?: string; apply?: boolean; iphone?: string; zegarek?: string; versions?: string[]; locales?: string[]; existing?: Record<string, number>; limit?: number; noLimits?: boolean; putFails?: boolean; png?: string; zamien?: { lokalizacja?: string; zrodlo?: string }; deleteFailsAt?: number; placementFails?: boolean };
 const drive = (sc: Sc) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', DRIVER, JSON.stringify(sc)], { encoding: 'utf8', maxBuffer: 50e6 })) as Record<string, any>;
 const writes = (calls: string[]) => calls.filter(c => !c.startsWith('GET'));
 const EDIT = ['PREPARE_FOR_SUBMISSION'];
@@ -129,7 +142,7 @@ describe('mapowanie języków aplikacji na lokalizacje sklepu i narzędzia pomoc
   });
   test('klient nie wykonuje DELETE; w skrypcie nie ma wpisanych identyfikatorów grup urządzeń ani wywołania usuwania', () => {
     expect(u().deleteThrows).toBe(true);
-    expect(SCRIPT).not.toMatch(/'DELETE'|"DELETE"|\.delete\(/); expect(SCRIPT).not.toMatch(/IPHONE_[A-Z_]+PROFILE|WATCH_[A-Z_]*PROFILE|MAC_PROFILE/);
+    expect(SCRIPT.match(/call\('DELETE'/g)).toHaveLength(2); expect(SCRIPT.match(/call\('DELETE', (p|`\/v1\/appAssetLibraryPlacements\/\$\{id\}`)[,)]/g)).toHaveLength(2); expect(SCRIPT).not.toMatch(/\.delete\(/); expect(SCRIPT).not.toMatch(/IPHONE_[A-Z_]+PROFILE|WATCH_[A-Z_]*PROFILE|MAC_PROFILE/);
     expect(SCRIPT).toContain('Don’t hard-code them');
   });
 });
@@ -290,9 +303,92 @@ describe('naprawa po przebiegu 41008000769 (30.10.2026): token, czekanie na prze
   });
 });
 
+describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa placementy zrzutów jednej grupy i wgrywa nowe; granice bezpieczeństwa', () => {
+  const Z1 = { lokalizacja: 'pl', zrodlo: 'iphone' };
+  const two = () => shots({ pl: { '01-a.png': [...IPHONE], '02-b.png': [...IPHONE] }, de: { '01-a.png': [...IPHONE] } });
+  const dels = (r: Record<string, any>) => (r.calls as string[]).filter(c => c.startsWith('DELETE'));
+  const idx = (calls: string[], f: (c: string) => boolean) => calls.map((c, i) => [c, i] as const).filter(([c]) => f(c)).map(([, i]) => i);
+  const base = { versions: EDIT, locales: ['pl', 'de-DE'], existing: { 'pl:G-IPHONE': 3, 'de-DE:G-IPHONE': 2 } };
+  test('wejście: DELETE przechodzi tylko dla ścieżki placementu; klient domyślny nadal nie usuwa; strażnik wpuszcza wyłącznie id z grupy objętej zamianą', () => {
+    const r = drive({ mode: 'unit', png: png(1320, 2868).toString('base64') });
+    expect(r.deleteThrows).toBe(true);
+    expect(r.pathOk).toEqual([true, false, false, false, false]);
+    expect(r.guard.allowedId).toBe('ok'); expect(r.guard.otherId).toMatch(/^err: .*poza grupą/); expect(r.guard.image).toMatch(/^err: /); expect(r.guard.nested).toMatch(/^err: /);
+    expect(r.guard.plainClient).toMatch(/^err: Niedozwolona metoda DELETE/); expect(r.guard.emptySet).toMatch(/^err: /); expect(r.guard.get).toBe(1);
+    expect(r.guard.deletedOnServer).toEqual(['/v1/appAssetLibraryPlacements/P1']);
+  });
+  test('parseZamien: zapis wymaga lokalizacji i źródła (wejście zawężające, L-001); podgląd może bez; błędne wartości odrzucone; bez trybu zamień nie wolno podawać zawężenia', () => {
+    const p = drive({ mode: 'unit', png: png(1320, 2868).toString('base64') }).parseZ;
+    expect(p.ok).toEqual({ lokalizacja: 'en-GB', zrodlo: 'iphone' });
+    expect(p.noLoc).toContain('lokalizacj'); expect(p.noSrc).toContain('źródł'); expect(p.badLoc).toContain('xx'); expect(p.badSrc).toContain('mac');
+    expect(p.previewAll).toEqual({ lokalizacja: '', zrodlo: '' }); expect(p.off).toBeNull(); expect(p.strayLoc).toContain('zamień');
+  });
+  test('dry-run zamień: tylko GET, w tabeli „zamień — usunę N, wgram …” (liczby i nazwy plików, bez identyfikatorów); bez zawężenia pokazuje wszystkie grupy', () => {
+    const r = drive({ iphone: two(), ...base, zamien: Z1 });
+    expect(r.code).toBe(0); expect(writes(r.calls)).toEqual([]); expect(r.puts).toEqual([]); const L = r.logs as string;
+    expect(L).toContain('ZAMIEŃ'); expect(L).toContain('| iphone | pl | pl | G-IPHONE | 2 | zamień — usunę 3, wgram 2 (01-a.png, 02-b.png) |');
+    expect(L).not.toContain('| iphone | de |'); expect(L).not.toContain('OLD-'); expect(L).toContain('Dry-run zakończony — nic nie zapisano');
+    const all = drive({ iphone: two(), ...base, zamien: {} });
+    expect(all.logs).toContain('| iphone | de | de-DE | G-IPHONE | 1 | zamień — usunę 2, wgram 1 (01-a.png) |'); expect(writes(all.calls)).toEqual([]);
+  });
+  test('apply zamień jednego elementu: usunięto dokładnie 3 placementy lokalizacji pl, nowe 2 + jedna kolejność; inna lokalizacja nietknięta; obrazy nie są usuwane', () => {
+    const r = drive({ iphone: two(), ...base, apply: true, zamien: Z1 });
+    expect(r.code).toBe(0); expect(r.deleted).toEqual([0, 1, 2].map(i => `/v1/appAssetLibraryPlacements/OLD-pl-${i}`)); expect(dels(r)).toHaveLength(3);
+    expect(dels(r).every(c => c.startsWith('DELETE /v1/appAssetLibraryPlacements/OLD-pl-'))).toBe(true);
+    expect((r.placements as any[]).map(x => x.relationships.appStoreVersionLocalization.data.id)).toEqual(['L-pl', 'L-pl']); expect(r.orders).toHaveLength(1);
+    expect(r.logs).toContain('usunięto 3'); expect(r.logs).toContain('zapisano 1'); expect(r.logs).not.toContain('OLD-');
+  });
+  test('kolejność operacji: najpierw wszystkie obrazy wgrane i przetworzone, potem DELETE, potem nowe placementy, na końcu kolejność', () => {
+    const r = drive({ iphone: two(), ...base, apply: true, zamien: Z1, processMs: 3 * 60_000 }); const c = r.calls as string[];
+    const lastImg = Math.max(...idx(c, x => x === 'POST /v1/appAssetLibraryImages' || /^(PATCH|GET) \/v1\/appAssetLibraryImages\//.test(x)));
+    const firstDel = Math.min(...idx(c, x => x.startsWith('DELETE'))); const lastDel = Math.max(...idx(c, x => x.startsWith('DELETE')));
+    const firstPl = Math.min(...idx(c, x => x === 'POST /v1/appAssetLibraryPlacements')); const ord = Math.min(...idx(c, x => x === 'POST /v1/appAssetLibraryPlacementOrderingRequests'));
+    expect(r.code).toBe(0); expect(firstDel).toBeGreaterThan(lastImg); expect(firstPl).toBeGreaterThan(lastDel); expect(ord).toBeGreaterThan(firstPl);
+  });
+  test('grupa bez zrzutów w sklepie: zamień działa jak zwykłe wgranie (zero DELETE)', () => {
+    const r = drive({ iphone: two(), versions: EDIT, locales: ['pl'], apply: true, zamien: Z1 });
+    expect(r.code).toBe(0); expect(dels(r)).toEqual([]); expect(r.logs).toContain('zapisano 1'); expect(r.logs).toContain('| iphone | pl | pl | G-IPHONE | 2 | wgraj |');
+  });
+  test('brak plików do wgrania dla wybranej lokalizacji albo źródła → kod 1, zero DELETE i zero zapisów (pusta grupa plików nie kasuje niczego)', () => {
+    for (const z of [{ lokalizacja: 'cs', zrodlo: 'iphone' }, { lokalizacja: 'pl', zrodlo: 'zegarek' }]) {
+      const r = drive({ iphone: two(), ...base, locales: ['pl', 'cs'], existing: { 'pl:G-IPHONE': 3, 'cs:G-IPHONE': 4 }, apply: true, zamien: z });
+      expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]); expect(r.logs).toContain('brak zrzutów do wgrania');
+    }
+  });
+  test('błąd pliku lub planu (kanał alfa, zły wymiar) albo obrazu (przetwarzanie nie powiodło się) blokuje usuwanie: zero DELETE, stare zrzuty zostają', () => {
+    const bad = shots({ pl: { '01-a.png': [1320, 2868, 6] } });
+    const r = drive({ iphone: bad, ...base, apply: true, zamien: Z1 }); expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]);
+    const r2 = drive({ iphone: two(), ...base, apply: true, zamien: Z1, failRef: '/pl/02-b' });
+    expect(r2.code).toBe(1); expect(dels(r2)).toEqual([]); expect(r2.logs).toContain('BŁĄD iphone/pl'); expect(r2.logs).toContain('nic nie usunięto'); expect(r2.placements).toEqual([]);
+    const r3 = drive({ iphone: two(), ...base, apply: true, zamien: Z1, putFails: true }); expect(r3.code).toBe(1); expect(dels(r3)).toEqual([]);
+  });
+  test('apply zamień bez zawężenia (lokalizacja + źródło) odmawia w skrypcie, nawet gdy wywołanie pominie parseZamien: zero zapisów', () => {
+    for (const z of [{}, { lokalizacja: 'pl' }, { zrodlo: 'iphone' }]) {
+      const r = drive({ iphone: two(), ...base, apply: true, zamien: z }); expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]); expect(r.logs).toContain('wymaga zawężenia');
+    }
+  });
+  test('brak edytowalnej wersji: zamień (apply) kod 1, zero DELETE', () => {
+    const r = drive({ iphone: two(), versions: ['READY_FOR_SALE'], locales: ['pl'], existing: { 'pl:G-IPHONE': 3 }, apply: true, zamien: Z1 });
+    expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]);
+  });
+  test('błąd w połowie: padł DELETE → dalsze usuwanie i nowe placementy wstrzymane, log podaje ile usunięto; padło tworzenie placementu → log mówi, że nowe nie zapisane; w logu brak treści odpowiedzi', () => {
+    const r = drive({ iphone: two(), ...base, apply: true, zamien: Z1, deleteFailsAt: 2 });
+    expect(r.code).toBe(1); expect(r.deleted).toHaveLength(1); expect(dels(r)).toHaveLength(2); /* druga próba (odrzucona przez API) nie ma następnych */ expect(r.placements).toEqual([]); expect(r.logs).toContain('usunięto 1 z 3'); expect(r.logs).not.toContain('SECRET-DETAIL');
+    const r2 = drive({ iphone: two(), ...base, apply: true, zamien: Z1, placementFails: true });
+    expect(r2.code).toBe(1); expect(dels(r2)).toHaveLength(3); expect(r2.logs).toContain('usunięto 3 z 3'); expect(r2.logs).toContain('nowe zrzuty nie zapisane'); expect(r2.logs).not.toContain('SECRET-DETAIL');
+  });
+  test('ponowienie po przerwanej zamianie (grupa pusta): zwykłe wgranie bez usuwania, zero DELETE', () => {
+    const r = drive({ iphone: two(), versions: EDIT, locales: ['pl'], existing: {}, apply: true, zamien: Z1 });
+    expect(r.code).toBe(0); expect(dels(r)).toEqual([]); expect(r.placements).toHaveLength(2);
+  });
+  test('tryby dry-run i apply bez „zamień” nigdy nie usuwają, także gdy klient dopuszcza DELETE (grupa z zrzutami pomijana)', () => {
+    for (const apply of [false, true]) { const r = drive({ iphone: two(), ...base, apply }); expect(dels(r)).toEqual([]); expect(r.logs).toContain('nic nie usuwam'); expect(writes(r.calls)).toEqual([]); }
+  });
+});
+
 describe('workflow asc-zrzuty.yml', () => {
   test('tylko ręczny; dry-run domyślnie; wejścia: przebieg zrzutów (wymagany), rozmiar, przebieg zegarka (opcjonalny)', () => {
-    expect(wf).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n      tryb:\n/); expect(wf).toMatch(/options: \[dry-run, apply\]\n\s+default: dry-run\n/);
+    expect(wf).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n      tryb:\n/); expect(wf).toMatch(/options: \[dry-run, apply, zamien-podglad, zamien-zapis\]\n\s+default: dry-run\n/);
     expect(wf).toMatch(/zrzuty_z_przebiegu:\n(?:.*\n)*?\s+required: true/); expect(wf).toMatch(/rozmiar:\n(?:.*\n)*?\s+options: \['6\.9', '6\.3'\]\n\s+default: '6\.9'/);
     expect(wf).toMatch(/zegarek_z_przebiegu:\n(?:.*\n)*?\s+required: false/);
     expect(wf).not.toMatch(/schedule:|^\s+push:|pull_request|contents: write|id-token|macos|EXPO_TOKEN/m);
@@ -301,7 +397,7 @@ describe('workflow asc-zrzuty.yml', () => {
   test('dwa joby: plan bez środowiska, zapis tylko dla apply i za środowiskiem release; artefakty z przebiegów store-screenshots i watch-sim', () => {
     const [head, zapis] = wf.split(/\n  zapis:\n/); expect(zapis).toBeDefined();
     expect(head).not.toMatch(/environment:/); expect(head).toContain('--dry-run'); expect(head).not.toContain('--apply');
-    expect(zapis).toMatch(/needs: plan\n\s+if: \$\{\{ inputs\.tryb == 'apply' \}\}\n\s+environment: release\n\s+runs-on: ubuntu-latest\n/); expect(zapis).toContain('--apply'); expect(zapis).not.toContain('--dry-run');
+    expect(zapis).toMatch(/needs: plan\n\s+if: \$\{\{ inputs\.tryb == 'apply' \|\| inputs\.tryb == 'zamien-zapis' \}\}\n\s+environment: release\n\s+runs-on: ubuntu-latest\n/); expect(zapis).toContain('--apply'); expect(zapis).not.toContain('--dry-run');
     expect(wf.match(/name: sklep-zrzuty-ramki/g)).toHaveLength(2); expect(wf.match(/name: zegarek-zrzuty/g)).toHaveLength(2);
     expect(wf.match(/run-id: \$\{\{ inputs\.zrzuty_z_przebiegu \}\}/g)).toHaveLength(2); expect(wf.match(/run-id: \$\{\{ inputs\.zegarek_z_przebiegu \}\}/g)).toHaveLength(2);
     expect(read('.github/workflows/store-screenshots.yml')).toContain('name: sklep-zrzuty-ramki'); expect(read('.github/workflows/watch-sim.yml')).toContain('name: zegarek-zrzuty');
@@ -316,6 +412,15 @@ describe('workflow asc-zrzuty.yml', () => {
     expect(wf.match(/JEZYKI: \$\{\{ inputs\.jezyki \}\}/g)).toHaveLength(2); /* wejście `jezyki` (30.10.2026) tylko przez zmienną środowiskową, nigdy w treści skryptu */
     expect(wf.match(/\[ -n "\$JEZYKI" \] && ARGS\+=\(--jezyki "\$JEZYKI"\)/g)).toHaveLength(2);
     expect(wf).toMatch(/jezyki:\n(?:.*\n)*?\s+required: false\n\s+type: string\n\s+default: ''/);
+  });
+  test('tryb zamień (15.11.2026): wejścia lokalizacja i źródło tylko przez zmienne środowiskowe; --zamien dla obu trybów zamien-*, zapis (--apply --zamien) tylko za release; zapis bez lokalizacji odrzucony już w planie', () => {
+    const [head, zapis] = wf.split(/\n  zapis:\n/);
+    expect(wf).toMatch(/lokalizacja:\n(?:.*\n)*?\s+required: false\n\s+type: string\n\s+default: ''/); expect(wf).toMatch(/zrodlo:\n(?:.*\n)*?\s+options: \[iphone, zegarek\]\n\s+default: iphone/);
+    for (const part of [head, zapis]) { expect(part).toContain('TRYB: ${{ inputs.tryb }}'); expect(part).toContain('LOKALIZACJA: ${{ inputs.lokalizacja }}'); expect(part).toContain('ZRODLO: ${{ inputs.zrodlo }}'); }
+    expect(head).toMatch(/zamien-podglad\|zamien-zapis\)\n\s+ARGS\+=\(--zamien --zrodlo "\$ZRODLO"\)/); expect(zapis).toMatch(/zamien-zapis\)\n\s+ARGS\+=\(--zamien --zrodlo "\$ZRODLO"\)/);
+    expect(zapis).not.toContain('zamien-podglad'); expect(head).toMatch(/\[ "\$TRYB" = zamien-zapis \] && \[ -z "\$LOKALIZACJA" \]/);
+    expect(wf.match(/\[ -n "\$LOKALIZACJA" \] && ARGS\+=\(--lokalizacja "\$LOKALIZACJA"\)/g)).toHaveLength(2); expect(head).not.toContain('--apply');
+    expect(wf).toContain('15.11.2026'); expect(wf).not.toMatch(/run:[^\n]*\$\{\{ inputs/);
   });
   test('workflow jest w spisie workflowów repozytorium i w README (opis)', () => {
     expect(read('scripts/readme.mjs')).toContain("'asc-zrzuty.yml':"); expect(read('tests/public-repo.test.ts')).toContain("'asc-zrzuty.yml'");

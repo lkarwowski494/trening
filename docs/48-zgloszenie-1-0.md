@@ -36,7 +36,7 @@ Stan 29.10.2026 rano (koordynator; źródła: `git log origin/main`, przebiegi C
 | # | Decyzja | Skutek |
 |---|---|---|
 | D1 | Pełny audyt przed App Store obowiązuje (CLAUDE.md) | Z-03 zostaje; audyt obejmuje całość, nie tylko zmiany po audycie M1 |
-| D2 | Zrzuty wgrywa skrypt z workflow; wyjątek od L-001 jak przy przekładzie (workflow tylko ręczny: scalenie, potem przebieg dowodowy, przy porażce cofnięcie) | gotowe: `.github/workflows/asc-zrzuty.yml`, `scripts/asc/zrzuty.mjs`, `tests/asc-zrzuty.test.ts` — **apply nieuruchomiony**; pierwszy przebieg po scaleniu to dry-run (Z-16) |
+| D2 | Zrzuty wgrywa skrypt z workflow; wyjątek od L-001 jak przy przekładzie (workflow tylko ręczny: scalenie, potem przebieg dowodowy, przy porażce cofnięcie) | gotowe: `.github/workflows/asc-zrzuty.yml`, `scripts/asc/zrzuty.mjs`, `tests/asc-zrzuty.test.ts` — **apply nieuruchomiony**; pierwszy przebieg po scaleniu to dry-run (Z-16); **zmiana zasady 15.11.2026 (W-23, decyzja właściciela): „nigdy nie usuwa” dotyczy dry-run i apply; tryb „zamień” usuwa placementy zrzutów jednej grupy (zapis tylko dla jednej lokalizacji i źródła), obrazów biblioteki nie usuwa** (docs/18, 15.11.2026) |
 | D3 | 10 ekranów, karta ćwiczenia z grafiką jako drugi | pkt 5, ekran `cwiczenie` (po wejściu grafik) |
 | D4 | Opis z trzema wyróżnikami (grafiki, sprawdzone wskazówki, import); PL i EN do akceptacji właściciela; wchodzi, gdy funkcje są w kodzie | pkt 6; brzmienie zdań o pokryciu dopiero po sprawdzeniu w kodzie |
 | D5 | „Data Not Collected” | pkt 3, wariant B tylko jako zapas |

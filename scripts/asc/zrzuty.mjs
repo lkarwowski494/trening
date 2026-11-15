@@ -18,8 +18,12 @@
 //  - 409 ENTITY_ERROR.ATTRIBUTE.INVALID.DUPLICATE: dokumentacja nie wskazuje atrybutu. Wniosek z logu 41008000769: języki cs, da, de-DE… wgrywały pliki o tych samych nazwach
 //    (np. 01-….png) bez 409, a en-GB/en-AU/en-CA (ta sama referenceName `…/en/…` co en-US) dostały 409 — duplikatem jest więc referenceName, unikalna w bibliotece (nie fileName
 //    i prawdopodobnie nie suma pliku). Dlatego obraz najpierw wyszukujemy po referenceName (cała lista biblioteki), a 409 DUPLICATE obsługujemy ponownym wyszukaniem.
-// Zasady: NIGDY nie usuwa (klient: tylko GET, POST, PATCH; PUT tylko na adresy z rezerwacji); grupa, która ma już zrzuty, jest pomijana (zamiana zrzutów
-// = ręcznie w App Store Connect); zapis tylko do edytowalnej wersji; w logu tylko kody lokalizacji, nazwy plików i liczby — nigdy adresy wgrywania,
+// Zasady: domyślnie NIGDY nie usuwa (klient: tylko GET, POST, PATCH; PUT tylko na adresy z rezerwacji); grupa, która ma już zrzuty, jest pomijana w trybach dry-run i apply.
+// Wyjątek (decyzja właściciela 15.11.2026, W-23, D2 w docs/48): tryb „zamień” (`--zamien`) usuwa placementy zrzutów (DELETE /v1/appAssetLibraryPlacements/{id}, 204;
+// odczyt dokumentacji 15.11.2026: placing-assets-on-your-app-store-surfaces — „This removes the asset from that surface but leaves the underlying asset in your library”)
+// wyłącznie w grupie objętej zamianą (lokalizacja × typ wyświetlacza), po wgraniu i przetworzeniu nowych obrazów, i wgrywa nowe z plików; obrazów biblioteki nie usuwa.
+// Zapis „zamień” wymaga zawężenia do jednego elementu: `--lokalizacja <kod ASC> --zrodlo iphone|zegarek` (model L-001). Podgląd: `--zamien --dry-run`.
+// Zapis tylko do edytowalnej wersji; w logu tylko kody lokalizacji, nazwy plików i liczby — nigdy adresy wgrywania,
 // identyfikatory klucza, tokeny ani treść odpowiedzi API (repozytorium publiczne). Dane logowania: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_PATH.
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
@@ -35,6 +39,9 @@ export const WAIT_MS = 30 * 60 * 1000;
 export const POLL_START_MS = 5000;
 export const POLL_MAX_MS = 60000;
 export const PLACEMENT_TYPE = 'APP_SCREENSHOT';
+/** Jedyna ścieżka, na którą klient w ogóle dopuszcza DELETE (tryb „zamień”): pojedynczy placement. Inne zasoby i ścieżki zagnieżdżone → odmowa. */
+export const PLACEMENT_DELETE_OK = path => /^\/v1\/appAssetLibraryPlacements\/[A-Za-z0-9_-]+$/.test(path);
+export const SOURCES = ['iphone', 'zegarek'];
 export const ASSET_CATEGORY = 'APP_SCREENSHOTS_AND_PREVIEWS';
 export const FEATURE_ID = 'APP_STORE_VERSIONS';
 /** Limit Apple na grupę, gdy dane referencyjne go nie podają (strona „Discovering asset specifications”: 10 zrzutów na grupę). */
@@ -58,6 +65,32 @@ export function parseLangs(text) {
   const bad = items.filter(x => !(x in SHOT_LOCALES));
   if (bad.length) return { error: `nieznany język aplikacji: ${bad.join(', ')} (brak w SHOT_LOCALES)` };
   return [...new Set(items)];
+}
+
+/**
+ * Wejście trybu „zamień”: { zamien, apply, lokalizacja, zrodlo } → null (tryb wyłączony), { lokalizacja, zrodlo } albo { error }.
+ * Zapis (apply) wymaga lokalizacji ASC i źródła (typ wyświetlacza) — wejście zawężające do jednego elementu; podgląd może być bez zawężenia.
+ */
+export function parseZamien({ zamien, apply, lokalizacja = '', zrodlo = '' }) {
+  if (!zamien) return lokalizacja || zrodlo ? { error: 'lokalizacja i źródło dotyczą tylko trybu zamień (--zamien)' } : null;
+  const loc = String(lokalizacja).trim(); const src = String(zrodlo).trim();
+  if (apply && !loc) return { error: 'zapis w trybie zamień wymaga lokalizacji (--lokalizacja <kod ASC>, jeden element)' };
+  if (apply && !src) return { error: 'zapis w trybie zamień wymaga źródła (--zrodlo iphone|zegarek, jeden element)' };
+  if (loc && !Object.values(SHOT_LOCALES).flat().includes(loc)) return { error: `nieznana lokalizacja sklepu: ${loc.slice(0, 20)}` };
+  if (src && !SOURCES.includes(src)) return { error: `nieznane źródło: ${src.slice(0, 20)} (iphone albo zegarek)` };
+  return { lokalizacja: loc, zrodlo: src };
+}
+
+/** Klient trybu „zamień”: przepuszcza GET/POST/PATCH, a DELETE tylko na placement z podanego zbioru id (placementy grupy objętej zamianą); reszta → błąd. */
+export function zamienClient(client, allowedIds) {
+  return { ...client, call: (m, p, b) => {
+    if (m === 'DELETE') {
+      const mm = /^\/v1\/appAssetLibraryPlacements\/([A-Za-z0-9_-]+)$/.exec(String(p));
+      if (!mm || !allowedIds.has(mm[1])) throw new Error('DELETE poza grupą objętą zamianą — odmowa');
+      return client.call('DELETE', p, b);
+    }
+    return client.call(m, p, b);
+  } };
 }
 
 const PNG_SIG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
@@ -133,16 +166,18 @@ export async function discover(client) {
 }
 
 /**
- * Plan: lista { source, lang, locale, locId, group, files[], action, reason }. Nic nie zapisuje. `existing(locId, group)` → liczba istniejących placementów grupy.
+ * Plan: lista { source, lang, locale, locId, group, files[], action, reason }. Nic nie zapisuje. `existing(locId, group)` → id istniejących placementów grupy.
+ * `zamien` ({ lokalizacja, zrodlo }): grupa z zrzutami dostaje działanie „zamień” (stare id w `old`) zamiast „pomiń”; zawężenie wybiera jedną lokalizację i/lub źródło.
  * Źródła: 'iphone' i 'zegarek' (obie przez ten sam typ APP_SCREENSHOT; grupa z wymiarów pliku).
  */
-export async function plan({ shots, locs, refData, existing }) {
+export async function plan({ shots, locs, refData, existing, zamien = null }) {
   const rows = []; const errors = [];
   for (const [source, byLang] of Object.entries(shots)) {
+    if (zamien?.zrodlo && source !== zamien.zrodlo) continue;
     for (const [lang, files] of byLang) {
       if (!(lang in SHOT_LOCALES)) { errors.push(`${source}/${lang}: nieznany język aplikacji (brak w SHOT_LOCALES)`); continue; }
       const locales = SHOT_LOCALES[lang];
-      if (!locales.length) { rows.push({ source, lang, locale: null, action: 'pomiń', reason: 'sklep nie ma tej lokalizacji (docs/45-widocznosc)' }); continue; }
+      if (!locales.length) { if (zamien?.lokalizacja) continue; rows.push({ source, lang, locale: null, action: 'pomiń', reason: 'sklep nie ma tej lokalizacji (docs/45-widocznosc)' }); continue; }
       const byGroup = new Map();
       for (const f of files) {
         if (f.alpha) { errors.push(`${source}/${lang}/${f.name}: kanał alfa (Apple: obrazy bez alfa)`); continue; }
@@ -154,10 +189,12 @@ export async function plan({ shots, locs, refData, existing }) {
         const max = maxPerGroup(refData, group);
         if (gf.length > max) { errors.push(`${source}/${lang}: ${gf.length} zrzutów w grupie ${group} > limit ${max}`); continue; }
         for (const locale of locales) {
+          if (zamien?.lokalizacja && locale !== zamien.lokalizacja) continue;
           if (!LOCALE_MAP[locale]) { rows.push({ source, lang, locale, group, action: 'pomiń', reason: 'lokalizacja nieobsługiwana w ASC' }); continue; }
           const locId = locs.get(LOCALE_MAP[locale]);
           if (!locId) { rows.push({ source, lang, locale, group, files: gf, action: 'pomiń', reason: 'brak lokalizacji wersji w ASC (najpierw workflow „ASC metadane sklepu”)' }); continue; }
-          const have = await existing(locId, group);
+          const old = await existing(locId, group); const have = old.length;
+          if (have > 0 && zamien) { rows.push({ source, lang, locale, locId, group, files: gf, old, action: 'zamień', reason: `usunę ${have}, wgram ${gf.length} (${gf.map(f => f.name).join(', ')})` }); continue; }
           if (have > 0) { rows.push({ source, lang, locale, locId, group, files: gf, action: 'pomiń', reason: `grupa ma już ${have} zrzutów (nic nie usuwam)${have < gf.length ? ` — niekompletna: ${have} z ${gf.length} zrzutów (częściowy zapis); dokończ ręcznie w App Store Connect` : ''}` }); continue; }
           rows.push({ source, lang, locale, locId, group, files: gf, action: 'wgraj', reason: '' });
         }
@@ -228,11 +265,13 @@ export async function waitForImages({ client, images, sleep, now }) {
 }
 
 /** Główny przebieg. Zwraca { code, rows }. Kod 1: błędy planu (pliki, grupy), brak aplikacji, brak edytowalnej wersji w trybie apply, błąd zapisu. */
-export async function run({ client, fetchFn, shots, problems = [], apply = false, log = console.log, read = p => readFileSync(p), sleep = ms => new Promise(r => setTimeout(r, ms)), now = () => Date.now() }) {
-  log(`## Zrzuty ekranu → App Store Connect: tryb ${apply ? 'APPLY' : 'DRY-RUN (tylko odczyt)'}\n`);
+export async function run({ client, fetchFn, shots, problems = [], apply = false, zamien = null, log = console.log, read = p => readFileSync(p), sleep = ms => new Promise(r => setTimeout(r, ms)), now = () => Date.now() }) {
+  log(`## Zrzuty ekranu → App Store Connect: tryb ${apply ? 'APPLY' : 'DRY-RUN (tylko odczyt)'}${zamien ? ' · ZAMIEŃ (usuwa zrzuty wybranej grupy, wgrywa nowe)' : ''}\n`);
+  if (zamien && apply && !(zamien.lokalizacja && zamien.zrodlo)) { log('BŁĄD: zapis w trybie zamień wymaga zawężenia do jednego elementu (lokalizacja i źródło) — nic nie zapisano.'); return { code: 1, rows: [] }; }
   let code = problems.length ? 1 : 0;
   for (const p of problems) log(`BŁĄD pliku: ${p}`);
-  const c = apply ? client : readOnlyClient(client);
+  const allowed = new Set(); /* id placementów, które wolno usunąć: wypełniane po planie, tylko w trybie „zamień” */
+  const c = apply ? zamienClient(client, allowed) : readOnlyClient(client);
   let d;
   try { d = await discover(c); } catch (e) { log(`BŁĄD: ${e.message}`); return { code: 1, rows: [] }; }
   if (!d.version || !d.libraryId) {
@@ -241,12 +280,14 @@ export async function run({ client, fetchFn, shots, problems = [], apply = false
   }
   const existing = async (locId, group) => {
     const q = `/v1/appStoreVersionLocalizations/${locId}/placements?filter[placementType]=${PLACEMENT_TYPE}&filter[placementGroup]=${group}`;
-    return (await c.list(q)).length;
+    return (await c.list(q)).map(r => r.id);
   };
-  const { rows, errors } = await plan({ shots, locs: d.locs, refData: d.refData, existing });
+  const { rows, errors } = await plan({ shots, locs: d.locs, refData: d.refData, existing, zamien });
+  if (zamien && !rows.some(r => r.action !== 'pomiń')) errors.push('brak zrzutów do wgrania dla wybranej lokalizacji i źródła (nic nie zostanie usunięte)');
+  if (zamien && apply) for (const r of rows) if (r.action === 'zamień') for (const id of r.old) allowed.add(id);
   if (errors.length) { code = 1; log('### Błędy planu (zapis zablokowany)\n'); for (const e of errors) log(`- ${e}`); log(''); }
   const refOf = (r, f) => `trening-1.0/${r.source}/${r.lang}/${f.name}`;
-  const planned = new Map(); for (const r of rows.filter(x => x.action === 'wgraj')) for (const f of r.files) planned.set(refOf(r, f), f);
+  const planned = new Map(); for (const r of rows.filter(x => x.action === 'wgraj' || x.action === 'zamień')) for (const f of r.files) planned.set(refOf(r, f), f);
   let lib = [];
   if (planned.size && !(apply && code)) {
     lib = await readLibrary(c, d.libraryId);
@@ -263,10 +304,14 @@ export async function run({ client, fetchFn, shots, problems = [], apply = false
     const all = [...images.values()];
     log(`Obrazy: wgrano ${all.filter(i => !i.error && !i.reused).length}, użyto ponownie ${all.filter(i => i.reused).length}, błędy ${all.filter(i => i.error).length}; czekam na przetworzenie.`);
     await waitForImages({ client, images: all.filter(i => !i.error), sleep, now });
-    for (const r of rows.filter(x => x.action === 'wgraj')) {
+    for (const r of rows.filter(x => x.action === 'wgraj' || x.action === 'zamień')) {
+      let removed = 0;
       try {
         const imgs = r.files.map(f => images.get(refOf(r, f)));
         const bad = imgs.find(i => i.error); if (bad) throw new Error(bad.error);
+        /* usuwanie dopiero teraz: wszystkie nowe obrazy są wgrane i przetworzone, błąd któregokolwiek zatrzymał wcześniej (stare zrzuty zostają) */
+        if (r.action === 'zamień') for (const id of r.old) { await c.call('DELETE', `/v1/appAssetLibraryPlacements/${id}`); removed++; }
+        r.removed = removed;
         const placed = [];
         for (const { id } of imgs) {
           const p = await client.call('POST', '/v1/appAssetLibraryPlacements', { data: { type: 'appAssetLibraryPlacements', attributes: { placementType: PLACEMENT_TYPE, placementGroup: r.group },
@@ -276,11 +321,14 @@ export async function run({ client, fetchFn, shots, problems = [], apply = false
         await client.call('POST', '/v1/appAssetLibraryPlacementOrderingRequests', { data: { type: 'appAssetLibraryPlacementOrderingRequests', attributes: { placementGroup: r.group },
           relationships: { orderedPlacements: { data: placed }, appStoreVersionLocalization: { data: { type: 'appStoreVersionLocalizations', id: r.locId } } } } });
         r.written = true;
-      } catch (e) { r.error = e.message; code = 1; log(`BŁĄD ${r.source}/${r.locale}: ${e.message}`); }
+      } catch (e) {
+        const tail = r.action !== 'zamień' ? '' : removed > 0 ? ` (usunięto ${removed} z ${r.old.length}; nowe zrzuty nie zapisane — ponów „zamień”: grupa jest pusta, więc zostanie wgrana)` : ' (nic nie usunięto)';
+        r.error = e.message; code = 1; log(`BŁĄD ${r.source}/${r.locale}: ${e.message}${tail}`);
+      }
     }
   }
   log(renderTable(rows));
-  log(`\nwgraj ${n('wgraj')}, pomiń ${n('pomiń')}${apply ? ', zapisano ' + rows.filter(r => r.written).length : ''}`);
+  log(`\nwgraj ${n('wgraj')}, pomiń ${n('pomiń')}${zamien ? ', zamień ' + n('zamień') : ''}${zamien && apply ? ', usunięto ' + rows.reduce((a, r) => a + (r.removed ?? 0), 0) : ''}${apply ? ', zapisano ' + rows.filter(r => r.written).length : ''}`);
   if (!apply && code === 0) log('Dry-run zakończony — nic nie zapisano. Zapis: uruchom ponownie z trybem „apply” i zatwierdź środowisko release.');
   return { code, rows };
 }
@@ -292,9 +340,12 @@ async function main() {
   const { ASC_KEY_ID: keyId, ASC_ISSUER_ID: issuerId, ASC_KEY_PATH: keyPath } = process.env;
   if (!keyId || !issuerId || !keyPath) { console.error('Brak ASC_KEY_ID, ASC_ISSUER_ID lub ASC_KEY_PATH.'); process.exit(2); }
   if (!opt('--iphone')) { console.error('Podaj --iphone <katalog>.'); process.exit(2); }
+  const zamien = parseZamien({ zamien: args.includes('--zamien'), apply, lokalizacja: opt('--lokalizacja'), zrodlo: opt('--zrodlo') });
+  if (zamien?.error) { console.error(zamien.error); process.exit(2); }
   const { shots, problems } = loadShots({ iphone: opt('--iphone'), zegarek: opt('--zegarek'), jezyki: opt('--jezyki') });
   const tokenFor = tokenProvider({ mint: () => makeJwt({ keyId, issuerId, keyPem: readFileSync(keyPath, 'utf8') }) });
-  const { code } = await run({ client: makeClient({ token: tokenFor }), fetchFn: fetch, shots, problems, apply });
+  const client = makeClient({ token: tokenFor, ...(zamien && apply ? { allowDelete: PLACEMENT_DELETE_OK } : {}) });
+  const { code } = await run({ client, fetchFn: fetch, shots, problems, apply, zamien });
   process.exit(code);
 }
 if (jestGlowny(import.meta.url)) main().catch(e => { console.error(`Błąd: ${String(e.message).slice(0, 200)}`); process.exit(1); });

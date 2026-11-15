@@ -2,7 +2,10 @@
 # do edytowalnej wersji aplikacji w App Store Connect przez API (decyzja właściciela 25.10.2026, D2 w docs/48; skrypt scripts/asc/zrzuty.mjs, interfejs App Asset Library).
 # Tylko ręcznie. Tryb dry-run (domyślny): tylko odczyt — lista, co zostałoby wgrane; job bez środowiska (sekrety repozytorium, jak asc-metadane.yml).
 # Tryb apply: osobny job w środowisku `release` (zatwierdzenie właściciela, jak testflight.yml, asc-metadane.yml i asc-iap-localizations.yml; M1-048, DEC-06 a);
-# wgrywa i układa zrzuty, NIGDY nie usuwa, pomija grupy, które mają już zrzuty. Wyjątek od L-001 dla workflowów uruchamianych tylko ręcznie (decyzja 25.10.2026):
+# wgrywa i układa zrzuty, nie usuwa, pomija grupy, które mają już zrzuty.
+# Tryb „zamień” (decyzja właściciela 15.11.2026, W-23, D2 w docs/48): zamien-podglad = tylko lista (co zostałoby usunięte i wgrane), zamien-zapis = za środowiskiem `release`
+# usuwa placementy zrzutów JEDNEJ grupy (wejścia `lokalizacja` + `zrodlo`, wymagane przy zapisie; model L-001: pierwszy zapis na jednym elemencie) i wgrywa nowe z plików;
+# obrazów biblioteki nie usuwa. Bez nowych sekretów i uprawnień. Wyjątek od L-001 dla workflowów uruchamianych tylko ręcznie (decyzja 25.10.2026):
 # scalenie przed przebiegiem dowodowym, pierwszy przebieg to dry-run, przy porażce cofnięcie.
 # Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (bez nowych). Repozytorium jest publiczne: logi bez identyfikatorów klucza
 # (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze; adresy wgrywania Apple nie trafiają do logu.
@@ -11,9 +14,9 @@ on:
   workflow_dispatch:
     inputs:
       tryb:
-        description: 'dry-run = tylko lista, co zostałoby wgrane; apply = wgraj i ułóż (nigdy nie usuwa; wymaga zatwierdzenia release)'
+        description: 'dry-run = tylko lista, co zostałoby wgrane; apply = wgraj i ułóż (nie usuwa; wymaga zatwierdzenia release); zamien-podglad = lista, co zostałoby usunięte i wgrane; zamien-zapis = usuń zrzuty wybranej grupy i wgraj nowe (wymaga lokalizacji; zatwierdzenie release)'
         type: choice
-        options: [dry-run, apply]
+        options: [dry-run, apply, zamien-podglad, zamien-zapis]
         default: dry-run
       zrzuty_z_przebiegu:
         description: 'Numer przebiegu store-screenshots.yml z artefaktem sklep-zrzuty-ramki (żyje 3 dni)'
@@ -34,6 +37,16 @@ on:
         required: false
         type: string
         default: ''
+      lokalizacja:
+        description: 'Tryb zamień: kod lokalizacji sklepu (jeden element), np. en-GB albo pl — wymagany przy zamien-zapis'
+        required: false
+        type: string
+        default: ''
+      zrodlo:
+        description: 'Tryb zamień: typ wyświetlacza (źródło zrzutów) — iphone albo zegarek'
+        type: choice
+        options: [iphone, zegarek]
+        default: iphone
 permissions:
   contents: read
   actions: read
@@ -80,10 +93,19 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ROZMIAR: ${{ inputs.rozmiar }}
           JEZYKI: ${{ inputs.jezyki }}
+          TRYB: ${{ inputs.tryb }}
+          LOKALIZACJA: ${{ inputs.lokalizacja }}
+          ZRODLO: ${{ inputs.zrodlo }}
         run: |
           set -o pipefail
+          if [ "$TRYB" = zamien-zapis ] && [ -z "$LOKALIZACJA" ]; then echo "::error::zamien-zapis wymaga wejścia lokalizacja (jeden element)"; exit 1; fi
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
           ARGS=(--iphone "sklep-ramki/$ROZMIAR" --dry-run)
+          case "$TRYB" in
+            zamien-podglad|zamien-zapis)
+              ARGS+=(--zamien --zrodlo "$ZRODLO")
+              [ -n "$LOKALIZACJA" ] && ARGS+=(--lokalizacja "$LOKALIZACJA");;
+          esac
           [ -d zegarek-zrzuty ] && ARGS+=(--zegarek zegarek-zrzuty)
           [ -n "$JEZYKI" ] && ARGS+=(--jezyki "$JEZYKI")
           node scripts/asc/zrzuty.mjs "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
@@ -93,7 +115,7 @@ jobs:
 
   zapis:
     needs: plan
-    if: ${{ inputs.tryb == 'apply' }}
+    if: ${{ inputs.tryb == 'apply' || inputs.tryb == 'zamien-zapis' }}
     environment: release
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -127,16 +149,24 @@ jobs:
           echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
           printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
           umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
-      - name: Wgranie zrzutów (nigdy nie usuwa)
+      - name: Wgranie zrzutów (apply nie usuwa; zamien-zapis usuwa tylko zrzuty wybranej grupy)
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ROZMIAR: ${{ inputs.rozmiar }}
           JEZYKI: ${{ inputs.jezyki }}
+          TRYB: ${{ inputs.tryb }}
+          LOKALIZACJA: ${{ inputs.lokalizacja }}
+          ZRODLO: ${{ inputs.zrodlo }}
         run: |
           set -o pipefail
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
           ARGS=(--iphone "sklep-ramki/$ROZMIAR" --apply)
+          case "$TRYB" in
+            zamien-zapis)
+              ARGS+=(--zamien --zrodlo "$ZRODLO")
+              [ -n "$LOKALIZACJA" ] && ARGS+=(--lokalizacja "$LOKALIZACJA");;
+          esac
           [ -d zegarek-zrzuty ] && ARGS+=(--zegarek zegarek-zrzuty)
           [ -n "$JEZYKI" ] && ARGS+=(--jezyki "$JEZYKI")
           node scripts/asc/zrzuty.mjs "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
