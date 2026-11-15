@@ -62,7 +62,9 @@ const fakeFetch = async (url, init = {}) => {
     if (p === '/v1/appAssetLibraryRefData') return resp(200, { data: [{ attributes: refData }] });
     if (p === '/v1/appAssetLibraries/LIB/images') { listCount++; return resp(200, { data: [...imgs].filter(([, im]) => !(im.hide && listCount === 1)).map(([id, im]) => ({ id, attributes: { referenceName: im.ref, fileSize: im.size, state: imgState(im), createdDate: '2026-10-30T05:00:00Z' } })) }); }
     let mm = /^\\/v1\\/appStoreVersionLocalizations\\/L-(.+)\\/placements$/.exec(p);
-    if (mm) { const have = (sc.existing ?? {})[mm[1] + ':' + u.searchParams.get('filter[placementGroup]')] ?? 0; return resp(200, { data: Array.from({ length: have }, (_, i) => ({ id: 'OLD-' + mm[1] + '-' + i })) }); }
+    if (mm) { const have = (sc.existing ?? {})[mm[1] + ':' + u.searchParams.get('filter[placementGroup]')] ?? 0; const grp = u.searchParams.get('filter[placementGroup]'); const own = Array.from({ length: have }, (_, i) => ({ id: 'OLD-' + mm[1] + '-' + i, attributes: { placementType: 'APP_SCREENSHOT', placementGroup: grp } }));
+      const foreign = sc.foreign ? [{ id: 'FOREIGN-1', attributes: { placementType: 'APP_SCREENSHOT', placementGroup: 'G-WATCH' } }, { id: 'FOREIGN-2', attributes: { placementType: 'APP_PREVIEW', placementGroup: grp } }] : [];
+      return resp(200, { data: [...own, ...foreign] }); }
     mm = /^\\/v1\\/appAssetLibraryImages\\/([A-Z0-9]+)$/.exec(p);
     if (mm && imgs.has(mm[1])) return resp(200, { data: { id: mm[1], attributes: { state: imgState(imgs.get(mm[1])), stateDetails: [{ message: 'SECRET-DETAIL' }] } } });
     return resp(404, { errors: [] });
@@ -113,7 +115,7 @@ if (sc.mode === 'unit') {
 }
 process.stdout.write(JSON.stringify(out));
 `;
-type Sc = { jezyki?: string; libImages?: { ref: string; size: number; state?: string; hideFirstList?: boolean }[]; processMs?: number; slowRef?: string; failRef?: string; mode?: string; apply?: boolean; iphone?: string; zegarek?: string; versions?: string[]; locales?: string[]; existing?: Record<string, number>; limit?: number; noLimits?: boolean; putFails?: boolean; png?: string; zamien?: { lokalizacja?: string; zrodlo?: string }; deleteFailsAt?: number; placementFails?: boolean };
+type Sc = { jezyki?: string; libImages?: { ref: string; size: number; state?: string; hideFirstList?: boolean }[]; processMs?: number; slowRef?: string; failRef?: string; mode?: string; apply?: boolean; iphone?: string; zegarek?: string; versions?: string[]; locales?: string[]; existing?: Record<string, number>; limit?: number; noLimits?: boolean; putFails?: boolean; png?: string; zamien?: { lokalizacja?: string; zrodlo?: string }; deleteFailsAt?: number; placementFails?: boolean; foreign?: boolean };
 const drive = (sc: Sc) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', DRIVER, JSON.stringify(sc)], { encoding: 'utf8', maxBuffer: 50e6 })) as Record<string, any>;
 const writes = (calls: string[]) => calls.filter(c => !c.startsWith('GET'));
 const EDIT = ['PREPARE_FOR_SUBMISSION'];
@@ -376,6 +378,10 @@ describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa pla
     expect(r.code).toBe(1); expect(r.deleted).toHaveLength(1); expect(dels(r)).toHaveLength(2); /* druga próba (odrzucona przez API) nie ma następnych */ expect(r.placements).toEqual([]); expect(r.logs).toContain('usunięto 1 z 3'); expect(r.logs).not.toContain('SECRET-DETAIL');
     const r2 = drive({ iphone: two(), ...base, apply: true, zamien: Z1, placementFails: true });
     expect(r2.code).toBe(1); expect(dels(r2)).toHaveLength(3); expect(r2.logs).toContain('usunięto 3 z 3'); expect(r2.logs).toContain('nowe zrzuty nie zapisane'); expect(r2.logs).not.toContain('SECRET-DETAIL');
+  });
+  test('filtr Apple nie jest jedyną ochroną: placementy innej grupy albo typu w odpowiedzi nie są liczone ani usuwane', () => {
+    const r = drive({ iphone: two(), ...base, apply: true, zamien: Z1, foreign: true });
+    expect(r.code).toBe(0); expect(r.deleted).toEqual([0, 1, 2].map(i => `/v1/appAssetLibraryPlacements/OLD-pl-${i}`)); expect(JSON.stringify(r.calls)).not.toContain('FOREIGN');
   });
   test('ponowienie po przerwanej zamianie (grupa pusta): zwykłe wgranie bez usuwania, zero DELETE', () => {
     const r = drive({ iphone: two(), versions: EDIT, locales: ['pl'], existing: {}, apply: true, zamien: Z1 });

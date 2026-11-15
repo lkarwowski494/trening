@@ -280,7 +280,8 @@ export async function run({ client, fetchFn, shots, problems = [], apply = false
   }
   const existing = async (locId, group) => {
     const q = `/v1/appStoreVersionLocalizations/${locId}/placements?filter[placementType]=${PLACEMENT_TYPE}&filter[placementGroup]=${group}`;
-    return (await c.list(q)).map(r => r.id);
+    /* ochrona poza filtrem Apple: tylko placementy, których typ i grupa zgadzają się z oczekiwanymi (gdy odpowiedź podaje atrybut, a ten się różni — pomijamy; brak atrybutu = ufamy filtrowi), trafiają do usunięcia */
+    return (await c.list(q)).filter(r => (r.attributes?.placementType ?? PLACEMENT_TYPE) === PLACEMENT_TYPE && (r.attributes?.placementGroup ?? group) === group).map(r => r.id);
   };
   const { rows, errors } = await plan({ shots, locs: d.locs, refData: d.refData, existing, zamien });
   if (zamien && !rows.some(r => r.action !== 'pomiń')) errors.push('brak zrzutów do wgrania dla wybranej lokalizacji i źródła (nic nie zostanie usunięte)');
