@@ -1,7 +1,7 @@
 # Lokalizacje produktów zakupu w App Store Connect przez API (decyzja właściciela 14.10.2026, wariant A; skrypt scripts/asc/iap-localizations.mjs,
 # teksty store/iap-localizations.json). Tylko ręcznie. Domyślnie dry-run (plan bez zmian; job bez środowiska);
 # apply (zmiany w App Store Connect) to osobny job w środowisku `release` (zatwierdzenie właściciela, jak testflight.yml i asc-metadane.yml; M1-048, DEC-06 a).
-# Skrypt nigdy nie usuwa i nie zmienia lokalizacji EN (U.S.) ani PL. Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8.
+# Skrypt nigdy nie usuwa; lokalizacji EN (U.S.) i PL nie zmienia — z wyjątkiem nazwy grupy subskrypcji (ZB-037, 15.11.2026: PATCH, POST gdy brak). Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8.
 # Repozytorium jest publiczne: logi bez identyfikatorów klucza (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze.
 name: ASC lokalizacje produktów zakupu
 on:
@@ -13,7 +13,7 @@ on:
         options: [dry-run, apply]
         default: dry-run
       tylko:
-        description: 'opcjonalnie: tylko jeden element, <klucz>:<lokalizacja> (klucz: group, monthly, yearly, lifetime; np. yearly:cs); puste = wszystko'
+        description: 'opcjonalnie: tylko jeden element, <klucz>:<lokalizacja> (klucz: group, monthly, yearly, lifetime; np. yearly:cs; dla group także en-US i pl, np. group:en-US); puste = wszystko'
         type: string
         default: ''
 permissions:

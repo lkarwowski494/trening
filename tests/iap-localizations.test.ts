@@ -69,8 +69,8 @@ describe('store/iap-localizations.json: dane', () => {
   });
   test('spójność z tekstem wpisanym przez właściciela w App Store Connect (EN U.S. i PL) oraz ze słownikiem aplikacji', () => {
     expect(data.wpisaneRecznie).toEqual({
-      'en-US': { group: { name: 'Trening Full Version' }, monthly: { name: 'Full version — monthly', description: 'All features, billed monthly' }, yearly: { name: 'Full version — yearly', description: 'All features, billed once a year' }, lifetime: { name: 'Full version — lifetime', description: 'All features, one-time purchase' } },
-      pl: { group: { name: 'Trening — pełna wersja' }, monthly: { name: 'Pełna wersja — miesięcznie', description: 'Wszystkie funkcje, płatność co miesiąc' }, yearly: { name: 'Pełna wersja — rocznie', description: 'Wszystkie funkcje, płatność raz w roku' }, lifetime: { name: 'Pełna wersja — dożywotnio', description: 'Wszystkie funkcje, jednorazowy zakup' } },
+      'en-US': { group: { name: 'RepsGoat Full Version' }, monthly: { name: 'Full version — monthly', description: 'All features, billed monthly' }, yearly: { name: 'Full version — yearly', description: 'All features, billed once a year' }, lifetime: { name: 'Full version — lifetime', description: 'All features, one-time purchase' } },
+      pl: { group: { name: 'RepsGoat — pełna wersja' }, monthly: { name: 'Pełna wersja — miesięcznie', description: 'Wszystkie funkcje, płatność co miesiąc' }, yearly: { name: 'Pełna wersja — rocznie', description: 'Wszystkie funkcje, płatność raz w roku' }, lifetime: { name: 'Pełna wersja — dożywotnio', description: 'Wszystkie funkcje, jednorazowy zakup' } },
     });
     const en = readFileSync(join(root, 'lib/i18n.en.ts'), 'utf8'); expect(en).toContain("'Pełna wersja': 'Full version'");
     expect(data.wpisaneRecznie['en-US'].monthly.name.startsWith('Full version')).toBe(true); expect(data.wpisaneRecznie.pl.monthly.name.startsWith('Pełna wersja')).toBe(true);
@@ -90,6 +90,8 @@ const mode = process.argv[1];
 const rows = (obj, locs) => locs.map((l, i) => ({ id: obj + '-' + i, attributes: { locale: l, name: data.wpisaneRecznie[l][obj === 'GROUP' ? 'group' : obj].name, description: data.wpisaneRecznie[l][obj === 'GROUP' ? 'group' : obj].description } }));
 const store = { GROUP: rows('GROUP', ['en-US', 'pl']), monthly: rows('monthly', ['en-US', 'pl']), yearly: rows('yearly', ['en-US', 'pl']), lifetime: rows('lifetime', ['en-US', 'pl']) };
 if (mode === 'owner-diff') store.monthly[1].attributes.name = 'Inna nazwa'; if (mode === 'owner-missing') store.yearly.pop();
+if (mode.startsWith('group-old')) { store.GROUP[0].attributes.name = 'Trening Full Version'; store.GROUP[1].attributes.name = 'Trening — pełna wersja'; }
+if (mode === 'group-missing-pl') store.GROUP.pop();
 if (mode === 'stale') store.yearly.push({ id: 'y-cs', attributes: { locale: 'cs', name: 'stare', description: 'stare' } });
 if (mode === 'foreign') store.GROUP.push({ id: 'g-xx', attributes: { locale: 'ar-SA', name: 'x' } });
 const calls = []; let n = 0;
@@ -138,13 +140,13 @@ if (mode === 'jwt') {
   try { await makeClient({ fetchFn: fakeFetch, token: 't' }).call('DELETE', '/v1/subscriptionLocalizations/x'); out.threw = false; } catch (e) { out.threw = true; out.msg = e.message; }
 } else {
   const client = makeClient({ fetchFn: fakeFetch, token: 't' });
-  const apply = ['apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply', 'only-draft-apply', 'only-draft-other'].includes(mode);
-  const onlyArg = { 'only-apply': 'yearly:cs', 'only-draft-apply': 'yearly:cs', 'only-draft-other': 'monthly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly' }[mode];
+  const apply = ['group-old-apply', 'group-old-only', 'group-missing-pl', 'group-old-only-pl', 'apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply', 'only-draft-apply', 'only-draft-other'].includes(mode);
+  const onlyArg = { 'group-old-only': 'group:en-US', 'group-old-only-pl': 'group:pl', 'group-old-dry': 'group:en-US', 'only-apply': 'yearly:cs', 'only-draft-apply': 'yearly:cs', 'only-draft-other': 'monthly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly' }[mode];
   let first;
   try { first = await run({ client, data, apply, only: onlyArg, log: l => logs.push(l) }); }
   catch (e) { out.threw = e.message; process.stdout.write(JSON.stringify({ ...out, calls })); process.exit(0); }
   out.first = { code: first.code, counts: first.counts, problems: first.problems }; out.callsAfterFirst = [...calls]; out.logs1 = [...logs];
-  if (mode === 'apply' || mode === 'stale') { calls.length = 0; logs.length = 0; const second = await run({ client, data, apply: true, log: l => logs.push(l) }); out.second = { code: second.code, counts: second.counts }; out.callsSecond = [...calls]; out.logs2 = [...logs]; }
+  if (mode === 'apply' || mode === 'stale' || mode === 'group-old-apply') { calls.length = 0; logs.length = 0; const second = await run({ client, data, apply: true, log: l => logs.push(l) }); out.second = { code: second.code, counts: second.counts }; out.callsSecond = [...calls]; out.logs2 = [...logs]; }
   out.store = Object.fromEntries(Object.entries(store).map(([k, v]) => [k, v.map(r => [r.attributes.locale, r.attributes.name, r.attributes.description])]));
 }
 process.stdout.write(JSON.stringify(out));
@@ -245,5 +247,46 @@ describe('scripts/asc/iap-localizations.mjs na atrapie API', () => {
   test('kod skryptu: brak wywołania DELETE i wypisywania sekretów', () => {
     const src = readFileSync(join(root, 'scripts/asc/iap-localizations.mjs'), 'utf8');
     expect(src).not.toMatch(/'DELETE'\s*,\s*[`'"\/]/); expect(src).toContain("new Set(['GET', 'POST', 'PATCH'])"); expect(src).not.toMatch(/console\.log\([^)]*(keyId|issuerId|token|keyPem)/);
+  });
+});
+
+describe('ZB-037: nazwa grupy subskrypcji (en-US, pl) zapisywana przez skrypt (decyzja właściciela 15.11.2026)', () => {
+  const patches = (c: string[]) => c.filter(x => x.startsWith('PATCH '));
+  test('dane: nazwa grupy w en-US i pl ma nową markę, w store/ żadna nazwa grupy nie zaczyna się od starej nazwy aplikacji', () => {
+    expect(data.wpisaneRecznie['en-US'].group.name).toBe(`${BRAND_NAME} Full Version`); expect(data.wpisaneRecznie.pl.group.name).toBe(`${BRAND_NAME} — pełna wersja`);
+    const txt = readFileSync(join(root, 'store/iap-localizations.json'), 'utf8'); const all = JSON.parse(txt) as typeof data;
+    const names = [...Object.values(all.wpisaneRecznie), ...Object.values(all.tlumaczenia)].map(e => e.group.name);
+    expect(names.filter(n => /^Trening\b/.test(n))).toEqual([]); expect(txt).not.toMatch(/"name": "Trening/);
+    for (const n of [data.wpisaneRecznie['en-US'].group.name, data.wpisaneRecznie.pl.group.name]) expect(len(n)).toBeLessThanOrEqual(data.limity.nazwa);
+  });
+  test('podgląd (dry-run) pokazuje różnicę dla en-US i pl grupy i niczego nie zapisuje', () => {
+    const r = drive('group-old-dry'); expect(r.first.counts['zaktualizuj']).toBe(1); expect(r.callsAfterFirst.every((c: string) => c.startsWith('GET '))).toBe(true);
+    expect(r.logs1.join('\n')).toContain('en-US → en-US: zaktualizuj'); expect(r.store.GROUP[0][1]).toBe('Trening Full Version');
+  });
+  test('apply: PATCH istniejących lokalizacji en-US i pl grupy (2 × PATCH /v2/subscriptionGroupLocalizations), nigdy DELETE; produkty (monthly, yearly, lifetime) w en-US i pl nietknięte; drugi przebieg bez zapisów dla grupy', () => {
+    const r = drive('group-old-apply'); const p = patches(r.callsAfterFirst);
+    expect(p.length).toBe(2); expect(p.every((c: string) => /^PATCH \/v2\/subscriptionGroupLocalizations\/[^/]+$/.test(c))).toBe(true);
+    expect(r.callsAfterFirst.some((c: string) => c.startsWith('DELETE'))).toBe(false); expect(r.first.counts['zaktualizuj']).toBe(2);
+    expect(r.store.GROUP.slice(0, 2).map((x: string[]) => x[1])).toEqual(['RepsGoat Full Version', 'RepsGoat — pełna wersja']);
+    for (const k of ['monthly', 'yearly', 'lifetime']) expect(r.store[k].slice(0, 2).map((x: string[]) => x[1])).toEqual([data.wpisaneRecznie['en-US'][k as 'monthly'].name, data.wpisaneRecznie.pl[k as 'monthly'].name]);
+    expect(patches(r.callsSecond)).toEqual([]); expect(r.second.counts['zaktualizuj']).toBe(0);
+  });
+  test('--tylko group:en-US: dokładnie jeden PATCH (pl i reszta nietknięte); group:pl analogicznie', () => {
+    const a = drive('group-old-only'); expect(patches(a.callsAfterFirst)).toHaveLength(1); expect(a.callsAfterFirst.filter((c: string) => c.startsWith('POST '))).toEqual([]);
+    expect(a.store.GROUP.slice(0, 2).map((x: string[]) => x[1])).toEqual(['RepsGoat Full Version', 'Trening — pełna wersja']); expect(a.first.code).toBe(0);
+    const b = drive('group-old-only-pl'); expect(patches(b.callsAfterFirst)).toHaveLength(1);
+    expect(b.store.GROUP.slice(0, 2).map((x: string[]) => x[1])).toEqual(['Trening Full Version', 'RepsGoat — pełna wersja']);
+  });
+  test('brak lokalizacji pl grupy: POST tylko wtedy (utworzenie), nie PATCH', () => {
+    const r = drive('group-missing-pl'); expect(r.first.counts['utwórz']).toBe(4 * MAPPED + 1); expect(patches(r.callsAfterFirst)).toEqual([]);
+    expect(r.store.GROUP.some((x: string[]) => x[0] === 'pl' && x[1] === 'RepsGoat — pełna wersja')).toBe(true);
+  });
+  test('różnica w en-US/pl produktów (nie grupy) nadal tylko raportowana — zapis dotyczy wyłącznie grupy', () => {
+    const d = drive('owner-diff'); expect(d.first.counts.różniceWłaściciela).toBe(1); expect(patches(d.callsAfterFirst)).toEqual([]);
+    expect(drive('only-owner').threw).toContain('właściciel');
+  });
+  test('workflow: wejście `tylko` opisuje także group:en-US i group:pl; skrypt dopuszcza lokalizacje właściciela tylko dla grupy', () => {
+    const y = readFileSync(join(root, '.github/workflows/asc-iap-localizations.yml'), 'utf8'); expect(y).toContain('group:en-US');
+    expect(readFileSync(join(root, 'scripts/asc/iap-localizations.mjs'), 'utf8')).toContain("WRITE_OWNER_KEYS = ['group']");
   });
 });
