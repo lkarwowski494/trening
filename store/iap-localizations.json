@@ -1,5 +1,5 @@
 {
- "_opis": "Lokalizacje produktów zakupu w App Store Connect (nazwy i opisy) — JEDNO źródło prawdy dla scripts/asc/iap-localizations.mjs (workflow asc-iap-localizations.yml) i testu tests/iap-localizations.test.ts. Decyzja właściciela 14.10.2026 (wariant A): właściciel wpisał ręcznie tylko EN (U.S.) i PL, pozostałe 33 języki aplikacji dopisuje skrypt przez App Store Connect API. Klucze „tlumaczenia” = kody języków aplikacji (lib/i18n.ts LANGS bez pl i en); „ascLocale” = kod lokalizacji App Store Connect albo null, gdy App Store Connect danego języka nie obsługuje (wtedy wpis zostaje tylko jako gotowy tekst). Limity znaków: nazwa 30, opis 45 (Apple, In-App Purchase Information: Display Name 2–30, Description do 45; limity subskrypcji i grupy w dokumentacji Apple nie są podane, przyjęto te same — ostrożnie).",
+ "_opis": "Lokalizacje produktów zakupu w App Store Connect (nazwy i opisy) — JEDNO źródło prawdy dla scripts/asc/iap-localizations.mjs (workflow asc-iap-localizations.yml) i testu tests/iap-localizations.test.ts. Decyzja właściciela 14.10.2026 (wariant A): właściciel wpisał ręcznie tylko EN (U.S.) i PL, pozostałe 33 języki aplikacji dopisuje skrypt przez App Store Connect API. Klucze „tlumaczenia” = kody języków aplikacji (lib/i18n.ts LANGS bez pl i en); „ascLocale” = kod lokalizacji App Store Connect albo null, gdy App Store Connect danego języka nie obsługuje (wtedy wpis zostaje tylko jako gotowy tekst). Limity znaków: nazwa 30, opis 45 (Apple, In-App Purchase Information: Display Name 2–30, Description do 45; limity subskrypcji i grupy w dokumentacji Apple nie są podane (odczyt 15.11.2026: developer.apple.com/help/app-store-connect/reference/in-app-purchase-information podaje 30 tylko dla zakupu), przyjęto te same — ostrożnie). Od 15.11.2026 (ZB-037) nazwę GRUPY w en-US i pl zapisuje też skrypt (PATCH, nigdy DELETE); pozostałe wpisy en-US/pl tylko porównuje.",
  "limity": {
   "nazwa": 30,
   "opis": 45
@@ -8,7 +8,7 @@
  "wpisaneRecznie": {
   "en-US": {
    "group": {
-    "name": "Trening Full Version"
+    "name": "RepsGoat Full Version"
    },
    "monthly": {
     "name": "Full version — monthly",
@@ -25,7 +25,7 @@
   },
   "pl": {
    "group": {
-    "name": "Trening — pełna wersja"
+    "name": "RepsGoat — pełna wersja"
    },
    "monthly": {
     "name": "Pełna wersja — miesięcznie",
