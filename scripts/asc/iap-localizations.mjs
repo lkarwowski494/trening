@@ -3,6 +3,7 @@
 //   node scripts/asc/iap-localizations.mjs            → plan bez zmian (--dry-run, domyślnie)
 //   node scripts/asc/iap-localizations.mjs --apply    → tworzy brakujące i aktualizuje różniące się
 //   dodatkowo --tylko <klucz>:<lokalizacja> (np. yearly:cs) → tylko jeden element (pierwszy zapis do usługi zewnętrznej, L-001 pkt 1)
+//   albo --tylko <klucz> (np. group) → wszystkie lokalizacje tego jednego obiektu (KO-079, 16.11.2026); problemy innych obiektów nie wpływają na kod wyjścia
 // API v2 (od App Store Connect API 4.4.1; wycofane zasoby v1 znikną na początku 2027 — docs/research/asc-iap-v2-2026-11-13.md):
 //   lokalizacje należą do wersji roboczej produktu (…Version, stan PREPARE_FOR_SUBMISSION); skrypt wersji NIE tworzy — brak edytowalnej wersji = problem, bez zapisu.
 // Zasady: NIGDY nie usuwa (klient dopuszcza tylko GET, POST, PATCH); EN (U.S.) i PL wpisane przez właściciela tylko odczytuje i porównuje — z wyjątkiem nazwy grupy subskrypcji (WRITE_OWNER_KEYS, ZB-037, 15.11.2026: PATCH, POST gdy brak);
@@ -147,13 +148,14 @@ export async function discover(client, log) {
   return { targets, problems };
 }
 
-/** `--tylko klucz:lokalizacja` → { key, locale }; błędy wejścia przed jakimkolwiek wywołaniem API. */
+/** `--tylko klucz:lokalizacja` → { key, locale, lang }; `--tylko klucz` → { key, locale: null, lang: null } (wszystkie lokalizacje obiektu); błędy wejścia przed jakimkolwiek wywołaniem API. */
 export function parseOnly(only, data) {
   if (only === undefined || only === null || only === '') return null;
-  const m = /^([a-z]+):([A-Za-z0-9-]+)$/.exec(String(only));
-  if (!m) throw new Error('--tylko wymaga postaci <klucz>:<lokalizacja>, np. yearly:cs');
+  const m = /^([a-z]+)(?::([A-Za-z0-9-]+))?$/.exec(String(only));
+  if (!m) throw new Error('--tylko wymaga postaci <klucz> albo <klucz>:<lokalizacja>, np. group albo yearly:cs');
   const [, key, locale] = m;
   if (!ONLY_KEYS.includes(key)) throw new Error(`--tylko: nieznany klucz (dozwolone: ${ONLY_KEYS.join(', ')})`);
+  if (locale === undefined) return { key, locale: null, lang: null };
   if (OWNER_LOCALES.includes(locale)) {
     if (!WRITE_OWNER_KEYS.includes(key)) throw new Error(`--tylko: lokalizacje właściciela (en-US, pl) są zapisywane tylko dla: ${WRITE_OWNER_KEYS.join(', ')}`);
     return { key, locale, lang: locale };
@@ -168,14 +170,14 @@ export async function run({ client, data, apply = false, only, log = console.log
   const filter = parseOnly(only, data);
   const { targets: all, problems } = await discover(client, log);
   const targets = filter ? all.filter(t => t.key === filter.key) : all;
-  log(`Tryb: ${apply ? 'APPLY (zapis)' : 'DRY-RUN (bez zmian)'}; obiektów znalezionych: ${all.length} z 4${filter ? `; zawężenie: ${filter.key}:${filter.locale}` : ''}`);
+  log(`Tryb: ${apply ? 'APPLY (zapis)' : 'DRY-RUN (bez zmian)'}; obiektów znalezionych: ${all.length} z 4${filter ? `; zawężenie: ${filter.key}${filter.locale ? ':' + filter.locale : ' (wszystkie lokalizacje)'}` : ''}`);
   const counts = { 'utwórz': 0, 'zaktualizuj': 0, 'pomiń': 0, błędy: 0, różniceWłaściciela: 0 };
   for (const t of targets) {
     const plan = planObject({ key: t.key, translations: data.tlumaczenia, owner: data.wpisaneRecznie, existing: t.existing, hasDescription: t.hasDescription });
     log(`\n== ${t.label} (istniejących lokalizacji: ${t.existing.size}) ==`);
     for (const r of plan.ownerReport) { log(`  [właściciel] ${r.locale}: ${r.status}`); if (!r.status.startsWith('zgodne')) counts.różniceWłaściciela++; }
     if (plan.extra.length) log(`  [obce, nietykane] ${plan.extra.join(', ')}`);
-    for (const it of filter ? plan.items.filter(i => i.locale === filter.locale) : plan.items) {
+    for (const it of filter?.locale ? plan.items.filter(i => i.locale === filter.locale) : plan.items) {
       let note = it.reason ? ` (${it.reason})` : '';
       if (apply && (it.action === 'utwórz' || it.action === 'zaktualizuj')) {
         try {
@@ -197,7 +199,7 @@ export async function run({ client, data, apply = false, only, log = console.log
 async function main() {
   const args = process.argv.slice(2); const apply = args.includes('--apply');
   const oi = args.indexOf('--tylko'); const only = oi >= 0 ? args[oi + 1] : undefined;
-  if (oi >= 0 && !only) { console.error('--tylko wymaga wartości <klucz>:<lokalizacja>.'); process.exit(2); }
+  if (oi >= 0 && !only) { console.error('--tylko wymaga wartości <klucz> albo <klucz>:<lokalizacja>.'); process.exit(2); }
   if (apply && args.includes('--dry-run')) { console.error('Podaj tylko jeden tryb.'); process.exit(2); }
   const { ASC_KEY_ID: keyId, ASC_ISSUER_ID: issuerId, ASC_KEY_PATH: keyPath } = process.env;
   if (!keyId || !issuerId || !keyPath) { console.error('Brak ASC_KEY_ID, ASC_ISSUER_ID lub ASC_KEY_PATH.'); process.exit(2); }

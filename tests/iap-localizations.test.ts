@@ -90,7 +90,7 @@ const mode = process.argv[1];
 const rows = (obj, locs) => locs.map((l, i) => ({ id: obj + '-' + i, attributes: { locale: l, name: data.wpisaneRecznie[l][obj === 'GROUP' ? 'group' : obj].name, description: data.wpisaneRecznie[l][obj === 'GROUP' ? 'group' : obj].description } }));
 const store = { GROUP: rows('GROUP', ['en-US', 'pl']), monthly: rows('monthly', ['en-US', 'pl']), yearly: rows('yearly', ['en-US', 'pl']), lifetime: rows('lifetime', ['en-US', 'pl']) };
 if (mode === 'owner-diff') store.monthly[1].attributes.name = 'Inna nazwa'; if (mode === 'owner-missing') store.yearly.pop();
-if (mode.startsWith('group-old')) { store.GROUP[0].attributes.name = 'Trening Full Version'; store.GROUP[1].attributes.name = 'Trening — pełna wersja'; }
+if (mode.includes('group-old')) { store.GROUP[0].attributes.name = 'Trening Full Version'; store.GROUP[1].attributes.name = 'Trening — pełna wersja'; }
 if (mode === 'group-missing-pl') store.GROUP.pop();
 if (mode === 'stale') store.yearly.push({ id: 'y-cs', attributes: { locale: 'cs', name: 'stare', description: 'stare' } });
 if (mode === 'foreign') store.GROUP.push({ id: 'g-xx', attributes: { locale: 'ar-SA', name: 'x' } });
@@ -99,7 +99,8 @@ const typeToObj = { subscriptionGroupLocalizations: 'GROUP', inAppPurchaseLocali
 const relType = { subscriptionGroupLocalizations: 'subscriptionGroupVersions', subscriptionLocalizations: 'subscriptionVersions', inAppPurchaseLocalizations: 'inAppPurchaseVersions' };
 const verOf = { GV1: 'GROUP', SV1: 'monthly', SV2: 'yearly', IV1: 'lifetime' };
 const onlyDraft = mode.startsWith('only-draft'); /* tylko roczna ma wersję roboczą, reszta zatwierdzona */
-const states = onlyDraft ? { GV1: 'APPROVED', SV1: 'APPROVED', SV2: 'PREPARE_FOR_SUBMISSION', IV1: 'APPROVED' } : { GV1: 'PREPARE_FOR_SUBMISSION', SV1: 'PREPARE_FOR_SUBMISSION', SV2: mode.startsWith('no-draft') ? 'APPROVED' : 'PREPARE_FOR_SUBMISSION', IV1: 'PREPARE_FOR_SUBMISSION' };
+const groupDraft = mode.startsWith('only-gdraft'); /* tylko grupa ma wersję roboczą (3 produkty bez wersji roboczej jak w przebiegu 43809500024) */
+const states = groupDraft ? { GV1: 'PREPARE_FOR_SUBMISSION', SV1: 'APPROVED', SV2: 'APPROVED', IV1: 'APPROVED' } : onlyDraft ? { GV1: 'APPROVED', SV1: 'APPROVED', SV2: 'PREPARE_FOR_SUBMISSION', IV1: 'APPROVED' } : { GV1: 'PREPARE_FOR_SUBMISSION', SV1: 'PREPARE_FOR_SUBMISSION', SV2: mode.startsWith('no-draft') ? 'APPROVED' : 'PREPARE_FOR_SUBMISSION', IV1: 'PREPARE_FOR_SUBMISSION' };
 const ver = (id, v = 1) => ({ id, attributes: { version: v, state: states[id] } });
 const resp = (status, body) => ({ ok: status < 400, status, json: async () => body });
 const fakeFetch = async (url, init = {}) => {
@@ -140,8 +141,8 @@ if (mode === 'jwt') {
   try { await makeClient({ fetchFn: fakeFetch, token: 't' }).call('DELETE', '/v1/subscriptionLocalizations/x'); out.threw = false; } catch (e) { out.threw = true; out.msg = e.message; }
 } else {
   const client = makeClient({ fetchFn: fakeFetch, token: 't' });
-  const apply = ['group-old-apply', 'group-old-only', 'group-missing-pl', 'group-old-only-pl', 'apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply', 'only-draft-apply', 'only-draft-other'].includes(mode);
-  const onlyArg = { 'group-old-only': 'group:en-US', 'group-old-only-pl': 'group:pl', 'group-old-dry': 'group:en-US', 'only-apply': 'yearly:cs', 'only-draft-apply': 'yearly:cs', 'only-draft-other': 'monthly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly' }[mode];
+  const apply = ['group-old-apply', 'group-old-only', 'group-missing-pl', 'group-old-only-pl', 'apply', 'stale', 'foreign', 'fail-post', 'no-draft-apply', 'only-apply', 'only-draft-apply', 'only-draft-other', 'only-gdraft-apply', 'only-gdraft-yearly', 'group-old-key-apply'].includes(mode);
+  const onlyArg = { 'group-old-only': 'group:en-US', 'group-old-only-pl': 'group:pl', 'group-old-dry': 'group:en-US', 'only-apply': 'yearly:cs', 'only-draft-apply': 'yearly:cs', 'only-draft-other': 'monthly:cs', 'only-dry': 'group:de-DE', 'only-owner': 'monthly:en-US', 'only-key': 'weekly:cs', 'only-locale': 'monthly:bg', 'only-fmt': 'yearly cs', 'only-key-bare': 'weekly', 'only-fmt-colon': 'yearly:', 'only-gdraft-dry': 'group', 'only-gdraft-apply': 'group', 'only-gdraft-yearly': 'yearly', 'group-old-key-apply': 'group' }[mode];
   let first;
   try { first = await run({ client, data, apply, only: onlyArg, log: l => logs.push(l) }); }
   catch (e) { out.threw = e.message; process.stdout.write(JSON.stringify({ ...out, calls })); process.exit(0); }
@@ -227,8 +228,31 @@ describe('scripts/asc/iap-localizations.mjs na atrapie API', () => {
     expect(drive('no-draft-apply').first.problems.join('\n')).toContain('utwórz wersję roboczą produktu w App Store Connect, potem ponów dry-run');
   });
   test('--tylko: złe wejście odrzucone przed jakimkolwiek wywołaniem API (nieznany klucz, lokalizacja właściciela, nieobsługiwana lokalizacja, zły format)', () => {
-    for (const m of ['only-key', 'only-owner', 'only-locale', 'only-fmt']) { const r = drive(m); expect([m, typeof r.threw]).toEqual([m, 'string']); expect(r.calls).toEqual([]); }
+    for (const m of ['only-key', 'only-key-bare', 'only-owner', 'only-locale', 'only-fmt', 'only-fmt-colon']) { const r = drive(m); expect([m, typeof r.threw]).toEqual([m, 'string']); expect(r.calls).toEqual([]); }
     expect(drive('only-owner').threw).toContain('właściciel');
+  });
+  test('KO-079 (16.11.2026): --tylko <klucz> bez lokalizacji: wszystkie lokalizacje jednego obiektu (dry-run: plan bez zapisu, tylko GET)', () => {
+    const d = drive('only-gdraft-dry'); expect(d.first.counts).toMatchObject({ 'utwórz': MAPPED, 'zaktualizuj': 0, błędy: 0 });
+    expect(d.callsAfterFirst.every((c: string) => c.startsWith('GET '))).toBe(true);
+    expect(d.logs1.join('\n')).toContain('zawężenie: group');
+  });
+  test('--tylko group (apply): zapisuje wszystkie lokalizacje grupy i tylko jej; problemy innych kluczy (3 produkty bez wersji roboczej) nie wpływają na kod wyjścia, nadal widoczne w logu; nigdy DELETE', () => {
+    const a = drive('only-gdraft-apply'); expect(a.first.code).toBe(0); expect(a.first.counts).toMatchObject({ 'utwórz': MAPPED, błędy: 0 });
+    const posts = a.callsAfterFirst.filter((c: string) => c.startsWith('POST ')); expect(posts).toHaveLength(MAPPED); expect(new Set(posts)).toEqual(new Set(['POST /v2/subscriptionGroupLocalizations']));
+    expect(a.callsAfterFirst.some((c: string) => c.startsWith('DELETE'))).toBe(false);
+    expect(a.store.GROUP).toHaveLength(2 + MAPPED); for (const k of ['monthly', 'yearly', 'lifetime']) expect(a.store[k]).toHaveLength(2);
+    expect(a.first.problems.length).toBe(3); expect(a.logs1.join('\n')).toContain('poza zawężeniem');
+  });
+  test('--tylko <klucz> bez wersji roboczej tego obiektu: problem liczony (kod 1), bez zapisu', () => {
+    const r = drive('only-gdraft-yearly'); expect(r.first.code).toBe(1); expect(r.callsAfterFirst.some((c: string) => c.startsWith('POST ') || c.startsWith('PATCH '))).toBe(false);
+  });
+  test('--tylko group: lokalizacje właściciela (en-US, pl) jak w pełnym przebiegu — stare nazwy PATCH, brakujące POST, zgodne bez zapisu; produkty nietknięte', () => {
+    const r = drive('group-old-key-apply'); const p = r.callsAfterFirst.filter((c: string) => c.startsWith('PATCH '));
+    expect(p).toHaveLength(2); expect(p.every((c: string) => /^PATCH \/v2\/subscriptionGroupLocalizations\/[^/]+$/.test(c))).toBe(true);
+    expect(r.first.counts).toMatchObject({ 'zaktualizuj': 2, 'utwórz': MAPPED, błędy: 0 }); expect(r.first.code).toBe(0);
+    expect(r.store.GROUP.slice(0, 2).map((x: string[]) => x[1])).toEqual(['RepsGoat Full Version', 'RepsGoat — pełna wersja']);
+    for (const k of ['monthly', 'yearly', 'lifetime']) expect(r.store[k]).toHaveLength(2);
+    const full = drive('group-old-apply'); expect(full.store.GROUP).toEqual(r.store.GROUP); /* ten sam wynik co pełny przebieg dla grupy */
   });
   test('JWT ES256: nagłówek, ładunek (aud, iss, exp = iat + 10 min), podpis 64 bajty i poprawny', () => {
     const r = drive('jwt'); expect(r.header).toEqual({ alg: 'ES256', kid: 'KID1234567', typ: 'JWT' });
