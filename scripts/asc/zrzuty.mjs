@@ -22,7 +22,9 @@
 // Wyjątek (decyzja właściciela 15.11.2026, W-23, D2 w docs/48): tryb „zamień” (`--zamien`) usuwa placementy zrzutów (DELETE /v1/appAssetLibraryPlacements/{id}, 204;
 // odczyt dokumentacji 15.11.2026: placing-assets-on-your-app-store-surfaces — „This removes the asset from that surface but leaves the underlying asset in your library”)
 // wyłącznie w grupie objętej zamianą (lokalizacja × typ wyświetlacza), po wgraniu i przetworzeniu nowych obrazów, i wgrywa nowe z plików; obrazów biblioteki nie usuwa.
-// Zapis „zamień” wymaga zawężenia do jednego elementu: `--lokalizacja <kod ASC> --zrodlo iphone|zegarek` (model L-001). Podgląd: `--zamien --dry-run`.
+// Zapis „zamień” wymaga zawężenia: `--lokalizacja <kod ASC | lista po przecinku, np. pl,en-US,de-DE | wszystkie> --zrodlo iphone|zegarek` (jedno źródło na przebieg). Od 16.11.2026 (KO-082, zmienia KO-077):
+// lokalizacje kolejno, każda jak pojedyncza (obrazy → przetworzenie → usunięcie starych placementów jej grupy → nowe), błąd zatrzymuje przebieg i wypisuje stan (ukończone / przerwana / nietknięte).
+// Ponowne uruchomienie jest bezpieczne: obrazy są znajdowane po nazwie referencyjnej (użyte ponownie), stare placementy grupy usuwane i układane od nowa — wynik ten sam. Podgląd: `--zamien --dry-run`.
 // Zapis tylko do edytowalnej wersji; w logu tylko kody lokalizacji, nazwy plików i liczby — nigdy adresy wgrywania,
 // identyfikatory klucza, tokeny ani treść odpowiedzi API (repozytorium publiczne). Dane logowania: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_PATH.
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
@@ -67,18 +69,29 @@ export function parseLangs(text) {
   return [...new Set(items)];
 }
 
+/** Słowo wejścia `lokalizacja` oznaczające wszystkie lokalizacje sklepu, dla których artefakt ma zrzuty wybranego źródła (decyzja właściciela 16.11.2026, KO-082). */
+export const ALL_LOCALES = 'wszystkie';
 /**
- * Wejście trybu „zamień”: { zamien, apply, lokalizacja, zrodlo } → null (tryb wyłączony), { lokalizacja, zrodlo } albo { error }.
- * Zapis (apply) wymaga lokalizacji ASC i źródła (typ wyświetlacza) — wejście zawężające do jednego elementu; podgląd może być bez zawężenia.
+ * Wejście trybu „zamień”: { zamien, apply, lokalizacja, zrodlo } → null (tryb wyłączony), { lokalizacje, wszystkie, zrodlo } albo { error }.
+ * `lokalizacja`: jeden kod ASC, lista po przecinku (np. `pl,en-US,de-DE`) albo `wszystkie`; nieznany kod, duplikat albo `wszystkie` razem z kodami → błąd (przed jakimkolwiek wywołaniem API).
+ * Zapis (apply) wymaga lokalizacji i źródła (jeden typ wyświetlacza na przebieg); podgląd może być bez zawężenia.
  */
 export function parseZamien({ zamien, apply, lokalizacja = '', zrodlo = '' }) {
   if (!zamien) return lokalizacja || zrodlo ? { error: 'lokalizacja i źródło dotyczą tylko trybu zamień (--zamien)' } : null;
-  const loc = String(lokalizacja).trim(); const src = String(zrodlo).trim();
-  if (apply && !loc) return { error: 'zapis w trybie zamień wymaga lokalizacji (--lokalizacja <kod ASC>, jeden element)' };
-  if (apply && !src) return { error: 'zapis w trybie zamień wymaga źródła (--zrodlo iphone|zegarek, jeden element)' };
-  if (loc && !Object.values(SHOT_LOCALES).flat().includes(loc)) return { error: `nieznana lokalizacja sklepu: ${loc.slice(0, 20)}` };
+  const raw = String(lokalizacja).trim(); const src = String(zrodlo).trim();
+  if (apply && !raw) return { error: 'zapis w trybie zamień wymaga lokalizacji (--lokalizacja <kod ASC | lista po przecinku | wszystkie>)' };
+  if (apply && !src) return { error: 'zapis w trybie zamień wymaga źródła (--zrodlo iphone|zegarek, jedno źródło na przebieg)' };
+  const items = raw.split(',').map(x => x.trim()).filter(Boolean);
+  if (raw && !items.length) return { error: 'lokalizacja: podaj kod, listę po przecinku albo „wszystkie”' };
+  const known = Object.values(SHOT_LOCALES).flat();
+  const wszystkie = items.includes(ALL_LOCALES);
+  if (wszystkie && items.length > 1) return { error: `„${ALL_LOCALES}” nie łączy się z kodami lokalizacji` };
+  const bad = wszystkie ? [] : items.filter(x => !known.includes(x));
+  if (bad.length) return { error: `nieznana lokalizacja sklepu: ${bad.map(x => x.slice(0, 20)).join(', ')}` };
+  const dup = items.filter((x, i) => items.indexOf(x) !== i);
+  if (dup.length) return { error: `lokalizacja podana więcej niż raz: ${[...new Set(dup)].join(', ')}` };
   if (src && !SOURCES.includes(src)) return { error: `nieznane źródło: ${src.slice(0, 20)} (iphone albo zegarek)` };
-  return { lokalizacja: loc, zrodlo: src };
+  return { lokalizacje: wszystkie ? [] : items, wszystkie, zrodlo: src };
 }
 
 /** Klient trybu „zamień”: przepuszcza GET/POST/PATCH, a DELETE tylko na placement z podanego zbioru id (placementy grupy objętej zamianą); reszta → błąd. */
@@ -167,17 +180,17 @@ export async function discover(client) {
 
 /**
  * Plan: lista { source, lang, locale, locId, group, files[], action, reason }. Nic nie zapisuje. `existing(locId, group)` → id istniejących placementów grupy.
- * `zamien` ({ lokalizacja, zrodlo }): grupa z zrzutami dostaje działanie „zamień” (stare id w `old`) zamiast „pomiń”; zawężenie wybiera jedną lokalizację i/lub źródło.
+ * `zamien` ({ lokalizacje[], wszystkie, zrodlo }): grupa z zrzutami dostaje działanie „zamień” (stare id w `old`) zamiast „pomiń”; zawężenie wybiera listę lokalizacji (albo wszystkie) i/lub źródło.
  * Źródła: 'iphone' i 'zegarek' (obie przez ten sam typ APP_SCREENSHOT; grupa z wymiarów pliku).
  */
 export async function plan({ shots, locs, refData, existing, zamien = null }) {
-  const rows = []; const errors = [];
+  const rows = []; const errors = []; const sel = new Set(zamien?.lokalizacje ?? []);
   for (const [source, byLang] of Object.entries(shots)) {
     if (zamien?.zrodlo && source !== zamien.zrodlo) continue;
     for (const [lang, files] of byLang) {
       if (!(lang in SHOT_LOCALES)) { errors.push(`${source}/${lang}: nieznany język aplikacji (brak w SHOT_LOCALES)`); continue; }
       const locales = SHOT_LOCALES[lang];
-      if (!locales.length) { if (zamien?.lokalizacja) continue; rows.push({ source, lang, locale: null, action: 'pomiń', reason: 'sklep nie ma tej lokalizacji (docs/45-widocznosc)' }); continue; }
+      if (!locales.length) { if (sel.size || zamien?.wszystkie) continue; rows.push({ source, lang, locale: null, action: 'pomiń', reason: 'sklep nie ma tej lokalizacji (docs/45-widocznosc)' }); continue; }
       const byGroup = new Map();
       for (const f of files) {
         if (f.alpha) { errors.push(`${source}/${lang}/${f.name}: kanał alfa (Apple: obrazy bez alfa)`); continue; }
@@ -189,7 +202,7 @@ export async function plan({ shots, locs, refData, existing, zamien = null }) {
         const max = maxPerGroup(refData, group);
         if (gf.length > max) { errors.push(`${source}/${lang}: ${gf.length} zrzutów w grupie ${group} > limit ${max}`); continue; }
         for (const locale of locales) {
-          if (zamien?.lokalizacja && locale !== zamien.lokalizacja) continue;
+          if (sel.size && !sel.has(locale)) continue;
           if (!LOCALE_MAP[locale]) { rows.push({ source, lang, locale, group, action: 'pomiń', reason: 'lokalizacja nieobsługiwana w ASC' }); continue; }
           const locId = locs.get(LOCALE_MAP[locale]);
           if (!locId) { rows.push({ source, lang, locale, group, files: gf, action: 'pomiń', reason: 'brak lokalizacji wersji w ASC (najpierw workflow „ASC metadane sklepu”)' }); continue; }
@@ -267,7 +280,8 @@ export async function waitForImages({ client, images, sleep, now }) {
 /** Główny przebieg. Zwraca { code, rows }. Kod 1: błędy planu (pliki, grupy), brak aplikacji, brak edytowalnej wersji w trybie apply, błąd zapisu. */
 export async function run({ client, fetchFn, shots, problems = [], apply = false, zamien = null, log = console.log, read = p => readFileSync(p), sleep = ms => new Promise(r => setTimeout(r, ms)), now = () => Date.now() }) {
   log(`## Zrzuty ekranu → App Store Connect: tryb ${apply ? 'APPLY' : 'DRY-RUN (tylko odczyt)'}${zamien ? ' · ZAMIEŃ (usuwa zrzuty wybranej grupy, wgrywa nowe)' : ''}\n`);
-  if (zamien && apply && !(zamien.lokalizacja && zamien.zrodlo)) { log('BŁĄD: zapis w trybie zamień wymaga zawężenia do jednego elementu (lokalizacja i źródło) — nic nie zapisano.'); return { code: 1, rows: [] }; }
+  const sel = zamien?.lokalizacje ?? []; /* wybrane lokalizacje sklepu (pusta + `wszystkie` = wszystkie, które mają zrzuty źródła) */
+  if (zamien && apply && !((sel.length || zamien.wszystkie) && zamien.zrodlo)) { log('BŁĄD: zapis w trybie zamień wymaga zawężenia (lokalizacja, lista lokalizacji albo „wszystkie”, i jedno źródło) — nic nie zapisano.'); return { code: 1, rows: [] }; }
   let code = problems.length ? 1 : 0;
   for (const p of problems) log(`BŁĄD pliku: ${p}`);
   const allowed = new Set(); /* id placementów, które wolno usunąć: wypełniane po planie, tylko w trybie „zamień” */
@@ -284,52 +298,76 @@ export async function run({ client, fetchFn, shots, problems = [], apply = false
     return (await c.list(q)).filter(r => (r.attributes?.placementType ?? PLACEMENT_TYPE) === PLACEMENT_TYPE && (r.attributes?.placementGroup ?? group) === group).map(r => r.id);
   };
   const { rows, errors } = await plan({ shots, locs: d.locs, refData: d.refData, existing, zamien });
-  if (zamien && !rows.some(r => r.action !== 'pomiń')) errors.push('brak zrzutów do wgrania dla wybranej lokalizacji i źródła (nic nie zostanie usunięte)');
-  if (zamien && apply) for (const r of rows) if (r.action === 'zamień') for (const id of r.old) allowed.add(id);
+  if (zamien && sel.length) { for (const l of sel) if (!rows.some(r => r.locale === l && (r.action === 'wgraj' || r.action === 'zamień'))) errors.push(`brak zrzutów do wgrania dla lokalizacji ${l} i wybranego źródła (nic nie zostanie usunięte)`); }
+  else if (zamien && !rows.some(r => r.action !== 'pomiń')) errors.push('brak zrzutów do wgrania dla wybranej lokalizacji i źródła (nic nie zostanie usunięte)');
   if (errors.length) { code = 1; log('### Błędy planu (zapis zablokowany)\n'); for (const e of errors) log(`- ${e}`); log(''); }
   const refOf = (r, f) => `trening-1.0/${r.source}/${r.lang}/${f.name}`;
   const planned = new Map(); for (const r of rows.filter(x => x.action === 'wgraj' || x.action === 'zamień')) for (const f of r.files) planned.set(refOf(r, f), f);
-  let lib = [];
+  let lib = []; let inLib = 0;
   if (planned.size && !(apply && code)) {
     lib = await readLibrary(c, d.libraryId);
-    log(`W bibliotece już ${[...planned].filter(([ref, f]) => findReusable(lib, ref, f.size)).length} z ${planned.size} obrazów planu (zostaną użyte ponownie).\n`);
+    inLib = [...planned].filter(([ref, f]) => findReusable(lib, ref, f.size)).length;
+    log(`W bibliotece już ${inLib} z ${planned.size} obrazów planu (zostaną użyte ponownie).\n`);
   }
   const n = a => rows.filter(r => r.action === a).length;
   if (apply && code) { log('Zapis wstrzymany — nic nie zapisano.'); return { code: 1, rows }; }
+  const todo = rows.filter(x => x.action === 'wgraj' || x.action === 'zamień');
+  /* „zamień”: lokalizacje kolejno (w kolejności listy), każda: obrazy → przetworzenie → usunięcie starych → nowe placementy; błąd zatrzymuje przebieg. Inne tryby: jedna partia, jak dotąd. */
+  const order = zamien ? (sel.length ? sel : [...new Set(todo.map(r => r.locale))]) : [];
+  const units = zamien ? order.map(l => todo.filter(r => r.locale === l)).filter(u => u.length) : [todo];
+  const status = { done: [], failed: null, untouched: [] };
   if (apply) {
-    const images = new Map(); /* nazwa referencyjna → obraz: ten sam plik angielski służy czterem lokalizacjom */
-    for (const [ref, f] of planned) {
-      try { images.set(ref, await obtainImage({ client, fetchFn, libraryId: d.libraryId, lib, refName: ref, file: f, body: read(f.path), now })); }
-      catch (e) { images.set(ref, { file: f, error: e.message }); }
-    }
-    const all = [...images.values()];
-    log(`Obrazy: wgrano ${all.filter(i => !i.error && !i.reused).length}, użyto ponownie ${all.filter(i => i.reused).length}, błędy ${all.filter(i => i.error).length}; czekam na przetworzenie.`);
-    await waitForImages({ client, images: all.filter(i => !i.error), sleep, now });
-    for (const r of rows.filter(x => x.action === 'wgraj' || x.action === 'zamień')) {
-      let removed = 0;
-      try {
-        const imgs = r.files.map(f => images.get(refOf(r, f)));
-        const bad = imgs.find(i => i.error); if (bad) throw new Error(bad.error);
-        /* usuwanie dopiero teraz: wszystkie nowe obrazy są wgrane i przetworzone, błąd któregokolwiek zatrzymał wcześniej (stare zrzuty zostają) */
-        if (r.action === 'zamień') for (const id of r.old) { await c.call('DELETE', `/v1/appAssetLibraryPlacements/${id}`); removed++; }
-        r.removed = removed;
-        const placed = [];
-        for (const { id } of imgs) {
-          const p = await client.call('POST', '/v1/appAssetLibraryPlacements', { data: { type: 'appAssetLibraryPlacements', attributes: { placementType: PLACEMENT_TYPE, placementGroup: r.group },
-            relationships: { image: { data: { type: 'appAssetLibraryImages', id } }, appStoreVersionLocalization: { data: { type: 'appStoreVersionLocalizations', id: r.locId } } } } });
-          placed.push({ type: 'appAssetLibraryPlacements', id: p.data.id });
+    const images = new Map(); /* nazwa referencyjna → obraz: ten sam plik angielski służy czterem lokalizacjom (także między lokalizacjami przebiegu) */
+    for (const [ui, unit] of units.entries()) {
+      allowed.clear(); if (zamien) for (const r of unit) if (r.action === 'zamień') for (const id of r.old) allowed.add(id); /* strażnik DELETE: tylko placementy bieżącej lokalizacji */
+      const mine = new Map(); for (const r of unit) for (const f of r.files) mine.set(refOf(r, f), f);
+      const fresh = new Map([...mine].filter(([ref]) => !images.has(ref)));
+      for (const [ref, f] of fresh) {
+        try { images.set(ref, await obtainImage({ client, fetchFn, libraryId: d.libraryId, lib, refName: ref, file: f, body: read(f.path), now })); }
+        catch (e) { images.set(ref, { file: f, error: e.message }); }
+      }
+      const all = [...fresh.keys()].map(ref => images.get(ref));
+      log(`Obrazy${zamien ? ' ' + unit[0].locale : ''}: wgrano ${all.filter(i => !i.error && !i.reused).length}, użyto ponownie ${all.filter(i => i.reused).length}, błędy ${all.filter(i => i.error).length}; czekam na przetworzenie.`);
+      await waitForImages({ client, images: all.filter(i => !i.error), sleep, now });
+      for (const r of unit) {
+        let removed = 0; r.created = 0;
+        try {
+          const imgs = r.files.map(f => images.get(refOf(r, f)));
+          const bad = imgs.find(i => i.error); if (bad) throw new Error(bad.error);
+          /* usuwanie dopiero teraz: wszystkie nowe obrazy tej lokalizacji są wgrane i przetworzone, błąd któregokolwiek zatrzymał wcześniej (stare zrzuty zostają) */
+          if (r.action === 'zamień') for (const id of r.old) { await c.call('DELETE', `/v1/appAssetLibraryPlacements/${id}`); removed++; }
+          r.removed = removed;
+          const placed = [];
+          for (const { id } of imgs) {
+            const p = await client.call('POST', '/v1/appAssetLibraryPlacements', { data: { type: 'appAssetLibraryPlacements', attributes: { placementType: PLACEMENT_TYPE, placementGroup: r.group },
+              relationships: { image: { data: { type: 'appAssetLibraryImages', id } }, appStoreVersionLocalization: { data: { type: 'appStoreVersionLocalizations', id: r.locId } } } } });
+            placed.push({ type: 'appAssetLibraryPlacements', id: p.data.id }); r.created = placed.length;
+          }
+          await client.call('POST', '/v1/appAssetLibraryPlacementOrderingRequests', { data: { type: 'appAssetLibraryPlacementOrderingRequests', attributes: { placementGroup: r.group },
+            relationships: { orderedPlacements: { data: placed }, appStoreVersionLocalization: { data: { type: 'appStoreVersionLocalizations', id: r.locId } } } } });
+          r.written = true;
+        } catch (e) {
+          r.state = !zamien ? '' : removed === 0 && r.created === 0 ? ' (nic nie usunięto, stare zrzuty zostają)'
+            : ` (usunięto ${removed} z ${r.old?.length ?? 0}; ${r.created === 0 ? 'nowe zrzuty nie zapisane' : `utworzono tylko ${r.created} z ${r.files.length} nowych placementów`} — grupa nie jest kompletna; ponów „zamień”: następny przebieg usunie to, co w niej jest, i wgra komplet)`;
+          r.error = e.message; code = 1; log(`BŁĄD ${r.source}/${r.locale}: ${e.message}${r.state}`);
         }
-        await client.call('POST', '/v1/appAssetLibraryPlacementOrderingRequests', { data: { type: 'appAssetLibraryPlacementOrderingRequests', attributes: { placementGroup: r.group },
-          relationships: { orderedPlacements: { data: placed }, appStoreVersionLocalization: { data: { type: 'appStoreVersionLocalizations', id: r.locId } } } } });
-        r.written = true;
-      } catch (e) {
-        const tail = r.action !== 'zamień' ? '' : removed > 0 ? ` (usunięto ${removed} z ${r.old.length}; nowe zrzuty nie zapisane — ponów „zamień”: grupa jest pusta, więc zostanie wgrana)` : ' (nic nie usunięto)';
-        r.error = e.message; code = 1; log(`BŁĄD ${r.source}/${r.locale}: ${e.message}${tail}`);
+      }
+      if (zamien) {
+        if (unit.some(r => r.error)) { status.failed = unit; status.untouched = units.slice(ui + 1).map(u => u[0].locale); break; }
+        status.done.push(unit[0].locale);
       }
     }
   }
   log(renderTable(rows));
   log(`\nwgraj ${n('wgraj')}, pomiń ${n('pomiń')}${zamien ? ', zamień ' + n('zamień') : ''}${zamien && apply ? ', usunięto ' + rows.reduce((a, r) => a + (r.removed ?? 0), 0) : ''}${apply ? ', zapisano ' + rows.filter(r => r.written).length : ''}`);
+  if (zamien) {
+    const locs = new Set(todo.map(r => r.locale));
+    log(`Podsumowanie zamiany: lokalizacji ${locs.size}, placementów do usunięcia ${rows.reduce((a, r) => a + (r.old?.length ?? 0), 0)}, obrazów do wgrania ${planned.size - inLib}, obrazów już w bibliotece ${inLib} z ${planned.size}.`);
+  }
+  if (zamien && apply && code) {
+    const st = status.failed?.[0];
+    log(`\n### Stan zamiany po przerwaniu (kod ≠ 0)\n\n- ukończone: ${status.done.join(', ') || 'brak'}\n- przerwana: ${st ? `${st.locale}${st.state}` : 'brak (zapis wstrzymany przed pierwszą lokalizacją)'}\n- nietknięte: ${status.untouched.join(', ') || 'brak'}\nPonowne uruchomienie z tą samą listą jest bezpieczne: ukończone lokalizacje dostaną ten sam wynik (obrazy użyte ponownie), przerwana zostanie dokończona.`);
+  } else if (zamien && apply) log(`Zamiana ukończona: ${status.done.length} z ${units.length} lokalizacji.`);
   if (!apply && code === 0) log('Dry-run zakończony — nic nie zapisano. Zapis: uruchom ponownie z trybem „apply” i zatwierdź środowisko release.');
   return { code, rows };
 }

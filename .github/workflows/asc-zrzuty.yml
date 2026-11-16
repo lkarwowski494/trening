@@ -4,8 +4,9 @@
 # Tryb apply: osobny job w środowisku `release` (zatwierdzenie właściciela, jak testflight.yml, asc-metadane.yml i asc-iap-localizations.yml; M1-048, DEC-06 a);
 # wgrywa i układa zrzuty, nie usuwa, pomija grupy, które mają już zrzuty.
 # Tryb „zamień” (decyzja właściciela 15.11.2026, W-23, D2 w docs/48): zamien-podglad = tylko lista (co zostałoby usunięte i wgrane), zamien-zapis = za środowiskiem `release`
-# usuwa placementy zrzutów JEDNEJ grupy (wejścia `lokalizacja` + `zrodlo`, wymagane przy zapisie; model L-001: pierwszy zapis na jednym elemencie) i wgrywa nowe z plików;
-# obrazów biblioteki nie usuwa. Bez nowych sekretów i uprawnień. Wyjątek od L-001 dla workflowów uruchamianych tylko ręcznie (decyzja 25.10.2026):
+# usuwa placementy zrzutów grup wybranych lokalizacji (wejścia `lokalizacja` + `zrodlo`, wymagane przy zapisie; jedno źródło na przebieg) i wgrywa nowe z plików;
+# obrazów biblioteki nie usuwa. Od 16.11.2026 (KO-082, zmienia KO-077) `lokalizacja` to jeden kod, lista po przecinku (np. pl,en-US,de-DE) albo `wszystkie`; lokalizacje idą kolejno,
+# błąd zatrzymuje przebieg i wypisuje stan (ukończone / przerwana / nietknięte); ponowne uruchomienie z tą samą listą jest bezpieczne. Model L-001: pierwszy zapis na jednym elemencie. Bez nowych sekretów i uprawnień. Wyjątek od L-001 dla workflowów uruchamianych tylko ręcznie (decyzja 25.10.2026):
 # scalenie przed przebiegiem dowodowym, pierwszy przebieg to dry-run, przy porażce cofnięcie.
 # Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (bez nowych). Repozytorium jest publiczne: logi bez identyfikatorów klucza
 # (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze; adresy wgrywania Apple nie trafiają do logu.
@@ -38,7 +39,7 @@ on:
         type: string
         default: ''
       lokalizacja:
-        description: 'Tryb zamień: kod lokalizacji sklepu (jeden element), np. en-GB albo pl — wymagany przy zamien-zapis'
+        description: 'Tryb zamień: kod lokalizacji sklepu (np. pl), lista po przecinku (np. pl,en-US,de-DE) albo słowo wszystkie (wszystkie lokalizacje, dla których artefakt ma zrzuty wybranego źródła) — wymagane przy zamien-zapis'
         required: false
         type: string
         default: ''
@@ -98,7 +99,7 @@ jobs:
           ZRODLO: ${{ inputs.zrodlo }}
         run: |
           set -o pipefail
-          if [ "$TRYB" = zamien-zapis ] && [ -z "$LOKALIZACJA" ]; then echo "::error::zamien-zapis wymaga wejścia lokalizacja (jeden element)"; exit 1; fi
+          if [ "$TRYB" = zamien-zapis ] && [ -z "$LOKALIZACJA" ]; then echo "::error::zamien-zapis wymaga wejścia lokalizacja (kod, lista po przecinku albo wszystkie)"; exit 1; fi
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
           ARGS=(--iphone "sklep-ramki/$ROZMIAR" --dry-run)
           case "$TRYB" in

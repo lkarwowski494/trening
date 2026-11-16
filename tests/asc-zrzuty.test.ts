@@ -83,7 +83,7 @@ const fakeFetch = async (url, init = {}) => {
     if (im && body.data.attributes.referenceName) { renamed.push(im.ref + ' -> ' + body.data.attributes.referenceName); im.ref = body.data.attributes.referenceName; }
     return resp(200, { data: {} });
   }
-  if (m === 'POST' && p === '/v1/appAssetLibraryPlacements') { if (sc.placementFails) return resp(500, { errors: [{ code: 'X', title: 't', detail: 'SECRET-DETAIL' }] }); const id = 'PL' + (placements.length + 1); placements.push({ id, ...body.data }); return resp(201, { data: { id } }); }
+  if (m === 'POST' && p === '/v1/appAssetLibraryPlacements') { if (sc.placementFails || (sc.placementFailsAfter !== undefined && placements.length >= sc.placementFailsAfter)) return resp(500, { errors: [{ code: 'X', title: 't', detail: 'SECRET-DETAIL' }] }); const id = 'PL' + (placements.length + 1); placements.push({ id, ...body.data }); return resp(201, { data: { id } }); }
   if (m === 'POST' && p === '/v1/appAssetLibraryPlacementOrderingRequests') { orders.push(body.data); return resp(201, { data: { id: 'O' } }); }
   return resp(405, {});
 };
@@ -106,6 +106,7 @@ if (sc.mode === 'unit') {
     noSrc: Z.parseZamien({ zamien: true, apply: true, lokalizacja: 'pl', zrodlo: '' }).error ?? null, badLoc: Z.parseZamien({ zamien: true, apply: false, lokalizacja: 'xx', zrodlo: 'iphone' }).error ?? null,
     badSrc: Z.parseZamien({ zamien: true, apply: false, lokalizacja: 'pl', zrodlo: 'mac' }).error ?? null, previewAll: Z.parseZamien({ zamien: true, apply: false, lokalizacja: '', zrodlo: '' }),
     off: Z.parseZamien({ zamien: false, apply: true, lokalizacja: '', zrodlo: '' }), strayLoc: Z.parseZamien({ zamien: false, apply: false, lokalizacja: 'pl', zrodlo: '' }).error ?? null };
+  out.parseL = (sc.parseCases ?? []).map(c => Z.parseZamien({ zamien: true, ...c }));
   out.parse = { empty: Z.parseLangs(''), list: Z.parseLangs(' cs, en,cs '), bad: Z.parseLangs('cs;rm -rf').error ?? null, unknown: Z.parseLangs('cs,xx').error ?? null };
 } else {
   const { shots: sh, problems } = Z.loadShots({ iphone: sc.iphone, zegarek: sc.zegarek, jezyki: sc.jezyki ?? '' });
@@ -115,7 +116,7 @@ if (sc.mode === 'unit') {
 }
 process.stdout.write(JSON.stringify(out));
 `;
-type Sc = { jezyki?: string; libImages?: { ref: string; size: number; state?: string; hideFirstList?: boolean }[]; processMs?: number; slowRef?: string; failRef?: string; mode?: string; apply?: boolean; iphone?: string; zegarek?: string; versions?: string[]; locales?: string[]; existing?: Record<string, number>; limit?: number; noLimits?: boolean; putFails?: boolean; png?: string; zamien?: { lokalizacja?: string; zrodlo?: string }; deleteFailsAt?: number; placementFails?: boolean; foreign?: boolean };
+type Sc = { jezyki?: string; libImages?: { ref: string; size: number; state?: string; hideFirstList?: boolean }[]; processMs?: number; slowRef?: string; failRef?: string; mode?: string; apply?: boolean; iphone?: string; zegarek?: string; versions?: string[]; locales?: string[]; existing?: Record<string, number>; limit?: number; noLimits?: boolean; putFails?: boolean; png?: string; zamien?: { lokalizacje?: string[]; wszystkie?: boolean; zrodlo?: string }; deleteFailsAt?: number; placementFailsAfter?: number; parseCases?: { apply?: boolean; lokalizacja?: string; zrodlo?: string }[]; placementFails?: boolean; foreign?: boolean };
 const drive = (sc: Sc) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', DRIVER, JSON.stringify(sc)], { encoding: 'utf8', maxBuffer: 50e6 })) as Record<string, any>;
 const writes = (calls: string[]) => calls.filter(c => !c.startsWith('GET'));
 const EDIT = ['PREPARE_FOR_SUBMISSION'];
@@ -306,7 +307,7 @@ describe('naprawa po przebiegu 41008000769 (30.10.2026): token, czekanie na prze
 });
 
 describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa placementy zrzutów jednej grupy i wgrywa nowe; granice bezpieczeństwa', () => {
-  const Z1 = { lokalizacja: 'pl', zrodlo: 'iphone' };
+  const Z1 = { lokalizacje: ['pl'], zrodlo: 'iphone' };
   const two = () => shots({ pl: { '01-a.png': [...IPHONE], '02-b.png': [...IPHONE] }, de: { '01-a.png': [...IPHONE] } });
   const dels = (r: Record<string, any>) => (r.calls as string[]).filter(c => c.startsWith('DELETE'));
   const idx = (calls: string[], f: (c: string) => boolean) => calls.map((c, i) => [c, i] as const).filter(([c]) => f(c)).map(([, i]) => i);
@@ -321,9 +322,9 @@ describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa pla
   });
   test('parseZamien: zapis wymaga lokalizacji i źródła (wejście zawężające, L-001); podgląd może bez; błędne wartości odrzucone; bez trybu zamień nie wolno podawać zawężenia', () => {
     const p = drive({ mode: 'unit', png: png(1320, 2868).toString('base64') }).parseZ;
-    expect(p.ok).toEqual({ lokalizacja: 'en-GB', zrodlo: 'iphone' });
+    expect(p.ok).toEqual({ lokalizacje: ['en-GB'], wszystkie: false, zrodlo: 'iphone' });
     expect(p.noLoc).toContain('lokalizacj'); expect(p.noSrc).toContain('źródł'); expect(p.badLoc).toContain('xx'); expect(p.badSrc).toContain('mac');
-    expect(p.previewAll).toEqual({ lokalizacja: '', zrodlo: '' }); expect(p.off).toBeNull(); expect(p.strayLoc).toContain('zamień');
+    expect(p.previewAll).toEqual({ lokalizacje: [], wszystkie: false, zrodlo: '' }); expect(p.off).toBeNull(); expect(p.strayLoc).toContain('zamień');
   });
   test('dry-run zamień: tylko GET, w tabeli „zamień — usunę N, wgram …” (liczby i nazwy plików, bez identyfikatorów); bez zawężenia pokazuje wszystkie grupy', () => {
     const r = drive({ iphone: two(), ...base, zamien: Z1 });
@@ -352,7 +353,7 @@ describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa pla
     expect(r.code).toBe(0); expect(dels(r)).toEqual([]); expect(r.logs).toContain('zapisano 1'); expect(r.logs).toContain('| iphone | pl | pl | G-IPHONE | 2 | wgraj |');
   });
   test('brak plików do wgrania dla wybranej lokalizacji albo źródła → kod 1, zero DELETE i zero zapisów (pusta grupa plików nie kasuje niczego)', () => {
-    for (const z of [{ lokalizacja: 'cs', zrodlo: 'iphone' }, { lokalizacja: 'pl', zrodlo: 'zegarek' }]) {
+    for (const z of [{ lokalizacje: ['cs'], zrodlo: 'iphone' }, { lokalizacje: ['pl'], zrodlo: 'zegarek' }]) {
       const r = drive({ iphone: two(), ...base, locales: ['pl', 'cs'], existing: { 'pl:G-IPHONE': 3, 'cs:G-IPHONE': 4 }, apply: true, zamien: z });
       expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]); expect(r.logs).toContain('brak zrzutów do wgrania');
     }
@@ -365,7 +366,7 @@ describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa pla
     const r3 = drive({ iphone: two(), ...base, apply: true, zamien: Z1, putFails: true }); expect(r3.code).toBe(1); expect(dels(r3)).toEqual([]);
   });
   test('apply zamień bez zawężenia (lokalizacja + źródło) odmawia w skrypcie, nawet gdy wywołanie pominie parseZamien: zero zapisów', () => {
-    for (const z of [{}, { lokalizacja: 'pl' }, { zrodlo: 'iphone' }]) {
+    for (const z of [{}, { lokalizacje: ['pl'] }, { zrodlo: 'iphone' }]) {
       const r = drive({ iphone: two(), ...base, apply: true, zamien: z }); expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]); expect(r.logs).toContain('wymaga zawężenia');
     }
   });
@@ -389,6 +390,99 @@ describe('tryb „zamień” (W-23, decyzja właściciela 15.11.2026): usuwa pla
   });
   test('tryby dry-run i apply bez „zamień” nigdy nie usuwają, także gdy klient dopuszcza DELETE (grupa z zrzutami pomijana)', () => {
     for (const apply of [false, true]) { const r = drive({ iphone: two(), ...base, apply }); expect(dels(r)).toEqual([]); expect(r.logs).toContain('nic nie usuwam'); expect(writes(r.calls)).toEqual([]); }
+  });
+});
+
+describe('tryb „zamień” — lista lokalizacji w jednym przebiegu (decyzja właściciela 16.11.2026, KO-082; zmienia KO-077 w punkcie „zapis zawsze jedna lokalizacja”)', () => {
+  const IMG = 73; const refp = (lang: string, f: string) => `trening-1.0/iphone/${lang}/${f}`;
+  const three = () => shots({ pl: { '01-a.png': [...IPHONE], '02-b.png': [...IPHONE] }, de: { '01-a.png': [...IPHONE] }, cs: { '01-a.png': [...IPHONE] } });
+  const dels = (r: Record<string, any>) => (r.calls as string[]).filter(c => c.startsWith('DELETE'));
+  const idx = (calls: string[], f: (c: string) => boolean) => calls.map((c, i) => [c, i] as const).filter(([c]) => f(c)).map(([, i]) => i);
+  const LOC3 = ['pl', 'de-DE', 'cs']; const ex3 = { 'pl:G-IPHONE': 3, 'de-DE:G-IPHONE': 2, 'cs:G-IPHONE': 4 };
+  const base = { versions: EDIT, locales: LOC3, existing: ex3 };
+  const zl = (l: string[], z = 'iphone') => ({ lokalizacje: l, wszystkie: false, zrodlo: z });
+
+  test('parseZamien: jedna, lista po przecinku (ze spacjami) i „wszystkie”; nieznana, duplikat, „wszystkie” z kodami, zapis bez lokalizacji albo źródła → błąd wejścia', () => {
+    const r = drive({ mode: 'unit', png: png(1320, 2868).toString('base64'), parseCases: [
+      { apply: true, lokalizacja: 'pl', zrodlo: 'iphone' }, { apply: true, lokalizacja: 'pl, en-US ,de-DE', zrodlo: 'iphone' }, { apply: true, lokalizacja: 'wszystkie', zrodlo: 'zegarek' },
+      { apply: true, lokalizacja: 'pl,xx', zrodlo: 'iphone' }, { apply: true, lokalizacja: 'pl,en-US,pl', zrodlo: 'iphone' }, { apply: true, lokalizacja: 'wszystkie,pl', zrodlo: 'iphone' },
+      { apply: true, lokalizacja: ',', zrodlo: 'iphone' }, { apply: true, lokalizacja: '', zrodlo: 'iphone' }, { apply: true, lokalizacja: 'pl,de-DE', zrodlo: '' }, { apply: false, lokalizacja: '', zrodlo: '' },
+    ] }).parseL as any[];
+    expect(r[0]).toEqual(zl(['pl'])); expect(r[1]).toEqual(zl(['pl', 'en-US', 'de-DE'])); expect(r[2]).toEqual({ lokalizacje: [], wszystkie: true, zrodlo: 'zegarek' });
+    expect(r[3].error).toContain('xx'); expect(r[4].error).toMatch(/więcej niż raz: pl/); expect(r[5].error).toContain('wszystkie'); expect(r[6].error).toContain('lokalizacja');
+    expect(r[7].error).toContain('lokalizacji'); expect(r[8].error).toContain('źródła'); expect(r[9]).toEqual({ lokalizacje: [], wszystkie: false, zrodlo: '' });
+  });
+  test('błąd wejścia kończy skrypt kodem 2 przed jakimkolwiek wywołaniem API (nieznana lokalizacja, duplikat) — bez klucza i sieci', () => {
+    const env = { ...process.env, ASC_KEY_ID: 'k', ASC_ISSUER_ID: 'i', ASC_KEY_PATH: join(tmpdir(), 'nie-ma-klucza.p8') };
+    for (const [loc, msg] of [['pl,xx', 'nieznana lokalizacja'], ['pl,pl', 'więcej niż raz']]) {
+      let status = 0; let err = '';
+      try { execFileSync('node', [join(root, 'scripts/asc/zrzuty.mjs'), '--iphone', tmpdir(), '--zamien', '--dry-run', '--lokalizacja', loc], { env, encoding: 'utf8', stdio: 'pipe' }); } catch (e: any) { status = e.status; err = String(e.stderr); }
+      expect([loc, status]).toEqual([loc, 2]); expect(err).toContain(msg);
+    }
+  });
+  test('apply na liście: lokalizacje kolejno (cała pierwsza — obrazy, usunięcia, placementy, kolejność — przed pierwszym obrazem drugiej); DELETE tylko placementów wybranych lokalizacji; trzecia (nie na liście) nietknięta', () => {
+    const r = drive({ iphone: three(), ...base, apply: true, zamien: zl(['pl', 'de-DE']) }); const calls = r.calls as string[];
+    expect(r.code).toBe(0); expect(r.deleted).toEqual([...[0, 1, 2].map(i => `/v1/appAssetLibraryPlacements/OLD-pl-${i}`), ...[0, 1].map(i => `/v1/appAssetLibraryPlacements/OLD-de-DE-${i}`)]);
+    expect(JSON.stringify(calls)).not.toContain('OLD-cs'); expect(r.reserved).toEqual([refp('pl', '01-a.png'), refp('pl', '02-b.png'), refp('de', '01-a.png')]);
+    const lastPlOrder = idx(calls, c => c === 'POST /v1/appAssetLibraryPlacementOrderingRequests')[0]; const deImg = idx(calls, c => c === 'POST /v1/appAssetLibraryImages')[2];
+    expect(deImg).toBeGreaterThan(lastPlOrder); expect(idx(calls, c => c.startsWith('DELETE /v1/appAssetLibraryPlacements/OLD-de')).every(i => i > deImg)).toBe(true);
+    expect((r.placements as any[]).map(x => x.relationships.appStoreVersionLocalization.data.id)).toEqual(['L-pl', 'L-pl', 'L-de-DE']); expect(r.orders).toHaveLength(2);
+    expect(r.logs).toContain('Zamiana ukończona: 2 z 2 lokalizacji'); expect(r.logs).toContain('usunięto 5');
+  });
+  test('kolejność przetwarzania to kolejność z listy (nie z katalogu): cs,pl → najpierw cs', () => {
+    const r = drive({ iphone: three(), ...base, apply: true, zamien: zl(['cs', 'pl']) });
+    expect(r.code).toBe(0); expect((r.placements as any[]).map(x => x.relationships.appStoreVersionLocalization.data.id)).toEqual(['L-cs', 'L-pl', 'L-pl']);
+  });
+  test('„wszystkie”: tylko lokalizacje sklepu, dla których artefakt ma zrzuty źródła (bg, które nie ma lokalizacji sklepu, i brak zrzutów zegarka pomijane bez błędu); cs (już zamieniona, obrazy w bibliotece) dostaje ten sam wynik: zero rezerwacji, stare placementy usunięte, nowe ułożone', () => {
+    const dir = shots({ pl: { '01-a.png': [...IPHONE] }, cs: { '01-a.png': [...IPHONE] }, bg: { '01-a.png': [...IPHONE] } });
+    const r = drive({ iphone: dir, ...base, locales: ['pl', 'cs'], existing: { 'pl:G-IPHONE': 1, 'cs:G-IPHONE': 1 }, apply: true, zamien: { wszystkie: true, zrodlo: 'iphone' },
+      libImages: [{ ref: refp('cs', '01-a.png'), size: IMG }] });
+    expect(r.code).toBe(0); expect(r.reserved).toEqual([refp('pl', '01-a.png')]);
+    expect((r.deleted as string[]).sort()).toEqual(['/v1/appAssetLibraryPlacements/OLD-cs-0', '/v1/appAssetLibraryPlacements/OLD-pl-0']);
+    expect((r.placements as any[]).map(x => x.relationships.appStoreVersionLocalization.data.id).sort()).toEqual(['L-cs', 'L-pl']); expect(r.logs).not.toContain('| iphone | bg |'); expect(r.logs).toContain('Zamiana ukończona: 2 z 2');
+    const none = drive({ iphone: dir, ...base, locales: ['pl', 'cs'], existing: {}, apply: true, zamien: { wszystkie: true, zrodlo: 'zegarek' } });
+    expect(none.code).toBe(1); expect(writes(none.calls)).toEqual([]);
+  });
+  test('ponowne uruchomienie tej samej listy po ukończeniu jest bezpieczne: obrazy użyte ponownie (zero rezerwacji i PUT), stare placementy usunięte, liczba nowych ta sama', () => {
+    const lib = [{ ref: refp('pl', '01-a.png'), size: IMG }, { ref: refp('pl', '02-b.png'), size: IMG }, { ref: refp('de', '01-a.png'), size: IMG }];
+    const r = drive({ iphone: three(), versions: EDIT, locales: LOC3, existing: { 'pl:G-IPHONE': 2, 'de-DE:G-IPHONE': 1 }, apply: true, zamien: zl(['pl', 'de-DE']), libImages: lib });
+    expect(r.code).toBe(0); expect(r.reserved).toEqual([]); expect(r.puts).toEqual([]); expect(dels(r)).toHaveLength(3); expect(r.placements).toHaveLength(3); expect(r.logs).toContain('użyto ponownie 2');
+  });
+  test('błąd w drugiej lokalizacji (przetwarzanie obrazu): pierwsza ukończona, druga przerwana (nic nie usunięto), trzecia nietknięta — zero rezerwacji i DELETE dla trzeciej, kod 1, raport w logu', () => {
+    const r = drive({ iphone: three(), ...base, apply: true, zamien: zl(LOC3), failRef: '/de/' }); const L = r.logs as string;
+    expect(r.code).toBe(1); expect(L).toContain('- ukończone: pl'); expect(L).toContain('- przerwana: de-DE (nic nie usunięto, stare zrzuty zostają)'); expect(L).toContain('- nietknięte: cs');
+    expect(r.reserved).not.toContain(refp('cs', '01-a.png')); expect(JSON.stringify(r.calls)).not.toContain('OLD-cs'); expect(JSON.stringify(r.calls)).not.toContain('OLD-de');
+    expect(dels(r)).toHaveLength(3); expect((r.placements as any[]).map(x => x.relationships.appStoreVersionLocalization.data.id)).toEqual(['L-pl', 'L-pl']);
+    expect(L).toContain('Ponowne uruchomienie z tą samą listą jest bezpieczne'); expect(L).not.toContain('SECRET-DETAIL');
+  });
+  test('błąd usuwania w środku drugiej lokalizacji: raport podaje „usunięto 1 z 2”, ukończone pl, nietknięte cs; kolejne lokalizacje nie ruszone', () => {
+    const r = drive({ iphone: three(), ...base, apply: true, zamien: zl(LOC3), deleteFailsAt: 5 }); const L = r.logs as string;
+    expect(r.code).toBe(1); expect(L).toContain('- ukończone: pl'); expect(L).toMatch(/- przerwana: de-DE \(usunięto 1 z 2; nowe zrzuty nie zapisane/); expect(L).toContain('- nietknięte: cs');
+    expect(JSON.stringify(r.calls)).not.toContain('OLD-cs'); expect(r.placements).toHaveLength(2);
+  });
+  test('błąd w pierwszej lokalizacji: nic ukończone, reszta nietknięta; „ukończone: brak”', () => {
+    const r = drive({ iphone: three(), ...base, apply: true, zamien: zl(LOC3), failRef: '/pl/02-b' }); const L = r.logs as string;
+    expect(r.code).toBe(1); expect(L).toContain('- ukończone: brak'); expect(L).toContain('- przerwana: pl'); expect(L).toContain('- nietknięte: de-DE, cs'); expect(dels(r)).toEqual([]);
+  });
+  test('komunikat po częściowej awarii mówi prawdę (backlog recenzji): po usunięciu starych i utworzeniu części nowych grupa nie jest pusta — liczby utworzonych, bez „grupa jest pusta”', () => {
+    const r = drive({ iphone: three(), ...base, apply: true, zamien: zl(['pl']), placementFailsAfter: 1 }); const L = r.logs as string;
+    expect(r.code).toBe(1); expect(L).toContain('usunięto 3 z 3; utworzono tylko 1 z 2 nowych placementów'); expect(L).toContain('grupa nie jest kompletna'); expect(L).not.toContain('grupa jest pusta'); expect(SCRIPT).not.toContain('grupa jest pusta');
+  });
+  test('lokalizacja z listy bez zrzutów w artefakcie (albo bez wersji w ASC) → kod 1 przed jakimkolwiek zapisem, z nazwą lokalizacji', () => {
+    const r = drive({ iphone: shots({ pl: { '01-a.png': [...IPHONE] } }), ...base, apply: true, zamien: zl(['pl', 'cs']) });
+    expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]); expect(r.logs).toContain('brak zrzutów do wgrania dla lokalizacji cs');
+  });
+  test('zapis bez zawężenia (ani lista, ani „wszystkie”, albo bez źródła) odmawia w skrypcie: zero zapisów', () => {
+    for (const z of [{ lokalizacje: [], wszystkie: false, zrodlo: 'iphone' }, { wszystkie: true }]) { const r = drive({ iphone: three(), ...base, apply: true, zamien: z }); expect(r.code).toBe(1); expect(writes(r.calls)).toEqual([]); expect(r.logs).toContain('wymaga zawężenia'); }
+  });
+  test('podgląd na liście: wiersz na każdą lokalizację (pozostałe pominięte), podsumowanie: lokalizacje, usunięcia, obrazy do wgrania i już w bibliotece; tylko GET', () => {
+    const r = drive({ iphone: three(), ...base, zamien: zl(['pl', 'de-DE']), libImages: [{ ref: refp('de', '01-a.png'), size: IMG }] }); const L = r.logs as string;
+    expect(r.code).toBe(0); expect(writes(r.calls)).toEqual([]); expect(L).toContain('| iphone | pl | pl | G-IPHONE | 2 | zamień — usunę 3, wgram 2'); expect(L).toContain('| iphone | de | de-DE | G-IPHONE | 1 | zamień — usunę 2, wgram 1'); expect(L).not.toContain('| iphone | cs |');
+    expect(L).toContain('Podsumowanie zamiany: lokalizacji 2, placementów do usunięcia 5, obrazów do wgrania 2, obrazów już w bibliotece 1 z 3.');
+    const all = drive({ iphone: three(), ...base, zamien: { wszystkie: true, zrodlo: 'iphone' } }); expect(all.logs).toContain('Podsumowanie zamiany: lokalizacji 3, placementów do usunięcia 9, obrazów do wgrania 4');
+  });
+  test('workflow: wejście lokalizacja opisuje listę i „wszystkie”; wartość tylko przez zmienną środowiskową', () => {
+    expect(wf).toMatch(/lokalizacja:\n\s+description: '[^\n]*wszystkie[^\n]*'/); expect(wf).toContain('16.11.2026'); expect(wf).not.toMatch(/run:[^\n]*\$\{\{ inputs/);
   });
 });
 
