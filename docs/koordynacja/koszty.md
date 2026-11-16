@@ -56,3 +56,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AF …VBwVNue1ekjgWYsGW44 | 08 build (sonnet-5-5): IAP v2 ASC | 10 (pułap) | 8,05 | 25,4 | zlecone 07:16 → start 07:18 → a040f089 ~07:22 → tests.yml ~07:45 → decyzja właściciela 08:40 → poprawki 4f3c013e ~13:20 → przyjęte 13:42 | ~4 h: moja wiadomość z poprawkami dotarła do AF z opóźnieniem (ack 12:48); send_message AF→koordynator raz nie doszedł | WG send_message |
 | AI | 08 (sonnet), apps4brew-www | 3 | 0,86 | 14,5 | 20:30 → 20:30 → 20:35 → 20:40 → 20:46 | 0 | prompt skrócony |
 | AG | 10 (sonnet), wydanie 1.1 docs + eksport marki | 8 | 5,62 | 33,2 | 20:10 → 20:10 → 20:20 → 21:18 → 21:50 | ~30 min (oczekiwanie na dane od koordynatora) | — |
+| AJ | 08 (sonnet), W-23 tryb „zamień” | 8 | 2,65 | 21,7 | 22:10 → 22:12 → 23:55 → 00:05 → 00:40 | ~40 min (verify ×3: README, płytki klon) + ~40 min (nie wybudziła się po CI) | WG: sesja nie budzi się po CI |
