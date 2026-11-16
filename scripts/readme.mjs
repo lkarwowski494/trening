@@ -163,7 +163,7 @@ const WORKFLOW_ROLE = {
   'pages.yml': 'publikacja strony (prywatność, wsparcie)',
   'asc-iap-localizations.yml': 'lokalizacje produktów zakupu w App Store Connect',
   'asc-metadane.yml': 'wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release)',
-  'asc-zrzuty.yml': 'wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release)',
+  'asc-zrzuty.yml': 'wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release); tryb „zamień” usuwa i wgrywa zrzuty jednej grupy)',
   'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia)',
   'asc-status-wersji.yml': 'status wersji iOS w App Store Connect: stan recenzji (tylko odczyt; ręcznie)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',

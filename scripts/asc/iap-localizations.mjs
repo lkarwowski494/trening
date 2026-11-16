@@ -42,9 +42,11 @@ export function makeJwt({ keyId, issuerId, keyPem, now = Math.floor(Date.now() /
 
 /** Klient API: tylko GET/POST/PATCH; stronicowanie przez links.next; błąd bez treści odpowiedzi (tylko status, kody i tytuły).
  *  `token`: tekst albo fabryka `() => tekst` wywoływana przy każdym żądaniu (długie przebiegi odnawiają token; zgodne wstecz ze stałym tokenem). */
-export function makeClient({ fetchFn = fetch, token, sleep = ms => new Promise(r => setTimeout(r, ms)) }) {
+/** `allowDelete(ścieżka)` — jawne zezwolenie na DELETE dla wąskiej ścieżki (tylko scripts/asc/zrzuty.mjs, tryb „zamień”, decyzja 15.11.2026); domyślnie klient nigdy nie usuwa. */
+export function makeClient({ fetchFn = fetch, token, sleep = ms => new Promise(r => setTimeout(r, ms)), allowDelete = null }) {
   async function call(method, path, body) {
-    if (!ALLOWED_METHODS.has(method)) throw new Error(`Niedozwolona metoda ${method} — skrypt nigdy nie usuwa`);
+    const deleteOk = method === 'DELETE' && typeof allowDelete === 'function' && allowDelete(String(path).split('?')[0]) === true;
+    if (!deleteOk && !ALLOWED_METHODS.has(method)) throw new Error(`Niedozwolona metoda ${method} — skrypt nigdy nie usuwa`);
     const url = path.startsWith('http') ? path : API + path;
     for (let attempt = 0; ; attempt++) {
       const res = await fetchFn(url, { method, headers: { Authorization: `Bearer ${typeof token === 'function' ? token() : token}`, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
