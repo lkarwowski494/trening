@@ -133,7 +133,7 @@ Odczyt: developer.apple.com/documentation/appstoreconnectapi/… i …/analytics
 - Rola: Admin (odczyt; Apple nie podaje roli dla tego zasobu — wynik pierwszego odczytu). Opóźnienie: **[DO USTALENIA]** (strona nie podaje).
 - Ograniczenia: API zwraca recenzje z tekstem; ocen bez tekstu i średniej na terytorium tu nie ma (p. 9, poz. 6).
 - Dane osobowe: `reviewerNickname` to pseudonim osoby trzeciej — **nie zapisujemy** (rekomendacja); zapis: data, terytorium, ocena, tytuł, treść (prywatne repo). Treść recenzji nie trafia do logu.
-- Kod: jeden skrypt `reczenzje` w stylu `na-zywo.mjs` (tylko GET), plik `dane/recenzje.csv` scalany po identyfikatorze recenzji (identyfikator zasobu Apple jako klucz scalania, kolumna `id` w prywatnym CSV). Nakład: ok. 1 sesja.
+- Kod: jeden skrypt `recenzje` w stylu `na-zywo.mjs` (tylko GET), plik `dane/recenzje.csv` scalany po identyfikatorze recenzji (identyfikator zasobu Apple jako klucz scalania, kolumna `id` w prywatnym CSV). Nakład: ok. 1 sesja.
 
 ### (d) Sprzedaż i subskrypcje — dwie drogi, rekomendacja: najpierw Analytics Commerce, potem raporty Sales
 
