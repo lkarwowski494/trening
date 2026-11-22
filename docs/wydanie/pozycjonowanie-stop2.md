@@ -97,7 +97,7 @@ Najważniejsze dowody (22.11.2026; „mediana” = mediana ocen pierwszej dziesi
 
 ## Decyzje dla właściciela
 
-### KO-106. Nazwa EN (en-US, en-GB, en-AU, en-CA)
+### KO-110. Nazwa EN (en-US, en-GB, en-AU, en-CA)
 
 | Opcja | Co | Kompromis | Wykonalność |
 |---|---|---|---|
@@ -105,7 +105,7 @@ Najważniejsze dowody (22.11.2026; „mediana” = mediana ocen pierwszej dziesi
 | B | nazwa bez zmian, tylko podtytuł i słowa | zero ryzyka dla marki; zostajemy poza 200 na frazach głównych | jw. |
 | C | „RepsGoat: Progressive Overload” + podtytuł „Gym log & rest timer” | mediana 1–4,5, ale nazwa mniej mówi, czym aplikacja jest | jw. |
 
-### KO-107. Nazwy pozostałych lokalizacji (człon po „RepsGoat: ”)
+### KO-111. Nazwy pozostałych lokalizacji (człon po „RepsGoat: ”)
 
 | Opcja | Co | Kompromis | Wykonalność |
 |---|---|---|---|
@@ -117,14 +117,14 @@ Niepewne po krytyce (do wyboru przy A, rekomendacja pierwsza): ms „Gym Log & B
 „Gym Log & Angkat Berat”; vi „Tập gym tại phòng” albo „Tập gym & thể hình” (krytyk: pierwsza zawęża do siłowni, druga szersza, niesprawdzona w API);
 hr „teretana i trening” albo „dnevnik treninga” (101 wyników, mediana 0).
 
-### KO-108. Kategoria
+### KO-112. Kategoria
 
 | Opcja | Co | Kompromis | Wykonalność |
 |---|---|---|---|
 | **A (rekomendacja)** | bez zmian: główna Health & Fitness, bez dodatkowej | 9–10/10 aplikacji w wynikach fraz głównych to Health & Fitness; zero ryzyka | stan obecny (docs/45, 21.10) |
 | B | dodatkowa Sports | Apple indeksuje też kategorię dodatkową („Your primary category and optional secondary category are indexed”, App Store search); słowo „sport” bez dowodu popytu w badaniu | zmiana w App Store Connect (krok właściciela) |
 
-### KO-109. Podtytuły i słowa kluczowe
+### KO-113. Podtytuły i słowa kluczowe
 
 | Opcja | Co | Kompromis | Wykonalność |
 |---|---|---|---|
