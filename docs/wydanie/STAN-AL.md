@@ -28,6 +28,11 @@ Potem E2 scalenie + krytyk (świeży subagent), STOP 2 do koordynatora.
   recenzent lokalizacji, testy przypięte do wartości (`tests/store-metadata.test.ts:52-53`, `tests/nazwa-repsgoat.test.ts`, `tests/i18n-locales.test.ts`),
   docs/18, `verify:lekkie`; potem E4 (hipotezy, raport). Katalog przebiegu (scratchpad AL2) nie przetrwa nowej sesji — tabela STOP 2 jest kompletna.
 
+## Sesja AL2 — E3/E4 (22.11.2026 ~10:45 UTC)
+- E3: 8cd54167 (pola 33 lokalizacji w `store/`, testy z datą 22.11, BRD, docs/18 KO-110…KO-115), 4ab462a6 (macierz); `verify:lekkie` zielone; tests.yml 45013195442 w toku.
+- E4: `docs/wydanie/widocznosc.md` (raport końcowy, hipotezy H-54…H-56 z progami [DO USTALENIA], plan narzędzi, kroki właściciela).
+- Zostało: zielony tests.yml; zgoda właściciela na wysyłkę i scalenie; 4 pytania recenzenta do rodzimych użytkowników (vi, es-MX, hr, ms).
+
 ## Pułapki
 - `verify:docs`: najpierw `git fetch --unshallow origin` (merge-base z origin/main); uruchamiać `NODE_NO_WARNINGS=1 NODE_USE_ENV_PROXY=1 npm run verify:docs`
   — bez NODE_NO_WARNINGS ostrzeżenie proxy daje fałszywe porażki Jest (11 testów); bez proxy baza H1 nie znajduje zielonego tests.yml. `npm ci` przed verify.
