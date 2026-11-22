@@ -245,6 +245,7 @@ describe('scripts/asc/na-zywo.mjs: metadane wersji w sprzedaży (tylko odczyt)',
     'GET /v1/appInfos/INFO-LIVE/appInfoLocalizations': { body: { data: [{ id: 'N1', attributes: { locale: 'pl', name: 'RepsGoat', subtitle: 'Plan i dziennik' } }] } },
     'GET /v1/apps/APPID-SECRET/appAvailabilityV2': { body: { data: { id: 'AV1', attributes: { availableInNewTerritories: true } } } },
     'GET /v2/appAvailabilities/AV1/territoryAvailabilities': { body: { data: [{ id: 'T1', attributes: { available: true }, relationships: { territory: { data: { type: 'territories', id: 'POL' } } } }, { id: 'T2', attributes: { available: false }, relationships: { territory: { data: { type: 'territories', id: 'CZE' } } } }] } },
+    'GET /v1/apps/APPID-SECRET/reviewSubmissions': { body: { data: [{ id: 'SUB1', attributes: { platform: 'IOS', state: 'COMPLETE', submittedDate: '2026-10-30T09:00:00Z' } }, { id: 'SUB2', attributes: { platform: 'IOS', state: 'WAITING_FOR_REVIEW', submittedDate: '2026-11-20T09:00:00Z' } }] } },
     ...extra } });
 
   test('czyta wersję READY_FOR_SALE (nie edytowalną) i appInfo opublikowany; zapisuje JSON; w logu same liczby', () => {
@@ -258,6 +259,9 @@ describe('scripts/asc/na-zywo.mjs: metadane wersji w sprzedaży (tylko odczyt)',
     expect(j.info_lokalizacje).toEqual([{ locale: 'pl', name: 'RepsGoat', subtitle: 'Plan i dziennik' }]);
     expect(j.info_zakladany).toBe(false);
     expect(j.dostepnosc).toEqual({ dostepna_w_nowych_terytoriach: true, terytoria: [{ id: 'CZE', dostepna: false }, { id: 'POL', dostepna: true }] });
+    expect(j.zgloszenia_do_recenzji).toEqual([{ platforma: 'IOS', stan: 'WAITING_FOR_REVIEW', wyslano: '2026-11-20T09:00:00Z' }, { platforma: 'IOS', stan: 'COMPLETE', wyslano: '2026-10-30T09:00:00Z' }]);
+    expect(r.out).toContain('zgłoszeń do recenzji: 2');
+    expect(r.out).not.toContain('WAITING_FOR_REVIEW');
     expect(r.calls.every(c => c.m === 'GET')).toBe(true);
     expect(r.calls.some(c => c.p.includes('V-EDIT'))).toBe(false);
     expect(r.calls.find(c => c.p.includes('territoryAvailabilities'))?.p).toContain('include=territory');

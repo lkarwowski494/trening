@@ -57,10 +57,12 @@ export async function run({ client, out, log = console.log }) {
       const teryt = avId ? await c.list(`/v2/appAvailabilities/${avId}/territoryAvailabilities?include=territory`) : [];
       dost = dostepnosc(av?.data, teryt);
     } catch (e) { log(`Dostępność terytoriów: niedostępna (${String(e.message).slice(0, 80)})`); }
-    const wynik = { wersja: String(wersja.attributes?.versionString ?? ''), stan_wersji: stan(wersja), info_zakladany: zakladany, wersja_lokalizacje: wierszeWersji(locsWersji), info_lokalizacje: wierszeInfo(locsInfo), dostepnosc: dost };
+    let zgloszenia = null;
+    try { zgloszenia = (await c.list(`/v1/apps/${appId}/reviewSubmissions?filter[platform]=IOS`)).map(x => ({ platforma: pole(x.attributes, 'platform'), stan: pole(x.attributes, 'state'), wyslano: pole(x.attributes, 'submittedDate') })).sort((a, b) => b.wyslano.localeCompare(a.wyslano)); } catch (e) { log(`Zgłoszenia do recenzji: niedostępne (${String(e.message).slice(0, 80)})`); }
+    const wynik = { wersja: String(wersja.attributes?.versionString ?? ''), stan_wersji: stan(wersja), info_zakladany: zakladany, wersja_lokalizacje: wierszeWersji(locsWersji), info_lokalizacje: wierszeInfo(locsInfo), dostepnosc: dost, zgloszenia_do_recenzji: zgloszenia };
     mkdirSync(out, { recursive: true });
     writeFileSync(join(out, 'metadane-na-zywo.json'), JSON.stringify(wynik, null, 2) + '\n');
-    log(`Wersja w sprzedaży: ${wynik.stan_wersji}; lokalizacji wersji: ${wynik.wersja_lokalizacje.length}; lokalizacji informacji: ${wynik.info_lokalizacje.length}; terytoriów: ${dost ? dost.terytoria.length : 'brak danych'}${zakladany ? '; appInfo założony (stan niepewny)' : ''}`);
+    log(`Wersja w sprzedaży: ${wynik.stan_wersji}; lokalizacji wersji: ${wynik.wersja_lokalizacje.length}; lokalizacji informacji: ${wynik.info_lokalizacje.length}; zgłoszeń do recenzji: ${zgloszenia ? zgloszenia.length : 'brak danych'}; terytoriów: ${dost ? dost.terytoria.length : 'brak danych'}${zakladany ? '; appInfo założony (stan niepewny)' : ''}`);
     return { code: 0, wynik };
   } catch (e) { log(`BŁĄD: ${String(e.message).slice(0, 200)}`); return { code: 1 }; }
 }
