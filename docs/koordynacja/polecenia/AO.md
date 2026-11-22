@@ -2,7 +2,7 @@
 Koordynator: session_01BM51odgG7NSW2dnk3ZgwQ4 (raporty, pytania, PRZEKAZANIE tylko przez send_message do tego ID). Gałąź stanu koordynatora: `koordynacja` (tylko do odczytu).
 
 1. Rola: 10-wydanie w trybie build (prompt po `=== PROMPT ROLI ===`). Biblioteki prompts nie dołączasz. CLAUDE.md ma pierwszeństwo (bramki wydania, L-001, „Przejście na sucho przed sesją w App Store Connect”, docs/48 i docs/49 jako wzór kroków, kolumna „Stan”).
-2. Start: gałąź `wyd/1-1-1` od `origin/integracja-1-1` @ <SHA podany w wiadomości startowej> (po scaleniu porządków AK i pozycjonowania AL2). `npm ci`. Tożsamość commitów wg CLAUDE.md.
+2. Start: gałąź `wyd/1-1-1` od `origin/integracja-1-1` @ 4ab2c1a4 (po scaleniu porządków AK i pozycjonowania AL2; gałąź `wyd/1-1-1` już utworzona na tym SHA). `npm ci`. Tożsamość commitów wg CLAUDE.md.
 3. Decyzje: KO-119 (właściciel, 22.11): wersja 1.1.1 teraz, bez zmian w kodzie aplikacji, z nowymi metadanymi 33 lokalizacji (KO-110…KO-115 w docs/18). KO-120 (do weta): audyt zmian od 1.1 + stała lista kontrolna, bez pełnego audytu całości; pełny katalog E2E na standardowym iPhonie i test telefonu właściciela zostają.
 4. Zadania (każde z kryterium „gotowe”):
    1. Plan wydania `docs/49b-wydanie-1-1-1.md` (albo sekcja w docs/49 — wybierz wg konwencji repo) z kolumną „Stan”: kroki od wersji do wydania, z wykonawcą (agent / automat / właściciel) i stroną Apple przeczytaną dziś przy każdym kroku w ASC (cytat). Gotowe: plik + `npm run verify:docs` zielone.
