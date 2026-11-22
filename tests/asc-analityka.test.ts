@@ -15,6 +15,8 @@ const root = join(__dirname, '..');
 const read = (f: string) => readFileSync(join(root, f), 'utf8');
 const ANALITYKA = read('scripts/asc/analityka.mjs');
 const NAZYWO = read('scripts/asc/na-zywo.mjs');
+const RECENZJE = read('scripts/asc/recenzje.mjs');
+const CENY = read('scripts/asc/ceny.mjs');
 const WF = read('scripts/asc/prywatne-repo/asc-dane.yml');
 
 type Wynik = { code: number; calls: { m: string; p: string; auth: boolean; body: unknown }[]; out: string; files: Record<string, string>; stan?: unknown };
@@ -126,7 +128,7 @@ describe('scripts/asc/analityka.mjs: czyste funkcje', () => {
     w[3].counts = 'abc';
     const a = agreguj(w, '@RAPORTY0');
     expect(a).toHaveLength(2);
-    expect(a.find((r: any) => r.territory === 'POL')).toMatchObject({ counts: 15, unique_counts: 12 });
+    expect(a.find((r: any) => r.territory === 'POL')).toMatchObject({ counts: 15, unique_counts_suma_urzadzen: 12 });
     expect(a.find((r: any) => r.territory === 'CZE')).toMatchObject({ counts: 0 });
   });
   test('najnowszePoDacie: późniejszy processingDate zastępuje wcześniejszy, rekordów nie łączy (docs Apple: „Use the latest instance”)', async () => {
@@ -191,7 +193,7 @@ describe('scripts/asc/analityka.mjs: przebieg na atrapie API', () => {
     const r = drive('analityka.mjs', pipeline());
     expect(r.code).toBe(0);
     const d = r.files['discovery.csv'].trim().split('\n');
-    expect(d[0]).toBe('date,territory,source_type,page_type,event,engagement_type,counts,unique_counts');
+    expect(d[0]).toBe('date,territory,source_type,page_type,event,engagement_type,counts,unique_counts_suma_urzadzen');
     expect(d).toContain('2026-11-20,POL,App Store search,Product page,Page view,Get,15,12');
     expect(d).toContain('2026-11-21,CZE,App Store browse,Product page,Impression,Get,120,99'); // 120, nie 100 — instancja z 22.11 zastępuje
     expect(d).not.toContain('2026-11-21,CZE,App Store browse,Product page,Impression,Get,100,90');
@@ -203,7 +205,7 @@ describe('scripts/asc/analityka.mjs: przebieg na atrapie API', () => {
     expect(JSON.parse(r.files['stan.json'])).toMatchObject({ zadanie: 'jest', raporty: { discovery: 'App Store Discovery and Engagement Standard' } });
   });
   test('kolejny przebieg scala z poprzednim plikiem: starsze daty zostają, powtórzone daty są zastąpione', () => {
-    const r = drive('analityka.mjs', pipeline({ preFiles: { 'discovery.csv': 'date,territory,source_type,page_type,event,engagement_type,counts,unique_counts\n2026-10-30,POL,App Store search,Product page,Page view,Get,4,3\n2026-11-21,CZE,App Store browse,Product page,Impression,Get,1,1\n' } }));
+    const r = drive('analityka.mjs', pipeline({ preFiles: { 'discovery.csv': 'date,territory,source_type,page_type,event,engagement_type,counts,unique_counts_suma_urzadzen\n2026-10-30,POL,App Store search,Product page,Page view,Get,4,3\n2026-11-21,CZE,App Store browse,Product page,Impression,Get,1,1\n' } }));
     const d = r.files['discovery.csv'];
     expect(d).toContain('2026-10-30,POL');
     expect(d).toContain('2026-11-21,CZE,App Store browse,Product page,Impression,Get,120,99');
@@ -319,6 +321,15 @@ describe('szablon workflowu prywatnego repo (scripts/asc/prywatne-repo/asc-dane.
   });
 });
 
+describe('KO-121: szablon workflowu uruchamia też recenzje i ceny (tylko odczyt) i uwzględnia je w wyniku', () => {
+  test('kroki recenzje.mjs i ceny.mjs bez flag zapisu; „Wynik” sprawdza wszystkie cztery', () => {
+    expect(WF).toMatch(/node _trening\/scripts\/asc\/recenzje\.mjs --out dane\n/);
+    expect(WF).toMatch(/node _trening\/scripts\/asc\/ceny\.mjs --out dane\n/);
+    for (const id of ['zywo', 'analityka', 'recenzje', 'ceny']) expect(WF).toContain('steps.' + id + '.outcome');
+    expect((WF.match(/--zapisz-zadanie/g) ?? []).length).toBe(1);
+  });
+});
+
 describe('Zakres strażnika (L-089) i ochrona skryptów', () => {
   test('skrypty: klient bez DELETE/PATCH (analityka tylko GET + jedyny POST), segment pobierany bez Authorization', () => {
     expect(ANALITYKA).not.toMatch(/'DELETE'|'PATCH'/);
@@ -328,6 +339,210 @@ describe('Zakres strażnika (L-089) i ochrona skryptów', () => {
     expect(ANALITYKA).toMatch(/fetchFn\(seg\.attributes\.url\)/);
   });
   test('w skryptach nie ma sekretów ani identyfikatorów aplikacji poza BUNDLE_ID z wspólnego modułu', () => {
-    for (const s of [ANALITYKA, NAZYWO, WF]) expect(s).not.toMatch(/-----BEGIN|AuthKey_[A-Z0-9]{6,}|\bid\d{6,}\b/);
+    for (const s of [ANALITYKA, NAZYWO, RECENZJE, CENY, WF]) expect(s).not.toMatch(/-----BEGIN|AuthKey_[A-Z0-9]{6,}|\bid\d{6,}\b/);
+  });
+});
+
+describe('Poprawki po recenzji niezależnej AN (08-programista-001…004, 22.11.2026)', () => {
+  const ZAKAZANE = ['APPID', 'REQID', 'SEKRET', 'POL', 'CZE', 'App Store search', 'r142', '0a1b2c3d', 'seg.example', 'Bearer'];
+  const bezWycieku = (out: string) => { for (const z of ZAKAZANE) expect(out).not.toContain(z); };
+  const BLAD500 = { status: 500, body: { errors: [{ code: 'UNEXPECTED_ERROR', title: 'Blad', detail: 'SEKRET-DANE POL 120' }], meta: { dane: 'SEKRET-DANE' } } };
+
+  test('001: SKRYPTY_REF w szablonie to pełny SHA (40 hex), nie gałąź — kod z sekretami nie jest ruchomy', () => {
+    expect(WF).toMatch(/SKRYPTY_REF: '?[0-9a-f]{40}'?\s*(#.*)?\n/);
+    expect(WF).not.toMatch(/SKRYPTY_REF: '?ci\//);
+  });
+  test('001: workflow odrzuca ref, który nie jest pełnym SHA (także z pola ręcznego), przed pobraniem skryptów', () => {
+    expect(WF).toMatch(/\^\[0-9a-f\]\{40\}\$/);
+    expect(WF.indexOf('{40}')).toBeGreaterThan(-1);
+    expect(WF.indexOf('{40}')).toBeLessThan(WF.indexOf('repository: lkarwowski494/trening'));
+  });
+  test('002: ID raportu w formacie Apple r142-<UUID> nie trafia do logu błędu HTTP', () => {
+    const p: any = pipeline();
+    p.routes['GET /v1/analyticsReportRequests/REQID-SECRET/reports'].body.data[1].id = 'r142-0a1b2c3d-1111-2222-3333-444455556666';
+    p.routes['GET /v1/analyticsReports/r142-0a1b2c3d-1111-2222-3333-444455556666/instances'] = BLAD500;
+    const r = drive('analityka.mjs', p);
+    expect(r.code).toBe(1);
+    expect(r.out).toContain('500');
+    bezWycieku(r.out);
+  });
+  test('003/M1: treść odpowiedzi błędu HTTP (detail, meta) nie trafia do logu', () => {
+    const p: any = pipeline(); p.routes['GET /v1/analyticsReports/REPS/instances'] = BLAD500;
+    const r = drive('analityka.mjs', p);
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+  });
+  test('003/M5: zła suma kontrolna — w logu nie ma treści segmentu', () => {
+    const p: any = pipeline();
+    p.segments['/s1'] = b64(disc([D_ROW('2026-11-20', 'POL', 'Page view', 'App Store search', 10, 8)])); // jawny TSV (nie gzip), żeby wyciek był widoczny w tekście
+    p.routes['GET /v1/analyticsReportInstances/I1/segments'].body.data[0].attributes.checksum = '0'.repeat(32);
+    const r = drive('analityka.mjs', p);
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+    expect(r.out).not.toContain('Counts');
+  });
+  test('003/M7: w logu błędu ogólnego nie ma identyfikatora aplikacji (błąd po znalezieniu aplikacji)', () => {
+    const r = drive('analityka.mjs', { routes: { ...APP, 'GET /v1/apps/APPID-SECRET/analyticsReportRequests': BLAD500 } });
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+  });
+  test('003/M4: po błędzie POST (500) dokładnie jeden POST — brak ponowienia zapisu', () => {
+    const r = drive('analityka.mjs', { zapisz: true, routes: { ...APP, ...REQS([]), 'POST /v1/analyticsReportRequests': BLAD500 } });
+    expect(r.code).toBe(1);
+    expect(r.calls.filter(c => c.m === 'POST')).toHaveLength(1);
+    bezWycieku(r.out);
+  });
+  test('003: po błędzie 403 POST też dokładnie jeden', () => {
+    const r = drive('analityka.mjs', { zapisz: true, routes: { ...APP, ...REQS([]), 'POST /v1/analyticsReportRequests': { status: 403, body: { errors: [{ code: 'FORBIDDEN', title: 'rola' }] } } } });
+    expect(r.calls.filter(c => c.m === 'POST')).toHaveLength(1);
+  });
+  test('003/M6: na-zywo używa wyłącznie klienta tylko-do-odczytu (c = readOnlyClient(client), brak innych odwołań do client w run)', () => {
+    const poczatek = NAZYWO.indexOf('const c = readOnlyClient(client);');
+    expect(poczatek).toBeGreaterThan(-1);
+    const cialo = NAZYWO.slice(poczatek, NAZYWO.indexOf('async function main'));
+    expect(cialo.replace('readOnlyClient(client)', '')).not.toMatch(/\bclient\b/);
+  });
+  test('003/M6: na-zywo — błędy API nie ujawniają danych w logu', () => {
+    const r = drive('na-zywo.mjs', { routes: { ...APP, 'GET /v1/apps/APPID-SECRET/appStoreVersions': BLAD500 } });
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+  });
+  test('004: kolumna sumowana po urządzeniach nazywa się unique_counts_suma_urzadzen (nie twierdzi „unikalne” bez zastrzeżenia)', () => {
+    const r = drive('analityka.mjs', pipeline());
+    expect(r.files['discovery.csv'].split('\n')[0]).toContain('unique_counts_suma_urzadzen');
+    expect(r.files['discovery.csv'].split('\n')[0]).not.toMatch(/(^|,)unique_counts(,|$)/);
+  });
+});
+
+describe('KO-121 (c) scripts/asc/recenzje.mjs: recenzje klientów (tylko GET, bez pseudonimów)', () => {
+  const REV = (id: string, rating: number, date: string, ter = 'POL') => ({ id, attributes: { rating, title: 'Tytul-SEKRET ' + id, body: 'Tresc-SEKRET\nw dwoch liniach, z "cudzyslowem"', reviewerNickname: 'NICK-SEKRET', territory: ter, createdDate: date } });
+  const sc = (extra: object = {}) => ({ routes: { ...APP,
+    'GET /v1/apps/APPID-SECRET/customerReviews': { body: { data: [REV('REV1', 5, '2026-11-20T10:00:00Z'), REV('REV2', 2, '2026-11-21T08:00:00Z', 'CZE')] } },
+    'GET /v1/apps/APPID-SECRET/customerReviewSummarizations': { body: { data: [{ id: 'SUM1', attributes: { createdDate: '2026-11-21T00:00:00Z', locale: 'pl', platform: 'IOS', text: 'Streszczenie-SEKRET' } }] } },
+    ...extra } });
+
+  test('zapisuje recenzje bez pseudonimu (najnowsze pierwsze) i streszczenia; w logu same liczby', () => {
+    const r = drive('recenzje.mjs', sc());
+    expect(r.code).toBe(0);
+    const j = JSON.parse(r.files['recenzje.json']);
+    expect(j.map((x: any) => x.id)).toEqual(['REV2', 'REV1']);
+    expect(j[1]).toEqual({ id: 'REV1', data: '2026-11-20', terytorium: 'POL', ocena: 5, tytul: 'Tytul-SEKRET REV1', tresc: 'Tresc-SEKRET\nw dwoch liniach, z "cudzyslowem"' });
+    expect(JSON.stringify(r.files)).not.toContain('NICK-SEKRET');
+    expect(JSON.parse(r.files['streszczenia-recenzji.json'])).toEqual([{ locale: 'pl', platforma: 'IOS', data: '2026-11-21', tekst: 'Streszczenie-SEKRET' }]);
+    expect(r.calls.every(c => c.m === 'GET')).toBe(true);
+    for (const z of ['SEKRET', 'NICK', 'POL', 'CZE', 'APPID', 'Tytul']) expect(r.out).not.toContain(z);
+    expect(r.out).toContain('recenzji: 2 (nowych: 2)');
+  });
+  test('kolejny przebieg scala po id: stare zostają, powtórzone aktualizowane, „nowych” liczy tylko nieznane', () => {
+    const stare = JSON.stringify([{ id: 'REV0', data: '2026-10-01', terytorium: 'DEU', ocena: 4, tytul: 't', tresc: 'b' }, { id: 'REV1', data: '2026-11-20', terytorium: 'POL', ocena: 1, tytul: 'stary', tresc: 'stary' }]);
+    const r = drive('recenzje.mjs', { ...sc(), preFiles: { 'recenzje.json': stare } });
+    const j = JSON.parse(r.files['recenzje.json']);
+    expect(j.map((x: any) => x.id)).toEqual(['REV2', 'REV1', 'REV0']);
+    expect(j.find((x: any) => x.id === 'REV1').ocena).toBe(5);
+    expect(r.out).toContain('recenzji: 3 (nowych: 1)');
+  });
+  test('stronicowanie: links.next jest śledzone; streszczenia niedostępne nie przerywają przebiegu', () => {
+    const r = drive('recenzje.mjs', sc({
+      'GET /v1/apps/APPID-SECRET/customerReviews': [{ body: { data: [REV('REV1', 5, '2026-11-20T10:00:00Z')], links: { next: 'https://api.appstoreconnect.apple.com/v1/apps/APPID-SECRET/customerReviews?cursor=2' } } }, { body: { data: [REV('REV2', 2, '2026-11-21T08:00:00Z')] } }],
+      'GET /v1/apps/APPID-SECRET/customerReviewSummarizations': { status: 404, body: { errors: [] } } }));
+    expect(r.code).toBe(0);
+    expect(JSON.parse(r.files['recenzje.json'])).toHaveLength(2);
+    expect(r.out).toContain('Streszczenia recenzji: niedostępne');
+    expect(r.files['streszczenia-recenzji.json']).toBeUndefined();
+  });
+  test('błąd API (500 ze szczegółami): kod 1, w logu bez danych i identyfikatorów', () => {
+    const r = drive('recenzje.mjs', sc({ 'GET /v1/apps/APPID-SECRET/customerReviews': { status: 500, body: { errors: [{ code: 'X', title: 'T', detail: 'Tresc-SEKRET POL' }] } } }));
+    expect(r.code).toBe(1);
+    for (const z of ['SEKRET', 'POL', 'APPID']) expect(r.out).not.toContain(z);
+  });
+  test('skrypt: tylko readOnlyClient, żadnych POST/PATCH/DELETE, pseudonim nie jest odczytywany', () => {
+    expect(RECENZJE).toContain('readOnlyClient');
+    expect(RECENZJE).not.toMatch(/'POST'|'PATCH'|'DELETE'|reviewerNickname/);
+  });
+});
+
+describe('KO-121 (d) scripts/asc/ceny.mjs: ceny subskrypcji i planu dożywotniego (tylko GET)', () => {
+  const POINT = (id: string, price: string, proceeds: string, type = 'subscriptionPricePoints') => ({ type, id, attributes: { customerPrice: price, proceeds, proceedsYear2: proceeds } });
+  const PRICE = (id: string, pp: string, ter: string, rel = 'subscriptionPricePoint') => ({ id, attributes: rel === 'subscriptionPricePoint' ? { startDate: '2026-10-01', preserved: false } : { manual: true, startDate: null, endDate: null }, relationships: { [rel]: { data: { id: pp } }, territory: { data: { id: ter } } } });
+  const sc = (extra: object = {}) => ({ routes: { ...APP,
+    'GET /v1/subscriptionGroups/22474799/subscriptions': { body: { data: [
+      { id: 'SUB-M', attributes: { productId: 'pl.lukasz.trening.full.monthly', name: 'Miesieczna', state: 'APPROVED', subscriptionPeriod: 'ONE_MONTH' } },
+      { id: 'SUB-Y', attributes: { productId: 'pl.lukasz.trening.full.yearly', name: 'Roczna', state: 'APPROVED', subscriptionPeriod: 'ONE_YEAR' } }] } },
+    'GET /v1/subscriptions/SUB-M/prices': { body: { data: [PRICE('P1', 'PP1', 'POL')], included: [POINT('PP1', '4.99', '3.50')] } },
+    'GET /v1/subscriptions/SUB-Y/prices': { body: { data: [PRICE('P2', 'PP2', 'POL'), PRICE('P3', 'PP3', 'CZE')], included: [POINT('PP2', '19.99', '14.00'), POINT('PP3', '99.00', '70.00')] } },
+    'GET /v1/apps/APPID-SECRET/inAppPurchasesV2': { body: { data: [{ id: 'IAP1', attributes: { productId: 'pl.lukasz.trening.full.lifetime', name: 'Dozywotni', state: 'APPROVED', inAppPurchaseType: 'NON_CONSUMABLE' } }] } },
+    'GET /v2/inAppPurchases/IAP1/iapPriceSchedule': { body: { data: { id: 'SCH1' } } },
+    'GET /v1/inAppPurchasePriceSchedules/SCH1/manualPrices': { body: { data: [PRICE('IP1', 'IPP1', 'POL', 'inAppPurchasePricePoint')], included: [POINT('IPP1', '59.99', '42.00', 'inAppPurchasePricePoints')] } },
+    'GET /v1/inAppPurchasePriceSchedules/SCH1/automaticPrices': { body: { data: [] } },
+    ...extra } });
+
+  test('zapisuje ceny subskrypcji i planu dożywotniego (kwota z punktu cenowego), w logu tylko liczności', () => {
+    const r = drive('ceny.mjs', sc());
+    expect(r.code).toBe(0);
+    const j = JSON.parse(r.files['ceny.json']);
+    const miesieczna = j.produkty.find((x: any) => x.productId === 'pl.lukasz.trening.full.monthly');
+    expect(miesieczna).toMatchObject({ rodzaj: 'subskrypcja', okres: 'ONE_MONTH', stan: 'APPROVED' });
+    expect(miesieczna.ceny).toEqual([{ terytorium: 'POL', cena_klienta: '4.99', dochod: '3.50', start: '2026-10-01', reczna: null }]);
+    expect(j.produkty.find((x: any) => x.productId === 'pl.lukasz.trening.full.yearly').ceny.map((c: any) => `${c.terytorium}:${c.cena_klienta}`)).toEqual(['CZE:99.00', 'POL:19.99']);
+    const dozywotni = j.produkty.find((x: any) => x.productId === 'pl.lukasz.trening.full.lifetime');
+    expect(dozywotni).toMatchObject({ rodzaj: 'iap' });
+    expect(dozywotni.ceny).toEqual([{ terytorium: 'POL', cena_klienta: '59.99', dochod: '42.00', start: null, reczna: true }]);
+    expect(r.calls.every(c => c.m === 'GET')).toBe(true);
+    expect(r.calls.find(c => c.p.startsWith('/v1/subscriptions/SUB-M/prices'))?.p).toContain('include=subscriptionPricePoint');
+    for (const z of ['4.99', '59.99', 'POL', 'APPID', 'Miesieczna']) expect(r.out).not.toContain(z);
+    expect(r.out).toContain('produktów: 3');
+    expect(r.out).toContain('cen: 4');
+  });
+  test('stronicowanie cen (links.next) i brak planu dożywotniego w ASC (log, nie błąd)', () => {
+    const r = drive('ceny.mjs', sc({
+      'GET /v1/subscriptions/SUB-M/prices': [{ body: { data: [PRICE('P1', 'PP1', 'POL')], included: [POINT('PP1', '4.99', '3.50')], links: { next: 'https://api.appstoreconnect.apple.com/v1/subscriptions/SUB-M/prices?cursor=2' } } }, { body: { data: [PRICE('P9', 'PP9', 'DEU')], included: [POINT('PP9', '5.49', '3.80')] } }],
+      'GET /v1/apps/APPID-SECRET/inAppPurchasesV2': { body: { data: [] } } }));
+    expect(r.code).toBe(0);
+    const j = JSON.parse(r.files['ceny.json']);
+    expect(j.produkty.find((x: any) => x.productId === 'pl.lukasz.trening.full.monthly').ceny).toHaveLength(2);
+    expect(j.produkty.find((x: any) => x.productId === 'pl.lukasz.trening.full.lifetime')).toBeUndefined();
+    expect(r.out).toContain('Plan dożywotni: brak w App Store Connect');
+  });
+  test('błąd API: kod 1 bez danych w logu', () => {
+    const r = drive('ceny.mjs', sc({ 'GET /v1/subscriptions/SUB-M/prices': { status: 500, body: { errors: [{ code: 'X', title: 'T', detail: '4.99 POL SEKRET' }] } } }));
+    expect(r.code).toBe(1);
+    for (const z of ['SEKRET', '4.99', 'POL', 'APPID', 'SUB-M']) expect(r.out).not.toContain(z);
+  });
+  test('skrypt: tylko readOnlyClient, żadnych POST/PATCH/DELETE', () => {
+    expect(CENY).toContain('readOnlyClient');
+    expect(CENY).not.toMatch(/'POST'|'PATCH'|'DELETE'/);
+  });
+});
+
+describe('KO-121 (d) analityka.mjs: raporty Commerce (zakupy, stan i zdarzenia subskrypcji) w istniejącym żądaniu ONGOING', () => {
+  const ZAK = ['Date\tApp Name\tPurchase Type\tContent Name\tPayment Method\tDevice\tSource Type\tPage Type\tTerritory\tPurchases\tProceeds in USD\tSales in USD\tPaying Users',
+    '2026-11-20\tRepsGoat\tSubscription\tMiesieczna\tCard\tiPhone\tApp Store search\tProduct page\tPOL\t2\t0.1\t0.2\t2', '2026-11-20\tRepsGoat\tSubscription\tMiesieczna\tCard\tiPad\tApp Store search\tProduct page\tPOL\t1\t0.2\t0.1\t1'].join('\n');
+  const STAN = ['Date\tApp Name\tState Metric\tSubscription Name\tSubscription Duration\tBilling Frequency\tOffer Type\tAuto-Renew Status\tCancellation Reason\tTerritory\tCounts', '2026-11-20\tRepsGoat\tActive\tMiesieczna\t1 Month\tMonthly\tNone\tOn\tNone\tPOL\t7'].join('\n');
+  const ZDR = ['Event Date\tApp Name\tEvent Sub Type\tEvent Grouping\tSubscription Name\tSubscription Duration\tOffer Type\tCancellation Reason\tApp Download Source Type\tTerritory\tCounts', '2026-11-19\tRepsGoat\tRenew\tRenewals\tMiesieczna\t1 Month\tNone\tNone\tApp Store search\tPOL\t3'].join('\n');
+  const sc = () => {
+    const raporty = [['RZ', 'App Store Purchases Standard'], ['RS', 'App Store Subscription State Standard'], ['RE', 'App Store Subscription Event Standard']];
+    const routes: any = { ...APP, ...REQS([REQ_ON]), 'GET /v1/analyticsReportRequests/REQID-SECRET/reports': { body: { data: raporty.map(([id, name]) => ({ id, attributes: { name, category: 'COMMERCE' } })) } } };
+    const segments: any = {};
+    [['RZ', ZAK], ['RS', STAN], ['RE', ZDR]].forEach(([id, txt]) => {
+      routes[`GET /v1/analyticsReports/${id}/instances`] = { body: { data: [{ id: 'I' + id, attributes: { granularity: 'DAILY', processingDate: '2026-11-22' } }] } };
+      const buf = Buffer.from(txt);
+      routes[`GET /v1/analyticsReportInstances/I${id}/segments`] = { body: { data: [{ id: 'S' + id, attributes: { url: 'https://seg.example/' + id, checksum: md5(buf) } }] } };
+      segments['/' + id] = b64(buf);
+    });
+    return { routes, segments };
+  };
+  test('zakupy: sumowanie po urządzeniach bez Paying Users (nie sumowalne), kwoty zaokrąglone; stan i zdarzenia z Event Date jako date', () => {
+    const r = drive('analityka.mjs', sc());
+    expect(r.code).toBe(0);
+    const z = r.files['zakupy.csv'].trim().split('\n');
+    expect(z[0]).toBe('date,territory,purchase_type,content_name,payment_method,source_type,page_type,purchases,proceeds_in_usd,sales_in_usd');
+    expect(z[1]).toBe('2026-11-20,POL,Subscription,Miesieczna,Card,App Store search,Product page,3,0.3,0.3');
+    expect(r.files['zakupy.csv']).not.toContain('paying');
+    expect(r.files['subskrypcje-stan.csv'].trim().split('\n')[1]).toBe('2026-11-20,POL,Active,Miesieczna,1 Month,Monthly,None,On,None,7');
+    const e = r.files['subskrypcje-zdarzenia.csv'].trim().split('\n');
+    expect(e[0]).toBe('date,territory,event_sub_type,event_grouping,subscription_name,subscription_duration,offer_type,cancellation_reason,app_download_source_type,counts');
+    expect(e[1]).toBe('2026-11-19,POL,Renew,Renewals,Miesieczna,1 Month,None,None,App Store search,3');
+    for (const z2 of ['POL', 'Miesieczna', 'RepsGoat', 'seg.example']) expect(r.out).not.toContain(z2);
+    expect(r.calls.filter(c => c.m !== 'GET')).toHaveLength(0);
   });
 });

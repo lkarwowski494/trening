@@ -40,6 +40,10 @@ export function makeJwt({ keyId, issuerId, keyPem, now = Math.floor(Date.now() /
   return `${head}.${body}.${b64u(sig)}`;
 }
 
+/** Ścieżka do komunikatu błędu: bez zapytania; segment jest identyfikatorem (→ {id}), gdy jest liczbą, ma myślnik albo jest długim ciągiem hex (UUID, numer aplikacji, `r142-<UUID>` z raportów Analytics;
+ *  nazwy zasobów to czyste litery w camelCase, wersje API to v1/v2 — nie są maskowane). 08-programista-002 (recenzja AN, 22.11.2026). */
+export const maskujSciezke = path => String(path).split('?')[0].split('/').map(seg => (/^\d+$/.test(seg) || seg.includes('-') || /^[0-9a-f]{8,}$/i.test(seg) ? '{id}' : seg)).join('/');
+
 /** Klient API: tylko GET/POST/PATCH; stronicowanie przez links.next; błąd bez treści odpowiedzi (tylko status, kody i tytuły).
  *  `token`: tekst albo fabryka `() => tekst` wywoływana przy każdym żądaniu (długie przebiegi odnawiają token; zgodne wstecz ze stałym tokenem). */
 /** `allowDelete(ścieżka)` — jawne zezwolenie na DELETE dla wąskiej ścieżki (tylko scripts/asc/zrzuty.mjs, tryb „zamień”, decyzja 15.11.2026); domyślnie klient nigdy nie usuwa. */
@@ -54,7 +58,7 @@ export function makeClient({ fetchFn = fetch, token, sleep = ms => new Promise(r
       let json = null; try { json = await res.json(); } catch { json = null; }
       if (!res.ok) {
         const errs = (json?.errors ?? []).map(e => [e.code, e.title].filter(Boolean).join(': ')).filter(Boolean).join('; ');
-        const err = new Error(`${method} ${path.split('?')[0].replace(/\/[0-9a-f-]{8,}/gi, '/{id}')} → ${res.status}${errs ? ` (${errs})` : ''}`); err.status = res.status; throw err;
+        const err = new Error(`${method} ${maskujSciezke(path)} → ${res.status}${errs ? ` (${errs})` : ''}`); err.status = res.status; throw err;
       }
       return json;
     }

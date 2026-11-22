@@ -14,7 +14,7 @@ on:
         type: boolean
         default: false
       skrypty_ref:
-        description: 'Gałąź albo SHA skryptów w publicznym repo (puste = wartość z SKRYPTY_REF)'
+        description: 'Pełny SHA (40 znaków hex) skryptów w publicznym repo (puste = wartość z SKRYPTY_REF)'
         type: string
         default: ''
 permissions:
@@ -23,13 +23,19 @@ concurrency:
   group: asc-dane
   cancel-in-progress: false
 env:
-  # Po scaleniu zmień na SHA commitu scalenia (przypięcie wersji skryptów uruchamianych z sekretami).
-  SKRYPTY_REF: ci/asc-analityka
+  # Wyłącznie PEŁNY SHA commitu (nigdy gałąź: kod uruchamiany z sekretami nie może się zmieniać bez recenzji; 08-programista-001, recenzja AN 22.11.2026).
+  # Zmiana SHA = ręczna podmiana po przeglądzie nowych skryptów. Walidacja w pierwszym kroku odrzuca wszystko inne.
+  SKRYPTY_REF: 089ff0f27b39e62edd3c4d04881740c59e120f43
 jobs:
   dane:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      - name: Walidacja wersji skryptów (tylko pełny SHA)
+        env:
+          REF: ${{ inputs.skrypty_ref || env.SKRYPTY_REF }}
+        run: |
+          [[ "$REF" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::SKRYPTY_REF musi być pełnym SHA commitu (40 znaków hex), nie gałęzią"; exit 1; }
       - uses: actions/checkout@v5
       - uses: actions/checkout@v5
         with:
@@ -73,6 +79,24 @@ jobs:
           # kod 3 = jeszcze brak danych albo brak żądania w trybie odczytu: ostrzeżenie, nie błąd przebiegu
           if [ "$kod" -eq 3 ]; then echo "::warning::App Analytics: brak danych do zapisu (kod 3)"; exit 0; fi
           exit "$kod"
+      - name: Recenzje klientów (tylko odczyt)
+        id: recenzje
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node _trening/scripts/asc/recenzje.mjs --out dane
+      - name: Ceny subskrypcji i planu dożywotniego (tylko odczyt)
+        id: ceny
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node _trening/scripts/asc/ceny.mjs --out dane
       - name: Usunięcie klucza z maszyny
         if: always()
         run: rm -f "$RUNNER_TEMP/AuthKey.p8"
@@ -85,4 +109,4 @@ jobs:
       - name: Wynik
         if: always()
         run: |
-          [ "${{ steps.zywo.outcome }}" = "success" ] && [ "${{ steps.analityka.outcome }}" = "success" ] || { echo "::error::Co najmniej jeden krok danych zakończył się błędem (zobacz kroki powyżej)"; exit 1; }
+          [ "${{ steps.zywo.outcome }}" = "success" ] && [ "${{ steps.analityka.outcome }}" = "success" ] && [ "${{ steps.recenzje.outcome }}" = "success" ] && [ "${{ steps.ceny.outcome }}" = "success" ] || { echo "::error::Co najmniej jeden krok danych zakończył się błędem (zobacz kroki powyżej)"; exit 1; }
