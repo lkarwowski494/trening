@@ -1,0 +1,14 @@
+# Sesja AO: wydanie 1.1.1 (nowe pozycjonowanie w App Store) — Trening
+Koordynator: session_01BM51odgG7NSW2dnk3ZgwQ4 (raporty, pytania, PRZEKAZANIE tylko przez send_message do tego ID). Gałąź stanu koordynatora: `koordynacja` (tylko do odczytu).
+
+1. Rola: 10-wydanie w trybie build (prompt po `=== PROMPT ROLI ===`). Biblioteki prompts nie dołączasz. CLAUDE.md ma pierwszeństwo (bramki wydania, L-001, „Przejście na sucho przed sesją w App Store Connect”, docs/48 i docs/49 jako wzór kroków, kolumna „Stan”).
+2. Start: gałąź `wyd/1-1-1` od `origin/integracja-1-1` @ <SHA podany w wiadomości startowej> (po scaleniu porządków AK i pozycjonowania AL2). `npm ci`. Tożsamość commitów wg CLAUDE.md.
+3. Decyzje: KO-119 (właściciel, 22.11): wersja 1.1.1 teraz, bez zmian w kodzie aplikacji, z nowymi metadanymi 33 lokalizacji (KO-110…KO-115 w docs/18). KO-120 (do weta): audyt zmian od 1.1 + stała lista kontrolna, bez pełnego audytu całości; pełny katalog E2E na standardowym iPhonie i test telefonu właściciela zostają.
+4. Zadania (każde z kryterium „gotowe”):
+   1. Plan wydania `docs/49b-wydanie-1-1-1.md` (albo sekcja w docs/49 — wybierz wg konwencji repo) z kolumną „Stan”: kroki od wersji do wydania, z wykonawcą (agent / automat / właściciel) i stroną Apple przeczytaną dziś przy każdym kroku w ASC (cytat). Gotowe: plik + `npm run verify:docs` zielone.
+   2. Wersja 1.1.1 w `app.json`, `package.json`, lockfile; „Co nowego” 1.1.1 w `lib/whatsnew.ts` i whatsNew sklepu — krótki, prawdziwy tekst (aplikacja się nie zmienia: np. poprawiony opis w sklepie; bez obietnic funkcji), przez `t()`/słownik i przekład 33 języków wg CLAUDE.md (rola tłumacza — możesz użyć subagenta `tlumacz` z repo) + rejestr twierdzeń, jeśli dotyczy. Gotowe: check:i18n, check:claims zielone.
+   3. Bramka scenariuszy i E2E: co wymaga CLAUDE.md dla buildu TestFlight (pakiet podstawowy) i dla App Store (pełny katalog na standardowym iPhonie) — przygotuj wejścia workflowów; przebiegi wyzwala koordynator. Lista „telefon zaraz po buildzie” (CLAUDE.md, L-001 pkt 3) zawężona do zmian od 1.1 z dowodem (diff).
+   4. Audyt zmian od 1.1 (tag v1.1.0-b1041) + stała lista kontrolna — wynik w pliku; blokują tylko KRYTYCZNE/WYSOKIE.
+   5. Pełne `npm run verify` z kodem 0 na końcowym commicie; push. Raport do koordynatora: SHA, kod verify, co wyzwolić (ios-unsigned, e2e-ios, testflight — z wejściami), kroki właściciela (Approve, telefon, ASC) jako osobne zadania z instrukcją krok po kroku.
+5. Zakazy: nie wyzwalasz workflowów wysyłki (TestFlight, asc-* z zapisem), nic w App Store Connect, nie scalasz, nie tworzysz sesji, nie piszesz na `koordynacja`, bez --no-verify i force-push, nie pytasz właściciela (bez AskUserQuestion). STOP-y roli = raport do koordynatora.
+6. Numery decyzji: KO-121…KO-124. Kontekst: od 30% PRZEKAZANIE ze stanem w `docs/wydanie/STAN-AO.md`. Pułap 30 USD (STOP 39 USD).
