@@ -17,6 +17,11 @@ export type WhatsNewEntry = { id: string; build?: number; date: string; items: (
  * się nie pokazują (components/WhatsNew.tsx); pierwszy wpis 1.1 przywraca je bez zmian w komponencie. Pilnuje tests/whats-new.test.tsx.
  */
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 1.1.1 (KO-119, 22.11.2026, docs/49b-wydanie-1-1-1.md): wydanie tylko z nowymi metadanymi sklepu (nazwa, podtytuł, słowa kluczowe 33 lokalizacji), bez zmian w funkcjach aplikacji — jeden punkt, bez obietnic funkcji.
+   * Wpis 1.1 (id 2026-11-11) zostaje jako starszy (zwinięty). Bez numeru buildu — dopisuje się po przebiegu testflight.yml. */
+  { id: '2026-11-22', date: '2026-11-22', items: () => [
+    t('Opis {app} w App Store jest teraz dokładniejszy i łatwiej go tam znaleźć. Sama aplikacja działa tak samo, a treningi, szablony i ustawienia zostają bez zmian.', { app: appName() }),
+  ] },
   /* 1.1.0 (W-08, 11.11.2026, docs/18; tryb analogia do weta): jeden wpis 1.1 zastępuje wpis 1.0.1 (id 2026-11-06) — 1.0.1 był tylko buildem TestFlight właściciela, użytkownik App Store
    * aktualizuje się z 1.0.0. Nowe id = kropka wraca także po wpisie 1.0.1. Cztery punkty z 1.0.1 bez zmian brzmienia (przekłady zostają); dwa nowe: rysunki ruchu (528 z 708 ćwiczeń z figurą v2,
    * docs/55) i nazwy EN z nazwą lokalną (ZB-044) — ten punkt tylko poza angielskim (po angielsku nazwy się nie zmieniły). Bez numeru buildu — dopisuje się po przebiegu testflight.yml.

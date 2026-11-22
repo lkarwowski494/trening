@@ -25,17 +25,14 @@ const PL_1_1 = [
 ];
 
 describe('wersja 1.1.0 (W-08, 11.11.2026)', () => {
-  test('app.json, package.json i package-lock.json (projekt) — 1.1.0', () => {
-    const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['1.1.0', '1.1.0', '1.1.0', '1.1.0']);
-  });
-  test('„Co nowego”: jeden wpis 1.1 (id 2026-11-11, bez numeru buildu do przebiegu testflight.yml), 6 punktów po polsku', () => {
+  /* Numer wersji: od 22.11.2026 (KO-119) 1.1.1 — tests/release-1.1.1.test.tsx; wpis 1.1 zostaje w historii „Co nowego” jako drugi (starszy). */
+  test('„Co nowego”: wpis 1.1 (id 2026-11-11, bez numeru buildu) zostaje w historii jako starszy, 6 punktów po polsku', () => {
     applyLang('pl');
-    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-11']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-11');
-    expect(WHATS_NEW[0].items()).toEqual(PL_1_1);
+    const e11 = WHATS_NEW.find(e => e.id === '2026-11-11')!; expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-22', '2026-11-11']); expect(e11.build).toBeUndefined(); expect(e11.date).toBe('2026-11-11');
+    expect(e11.items()).toEqual(PL_1_1);
   });
   test('po angielsku 5 punktów: bez punktu o nazwach ćwiczeń (nazwy angielskie były już w 1.0), każdy przetłumaczony', () => {
-    applyLang('en'); const it = WHATS_NEW[0].items();
+    applyLang('en'); const it = WHATS_NEW.find(e => e.id === '2026-11-11')!.items();
     expect(it).toHaveLength(5); expect(it.join(' ')).not.toMatch(/Nazwy|names are in English/);
     const { EN } = require('@/lib/i18n.en'); PL_1_1.forEach((x, i) => { if (i !== 2) expect(EN[x] ?? EN[x.replace(BRAND_NAME, '{app}')]).toBeTruthy(); });
     expect(EN[PL_1_1[2]]).toBeTruthy(); /* klucz w słowniku EN jest (komplet źródła), choć punkt po angielsku się nie pokazuje */
@@ -59,7 +56,7 @@ describe('DIF-01 (11.11.2026): „Co nowego” o nazwach lokalnych zgodne z dany
     for (const l of LANGS) { if (l === 'en') continue; applyLang(l);
       const n = keys.filter(k => exLocal({ name: k, lib: true, libKey: k })).length;
       expect([l, n >= WIELU_UDZIAL * keys.length, n < keys.length]).toEqual([l, true, true]); }
-    applyLang('pl'); const item = WHATS_NEW[0].items()[2];
+    applyLang('pl'); const item = WHATS_NEW.find(e => e.id === '2026-11-11')!.items()[2];
     expect(item).toMatch(/^Nazwy ćwiczeń z biblioteki .* Przy wielu ćwiczeniach /); expect(item).not.toMatch(/Na karcie ćwiczenia pod nazwą widać nazwę/);
   });
 });

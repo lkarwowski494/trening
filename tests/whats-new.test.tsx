@@ -25,8 +25,8 @@ const withWorkout = () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Ba
 
 describe('jeden wpis w kodzie (1.0.1 z 06.11.2026; od 11.11.2026 wpis 1.1, W-08)', () => {
   test('lista w kodzie: jeden wpis 2026-11-11 (bez numeru buildu), punkty z kropką, bez nazw źródeł i marek', () => {
-    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-11']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-11');
-    const it = WHATS_NEW[0].items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/));
+    expect(WHATS_NEW.map(e => e.id)).toEqual(['2026-11-22', '2026-11-11']); expect(WHATS_NEW[0].build).toBeUndefined(); expect(WHATS_NEW[0].date).toBe('2026-11-22'); /* 1.1.1 (KO-119) na górze, 1.1 starszy */
+    const it = WHATS_NEW[0].items(); expect(it.length).toBeGreaterThanOrEqual(1); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/));
     expect(it.join(' ')).not.toMatch(/Strong|Hevy|Fitbod|JEFIT|ExRx|Stronger by Science|ACSM|NSCA/i);
   });
   test('punkty mają angielski odpowiednik (słownik EN)', () => {
@@ -36,7 +36,7 @@ describe('jeden wpis w kodzie (1.0.1 z 06.11.2026; od 11.11.2026 wpis 1.1, W-08)
   test('kropka: nowa osoba — nie; po treningu i innym zapisanym id — tak; otwarcie zapisuje id wpisu', () => {
     expect(whatsNewUnseen()).toBe(false);
     withWorkout(); S().whatsNewSeen = '2026-10-17'; expect(whatsNewUnseen()).toBe(true); /* osoba po aktualizacji z 0.20 / 1.0.0 bez zapisanego id */
-    markWhatsNewSeen(); expect(S().whatsNewSeen).toBe('2026-11-11'); expect(whatsNewUnseen()).toBe(false);
+    markWhatsNewSeen(); expect(S().whatsNewSeen).toBe('2026-11-22'); expect(whatsNewUnseen()).toBe(false);
   });
   test('ekran Trening: przycisk ✦ jest także u nowej osoby (bez kropki); po treningu kropka; otwarcie pokazuje wpis i zamknięcie go chowa', async () => {
     await boot(); expect(screen.getByTestId('whats-new-i')).toBeTruthy(); expect(screen.queryByTestId('whats-new-dot')).toBeNull();
@@ -55,7 +55,7 @@ describe('logika i dane (próbki wpisów)', () => {
     const ids = WHATS_NEW.map(e => e.id); expect(new Set(ids).size).toBe(ids.length);
     expect([...WHATS_NEW].sort((a, b) => b.date.localeCompare(a.date)).map(e => e.id)).toEqual(ids);
     const builds = WHATS_NEW.map(e => e.build).filter((b): b is number => b != null); expect([...builds].sort((a, b) => b - a)).toEqual(builds);
-    WHATS_NEW.forEach(e => { const it = e.items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/)); });
+    WHATS_NEW.forEach(e => { const it = e.items(); expect(it.length).toBeGreaterThanOrEqual(1); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/)); });
   });
   test('kropka: nowa osoba (bez treningów) — nie; po treningu — tak; otwarcie zapisuje id najnowszego wpisu; nowy wpis — znowu tak', () => {
     expect(whatsNewUnseen()).toBe(false);
