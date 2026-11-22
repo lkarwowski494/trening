@@ -20,6 +20,14 @@ nazwa (człon po „RepsGoat: ”, ≤ 30 znaków całość) / podtytuł (≤ 30
 wynikami (puste) i z medianą tysięcy ocen. Źródło: `itunes.apple.com/search?term=…&country=…&entity=software&limit=200` (pozycja, liczba wyników, userRatingCount).
 Potem E2 scalenie + krytyk (świeży subagent), STOP 2 do koordynatora.
 
+## Sesja AL2 (22.11.2026, ~10:50 UTC) — STOP 2
+- E1 zrobione: 7 grup równolegle (09:48–10:06 UTC), ok. 600 fraz; popyt z publicznych podpowiedzi wyszukiwarki App Store per kraj (nagłówek storefrontu).
+- E2: kontrola mechaniczna (słowa > 2 znaki — poprawka ja/ko/zh-Hant, EN „pr”, ES „rm”), krytyk (8 do zmiany, 13 niepewnych — przyjęte).
+- STOP 2: `docs/wydanie/pozycjonowanie-stop2.md`, decyzje KO-106…KO-109 czekają na właściciela (przez koordynatora).
+- Następny krok po odpowiedzi: E3 — wpis wybranych pól do `store/app-store-names.json` i `store/app-store-metadata.json` (wartości w tabeli STOP 2),
+  recenzent lokalizacji, testy przypięte do wartości (`tests/store-metadata.test.ts:52-53`, `tests/nazwa-repsgoat.test.ts`, `tests/i18n-locales.test.ts`),
+  docs/18, `verify:lekkie`; potem E4 (hipotezy, raport). Katalog przebiegu (scratchpad AL2) nie przetrwa nowej sesji — tabela STOP 2 jest kompletna.
+
 ## Pułapki
 - `verify:docs`: najpierw `git fetch --unshallow origin` (merge-base z origin/main); uruchamiać `NODE_NO_WARNINGS=1 NODE_USE_ENV_PROXY=1 npm run verify:docs`
   — bez NODE_NO_WARNINGS ostrzeżenie proxy daje fałszywe porażki Jest (11 testów); bez proxy baza H1 nie znajduje zielonego tests.yml. `npm ci` przed verify.
