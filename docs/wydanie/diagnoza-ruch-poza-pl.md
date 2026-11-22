@@ -25,7 +25,7 @@ ludzie wpisują, nie ma jej w pierwszych 200, a obok stoją aplikacje z tysiąca
 | 6 | Aplikacja niedostępna w kraju | wykluczona (poza CHN) | lookup dla 32 storefrontów: 31 zwraca 1.1.0; Chiny — brak, zgodnie z decyzją o odłożeniu (rejestracja ICP, `docs/18-archiwum-do-11.10.md:379`) |
 | 7 | Zła lub pusta lokalizacja karty na żywo, kopie EN | wykluczona dla nazw i podtytułów | lookup: nazwy w DE, AT, FR, ES, IT, NL, SE, BR, MX, JP, KR, RU, PT zgodne z `store/app-store-names.json`; w krajach z en-GB — nazwa EN zgodnie z tabelą Apple; karta DE na żywo: podtytuł „Krafttraining & Pausentimer” = repo; w repo każda lokalizacja ma własny podtytuł i słowa (`store/app-store-metadata.json`) |
 | 8 | Ceny lub plany | wykluczona | pobranie bezpłatne we wszystkich 31; zakupy w walucie kraju (PL 4,99 zł / 19,99 zł; CZ 29 Kč / 199 Kč — karta `apps.apple.com` 22.11) |
-| 9 | Słowa kluczowe na żywo różnią się od repo | **nie do sprawdzenia publicznie** | pole nie jest publiczne; zapis W-22 szedł workflowem z repo (podgląd 43756117258). Sprawdzenie: krok właściciela w App Store Connect albo podgląd `asc-metadane` (zgoda koordynatora) |
+| 9 | Słowa kluczowe na żywo różnią się od repo | **nie do sprawdzenia publicznie** | pole nie jest publiczne; zapis W-22 szedł workflowem z repo (podgląd 43756117258). Podgląd `asc-metadane.yml` 22.11 (przebieg 45008777648, success): „Brak edytowalnej wersji” (stany READY_FOR_SALE) — skrypt czyta tylko wersję edytowalną (`scripts/asc/metadane.mjs:24`), więc pola na żywo nie zostały odczytane. Potrzebny odczyt wersji w sprzedaży przez API (zmiana skryptu — automat AM albo programista); komunikat skryptu podaje też nieaktualny krok „utwórz wersję 1.0” |
 
 ### Pozycje na frazy w języku kraju (API wyszukiwania, 22.11.2026)
 
@@ -80,13 +80,18 @@ ale liczby wyszukań bez płatnych narzędzi nie znamy.
 |---|---|---|
 | Nazwa i podtytuł każdej lokalizacji: fraza z realnym ruchem i do wygrania (średnia liczba ocen pierwszej dziesiątki niska), zamiast fraz pustych (CZ, SK, DK, FI, HR, SE) i nie do wygrania (IT, US, GB) — E1–E3 dla 33 lokalizacji | z nową wersją (zmiana nazwy tylko z wersją: App information, cytat w `pozycjonowanie-stop1.md`) | `store/app-store-names.json`, `store/app-store-metadata.json`; zapis `scripts/asc/metadane.mjs` |
 | Słowa kluczowe: frazy długiego ogona w języku kraju (np. CZ „deník” + „posilovna” osobno) | z wersją | jw. |
-| Oceny: prośba o ocenę działa (`lib/review-run.ts`, próg 3 treningi, docs/26) — sprawdzić, czy padła u użytkowników spoza PL | odczyt ocen per kraj: karta sklepu / App Store Connect | `lib/review-run.ts` |
+| Oceny: prośba o ocenę działa (`lib/review-run.ts`, próg 3 treningi, docs/26) — sprawdzić, czy padła u użytkowników spoza PL | odczyt ocen per kraj przez API (automat AM) | `lib/review-run.ts` |
 | Kanał spoza PL (link kampanii, społeczność, twórcy w innym języku) — poza zakresem M5 | decyzja właściciela | plan dotarcia (KO-086…088, zawieszony) |
-| Sprawdzenie słów kluczowych na żywo (przyczyna 9) | teraz, 2 min właściciela albo podgląd `asc-metadane` za zgodą koordynatora | `.github/workflows/asc-metadane.yml` (podgląd 43756117258) |
+| Sprawdzenie słów kluczowych na żywo (przyczyna 9) | podgląd 22.11 nie wystarczył (wyżej) — odczyt wersji w sprzedaży przez API | `.github/workflows/asc-metadane.yml` (podgląd 43756117258) |
 
-Krok właściciela do potwierdzenia przyczyny 3 (Apple, Acquisition, odczyt 22.11): „In Apps, select the app you want to view. Click the Analytics tab. In the sidebar
-under Acquisition, click Sources.” — potem filtr kraju („filter your results further, including by territory”): Impressions i Product Page Views według źródła dla
-Polski i dla wszystkich krajów bez Polski, okres 05.11–22.11. Automat przez API przygotowuje sesja AM (KO-100).
+Dane potrzebne z API App Store Connect (automat sesji AM, KO-100; właściciel 22.11.2026: „Chce zeby wszystko co sie da bylo wyciagane z ASC przez API zebym nie musial sam dawac danych do analiz.”) — krok ręczny właściciela tylko, gdy dane są pilne, a API ich nie daje:
+
+| Do przyczyny | Miara (nazwy Apple, Metric definitions) | Podział | Okres |
+|---|---|---|---|
+| 1, 3 | Impressions (Unique Devices), Product Page Views (Unique Devices), First-Time Downloads | źródło (App Store search, App Store browse, App referrer, Web referrer) × terytorium (każde z 31) | dziennie 05.11–dziś; granica 17.11 (nazwa RepsGoat) |
+| 1 | oceny i recenzje | terytorium | od 05.11 |
+| 4 | jak wyżej | przed / po 17.11 | 05.11–16.11 i 17.11–dziś |
+| 9 | słowa kluczowe na żywo (pole wersji) | 32 lokalizacje | stan bieżący — podgląd `asc-metadane.yml` (tryb podglądu, zgoda koordynatora 22.11) |
 
 ## Źródła (odczyt 22.11.2026)
 
