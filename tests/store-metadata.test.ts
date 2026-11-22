@@ -50,7 +50,7 @@ describe('store/app-store-metadata.json', () => {
     /* 09.11.2026 (właściciel, docs/18 „nowa nazwa aplikacji od wersji 1.1: marka RepsGoat”, ZB-056) zastępuje nazwę PL i podtytuły z 21.10.2026; sprawdza je też tests/nazwa-repsgoat.test.ts */
     expect(names.pl).toBe(`${BRAND_NAME}: dziennik treningowy`);
     expect(L.pl.subtitle).toBe('Plan treningowy na siłownię');
-    for (const l of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([l, L[l].subtitle]).toEqual([l, 'Gym plan & workout tracker']);
+    for (const l of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([l, L[l].subtitle]).toEqual([l, 'Gym Rest Timer & Log']); /* 22.11.2026 (KO-114, M5 STOP 2) */
     expect([names['en-AU'], L['en-AU']]).toEqual([names['en-GB'], L['en-GB']]);
     expect([names['en-CA'], L['en-CA']]).toEqual([names['en-US'], L['en-US']]);
   });
