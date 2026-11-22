@@ -14,7 +14,7 @@ on:
         type: boolean
         default: false
       skrypty_ref:
-        description: 'Gałąź albo SHA skryptów w publicznym repo (puste = wartość z SKRYPTY_REF)'
+        description: 'Pełny SHA (40 znaków hex) skryptów w publicznym repo (puste = wartość z SKRYPTY_REF)'
         type: string
         default: ''
 permissions:
@@ -23,13 +23,19 @@ concurrency:
   group: asc-dane
   cancel-in-progress: false
 env:
-  # Po scaleniu zmień na SHA commitu scalenia (przypięcie wersji skryptów uruchamianych z sekretami).
-  SKRYPTY_REF: ci/asc-analityka
+  # Wyłącznie PEŁNY SHA commitu (nigdy gałąź: kod uruchamiany z sekretami nie może się zmieniać bez recenzji; 08-programista-001, recenzja AN 22.11.2026).
+  # Zmiana SHA = ręczna podmiana po przeglądzie nowych skryptów. Walidacja w pierwszym kroku odrzuca wszystko inne.
+  SKRYPTY_REF: 089ff0f27b39e62edd3c4d04881740c59e120f43
 jobs:
   dane:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      - name: Walidacja wersji skryptów (tylko pełny SHA)
+        env:
+          REF: ${{ inputs.skrypty_ref || env.SKRYPTY_REF }}
+        run: |
+          [[ "$REF" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::SKRYPTY_REF musi być pełnym SHA commitu (40 znaków hex), nie gałęzią"; exit 1; }
       - uses: actions/checkout@v5
       - uses: actions/checkout@v5
         with:

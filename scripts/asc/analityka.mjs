@@ -19,10 +19,15 @@ import { jestGlowny } from '../modul-glowny.mjs';
  *  a gdy go brak, bierzemy jedyny pasujący; nazwy wybranych raportów trafiają do logu, bo to metadane Apple, nie dane konta). */
 export const RAPORTY = [
   { klucz: 'discovery', plik: 'discovery.csv', kategoria: 'APP_STORE_ENGAGEMENT', nazwa: /discovery and engagement/i,
-    klucze: ['date', 'territory', 'source_type', 'page_type', 'event', 'engagement_type'], wartosci: ['counts', 'unique_counts'] },
+    klucze: ['date', 'territory', 'source_type', 'page_type', 'event', 'engagement_type'], wartosci: ['counts', 'unique_counts'],
+    // Apple: „Unique Counts” = unikalni użytkownicy w wierszu (wymiary Device i Platform Version); po zsumowaniu wierszy urządzeń to NIE jest liczba unikalnych osób (08-programista-004)
+    nazwyWyniku: { unique_counts: 'unique_counts_suma_urzadzen' } },
   { klucz: 'pobrania', plik: 'pobrania.csv', kategoria: 'COMMERCE', nazwa: /downloads/i,
     klucze: ['date', 'territory', 'source_type', 'page_type', 'download_type'], wartosci: ['counts'] },
 ];
+
+/** Nazwa kolumny wartości w wyniku (agregat) — domyślnie jak w raporcie Apple. */
+export const nazwaWyniku = (def, k) => def.nazwyWyniku?.[k] ?? k;
 
 export const ZADANIE = { accessType: 'ONGOING' };
 
@@ -70,7 +75,7 @@ export function agreguj(wiersze, def) {
     def.wartosci.forEach((k, i) => { const n = Number(w[k]); if (Number.isFinite(n)) poz.suma[i] += n; });
     mapa.set(id, poz);
   }
-  return [...mapa.values()].map(p => Object.fromEntries([...def.klucze.map((k, i) => [k, p.klucz[i]]), ...def.wartosci.map((k, i) => [k, p.suma[i]])]));
+  return [...mapa.values()].map(p => Object.fromEntries([...def.klucze.map((k, i) => [k, p.klucz[i]]), ...def.wartosci.map((k, i) => [nazwaWyniku(def, k), p.suma[i]])]));
 }
 
 /** Z listy {processingDate, wiersze} zostaw dla każdej daty (kolumna `date`) wiersze z instancji o najpóźniejszym processingDate (docs: „Use the latest instance”). */
@@ -97,7 +102,7 @@ export function zCsv(tekst, def) {
     const pola = []; let cur = '', q = false;
     for (let i = 0; i < l.length; i++) { const c = l[i]; if (q) { if (c === '"' && l[i + 1] === '"') { cur += '"'; i++; } else if (c === '"') q = false; else cur += c; } else if (c === '"') q = true; else if (c === ',') { pola.push(cur); cur = ''; } else cur += c; }
     pola.push(cur);
-    const o = {}; naglowek.forEach((n, i) => { o[n] = def.wartosci.includes(n) ? Number(pola[i]) : pola[i] ?? ''; }); return o;
+    const o = {}; naglowek.forEach((n, i) => { o[n] = def.wartosci.some(k => nazwaWyniku(def, k) === n) ? Number(pola[i]) : pola[i] ?? ''; }); return o;
   });
 }
 
@@ -158,7 +163,7 @@ export async function run({ client, fetchFn = fetch, out, zapiszZadanie = false,
       if (!nowe.length) { log(`Raport „${def.klucz}”: brak wierszy w instancjach.`); stan.wiersze[def.klucz] = 0; continue; }
       mkdirSync(out, { recursive: true });
       const sciezka = join(out, def.plik);
-      const kolumny = [...def.klucze, ...def.wartosci];
+      const kolumny = [...def.klucze, ...def.wartosci.map(k => nazwaWyniku(def, k))];
       const wynik = scal(existsSync(sciezka) ? zCsv(readFileSync(sciezka, 'utf8'), def) : [], nowe);
       writeFileSync(sciezka, doCsv(wynik, kolumny));
       stan.wiersze[def.klucz] = wynik.length; razem += wynik.length;

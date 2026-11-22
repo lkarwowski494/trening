@@ -126,7 +126,7 @@ describe('scripts/asc/analityka.mjs: czyste funkcje', () => {
     w[3].counts = 'abc';
     const a = agreguj(w, '@RAPORTY0');
     expect(a).toHaveLength(2);
-    expect(a.find((r: any) => r.territory === 'POL')).toMatchObject({ counts: 15, unique_counts: 12 });
+    expect(a.find((r: any) => r.territory === 'POL')).toMatchObject({ counts: 15, unique_counts_suma_urzadzen: 12 });
     expect(a.find((r: any) => r.territory === 'CZE')).toMatchObject({ counts: 0 });
   });
   test('najnowszePoDacie: późniejszy processingDate zastępuje wcześniejszy, rekordów nie łączy (docs Apple: „Use the latest instance”)', async () => {
@@ -191,7 +191,7 @@ describe('scripts/asc/analityka.mjs: przebieg na atrapie API', () => {
     const r = drive('analityka.mjs', pipeline());
     expect(r.code).toBe(0);
     const d = r.files['discovery.csv'].trim().split('\n');
-    expect(d[0]).toBe('date,territory,source_type,page_type,event,engagement_type,counts,unique_counts');
+    expect(d[0]).toBe('date,territory,source_type,page_type,event,engagement_type,counts,unique_counts_suma_urzadzen');
     expect(d).toContain('2026-11-20,POL,App Store search,Product page,Page view,Get,15,12');
     expect(d).toContain('2026-11-21,CZE,App Store browse,Product page,Impression,Get,120,99'); // 120, nie 100 — instancja z 22.11 zastępuje
     expect(d).not.toContain('2026-11-21,CZE,App Store browse,Product page,Impression,Get,100,90');
@@ -203,7 +203,7 @@ describe('scripts/asc/analityka.mjs: przebieg na atrapie API', () => {
     expect(JSON.parse(r.files['stan.json'])).toMatchObject({ zadanie: 'jest', raporty: { discovery: 'App Store Discovery and Engagement Standard' } });
   });
   test('kolejny przebieg scala z poprzednim plikiem: starsze daty zostają, powtórzone daty są zastąpione', () => {
-    const r = drive('analityka.mjs', pipeline({ preFiles: { 'discovery.csv': 'date,territory,source_type,page_type,event,engagement_type,counts,unique_counts\n2026-10-30,POL,App Store search,Product page,Page view,Get,4,3\n2026-11-21,CZE,App Store browse,Product page,Impression,Get,1,1\n' } }));
+    const r = drive('analityka.mjs', pipeline({ preFiles: { 'discovery.csv': 'date,territory,source_type,page_type,event,engagement_type,counts,unique_counts_suma_urzadzen\n2026-10-30,POL,App Store search,Product page,Page view,Get,4,3\n2026-11-21,CZE,App Store browse,Product page,Impression,Get,1,1\n' } }));
     const d = r.files['discovery.csv'];
     expect(d).toContain('2026-10-30,POL');
     expect(d).toContain('2026-11-21,CZE,App Store browse,Product page,Impression,Get,120,99');
@@ -329,5 +329,76 @@ describe('Zakres strażnika (L-089) i ochrona skryptów', () => {
   });
   test('w skryptach nie ma sekretów ani identyfikatorów aplikacji poza BUNDLE_ID z wspólnego modułu', () => {
     for (const s of [ANALITYKA, NAZYWO, WF]) expect(s).not.toMatch(/-----BEGIN|AuthKey_[A-Z0-9]{6,}|\bid\d{6,}\b/);
+  });
+});
+
+describe('Poprawki po recenzji niezależnej AN (08-programista-001…004, 22.11.2026)', () => {
+  const ZAKAZANE = ['APPID', 'REQID', 'SEKRET', 'POL', 'CZE', 'App Store search', 'r142', '0a1b2c3d', 'seg.example', 'Bearer'];
+  const bezWycieku = (out: string) => { for (const z of ZAKAZANE) expect(out).not.toContain(z); };
+  const BLAD500 = { status: 500, body: { errors: [{ code: 'UNEXPECTED_ERROR', title: 'Blad', detail: 'SEKRET-DANE POL 120' }], meta: { dane: 'SEKRET-DANE' } } };
+
+  test('001: SKRYPTY_REF w szablonie to pełny SHA (40 hex), nie gałąź — kod z sekretami nie jest ruchomy', () => {
+    expect(WF).toMatch(/SKRYPTY_REF: '?[0-9a-f]{40}'?\s*(#.*)?\n/);
+    expect(WF).not.toMatch(/SKRYPTY_REF: '?ci\//);
+  });
+  test('001: workflow odrzuca ref, który nie jest pełnym SHA (także z pola ręcznego), przed pobraniem skryptów', () => {
+    expect(WF).toMatch(/\^\[0-9a-f\]\{40\}\$/);
+    expect(WF.indexOf('{40}')).toBeGreaterThan(-1);
+    expect(WF.indexOf('{40}')).toBeLessThan(WF.indexOf('repository: lkarwowski494/trening'));
+  });
+  test('002: ID raportu w formacie Apple r142-<UUID> nie trafia do logu błędu HTTP', () => {
+    const p: any = pipeline();
+    p.routes['GET /v1/analyticsReportRequests/REQID-SECRET/reports'].body.data[1].id = 'r142-0a1b2c3d-1111-2222-3333-444455556666';
+    p.routes['GET /v1/analyticsReports/r142-0a1b2c3d-1111-2222-3333-444455556666/instances'] = BLAD500;
+    const r = drive('analityka.mjs', p);
+    expect(r.code).toBe(1);
+    expect(r.out).toContain('500');
+    bezWycieku(r.out);
+  });
+  test('003/M1: treść odpowiedzi błędu HTTP (detail, meta) nie trafia do logu', () => {
+    const p: any = pipeline(); p.routes['GET /v1/analyticsReports/REPS/instances'] = BLAD500;
+    const r = drive('analityka.mjs', p);
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+  });
+  test('003/M5: zła suma kontrolna — w logu nie ma treści segmentu', () => {
+    const p: any = pipeline();
+    p.segments['/s1'] = b64(disc([D_ROW('2026-11-20', 'POL', 'Page view', 'App Store search', 10, 8)])); // jawny TSV (nie gzip), żeby wyciek był widoczny w tekście
+    p.routes['GET /v1/analyticsReportInstances/I1/segments'].body.data[0].attributes.checksum = '0'.repeat(32);
+    const r = drive('analityka.mjs', p);
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+    expect(r.out).not.toContain('Counts');
+  });
+  test('003/M7: w logu błędu ogólnego nie ma identyfikatora aplikacji (błąd po znalezieniu aplikacji)', () => {
+    const r = drive('analityka.mjs', { routes: { ...APP, 'GET /v1/apps/APPID-SECRET/analyticsReportRequests': BLAD500 } });
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+  });
+  test('003/M4: po błędzie POST (500) dokładnie jeden POST — brak ponowienia zapisu', () => {
+    const r = drive('analityka.mjs', { zapisz: true, routes: { ...APP, ...REQS([]), 'POST /v1/analyticsReportRequests': BLAD500 } });
+    expect(r.code).toBe(1);
+    expect(r.calls.filter(c => c.m === 'POST')).toHaveLength(1);
+    bezWycieku(r.out);
+  });
+  test('003: po błędzie 403 POST też dokładnie jeden', () => {
+    const r = drive('analityka.mjs', { zapisz: true, routes: { ...APP, ...REQS([]), 'POST /v1/analyticsReportRequests': { status: 403, body: { errors: [{ code: 'FORBIDDEN', title: 'rola' }] } } } });
+    expect(r.calls.filter(c => c.m === 'POST')).toHaveLength(1);
+  });
+  test('003/M6: na-zywo używa wyłącznie klienta tylko-do-odczytu (c = readOnlyClient(client), brak innych odwołań do client w run)', () => {
+    const poczatek = NAZYWO.indexOf('const c = readOnlyClient(client);');
+    expect(poczatek).toBeGreaterThan(-1);
+    const cialo = NAZYWO.slice(poczatek, NAZYWO.indexOf('async function main'));
+    expect(cialo.replace('readOnlyClient(client)', '')).not.toMatch(/\bclient\b/);
+  });
+  test('003/M6: na-zywo — błędy API nie ujawniają danych w logu', () => {
+    const r = drive('na-zywo.mjs', { routes: { ...APP, 'GET /v1/apps/APPID-SECRET/appStoreVersions': BLAD500 } });
+    expect(r.code).toBe(1);
+    bezWycieku(r.out);
+  });
+  test('004: kolumna sumowana po urządzeniach nazywa się unique_counts_suma_urzadzen (nie twierdzi „unikalne” bez zastrzeżenia)', () => {
+    const r = drive('analityka.mjs', pipeline());
+    expect(r.files['discovery.csv'].split('\n')[0]).toContain('unique_counts_suma_urzadzen');
+    expect(r.files['discovery.csv'].split('\n')[0]).not.toMatch(/(^|,)unique_counts(,|$)/);
   });
 });
