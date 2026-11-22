@@ -1,0 +1,88 @@
+# SZABLON workflowu dla PRYWATNEGO repo właściciela (nazwa robocza lkarwowski494/trening-dane) — KO-106, 22.11.2026.
+# Kopiujesz go do prywatnego repo jako .github/workflows/asc-dane.yml (kroki: docs/wydanie/asc-analityka-kroki-wlasciciela.md). W publicznym repo `trening` NIE działa:
+# leży poza .github/workflows. Skrypty (scripts/asc/analityka.mjs, na-zywo.mjs) są w publicznym repo bez danych; tu tylko je uruchamiamy, a wyniki (CSV/JSON) commitujemy do tego prywatnego repo.
+# Sekrety (kopie z publicznego repo, te same nazwy): ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8. Nie ma innych.
+# Raz w tygodniu (poniedziałek 05:17 UTC) + ręcznie. Domyślnie TYLKO ODCZYT; jedyny zapis w ASC to jednorazowe żądanie raportu ONGOING przy uruchomieniu ręcznym z zaznaczonym polem „zapisz_zadanie”.
+name: ASC dane
+on:
+  schedule:
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      zapisz_zadanie:
+        description: 'Utwórz żądanie raportu ONGOING w App Store Connect (jednorazowo, tylko gdy żadne nie istnieje)'
+        type: boolean
+        default: false
+      skrypty_ref:
+        description: 'Gałąź albo SHA skryptów w publicznym repo (puste = wartość z SKRYPTY_REF)'
+        type: string
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: asc-dane
+  cancel-in-progress: false
+env:
+  # Po scaleniu zmień na SHA commitu scalenia (przypięcie wersji skryptów uruchamianych z sekretami).
+  SKRYPTY_REF: ci/asc-analityka
+jobs:
+  dane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: lkarwowski494/trening
+          ref: ${{ inputs.skrypty_ref || env.SKRYPTY_REF }}
+          path: _trening
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/wydanie/asc-analityka-kroki-wlasciciela.md)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Metadane na żywo (tylko odczyt)
+        id: zywo
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node _trening/scripts/asc/na-zywo.mjs --out dane
+      - name: App Analytics (odczyt; zapis tylko przy zaznaczonym polu)
+        id: analityka
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ZAPISZ: ${{ inputs.zapisz_zadanie }}
+        run: |
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          ARGS=""; [ "$ZAPISZ" = "true" ] && ARGS="--zapisz-zadanie"
+          set +e; node _trening/scripts/asc/analityka.mjs --out dane/analityka $ARGS; kod=$?; set -e
+          # kod 3 = jeszcze brak danych albo brak żądania w trybie odczytu: ostrzeżenie, nie błąd przebiegu
+          if [ "$kod" -eq 3 ]; then echo "::warning::App Analytics: brak danych do zapisu (kod 3)"; exit 0; fi
+          exit "$kod"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
+      - name: Zapis danych w tym prywatnym repo
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dane
+          if git diff --cached --quiet; then echo "Bez zmian w danych."; else git commit -m "dane ASC $(date -u +%F)"; git push; fi
+      - name: Wynik
+        if: always()
+        run: |
+          [ "${{ steps.zywo.outcome }}" = "success" ] && [ "${{ steps.analityka.outcome }}" = "success" ] || { echo "::error::Co najmniej jeden krok danych zakończył się błędem (zobacz kroki powyżej)"; exit 1; }
