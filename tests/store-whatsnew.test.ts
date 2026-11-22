@@ -30,7 +30,7 @@ describe('W-22 (11.11.2026): whatsNew metadanych sklepu z „Co nowego” aplika
       applyLang(lang as (typeof LANGS)[number]);
       expect([loc, meta.lokalizacje[loc].whatsNew]).toEqual([loc, WHATS_NEW[0].items().map(x => PUNKT + x).join('\n')]);
     }
-    expect(meta.lokalizacje['en-US'].whatsNew!.split('\n')).toHaveLength(5); expect(meta.lokalizacje.pl.whatsNew!.split('\n')).toHaveLength(6);
+    expect(meta.lokalizacje['en-US'].whatsNew!.split('\n')).toHaveLength(1); expect(meta.lokalizacje.pl.whatsNew!.split('\n')).toHaveLength(1);
   });
   test('limit pola i walidacja skryptu zapisu do App Store Connect (bez pustych pól, bez nazw innych marek)', () => {
     const r = wezel(`import * as A from './scripts/asc/metadane.mjs'; import { readFileSync as R } from 'node:fs'; const J = p => JSON.parse(R(p, 'utf8'));

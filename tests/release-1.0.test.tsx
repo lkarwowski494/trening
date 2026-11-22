@@ -10,7 +10,7 @@ const J = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f
 
 describe('wydanie 1.0.0', () => {
   test('historia „Co nowego”: w 1.0.0 była pusta (decyzja 14.10.2026), od 1.0.1 ma jeden wpis (zastąpione 06.11.2026; tests/release-1.0.1.test.tsx)', () => {
-    expect(WHATS_NEW.length).toBe(1);
+    expect(WHATS_NEW.length).toBeGreaterThanOrEqual(1); /* od 22.11.2026 dwa wpisy: 1.1.1 i 1.1 */
   });
   test('dziennik wydań (docs/09) ma wiersz złożenia 1.0.0', () => {
     const d09 = fs.readFileSync(path.join(__dirname, '..', 'docs/09-plan-testow.md'), 'utf8');
