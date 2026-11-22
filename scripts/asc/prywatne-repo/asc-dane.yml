@@ -79,6 +79,24 @@ jobs:
           # kod 3 = jeszcze brak danych albo brak żądania w trybie odczytu: ostrzeżenie, nie błąd przebiegu
           if [ "$kod" -eq 3 ]; then echo "::warning::App Analytics: brak danych do zapisu (kod 3)"; exit 0; fi
           exit "$kod"
+      - name: Recenzje klientów (tylko odczyt)
+        id: recenzje
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node _trening/scripts/asc/recenzje.mjs --out dane
+      - name: Ceny subskrypcji i planu dożywotniego (tylko odczyt)
+        id: ceny
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node _trening/scripts/asc/ceny.mjs --out dane
       - name: Usunięcie klucza z maszyny
         if: always()
         run: rm -f "$RUNNER_TEMP/AuthKey.p8"
@@ -91,4 +109,4 @@ jobs:
       - name: Wynik
         if: always()
         run: |
-          [ "${{ steps.zywo.outcome }}" = "success" ] && [ "${{ steps.analityka.outcome }}" = "success" ] || { echo "::error::Co najmniej jeden krok danych zakończył się błędem (zobacz kroki powyżej)"; exit 1; }
+          [ "${{ steps.zywo.outcome }}" = "success" ] && [ "${{ steps.analityka.outcome }}" = "success" ] && [ "${{ steps.recenzje.outcome }}" = "success" ] && [ "${{ steps.ceny.outcome }}" = "success" ] || { echo "::error::Co najmniej jeden krok danych zakończył się błędem (zobacz kroki powyżej)"; exit 1; }

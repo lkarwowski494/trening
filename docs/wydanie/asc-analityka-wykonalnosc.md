@@ -163,3 +163,12 @@ Odczyt: developer.apple.com/documentation/appstoreconnectapi/… i …/analytics
 2. (d) Droga 1: trzy raporty Commerce w `RAPORTY` — 0,5 sesji, bez decyzji właściciela; ceny subskrypcji równolegle (0,5).
 3. (d) Droga 2 (Sales) dopiero, gdy Droga 1 nie wystarczy albo potrzebne liczby bez szumu — wymaga od właściciela numeru dostawcy w prywatnym repo (nowy sekret/zmienna) i ewentualnie klucza Sales and Reports.
 Opcje i kompromisy dla właściciela przy kroku 3: (A) tylko Droga 1 — zero kroków właściciela, dane z szumem Apple; (B) Droga 1 + Droga 2 — dokładne jednostki, jedna dana konta w prywatnym repo. Rekomendacja: A teraz, B po zobaczeniu pierwszych danych.
+
+## 12. Wdrożone (KO-121, 22.11.2026): (c) recenzje, (d) Droga 1 i ceny
+
+- `scripts/asc/recenzje.mjs` (tylko GET): `recenzje.json` (id, data, terytorium, ocena, tytuł, treść; **bez pseudonimu autora**, scalane po `id`) i `streszczenia-recenzji.json`; w logu liczności („recenzji: N (nowych: M)”).
+- `scripts/asc/ceny.mjs` (tylko GET): `ceny.json` — subskrypcje z grupy (`/v1/subscriptions/{id}/prices?include=subscriptionPricePoint,territory`) i plan dożywotni (`/v2/inAppPurchases/{id}/iapPriceSchedule` → `manualPrices` i `automaticPrices`); kwota z punktu cenowego (`customerPrice`, `proceeds`); w logu tylko „produktów: N; cen: M”. Wspólne stronicowanie z `included`: `scripts/asc/pomocnicze.mjs`.
+- `analityka.mjs`: nowe raporty COMMERCE w `RAPORTY` — `zakupy.csv`, `subskrypcje-stan.csv`, `subskrypcje-zdarzenia.csv` (kolumna `Event Date` mapowana na `date`); `Paying Users` pominięte (Apple: „not summable across rows”); wartości sumowane z zaokrągleniem do 6 miejsc. Dane z szumem Apple (szacunki do trendów).
+- Szablon `asc-dane.yml`: dwa nowe kroki tylko-odczyt; „Wynik” sprawdza cztery kroki; nadal jeden zapis (`--zapisz-zadanie`). Nowe pliki: `dane/recenzje.json`, `dane/streszczenia-recenzji.json`, `dane/ceny.json`, `dane/analityka/{zakupy,subskrypcje-stan,subskrypcje-zdarzenia}.csv`.
+- Testy: `tests/asc-analityka.test.ts` (52); mutacje (pseudonim w danych, cena w logu) wykrywane. Droga 2 (salesReports, numer dostawcy) odłożona do oceny po pierwszych danych (KO-121).
+- **Do sprawdzenia w przebiegu dowodowym:** `customerReviewSummarizations?filter[platform]=IOS` (czy filtr jest wymagany i czy działa), nazwy raportów Commerce (`name`), brak planu dożywotniego w ASC (obsłużony logiem), format segmentów.

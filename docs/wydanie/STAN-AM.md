@@ -8,9 +8,12 @@ Gałąź `ci/asc-analityka` @ 089ff0f27 (kod i testy) + commit ze stanem. Koordy
 - Kod: `scripts/asc/na-zywo.mjs` (odczyt, w tym zgłoszenia do recenzji), `scripts/asc/analityka.mjs` (Discovery i Downloads Standard; jedyny zapis `--zapisz-zadanie`), szablon `scripts/asc/prywatne-repo/asc-dane.yml`; `tests/asc-analityka.test.ts` (30 testów); `verify:lekkie` zielone.
 - Przebiegi dowodowe w prywatnym repo (wg koordynatora): 45011742965 odczyt — success (wersja READY_FOR_SALE, 32 lokalizacje wersji i informacji, 2 zgłoszenia, 175 terytoriów); 45012222900 z zapisz_zadanie — żądanie ONGOING utworzone i potwierdzone w usłudze („aktywne”).
 
+## Zrobione po recenzji AN (22.11.2026)
+- Poprawki 001–004 (a6b66e1e6), wykonalność (c)/(d) (sekcja 11), wdrożenie KO-121 (sekcja 12): recenzje, ceny, raporty Commerce; 52 testy w `tests/asc-analityka.test.ts`.
+
 ## Zostało / czeka
 - Recenzja niezależna (sesja AN): do wyniku kodu na gałęzi nie zmieniam, poza poprawkami na prośbę koordynatora.
-- Kolejność (c) NIE rozpoczęta (zakaz koordynatora): ceny subskrypcji (strony nieprzeczytane), recenzje klientów, sprzedaż i subskrypcje, wydajność.
+- Droga 2 sprzedaży (salesReports, numer dostawcy) odłożona do oceny po pierwszych danych; wydajność (perfPowerMetrics), TestFlight — nieczytane.
 - Pierwsze dane Analytics po 1–2 dniach od żądania (22.11); wtedy pierwszy odczyt rozstrzygnie format segmentu i nazwy raportów.
 - Otwarte [DO USTALENIA]: próg stoppedDueToInactivity (tydzień może nie wystarczyć → cron dzienny), stany appInfo, typ klucza dla sprzedaży/finansów (Team).
 

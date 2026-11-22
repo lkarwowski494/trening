@@ -24,6 +24,14 @@ export const RAPORTY = [
     nazwyWyniku: { unique_counts: 'unique_counts_suma_urzadzen' } },
   { klucz: 'pobrania', plik: 'pobrania.csv', kategoria: 'COMMERCE', nazwa: /downloads/i,
     klucze: ['date', 'territory', 'source_type', 'page_type', 'download_type'], wartosci: ['counts'] },
+  // KO-121 (d), Droga 1: raporty kategorii COMMERCE w tym samym żądaniu ONGOING (bez numeru dostawcy). Dane z szumem Apple (szacunki do trendów).
+  // „Paying Users” celowo POMINIĘTE: Apple — „This metric is not summable across rows” (agregacja po urządzeniach dałaby błędną liczbę).
+  { klucz: 'zakupy', plik: 'zakupy.csv', kategoria: 'COMMERCE', nazwa: /purchases/i,
+    klucze: ['date', 'territory', 'purchase_type', 'content_name', 'payment_method', 'source_type', 'page_type'], wartosci: ['purchases', 'proceeds_in_usd', 'sales_in_usd'] },
+  { klucz: 'subskrypcje_stan', plik: 'subskrypcje-stan.csv', kategoria: 'COMMERCE', nazwa: /subscription state/i,
+    klucze: ['date', 'territory', 'state_metric', 'subscription_name', 'subscription_duration', 'billing_frequency', 'offer_type', 'auto_renew_status', 'cancellation_reason'], wartosci: ['counts'] },
+  { klucz: 'subskrypcje_zdarzenia', plik: 'subskrypcje-zdarzenia.csv', kategoria: 'COMMERCE', nazwa: /subscription event/i, kolumnaDaty: 'event_date',
+    klucze: ['date', 'territory', 'event_sub_type', 'event_grouping', 'subscription_name', 'subscription_duration', 'offer_type', 'cancellation_reason', 'app_download_source_type'], wartosci: ['counts'] },
 ];
 
 /** Nazwa kolumny wartości w wyniku (agregat) — domyślnie jak w raporcie Apple. */
@@ -72,7 +80,7 @@ export function agreguj(wiersze, def) {
     if (!klucz[0]) continue;
     const id = JSON.stringify(klucz);
     const poz = mapa.get(id) ?? { klucz, suma: def.wartosci.map(() => 0) };
-    def.wartosci.forEach((k, i) => { const n = Number(w[k]); if (Number.isFinite(n)) poz.suma[i] += n; });
+    def.wartosci.forEach((k, i) => { const n = Number(w[k]); if (Number.isFinite(n)) poz.suma[i] = Math.round((poz.suma[i] + n) * 1e6) / 1e6; });
     mapa.set(id, poz);
   }
   return [...mapa.values()].map(p => Object.fromEntries([...def.klucze.map((k, i) => [k, p.klucz[i]]), ...def.wartosci.map((k, i) => [nazwaWyniku(def, k), p.suma[i]])]));
@@ -156,7 +164,7 @@ export async function run({ client, fetchFn = fetch, out, zapiszZadanie = false,
       for (const ins of instancje) {
         const segmenty = await client.list(`/v1/analyticsReportInstances/${ins.id}/segments`);
         const wiersze = [];
-        for (const seg of segmenty) wiersze.push(...parsujSegment(await pobierzSegment(fetchFn, seg)));
+        for (const seg of segmenty) wiersze.push(...parsujSegment(await pobierzSegment(fetchFn, seg)).map(w => (def.kolumnaDaty ? { ...w, date: w[def.kolumnaDaty] } : w)));
         wczytane.push({ processingDate: ins.attributes?.processingDate ?? '', wiersze });
       }
       const nowe = agreguj(najnowszePoDacie(wczytane), def);
