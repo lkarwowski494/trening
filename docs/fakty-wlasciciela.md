@@ -20,5 +20,6 @@ Repo jest publiczne: bez danych osobowych (imię i nazwisko, e-mail, telefon, UD
 | Kredyty Google Cloud (projekt próbny Vertex, ok. 1000 zł) wygasają 23.01.2027 | właściciel, 31.10.2026 (przez koordynatora 1.0) |
 | Na Dysku w „Trening App” ma podfolder „06 Źródła merytoryczne (prywatne)” z książkami (m.in. cztery pozycje NSCA i atlas ćwiczeń); wyciągi z książek trafiają tylko tam, nie do repo | właściciel, 02.11.2026 (docs/18) |
 | Jego komputer z Claude nie udostępniał folderów sesjom w chmurze w nocy 01/02.11.2026 (przyczyna nieustalona — otwarte) | sesja koordynatora 1.1, 02.11.2026 |
-| Wrzucił ok. 8 filmów o treningu na TikToku (przed wydaniem 1.1); każdy ma ok. 1 tys. wyświetleń, bez widocznego efektu w pobraniach | właściciel, 16.11.2026 (dziennik koordynacji 16.11 09:17) |
+| Konto TikTok jest jego; przed 1.1 wrzucił ok. 8 filmów o treningu, każdy ok. 1 tys. wyświetleń, bez widocznych pobrań (aplikacja nazywała się wtedy „Trening”, bez linku kampanii) | właściciel, 16.11.2026 (dziennik koordynatora, `origin/koordynacja:docs/koordynacja/stan.md`, wpis 09:17) |
 | Produkty zakupów (ceny i definicje) bez zmian od wersji 1.0; jego słowa: „Nie zmienialismy ich” | właściciel, 16.11.2026 (dziennik koordynacji 16.11 10:29) |
+| Wersja 1.1.0 (build 1041) zaakceptowana i w sklepie od 17.11.2026 (T0; „Ready for Distribution”, wydanie automatyczne) | właściciel, 17.11.2026 (dziennik koordynatora, wpis 10:49); potwierdzone w katalogu App Store 22.11.2026 |

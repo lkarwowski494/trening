@@ -48,12 +48,12 @@ test('zegarek i widżet: nazwa pod ikoną = marka we wszystkich językach (InfoP
   expect(read('targets/rest-widget/expo-target.config.js')).toContain(`displayName: '${BRAND_NAME} — Przerwa'`);
 });
 
-test('sklep: nazwa w każdej lokalizacji = „RepsGoat: opis”, max 30 znaków; PL i EN wg decyzji 09.11.2026', () => {
+test('sklep: nazwa w każdej lokalizacji = „RepsGoat: opis”, max 30 znaków; PL wg decyzji 09.11.2026, EN wg decyzji 22.11.2026 (KO-110/KO-114, M5 STOP 2)', () => {
   const { names } = json('store/app-store-names.json') as { names: Record<string, string> };
   expect(Object.keys(names)).toHaveLength(33);
   for (const [loc, n] of Object.entries(names)) { expect([loc, n.startsWith(`${BRAND_NAME}: `), [...n].length <= APP_STORE_NAME_MAX]).toEqual([loc, true, true]); }
   expect(names.pl).toBe(`${BRAND_NAME}: dziennik treningowy`);
-  for (const loc of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect(names[loc]).toBe(`${BRAND_NAME}: Gym Log & Rest Timer`);
+  for (const loc of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect(names[loc]).toBe(`${BRAND_NAME}: Progressive Overload`);
 });
 
 test('sklep: ukryte słowo kluczowe „repgoat” zostaje w EN obok „offline” (decyzja właściciela 11.11.2026)', () => {
@@ -64,19 +64,19 @@ test('sklep: ukryte słowo kluczowe „repgoat” zostaje w EN obok „offline�
   }
 });
 
-test('sklep: przerwa w podtytułach hr/sl wg słownika, sk bez „váha” (recenzja lokalizacji, wydawca W 11.11.2026)', () => {
+test('sklep: przerwa w podtytułach hr/sl wg słownika, sk bez „váha” (recenzja lokalizacji, wydawca W 11.11.2026; podtytuł hr wg decyzji 22.11.2026, KO-113)', () => {
   const m = json('store/app-store-metadata.json').lokalizacje as Record<string, { subtitle: string; keywords: string }>;
-  expect(m.hr.subtitle).toBe('Serije, planovi, tajmer odmora'); expect(m.hr.subtitle).not.toMatch(/pauz/i);
+  expect(m.hr.subtitle).toBe('Plan treninga i tajmer odmora'); expect(m.hr.subtitle).not.toMatch(/pauz/i);
   expect(m.sl.subtitle).toBe('Serije in časovnik počitka'); expect(m.sl.subtitle).not.toMatch(/odmor/i);
   expect(m.sk.keywords.split(',')).not.toContain('váha'); expect(m.sk.keywords.split(',')).toContain('posilňovanie');
 });
 
-test('sklep: podtytuły i słowa kluczowe PL/EN wg decyzji 09.11.2026; opisy mówią o marce, nie o starej nazwie', () => {
+test('sklep: podtytuły i słowa kluczowe PL/EN wg decyzji 09.11.2026 i 22.11.2026 (KO-113, KO-114, KO-115); opisy mówią o marce, nie o starej nazwie', () => {
   const m = json('store/app-store-metadata.json').lokalizacje as Record<string, { subtitle: string; keywords: string; description: string }>;
   expect(m.pl.subtitle).toBe('Plan treningowy na siłownię');
-  expect(m.pl.keywords).toBe('siła,serie,timer,ćwiczenia,domu,stoper,progres,hantle,sztanga,rekordy,1RM,offline,gumy');
+  expect(m.pl.keywords).toBe('siłowy,siłowni,notatnik,notes,stoper,timer,ćwiczenia,hantlami,domu,progres,1RM,gym,log,tracker');
   for (const loc of ['en-US', 'en-GB', 'en-AU', 'en-CA']) {
-    expect(m[loc].subtitle).toBe('Gym plan & workout tracker');
+    expect(m[loc].subtitle).toBe('Gym Rest Timer & Log');
     const kw = m[loc].keywords.split(','); expect(kw).toEqual(expect.arrayContaining(['offline', 'repgoat']));
     expect(Buffer.byteLength(m[loc].keywords)).toBeLessThanOrEqual(100); expect(new Set(kw).size).toBe(kw.length);
   }

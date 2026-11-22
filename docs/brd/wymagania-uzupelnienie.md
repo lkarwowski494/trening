@@ -479,7 +479,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
   - Scenariusz: Nazwa w sklepie
     - Zakładając, że aplikacja ma lokalizację w App Store Connect
     - Gdy sklep pokazuje nazwę
-    - Wtedy ma postać „RepsGoat: opis w języku lokalizacji” i nie przekracza 30 znaków (PL „RepsGoat: dziennik treningowy”, EN „RepsGoat: Gym Log & Rest Timer”)
+    - Wtedy ma postać „RepsGoat: opis w języku lokalizacji” i nie przekracza 30 znaków (PL „RepsGoat: dziennik treningowy”, EN „RepsGoat: Progressive Overload” — od 22.11.2026, wcześniej „RepsGoat: Gym Log & Rest Timer”)
   - Scenariusz: Jedno miejsce pisowni
     - Zakładając, że pisownia marki ma się zmienić (np. wielkość liter)
     - Gdy zmienia się `BRAND_NAME` w `lib/brand.ts` i uruchamia `node scripts/marka.mjs --write`

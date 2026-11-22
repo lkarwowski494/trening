@@ -4,162 +4,162 @@
     "pl": {
       "name": "RepsGoat: dziennik treningowy",
       "subtitle": "Plan treningowy na siłownię",
-      "keywords": "siła,serie,timer,ćwiczenia,domu,stoper,progres,hantle,sztanga,rekordy,1RM,offline,gumy"
+      "keywords": "siłowy,siłowni,notatnik,notes,stoper,timer,ćwiczenia,hantlami,domu,progres,1RM,gym,log,tracker"
     },
     "en-US": {
-      "name": "RepsGoat: Gym Log & Rest Timer",
-      "subtitle": "Gym plan & workout tracker",
-      "keywords": "lifting,strength,exercise,routine,barbell,dumbbell,sets,reps,1RM,RPE,RIR,bands,watch,offline,repgoat"
+      "name": "RepsGoat: Progressive Overload",
+      "subtitle": "Gym Rest Timer & Log",
+      "keywords": "workout,lifting,weight,strength,tracker,1rm,rpe,rir,sets,reps,barbell,dumbbell,watch,offline,repgoat"
     },
     "en-GB": {
-      "name": "RepsGoat: Gym Log & Rest Timer",
-      "subtitle": "Gym plan & workout tracker",
-      "keywords": "weights,lifting,strength,exercise,diary,routine,barbell,sets,reps,1RM,RPE,RIR,watch,offline,repgoat"
+      "name": "RepsGoat: Progressive Overload",
+      "subtitle": "Gym Rest Timer & Log",
+      "keywords": "workout,lifting,weight,strength,tracker,1rm,rpe,rir,sets,reps,barbell,dumbbell,watch,offline,repgoat"
     },
     "en-AU": {
-      "name": "RepsGoat: Gym Log & Rest Timer",
-      "subtitle": "Gym plan & workout tracker",
-      "keywords": "weights,lifting,strength,exercise,diary,routine,barbell,sets,reps,1RM,RPE,RIR,watch,offline,repgoat"
+      "name": "RepsGoat: Progressive Overload",
+      "subtitle": "Gym Rest Timer & Log",
+      "keywords": "workout,lifting,weight,strength,tracker,1rm,rpe,rir,sets,reps,barbell,dumbbell,watch,offline,repgoat"
     },
     "en-CA": {
-      "name": "RepsGoat: Gym Log & Rest Timer",
-      "subtitle": "Gym plan & workout tracker",
-      "keywords": "lifting,strength,exercise,routine,barbell,dumbbell,sets,reps,1RM,RPE,RIR,bands,watch,offline,repgoat"
+      "name": "RepsGoat: Progressive Overload",
+      "subtitle": "Gym Rest Timer & Log",
+      "keywords": "workout,lifting,weight,strength,tracker,1rm,rpe,rir,sets,reps,barbell,dumbbell,watch,offline,repgoat"
     },
     "cs": {
-      "name": "RepsGoat: deník z posilovny",
-      "subtitle": "Série, plány a časovač pauzy",
-      "keywords": "cvičení,silový,činky,šablony,kalendář,rekordy,RPE,RIR,gumy,odpočinek,historie,doma,posilovna"
+      "name": "RepsGoat: tréninkový deník",
+      "subtitle": "Silový trénink, časovač pauzy",
+      "keywords": "posilovna,posilování,plán,cvičení,činky,gym,tracker,workout,log,rekordy,gumy,doma,RPE,RIR,sety"
     },
     "sk": {
-      "name": "RepsGoat: denník z posilňovne",
-      "subtitle": "Série, plány a časovač pauzy",
-      "keywords": "cvičenie,silový,činky,posilňovanie,kalendár,rekordy,RPE,RIR,gumy,odpočinok,posilňovňa,doma"
+      "name": "RepsGoat: tréningový denník",
+      "subtitle": "Silový tréning, časovač pauzy",
+      "keywords": "posilňovňa,posilňovanie,plán,cvičenie,činky,gym,tracker,workout,doma,rekordy,gumy,RPE,RIR,log"
     },
     "hu": {
-      "name": "RepsGoat: edzésnapló",
-      "subtitle": "Súlyzós edzés és pihenőidő",
-      "keywords": "konditerem,erősítő,edzésterv,sorozat,ismétlés,rekord,időzítő,otthon,RPE,RIR,e1RM,napló"
+      "name": "RepsGoat: edzésnapló és terv",
+      "subtitle": "Súlyzós edzés és időzítő",
+      "keywords": "gym,napló,tracker,timer,otthon,konditerem,súlyzó,ismétlés,rekord,RPE,RIR,e1RM,erő"
     },
     "ro": {
       "name": "RepsGoat: jurnal antrenament",
-      "subtitle": "Sală, serii și cronometru",
-      "keywords": "musculatie,forta,haltere,gantere,exercitii,repetari,pauza,timer,record,RPE,RIR,e1RM,acasa"
+      "subtitle": "Program de sală și exerciții",
+      "keywords": "acasa,gym,tracker,timer,cronometru,haltere,gantere,forta,repetari,serii,pauza,record,RPE,RIR,e1RM"
     },
     "hr": {
-      "name": "RepsGoat: dnevnik za teretanu",
-      "subtitle": "Serije, planovi, tajmer odmora",
-      "keywords": "vježbe,vježbanje,snaga,utezi,bučice,kalendar,rekordi,RPE,RIR,gume,povijest,kuće,predlošci"
+      "name": "RepsGoat: teretana i trening",
+      "subtitle": "Plan treninga i tajmer odmora",
+      "keywords": "dnevnik,vježbe,vježbanje,snage,bučice,utezi,gym,tracker,workout,kuće,kod,rekordi,RPE,RIR,gume"
     },
     "uk": {
-      "name": "RepsGoat: щоденник тренувань",
-      "subtitle": "Зал, підходи, відпочинок",
-      "keywords": "вправи,силові,план,гантелі,штанга,повторення,таймер,RPE"
+      "name": "RepsGoat: тренування в залі",
+      "subtitle": "Щоденник і таймер тренувань",
+      "keywords": "трекер,підходи,вправи,гантелі,штанга,силові,RPE,RIR,e1RM"
     },
     "es-ES": {
-      "name": "RepsGoat: diario de gimnasio",
-      "subtitle": "Rutinas, series y descansos",
-      "keywords": "musculación,pesas,fuerza,temporizador,entrenamiento,registro,gym,repeticiones,historial,watch"
+      "name": "RepsGoat: registro de entreno",
+      "subtitle": "Diario de entrenamiento y 1RM",
+      "keywords": "gimnasio,gym,rutina,pesas,progreso,descanso,musculación,fuerza,temporizador,mancuernas,watch,series"
     },
     "es-MX": {
-      "name": "RepsGoat: diario de gym",
-      "subtitle": "Rutinas, series y descanso",
-      "keywords": "gimnasio,bitácora,pesas,musculación,entrenamiento,ejercicios,registro,temporizador,historial,watch"
+      "name": "RepsGoat: registro de entreno",
+      "subtitle": "Diario de gym y temporizador",
+      "keywords": "gimnasio,rutina,pesas,progreso,descanso,cronómetro,musculación,ejercicios,fuerza,1rm,watch,plan"
     },
     "pt-PT": {
-      "name": "RepsGoat: diário de ginásio",
-      "subtitle": "Séries, cargas e descanso",
-      "keywords": "musculação,registo,temporizador,cronómetro,força,pesos,halteres,histórico,exercícios,watch"
+      "name": "RepsGoat: registo de treinos",
+      "subtitle": "Diário de ginásio e pausas",
+      "keywords": "musculação,cronómetro,temporizador,séries,pesos,halteres,força,histórico,exercícios,1rm,watch"
     },
     "pt-BR": {
-      "name": "RepsGoat: diário de academia",
-      "subtitle": "Ficha, séries e descanso",
-      "keywords": "musculação,cronômetro,registro,carga,exercícios,timer,peso,halteres,histórico,força,watch"
+      "name": "RepsGoat: registro de treino",
+      "subtitle": "Diário de academia com timer",
+      "keywords": "musculação,ficha,cronômetro,carga,séries,exercícios,descanso,peso,halteres,força,1rm,watch"
     },
     "de-DE": {
       "name": "RepsGoat: Gym-Tagebuch",
-      "subtitle": "Krafttraining & Pausentimer",
-      "keywords": "workout,trainingstagebuch,trainingsplan,hantel,übungen,satzpause,gewicht,rekorde,rpe,rir,e1rm"
+      "subtitle": "Kraftsport & Pausentimer",
+      "keywords": "krafttraining,trainingsprotokoll,trainingsplan,tracker,workout,tracken,hantel,übungen,1rm,rekorde"
     },
     "fr-FR": {
-      "name": "RepsGoat: journal de muscu",
-      "subtitle": "Séances, séries et repos",
-      "keywords": "musculation,carnet,suivi,minuteur,entraînement,programme,charges,historique,haltères,watch,chrono"
+      "name": "RepsGoat: suivi salle de sport",
+      "subtitle": "Journal de muscu et minuteur",
+      "keywords": "musculation,carnet,repos,haltères,entraînement,programme,charges,historique,séance,1rm,watch"
     },
     "it": {
-      "name": "RepsGoat: diario allenamento",
-      "subtitle": "Palestra, schede e recupero",
-      "keywords": "pesi,registro,serie,ripetizioni,massimale,forza,esercizi,storico,gym,timer,watch"
+      "name": "RepsGoat: diario allenamenti",
+      "subtitle": "Palestra: pesi, serie e timer",
+      "keywords": "scheda,pesistica,registro,ripetizioni,massimale,forza,esercizi,manubri,storico,recupero,gym,watch"
     },
     "nl-NL": {
       "name": "RepsGoat: gym-logboek",
-      "subtitle": "Krachttraining & rusttimer",
-      "keywords": "workout,tracker,trainingsschema,trainingslogboek,sportschool,halter,oefeningen,records,rpe,e1rm,reps"
+      "subtitle": "Trainingsschema & rusttimer",
+      "keywords": "krachttraining,workout,tracker,sportschool,oefeningen,halter,schema,log,thuis,gewicht,1rm,rpe,reps"
     },
     "sv": {
-      "name": "RepsGoat: gymdagbok",
-      "subtitle": "Träningsdagbok & vilotimer",
-      "keywords": "styrketräning,träningslogg,träningsschema,gym,workout,tracker,hantlar,övningar,rekord,rpe,reps"
+      "name": "RepsGoat: Träningslogg",
+      "subtitle": "Styrketräning & vilotimer",
+      "keywords": "gym,träningsdagbok,träningsprogram,logga,träning,workout,tracker,hantel,övningar,rekord,rpe,1rm"
     },
     "da": {
-      "name": "RepsGoat: styrkedagbog",
-      "subtitle": "Styrketræning & pausetimer",
-      "keywords": "træningsdagbog,træningslog,træningsprogram,workout,tracker,håndvægte,øvelser,rekorder,rpe,reps"
+      "name": "RepsGoat: Træningsdagbog",
+      "subtitle": "Træningsprogram & pausetimer",
+      "keywords": "gym,styrketræning,træningslog,træning,track,tracker,workout,log,timer,håndvægte,øvelser,1rm"
     },
     "no": {
-      "name": "RepsGoat: dagbok for gym",
-      "subtitle": "Treningslogg & pausetimer",
-      "keywords": "styrketrening,treningsdagbok,treningsprogram,workout,tracker,manualer,øvelser,rekorder,rpe,reps"
+      "name": "RepsGoat: Treningsdagbok",
+      "subtitle": "Styrketrening & pausetimer",
+      "keywords": "treningslogg,trening,gym,tracking,tracker,workout,log,treningsprogram,hjemme,dagbok,øvelser,1rm,rpe"
     },
     "fi": {
-      "name": "RepsGoat: salipäiväkirja",
-      "subtitle": "Voimaharjoittelu & lepoajastin",
-      "keywords": "treenipäiväkirja,salitreeni,treenilogi,workout,tracker,käsipaino,toisto,paino,ennätys,rpe,reps"
+      "name": "RepsGoat: Treenipäiväkirja",
+      "subtitle": "Saliohjelma ja lepoajastin",
+      "keywords": "salitreeni,sali,treeni,ajastin,ohjelma,kuntosali,voimaharjoittelu,treeniloki,gym,tracker,workout,1rm"
     },
     "tr": {
-      "name": "RepsGoat: spor salonu günlüğü",
-      "subtitle": "Antrenman, set ve dinlenme",
-      "keywords": "tekrar,sayaç,ağırlık,kuvvet,takip,program,egzersiz,kas,rekor,şablon,grafik,zamanlayıcı,gym"
+      "name": "RepsGoat: Antrenman Takibi",
+      "subtitle": "Spor salonu günlüğü, set, RPE",
+      "keywords": "gym,log,workout,tracker,program,ağırlık,dambıl,egzersiz,kas,rekor,1rm,sayaç,şablon,halter"
     },
     "el": {
-      "name": "RepsGoat: καταγραφή προπόνησης",
-      "subtitle": "Σετ, επαναλήψεις, διαλείμματα",
-      "keywords": "γυμναστήριο,βάρη,ασκήσεις,πρόγραμμα,ημερολόγιο,gym,workout"
+      "name": "RepsGoat: πρόγραμμα προπόνησης",
+      "subtitle": "Καταγραφή, σετ & διαλείμματα",
+      "keywords": "gym,tracker,log,workout,γυμναστήριο,βάρη,ημερολόγιο,ασκήσεις"
     },
     "id": {
-      "name": "RepsGoat: jurnal latihan gym",
-      "subtitle": "Set, repetisi, timer istirahat",
-      "keywords": "catatan,angkat,beban,kekuatan,program,jadwal,riwayat,rekor,rutinitas,otot,grafik,berat"
+      "name": "RepsGoat: Latihan Gym & Beban",
+      "subtitle": "Catat set, rep & istirahat",
+      "keywords": "tracker,log,workout,otot,dumbel,angkat,repetisi,timer,rekor,1rm,jadwal,grafik,kekuatan,olahraga"
     },
     "ms": {
-      "name": "RepsGoat: log latihan gym",
-      "subtitle": "Set, ulangan & pemasa rehat",
-      "keywords": "gim,senaman,catatan,beban,angkat,jadual,program,sejarah,otot,kekuatan,rekod,carta"
+      "name": "RepsGoat: Gym Log & Bina Otot",
+      "subtitle": "Tracker senaman, pemasa rehat",
+      "keywords": "workout,badan,latihan,angkat,berat,timer,planner,jadual,program,kekuatan,rekod,ulangan,set,1rm,gim"
     },
     "vi": {
-      "name": "RepsGoat: nhật ký tập gym",
-      "subtitle": "Ghi set, rep, hẹn giờ nghỉ",
-      "keywords": "thể hình,lịch tập,giáo án,bài tập,sức mạnh,cơ bắp,theo dõi,kỷ lục"
+      "name": "RepsGoat: Tập gym tại phòng",
+      "subtitle": "Nhật ký set, rep & lịch tuần",
+      "keywords": "giáo án,luyện,thể hình,tăng cơ,sức mạnh,kỷ lục,log,tracker,workout,hẹn giờ,1rm"
     },
     "ru": {
       "name": "RepsGoat: дневник тренировок",
       "subtitle": "Зал, подходы и таймер отдыха",
-      "keywords": "упражнения,силовые,план,гантели,штанга,повторения,RPE"
+      "keywords": "между,счетчик,учет,журнал,силовые,гантели,штанга,RPE,e1RM"
     },
     "ja": {
-      "name": "RepsGoat: 筋トレ記録とタイマー",
-      "subtitle": "重量・回数・セットをオフラインで管理",
-      "keywords": "ジムメニュー,ワークアウト,トレーニングログ,グラフ,1RM,RPE,ダンベル"
+      "name": "RepsGoat: 筋トレ日誌・ウエイト記録",
+      "subtitle": "休憩タイマーと1RM推定・オフライン",
+      "keywords": "ジムメモ,ジム日記,ジムログ,ノート,メニュー,RPE,ダンベル,ワークアウト"
     },
     "ko": {
-      "name": "RepsGoat: 운동 기록과 휴식 타이머",
-      "subtitle": "헬스·홈트 세트와 무게를 오프라인으로",
-      "keywords": "운동일지,헬스장,헬스루틴,웨이트,그래프,캘린더,워치앱,운동일기,1RM"
+      "name": "RepsGoat: 헬스 휴식 타이머·운동일지",
+      "subtitle": "근력운동 기록·1RM 추정·오프라인",
+      "keywords": "운동기록,헬스장,헬스루틴,웨이트,홈트기록,덤벨운동,캘린더,운동일기,RPE"
     },
     "zh-Hant": {
       "name": "RepsGoat: 重訓紀錄與休息計時",
       "subtitle": "離線免帳號，記錄組數、重量與RPE",
-      "keywords": "健身房,健身日誌,健身計畫,訓練課表,訓練日曆,訓練筆記,肌力訓練,手錶計時"
+      "keywords": "訓練日誌,健身房,健身課表,健身菜單,運動紀錄,組間休息,啞鈴健身,肌力訓練"
     }
   }
 }
