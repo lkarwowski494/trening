@@ -58,3 +58,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AG | 10 (sonnet), wydanie 1.1 docs + eksport marki | 8 | 5,62 | 33,2 | 20:10 → 20:10 → 20:20 → 21:18 → 21:50 | ~30 min (oczekiwanie na dane od koordynatora) | — |
 | AJ | 08 (sonnet), W-23 tryb „zamień” | 8 | 2,65 | 21,7 | 22:10 → 22:12 → 23:55 → 00:05 → 00:40 | ~40 min (verify ×3: README, płytki klon) + ~40 min (nie wybudziła się po CI) | WG: sesja nie budzi się po CI |
 | AL session_01BM51oeui2AE3PVp9imCYpW | M5 build (E0, diagnoza) | 25 (pułap) | 7,25 | 28 | 22.11 08:55 → 08:58 → 8b9c3f8a 09:16 → verify:docs (sesja) → przyjęte 09:45 | 0 | przekazanie do AL2 |
+| AN session_01BM51ogpcUZ9C3dSrHn4add | 08 audit (recenzja AM ×2) | 15 (pułap) | 5,93 | 27 | 22.11 10:30 → 10:32 → e0c68722 10:47 → b19dfbb0 11:23 → przyjęte 11:27 | kolejka tests.yml nie blokowała (same dokumenty) | — |
