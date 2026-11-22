@@ -3495,10 +3495,6 @@
   "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight) and push-ups (about {p}% of body weight). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises."
  },
  {
-  "pl": "Opis {app} w App Store jest teraz dokładniejszy i łatwiej go tam znaleźć. Sama aplikacja działa tak samo, a treningi, szablony i ustawienia zostają bez zmian.",
-  "en": "The {app} page in the App Store is now more detailed and easier to find. The app itself works the same, and your workouts, templates and settings stay unchanged."
- },
- {
   "pl": "opona",
   "en": "tire"
  },
@@ -6835,6 +6831,10 @@
  {
   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
   "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}): muscles grow across a wide range of loads when sets are close to failure."
+ },
+ {
+  "pl": "Zaktualizowaliśmy informacje o {app} w App Store, żeby łatwiej było je znaleźć. Sama aplikacja działa tak samo, a treningi, szablony i ustawienia zostają bez zmian.",
+  "en": "We updated the {app} information in the App Store to make it easier to find. The app itself works the same, and your workouts, templates and settings stay unchanged."
  },
  {
   "pl": "Zaktualizuj aplikację na zegarku",

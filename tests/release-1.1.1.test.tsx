@@ -1,6 +1,6 @@
 /**
  * Wersja 1.1.1 (KO-119, 22.11.2026, docs/49b-wydanie-1-1-1.md): numer 1.1.1 w app.json, package.json i package-lock.json; „Co nowego” — nowy wpis 2026-11-22 na górze
- * (jeden punkt, bez obietnic funkcji: wydanie z nowymi metadanymi sklepu, aplikacja bez zmian funkcji), wpis 1.1 (2026-11-11) zostaje jako starszy.
+ * (jeden punkt, bez obietnic funkcji; nie twierdzi, że opis się zmienił — audyt N-1: opis sklepu bez zmian od 1.1: wydanie z nowymi metadanymi sklepu, aplikacja bez zmian funkcji), wpis 1.1 (2026-11-11) zostaje jako starszy.
  * Rodzaje (docs/20): logika (lista wpisów), dane (wersja w trzech plikach i lockfile), języki (PL/EN i komplet 33 słowników), kropka (osoba po 1.1 znów ma kropkę).
  */
 import { WHATS_NEW, whatsNewUnseen } from '@/lib/whatsnew';
@@ -14,7 +14,7 @@ const R = (f: string) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
 const J = (f: string) => JSON.parse(R(f));
 afterEach(() => { applyLang('pl'); });
 
-const PL_1_1_1 = `Opis ${BRAND_NAME} w App Store jest teraz dokładniejszy i łatwiej go tam znaleźć. Sama aplikacja działa tak samo, a treningi, szablony i ustawienia zostają bez zmian.`;
+const PL_1_1_1 = `Zaktualizowaliśmy informacje o ${BRAND_NAME} w App Store, żeby łatwiej było je znaleźć. Sama aplikacja działa tak samo, a treningi, szablony i ustawienia zostają bez zmian.`;
 
 describe('wersja 1.1.1 (KO-119, 22.11.2026)', () => {
   test('app.json, package.json i package-lock.json (projekt) — 1.1.1', () => {
@@ -32,7 +32,7 @@ describe('wersja 1.1.1 (KO-119, 22.11.2026)', () => {
   });
   test('po angielsku: przetłumaczony, z nazwą aplikacji', () => {
     applyLang('en'); const it = WHATS_NEW[0].items();
-    expect(it).toEqual([`The ${BRAND_NAME} page in the App Store is now more detailed and easier to find. The app itself works the same, and your workouts, templates and settings stay unchanged.`]);
+    expect(it).toEqual([`We updated the ${BRAND_NAME} information in the App Store to make it easier to find. The app itself works the same, and your workouts, templates and settings stay unchanged.`]);
   });
   test('każdy z 33 języków aplikacji ma własny przekład punktu (nie polski, nie angielski, z nazwą aplikacji)', () => {
     const pl = WHATS_NEW[0].items()[0]; applyLang('en'); const en = WHATS_NEW[0].items()[0];

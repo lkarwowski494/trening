@@ -7,7 +7,7 @@
 <!-- /gen:badges-ci -->
 
 <!-- gen:badges-ver -->
-[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.1.0-blue?style=flat)](docs/18-przekazanie.md)
+[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.1.1-blue?style=flat)](docs/18-przekazanie.md)
 [![Minimalny iOS](https://img.shields.io/badge/iOS-16.4%2B-black?style=flat&logo=apple)](https://developer.apple.com/ios/)
 [![Minimalny watchOS](https://img.shields.io/badge/watchOS-10.0%2B-black?style=flat&logo=apple)](https://developer.apple.com/watchos/)
 [![Expo SDK](https://img.shields.io/badge/Expo_SDK-58-000020?style=flat&logo=expo)](https://expo.dev/)
@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-9347-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-9353-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -51,7 +51,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 <!-- gen:stats -->
 | Miara | Wartość | Źródło |
 |---|---|---|
-| Wersja aplikacji | 1.1.0 | `app.json`, `package.json` (docs/18) |
+| Wersja aplikacji | 1.1.1 | `app.json`, `package.json` (docs/18) |
 | Minimalny iOS | 16.4 | baza Expo (`ExpoModulesCore.podspec`); tylko iPhone |
 | Minimalny watchOS (Apple Watch) | 10.0 | `targets/watch-app/expo-target.config.js`, docs/35-zegarek-apple.md |
 | Platforma | Expo SDK 58 · React Native 0.88 · React 19.3 · TypeScript 6.0 | `package.json` |
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1090 (z testem: 1090) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1169 (z testem: 1169) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 223 (z testem: 223) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 813 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 9347 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 814 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 9353 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -266,7 +266,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (61)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (62)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -315,6 +315,7 @@ trening/
 - [`docs/48-zgloszenie-1-0.md`](docs/48-zgloszenie-1-0.md) — 48. Zgłoszenie wersji 1.0 do App Store — szkic kompletu (stan 25.10.2026)
 - [`docs/49-testflight-1-0.md`](docs/49-testflight-1-0.md) — 49. TestFlight 1.0 — „What to Test” i lista „tylko telefon” (przygotowane 26.10.2026)
 - [`docs/49-wydanie-1-1.md`](docs/49-wydanie-1-1.md) — 49. Wydanie 1.1 do App Store — lista kroków (stan 10.11.2026)
+- [`docs/49b-wydanie-1-1-1.md`](docs/49b-wydanie-1-1-1.md) — 49b. Wydanie 1.1.1 do App Store — lista kroków (stan 22.11.2026)
 - [`docs/50-figury-v2.md`](docs/50-figury-v2.md) — 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
