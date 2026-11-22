@@ -150,3 +150,67 @@ Brak decyzji produktowych wymagających właściciela teraz. 001 i 002 to popraw
 `node tools/assemble.mjs 08-programista --tryb fix --zadania 08-programista-001,08-programista-002,08-programista-003,08-programista-004` — wykonawca inny niż recenzent (L-047); 001 przed włączeniem harmonogramu.
 
 Wynik `node sprawdz-raport.mjs docs/wydanie/asc-analityka-recenzja.md . --rola 08-programista` (kopia skryptu w scratchpadzie): kod 0, „OK: odwołania, cytaty, pliki dowodów i sekrety sprawdzone; format raportu 08-programista”. `git status --porcelain` przed commitem: tylko `?? docs/wydanie/asc-analityka-recenzja.md` (plików AM nie zmieniono).
+
+## Recenzja 2 (KO-121 i odbiór poprawek 001–004)
+**autor:** sesja AM · **recenzent:** sesja AN · **data:** 22.11.2026 · **zakres:** `git diff a6b66e1e..5cbe1642 -- scripts tests` (nowe `scripts/asc/recenzje.mjs`, `scripts/asc/ceny.mjs`, `scripts/asc/pomocnicze.mjs`, 3 raporty Commerce w `scripts/asc/analityka.mjs`, kroki w szablonie) oraz odbiór poprawek z `cc670b8d` (`git diff 089ff0f..a6b66e1e`). Odwołania `plik:linia` w tej sekcji dotyczą SHA `5cbe1642`; w sekcjach wyżej — SHA `089ff0f2`. Nic nie uruchamiano przeciw App Store Connect.
+
+**Odbiór poprawek (to nie nowy audyt):**
+| ID | Stan | Dowód |
+|---|---|---|
+| 001 | zamknięte co do mechanizmu, ale patrz 005 | szablon przyjmuje tylko pełny SHA (krok walidacji przed pobraniem skryptów, także pole ręczne); testy „001: …” |
+| 002 | zamknięte | `maskujSciezke` maskuje segment z cyfrą-tylko, myślnikiem albo długim hex; mutacja M17 (bez reguły myślnika) → 5 testów czerwonych |
+| 003 | zamknięte (z resztą niską, 007) | mutacje M1, M4b (ponowienie POST w pętli z jednym literałem), M5 (treść segmentu w błędzie sumy, jawny TSV) i M7 → czerwone testy; dawniej przechodziły |
+| 004 | zamknięte | kolumna `unique_counts_suma_urzadzen`, test „004: …” |
+
+**Wymagania dla nowego kodu:**
+- (a) Tylko GET: `recenzje.mjs` i `ceny.mjs` owijają klienta w `readOnlyClient` (`scripts/asc/recenzje.mjs:25`, `scripts/asc/ceny.mjs:25`), a `stronicuj` woła wyłącznie `call('GET', …)`. Raporty Commerce idą tym samym żądaniem ONGOING, więc nie dodają zapisu. Jedyny POST bez zmian (M2, M3, M4b czerwone).
+- (b) Prywatność: pseudonim autora nie jest zapisywany (`scripts/asc/recenzje.mjs:17` — tylko id, data, terytorium, ocena, tytuł, treść; mutacja M9 dopisująca pseudonim → test czerwony). W logu tylko liczności (M10 tytuł w logu, M11 treść w logu błędu, M14 kwota w logu → czerwone). Ścieżki błędów: komunikat klienta z maską, ID grupy subskrypcji (liczba) maskowane, `filter[productId]` odcięty z zapytaniem.
+- (d) Dokumentacja Apple (odczyt 22.11.2026, surowy JSON stron): kolumny raportów App Store Purchases, Subscription State i Subscription Event zgadzają się z nazwami w kodzie (m.in. Proceeds in USD, Sales in USD, Event Date, State Metric, Auto-Renew Status, Cancellation Reason, App Download Source Type); „Paying Users” pominięte zgodnie z „This metric is not summable across rows”; endpointy `customerReviews`, `customerReviewSummarizations` (z wymaganym `filter[platform]`), `subscriptions/{id}/prices`, `inAppPurchasesV2` (`filter[productId]`), `iapPriceSchedule`, `manualPrices`/`automaticPrices` istnieją, `include` zgodne z dozwolonymi wartościami, `limit` maksimum 200.
+- (e) Testy: 52/52 (`npx jest --ci tests/asc-analityka.test.ts`, kod 0); 14 mutacji: 12 wykrytych, 2 niewykryte (M12, M13 — patrz 007).
+
+| ID | Poziom | Rodzaj | Tytuł | Status |
+|---|---|---|---|---|
+| 08-programista-005 | P1 (ŚREDNIE) | D | Szablon przypina `089ff0f2`, w którym nie ma `recenzje.mjs`, `ceny.mjs` ani poprawek 002/004 — kroki recenzji i cen padną, „Wynik” czerwony co tydzień | otwarte |
+| 08-programista-006 | P2 (NISKIE) | D | Uszkodzony `recenzje.json` jest po cichu zastępowany listą z bieżącej odpowiedzi API | otwarte |
+| 08-programista-007 | P2 (NISKIE) | D | Usunięcie `readOnlyClient` w `recenzje.mjs`/`ceny.mjs` nie łamie żadnego testu | otwarte |
+
+### 08-programista-005 · Przypięty SHA nie zawiera skryptów, które szablon uruchamia
+- Pozycja listy kontrolnej: DEV-04
+- Poziom: P1; wg CLAUDE.md ŚREDNIE (nie dane, nie sekrety: przebieg czerwony, App Analytics działa) — nie blokuje scalenia, ale szablonu nie kopiować do prywatnego repo przed podmianą SHA
+- Realność: realny · Pewność: wysoka
+- Rodzaj: D
+- Dowód: `scripts/asc/prywatne-repo/asc-dane.yml:28` (`SKRYPTY_REF: 089ff0f27b39e62edd3c4d04881740c59e120f43`); `git cat-file -e 089ff0f2:scripts/asc/recenzje.mjs` → brak (to samo `ceny.mjs`, `pomocnicze.mjs`); `git show 089ff0f2:scripts/asc/iap-localizations.mjs | grep -c maskujSciezke` → 0, czyli przypięta wersja nie ma też poprawki 002 ani nazwy kolumny z 004.
+- Mechanizm: SHA w szablonie nie jest aktualizowany razem z dodaniem kroków; brak testu spójności; 1 trafienie.
+- Powraca: tak — wariant 001 → trwała kontrola: test, że każdy skrypt wołany w szablonie istnieje w przypiętym SHA (`git cat-file -e`), z pominięciem, gdy SHA nie ma w klonie CI.
+- Kroki: właściciel kopiuje szablon do prywatnego repo → poniedziałkowy przebieg: krok „Recenzje…” kończy się `Cannot find module` → krok „Wynik” czerwony.
+- Opcje: (A) po tej recenzji przypiąć `5cbe1642…` (pełny SHA) i dodać test spójności — kompromis: kolejny commit; (B) przypinać dopiero SHA scalenia do `main` — kompromis: do scalenia szablon niespójny. Rekomendacja: A.
+- Test akceptacyjny: test spójności szablonu czerwony na `089ff0f2`, zielony na nowym SHA.
+- Status: otwarte
+
+### 08-programista-006 · Uszkodzony `recenzje.json` jest po cichu nadpisywany
+- Pozycja listy kontrolnej: DEV-10
+- Poziom: P2; wg CLAUDE.md NISKIE (historia w git prywatnego repo pozwala odzyskać)
+- Realność: brzegowy (plik pisze tylko skrypt; uszkodzenie np. przy ręcznej edycji albo konflikcie) · Pewność: wysoka
+- Rodzaj: D
+- Dowód: `scripts/asc/recenzje.mjs:33` — błąd parsowania daje `stare = []` bez komunikatu, potem zapis zastępuje plik; recenzje, których API już nie zwraca (usunięte przez autorów), znikają z bieżącego pliku.
+- Mechanizm: puste `catch` przy odczycie danych do scalenia; 1 trafienie w nowych skryptach.
+- Powraca: nie
+- Opcje: (A) błąd parsowania → kod 1 bez zapisu — kompromis: wymaga ręcznej naprawy pliku; (B) kopia `recenzje.uszkodzone.json` i komunikat — kompromis: więcej kodu. Rekomendacja: A.
+- Test akceptacyjny: atrapa z nieprawidłowym `recenzje.json` → kod 1, plik bez zmian.
+- Status: otwarte
+
+### 08-programista-007 · Ochrona „tylko odczyt” nowych skryptów nie ma testu zachowania
+- Pozycja listy kontrolnej: DEV-03
+- Poziom: P2; wg CLAUDE.md NISKIE (dziś skrypty nie wołają metod zapisu; to druga linia obrony)
+- Realność: teoretyczny dziś, realny przy przyszłej zmianie · Pewność: wysoka
+- Rodzaj: D
+- Dowód: mutacje M12 (`recenzje.mjs` bez `readOnlyClient`) i M13 (`ceny.mjs` bez `readOnlyClient`) → testy zielone; test źródła sprawdza tylko brak literałów `'POST'|'PATCH'|'DELETE'`. Dla `na-zywo.mjs` poprawka 003 dodała test źródła (`c = readOnlyClient(client)` i brak innych odwołań do `client`), dla nowych skryptów go nie ma.
+- Mechanizm: ta sama luka co M6 w 003, powtórzona w nowych plikach; 2 trafienia.
+- Powraca: tak — 003/M6 → trwała kontrola: jeden test źródła obejmujący listę wszystkich skryptów tylko-do-odczytu w `scripts/asc/` (na-zywo, recenzje, ceny).
+- Opcje: (A) rozszerzyć test 003/M6 na listę plików — kompromis: kilka linii; (B) test zachowania: `run()` z klientem, którego `call('POST')` zapisuje wywołanie, plus wstrzyknięty błąd w kodzie — kompromis: wymaga punktu wstrzyknięcia. Rekomendacja: A.
+- Test akceptacyjny: M12 i M13 dają czerwony test.
+- Status: otwarte
+
+**Do sprawdzenia (pewność ≤ 80%):** `ceny.mjs` nie zapisuje `planType` (MONTHLY/UPFRONT, dozwolony atrybut ceny subskrypcji) — przy planie z rocznym zobowiązaniem i płatnością miesięczną dwie ceny tego samego terytorium byłyby nierozróżnialne; dla obecnych produktów Treningu `[DO USTALENIA]`. `ocena: Number(rating ?? 0)` (`scripts/asc/recenzje.mjs:17`) zamienia brak oceny na 0; Apple podaje ocenę 1–5 zawsze — teoretyczne.
+
+**Dowody Recenzji 2:** worktree w scratchpadzie na `5cbe1642`; `npx jest --ci tests/asc-analityka.test.ts` → 0, `Tests: 52 passed`; mutacje: M1, M2, M3, M4b, M5 (poprawiona: jawny TSV), M9, M10, M11, M14, M15 (scalenie recenzji gubi stare), M16 (ignorowana `Event Date`), M17 → czerwone; M12, M13 → zielone. `git status --porcelain` worktree pusty po każdej mutacji. Gałąź recenzji scaliła `origin/ci/asc-analityka` (5cbe1642) bez zmian w kodzie AM, żeby odwołania wskazywały istniejące linie.
