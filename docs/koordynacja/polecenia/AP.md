@@ -13,3 +13,16 @@ Koordynator: session_01BM51ocsLq9vDz8rFpm6zbp (raporty, pytania i PRZEKAZANIE ty
 6. Kontekst i koszt: od 30% okna kończysz krok, zapisujesz stan w `STAN-AGENTA.md` (worktree), push gałęzi, PRZEKAZANIE. Pułap 15 USD; próg STOP 19,5 USD.
 7. Push: zbiorczo.
 8. Raporty (≤ 10 linii, send_message): po zad. 1 (SHA, czas, szacunek reszty); po verify (kod, czas); PYTANIE z opcjami i rekomendacją; PRZEKAZANIE: SHA, runy CI, dowody, koszt, otwarte.
+
+## Dopisek koordynatora 2026-11-23 06:00 UTC — zadanie 5 (po zad. 4)
+5. Commit tylko z dokumentami na integracja-1-1, potem `npm run verify:docs`, push, `scal-galaz integracja-1-1 --do main` (H1: same dokumenty po `pelne`). Treść — kolumna „Stan” w docs/49b (i docs/48, jeśli ma te kroki), dowody słowami właściciela z czatu koordynatora 23.11:
+   - X-10 telefon: zrobione 22.11 (~19:40 UTC, właściciel „OK”).
+   - X-11 nowa wersja 1.1.1 w ASC: zrobione 23.11 ~05:22 (właściciel „1.1.1 utworzona”); strony Apple przeczytane 23.11 — zmiana zdania: „Existing metadata carries over from the current version.”; wymóg statusu bieżącej wersji „Ready for Distribution”.
+   - X-12 metadane: zrobione 23.11 — podgląd 45117729248, zapis 45118431784 (appInfo 29, wersja 32; sl pominięte — brak w ASC), kontrola 45118701989 (0 różnic); L-001 pkt 1 nie dotyczy: scripts/asc/metadane.mjs i asc-metadane.yml bez zmian od zapisu 43759074365. Decyzja właściciela 23.11 ~05:40: polski tytuł bez zmian („ok teraz bez zmian w polskim”); badanie frazy „progresja ciężaru/obciążenia” i standardu tytułów — po 1.1.1 (dopisz do backlogu docs/21 albo zobowiązań z datą).
+   - X-13 zrzuty: bez zmian.
+   - X-14 notatki EN: zrobione 23.11 ~05:50 (właściciel „gotowe”; store/review-notes.en.txt 3988 B).
+   - X-15 asc-kontrola 45118997956: OK 42, RÓŻNICA 0, BŁĄD 0; App Privacy tylko ręcznie (bez zmian kodu od 1.1).
+   - X-16 zakupy: bez zmian (nie zgłaszano problemu).
+   - X-17…X-19: zrobione 23.11 ~05:58 (właściciel „gotowe”): build 1042, „Automatically release this version”, bez wydania stopniowego.
+   - X-20 Submit for Review: zrobione 23.11 ~06:00 (właściciel „gotowe”); stan „Waiting for Review” — wynik recenzji otwarte.
+   Gotowe: commit na integracja-1-1 i na main, verify:docs kod 0, tests.yml/CI wg scal-galaz.
