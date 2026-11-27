@@ -72,3 +72,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AT | 11 audit | — | 5,51 | ~15 | 14:33 → 14:33 → ~15:55 → 16:14 → 16:24 | 5 min: decyzja Q-1 | Z-06 |
 | AQ | 08 build | — | 3,41 | 26,7 | 14:33 → 14:33 → ~15:20 → 16:42 → 17:20 | 25 min: testy SIGKILL (pamięć) | Z-00/02/03/03b |
 | AY | 09 audit | 8 | 5,57 | — | 16:40 → 16:45 → 17:04 → 17:05 → 17:20 | — | Z-25 |
+| AU | 09 build | — | 5,79 | ~38 | 14:33 → 14:33 → 16:01 → 17:28 → 17:55 | 40 min: CI czerwone (strażnik sekretów) + recenzja | Z-24 + poprawki Z-25 |
