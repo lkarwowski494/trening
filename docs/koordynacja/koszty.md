@@ -75,3 +75,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AU | 09 build | — | 5,79 | ~38 | 14:33 → 14:33 → 16:01 → 17:28 → 17:55 | 40 min: CI czerwone (strażnik sekretów) + recenzja | Z-24 + poprawki Z-25 |
 | AX | 04 build | 15 | 7,91 | ~31 | 16:05 → 16:04 → 16:08 → 16:58 → 17:02 | 3 min: wybór właściciela | Z-10, Z-11 zapis |
 | AZ | 04 build | 10 | 6,99 | ~30 | 16:24 → 16:24 → ~16:35 → 17:02 → 18:05 | 40 min: recenzja kodu + poprawka | Z-22 |
+| BD | 04 build | 15 | 9,31 | ~33 | 18:00 → 17:42 → ~18:05 → 18:47 → 19:05 | 25 min: CI | Z-12 |
