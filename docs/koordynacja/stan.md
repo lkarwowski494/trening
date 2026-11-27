@@ -588,3 +588,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-27 15:30 | AV / koordynator | Z-21 PRZYJĘTE: 34d87bd3 (ls-remote zgodny; Claude noreply; 1 plik docs od 21e056c), tests.yml 46022874080 success na tym SHA (actions_get). Recenzja w Z-23. AV koszt 4,07 USD, kontekst 23,7% → archiwizacja. | Z-23 po Z-22 |
 | 2026-11-27 15:40 | koordynator | Zgoda właściciela na prompts + bez przekazania koordynatora (mandat). Polecenie AW (Z-09, 08 build sonnet) zapisane; start AW. | kontrola 16:10 |
 | 2026-11-27 15:45 | koordynator | AW session_01BM51ocsynUVfyuXyvimgLv utworzona (sonnet-5-5, auto, env_01MNnknZnuVLitoBMmMxrhit). AV zarchiwizowana. | kontrola 16:10 |
+| 2026-11-27 16:00 | AT / koordynator | PYTANIE Q-1 (roboty uczenia AI w robots.txt) → KO-130 wariant B (do weta, podane właścicielowi w czacie). AT: docs/badanie-zasiegu-2026-11-27.md @ 2917a9f7, tests.yml 46029641551 w toku. | PRZEKAZANIE AT po CI |
