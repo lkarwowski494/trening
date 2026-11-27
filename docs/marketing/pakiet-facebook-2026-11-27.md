@@ -111,12 +111,12 @@ Dla osób, które kompletują sprzęt do domu albo na siłownię: jestem autorem
 
 Działa w całości na telefonie, bez konta i bez reklam:
 https://apps.apple.com/pl/app/repsgoat-dziennik-treningowy/id6819977165
-Na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli [LIMIT] kodów). Bez subskrypcji i bez opłat.
+Aplikacja jest na początku rozwoju, dlatego udostępniam ją za darmo: kod REPSGOATPL daje RepsGoat Pro na zawsze → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli [LIMIT] kodów). Bez subskrypcji i bez opłat.
 
 Jeśli to nie miejsce na taki wpis, daj znać, usunę go.
 ```
 
-### W3-EN: grupy sprzedaży sprzętu w UK i US (zwykły wpis, nie „Sell”; bez kodu, dopóki nie ma kodu EN)
+### W3-EN: grupy sprzedaży sprzętu w UK i US (zwykły wpis, nie „Sell”; z kodem EN — właściciel 27.11.2026: „dodaj ze apka jest na poczatku rozwoju i ze udostepniamy ja za darmo z kodem”)
 
 ```text
 For anyone putting together a home or garage gym: I'm the developer of RepsGoat, a workout log for iPhone. I'm not selling any equipment, just sharing something that might help with the kit you're buying.
@@ -126,12 +126,12 @@ For anyone putting together a home or garage gym: I'm the developer of RepsGoat,
 
 It runs entirely on your phone, with no account and no ads:
 https://apps.apple.com/gb/app/repsgoat-progressive-overload/id6819977165
-Free for up to 5 training days a month; Pro removes the limit. History, backup and export always work.
+The app is at an early stage of development, so I'm giving it away for free: code REPSGOATEN unlocks RepsGoat Pro forever → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the [LIMIT] codes last). No subscription and no charges.
 
 If this isn't the right place for a post like this, let me know and I'll take it down.
 ```
 
-Grupa z USA: zamień `/gb/` na `/us/`. Z kodem EN: zamień linię „Free for up to 5…” na zdanie o kodzie z wersji W1-EN.
+Grupa z USA: zamień `/gb/` na `/us/`. **Warunek:** kod `REPSGOATEN` musi istnieć w App Store Connect (oferta na produkcie Lifetime, Custom Codes) i być sprawdzony linkiem; dopóki go nie ma, wpis nie wychodzi albo idzie z `REPSGOATPL` (wtedy `[LIMIT]` = wspólna pula PL).
 
 Punkt o miejscu i sprzęcie pochodzi z opisu w sklepie („Miejsca i sprzęt: ćwiczenia dobierane do tego, czym dysponujesz”).
 
