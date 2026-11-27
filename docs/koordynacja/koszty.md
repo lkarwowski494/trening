@@ -77,3 +77,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AZ | 04 build | 10 | 6,99 | ~30 | 16:24 → 16:24 → ~16:35 → 17:02 → 18:05 | 40 min: recenzja kodu + poprawka | Z-22 |
 | BD | 04 build | 15 | 9,31 | ~33 | 18:00 → 17:42 → ~18:05 → 18:47 → 19:05 | 25 min: CI | Z-12 |
 | BE | 07 build | 10 | 6,65 | ~30 | 19:05 → 19:02 → 19:27 → 19:49 → 19:56 | — | Z-30 |
+| BB | 06 audit | 10 | 5,10 | ~26 | 17:20 → 17:22 → ~19:30 → 19:58 → 20:08 | 60 min: blokada startu (WG-20) | Z-23 |

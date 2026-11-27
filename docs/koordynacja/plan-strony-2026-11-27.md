@@ -123,7 +123,7 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
 | Z-06 | zrobione | AT | 27.11 16:14 | strona/z06-badanie-zasiegu @ 72d53ce2 (docs/badanie-zasiegu-2026-11-27.md: A1–A15, B1–B9, KO-130); tests.yml 46029824334 success |
 | Z-22 | zrobione (recenzja kodu i Z-23 w toku) | AZ | 27.11 17:02 | strona/z22-szablony @ 5340a4f5 (docs/teksty/szablony-stron.md, src/szablony.mjs; poprawki po recenzji kodu); tests.yml 46040735422 success; do weta SZ-1…SZ-7 |
-| Z-23 | w toku | BB | 27.11 17:20 | — |
+| Z-23 | zrobione — Z-20 i Z-22 do poprawy, Z-21 z uwagami → poprawki BG (002 → BF) | BB | 27.11 19:58 | strona/z23-recenzja-tekstow @ 04ef2f0f (docs/teksty/recenzja-z23-2026-11-27.md: 4×P1, 6×P2); tests.yml 46057465363 success |
 | Z-24 | zrobione (po recenzji Z-25) | AU | 27.11 17:28 | strona/z24-nazwy-pl @ 17400396 (docs/nazwy/pl.json 708/708 po 227 poprawkach, STAN.md: 16 nazw do zgłoszenia aplikacji, wyjątki dla Z-32); tests.yml 46040595906 success |
 | Z-25 | zrobione — PRZYJĘTE Z POPRAWKAMI (227) → AU wprowadza | AY | 27.11 17:05 | strona/z25-recenzja-nazw-pl @ b9ec7694 (docs/nazwy/recenzja-pl-2026-11-27.md); tests.yml 46037174854 success |
 | Z-21 | zrobione (czeka recenzja Z-23) | AV | 27.11 15:25 | techniqueatlas strona/z21-ramka-akapit @ 34d87bd3 (Claude noreply, 1 plik docs/teksty/ramka-w-aplikacji.md; warianty A 8 zdań / B 5 zdań pl+en; do weta: A, „Ta strona jest bezpłatna”, średnik → zdanie); tests.yml 46022874080 success na tym SHA; otwarte dla Z-23: en „at no charge” |
