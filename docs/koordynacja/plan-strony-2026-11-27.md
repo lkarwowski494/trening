@@ -118,4 +118,4 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
 | Z-06 | w toku | AT | 27.11 | — |
 | Z-24 | w toku | AU | 27.11 | — |
-| Z-21 | w toku | AV | 27.11 | — |
+| Z-21 | PRZEKAZANE, odbiór czeka na CI | AV | 27.11 15:13 | techniqueatlas strona/z21-ramka-akapit @ 34d87bd3 (Claude noreply, 1 plik docs/teksty/ramka-w-aplikacji.md; warianty A 8 zdań / B 5 zdań pl+en; do weta: A, „Ta strona jest bezpłatna”, średnik → zdanie); tests.yml 46022874080 w toku; otwarte dla Z-23: en „at no charge” |
