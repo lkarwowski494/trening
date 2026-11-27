@@ -106,9 +106,9 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 ## Stan (do czasu docs/55 w repo strony)
 | ID | Stan | Sesja | Data | Dowód |
 |---|---|---|---|---|
-| Z-00, Z-02, Z-03 | w toku | AQ | 27.11 | — |
+| Z-00, Z-02, Z-03, Z-03b | zrobione (recenzja kodu w toku) | AQ | 27.11 16:42 | strona/z00-z03-plan-dane-regula @ 10155604; tests.yml 46032249443 success; docs/55, pomiary/start-1-1-1.md (708/528/447/310/232/263), 14 nadpisań adresów (KO-131) |
 | Z-01 | zrobione | AR | 27.11 14:55 | techniqueatlas strona/z01-przeglad-galezi @ efc69dd6 (Claude noreply, 1 plik docs/przeglad-galezi-2026-11-27.md); tests.yml 46017953936 success na tym SHA. Wynik: 12 gałęzi; 7 przodkami main, tender-thompson w main pod innym SHA, stan-wskazowka i filtr-audytu-s6 nieaktualne → do usunięcia przez właściciela; zachować figury/petla-jednokierunkowa (→ Z-02a) i claude/amazing-cori-vqo0qi (→ Z-09) |
-| Z-02a | otwarte (KO-129) | AQ po Z-03b | 27.11 | — |
+| Z-02a | w toku | BA | 27.11 17:20 | — |
 | Z-09 | zrobione | AW | 27.11 16:11 | strona/z09-sprzatanie-testow @ bd0baf21 (Claude noreply, 7 plików); tests.yml 46030015001 success; recenzja niezależna PRZYJĘTE Z UWAGAMI (2× NISKIE uruchom-testy.mjs → backlog) |
 | Z-10 | zrobione | AX | 27.11 16:58 | strona/z10-makiety @ eb4a9ca9 (docs/design/makiety-2026-11-27/, arkusze/porownanie-*.png); tests.yml 46035081018 success |
 | Z-11 | zrobione — właściciel wybrał A „Arkusz” | — | 27.11 17:05 | AskUserQuestion: „A „Arkusz” (Rekomendowane)” |
@@ -120,7 +120,8 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-20 | zrobione (czeka recenzja Z-23) | AS | 27.11 15:05 | strona/z04-z07-z20-formalnosci @ c76182b8 (4 commity Claude noreply, tylko docs: docs/teksty/prawne/ pl+en ×3 + dowody.md D-1…D-15); tests.yml 46019852421 success na tym SHA. Do weta (AS): własna polityka strony; licencja: wyszukiwarki i asystenci AI mogą indeksować/cytować z linkiem, zakaz zbiorów do uczenia modeli; hosting jako kategoria; rysunek tylko w wydruku. Otwarte: wstawki {{administrator}}/{{kontakt}} (Z-33; e-mail nie w repo), [DO KONSULTACJI] PP-1–3, R-1–3, L-1–2; Z-52: brak Set-Cookie |
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
 | Z-06 | zrobione | AT | 27.11 16:14 | strona/z06-badanie-zasiegu @ 72d53ce2 (docs/badanie-zasiegu-2026-11-27.md: A1–A15, B1–B9, KO-130); tests.yml 46029824334 success |
-| Z-22 | w toku | AZ | 27.11 16:25 | — |
+| Z-22 | zrobione (recenzja kodu i Z-23 w toku) | AZ | 27.11 17:02 | strona/z22-szablony @ 3288ff36 (docs/teksty/szablony-stron.md, src/szablony.mjs); tests.yml 46034976157 success; do weta SZ-1…SZ-6 |
+| Z-23 | w toku | BB | 27.11 17:20 | — |
 | Z-24 | zrobione (czeka recenzja Z-25) | AU | 27.11 16:32 | strona/z24-nazwy-pl @ 9f4e0607 (docs/nazwy/pl.json 708/708, STAN.md); tests.yml 46032940238 success |
-| Z-25 | w toku | AY | 27.11 16:40 | — |
+| Z-25 | zrobione — PRZYJĘTE Z POPRAWKAMI (227) → AU wprowadza | AY | 27.11 17:05 | strona/z25-recenzja-nazw-pl @ b9ec7694 (docs/nazwy/recenzja-pl-2026-11-27.md); tests.yml 46037174854 success |
 | Z-21 | zrobione (czeka recenzja Z-23) | AV | 27.11 15:25 | techniqueatlas strona/z21-ramka-akapit @ 34d87bd3 (Claude noreply, 1 plik docs/teksty/ramka-w-aplikacji.md; warianty A 8 zdań / B 5 zdań pl+en; do weta: A, „Ta strona jest bezpłatna”, średnik → zdanie); tests.yml 46022874080 success na tym SHA; otwarte dla Z-23: en „at no charge” |

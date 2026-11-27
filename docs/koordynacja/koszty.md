@@ -70,3 +70,5 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AV | 04 build zawężona | — | 4,07 | 23,7 | 14:33 → 14:33 → ~15:10 → 15:25 → 15:30 | ok. 30 min: potwierdzenie właściciela w sesji AV | Z-21, docs |
 | AW | 08 build | 6 | 0,80 | 14 | 15:41 → 15:49 → ~16:00 → 16:11 → 16:20 | 10 min: recenzja | Z-09 |
 | AT | 11 audit | — | 5,51 | ~15 | 14:33 → 14:33 → ~15:55 → 16:14 → 16:24 | 5 min: decyzja Q-1 | Z-06 |
+| AQ | 08 build | — | 3,25 | 26,7 | 14:33 → 14:33 → ~15:20 → 16:42 → 17:20 | 25 min: testy SIGKILL (pamięć) | Z-00/02/03/03b |
+| AY | 09 audit | 8 | ~4,5 (szac.) | — | 16:40 → 16:45 → 17:04 → 17:05 → 17:20 | — | Z-25 |
