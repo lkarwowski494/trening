@@ -117,6 +117,7 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-08 | zrobione — decyzja właściciela | — | 27.11 ~14:50 | AskUserQuestion: „Nie robimy tego.” (sprawdzanie znaków towarowych nazw) → Z-28 odpada; strażnik S3 (src/straznicy.mjs checkTrademarks, R-016) do zmiany zgodnie z decyzją w tym samym commicie co test (CLAUDE.md repo trening) — nowe zadanie Z-03b dla AQ |
 | Z-20 | zrobione (czeka recenzja Z-23) | AS | 27.11 15:05 | strona/z04-z07-z20-formalnosci @ c76182b8 (4 commity Claude noreply, tylko docs: docs/teksty/prawne/ pl+en ×3 + dowody.md D-1…D-15); tests.yml 46019852421 success na tym SHA. Do weta (AS): własna polityka strony; licencja: wyszukiwarki i asystenci AI mogą indeksować/cytować z linkiem, zakaz zbiorów do uczenia modeli; hosting jako kategoria; rysunek tylko w wydruku. Otwarte: wstawki {{administrator}}/{{kontakt}} (Z-33; e-mail nie w repo), [DO KONSULTACJI] PP-1–3, R-1–3, L-1–2; Z-52: brak Set-Cookie |
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
-| Z-06 | w toku | AT | 27.11 | — |
-| Z-24 | w toku | AU | 27.11 | — |
+| Z-06 | zrobione | AT | 27.11 16:14 | strona/z06-badanie-zasiegu @ 72d53ce2 (docs/badanie-zasiegu-2026-11-27.md: A1–A15, B1–B9, KO-130); tests.yml 46029824334 success |
+| Z-22 | w toku | AZ | 27.11 16:25 | — |
+| Z-24 | przekazane, CI czerwone (46030018677) → AU poprawia | AU | 27.11 16:14 | strona/z24-nazwy-pl @ 977f3673 |
 | Z-21 | zrobione (czeka recenzja Z-23) | AV | 27.11 15:25 | techniqueatlas strona/z21-ramka-akapit @ 34d87bd3 (Claude noreply, 1 plik docs/teksty/ramka-w-aplikacji.md; warianty A 8 zdań / B 5 zdań pl+en; do weta: A, „Ta strona jest bezpłatna”, średnik → zdanie); tests.yml 46022874080 success na tym SHA; otwarte dla Z-23: en „at no charge” |
