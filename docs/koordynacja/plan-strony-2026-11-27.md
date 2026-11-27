@@ -107,7 +107,9 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | ID | Stan | Sesja | Data | Dowód |
 |---|---|---|---|---|
 | Z-00, Z-02, Z-03 | w toku | AQ | 27.11 | — |
-| Z-01 | w toku | AR | 27.11 | — |
+| Z-01 | zrobione | AR | 27.11 14:55 | techniqueatlas strona/z01-przeglad-galezi @ efc69dd6 (Claude noreply, 1 plik docs/przeglad-galezi-2026-11-27.md); tests.yml 46017953936 success na tym SHA. Wynik: 12 gałęzi; 7 przodkami main, tender-thompson w main pod innym SHA, stan-wskazowka i filtr-audytu-s6 nieaktualne → do usunięcia przez właściciela; zachować figury/petla-jednokierunkowa (→ Z-02a) i claude/amazing-cori-vqo0qi (→ Z-09) |
+| Z-02a | otwarte (KO-129) | AQ po Z-03b | 27.11 | — |
+| Z-09 | otwarte (KO-129) | następna sesja 08 | 27.11 | — |
 | Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
 | Z-05 | w toku (właściciel, krok po kroku) — krok 1/1a zrobiony 27.11 ~14:50 („Successfully verified techniqueatlas.com”); K6: „Dodawalem chyba w google wczesniej” | — | 27.11 | — |
 | Z-07 | zrobione | AS | 27.11 14:47 | docs/znaki-towarowe-metoda.md @ 9bbc00f (lokalnie u AS; push zbiorczo) |
