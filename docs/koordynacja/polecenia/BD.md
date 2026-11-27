@@ -1,0 +1,10 @@
+# Sesja BD: Z-12 system wyglądu „Arkusz” — techniqueatlas (następca AX)
+Koordynator: session_01BM51ofp4DMHDkCDaVVg49P (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID). Gałąź stanu: `koordynacja` w lkarwowski494/trening (tylko odczyt; plan Z-12; KO-130…KO-133).
+
+1. Rola: 04-studio-projektowe w trybie build z modułem strona-www. Prompt roli w pierwszej wiadomości po linii `=== PROMPT ROLI ===`. Biblioteki prompts nie dołączasz.
+2. Start: repo lkarwowski494/techniqueatlas, gałąź `strona/z10-makiety` @ f6a09e56 (kontynuujesz na niej). Najpierw przeczytaj `docs/design/STAN-AGENTA.md` (plan Z-12 krok po kroku od AX) i `docs/design/makiety-2026-11-27/README.md`. Właściciel wybrał kierunek A „Arkusz” (27.11 17:05 UTC). Obrazek podglądu: A9 w `git show origin/strona/z06-badanie-zasiegu:docs/badanie-zasiegu-2026-11-27.md`. Tożsamość commitów według CLAUDE.md (Claude <noreply@anthropic.com>).
+3. Zadania: Z-12 według planu z STAN-AGENTA.md — tokeny (oba motywy + zwiększony kontrast), komponenty, szablony 3 ekranów, stany (brak rysunku, wskazówki ogólne, brak wskazówek, 404, pusty filtr), ikona, obrazek podglądu PNG, design-spec.md, zrzuty wzorcowe 320/390/768/1024/1440. Krój tytułowy: arkusz 5 krojów i wybór według rekomendacji (do weta); arkusz do koordynatora tylko przy dużej różnicy. Kontrast policzony skryptem i axe jak w Z-10. Gotowe: docs/design/ kompletne, push, tests.yml zielony.
+4. Zakazy: tylko docs/design (bez src/ i assets/ — wdrożenie Z-31/Z-33), nie scalasz, nie otwierasz PR, nie tworzysz sesji, nie piszesz na `koordynacja`, nigdy --no-verify ani force-push, bez AskUserQuestion. Pełny npm test lokalnie po kolei (`--test-concurrency=1`) albo dowodem jest CI. Pliki > 300 KB tnij (strażnik).
+5. Decyzje: „analogia, do weta”; opisz w PRZEKAZANIU.
+6. Kontekst i koszt: od 30% okna kończysz krok, STAN-AGENTA.md, push, PRZEKAZANIE. Pułap 15 USD; próg STOP 19,5 USD.
+7. Raporty (≤ 10 linii, send_message): PYTANIE — pełna treść, opcje, rekomendacja; PRZEKAZANIE — SHA, run CI, ścieżki, decyzje do weta, koszt, otwarte.
