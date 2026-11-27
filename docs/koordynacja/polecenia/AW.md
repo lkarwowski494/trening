@@ -1,0 +1,15 @@
+# Sesja AW: Z-09 strażnik sprzątania katalogów tymczasowych testów — techniqueatlas
+Koordynator: session_01BM51ofp4DMHDkCDaVVg49P (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID; jeśli dostaniesz wiadomość o zmianie koordynatora, pisz do nowego). Gałąź stanu koordynatora: `koordynacja` w repo lkarwowski494/trening (tylko do odczytu; plan: docs/koordynacja/plan-strony-2026-11-27.md, KO-129 w decyzje.md).
+
+1. Rola: 08-programista w trybie build. Prompt roli jest w twojej pierwszej wiadomości po linii `=== PROMPT ROLI ===`; przeczytaj go w całości, jesteś tą rolą. Biblioteki prompts nie dołączasz.
+2. Start: repo lkarwowski494/techniqueatlas, gałąź `strona/z09-sprzatanie-testow` od `main` @ 21e056c0 (inny HEAD main: zgłoś). Instalacja: `npm ci`. Tożsamość commitów według CLAUDE.md repo (Claude <noreply@anthropic.com>), sprawdź przed pierwszym commitem.
+3. Zadania:
+   1. Przenieś sprzątanie katalogów tymczasowych `atlas-dist-*` z gałęzi `claude/amazing-cori-vqo0qi` — commity 7a60493 („Testy: sprzątanie katalogów tymczasowych…”) i d449c1f (docs/54, decyzja właściciela 02.11.2026, wariant A, ZB-050 A) — przez cherry-pick albo ręcznie. NIE przenoś commitów S6/F-16 z tej gałęzi (e7faf1f, 26c7b97, 53cc92f: nieaktualne wg docs/przeglad-galezi-2026-11-27.md na strona/z01-przeglad-galezi). Gotowe: diff obejmuje tylko package.json (skrypt test), tests/pomoc.mjs, tests/przypnij.test.mjs, tests/sprzatanie.test.mjs, tests/uruchom-testy.mjs, docs/54 — konflikty rozwiązane wobec main 21e056c.
+   2. Test strażnika najpierw czerwony: pokaż (log w treści commitu albo w raporcie), że tests/sprzatanie.test.mjs pada na kodzie bez sprzątania, a przechodzi z nim. Gotowe: oba wyniki z kodem wyjścia.
+   3. Pełne `npm test` zielone lokalnie; push; tests.yml zielony na końcowym SHA. Gotowe: run ID i SHA w PRZEKAZANIU.
+   4. Przypadek „gałąź z wcześniejszymi zmianami względem main” dla strażnika (zasada L-080 z CLAUDE.md repo trening): jeśli strażnik zależy od stanu gałęzi, dodaj taki przypadek; jeśli nie zależy — jedno zdanie uzasadnienia w PRZEKAZANIU.
+4. Zakazy: nie scalasz do `main`, nie otwierasz PR, nie tworzysz i nie archiwizujesz sesji, nie piszesz na gałąź `koordynacja`, nie zmieniasz workflowów, nie ruszasz src/ (pliki sesji AQ: src/straznicy.mjs, PIN.json, dane), nigdy --no-verify ani force-push, nie pytasz właściciela bezpośrednio (bez AskUserQuestion). STOP-y roli i punkt czyszczenia z zasady wspólnej 19 zamieniasz na raport do koordynatora i czekasz na odpowiedź.
+5. Decyzje: tryb „analogia, do weta”; najpierw repo lkarwowski494/trening (`repo:plik:linia`). Numery KO nadaje koordynator — decyzje opisz w PRZEKAZANIU.
+6. Kontekst i koszt: od 30% okna kończysz krok, zapisujesz stan w STAN-AGENTA.md na swojej gałęzi, push, PRZEKAZANIE. Pułap 6 USD; próg STOP 7,8 USD.
+7. Push: zbiorczo.
+8. Raporty (≤ 10 linii, przez send_message): po zadaniu 1 — czas i szacunek reszty; PYTANIE — pełna treść, opcje, rekomendacja; PRZEKAZANIE — SHA, run CI, dowody, decyzje do weta, koszt, otwarte.
