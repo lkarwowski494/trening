@@ -111,7 +111,8 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-02a | otwarte (KO-129) | AQ po Z-03b | 27.11 | — |
 | Z-09 | zrobione | AW | 27.11 16:11 | strona/z09-sprzatanie-testow @ bd0baf21 (Claude noreply, 7 plików); tests.yml 46030015001 success; recenzja niezależna PRZYJĘTE Z UWAGAMI (2× NISKIE uruchom-testy.mjs → backlog) |
 | Z-10 | zrobione | AX | 27.11 16:58 | strona/z10-makiety @ eb4a9ca9 (docs/design/makiety-2026-11-27/, arkusze/porownanie-*.png); tests.yml 46035081018 success |
-| Z-11 | czeka na właściciela | — | 27.11 17:02 | — |
+| Z-11 | zrobione — właściciel wybrał A „Arkusz” | — | 27.11 17:05 | AskUserQuestion: „A „Arkusz” (Rekomendowane)” |
+| Z-12 | w toku | AX | 27.11 17:05 | — |
 | Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
 | Z-05 | zrobione — kroki 1–8 (Enforce HTTPS: właściciel 27.11 ~16:00 „gotowe”) | — | 27.11 16:03 | curl: http://www.techniqueatlas.com → 301, https → 404 GitHub (brak wdrożenia, oczekiwane) |
 | Z-07 | zrobione | AS | 27.11 14:47 | docs/znaki-towarowe-metoda.md @ c76182b8 (z decyzją Z-08) |
