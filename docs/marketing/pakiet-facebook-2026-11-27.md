@@ -94,7 +94,7 @@ Dla grupy z Wielkiej Brytanii, Kanady albo Australii zamień `/us/` na `/gb/`, `
 
 **Wersja z kodem EN:** jeśli utworzysz kod (np. `REPSGOATEN`, oferta na tym samym produkcie Lifetime, Custom Codes), zamień linię „Free for up to 5…” i ostatnie zdanie na:
 ```text
-The app is still in development, so to start I'm giving away RepsGoat Pro for free, forever: code REPSGOATEN → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the [LIMIT] codes last). No subscription and no charges.
+The app is still in development, so to start I'm giving away RepsGoat Pro for free, forever: code REPSGOATEN → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the 2,000 codes last). No subscription and no charges.
 
 I'd love to read what's missing for you in apps like this.
 ```
@@ -126,12 +126,12 @@ For anyone putting together a home or garage gym: I'm the developer of RepsGoat,
 
 It runs entirely on your phone, with no account and no ads:
 https://apps.apple.com/gb/app/repsgoat-progressive-overload/id6819977165
-The app is at an early stage of development, so I'm giving it away for free: code REPSGOATEN unlocks RepsGoat Pro forever → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the [LIMIT] codes last). No subscription and no charges.
+The app is at an early stage of development, so I'm giving it away for free: code REPSGOATEN unlocks RepsGoat Pro forever → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the 2,000 codes last). No subscription and no charges.
 
 If this isn't the right place for a post like this, let me know and I'll take it down.
 ```
 
-Grupa z USA: zamień `/gb/` na `/us/`. **Warunek:** kod `REPSGOATEN` musi istnieć w App Store Connect (oferta na produkcie Lifetime, Custom Codes) i być sprawdzony linkiem; dopóki go nie ma, wpis nie wychodzi albo idzie z `REPSGOATPL` (wtedy `[LIMIT]` = wspólna pula PL).
+Grupa z USA: zamień `/gb/` na `/us/`. Kod `REPSGOATEN` utworzony przez właściciela 27.11.2026, limit 2 000 („limit 2000 kod REPSGOATEN”); realizacji linkiem na telefonie jeszcze nie potwierdzono (lista, pkt 1).
 
 Punkt o miejscu i sprzęcie pochodzi z opisu w sklepie („Miejsca i sprzęt: ćwiczenia dobierane do tego, czym dysponujesz”).
 
