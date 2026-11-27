@@ -1,0 +1,12 @@
+# Sesja BF: Z-31 wygląd strony według systemu „Arkusz” — techniqueatlas
+Koordynator: session_01BM51ofp4DMHDkCDaVVg49P (ta sesja jest utworzona przez koordynatora na polecenie właściciela; raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID).
+
+1. Rola: 08-programista w trybie build (prompt roli niżej po linii `=== PROMPT ROLI ===`). Biblioteki prompts nie dołączasz, repo trening nie jest potrzebne.
+2. Start: repo lkarwowski494/techniqueatlas, gałąź `strona/z31-wyglad` od `strona/integracja-start` @ 8720007. Wejście: docs/design/system/design-spec.md (zacznij od niego; tabela AS IS → TO BE, adresy bez zmian), tokeny.css, komponenty.css, szablony/, ikona/, podglad/, kroje/, wzorce-zrzuty/ — wybór właściciela: kierunek A „Arkusz” (27.11). Testy do zazielenienia: tests/z31-* (11 testów todo z ID Z-31 według docs/55-strategia-testow-wdrozenia.md); zdejmujesz znacznik CZEKA dopiero, gdy test przechodzi. Decyzje koordynatora KO-135: krótka odpowiedź tylko przy własnych wskazówkach; tytuł bez nazwy witryny. Instalacja `npm ci`, `npm run dane`. Ciężkie testy po kolei (`--test-concurrency=1`). Tożsamość commitów według CLAUDE.md (Claude <noreply@anthropic.com>). Pełne SHA (40 hex) tylko w PIN.json.
+3. Zadania:
+   1. Wdróż wygląd w src/pages.mjs i assets/ (tokeny, komponenty, kroje woff2 z repo, 3 ekrany i stany: brak rysunku, wskazówki ogólne, brak wskazówek, 404, pusty filtr; menu <details>, w linii od 960 px; oba motywy + prefers-contrast). Budżety wagi strony z design-spec. 11 nowych tekstów UI do src/ui (pl, en; pozostałe języki przetłumaczy mechanizm API — oznacz brakujące klucze tak, jak repo to robi). Gotowe: 11 testów Z-31 zielonych, axe 0 naruszeń na stronach wzorcowych, zrzuty porównawcze z makietami (wzorce-zrzuty) w pomiary/z31/ z opisem różnic sprawdzonym na plikach.
+   2. Push, tests.yml zielony na końcowym SHA.
+4. Zakazy: nie robisz Z-32…Z-34 (nazwy, strony prawne, zasięg — osobne zadania), nie zmieniasz danych, slug-overrides.json, assets/figura-czas.js (sesja BA) ani src/plan-startu.mjs, nie scalasz, nie otwierasz PR, nie tworzysz sesji, nigdy --no-verify ani force-push, bez AskUserQuestion.
+5. Decyzje: „analogia, do weta”; opisz w PRZEKAZANIU.
+6. Od 30% kontekstu: STAN-AGENTA.md, push, PRZEKAZANIE. Pułap 15 USD.
+7. Raporty do koordynatora przez send_message (≤ 10 linii): po pierwszym ekranie — czas i szacunek; PRZEKAZANIE — SHA, run CI, testy, ścieżki zrzutów, decyzje do weta, koszt.
