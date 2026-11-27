@@ -99,6 +99,25 @@ The app is still in development, so to start I'm giving away RepsGoat Pro for fr
 I'd love to read what's missing for you in apps like this.
 ```
 
+### W3-PL: grupy kupna i sprzedaży sprzętu (właściciel 27.11.2026: „Znajde grupy gdzie ludzie sprzedaja sprzet i tam bede to dodawal. Tam mozna dawac ogloszenia wiec to przewjdzie - sprzedaje appke nie sprzet”)
+
+**Publikuj jako zwykły wpis, nie przez opcję „Sprzedaj” (ogłoszenie z ceną).** Zasady handlowe Facebooka (Commerce Policies, facebook.com/policies_center/commerce, odczyt 27.11.2026) obejmują „any attempt to buy, sell, or trade products - even for free” w usługach do handlu, także na Marketplace. Zakazują też: „Commerce content may not promote the buying, selling, or trading of downloadable digital content, digital subscriptions or digital accounts”. Ogłoszenie z ceną dla aplikacji albo kodu Pro to dokładnie ten przypadek. Grozi odrzuceniem ogłoszenia, a powtórki mogą ograniczyć konto. Zwykły wpis w dyskusji grupy nie jest opisany wprost w tym fragmencie [OCENA], więc o tym, czy wpis zostanie, decyduje regulamin grupy. Grupy sprzedażowe często dopuszczają tylko ogłoszenia o przedmiotach: grupa z taką zasadą odpada.
+
+```text
+Dla osób, które kompletują sprzęt do domu albo na siłownię: jestem autorem RepsGoat, dziennika treningowego na iPhone'a. Nic nie sprzedaję, to darmowy prezent dla tej grupy.
+• ćwiczenia dobierane do miejsca i sprzętu, który masz
+• zapis serii (ciężar × powtórzenia) z timerem przerwy, także z Apple Watch
+• historia, rekordy i wykres dla każdego ćwiczenia
+
+Działa w całości na telefonie, bez konta i bez reklam:
+https://apps.apple.com/pl/app/repsgoat-dziennik-treningowy/id6819977165
+Na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli [LIMIT] kodów). Bez subskrypcji i bez opłat.
+
+Jeśli to nie miejsce na taki wpis, daj znać, usunę go.
+```
+
+Punkt o miejscu i sprzęcie pochodzi z opisu w sklepie („Miejsca i sprzęt: ćwiczenia dobierane do tego, czym dysponujesz”).
+
 ## 4. Lista 5 punktów przed publikacją
 
 1. **Test kodu na produkcji (raz, przed pierwszym wpisem).** Otwórz link REPSGOATPL na iPhonie i zrealizuj kod. Potem otwórz RepsGoat → Więcej → Ustawienia → „Subskrypcja” i sprawdź napis „Masz plan: dożywotni”. Jeśli kod nie działa (Apple podaje do godziny na aktywację), nie publikuj wersji z kodem. Uwaga: Twoje konto może już mieć Pro z innego zakupu. Wtedy test pokaże tylko, że link działa. Zapisz, co zobaczyłeś.
