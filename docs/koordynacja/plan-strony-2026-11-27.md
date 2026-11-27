@@ -119,5 +119,6 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
 | Z-06 | zrobione | AT | 27.11 16:14 | strona/z06-badanie-zasiegu @ 72d53ce2 (docs/badanie-zasiegu-2026-11-27.md: A1–A15, B1–B9, KO-130); tests.yml 46029824334 success |
 | Z-22 | w toku | AZ | 27.11 16:25 | — |
-| Z-24 | przekazane, CI czerwone (46030018677) → AU poprawia | AU | 27.11 16:14 | strona/z24-nazwy-pl @ 977f3673 |
+| Z-24 | zrobione (czeka recenzja Z-25) | AU | 27.11 16:32 | strona/z24-nazwy-pl @ 9f4e0607 (docs/nazwy/pl.json 708/708, STAN.md); tests.yml 46032940238 success |
+| Z-25 | w toku | AY | 27.11 16:40 | — |
 | Z-21 | zrobione (czeka recenzja Z-23) | AV | 27.11 15:25 | techniqueatlas strona/z21-ramka-akapit @ 34d87bd3 (Claude noreply, 1 plik docs/teksty/ramka-w-aplikacji.md; warianty A 8 zdań / B 5 zdań pl+en; do weta: A, „Ta strona jest bezpłatna”, średnik → zdanie); tests.yml 46022874080 success na tym SHA; otwarte dla Z-23: en „at no charge” |
