@@ -108,7 +108,9 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 |---|---|---|---|---|
 | Z-00, Z-02, Z-03 | w toku | AQ | 27.11 | — |
 | Z-01 | w toku | AR | 27.11 | — |
-| Z-04, Z-07, Z-20 | w toku | AS | 27.11 | — |
+| Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
+| Z-05 | w toku (właściciel, krok po kroku) | — | 27.11 | — |
+| Z-07, Z-20 | w toku | AS | 27.11 | — |
 | Z-06 | w toku | AT | 27.11 | — |
 | Z-24 | w toku | AU | 27.11 | — |
 | Z-21 | w toku | AV | 27.11 | — |
