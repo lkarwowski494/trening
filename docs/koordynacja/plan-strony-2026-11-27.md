@@ -108,7 +108,7 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 |---|---|---|---|---|
 | Z-00, Z-02, Z-03, Z-03b | zrobione (recenzja kodu w toku) | AQ | 27.11 16:42 | strona/z00-z03-plan-dane-regula @ 10155604; tests.yml 46032249443 success; docs/55, pomiary/start-1-1-1.md (708/528/447/310/232/263), 14 nadpisań adresów (KO-131) |
 | Z-01 | zrobione | AR | 27.11 14:55 | techniqueatlas strona/z01-przeglad-galezi @ efc69dd6 (Claude noreply, 1 plik docs/przeglad-galezi-2026-11-27.md); tests.yml 46017953936 success na tym SHA. Wynik: 12 gałęzi; 7 przodkami main, tender-thompson w main pod innym SHA, stan-wskazowka i filtr-audytu-s6 nieaktualne → do usunięcia przez właściciela; zachować figury/petla-jednokierunkowa (→ Z-02a) i claude/amazing-cori-vqo0qi (→ Z-09) |
-| Z-02a | w toku | BA | 27.11 17:20 | — |
+| Z-02a | zrobione (+ poprawki S11/Z-61 po recenzji kodu) | BA | 27.11 20:18 | strona/z02a-petla @ c644c961; tests.yml 46060018328 success; scalone do integracja-start @ 0f1bb1f |
 | Z-09 | zrobione | AW | 27.11 16:11 | strona/z09-sprzatanie-testow @ bd0baf21 (Claude noreply, 7 plików); tests.yml 46030015001 success; recenzja niezależna PRZYJĘTE Z UWAGAMI (2× NISKIE uruchom-testy.mjs → backlog) |
 | Z-10 | zrobione | AX | 27.11 16:58 | strona/z10-makiety @ eb4a9ca9 (docs/design/makiety-2026-11-27/, arkusze/porownanie-*.png); tests.yml 46035081018 success |
 | Z-11 | zrobione — właściciel wybrał A „Arkusz” | — | 27.11 17:05 | AskUserQuestion: „A „Arkusz” (Rekomendowane)” |
