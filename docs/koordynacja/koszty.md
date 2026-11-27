@@ -67,3 +67,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AR | 07 audit opus-5-5 | 5 (szacunek polecenia: pułap 10) | 2,75 | 21,4 | 14:33 → 14:33 → 14:4x → 14:51 (46017953936) → 14:57 | 2 min (prompt roli przez subagenta, WG-19) | kontekst 21% głównie przez prompt roli 76 KB w wiadomościach |
 | AR (korekta) | — | — | 2,93 (odczyt przy archiwizacji) | 21,6 | — | — | poprzedni wiersz 2,75 przed końcem tury |
 | AS | M8 build opus-5-5 | pułap 20 | 6,66 | 29,3 | 14:33 → 14:33 → 14:40 (Z-04) → 15:04 (46019852421) → 15:08 | 2 min (prompt, WG-19) | 3 zadania, ok. 32 min |
+| AV | 04 build zawężona | — | 4,07 | 23,7 | 14:33 → 14:33 → ~15:10 → 15:25 → 15:30 | ok. 30 min: potwierdzenie właściciela w sesji AV | Z-21, docs |
