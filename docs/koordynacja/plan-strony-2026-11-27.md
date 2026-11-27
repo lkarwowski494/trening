@@ -113,7 +113,8 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-10 | zrobione | AX | 27.11 16:58 | strona/z10-makiety @ eb4a9ca9 (docs/design/makiety-2026-11-27/, arkusze/porownanie-*.png); tests.yml 46035081018 success |
 | Z-11 | zrobione — właściciel wybrał A „Arkusz” | — | 27.11 17:05 | AskUserQuestion: „A „Arkusz” (Rekomendowane)” |
 | Z-12 | zrobione | BD (po AX) | 27.11 18:47 | strona/z10-makiety @ 24a19270 (docs/design/system/: design-spec.md, tokeny, komponenty, szablony, ikona, podgląd); tests.yml 46048957875 success |
-| Z-31 | w toku | BF | 27.11 20:00 | — |
+| Z-31 | zrobione | BF | 27.11 21:58 | strona/z31-wyglad @ e6bc66ad; tests.yml 46071430442 success; recenzja kodu bez KRYT/WYS; FF do integracja-start |
+| Z-32, Z-33 | w toku | BI | 27.11 22:20 | — |
 | Z-30 | zrobione | BE | 27.11 19:49 | strona/z30-testy @ 8720007 (docs/55-strategia-testow-wdrozenia.md; 40 testów todo Z-31 11/Z-32 6/Z-33 8/Z-34 15); tests.yml 46056881459 success; FF do integracja-start |
 | Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
 | Z-05 | zrobione — kroki 1–8 (Enforce HTTPS: właściciel 27.11 ~16:00 „gotowe”) | — | 27.11 16:03 | curl: http://www.techniqueatlas.com → 301, https → 404 GitHub (brak wdrożenia, oczekiwane) |
