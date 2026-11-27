@@ -116,6 +116,23 @@ Na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.
 Jeśli to nie miejsce na taki wpis, daj znać, usunę go.
 ```
 
+### W3-EN: grupy sprzedaży sprzętu w UK i US (zwykły wpis, nie „Sell”; bez kodu, dopóki nie ma kodu EN)
+
+```text
+For anyone putting together a home or garage gym: I'm the developer of RepsGoat, a workout log for iPhone. I'm not selling any equipment, just sharing something that might help with the kit you're buying.
+• exercises matched to your location and the equipment you have
+• log sets (weight × reps) with a rest timer, also from Apple Watch
+• history, records and a chart for every exercise
+
+It runs entirely on your phone, with no account and no ads:
+https://apps.apple.com/gb/app/repsgoat-progressive-overload/id6819977165
+Free for up to 5 training days a month; Pro removes the limit. History, backup and export always work.
+
+If this isn't the right place for a post like this, let me know and I'll take it down.
+```
+
+Grupa z USA: zamień `/gb/` na `/us/`. Z kodem EN: zamień linię „Free for up to 5…” na zdanie o kodzie z wersji W1-EN.
+
 Punkt o miejscu i sprzęcie pochodzi z opisu w sklepie („Miejsca i sprzęt: ćwiczenia dobierane do tego, czym dysponujesz”).
 
 ## 4. Lista 5 punktów przed publikacją
