@@ -112,9 +112,9 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-09 | otwarte (KO-129) | następna sesja 08 | 27.11 | — |
 | Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
 | Z-05 | w toku — kroki 1–7 zrobione 27.11 15:05 (DoH: apex A ×4 GitHub, www CNAME lkarwowski494.github.io, parking usunięty); czeka krok 8 Enforce HTTPS (certyfikat do 24 h); krok 1/1a zrobiony 27.11 ~14:50 („Successfully verified techniqueatlas.com”); K6: „Dodawalem chyba w google wczesniej” | — | 27.11 | — |
-| Z-07 | zrobione | AS | 27.11 14:47 | docs/znaki-towarowe-metoda.md @ 9bbc00f (lokalnie u AS; push zbiorczo) |
+| Z-07 | zrobione | AS | 27.11 14:47 | docs/znaki-towarowe-metoda.md @ c76182b8 (z decyzją Z-08) |
 | Z-08 | zrobione — decyzja właściciela | — | 27.11 ~14:50 | AskUserQuestion: „Nie robimy tego.” (sprawdzanie znaków towarowych nazw) → Z-28 odpada; strażnik S3 (src/straznicy.mjs checkTrademarks, R-016) do zmiany zgodnie z decyzją w tym samym commicie co test (CLAUDE.md repo trening) — nowe zadanie Z-03b dla AQ |
-| Z-20 | w toku | AS | 27.11 | — |
+| Z-20 | zrobione (czeka recenzja Z-23) | AS | 27.11 15:05 | strona/z04-z07-z20-formalnosci @ c76182b8 (4 commity Claude noreply, tylko docs: docs/teksty/prawne/ pl+en ×3 + dowody.md D-1…D-15); tests.yml 46019852421 success na tym SHA. Do weta (AS): własna polityka strony; licencja: wyszukiwarki i asystenci AI mogą indeksować/cytować z linkiem, zakaz zbiorów do uczenia modeli; hosting jako kategoria; rysunek tylko w wydruku. Otwarte: wstawki {{administrator}}/{{kontakt}} (Z-33; e-mail nie w repo), [DO KONSULTACJI] PP-1–3, R-1–3, L-1–2; Z-52: brak Set-Cookie |
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
 | Z-06 | w toku | AT | 27.11 | — |
 | Z-24 | w toku | AU | 27.11 | — |

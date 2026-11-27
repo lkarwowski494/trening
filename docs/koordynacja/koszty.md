@@ -65,3 +65,5 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AO session_01BM51odgzGLHUyZrPFhgtWe | 10 build (wydanie 1.1.1) | [OCENA] — | 6,20 | 30 | 22.11 12:35 → 12:40 → 33d46a8d → tests.yml 45032744290 success 14:41 (d9382dbe) → przyjęte 15:12 | pełne verify ×2 (pierwsze padło po starcie Jest), ok. 80 min | zarchiwizowana 15:15; stan na stan/ao @ 6b3ea41f |
 | Koordynator …odgG7NSW2dnk3ZgwQ4 | M9 | — | 27,35 (13:41) | 48 | 22.11 08:48 → 13:45 | — | przekroczony próg 30% bez wcześniejszego pomiaru — kontrolować context_usage przy każdej kontroli |
 | AR | 07 audit opus-5-5 | 5 (szacunek polecenia: pułap 10) | 2,75 | 21,4 | 14:33 → 14:33 → 14:4x → 14:51 (46017953936) → 14:57 | 2 min (prompt roli przez subagenta, WG-19) | kontekst 21% głównie przez prompt roli 76 KB w wiadomościach |
+| AR (korekta) | — | — | 2,93 (odczyt przy archiwizacji) | 21,6 | — | — | poprzedni wiersz 2,75 przed końcem tury |
+| AS | M8 build opus-5-5 | pułap 20 | 6,66 | 29,3 | 14:33 → 14:33 → 14:40 (Z-04) → 15:04 (46019852421) → 15:08 | 2 min (prompt, WG-19) | 3 zadania, ok. 32 min |
