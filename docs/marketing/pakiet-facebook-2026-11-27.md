@@ -47,12 +47,12 @@ Pytam, bo jestem autorem aplikacji RepsGoat i chcę ją robić tak, żeby napraw
 
 Jest na iPhone'a, działa w całości na telefonie, bez konta i bez reklam:
 https://apps.apple.com/pl/app/repsgoat-dziennik-treningowy/id6819977165
-Aplikacja jest w fazie rozwoju, dlatego na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli [LIMIT] kodów). Bez subskrypcji i bez opłat.
+Aplikacja jest w fazie rozwoju, dlatego na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli 1000 kodów). Bez subskrypcji i bez opłat.
 
 Chętnie przeczytam, czego Wam brakuje w takich aplikacjach.
 ```
 
-`[LIMIT]` = limit realizacji ustawiony dla REPSGOATPL w App Store Connect. Wpisz dokładną liczbę albo usuń cały nawias z „do wyczerpania puli”, jeśli nie chcesz jej podawać.
+Limit REPSGOATPL: 1000 (właściciel 27.11.2026: „repsgoatpl ma limit 1000”). Liczba w zdaniu = limit tego kodu; nie zamieniaj kodów między językami bez zmiany liczby.
 
 ### W2-PL: z kodem, druga polska grupa (inne otwarcie, inna kolejność punktów; najwcześniej następnego dnia)
 
@@ -66,7 +66,7 @@ Rozwijam go sam, więc na pewno nie jest jeszcze idealny. Dlatego bardzo cenię 
 
 Działa w całości na telefonie, bez konta i bez reklam:
 https://apps.apple.com/pl/app/repsgoat-dziennik-treningowy/id6819977165
-Na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli [LIMIT] kodów). Bez subskrypcji i bez opłat.
+Na start daję RepsGoat Pro na zawsze za darmo: kod REPSGOATPL → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli 1000 kodów). Bez subskrypcji i bez opłat.
 ```
 
 „Przy serii widać, co było poprzednio”: kolumna „Poprzednio” jest na pierwszym zrzucie w sklepie. „Rozwijam go sam” zostaw tylko, jeśli to prawda (w Oczku ten wariant wymagał Twojego potwierdzenia).
@@ -111,7 +111,7 @@ Dla osób, które kompletują sprzęt do domu albo na siłownię: jestem autorem
 
 Działa w całości na telefonie, bez konta i bez reklam:
 https://apps.apple.com/pl/app/repsgoat-dziennik-treningowy/id6819977165
-Aplikacja jest na początku rozwoju, dlatego udostępniam ją za darmo: kod REPSGOATPL daje RepsGoat Pro na zawsze → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli [LIMIT] kodów). Bez subskrypcji i bez opłat.
+Aplikacja jest na początku rozwoju, dlatego udostępniam ją za darmo: kod REPSGOATPL daje RepsGoat Pro na zawsze → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATPL (jedna realizacja na osobę, do wyczerpania puli 1000 kodów). Bez subskrypcji i bez opłat.
 
 Jeśli to nie miejsce na taki wpis, daj znać, usunę go.
 ```
