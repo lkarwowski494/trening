@@ -151,3 +151,35 @@ Wklejaj komentarze koordynatorowi albo do tej sesji. Dostaniesz gotową odpowied
 - „Czy jest na Androida?”: nie, tylko iPhone (i Apple Watch). Zapisz to jako sygnał (metryka C decyzji o Androidzie, ZB-013).
 - Krytyka: zostaw ją, odpowiedz rzeczowo i niczego nie obiecuj. Błąd: poproś o wersję iOS i opis tego, co się stało.
 - Nie proś o polubienia, udostępnienia ani oceny w komentarzach.
+
+## 6. Gotowe wersje UK i US do grup sprzedaży sprzętu (27.11.2026, na prośbę właściciela „daj mi gotowe obie wersje”)
+
+Różnice: link do sklepu (`/gb/` albo `/us/`), inne pierwsze zdanie (zasada: każdy wpis z innym otwarciem), w US „gear” zamiast „kit”. Kod i limit te same (REPSGOATEN, 2000; właściciel 27.11.2026).
+
+### W3-EN-UK
+```text
+For anyone putting together a home or garage gym: I'm the developer of RepsGoat, a workout log for iPhone. I'm not selling any equipment, just sharing something that might help with the kit you're buying.
+• exercises matched to your location and the equipment you have
+• log sets (weight × reps) with a rest timer, also from Apple Watch
+• history, records and a chart for every exercise
+
+It runs entirely on your phone, with no account and no ads:
+https://apps.apple.com/gb/app/repsgoat-progressive-overload/id6819977165
+The app is at an early stage of development, so I'm giving it away for free: code REPSGOATEN unlocks RepsGoat Pro forever → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the 2,000 codes last). No subscription and no charges.
+
+If this isn't the right place for a post like this, let me know and I'll take it down.
+```
+
+### W3-EN-US
+```text
+Just picked up a rack, a bench or some plates for your garage gym? I'm the developer of RepsGoat, a workout log for iPhone. I'm not selling any gear, just sharing something that might help you get the most out of it.
+• exercises matched to your location and the equipment you have
+• log sets (weight × reps) with a rest timer, also from Apple Watch
+• history, records and a chart for every exercise
+
+It runs entirely on your phone, with no account and no ads:
+https://apps.apple.com/us/app/repsgoat-progressive-overload/id6819977165
+The app is at an early stage of development, so I'm giving it away for free: code REPSGOATEN unlocks RepsGoat Pro forever → https://apps.apple.com/redeem?ctx=offercodes&id=6819977165&code=REPSGOATEN (one redemption per person, while the 2,000 codes last). No subscription and no charges.
+
+If this isn't the right place for a post like this, just let me know and I'll remove it.
+```
