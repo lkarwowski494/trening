@@ -1,0 +1,14 @@
+# Sesja AX: Z-10 makiety strony (2–3 kierunki wyglądu) — techniqueatlas
+Koordynator: session_01BM51ofp4DMHDkCDaVVg49P (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID; przy zmianie koordynatora pisz do nowego). Gałąź stanu: `koordynacja` w lkarwowski494/trening (tylko odczyt; plan: docs/koordynacja/plan-strony-2026-11-27.md, wiersz Z-10, P-1…P-12).
+
+1. Rola: 04-studio-projektowe w trybie build z modułem strona-www (plan: „M6-strona-www prowadzi 04”). Prompt roli w pierwszej wiadomości po linii `=== PROMPT ROLI ===`; jesteś tą rolą. Biblioteki prompts nie dołączasz.
+2. Start: repo lkarwowski494/techniqueatlas, gałąź `strona/z10-makiety` od `strona/z00-z03-plan-dane-regula` @ 0cbb5cf4 (dane z aplikacji 1.1.1, Z-02; sesja AQ dalej pracuje na swojej gałęzi — nie piszesz do niej). Instalacja: `npm ci`, `npm run dane` / build według README. Tożsamość commitów według CLAUDE.md repo (Claude <noreply@anthropic.com>).
+3. Zadania:
+   1. Inwentarz obecnej strony (szablony w src/pages.mjs, assets/site.css): ekrany, elementy, stany — zrzuty obecnego wyglądu. Gotowe: docs/design/inwentarz-2026-11-27.md ze ścieżkami zrzutów.
+   2. 2–3 kierunki wyglądu jako makiety HTML z zrzutami (Playwright, deviceScaleFactor 2): strona ćwiczenia, strona główna języka, lista z filtrem; każda na telefon i komputer, jasny i ciemny. W każdej: nagłówek z marką i menu, stopka, nazwa lokalna + angielska, ramka „w aplikacji” (tekst wariant A z gałęzi strona/z21-ramka-akapit @ 34d87bd3, docs/teksty/ramka-w-aplikacji.md), krótka odpowiedź. WCAG 2.2 AA (kontrast policzony, nie oceniony okiem). Gotowe: docs/design/makiety-2026-11-27/ z plikami HTML i zrzutami w pełnej rozdzielczości, tabela kierunków z kompromisami i rekomendacją.
+   3. Arkusz porównawczy kierunków (jeden obraz na kierunek × ekran) do pokazania właścicielowi; różnice opisujesz po sprawdzeniu plików źródłowych (zasada „uwagi wizualne” z CLAUDE.md repo trening). Gotowe: ścieżki arkuszy w PRZEKAZANIU.
+   4. Push, tests.yml zielony na końcowym SHA.
+4. Zakazy: nie zmieniasz src/ ani assets/ produkcyjnie (tylko makiety w docs/design/), nie scalasz, nie otwierasz PR, nie tworzysz sesji, nie piszesz na `koordynacja`, nie zmieniasz workflowów, nigdy --no-verify ani force-push, bez AskUserQuestion. Nazwy innych firm i źródeł nie trafiają do makiet. STOP roli (wybór kierunku) = raport do koordynatora z arkuszami; koordynator pokaże je właścicielowi (Z-11).
+5. Decyzje: „analogia, do weta”; decyzje opisz w PRZEKAZANIU (numery KO nadaje koordynator).
+6. Kontekst i koszt: od 30% okna kończysz krok, STAN-AGENTA.md na gałęzi, push, PRZEKAZANIE. Pułap 15 USD; próg STOP 19,5 USD.
+7. Raporty (≤ 10 linii, send_message): po zadaniu 1 — czas i szacunek reszty; PYTANIE — pełna treść, opcje, rekomendacja; PRZEKAZANIE — SHA, run CI, ścieżki arkuszy, decyzje do weta, koszt, otwarte.
